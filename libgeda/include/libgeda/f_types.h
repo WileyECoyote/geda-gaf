@@ -8,19 +8,19 @@ typedef void (*ConfigParseErrorFunc)(GError **, void *);
 
 /*! \typedef ObjectBoundsFunc
  *  \brief Type of callback function for getting the bounds of a GedaObject */
-typedef int (*ObjectBoundsFunc)(Object *);
+typedef int (*ObjectBoundsFunc)(GedaObject *);
 
 /*! \typedef RenderedBoundsFunc
  *  \brief Type of callback function for calculating text bounds */
-typedef int(*RenderedBoundsFunc)(void *, Object *, int *, int *, int *, int *);
+typedef int(*RenderedBoundsFunc)(void *, GedaObject *, int *, int *, int *, int *);
 
 /*! \typedef ChangeNotifyFunc
  *  \brief Type of callback function for object damage notification */
-typedef int(*ChangeNotifyFunc)(void *, Object *);
+typedef int(*ChangeNotifyFunc)(void *, GedaObject *);
 
 /*! \typedef NewObjectFunc
- *  \brief Type of callback function for notification when a new Object is created */
-typedef void(*NewObjectFunc)(Object *, void *);
+ *  \brief Type of callback function for notification when a new GedaObject is created */
+typedef void(*NewObjectFunc)(GedaObject *, void *);
 
 /*! \typedef NewPageFunc
  *  \brief Type of callback function for notification when a new GedaToplevel is created */
@@ -32,11 +32,11 @@ typedef void(*NewToplevelFunc)(GedaToplevel *, void *);
 
 /*! \typedef AttribsChangedFunc
  *  \brief Type of callback function for notification when an object's attributes change */
-typedef void(*AttribsChangedFunc)(void *, Object *);
+typedef void(*AttribsChangedFunc)(void *, GedaObject *);
 
 /*! \typedef ConnsChangedFunc
  *  \brief Type of callback function for notification when an object's connections change */
-typedef void(*ConnsChangedFunc)(void *, Object *);
+typedef void(*ConnsChangedFunc)(void *, GedaObject *);
 
 /*! \typedef LoadBackupQueryFunc
  *  \brief Type of callback function for querying loading of backups  */

@@ -10,7 +10,7 @@ struct st_idle_hook_data {
   GschemToplevel *w_current;
 
   union { GList  *list;
-          Object *object;
+          GedaObject *object;
           Page   *page;
         } data;
 
@@ -39,6 +39,6 @@ struct st_session_menu_data {
 
 struct st_stretch
 {
-  Object *object;
+  GedaObject *object;
   int whichone;
 };

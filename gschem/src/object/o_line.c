@@ -78,7 +78,7 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
       (w_current->first_wy - w_current->second_wy))
   {
     GedaToplevel *toplevel = w_current->toplevel;
-    Object       *new_obj;
+    GedaObject   *new_obj;
 
     /* create the line object and draw it */
     new_obj = o_line_new (GRAPHIC_COLOR,

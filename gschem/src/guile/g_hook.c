@@ -99,10 +99,10 @@ g_get_hook_by_name (const char *name)
  *
  * \param w_current Gschem Toplevel object
  * \param name      name of hook to run.
- * \param obj       Object argument for hook.
+ * \param obj       GedaObject argument for hook.
  */
 static void
-g_hook_idle_run_object(GschemToplevel *w_current, const char *name, Object *obj)
+g_hook_idle_run_object(GschemToplevel *w_current, const char *name, GedaObject *obj)
 {
   scm_dynwind_begin (0);
 
@@ -141,7 +141,7 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
 
   for (iter = obj_lst; iter != NULL; NEXT(iter)) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (GEDA_IS_OBJECT(object)) {
       lst = scm_cons (edascm_from_object (object), lst);
@@ -242,7 +242,7 @@ g_hook_run_idle_notify (void *data)
 
     for (iter = hook_list; iter != NULL; NEXT(iter)) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
 
       if (GEDA_IS_OBJECT(object)) {
         g_object_unref (G_OBJECT(object));
@@ -342,7 +342,7 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
 
     for (iter = list; iter != NULL; NEXT(iter)) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
 
       if (GEDA_IS_OBJECT(object)) {
         hook_list = g_list_append(hook_list, g_object_ref (G_OBJECT(object)));
@@ -371,7 +371,7 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
  * \param [in] object    Object argument for hook.
  */
 void
-g_hook_run_object(GschemToplevel *w_current, Hooker hook, Object *object)
+g_hook_run_object(GschemToplevel *w_current, Hooker hook, GedaObject *object)
 {
   if (object) {
 

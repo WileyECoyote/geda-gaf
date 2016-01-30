@@ -24,7 +24,7 @@
 /*! \file s_place.c
  *  \brief
  *   The contain utility functions to manipulate Placement
- *  Object List
+ *  GedaObject List
  *
  */
 

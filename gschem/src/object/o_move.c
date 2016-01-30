@@ -48,7 +48,7 @@
  * in \a list
  *
  */
-GList *o_move_stretch_add (GList *list, Object *object, int whichone)
+GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
 {
   GList   *s_iter;
   STRETCH *s_new;
@@ -73,15 +73,15 @@ GList *o_move_stretch_add (GList *list, Object *object, int whichone)
  *
  *  \ingroup Stretch
  *  \par Function Description
- *  Compares if (STRETCH *)a->object == (Object *)b
+ *  Compares if (STRETCH *)a->object == (GedaObject*)b
  *
  * \param [in] a  The STRETCH structure
  * \param [in] b  The Object to test for
- * \returns 0 if STRETCH *a points to Object *b, otherwise 1.
+ * \returns 0 if STRETCH *a points toGedaObject *b, otherwise 1.
  */
 static int find_object (gconstpointer a, gconstpointer b)
 {
-  return (((STRETCH *)a)->object == (Object *)b) ? 0 : 1;
+  return (((STRETCH *)a)->object == (GedaObject*)b) ? 0 : 1;
 }
 
 
@@ -90,7 +90,7 @@ static int find_object (gconstpointer a, gconstpointer b)
  *  \par Function Description
  *
  */
-GList *o_move_stretch_remove (GList *list, Object *object)
+GList *o_move_stretch_remove (GList *list, GedaObject *object)
 {
   GList *item;
 
@@ -155,8 +155,8 @@ void o_move_stretch_destroy_all (GList *list)
  *
  */
 void o_move_end_lowlevel (GschemToplevel *w_current,
-                         Object *object,
-                         int diff_x, int diff_y)
+                          GedaObject     *object,
+                          int diff_x, int diff_y)
 {
   switch (object->type) {
 
@@ -180,7 +180,7 @@ void o_move_end_lowlevel (GschemToplevel *w_current,
  */
 void o_move_end(GschemToplevel *w_current)
 {
-  Object *object = o_select_return_first_object(w_current);
+  GedaObject *object = o_select_return_first_object(w_current);
 
   if (!object) {
     /* This is an error condition hack */
@@ -190,12 +190,12 @@ void o_move_end(GschemToplevel *w_current)
 
     GedaToplevel *toplevel = w_current->toplevel;
 
-    Object *sub_object;
-    GList  *iter;
-    GList  *selection_iter;
-    GList  *selection_list;
-    GList  *rubbernet_objects = NULL;
-    int diff_x, diff_y;
+    GedaObject *sub_object;
+    GList      *iter;
+    GList      *selection_iter;
+    GList      *selection_list;
+    GList      *rubbernet_objects = NULL;
+    int         diff_x, diff_y;
 
     diff_x = w_current->second_wx - w_current->first_wx;
     diff_y = w_current->second_wy - w_current->first_wy;
@@ -227,7 +227,7 @@ void o_move_end(GschemToplevel *w_current)
 
     while (selection_iter != NULL) {
 
-      object = (Object *) selection_iter->data;
+      object = (GedaObject*) selection_iter->data;
 
       if (object == NULL) {
         BUG_MSG("NULL object!");
@@ -243,7 +243,7 @@ void o_move_end(GschemToplevel *w_current)
 
         iter = g_list_first( object->complex->prim_objs);
         while (iter != NULL) {
-          sub_object = (Object *)iter->data;
+          sub_object = (GedaObject*)iter->data;
           o_move_end_lowlevel (w_current, sub_object, diff_x, diff_y);
           NEXT(iter);
         }
@@ -335,8 +335,8 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
     {
       int dx1, dx2, dy1, dy2;
 
-      STRETCH *s_current = s_iter->data;
-      Object  *object    = s_current->object;
+      STRETCH    *s_current = s_iter->data;
+      GedaObject *object    = s_current->object;
 
       switch (object->type) {
         case (OBJ_NET):
@@ -375,7 +375,7 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
   /* realign the object if we are in resnap mode */
   if (selection != NULL && w_current->snap == SNAP_RESNAP) {
 
-    Object *object;
+    GedaObject *object;
 
     int object_x, object_y;
     bool resnap = FALSE;
@@ -386,8 +386,8 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
 
       /* find an object that is not attached to any other object */
       for (s_current = selection; s_current != NULL; NEXT(s_current)) {
-        if (((Object *) s_current->data)->attached_to == NULL) {
-          object = (Object *) s_current->data;
+        if (((GedaObject*) s_current->data)->attached_to == NULL) {
+          object = (GedaObject*) s_current->data;
           resnap = TRUE;
           break;
         }
@@ -398,15 +398,15 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
          elements are attributes of the object element.*/
       for (s_current = selection; s_current != NULL && resnap == TRUE; NEXT(s_current))
       {
-        if (!(object == (Object *) s_current->data)
-            && !o_attrib_is_attached_to((Object *) s_current->data, object)) {
+        if (!(object == (GedaObject*) s_current->data)
+            && !o_attrib_is_attached_to((GedaObject*) s_current->data, object)) {
           resnap = FALSE;
         }
       }
     }
     else { /* single object */
       resnap = TRUE;
-      object = (Object *) selection->data;
+      object = (GedaObject*) selection->data;
     }
 
     /* manipulate w_x and w_y in a way that will lead to a position
@@ -447,13 +447,9 @@ o_move_draw_rubber (GschemToplevel *w_current, int drawing)
 
   for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
   {
-    STRETCH *s_current;
-    Object  *object;
-    int      whichone;
-
-    s_current = s_iter->data;
-    object    = s_current->object;
-    whichone  = s_current->whichone;
+    STRETCH    *s_current = s_iter->data;
+    GedaObject *object    = s_current->object;
+    int         whichone  = s_current->whichone;
 
     /* We can only stretch nets and buses */
     switch (object->type) {
@@ -485,7 +481,7 @@ o_move_draw_rubber (GschemToplevel *w_current, int drawing)
  *  \par Function Description
  *
  */
-int o_move_return_whichone(Object * object, int x, int y)
+int o_move_return_whichone(GedaObject *object, int x, int y)
 {
   if (object->line->x[0] == x && object->line->y[0] == y) {
     return (0);
@@ -506,17 +502,16 @@ int o_move_return_whichone(Object * object, int x, int y)
  *
  */
 static
-void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
+void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList  *cl_current;
-  CONN   *c_current;
-
-  int whichone;
+  GList        *cl_current;
+  CONN         *c_current;
+  int           whichone;
 
   for (cl_current = object->conn_list; cl_current != NULL; NEXT(cl_current))
   {
-    Object *other;
+    GedaObject *other;
 
     c_current = (CONN*)cl_current->data;
     other     = c_current->other_object;
@@ -539,7 +534,7 @@ void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
 
     if (object->type == OBJ_PIN && other->type == OBJ_PIN) {
 
-      Object *new_net;
+     GedaObject *new_net;
       /* other object is a pin, insert a net */
       new_net = o_net_new (NET_COLOR,
                            c_current->x, c_current->y,
@@ -584,8 +579,8 @@ void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
 void o_move_prep_rubberband(GschemToplevel *w_current)
 {
   GList *s_current;
-  Object *object;
-  Object *o_current;
+  GedaObject *object;
+ GedaObject *o_current;
   GList *iter;
 
   for (s_current = geda_list_get_glist (Current_Selection);
@@ -622,7 +617,7 @@ void o_move_prep_rubberband(GschemToplevel *w_current)
  *  \par Function Description
  *
  */
-static int o_move_zero_length(Object * object)
+static int o_move_zero_length(GedaObject *object)
 {
 #if DEBUG
   printf("x: %d %d y: %d %d\n",
@@ -652,7 +647,7 @@ void o_move_end_rubberband (GschemToplevel *w_current,
   for (s_iter = w_current->stretch_list; s_iter != NULL; s_iter = s_iter_next)
   {
     STRETCH *s_current = s_iter->data;
-    Object *object = s_current->object;
+    GedaObject *object = s_current->object;
     int whichone = s_current->whichone;
 
     /* Store this now, since we may delete the current item */

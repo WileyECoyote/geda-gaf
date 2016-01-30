@@ -131,7 +131,7 @@ public:
   Drawable      drawable;
 
   int           screen;
-  Object       *object;
+  GedaObject   *object;
 
   XColor        color;
   Colormap      colormap;

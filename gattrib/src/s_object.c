@@ -63,7 +63,7 @@
  */
 void
 s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                    Object       *o_current,
+                                    GedaObject   *o_current,
                                     char         *new_attrib_name,
                                     char         *new_attrib_value,
                                     int           visibility,
@@ -93,7 +93,7 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
  */
 void
 s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                   Object       *o_current,
+                                   GedaObject   *o_current,
                                    char         *new_attrib_name,
                                    char         *new_attrib_value)
 {
@@ -123,7 +123,7 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
  */
 void
 s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
-                                   Object       *o_current,
+                                   GedaObject   *o_current,
                                    char         *new_attrib_name,
                                    char         *new_attrib_value)
 {
@@ -162,7 +162,7 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
  */
 void
 s_object_replace_attrib_in_object(GedaToplevel *toplevel,
-                                  Object       *o_current,
+                                  GedaObject   *o_current,
                                   char         *new_attrib_name,
                                   char         *new_attrib_value,
                                   int           visibility,
@@ -177,7 +177,7 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
 
   while (a_iter != NULL) {
 
-    Object *a_current = a_iter->data;
+    GedaObject *a_current = a_iter->data;
 
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
 
@@ -235,12 +235,12 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
  */
 void
 s_object_release_attrib_in_object (GedaToplevel *toplevel,
-                                   Object       *o_current,
+                                   GedaObject   *o_current,
                                    char         *new_attrib_name)
 {
-  GList *a_iter;
-  Object *a_current;
-  Object *attribute_object;
+  GList      *a_iter;
+  GedaObject *a_current;
+  GedaObject *attribute_object;
   char *old_attrib_text;
   char *old_attrib_name;
 
@@ -305,10 +305,10 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                       char         *text_string,
                                       int           visibility,
                                       int           show_name_value,
-                                      Object       *object)
+                                      GedaObject   *object)
 {
-  Object *o_current;
-  Object *new_obj;
+  GedaObject *o_current;
+  GedaObject *new_obj;
   int color;
   int left, right, top, bottom;
   int world_x = -1, world_y = -1;
@@ -391,7 +391,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
  */
 void
 s_object_delete_text_object_in_object (GedaToplevel *toplevel,
-                                       Object       *text_object)
+                                       GedaObject   *text_object)
 {
   s_page_remove_object (toplevel->page_current, text_object);
   s_object_release (text_object);
@@ -405,7 +405,7 @@ s_object_delete_text_object_in_object (GedaToplevel *toplevel,
  *
  * \returns 0 = valid symbol file, 1 = no symbol file found.
  */
-int s_object_has_sym_file(Object *object)
+int s_object_has_sym_file(GedaObject *object)
 {
   char *filename;
 

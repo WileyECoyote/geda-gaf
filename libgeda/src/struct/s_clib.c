@@ -1571,7 +1571,7 @@ GList *s_clib_get_symbols (const GedaToplevel *toplevel)
 {
   GList  *result  = NULL;
   GList  *iter    = NULL;
-  Object *object  = NULL;
+  GedaObject *object  = NULL;
   GList  *symlist = NULL;
 
   CLibSymbol  *sym = NULL;
@@ -1585,7 +1585,7 @@ GList *s_clib_get_symbols (const GedaToplevel *toplevel)
 
     for (o_iter = s_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
 
-      object = (Object *)o_iter->data;
+      object = (GedaObject *)o_iter->data;
 
       if (object->type != OBJ_COMPLEX) continue;
 

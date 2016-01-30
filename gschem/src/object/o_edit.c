@@ -69,7 +69,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
 
   if (clib != NULL) {
 
-    Object *object;
+    GedaObject *object;
 
     object = o_complex_new (w_current->toplevel, 0, 0, 0, FALSE, clib, sym_file, FALSE);
 
@@ -96,9 +96,9 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
  */
 void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 {
-  Object     *o_current;
-  bool        isSymbol;
+  GedaObject *o_current;
   const char *str = NULL;
+  bool        isSymbol;
 
   if (list == NULL) {
     i_status_action_stop(w_current);
@@ -106,7 +106,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
     return;
   }
 
-  o_current = (Object *) list->data;
+  o_current = (GedaObject*) list->data;
 
   if (o_current == NULL) {
     BUG_MSG("unexpected NULL\n");
@@ -184,7 +184,7 @@ void o_edit_lock (GschemToplevel *w_current)
 
   while(s_current != NULL) {
 
-    Object *object = (Object *) s_current->data;
+    GedaObject *object = (GedaObject*) s_current->data;
 
     if (object) {
       object->selectable   = FALSE;
@@ -218,7 +218,7 @@ void o_edit_unlock(GschemToplevel *w_current)
 
   while(s_current != NULL) {
 
-    Object *object = (Object*) s_current->data;
+    GedaObject *object = (GedaObject*) s_current->data;
 
     if (object) {
       object->selectable        = TRUE;
@@ -358,7 +358,7 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
       w_current->first_wx = left;
       w_current->first_wy = ymin;
 
-      Object *tmp = geda_box_new();
+     GedaObject *tmp = geda_box_new();
 
       tmp->box->upper_x = left;
       tmp->box->upper_y = ymin;
@@ -530,7 +530,7 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (!o_current->selectable) {
       NEXT(iter);
@@ -543,7 +543,7 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
 
-        Object *sub_obj = iter2->data;
+       GedaObject *sub_obj = iter2->data;
 
         if (sub_obj->type == OBJ_TEXT) {
 
@@ -594,7 +594,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (!o_current->selectable) {
       NEXT(iter);
@@ -607,7 +607,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
 
-        Object *sub_obj = iter2->data;
+       GedaObject *sub_obj = iter2->data;
 
         if (sub_obj->type == OBJ_PIN) {
 
@@ -615,7 +615,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
           for( pa_iter = sub_obj->attribs; pa_iter; NEXT(pa_iter)) {
 
-            Object *p_attrib = pa_iter->data;
+           GedaObject *p_attrib = pa_iter->data;
 
             if (p_attrib->type == OBJ_TEXT) {
 
@@ -733,7 +733,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -760,7 +760,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
     }
     else if (o_current->type == OBJ_COMPLEX) {
 
-      Object *a_current = o_attrib_first_attrib_by_name (o_current, "netname");
+     GedaObject *a_current = o_attrib_first_attrib_by_name (o_current, "netname");
 
       if ( a_current != NULL) {
         if (a_current->visibility == INVISIBLE) {
@@ -783,7 +783,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
   o_invalidate_list(w_current, (GList*)redraw);
 }
 
-Object *last_o = NULL;
+GedaObject *last_o = NULL;
 int skiplast;
 
 /*! \todo Finish function documentation!!!
@@ -813,7 +813,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -952,7 +952,7 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
   iter = o_list;
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -986,7 +986,7 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+   GedaObject *o_current = (GedaObject*)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -1025,7 +1025,7 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
 
     int cur_x, cur_y;
 
-    Object *object = (Object *)iter->data;
+    GedaObject *object = (GedaObject*)iter->data;
 
     if (o_get_position(object, &cur_x, &cur_y)) {
 
@@ -1071,13 +1071,12 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
  *       list of attribute names the user wants restored, the dialog
  *       could also have a check button to restore positions.
  */
-Object *
-o_edit_update_component (GschemToplevel *w_current, Object *o_current)
+GedaObject *
+o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
 {
   GedaToplevel *toplevel;
-
-  Object *o_new;
-  Object *attr_old;
+  GedaObject   *o_new;
+  GedaObject   *attr_old;
   Page   *page;
   GList  *new_attribs;
   GList  *old_attribs;
@@ -1134,7 +1133,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
    * items with NULL data. This is slightly magic, but works. */
   for (iter = new_attribs; iter != NULL; NEXT(iter)) {
 
-    Object *attr_new = iter->data;
+   GedaObject *attr_new = iter->data;
 
     char *name;
     char *new_value;
@@ -1182,7 +1181,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   }
   new_attribs = g_list_remove_all (new_attribs, NULL);
 
-  /* Detach attributes from old Object and attach to new Object */
+  /* Detach attributes from old Object and attach to newGedaObject */
   old_attribs = g_list_copy (o_current->attribs);
   o_attrib_detach_all (o_current);
   o_attrib_attach_list (o_new, old_attribs, 1);
@@ -1194,11 +1193,11 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   /* Update pinnumbers for current slot */
   s_slot_update_object (o_new);
 
-  /* Replace old Object with new Object */
+  /* Replace old Object with newGedaObject */
   s_page_replace_object (page, o_current, o_new);
   s_object_release (o_current);
 
-  /* Select new Object */
+  /* Select newGedaObject */
   o_selection_add (page->selection_list, o_new);
 
   /* A redraw attributes in case a property (size) was restored */

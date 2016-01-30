@@ -27,15 +27,15 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_line.c
- *  \brief Geda Line Object Class derived from the GedaObject Class
+ *  \brief Geda Line GedaObject Class derived from the GedaObject Class
  */
-/** \defgroup geda-line-object Geda Line Object
+/** \defgroup geda-line-object Geda Line GedaObject
  *  @{
  */
 /*! \class Line geda_line.h "include/libgeda/geda_line.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Line Objects.
- *  A Geda Line Object is a graphical object that does not involve
+ *  \brief This is an implementaion class for GEDA Line GedaObjects.
+ *  A Geda Line GedaObject is a graphical object that does not involve
  *  electrical interconnections. Lines have line-type properties.
  */
 
@@ -53,7 +53,7 @@ static GObjectClass *geda_line_parent_class = NULL;
  *  \param [in]  object Pointer to Line object
  */
 int
-geda_line_bounds(Object *object)
+geda_line_bounds(GedaObject *object)
 {
   int expand;
 
@@ -81,8 +81,8 @@ geda_line_bounds(Object *object)
  */
 static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Line   *line       = (Line*)instance;
-  Object *object     = &line->parent_instance;
+  Line       *line   = (Line*)instance;
+  GedaObject *object = &line->parent_instance;
 
   line->x[0]         = 0;
   line->y[0]         = 0;
@@ -105,14 +105,14 @@ geda_line_dispose(GObject *object)
   G_OBJECT_CLASS(geda_line_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Line Object Finalization Function
+/*! \brief Geda Line GedaObject Finalization Function
  *  \par Function Description
  *   Invalidates the Line's markers and then chains up to the parent's
  *   finalize handler. Once invalidated, GEDA_IS_LINE will fail.
  */
 static void geda_line_finalize(GObject *object)
 {
-  Object *obj  = GEDA_OBJECT(object);
+  GedaObject *obj  = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaLine */
   obj->line    = NULL;
@@ -133,18 +133,18 @@ static void geda_line_finalize(GObject *object)
  */
 static void geda_line_class_init(void *class, void *class_data)
 {
-  LineClass    *line_class     = (LineClass*)class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS(class);
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS(class);
+  LineClass       *line_class    = (LineClass*)class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_line_parent_class       = g_type_class_peek_parent(class);
+  geda_line_parent_class         = g_type_class_peek_parent(class);
 
-  line_class->finalize         = geda_line_finalize;
+  line_class->finalize           = geda_line_finalize;
 
-  gobject_class->dispose       = geda_line_dispose;
-  gobject_class->finalize      = line_class->finalize;
+  gobject_class->dispose         = geda_line_dispose;
+  gobject_class->finalize        = line_class->finalize;
 
-  object_class->bounds         = geda_line_bounds;
+  geda_class->bounds             = geda_line_bounds;
 }
 
 /*! \brief Function to retrieve Line's Type identifier.
@@ -195,16 +195,16 @@ GedaObjectType geda_line_get_type (void)
  *
  *  \return pointer to the new Line object.
  */
-Object *geda_line_new (void)
+GedaObject *geda_line_new (void)
 {
-  Object *line = g_object_new( GEDA_TYPE_LINE,
+  GedaObject *line = g_object_new( GEDA_TYPE_LINE,
                               "type", OBJ_LINE,
                               "name", "line",
                                NULL);
   return GEDA_OBJECT(line);
 }
 
-/*! \brief Determine if object is a Geda Line Object.
+/*! \brief Determine if object is a Geda Line GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Line object.
@@ -214,7 +214,7 @@ Object *geda_line_new (void)
 bool is_a_geda_line_object (Line *lin)
 {
  if (GEDA_IS_OBJECT (lin)) {
-   Object *obj = (Object*)lin;
+   GedaObject *obj = (GedaObject*)lin;
    return (obj->type == OBJ_LINE || obj->type == OBJ_NET ||
            obj->type == OBJ_PIN  || obj->type == OBJ_BUS);
  }

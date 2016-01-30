@@ -26,15 +26,15 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_net.c
- *  \brief Geda Net Object Class derived from the GedaObject Class
+ *  \brief Geda Net GedaObject Class derived from the GedaObject Class
  */
-/** \defgroup geda-net-object Geda Net Object
+/** \defgroup geda-net-object Geda Net GedaObject
  *  @{
  */
 /*! \class Net geda_net.h "include/libgeda/geda_net.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Net Objects.
- *  A Geda Net Object represent a conductor or wire, and is used to inter
+ *  \brief This is an implementaion class for GEDA Net GedaObjects.
+ *  A Geda Net GedaObject represent a conductor or wire, and is used to inter
  *  connect nodes.
  */
 
@@ -55,9 +55,9 @@ static GObjectClass *geda_net_parent_class = NULL;
  */
 static void geda_net_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Net    *net                = (Net*)instance;
-  Line   *line               = &net->parent_instance;
-  Object *object             = &line->parent_instance;
+  Net        *net            = (Net*)instance;
+  Line       *line           = &net->parent_instance;
+  GedaObject *object         = &line->parent_instance;
 
   net->nid                   = -1;
   net->net_name_has_priority = FALSE;
@@ -86,7 +86,7 @@ geda_net_dispose(GObject *object)
 
 }
 
-/*! \brief Geda Net Object Finalization Function
+/*! \brief Geda Net GedaObject Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
  *   releases the memory allocated to the given Net data structure,
@@ -95,8 +95,8 @@ geda_net_dispose(GObject *object)
  */
 static void geda_net_finalize(GObject *object)
 {
-  Net    *net = GEDA_NET(object);
-  Object *obj = GEDA_OBJECT(object);
+  Net        *net = GEDA_NET(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   if(net->net_name)
     g_free(net->net_name);
@@ -132,7 +132,6 @@ static void geda_net_class_init(void *g_class, void *class_data)
 
   gobject_class->dispose       = geda_net_dispose;
   gobject_class->finalize      = geda_net_finalize;
-
 }
 
 /*! \brief Function to retrieve Net's Type identifier.
@@ -183,16 +182,16 @@ GedaObjectType geda_net_get_type (void)
  *
  *  \return pointer to the new Net object.
  */
-Object *geda_net_new (void)
+GedaObject *geda_net_new (void)
 {
-  Object *net = g_object_new( GEDA_TYPE_NET,
+  GedaObject *net = g_object_new( GEDA_TYPE_NET,
                              "type", OBJ_NET,
                              "name", "net",
                               NULL );
   return GEDA_OBJECT(net);
 }
 
-/*! \brief Determine if object is a Geda Net Object.
+/*! \brief Determine if object is a Geda Net GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Net object.
@@ -201,6 +200,6 @@ Object *geda_net_new (void)
  */
 bool is_a_geda_net_object (Net *net)
 {
-  return GEDA_IS_OBJECT(net) && (((Object*)net)->type == OBJ_NET);
+  return GEDA_IS_OBJECT(net) && (((GedaObject*)net)->type == OBJ_NET);
 }
 /** @} endgroup geda-net-object */

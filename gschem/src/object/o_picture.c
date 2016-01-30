@@ -90,7 +90,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   /* pictures with null width and height are not allowed */
   if ((picture_width != 0) && (picture_height != 0)) {
 
-    Object *new_obj;
+    GedaObject *new_obj;
 
     /* Create a new picture object */
     new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
@@ -216,7 +216,7 @@ o_picture_draw_rubber (GschemToplevel *w_current)
 bool
 o_picture_exchange (GschemToplevel *w_current,
                     const char     *filename,
-                    Object         *o_current,
+                    GedaObject     *o_current,
                     GError        **error)
 {
   bool result = TRUE;
@@ -243,7 +243,7 @@ o_picture_exchange (GschemToplevel *w_current,
 
     for (iter = list; iter != NULL; NEXT(iter)) {
 
-      Object *object = (Object *) iter->data;
+      GedaObject *object = (GedaObject*) iter->data;
 
       if (o_picture_set_from_file (object, filename, error)) {
         o_invalidate_object (w_current, object); /* Draw new picture */
@@ -276,7 +276,7 @@ o_picture_exchange (GschemToplevel *w_current,
  * \param [in] o_current  Picture Object to update or NULL to use selection
  */
 void
-o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
+o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   GList        *iter;
@@ -297,7 +297,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 
   while(iter != NULL) {
 
-    Object *obj = (Object *) iter->data;
+    GedaObject *obj = (GedaObject*) iter->data;
 
     if (obj->type == OBJ_PICTURE) {
       count++;
@@ -406,7 +406,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 }
 
 void
-o_picture_export (GschemToplevel *w_current, Object *o_current)
+o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
 {
   GtkWidget   *dialog;
   GtkWidget   *cb_aspect;

@@ -98,7 +98,7 @@ static WidgetStringData DialogStrings[] = {
  *  \return boolean TRUE is a change was made, otherwise FALSE
  */
 static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
-                                              Object         *object,
+                                              GedaObject     *object,
                                               const char     *key,
                                               const char     *new_value)
 {
@@ -106,9 +106,9 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
 
   if (new_value != NULL && strlen(new_value) !=0 ) {
 
-    GList  *attribs;
-    Object *a_current;
-    char   *o_value;
+    GList      *attribs;
+    GedaObject *a_current;
+    char       *o_value;
 
     if (object) {
 
@@ -196,7 +196,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
  */
 static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
                                              property_data  *properties,
-                                             Object         *object)
+                                             GedaObject     *object)
 {
   bool result = 0;
 
@@ -304,7 +304,7 @@ static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
 
 static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
                                               property_data  *properties,
-                                              Object         *object)
+                                              GedaObject     *object)
 {
   bool result;
   const char *str_val;
@@ -343,7 +343,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
   }
   else {
 
-    Object *o_current;
+   GedaObject *o_current;
 
     o_current =GEDA_OBJECT_GET_DATA (dialog, "object");
 
@@ -374,8 +374,8 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           GList      *old_ribs;
           GList      *iter;
           const char *refdes;
-          Object     *o_new;
-          Object     *attrib;
+          GedaObject *o_new;
+          GedaObject *attrib;
 
           /* do not use library, the selection change will trigger an event */
           Current_Selection->glist = g_list_remove (Current_Selection->glist, o_current);
@@ -423,13 +423,13 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           old_ribs = o_attrib_get_attached_attribs (o_current);
 
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
-            Object *obj = (Object *) iter->data;
+           GedaObject *obj = (GedaObject*) iter->data;
             Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
             s_page_remove_object (p_current, obj);
             s_object_release (obj);
           }
 
-          /* Replace old Object with new Object */
+          /* Replace old Object with newGedaObject */
           s_page_replace_object (p_current, o_current, o_new);
 
           s_object_release (o_current);
@@ -443,7 +443,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
             o_text_recreate(attrib);
           }
 
-          /* Select new Object */
+          /* Select newGedaObject */
           o_selection_add (Current_Selection, o_new);
 
           changed = TRUE;
@@ -504,7 +504,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
                                              GtkWidget *dialog)
 {
   property_data *properties;
-  Object *o_current;
+ GedaObject *o_current;
 
   properties = GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
 
@@ -512,7 +512,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
 
   if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
 
-    Object *attrib = o_attrib_first_attrib_by_name (o_current, "refdes");
+   GedaObject *attrib = o_attrib_first_attrib_by_name (o_current, "refdes");
 
     if (attrib) {
 
@@ -600,16 +600,16 @@ static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
  *  \param properties pointer to property_data structure
  */
 static void x_dialog_ep_component_change(GschemToplevel *w_current,
-                                         Object         *object,
+                                         GedaObject     *object,
                                          property_data  *properties)
 {
-  GList     *attribs;
-  GList     *all_butes;
-  Object    *a_current;
-  char      *filename;
-  char      *value;
+  GedaObject *a_current;
+  GList      *attribs;
+  GList      *all_butes;
+  char       *filename;
+  char       *value;
 
-  void      (*set_entry)(const char *name, GtkWidget *entry);
+  void (*set_entry)(const char *name, GtkWidget *entry);
 
   void entry_page_setter(const char *name, GtkWidget *entry) {
 
@@ -847,7 +847,7 @@ static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
  *  \param object    pointer to a selected Object.
  */
 static void x_dialog_ep_update_selection (GschemToplevel *w_current,
-                                          Object         *object)
+                                          GedaObject     *object)
 {
   GtkWidget     *dialog;
   property_data *properties;
@@ -1582,7 +1582,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
  *  This function initiates creation of the Component Properties type dialog
  *  or raises the current dialog if called when the dialog is already open.
  */
-void x_dialog_edit_properties(GschemToplevel *w_current, Object *o_current)
+void x_dialog_edit_properties(GschemToplevel *w_current, GedaObject *o_current)
 {
   GtkWidget *dialog;
 

@@ -118,7 +118,7 @@ extern "C" {
          void    m_hatch_circle                  (Circle *circle, int angle, int pitch, GArray *lines);
          void    m_hatch_path                    (Path   *path,   int angle, int pitch, GArray *lines);
          void    m_hatch_polygon                 (GArray *points, int angle, int pitch, GArray *lines);
-       GArray   *m_hatch_object                  (Object *object);
+       GArray   *m_hatch_object                  (GedaObject *object);
 
 /* m_line.c */
          bool    m_line_get_intersection         (Line *line1, Line *line2, POINT *point);
@@ -134,148 +134,148 @@ extern "C" {
          void    m_polygon_append_point          (GArray *points, int x, int y);
 
 /* o_arc_basic.c */
-       Object   *o_arc_new                       (int color, int x, int y, int radius, int start_angle, int arc_sweep);
-       Object   *o_arc_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_arc_mirror                    (Object *object, int center_x, int center_y);
-         void    o_arc_modify                    (Object *object, int x, int y, int whichone);
-         void    o_arc_rotate                    (Object *object, int center_x, int center_y, int angle);
-         void    o_arc_translate                 (Object *object, int dx, int dy);
-         bool    o_arc_get_nearest_point         (Object *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_arc_new                       (int color, int x, int y, int radius, int start_angle, int arc_sweep);
+   GedaObject   *o_arc_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_arc_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_arc_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_arc_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_arc_translate                 (GedaObject *object, int dx, int dy);
+         bool    o_arc_get_nearest_point         (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_attrib.c */
-         void    o_attrib_add                              (Object *object, Object *item);
-        GList   *o_attrib_get_attached_attribs             (const Object *object);
-         bool    o_attrib_is_attached_to                   (const Object *attrib, const Object *object);
-         void    o_attrib_attach                           (Object *object, Object *attrib, int set_color);
-         void    o_attrib_attach_list                      (Object *object, const GList *attr_list, int set_color);
-         void    o_attrib_detach                           (Object *object);
-         void    o_attrib_detach_all                       (Object *object);
-       Object   *o_attrib_new_attached                     (Object *object, const char *name, const char *value, int visibility, int show_name_value);
+         void    o_attrib_add                              (GedaObject *object, GedaObject *item);
+        GList   *o_attrib_get_attached_attribs             (const GedaObject *object);
+         bool    o_attrib_is_attached_to                   (const GedaObject *attrib, const GedaObject *object);
+         void    o_attrib_attach                           (GedaObject *object, GedaObject *attrib, int set_color);
+         void    o_attrib_attach_list                      (GedaObject *object, const GList *attr_list, int set_color);
+         void    o_attrib_detach                           (GedaObject *object);
+         void    o_attrib_detach_all                       (GedaObject *object);
+   GedaObject   *o_attrib_new_attached                     (GedaObject *object, const char *name, const char *value, int visibility, int show_name_value);
          void    o_attrib_print                            (const GList  *attributes);
-         void    o_attrib_remove                           (GList **list, Object *remove);
+         void    o_attrib_remove                           (GList **list, GedaObject *remove);
          bool    o_attrib_string_get_name_value            (const char   *string, char **name_ptr,  char **value_ptr);
-         bool    o_attrib_get_name_value                   (const Object *attrib, char **name_ptr,  char **value_ptr);
-         void    o_attrib_set_value                        (const Object *attrib, const char *name_ptr, const char *value_ptr);
-         void    o_attrib_set_integer_value                (const Object *attrib, const char *name_ptr, int value);
+         bool    o_attrib_get_name_value                   (const GedaObject *attrib, char **name_ptr,  char **value_ptr);
+         void    o_attrib_set_value                        (const GedaObject *attrib, const char *name_ptr, const char *value_ptr);
+         void    o_attrib_set_integer_value                (const GedaObject *attrib, const char *name_ptr, int value);
         GList   *o_attrib_find_floating_attribs            (const GList  *list);
-       Object   *o_attrib_find_attrib_by_name              (const GList  *list,   const char *name, int count);
-       Object   *o_attrib_first_attrib_by_name             (const Object *object,       char *name);
+   GedaObject   *o_attrib_find_attrib_by_name              (const GList  *list,   const char *name, int count);
+   GedaObject   *o_attrib_first_attrib_by_name             (const GedaObject *object,       char *name);
          char   *o_attrib_search_floating_attribs_by_name  (const GList  *list,   const char *name, int counter);
-         char   *o_attrib_search_attached_attribs_by_name  (const Object *object, const char *name, int counter);
-         char   *o_attrib_search_inherited_attribs_by_name (const Object *object, const char *name, int counter);
-         char   *o_attrib_search_object_attribs_by_name    (const Object *object, const char *name, int counter);
-        GList   *o_attrib_return_attribs                   (const Object *object);
-          int    o_attrib_is_inherited                     (const Object *attrib);
+         char   *o_attrib_search_attached_attribs_by_name  (const GedaObject *object, const char *name, int counter);
+         char   *o_attrib_search_inherited_attribs_by_name (const GedaObject *object, const char *name, int counter);
+         char   *o_attrib_search_object_attribs_by_name    (const GedaObject *object, const char *name, int counter);
+        GList   *o_attrib_return_attribs                   (const GedaObject *object);
+          int    o_attrib_is_inherited                     (const GedaObject *attrib);
          void    o_attrib_append_attribs_changed_hook      (Page *page, AttribsChangedFunc func, void *data);
-         void    o_attrib_emit_attribs_changed             (Object *object);
-         void    o_attrib_freeze_hooks                     (Object *object);
-         void    o_attrib_thaw_hooks                       (Object *object);
+         void    o_attrib_emit_attribs_changed             (GedaObject *object);
+         void    o_attrib_freeze_hooks                     (GedaObject *object);
+         void    o_attrib_thaw_hooks                       (GedaObject *object);
 
 /* o_basic.c */
         GList   *o_read_buffer                   (GedaToplevel *toplevel, GList *object_list, const char *buffer,
                                                   const int size, const char *name, GError **err);
         GList   *o_read                          (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
          void    o_scale                         (GList *list, int x_scale, int y_scale);
-       Object   *o_copy_object                   (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_mirror_object                 (Object *object, int center_x, int center_y);
-         void    o_rotate_object                 (Object *object, int center_x, int center_y, int angle);
-         void    o_translate_object              (Object *object, int dx, int dy);
+   GedaObject   *o_copy_object                   (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_mirror_object                 (GedaObject *object, int center_x, int center_y);
+         void    o_rotate_object                 (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_translate_object              (GedaObject *object, int dx, int dy);
 
 /* o_box_basic.c */
-       Object   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
-       Object   *o_box_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_box_modify_all                (Object *object, int x1, int y1, int x2, int y2);
-         void    o_box_modify                    (Object *object, int x, int y, int whichone);
-         void    o_box_mirror                    (Object *object, int center_x, int center_y);
-         void    o_box_rotate                    (Object *object, int center_x, int center_y, int angle);
-         void    o_box_translate                 (Object *object, int dx, int dy);
-         bool    o_box_get_nearest_point         (Object *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
+   GedaObject   *o_box_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_box_modify_all                (GedaObject *object, int x1, int y1, int x2, int y2);
+         void    o_box_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_box_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_box_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_box_translate                 (GedaObject *object, int dx, int dy);
+         bool    o_box_get_nearest_point         (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_bus_basic.c */
-       Object   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
-       Object   *o_bus_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_bus_modify                    (Object *object, int x, int y, int whichone);
-         void    o_bus_mirror                    (Object *object, int center_x, int center_y);
-         void    o_bus_rotate                    (Object *object, int center_x, int center_y, int angle);
-         void    o_bus_translate                 (Object *object, int dx, int dy);
-          int    o_bus_orientation               (Object *object);
-          int    o_bus_get_direction             (Object *object);
+   GedaObject   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
+   GedaObject   *o_bus_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_bus_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_bus_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_bus_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_bus_translate                 (GedaObject *object, int dx, int dy);
+          int    o_bus_orientation               (GedaObject *object);
+          int    o_bus_get_direction             (GedaObject *object);
          void    o_bus_consolidate               (void);
 
 /* o_circle_basic.c */
-       Object   *o_circle_new                    (int color, int x, int y, int radius);
-       Object   *o_circle_copy                   (Object *o_current);
-         void    o_circle_modify                 (Object *object, int x, int y, int whichone);
-         void    o_circle_mirror                 (Object *object, int center_x, int center_y);
-         void    o_circle_rotate                 (Object *object, int center_x, int center_y, int angle);
-         void    o_circle_translate              (Object *object, int dx, int dy);
-         bool    o_circle_get_nearest_point      (Object *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_circle_new                    (int color, int x, int y, int radius);
+   GedaObject   *o_circle_copy                   (GedaObject *o_current);
+         void    o_circle_modify                 (GedaObject *object, int x, int y, int whichone);
+         void    o_circle_mirror                 (GedaObject *object, int center_x, int center_y);
+         void    o_circle_rotate                 (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_circle_translate              (GedaObject *object, int dx, int dy);
+         bool    o_circle_get_nearest_point      (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_complex_basic.c */
-       Object   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
+   GedaObject   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
                                                   const CLibSymbol *clib_sym, const char *basename, int selectable);
-       Object   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
-       Object   *o_complex_copy                  (Object *o_current);
-         void    o_complex_mirror                (Object *object, int center_x, int center_y);
-        GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, Object *object);
-         void    o_complex_reset_refdes          (Object *object);
-         void    o_complex_rotate                (Object *object, int center_x, int center_y, int angle);
-         void    o_complex_translate             (Object *object, int dx, int dy);
-          int    o_complex_is_embedded           (Object *o_current);
-         bool    o_complex_get_nearest_point     (Object *object, int x, int y, int *nx, int *ny);
-       Object   *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value);
-         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, Object *object);
+   GedaObject   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
+   GedaObject   *o_complex_copy                  (GedaObject *o_current);
+         void    o_complex_mirror                (GedaObject *object, int center_x, int center_y);
+        GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, GedaObject *object);
+         void    o_complex_reset_refdes          (GedaObject *object);
+         void    o_complex_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_complex_translate             (GedaObject *object, int dx, int dy);
+          int    o_complex_is_embedded           (GedaObject *o_current);
+         bool    o_complex_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
+         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
 
 /* o_color.c */
           int    o_color_get_object_default      (char type);
 
 /* o_embed.c */
-         bool    o_embed                         (GedaToplevel *toplevel, Object *object);
-         void    o_unembed                       (GedaToplevel *toplevel, Object *object);
+         bool    o_embed                         (GedaToplevel *toplevel, GedaObject *object);
+         void    o_unembed                       (GedaToplevel *toplevel, GedaObject *object);
 
 /* o_get.c */
-          int    o_get_attached_parent_id        (Object *object);
-         bool    o_get_fill_options              (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
+          int    o_get_attached_parent_id        (GedaObject *object);
+         bool    o_get_fill_options              (GedaObject *object, OBJECT_FILLING *type, int *width, int *pitch1,
                                                   int *angle1, int *pitch2, int *angle2);
-         bool    o_get_has_slope                 (Object *object);
-         bool    o_get_is_attached               (Object *object);
-         bool    o_get_is_bus_related            (Object *object);
-         bool    o_get_is_embedded               (Object *object);
+         bool    o_get_has_slope                 (GedaObject *object);
+         bool    o_get_is_attached               (GedaObject *object);
+         bool    o_get_is_bus_related            (GedaObject *object);
+         bool    o_get_is_embedded               (GedaObject *object);
          bool    o_get_is_inside_region          (int xmin, int ymin, int xmax, int ymax, int x, int y);
-         bool    o_get_is_selectable             (Object *object);
-         bool    o_get_is_selected               (Object *object);
-         bool    o_get_is_valid_attribute        (Object *object);
-         bool    o_get_is_visible                (Object *object);
+         bool    o_get_is_selectable             (GedaObject *object);
+         bool    o_get_is_selected               (GedaObject *object);
+         bool    o_get_is_valid_attribute        (GedaObject *object);
+         bool    o_get_is_visible                (GedaObject *object);
      LINE_END    o_get_line_end                  (int capstyle);
-         bool    o_get_line_options              (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-         bool    o_get_nearest_point             (Object *object, int x, int y, int *nx, int *ny);
+         bool    o_get_line_options              (GedaObject *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+         bool    o_get_nearest_point             (GedaObject *object, int x, int y, int *nx, int *ny);
           int    o_get_num_text_lines            (const char *string);
-   const char   *o_get_object_attrib_value       (Object *object, const char *name);
+   const char   *o_get_object_attrib_value       (GedaObject *object, const char *name);
         GList   *o_get_objects_by_type           (GList  *object_list, int type);
-         Page   *o_get_page                      (Object *object);
-       Object   *o_get_parent                    (Object *object);
-          int    o_get_parent_id                 (Object *object);
-         bool    o_get_position                  (Object *object, int *x, int *y);
-       double    o_get_shortest_distance         (Object *object, int x, int y);
-       double    o_get_shortest_distance_full    (Object *object, int x, int y, int force_solid);
-          int    o_get_bounds                    (Object *o_current, int *left, int *top, int *right, int *bottom);
+         Page   *o_get_page                      (GedaObject *object);
+   GedaObject   *o_get_parent                    (GedaObject *object);
+          int    o_get_parent_id                 (GedaObject *object);
+         bool    o_get_position                  (GedaObject *object, int *x, int *y);
+       double    o_get_shortest_distance         (GedaObject *object, int x, int y);
+       double    o_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
+          int    o_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
           int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
 /* o_line_basic.c */
-       Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
-       Object   *o_line_copy                     (Object *object) GEDA_WARN_UNUSED_RESULT;
-         void    o_line_modify                   (Object *object, int x, int y, int whichone);
-         void    o_line_mirror                   (Object *object, int center_x, int center_y);
-         void    o_line_rotate                   (Object *object, int center_x, int center_y, int angle);
-         void    o_line_translate                (Object *object, int dx, int dy);
-         void    o_line_scale                    (Object *object, int x_scale, int y_scale);
-         bool    o_line_is_endpoint              (Object *object, POINT *point);
-         int     o_line_get_closest_endpoint     (Object *object, int x, int y);
-         bool    o_line_get_intersection         (Object *object1, Object *object2, POINT *point);
-         bool    o_line_get_midpoint             (Object *object, POINT *point);
-         bool    o_line_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
-         bool    o_line_get_slope                (Object *object, double *anwser);
-       double    o_line_length                   (Object *object);
+   GedaObject   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *o_line_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+         void    o_line_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    o_line_mirror                   (GedaObject *object, int center_x, int center_y);
+         void    o_line_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_line_translate                (GedaObject *object, int dx, int dy);
+         void    o_line_scale                    (GedaObject *object, int x_scale, int y_scale);
+         bool    o_line_is_endpoint              (GedaObject *object, POINT *point);
+         int     o_line_get_closest_endpoint     (GedaObject *object, int x, int y);
+         bool    o_line_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
+         bool    o_line_get_midpoint             (GedaObject *object, POINT *point);
+         bool    o_line_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    o_line_get_slope                (GedaObject *object, double *anwser);
+       double    o_line_length                   (GedaObject *object);
 
 /* o_list.c */
         GList   *o_list_copy_all                 (const GList *src_list, GList *dest_list);
@@ -285,16 +285,16 @@ extern "C" {
          void    o_list_set_color                (const GList *list, int color);
 
 /* o_net_basic.c */
-       Object   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
-       Object   *o_net_copy                      (Object *o_current);
-         void    o_net_modify                    (Object *object, int x, int y, int whichone);
-         void    o_net_mirror                    (Object *object, int center_x, int center_y);
-         void    o_net_rotate                    (Object *object, int center_x, int center_y, int angle);
-         void    o_net_translate                 (Object *object, int dx, int dy);
-          int    o_net_orientation               (Object *object);
+   GedaObject   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
+   GedaObject   *o_net_copy                      (GedaObject *o_current);
+         void    o_net_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_net_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_net_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_net_translate                 (GedaObject *object, int dx, int dy);
+          int    o_net_orientation               (GedaObject *object);
          void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
-         void    o_net_refresh_conn_cache        (Object *object);
-         bool    o_net_is_fully_connected        (Object *object);
+         void    o_net_refresh_conn_cache        (GedaObject *object);
+         bool    o_net_is_fully_connected        (GedaObject *object);
 
 /* o_notify.c */
          void    o_notify_change_add             (Page *page, ChangeNotifyFunc pre_change_func,
@@ -304,74 +304,74 @@ extern "C" {
          void    o_notify_change_remove_all      (Page *page);
 
 /* o_path_basic.c */
-       Object   *o_path_new                      (int color, const char *path_string);
-       Object   *o_path_new_from_polygon         (GArray *points,  int color);
-       Object   *o_path_new_take_path            (int color, Path *path_data);
-       Object   *o_path_copy                     (Object *o_current);
-         void    o_path_modify                   (Object *object, int x, int y, int whichone);
-         void    o_path_mirror                   (Object *object, int center_x, int center_y);
-         void    o_path_rotate                   (Object *object, int center_x, int center_y, int angle);
-         void    o_path_translate                (Object *object, int x, int y);
-         bool    o_path_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_path_new                      (int color, const char *path_string);
+   GedaObject   *o_path_new_from_polygon         (GArray *points,  int color);
+   GedaObject   *o_path_new_take_path            (int color, Path *path_data);
+   GedaObject   *o_path_copy                     (GedaObject *o_current);
+         void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);
+         void    o_path_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_path_translate                (GedaObject *object, int x, int y);
+         bool    o_path_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_picture.c */
-       Object   *o_picture_new                   (const char *file_content, unsigned int file_length,
+   GedaObject   *o_picture_new                   (const char *file_content, unsigned int file_length,
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
                                                   int embedded)      GEDA_WARN_UNUSED_RESULT;
-       Object   *o_picture_copy                  (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_picture_modify                (Object *object, int x, int y, int whichone);
-         void    o_picture_modify_all            (Object *object, int x1, int y1, int x2, int y2);
-         void    o_picture_mirror                (Object *object, int center_x, int center_y);
-         void    o_picture_rotate                (Object *object, int center_x, int center_y, int angle);
-         void    o_picture_translate             (Object *object, int dx, int dy);
+   GedaObject   *o_picture_copy                  (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_picture_modify                (GedaObject *object, int x, int y, int whichone);
+         void    o_picture_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
+         void    o_picture_mirror                (GedaObject *object, int center_x, int center_y);
+         void    o_picture_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_picture_translate             (GedaObject *object, int dx, int dy);
 
-         bool    o_picture_export_object         (Object *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_export_orginal        (Object *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_is_embedded           (Object *object);
-   const char   *o_picture_get_data              (Object *object, size_t *length);
-   const char   *o_picture_get_filename          (Object *object);
-          int    o_picture_get_height            (Object *object);
-          int    o_picture_get_width             (Object *object);
-       double    o_picture_get_effective_ratio   (Object *object);
-         bool    o_picture_get_nearest_point     (Object *object, int x, int y, int *nx, int *ny);
-         void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
-         bool    o_picture_set_from_buffer       (Object *object, const char *filename, const char *data, unsigned int length, GError **error);
-         bool    o_picture_set_from_file         (Object *object, const char *filename, GError **error);
+         bool    o_picture_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
+         bool    o_picture_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
+         bool    o_picture_is_embedded           (GedaObject *object);
+   const char   *o_picture_get_data              (GedaObject *object, size_t *length);
+   const char   *o_picture_get_filename          (GedaObject *object);
+          int    o_picture_get_height            (GedaObject *object);
+          int    o_picture_get_width             (GedaObject *object);
+       double    o_picture_get_effective_ratio   (GedaObject *object);
+         bool    o_picture_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+         void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+         bool    o_picture_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
+         bool    o_picture_set_from_file         (GedaObject *object, const char *filename, GError **error);
 
 #ifdef GDK_PIXBUF_H
          bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
     GdkPixbuf   *o_picture_get_fallback_pixbuf   (void)           GEDA_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf            (Object *object) GEDA_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf_fit        (Object *object, int interpolate) GEDA_WARN_UNUSED_RESULT;
-unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUSED_RESULT;
-        uint8   *o_picture_get_mask_data         (Object *object) GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_pixbuf            (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_pixbuf_fit        (GedaObject *object, int interpolate) GEDA_WARN_UNUSED_RESULT;
+unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+        uint8   *o_picture_get_mask_data         (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
 #endif
 
 /* o_pin_basic.c */
-       Object   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
-       Object   *o_pin_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_pin_mirror                    (Object *object, int center_x, int center_y);
-         void    o_pin_modify                    (Object *object, int x, int y, int whichone);
-         void    o_pin_normalize                 (Object *object);
-         void    o_pin_rotate                    (Object *object, int center_x, int center_y, int angle);
-         void    o_pin_translate                 (Object *object, int dx, int dy);
+   GedaObject   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
+   GedaObject   *o_pin_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    o_pin_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_pin_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_pin_normalize                 (GedaObject *object);
+         void    o_pin_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_pin_translate                 (GedaObject *object, int dx, int dy);
          void    o_pin_update_whichend           (GList *object_list, int num_pins);
-         bool    o_pin_set_elect_type            (Object *o_current, PIN_ELECT e_type);
-         bool    o_pin_set_mech_type             (Object *o_current, PIN_MECH m_type);
-         void    o_pin_set_node_type             (Object *o_current, PIN_NODE node_type);
-         bool    o_pin_get_attributes            (Object *object, const char **label, const char **number, int *sequence,
+         bool    o_pin_set_elect_type            (GedaObject *o_current, PIN_ELECT e_type);
+         bool    o_pin_set_mech_type             (GedaObject *o_current, PIN_MECH m_type);
+         void    o_pin_set_node_type             (GedaObject *o_current, PIN_NODE node_type);
+         bool    o_pin_get_attributes            (GedaObject *object, const char **label, const char **number, int *sequence,
                                                   PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
-         void    o_pin_set_attributes            (Object *object, const char *label_str, const char *number, int sequence,
+         void    o_pin_set_attributes            (GedaObject *object, const char *label_str, const char *number, int sequence,
                                                   PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
-       Object   *o_pin_create_elect_attrib       (GedaToplevel *toplevel, Object *object, const char *descr, int x, int y);
-       Object   *o_pin_create_label_attrib       (GedaToplevel *toplevel, Object *object, const char *label, int x, int y);
-       Object   *o_pin_create_mech_attrib        (GedaToplevel *toplevel, Object *object, const char *descr, int x, int y);
-       Object   *o_pin_create_number_attrib      (GedaToplevel *toplevel, Object *object, const char *number, int x, int y);
-       Object   *o_pin_create_seq_attrib         (GedaToplevel *toplevel, Object *object, int sequence, int x, int y);
-        GList   *o_pin_realize_attributes        (GedaToplevel *toplevel, Object *object);
-   const char   *o_pin_get_electrical            (Object *object);
-   const char   *o_pin_get_label                 (Object *object);
-   const char   *o_pin_get_mechanical            (Object *object);
+   GedaObject   *o_pin_create_elect_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
+   GedaObject   *o_pin_create_label_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *label, int x, int y);
+   GedaObject   *o_pin_create_mech_attrib        (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
+   GedaObject   *o_pin_create_number_attrib      (GedaToplevel *toplevel, GedaObject *object, const char *number, int x, int y);
+   GedaObject   *o_pin_create_seq_attrib         (GedaToplevel *toplevel, GedaObject *object, int sequence, int x, int y);
+        GList   *o_pin_realize_attributes        (GedaToplevel *toplevel, GedaObject *object);
+   const char   *o_pin_get_electrical            (GedaObject *object);
+   const char   *o_pin_get_label                 (GedaObject *object);
+   const char   *o_pin_get_mechanical            (GedaObject *object);
 
 /* o_save.c */
          void    o_save_auto_backup              (GedaToplevel *toplevel);
@@ -381,42 +381,42 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUS
 
 /* o_selection.c */
     SELECTION   *o_selection_new                 (void);
-         void    o_selection_add                 (SELECTION *selection, Object *o_selected);
-       Object   *o_selection_get_first_object    (SELECTION *selection);
+         void    o_selection_add                 (SELECTION *selection, GedaObject *o_selected);
+   GedaObject   *o_selection_get_first_object    (SELECTION *selection);
          void    o_selection_print_all           (const SELECTION *selection);
-          int    o_selection_remove              (SELECTION *selection, Object *o_selected);
-          int    o_selection_select              (Object *object);
-          int    o_selection_unselect            (Object *object);
+          int    o_selection_remove              (SELECTION *selection, GedaObject *o_selected);
+          int    o_selection_select              (GedaObject *object);
+          int    o_selection_unselect            (GedaObject *object);
           int    o_selection_unselect_all        (SELECTION *selection);
 
 /* o_set.c */
-         void    o_set_bounds_invalid            (Object *object);
-         void    o_set_color                     (Object *object, int color);
-         void    o_set_fill_options              (Object *o_current, FILL_OPTIONS *fill_options);
-         void    o_set_line_options              (Object *o_current, LINE_OPTIONS *line_options);
-         void    o_set_visibility                (Object *object, int visibility);
+         void    o_set_bounds_invalid            (GedaObject *object);
+         void    o_set_color                     (GedaObject *object, int color);
+         void    o_set_fill_options              (GedaObject *o_current, FILL_OPTIONS *fill_options);
+         void    o_set_line_options              (GedaObject *o_current, LINE_OPTIONS *line_options);
+         void    o_set_visibility                (GedaObject *object, int visibility);
 
 /* o_style.c */
           int    o_style_get_bus_width           (GedaToplevel *toplevel);
           int    o_style_get_line_width          (GedaToplevel *toplevel);
           int    o_style_get_net_width           (GedaToplevel *toplevel);
           int    o_style_get_pin_width           (GedaToplevel *toplevel, int type);
-         void    o_style_set_object              (GedaToplevel *toplevel, Object *o_current);
+         void    o_style_set_object              (GedaToplevel *toplevel, GedaObject *o_current);
 
 /* o_text_basic.c */
-       Object   *o_text_new                      (int color, int x, int y, int alignment, int angle,
+   GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
                                                   int size, int visibility, int show_name_value, const char *string);
-         void    o_text_recreate                 (Object *o_current);
-         void    o_text_mirror                   (Object *object, int center_x, int center_y);
-       Object   *o_text_copy                     (Object *object) GEDA_WARN_UNUSED_RESULT;
-         void    o_text_translate                (Object *object, int dx, int dy);
-         void    o_text_rotate                   (Object *object, int center_x, int center_y, int angle);
+         void    o_text_recreate                 (GedaObject *o_current);
+         void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_text_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+         void    o_text_translate                (GedaObject *object, int dx, int dy);
+         void    o_text_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
 
-       double    o_text_get_font_size_in_points  (Object *object);
-         bool    o_text_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
-   const char   *o_text_get_string               (Object *object);
-         void    o_text_set_rendered_bounds_func (Object *object, RenderedBoundsFunc func, void *user_data);
-         void    o_text_set_string               (Object *object, const char *new_string);
+       double    o_text_get_font_size_in_points  (GedaObject *object);
+         bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+   const char   *o_text_get_string               (GedaObject *object);
+         void    o_text_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
+         void    o_text_set_string               (GedaObject *object, const char *new_string);
 
 /* s_attrib.c */
           int    s_attrib_add_entry              (char *new_attrib);
@@ -428,7 +428,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUS
 
 /* s_basic.c */
          void    print_struct_forw               (GList *list);
-         void    print_struct                    (Object *ptr);
+         void    print_struct                    (GedaObject *ptr);
 
 /* s_clib.c */
          void     s_clib_flush_cache             (void);
@@ -461,22 +461,22 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_color_map_defaults            (COLOR *map);
 
 /* s_conn.c */
-         void    s_conn_remove_object            (Object *to_remove);
-         void    s_conn_update_linear_object     (Object *object);
-         void    s_conn_update_object            (Object *object);
+         void    s_conn_remove_object            (GedaObject *to_remove);
+         void    s_conn_update_linear_object     (GedaObject *object);
+         void    s_conn_update_object            (GedaObject *object);
          void    s_conn_print                    (GList  *conn_list);
-          int    s_conn_net_search               (Object *new_net,    int     whichone, GList *conn_list);
-        GList   *s_conn_return_others            (GList  *input_list, Object *object);
+          int    s_conn_net_search               (GedaObject *new_net,    int     whichone, GList *conn_list);
+        GList   *s_conn_return_others            (GList  *input_list, GedaObject *object);
 
          void    s_conn_append_conns_changed_hook(Page *page,   ConnsChangedFunc func, void *data);
-         void    s_conn_emit_conns_changed       (Object *object);
-         void    s_conn_freeze_hooks             (Object *object);
-         void    s_conn_thaw_hooks               (Object *object);
+         void    s_conn_emit_conns_changed       (GedaObject *object);
+         void    s_conn_freeze_hooks             (GedaObject *object);
+         void    s_conn_thaw_hooks               (GedaObject *object);
 
 /* s_cue.c */
          void    s_cue_get_locations             (const GList *objects, GArray *junctions, GArray *unconnected);
          void    s_cue_output_all                (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type);
-         void    s_cue_output_single             (GedaToplevel *toplevel, Object *object, FILE *fp, int type);
+         void    s_cue_output_single             (GedaToplevel *toplevel, GedaObject *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
          Page   *s_hierarchy_down_schematic_single  (GedaToplevel *toplevel, const char *filename, Page *parent,
@@ -489,11 +489,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          Page   *s_hierarchy_find_next_page      (PageList *page_list, Page *current_page);
 
 /*  s_object.c */
-        Object  *s_object_new                    (int type, char const *name);
-         void    s_object_add_child              (Object *parent, Object *child);
-         void    s_object_release                (Object *object);
+    GedaObject  *s_object_new                    (int type, char const *name);
+         void    s_object_add_child              (GedaObject *parent, GedaObject *child);
+         void    s_object_release                (GedaObject *object);
          void    s_object_release_objects        (GList *list);
-         void    s_object_set_page_changed       (Object *obj);
+         void    s_object_set_page_changed       (GedaObject *obj);
 
 /* s_page.c */
          Page   *s_page_new                      (GedaToplevel *toplevel, const char *filename);
@@ -521,13 +521,13 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          Page   *s_page_search_by_page_id        (PageList *list, int pid);
          void    s_page_set_bounds_func          (Page *page, RenderedBoundsFunc func, void *user_data);
 
-         void    s_page_append_object            (Page *page, Object *object);
+         void    s_page_append_object            (Page *page, GedaObject *object);
          void    s_page_append_list              (Page *page, GList *obj_list);
 
-         void    s_page_remove_object            (Page *page, Object *object);
-         void    s_page_replace_object           (Page *page, Object *object1, Object *object2);
+         void    s_page_remove_object            (Page *page, GedaObject *object);
+         void    s_page_replace_object           (Page *page, GedaObject *object1, GedaObject *object2);
          void    s_page_delete_objects           (Page *page);
-       Object   *s_page_get_object               (Page *page, int sid);
+   GedaObject   *s_page_get_object               (Page *page, int sid);
         GList   *s_page_get_objects              (Page *page);
         GList   *s_page_objects_in_region        (Page *page, int min_x, int min_y, int max_x, int max_y);
         GList   *s_page_objects_in_regions       (Page *page, RECTANGLE *rects, int n_rects);
@@ -565,11 +565,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
           int    s_slib_unique_dir_exist         (const char *path);
 
 /* s_slot.c */
-         char   *s_slot_search_slot              (Object *object, Object **return_found);
-         void    s_slot_update_object            (Object *object);
+         char   *s_slot_search_slot              (GedaObject *object, GedaObject **return_found);
+         void    s_slot_update_object            (GedaObject *object);
 
 /* s_tile.c */
-         void    s_tile_update_object            (Object *object);
+         void    s_tile_update_object            (GedaObject *object);
          GList  *s_tile_get_objectlists          (Page   *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
@@ -600,7 +600,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* u_basic.c */
          char   *u_expand_env_variable           (const char *string);
-         void    u_print_object                  (Object *object);
+         void    u_print_object                  (GedaObject *object);
 
 /* u_color.c */
          bool    u_color_rgba_decode             (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
@@ -662,7 +662,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 const GedaRefDes *u_refdes_get_standard_designators (void);
 const GedaRefDes *u_refdes_get_spice_designators    (void);
 const GedaRefDes *u_refdes_get_ieee_designators     (void);
-         void     u_refdes_reset                    (Object *object);
+         void     u_refdes_reset                    (GedaObject *object);
          char    *u_refdes_return_numeric           (void *text);
 
 #ifdef __cplusplus

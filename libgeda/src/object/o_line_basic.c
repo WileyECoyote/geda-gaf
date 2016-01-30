@@ -41,7 +41,7 @@
  *  The <B>color</B> parameter corresponds to the color the box
  *  will be drawn with.
  *
- *  The #Object structure is allocated with the #geda_object_new()
+ *  The #GedaObject structure is allocated with the #geda_object_new()
  *  function. The structure describing the line is allocated and
  *  initialized with the parameters given to the function.
  *
@@ -57,9 +57,9 @@
  *  \param [in]     y2           Lower y coordinate.
  *  \return A pointer to the new end of the object list.
  */
-Object *o_line_new( int color, int x1, int y1, int x2, int y2)
+GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Line   *line;
 
   new_obj = geda_line_new();
@@ -85,12 +85,12 @@ Object *o_line_new( int color, int x1, int y1, int x2, int y2)
  *  of the new line are set with the ones of the original line.
  *  The two lines have the same #LINE_TYPE
  *
- *  \param [in]  o_current  Line Object to copy.
- *  \return The new Object
+ *  \param [in]  o_current  Line GedaObject to copy.
+ *  \return The new GedaObject
  */
-Object *o_line_copy(Object *o_current)
+GedaObject *o_line_copy(GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Line   *old_line;
 
   g_return_val_if_fail(GEDA_IS_LINE(o_current), NULL);
@@ -120,7 +120,7 @@ Object *o_line_copy(Object *o_current)
  *  The coordinates of the end of line is modified in the world
  *  coordinate system. Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     Line Object to modify.
+ *  \param [in,out] object     Line GedaObject to modify.
  *  \param [in]     x          New x coordinate.
  *  \param [in]     y          New y coordinate.
  *  \param [in]     whichone   Which line parameter to modify.
@@ -131,7 +131,7 @@ Object *o_line_copy(Object *o_current)
  *    <DT>*</DT><DD>#LINE_END2
  *  </DL>
  */
-void o_line_modify(Object *object, int x, int y, int whichone)
+void o_line_modify(GedaObject *object, int x, int y, int whichone)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -179,11 +179,11 @@ void o_line_modify(Object *object, int x, int y, int whichone)
  *
  *  \return A pointer to the new line object, or NULL on error.
  */
-Object* o_line_read (const char buf[], unsigned int release_ver,
+GedaObject* o_line_read (const char buf[], unsigned int release_ver,
                                        unsigned int fileformat_ver,
                                        GError ** err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x1, y1;
   int x2, y2;
@@ -268,14 +268,14 @@ Object* o_line_read (const char buf[], unsigned int release_ver,
  *  It follows the post-20000704 release file format that handle the
  *  line type and fill options - filling is irrelevant here.
  *
- *  \param [in] object  Line Object to create string from.
+ *  \param [in] object  Line GedaObject to create string from.
  *  \return A pointer to the line Object character string.
  *
  *  \note
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *o_line_save(Object *object)
+char *o_line_save(GedaObject *object)
 {
   int x1, x2, y1, y2;
   int line_width, line_space, line_length;
@@ -315,12 +315,12 @@ char *o_line_save(Object *object)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the line
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     Line Object to translate
+ *  \param [in,out] object     Line GedaObject to translate
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
 
  */
-void o_line_translate( Object *object, int dx, int dy)
+void o_line_translate( GedaObject *object, int dx, int dy)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -336,7 +336,7 @@ void o_line_translate( Object *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Rotate Line Object using WORLD coordinates
+/*! \brief Rotate Line GedaObject using WORLD coordinates
  *
  *  \par Function Description
  *  This function rotates the line described by
@@ -344,13 +344,13 @@ void o_line_translate( Object *object, int dx, int dy)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in,out]  object     Line Object to rotate
+ *  \param [in,out]  object     Line GedaObject to rotate
  *  \param [in]      center_x  Rotation center x coordinate in WORLD units
  *  \param [in]      center_y  Rotation center y coordinate in WORLD units
  *  \param [in]      angle      Rotation angle in degrees (See note below).
 
  */
-void o_line_rotate( Object *object, int center_x, int center_y, int angle)
+void o_line_rotate( GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   Line *line;
@@ -402,12 +402,12 @@ void o_line_rotate( Object *object, int center_x, int center_y, int angle)
  *  The line if first translated to the origin, then mirrored
  *  and finally translated back at its previous position.
  *
- *  \param [in,out] object    Line Object to mirror
+ *  \param [in,out] object    Line GedaObject to mirror
  *  \param [in]     center_x  Origin x coordinate in WORLD units
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
 
  */
-void o_line_mirror(Object *object, int center_x, int center_y)
+void o_line_mirror(GedaObject *object, int center_x, int center_y)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -431,7 +431,7 @@ void o_line_mirror(Object *object, int center_x, int center_y)
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_line_get_position (int *x, int *y, Object *object)
+bool o_line_get_position (int *x, int *y, GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
@@ -453,11 +453,11 @@ bool o_line_get_position (int *x, int *y, Object *object)
  *
  *  \param [in] toplevel  The GedaToplevel object.
  *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Line Object to write to document.
+ *  \param [in] o_current  Line GedaObject to write to document.
  *  \param [in] origin_x   Page x coordinate to place line Object.
  *  \param [in] origin_y   Page y coordinate to place line Object.
  */
-void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+void o_line_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                   int origin_x, int origin_y)
 {
   int x1, y1, x2, y2;
@@ -1090,7 +1090,7 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] x_scale
  *  \param [in] y_scale
  */
-void o_line_scale(Object *object, int x_scale, int y_scale)
+void o_line_scale(GedaObject *object, int x_scale, int y_scale)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -1114,7 +1114,7 @@ void o_line_scale(Object *object, int x_scale, int y_scale)
  *
  *  \return TRUE if point is an end-point of the line
  */
-bool o_line_is_endpoint (Object *object, POINT *point)
+bool o_line_is_endpoint (GedaObject *object, POINT *point)
 {
   bool anwser;
 
@@ -1141,7 +1141,7 @@ bool o_line_is_endpoint (Object *object, POINT *point)
  *
  *  \returns 0 or 1 or -1 if object is not a line
  */
-int o_line_get_closest_endpoint(Object *object, int x, int y)
+int o_line_get_closest_endpoint(GedaObject *object, int x, int y)
 {
   int anwser;
 
@@ -1151,13 +1151,13 @@ int o_line_get_closest_endpoint(Object *object, int x, int y)
     anwser = first < second ? 0 : 1;
   }
   else {
-    BUG_MSG("Object is not derived from GedaLine");
+    BUG_MSG("GedaObject is not derived from GedaLine");
     anwser = -1;
   }
   return anwser;
 }
 
-/*! \brief Determine the Intersection of a linear Object
+/*! \brief Determine the Intersection of a linear GedaObject
  *
  *  \par Function Description
  *  This function determines if two linear objects intersect. If both
@@ -1171,7 +1171,7 @@ int o_line_get_closest_endpoint(Object *object, int x, int y)
  *
  *  \return TRUE if both are lines and intersect
  */
-bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
+bool o_line_get_intersection(GedaObject *object1, GedaObject *object2, POINT *point)
 {
   bool   has_slope1;
   bool   has_slope2;
@@ -1223,7 +1223,7 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
 
       intersect = TRUE;
     }
-    else { /* Object 2 is not a derived from a line */
+    else { /* GedaObject 2 is not a derived from a line */
       intersect = FALSE;
     }
   }
@@ -1246,7 +1246,7 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
 
       intersect = TRUE;
     }
-    else { /* Object 1 is not a derived from a line */
+    else { /* GedaObject 1 is not a derived from a line */
       intersect = FALSE;
     }
   }
@@ -1257,7 +1257,7 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
   return intersect;
 }
 
-/*! \brief Calculate the Midpoint of a linear Object
+/*! \brief Calculate the Midpoint of a linear GedaObject
  *
  *  \par Function Description
  *  This function calculates the midpoint of a linear object.
@@ -1267,7 +1267,7 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
  *
  *  \return TRUE if \a object is linear
  */
-bool o_line_get_midpoint(Object *object, POINT *point)
+bool o_line_get_midpoint(GedaObject *object, POINT *point)
 {
   bool status;
 
@@ -1297,7 +1297,7 @@ bool o_line_get_midpoint(Object *object, POINT *point)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Line.
  */
-bool o_line_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_line_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   Line *line;
   bool  result;
@@ -1391,7 +1391,7 @@ bool o_line_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
   return result;
 }
 
-/*! \brief Calculates the Slope of a Line Object
+/*! \brief Calculates the Slope of a Line GedaObject
  *  \par Function Description
  *  This function calculates the slope of a line object
  *
@@ -1400,7 +1400,7 @@ bool o_line_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
  *
  *  \return True if the slope was set, otherwise false
  */
-bool o_line_get_slope (Object *object, double *slope)
+bool o_line_get_slope (GedaObject *object, double *slope)
 {
   bool has_slope;
 
@@ -1428,7 +1428,7 @@ bool o_line_get_slope (Object *object, double *slope)
  *  \param [in] object  a line Object
  *  \return The length of the line
  */
-double o_line_length(Object *object)
+double o_line_length(GedaObject *object)
 {
   double length;
   double dx, dy;
@@ -1446,7 +1446,7 @@ double o_line_length(Object *object)
 
   }
   else {
-    BUG_MSG("Invalid GEDA Line Object");
+    BUG_MSG("Invalid GEDA Line GedaObject");
     length = 0.0;
   }
   return (length);
@@ -1469,7 +1469,7 @@ double o_line_length(Object *object)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_line_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_line_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   return m_line_shortest_distance (object->line, x, y);
 }

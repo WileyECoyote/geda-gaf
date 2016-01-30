@@ -3,6 +3,10 @@
     * gattrib/src/gattrib.c: Reduce scope of variables, clean, adjust
       indentation.
 
+    * src/x_window.c: Reduce scope of buffer in x_window_update_title.
+
+    * src/x_dialog.c: Reduce scope of textentry in x_dialog_get_search_text.
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Replace g_debug with fprintf to stderr.

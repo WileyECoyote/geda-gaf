@@ -299,12 +299,12 @@ void *geda_list_find(GedaList *list, void *item)
   return g_list_find(list->glist, item);
 }
 
-/*! \brief Are all Objects in a GedaList the same type
+/*! \brief Are all GedaObjects in a GedaList the same type
  *
  *  \par Function Description
  *  Iterates \a list comparing the type of objects to the first
  *  object. Returns FALSE if the first element was not a valid
- *  Object or any objects thereafter were not of the same type.
+ *  GedaObject or any objects thereafter were not of the same type.
  *
  *  \param [in] list Pointer to the GedaList
  *
@@ -313,11 +313,11 @@ void *geda_list_find(GedaList *list, void *item)
 int geda_glist_is_homogeneous_objects (GList *list)
 {
   bool    answer;
-  Object *object;
+  GedaObject *object;
   GList  *o_iter;
 
   o_iter = list;
-  object = (Object *)o_iter->data;
+  object = (GedaObject *)o_iter->data;
 
   if (object) {
 
@@ -329,7 +329,7 @@ int geda_glist_is_homogeneous_objects (GList *list)
 
     while (o_iter != NULL) {
 
-      object = (Object *)o_iter->data;
+      object = (GedaObject *)o_iter->data;
 
       if (object->type != otype) {
         answer = FALSE;

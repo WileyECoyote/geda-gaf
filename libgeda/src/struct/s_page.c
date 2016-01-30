@@ -64,14 +64,14 @@
 #include <libgeda_priv.h>
 
 
-/* Called just before adding an Object from a Page.
+/* Called just before adding an GedaObject from a Page.
  * or after appending an OBJECT to a PAGE. */
-static void object_added (Page *page, Object *object)
+static void object_added (Page *page, GedaObject *object)
 {
   /* Set up object parent pointer */
 #ifdef DEBUG_PAGE
   if (object->page != NULL) {
-    g_critical ("Object %p already has parent page %p!", object, object->page);
+    g_critical ("GedaObject %p already has parent page %p!", object, object->page);
   }
 #endif
 
@@ -91,9 +91,9 @@ static void object_added (Page *page, Object *object)
 
 }
 
-/* Called just before removing an Object from a Page. */
+/* Called just before removing an GedaObject from a Page. */
 static void
-pre_object_removed (Page *page, Object *object)
+pre_object_removed (Page *page, GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
 
@@ -102,7 +102,7 @@ pre_object_removed (Page *page, Object *object)
     /* Clear object parent pointer */
 #ifdef DEBUG
     if (object->page == NULL) {
-      g_critical ("Object %p has NULL parent page!\n", object);
+      g_critical ("GedaObject %p has NULL parent page!\n", object);
     }
 #endif
 
@@ -121,7 +121,7 @@ pre_object_removed (Page *page, Object *object)
 
   }
   else {
-    BUG_MSG("Object is not a GedaObject");
+    BUG_MSG("GedaObject is not a GedaObject");
   }
 }
 
@@ -348,7 +348,7 @@ void s_page_clear_changed (PageList *list)
  *
  * \sa #s_page_delete_list() to delete all pages of a <B>toplevel</B>
  *
- * \param [in] toplevel   Toplevel Object to which page belongs.
+ * \param [in] toplevel   Toplevel GedaObject to which page belongs.
  * \param [in] page       Page to be removed.
  * \param [in] previous   If True the previous page will be set current
  *                        if the page being deleted is the current page.
@@ -793,7 +793,7 @@ Page *s_page_search_by_page_id (PageList *list, int pid)
 /*! \brief Set the font-renderer-specific bounds function.
  *  \par Function Description
  *  Set the function to be used to calculate text bounds for #Text
- *  Object associated with the page. This allow a per page object renderer
+ *  GedaObject associated with the page. This allow a per page object renderer
  *  function to be defined. If the function is not defined the renderer for
  *  the Toplevel will be used instead, if a Toplevel renderer is defined.
  *
@@ -813,17 +813,17 @@ s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
   }
 }
 
-/*! \brief Append an Object to the Page
+/*! \brief Append an GedaObject to the Page
  *
  *  \par Function Description
- *  Links the passed Object to the end of the Page's linked list
+ *  Links the passed GedaObject to the end of the Page's linked list
  *  of objects and then calls object_added. Notice that only the
  *  given object is added, descendents of \a object are not added.
  *
  *  \param [in] page      The Page the object is being added to.
- *  \param [in] object    The Object being added to the page.
+ *  \param [in] object    The GedaObject being added to the page.
  */
-void s_page_append_object (Page *page, Object *object)
+void s_page_append_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -833,7 +833,7 @@ void s_page_append_object (Page *page, Object *object)
       object_added (page, object);
     }
     else {
-      BUG_PMSG("Object is not a GedaObject", object);
+      BUG_PMSG("GedaObject is not a GedaObject", object);
     }
 
   }
@@ -845,7 +845,7 @@ void s_page_append_object (Page *page, Object *object)
 /*! \brief Append a GList of Objects to the Page
  *
  *  \par Function Description
- *  Links the passed Object GList to the end of the Page's
+ *  Links the passed GedaObject GList to the end of the Page's
  *  object_list.
  *
  *  \param [in] page      The Page the objects are being added to.
@@ -863,7 +863,7 @@ void s_page_append_list (Page *page, GList *obj_list)
 
     for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
 
       object_added (page, object);
     }
@@ -873,15 +873,15 @@ void s_page_append_list (Page *page, GList *obj_list)
   }
 }
 
-/*! \brief Remove an Object from the Page
+/*! \brief Remove an GedaObject from the Page
  *  \par Function Description
- *  Removes the passed Object from the Page's
+ *  Removes the passed GedaObject from the Page's
  *  linked list of objects.
  *
  *  \param [in] page      The Page the object is being removed from.
- *  \param [in] object    The Object being removed from the page.
+ *  \param [in] object    The GedaObject being removed from the page.
  */
-void s_page_remove_object (Page *page, Object *object)
+void s_page_remove_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -901,7 +901,7 @@ void s_page_remove_object (Page *page, Object *object)
   }
 }
 
-/*! \brief Replace an Object in a Page, in the same list position.
+/*! \brief Replace an GedaObject in a Page, in the same list position.
  *
  * \par Function Description
  * Removes \a object1 from \a page's linked list of objects, and puts
@@ -909,11 +909,11 @@ void s_page_remove_object (Page *page, Object *object)
  * page, object2 is appended to \a page.
  *
  * \param [in] page      The Page to be modified.
- * \param [in] object1   The Object being removed from the page.
- * \param [in] object2   The Object being added to the page.
+ * \param [in] object1   The GedaObject being removed from the page.
+ * \param [in] object2   The GedaObject being added to the page.
  */
 void
-s_page_replace_object (Page *page, Object *object1, Object *object2)
+s_page_replace_object (Page *page, GedaObject *object1, GedaObject *object2)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -932,7 +932,7 @@ s_page_replace_object (Page *page, Object *object1, Object *object2)
         object_added (page, object2);
       }
       else {
-        BUG_PMSG("Object is not a GedaObject", object2);
+        BUG_PMSG("GedaObject is not a GedaObject", object2);
       }
     }
   }
@@ -941,10 +941,10 @@ s_page_replace_object (Page *page, Object *object1, Object *object2)
   }
 }
 
-/*! \brief Remove and free all Objects from the Page
+/*! \brief Remove and free all GedaObjects from the Page
  *
  *  \par Function Description
- *  Removes and releases all Objects from the Page.
+ *  Removes and releases all GedaObjects from the Page.
  *
  *  \param [in] page      The Page being cleared.
  */
@@ -967,12 +967,12 @@ void s_page_delete_objects (Page *page)
   }
 }
 
-/*! \brief Return an Object on the Page by ID
+/*! \brief Return an GedaObject on the Page by ID
  *
  *  \par Function Description
  *  An accessor for the Page's GList of objects.
  *
- *  \note The Object is owned by the Page, and must not be
+ *  \note The GedaObject is owned by the Page, and must not be
  *        free'd or modified by the caller.
  *
  *  \sa s_page_get_objects
@@ -982,7 +982,7 @@ void s_page_delete_objects (Page *page)
  *
  *  \returns a pointer to the Page's GList of objects
  */
-Object *s_page_get_object (Page *page, int sid)
+GedaObject *s_page_get_object (Page *page, int sid)
 {
   return geda_page_get_object(page, sid);
 }
@@ -1032,7 +1032,7 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
 
     for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       int left, top, right, bottom;
 
       if (o_get_bounds (object, &left, &top, &right, &bottom)) {

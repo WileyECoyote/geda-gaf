@@ -175,8 +175,8 @@ struct _GschemToplevel {
   int which_grip;                       /* Which grip is being manipulated.
                                            Its range of values depends on the
                                            type of object being manipulated. */
-  Object *which_object;                 /* Object being manipulated */
-  Path   *temp_path;                    /* Path being created */
+  GedaObject *which_object;             /* Object being manipulated */
+  Path       *temp_path;                /* Path being created */
 
   int override_color;
   int override_net_color;

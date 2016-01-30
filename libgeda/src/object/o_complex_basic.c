@@ -39,7 +39,7 @@
  *  \param [in]  object   The complex object.
  */
 int
-o_complex_get_bounds(Object *object)
+o_complex_get_bounds(GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
   return o_get_bounds_list (object->complex->prim_objs,
@@ -60,7 +60,7 @@ o_complex_get_bounds(Object *object)
  *  \return TRUE if successfully determined the position, FALSE otherwise.
  */
 bool
-o_complex_get_position (int *x, int *y, Object *object)
+o_complex_get_position (int *x, int *y, GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_COMPLEX(object), FALSE);
   *x = object->complex->x;
@@ -80,7 +80,7 @@ o_complex_get_position (int *x, int *y, Object *object)
  *
  *  \return TRUE if the object is a eligible attribute, FALSE otherwise.
  */
-static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *object)
+static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
 {
   char *name = NULL;
 
@@ -134,7 +134,7 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *obje
       }
     }
     else {
-      BUG_MSG("Object is not a GedaText object");
+      BUG_MSG("GedaObject is not a GedaText object");
     }
   }
   else {
@@ -151,7 +151,7 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *obje
  *
  *  \return 1 if embedded, 0 otherwise
  */
-int o_complex_is_embedded(Object *object)
+int o_complex_is_embedded(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_COMPLEX(object), 0);
   return object->complex->is_embedded;
@@ -171,10 +171,10 @@ int o_complex_is_embedded(Object *object)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Complex.
  */
-bool o_complex_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_complex_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
-  Object *closest = NULL;
+  GedaObject *closest = NULL;
 
   if (GEDA_IS_COMPLEX(object)) {
 
@@ -183,7 +183,7 @@ bool o_complex_get_nearest_point (Object *object, int x, int y, int *nx, int *ny
 
     for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter)) {
 
-      Object *obj = iter->data;
+      GedaObject *obj = iter->data;
 
       bool do_check;
 
@@ -236,7 +236,7 @@ bool o_complex_get_nearest_point (Object *object, int x, int y, int *nx, int *ny
  *
  *  If detach is TRUE, the function removes these attribute objects
  *  from the prim_objs of the complex.  If detach is FALSE, the
- *  Objects are left in place.
+ *  GedaObjects are left in place.
  *
  *  \param [in] toplevel The toplevel environment,
  *  \param [in] object   The complex object being modified,
@@ -244,12 +244,12 @@ bool o_complex_get_nearest_point (Object *object, int x, int y, int *nx, int *ny
  *
  *  \returns Linked list of Objects to promote.
  */
-GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int detach)
+GList *o_complex_get_promotable (GedaToplevel *toplevel, GedaObject *object, int detach)
 {
   GList  *promoted = NULL;
   GList  *attribs;
   GList  *iter;
-  Object *ptr;
+  GedaObject *ptr;
 
   if (toplevel == NULL)
     return NULL;
@@ -288,11 +288,11 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int det
  *  GList containing them (suitable for appending to a #Page).
  *
  *  \param [in] toplevel The #GedaToplevel environment,
- *  \param [in] object   The complex#Object to promote from.
+ *  \param [in] object   The complex#GedaObject to promote from.
  *
  *  \return A GList of promoted attributes.
  */
-GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
+GList *o_complex_promote_attribs (GedaToplevel *toplevel, GedaObject *object)
 {
   GList *promoted   = NULL;
   GList *promotable = NULL;
@@ -305,8 +305,8 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
    * remove them. */
   if (toplevel->keep_invisible) {
     for (iter = promotable; iter != NULL; iter = iter->next) {
-      Object *o_kept = (Object *) iter->data;
-      Object *o_copy = o_copy_object (o_kept);
+      GedaObject *o_kept = (GedaObject *) iter->data;
+      GedaObject *o_copy = o_copy_object (o_kept);
       o_set_visibility (o_kept, INVISIBLE);
       o_copy->parent_object = NULL;
       promoted = g_list_prepend (promoted, o_copy);
@@ -318,7 +318,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
     for (iter = promotable; iter != NULL; iter = iter->next) {
 
       GList  *from_list = object->complex->prim_objs;
-      Object *o_removed = (Object *) iter->data;
+      GedaObject *o_removed = (GedaObject *) iter->data;
 
       o_removed->parent_object = NULL;
       object->complex->prim_objs = g_list_remove (from_list, o_removed);
@@ -338,10 +338,10 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   return promoted;
 }
 
-/*! \brief Delete or hide promotable attributes from the passed Object
+/*! \brief Delete or hide promotable attributes from the passed GedaObject
  *
  *  \par Function Description
- *  Deletes or hides promotable attributes from \a Object. This is used
+ *  Deletes or hides promotable attributes from \a GedaObject. This is used
  *  when loading symbols while loading a schematic from disk. The schematic
  *  will already contain local copies of symbol's promotable objects, so we
  *  delete or hide the symbol's copies.
@@ -354,7 +354,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
  *  \param [in] object   The complex object being altered.
  */
 static void
-o_complex_remove_promotable (GedaToplevel *toplevel, Object *object)
+o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
 {
   GList *promotable, *iter;
 
@@ -365,7 +365,7 @@ o_complex_remove_promotable (GedaToplevel *toplevel, Object *object)
 
   for (iter = promotable; iter != NULL; iter = iter->next) {
 
-    Object *a_object = iter->data;
+    GedaObject *a_object = iter->data;
 
     if (toplevel->keep_invisible == TRUE) {   /* Hide promotable attributes */
       o_set_visibility (a_object, INVISIBLE);
@@ -381,10 +381,10 @@ o_complex_remove_promotable (GedaToplevel *toplevel, Object *object)
   g_list_free (promotable);
 }
 
-static Object*
+static GedaObject*
 create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int angle, int mirror)
 {
-  Object      *new_prim_obj;
+  GedaObject      *new_prim_obj;
   LINE_OPTIONS line_options;
 
   char *not_found_text = NULL;
@@ -473,21 +473,21 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
 
   complex->prim_objs = g_list_reverse(complex->prim_objs);
 
-  return (Object*)complex;
+  return (GedaObject*)complex;
 }
 
-/*! \brief Create a New Complex Object
+/*! \brief Create a New Complex GedaObject
  *
  *  \par Function Description
  *  Creates and initialize a new complex object.
  *
  *  \return a new complex object
  */
-Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
+GedaObject *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
                       int mirror, const CLibSymbol *clib, const char *basename,
                       int selectable)
 {
-  Object  *new_obj;
+  GedaObject  *new_obj;
   Complex *complex;
 
   GList *iter;
@@ -539,7 +539,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
       /* Mirror, rotate and translate children */
       if (mirror) { /* children if required */
         for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
-          Object *sub_object = iter->data;
+          GedaObject *sub_object = iter->data;
           o_mirror_object (sub_object, 0, 0);
           o_rotate_object(sub_object, 0, 0, angle);
           o_translate_object(sub_object, x, y);
@@ -547,7 +547,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
       }
       else {
         for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
-          Object *sub_object = iter->data;
+          GedaObject *sub_object = iter->data;
           o_rotate_object(sub_object, 0, 0, angle);
           o_translate_object(sub_object, x, y);
         }
@@ -563,7 +563,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   /* set the parent field now and check for pins */
   for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
 
-    Object *sub_object = iter->data;
+    GedaObject *sub_object = iter->data;
 
     sub_object->parent_object = new_obj;
 
@@ -589,10 +589,10 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
  *
  *  \return a new complex object
  */
-Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
+GedaObject *o_complex_new_embedded(int x, int y, int angle, int mirror,
                                const char *basename, int selectable)
 {
-  Object  *new_obj;
+  GedaObject  *new_obj;
   Complex *complex;
 
   new_obj = geda_complex_new();
@@ -633,11 +633,11 @@ Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
  *
  *  \return The object list, or NULL on error.
  */
-Object *o_complex_read (GedaToplevel *toplevel,
+GedaObject *o_complex_read (GedaToplevel *toplevel,
                         const char buf[], unsigned int release_ver,
                         unsigned int fileformat_ver, GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x1, y1;
   int angle;
@@ -712,7 +712,7 @@ Object *o_complex_read (GedaToplevel *toplevel,
  *
  *  \return the string representation of the complex Object
  */
-char *o_complex_save(Object *object)
+char *o_complex_save(GedaObject *object)
 {
   int      selectable;
   char    *buf = NULL;
@@ -747,9 +747,9 @@ char *o_complex_save(Object *object)
  *
  *  \return a new COMPLEX object
  */
-Object *o_complex_copy(Object *o_current)
+GedaObject *o_complex_copy(GedaObject *o_current)
 {
-  Object  *o_new;
+  GedaObject  *o_new;
   Complex *new_complex;
   Complex *old_complex;
 
@@ -774,7 +774,7 @@ Object *o_complex_copy(Object *o_current)
 
   for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
 
-    Object *child = (Object*)iter->data;
+    GedaObject *child = (GedaObject*)iter->data;
 
     if (GEDA_IS_OBJECT(child)) {
       child->parent_object = o_new;
@@ -804,12 +804,12 @@ Object *o_complex_copy(Object *o_current)
  *
  *  \param [in] object      The complex containing text objects
  */
-void o_complex_reset_refdes(Object *object)
+void o_complex_reset_refdes(GedaObject *object)
 {
   GList *iter = object->attribs;
 
   while (iter != NULL) {
-    Object *attrib = (Object*) iter->data;
+    GedaObject *attrib = (GedaObject*) iter->data;
 
     if (attrib->type == OBJ_TEXT) {
       u_refdes_reset(attrib);
@@ -819,17 +819,17 @@ void o_complex_reset_refdes(Object *object)
   }
 }
 
-/*! \brief Mirror a Complex Object
+/*! \brief Mirror a Complex GedaObject
  *
  *  \par Function Description
  *  This function mirrors a complex from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in,out] object    Complex Object to mirror
+ *  \param [in,out] object    Complex GedaObject to mirror
  *  \param [in]     center_x  Origin x coordinate in WORLD units
  *  \param [in]     center_y  Origin y coordinate in WORLD units
  */
-void o_complex_mirror(Object *object, int center_x, int center_y)
+void o_complex_mirror(GedaObject *object, int center_x, int center_y)
 {
   int x, y;
 
@@ -869,7 +869,7 @@ void o_complex_mirror(Object *object, int center_x, int center_y)
  *  \param [in]     center_y  Y coordinate of rotation center (world coords)
  *  \param [in]     angle     Rotation angle in degrees
  */
-void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
+void o_complex_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int x, y;
   int newx, newy;
@@ -905,7 +905,7 @@ void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
  *  \param [in]     dx      The x-distance to move the object
  *  \param [in]     dy      The y-distance to move the object
  */
-void o_complex_translate(Object *object, int dx, int dy)
+void o_complex_translate(GedaObject *object, int dx, int dy)
 {
   g_return_if_fail (GEDA_IS_COMPLEX(object));
 
@@ -923,14 +923,14 @@ void o_complex_translate(Object *object, int dx, int dy)
  *  Search for a pin inside the given complex which has an attribute
  *  matching those passed.
  *
- *  \param [in] object  Complex Object to search
+ *  \param [in] object  Complex GedaObject to search
  *  \param [in] name    The attribute name to search for
  *  \param [in] wanted  The attribute value to search for
  *
  *  \return The pin Object with the given attribute, NULL otherwise.
  */
-Object*
-o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
+GedaObject*
+o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted)
 {
   GList *list;
   GList *iter;
@@ -943,7 +943,7 @@ o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
 
   for (iter = list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type != OBJ_PIN)
       continue;
@@ -972,7 +972,7 @@ o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
  *  \param [in] object    The complex Object
  *
  */
-void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
+void o_complex_check_symbol_version(GedaToplevel *toplevel, GedaObject* object)
 {
   char  *inside        = NULL;
   char  *outside       = NULL;
@@ -1196,7 +1196,7 @@ done:
  *        force treating them as solid filled.
  *        We ignore the force_solid argument to this function.
  *
- *  \param [in] object       A complex  Object.
+ *  \param [in] object       A complex Object.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
@@ -1206,7 +1206,7 @@ done:
  *          large number (G_MAXDOUBLE).  With an invalid parameter, this
  *          function returns G_MAXDOUBLE.
  */
-double o_complex_shortest_distance(Object *object, int x, int y, int force_solid)
+double o_complex_shortest_distance(GedaObject *object, int x, int y, int force_solid)
 {
   Box    line_bounds;
   GList *iter;
@@ -1218,7 +1218,7 @@ double o_complex_shortest_distance(Object *object, int x, int y, int force_solid
 
   for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter)) {
 
-    Object *obj = iter->data;
+    GedaObject *obj = iter->data;
     int left, top, right, bottom;
 
     /* Collect the bounds of any lines and arcs in the symbol */

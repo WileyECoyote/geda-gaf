@@ -21,7 +21,7 @@
  */
 
 /*! \file o_picture.c
- *  \brief Functions for the Picture Objects
+ *  \brief Functions for the Picture GedaObjects
  */
 
 #include <config.h>
@@ -59,14 +59,14 @@
  *  \param [in]     mirrored      Whether the image should be mirrored or not.
  *  \param [in]     embedded      Whether the embedded flag should be set or not.
  *
- *  \return A pointer to a new picture #Object.
+ *  \return A pointer to a new picture #GedaObject.
  */
-Object*
+GedaObject*
 o_picture_new (const char *file_content, unsigned int file_length,
                const char *filename, int x1, int y1, int x2, int y2,
                int angle, int mirrored, int embedded)
 {
-  Object  *new_obj;
+  GedaObject  *new_obj;
   Picture *picture;
 
   /* create the object */
@@ -147,13 +147,13 @@ o_picture_new (const char *file_content, unsigned int file_length,
  *  This function creates a verbatim copy of the object pointed by
  *  <B>\a o_current</B> describing a picture.
  *
- *  \param [in]  o_current     Picture Object to copy.
- *  \return The new Object
+ *  \param [in]  o_current     Picture GedaObject to copy.
+ *  \return The new GedaObject
  */
-Object*
-o_picture_copy(Object *o_current)
+GedaObject*
+o_picture_copy(GedaObject *o_current)
 {
-  Object  *new_obj;
+  GedaObject  *new_obj;
   Picture *new_picture;
   Picture *old_picture;
 
@@ -199,7 +199,7 @@ o_picture_copy(Object *o_current)
  *  The coordinates of the corner is modified in the world coordinate system.
  *  Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     Picture Object to modify.
+ *  \param [in,out] object     Picture GedaObject to modify.
  *  \param [in]     x          New x coordinate.
  *  \param [in]     y          New y coordinate.
  *  \param [in]     whichone   Which picture parameter to modify.
@@ -213,7 +213,7 @@ o_picture_copy(Object *o_current)
  *  </DL>
  */
 void
-o_picture_modify(Object *object, int x, int y, int whichone)
+o_picture_modify(GedaObject *object, int x, int y, int whichone)
 {
   int tmp;
   double ratio = o_picture_get_effective_ratio (object);
@@ -285,14 +285,14 @@ o_picture_modify(Object *object, int x, int y, int whichone)
  * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
  * as possible to still fit within that rectangle.
  *
- * \param [in,out] object   picture #Object to be modified.
+ * \param [in,out] object   picture #GedaObject to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
  * \param [in]     y1       y coordinate of first corner of box.
  * \param [in]     x2       x coordinate of second corner of box.
  * \param [in]     y2       y coordinate of second corner of box.
  */
 void
-o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
+o_picture_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
   /* Normalise the requested rectangle. */
   object->picture->lower_x = (x1 > x2) ? x1 : x2;
@@ -309,7 +309,7 @@ o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *
  *  \par Function Description
  *  Parses \a first_line and subsequent lines from \a tb, and returns
- *  a newly-created picture #Object.
+ *  a newly-created picture #GedaObject.
  *
  *  \param [in]  first_line      Character string with picture description.
  *  \param [in]  tb              Text buffer to load embedded data from.
@@ -320,14 +320,14 @@ o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *
  *  \return A pointer to the new picture object, or NULL on error.
  */
-Object *
+GedaObject *
 o_picture_read (const char  *first_line,
                 TextBuffer  *tb,
                 unsigned int release_ver,
                 unsigned int fileformat_ver,
                 GError     **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   int     angle, height, width;
   int     embedded, mirrored;
   int     x1, y1;
@@ -472,7 +472,7 @@ o_picture_read (const char  *first_line,
  *  This function formats a string in the buffer <B>*buff</B> to describe
  *  the picture object <B>*object</B>.
  *
- *  \param [in] object  Picture Object to create string from.
+ *  \param [in] object  Picture GedaObject to create string from.
  *  \return A pointer to the picture Object character string.
  *
  *  \note
@@ -480,7 +480,7 @@ o_picture_read (const char  *first_line,
  *
  */
 char*
-o_picture_save(Object *object)
+o_picture_save(GedaObject *object)
 {
   int           width, height, x1, y1;
   char         *encoded_picture=NULL;
@@ -554,13 +554,13 @@ o_picture_save(Object *object)
  *  the origin, then mirrored and finally translated back at its previous
  *  position.
  *
- *  \param [in,out] object    Picture Object to mirror.
+ *  \param [in,out] object    Picture GedaObject to mirror.
  *  \param [in]     center_x  Origin x coordinate in WORLD units.
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
 
  */
 void
-o_picture_mirror(Object *object, int center_x, int center_y)
+o_picture_mirror(GedaObject *object, int center_x, int center_y)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -612,14 +612,14 @@ o_picture_mirror(Object *object, int center_x, int center_y)
  *  the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B>
  *  degrees. The center of rotation is in world units.
  *
- *  \param [in,out]  object     Picture Object to rotate
+ *  \param [in,out]  object     Picture GedaObject to rotate
  *  \param [in]      center_x  Rotation center x coordinate
  *  \param [in]      center_y  Rotation center y coordinate
  *  \param [in]      angle      Rotation angle in degrees (See note below).
 
  */
 void
-o_picture_rotate(Object *object, int center_x, int center_y, int angle)
+o_picture_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -674,13 +674,13 @@ o_picture_rotate(Object *object, int center_x, int center_y, int angle)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
  *
- *  \param [in,out] object     Picture Object to translate
+ *  \param [in,out] object     Picture GedaObject to translate
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
 
  */
 void
-o_picture_translate(Object *object, int dx, int dy)
+o_picture_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->picture->upper_x = object->picture->upper_x + dx;
@@ -934,7 +934,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
   return result;
 }
 
-/*! \brief Export Picture Object to a given File and Type
+/*! \brief Export Picture GedaObject to a given File and Type
  *
  *  \par Function Description
  *  This function creates an image file of the given type from the
@@ -943,7 +943,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
  *  argument is not checked, the caller is responsible for ensuring
  *  the user has write-access to the file and any path is valid.
  *
- *  \param [in]  o_current Picture Object to export
+ *  \param [in]  o_current Picture GedaObject to export
  *  \param [in]  filename  The name of the file to export
  *  \param [in]  type      type of image to generate
  *
@@ -959,7 +959,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
  *
  */
 bool
-o_picture_export_object(Object *o_current, const char *filename, const char *type, ...)
+o_picture_export_object(GedaObject *o_current, const char *filename, const char *type, ...)
 {
   GdkPixbuf *pixbuf;
   bool       result;
@@ -982,7 +982,7 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
   return result;
 }
 
-/*! \brief Export Original Picture Object Image to a given File and Type
+/*! \brief Export Original Picture GedaObject Image to a given File and Type
  *
  *  \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
@@ -991,7 +991,7 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  o_current Picture Object to export
+ *  \param [in]  o_current Picture GedaObject to export
  *  \param [in]  filename  The name of the file to export
  *  \param [in]  type      type of image to generate
  *
@@ -1010,7 +1010,7 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
  *  \sa o_picture_export_object o_picture_export_full
  */
 bool
-o_picture_export_orginal (Object *o_current, const char *filename, const char *type, ...)
+o_picture_export_orginal (GedaObject *o_current, const char *filename, const char *type, ...)
 {
   GdkPixbuf *pixbuf;
   bool       result;
@@ -1037,11 +1037,11 @@ o_picture_export_orginal (Object *o_current, const char *filename, const char *t
  *  in a schematic or symbol file; returns FALSE if its data will be
  *  obtained from a separate file.
  *
- * \param object    The picture #Object to inspect.
+ * \param object    The picture #GedaObject to inspect.
  * \return TRUE if \a object is embedded.
  */
 bool
-o_picture_is_embedded (Object *object)
+o_picture_is_embedded (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
   return (object->picture->is_embedded == 1);
@@ -1137,7 +1137,7 @@ o_picture_rgb_data (GdkPixbuf *image)
  *  \return True on success, or False on failure
  */
 bool
-o_picture_embed (Object *object)
+o_picture_embed (GedaObject *object)
 {
   const char *filename;
   char       *basename;
@@ -1180,7 +1180,7 @@ o_picture_embed (Object *object)
  *  \return True on success, or False on failure
  */
 bool
-o_picture_unembed (Object *object)
+o_picture_unembed (GedaObject *object)
 {
   GError     *err      = NULL;
   const char *filename = o_picture_get_filename(object);
@@ -1235,7 +1235,7 @@ o_picture_unembed (Object *object)
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
-o_picture_shortest_distance (Object *object, int x, int y, int force_solid)
+o_picture_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   double dx, dy;
   double x1, y1, x2, y2;
@@ -1267,12 +1267,12 @@ o_picture_shortest_distance (Object *object, int x, int y, int force_solid)
  * Returns the raw image file data underlying the picture \a object,
  * or NULL if the picture could not be loaded.
  *
- * \param object    The picture #Object to inspect.
+ * \param object    The picture #GedaObject to inspect.
  * \param len       Location to store buffer length.
  * \return A read-only buffer of raw image data.
  */
 const char*
-o_picture_get_data (Object *object, size_t *len)
+o_picture_get_data (GedaObject *object, size_t *len)
 {
   g_return_val_if_fail (object != NULL, NULL);
   g_return_val_if_fail (object->picture != NULL, NULL);
@@ -1281,17 +1281,17 @@ o_picture_get_data (Object *object, size_t *len)
   return object->picture->file_content;
 }
 
-/*! \brief Get the file name Associated with a Picture Object
+/*! \brief Get the file name Associated with a Picture GedaObject
  *
  * \par Function Description
  * Returns the filename associated with the picture \a object.
  *
- * \param object   The picture #Object to inspect
+ * \param object   The picture #GedaObject to inspect
  *
  * \return the filename associated with \a object
  */
 const char *
-o_picture_get_filename (Object *object)
+o_picture_get_filename (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), NULL);
 
@@ -1311,7 +1311,7 @@ o_picture_get_filename (Object *object)
  *  TODO Why are these parameter backwards from all the othe functions?
  */
 bool
-o_picture_get_position (int *x, int *y, Object *object)
+o_picture_get_position (int *x, int *y, GedaObject *object)
 {
   *x = min(object->picture->lower_x, object->picture->upper_x);
   *y = min(object->picture->lower_y, object->picture->upper_y);
@@ -1327,7 +1327,7 @@ o_picture_get_position (int *x, int *y, Object *object)
  *  \param [in] object   The object to get the position.
  */
 int
- o_picture_get_width(Object *object)
+ o_picture_get_width(GedaObject *object)
 {
   return object->picture->lower_x - object->picture->upper_x;
 }
@@ -1341,7 +1341,7 @@ int
  *  \param [in] object   The object to get the position.
  */
 int
-o_picture_get_height (Object *object)
+o_picture_get_height (GedaObject *object)
 {
   return object->picture->upper_y - object->picture->lower_y;
 }
@@ -1352,12 +1352,12 @@ o_picture_get_height (Object *object)
 
  * Returns the width/height ratio of picture \a object.
  *
- * \param object    Picture #Object to inspect
+ * \param object    Picture #GedaObject to inspect
  *
  * \return width/height ratio for \a object.
  */
 double
-o_picture_get_ratio (Object *object)
+o_picture_get_ratio (GedaObject *object)
 {
   double anwser;
 
@@ -1385,7 +1385,7 @@ o_picture_get_ratio (Object *object)
     }
   }
   else {
-    BUG_MSG ("Invald type of Object, expecting Picture\n");
+    BUG_MSG ("Invald type of GedaObject, expecting Picture\n");
     anwser = 1.0;
   }
   return anwser;
@@ -1398,12 +1398,12 @@ o_picture_get_ratio (Object *object)
  * Returns the width/height ratio of picture \a object, taking the
  * image rotation into account.
  *
- * \param object    Picture #Object to inspect
+ * \param object    Picture #GedaObject to inspect
  *
  * \return width/height ratio for \a object.
  */
 double
-o_picture_get_effective_ratio (Object *object)
+o_picture_get_effective_ratio (GedaObject *object)
 {
   double anwser;
 
@@ -1416,7 +1416,7 @@ o_picture_get_effective_ratio (Object *object)
 
   }
   else {
-    BUG_MSG ("Invald type of Object, expecting Picture\n");
+    BUG_MSG ("Invald type of GedaObject, expecting Picture\n");
     anwser = 1.0;
   }
   return anwser;
@@ -1438,14 +1438,14 @@ o_picture_get_effective_ratio (Object *object)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Picture.
  */
-bool o_picture_get_nearest_point(Object *object, int x, int y, int *nx, int *ny)
+bool o_picture_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
   Picture *picture;
   bool result;
 
   if (GEDA_IS_PICTURE(object)) {
 
-    Object *tmp = geda_box_new();
+    GedaObject *tmp = geda_box_new();
 
     picture = object->picture;
 
@@ -1485,12 +1485,12 @@ bool o_picture_get_nearest_point(Object *object, int x, int y, int *nx, int *ny)
  *
  *  \param [in] toplevel   The GedaToplevel object.
  *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Picture Object to write to document.
+ *  \param [in] o_current  Picture GedaObject to write to document.
  *  \param [in] origin_x   Page x coordinate to place picture Object.
  *  \param [in] origin_y   Page y coordinate to place picture Object.
  */
 void
-o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+o_picture_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                                         int origin_x, int origin_y)
 {
   int x1, y1, x, y;
@@ -1585,7 +1585,7 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  * \note object->picture->ratio is set to the ratio of the buffer
  *       image and not the ratio of the as drawn image.
  *
- * \param object   The picture #Object to modify.
+ * \param object   The picture #GedaObject to modify.
  * \param filename The new filename for the picture.
  * \param data     The new image data buffer.
  * \param len      The size of the data buffer.
@@ -1594,7 +1594,7 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  * \return TRUE on success, FALSE on failure.
  */
 bool
-o_picture_set_from_buffer (Object        *object,
+o_picture_set_from_buffer (GedaObject        *object,
                            const char    *filename,
                            const char    *data,
                            unsigned int   len,
@@ -1654,14 +1654,14 @@ o_picture_set_from_buffer (Object        *object,
  *  Sets the contents of the picture \a object by reading image data
  *  from a file.
  *
- * \param object   The picture #Object to modify.
+ * \param object   The picture #GedaObject to modify.
  * \param filename The filename to load image data from.
  * \param error    Location to return error information.
  *
  * \return TRUE on success, FALSE on failure.
  */
 bool
-o_picture_set_from_file (Object *object, const char *filename, GError **error)
+o_picture_set_from_file (GedaObject *object, const char *filename, GError **error)
 {
   char   *buf;
   size_t  len;
@@ -1678,7 +1678,7 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
   return status;
 }
 
-/*! \brief Export Picture Object Image to a given File and Type
+/*! \brief Export Picture GedaObject Image to a given File and Type
  *
  *  \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
@@ -1770,12 +1770,12 @@ o_picture_get_fallback_pixbuf (void)
  * The returned value should have its reference count decremented with
  * GEDA_UNREF() when no longer needed.
  *
- * \param object  The picture #Object to inspect.
+ * \param object  The picture #GedaObject to inspect.
  *
  * \return A GdkPixbuf for the picture.
  */
 GdkPixbuf *
-o_picture_get_pixbuf (Object *object)
+o_picture_get_pixbuf (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
@@ -1798,7 +1798,7 @@ o_picture_get_pixbuf (Object *object)
  *  down. If unsure, pick GDK_INTERP_BILINEAR, it has a good balance
  *  of speed and quality.
  *
- * \param [in] object  The picture #Object to inspect.
+ * \param [in] object  The picture #GedaObject to inspect.
  * \param [in] interp  GdkInterpType flag passed to gdk_pixbuf_scale
  *
  *  <B>interp</B> can be one of the following values:
@@ -1818,7 +1818,7 @@ o_picture_get_pixbuf (Object *object)
  * \sa o_picture_export_object
  */
 GdkPixbuf *
-o_picture_get_pixbuf_fit (Object *object, int interp)
+o_picture_get_pixbuf_fit (GedaObject *object, int interp)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
@@ -1888,7 +1888,7 @@ o_picture_get_pixbuf_fit (Object *object, int interp)
  *  \sa o_picture_rgb_data o_picture_get_mask_data
  */
 unsigned char*
-o_picture_get_rgb_data (Object *object)
+o_picture_get_rgb_data (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
@@ -1914,7 +1914,7 @@ o_picture_get_rgb_data (Object *object)
  *  \sa o_picture_mask_data o_picture_get_rgb_data
  */
 uint8*
-o_picture_get_mask_data(Object *object)
+o_picture_get_mask_data(GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 

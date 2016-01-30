@@ -328,7 +328,7 @@ GedaToplevel *geda_toplevel_new (void) {
   return g_object_new(GEDA_TYPE_TOPLEVEL, NULL);
 }
 
-/*! \brief Determine if object is Geda GedaToplevel Object.
+/*! \brief Determine if object is Geda Toplevel Object.
  *  \par Function Description
  *  Returns true if the argument is a GedaToplevel object.
  *  This function use signatures embed in the structure
@@ -346,7 +346,7 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
 }
 
 bool
-geda_toplevel_set_bounds(GedaToplevel *toplevel, Object *o_current)
+geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
 {
   int result = 0;
 
@@ -398,7 +398,7 @@ geda_toplevel_unref(GedaToplevel *toplevel)
  * \a weak_refs. Should be called during destruction of an structure
  * that allows weak references.
  *
- * \param [in] toplevel  Pointer to Object being destroyed.
+ * \param [in] toplevel  Pointer to GedaObject being destroyed.
  *
  */
 void

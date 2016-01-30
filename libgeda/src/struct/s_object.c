@@ -24,31 +24,31 @@
 #include <libgeda_priv.h>
 
 /*!
- *  \brief Create an Empty Object
+ *  \brief Create an Empty GedaObject
  *  \par Function Description
- *  Create and return an empty <b>Object</b> object with sensible defaults
+ *  Create and return an empty <b>GedaObject</b> object with sensible defaults
  *  for its properties.
  *
- *  \returns the newly created Object.
+ *  \returns the newly created GedaObject.
  */
-Object *s_object_new (int type, char const *name)
+GedaObject *s_object_new (int type, char const *name)
 {
   return geda_object_new(type, name);
 }
 
-/*! \brief Attach attribute to an Object and append Parent's Page
+/*! \brief Attach attribute to an GedaObject and append Parent's Page
  *  \par Function Description
  *  This function is similar to o_attrib_add, which is called by
  *  the function, the difference being that this function also
  *  adds the attribute being attached to the page if the parent
  *  is already on a page.
  *
- *  \param [in]  parent The Object that child is being added to.
+ *  \param [in]  parent The GedaObject that child is being added to.
  *  \param [in]  child  The item you want to add as an attribute.
  *
  *  \return nothing.
  */
-void s_object_add_child(Object *parent, Object *child) {
+void s_object_add_child(GedaObject *parent, GedaObject *child) {
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);
@@ -60,9 +60,9 @@ void s_object_add_child(Object *parent, Object *child) {
   o_attrib_add(parent, child);
 }
 
-/*! \brief Remove an Object
+/*! \brief Remove an GedaObject
  *  \par Function Description
- *  This function unreferences an Object after first removing the Object
+ *  This function unreferences an GedaObject after first removing the GedaObject
  *  from a page if the object is on a page, and disconnecting any "elec-
  *  trical" connections.
  */
@@ -74,7 +74,7 @@ void s_object_add_child(Object *parent, Object *child) {
  *
  */
 void
-s_object_release(Object *o_current)
+s_object_release(GedaObject *o_current)
 {
   if (GEDA_IS_OBJECT(o_current)) {
 
@@ -105,7 +105,7 @@ s_object_release(Object *o_current)
   }
 }
 
-/*! \brief Deletes a list of GedaObjects
+/*! \brief Deletes a list of Objects
  *  \par Function Description
  *   Deletes everything including the GList
  */
@@ -117,7 +117,7 @@ s_object_release_objects(GList *list)
   /* do the delete backwards */
   while (ptr != NULL) {
 
-    Object *o_current = GEDA_OBJECT(ptr->data);
+    GedaObject *o_current = GEDA_OBJECT(ptr->data);
 
     s_object_release(o_current);
 
@@ -128,12 +128,12 @@ s_object_release_objects(GList *list)
 
 }
 
-/*! \brief Mark Object's Page as modified
+/*! \brief Mark GedaObject's Page as modified
  *  \par Function Description
  *   Updates the CHANGED flag of the page associated with
  *  \a object if the page is attached to a page.
  */
-void s_object_set_page_changed (Object *object)
+void s_object_set_page_changed (GedaObject *object)
 {
   Page *page = geda_object_get_page (object);
   if (page != NULL){

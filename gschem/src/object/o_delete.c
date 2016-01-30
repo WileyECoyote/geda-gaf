@@ -37,7 +37,7 @@
  *  \param [in] w_current The GschemToplevel object.
  *  \param [in] object    The object to delete.
  */
-void o_delete (GschemToplevel *w_current, Object *object)
+void o_delete (GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -71,7 +71,7 @@ void o_delete_selected (GschemToplevel *w_current)
     GList *iter      = to_remove;
 
     while (iter) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       if (object->selectable == FALSE) {
         locked_num++;
       }
@@ -92,7 +92,7 @@ void o_delete_selected (GschemToplevel *w_current)
           break;
         case GEDA_RESPONSE_NO:  /* Remove non locked */
           for (iter = to_remove; iter != NULL; iter = iter->next) {
-            Object *object = iter->data;
+            GedaObject *object = iter->data;
             if (object->selectable == TRUE)
               non_locked = g_list_append (non_locked, object);
           }
@@ -106,7 +106,7 @@ void o_delete_selected (GschemToplevel *w_current)
     }
 
     for (iter = to_remove; iter != NULL; iter = iter->next) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       o_selection_remove   (selection, object);
       s_page_remove_object (toplevel->page_current, object);
     }

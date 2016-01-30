@@ -278,10 +278,10 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 
     GError *err;
     Page   *child_page;
-    Object *o_current;
+    GedaObject *o_current;
     char   *filename;
 
-    o_current = (Object*)iter->data;
+    o_current = (GedaObject*)iter->data;
 
     /* only complex symbols can contain attributes */
     if (o_current->type != OBJ_COMPLEX)

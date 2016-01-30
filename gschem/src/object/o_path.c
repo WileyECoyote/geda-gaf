@@ -358,7 +358,7 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     if (end_path || close_path) {
 
       /* Create a copy of the tmp path object */
-      Object *new_obj = o_path_copy(GEDA_OBJECT(path));
+      GedaObject *new_obj = o_path_copy(GEDA_OBJECT(path));
 
       /* Add the New Path object to the page */
       s_page_append_object (toplevel->page_current, new_obj);
@@ -549,7 +549,7 @@ void
 o_path_draw_rubber (GschemToplevel *w_current)
 {
   EdaRenderer *renderer;
-  Object *object;
+  GedaObject  *object;
   int added_sections = 0;
 
   renderer = CairoRenderer;
@@ -603,7 +603,7 @@ o_path_draw_rubber (GschemToplevel *w_current)
 void
 o_path_draw_rubber_grips (GschemToplevel *w_current)
 {
-  Object *object;
+  GedaObject *object;
 
   /* Setup a tmp object to pass the drawing routine */
   object = geda_path_new();

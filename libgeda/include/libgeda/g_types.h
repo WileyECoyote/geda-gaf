@@ -39,7 +39,7 @@ typedef struct _GedaPage         Page;
 /* Object types */
 
 /*! \brief Geda Base Object Structure */
-typedef struct _GedaObject       Object;
+typedef struct _GedaObject       GedaObject;
 
 /*! \brief Geda Arc Object Structure */
 typedef struct _GedaArc          Arc;

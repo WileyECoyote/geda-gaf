@@ -42,10 +42,10 @@
  */
 void o_circle_draw_rubber (GschemToplevel *w_current)
 {
-  double wwidth = 0;
-  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
-  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
+  double   wwidth      = 0;
+  cairo_t *cr          = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray  *color_map   = eda_renderer_get_color_map (CairoRenderer);
+  int      flags       = eda_renderer_get_cairo_flags (CairoRenderer);
 
   eda_cairo_center_arc (cr, flags, wwidth, wwidth,
                         w_current->first_wx, w_current->first_wy,
@@ -93,7 +93,7 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
   if (w_current->distance != 0) { /* cancel the object creation */
 
     GedaToplevel *toplevel = w_current->toplevel;
-    Object       *new_obj;
+    GedaObject   *new_obj;
 
     /* create the object */
     new_obj = o_circle_new (GRAPHIC_COLOR,

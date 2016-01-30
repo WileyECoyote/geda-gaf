@@ -294,7 +294,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
 
   while (iter != NULL) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     switch (o_current->type) {
       case(OBJ_LINE):
@@ -679,7 +679,7 @@ static int f_print_get_unicode_chars (GedaToplevel *toplevel,
 
   while (iter != NULL) {
 
-    Object *o_current = (Object *)iter->data;
+    GedaObject *o_current = (GedaObject *)iter->data;
 
     switch (o_current->type) {
 

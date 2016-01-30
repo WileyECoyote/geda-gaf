@@ -22,7 +22,7 @@
 /*! \file o_notify.c
  *  \brief functions for the basic object type
  *
- *  This file contains the code used to manipulate <b>Objects</b>.
+ *  This file contains the code used to manipulate <b>GedaObjects</b>.
  *  The object is the basic type of all elements stored in schematic
  *  and symbol files.
  *
@@ -171,13 +171,13 @@ o_notify_change_remove_all (Page *page)
  * \par Function Description
  * Calls each pre-change callback function registered with a #Page
  * to notify listeners that \a object is about to be modified.  All
- * libgeda functions that modify #Object structures should call this
- * just before making a change to an #Object.
+ * libgeda functions that modify #GedaObject structures should call this
+ * just before making a change to an #GedaObject.
  *
- * \param object   #Object structure to emit notifications for.
+ * \param object   #GedaObject structure to emit notifications for.
  */
 void
-o_notify_emit_pre_change (Object *object)
+o_notify_emit_pre_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
@@ -207,13 +207,13 @@ o_notify_emit_pre_change (Object *object)
  *  \par Function Description
  *  Calls each change callback function registered with #Page to
  *  notify listeners that \a object has just been modified.  All
- *  libgeda functions that modify #Object structures should call
- *  this just after making a change to an #Object.
+ *  libgeda functions that modify #GedaObject structures should call
+ *  this just after making a change to an #GedaObject.
  *
- * \param object   #Object structure to emit notifications for.
+ * \param object   #GedaObject structure to emit notifications for.
  */
 void
-o_notify_emit_change (Object *object)
+o_notify_emit_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 

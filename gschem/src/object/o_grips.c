@@ -118,7 +118,7 @@ o_grips_draw_rubber (GschemToplevel *w_current)
  *  \return Half grip size in screen units.
  */
 int
-o_grips_half_size(GschemToplevel *w_current,  Object *object)
+o_grips_half_size(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -281,14 +281,15 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
  *  \param [out] whichone   Which grip point is selected.
+ *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object*
+GedaObject*
 o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *found=NULL;
-  GList  *s_current;
+  GedaObject   *found    = NULL;
+  GList        *s_current;
 
   int size;
   int w_size;
@@ -305,7 +306,7 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
 
   while (s_current != NULL) {
 
-    Object *object = (Object*)s_current->data;
+    GedaObject *object = (GedaObject*)s_current->data;
 
     if (object) {
       /* get the dynamic size of the grip */
@@ -403,9 +404,9 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object*
-o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
-                                int x, int y, int size, int *whichone)
+GedaObject*
+o_grips_search_arc_world(GschemToplevel *w_current, GedaObject *o_current,
+                                   int x, int y, int size, int *whichone)
 {
   int centerx, centery, radius, start_angle, arc_sweep;
   double tmp;
@@ -469,8 +470,8 @@ o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object*
-o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
+GedaObject*
+o_grips_search_box_world(GschemToplevel *w_current, GedaObject *o_current,
                                 int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
@@ -536,8 +537,8 @@ o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
  *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object*
-o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
+GedaObject*
+o_grips_search_path_world(GschemToplevel *w_current, GedaObject *o_current,
                                  int x, int y, int size, int *whichone)
 {
   int i;
@@ -607,8 +608,8 @@ o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *
-o_grips_search_picture_world(GschemToplevel *w_current, Object *o_current,
+GedaObject*
+o_grips_search_picture_world(GschemToplevel *w_current, GedaObject *o_current,
                                     int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
@@ -671,8 +672,8 @@ o_grips_search_picture_world(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *
-o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current,
+GedaObject*
+o_grips_search_circle_world(GschemToplevel *w_current, GedaObject *o_current,
                                    int x, int y, int size, int *whichone)
 {
   /* check the grip for radius */
@@ -708,8 +709,8 @@ o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current,
  *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *
-o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
+GedaObject*
+o_grips_search_line_world(GschemToplevel *w_current, GedaObject *o_current,
                                  int x, int y, int size, int *whichone)
 {
   /* check the grip on the end of line 1 */
@@ -756,7 +757,7 @@ o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_arc(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_arc(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -796,7 +797,7 @@ o_grips_start_arc(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_box(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_box(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -858,7 +859,7 @@ o_grips_start_box(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_path(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_path(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   PATH_SECTION *section;
   int i;
@@ -929,7 +930,7 @@ o_grips_start_path(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_picture(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_picture(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
   w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
@@ -1000,7 +1001,7 @@ fprintf(stderr, "second_wx %d, second_wy %d\n", w_current->second_wx,  w_current
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_circle(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -1032,7 +1033,7 @@ o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  y          (unused)
  */
 static void
-o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)
+o_grips_start_line(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   i_status_action_start(w_current);
 
@@ -1077,7 +1078,7 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (CairoRenderer->draw_grips == TRUE) {
 
-    Object *object;
+    GedaObject *object;
     int whichone;
 
     /* search if there is a grip on a selected object at (w_x,w_y) */
@@ -1088,7 +1089,7 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
     }
     else {
 
-      void  (*func) (GschemToplevel*, Object*, int, int);
+      void  (*func) (GschemToplevel*, GedaObject*, int, int);
 
       w_current->which_grip   = whichone;
       w_current->which_object = object;
@@ -1174,7 +1175,7 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] o_current  Arc Object to end modification on.
  */
 static void
-o_grips_end_arc(GschemToplevel *w_current, Object *o_current)
+o_grips_end_arc(GschemToplevel *w_current, GedaObject *o_current)
 {
   int arg1, arg2;
 
@@ -1220,7 +1221,7 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Box Object to end modification on
  */
 static void
-o_grips_end_box(GschemToplevel *w_current, Object *o_current)
+o_grips_end_box(GschemToplevel *w_current, GedaObject *o_current)
 {
   int box_width, box_height;
 
@@ -1246,7 +1247,7 @@ o_grips_end_box(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Picture Object to end modification on.
  */
 static void
-o_grips_end_path(GschemToplevel *w_current, Object *o_current)
+o_grips_end_path(GschemToplevel *w_current, GedaObject *o_current)
 {
   o_path_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
@@ -1260,7 +1261,7 @@ o_grips_end_path(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Picture Object to end modification on.
  */
 static bool
-o_grips_end_picture(GschemToplevel *w_current, Object *o_current)
+o_grips_end_picture(GschemToplevel *w_current, GedaObject *o_current)
 {
   int  width   = GET_PICTURE_WIDTH(w_current);
   int  height  = GET_PICTURE_HEIGHT(w_current);
@@ -1341,7 +1342,7 @@ fprintf(stderr, "Picture Not modified\n");
  *  \param [in] o_current  Circle Object to end modification on.
  */
 static void
-o_grips_end_circle(GschemToplevel *w_current, Object *o_current)
+o_grips_end_circle(GschemToplevel *w_current, GedaObject *o_current)
 {
   /* don't allow zero radius circles
    * this ends the circle drawing behavior
@@ -1372,7 +1373,7 @@ o_grips_end_circle(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Line Object to end modification on.
  */
 static void
-o_grips_end_line(GschemToplevel *w_current, Object *o_current)
+o_grips_end_line(GschemToplevel *w_current, GedaObject *o_current)
 {
   /* don't allow zero length nets / lines / pins
    * this ends the net drawing behavior
@@ -1405,7 +1406,7 @@ o_grips_end_line(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Net Object to end modification on.
  */
 static void
-o_grips_end_net(GschemToplevel *w_current, Object *o_current)
+o_grips_end_net(GschemToplevel *w_current, GedaObject *o_current)
 {
   GList *connected_objects;
 
@@ -1444,7 +1445,7 @@ o_grips_end_net(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  Net Object to end modification on.
  */
 static void
-o_grips_end_pin(GschemToplevel *w_current, Object *o_current)
+o_grips_end_pin(GschemToplevel *w_current, GedaObject *o_current)
 {
   /* don't allow zero length pin
    * this ends the pin changing behavior
@@ -1477,7 +1478,7 @@ o_grips_end_pin(GschemToplevel *w_current, Object *o_current)
  *  \param [in] o_current  bus Object to end modification on.
  */
 static void
-o_grips_end_bus(GschemToplevel *w_current, Object *o_current)
+o_grips_end_bus(GschemToplevel *w_current, GedaObject *o_current)
 {
   /* don't allow zero length bus
    * this ends the bus changing behavior
@@ -1513,7 +1514,7 @@ o_grips_end_bus(GschemToplevel *w_current, Object *o_current)
 void
 o_grips_end(GschemToplevel *w_current)
 {
-  Object *object;
+  GedaObject *object;
 
   object = w_current->which_object;
 

@@ -97,8 +97,8 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   double min_dist, min_best, dist1, dist2;
   double weight, min_weight;
   int magnetic_reach = 0;
-  Object *o_current;
-  Object *o_magnetic = NULL;
+  GedaObject *o_current;
+  GedaObject *o_magnetic = NULL;
   GList *objectlists, *iter1, *iter2;
 
   min_best = min_x = min_y = 0;
@@ -123,7 +123,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
     for (iter2 = (GList*) iter1->data; iter2 != NULL; NEXT(iter2)) {
 
       int left, top, right, bottom;
-      o_current = (Object*) iter2->data;
+      o_current = (GedaObject*) iter2->data;
 
       if (!o_get_bounds(o_current, &left, &top, &right, &bottom) ||
           !visible (w_current, left, top, right, bottom))
@@ -318,7 +318,7 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
   int xmin, ymin, xmax, ymax;
   int orientation;
   GList *objectlists, *iter1, *iter2;
-  Object *o_current;
+  GedaObject *o_current;
 
   int *current_rules;
 
@@ -333,7 +333,7 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
       const int bus_rules[] = {90, 0, 40};
       const int net_rules[] = {80, 30, 0};
 
-      o_current = (Object*) iter2->data;
+      o_current = (GedaObject*) iter2->data;
 
       if ((orientation = o_net_orientation(o_current)) == NEITHER)
         continue;
@@ -445,7 +445,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
   int save_wx, save_wy;
 
   GList *prev_conn_objects;
-  Object *new_net = NULL;
+  GedaObject *new_net = NULL;
 
   /* Save a list of added objects to run the %add-objects-hook later */
   GList *added_objects = NULL;
@@ -744,7 +744,7 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
  *  \returns TRUE if something was added, otherwise FALSE
  */
 int o_net_add_busrippers(GschemToplevel *w_current,
-                         Object         *net_obj,
+                         GedaObject     *net_obj,
                          GList          *prev_conn_objects)
 
 {
@@ -789,7 +789,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
   while (cl_current != NULL) {
 
-    Object *ukn_object = GEDA_OBJECT(cl_current->data);
+    GedaObject *ukn_object = GEDA_OBJECT(cl_current->data);
 
     if (ukn_object->type == OBJ_BUS) {
 
@@ -809,7 +809,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
         CONN *tmp_conn = (CONN *) cl_current2->data;
 
         if (tmp_conn && tmp_conn->other_object &&
-          ((Object*)tmp_conn->other_object == ukn_object))
+          ((GedaObject*)tmp_conn->other_object == ukn_object))
         {
 
           found_conn = tmp_conn;
@@ -1070,7 +1070,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
     for (i = 0; i < ripper_count; i++) {
 
-      Object *new_obj;
+      GedaObject *new_obj;
 
       if (w_current->bus_ripper_type == NET_BUS_RIPPER) {
         new_obj = o_net_new(color,rippers[i].x[0], rippers[i].y[0],

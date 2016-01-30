@@ -412,9 +412,9 @@ static void print_dialog_instance_init (PrintDialog * dialog)
  *
  */
 static void
-print_dialog_set_property (GObject * object,
-                          unsigned int property_id,
-                          const GValue * value, GParamSpec * pspec)
+print_dialog_set_property (GObject *object,
+                           unsigned int property_id,
+                           const GValue * value, GParamSpec * pspec)
 {
   PrintDialog *dialog = PRINT_DIALOG (object);
   bool file_active = FALSE;
@@ -494,9 +494,10 @@ static void print_dialog_set_property_comboboxes (PrintDialog * dialog,
  *  \par Function Description
  *
  */
-static void print_dialog_get_property (GObject * object,
+static void print_dialog_get_property (GObject     *object,
                                        unsigned int property_id,
-                                       GValue * value, GParamSpec * pspec)
+                                       GValue      *value,
+                                       GParamSpec  *pspec)
 {
   PrintDialog *dialog = PRINT_DIALOG (object);
   bool file_active = FALSE;
@@ -961,13 +962,13 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   for (iter = (GList *) s_page_get_objects (page);
        iter != NULL;
        iter = g_list_next (iter)) {
-    eda_renderer_draw (renderer, (Object *) iter->data);
+    eda_renderer_draw (renderer, (GedaObject*) iter->data);
   }
 
   for (iter = (GList *) s_page_get_objects (page);
        iter != NULL;
        iter = g_list_next (iter)) {
-    eda_renderer_draw_cues (renderer, (Object *) iter->data);
+    eda_renderer_draw_cues (renderer, (GedaObject*) iter->data);
   }
 
   cairo_restore (cr);

@@ -27,15 +27,15 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_picture.c
- *  \brief Geda Picture Object Class derived from the GedaObject Class
+ *  \brief Geda Picture GedaObject Class derived from the GedaObject Class
  */
-/** \defgroup geda-picture-object Geda Picture Object
+/** \defgroup geda-picture-object Geda Picture GedaObject
  *  @{
  */
 /*! \class Picture geda_picture.h "include/libgeda/geda_picture.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Picture Objects.
- *  A Geda Picture Object is a type graphical object used to insert images
+ *  \brief This is an implementaion class for GEDA Picture GedaObjects.
+ *  A Geda Picture GedaObject is a type graphical object used to insert images
  *  such as graphs or photos.
  */
 
@@ -51,10 +51,10 @@ static GObjectClass *geda_picture_parent_class = NULL;
  *  <B>bottom</B> parameters to the boundings of the picture object
  *  described in <B>*picture</B> in WORLD units.
  *
- *  \param [in]  object     Picture Object to read coordinates from.
+ *  \param [in]  object     Picture GedaObject to read coordinates from.
  */
 int
-geda_picture_bounds(Object *object)
+geda_picture_bounds(GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
 
@@ -77,8 +77,8 @@ geda_picture_bounds(Object *object)
  */
 static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Picture *picture      = (Picture*)instance;
-  Object  *object       = &picture->parent_instance;
+  Picture    *picture   = (Picture*)instance;
+  GedaObject *object    = &picture->parent_instance;
 
   picture->pixbuf       = NULL;
   picture->file_content = NULL;
@@ -103,6 +103,7 @@ static void
 geda_picture_dispose(GObject *object)
 {
   Picture *pic = GEDA_PICTURE(object);
+
   if (pic->filename) {
     GEDA_FREE(pic->filename);
     pic->filename = NULL;
@@ -111,7 +112,7 @@ geda_picture_dispose(GObject *object)
 
 }
 
-/*! \brief Geda Picture Object Finalization Function
+/*! \brief Geda Picture GedaObject Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
  *   releases the memory allocated to the given Picture structure,
@@ -120,8 +121,8 @@ geda_picture_dispose(GObject *object)
  */
 static void geda_picture_finalize(GObject *object)
 {
-  Picture *pic = GEDA_PICTURE(object);
-  Object  *obj = GEDA_OBJECT(object);
+  Picture    *pic = GEDA_PICTURE(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   if (pic->file_content) {
     GEDA_FREE(pic->file_content);
@@ -146,16 +147,16 @@ static void geda_picture_finalize(GObject *object)
  */
 static void geda_picture_class_init(void *g_class, void *class_data)
 {
-  PictureClass    *class          = (PictureClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  PictureClass    *class         = (PictureClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
 
-  geda_picture_parent_class    = g_type_class_peek_parent( class );
+  geda_picture_parent_class      = g_type_class_peek_parent( class );
 
-  gobject_class->dispose       = geda_picture_dispose;
-  gobject_class->finalize      = geda_picture_finalize;
+  gobject_class->dispose         = geda_picture_dispose;
+  gobject_class->finalize        = geda_picture_finalize;
 
-  object_class->bounds         = geda_picture_bounds;
+  geda_class->bounds             = geda_picture_bounds;
 }
 
 /*! \brief Function to retrieve Picture Type identifier.
@@ -206,16 +207,16 @@ GedaObjectType geda_picture_get_type (void)
  *
  *  \return pointer to the new Picture object.
  */
-Object *geda_picture_new (void)
+GedaObject *geda_picture_new (void)
 {
-  Object *picture = g_object_new( GEDA_TYPE_PICTURE,
+  GedaObject *picture = g_object_new( GEDA_TYPE_PICTURE,
                                  "type", OBJ_PICTURE,
                                  "name", "picture",
                                  NULL );
   return GEDA_OBJECT(picture);
 }
 
-/*! \brief Determine if object is a Geda Picture Object.
+/*! \brief Determine if object is a Geda Picture GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Picture object.
@@ -224,6 +225,6 @@ Object *geda_picture_new (void)
  */
 bool is_a_geda_picture_object (Picture *pic)
 {
-  return GEDA_IS_OBJECT(pic) && (((Object*)pic)->type == OBJ_PICTURE);
+  return GEDA_IS_OBJECT(pic) && (((GedaObject*)pic)->type == OBJ_PICTURE);
 }
 /** @} endgroup geda-picture-object */

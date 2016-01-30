@@ -85,17 +85,17 @@ SCM_SYMBOL (closepath_sym ,      "closepath");
 
 /*! \brief Convert a Scheme object list to a GList.
  * \par Function Description
- * Takes a Scheme list of Object smobs, and returns a GList
- * containing the objects. If \a objs is not a list of Object smobs,
+ * Takes a Scheme list of GedaObject smobs, and returns a GList
+ * containing the objects. If \a objs is not a list of GedaObject smobs,
  * throws a Scheme error.
  *
- * \warning If the Object structures in the GList are to be stored by
+ * \warning If the GedaObject structures in the GList are to be stored by
  * C code and later free()'d directly, the smobs must be marked as
  * unsafe for garbage collection (by calling edascm_c_set_gc()).
  *
- * param [in] objs a Scheme list of Object smobs.
+ * param [in] objs a Scheme list of GedaObject smobs.
  * param [in] subr the name of the Scheme subroutine (used for error messages).
- * \return a GList of Object.
+ * \return a GList of GedaObject.
  */
 GList *
 edascm_to_object_glist (SCM objs, const char *subr)
@@ -122,15 +122,15 @@ edascm_to_object_glist (SCM objs, const char *subr)
 
 /*! \brief Convert a GList of objects into a Scheme list.
  * \par Function Description
- * Takes a GList of Object and returns a Scheme list of corresponding
+ * Takes a GList of GedaObject and returns a Scheme list of corresponding
  * object smobs.
  *
- * \warning If the Object structures are to be subsequently managed
+ * \warning If the GedaObject structures are to be subsequently managed
  * only by Scheme, the smobs in the returned list must be marked as
  * safe for garbage collection (by calling edascm_c_set_gc()).
  *
- * param [in] objs a GList of Object instances.
- * \return a Scheme list of smobs corresponding to each Object.
+ * param [in] objs a GList of GedaObject instances.
+ * \return a Scheme list of smobs corresponding to each GedaObject.
  */
 SCM
 edascm_from_object_glist (const GList *objs)
@@ -152,13 +152,13 @@ edascm_from_object_glist (const GList *objs)
 
 /*! \brief Test if an object smob is of a particular type.
  * \par Function Description
- * Checks if \a smob contains an Object of the given \a type. This is
+ * Checks if \a smob contains an GedaObject of the given \a type. This is
  * intended to be used by C-based Scheme procedures for working with
  * particular object types.
  *
  * param [in] smob Scheme value to check type for.
  * param [in] type Type to check against (e.g. OBJ_LINE).
- * \return non-zero if \a smob is an Object smob of \a type.
+ * \return non-zero if \a smob is an GedaObject smob of \a type.
  */
 int
 edascm_is_object_type (SCM smob, int type)
@@ -166,22 +166,22 @@ edascm_is_object_type (SCM smob, int type)
   if (!EDASCM_OBJECTP(smob))
     return 0;
 
-  Object *obj = edascm_to_object (smob);
+  GedaObject *obj = edascm_to_object (smob);
   return (obj->type == type);
 }
 
-/* ----------------------- Scheme Object API ---------------------- */
+/* ----------------------- Scheme GedaObject API ---------------------- */
 
 /*! \brief Copy an object.
  * \par Function Description
- * Returns a copy of the Object contained in smob \a obj_s as a new
+ * Returns a copy of the GedaObject contained in smob \a obj_s as a new
  * smob.
  *
  * \note Scheme API: Implements the %copy-object procedure in the
  * (geda core object) module.
  *
- * param [in] obj_s an Object smob.
- * \return a new Object smob containing a copy of the Object in \a obj_s.
+ * param [in] obj_s an GedaObject smob.
+ * \return a new GedaObject smob containing a copy of the GedaObject in \a obj_s.
  */
 EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
                (SCM obj_s), "Copy an object.")
@@ -189,7 +189,7 @@ EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
   SCM result;
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, scheme_object_copy);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   result = edascm_from_object (o_copy_object (obj));
 
@@ -206,7 +206,7 @@ EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
  * \note Scheme API: Implements the %mirror-object! procedure of the
  * (geda core object) module.
  *
- * param obj_s    Object smob for object to translate.
+ * param obj_s    GedaObject smob for object to translate.
  * param x_s      x-coordinate of centre of rotation.
  *
  * \return \a obj_s.
@@ -221,7 +221,7 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
   SCM_ASSERT (scm_is_integer (x_s), x_s,
               SCM_ARG2, scheme_object_mirror_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   int x = scm_to_int (x_s);
 
   o_notify_emit_pre_change (obj);
@@ -252,9 +252,9 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
  *
  * \note Scheme API: Implements the %object-bounds procedure in the
  * (geda core object) module.  The procedure takes any number of
- * Object smobs as arguments.
+ * GedaObject smobs as arguments.
  *
- * param [in] rst_s Variable-length list of Object arguments.
+ * param [in] rst_s Variable-length list of GedaObject arguments.
  * \return bounds of objects or SCM_BOOL_F.
  */
 EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
@@ -270,7 +270,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
   if (obj_list != NULL) {
 
-    Object *o_current = (Object *) obj_list->data;
+    GedaObject *o_current = (GedaObject *) obj_list->data;
 
     page = geda_object_get_page(o_current);
 
@@ -288,7 +288,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
       page->show_hidden_text = TRUE;
 
       for (list = obj_list; list != NULL; list = g_list_next(list)) {
-        Object *o_current = (Object *) list->data;
+        GedaObject *o_current = (GedaObject *) list->data;
         o_current->w_bounds_valid_for = NULL;
       }
 
@@ -342,7 +342,7 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_object_stroke);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   int end, type, width, length, space;
   o_get_line_options (obj, (LINE_END *) &end, (LINE_TYPE *) &type, &width,
@@ -415,7 +415,7 @@ EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_object_fill);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   int type, width, pitch1, angle1, pitch2, angle2;
   o_get_fill_options (obj, (OBJECT_FILLING *) &type, &width, &pitch1, &angle1,
@@ -474,7 +474,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_object_set_fill_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   FILL_OPTIONS fill_options;
 
   if (type_s == hollow_sym) {
@@ -561,14 +561,14 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
 
 /*! \brief Get the color of an object.
  * \par Function Description
- * Returns the colormap index of the color used to draw the Object
+ * Returns the colormap index of the color used to draw the GedaObject
  * smob \a obj_s. Note that the color may not be meaningful for some
  * object types.
  *
  * \note Scheme API: Implements the %object-color procedure in the
  * (geda core object) module.
  *
- * param [in] obj_s Object smob to inspect.
+ * param [in] obj_s GedaObject smob to inspect.
  * \return The colormap index used by \a obj_s.
  */
 EDA_SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
@@ -577,20 +577,20 @@ EDA_SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
               SCM_ARG1, scheme_object_color);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   return scm_from_int (obj->color);
 }
 
 /*! \brief Set the color of an object.
  * \par Function Description
- * Set the colormap index of the color used to draw the Object smob
+ * Set the colormap index of the color used to draw the GedaObject smob
  * \a obj_s to \a color_s. Note that the color may not be meaningful
  * for some object types.
  *
  * \note Scheme API: Implements the %set-object-color! procedure in
  * the (geda core object) module.
  *
- * param obj_s   Object smob to modify.
+ * param obj_s   GedaObject smob to modify.
  * param color_s new colormap index to use for \a obj_s.
  * \return the modified \a obj_s.
  */
@@ -602,7 +602,7 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s), color_s,
               SCM_ARG2, scheme_object_set_color_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   o_notify_emit_pre_change (obj);
   o_set_color (obj, scm_to_int (color_s));
@@ -649,7 +649,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, scheme_object_set_line_x);
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_line_x);
 
-  Object *obj = edascm_to_object (line_s);
+  GedaObject *obj = edascm_to_object (line_s);
   int x1 = scm_to_int (x1_s);
   int y1 = scm_to_int (y1_s);
   int x2 = scm_to_int (x2_s);
@@ -718,7 +718,7 @@ EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
                edascm_is_object_type (line_s, OBJ_PIN)),
                line_s, SCM_ARG1, scheme_object_line_info);
 
-  Object *obj = edascm_to_object (line_s);
+  GedaObject *obj = edascm_to_object (line_s);
   SCM      x1 = scm_from_int (obj->line->x[0]);
   SCM      y1 = scm_from_int (obj->line->y[0]);
   SCM      x2 = scm_from_int (obj->line->x[1]);
@@ -751,7 +751,7 @@ EDA_SCM_DEFINE (object_pin_type, "%pin-type", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (pin_s, OBJ_PIN), pin_s,
               SCM_ARG1, scheme_object_pin_type);
 
-  Object *obj = edascm_to_object (pin_s);
+  GedaObject *obj = edascm_to_object (pin_s);
   SCM result;
 
   switch (obj->pin->node_type) {
@@ -799,7 +799,7 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
   SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, scheme_object_set_box_x);
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_box_x);
 
-  Object *obj = edascm_to_object (box_s);
+  GedaObject *obj = edascm_to_object (box_s);
   o_box_modify_all (obj,
                     scm_to_int (x1_s), scm_to_int (y1_s),
                     scm_to_int (x2_s), scm_to_int (y2_s));
@@ -831,7 +831,7 @@ EDA_SCM_DEFINE (object_box_info, "%box-info", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (box_s, OBJ_BOX), box_s,
               SCM_ARG1, scheme_object_box_info);
 
-  Object *obj = edascm_to_object (box_s);
+  GedaObject *obj = edascm_to_object (box_s);
 
   return scm_list_n (scm_from_int (obj->box->upper_x),
                      scm_from_int (obj->box->upper_y),
@@ -868,7 +868,7 @@ EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
   SCM_ASSERT (scm_is_integer (r_s),     r_s,     SCM_ARG4, scheme_object_set_circle_x);
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG5, scheme_object_set_circle_x);
 
-  Object *obj = edascm_to_object (circle_s);
+  GedaObject *obj = edascm_to_object (circle_s);
   o_circle_modify (obj, scm_to_int(x_s), scm_to_int(y_s), CIRCLE_CENTER);
   o_circle_modify (obj, scm_to_int(r_s), 0, CIRCLE_RADIUS);
   o_set_color (obj, scm_to_int (color_s));
@@ -898,7 +898,7 @@ EDA_SCM_DEFINE (object_circle_info, "%circle-info", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (circle_s, OBJ_CIRCLE),
               circle_s, SCM_ARG1, scheme_object_circle_info);
 
-  Object *obj = edascm_to_object (circle_s);
+  GedaObject *obj = edascm_to_object (circle_s);
 
   return scm_list_n (scm_from_int (obj->circle->center_x),
                      scm_from_int (obj->circle->center_y),
@@ -941,7 +941,7 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
   SCM_ASSERT (scm_is_integer (arc_sweep_s),
                                   arc_sweep_s, SCM_ARG6, scheme_object_set_arc_x);
 
-  Object *obj = edascm_to_object (arc_s);
+  GedaObject *obj = edascm_to_object (arc_s);
 
   o_notify_emit_pre_change (obj);
 
@@ -983,7 +983,7 @@ EDA_SCM_DEFINE (object_arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc par
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC),
               arc_s, SCM_ARG1, scheme_object_arc_info);
 
-  Object *obj = edascm_to_object (arc_s);
+  GedaObject *obj = edascm_to_object (arc_s);
 
   return scm_list_n (scm_from_int (obj->arc->x),
                      scm_from_int (obj->arc->y),
@@ -1048,7 +1048,7 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s),  color_s,
               10, scheme_object_set_text_x);
 
-  Object *obj = edascm_to_object (text_s);
+  GedaObject *obj = edascm_to_object (text_s);
 
   /* Alignment. Sadly we can't switch on pointers. :-( */
   int align;
@@ -1165,7 +1165,7 @@ EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (text_s, OBJ_TEXT),
               text_s, SCM_ARG1, scheme_object_text_info);
 
-  Object *obj = edascm_to_object (text_s);
+  GedaObject *obj = edascm_to_object (text_s);
   SCM align_s, visible_s, show_s;
 
   switch (obj->text->alignment) {
@@ -1225,8 +1225,8 @@ EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
  * \note Scheme API: Implements the %object-connections procedure of
  * the (geda core object) module.
  *
- * param obj_s Object smob for object to get connections for.
- * \return a list of Object smobs.
+ * param obj_s GedaObject smob for object to get connections for.
+ * \return a list of GedaObject smobs.
  */
 EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
                (SCM obj_s), "Get objects that are connected to an object.")
@@ -1234,7 +1234,7 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
   /* Ensure that the argument is an object smob */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s, SCM_ARG1, scheme_object_connections);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   if (geda_object_get_page (obj) == NULL) {
     scm_error (edascm_object_state_sym, scheme_object_connections,
@@ -1257,9 +1257,9 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
  * \note Scheme API: Implements the %object-complex procedure of the
  * (geda core object) module.
  *
- * param obj_s Object smob for object to get component of.
+ * param obj_s GedaObject smob for object to get component of.
  *
- * \return the Object smob of the containing component, or SCM_BOOL_F.
+ * \return the GedaObject smob of the containing component, or SCM_BOOL_F.
  */
 EDA_SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
            (SCM obj_s), "Get containing complex object of an object.")
@@ -1268,8 +1268,8 @@ EDA_SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
               SCM_ARG1, scheme_object_complex);
 
-  Object *obj = edascm_to_object (obj_s);
-  Object *parent = o_get_parent (obj);
+  GedaObject *obj = edascm_to_object (obj_s);
+  GedaObject *parent = o_get_parent (obj);
 
   if (parent == NULL) return SCM_BOOL_F;
 
@@ -1306,7 +1306,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
                edascm_is_object_type (obj_s, OBJ_PATH)),
               obj_s, SCM_ARG1, scheme_object_set_stroke_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   LINE_OPTIONS line_options;
 
   SCM_ASSERT (scm_is_integer (width_s), width_s,
@@ -1376,12 +1376,12 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
 /*! \brief Get the type of an object.
  * \par Function Description
- * Returns a symbol describing the type of the Object smob \a obj_s.
+ * Returns a symbol describing the type of the GedaObject smob \a obj_s.
  *
  * \note Scheme API: Implements the %object-type procedure in the
  * (geda core object) module.
  *
- * param [in] obj_s an Object smob.
+ * param [in] obj_s an GedaObject smob.
  * \return a Scheme symbol representing the object type.
  */
 EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
@@ -1391,7 +1391,7 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
 
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, scheme_object_type);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   switch (obj->type) {
   case OBJ_LINE:    result = line_sym;       break;
   case OBJ_NET:     result = net_sym;        break;
@@ -1421,7 +1421,7 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
  * \note Scheme API: Implements the %path-length procedure in the
  * (geda core object) module.
  *
- * param obj_s Object smob for path object to inspect.
+ * param obj_s GedaObject smob for path object to inspect.
  *
  * \return The number of path elements in \a obj_s.
  */
@@ -1432,7 +1432,7 @@ EDA_SCM_DEFINE (object_path_length, "%path-length", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
               SCM_ARG1, scheme_object_path_length);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   return scm_from_int (obj->path->num_sections);
 }
 
@@ -1460,7 +1460,7 @@ EDA_SCM_DEFINE (object_path_length, "%path-length", 1, 0, 0,
  * \note Scheme API: Implements the %path-ref procedure in the (geda
  * core object) module.
  *
- * param obj_s   Object smob of path object to get element from.
+ * param obj_s   GedaObject smob of path object to get element from.
  * param index_s Index of element to retrieve from \a obj_s
  *
  * \return A list containing the requested path element data.
@@ -1474,7 +1474,7 @@ EDA_SCM_DEFINE (object_path_ref, "%path-ref", 2, 0, 0,
               SCM_ARG1, scheme_object_path_ref);
   SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, scheme_object_path_ref);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   int     idx = scm_to_int (index_s);
 
   /* Check index is valid for path */
@@ -1522,7 +1522,7 @@ EDA_SCM_DEFINE (object_path_ref, "%path-ref", 2, 0, 0,
  * \note Scheme API: Implements the %path-remove! procedure in the
  * (geda core object) module.
  *
- * param obj_s   Object smob of path object to remove element from.
+ * param obj_s   GedaObject smob of path object to remove element from.
  * param index_s Index of element to remove from \a obj_s.
  *
  * \return \a obj_s.
@@ -1538,7 +1538,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
   SCM_ASSERT (scm_is_integer (index_s), index_s,
               SCM_ARG2, scheme_object_path_remove_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   int idx = scm_to_int (index_s);
 
   if ((idx < 0) || (idx >= obj->path->num_sections)) {
@@ -1593,7 +1593,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
  * \note Scheme API: Implements the %path-insert! procedure of the
  * (geda core object) module.
  *
- * param obj_s   Object smob for the path object to modify.
+ * param obj_s   GedaObject smob for the path object to modify.
  * param index_s Index at which to insert new element.
  * param type_s  Symbol indicating what type of element to insert.
  * param x1_s    X-coordinate of first coordinate pair.
@@ -1614,7 +1614,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, scheme_object_path_insert_x);
   SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG3, scheme_object_path_insert_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   Path *path = obj->path;
   PATH_SECTION section = {0, 0, 0, 0, 0, 0, 0};
 
@@ -1727,7 +1727,7 @@ EDA_SCM_DEFINE (object_picture_info, "%picture-info", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
               SCM_ARG1, scheme_object_picture_info);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   const char *filename = o_picture_get_filename (obj);
 
   SCM filename_s = SCM_BOOL_F;
@@ -1774,7 +1774,7 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
   SCM_ASSERT (scm_is_integer (y2_s), x1_s, SCM_ARG5, scheme_object_set_picture_x);
   SCM_ASSERT (scm_is_integer (angle_s), angle_s, SCM_ARG6, scheme_object_set_picture_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   /* Angle */
   int angle = scm_to_int (angle_s);
@@ -1858,7 +1858,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
   bool status;
   GError *error = NULL;
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   char *filename = scm_to_utf8_string (filename_s);
   scm_dynwind_unwind_handler (g_free, filename, SCM_F_WIND_EXPLICITLY);
 
@@ -1891,7 +1891,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
  * \note Scheme API: Implements the %translate-object! procedure of the
  * (geda core object) module.
  *
- * param obj_s  Object smob for object to translate.
+ * param obj_s  GedaObject smob for object to translate.
  * param dx_s   Integer distance to translate along x-axis.
  * param dy_s   Integer distance to translate along y-axis.
  *
@@ -1908,7 +1908,7 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
   SCM_ASSERT (scm_is_integer (dy_s), dy_s,
               SCM_ARG3, scheme_object_translate_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   int dx = scm_to_int (dx_s);
   int dy = scm_to_int (dy_s);
 
@@ -1930,7 +1930,7 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
  * \note Scheme API: Implements the %rotate-object! procedure of the
  * (geda core object) module.
  *
- * param obj_s    Object smob for object to translate.
+ * param obj_s    GedaObject smob for object to translate.
  * param x_s      x-coordinate of centre of rotation.
  * param y_s      y-coordinate of centre of rotation.
  * param angle_s  Angle to rotate by.
@@ -1947,7 +1947,7 @@ EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
   SCM_ASSERT (scm_is_integer   (y_s), y_s, SCM_ARG3, scheme_object_rotate_x);
   SCM_ASSERT (scm_is_integer   (angle_s), angle_s, SCM_ARG4, scheme_object_rotate_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   int       x = scm_to_int (x_s);
   int       y = scm_to_int (y_s);
   int   angle = scm_to_int (angle_s);
@@ -2022,7 +2022,7 @@ init_module_geda_core_object (void *nothing)
 /*!
  * \brief Initialise the basic gEDA object manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with Object
+ * Registers some Scheme procedures for working with GedaObject
  * smobs. Should only be called by edascm_init().
  */
 void

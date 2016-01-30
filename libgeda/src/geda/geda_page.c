@@ -93,17 +93,17 @@ void geda_page_append_new_hook (NewPageFunc func, void *data)
   new_page_hooks = g_list_append (new_page_hooks, new_hook);
 }
 
-/*! \brief Search for an Object given the sid.
+/*! \brief Search for an GedaObject given the sid.
  *  \par Function Description
- *  This functions returns the <b>Object</b> that has the \a sid
- *  from the page object list or NULL if there is no such <b>Object</b>.
+ *  This functions returns the <b>GedaObject</b> that has the \a sid
+ *  from the page object list or NULL if there is no such <b>GedaObject</b>.
  *
  *  \param [in] page    Pointer to a Page.
- *  \param [in] sid     The ID of the Object to find.
+ *  \param [in] sid     The ID of the GedaObject to find.
  *
  *  \returns A pointer on the object found or NULL if not found.
  */
-Object *geda_page_get_object(Page *page, int sid)
+GedaObject *geda_page_get_object(Page *page, int sid)
 {
   const GList *iter;
 
@@ -113,7 +113,7 @@ Object *geda_page_get_object(Page *page, int sid)
 
   while (iter != NULL) {
 
-    Object *object = (Object *)iter->data;
+    GedaObject *object = (GedaObject *)iter->data;
 
     if (object->sid == sid) {
       return object;
@@ -138,7 +138,7 @@ Object *geda_page_get_object(Page *page, int sid)
  *  \param [in] object  The object to be removed.
  */
 void
-geda_page_remove_object(Page *page, Object *object)
+geda_page_remove_object(Page *page, GedaObject *object)
 {
     g_return_if_fail(GEDA_IS_PAGE(page));
     g_return_if_fail(GEDA_IS_OBJECT(object));
@@ -166,7 +166,7 @@ geda_page_remove_all_objects(Page *page)
 
     while ((iter = g_list_last(page->_object_list))) {
 
-      Object *object = GEDA_OBJECT(iter->data);
+      GedaObject *object = GEDA_OBJECT(iter->data);
 
     if (object) {
         GEDA_UNREF (object);
@@ -299,7 +299,7 @@ static void geda_page_finalize(GObject *object)
  *  GedaType class initializer for Page. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in,out] class       A PageClass Object
+ *  \param [in,out] class       A PageClass GedaObject
  *  \param [in]     class_data  A Page data structure
  */
 static void

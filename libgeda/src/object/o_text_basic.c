@@ -45,12 +45,12 @@
  *  The text is stored and printed in several different representations.
  *
  *  In the gEDA files the text is just a string. It is stored unmodified
- *  in <b>Object->text->string</b>.
+ *  in <b>GedaObject->text->string</b>.
  *
  *  If the string is an attribute with an equal sign as delimiter between
  *  an attribute name and an attribute value, then it is possible to
  *  hide some parts of the text. The still visible part of an attribute
- *  is stored in <b>Object->text->disp_string</b>.
+ *  is stored in <b>GedaObject->text->disp_string</b>.
  *
  *  \image html o_text_text_overview.png
  *  \image latex o_text_text_overview.pdf "text overview" width=14cm
@@ -98,7 +98,7 @@
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_text_get_position (int *x, int *y, Object *object)
+bool o_text_get_position (int *x, int *y, GedaObject *object)
 {
   *x = object->text->x;
   *y = object->text->y;
@@ -107,7 +107,7 @@ bool o_text_get_position (int *x, int *y, Object *object)
 
 /*! \brief Creates a text Object and the graphical objects representing it
  *  \par Function Description
- *  Create an Object of type OBJ_TEXT.
+ *  Create an GedaObject of type OBJ_TEXT.
  *
  *  \param [in]  color                  The color of the text
  *  \param [in]  x                      x coord of text
@@ -123,11 +123,11 @@ bool o_text_get_position (int *x, int *y, Object *object)
  *  \note
  *  Caller is responsible for string; this function allocates its own copy.
  */
-Object* o_text_new(int color, int x,    int y,          int alignment,
+GedaObject* o_text_new(int color, int x,    int y,          int alignment,
                    int angle, int size, int visibility, int show_name_value,
                    const char *string)
 {
-  Object *new_obj=NULL;
+  GedaObject *new_obj=NULL;
   Text   *text;
 
   if (string == NULL) {
@@ -175,11 +175,11 @@ Object* o_text_new(int color, int x,    int y,          int alignment,
  *
  *  \return The object list, or NULL on error.
  */
-Object *
+GedaObject *
 o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
              unsigned int fileformat_ver, GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x, y;
   int color;
@@ -312,7 +312,7 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
  *  \param [in] object  a text Object
  *  \return the string representation of the text Object
  */
-char *o_text_save(Object *object)
+char *o_text_save(GedaObject *object)
 {
   char *buf;
   char *string;
@@ -349,7 +349,7 @@ char *o_text_save(Object *object)
  *
  *  \param o_current The text object to update
  */
-void o_text_recreate(Object *o_current)
+void o_text_recreate(GedaObject *o_current)
 {
   Page *page;
 
@@ -374,9 +374,9 @@ void o_text_recreate(Object *o_current)
  *  \param [in] o_current    The object that is copied
  *  \return a new text object
  */
-Object *o_text_copy(Object *o_current)
+GedaObject *o_text_copy(GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Text   *text_obj;
 
   g_return_val_if_fail(GEDA_IS_TEXT(o_current), NULL);
@@ -410,7 +410,7 @@ Object *o_text_copy(Object *o_current)
  *  \param [in] dy           The y-distance to move the object
 
  */
-void o_text_translate(Object *object, int dx, int dy)
+void o_text_translate(GedaObject *object, int dx, int dy)
 {
   object->text->x = object->text->x + dx;
   object->text->y = object->text->y + dy;
@@ -485,13 +485,13 @@ void o_text_print_text_string(FILE *fp, char *string, int unicode_count,
  *  \a o_current into the the file \a fp.
  *  \param [in] toplevel     The GedaToplevel object
  *  \param [in] fp           pointer to a FILE structure
- *  \param [in] o_current    The Object to print
+ *  \param [in] o_current    The GedaObject to print
  *  \param [in] origin_x     x-coord of the postscript origin
  *  \param [in] origin_y     y-coord of the postscript origin
  *  \param [in] unicode_count Number of items in the unicode table
  *  \param [in] unicode_table Table of unicode items
  */
-void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+void o_text_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                   int origin_x, int origin_y,
                   int unicode_count, gunichar *unicode_table)
 {
@@ -654,7 +654,7 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_text_rotate(Object *object, int center_x, int center_y, int angle)
+void o_text_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   if (GEDA_IS_TEXT(object)) {
 
@@ -690,7 +690,7 @@ void o_text_rotate(Object *object, int center_x, int center_y, int angle)
  *  \param [in]     center_x  x-coord of the mirror position
  *  \param [in]     center_y  y-coord of the mirror position
  */
-void o_text_mirror(Object *object, int center_x, int center_y)
+void o_text_mirror(GedaObject *object, int center_x, int center_y)
 {
   int origx, origy;
   int x, y;
@@ -784,7 +784,7 @@ void o_text_mirror(Object *object, int center_x, int center_y)
  *  number (G_MAXDOUBLE).  With an invalid parameter, this funciton
  *  returns G_MAXDOUBLE.
  */
-double o_text_shortest_distance (Object *object,
+double o_text_shortest_distance (GedaObject *object,
                                  int x, int y, int force_solid)
 {
   int left, top, right, bottom;
@@ -819,7 +819,7 @@ double o_text_shortest_distance (Object *object,
  *  \param [in] object    The text Object whos font size to return
  *  \return The font size converted to postscript points.
  */
-double o_text_get_font_size_in_points (Object *object)
+double o_text_get_font_size_in_points (GedaObject *object)
 {
   g_return_val_if_fail (object->type == OBJ_TEXT, 0.);
 
@@ -843,7 +843,7 @@ double o_text_get_font_size_in_points (Object *object)
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Text,
  *           of if the bounds is not set on the Text.
  */
-bool o_text_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool result;
 
@@ -853,7 +853,7 @@ bool o_text_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 
     if (o_get_bounds(object, &left, &top, &right, &bottom)) {
 
-      Object *tmp = geda_box_new();
+      GedaObject *tmp = geda_box_new();
 
       tmp->box->upper_x = left;
       tmp->box->upper_y = top;
@@ -889,7 +889,7 @@ bool o_text_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
  *
  *  \return The text object's string, or NULL on failure.
  */
-const char *o_text_get_string (Object *obj)
+const char *o_text_get_string (GedaObject *obj)
 {
 
   g_return_val_if_fail (GEDA_IS_TEXT(obj), NULL);
@@ -907,7 +907,7 @@ const char *o_text_get_string (Object *obj)
  *  \param [in] func      Function to use.
  *  \param [in] user_data User data to be passed to the function.
  */
-void o_text_set_rendered_bounds_func (Object *object,
+void o_text_set_rendered_bounds_func (GedaObject *object,
                                       RenderedBoundsFunc func,
                                       void *user_data) {
   g_return_if_fail (GEDA_IS_TEXT(object));
@@ -923,7 +923,7 @@ void o_text_set_rendered_bounds_func (Object *object,
  *  \param [in]  object      The text object.
  *  \param [in]  new_string  The new value.
  */
-void o_text_set_string (Object *object, const char *new_string)
+void o_text_set_string (GedaObject *object, const char *new_string)
 {
   g_return_if_fail (GEDA_IS_TEXT(object));
   g_return_if_fail (new_string != NULL);
@@ -942,9 +942,9 @@ void o_text_set_string (Object *object, const char *new_string)
  *  the value part of the attribute string. This functions updates the
  *  text->disp_string according to the object->show_name_value settings
  *
- *  \param [in] object  The Object to update
+ *  \param [in] object  The GedaObject to update
  */
-void o_text_update_disp_string (Object *object)
+void o_text_update_disp_string (GedaObject *object)
 {
   char *name  = NULL;
   char *value = NULL;

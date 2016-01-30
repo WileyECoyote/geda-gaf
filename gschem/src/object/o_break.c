@@ -49,7 +49,7 @@
  *
  *  \returns TRUE if object is breakable, otherwise FALSE.
  */
-static bool o_break_is_breakable (Object *object)
+static bool o_break_is_breakable (GedaObject *object)
 {
   int anwser;
 
@@ -85,7 +85,7 @@ static bool o_break_is_breakable (Object *object)
  *
  *  \remark \a object Must be a Arc object and is not checked!
  */
-static bool o_break_arc(GschemToplevel *w_current, Object *object)
+static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
 {
   bool result = FALSE;
   POINT point1;
@@ -101,7 +101,7 @@ static bool o_break_arc(GschemToplevel *w_current, Object *object)
 
     if (m_arc_includes_point(object->arc, &point2)) {
 
-      Object *new_obj;
+      GedaObject *new_obj;
       double  radians;
       int  color;
       int  cx;
@@ -204,7 +204,7 @@ static bool o_break_arc(GschemToplevel *w_current, Object *object)
 /*! \image html break_box.png
  *  \image latex break_box.png
  */
-static bool o_break_box(GschemToplevel *w_current, Object *object)
+static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 {
   Box  *box    = object->box;
   bool  result = FALSE;
@@ -286,8 +286,8 @@ static bool o_break_box(GschemToplevel *w_current, Object *object)
 
       /* Both points landed on box, we're good to go,... */
 
-      GArray *vertices;
-      Object *new_path;
+      GArray     *vertices;
+      GedaObject *new_path;
       POINT   points[5];
       POINT  *start;
       POINT  *end;
@@ -437,7 +437,7 @@ static bool o_break_box(GschemToplevel *w_current, Object *object)
  *
  *  \remark \a object Must be a Circle object and is not checked!
  */
-static bool o_break_circle(GschemToplevel *w_current, Object *object)
+static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
 {
   bool  result = FALSE;
   POINT point1;
@@ -453,8 +453,8 @@ static bool o_break_circle(GschemToplevel *w_current, Object *object)
 
     if (m_circle_includes_point(object->circle, &point2)) {
 
-      Object *new_obj;
-      double  radians;
+      GedaObject *new_obj;
+      double      radians;
       int  color;
       int  cx;
       int  cy;
@@ -532,7 +532,7 @@ static bool o_break_circle(GschemToplevel *w_current, Object *object)
  *
  *  \remark \a object Must be a Path object and is not checked!
  */
-static bool o_break_path(GschemToplevel *w_current, Object *object)
+static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 {
   bool    result = FALSE;
   bool    closed;
@@ -645,14 +645,14 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
 
       /* Both points landed on the polygon, we're good to go,... */
 
-      GArray *vertices;
-      Object *new_path;
-      POINT  *start;
-      POINT  *end;
-      int     done;
-      int     index;
-      int     stop;
-      int     swap = TRUE;
+      GArray     *vertices;
+      GedaObject *new_path;
+      POINT      *start;
+      POINT      *end;
+      int         done;
+      int         index;
+      int         stop;
+      int         swap = TRUE;
 
       /* Determine the starting and ending points, normally we would start on
        * the second point and keep vertices until we reach the first point,
@@ -851,7 +851,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
  *
  *  \remark boundary Must be a Line object and is not checked!
  */
-static bool o_break_line(GschemToplevel *w_current, Object *object)
+static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
 {
   bool  result = FALSE;
   bool  do_snap;
@@ -889,7 +889,7 @@ static bool o_break_line(GschemToplevel *w_current, Object *object)
       int end1 = o_line_get_closest_endpoint(object, point1.x, point1.y);
       int end2 = !end1;
 
-      Object *new_line = o_line_copy(object);
+      GedaObject *new_line = o_line_copy(object);
 
       /* Temporarily remove the object from the screen */
       object->dont_redraw = TRUE;
@@ -922,7 +922,7 @@ static bool o_break_line(GschemToplevel *w_current, Object *object)
  *
  *  \remark boundary Must be a Circle object and is not checked!
  */
-static bool o_break_net(GschemToplevel *w_current, Object *object)
+static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 {
   bool  result = FALSE;
   bool  do_snap;
@@ -959,7 +959,7 @@ static bool o_break_net(GschemToplevel *w_current, Object *object)
       int end1 = o_line_get_closest_endpoint(object, point1.x, point1.y);
       int end2 = !end1;
 
-      Object *new_obj;
+      GedaObject *new_obj;
 
       if (object->type == OBJ_NET) {
         new_obj = o_net_copy(object);
@@ -995,7 +995,7 @@ static bool o_break_net(GschemToplevel *w_current, Object *object)
   return result;
 }
 
-void o_break_snap_object(GschemToplevel *w_current, Object *object)
+void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 {
   double w_slack;
   double dist;
@@ -1041,9 +1041,9 @@ void o_break_snap_object(GschemToplevel *w_current, Object *object)
  *
  *  \returns TRUE or FALSE
  */
-static bool o_break_object(GschemToplevel *w_current, Object *object)
+static bool o_break_object(GschemToplevel *w_current, GedaObject *object)
 {
-  bool (*breaker)(GschemToplevel *, Object *);
+  bool (*breaker)(GschemToplevel *, GedaObject *);
 
   o_break_snap_object(w_current, object);
 
@@ -1087,7 +1087,7 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (count == 0) {
 
-    Object *o_current = o_find_get_hit (w_current, w_x, w_y);
+    GedaObject *o_current = o_find_get_hit (w_current, w_x, w_y);
 
     if (o_current) {
       if (o_break_is_breakable(o_current)) {
@@ -1131,8 +1131,8 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
  */
 int o_break_end (GschemToplevel *w_current, int x, int y)
 {
-  GList  *object_list;
-  Object *object;
+  GList      *object_list;
+  GedaObject *object;
 
   int status;
 

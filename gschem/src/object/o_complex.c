@@ -37,7 +37,7 @@
  *  sense to export a symbol that already exist as a file.
  *
  */
-void o_complex_export(GschemToplevel *w_current, Object *o_current)
+void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
 {
   GtkWidget *dialog;
 
@@ -88,8 +88,8 @@ static void o_complex_end (GschemToplevel *w_current)
 static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+  GedaObject   *o_current;
   GList        *temp_list;
-  Object       *o_current;
   char         *buffer;
   const char   *sym_name = s_clib_symbol_get_name (sym);
   GError       *err      = NULL;
@@ -130,7 +130,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
   }
   else { /* if (w_current->include_complex) {..} else { */
 
-    Object *new_object;
+   GedaObject *new_object;
 
     new_object = o_complex_new (toplevel, 0, 0, 0, 0, sym, sym_name, 1);
 
@@ -199,7 +199,7 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
       while (iter) {
         SCM expr = scm_list_3 (scm_from_utf8_symbol ("run-hook"),
                                complex_place_list_changed_hook,
-                               edascm_from_object ((Object *) iter->data));
+                               edascm_from_object ((GedaObject*) iter->data));
 
         g_scm_eval_protected (expr, scm_interaction_environment ());
         iter = iter->next;
@@ -264,7 +264,7 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
  *
  *  \returns TRUE if an object was modified, otherwise FALSE.
  */
-bool o_complex_reset_attrib_positions (GschemToplevel *w_current, Object *o_current)
+bool o_complex_reset_attrib_positions (GschemToplevel *w_current, GedaObject *o_current)
 {
   int    modified = FALSE;
   GList *attributes = o_attrib_return_attribs (o_current);
@@ -272,7 +272,7 @@ bool o_complex_reset_attrib_positions (GschemToplevel *w_current, Object *o_curr
 
   for (a_iter = attributes; a_iter != NULL; a_iter = a_iter->next) {
 
-    Object *a_current = a_iter->data;
+   GedaObject *a_current = a_iter->data;
 
     if (!o_attrib_is_inherited(a_current)) {
       if (o_attrib_reset_position(w_current, o_current, a_current)) {

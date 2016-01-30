@@ -344,7 +344,7 @@ void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   g_array_free(status, TRUE);
 }
 
-GArray *m_hatch_object  (Object *object)
+GArray *m_hatch_object  (GedaObject *object)
 {
   GArray *fill_lines;
   int fill_type;

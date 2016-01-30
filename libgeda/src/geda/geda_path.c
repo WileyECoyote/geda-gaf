@@ -26,15 +26,15 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_path.c
- *  \brief Geda Path Object Class derived from the GedaObject Class
+ *  \brief Geda Path GedaObject Class derived from the GedaObject Class
  */
-/** \defgroup geda-path-object Geda Path Object
+/** \defgroup geda-path-object Geda Path GedaObject
  *  @{
  */
 /*! \class Path geda_path.h "include/libgeda/geda_path.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Path Objects.
- *  A Geda Path Object is a graphical object that does not involve electrical
+ *  \brief This is an implementaion class for GEDA Path GedaObjects.
+ *  A Geda Path GedaObject is a graphical object that does not involve electrical
  *  interconnections. A Path object has line-type and fill-type properties.
  */
 
@@ -53,10 +53,10 @@ static GObjectClass *geda_path_parent_class = NULL;
  *  \note Bounding box for bezier curves is loose because we just consider
  *        the convex hull of the curve control and end-points.
  *
- *  \param [in]  object     Path Object to read coordinates from.
+ *  \param [in]  object     Path GedaObject to read coordinates from.
  */
 int
-geda_path_bounds (Object *object)
+geda_path_bounds (GedaObject *object)
 {
   int i;
   int found_bound = FALSE;
@@ -125,7 +125,7 @@ geda_path_bounds (Object *object)
 static void geda_path_instance_init(GTypeInstance *instance, void *g_class)
 {
   Path    *path                   = (Path*)instance;
-  Object *object                  = &path->parent_instance;
+  GedaObject *object                  = &path->parent_instance;
 
   path->sections                  = NULL;
   path->num_sections              = 0;
@@ -155,7 +155,7 @@ geda_path_dispose(GObject *object)
   G_OBJECT_CLASS(geda_path_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Path Object Finalization Function
+/*! \brief Geda Path GedaObject Finalization Function
  *  \par Function Description
  *   This function invalidates the Path's markers and then chains up to
  *   the parent's finalize handler. Once invalidated, GEDA_IS_PATH will
@@ -163,8 +163,8 @@ geda_path_dispose(GObject *object)
  */
 static void geda_path_finalize(GObject *object)
 {
-  Path   *path = GEDA_PATH(object);
-  Object *obj  = GEDA_OBJECT(object);
+  Path       *path = GEDA_PATH(object);
+  GedaObject *obj  = GEDA_OBJECT(object);
 
   if (path->sections)
     GEDA_FREE(path->sections);
@@ -187,16 +187,16 @@ static void geda_path_finalize(GObject *object)
  */
 static void geda_path_class_init(void *g_class, void *class_data)
 {
-  PathClass    *class          = (PathClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  PathClass       *class         = (PathClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_path_parent_class       = g_type_class_peek_parent( class );
+  geda_path_parent_class         = g_type_class_peek_parent(class);
 
-  gobject_class->dispose       = geda_path_dispose;
-  gobject_class->finalize      = geda_path_finalize;
+  gobject_class->dispose         = geda_path_dispose;
+  gobject_class->finalize        = geda_path_finalize;
 
-  object_class->bounds         = geda_path_bounds;
+  geda_class->bounds             = geda_path_bounds;
 }
 
 /*! \brief Function to retrieve Path's Type identifier.
@@ -247,16 +247,16 @@ GedaObjectType geda_path_get_type (void)
  *
  *  \return pointer to the new Path object.
  */
-Object *geda_path_new (void)
+GedaObject *geda_path_new (void)
 {
-  Object *path = g_object_new( GEDA_TYPE_PATH,
+  GedaObject *path = g_object_new( GEDA_TYPE_PATH,
                               "type", OBJ_PATH,
                               "name", "path",
                                NULL );
   return GEDA_OBJECT(path);
 }
 
-/*! \brief Determine if object is a Geda Path Object.
+/*! \brief Determine if object is a Geda Path GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Path object.
@@ -265,6 +265,6 @@ Object *geda_path_new (void)
  */
 bool is_a_geda_path_object (Path *path)
 {
-  return GEDA_IS_OBJECT(path) && (((Object*)path)->type == OBJ_PATH);
+  return GEDA_IS_OBJECT(path) && (((GedaObject*)path)->type == OBJ_PATH);
 }
 /** @} endgroup geda-path-object */

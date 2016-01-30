@@ -177,7 +177,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
  */
 char *o_save_objects (const GList *object_list, bool save_attribs)
 {
-  Object  *o_current;
+  GedaObject  *o_current;
   const    GList *iter;
   char    *out;
   GString *acc;
@@ -189,7 +189,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
   while ( iter != NULL ) {
 
-    o_current = (Object*)iter->data;
+    o_current = (GedaObject*)iter->data;
 
     if (save_attribs || o_current->attached_to == NULL) {
 

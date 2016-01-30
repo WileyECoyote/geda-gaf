@@ -206,7 +206,7 @@ static void eda_config_finalize (GObject *object)
  *  parent virtual class methods as needed and register GObject
  *  signals.
  *
- *  \param [in,out] class       A EdaConfigClass Object
+ *  \param [in,out] class       A EdaConfigClass GedaObject
  *  \param [in]     class_data  A EdaConfigClass data structure (unused)
  */
 static void eda_config_class_init(void *class, void *class_data)

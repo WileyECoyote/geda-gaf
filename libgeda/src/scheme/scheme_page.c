@@ -35,7 +35,7 @@ SCM_SYMBOL (edascm_string_format_sym , "string-format");
 /*! \brief Add an object to a page.
  * \par Function Description
  * Adds \a obj_s to \a page_s.  If \a obj_s is already attached to a
- * #Page or to a complex #Object, throws a Scheme error.
+ * #Page or to a complex #GedaObject, throws a Scheme error.
  *
  * \note Scheme API: Implements the %page-append! procedure of the
  * (geda core page) module.
@@ -52,7 +52,7 @@ EDA_SCM_DEFINE (page_append_x, "%page-append!", 2, 0, 0,
               SCM_ARG2, scheme_page_append_x);
 
   Page *page = edascm_to_page (page_s);
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   /* Check that the object isn't already attached to something. */
   Page *curr_page = geda_object_get_page (obj);
@@ -113,7 +113,7 @@ EDA_SCM_DEFINE (page_close_x, "%close-page!", 1, 0, 0,
  * \note Scheme API: Implements the %object-page procedure in the
  * (geda core page) module.
  *
- * param [in] obj_s an #Object smob.
+ * param [in] obj_s an #GedaObject smob.
  *
  * \return a #Page smob or SCM_BOOL_F.
  */
@@ -185,12 +185,12 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
 /*! \brief Get a list of objects in a page.
  * \par Function Description
  * Retrieves the contents of a the #Page smob \a page_s as a Scheme
- * list of #Object smobs.
+ * list of #GedaObject smobs.
  *
  * \note Scheme API: Implements the %page-contents procedure of the
  * (geda core page) module.
  *
- * \return a list of #Object smobs.
+ * \return a list of #GedaObject smobs.
  */
 EDA_SCM_DEFINE (page_get_contents, "%page-contents", 1, 0, 0,
                (SCM page_s), "Get a page's contents.")
@@ -312,7 +312,7 @@ EDA_SCM_DEFINE (page_new, "%new-page", 1, 0, 0,
 /*! \brief Remove an object from a page.
  * \par Function Description
  * Removes \a obj_s from \a page_s.  If \a obj_s is attached to a
- * #Page other than \a page_s, or to a complex #Object, throws a
+ * #Page other than \a page_s, or to a complex #GedaObject, throws a
  * Scheme error. If \a obj_s is not attached to a page, does nothing.
  *
  * \note Scheme API: Implements the %page-remove! procedure of the
@@ -329,7 +329,7 @@ EDA_SCM_DEFINE (page_remove_x, "%page-remove!", 2, 0, 0,
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG2, scheme_page_remove_x);
 
   Page *page  = edascm_to_page (page_s);
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   Page *curr_page = geda_object_get_page (obj);
 
@@ -363,7 +363,7 @@ EDA_SCM_DEFINE (page_remove_x, "%page-remove!", 2, 0, 0,
   /* If the object is currently selected, unselect it. */
   o_selection_remove (page->selection_list, obj);
 
-  /* Object cleanup now managed by C code */
+  /* GedaObject cleanup now managed by C code */
   edascm_c_set_gc (obj_s, 1);
 
   return page_s;

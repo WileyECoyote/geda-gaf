@@ -470,7 +470,7 @@ gschem_page_view_invalidate_all (GschemPageView *view)
  *  \param [in]     object    The object to redraw
  */
 void
-gschem_page_view_invalidate_object (GschemToplevel *w_current, Object *object)
+gschem_page_view_invalidate_object (GschemToplevel *w_current, GedaObject *object)
 {
   GschemPageView *view;
 
@@ -1280,7 +1280,7 @@ gschem_page_view_zoom_extents (GschemPageView *view, const GList *objects)
  *  \param [in] object    The text object
  */
 void
-gschem_page_view_zoom_text (GschemPageView *view, Object *object)
+gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object)
 {
   int x[2];
   int y[2];

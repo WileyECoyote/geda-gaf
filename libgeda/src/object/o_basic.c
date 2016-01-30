@@ -22,21 +22,21 @@
 /*! \file o_basic.c
  *  \brief functions for the basic object type
  *
- *  This file contains the code used to manipulate <b>Objects</b>.
+ *  This file contains the code used to manipulate <b>GedaObjects</b>.
  *  The object is the basic type of all elements stored in schematic
  *  and symbol files.
  *
- *  The <b>Object</b> be extended to become concrete objects like a line,
+ *  The <b>GedaObject</b> be extended to become concrete objects like a line,
  *  a pin, text, a circle or a picture. These extentions are substructures
  *  in the object struct.
  *  The <b>Subobjects</b> are pictures (st_picture), paths (st_path), arcs (st_arc),
  *  a lines (st_line), boxes (st_box), circles (st_circle), texts (st_text) and
  *  a the complex type (st_complex).
  *
- *  Pins, nets and busses are types of line <b>Objects</b>.
+ *  Pins, nets and busses are types of line <b>GedaObjects</b>.
  *
- *  The <b>Complex Objects</b> can be linked to many primary objects. If the <b>Complex
- *  Object</b> is a symbol, then the complex symbol contains all the pins,
+ *  The <b>Complex GedaObjects</b> can be linked to many primary objects. If the <b>Complex
+ *  GedaObject</b> is a symbol, then the complex symbol contains all the pins,
  *  the text and the graphics.
  *
  *  \image html o_object_relations.png
@@ -76,7 +76,6 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   char    objtype;
   GList  *object_list_save     = NULL;
-  Object *new_obj              = NULL;
   GList  *new_attrs_list       = NULL;
   GList  *new_object_list      = NULL;
   GList  *iter;
@@ -87,7 +86,8 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   int itemsread                = 0;
   int embedded_level           = 0;
   int line_count               = 0;
-  Object* last_complex         = NULL;
+  GedaObject *last_complex     = NULL;
+  GedaObject *new_obj          = NULL;
   bool is_ask                  = TRUE;
   char* ptr;
 
@@ -297,7 +297,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           /* set the parent field now */
           for (iter = new_obj->complex->prim_objs;
                iter != NULL; iter = g_list_next (iter)) {
-            Object *tmp = iter->data;
+            GedaObject *tmp = iter->data;
             tmp->parent_object = new_obj;
           }
 
@@ -445,11 +445,11 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
  *  copies selected to list_head (!! returns new list)
  *
  *  \param [in]  selected
- *  \return Object pointer.
+ *  \return GedaObject pointer.
  */
-Object *o_copy_object (Object *selected)
+GedaObject *o_copy_object (GedaObject *selected)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
 
   g_return_val_if_fail (selected != NULL, NULL);
 
@@ -526,11 +526,11 @@ Object *o_copy_object (Object *selected)
  *
  *  \param [in]     center_x  Origin x coordinate in WORLD units.
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
- *  \param [in,out] object    The Object to mirror.
+ *  \param [in,out] object    The GedaObject to mirror.
  */
-void o_mirror_object (Object *object, int center_x, int center_y)
+void o_mirror_object (GedaObject *object, int center_x, int center_y)
 {
-  void (*topless) (Object*, int, int) = NULL;
+  void (*topless) (GedaObject*, int, int) = NULL;
 
   switch (object->type) {
       case OBJ_LINE:    topless = o_line_mirror;       break;
@@ -576,9 +576,9 @@ void o_mirror_object (Object *object, int center_x, int center_y)
  *  \param [in] center_y  Y coordinate of rotation center (world coords)
  *  \param [in] angle     Angle of rotation (degrees)
  */
-void o_rotate_object (Object *object, int center_x, int center_y, int angle)
+void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
 {
-  void (*topless) (Object *, int, int, int) = NULL;
+  void (*topless) (GedaObject *, int, int, int) = NULL;
 
   switch (object->type)
   {
@@ -625,9 +625,9 @@ void o_rotate_object (Object *object, int center_x, int center_y, int angle)
  *  \param [in] dx       Amount to horizontally translate object
  *  \param [in] dy       Amount to vertically translate object
  */
-void o_translate_object (Object *object, int dx, int dy)
+void o_translate_object (GedaObject *object, int dx, int dy)
 {
-  void (*topless) (Object *, int, int) = NULL;
+  void (*topless) (GedaObject *, int, int) = NULL;
 
   switch (object->type) {
       case OBJ_LINE:    topless = o_line_translate;    break;
@@ -676,22 +676,23 @@ void o_translate_object (Object *object, int dx, int dy)
  */
 void o_scale (GList *list, int x_scale, int y_scale)
 {
-  Object *o_current;
   GList *iter;
 
-  /* this is okay if you just hit scale and have nothing selected */
-  if (list == NULL) {
-    return;
-  }
+  /* is okay if you just hit scale and have nothing selected */
+  if (list) {
 
-  iter = list;
-  while (iter != NULL) {
-    o_current = (Object *)iter->data;
-    switch(o_current->type) {
-      case(OBJ_LINE):
-        o_line_scale(o_current, x_scale, y_scale);
-        break;
+    iter = list;
+
+    while (iter != NULL) {
+
+      GedaObject *o_current = (GedaObject*)iter->data;
+
+      switch(o_current->type) {
+        case(OBJ_LINE):
+          o_line_scale(o_current, x_scale, y_scale);
+          break;
+      }
+      iter = iter->next;
     }
-    iter = g_list_next (iter);
   }
 }

@@ -73,7 +73,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel          = w_current->toplevel;
   GList        *prev_conn_objects = NULL;
-  Object       *new_obj;
+  GedaObject   *new_obj;
   int           color;
 
   if (w_current->override_bus_color == -1) {

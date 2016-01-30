@@ -47,8 +47,8 @@
 #include <cairo-pdf.h>
 #include <cairo-ps.h>
 
-static int export_text_rendered_bounds (void *user_data,
-                                        Object *object,
+static int export_text_rendered_bounds (void       *user_data,
+                                        GedaObject *object,
                                         int *left, int *top,
                                         int *right, int *bottom);
 static void export_layout_page         (Page *page,
@@ -336,7 +336,7 @@ cmd_export (int argc, char **argv)
  * "rendered bounds" function isn't provided, text objects don't get
  * used when calculating the extents of the drawing. */
 static int
-export_text_rendered_bounds (void *user_data, Object *object,
+export_text_rendered_bounds (void *user_data, GedaObject *object,
                              int *left, int *top, int *right, int *bottom)
 {
   int result;
@@ -514,10 +514,10 @@ export_draw_page (Page *page)
     contents = s_page_get_objects (page);
 
     for (iter = (GList*) contents; iter != NULL; iter = g_list_next (iter))
-      eda_renderer_draw (renderer, (Object*)iter->data);
+      eda_renderer_draw (renderer, (GedaObject*)iter->data);
 
     for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
-      eda_renderer_draw_cues (renderer, (Object*)iter->data);
+      eda_renderer_draw_cues (renderer, (GedaObject*)iter->data);
   }
   else {
     fprintf(stderr,"%s, no page to export\n",__func__);
@@ -680,7 +680,7 @@ export_draw_svg_page (cairo_t *cr)
     /* Sort objects */
     for (iter = contents; iter != NULL; iter = g_list_next (iter)) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
 
       if (object->type == OBJ_COMPLEX) {
         complexes = g_list_prepend(complexes, object);
@@ -692,8 +692,8 @@ export_draw_svg_page (cairo_t *cr)
 
     /* Draw complexes & cues */
     for (iter = complexes; iter != NULL; iter = g_list_next (iter)) {
-      eda_renderer_draw (renderer, (Object *) iter->data);
-      eda_renderer_draw_cues (renderer, (Object *) iter->data);
+      eda_renderer_draw (renderer, (GedaObject*) iter->data);
+      eda_renderer_draw_cues (renderer, (GedaObject*) iter->data);
 
     }
 
@@ -701,8 +701,8 @@ export_draw_svg_page (cairo_t *cr)
 
     /* Draw simpleton & cues */
     for (iter = simpleton; iter != NULL; iter = g_list_next (iter)) {
-      eda_renderer_draw (renderer, (Object *) iter->data);
-      eda_renderer_draw_cues (renderer, (Object *) iter->data);
+      eda_renderer_draw (renderer, (GedaObject*) iter->data);
+      eda_renderer_draw_cues (renderer, (GedaObject*) iter->data);
       cairo_stroke (cr);
     }
 

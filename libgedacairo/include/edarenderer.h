@@ -92,10 +92,10 @@ struct _EdaRendererClass
   GObjectClass parent_class;
 
   /* Virtual public methods */
-  void (*draw)         (EdaRenderer *renderer, Object *object);
-  void (*draw_grips)   (EdaRenderer *renderer, Object *object);
-  void (*draw_cues)    (EdaRenderer *renderer, Object *object);
-  int  (*user_bounds)  (EdaRenderer *renderer, Object *object,
+  void (*draw)         (EdaRenderer *renderer, GedaObject *object);
+  void (*draw_grips)   (EdaRenderer *renderer, GedaObject *object);
+  void (*draw_cues)    (EdaRenderer *renderer, GedaObject *object);
+  int  (*user_bounds)  (EdaRenderer *renderer, GedaObject *object,
                         int *left,  int *top,
                         int *right, int *bottom);
 };
@@ -158,16 +158,16 @@ void         eda_renderer_destroy      (EdaRenderer *renderer);
 
 bool     eda_renderer_parse_color      (const char  *spec, COLOR *color);
 
-void     eda_renderer_draw             (EdaRenderer *renderer, Object *object);
-void     eda_renderer_draw_grips       (EdaRenderer *renderer, Object *object);
-void     eda_renderer_draw_grips_list  (EdaRenderer *renderer, GList *objects);
-void     eda_renderer_draw_cues        (EdaRenderer *renderer, Object *object);
+void     eda_renderer_draw             (EdaRenderer *renderer, GedaObject *object);
+void     eda_renderer_draw_grips       (EdaRenderer *renderer, GedaObject *object);
+void     eda_renderer_draw_grips_list  (EdaRenderer *renderer, GList      *objects);
+void     eda_renderer_draw_cues        (EdaRenderer *renderer, GedaObject *object);
 
-int      eda_renderer_get_user_bounds  (EdaRenderer *renderer, Object *object,
+int      eda_renderer_get_user_bounds  (EdaRenderer *renderer, GedaObject *object,
                                         int *left,   int *top,
                                         int *right,  int *bottom);
 
-int      eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
+int      eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
                                         int *left,   int *top,
                                         int *right,  int *bottom);
 

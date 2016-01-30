@@ -50,7 +50,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
                                  GschemToplevel *w_current)
 {
   GtkWidget  *textentry;
-  Object     *object;
+  GedaObject *object;
   char       *slot_string;
   const char *string = NULL;
   int         len;
@@ -92,7 +92,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
  *  \param object    pointer to a selected Object.
  */
 static void
-x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
+x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *object)
 {
   if (object != NULL) {
 

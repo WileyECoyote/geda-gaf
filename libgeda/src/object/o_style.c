@@ -166,10 +166,10 @@ int o_style_get_pin_width( GedaToplevel *toplevel, int type) {
  *  position on the screen.
  *
  *  \param [in]     toplevel    The GedaToplevel object.
- *  \param [in,out] o_current   Object to set.
+ *  \param [in,out] o_current   GedaObject to set.
  *
  */
-void o_style_set_object(GedaToplevel *toplevel, Object *o_current)
+void o_style_set_object(GedaToplevel *toplevel, GedaObject *o_current)
 {
   if (o_current != NULL) {
     switch(o_current->type) {

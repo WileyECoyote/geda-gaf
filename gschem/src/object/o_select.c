@@ -45,7 +45,7 @@
  *   depending on \a which_hook.
  */
 static void
-o_select_run_hooks(GschemToplevel *w_current, Object *o_current, EID_SCM_HOOKS which_hook)
+o_select_run_hooks(GschemToplevel *w_current, GedaObject *o_current, EID_SCM_HOOKS which_hook)
 {
   if (which_hook == DESELECT_OBJECTS_HOOK) {
 
@@ -73,7 +73,7 @@ o_select_run_hooks(GschemToplevel *w_current, Object *o_current, EID_SCM_HOOKS w
  *        box.
  */
 void
-o_select_object(GschemToplevel *w_current, Object *o_current, int type, int count)
+o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int count)
 {
   SELECTION *selection = Current_Selection;
   bool       removing_obj;
@@ -216,7 +216,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
   GList        *iter      = list;
 
   while (iter) {
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
     w_current->which_object = object;
     o_selection_add (selection, object);
     o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
@@ -234,7 +234,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
  *        o_selection_add
  */
 void
-o_select_add_object(GschemToplevel *w_current, Object *object)
+o_select_add_object(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
@@ -314,7 +314,7 @@ void o_select_end (GschemToplevel *w_current, int wx, int wy)
  */
 bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
 {
-  Object *selected;
+  GedaObject *selected;
 
   bool result;
 
@@ -493,7 +493,7 @@ void o_select_box_search(GschemToplevel *w_current)
 
   while (iter != NULL) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     /* only select visible objects */
       if (o_get_is_visible (o_current)) {
@@ -532,7 +532,7 @@ void o_select_box_search(GschemToplevel *w_current)
  *  \param [in] w_current  Pointer to GschemToplevel struct.
  *  \param [in] o_net      Pointer to a single net object
  */
-void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
+void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -568,7 +568,7 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
     for (iter1 = g_list_last(netstack); iter1 != NULL;
          iter1 = iter1->prev, count++)
     {
-      Object *o_current = iter1->data;
+      GedaObject *o_current = iter1->data;
 
       if (o_current->type == OBJ_NET && (!o_current->selected || count == 0))
       {
@@ -610,13 +610,13 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
 
     for (o_iter = all_objects; o_iter != NULL; o_iter = o_iter->next) {
 
-      Object *o_current  = o_iter->data;
+      GedaObject *o_current  = o_iter->data;
 
       if (o_current->type == OBJ_TEXT && o_current->attached_to != NULL) {
 
         if (o_current->attached_to->type == OBJ_NET) {
 
-          Object *parent = o_current->attached_to;
+          GedaObject *parent = o_current->attached_to;
 
           netname = o_attrib_search_object_attribs_by_name (parent, "netname", 0);
 
@@ -700,7 +700,7 @@ void o_select_unselect_all(GschemToplevel *w_current)
     }
     else {
 
-      Object *object = geda_list_get_glist (selection)->data;
+      GedaObject *object = geda_list_get_glist (selection)->data;
 
       if (o_selection_remove(selection, object) == 1) {
         o_selection_remove(selection, object);
@@ -733,7 +733,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
 
   for (iter = all_objects; iter != NULL; iter = iter->next) {
 
-    Object *obj = (Object *) iter->data;
+    GedaObject *obj = (GedaObject*) iter->data;
 
     /* Skip invisible objects. */
     if (!o_get_is_visible (obj) && !toplevel->page_current->show_hidden_text)
@@ -813,7 +813,7 @@ o_select_get_list_selected(GschemToplevel *w_current, char otype)
 
   for (iter = selection; iter != NULL; iter = iter->next) {
 
-    Object *object = (Object *) iter->data;
+    GedaObject *object = (GedaObject*) iter->data;
 
     if ( object->type == otype) {
       list = g_list_append (list, object);
@@ -831,7 +831,7 @@ o_select_get_list_selected(GschemToplevel *w_current, char otype)
  *
  *  \param w_current Pointer to a Gschem Toplevel object
  */
-Object *o_select_return_first_object(GschemToplevel *w_current)
+GedaObject *o_select_return_first_object(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 

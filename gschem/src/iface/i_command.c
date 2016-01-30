@@ -1138,7 +1138,7 @@ COMMAND (do_quit) {
 COMMAND (do_export_symbol) {
   BEGIN_W_COMMAND(do_export_symbol);
 
-  Object *o_current;
+  GedaObject *o_current;
 
   o_current = o_select_return_first_object(w_current);
 
@@ -1162,7 +1162,7 @@ COMMAND (do_export_symbol) {
 COMMAND (do_export_picture) {
   BEGIN_W_COMMAND(do_export_picture);
 
- Object *o_current;
+ GedaObject *o_current;
 
   o_current = o_select_return_first_object(w_current);
 
@@ -1192,7 +1192,7 @@ COMMAND (do_edit)
   //u_log_message("do edit command handler");
   char *msg = "Not an object";
 
-  o_set_visibility ((Object *)msg, 1);
+  o_set_visibility ((GedaObject*)msg, 1);
   EXIT_COMMAND(do_edit);
 }
 
@@ -1685,7 +1685,7 @@ COMMAND (do_edit_butes)
 COMMAND (do_edit_ponent)
 {
   BEGIN_W_COMMAND(do_edit_butes);
-  Object *o_current;
+  GedaObject *o_current;
 
   o_current = o_select_return_first_object(w_current);
 
@@ -1709,7 +1709,7 @@ COMMAND (do_edit_text)
 
     for (iter = s_current; iter; iter = iter->next) {
 
-      Object *o_current = iter->data;
+      GedaObject *o_current = iter->data;
 
       if (o_current->type == OBJ_TEXT) {
         o_text_edit(w_current, o_current);
@@ -1724,7 +1724,7 @@ COMMAND (do_edit_text)
 COMMAND (do_edit_slot)
 {
   BEGIN_W_COMMAND(do_edit_slot);
-  Object *o_current;
+  GedaObject *o_current;
 
   o_current = o_select_return_first_object(w_current);
 
@@ -1746,7 +1746,7 @@ COMMAND (do_edit_color)
 COMMAND (do_edit_arc)
 {
   BEGIN_W_COMMAND(do_edit_arc);
-  Object *o_current;
+  GedaObject *o_current;
   o_current = o_select_return_first_object(w_current);
   if ( o_current && o_current->type == OBJ_ARC) {
     x_dialog_edit_arc_angle(w_current, o_current);
@@ -1862,7 +1862,7 @@ COMMAND (do_select_invert)
   GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
   while(list != NULL) {
-    o_selection_remove (selection, (Object*) list->data);
+    o_selection_remove (selection, (GedaObject*) list->data);
     NEXT(list);
   }
   g_list_free (list);
@@ -1883,7 +1883,7 @@ COMMAND (do_select_last)
 
   if (w_current->which_object) {
 
-    Object *object = w_current->which_object;
+    GedaObject *object = w_current->which_object;
 
     if (GEDA_IS_OBJECT(w_current->which_object)) {
 
@@ -2114,7 +2114,7 @@ COMMAND (do_documentation)
 {
   BEGIN_W_COMMAND(do_documentation);
 
-  Object *object = o_select_return_first_object(w_current);
+  GedaObject *object = o_select_return_first_object(w_current);
 
   if (object != NULL) {
     /* only allow going into symbols */
@@ -2817,10 +2817,10 @@ COMMAND (do_down_schematic)
 
   BEGIN_NO_ARGUMENT(do_down_schematic);
 
-  Object *object           = NULL;
-  Page   *child            = NULL;
-  Page   *parent           = NULL;
-  Page   *save_first_page  = NULL;
+  GedaObject *object           = NULL;
+  Page       *child            = NULL;
+  Page       *parent           = NULL;
+  Page       *save_first_page  = NULL;
 
   bool    loaded_flag      = FALSE;
   bool    looking_inside   = FALSE;
@@ -2966,7 +2966,7 @@ COMMAND (do_down_symbol)
 
   BEGIN_NO_ARGUMENT(do_down_symbol);
 
-  Object *object;
+  GedaObject *object;
 
   object = o_select_return_first_object(w_current);
 
@@ -3137,7 +3137,7 @@ COMMAND (do_add_attribute)
 {
   BEGIN_W_COMMAND( do_add_attribute);
 
-  Object *o_current = o_select_return_first_object(w_current);
+  GedaObject *o_current = o_select_return_first_object(w_current);
   if HOT_ACTION (do_add_attribute) {
     w_current->first_wx = CMD_X(do_add_attribute);
     w_current->first_wy = CMD_Y(do_add_attribute);
@@ -3496,7 +3496,7 @@ COMMAND (do_attach)
 
   if (o_select_is_selection(w_current)) {
 
-    Object *first_object;
+    GedaObject *first_object;
     GList  *selected;
     int     count;
 
@@ -3508,14 +3508,14 @@ COMMAND (do_attach)
     }
     else if (count == 2) {
 
-      Object *second_object;
+      GedaObject *second_object;
       GList  *next;
       bool    first_is_an_attribute;
       bool    second_is_an_attribute;
 
-      first_object  = (Object*) selected->data;
+      first_object  = (GedaObject*) selected->data;
       next          = selected->next;
-      second_object = (Object*) next->data;
+      second_object = (GedaObject*) next->data;
 
       w_current->which_object = NULL;
       first_is_an_attribute   = o_get_is_valid_attribute(first_object);
@@ -3587,7 +3587,7 @@ COMMAND (do_detach)
 
   while (s_current != NULL) {
 
-    Object *o_current = (Object *) s_current->data;
+    GedaObject *o_current = (GedaObject*) s_current->data;
 
     if (o_current) {
       if (o_current->attribs) {
@@ -3639,7 +3639,7 @@ COMMAND (do_home_attributes)
 
     while (s_current) {
 
-      Object *object = (Object*)s_current->data;
+      GedaObject *object = (GedaObject*)s_current->data;
 
       if (object->type == OBJ_COMPLEX) {
         if (o_complex_reset_attrib_positions (w_current, object)) {
@@ -3689,7 +3689,7 @@ COMMAND (do_show_value)
 
     while (s_current) {
 
-      Object *object = (Object*)s_current->data;
+      GedaObject *object = (GedaObject*)s_current->data;
 
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_VALUE);
@@ -3723,7 +3723,7 @@ COMMAND (do_show_name)
 
     while (s_current) {
 
-      Object *object = (Object*)s_current->data;
+      GedaObject *object = (GedaObject*)s_current->data;
 
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME);
@@ -3757,7 +3757,7 @@ COMMAND (do_show_both)
 
     while (s_current) {
 
-      Object *object = (Object*)s_current->data;
+      GedaObject *object = (GedaObject*)s_current->data;
 
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME_VALUE);
@@ -3785,7 +3785,7 @@ COMMAND (do_toggle_visibility)
 
     while (s_current) {
 
-      Object *object = (Object*)s_current->data;
+      GedaObject *object = (GedaObject*)s_current->data;
 
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_visibility (w_current, object);
@@ -3957,7 +3957,7 @@ COMMAND (do_embed)
 
     while (s_current != NULL) {
 
-      Object *o_current = (Object *) s_current->data;
+      GedaObject *o_current = (GedaObject*) s_current->data;
 
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
@@ -3990,7 +3990,7 @@ COMMAND (do_unembed)
 
     while (s_current != NULL) {
 
-      Object *o_current = (Object *) s_current->data;
+      GedaObject *o_current = (GedaObject*) s_current->data;
 
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
@@ -4028,14 +4028,14 @@ COMMAND (do_update)
      * then iterate over that new list to perform the update. */
     selection = geda_list_get_glist (toplevel->page_current->selection_list);
     for (iter = selection; iter != NULL; NEXT(iter)) {
-      Object *o_current = (Object *) iter->data;
+      GedaObject *o_current = (GedaObject*) iter->data;
       if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
         selected_components = g_list_prepend (selected_components, o_current);
       }
     }
 
     for (iter = selected_components; iter != NULL; NEXT(iter)) {
-      Object *o_current = (Object *) iter->data;
+      GedaObject *o_current = (GedaObject*) iter->data;
       iter->data = o_edit_update_component (w_current, o_current);
     }
 

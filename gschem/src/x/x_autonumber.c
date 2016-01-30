@@ -262,14 +262,14 @@ static int autonumber_sort_numbers(const void *a, const void *b) {
 
 /*! \brief GCompareFunc function to sort text objects by there location
  *  \par Function Description
- *  This Funcion takes two <B>Object*</B> arguments and compares the
+ *  This Funcion takes two <B>GedaObject*</B> arguments and compares the
  *  location of the two text objects. The first sort criteria is the x location,
  *  the second sort criteria is the y location.
  *  The Function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_xy(const void *a, const void *b) {
-  Object *aa, *bb;
-  aa=(Object *) a;  bb=(Object *) b;
+  GedaObject *aa, *bb;
+  aa=(GedaObject*) a;  bb=(GedaObject*) b;
   if (aa->text->x < bb->text->x)
     return -1;
   if (aa->text->x > bb->text->x)
@@ -284,15 +284,15 @@ static int autonumber_sort_xy(const void *a, const void *b) {
 
 /*! \brief GCompareFunc function to sort text objects by there location
  *  \par Function Description
- *  This funcion takes two <B>Object*</B> arguments and compares the
+ *  This funcion takes two <B>GedaObject*</B> arguments and compares the
  *  location of the two text objects. The first sort criteria is the x location,
  *  the second sort criteria is the y location.
  *  This function sorts the objects in reverse order.
  *  The function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_xy_rev(const void *a, const void *b) {
-  Object *aa, *bb;
-  aa=(Object *) a;  bb=(Object *) b;
+  GedaObject *aa, *bb;
+  aa=(GedaObject*) a;  bb=(GedaObject*) b;
   if (aa->text->x < bb->text->x)
     return 1;
   if (aa->text->x > bb->text->x)
@@ -307,14 +307,14 @@ static int autonumber_sort_xy_rev(const void *a, const void *b) {
 
 /*! \brief GCompareFunc function to sort text objects by there location
  *  \par Function Description
- *  This funcion takes two <B>Object*</B> arguments and compares the
+ *  This funcion takes two <B>GedaObject*</B> arguments and compares the
  *  location of the two text objects. The first sort criteria is the y location,
  *  the second sort criteria is the x location.
  *  The function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_yx(const void *a, const void *b) {
-  Object *aa, *bb;
-  aa=(Object *) a;  bb=(Object *) b;
+  GedaObject *aa, *bb;
+  aa=(GedaObject*) a;  bb=(GedaObject*) b;
   if (aa->text->y > bb->text->y)
     return -1;
   if (aa->text->y < bb->text->y)
@@ -329,15 +329,15 @@ static int autonumber_sort_yx(const void *a, const void *b) {
 
 /*! \brief GCompareFunc function to sort text objects by there location
  *  \par Function Description
- *  This Funcion takes two <B>Object*</B> arguments and compares the
+ *  This Funcion takes two <B>GedaObject*</B> arguments and compares the
  *  location of the two text objects. The first sort criteria is the y location,
  *  the second sort criteria is the x location.
  *  This function sorts the objects in reverse order.
  *  The function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_yx_rev(const void *a, const void *b) {
-  Object *aa, *bb;
-  aa=(Object *) a;  bb=(Object *) b;
+  GedaObject *aa, *bb;
+  aa=(GedaObject*) a;  bb=(GedaObject*) b;
   if (aa->text->y > bb->text->y)
     return 1;
   if (aa->text->y < bb->text->y)
@@ -352,14 +352,14 @@ static int autonumber_sort_yx_rev(const void *a, const void *b) {
 
 /*! \brief GCompareFunc function to sort text objects by there location
  *  \par Function Description
- *  This Funcion takes two <B>Object*</B> arguments and compares the
+ *  This Funcion takes two <B>GedaObject*</B> arguments and compares the
  *  location of the two text objects. The sort criteria is the combined x- and the
  *  y-location. The function sorts from top left to bottom right.
  *  The function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_diagonal(const void *a, const void *b) {
-  Object *aa, *bb;
-  aa=(Object *) a;  bb=(Object *) b;
+  GedaObject *aa, *bb;
+  aa=(GedaObject*) a;  bb=(GedaObject*) b;
   if (aa->text->x - aa->text->y < bb->text->x - bb->text->y)
     return -1;
   if (aa->text->x - aa->text->y > bb->text->x - bb->text->y)
@@ -472,7 +472,7 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
  *
  *  \note *number is not modified unless the returned value is AUTONUMBER_RESPECT
  */
-static int autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
+static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, int *number)
 {
   int len, isnumbered=1;
   const char *str = NULL;
@@ -539,7 +539,7 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *n
 static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
 {
   int number, numslots, slotnr, i;
-  Object *o_current, *o_parent;
+  GedaObject *o_current, *o_parent;
   AUTONUMBER_SLOT *slot;
   GList *slot_item;
   char *numslot_str, *slot_str;
@@ -637,13 +637,13 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
  *  \returns designation and slot number
  */
 static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
-                                       Object          *o_current,
+                                       GedaObject      *o_current,
                                        int             *number,
                                        int             *slot)
 {
   AUTONUMBER_SLOT *freeslot;
 
-  Object *o_parent;
+  GedaObject *o_parent;
   GList  *freeslot_item;
   GList  *item;
   int     new_number;
@@ -741,9 +741,9 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
  *  \param [in] o_current Pointer to the object from which to remove the number
  *
  */
-static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
+static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, GedaObject *o_current)
 {
-  Object *o_slot;
+  GedaObject *o_slot;
   char   *str;
 
   /* allocate memory for the search string*/
@@ -761,7 +761,7 @@ static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_curre
   if (autotext->slotting) {
 
     /* get the slot attribute */
-    Object *o_parent = o_current->attached_to;
+    GedaObject *o_parent = o_current->attached_to;
 
     if (o_parent != NULL) { /* Does child->parent_object->child make sense?*/
       /* \remark s_slot_search_slot updates o_slot variable */
@@ -792,7 +792,7 @@ static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_curre
  *       even though slot=0 is valid, it just means the component has none.
  */
 static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
-                                      Object          *o_current,
+                                      GedaObject      *o_current,
                                       int              number,
                                       int              slot)
 {
@@ -833,7 +833,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   GList *obj_item;
   GList *page_item;
 
-  Object *o_current;
+  GedaObject *o_current;
 
   char *searchtext;
   char *scope_text;

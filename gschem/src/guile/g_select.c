@@ -50,7 +50,7 @@ SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
   SCM result = SCM_EOL;
   for (iter = geda_list_get_glist (page->selection_list);
        iter != NULL; iter = g_list_next (iter)) {
-    result = scm_cons (edascm_from_object ((Object *) iter->data), result);
+    result = scm_cons (edascm_from_object ((GedaObject*) iter->data), result);
   }
 
   return result;
@@ -76,7 +76,7 @@ SCM_DEFINE (select_object_x, "%select-object!", 1, 0, 0,
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
               SCM_ARG1, s_select_object_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   Page *page = geda_object_get_page (obj);
   if ((page == NULL) || (obj->parent_object != NULL)) {
     scm_error (object_state_sym,
@@ -112,7 +112,7 @@ SCM_DEFINE (deselect_object_x, "%deselect-object!", 1, 0, 0,
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
               SCM_ARG1, s_deselect_object_x);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   Page *page = geda_object_get_page (obj);
   if ((page == NULL) || (obj->parent_object != NULL)) {
     scm_error (object_state_sym,
@@ -147,7 +147,7 @@ SCM_DEFINE (object_selected_p, "%object-selected?", 1, 0, 0,
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
               SCM_ARG1, s_object_selected_p);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
   Page *page = geda_object_get_page (obj);
   if ((page == NULL) || (obj->parent_object != NULL)) {
     scm_error (object_state_sym,

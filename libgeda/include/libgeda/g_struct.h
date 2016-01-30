@@ -50,7 +50,7 @@ typedef struct st_CacheEntry CacheEntry;
 
 /* -- gschem structures (gschem) -- */
 typedef struct st_complex COMPLEX;
-typedef struct st_conn CONN;         /* uses type Object */
+typedef struct st_conn CONN;         /* uses type GedaObject */
 typedef struct st_picture PICTURE;
 typedef struct st_tile TILE;         /* uses glist */
 
@@ -161,7 +161,7 @@ struct st_complex {
   /* complex */
 };
 
-/*! \brief Structure for connections between Objects
+/*! \brief Structure for connections between GedaObjects
  *
  * The st_conn structure contains a single connection
  * to another object.
@@ -169,7 +169,7 @@ struct st_complex {
  */
 struct st_conn {
   /*! \brief The "other" object connected to this one */
-  Object *other_object;
+  GedaObject *other_object;
   /*! \brief type of connection. Always in reference to how the "other"
     object is connected to the current one */
   int type;
@@ -289,7 +289,7 @@ struct st_netlist {
 
   char       *component_uref;
 
-  Object     *object_ptr;
+  GedaObject *object_ptr;
 
   CPINLIST   *cpins;
 
@@ -304,7 +304,7 @@ struct st_netlist {
 /* typedef struct st_chkerrs CHKERRS; */
 struct st_chkerrs{
 
-  Object     *err_obj;
+  GedaObject *err_obj;
   CHKERRS    *next;
 };
 
@@ -319,7 +319,7 @@ struct st_schcheck {
   CHKERRS    *float_nets;       /* Header of the list of floating nets */
   int         net_errs;         /* Number of floating nets */
 
-  Object     *float_pins;       /* Header of List of floating pins*/
+  GedaObject *float_pins;       /* Header of List of floating pins*/
   int         pin_errs;         /* Number of floating pins */
 
   int         net_names;        /* Number of mismatched net names */
@@ -343,12 +343,12 @@ struct gsubr_t {
 
 struct st_attrib_smob {
   GedaToplevel *world;          /* We need this when updating schematic */
-  Object       *attribute;
+  GedaObject   *attribute;
 };
 
 struct st_object_smob {
   GedaToplevel *world;          /* We need this when updating schematic */
-  Object       *object;
+  GedaObject   *object;
 };
 
 struct st_page_smob {

@@ -46,13 +46,13 @@
 typedef struct _GedaLineClass LineClass;
 
 struct _GedaLineClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
   void (*finalize) (GObject *object);
 };
 
 struct _GedaLine {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   int x[2];
   int y[2];
@@ -67,7 +67,7 @@ extern "C" {
 GedaObjectType geda_line_get_type       (void) GEDA_CONST;
 bool           is_a_geda_line_object    (Line *object);
 
-Object        *geda_line_new            (void);
+GedaObject    *geda_line_new            (void);
 
 #ifdef __cplusplus
 }

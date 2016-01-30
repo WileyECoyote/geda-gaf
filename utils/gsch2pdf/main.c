@@ -32,7 +32,7 @@
 static PrintSettings *print_settings = NULL;
 static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects);
 
-static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_arc(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_line_width(
         cairo, object->line_options->line_width > 10.0 ?
@@ -68,7 +68,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_source_rgb(
         cairo,
@@ -137,7 +137,7 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_bus(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_bus(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
 
     cairo_set_line_width(cairo, 30.0);
@@ -151,7 +151,7 @@ static void print_bus(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
@@ -214,7 +214,7 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_complex(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_complex(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     print_object_list(current, cairo, object->complex->prim_objs);
 }
@@ -246,7 +246,7 @@ static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray 
   }
 }
 
-static void print_line(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_line(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_line_width(
         cairo,
@@ -275,7 +275,7 @@ static void print_line(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_net(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_net(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_line_width(cairo, 10.0);
 
@@ -301,7 +301,7 @@ static void print_net(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_path(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     int index;
 
@@ -406,7 +406,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_pin(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_pin(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     cairo_set_line_width(
         cairo,
@@ -435,7 +435,7 @@ static void print_pin(GedaToplevel *current, cairo_t *cairo, Object *object)
     cairo_stroke(cairo);
 }
 
-static void print_text(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     if (object->text->disp_string != NULL)
     {
@@ -619,7 +619,7 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, Object *object)
     }
 }
 
-static void print_object(GedaToplevel *current, cairo_t *cairo, Object *object)
+static void print_object(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
     if (o_get_is_visible(object))
     {
@@ -678,7 +678,7 @@ static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList
 
     while (node != NULL)
     {
-        Object *object = (Object*) node->data;
+        GedaObject *object = (GedaObject*) node->data;
 
         print_object(current, cairo, object);
 

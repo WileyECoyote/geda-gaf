@@ -58,11 +58,11 @@ static GObjectClass *geda_complex_parent_class = NULL;
  *  \retval 0 No bounds were found
  *  \retval 1 Bound was found
  */
-int geda_complex_bounds(Object *object)
+int geda_complex_bounds(GedaObject *object)
 {
-  const GList *iter;
-  Object      *sub_object;
-  ObjectClass *object_class;
+  const GList     *iter;
+  GedaObject      *sub_object;
+  GedaObjectClass *object_class;
 
   int result = 0;
 
@@ -74,11 +74,11 @@ int geda_complex_bounds(Object *object)
   /* Loop thru sub objects, if any exist */
   while (!result && iter != NULL) {
 
-    sub_object = (Object *) iter->data;
+    sub_object = (GedaObject *) iter->data;
 
     g_return_val_if_fail (GEDA_IS_OBJECT(sub_object), FALSE);
 
-    object_class = (ObjectClass*)G_OBJECT_GET_CLASS(sub_object);
+    object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(sub_object);
     result = object_class->bounds(sub_object);
 
     NEXT(iter);
@@ -96,8 +96,8 @@ int geda_complex_bounds(Object *object)
 
     /* Check other objects with bounds and expand as necessary */
     while ( iter != NULL ) {
-      sub_object = (Object *) iter->data;
-      object_class = (ObjectClass*)G_OBJECT_GET_CLASS(sub_object);
+      sub_object   = (GedaObject *) iter->data;
+      object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(sub_object);
 
       if (object_class->bounds(sub_object)) {
         left   = min( left,   sub_object->left );
@@ -131,7 +131,7 @@ int geda_complex_bounds(Object *object)
 static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
 {
   Complex *complex      = (Complex*)instance;
-  Object  *object       = &complex->parent_instance;
+  GedaObject  *object       = &complex->parent_instance;
 
   complex->filename     = NULL;
   complex->is_embedded  = FALSE;  /* is embedded component? */
@@ -154,7 +154,7 @@ geda_complex_dispose(GObject *object)
   G_OBJECT_CLASS(geda_complex_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Complex Object Finalization Function
+/*! \brief Geda Complex GedaObject Finalization Function
  *  \par Function Description
  *   Releases all internal references and releases the memory allocated to
  *   the given Complex data structure and then chain's up to the parent's
@@ -163,7 +163,7 @@ geda_complex_dispose(GObject *object)
 static void geda_complex_finalize(GObject *object)
 {
   Complex *complex = GEDA_COMPLEX(object);
-  Object  *obj     = GEDA_OBJECT(object);
+  GedaObject  *obj     = GEDA_OBJECT(object);
 
   if (complex->filename)
     GEDA_FREE(complex->filename);
@@ -196,16 +196,16 @@ static void geda_complex_finalize(GObject *object)
  */
 static void geda_complex_class_init(void *g_class, void *class_data)
 {
-  ComplexClass *class          = (ComplexClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  ComplexClass    *class         = (ComplexClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_complex_parent_class    = g_type_class_peek_parent( class );
+  geda_complex_parent_class      = g_type_class_peek_parent(class);
 
-  gobject_class->dispose       = geda_complex_dispose;
-  gobject_class->finalize      = geda_complex_finalize;
+  gobject_class->dispose         = geda_complex_dispose;
+  gobject_class->finalize        = geda_complex_finalize;
 
-  object_class->bounds         = geda_complex_bounds;
+  geda_class->bounds             = geda_complex_bounds;
 }
 
 /*! \brief Function to retrieve Complex's Type identifier.
@@ -256,16 +256,16 @@ GedaObjectType geda_complex_get_type (void)
  *
  *  \return pointer to the new Complex object.
  */
-Object *geda_complex_new (void)
+GedaObject *geda_complex_new (void)
 {
-  Object *complex = g_object_new( GEDA_TYPE_COMPLEX,
+  GedaObject *complex = g_object_new( GEDA_TYPE_COMPLEX,
                                  "type", OBJ_COMPLEX,
                                  "name", "complex",
                                  NULL );
   return GEDA_OBJECT(complex);
 }
 
-/*! \brief Determine if object is a Geda Complex Object.
+/*! \brief Determine if object is a Geda Complex GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Complex object.
@@ -274,5 +274,5 @@ Object *geda_complex_new (void)
  */
 bool is_a_geda_complex_object (Complex *cpx)
 {
-  return GEDA_IS_OBJECT(cpx) && (((Object*)cpx)->type == OBJ_COMPLEX);
+  return GEDA_IS_OBJECT(cpx) && (((GedaObject*)cpx)->type == OBJ_COMPLEX);
 }

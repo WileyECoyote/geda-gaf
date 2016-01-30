@@ -34,12 +34,12 @@
  *  \par Function Description
  *  \ingroup (gnetlist-SCM-API)
  */
-SCM vams_get_attribs_list (Object *object)
+SCM vams_get_attribs_list (GedaObject *object)
 {
 
-  Object *o_current;
+ GedaObject *o_current;
   GList  *a_iter;
-  Object *a_current;
+ GedaObject *a_current;
   int     val;
 
   char* found_name = NULL;

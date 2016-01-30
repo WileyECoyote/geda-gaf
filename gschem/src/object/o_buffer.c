@@ -83,7 +83,7 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
   /* reset all the refdes in the copied buffer */
   while (iter != NULL) {
 
-    Object *object = (Object*) iter->data;
+    GedaObject *object = (GedaObject*) iter->data;
 
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
       o_complex_reset_refdes(object);
@@ -181,7 +181,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
         y = snap_grid (w_current, top);
 
         for (iter = Current_PlaceList; iter != NULL; iter = iter->next) {
-          Object *o_current = iter->data;
+         GedaObject *o_current = iter->data;
           o_translate_object(o_current, w_x - x, w_y - y);
         }
 

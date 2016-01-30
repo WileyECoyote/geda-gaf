@@ -79,7 +79,7 @@ static WidgetStringData DialogStrings[] = {
  *
  */
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
-                                                 Object         *object)
+                                                 GedaObject     *object)
 {
   if (object != NULL && object->type == OBJ_TEXT) {
 
@@ -119,7 +119,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
       for ( ;  iter != NULL; iter = g_list_next(iter)) {
 
-        Object *o_current = iter->data;
+        GedaObject *o_current = iter->data;
 
         if (o_current->type == OBJ_TEXT) {
           if (strcmp(o_current->text->string, string) != 0)
@@ -269,7 +269,7 @@ static GtkListStore *create_menu_alignment (GschemToplevel *w_current)
  *  This function retrieve the user settings to the selected text objects
  *  and closes the dialog
  */
-void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
+void x_dialog_edit_text_ok(GschemToplevel *w_current, GedaObject *object)
 {
   GtkWidget     *ThisDialog;
 
@@ -363,7 +363,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
  *
  */
 void
-x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
+x_dialog_edit_text_response(GtkWidget *Dialog, int response, GedaObject *object)
 {
   GschemToplevel *w_current;
 
@@ -399,7 +399,7 @@ widget_value_modified (GtkWidget *widget, void * user_data)
  *  \par Function Description
  *  This Function creates the dialog to edit text properties.
  */
-void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
+void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 {
   GtkWidget *ThisDialog = w_current->tewindow;
 

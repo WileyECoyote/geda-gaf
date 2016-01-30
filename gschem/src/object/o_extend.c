@@ -46,9 +46,9 @@ typedef struct st_hit_record  hit_record;
 typedef struct st_path_record path_record;
 
 struct st_hit_record {
-  Object *object;    /* Pointer to object for this record   */
-  int     hits;      /* Number of times object was hit (by projectiles) */
-  double  distance;  /* o_get_shortest_distance */
+  GedaObject *object;    /* Pointer to object for this record   */
+  int         hits;      /* Number of times object was hit (by projectiles) */
+  double      distance;  /* o_get_shortest_distance */
 };
 
 /* ----------------------------- Qualifiers --------------------------- */
@@ -57,7 +57,7 @@ struct st_hit_record {
  *  \par Function Description
  *  Returns true if \a object can serve as a boundary.
  */
-static bool o_extend_is_valid_bounder (Object *object)
+static bool o_extend_is_valid_bounder (GedaObject *object)
 {
   int anwser;
 
@@ -97,7 +97,7 @@ static bool o_extend_is_list_valid_bounders (GList *list)
   if (iter) {
     anwser  = TRUE;
     while (iter) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       if (o_extend_is_valid_bounder(object)) {
         anwser = FALSE;
         break;
@@ -117,7 +117,7 @@ static bool o_extend_is_list_valid_bounders (GList *list)
  *  and buses.
  */
 
-static bool o_extend_is_valid_projectile (Object *object)
+static bool o_extend_is_valid_projectile (GedaObject *object)
 {
   int anwser;
 
@@ -155,7 +155,7 @@ static bool o_extend_is_list_valid_projectiles (GList *list)
   if (iter) {
     anwser  = TRUE;
     while (iter) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       if (o_extend_is_valid_projectile(object)) {
         anwser = FALSE;
         break;
@@ -185,7 +185,9 @@ static GList *o_extend_get_valid_bounders (GList *list)
   GList *iter     = list;
 
   while (iter) {
-    Object *object = iter->data;
+
+    GedaObject *object = iter->data;
+
     if (o_extend_is_valid_bounder(object)) {
       bounders = g_list_append(bounders, object);
     }
@@ -207,7 +209,7 @@ static GList *o_extend_get_nonlinear (GList *list)
   GList *iter     = list;
 
   while (iter) {
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
     if (GEDA_IS_OBJECT(object)) {
       switch (object->type) {
         case OBJ_ARC:
@@ -233,13 +235,15 @@ static GList *o_extend_get_nonlinear (GList *list)
  *
  *  \remark  Returned list must be freed
  */
-static GList *o_extend_get_projectiles (Object *exclude, GList *list)
+static GList *o_extend_get_projectiles (GedaObject *exclude, GList *list)
 {
   GList *projectiles = NULL;
   GList *iter        = list;
 
   while (iter) {
-    Object *object = iter->data;
+
+    GedaObject *object = iter->data;
+
     if (object != exclude && o_extend_is_valid_projectile(object)) {
       projectiles = g_list_append(projectiles, object);
     }
@@ -257,11 +261,11 @@ static GList *o_extend_get_projectiles (Object *exclude, GList *list)
  *
  *  \returns bounder object or NULL if neither can not bound the other
  */
-static Object *o_extend_get_bounder_of_two_linears (Object *object1,
-                                                    Object *object2)
+static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
+                                                        GedaObject *object2)
 {
-  Object *bounder;
-  POINT   point;
+  GedaObject *bounder;
+  POINT       point;
 
 
   if (o_line_get_intersection(object1, object2, &point)) {
@@ -364,7 +368,8 @@ static Object *o_extend_get_bounder_of_two_linears (Object *object1,
  *
  *  \returns 0 or 1
  */
-static int o_extend_get_closest_end(Object *projectile, Object *boundary)
+static int
+o_extend_get_closest_end(GedaObject *projectile, GedaObject *boundary)
 {
   double dist1;
   double dist2;
@@ -394,11 +399,11 @@ static int o_extend_get_closest_end(Object *projectile, Object *boundary)
  *
  *  \remark boundary Must be an Arc object and is not checked!
  */
-static bool o_extend_can_arc_bound(Object  *boundary,
-                                   Object  *projectile,
-                                   int      which_end,
-                                   char     direction,
-                                   POINT   *point)
+static bool o_extend_can_arc_bound(GedaObject *boundary,
+                                   GedaObject *projectile,
+                                   int         which_end,
+                                   char        direction,
+                                   POINT      *point)
 {
   int    answer;
   int    included;
@@ -631,11 +636,11 @@ static bool o_extend_can_arc_bound(Object  *boundary,
  *  \image html projections2.png
  *  \image latex projections2.png
  */
-static bool o_extend_can_box_bound(Object  *boundary,
-                                   Object  *projectile,
-                                   int      which_end,
-                                   char     direction,
-                                   POINT   *point)
+static bool o_extend_can_box_bound(GedaObject *boundary,
+                                   GedaObject *projectile,
+                                   int         which_end,
+                                   char        direction,
+                                   POINT      *point)
 {
   Box   *box  = boundary->box;
   Line  *proj = projectile->line;
@@ -1089,11 +1094,11 @@ static bool o_extend_can_box_bound(Object  *boundary,
  *
  *  \remark boundary Must be a Path object and is not checked!
  */
-static bool o_extend_can_path_bound(Object *boundary,
-                                    Object *projectile,
-                                    int     which_end,
-                                    char    direction,
-                                    POINT  *point)
+static bool o_extend_can_path_bound(GedaObject *boundary,
+                                    GedaObject *projectile,
+                                    int         which_end,
+                                    char        direction,
+                                    POINT      *point)
 {
   GArray *points;
   POINT   target;
@@ -1185,11 +1190,11 @@ static bool o_extend_can_path_bound(Object *boundary,
  *
  *  \remark boundary Must be a Linear object and is not checked!
  */
-static bool o_extend_can_linear_bound(Object *boundary,
-                                      Object *projectile,
-                                      int     which_end,
-                                      char    direction,
-                                      POINT  *point)
+static bool o_extend_can_linear_bound(GedaObject *boundary,
+                                      GedaObject *projectile,
+                                      int         which_end,
+                                      char        direction,
+                                      POINT      *point)
 {
   bool  has_slope1;
   bool  has_slope2;
@@ -1290,11 +1295,11 @@ static bool o_extend_can_linear_bound(Object *boundary,
  *
  *  \remark boundary Must be a Circle object and is not checked!
  */
-static bool o_extend_can_circle_bound(Object  *boundary,
-                                      Object  *projectile,
-                                      int      which_end,
-                                      char     direction,
-                                      POINT   *point)
+static bool o_extend_can_circle_bound(GedaObject *boundary,
+                                      GedaObject *projectile,
+                                      int         which_end,
+                                      char        direction,
+                                      POINT      *point)
 {
   bool   answer;
   int    x1, y1, x2, y2;
@@ -1530,13 +1535,13 @@ static bool o_extend_can_circle_bound(Object  *boundary,
  *
  *  \returns TRUE or FALSE
  */
-static bool o_extend_can_bound(Object  *boundary,
-                               Object  *projectile,
-                               int      which_end,
-                               char     direction,
-                               POINT   *point)
+static bool o_extend_can_bound(GedaObject *boundary,
+                               GedaObject *projectile,
+                               int         which_end,
+                               char        direction,
+                               POINT      *point)
 {
-  bool (*discriminator)(Object *, Object *, int, char, POINT *);
+  bool (*discriminator)(GedaObject *, GedaObject *, int, char, POINT *);
 
   switch (boundary->type) {
     case OBJ_ARC:
@@ -1566,11 +1571,11 @@ static bool o_extend_can_bound(Object  *boundary,
  *
  *  \returns TRUE or FALSE
  */
-static bool o_extend_can_hit_target(Object *projectile,
-                                    Object *target,
-                                    int     which_end,
-                                    char    direction,
-                                    double *distance)
+static bool o_extend_can_hit_target(GedaObject *projectile,
+                                    GedaObject *target,
+                                    int         which_end,
+                                    char        direction,
+                                    double     *distance)
 {
   bool   answer;
   POINT  point;
@@ -1599,7 +1604,7 @@ static bool o_extend_can_hit_target(Object *projectile,
  *
  *  \returns char assignment designating the direction
  */
-char o_extend_get_direction(Object *object, int which_end)
+char o_extend_get_direction(GedaObject *object, int which_end)
 {
   char direction;
 
@@ -1662,18 +1667,18 @@ char o_extend_get_direction(Object *object, int which_end)
  *
  *  \remark Note that all projectiles can also be bounders.
  */
-Object *o_extend_get_bounder (GList *list, const POINT *point)
+GedaObject *o_extend_get_bounder (GList *list, const POINT *point)
 {
-  Object *bounder = NULL;
-  GList  *iter    = list;
-  int     count;
+  GedaObject *bounder = NULL;
+  GList      *iter    = list;
+  int         count;
 
   count = g_list_length(list);
 
   if (count == 2) { /* Handle the simple case = two objects */
 
-    Object *object1;
-    Object *object2;
+    GedaObject *object1;
+    GedaObject *object2;
 
     bool valid1;
     bool valid2;
@@ -1760,9 +1765,9 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
           int hits = 0;
 
           for (iter = projectiles; iter; iter = iter->next) {
-            Object *projectile = iter->data;
+           GedaObject *projectile = iter->data;
             for (iter2 = bounders; iter2; iter2 = iter2->next) {
-              Object *boundary = iter2->data;
+             GedaObject *boundary = iter2->data;
               int  which_end = o_extend_get_closest_end(projectile, boundary);
               char direction = o_extend_get_direction(projectile, which_end);
               if (boundary != projectile) { /* Skip the object were checking */
@@ -1773,7 +1778,7 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
             }
           }
 
-          Object *record = g_list_nth_data(bounders, index);
+         GedaObject *record = g_list_nth_data(bounders, index);
 
           hit_records[index].object = record;
           hit_records[index].hits   = hits;
@@ -1810,10 +1815,10 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
 
         int hits = 0;
 
-        Object *projectile = g_list_nth_data(projectiles, index);
+       GedaObject *projectile = g_list_nth_data(projectiles, index);
 
         for (iter = projectiles; iter; iter = iter->next) {
-          Object *boundary = iter->data;
+         GedaObject *boundary = iter->data;
           if (boundary != projectile) { /* Skip the object were checking */
             int  which_end = o_extend_get_closest_end(projectile, boundary);
             char direction = o_extend_get_direction(projectile, which_end);
@@ -1905,7 +1910,7 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
  *
  *  \returns True if the operation succeeded, otherwise false
  */
-bool o_extend_object (Object *projectile, Object *bounder)
+bool o_extend_object (GedaObject *projectile, GedaObject *bounder)
 {
   POINT  point;
   char   direction;
@@ -1936,13 +1941,17 @@ bool o_extend_object (Object *projectile, Object *bounder)
 
 /* ------------------------ Project List Iterator --------------------- */
 
-int o_extend_object_list (GschemToplevel *w_current, Object *bounder, GList *projectiles)
+int o_extend_object_list (GschemToplevel *w_current,
+                          GedaObject     *bounder,
+                          GList          *projectiles)
 {
   int    status = 0;
   GList *iter;
 
   for(iter = projectiles; iter; iter = iter->next) {
-    Object *projectile = iter->data;
+
+    GedaObject *projectile = iter->data;
+
     if (o_extend_object(projectile, bounder)) {
       o_invalidate_object(w_current, projectile);
       status++;
@@ -1962,19 +1971,19 @@ int o_extend_object_list (GschemToplevel *w_current, Object *bounder, GList *pro
  *  \returns 0 if not valid, 2 if valid projectile but no hits and 3 if
  *           the operation succeeded.
  */
-int o_extend_blind (GschemToplevel *w_current, Object *projectile)
+int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
 {
   bool    ret_val;
 
   if (o_extend_is_valid_projectile (projectile)) {
 
-    GList  *iter;
-    Object *target;
-    double  shortest;
-    char    direction;
-    int     which_end;
-    int     x;
-    int     y;
+    GList      *iter;
+    GedaObject *target;
+    double      shortest;
+    char        direction;
+    int         which_end;
+    int         x;
+    int         y;
 
     ret_val = 2;
 
@@ -1991,7 +2000,7 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
     while (iter) {
 
       double  distance;
-      Object *bounder;
+     GedaObject *bounder;
 
       bounder = iter->data;
 
@@ -2004,7 +2013,7 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
         if (which_end == closest_end) {
 
           if (o_extend_can_hit_target(projectile, bounder, which_end,
-                                                  direction, &distance))
+                                      direction, &distance))
           {
             if (distance != G_MAXDOUBLE && distance < shortest) {
               target   = bounder;
@@ -2053,7 +2062,7 @@ int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
 
   for(iter = projectiles; iter; iter = iter->next) {
 
-    Object *projectile = iter->data;
+   GedaObject *projectile = iter->data;
 
     if (o_extend_blind(w_current, projectile) == 3) {
       status++;
@@ -2083,7 +2092,7 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int status;
 
-  Object *o_current = o_find_get_hit (w_current, w_x, w_y);
+ GedaObject *o_current = o_find_get_hit (w_current, w_x, w_y);
 
   if (o_current != NULL) {
 
@@ -2148,12 +2157,12 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
 int o_extend_end (GschemToplevel *w_current, int x, int y)
 {
   int     status;
-  Object *o_current = o_find_get_hit (w_current, x, y);
+ GedaObject *o_current = o_find_get_hit (w_current, x, y);
 
   if (o_current != NULL) {
 
     GList  *object_list;
-    Object *bounder;
+   GedaObject *bounder;
 
     int count;
 
@@ -2166,7 +2175,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
     if (count == 1) {
 
-      Object *projectile;
+     GedaObject *projectile;
 
       if (o_extend_is_valid_projectile(o_current)) {
 
@@ -2249,7 +2258,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 bool o_extend_selection (GschemToplevel *w_current, int count)
 {
   GList  *object_list;
-  Object *bounder;
+ GedaObject *bounder;
   int     status;
 
   object_list = geda_list_get_glist (Current_Selection);
@@ -2259,7 +2268,7 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
 
     if (count == 2) {
 
-      Object *projectile;
+     GedaObject *projectile;
 
       if (g_list_nth_data(object_list,1) != bounder) {
         projectile = g_list_nth_data(object_list,1);

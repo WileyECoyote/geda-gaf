@@ -31,7 +31,7 @@
 
 /*! \brief
  *  \par Function Description
- *  The function creates a new Object of type arc.
+ *  The function creates a new GedaObject of type arc.
  *
  *  The arc is defined by its center in parameters x and y.
  *  The radius parameter specifies the radius of the arc. The start
@@ -41,7 +41,7 @@
  *  All dimensions are in world unit, except start_angle and
  *  arc_sweep in degrees.
  *
- *  A new object of type Object is allocated. Its type and color
+ *  A new object of type GedaObject is allocated. Its type and color
  *  are initilized. The description of the arc characteristics
  *  are stored in a new Arc structure.
  *
@@ -55,9 +55,9 @@
  *  \param [in] arc_sweep
  *  \return
  */
-Object *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_sweep)
+GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_sweep)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Arc    *arc;
 
   new_obj = geda_arc_new();
@@ -95,18 +95,18 @@ Object *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_
 /*! \brief
  *  \par Function Description
  *  This function creates a new object representing an arc. The
- *  values of the <B>\a o_current</B> pointed Object are then copied
+ *  values of the <B>\a o_current</B> pointed GedaObject are then copied
  *  to the new object. Line options are initialized whereas the
  *  fill options are initialized to passive values - as an arc
  *  can not be filled.
  *
  *  \param [in] o_current
  *
- *  \return The new Object
+ *  \return The new GedaObject
  */
-Object *o_arc_copy(Object *o_current)
+GedaObject *o_arc_copy(GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
 
   g_return_val_if_fail(GEDA_IS_ARC(o_current), NULL);
 
@@ -147,7 +147,7 @@ Object *o_arc_copy(Object *o_current)
  *  \param [in]     whichone
  */
 void
-o_arc_modify(Object *object, int x, int y, int whichone)
+o_arc_modify(GedaObject *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case ARC_CENTER:
@@ -207,12 +207,12 @@ o_arc_modify(Object *object, int x, int y, int whichone)
  *
  *  \param [out] err           A GError object
  *
- *  \return The ARC Object that was created, or NULL on error.
+ *  \return The ARC GedaObject that was created, or NULL on error.
  */
-Object*
+GedaObject*
 o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x1, y1;
   int radius;
@@ -294,7 +294,7 @@ o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_
  *  \return the string representation of the arc object
  */
 char*
-o_arc_save(Object *object)
+o_arc_save(GedaObject *object)
 {
   int x, y, radius, start_angle, arc_sweep;
   int arc_width, arc_length, arc_space;
@@ -340,7 +340,7 @@ o_arc_save(Object *object)
  *  \param [in] center_y
  */
 void
-o_arc_mirror(Object *object, int center_x, int center_y)
+o_arc_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
   object->arc->x -= center_x;
@@ -384,7 +384,7 @@ o_arc_mirror(Object *object, int center_x, int center_y)
  *  \param [in] angle
  */
 void
-o_arc_rotate(Object *object, int center_x, int center_y, int angle)
+o_arc_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int x, y, newx, newy;
 
@@ -418,7 +418,7 @@ o_arc_rotate(Object *object, int center_x, int center_y, int angle)
 
 }
 
-/*! \brief Apply Translation to an Arc Object
+/*! \brief Apply Translation to an Arc GedaObject
  *  \par Function Description
  *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
  *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
@@ -428,7 +428,7 @@ o_arc_rotate(Object *object, int center_x, int center_y, int angle)
  *  \param [in] dy
  */
 void
-o_arc_translate(Object *object, int dx, int dy)
+o_arc_translate(GedaObject *object, int dx, int dy)
 {
   if (object == NULL) {
     return;
@@ -461,7 +461,7 @@ o_arc_translate(Object *object, int dx, int dy)
  *           Arc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
 bool
-o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+o_arc_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   Arc *arc;
   bool result;
@@ -607,7 +607,7 @@ o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
-o_arc_get_position (int *x, int *y, Object *object)
+o_arc_get_position (int *x, int *y, GedaObject *object)
 {
   *x = object->arc->x;
   *y = object->arc->y;
@@ -630,7 +630,7 @@ o_arc_get_position (int *x, int *y, Object *object)
  *  \param [in] origin_y
  */
 void
-o_arc_print(GedaToplevel *toplevel, FILE *fp, Object *object,
+o_arc_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
             int origin_x, int origin_y)
 {
   int x, y, radius, start_angle, arc_sweep;
@@ -1230,7 +1230,7 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \return The shortest distance from the object to the point. With an
  *          invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_arc_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
   double radius;

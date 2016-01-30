@@ -38,7 +38,7 @@ print_page_info(GtkWidget *button, GschemToplevel *w_current)
 }
 
 static int
-o_diagnostics_notifier_one(void *wc, Object *object)
+o_diagnostics_notifier_one(void *wc, GedaObject *object)
 {
   if (object)
     printf( "%s object <%s>\n", __func__, object->name);
@@ -48,7 +48,7 @@ o_diagnostics_notifier_one(void *wc, Object *object)
 }
 
 static int
-o_diagnostics_notifier_two(void *wc, Object *object)
+o_diagnostics_notifier_two(void *wc, GedaObject *object)
 {
  if (object)
     printf( "%s object <%s>\n", __func__, object->name);
@@ -74,7 +74,7 @@ remove_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
 
 /*
 static void
-o_diagnostics_notify_attribute (GschemToplevel *w_current, Object *object)
+o_diagnostics_notify_attribute (GschemToplevel *w_current, GedaObject *object)
 {
  if (object)
     printf( "%s object type = <%c>\n", __func__, object->type);
@@ -131,7 +131,7 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
 
   for (index = 0; index < how_many; index++) {
 
-    Object *object;
+    GedaObject *object;
     int     total;
     int     num;
 

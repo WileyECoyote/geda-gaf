@@ -30,7 +30,7 @@
 
 #include <geda_debug.h>
 
-/*! \brief Get the Default Color Index for an Object
+/*! \brief Get the Default Color Index for a GedaObject
  *  \par Function Description
  *
  */

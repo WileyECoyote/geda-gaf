@@ -258,9 +258,9 @@ preview_update (GschemPreview *preview)
 
   if (preview->active) {
 
-    GError *err;
-    GList  *object_list = NULL;
-    Object *text;
+    GError     *err;
+    GList      *object_list = NULL;
+    GedaObject *text;
 
     int left, top, right, bottom;
 

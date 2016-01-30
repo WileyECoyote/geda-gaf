@@ -57,7 +57,7 @@ SCM edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
 SCM edascm_from_page (Page *page);
 
 /* Create a Guile value from an object structure. */
-SCM edascm_from_object (Object *object);
+SCM edascm_from_object (GedaObject *object);
 
 /* Create a Guile value from a configuration context structure. */
 SCM edascm_from_config (EdaConfig *cfg);
@@ -66,7 +66,7 @@ SCM edascm_from_config (EdaConfig *cfg);
 Page *edascm_to_page (SCM smob);
 
 /* Retrieve an object structure from a Guile value. */
-Object *edascm_to_object (SCM smob);
+GedaObject *edascm_to_object (SCM smob);
 
 /* Retrieve an configuration context structure from a Guile value. */
 EdaConfig *edascm_to_config (SCM smob);

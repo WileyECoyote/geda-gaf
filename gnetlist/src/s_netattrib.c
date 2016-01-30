@@ -145,7 +145,7 @@ char *s_netattrib_extract_netname(char *value)
  *         node.
  */
 void
-s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
+s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
                         NETLIST *netlist, char *value, char *hierarchy_tag)
 {
   char *char_ptr;
@@ -254,7 +254,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
  *  attribute that is found.
  */
 void
-s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
+s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
                     NETLIST *netlist, char *hierarchy_tag)
 {
   char *value;
@@ -304,7 +304,7 @@ s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
  *
   * \note caller should GEDA_FREE returned string
  */
-char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
+char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
 {
   char *value             = NULL;
   char *char_ptr          = NULL;
@@ -413,7 +413,7 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
  *  \par Function Description
  *
  */
-char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_pin,
+char *s_netattrib_return_netname(GedaToplevel *pr_current,GedaObject *o_pin,
                                  char *pinnumber, char *hierarchy_tag)
 {
   const char *pin_num;

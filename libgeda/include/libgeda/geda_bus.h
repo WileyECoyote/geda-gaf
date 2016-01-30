@@ -69,7 +69,7 @@ extern "C" {
 GedaObjectType geda_bus_get_type     (void) GEDA_CONST;
 bool           is_a_geda_bus_object  (Bus *object);
 
-Object        *geda_bus_new          (void);
+GedaObject    *geda_bus_new          (void);
 
 #ifdef __cplusplus
 }

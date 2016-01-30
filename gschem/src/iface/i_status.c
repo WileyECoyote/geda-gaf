@@ -398,7 +398,7 @@ static bool hatchable_object_selected(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_BOX || obj->type == OBJ_CIRCLE ||
         obj->type == OBJ_ARC || obj->type == OBJ_PATH)
@@ -419,7 +419,7 @@ static bool linetype_object_selected(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_LINE   || obj->type == OBJ_BOX ||
         obj->type == OBJ_CIRCLE || obj->type == OBJ_ARC ||
@@ -441,7 +441,7 @@ static bool selected_at_least_one_text_object(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_TEXT) {
       return TRUE;
@@ -460,7 +460,7 @@ static bool selected_complex_object(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_COMPLEX) {
       return TRUE;
@@ -479,7 +479,7 @@ static bool selected_at_least_one_pic_object(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_PICTURE) {
       return TRUE;
@@ -498,7 +498,7 @@ static bool selected_at_least_one_pin_object(GList *list)
 {
   while(list != NULL) {
 
-    Object *obj = (Object*)list->data;
+    GedaObject *obj = (GedaObject*)list->data;
 
     if (obj->type == OBJ_PIN) {
       return TRUE;

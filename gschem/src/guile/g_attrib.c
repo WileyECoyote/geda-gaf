@@ -88,7 +88,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   GedaToplevel *toplevel = w_current->toplevel;
 
   /* Check target object, if present */
-  Object *obj = NULL;
+  GedaObject *obj = NULL;
   if (edascm_is_object (target_s)) {
     obj = edascm_to_object (target_s);
     if (geda_object_get_page (obj) != toplevel->page_current) {
@@ -132,7 +132,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   char *str = u_string_sprintf ("%s=%s", name, value);
   scm_dynwind_unwind_handler (g_free, str, SCM_F_WIND_EXPLICITLY);
 
-  Object *result = o_attrib_add_attrib (w_current, str, visibility, show, obj);
+  GedaObject *result = o_attrib_add_attrib (w_current, str, visibility, show, obj);
 
   scm_dynwind_end ();
 

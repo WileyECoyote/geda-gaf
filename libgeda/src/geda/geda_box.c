@@ -39,10 +39,10 @@ static GObjectClass *geda_box_parent_class = NULL;
  *  parameters to the boundings of the box object described in <B>*box</B>
  *  in world units.
  *
- *  \param [in]  object  Box Object to read coordinates from.
+ *  \param [in]  object  Box GedaObject to read coordinates from.
  */
 int
-geda_box_bounds(Object *object)
+geda_box_bounds(GedaObject *object)
 {
   int halfwidth;
 
@@ -70,13 +70,13 @@ geda_box_bounds(Object *object)
  */
 static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Box    *box       = (Box*)instance;
-  Object *object    = &box->parent_instance;
+  Box        *box    = (Box*)instance;
+  GedaObject *object = &box->parent_instance;
 
-  box->upper_x      = 0;
-  box->upper_y      = 0;
-  box->lower_x      = 0;
-  box->lower_y      = 0;
+  box->upper_x       = 0;
+  box->upper_y       = 0;
+  box->lower_x       = 0;
+  box->lower_y       = 0;
 
   box->fill_options.fill_type     = default_fill_type;
   box->fill_options.fill_width    = default_fill_width;
@@ -102,7 +102,7 @@ geda_box_dispose(GObject *object)
   G_OBJECT_CLASS(geda_box_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Box Object Finalization Function
+/*! \brief Geda Box GedaObject Finalization Function
  *  \par Function Description
  *   This function invalidates the Box's markers and then chains up to
  *   the parent's finalize handler. Once invalidated, GEDA_IS_BOX will
@@ -110,7 +110,7 @@ geda_box_dispose(GObject *object)
  */
 static void geda_box_finalize(GObject *object)
 {
-  Object *obj = GEDA_OBJECT(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaBox */
   obj->box    = NULL;
@@ -130,16 +130,16 @@ static void geda_box_finalize(GObject *object)
  */
 static void geda_box_class_init(void *g_class, void *class_data)
 {
-  BoxClass     *class          = (BoxClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  BoxClass        *class         = (BoxClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
 
-  geda_box_parent_class        = g_type_class_peek_parent( class );
+  geda_box_parent_class          = g_type_class_peek_parent( class );
 
-  gobject_class->dispose       = geda_box_dispose;
-  gobject_class->finalize      = geda_box_finalize;
+  gobject_class->dispose         = geda_box_dispose;
+  gobject_class->finalize        = geda_box_finalize;
 
-  object_class->bounds         = geda_box_bounds;
+  geda_class->bounds             = geda_box_bounds;
 }
 
 /*! \brief Function to retrieve Box's Type identifier.
@@ -190,16 +190,16 @@ GedaObjectType geda_box_get_type (void)
  *
  *  \return pointer to the new Box object.
  */
-Object *geda_box_new (void)
+GedaObject *geda_box_new (void)
 {
-  Object *box = g_object_new( GEDA_TYPE_BOX,
+  GedaObject *box = g_object_new( GEDA_TYPE_BOX,
                              "type", OBJ_BOX,
                              "name", "box",
                               NULL );
   return GEDA_OBJECT(box);
 }
 
-/*! \brief Determine if object is a Geda Box Object.
+/*! \brief Determine if object is a Geda Box GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Box object.
@@ -208,5 +208,5 @@ Object *geda_box_new (void)
  */
 bool is_a_geda_box_object (Box *box)
 {
-  return GEDA_IS_OBJECT(box) && (((Object*)box)->type == OBJ_BOX);
+  return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }

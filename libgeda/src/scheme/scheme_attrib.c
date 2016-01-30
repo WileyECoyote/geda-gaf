@@ -63,8 +63,8 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   SCM_ASSERT (edascm_is_object_type (attrib_s, OBJ_TEXT), attrib_s,
               SCM_ARG2, scheme_attrib_attach_x);
 
-  Object *obj = edascm_to_object (obj_s);
-  Object *attrib = edascm_to_object (attrib_s);
+  GedaObject *obj = edascm_to_object (obj_s);
+  GedaObject *attrib = edascm_to_object (attrib_s);
 
   /* Check that attachment doesn't already exist */
   if (attrib->attached_to == obj) return obj_s;
@@ -124,8 +124,8 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   SCM_ASSERT (edascm_is_object_type (attrib_s, OBJ_TEXT), attrib_s,
               SCM_ARG2, scheme_attrib_detach_x);
 
-  Object *obj = edascm_to_object (obj_s);
-  Object *attrib = edascm_to_object (attrib_s);
+  GedaObject *obj = edascm_to_object (obj_s);
+  GedaObject *attrib = edascm_to_object (attrib_s);
 
   /* If attrib isn't attached, do nothing */
   if (attrib->attached_to == NULL) {
@@ -154,13 +154,13 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
 /*! \brief Get a list of an object's attributes.
  * \par Function Description
  * Retrieves the attributes of the smob \a obj_s as a Scheme list of
- * #Object smobs.
+ * #GedaObject smobs.
  *
  * \note Scheme API: Implements the %object-attribs procedure of the
  * (geda core attrib) module.
  *
  * param obj_s object to get attributes for.
- * \return a list of #Object smobs.
+ * \return a list of #GedaObject smobs.
  */
 EDA_SCM_DEFINE (attrib_from_object, "%object-attribs", 1, 0, 0,
                (SCM obj_s), "Get an object's attributes.")
@@ -169,14 +169,14 @@ EDA_SCM_DEFINE (attrib_from_object, "%object-attribs", 1, 0, 0,
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
               SCM_ARG1, scheme_attrib_from_object);
 
-  Object *obj = edascm_to_object (obj_s);
+  GedaObject *obj = edascm_to_object (obj_s);
 
   return edascm_from_object_glist (obj->attribs);
 }
 
 /*! \brief Get the object that an attribute is attached to.
  * \par Function Description
- * Returns the #Object smob that \a attrib_s is attached to.  If \a
+ * Returns the #GedaObject smob that \a attrib_s is attached to.  If \a
  * attrib_s is not attached as an attribute, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %attrib-attachment procedure of
@@ -193,7 +193,7 @@ EDA_SCM_DEFINE (attrib_get_parent, "%attrib-attachment", 1, 0, 0,
   SCM_ASSERT (EDASCM_OBJECTP (attrib_s), attrib_s,
               SCM_ARG1, scheme_attrib_get_parent);
 
-  Object *obj = edascm_to_object (attrib_s);
+  GedaObject *obj = edascm_to_object (attrib_s);
 
   if (obj->attached_to == NULL) {
     return SCM_BOOL_F;
@@ -226,7 +226,7 @@ EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (text_s, OBJ_TEXT), text_s,
               SCM_ARG1, scheme_attrib_parse);
 
-  Object *text = edascm_to_object (text_s);
+  GedaObject *text = edascm_to_object (text_s);
 
   scm_dynwind_begin (0);
   scm_dynwind_unwind_handler (g_free, name, SCM_F_WIND_EXPLICITLY);
@@ -264,7 +264,7 @@ EDA_SCM_DEFINE (attrib_promotable, "%promotable-attribs", 1, 0, 0,
               SCM_ARG1, scheme_attrib_promotable);
 
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
-  Object *obj = edascm_to_object (complex_s);
+  GedaObject *obj = edascm_to_object (complex_s);
 
   GList *lst = o_complex_get_promotable (toplevel, obj, FALSE);
 

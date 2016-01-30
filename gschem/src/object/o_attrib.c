@@ -49,7 +49,7 @@
  */
 void o_attrib_attached_2_selection(GschemToplevel *w_current,
                                    SELECTION      *selection,
-                                   Object         *object)
+                                   GedaObject     *object)
 {
   if (selection) {
 
@@ -60,7 +60,7 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
 
     for (a_iter = object->attribs; a_iter; NEXT(a_iter)) {
 
-      Object *a_current = a_iter->data;
+      GedaObject *a_current = a_iter->data;
 
       /* make sure object isn't selected already */
       if (!a_current->selected) {
@@ -91,13 +91,13 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
  */
 void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
 {
-  GList  *attached_objects = NULL;
-  GList  *iter             = list;
-  Object *target           = w_current->which_object;
+  GList      *attached_objects = NULL;
+  GList      *iter             = list;
+  GedaObject *target           = w_current->which_object;
 
   while (iter != NULL) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (object != NULL && object->attached_to == NULL && object != target) {
 
@@ -134,7 +134,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
  */
 void o_attrib_deselect_invisible (GschemToplevel *w_current,
                                   SELECTION      *selection,
-                                  Object         *object)
+                                  GedaObject     *object)
 {
   GList *a_iter;
 
@@ -149,7 +149,7 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
 
   for (a_iter = object->attribs; a_iter != NULL; NEXT(a_iter)) {
 
-    Object *a_current = a_iter->data;
+    GedaObject *a_current = a_iter->data;
 
     if (a_current->selected && !o_get_is_visible(a_current)) {
       o_selection_remove (selection, a_current);
@@ -170,7 +170,7 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
  */
 void o_attrib_select_invisible (GschemToplevel *w_current,
                                 SELECTION      *selection,
-                                Object         *object)
+                                GedaObject     *object)
 {
   GList  *a_iter;
 
@@ -185,7 +185,7 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
 
   for (a_iter = object->attribs; a_iter != NULL; NEXT(a_iter)) {
 
-    Object *a_current = a_iter->data;
+   GedaObject *a_current = a_iter->data;
 
     if (!a_current->selected && !o_get_is_visible(a_current)) {
       o_selection_add (selection, a_current);
@@ -202,7 +202,7 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     The attribute object.
  */
-void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
+void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
 {
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
@@ -237,7 +237,8 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
  *  \param [in] show_name_value  The new display flag for attribute.
  */
 void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
-                                     Object *object, int show_name_value)
+                                     GedaObject      *object,
+                                     int              show_name_value)
 {
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
@@ -257,11 +258,11 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
  *
  *  \note This function no longer returns NULL, instead the new object,
  *        aka text item, is always return */
-Object *o_attrib_add_attrib(GschemToplevel *w_current,
-                            const char     *text_string,
-                            int             visibility,
-                            int             show_name_value,
-                            Object         *parent)
+GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
+                                const char     *text_string,
+                                int             visibility,
+                                int             show_name_value,
+                                GedaObject     *parent)
 {
   Page *page;
   int world_x, world_y;
@@ -270,7 +271,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   int color;
   int left, right, top, bottom;
 
-  Object *new_obj;
+  GedaObject *new_obj;
 
   world_x = -1;
   world_y = -1;
@@ -421,7 +422,8 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
  * TODO: This function assumes there is only attribute with the given
  *       name.
  */
-bool o_attrib_reset_position (GschemToplevel *w_current, Object *parent, Object *attrib)
+bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
+                                                         GedaObject *attrib)
 {
   char   *name;
   bool    modified;

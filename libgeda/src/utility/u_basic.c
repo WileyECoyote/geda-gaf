@@ -131,7 +131,7 @@ u_expand_env_variable (const char *string)
   return NULL;
 }
 
-void u_print_object(Object *object)
+void u_print_object(GedaObject *object)
 {
   int top    = object->top;
   int left   = object->left;
@@ -162,7 +162,7 @@ void u_print_object(Object *object)
 
   int i = 1;
   for(iter = prim_objs; iter; NEXT(iter)) {
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
     if (o_current->type == OBJ_TEXT)
       fprintf(stderr, "prim_objs %d) Name=<%s>, str=<%s>, visibility=%d\n",
               i, o_current->name, o_current->text->string, o_current->visibility);
@@ -173,7 +173,7 @@ void u_print_object(Object *object)
   fprintf(stderr, "\n");
   i = 1;
   for(iter = attribs; iter; NEXT(iter)) {
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
     fprintf(stderr, "attrib %d) Name=<%s>, str=<%s>, visibility=%d\n",
             i, o_current->name, o_current->text->string, o_current->visibility);
     i++;

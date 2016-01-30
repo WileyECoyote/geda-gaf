@@ -45,7 +45,7 @@ EDA_SCM_DEFINE (complex_make, "%make-complex", 1, 0, 0,
   SCM_ASSERT (scm_is_string (basename_s), basename_s, SCM_ARG1, scheme_complex_make);
 
   char *tmp = scm_to_utf8_string (basename_s);
-  Object *obj = o_complex_new_embedded (0, 0, 0, FALSE, tmp, TRUE);
+  GedaObject *obj = o_complex_new_embedded (0, 0, 0, FALSE, tmp, TRUE);
   free (tmp);
 
   SCM result = edascm_from_object (obj);
@@ -95,7 +95,7 @@ EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
     scm_dynwind_unwind_handler (free, basename, SCM_F_WIND_EXPLICITLY);
 
     GedaToplevel *toplevel;
-    Object       *obj;
+    GedaObject   *obj;
 
     toplevel = edascm_c_current_toplevel();
     obj      = o_complex_new (toplevel, 0, 0, 0, FALSE, clib, basename, TRUE);
@@ -140,7 +140,7 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
   SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, scheme_complex_set_x);
   SCM_ASSERT (scm_is_integer (angle_s), angle_s, SCM_ARG4, scheme_complex_set_x);
 
-  Object *obj = edascm_to_object (complex_s);
+  GedaObject *obj = edascm_to_object (complex_s);
 
   o_notify_emit_pre_change (obj);
 
@@ -215,7 +215,7 @@ EDA_SCM_DEFINE (complex_info, "%complex-info", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (complex_s, OBJ_COMPLEX), complex_s,
               SCM_ARG1, scheme_complex_info);
 
-  Object *obj = edascm_to_object (complex_s);
+  GedaObject *obj = edascm_to_object (complex_s);
 
   return scm_list_n (scm_from_utf8_string (obj->complex->filename),
                      scm_from_int (obj->complex->x),
@@ -242,7 +242,7 @@ EDA_SCM_DEFINE (complex_contents, "%complex-contents", 1, 0, 0,
   SCM_ASSERT (edascm_is_object_type (complex_s, OBJ_COMPLEX), complex_s,
               SCM_ARG1, scheme_complex_contents);
 
-  Object *obj = edascm_to_object (complex_s);
+  GedaObject *obj = edascm_to_object (complex_s);
 
   return edascm_from_object_glist (obj->complex->prim_objs);
 }
@@ -274,8 +274,8 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
                !edascm_is_object_type (obj_s, OBJ_PLACEHOLDER)),
               obj_s, SCM_ARG2, scheme_complex_append_x);
 
-  Object *parent = edascm_to_object (complex_s);
-  Object *child  = edascm_to_object (obj_s);
+  GedaObject *parent = edascm_to_object (complex_s);
+  GedaObject *child  = edascm_to_object (obj_s);
 
   /* Check that object is not already attached to a page */
   if (geda_object_get_page (child) != NULL) {
@@ -294,7 +294,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
 
   if (child->parent_object != parent) {
 
-  /* Object cleanup now managed by C code. */
+  /* GedaObject cleanup now managed by C code. */
   edascm_c_set_gc (obj_s, 0);
 
   /* Don't need to emit change notifications for the child because
@@ -341,8 +341,8 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
               SCM_ARG1, scheme_complex_remove_x);
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG2, scheme_complex_remove_x);
 
-  Object *parent = edascm_to_object (complex_s);
-  Object *child = edascm_to_object (obj_s);
+  GedaObject *parent = edascm_to_object (complex_s);
+  GedaObject *child = edascm_to_object (obj_s);
   Page *child_page = geda_object_get_page (child);
 
   /* Check that object is not attached to a different complex. */
@@ -391,7 +391,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
 
   s_object_set_page_changed (parent);
 
-  /* Object cleanup now managed by Guile. */
+  /* GedaObject cleanup now managed by Guile. */
   edascm_c_set_gc (obj_s, 1);
 
   return complex_s;
@@ -424,7 +424,7 @@ init_module_geda_core_complex (void *nothing)
 /*!
  * \brief Initialise the basic gEDA complex object manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with complex #Object
+ * Registers some Scheme procedures for working with complex #GedaObject
  * smobs. Should only be called by edascm_init().
  */
 void

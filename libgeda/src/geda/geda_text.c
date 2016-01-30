@@ -62,7 +62,7 @@ static GObjectClass *geda_text_parent_class = NULL;
  *  \param [in]  o_current a text object
  */
 int
-geda_text_bounds(Object *o_current)
+geda_text_bounds(GedaObject *o_current)
 {
   g_return_val_if_fail(GEDA_IS_TEXT(o_current), FALSE);
 
@@ -142,8 +142,8 @@ geda_text_bounds(Object *o_current)
  */
 static void geda_text_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Text   *text        = (Text*)instance;
-  Object *object      = &text->parent_instance;
+  Text       *text    = (Text*)instance;
+  GedaObject *object  = &text->parent_instance;
 
   text->x             = 0; /* world origin */
   text->y             = 0;
@@ -183,7 +183,7 @@ geda_text_dispose(GObject *object)
  */
 static void geda_text_finalize(GObject *object)
 {
-  Object *obj  = GEDA_OBJECT(object);
+  GedaObject *obj  = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaText */
   obj->text    = NULL;
@@ -203,16 +203,16 @@ static void geda_text_finalize(GObject *object)
  */
 static void geda_text_class_init(void *g_class, void *class_data)
 {
-  TextClass    *class          = (TextClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  TextClass       *class         = (TextClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
 
-  geda_text_parent_class       = g_type_class_peek_parent( class );
+  geda_text_parent_class         = g_type_class_peek_parent( class );
 
-  gobject_class->dispose       = geda_text_dispose;
-  gobject_class->finalize      = geda_text_finalize;
+  gobject_class->dispose         = geda_text_dispose;
+  gobject_class->finalize        = geda_text_finalize;
 
-  object_class->bounds         = geda_text_bounds;
+  geda_class->bounds             = geda_text_bounds;
 }
 
 /*! \brief Function to retrieve Text's Type identifier.
@@ -263,9 +263,9 @@ GedaObjectType geda_text_get_type (void)
  *
  *  \return pointer to the new Text object.
  */
-Object *geda_text_new (void)
+GedaObject *geda_text_new (void)
 {
-  Object *text = g_object_new( GEDA_TYPE_TEXT,
+  GedaObject *text = g_object_new( GEDA_TYPE_TEXT,
                                "type", OBJ_TEXT,
                                "name", "text",
                                 NULL );
@@ -281,6 +281,6 @@ Object *geda_text_new (void)
  */
 bool is_a_geda_text_object (Text *txt)
 {
-  return GEDA_IS_OBJECT(txt) && (((Object*)txt)->type == OBJ_TEXT);
+  return GEDA_IS_OBJECT(txt) && (((GedaObject*)txt)->type == OBJ_TEXT);
 }
 /** @} endgroup geda-text-object */

@@ -181,7 +181,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
   while(iter != NULL) {
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
     if (object->type != OBJ_TEXT) {
       is_only_text = FALSE;
       break;
@@ -246,7 +246,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+   GedaObject *o_current = iter->data;
 
     if (!(o_current->dont_redraw || o_current->selected)) {
         o_style_set_object(w_current->toplevel, o_current);
@@ -257,7 +257,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   if (!is_only_text) {
     /* Second pass -- render cues */
     for (iter = obj_list; iter != NULL; iter = iter->next) {
-      Object *o_current = iter->data;
+     GedaObject *o_current = iter->data;
       if (!(o_current->dont_redraw || o_current->selected)) {
         eda_renderer_draw_cues (renderer, o_current);
       }
@@ -273,7 +273,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
     for (iter = Current_Selection->glist; iter; iter = iter->next) {
 
-      Object *o_current = iter->data;
+     GedaObject *o_current = iter->data;
 
       if (!o_current->dont_redraw) {
 

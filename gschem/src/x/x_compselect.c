@@ -729,7 +729,7 @@ static void close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
 }
 
 /*! \brief GCompareFunc to sort an text object list by the object strings */
-static int sort_object_text (Object *a, Object *b)
+static int sort_object_text (GedaObject *a, GedaObject *b)
 {
   return strcmp (a->text->string, b->text->string);
 }
@@ -787,7 +787,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 
     for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
 
-      Object *o_current = o_iter->data;
+      GedaObject *o_current = o_iter->data;
 
       o_attrib_get_name_value (o_current, &name, &value);
       gtk_list_store_append (model, &iter);
@@ -805,7 +805,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 
       for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
 
-        Object *o_current = o_iter->data;
+        GedaObject *o_current = o_iter->data;
 
         if (o_attrib_get_name_value (o_current, &name, &value)) {
 

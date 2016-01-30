@@ -23,7 +23,7 @@
  *  \brief functions to get basic object properties
  *
  *  This file contains the code used to retrieve the properties ot
- *  relations of <b>Objects</b>. The object is the basic type of all
+ *  relations of <b>GedaObjects</b>. The object is the basic type of all
  *  elements stored in schematic and symbol files.
  */
 
@@ -35,7 +35,7 @@
 #include <libgeda_priv.h>
 #include <geda_text.h>
 
-bool o_get_has_slope (Object *object)
+bool o_get_has_slope (GedaObject *object)
 {
   bool answer;
 
@@ -56,14 +56,14 @@ bool o_get_has_slope (Object *object)
 /*! \brief Get the Parent index an object is attached to
  *
  * \par Function Description
- * If \a object is a attached to another #Object, returns the
+ * If \a object is a attached to another #GedaObject, returns the
  * sid of the parent object. Otherwise, returns -1.
  *
- * \param [in] object The Object for which to get the parent index.
+ * \param [in] object The GedaObject for which to get the parent index.
  *
  * \return sid of the parent \a object is attached or -1 if none.
  */
-int o_get_attached_parent_id (Object *object)
+int o_get_attached_parent_id (GedaObject *object)
 {
   int sid;
 
@@ -95,13 +95,13 @@ int o_get_capstyle (LINE_END end)
   }
 }
 
-/*! \brief get #Object's fill properties
+/*! \brief get #GedaObject's fill properties
  *
  *  \par Function Description
- *  This function get's the #Object's fill options.
+ *  This function get's the #GedaObject's fill options.
  *  See OBJECT_FILLING for information on valid fill types.
  *
- *  \param [in]   object    Object to read the properties
+ *  \param [in]   object    GedaObject to read the properties
  *  \param [out]  type      OBJECT_FILLING type
  *  \param [out]  width     fill width.
  *  \param [out]  pitch1    cross hatch line distance
@@ -111,7 +111,7 @@ int o_get_capstyle (LINE_END end)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool o_get_fill_options(Object *object,
+bool o_get_fill_options(GedaObject *object,
                         OBJECT_FILLING   *type, int *width,
                         int *pitch1, int *angle1,
                         int *pitch2, int *angle2)
@@ -144,11 +144,11 @@ bool o_get_fill_options(Object *object,
  *  attached to another object but could be any type of
  *  GedaObject
  *
- *  \param object  The Object to test
+ *  \param object  The GedaObject to test
  *
  *  \return TRUE if attached to another object, other wise FALSE.
  */
-bool o_get_is_attached (Object *object)
+bool o_get_is_attached (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
 }
@@ -158,11 +158,11 @@ bool o_get_is_attached (Object *object)
  *  \par Function Description
  *  Checks if an object is a bus or a bus pin
  *
- *  \param object  The Object to test
+ *  \param object  The GedaObject to test
  *
  *  \return TRUE if the object is a bus, or bus pin
  */
-bool o_get_is_bus_related (Object *object)
+bool o_get_is_bus_related (GedaObject *object)
 {
   return (GEDA_IS_BUS(object) || (GEDA_IS_PIN(object)
           && object->pin->node_type == PIN_BUS_NODE));
@@ -175,11 +175,11 @@ bool o_get_is_bus_related (Object *object)
  *  a Complex or Picture then object->embedded is returned
  *  otherwise FALSE is returned,
  *
- *  \param object  The Object to test
+ *  \param object  The GedaObject to test
  *
  *  \return TRUE if the object is embedded
  */
-bool o_get_is_embedded (Object *object)
+bool o_get_is_embedded (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_OBJECT (object), FALSE);
 
@@ -210,11 +210,11 @@ int o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
  *  \par Function Description
  *  Attribute getter for the selectable field within the object.
  *
- *  \param object   The Object structure to be queried
+ *  \param object   The GedaObject structure to be queried
  *
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
-bool o_get_is_selectable (Object *object)
+bool o_get_is_selectable (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selectable);
 }
@@ -224,11 +224,11 @@ bool o_get_is_selectable (Object *object)
  *  \par Function Description
  *  Attribute getter for the selectable field within the object.
  *
- *  \param object   The Object structure to be queried
+ *  \param object   The GedaObject structure to be queried
  *
  *  \return TRUE when the object is selected, FALSE otherwise
  */
-bool o_get_is_selected (Object *object)
+bool o_get_is_selected (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selected);
 }
@@ -243,7 +243,7 @@ bool o_get_is_selected (Object *object)
  *
  *  \return TRUE if valid, otherwise FALSE.
  */
-bool o_get_is_valid_attribute (Object *object)
+bool o_get_is_valid_attribute (GedaObject *object)
 {
   bool result = FALSE;
 
@@ -277,11 +277,11 @@ bool o_get_is_valid_attribute (Object *object)
  *  \par Function Description
  *  Attribute getter for the visible field within the object.
  *
- *  \param object   The Object structure to be queried
+ *  \param object   The GedaObject structure to be queried
  *
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
-bool o_get_is_visible (Object *object)
+bool o_get_is_visible (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }
@@ -305,14 +305,14 @@ LINE_END o_get_line_end (int capstyle)
   }
 }
 
-/*! \brief get #Object's line properties
+/*! \brief get #GedaObject's line properties
  *
  *  \par Function Description
- *  This function get's the #Object's line options.
+ *  This function get's the #GedaObject's line options.
  *  See #LINE_END and #LINE_TYPE for information on valid
  *  object end and type values.
  *
- *  \param [in]   object    Object to read the properties
+ *  \param [in]   object    GedaObject to read the properties
  *  \param [out]  end       An #LINE_END.
  *  \param [out]  type      An #LINE_TYPE.
  *  \param [out]  width     Line width.
@@ -321,7 +321,7 @@ LINE_END o_get_line_end (int capstyle)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool o_get_line_options(Object *object,
+bool o_get_line_options(GedaObject *object,
                         LINE_END *end, LINE_TYPE *type,
                         int *width, int *length, int *space)
 {
@@ -345,7 +345,7 @@ bool o_get_line_options(Object *object,
   return result;
 }
 
-/*! \brief Get the Point on an Object Nearest a given Point
+/*! \brief Get the Point on an GedaObject Nearest a given Point
  *  \par Function Description
  *  This function ia a wrapper for the 0_xxx_get_nearest functions.
  *
@@ -355,9 +355,9 @@ bool o_get_line_options(Object *object,
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  */
-bool o_get_nearest_point(Object *object, int x, int y, int *nx, int *ny)
+bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  bool (*getter) (Object *, int, int, int *, int *) = NULL;
+  bool (*getter) (GedaObject *, int, int, int *, int *) = NULL;
 
   switch (object->type)
   {
@@ -419,14 +419,14 @@ int o_get_num_text_lines(const char *string)
   return (line_count);
 }
 
-/*! \brief Get pointer to an Object's Attribute Value given the name
+/*! \brief Get pointer to an GedaObject's Attribute Value given the name
  *
  *  \par Function Description
  *   Returns a pointer to the value of a named attribute belonging to object,
  *   the string belongs to libgeda and must not be freed. The value returned
  *   is for the first attribute found with the given \a name.
  *
- *  \param [in] object Object whose attributes are to be searched
+ *  \param [in] object GedaObject whose attributes are to be searched
  *  \param [in] name   The name of the attribute to search for
  *
  *  \note Does not search attributes floating attributes, only attributes
@@ -435,9 +435,9 @@ int o_get_num_text_lines(const char *string)
  *  \return If objects is valid and has an attribute with a matching \a name
  *          then the value of the attribute is returned , otherwise NULL.
  */
-const char *o_get_object_attrib_value (Object *object, const char *name)
+const char *o_get_object_attrib_value (GedaObject *object, const char *name)
 {
-        Object *attrib;
+        GedaObject *attrib;
   const char   *value;
 
   if (GEDA_IS_OBJECT(object)) {
@@ -461,13 +461,13 @@ const char *o_get_object_attrib_value (Object *object, const char *name)
     }
   }
   else {
-    BUG_MSG("Invalid GEDA Object");
+    BUG_MSG("Invalid GEDA GedaObject");
     value = NULL;
   }
   return value;
 }
 
-/*! \brief Get List of Objects in List by Object Type.
+/*! \brief Get List of Objects in List by GedaObject Type.
  *
  *  \par Function Description
  *  Returns a glist of objects, that are members of the \a olist that match
@@ -483,7 +483,7 @@ GList* o_get_objects_by_type (GList *olist, int type)
 {
   GList  *objects = NULL;
 
-  lambda (Object *object)
+  lambda (GedaObject *object)
   {
     if (object->type == type) {
       objects = g_list_append(objects, object);
@@ -495,17 +495,17 @@ GList* o_get_objects_by_type (GList *olist, int type)
   return objects;
 }
 
-/*! \brief Get the Page associated with an Object.
+/*! \brief Get the Page associated with an GedaObject.
  *
  *  \par Function Description
  *  If \a object is on a page, the page is return, otherwise %NULL
  *  is returned.
  *
- *  \param [in] object    The Object for which to get the Page Object.
+ *  \param [in] object    The GedaObject for which to get the Page Object.
  *
- *  \return page Object which owns \a object, or %NULL.
+ *  \return page GedaObject which owns \a object, or %NULL.
  */
-Page *o_get_page (Object *object)
+Page *o_get_page (GedaObject *object)
 {
   return geda_object_get_page(object);
 }
@@ -513,16 +513,16 @@ Page *o_get_page (Object *object)
 /*! \brief Get an object's containing complex object.
  *
  *  \par Function Description
- *  If \a object is part of a complex #Object, returns that
- *  #Object. Otherwise, returns %NULL.
+ *  If \a object is part of a complex #GedaObject, returns that
+ *  #GedaObject. Otherwise, returns %NULL.
  *
- *  \param [in] object    The Object for which to get the containing Object.
+ *  \param [in] object    The GedaObject for which to get the containing GedaObject.
  *
  *  \return The complex Object which owns \a object, or %NULL.
  */
-Object *o_get_parent (Object *object)
+GedaObject *o_get_parent (GedaObject *object)
 {
-  Object *parent;
+  GedaObject *parent;
 
   if ((GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->parent_object)))
   {
@@ -538,14 +538,14 @@ Object *o_get_parent (Object *object)
 /*! \brief Get an object's containing object index.
  *
  *  \par Function Description
- *  If \a object is a sub object of another #Object, returns the
+ *  If \a object is a sub object of another #GedaObject, returns the
  *  sid of the parent object. Otherwise, returns -1.
  *
- *  \param [in] object    The Object for which to get the containing Object.
+ *  \param [in] object    The GedaObject for which to get the containing GedaObject.
  *
  *  \return The complex Object which owns \a object, or %NULL.
  */
-int o_get_parent_id (Object *object)
+int o_get_parent_id (GedaObject *object)
 {
   int cid;
 
@@ -570,9 +570,9 @@ int o_get_parent_id (Object *object)
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_get_position (Object *object, int *x, int *y )
+bool o_get_position (GedaObject *object, int *x, int *y )
 {
-  bool (*func) ( int*, int*, Object*) = NULL;
+  bool (*func) ( int*, int*, GedaObject*) = NULL;
 
   switch (object->type) {
       case OBJ_LINE:    func = o_line_get_position;    break;
@@ -610,10 +610,10 @@ bool o_get_position (Object *object, int *x, int *y )
  *  number (G_MAXDOUBLE).  If an error occurs, this function returns
  *  G_MAXDOUBLE.
  */
-double o_get_shortest_distance_full (Object *object, int x, int y, int force_solid)
+double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
-  double (*func) (Object *, int, int, int) = NULL;
+  double (*func) (GedaObject *, int, int, int) = NULL;
 
   if(GEDA_IS_OBJECT(object)) {
 
@@ -658,7 +658,7 @@ double o_get_shortest_distance_full (Object *object, int x, int y, int force_sol
  *
  *  \return The shortest distance from the object to the point.
  */
-double o_get_shortest_distance (Object *object, int x, int y)
+double o_get_shortest_distance (GedaObject *object, int x, int y)
 {
   return o_get_shortest_distance_full (object, x, y, FALSE);
 }
@@ -676,7 +676,7 @@ double o_get_shortest_distance (Object *object, int x, int y)
  *  \retval 0 No bound was found
  *  \retval 1 Bound was found
  */
-int o_get_bounds(Object *o_current, int *rleft,  int *rtop,
+int o_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
                                     int *rright, int *rbottom)
 {
   int result = 0;

@@ -243,7 +243,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   GList  *iter;
   GList  *pin_objects;
 
-  Object *object;
+  GedaObject *object;
 
   bool    set_node_type      = FALSE;
   bool    set_elect_type     = FALSE;
@@ -300,7 +300,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   if (num_selected == 1) { /* Only 1 pin selected */
 
-    object = (Object*) g_list_nth_data(pin_objects, 0);
+    object = (GedaObject*) g_list_nth_data(pin_objects, 0);
 
     if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
     {
@@ -385,7 +385,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
     for (iter = pin_objects; iter != NULL; iter = g_list_next(iter)) {
 
-      object = (Object *) iter->data;
+      object = (GedaObject*) iter->data;
 
       if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
       {
@@ -599,7 +599,7 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
  *  \param object    Pointer to a selected Object
  */
 static void
-xd_pin_type_update_selection (GschemToplevel *w_current, Object *object)
+xd_pin_type_update_selection (GschemToplevel *w_current, GedaObject *object)
 {
   /* Get ptr to the Dialog window */
   GschemDialog *Dialog = GSCHEM_DIALOG (w_current->ptwindow);
@@ -980,8 +980,8 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
  */
 void x_dialog_edit_pin_type (GschemToplevel *w_current)
 {
-  GtkWidget *ThisDialog;
-  Object    *object;
+  GtkWidget  *ThisDialog;
+  GedaObject *object;
 
   ThisDialog = w_current->ptwindow;
   if (!ThisDialog) {

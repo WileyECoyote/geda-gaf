@@ -60,7 +60,7 @@ typedef enum
  *
  */
 static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
-                                                   Object         *object)
+                                                   GedaObject     *object)
 {
   GtkWidget *ThisDialog = w_current->aewindow;
 
@@ -151,7 +151,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   GtkWidget  *visbutton;
   GtkWidget  *show_options;
 
-  Object     *object;
+  GedaObject *object;
 
   const char *value, *label;
   char       *newtext;
@@ -203,7 +203,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
   if (mode == SAE_ADD_MODE) {
 
-    Object *new = NULL;
+   GedaObject *new = NULL;
 
     object = o_select_return_first_object(w_current);
 
@@ -334,7 +334,7 @@ GtkWidget *x_attrib_option_menu_new()
  *
  */
 static
-void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
+void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 {
   GtkWidget  *ThisDialog = w_current->aewindow;
 
@@ -578,7 +578,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
  *  this mode is used to add new attributes to objects.
  *
  */
-void x_attrib_add_dialog (GschemToplevel *w_current, Object *object)
+void x_attrib_add_dialog (GschemToplevel *w_current, GedaObject *object)
 {
   attrib_edit_dialog (w_current, object, SAE_ADD_MODE);
 }
@@ -590,7 +590,7 @@ void x_attrib_add_dialog (GschemToplevel *w_current, Object *object)
  *  this mode is used to edit existing attributes of objects.
  *
  */
-void x_attrib_edit_dialog (GschemToplevel *w_current, Object *object)
+void x_attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object)
 {
   attrib_edit_dialog (w_current, object, SAE_EDIT_MODE);
 }

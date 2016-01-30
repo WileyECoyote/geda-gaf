@@ -69,18 +69,18 @@
  * Manual.
  *
  * The remaining functions in this module allow routines to convert
- * gEDA #Object and #Page structures to and from Scheme values ("smobs").
+ * gEDA #GedaObject and #Page structures to and from Scheme values ("smobs").
  *
- * When an #Object is created by Scheme code, it is permitted to be
+ * When a #GedaObject is created by Scheme code, it is permitted to be
  * garbage-collected if all references to it are lost; this is an
  * important part of allowing Scheme programmers to write efficient
- * code. However, because #Object instances are not reference counted,
- * each Scheme object that contains an #Object has a flag that indicates
- * whether the #Object is wholly owned by Scheme or whether there are
+ * code. However, because #GedaObject instances are not reference counted,
+ * each Scheme object that contains an #GedaObject has a flag that indicates
+ * whether the #GedaObject is wholly owned by Scheme or whether there are
  * any remaining references to it from C code.  If edascm_from_object()
- * is used to create a Scheme value for an #Object that has no remaining
+ * is used to create a Scheme value for an #GedaObject that has no remaining
  * references from other C structures, then edascm_c_set_gc() should use
- * to mark the #Object as garbage-collectable.
+ * to mark the #GedaObject as garbage-collectable.
  */
 
 /*!
@@ -218,7 +218,7 @@ int    edascm_is_object_type      (SCM smob, int type);
 
 
 /*! \brief Flag an object's page as having been changed. */
-extern inline void o_page_changed (GedaToplevel *t, Object *o);
+extern inline void o_page_changed (GedaToplevel *t, GedaObject *o);
 
 /* ---------------------------------------- */
 

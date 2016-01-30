@@ -26,7 +26,7 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
  */
-/*! \class Object geda_object.h "libgeda/geda_object.h"
+/*! \class GedaObject geda_object.h "libgeda/geda_object.h"
  *  \brief GedaType for Geda Objects.
  *
  *  GedaObject is a derivative of the GObject class. GedaObject
@@ -42,13 +42,13 @@
 #endif
 
 #define GEDA_TYPE_OBJECT            (geda_object_get_type())
-#define GEDA_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_OBJECT, Object))
-#define GEDA_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_OBJECT, ObjectClass))
+#define GEDA_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_OBJECT, GedaObject))
+#define GEDA_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_OBJECT, GedaObjectClass))
 #define GEDA_IS_OBJECT(obj)         (is_a_geda_object(obj))
 #define GEDA_IS_OBJECT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_OBJECT))
-#define GEDA_OBJECT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_OBJECT, ObjectClass))
+#define GEDA_OBJECT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_OBJECT, GedaObjectClass))
 
-typedef struct _GedaObjectClass ObjectClass;
+typedef struct _GedaObjectClass GedaObjectClass;
 
 struct _GedaObjectClass {
 
@@ -99,7 +99,7 @@ struct _GedaObject {
                                   /* to and from this object */
 
   /* Pointer to parent object is used for floating sibling */
-  Object *parent_object;          /* Parent object pointer */
+  GedaObject *parent_object;          /* Parent object pointer */
 
   int     color;                  /* Which color */
   int     dont_redraw;            /* Flag to skip redrawing */
@@ -112,8 +112,8 @@ struct _GedaObject {
   int     show_name_value;
   int     visibility;
 
-  Object *attached_to;            /* when object is an attribute */
-  Object *copied_to;              /* used when copying attributes */
+  GedaObject *attached_to;            /* when object is an attribute */
+  GedaObject *copied_to;              /* used when copying attributes */
 
   /* Attribute notification handling */
   int attrib_notify_freeze_count;
@@ -135,18 +135,18 @@ extern "C" {
 GedaObjectType geda_object_get_type          (void) GEDA_CONST;
 bool           is_a_geda_object              (const void *object);
 
-Object       *geda_object_new                (int type, char const *name);
-Object       *geda_object_ref                (Object *object);
-void          geda_object_unref              (Object *object);
-void          geda_object_weakref_notify     (Object *object);
-void          geda_object_weak_ref           (Object *object, WeakNotifyFunc notify_func, void *user_data);
-void          geda_object_weak_unref         (Object *object, WeakNotifyFunc notify_func, void *user_data);
-void          geda_object_add_weak_ptr       (Object *object, void *weak_pointer_loc);
-void          geda_object_remove_weak_ptr    (Object *object, void *weak_pointer_loc);
+GedaObject       *geda_object_new                (int type, char const *name);
+GedaObject       *geda_object_ref                (GedaObject *object);
+void          geda_object_unref              (GedaObject *object);
+void          geda_object_weakref_notify     (GedaObject *object);
+void          geda_object_weak_ref           (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
+void          geda_object_weak_unref         (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
+void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_pointer_loc);
+void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
 
-int           geda_object_bounds             (Object *object);
-Page         *geda_object_get_page           (Object *object);
-int           geda_object_get_filltype       (Object *object);
+int           geda_object_bounds             (GedaObject *object);
+Page         *geda_object_get_page           (GedaObject *object);
+int           geda_object_get_filltype       (GedaObject *object);
 
 #ifdef __cplusplus
 }

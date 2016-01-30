@@ -39,7 +39,7 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
          o_iter != NULL;
          o_iter = g_list_next (o_iter)) {
 
-      Object *o_current = o_iter->data;
+      GedaObject *o_current = o_iter->data;
 
       if (o_current->type == OBJ_COMPLEX ||
                 o_current->type == OBJ_PICTURE) {

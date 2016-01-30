@@ -760,7 +760,7 @@ static void set_text_buffer(const char *string)
  *  \param object    pointer to a selected Object.
  */
 static void
-x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
+x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, GedaObject *object)
 {
   GtkWidget *spin_radius, *spin_start, *spin_sweep;
 
@@ -824,7 +824,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 
     while (s_current != NULL) {
 
-      Object *object = (Object *) s_current->data;
+      GedaObject *object = (GedaObject*) s_current->data;
 
       if (object == NULL) {
         BUG_MSG("NULL object");
@@ -895,7 +895,7 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
  * TODO: When multi-selection and modless is applied then only change
  *       the changed value, maybe add check box next to each
  */
-void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
+void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
 {
   GtkWidget *Dialog = w_current->aawindow;
 
@@ -1232,7 +1232,7 @@ static bool selection_get_fill_type(GList *selection,
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    Object *object = (Object *) iter->data;
+    GedaObject *object = (GedaObject*) iter->data;
 
     if (o_get_fill_options(object, &otype, &owidth, &opitch1, &oangle1, &opitch2, &oangle2))
     {
@@ -1454,7 +1454,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    Object *object = (Object *) iter->data;
+    GedaObject *object = (GedaObject*) iter->data;
 
     if (!o_get_fill_options(object, &otype, &owidth,
                             &opitch1, &oangle1, &opitch2, &oangle2))
@@ -1544,7 +1544,7 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
  */
 static void
 x_dialog_fill_type_update_selection (GschemToplevel *w_current,
-                                     Object *object)
+                                     GedaObject *object)
 {
   GtkWidget *Dialog;
 
@@ -1837,7 +1837,7 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (! o_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
@@ -2042,7 +2042,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-     Object *object = (Object *) iter->data;
+     GedaObject *object = (GedaObject*) iter->data;
 
     if (! o_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
@@ -2125,7 +2125,7 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
  */
 static void
 x_dialog_line_type_update_selection (GschemToplevel *w_current,
-                                     Object         *object)
+                                     GedaObject     *object)
 {
   GtkWidget *Dialog;
 
@@ -2429,7 +2429,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
 {
   GtkWidget  *ThisDialog;
   GtkWidget  *textentry;
-  Object     *object;
+  GedaObject *object;
 
   remember_page = NULL;
   forget_page   = NULL;

@@ -36,8 +36,8 @@
  *  With the <b>tiles</b> a <b>Page</b> is splitted into several smaller areas.
  *  The number of tiles is defined by <b>MAX_TILES_X</b> and <b>MAX_TILES_Y</b>.
  *
- *  Each <b>TILE</b> (st_tile) can contain zero to many <b>Objects</b> and
- *  and each <b>Object</b> can be in one or more TILES.
+ *  Each <b>TILE</b> (st_tile) can contain zero to many <b>GedaObjects</b> and
+ *  and each <b>GedaObject</b> can be in one or more TILES.
  *
  *  The usage of tiles makes it easier to find geometrical connections between
  *  the line objects; OBJ_NET, OBJ_PIN, OBJ_BUS.
@@ -102,18 +102,18 @@ void s_tile_init(Page * p_current)
 #endif
 }
 
-/*! \brief Add a Linear Object to the Tile Array
+/*! \brief Add a Linear GedaObject to the Tile Array
  *
  *  \par Function Description
  *
- *  This function takes a single <b>Line Object</b> and adds it to every
+ *  This function takes a single <b>Line GedaObject</b> and adds it to every
  *  tile that is touched by the line. The function also adds all tiles that
  *  are touched by the object to the objects tile list.
  *
  *  \param object   The line Object to add
  */
 static void
-s_tile_add_linear_object (Object *object)
+s_tile_add_linear_object (GedaObject *object)
 {
   TILE *tile_current;
   Page *p_current;
@@ -308,7 +308,7 @@ s_tile_add_linear_object (Object *object)
   }
 }
 
-/*! \brief Add an Object to the Tile System
+/*! \brief Add an GedaObject to the Tile System
  *
  *  \par Function Description
  *
@@ -317,7 +317,7 @@ s_tile_add_linear_object (Object *object)
  *
  *  \param object   The line Object to add
  */
-void s_tile_add_object (Object *object)
+void s_tile_add_object (GedaObject *object)
 {
   GList *iter;
 
@@ -349,7 +349,7 @@ void s_tile_add_object (Object *object)
  *
  *  \param object The object to remove
  */
-void s_tile_remove_object(Object *object)
+void s_tile_remove_object(GedaObject *object)
 {
   GList *tl_current;
 
@@ -379,18 +379,18 @@ void s_tile_remove_object(Object *object)
   object->tiles = NULL;
 }
 
-/*! \brief Update the Tile Information of an Object
+/*! \brief Update the Tile Information of an GedaObject
  *
  *  \par Function Description
  *
- *  This function updates the tile information of an <b>Object</b> by removing
- *  and the re-adding the <b>Object</b> to the Tile <b>System</b>.
+ *  This function updates the tile information of an <b>GedaObject</b> by removing
+ *  and the re-adding the <b>GedaObject</b> to the Tile <b>System</b>.
  *
  *  This function can be used if an object has been moved on the page.
  *
- *  \param object The Object to update
+ *  \param object The GedaObject to update
  */
-void s_tile_update_object(Object * object)
+void s_tile_update_object(GedaObject * object)
 {
   s_tile_remove_object (object);
   s_tile_add_object (object);
@@ -447,7 +447,7 @@ GList* s_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
   return objectlists;
 }
 
-/*! \brief Print all Objects for each Tile
+/*! \brief Print all GedaObjects for each Tile
  *
  *  \par Function Description
  *
@@ -458,7 +458,7 @@ void s_tile_print(GedaToplevel * toplevel, Page *page)
 {
   TILE *tile;
   GList *tile_list;
-  Object *o_current;
+  GedaObject *o_current;
   int i, j;
 
   for (j = 0; j < MAX_TILES_Y; j++) {
@@ -469,7 +469,7 @@ void s_tile_print(GedaToplevel * toplevel, Page *page)
 
       tile_list = tile->objects;
       while (tile_list) {
-        o_current = (Object *) tile_list->data;
+        o_current = (GedaObject *) tile_list->data;
 
         printf("%s\n", o_current->name);
 

@@ -26,7 +26,7 @@
  *  The part before the equal character is called <b>name</b> the
  *  part of the string behind the equal character is called <b>value</b>
  *
- *  Attributes are attached to <b>Objects</b>. Each attribute has a reference
+ *  Attributes are attached to <b>GedaObjects</b>. Each attribute has a reference
  *  to the object it is attached to. Each object that has attributes has a
  *  list of pionters to its attributes.
  *
@@ -55,11 +55,11 @@
  *  \par Function Description
  *  Add an attribute to an existing attribute list.
  *
- *  \param [in]  object The Object that item is being added to.
+ *  \param [in]  object The GedaObject that item is being added to.
  *  \param [in]  item   The attribute that is to be added to object.
  */
 void
-o_attrib_add(Object *object, Object *item)
+o_attrib_add(GedaObject *object, GedaObject *item)
 {
   /* Add link from item to attrib listing */
   item->attached_to = object;
@@ -67,16 +67,16 @@ o_attrib_add(Object *object, Object *item)
   o_attrib_emit_attribs_changed (object);
 }
 
-/*! \brief Get List of Attributes Attached to Object
+/*! \brief Get List of Attributes Attached to GedaObject
  *  \par Function Description
- *  return the Object-atrribs glist assocaiated with the given object.
+ *  return the GedaObject-atrribs glist assocaiated with the given object.
  *
- *  \param [in]  object The Object from which to get the attribute list.
+ *  \param [in]  object The GedaObject from which to get the attribute list.
  *
  *  \return List of attached attributes.
  */
 GList*
-o_attrib_get_attached_attribs (const Object *object)
+o_attrib_get_attached_attribs (const GedaObject *object)
 {
   return object->attribs;
 }
@@ -92,7 +92,7 @@ o_attrib_get_attached_attribs (const Object *object)
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
 bool
-o_attrib_is_attached_to (const Object *attrib, const Object *object)
+o_attrib_is_attached_to (const GedaObject *attrib, const GedaObject *object)
 {
   if (attrib == NULL || object == NULL)
     return FALSE;
@@ -113,7 +113,7 @@ o_attrib_is_attached_to (const Object *attrib, const Object *object)
  *  \param [in]  set_color    Whether or not we should set the new attribute's color.
  */
 void
-o_attrib_attach (Object *object, Object *attrib, int set_color)
+o_attrib_attach (GedaObject *object, GedaObject *attrib, int set_color)
 {
   g_return_if_fail (attrib != NULL);
   g_return_if_fail (object != NULL);
@@ -154,7 +154,7 @@ o_attrib_attach (Object *object, Object *attrib, int set_color)
  *  \param [in]  set_color  Whether or not we should set the new attribute's color.
  */
 void
-o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
+o_attrib_attach_list (GedaObject *object, const GList *attr_list, int set_color)
 {
   const GList *iter;
 
@@ -172,12 +172,12 @@ o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
  *
  *  \param [in,out] attribute The Attribute to be detached.
  */
-void o_attrib_detach(Object *attribute)
+void o_attrib_detach(GedaObject *attribute)
 {
   if (attribute && attribute->attached_to != NULL) {
 
     Page   *page;
-    Object *parent;
+    GedaObject *parent;
 
     parent = attribute->attached_to;
     attribute->attached_to = NULL;
@@ -202,7 +202,7 @@ void o_attrib_detach(Object *attribute)
  *
  *  \param [in,out] object    The object whos attributes to detach.
  */
-void o_attrib_detach_all(Object *object)
+void o_attrib_detach_all(GedaObject *object)
 {
   if (object && object->attribs != NULL) {
 
@@ -213,7 +213,7 @@ void o_attrib_detach_all(Object *object)
 
     for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
 
-      Object *attribute = a_iter->data;
+      GedaObject *attribute = a_iter->data;
 
       attribute->attached_to = NULL;
       o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
@@ -232,7 +232,7 @@ void o_attrib_detach_all(Object *object)
   }
 }
 
-/*! \brief Create a new Attributes Object
+/*! \brief Create a new Attributes GedaObject
  *
  *  \par Function Description
  *  This function creates a new text object and attaches the
@@ -240,15 +240,15 @@ void o_attrib_detach_all(Object *object)
  *  is not NULL, if the parent object is on a page, then the
  *  new attribute will be appended to the same page.
  *
- *  \param [in] parent          Object the new attribute is to be attached to.
+ *  \param [in] parent          GedaObject the new attribute is to be attached to.
  *  \param [in] name            Attribute name string.
  *  \param [in] value           Attribute value string.
- *  \param [in] visibility      Attribute Object visibility.
+ *  \param [in] visibility      Attribute GedaObject visibility.
  *  \param [in] show_name_value Show name value visibility flag.
  *
- *  \return [out] the new Text attribute Object
+ *  \return [out] the new Text attribute GedaObject
  */
-Object *o_attrib_new_attached(Object *parent, const char *name,
+GedaObject *o_attrib_new_attached(GedaObject *parent, const char *name,
                                               const char *value,
                                               int visibility,
                                               int show_name_value)
@@ -259,7 +259,7 @@ Object *o_attrib_new_attached(Object *parent, const char *name,
   int color;
 
   char   *text;
-  Object *new_obj;
+  GedaObject *new_obj;
 
   world_x = -1;
   world_y = -1;
@@ -403,7 +403,7 @@ o_attrib_print(const GList *attributes)
 
   while (a_iter != NULL) {
 
-    const Object *attribute = a_iter->data;
+    const GedaObject *attribute = a_iter->data;
 
     printf("Attribute points to: %s\n", attribute->name);
 
@@ -422,14 +422,14 @@ o_attrib_print(const GList *attributes)
  *  This function should be used when detaching an attribute.
  *
  *  \param [in] list      The attribute list to remove attribute from.
- *  \param [in] remove    The Object to remove from list.
+ *  \param [in] remove    The GedaObject to remove from list.
  */
 void
-o_attrib_remove(GList **list, Object *remove)
+o_attrib_remove(GList **list, GedaObject *remove)
 {
   if (remove != NULL) {
 
-    Object *attached_to = remove->attached_to;
+    GedaObject *attached_to = remove->attached_to;
 
     remove->attached_to = NULL;
 
@@ -446,7 +446,7 @@ o_attrib_remove(GList **list, Object *remove)
  *  Read attributes from a TextBuffer.
  *
  *  \param [in]  toplevel               The GedaToplevel object.
- *  \param [in]  parent  Object which gets these attribs.
+ *  \param [in]  parent  GedaObject which gets these attribs.
  *  \param [in]  tb                     The text buffer to read from.
  *  \param [in]  release_ver            libgeda release version number.
  *  \param [in]  fileformat_ver         file format version number.
@@ -459,13 +459,13 @@ o_attrib_remove(GList **list, Object *remove)
  */
 GList*
 o_read_attribs (GedaToplevel *toplevel,
-                Object       *parent,
+                GedaObject       *parent,
                 TextBuffer   *tb,
                 unsigned int  release_ver, unsigned int fileformat_ver,
                 GError       ** err)
 {
   GList      *object_list = NULL;
-  Object     *new_obj;
+  GedaObject     *new_obj;
   const char *line = NULL;
   char        objtype;
   int         ATTACH=FALSE;
@@ -638,11 +638,11 @@ o_attrib_string_get_name_value (const char *string,
   return TRUE;
 }
 
-/*! \brief Get name and value from an attribute Object
+/*! \brief Get name and value from an attribute GedaObject
  *  \par Function Description
  *  Calls o_attrib_get_name_value to do the work
  *
- *  \param [in]  attrib     The attribute Object whos name/value to return.
+ *  \param [in]  attrib     The attribute GedaObject whos name/value to return.
  *  \param [out] name_ptr   The return location for the name, or NULL.
  *  \param [out] value_ptr  The return location for the value, or NULL.
  *
@@ -651,7 +651,7 @@ o_attrib_string_get_name_value (const char *string,
  *  \sa o_attrib_string_get_name_value()
  */
 bool
-o_attrib_get_name_value (const Object *attrib, char **name_ptr, char **value_ptr)
+o_attrib_get_name_value (const GedaObject *attrib, char **name_ptr, char **value_ptr)
 {
   g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
 
@@ -665,7 +665,7 @@ o_attrib_get_name_value (const Object *attrib, char **name_ptr, char **value_ptr
  *
  */
 void
-o_attrib_set_value (const Object *attrib, const char *name_ptr, const char *value_ptr)
+o_attrib_set_value (const GedaObject *attrib, const char *name_ptr, const char *value_ptr)
 {
 
   GEDA_FREE(attrib->text->string);
@@ -679,7 +679,7 @@ o_attrib_set_value (const Object *attrib, const char *name_ptr, const char *valu
  *
  */
 void
-o_attrib_set_integer_value (const Object *attrib, const char *name_ptr, int value)
+o_attrib_set_integer_value (const GedaObject *attrib, const char *name_ptr, int value)
 {
   GEDA_FREE(attrib->text->string);
   attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value, NULL);
@@ -703,7 +703,7 @@ o_attrib_find_floating_attribs (const GList *list)
 
   for (iter = list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     /* Skip non text objects, attached attributes and text which doesn't
      * constitute a valid attributes (e.g. general text placed on the page)
@@ -731,7 +731,7 @@ o_attrib_find_floating_attribs (const GList *list)
  *
  *  \return The n'th attribute object in the given list with the given name.
  */
-Object*
+GedaObject*
 o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
 {
   const GList *iter;
@@ -740,7 +740,7 @@ o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
 
   for (iter = list; iter != NULL; iter = iter->next) {
 
-    Object *attribute = iter->data;
+    GedaObject *attribute = iter->data;
 
     g_return_val_if_fail (attribute->type == OBJ_TEXT, NULL);
 
@@ -765,18 +765,18 @@ o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
  *  \par Function Description
  *  Search for attribute by name.
  *
- *  \param [in] object   Object whose attributes are to searched.
+ *  \param [in] object   GedaObject whose attributes are to searched.
  *  \param [in] name     Character string with attribute name to search for.
  *
  *  \return The n'th attribute object in the given list with the given name.
  */
-Object*
-o_attrib_first_attrib_by_name (const Object *object, char *name)
+GedaObject*
+o_attrib_first_attrib_by_name (const GedaObject *object, char *name)
 {
   if (GEDA_IS_OBJECT(object)) {
     return o_attrib_find_attrib_by_name (object->attribs, name, 0);
   }
-  BUG_MSG("Invalid GEDA Object");
+  BUG_MSG("Invalid GEDA GedaObject");
   return NULL;
 }
 /*! \brief Search attribute list by name.
@@ -797,7 +797,7 @@ o_attrib_search_attrib_list_by_name (const GList *list,
                                      const char  *name,
                                            int    counter)
 {
-  Object *attrib;
+  GedaObject *attrib;
   char *value = NULL;
 
   attrib = o_attrib_find_attrib_by_name (list, name, counter);
@@ -845,7 +845,7 @@ o_attrib_search_floating_attribs_by_name (const GList *list,
  *  Counter is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- *  \param [in] object   The Object whos attached attributes to search.
+ *  \param [in] object   The GedaObject whos attached attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
  *
@@ -854,7 +854,7 @@ o_attrib_search_floating_attribs_by_name (const GList *list,
  *  \note Caller must release the returned character string.
  */
 char*
-o_attrib_search_attached_attribs_by_name (const Object *object,
+o_attrib_search_attached_attribs_by_name (const GedaObject *object,
                                           const char   *name,
                                                 int     counter)
 {
@@ -868,7 +868,7 @@ o_attrib_search_attached_attribs_by_name (const Object *object,
  *  Counter is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- *  \param [in] object   The Object whos inherited attributes to search.
+ *  \param [in] object   The GedaObject whos inherited attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
  *
@@ -877,7 +877,7 @@ o_attrib_search_attached_attribs_by_name (const Object *object,
  *  \note Caller must release the returned character string.
  */
 char*
-o_attrib_search_inherited_attribs_by_name (const Object *object,
+o_attrib_search_inherited_attribs_by_name (const GedaObject *object,
                                            const char   *name,
                                                  int     counter)
 {
@@ -895,7 +895,7 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
  *  attribute, and starts searching from zero. Zero is the first occurance
  *  of an attribute.
  *
- *  \param [in] object  Object who's attributes to search,
+ *  \param [in] object  GedaObject who's attributes to search,
  *  \param [in] name    Character string with attribute name to search for,
  *  \param [in] counter Which occurance to return.
  *
@@ -903,7 +903,7 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
  *
  *  \note Caller should release the returned character string.
  */
-char *o_attrib_search_object_attribs_by_name (const Object *object,
+char *o_attrib_search_object_attribs_by_name (const GedaObject *object,
                                               const char   *name,
                                                     int     counter)
 {
@@ -917,22 +917,22 @@ char *o_attrib_search_object_attribs_by_name (const Object *object,
   return result;
 }
 
-/*! \brief Get all attached attributes of the specified Object.
+/*! \brief Get all attached attributes of the specified GedaObject.
  *  \par Function Description
  *  This function returns all attributes of the specified object.
  *
  *  The returned GList should be freed using the g_list_free().
  *
  *  This function aggregates the attached and inherited attributes
- *  belonging to a given Object. (inherited attributes are those
+ *  belonging to a given GedaObject. (inherited attributes are those
  *  which live as toplevel un-attached attributes inside in a
  *  complex Object's prim_objs).
  *
- *  \param [in] object       Object whos attributes to return.
+ *  \param [in] object       GedaObject whos attributes to return.
  *
  *  \return A GList of attributes belinging to the passed object.
  */
-GList *o_attrib_return_attribs (const Object *object)
+GList *o_attrib_return_attribs (const GedaObject *object)
 {
   GList  *a_iter;
   GList  *attribs = NULL;
@@ -942,7 +942,7 @@ GList *o_attrib_return_attribs (const Object *object)
   /* Directly attached attributes */
   for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
   {
-     Object *attribute;
+     GedaObject *attribute;
 
      if ((attribute = a_iter->data) != NULL) {
       if (attribute->type != OBJ_TEXT)
@@ -970,17 +970,17 @@ GList *o_attrib_return_attribs (const Object *object)
   return attribs;
 }
 
-/*! \brief Query whether a given attribute Object is "inherited"
+/*! \brief Query whether a given attribute GedaObject is "inherited"
  *  \par Function Description
- *  This function returns TRUE if the given attribute Object is a
+ *  This function returns TRUE if the given attribute GedaObject is a
  *  toplevel un-attached attribute inside a complex's prim_objs.
  *
- *  \param [in] attrib       Object who's status to query.
+ *  \param [in] attrib       GedaObject who's status to query.
  *
  *  \return TRUE if the given attribute is inside a symbol
  */
 int
-o_attrib_is_inherited (const Object *attrib)
+o_attrib_is_inherited (const GedaObject *attrib)
 {
   return (attrib->attached_to == NULL && attrib->parent_object != NULL);
 }
@@ -1008,7 +1008,7 @@ o_attrib_append_attribs_changed_hook (Page *page,
 static void call_attribs_changed_hook (void *data, void *user_data)
 {
   AttribsChangedHook *hook = data;
-  Object *object = user_data;
+  GedaObject *object = user_data;
 
   hook->func (hook->data, object);
 }
@@ -1018,7 +1018,7 @@ static void call_attribs_changed_hook (void *data, void *user_data)
  *  \par Function Description
  *
  */
-void o_attrib_emit_attribs_changed (Object *object)
+void o_attrib_emit_attribs_changed (GedaObject *object)
 {
   if (object->attrib_notify_freeze_count > 0) {
     object->attrib_notify_pending = 1;
@@ -1038,7 +1038,7 @@ void o_attrib_emit_attribs_changed (Object *object)
  *  \par Function Description
  *
  */
-void o_attrib_freeze_hooks (Object *object)
+void o_attrib_freeze_hooks (GedaObject *object)
 {
   object->attrib_notify_freeze_count ++;
 }
@@ -1048,7 +1048,7 @@ void o_attrib_freeze_hooks (Object *object)
  *  \par Function Description
  *
  */
-void o_attrib_thaw_hooks (Object *object)
+void o_attrib_thaw_hooks (GedaObject *object)
 {
   g_return_if_fail (object->attrib_notify_freeze_count > 0);
 

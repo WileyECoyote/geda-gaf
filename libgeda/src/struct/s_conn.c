@@ -26,14 +26,14 @@
  *  \brief The connection system
  *
  *  The connection system stores and tracks the connections between
- *  connected <b>ObjectS</b>. The connected ObjectS are either
+ *  connected <b>GedaObjectS</b>. The connected GedaObjectS are either
  *  <b>pins</b>, <b>nets</b> and <b>busses</b>.
  *
  *  Each connection object with the type <b>st_conn</b> represents a
  *  single unidirectional relation to another object.
  *
  *  The following figure with two nets and a pin shows the relations
- *  between connections and ObjectS:
+ *  between connections and GedaObjectS:
  *
  *  \image html s_conn_overview.png
  *  \image latex s_conn_overview.pdf "Connection overview" width=14cm
@@ -51,7 +51,7 @@
  *
  *  \return The new connection object
  */
-CONN *s_conn_return_new(Object * other_object, int type, int x, int y,
+CONN *s_conn_return_new(GedaObject * other_object, int type, int x, int y,
                         int whichone, int other_whichone)
 {
   CONN *new_conn;
@@ -107,14 +107,14 @@ int s_conn_uniq(GList * conn_list, CONN * input_conn)
  *
  *  \par Function Description
  *  This function removes the Object <b>to_remove</b> from the connection
- *  list of the Object <b>other_object</b>.
+ *  <b>other_object</b> list of objects.
  *
- *  \param other_object Object from that the to_remove Object needs to be removed
- *  \param to_remove Object to remove
+ *  \param other_object Object from which to_remove Object needs to be removed
+ *  \param to_remove    Object to remove
  *
  *  \return TRUE if a connection has been deleted, FALSE otherwise
  */
-int s_conn_remove_other (Object *other_object, Object *to_remove)
+int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
 {
   GList *c_current;
 
@@ -165,7 +165,7 @@ int s_conn_remove_other (Object *other_object, Object *to_remove)
 /*! \brief removes a GList of Objects from the connection system
  *
  *  \par Function Description
- *  This function removes all connections from and to the Objects
+ *  This function removes all connections from and to the GedaObjects
  *  in the given GList.
  *
  *  \param obj_list  GList of Objects to unconnected from all other objects
@@ -176,21 +176,21 @@ static void s_conn_remove_glist (GList *obj_list)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     s_conn_remove_object (o_current);
   }
 }
 
-/*! \brief remove an Object from the connection system
+/*! \brief remove an GedaObject from the connection system
  *
  *  \par Function Description
- *  This function removes all connections from and to the Object
+ *  This function removes all connections from and to the GedaObject
  *  <b>to_remove</b>.
  *
- *  \param to_remove Object to unconnected from all other objects
+ *  \param to_remove GedaObject to unconnected from all other objects
  */
-void s_conn_remove_object (Object *to_remove)
+void s_conn_remove_object (GedaObject *to_remove)
 {
   GList *c_iter;
   int changed = FALSE;
@@ -233,17 +233,17 @@ void s_conn_remove_object (Object *to_remove)
   }
 }
 
-/*! \brief Checks if a point is a midpoint of an Object
+/*! \brief Checks if a point is a midpoint of an GedaObject
  *
  *  \par Function Description
- *  Checks if the point (<b>x</b>,<b>y</b>) is on the Object
+ *  Checks if the point (<b>x</b>,<b>y</b>) is on the GedaObject
  *  and between it's endpoints.
  *
- *  \return TRUE if the point is a midpoint of the Object. FALSE if the
- *          point is not a midpoint or if the Object is not a NET a PIN
- *          or a BUS or if the Object is not orthogonally oriented.
+ *  \return TRUE if the point is a midpoint of the GedaObject. FALSE if the
+ *          point is not a midpoint or if the GedaObject is not a NET a PIN
+ *          or a BUS or if the GedaObject is not orthogonally oriented.
  */
-Object *s_conn_check_midpoint(Object *o_current, int x, int y)
+GedaObject *s_conn_check_midpoint(GedaObject *o_current, int x, int y)
 {
   int min_x, min_y, max_x, max_y;
 
@@ -295,7 +295,7 @@ Object *s_conn_check_midpoint(Object *o_current, int x, int y)
 /*! \brief adds a GList of Objects to the connection system
  *
  *  \par Function Description
- *  This function adds all connections from and to the Objects
+ *  This function adds all connections from and to the GedaObjects
  *  in the given GList.
  *
  *  \param obj_list  GList of Objects to add into the connection system
@@ -306,7 +306,7 @@ void s_conn_update_glist (GList *obj_list)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     s_conn_update_object (o_current);
   }
@@ -317,17 +317,17 @@ void s_conn_update_glist (GList *obj_list)
  *  \par Function Description
  *  Checks if two objects are legal to be connected together
  *
- *  \param object1  First Object
- *  \param object2  Second Object
+ *  \param object1  First GedaObject
+ *  \param object2  Second GedaObject
  *
  *  \return TRUE if the objects are compatible, FALSE if not
  */
-static int check_direct_compat (Object *object1, Object *object2)
+static int check_direct_compat (GedaObject *object1, GedaObject *object2)
 {
   return (o_get_is_bus_related (object1) == o_get_is_bus_related (object2));
 }
 
-static void add_connection (Object *object, Object *other_object,
+static void add_connection (GedaObject *object, GedaObject *other_object,
                             int type, int x, int y,
                             int whichone, int other_whichone)
 {
@@ -348,13 +348,13 @@ static void add_connection (Object *object, Object *other_object,
 
 /*! \brief add a line Object to the connection system
  *  \par Function Description
- *  This function searches for all geometrical connections of the Object
+ *  This function searches for all geometrical connections of the GedaObject
  *  <b>object</b> to all other connectable objects. It adds connections
  *  to the object and from all other objects to this one.
  *
- *  \param object Object to add into the connection system
+ *  \param object GedaObject to add into the connection system
  */
-void s_conn_update_linear_object (Object *object)
+void s_conn_update_linear_object (GedaObject *object)
 {
   /* There is no point in looking for objects not on a page
    * since the tile system does not add pageless objects */
@@ -363,10 +363,10 @@ void s_conn_update_linear_object (Object *object)
     TILE   *t_current;
     GList  *tl_current;
     GList  *object_list;
-    Object *complex;
-    Object *found;
-    Object *other_object;
-    Object *other_complex;
+    GedaObject *complex;
+    GedaObject *found;
+    GedaObject *other_object;
+    GedaObject *other_complex;
 
     complex = o_get_parent (object);
 
@@ -521,17 +521,17 @@ void s_conn_update_linear_object (Object *object)
   }
 }
 
-/*! \brief Update an Object in the connection system
+/*! \brief Update an GedaObject in the connection system
  *
  *  \par Function Description
- *  This function searches for all geometrical connections of the Object
+ *  This function searches for all geometrical connections of the GedaObject
  *  <b>object</b> to all other connectable objects. The function updates
  *  connections to the object and from all other objects to this given
  *  object.
  *
- *  \param object Object to update into the connection system
+ *  \param object GedaObject to update into the connection system
  */
-void s_conn_update_object (Object *object)
+void s_conn_update_object (GedaObject *object)
 {
   switch (object->type) {
     case OBJ_PIN:
@@ -581,13 +581,13 @@ void s_conn_print(GList *conn_list)
  *  This method searches the connection list for the first matching
  *  connection with the given x, y, and whichone endpoint.
  *
- *  \param [in] new_net    Net Object to compare to.
+ *  \param [in] new_net    Net GedaObject to compare to.
  *  \param [in] whichone   The connection number to check.
  *  \param [in] conn_list  List of existing connections to compare
  *                         <B>new_net</B> to.
  *  \return TRUE if a matching connection is found, FALSE otherwise.
  */
-int s_conn_net_search(Object *new_net, int whichone, GList *conn_list)
+int s_conn_net_search(GedaObject *new_net, int whichone, GList *conn_list)
 {
   GList *cl_current = conn_list;
 
@@ -612,10 +612,10 @@ int s_conn_net_search(Object *new_net, int whichone, GList *conn_list)
  *
  *  \par Function Description
  *  This function gets all other_object from the connection
- *  list of the Objects in the pased list.
+ *  list of the GedaObjects in the pased list.
  *
- *  \param [in] input_list GList of Object's or NULL
- *  \param [in] obj_list   The GList of Object to get connections from
+ *  \param [in] input_list GList of GedaObject's or NULL
+ *  \param [in] obj_list   The GList of GedaObject to get connections from
  *
  *  \return A GList of objects
  *
@@ -632,7 +632,7 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     return_list = s_conn_return_others (return_list, o_current);
   }
@@ -648,8 +648,8 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
  *  processed. If an <b>input_list</b> is given, the other objects are
  *  appended to that list.
  *
- *  \param [in] input_list   GList of Object's
- *  \param [in] object       Object to get other Objects from
+ *  \param [in] input_list   GList of GedaObject's
+ *  \param [in] object       GedaObject to get other GedaObjects from
  *
  *  \return A GList of Objects
  *
@@ -657,7 +657,7 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
  *  Caller must g_list_free returned GList pointer.
  *  Do not free individual data items in list.
  */
-GList *s_conn_return_others(GList *input_list, Object *object)
+GList *s_conn_return_others(GList *input_list, GedaObject *object)
 {
   GList *c_iter;
   GList *return_list;
@@ -724,7 +724,7 @@ s_conn_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data)
 static void call_conns_changed_hook (void *data, void *user_data)
 {
   ConnsChangedHook *hook = data;
-  Object *object         = user_data;
+  GedaObject *object         = user_data;
 
   hook->func (hook->data, object);
 }
@@ -733,13 +733,13 @@ static void call_conns_changed_hook (void *data, void *user_data)
  * \par Function Description
  * Calls each change callback function registered with #Page to
  * notify listeners that \a connection has just been modified.  All
- * libgeda functions that modify #Object structures should call this
- * just after making a change to an #Object.
+ * libgeda functions that modify #GedaObject structures should call this
+ * just after making a change to an #GedaObject.
  *
- * \param object      #Object structure to emit notifications for.
+ * \param object      #GedaObject structure to emit notifications for.
  *
  */
-void s_conn_emit_conns_changed (Object *object)
+void s_conn_emit_conns_changed (GedaObject *object)
 {
   if (object != NULL) {
 
@@ -757,24 +757,24 @@ void s_conn_emit_conns_changed (Object *object)
   }
 }
 
-/*! \brief Suspense Object Connection Notification for an Object
+/*! \brief Suspense GedaObject Connection Notification for an GedaObject
  *
  * \par Function Description
  *  This function increments the freeze count of an
- *#Object. Notification of connection changes is
+ *#GedaObject. Notification of connection changes is
  *  suspended until the freeze is reduced to zero.
  *
  * \sa s_conn_thaw_hooks
  *
- * \param object #Object to freeze notifications for.
+ * \param object #GedaObject to freeze notifications for.
  */
-void s_conn_freeze_hooks (Object *object)
+void s_conn_freeze_hooks (GedaObject *object)
 {
   if (object != NULL) {
     object->conn_notify_freeze_count += 1;
   }
 }
-/*! \brief Thaw Connection Notification for an Object
+/*! \brief Thaw Connection Notification for an GedaObject
  *
  * \par Function Description
  *  This function add a hook to each new page object so that the
@@ -783,9 +783,9 @@ void s_conn_freeze_hooks (Object *object)
  *
  * \sa s_conn_freeze_hooks
  *
- * \param object #Object to thaw notifications for.
+ * \param object #GedaObject to thaw notifications for.
  */
-void s_conn_thaw_hooks (Object *object)
+void s_conn_thaw_hooks (GedaObject *object)
 {
   if (object != NULL) {
     g_return_if_fail (object->conn_notify_freeze_count > 0);
@@ -798,7 +798,7 @@ void s_conn_thaw_hooks (Object *object)
   }
 }
 
-static void refresh_connectivity_cache (GedaToplevel *toplevel, Object *object)
+static void refresh_connectivity_cache (GedaToplevel *toplevel, GedaObject *object)
 {
     if (object->type == OBJ_NET) {
         /* FIXME: suboptimal to refresh cache every time */

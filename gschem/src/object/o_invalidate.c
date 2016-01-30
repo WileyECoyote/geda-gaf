@@ -185,7 +185,7 @@ o_invalidate_all (GschemToplevel *w_current)
  *  \param [in] object     The Object invalidated on screen.
  */
 void
-o_invalidate_object (GschemToplevel *w_current, Object *object)
+o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
@@ -214,7 +214,7 @@ o_invalidate_object (GschemToplevel *w_current, Object *object)
  *  \param [in] object     The Object invalidated on screen.
  */
 void
-o_invalidate_force(GschemToplevel *w_current, Object *object)
+o_invalidate_force(GschemToplevel *w_current, GedaObject *object)
 {
   int s_left, s_top, s_bottom, s_right;
   WORLDtoSCREEN (w_current, object->left,  object->top,    &s_left, &s_top);

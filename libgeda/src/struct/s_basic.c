@@ -53,13 +53,13 @@
  */
 void print_struct_forw (GList *list)
 {
-  Object *o_current=NULL;
+  GedaObject *o_current=NULL;
   GList *iter;
 
   iter = list;
   printf("Printing ...\n");
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
+    o_current = (GedaObject *)iter->data;
     printf("Name: %s\n", o_current->name);
     printf("Type: %d\n", o_current->type);
     printf("Sid: %d\n", o_current->sid);
@@ -80,9 +80,9 @@ void print_struct_forw (GList *list)
  *  \par Function Description
  *
  */
-void print_struct(Object *ptr)
+void print_struct(GedaObject *ptr)
 {
-  Object *o_current=NULL;
+  GedaObject *o_current=NULL;
 
   o_current = ptr;
 

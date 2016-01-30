@@ -55,12 +55,12 @@
 typedef struct _GedaPictureClass PictureClass;
 
 struct _GedaPictureClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaPicture {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   GdkPixbuf     *pixbuf;
   char          *file_content;
@@ -87,7 +87,7 @@ extern "C" {
 GedaPicType  geda_picture_get_type     (void) GEDA_CONST;
 bool         is_a_geda_picture_object  (Picture *object);
 
-Object      *geda_picture_new          (void);
+GedaObject  *geda_picture_new          (void);
 
 #ifdef __cplusplus
 }

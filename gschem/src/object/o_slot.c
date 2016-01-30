@@ -49,7 +49,7 @@
  *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a "slotable" Object.
  */
-void o_slot_start (GschemToplevel *w_current, Object *object)
+void o_slot_start (GschemToplevel *w_current, GedaObject *object)
 {
   char *slot_count;
   char *slot_value;
@@ -94,14 +94,13 @@ void o_slot_start (GschemToplevel *w_current, Object *object)
  *  \param string    pointer to attribute string.
  *
  */
-void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
+void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *string)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-
-  char   *slot_value;
-  char   *numslots_value;
-  Object *o_slot;
-  char   *value = NULL;
+  GedaObject   *o_slot;
+  char         *slot_value;
+  char         *numslots_value;
+  char         *value = NULL;
 
   int numslots;
   int new_slot_number;
@@ -150,7 +149,7 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
   else {
 
     /* Add the slot attribute since it does not exist */
-    Object *new_obj = o_text_new (ATTRIBUTE_COLOR,
+    GedaObject *new_obj = o_text_new (ATTRIBUTE_COLOR,
                                   object->complex->x, object->complex->y,
                                   LOWER_LEFT, 0, /* zero is angle */
                                   10, INVISIBLE, SHOW_NAME_VALUE, string);

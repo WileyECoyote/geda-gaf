@@ -631,7 +631,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   char *pinseq;
   char *wanted_attrib;
   char *return_value = NULL;
-  Object *o_pin_object;
+  GedaObject *o_pin_object;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinseq");
@@ -727,8 +727,8 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 {
   SCM scm_return_value;
 
-  NETLIST *nl_current;
-  Object  *pin_object;
+  NETLIST    *nl_current;
+  GedaObject *pin_object;
 
   char *uref;
   char *pin;
@@ -768,8 +768,8 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
-        pin_object =  o_complex_find_pin_by_attribute (nl_current->object_ptr,
-                                                       "pinnumber", pin);
+        pin_object = o_complex_find_pin_by_attribute (nl_current->object_ptr,
+                                                      "pinnumber", pin);
 
         if (pin_object) {
 

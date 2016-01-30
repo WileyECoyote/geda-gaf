@@ -44,7 +44,7 @@
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  */
 inline static bool o_find_is_object_hit (GschemToplevel *w_current,
-                                         Object *object,
+                                         GedaObject *object,
                                          int wx, int wy, int w_slack)
 {
   int left, top, right, bottom;
@@ -74,7 +74,7 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  */
 static void o_find_disposition_object (GschemToplevel *w_current,
-                                       Object *object,
+                                       GedaObject     *object,
                                        int mode)
 {
   if (mode == SELECTION_REPLACE) {
@@ -111,15 +111,15 @@ static void o_find_disposition_object (GschemToplevel *w_current,
  *
  *  \sa o_find_object
  */
-Object *o_find_get_hit (GschemToplevel *w_current, int x, int y)
+GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
 {
-  GList  *iter;
-  Object *object  = NULL;
-  int     w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
+  GList      *iter;
+  GedaObject *object = NULL;
+  int        w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
 
   for (iter = s_page_get_objects (Current_Page); iter; NEXT(iter)) {
 
-    Object *o_current = iter->data;
+   GedaObject *o_current = iter->data;
 
     if (o_current->selectable && o_current->visibility > 0) {
 
@@ -182,7 +182,7 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
         /* Start searching from remainder of list */
         while (iter) {
 
-          Object *object = iter->data;
+          GedaObject *object = iter->data;
 
           if (object->visibility && (object->selectable || w_current->ALTKEY))
           {
@@ -207,7 +207,7 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 
     for (iter = list; iter; iter = iter->next) {
 
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
 
       if (object->visibility && (object->selectable || w_current->ALTKEY))
       {
@@ -249,14 +249,14 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
  *  Return first object in the current selection that can be hit at the
  *  given coordinates or NULL if no such object is found.
  */
-Object *o_find_selected_object (GschemToplevel *w_current, int wx, int wy)
+GedaObject *o_find_selected_object (GschemToplevel *w_current, int wx, int wy)
 {
   int w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
   GList *iter;
 
   for (iter = geda_list_get_glist (Current_Selection); iter; NEXT(iter)) {
 
-    Object *o_current = iter->data;
+   GedaObject *o_current = iter->data;
 
     if (o_find_is_object_hit (w_current, o_current, wx, wy, w_slack)) {
       return o_current;

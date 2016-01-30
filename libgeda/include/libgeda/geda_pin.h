@@ -80,7 +80,7 @@ struct _GedaPin {
 GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
 bool         is_a_geda_pin_object        (Pin *object);
 
-Object     *geda_pin_new                 (void);
+GedaObject *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (Pin *pin);
 bool        geda_pin_set_electrical      (Pin *pin, const char *electrical);
 const char *geda_pin_get_label           (Pin *pin);

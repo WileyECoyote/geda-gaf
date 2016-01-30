@@ -41,7 +41,7 @@
  *   one array. The array argument for undisred points should be set to
  *   NULL.
  *
- *  \param [in]     objects     Objects to get the cue points for
+ *  \param [in]     objects     GedaObjects to get the cue points for
  *  \param [in,out] junctions   GArray of POINT to contain the coordinates of junctions
  *  \param [in,out] unconnected GArray of POINT to contain the coordinates of unconnected
  *                              endpoints.
@@ -57,7 +57,7 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
   const GList  *iter;
         POINT   point;
 
-  void add_end_cues (Object *object, int end) {
+  void add_end_cues (GedaObject *object, int end) {
 
     int conn_count = 0;
     int conn_type  = CONN_ENDPOINT;
@@ -110,7 +110,7 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
     }
   }
 
-  void add_mid_cues (Object *object) {
+  void add_mid_cues (GedaObject *object) {
 
     if (junctions) {
 
@@ -131,7 +131,7 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
 
   while (iter != NULL) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (object->type == OBJ_NET || object->type == OBJ_BUS) {
       add_mid_cues (object);
@@ -236,7 +236,7 @@ static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
  *   and s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel(GedaToplevel *toplevel,
-                                  Object       *object,
+                                  GedaObject       *object,
                                   int           whichone,
                                   FILE         *fp,
                                   int           output_type)
@@ -320,7 +320,7 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
  *   Wrapper for s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
-                                            Object       *object,
+                                            GedaObject       *object,
                                             FILE         *fp,
                                             int           output_type)
 {
@@ -363,12 +363,12 @@ static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
  *   - junction cues (identifying net/pin/bus junctions)
  *
  *  \param [in] toplevel   The GedaToplevel object
- *  \param [in] object     The Object to output cues for
+ *  \param [in] object     The GedaObject to output cues for
  *  \param [in] fp         The file handle to output to
  *  \param [in] type       The type of output being produced
  */
 void s_cue_output_single(GedaToplevel *toplevel,
-                         Object       *object,
+                         GedaObject       *object,
                          FILE         *fp,
                          int           type)
 {
@@ -403,7 +403,7 @@ s_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int t
 
   while (iter != NULL) {
 
-    Object *o_current = (Object*)iter->data;
+    GedaObject *o_current = (GedaObject*)iter->data;
 
     switch (o_current->type) {
       case (OBJ_NET):

@@ -176,7 +176,7 @@ Path *s_path_copy_modify (Path *path, int dx, int dy,
 {
   Path *new_path;
   char *path_string;
-  Object *object;
+  GedaObject *object;
 
   int x1, y1, x2, y2, x3, y3;
   int i;

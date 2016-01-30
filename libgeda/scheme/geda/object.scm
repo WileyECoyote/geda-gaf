@@ -438,7 +438,7 @@
 (define-public object-fill %object-fill)
 (define-public set-object-fill! %set-object-fill!)
 
-;;;; Object bounds
+;;;; GedaObject bounds
 
 (define-public object-bounds %object-bounds)
 
@@ -457,7 +457,7 @@
    #f ;; default
    bounds))
 
-;;;; Object transformations
+;;;; GedaObject transformations
 
 (define-public (translate-objects! vector . objects)
   (for-each

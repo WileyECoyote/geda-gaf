@@ -120,7 +120,7 @@ static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_sweep)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
+  GedaObject   *new_obj;
 
   /* create, initialize and link the new arc object */
   new_obj = o_arc_new (GRAPHIC_COLOR,

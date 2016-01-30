@@ -43,42 +43,42 @@ void i_show_wiki_help(const char *html_file);
 
 /* ------------- s_attrib.c ------------- */
 int   s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
-char *s_attrib_get_refdes(Object *object);
+char *s_attrib_get_refdes(GedaObject *object);
 
 /* ------------- s_object.c ------------- */
 void s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                         Object *o_current,
+                                         GedaObject *o_current,
                                          char *new_attrib_name,
                                          char *new_attrib_value,
                                          int visibility,
                                          int show_name_value);
 void s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                        Object *o_current,
+                                        GedaObject *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value);
 void s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
-                                        Object *o_current,
+                                        GedaObject *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value);
 
 void s_object_replace_attrib_in_object (GedaToplevel *toplevel,
-                                        Object *o_current,
+                                        GedaObject *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value,
                                         int visibility,
                                         int show_name_value);
 void s_object_release_attrib_in_object (GedaToplevel *toplevel,
-                                       Object *o_current,
-                                       char *new_attrib_name);
+                                        GedaObject *o_current,
+                                        char *new_attrib_name);
 
 bool s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
-                                           char *text_string,
-                                           int visibility,
-                                           int show_name_value,
-                                           Object * object);
+                                           char         *text_string,
+                                           int           visibility,
+                                           int           show_name_value,
+                                           GedaObject   *object);
 
-void s_object_delete_text_object_in_object(GedaToplevel *toplevel, Object *test_object);
-int  s_object_has_sym_file(Object *object);
+void s_object_delete_text_object_in_object(GedaToplevel *toplevel, GedaObject *test_object);
+int  s_object_has_sym_file(GedaObject *object);
 
 /* ------------- s_misc.c ------------- */
 void verbose_print(char *string);
@@ -182,14 +182,14 @@ void s_toplevel_sheetdata_to_toplevel(GedaToplevel *toplevel, Page *page);
 STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes);
 void s_toplevel_update_component_attribs_in_toplevel(
 					    GedaToplevel *toplevel,
-					    Object *o_current,
+					    GedaObject *o_current,
 					    STRING_LIST *new_comp_attrib_list);
 STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname);
-void s_toplevel_update_net_attribs_in_toplevel(Object *o_current,
+void s_toplevel_update_net_attribs_in_toplevel(GedaObject *o_current,
 					 STRING_LIST *new_net_attrib_list);
-STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin);
+STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin);
 void s_toplevel_update_pin_attribs_in_toplevel(GedaToplevel *toplevel,
-					 char *refdes, Object *pin,
+					 char *refdes, GedaObject *pin,
 					 STRING_LIST *new_pin_attrib_list);
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 

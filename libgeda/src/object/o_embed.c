@@ -36,9 +36,9 @@
  *  be embedded later. Picture objects are embedded immediatly.
  *
  *  \param toplevel  The GedaToplevel object
- *  \param o_current The Object to embed
+ *  \param o_current The GedaObject to embed
  */
-bool o_embed(GedaToplevel *toplevel, Object *o_current)
+bool o_embed(GedaToplevel *toplevel, GedaObject *o_current)
 {
   Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;
@@ -73,9 +73,9 @@ bool o_embed(GedaToplevel *toplevel, Object *o_current)
  *  be not embedded. Picture objects are unembeded immediatly.
  *
  *  \param toplevel  The GedaToplevel object
- *  \param o_current The Object to unembed
+ *  \param o_current The GedaObject to unembed
  */
-void o_unembed(GedaToplevel *toplevel, Object *o_current)
+void o_unembed(GedaToplevel *toplevel, GedaObject *o_current)
 {
   const CLibSymbol *sym;
   Page *page = geda_object_get_page (o_current);

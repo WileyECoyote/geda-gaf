@@ -99,7 +99,7 @@ struct _GschemDialog {
   GtkWindow       *parent_window;
   GschemToplevel  *w_current;
   SELECTION       *selection;
-  void (*tracker) (GschemToplevel *w_current, Object *object);
+  void (*tracker) (GschemToplevel *w_current, GedaObject *object);
 
   unsigned int tail_marker;       /* structure type signature */
 };

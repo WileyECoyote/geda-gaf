@@ -58,7 +58,7 @@ bool returns_true (void * key, void * value, void * user_data)
  *  Retrieve the current visit count for a particular Object.
  */
 static
-inline int is_visited(Object *obj)
+inline int is_visited(GedaObject *obj)
 {
   void *val;
   void *orig_key;
@@ -77,7 +77,7 @@ inline int is_visited(Object *obj)
  *  \note g_hash_table_replace() adds the pointer to the table if
  *        the \a object is not found in the table.
  */
-static inline int visit(Object *obj)
+static inline int visit(GedaObject *obj)
 {
   void *val = (void*)(long)(is_visited (obj) + 1);
   g_hash_table_replace (visit_table, obj, val);
@@ -216,7 +216,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     netlist = s_netlist_return_tail (netlist_head);
 
@@ -352,7 +352,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    Object *o_current = iter->data;
+   GedaObject *o_current = iter->data;
 
     netlist = s_netlist_return_tail (netlist_head);
 
@@ -467,7 +467,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
  *
  */
 CPINLIST *s_traverse_component(GedaToplevel *pr_current,
-                               Object       *component,
+                               GedaObject   *component,
                                char         *hierarchy_tag)
 {
   CPINLIST *cpinlist_head = NULL;
@@ -486,7 +486,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
        iter != NULL;
        iter  = g_list_next (iter))
   {
-    Object *o_current = iter->data;
+   GedaObject *o_current = iter->data;
 
     /* Ignore objects which aren't net pins */
     if (o_current->type != OBJ_PIN)
@@ -532,7 +532,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
  *  \par Function Description
  *
  */
-static int connection_type (Object *object)
+static int connection_type (GedaObject *object)
 {
   switch (object->type) {
     case OBJ_PIN:  return object->pin->node_type;
@@ -550,7 +550,7 @@ static int connection_type (Object *object)
  *
  */
 NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
-                     Object *object, char *hierarchy_tag, int type)
+                     GedaObject *object, char *hierarchy_tag, int type)
 {
   NET   *new_net;
   CONN  *c_current;
@@ -659,7 +659,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
   while (cl_current != NULL) {
 
-    Object *next_object;
+   GedaObject *next_object;
 
     c_current = (CONN *) cl_current->data;
 

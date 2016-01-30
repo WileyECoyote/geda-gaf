@@ -82,7 +82,7 @@ typedef bool   (* GschemDndRecvFunc) (GschemToplevel  *w_current,
                                       const char      *buffer,
                                       int              where);
 
-typedef const char *(* x_dnd_str_data_drag_func) (GschemToplevel *w_current, Object *object);
+typedef const char *(* x_dnd_str_data_drag_func) (GschemToplevel *w_current, GedaObject *object);
 
 static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_NONE,
@@ -164,13 +164,13 @@ static const GschemDndDataDef dnd_data_defs[] =
 
 /* Begin Data type Specific Sub-Handlers */
 static const char*
-x_dnd_send_string_nil (GschemToplevel *w_current, Object *object)
+x_dnd_send_string_nil (GschemToplevel *w_current, GedaObject *object)
 {
   return (DND_NIL);
 }
 
 static const char*
-x_dnd_send_string_object (GschemToplevel *w_current, Object *object)
+x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
 {
   const char *string_1;
   const char *string_2;
@@ -239,7 +239,7 @@ static char *x_dnd_string_data_box_properties(Box *box)
                   box->upper_x, box->upper_y, box->lower_x, box->lower_y);
 }
 
-static const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
+static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObject *object)
 {
   const char *string;
   const char *name;
@@ -282,7 +282,7 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *o
 }
 
 static const char*
-x_dnd_send_string_signal (GschemToplevel *w_current, Object *object)
+x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
 {
   const char *string;
   const char *name;
@@ -304,7 +304,7 @@ x_dnd_send_string_signal (GschemToplevel *w_current, Object *object)
 }
 
 static const char*
-x_dnd_send_string_text (GschemToplevel *w_current, Object *object)
+x_dnd_send_string_text (GschemToplevel *w_current, GedaObject *object)
 {
   const char *string;
   const char *name;
@@ -322,7 +322,7 @@ const char*
 x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
                    GtkSelectionData *selection)
 {
-  Object *object;
+  GedaObject *object;
   x_dnd_str_data_drag_func  dnd_str_data_func;
 
   dnd_str_data_func = x_dnd_send_string_nil;
@@ -404,7 +404,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
 
       if(where == DROPPED_ON_COORD) {
 
-        Object *object;
+        GedaObject *object;
 
         w_current->second_wx = x;
         w_current->second_wy = y;

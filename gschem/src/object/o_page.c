@@ -92,7 +92,7 @@ static GList *remove_title_blocks(GList **page_list)
 
   while (iter) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (object->type == OBJ_COMPLEX) {
 
@@ -140,7 +140,7 @@ static GList *restore_title_blocks(GList *page_list, GList *titleblocks)
   GList  *iter = titleblocks;
 
   while (iter) {
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
     page_list = g_list_prepend(page_list, object);
     iter = iter->next;
   }
@@ -178,7 +178,7 @@ void o_page_draw_after (GschemToplevel *w_current)
 
     /* Remove duplicate selection in after and remove from page */
     for (iter = set1; iter; iter = iter->next) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       set2           = g_list_remove(set2, object);
     }
 
@@ -191,7 +191,7 @@ void o_page_draw_after (GschemToplevel *w_current)
       GList  *tail      = NULL;
 
       for (iter = set1; iter; iter = iter->next) {
-        Object *object = iter->data;
+        GedaObject *object = iter->data;
         page_list      = g_list_remove(page_list, object);
       }
 
@@ -199,7 +199,7 @@ void o_page_draw_after (GschemToplevel *w_current)
 
       /* Traverse page backwards looking for occurence of member set2 */
       for (iter = last; iter; iter = iter->prev) {
-        Object *object = iter->data;
+        GedaObject *object = iter->data;
         if (g_list_find(set2, object)) {
           tail = iter->next;
           break;
@@ -208,7 +208,7 @@ void o_page_draw_after (GschemToplevel *w_current)
 
       if (tail){
         for (iter = set1; iter; iter = iter->next) {
-          Object *object = iter->data;
+          GedaObject *object = iter->data;
           page_list = g_list_insert_before (page_list, tail, object);
         }
       }
@@ -262,7 +262,7 @@ void o_page_draw_before (GschemToplevel *w_current)
 
     /* Look for duplicate selection in and remove from set2 */
     for (iter = set1; iter; iter = iter->next) {
-      Object *object = iter->data;
+      GedaObject *object = iter->data;
       set2           = g_list_remove(set2, object);
     }
 
@@ -274,13 +274,13 @@ void o_page_draw_before (GschemToplevel *w_current)
       GList  *leader    = NULL;
 
       for (iter = set1; iter; iter = iter->next) {
-        Object *object = iter->data;
+        GedaObject *object = iter->data;
         page_list      = g_list_remove(page_list, object);
       }
 
       /* Traverse page looking for first occurence of member set2 */
       for (iter = page_list; iter; iter = iter->next) {
-        Object *object = iter->data;
+        GedaObject *object = iter->data;
         if (g_list_find(set2, object)) {
           leader = iter;
           break;
@@ -288,7 +288,7 @@ void o_page_draw_before (GschemToplevel *w_current)
       }
 
       for (iter = set1; iter; iter = iter->next) {
-        Object *object = iter->data;
+        GedaObject *object = iter->data;
         page_list = g_list_insert_before (page_list, leader, object);
       }
 
@@ -338,7 +338,7 @@ void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
 
   while (iter) {
 
-    Object *object;
+    GedaObject *object;
 
     object    = iter->data;
     page_list = g_list_remove (page_list, object);
@@ -378,7 +378,7 @@ void o_page_draw_last (GschemToplevel *w_current, GList *object_list)
 
   while (iter) {
 
-    Object *object;
+    GedaObject *object;
 
     object    = iter->data;
     page_list = g_list_remove (page_list, object);

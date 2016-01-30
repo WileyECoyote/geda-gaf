@@ -89,7 +89,7 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
   if ((w_current->first_wx - w_current->second_wx) ||
       (w_current->first_wy - w_current->second_wy))
   {
-    Object *new_obj;
+    GedaObject *new_obj;
 
     new_obj = o_pin_new(color,
                         w_current->first_wx, w_current->first_wy,

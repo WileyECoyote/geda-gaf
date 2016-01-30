@@ -124,42 +124,42 @@ static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr
 
 static void eda_renderer_set_color    (EdaRenderer *renderer, int color);
 static int  eda_renderer_is_drawable_color (EdaRenderer *renderer, int color, int use_override);
-static int  eda_renderer_is_drawable  (EdaRenderer *renderer, Object *object);
-static int  eda_renderer_draw_hatch   (EdaRenderer *renderer, Object *object);
+static int  eda_renderer_is_drawable  (EdaRenderer *renderer, GedaObject *object);
+static int  eda_renderer_draw_hatch   (EdaRenderer *renderer, GedaObject *object);
 
-static void eda_renderer_default_draw (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_list    (EdaRenderer *renderer, GList *objects);
-static void eda_renderer_draw_line    (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_pin     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_net     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_bus     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_box     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_arc     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_circle  (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_path    (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_text    (EdaRenderer *renderer, Object *object);
+static void eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_list    (EdaRenderer *renderer, GList      *objects);
+static void eda_renderer_draw_line    (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_pin     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_net     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_bus     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_box     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_arc     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_circle  (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_path    (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_text    (EdaRenderer *renderer, GedaObject *object);
 
-static int  eda_renderer_prepare_text       (EdaRenderer *renderer, Object *object);
-static void eda_renderer_calc_text_position (EdaRenderer *renderer, Object *object,
+static int  eda_renderer_prepare_text       (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_calc_text_position (EdaRenderer *renderer, GedaObject *object,
                                              int descent, double *x, double *y);
-static void eda_renderer_draw_picture (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_complex (EdaRenderer *renderer, Object *object);
+static void eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_complex (EdaRenderer *renderer, GedaObject *object);
 
-static void eda_renderer_default_draw_grips (EdaRenderer *renderer, Object *object);
+static void eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object);
 static void eda_renderer_draw_grips_impl    (EdaRenderer *renderer, int type, int n_grips, ...);
-static void eda_renderer_draw_arc_grips     (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_path_grips    (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_text_grips    (EdaRenderer *renderer, Object *object);
+static void eda_renderer_draw_arc_grips     (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_path_grips    (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_text_grips    (EdaRenderer *renderer, GedaObject *object);
 
 static void eda_renderer_draw_junction_cue  (EdaRenderer *renderer, int x, int y,
                                              double width);
-static void eda_renderer_draw_mid_cues      (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_end_cues      (EdaRenderer *renderer, Object *object,
+static void eda_renderer_draw_mid_cues      (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_end_cues      (EdaRenderer *renderer, GedaObject *object,
                                              int end);
-static void eda_renderer_default_draw_cues  (EdaRenderer *renderer, Object *object);
-static void eda_renderer_draw_cues_list     (EdaRenderer *renderer, GList *objects);
+static void eda_renderer_default_draw_cues  (EdaRenderer *renderer, GedaObject *object);
+static void eda_renderer_draw_cues_list     (EdaRenderer *renderer, GList      *objects);
 
-static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
+static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
                                                  int *left,   int *top,
                                                  int *right,  int *bottom);
 
@@ -519,7 +519,7 @@ eda_renderer_draw_list (EdaRenderer *renderer, GList *objects)
   GList *iter;
 
   for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
-    eda_renderer_draw (renderer, (Object *) iter->data);
+    eda_renderer_draw (renderer, (GedaObject*)iter->data);
   }
 }
 
@@ -532,18 +532,18 @@ eda_renderer_draw_list (EdaRenderer *renderer, GList *objects)
  *  \param [in] object   Pointer to a GedaObject.
  */
 void
-eda_renderer_draw (EdaRenderer *renderer, Object *object)
+eda_renderer_draw (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (EDA_IS_RENDERER(renderer));
   EDA_RENDERER_GET_CLASS (renderer)->draw (renderer, object);
 }
 
 static void
-eda_renderer_default_draw (EdaRenderer *renderer, Object *object)
+eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
 {
   static int color_map_error = 0;
 
-  void (*draw_func)(EdaRenderer *, Object *);
+  void (*draw_func)(EdaRenderer *, GedaObject *);
 
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
@@ -620,7 +620,7 @@ eda_renderer_is_drawable_color (EdaRenderer *renderer, int color,
 }
 
 static int
-eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
+eda_renderer_is_drawable (EdaRenderer *renderer, GedaObject *object)
 {
   int color = object->color;
   /* Always attempt to draw complex objects */
@@ -631,7 +631,7 @@ eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
 }
 
 static int
-eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
 {
   bool    result;
 
@@ -679,14 +679,14 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_complex (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_complex (EdaRenderer *renderer, GedaObject *object)
 {
   /* Recurse */
   eda_renderer_draw_list (renderer, object->complex->prim_objs);
 }
 
 static void
-eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_line (EdaRenderer *renderer, GedaObject *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -703,7 +703,7 @@ eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_net (EdaRenderer *renderer, GedaObject *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -719,7 +719,7 @@ eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_bus (EdaRenderer *renderer, GedaObject *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -735,7 +735,7 @@ eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_pin (EdaRenderer *renderer, GedaObject *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -751,7 +751,7 @@ eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_box (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 {
   int fill_solid = FALSE;
 
@@ -774,7 +774,7 @@ eda_renderer_draw_box (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
 {
   eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                  object->line_options->line_width,
@@ -793,7 +793,7 @@ eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 {
   int fill_solid = FALSE;
 
@@ -814,7 +814,7 @@ eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
                     object->line_options->line_length, object->line_options->line_space);
 }
 
-static void eda_renderer_draw_path (EdaRenderer *renderer, Object *object)
+static void eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 {
   int fill_solid = FALSE;
 
@@ -834,7 +834,7 @@ static void eda_renderer_draw_path (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
 {
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
@@ -957,7 +957,7 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
  * world coordinates. */
 static void
 eda_renderer_calc_text_position (EdaRenderer *renderer,
-                                 Object      *object,
+                                 GedaObject  *object,
                                  int descent, double *x, double *y)
 {
   PangoRectangle inked_rect, logical_rect;
@@ -1011,7 +1011,7 @@ eda_renderer_calc_text_position (EdaRenderer *renderer,
 }
 
 static int
-eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
+eda_renderer_prepare_text (EdaRenderer *renderer, GedaObject *object)
 {
   int    pango_size;
   int    points_size;
@@ -1094,7 +1094,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
 {
   double width,  orig_width;
   double height, orig_height;
@@ -1220,14 +1220,14 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
  *  Wrapper that calls eda_renderer_draw_grips for each member of list.
  *
  *  \param [in] renderer Pointer to a EdaRenderer object.
- *  \param [in] list     List of GedaObjects for which grips are to be drawn.
+ *  \param [in] list     List of Objects for which grips are to be drawn.
  */
 void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
 {
   GList *iter;
   if(renderer->draw_grips) {
     for (iter = list; iter != NULL; iter = g_list_next (iter)) {
-      eda_renderer_draw_grips (renderer, (Object *) iter->data);
+      eda_renderer_draw_grips (renderer, (GedaObject*) iter->data);
     }
   }
 }
@@ -1240,7 +1240,7 @@ void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
  *  \param [in] object   GedaObject for which grips are to be drawn.
  */
 void
-eda_renderer_draw_grips (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_grips (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
 
@@ -1248,7 +1248,7 @@ eda_renderer_draw_grips (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_default_draw_grips (EdaRenderer *renderer, Object *object)
+eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (object != NULL);
   g_return_if_fail (EDA_IS_RENDERER (renderer));
@@ -1348,7 +1348,7 @@ eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
 }
 
 static void
-eda_renderer_draw_arc_grips (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_arc_grips (EdaRenderer *renderer, GedaObject *object)
 {
   double radius, start_angle, arc_sweep;
   int x1, y1, x2, y2, x3, y3;
@@ -1381,7 +1381,7 @@ eda_renderer_draw_arc_grips (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_path_grips (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_path_grips (EdaRenderer *renderer, GedaObject *object)
 {
   int i, last_x = 0, last_y = 0, next_x, next_y;
   for (i = 0; i < object->path->num_sections; i++) {
@@ -1425,7 +1425,7 @@ eda_renderer_draw_path_grips (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_text_grips (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
 {
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
@@ -1484,7 +1484,7 @@ eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y, double widt
 }
 
 static void
-eda_renderer_draw_mid_cues (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_mid_cues (EdaRenderer *renderer, GedaObject *object)
 {
   GList *iter;
   for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
@@ -1497,7 +1497,7 @@ eda_renderer_draw_mid_cues (EdaRenderer *renderer, Object *object)
 }
 
 static void
-eda_renderer_draw_end_cues (EdaRenderer *renderer, Object *object, int end)
+eda_renderer_draw_end_cues (EdaRenderer *renderer, GedaObject *object, int end)
 {
   int x = object->line->x[end], y = object->line->y[end];
   int conn_count = 0;
@@ -1562,7 +1562,7 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, Object *object, int end)
 }
 
 static void
-eda_renderer_default_draw_cues (EdaRenderer *renderer, Object *object)
+eda_renderer_default_draw_cues (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
@@ -1604,12 +1604,12 @@ eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects)
   GList *iter;
 
   for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
-    eda_renderer_draw_cues (renderer, (Object *) iter->data);
+    eda_renderer_draw_cues (renderer, (GedaObject*) iter->data);
   }
 }
 
 void
-eda_renderer_draw_cues (EdaRenderer *renderer, Object *object)
+eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   EDA_RENDERER_GET_CLASS (renderer)->draw_cues (renderer, object);
@@ -1626,7 +1626,7 @@ eda_renderer_draw_cues (EdaRenderer *renderer, Object *object)
  * ================================================================ */
 
 int
-eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
+eda_renderer_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
                               int *left,     int *top,
                               int *right,    int *bottom)
 {
@@ -1638,7 +1638,7 @@ eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
 }
 
 int
-eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
+eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
                                       int *left,   int *top,
                                       int *right,  int *bottom)
 {
@@ -1669,7 +1669,7 @@ eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
 }
 
 int
-eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
+eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
                                    int         *left,     int *top,
                                    int         *right,    int *bottom)
 

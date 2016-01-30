@@ -49,12 +49,12 @@
 typedef struct _GedaBoxClass BoxClass;
 
 struct _GedaBoxClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaBox {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   /* upper is considered the origin */
   int          upper_x;
@@ -72,7 +72,7 @@ extern "C" {
 
 GedaObjectType geda_box_get_type     (void);
 bool           is_a_geda_box_object  (Box *object);
-Object        *geda_box_new          (void);
+GedaObject    *geda_box_new          (void);
 
 #ifdef __cplusplus
 }

@@ -174,7 +174,7 @@ u_refdes_get_ieee_designators()
  *
  *  \param [in] object      The text object
  */
-void u_refdes_reset(Object *object)
+void u_refdes_reset(GedaObject *object)
 {
   int   len;
   int   index;
@@ -239,7 +239,7 @@ char *u_refdes_return_numeric(void *text)
   if (text != NULL) {
 
     if (GEDA_IS_TEXT(text)) {
-      ptr   = ((Object*)text)->text->string;
+      ptr   = ((GedaObject*)text)->text->string;
     }
     else {
       ptr = text;

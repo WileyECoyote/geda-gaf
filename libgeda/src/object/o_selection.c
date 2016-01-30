@@ -44,9 +44,9 @@ SELECTION *o_selection_new( void )
  *  object visually selected. Skip objects that are already selected.
  *
  *  \param [in] selection  Pointer to the selection list
- *  \param [in] o_selected Object to select.
+ *  \param [in] o_selected GedaObject to select.
  */
-void o_selection_add (SELECTION *selection, Object *o_selected)
+void o_selection_add (SELECTION *selection, GedaObject *o_selected)
 {
   if (o_selection_select (o_selected) == 1) {
     geda_list_add( (GedaList *)selection, o_selected );
@@ -61,14 +61,14 @@ void o_selection_add (SELECTION *selection, Object *o_selected)
  *
  *  \param [in] selection  Pointer to the selection list
  *
- *  \returns The first Object or NULL if there is no selection
+ *  \returns The first GedaObject or NULL if there is no selection
  */
-Object *o_selection_get_first_object(SELECTION *selection)
+GedaObject *o_selection_get_first_object(SELECTION *selection)
 {
   if (!geda_list_get_glist(selection))
     return NULL;
 
-  return (Object*)g_list_first(geda_list_get_glist(selection))->data;
+  return (GedaObject*)g_list_first(geda_list_get_glist(selection))->data;
 }
 
 /*! \brief Removes the given object from the selection list
@@ -80,14 +80,14 @@ Object *o_selection_get_first_object(SELECTION *selection)
  *  selected, or even with a NULL pointer for an object.
  *
  *  \param [in] selection  Pointer to the selection list
- *  \param [in] object     Object to unselect and remove from the list.
+ *  \param [in] object     GedaObject to unselect and remove from the list.
  *
  *  \returns TRUE if \a object was selected and was removed, FALSE if the
  *           object was either not selected or was not in the selection
  *           or -1 to indicate an error if \a object is not a valid gEDA
  *           object.
  */
-int o_selection_remove (SELECTION *selection, Object *object)
+int o_selection_remove (SELECTION *selection, GedaObject *object)
 {
   int result;
 
@@ -127,7 +127,7 @@ int o_selection_remove (SELECTION *selection, Object *object)
 void o_selection_print_all(const SELECTION *selection)
 {
   const GList *s_current;
-  Object      *object;
+  GedaObject      *object;
 
   s_current = geda_list_get_glist (selection);
 
@@ -150,13 +150,13 @@ void o_selection_print_all(const SELECTION *selection)
  *  is called before setting the select flag on the object. After
  *  setting the flag the change notifier is called.
  *
- *  \param [in] object    Object to select.
+ *  \param [in] object    GedaObject to select.
  *
  *  \returns TRUE if the was not selected, FALSE if the object
  *           was already selected, or -1 to indicate an error
  *           because \a object is not a valid gEDA object.
  */
-int o_selection_select(Object *object)
+int o_selection_select(GedaObject *object)
 {
   int result;
 
@@ -171,7 +171,7 @@ int o_selection_select(Object *object)
     }
   }
   else {
-     fprintf(stderr, "%s: Is not gEDA Object:<%p>\n", __func__, object);
+     fprintf(stderr, "%s: Is not gEDA GedaObject:<%p>\n", __func__, object);
      result = -1;
   }
 
@@ -183,13 +183,13 @@ int o_selection_select(Object *object)
  *  \par Function Description
  *  Unsets the select flag for the given object.
  *
- *  \param [in] object    Object to unselect.
+ *  \param [in] object    GedaObject to unselect.
  *
  *  \returns TRUE if the was selected, FALSE if the object
  *           was not selected, or -1 to indicate an error
  *           because \a object is not a valid gEDA object.
  */
-int o_selection_unselect (Object *object)
+int o_selection_unselect (GedaObject *object)
 {
   int result;
 
@@ -202,7 +202,7 @@ int o_selection_unselect (Object *object)
     }
   }
   else {
-    fprintf(stderr, "%s: Is not gEDA Object:<%p>\n", __func__, object);
+    fprintf(stderr, "%s: Is not gEDA GedaObject:<%p>\n", __func__, object);
     result = -1;
   }
   return result;
@@ -227,7 +227,7 @@ int o_selection_unselect_all (SELECTION *selection)
 
     GList  *iter;
     GList  *list;
-    Object *object;
+    GedaObject *object;
 
     list = geda_list_get_glist(selection);
 

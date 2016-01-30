@@ -46,12 +46,12 @@
 typedef struct _GedaCircleClass CircleClass;
 
 struct _GedaCircleClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaCircle {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   int center_x;
   int center_y;
@@ -67,7 +67,7 @@ extern "C" {
 
 GedaObjectType geda_circle_get_type     (void);
 bool           is_a_geda_circle_object  (Circle *object);
-Object        *geda_circle_new          (void);
+GedaObject    *geda_circle_new          (void);
 
 #ifdef __cplusplus
 }

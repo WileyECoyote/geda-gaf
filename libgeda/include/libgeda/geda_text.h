@@ -55,12 +55,12 @@
 typedef struct _GedaTextClass TextClass;
 
 struct _GedaTextClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaText {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   int x;                     /* world origin */
   int y;
@@ -87,7 +87,7 @@ extern "C" {
 GedaTextType geda_text_get_type        (void) GEDA_CONST;
 bool         is_a_geda_text_object     (Text *object);
 
-Object      *geda_text_new             (void);
+GedaObject  *geda_text_new             (void);
 
 #ifdef __cplusplus
 }

@@ -44,7 +44,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
 {
   const GList *src;
   GList *dest;
-  Object *src_object, *dst_object;
+  GedaObject *src_object, *dst_object;
   int selected_save;
 
   src = src_list;
@@ -58,7 +58,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
   /* first do all NON text items */
   while(src != NULL) {
 
-    src_object = (Object *) src->data;
+    src_object = (GedaObject *) src->data;
 
     if (GEDA_IS_OBJECT(src_object)) {
 
@@ -87,7 +87,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
   /* then do all text items */
   while(src != NULL) {
 
-    src_object = (Object *) src->data;
+    src_object = (GedaObject *) src->data;
 
     if (GEDA_IS_OBJECT(src_object)) {
 
@@ -143,21 +143,21 @@ void o_list_translate(const GList *list, int dx, int dy)
 
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     o_translate_object(o_current, dx, dy);
     o_iter = o_iter->next;
   }
 
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_update_object (o_current);
     o_iter = o_iter->next;
   }
@@ -177,14 +177,14 @@ void o_list_rotate (const GList *list, int x, int y, int angle)
    */
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = (Object *)o_iter->data;
+    GedaObject *o_current = (GedaObject *)o_iter->data;
     o_rotate_object (o_current, x, y, angle);
     o_iter = o_iter->next;
   }
@@ -195,7 +195,7 @@ void o_list_rotate (const GList *list, int x, int y, int angle)
    */
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_update_object (o_current);
     o_iter = o_iter->next;
   }
@@ -215,14 +215,14 @@ void o_list_mirror (const GList *list, int x, int y)
    */
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = (Object *)o_iter->data;
+    GedaObject *o_current = (GedaObject *)o_iter->data;
     o_mirror_object (o_current, x, y);
     o_iter = o_iter->next;
   }
@@ -233,7 +233,7 @@ void o_list_mirror (const GList *list, int x, int y)
    */
   o_iter = list;
   while (o_iter != NULL) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
     s_conn_update_object (o_current);
     o_iter = o_iter->next;
   }

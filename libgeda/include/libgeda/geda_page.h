@@ -74,7 +74,7 @@ struct _GedaPage {
   GList      *_object_list;            /* Glist of all Object on this page*/
   SELECTION  *selection_list;          /* new selection mechanism */
   GList      *place_list;
-  Object     *object_lastplace;        /* the last found item */
+  GedaObject     *object_lastplace;        /* the last found item */
 
   GList* major_changed_refdes;         /* A list of all refdes's that have */
                                        /* major symbol version changes */
@@ -143,31 +143,31 @@ GedaPageType geda_page_get_type          (void) GEDA_CONST;
 bool         is_a_geda_page              (Page *page);
 void         geda_page_debug_print       (Page *page);
 
-Page     *geda_page_new                  (void);
-Page     *geda_page_new_with_notify      (void);
-void      geda_page_weakref_notify       (Page *page);
-void      geda_page_weak_ref             (Page *page, WeakNotifyFunc notify_func, void *user_data);
-void      geda_page_weak_unref           (Page *page, WeakNotifyFunc notify_func, void *user_data);
-void      geda_page_add_weak_ptr         (Page *page, void *weak_pointer_loc);
-void      geda_page_remove_weak_ptr      (Page *page, void *weak_pointer_loc);
-void      geda_page_feeze_notify         (Page *page);
-void      geda_page_thaw_notify          (Page *page);
+Page        *geda_page_new               (void);
+Page        *geda_page_new_with_notify   (void);
+void         geda_page_weakref_notify    (Page *page);
+void         geda_page_weak_ref          (Page *page, WeakNotifyFunc notify_func, void *user_data);
+void         geda_page_weak_unref        (Page *page, WeakNotifyFunc notify_func, void *user_data);
+void         geda_page_add_weak_ptr      (Page *page, void *weak_pointer_loc);
+void         geda_page_remove_weak_ptr   (Page *page, void *weak_pointer_loc);
+void         geda_page_feeze_notify      (Page *page);
+void         geda_page_thaw_notify       (Page *page);
 
-Page     *geda_page_open                 (const char *filename);
-int       geda_page_rename               (Page *page, const char *filename);
-int       geda_page_save                 (Page *page);
-void      geda_page_close                (Page *page);
-int       geda_page_copy                 (Page *page);
+Page        *geda_page_open              (const char *filename);
+int          geda_page_rename            (Page *page, const char *filename);
+int          geda_page_save              (Page *page);
+void         geda_page_close             (Page *page);
+int          geda_page_copy              (Page *page);
 
-void      geda_page_add_object           (Page *page, Object *object);
-Object   *geda_page_get_object           (Page *page, int sid) GEDA_WARN_UNUSED_RESULT;
-void      geda_page_remove_object        (Page *page, Object *object);
+void         geda_page_add_object        (Page *page, GedaObject *object);
+GedaObject  *geda_page_get_object        (Page *page, int sid) GEDA_WARN_UNUSED_RESULT;
+void         geda_page_remove_object     (Page *page, GedaObject *object);
 
-int       geda_page_get_changed          (Page *page) GEDA_WARN_UNUSED_RESULT;
-void      geda_page_set_changed          (Page *page, int changed);
+int          geda_page_get_changed       (Page *page) GEDA_WARN_UNUSED_RESULT;
+void         geda_page_set_changed       (Page *page, int changed);
 
-GList    *geda_page_get_place_list       (Page *page)GEDA_WARN_UNUSED_RESULT;
-void      geda_page_set_place_list       (Page *page, GList *object_list);
+GList       *geda_page_get_place_list    (Page *page)GEDA_WARN_UNUSED_RESULT;
+void         geda_page_set_place_list    (Page *page, GList *object_list);
 
 #ifdef __cplusplus
 }

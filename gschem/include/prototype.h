@@ -3,7 +3,7 @@
 #define GLT GList   /* Only for this file,     */
 #define GSL GSList  /* to improve readability! */
 #define GLS GtkListStore
-#define OBJ Object
+#define OBJ GedaObject
 #define EHP EdascmHookProxy
 #define GAY GArray
 
@@ -40,7 +40,7 @@ SCM   get_selected_component_attributes     (GschemToplevel *w_current);
 
 /* g_hook.c */
 void  g_hook_init                 (void);
-void  g_hook_run_object           (GschemToplevel *w_current, Hooker id, Object *obj);
+void  g_hook_run_object           (GschemToplevel *w_current, Hooker id, GedaObject *obj);
 void  g_hook_run_object_list      (GschemToplevel *w_current, Hooker id, GList *obj_lst);
 void  g_hook_run_page             (GschemToplevel *w_current, Hooker id, Page *page);
 EHP  *g_hook_new_proxy_by_name    (const char *name);
@@ -404,15 +404,15 @@ void       o_arc_motion                 (GschemToplevel *w_current, int x, int y
 void       o_arc_start                  (GschemToplevel *w_current, int x, int y);
 
 /* o_attrib.c */
-void       o_attrib_attached_2_selection     (GschemToplevel *w_current, SELECTION *selection, Object *selected);
+void       o_attrib_attached_2_selection     (GschemToplevel *w_current, SELECTION *selection, GedaObject *selected);
 void       o_attrib_attach_list_2_object     (GschemToplevel *w_current, GList *list);
-void       o_attrib_deselect_invisible       (GschemToplevel *w_current, SELECTION *selection, Object *selected);
-void       o_attrib_select_invisible         (GschemToplevel *w_current, SELECTION *selection, Object *selected);
-void       o_attrib_toggle_visibility        (GschemToplevel *w_current, Object *object);
-void       o_attrib_toggle_show_name_value   (GschemToplevel *w_current, Object *object, int new_show_name_value);
+void       o_attrib_deselect_invisible       (GschemToplevel *w_current, SELECTION *selection, GedaObject *selected);
+void       o_attrib_select_invisible         (GschemToplevel *w_current, SELECTION *selection, GedaObject *selected);
+void       o_attrib_toggle_visibility        (GschemToplevel *w_current, GedaObject *object);
+void       o_attrib_toggle_show_name_value   (GschemToplevel *w_current, GedaObject *object, int new_show_name_value);
 OBJ       *o_attrib_add_attrib               (GschemToplevel *w_current, const char *text_string, int visibility,
-                                              int show_name_value, Object *object);
-bool       o_attrib_reset_position           (GschemToplevel *w_current, Object *parent, Object *attrib);
+                                              int show_name_value, GedaObject *object);
+bool       o_attrib_reset_position           (GschemToplevel *w_current, GedaObject *parent, GedaObject *attrib);
 
 /* o_box.c */
 void       o_box_draw_rubber            (GschemToplevel *w_current);
@@ -446,11 +446,11 @@ void       o_circle_motion              (GschemToplevel *w_current, int x, int y
 void       o_circle_start               (GschemToplevel *w_current, int x, int y);
 
 /* o_complex.c */
-void       o_complex_export                  (GschemToplevel *w_current, Object *o_current);
+void       o_complex_export                  (GschemToplevel *w_current, GedaObject *o_current);
 //void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset);
-bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object *complex);
+bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, GedaObject *complex);
 void       o_complex_start                   (GschemToplevel *w_current, const CLibSymbol *sym, int state);
 
 /* o_copy.c */
@@ -461,7 +461,7 @@ void       o_copy_multiple_start        (GschemToplevel *w_current, int x, int y
 void       o_copy_start                 (GschemToplevel *w_current, int x, int y);
 
 /* o_delete.c */
-void       o_delete                     (GschemToplevel *w_current, Object *object);
+void       o_delete                     (GschemToplevel *w_current, GedaObject *object);
 void       o_delete_selected            (GschemToplevel *w_current);
 
 /* o_edit.c */
@@ -479,7 +479,7 @@ int        o_edit_find_text             (GschemToplevel *w_current, const GList 
 void       o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void       o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void       o_edit_snap                  (GschemToplevel *w_current, const GList *o_list);
-OBJ       *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
+OBJ       *o_edit_update_component      (GschemToplevel *w_current, GedaObject *o_current);
 
 /* o_extend.c */
 int        o_extend_end                 (GschemToplevel *w_current, int x, int y);
@@ -488,31 +488,31 @@ int        o_extend_interrogate         (GschemToplevel *w_current, GList *objec
 int        o_extend_start               (GschemToplevel *w_current, int w_x, int w_y);
 
 /* o_find.c */
-Object    *o_find_get_hit               (GschemToplevel *w_current, int w_x, int w_y);
+OBJ       *o_find_get_hit               (GschemToplevel *w_current, int w_x, int w_y);
 bool       o_find_object                (GschemToplevel *w_current, int x, int y, bool deselect_afterwards);
 OBJ       *o_find_selected_object       (GschemToplevel *w_current, int x, int y);
 
 /* o_grips.c */
 OBJ       *o_grips_search_world         (GschemToplevel *w_current, int x, int y, int *whichone);
-OBJ       *o_grips_search_arc_world     (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-OBJ       *o_grips_search_box_world     (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-OBJ       *o_grips_search_path_world    (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-OBJ       *o_grips_search_picture_world (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-OBJ       *o_grips_search_circle_world  (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-OBJ       *o_grips_search_line_world    (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_arc_world     (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_box_world     (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_path_world    (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_picture_world (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_circle_world  (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+OBJ       *o_grips_search_line_world    (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 bool       o_grips_start                (GschemToplevel *w_current, int x, int y);
 void       o_grips_motion               (GschemToplevel *w_current, int x, int y);
 void       o_grips_end                  (GschemToplevel *w_current);
 void       o_grips_cancel               (GschemToplevel *w_current);
-int        o_grips_half_size            (GschemToplevel *w_current, Object *o_current);
+int        o_grips_half_size            (GschemToplevel *w_current, GedaObject *o_current);
 void       o_grips_draw_rubber          (GschemToplevel *w_current);
 
 /* o_invalidate.c */
 void       o_invalidate_all             (GschemToplevel *w_current);
 int        o_invalidate_rubber          (GschemToplevel *w_current);
 void       o_invalidate_rectangle       (GschemToplevel *w_current, int x1, int y1, int x2, int y2);
-void       o_invalidate_object          (GschemToplevel *w_current, Object *object);
-void       o_invalidate_force           (GschemToplevel *w_current, Object *object);
+void       o_invalidate_object          (GschemToplevel *w_current, GedaObject *object);
+void       o_invalidate_force           (GschemToplevel *w_current, GedaObject *object);
 void       o_invalidate_list            (GschemToplevel *w_current, GList *list);
 
 /* o_line.c */
@@ -523,24 +523,24 @@ void       o_line_start                 (GschemToplevel *w_current, int x, int y
 
 /* o_move.c */
 void       o_move_cancel                (GschemToplevel *w_current);
-//void       o_move_check_endpoint        (GschemToplevel *w_current, Object *object);
+//void       o_move_check_endpoint        (GschemToplevel *w_current, GedaObject *object);
 void       o_move_draw_rubber           (GschemToplevel *w_current, int drawing);
 void       o_move_end                   (GschemToplevel *w_current);
-void       o_move_end_lowlevel          (GschemToplevel *w_current, Object *object, int diff_x, int diff_y);
+void       o_move_end_lowlevel          (GschemToplevel *w_current, GedaObject *object, int diff_x, int diff_y);
 void       o_move_end_rubberband        (GschemToplevel *w_current, int world_diff_x, int world_diff_y, GList **objects);
 void       o_move_invalidate_rubber     (GschemToplevel *w_current, int drawing);
 void       o_move_motion                (GschemToplevel *w_current, int x, int y);
 void       o_move_prep_rubberband       (GschemToplevel *w_current);
-int        o_move_return_whichone       (Object *object, int x, int y);
-GLT       *o_move_stretch_add           (GList *list, Object *object, int whichone);
-GLT       *o_move_stretch_remove        (GList *list, Object *object);
+int        o_move_return_whichone       (GedaObject     *object, int x, int y);
+GLT       *o_move_stretch_add           (GList *list, GedaObject *object, int whichone);
+GLT       *o_move_stretch_remove        (GList *list, GedaObject *object);
 void       o_move_stretch_print_all     (GList *list);
 void       o_move_stretch_destroy_all   (GList *list);
 void       o_move_start                 (GschemToplevel *w_current, int x, int y);
 void       o_move_start_drag            (GschemToplevel *w_current, int w_x, int w_y);
 
 /* o_net.c */
-int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_obj, GList *other_objects);
+int        o_net_add_busrippers         (GschemToplevel *w_current, GedaObject *net_obj, GList *other_objects);
 void       o_net_draw_rubber            (GschemToplevel *w_current );
 void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
@@ -568,9 +568,9 @@ void       o_path_start                      (GschemToplevel *w_current, int x, 
 
 /* o_picture.c */
 void       o_picture_draw_rubber             (GschemToplevel *w_current);
-bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, Object *o_current, GError **error);
-void       o_picture_exchange_file           (GschemToplevel *w_current, Object *o_current);
-void       o_picture_export                  (GschemToplevel *w_current, Object *o_current);
+bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, GedaObject *o_current, GError **error);
+void       o_picture_exchange_file           (GschemToplevel *w_current, GedaObject *o_current);
+void       o_picture_export                  (GschemToplevel *w_current, GedaObject *o_current);
 void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void       o_picture_motion                  (GschemToplevel *w_current, int x, int y);
 bool       o_picture_set_pixbuf              (GschemToplevel *w_current, char *filename);
@@ -599,8 +599,8 @@ int        o_redraw_cleanstates              (GschemToplevel *w_current);
 void       o_redraw_rectangle                (GschemToplevel *w_current, GdkRectangle *rectangle);
 
 /* o_select.c */
-void       o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);
-void       o_select_add_object               (GschemToplevel *w_current, Object *object);
+void       o_select_object                   (GschemToplevel *w_current, GedaObject *o_current, int type, int count);
+void       o_select_add_object               (GschemToplevel *w_current, GedaObject *object);
 void       o_select_add_list                 (GschemToplevel *w_current, GList *list);
 void       o_select_start                    (GschemToplevel *w_current, int wx, int wy);
 void       o_select_end                      (GschemToplevel *w_current, int wx, int wy);
@@ -611,7 +611,7 @@ void       o_select_box_motion               (GschemToplevel *w_current, int x, 
 void       o_select_box_invalidate_rubber    (GschemToplevel *w_current);
 void       o_select_box_draw_rubber          (GschemToplevel *w_current);
 void       o_select_box_search               (GschemToplevel *w_current);
-void       o_select_connected_nets           (GschemToplevel *w_current, Object* o_current);
+void       o_select_connected_nets           (GschemToplevel *w_current, GedaObject *o_current);
 int        o_select_get_count                (GschemToplevel *w_current);
 bool       o_select_is_selection             (GschemToplevel *w_current);
 void       o_select_unselect_all             (GschemToplevel *w_current);
@@ -623,20 +623,20 @@ void       o_select_cancel_events            (GschemToplevel *w_current);
 void       o_select_connect_selector         (GschemToplevel *w_current, geda_predicator func);
 
 /* o_slot.c */
-void       o_slot_start                      (GschemToplevel *w_current, Object *object);
-void       o_slot_end                        (GschemToplevel *w_current, Object *object, const char *string);
+void       o_slot_start                      (GschemToplevel *w_current, GedaObject *object);
+void       o_slot_end                        (GschemToplevel *w_current, GedaObject *object, const char *string);
 
 /* o_text.c */
-int        o_text_get_rendered_bounds        (void *user_data, Object *object, int *min_x, int *min_y, int *max_x, int *max_y);
+int        o_text_get_rendered_bounds        (void *user_data, GedaObject *object, int *min_x, int *min_y, int *max_x, int *max_y);
 void       o_text_prepare_place              (GschemToplevel *w_current, char *text);
-void       o_text_edit                       (GschemToplevel *w_current, Object *o_current);
+void       o_text_edit                       (GschemToplevel *w_current, GedaObject *o_current);
 void       o_text_edit_end                   (GschemToplevel *w_current, char *string, int text_align,int text_color, int text_size, int rotate);
-void       o_text_change                     (GschemToplevel *w_current, Object *object, char *string, int visibility, int show);
+void       o_text_change                     (GschemToplevel *w_current, GedaObject *object, char *string, int visibility, int show);
 
 /* o_undo.c */
 void        o_undo_init                      (GschemToplevel *w_current);
 void        o_undo_savestate                 (GschemToplevel *w_current, int flag);
-void        o_undo_savestate_object          (GschemToplevel *w_current, int flag, Object *object);
+void        o_undo_savestate_object          (GschemToplevel *w_current, int flag, GedaObject *object);
 char       *o_undo_find_prev_filename        (UNDO *start);
 GLT        *o_undo_find_prev_object_head     (UNDO *start);
 void        o_undo_callback                  (GschemToplevel *w_current, int type);
@@ -694,10 +694,10 @@ void          x_dialog_coord_dialog         (GschemToplevel *w_current, int x, i
 
 /* x_dialog.c */
   /* Dialog-Utility functions */
-AtkObject*    atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
-GtkWidget*    create_pixmap                         (const char *filename);
+AtkObject    *atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
+GtkWidget    *create_pixmap                         (const char *filename);
 void          destroy_gschem_dialog                 (GtkWidget *widget, GtkWidget **window);
-GtkWidget*    get_bulb_image                        (bool WhichState);
+GtkWidget    *get_bulb_image                        (bool WhichState);
 void          set_bulb_on                           (GtkWidget *widget);
 void          set_bulb_off                          (GtkWidget *widget);
 void          bulb_group_set_active                 (GSList *RadioGroupList, int value);
@@ -712,7 +712,7 @@ void          snap_size_dialog              (GschemToplevel *w_current);
 void          text_size_dialog              (GschemToplevel *w_current);
 
   /* Editing-Dialogs */
-void          x_dialog_edit_arc_angle       (GschemToplevel *w_current, Object *arc_object);
+void          x_dialog_edit_arc_angle       (GschemToplevel *w_current, GedaObject *arc_object);
 void          x_dialog_edit_fill_type       (GschemToplevel *w_current);
 void          x_dialog_edit_line_type       (GschemToplevel *w_current);
 void          x_dialog_find_text            (GschemToplevel *w_current);
@@ -739,22 +739,22 @@ bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, i
 void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);
 
 /* x_draw.c */
-void          x_draw_object                 (GschemToplevel *w_current, Object *object);
+void          x_draw_object                 (GschemToplevel *w_current, GedaObject *object);
 void          x_draw_set_surface            (GschemToplevel *w_current);
 char         *x_draw_get_font               (void);
 void          x_draw_set_font               (const char *font_name, int size);
 GArray       *x_draw_get_font_list          (const char *pattern);
 char         *x_draw_strip_font_provider    (const char *font_string);
-int           x_draw_set_text_bounds        (Object *object);
+int           x_draw_set_text_bounds        (GedaObject *object);
 void          x_draw_initialize             (GschemToplevel *w_current);
 void          x_draw_shutdown               (void *user_data);
 
 /* x_edit_attrib.c */
 int           option_menu_get_history       (GtkOptionMenu *option_menu);
 /*    attrib_edit_dialog_ok                 (GtkWidget *w, GschemToplevel *w_current);*/
-/*    attrib_edit_dialog                    (GschemToplevel *w_current, Object *attr_obj, int flag); */
-void          x_attrib_add_dialog           (GschemToplevel *w_current, Object *object);
-void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *object);
+/*    attrib_edit_dialog                    (GschemToplevel *w_current, GedaObject *attr_obj, int flag); */
+void          x_attrib_add_dialog           (GschemToplevel *w_current, GedaObject *object);
+void          x_attrib_edit_dialog          (GschemToplevel *w_current, GedaObject *object);
 
 /* x_array.c */
 void        x_dialog_array_edit             (GschemToplevel *w_current);
@@ -770,13 +770,13 @@ void        x_dialog_edit_color             (GschemToplevel *w_current);
 void        x_dialog_edit_pin_type          (GschemToplevel *w_current);
 
 /* x_edit_property.c */
-void        x_dialog_edit_properties        (GschemToplevel *w_current, Object *o_current);
+void        x_dialog_edit_properties        (GschemToplevel *w_current, GedaObject *o_current);
 
 /* x_edit_slot.c */
 void        x_dialog_edit_slot              (GschemToplevel *w_current, const char *slots, const char *slot);
 
 /* x_edit_text.c */
-void        x_dialog_edit_text              (GschemToplevel *w_current, Object *o_current);
+void        x_dialog_edit_text              (GschemToplevel *w_current, GedaObject *o_current);
 
 /* x_event.c */
 bool       x_event_button_pressed           (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);

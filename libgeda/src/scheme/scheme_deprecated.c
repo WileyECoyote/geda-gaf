@@ -42,7 +42,7 @@ EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
 {
   SCM_ASSERT (EDASCM_OBJECTP(obj_s), obj_s, SCM_ARG1, scheme_get_line_width);
 
-  Object *object = edascm_to_object (obj_s);
+  GedaObject *object = edascm_to_object (obj_s);
 
   return scm_from_int(object->line_options->line_width);
 }

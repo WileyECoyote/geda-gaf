@@ -51,12 +51,12 @@ extern "C" {
 typedef struct _GedaComplexClass ComplexClass;
 
 struct _GedaComplexClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaComplex {
 
-  Object  parent_instance;     /* Pointer to _GedaObject */
+  GedaObject  parent_instance; /* Pointer to _GedaObject */
 
   char   *filename;            /* Component Library Symbol name */
   bool    is_embedded;         /* is embedded component? */
@@ -75,7 +75,7 @@ struct _GedaComplex {
 GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
 bool           is_a_geda_complex_object (Complex *object);
 
-Object        *geda_complex_new         (void);
+GedaObject    *geda_complex_new         (void);
 
 #ifdef __cplusplus
 }

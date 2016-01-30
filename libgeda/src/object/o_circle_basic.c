@@ -36,7 +36,7 @@
  *  <B>radius</B>.
  *  The <B>color</B> corresponds to the color the box will be drawn with.
  *
- *  The <B>Object</B> structure is allocated with the#geda_object_new()
+ *  The <B>GedaObject</B> structure is allocated with the#geda_object_new()
  *  function. The structure describing the circle is allocated and initialized
  *  with the parameters given to the function.
  *
@@ -50,10 +50,10 @@
  *  \param [in]     radius       Radius of new circle.
  *  \return A pointer to the new end of the object list.
  */
-Object*
+GedaObject*
 o_circle_new(int color, int x, int y, int radius)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Circle *circle;
 
   new_obj = geda_circle_new();
@@ -75,12 +75,12 @@ o_circle_new(int color, int x, int y, int radius)
  *  The function#o_circle_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a circle.
  *
- *  \param [in]  o_current  Circle Object to copy.
- *  \return The new Object
+ *  \param [in]  o_current  Circle GedaObject to copy.
+ *  \return The new GedaObject
  */
-Object *o_circle_copy(Object *o_current)
+GedaObject *o_circle_copy(GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Circle *old_circle;
 
   g_return_val_if_fail(GEDA_IS_CIRCLE(o_current), NULL);
@@ -120,7 +120,7 @@ Object *o_circle_copy(Object *o_current)
  *  The bounding box of the circle object is updated after the modification of its
  *  parameters.
  *
- *  \param [in,out] object     Circle Object to modify.
+ *  \param [in,out] object     Circle GedaObject to modify.
  *  \param [in]     x          New center x coordinate, or radius value.
  *  \param [in]     y          New center y coordinate.
  *                             Unused if radius is being modified.
@@ -132,7 +132,7 @@ Object *o_circle_copy(Object *o_current)
  *    <DT>*</DT><DD>CIRCLE_RADIUS
  *  </DL>
  */
-void o_circle_modify(Object *object, int x, int y, int whichone)
+void o_circle_modify(GedaObject *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case CIRCLE_CENTER:
@@ -177,11 +177,11 @@ void o_circle_modify(Object *object, int x, int y, int whichone)
  *
  *  \return A pointer to the new circle object, or NULL on error.
  */
-Object *o_circle_read (const char buf[], unsigned int release_ver,
+GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
                                          unsigned int fileformat_ver,
                                          GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x1, y1;
   int radius;
@@ -280,7 +280,7 @@ Object *o_circle_read (const char buf[], unsigned int release_ver,
  *  It follows the post-20000704 release file format that handle the line
  *  type and fill options.
  *
- *  \param [in] object  Circle Object to create string from.
+ *  \param [in] object  Circle GedaObject to create string from.
  *
  *  \return A pointer to the circle Object character string.
  *
@@ -288,7 +288,7 @@ Object *o_circle_read (const char buf[], unsigned int release_ver,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *o_circle_save(Object *object)
+char *o_circle_save(GedaObject *object)
 {
   int x,y;
   int radius;
@@ -336,14 +336,14 @@ char *o_circle_save(Object *object)
  *  circle object from its world coords.
  *
  *  The circle coordinates and its bounding are recalculated as well as the
- *  Object specific (line width, filling ...).
+ *  GedaObject specific (line width, filling ...).
  *
- *  \param [in,out] object    Circle Object to mirror.
+ *  \param [in,out] object    Circle GedaObject to mirror.
  *  \param [in]     center_x  Origin x coordinate in WORLD units.
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
 
  */
-void o_circle_mirror(Object *object, int center_x, int center_y)
+void o_circle_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
   object->circle->center_x -= center_x;
@@ -361,7 +361,7 @@ void o_circle_mirror(Object *object, int center_x, int center_y)
 
 }
 
-/*! \brief Rotate Circle Object using WORLD coordinates
+/*! \brief Rotate Circle GedaObject using WORLD coordinates
  *
  *  \par Function Description
  *  The function#o_circle_rotate() rotate the circle described by
@@ -369,13 +369,13 @@ void o_circle_mirror(Object *object, int center_x, int center_y)
  *  angle <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in,out]  object    Circle Object to rotate.
+ *  \param [in,out]  object    Circle GedaObject to rotate.
  *  \param [in]      center_x  Rotation center x coordinate in WORLD units.
  *  \param [in]      center_y  Rotation center y coordinate in WORLD units.
  *  \param [in]      angle     Rotation angle in degrees (See note below).
 
  */
-void o_circle_rotate(Object *object, int center_x, int center_y, int angle)
+void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   int x, y;
@@ -420,9 +420,9 @@ void o_circle_rotate(Object *object, int center_x, int center_y, int angle)
  *
  *  \param [in]     dx         x distance to move.
  *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Circle Object to translate.
+ *  \param [in,out] object     Circle GedaObject to translate.
  */
-void o_circle_translate(Object *object, int dx, int dy)
+void o_circle_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->circle->center_x = object->circle->center_x + dx;
@@ -451,7 +451,7 @@ void o_circle_translate(Object *object, int dx, int dy)
  *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
  *           the circle.
  */
-bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
 
@@ -606,7 +606,7 @@ bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_circle_get_position (int *x, int *y, Object *object)
+bool o_circle_get_position (int *x, int *y, GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
   *x = object->circle->center_x;
@@ -633,11 +633,11 @@ bool o_circle_get_position (int *x, int *y, Object *object)
  *
  *  \param [in] toplevel  The GedaToplevel object.
  *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Circle Object to write to document.
+ *  \param [in] o_current  Circle GedaObject to write to document.
  *  \param [in] origin_x   Page x coordinate to place circle Object.
  *  \param [in] origin_y   Page y coordinate to place circle Object.
  */
-void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                     int origin_x, int origin_y)
 {
   int x, y, radius;
@@ -1189,7 +1189,7 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  \return The shortest distance from point to \a object to the point or
  *          G_MAXDOUBLE if the parameters are invalid parameter.
  */
-double o_circle_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_circle_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 

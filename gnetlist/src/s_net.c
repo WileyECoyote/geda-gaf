@@ -170,10 +170,10 @@ void s_net_print(NET * ptr)
  *  \param [in] hierarchy_tag hierarchy tag string
  */
 char *s_net_return_connected_string(GedaToplevel *pr_current,
-                                    Object       *object,
+                                    GedaObject   *object,
                                     char         *hierarchy_tag)
 {
-  Object *o_current;
+  GedaObject *o_current;
 
   char *pinnum    = NULL;
   char *uref      = NULL;

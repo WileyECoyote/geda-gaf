@@ -26,15 +26,15 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_pin.c
- *  \brief Geda Pin Object Class derived from the GedaObject Class
+ *  \brief Geda Pin GedaObject Class derived from the GedaObject Class
  */
-/** \defgroup geda-pin-object Geda Pin Object
+/** \defgroup geda-pin-object Geda Pin GedaObject
  *  @{
  */
 /*! \class Pin geda_pin.h "include/libgeda/geda_pin.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Pin Objects.
- *  A Geda Pin Object is symbol for electrical object used to represent
+ *  \brief This is an implementaion class for GEDA Pin GedaObjects.
+ *  A Geda Pin GedaObject is symbol for electrical object used to represent
  *  a potential connection node in higher level assemblies. Pin objects
  *  one node point that can represent a single node (PIN_NET_NODE) or
  *  many nodes (PIN_BUS_NODE).
@@ -137,26 +137,26 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
  */
 static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Pin    *pin       = (Pin*)instance;
-  Line   *line      = &pin->parent_instance;
-  Object *object    = &line->parent_instance;
+  Pin        *pin    = (Pin*)instance;
+  Line       *line   = &pin->parent_instance;
+  GedaObject *object = &line->parent_instance;
 
-  pin->number       = NULL;
-  pin->whichend     = 0;    /* either 0 or 1 */
+  pin->number        = NULL;
+  pin->whichend      = 0;    /* either 0 or 1 */
 
-  pin->elect_type   = PIN_ELECT_VOID; /* electrical type code */
-  pin->mech_type    = PIN_MECH_VOID;  /* mechanical type code */
-  pin->node_type    = PIN_NET_NODE;   /* either NET or BUS */
+  pin->elect_type    = PIN_ELECT_VOID; /* electrical type code */
+  pin->mech_type     = PIN_MECH_VOID;  /* mechanical type code */
+  pin->node_type     = PIN_NET_NODE;   /* either NET or BUS */
 
-  pin->label        = NULL; /* Pointer to label string */
-  pin->electrical   = NULL; /* Pointer to electrical string */
-  pin->mechanical   = NULL; /* Pointer to mechanical string */
+  pin->label         = NULL; /* Pointer to label string */
+  pin->electrical    = NULL; /* Pointer to electrical string */
+  pin->mechanical    = NULL; /* Pointer to mechanical string */
 
-  object->pin       = pin;
+  object->pin        = pin;
 
-  pin->line_width   = &line->line_options.line_width;
+  pin->line_width    = &line->line_options.line_width;
 
-  line->line_options.line_width   = default_thick_pin_width;
+  line->line_options.line_width = default_thick_pin_width;
 }
 
 static void
@@ -242,7 +242,7 @@ geda_pin_dispose(GObject *object)
   G_OBJECT_CLASS(geda_pin_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Pin Object Finalization Function
+/*! \brief Geda Pin GedaObject Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
  *   releases the memory allocated to the given Pin data structure,
@@ -252,7 +252,7 @@ geda_pin_dispose(GObject *object)
 static void geda_pin_finalize(GObject *object)
 {
   Pin    *pin = GEDA_PIN(object);
-  Object *obj = GEDA_OBJECT(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   if (pin->electrical) {
     GEDA_FREE(pin->electrical);
@@ -398,16 +398,16 @@ GedaObjectType geda_pin_get_type (void)
  *
  *  \return pointer to the new Pin object.
  */
-Object *geda_pin_new (void)
+GedaObject *geda_pin_new (void)
 {
-  Object *pin = g_object_new( GEDA_TYPE_PIN,
+  GedaObject *pin = g_object_new( GEDA_TYPE_PIN,
                              "type", OBJ_PIN,
                              "name", "pin",
                               NULL );
   return GEDA_OBJECT(pin);
 }
 
-/*! \brief Determine if object is a Geda Pin Object.
+/*! \brief Determine if object is a Geda Pin GedaObject.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Pin object.
@@ -416,7 +416,7 @@ Object *geda_pin_new (void)
  */
 bool is_a_geda_pin_object (Pin *pin)
 {
-  return GEDA_IS_OBJECT(pin) && (((Object*)pin)->type == OBJ_PIN);
+  return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
 }
 
 const char*

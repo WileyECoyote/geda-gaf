@@ -50,29 +50,29 @@
  *
  *  The returned value will only come from an attached attribute.
  *
- *  \param [in] object        Object list to search.
- *  \param [in] return_found  attached slot attribute if found, NULL otherwise.
+ *  \param [in]  object Object list to search.
+ *  \param [out] found  attached slot attribute if found, NULL otherwise.
  *
  *  \returns Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must GEDA_FREE returned character string
+ *  \remarks
+ *  Caller should GEDA_FREE returned character string
  */
-char *s_slot_search_slot (Object *object, Object **return_found)
+char *s_slot_search_slot (GedaObject *object, GedaObject **found)
 {
-  GList *attributes;
-  Object *attrib;
-  char *value = NULL;
+  GList  *attributes;
+  GedaObject *attrib;
+  char   *value = NULL;
 
   attributes = o_attrib_return_attribs (object);
-  attrib = o_attrib_find_attrib_by_name (attributes, "slot", 0);
+  attrib     = o_attrib_find_attrib_by_name (attributes, "slot", 0);
   g_list_free (attributes);
 
   if (attrib != NULL)
     o_attrib_get_name_value (attrib, NULL, &value);
 
-  if (return_found)
-    *return_found = attrib;
+  if (found)
+    *found = attrib;
 
   return value;
 }
@@ -90,7 +90,7 @@ char *s_slot_search_slot (Object *object, Object **return_found)
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-static char *s_slot_search_slotdef (Object *object, int slotnumber)
+static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
 {
   int counter = 0;
   char *slotdef;
@@ -122,7 +122,7 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
  *  doesn't matter for non-slotted parts, but on slotted parts,
  *  this is what sets the pinnumber= attribute on slots 2, 3, 4....
  *
- *  \param [in,out] object    The Object to update.
+ *  \param [in,out] object    The GedaObject to update.
  *
  *  TODO: If old symbol has slot def and the slot has been set, and
  *  replacement does not then "Did not find slotdef" error message
@@ -130,9 +130,9 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
  *  "numslot=0", in which case the call should remove "slotdef"
  *   attribute.
  */
-void s_slot_update_object (Object *object)
+void s_slot_update_object (GedaObject *object)
 {
-  Object *o_pinnum_attrib;
+  GedaObject *o_pinnum_attrib;
   GList  *attributes;
 
   char *string;
@@ -208,7 +208,7 @@ void s_slot_update_object (Object *object)
 
   while (current_pin != NULL) {
 
-    Object *o_pin_object;
+    GedaObject *o_pin_object;
     char   *pinstr;       /* used as pointer to tmp_str[0] & pinnumber= */
     char    tmp_str[5];
 

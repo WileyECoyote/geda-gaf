@@ -46,12 +46,12 @@
 typedef struct _GedaArcClass ArcClass;
 
 struct _GedaArcClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaArc {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   int       x;
   int       y;
@@ -73,7 +73,7 @@ extern "C" {
 GedaObjectType geda_arc_get_type       (void);
 bool           is_a_geda_arc_object    (Arc *object);
 
-Object        *geda_arc_new            (void);
+GedaObject    *geda_arc_new            (void);
 
 #ifdef __cplusplus
 }

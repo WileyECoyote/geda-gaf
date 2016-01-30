@@ -55,7 +55,7 @@ static GObjectClass *geda_circle_parent_class = NULL;
  *
  */
 int
-geda_circle_bounds(Object *object)
+geda_circle_bounds(GedaObject *object)
 {
   int halfwidth;
 
@@ -84,7 +84,7 @@ geda_circle_bounds(Object *object)
 static void geda_circle_instance_init(GTypeInstance *instance, void *class)
 {
   Circle *circle       = (Circle*)instance;
-  Object *object       = &circle->parent_instance;
+  GedaObject *object       = &circle->parent_instance;
 
   circle->center_x     = 0;
   circle->center_y     = 0;
@@ -114,14 +114,14 @@ geda_circle_dispose(GObject *object)
   G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Circle Object Finalization Function
+/*! \brief Geda Circle GedaObject Finalization Function
  *  \par Function Description
  *   Invalidates the Circle's markers and then chains up to the parent's
  *   finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
  */
 static void geda_circle_finalize(GObject *object)
 {
-  Object *obj = GEDA_OBJECT(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaCircle */
   obj->circle = NULL;
@@ -141,16 +141,16 @@ static void geda_circle_finalize(GObject *object)
  */
 static void geda_circle_class_init(void *g_class, void *class_data)
 {
-  CircleClass  *class          = (CircleClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  CircleClass     *class         = (CircleClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_circle_parent_class     = g_type_class_peek_parent( class );
+  geda_circle_parent_class       = g_type_class_peek_parent(class);
 
-  gobject_class->dispose       = geda_circle_dispose;
-  gobject_class->finalize      = geda_circle_finalize;
+  gobject_class->dispose         = geda_circle_dispose;
+  gobject_class->finalize        = geda_circle_finalize;
 
-  object_class->bounds         = geda_circle_bounds;
+  geda_class->bounds             = geda_circle_bounds;
 }
 
 /*! \brief Function to retrieve Circle's Type identifier.
@@ -201,9 +201,9 @@ GedaType geda_circle_get_type (void)
  *
  *  \return pointer to the new Circle object.
  */
-Object *geda_circle_new (void)
+GedaObject *geda_circle_new (void)
 {
-  Object *circle = g_object_new( GEDA_TYPE_CIRCLE,
+  GedaObject *circle = g_object_new( GEDA_TYPE_CIRCLE,
                                  "type", OBJ_CIRCLE,
                                  "name", "circle",
                                  NULL );
@@ -219,6 +219,6 @@ Object *geda_circle_new (void)
  */
 bool is_a_geda_circle_object (Circle *cir)
 {
-  return GEDA_IS_OBJECT(cir) && (((Object*)cir)->type == OBJ_CIRCLE);
+  return GEDA_IS_OBJECT(cir) && (((GedaObject*)cir)->type == OBJ_CIRCLE);
 }
 /** @} endgroup geda-circle-object */

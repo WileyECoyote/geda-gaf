@@ -92,7 +92,7 @@ void
 gschem_page_view_invalidate_all (GschemPageView *view);
 
 void
-gschem_page_view_invalidate_object (GschemToplevel *w_current, Object *object);
+gschem_page_view_invalidate_object (GschemToplevel *w_current, GedaObject *object);
 
 void
 gschem_page_view_invalidate_screen_rect (GschemToplevel *w_current, int left, int top, int right, int bottom);
@@ -152,4 +152,4 @@ void
 gschem_page_view_zoom_extents (GschemPageView *view, const GList *list);
 
 void
-gschem_page_view_zoom_text (GschemPageView *view, Object *object);
+gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object);

@@ -116,7 +116,8 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   }
 
   /* resize the 2 dimensional array of structs */
-  new_table = (TABLE **) realloc(table, Xt * sizeof(TABLE *) );
+  new_table = (TABLE**)realloc(table, Xt * sizeof(TABLE *));
+
   /* TODO: Fix this:*/
   if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
 
@@ -159,25 +160,27 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
  */
 void s_table_destroy(TABLE **table, int row_count, int col_count)
 {
-  int x, y;
+  int x;
 
   if (table == NULL)
     return;
 
   for (x = 0; x < col_count; x++) {
+
+    int y;
+
     for (y = 0; y < row_count; y++) {
-      GEDA_FREE( (table[x][y]).attrib_value );
-      GEDA_FREE( (table[x][y]).row_name );
-      GEDA_FREE( (table[x][y]).col_name );
+      GEDA_FREE ((table[x][y]).attrib_value);
+      GEDA_FREE ((table[x][y]).row_name);
+      GEDA_FREE ((table[x][y]).col_name);
     }
   }
 
   for (x = 0; x < col_count; x++) {
-    GEDA_FREE( table[x] );
+    GEDA_FREE (table[x]);
   }
 
   GEDA_FREE(table);
-  table = NULL;
 
   return;
 }
@@ -233,11 +236,9 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
                                         int num_attribs)
 {
   STRING_LIST *attrib_pair_list;
-  char *attrib_name, *attrib_value, *name_value_pair;
+
   int row, col;
   int count = 0;
-  int is_inherited;
-  int is_promoted;
 
   attrib_pair_list = s_string_list_new();
 
@@ -248,9 +249,16 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
   }
 
   for (col = 0; col < num_attribs; col++) {
+
+    char *attrib_name, *attrib_value, *name_value_pair;
+    int is_inherited;
+    int is_promoted;
+
     is_inherited = (table[col][row]).is_inherited;
     is_promoted  = (table[col][row]).is_promoted;
+
     if (is_inherited && ! is_promoted) continue;
+
     /* pull attrib from table.  If non-null, add it to attrib_pair_list  */
     if ((table[col][row]).attrib_value != NULL) {
       attrib_name = (table[col][row]).col_name;
@@ -280,19 +288,20 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
   char *attrib_name;
   char *attrib_value;
 
-  int row, col;
-  int old_visibility, old_show_name_value;
-  int counter;
+  int  row, col;
+  int  old_visibility, old_show_name_value;
+  int  counter;
   bool is_attached;
 
-  const GList *o_iter;
-  GList  *a_iter;
-  Object *a_current;
+  GedaObject  *a_current;
   STRING_LIST *AttachedAttributes;
+  const GList *o_iter;
+  GList       *a_iter;
 
   /* ----- Iterate through all objects found on page ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    Object *o_current = o_iter->data;
+
+    GedaObject *o_current = o_iter->data;
 
     /* ----- Now process objects found on page ----- */
     if (o_current->type == OBJ_COMPLEX &&
@@ -441,7 +450,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
  *       takes a GList, this one takes a pointer to Object.
  */
 void s_table_add_items_to_net_table(Object *start_obj) {
-  Object *o_current;
+  GedaObject *o_current;
   char *temp_netname;
   int row, col;
   char *attrib_text;
@@ -527,17 +536,18 @@ void s_table_add_items_to_net_table(Object *start_obj) {
  * \param obj_list List of objects on page
  */
 void s_table_add_tems_to_pin_table (const GList *obj_list) {
-  char *temp_uref;
-  char *pinnumber;
-  char *row_label;
-  int   row, col;
-  char *attrib_text;
-  char *attrib_name;
-  char *attrib_value;
+
+  GedaObject  *pin_attrib;
+  GList       *a_iter;
+  GList       *o_lower_iter;
   const GList *o_iter;
-  GList *a_iter;
-  GList *o_lower_iter;
-  Object *pin_attrib;
+  char        *temp_uref;
+  char        *pinnumber;
+  char        *row_label;
+  char        *attrib_text;
+  char        *attrib_name;
+  char        *attrib_value;
+  int          row, col;
 
   if (verbose_mode) {
     printf(_("- Starting internal pin TABLE creation\n"));
@@ -548,8 +558,9 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 #endif
 
   /* -----  Iterate through all objects found on page  ----- */
-  for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    Object *o_current = o_iter->data;
+  for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter))
+  {
+    GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
       printf("   ---> In s_table_add_tems_to_pin_table, examining o_current->name = %s\n", o_current->name);
@@ -568,8 +579,9 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 	/* -----  Now iterate through lower level objects looking for pins.  ----- */
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
-             o_lower_iter = g_list_next (o_lower_iter)) {
-          Object *o_lower_current = o_lower_iter->data;
+             o_lower_iter = g_list_next (o_lower_iter))
+        {
+          GedaObject *o_lower_current = o_lower_iter->data;
 
 	  if (o_lower_current->type == OBJ_PIN) {
 	    /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
@@ -666,7 +678,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
   free_column(X);
 
   if ( X == col_count ) {     /* if the last record */
-    GEDA_FREE( table[X - 1] );
+    GEDA_FREE (table[X - 1]);
   }
   else {
 
@@ -685,7 +697,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
         table[Xi][Y].is_promoted = table[Xi + 1][Y].is_promoted;
       }
     }
-    GEDA_FREE( table[col_count - 1] );
+    GEDA_FREE (table[col_count - 1]);
   }
   return TRUE;
 }
@@ -772,81 +784,91 @@ void s_table_gtksheet_to_all_tables() {
  * \param num_rows Number of rows in table
  * \param num_cols Number of columns in table
  */
-void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
+void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
                                STRING_LIST *master_row_list,
-			       STRING_LIST *master_col_list,
-                               TABLE **local_table,
-			       int num_rows, int num_cols)
+                               STRING_LIST *master_col_list,
+                               TABLE       **local_table,
+                               int num_rows, int num_cols)
 {
-  int row, col;
-
   STRING_LIST *row_list_item;
-  char *row_title;
-
   STRING_LIST *col_list_item;
-  char *col_title;
-
-  char *attrib_value;
+  char        *col_title;
+  char        *attrib_value;
+  int          row;
 
 #ifdef DEBUG
-      printf("**********    Entering s_table_gtksheet_to_table     ******************\n");
+  printf("**********    Entering s_table_gtksheet_to_table     ******************\n");
 #endif
 
   row_list_item = master_row_list;
-  for (row = 0; row < num_rows; row++) {
-    row_title = (char *) u_string_strdup(row_list_item->data);
 
+  for (row = 0; row < num_rows; row++) {
+
+    char *row_title;
+    int   col;
+
+    row_title     = (char*)u_string_strdup(row_list_item->data);
     col_list_item = master_col_list;
+
     for (col = 0; col < num_cols; col++) {
-      col_title = (char *) u_string_strdup(col_list_item->data);
+
+      col_title = (char*)u_string_strdup(col_list_item->data);
 
       /* get value of attrib in cell  */
-      attrib_value = (char *) gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
+      attrib_value = (char*)gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
 
 #if 0
       if (strlen(attrib_value) == 0) {
-	/* GEDA_FREE(attrib_value);  */   /* sometimes we have spurious, zero length strings creep */
-	attrib_value = NULL;    /* into the GtkSheet                                     */
+        /* GEDA_FREE(attrib_value);  */   /* sometimes we have spurious, zero length strings creep */
+        attrib_value = NULL;    /* into the GtkSheet                                     */
       }
 #endif
 
-
 #if DEBUG
-fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
-	     attrib_value, row, col);
+      fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
+            attrib_value, row, col);
 #endif
 
-      /* first handle attrib value in cell */
+    /* first handle attrib value in cell */
 #if DEBUG
       fprintf(stderr,"     Updating attrib_value %s\n", attrib_value);
 #endif
-      GEDA_FREE( local_table[col][row].attrib_value );
+
+      GEDA_FREE (local_table[col][row].attrib_value);
+
       if (attrib_value != NULL) {
-	local_table[col][row].attrib_value = (char *) u_string_strdup(attrib_value);
-      } else {
-	local_table[col][row].attrib_value = NULL;
+        local_table[col][row].attrib_value = (char*) u_string_strdup(attrib_value);
+      }
+      else {
+        local_table[col][row].attrib_value = NULL;
       }
 
       /* next handle name of row (also held in TABLE cell) */
 #ifdef DEBUG
       printf("     Updating row_name %s\n", row_title);
 #endif
-      GEDA_FREE( local_table[col][row].row_name );
+
+      GEDA_FREE (local_table[col][row].row_name);
+
       if (row_title != NULL) {
-	local_table[col][row].row_name = (char *) u_string_strdup(row_title);
-      } else {
-	local_table[col][row].row_name = NULL;
+        local_table[col][row].row_name = (char*) u_string_strdup(row_title);
+      }
+      else {
+        local_table[col][row].row_name = NULL;
       }
 
       /* finally handle name of col */
 #ifdef DEBUG
       printf("     Updating col_name %s\n", col_title);
 #endif
-      GEDA_FREE( local_table[col][row].col_name );
+
+      GEDA_FREE(local_table[col][row].col_name);
+
       if (col_title != NULL) {
-	local_table[col][row].col_name = (char *) u_string_strdup(col_title);
-      } else {
-	local_table[col][row].col_name = NULL;
+        local_table[col][row].col_name = (char*)u_string_strdup(col_title);
+      }
+      else {
+        local_table[col][row].col_name = NULL;
       }
 
       /* get next col list item and then iterate. */
@@ -866,20 +888,20 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
  *
  * \param PageData ptr to sheet_head/PageDataSet structure
  */
-void s_table_load_new_page(PageDataSet *PageData) {
+void s_table_load_new_page(PageDataSet *PageData)
+{
   GList *iter;
-  Page *p_local;
 
   PageData->component_table = s_table_new(PageData->comp_count, PageData->comp_attrib_count);
-  PageData->net_table = s_table_new(PageData->net_count, PageData->net_attrib_count);
-  PageData->pin_table = s_table_new(PageData->pin_count, PageData->pin_attrib_count);
+  PageData->net_table       = s_table_new(PageData->net_count, PageData->net_attrib_count);
+  PageData->pin_table       = s_table_new(PageData->pin_count, PageData->pin_attrib_count);
 
   /* iterate over all pages in design */
   for (iter  = geda_toplevel_get_pages (pr_current);
        iter != NULL;
        iter  = g_list_next(iter)) {
 
-    p_local = (Page *)iter->data;
+    Page *p_local = (Page *)iter->data;
 
     /* only traverse pages which are toplevel */
     if (p_local->page_control == 0) {

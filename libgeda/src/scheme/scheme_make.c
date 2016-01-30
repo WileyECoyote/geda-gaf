@@ -33,7 +33,7 @@
  #define SCM_ARG9 9
 #endif
 
-/* ----------------------- Scheme Object API ---------------------- */
+/* ----------------------- Scheme GedaObject API ---------------------- */
 
 /*! \brief Create a new line.
  * \par Function Description
@@ -48,7 +48,7 @@
 EDA_SCM_DEFINE (object_make_line, "%make-line", 0, 0, 0,
                (), "Create a new line object.")
 {
-  Object *obj = o_line_new (DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
+  GedaObject *obj = o_line_new (DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -72,7 +72,7 @@ EDA_SCM_DEFINE (object_make_line, "%make-line", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0, (),
                "Create a new net object.")
 {
-  Object *obj;
+  GedaObject *obj;
   SCM result;
 
   obj = o_net_new (NET_COLOR, 0, 0, 0, 0);
@@ -100,7 +100,7 @@ EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0, (),
 EDA_SCM_DEFINE (object_make_bus, "%make-bus", 0, 0, 0, (),
                "Create a new bus object.")
 {
-  Object *obj;
+  GedaObject *obj;
   SCM result;
 
   obj = o_bus_new (BUS_COLOR, 0, 0, 0, 0, 0);
@@ -147,7 +147,7 @@ EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s),
   }
   free(pin_type);
 
-  Object *obj = o_pin_new (PIN_COLOR, 0, 0, 0, 0, type, 0);
+  GedaObject *obj = o_pin_new (PIN_COLOR, 0, 0, 0, 0, type, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -171,7 +171,7 @@ EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s),
 EDA_SCM_DEFINE (object_make_box, "%make-box", 0, 0, 0,
             (), "Create a new box object.")
 {
-  Object *obj = o_box_new (DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
+  GedaObject *obj = o_box_new (DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -195,7 +195,7 @@ EDA_SCM_DEFINE (object_make_box, "%make-box", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_circle, "%make-circle", 0, 0, 0,
                (), "Create a new circle object.")
 {
-  Object *obj = o_circle_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
+  GedaObject *obj = o_circle_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
 
   SCM result = edascm_from_object (obj);
 
@@ -218,7 +218,7 @@ EDA_SCM_DEFINE (object_make_circle, "%make-circle", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
                (), "Create a new arc object.")
 {
-  Object *obj = o_arc_new (DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
+  GedaObject *obj = o_arc_new (DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -241,7 +241,7 @@ EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
                "Create a new text object.")
 {
-  Object *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
+  GedaObject *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
                             10, VISIBLE, SHOW_NAME_VALUE, "");
 
   SCM result = edascm_from_object (obj);
@@ -264,7 +264,7 @@ EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
 EDA_SCM_DEFINE (object_make_path, "%make-path", 0, 0, 0,
            (), "Create a new path object")
 {
-  Object *obj = o_path_new (DEFAULT_PATH_COLOR_INDEX, "");
+  GedaObject *obj = o_path_new (DEFAULT_PATH_COLOR_INDEX, "");
 
   SCM result = edascm_from_object (obj);
 
@@ -289,7 +289,7 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
                "Create a new picture object")
 {
 
-  Object *obj;
+  GedaObject *obj;
   SCM     result;
 
   obj   = o_picture_new (NULL, 0, NULL, 0, 0, 0, 0, 0, FALSE, TRUE);
@@ -304,7 +304,7 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
 /*!
  * \brief Initialise the basic gEDA object Creator Routines.
  * \par Function Description
- * Registers some Scheme procedures for creating new Objects.
+ * Registers some Scheme procedures for creating new GedaObjects.
  * Should only be called by edascm_init().
  */
 void

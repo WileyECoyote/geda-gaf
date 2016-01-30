@@ -344,7 +344,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
   if (event->button == 1) {
 
-    Object *object;
+    GedaObject *object;
 
     /* Switch statement to evaluate state transitions */
 

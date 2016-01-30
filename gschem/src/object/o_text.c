@@ -34,7 +34,7 @@
  *  This function is used basically as a callback for text object
  *  to determine the XY bounderies of the Text objects.
  */
-int o_text_get_rendered_bounds (void *user_data, Object *o_current,
+int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
                                 int  *min_x, int *min_y,
                                 int  *max_x, int *max_y)
 {
@@ -125,7 +125,7 @@ static void o_text_end (GschemToplevel *w_current)
 void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *object;
+  GedaObject *object;
 
   /* Insert the new object into the buffer at world coordinates (0,0).
    * It will be translated to the mouse coordinates during placement. */
@@ -165,7 +165,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
  *  is just adding an unnecessary stack push and pops.
  */
 void
-o_text_edit(GschemToplevel *w_current, Object *o_current)
+o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
 {
   if(o_current->type == OBJ_TEXT) {
     x_dialog_edit_text(w_current, o_current);
@@ -209,7 +209,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
 
   while(s_current != NULL) {
 
-    Object *object = (Object*) s_current->data;
+    GedaObject *object = (GedaObject*) s_current->data;
 
     if (object) {
 
@@ -299,7 +299,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
  *  selection list
  */
 void
-o_text_change(GschemToplevel *w_current, Object *object,
+o_text_change(GschemToplevel *w_current, GedaObject *object,
               char *string, int visibility, int show)
 {
   if (object == NULL) {

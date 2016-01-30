@@ -79,7 +79,7 @@ extern "C" {
 GedaObjectType geda_net_get_type      (void) GEDA_CONST;
 bool           is_a_geda_net_object   (Net *object);
 
-Object        *geda_net_new           (void);
+GedaObject    *geda_net_new           (void);
 
 #ifdef __cplusplus
 }

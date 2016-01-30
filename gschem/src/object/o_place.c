@@ -139,7 +139,7 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
     for (iter = object_list; iter != NULL; NEXT(iter)) {
 
-      Object *o_current = iter->data;              /* Get pointer to object */
+      GedaObject *o_current = iter->data;              /* Get pointer to object */
 
       o_translate_object(o_current, w_diff_x, w_diff_y);
 
@@ -284,7 +284,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 
         if (len > 0) {
           for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
-            Object *o_current = iter->data;              /* Get pointer to object */
+            GedaObject *o_current = iter->data;  /* Get pointer to object */
             u_print_object(o_current);
           }
         }
@@ -390,7 +390,7 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
   else {
     GList *iter;
     for (iter = Place_List; iter != NULL; NEXT(iter)) {
-      eda_renderer_draw (CairoRenderer, (Object *) iter->data);
+      eda_renderer_draw (CairoRenderer, (GedaObject*) iter->data);
     }
   }
   cairo_restore (cr);

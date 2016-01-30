@@ -62,7 +62,7 @@ static void s_check_oldpin(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_oldslot(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_nets_buses(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_connections(const GList *obj_list, SYMCHECK *s_current);
-static bool s_check_missing_attribute(Object *object, const char *attribute, SYMCHECK *s_current);
+static bool s_check_missing_attribute(GedaObject *object, const char *attribute, SYMCHECK *s_current);
 static void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_current);
 
 
@@ -396,7 +396,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -462,7 +462,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  Object *o_current;
+  GedaObject  *o_current;
   bool overbar_started, escape, leave_parser;
   char *message;
   char *text_string, *ptr;
@@ -563,7 +563,7 @@ static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->conn_list) {
       message =
@@ -588,7 +588,7 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_get_is_valid_attribute(o_current)) {
 
@@ -826,7 +826,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   /* collect all pin numbers */
   for (iter = obj_list; iter != NULL; NEXT(iter)) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
       s_current->numpins++;
@@ -942,7 +942,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
   /* Loop through object list and look for pins */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
@@ -1057,7 +1057,7 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
@@ -1102,7 +1102,7 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
       x1 = o_current->line->x[0];
@@ -1417,7 +1417,7 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -1483,7 +1483,7 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -1541,7 +1541,7 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
  *  \par Function Description
  *
  */
-static bool s_check_missing_attribute(Object *object, const char *attribute, SYMCHECK *s_current)
+static bool s_check_missing_attribute(GedaObject *object, const char *attribute, SYMCHECK *s_current)
 {
   char *string;
   int   found;
@@ -1591,7 +1591,7 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
@@ -1672,7 +1672,7 @@ static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_NET) {
 

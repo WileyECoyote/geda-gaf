@@ -24,8 +24,8 @@
  *
  * In order for Scheme code to be able to manipulate libgeda data
  * structures, it is convenient for the code to be able to get handles
- * to several of the different C Object types used by libgeda, in
- * particular #GedaToplevel, #Page and #Object.
+ * to several of the different C GedaObject types used by libgeda, in
+ * particular #GedaToplevel, #Page and #GedaObject.
  *
  * A particular issue is that, in principle, Guile can stash a
  * variable somewhere and only try and access it much later, possibly
@@ -38,14 +38,14 @@
  * code, the Page Object must explicitly be destroyed if the Scheme code
  * does not want the #Page to hang around after it returns.
  *
- * #Object handles are a more complex case. It is possible that Scheme
- * code may legitimately want to create an #Object and do something
- * with it (or, similarly, pull an #Object out of a #Page), without
- * needing to carefully keep track of the #Object to avoid dropping it
+ * #GedaObject handles are a more complex case. It is possible that Scheme
+ * code may legitimately want to create an #GedaObject and do something
+ * with it (or, similarly, pull an #GedaObject out of a #Page), without
+ * needing to carefully keep track of the #GedaObject to avoid dropping it
  * on the floor. In that case, users should be able to rely on the
  * garbage collector.
  *
- * For that reason, an #Object is marked to be destroyed by
+ * For that reason, an #GedaObject is marked to be destroyed by
  * garbage-collection in two cases:
  *
  * -# If they have been created by Scheme code, but not yet added to a
@@ -121,10 +121,10 @@ smob_free (SCM smob)
     break;
 
   case GEDA_SMOB_OBJECT:
-    /* See edascm_from_object() for an explanation of why Object
+    /* See edascm_from_object() for an explanation of why GedaObject
      * smobs store a GedaToplevel in the second obj word */
     if (GEDA_IS_OBJECT(obj)) {
-      geda_object_weak_unref   ((Object *) obj, smob_weakref_notify, smob);
+      geda_object_weak_unref   ((GedaObject *) obj, smob_weakref_notify, smob);
     }
     toplevel = (GedaToplevel *) SCM_SMOB_DATA_2 (smob);
     if (GEDA_IS_TOPLEVEL(toplevel)) {
@@ -160,9 +160,9 @@ smob_free (SCM smob)
                  __FUNCTION__, obj);
       break;
     case GEDA_SMOB_OBJECT:
-      /* See edascm_from_object() for an explanation of why Object
+      /* See edascm_from_object() for an explanation of why GedaObject
        * smobs store a GedaToplevel in the second data word */
-      s_object_release ( (Object *) obj);
+      s_object_release ( (GedaObject *) obj);
       break;
     case GEDA_SMOB_CONFIG:
       /* These are reference counted, so the structure will have
@@ -344,11 +344,11 @@ edascm_to_page (SCM smob)
  * GedaToplevel fluid and potentially causing a race condition (see bug
  * 909358).
  *
- * \param object #Object to create a smob for.
+ * \param object #GedaObject to create a smob for.
  * \return a smob representing \a object.
  */
 SCM
-edascm_from_object (Object *object)
+edascm_from_object (GedaObject *object)
 {
   SCM smob;
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
@@ -366,12 +366,12 @@ edascm_from_object (Object *object)
 /*! \brief Get a schematic object from a smob.
  * \ingroup guile_c_iface
  * \par Function Description
- * Return the #Object represented by \a smob.
+ * Return the #GedaObject represented by \a smob.
  *
- * \param [in] smob Guile value to retrieve #Object from.
- * \return the #Object represented by \a smob.
+ * \param [in] smob Guile value to retrieve #GedaObject from.
+ * \return the #GedaObject represented by \a smob.
  */
-Object *
+GedaObject *
 edascm_to_object (SCM smob)
 {
 
@@ -422,15 +422,15 @@ edascm_to_config (SCM smob)
   return EDA_CONFIG (SCM_SMOB_DATA (smob));
 }
 
-/*! \brief Test whether a smob is a #Object instance
+/*! \brief Test whether a smob is a #GedaObject instance
  * \ingroup guile_c_iface
  * \par Function Description
- * If \a smob is a #Object instance, returns non-zero. Otherwise,
+ * If \a smob is a #GedaObject instance, returns non-zero. Otherwise,
  * returns zero.
  *
  * \param [in] smob Guile value to test.
  *
- * \return non-zero iff \a smob is a #Object instance.
+ * \return non-zero iff \a smob is a #GedaObject instance.
  */
 int
 edascm_is_object (SCM smob)
@@ -503,10 +503,10 @@ edascm_c_set_gc (SCM smob, int gc)
         break;
 
       case GEDA_SMOB_OBJECT:
-        // See edascm_from_object() for an explanation of why Object
+        // See edascm_from_object() for an explanation of why GedaObject
         // smobs store a GedaToplevel in the second obj word
         if (GEDA_IS_OBJECT(obj)) {
-          geda_object_weak_unref   ((Object *) obj, smob_weakref_notify, smob);
+          geda_object_weak_unref   ((GedaObject *) obj, smob_weakref_notify, smob);
         }
         toplevel = (GedaToplevel *) SCM_SMOB_DATA_2 (smob);
         if (GEDA_IS_TOPLEVEL(toplevel)) {
@@ -548,9 +548,9 @@ EDA_SCM_DEFINE (smob_page_p, "%page?", 1, 0, 0,
   return (EDASCM_PAGEP (page_smob) ? SCM_BOOL_T : SCM_BOOL_F);
 }
 
-/*! \brief Test whether a smob is an #Object instance.
+/*! \brief Test whether a smob is an #GedaObject instance.
  * \par Function Description
- * If \a object_smob is an #Object instance, returns \b SCM_BOOL_T;
+ * If \a object_smob is an #GedaObject instance, returns \b SCM_BOOL_T;
  * otherwise returns \b SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %object? procedure in the (geda
@@ -558,10 +558,10 @@ EDA_SCM_DEFINE (smob_page_p, "%page?", 1, 0, 0,
  *
  * param [in] object_smob Guile value to test.
  *
- * \return SCM_BOOL_T iff \a object_smob is an #Object instance.
+ * \return SCM_BOOL_T iff \a object_smob is an #GedaObject instance.
  */
 EDA_SCM_DEFINE (smob_object_p, "%object?", 1, 0, 0, (SCM object_smob),
-               "Test whether the value is a gEDA Object instance.")
+               "Test whether the value is a gEDA GedaObject instance.")
 {
   return (EDASCM_OBJECTP (object_smob) ? SCM_BOOL_T : SCM_BOOL_F);
 }

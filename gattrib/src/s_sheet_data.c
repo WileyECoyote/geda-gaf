@@ -252,7 +252,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
   for (iter = obj_list;
        iter != NULL;
        iter = g_list_next (iter)) {
-    Object *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
 #ifdef DEBUG
       printf("In s_sheet_data_add_master_comp_list_items, examining o_current->name = %s\n", o_current->name);
@@ -298,12 +298,13 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
  * \param obj_list pointer to list of objects
  */
 void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
-  char *attrib_text;
-  char *attrib_name;
+
+  GedaObject  *a_current;
+  GList       *a_iter;
+  GList       *object_attribs;
+  char        *attrib_text;
+  char        *attrib_name;
   const GList *o_iter;
-  GList *a_iter;
-  Object *a_current;
-  GList *object_attribs;
 
   bool is_attached;
 
@@ -313,7 +314,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components (OBJ_COMPLEX) ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
     printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
@@ -428,23 +429,28 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
     printf ("In s_sheet_data_add_master_pin_list_items, examining o_current->name = %s\n", o_current->name);
 #endif
 
     if (o_current->type == OBJ_COMPLEX) {
+
       temp_uref = s_attrib_get_refdes (o_current);
-      if ( (temp_uref) &&
-	 (strcmp (temp_uref, "none")) &&
-	 (strcmp (temp_uref, "pinlabel")) ){
+
+      if ((temp_uref) &&
+          (strcmp (temp_uref, "none")) &&
+          (strcmp (temp_uref, "pinlabel")) ){
 
         /* -----  Now iterate through lower level objects looking for pins.  ----- */
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
-             o_lower_iter = g_list_next (o_lower_iter)) {
-          Object *o_lower_current = o_lower_iter->data;
+             o_lower_iter = g_list_next (o_lower_iter))
+        {
+
+          GedaObject *o_lower_current = o_lower_iter->data;
+
 #if DEBUG
           printf ("In s_sheet_data_add_master_pin_list_items, examining object name %s\n", o_lower_current->name);
 #endif
@@ -499,13 +505,14 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
  * \param obj_list pointer to list of pin attributes to be added.
  */
 void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
-  char *temp_uref;
-  char *attrib_text;
-  char *attrib_name;
-  char *attrib_value;
+
+  GedaObject  *pin_attrib;
   const GList *o_iter;
-  GList *o_lower_iter, *a_iter;
-  Object *pin_attrib;
+  GList       *o_lower_iter, *a_iter;
+  char        *temp_uref;
+  char        *attrib_text;
+  char        *attrib_name;
+  char        *attrib_value;
 
 #ifdef DEBUG
   fflush(stderr);
@@ -519,21 +526,24 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
       printf("In s_sheet_data_add_master_pin_attrib_list_items, examining o_current->name = %s\n", o_current->name);
 #endif
 
       if (o_current->type == OBJ_COMPLEX) {
-	temp_uref = s_attrib_get_refdes(o_current);
-	if (temp_uref != NULL) {      /* make sure object complex has a refdes  */
+
+        temp_uref = s_attrib_get_refdes(o_current);
+
+        if (temp_uref != NULL) {      /* make sure object complex has a refdes  */
 
 	  /* -----  Now iterate through lower level objects looking for pins.  ----- */
           for (o_lower_iter = o_current->complex->prim_objs;
                o_lower_iter != NULL;
-               o_lower_iter = g_list_next (o_lower_iter)) {
-            Object *o_lower_current = o_lower_iter->data;
+               o_lower_iter = g_list_next (o_lower_iter))
+          {
+            GedaObject *o_lower_current = o_lower_iter->data;
 #if DEBUG
 	    printf("In s_sheet_data_add_master_pin_attrib_list_items, examining component refdes =  %s\n", temp_uref);
 #endif

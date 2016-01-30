@@ -111,8 +111,9 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 
     for (o_iter = s_page_get_objects (p_current);
          o_iter != NULL;
-         o_iter = g_list_next (o_iter)) {
-      Object *o_current = o_iter->data;
+         o_iter = g_list_next (o_iter))
+    {
+      GedaObject *o_current = o_iter->data;
 
       /* --- look for object, and verify that it has a symbol file attached. ---- */
       if (o_current->type == OBJ_PLACEHOLDER) {
@@ -345,7 +346,7 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
        o_iter != NULL;
        o_iter = g_list_previous (o_iter)) {
 
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
 
     /* ------- Object is a component.  Handle component attributes. ------- */
     if (o_current->type == OBJ_COMPLEX) {    /* Note that OBJ_COMPLEX = component + attribs */
@@ -409,7 +410,7 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
        o_iter != NULL;
        o_iter = g_list_previous (o_iter))
   {
-    Object *o_current = o_iter->data;
+    GedaObject *o_current = o_iter->data;
 
     /* ------- Object is a complex.  Handle pins by looking ------ */
     /* ------- for all pins attached to a component.        ------ */
@@ -433,8 +434,9 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
       {
         for (prim_iter = o_current->complex->prim_objs;
             prim_iter != NULL;
-            prim_iter = g_list_next (prim_iter)) {
-          Object *comp_prim_obj = prim_iter->data;
+            prim_iter = g_list_next (prim_iter))
+        {
+          GedaObject *comp_prim_obj = prim_iter->data;
 
           if (comp_prim_obj->type == OBJ_PIN) {
             new_pin_attrib_list = s_toplevel_get_pin_attribs_in_sheet (temp_uref, comp_prim_obj);
@@ -559,7 +561,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 void
 s_toplevel_update_component_attribs_in_toplevel (
                                         GedaToplevel *toplevel,
-                                        Object *o_current,
+                                        GedaObject *o_current,
                                         STRING_LIST *new_comp_attrib_list)
 {
   STRING_LIST *local_list;
@@ -595,7 +597,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
   while (a_iter != NULL) {
 
-    Object *a_current = a_iter->data;
+    GedaObject *a_current = a_iter->data;
 
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
 
@@ -605,13 +607,14 @@ s_toplevel_update_component_attribs_in_toplevel (
 
       /* Else clause is suggestion from Ales */
       old_attrib_name = u_string_split(old_name_value_pair, '=', 0);
-      if ( (strcmp(old_attrib_name, "refdes") != 0) &&
-        (strcmp(old_attrib_name, "net") != 0) &&
-        (strcmp(old_attrib_name, "slot") != 0) &&
-        (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
+      if ((strcmp(old_attrib_name, "refdes") != 0) &&
+          (strcmp(old_attrib_name, "net") != 0) &&
+          (strcmp(old_attrib_name, "slot") != 0) &&
+          (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
+      {
         s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-        }
-        else {
+      }
+      else {
 
           int status;
 
@@ -793,7 +796,7 @@ STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname)
 /*!
  * \todo Function doesn't do anything - candidate for removal?
  */
-void s_toplevel_update_net_attribs_in_toplevel(Object *o_current,
+void s_toplevel_update_net_attribs_in_toplevel(GedaObject *o_current,
 				   STRING_LIST *new_net_attrib_list)
 {
   /* must be filled in */
@@ -818,13 +821,13 @@ void s_toplevel_update_net_attribs_in_toplevel(Object *o_current,
  * \param pin Pin object
  * \returns name=value pair as a STRING_LIST
  */
-STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
+STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
 {
   STRING_LIST *new_attrib_list;
   STRING_LIST *local_attrib_list;
-  int i;
-  int row = -1;
-  int count = 0;
+  int   i;
+  int   row = -1;
+  int   count = 0;
   char *pinnumber;
   char *row_label;
   char *name_value_pair;
@@ -916,9 +919,9 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
  */
 void
 s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
-                                           char *refdes,
-                                           Object *o_pin,
-                                           STRING_LIST *new_pin_attrib_list)
+                                           char         *refdes,
+                                           GedaObject   *o_pin,
+                                           STRING_LIST  *new_pin_attrib_list)
 {
   STRING_LIST *local_list;
 

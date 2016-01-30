@@ -553,7 +553,7 @@ static void multiattrib_popup_menu   (Multiattrib      *ThisDialog,
  *
  *  \returns  TRUE/FALSE if the given object may have attributes attached.
  */
-static bool is_multiattrib_object (Object *object)
+static bool is_multiattrib_object (GedaObject *object)
 {
   if (object->type == OBJ_COMPLEX ||
       object->type == OBJ_PLACEHOLDER ||
@@ -590,7 +590,7 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
        iter != NULL;
        iter  = g_list_next (iter)) {
 
-    Object *object = (Object *)iter->data;
+    GedaObject *object = (GedaObject*)iter->data;
 
     if (is_multiattrib_object (object)) {
 
@@ -619,7 +619,7 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
 
   for (iter = attr_list; iter != NULL; NEXT (iter)) {
 
-    Object *o_attrib = (Object *)iter->data;
+   GedaObject *o_attrib = (GedaObject*)iter->data;
 
     /* create a new attribute and link it */
     o_attrib_add_attrib (w_current,
@@ -647,12 +647,12 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
                                                   GList       *iter)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
-  GedaToplevel       *toplevel  = w_current->toplevel;
-  Object         *o_new;
+  GedaToplevel   *toplevel  = w_current->toplevel;
+  GedaObject     *o_new;
 
   while (iter) {
 
-    Object *o_attrib = (Object *)iter->data;
+   GedaObject *o_attrib = (GedaObject*)iter->data;
 
     if (o_get_is_visible (o_attrib)) {
 
@@ -716,18 +716,18 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
 
   /* Remove objects which already have this attribute from the list */
   for (iter = attr_list; iter != NULL; NEXT(iter)) {
-    Object *parent = ((Object*)iter->data)->attached_to;
+    GedaObject *parent = ((GedaObject*)iter->data)->attached_to;
     objects_needing_add = g_list_remove (objects_needing_add, parent);
   }
 
   for (iter = objects_needing_add; iter != NULL; NEXT(iter)) {
 
-    Object *object = iter->data;
+    GedaObject *object = iter->data;
 
     if (is_multiattrib_object (object)) {
 
       /* Pick the first instance to copy from */
-      Object *attrib_to_copy = attr_list->data;
+      GedaObject *attrib_to_copy = attr_list->data;
 
       visibility = o_get_is_visible (attrib_to_copy)
                  ? VISIBLE : INVISIBLE;
@@ -946,7 +946,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
 
   while (a_iter != NULL) {
 
-    Object *o_attrib = a_iter->data;
+    GedaObject *o_attrib = a_iter->data;
 
     int visibility = o_get_is_visible (o_attrib) ? VISIBLE : INVISIBLE;
 
@@ -1009,7 +1009,7 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
 
         while (a_iter != NULL) {
 
-          Object *o_attrib = (Object*)a_iter->data;
+          GedaObject *o_attrib = (GedaObject*)a_iter->data;
 
           /* actually modifies the attribute */
           o_text_change (w_current, o_attrib,
@@ -1069,7 +1069,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
 
   while (a_iter != NULL) {
 
-    Object *o_attrib = (Object *)a_iter->data;
+    GedaObject *o_attrib = (GedaObject*)a_iter->data;
 
     /* Modify the attribute */
     o_invalidate_object (w_current, o_attrib);
@@ -1125,7 +1125,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
 
   while (a_iter != NULL) {
 
-    Object *o_attrib   = (Object*)a_iter->data;
+    GedaObject *o_attrib   = (GedaObject*)a_iter->data;
 
     /* If we switch off the name visibility, but the value was not
      * previously visible, make it visible now */
@@ -1201,7 +1201,7 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
 
   while (a_iter != NULL) {
 
-    Object *o_attrib = (Object*)a_iter->data;
+    GedaObject *o_attrib = (GedaObject*)a_iter->data;
     int     new_snv;
 
     /* If we switch off the name visibility, but the value was not
@@ -2398,11 +2398,11 @@ typedef struct {
  *  together.
  *
  *  \param [in] multiattrib  The multi-attribute editor dialog (For libgeda API which needs a GedaToplevel)
- *  \param [in] object       The Object * whos attributes we are processing
+ *  \param [in] object       TheGedaObject * whos attributes we are processing
  *  \returns  A GList of MODEL_ROW records detailing object's attributes.
  */
 static GList *
-object_attributes_to_model_rows (Multiattrib *ThisDialog, Object *object)
+object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
 {
   GList *model_rows = NULL;
   GList *a_iter;
@@ -2410,7 +2410,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, Object *object)
 
   for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter))
   {
-    Object *a_current = a_iter->data;
+    GedaObject *a_current = a_iter->data;
     MODEL_ROW *m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
     GList *m_iter;
 
@@ -2421,7 +2421,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, Object *object)
     m_row->show_name_value = a_current->show_name_value;
     m_row->nth_with_name   = 0; /* Provisional value until we check below */
 
-    /* The following fields are always true for a single Object */
+    /* The following fields are always true for a single GedaObject */
     m_row->present_in_all       = TRUE;
     m_row->identical_value      = TRUE;
     m_row->identical_visibility = TRUE;
@@ -2474,7 +2474,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
   for (o_iter = ThisDialog->object_list == NULL ? NULL : geda_list_get_glist (ThisDialog->object_list);
        o_iter != NULL;
        o_iter = g_list_next (o_iter)) {
-    Object *object = o_iter->data;
+    GedaObject *object = o_iter->data;
     MODEL_ROW *m_row;
 
     /* Consider a selected text object might be an attribute */
@@ -2666,7 +2666,7 @@ multiattrib_update (Multiattrib *ThisDialog)
   for (o_iter = multiattrib->object_list == NULL ? NULL : geda_list_get_glist (multiattrib->object_list);
        o_iter != NULL; NEXT(o_iter)) {
 
-    Object *object = o_iter->data;
+    GedaObject *object = o_iter->data;
 
     GList *object_rows;
     GList *or_iter;

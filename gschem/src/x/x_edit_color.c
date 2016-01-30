@@ -50,7 +50,7 @@
  *  \param object    pointer to a selected Object.
  */
 static void
-x_dialog_color_update_selection (GschemToplevel *w_current, Object *object)
+x_dialog_color_update_selection (GschemToplevel *w_current, GedaObject *object)
 {
   if (object != NULL) {
 
@@ -92,7 +92,7 @@ x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
 
       while(s_current != NULL) {
 
-        Object *object = (Object *) s_current->data;
+        GedaObject *object = (GedaObject*) s_current->data;
 
         if (object == NULL) {
           fprintf(stderr, _("ERROR: NULL object in x_dialog_edit_color_apply!\n"));
@@ -139,7 +139,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
 {
   GtkWidget *Dialog = w_current->clwindow;
 
-  Object *object;
+  GedaObject *object;
   int color_index;
 
   object = o_select_return_first_object (w_current);

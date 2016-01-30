@@ -38,7 +38,7 @@ typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, Path *path,
                            int origin_x, int origin_y);
 
 
-/*! \brief Create and add path Object to list.
+/*! \brief Create and add path GedaObject to list.
  *  \par Function Description
  *  This function creates a new object representing a path.
  *  This object is added to the end of the list <B>object_list</B>
@@ -63,10 +63,10 @@ typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in]     path_string  The string representation of the path
  *  \return A pointer to the new end of the object list.
  */
-Object *
+GedaObject *
 o_path_new (int color, const char *path_string)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Path   *path;
 
   path = s_path_parse (path_string);
@@ -75,7 +75,7 @@ o_path_new (int color, const char *path_string)
   return new_obj;
 }
 
-/*! \brief Create a New Path Object from an Array of Points
+/*! \brief Create a New Path GedaObject from an Array of Points
  *  \par Function Description
  *  This function creates a new path object using the vertices
  *  given in the array \a points and sets the color property
@@ -87,9 +87,9 @@ o_path_new (int color, const char *path_string)
  *
  *  \return A pointer to the new Path object.
  */
-Object *o_path_new_from_polygon (GArray *points, int color)
+GedaObject *o_path_new_from_polygon (GArray *points, int color)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   POINT   first;
   POINT   point;
   Path   *path;
@@ -133,9 +133,9 @@ Object *o_path_new_from_polygon (GArray *points, int color)
 
 /*! \brief Create a new path object.
  *  \par Function Description
- *  This function creates and returns a new Object representing
+ *  This function creates and returns a new GedaObject representing
  *  a path using the path shape data stored in \a path_data. The
- *  \a path_data is subsequently owned by the returned Object.
+ *  \a path_data is subsequently owned by the returned GedaObject.
  *
  *  \sa o_path_new
  *
@@ -144,10 +144,10 @@ Object *o_path_new_from_polygon (GArray *points, int color)
  *
  *  \return A pointer to the new end of the object list.
  */
-Object*
+GedaObject*
 o_path_new_take_path (int color, Path *path_data)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Path   *path;
 
   /* create the object */
@@ -178,13 +178,13 @@ o_path_new_take_path (int color, Path *path_data)
  *  is added at the end of the list following the <B>list_tail</B>
  *  parameter.
  *
- *  \param [in]  o_current  Line Object to copy.
+ *  \param [in]  o_current  Line GedaObject to copy.
  *
  *  \return A new pointer to the end of the object list.
  */
-Object *o_path_copy (Object *o_current)
+GedaObject *o_path_copy (GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Path   *old_path;
   char   *path_string;
 
@@ -206,9 +206,9 @@ Object *o_path_copy (Object *o_current)
   /* return the new tail of the object list */
   return new_obj;
 }
-/*! \brief Create path Object from character string.
+/*! \brief Create path GedaObject from character string.
  *  \par Function Description
- *  This function creates a path Object from the character string <B>*buf</B>
+ *  This function creates a path GedaObject from the character string <B>*buf</B>
  *  and a number of lines following that describing the path, read from <B>*tb</B>.
  *  A path is internally described by its two ends. A new object is allocated,
  *  initialized and added to the list of objects. The path type is set according
@@ -233,10 +233,10 @@ Object *o_path_copy (Object *o_current)
  *
  *  \return A pointer to the new path object, or NULL on error;
  */
-Object *o_path_read (const char *first_line, TextBuffer *tb,
+GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
                      unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int color;
   int line_width, line_space, line_length;
@@ -304,19 +304,19 @@ Object *o_path_read (const char *first_line, TextBuffer *tb,
   return new_obj;
 }
 
-/*! \brief Create a character string representation of a path Object.
+/*! \brief Create a character string representation of a path GedaObject.
  *  \par Function Description
  *  The function formats a string in the buffer <B>*buff</B> to describe
  *  the path object <B>*object</B>.
  *
- *  \param [in] object  path Object to create string from.
- *  \return A pointer to the path Object character string.
+ *  \param [in] object  path GedaObject to create string from.
+ *  \return A pointer to the path GedaObject character string.
  *
  *  \note
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *o_path_save (Object *object)
+char *o_path_save (GedaObject *object)
 {
   int line_width, line_space, line_length;
   char *buf;
@@ -366,12 +366,12 @@ char *o_path_save (Object *object)
  *
  *  The new position is given by <B>x</B> and <B>y</B>.
  *
- *  \param [in,out] object    The path Object
+ *  \param [in,out] object    The path GedaObject
  *  \param [in]     x         New x coordinate for the control point
  *  \param [in]     y         New y coordinate for the control point
  *  \param [in]     whichone  Which control point is being modified
  */
-void o_path_modify (Object *object, int x, int y, int whichone)
+void o_path_modify (GedaObject *object, int x, int y, int whichone)
 {
   int i;
   int grip_no = 0;
@@ -415,11 +415,11 @@ void o_path_modify (Object *object, int x, int y, int whichone)
  *  This function mirrors the path from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in,out] object    Line Object to mirror.
+ *  \param [in,out] object    Line GedaObject to mirror.
  *  \param [in]     center_x  Origin x coordinate in WORLD units.
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
  */
-void o_path_mirror (Object *object, int center_x, int center_y)
+void o_path_mirror (GedaObject *object, int center_x, int center_y)
 {
   PATH_SECTION *section;
   int i;
@@ -447,18 +447,18 @@ void o_path_mirror (Object *object, int center_x, int center_y)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Rotate Line Object using WORLD coordinates.
+/*! \brief Rotate Line GedaObject using WORLD coordinates.
  *  \par Function Description
  *  This function rotates the path described by  <B>*object</B> around
  *  the (<B>center_x</B>,<B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in,out] object    Line Object to rotate
+ *  \param [in,out] object    Line GedaObject to rotate
  *  \param [in]     center_x  Rotation center x coordinate in WORLD units
  *  \param [in]     center_y  Rotation center y coordinate in WORLD units
  *  \param [in]     angle     Rotation angle in degrees (See note below).
  */
-void o_path_rotate (Object *object, int center_x, int center_y, int angle)
+void o_path_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   PATH_SECTION *section;
   int i;
@@ -496,11 +496,11 @@ void o_path_rotate (Object *object, int center_x, int center_y, int angle)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     Line Object to translate
+ *  \param [in,out] object     Line GedaObject to translate
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
  */
-void o_path_translate (Object *object, int dx, int dy)
+void o_path_translate (GedaObject *object, int dx, int dy)
 {
   PATH_SECTION *section;
   int i;
@@ -547,7 +547,7 @@ void o_path_translate (Object *object, int dx, int dy)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Path.
  */
-bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GArray *points;
   POINT   target;
@@ -797,7 +797,7 @@ bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_path_get_position (int *x, int *y, Object *object)
+bool o_path_get_position (int *x, int *y, GedaObject *object)
 {
   if (object->path->num_sections == 0)
     return FALSE;
@@ -821,8 +821,8 @@ bool o_path_get_position (int *x, int *y, Object *object)
  *  \param [in] line_width  PATH Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place PATH Object
- *  \param [in] origin_y    Page y coordinate to place PATH Object
+ *  \param [in] origin_x    Page x coordinate to place PATH GedaObject
+ *  \param [in] origin_y    Page y coordinate to place PATH GedaObject
  */
 static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, Path *path,
                                 int line_width, int length, int space,
@@ -878,8 +878,8 @@ static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, Path *path,
                                  int line_width, int length, int space,
@@ -903,8 +903,8 @@ static void o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, Path *path,
                                  int line_width, int length, int space,
@@ -928,8 +928,8 @@ static void o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_center (GedaToplevel *toplevel, FILE *fp, Path *path,
                                  int line_width, int length,
@@ -953,8 +953,8 @@ static void o_path_print_center (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, Path *path,
                                   int line_width, int length,
@@ -983,8 +983,8 @@ static void o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] pitch1      (unused)
  *  \param [in] angle2      (unused)
  *  \param [in] pitch2      (unused)
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_filled (GedaToplevel *toplevel, FILE *fp, Path *path,
                                  int fill_width,
@@ -1048,8 +1048,8 @@ static void o_path_print_filled (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] pitch1      Pitch of hatch pattern
  *  \param [in] angle2      (unused)
  *  \param [in] pitch2      (unused)
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, Path *path,
                                 int fill_width,
@@ -1098,8 +1098,8 @@ static void o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] pitch1      1st pitch for mesh pattern
  *  \param [in] angle2      2nd angle for mesh pattern
  *  \param [in] pitch2      2nd pitch for mesh pattern
- *  \param [in] origin_x    Page x coordinate to place Path Object
- *  \param [in] origin_y    Page y coordinate to place Path Object
+ *  \param [in] origin_x    Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, Path *path,
                                int fill_width,
@@ -1122,11 +1122,11 @@ static void o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, Path *path,
  *
  *  \param [in] toplevel   GedaToplevel object
  *  \param [in] fp         FILE pointer to Postscript document
- *  \param [in] o_current  Path Object to write to document
- *  \param [in] origin_x   Page x coordinate to place Path Object
- *  \param [in] origin_y   Page y coordinate to place Path Object
+ *  \param [in] o_current  Path GedaObject to write to document
+ *  \param [in] origin_x   Page x coordinate to place Path GedaObject
+ *  \param [in] origin_y   Page y coordinate to place Path GedaObject
  */
-void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                   int origin_x, int origin_y)
 {
   int line_width, length, space;
@@ -1270,7 +1270,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 /*! \brief Calculates the distance between the given point and the closest
  *         point on the given path segment.
  *
- *  \param [in] object       The path Object
+ *  \param [in] object       The path GedaObject
  *  \param [in] x            The x coordinate of the given point
  *  \param [in] y            The y coordinate of the given point
  *  \param [in] force_solid  If true, force treating the object as solid
@@ -1278,7 +1278,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *  \return The shortest distance from the object to the point. With an
  *          invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_path_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_path_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 

@@ -56,9 +56,9 @@ static GObjectClass *geda_bus_parent_class = NULL;
  */
 static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Bus    *bus                = (Bus*)instance;
-  Line   *line               = &bus->parent_instance;
-  Object *object             = &line->parent_instance;
+  Bus        *bus            = (Bus*)instance;
+  Line       *line           = &bus->parent_instance;
+  GedaObject *object         = &line->parent_instance;
 
   bus->bus_ripper_direction  = 0;
 
@@ -76,7 +76,7 @@ geda_bus_dispose(GObject *object)
 
 }
 
-/*! \brief Geda Bus Object Finalization Function
+/*! \brief Geda Bus GedaObject Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
  *   releases the memory allocated to the given Bus data structure,
@@ -85,8 +85,8 @@ geda_bus_dispose(GObject *object)
  */
 static void geda_bus_finalize(GObject *object)
 {
-  Bus    *bus = GEDA_BUS(object);
-  Object *obj = GEDA_OBJECT(object);
+  Bus        *bus = GEDA_BUS(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   if (bus->bus_name)
     GEDA_FREE(bus->bus_name);
@@ -166,9 +166,9 @@ GedaObjectType geda_bus_get_type (void)
  *
  *  \return pointer to the new Bus object.
  */
-Object *geda_bus_new (void)
+GedaObject *geda_bus_new (void)
 {
-  Object *bus = g_object_new( GEDA_TYPE_BUS,
+  GedaObject *bus = g_object_new( GEDA_TYPE_BUS,
                              "type", OBJ_BUS,
                              "name", "bus",
                               NULL );
@@ -184,6 +184,6 @@ Object *geda_bus_new (void)
  */
 bool is_a_geda_bus_object (Bus *bus)
 {
-  return GEDA_IS_OBJECT(bus) && (((Object*)bus)->type == OBJ_BUS);
+  return GEDA_IS_OBJECT(bus) && (((GedaObject*)bus)->type == OBJ_BUS);
 }
 /** @} endgroup geda-bus-object */

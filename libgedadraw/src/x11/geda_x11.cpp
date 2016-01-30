@@ -1232,7 +1232,7 @@ geda_x11_draw_picture (int x, int y, int width, int height)
     }
 
     if (!pixbuf) {
-      Object *save_obj = object;
+      GedaObject *save_obj = object;
       object = o_box_new(JUNCTION_COLOR, 0, 0, 0, 0);
       geda_x11_draw_box (x, y, width, height);
       g_object_unref(object);

@@ -40,7 +40,7 @@
  *   called to traverse page.
  */
 void
-s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
+s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
                      NETLIST  *netlist)
 {
   char *attrib;
@@ -806,7 +806,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
  *   check if the value of the attribute is non zero, which is
  *   interpreted as meaning the object is a graphical object.
  */
-int s_hierarchy_graphical_search (Object* o_current, int count)
+int s_hierarchy_graphical_search (GedaObject* o_current, int count)
 {
   bool  result;
   char *graphical_attrib;

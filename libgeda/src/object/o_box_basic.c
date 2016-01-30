@@ -37,7 +37,7 @@
  *  its lower right corner - <B>x2</B>, <B>y2</B>.
  *  The <B>type</B> parameter must be equal to <B>OBJ_BOX</B>. The <B>color</B>
  *  corresponds to the color the box will be drawn with.
- *  The <B>Object</B> structure is allocated with the #geda_object_new()
+ *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
  *  function. The structure describing the box is allocated and initialized
  *  with the parameters given to the function.
  *
@@ -51,12 +51,12 @@
  *  \param [in]     x2           Lower x coordinate.
  *  \param [in]     y2           Lower y coordinate.
  *
- *  \return The new Object
+ *  \return The new GedaObject
  */
-Object *o_box_new(int color, int x1, int y1, int x2, int y2)
+GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
 {
   Box    *box;
-  Object *new_obj;
+  GedaObject *new_obj;
 
   /* create the object */
   new_obj = geda_box_new();
@@ -79,13 +79,13 @@ Object *o_box_new(int color, int x1, int y1, int x2, int y2)
  *  The function #o_box_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a box.
  *
- *  \param [in]      o_current  Box Object to copy.
+ *  \param [in] o_current Box Object to copy.
  *
- *  \return The new Object
+ *  \return The new GedaObject
  */
-Object *o_box_copy(Object *o_current)
+GedaObject *o_box_copy(GedaObject *o_current)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   Box    *old_box;
 
   g_return_val_if_fail(GEDA_IS_BOX(o_current), NULL);
@@ -119,13 +119,13 @@ Object *o_box_copy(Object *o_current)
  * the box to the rectangle enclosed by the points (\a x1, \a y1) and
  * (\a x2, \a y2).
  *
- * \param [in,out] object   box #Object to be modified.
+ * \param [in,out] object   box #GedaObject to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
  * \param [in]     y1       y coordinate of first corner of box.
  * \param [in]     x2       x coordinate of second corner of box.
  * \param [in]     y2       y coordinate of second corner of box,
  */
-void o_box_modify_all (Object *object, int x1, int y1, int x2, int y2)
+void o_box_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
   object->box->lower_x = (x1 > x2) ? x1 : x2;
   object->box->lower_y = (y1 > y2) ? y2 : y1;
@@ -162,7 +162,7 @@ void o_box_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *    <DT>*</DT><DD>BOX_LOWER_RIGHT
  *  </DL>
  */
-void o_box_modify(Object *object, int x, int y, int whichone)
+void o_box_modify(GedaObject *object, int x, int y, int whichone)
 {
   int tmp;
 
@@ -229,10 +229,10 @@ void o_box_modify(Object *object, int x, int y, int whichone)
  *
  *  \return The Box Object that was created, or NULL on error.
  */
-Object* o_box_read (const char buf[], unsigned int release_ver,
+GedaObject* o_box_read (const char buf[], unsigned int release_ver,
                     unsigned int fileformat_ver, GError **err)
 {
-  Object *new_obj;
+  GedaObject *new_obj;
   char type;
   int x1, y1;
   int width, height;
@@ -354,7 +354,7 @@ Object* o_box_read (const char buf[], unsigned int release_ver,
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-char *o_box_save(Object *object)
+char *o_box_save(GedaObject *object)
 {
   int x1, y1;
   int width, height;
@@ -425,7 +425,7 @@ char *o_box_save(Object *object)
  *  \param [in]     center_x  Origin x coordinate in WORLD units
  *  \param [in]     center_y  Origin y coordinate in WORLD units
  */
-void o_box_mirror(Object *object, int center_x, int center_y)
+void o_box_mirror(GedaObject *object, int center_x, int center_y)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -472,7 +472,7 @@ void o_box_mirror(Object *object, int center_x, int center_y)
 
  *
  */
-void o_box_rotate(Object *object, int center_x, int center_y, int angle)
+void o_box_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -531,7 +531,7 @@ void o_box_rotate(Object *object, int center_x, int center_y, int angle)
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move
  */
-void o_box_translate(Object *object, int dx, int dy)
+void o_box_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->box->upper_x = object->box->upper_x + dx;
@@ -558,7 +558,7 @@ void o_box_translate(Object *object, int dx, int dy)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Box.
  */
-bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   Box *box;
   bool result;
@@ -731,7 +731,7 @@ bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_box_get_position (int *x, int *y, Object *object)
+bool o_box_get_position (int *x, int *y, GedaObject *object)
 {
   *x = min(object->box->lower_x, object->box->upper_x);
   *y = min(object->box->lower_y, object->box->upper_y);
@@ -762,7 +762,7 @@ bool o_box_get_position (int *x, int *y, Object *object)
  *  \param [in] origin_x   Page x coordinate to place Box Object.
  *  \param [in] origin_y   Page y coordinate to place Box Object.
  */
-void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                  int origin_x, int origin_y)
 {
   int x, y, width, height;
@@ -1428,14 +1428,14 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the box.
  *
- *  \param [in] object       A box Object.
+ *  \param [in] object       A box GedaObject.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_box_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_box_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 

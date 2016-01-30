@@ -184,15 +184,19 @@ void x_menu_edit_new_attrib()
  * \brief Edit->Delete Attribute menu item
  *
  * Implements the Delete Attribute menu item
+ *
+ * \TODO Implement the function that Implements Delete Attribute
  */
 void x_menu_edit_delete_attrib()
 {
   x_dialog_unimplemented_feature();
   return;
   GtkSheet *sheet = x_gtksheet_get_current_sheet();
+
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
     s_toplevel_delete_attrib_col(sheet);
 }
+
 static void menu_edit_cut()
 {
   x_window_clipboard_handler(cut);
@@ -287,6 +291,7 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   GEDA_FREE(uri);
   GEDA_FREE(filename);
 }
+
 /*! \brief Set Senitivity of Menu Items.
  *  \par Function Description
  *       This function is called by on_notebook_switch_page when ever a TAB
@@ -302,6 +307,7 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
     }
     mapcar(ListMenuItems);
 }
+
 /*!
  * The Gtk action table
  */
@@ -414,12 +420,12 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
  *  create a new recent_manager and setup manually as would normally be done
  *  if the XML menu data had not used.
  */
-void x_menu_fix_gtk_recent_submenu() {
+void x_menu_fix_gtk_recent_submenu(void) {
 
-  GtkWidget        *recent_items;          /* Be ones GTK errently added */
+  GtkWidget        *menu_files;
+  GtkWidget        *recent_items;         /* Be the ones GTK errently added */
   GtkRecentFilter  *recent_filter;
   GtkRecentChooser *recent_file_chooser;
-  GtkWidget        *menu_files;
 
   recent_items =  gtk_ui_manager_get_widget (menu_manager,"/ui/menubar/file/OpenRecent");
 
@@ -431,23 +437,20 @@ void x_menu_fix_gtk_recent_submenu() {
 
   menu_files = gtk_recent_chooser_menu_new_for_manager (recent_manager);
 
-  {
-    recent_filter = x_menu_geda_filter ();
-    recent_file_chooser = (GtkRecentChooser*) menu_files;
-    gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
-    gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
-    gtk_recent_chooser_set_sort_type (recent_file_chooser, GTK_RECENT_SORT_MRU);
-    gtk_recent_chooser_set_limit(recent_file_chooser, MAX_RECENT_FILES);
-    gtk_recent_chooser_set_local_only(recent_file_chooser, FALSE);
-    gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(menu_files), TRUE);
-  }
+  recent_filter = x_menu_geda_filter ();
+  recent_file_chooser = (GtkRecentChooser*)menu_files;
+  gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
+  gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
+  gtk_recent_chooser_set_sort_type (recent_file_chooser, GTK_RECENT_SORT_MRU);
+  gtk_recent_chooser_set_limit(recent_file_chooser, MAX_RECENT_FILES);
+  gtk_recent_chooser_set_local_only(recent_file_chooser, FALSE);
+  gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(menu_files), TRUE);
+
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), menu_files);
 
   GEDA_SIGNAL_CONNECT (menu_files, "selection-done",
                        G_CALLBACK (on_recent_selection), main_window);
-
   return;
-
 }
 
 /*! \brief Attach a submenu with filenames to the 'Open Recent'
@@ -455,7 +458,8 @@ void x_menu_fix_gtk_recent_submenu() {
  *  Called from x_window_init function to attach the Open Recent
  * option under the File menu.
  */
-GtkActionGroup *x_menu_create_recent_action_group() {
+GtkActionGroup *x_menu_create_recent_action_group(void) {
+
   GtkRecentAction  *recent_action;
   GtkActionGroup   *recent_action_group;
 
@@ -520,6 +524,7 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
 
 }
+
 /*! \brief Create and attach the menu bar
  *  \par Function Description
  * Create the menu bar and attach it to the main window.
@@ -539,15 +544,14 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
 /*
  * 11/05/12 WEH Revised to include toggle_actions group
  * 11/10/12 WEH Revised to include recent_group
- *
  */
 GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 {
-  char             *menu_file;
-  GError           *error = NULL;
-  GtkWidget        *menubar;
-  GtkActionGroup   *action_group;
-  GtkActionGroup   *recent_group;
+  char            *menu_file;
+  GError          *error = NULL;
+  GtkWidget       *menubar;
+  GtkActionGroup  *action_group;
+  GtkActionGroup  *recent_group;
 
   /* Create and fill the action group object */
   action_group = gtk_action_group_new("MenuActions");
@@ -582,4 +586,3 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
     fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
   return menubar; /* WEH: Does this really get saved? */
 }
-

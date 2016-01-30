@@ -52,12 +52,12 @@
 typedef struct _GedaPathClass PathClass;
 
 struct _GedaPathClass {
-  ObjectClass parent_class;
+  GedaObjectClass parent_class;
 };
 
 struct _GedaPath {
 
-  Object parent_instance;
+  GedaObject parent_instance;
 
   PATH_SECTION *sections;         /* Bezier path segments  */
 
@@ -75,7 +75,7 @@ extern "C" {
 GedaPathType geda_path_get_type        (void) GEDA_CONST;
 bool         is_a_geda_path_object     (Path *object);
 
-Object      *geda_path_new             (void);
+GedaObject  *geda_path_new             (void);
 
 #ifdef __cplusplus
 }

@@ -95,7 +95,7 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
  *  \param object    pointer to a selected Object.
  */
 static void x_dialog_ca_update_selection (GschemToplevel *w_current,
-                                          Object         *object)
+                                          GedaObject     *object)
 {
   GtkWidget    *dialog;
   array_data   *dialog_data;
@@ -389,7 +389,7 @@ int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
     SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
     if (w_current->event_state == STARTDESELECT) {
-      Object *object = o_find_selected_object(w_current, x, y);
+      GedaObject *object = o_find_selected_object(w_current, x, y);
 
       if (object) {
         if (!w_current->CONTROLKEY) {

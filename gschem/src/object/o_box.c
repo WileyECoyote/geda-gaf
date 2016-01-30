@@ -128,7 +128,7 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
   else {
 
     GedaToplevel *toplevel = w_current->toplevel;
-    Object       *new_obj;
+    GedaObject   *new_obj;
 
     /* create the object */
     new_obj = o_box_new (GRAPHIC_COLOR,

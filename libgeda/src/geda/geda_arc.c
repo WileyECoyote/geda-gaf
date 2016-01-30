@@ -61,7 +61,7 @@ static GObjectClass *geda_arc_parent_class = NULL;
  *  \param [in]  object
  */
 int
-geda_arc_bounds(Object *object)
+geda_arc_bounds(GedaObject *object)
 {
   int x1, y1, x2, y2, x3, y3;
   int left, top, right, bottom;
@@ -138,7 +138,7 @@ geda_arc_bounds(Object *object)
 static void geda_arc_instance_init(GTypeInstance *instance, void *class)
 {
   Arc    *arc       = (Arc*)instance;
-  Object *object    = &arc->parent_instance;
+  GedaObject *object    = &arc->parent_instance;
 
   arc->x            = 0;
   arc->y            = 0;
@@ -181,7 +181,7 @@ geda_arc_dispose(GObject *object)
  */
 static void geda_arc_finalize(GObject *object)
 {
-  Object *obj = GEDA_OBJECT(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaArc */
   obj->arc    = NULL;
@@ -201,16 +201,16 @@ static void geda_arc_finalize(GObject *object)
  */
 static void geda_arc_class_init(void *g_class, void *class_data)
 {
-  ArcClass     *class          = (ArcClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  ArcClass        *class         = (ArcClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_arc_parent_class        = g_type_class_peek_parent( class );
+  geda_arc_parent_class          = g_type_class_peek_parent(class);
 
-  gobject_class->dispose       = geda_arc_dispose;
-  gobject_class->finalize      = geda_arc_finalize;
+  gobject_class->dispose         = geda_arc_dispose;
+  gobject_class->finalize        = geda_arc_finalize;
 
-  object_class->bounds         = geda_arc_bounds;
+  geda_class->bounds             = geda_arc_bounds;
 }
 
 /*! \brief Function to retrieve Arc's Type identifier.
@@ -261,9 +261,9 @@ GedaObjectType geda_arc_get_type (void)
  *
  *  \return pointer to the new Arc object.
  */
-Object *geda_arc_new (void)
+GedaObject *geda_arc_new (void)
 {
-  Object *arc = g_object_new( GEDA_TYPE_ARC,
+  GedaObject *arc = g_object_new( GEDA_TYPE_ARC,
                              "type", OBJ_ARC,
                              "name", "arc",
                               NULL );
@@ -279,6 +279,6 @@ Object *geda_arc_new (void)
  */
 bool is_a_geda_arc_object (Arc *arc)
 {
-  return GEDA_IS_OBJECT(arc) && (((Object*)arc)->type == OBJ_ARC);
+  return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }
 /** @} endgroup geda-arc-object */

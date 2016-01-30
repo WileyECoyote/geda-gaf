@@ -78,7 +78,7 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
  *
  * \return pointer to a string or NULL if no refdes is found.
  */
-char *s_attrib_get_refdes(Object *object)
+char *s_attrib_get_refdes(GedaObject *object)
 {
   char *temp_uref;
 
@@ -95,8 +95,10 @@ char *s_attrib_get_refdes(Object *object)
 
     if (numslots != NULL) {
 
-      Object *slot_text_object;
-      char   *slot_value = s_slot_search_slot (object, &slot_text_object);
+      GedaObject *slot_text_object;
+      char       *slot_value;
+
+      slot_value = s_slot_search_slot (object, &slot_text_object);
 
       if (slot_value != 0) {
 
