@@ -29,6 +29,6 @@
 
 void initPage(PyObject *module);
 
-PyTypeObject *PageObjectClass(void);
+PyTypeObject *PyGedaPageClass(void);
 
 

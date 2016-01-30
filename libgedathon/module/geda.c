@@ -46,7 +46,7 @@
 #include "geda_py_page.h"
 #include "geda_py_object.h"
 
-extern PyTypeObject PageObjectType;
+extern PyTypeObject PyGedaPageObjectType;
 
 static PyObject *ThisModule;
 
@@ -272,7 +272,7 @@ initgeda(void)
 
   initConstants(ThisModule);
   initPage(ThisModule);
-  initGedaObject(ThisModule);
+  initPyGedaObject(ThisModule);
   initFunctions(ThisModule);
 
   GedaError = PyErr_NewException("Geda.error", NULL, NULL);
@@ -543,7 +543,7 @@ METHOD(get_pages)
       PyObject *py_page;
 
       page_info  = PyList_GET_ITEM(py_input_list, i);
-      py_page      = PyObject_CallObject((PyObject *) PageObjectClass(), page_info);
+      py_page      = PyObject_CallObject((PyObject *) PyGedaPageClass(), page_info);
       if(py_page && PyObject_Type(py_page))
         PyList_Append(py_output_list, py_page);
     }
@@ -574,7 +574,7 @@ METHOD(get_active_page)
 
   info = library.func();
   if (info) {
-    page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+    page = PyObject_CallObject((PyObject *) PyGedaPageClass(), info);
   }
   else {
     page = Py_None;
@@ -610,13 +610,13 @@ METHOD(set_active_page)
   int       pid;
   int       status;
 
-  const char *syntax = "syntax: set_active_page(PageObject)";
+  const char *syntax = "syntax: set_active_page(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.set_active_page", PageObjectClass(), &page)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.set_active_page", PyGedaPageClass(), &page)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
-  pid = ((PageObject*)page)->pid;
+  pid = ((PyGedaPageObject*)page)->pid;
   status = library.func(pid);
 
   ON_METHOD_EXIT(set_active_page);
@@ -639,11 +639,11 @@ METHOD(set_active_page)
 METHOD(is_page_modified)
 {
   TYPE_INT_INT(is_page_modified);
-  PageObject *page;
+  PyGedaPageObject *page;
 
-  const char *syntax = "syntax: is_page_modified(PageObject)";
+  const char *syntax = "syntax: is_page_modified(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.is_page_modified", PageObjectClass(), &page)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.is_page_modified", PyGedaPageClass(), &page)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
@@ -683,13 +683,13 @@ METHOD(goto_page)
   int       pid;
   int       status;
 
-  const char *syntax = "syntax: goto_page(PageObject)";
+  const char *syntax = "syntax: goto_page(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.goto_page", PageObjectClass(), &page)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.goto_page", PyGedaPageClass(), &page)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
-  pid = ((PageObject*)page)->pid;
+  pid = ((PyGedaPageObject*)page)->pid;
   status = library.func(pid);
 
   ON_METHOD_EXIT(goto_page);
@@ -730,7 +730,7 @@ METHOD(open_page)
   }
 
   info = library.func(filename);
-  page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+  page = PyObject_CallObject((PyObject *) PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(open_page);
   return page;
@@ -764,9 +764,9 @@ METHOD(close_page)
   int       do_save = 0;
   int       status  = 1;
 
-  const char *syntax = "syntax: close_page(PageObject [, save])";
+  const char *syntax = "syntax: close_page(PyGedaPageObject [, save])";
 
-  if(!PyArg_ParseTuple(args, "O!|i:geda.close_page", PageObjectClass(), &page, &do_save)) {
+  if(!PyArg_ParseTuple(args, "O!|i:geda.close_page", PyGedaPageClass(), &page, &do_save)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
@@ -776,7 +776,7 @@ METHOD(close_page)
   }
 
   if (status) {
-    status = library.func(((PageObject*)page)->pid);
+    status = library.func(((PyGedaPageObject*)page)->pid);
   }
 
   ON_METHOD_EXIT(close_page);
@@ -834,7 +834,7 @@ METHOD(new_page)
     fprintf(stderr, "new_page: info filename=%s, pid=%d\n", name, pid);
 #endif
 
-  page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+  page = PyObject_CallObject((PyObject *) PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(new_page);
   return page;
@@ -858,15 +858,15 @@ METHOD(rename_page)
   int       status;
   char     *new_name;
 
-  const char *syntax = "syntax: rename_page(PageObject)";
+  const char *syntax = "syntax: rename_page(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!s:geda.rename_page", PageObjectClass(),
+  if(!PyArg_ParseTuple(args, "O!s:geda.rename_page", PyGedaPageClass(),
                        &page, &new_name)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  status = library.func(((PageObject*)page)->pid, new_name);
+  status = library.func(((PyGedaPageObject*)page)->pid, new_name);
 
   ON_METHOD_EXIT(rename_page);
   if (status == 0) {
@@ -891,14 +891,14 @@ METHOD(save_page)
   PyObject *page;
   int       status;
 
-  const char *syntax = "syntax: save_page(PageObject)";
+  const char *syntax = "syntax: save_page(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.save_page", PageObjectClass(), &page)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.save_page", PyGedaPageClass(), &page)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  status = library.func(((PageObject*)page)->pid);
+  status = library.func(((PyGedaPageObject*)page)->pid);
 
   ON_METHOD_EXIT(save_page);
   if (status != 0) {
@@ -925,15 +925,15 @@ METHOD(save_page_as)
   int       status;
   char     *new_name;
 
-  const char *syntax = "syntax: save_page_as(PageObject)";
+  const char *syntax = "syntax: save_page_as(PyGedaPageObject)";
 
-  if(!PyArg_ParseTuple(args, "O!s:geda.save_page_as", PageObjectClass(),
+  if(!PyArg_ParseTuple(args, "O!s:geda.save_page_as", PyGedaPageClass(),
                        &page, &new_name)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  status = library.func(((PageObject*)page)->pid, new_name);
+  status = library.func(((PyGedaPageObject*)page)->pid, new_name);
 
   ON_METHOD_EXIT(save_page_as);
   if (status == 0) {
@@ -960,7 +960,7 @@ METHOD(save_all_pages)
   PyObject *pages;
   int       status;
 
-  const char *syntax = "syntax: save_all_pages(PyList_Type[PageObject,...])";
+  const char *syntax = "syntax: save_all_pages(PyList_Type[PyGedaPageObject,...])";
 
   if(!PyArg_ParseTuple(args, "|O!:geda.save_all_pages", &PyList_Type, &pages)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1006,25 +1006,25 @@ METHOD(get_bounds)
   int       pid;
   int       sid;
 
-  const char *syntax = "syntax: get_bounds(PageObject | GedaObject )";
+  const char *syntax = "syntax: get_bounds(PyGedaPageObject | PyGedaObject )";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_bounds", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  if (PyObject_TypeCheck(unknown, PageObjectClass())) {
-    pid = ((PageObject*)unknown)->pid;
+  if (PyObject_TypeCheck(unknown, PyGedaPageClass())) {
+    pid = ((PyGedaPageObject*)unknown)->pid;
     sid = -1;
   }
-  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {
-    pid = ((GedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
-    sid = ((GedaObject*)unknown)->sid;
+  else if (PyObject_TypeCheck(unknown, PyGedaObjectClass())) {
+    pid = ((PyGedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
+    sid = ((PyGedaObject*)unknown)->sid;
   }
   else if (do_GedaCapsule_Type(self, args)) {
     py_object = do_get_object(self, args);
-    pid = ((GedaObject*)py_object)->pid;
-    sid = ((GedaObject*)py_object)->sid;
+    pid = ((PyGedaObject*)py_object)->pid;
+    sid = ((PyGedaObject*)py_object)->sid;
   }
   else {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1039,13 +1039,13 @@ METHOD(get_bounds)
 
 /*! \brief Get an Object from GedaCapsuleObject
  *  \par Method Description
- *    This function provides a method to create PyGedaObjects from a GedaCapsule
+ *    This function provides a method to create PyPyGedaObjects from a GedaCapsule
  *  object but is not normally need directly. This method is used by other methods
  *  to get an Python version of the object contained within a Geda capsule.
  *
  *  [in] PyObject capsule  The container object
  *
- *  \return [out] A GedaObject.
+ *  \return [out] A PyGedaObject.
  *
  */
 METHOD(get_object)
@@ -1064,7 +1064,7 @@ METHOD(get_object)
     return NULL;
   }
 
-  if (PyObject_TypeCheck(py_capsule, GedaObjectClass())) {
+  if (PyObject_TypeCheck(py_capsule, PyGedaObjectClass())) {
     py_object = py_capsule; /* was an object not capsule so give back */
   }
   else {
@@ -1082,37 +1082,37 @@ METHOD(get_object)
       switch (type) {
         case OBJ_PLACEHOLDER:
         case OBJ_COMPLEX:
-          py_object = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaComplexClass(), object_data);
           break;
         case OBJ_TEXT:
-          py_object = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
           break;
         case OBJ_NET:
-          py_object = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaNetClass(), object_data);
           break;
         case OBJ_LINE:
-          py_object = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaLineClass(), object_data);
           break;
         case OBJ_PATH:
-          py_object = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaPathClass(), object_data);
           break;
         case OBJ_BOX:
-          py_object = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaBoxClass(), object_data);
           break;
         case OBJ_PICTURE:
-          py_object = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaPictureClass(), object_data);
           break;
         case OBJ_CIRCLE:
-          py_object = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaCircleClass(), object_data);
           break;
         case OBJ_BUS:
-          py_object = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaBusClass(), object_data);
           break;
         case OBJ_PIN:
-          py_object = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaPinClass(), object_data);
           break;
         case OBJ_ARC:
-          py_object = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
+          py_object = PyObject_CallObject((PyObject *) PyGedaArcClass(), object_data);
           break;
         default:
           PyErr_SetString(PyExc_TypeError, "Bad Capsule object");
@@ -1128,10 +1128,10 @@ METHOD(get_object)
  *  \par Method Description
  *    This function provides a method to get a list of existing objects from another
  *  object. The source object can be a Page or another object. Returned capsule items
- *  can be extracted and converted to GedaObject using the get_object method.
+ *  can be extracted and converted to PyGedaObject using the get_object method.
  *
  *    Encapsulation of objects is performed for efficiency and memory management.
- *  If real PyGedaObjects had to be created with a statement like the one used in
+ *  If real PyPyGedaObjects had to be created with a statement like the one used in
  *  example 1, the time required for Python to manage the memory for large schematics,
  *  would approach "hard-disk" access times. And when the list was later dereferenced,
  *  similar delays would occur while Python was performing garbage collection.
@@ -1162,20 +1162,20 @@ METHOD(get_objects)
   int       pid;
   int       sid;
 
-  const char *syntax = "syntax: get_objects(PageObject | GedaObject )";
+  const char *syntax = "syntax: get_objects(PyGedaPageObject | PyGedaObject )";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_objects", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  if (PyObject_TypeCheck(unknown, PageObjectClass())) {
-    pid = ((PageObject*)unknown)->pid;
+  if (PyObject_TypeCheck(unknown, PyGedaPageClass())) {
+    pid = ((PyGedaPageObject*)unknown)->pid;
     sid = -1;
   }
-  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {
-    pid = ((GedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
-    sid = ((GedaObject*)unknown)->sid;
+  else if (PyObject_TypeCheck(unknown, PyGedaObjectClass())) {
+    pid = ((PyGedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
+    sid = ((PyGedaObject*)unknown)->sid;
   }
   else {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1218,11 +1218,11 @@ METHOD(add_object)
   PyObject *py_object_B;
   int       status;
 
-  const char *syntax = "syntax: add_object(Page || GedaObject, GedaObject)";
+  const char *syntax = "syntax: add_object(Page || PyGedaObject, PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "OO!:geda.add_object",
                        &py_object_A,
-                       GedaObjectClass(), &py_object_B))
+                       PyGedaObjectClass(), &py_object_B))
   {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
@@ -1230,13 +1230,13 @@ METHOD(add_object)
 
   page = NULL;
 
-  if (PyObject_TypeCheck(py_object_A, PageObjectClass())) {
+  if (PyObject_TypeCheck(py_object_A, PyGedaPageClass())) {
     page = py_object_A;
     py_object_A = NULL;
   }
   else {
-    if (!PyObject_TypeCheck(py_object_A, GedaObjectClass())) {
-      PyErr_SetString(PyExc_TypeError, "parameter 1 is not a Page nor a GedaObject");
+    if (!PyObject_TypeCheck(py_object_A, PyGedaObjectClass())) {
+      PyErr_SetString(PyExc_TypeError, "parameter 1 is not a Page nor a PyGedaObject");
     }
   }
 
@@ -1269,7 +1269,7 @@ METHOD(add_objects)
   PyObject *py_object_B;
   int       status;
 
-  const char *syntax = "syntax: add_objects(Page || GedaObject, PyList_Type[GedaObject,...])";
+  const char *syntax = "syntax: add_objects(Page || PyGedaObject, PyList_Type[PyGedaObject,...])";
 
   if (!PyArg_ParseTuple(args, "OO!:geda.add_objects, Object PyList",
                         &py_object_A, &PyList_Type, &py_object_B))
@@ -1278,7 +1278,7 @@ METHOD(add_objects)
     return NULL;
   }
 
-  if (PyObject_TypeCheck(py_object_A, PageObjectClass())) {
+  if (PyObject_TypeCheck(py_object_A, PyGedaPageClass())) {
     page = py_object_A;
     py_object_A = NULL;
   }
@@ -1295,7 +1295,7 @@ METHOD(add_objects)
  *  \par Method Description
  *  This function provides a method to Copy an existing object. The Object
  *  does not have to be on a Page. The object argument can be and actual
- *  GedaObject, such as ComplexObject_type, or the object can be a GedaCapsule
+ *  PyGedaObject, such as PyGedaComplexObject_type, or the object can be a GedaCapsule
  *  object, such as those return by get_objects.
  *
  *  [in] PyObject The Geda object to be copied
@@ -1309,7 +1309,7 @@ METHOD(add_objects)
  *           provided or neither. If offsets arguments are not provide the copy will
  *           coincide with the original.
  *
- *  \return [out] PyObject if successful otherwise False. The returned GedaObject
+ *  \return [out] PyObject if successful otherwise False. The returned PyGedaObject
  *                is the real instance of the copied object, even if the argument
  *                was a capsule object.
  *
@@ -1330,7 +1330,7 @@ METHOD(copy_object)
   int       dx = -1;
   int       dy = -1;
 
-  const char *syntax = "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])";
+  const char *syntax = "syntax: copy_object(PyGedaObject || GedaCapsuleObject [, dx, dy])";
 
   if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList", &py_object, &dx, &dy))
   {
@@ -1338,7 +1338,7 @@ METHOD(copy_object)
     return NULL;
   }
 
-  if (PyObject_TypeCheck(py_object, GedaObjectClass())) {
+  if (PyObject_TypeCheck(py_object, PyGedaObjectClass())) {
     py_object_A = py_object;
     py_object_D = NULL;
   }
@@ -1408,7 +1408,7 @@ METHOD(remove_object)
   PyObject *py_object;
   int       status;
 
-  const char *syntax = "syntax: remove_object(GedaObject || GedaCapsuleObject)";
+  const char *syntax = "syntax: remove_object(PyGedaObject || GedaCapsuleObject)";
 
   if (!PyArg_ParseTuple(args, "O:geda.remove_object", &py_object))
   {
@@ -1443,7 +1443,7 @@ METHOD(remove_objects)
   PyObject *objects;
   int       status;
 
-  const char *syntax = "syntax: remove_objects(PyList of GedaObjects)";
+  const char *syntax = "syntax: remove_objects(PyList of PyGedaObjects)";
 
   if(!PyArg_ParseTuple(args, "O!:geda.remove_objects, Bad Argument", &PyList_Type, &objects)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1476,9 +1476,9 @@ METHOD(delete_object)
   PyObject  *object;
   int        status;
 
-  const char *syntax = "syntax: delete_object(GedaObject)";
+  const char *syntax = "syntax: delete_object(PyGedaObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.delete_object, Bad Argument", GedaObjectClass(), &object)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.delete_object, Bad Argument", PyGedaObjectClass(), &object)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
@@ -1495,7 +1495,7 @@ METHOD(delete_object)
  *  \par Method Description
  *  This function provides a method to delete a list objects
  *
- *  [in] PyObject of type PyList container with PyGedaObjects
+ *  [in] PyObject of type PyList container with PyPyGedaObjects
  *
  *  \return [out] status True if success otherwise False, False
  *                would only be returned if an object in the list
@@ -1511,7 +1511,7 @@ METHOD(delete_objects)
   PyObject *objects;
   int       status;
 
-  const char *syntax = "syntax: delete_objects(PyList of GedaObjects)";
+  const char *syntax = "syntax: delete_objects(PyList of PyGedaObjects)";
 
   if(!PyArg_ParseTuple(args, "O!:geda.delete_objects, Bad Argument", &PyList_Type, &objects)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1527,7 +1527,7 @@ METHOD(delete_objects)
  *  \par Method Description
  *  This function provides a method to delete a list objects
  *
- *  [in] PyObject of type PyList container with PyGedaObjects
+ *  [in] PyObject of type PyList container with PyPyGedaObjects
  *
  *  \return [out] status True if success otherwise False, False
  *                would only be returned if an object in the list
@@ -1542,7 +1542,7 @@ METHOD(sync_object)
   PyObject *py_object;
   int       status;
 
-  const char *syntax = "syntax: sync_object(GedaObject)";
+  const char *syntax = "syntax: sync_object(PyGedaObject)";
 
   if (!PyArg_ParseTuple(args, "O:geda.sync_object", &py_object))
   {
@@ -1600,7 +1600,7 @@ METHOD(new_arc)
 
   object_data = library.func(x, y, radius, start_angle, arc_sweep, py_color);
 
-  py_arc = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
+  py_arc = PyObject_CallObject((PyObject *) PyGedaArcClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_arc);
@@ -1647,7 +1647,7 @@ METHOD(new_box)
 
   object_data = library.func(lower_x, lower_y, upper_x, upper_y, py_color);
 
-  py_box = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
+  py_box = PyObject_CallObject((PyObject *) PyGedaBoxClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_box);
@@ -1694,7 +1694,7 @@ METHOD(new_bus)
   }
   object_data = library.func(bus_name, x1, y1, x2, y2, py_color);
 
-  py_bus = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
+  py_bus = PyObject_CallObject((PyObject *) PyGedaBusClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_bus);
@@ -1740,7 +1740,7 @@ METHOD(new_circle)
 
   object_data = library.func(x, y, radius, py_color);
 
-  py_circle = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
+  py_circle = PyObject_CallObject((PyObject *) PyGedaCircleClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_circle);
@@ -1799,7 +1799,7 @@ METHOD(new_complex)
   object_data = library.func(basename, x, y, angle, mirror, embed);
 
   if (object_data != NULL ) {
-    py_complex = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
+    py_complex = PyObject_CallObject((PyObject *) PyGedaComplexClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -1853,7 +1853,7 @@ METHOD(new_line)
 
   object_data = library.func(x1, y1, x2, y2, py_color);
 
-  py_line = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
+  py_line = PyObject_CallObject((PyObject *) PyGedaLineClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_line);
@@ -1875,7 +1875,7 @@ METHOD(new_line)
  *  Optional arguments:
  *
  *  [in] name  string net_name attribute
- *  [in] color A ColorObject or Integer color code
+ *  [in] color A PyGedaColorObject or Integer color code
  *
  *  \return [out] PyObject Or NULL if an error occurs.
  *
@@ -1903,7 +1903,7 @@ METHOD(new_net)
 
   object_data = library.func(net_name, x1, y1, x2, y2, py_color);
 
-  py_net = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
+  py_net = PyObject_CallObject((PyObject *) PyGedaNetClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_net);
@@ -1920,7 +1920,7 @@ METHOD(new_net)
  *
  *  Optional argument:
  *
- *  [in] color A ColorObject or Integer color code
+ *  [in] color A PyGedaColorObject or Integer color code
  *
  *  \return [out] PyObject Or NULL if an error occurs.
  *
@@ -1948,7 +1948,7 @@ METHOD(new_path)
   object_data = library.func(path_string);
 
   if (object_data != NULL ) {
-    py_path = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
+    py_path = PyObject_CallObject((PyObject *) PyGedaPathClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2012,7 +2012,7 @@ METHOD(new_picture)
   object_data = library.func(filepath, x1, y1, x2, y2, angle, mirror, embedded);
 
   if (object_data != NULL ) {
-    py_picture = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
+    py_picture = PyObject_CallObject((PyObject *) PyGedaPictureClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2109,7 +2109,7 @@ METHOD(new_pin)
   object_data = library.func(label, number, x1, y1, x2, y2, whichend, etype, mtype, ntype);
 
   if (object_data != NULL ) {
-    py_pin = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
+    py_pin = PyObject_CallObject((PyObject *) PyGedaPinClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2134,7 +2134,7 @@ METHOD(new_pin)
  *  [in] size    integer font size property
  *  [in] align   integer alignment property
  *  [in] angle   integer orientation property
- *  [in] color   A ColorObject or Integer color code
+ *  [in] color   A PyGedaColorObject or Integer color code
  *
  *  \return [out] PyObject or NULL if an error occurs.
  *
@@ -2176,7 +2176,7 @@ METHOD(new_text)
 
   object_data = library.func(text, x, y, size, align, angle, py_color);
 
-  py_text = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+  py_text = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_text);
@@ -2201,9 +2201,9 @@ METHOD(new_text)
  *  [in] show    integer show-name-value property
  *  [in] align   integer alignment property
  *  [in] angle   integer orientation property
- *  [in] color   A ColorObject or Integer color code
+ *  [in] color   A PyGedaColorObject or Integer color code
  *
- *  \return [out] GedaTextObject
+ *  \return [out] GedaPyGedaTextObject
  *
  *  \note  Preceeding optional arguments must be provided, use a value of
  *         -1 for defaults when it is not desired to "set" the proceeding
@@ -2242,7 +2242,7 @@ METHOD(new_attrib)
 
   object_data = library.func(name, value, x, y, visible, show, align, angle, py_color);
 
-  py_text = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+  py_text = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_attrib);
@@ -2260,7 +2260,7 @@ METHOD(new_attrib)
  *  a given Gedaobject. If found, the returned attribute may be attached or
  *  floating.
  *
- *  [in] py_parent GedaObject to be search for the attribute
+ *  [in] py_parent PyGedaObject to be search for the attribute
  *  [in] name      string name of the attribute to be returned
  *
  *  \return [out] Pyattribute if found or Py_None if an attribute was not found
@@ -2274,9 +2274,9 @@ METHOD(get_attrib)
   PyObject *py_attrib = Py_None;
   const char *name;
 
-  const char *syntax = "syntax: get_attrib(GedaObject, name)";
+  const char *syntax = "syntax: get_attrib(PyGedaObject, name)";
 
-  if(!PyArg_ParseTuple(args, "Os:geda.get_attrib", GedaObjectClass(), &py_parent, &name)) {
+  if(!PyArg_ParseTuple(args, "Os:geda.get_attrib", PyGedaObjectClass(), &py_parent, &name)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
@@ -2284,7 +2284,7 @@ METHOD(get_attrib)
   object_data  = library.func(py_parent, name);
 
   if (object_data) {
-    py_attrib = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+    py_attrib = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
     Py_DECREF(object_data);
   }
   else
@@ -2299,7 +2299,7 @@ METHOD(get_attrib)
  *  This function provides a method to get all of the attributes attached to
  *  given Gedaobject.
  *
- *  [in] PyGedaObject whose attributes are to be returned
+ *  [in] PyPyGedaObject whose attributes are to be returned
  *
  *  \return [out] PyList of Pyattributes attached to the PyObject.
  */
@@ -2314,14 +2314,14 @@ METHOD(get_attribs)
 
   int i, count;
 
-  const char *syntax = "syntax: get_attribs(GedaObject || GedaCapsuleObject)";
+  const char *syntax = "syntax: get_attribs(PyGedaObject || GedaCapsuleObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_attribs", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  if (PyObject_TypeCheck(unknown, GedaObjectClass())) { /* Accept GedaObject */
+  if (PyObject_TypeCheck(unknown, PyGedaObjectClass())) { /* Accept PyGedaObject */
     parent = unknown;
   }
   else if (do_GedaCapsule_Type(self, unknown)) {          /* Or GedaCapsuleObject */
@@ -2347,7 +2347,7 @@ METHOD(get_attribs)
         PyObject *object_data;
 
         object_data  = PyList_GET_ITEM(py_input_list, i);
-        py_text      = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+        py_text      = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
         if(py_text && PyObject_Type(py_text))
           PyList_Append(py_output_list, py_text);
       }
@@ -2393,22 +2393,22 @@ METHOD(set_attrib)
   const char *value;
   int         ret_obj = 0;
 
-  const char *syntax = "syntax: set_attrib(GedaObject, name, value [, return-object])";
+  const char *syntax = "syntax: set_attrib(PyGedaObject, name, value [, return-object])";
 
   if(!PyArg_ParseTuple(args, "OsO|i:set_attrib", &py_object_A, &name, &py_value, &ret_obj))
   {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
-  if (PyObject_TypeCheck(py_object_A, ComplexObjectClass())) {
+  if (PyObject_TypeCheck(py_object_A, PyGedaComplexClass())) {
     py_object_B = NULL;
   }
-  else if (PyObject_TypeCheck(py_object_A, TextObjectClass())) {
+  else if (PyObject_TypeCheck(py_object_A, PyGedaTextClass())) {
     py_object_B = py_object_A;
     py_object_A = NULL;
   }
   else {
-    PyErr_SetString(PyExc_TypeError, "parameter 1 is not a GedaObject or Attribute object");
+    PyErr_SetString(PyExc_TypeError, "parameter 1 is not a PyGedaObject or Attribute object");
     return NULL;
   }
 
@@ -2424,7 +2424,7 @@ METHOD(set_attrib)
   object_data  = library.func(py_object_A, py_object_B, name, value, ret_obj);
 
   if (ret_obj && object_data) {
-    py_ret = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+    py_ret = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2457,9 +2457,9 @@ METHOD(refresh_attribs)
   PyObject *object;
   int       status;
 
-  const char *syntax = "syntax: refresh_attribs(GedaObject)";
+  const char *syntax = "syntax: refresh_attribs(PyGedaObject)";
 
-  if(!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", GedaObjectClass(), &object)) {
+  if(!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", PyGedaObjectClass(), &object)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
@@ -2475,15 +2475,15 @@ METHOD(refresh_attribs)
  *  @{
  */
 
-/*! \brief Get all Objects Connect to a Given GedaObject
+/*! \brief Get all Objects Connect to a Given PyGedaObject
  *  \par Method Description
  *    This function provides a method to obtain a list of all of objects
- *  connected with a given GedaObject or GedaCapsule. The returned list
+ *  connected with a given PyGedaObject or GedaCapsule. The returned list
  *  contains is GedaCapsule and is guaranteed to contain at least one
  *  object -- the object used as an argument, unless the optional filter
  *  argument excludes the object used as an argument.
  *
- *  [in] PyObject object is a GedaObject or GedaCapsuleObject
+ *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
  *  \return [out] PyList of GedaCapsules.
  *
@@ -2512,18 +2512,18 @@ METHOD(get_network)
   int       sid;
   int       filter = GEDA_FILTER_ALL;
 
-  const char *syntax = "syntax: get_network(GedaObject || GedaCapsuleObject [, filter] )";
+  const char *syntax = "syntax: get_network(PyGedaObject || GedaCapsuleObject [, filter] )";
 
   if(!PyArg_ParseTuple(args, "O|i:geda.get_network", &unknown, &filter)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  if (PyObject_TypeCheck(unknown, GedaObjectClass()) ||
+  if (PyObject_TypeCheck(unknown, PyGedaObjectClass()) ||
     do_GedaCapsule_Type(self, unknown))
   {
-    pid = ((GedaObject*)unknown)->pid;
-    sid = ((GedaObject*)unknown)->sid;
+    pid = ((PyGedaObject*)unknown)->pid;
+    sid = ((PyGedaObject*)unknown)->sid;
   }
   else {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -2536,12 +2536,12 @@ METHOD(get_network)
   return list;
 }
 
-/*! \brief Get all Junctions Associated with GedaObjects
+/*! \brief Get all Junctions Associated with PyGedaObjects
  *  \par Method Description
  *  This function provides a method to obtain X-Y coordinates data
  *  of connection junctions.
  *
- *  [in] PyObject object is a GedaObject or GedaCapsuleObject
+ *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
  *  \return [out] PyList of Points; integer X-Y pairs or an empty
  *                list if no junctions were found.
@@ -2556,7 +2556,7 @@ METHOD(get_junctions)
   PyObject *py_output_list;
   PyObject *py_tmp;
 
-  const char *syntax = "syntax: get_junctions( PyList || GedaObject)";
+  const char *syntax = "syntax: get_junctions( PyList || PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_junctions", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -2571,7 +2571,7 @@ METHOD(get_junctions)
     int count = PyList_GET_SIZE(unknown);
     for (i = 0; i < count; i++) {
       py_object = PyList_GET_ITEM(unknown, i);
-      if (PyObject_TypeCheck(py_object, GedaObjectClass())) { /* GedaObject was in list */
+      if (PyObject_TypeCheck(py_object, PyGedaObjectClass())) { /* PyGedaObject was in list */
         PyList_Append(py_source_list, py_object);
       }
       else if (do_GedaCapsule_Type(self, unknown)) {          /* Capsule was in list */
@@ -2583,7 +2583,7 @@ METHOD(get_junctions)
       }
     }
   }
-  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {  /* Just 1 Object not in list */
+  else if (PyObject_TypeCheck(unknown, PyGedaObjectClass())) {  /* Just 1 Object not in list */
     PyList_Append(py_source_list, unknown);
   }
   else if (do_GedaCapsule_Type(self, unknown)) {              /* Just 1 Capsule not in list */
@@ -2606,13 +2606,13 @@ METHOD(get_junctions)
   return py_output_list;
 }
 
-/*! \brief Get Points Associated with Unconnected GedaObjects
+/*! \brief Get Points Associated with Unconnected PyGedaObjects
  *  \par Method Description
  *   This function provides a method to obtain X-Y coordinates data
  *   of unconnected object, normally pins and nets.
  *
  *  [in] PyObject can be PyList of PyObjects that can be any combination
- *       of GedaObjects and or GedaCapsuleObjects, or a single GedaObject
+ *       of PyGedaObjects and or GedaCapsuleObjects, or a single PyGedaObject
  *       or single GedaCapsuleObject not in a PyList. All objects types are
  *       accepted but graphical objects will always return an empty list.
  *
@@ -2629,7 +2629,7 @@ METHOD(get_unconnected)
   PyObject *py_output_list;
   PyObject *py_tmp;
 
-  const char *syntax = "syntax: get_unconnected( PyList || GedaObject)";
+  const char *syntax = "syntax: get_unconnected( PyList || PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_unconnected:", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -2644,7 +2644,7 @@ METHOD(get_unconnected)
     int count = PyList_GET_SIZE(unknown);
     for (i = 0; i < count; i++) {
       py_object = PyList_GET_ITEM(unknown, i);
-      if (PyObject_TypeCheck(py_object, GedaObjectClass())) { /* GedaObject was in list */
+      if (PyObject_TypeCheck(py_object, PyGedaObjectClass())) { /* PyGedaObject was in list */
         PyList_Append(py_source_list, py_object);
       }
       else if (do_GedaCapsule_Type(self, unknown)) {          /* Capsule was in list */
@@ -2656,7 +2656,7 @@ METHOD(get_unconnected)
       }
     }
   }
-  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {  /* Just 1 Object not in list */
+  else if (PyObject_TypeCheck(unknown, PyGedaObjectClass())) {  /* Just 1 Object not in list */
     PyList_Append(py_source_list, unknown);
   }
   else if (do_GedaCapsule_Type(self, unknown)) {              /* Just 1 Capsule not in list */

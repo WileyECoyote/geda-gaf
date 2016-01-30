@@ -39,28 +39,28 @@
 static PyObject* path_module;
 static PyObject* geda_module;
 
-static char PathObject_doc[] = PyDoc_STR("Geda Path: upper_x, upper_y, lower_x, lower_y [, color]");
+static char PyGedaPathObject_doc[] = PyDoc_STR("Geda Path: upper_x, upper_y, lower_x, lower_y [, color]");
 
-/* ------------------------- PathObject Destructor ------------------------- */
+/* ------------------------- PyGedaPathObject Destructor ------------------------- */
 
 static void
-PathObject_dealloc(PathObject* self)
+PyGedaPathObject_dealloc(PyGedaPathObject* self)
 {
   Py_XDECREF(self->sections);
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PathObject Constructor ------------------------ */
+/* ------------------------- PyGedaPathObject Constructor ------------------------ */
 
 static PyObject *
 Path_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  PathObject *self;
+  PyGedaPathObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_NET_COLOR;
 
-  self = (PathObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaPathObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -92,10 +92,10 @@ Path_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- PathObject Initializer ------------------------ */
+/* ------------------------- PyGedaPathObject Initializer ------------------------ */
 
 static int
-Path_init(PathObject *self, PyObject *args, PyObject *kwds)
+Path_init(PyGedaPathObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -133,14 +133,14 @@ Path_init(PathObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(sections)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-PathObject_print(PathObject *path, FILE *file, int flags)
+PyGedaPathObject_print(PyGedaPathObject *path, FILE *file, int flags)
 {
   const char *name;
   char       *path_string;
@@ -178,29 +178,29 @@ PathObject_print(PathObject *path, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PathObject Members -------------------------- */
+/* --------------------------- PyGedaPathObject Members -------------------------- */
 
 static PyMemberDef Path_members[] = {
  /* Hatching */
-  {"fill_type",   T_INT, offsetof(PathObject, fill_type),   0, "Hatch fill type"},
-  {"fill_width",  T_INT, offsetof(PathObject, fill_width),  0, "Hatch line width"},
-  {"fill_angle1", T_INT, offsetof(PathObject, fill_angle1), 0, "Hatch fill angle"},
-  {"fill_pitch1", T_INT, offsetof(PathObject, fill_pitch1), 0, "Hatch fill pitch"},
-  {"fill_angle2", T_INT, offsetof(PathObject, fill_angle2), 0, "Mesh hatch second fill angle"},
-  {"fill_pitch2", T_INT, offsetof(PathObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
+  {"fill_type",   T_INT, offsetof(PyGedaPathObject, fill_type),   0, "Hatch fill type"},
+  {"fill_width",  T_INT, offsetof(PyGedaPathObject, fill_width),  0, "Hatch line width"},
+  {"fill_angle1", T_INT, offsetof(PyGedaPathObject, fill_angle1), 0, "Hatch fill angle"},
+  {"fill_pitch1", T_INT, offsetof(PyGedaPathObject, fill_pitch1), 0, "Hatch fill pitch"},
+  {"fill_angle2", T_INT, offsetof(PyGedaPathObject, fill_angle2), 0, "Mesh hatch second fill angle"},
+  {"fill_pitch2", T_INT, offsetof(PyGedaPathObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
 
   /* Line-Type */
-  {"end_type",    T_INT, offsetof(PathObject, line_end),    0, "Endpoint style"},
-  {"line_type",   T_INT, offsetof(PathObject, line_type),   0, "Line type"},
-  {"line_width",  T_INT, offsetof(PathObject, line_width),  0, "Line width"},
-  {"line_space",  T_INT, offsetof(PathObject, line_space),  0, "Line space/gaps"},
-  {"line_length", T_INT, offsetof(PathObject, line_length), 0, "Line dash length"},
+  {"end_type",    T_INT, offsetof(PyGedaPathObject, line_end),    0, "Endpoint style"},
+  {"line_type",   T_INT, offsetof(PyGedaPathObject, line_type),   0, "Line type"},
+  {"line_width",  T_INT, offsetof(PyGedaPathObject, line_width),  0, "Line width"},
+  {"line_space",  T_INT, offsetof(PyGedaPathObject, line_space),  0, "Line space/gaps"},
+  {"line_length", T_INT, offsetof(PyGedaPathObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
 };
 
 static int Path_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -266,7 +266,7 @@ static int Path_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -275,7 +275,7 @@ static int Path_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *
-PathObject_sections(PathObject* self)
+PyGedaPathObject_sections(PyGedaPathObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -297,23 +297,23 @@ PathObject_sections(PathObject* self)
 }
 
 static PyMethodDef Path_methods[] = {
-  {"sections", (PyCFunction)PathObject_sections, METH_NOARGS,  "object_name_docs"},
+  {"sections", (PyCFunction)PyGedaPathObject_sections, METH_NOARGS,  "object_name_docs"},
   /* modify? */
   {NULL, NULL, 0, NULL}
 };
 
-/* -------------------------- PathObject GetSeters ------------------------- */
+/* -------------------------- PyGedaPathObject GetSeters ------------------------- */
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
 static PyObject *
-Path_get_string(PathObject *self, void *closure)
+Path_get_string(PyGedaPathObject *self, void *closure)
 {
   Py_INCREF(self->path_string);
   return self->path_string;
 }
 
 static int
-Path_set_string(PathObject *self, PyObject *value, void *closure)
+Path_set_string(PyGedaPathObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the path-string attribute");
@@ -344,14 +344,14 @@ static PyGetSetDef Path_getseters[] = {
 };
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject PathObjectType = {
+static PyTypeObject PyGedaPathObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                                 /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Path",                       /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PathObject),                /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaPathObject),                /* tp_basicsize,   memory to allocate for this object */
     0,                                 /* tp_itemsize*/
-    (destructor)PathObject_dealloc,    /* tp_dealloc*/
-    (printfunc)PathObject_print,       /* tp_print*/
+    (destructor)PyGedaPathObject_dealloc,    /* tp_dealloc*/
+    (printfunc)PyGedaPathObject_print,       /* tp_print*/
     0,                                 /* tp_getattr*/
     0,                                 /* tp_setattr*/
     0,                                 /* tp_compare*/
@@ -367,7 +367,7 @@ static PyTypeObject PathObjectType = {
     0,                                 /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,               /* tp_flags*/
-    PathObject_doc,                    /* tp_doc */
+    PyGedaPathObject_doc,                    /* tp_doc */
     0,                                 /* tp_traverse */
     0,                                 /* tp_clear */
     0,                                 /* tp_richcompare */
@@ -393,9 +393,9 @@ initPath(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  PathObjectType.tp_base = GedaObjectClass();
+  PyGedaPathObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PathObjectType) < 0)
+  if ( PyType_Ready(&PyGedaPathObjectType) < 0)
     return;
 
   path_module = Py_InitModule3("Path", NULL, "Create a new Path object type.");
@@ -403,10 +403,10 @@ initPath(PyObject *module)
   if (path_module == NULL)
     return;
 
-  Py_INCREF(&PathObjectType);
-  PyModule_AddObject(path_module, "Path", (PyObject *)&PathObjectType);
+  Py_INCREF(&PyGedaPathObjectType);
+  PyModule_AddObject(path_module, "Path", (PyObject *)&PyGedaPathObjectType);
 }
-PyTypeObject *PathObjectClass(void)
+PyTypeObject *PyGedaPathClass(void)
 {
-  return &PathObjectType;
+  return &PyGedaPathObjectType;
 }

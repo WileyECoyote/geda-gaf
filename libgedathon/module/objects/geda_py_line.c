@@ -39,18 +39,18 @@
 static PyObject* line_module;
 static PyObject* geda_module;
 
-static char LineObject_doc[] = PyDoc_STR("Geda Line: x1, y1, x2, y2 [, color]");
+static char PyGedaLineObject_doc[] = PyDoc_STR("Geda Line: x1, y1, x2, y2 [, color]");
 
-/* ------------------------- LineObject Constructor ------------------------ */
+/* ------------------------- PyGedaLineObject Constructor ------------------------ */
 
 static PyObject *
 Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  LineObject *self;
+  PyGedaLineObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_BUS_COLOR;
 
-  self = (LineObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaLineObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -81,10 +81,10 @@ Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- LineObject Initializer ------------------------ */
+/* ------------------------- PyGedaLineObject Initializer ------------------------ */
 
 static int
-Line_init(LineObject *self, PyObject *args, PyObject *kwds)
+Line_init(PyGedaLineObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_name = NULL;
   PyObject *py_base_params;
@@ -109,14 +109,14 @@ Line_init(LineObject *self, PyObject *args, PyObject *kwds)
     return -1;
   }
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-LineObject_print(LineObject *line, FILE *file, int flags)
+PyGedaLineObject_print(PyGedaLineObject *line, FILE *file, int flags)
 {
   const char *name;
   int   x1, x2, y1, y2;
@@ -145,26 +145,26 @@ LineObject_print(LineObject *line, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- LineObject Members -------------------------- */
+/* --------------------------- PyGedaLineObject Members -------------------------- */
 
 static PyMemberDef Line_members[] = {
-  {"x1",     T_INT, offsetof(LineObject, x[0]),     0, "Line point 1 Abscissa"},
-  {"y1",     T_INT, offsetof(LineObject, y[0]),     0, "Line point 1 Ordinate"},
-  {"x2",     T_INT, offsetof(LineObject, x[1]),     0, "Line point 2 Abscissa"},
-  {"y2",     T_INT, offsetof(LineObject, y[1]),     0, "Line point 2 Ordinate"},
+  {"x1",     T_INT, offsetof(PyGedaLineObject, x[0]),     0, "Line point 1 Abscissa"},
+  {"y1",     T_INT, offsetof(PyGedaLineObject, y[0]),     0, "Line point 1 Ordinate"},
+  {"x2",     T_INT, offsetof(PyGedaLineObject, x[1]),     0, "Line point 2 Abscissa"},
+  {"y2",     T_INT, offsetof(PyGedaLineObject, y[1]),     0, "Line point 2 Ordinate"},
 
   /* Line-Type */
-  {"line_type",   T_INT, offsetof(LineObject, line_type),   0, "Line type"},
-  {"line_width",  T_INT, offsetof(LineObject, line_width),  0, "Line width"},
-  {"end_type",    T_INT, offsetof(LineObject, line_end),    0, "Endpoint style"},
-  {"line_space",  T_INT, offsetof(LineObject, line_space),  0, "Line space/gaps"},
-  {"line_length", T_INT, offsetof(LineObject, line_length), 0, "Line dash length"},
+  {"line_type",   T_INT, offsetof(PyGedaLineObject, line_type),   0, "Line type"},
+  {"line_width",  T_INT, offsetof(PyGedaLineObject, line_width),  0, "Line width"},
+  {"end_type",    T_INT, offsetof(PyGedaLineObject, line_end),    0, "Endpoint style"},
+  {"line_space",  T_INT, offsetof(PyGedaLineObject, line_space),  0, "Line space/gaps"},
+  {"line_length", T_INT, offsetof(PyGedaLineObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
 };
 
 static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -230,7 +230,7 @@ static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -238,7 +238,7 @@ static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------------ Begin Methods ---------------------------- */
 static PyObject* Line_length(PyObject *self)
 {
-  LineObject *line = (LineObject*)self;
+  PyGedaLineObject *line = (PyGedaLineObject*)self;
   int result;
 
 #if HAVE_HYPOT
@@ -257,14 +257,14 @@ static PyMethodDef Line_methods[] = {
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject LineObjectType = {
+static PyTypeObject PyGedaLineObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /*ob_size,        not used, historical artifact for backward compatibility */
     "geda.Line",                    /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(LineObject),             /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaLineObject),             /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
     (destructor)0,                  /* tp_dealloc*/
-    (printfunc)LineObject_print,    /* tp_print*/
+    (printfunc)PyGedaLineObject_print,    /* tp_print*/
     0,                              /* tp_getattr*/
     0,                              /* tp_setattr*/
     0,                              /* tp_compare*/
@@ -280,7 +280,7 @@ static PyTypeObject LineObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    LineObject_doc,                 /* tp_doc */
+    PyGedaLineObject_doc,                 /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -306,9 +306,9 @@ initLine(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  LineObjectType.tp_base = GedaObjectClass();
+  PyGedaLineObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&LineObjectType) < 0)
+  if ( PyType_Ready(&PyGedaLineObjectType) < 0)
     return;
 
   line_module = Py_InitModule3("Line", NULL, "Creates a Line Object extension type.");
@@ -316,10 +316,10 @@ initLine(PyObject *module)
   if (line_module == NULL)
     return;
 
-  Py_INCREF(&LineObjectType);
-  PyModule_AddObject(line_module, "Line", (PyObject *)&LineObjectType);
+  Py_INCREF(&PyGedaLineObjectType);
+  PyModule_AddObject(line_module, "Line", (PyObject *)&PyGedaLineObjectType);
 }
-PyTypeObject *LineObjectClass(void)
+PyTypeObject *PyGedaLineClass(void)
 {
-  return &LineObjectType;
+  return &PyGedaLineObjectType;
 }

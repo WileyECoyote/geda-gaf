@@ -33,22 +33,22 @@
 
 #include <libgeda/s_struct.h>
 
-typedef struct st_py_page      PageObject;
-typedef struct st_py_color     ColorObject;
-typedef struct st_py_object    GedaObject;
+typedef struct st_py_page      PyGedaPageObject;
+typedef struct st_py_color     PyGedaColorObject;
+typedef struct st_py_object    PyGedaObject;
 
-typedef struct st_py_arc       ArcObject;
-typedef struct st_py_box       BoxObject;
-typedef struct st_py_bus       BusObject;
-typedef struct st_py_circle    CircleObject;
-typedef struct st_py_complex   ComplexObject;
-typedef struct st_py_line      LineObject;
-typedef struct st_py_missing   MissingObject;
-typedef struct st_py_net       NetObject;
-typedef struct st_py_path      PathObject;
-typedef struct st_py_picture   PictureObject;
-typedef struct st_py_pin       PinObject;
-typedef struct st_py_text      TextObject;
+typedef struct st_py_arc       PyGedaArcObject;
+typedef struct st_py_box       PyGedaBoxObject;
+typedef struct st_py_bus       PyGedaBusObject;
+typedef struct st_py_circle    PyGedaCircleObject;
+typedef struct st_py_complex   PyGedaComplexObject;
+typedef struct st_py_line      PyGedaLineObject;
+typedef struct st_py_missing   PyGedaMissingObject;
+typedef struct st_py_net       PyGedaNetObject;
+typedef struct st_py_path      PyGedaPathObject;
+typedef struct st_py_picture   PyGedaPictureObject;
+typedef struct st_py_pin       PyGedaPinObject;
+typedef struct st_py_text      PyGedaTextObject;
 
 struct st_py_page {
     PyObject_HEAD
@@ -87,7 +87,7 @@ struct st_py_object {
 
 struct st_py_arc {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Arc specific data members */
     int x;
@@ -118,7 +118,7 @@ struct st_py_arc {
 
 struct st_py_box {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Box specific data members */
     int upper_x;    /* world units */
@@ -148,7 +148,7 @@ struct st_py_box {
 
 struct st_py_bus {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Bus specific data members */
     bool dirty_name;
@@ -170,7 +170,7 @@ struct st_py_bus {
 
 struct st_py_circle {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Circle specific data members */
     int center_x;   /* world units */
@@ -199,7 +199,7 @@ struct st_py_circle {
 
 struct st_py_complex {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Complex specific data members */
     bool dirty_name;
@@ -219,7 +219,7 @@ struct st_py_complex {
 
 struct st_py_line {
 
-    GedaObject object;
+    PyGedaObject object;
 
  /* Complex specific data members */
     int x[2];
@@ -239,7 +239,7 @@ struct st_py_line {
 
 struct st_py_missing {
 
-    GedaObject object;
+    PyGedaObject object;
 
     PyObject *filename;
     int       x;
@@ -250,7 +250,7 @@ struct st_py_missing {
 
 struct st_py_net {
 
-    GedaObject object;
+    PyGedaObject object;
 
     bool dirty_name;
 
@@ -274,7 +274,7 @@ struct st_py_net {
 
 struct st_py_path {
 
-    GedaObject object;
+    PyGedaObject object;
 
     bool dirty_string;
 
@@ -305,7 +305,7 @@ struct st_py_path {
 
 struct st_py_picture {
 
-    GedaObject object;
+    PyGedaObject object;
 
     PyObject    *filename;
     PyObject    *pixel_buffer;
@@ -324,7 +324,7 @@ struct st_py_picture {
 
 struct st_py_pin {
     //TODO: should have a netname
-    GedaObject object;
+    PyGedaObject object;
 
  /* Pin specific admistrative data members */
     bool dirty_label;
@@ -363,7 +363,7 @@ struct st_py_pin {
 
 struct st_py_text {
 
-    GedaObject object;
+    PyGedaObject object;
 
     int cid;            /* sid of complex to which this text is an attribute */
 

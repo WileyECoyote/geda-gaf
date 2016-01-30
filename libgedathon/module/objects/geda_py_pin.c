@@ -39,30 +39,30 @@
 static PyObject* pin_module;
 static PyObject* geda_module;
 
-static char PinObject_doc[] = PyDoc_STR("Geda Pin: x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]]");
+static char PyGedaPinObject_doc[] = PyDoc_STR("Geda Pin: x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]]");
 
-/* -------------------------- PinObject Destructor ------------------------- */
+/* -------------------------- PyGedaPinObject Destructor ------------------------- */
 
 static void
-PinObject_dealloc(PinObject* self)
+PyGedaPinObject_dealloc(PyGedaPinObject* self)
 {
   Py_XDECREF(self->electrical);
   Py_XDECREF(self->mechanical);
   Py_XDECREF(self->label);
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PinObject Constructor ------------------------- */
+/* ------------------------- PyGedaPinObject Constructor ------------------------- */
 
 static PyObject *
 Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  PinObject *self;
+  PyGedaPinObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_PIN_COLOR;
 
-  self = (PinObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaPinObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -105,10 +105,10 @@ Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- PinObject Initializer ------------------------- */
+/* ------------------------- PyGedaPinObject Initializer ------------------------- */
 
 static int
-Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
+Pin_init(PyGedaPinObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name       = NULL;
@@ -150,7 +150,7 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
 
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   /*! @note: Strings should NOT be dirty at this point! */
@@ -159,7 +159,7 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
 }
 
 static int
-PinObject_print(PinObject *pin, FILE *file, int flags)
+PyGedaPinObject_print(PyGedaPinObject *pin, FILE *file, int flags)
 {
   const char *elect;
   const char *label;
@@ -193,32 +193,32 @@ PinObject_print(PinObject *pin, FILE *file, int flags)
   return ret_val;
 }
 
-/* --------------------------- PinObject Members --------------------------- */
+/* --------------------------- PyGedaPinObject Members --------------------------- */
 
 static PyMemberDef Pin_members[] = {
-  {"cid",        T_INT, offsetof(PinObject, cid),       RO, "Pin Complex Identifier"},
-  {"nid",        T_INT, offsetof(PinObject, nid),       RO, "Pin Net identifier"},
-  {"sequence",   T_INT, offsetof(PinObject, sequence),   0, "Pin Sequence index"},
-  {"whichend",   T_INT, offsetof(PinObject, whichend),   0, "Which point gets connect?"},
+  {"cid",        T_INT, offsetof(PyGedaPinObject, cid),       RO, "Pin Complex Identifier"},
+  {"nid",        T_INT, offsetof(PyGedaPinObject, nid),       RO, "Pin Net identifier"},
+  {"sequence",   T_INT, offsetof(PyGedaPinObject, sequence),   0, "Pin Sequence index"},
+  {"whichend",   T_INT, offsetof(PyGedaPinObject, whichend),   0, "Which point gets connect?"},
 
-  {"x1",         T_INT, offsetof(PinObject, x[0]),       0, "Pin point 1 Abscissa"},
-  {"y1",         T_INT, offsetof(PinObject, y[0]),       0, "Pin point 1 Ordinate"},
-  {"x2",         T_INT, offsetof(PinObject, x[1]),       0, "Pin point 2 Abscissa"},
-  {"y2",         T_INT, offsetof(PinObject, y[1]),       0, "Pin point 2 Ordinate"},
+  {"x1",         T_INT, offsetof(PyGedaPinObject, x[0]),       0, "Pin point 1 Abscissa"},
+  {"y1",         T_INT, offsetof(PyGedaPinObject, y[0]),       0, "Pin point 1 Ordinate"},
+  {"x2",         T_INT, offsetof(PyGedaPinObject, x[1]),       0, "Pin point 2 Abscissa"},
+  {"y2",         T_INT, offsetof(PyGedaPinObject, y[1]),       0, "Pin point 2 Ordinate"},
 
   /* Pin Type Codes */
-  {"elect_type", T_INT, offsetof(PinObject, elect_type), 0, "Pin Electrical type code"},
-  {"mech_type",  T_INT, offsetof(PinObject, mech_type),  0, "Pin Mechanical type code"},
-  {"node_type",  T_INT, offsetof(PinObject, node_type),  0, "Pin node type code"},
+  {"elect_type", T_INT, offsetof(PyGedaPinObject, elect_type), 0, "Pin Electrical type code"},
+  {"mech_type",  T_INT, offsetof(PyGedaPinObject, mech_type),  0, "Pin Mechanical type code"},
+  {"node_type",  T_INT, offsetof(PyGedaPinObject, node_type),  0, "Pin node type code"},
 
   /* Line-Type */
-  {"line_width", T_INT, offsetof(PinObject, line_width), 0, "Line width"},
+  {"line_width", T_INT, offsetof(PyGedaPinObject, line_width), 0, "Line width"},
   {NULL}  /* Sentinel */
 };
 
 static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -291,7 +291,7 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -299,14 +299,14 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------ Begin Getters and Setters ---------------------- */
 
 static PyObject *
-Pin_get_elect(PinObject *self, void *closure)
+Pin_get_elect(PyGedaPinObject *self, void *closure)
 {
   Py_INCREF(self->electrical);
   return self->electrical;
 }
 
 static int
-Pin_set_elect(PinObject *self, PyObject *value, void *closure)
+Pin_set_elect(PyGedaPinObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the electrical attribute");
@@ -328,14 +328,14 @@ Pin_set_elect(PinObject *self, PyObject *value, void *closure)
 }
 
 static PyObject *
-Pin_get_mech(PinObject *self, void *closure)
+Pin_get_mech(PyGedaPinObject *self, void *closure)
 {
   Py_INCREF(self->mechanical);
   return self->mechanical;
 }
 
 static int
-Pin_set_mech(PinObject *self, PyObject *value, void *closure)
+Pin_set_mech(PyGedaPinObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the mechanical attribute");
@@ -356,14 +356,14 @@ Pin_set_mech(PinObject *self, PyObject *value, void *closure)
   return 0;
 }
 static PyObject *
-Pin_get_label(PinObject *self, void *closure)
+Pin_get_label(PyGedaPinObject *self, void *closure)
 {
   Py_INCREF(self->label);
   return self->label;
 }
 
 static int
-Pin_set_label(PinObject *self, PyObject *value, void *closure)
+Pin_set_label(PyGedaPinObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the label attribute");
@@ -389,14 +389,14 @@ Pin_set_label(PinObject *self, PyObject *value, void *closure)
 }
 
 static PyObject *
-Pin_get_number(PinObject *self, void *closure)
+Pin_get_number(PyGedaPinObject *self, void *closure)
 {
   Py_INCREF(self->number);
   return self->number;
 }
 
 static int
-Pin_set_number(PinObject *self, PyObject *value, void *closure)
+Pin_set_number(PyGedaPinObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the pin number attribute");
@@ -432,41 +432,41 @@ static PyGetSetDef Pin_getseters[] = {
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *
-PinObject_change(PinObject* self)
+PyGedaPinObject_change(PyGedaPinObject* self)
 {
   Py_INCREF(self->electrical);
   return self->electrical;
 }
 static PyObject *
-PinObject_connect(PinObject* self)
+PyGedaPinObject_connect(PyGedaPinObject* self)
 {
   Py_INCREF(self->mechanical);
   return self->mechanical;
 }
 static PyObject *
-PinObject_disconnect(PinObject* self)
+PyGedaPinObject_disconnect(PyGedaPinObject* self)
 {
   Py_INCREF(self->label);
   return self->label;
 }
 
 static PyMethodDef Pin_methods[] = {
-  {"change",     (PyCFunction)PinObject_change,     METH_NOARGS, "pin_change_docs"},
-  {"connect",    (PyCFunction)PinObject_connect,    METH_NOARGS, "pin_connect_docs"},
-  {"disconnect", (PyCFunction)PinObject_disconnect, METH_NOARGS, "pin_disconnect_docs"},
+  {"change",     (PyCFunction)PyGedaPinObject_change,     METH_NOARGS, "pin_change_docs"},
+  {"connect",    (PyCFunction)PyGedaPinObject_connect,    METH_NOARGS, "pin_connect_docs"},
+  {"disconnect", (PyCFunction)PyGedaPinObject_disconnect, METH_NOARGS, "pin_disconnect_docs"},
   {NULL, NULL, 0, NULL}
 };
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject PinObjectType = {
+static PyTypeObject PyGedaPinObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Pin",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PinObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaPinObject),              /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
-    (destructor)PinObject_dealloc,  /* tp_dealloc*/
-    (printfunc)PinObject_print,     /* tp_print*/
+    (destructor)PyGedaPinObject_dealloc,  /* tp_dealloc*/
+    (printfunc)PyGedaPinObject_print,     /* tp_print*/
     0,                              /* tp_getattr*/
     0,                              /* tp_setattr*/
     0,                              /* tp_compare*/
@@ -482,7 +482,7 @@ static PyTypeObject PinObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    PinObject_doc,                  /* tp_doc */
+    PyGedaPinObject_doc,                  /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -508,9 +508,9 @@ initPin(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  PinObjectType.tp_base = GedaObjectClass();
+  PyGedaPinObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PinObjectType) < 0)
+  if ( PyType_Ready(&PyGedaPinObjectType) < 0)
     return;
 
   pin_module = Py_InitModule3("Pin", NULL, "Creates a Pin object type.");
@@ -518,10 +518,10 @@ initPin(PyObject *module)
   if (pin_module == NULL)
     return;
 
-  Py_INCREF(&PinObjectType);
-  PyModule_AddObject(pin_module, "Pin", (PyObject *)&PinObjectType);
+  Py_INCREF(&PyGedaPinObjectType);
+  PyModule_AddObject(pin_module, "Pin", (PyObject *)&PyGedaPinObjectType);
 }
-PyTypeObject *PinObjectClass(void)
+PyTypeObject *PyGedaPinClass(void)
 {
-  return &PinObjectType;
+  return &PyGedaPinObjectType;
 }

@@ -52,8 +52,8 @@
 #include "geda_capsule.h"
 #include "libgedathon.h"
 
-int PyGeda_update_object(Object *object, GedaObject *py_object );
-int PyGeda_update_butes(Object *object, GedaObject *py_object );
+int PyGeda_update_object(GedaObject *object, PyGedaObject *py_object);
+int PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object);
 
 /* Set for reload in order to fill-in  the function table */
 #define METHOD(token, arg) { #token, (GedaLibFunc) PyGeda_##token, 0 },
@@ -73,11 +73,12 @@ static PyGedaFunc FunctionTable[] = {
 
 static void destroy_all_floating_objects (void)
 {
-  GList *iter;
-  iter = g_list_first(floating_objects);
-  while (iter != NULL)
-  {
-    Object *object = (Object *)iter->data;
+  GList *iter = g_list_first(floating_objects);
+
+  while (iter != NULL) {
+
+    GedaObject *object = (GedaObject*)iter->data;
+
     if (GEDA_IS_OBJECT(object)) {
       if (object->page == NULL) {
         s_object_release(object);
@@ -89,15 +90,15 @@ static void destroy_all_floating_objects (void)
   floating_objects = NULL;
 }
 
-Object *get_floating_object (int sid)
+GedaObject *get_floating_object (int sid)
 {
-  GList  *iter;
-  Object *object = NULL;
+  GedaObject *object = NULL;
+  GList      *iter   = g_list_first(floating_objects);
 
-  iter = g_list_first(floating_objects);
-  while (iter != NULL)
-  {
-    object = (Object *)iter->data;
+  while (iter != NULL) {
+
+    object = (GedaObject*)iter->data;
+
     if (object->sid == sid) {
       break;
     }
@@ -106,15 +107,15 @@ Object *get_floating_object (int sid)
   return object;
 }
 
-Object *retrieve_floating_object (int sid)
+GedaObject *retrieve_floating_object (int sid)
 {
-  GList  *iter;
-  Object *object = NULL;
+  GedaObject *object = NULL;
+  GList      *iter   = g_list_first(floating_objects);
 
-  iter = g_list_first(floating_objects);
-  while (iter != NULL)
-  {
-    object = (Object *)iter->data;
+  while (iter != NULL) {
+
+    object = (GedaObject*)iter->data;
+
     if (object->sid == sid) {
       floating_objects = g_list_remove(floating_objects, object);
       break;
@@ -127,7 +128,7 @@ Object *retrieve_floating_object (int sid)
 /*! \brief Append an Object to a PyList (of GedaCapules)
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
- *   This function appends a GedaCapsule for the given GedaObject to an
+ *   This function appends a GedaCapsule for the given PyGedaObject to an
  *   a PyList Object. If the first argument is NULL then a new PyList
  *   object is created and returned.
  *
@@ -139,7 +140,7 @@ Object *retrieve_floating_object (int sid)
  *  \return [out] PyObject Pointer to PyList
  */
 static PyObject*
-PyGeda_append_2_pylist(PyObject *pylist, Object *object) {
+PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
 
   PyObject *list;
   PyObject *capsule;
@@ -152,7 +153,7 @@ PyGeda_append_2_pylist(PyObject *pylist, Object *object) {
   }
 
   if (GEDA_IS_OBJECT(object)) {
-    capsule   = GedaCapsule_New(object);
+    capsule = GedaCapsule_New(object);
     PyList_Append(list, capsule);
   }
   else {
@@ -165,7 +166,7 @@ PyGeda_append_2_pylist(PyObject *pylist, Object *object) {
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a new PyList object and adds a GedaCapsule
- *   for each GedaObject in the given glist. GedaCapsules are similar
+ *   for each PyGedaObject in the given glist. GedaCapsules are similar
  *   to a PyCapsule, but are not derived from PyCapsule_Type, in that
  *   they contain a pointer to something, in this case the pointer with
  *   in the given glist, i.e. pointers to Libgeda Objects.
@@ -188,7 +189,9 @@ PyGeda_glist_2_pylist(GList *object_list)
   ptr = g_list_first(object_list);
 
   while(ptr != NULL) {
+
     capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
+
     if (capsule) {
       PyList_Append(objects, capsule);
     }
@@ -201,21 +204,21 @@ PyGeda_glist_2_pylist(GList *object_list)
   return objects;
 }
 
-/*! \brief Get a data object to create a Python Geda ArcObject
+/*! \brief Get a data object to create a Python Geda PyGedaArcObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the BusObject Initializer in order to create a Python
+ *   pass to the PyGedaBusObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda ArcObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaArcObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_arc_object_data(Object *object)
+get_arc_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -243,21 +246,21 @@ get_arc_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda BoxObject
+/*! \brief Get a data object to create a Python Geda PyGedaBoxObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the BoxObject Initializer in order to create a Python
+ *   pass to the PyGedaBoxObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda BoxObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaBoxObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_box_object_data(Object *object)
+get_box_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -294,21 +297,21 @@ get_box_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda BusObject
+/*! \brief Get a data object to create a Python Geda PyGedaBusObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the BusObject Initializer in order to create a Python
+ *   pass to the PyGedaBusObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda BusObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaBusObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_bus_object_data(Object *object)
+get_bus_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -338,21 +341,21 @@ get_bus_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda CircleObject
+/*! \brief Get a data object to create a Python Geda PyGedaCircleObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the CircleObject Initializer in order to create a Python
+ *   pass to the PyGedaCircleObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda CircleObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaCircleObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_circle_object_data(Object *object)
+get_circle_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -388,21 +391,21 @@ get_circle_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda ComplexObject
+/*! \brief Get a data object to create a Python Geda PyGedaComplexObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the ComplexObject Initializer in order to create a Python
+ *   pass to the PyGedaComplexObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda ComplexObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaComplexObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_complex_object_data(Object *object)
+get_complex_object_data(GedaObject *object)
 {
   PyObject *data;
   PyObject *py_attributes;
@@ -453,21 +456,21 @@ get_complex_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda LineObject
+/*! \brief Get a data object to create a Python Geda PyGedaLineObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the LineObject Initializer in order to create a Python
+ *   pass to the PyGedaLineObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda LineObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaLineObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_line_object_data(Object *object)
+get_line_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -494,21 +497,21 @@ get_line_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda NetObject
+/*! \brief Get a data object to create a Python Geda PyGedaNetObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the NetObject Initializer in order to create a Python
+ *   pass to the PyGedaNetObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda NetObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaNetObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_net_object_data(Object *object)
+get_net_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -541,21 +544,21 @@ get_net_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PathObject
+/*! \brief Get a data object to create a Python Geda PyGedaPathObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the PathObject Initializer in order to create a Python
+ *   pass to the PyGedaPathObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PathObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaPathObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_path_object_data(Object *object)
+get_path_object_data(GedaObject *object)
 {
   PyObject *data;
   PyObject *pyobject;
@@ -609,21 +612,21 @@ get_path_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PictureObject
+/*! \brief Get a data object to create a Python Geda PyGedaPictureObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the PictureObject Initializer in order to create a Python
+ *   pass to the PyGedaPictureObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PictureObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaPictureObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
-get_picture_object_data(Object *object)
+get_picture_object_data(GedaObject *object)
 {
   PyObject  *data;
   PyObject  *py_pixbuf;
@@ -658,22 +661,22 @@ get_picture_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PinObject
+/*! \brief Get a data object to create a Python Geda PyGedaPinObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the PinObject Initializer in order to create a Python
+ *   pass to the PyGedaPinObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PinObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaPinObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  *
  */
 static PyObject*
-get_pin_object_data(Object *object)
+get_pin_object_data(GedaObject *object)
 {
   PyObject *data;
 
@@ -732,22 +735,22 @@ get_pin_object_data(Object *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda TextObject
+/*! \brief Get a data object to create a Python Geda PyGedaTextObject
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *   This function creates a PyObject with the parameters used to
- *   pass to the TextObject Initializer in order to create a Python
+ *   pass to the PyGedaTextObject Initializer in order to create a Python
  *   object cooresponding the libgeda object. These parameters MUST
  *   be in the correct order or the Python object will not be created
  *   correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda TextObject
+ *  \param [in] object   Pointer to a Libgeda PyGedaTextObject
  *
  *  \return [out] PyObject Pointer to parameter data object
  *
  */
 static PyObject*
-get_text_object_data(Object *object)
+get_text_object_data(GedaObject *object)
 {
   PyObject *data;
   char     *name = object->name;
@@ -777,7 +780,7 @@ get_text_object_data(Object *object)
 /*! \brief Translate Color Objects
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
- *   This is a temporary function translate PyColorObject to Libgeda color
+ *   This is a temporary function translate PyPyGedaColorObject to Libgeda color
  *   index.
  *
  *  \param [in] py_color      PyObject Color object
@@ -1146,7 +1149,7 @@ PyGeda_goto_page( int pid )
 /*! \brief Open a Page
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function attempts to create new PageObject. The object represents the
+ *  This function attempts to create new PyGedaPageObject. The object represents the
  *  Page referenced by the given filename only if the file exist and is readable
  *  when attempting to open and existing file. If the filename does not exist
  *  then an empty page Object is created.
@@ -1530,7 +1533,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
       int         pid;
 
       py_page     = PyList_GET_ITEM(py_page_list, i);
-      pid         = ((PageObject*)py_page)->pid;
+      pid         = ((PyGedaPageObject*)py_page)->pid;
       page        = geda_toplevel_get_page_by_id(toplevel, pid);
       pages       = g_list_append(pages, page);
     }
@@ -1579,10 +1582,10 @@ PyGeda_GedaCapsule_Type(PyObject *py_object)
 PyObject*
 PyGeda_get_bounds( int pid, int sid )
 {
-  GList    *list;
-  Object   *object;
-  Page     *page;
-  PyObject *py_list;
+  GList      *list;
+  GedaObject *object;
+  Page       *page;
+  PyObject   *py_list;
 
   int left, top, right, bottom;
 
@@ -1624,18 +1627,18 @@ PyGeda_get_bounds( int pid, int sid )
 /*! \brief Get an Object from GedaCapsuleObject
  *  \ingroup Python_API_Library
  *  \par Function Description
- *    This function returns the data to create a PyGedaObjects from an object
+ *    This function returns the data to create a PyPyGedaObjects from an object
  *  pointer to by the contents of the given GedaCapsule.
  *
  *  \param [in] py_capsule   The PyObject container object
  *
- *  \return [out] A GedaObject construction data.
+ *  \return [out] A PyGedaObject construction data.
  *
  */
 PyObject*
 PyGeda_get_object(PyObject *py_capsule)
 {
-  Object *object;
+  GedaObject *object;
 
   object = GedaCapsule_GetPointer(py_capsule);
 
@@ -1677,15 +1680,15 @@ PyGeda_get_object(PyObject *py_capsule)
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function returns a list of existing objects from another object. The source
- *  object can be a <p>Page</p> or a <p>GedaObject</p>. The returned list contains capsule items.
+ *  object can be a <p>Page</p> or a <p>PyGedaObject</p>. The returned list contains capsule items.
  *  Encapsulation of objects is performed for efficiency and memory management. If real
- *  GedaObjects had to be created for an entire schematic containing numerous objects,
+ *  PyGedaObjects had to be created for an entire schematic containing numerous objects,
  *  the time required for Python to manage the memory would approach "hard-disk" access
  *  times. And when the list was later dereferenced, similar delays would occur while
  *  Python was performing garbage collection.
  *
  *  \param [in] pid     Integer, the page id of the page from which to get the sub-objects
- *  \param [in] sid     Integer, the GedaObject id of the Object from which to get the sub-objects
+ *  \param [in] sid     Integer, the PyGedaObject id of the Object from which to get the sub-objects
  *
  *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
  *                       did not contain any objects.
@@ -1693,10 +1696,10 @@ PyGeda_get_object(PyObject *py_capsule)
 PyObject*
 PyGeda_get_objects( int pid, int sid )
 {
-  GList    *list;
-  Object   *object;
-  Page     *page;
-  PyObject *py_list;
+  GList      *list;
+  GedaObject *object;
+  Page       *page;
+  PyObject   *py_list;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
@@ -1734,7 +1737,7 @@ PyGeda_get_objects( int pid, int sid )
  *                          to py_object_A
  *  \param [in] py_object_A The Geda object to receive the child or NULL if object
  *                          is being added to page given by parameter 1.
- *  \param [in] py_object_B The GedaObject to be added
+ *  \param [in] py_object_B The PyGedaObject to be added
  *
  *  \return [out] status True if successful, otherwise False.
  *
@@ -1742,23 +1745,23 @@ PyGeda_get_objects( int pid, int sid )
 int
 PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
-  GedaObject *geda_pyparent = (GedaObject*)py_object_A;
-  GedaObject *geda_pyobject = (GedaObject*)py_object_B;
-  Object     *parent; /* Could be a solo object being added */
-  Object     *object;
+  PyGedaObject *geda_pyparent = (PyGedaObject*)py_object_A;
+  PyGedaObject *geda_pyobject = (PyGedaObject*)py_object_B;
+  GedaObject   *parent; /* Could be a solo object being added */
+  GedaObject   *object;
   Page       *page;
   int         pid;
   int         sid;
   int         status = 0;
   int         count  = 0;
 
-  /* The module already cheched that object B was a GedaObject */
+  /* The module already cheched that object B was a PyGedaObject */
   sid  = geda_pyobject->sid;
 
-  /* If PageObject then adding to a page */
+  /* If PyGedaPageObject then adding to a page */
   if (PyPage) {
 
-    pid  = ((PageObject*)PyPage)->pid;
+    pid  = ((PyGedaPageObject*)PyPage)->pid;
     page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     if (page && (GEDA_IS_PAGE(page))) {
@@ -1774,7 +1777,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
         if (parent->type == OBJ_COMPLEX) {
             GList  *butes = parent->attribs;
             while (butes != NULL) {
-              object = (Object *)butes->data;
+              object = (GedaObject*)butes->data;
               if (!object->page)
                 s_page_append_object(page, object);
               NEXT (butes);
@@ -1855,7 +1858,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
  *                           py_object_A
  *  \param [in] py_object_A  The Geda object to receive the objects or NULL if the
  *                           are being added to page given by parameter 1.
- *  \param [in] py_object_B  PyList, the list of GedaObjects to be added
+ *  \param [in] py_object_B  PyList, the list of PyGedaObjects to be added
  *
  *  \return [out] status True if successful, otherwise False.
  *
@@ -1881,10 +1884,10 @@ PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function copies an existing object. The Object does not have to be on
- *  a Page. The object argument must be GedaObject, such as ComplexObject_type,
+ *  a Page. The object argument must be PyGedaObject, such as PyGedaComplexObject_type,
  *  not a GedaCapsule object.
  *
- *  \param [in] py_object PyObject, the GedaObject to be copied
+ *  \param [in] py_object PyObject, the PyGedaObject to be copied
  *
  *  \param [in] dx  Integer X offset relative to the source object's location
  *  \param [in] dy  Integer Y offset relative to the source object's location
@@ -1895,7 +1898,7 @@ PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object
  *           this value will be interprted as a coordinate.
  *
  *  \note 2. This is the only copy function in the Python_API_Library. The Pyobject
- *           types are derived from GedaObject, whose copy method utilizes the main
+ *           types are derived from PyGedaObject, whose copy method utilizes the main
  *           geda.copy_object method which this calls this API function.
  *
  *  \return [out] GedaCapsule containing a reference to the new object.
@@ -1904,11 +1907,11 @@ PyObject *
 PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 {
   PyObject    *py_capsule  = NULL;
-  GedaObject  *geda_object = (GedaObject*)py_object;
+  PyGedaObject  *geda_object = (PyGedaObject*)py_object;
   int          pid         = geda_object->pid;
   int          sid;
-  Object      *src_object;
-  Object      *new_object  = NULL;
+  GedaObject  *src_object;
+  GedaObject  *new_object  = NULL;
   Page        *page;
 
   GList  *dest_list = NULL;
@@ -1925,8 +1928,8 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
       s_page_append_object(page, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
-          Object *a_current = iter->data;
-          Object *a_new = o_copy_object(a_current);
+          GedaObject *a_current = iter->data;
+          GedaObject *a_new = o_copy_object(a_current);
           s_page_append_object (page, a_new);
           dest_list = g_list_append(dest_list, a_new);
           o_attrib_add(new_object, a_new);
@@ -1942,8 +1945,8 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
       floating_objects = g_list_append(floating_objects, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
-          Object *a_current = iter->data;
-          Object *a_new = o_copy_object(a_current);
+          GedaObject *a_current = iter->data;
+          GedaObject *a_new = o_copy_object(a_current);
           dest_list = g_list_append(dest_list, a_new);
           floating_objects = g_list_append(floating_objects, a_new);
           o_attrib_add(new_object, a_new);
@@ -1980,21 +1983,23 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 int
 PyGeda_remove_object( PyObject *py_object )
 {
-        GedaObject *geda_object = (GedaObject*)py_object;
-        int         pid         = geda_object->pid;
-        int         status      = -1;
-        int         sid;
-  const Object     *object;
-        Page       *page;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  int           pid         = geda_object->pid;
+  int           status      = -1;
+  int           sid;
+  Page         *page;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
+
     sid  = geda_object->sid;
-    object = s_page_get_object(page, sid);
+
+    const GedaObject *object = s_page_get_object(page, sid);
+
     if (object) {
-      s_page_remove_object(page, (Object*)object);
-      floating_objects = g_list_append(floating_objects, (Object*) object);
+      s_page_remove_object(page, (GedaObject*)object);
+      floating_objects = g_list_append(floating_objects, (GedaObject*) object);
     }
     status = 0;
   }
@@ -2017,10 +2022,10 @@ PyGeda_remove_object( PyObject *py_object )
 int
 PyGeda_remove_objects( PyObject *pyobjects )
 {
-  PyObject     *geda_object;
-  int           i;
-  int           count;
-  int           status = 0;
+  PyObject *geda_object;
+  int       i;
+  int       count;
+  int       status = 0;
 
   count = (int) PyList_GET_SIZE(pyobjects);
   for (i = 1; count < i; i++) {
@@ -2044,11 +2049,11 @@ PyGeda_remove_objects( PyObject *pyobjects )
 int
 PyGeda_delete_object( PyObject *py_object )
 {
-  GedaObject *geda_object = (GedaObject*)py_object;
-  Object     *object      = NULL;
-  int         pid         = geda_object->pid;
-  int         sid         = ((GedaObject*)geda_object)->sid;
-  int         status      = 0;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  GedaObject   *object      = NULL;
+  int           pid         = geda_object->pid;
+  int           sid         = ((PyGedaObject*)geda_object)->sid;
+  int           status      = 0;
 
   Page       *page;
   const char *name;
@@ -2088,7 +2093,7 @@ PyGeda_delete_object( PyObject *py_object )
  *  This function calls PyGeda_delete_object for each object in the
  *  supplied list of pyobjects
  *
- *  \param [in] objects PyObject of type PyList containing PyGedaObjects
+ *  \param [in] objects PyObject of type PyList containing PyPyGedaObjects
  *
  *  \return [out] status True if success otherwise False, False
  *                would only be returned if an object in the list
@@ -2097,10 +2102,10 @@ PyGeda_delete_object( PyObject *py_object )
 int
 PyGeda_delete_objects( PyObject *objects )
 {
-  PyObject     *geda_object;
-  int           i;
-  int           count;
-  int           status = 0;
+  PyObject *geda_object;
+  int       i;
+  int       count;
+  int       status = 0;
 
   count = (int) PyList_GET_SIZE(objects);
   for (i = 1; count < i; i++) {
@@ -2110,7 +2115,7 @@ PyGeda_delete_objects( PyObject *objects )
   return status;
 }
 
-/*! \brief Synchronize a PyObject with GedaObject
+/*! \brief Synchronize a PyObject with PyGedaObject
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function the update the values of Library's Object the with
@@ -2119,22 +2124,22 @@ PyGeda_delete_objects( PyObject *objects )
  *  \param [in] py_object    The Geda PyObject to be updated
  *
  *  \return [out] status True if success otherwise False, False
- *                would only be returned if the page conatining
+ *                would only be returned if the page containing
  *                the object did not exist.
  */
 int
 PyGeda_sync_object( PyObject *py_object )
 {
-  GedaObject *geda_object = (GedaObject*)py_object;
-  Object     *object      = NULL;
-  int         pid         = geda_object->pid;
-  int         sid         = ((GedaObject*)geda_object)->sid;
-  int         status      = 0;
-
-  Page       *page;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  GedaObject   *object      = NULL;
+  int           pid         = geda_object->pid;
+  int           sid         = ((PyGedaObject*)geda_object)->sid;
+  int           status      = 0;
 
   if (pid >= 0 ) {
-    page   = geda_toplevel_get_page_by_id(toplevel, pid);
+
+    Page *page = geda_toplevel_get_page_by_id(toplevel, pid);
+
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
     }
@@ -2172,11 +2177,11 @@ PyGeda_sync_object( PyObject *py_object )
  *  \param [in] arc_sweep   Integer ending angle of the sector
  *  \param [in] py_color    PyObject color
  *
- *  \return [out] ArcObject construction data.
+ *  \return [out] PyGedaArcObject construction data.
  */
 PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sweep, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
@@ -2202,11 +2207,11 @@ PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sw
  *  \param [in] upper_y  Integer upper Y corner
  *  \param [in] py_color PyObject color
  *
- *  \return [out] BoxObject construction data.
+ *  \return [out] PyGedaBoxObject construction data.
  */
 PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
@@ -2239,24 +2244,25 @@ PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, Py
  *  \param [in] y2       integer to Y location
  *  \param [in] py_color PyObject color
  *
- *  \return [out] BusObject construction data.
+ *  \return [out] PyGedaBusObject construction data.
  */
 PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int color = translate_color(py_color, BUS_COLOR);
 
   object = o_bus_new(color, x1, y1, x2, y2, 0);
 
   if (busname) { /* then create a text attribute for netname */
-    Object *net_attrib;
+    GedaObject *net_attrib;
     object->bus->bus_name  = u_string_strdup(busname);
     net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
-  else
+  else {
     object->bus->bus_name  = u_string_strdup(object->name);
+  }
 
   object->bus->bus_ripper_direction = o_bus_get_direction(object);
 
@@ -2280,12 +2286,12 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
  *
  *  \param [in] py_color  PyObject a color object (not implemented yet)
  *
- *  \return [out] CircleObject construction data.
+ *  \return [out] PyGedaCircleObject construction data.
  *
  */
 PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
 {
-  Object   *object;
+  GedaObject *object;
 
   object = o_circle_new(GRAPHIC_COLOR, x, y, radius);
 
@@ -2312,23 +2318,23 @@ PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
  *  \param [in] mirror   Integer property whether to mirror the symbol
  *  \param [in] embed    Integer property whether to embed the symbol data
  *
- *  \return [out] ComplexObject construction data.
+ *  \return [out] PyGedaComplexObject construction data.
  *
  *  \note  Optional agruments with a value of -1 will be assigned default values.
  */
 PyObject*
 PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, int embed)
 {
-  Object   *object;
-  const     CLibSymbol *clib;
-  char     *sym_file;
+  GedaObject *object;
+  const       CLibSymbol *clib;
+  char       *sym_file;
 
   int ang  = angle  < 0 ? 0 : angle;
   int mirr = mirror < 0 ? 0 : mirror;
   int emb  = embed  < 0 ? 0 : embed;
 
   sym_file = u_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
-  clib = s_clib_get_symbol_by_name (sym_file);
+  clib     = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
     object = o_complex_new (toplevel, x, y, ang, mirr, clib, sym_file, TRUE);
@@ -2370,12 +2376,12 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
  *  \param [in] y2           Integer to Y location
  *  \param [in] py_color     PyObject color
  *
- *  \return [out] LineObject construction data.
+ *  \return [out] PyGedaLineObject construction data.
  *
  */
 PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
@@ -2405,12 +2411,12 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
  *  \param [in] y2           Integer to Y location
  *  \param [in] py_color     PyObject color
  *
- *  \return [out] NetObject construction data.
+ *  \return [out] PyGedaNetObject construction data.
  *
  */
 PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int color = translate_color(py_color, NET_COLOR);
 
@@ -2418,7 +2424,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
 
   /* Set in the gobject so the memory will be freed later */
   if (netname) { /* then create a text attribute for netname */
-    Object *net_attrib;
+    GedaObject *net_attrib;
     object->net->net_name  = u_string_strdup(netname);
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
@@ -2447,12 +2453,12 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
  *
  *  \param [in] path_string  String, the SVG path string
  *
- *  \return [out] PathObject construction data.
+ *  \return [out] PyGedaPathObject construction data.
  *
  */
 PyObject *PyGeda_new_path (const char *path_string)
 {
-  Object   *object;
+  GedaObject *object;
 
   object = o_path_new(GRAPHIC_COLOR, path_string);
 
@@ -2489,14 +2495,14 @@ PyObject *PyGeda_new_path (const char *path_string)
  *  \param [in] mirror   integer property whether to mirror the image
  *  \param [in] embed    integer property whether to embed the image data
  *
- *  \return [out] PictureObject construction data or NULL if an error occured,
+ *  \return [out] PyGedaPictureObject construction data or NULL if an error occured,
  *                such as the file did not exist or was not readable.
  */
 PyObject*
 PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
                                           int angle, int mirror, int embed)
 {
-  Object    *object;
+  GedaObject *object;
 
   int ang  = angle  < 0 ? 0 : angle;
   int mirr = mirror < 0 ? 0 : mirror;
@@ -2536,13 +2542,13 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
  *  \param [in] mtype    integer mechanical type attribute
  *  \param [in] ntype    integer node type property ( 0=normal, 1=bus type)
  *
- *  \return [out] PinObject construction data.
+ *  \return [out] PyGedaPinObject construction data.
  */
 PyObject*
 PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, int y2,
                 int whichend, int etype, int mtype, int ntype)
 {
-  Object   *object;
+  GedaObject *object;
 
   int conn2 = whichend < 0 ? 0 : whichend;
 
@@ -2616,7 +2622,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
  *  \param [in] angle        Integer orientation property
  *  \param [in] py_color     PyObject color
  *
- *  \return [out] GedaTextObject contruction data
+ *  \return [out] GedaPyGedaTextObject contruction data
  *
  *  \note  Optional agruments with a value of -1 will be assigned default values.
  *
@@ -2624,7 +2630,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
 PyObject*
 PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle, PyObject *py_color)
 {
-  Object   *object;
+  GedaObject *object;
 
   int sze = size  < 0 ? DEFAULT_TEXT_SIZE : size;
   int alg = align < 0 ? LOWER_LEFT : align;
@@ -2665,17 +2671,17 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
  *  \param [in] angle        Integer orientation property
  *  \param [in] py_color     PyObject color
  *
- *  \return [out] GedaTextObject contruction data
+ *  \return [out] GedaPyGedaTextObject contruction data
  *
  *  \note  Optional agruments with a value of -1 will be assigned default values.
  *
  */
 PyObject*
-PyGeda_new_attrib( const char *name, const char *value, int x, int y,
-                   int visible, int show, int align, int angle, PyObject *py_color)
+PyGeda_new_attrib(const char *name, const char *value, int x, int y,
+                  int visible, int show, int align, int angle, PyObject *py_color)
 {
-  Object   *object;
-  char     *text;
+  GedaObject *object;
+  char       *text;
 
   int size = DEFAULT_ATTRIBUTE_SIZE;
 
@@ -2706,21 +2712,21 @@ PyGeda_new_attrib( const char *name, const char *value, int x, int y,
  *  Gedaobject, when found. The returned data attribute may be attached or
  *  floating.
  *
- *  \param [in] py_object    GedaObject whose attribute is to be returned
+ *  \param [in] py_object    PyGedaObject whose attribute is to be returned
  *  \param [in] name         string name of the attribute  to be returned
  *
- *  \return [out] GedaTextObject data if found or Py_None if an attribute was
+ *  \return [out] GedaPyGedaTextObject data if found or Py_None if an attribute was
  *                not found with the given name.
  */
-PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
+PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
 {
-  GedaObject *geda_object = (GedaObject*)py_object;
-  int         pid         = geda_object->pid;
-  int         sid         = geda_object->sid;
-  Object     *parent;
-  Object     *attrib;
-  Page       *page        = NULL;
-  PyObject   *py_data     = NULL;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  int           pid         = geda_object->pid;
+  int           sid         = geda_object->sid;
+  GedaObject   *parent;
+  GedaObject   *attrib;
+  Page         *page        = NULL;
+  PyObject     *py_data     = NULL;
 
   /* Get a pointer to the parent object */
   if (pid < 0) {
@@ -2768,23 +2774,23 @@ PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
  *  given Gedaobject and return a PyList data to contruct the
  *  attributes.
  *
- *  \param [in] py_object    GedaObject whose attributes are to be returned
+ *  \param [in] py_object    PyGedaObject whose attributes are to be returned
  *
- *  \return [out] PyList of GedaTextObject data for each attribute
+ *  \return [out] PyList of GedaPyGedaTextObject data for each attribute
  *                attached to Object.
  */
 PyObject*
-PyGeda_get_attribs( PyObject *py_object )
+PyGeda_get_attribs(PyObject *py_object)
 {
-  GedaObject *geda_object = (GedaObject*)py_object;
-  int         pid         = geda_object->pid;
-  int         sid         = geda_object->sid;
-  Object     *parent;
-  Page       *page        = NULL;
-  PyObject   *data;
-  PyObject   *output_list = Py_None;
-  GList      *attribs;
-  GList      *iter;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  int           pid         = geda_object->pid;
+  int           sid         = geda_object->sid;
+  GedaObject   *parent;
+  Page         *page        = NULL;
+  PyObject     *data;
+  PyObject     *output_list = Py_None;
+  GList        *attribs;
+  GList        *iter;
 
   /* Get pointer to the parent object */
   if (pid < 0) {
@@ -2801,7 +2807,7 @@ PyGeda_get_attribs( PyObject *py_object )
       iter = g_list_first(attribs);
       output_list = PyList_New(0);
       while(iter != NULL) {
-        Object *object = GEDA_OBJECT(iter->data);
+        GedaObject *object = GEDA_OBJECT(iter->data);
 #if DEBUG
         if (object->page == NULL && page != NULL) {
           fprintf(stderr, "PyGeda_get_attribs: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
@@ -2826,25 +2832,25 @@ PyGeda_get_attribs( PyObject *py_object )
  *  inherited or not, a new attribute is created and attached to the parent.
  *
  *  \param [in] py_complex PyObject Complex parent of the attribute
- *  \param [in] py_attrib  PyObject AttributeObject, aka TextObject
+ *  \param [in] py_attrib  PyObject AttributeObject, aka PyGedaTextObject
  *  \param [in] name       string name of the attribute to be set (or created)
  *  \param [in] value      string value of the attribute
  *  \param [in] ret_obj    integer flag, if True, then return attribute data
  *
- *  \return GedaTextObject construction data if the 4th argument is True,
+ *  \return GedaPyGedaTextObject construction data if the 4th argument is True,
  *          otherwise Py_None is returned.
  */
-PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
-                             const char *name, const char *value, int ret_obj)
+PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
+                            const char *name, const char *value, int ret_obj)
 {
-  GedaObject *geda_complex = (GedaObject*)py_complex;
-  GedaObject *geda_attrib  = (GedaObject*)py_attrib;
-  int         pid          = -1;
-  int         sid          = -1;
-  Object     *object;
-  Object     *attrib;
-  Page       *page;
-  PyObject   *py_data      = NULL;
+  PyGedaObject *geda_complex = (PyGedaObject*)py_complex;
+  PyGedaObject *geda_attrib  = (PyGedaObject*)py_attrib;
+  int           pid          = -1;
+  int           sid          = -1;
+  GedaObject   *object;
+  GedaObject   *attrib;
+  Page         *page;
+  PyObject     *py_data      = NULL;
 
   if (py_complex) {
     pid = geda_complex->pid;
@@ -2896,7 +2902,7 @@ PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
   return py_data;
 }
 
-/*! \brief Python API Library Refresh PyGedaObject Attributes
+/*! \brief Python API Library Refresh PyPyGedaObject Attributes
  *  \ingroup Python_API_Attribute_Functions
  *  \par Function Description
  *  This updates attributes that were modified in Python scripts after a
@@ -2907,13 +2913,14 @@ PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
  *  \return status True on success, False if an error occurs.
  */
 int
-PyGeda_refresh_attribs( PyObject *py_object )
+PyGeda_refresh_attribs(PyObject *py_object)
 {
-  GedaObject   *geda_object = (GedaObject*)py_object;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
   int           status      = 1;
-  const Object *object;
+  const
+  GedaObject   *object;
   Page         *page;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
@@ -2927,7 +2934,7 @@ PyGeda_refresh_attribs( PyObject *py_object )
     fprintf(stderr, "PyGeda_refresh_attribs: <%s>\n", object->name);
 #endif
 
-    status = PyGeda_update_butes((Object*)object, geda_object);
+    status = PyGeda_update_butes((GedaObject*)object, geda_object);
 
   } /* else invalid pointer page */
   return status;
@@ -2939,9 +2946,8 @@ PyGeda_refresh_attribs( PyObject *py_object )
  *  @{
  */
 static GedaList *
-get_connected(Object* o_net)
+get_connected(GedaObject* o_net)
 {
-  Object  *o_current;
   GedaList *network;
   int       index;
 
@@ -2956,7 +2962,7 @@ get_connected(Object* o_net)
 
     index++;
 
-    o_current = g_list_nth_data (network->glist, index);
+    GedaObject *o_current = g_list_nth_data (network->glist, index);
 
     nets =  s_conn_return_others(NULL, o_current);
 
@@ -2989,7 +2995,6 @@ PyObject*
 PyGeda_get_network( int pid, int sid, int filter )
 {
   GedaList *network;
-  Object   *object;
   Page     *page;
   PyObject *py_list;
 
@@ -2999,7 +3004,7 @@ PyGeda_get_network( int pid, int sid, int filter )
 
   if ( sid >= 0) {
 
-    object = s_page_get_object(page, sid);
+    GedaObject *object = s_page_get_object(page, sid);
 
     if (!object) {
       object = get_floating_object(sid);
@@ -3110,10 +3115,9 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
 static PyObject*
 get_cue_locations(PyObject *py_objects, int flag)
 {
-  Object     *object;
-  Page       *page        = NULL;
-  GedaObject *geda_object = NULL;
-  PyObject   *py_list;
+  Page         *page        = NULL;
+  PyGedaObject *geda_object = NULL;
+  PyObject     *py_list;
 
   int         pid;
   int         sid;
@@ -3132,14 +3136,16 @@ get_cue_locations(PyObject *py_objects, int flag)
   if (count > 0) {
 
     GList *list = NULL;
-    geda_object = (GedaObject*)PyList_GET_ITEM(py_objects, 1);
+    geda_object = (PyGedaObject*)PyList_GET_ITEM(py_objects, 1);
     pid         = geda_object->pid;
 
     page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     for (i = 1; i < count; i++) {
 
-      geda_object = (GedaObject*)PyList_GET_ITEM(py_objects, i);
+      GedaObject *object;
+
+      geda_object = (PyGedaObject*)PyList_GET_ITEM(py_objects, i);
       sid         = geda_object->sid;
       object      = s_page_get_object(page, sid);
 
@@ -3190,7 +3196,7 @@ PyGeda_get_junctions (PyObject *py_objects)
  *  This function provides an API to libgeda to obtain X-Y coordinates
  *  data of unconnected object, normally pins and nets.
  *
- *  \param [in] py_objects Must contain only GedaObjects to analyzed
+ *  \param [in] py_objects Must contain only PyGedaObjects to analyzed
  *
  *  \return [out] PyList of order integer pairs representing points
  *                where objects are disconnected or an empty list if

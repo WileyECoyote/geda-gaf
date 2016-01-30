@@ -24,10 +24,10 @@
 static PyObject *
 Color_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
-ColorObject_new(const ColorObject *rgb)
+PyGedaColorObject_new(const PyGedaColorObject *rgb)
 {
-  ColorObject *self;
-  self = (ComplexObject*)(ColorObjectClass())->tp_new(type, args, kwds);
+  PyGedaColorObject *self;
+  self = (PyGedaComplexObject*)(PyGedaColorClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -46,7 +46,7 @@ static int
 rgb_init(PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *r, *g, *b, *a = NULL;
-    ColorObject rgb;
+    PyGedaColorObject rgb;
     static char *kwlist[] = { "r", "g", "b", "a", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "OOO|O:set", kwlist,
@@ -73,7 +73,7 @@ static PyObject *
 rgb_set(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *r = NULL, *g = NULL, *b = NULL, *a = NULL;
-    ColorObject tmprgb, *rgb;
+    PyGedaColorObject tmprgb, *rgb;
     static char *kwlist[] = { "r", "g", "b", "a", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|OOOO:set", kwlist,
@@ -92,7 +92,7 @@ rgb_set(PyObject *self, PyObject *args, PyObject *kwargs)
      return NULL;
     }
 
-    rgb = pyg_boxed_get(self, ColorObject);
+    rgb = pyg_boxed_get(self, PyGedaColorObject);
     tmprgb = *rgb;
 
 #define SET_MEMBER(m)     G_STMT_START {                         \
@@ -128,7 +128,7 @@ static PyObject *
 rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *py_a;
-    ColorObject *rgb;
+    PyGedaColorObject *rgb;
     static char *kwlist[] = { "a", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs,
@@ -136,7 +136,7 @@ rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
                               &py_a))
         return NULL;
 
-    rgb = pyg_boxed_get(self, ColorObject);
+    rgb = pyg_boxed_get(self, PyGedaColorObject);
 
     if (PyInt_Check(py_a))
      rgb->a = (double) PyInt_AS_LONG(py_a) / 255.0;
@@ -159,15 +159,15 @@ rgb_add(PyObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "color", "with_alpha", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!|i:add", kwlist,
-                              &PyColorObject_Type, &color, &with_alpha))
+                              &PyPyGedaColorObject_Type, &color, &with_alpha))
         return NULL;
 
     if (with_alpha)
-     gimp_rgba_add(pyg_boxed_get(self, ColorObject),
-                   pyg_boxed_get(color, ColorObject));
+     gimp_rgba_add(pyg_boxed_get(self, PyGedaColorObject),
+                   pyg_boxed_get(color, PyGedaColorObject));
     else
-     gimp_rgb_add(pyg_boxed_get(self, ColorObject),
-                  pyg_boxed_get(color, ColorObject));
+     gimp_rgb_add(pyg_boxed_get(self, PyGedaColorObject),
+                  pyg_boxed_get(color, PyGedaColorObject));
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -181,15 +181,15 @@ rgb_subtract(PyObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "color", "with_alpha", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!|i:subtract", kwlist,
-                              &PyColorObject_Type, &color, &with_alpha))
+                              &PyPyGedaColorObject_Type, &color, &with_alpha))
         return NULL;
 
     if (with_alpha)
-     gimp_rgba_subtract(pyg_boxed_get(self, ColorObject),
-                      pyg_boxed_get(color, ColorObject));
+     gimp_rgba_subtract(pyg_boxed_get(self, PyGedaColorObject),
+                      pyg_boxed_get(color, PyGedaColorObject));
     else
-     gimp_rgb_subtract(pyg_boxed_get(self, ColorObject),
-                     pyg_boxed_get(color, ColorObject));
+     gimp_rgb_subtract(pyg_boxed_get(self, PyGedaColorObject),
+                     pyg_boxed_get(color, PyGedaColorObject));
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -207,9 +207,9 @@ rgb_multiply(PyObject *self, PyObject *args, PyObject *kwargs)
         return NULL;
 
     if (with_alpha)
-     gimp_rgba_multiply(pyg_boxed_get(self, ColorObject), factor);
+     gimp_rgba_multiply(pyg_boxed_get(self, PyGedaColorObject), factor);
     else
-     gimp_rgb_multiply(pyg_boxed_get(self, ColorObject), factor);
+     gimp_rgb_multiply(pyg_boxed_get(self, PyGedaColorObject), factor);
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -224,11 +224,11 @@ rgb_distance(PyObject *self, PyObject *args, PyObject *kwargs)
   static char *kwlist[] = { "color", "alpha", NULL };
 
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!|i:distance", kwlist,
-    &PyColorObject_Type, &color, &alpha))
+    &PyPyGedaColorObject_Type, &color, &alpha))
     return NULL;
 
-  ret = gimp_rgb_distance(pyg_boxed_get(self, ColorObject),
-                          pyg_boxed_get(color, ColorObject));
+  ret = gimp_rgb_distance(pyg_boxed_get(self, PyGedaColorObject),
+                          pyg_boxed_get(color, PyGedaColorObject));
 
 
   return PyFloat_FromDouble(ret);
@@ -237,19 +237,19 @@ rgb_distance(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 rgb_max(PyObject *self)
 {
-  return PyFloat_FromDouble(gimp_rgb_max(pyg_boxed_get(self, ColorObject)));
+  return PyFloat_FromDouble(gimp_rgb_max(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
 static PyObject *
 rgb_min(PyObject *self)
 {
-  return PyFloat_FromDouble(gimp_rgb_min(pyg_boxed_get(self, ColorObject)));
+  return PyFloat_FromDouble(gimp_rgb_min(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
 static PyObject *
 rgb_clamp(PyObject *self)
 {
-    gimp_rgb_clamp(pyg_boxed_get(self, ColorObject));
+    gimp_rgb_clamp(pyg_boxed_get(self, PyGedaColorObject));
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -264,7 +264,7 @@ rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "d:gamma", kwlist, &gamma))
         return NULL;
 
-    gimp_rgb_gamma(pyg_boxed_get(self, ColorObject), gamma);
+    gimp_rgb_gamma(pyg_boxed_get(self, PyGedaColorObject), gamma);
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -273,7 +273,7 @@ rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 rgb_luminance(PyObject *self)
 {
-    return PyFloat_FromDouble(gimp_rgb_luminance(pyg_boxed_get(self, ColorObject)));
+    return PyFloat_FromDouble(gimp_rgb_luminance(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
 static PyObject *
@@ -284,7 +284,7 @@ rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
   static char *kwlist[] = { "color", "mode", NULL };
 
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!|i:composite", kwlist,
-                                  &PyColorObject_Type, &color, &mode))
+                                  &PyPyGedaColorObject_Type, &color, &mode))
     return NULL;
 
   if (mode < GIMP_RGB_COMPOSITE_NONE || mode > GIMP_RGB_COMPOSITE_BEHIND) {
@@ -292,8 +292,8 @@ rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
     return NULL;
   }
 
-  gimp_rgb_composite(pyg_boxed_get(self, ColorObject),
-                     pyg_boxed_get(color, ColorObject),
+  gimp_rgb_composite(pyg_boxed_get(self, PyGedaColorObject),
+                     pyg_boxed_get(color, PyGedaColorObject),
                      mode);
 
   Py_INCREF(Py_None);
@@ -312,7 +312,7 @@ rgb_parse_name(PyObject *self, PyObject *args, PyObject *kwargs)
     &name, &len))
     return NULL;
 
-  success = gimp_rgb_parse_name(pyg_boxed_get(self, ColorObject), name, len);
+  success = gimp_rgb_parse_name(pyg_boxed_get(self, PyGedaColorObject), name, len);
 
   if (!success) {
     PyErr_SetString(PyExc_ValueError, "unable to parse color name");
@@ -335,7 +335,7 @@ rgb_parse_hex(PyObject *self, PyObject *args, PyObject *kwargs)
                               &hex, &len))
         return NULL;
 
-    success = gimp_rgb_parse_hex(pyg_boxed_get(self, ColorObject), hex, len);
+    success = gimp_rgb_parse_hex(pyg_boxed_get(self, PyGedaColorObject), hex, len);
 
     if (!success) {
      PyErr_SetString(PyExc_ValueError, "unable to parse hex value");
@@ -361,9 +361,9 @@ rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
         return NULL;
 
     if (with_alpha)
-     success = gimp_rgba_parse_css(pyg_boxed_get(self, ColorObject), css, len);
+     success = gimp_rgba_parse_css(pyg_boxed_get(self, PyGedaColorObject), css, len);
     else
-     success = gimp_rgb_parse_css(pyg_boxed_get(self, ColorObject), css, len);
+     success = gimp_rgb_parse_css(pyg_boxed_get(self, PyGedaColorObject), css, len);
 
     if (!success) {
      PyErr_SetString(PyExc_ValueError, "unable to parse CSS color");
@@ -378,9 +378,9 @@ rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 rgb_getstate(PyObject *self)
 {
-    ColorObject *rgb;
+    PyGedaColorObject *rgb;
 
-    rgb = pyg_boxed_get(self, ColorObject);
+    rgb = pyg_boxed_get(self, PyGedaColorObject);
 
     return Py_BuildValue("dddd", rgb->r, rgb->g, rgb->b, rgb->a);
 }
@@ -415,12 +415,12 @@ static PyMethodDef rgb_methods[] = {
 static PyObject *                                            \
 rgb_get_ ## m(PyObject *self, void *closure)                         \
 {                                                       \
-    return PyFloat_FromDouble(pyg_boxed_get(self, ColorObject)->m);             \
+    return PyFloat_FromDouble(pyg_boxed_get(self, PyGedaColorObject)->m);             \
 }                                                       \
 static int                                                  \
 rgb_set_ ## m(PyObject *self, PyObject *value, void *closure)             \
 {                                                       \
-    ColorObject *rgb = pyg_boxed_get(self, ColorObject);                   \
+    PyGedaColorObject *rgb = pyg_boxed_get(self, PyGedaColorObject);                   \
     if (value == NULL) {                                      \
      PyErr_SetString(PyExc_TypeError, "cannot delete value");     \
      return -1;                                            \
@@ -464,7 +464,7 @@ rgb_length(PyObject *self)
 static PyObject *
 rgb_getitem(PyObject *self, Py_ssize_t pos)
 {
-    ColorObject *rgb;
+    PyGedaColorObject *rgb;
     double val;
 
     if (pos < 0)
@@ -475,7 +475,7 @@ rgb_getitem(PyObject *self, Py_ssize_t pos)
      return NULL;
     }
 
-    rgb = pyg_boxed_get(self, ColorObject);
+    rgb = pyg_boxed_get(self, PyGedaColorObject);
 
     switch (pos) {
     case 0: val = rgb->r; break;
@@ -627,10 +627,10 @@ rgb_hash(PyObject *self)
 static PyObject *
 rgb_richcompare(PyObject *self, PyObject *other, int op)
 {
-    ColorObject *c1, *c2;
+    PyGedaColorObject *c1, *c2;
     PyObject *ret;
 
-    if (!ColorObject_check(other)) {
+    if (!PyGedaColorObject_check(other)) {
      PyErr_Format(PyExc_TypeError,
                   "can't compare %s to %s",
                   self->ob_type->tp_name, other->ob_type->tp_name);
@@ -643,8 +643,8 @@ rgb_richcompare(PyObject *self, PyObject *other, int op)
      return NULL;
     }
 
-    c1 = pyg_boxed_get(self, ColorObject);
-    c2 = pyg_boxed_get(other, ColorObject);
+    c1 = pyg_boxed_get(self, PyGedaColorObject);
+    c2 = pyg_boxed_get(other, PyGedaColorObject);
 
     if ((c1->r == c2->r && c1->g == c2->g && c1->b == c2->b && c1->a == c2->a) == (op == Py_EQ))
      ret = Py_True;
@@ -658,7 +658,7 @@ rgb_richcompare(PyObject *self, PyObject *other, int op)
 static PyObject *
 rgb_pretty_print(PyObject *self, bool inexact)
 {
-    ColorObject *rgb;
+    PyGedaColorObject *rgb;
     PyObject *ret = NULL;
     PyObject *r_f = NULL, *g_f = NULL, *b_f = NULL, *a_f = NULL;
     PyObject *r   = NULL, *g   = NULL, *b   = NULL, *a   = NULL;
@@ -674,7 +674,7 @@ rgb_pretty_print(PyObject *self, bool inexact)
      prefix = self->ob_type->tp_name;
     }
 
-    rgb = pyg_boxed_get(self, ColorObject);
+    rgb = pyg_boxed_get(self, PyGedaColorObject);
 
     if ((r_f = PyFloat_FromDouble(rgb->r)) == NULL) goto cleanup;
     if ((g_f = PyFloat_FromDouble(rgb->g)) == NULL) goto cleanup;
@@ -712,11 +712,11 @@ rgb_str(PyObject *self)
     return rgb_pretty_print(self, TRUE);
 }
 
-PyTypeObject PyColorObject_Type = {
+PyTypeObject PyPyGedaColorObject_Type = {
     PyObject_HEAD_INIT(NULL)
     0,                             /* ob_size */
     "geda.color",                  /* tp_name */
-    sizeof(CircleObject),          /* tp_basicsize */
+    sizeof(PyGedaCircleObject),          /* tp_basicsize */
     0,                             /* tp_itemsize */
     (destructor)0,                 /* tp_dealloc */
     (printfunc)0,                  /* tp_print */
@@ -757,12 +757,12 @@ PyTypeObject PyColorObject_Type = {
 };
 
 int
-ColorObject_from_pyobject(PyObject *object, ColorObject *color)
+PyGedaColorObject_from_pyobject(PyObject *object, PyGedaColorObject *color)
 {
     g_return_val_if_fail(color != NULL, FALSE);
 
-    if (ColorObject_check(object)) {
-        *color = *pyg_boxed_get(object, ColorObject);
+    if (PyGedaColorObject_check(object)) {
+        *color = *pyg_boxed_get(object, PyGedaColorObject);
         return 1;
     }
     else if (PyString_Check(object)) {
@@ -806,6 +806,6 @@ ColorObject_from_pyobject(PyObject *object, ColorObject *color)
         return 1;
     }
 
-    PyErr_SetString(PyExc_TypeError, "could not convert to ColorObject");
+    PyErr_SetString(PyExc_TypeError, "could not convert to PyGedaColorObject");
     return 0;
 }

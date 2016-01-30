@@ -38,24 +38,24 @@
 static PyObject* page_module;
 static PyObject* geda_module;
 
-/* ------------------------- PageObject Destructor ------------------------- */
+/* ------------------------- PyGedaPageObject Destructor ------------------------- */
 
 static void
-Page_dealloc(PageObject* self)
+Page_dealloc(PyGedaPageObject* self)
 {
   /* should we call MethodFunctions[CLOSE_METHOD].func? */
   Py_XDECREF(self->filename);
   self->ob_type->tp_free((PyObject*)self);
 }
 
-/* ------------------------- PageObject Constructor ------------------------ */
+/* ------------------------- PyGedaPageObject Constructor ------------------------ */
 
 static PyObject *
 Page_new(PyTypeObject *type, PyObject *args)
 {
-  PageObject *self;
+  PyGedaPageObject *self;
 
-  self = (PageObject *)type->tp_alloc(type, 0);
+  self = (PyGedaPageObject *)type->tp_alloc(type, 0);
 
   if (self != NULL) {
 
@@ -67,10 +67,10 @@ Page_new(PyTypeObject *type, PyObject *args)
   return (PyObject *)self;
 }
 
-/* ------------------------- PageObject Initializer ------------------------ */
+/* ------------------------- PyGedaPageObject Initializer ------------------------ */
 
 static int
-Page_init(PageObject *self, PyObject *args, PyObject *kwds)
+Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_filename = NULL;
   PyObject *tmp;
@@ -86,17 +86,17 @@ Page_init(PageObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-/* --------------------------- PageObject Members -------------------------- */
+/* --------------------------- PyGedaPageObject Members -------------------------- */
 
 static PyMemberDef Page_members[] = {
-  {"pid",      T_INT,       offsetof(PageObject, pid),      RO, "Page Identifier"},
+  {"pid",      T_INT,       offsetof(PyGedaPageObject, pid),      RO, "Page Identifier"},
   {NULL}  /* Sentinel */
 };
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *
-Page_filename(PageObject* self)
+Page_filename(PyGedaPageObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -159,23 +159,23 @@ static PyMethodDef Page_methods[] = {
   {NULL}  // Sentinel
 };
 
-/* -------------------------- PageObject GetSeters ------------------------- */
+/* -------------------------- PyGedaPageObject GetSeters ------------------------- */
 
 static PyObject *
-Page_getbounds(PageObject *self, void *closure)
+Page_getbounds(PyGedaPageObject *self, void *closure)
 {
   return PyObject_CallMethod(geda_module, "get_bounds", "O", self);
 }
 
 static PyObject *
-Page_getfilename(PageObject *self, void *closure)
+Page_getfilename(PyGedaPageObject *self, void *closure)
 {
     Py_INCREF(self->filename);
     return self->filename;
 }
 
 static int
-Page_setfilename(PageObject *self, PyObject *value, void *closure)
+Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closure)
 {
   PyObject *py_status;
   long result;
@@ -213,11 +213,11 @@ static PyGetSetDef Page_getseters[] = {
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject PageObjectType = {
+static PyTypeObject PyGedaPageObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                         /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Page",               /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PageObject),        /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaPageObject),        /* tp_basicsize,   memory to allocate for this object */
     0,                         /* tp_itemsize*/
     (destructor)Page_dealloc,  /* tp_dealloc*/
     0,                         /* tp_print*/
@@ -265,7 +265,7 @@ initPage(PyObject *module)
 {
   geda_module = module;
 
-  if ( PyType_Ready(&PageObjectType) < 0)
+  if ( PyType_Ready(&PyGedaPageObjectType) < 0)
     return;
 
   page_module = Py_InitModule3("Page", Page_methods, "Geda Page Object type.");
@@ -273,19 +273,19 @@ initPage(PyObject *module)
   if (page_module == NULL)
     return;
 
-  Py_INCREF(&PageObjectType);
-  PyModule_AddObject(page_module, "Page", (PyObject *)&PageObjectType);
+  Py_INCREF(&PyGedaPageObjectType);
+  PyModule_AddObject(page_module, "Page", (PyObject *)&PyGedaPageObjectType);
 }
 
-PyTypeObject *PageObjectClass(void)
+PyTypeObject *PyGedaPageClass(void)
 {
-  return &PageObjectType;
+  return &PyGedaPageObjectType;
 }
 /*
-PageObject *NewPageObject(void)
+PyGedaPageObject *NewPyGedaPageObject(void)
 {
-  PageObject *pypage;
-  pypage = PyObject_New(PageObject, &PageObjectType);
+  PyGedaPageObject *pypage;
+  pypage = PyObject_New(PyGedaPageObject, &PyGedaPageObjectType);
   return pypage;
 }
 */

@@ -39,18 +39,18 @@
 static PyObject* box_module;
 static PyObject* geda_module;
 
-static char BoxObject_doc[] = PyDoc_STR("Geda Box: upper_x, upper_y, lower_x, lower_y [, color]");
+static char PyGedaBoxObject_doc[] = PyDoc_STR("Geda Box: upper_x, upper_y, lower_x, lower_y [, color]");
 
-/* ------------------------- BoxObject Constructor ------------------------- */
+/* ------------------------- PyGedaBoxObject Constructor ------------------------- */
 
 static PyObject *
 Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  BoxObject *self;
+  PyGedaBoxObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_BOX_COLOR;
 
-  self = (BoxObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaBoxObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
     self->upper_x =  0;
@@ -88,10 +88,10 @@ Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- BoxObject Initializer ------------------------- */
+/* ------------------------- PyGedaBoxObject Initializer ------------------------- */
 
 static int
-Box_init(BoxObject *self, PyObject *args, PyObject *kwds)
+Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -120,13 +120,13 @@ Box_init(BoxObject *self, PyObject *args, PyObject *kwds)
   }
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 static int
-BoxObject_print(BoxObject *box, FILE *file, int flags)
+PyGedaBoxObject_print(PyGedaBoxObject *box, FILE *file, int flags)
 {
   const char *name;
 
@@ -168,34 +168,34 @@ BoxObject_print(BoxObject *box, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- BoxObject Members --------------------------- */
+/* --------------------------- PyGedaBoxObject Members --------------------------- */
 
 static PyMemberDef Box_members[] = {
-  {"upper_x",     T_INT, offsetof(BoxObject, upper_x),     0, "Box Upper Abscissa"},
-  {"upper_y",     T_INT, offsetof(BoxObject, upper_y),     0, "Box Upper Ordinate"},
-  {"lower_x",     T_INT, offsetof(BoxObject, lower_x),     0, "Box Lower Abscissa"},
-  {"lower_y",     T_INT, offsetof(BoxObject, lower_y),     0, "Box Lower Ordinate"},
+  {"upper_x",     T_INT, offsetof(PyGedaBoxObject, upper_x),     0, "Box Upper Abscissa"},
+  {"upper_y",     T_INT, offsetof(PyGedaBoxObject, upper_y),     0, "Box Upper Ordinate"},
+  {"lower_x",     T_INT, offsetof(PyGedaBoxObject, lower_x),     0, "Box Lower Abscissa"},
+  {"lower_y",     T_INT, offsetof(PyGedaBoxObject, lower_y),     0, "Box Lower Ordinate"},
 
  /* Hatching */
-  {"fill_type",   T_INT, offsetof(BoxObject, fill_type),   0, "Hatch fill type"},
-  {"fill_width",  T_INT, offsetof(BoxObject, fill_width),  0, "Hatch line width"},
-  {"fill_angle1", T_INT, offsetof(BoxObject, fill_angle1), 0, "Hatch fill angle"},
-  {"fill_pitch1", T_INT, offsetof(BoxObject, fill_pitch1), 0, "Hatch fill pitch"},
-  {"fill_angle2", T_INT, offsetof(BoxObject, fill_angle2), 0, "Mesh hatch second fill angle"},
-  {"fill_pitch2", T_INT, offsetof(BoxObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
+  {"fill_type",   T_INT, offsetof(PyGedaBoxObject, fill_type),   0, "Hatch fill type"},
+  {"fill_width",  T_INT, offsetof(PyGedaBoxObject, fill_width),  0, "Hatch line width"},
+  {"fill_angle1", T_INT, offsetof(PyGedaBoxObject, fill_angle1), 0, "Hatch fill angle"},
+  {"fill_pitch1", T_INT, offsetof(PyGedaBoxObject, fill_pitch1), 0, "Hatch fill pitch"},
+  {"fill_angle2", T_INT, offsetof(PyGedaBoxObject, fill_angle2), 0, "Mesh hatch second fill angle"},
+  {"fill_pitch2", T_INT, offsetof(PyGedaBoxObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
 
   /* Line-Type */
-  {"end_type",    T_INT, offsetof(BoxObject, line_end),    0, "Endpoint style"},
-  {"line_type",   T_INT, offsetof(BoxObject, line_type),   0, "Line type"},
-  {"line_width",  T_INT, offsetof(BoxObject, line_width),  0, "Line width"},
-  {"line_space",  T_INT, offsetof(BoxObject, line_space),  0, "Line space/gaps"},
-  {"line_length", T_INT, offsetof(BoxObject, line_length), 0, "Line dash length"},
+  {"end_type",    T_INT, offsetof(PyGedaBoxObject, line_end),    0, "Endpoint style"},
+  {"line_type",   T_INT, offsetof(PyGedaBoxObject, line_type),   0, "Line type"},
+  {"line_width",  T_INT, offsetof(PyGedaBoxObject, line_width),  0, "Line width"},
+  {"line_space",  T_INT, offsetof(PyGedaBoxObject, line_space),  0, "Line space/gaps"},
+  {"line_length", T_INT, offsetof(PyGedaBoxObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
 };
 
 static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -261,7 +261,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
     //result = PyObject_GenericSetAttr(obj, key, py_value);
   }
   return result;
@@ -269,14 +269,14 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject BoxObjectType = {
+static PyTypeObject PyGedaBoxObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                            /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Box",                   /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(BoxObject),            /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaBoxObject),            /* tp_basicsize,   memory to allocate for this object */
     0,                            /* tp_itemsize*/
     (destructor)0,                /* tp_dealloc*/
-    (printfunc)BoxObject_print,   /* tp_print*/
+    (printfunc)PyGedaBoxObject_print,   /* tp_print*/
     0,                            /* tp_getattr*/
     0,                            /* tp_setattr*/
     0,                            /* tp_compare*/
@@ -292,7 +292,7 @@ static PyTypeObject BoxObjectType = {
     0,                            /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,          /* tp_flags*/
-    BoxObject_doc,                /* tp_doc */
+    PyGedaBoxObject_doc,                /* tp_doc */
     0,                            /* tp_traverse */
     0,                            /* tp_clear */
     0,                            /* tp_richcompare */
@@ -318,9 +318,9 @@ initBox(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  BoxObjectType.tp_base = GedaObjectClass();
+  PyGedaBoxObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&BoxObjectType) < 0)
+  if ( PyType_Ready(&PyGedaBoxObjectType) < 0)
     return;
 
   box_module = Py_InitModule3("Box", NULL, "Creates a Box object type.");
@@ -328,10 +328,10 @@ initBox(PyObject *module)
   if (box_module == NULL)
     return;
 
-  Py_INCREF(&BoxObjectType);
-  PyModule_AddObject(box_module, "Box", (PyObject *)&BoxObjectType);
+  Py_INCREF(&PyGedaBoxObjectType);
+  PyModule_AddObject(box_module, "Box", (PyObject *)&PyGedaBoxObjectType);
 }
-PyTypeObject *BoxObjectClass(void)
+PyTypeObject *PyGedaBoxClass(void)
 {
-  return &BoxObjectType;
+  return &PyGedaBoxObjectType;
 }

@@ -30,41 +30,41 @@
 
 /* Note: Structures are defined in geda_py_struct.h */
 
-void initGedaObject(PyObject *module);
-PyTypeObject *GedaObjectClass(void);
+void initPyGedaObject(PyObject *module);
+PyTypeObject *PyGedaObjectClass(void);
 
 void initArc(PyObject *module);
-PyTypeObject *ArcObjectClass(void);
+PyTypeObject *PyGedaArcClass(void);
 
 void initBox(PyObject *module);
-PyTypeObject *BoxObjectClass(void);
+PyTypeObject *PyGedaBoxClass(void);
 
 void initBus(PyObject *module);
-PyTypeObject *BusObjectClass(void);
+PyTypeObject *PyGedaBusClass(void);
 
 void initCircle(PyObject *module);
-PyTypeObject *CircleObjectClass(void);
+PyTypeObject *PyGedaCircleClass(void);
 
 void initComplex(PyObject *module);
-PyTypeObject *ComplexObjectClass(void);
+PyTypeObject *PyGedaComplexClass(void);
 
 void initLine(PyObject *module);
-PyTypeObject *LineObjectClass(void);
+PyTypeObject *PyGedaLineClass(void);
 
 void initMissing(PyObject *module);
-PyTypeObject *MissingObjectClass(void);
+PyTypeObject *PyGedaMissingClass(void);
 
 void initNet(PyObject *module);
-PyTypeObject *NetObjectClass(void);
+PyTypeObject *PyGedaNetClass(void);
 
 void initPath(PyObject *module);
-PyTypeObject *PathObjectClass(void);
+PyTypeObject *PyGedaPathClass(void);
 
 void initPicture(PyObject *module);
-PyTypeObject *PictureObjectClass(void);
+PyTypeObject *PyGedaPictureClass(void);
 
 void initPin(PyObject *module);
-PyTypeObject *PinObjectClass(void);
+PyTypeObject *PyGedaPinClass(void);
 
 void initText(PyObject *module);
-PyTypeObject *TextObjectClass(void);
+PyTypeObject *PyGedaTextClass(void);

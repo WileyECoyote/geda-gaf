@@ -39,24 +39,24 @@
 static PyObject* net_module;
 static PyObject* geda_module;
 
-static char NetObject_doc[] = PyDoc_STR("Geda Net: x1, y1, x2, y2 [, net_name [, color]]");
+static char PyGedaNetObject_doc[] = PyDoc_STR("Geda Net: x1, y1, x2, y2 [, net_name [, color]]");
 
 static void
-NetObject_dealloc(NetObject* self)
+PyGedaNetObject_dealloc(PyGedaNetObject* self)
 {
   Py_XDECREF(self->net_name);
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
 static PyObject *
 Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  NetObject *self;
+  PyGedaNetObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_NET_COLOR;
 
-  self = (NetObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaNetObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -85,7 +85,7 @@ Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 static int
-Net_init(NetObject *self, PyObject *args, PyObject *kwds)
+Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name         = NULL;
@@ -113,14 +113,14 @@ Net_init(NetObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(net_name)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-NetObject_print(NetObject *net, FILE *file, int flags)
+PyGedaNetObject_print(PyGedaNetObject *net, FILE *file, int flags)
 {
   const char *name;
   const char *net_name;
@@ -149,23 +149,23 @@ NetObject_print(NetObject *net, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- NetObject Members --------------------------- */
+/* --------------------------- PyGedaNetObject Members --------------------------- */
 
 static PyMemberDef Net_members[] = {
-  {"nid",    T_INT, offsetof(NetObject,  nid),   RO, "Geda Net Node Identifier"},
-  {"x1",     T_INT, offsetof(NetObject, x[0]),    0, "Net point 1 Abscissa"},
-  {"y1",     T_INT, offsetof(NetObject, y[0]),    0, "Net point 1 Ordinate"},
-  {"x2",     T_INT, offsetof(NetObject, x[1]),    0, "Net point 2 Abscissa"},
-  {"y2",     T_INT, offsetof(NetObject, y[1]),    0, "Net point 2 Ordinate"},
+  {"nid",    T_INT, offsetof(PyGedaNetObject,  nid),   RO, "Geda Net Node Identifier"},
+  {"x1",     T_INT, offsetof(PyGedaNetObject, x[0]),    0, "Net point 1 Abscissa"},
+  {"y1",     T_INT, offsetof(PyGedaNetObject, y[0]),    0, "Net point 1 Ordinate"},
+  {"x2",     T_INT, offsetof(PyGedaNetObject, x[1]),    0, "Net point 2 Abscissa"},
+  {"y2",     T_INT, offsetof(PyGedaNetObject, y[1]),    0, "Net point 2 Ordinate"},
 
   /* Line-Type */
-  {"line_width",  T_INT, offsetof(NetObject, line_width),  0, "Line width"},
+  {"line_width",  T_INT, offsetof(PyGedaNetObject, line_width),  0, "Line width"},
   {NULL}  /* Sentinel */
 };
 
 static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -238,21 +238,21 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
 static PyObject *
-Net_get_netname(NetObject *self, void *closure)
+Net_get_netname(PyGedaNetObject *self, void *closure)
 {
   Py_INCREF(self->net_name);
   return self->net_name;
 }
 
 static int
-Net_set_netname(NetObject *self, PyObject *value, void *closure)
+Net_set_netname(PyGedaNetObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the bus name attribute");
@@ -286,14 +286,14 @@ static PyGetSetDef Net_getseters[] = {
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject NetObjectType = {
+static PyTypeObject PyGedaNetObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Net",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(NetObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaNetObject),              /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
-    (destructor)NetObject_dealloc,  /* tp_dealloc*/
-    (printfunc)NetObject_print,     /* tp_print*/
+    (destructor)PyGedaNetObject_dealloc,  /* tp_dealloc*/
+    (printfunc)PyGedaNetObject_print,     /* tp_print*/
     0,                              /* tp_getattr*/
     0,                              /* tp_setattr*/
     0,                              /* tp_compare*/
@@ -309,7 +309,7 @@ static PyTypeObject NetObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    NetObject_doc,                  /* tp_doc */
+    PyGedaNetObject_doc,                  /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -335,9 +335,9 @@ initNet(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  NetObjectType.tp_base = GedaObjectClass();
+  PyGedaNetObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&NetObjectType) < 0)
+  if ( PyType_Ready(&PyGedaNetObjectType) < 0)
     return;
 
   net_module = Py_InitModule3("Net", NULL, "Creates a Net object type.");
@@ -345,10 +345,10 @@ initNet(PyObject *module)
   if (net_module == NULL)
     return;
 
-  Py_INCREF(&NetObjectType);
-  PyModule_AddObject(net_module, "Net", (PyObject *)&NetObjectType);
+  Py_INCREF(&PyGedaNetObjectType);
+  PyModule_AddObject(net_module, "Net", (PyObject *)&PyGedaNetObjectType);
 }
-PyTypeObject *NetObjectClass(void)
+PyTypeObject *PyGedaNetClass(void)
 {
-  return &NetObjectType;
+  return &PyGedaNetObjectType;
 }

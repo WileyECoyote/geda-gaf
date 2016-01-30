@@ -35,9 +35,9 @@
 #include "geda_capsule.h"
 
 int
-PyGeda_update_arc(Object *object, GedaObject *py_object )
+PyGeda_update_arc(GedaObject *object, PyGedaObject *py_object )
 {
-  ArcObject *py_arc          = (ArcObject*)py_object;
+  PyGedaArcObject *py_arc    = (PyGedaArcObject*)py_object;
   object->arc->x             = py_arc->x;
   object->arc->y             = py_arc->y;
   object->arc->width         = py_arc->radius * 2;
@@ -62,9 +62,9 @@ PyGeda_update_arc(Object *object, GedaObject *py_object )
 }
 
 int
-PyGeda_update_box(Object *object, GedaObject *py_object )
+PyGeda_update_box(GedaObject *object, PyGedaObject *py_object )
 {
-  BoxObject *py_box          = (BoxObject*)py_object;
+  PyGedaBoxObject *py_box          = (PyGedaBoxObject*)py_object;
   object->box->upper_x       = py_box->upper_x;
   object->box->upper_y       = py_box->upper_y;
   object->box->lower_x       = py_box->lower_x;
@@ -85,9 +85,9 @@ PyGeda_update_box(Object *object, GedaObject *py_object )
   return 1;
 }
 int
-PyGeda_update_bus(Object *object, GedaObject *py_object )
+PyGeda_update_bus(GedaObject *object, PyGedaObject *py_object )
 {
-  BusObject *py_bus          = (BusObject*)py_object;
+  PyGedaBusObject *py_bus          = (PyGedaBusObject*)py_object;
   object->line->x[0]         = py_bus->x[0];
   object->line->y[0]         = py_bus->y[0];
   object->line->x[1]         = py_bus->x[1];
@@ -98,9 +98,9 @@ PyGeda_update_bus(Object *object, GedaObject *py_object )
   return 1;
 }
 int
-PyGeda_update_circle(Object *object, GedaObject *py_object )
+PyGeda_update_circle(GedaObject *object, PyGedaObject *py_object )
 {
-  CircleObject *py_circle    = (CircleObject*)py_object;
+  PyGedaCircleObject *py_circle    = (PyGedaCircleObject*)py_object;
   object->circle->center_x   = py_circle->center_x;
   object->circle->center_y   = py_circle->center_y;
   object->circle->radius     = py_circle->radius;
@@ -122,9 +122,10 @@ PyGeda_update_circle(Object *object, GedaObject *py_object )
 }
 
 int
-PyGeda_update_complex(Object *object, GedaObject *py_object )
+PyGeda_update_complex(GedaObject *object, PyGedaObject *py_object )
 {
-  ComplexObject *py_complex    = (ComplexObject*)py_object;
+  PyGedaComplexObject *py_complex = (PyGedaComplexObject*)py_object;
+
   object->complex->is_embedded = py_complex->embedded;
   object->complex->x           = py_complex->x;
   object->complex->y           = py_complex->y;
@@ -134,9 +135,10 @@ PyGeda_update_complex(Object *object, GedaObject *py_object )
 }
 
 int
-PyGeda_update_line(Object *object, GedaObject *py_object )
+PyGeda_update_line(GedaObject *object, PyGedaObject *py_object )
 {
-  LineObject *py_line        = (LineObject*)py_object;
+  PyGedaLineObject *py_line  = (PyGedaLineObject*)py_object;
+
   object->line->x[0]         = py_line->x[0];
   object->line->y[0]         = py_line->y[0];
   object->line->x[1]         = py_line->x[1];
@@ -150,9 +152,10 @@ PyGeda_update_line(Object *object, GedaObject *py_object )
   return 1;
 }
 int
-PyGeda_update_net(Object *object, GedaObject *py_object )
+PyGeda_update_net(GedaObject *object, PyGedaObject *py_object )
 {
-  NetObject *py_net          = (NetObject*)py_object;
+  PyGedaNetObject *py_net    = (PyGedaNetObject*)py_object;
+
   object->line->x[0]         = py_net->x[0];
   object->line->y[0]         = py_net->y[0];
   object->line->x[1]         = py_net->x[1];
@@ -162,9 +165,9 @@ PyGeda_update_net(Object *object, GedaObject *py_object )
   return 1;
 }
 int
-PyGeda_update_path(Object *object, GedaObject *py_object )
+PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
 {
-  PathObject *py_path              = (PathObject*)py_object;
+  PyGedaPathObject *py_path = (PyGedaPathObject*)py_object;
   const char *str;
 
   if (py_path->dirty_string) {
@@ -186,9 +189,10 @@ PyGeda_update_path(Object *object, GedaObject *py_object )
   return 1;
 }
 int
-PyGeda_update_picture(Object *object, GedaObject *py_object )
+PyGeda_update_picture(GedaObject *object, PyGedaObject *py_object )
 {
-  PictureObject *py_picture        = (PictureObject*)py_object;
+  PyGedaPictureObject *py_picture  = (PyGedaPictureObject*)py_object;
+
   object->picture->angle           = py_picture->angle;
   object->picture->upper_x         = py_picture->upper_x;
   object->picture->upper_y         = py_picture->upper_y;
@@ -198,10 +202,10 @@ PyGeda_update_picture(Object *object, GedaObject *py_object )
 }
 
 int
-PyGeda_update_pin(Object *object, GedaObject *py_object )
+PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
 {
   const char* str;
-  PinObject *py_pin                = (PinObject*)py_object;
+  PyGedaPinObject *py_pin          = (PyGedaPinObject*)py_object;
 
   if (py_pin->dirty_electrical) {
     str = PyString_AsString(py_pin->electrical);
@@ -227,8 +231,6 @@ PyGeda_update_pin(Object *object, GedaObject *py_object )
     py_pin->dirty_mechanical = 0;
   }
 
-
-
   object->pin->sequence            = py_pin->sequence;
   object->pin->whichend            = py_pin->whichend;   /* either 0 or 1 */
   object->pin->node_type           = py_pin->node_type;  /* either NET or BUS */;
@@ -244,10 +246,10 @@ PyGeda_update_pin(Object *object, GedaObject *py_object )
 }
 
 int
-PyGeda_update_text(Object *object, GedaObject *py_object )
+PyGeda_update_text(GedaObject *object, PyGedaObject *py_object )
 {
   const char* str;
-  TextObject *py_text              = (TextObject*)py_object;
+  PyGedaTextObject *py_text        = (PyGedaTextObject*)py_object;
 
   object->text->x                  = py_text->x;
   object->text->y                  = py_text->y;
@@ -271,7 +273,7 @@ PyGeda_update_text(Object *object, GedaObject *py_object )
  * object. This allows the python object to be modified before the
  * object is committed to a page */
 int
-PyGeda_update_object(Object *object, GedaObject *py_object )
+PyGeda_update_object(GedaObject *object, PyGedaObject *py_object )
 {
   if (GEDA_IS_OBJECT(object)) {
 
@@ -315,18 +317,18 @@ PyGeda_update_object(Object *object, GedaObject *py_object )
 
 /* ----------------------*   Attributes   *---------------------- */
 static int
-PyGeda_update_net_butes(Object *object, GedaObject *py_object )
+PyGeda_update_net_butes(GedaObject *object, PyGedaObject *py_object )
 {
-  //NetObject *py_net          = (NetObject*)py_object;
+  //PyGedaNetObject *py_net          = (PyGedaNetObject*)py_object;
   return 1;
 }
 static int
-PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
+PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
 {
-  //PinObject *py_pin           = (PinObject*)py_object;
-  Object    *attrib;
-  char      *value;
-  int        number;
+  //PyGedaPinObject *py_pin           = (PyGedaPinObject*)py_object;
+  GedaObject *attrib;
+  char       *value;
+  int         number;
 
   inline bool is_number(char *str) {
     char *ptr = str;
@@ -352,6 +354,7 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   }
 
   attrib = o_attrib_first_attrib_by_name (object, "pinseq");
+
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
@@ -365,6 +368,7 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   }
 
   attrib = o_attrib_first_attrib_by_name (object, "pinlabel");
+
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
@@ -377,6 +381,7 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   }
 
   attrib = o_attrib_first_attrib_by_name (object, "pintype");
+
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
@@ -389,6 +394,7 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   }
 
   attrib = o_attrib_first_attrib_by_name (object, "mechtype");
+
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
@@ -401,12 +407,13 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   }
   return 1;
 }
+
 static int
-PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
+PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
 {
-  Object *o_attrib;
-  GList  *butes = NULL;
-  int     count = 0;
+  GedaObject *o_attrib;
+  GList      *butes = NULL;
+  int         count = 0;
 
   if ( PyList_Check(py_object->attributes)) {
     int i, count;
@@ -415,8 +422,11 @@ PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
     for (i = 0; i < count ; i++)
     {
       GedaCapsule *capsule  = (GedaCapsule*)PyList_GET_ITEM(py_object->attributes, i);
+
       if (GEDA_IS_TEXT(capsule->object)) {
-        Object *attrib = capsule->object;
+
+        GedaObject *attrib = capsule->object;
+
         butes  = g_list_append(butes, attrib);
 
 #if DEBUG
@@ -435,7 +445,7 @@ PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
   }
 
   while (butes != NULL) {
-    o_attrib = (Object *)butes->data;
+    o_attrib = (GedaObject*)butes->data;
     o_text_recreate  (o_attrib);
     NEXT (butes);
   }; /* wend*/
@@ -443,13 +453,13 @@ PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
   return 1;
 }
 static int
-PyGeda_update_bus_butes(Object *object, GedaObject *py_object )
+PyGeda_update_bus_butes(GedaObject *object, PyGedaObject *py_object )
 {
-  //BusObject *py_bus          = (BusObject*)py_object;
+  //PyGedaBusObject *py_bus          = (PyGedaBusObject*)py_object;
   return 1;
 }
 int
-PyGeda_update_butes(Object *object, GedaObject *py_object )
+PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object )
 {
   if (PyGeda_update_object(object, py_object)) {
     switch(object->type) {

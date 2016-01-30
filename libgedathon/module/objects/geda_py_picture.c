@@ -39,28 +39,28 @@
 static PyObject* picture_module;
 static PyObject* geda_module;
 
-static char PictureObject_doc[] = PyDoc_STR("Geda Picture: filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]]");
+static char PyGedaPictureObject_doc[] = PyDoc_STR("Geda Picture: filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]]");
 
-/* ----------------------- PictureObject Destructor ------------------------ */
+/* ----------------------- PyGedaPictureObject Destructor ------------------------ */
 
 static void
-PictureObject_dealloc(PictureObject* self)
+PyGedaPictureObject_dealloc(PyGedaPictureObject* self)
 {
   Py_XDECREF(self->filename);
   Py_XDECREF(self->pixel_buffer);
 
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ----------------------- PictureObject Constructor ----------------------- */
+/* ----------------------- PyGedaPictureObject Constructor ----------------------- */
 
 static PyObject *
 Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  PictureObject *self;
+  PyGedaPictureObject *self;
 
-  self = (PictureObject *)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaPictureObject *)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -81,10 +81,10 @@ Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ----------------------- PictureObject Initializer ----------------------- */
+/* ----------------------- PyGedaPictureObject Initializer ----------------------- */
 
 static int
-Picture_init(PictureObject *self, PyObject *args, PyObject *kwds)
+Picture_init(PyGedaPictureObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name          = NULL;
@@ -119,14 +119,14 @@ Picture_init(PictureObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(pixel_buffer)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-PictureObject_print(PictureObject *picture, FILE *file, int flags)
+PyGedaPictureObject_print(PyGedaPictureObject *picture, FILE *file, int flags)
 {
   const char *name;
   const char *filename;
@@ -151,21 +151,21 @@ PictureObject_print(PictureObject *picture, FILE *file, int flags)
 }
 
 static PyMemberDef Picture_members[] = {
-  {"embedded",    T_BOOL,   offsetof(PictureObject, embedded),    RO, "Picture embedded"},
-  {"file_length", T_UINT,   offsetof(PictureObject, file_length), RO, "Picture file length"},
-  {"ratio",       T_DOUBLE, offsetof(PictureObject, ratio),       RO, "Picture ratio"},
-  {"angle",       T_INT,    offsetof(PictureObject, angle),        0, "Picture angle"},
-  {"mirror",      T_BOOL,   offsetof(PictureObject, mirror),       0, "Picture mirror"},
-  {"upper_x",     T_INT,    offsetof(PictureObject, upper_x),      0, "Picture Upper Abscissa"},
-  {"upper_y",     T_INT,    offsetof(PictureObject, upper_y),      0, "Picture Upper Ordinate"},
-  {"lower_x",     T_INT,    offsetof(PictureObject, lower_x),      0, "Picture Lower Abscissa"},
-  {"lower_y",     T_INT,    offsetof(PictureObject, lower_y),      0, "Picture Lower Ordinate"},
+  {"embedded",    T_BOOL,   offsetof(PyGedaPictureObject, embedded),    RO, "Picture embedded"},
+  {"file_length", T_UINT,   offsetof(PyGedaPictureObject, file_length), RO, "Picture file length"},
+  {"ratio",       T_DOUBLE, offsetof(PyGedaPictureObject, ratio),       RO, "Picture ratio"},
+  {"angle",       T_INT,    offsetof(PyGedaPictureObject, angle),        0, "Picture angle"},
+  {"mirror",      T_BOOL,   offsetof(PyGedaPictureObject, mirror),       0, "Picture mirror"},
+  {"upper_x",     T_INT,    offsetof(PyGedaPictureObject, upper_x),      0, "Picture Upper Abscissa"},
+  {"upper_y",     T_INT,    offsetof(PyGedaPictureObject, upper_y),      0, "Picture Upper Ordinate"},
+  {"lower_x",     T_INT,    offsetof(PyGedaPictureObject, lower_x),      0, "Picture Lower Abscissa"},
+  {"lower_y",     T_INT,    offsetof(PyGedaPictureObject, lower_y),      0, "Picture Lower Ordinate"},
   {NULL}  /* Sentinel */
 };
 
 static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -247,7 +247,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -255,7 +255,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *
-PictureObject_filename(PictureObject* self)
+PyGedaPictureObject_filename(PyGedaPictureObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -277,21 +277,21 @@ PictureObject_filename(PictureObject* self)
 }
 
 static PyMethodDef Picture_methods[] = {
-  {"filename", (PyCFunction)PictureObject_filename, METH_NOARGS,  "object_name_docs"},
+  {"filename", (PyCFunction)PyGedaPictureObject_filename, METH_NOARGS,  "object_name_docs"},
   /* reload? */
   {NULL, NULL, 0, NULL}
 };
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject PictureObjectType = {
+static PyTypeObject PyGedaPictureObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                                 /* ob_size,       not used, historical artifact for backward compatibility */
     "geda.Picture",                    /* tp_name,       default textual representation our objects, used in some error messages*/
-    sizeof(PictureObject),             /* tp_basicsize,  memory to allocate for this object */
+    sizeof(PyGedaPictureObject),             /* tp_basicsize,  memory to allocate for this object */
     0,                                 /* tp_itemsize*/
-    (destructor)PictureObject_dealloc, /* tp_dealloc*/
-    (printfunc)PictureObject_print,    /* tp_print*/
+    (destructor)PyGedaPictureObject_dealloc, /* tp_dealloc*/
+    (printfunc)PyGedaPictureObject_print,    /* tp_print*/
     0,                                 /* tp_getattr*/
     0,                                 /* tp_setattr*/
     0,                                 /* tp_compare*/
@@ -307,7 +307,7 @@ static PyTypeObject PictureObjectType = {
     0,                                 /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,               /* tp_flags*/
-    PictureObject_doc,                 /* tp_doc */
+    PyGedaPictureObject_doc,                 /* tp_doc */
     0,                                 /* tp_traverse */
     0,                                 /* tp_clear */
     0,                                 /* tp_richcompare */
@@ -333,9 +333,9 @@ initPicture(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  PictureObjectType.tp_base = GedaObjectClass();
+  PyGedaPictureObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PictureObjectType) < 0)
+  if ( PyType_Ready(&PyGedaPictureObjectType) < 0)
     return;
 
   picture_module = Py_InitModule3("Picture", NULL, "Creates a Picture object type.");
@@ -343,10 +343,10 @@ initPicture(PyObject *module)
   if (picture_module == NULL)
     return;
 
-  Py_INCREF(&PictureObjectType);
-  PyModule_AddObject(picture_module, "Picture", (PyObject *)&PictureObjectType);
+  Py_INCREF(&PyGedaPictureObjectType);
+  PyModule_AddObject(picture_module, "Picture", (PyObject *)&PyGedaPictureObjectType);
 }
-PyTypeObject *PictureObjectClass(void)
+PyTypeObject *PyGedaPictureClass(void)
 {
-  return &PictureObjectType;
+  return &PyGedaPictureObjectType;
 }

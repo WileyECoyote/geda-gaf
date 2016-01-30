@@ -39,28 +39,28 @@
 static PyObject* bus_module;
 static PyObject* geda_module;
 
-static char BusObject_doc[] = PyDoc_STR("Geda Bus: x1, y1, x2, y2 [, color]");
+static char PyGedaBusObject_doc[] = PyDoc_STR("Geda Bus: x1, y1, x2, y2 [, color]");
 
-/* ------------------------- BusObject Destructor -------------------------- */
+/* ------------------------- PyGedaBusObject Destructor -------------------------- */
 
 static void
-BusObject_dealloc(BusObject* self)
+PyGedaBusObject_dealloc(PyGedaBusObject* self)
 {
   Py_XDECREF(self->bus_name);
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- BusObject Constructor ------------------------- */
+/* ------------------------- PyGedaBusObject Constructor ------------------------- */
 
 static PyObject *
 Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  BusObject *self;
+  PyGedaBusObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_BUS_COLOR;
 
-  self = (BusObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaBusObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -89,10 +89,10 @@ Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- BusObject Initializer ------------------------- */
+/* ------------------------- PyGedaBusObject Initializer ------------------------- */
 
 static int
-Bus_init(BusObject *self, PyObject *args, PyObject *kwds)
+Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name      = NULL;
@@ -119,14 +119,14 @@ Bus_init(BusObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(bus_name)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-BusObject_print(BusObject *bus, FILE *file, int flags)
+PyGedaBusObject_print(PyGedaBusObject *bus, FILE *file, int flags)
 {
   const char *name;
   const char *bus_name;
@@ -155,24 +155,24 @@ BusObject_print(BusObject *bus, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- BusObject Members --------------------------- */
+/* --------------------------- PyGedaBusObject Members --------------------------- */
 
 static PyMemberDef Bus_members[] = {
-  {"x1",     T_INT, offsetof(BusObject, x[0]),     0, "Bus point 1 Abscissa"},
-  {"y1",     T_INT, offsetof(BusObject, y[0]),     0, "Bus point 1 Ordinate"},
-  {"x2",     T_INT, offsetof(BusObject, x[1]),     0, "Bus point 2 Abscissa"},
-  {"y2",     T_INT, offsetof(BusObject, y[1]),     0, "Bus point 2 Ordinate"},
+  {"x1",     T_INT, offsetof(PyGedaBusObject, x[0]),     0, "Bus point 1 Abscissa"},
+  {"y1",     T_INT, offsetof(PyGedaBusObject, y[0]),     0, "Bus point 1 Ordinate"},
+  {"x2",     T_INT, offsetof(PyGedaBusObject, x[1]),     0, "Bus point 2 Abscissa"},
+  {"y2",     T_INT, offsetof(PyGedaBusObject, y[1]),     0, "Bus point 2 Ordinate"},
 
-  {"direction",   T_INT, offsetof(BusObject, direction),   0, "Bus ripper direction"},
+  {"direction",   T_INT, offsetof(PyGedaBusObject, direction),   0, "Bus ripper direction"},
 
   /* Line-Type */
-  {"line_width",  T_INT, offsetof(BusObject, line_width),  0, "Line width"},
+  {"line_width",  T_INT, offsetof(PyGedaBusObject, line_width),  0, "Line width"},
   {NULL}  /* Sentinel */
 };
 
 static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -238,21 +238,21 @@ static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
 static PyObject *
-Bus_get_busname(BusObject *self, void *closure)
+Bus_get_busname(PyGedaBusObject *self, void *closure)
 {
   Py_INCREF(self->bus_name);
   return self->bus_name;
 }
 
 static int
-Bus_set_busname(BusObject *self, PyObject *value, void *closure)
+Bus_set_busname(PyGedaBusObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the bus name attribute");
@@ -285,14 +285,14 @@ static PyGetSetDef Bus_getseters[] = {
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject BusObjectType = {
+static PyTypeObject PyGedaBusObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Bus",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(BusObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaBusObject),              /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize */
-    (destructor)BusObject_dealloc,  /* tp_dealloc */
-    (printfunc)BusObject_print,     /* tp_print */
+    (destructor)PyGedaBusObject_dealloc,  /* tp_dealloc */
+    (printfunc)PyGedaBusObject_print,     /* tp_print */
     0,                              /* tp_getattr */
     0,                              /* tp_setattr */
     0,                              /* tp_compare */
@@ -308,7 +308,7 @@ static PyTypeObject BusObjectType = {
     0,                              /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags */
-    BusObject_doc,                  /* tp_doc */
+    PyGedaBusObject_doc,                  /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -334,9 +334,9 @@ initBus(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  BusObjectType.tp_base = GedaObjectClass();
+  PyGedaBusObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&BusObjectType) < 0)
+  if ( PyType_Ready(&PyGedaBusObjectType) < 0)
     return;
 
   bus_module = Py_InitModule3("Bus", NULL, "Creates a Bus object type.");
@@ -344,10 +344,10 @@ initBus(PyObject *module)
   if (bus_module == NULL)
     return;
 
-  Py_INCREF(&BusObjectType);
-  PyModule_AddObject(bus_module, "Bus", (PyObject *)&BusObjectType);
+  Py_INCREF(&PyGedaBusObjectType);
+  PyModule_AddObject(bus_module, "Bus", (PyObject *)&PyGedaBusObjectType);
 }
-PyTypeObject *BusObjectClass(void)
+PyTypeObject *PyGedaBusClass(void)
 {
-  return &BusObjectType;
+  return &PyGedaBusObjectType;
 }

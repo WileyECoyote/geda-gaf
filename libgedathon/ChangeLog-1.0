@@ -1,3 +1,18 @@
+2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_py_struct.h: Prefix all gEDA object, including PagesObject
+      and ColorObject with "PyGeda" to avoid conflict with non-Python objects.
+
+    * include/geda_py_object.h: Prefix all gEDA object classes with "Py" and
+      remove "Object", except for PyGedaObjectClass.
+
+    * include/geda_py_page.h: Rename PyPageObjectClass->PyGedaPageClass.
+
+    * Updated objects names/types per above revisions in source files:
+
+          * module/*.c
+          * src/*.c
+
 2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/run_tests.sh: Add function do_remove_scripts and DISTVBUILD as

@@ -39,28 +39,28 @@
 static PyObject* complex_module;
 static PyObject* geda_module;
 
-static char ComplexObject_doc[] = PyDoc_STR("Geda Complex: x, y [, angle [, color]");
+static char PyGedaComplexObject_doc[] = PyDoc_STR("Geda Complex: x, y [, angle [, color]");
 
-/* ----------------------- ComplexObject Destructor ------------------------ */
+/* ----------------------- PyGedaComplexObject Destructor ------------------------ */
 
 static void
-ComplexObject_dealloc(ComplexObject* self)
+PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
 {
   Py_XDECREF(self->filename);
   Py_XDECREF(self->pin_objs);
   Py_XDECREF(self->prim_objs);
   /* Don't dealloc self, the base class will do that */
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ----------------------- ComplexObject Constructor ----------------------- */
+/* ----------------------- PyGedaComplexObject Constructor ----------------------- */
 
 static PyObject *
 Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  ComplexObject *self;
+  PyGedaComplexObject *self;
 
-  self = (ComplexObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaComplexObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -80,10 +80,10 @@ Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ----------------------- ComplexObject Initializer ----------------------- */
+/* ----------------------- PyGedaComplexObject Initializer ----------------------- */
 
 static int
-Complex_init(ComplexObject *self, PyObject *args, PyObject *kwds)
+Complex_init(PyGedaComplexObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name       = NULL;
@@ -119,11 +119,11 @@ Complex_init(ComplexObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(prim_objs)
 
   py_base_params = Py_BuildValue("SiiiiO", py_name, type, pid, sid, locked, py_attributes);
-  return GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL);
+  return PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL);
 }
 
 static int
-ComplexObject_print(ComplexObject *complex, FILE *file, int flags)
+PyGedaComplexObject_print(PyGedaComplexObject *complex, FILE *file, int flags)
 {
   const char *name;
   const char *filename;
@@ -142,20 +142,20 @@ ComplexObject_print(ComplexObject *complex, FILE *file, int flags)
   return 0;
 }
 
-/* ------------------------- ComplexObject Members ------------------------- */
+/* ------------------------- PyGedaComplexObject Members ------------------------- */
 
 static PyMemberDef Complex_members[] = {
-  {"x",        T_INT,  offsetof(ComplexObject, x),          0, "Abscissa of Complex object"},
-  {"y",        T_INT,  offsetof(ComplexObject, y),          0, "Ordinate of Complex object"},
-  {"angle",    T_INT,  offsetof(ComplexObject, angle),      0, "Angle of Complex object"},
-  {"embedded", T_BOOL, offsetof(ComplexObject, embedded),   0, "Embedded Complex object"},
-  {"mirror",   T_BOOL, offsetof(ComplexObject, mirror),     0, "Complex object is mirrored"},
+  {"x",        T_INT,  offsetof(PyGedaComplexObject, x),          0, "Abscissa of Complex object"},
+  {"y",        T_INT,  offsetof(PyGedaComplexObject, y),          0, "Ordinate of Complex object"},
+  {"angle",    T_INT,  offsetof(PyGedaComplexObject, angle),      0, "Angle of Complex object"},
+  {"embedded", T_BOOL, offsetof(PyGedaComplexObject, embedded),   0, "Embedded Complex object"},
+  {"mirror",   T_BOOL, offsetof(PyGedaComplexObject, mirror),     0, "Complex object is mirrored"},
   {NULL}  /* Sentinel */
 };
 
 static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -229,7 +229,7 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
 
   return result;
@@ -238,14 +238,14 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------ Begin Getters and Setters ---------------------- */
 
 static PyObject *
-Complex_get_filename(ComplexObject *self, void *closure)
+Complex_get_filename(PyGedaComplexObject *self, void *closure)
 {
   Py_INCREF(self->filename);
   return self->filename;
 }
 
 static int
-Complex_set_filename(ComplexObject *self, PyObject *value, void *closure)
+Complex_set_filename(PyGedaComplexObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the filename attribute");
@@ -277,26 +277,26 @@ static PyGetSetDef Complex_getseters[] = {
 
 /* ------------------------------ Begin Methods ---------------------------- */
 static PyObject *
-ComplexObject_reload(ComplexObject* self)
+PyGedaComplexObject_reload(PyGedaComplexObject* self)
 {
   return 0;
 }
 
 static PyMethodDef Complex_methods[] = {
-  {"reload", (PyCFunction)ComplexObject_reload, METH_NOARGS,  "object_reload_docs"},
+  {"reload", (PyCFunction)PyGedaComplexObject_reload, METH_NOARGS,  "object_reload_docs"},
   {NULL, NULL, 0, NULL}
 };
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject ComplexObjectType = {
+static PyTypeObject PyGedaComplexObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                                  /*ob_size,        not used, historical artifact for backward compatibility */
     "geda.Complex",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(ComplexObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaComplexObject),              /* tp_basicsize,   memory to allocate for this object */
     0,                                  /* tp_itemsize*/
-    (destructor)ComplexObject_dealloc,  /* tp_dealloc*/
-    (printfunc)ComplexObject_print,     /* tp_print*/
+    (destructor)PyGedaComplexObject_dealloc,  /* tp_dealloc*/
+    (printfunc)PyGedaComplexObject_print,     /* tp_print*/
     0,                                  /* tp_getattr*/
     0,                                  /* tp_setattr*/
     0,                                  /* tp_compare*/
@@ -312,7 +312,7 @@ static PyTypeObject ComplexObjectType = {
     0,                                  /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,                /* tp_flags*/
-    ComplexObject_doc,                  /* tp_doc */
+    PyGedaComplexObject_doc,                  /* tp_doc */
     0,                                  /* tp_traverse */
     0,                                  /* tp_clear */
     0,                                  /* tp_richcompare */
@@ -338,9 +338,9 @@ initComplex(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  ComplexObjectType.tp_base = GedaObjectClass();
+  PyGedaComplexObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&ComplexObjectType) < 0)
+  if ( PyType_Ready(&PyGedaComplexObjectType) < 0)
     return;
 
   complex_module = Py_InitModule3("Complex", NULL, "Creates a Complex object type.");
@@ -348,10 +348,10 @@ initComplex(PyObject *module)
   if (complex_module == NULL)
     return;
 
-  Py_INCREF(&ComplexObjectType);
-  PyModule_AddObject(complex_module, "Complex", (PyObject *)&ComplexObjectType);
+  Py_INCREF(&PyGedaComplexObjectType);
+  PyModule_AddObject(complex_module, "Complex", (PyObject *)&PyGedaComplexObjectType);
 }
-PyTypeObject *ComplexObjectClass(void)
+PyTypeObject *PyGedaComplexClass(void)
 {
-  return &ComplexObjectType;
+  return &PyGedaComplexObjectType;
 }

@@ -42,11 +42,11 @@
 static PyObject* text_module;
 static PyObject* geda_module;
 
-static char TextObject_doc[] = PyDoc_STR("Geda Text: string, x, y, [, size [, align [, angle]]]");
+static char PyGedaTextObject_doc[] = PyDoc_STR("Geda Text: string, x, y, [, size [, align [, angle]]]");
 
-/* ------------------- Begin TextObject Utility Functions ------------------ */
+/* ------------------- Begin PyGedaTextObject Utility Functions ------------------ */
 
-static void update_disp_string (TextObject* self)
+static void update_disp_string (PyGedaTextObject* self)
 {
   PyObject *py_disp_string = NULL;
   PyObject *tmp;
@@ -88,26 +88,26 @@ static void update_disp_string (TextObject* self)
   SWAP_PY_TMP_OBJECT(disp_string);
 }
 
-/* ------------------------- TextObject Destructor ------------------------- */
+/* ------------------------- PyGedaTextObject Destructor ------------------------- */
 
 static void
-TextObject_dealloc(TextObject* self)
+PyGedaTextObject_dealloc(PyGedaTextObject* self)
 {
   Py_XDECREF(self->string);
   Py_XDECREF(self->disp_string);
   /* Don't dealloc self, the base class will do that */;
-  (GedaObjectClass())->tp_dealloc((PyObject*)self);
+  (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- TextObject Constructor ------------------------ */
+/* ------------------------- PyGedaTextObject Constructor ------------------------ */
 static PyObject *
 Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  TextObject *self;
+  PyGedaTextObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_TEXT_COLOR;
 
-  self = (TextObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaTextObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
 
@@ -139,9 +139,9 @@ Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- TextObject Initializer ------------------------ */
+/* ------------------------- PyGedaTextObject Initializer ------------------------ */
 static int
-Text_init(TextObject *self, PyObject *args, PyObject *kwds)
+Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name        = NULL;
@@ -174,14 +174,14 @@ Text_init(TextObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(disp_string)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-TextObject_print(TextObject *text, FILE *file, int flags)
+PyGedaTextObject_print(PyGedaTextObject *text, FILE *file, int flags)
 {
   const char *name;
   const char *string;
@@ -212,22 +212,22 @@ TextObject_print(TextObject *text, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- TextObject Members -------------------------- */
+/* --------------------------- PyGedaTextObject Members -------------------------- */
 
 static PyMemberDef Text_members[] = {
-  {"cid",         T_INT, offsetof(TextObject, cid),      RO, "Text Complex Identifier"},
-  {"x",           T_INT, offsetof(TextObject, x),         0, "Abscissa of Text insertion point"},
-  {"y",           T_INT, offsetof(TextObject, y),         0, "Ordinate of Text insertion point"},
-  {"size",        T_INT, offsetof(TextObject, size),      0, "Font Size"},
-  {"alignment",   T_INT, offsetof(TextObject, alignment), 0, "Text Justification Code"},
-  {"angle",       T_INT, offsetof(TextObject, angle),     0, "Text orientation"},
-  {"visible",     T_INT, offsetof(TextObject, visible),   0, "Text visibility flag"},
+  {"cid",         T_INT, offsetof(PyGedaTextObject, cid),      RO, "Text Complex Identifier"},
+  {"x",           T_INT, offsetof(PyGedaTextObject, x),         0, "Abscissa of Text insertion point"},
+  {"y",           T_INT, offsetof(PyGedaTextObject, y),         0, "Ordinate of Text insertion point"},
+  {"size",        T_INT, offsetof(PyGedaTextObject, size),      0, "Font Size"},
+  {"alignment",   T_INT, offsetof(PyGedaTextObject, alignment), 0, "Text Justification Code"},
+  {"angle",       T_INT, offsetof(PyGedaTextObject, angle),     0, "Text orientation"},
+  {"visible",     T_INT, offsetof(PyGedaTextObject, visible),   0, "Text visibility flag"},
   {NULL}  /* Sentinel */
 };
 
 static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -301,7 +301,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   else {
 
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -309,7 +309,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* ------------------------ Begin Getters and Setters ---------------------- */
 
 static int
-TextObject_set_text(TextObject *self, PyObject *value, void *closure)
+PyGedaTextObject_set_text(PyGedaTextObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the string attribute");
@@ -336,14 +336,14 @@ TextObject_set_text(TextObject *self, PyObject *value, void *closure)
 }
 
 static PyObject *
-TextObject_get_text(TextObject *self, void *closure)
+PyGedaTextObject_get_text(PyGedaTextObject *self, void *closure)
 {
   Py_INCREF(self->string);
   return self->string;
 }
 
 static int
-TextObject_set_show(TextObject *self, PyObject *value, void *closure)
+PyGedaTextObject_set_show(PyGedaTextObject *self, PyObject *value, void *closure)
 {
   long long_val;
   int  new_show;
@@ -381,28 +381,28 @@ TextObject_set_show(TextObject *self, PyObject *value, void *closure)
 }
 
 static PyObject *
-TextObject_get_show(TextObject *self, void *closure)
+PyGedaTextObject_get_show(PyGedaTextObject *self, void *closure)
 {
   return Py_BuildValue("i", self->show);
 }
 
 static PyGetSetDef Text_getseters[] = {
-  {"string",  (getter)TextObject_get_text, (setter)TextObject_set_text, "text_string_docs", NULL},
-  {"show",    (getter)TextObject_get_show, (setter)TextObject_set_show, "name value flag", NULL},
+  {"string",  (getter)PyGedaTextObject_get_text, (setter)PyGedaTextObject_set_text, "text_string_docs", NULL},
+  {"show",    (getter)PyGedaTextObject_get_show, (setter)PyGedaTextObject_set_show, "name value flag", NULL},
   {NULL}  /* Sentinel */
 };
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *
-TextObject_disp_string(TextObject* self)
+PyGedaTextObject_disp_string(PyGedaTextObject* self)
 {
   Py_INCREF(self->disp_string);
   return self->disp_string;
 }
 
 static PyObject *
-TextObject_name(TextObject* self)
+PyGedaTextObject_name(PyGedaTextObject* self)
 {
   PyObject *out_str = NULL;
 
@@ -425,7 +425,7 @@ TextObject_name(TextObject* self)
 }
 
 static PyObject *
-TextObject_value(TextObject* self)
+PyGedaTextObject_value(PyGedaTextObject* self)
 {
   PyObject *out_str = NULL;
 
@@ -446,22 +446,22 @@ TextObject_value(TextObject* self)
   return out_str;
 }
 static PyMethodDef Text_methods[] = {
-  {"disp_string", (PyCFunction)TextObject_disp_string, METH_NOARGS, "text_disp_string_docs"},
-  {"name",        (PyCFunction)TextObject_name,        METH_NOARGS, "text_name_docs"},
-  {"value",       (PyCFunction)TextObject_value,       METH_NOARGS, "text_value_docs"},
+  {"disp_string", (PyCFunction)PyGedaTextObject_disp_string, METH_NOARGS, "text_disp_string_docs"},
+  {"name",        (PyCFunction)PyGedaTextObject_name,        METH_NOARGS, "text_name_docs"},
+  {"value",       (PyCFunction)PyGedaTextObject_value,       METH_NOARGS, "text_value_docs"},
   {NULL, NULL, 0, NULL}
 };
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject TextObjectType = {
+static PyTypeObject PyGedaTextObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Text",                    /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(TextObject),             /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaTextObject),             /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
-    (destructor)TextObject_dealloc, /* tp_dealloc*/
-    (printfunc)TextObject_print,    /* tp_print*/
+    (destructor)PyGedaTextObject_dealloc, /* tp_dealloc*/
+    (printfunc)PyGedaTextObject_print,    /* tp_print*/
     0,                              /* tp_getattr*/
     0,                              /* tp_setattr*/
     0,                              /* tp_compare*/
@@ -477,7 +477,7 @@ static PyTypeObject TextObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    TextObject_doc,                 /* tp_doc */
+    PyGedaTextObject_doc,                 /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -503,9 +503,9 @@ initText(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  TextObjectType.tp_base = GedaObjectClass();
+  PyGedaTextObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&TextObjectType) < 0)
+  if ( PyType_Ready(&PyGedaTextObjectType) < 0)
     return;
 
   text_module = Py_InitModule3("Text", NULL, "Creates an Text object type.");
@@ -513,10 +513,10 @@ initText(PyObject *module)
   if (text_module == NULL)
     return;
 
-  Py_INCREF(&TextObjectType);
-  PyModule_AddObject(text_module, "Text", (PyObject *)&TextObjectType);
+  Py_INCREF(&PyGedaTextObjectType);
+  PyModule_AddObject(text_module, "Text", (PyObject *)&PyGedaTextObjectType);
 }
-PyTypeObject *TextObjectClass(void)
+PyTypeObject *PyGedaTextClass(void)
 {
-  return &TextObjectType;
+  return &PyGedaTextObjectType;
 }

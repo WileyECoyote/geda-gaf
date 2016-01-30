@@ -39,18 +39,18 @@
 static PyObject* circle_module;
 static PyObject* geda_module;
 
-static char CircleObject_doc[] = PyDoc_STR("Geda Circle: x, y, radius [, color]");
+static char PyGedaCircleObject_doc[] = PyDoc_STR("Geda Circle: x, y, radius [, color]");
 
-/* ------------------------ CircleObject Constructor ----------------------- */
+/* ------------------------ PyGedaCircleObject Constructor ----------------------- */
 
 static PyObject *
 Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  CircleObject *self;
+  PyGedaCircleObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_CIRCLE_COLOR;
 
-  self = (CircleObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaCircleObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
     self->center_x =  0;
@@ -87,10 +87,10 @@ Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------ CircleObject Initializer ----------------------- */
+/* ------------------------ PyGedaCircleObject Initializer ----------------------- */
 
 static int
-Circle_init(CircleObject *self, PyObject *args, PyObject *kwds)
+Circle_init(PyGedaCircleObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -118,14 +118,14 @@ Circle_init(CircleObject *self, PyObject *args, PyObject *kwds)
     return -1;
   }
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-CircleObject_print(CircleObject *circle, FILE *file, int flags)
+PyGedaCircleObject_print(PyGedaCircleObject *circle, FILE *file, int flags)
 {
   const char *name;
 
@@ -166,33 +166,33 @@ CircleObject_print(CircleObject *circle, FILE *file, int flags)
   return 0;
 }
 
-/* -------------------------- CircleObject Members ------------------------- */
+/* -------------------------- PyGedaCircleObject Members ------------------------- */
 
 static PyMemberDef Circle_members[] = {
-  {"center_x",    T_INT, offsetof(CircleObject, center_x),    0, "Circle centerpoint abscissa"},
-  {"center_y",    T_INT, offsetof(CircleObject, center_y),    0, "Circle centerpoint ordinate"},
-  {"radius",      T_INT, offsetof(CircleObject, radius),      0, "Circle radius"},
+  {"center_x",    T_INT, offsetof(PyGedaCircleObject, center_x),    0, "Circle centerpoint abscissa"},
+  {"center_y",    T_INT, offsetof(PyGedaCircleObject, center_y),    0, "Circle centerpoint ordinate"},
+  {"radius",      T_INT, offsetof(PyGedaCircleObject, radius),      0, "Circle radius"},
 
  /* Hatching */
-  {"fill_type",   T_INT, offsetof(CircleObject, fill_type),   0, "Hatch fill type"},
-  {"fill_width",  T_INT, offsetof(CircleObject, fill_width),  0, "Hatch line width"},
-  {"fill_angle1", T_INT, offsetof(CircleObject, fill_angle1), 0, "hatch fill angle"},
-  {"fill_pitch1", T_INT, offsetof(CircleObject, fill_pitch1), 0, "hatch fill pitch"},
-  {"fill_angle2", T_INT, offsetof(CircleObject, fill_angle2), 0, "Mesh hatch second fill angle"},
-  {"fill_pitch2", T_INT, offsetof(CircleObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
+  {"fill_type",   T_INT, offsetof(PyGedaCircleObject, fill_type),   0, "Hatch fill type"},
+  {"fill_width",  T_INT, offsetof(PyGedaCircleObject, fill_width),  0, "Hatch line width"},
+  {"fill_angle1", T_INT, offsetof(PyGedaCircleObject, fill_angle1), 0, "hatch fill angle"},
+  {"fill_pitch1", T_INT, offsetof(PyGedaCircleObject, fill_pitch1), 0, "hatch fill pitch"},
+  {"fill_angle2", T_INT, offsetof(PyGedaCircleObject, fill_angle2), 0, "Mesh hatch second fill angle"},
+  {"fill_pitch2", T_INT, offsetof(PyGedaCircleObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
 
   /* Line-Type */
-  {"end_type",    T_INT, offsetof(CircleObject, line_end),    0, "Endpoint style"},
-  {"line_type",   T_INT, offsetof(CircleObject, line_type),   0, "Line type"},
-  {"line_width",  T_INT, offsetof(CircleObject, line_width),  0, "Line width"},
-  {"line_space",  T_INT, offsetof(CircleObject, line_space),  0, "Line space/gaps"},
-  {"line_length", T_INT, offsetof(CircleObject, line_length), 0, "Line dash length"},
+  {"end_type",    T_INT, offsetof(PyGedaCircleObject, line_end),    0, "Endpoint style"},
+  {"line_type",   T_INT, offsetof(PyGedaCircleObject, line_type),   0, "Line type"},
+  {"line_width",  T_INT, offsetof(PyGedaCircleObject, line_width),  0, "Line width"},
+  {"line_space",  T_INT, offsetof(PyGedaCircleObject, line_space),  0, "Line space/gaps"},
+  {"line_length", T_INT, offsetof(PyGedaCircleObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
 };
 
 static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -258,7 +258,7 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -273,14 +273,14 @@ static PyMethodDef Circle_methods[] = {
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
-static PyTypeObject CircleObjectType = {
+static PyTypeObject PyGedaCircleObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                             /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Circle",                 /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(CircleObject),          /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaCircleObject),          /* tp_basicsize,   memory to allocate for this object */
     0,                             /* tp_itemsize */
     (destructor)0,                 /* tp_dealloc */
-    (printfunc)CircleObject_print, /* tp_print */
+    (printfunc)PyGedaCircleObject_print, /* tp_print */
     0,                             /* tp_getattr */
     0,                             /* tp_setattr */
     0,                             /* tp_compare */
@@ -296,7 +296,7 @@ static PyTypeObject CircleObjectType = {
     0,                             /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,           /* tp_flags */
-    CircleObject_doc,              /* tp_doc */
+    PyGedaCircleObject_doc,              /* tp_doc */
     0,                             /* tp_traverse */
     0,                             /* tp_clear */
     0,                             /* tp_richcompare */
@@ -322,9 +322,9 @@ initCircle(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  CircleObjectType.tp_base = GedaObjectClass();
+  PyGedaCircleObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&CircleObjectType) < 0)
+  if ( PyType_Ready(&PyGedaCircleObjectType) < 0)
     return;
 
   circle_module = Py_InitModule3("Circle", NULL, "Creates a Circle object type.");
@@ -332,10 +332,10 @@ initCircle(PyObject *module)
   if (circle_module == NULL)
     return;
 
-  Py_INCREF(&CircleObjectType);
-  PyModule_AddObject(circle_module, "Circle", (PyObject *)&CircleObjectType);
+  Py_INCREF(&PyGedaCircleObjectType);
+  PyModule_AddObject(circle_module, "Circle", (PyObject *)&PyGedaCircleObjectType);
 }
-PyTypeObject *CircleObjectClass(void)
+PyTypeObject *PyGedaCircleClass(void)
 {
-  return &CircleObjectType;
+  return &PyGedaCircleObjectType;
 }

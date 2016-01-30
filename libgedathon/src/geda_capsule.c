@@ -136,7 +136,7 @@ PyObject *
 GedaCapsule_New(void *obj)
 {
   GedaCapsule *capsule;
-  Object      *object = (Object*) obj;
+  GedaObject  *object = (GedaObject*) obj;
 
   if(!GEDA_IS_OBJECT(object)) {
     PyErr_SetString(PyExc_ValueError, "GedaCapsule_New called with invalid pointer");

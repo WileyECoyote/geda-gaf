@@ -39,18 +39,18 @@
 static PyObject* arc_module;
 static PyObject* geda_module;
 
-static char ArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, arc_sweep [, color]");
+static char PyGedaArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, arc_sweep [, color]");
 
-/* ------------------------- ArcObject Constructor ------------------------- */
+/* ------------------------- PyGedaArcObject Constructor ------------------------- */
 
 static PyObject *
 Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  ArcObject *self;
+  PyGedaArcObject *self;
   struct { int r; int g; int b; int a; }
   default_color = DEFAULT_ARC_COLOR;
 
-  self = (ArcObject*)(GedaObjectClass())->tp_new(type, args, kwds);
+  self = (PyGedaArcObject*)(PyGedaObjectClass())->tp_new(type, args, kwds);
 
   if (self != NULL) {
     self->x           =  0;
@@ -80,9 +80,9 @@ Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-/* ------------------------- ArcObject Initializer ------------------------- */
+/* ------------------------- PyGedaArcObject Initializer ------------------------- */
 static int
-Arc_init(ArcObject *self, PyObject *args, PyObject *kwds)
+Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -111,14 +111,14 @@ Arc_init(ArcObject *self, PyObject *args, PyObject *kwds)
   }
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
-  if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
+  if (PyGedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 
   return 0;
 }
 
 static int
-ArcObject_print(ArcObject *arc, FILE *file, int flags)
+PyGedaArcObject_print(PyGedaArcObject *arc, FILE *file, int flags)
 {
   const char *name;
   int  radius, x, y, start_angle, arc_sweep;
@@ -160,25 +160,25 @@ ArcObject_print(ArcObject *arc, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- ArcObject Members --------------------------- */
+/* --------------------------- PyGedaArcObject Members --------------------------- */
 
 static PyMemberDef Arc_members[] = {
-  {"x",           T_INT, offsetof(ArcObject, x),           0, "Arc Center Abscissa"},
-  {"y",           T_INT, offsetof(ArcObject, y),           0, "Arc Center Ordinate"},
-  {"radius",      T_INT, offsetof(ArcObject, radius),      0, "Arc Radius"},
-  {"start_angle", T_INT, offsetof(ArcObject, start_angle), 0, "Arc Start Angle"},
-  {"arc_sweep",   T_INT, offsetof(ArcObject, arc_sweep),   0, "Arc End Angle"},
-  {"end_type",    T_INT, offsetof(ArcObject, line_end),    0, "Endpoint style"},
-  {"line_type",   T_INT, offsetof(ArcObject, line_type),   0, "Line type"},
-  {"line_width",  T_INT, offsetof(ArcObject, line_width),  0, "Line width"},
-  {"line_space",  T_INT, offsetof(ArcObject, line_space),  0, "Line space/gaps"},
-  {"line_length", T_INT, offsetof(ArcObject, line_length), 0, "Line dash length"},
+  {"x",           T_INT, offsetof(PyGedaArcObject, x),           0, "Arc Center Abscissa"},
+  {"y",           T_INT, offsetof(PyGedaArcObject, y),           0, "Arc Center Ordinate"},
+  {"radius",      T_INT, offsetof(PyGedaArcObject, radius),      0, "Arc Radius"},
+  {"start_angle", T_INT, offsetof(PyGedaArcObject, start_angle), 0, "Arc Start Angle"},
+  {"arc_sweep",   T_INT, offsetof(PyGedaArcObject, arc_sweep),   0, "Arc End Angle"},
+  {"end_type",    T_INT, offsetof(PyGedaArcObject, line_end),    0, "Endpoint style"},
+  {"line_type",   T_INT, offsetof(PyGedaArcObject, line_type),   0, "Line type"},
+  {"line_width",  T_INT, offsetof(PyGedaArcObject, line_width),  0, "Line width"},
+  {"line_space",  T_INT, offsetof(PyGedaArcObject, line_space),  0, "Line space/gaps"},
+  {"line_length", T_INT, offsetof(PyGedaArcObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
 };
 
 static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  GedaObject  *py_geda_object = (GedaObject*)obj;
+  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
   PyMemberDef *member;
 
   char *name = PyString_AsString(key);
@@ -244,7 +244,7 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
   else {
     /* no gotta, check with the base class,  */
-    result = (GedaObjectClass())->tp_setattro(obj, key, py_value);
+    result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
   return result;
 }
@@ -252,14 +252,14 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 /* -------------------------- Begin Type Definition ------------------------ */
 
 
-static PyTypeObject ArcObjectType = {
+static PyTypeObject PyGedaArcObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                            /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Arc",                   /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(ArcObject),            /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaArcObject),            /* tp_basicsize,   memory to allocate for this object */
     0,                            /* tp_itemsize*/
     (destructor)0,                /* tp_dealloc*/
-    (printfunc)ArcObject_print,   /* tp_print*/
+    (printfunc)PyGedaArcObject_print,   /* tp_print*/
     0,                            /* tp_getattr*/
     0,                            /* tp_setattr*/
     0,                            /* tp_compare*/
@@ -275,7 +275,7 @@ static PyTypeObject ArcObjectType = {
     0,                            /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,          /* tp_flags*/
-    ArcObject_doc,                /* tp_doc */
+    PyGedaArcObject_doc,                /* tp_doc */
     0,                            /* tp_traverse */
     0,                            /* tp_clear */
     0,                            /* tp_richcompare */
@@ -301,9 +301,9 @@ initArc(PyObject *module)
   geda_module = module;
 
   /* Fill in the bass class */
-  ArcObjectType.tp_base = GedaObjectClass();
+  PyGedaArcObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&ArcObjectType) < 0)
+  if ( PyType_Ready(&PyGedaArcObjectType) < 0)
     return;
 
   arc_module = Py_InitModule3("Arc", NULL, "Creates an Arc object extension type.");
@@ -311,10 +311,10 @@ initArc(PyObject *module)
   if (arc_module == NULL)
     return;
 
-  Py_INCREF(&ArcObjectType);
-  PyModule_AddObject(arc_module, "Arc", (PyObject *)&ArcObjectType);
+  Py_INCREF(&PyGedaArcObjectType);
+  PyModule_AddObject(arc_module, "Arc", (PyObject *)&PyGedaArcObjectType);
 }
-PyTypeObject *ArcObjectClass(void)
+PyTypeObject *PyGedaArcClass(void)
 {
-  return &ArcObjectType;
+  return &PyGedaArcObjectType;
 }
