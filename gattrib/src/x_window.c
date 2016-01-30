@@ -62,12 +62,12 @@ static void x_window_set_default_icon( void )
  */
 void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 {
-  char *filename;
-  char buffer[MAX_WINDOW_TITLE];
-
-  filename = toplevel->page_current->filename;
+  char *filename = toplevel->page_current->filename;
 
   if (filename != NULL) {
+
+    char buffer[MAX_WINDOW_TITLE];
+
     if (PageData->CHANGED) {
       strcpy (buffer, "*");
       strcat (buffer, filename);

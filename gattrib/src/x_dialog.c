@@ -430,7 +430,6 @@ void x_dialog_export_file()
 char *x_dialog_get_search_text(const char *prompt)
 {
   GtkDialog *dialog    = NULL;
-  GtkWidget *textentry = NULL;
   char      *text      = NULL;
   char      *title;
 
@@ -453,6 +452,7 @@ char *x_dialog_get_search_text(const char *prompt)
   if (dialog) {
 
     GtkWidget *label;
+    GtkWidget *textentry;
     GtkWidget *vbox;
     char      *real_prompt;
     int        response;
@@ -590,8 +590,10 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     Search->Found = x_find_main_search(search_text, NULL);
     if(search_text) GEDA_FREE(search_text);
     break;
+
   case GEDA_RESPONSE_APPLY: /*"Replace All and close dialog"*/
     Search->ReplaceAll = TRUE;
+
   case GEDA_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
     replacement_text = u_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
@@ -600,11 +602,12 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     if(search_text) GEDA_FREE(search_text);
     if(replacement_text) GEDA_FREE(replacement_text);
     break;
+
   case GEDA_RESPONSE_DELETE_EVENT:
   case GEDA_RESPONSE_CANCEL:
     gtk_widget_destroy(ThisDialog);
-    ThisDialog = NULL;
     break;
+
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
   }
