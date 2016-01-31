@@ -33,7 +33,7 @@
 /** \defgroup geda-arc-object Geda Arc Object
  *  @{
  */
-/*! \class Arc geda_arc.h "include/libgeda/geda_arc.h"
+/*! \class GedaArc geda_arc.h "include/libgeda/geda_arc.h"
  *  \implements geda-object
  *  \brief This is an implementaion class for GEDA Arc Objects.
  *  A Geda Arc Object is a graphical object, do not involve electrical

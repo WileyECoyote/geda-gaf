@@ -69,7 +69,7 @@ bool o_bus_get_position(int *x, int *y, GedaObject *object)
 GedaObject *o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
 {
   GedaObject *new_obj;
-  Bus    *bus;
+  GedaBus    *bus;
 
   /* create the object */
   new_obj = geda_bus_new();

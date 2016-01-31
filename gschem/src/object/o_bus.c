@@ -140,7 +140,7 @@ static void o_bus_init(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Invalidate Temporary drawing artifacts for Bus objects
  *  \par Function Description
  *   Get coordinates from top-level and invalidate the bounding
- *   region of a Bus object.
+ *   region of a GedaBus object.
  *
  *  \param [in] w_current  The GschemToplevel object
  */

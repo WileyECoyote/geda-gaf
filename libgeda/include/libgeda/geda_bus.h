@@ -37,15 +37,15 @@
 #define __GEDA_BUS_H__
 
 #define GEDA_TYPE_BUS            (geda_bus_get_type())
-#define GEDA_BUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BUS, Bus))
-#define GEDA_BUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BUS, BusClass))
-#define GEDA_IS_BUS(obj)         (is_a_geda_bus_object((Bus*)obj))
+#define GEDA_BUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BUS, GedaBus))
+#define GEDA_BUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BUS, GedaBusClass))
+#define GEDA_IS_BUS(obj)         (is_a_geda_bus_object((GedaBus*)obj))
 #define GEDA_IS_BUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_BUS))
-#define GEDA_BUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BUS, BusClass))
+#define GEDA_BUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BUS, GedaBusClass))
 
-typedef struct _GedaBusClass BusClass;
+typedef struct _GedaGedaBusClass GedaBusClass;
 
-struct _GedaBusClass {
+struct _GedaGedaBusClass {
   LineClass parent_class;
 };
 
@@ -67,7 +67,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_bus_get_type     (void) GEDA_CONST;
-bool           is_a_geda_bus_object  (Bus *object);
+bool           is_a_geda_bus_object  (GedaBus *object);
 
 GedaObject    *geda_bus_new          (void);
 

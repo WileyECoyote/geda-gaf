@@ -48,7 +48,7 @@ typedef struct _GedaArc          GedaArc;
 typedef struct _GedaBox          GedaBox;
 
 /*! \brief Geda Bus Object Structure */
-typedef struct _GedaBus          Bus;
+typedef struct _GedaBus          GedaBus;
 
 /*! \brief Geda Circle Object Structure */
 typedef struct _GedaCircle       Circle;

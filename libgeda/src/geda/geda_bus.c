@@ -32,7 +32,7 @@
 /** \defgroup geda-bus-object Geda Bus Object
  *  @{
  */
-/*! \class Bus geda_bus.h "include/libgeda/geda_bus.h"
+/*! \class GedaBus geda_bus.h "include/libgeda/geda_bus.h"
  *  \implements geda-object
  *  \brief This is an implementaion class for GEDA Bus Objects.
  *  A Geda Bus Object is similar to net objects but are intended to
@@ -45,18 +45,18 @@
 
 static GObjectClass *geda_bus_parent_class = NULL;
 
-/*! \brief Type instance initializer for Bus
+/*! \brief Type instance initializer for GedaBus
  *
  *  \par Function Description
- *  Type instance initializer for Bus, initializes a new empty
- *  Bus object by setting pointers to NULL and numbers to zero.
+ *  Type instance initializer for GedaBus, initializes a new empty
+ *  GedaBus object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Bus structure being initialized,
  *  \param [in] g_class  The Bus class we are initializing.
  */
 static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Bus        *bus            = (Bus*)instance;
+  GedaBus    *bus            = (GedaBus*)instance;
   Line       *line           = &bus->parent_instance;
   GedaObject *object         = &line->parent_instance;
 
@@ -76,16 +76,15 @@ geda_bus_dispose(GObject *object)
 
 }
 
-/*! \brief Geda Bus GedaObject Finalization Function
+/*! \brief GedaBus GedaObject Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
- *   releases the memory allocated to the given Bus data structure,
- *   invalidates the Bus's markers, then chain up to the parent's
- *   finalize handler after.
+ *   releases the memory allocated to the given GedaBus data structure,
+ *   then chain up to the parent's finalize handler after.
  */
 static void geda_bus_finalize(GObject *object)
 {
-  Bus        *bus = GEDA_BUS(object);
+  GedaBus    *bus = GEDA_BUS(object);
   GedaObject *obj = GEDA_OBJECT(object);
 
   if (bus->bus_name)
@@ -98,7 +97,7 @@ static void geda_bus_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
 }
 
-/*! \brief Type class initializer for Bus
+/*! \brief Type class initializer for a GedaBus
  *
  *  \par Function Description
  *  Type class initializer for Bus. We override our parents
@@ -109,7 +108,7 @@ static void geda_bus_finalize(GObject *object)
  */
 static void geda_bus_class_init(void *g_class, void *class_data)
 {
-  BusClass     *class          = (BusClass*)g_class;
+  GedaBusClass *class          = (GedaBusClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
 
   geda_bus_parent_class        = g_type_class_peek_parent( class );
@@ -118,16 +117,16 @@ static void geda_bus_class_init(void *g_class, void *class_data)
   gobject_class->finalize      = geda_bus_finalize;
 }
 
-/*! \brief Function to retrieve Bus's Type identifier.
+/*! \brief Function to retrieve GedaBus's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve a #Bus Type identifier. When first called,
- *  the function registers a #Bus in the GedaObjectType system to
- *  obtain an identifier that uniquely itentifies a Bus and returns
+ *  Function to retrieve a #GedaBus Type identifier. When first called,
+ *  the function registers a #GedaBus in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a GedaBus and returns
  *  the unsigned integer value. The retained value is returned on
  *  all Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with Bus.
+ *  \return GedaObjectType identifier associated with GedaBus.
  */
 GedaObjectType geda_bus_get_type (void)
 {
@@ -136,13 +135,13 @@ GedaObjectType geda_bus_get_type (void)
   if (g_once_init_enter (&geda_bus_type)) {
 
     static const GTypeInfo info = {
-      sizeof(BusClass),
+      sizeof(GedaBusClass),
       NULL,                  /* base_init           */
       NULL,                  /* base_finalize       */
       geda_bus_class_init,   /* (GClassInitFunc)    */
       NULL,                  /* class_finalize      */
       NULL,                  /* class_data          */
-      sizeof(Bus),
+      sizeof(GedaBus),
       0,                     /* n_preallocs         */
       geda_bus_instance_init /* (GInstanceInitFunc) */
     };
@@ -150,7 +149,7 @@ GedaObjectType geda_bus_get_type (void)
     const char     *string;
     GedaObjectType  type;
 
-    string = g_intern_static_string ("Bus");
+    string = g_intern_static_string ("GedaBus");
     type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
 
     g_once_init_leave (&geda_bus_type, type);
@@ -159,19 +158,19 @@ GedaObjectType geda_bus_get_type (void)
   return geda_bus_type;
 }
 
-/*! \brief Returns a pointer to a new Bus object.
+/*! \brief Returns a pointer to a new GedaBus object.
  *
  *  \par Function Description
- *  Returns a pointer to a new Bus object.
+ *  Returns a pointer to a new GedaBus object.
  *
- *  \return pointer to the new Bus object.
+ *  \return pointer to the new GedaBus object.
  */
 GedaObject *geda_bus_new (void)
 {
-  GedaObject *bus = g_object_new( GEDA_TYPE_BUS,
-                             "type", OBJ_BUS,
-                             "name", "bus",
-                              NULL );
+  GedaObject *bus = g_object_new(GEDA_TYPE_BUS,
+                                 "type", OBJ_BUS,
+                                 "name", "bus",
+                                 NULL );
   return GEDA_OBJECT(bus);
 }
 
@@ -182,7 +181,7 @@ GedaObject *geda_bus_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_bus_object (Bus *bus)
+bool is_a_geda_bus_object (GedaBus *bus)
 {
   return GEDA_IS_OBJECT(bus) && (((GedaObject*)bus)->type == OBJ_BUS);
 }

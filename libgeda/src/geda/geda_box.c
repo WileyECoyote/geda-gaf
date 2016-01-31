@@ -66,7 +66,7 @@ geda_box_bounds(GedaObject *object)
  *  GedaBox object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The GedaBox structure being initialized,
- *  \param [in]  g_class The GedaBox class we are initializing.
+ *  \param [in] g_class  The GedaBox class we are initializing.
  */
 static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
 {
