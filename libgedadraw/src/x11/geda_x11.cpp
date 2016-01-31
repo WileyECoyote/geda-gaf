@@ -221,7 +221,6 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
   int has_alpha    = gdk_pixbuf_get_has_alpha (pixbuf);
 
   int bitmap_pad;  /* 32 for 24 and 32 bpp, 16, for 15&16 */
-  int x, y;
 
   switch (depth) {
     case 32:
@@ -244,6 +243,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
 
       unsigned int   src_rowstride;
       unsigned int   dest_rowstride;
+      int y;
 
       if (has_alpha && format_type == EDA_X11_FORMAT_EXACT_MASK) {
         format_type = EDA_X11_FORMAT_ARGB_MASK;
@@ -256,6 +256,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
           for (y = 0; y < height; y++) {
 
             unsigned char *i = src_buf;
+            int x;
 
             for (x = 0; x < width; x++) {
 
@@ -625,13 +626,14 @@ QueryCurrentFont (const char *font_name, int size)
 bool EdaX11Render::
 IsScalableFont(char *name)
 {
-  int i, field;
   bool anwser;
 
   if ((name == NULL) || (name[0] != '-')) {
     anwser = false;
   }
   else {
+
+    int i, field;
 
     anwser = true;
 
@@ -684,13 +686,6 @@ XSetColorRed(void)
 unsigned int EdaX11Render::
 SetLineAttributes(XGCValues *gcvals, int total)
 {
-  char dash_list[6];
-  int  dash_offset;
-  int  num_dash;
-  int  length;
-  int  space;
-  int  length_factor;
-  int  space_factor;
   bool success;
 
   if (GEDA_IS_OBJECT(object)) {
@@ -707,9 +702,17 @@ SetLineAttributes(XGCValues *gcvals, int total)
     }
     else {
 
+      char dash_list[6];
+      int  dash_offset;
+      int  num_dash;
+      int  length;
+      int  space;
+      int  length_factor;
+      int  space_factor;
+
       dash_offset = 0;
-      length = object->line_options->line_length;
-      space  = object->line_options->line_space;
+      length      = object->line_options->line_length;
+      space       = object->line_options->line_space;
 
       if ( length < total / 20) {
         length_factor = length > 0 ? length : 100;
@@ -791,7 +794,7 @@ DrawBezierCurve (XPoint *points)
   double time;
   double step;
 
-  int from_x, from_y, to_x, to_y;
+  int from_x, from_y;
 
   /* Calculation Coefficients */
   int x0 = points[0].x;
@@ -819,6 +822,8 @@ DrawBezierCurve (XPoint *points)
   /* Step from 0 to 1 in BEZIER_STEP increments and
    * calculate X,Y and draw a line from previous point */
   for(time = step; time <= 1; time = time + step) {
+
+    int to_x, to_y;
 
     to_x = ((( A * time ) + B ) * time + C ) * time + D;
     to_y = ((( E * time ) + F ) * time + G ) * time + H;
@@ -986,20 +991,20 @@ TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
 void EdaX11Render::
 geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
 {
-  XGCValues gcvals;
-
-  int angle1, angle2;
-  int length;
-  int x_tweek;
-  int y_tweek;
-
   unsigned long bits;
-  unsigned int  width, height;
+  int           length;
+  XGCValues     gcvals;
 
   length = m_arc_length (radius, sweep);
   bits   = SetLineAttributes (&gcvals, length);
 
   if (bits) {
+
+    unsigned int width, height;
+    int angle1, angle2;
+    int x_tweek;
+    int y_tweek;
+
     XChangeGC (display, gc, bits, &gcvals);
 
     angle1  = start_angle * 64;
@@ -1030,8 +1035,7 @@ geda_x11_draw_box (int x, int y, int width, int height)
   int       length;
 
   length = min(width, height);
-
-  bits = SetLineAttributes(&gcvals, length);
+  bits   = SetLineAttributes(&gcvals, length);
 
   if (bits) {
     XChangeGC (display, gc, bits, &gcvals);
@@ -1049,17 +1053,17 @@ geda_x11_draw_box (int x, int y, int width, int height)
 void EdaX11Render::
 geda_x11_draw_circle (int cx, int cy, int radius)
 {
+  unsigned  long bits;
   XGCValues gcvals;
-
-  int x, y;
-  int circum;
-  int axe;
-  unsigned long bits;
+  int       circum;
 
   circum = m_circle_circumference(radius);
   bits   = SetLineAttributes(&gcvals, circum);
 
   if (bits) {
+
+    int x, y;
+    int axe;
 
     XChangeGC(display, gc, bits, &gcvals);
 
@@ -1123,21 +1127,21 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
 void EdaX11Render::
 geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 {
-  XGCValues gcvals;
   unsigned long bits;
-  int x0, y0;
-  int from_x, from_y, to_x, to_y;
-
-  x0 = y0 = 0;
-  from_x = from_y = -1;
-
-  XPoint points[4];
-
-  int i;
+  XGCValues     gcvals;
 
   bits = SetLineAttributes(&gcvals, 400);
 
   if (bits) {
+
+    int x0, y0;
+    int from_x, from_y, to_x, to_y;
+    int i;
+
+    x0 = y0 = 0;
+    from_x = from_y = -1;
+
+    XPoint points[4];
 
     XChangeGC(display, gc, bits, &gcvals);
 
@@ -1207,16 +1211,16 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 void EdaX11Render::
 geda_x11_draw_picture (int x, int y, int width, int height)
 {
-  GdkPixbuf *pixbuf;
-  Picture   *o_pic;
-
-  bool  mirror;
-  int   angle;
-
-  if (width < 0)   width  = abs(width);
-  if (height < 0)  height = abs(height);
+  if (width < 0)  width  = abs(width);
+  if (height < 0) height = abs(height);
 
   if (GEDA_IS_PICTURE(object)) {
+
+    GdkPixbuf *pixbuf;
+    Picture   *o_pic;
+
+    bool  mirror;
+    int   angle;
 
     o_pic  = object->picture;
 
@@ -1246,7 +1250,7 @@ geda_x11_draw_picture (int x, int y, int width, int height)
 
       /* The object->picture->pixel is a pointer to the as read-in pixel
        * buffer and needs to be rescaled to the instance insertion size */
-      if ((o_pic->angle == 90) || (o_pic->angle == 270)) {
+      if (o_pic && ((o_pic->angle == 90) || (o_pic->angle == 270))) {
         pixbuf1 = gdk_pixbuf_scale_simple (pixbuf, height, width, GDK_INTERP_BILINEAR);
       }
       else {
@@ -1289,14 +1293,14 @@ geda_x11_draw_picture (int x, int y, int width, int height)
 void EdaX11Render::
 geda_x11_draw_text (int x, int y)
 {
-  Text         *o_text;
-  const char   *string;
-
-  int x_left;
-  int y_lower;
-  int length;
-
   if (GEDA_IS_TEXT(object)) {
+
+    Text       *o_text;
+    const char *string;
+
+    int x_left;
+    int y_lower;
+    int length;
 
     o_text    = object->text;
     string    = o_text->disp_string;
@@ -1475,18 +1479,18 @@ geda_x11_draw_get_font_weight (const char *font_descr)
 int EdaX11Render::
 geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
 {
-  Text       *o_text;
-  const char *string;
-
-  int length;
   int result;
 
-  int sx;
-  int sy;
-  int s_left;
-  int s_bottom;
-
   if (GEDA_IS_TEXT(object)) {
+
+    Text       *o_text;
+    const char *string;
+
+    int length;
+    int sx;
+    int sy;
+    int s_left;
+    int s_bottom;
 
     o_text   = object->text;
     string   = o_text->disp_string;
@@ -1545,7 +1549,7 @@ geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 {
   int length;
 
-  length = font_family.length();
+  //length = font_family.length();
   length = font_family.copy(font_name, size_of_buffer, 0);
   font_name[length] = '\0';
 
@@ -1650,7 +1654,6 @@ bool EdaX11Render::
 geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
 {
   bool result;
-  int  index;
 
 #ifdef HAVE_XFT
 
@@ -1662,6 +1665,8 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
                            NULL);
 
   if (font_set) {
+
+    int  index;
 
     for (index = 0; index < font_set->nfont; ++index) {
 
@@ -1687,8 +1692,9 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
 #else
 
   char **font_list;
-  int  maxnames = 4096;
-  int  count;
+  int    maxnames = 4096;
+  int    count;
+  int    index;
 
   font_list = XListFonts (display, pattern, maxnames, &count);
 

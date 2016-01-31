@@ -1,3 +1,13 @@
+2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x11/geda_x11.cpp: : Reduce scope and unnecessary initialization
+       of variables in modules. Check for pointer o_pic before referencing
+       in function geda_x11_draw_picture.
+
+2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+     * geda_x11.cpp: Checkline objecttype.
+
 2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
      * include/*: Update file headers; add GNU URL.
