@@ -870,7 +870,7 @@ bool o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
       result = FALSE;
     }
   }
-  else { /* was not an Box */
+  else { /* was not a GedaText object */
    *nx = x;
    *ny = y;
     result = FALSE;

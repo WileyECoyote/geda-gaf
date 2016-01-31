@@ -1458,7 +1458,7 @@ bool o_picture_get_nearest_point(GedaObject *object, int x, int y, int *nx, int 
 
     g_object_unref(tmp);
   }
-  else { /* was not an Box */
+  else { /* was not an GedaPicture object */
    *nx = x;
    *ny = y;
     result = FALSE;

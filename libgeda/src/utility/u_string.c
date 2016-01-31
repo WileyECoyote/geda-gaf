@@ -662,7 +662,7 @@ int u_string_stricmp(const char *str1, const char *str2)
 int u_string_strncmpi(const char *str1, const char *str2, int n)
 {
   unsigned int i = 0;
-  while (( toupper(*str1) == toupper(*str2)) && i < n)
+  while ((toupper(*str1) == toupper(*str2)) && i < n)
   {
     str1++;
     str2++;
@@ -685,9 +685,9 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
 
 /*! \brief Replace substring in string.
  *  \par Function Description
- *  This function replaces the first occurance of str1 with str2
+ *  This function replaces the first occurrence of str1 with str2
  *  in the source. This version uses array indexes and dynamically
- *  allocates tempory storage. The Caller is responsible for insuring
+ *  allocates temporary storage. The Caller is responsible for insuring
  *  source is sufficiently large enough to hold the new string, ie
  *  original - old + new + 1.
  *
@@ -695,9 +695,9 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
  *  \param [in] old_str  is the string to be replaced
  *  \param [in] new_str  is the replacement for old_str
  *
- *  \retval char* source (the orginal pointer) or NULL if old_str
- *  was not not found in the source string or if there was a error
- *  allocating memory.
+ *  \retval char* source (the orginal pointer) or NULL if old_str was not
+ *          not found in the source string or if there was a error
+ *          allocating memory.
  *
  */
 char *u_string_strsubst(char *source, char *old_str, char *new_str)
