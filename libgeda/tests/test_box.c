@@ -1,17 +1,17 @@
 #include <glib.h>
 #include <libgeda.h>
 
-#define TOBJECT "GedaArc"
+#define TOBJECT "GedaBox"
 
-/*! \file tests_arc.c
- *  \brief Tests for geda_arc.c module
+/*! \file tests_box.c
+ *  \brief Tests for geda_box.c module
  */
 
-int test_arc (void)
+int test_box (void)
 {
   int result = 0;
 
-  GedaObject *object = geda_arc_new();
+  GedaObject *object = geda_box_new();
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "%s: is a GedaObject Failed\n", TOBJECT);
@@ -20,13 +20,14 @@ int test_arc (void)
 
   /* The one with the Not operator is the one being tested */
 
-  if (!GEDA_IS_ARC(object)) {
-    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
+  if (GEDA_IS_ARC(object)) {
+    fprintf(stderr, "%s matched type GedaBox\n", TOBJECT);
+
     result++;
   }
 
-  if (GEDA_IS_BOX(object)) {
-    fprintf(stderr, "%s matched type GedaBox\n", TOBJECT);
+  if (!GEDA_IS_BOX(object)) {
+    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
     result++;
   }
 
@@ -75,20 +76,20 @@ int test_arc (void)
     result++;
   }
 
-  GedaArc *arc = object->arc;
+  Box *box = object->box;
 
-  if (!GEDA_IS_ARC(arc)) {
+  if (!GEDA_IS_BOX(box)) {
     fprintf(stderr, "sub-pointer is a %s Failed\n", TOBJECT);
     result++;
   }
-  else if (object->type != OBJ_ARC) {
-    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_ARC);
+  else if (object->type != OBJ_BOX) {
+    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_BOX);
     result++;
   }
 
   g_object_unref(object);
 
-  if (GEDA_IS_ARC(object)) {
+  if (GEDA_IS_BOX(object)) {
     fprintf(stderr, "%s was not destroyed\n", TOBJECT);
     result++;
   }
@@ -111,7 +112,7 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_arc();
+  result = test_box();
 
-  return result > 0;
+  return result;
 }

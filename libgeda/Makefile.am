@@ -1,5 +1,5 @@
 
-SUBDIRS = po data docs include etc src shell scheme share
+SUBDIRS = po data docs include etc src shell scheme share tests
 
 EXTRA_DIST = HACKING BUGS ChangeLog ChangeLog-1.0 po/domain.mak.in
 

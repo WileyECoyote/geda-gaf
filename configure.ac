@@ -240,6 +240,7 @@ AC_CONFIG_FILES([Makefile
                  libgeda/src/struct/Makefile
                  libgeda/src/utility/Makefile
                  libgeda/src/Makefile
+                 libgeda/tests/Makefile
 
                  libgedacairo/Makefile
                  libgedacairo/libgedacairo.pc

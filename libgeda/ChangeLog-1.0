@@ -8,6 +8,8 @@
 
     * tests/test_arc.c: Add basic test, for testing test using geda_arc.
 
+    * tests/test_box.c: Add tests for testing geda_box module.
+
 2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/xxx.h: remove __cplusplus macros, except geda_object.h

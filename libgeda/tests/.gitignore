@@ -10,4 +10,5 @@ libgeda.la
 *.log
 *.trs
 test_arc
+test_box
 

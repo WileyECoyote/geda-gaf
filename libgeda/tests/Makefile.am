@@ -1,6 +1,7 @@
 
 check_PROGRAMS = \
-	test_arc
+	test_arc \
+	test_box
 
 TESTS = $(check_PROGRAMS)
 
