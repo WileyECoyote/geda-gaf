@@ -11,4 +11,5 @@ libgeda.la
 *.trs
 test_arc
 test_box
+test_bus
 

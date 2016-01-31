@@ -1,7 +1,7 @@
 #include <glib.h>
 #include <libgeda.h>
 
-#define TOBJECT "GedaBox"
+#define TOBJECT "GedaBus"
 
 /*! \file tests_box.c
  *  \brief Tests for geda_box.c module
@@ -11,7 +11,7 @@ int test_box (void)
 {
   int result = 0;
 
-  GedaObject *object = geda_box_new();
+  GedaObject *object = geda_bus_new();
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "%s: is a GedaObject Failed\n", TOBJECT);
@@ -26,13 +26,13 @@ int test_box (void)
     result++;
   }
 
-  if (!GEDA_IS_BOX(object)) {
-    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
+  if (GEDA_IS_BOX(object)) {
+    fprintf(stderr, "%s matched type GedaBox\n", TOBJECT);
     result++;
   }
 
-  if (GEDA_IS_BUS(object)) {
-    fprintf(stderr, "%s matched type GedaBus\n", TOBJECT);
+  if (!GEDA_IS_BUS(object)) {
+    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
     result++;
   }
 
@@ -46,8 +46,9 @@ int test_box (void)
     result++;
   }
 
-  if (GEDA_IS_LINE(object)) {
-    fprintf(stderr, "%s matched type GedaLine\n", TOBJECT);
+  /* GedaBus objects are derived from GedaLine object class */
+  if (!GEDA_IS_LINE(object)) {
+    fprintf(stderr, "%s is a GedaLine Failed\n", TOBJECT);
     result++;
   }
 
@@ -76,26 +77,36 @@ int test_box (void)
     result++;
   }
 
-  GedaBox *box = object->box;
+  GedaBus *bus  = object->bus;
+  Line    *line = object->line;
 
-  if (!GEDA_IS_BOX(box)) {
+  if (!GEDA_IS_BUS(bus)) {
     fprintf(stderr, "sub-pointer is a %s Failed\n", TOBJECT);
     result++;
   }
-  else if (object->type != OBJ_BOX) {
-    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_BOX);
+  else if (!GEDA_IS_LINE(line)) {
+    fprintf(stderr, "%s sub-pointer is a GedaLine\n", TOBJECT);
+    result++;
+  }
+  else if (object->type != OBJ_BUS) {
+    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_BUS);
     result++;
   }
 
   g_object_unref(object);
 
-  if (GEDA_IS_BOX(object)) {
+  if (GEDA_IS_BUS(object)) {
     fprintf(stderr, "%s was not destroyed\n", TOBJECT);
     result++;
   }
 
-  if (GEDA_IS_OBJECT(object)) {
+  if (GEDA_IS_LINE(object)) {
     fprintf(stderr, "%s parent was not destroyed\n", TOBJECT);
+    result++;
+  }
+
+  if (GEDA_IS_OBJECT(object)) {
+    fprintf(stderr, "%s grand-parent was not destroyed\n", TOBJECT);
     result++;
   }
 
