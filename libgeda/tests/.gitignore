@@ -1,0 +1,13 @@
+*.lo
+.deps
+.libs
+Makefile
+Makefile.in
+libgeda.la
+*.o
+*.x
+*~
+*.log
+*.trs
+test_arc
+

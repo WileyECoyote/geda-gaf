@@ -263,10 +263,10 @@ GedaObjectType geda_arc_get_type (void)
  */
 GedaObject *geda_arc_new (void)
 {
-  GedaObject *arc = g_object_new( GEDA_TYPE_ARC,
-                             "type", OBJ_ARC,
-                             "name", "arc",
-                              NULL );
+  GedaObject *arc = g_object_new(GEDA_TYPE_ARC,
+                                 "type", OBJ_ARC,
+                                 "name", "arc",
+                                 NULL );
   return GEDA_OBJECT(arc);
 }
 
