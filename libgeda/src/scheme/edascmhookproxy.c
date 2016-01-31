@@ -99,17 +99,17 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 static void
 edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {
-  SCM proc = SCM_BOOL_F;
+  SCM proc;
 
   proxy->priv = G_TYPE_INSTANCE_GET_PRIVATE (proxy,
                                              EDASCM_TYPE_HOOK_PROXY,
                                              EdascmHookProxyPrivate);
-
   proxy->priv->hook = SCM_UNDEFINED;
   proxy->priv->closure = SCM_UNDEFINED;
 
   /* Try and create our internal closure */
   proc = edascm_c_make_closure (edascm_hook_proxy_closure, proxy);
+
   g_return_if_fail (scm_is_true (scm_procedure_p (proc)));
   proxy->priv->closure = scm_gc_protect_object (proc);
 }

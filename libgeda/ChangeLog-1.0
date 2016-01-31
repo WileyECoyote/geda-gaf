@@ -1,3 +1,11 @@
+2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/edascmhookproxy.c: Eliminate unnecessary initialization
+      of proc = SCM_BOOL_F in function edascm_hook_proxy_init.
+
+    * src/scheme/scheme_closure.c: Eliminate unnecessary initialization
+      of smob = SCM_UNDEFINED in edascm_c_make_closure.
+
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Object to GedaObject, everywhere.

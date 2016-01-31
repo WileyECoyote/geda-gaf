@@ -114,19 +114,20 @@ edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
 SCM
 edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
 {
-  SCM smob = SCM_UNDEFINED;
+  SCM smob;
   SCM expr;
   SCM result;
-  smob = edascm_from_closure (func, user_data);
 
-  /* (lambda args (marshal args smob)) */
-  expr = scm_list_3 (lambda_sym, args_sym,
-                     scm_list_3 (marshal_proc, args_sym, smob));
+  smob   = edascm_from_closure (func, user_data);
+
+  /* expr = list (lambda args (marshal args smob)) */
+  expr   = scm_list_3 (lambda_sym, args_sym,
+                       scm_list_3 (marshal_proc, args_sym, smob));
   result = g_scm_eval_protected (expr, scm_current_module ());
+
   g_warn_if_fail (scm_is_true (scm_procedure_p (result)));
   return result;
 }
-
 
 
 /*!
