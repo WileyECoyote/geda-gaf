@@ -62,15 +62,15 @@ geda_box_bounds(GedaObject *object)
 /*! \brief Type instance initializer for Box
  *
  *  \par Function Description
- *  Type instance initializer for Box, initializes a new empty
- *  Box object by setting pointers to NULL and numbers to zero.
+ *  Type instance initializer for GedaBox, initializes a new empty
+ *  GedaBox object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The Box structure being initialized,
- *  \param [in]  g_class The Box class we are initializing.
+ *  \param [in] instance The GedaBox structure being initialized,
+ *  \param [in]  g_class The GedaBox class we are initializing.
  */
 static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Box        *box    = (Box*)instance;
+  GedaBox    *box    = (GedaBox*)instance;
   GedaObject *object = &box->parent_instance;
 
   box->upper_x       = 0;
@@ -130,11 +130,11 @@ static void geda_box_finalize(GObject *object)
  */
 static void geda_box_class_init(void *g_class, void *class_data)
 {
-  BoxClass        *class         = (BoxClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
+  GedaBoxClass    *class         = (GedaBoxClass*)g_class;
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_box_parent_class          = g_type_class_peek_parent( class );
+  geda_box_parent_class          = g_type_class_peek_parent(class);
 
   gobject_class->dispose         = geda_box_dispose;
   gobject_class->finalize        = geda_box_finalize;
@@ -142,16 +142,16 @@ static void geda_box_class_init(void *g_class, void *class_data)
   geda_class->bounds             = geda_box_bounds;
 }
 
-/*! \brief Function to retrieve Box's Type identifier.
+/*! \brief Function to retrieve GedaBox's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve a #Box Type identifier. When first called,
- *  the function registers a #Box in the GedaObjectType system to
- *  obtain an identifier that uniquely itentifies a Box and returns
+ *  Function to retrieve a #GedaBox Type identifier. When first called,
+ *  the function registers a #GedaBox in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a GedaBox and returns
  *  the unsigned integer value. The retained value is returned on
  *  all Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with Box.
+ *  \return GedaObjectType identifier associated with GedaBox.
  */
 GedaObjectType geda_box_get_type (void)
 {
@@ -160,13 +160,13 @@ GedaObjectType geda_box_get_type (void)
   if (g_once_init_enter (&geda_box_type)) {
 
     static const GTypeInfo info = {
-      sizeof(BoxClass),
+      sizeof(GedaBoxClass),
       NULL,                  /* base_init           */
       NULL,                  /* base_finalize       */
       geda_box_class_init,   /* (GClassInitFunc)    */
       NULL,                  /* class_finalize      */
       NULL,                  /* class_data          */
-      sizeof(Box),
+      sizeof(GedaBox),
       0,                     /* n_preallocs         */
       geda_box_instance_init /* (GInstanceInitFunc) */
     };
@@ -174,7 +174,7 @@ GedaObjectType geda_box_get_type (void)
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Box");
+    string = g_intern_static_string ("GedaBox");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_box_type, type);
@@ -206,7 +206,7 @@ GedaObject *geda_box_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_box_object (Box *box)
+bool is_a_geda_box_object (GedaBox *box)
 {
   return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }

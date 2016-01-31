@@ -120,7 +120,7 @@ x_draw_box (GschemToplevel *w_current)
 
   if (GEDA_IS_BOX(o_current)) {
 
-    Box *o_box;
+    GedaBox *o_box;
     int sx1, sy1, sx2, sy2;
     int width, height;
 

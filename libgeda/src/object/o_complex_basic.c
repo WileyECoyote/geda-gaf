@@ -163,9 +163,9 @@ int o_complex_is_embedded(GedaObject *object)
  *  the complex and returns the results of the function corresponding
  *  to the appropriate type of object for the selected sub-object.
  *
- *  \param [in] object   Pointer to a Box object
- *  \param [in] x        Integer pointer
- *  \param [in] y        Integer pointer
+ *  \param [in]  object  Pointer to a Complex object
+ *  \param [in]  x       Integer pointer
+ *  \param [in]  y       Integer pointer
  *  \param [out] nx      Integer pointer
  *  \param [out] ny      Integer pointer
  *
@@ -173,7 +173,7 @@ int o_complex_is_embedded(GedaObject *object)
  */
 bool o_complex_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  bool    result;
+  bool result;
   GedaObject *closest = NULL;
 
   if (GEDA_IS_COMPLEX(object)) {
@@ -1208,11 +1208,11 @@ done:
  */
 double o_complex_shortest_distance(GedaObject *object, int x, int y, int force_solid)
 {
-  Box    line_bounds;
-  GList *iter;
-  double distance;
-  double shortest_distance = G_MAXDOUBLE;
-  int    found_line_bounds = 0;
+  GedaBox line_bounds;
+  GList  *iter;
+  double  distance;
+  double  shortest_distance = G_MAXDOUBLE;
+  int     found_line_bounds = 0;
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), G_MAXDOUBLE);
 

@@ -106,14 +106,14 @@ static int compare_status(gconstpointer a, gconstpointer b)
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
  *
- *  \param box [in] The box shape to hatch.
+ *  \param box   [in] The Gedabox shape to hatch.
  *  \param angle [in] The angle of the hatch lines with respect to the x axis.
  *  \param pitch [in] The distance between hatch lines
  *  \param lines [inout] A GArray of Line to contain the new hatch line
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_box(Box *box, int angle, int pitch, GArray *lines)
+void m_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 {
   GArray *corners;
   POINT point;

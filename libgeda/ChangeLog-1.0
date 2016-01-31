@@ -4,6 +4,8 @@
 
     * Rename Arc to GedaArc
 
+    * Rename Box to GedaBox
+
     * tests/Makefile.am: New file for libgeda C test.
 
     * tests/test_arc.c: Add basic test, for testing test using geda_arc.

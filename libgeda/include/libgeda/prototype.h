@@ -98,7 +98,7 @@ extern "C" {
          void    m_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
 
 /* m_box.c */
-       double    m_box_shortest_distance         (Box *box, int x, int y, int solid);
+       double    m_box_shortest_distance         (GedaBox *box, int x, int y, int solid);
 
 /* m_bounds.c */
          void    m_bounds_init                   (BOUNDS *bounds);
@@ -114,10 +114,10 @@ extern "C" {
        double    m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
-         void    m_hatch_box                     (Box    *box,    int angle, int pitch, GArray *lines);
-         void    m_hatch_circle                  (Circle *circle, int angle, int pitch, GArray *lines);
-         void    m_hatch_path                    (Path   *path,   int angle, int pitch, GArray *lines);
-         void    m_hatch_polygon                 (GArray *points, int angle, int pitch, GArray *lines);
+         void    m_hatch_box                     (GedaBox *box,    int angle, int pitch, GArray *lines);
+         void    m_hatch_circle                  (Circle  *circle, int angle, int pitch, GArray *lines);
+         void    m_hatch_path                    (Path    *path,   int angle, int pitch, GArray *lines);
+         void    m_hatch_polygon                 (GArray  *points, int angle, int pitch, GArray *lines);
        GArray   *m_hatch_object                  (GedaObject *object);
 
 /* m_line.c */

@@ -232,7 +232,7 @@ static char *x_dnd_string_data_path_properties(Path *path)
   return
   u_string_sprintf("sections=%d",path->num_sections);
 }
-static char *x_dnd_string_data_box_properties(Box *box)
+static char *x_dnd_string_data_box_properties(GedaBox *box)
 {
   return
   u_string_sprintf("upper point (%d,%d), lower point (%d,%d)",

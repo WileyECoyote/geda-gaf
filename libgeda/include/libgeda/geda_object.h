@@ -79,7 +79,7 @@ struct _GedaObject {
   void   *w_bounds_valid_for;          /* Hack = GedaToplevel * */
 
   GedaArc *arc;
-  Box     *box;
+  GedaBox *box;
   Bus     *bus;
   Circle  *circle;
   Complex *complex;

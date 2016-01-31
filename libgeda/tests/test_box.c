@@ -76,7 +76,7 @@ int test_box (void)
     result++;
   }
 
-  Box *box = object->box;
+  GedaBox *box = object->box;
 
   if (!GEDA_IS_BOX(box)) {
     fprintf(stderr, "sub-pointer is a %s Failed\n", TOBJECT);

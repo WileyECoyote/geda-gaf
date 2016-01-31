@@ -625,14 +625,14 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
 #pragma GCC diagnostic pop
 #endif
 
-/*! \brief Determine if a Box boundary can bound a given Projectile
+/*! \brief Determine if a GedaBox boundary can bound a given Projectile
  *  \par Function Description
  *  Determines if \a projectile can intersect a Box. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
  *  \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Box object and is not checked!
+ *  \remark boundary Must be a GedaBox object and is not checked!
  *  \image html projections2.png
  *  \image latex projections2.png
  */
@@ -642,10 +642,10 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
                                    char        direction,
                                    POINT      *point)
 {
-  Box   *box  = boundary->box;
-  Line  *proj = projectile->line;
-  bool   answer;
-  double slope;
+  GedaBox *box  = boundary->box;
+  Line    *proj = projectile->line;
+  bool     answer;
+  double   slope;
 
   int  left   = /* min */ box->upper_x < box->lower_x ? box->upper_x : box->lower_x;
   int  bottom = /* min */ box->upper_y < box->lower_y ? box->upper_y : box->lower_y;

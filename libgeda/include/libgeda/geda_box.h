@@ -37,18 +37,15 @@
 #define __GEDA_BOX_H__
 
 #define GEDA_TYPE_BOX            (geda_box_get_type())
-#define GEDA_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BOX, Box))
-#define GEDA_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BOX, BoxClass))
-#define GEDA_IS_BOX(obj)         (is_a_geda_box_object((Box*)obj))
+#define GEDA_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BOX, GedaBox))
+#define GEDA_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BOX, GedaBoxClass))
+#define GEDA_IS_BOX(obj)         (is_a_geda_box_object((GedaBox*)obj))
 #define GEDA_IS_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_BOX))
-#define GEDA_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BOX, BoxClass))
+#define GEDA_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BOX, GedaBoxClass))
 
-#define BOX_MARKER(target) (unsigned long int)(box + offsetof(Box, target))
-#define BOX_MARKERS (BOX_MARKER(head_marker) & BOX_MARKER(tail_marker))
+typedef struct _GedaGedaBoxClass GedaBoxClass;
 
-typedef struct _GedaBoxClass BoxClass;
-
-struct _GedaBoxClass {
+struct _GedaGedaBoxClass {
   GedaObjectClass parent_class;
 };
 
@@ -71,7 +68,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_box_get_type     (void);
-bool           is_a_geda_box_object  (Box *object);
+bool           is_a_geda_box_object  (GedaBox *object);
 GedaObject    *geda_box_new          (void);
 
 #ifdef __cplusplus
