@@ -137,8 +137,8 @@ geda_arc_bounds(GedaObject *object)
  */
 static void geda_arc_instance_init(GTypeInstance *instance, void *class)
 {
-  Arc    *arc       = (Arc*)instance;
-  GedaObject *object    = &arc->parent_instance;
+  GedaArc    *arc    = (GedaArc*)instance;
+  GedaObject *object = &arc->parent_instance;
 
   arc->x            = 0;
   arc->y            = 0;
@@ -201,7 +201,7 @@ static void geda_arc_finalize(GObject *object)
  */
 static void geda_arc_class_init(void *g_class, void *class_data)
 {
-  ArcClass        *class         = (ArcClass*)g_class;
+  GedaArcClass    *class         = (GedaArcClass*)g_class;
   GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
   GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
@@ -213,16 +213,16 @@ static void geda_arc_class_init(void *g_class, void *class_data)
   geda_class->bounds             = geda_arc_bounds;
 }
 
-/*! \brief Function to retrieve Arc's Type identifier.
+/*! \brief Function to retrieve GedaArc's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve a #Arc Type identifier. When first called,
- *  the function registers a #Arc in the GedaObjectType system to
- *  obtain an identifier that uniquely itentifies a Arc and returns
+ *  Function to retrieve a #GedaArc Type identifier. When first called,
+ *  the function registers a #GedaArc in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a GedaArc and returns
  *  the unsigned integer value. The retained value is returned on
  *  all Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with Arc.
+ *  \return GedaObjectType identifier associated with GedaArc.
  */
 GedaObjectType geda_arc_get_type (void)
 {
@@ -231,13 +231,13 @@ GedaObjectType geda_arc_get_type (void)
   if (g_once_init_enter (&geda_arc_type)) {
 
     static const GTypeInfo info = {
-      sizeof(ArcClass),
+      sizeof(GedaArcClass),
       NULL,                  /* base_init           */
       NULL,                  /* base_finalize       */
       geda_arc_class_init,   /* (GClassInitFunc)    */
       NULL,                  /* class_finalize      */
       NULL,                  /* class_data          */
-      sizeof(Arc),
+      sizeof(GedaArc),
       0,                     /* n_preallocs         */
       geda_arc_instance_init /* (GInstanceInitFunc) */
     };
@@ -245,7 +245,7 @@ GedaObjectType geda_arc_get_type (void)
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Arc");
+    string = g_intern_static_string ("GedaArc");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_arc_type, type);
@@ -277,7 +277,7 @@ GedaObject *geda_arc_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_arc_object (Arc *arc)
+bool is_a_geda_arc_object (GedaArc *arc)
 {
   return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }

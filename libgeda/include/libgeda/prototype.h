@@ -106,7 +106,7 @@ extern "C" {
 
 /* m_arc.c */
        double    m_arc_length                    (int radius, int sweep);
-       bool      m_arc_includes_point            (Arc *arc, POINT *point);
+       bool      m_arc_includes_point            (GedaArc *arc, POINT *point);
 
 /* m_circle.c */
        double    m_circle_circumference          (int radius);

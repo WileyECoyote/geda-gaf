@@ -69,7 +69,7 @@ x_draw_arc (GschemToplevel *w_current)
 
   if (GEDA_IS_ARC(o_current)) {
 
-    Arc *o_arc;
+    GedaArc *o_arc;
     int scx, scy;
     int radius;
     int sradi;

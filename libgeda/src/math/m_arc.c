@@ -57,7 +57,7 @@ double  m_arc_length (int radius, int sweep)
  *
  *  \return True if \a arc includes \a point
  */
-bool m_arc_includes_point (Arc *arc, POINT *point)
+bool m_arc_includes_point (GedaArc *arc, POINT *point)
 {
   bool answer;
   int  delta;  /* Will be difference between point to center and radius */

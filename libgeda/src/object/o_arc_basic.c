@@ -43,7 +43,7 @@
  *
  *  A new object of type GedaObject is allocated. Its type and color
  *  are initilized. The description of the arc characteristics
- *  are stored in a new Arc structure.
+ *  are stored in a new GedaArc structure.
  *
  *  Now fixed for world coordinates.
  *
@@ -58,7 +58,7 @@
 GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_sweep)
 {
   GedaObject *new_obj;
-  Arc    *arc;
+  GedaArc    *arc;
 
   new_obj = geda_arc_new();
   arc     = GEDA_ARC(new_obj);
@@ -66,7 +66,7 @@ GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int 
   new_obj->color = color;
 
   /*! \note
-   *  The Arc structure is initialized with the parameters.
+   *  The GedaArc structure is initialized with the parameters.
    *  A default initialization is performed for the line and
    *  fill type to avoid misunderstanding.
    *
@@ -285,7 +285,7 @@ o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_
 /*! \brief create the string representation of an arc object
  *  \par Function Description
  *  This function formats a string in the <B>buffer</B> to describe
- *  the #Arc object <B>\a object</B>.
+ *  the #GedaArc object <B>\a object</B>.
  *  A pointer to the new allocated and formated string is returned.
  *  The string must be freed at some point.
  *
@@ -418,7 +418,7 @@ o_arc_rotate(GedaObject *object, int center_x, int center_y, int angle)
 
 }
 
-/*! \brief Apply Translation to an Arc GedaObject
+/*! \brief Apply Translation to an GedaArc Object
  *  \par Function Description
  *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
  *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
@@ -443,27 +443,27 @@ o_arc_translate(GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Get Point on an Arc Nearest a Given Point
+/*! \brief Get Point on an GedaArc Nearest a Given Point
  *  \par Function Description
- *  This function is intended to locate a point on an Arc object given
+ *  This function is intended to locate a point on an GedaArc object given
  *  a point \a x, \a y, that is on or about the vicinity of the \a object.
  *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
  *  point on the arc that is the closest point on the arc to the point
  *  given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to an Arc object
+ *  \param [in]  object  Pointer to an GedaArc object
  *  \param [in]  x       Integer x of point near or on the arc
  *  \param [in]  y       Integer y of point near or on the arc
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not an
- *           Arc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
+ *           GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
 bool
 o_arc_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  Arc *arc;
+  GedaArc *arc;
   bool result;
 
   if (GEDA_IS_ARC(object)) {
@@ -586,7 +586,7 @@ o_arc_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
       result = TRUE;
     }
   }
-  else { /* was not an Arc */
+  else { /* was not an GedaArc */
     result = FALSE;
   }
 
@@ -1303,7 +1303,7 @@ double o_arc_shortest_distance (GedaObject *object, int x, int y, int force_soli
  *          With an invalid parameter, this function returns FALSE.
  */
 bool
-o_arc_within_sweep(Arc *arc, int x, int y)
+o_arc_within_sweep(GedaArc *arc, int x, int y)
 {
   double a0;
   double a1;

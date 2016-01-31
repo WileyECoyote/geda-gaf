@@ -42,7 +42,7 @@ typedef struct _GedaPage         Page;
 typedef struct _GedaObject       GedaObject;
 
 /*! \brief Geda Arc Object Structure */
-typedef struct _GedaArc          Arc;
+typedef struct _GedaArc          GedaArc;
 
 /*! \brief Geda Box Object Structure */
 typedef struct _GedaBox          Box;

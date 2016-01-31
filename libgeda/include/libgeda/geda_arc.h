@@ -26,24 +26,24 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
-/*! \class Arc geda_arc.h "libgeda/geda_arc.h"
+/*! \class GedaArc geda_arc.h "libgeda/geda_arc.h"
  *  \brief GedaType for GedaArc Objects.
  *
  *  GedaArc is a derivative of the GedaObject class specialized
- *  for representation and manipulation of Arc object data.
+ *  for representation and manipulation of GedaArc object data.
  */
 
 #ifndef __GEDA_ARC_H__
 #define __GEDA_ARC_H__
 
 #define GEDA_TYPE_ARC            (geda_arc_get_type())
-#define GEDA_ARC(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_ARC, Arc))
+#define GEDA_ARC(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_ARC, GedaArc))
 #define GEDA_ARC_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_ARC, ArcClass))
-#define GEDA_IS_ARC(obj)         (is_a_geda_arc_object((Arc*)obj))
+#define GEDA_IS_ARC(obj)         (is_a_geda_arc_object((GedaArc*)obj))
 #define GEDA_IS_ARC_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_ARC))
 #define GEDA_ARC_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_ARC, ArcClass))
 
-typedef struct _GedaArcClass ArcClass;
+typedef struct _GedaArcClass GedaArcClass;
 
 struct _GedaArcClass {
   GedaObjectClass parent_class;
@@ -71,7 +71,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_arc_get_type       (void);
-bool           is_a_geda_arc_object    (Arc *object);
+bool           is_a_geda_arc_object    (GedaArc *object);
 
 GedaObject    *geda_arc_new            (void);
 

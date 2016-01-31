@@ -209,7 +209,7 @@ static const char *x_dnd_string_data_name(char *name)
 
   return &dnd_string_data_name[0];
 }
-static char *x_dnd_string_data_arc_properties(Arc *arc)
+static char *x_dnd_string_data_arc_properties(GedaArc *arc)
 {
   return
   u_string_sprintf("center=(%d,%d), radius=%d, angle=%d",

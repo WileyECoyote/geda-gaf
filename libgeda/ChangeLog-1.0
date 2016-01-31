@@ -2,6 +2,8 @@
 
     * Rename Object to GedaObject, everywhere.
 
+    * Rename Arc to GedaArc
+
 2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/xxx.h: remove __cplusplus macros, except geda_object.h

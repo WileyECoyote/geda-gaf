@@ -104,7 +104,7 @@ void        o_arc_print_center       (GedaToplevel *toplevel, FILE *fp, int x, i
 void        o_arc_print_phantom      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
                                       int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 double      o_arc_shortest_distance  (GedaObject *object, int x, int y, int force_soild);
-bool        o_arc_within_sweep       (Arc *arc, int x, int y);
+bool        o_arc_within_sweep       (GedaArc *arc, int x, int y);
 bool        o_arc_get_position       (int *x, int *y, GedaObject *object);
 
 /* o_attrib.c */
