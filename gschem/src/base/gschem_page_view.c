@@ -290,7 +290,8 @@ gschem_page_view_class_init (GschemPageViewClass *klass)
 
 /*! \brief Get a graphics context for this view
  *
- *  \param [in] view The view
+ *  \param [in] w_current Pointer to GschemToplevel data structure
+ *
  *  \return The graphics context, or NULL if the window is not realized
  */
 GdkGC*
@@ -466,8 +467,8 @@ gschem_page_view_invalidate_all (GschemPageView *view)
 
 /*! \brief Schedule redraw of the given object
  *
- *  \param [in,out] w_current The Gschem page view to redraw
- *  \param [in]     object    The object to redraw
+ *  \param [in,out] w_current Pointer to GschemToplevel data structure
+ *  \param [in]     object    Object to redraw
  */
 void
 gschem_page_view_invalidate_object (GschemToplevel *w_current, GedaObject *object)
