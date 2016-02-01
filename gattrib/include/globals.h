@@ -158,7 +158,9 @@ typedef enum  { ToggleVisiablity,
                 ClearAttributeData
 }  IDS_Popup_items;
 
-typedef enum  { open, save, save_as, cut, copy, paste, find, replace, attribute, designator,
-                invisible, visible, add, promote, demote, name_only, value_only, name_value} IDS_Toolbar;
+typedef enum  { open, save, save_as, cut, copy, paste, find, replace,
+                attribute, designator, invisible, visible, add,
+                promote, demote, name_only, value_only, name_value
+} IDS_Toolbar;
 
 #endif

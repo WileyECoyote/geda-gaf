@@ -31,4 +31,3 @@
 #include "../include/struct.h"     /* typdef and struct declarations */
 #include "../include/globals.h"
 #include "../include/prototype.h"  /* function prototypes */
-

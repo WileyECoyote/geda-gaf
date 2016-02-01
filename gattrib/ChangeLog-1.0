@@ -1,3 +1,8 @@
+2016-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_menus.c: Add Doxygen comments for clipboard menu callbacks,
+      fix upper case TODO in comments for x_menu_edit_new_attrib.
+
 2016-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib.c: Reduce scope of variables, clean, adjust
