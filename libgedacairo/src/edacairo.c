@@ -215,18 +215,21 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
 
   WORLDtoSCREEN (cr, x1, y1, &s_x1, &s_y1);
   WORLDtoSCREEN (cr, x2, y2, &s_x2, &s_y2);
+
   s_line_width = screen_width (cr, line_width);
+
   offset = (line_width == -1 || (s_line_width % 2) == 0) ? 0 : 0.5;
 
   /* Allow filled boxes (inferred from line_width == -1)
    * to touch an extra pixel, so the filled span is inclusive */
   if (line_width == -1) {
-    if (x1 > x2) x1 += 1; else x2 += 1;
-    if (y1 > y2) y1 += 1; else y2 += 1;
+    if (s_x1 > s_x2) s_x1 += 1; else s_x2 += 1;
+    if (s_y1 > s_y2) s_y1 += 1; else s_y2 += 1;
   }
 
   s_x1 += offset; s_y1 += offset;
   s_x2 += offset; s_y2 += offset;
+
   cairo_device_to_user (cr, &s_x1, &s_y1);
   cairo_device_to_user (cr, &s_x2, &s_y2);
   cairo_move_to (cr, s_x2, s_y2);
