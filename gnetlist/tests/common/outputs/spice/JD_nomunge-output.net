@@ -1,5 +1,9 @@
 * Spice netlister for gnetlist
-A1 <No valid value attribute found>
+*vvvvvvvv  Included SPICE from ./models/openIP_5.cir vvvvvvvv
+*
+.model unknown_LVD (stuff)
+*^^^^^^^^  End of included SPICE from ./models/openIP_5.cir ^^^^^^^^
+*
 Cm m 0 20p
 Cp p 0 20p
 Rlp p Vdd1 1meg

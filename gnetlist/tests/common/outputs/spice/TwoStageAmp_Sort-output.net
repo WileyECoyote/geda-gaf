@@ -1,4 +1,11 @@
 * Spice netlister for gnetlist
+*vvvvvvvv  Included SPICE from ./models/2N3904.mod vvvvvvvv
+.model 2N3904   NPN(Stuff
++               More stuff
++               Yet more stuff
++               Final line of stuff)
+*^^^^^^^^  End of included SPICE from ./models/2N3904.mod ^^^^^^^^
+*
 C2 2 Vbase2 2.2uF
 R4 0 Vbase2 2.8K
 R3 Vbase2 VCC 28K
@@ -10,7 +17,6 @@ Q2 VColl2 Vbase2 Vem2 <No valid value attribute found>
 C1 1 Vbase1 2.2uF
 A3 .options TEMP=25
 A2 <No valid value attribute found>
-A1 <No valid value attribute found>
 VCC VCC 0 DC 15V
 Vinput Vin 0 DC 1.6V AC 10MV SIN(0 1MV 1KHZ)
 CE1 0 Vem1 1pF

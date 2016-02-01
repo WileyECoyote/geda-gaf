@@ -1,3 +1,10 @@
+2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/outputs: Regenerate spice and spice-sdb outputs, the
+      former because the model is now inserted into the output rather than
+      "A1 <No valid value attribute found>" and the later because the word
+      "model" was removed from  delineator lines.
+
 2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice.scm: Add function write-prologue and write-model,
