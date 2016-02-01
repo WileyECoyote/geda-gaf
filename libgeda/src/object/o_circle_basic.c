@@ -54,7 +54,7 @@ GedaObject*
 o_circle_new(int color, int x, int y, int radius)
 {
   GedaObject *new_obj;
-  Circle *circle;
+  GedaCircle *circle;
 
   new_obj = geda_circle_new();
   circle  = GEDA_CIRCLE(new_obj);
@@ -81,7 +81,7 @@ o_circle_new(int color, int x, int y, int radius)
 GedaObject *o_circle_copy(GedaObject *o_current)
 {
   GedaObject *new_obj;
-  Circle *old_circle;
+  GedaCircle *old_circle;
 
   g_return_val_if_fail(GEDA_IS_CIRCLE(o_current), NULL);
 
@@ -1144,9 +1144,9 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
                           int angle2, int pitch2,
                           int origin_x, int origin_y)
 {
-  Circle circle;
-  int index;
-  GArray *lines;
+  GArray    *lines;
+  GedaCircle circle;
+  int        index;
 
   g_return_if_fail(toplevel != NULL);
   g_return_if_fail(fp != NULL);

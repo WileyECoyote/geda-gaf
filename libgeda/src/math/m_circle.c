@@ -46,7 +46,7 @@ double  m_circle_circumference (int radius)
  *
  *  \return True if \a circle includes \a point.
  */
-bool m_circle_includes_point (Circle *circle, POINT *point)
+bool m_circle_includes_point (GedaCircle *circle, POINT *point)
 {
   int  delta;  /* Will be difference between point to center and radius */
   int  cx;
@@ -74,7 +74,7 @@ bool m_circle_includes_point (Circle *circle, POINT *point)
  *          shape, this function returns a distance of zero for interior points,
  *          or G_MAXDOUBLE if the parameters are invalid parameter.
  */
-double m_circle_shortest_distance (Circle *circle, int x, int y, int solid)
+double m_circle_shortest_distance (GedaCircle *circle, int x, int y, int solid)
 {
   double shortest_distance;
   double distance_to_center;

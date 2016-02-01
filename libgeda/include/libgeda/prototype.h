@@ -110,14 +110,14 @@ extern "C" {
 
 /* m_circle.c */
        double    m_circle_circumference          (int radius);
-       bool      m_circle_includes_point         (Circle *circle, POINT *point);
-       double    m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
+       bool      m_circle_includes_point         (GedaCircle *circle, POINT *point);
+       double    m_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
-         void    m_hatch_box                     (GedaBox *box,    int angle, int pitch, GArray *lines);
-         void    m_hatch_circle                  (Circle  *circle, int angle, int pitch, GArray *lines);
-         void    m_hatch_path                    (Path    *path,   int angle, int pitch, GArray *lines);
-         void    m_hatch_polygon                 (GArray  *points, int angle, int pitch, GArray *lines);
+         void    m_hatch_box                     (GedaBox    *box,    int angle, int pitch, GArray *lines);
+         void    m_hatch_circle                  (GedaCircle *circle, int angle, int pitch, GArray *lines);
+         void    m_hatch_path                    (Path       *path,   int angle, int pitch, GArray *lines);
+         void    m_hatch_polygon                 (GArray     *points, int angle, int pitch, GArray *lines);
        GArray   *m_hatch_object                  (GedaObject *object);
 
 /* m_line.c */

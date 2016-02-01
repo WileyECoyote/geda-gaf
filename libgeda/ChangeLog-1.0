@@ -6,15 +6,17 @@
     * src/scheme/scheme_closure.c: Eliminate unnecessary initialization
       of smob = SCM_UNDEFINED in edascm_c_make_closure.
 
+    * Rename Circle to GedaCircle.
+
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Object to GedaObject, everywhere.
 
-    * Rename Arc to GedaArc
+    * Rename Arc to GedaArc.
 
-    * Rename Box to GedaBox
+    * Rename Box to GedaBox.
 
-    * Rename Bus to GedaBus
+    * Rename Bus to GedaBus.
 
     * tests/Makefile.am: New file for libgeda C test.
 

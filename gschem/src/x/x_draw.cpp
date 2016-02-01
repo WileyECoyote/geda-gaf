@@ -97,7 +97,7 @@ x_draw_circle (GschemToplevel *w_current)
 
   if (GEDA_IS_CIRCLE(o_current)) {
 
-    Circle *o_circle;
+    GedaCircle *o_circle;
     int scx, scy;
     int radius;
 
