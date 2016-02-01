@@ -82,7 +82,7 @@ struct _GedaObject {
   GedaBox      *box;
   GedaBus      *bus;
   GedaCircle   *circle;
-  Complex      *complex;
+  GedaComplex  *complex;
   Line         *line;
   Net          *net;
   Path         *path;

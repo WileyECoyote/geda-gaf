@@ -349,8 +349,8 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
     if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
 
-      Complex    *o_complex;
-      const char *filename;
+      GedaComplex *o_complex;
+      const char  *filename;
 
       o_complex = o_current->complex;
 

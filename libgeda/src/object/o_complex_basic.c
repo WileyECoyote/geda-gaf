@@ -21,7 +21,7 @@
 /*! \file o_complex_basic.c
  *  \brief Functions for complex objects
  *
- *  Complex objects are collections of primary objects.
+ *  GedaComplex objects are collections of primary objects.
  */
 
 #include <config.h>
@@ -143,7 +143,7 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *
   return answer;
 }
 
-/*! \brief Get the embedded state of a Complex object
+/*! \brief Get the embedded state of a GedaComplex object
  *  \par Function Description
  *  Returns the status of the complex object.
  *
@@ -157,19 +157,20 @@ int o_complex_is_embedded(GedaObject *object)
   return object->complex->is_embedded;
 }
 
-/*! \brief Get Point on a Complex Nearest a Given Point
+/*! \brief Get Point on a GedaComplex Nearest a Given Point
  *  \par Function Description
  *  Recursively calls o_get_nearest_point on the closest sub-object of
  *  the complex and returns the results of the function corresponding
  *  to the appropriate type of object for the selected sub-object.
  *
- *  \param [in]  object  Pointer to a Complex object
+ *  \param [in]  object  Pointer to a GedaComplex object
  *  \param [in]  x       Integer pointer
  *  \param [in]  y       Integer pointer
  *  \param [out] nx      Integer pointer
  *  \param [out] ny      Integer pointer
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a Complex.
+ *  \returns TRUE is the results are valid or
+ *           FALSE if \a object was not a GedaComplex.
  */
 bool o_complex_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
@@ -382,7 +383,8 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
 }
 
 static GedaObject*
-create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int angle, int mirror)
+create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
+                   int x, int y, int angle, int mirror)
 {
   GedaObject      *new_prim_obj;
   LINE_OPTIONS line_options;
@@ -476,7 +478,7 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
   return (GedaObject*)complex;
 }
 
-/*! \brief Create a New Complex GedaObject
+/*! \brief Create a New GedaComplex GedaObject
  *
  *  \par Function Description
  *  Creates and initialize a new complex object.
@@ -488,7 +490,7 @@ GedaObject *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
                       int selectable)
 {
   GedaObject  *new_obj;
-  Complex *complex;
+  GedaComplex *complex;
 
   GList *iter;
   char *buffer;
@@ -593,7 +595,7 @@ GedaObject *o_complex_new_embedded(int x, int y, int angle, int mirror,
                                const char *basename, int selectable)
 {
   GedaObject  *new_obj;
-  Complex *complex;
+  GedaComplex *complex;
 
   new_obj = geda_complex_new();
   complex = GEDA_COMPLEX(new_obj);
@@ -714,10 +716,10 @@ GedaObject *o_complex_read (GedaToplevel *toplevel,
  */
 char *o_complex_save(GedaObject *object)
 {
-  int      selectable;
-  char    *buf = NULL;
-  char    *basename;
-  Complex *complex;
+  GedaComplex *complex;
+  char        *basename;
+  char        *buf = NULL;
+  int          selectable;
 
   g_return_val_if_fail(GEDA_IS_COMPLEX(object), NULL);
 
@@ -750,8 +752,8 @@ char *o_complex_save(GedaObject *object)
 GedaObject *o_complex_copy(GedaObject *o_current)
 {
   GedaObject  *o_new;
-  Complex *new_complex;
-  Complex *old_complex;
+  GedaComplex *new_complex;
+  GedaComplex *old_complex;
 
   GList *iter;
   GList *pins = NULL;
@@ -819,7 +821,7 @@ void o_complex_reset_refdes(GedaObject *object)
   }
 }
 
-/*! \brief Mirror a Complex GedaObject
+/*! \brief Mirror a GedaComplex GedaObject
  *
  *  \par Function Description
  *  This function mirrors a complex from the point

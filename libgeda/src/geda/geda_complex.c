@@ -119,19 +119,20 @@ int geda_complex_bounds(GedaObject *object)
   return result;
 }
 
-/*! \brief GedaType instance initializer for Complex
+/*! \brief GedaType instance initializer for GedaComplex
  *
  *  \par Function Description
- *  GedaType instance initializer for Complex, initializes a new empty
- *  Complex object by setting pointers to NULL and numbers to zero.
+ *  GedaType instance initializer for GedaComplex, initializes a new
+ *  empty GedaComplex object by setting pointers to NULL and numbers
+ *  to zero.
  *
- *  \param [in] instance The Complex structure being initialized,
- *  \param [in] g_class  The Complex class we are initializing.
+ *  \param [in] instance The GedaComplex structure being initialized,
+ *  \param [in] g_class  The GedaComplex class being initializing.
  */
 static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Complex *complex      = (Complex*)instance;
-  GedaObject  *object       = &complex->parent_instance;
+  GedaComplex *complex  = (GedaComplex*)instance;
+  GedaObject  *object   = &complex->parent_instance;
 
   complex->filename     = NULL;
   complex->is_embedded  = FALSE;  /* is embedded component? */
@@ -158,11 +159,11 @@ geda_complex_dispose(GObject *object)
  *  \par Function Description
  *   Releases all internal references and releases the memory allocated to
  *   the given Complex data structure and then chain's up to the parent's
- *   finalizer after invalidating the Complex's markers.
+ *   finalizer after invalidating the Complex.
  */
 static void geda_complex_finalize(GObject *object)
 {
-  Complex *complex = GEDA_COMPLEX(object);
+  GedaComplex *complex = GEDA_COMPLEX(object);
   GedaObject  *obj     = GEDA_OBJECT(object);
 
   if (complex->filename)
@@ -185,18 +186,18 @@ static void geda_complex_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_complex_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for Complex
+/*! \brief GedaType class initializer for GedaComplex
  *
  *  \par Function Description
- *  GedaType class initializer for Complex. We override our parents
- *  virtual class methods as needed and register our GObject signals.
+ *  GedaType class initializer for GedaComplex. We override parents
+ *  virtual class methods as needed and register GObject signals.
  *
- *  \param [in]  g_class      The Complex class we are initializing
+ *  \param [in]  g_class      The GedaComplex class we are initializing
  *  \param [in]  class_data   The Complex structure associated with the class
  */
 static void geda_complex_class_init(void *g_class, void *class_data)
 {
-  ComplexClass    *class         = (ComplexClass*)g_class;
+  GedaComplexClass*class         = (GedaComplexClass*)g_class;
   GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
   GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
@@ -211,13 +212,13 @@ static void geda_complex_class_init(void *g_class, void *class_data)
 /*! \brief Function to retrieve Complex's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve a #Complex Type identifier. When first called,
- *  the function registers a #Complex in the GedaObjectType system to
+ *  Function to retrieve a #GedaComplex Type identifier. When first called,
+ *  the function registers a #GedaComplex in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Complex and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with Complex.
+ *  \return GedaObjectType identifier associated with GedaComplex.
  */
 GedaObjectType geda_complex_get_type (void)
 {
@@ -226,13 +227,13 @@ GedaObjectType geda_complex_get_type (void)
   if (g_once_init_enter (&geda_complex_type)) {
 
     static const GTypeInfo info = {
-      sizeof(ComplexClass),
+      sizeof(GedaComplexClass),
       NULL,                      /* base_init           */
       NULL,                      /* base_finalize       */
       geda_complex_class_init,   /* (GClassInitFunc)    */
       NULL,                      /* class_finalize      */
       NULL,                      /* class_data          */
-      sizeof(Complex),
+      sizeof(GedaComplex),
       0,                         /* n_preallocs         */
       geda_complex_instance_init /* (GInstanceInitFunc) */
     };
@@ -240,7 +241,7 @@ GedaObjectType geda_complex_get_type (void)
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Complex");
+    string = g_intern_static_string ("GedaComplex");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_complex_type, type);
@@ -272,7 +273,7 @@ GedaObject *geda_complex_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_complex_object (Complex *cpx)
+bool is_a_geda_complex_object (GedaComplex *cpx)
 {
   return GEDA_IS_OBJECT(cpx) && (((GedaObject*)cpx)->type == OBJ_COMPLEX);
 }
