@@ -4,6 +4,9 @@
       Stepanov, commit 4cc1c7ce5c485e8c2362a3a7a3fbf26bc06818b2:
       Assignment of function parameter has no effect outside function.
 
+    * src/edacairo.c: Clarify calculation of offset in eda_cairo_line and
+      eda_cairo_stroke, i.e. add parentheses.
+
 2016-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove GDK_LIBS from AM_LDFLAGS.

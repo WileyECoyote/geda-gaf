@@ -128,7 +128,7 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
   WORLDtoSCREEN (cr, w_x2, w_y2, &x2, &y2);
   line_width = screen_width (cr, w_line_width);
 
-  offset = line_width & 1 ? 0 : 0.5;
+  offset = (line_width & 1) ? 0 : 0.5;
 
   if (y1 == y2) horizontal = 1;
   if (x1 == x2) vertical   = 1;
@@ -468,7 +468,7 @@ eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
     cairo_device_to_user_distance (cr, &length, &dummy);
     cairo_device_to_user_distance (cr, &space, &dummy);
 
-    offset = iwidth & 1 ? 0 : 0.5;
+    offset = (iwidth & 1) ? 0 : 0.5;
 
     round_cap_if_legible =
       (iwidth <= 1) ? CAIRO_LINE_CAP_SQUARE : CAIRO_LINE_CAP_ROUND;
