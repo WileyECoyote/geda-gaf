@@ -541,15 +541,13 @@ eda_renderer_draw (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
 {
-  static int color_map_error = 0;
-
-  void (*draw_func)(EdaRenderer *, GedaObject *);
-
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
   g_return_if_fail (renderer->priv->pl != NULL);
 
   if (renderer->priv->color_map != NULL) {
+
+    void (*draw_func)(EdaRenderer *, GedaObject *);
 
     if (!eda_renderer_is_drawable (renderer, object)) return;
 
@@ -577,9 +575,12 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
     draw_func (renderer, object);
   }
   else {
+
     /* We use a static here so we do not flood the console with so many
      * error, all saying the same thing, No color map, that everything
      * else is scrolled beyond the consoles buffer = vary annoying */
+    static int color_map_error = 0;
+
     if (!color_map_error)
       BUG_MSG("renderer->priv->color_map != NULL");
       color_map_error++;
@@ -647,7 +648,6 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
     if (object->fill_options->fill_type != FILL_SOLID) {
 
       GArray *fill_lines;
-      LINE   *line;
       int     fill_width;
       int     index;
 
@@ -657,7 +657,7 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
       /* Draw fill pattern */
       for (index = 0; index < fill_lines->len; index++) {
 
-        line = &g_array_index (fill_lines, LINE, index);
+        LINE *line = &g_array_index (fill_lines, LINE, index);
 
         eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, fill_width,
@@ -961,7 +961,6 @@ eda_renderer_calc_text_position (EdaRenderer *renderer,
                                  int descent, double *x, double *y)
 {
   PangoRectangle inked_rect, logical_rect;
-  double temp;
   double y_lower, y_middle, y_upper;
   double x_left,  x_middle, x_right;
 
@@ -988,6 +987,7 @@ eda_renderer_calc_text_position (EdaRenderer *renderer,
    * does not rotate the text to be shown upside down.
    */
   if (object->text->angle == 180) {
+    double temp;
     temp = y_lower; y_lower = y_upper; y_upper = temp;
     temp = x_left;  x_left  = x_right; x_right = temp;
   }
@@ -1100,7 +1100,6 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
   double height, orig_height;
 
   GdkPixbuf *pixbuf;
-  static int pixbuf_error = 1;
   bool missing;
 
   g_return_if_fail (GEDA_IS_PICTURE (object));
@@ -1112,6 +1111,9 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
     missing = object->picture->missing;
   }
   else {
+
+    /* do not flood the console with redundant messages */
+    static int pixbuf_error = 1;
 
     if (pixbuf_error) {
       BUG_MSG("picture->pixbuf invalid");
@@ -1224,8 +1226,8 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
  */
 void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
 {
-  GList *iter;
   if(renderer->draw_grips) {
+    GList *iter;
     for (iter = list; iter != NULL; iter = g_list_next (iter)) {
       eda_renderer_draw_grips (renderer, (GedaObject*) iter->data);
     }
