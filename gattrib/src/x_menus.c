@@ -185,7 +185,7 @@ void x_menu_edit_new_attrib()
  *
  * Implements the Delete Attribute menu item
  *
- * \TODO Implement the function that Implements Delete Attribute
+ * \todo Implement the function that Implements Delete Attribute
  */
 void x_menu_edit_delete_attrib()
 {
@@ -197,14 +197,34 @@ void x_menu_edit_delete_attrib()
     s_toplevel_delete_attrib_col(sheet);
 }
 
+/*!
+ * \brief Edit->Cut Menu Responder
+ *  menu edit-clipboard-cut action responder for menu item Edit/Cut,
+ *  calls x_window_clipboard_handler passing cut enumeration from
+ *  IDS_Toolbar.
+ */
 static void menu_edit_cut()
 {
   x_window_clipboard_handler(cut);
 }
+
+/*!
+ * \brief Edit->Copy Menu Responder
+ *  menu edit-clipboard-copy action responder for menu item Edit/Copy,
+ *  calls x_window_clipboard_handler passing copy enumeration from
+ *  IDS_Toolbar.
+ */
 static void menu_edit_copy()
 {
   x_window_clipboard_handler(copy);
 }
+
+/*!
+ * \brief Edit->Paste Menu Responder
+ *  menu edit-clipboard-paste action responder for menu item Edit/Paste,
+ *  calls x_window_clipboard_handler passing paste enumeration from
+ *  IDS_Toolbar.
+ */
 static void menu_edit_paste()
 {
   x_window_clipboard_handler(paste);
@@ -215,6 +235,7 @@ static void menu_help_manual()
 {
   i_show_wiki_help (HELP_GATTRIB_GUIDE_HTML);
 }
+
 static void menu_help_faq()
 {
   i_show_wiki_help (HELP_GATTRIB_FAQ_HTML);
