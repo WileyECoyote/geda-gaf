@@ -2,6 +2,8 @@
 
     * Rename Complex to GedaComplex.
 
+    * tests/test_circle.c: Add tests for testing geda_circle module.
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/edascmhookproxy.c: Eliminate unnecessary initialization
@@ -11,8 +13,6 @@
       of smob = SCM_UNDEFINED in edascm_c_make_closure.
 
     * Rename Circle to GedaCircle.
-
-    * tests/test_circle.c: Add tests for testing geda_circle module.
 
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 

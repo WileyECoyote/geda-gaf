@@ -2,7 +2,8 @@
 check_PROGRAMS = \
 	test_arc \
 	test_box \
-	test_bus
+	test_bus \
+	test_circle
 
 TESTS = $(check_PROGRAMS)
 

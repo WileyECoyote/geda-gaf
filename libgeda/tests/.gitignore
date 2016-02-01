@@ -12,4 +12,5 @@ libgeda.la
 test_arc
 test_box
 test_bus
+test_circle
 
