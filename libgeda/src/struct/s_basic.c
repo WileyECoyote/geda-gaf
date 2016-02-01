@@ -53,16 +53,17 @@
  */
 void print_struct_forw (GList *list)
 {
-  GedaObject *o_current=NULL;
-  GList *iter;
+  GList *iter = list;
 
-  iter = list;
   printf("Printing ...\n");
+
   while (iter != NULL) {
-    o_current = (GedaObject *)iter->data;
+
+    GedaObject *o_current = (GedaObject *)iter->data;
+
     printf("Name: %s\n", o_current->name);
     printf("Type: %d\n", o_current->type);
-    printf("Sid: %d\n", o_current->sid);
+    printf("Sid: %d\n",  o_current->sid);
 
     if (o_current->type == OBJ_COMPLEX || o_current->type == OBJ_PLACEHOLDER) {
       print_struct_forw(o_current->complex->prim_objs);

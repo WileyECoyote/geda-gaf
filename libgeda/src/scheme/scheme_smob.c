@@ -190,8 +190,6 @@ smob_free (SCM smob)
 static int
 smob_print (SCM smob, SCM port, scm_print_state *pstate)
 {
-  char *hexstring;
-
   scm_puts ("#<geda-", port);
 
   switch (EDASCM_SMOB_TYPE (smob)) {
@@ -216,8 +214,13 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
   }
 
   if (SCM_SMOB_DATA (smob) != 0) {
+
+    char *hexstring;
+
     scm_dynwind_begin (0);
+
     hexstring = u_string_sprintf (" %p", (void *) SCM_SMOB_DATA (smob));
+
     scm_dynwind_unwind_handler (g_free, hexstring, SCM_F_WIND_EXPLICITLY);
     scm_puts (hexstring, port);
     scm_dynwind_end ();
@@ -353,8 +356,8 @@ edascm_from_object (GedaObject *object)
   SCM smob;
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
 
-  SCM_NEWSMOB2           (smob, geda_smob_tag, object, toplevel);
-  SCM_SET_SMOB_FLAGS     (smob, GEDA_SMOB_OBJECT);
+  SCM_NEWSMOB2       (smob, geda_smob_tag, object, toplevel);
+  SCM_SET_SMOB_FLAGS (smob, GEDA_SMOB_OBJECT);
 
   /* Set weak references */
   geda_object_weak_ref   (object,   smob_weakref_notify, smob);

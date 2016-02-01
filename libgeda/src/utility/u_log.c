@@ -110,15 +110,15 @@ static void u_log_handler (const char    *log_domain,
                            const char    *message,
                            void          *user_data)
 {
-  char    buffer[LOG_WRITE_BUFFER_SIZE];
-
-  int     status;
-  struct  tm *nowtm;
-  time_t  nowt;
+  int status;
 
   g_return_if_fail (logfile_fd != -1);
 
   if (log_time) {
+
+    char   buffer[LOG_WRITE_BUFFER_SIZE];
+    struct tm *nowtm;
+    time_t nowt;
 
     time (&nowt);
     nowtm = localtime (&nowt);

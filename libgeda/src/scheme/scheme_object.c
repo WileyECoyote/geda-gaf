@@ -260,19 +260,21 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
 EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
                (SCM rst_s), "Get the bounds of a list of objects")
 {
-  GList        *obj_list;
-  Page         *page;
+  GList *obj_list;
 
   int left, top, right, bottom;
-  int success = FALSE;
+  int success;
 
+  success  = FALSE;
   obj_list = edascm_to_object_glist (rst_s, scheme_object_bounds);
 
   if (obj_list != NULL) {
 
-    GedaObject *o_current = (GedaObject *) obj_list->data;
+    GedaObject *o_current;
+    Page       *page;
 
-    page = geda_object_get_page(o_current);
+    o_current = (GedaObject*)obj_list->data;
+    page      = geda_object_get_page(o_current);
 
     if (page == NULL) {
 
@@ -285,6 +287,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
     else {
 
       GList *list;
+
       page->show_hidden_text = TRUE;
 
       for (list = obj_list; list != NULL; list = g_list_next(list)) {

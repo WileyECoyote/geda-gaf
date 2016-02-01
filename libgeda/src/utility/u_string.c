@@ -506,9 +506,6 @@ int u_string_stristr ( const char *haystack, const char *needle)
 {
    int result = -1;
 
-   char *upper_needle;
-   char *upper_haystack;
-
    if (needle && haystack) {
 
      if (g_strstr_len( haystack, -1, needle) != NULL) {
@@ -516,14 +513,17 @@ int u_string_stristr ( const char *haystack, const char *needle)
      }
      else {
 
+       char *upper_needle;
+       char *upper_haystack;
+
        upper_needle   = g_ascii_strup( needle, -1);
        upper_haystack = g_ascii_strup( haystack, -1);
 
-       if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL) {
+       if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL)
          result = 0;
-       }
        else
          GEDA_FREE(upper_needle);
+
        GEDA_FREE(upper_haystack);
      }
    }

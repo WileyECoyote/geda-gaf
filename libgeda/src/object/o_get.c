@@ -395,9 +395,8 @@ bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
  */
 int o_get_num_text_lines(const char *string)
 {
-  int line_count = 0;
   const char *aux;
-  uint32_t current_char;
+        int   line_count = 0;
 
   if (string == NULL) {
     return 0;
@@ -410,7 +409,9 @@ int o_get_num_text_lines(const char *string)
   aux = string;
 
   while (aux && ((uint32_t) (*aux) != 0) ) {
-    current_char = g_utf8_get_char_validated(aux, -1);
+
+    uint32_t current_char = g_utf8_get_char_validated(aux, -1);
+
     if (current_char == '\n')
       line_count++;
     aux = g_utf8_find_next_char(aux, NULL);
@@ -613,9 +614,10 @@ bool o_get_position (GedaObject *object, int *x, int *y )
 double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
-  double (*func) (GedaObject *, int, int, int) = NULL;
 
   if(GEDA_IS_OBJECT(object)) {
+
+    double (*func) (GedaObject *, int, int, int) = NULL;
 
     switch(object->type) {
       case OBJ_BUS:

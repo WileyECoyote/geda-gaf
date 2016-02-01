@@ -4,6 +4,15 @@
 
     * tests/test_circle.c: Add tests for testing geda_circle module.
 
+    * Reduce scope of variables in modules:
+
+          * src/object/o_get.c
+          * src/scheme/scheme_object.c
+          * src/scheme/scheme_smob.c
+          * src/struct/s_basic.c (also unnecessary initialization o_current)
+          * src/utility/u_log.c
+          * src/utility/u_string.c
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/edascmhookproxy.c: Eliminate unnecessary initialization
