@@ -4,6 +4,8 @@
 
     * tests/test_circle.c: Add tests for testing geda_circle module.
 
+    * tests/test_complex.c: Add tests for testing geda_complex module.
+
     * Reduce scope of variables in modules:
 
           * src/object/o_get.c
