@@ -794,7 +794,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
     if (ukn_object->type == OBJ_BUS) {
 
       GedaBus  *bus_object  = (GedaBus*)ukn_object;
-      Line     *line_object = (Line*)bus_object;
+      GedaLine *line_object = (GedaLine*)bus_object;
 
       /* yes, using the net routine is okay */
       int bus_orientation = o_net_orientation(ukn_object);

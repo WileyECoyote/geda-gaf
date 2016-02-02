@@ -60,7 +60,7 @@
 GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
 {
   GedaObject *new_obj;
-  Line   *line;
+  GedaLine   *line;
 
   new_obj = geda_line_new();
 
@@ -80,18 +80,18 @@ GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
 /*! \brief Create a copy of a line.
  *
  *  \par Function Description
- *  This function creates a copy of the \a Line object pointed by
+ *  This function creates a copy of the \a GedaLine object pointed by
  *  <B>\a o_current</B> describing a line. The coordinates of the ends
  *  of the new line are set with the ones of the original line.
  *  The two lines have the same #LINE_TYPE
  *
- *  \param [in]  o_current  Line GedaObject to copy.
+ *  \param [in]  o_current  GedaLine GedaObject to copy.
  *  \return The new GedaObject
  */
 GedaObject *o_line_copy(GedaObject *o_current)
 {
   GedaObject *new_obj;
-  Line   *old_line;
+  GedaLine   *old_line;
 
   g_return_val_if_fail(GEDA_IS_LINE(o_current), NULL);
 
@@ -120,7 +120,7 @@ GedaObject *o_line_copy(GedaObject *o_current)
  *  The coordinates of the end of line is modified in the world
  *  coordinate system. Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     Line GedaObject to modify.
+ *  \param [in,out] object     GedaLine Object to modify.
  *  \param [in]     x          New x coordinate.
  *  \param [in]     y          New y coordinate.
  *  \param [in]     whichone   Which line parameter to modify.
@@ -268,7 +268,7 @@ GedaObject* o_line_read (const char buf[], unsigned int release_ver,
  *  It follows the post-20000704 release file format that handle the
  *  line type and fill options - filling is irrelevant here.
  *
- *  \param [in] object  Line GedaObject to create string from.
+ *  \param [in] object  GedaLine Object to create string from.
  *  \return A pointer to the line Object character string.
  *
  *  \note
@@ -277,12 +277,12 @@ GedaObject* o_line_read (const char buf[], unsigned int release_ver,
  */
 char *o_line_save(GedaObject *object)
 {
-  int x1, x2, y1, y2;
-  int line_width, line_space, line_length;
-  char *buf;
-  Line *line;
+  char     *buf;
+  GedaLine *line;
   LINE_END  line_end;
   LINE_TYPE line_type;
+  int line_width, line_space, line_length;
+  int x1, x2, y1, y2;
 
   g_return_val_if_fail(GEDA_IS_LINE(object), NULL);
 
@@ -315,7 +315,7 @@ char *o_line_save(GedaObject *object)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the line
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     Line GedaObject to translate
+ *  \param [in,out] object     GedaLine Object to translate
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
 
@@ -324,7 +324,7 @@ void o_line_translate( GedaObject *object, int dx, int dy)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
-  Line *line = GEDA_LINE(object);
+  GedaLine *line = GEDA_LINE(object);
 
   /* Update world coords */
   line->x[0] = line->x[0] + dx;
@@ -336,7 +336,7 @@ void o_line_translate( GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Rotate Line GedaObject using WORLD coordinates
+/*! \brief Rotate a GedaLine Object using WORLD coordinates
  *
  *  \par Function Description
  *  This function rotates the line described by
@@ -344,16 +344,16 @@ void o_line_translate( GedaObject *object, int dx, int dy)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in,out]  object     Line GedaObject to rotate
+ *  \param [in,out]  object    GedaLine Object to rotate
  *  \param [in]      center_x  Rotation center x coordinate in WORLD units
  *  \param [in]      center_y  Rotation center y coordinate in WORLD units
- *  \param [in]      angle      Rotation angle in degrees (See note below).
+ *  \param [in]      angle     Rotation angle in degrees (See note below).
 
  */
-void o_line_rotate( GedaObject *object, int center_x, int center_y, int angle)
+void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
+  GedaLine *line;
   int newx, newy;
-  Line *line;
 
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -402,7 +402,7 @@ void o_line_rotate( GedaObject *object, int center_x, int center_y, int angle)
  *  The line if first translated to the origin, then mirrored
  *  and finally translated back at its previous position.
  *
- *  \param [in,out] object    Line GedaObject to mirror
+ *  \param [in,out] object    GedaLine Object to mirror
  *  \param [in]     center_x  Origin x coordinate in WORLD units
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
 
@@ -453,7 +453,7 @@ bool o_line_get_position (int *x, int *y, GedaObject *object)
  *
  *  \param [in] toplevel  The GedaToplevel object.
  *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Line GedaObject to write to document.
+ *  \param [in] o_current  GedaLine Object to write to document.
  *  \param [in] origin_x   Page x coordinate to place line Object.
  *  \param [in] origin_y   Page y coordinate to place line Object.
  */
@@ -1083,7 +1083,7 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
 
-/*! \brief Scale a Line object
+/*! \brief Scale a GedaLine object
  *  \par Function Description
  *
  *  \param [in] object
@@ -1104,12 +1104,12 @@ void o_line_scale(GedaObject *object, int x_scale, int y_scale)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Is point an End Point of the given Line
+/*! \brief Is point an End Point of the given GedaLine
  *
  *  \par Function Description
  *  This function check if \a point is an end-point of \a object
  *
- *  \param [in] object Line object
+ *  \param [in] object GedaLine object
  *  \param [in] point  Point
  *
  *  \return TRUE if point is an end-point of the line
@@ -1299,8 +1299,8 @@ bool o_line_get_midpoint(GedaObject *object, POINT *point)
  */
 bool o_line_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  Line *line;
-  bool  result;
+  GedaLine *line;
+  bool      result;
 
   if (GEDA_IS_LINE(object)) {
 
@@ -1446,7 +1446,7 @@ double o_line_length(GedaObject *object)
 
   }
   else {
-    BUG_MSG("Invalid GEDA Line GedaObject");
+    BUG_MSG("Invalid GedaLine Object");
     length = 0.0;
   }
   return (length);

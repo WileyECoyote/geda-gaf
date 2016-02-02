@@ -46,12 +46,12 @@
 typedef struct _GedaGedaBusClass GedaBusClass;
 
 struct _GedaGedaBusClass {
-  LineClass parent_class;
+  GedaLineClass parent_class;
 };
 
 struct _GedaBus {
 
-  Line parent_instance;
+  GedaLine parent_instance;
 
   int  *line_width;
 

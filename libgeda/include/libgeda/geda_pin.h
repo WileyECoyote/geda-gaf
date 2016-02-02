@@ -55,12 +55,12 @@ extern "C" {
 typedef struct _GedaPinClass PinClass;
 
 struct _GedaPinClass {
-  LineClass parent_class;
+  GedaLineClass parent_class;
 };
 
 struct _GedaPin {
 
-  Line parent_instance;
+  GedaLine parent_instance;
 
   char       *number;
   int         sequence;

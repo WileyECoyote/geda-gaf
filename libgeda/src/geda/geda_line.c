@@ -81,7 +81,7 @@ geda_line_bounds(GedaObject *object)
  */
 static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Line       *line   = (Line*)instance;
+  GedaLine   *line   = (GedaLine*)instance;
   GedaObject *object = &line->parent_instance;
 
   line->x[0]         = 0;
@@ -122,18 +122,18 @@ static void geda_line_finalize(GObject *object)
   /* Possible return to line, net, or pin finalizer */
 }
 
-/*! \brief GedaType class initializer for Line
+/*! \brief GedaType class initializer for GedaLine
  *
  *  \par Function Description
- *  GedaType class initializer for Line. We override our parents
+ *  GedaType class initializer for GedaLine. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Line class we are initialising
- *  \param [in]  class_data  The Line structure associated with the class
+ *  \param [in]  class       The GedaLine class we are initialising
+ *  \param [in]  class_data  The GedaLine structure associated with the class
  */
 static void geda_line_class_init(void *class, void *class_data)
 {
-  LineClass       *line_class    = (LineClass*)class;
+  GedaLineClass   *line_class    = (GedaLineClass*)class;
   GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
   GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
@@ -165,13 +165,13 @@ GedaObjectType geda_line_get_type (void)
   if (g_once_init_enter (&geda_line_type)) {
 
     static const GTypeInfo info = {
-      sizeof(LineClass),
+      sizeof(GedaLineClass),
       NULL,                   /* base_init           */
       NULL,                   /* base_finalize       */
       geda_line_class_init,   /* (GClassInitFunc)    */
       NULL,                   /* class_finalize      */
       NULL,                   /* class_data          */
-      sizeof(Line),
+      sizeof(GedaLine),
       0,                      /* n_preallocs         */
       geda_line_instance_init /* (GInstanceInitFunc) */
     };
@@ -179,7 +179,7 @@ GedaObjectType geda_line_get_type (void)
     const char *string;
     GedaType    type;
 
-    string = g_intern_static_string ("Line");
+    string = g_intern_static_string ("GedaLine");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_line_type, type);
@@ -211,7 +211,7 @@ GedaObject *geda_line_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_line_object (Line *lin)
+bool is_a_geda_line_object (GedaLine *lin)
 {
  if (GEDA_IS_OBJECT (lin)) {
    GedaObject *obj = (GedaObject*)lin;

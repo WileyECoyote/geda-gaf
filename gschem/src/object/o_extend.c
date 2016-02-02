@@ -642,10 +642,10 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
                                    char        direction,
                                    POINT      *point)
 {
-  GedaBox *box  = boundary->box;
-  Line    *proj = projectile->line;
-  bool     answer;
-  double   slope;
+  GedaBox  *box  = boundary->box;
+  GedaLine *proj = projectile->line;
+  bool      answer;
+  double    slope;
 
   int  left   = /* min */ box->upper_x < box->lower_x ? box->upper_x : box->lower_x;
   int  bottom = /* min */ box->upper_y < box->lower_y ? box->upper_y : box->lower_y;
@@ -685,6 +685,7 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
     else if ((y1 == bottom || y1 == top) && x1 < left) {
 
       answer = TRUE;
+
       if (point) {
         point->x = left;
         point->y = y1;
@@ -841,8 +842,8 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
     }
     else { /* projectile is on an angle, y is not arbitrary */
 
-      Line  diagonal;
-      POINT tmp;
+      GedaLine diagonal;
+      POINT    tmp;
 
       /* If box is to bound, projectile must intersect a diagonal */
 
@@ -1127,8 +1128,8 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
 
     while (i < points->len) {
 
-      POINT  intersect;
-      Line   line;
+      POINT intersect;
+      GedaLine line;
 
       line.x[0] = vertex.x;
       line.y[0] = vertex.y;
@@ -1584,7 +1585,7 @@ static bool o_extend_can_hit_target(GedaObject *projectile,
 
   if (answer) {
 
-    Line  *line;
+    GedaLine *line;
 
     line     = projectile->line;
    *distance = m_distance(line->x[which_end], line->y[which_end], point.x, point.y);

@@ -2,6 +2,8 @@
 
     * Rename Complex to GedaComplex.
 
+    * Rename Line to GedaLine.
+
     * tests/test_circle.c: Add tests for testing geda_circle module.
 
     * tests/test_complex.c: Add tests for testing geda_complex module.

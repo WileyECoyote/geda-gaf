@@ -57,7 +57,7 @@ static GObjectClass *geda_bus_parent_class = NULL;
 static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaBus    *bus            = (GedaBus*)instance;
-  Line       *line           = &bus->parent_instance;
+  GedaLine   *line           = &bus->parent_instance;
   GedaObject *object         = &line->parent_instance;
 
   bus->bus_ripper_direction  = 0;

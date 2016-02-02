@@ -145,7 +145,7 @@ x_draw_line (GschemToplevel *w_current)
 
   if (GEDA_IS_LINE(o_current)) {
 
-    Line *o_line;
+    GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
 
     x_draw_set_color (w_current);
@@ -166,7 +166,7 @@ x_draw_bus (GschemToplevel *w_current)
 
   if (GEDA_IS_LINE(o_current)) {
 
-    Line *o_line;
+    GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
 
     x_draw_set_color (w_current);
@@ -187,7 +187,7 @@ x_draw_net (GschemToplevel *w_current)
 
   if (GEDA_IS_LINE(o_current)) {
 
-    Line *o_line;
+    GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
 
     x_draw_set_color (w_current);

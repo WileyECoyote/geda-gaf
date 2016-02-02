@@ -169,8 +169,9 @@ double m_polygon_shortest_distance (GArray *points, int x, int y, int closed)
     }
 
     while (i < points->len) {
-      double distance;
-      Line line;
+
+      double   distance;
+      GedaLine line;
 
       line.x[0] = point.x;
       line.y[0] = point.y;

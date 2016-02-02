@@ -121,11 +121,11 @@ extern "C" {
        GArray   *m_hatch_object                  (GedaObject *object);
 
 /* m_line.c */
-         bool    m_line_get_intersection         (Line *line1, Line *line2, POINT *point);
-         bool    m_line_includes_point           (Line *line, POINT *point);
+         bool    m_line_get_intersection         (GedaLine *line1, GedaLine *line2, POINT *point);
+         bool    m_line_includes_point           (GedaLine *line, POINT *point);
          bool    m_line_intersection             (LINE *line1, LINE *line2, POINT *point);
           int    m_line_length                   (int x1, int y1, int x2, int y2);
-       double    m_line_shortest_distance        (Line *line, int x, int y);
+       double    m_line_shortest_distance        (GedaLine *line, int x, int y);
 
 /* m_polygon.c */
          bool    m_polygon_interior_point        (GArray *points, int x, int y);

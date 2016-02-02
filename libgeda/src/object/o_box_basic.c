@@ -565,8 +565,8 @@ bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny
 
   if (GEDA_IS_BOX(object)) {
 
-    Line *closest;
-    Line  segments[4];
+    GedaLine *closest;
+    GedaLine  segments[4];
 
     box    = object->box;
     result = FALSE;
@@ -1414,6 +1414,7 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
   m_hatch_box(&box, angle1, pitch1, lines);
 
   for(index=0; index<lines->len; index++) {
+
     LINE *line = &g_array_index(lines, LINE, index);
 
     fprintf(fp,"%d %d %d %d %d %d line\n",

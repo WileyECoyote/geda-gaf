@@ -138,7 +138,7 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
 static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
 {
   Pin        *pin    = (Pin*)instance;
-  Line       *line   = &pin->parent_instance;
+  GedaLine   *line   = &pin->parent_instance;
   GedaObject *object = &line->parent_instance;
 
   pin->number        = NULL;

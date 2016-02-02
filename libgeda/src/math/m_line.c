@@ -47,7 +47,7 @@
  *
  *  \sa m_line_get_intersection
  */
-bool m_line_get_intersection(Line *line1, Line *line2, POINT *point)
+bool m_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *point)
 {
   LINE *L1 = (LINE*) &line1->x[0];
   LINE *L2 = (LINE*) &line2->x[0];
@@ -57,7 +57,7 @@ bool m_line_get_intersection(Line *line1, Line *line2, POINT *point)
 
 /*! \brief Returns True if Line contains point
  */
-bool m_line_includes_point (Line *line, POINT *point)
+bool m_line_includes_point (GedaLine *line, POINT *point)
 {
   bool included;
 
@@ -253,7 +253,7 @@ int m_line_length (int x1, int y1, int x2, int y2)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double m_line_shortest_distance (Line *line, int x, int y)
+double m_line_shortest_distance (GedaLine *line, int x, int y)
 {
   double dx, dy;
   double lx0, ly0;

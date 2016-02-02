@@ -83,7 +83,7 @@ struct _GedaObject {
   GedaBus      *bus;
   GedaCircle   *circle;
   GedaComplex  *complex;
-  Line         *line;
+  GedaLine     *line;
   Net          *net;
   Path         *path;
   Picture      *picture;

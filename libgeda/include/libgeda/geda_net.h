@@ -45,12 +45,12 @@
 typedef struct _GedaNetClass NetClass;
 
 struct _GedaNetClass {
-  LineClass parent_class;
+  GedaLineClass parent_class;
 };
 
 struct _GedaNet {
 
-  Line parent_instance;
+  GedaLine parent_instance;
 
   int  *line_width;
 

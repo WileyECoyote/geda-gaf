@@ -56,7 +56,7 @@ static GObjectClass *geda_net_parent_class = NULL;
 static void geda_net_instance_init(GTypeInstance *instance, void *g_class)
 {
   Net        *net            = (Net*)instance;
-  Line       *line           = &net->parent_instance;
+  GedaLine   *line           = &net->parent_instance;
   GedaObject *object         = &line->parent_instance;
 
   net->nid                   = -1;

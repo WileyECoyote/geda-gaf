@@ -221,7 +221,7 @@ static char *x_dnd_string_data_circle_properties(GedaCircle *circle)
   u_string_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
-static char *x_dnd_string_data_line_properties(Line *line)
+static char *x_dnd_string_data_line_properties(GedaLine *line)
 {
   return
   u_string_sprintf("start (%d,%d), end (%d,%d)",

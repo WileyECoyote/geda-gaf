@@ -534,16 +534,16 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
  */
 static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 {
-  bool    result = FALSE;
-  bool    closed;
-  GArray *points;
-  Line    segments[2];
-  POINT   point1;
-  POINT   point2;
-  int     vertex1;
-  int     vertex2;
-  int     segment1;
-  int     segment2;
+  bool     result = FALSE;
+  bool     closed;
+  GArray  *points;
+  GedaLine segments[2];
+  POINT    point1;
+  POINT    point2;
+  int      vertex1;
+  int      vertex2;
+  int      segment1;
+  int      segment2;
 
   points = g_array_new (FALSE, FALSE, sizeof (POINT));
   closed = s_path_to_polygon (object->path, points);
@@ -565,7 +565,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
    * returned segment corresponds to the index in points of the first
    * point of the segment that was hit and a returned node cooresponds
    * to the second point */
-  void checkpoint (POINT *point, int *segment, int *node, Line *line) {
+  void checkpoint (POINT *point, int *segment, int *node, GedaLine *line) {
 
     int   i;
     POINT vertex;
@@ -849,7 +849,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
  *
  *  \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Line object and is not checked!
+ *  \remark boundary Must be a GedaLine object and is not checked!
  */
 static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
 {

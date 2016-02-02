@@ -580,7 +580,7 @@ bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
 
   if (GEDA_IS_PATH(object)) {
 
-    Line  segment;
+    GedaLine  segment;
 
     points = g_array_new (FALSE, FALSE, sizeof (POINT));
     closed = s_path_to_polygon (object->path, points);
@@ -601,8 +601,8 @@ bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
 
       while (i < points->len) {
 
-        double distance;
-        Line   line;
+        double   distance;
+        GedaLine line;
 
         line.x[0] = vertex.x;
         line.y[0] = vertex.y;
