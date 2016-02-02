@@ -131,7 +131,7 @@ void libgeda_init(int argc, char **argv)
 
   if (env_path != NULL) {
     char *path = u_string_sprintf ("%s", env_path);
-    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+    if (f_path_create (path, 0777 /*octal*/ ) == NO_ERROR) {
       default_log_directory = path;
     }
     else {

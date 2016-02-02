@@ -1012,7 +1012,7 @@ SCM g_rc_log_directory(SCM path)
   free (temp);
 
   /* invalid path? */
-  if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
+  if (f_path_create (string, 0777 /*octal*/ ) != NO_ERROR) {
     fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;
