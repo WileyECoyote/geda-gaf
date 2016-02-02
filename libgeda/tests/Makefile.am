@@ -9,6 +9,8 @@ check_PROGRAMS = \
 
 TESTS = $(check_PROGRAMS)
 
+tests: $(check_PROGRAMS)
+
 AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgeda \
 	-I$(top_srcdir) -I$(top_srcdir)/include
