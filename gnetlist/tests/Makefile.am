@@ -2,7 +2,7 @@
 
 SUBDIRS = hierarchy hierarchy2 drc2 scripts common
 
-EXTRA_DIST = runtest.sh \
+EXTRA_DIST = runtest.sh gafrc \
 	     7447.vhdl README amp.spice cascade.sch cascade.cascade \
 	     darlington.spice netattrib.geda \
 	     netattrib.sch powersupply.PCB powersupply.allegro \
@@ -26,7 +26,7 @@ tests:
 
 #notest:
 # cleanup
-	rm -f $(BUILDDIR)/new_*
+	rm -f  $(BUILDDIR)/new_*
 	rm -rf $(BUILDDIR)/devfiles
 	mkdir $(BUILDDIR)/devfiles
 	cp -f $(srcdir)/gnetlistrc.orig $(builddir)/gnetlistrc
@@ -108,9 +108,10 @@ tests:
 		$(BUILDDIR) $(SRCDIR)
 
 # Cleanup
-	rm -f $(BUILDDIR)/new_*
+	rm -f  $(BUILDDIR)/new_*
 	rm -rf $(BUILDDIR)/devfiles
-	rm -f $(builddir)/gnetlistrc
+	rm -f  $(builddir)/gnetlistrc
+	rm -rf $(builddir)/logs
 
 MOSTLYCLEANFILES     = new_* core *.log FILE *.ps *~
 CLEANFILES           = new_* core *.log FILE *.ps *~

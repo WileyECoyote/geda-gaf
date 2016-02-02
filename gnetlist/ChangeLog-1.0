@@ -6,6 +6,16 @@
     * tests/common/run_backend_tests.sh: Simplify trouble-shooting; generate
       a diff in the parent directory when failures occur.
 
+    * tests/gafrc: Add new file with log-directory entry to create and write
+      logs to tests/logs.
+
+    * tests/common/inputs/gafrc: Add log-directory key-word to use ../../logs,
+      combine with the previous revision, all 1747 logs files generated during
+      the test are contained to the tests/logs directory.
+
+    * tests/Makefile.am: Remove the logs directory from the builddir to satisfy
+	  distcheck.
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/outputs: Regenerate spice and spice-sdb outputs, the
