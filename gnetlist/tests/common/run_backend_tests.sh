@@ -303,12 +303,15 @@ for t in $all_tests ; do
 
             if ! diff -w ${out}.tmp1 ${out}.tmp2 >/dev/null; then
                 echo "FAILED: Wrong plain output. See diff -w ${ref} ${out}"
+                diff -u ${out}.tmp1 ${out}.tmp2 > "../${backend}_${t}-plain.diff"
                 bad=1
             elif ! diff -w ${out}.tmp1 ${out}.tmp3 >/dev/null; then
                 echo "FAILED: Wrong stdout output. See diff -w ${ref} ${std}"
+                diff -u ${out}.tmp1 ${out}.tmp2 > "../${backend}_${t}-std.diff"
                 bad=1
             elif ! diff -w ${out}.tmp1 ${out}.tmp4 >/dev/null; then
                 echo "FAILED: Wrong verbose output. See diff -w ${ref} ${vrb}"
+                diff -u ${out}.tmp1 ${out}.tmp2 > "../${backend}_${t}-vrb.diff"
                 bad=1
             else
                 echo "PASS"

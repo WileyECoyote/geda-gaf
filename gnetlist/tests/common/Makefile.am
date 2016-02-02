@@ -48,8 +48,7 @@ dist-hook: tests.list backends.list
 clean-local:
 	test -d run && rm -rf run || : ;
 
-MOSTLYCLEANFILES     = core *.log FILE *.ps *~
-CLEANFILES           = core *.log FILE *.ps *~
-DISTCLEANFILES       = core *.log FILE *.ps *~
-MAINTAINERCLEANFILES = core *.log FILE *.ps *~ Makefile.in
-
+MOSTLYCLEANFILES     = core *.diff *.log FILE *.ps *~
+CLEANFILES           = core *.diff *.log FILE *.ps *~
+DISTCLEANFILES       = core *.diff *.log FILE *.ps *~
+MAINTAINERCLEANFILES = core *.diff *.log FILE *.ps *~ Makefile.in
