@@ -1,17 +1,17 @@
 #include <glib.h>
 #include <libgeda.h>
 
-#define TOBJECT "GedaBus"
+#define TOBJECT "GedaLine"
 
-/*! \file tests_bus.c
- *  \brief Tests for geda_bus.c module
+/*! \file tests_line.c
+ *  \brief Tests for geda_line.c module
  */
 
-int test_box (void)
+int test_line (void)
 {
   int result = 0;
 
-  GedaObject *object = geda_bus_new();
+  GedaObject *object = geda_line_new();
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "%s: is a GedaObject Failed\n", TOBJECT);
@@ -31,8 +31,8 @@ int test_box (void)
     result++;
   }
 
-  if (!GEDA_IS_BUS(object)) {
-    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
+  if (GEDA_IS_BUS(object)) {
+    fprintf(stderr, "%s matched type GedaBus\n", TOBJECT);
     result++;
   }
 
@@ -46,9 +46,8 @@ int test_box (void)
     result++;
   }
 
-  /* GedaBus objects are derived from GedaLine object class */
   if (!GEDA_IS_LINE(object)) {
-    fprintf(stderr, "%s is a GedaLine Failed\n", TOBJECT);
+    fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
     result++;
   }
 
@@ -77,36 +76,26 @@ int test_box (void)
     result++;
   }
 
-  GedaBus  *bus  = object->bus;
   GedaLine *line = object->line;
 
-  if (!GEDA_IS_BUS(bus)) {
+  if (!GEDA_IS_LINE(line)) {
     fprintf(stderr, "sub-pointer is a %s Failed\n", TOBJECT);
     result++;
   }
-  else if (!GEDA_IS_LINE(line)) {
-    fprintf(stderr, "%s sub-pointer is a GedaLine\n", TOBJECT);
-    result++;
-  }
-  else if (object->type != OBJ_BUS) {
-    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_BUS);
+  else if (object->type != OBJ_LINE) {
+    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_LINE);
     result++;
   }
 
   g_object_unref(object);
 
-  if (GEDA_IS_BUS(object)) {
+  if (GEDA_IS_LINE(object)) {
     fprintf(stderr, "%s was not destroyed\n", TOBJECT);
     result++;
   }
 
-  if (GEDA_IS_LINE(object)) {
-    fprintf(stderr, "%s parent was not destroyed\n", TOBJECT);
-    result++;
-  }
-
   if (GEDA_IS_OBJECT(object)) {
-    fprintf(stderr, "%s grand-parent was not destroyed\n", TOBJECT);
+    fprintf(stderr, "%s parent was not destroyed\n", TOBJECT);
     result++;
   }
 
@@ -123,7 +112,7 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_box();
+  result = test_line();
 
   return result;
 }

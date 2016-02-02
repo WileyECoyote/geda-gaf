@@ -1,3 +1,7 @@
+2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_line.c: Add tests for testing geda_line module.
+
 2016-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Complex to GedaComplex.
