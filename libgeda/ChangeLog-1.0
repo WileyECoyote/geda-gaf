@@ -1,5 +1,8 @@
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_complex.c: Revise is_a_geda_complex_object to also return
+      true if object type is OBJ_PLACEHOLDER.
+
     * src/guile/g_rc.c: Use f_path_create instead of g_file_test in function
       g_rc_log_directory, maybe is more convenient for users who copy gafrc
       files, but is really to allow test in the build to not put log files

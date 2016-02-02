@@ -275,5 +275,11 @@ GedaObject *geda_complex_new (void)
  */
 bool is_a_geda_complex_object (GedaComplex *cpx)
 {
-  return GEDA_IS_OBJECT(cpx) && (((GedaObject*)cpx)->type == OBJ_COMPLEX);
+ if (GEDA_IS_OBJECT (cpx)) {
+   GedaObject *obj = (GedaObject*)cpx;
+   return (obj->type == OBJ_COMPLEX || obj->type == OBJ_PLACEHOLDER);
+ }
+
+ return FALSE;
+
 }
