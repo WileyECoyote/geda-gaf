@@ -1,5 +1,8 @@
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * BUGS: Updated bugs, memory leak issues were resolved as of 2015-11-14,
+      moved to the "Finished stuff" section.
+
     * tests/common/run_backend_tests.sh: Simplify trouble-shooting; generate
       a diff in the parent directory when failures occur.
 
@@ -172,7 +175,7 @@
               * s_traverse_start to s_traverse_process.
 
     * src/g_netlist.c: Revise gnetlist_quit to call s_netlist_destroy_or_report twice,
-      one with the regular netlist and graphical, pass a pointer to a list to collect
+      once with the regular netlist and graphical, pass a pointer to a list to collect
       a list of pointers to strings to be freed and destroying structures related to
       both list. Call s_page_delete_list on the toplevel before releasing toplevel.
 
@@ -189,14 +192,14 @@
       list.
 
     * src/s_hierarchy.c: Revise function s_hierarchy_remove_urefconn to return a
-      list of pointers that were set to NULL in the net list. The list are returned
+      list of pointers that were set to NULL in the net list. The list is returned
       to callers s_hierarchy_setup_rename and s_hierarchy_remove_compsite_all where
       members are uniquely added to the GedaList passed from s_hierarchy_post_process.
       After s_hierarchy_post_process compiles both list, the list of pointers is
       released using geda_list_free_full and then destroyed, thus releasing memory
       for designator strings, both composited like "S1/U1" and singular like "S2",
-      that were renamed by s_rename_add_lowlevel to some like "S4" after s_rename_all
-      returned to s_hierarchy_post_process.
+      that were renamed by s_rename_add_lowlevel to something like "S4" after
+      s_rename_all returned to s_hierarchy_post_process.
 
     * src/s_traverse.c: Make s_traverse_init static, just call from s_traverse_process
       (formerly s_traverse_start). Move g_hash_table_new to s_traverse_process and
@@ -204,7 +207,7 @@
       to uninitialize segment.
 
     * src/i_vars.c: Add function i_vars_finalize and call from gnetlist_quit to
-      release the default string used to setting the in top-level if not encoun-
+      release the default strings used to set top-level defaults if not encoun-
       tered while processing the rc file.
 
     * src/: Add/Edit Doxygen comments.
