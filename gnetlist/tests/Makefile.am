@@ -26,10 +26,9 @@ tests:
 
 #notest:
 # cleanup
-	rm -f  $(BUILDDIR)/new_*
-	rm -rf $(BUILDDIR)/devfiles
-	mkdir $(BUILDDIR)/devfiles
-	cp -f $(srcdir)/gnetlistrc.orig $(builddir)/gnetlistrc
+	@rm -rf $(BUILDDIR)/devfiles $(BUILDDIR)/new_*
+	@mkdir $(BUILDDIR)/devfiles
+	@cp -f $(srcdir)/gnetlistrc.orig $(builddir)/gnetlistrc
 
 # netattrib gEDA
 	$(SRCDIR)/runtest.sh $(SRCDIR)/netattrib.sch geda \
@@ -108,10 +107,8 @@ tests:
 		$(BUILDDIR) $(SRCDIR)
 
 # Cleanup
-	rm -f  $(BUILDDIR)/new_*
-	rm -rf $(BUILDDIR)/devfiles
-	rm -f  $(builddir)/gnetlistrc
-	rm -rf $(builddir)/logs
+	@rm -rf $(BUILDDIR)/devfiles $(BUILDDIR)/new_*
+	@rm -rf $(builddir)/logs $(builddir)/gnetlistrc
 
 MOSTLYCLEANFILES     = new_* core *.log FILE *.ps *~
 CLEANFILES           = new_* core *.log FILE *.ps *~

@@ -24,6 +24,8 @@ Bugs (no particular order):
 	- gnetlist testing generates 1747 logs files on the host system, mostly
 	  warrenty disclaimers and "Loading schematic" ...
 
+	- gnetlist scm backends do not respect the quite flag
+
 Finished stuff:
 ---------------
 

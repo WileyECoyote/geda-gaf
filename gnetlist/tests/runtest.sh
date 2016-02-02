@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "INPUT=$1 BACKEND=$2 BUILDDIR=$3 SRCDIR=$4 EXTRADIFF=$5"
+test $VERBOSE && echo "INPUT=$1 BACKEND=$2 BUILDDIR=$3 SRCDIR=$4 EXTRADIFF=$5"
 
 INPUT=$1
 BACKEND=$2
@@ -16,7 +16,7 @@ schbasename=`basename $INPUT .sch`
 SCMDIR=$SRCDIR/../scheme \
 SYMDIR=$SRCDIR/../../symbols \
 GEDADATARC=$BUILDDIR/../etc \
-../src/gnetlist -L ${SRCDIR}/../../libgeda/scheme \
+../src/gnetlist -q -L ${SRCDIR}/../../libgeda/scheme \
   -L ${BUILDDIR}/../../libgeda/scheme \
   -o ${BUILDDIR}/new_${schbasename}.$BACKEND -g $BACKEND $INPUT
 status=$?
