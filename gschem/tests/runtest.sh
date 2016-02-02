@@ -254,6 +254,8 @@ do_process_input()
   local SUBTOTAL=0
   file="$1"
 
+  echo "processing: ${file}" >>test-suite.log
+
   # Extract the TEST= attribute values from the file
 
   TESTS=$(grep TEST= ${file} | cut -d= -f2 )
@@ -366,6 +368,11 @@ fi
 04_setup_test_environment
 
 # --------------- Process each of the input files ---------------
+cat << \EOF > test-suite.log
+==========================================================
+ gschem regression test-suite gschem/tests/test-suite.log
+==========================================================
+EOF
 
 for file in $INPUTS ; do
   do_process_input $file

@@ -1,3 +1,10 @@
+2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/runtest.sh: Tweak script to generate test-suite.log file.
+
+    * tests/IMAGE_DIFF: Check return codes and write command-line used for
+      tests to the test-suite.log.
+
 2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Add tools:editor "xfwrite" to
