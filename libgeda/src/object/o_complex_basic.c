@@ -42,6 +42,7 @@ int
 o_complex_get_bounds(GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
+
   return o_get_bounds_list (object->complex->prim_objs,
                             &object->left, &object->top,
                             &object->right, &object->bottom);
@@ -751,52 +752,54 @@ char *o_complex_save(GedaObject *object)
  */
 GedaObject *o_complex_copy(GedaObject *o_current)
 {
-  GedaObject  *o_new;
-  GedaComplex *new_complex;
-  GedaComplex *old_complex;
+  if (GEDA_IS_COMPLEX(o_current)) {
 
-  GList *iter;
-  GList *pins = NULL;
+    GedaObject  *o_new;
+    GedaComplex *new_complex;
+    GedaComplex *old_complex;
 
-  g_return_val_if_fail(GEDA_IS_COMPLEX(o_current), NULL);
+    GList *iter;
+    GList *pins = NULL;
 
-  o_new       = geda_complex_new();
-  new_complex = GEDA_COMPLEX(o_new);
-  old_complex = GEDA_COMPLEX(o_current);
+    o_new       = geda_complex_new();
+    new_complex = GEDA_COMPLEX(o_new);
+    old_complex = GEDA_COMPLEX(o_current);
 
-  new_complex->filename    = u_string_strdup(old_complex->filename);
-  new_complex->is_embedded = old_complex->is_embedded;
-  new_complex->x           = old_complex->x;
-  new_complex->y           = old_complex->y;
-  new_complex->angle       = old_complex->angle;
-  new_complex->mirror      = old_complex->mirror;
+    new_complex->filename    = u_string_strdup(old_complex->filename);
+    new_complex->is_embedded = old_complex->is_embedded;
+    new_complex->x           = old_complex->x;
+    new_complex->y           = old_complex->y;
+    new_complex->angle       = old_complex->angle;
+    new_complex->mirror      = old_complex->mirror;
 
-  /* Copy contents and set the parent pointers on the copied objects. */
-  new_complex->prim_objs = o_list_copy_all (old_complex->prim_objs, NULL);
+    /* Copy contents and set the parent pointers on the copied objects. */
+    new_complex->prim_objs = o_list_copy_all (old_complex->prim_objs, NULL);
 
-  for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
+    for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
 
-    GedaObject *child = (GedaObject*)iter->data;
+      GedaObject *child = (GedaObject*)iter->data;
 
-    if (GEDA_IS_OBJECT(child)) {
-      child->parent_object = o_new;
-      if (GEDA_IS_PIN(child)) {
-        pins = g_list_append(pins, child);
+      if (GEDA_IS_OBJECT(child)) {
+        child->parent_object = o_new;
+        if (GEDA_IS_PIN(child)) {
+          pins = g_list_append(pins, child);
+        }
+      }
+      else {
+        BUG_MSG("Invalid pointer attached to complex");
       }
     }
-    else {
-      BUG_MSG("Invalid pointer attached to complex");
-    }
+
+    new_complex->pin_objs = pins;
+
+    /* Recalculate bounds */
+    o_new->w_bounds_valid_for = NULL;
+
+    s_slot_update_object (o_new);
+
+    return o_new;
   }
-
-  new_complex->pin_objs = pins;
-
-  /* Recalculate bounds */
-  o_new->w_bounds_valid_for = NULL;
-
-  s_slot_update_object (o_new);
-
-  return o_new;
+  return NULL;
 }
 
 /*! \brief Reset the refdes number back to a question mark

@@ -74,30 +74,32 @@ o_pin_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whi
  */
 GedaObject *o_pin_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  Pin    *new_pin;
+  if (GEDA_IS_PIN(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_PIN(o_current), NULL);
+    GedaObject *new_obj;
+    Pin        *new_pin;
 
-  new_obj = o_pin_new (o_current->color,
-                       o_current->line->x[0], o_current->line->y[0],
-                       o_current->line->x[1], o_current->line->y[1],
-                       o_current->pin->node_type, o_current->pin->whichend);
+    new_obj = o_pin_new (o_current->color,
+                         o_current->line->x[0], o_current->line->y[0],
+                         o_current->line->x[1], o_current->line->y[1],
+                         o_current->pin->node_type, o_current->pin->whichend);
 
-  new_pin = GEDA_PIN(new_obj);
+    new_pin = GEDA_PIN(new_obj);
 
-  if (o_current->pin->electrical)
-    geda_pin_set_electrical(new_pin, o_current->pin->electrical);
+    if (o_current->pin->electrical)
+      geda_pin_set_electrical(new_pin, o_current->pin->electrical);
 
-  if (o_current->pin->label)
-    geda_pin_set_label(new_pin, o_current->pin->label);
+    if (o_current->pin->label)
+      geda_pin_set_label(new_pin, o_current->pin->label);
 
-  if (o_current->pin->mechanical)
-    geda_pin_set_mechanical(new_pin, o_current->pin->mechanical);
+    if (o_current->pin->mechanical)
+      geda_pin_set_mechanical(new_pin, o_current->pin->mechanical);
 
-  new_obj->line_options->line_width = *o_current->pin->line_width;
+    new_obj->line_options->line_width = *o_current->pin->line_width;
 
-  return new_obj;
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief get the position of a whichend of the pin object

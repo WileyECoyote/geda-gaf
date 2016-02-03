@@ -90,24 +90,26 @@ GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
  */
 GedaObject *o_line_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  GedaLine   *old_line;
+  if (GEDA_IS_LINE(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_LINE(o_current), NULL);
+    GedaObject *new_obj;
+    GedaLine   *old_line;
 
-  old_line = GEDA_LINE(o_current);
+    old_line = GEDA_LINE(o_current);
 
-  /* A new line object is created with #o_line_new().
-   * Values for its fields are default and need to be modified. */
-  new_obj = o_line_new (o_current->color,
-                        old_line->x[0], old_line->y[0],
-                        old_line->x[1], old_line->y[1]);
+    /* A new line object is created with #o_line_new().
+     * Values for its fields are default and need to be modified. */
+    new_obj = o_line_new (o_current->color,
+                          old_line->x[0], old_line->y[0],
+                          old_line->x[1], old_line->y[1]);
 
-  /* copy the line type options */
-  o_set_line_options(new_obj, &old_line->line_options);
+    /* copy the line type options */
+    o_set_line_options(new_obj, &old_line->line_options);
 
-  /* return the new tail of the object list */
-  return new_obj;
+    /* return the new tail of the object list */
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief Modify the description of a line Object.

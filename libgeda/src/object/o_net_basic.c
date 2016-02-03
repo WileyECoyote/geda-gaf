@@ -91,21 +91,23 @@ o_net_new(int color, int x1, int y1, int x2, int y2)
  */
 GedaObject *o_net_copy( GedaObject *o_current)
 {
-  GedaObject *new_obj;
+  if (GEDA_IS_NET(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_NET(o_current), NULL);
+    GedaObject *new_obj;
 
-  /* make sure you fix this in pin and bus as well */
-  /* still doesn't work... you need to pass in the new values */
-  /* or don't update and update later */
-  /* I think for now I'll disable the update and manually update */
-  new_obj = o_net_new (o_current->color,
-                       o_current->line->x[0], o_current->line->y[0],
-                       o_current->line->x[1], o_current->line->y[1]);
+    /* make sure you fix this in pin and bus as well */
+    /* still doesn't work... you need to pass in the new values */
+    /* or don't update and update later */
+    /* I think for now I'll disable the update and manually update */
+    new_obj = o_net_new (o_current->color,
+                         o_current->line->x[0], o_current->line->y[0],
+                         o_current->line->x[1], o_current->line->y[1]);
 
-  new_obj->line_options->line_width = *o_current->net->line_width;
+    new_obj->line_options->line_width = *o_current->net->line_width;
 
-  return new_obj;
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief read a net object from a char buffer

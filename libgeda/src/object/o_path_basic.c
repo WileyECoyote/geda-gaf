@@ -184,28 +184,31 @@ o_path_new_take_path (int color, Path *path_data)
  */
 GedaObject *o_path_copy (GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  Path   *old_path;
-  char   *path_string;
+  if (GEDA_IS_PATH(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_PATH(o_current), NULL);
+    GedaObject *new_obj;
+    Path       *old_path;
+    char       *path_string;
 
-  old_path    = GEDA_PATH(o_current);
-  path_string = s_path_string_from_path (old_path);
-  new_obj     = o_path_new (o_current->color, path_string);
+    old_path    = GEDA_PATH(o_current);
+    path_string = s_path_string_from_path (old_path);
+    new_obj     = o_path_new (o_current->color, path_string);
 
-  GEDA_FREE (path_string);
+    GEDA_FREE (path_string);
 
-  /* Copy the path line-type and filling options */
-  o_set_line_options (new_obj, &old_path->line_options);
-  o_set_fill_options (new_obj, &old_path->fill_options);
+    /* Copy the path line-type and filling options */
+    o_set_line_options (new_obj, &old_path->line_options);
+    o_set_fill_options (new_obj, &old_path->fill_options);
 
-  /* calc the bounding box */
-  o_current->w_bounds_valid_for = NULL;
+    /* calc the bounding box */
+    o_current->w_bounds_valid_for = NULL;
 
-  /* return the new tail of the object list */
-  return new_obj;
+    /* return the new tail of the object list */
+    return new_obj;
+  }
+  return NULL;
 }
+
 /*! \brief Create path GedaObject from character string.
  *  \par Function Description
  *  This function creates a path GedaObject from the character string <B>*buf</B>

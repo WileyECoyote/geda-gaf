@@ -1,5 +1,34 @@
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_basic.c: replace obtusive g_return_val_if_fail with
+      simple conditional in o_arc_copy.
+
+    * src/object/o_box_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_box_copy.
+
+    * src/object/o_circle_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_circle_copy.
+
+    * src/object/o_complex_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_complex_copy.
+
+    * src/object/o_line_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_line_copy.
+
+    * src/object/o_net_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_arc_net.
+
+    * src/object/o_path_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_path_copy.
+
+    * src/object/o_pin_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_arc_pin.
+
+    * src/object/o_text_basic.c: replace g_return_val_if_fail with
+      simple conditional in o_text_copy.
+
+2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_complex.c: Revise is_a_geda_complex_object to also return
       true if object type is OBJ_PLACEHOLDER.
 

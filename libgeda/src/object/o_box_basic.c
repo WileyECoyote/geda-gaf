@@ -85,31 +85,33 @@ GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
  */
 GedaObject *o_box_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  GedaBox    *old_box;
+  if (GEDA_IS_BOX(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_BOX(o_current), NULL);
+    GedaObject *new_obj;
+    GedaBox    *old_box;
 
-  old_box = GEDA_BOX(o_current);
+    old_box = GEDA_BOX(o_current);
 
-  /* A new box object is created with #o_box_new().
-   * Values for its fields are default and need to be modified. */
-  new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
+    /* A new box object is created with #o_box_new().
+     * Values for its fields are default and need to be modified. */
+    new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
 
-  /* The dimensions of the new box are set with the ones of the original box.
-   * The two boxes have the same line type and the same filling options.
-   */
-  new_obj->box->upper_x = old_box->upper_x;
-  new_obj->box->upper_y = old_box->upper_y;
-  new_obj->box->lower_x = old_box->lower_x;
-  new_obj->box->lower_y = old_box->lower_y;
+    /* The dimensions of the new box are set with the ones of the original box.
+     * The two boxes have the same line type and the same filling options.
+     */
+    new_obj->box->upper_x = old_box->upper_x;
+    new_obj->box->upper_y = old_box->upper_y;
+    new_obj->box->lower_x = old_box->lower_x;
+    new_obj->box->lower_y = old_box->lower_y;
 
-  o_set_line_options(new_obj, &old_box->line_options);
-  o_set_fill_options(new_obj, &old_box->fill_options);
+    o_set_line_options(new_obj, &old_box->line_options);
+    o_set_fill_options(new_obj, &old_box->fill_options);
 
-  new_obj->w_bounds_valid_for = NULL;
+    new_obj->w_bounds_valid_for = NULL;
 
-  return new_obj;
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief Modify a Box Object's coordinates.

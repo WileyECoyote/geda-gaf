@@ -153,40 +153,42 @@ o_picture_new (const char *file_content, unsigned int file_length,
 GedaObject*
 o_picture_copy(GedaObject *o_current)
 {
-  GedaObject  *new_obj;
-  Picture *new_picture;
-  Picture *old_picture;
+  if (GEDA_IS_PICTURE(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_PICTURE(o_current), NULL);
+    GedaObject  *new_obj;
+    Picture     *new_picture;
+    Picture     *old_picture;
 
-  old_picture = GEDA_PICTURE(o_current);
-  new_obj     = geda_picture_new();      /* create new picture object */
-  new_picture = GEDA_PICTURE(new_obj);
+    old_picture = GEDA_PICTURE(o_current);
+    new_obj     = geda_picture_new();      /* create new picture object */
+    new_picture = GEDA_PICTURE(new_obj);
 
-  /* describe the picture with its upper left and lower right corner */
-  new_picture->upper_x = old_picture->upper_x;
-  new_picture->upper_y = old_picture->upper_y;
-  new_picture->lower_x = old_picture->lower_x;
-  new_picture->lower_y = old_picture->lower_y;
+    /* describe the picture with its upper left and lower right corner */
+    new_picture->upper_x = old_picture->upper_x;
+    new_picture->upper_y = old_picture->upper_y;
+    new_picture->lower_x = old_picture->lower_x;
+    new_picture->lower_y = old_picture->lower_y;
 
-  if (old_picture->file_content != NULL) {
-    new_picture->file_content = g_memdup (old_picture->file_content,
-                                          old_picture->file_length);
-  } else {
-    new_picture->file_content = NULL;
+    if (old_picture->file_content != NULL) {
+      new_picture->file_content = g_memdup (old_picture->file_content,
+                                            old_picture->file_length);
+    } else {
+      new_picture->file_content = NULL;
+    }
+
+    new_picture->file_length = old_picture->file_length;
+    new_picture->filename    = u_string_strdup (old_picture->filename);
+    new_picture->ratio       = old_picture->ratio;
+    new_picture->angle       = old_picture->angle;
+    new_picture->mirrored    = old_picture->mirrored;
+    new_picture->is_embedded = old_picture->is_embedded;
+
+    /* Get the picture data */
+    new_picture->pixbuf = o_picture_get_pixbuf (o_current);
+
+    return new_obj;
   }
-
-  new_picture->file_length = old_picture->file_length;
-  new_picture->filename    = u_string_strdup (old_picture->filename);
-  new_picture->ratio       = old_picture->ratio;
-  new_picture->angle       = old_picture->angle;
-  new_picture->mirrored    = old_picture->mirrored;
-  new_picture->is_embedded = old_picture->is_embedded;
-
-  /* Get the picture data */
-  new_picture->pixbuf = o_picture_get_pixbuf (o_current);
-
-  return new_obj;
+  return NULL;
 }
 
 /*! \brief Modify the description of a picture Object

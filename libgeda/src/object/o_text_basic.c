@@ -376,28 +376,30 @@ void o_text_recreate(GedaObject *o_current)
  */
 GedaObject *o_text_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  Text   *text_obj;
+  if (GEDA_IS_TEXT(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_TEXT(o_current), NULL);
+    GedaObject *new_obj;
+    Text   *text_obj;
 
-  new_obj = o_text_new (o_current->color,
-                        o_current->text->x, o_current->text->y,
-                        o_current->text->alignment,
-                        o_current->text->angle,
-                        o_current->text->size,
-                        o_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
-                        o_current->show_name_value,
-                        o_current->text->string);
+    new_obj = o_text_new (o_current->color,
+                          o_current->text->x, o_current->text->y,
+                          o_current->text->alignment,
+                          o_current->text->angle,
+                          o_current->text->size,
+                          o_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
+                          o_current->show_name_value,
+                          o_current->text->string);
 
-  text_obj = GEDA_TEXT(o_current);
+    text_obj = GEDA_TEXT(o_current);
 
-  if (text_obj->rendered_text_bounds_func != NULL) {
-    o_text_set_rendered_bounds_func (new_obj,
-                                     text_obj->rendered_text_bounds_func,
-                                     text_obj->rendered_text_bounds_data);
+    if (text_obj->rendered_text_bounds_func != NULL) {
+      o_text_set_rendered_bounds_func (new_obj,
+                                       text_obj->rendered_text_bounds_func,
+                                       text_obj->rendered_text_bounds_data);
+    }
+    return new_obj;
   }
-  return new_obj;
+  return NULL;
 }
 
 /*! \brief Translate a text object

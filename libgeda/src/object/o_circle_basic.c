@@ -80,29 +80,31 @@ o_circle_new(int color, int x, int y, int radius)
  */
 GedaObject *o_circle_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
-  GedaCircle *old_circle;
+  if (GEDA_IS_CIRCLE(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_CIRCLE(o_current), NULL);
+    GedaObject *new_obj;
+    GedaCircle *old_circle;
 
-  old_circle = GEDA_CIRCLE(o_current);
+    old_circle = GEDA_CIRCLE(o_current);
 
-  /* A new circle object is created with#o_circle_new().
-   * Values for its fields are default and need to be modified. */
-  new_obj = o_circle_new (o_current->color, 0, 0, 0);
+    /* A new circle object is created with#o_circle_new().
+     * Values for its fields are default and need to be modified. */
+    new_obj = o_circle_new (o_current->color, 0, 0, 0);
 
-  /* The parameters of the new circle are set with the ones of the original
-   * circle. The two circle have the same line type and filling options.
-   */
+    /* The parameters of the new circle are set with the ones of the original
+     * circle. The two circle have the same line type and filling options.
+     */
 
-  new_obj->circle->center_x = old_circle->center_x;
-  new_obj->circle->center_y = old_circle->center_y;
-  new_obj->circle->radius   = old_circle->radius;
+    new_obj->circle->center_x = old_circle->center_x;
+    new_obj->circle->center_y = old_circle->center_y;
+    new_obj->circle->radius   = old_circle->radius;
 
-  o_set_line_options(new_obj, &old_circle->line_options);
-  o_set_fill_options(new_obj, &old_circle->fill_options);
+    o_set_line_options(new_obj, &old_circle->line_options);
+    o_set_fill_options(new_obj, &old_circle->fill_options);
 
-  return new_obj;
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief Modify the description of a circle Object.

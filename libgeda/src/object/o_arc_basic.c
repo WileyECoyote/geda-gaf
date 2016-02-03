@@ -106,21 +106,23 @@ GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int 
  */
 GedaObject *o_arc_copy(GedaObject *o_current)
 {
-  GedaObject *new_obj;
+  if (GEDA_IS_ARC(o_current)) {
 
-  g_return_val_if_fail(GEDA_IS_ARC(o_current), NULL);
+    GedaObject *new_obj;
 
-  new_obj = o_arc_new (o_current->color,
-                       o_current->arc->x, o_current->arc->y,
-                       o_current->arc->width / 2,
-                       o_current->arc->start_angle,
-                       o_current->arc->arc_sweep);
+    new_obj = o_arc_new (o_current->color,
+                         o_current->arc->x, o_current->arc->y,
+                         o_current->arc->width / 2,
+                         o_current->arc->start_angle,
+                         o_current->arc->arc_sweep);
 
-  o_set_line_options(new_obj, o_current->line_options);
+    o_set_line_options(new_obj, o_current->line_options);
 
-  o_set_fill_options(new_obj, o_current->fill_options);
+    o_set_fill_options(new_obj, o_current->fill_options);
 
-  return new_obj;
+    return new_obj;
+  }
+  return NULL;
 }
 
 /*! \brief
