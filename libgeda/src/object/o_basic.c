@@ -442,80 +442,82 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
  *  \par Function Description
  *  returns head !!!!!!!!!!!!!!!!!!!
  *  look at above.. this returns what was passed in!!!!
- *  copies selected to list_head (!! returns new list)
+ *  copies object to list_head (!! returns new list)
  *
- *  \param [in]  selected
+ *  \param [in]  o_current
  *  \return GedaObject pointer.
  */
-GedaObject *o_copy_object (GedaObject *selected)
+GedaObject *o_copy_object (GedaObject *o_current)
 {
   GedaObject *new_obj;
 
-  g_return_val_if_fail (selected != NULL, NULL);
+  g_return_val_if_fail (o_current != NULL, NULL);
 
-  switch(selected->type) {
+  switch(o_current->type) {
 
     case(OBJ_LINE):
-      new_obj = o_line_copy (selected);
+      new_obj = o_line_copy (o_current);
       break;
 
     case(OBJ_NET):
-      new_obj = o_net_copy (selected);
+      new_obj = o_net_copy (o_current);
       break;
 
     case(OBJ_BUS):
-      new_obj = o_bus_copy (selected);
+      new_obj = o_bus_copy (o_current);
       break;
 
     case(OBJ_BOX):
-      new_obj = o_box_copy (selected);
+      new_obj = o_box_copy (o_current);
       break;
 
     case(OBJ_PICTURE):
-      new_obj = o_picture_copy (selected);
+      new_obj = o_picture_copy (o_current);
       break;
 
     case(OBJ_CIRCLE):
-      new_obj = o_circle_copy (selected);
+      new_obj = o_circle_copy (o_current);
       break;
 
     case(OBJ_COMPLEX):
     case(OBJ_PLACEHOLDER):
-      new_obj = o_complex_copy (selected);
+      new_obj = o_complex_copy (o_current);
       break;
 
     case(OBJ_TEXT):
-      new_obj = o_text_copy (selected);
+      new_obj = o_text_copy (o_current);
       break;
 
     case(OBJ_PATH):
-      new_obj = o_path_copy (selected);
+      new_obj = o_path_copy (o_current);
       break;
 
     case(OBJ_PIN):
-      new_obj = o_pin_copy (selected);
+      new_obj = o_pin_copy (o_current);
       break;
 
     case(OBJ_ARC):
-      new_obj = o_arc_copy (selected);
+      new_obj = o_arc_copy (o_current);
       break;
 
     default:
-      BUG_IMSG("Bad object type '%c'", selected->type);
+      BUG_IMSG("Bad object type '%c'", o_current->type);
       return NULL;
   }
 
-  new_obj->color             = selected->color;
-  new_obj->dont_redraw       = selected->dont_redraw;
-  new_obj->locked_color      = selected->locked_color;
-  new_obj->selectable        = selected->selectable;
-  new_obj->show_name_value   = selected->show_name_value;
-  new_obj->visibility        = selected->visibility;
+  if (new_obj) {
 
-  /* Store a reference in the copied object to where it was copied.
-   * Used to retain associations when copying attributes */
-  selected->copied_to = new_obj;
+    new_obj->color             = o_current->color;
+    new_obj->dont_redraw       = o_current->dont_redraw;
+    new_obj->locked_color      = o_current->locked_color;
+    new_obj->selectable        = o_current->selectable;
+    new_obj->show_name_value   = o_current->show_name_value;
+    new_obj->visibility        = o_current->visibility;
 
+    /* Store a reference in the copied object to where it was copied.
+     * Used to retain associations when copying attributes */
+    o_current->copied_to = new_obj;
+  }
   return new_obj;
 }
 
