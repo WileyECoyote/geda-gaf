@@ -30,6 +30,8 @@
     * src/object/o_text_basic.c: replace g_return_val_if_fail with
       simple conditional in o_text_copy.
 
+    * Rename Net to GedaNet.
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revise is_a_geda_complex_object to also return

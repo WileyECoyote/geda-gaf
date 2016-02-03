@@ -60,7 +60,7 @@ typedef struct _GedaComplex      GedaComplex;
 typedef struct _GedaLine         GedaLine;
 
 /*! \brief Geda Net Circle Object Structure */
-typedef struct _GedaNet          Net;
+typedef struct _GedaNet          GedaNet;
 
 /*! \brief Geda Path Circle Object Structure */
 typedef struct _GedaPath         Path;

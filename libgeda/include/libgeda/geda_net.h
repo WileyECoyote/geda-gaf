@@ -36,13 +36,13 @@
 #define __GEDA_NET_H__
 
 #define GEDA_TYPE_NET            (geda_net_get_type())
-#define GEDA_NET(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_NET, Net))
-#define GEDA_NET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_NET, NetClass))
-#define GEDA_IS_NET(obj)         (is_a_geda_net_object((Net*)obj))
+#define GEDA_NET(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_NET, GedaNet))
+#define GEDA_NET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_NET, GedaNetClass))
+#define GEDA_IS_NET(obj)         (is_a_geda_net_object((GedaNet*)obj))
 #define GEDA_IS_NET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_NET))
-#define GEDA_NET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NET, NetClass))
+#define GEDA_NET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NET, GedaNetClass))
 
-typedef struct _GedaNetClass NetClass;
+typedef struct _GedaNetClass GedaNetClass;
 
 struct _GedaNetClass {
   GedaLineClass parent_class;
@@ -68,8 +68,8 @@ struct _GedaNet {
   int  net_num_connected;         /* for nets only */
   bool valid_num_connected;       /* for nets only */
 
-  Net  *prev;
-  Net  *next;
+  GedaNet  *prev;
+  GedaNet  *next;
 };
 
 #ifdef __cplusplus
@@ -77,7 +77,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_net_get_type      (void) GEDA_CONST;
-bool           is_a_geda_net_object   (Net *object);
+bool           is_a_geda_net_object   (GedaNet *object);
 
 GedaObject    *geda_net_new           (void);
 
