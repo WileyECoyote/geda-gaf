@@ -1,17 +1,17 @@
 #include <glib.h>
 #include <libgeda.h>
 
-#define TOBJECT "GedaComplex"
+#define TOBJECT "GedaNet"
 
-/*! \file tests_complex.c
- *  \brief Tests for geda_complex.c module
+/*! \file tests_net.c
+ *  \brief Tests for geda_net.c module
  */
 
-int test_complex (void)
+int tests_net (void)
 {
   int result = 0;
 
-  GedaObject *object = geda_complex_new();
+  GedaObject *object = geda_net_new();
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "%s: is a GedaObject Failed\n", TOBJECT);
@@ -22,6 +22,7 @@ int test_complex (void)
 
   if (GEDA_IS_ARC(object)) {
     fprintf(stderr, "%s matched type GedaArc\n", TOBJECT);
+
     result++;
   }
 
@@ -31,7 +32,7 @@ int test_complex (void)
   }
 
   if (GEDA_IS_BUS(object)) {
-    fprintf(stderr, "%s matched type GedaBus\n", TOBJECT);
+    fprintf(stderr, "%s: matched type GedaBus\n", TOBJECT);
     result++;
   }
 
@@ -40,18 +41,19 @@ int test_complex (void)
     result++;
   }
 
-  if (!GEDA_IS_COMPLEX(object)) {
+  if (GEDA_IS_COMPLEX(object)) {
+    fprintf(stderr, "%s matched type GedaComplex\n", TOBJECT);
+    result++;
+  }
+
+  /* GedaBus objects are derived from GedaLine object class */
+  if (!GEDA_IS_LINE(object)) {
+    fprintf(stderr, "%s is a GedaLine Failed\n", TOBJECT);
+    result++;
+  }
+
+  if (!GEDA_IS_NET(object)) {
     fprintf(stderr, "is a %s Failed in %s\n", TOBJECT, __func__);
-    result++;
-  }
-
-  if (GEDA_IS_LINE(object)) {
-    fprintf(stderr, "%s matched type GedaLine\n", TOBJECT);
-    result++;
-  }
-
-  if (GEDA_IS_NET(object)) {
-    fprintf(stderr, "%s: matched type GedaNet\n", TOBJECT);
     result++;
   }
 
@@ -75,26 +77,36 @@ int test_complex (void)
     result++;
   }
 
-  GedaComplex *complex = object->complex;
+  GedaNet  *net  = object->net;
+  GedaLine *line = object->line;
 
-  if (!GEDA_IS_COMPLEX(complex)) {
+  if (!GEDA_IS_NET(net)) {
     fprintf(stderr, "sub-pointer is a %s Failed\n", TOBJECT);
     result++;
   }
-  else if (object->type != OBJ_COMPLEX) {
-    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_COMPLEX);
+  else if (!GEDA_IS_LINE(line)) {
+    fprintf(stderr, "%s sub-pointer is a GedaLine\n", TOBJECT);
+    result++;
+  }
+  else if (object->type != OBJ_NET) {
+    fprintf(stderr, "%s type not %c\n", TOBJECT, OBJ_NET);
     result++;
   }
 
   g_object_unref(object);
 
-  if (GEDA_IS_COMPLEX(object)) {
+  if (GEDA_IS_NET(object)) {
     fprintf(stderr, "%s was not destroyed\n", TOBJECT);
     result++;
   }
 
-  if (GEDA_IS_OBJECT(object)) {
+  if (GEDA_IS_LINE(object)) {
     fprintf(stderr, "%s parent was not destroyed\n", TOBJECT);
+    result++;
+  }
+
+  if (GEDA_IS_OBJECT(object)) {
+    fprintf(stderr, "%s grand-parent was not destroyed\n", TOBJECT);
     result++;
   }
 
@@ -111,7 +123,7 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_complex();
+  result = tests_net();
 
-  return result > 0;
+  return result;
 }

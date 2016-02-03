@@ -7,7 +7,7 @@
  *  \brief Tests for geda_bus.c module
  */
 
-int test_box (void)
+int test_bus (void)
 {
   int result = 0;
 
@@ -123,7 +123,7 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_box();
+  result = test_bus();
 
   return result;
 }

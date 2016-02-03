@@ -32,6 +32,8 @@
 
     * Rename Net to GedaNet.
 
+    * tests/test_net.c: Add tests for testing geda_box module.
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revise is_a_geda_complex_object to also return
