@@ -14,11 +14,14 @@
       the test are contained to the tests/logs directory.
 
     * tests/Makefile.am: Remove the logs directory from the builddir to satisfy
-	  distcheck. Suppress output from commands during pre and post cleanup,
+      distcheck. Suppress output from commands during pre and post cleanup,
       combine rm arguments.
 
-    * tests/runtest.sh: Add quite switch to gnetlist, whihc only seem to work
-      output from libgeda.
+    * tests/runtest.sh: Add quite switch to gnetlist, which only seems to work
+      for output from libgeda, and test $VERBOSE when reporting input variables
+
+    * scheme/Makefile.am: Suppress code blups in local rules, both branches of
+      both local rules output status messages.
 
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
