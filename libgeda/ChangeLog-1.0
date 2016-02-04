@@ -1,5 +1,11 @@
 2016-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/Makefile.am: Swap scheme and tests subdirectories entries so
+      that the c tests are ran before the scheme tests. The c tests are more
+      fundamental and errors resulting in scheme test failures can be more
+      obscure so it makes more sense to check fundamentals first and only
+      then proceed to more elaborate tests.
+
     * scheme/Makefile.am: suppress output of code for rule update-gaf-tool.
 
     * src/object/o_basic.c: Add check for pointer returned from o_copy
