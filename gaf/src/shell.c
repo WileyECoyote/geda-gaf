@@ -24,12 +24,10 @@
 #endif
 #include <version.h>
 
-#include <geda_standard.h>
-
 #include <getopt.h>
 
 /* Gettext translation */
-#include "gettext.h"
+#include "../include/gettext.h"
 
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>

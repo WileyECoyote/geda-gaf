@@ -32,13 +32,12 @@
 #include <string.h>
 #include <getopt.h>
 
-/* Gettext translation */
-#include <locale.h>
-#include "gettext.h"
-
 #include <glib.h>
 
-#include "builtins.h"
+/* Gettext translation */
+#include <locale.h>
+#include "../include/gettext.h"
+#include "../include/builtins.h"
 
 #define short_options "+hnV"
 

@@ -24,10 +24,7 @@
 #endif
 #include <version.h>
 
-#include <geda_standard.h>
-
 #include <getopt.h>
-
 #include <math.h>
 #include <errno.h>
 
@@ -35,7 +32,7 @@
 #include <gdk/gdk.h>
 
 /* Gettext translation */
-#include "gettext.h"
+#include "../include/gettext.h"
 
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>

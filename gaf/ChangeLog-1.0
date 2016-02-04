@@ -1,3 +1,13 @@
+2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gaf.c: provide explicit path to builtins.h and gettext.h.
+
+    * Remove include geda_standard.h, provide explicit path to gettext.h:
+
+        * src/config.c
+        * src/export.c
+        * src/shell.c
+
 2015-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/export.c remove g_assert_crash.
