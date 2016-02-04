@@ -60,8 +60,6 @@
  *  collected from the font character objects.
  */
 
-#include <geda_standard.h>
-
 #include <math.h>          /* sqrt/hypot */
 
 #include <libgeda_priv.h>

@@ -37,16 +37,6 @@
 
 #include <config.h>
 
-#include <stdio.h>
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include <sys/types.h>
 
 #ifdef HAVE_SYS_STAT_H
@@ -57,12 +47,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
 #include <libgeda_priv.h>
-
 
 /* Called just before adding an GedaObject from a Page.
  * or after appending an OBJECT to a PAGE. */

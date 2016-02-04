@@ -19,12 +19,6 @@
  * MA 02110-1301 USA
  */
 
-#include <geda_standard.h>
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
 #include <libgeda_priv.h>
 
 #include <geda_debug.h>

@@ -21,7 +21,6 @@
 
 #include <config.h>
 #include <stdio.h>
-#include <ascii.h>
 
 #include <libgeda_priv.h>
 #include <geda_debug.h>

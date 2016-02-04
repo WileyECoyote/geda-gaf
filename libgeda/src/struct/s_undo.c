@@ -19,7 +19,6 @@
  * MA 02110-1301 USA
  */
 
-#include <geda_standard.h>
 #include <libgeda_priv.h>
 
 /*! \brief Returns the Last Undo Record given some Record

@@ -28,7 +28,7 @@
  */
 
 #include <config.h>
-#include <ascii.h>
+
 #include <stdio.h>
 #include <ctype.h>
 

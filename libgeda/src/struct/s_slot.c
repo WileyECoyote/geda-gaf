@@ -30,10 +30,6 @@
 
 #include <config.h>
 
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 #include <math.h>
 
 #include <libgeda_priv.h>

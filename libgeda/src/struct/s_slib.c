@@ -29,17 +29,9 @@
  *   slib stands for source (project/schematic/hdl/model source) library
  */
 
-#include <config.h>
-
-#include <stdio.h>
 #include <sys/types.h>
 #include <ctype.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+
 #include <dirent.h>
 
 #include <libgeda_priv.h>

@@ -23,13 +23,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
+
 #include <config.h>
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <math.h>                /* hypot function */
 
 #include <libgeda_priv.h>
+
 #include <geda_debug.h>
 
 /*! \brief Get Locations for Junctions and Unconnected Cues

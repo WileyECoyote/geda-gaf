@@ -111,18 +111,12 @@
  *  gEDA symbol data in a string, or \b \#f if not known.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "../../config.h"
-#endif
+#include <config.h>
 
-#include <geda_standard.h>
 #include <geda_sdefines.h>  /* Explicitly include for doxygen, not preprocessor */
 
 #include <glib.h>
 
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
 #ifdef HAVE_SYS_WAIT_H
 #include <sys/wait.h>
 #else
