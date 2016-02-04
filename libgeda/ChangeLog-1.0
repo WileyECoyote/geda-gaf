@@ -1,3 +1,67 @@
+2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgeda.c: Remove redundant inclusion of stdio, string.h, and
+      stdlib.h.
+
+    * src/guile/g_rc_color.c: Remove redundant inclusion of missing.h.
+
+    * src/object/o_attrib.c: Remove redundant inclusion of missing.h.
+
+    * src/object/o_basic.c: Remove redundant inclusion of ascii.h.
+
+    * src/object/o_get.c: Remove redundant inclusion of ascii.h.
+
+    * src/object/o_pin_basic.c: Remove redundant inclusion of ascii.h.
+
+    * src/object/o_selection.c: Remove redundant inclusion of geda_standard.h.
+
+    * src/object/o_text_basic.c: Remove redundant inclusion of geda_standard.h.
+
+    * src/struct/S_basic.c: Remove inclusion of string.h, and stdlib.h.
+
+    * src/struct/s_slib.c: Remove inclusion of error.h and geda_standard.h.
+
+    * src/struct/s_color.c: Remove inclusion of error.h and geda_standard.h.
+
+    * src/struct/s_conn.c: Remove inclusion of geda_standard.h.
+
+    * src/struct/S_cue.c: Remove inclusion of stdio.h, and stdlib.h.
+
+    * src/struct/s_hierarchy.c: Remove inclusion of error.h, stdio.h, and
+      stdlib.h.
+
+    * src/struct/s_page.c: Remove redundant inclusion of stdio, string.h, and
+      stdlib.h.
+
+    * src/struct/s_papersizes.c: Remove redundant inclusion of stdio, string.h,
+      and stdlib.h.
+
+    * src/struct/s_path.c: Remove redundant inclusion of stdio, string.h, and
+      stdlib.h.
+
+    * src/struct/s_slib.c: Remove inclusion of config.h stdio, string.h, and
+      stdlib.h.
+
+    * src/struct/s_slot.c: Remove redundant inclusion of stdio and string.h.
+
+    * src/struct/s_tile.c: Remove redundant inclusion of stdio and stdlib.h.
+
+    * src/struct/s_undo.c: Remove inclusion of geda_standard.h.
+
+    * src/utility/u_basic.c: Remove inclusion of geda_standard.h, replace GNU.
+
+    * src/utility/u_color.c: Remove inclusion of geda_standard.h, replace GNU.
+
+    * src/utility/u_glist.c: Remove inclusion of geda_standard.h, replace GNU.
+
+    * src/utility/u_log.c: Remove inclusion of geda_standard.h and errno.h,
+      replace GNU.
+
+    * src/utility/u_refdes.c: Remove inclusion of geda_struct.h, replace GNU.
+
+    * src/utility/u_string.c: Remove inclusion of geda_standard.h, change
+      config.h to search path.
+
 2016-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/Makefile.am: Swap scheme and tests subdirectories entries so
