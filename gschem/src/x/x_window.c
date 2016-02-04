@@ -34,7 +34,7 @@
 #include <gschem.h>
 #include <x_menus.h>
 #include <x_window.h>
-#include <geda_dialog_controls.h>
+#include <geda/geda_dialog_controls.h>
 #include <geda_file_chooser.h>  /* Need for group and key defines */
 
 extern int iconify_main_window;

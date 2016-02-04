@@ -26,7 +26,6 @@
 
 #include <gschem.h>
 #include <x_dialog.h>
-#include <geda_dialog_controls.h>
 
 #ifndef QUOTE_SYMBOL
 #define QUOTE_SYMBOL(symbol) #symbol

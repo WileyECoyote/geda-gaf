@@ -32,7 +32,6 @@
 #include <gschem.h>
 #include <x_dialog.h>
 
-#include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 #include <geda_dialogs.h>
 #include <geda_debug.h>

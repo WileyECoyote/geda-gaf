@@ -33,7 +33,6 @@
 
 #include <gschem.h>
 #include <x_dialog.h>
-#include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
 #define Radio_Responder radio_responder

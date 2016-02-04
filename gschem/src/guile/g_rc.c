@@ -63,7 +63,6 @@
 #endif
 
 #include <gschem.h>
-#include <ascii.h>
 
 #include <version.h>
 #include <errno.h>

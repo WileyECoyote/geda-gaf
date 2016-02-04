@@ -48,7 +48,6 @@
 
 #include <config.h>
 
-#include <geda_standard.h>
 #include <geda_stat.h>
 
 #ifdef HAVE_FCNTL_H
@@ -60,8 +59,6 @@
 
 #include <gschem.h>
 #include <x_dialog.h>
-#include <geda_dialog_controls.h>
-
 #include <geda_entry.h>
 #include <geda_debug.h>
 

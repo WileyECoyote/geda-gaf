@@ -1,3 +1,36 @@
+2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Try to reduce redundant inclusions:
+
+    * include/gschem.h: Remove include libguile.h.
+
+    * src/guile/g_attrib.c: Remove include missing.h.
+
+    * src/guile/g_rc.c: Remove include ascii.h.
+
+    * src/x/x_compselect.c: Remove include geda_standard.h.
+
+    * src/x/x_draw.cpp: Remove include geda_standard.h.
+
+    * Remove geda_dialog_controls.h, which is include by x_dialog.h
+      from:
+
+        * src/iface/i_diagnostics.c
+        * src/x/x_autonumber.c
+        * src/x/x_console.c (also geda_standard.h)
+        * src/x/x_coord.c
+        * src/x/x_dialog.c
+        * src/x/x_dnd.c
+        * src/x/x_edit_array.c
+        * src/x/x_edit_color.c
+        * src/x/x_edit_cprop.c
+        * src/x/x_edit_pin.c
+        * src/x/x_edit_slot.c
+        * src/x/x_edit_text.c
+        * src/x/x_guile.c
+        * src/x/x_image.c
+        * src/x/x_window.c
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/runtest.sh: Tweak script to generate test-suite.log file.

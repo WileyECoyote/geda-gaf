@@ -38,7 +38,6 @@
 #include <geda_widgets.h>               /* Switches use geda_labels */
 
 #include <x_compselect.h>
-#include <geda_standard.h>
 #include <geda_debug.h>
 
 /**  \defgroup Component-Select-Dialog Component Select Dialog Implementation
