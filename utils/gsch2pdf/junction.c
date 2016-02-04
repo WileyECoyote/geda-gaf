@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-#include "common.h"
+#include "../include/common.h"
 
 extern bool o_pin_get_position (int *x, int *y, GedaObject *object);
 

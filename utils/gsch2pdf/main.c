@@ -22,7 +22,7 @@
 #include <cairo-pdf.h>
 #include <math.h>
 
-#include "common.h"
+#include "../include/common.h"
 #include "junction.h"
 #include "print-settings.h"
 #include "rc-config.h"

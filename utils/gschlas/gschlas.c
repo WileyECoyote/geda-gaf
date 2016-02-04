@@ -28,7 +28,7 @@
  * MA 02110-1301 USA
  */
 
-#include "common.h"
+#include "../include/common.h"
 
 /*! \brief Cleanup gschlas on exit.
  *  \par Function Description

@@ -28,7 +28,7 @@
  * MA 02110-1301 USA
  */
 
-#include "common.h"
+#include "../include/common.h"
 
 /*! \brief Register Scheme functions
  *  \par Function Description

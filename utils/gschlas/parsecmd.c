@@ -29,8 +29,7 @@
  */
 
 #include <config.h>
-
-#include "common.h"
+#include "../include/common.h"
 
 #define OPTIONS "hqveu"
 

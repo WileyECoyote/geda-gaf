@@ -23,7 +23,6 @@
 #define WITHOUT_GDK_PIX_BUFFER 1
 #define WITHOUT_GUILE 1
 
-#include <geda_standard.h>
 #include <geda_stat.h>
 
 #include <libgeda/libgeda.h>
