@@ -1,3 +1,9 @@
+2016-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/electrolytic/capacitor-2.sym: Translate attributes such that
+      when the component is in the normal orientation the attributes are
+      positioned correctly.
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC4260-1.sym: Add symbol; Hot Swap Controller with I2C.
