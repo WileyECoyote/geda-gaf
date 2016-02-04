@@ -74,7 +74,7 @@ geda/core/gettext.scm: $(srcdir)/geda/core/gettext.scm.in Makefile
 DEPENDS=libgeda/src libgedacairo/src gaf/src
 
 update-gaf-tool:
-	for d in $(DEPENDS); do \
+	@for d in $(DEPENDS); do \
 	  (cd $(top_builddir)/$$d && $(MAKE) $(AM_MAKEFLAGS) all); \
 	done
 

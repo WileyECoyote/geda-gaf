@@ -1,5 +1,7 @@
 2016-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/Makefile.am: suppress output of code for rule update-gaf-tool.
+
     * src/object/o_basic.c: Add check for pointer returned from o_copy
       functions in o_copy_object.
 
