@@ -2,6 +2,8 @@
 
     * Rename Path to GedaPath.
 
+    * tests/test_path.c: Add tests for testing geda_path module.
+
 2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgeda.c: Remove redundant inclusion of stdio, string.h, and
@@ -108,7 +110,7 @@
 
     * Rename Net to GedaNet.
 
-    * tests/test_net.c: Add tests for testing geda_box module.
+    * tests/test_net.c: Add tests for testing geda_net module.
 
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 

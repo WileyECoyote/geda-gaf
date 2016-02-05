@@ -16,3 +16,4 @@ test_circle
 test_complex
 test_line
 test_net
+test_path

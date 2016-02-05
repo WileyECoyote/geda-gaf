@@ -6,7 +6,8 @@ check_PROGRAMS = \
 	test_circle \
 	test_complex \
 	test_line \
-	test_net
+	test_net \
+	test_path
 
 TESTS = $(check_PROGRAMS)
 
