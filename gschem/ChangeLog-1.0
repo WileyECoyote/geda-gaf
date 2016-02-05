@@ -31,6 +31,9 @@
         * src/x/x_image.c
         * src/x/x_window.c
 
+    * src/x/x_edit_color.c: Replace fprintf with BUG_MSG macro in function
+      x_dialog_edit_color_apply.
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/runtest.sh: Tweak script to generate test-suite.log file.
