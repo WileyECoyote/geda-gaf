@@ -27,12 +27,12 @@
 
 #include <geda_debug.h>
 
-typedef void (*DRAW_FUNC) (GedaToplevel *toplevel, FILE *fp, Path *path,
+typedef void (*DRAW_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                            int line_width, int length, int space,
                            int origin_x, int origin_y);
 
 
-typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, Path *path,
+typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                            int fill_width,
                            int angle1, int pitch1, int angle2, int pitch2,
                            int origin_x, int origin_y);
@@ -67,7 +67,7 @@ GedaObject *
 o_path_new (int color, const char *path_string)
 {
   GedaObject *new_obj;
-  Path   *path;
+  GedaPath   *path;
 
   path = s_path_parse (path_string);
   new_obj = GEDA_OBJECT(path);
@@ -85,14 +85,14 @@ o_path_new (int color, const char *path_string)
  *  \param [in] points A GArray containing points
  *  \param [in] color  Color index the path should be set to
  *
- *  \return A pointer to the new Path object.
+ *  \return A pointer to the new GedaPath object.
  */
 GedaObject *o_path_new_from_polygon (GArray *points, int color)
 {
   GedaObject *new_obj;
+  GedaPath   *path;
   POINT   first;
   POINT   point;
-  Path   *path;
   int     i;
 
   /* create the object */
@@ -140,15 +140,15 @@ GedaObject *o_path_new_from_polygon (GArray *points, int color)
  *  \sa o_path_new
  *
  *  \param [in]     color        The path color
- *  \param [in]     path_data    The #Path data structure to use
+ *  \param [in]     path_data    The #GedaPath data structure to use
  *
  *  \return A pointer to the new end of the object list.
  */
 GedaObject*
-o_path_new_take_path (int color, Path *path_data)
+o_path_new_take_path (int color, GedaPath *path_data)
 {
   GedaObject *new_obj;
-  Path   *path;
+  GedaPath   *path;
 
   /* create the object */
   new_obj = geda_path_new ();
@@ -187,7 +187,7 @@ GedaObject *o_path_copy (GedaObject *o_current)
   if (GEDA_IS_PATH(o_current)) {
 
     GedaObject *new_obj;
-    Path       *old_path;
+    GedaPath   *old_path;
     char       *path_string;
 
     old_path    = GEDA_PATH(o_current);
@@ -533,22 +533,22 @@ void o_path_translate (GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Get Point on a Path Nearest a Given Point
+/*! \brief Get Point on a GedaPath Nearest a Given Point
  *  \par Function Description
- *  This function is intended to locate a point on a Path object given
+ *  This function is intended to locate a point on a GedaPath object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
  *  on the Path that is the closest point on the path to the point given by
  *  \a x, \a y. If the found point is within #NEAR_DISTANCE distance to a
  *  vertex of the path, the vertex is return as the result.
  *
- *  \param [in]  object  Pointer to a Path object
+ *  \param [in]  object  Pointer to a GedaPath object
  *  \param [in]  x       Integer x of point near or on the path
  *  \param [in]  y       Integer y of point near or on the path
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a Path.
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
 bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
@@ -827,13 +827,14 @@ bool o_path_get_position (int *x, int *y, GedaObject *object)
  *  \param [in] origin_x    Page x coordinate to place PATH GedaObject
  *  \param [in] origin_y    Page y coordinate to place PATH GedaObject
  */
-static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, Path *path,
+static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                                 int line_width, int length, int space,
                                 int origin_x, int origin_y)
 {
   int i;
 
   for (i = 0; i < path->num_sections; i++) {
+
     PATH_SECTION *section = &path->sections[i];
 
     if (i > 0)
@@ -875,18 +876,19 @@ static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, Path *path,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object
+ *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
+ *  \param [in] path        The GedaPath object to print
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                 int line_width, int length, int space,
-                                 int origin_x, int origin_y)
+static void
+o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                     int line_width, int length, int space,
+                     int origin_x, int origin_y)
 {
   o_path_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
@@ -902,16 +904,17 @@ static void o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, Path *path,
  *
  *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
+ *  \param [in] path        The GedaPath object to print
  *  \param [in] line_width  Path Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                 int line_width, int length, int space,
-                                 int origin_x, int origin_y)
+static void
+o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                     int line_width, int length, int space,
+                     int origin_x, int origin_y)
 {
   o_path_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
@@ -934,9 +937,10 @@ static void o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_center (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                 int line_width, int length,
-                                 int space, int origin_x, int origin_y)
+static void
+o_path_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                     int line_width, int length,
+                     int space, int origin_x, int origin_y)
 {
   o_path_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
@@ -953,15 +957,16 @@ static void o_path_print_center (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
  *  \param [in] path        The Path object to print
- *  \param [in] line_width  Path Line width
+ *  \param [in] line_width  GedaPath Line width
  *  \param [in] length      Dashed line length
  *  \param [in] space       Amount of space between dashes
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                  int line_width, int length,
-                                  int space, int origin_x, int origin_y)
+static void
+o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                      int line_width, int length,
+                      int space, int origin_x, int origin_y)
 {
   o_path_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
@@ -981,7 +986,7 @@ static void o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
  *  \param [in] path        The Path object to print
- *  \param [in] fill_width  Path fill width (unused)
+ *  \param [in] fill_width  GedaPath fill width (unused)
  *  \param [in] angle1      (unused)
  *  \param [in] pitch1      (unused)
  *  \param [in] angle2      (unused)
@@ -989,10 +994,10 @@ static void o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_filled (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                 int fill_width,
-                                 int angle1, int pitch1, int angle2, int pitch2,
-                                 int origin_x, int origin_y)
+static void
+o_path_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                     int fill_width, int angle1, int pitch1, int angle2,
+                     int pitch2, int origin_x, int origin_y)
 {
   int i;
 
@@ -1046,7 +1051,7 @@ static void o_path_print_filled (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
  *  \param [in] path        The Path object to print
- *  \param [in] fill_width  Path fill width
+ *  \param [in] fill_width  GedaPath fill width
  *  \param [in] angle1      Angle of hatch pattern
  *  \param [in] pitch1      Pitch of hatch pattern
  *  \param [in] angle2      (unused)
@@ -1054,10 +1059,10 @@ static void o_path_print_filled (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, Path *path,
-                                int fill_width,
-                                int angle1, int pitch1, int angle2, int pitch2,
-                                int origin_x, int origin_y)
+static void
+o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                    int fill_width, int angle1, int pitch1, int angle2,
+                    int pitch2, int origin_x, int origin_y)
 {
   int i;
   GArray *lines;
@@ -1096,7 +1101,7 @@ static void o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] toplevel    The GedaToplevel object
  *  \param [in] fp          FILE pointer to Postscript document
  *  \param [in] path        The Path object to print
- *  \param [in] fill_width  Path fill width
+ *  \param [in] fill_width  GedaPath fill width
  *  \param [in] angle1      1st angle for mesh pattern
  *  \param [in] pitch1      1st pitch for mesh pattern
  *  \param [in] angle2      2nd angle for mesh pattern
@@ -1104,10 +1109,10 @@ static void o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  \param [in] origin_x    Page x coordinate to place Path GedaObject
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
-static void o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, Path *path,
-                               int fill_width,
-                               int angle1, int pitch1, int angle2, int pitch2,
-                               int origin_x, int origin_y)
+static void
+o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                   int fill_width, int angle1, int pitch1, int angle2,
+                   int pitch2, int origin_x, int origin_y)
 {
   o_path_print_hatch (toplevel, fp, path, fill_width,
                       angle1, pitch1, -1, -1, origin_x, origin_y);

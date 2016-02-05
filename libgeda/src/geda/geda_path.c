@@ -124,8 +124,8 @@ geda_path_bounds (GedaObject *object)
  */
 static void geda_path_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Path    *path                   = (Path*)instance;
-  GedaObject *object                  = &path->parent_instance;
+  GedaPath   *path                = (GedaPath*)instance;
+  GedaObject *object              = &path->parent_instance;
 
   path->sections                  = NULL;
   path->num_sections              = 0;
@@ -163,7 +163,7 @@ geda_path_dispose(GObject *object)
  */
 static void geda_path_finalize(GObject *object)
 {
-  Path       *path = GEDA_PATH(object);
+  GedaPath   *path = GEDA_PATH(object);
   GedaObject *obj  = GEDA_OBJECT(object);
 
   if (path->sections)
@@ -176,18 +176,18 @@ static void geda_path_finalize(GObject *object)
   GEDA_OBJECT_CLASS( geda_path_parent_class )->finalize(object);
 }
 
-/*! \brief GedaType class initializer for Path
+/*! \brief GedaType class initializer for GedaPath
  *
  *  \par Function Description
- *  GedaType class initializer for Path. We override our parents
+ *  GedaType class initializer for GedaPath. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Path class we are initialising
+ *  \param [in]  g_class      The GedaPath class we are initialising
  *  \param [in]  class_data   The Path structure associated with the class
  */
 static void geda_path_class_init(void *g_class, void *class_data)
 {
-  PathClass       *class         = (PathClass*)g_class;
+  GedaPathClass   *class         = (GedaPathClass*)g_class;
   GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
   GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
 
@@ -217,13 +217,13 @@ GedaObjectType geda_path_get_type (void)
   if (g_once_init_enter (&geda_path_type)) {
 
     static const GTypeInfo info = {
-      sizeof(PathClass),
+      sizeof(GedaPathClass),
       NULL,                   /* base_init           */
       NULL,                   /* base_finalize       */
       geda_path_class_init,   /* (GClassInitFunc)    */
       NULL,                   /* class_finalize      */
       NULL,                   /* class_data          */
-      sizeof(Path),
+      sizeof(GedaPath),
       0,                      /* n_preallocs         */
       geda_path_instance_init /* (GInstanceInitFunc) */
     };
@@ -231,7 +231,7 @@ GedaObjectType geda_path_get_type (void)
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Path");
+    string = g_intern_static_string ("GedaPath");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_path_type, type);
@@ -263,7 +263,7 @@ GedaObject *geda_path_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_path_object (Path *path)
+bool is_a_geda_path_object (GedaPath *path)
 {
   return GEDA_IS_OBJECT(path) && (((GedaObject*)path)->type == OBJ_PATH);
 }

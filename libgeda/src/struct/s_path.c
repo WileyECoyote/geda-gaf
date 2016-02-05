@@ -41,11 +41,11 @@
 
 #define NUM_BEZIER_SEGMENTS 100
 
-Path *s_path_new (void)
+GedaPath *s_path_new (void)
 {
-  Path *path;
+  GedaPath *path;
 
-  path = (Path*)geda_path_new ();
+  path = (GedaPath*)geda_path_new ();
   path->num_sections = 0;
   path->num_sections_max = 16;
   path->sections = g_new (PATH_SECTION, path->num_sections_max);
@@ -53,9 +53,9 @@ Path *s_path_new (void)
   return path;
 }
 
-Path *s_path_new_from (PATH_SECTION *sections)
+GedaPath *s_path_new_from (PATH_SECTION *sections)
 {
-  Path *path;
+  GedaPath *path;
   int i;
 
   g_return_val_if_fail (sections != NULL, NULL);
@@ -64,7 +64,7 @@ Path *s_path_new_from (PATH_SECTION *sections)
   if (i <= 0)
     return s_path_new ();
 
-  path = (Path*)geda_path_new ();
+  path = (GedaPath*)geda_path_new ();
 
   path->num_sections = i;
   path->num_sections_max = i;
@@ -74,7 +74,7 @@ Path *s_path_new_from (PATH_SECTION *sections)
   return path;
 }
 
-void s_path_free(Path * path)
+void s_path_free(GedaPath * path)
 {
   g_return_if_fail (GEDA_IS_PATH(path));
 
@@ -82,7 +82,7 @@ void s_path_free(Path * path)
   GEDA_UNREF (path);
 }
 
-void s_path_moveto (Path *path, double x, double y)
+void s_path_moveto (GedaPath *path, double x, double y)
 {
   PATH_SECTION *sections;
   int num_sections;
@@ -114,7 +114,7 @@ void s_path_moveto (Path *path, double x, double y)
   sections[num_sections].y3 = y;
 }
 
-void s_path_lineto (Path *path, double x, double y)
+void s_path_lineto (GedaPath *path, double x, double y)
 {
   PATH_SECTION *sections;
   int num_sections;
@@ -133,7 +133,7 @@ void s_path_lineto (Path *path, double x, double y)
   sections[num_sections].y3 = y;
 }
 
-void s_path_curveto (Path *path, double x1, double y1,
+void s_path_curveto (GedaPath *path, double x1, double y1,
                      double x2, double y2, double x3, double y3)
 {
   PATH_SECTION *sections;
@@ -155,7 +155,7 @@ void s_path_curveto (Path *path, double x1, double y1,
   sections[num_sections].y3 = y3;
 }
 
-void s_path_art_finish (Path * path)
+void s_path_art_finish (GedaPath * path)
 {
   int num_sections;
 
@@ -168,12 +168,12 @@ void s_path_art_finish (Path * path)
   path->sections[num_sections].code = PATH_END;
 }
 
-Path *s_path_copy_modify (Path *path, int dx, int dy,
+GedaPath *s_path_copy_modify (GedaPath *path, int dx, int dy,
                           int new_x, int new_y, int whichone)
 {
-  Path *new_path;
-  char *path_string;
   GedaObject *object;
+  GedaPath   *new_path;
+  char       *path_string;
 
   int x1, y1, x2, y2, x3, y3;
   int i;
@@ -183,12 +183,13 @@ Path *s_path_copy_modify (Path *path, int dx, int dy,
   object = GEDA_OBJECT(path);
 
   path_string                = s_path_string_from_path (path);
-  new_path                   = (Path*)o_path_new (object->color, path_string);
+  new_path                   = (GedaPath*)o_path_new (object->color, path_string);
   new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
   new_path->num_sections     = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 
   for (i = 0; i <  path->num_sections; i++) {
+
     PATH_SECTION *section     = &path->sections[i];
     PATH_SECTION *new_section = &new_path->sections[i];
 
@@ -238,7 +239,7 @@ Path *s_path_copy_modify (Path *path, int dx, int dy,
 typedef struct _RSVGParsePathCtx RSVGParsePathCtx;
 
 struct _RSVGParsePathCtx {
-  Path  *path;
+  GedaPath  *path;
   double cpx, cpy;    /* current point */
   double rpx, rpy;    /* reflection point (for 's' and 't' commands) */
   double mpx, mpy;    /* Last moved to point (for path closures) */
@@ -717,7 +718,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 }
 
 
-Path *s_path_parse (const char *path_str)
+GedaPath *s_path_parse (const char *path_str)
 {
   RSVGParsePathCtx ctx;
 
@@ -737,7 +738,7 @@ Path *s_path_parse (const char *path_str)
   return ctx.path;
 }
 
-char *s_path_string_from_path (const Path *path)
+char *s_path_string_from_path (const GedaPath *path)
 {
   PATH_SECTION *section;
   GString      *path_string;
@@ -791,7 +792,7 @@ char *s_path_string_from_path (const Path *path)
  *
  *  \returns TRUE if the path is closed, FALSE if it is open.
  */
-int s_path_to_polygon (Path *path, GArray *points)
+int s_path_to_polygon (GedaPath *path, GArray *points)
 {
   int closed = FALSE;
   int i;
@@ -852,7 +853,7 @@ int s_path_to_polygon (Path *path, GArray *points)
  *          points. With an invalid parameter, this function returns
  *          G_MAXDOUBLE.
  */
-double s_path_shortest_distance (Path *path, int x, int y, int solid)
+double s_path_shortest_distance (GedaPath *path, int x, int y, int solid)
 {
   double shortest_distance = G_MAXDOUBLE;
   int closed;

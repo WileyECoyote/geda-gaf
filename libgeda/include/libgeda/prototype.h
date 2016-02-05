@@ -116,7 +116,7 @@ extern "C" {
 /* m_hatch.c */
          void    m_hatch_box                     (GedaBox    *box,    int angle, int pitch, GArray *lines);
          void    m_hatch_circle                  (GedaCircle *circle, int angle, int pitch, GArray *lines);
-         void    m_hatch_path                    (Path       *path,   int angle, int pitch, GArray *lines);
+         void    m_hatch_path                    (GedaPath   *path,   int angle, int pitch, GArray *lines);
          void    m_hatch_polygon                 (GArray     *points, int angle, int pitch, GArray *lines);
        GArray   *m_hatch_object                  (GedaObject *object);
 
@@ -306,7 +306,7 @@ extern "C" {
 /* o_path_basic.c */
    GedaObject   *o_path_new                      (int color, const char *path_string);
    GedaObject   *o_path_new_from_polygon         (GArray *points,  int color);
-   GedaObject   *o_path_new_take_path            (int color, Path *path_data);
+   GedaObject   *o_path_new_take_path            (int color, GedaPath *path_data);
    GedaObject   *o_path_copy                     (GedaObject *o_current);
          void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
          void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);
@@ -541,11 +541,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_papersizes_get_size           (char *string, int *width, int *height);
 
 /* s_path.c */
-         Path   *s_path_copy_modify              (Path *path, int dx, int dy, int new_x, int new_y, int whichone);
-         Path   *s_path_parse                    (const char *path_str);
-         char   *s_path_string_from_path         (const Path *path);
-          int    s_path_to_polygon               (Path *path, GArray *points);
-       double    s_path_shortest_distance        (Path *path, int x, int y, int solid);
+     GedaPath   *s_path_copy_modify              (GedaPath *path, int dx, int dy, int new_x, int new_y, int whichone);
+     GedaPath   *s_path_parse                    (const char *path_str);
+         char   *s_path_string_from_path         (const GedaPath *path);
+          int    s_path_to_polygon               (GedaPath *path, GArray *points);
+       double    s_path_shortest_distance        (GedaPath *path, int x, int y, int solid);
 
 /* s_place.c */
          void    s_place_free_place_list         (GedaToplevel *toplevel);

@@ -63,7 +63,7 @@ typedef struct _GedaLine         GedaLine;
 typedef struct _GedaNet          GedaNet;
 
 /*! \brief Geda Path Circle Object Structure */
-typedef struct _GedaPath         Path;
+typedef struct _GedaPath         GedaPath;
 
 /*! \brief Geda Picture Circle Object Structure */
 typedef struct _GedaPicture      Picture;

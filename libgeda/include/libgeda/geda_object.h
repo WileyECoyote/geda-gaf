@@ -85,7 +85,7 @@ struct _GedaObject {
   GedaComplex  *complex;
   GedaLine     *line;
   GedaNet      *net;
-  Path         *path;
+  GedaPath     *path;
   Picture      *picture;
   Pin          *pin;
   Text         *text;

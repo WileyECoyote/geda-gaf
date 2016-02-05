@@ -209,7 +209,7 @@ void m_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
  *                     This function appends new line segments to the GArray
  *                     and leaves existing GArray contents unchanged.
  */
-void m_hatch_path (Path *path, int angle, int pitch, GArray *lines)
+void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 {
   GArray *points;
 

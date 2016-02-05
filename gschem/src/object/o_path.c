@@ -32,7 +32,7 @@
 #define NUM_BEZIER_SEGMENTS 100
 
 typedef void (*FILL_FUNC) (GschemToplevel *w_current,
-                           COLOR *color, Path *path,
+                           COLOR *color, GedaPath *path,
                            int fill_width,
                            int angle1, int pitch1, int angle2, int pitch2);
 
@@ -44,7 +44,7 @@ typedef void (*FILL_FUNC) (GschemToplevel *w_current,
  * control point changes applied.
  */
 static void
-path_rubber_bbox (GschemToplevel *w_current, Path *path,
+path_rubber_bbox (GschemToplevel *w_current, GedaPath *path,
                   int *min_x, int *max_y, int *max_x, int *min_y)
 {
   int new_x, new_y, whichone;
@@ -119,7 +119,7 @@ path_rubber_bbox (GschemToplevel *w_current, Path *path,
 static void path_expand (GschemToplevel *w_current)
 {
 
-  Path *p = w_current->temp_path;
+  GedaPath *p = w_current->temp_path;
   if (p->num_sections == p->num_sections_max) {
     p->num_sections_max *= 2;
     p->sections = g_renew (PATH_SECTION, p->sections,
@@ -157,7 +157,7 @@ path_next_sections (GschemToplevel *w_current)
 {
 
   bool cusp_point, cusp_prev, close_path, end_path, start_path;
-  Path *p;
+  GedaPath *p;
   PATH_SECTION *section, *prev_section;
   int x1, y1, x2, y2, x3, y3;
   int save_num_sections;
@@ -300,11 +300,11 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  bool          result;
   GedaToplevel *toplevel;
+  GedaPath     *path;
   PATH_SECTION *section;
   PATH_SECTION *prev_section;
-  Path         *path;
+  bool          result;
 
   if (w_current == NULL || w_current->toplevel == NULL) {
     BUG_MSG ("invalid pointer to top level");
@@ -417,7 +417,7 @@ static void o_path_init(GschemToplevel *w_current, int w_x, int w_y)
 
     int size = sizeof(PATH_SECTION) * TEMP_PATH_DEFAULT_SIZE;
 
-    Path *path              = (Path*)geda_path_new ();
+    GedaPath *path          = (GedaPath*)geda_path_new ();
     path->sections          = GEDA_MEM_ALLOC0 (size);
     path->num_sections      = 0;
     path->num_sections_max  = TEMP_PATH_DEFAULT_SIZE;

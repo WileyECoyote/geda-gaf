@@ -1617,8 +1617,9 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, scheme_object_path_insert_x);
   SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG3, scheme_object_path_insert_x);
 
-  GedaObject *obj = edascm_to_object (obj_s);
-  Path *path = obj->path;
+  GedaObject *obj  = edascm_to_object (obj_s);
+  GedaPath   *path = obj->path;
+
   PATH_SECTION section = {0, 0, 0, 0, 0, 0, 0};
 
   /* Check & extract path element type. */

@@ -208,7 +208,7 @@ x_draw_path (GschemToplevel *w_current)
   if (GEDA_IS_PATH(o_current)) {
 
     GedaObject *tmp_obj;
-    Path       *s_path;
+    GedaPath   *s_path;
     int         nsections;
     int         i;
 

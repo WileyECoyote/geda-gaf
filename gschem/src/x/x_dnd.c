@@ -226,7 +226,7 @@ static char *x_dnd_string_data_line_properties(GedaLine *line)
   u_string_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
-static char *x_dnd_string_data_path_properties(Path *path)
+static char *x_dnd_string_data_path_properties(GedaPath *path)
 {
   return
   u_string_sprintf("sections=%d",path->num_sections);
