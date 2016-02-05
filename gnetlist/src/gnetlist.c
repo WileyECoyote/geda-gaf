@@ -34,7 +34,7 @@
 
 #include <dirent.h>
 
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 #include <gnetlist.h>
 #include <libgeda/libgedaguile.h>
 

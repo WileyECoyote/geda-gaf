@@ -143,8 +143,7 @@
  *        modules, see x_settings.c
 */
 
-#include <geda_standard.h>
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 
 #include <sys/types.h>
 #include <ctype.h>
@@ -152,13 +151,14 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include <gschem.h>
-#include <gschem_xdefines.h>            /* Define dialog default internal spacing */
-#include <gschem_dialog.h>              /* Definition the base Dialog Class */
-#include <geda_widgets.h>               /* Switches use geda_labels */
+#include "../../include/gschem.h"
+#include "../../include/gschem_xdefines.h" /* Define dialog default internal spacing */
+#include "../../include/gschem_dialog.h"   /* Definition the base Dialog Class */
 
-#include "../../include/geda_dialog_controls.h" /* Macros for Dialogs */
-#include "../../include/geda_debug.h"
+#include <geda_widgets.h>                  /* Switches use geda_labels */
+
+#include <geda/geda_dialog_controls.h> /* Macros for Dialogs */
+#include "../../../include/geda_debug.h"
 
 /** \defgroup Preferences-Dialog Preferences Dialog
  *  @{
@@ -170,8 +170,8 @@
  *  \image latex preferences_dialog.png
  */
 
-#include <x_settings.h>                 /* Common Declarations and Enumerators */
-#include <x_settings_dialog.h>          /* Dialog String Data */
+#include "../../include/x_settings.h"        /* Common Declarations and Enumerators */
+#include "../../include/x_settings_dialog.h" /* Dialog String Data */
 
 /* ---------------  Functions that Should Be Somewhere Else  --------------- */
 

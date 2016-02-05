@@ -43,7 +43,7 @@
 #include "config.h"
 #endif
 
-#include <geda.h>
+#include <geda/geda.h>
 
 #include <gtk/gtk.h>
 

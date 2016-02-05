@@ -30,7 +30,7 @@
 
 #include <gschem.h>
 
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 #include <geda_widgets.h>
 
 #include <x_menus.h>

@@ -29,7 +29,7 @@
 #include <errno.h>
 #include <libgen.h>        /* dirname */
 
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 
 #include <gschem.h>
 #include <x_menus.h>

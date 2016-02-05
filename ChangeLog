@@ -1,3 +1,27 @@
+2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/Makefile.am: create geda subdirectory and relocate:
+
+        * include/geda/ansi.h
+        * include/geda/ascii.h
+        * include/geda/geda.h
+        * include/geda/geda_bitmaps.h
+        * include/geda/geda_dialog_controls.h
+        * include/geda/geda_enum.h
+        * include/geda/geda_gui_funcs.h
+        * include/geda/geda_help.h
+        * include/geda/geda_idefines.h
+        * include/geda/geda_macros.h
+        * include/geda/geda_sdefines.h
+        * include/geda/geda_standard.h
+        * include/geda/geda_stat.h
+        * include/geda/geda_struct.h
+        * include/geda/geda_system.h
+        * include/geda/geda_toolbars.h
+        * include/geda/geda_types.h
+        * include/geda/geda_wrap.h
+        * include/geda/missing.h
+
 2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 2.1.0.15, 20151230.

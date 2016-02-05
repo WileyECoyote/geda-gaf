@@ -29,7 +29,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-#include <geda.h>
+#include <geda/geda.h>
 
 #include <geda_tree.h>
 

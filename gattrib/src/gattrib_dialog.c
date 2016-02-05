@@ -22,8 +22,8 @@
 #include <gattrib.h>
 #include <gattrib_dialog.h>
 
+#include <geda/geda_stat.h>
 #include <geda_marshal.h>
-#include <geda_stat.h>
 #include <geda_debug.h>
 
 /*! \brief Create pixmap widget for dialogs boxes.

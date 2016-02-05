@@ -36,13 +36,11 @@
 
 #include <gtk/gtk.h>
 
-#include <geda_standard.h>
-
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include "geda_label.h"
-#include "geda_entry.h"
+#include <geda_label.h>
+#include <geda_entry.h>
 
 static char*
 geda_dialog_get_input(const char *title, const char *prompt, const char *str, GedaEntryAccept type)

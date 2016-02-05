@@ -22,7 +22,7 @@
  */
 
 #include <gattrib.h>
-#include <geda_gui_funcs.h>
+#include <geda/geda_gui_funcs.h>
 #include <geda_debug.h>
 
 #define MAX_SEARCH_STRING 128

@@ -35,11 +35,9 @@
 #ifndef __GEDA_STD_INC__
 #  define __GEDA_STD_INC__
 
-#  ifdef HAVE_CONFIG_H
-#    include <config.h>
-#  endif
+#define USE_POSIX
 
-#  include <ascii.h>
+#  include "ascii.h"
 
 #  include <stdio.h>
 

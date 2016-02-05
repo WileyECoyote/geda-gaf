@@ -28,23 +28,23 @@
 
 #include <config.h>
 #include <Python.h>
-#include "structmember.h"
+#include <structmember.h>
 
 #include <dlfcn.h>
 #include <unistd.h>
 
 #define FIRST_PASS_METHODS(func) static PyObject *do_##func(PyObject *self, PyObject *args)
 
-#include "geda.h"
-#include "geda_module.h"
-#include "geda_capsule.h"
+#include <geda/geda.h>
+#include <geda_module.h>
+#include <geda_capsule.h>
 
-#include "libgeda/o_types.h"
-#include "libgedathon.h"
+#include <libgeda/o_types.h>
+#include <libgedathon.h>
 
-#include "geda_py_struct.h"
-#include "geda_py_page.h"
-#include "geda_py_object.h"
+#include <geda_py_struct.h>
+#include <geda_py_page.h>
+#include <geda_py_object.h>
 
 extern PyTypeObject PyGedaPageObjectType;
 
@@ -79,7 +79,7 @@ static struct {
 
 } GedaMethods[METHOD_COUNT + 1] = {
  [ method_unknown ] = { "unknown", do_unknown, 0, ""},
- #include "geda_module.h"
+ #include "../include/geda_module.h"
 };
 
 /*! \brief Add Libgedathon suffix

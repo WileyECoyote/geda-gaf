@@ -27,7 +27,7 @@
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 
-#include <geda.h>
+#include <geda/geda.h>
 #include <glib.h>
 #include <glib-object.h>
 

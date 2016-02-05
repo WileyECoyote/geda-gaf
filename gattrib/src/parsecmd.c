@@ -24,7 +24,7 @@
  * information.
  */
 
-#include <ansi.h>
+#include <geda/ansi.h>
 #include <version.h>
 
 #include <gattrib.h>

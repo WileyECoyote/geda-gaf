@@ -32,8 +32,8 @@
 #include "config.h"
 #endif
 
-#include <geda.h>
-#include <geda_standard.h>
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
 #include "geda_gtk_compat.h"
 #include "geda_imagemenuitem.h"
 

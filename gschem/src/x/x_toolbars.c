@@ -27,13 +27,11 @@
  * \brief Main Window Auxiliary Module for Toolbars
  */
 
-#include <config.h>
-#include <geda_stat.h>
-
 #include <gtk/gtk.h>
 
 #include <gschem.h>           /* include gschem specific headers  */
-#include <x_menus.h>
+#include <geda/geda_stat.h>
+#include <geda_handlebox.h>
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
 #define DEFAULT_TOOLBAR_STYLE TOOLBAR_SHOW_ICONS         /* default style */
@@ -44,13 +42,13 @@
 
 #define ToolBar_Radio_Responder x_toolbars_execute_radio
 
-#include <geda_handlebox.h>
-#include <geda_toolbars.h>
+#include <geda/geda_toolbars.h>
 
-#include <x_toolbars.h>
-#include <i_actions.h>
+#include "../../include/x_menus.h"
+#include "../../include/x_toolbars.h"
+#include "../../include/i_actions.h"
 
-#include <geda_debug.h>
+#include "../../../include/geda_debug.h"
 
 /** toolbars-button-lists GLists of Toolbar Buttons
  *  \brief Collection GList of Toolbar Widgets

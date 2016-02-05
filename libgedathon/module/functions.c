@@ -33,7 +33,7 @@
 
 #define FIRST_PASS_FUNCTIONS(func) static PyObject *do_##func(PyObject *self, PyObject *args, PyObject *kwds)
 
-#include "functions.h"
+#include "../include/functions.h"
 
 enum {
       ZERO_STATUS = 0,

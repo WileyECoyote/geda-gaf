@@ -26,7 +26,6 @@
 
 #include <config.h>
 
-#include <geda_standard.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"

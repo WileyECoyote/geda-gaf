@@ -34,8 +34,8 @@
 #include "config.h"
 #endif
 
-#include <geda.h>
-#include <geda_standard.h>
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
 
 #include <gtk/gtk.h>
 #include "geda_swatch_renderer.h"

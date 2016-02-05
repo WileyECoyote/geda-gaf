@@ -35,7 +35,7 @@
 #include <x_menus.h>
 
 #include <geda_dialogs.h>
-#include <geda_help.h>
+#include <geda/geda_help.h>
 
 #ifdef PERFORMANCE
 #include <gschem_diagnostics.h>

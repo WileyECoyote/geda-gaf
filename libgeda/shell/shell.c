@@ -26,7 +26,6 @@
 #include "../../config.h"
 #endif
 
-#include <geda_standard.h>
 #include <version.h>
 #include <ctype.h>
 #include <libgeda/libgeda.h>

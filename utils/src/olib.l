@@ -30,7 +30,7 @@
 #include <limits.h>
 #include <math.h>
 
-#include <geda_macros.h>
+#include <geda/geda_macros.h>
 
 /* gEDA file version: change NEW version as soon as available */
 #define EDA_VERSION_OLD "20020209"

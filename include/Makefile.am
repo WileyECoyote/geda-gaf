@@ -3,29 +3,33 @@
 ## There does not seem to be any reason to use Auto-tools here
 ## Just use static Makefile
 
+gedaincludedir = $(includedir)/geda
+
+gedainclude_HEADERS = \
+			geda/ansi.h \
+			geda/ascii.h \
+			geda/geda.h \
+			geda/geda_bitmaps.h \
+			geda/geda_dialog_controls.h \
+			geda/geda_enum.h \
+			geda/geda_gui_funcs.h \
+			geda/geda_help.h \
+			geda/geda_idefines.h \
+			geda/geda_sdefines.h \
+			geda/geda_macros.h \
+			geda/geda_stat.h \
+			geda/geda_standard.h \
+			geda/geda_struct.h \
+			geda/geda_system.h \
+			geda/geda_toolbars.h \
+			geda/geda_types.h \
+			geda/geda_wrap.h \
+			geda/missing.h
+
 noinst_HEADERS  = \
-					ansi.h \
-					ascii.h \
-					geda.h \
-					geda_bitmaps.h \
-					geda_debug.h \
-					geda_diagnostics.h \
-					geda_dialog_controls.h \
-					geda_enum.h \
-					geda_gui_funcs.h \
-					geda_help.h \
-					geda_idefines.h \
-					geda_sdefines.h \
-					geda_macros.h \
-					geda_standard.h \
-					geda_stat.h \
-					geda_struct.h \
-					geda_system.h \
-					geda_toolbars.h \
-					geda_types.h \
-					geda_wrap.h \
-					gettext.h \
-					missing.h
+			geda_debug.h \
+			geda_diagnostics.h \
+			gettext.h
 
 EXTRA_DIST      = $(noinst_HEADERS)
 

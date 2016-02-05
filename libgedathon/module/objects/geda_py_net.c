@@ -29,7 +29,7 @@
 #include <Python.h>
 #include <structmember.h>
 
-#include <geda.h>
+#include <geda/geda.h>
 #include <geda_python.h>
 #include <geda_py_struct.h>
 #include <geda_py_object.h>

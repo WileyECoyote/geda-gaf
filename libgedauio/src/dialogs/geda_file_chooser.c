@@ -28,7 +28,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
 #include <gtk/gtk.h>
@@ -40,7 +40,7 @@
 #include <geda_file_filter.h>
 #include <geda_debug.h>
 
-#include "gettext.h"
+#include "../../include/gettext.h"
 
 #define ChooseClass GedaFileChooserClass
 

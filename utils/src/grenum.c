@@ -25,7 +25,7 @@
 #include <config.h>
 #endif
 
-#include <geda_standard.h>
+#include <geda/geda_standard.h>
 
 #include <version.h>
 

@@ -35,7 +35,7 @@
 
 #include <cairo.h>
 
-#include <geda.h>
+#include <geda/geda.h>
 #include <libgeda/s_struct.h>
 
 #include "../include/edacairo.h"

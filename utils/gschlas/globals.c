@@ -28,7 +28,7 @@
  * MA 02110-1301 USA
  */
 
-#include <geda.h>
+#include <geda/geda.h>
 
 /* command line arguments */
 int verbose_mode=0;

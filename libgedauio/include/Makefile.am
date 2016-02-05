@@ -4,7 +4,8 @@
 
 libgedauiodir      = $(includedir)/libgedauio
 
-noinst_HEADERS     = geda_file_filter.h
+noinst_HEADERS     = geda_file_filter.h \
+                     gettext.h
 
 libgedauio_HEADERS = \
 			geda_accel_label.h       \

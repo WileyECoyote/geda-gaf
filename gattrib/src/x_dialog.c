@@ -30,7 +30,7 @@
 #include "../../version.h"
 
 #include <gattrib.h>
-#include <geda_dialog_controls.h>
+#include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
 #include <gattrib_dialog.h>
 #include <geda_debug.h>

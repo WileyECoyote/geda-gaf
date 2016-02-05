@@ -19,10 +19,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ * 02110-1301 USA, "http://www.gnu.org/licenses/".
  *
  * Note this file intentionally does not have a wrapper!
- * If header is included by <libgeda/libgeda.h>
+ * If header is included by "libgeda/libgeda.h"
 */
 
 /** \defgroup geda-globals Global Defines and Enumerators
@@ -39,16 +39,16 @@
 
 #include "geda_standard.h"
 
-#include <missing.h>
+#include "missing.h"
 
-#include <geda_system.h>
-#include <geda_idefines.h>
-#include <geda_sdefines.h>
-#include <geda_types.h>
-#include <geda_bitmaps.h>
-#include <geda_macros.h>
-#include <geda_enum.h>
-#include <geda_struct.h>
-#include <geda_wrap.h>
+#include "geda_system.h"
+#include "geda_idefines.h"
+#include "geda_sdefines.h"
+#include "geda_types.h"
+#include "geda_bitmaps.h"
+#include "geda_macros.h"
+#include "geda_enum.h"
+#include "geda_struct.h"
+#include "geda_wrap.h"
 
 /** @} endgroup geda-globals */

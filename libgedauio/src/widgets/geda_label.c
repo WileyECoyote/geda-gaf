@@ -54,8 +54,8 @@
 
 #define GTK_COMPILATION 1
 
-#include <geda.h>
-#include <geda_standard.h>
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
 
 
 #include <glib.h>

@@ -37,7 +37,7 @@
 #include <gtk/gtk.h>
 #include <gtksheet.h>
 
-#include <geda_gui_funcs.h>
+#include <geda/geda_gui_funcs.h>
 #include <geda_widgets.h>
 #include <geda_debug.h>
 

@@ -31,7 +31,7 @@
 #include <glib-object.h>
 #include <cairo.h>
 #include <pango/pangocairo.h>
-#include <geda.h>
+#include <geda/geda.h>
 
 #include "../include/edapangorenderer.h"
 

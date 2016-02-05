@@ -27,7 +27,7 @@
 #ifndef LIBGEDA_H
 #define LIBGEDA_H
 
-#include <geda.h>
+#include <geda/geda.h>
 
 #include <glib.h>
 #include <glib-object.h>
@@ -42,38 +42,38 @@
 # include <gdk-pixbuf/gdk-pixbuf.h>
 #endif
 
-#include <libgeda/defines.h>
-#include <libgeda/g_types.h>
-#include <libgeda/o_types.h>
+#include "defines.h"
+#include "g_types.h"
+#include "o_types.h"
 
-#include <libgeda/s_struct.h>
-#include <libgeda/g_struct.h>
+#include "s_struct.h"
+#include "g_struct.h"
 
-#include <libgeda/f_types.h>
+#include "f_types.h"
 
-#include <libgeda/geda_config.h>
-#include <libgeda/geda_errors.h>
+#include "geda_config.h"
+#include "geda_errors.h"
 
-#include <libgeda/geda_colors.h>
-#include <libgeda/papersizes.h>
-#include <libgeda/geda_list.h>
-#include <libgeda/geda_notify.h>
-#include <libgeda/geda_object.h>
-#include <libgeda/geda_page.h>
+#include "geda_colors.h"
+#include "papersizes.h"
+#include "geda_list.h"
+#include "geda_notify.h"
+#include "geda_object.h"
+#include "geda_page.h"
 
-#include <libgeda/geda_line.h>
-#include <libgeda/geda_arc.h>
-#include <libgeda/geda_box.h>
-#include <libgeda/geda_bus.h>
-#include <libgeda/geda_circle.h>
-#include <libgeda/geda_complex.h>
-#include <libgeda/geda_net.h>
-#include <libgeda/geda_path.h>
-#include <libgeda/geda_picture.h>
-#include <libgeda/geda_pin.h>
-#include <libgeda/geda_text.h>
+#include "geda_line.h"
+#include "geda_arc.h"
+#include "geda_box.h"
+#include "geda_bus.h"
+#include "geda_circle.h"
+#include "geda_complex.h"
+#include "geda_net.h"
+#include "geda_path.h"
+#include "geda_picture.h"
+#include "geda_pin.h"
+#include "geda_text.h"
 
-#include <libgeda/geda_toplevel.h>
+#include "geda_toplevel.h"
 
-#include <libgeda/prototype.h>
+#include "prototype.h"
 #endif

@@ -32,8 +32,8 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include "geda_py_struct.h"
-#include "geda_capsule.h"
+#include <geda_py_struct.h>
+#include <geda_capsule.h>
 
 void*
 GedaCapsule_GetPointer(PyObject *obj)

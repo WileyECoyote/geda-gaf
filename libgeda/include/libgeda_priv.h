@@ -8,8 +8,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <glib/gstdio.h>
 
-#include <geda.h>
-#include <geda_standard.h>
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
 
 /* Public libgeda headers */
 #include <defines.h>

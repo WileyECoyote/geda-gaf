@@ -40,12 +40,11 @@
 #include <config.h>
 #endif
 
-#include <geda_standard.h>
-
 #include <ctype.h>
 #include <math.h>
 
-#include <geda.h>
+#include <geda/geda_standard.h>
+#include <geda/geda.h>
 
 #include <libgeda/geda_colors.h>
 

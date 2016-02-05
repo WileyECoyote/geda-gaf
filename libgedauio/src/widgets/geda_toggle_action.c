@@ -36,7 +36,7 @@
 #include "config.h"
 #endif
 
-#include <geda.h>
+#include <geda/geda.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>

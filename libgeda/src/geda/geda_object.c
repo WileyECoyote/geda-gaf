@@ -40,7 +40,6 @@
  */
 
 #include <config.h>
-#include <ascii.h>
 #include <libgeda_priv.h>
 
 enum {

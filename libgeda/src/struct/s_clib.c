@@ -113,7 +113,7 @@
 
 #include <config.h>
 
-#include <geda_sdefines.h>  /* Explicitly include for doxygen, not preprocessor */
+#include <geda/geda_sdefines.h>  /* Explicitly include for doxygen, not preprocessor */
 
 #include <glib.h>
 

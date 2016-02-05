@@ -27,7 +27,7 @@
  */
 
 #include <gschem.h>
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 
 #include <ctype.h>
 #include <libgen.h>

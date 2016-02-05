@@ -44,13 +44,14 @@
 
 /* Only loading header here to get METHOD_COUNT because it is needed in
  * libgedathon, (so count doesn't has to be passed to the init function */
-#include "geda_module.h"
+#include <geda_module.h>
 
-#include "geda_py_struct.h"
-#include "geda_py_page.h"
-#include "geda_py_object.h"
-#include "geda_capsule.h"
-#include "libgedathon.h"
+#include <geda_py_struct.h>
+#include <geda_py_page.h>
+#include <geda_py_object.h>
+#include <geda_py_struct.h>
+#include <geda_capsule.h>
+#include <libgedathon.h>
 
 int PyGeda_update_object(GedaObject *object, PyGedaObject *py_object);
 int PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object);
@@ -64,7 +65,7 @@ static GList        *floating_objects;   /* List objects not on a page */
 /* fill struct with pointer functions */
 static PyGedaFunc FunctionTable[] = {
  { "error", NULL, 0},
- #include "geda_module.h"
+ #include <geda_module.h>
 };
 
 /** \defgroup Python_API_Library_Internal Python API Internal Functions

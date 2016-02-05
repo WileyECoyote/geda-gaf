@@ -48,7 +48,7 @@
 
 #include <config.h>
 
-#include <geda_stat.h>
+#include <geda/geda_stat.h>
 
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>

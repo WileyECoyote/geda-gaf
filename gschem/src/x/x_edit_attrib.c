@@ -28,9 +28,8 @@
 
 #include <gschem.h>
 #include <x_dialog.h>
-#include <geda_gui_funcs.h>
+#include <geda/geda_gui_funcs.h>
 #include <geda_widgets.h>
-
 #include <geda_debug.h>
 
 /***************** Start of Attrib Edit dialog box ********************/

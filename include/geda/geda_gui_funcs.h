@@ -34,13 +34,13 @@
               } \
             }
 
-#define GetEntryText(widget) gtk_entry_get_text ((GtkEntry *) widget)
-#define GetEntryLength(widget) gtk_entry_get_text_length ((GtkEntry *) widget)
+#define GetEntryText(widget) gtk_entry_get_text ((GtkEntry*) widget)
+#define GetEntryLength(widget) gtk_entry_get_text_length ((GtkEntry*) widget)
 #define SetEntryText(widget, text) \
             if (text == NULL) \
-              gtk_entry_set_text((GtkEntry *) widget, ""); \
+              gtk_entry_set_text((GtkEntry*) widget, ""); \
             else \
-              gtk_entry_set_text((GtkEntry *) widget, text);
+              gtk_entry_set_text((GtkEntry*) widget, text);
 
 #define GetToggleState(widget) gtk_toggle_button_get_active ((GtkToggleButton*)widget)
 #define SetToggleState(widget, state) gtk_toggle_button_set_active ((GtkToggleButton*)widget, state);

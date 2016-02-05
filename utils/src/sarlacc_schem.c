@@ -28,6 +28,7 @@
 #include <getopt.h>
 #endif
 
+#include <geda/geda_standard.h>
 
 #include <fcntl.h>
 

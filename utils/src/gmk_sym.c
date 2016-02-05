@@ -93,10 +93,10 @@ PRE,1,dot,B,1
  *       --help
  */
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
-#include <geda_standard.h>
+#include <geda/geda_standard.h>
 
 #include <ctype.h>
 

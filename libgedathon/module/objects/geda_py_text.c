@@ -29,8 +29,8 @@
 #include <Python.h>
 #include <structmember.h>
 
-#include <geda.h>
-#include <ascii.h>
+#include <geda/geda.h>
+#include <geda/ascii.h>
 #include <libgeda/defines.h>
 
 #include <geda_python.h>

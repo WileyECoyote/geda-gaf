@@ -21,7 +21,7 @@
 #include <gtk/gtk.h>
 #include <gattrib.h>
 
-#include <geda_help.h>   /* Include file names for HTML files */
+#include <geda/geda_help.h>   /* Include file names for HTML files */
 #include <geda_debug.h>
 
 static void toolbar_icons_only( void );

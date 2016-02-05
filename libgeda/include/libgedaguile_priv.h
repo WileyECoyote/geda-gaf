@@ -91,7 +91,7 @@
  * be included by Scheme API source files.
  */
 
-#include <missing.h>
+#include <geda/missing.h>
 #include <libgeda/libgedaguile.h>
 
 /* Declarations of Initialization Procedures for Scheme Module */

@@ -22,8 +22,8 @@
 
 #include <gtk/gtk.h>
 
-#include "../../include/geda_toolbars.h"
-#include "../../include/geda_debug.h"
+#include <geda/geda_toolbars.h>
+#include <geda_debug.h>
 
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/

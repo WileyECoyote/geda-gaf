@@ -28,12 +28,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
 #include <gtk/gtk.h>
-
-#include <geda_standard.h>
 
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
@@ -42,7 +40,7 @@
 #include <geda_file_filter.h>
 #include <geda_debug.h>
 
-#include "gettext.h"
+#include "../../include/gettext.h"
 
 #define ChooseClass GedaImageChooserClass
 
@@ -384,7 +382,7 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
         g_object_set (chooser, "preview-widget-active", FALSE, NULL);
         break;
       default:
-        fprintf(stderr, "menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
+        BUG_IMSG("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup_menu);
@@ -484,12 +482,9 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *user_data)
 
   gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
 
-  if (mods&GDK_BUTTON3_MASK)
-  {
+  if (mods&GDK_BUTTON3_MASK) {
 
-    if (popup_menu)
-    {
-
+    if (popup_menu) {
       gtk_object_destroy(GTK_OBJECT(popup_menu));
       popup_menu = NULL;
     }

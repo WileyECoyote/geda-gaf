@@ -36,7 +36,7 @@
 
 #include "config.h"
 
-#include <geda.h>
+#include <geda/geda.h>
 #include <geda_completion.h>
 
 #include <string.h>

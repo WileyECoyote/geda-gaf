@@ -74,19 +74,14 @@
  * \brief Program configuration settings support module
  */
 
-#define USE_POSIX
-
-#include <config.h>
-
-#include <geda_standard.h>
-#include <geda_stat.h>
-
-#include <errno.h>
+#include <geda/geda_standard.h>
+#include <geda/geda_stat.h>
 
 #include <gtk/gtk.h>
 
 #include <sys/types.h>
 #include <dirent.h>
+#include <libgen.h>
 
 #include <gschem.h>
 
@@ -94,7 +89,7 @@
 #include <x_menus.h>                    /* MenuToggleItem enumeration */
 #include <x_settings.h>
 
-#include <../include/keywords.h>
+#include "../../include/keywords.h"
 
 #include <geda_debug.h>
 

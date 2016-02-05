@@ -1,4 +1,4 @@
-#include <geda.h>
+#include <geda/geda.h>
 #include <glib.h>
 #include	 <glib-object.h>
 
