@@ -37,7 +37,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
 #include <geda_standard.h>
@@ -46,6 +46,7 @@
 #include <math.h>
 
 #include <geda.h>
+
 #include <libgeda/geda_colors.h>
 
 #include <geda_debug.h>

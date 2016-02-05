@@ -23,16 +23,14 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #define WITHOUT_GUILE 1
 #define WITHOUT_GDK_PIX_BUFFER 1
 #include <libgeda/libgeda.h>
 
-#include <geda_standard.h>
-#include <geda_stat.h>
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
 
 #include <geda_debug.h>
 
