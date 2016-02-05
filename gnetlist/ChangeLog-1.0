@@ -1,3 +1,8 @@
+2016-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc.scm: Close output port after displaying message when
+      attrib file is not found (even though guile will close the port).
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * BUGS: Updated bugs, memory leak issues were resolved as of 2015-11-14,

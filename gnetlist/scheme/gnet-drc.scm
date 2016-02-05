@@ -42,10 +42,14 @@
 (define drc:attriblist
   ((lambda (filename)
      (if (file-exists? filename)
-       (drc:parseconfig
-         (open-input-file filename))
-       ((message (string-append "ERROR: Attribute file '" filename "' not found.\n"))
-        (primitive-exit 1))))
+       (drc:parseconfig (open-input-file filename))
+       (let ((msg (string-append "ERROR: Attribute file '" filename "' not found.\n")))
+        (message msg)
+        (close-output-port (current-output-port))
+        (primitive-exit 1)
+       )
+     )
+   )
    "attribs"))
 
 (define (drc output-filename)
