@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-01-20 07:47-0600\n"
+"POT-Creation-Date: 2016-02-04 23:00-0600\n"
 "PO-Revision-Date: 2012-01-31 12:14+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,67 +19,67 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:445
-#: libgedauio/src/dialogs/geda_image_chooser.c:1010
+#: libgedauio/src/dialogs/geda_image_chooser.c:1005
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:446
-#: libgedauio/src/dialogs/geda_image_chooser.c:1011
+#: libgedauio/src/dialogs/geda_image_chooser.c:1006
 msgid "IDE_FILTER"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:592
-#: libgedauio/src/dialogs/geda_image_chooser.c:1157
+#: libgedauio/src/dialogs/geda_image_chooser.c:1152
 #, fuzzy
 msgid "_Open"
 msgstr "_Open..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:593
-#: libgedauio/src/dialogs/geda_image_chooser.c:1158
+#: libgedauio/src/dialogs/geda_image_chooser.c:1153
 msgid "Open..."
 msgstr "Open..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:597
-#: libgedauio/src/dialogs/geda_image_chooser.c:1162
+#: libgedauio/src/dialogs/geda_image_chooser.c:1157
 msgid "_Save"
 msgstr "_Save"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:598
-#: libgedauio/src/dialogs/geda_image_chooser.c:1163
+#: libgedauio/src/dialogs/geda_image_chooser.c:1158
 #, fuzzy
 msgid "Save As.."
 msgstr "Save _As..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:602
-#: libgedauio/src/dialogs/geda_image_chooser.c:1167
+#: libgedauio/src/dialogs/geda_image_chooser.c:1162
 #, fuzzy
 msgid "_Select Folder..."
 msgstr "Select Mode"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:603
-#: libgedauio/src/dialogs/geda_image_chooser.c:1168
+#: libgedauio/src/dialogs/geda_image_chooser.c:1163
 #, fuzzy
 msgid "Select Folder"
 msgstr "Select Mode"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:607
-#: libgedauio/src/dialogs/geda_image_chooser.c:1172
+#: libgedauio/src/dialogs/geda_image_chooser.c:1167
 msgid "OOPS"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:612
-#: libgedauio/src/dialogs/geda_image_chooser.c:1177
+#: libgedauio/src/dialogs/geda_image_chooser.c:1172
 #, fuzzy
 msgid "_Cancel"
 msgstr "Pan/Cancel"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:582
-#: libgedauio/src/dialogs/geda_image_chooser.c:766
+#: libgedauio/src/dialogs/geda_image_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:761
 #, fuzzy
 msgid "Preview"
 msgstr "Preview"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:768
+#: libgedauio/src/dialogs/geda_image_chooser.c:763
 msgid "Active to enable the preview pane"
 msgstr ""
 

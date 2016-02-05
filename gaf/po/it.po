@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-01-20 07:48-0600\n"
+"POT-Creation-Date: 2016-02-04 23:00-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gaf/src/gaf.c:70
+#: gaf/src/gaf.c:69
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -50,7 +50,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/gaf.c:90
+#: gaf/src/gaf.c:89
 #, fuzzy, c-format
 msgid ""
 "gEDA/gaf %s (g%.7s)\n"
@@ -67,7 +67,7 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
 
-#: gaf/src/gaf.c:138
+#: gaf/src/gaf.c:137
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr ""
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/gaf.c:150
+#: gaf/src/gaf.c:149
 #, c-format
 msgid ""
 "ERROR: You must specify a command to run.\n"
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/gaf.c:168
+#: gaf/src/gaf.c:167
 #, c-format
 msgid ""
 "ERROR: Unrecognised command `%s'.\n"
@@ -98,7 +98,7 @@ msgstr ""
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/config.c:50
+#: gaf/src/config.c:48
 #, c-format
 msgid ""
 "Usage: gaf config [OPTION] [GROUP KEY [VALUE]]\n"
@@ -140,7 +140,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/config.c:71
+#: gaf/src/config.c:69
 msgid ""
 "\n"
 "Run `gaf config --help' for more information.\n"
@@ -148,33 +148,33 @@ msgstr ""
 "\n"
 "Eseguire \"gaf config --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/config.c:72
+#: gaf/src/config.c:70
 msgid "ERROR: You may only specify a single configuration store.\n"
 msgstr ""
 "ERRORE: si può specificare solo un singolo archivio di configurazione.\n"
 
-#: gaf/src/config.c:168
+#: gaf/src/config.c:166
 #, c-format
 msgid "WARNING: Could not load '%s': %s.\n"
 msgstr "ATTENZIONE: impossibile caricare \"%s\": %s.\n"
 
-#: gaf/src/config.c:179
+#: gaf/src/config.c:177
 #, c-format
 msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr ""
 "ERRORE: si deve specificare sia il gruppo di configurazione che la chiave.\n"
 
-#: gaf/src/config.c:194 gaf/src/config.c:211 gaf/src/export.c:363
+#: gaf/src/config.c:192 gaf/src/config.c:209 gaf/src/export.c:360
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr "ERRORE: %s.\n"
 
-#: gaf/src/export.c:153
+#: gaf/src/export.c:150
 #, c-format
 msgid "ERROR: Bad argument '%s' to %s option.\n"
 msgstr "ERRORE: argomento errato \"%s\" all'opzione %s.\n"
 
-#: gaf/src/export.c:154
+#: gaf/src/export.c:151
 msgid ""
 "\n"
 "Run `gaf export --help' for more information.\n"
@@ -182,41 +182,41 @@ msgstr ""
 "\n"
 "Eseguire `gaf export --help' per ulteriori informazioni.\n"
 
-#: gaf/src/export.c:208
+#: gaf/src/export.c:205
 #, c-format
 msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile ricavare il formato di uscita dal nome del file \"%s\".\n"
 
-#: gaf/src/export.c:229
+#: gaf/src/export.c:226
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile trovare il formato supportato per il file di nome \"%s"
 "\".\n"
 
-#: gaf/src/export.c:235
+#: gaf/src/export.c:232
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr "ERRORE: formato di uscita \"%s\" non supportato.\n"
 
-#: gaf/src/export.c:247
+#: gaf/src/export.c:244
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 "ERRORE: il formato di uscita selezionato non supporta le pagine multiple\n"
 
-#: gaf/src/export.c:262
+#: gaf/src/export.c:259
 #, c-format
 msgid "ERROR: Failed to load '%s': %s\n"
 msgstr "ERRORE: fallito il caricamento di \"%s\": %s\n"
 
-#: gaf/src/export.c:269
+#: gaf/src/export.c:266
 #, c-format
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ERRORE: fallito il cambiamento di cartella a \"%s\": %s\n"
 
-#: gaf/src/export.c:1082
+#: gaf/src/export.c:1079
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -263,17 +263,17 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1269
+#: gaf/src/export.c:1266
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1278
+#: gaf/src/export.c:1275
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
 
-#: gaf/src/shell.c:52
+#: gaf/src/shell.c:50
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -312,7 +312,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/shell.c:135
+#: gaf/src/shell.c:133
 #, c-format
 msgid ""
 "\n"

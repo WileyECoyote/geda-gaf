@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-01-12 01:04-0600\n"
+"POT-Creation-Date: 2016-01-31 21:40-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
@@ -31,12 +31,12 @@ msgstr "Manipuler komponent attributter med gattrib"
 msgid "%s: Could not open [%s]\n"
 msgstr ""
 
-#: gattrib/src/gattrib.c:180
+#: gattrib/src/gattrib.c:177
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:345
+#: gattrib/src/gattrib.c:347
 #, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr ""
@@ -134,24 +134,24 @@ msgstr ""
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:311
+#: gattrib/src/s_sheet_data.c:312
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:426
+#: gattrib/src/s_sheet_data.c:427
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:461
+#: gattrib/src/s_sheet_data.c:467
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
 "pinnumber.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:517
+#: gattrib/src/s_sheet_data.c:524
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
@@ -171,22 +171,22 @@ msgstr ""
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:543
+#: gattrib/src/s_table.c:553
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:488
+#: gattrib/src/s_toplevel.c:490
 #, c-format
 msgid "%s: did not find the refdes in the master list!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:524 gattrib/src/s_toplevel.c:887
+#: gattrib/src/s_toplevel.c:526 gattrib/src/s_toplevel.c:890
 #, c-format
 msgid "%s: count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:847
+#: gattrib/src/s_toplevel.c:850
 #, c-format
 msgid "%s: either refdes or pinnumber of object missing!\n"
 msgstr ""
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:443
+#: gattrib/src/x_dialog.c:442
 msgid "Find "
 msgstr ""
 
@@ -294,31 +294,31 @@ msgstr ""
 msgid "Enter "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:820
+#: gattrib/src/x_dialog.c:823
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:822
+#: gattrib/src/x_dialog.c:825
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:828
+#: gattrib/src/x_dialog.c:831
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:830
+#: gattrib/src/x_dialog.c:833
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:836
+#: gattrib/src/x_dialog.c:839
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:838
+#: gattrib/src/x_dialog.c:841
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:843
+#: gattrib/src/x_dialog.c:846
 msgid "Find next"
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr ""
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:569
+#: gattrib/src/x_menus.c:594
 #, c-format
 msgid ""
 "Error loading %s:\n"
