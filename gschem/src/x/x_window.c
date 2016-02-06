@@ -785,8 +785,10 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled(void) {
 
-    char *str;
-    char *untitled;
+    EdaConfig *cfg;
+    char      *str;
+    char      *tmp_str;
+    char      *untitled;
 
     inline void unique_untitled(void) {
 
@@ -817,17 +819,27 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
       str = strcat (str, SCHEMATIC_FILE_DOT_SUFFIX);
     }
 
+    cfg = eda_config_get_user_context();
+
+    tmp_str = i_var_get_global_config_string (cfg, "default-filename");
+
     /* Get untitled-name prior to looping */
-    if (!toplevel->untitled_name) {
+    if (tmp_str != NULL) {
+      untitled = tmp_str;
+    }
+    else if (!toplevel->untitled_name) {
+      tmp_str  = NULL;
       untitled = _(DEFAULT_UNTITLED_NAME); /* Set to fall-back name */
     }
     else {
+      tmp_str  = NULL;
       untitled = toplevel->untitled_name;  /* Set to string from config */
     }
 
     memset(&strbuff[0], '\0', sizeof(strbuff));
     unique_untitled ();
     while (g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
+    GEDA_FREE (tmp_str);
     return str;
   }
 

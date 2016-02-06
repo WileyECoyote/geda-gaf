@@ -1,3 +1,8 @@
+2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_window.c: Revise unique_untitled to retrieve the
+      base untitled file name from the user configuration context.
+
 2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * Try to reduce redundant inclusions:
