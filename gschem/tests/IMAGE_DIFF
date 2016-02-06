@@ -39,9 +39,9 @@ if test -f $input ; then
   $TEST_APP -q -npz -a X11 -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} >> ${LOG} 2>&1
   ret_code=$?
 
-  if [ $ret_code -eq 0 ]; then
+  if [ $ret_code -ne 0 ]; then
     cat << EOF > ${LOG}
-      ${TEST_APP} -q -npz -a X11 -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
+      ${TEST_APP} --verbose -npz -a X11 -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
       exited with code ${ret_code}
 EOF
   elif [ ! -f "$newpng" ] ; then

@@ -20,7 +20,7 @@ ERRDIR=mismatched
 
 DEBUG=false
 REGENERATE=false
-VERBOSE=false
+VERBOSE=true
 
 TOTALTEST=0
 PASSCOUNT=0
