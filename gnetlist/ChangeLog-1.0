@@ -1,3 +1,8 @@
+2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/drc2/Makefile.am: Use resistor-drc2.sym in the source directory,
+      passed in the environment with TESTDIR.
+
 2016-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Close output port after displaying message when

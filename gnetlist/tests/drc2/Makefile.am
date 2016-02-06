@@ -51,15 +51,12 @@ gnet_builddir=$(top_builddir)/gnetlist
 
 tests:
 
-#notests:
-# cleanup
-	rm -f $(BUILDDIR)/new_*
-	rm -f $(BUILDDIR)/failed.log
+# pre-clean
+	@rm -f $(BUILDDIR)/new_*
+	@rm -f $(BUILDDIR)/failed.log
 
 # make the tests
-	$(MKDIR_P) $(builddir)/sym || exit $$?;
-	cp $(srcdir)/resistor-drc2.sym $(builddir)/sym/resistor-drc2.sym
-	cp $(srcdir)/gnetlistrc.drc2 $(builddir)/gnetlistrc
+	@cp $(srcdir)/gnetlistrc.drc2 $(builddir)/gnetlistrc
 	failed=0; \
 	for file in $(SRCDIR)/*.sch; do \
 	  file_basename=`basename $$file .sch`; \
@@ -80,20 +77,18 @@ tests:
 	     echo "diff $(SRCDIR)/$$file_basename.drc2 $(BUILDDIR)/new_$$file_basename.drc2" >> $(BUILDDIR)/failed.log ; \
 	     failed=`expr $$failed + 1`; \
 	  else \
-	     echo "Test in $(SRCDIR)/$$file_basename.sch PASSED."; \
+	     echo "PASSED: Test in $(SRCDIR)/$$file_basename.sch."; \
 	  fi; \
 	done ; \
 	if test $$failed -ne 0 ; then \
-		echo "FAILED $$failed test(s)" ; \
+		echo "FAILED: $$failed test(s)" ; \
 		cat $(BUILDDIR)/failed.log ; \
 		exit 1 ; \
 	fi
-	rm -f $(builddir)/gnetlistrc
-	rm -rf $(builddir)/sym
-	rm -rf $(builddir)/logs
+	@rm -f $(builddir)/gnetlistrc
+	@rm -rf $(builddir)/logs
 
-MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
-CLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
-DISTCLEANFILES = *.log core FILE *~ gnetlistrc
-MAINTAINERCLEANFILES = new_* core *.log FILE *.ps *~ Makefile.in gnetlistrc
-
+MOSTLYCLEANFILES     = new_* *.log *~ gnetlistrc resistor-test.sym
+CLEANFILES           = new_* *.log *~ gnetlistrc resistor-test.sym
+DISTCLEANFILES       = new_* *.log *~ gnetlistrc resistor-test.sym
+MAINTAINERCLEANFILES = new_* *.log *~ gnetlistrc resistor-test.sym Makefile.in
