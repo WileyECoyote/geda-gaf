@@ -24,8 +24,8 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 
 #ifndef QUOTE_SYMBOL
 #define QUOTE_SYMBOL(symbol) #symbol

@@ -29,11 +29,11 @@
 #include <errno.h>
 #include <libgen.h>        /* dirname */
 
-#include <geda/geda_stat.h>
+#include "../../include/gschem.h"
+#include "../../include/x_menus.h"
+#include "../../include/x_window.h"
 
-#include <gschem.h>
-#include <x_menus.h>
-#include <x_window.h>
+#include <geda/geda_stat.h>
 #include <geda/geda_dialog_controls.h>
 #include <geda_file_chooser.h>  /* Need for group and key defines */
 

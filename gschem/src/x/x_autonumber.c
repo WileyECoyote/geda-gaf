@@ -26,13 +26,11 @@
  * \brief A dialog box for Automatomating Text Numbering
  */
 
-#include <config.h>
-
 #include <ctype.h>
-
-#include <gschem.h>
 #include <gdk/gdkkeysyms.h>
-#include <x_dialog.h>
+
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 #include <geda_debug.h>
 
 #define ThisDialog autonumber_text

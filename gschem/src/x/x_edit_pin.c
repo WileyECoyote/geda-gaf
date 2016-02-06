@@ -28,11 +28,10 @@
 
 #include <gdk/gdk.h>
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 
 #include <geda_widgets.h>
-
 #include <geda_debug.h>
 
 /** \defgroup Edit-Pin-Dialog Edit Pin Properties Dialog

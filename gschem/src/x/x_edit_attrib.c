@@ -26,8 +26,8 @@
  * \brief A dialog box for editing Attribute Text objects
  */
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 #include <geda/geda_gui_funcs.h>
 #include <geda_widgets.h>
 #include <geda_debug.h>

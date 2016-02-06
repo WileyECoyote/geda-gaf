@@ -26,10 +26,9 @@
  * \brief A dialog box for editing Object Attributes.
  */
 
-#include <config.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 
-#include <gschem.h>
-#include <x_dialog.h>
 #include <geda_widgets.h>
 
 #include <gdk/gdkkeysyms.h>

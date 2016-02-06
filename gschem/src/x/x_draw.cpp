@@ -37,7 +37,8 @@
 
 #include <string>
 
-#include <gschem.h>
+#include "../../include/gschem.h"
+
 #include <geda_draw.h>
 #include <geda_debug.h>
 

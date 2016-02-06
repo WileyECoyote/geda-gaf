@@ -31,7 +31,6 @@
  * \brief Module for interfacing with Library initialization routines
  */
 
-#include <config.h>
 #include <gschem.h>
 
 #include <geda_debug.h>

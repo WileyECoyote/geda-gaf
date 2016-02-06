@@ -44,9 +44,7 @@
  * ------------------------------------------------------------------
 */
 
-#include <config.h>
-
-#include <gschem.h>
+#include "../../include/gschem.h"
 
 /*! \brief SCM API Launch default application for a URI.
  * \par Function Description

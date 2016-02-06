@@ -22,9 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
-#include <config.h>
 
-#include <gschem.h>
+#include "../../include/gschem.h"
 
 SCM_SYMBOL (object_state_sym, "object-state");
 

@@ -26,9 +26,7 @@
  * \brief Interface to the "status bar" widget
  */
 
-#include <config.h>
-
-#include <gschem.h>
+#include "../../include/gschem.h"
 
 #include <geda_widgets.h>
 #include <geda_debug.h>

@@ -26,11 +26,9 @@
  * \brief Page Manager Dialog
  */
 
-#include <config.h>
-
-#include <gschem.h>
-#include <i_actions.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/i_actions.h"
+#include "../../include/x_dialog.h"
 
 #include <geda_debug.h>
 

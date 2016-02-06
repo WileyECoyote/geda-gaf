@@ -25,20 +25,10 @@
  *
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <math.h>
-
 #include <gschem.h>
 #include <geda_widgets.h>
+
+#include <math.h>
 
 #if defined(__LP64__) || defined(_LP64)
 # define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))

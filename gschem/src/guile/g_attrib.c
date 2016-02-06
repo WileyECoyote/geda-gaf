@@ -28,9 +28,7 @@
  * gschem-specific ways.
  */
 
-#include <config.h>
-
-#include <gschem.h>
+#include "../../include/gschem.h"
 
 SCM_SYMBOL (name_sym ,  "name");
 SCM_SYMBOL (value_sym , "value");

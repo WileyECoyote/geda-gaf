@@ -31,9 +31,10 @@
  * \brief A dialog box for creating arrays.
  */
 
-#include <gschem.h>
-#include <x_dialog.h>
-#include <x_window.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
+#include "../../include/x_window.h"
+
 #include <geda_widgets.h>
 
 /** \defgroup Array-Dialog Create Array Dialog

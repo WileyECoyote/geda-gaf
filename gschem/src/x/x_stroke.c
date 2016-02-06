@@ -25,9 +25,8 @@
  * \file x_stroke.c
  * \brief Interface Module for Stroke Support
  */
-#include <config.h>
 
-#include <gschem.h>
+#include "../../include/gschem.h"
 
 #ifdef HAVE_LIBSTROKE
 #include <stroke.h>

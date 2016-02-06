@@ -31,8 +31,8 @@
  * \brief A dialog box for viewing and edit component properties.
  */
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 #include <geda_widgets.h>
 
 #define Radio_Responder radio_responder

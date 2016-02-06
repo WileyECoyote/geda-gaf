@@ -46,10 +46,6 @@
  *     |          |  x_console_init_commands.
 */
 
-#include <config.h>
-
-#include <geda/geda_stat.h>
-
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
@@ -57,8 +53,9 @@
 #include <errno.h>
 #include <ctype.h>
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
+#include <geda/geda_stat.h>
 #include <geda_entry.h>
 #include <geda_debug.h>
 

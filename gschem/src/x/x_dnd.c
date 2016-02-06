@@ -56,9 +56,10 @@
  *
  */
 
-#include <gschem.h>
-#include <x_window.h>
-#include <x_dnd.h>
+#include "../../include/gschem.h"
+#include "../../include/x_window.h"
+#include "../../include/x_dnd.h"
+
 #include <geda_debug.h>
 
 /****************************** Drag-N-Drop **********************************/

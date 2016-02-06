@@ -30,9 +30,10 @@
 
 #include <ctype.h>
 
-#include <gschem.h>
-#include <x_dialog.h>
-#include <x_dnd.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
+#include "../../include/x_dnd.h"
+
 #include <geda_widgets.h>
 #include <geda_debug.h>
 

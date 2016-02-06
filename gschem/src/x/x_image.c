@@ -29,8 +29,8 @@
 
 #include <errno.h>
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 
 #include <geda_widgets.h>
 #include <geda_dialogs.h>

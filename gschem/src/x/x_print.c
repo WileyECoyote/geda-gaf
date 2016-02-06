@@ -26,12 +26,10 @@
  * \brief Print Dialog.
  */
 
-#include <config.h>
-
 #include <math.h>
 
-#include <gschem.h>
-#include <x_dialog.h>
+#include "../../include/gschem.h"
+#include "../../include/x_dialog.h"
 
 #include <cairo-pdf.h>
 

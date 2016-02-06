@@ -74,23 +74,20 @@
  * \brief Program configuration settings support module
  */
 
-#include <geda/geda_standard.h>
-#include <geda/geda_stat.h>
-
 #include <gtk/gtk.h>
 
 #include <sys/types.h>
 #include <dirent.h>
 #include <libgen.h>
 
-#include <gschem.h>
-
-#include <gschem_xdefines.h>
-#include <x_menus.h>                    /* MenuToggleItem enumeration */
-#include <x_settings.h>
-
+#include "../../include/gschem.h"
+#include "../../include/gschem_xdefines.h"
+#include "../../include/x_menus.h"          /* MenuToggleItem enumeration */
+#include "../../include/x_settings.h"
 #include "../../include/keywords.h"
 
+#include <geda/geda_standard.h>
+#include <geda/geda_stat.h>
 #include <geda_debug.h>
 
 /** \defgroup Settings-Auxillary-Module Settings Auxiliary Module

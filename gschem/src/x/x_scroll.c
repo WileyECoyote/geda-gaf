@@ -26,10 +26,9 @@
  * \brief Main Window Auxiliary Module for Scrollbars
  */
 
-#include <config.h>
 #include <math.h>
 
-#include <gschem.h>
+#include "../../include/gschem.h"
 #include <geda_debug.h>
 
 /** \defgroup scrollbars-module Scrollbars Module

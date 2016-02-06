@@ -26,8 +26,7 @@
  * \brief File system related dialogs.
  */
 
-#include <config.h>
-#include <gschem.h>
+#include "../../include/gschem.h"
 #include <geda/geda_stat.h>
 #include <geda/geda_gui_funcs.h>
 #include <geda_file_chooser.h>

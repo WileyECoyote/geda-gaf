@@ -143,8 +143,6 @@
  *        modules, see x_settings.c
 */
 
-#include <geda/geda_stat.h>
-
 #include <sys/types.h>
 #include <ctype.h>
 
@@ -155,10 +153,11 @@
 #include "../../include/gschem_xdefines.h" /* Define dialog default internal spacing */
 #include "../../include/gschem_dialog.h"   /* Definition the base Dialog Class */
 
-#include <geda_widgets.h>                  /* Switches use geda_labels */
-
-#include <geda/geda_dialog_controls.h> /* Macros for Dialogs */
+#include "../../../include/geda/geda_stat.h"
+#include "../../../include/geda/geda_dialog_controls.h" /* Macros for Dialogs */
 #include "../../../include/geda_debug.h"
+
+#include <geda_widgets.h>                  /* Switches use geda_labels */
 
 /** \defgroup Preferences-Dialog Preferences Dialog
  *  @{
