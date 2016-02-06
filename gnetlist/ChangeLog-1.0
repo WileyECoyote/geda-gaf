@@ -33,6 +33,12 @@
     * tests/hierarchy2/hierarchy2.geda: Regenerate reference netlist with upper
       case VCC.
 
+    * scheme/gnet-geda.scm: Remove trailing space from "Nets" section of netlist,
+      very annoying.
+
+    * tests/: Regenerate tests because the trailing space was removed from geda
+      netlist.
+
 2016-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Close output port after displaying message when

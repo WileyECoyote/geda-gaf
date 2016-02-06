@@ -153,7 +153,7 @@
    (lambda (nets)
       (begin
          (geda:display-connections nets)
-         (write-char #\space)
+         ;(write-char #\space)
          (newline))))
 
 ;;

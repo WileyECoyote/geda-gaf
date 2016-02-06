@@ -28,12 +28,12 @@ END renamed-nets
 
 START nets
 
-Vdd1 : Rlp 2, M1 4, M1 3, Vdd 1, X1 6 
-GND : Cm 2, Cp 2, Rlm 2, Vdd 2, V1 2, Rb 1, X1 7, X1 2 
-LVH : Rb 2, M1 1, M1 2, X1 3 
-i : V1 1, X1 1 
-p : Cp 1, Rt 1, Rlp 1, X1 5 
-m : Cm 1, Rlm 1, Rt 2, X1 4 
+Vdd1 : Rlp 2, M1 4, M1 3, Vdd 1, X1 6
+GND : Cm 2, Cp 2, Rlm 2, Vdd 2, V1 2, Rb 1, X1 7, X1 2
+LVH : Rb 2, M1 1, M1 2, X1 3
+i : V1 1, X1 1
+p : Cp 1, Rt 1, Rlp 1, X1 5
+m : Cm 1, Rlm 1, Rt 2, X1 4
 
 END nets
 
