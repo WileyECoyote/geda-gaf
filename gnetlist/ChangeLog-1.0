@@ -6,6 +6,8 @@
     * tests/drc2/Makefile.am: Create a local sym directory and copy resistor-
       drc2.sym to the directory for drcs test because slot-not-defined.sch
       does not work with the library symbol resistor-2 which has numslots=0.
+      regenerate several outputs to account for the old pin-out be reversed
+      in the resistor-2.sym symbol, reinstate the drc2 tests.
 
     * tests/drc2/resistor-drc2.sym: Add local symbol for drc2 tests.
 

@@ -28,15 +28,15 @@ EXTRA_DIST = duplicated-refdes.sch duplicated-refdes.drc2 \
 	     slot-not-defined.drc2 \
 	     slot_out_of_range.sch \
 	     slot_out_of_range.drc2 \
-			 connected-noconnects.sch \
-			 connected-noconnects.drc2 \
+	     connected-noconnects.sch \
+	     connected-noconnects.drc2 \
 	     unconnected-pin.sch \
 	     unconnected-pin.drc2 \
 	     unconnected-pin-with-drc-directive.sch \
 	     unconnected-pin-with-drc-directive.drc2 \
 	     unused-slot.sch \
-	     unused-slot.drc2
-
+	     unused-slot.drc2 \
+	     resistor-drc2.sym
 
 # Temporarily disabled make check, since this is interfering with
 # make distcheck
@@ -51,7 +51,7 @@ gnet_builddir=$(top_builddir)/gnetlist
 
 tests:
 
-notests:
+#notests:
 # cleanup
 	rm -f $(BUILDDIR)/new_*
 	rm -f $(BUILDDIR)/failed.log
@@ -74,7 +74,7 @@ notests:
 	                -o $(BUILDDIR)/new_$$file_basename.drc2 \
 	                $$file ); \
           diff $(SRCDIR)/$$file_basename.drc2 \
-                 $(BUILDDIR)/new_$$file_basename.drc2; \
+               $(BUILDDIR)/new_$$file_basename.drc2; \
           if [ $$? -ne 0 ]; then \
 	     echo "# Test in $(SRCDIR)/$$file_basename.sch FAILED!!" | tee -a $(BUILDDIR)/failed.log ; \
 	     echo "diff $(SRCDIR)/$$file_basename.drc2 $(BUILDDIR)/new_$$file_basename.drc2" >> $(BUILDDIR)/failed.log ; \
@@ -90,7 +90,7 @@ notests:
 	fi
 	rm -f $(builddir)/gnetlistrc
 	rm -rf $(builddir)/sym
-	rm -f $(BUILDDIR)/gnetlistrc
+	rm -rf $(builddir)/logs
 
 MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
 CLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
