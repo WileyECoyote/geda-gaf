@@ -1,27 +1,31 @@
-v 20061020 1
+v 20151230 2
 C 40000 40000 0 0 0 title-B.sym
-C 47400 46000 1 90 0 resistor-2.sym
+C 47400 46000 1 90 0 resistor-drc2.sym
 {
-T 47050 46400 5 10 0 0 90 0 1
+T 47500 46500 5 10 0 1 0 0 1
 device=RESISTOR
-T 47100 46200 5 10 1 1 90 0 1
+T 47500 46300 5 10 1 1 0 0 1
 refdes=R2
 }
-C 47600 46900 1 0 0 resistor-2.sym
+C 47600 46900 1 0 0 resistor-drc2.sym
 {
-T 48000 47250 5 10 0 0 0 0 1
+T 47800 47400 5 10 0 1 0 0 1
 device=RESISTOR
 T 47800 47200 5 10 1 1 0 0 1
 refdes=R1
 }
 N 48500 47000 50100 47000 4
 {
-T 48600 47000 5 10 1 1 0 0 1
+T 48600 47100 5 10 1 1 0 1 1
 netname=unconnected-net
 }
 C 47200 45700 1 0 0 gnd-1.sym
 C 49900 47100 1 0 0 nc-top-1.sym
 {
+T 50300 47450 5 10 0 1 0 0 1
+footprint=none
+T 50300 47300 5 10 0 0 0 0 1
+symversion=0.2
 T 50300 47600 5 10 0 0 0 0 1
 value=NoConnection
 T 50300 47800 5 10 0 0 0 0 1

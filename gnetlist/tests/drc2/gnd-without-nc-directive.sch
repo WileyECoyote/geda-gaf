@@ -1,13 +1,13 @@
 v 20061020 1
 C 40000 40000 0 0 0 title-B.sym
-C 47400 46000 1 90 0 resistor-2.sym
+C 47400 46000 1 90 0 resistor-drc2.sym
 {
 T 47050 46400 5 10 0 0 90 0 1
 device=RESISTOR
 T 47100 46200 5 10 1 1 90 0 1
 refdes=R2
 }
-C 47600 46900 1 0 0 resistor-2.sym
+C 47600 46900 1 0 0 resistor-drc2.sym
 {
 T 48000 47250 5 10 0 0 0 0 1
 device=RESISTOR

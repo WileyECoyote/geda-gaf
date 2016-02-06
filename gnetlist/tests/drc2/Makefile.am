@@ -57,6 +57,8 @@ notests:
 	rm -f $(BUILDDIR)/failed.log
 
 # make the tests
+	$(MKDIR_P) $(builddir)/sym || exit $$?;
+	cp $(srcdir)/resistor-drc2.sym $(builddir)/sym/resistor-drc2.sym
 	cp $(srcdir)/gnetlistrc.drc2 $(builddir)/gnetlistrc
 	failed=0; \
 	for file in $(SRCDIR)/*.sch; do \
@@ -86,6 +88,8 @@ notests:
 		cat $(BUILDDIR)/failed.log ; \
 		exit 1 ; \
 	fi
+	rm -f $(builddir)/gnetlistrc
+	rm -rf $(builddir)/sym
 	rm -f $(BUILDDIR)/gnetlistrc
 
 MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc

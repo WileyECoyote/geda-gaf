@@ -1,6 +1,6 @@
 v 20061020 1
 C 40000 40000 0 0 0 title-B.sym
-C 47300 46800 1 90 0 resistor-2.sym
+C 47300 46800 1 90 0 resistor-drc2.sym
 {
 T 47000 47000 5 10 1 1 90 0 1
 refdes=R1
@@ -11,7 +11,7 @@ slot=fa
 T 47400 47100 5 10 1 0 0 0 1
 numslots=1
 }
-C 47300 45700 1 90 0 resistor-2.sym
+C 47300 45700 1 90 0 resistor-drc2.sym
 {
 T 46950 46100 5 10 0 0 90 0 1
 device=RESISTOR
@@ -25,14 +25,14 @@ numslots=1
 C 47100 45400 1 0 0 gnd-1.sym
 C 47000 47700 1 0 0 vcc-1.sym
 N 47200 46600 47200 46800 4
-C 49100 46800 1 90 0 resistor-2.sym
+C 49100 46800 1 90 0 resistor-drc2.sym
 {
 T 48800 47000 5 10 1 1 90 0 1
 refdes=R2
 T 48750 47200 5 10 0 0 90 0 1
 device=RESISTOR
 }
-C 49100 45700 1 90 0 resistor-2.sym
+C 49100 45700 1 90 0 resistor-drc2.sym
 {
 T 48750 46100 5 10 0 0 90 0 1
 device=RESISTOR

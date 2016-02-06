@@ -3,6 +3,38 @@
     * scheme/gnet-drc.scm: Close output port after displaying message when
       attrib file is not found (even though guile will close the port).
 
+    * tests/drc2/Makefile.am: Create a local sym directory and copy resistor-
+      drc2.sym to the directory for drcs test because slot-not-defined.sch
+      does not work with the library symbol resistor-2 which has numslots=0.
+
+    * tests/drc2/resistor-drc2.sym: Add local symbol for drc2 tests.
+
+    * tests/drc2/net-not-driven.drc2: Revised to include local sym directory.
+
+    * tests/drc2/: Replace resistor-2.sym with resistor-drc2.sym, rotating
+      where required in files:
+
+          * tests/drc2/connected-noconnects.sch
+          * tests/drc2/duplicated-refdes.sch
+          * tests/drc2/duplicated_slot.sch
+          * tests/drc2/gnd-with-nc-directive.sch
+          * tests/drc2/gnd-without-nc-directive.sch
+          * tests/drc2/gnetlistrc.drc2
+          * tests/drc2/net-not-driven.sch
+          * tests/drc2/net-not-driven-with-dont-check-if-driven-directive.sch
+          * tests/drc2/net-not-driven-with-nc-directive.sch
+          * tests/drc2/net-with-only-one-connection.sch
+          * tests/drc2/numslots-is-not-an-integer.sch
+          * tests/drc2/numslots-not-defined.sch
+          * tests/drc2/output-connected-to-output.sch
+          * tests/drc2/pin-without-pintype-attrib.sch
+          * tests/drc2/refdes-not-numbered.sch
+          * tests/drc2/slot-is-not-an-integer.sch
+          * tests/drc2/slot-not-defined.sch
+          * tests/drc2/unconnected-pin.sch
+          * tests/drc2/unconnected-pin-with-drc-directive.sch
+          * tests/drc2/unused-slot.sch
+
 2016-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * BUGS: Updated bugs, memory leak issues were resolved as of 2015-11-14,
