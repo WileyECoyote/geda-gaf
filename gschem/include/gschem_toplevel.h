@@ -176,7 +176,7 @@ struct _GschemToplevel {
                                            Its range of values depends on the
                                            type of object being manipulated. */
   GedaObject *which_object;             /* Object being manipulated */
-  Path       *temp_path;                /* Path being created */
+  GedaPath   *temp_path;                /* Path being created */
 
   int override_color;
   int override_net_color;

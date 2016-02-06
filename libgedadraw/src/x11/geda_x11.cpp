@@ -1216,8 +1216,8 @@ geda_x11_draw_picture (int x, int y, int width, int height)
 
   if (GEDA_IS_PICTURE(object)) {
 
-    GdkPixbuf *pixbuf;
-    Picture   *o_pic;
+    GdkPixbuf   *pixbuf;
+    GedaPicture *o_pic;
 
     bool  mirror;
     int   angle;

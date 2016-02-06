@@ -67,7 +67,7 @@ o_picture_new (const char *file_content, unsigned int file_length,
                int angle, int mirrored, int embedded)
 {
   GedaObject  *new_obj;
-  Picture *picture;
+  GedaPicture *picture;
 
   /* create the object */
   new_obj = geda_picture_new();
@@ -156,8 +156,8 @@ o_picture_copy(GedaObject *o_current)
   if (GEDA_IS_PICTURE(o_current)) {
 
     GedaObject  *new_obj;
-    Picture     *new_picture;
-    Picture     *old_picture;
+    GedaPicture *new_picture;
+    GedaPicture *old_picture;
 
     old_picture = GEDA_PICTURE(o_current);
     new_obj     = geda_picture_new();      /* create new picture object */
@@ -172,7 +172,8 @@ o_picture_copy(GedaObject *o_current)
     if (old_picture->file_content != NULL) {
       new_picture->file_content = g_memdup (old_picture->file_content,
                                             old_picture->file_length);
-    } else {
+    }
+    else {
       new_picture->file_content = NULL;
     }
 
@@ -1442,7 +1443,7 @@ o_picture_get_effective_ratio (GedaObject *object)
  */
 bool o_picture_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  Picture *picture;
+  GedaPicture *picture;
   bool result;
 
   if (GEDA_IS_PICTURE(object)) {
@@ -1824,8 +1825,8 @@ o_picture_get_pixbuf_fit (GedaObject *object, int interp)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
-  Page    *page  = geda_object_get_page (object);
-  Picture *o_pic = object->picture;
+  Page        *page  = geda_object_get_page (object);
+  GedaPicture *o_pic = object->picture;
 
   GdkPixbuf *pixbuf1;
   GdkPixbuf *pixbuf2;

@@ -253,7 +253,7 @@ x_draw_picture (GschemToplevel *w_current)
 
   if (GEDA_IS_PICTURE(o_current)) {
 
-    Picture *o_pic;
+    GedaPicture *o_pic;
     int sx1, sy1, sx2, sy2;
     int width, height;
 

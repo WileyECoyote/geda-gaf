@@ -77,8 +77,8 @@ geda_picture_bounds(GedaObject *object)
  */
 static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Picture    *picture   = (Picture*)instance;
-  GedaObject *object    = &picture->parent_instance;
+  GedaPicture *picture  = (GedaPicture*)instance;
+  GedaObject  *object   = &picture->parent_instance;
 
   picture->pixbuf       = NULL;
   picture->file_content = NULL;
@@ -102,7 +102,7 @@ static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
 static void
 geda_picture_dispose(GObject *object)
 {
-  Picture *pic = GEDA_PICTURE(object);
+  GedaPicture *pic = GEDA_PICTURE(object);
 
   if (pic->filename) {
     GEDA_FREE(pic->filename);
@@ -121,8 +121,8 @@ geda_picture_dispose(GObject *object)
  */
 static void geda_picture_finalize(GObject *object)
 {
-  Picture    *pic = GEDA_PICTURE(object);
-  GedaObject *obj = GEDA_OBJECT(object);
+  GedaPicture *pic = GEDA_PICTURE(object);
+  GedaObject  *obj = GEDA_OBJECT(object);
 
   if (pic->file_content) {
     GEDA_FREE(pic->file_content);
@@ -136,27 +136,27 @@ static void geda_picture_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_picture_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for Picture
+/*! \brief GedaType class initializer for GedaPicture
  *
  *  \par Function Description
- *  GedaType class initializer for Picture. We override our parents
+ *  GedaType class initializer for GedaPicture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Picture class we are initialising
+ *  \param [in]  g_class      The GedaPicture class we are initialising
  *  \param [in]  class_data   The Picture structure associated with the class
  */
 static void geda_picture_class_init(void *g_class, void *class_data)
 {
-  PictureClass    *class         = (PictureClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
+  GedaPictureClass *class         = (GedaPictureClass*)g_class;
+  GObjectClass     *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass  *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_picture_parent_class      = g_type_class_peek_parent( class );
+  geda_picture_parent_class       = g_type_class_peek_parent(class);
 
-  gobject_class->dispose         = geda_picture_dispose;
-  gobject_class->finalize        = geda_picture_finalize;
+  gobject_class->dispose          = geda_picture_dispose;
+  gobject_class->finalize         = geda_picture_finalize;
 
-  geda_class->bounds             = geda_picture_bounds;
+  geda_class->bounds              = geda_picture_bounds;
 }
 
 /*! \brief Function to retrieve Picture Type identifier.
@@ -177,13 +177,13 @@ GedaObjectType geda_picture_get_type (void)
   if (g_once_init_enter (&geda_picture_type)) {
 
     static const GTypeInfo info = {
-      sizeof(PictureClass),
+      sizeof(GedaPictureClass),
       NULL,                   /* base_init           */
       NULL,                   /* base_finalize       */
       geda_picture_class_init,   /* (GClassInitFunc)    */
       NULL,                   /* class_finalize      */
       NULL,                   /* class_data          */
-      sizeof(Picture),
+      sizeof(GedaPicture),
       0,                      /* n_preallocs         */
       geda_picture_instance_init /* (GInstanceInitFunc) */
     };
@@ -191,7 +191,7 @@ GedaObjectType geda_picture_get_type (void)
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Picture");
+    string = g_intern_static_string ("GedaPicture");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
 
     g_once_init_leave (&geda_picture_type, type);
@@ -223,7 +223,7 @@ GedaObject *geda_picture_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_picture_object (Picture *pic)
+bool is_a_geda_picture_object (GedaPicture *pic)
 {
   return GEDA_IS_OBJECT(pic) && (((GedaObject*)pic)->type == OBJ_PICTURE);
 }
