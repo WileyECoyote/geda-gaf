@@ -2,6 +2,8 @@
 
     * Rename Picture to GedaPicture.
 
+    * tests/test_picture.c: Add tests for testing geda_picture module.
+
 2016-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Path to GedaPath.
