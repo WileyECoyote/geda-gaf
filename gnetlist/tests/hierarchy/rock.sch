@@ -1,5 +1,5 @@
 v 20130414 2
-C 19800 37700 1 0 0 pnp-3.sym
+C 19800 37700 1 0 0 pnp-hierarchy.sym
 {
 T 20700 38200 5 10 1 1 0 0 1
 refdes=Qrock

@@ -1,5 +1,8 @@
-(source-library ".")
-;;(component-library ".")
-(component-library "." "Local/Hierarchy Test")
-;;(undo-type "memory")
+(define cwd (getcwd))
+
+(component-library cwd)
+
+(source-library cwd)
+
+;(undo-type "memory")
 

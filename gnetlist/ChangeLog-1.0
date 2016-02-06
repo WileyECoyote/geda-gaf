@@ -1,7 +1,28 @@
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/drc2/Makefile.am: Use resistor-drc2.sym in the source directory,
-      passed in the environment with TESTDIR.
+      passed in the environment with TESTDIR, suprress code for conditional
+      to console.
+
+    * tests/hierarchy/pnp-hierarchy.sym: Add local symbol for test.
+
+    * tests/hierarchy/Makefile.am: include pnp-hierarchy.sym, delete log sub
+      directory, reinstate the drc2 tests, add conditional to output a status
+      PASS/FAIL result message.
+
+    * tests/hierarchy/gnetlistrc.hierarchy: Update symbol subdirectories,
+      remove extra trailing spaces.
+
+    * tests/hierarchy/gschemrc: Update with cwd.
+
+    * tests/hierarchy/bottom.sym: Update input and output symbol versions.
+
+    * tests/hierarchy/middle.sch: Update input and output symbol versions.
+
+    * tests/hierarchy/rock.sym: replace pnp-3.sym with pnp-hierarchy.sym.
+
+    * tests/hierarchy/hierarchy.geda: Regenerate reference netlist with upper
+      case VCC.
 
 2016-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
