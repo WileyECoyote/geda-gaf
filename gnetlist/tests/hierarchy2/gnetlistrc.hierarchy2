@@ -1,17 +1,17 @@
-;; We want to point at the scheme code that hasn't been installed yet so that
-;; 'make check' during development can work correctly.
+;; We want to point at the scheme code that has not been installed yet so
+;; that 'make check' during development can work correctly.
 (scheme-directory "${SCMDIR}")
 
 ;; We want to use the symbols that haven't been installed yet
 (map (lambda (x) (component-library (string-join (list "${SYMDIR}/" x) "")))
-     '("io" "74" "titleblock"))
+     '("io" "logic/74" "titleblock"))
 
 (source-library "${TESTDIR}")
 (component-library "${TESTDIR}")
 ;(net-naming-priority "label")
 
 ;(hierarchy-traversal "disabled")
-;(hierarchy-uref-mangle "disabled") 
+;(hierarchy-uref-mangle "disabled")
 ;(hierarchy-netname-mangle "disabled")
 ;(hierarchy-netattrib-mangle "disabled")
 

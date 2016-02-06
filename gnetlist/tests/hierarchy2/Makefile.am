@@ -12,9 +12,11 @@ GNETLIST=$(top_builddir)/gnetlist/src/gnetlist
 
 tests:
 
-notests:
-	rm -f $(BUILDDIR)/new_*
-	cp -f $(SRCDIR)/gnetlistrc.hierarchy2 $(BUILDDIR)/gnetlistrc
+# pre-clean
+	@rm -f $(BUILDDIR)/new_*
+
+# make the tests
+	@cp -f $(SRCDIR)/gnetlistrc.hierarchy2 $(BUILDDIR)/gnetlistrc
 	( TESTDIR=$(SRCDIR) \
 	  GEDADATARC=$(top_builddir)/gnetlist/lib \
 	  SCMDIR=${top_builddir}/gnetlist/scheme \
@@ -25,9 +27,13 @@ notests:
 	     -o $(BUILDDIR)/new_hierarchy2.geda -g geda \
 	     $(SRCDIR)/top.sch )
 	diff $(SRCDIR)/hierarchy2.geda $(BUILDDIR)/new_hierarchy2.geda;
-	rm -f $(BUILDDIR)/gnetlistrc
+	@if test $$? -eq 0 ; then \
+		echo "PASSED: gnetlist/tests/hierarchy2" ; \
+	fi
+	@rm -f $(BUILDDIR)/gnetlistrc
+	@rm -rf $(BUILDDIR)/logs
 
-MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
-CLEANFILES = new_* core *.log FILE *.ps *~ gnetlistrc
-DISTCLEANFILES = *.log core FILE *~ gnetlistrc
-MAINTAINERCLEANFILES = new_* core *.log FILE *.ps *~ Makefile.in gnetlistrc
+MOSTLYCLEANFILES     = new_* *.log *~ gnetlistrc
+CLEANFILES           = new_* *.log *~ gnetlistrc
+DISTCLEANFILES       = new_* *.log *~ gnetlistrc
+MAINTAINERCLEANFILES = new_* *.log *~ gnetlistrc Makefile.in

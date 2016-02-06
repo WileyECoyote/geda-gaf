@@ -7,8 +7,8 @@
     * tests/hierarchy/pnp-hierarchy.sym: Add local symbol for test.
 
     * tests/hierarchy/Makefile.am: include pnp-hierarchy.sym, delete log sub
-      directory, reinstate the drc2 tests, add conditional to output a status
-      PASS/FAIL result message.
+      directory, add conditional to output a PASSING status result message,
+      reinstate the hierarchy tests.
 
     * tests/hierarchy/gnetlistrc.hierarchy: Update symbol subdirectories,
       remove extra trailing spaces.
@@ -22,6 +22,15 @@
     * tests/hierarchy/rock.sym: replace pnp-3.sym with pnp-hierarchy.sym.
 
     * tests/hierarchy/hierarchy.geda: Regenerate reference netlist with upper
+      case VCC.
+
+    * tests/hierarchy2/Makefile.am: Delete log sub directory, add conditional
+      to output a PASSING status result message, reinstate the hierarchy2
+      tests.
+
+    * tests/hierarchy2/gnetlistrc.hierarchy: Update logic/74 symbol directory.
+
+    * tests/hierarchy2/hierarchy2.geda: Regenerate reference netlist with upper
       case VCC.
 
 2016-02-05 Wiley E. Hill <wileyhill@gmail.com>

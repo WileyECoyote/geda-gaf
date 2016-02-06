@@ -26,12 +26,8 @@ tests:
 	      -o $(BUILDDIR)/new_hierarchy.geda \
 	      -g geda $(SRCDIR)/top.sch )
 	diff $(SRCDIR)/hierarchy.geda $(BUILDDIR)/new_hierarchy.geda;
-	@if test $$? -ne 0 ; then \
-		echo "FAILED: gnetlist/tests/hierarchy" ; \
-		cat $(BUILDDIR)/failed.log ; \
-		exit 1 ; \
-	else \
-		echo "PASSED: gnetlist/tests/hierarchy" ; \
+	@if test $$? -eq 0 ; then \
+	  echo "PASSED: gnetlist/tests/hierarchy" ; \
 	fi
 	@rm -f $(BUILDDIR)/gnetlistrc
 	@rm -rf $(BUILDDIR)/logs
