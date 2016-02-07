@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaBox"
 
-/*! \file tests_box.c
+/*! \file test_box.c
  *  \brief Tests for geda_box.c module
  */
 

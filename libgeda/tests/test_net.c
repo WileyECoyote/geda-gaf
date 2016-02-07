@@ -3,11 +3,11 @@
 
 #define TOBJECT "GedaNet"
 
-/*! \file tests_net.c
+/*! \file test_net.c
  *  \brief Tests for geda_net.c module
  */
 
-int tests_net (void)
+int test_net (void)
 {
   int result = 0;
 
@@ -46,7 +46,7 @@ int tests_net (void)
     result++;
   }
 
-  /* GedaBus objects are derived from GedaLine object class */
+  /* GedaNet objects are derived from GedaLine object class */
   if (!GEDA_IS_LINE(object)) {
     fprintf(stderr, "%s is a GedaLine Failed\n", TOBJECT);
     result++;
@@ -123,7 +123,7 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = tests_net();
+  result = test_net();
 
   return result;
 }

@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaComplex"
 
-/*! \file tests_complex.c
+/*! \file test_complex.c
  *  \brief Tests for geda_complex.c module
  */
 

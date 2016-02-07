@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaPath"
 
-/*! \file tests_path.c
+/*! \file test_path.c
  *  \brief Tests for geda_path.c module
  */
 

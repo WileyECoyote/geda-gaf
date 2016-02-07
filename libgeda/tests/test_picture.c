@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaPicture"
 
-/*! \file tests_picture.c
+/*! \file test_picture.c
  *  \brief Tests for geda_picture.c module
  */
 

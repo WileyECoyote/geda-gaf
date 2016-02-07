@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaArc"
 
-/*! \file tests_arc.c
+/*! \file test_arc.c
  *  \brief Tests for geda_arc.c module
  */
 

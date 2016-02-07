@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaBus"
 
-/*! \file tests_bus.c
+/*! \file test_bus.c
  *  \brief Tests for geda_bus.c module
  */
 

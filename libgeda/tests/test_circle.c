@@ -3,7 +3,7 @@
 
 #define TOBJECT "GedaCircle"
 
-/*! \file tests_circle.c
+/*! \file test_circle.c
  *  \brief Tests for geda_circle.c module
  */
 

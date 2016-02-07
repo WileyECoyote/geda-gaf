@@ -8,6 +8,8 @@
     * src/struct/s_color.c: config. so that errno.h will be included when
       libgeda_priv.h includes geda_standard.h.
 
+    * tests/test_pin.c: Add tests for testing geda_pin module.
+
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Picture to GedaPicture.
