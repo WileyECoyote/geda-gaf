@@ -1,3 +1,11 @@
+2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/libgeda.h: Include missing.h, included by geda.h, after
+      libguile.h. or all hell breaks loose.
+
+    * src/struct/s_color.c: config. so that errno.h will be included when
+      libgeda_priv.h includes geda_standard.h.
+
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Picture to GedaPicture.

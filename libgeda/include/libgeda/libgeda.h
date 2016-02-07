@@ -27,8 +27,6 @@
 #ifndef LIBGEDA_H
 #define LIBGEDA_H
 
-#include <geda/geda.h>
-
 #include <glib.h>
 #include <glib-object.h>
 
@@ -41,6 +39,8 @@
 #ifndef WITHOUT_GDK_PIX_BUFFER
 # include <gdk-pixbuf/gdk-pixbuf.h>
 #endif
+
+#include <geda/geda.h>
 
 #include "defines.h"
 #include "g_types.h"
