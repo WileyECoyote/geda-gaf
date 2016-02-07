@@ -2,14 +2,14 @@
 #
 # gEDA - GPL Electronic Design Automation
 #
-# Copyright (C) 2015 Wiley Edward Hill <wileyhill@gmail.com>
-# Copyright (C) 2015 gEDA Contributors (see ChangeLog for details)
+# Copyright (C) 2015-2016 Wiley Edward Hill <wileyhill@gmail.com>
+# Copyright (C) 2015-2016 gEDA Contributors (see ChangeLog for details)
 #
 #-------------------------------------------------------------------
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
+# the Free Software Foundation; either version 3 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -42,7 +42,7 @@
 #           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.1.0
+VER=0.1.1
 
 REGENERATE=false
 DISTVBUILD=false
@@ -78,15 +78,15 @@ SRCDIR=$PWD
 BOMBACKEND="partslist1"
 TMPGEDADIR="gEDA"
 
-RPATH2LIBGEDA=$BUILDDIR/../../libgeda/src/.libs
-RPATH2LIBCAIRO=$BUILDDIR/../../libgedacairo/src/.libs
+RPATH2LIBGEDA=${BUILDDIR}/../../libgeda/src/.libs
+RPATH2LIBCAIRO=${BUILDDIR}/../../libgedacairo/src/.libs
 
 CHECKSYM=gsymcheck
-PATH2CHECKSYM=../../gsymcheck/src
+PATH2CHECKSYM=${BUILDDIR}/../../gsymcheck/src
 SYMCHECKER=
 
 CHECKNET=gnetlist
-PATH2CHECKNET=../../gnetlist/src
+PATH2CHECKNET=${BUILDDIR}/../../gnetlist/src
 NETLISTER=
 
 # ----------------------- Functions constants ----------------------

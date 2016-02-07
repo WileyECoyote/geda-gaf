@@ -1,7 +1,9 @@
 2016-02-07  Wiley E. Hill <wileyhill@gmail.com>
 
-    * Revise test scripts, add symbol check line that disappeared, add QV option when not
-      regenerating as gnetlist flag, maybe too much verbosity, bump version=0.1.0.
+    * Revise test scripts, add symbol check line that disappeared, add as
+      gnetlist flagQV option when not regenerating, maybe too much verbosity,
+      reference gsymcheck and gnetlist relative to the build direectory, bump
+      version=0.1.1.
 
         * gTAG/tests/runtest.sh
         * lightning_detector/tests/runtest.sh
