@@ -39,19 +39,19 @@ END renamed-nets
 
 START nets
 
-unnamed_net9 : Cpara1 2, L1 1, Cin 2 
-unnamed_net8 : Cpara2 2, L7 2, Cout 1, Lc 2 
-unnamed_net7 : Rc 2, Lc 1 
-Vout : Cout 2, RL 2 
-Vin : Cin 1, Rth_in 2 
-Vsource : Rth_in 1, Vin 1 
-GND : Cpara2 1, L6 2, Cpara1 1, L4 1, RL 1, Vin 2, Vpwr 2 
-unnamed_net6 : Rc 1, Vpwr 1 
-unnamed_net5 : C1 2, X2 1, R4 2 
-unnamed_net4 : X2 2, X1 1, R3 2 
-unnamed_net3 : L6 1, C1 1, R4 1, L4 2, R3 1, R2 1 
-unnamed_net2 : L7 1, X2 3, X1 3, R1 2 
-unnamed_net1 : L1 2, X1 2, R2 2, R1 1 
+unnamed_net9 : Cpara1 2, L1 1, Cin 2
+unnamed_net8 : Cpara2 2, L7 2, Cout 1, Lc 2
+unnamed_net7 : Rc 2, Lc 1
+Vout : Cout 2, RL 2
+Vin : Cin 1, Rth_in 2
+Vsource : Rth_in 1, Vin 1
+GND : Cpara2 1, L6 2, Cpara1 1, L4 1, RL 1, Vin 2, Vpwr 2
+unnamed_net6 : Rc 1, Vpwr 1
+unnamed_net5 : C1 2, X2 1, R4 2
+unnamed_net4 : X2 2, X1 1, R3 2
+unnamed_net3 : L6 1, C1 1, R4 1, L4 2, R3 1, R2 1
+unnamed_net2 : L7 1, X2 3, X1 3, R1 2
+unnamed_net1 : L1 2, X1 2, R2 2, R1 1
 
 END nets
 

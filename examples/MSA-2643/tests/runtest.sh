@@ -42,7 +42,7 @@
 #           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.0.9
+VER=0.1.0
 
 REGENERATE=false
 DISTVBUILD=false
@@ -279,7 +279,8 @@ do_check_symbols ()
   find . -type f -iname '*.sym' -printf '%p\n' | xargs -0 | while IFS=' ' read sym;
   do
     test -z "$sym" && continue;
-    test $VERBOSE && echo -n "Checking ${sym} ..."
+    test $VERBOSE && echo -n "Checking symbol: $(basename ${sym}) ..."
+    $SYMCHECKER -q ${sym}
     if [ $? -ne 0 ] ; then
       echo "Failed ${sym}, see gsymcheck -v ${sym}"
       exit 1;
@@ -324,12 +325,14 @@ if ! $REGENERATE ; then
     echo "Reference is missing: tests/${schematic}-bom.csv"
     exit 1;
   fi
-fi
-
-if $REGENERATE ; then
-   test $VERBOSE && echo "Regenerating outpout for example ${schematic}"
+  if test $VERBOSE ; then
+    echo "Checking example ${schematic}"
+    QV=v
+  else
+    QV=q
+  fi
 else
-   test $VERBOSE && echo "Checking example ${schematic}"
+   test $VERBOSE && echo "Regenerating test results for example ${schematic}"
 fi
 
 test -z $DEBUG || set -x
@@ -351,14 +354,14 @@ echo "Checking ${schematic}.sch"
 
 do_check_symbols
 
-${NETLISTER} -q -g drc2 -o "${BUILDDIR}/${schematic}-drc2.txt" "${schematic}.sch"
+${NETLISTER} -${QV} -g drc2 -o "${BUILDDIR}/${schematic}-drc2.txt" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
 # Note the next line exploits gnetlist ability to implicitly mkdir bom
-${NETLISTER} -q -g ${BOMBACKEND} -o "${BUILDDIR}/bom/${schematic}-bom.csv" "${schematic}.sch"
+${NETLISTER} -${QV} -g ${BOMBACKEND} -o "${BUILDDIR}/bom/${schematic}-bom.csv" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
-${NETLISTER} -q -g geda -o "${BUILDDIR}/${schematic}-geda.net" "${schematic}.sch"
+${NETLISTER} -${QV} -g geda -o "${BUILDDIR}/${schematic}-geda.net" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
 test -f "${BUILDDIR}/bom/${schematic}-bom.csv" || exit 1;

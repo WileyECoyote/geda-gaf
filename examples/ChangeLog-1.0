@@ -1,3 +1,20 @@
+2016-02-07  Wiley E. Hill <wileyhill@gmail.com>
+
+    * Revise test scripts, add symbol check line that disappeared, add QV option when not
+      regenerating as gnetlist flag, maybe too much verbosity, bump version=0.1.0.
+
+        * gTAG/tests/runtest.sh
+        * lightning_detector/tests/runtest.sh
+        * MSA-2643/tests/runtest.sh
+        * TwoStageAmp/tests/runtest.sh
+
+    * Regenerate geda netlist, see gnetlist ChangeLog-1.0 2016-02-06:
+
+        * gTAG/tests/gTAG-geda.net
+        * lightning_detector/tests/lightning_detector-geda.net
+        * MSA-2643/tests/MSA-2643-geda.net
+        * TwoStageAmp/tests/TwoStageAmp-geda.net
+
 2016-01-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/MSA-2643: Rename example directory: RF_Amp->MSA-2643
