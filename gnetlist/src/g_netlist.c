@@ -192,8 +192,6 @@ SCM g_get_all_nets(SCM scm_level)
         /* filter off unconnected pins */
         if (strncmp(net_name, "unconnected_pin", 15) != 0) {
 
-          /*printf("Got net: `%s'\n",net_name); */
-
 #if DEBUG
           printf("Got net: `%s'\n", net_name);
           printf("pin %s\n", pl_current->pin_number);
@@ -392,7 +390,6 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 {
   SCM outerlist        = SCM_EOL;
   SCM pinslist         = SCM_EOL;
-  SCM pairlist         = SCM_EOL;
 
   NETLIST  *nl_current = NULL;
 
@@ -437,13 +434,11 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
         for (n_current = pl_current->nets; n_current != NULL; n_current = n_current->next)
         {
-
+          SCM   pairlist;
           char *pin;
           char *uref;
 
           if (!n_current->connected_to) continue;
-
-          pairlist = SCM_EOL;
 
           pin = (char*) GEDA_MEM_ALLOC(sizeof(char) * strlen(n_current->connected_to));
           uref = (char*) GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
@@ -840,7 +835,6 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 {
   const GList *p_iter;
-  Page *p_current;
   char *wanted_attrib;
   char *attrib_value = NULL;
   SCM scm_return_value;
@@ -856,7 +850,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 
   for (p_iter = geda_list_get_glist (toplevel->pages); p_iter != NULL; NEXT(p_iter))
   {
-    p_current = p_iter->data;
+    Page *p_current = p_iter->data;
 
     /* only look for first occurrance of the attribute on each page */
     attrib_value =
@@ -948,9 +942,9 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
   SCM list = SCM_EOL;
   NETLIST  *nl_current;
 
-  char *wanted_attrib;
-  char *has_attrib;
   char *net_name;
+  char *has_attrib;
+  char *wanted_attrib;
 
   scm_dynwind_begin (0);
 
@@ -1002,13 +996,14 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
 
             if (((has_attrib_value == NULL) && (attrib_value == NULL)) ||
                 ((has_attrib_value != NULL) && (attrib_value != NULL) &&
-                 (strcmp(attrib_value, has_attrib_value) == 0)) )
+                 (strcmp(attrib_value, has_attrib_value) == 0)))
             {
               GEDA_FREE (attrib_value);
               attrib_value =
               o_attrib_search_object_attribs_by_name (nl_current->object_ptr,
                                                       wanted_attrib, 0);
               if (attrib_value) {
+
                 list = scm_cons (scm_from_utf8_string (attrib_value), list);
               }
               GEDA_FREE (attrib_value);

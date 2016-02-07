@@ -183,15 +183,14 @@ void s_traverse_process(GedaToplevel *pr_current)
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 {
-  NETLIST *netlist;
-  char    *net_name;
-  char    *value;
-  char    *temp_uref;
-  bool     is_graphical;
-  bool     is_hierarchy;
-  const GList *iter;
-  GError      *err;
   EdaConfig   *cfg;
+  GError      *err;
+  const GList *iter;
+  char        *net_name;
+  char        *value;
+  char        *temp_uref;
+  bool         is_graphical;
+  bool         is_hierarchy;
 
 #if PERFORMANCE
   printf("%s processing <%s>\n",__func__, pr_current->page_current->filename);
@@ -200,7 +199,6 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
   err          = NULL;
   is_graphical = FALSE;
-  is_hierarchy = TRUE;
 
   cfg          = eda_config_get_context_for_file (NULL);
   is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
@@ -216,9 +214,11 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
 
-    GedaObject *o_current = iter->data;
+    GedaObject *o_current;
+    NETLIST    *netlist;
 
-    netlist = s_netlist_return_tail (netlist_head);
+    o_current = iter->data;
+    netlist   = s_netlist_return_tail (netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
       printf(_("WARNING: Found a placeholder/missing component, is symbol file missing? [%s]\n"),
@@ -283,10 +283,10 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
           net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
 
           fprintf(stderr,
-         _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
-            o_current->complex->filename, net_name);
+                  _("Did not find refdes or any special attributes on component!<%s>, <%s>\n"),
+                  o_current->complex->filename, net_name);
 
-          netlist->component_uref = u_string_strdup("U?");
+                  netlist->component_uref = u_string_strdup("U?");
         }
         else {
 
@@ -326,18 +326,17 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 void
 s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 {
-  char    *net_name;
-  char    *value;
-  char    *temp_uref;
-  bool     is_graphical;
-  bool     is_hierarchy;
-  const GList *iter;
   GError      *err;
   EdaConfig   *cfg;
+  const GList *iter;
+  char        *net_name;
+  char        *value;
+  char        *temp_uref;
+  bool         is_graphical;
+  bool         is_hierarchy;
 
   err          = NULL;
   is_graphical = FALSE;
-  is_hierarchy = TRUE;
 
   cfg          = eda_config_get_context_for_file (NULL);
   is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
@@ -556,8 +555,6 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
   CONN  *c_current;
   GList *cl_current;
 
-  const  char *netattrib_pinnum = NULL;
-
   visit (object);
 
   if (connection_type (object) != type)
@@ -605,7 +602,8 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
   }
   else { /* Is a Pin object */
 
-    char *temp;
+    const char *netattrib_pinnum;
+          char *temp;
 
     verbose_print (starting ? "p" : "P");
 
@@ -661,7 +659,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
    GedaObject *next_object;
 
-    c_current = (CONN *) cl_current->data;
+    c_current = (CONN*) cl_current->data;
 
     next_object = c_current->other_object;
 

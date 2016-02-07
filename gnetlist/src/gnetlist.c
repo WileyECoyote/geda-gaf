@@ -97,7 +97,6 @@ gnetlist_backends (GedaToplevel *pr_current)
     SCM    s_dir_name = scm_car (s_load_path);
     char  *dir_name;
     DIR   *dptr;
-    struct dirent *dentry;
 
     /* Get directory name from Scheme */
     g_assert (scm_is_true (scm_list_p (s_load_path))); /* Sanity check */
@@ -116,15 +115,17 @@ gnetlist_backends (GedaToplevel *pr_current)
 
     while (1) {
 
-      char *name;
+      struct dirent *dentry;
+      char  *name;
 
       dentry = readdir (dptr);
+
       if (dentry == NULL) break;
 
       /* Check that filename has the right format to be a gnetlist
        * backend */
-      if (!(g_str_has_prefix (dentry->d_name, "gnet-")
-            && g_str_has_suffix (dentry->d_name, ".scm")))
+      if (!(g_str_has_prefix (dentry->d_name, "gnet-") &&
+            g_str_has_suffix (dentry->d_name, ".scm")))
         continue;
 
       /* Copy filename and remove prefix & suffix.  Add to list of

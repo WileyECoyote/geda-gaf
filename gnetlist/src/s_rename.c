@@ -204,7 +204,6 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
 void s_rename_add(char *src, char *dest)
 {
   int     flag;
-  RENAME *last;
   RENAME *temp;
   RENAME *new_rename;
   SET    *new_set;
@@ -219,7 +218,7 @@ void s_rename_add(char *src, char *dest)
 
     /* If found follow the original behavior, limiting the operation
      * to the current end-of-list */
-    last = last_set->last_rename;
+    RENAME *last = last_set->last_rename;
 
     for (temp = last_set->first_rename; ; temp = temp->next) {
 

@@ -44,10 +44,8 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
                      NETLIST  *netlist)
 {
   char *attrib;
-  char *current_filename;
   int   page_control         =-1;
   int   count                = 0;
-  int   pcount               = 0;
   int   looking_inside       = FALSE;
   int   loaded_flag          = FALSE;
   int   graphical            = FALSE;
@@ -81,8 +79,8 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
   while (attrib) {
 
     /* look for source=filename,filename, ... */
-    pcount = 0;
-    current_filename = u_string_split(attrib, ',', pcount);
+    int   pcount = 0;
+    char *current_filename = u_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while (current_filename != NULL) {
@@ -733,10 +731,14 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
       while (n_current != NULL) {
 
         if (n_current->connected_to) {
+
           verbose_print("U");
+
           sscanf(n_current->connected_to, "%s %s", uref, pin);
-          new_uref = s_hierarchy_return_baseuref(pr_current, uref);
+
+          new_uref         = s_hierarchy_return_baseuref(pr_current, uref);
           new_connected_to = u_string_sprintf("%s %s", new_uref, pin, NULL);
+
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
           n_current->connected_to = new_connected_to;
@@ -758,8 +760,6 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 {
   char *return_value = NULL;
-  char *start_of_base = NULL;
-  char *end_of_base = NULL;
 
   /* use hierarchy separator */
 
@@ -773,7 +773,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 
   if (pr_current->hierarchy_uref_order == APPEND) {
 
-    start_of_base = strrchr(uref, '/');	/* separator is always '/' */
+    char *start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
       return (u_string_strdup (uref));
@@ -784,7 +784,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   }
   else if (pr_current->hierarchy_uref_order == PREPEND) {
 
-    end_of_base = strchr(uref, '/');
+    char *end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
       return (u_string_strdup (uref));

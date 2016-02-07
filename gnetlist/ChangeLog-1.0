@@ -1,3 +1,22 @@
+2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/gnetlist.c: Reduce scope of dentry in gnetlist_backends.
+
+    * src/g_netlist.c: Reduce scope of p_current in g_get_toplevel_attribute,
+      reduce scope and both initializations of pairlist in g_get_nets.
+
+    * src/s_hierarchy.c: Reduce scope and eliminate unnecessary initialization
+      of start_of_base and end_of_base in s_hierarchy_return_baseuref, reduce
+      scope of current_filename pcount and redundant initialization of pcount
+      in s_hierarchy_traverse.
+
+    * src/s_rename.c: Reduce scope of "last" in function s_rename_add.
+
+    * src/s_traverse.c: Reduce scope of variables in s_traverse_sheet and
+      s_traverse_hierarchy_sheet, eliminate unnecessary initialization of
+      is_hierarchy in s_traverse_sheet and s_traverse_hierarchy_sheet, and
+      netattrib_pinnum in s_traverse_net.
+
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/drc2/Makefile.am: Use resistor-drc2.sym in the source directory,
