@@ -17,6 +17,10 @@
       is_hierarchy in s_traverse_sheet and s_traverse_hierarchy_sheet, and
       netattrib_pinnum in s_traverse_net.
 
+    * src/vams_misc.c: Eliminate variables; "o_current" and "val" in function
+      vams_get_attribs_list and use accessor o_attrib_get_attached_attribs,
+      add Doxygen comments.
+
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/drc2/Makefile.am: Use resistor-drc2.sym in the source directory,

@@ -5,12 +5,12 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -29,35 +29,29 @@
 #include <gnetlist.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief VAMS get attribute list
  *  \ingroup (gnetlist-SCM-API)
+ *  \par Function Description
+ *  Returns a scheme list of attibute names from the list of attributes
+ *  <b>attached</b> to \a object.
  */
 SCM vams_get_attribs_list (GedaObject *object)
 {
-
- GedaObject *o_current;
-  GList  *a_iter;
- GedaObject *a_current;
-  int     val;
-
-  char* found_name = NULL;
-  SCM list         = SCM_EOL;
-  o_current        = object;
+  GList *a_iter;
+  SCM    list = SCM_EOL;
 
   /* search outside the symbol (attached attributes only) */
-  a_iter = o_current->attribs;
+  a_iter = o_attrib_get_attached_attribs(object);
 
-  while(a_iter != NULL) {
+  while (a_iter != NULL) {
 
-    a_current = a_iter->data;
+    GedaObject *a_current = a_iter->data;
 
     if (a_current->text && a_current->text->string) {
 
-      val = o_attrib_get_name_value (a_current, &found_name, NULL);
+      char *found_name;
 
-      if (val) {
+      if (o_attrib_get_name_value (a_current, &found_name, NULL)) {
         list = scm_cons (scm_from_utf8_string (found_name), list);
       }
 
@@ -83,8 +77,8 @@ SCM vams_get_attribs_list (GedaObject *object)
  */
 SCM vams_get_package_attributes(SCM scm_uref)
 {
-  NETLIST *nl_current;
-  char *uref;
+  NETLIST *nl_iter;
+  char    *uref;
 
   SCM_ASSERT(scm_is_string (scm_uref), scm_uref, SCM_ARG1,
              "gnetlist:vams-get-package-attributes");
@@ -92,17 +86,18 @@ SCM vams_get_package_attributes(SCM scm_uref)
   uref = scm_to_utf8_string (scm_uref);
 
   /* here is where we make it multi page aware */
-  nl_current = netlist_head;
+  nl_iter = netlist_head;
 
-  /* search for the first instance through the entire list */
-  while(nl_current != NULL) {
+  /* search through the entire list for the first instance */
+  while (nl_iter != NULL) {
 
-    if (nl_current->component_uref &&
-        strcmp(nl_current->component_uref, uref) == 0) {
-      free (uref);
-      return vams_get_attribs_list (nl_current->object_ptr);
+    if (nl_iter->component_uref) {
+      if (strcmp(nl_iter->component_uref, uref) == 0) {
+        free (uref);
+        return vams_get_attribs_list (nl_iter->object_ptr);
+      }
     }
-    nl_current = nl_current->next;
+    nl_iter = nl_iter->next;
   }
 
   free (uref);
