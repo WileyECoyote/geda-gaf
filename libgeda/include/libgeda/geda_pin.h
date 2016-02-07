@@ -42,17 +42,17 @@
 #endif
 
 #define GEDA_TYPE_PIN            (geda_pin_get_type())
-#define GEDA_PIN(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PIN, Pin))
-#define GEDA_PIN_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PIN, PinClass))
-#define GEDA_IS_PIN(obj)         (is_a_geda_pin_object((Pin*)obj))
+#define GEDA_PIN(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PIN, GedaPin))
+#define GEDA_PIN_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PIN, GedaPinClass))
+#define GEDA_IS_PIN(obj)         (is_a_geda_pin_object((GedaPin*)obj))
 #define GEDA_IS_PIN_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PIN))
-#define GEDA_PIN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PIN, PinClass))
+#define GEDA_PIN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PIN, GedaPinClass))
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct _GedaPinClass PinClass;
+typedef struct _GedaPinClass GedaPinClass;
 
 struct _GedaPinClass {
   GedaLineClass parent_class;
@@ -78,18 +78,18 @@ struct _GedaPin {
 };
 
 GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
-bool         is_a_geda_pin_object        (Pin *object);
+bool         is_a_geda_pin_object        (GedaPin *object);
 
 GedaObject *geda_pin_new                 (void);
-const char *geda_pin_get_electrical      (Pin *pin);
-bool        geda_pin_set_electrical      (Pin *pin, const char *electrical);
-const char *geda_pin_get_label           (Pin *pin);
-bool        geda_pin_set_label           (Pin *pin, const char *label);
-const char *geda_pin_get_mechanical      (Pin *pin);
-bool        geda_pin_set_mechanical      (Pin *pin, const char *mechanical);
-bool        geda_pin_set_number          (Pin *pin, const char *number);
-bool        geda_pin_set_sequence        (Pin *pin, const char *sequence);
-bool        geda_pin_set_whichend        (Pin *pin, int   whichend);
+const char *geda_pin_get_electrical      (GedaPin *pin);
+bool        geda_pin_set_electrical      (GedaPin *pin, const char *electrical);
+const char *geda_pin_get_label           (GedaPin *pin);
+bool        geda_pin_set_label           (GedaPin *pin, const char *label);
+const char *geda_pin_get_mechanical      (GedaPin *pin);
+bool        geda_pin_set_mechanical      (GedaPin *pin, const char *mechanical);
+bool        geda_pin_set_number          (GedaPin *pin, const char *number);
+bool        geda_pin_set_sequence        (GedaPin *pin, const char *sequence);
+bool        geda_pin_set_whichend        (GedaPin *pin, int   whichend);
 
 PIN_ELECT   geda_pin_lookup_etype     (const char *e_str);
 const char *geda_pin_lookup_estring   (PIN_ELECT   e_type);

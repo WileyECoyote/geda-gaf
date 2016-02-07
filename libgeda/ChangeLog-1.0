@@ -1,5 +1,7 @@
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Rename Pin to GedaPin.
+
     * include/libgeda/libgeda.h: Include missing.h, included by geda.h, after
       libguile.h. or all hell breaks loose.
 

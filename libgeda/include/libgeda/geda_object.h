@@ -78,17 +78,17 @@ struct _GedaObject {
   int     bottom;
   void   *w_bounds_valid_for;          /* Hack = GedaToplevel * */
 
-  GedaArc      *arc;
-  GedaBox      *box;
-  GedaBus      *bus;
-  GedaCircle   *circle;
-  GedaComplex  *complex;
-  GedaLine     *line;
-  GedaNet      *net;
-  GedaPath     *path;
-  GedaPicture  *picture;
-  Pin          *pin;
-  Text         *text;
+  GedaArc     *arc;
+  GedaBox     *box;
+  GedaBus     *bus;
+  GedaCircle  *circle;
+  GedaComplex *complex;
+  GedaLine    *line;
+  GedaNet     *net;
+  GedaPath    *path;
+  GedaPicture *picture;
+  GedaPin     *pin;
+  Text        *text;
 
   FILL_OPTIONS *fill_options;
   LINE_OPTIONS *line_options;

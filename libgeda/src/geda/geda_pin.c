@@ -126,18 +126,18 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
   return str;
 }
 
-/*! \brief GedaType instance initializer for Pin
+/*! \brief GedaType instance initializer for GedaPin
  *
  *  \par Function Description
- *  GedaType instance initializer for Pin, initializes a new empty
+ *  GedaType instance initializer for GedaPin, initializes a new empty
  *  Pin object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The Pin structure being initialized,
- *  \param [in] g_class  The Pin class we are initializing.
+ *  \param [in] instance The GedaPin structure being initialized,
+ *  \param [in] g_class  The GedaPin class we are initializing.
  */
 static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Pin        *pin    = (Pin*)instance;
+  GedaPin    *pin    = (GedaPin*)instance;
   GedaLine   *line   = &pin->parent_instance;
   GedaObject *object = &line->parent_instance;
 
@@ -163,7 +163,7 @@ static void
 geda_pin_set_property (GObject *object,     unsigned int  prop_id,
                        const GValue *value, GParamSpec   *pspec)
 {
-  Pin *pin = GEDA_PIN (object);
+  GedaPin *pin = GEDA_PIN (object);
 
   switch (prop_id)
   {
@@ -198,11 +198,10 @@ static void
 geda_pin_get_property (GObject *object, unsigned int  prop_id,
                        GValue  *value,  GParamSpec   *pspec)
 {
-  Pin *pin = GEDA_PIN (object);
+  GedaPin *pin = GEDA_PIN (object);
   char s_val[4];
 
-  switch (prop_id)
-    {
+  switch (prop_id) {
     case PROP_ELECTRICAL:
       g_value_set_string (value, pin->electrical);
       break;
@@ -251,7 +250,7 @@ geda_pin_dispose(GObject *object)
  */
 static void geda_pin_finalize(GObject *object)
 {
-  Pin    *pin = GEDA_PIN(object);
+  GedaPin    *pin = GEDA_PIN(object);
   GedaObject *obj = GEDA_OBJECT(object);
 
   if (pin->electrical) {
@@ -273,20 +272,20 @@ static void geda_pin_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_pin_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for Pin
+/*! \brief GedaType class initializer for GedaPin
  *
  *  \par Function Description
- *  GedaType class initializer for Pin. We override our parents
+ *  GedaType class initializer for GedaPin. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Pin class we are initialising
+ *  \param [in]  g_class      The GedaPin class we are initialising
  *  \param [in]  class_data   The Pin structure associated with the class
  */
 static void geda_pin_class_init(void *g_class, void *class_data)
 {
   GParamSpec   *params;
 
-  PinClass     *class          = (PinClass*)g_class;
+  GedaPinClass *class          = (GedaPinClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
 
   geda_pin_parent_class        = g_type_class_peek_parent( class );
@@ -368,21 +367,21 @@ GedaObjectType geda_pin_get_type (void)
   if (g_once_init_enter (&geda_pin_type)) {
 
     static const GTypeInfo info = {
-      sizeof(PinClass),
+      sizeof(GedaPinClass),
       NULL,                   /* base_init           */
       NULL,                   /* base_finalize       */
-      geda_pin_class_init,   /* (GClassInitFunc)    */
+      geda_pin_class_init,    /* (GClassInitFunc)    */
       NULL,                   /* class_finalize      */
       NULL,                   /* class_data          */
-      sizeof(Pin),
+      sizeof(GedaPin),
       0,                      /* n_preallocs         */
-      geda_pin_instance_init /* (GInstanceInitFunc) */
+      geda_pin_instance_init  /* (GInstanceInitFunc) */
     };
 
     const char    *string;
     GedaObjectType type;
 
-    string = g_intern_static_string ("Pin");
+    string = g_intern_static_string ("GedaPin");
     type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
 
     g_once_init_leave (&geda_pin_type, type);
@@ -414,13 +413,13 @@ GedaObject *geda_pin_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_pin_object (Pin *pin)
+bool is_a_geda_pin_object (GedaPin *pin)
 {
   return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
 }
 
 const char*
-geda_pin_get_electrical(Pin *pin)
+geda_pin_get_electrical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->electrical;
@@ -437,7 +436,7 @@ geda_pin_get_electrical(Pin *pin)
  * \param [in,out] pin        A valid Pin object.
  * \param [in]     electrical String, member of e_strings.
  */
-bool geda_pin_set_electrical(Pin *pin, const char *electrical)
+bool geda_pin_set_electrical(GedaPin *pin, const char *electrical)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
@@ -453,7 +452,7 @@ bool geda_pin_set_electrical(Pin *pin, const char *electrical)
       }
     }
     else {
-      changed = TRUE;
+      changed = TRUE; /* current value is NULL */
     }
 
     if (changed) {
@@ -471,13 +470,13 @@ bool geda_pin_set_electrical(Pin *pin, const char *electrical)
 }
 
 const char*
-geda_pin_get_label(Pin *pin)
+geda_pin_get_label(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->label;
 }
 
-bool geda_pin_set_label(Pin *pin, const char *label)
+bool geda_pin_set_label(GedaPin *pin, const char *label)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
@@ -509,7 +508,7 @@ bool geda_pin_set_label(Pin *pin, const char *label)
 }
 
 const char*
-geda_pin_get_mechanical(Pin *pin)
+geda_pin_get_mechanical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->mechanical;
@@ -526,7 +525,7 @@ geda_pin_get_mechanical(Pin *pin)
  * \param [in,out] pin        A valid Pin object.
  * \param [in]     mechanical String, member of m_strings.
  */
-bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
+bool geda_pin_set_mechanical(GedaPin *pin, const char *mechanical)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
@@ -560,13 +559,13 @@ bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
   return changed;
 }
 
-bool geda_pin_set_number(Pin *pin, const char *number)
+bool geda_pin_set_number(GedaPin *pin, const char *number)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
   bool changed = FALSE;
 
-  if ( number != NULL ) {
+  if (number != NULL) {
 
     if (pin->number) {
       if (strcmp(pin->number, number) != 0) {
@@ -585,7 +584,7 @@ bool geda_pin_set_number(Pin *pin, const char *number)
   return changed;
 }
 
-bool geda_pin_set_sequence(Pin *pin, const char *sequence)
+bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
 {
   const char *ptr     = sequence;
         bool  changed = FALSE;
@@ -613,7 +612,7 @@ bool geda_pin_set_sequence(Pin *pin, const char *sequence)
   return changed;
 }
 
-bool geda_pin_set_whichend(Pin *pin, int whichend)
+bool geda_pin_set_whichend(GedaPin *pin, int whichend)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
   pin->whichend = whichend;

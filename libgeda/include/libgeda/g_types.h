@@ -69,7 +69,7 @@ typedef struct _GedaPath         GedaPath;
 typedef struct _GedaPicture      GedaPicture;
 
 /*! \brief Geda Pin Circle Object Structure */
-typedef struct _GedaPin          Pin;
+typedef struct _GedaPin          GedaPin;
 
 /*! \brief Geda Text Circle Object Structure */
 typedef struct _GedaText         Text;
