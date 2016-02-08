@@ -1,3 +1,7 @@
+2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Replace include gdk/gdkkeysyms.h with geda_keysyms.h.
+
 2016-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_menus.c: Add Doxygen comments for clipboard menu callbacks,

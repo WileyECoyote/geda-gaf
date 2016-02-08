@@ -1,3 +1,16 @@
+2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_keysyms.h: Conditionally define key constants, include
+      gdk/gdkkeysyms.h is presentt.
+
+    * src/widgets/geda_combobox.c: Replace include gdk/gdkkeysyms.h with
+      geda_keysyms.h.
+
+    * src/widgets/geda_entry.c: Include geda_keysyms.h instead of gdkkeysyms.h.
+      .
+
+2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_bulb.c: Replace reference to widget->allocation
       with geda_get_widget_allocation.
 

@@ -30,7 +30,7 @@
 
 #include <geda_debug.h>
 
-#include <gdk/gdkkeysyms.h>
+#include <geda_keysyms.h>
 
 #define DEFINE_H_KEYS(name)                       \
 SCM h_keys_ ## name(SCM rest)                     \

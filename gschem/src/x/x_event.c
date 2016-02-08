@@ -29,8 +29,7 @@
 #include <gschem.h>
 #include <x_window.h>
 
-#include <gdk/gdkkeysyms.h>
-
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 /* used by mouse pan */

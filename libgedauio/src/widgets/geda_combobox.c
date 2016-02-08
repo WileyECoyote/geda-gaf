@@ -31,15 +31,15 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <gdk/gdkkeysyms.h>
-
 #include <gobject/gvaluecollector.h>
 
 #include "geda_gtk_compat.h"
 #include "geda_combobox.h"
 #include "geda_uio_functions.h"
+
 #include "gettext.h"
 
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 /*! \brief A widget used to choose from a list of items

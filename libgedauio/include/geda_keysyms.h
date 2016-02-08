@@ -1,6 +1,12 @@
 #ifndef _GEDA_KEYSYMS_H
 #define _GEDA_KEYSYMS_H
 
+#if (HAVE_GDK_GDKKEYSYMS_COMPAT_H)
+
+#include <gdk/gdkkeysyms.h>
+
+#else
+
 #define GDK_KEY_VoidSymbol 0xffffff
 #define GDK_KEY_BackSpace 0xff08
 #define GDK_KEY_Tab 0xff09
@@ -2132,5 +2138,5 @@
 #define GDK_KEY_ZoomIn 0x1008ff8b
 #define GDK_KEY_ZoomOut 0x1008ff8c
 
-
+#endif
 #endif

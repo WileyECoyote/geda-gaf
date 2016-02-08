@@ -30,9 +30,7 @@
 #include "../../include/x_dialog.h"
 
 #include <geda_widgets.h>
-
-#include <gdk/gdkkeysyms.h>
-
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 #define ThisDialog multiattrib

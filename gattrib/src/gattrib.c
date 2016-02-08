@@ -114,10 +114,11 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <gdk/gdkkeysyms.h>
 
 #include <glib.h>
 #include <glib-object.h>
+
+#include <geda_keysyms.h>
 
 #ifdef HAVE_STRING_H
 #include <string.h>

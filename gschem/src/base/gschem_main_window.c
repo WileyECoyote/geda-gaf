@@ -25,7 +25,7 @@
  */
 
 #include <gschem.h>
-#include <gdk/gdkkeysyms.h>
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 /** \defgroup Gschem-Window-Window Gschem Macro Window

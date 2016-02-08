@@ -1,3 +1,14 @@
+2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Replace include gdk/gdkkeysyms.h with geda_keysyms.h:
+
+        * src/base/gschem_main_window.c
+        * src/guile/g_keys.c
+        * src/x/x_autonumber.c
+        * src/x/x_compselect.c
+        * src/x/x_event.c
+        * src/x/x_multiattrib.c
+
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_window.c: Revise unique_untitled to retrieve the

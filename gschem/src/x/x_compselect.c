@@ -26,7 +26,6 @@
  * \brief A dialog box for selecting Component Symbols
  */
 
-#include <gdk/gdkkeysyms.h>
 #include <ctype.h>
 
 #include <gschem.h>
@@ -38,6 +37,7 @@
 #include <geda_widgets.h>               /* Switches use geda_labels */
 
 #include <x_compselect.h>
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 /**  \defgroup Component-Select-Dialog Component Select Dialog Implementation

@@ -45,11 +45,7 @@
 
 #include <geda_debug.h>
 
-#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 28 ))
-#  include "geda_keysyms.h"
-#else
-#  include <gdk/gdkkeysyms.h>
-#endif
+#include <geda_keysyms.h>
 
 #define MAX_ICONS 2
 

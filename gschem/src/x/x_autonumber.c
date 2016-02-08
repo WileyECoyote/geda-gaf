@@ -27,10 +27,11 @@
  */
 
 #include <ctype.h>
-#include <gdk/gdkkeysyms.h>
 
 #include "../../include/gschem.h"
 #include "../../include/x_dialog.h"
+
+#include <geda_keysyms.h>
 #include <geda_debug.h>
 
 #define ThisDialog autonumber_text
