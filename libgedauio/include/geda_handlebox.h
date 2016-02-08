@@ -40,7 +40,6 @@ extern "C" {
 #define GEDA_IS_HANDLE_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_HANDLE_BOX))
 #define GEDA_HANDLE_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_HANDLE_BOX, GedaHandleBoxClass))
 
-
 typedef struct _GedaHandleBox       GedaHandleBox;
 typedef struct _GedaHandleBoxClass  GedaHandleBoxClass;
 

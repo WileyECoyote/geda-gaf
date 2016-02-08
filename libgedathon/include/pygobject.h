@@ -7,13 +7,15 @@
 #include <glib.h>
 #include <glib-object.h>
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* This is deprecated, don't use */
 #define PYGIL_API_IS_BUGGY FALSE
 
   /* PyGClosure is a _private_ structure */
-typedef void (* PyClosureExceptionHandler) (GValue *ret, guint n_param_values, const GValue *params);
+typedef void (* PyClosureExceptionHandler) (GValue *ret, unsigned int n_param_values, const GValue *params);
 typedef struct _PyGClosure PyGClosure;
 typedef struct _PyGObjectData PyGObjectData;
 
@@ -29,25 +31,24 @@ typedef enum {
     PYGOBJECT_USING_TOGGLE_REF = 1 << 0
 } PyGObjectFlags;
 
-  /* closures is just an alias for what is found in the
-   * PyGObjectData */
+  /* closure is just an alias for what is found in the PyGObjectData */
 typedef struct {
     PyObject_HEAD
-    GObject *obj;
-    PyObject *inst_dict; /* the instance dictionary -- must be last */
+    GObject  *obj;
+    PyObject *inst_dict;   /* the instance dictionary -- must be last */
     PyObject *weakreflist; /* list of weak references */
 
       /*< private >*/
       /* using union to preserve ABI compatibility (structure size
        * must not change) */
     union {
-        GSList *closures; /* stale field; no longer updated DO-NOT-USE! */
+        GSList        *closures; /* stale field; no longer updated DO-NOT-USE! */
         PyGObjectFlags flags;
     } private_flags;
 
 } PyGObject;
 
-#define pygobject_get(v) (((PyGObject *)(v))->obj)
+#define pygobject_get(v)        (((PyGObject *)(v))->obj)
 #define pygobject_check(v,base) (PyObject_TypeCheck(v,base))
 
 typedef struct {
@@ -57,7 +58,7 @@ typedef struct {
     gboolean free_on_dealloc;
 } PyGBoxed;
 
-#define pyg_boxed_get(v,t)      ((t *)((PyGBoxed *)(v))->boxed)
+#define pyg_boxed_get(v,t) ((t *)((PyGBoxed *)(v))->boxed)
 #define pyg_boxed_check(v,typecode) (PyObject_TypeCheck(v, &PyGBoxed_Type) && ((PyGBoxed *)(v))->gtype == typecode)
 
 typedef struct {
@@ -66,7 +67,7 @@ typedef struct {
     GedaType gtype;
 } PyGPointer;
 
-#define pyg_pointer_get(v,t)      ((t *)((PyGPointer *)(v))->pointer)
+#define pyg_pointer_get(v,t) ((t *)((PyGPointer *)(v))->pointer)
 #define pyg_pointer_check(v,typecode) (PyObject_TypeCheck(v, &PyGPointer_Type) && ((PyGPointer *)(v))->gtype == typecode)
 
 typedef void (*PyGFatalExceptionFunc) (void);
@@ -85,119 +86,119 @@ typedef PyTypeObject * (*PyGTypeRegistrationFunction) (const char *name,
 						       void *data);
 
 struct _PyGObject_Functions {
-    /*
-     * All field names in here are considered private,
-     * use the macros below instead, which provides stability
-     */
-    void (* register_class)(PyObject *dict, const char *class_name,
-			    GedaType gtype, PyTypeObject *type, PyObject *bases);
-    void (* register_wrapper)(PyObject *self);
-    void (* register_sinkfunc)(GedaType type,
-			       void (* sinkfunc)(GObject *object));
-    PyTypeObject *(* lookup_class)(GedaType type);
-    PyObject *(* newgobj)(GObject *obj);
+  /*
+   * All field names in here are considered private,
+   * use the macros below instead, which provides stability
+   */
+  void (* register_class)(PyObject *dict, const char *class_name,
+                          GedaType gtype, PyTypeObject *type, PyObject *bases);
+  void (* register_wrapper)(PyObject *self);
+  void (* register_sinkfunc)(GedaType type,
+                             void (* sinkfunc)(GObject *object));
+  PyTypeObject *(* lookup_class)(GedaType type);
+  PyObject *(* newgobj)(GObject *obj);
 
-    GClosure *(* closure_new)(PyObject *callback, PyObject *extra_args,
-			      PyObject *swap_data);
-    void      (* object_watch_closure)(PyObject *self, GClosure *closure);
-    GDestroyNotify destroy_notify;
+  GClosure *(* closure_new)(PyObject *callback, PyObject *extra_args,
+                            PyObject *swap_data);
+  void      (* object_watch_closure)(PyObject *self, GClosure *closure);
+  GDestroyNotify destroy_notify;
 
-    GedaType (* type_from_object)(PyObject *obj);
-    PyObject *(* type_wrapper_new)(GedaType type);
+  GedaType (* type_from_object)(PyObject *obj);
+  PyObject *(* type_wrapper_new)(GedaType type);
 
-    gint (* enum_get_value)(GedaType enum_type, PyObject *obj, gint *val);
-    gint (* flags_get_value)(GedaType flag_type, PyObject *obj, gint *val);
-    void (* register_gtype_custom)(GedaType gtype,
-			    PyObject *(* from_func)(const GValue *value),
-			    int (* to_func)(GValue *value, PyObject *obj));
-    int (* value_from_pyobject)(GValue *value, PyObject *obj);
-    PyObject *(* value_as_pyobject)(const GValue *value, gboolean copy_boxed);
+  gint (* enum_get_value)(GedaType enum_type, PyObject *obj, gint *val);
+  gint (* flags_get_value)(GedaType flag_type, PyObject *obj, gint *val);
+  void (* register_gtype_custom)(GedaType gtype,
+                                 PyObject *(* from_func)(const GValue *value),
+                                 int (* to_func)(GValue *value, PyObject *obj));
+  int (* value_from_pyobject)(GValue *value, PyObject *obj);
+  PyObject *(* value_as_pyobject)(const GValue *value, gboolean copy_boxed);
 
-    void (* register_interface)(PyObject *dict, const char *class_name,
-				GedaType gtype, PyTypeObject *type);
+  void (* register_interface)(PyObject *dict, const char *class_name,
+                              GedaType gtype, PyTypeObject *type);
 
-    PyTypeObject *boxed_type;
-    void (* register_boxed)(PyObject *dict, const char *class_name,
-			    GedaType boxed_type, PyTypeObject *type);
-    PyObject *(* boxed_new)(GedaType boxed_type, void *boxed,
-			    gboolean copy_boxed, gboolean own_ref);
+  PyTypeObject *boxed_type;
+  void (* register_boxed)(PyObject *dict, const char *class_name,
+                          GedaType boxed_type, PyTypeObject *type);
+  PyObject *(* boxed_new)(GedaType boxed_type, void *boxed,
+                          gboolean copy_boxed, gboolean own_ref);
 
-    PyTypeObject *pointer_type;
-    void (* register_pointer)(PyObject *dict, const char *class_name,
-			      GedaType pointer_type, PyTypeObject *type);
-    PyObject *(* pointer_new)(GedaType boxed_type, void *pointer);
+  PyTypeObject *pointer_type;
+  void (* register_pointer)(PyObject *dict, const char *class_name,
+                            GedaType pointer_type, PyTypeObject *type);
+  PyObject *(* pointer_new)(GedaType boxed_type, void *pointer);
 
-    void (* enum_add_constants)(PyObject *module, GedaType enum_type,
-				const char *strip_prefix);
-    void (* flags_add_constants)(PyObject *module, GedaType flags_type,
-				 const char *strip_prefix);
+  void (* enum_add_constants)(PyObject *module, GedaType enum_type,
+                              const char *strip_prefix);
+  void (* flags_add_constants)(PyObject *module, GedaType flags_type,
+                               const char *strip_prefix);
 
-    const char *(* constant_strip_prefix)(const char *name,
-				     const char *strip_prefix);
+  const char *(* constant_strip_prefix)(const char *name,
+                                        const char *strip_prefix);
 
-    gboolean (* error_check)(GError **error);
+  gboolean (* error_check)(GError **error);
 
-    /* hooks to register handlers for getting GDK threads to cooperate
-     * with python threading */
-    void (* set_thread_block_funcs) (PyGThreadBlockFunc block_threads_func,
-				     PyGThreadBlockFunc unblock_threads_func);
-    PyGThreadBlockFunc block_threads;
-    PyGThreadBlockFunc unblock_threads;
-    PyTypeObject *paramspec_type;
-    PyObject *(* paramspec_new)(GParamSpec *spec);
-    GParamSpec *(*paramspec_get)(PyObject *tuple);
-    int (*pyobj_to_unichar_conv)(PyObject *pyobj, void* ptr);
-    gboolean (*parse_constructor_args)(GedaType     obj_type,
-                                       char       **arg_names,
-                                       char       **prop_names,
-                                       GParameter  *params,
-                                       guint       *nparams,
-                                       PyObject   **py_args);
-    PyObject *(* param_gvalue_as_pyobject) (const GValue* gvalue,
-                                            gboolean copy_boxed,
-					    const GParamSpec* pspec);
-    int (* gvalue_from_param_pyobject) (GValue* value,
-                                        PyObject* py_obj,
-					const GParamSpec* pspec);
-    PyTypeObject *enum_type;
-    PyObject *(*enum_add)(PyObject *module,
-			  const char *type_name_,
-			  const char *strip_prefix,
-			  GedaType gtype);
-    PyObject* (*enum_from_gtype)(GedaType gtype, int value);
+  /* hooks to register handlers for getting GDK threads to cooperate
+   * with python threading */
+  void (* set_thread_block_funcs) (PyGThreadBlockFunc block_threads_func,
+                                   PyGThreadBlockFunc unblock_threads_func);
+  PyGThreadBlockFunc block_threads;
+  PyGThreadBlockFunc unblock_threads;
+  PyTypeObject *paramspec_type;
+  PyObject *(* paramspec_new)(GParamSpec *spec);
+  GParamSpec *(*paramspec_get)(PyObject *tuple);
+  int (*pyobj_to_unichar_conv)(PyObject *pyobj, void* ptr);
+  gboolean (*parse_constructor_args)(GedaType     obj_type,
+                                     char       **arg_names,
+                                     char       **prop_names,
+                                     GParameter  *params,
+                                     unsigned int       *nparams,
+                                     PyObject   **py_args);
+  PyObject *(* param_gvalue_as_pyobject) (const GValue* gvalue,
+                                          gboolean copy_boxed,
+                                          const GParamSpec* pspec);
+  int (* gvalue_from_param_pyobject) (GValue* value,
+                                      PyObject* py_obj,
+                                      const GParamSpec* pspec);
+  PyTypeObject *enum_type;
+  PyObject *(*enum_add)(PyObject *module,
+                        const char *type_name_,
+                        const char *strip_prefix,
+                        GedaType gtype);
+  PyObject *(*enum_from_gtype)(GedaType gtype, int value);
 
-    PyTypeObject *flags_type;
-    PyObject *(*flags_add)(PyObject *module,
-			   const char *type_name_,
-			   const char *strip_prefix,
-			   GedaType gtype);
-    PyObject* (*flags_from_gtype)(GedaType gtype, int value);
+  PyTypeObject *flags_type;
+  PyObject *(*flags_add)(PyObject *module,
+                         const char *type_name_,
+                         const char *strip_prefix,
+                         GedaType gtype);
+  PyObject* (*flags_from_gtype)(GedaType gtype, int value);
 
-    gboolean threads_enabled;
-    int       (*enable_threads) (void);
+  int         threads_enabled;
+  int       (*enable_threads) (void);
 
-    int       (*gil_state_ensure) (void);
-    void      (*gil_state_release) (int flag);
+  int       (*gil_state_ensure) (void);
+  void      (*gil_state_release) (int flag);
 
-    void      (*register_class_init) (GedaType gtype, PyGClassInitFunc class_init);
-    void      (*register_interface_info) (GedaType gtype, const GInterfaceInfo *info);
-    void      (*closure_set_exception_handler) (GClosure *closure, PyClosureExceptionHandler handler);
-    int       (*pygobject_constructv) (PyGObject  *self,
-                                       guint       n_parameters,
-                                       GParameter *parameters);
-    int       (*pygobject_construct) (PyGObject  *self,
-                                      const char *first_property_name,
-                                      ...);
-    void      (*set_object_has_new_constructor) (GedaType type);
+  void      (*register_class_init) (GedaType gtype, PyGClassInitFunc class_init);
+  void      (*register_interface_info) (GedaType gtype, const GInterfaceInfo *info);
+  void      (*closure_set_exception_handler) (GClosure *closure, PyClosureExceptionHandler handler);
+  int       (*pygobject_constructv) (PyGObject  *self,
+                                     unsigned int       n_parameters,
+                                     GParameter *parameters);
+  int       (*pygobject_construct) (PyGObject  *self,
+                                    const char *first_property_name,
+                                    ...);
+  void      (*set_object_has_new_constructor) (GedaType type);
 
-    void      (*add_warning_redirection) (const char *domain,
-                                          PyObject   *warning);
-    void      (*disable_warning_redirections) (void);
-    void      (*type_register_custom)(const char *type_name,
-				      PyGTypeRegistrationFunction callback,
-				      void *data);
-    gboolean  (*gerror_exception_check) (GError **error);
-    PyObject* (*option_group_new) (GOptionGroup *group);
+  void      (*add_warning_redirection) (const char *domain,
+                                        PyObject   *warning);
+  void      (*disable_warning_redirections) (void);
+  void      (*type_register_custom)(const char *type_name,
+                                    PyGTypeRegistrationFunction callback,
+                                    void *data);
+  gboolean  (*gerror_exception_check) (GError **error);
+  PyObject* (*option_group_new) (GOptionGroup *group);
 };
 
 
@@ -308,8 +309,7 @@ pygobject_init(int req_major, int req_minor, int req_micro)
 
     gobject = PyImport_ImportModule("gobject");
     if (!gobject) {
-        if (PyErr_Occurred())
-        {
+        if (PyErr_Occurred()) {
             PyObject *type, *value, *traceback;
             PyObject *py_orig_exc;
             PyErr_Fetch(&type, &value, &traceback);
@@ -321,7 +321,8 @@ pygobject_init(int req_major, int req_minor, int req_micro)
                          "could not import gobject (error was: %s)",
                          PyString_AsString(py_orig_exc));
             Py_DECREF(py_orig_exc);
-        } else {
+        }
+        else {
             PyErr_SetString(PyExc_ImportError,
                             "could not import gobject (no error given)");
         }
@@ -338,8 +339,8 @@ pygobject_init(int req_major, int req_minor, int req_micro)
         return NULL;
     }
 
-    if (req_major != -1)
-    {
+    if (req_major != -1) {
+
         int found_major, found_minor, found_micro;
         PyObject *version;
 
@@ -390,6 +391,8 @@ pygobject_init(int req_major, int req_minor, int req_micro)
 
 #endif /* !_INSIDE_PYGOBJECT_ */
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !_PYGOBJECT_H_ */
