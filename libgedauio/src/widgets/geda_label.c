@@ -71,13 +71,8 @@
 
 #include "gettext.h"
 
+#include <geda_keysyms.h>
 #include <geda_debug.h>
-
-#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 28 ))
-#  include "geda_keysyms.h"
-#else
-#  include <gdk/gdkkeysyms.h>
-#endif
 
 /* GLIB < 2.30 */
 #ifndef G_VALUE_INIT

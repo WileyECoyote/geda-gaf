@@ -29,7 +29,9 @@
 
 #include <gtk/gtkbin.h>
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
@@ -78,7 +80,7 @@ struct _GedaHandleBoxClass
 };
 
 GedaType        geda_handle_box_get_type             (void) GEDA_CONST;
-GtkWidget*      geda_handle_box_new                  (void);
+GtkWidget      *geda_handle_box_new                  (void);
 void            geda_handle_box_dock                 (GedaHandleBox *handlebox);
 void            geda_handle_box_set_shadow_type      (GedaHandleBox *handlebox, GtkShadowType    type);
 GtkShadowType   geda_handle_box_get_shadow_type      (GedaHandleBox *handlebox);
@@ -86,8 +88,12 @@ void            geda_handle_box_set_handle_position  (GedaHandleBox *handlebox, 
 GtkPositionType geda_handle_box_get_handle_position  (GedaHandleBox *handlebox);
 void            geda_handle_box_set_snap_edge        (GedaHandleBox *handlebox, GtkPositionType  edge);
 GtkPositionType geda_handle_box_get_snap_edge        (GedaHandleBox *handlebox);
+GtkToolbar     *geda_handle_box_get_toolbar          (GedaHandleBox *handlebox);
+
 bool            geda_handle_box_get_child_detached   (GedaHandleBox *handlebox);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif  /* __GEDA_HANDLE_BOX_H__ */

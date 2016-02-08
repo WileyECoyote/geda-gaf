@@ -1,3 +1,8 @@
+2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add function geda_handle_box_get_toolbar,
+      replace widget->allocation with gtk_widget_set_allocation.
+
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_keysyms.h: Conditionally define key constants, include
@@ -7,7 +12,9 @@
       geda_keysyms.h.
 
     * src/widgets/geda_entry.c: Include geda_keysyms.h instead of gdkkeysyms.h.
-      .
+
+    * src/widgets/geda_label.c: Include geda_keysyms.h instead of conditional
+      directive.
 
 2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
