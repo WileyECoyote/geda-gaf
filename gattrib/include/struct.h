@@ -30,10 +30,11 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <gdk/gdkkeysyms.h>
 
 #include <glib.h>
 #include <glib-object.h>
+
+#include <geda_keysyms.h>
 
 /* -------  Includes needed to make the GTK stuff work  ------ */
 

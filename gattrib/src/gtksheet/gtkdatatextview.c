@@ -256,7 +256,7 @@ gtk_data_text_view_get_type(void)
 
 static void
 gtk_data_text_view_set_property(GObject *object,
-    guint prop_id,
+    unsigned int prop_id,
     const GValue *value,
     GParamSpec *pspec)
 {
