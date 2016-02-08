@@ -1,22 +1,22 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
 #include <gschem.h>
@@ -60,7 +60,7 @@ struct option long_options[] =
 #endif
 
 /*! Contains a Scheme expression arising from command-line arguments.
- *  This is evaluated after initialising gschem, but before loading
+ *  This is evaluated after initializing gschem, but before loading
  *  any rc files. */
 SCM s_pre_load_expr = SCM_EOL;
 
@@ -70,12 +70,13 @@ SCM s_pre_load_expr = SCM_EOL;
  */
 SCM s_post_load_expr = SCM_EOL;
 
-/*! \brief Print brief help message and exit.
+/*!
+ * \brief Print brief help message and exit.
  * \par Function Description
  * Print brief help message describing gschem usage & command-line
  * options, then exit with exit status 0.
  *
- * \param cmd         First element of argv (name of program as run).
+ * \param cmd First element of argv (name of program as run).
  */
 static void
 usage(char *cmd)
@@ -114,17 +115,17 @@ usage(char *cmd)
   exit(0);
 }
 
-/*! \brief Print version info and exit.
+/*!
+ * \brief Print version info and exit.
  * \par Function Description
  * Print gEDA version, and copyright/warranty notices, and exit with
  * exit status 0.
  */
-static void
-version ()
+static void version (void)
 {
   printf(_(
     "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2015 gEDA developers\n"
+    "Copyright (C) 1998-2016 gEDA developers\n"
     "This is free software, and you are welcome to redistribute it under\n"
     "certain conditions. For details, see the file `COPYING', which is\n"
     "included in the gEDA distribution.\n"
@@ -143,8 +144,7 @@ version ()
  *
  * \return index into \a argv of first non-option argument.
  */
-int
-gschem_parse_commandline(int argc, char *argv[])
+int gschem_parse_commandline(int argc, char *argv[])
 {
   GError *err;
   char   *str;
@@ -314,7 +314,7 @@ gschem_parse_commandline(int argc, char *argv[])
     verbose_mode = FALSE;
   }
 
-  /* Make sure Scheme expressions can be passed straight to eval */
+  /* Ensure Scheme expressions can be passed straight to eval */
   s_pre_load_expr = scm_cons (sym_begin, scm_reverse_x (s_pre_load_expr, SCM_UNDEFINED));
   scm_gc_protect_object (s_pre_load_expr);
   s_post_load_expr = scm_cons (sym_begin, scm_reverse_x (s_post_load_expr, SCM_UNDEFINED));

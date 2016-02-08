@@ -1,5 +1,8 @@
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_parsecmd.c: Update file header and copyright in
+      usage.
+
     * src/: Replace include gdk/gdkkeysyms.h with geda_keysyms.h:
 
         * src/base/gschem_main_window.c
