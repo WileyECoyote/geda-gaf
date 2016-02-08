@@ -376,7 +376,6 @@
 ))
 
 
-
 ;;
 ;; Checks for slots not used.
 ;;
@@ -423,13 +422,14 @@
     (define check-slots-of-package
       (lambda (uref)
 
-        (let* ( (numslots_string (get-package-attribute uref "numslots"))
-                (numslots (string->number numslots_string))
-                (slot_string (let ((slots (get-all-package-attributes uref "slot")))
+        (let* ((numslots_string (get-package-attribute uref "numslots"))
+               (numslots (string->number numslots_string))
+               (slot_string (let ((slots (gnetlist:get-all-package-attributes uref "slot")))
                                (if (or (null? slots) (not (car slots)))
                                    "unknown" (car slots))))
-                (slot (string->number slot_string))
-                )
+               (slot (string->number slot_string))
+              )
+
           (let ()
             (define check-slots-loop
               (lambda (slots_list)
@@ -447,7 +447,8 @@
                                 (set! errors_number (+ errors_number 1)))))
 
                       (check-slots-loop (cdr slots_list))
-                      ))))
+                      )))
+            )
 
             (if (string-ci=? slot_string "unknown")
                 (begin
@@ -481,7 +482,7 @@
                               )
                             )
                         ))
-                  )
+                )
                 (begin
                   ;; Slot attribute defined.
                   ;; If it's a number, then check slots. If it's not, then report an error.
@@ -552,14 +553,12 @@
     (if (not (null? all-nets))
       (let* ((netname (car all-nets))
         (directives (gnetlist:graphical-net-objs-attrib
-                     netname
-                     "device=DRC_Directive"
-                     "value")))
+                     netname "device=DRC_Directive" "value")))
         (begin
           ; Only check nets with a NoConnection directive
           (if (member "NoConnection" directives)
             (begin
-              (if ( >  (length (gnetlist:get-all-connections netname)) '1)
+              (if ( > (length (gnetlist:get-all-connections netname)) '1)
                 (begin
                   (display (string-append "ERROR: Net '"
                                   netname "' has connections, but "
@@ -603,7 +602,7 @@
                               netname "device=DRC_Directive" "value")))
             (begin
               ; If one of the directives is NoConnection,
-              ; then it shouldn't be checked.
+              ; then the net should not be checked.
               (if (not (member "NoConnection" directives))
                   (begin
                     (if (eq? (length (get-all-connections netname)) '0)
@@ -823,9 +822,7 @@
                                      '()))
                        (pintype-count (drc2:count-pintypes-of-net pintypes))
                        (directives (gnetlist:graphical-net-objs-attrib
-                                    netname
-                                    "device=DRC_Directive"
-                                    "value"))
+                                    netname "device=DRC_Directive" "value"))
                        )
                 ; If some directives are defined, then it shouldn't be checked.
                 (if (not (member "DontCheckPintypes" directives))
@@ -972,20 +969,11 @@
               (newline)))
 
         ;; Check for NoConnection nets with more than one pin connected.
-;;        (if (not (defined? 'dont-check-connected-noconnects))
-;;            (begin
-;;              (display "Checking NoConnection nets for connections...")
-;;              (newline)
-;;              (drc2:check-connected-noconnects netlist:all-unique-nets)
-;;              (newline)))
-
-        ;; Check for NoConnection nets with more than one pin connected.
         (if (not (defined? 'dont-check-connected-noconnects))
             (begin
               (display "Checking NoConnection nets for connections...")
               (newline)
-              (drc2:check-connected-noconnects
-              (gnetlist:get-all-unique-nets "dummy"))
+              (drc2:check-connected-noconnects netlist:all-unique-nets)
               (newline)))
 
         ;; Check nets with only one connection
@@ -1002,7 +990,7 @@
               (display "Checking pins without the 'pintype' attribute...")
               (newline)
               (drc2:report-unknown-pintypes netlist:all-unique-nets)
-              (debug-spew "Complete 'pintype' attribute check, continuing")
+              (debug-spew "Completed 'pintype' attribute check, continuing\n")
               (newline)))
 
         ;; Check pintypes of the pins connected to every net
