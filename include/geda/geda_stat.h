@@ -4,11 +4,11 @@
  *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2014-2015 Wiley Edward Hill
+ * Copyright (C) 2014-2016 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -26,10 +26,6 @@
  */
 #ifndef __GEDA_STAT__
 #  define __GEDA_STAT__
-
-#  ifdef HAVE_CONFIG_H
-#    include "config.h"
-#  endif
 
 #  ifdef HAVE_SYS_STAT_H
 

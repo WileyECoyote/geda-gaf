@@ -1,6 +1,11 @@
+2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gaf/include/geda/geda_stat.h: Removed conditional inclusion
+      of config.h.
+
 2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/Makefile.am: create geda subdirectory and relocate:
+    * include/Makefile.am: Create geda subdirectory and relocate:
 
         * include/geda/ansi.h
         * include/geda/ascii.h
