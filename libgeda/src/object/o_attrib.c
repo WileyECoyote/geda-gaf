@@ -77,7 +77,10 @@ o_attrib_add(GedaObject *object, GedaObject *item)
 GList*
 o_attrib_get_attached_attribs (const GedaObject *object)
 {
-  return object->attribs;
+  if (GEDA_IS_OBJECT(object)) {
+    return object->attribs;
+  }
+  return NULL;
 }
 
 /*! \brief Check whether a attrib is attached to another object
