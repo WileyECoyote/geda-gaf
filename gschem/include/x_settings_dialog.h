@@ -334,7 +334,7 @@ int DrawingCursorsInt[] =
   GDK_TOP_LEFT_ARROW,
 };
 
-const char*CursorStrings[] =
+const char *CursorStrings[] =
 {
   "System",
   "Custom",

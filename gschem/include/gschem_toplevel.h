@@ -4,14 +4,14 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Ales Hvezda
- * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2016 Ales Hvezda
+ * Copyright (C) 2013-2016 Wiley Edward Hill
  *
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -41,8 +41,6 @@
 
 #ifndef __GSCHEM_TOPLEVEL_H__
 #define __GSCHEM_TOPLEVEL_H__
-
-BEGIN_DECLS
 
 #define GSCHEM_TYPE_TOPLEVEL            (gschem_toplevel_get_type())
 #define GSCHEM_TOPLEVEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GSCHEM_TYPE_TOPLEVEL, GschemToplevel))
@@ -363,6 +361,10 @@ struct _GschemToplevel {
 
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType        gschem_toplevel_get_type          (void) GEDA_CONST;
 GschemToplevel *gschem_toplevel_new               (void);
 
@@ -373,5 +375,7 @@ GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
 
 bool            gschem_toplevel_set_current_page  (GschemToplevel *w_current, Page *page);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 #endif /* __GSCHEM_TOPLEVEL_H__ */

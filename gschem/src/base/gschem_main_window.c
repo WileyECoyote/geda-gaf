@@ -1,22 +1,26 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * Copyright (C) 2013-2016 Ales Hvezda
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ * Contributing Author: Edward Hennessy
+ * Date Contributed: October 13th, 2013
  */
 /*!
  * \file gschem_main_window.c
@@ -28,9 +32,14 @@
 #include <geda_keysyms.h>
 #include <geda_debug.h>
 
-/** \defgroup Gschem-Window-Window Gschem Macro Window
- *  @{ \brief This module defines the #GschemMainWindow class
-*/
+/** \defgroup Gschem-Main-Window Gschem Main Window
+ * @{
+ * \brief #GschemMainWindow Class Implmentation
+ * \par
+ *  This module implements the main window in gschem.
+ */
+
+/* Function Prototypes */
 
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
@@ -144,13 +153,7 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
 GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
 {
   if (GSCHEM_IS_MAIN_WINDOW(main_window)) {
-
-#if GTK_MAJOR_VERSION < 3
-    return main_window->window;
-#else
-    return gtk_widget_get_window (main_window);
-#endif
-
+    return geda_get_widget_window (main_window);
   }
 
   return NULL;
@@ -169,4 +172,4 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 
 #endif
 
-/** @} endgroup Gschem-Page-Window */
+/** @} endgroup Gschem-Main-Window */

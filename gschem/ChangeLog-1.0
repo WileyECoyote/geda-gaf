@@ -1,3 +1,26 @@
+2016-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_dialog.c: Update GPL and copyright date.
+
+    * src/base/gschem_event.c: Update GPL and copyright date.
+
+    * include/gschem_main_window.h: Update GPL and copyright, add author
+      and contribution date.
+
+    * include/gschem_toplevel.h: Eliminate macros for inclusion in cpp,
+      update GPL and copyright date.
+
+    * include/x_menus.h: Adjust column indentation.
+
+    * include/x_settings_dialog.h: Fix minor issue; space before pointer.
+
+    * src/base/gschem_main_window.c: Revise Doxygen group comments, update
+      GPL and copyright, add author and contribution date, use macro
+      geda_get_widget_window in gschem_main_window_get_window.
+
+    * src/base/gschem_status_bar.c: Revise Doxygen group comments, update
+      copyright date.
+
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macro_widget.h: Remove include gtk/gtk, is redundant,

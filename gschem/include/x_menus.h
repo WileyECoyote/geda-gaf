@@ -112,12 +112,12 @@ struct st_recent_file_menu_data {
 };
 
 struct st_toggle_menu_data {
-  GschemToplevel *w_current;      /* We can do this because the menu is unique to the window */
-  int   toggle_id;                /* Index in st_menu_data.menu_togglers list */
-  char *toggle_name;              /* Menu string DOES NOT APPEAR TO BE SET */
-  char *menu_item_name;           /* String for the label in the menu */
-  char *menu_path;                /* String path used to locate widget programmatically setting */
-  unsigned long handler;          /* Callback signal handler ID, used to suspend emissions */
+  GschemToplevel *w_current;   /* We can do this because the menu is unique to the window */
+  int   toggle_id;             /* Index in st_menu_data.menu_togglers list */
+  char *toggle_name;           /* Menu string DOES NOT APPEAR TO BE SET */
+  char *menu_item_name;        /* String for the label in the menu */
+  char *menu_path;             /* String path used to locate widget programmatically setting */
+  unsigned long handler;       /* Callback signal handler ID, used to suspend emissions */
 };
 
 struct st_menu_radio_data {
