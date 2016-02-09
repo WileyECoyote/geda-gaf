@@ -65,7 +65,7 @@ void x_hscrollbar_set_ranges(GschemToplevel *w_current)
 static bool
 x_hscrollbar_idle_update(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel  *toplevel = w_current->toplevel;
   GtkAdjustment *hadjustment;
 
   if (w_current->h_scrollbar) {
@@ -118,9 +118,9 @@ void x_hscrollbar_update(GschemToplevel *w_current)
  */
 void x_vscrollbar_set_ranges(GschemToplevel *w_current)
 {
-  GtkAdjustment *vadjustment;
-
   if (w_current->scrollbars) {
+
+    GtkAdjustment *vadjustment;
 
     vadjustment =
     gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));

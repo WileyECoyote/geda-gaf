@@ -70,12 +70,9 @@ enum {
  */
 static void session_tree_update (GtkWidget *dialog)
 {
-  GArray        *sessions;
-  Session       *record;
   GtkTreeView   *treeview;
-  GtkTreeIter    iter;
-  GtkTreeModel  *model;
 
+  GtkTreeModel  *model;
 
   treeview = GEDA_OBJECT_GET_DATA (dialog, "tree-view");
   model    = gtk_tree_view_get_model (treeview);
@@ -85,13 +82,16 @@ static void session_tree_update (GtkWidget *dialog)
 
   if (i_sessions_is_enabled()) { /* if session data exist */
 
-    int index;
+    GArray *sessions;
+    int     index;
 
     sessions = i_sessions_get_sessions();
 
     for (index = 0; index < sessions->len; index++) {
 
-      record = &g_array_index(sessions, Session, index);
+      GtkTreeIter iter;
+
+      Session *record = &g_array_index(sessions, Session, index);
 
       /* add the record to the store */
       gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
@@ -132,18 +132,19 @@ session_dialog_get_selection(GschemDialog *dialog)
 static void
 on_rename_butt_clicked (GtkWidget *button, void *user_data)
 {
-  GschemDialog      *Dialog    = (GschemDialog*)user_data;
-  GschemToplevel    *w_current = Dialog->w_current;
-  GtkTreeSelection  *selection;
-  GtkTreeModel      *model;
-  GtkTreeIter        iter;
-  const char        *old_name;
-        char        *new_name;
+  GschemDialog   *Dialog    = (GschemDialog*)user_data;
+  GschemToplevel *w_current = Dialog->w_current;
+  char           *new_name;
 
   new_name = geda_dialog_get_string(_("Rename Session"),
                                     _("Specify new name for Session:"), NULL);
 
   if (new_name != NULL) { /* If  user did not cancel */
+
+    GtkTreeSelection *selection;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    const char       *old_name;
 
     selection = session_dialog_get_selection(Dialog);
 
@@ -215,11 +216,12 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
   GtkTreeModel      *model;
   GtkTreeIter        iter;
   const char        *name;
-  char              *filename = NULL;
 
   selection = session_dialog_get_selection(Dialog);
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+
+    char *filename;
 
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
@@ -678,7 +680,6 @@ callback_treeview_button_pressed (GtkWidget      *widget,
 {
   GschemDialog  *ThisDialog = GSCHEM_DIALOG(user_data);
   bool           retval     = FALSE;
-  GtkWidget     *button;
   TreeSelection *selection;
   GtkTreeModel  *model;
   GtkTreeIter    iter;
@@ -690,7 +691,7 @@ callback_treeview_button_pressed (GtkWidget      *widget,
 
     /* If was a double-left click */
     if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
-      button = GEDA_OBJECT_GET_DATA(ThisDialog, "open-butt");
+      GtkWidget *button = GEDA_OBJECT_GET_DATA(ThisDialog, "open-butt");
       on_open_butt_clicked (GTK_BUTTON(button), ThisDialog);
       retval = TRUE;
     }

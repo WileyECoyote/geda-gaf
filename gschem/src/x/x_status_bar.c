@@ -76,6 +76,7 @@ static void
 x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_PAN;
     x_status_bar_update_middle_mouse(w_current, NULL);
@@ -98,6 +99,7 @@ x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
 static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_REPEAT;
     x_status_bar_update_middle_mouse(w_current, NULL);
@@ -123,6 +125,7 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
                                            void      *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_STROKE;
     x_status_bar_update_middle_mouse(w_current, NULL);
@@ -146,6 +149,7 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
 static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->third_button = POPUP_ENABLED;
     x_status_bar_update_third_mouse(w_current);
@@ -168,6 +172,7 @@ static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
 static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->third_button = MOUSEPAN_ENABLED;
     x_status_bar_update_third_mouse(w_current);
@@ -228,7 +233,6 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
 void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
                                       const char     *repeat)
 {
-  char *string;
   static int previous_setting = -1;
 
   if (!StatusBar->middle_label)
@@ -272,6 +276,9 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
     }
   }
   else {
+
+    char *string;
+
     string = strcpy (StatusBar->middle_label_text,_(RC_STR_MID_REPEAT));
     strcat (string, "/");
     if (repeat) {
@@ -294,9 +301,9 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
  */
 void x_status_bar_update_third_mouse (GschemToplevel *w_current)
 {
-  static int previous_setting = -1;
-
   if (StatusBar->right_label) {
+
+    static int previous_setting = -1;
 
     if (w_current->third_button != previous_setting) {
 
