@@ -247,7 +247,7 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
   o_text_recreate(object);
 }
 
-/*! \brief Create and Add and Attribute Text Object
+/*! \brief Create and Add and Attribute GedaText Object
  *  \par Function Description
  *   Creates a new text attribute using the supplied values and properties.
  *   If \a parent is not NULL, the new attribute will be added the parent
@@ -425,27 +425,31 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
 bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
                                                          GedaObject *attrib)
 {
-  char   *name;
-  bool    modified;
-  Text   *floater;
+  GedaText *floater;
+  char     *name;
+  bool      modified;
 
   if (o_attrib_get_name_value (attrib, &name,  NULL)) {
 
     GList *attributes = o_attrib_return_attribs (parent);
     GList *floating   = o_attrib_find_floating_attribs(attributes);
-    floater           = (Text*)o_attrib_find_attrib_by_name(floating, name, 0);
+    floater           = (GedaText*)o_attrib_find_attrib_by_name(floating, name, 0);
     g_list_free (attributes);
     g_list_free (floating);
 
     if (floater != NULL) {
-      Text *attribute = (Text*)attrib;
+
+      GedaText *attribute = (GedaText*)attrib;
+
       if ((attribute->x - floater->x) ||
           (attribute->y - floater->y) ||
           (attribute->angle - floater->angle) ||
           (attribute->alignment - floater->alignment)
          )
       {
+
         int save_visible = attrib->visibility;
+
         attrib->visibility = INVISIBLE;
         o_invalidate_force (w_current, attrib); /* Erase from screen at old positon */
         attribute->x = floater->x;

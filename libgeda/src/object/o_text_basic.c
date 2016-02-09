@@ -122,11 +122,11 @@ bool o_text_get_position (int *x, int *y, GedaObject *object)
  *  Caller is responsible for string; this function allocates its own copy.
  */
 GedaObject* o_text_new(int color, int x,    int y,          int alignment,
-                   int angle, int size, int visibility, int show_name_value,
-                   const char *string)
+                       int angle, int size, int visibility, int show_name_value,
+                       const char *string)
 {
   GedaObject *new_obj=NULL;
-  Text   *text;
+  GedaText   *text;
 
   if (string == NULL) {
     return(NULL);
@@ -377,7 +377,7 @@ GedaObject *o_text_copy(GedaObject *o_current)
   if (GEDA_IS_TEXT(o_current)) {
 
     GedaObject *new_obj;
-    Text   *text_obj;
+    GedaText   *text_obj;
 
     new_obj = o_text_new (o_current->color,
                           o_current->text->x, o_current->text->y,
@@ -826,7 +826,7 @@ double o_text_get_font_size_in_points (GedaObject *object)
   return object->text->size * GEDA_FONT_FACTOR;
 }
 
-/*! \brief Get Point on the bounds of a Text object Nearest a Given Point
+/*! \brief Get Point on the bounds of a GedaText object Nearest a Given Point
  *  \par Function Description
  *  This function locate a point on the boundary of the Text object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
@@ -834,14 +834,14 @@ double o_text_get_font_size_in_points (GedaObject *object)
  *  that is the closest point on the boundary to the point given by
  *  \a x, \a y.
  *
- *  \param [in]  object  Pointer to a Text object
+ *  \param [in]  object  Pointer to a GedaText object
  *  \param [in]  x       Integer x of point near or on the text
  *  \param [in]  y       Integer y of point near or on the text
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a Text,
- *           of if the bounds is not set on the Text.
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a
+ *           GedaText object or if the bounds is not set on the Text.
  */
 bool o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
@@ -899,7 +899,7 @@ const char *o_text_get_string (GedaObject *obj)
 /*! \brief Set the font-renderer-specific bounds function.
  *  \par Function Description
  *  Set the function to be used to calculate text bounds for a given
- *  #Text Object. This allow a per text object renderer function to
+ *  #GedaText Object. This allow a per text object renderer function to
  *  be defined. If the function is not defined the renderer for the
  *  Page will be used instead, if the Page rennderer is defined.
  *
@@ -911,7 +911,7 @@ void o_text_set_rendered_bounds_func (GedaObject *object,
                                       RenderedBoundsFunc func,
                                       void *user_data) {
   g_return_if_fail (GEDA_IS_TEXT(object));
-  Text *text = GEDA_TEXT(object);
+  GedaText *text = GEDA_TEXT(object);
   text->rendered_text_bounds_func = func;
   text->rendered_text_bounds_data = user_data;
 }
@@ -946,9 +946,9 @@ void o_text_set_string (GedaObject *object, const char *new_string)
  */
 void o_text_update_disp_string (GedaObject *object)
 {
-  char *name  = NULL;
-  char *value = NULL;
-  Text *text  = object->text;
+  char     *name  = NULL;
+  char     *value = NULL;
+  GedaText *text  = object->text;
 
   GEDA_FREE (text->disp_string);
 

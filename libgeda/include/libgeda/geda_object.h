@@ -88,7 +88,7 @@ struct _GedaObject {
   GedaPath    *path;
   GedaPicture *picture;
   GedaPin     *pin;
-  Text        *text;
+  GedaText    *text;
 
   FILL_OPTIONS *fill_options;
   LINE_OPTIONS *line_options;

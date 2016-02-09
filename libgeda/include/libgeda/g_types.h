@@ -72,6 +72,6 @@ typedef struct _GedaPicture      GedaPicture;
 typedef struct _GedaPin          GedaPin;
 
 /*! \brief Geda Text Circle Object Structure */
-typedef struct _GedaText         Text;
+typedef struct _GedaText         GedaText;
 
 #endif

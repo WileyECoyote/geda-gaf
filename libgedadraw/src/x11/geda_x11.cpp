@@ -848,7 +848,7 @@ DrawBezierCurve (XPoint *points)
 void EdaX11Render::
 TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
 {
-  Text       *o_text = object->text;
+  GedaText   *o_text = object->text;
   const char *string = o_text->disp_string;
 
   int s_ascent;
@@ -1295,7 +1295,7 @@ geda_x11_draw_text (int x, int y)
 {
   if (GEDA_IS_TEXT(object)) {
 
-    Text       *o_text;
+    GedaText   *o_text;
     const char *string;
 
     int x_left;
@@ -1483,7 +1483,7 @@ geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
 
   if (GEDA_IS_TEXT(object)) {
 
-    Text       *o_text;
+    GedaText   *o_text;
     const char *string;
 
     int length;

@@ -282,7 +282,7 @@ x_draw_text (GschemToplevel *w_current)
 
     if (GEDA_IS_TEXT(o_current)) {
 
-      Text *o_text;
+      GedaText *o_text;
       int   sx, sy;
 
       x_draw_set_color (w_current);
@@ -299,9 +299,7 @@ x_draw_text (GschemToplevel *w_current)
 static void
 x_draw_complex (GschemToplevel *w_current)
 {
-  GList    *iter;
-
-  iter = RenderAdaptor->object->complex->prim_objs;
+  GList *iter = RenderAdaptor->object->complex->prim_objs;
 
   while (iter) {
     GedaObject *o_child = (GedaObject*)iter->data;
