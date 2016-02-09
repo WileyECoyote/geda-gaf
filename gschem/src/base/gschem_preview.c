@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,16 +24,27 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 /*!
- *  \brief A widget for viewing a symbol or schematic
- *  \par
- *   Typically used in dialog boxes
+ * \file gschem_preview.c
+ *
+ * \brief A widget for viewing a symbol or schematic
  */
-
-#include <config.h>
 
 #include <gschem.h>
 #include <geda_debug.h>
 
+/** \defgroup Gschem-Preview-Widget Preview Page Widget
+ * @{
+ * \brief #GschemPreview Class Implmentation
+ * \par
+ *  This module implements the preview widget class in gschem.
+ *  Preview widgets are typically used in dialog boxes to allow
+ *  users to view schematics and symbols from the file dialogs.
+ *
+ * \note image previews are handled by the image-chooser class
+ *       in libgedauio.
+ */
+
+/* Function Prototype */
 #define OVER_ZOOM_FACTOR 0.1
 
 enum {
@@ -675,3 +686,5 @@ GtkWidget *gschem_preview_new (void)
 {
   return GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW, NULL));
 }
+
+/** @} endgroup Gschem-Preview-Widget */

@@ -3,9 +3,24 @@
     * include/gschem_macro_widget.h: Remove include gtk/gtk, is redundant,
       update GPL and copyright, add author and contribution date.
 
-    * src/gschem_macro_widget.c: Revise inclusion of headers, update GPL
-      and copyright, add author and contribution date, add/edit Doxygen
+    * include/gschem_page_geometry.h: Update GPL and copyright, add author
+      and contribution date.
+
+    * src/base/gschem_macro_widget.c: Revise inclusion of headers, update
+      GPL and copyright, add author and contribution date, add/edit Doxygen
       comments.
+
+    * src/base/gschem_page_geometry.c: Revise Doxygen group comments, update
+      GPL and copyright dates.
+
+    * src/base/gschem_page_view.c: Revise Doxygen group comments, update
+      GPL and copyright dates.
+
+    * src/base/gschem_preview.c: Add Doxygen group Gschem-Preview-Widget,
+      update GPL and copyright dates.
+
+    * src/base/gschem_toplevel.c: Revise Doxygen group comments, update
+      GPL and copyright dates.
 
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
