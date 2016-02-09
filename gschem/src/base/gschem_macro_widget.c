@@ -1,21 +1,25 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ * Contributing Author: Edward Hennessy
+ * Date Contributed: November 30th, 2013
  */
 /*!
  * \file gschem_macro_widget.c
@@ -23,28 +27,24 @@
  * \brief A widget for entering macros
  */
 
-#include <config.h>
+#include <gschem.h>
+#include <geda_widgets.h>
 
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 #ifdef HAVE_MATH_H
 #include <math.h>
 #endif
 
 #include <gettext.h>
 
-#include <gschem.h>
-#include <geda_widgets.h>
-
-
 /** \defgroup Gschem-Macro-Widget Gschem Macro Widget
- *  @{ \brief This module defines the #GschemMacroWidget class
-*/
+ * @{
+ * \brief #GschemMacroWidget Class Implmentation
+ * \par
+ *  This module implements the macro entry widget in gschem. The
+ *  macro widget appears when the user activate the item, normally
+ *  using the \<SHIFT\>colon key and contains an entry field, and two
+ *  buttons; Evaluate and Cancel.
+ */
 
 enum
 {
@@ -53,7 +53,7 @@ enum
   PROP_MACRO_STRING
 };
 
-
+/* Function Prototypes */
 static void
 activate_entry (GtkWidget *entry, GschemMacroWidget *widget);
 
@@ -88,7 +88,7 @@ notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widge
 static GObjectClass *gschem_macro_widget_parent_class = NULL;
 
 
-/* Callback for when the user presses enter in the entry widget
+/* Callback; called when the user presses enter in the entry widget
  */
 static void
 activate_entry (GtkWidget *entry, GschemMacroWidget *widget)
@@ -108,7 +108,7 @@ activate_entry (GtkWidget *entry, GschemMacroWidget *widget)
 }
 
 
-/* Callback for when the user clicks the cancel button
+/* Callback; called when the user clicks the cancel button
  */
 static void
 click_cancel (GtkWidget *button, GschemMacroWidget *widget)
@@ -116,8 +116,7 @@ click_cancel (GtkWidget *button, GschemMacroWidget *widget)
   gtk_info_bar_response (GTK_INFO_BAR (widget), GEDA_RESPONSE_CANCEL);
 }
 
-
-/* Callback for when the user clicks the evaluate button
+/* Callback; called when the user clicks the evaluate button
  */
 static void
 click_evaluate (GtkWidget *entry, GschemMacroWidget *widget)
@@ -131,7 +130,6 @@ click_evaluate (GtkWidget *entry, GschemMacroWidget *widget)
     }
   }
 }
-
 
 /*! \brief Dispose of the object
  */
@@ -147,7 +145,6 @@ dispose (GObject *object)
   }
 }
 
-
 /*! \brief Finalize object
  */
 static void
@@ -158,7 +155,6 @@ finalize (GObject *object)
   g_return_if_fail (gschem_macro_widget_parent_class != NULL);
   gschem_macro_widget_parent_class->finalize (object);
 }
-
 
 /*! \brief Get a property
  *
@@ -186,8 +182,6 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
-
 
 /*! \brief Initialize GschemMacroWidget class
  *
