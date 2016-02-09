@@ -2,6 +2,8 @@
 
     * Rename Text to GedaText.
 
+    * tests/test_text.c: Add tests for testing geda_text module.
+
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Validate object in o_attrib_get_attached_attribs.

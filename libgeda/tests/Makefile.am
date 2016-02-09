@@ -9,7 +9,8 @@ check_PROGRAMS = \
 	test_net \
 	test_path  \
 	test_picture \
-	test_pin
+	test_pin \
+	test_text
 
 TESTS = $(check_PROGRAMS)
 
