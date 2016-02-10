@@ -1561,8 +1561,8 @@
 ;;    followed by an <S> typed with the <Shift> key held down.
 ;;
 ;; Key names can be found in /usr/include/gtk-2.0/gdk/gdkkeysyms.h on
-;; most Linux systems.  For other systems, please see your platform
-;; documentation.
+;; most Linux systems. For other systems, please see your platform
+;; documentation, or see libgedauio/include/geda_keysyms.h
 ;;
 ;; Later keybindings override earlier ones.
 
