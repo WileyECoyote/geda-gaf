@@ -21,6 +21,10 @@
     * src/base/gschem_status_bar.c: Revise Doxygen group comments, update
       copyright date.
 
+    * src/x/x_scroll.c: Reduce scope of vadjustment in x_vscrollbar_set_ranges.
+
+    * src/x/x_sessions.c: Reduce scope of variables in modules.
+
     * src/x/x_status_bar.c: Reduce scope of string in x_status_bar_update_
       middle_mouse and previous_settings x_status_bar_update_third_mouse.
 

@@ -85,10 +85,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
   const char *dialog_title    = _("gschem RC File Error");
   const char *err_msg_unknown = _("An unknown error occurred while parsing configuration files.");
   const char *msg_log_more    = _("The gschem log may contain more information.");
-  const char *unbound_msg;      /* As received Unbound*/
-  const char *unbound_needle = "Unbound variable:";
-  char       *unbound_sym;      /* Unbound Symbol name */
-  char       *msg2;             /* Secondary text */
+  char       *msg2;             /* Secondary message text */
 
   if (err == NULL) {
     BUG_MSG("err is NULL.");
@@ -106,6 +103,10 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     msg2 = u_string_concat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
   }
   else {
+
+    const char *unbound_msg;      /* As received Unbound */
+    const char *unbound_needle  = "Unbound variable:";
+
     /* Config files are allowed to be missing or skipped; check for this. */
     if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
         g_error_matches (*err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
@@ -114,11 +115,13 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
 
     /* Check if this was an "Unbound variable:" message */
     unbound_msg = u_string_istr ((*err)->message, unbound_needle) + 18;
-    int len =strlen(unbound_msg);
+    int len     = strlen(unbound_msg);
     if (len > 0) { /* True if u_string_istr found "Unbound variable:" */
 
-      int *iptr = (int*)retry_flag;
-      int retry = *iptr;
+      char *unbound_sym;      /* Unbound Symbol name */
+
+      int  *iptr  = (int*)retry_flag;
+      int   retry = *iptr;
 
       /* Guild added a carriage return character to the end of the
        * message, so get rid of it! */
@@ -162,7 +165,6 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
 void
 x_rc_parse_gschem (GschemToplevel *w_current, const char *rcfile) {
 
-  int attempt;
   int index;
   int retry;
 
@@ -175,8 +177,11 @@ x_rc_parse_gschem (GschemToplevel *w_current, const char *rcfile) {
 
   for ( index = 0; index < G_N_ELEMENTS(rc_processors); index++)
   {
-    retry   =  0;
+    int attempt;
+
     attempt = -1;
+    retry   =  0;
+
     do {
       rc_processors[index].parser (rc_processors[index].arg,
                                    x_rc_parse_gschem_error, &retry);
