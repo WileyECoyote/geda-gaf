@@ -4,6 +4,9 @@
 
     * tests/test_text.c: Add tests for testing geda_text module.
 
+    * src/geda/geda_text.c: Revise Doxygen comments in group and move class
+      and implements tags.
+
     * src/geda/geda_toplevel.c: Revise Doxygen group and class tags.
 
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>

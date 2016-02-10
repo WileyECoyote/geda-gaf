@@ -26,19 +26,24 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+
 /*! \file geda_text.c
- *  \brief Geda Text Object Class derived from the GedaObject Class
+ *  \brief Geda Text Object Class Module
  */
+
 /** \defgroup geda-text-object Geda Text Object
- *  @{
- */
-/*! \class Text geda_text.h "include/libgeda/geda_text.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Text Objects.
- *  A Geda Text Object is a type of graphical object, do not directly involve
- *  electrical interconnections. However, text object with strings in the
- *  for of name=value are consider attributes, which may be used to describe
- *  the electrical properties of the another object.
+ * @{
+ * \brief Implmentation of #GedaText Class
+ * \par
+ *  This module implements GedaText Objects in libgeda. A GedaText Object
+ *  is a type of graphical object that does not directly involve electrical
+ *  interconnections. However, text with strings in the form of name=value
+ *  are considered attributes, which may be used to describe the electrical
+ *  properties of another object. GedaText are derived from the GedaObject
+ *  class.
+ *
+ * \class GedaText geda_text.h "include/libgeda/geda_text.h"
+ * \implements geda-object
  */
 
 #include <config.h>

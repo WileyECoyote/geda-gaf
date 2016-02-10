@@ -27,7 +27,7 @@
  *  Date Contributed: November, 4, 2013
  */
 /*! \file geda_toplevel.c
- *  \brief Geda Toplevel Object Class derived from the base GObject Class
+ *  \brief Geda Toplevel Object Class is derived from the base GObject Class
  */
 
 /** \defgroup geda-toplevel Geda Top Level
