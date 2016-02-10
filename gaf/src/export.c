@@ -285,12 +285,13 @@ cmd_export_impl (void *data, int argc, char **argv)
   color_map = s_color_get_print_color_map();
 
   if (!settings.color) {
-    /* Create a black and white color map.  All non-background colors
+
+    /* Create a black and white color map. All non-background colors
      * are black. */
     COLOR white = {~0, ~0, ~0, ~0, TRUE};
     COLOR black = {0, 0, 0, ~0, TRUE};
 
-    for (i = 0; i < MAX_COLORS; i++) {
+    for (i = 0; i < color_map->len; i++) {
 
       COLOR *c = &g_array_index (color_map, COLOR, i);
 

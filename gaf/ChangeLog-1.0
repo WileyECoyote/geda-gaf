@@ -1,3 +1,8 @@
+2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/export.c: Use the length of garray instead of MAX_COLORS in
+      function cmd_export_impl.
+
 2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf.c: provide explicit path to builtins.h and gettext.h.
