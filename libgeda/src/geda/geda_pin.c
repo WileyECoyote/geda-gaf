@@ -28,16 +28,20 @@
 /*! \file geda_pin.c
  *  \brief Geda Pin GedaObject Class derived from the GedaObject Class
  */
+
 /** \defgroup geda-pin-object Geda Pin GedaObject
  *  @{
- */
-/*! \class Pin geda_pin.h "include/libgeda/geda_pin.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Pin GedaObjects.
- *  A Geda Pin GedaObject is symbol for electrical object used to represent
- *  a potential connection node in higher level assemblies. Pin objects
- *  one node point that can represent a single node (PIN_NET_NODE) or
- *  many nodes (PIN_BUS_NODE).
+ * \brief Implmentation of #GedaPin Class
+ * \par
+ *  This module implements GedaPin Objects in libgeda. GedaPin Objects are
+ *  symbols for electrical objects used to represent a potential connection
+ *  node in higher level assemblies. GedaPin object node points can represent
+ *  a single node (PIN_NET_NODE) or many nodes (PIN_BUS_NODE). The GedaPin
+ *  class is derived from the GedaLine class.
+ *
+ * \class Pin geda_pin.h "include/libgeda/geda_pin.h"
+ * \implements geda-line
+ * \implements geda-object
  */
 
 #include <config.h>

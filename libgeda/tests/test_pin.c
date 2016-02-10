@@ -22,7 +22,6 @@ int test_pin (void)
 
   if (GEDA_IS_ARC(object)) {
     fprintf(stderr, "%s matched type GedaArc\n", TOBJECT);
-
     result++;
   }
 
