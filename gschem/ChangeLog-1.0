@@ -1,5 +1,7 @@
 2016-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gschem/gschem-tools-menu.scm: Add drc item to tools menus.
+
     * src/base/gschem_dialog.c: Update GPL and copyright date.
 
     * src/base/gschem_event.c: Update GPL and copyright date.
@@ -20,6 +22,10 @@
 
     * src/base/gschem_status_bar.c: Revise Doxygen group comments, update
       copyright date.
+
+    * gschem/src/x/x_rc.c: Reduce scope of unbound_msg unbound_sym, and,
+      unbound_needle in x_rc_parse_gschem_error, reduce scope of attempt in
+      x_rc_parse_gschem.
 
     * src/x/x_scroll.c: Reduce scope of vadjustment in x_vscrollbar_set_ranges.
 

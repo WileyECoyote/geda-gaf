@@ -149,9 +149,20 @@
 (define (tools:open-editor)
   (system (string-append tools:editor " &")))
 
+;; ----------------- tools:run-drc ----------------------------
+(define (tools:run-drc)
+  (let  ((fout (string-append (tools:ifbase) "-drc.txt")))
+    (if (tools:check-file "sch")
+      (begin
+        (system (string-append "gnetlist -g drc -o " fout " " (tools:ifpath)))
+        (tools:open-editor? fout)
+      )
+    )
+  )
+)
 ;; ----------------- tools:run-drc2 ----------------------------
 (define (tools:run-drc2)
-  (let	((fout   (string-append (tools:ifbase) "-drc2.txt")))
+  (let	((fout (string-append (tools:ifbase) "-drc2.txt")))
     (if (tools:check-file "sch")
       (begin
         (system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
@@ -230,7 +241,8 @@
     ("_Symbols"                 #f                     "geda-component"     "Tool for symbol files")
     ("SEPARATOR"                #f                     #f)
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
-    ("Run DRC"              tools:run-drc2             "geda-check-org"     "Launch design rule checker")
+    ("Run DRC 1"            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
+    ("Run DRC 2"            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
     ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
     ("Bill of Materials"    tools:run-bom              #f                   "Generate a BOM")
 
