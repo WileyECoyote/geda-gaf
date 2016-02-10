@@ -29,15 +29,18 @@
 /*! \file geda_toplevel.c
  *  \brief Geda Toplevel Object Class derived from the base GObject Class
  */
-/** \defgroup geda-toplevel Geda Toplevel Data Structure
- *  @{
- */
-/*! \class GedaToplevel geda_toplevel.h "include/libgeda/geda_toplevel.h"
- *  \brief
+
+/** \defgroup geda-toplevel Geda Top Level
+ * @{
+ * \brief Implmentation of #GedaToplevel Class
+ * \par
+ *  This module implements the geda-top-level class in libgeda.
  *  A GedaToplevel Data Structure contains information used to coordinate
  *  configuration and session information with applications such as default
  *  object properties and page hierarchy. Libgeda loads and manages all
  *  schematic and symbol documents using data stored in toplevel structures.
+ *
+ * \class GedaToplevel geda_toplevel.h "include/libgeda/geda_toplevel.h"
  */
 
 #include <config.h>
