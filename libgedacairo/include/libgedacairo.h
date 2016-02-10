@@ -23,7 +23,7 @@
 #include <cairo.h>
 #include <pango/pangocairo.h>
 
-#include <edarenderer.h>
-#include <edacairo.h>
+#include "edarenderer.h"
+#include "edacairo.h"
 
 #endif /* !__LIBGEDACAIRO_H__ */
