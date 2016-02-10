@@ -86,7 +86,6 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
   GtkWidget  *filechooser;
         char *cwd;
   const char *filename;
-  const char *newfilename;
 
   filechooser = gtk_file_chooser_dialog_new (_("Select PostScript Filename..."),
                                              GTK_WINDOW (dialog),
@@ -115,6 +114,8 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
 
   if (gtk_dialog_run (GTK_DIALOG (filechooser)) == GEDA_RESPONSE_ACCEPT)
   {
+    const char *newfilename;
+
     newfilename =
     gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (filechooser));
     SetEntryText( dialog->fnfield, newfilename);
@@ -144,6 +145,7 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
   i = 0;
   string = (char *) s_papersizes_get (i);
   while (string != NULL) {
+
     geda_combo_box_insert_text (GEDA_COMBO_BOX (combobox), i, string);
 
     i++;
@@ -203,11 +205,10 @@ static void print_dialog_instance_init_type_combobox (PrintDialog * d)
 static void
 print_dialog_instance_init_orient_combobox (PrintDialog * d)
 {
-  GtkListStore *model;
-  GtkTreeIter iter;
+  GtkWidget       *combobox;
+  GtkListStore    *model;
   GtkCellRenderer *renderer;
-
-  GtkWidget *combobox;
+  GtkTreeIter      iter;
 
   model = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
 
@@ -651,7 +652,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
   int   type    = toplevel->print_output_type;
 
   int   paperidx, x, y, result;
-  char *string, *destination;
+
   bool  usefile = FALSE;
 
   GtkDialog *dialog;
@@ -664,9 +665,11 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
    * better way of doing it with current implementation of
    * varying paper size though. */
   paperidx = 0;
+
   while (TRUE) {
 
-    string = (char *) s_papersizes_get (paperidx);
+    char *string = (char*)s_papersizes_get (paperidx);
+
     s_papersizes_get_size (string, &x, &y);
 
     if ((x == toplevel->paper_width) && (y == toplevel->paper_height)) {
@@ -704,6 +707,8 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
   result = gtk_dialog_run (dialog);
 
   if (result == GEDA_RESPONSE_ACCEPT) {
+
+    char *destination;
 
     /* Extract values from dialog and set the paper size */
     g_object_get (dialog,
@@ -892,10 +897,11 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   /* If there are no printable objects, draw nothing. */
   if (!status) return;
 
-  w_width = wx_max - wx_min;
+  w_width  = wx_max - wx_min;
   w_height = wy_max - wy_min;
 
   scale = fmin (cr_width / w_width, cr_height / w_height);
+
   cairo_matrix_init (&mtx,
                      scale, 0,
                      0, -scale,
@@ -910,8 +916,9 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   color_map = s_color_get_print_color_map();
 
   if (!is_color) {
-    int i;
-    for (i = 0; i < MAX_COLORS; i++) {
+    int i,len;
+    len = color_map->len;
+    for (i = 0; i < len; i++) {
 
       COLOR *c = &g_array_index (color_map, COLOR, i);
 
