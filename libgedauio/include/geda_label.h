@@ -43,8 +43,6 @@
  * */
 #define ROTATION_ELLIPSIZE_PADDING 2
 
-BEGIN_DECLS
-
 struct _GdkRGBA
 {
   double red;
@@ -110,6 +108,10 @@ struct _GedaLabelClass
   bool (*activate_link)    (GedaLabel *label, const char *uri);
 
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GType       geda_label_get_type                     (void)           GEDA_CONST;
 
@@ -237,6 +239,8 @@ void _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
 int  _geda_label_get_cursor_position                 (GedaLabel *label);
 int  _geda_label_get_selection_bound                 (GedaLabel *label);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_LABEL_H__ */

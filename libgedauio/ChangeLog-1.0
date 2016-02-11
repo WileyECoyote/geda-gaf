@@ -1,5 +1,10 @@
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_label.h: remove __cplusplus macros, just spell it out for
+      static analyzers having trouble locating headers.
+
+2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_handlebox.c: Add function geda_handle_box_get_toolbar,
       replace widget->allocation with gtk_widget_set_allocation.
 
