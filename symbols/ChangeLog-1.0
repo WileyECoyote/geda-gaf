@@ -1,3 +1,9 @@
+2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM536003-1.sym: Add symbol Buck, 36V, Fixed 3.3V, 0.65A.
+
+    * ti/switchreg/LM536013-1.sym: Add symbol Buck, 36V, Fixed 3.3V, 1A.
+
 2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM53600A-1.sym: Add symbol Adjustable Buck, 36V, 0.65A.
