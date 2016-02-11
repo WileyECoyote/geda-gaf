@@ -2,6 +2,8 @@
 
     * ti/switchreg/LM53600A-1.sym: Add symbol Adjustable Buck, 36V, 0.65A.
 
+    * ti/switchreg/LM53601A-1.sym: Add symbol Adjustable Buck, 36V, 1A.
+
 2016-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/electrolytic/capacitor-2.sym: Translate attributes such that
