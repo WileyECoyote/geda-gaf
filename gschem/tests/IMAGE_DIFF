@@ -1,8 +1,8 @@
 #!/bin/sh
 
-LOG=test-suite.log
 IMAGE_SCRIPT=../../scripts/image.scm
 DEFAULT_FONT_NAME="Arial"
+RENDERER="-a X11"
 
 # -- For Colorization ---
 RED='\033[0;40;;31m'
@@ -36,12 +36,12 @@ if test -f $input ; then
 
   newpng="${filebase}.png"
 
-  $TEST_APP -q -npz -a X11 -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} >> ${LOG} 2>&1
+  $TEST_APP -q -npz ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} >> ${LOG} 2>&1
   ret_code=$?
 
   if [ $ret_code -ne 0 ]; then
     cat << EOF > ${LOG}
-      ${TEST_APP} --verbose -npz -a X11 -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
+      ${TEST_APP} --verbose -npz ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
       exited with code ${ret_code}
 EOF
   elif [ ! -f "$newpng" ] ; then

@@ -18,7 +18,7 @@ BUILDDIR="."
 SRCDIR="."
 ERRDIR=mismatched
 
-DEBUG=false
+#DEBUG=false
 REGENERATE=false
 VERBOSE=true
 
@@ -314,7 +314,7 @@ elif [ "$#" -eq 2 ] ; then
   SRCDIR=$2
 fi
 
-if $DEBUG ; then
+if test ! -z $DEBUG ; then
   vecho "Debugging mode is active"
 fi
 
@@ -386,13 +386,13 @@ else
 fi
 
 # Clean up if not debugging
-if ! $DEBUG ; then
+if test ! -z $DEBUG ; then
+  image_func_config
+else
+  vecho "Removing temporary test directories"
   rm -rf ${RUNDIR}
   rm -rf libs
   rm -rf gEDA
-else
-  image_func_config
 fi
 
 exit $FAILCOUNT
-

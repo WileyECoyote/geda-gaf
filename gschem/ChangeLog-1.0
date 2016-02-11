@@ -1,3 +1,13 @@
+2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/IMAGE_DIFF: Remove LOG=test-suite.log, make renderer adapter
+      a variable RENDERER.
+
+    * tests/TEST_FUNCS: Relocate LOG=test-suite.log from IMAGE_DIFF.
+
+    * tests/runtest.sh: Adjust DEBUG conditionals, add verbose output when
+      removing temporary directories.
+
 2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Eliminate variable image_extents in x_image_setup,
