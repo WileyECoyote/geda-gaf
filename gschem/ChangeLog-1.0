@@ -1,5 +1,7 @@
 2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_cprop.c: Revise/edit atk text, fix spelling identifier.
+
     * tests/IMAGE_DIFF: Remove LOG=test-suite.log, make renderer adapter
       a variable RENDERER.
 

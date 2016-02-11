@@ -1432,7 +1432,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   atk_obj = atk_widget_linked_label_new (device_label, properties->device_entry);
 
   if ( atk_obj ) {
-    atk_object_set_name        ( atk_obj,   _("Device indentifier entry"));
+    atk_object_set_name        ( atk_obj,   _("Device identifier entry"));
     atk_object_set_description ( atk_obj,      device_tip );
   }
 
@@ -1485,7 +1485,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   atk_obj = atk_widget_linked_label_new (comment_label, properties->comment_entry);
 
   if ( atk_obj ) {
-    atk_object_set_name        ( atk_obj,   _("Comments entry"));
+    atk_object_set_name        ( atk_obj,   _("Entry for comments"));
     atk_object_set_description ( atk_obj,      comment_tip );
   }
 
@@ -1499,7 +1499,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   atk_obj = atk_widget_linked_label_new (refdes_label, properties->refdes_combo);
 
   if ( atk_obj ) {
-    atk_object_set_name        ( atk_obj,   _("Reference designator entry"));
+    atk_object_set_name        ( atk_obj,   _("Entry for reference designator"));
     atk_object_set_description ( atk_obj,      refdes_tip );
   }
 
@@ -1541,7 +1541,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   atk_obj = atk_widget_linked_label_new (mname_label, properties->mname_entry);
 
   if ( atk_obj ) {
-    atk_object_set_name        ( atk_obj,   _("Entry field for model file name"));
+    atk_object_set_name        ( atk_obj,   _("Entry for model file name"));
     atk_object_set_description ( atk_obj,      mname_tip );
   }
 
