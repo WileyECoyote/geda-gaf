@@ -26,7 +26,7 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_pin.c
- *  \brief Geda Pin GedaObject Class derived from the GedaObject Class
+ *  \brief Geda Pin Object Class Module
  */
 
 /** \defgroup geda-pin-object Geda Pin GedaObject
@@ -39,7 +39,7 @@
  *  a single node (PIN_NET_NODE) or many nodes (PIN_BUS_NODE). The GedaPin
  *  class is derived from the GedaLine class.
  *
- * \class Pin geda_pin.h "include/libgeda/geda_pin.h"
+ * \class GedaPin geda_pin.h "include/libgeda/geda_pin.h"
  * \implements geda-line
  * \implements geda-object
  */

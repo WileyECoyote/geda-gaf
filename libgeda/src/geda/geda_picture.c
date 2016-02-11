@@ -27,16 +27,20 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_picture.c
- *  \brief Geda Picture GedaObject Class derived from the GedaObject Class
+ *  \brief Geda Picture Object Class Module
  */
-/** \defgroup geda-picture-object Geda Picture GedaObject
- *  @{
- */
-/*! \class Picture geda_picture.h "include/libgeda/geda_picture.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Picture GedaObjects.
- *  A Geda Picture GedaObject is a type graphical object used to insert images
- *  such as graphs or photos.
+
+/** \defgroup geda-picture-object Geda Picture Object
+ * @{
+ * \brief Implmentation of #GedaPicture Class
+ * \par
+ *  This module implements GedaPicture Objects in libgeda. A GedaPicture
+ *  object is a type of graphical object used to insert images such as
+ *  graphs or photos. GedaPicture are derived from the GedaObject base
+ *  class.
+ *
+ * \class GedaPicture geda_picture.h "include/libgeda/geda_picture.h"
+ * \implements geda-object
  */
 
 #include <config.h>

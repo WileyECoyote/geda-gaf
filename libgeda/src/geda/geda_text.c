@@ -26,7 +26,6 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
-
 /*! \file geda_text.c
  *  \brief Geda Text Object Class Module
  */
