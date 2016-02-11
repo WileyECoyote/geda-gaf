@@ -3,6 +3,10 @@
     * src/geda/geda_picture.c: Revise Doxygen comments in group and move class
       and implements tags.
 
+    * src/object/o_line_basic.c: Remove setting of d in o_line_print_dashed, set
+      but not used, reduce scope of dx and dy in o_line_length, adjust Doxygen
+      comment blocks.
+
 2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Revise Doxygen comments in group and move class

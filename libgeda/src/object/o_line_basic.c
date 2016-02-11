@@ -31,9 +31,9 @@
 
 #include <geda_debug.h>
 
-/*! \brief Create and add line Object to list
- *
- *  \par Function Description
+/*!
+ * \brief Create and add line Object to list
+ * \par Function Description
  *  This function creates a new object representing a line.
  *
  *  The line is described by its two ends - <B>x1</B>,<B>y1</B> and
@@ -50,12 +50,13 @@
  *  It can be changed after with the #o_set_line_options() and
  *  #o_set_fill_options().
  *
- *  \param [in]     color        Circle line color.
- *  \param [in]     x1           Upper x coordinate.
- *  \param [in]     y1           Upper y coordinate.
- *  \param [in]     x2           Lower x coordinate.
- *  \param [in]     y2           Lower y coordinate.
- *  \return A pointer to the new end of the object list.
+ * \param [in]     color        Circle line color.
+ * \param [in]     x1           Upper x coordinate.
+ * \param [in]     y1           Upper y coordinate.
+ * \param [in]     x2           Lower x coordinate.
+ * \param [in]     y2           Lower y coordinate.
+ *
+ * \return A pointer to the new end of the object list.
  */
 GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
 {
@@ -77,16 +78,18 @@ GedaObject *o_line_new( int color, int x1, int y1, int x2, int y2)
   return new_obj;
 }
 
-/*! \brief Create a copy of a line.
+/*!
+ * \brief Create a copy of a line.
  *
- *  \par Function Description
+ * \par Function Description
  *  This function creates a copy of the \a GedaLine object pointed by
  *  <B>\a o_current</B> describing a line. The coordinates of the ends
  *  of the new line are set with the ones of the original line.
  *  The two lines have the same #LINE_TYPE
  *
- *  \param [in]  o_current  GedaLine GedaObject to copy.
- *  \return The new GedaObject
+ * \param [in]  o_current  GedaLine GedaObject to copy.
+ *
+ * \return The new GedaObject
  */
 GedaObject *o_line_copy(GedaObject *o_current)
 {
@@ -112,8 +115,9 @@ GedaObject *o_line_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Modify the description of a line Object.
- *  \par Function Description
+/*!
+ * \brief Modify the description of a line Object.
+ * \par Function Description
  *  This function modifies the coordinates of one of the two ends of
  *  the line described by <B>\a object</B>. The new coordinates of this end,
  *  identified by <B>\a whichone</B>, are given by <B>\a x</B> and <B>\a y</B>
@@ -122,10 +126,10 @@ GedaObject *o_line_copy(GedaObject *o_current)
  *  The coordinates of the end of line is modified in the world
  *  coordinate system. Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     GedaLine Object to modify.
- *  \param [in]     x          New x coordinate.
- *  \param [in]     y          New y coordinate.
- *  \param [in]     whichone   Which line parameter to modify.
+ * \param [in,out] object     GedaLine Object to modify.
+ * \param [in]     x          New x coordinate.
+ * \param [in]     y          New y coordinate.
+ * \param [in]     whichone   Which line parameter to modify.
  *
  *  <B>whichone</B> can have the following values:
  *  <DL>
@@ -157,9 +161,10 @@ void o_line_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Create line Object from character string.
+/*!
+ * \brief Create line Object from character string.
  *
- *  \par Function Description
+ * \par Function Description
  *  This function creates a line Object from the character string
  *  <B>*buf</B> the description of a box.
  *
@@ -173,13 +178,13 @@ void o_line_modify(GedaObject *object, int x, int y, int whichone)
  *    <DT>*</DT><DD>the file format used for the releases after 20010704.
  *  </DL>
  *
- *  \param [in]  buf             Character string with line description.
- *  \param [in]  release_ver     libgeda release version number.
- *  \param [in]  fileformat_ver  libgeda file format version number.
+ * \param [in]  buf             Character string with line description.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  libgeda file format version number.
  *
- *  \param [out] err             A GError obejct
+ * \param [out] err             A GError obejct
  *
- *  \return A pointer to the new line object, or NULL on error.
+ * \return A pointer to the new line object, or NULL on error.
  */
 GedaObject* o_line_read (const char buf[], unsigned int release_ver,
                                        unsigned int fileformat_ver,
@@ -262,20 +267,19 @@ GedaObject* o_line_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Create a character string representation of a line Object.
- *
- *  \par Function Description
+/*!
+ * \brief Create a character string representation of a line Object.
+ * \par Function Description
  *  The function formats a string in the buffer <B>*buff</B> to describe
  *  the box object <B>*object</B>.
  *  It follows the post-20000704 release file format that handle the
  *  line type and fill options - filling is irrelevant here.
  *
- *  \param [in] object  GedaLine Object to create string from.
- *  \return A pointer to the line Object character string.
+ * \param [in] object  GedaLine Object to create string from.
  *
- *  \note
- *  Caller must GEDA_FREE returned character string.
+ * \return A pointer to the line Object character string.
  *
+ * \note Caller must GEDA_FREE returned character string.
  */
 char *o_line_save(GedaObject *object)
 {
@@ -311,16 +315,15 @@ char *o_line_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief Translate a line position in WORLD coordinates by a delta
- *
- *  \par Function Description
+/*!
+ * \brief Translate a line position in WORLD coordinates by a delta
+ * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the line
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     GedaLine Object to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move.
-
+ * \param [in,out] object     GedaLine Object to translate
+ * \param [in]     dx         x distance to move
+ * \param [in]     dy         y distance to move.
  */
 void o_line_translate( GedaObject *object, int dx, int dy)
 {
@@ -338,19 +341,18 @@ void o_line_translate( GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Rotate a GedaLine Object using WORLD coordinates
- *
- *  \par Function Description
+/*!
+ * \brief Rotate a GedaLine Object using WORLD coordinates
+ * \par Function Description
  *  This function rotates the line described by
  *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in,out]  object    GedaLine Object to rotate
- *  \param [in]      center_x  Rotation center x coordinate in WORLD units
- *  \param [in]      center_y  Rotation center y coordinate in WORLD units
- *  \param [in]      angle     Rotation angle in degrees (See note below).
-
+ * \param [in,out]  object    GedaLine Object to rotate
+ * \param [in]      center_x  Rotation center x coordinate in WORLD units
+ * \param [in]      center_y  Rotation center y coordinate in WORLD units
+ * \param [in]      angle     Rotation angle in degrees (See note below).
  */
 void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
@@ -395,19 +397,18 @@ void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
 
 }
 
-/*! \brief Mirror a line using WORLD coordinates
- *
- *  \par Function Description
+/*!
+ * \brief Mirror a line using WORLD coordinates
+ * \par Function Description
  *  This function mirrors the line from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
  *  The line if first translated to the origin, then mirrored
  *  and finally translated back at its previous position.
  *
- *  \param [in,out] object    GedaLine Object to mirror
- *  \param [in]     center_x  Origin x coordinate in WORLD units
- *  \param [in]     center_y  Origin y coordinate in WORLD units.
-
+ * \param [in,out] object    GedaLine Object to mirror
+ * \param [in]     center_x  Origin x coordinate in WORLD units
+ * \param [in]     center_y  Origin y coordinate in WORLD units.
  */
 void o_line_mirror(GedaObject *object, int center_x, int center_y)
 {
@@ -424,14 +425,16 @@ void o_line_mirror(GedaObject *object, int center_x, int center_y)
   o_line_translate(object, center_x, center_y);
 }
 
-/*! \brief get the position of the first line point
- *  \par Function Description
+/*!
+ * \brief get the position of the first line point
+ * \par Function Description
  *  This function gets the position of the first point of a line object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ * \param [in] object   The object to get the position.
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_line_get_position (int *x, int *y, GedaObject *object)
 {
@@ -443,9 +446,9 @@ bool o_line_get_position (int *x, int *y, GedaObject *object)
   return TRUE;
 }
 
-/*! \brief Print line to Postscript document.
- *
- *  \par Function Description
+/*!
+ * \brief Print line to Postscript document.
+ * \par Function Description
  *  This function prints the line described by the <B>\a o_current</B>
  *  parameter to a Postscript document.
  *  The Postscript document is described by the <B>fp</B> file pointer.
@@ -453,11 +456,11 @@ bool o_line_get_position (int *x, int *y, GedaObject *object)
  *  Parameters of the line are extracted from object pointed by
  *  <B>\a o_current</B>.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  GedaLine Object to write to document.
- *  \param [in] origin_x   Page x coordinate to place line Object.
- *  \param [in] origin_y   Page y coordinate to place line Object.
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp         FILE pointer to Postscript document.
+ * \param [in] o_current  GedaLine Object to write to document.
+ * \param [in] origin_x   Page x coordinate to place line Object.
+ * \param [in] origin_y   Page y coordinate to place line Object.
  */
 void o_line_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                   int origin_x, int origin_y)
@@ -550,8 +553,9 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                origin_x, origin_y);
 }
 
-/*! \brief Print a solid line to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a solid line to Postscript document.
+ * \par Function Description
  *  This function prints a line when a solid line type is required.
  *  The line is defined by the coordinates of its two ends in
  *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
@@ -559,19 +563,19 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  The parameters <B>length</B> and <B>space</B> are ignored whereas
  *  <B>line_width</B> specifies the width of the printed line.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] color         Line color.
- *  \param [in] line_width    Width of line.
- *  \param [in] capstyle      Capstyle of line.
- *  \param [in] length        (unused).
- *  \param [in] space         (unused).
- *  \param [in] origin_x      Page x coordinate to place line Object.
- *  \param [in] origin_y      Page y coordinate to place line Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        (unused).
+ * \param [in] space         (unused).
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
                         int x1, int y1, int x2, int y2,
@@ -584,8 +588,9 @@ void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"%d %d %d %d %d %d line\n", x1,y1,x2,y2, line_width, capstyle);
 }
 
-/*! \brief Print a dotted line to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dotted line to Postscript document.
+ * \par Function Description
  *  This function prints a line when a dotted line type is required.
  *  The line is defined by the coordinates of its two ends in
  *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
@@ -600,19 +605,19 @@ void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
  *
  *  The function sets the color in which the line will be printed with.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] color         Line color.
- *  \param [in] line_width    Width of line.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        (unused).
- *  \param [in] space         Space between dots.
- *  \param [in] origin_x      Page x coordinate to place line Object.
- *  \param [in] origin_y      Page y coordinate to place line Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        (unused).
+ * \param [in] space         Space between dots.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
                          int x1, int y1, int x2, int y2,
@@ -670,8 +675,9 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
 
-/*! \brief Print a dashed line to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dashed line to Postscript document.
+ * \par Function Description
  *  This function prints a line when a dashed line type is required.
  *  The line is defined by the coordinates of its two ends in
  *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
@@ -685,19 +691,19 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  The function sets the color in which the line will be printed and
  *  the width of the line - that is the width of the dashes.
  *
- *  \param [in] toplevel      The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] color         Line color.
- *  \param [in] line_width    Width of line.
- *  \param [in] capstyle      Capstyle of line.
- *  \param [in] length        Length of a dash.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place line Object.
- *  \param [in] origin_y      Page y coordinate to place line Object.
+ * \param [in] toplevel      The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        Length of a dash.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
                          int x1, int y1, int x2, int y2,
@@ -763,13 +769,10 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
    */
 
   if ((d + length) < l) {
-
-    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
   }
   else {
-
     xb = x2;
     yb = y2;
   }
@@ -780,8 +783,9 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
 }
 
 
-/*! \brief Print a centered line type line to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a centered line type line to Postscript document.
+ * \par Function Description
  *  This function prints a line when a centered line type is required.
  *  The line is defined by the coordinates of its two ends in
  *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
@@ -796,19 +800,19 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  width of the line - that is the width of the dashes and the diameter
  *  of the dots.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] color         Line color.
- *  \param [in] line_width    Width of line.
- *  \param [in] capstyle      Capstyle of line.
- *  \param [in] length        Length of a dash.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place line Object.
- *  \param [in] origin_y      Page y coordinate to place line Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        Length of a dash.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
                          int x1, int y1, int x2, int y2,
@@ -918,8 +922,9 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
    */
 }
 
-/*! \brief Print a phantom line type line to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a phantom line type line to Postscript document.
+ * \par Function Description
  *  This function prints a line when a phantom line type is required.
  *  The line is defined by the coordinates of its two ends in
  *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
@@ -934,19 +939,19 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
  *  width of the line - that is the width of the dashes and the diameter
  *  of the dots.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] color         Line color.
- *  \param [in] line_width    Width of line.
- *  \param [in] capstyle      Capstyle of line.
- *  \param [in] length        Length of a dash.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place line Object.
- *  \param [in] origin_y      Page y coordinate to place line Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        Length of a dash.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
                           int x1, int y1, int x2, int y2,
@@ -1085,12 +1090,13 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
 
-/*! \brief Scale a GedaLine object
- *  \par Function Description
+/*!
+ * \brief Scale a GedaLine object
+ * \par Function Description
  *
- *  \param [in] object
- *  \param [in] x_scale
- *  \param [in] y_scale
+ * \param [in] object
+ * \param [in] x_scale
+ * \param [in] y_scale
  */
 void o_line_scale(GedaObject *object, int x_scale, int y_scale)
 {
@@ -1106,15 +1112,15 @@ void o_line_scale(GedaObject *object, int x_scale, int y_scale)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Is point an End Point of the given GedaLine
- *
- *  \par Function Description
+/*!
+ * \brief Is point an End Point of the given GedaLine
+ * \par Function Description
  *  This function check if \a point is an end-point of \a object
  *
- *  \param [in] object GedaLine object
- *  \param [in] point  Point
+ * \param [in] object GedaLine object
+ * \param [in] point  Point
  *
- *  \return TRUE if point is an end-point of the line
+ * \return TRUE if point is an end-point of the line
  */
 bool o_line_is_endpoint (GedaObject *object, POINT *point)
 {
@@ -1136,12 +1142,13 @@ bool o_line_is_endpoint (GedaObject *object, POINT *point)
   return anwser;
 }
 
-/*! \brief Get which end of Line is closest to a Point
- *  \par Function Description
+/*!
+ * \brief Get which end of Line is closest to a Point
+ * \par Function Description
  *  Determines which end-point of \a object is closest to the
  *  given point.
  *
- *  \returns 0 or 1 or -1 if object is not a line
+ * \returns 0 or 1 or -1 if object is not a line
  */
 int o_line_get_closest_endpoint(GedaObject *object, int x, int y)
 {
@@ -1159,19 +1166,19 @@ int o_line_get_closest_endpoint(GedaObject *object, int x, int y)
   return anwser;
 }
 
-/*! \brief Determine the Intersection of a linear GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Determine the Intersection of a linear GedaObject
+ * \par Function Description
  *  This function determines if two linear objects intersect. If both
  *  are derived from Line and intersect the function returns true and
  *  the value of points is set to that of the intersection. Otherwise
  *  the function returns false.
  *
- *  \param [in]  object1 First Linear object
- *  \param [in]  object2 Second Linear object
- *  \param [out] point   Intersection if both are lines and intersect
+ * \param [in]  object1 First Linear object
+ * \param [in]  object2 Second Linear object
+ * \param [out] point   Intersection if both are lines and intersect
  *
- *  \return TRUE if both are lines and intersect
+ * \return TRUE if both are lines and intersect
  */
 bool o_line_get_intersection(GedaObject *object1, GedaObject *object2, POINT *point)
 {
@@ -1259,15 +1266,15 @@ bool o_line_get_intersection(GedaObject *object1, GedaObject *object2, POINT *po
   return intersect;
 }
 
-/*! \brief Calculate the Midpoint of a linear GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Calculate the Midpoint of a linear GedaObject
+ * \par Function Description
  *  This function calculates the midpoint of a linear object.
  *
- *  \param [in]  object Linear object whose midpoint is to be determined
- *  \param [out] point  The midpoint if \a object was linear
+ * \param [in]  object Linear object whose midpoint is to be determined
+ * \param [out] point  The midpoint if \a object was linear
  *
- *  \return TRUE if \a object is linear
+ * \return TRUE if \a object is linear
  */
 bool o_line_get_midpoint(GedaObject *object, POINT *point)
 {
@@ -1284,20 +1291,21 @@ bool o_line_get_midpoint(GedaObject *object, POINT *point)
   return status;
 }
 
-/*! \brief Get Point on a Line that is Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a Line that is Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on a Line object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set to the point on the
  *  line that is the closest point on the line to the point given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to a Line object
- *  \param [in]  x       Integer x of point near or on the line
- *  \param [in]  y       Integer y of point near or on the line
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to a Line object
+ * \param [in]  x       Integer x of point near or on the line
+ * \param [in]  y       Integer y of point near or on the line
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a Line.
+ * \returns TRUE is the results are valid, FALSE if \a object was not a Line.
  */
 bool o_line_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
@@ -1393,14 +1401,15 @@ bool o_line_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
   return result;
 }
 
-/*! \brief Calculates the Slope of a Line GedaObject
- *  \par Function Description
+/*!
+ * \brief Calculates the Slope of a Line GedaObject
+ * \par Function Description
  *  This function calculates the slope of a line object
  *
- *  \param [in]  object  A line Object
- *  \param [out] slope   The slope if not infinite
+ * \param [in]  object  A line Object
+ * \param [out] slope   The slope if not infinite
  *
- *  \return True if the slope was set, otherwise false
+ * \return True if the slope was set, otherwise false
  */
 bool o_line_get_slope (GedaObject *object, double *slope)
 {
@@ -1423,27 +1432,30 @@ bool o_line_get_slope (GedaObject *object, double *slope)
 }
 
 
-/*! \brief calculate the length of a line object
- *  \par Function Description
+/*!
+ * \brief calculate the length of a line object
+ * \par Function Description
  *  This function calculates the length of a line object
  *
- *  \param [in] object  a line Object
- *  \return The length of the line
+ * \param [in] object  a line Object
+ *
+ * \return The length of the line
  */
 double o_line_length(GedaObject *object)
 {
   double length;
-  double dx, dy;
 
   if (GEDA_IS_LINE(object)) {
 
-  dx = object->line->x[0]-object->line->x[1];
-  dy = object->line->y[0]-object->line->y[1];
+    double dx, dy;
+
+    dx = object->line->x[0]-object->line->x[1];
+    dy = object->line->y[0]-object->line->y[1];
 
 #if HAVE_HYPOT
-  length = hypot (dx, dy);
+    length = hypot (dx, dy);
 #else
-  length = sqrt((dx*dx) + (dy*dy));
+    length = sqrt((dx*dx) + (dy*dy));
 #endif
 
   }
@@ -1454,7 +1466,8 @@ double o_line_length(GedaObject *object)
   return (length);
 }
 
-/*! \brief Calculates the distance between the given point and the closest
+/*!
+ * \brief Calculates the distance between the given point and the closest
  *  point on the given line segment.
  *
  *  If the closest point on the line resides beyond the line segment's
@@ -1464,12 +1477,13 @@ double o_line_length(GedaObject *object)
  *  If the line represents a single point (the endpoints are the same), this
  *  function calcualtes the distance to that point.
  *
- *  \param [in] object       A line Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
- *  \return The shortest distance from the object to the point. With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] object       A line Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
+ *
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double o_line_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
