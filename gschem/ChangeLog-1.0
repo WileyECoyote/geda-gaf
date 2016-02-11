@@ -1,5 +1,8 @@
 2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_image.c: Eliminate variable image_extents in x_image_setup,
+      just use last_extents, which is initialized in x_image_init.
+
     * src/x/x_print.c: Reduce scope of destination in x_print_setup and
       newfilename in function print_dialog_action_choosefile, use length
       of garray instead of MAX_COLORS in function x_print_draw_page.

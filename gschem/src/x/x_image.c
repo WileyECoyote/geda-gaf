@@ -662,7 +662,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   int   height             = w_current->image_height;
   bool  image_color_save   = w_current->toplevel->image_color;
   bool  invert_images_save = w_current->toplevel->invert_images;
-  bool  image_extents      = Image_Display;
 
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: begin\n", __func__);
@@ -843,12 +842,9 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     GEDA_FREE(image_type_descr);
 
     /* Only the Extents switch/button use a local variable */
-                         image_extents = GET_SWITCH_STATE(ExtentsSwitch);
+                         last_extents  = GET_SWITCH_STATE(ExtentsSwitch);
     w_current->toplevel->image_color   = GET_SWITCH_STATE(EnableColorSwitch);
     w_current->toplevel->invert_images = GET_SWITCH_STATE(InvertImageSwitch);
-
-     /* Save the user's choices */
-    last_extents = image_extents;  /* saved per session */
 
     /* these are restored between sessions */
     w_current->image_width  = width;
@@ -871,7 +867,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
     /* Call low-level to do the work */
     x_image_lowlevel(w_current, filename, width, height, image_type,
-                     image_extents, use_print_map, invert_color_bw);
+                     last_extents, use_print_map, invert_color_bw);
 
     GEDA_FREE(image_type);
     GEDA_FREE(filename);
@@ -898,18 +894,15 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
 
   n_channels = gdk_pixbuf_get_n_channels (pixbuf);
 
-  if (n_channels != 3)
-  {
+  if (n_channels != 3) {
     return;
   }
 
-  if (gdk_pixbuf_get_colorspace (pixbuf) != GDK_COLORSPACE_RGB)
-  {
+  if (gdk_pixbuf_get_colorspace (pixbuf) != GDK_COLORSPACE_RGB) {
     return;
   }
 
-  if (gdk_pixbuf_get_bits_per_sample (pixbuf) != 8)
-  {
+  if (gdk_pixbuf_get_bits_per_sample (pixbuf) != 8) {
     return;
   }
 
@@ -919,10 +912,10 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
   rowstride = gdk_pixbuf_get_rowstride (pixbuf);
   pixels    = gdk_pixbuf_get_pixels (pixbuf);
 
-  for (j = 0; j < height; j++)
-  {
-    for (i = 0; i < width; i++)
-    {
+  for (j = 0; j < height; j++) {
+
+    for (i = 0; i < width; i++) {
+
       p = pixels + j * rowstride + i * n_channels;
 
       /* new_value = 0.3 * p[0] + 0.59 * p[1] + 0.11 * p[2]; */
