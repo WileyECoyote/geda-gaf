@@ -3,6 +3,9 @@
     * src/geda/geda_pin.c: Revise Doxygen comments in group and move class
       and implements tags.
 
+    * src/iface/i_vars.c: Remove redundant initialization/setting of variable
+      default_line_space.
+
 2016-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename Text to GedaText.

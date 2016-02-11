@@ -113,7 +113,6 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
   toplevel->default_line_width    = default_line_width;
   toplevel->default_line_space    = default_line_space;
 
-  toplevel->default_line_space    = default_line_space;
   toplevel->default_fill_width    = default_fill_width;
   toplevel->default_fill_pitch1   = default_fill_pitch1;
   toplevel->default_fill_angle1   = default_fill_angle1;
