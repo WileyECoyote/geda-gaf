@@ -87,8 +87,6 @@ PyGedaObject_init(PyGedaObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_name = NULL;
   PyObject *py_attributes = NULL;
 
-  PyObject *tmp;
-
   if (! PyArg_ParseTuple(args, "|SiiiiO!:geda.Object.__init__", &py_name, &self->type,
                          &self->pid, &self->sid, &self->locked, &PyList_Type, &py_attributes))
   {

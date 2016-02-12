@@ -90,7 +90,6 @@ Picture_init(PyGedaPictureObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_name          = NULL;
   PyObject *py_filename      = NULL;
   PyObject *py_pixel_buffer  = NULL;
-  PyObject *tmp;
 
   int       type;
   int       pid;

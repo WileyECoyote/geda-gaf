@@ -41,10 +41,10 @@
 
 #define SWAP_PY_TMP_OBJECT(symbol)          \
   if (py_##symbol) {                        \
-    tmp = self->symbol;                     \
+    PyObject *tmp = self->symbol;           \
     Py_INCREF(py_##symbol);                 \
     self->symbol = py_##symbol;             \
     Py_XDECREF(tmp);                        \
   }
-  
+
 #endif

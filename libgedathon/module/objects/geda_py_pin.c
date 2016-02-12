@@ -118,7 +118,6 @@ Pin_init(PyGedaPinObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_label      = NULL;
   PyObject *py_number     = NULL;
 
-  PyObject *tmp;
   int       type;
   int       pid;
   int       sid;

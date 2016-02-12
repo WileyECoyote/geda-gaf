@@ -101,7 +101,6 @@ Path_init(PyGedaPathObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_name = NULL;
   PyObject *py_path_string;
   PyObject *py_sections;
-  PyObject *tmp;
   int       type;
   int       pid;
   int       sid;

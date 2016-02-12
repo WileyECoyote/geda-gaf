@@ -72,7 +72,6 @@ static int
 Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_filename = NULL;
-  PyObject *tmp;
 
   static char *kwlist[] = {"filename", "pid", NULL};
 

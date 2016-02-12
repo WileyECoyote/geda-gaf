@@ -97,7 +97,6 @@ Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_base_params;
   PyObject *py_name      = NULL;
   PyObject *py_bus_name  = NULL;
-  PyObject *tmp;
   int       type;
   int       pid;
   int       sid;

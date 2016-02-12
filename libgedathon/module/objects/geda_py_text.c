@@ -49,7 +49,6 @@ static char PyGedaTextObject_doc[] = PyDoc_STR("Geda Text: string, x, y, [, size
 static void update_disp_string (PyGedaTextObject* self)
 {
   PyObject *py_disp_string = NULL;
-  PyObject *tmp;
 
   char *text  = PyString_AS_STRING(self->string);
   char *ptr;
@@ -147,7 +146,6 @@ Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_name        = NULL;
   PyObject *py_string      = NULL;
   PyObject *py_disp_string = NULL;
-  PyObject *tmp;
   int       type;
   int       pid;
   int       sid;

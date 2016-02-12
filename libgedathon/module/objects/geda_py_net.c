@@ -90,7 +90,6 @@ Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_base_params;
   PyObject *py_name         = NULL;
   PyObject *py_net_name     = NULL;
-  PyObject *tmp;
 
   int       type;
   int       pid;

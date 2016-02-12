@@ -91,7 +91,6 @@ Complex_init(PyGedaComplexObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_attributes = NULL;
   PyObject *py_pin_objs   = NULL;
   PyObject *py_prim_objs  = NULL;
-  PyObject *tmp;
 
   int       type;
   int       pid;
