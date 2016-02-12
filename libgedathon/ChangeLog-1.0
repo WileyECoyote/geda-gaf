@@ -2,7 +2,9 @@
 
     * module/objects/geda_py_*.c: Include local headers explicitly.
 
-    * libgedathon/module/geda.c: Reduce scope of variables in module.
+    * module/objects/geda_py_text.c: Eliminate "length" variable,
+
+    * module/geda.c: Reduce scope of variables in module.
 
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 

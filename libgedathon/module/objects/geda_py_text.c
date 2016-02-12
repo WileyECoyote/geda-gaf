@@ -411,14 +411,18 @@ PyGedaTextObject_name(PyGedaTextObject* self)
     out_str = self->disp_string;
   }
   else {
-    int   length;
+
     char *ptr;
-    char *nv = PyString_AsString(self->string);
+    char *nv = PyString_AsString(self->string); /* Name Value */
     ptr = nv;
-    while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
-    if ( *ptr == ASCII_EQUAL_SIGN ) {
-      length = ptr - nv;            /* is pointer offset to "=" */
-      out_str = PyString_FromStringAndSize(nv, length);
+
+    /* Find character "=" */
+    while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) {
+      ptr++;
+    }
+
+    if (*ptr == ASCII_EQUAL_SIGN ) {
+      out_str = PyString_FromStringAndSize(nv, ptr - nv);
     }
   }
   return out_str;
