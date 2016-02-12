@@ -1,6 +1,8 @@
 2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/objects/geda_py_*.c: include local headers explicitly.
+    * module/objects/geda_py_*.c: Include local headers explicitly.
+
+    * libgedathon/module/geda.c: Reduce scope of variables in module.
 
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
