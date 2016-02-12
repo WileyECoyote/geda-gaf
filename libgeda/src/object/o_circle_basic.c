@@ -715,7 +715,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
       break;
   }
 
-  if((length == 0) || (space == 0)) {
+  if ((length == 0) || (space == 0)) {
     length = -1; space  = -1;
     outl_func = o_circle_print_solid;
   }
@@ -738,7 +738,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
    * In such a case, the circle is printed filled. Unused parameters for
    * each of these functions are set to -1 or any passive value.
    */
-  if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
+  if (o_current->fill_options->fill_type != FILLING_HOLLOW) {
 
     void (*fill_func)();
 
@@ -786,12 +786,13 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
       fill_func = o_circle_print_filled;
     }
 
-    (*fill_func)(toplevel, fp,
-                 x, y, radius,
-                 color,
-                 fill_width,
-                 angle1, pitch1, angle2, pitch2,
-                 origin_x, origin_y);
+    if (fill_func)
+      (*fill_func)(toplevel, fp,
+                   x, y, radius,
+                   color,
+                   fill_width,
+                   angle1, pitch1, angle2, pitch2,
+                   origin_x, origin_y);
   }
 }
 
