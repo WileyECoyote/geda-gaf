@@ -2,6 +2,8 @@
 
     * include/geda_python.h: Declare local tmp integer in macro.
 
+    * module/functions.c: Reduce scope of variables in module.
+
     * module/objects/geda_py_*.c: Remove PyObject *tmp that is declared locally
       by the SWAP_PY_TMP_OBJECT macro.
 

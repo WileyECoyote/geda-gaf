@@ -409,7 +409,6 @@ FUNCTION(unknown)
 FUNCTION(DefaultCapacitorSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultCapacitorSymbol", &py_symbol))
   {
@@ -417,8 +416,13 @@ FUNCTION(DefaultCapacitorSymbol)
     return NULL;
   }
   if (py_symbol) {
-    Py_XDECREF(CapacitorSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(CapacitorSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       CapacitorSymbol = PyString_FromString(DEFAULT_TITLEBLOCK_SYMBOL);
     }
@@ -454,16 +458,21 @@ FUNCTION(DefaultCapacitorSymbol)
 FUNCTION(DefaultElectrolyticSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultElectrolyticSymbol", &py_symbol))
   {
     PyErr_SetString(PyExc_TypeError, "set: DefaultElectrolyticSymbol(name) Or get: DefaultElectrolyticSymbol()");
     return NULL;
   }
+
   if (py_symbol) {
-    Py_XDECREF(ElectrolyticSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(ElectrolyticSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       ElectrolyticSymbol = PyString_FromString(DEFAULT_ELECTROLYTIC_SYMBOL);
     }
@@ -499,16 +508,21 @@ FUNCTION(DefaultElectrolyticSymbol)
 FUNCTION(DefaultInductorSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultInductorSymbol", &py_symbol))
   {
     PyErr_SetString(PyExc_TypeError, "set: DefaultInductorSymbol(name) Or get: DefaultInductorSymbol()");
     return NULL;
   }
+
   if (py_symbol) {
-    Py_XDECREF(InductorSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(InductorSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       InductorSymbol = PyString_FromString(DEFAULT_INDUCTOR_SYMBOL);
     }
@@ -541,16 +555,21 @@ FUNCTION(DefaultInductorSymbol)
 FUNCTION(DefaultOpAmpSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultOpAmpSymbol", &py_symbol))
   {
     PyErr_SetString(PyExc_TypeError, "set: DefaultOpAmpSymbol(name) Or get: DefaultOpAmpSymbol()");
     return NULL;
   }
+
   if (py_symbol) {
-    Py_XDECREF(OpAmpSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(OpAmpSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       OpAmpSymbol = PyString_FromString(DEFAULT_OPAMP_SYMBOL);
     }
@@ -585,16 +604,22 @@ FUNCTION(DefaultOpAmpSymbol)
 FUNCTION(DefaultResistorSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
+
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultResistorSymbol", &py_symbol))
   {
     PyErr_SetString(PyExc_TypeError, "set: DefaultResistorSymbol(name) Or get: DefaultResistorSymbol()");
     return NULL;
   }
+
   if (py_symbol) {
-    Py_XDECREF(ResistorSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(ResistorSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       ResistorSymbol = PyString_FromString(DEFAULT_RESISTOR_SYMBOL);
     }
@@ -624,16 +649,21 @@ FUNCTION(DefaultResistorSymbol)
 FUNCTION(DefaultTitleblockSymbol)
 {
   PyObject *py_symbol = NULL;
-  const char *tmp_str = NULL;
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultTitleblockSymbol", &py_symbol))
   {
     PyErr_SetString(PyExc_TypeError, "set: DefaultTitleblockSymbol(name) Or get: DefaultTitleblockSymbol()");
     return NULL;
   }
+
   if (py_symbol) {
-    Py_XDECREF(TitleblockSymbol);
+
+    const char *tmp_str;
+
     tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(TitleblockSymbol);
+
     if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
       TitleblockSymbol = PyString_FromString(DEFAULT_TITLEBLOCK_SYMBOL);
     }
@@ -1473,7 +1503,6 @@ FUNCTION(AddOpAmp)
   PyObject *py_opamp  = NULL;
   PyObject *py_refdes = NULL;
 
-  int slot   =  0;
   int angle  = -1;
   int mirror = -1;
   int embed  = -1;
@@ -1502,10 +1531,15 @@ FUNCTION(AddOpAmp)
     Py_XINCREF(py_opamp);
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_opamp);
     PyObject_CallMethod(geda_module, "set_attrib", "Ossi", py_opamp, "refdes", refdes, FALSE);
+
     if (py_slot !=NULL) {
+
+      int slot = 0;
+
       if (PyInt_Check(py_slot)) {
         slot = PyInt_AsLong(py_slot);
       }
+
       if (slot >= 0 ) {
         PyObject_CallMethod(geda_module, "set_attrib", "OsOi", py_opamp, "slot", py_slot, FALSE);
       }
