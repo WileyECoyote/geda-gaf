@@ -3,6 +3,9 @@
     * include/libgedaguile_priv.h: Remove declaration for nonexistent function
       o_page_changed.
 
+    * src/geda/geda_path.c: Revise Doxygen comments in group and move class
+      and implements tags.
+
 2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_picture.c: Revise Doxygen comments in group and move class

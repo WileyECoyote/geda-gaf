@@ -26,16 +26,20 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_path.c
- *  \brief Geda Path GedaObject Class derived from the GedaObject Class
+ *  \brief Geda Path Object Class Module
  */
-/** \defgroup geda-path-object Geda Path GedaObject
- *  @{
- */
-/*! \class Path geda_path.h "include/libgeda/geda_path.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Path GedaObjects.
- *  A Geda Path GedaObject is a graphical object that does not involve electrical
- *  interconnections. A Path object has line-type and fill-type properties.
+
+/** \defgroup geda-path-object Geda Path Object
+ * @{
+ * \brief Implmentation of #GedaPath Class
+ * \par
+ *  This module implements GedaPath Objects in libgeda. A GedaPath object
+ *  is a graphical object that does not involve electrical interconnections.
+ *  A Path object has line-type and fill-type properties and are derived
+ *  from the GedaObject base class.
+ *
+ * \class GedaPath geda_path.h "include/libgeda/geda_path.h"
+ * \implements geda-object
  */
 
 #include <config.h>
