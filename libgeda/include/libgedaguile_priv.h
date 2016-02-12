@@ -216,10 +216,6 @@ GList *edascm_to_object_glist     (SCM objs, const char *subr) GEDA_WARN_UNUSED_
 SCM    edascm_from_object_glist   (const GList *objs);
 int    edascm_is_object_type      (SCM smob, int type);
 
-
-/*! \brief Flag an object's page as having been changed. */
-extern inline void o_page_changed (GedaToplevel *t, GedaObject *o);
-
 /* ---------------------------------------- */
 
 extern SCM edascm_object_state_sym;
