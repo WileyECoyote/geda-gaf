@@ -1,3 +1,7 @@
+2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_*.c: include local headers explicitly.
+
 2016-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_py_struct.h: Prefix all gEDA object, including PagesObject

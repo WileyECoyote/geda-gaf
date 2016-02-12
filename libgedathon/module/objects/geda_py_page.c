@@ -29,11 +29,10 @@
 #include <structmember.h>
 
 #include <geda/geda.h>
-#include <geda_python.h>
-#include <geda_py_struct.h>
-#include <geda_py_page.h>
-#include <geda_py_docs.h>
-#include <geda_py_docs.h>
+#include "../../include/geda_python.h"
+#include "../../include/geda_py_struct.h"
+#include "../../include/geda_py_page.h"
+#include "../../include/geda_py_docs.h"
 
 static PyObject* page_module;
 static PyObject* geda_module;
