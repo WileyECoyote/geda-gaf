@@ -2202,9 +2202,12 @@ COMMAND (do_show_nets)
 COMMAND (do_dark_colors)
 {
   BEGIN_W_COMMAND(do_dark_colors);
+
   /* Change the scheme here */
-  x_color_load_scheme(DARK_COLOR_MAP); /* call for load */
+  geda_color_load_display_scheme(DARK_DISPLAY_MAP); /* call for load */
+
   o_invalidate_all (w_current);
+
   EXIT_COMMAND(do_dark_colors);
 }
 /*! \brief Load the Light color map scheme in i_command_View_Actions
@@ -2217,7 +2220,7 @@ COMMAND (do_light_colors)
   BEGIN_W_COMMAND(do_light_colors);
 
   /* Change the scheme here */
-  x_color_load_scheme(LIGHT_COLOR_MAP); /* call for load */
+  geda_color_load_display_scheme(LIGHT_DISPLAY_MAP); /* call for load */
 
   o_invalidate_all (w_current);
 
@@ -2233,7 +2236,7 @@ COMMAND (do_bw_colors)
   BEGIN_W_COMMAND(do_bw_colors);
 
   /* Change the scheme here */
-  x_color_load_scheme(BW_COLOR_MAP); /* call for load */
+  geda_color_load_display_scheme(BW_DISPLAY_MAP); /* call for load */
 
   o_invalidate_all (w_current);
 
@@ -4068,10 +4071,10 @@ COMMAND (do_grid_dots)
   x_grid_configure_variables (w_current);
   i_status_update_grid_info (w_current);
 
-  GArray *color_map = x_color_get_display_color_map();
+  GArray *color_map = geda_color_get_display_map();
 
   char *name = s_color_get_colorname(3, color_map, NULL);
-  fprintf(stderr, "%s: I see <%s>\n", __func__, name);
+  //fprintf(stderr, "%s: I see <%s>\n", __func__, name);
   GEDA_FREE(name);
   g_array_free (color_map, TRUE);
 

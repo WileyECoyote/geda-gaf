@@ -656,7 +656,7 @@ void          x_clipboard_query_usable      (GschemToplevel *w_current, void (*c
 bool          x_clipboard_set               (GschemToplevel *w_current, const GList *object_list);
 GLT          *x_clipboard_get               (GschemToplevel *w_current);
 
-/* x_color.c */
+/* x_color.c */ /*
 void          x_color_init                  (void);
 void          x_color_free                  (void);
 void          x_color_allocate              (void);
@@ -668,7 +668,7 @@ bool          x_color_get_state             (int color);
 void          x_color_set_state             (int color, int state);
 bool          x_color_display_enabled       (int index);
 int           x_color_load_scheme           (char * scheme);
-
+*/
 /* x_compselect.c */
 void          x_compselect_open             (GschemToplevel *w_current);
 void          x_compselect_deselect         (GschemToplevel *w_current);

@@ -64,7 +64,7 @@ gschem/src/object/o_undo.c
 
 gschem/src/x/x_autonumber.c
 gschem/src/x/x_clipboard.c
-gschem/src/x/x_color.c
+#gschem/src/x/x_color.c
 gschem/src/x/x_compselect.c
 gschem/src/x/x_console.c
 gschem/src/x/x_coord.c

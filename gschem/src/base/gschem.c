@@ -101,8 +101,9 @@ static void gschem_quit(void)
   g_list_free(exit_functions);
 
   libgeda_release();
+  libgedacolor_release();
 
-  x_color_free();
+  //x_color_free();
   x_menu_free_all();
 
 #ifdef HAVE_LIBSTROKE
@@ -279,6 +280,7 @@ static void gschem( int argc, char *argv[])
   argv_index = gschem_parse_commandline(argc, argv);
 
   libgeda_init(argc, argv);
+  libgedacolor_init(&argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
     printf("This is the MINGW32 port.\n");
@@ -297,7 +299,7 @@ static void gschem( int argc, char *argv[])
   g_init_util ();
 
   /* initialise color map (need to do this before reading rc files */
-  x_color_init ();
+  //x_color_init ();
 
   if (f_path_sys_data () == NULL) {
     const char *message =
@@ -389,7 +391,7 @@ static void gschem( int argc, char *argv[])
   geda_atexit(x_menu_recent_files_save, NULL);
 
   /* At end, complete set up of window. */
-  x_color_allocate();
+  //x_color_allocate();
 
   /*! \internal Bring up the GUI */
   x_window_setup (w_current);

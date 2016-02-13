@@ -1671,7 +1671,7 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
 void
 gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
 {
-  GdkColor *color = x_color_get_color_from_index(index);
+  GdkColor *color = geda_color_x11_color_from_index(index);
 
 #if defined (G_DISABLE_ASSERT)
   GschemStatusBar *gsb = (GschemStatusBar*)widget;

@@ -141,11 +141,21 @@ show_help (){
     exit 0
   fi
 
-  # Copy RC files
+  if [ -d $SRCDIR/../../libgedacolor/etc ] ; then
+     cd $SRCDIR/../../libgedacolor/etc
+     ln -s $PWD/display-* $GEDADATARC/ 2>${LOG}
+     ln -s $PWD/print-* $GEDADATARC/ 2>${LOG}
+     cd $CWDSAVE
+  else
+    echo "Error: not in the right place, cannot find libgeda etc directory"
+    exit 0
+  fi
+
+  # Create link to RC files
   if [ -d $SRCDIR/../scheme ] ; then
      cd $SRCDIR/../scheme
-     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
-     ln -s $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/ 2>/dev/null
+     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>${LOG}
+     ln -s $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/ 2>${LOG}
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem scheme"

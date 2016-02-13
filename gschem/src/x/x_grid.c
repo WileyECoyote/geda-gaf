@@ -569,7 +569,7 @@ x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
 {
   GdkColor *color;
 
-  color = x_color_get_color_from_index (w_current->background_color);
+  color = geda_color_x11_color_from_index (w_current->background_color);
 
   cairo_set_source_rgb (w_current->cr,
                         color->red   / 65535.0,
@@ -598,7 +598,7 @@ void x_grid_draw_tiles(GschemToplevel *w_current)
 
   GdkColor *color;
 
-  color = x_color_get_color_from_index (LOCK_COLOR);
+  color = geda_color_x11_color_from_index (LOCK_COLOR);
 
   cairo_set_source_rgb (w_current->cr,
                         color->red   / 65535.0,

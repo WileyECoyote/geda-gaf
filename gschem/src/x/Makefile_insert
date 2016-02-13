@@ -5,7 +5,6 @@
 gschem_SOURCES += \
 		x/x_autonumber.c \
 		x/x_clipboard.c \
-		x/x_color.c \
 		x/x_compselect.c \
 		x/x_confirm_close.c \
 		x/x_console.c \

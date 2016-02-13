@@ -215,7 +215,7 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
   array = eda_config_get_int_list (cfg, group, key, &ridiculous, &err);
   if (err != NULL) {
     g_clear_error (&err);
-    color = x_color_get_color_from_index(index);
+    color = geda_color_x11_color_from_index(index);
     var->pixel = color->pixel;
     var->red   = color->red;
     var->green = color->green;

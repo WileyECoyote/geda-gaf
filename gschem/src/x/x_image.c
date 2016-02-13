@@ -1058,7 +1058,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
     color_map = s_color_get_print_color_map();
   }
   else {
-    color_map = x_color_get_display_color_map();
+    color_map = geda_color_get_display_map();
   }
 
   /* Note that since we copied w_current, w_current->renderer is pointing at a

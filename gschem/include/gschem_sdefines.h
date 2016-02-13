@@ -95,12 +95,6 @@
 
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
-/* Filenames for Stock Color Maps  */
-#define DARK_COLOR_MAP             "gschem-colormap-darkbg"
-#define LIGHT_COLOR_MAP            "gschem-colormap-lightbg"
-#define BW_COLOR_MAP               "gschem-colormap-bw"
-#define CUSTOM_COLOR_MAP           "gschem-colormap-custom"
-
 /* Sessions */
 #define SESSIONS_DIRECTORY         "sessions"
 #define SESSIONS_FILE_SUFFIX       "session"

@@ -1202,7 +1202,7 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
     color_index = (int)(long)(GEDA_OBJECT_GET_DATA(item, "color-index"));
     button      = GEDA_OBJECT_GET_DATA(item, "color-button");
 
-    gtk_color_button_set_color(button, x_color_get_color_from_index(color_index));
+    gtk_color_button_set_color(button, geda_color_x11_color_from_index(color_index));
   }
 
   gtk_widget_destroy(popup_menu);
@@ -2086,7 +2086,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
     TODO: Really should check all indexes
  */
-  cflag = x_color_lookup(10); /* index of "bus" */
+  cflag = geda_color_x11_lookup(10); /* index of "bus" */
   if (cflag->g == 0xff) {
     rc_options.color_scheme_index = 0;
   }
@@ -2740,19 +2740,19 @@ void GatherSettings(GschemToplevel *w_current) {
     rc_options.color_scheme_index = tmp_int;
     switch ( tmp_int ) {
     case 0:
-      x_color_load_scheme(DARK_COLOR_MAP);  /* call for load the Dark map */
+      geda_color_load_display_scheme(DARK_DISPLAY_MAP);  /* call for load the Dark map */
       break;
     case 1:
-      x_color_load_scheme(LIGHT_COLOR_MAP); /* call for load the Light map */
+      geda_color_load_display_scheme(LIGHT_DISPLAY_MAP); /* call for load the Light map */
       break;
     case 2:
-      x_color_load_scheme(BW_COLOR_MAP);    /* call for load the Blk/Wht map */
+      geda_color_load_display_scheme(BW_DISPLAY_MAP);    /* call for load the Blk/Wht map */
       break;
     case 3:
-      x_color_load_scheme(CUSTOM_COLOR_MAP);  /* call to load the custom map */
+      geda_color_load_display_scheme(CUSTOM_DISPLAY_MAP);/* call to load the custom map */
       break;
     default:
-      x_color_load_scheme(rc_options.color_map_scheme);  /* call for load custom map */
+      geda_color_load_display_scheme(rc_options.color_map_scheme);  /* call for load custom map */
     }
   } /* else do nothing because the map did not change */
 

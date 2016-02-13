@@ -1058,7 +1058,7 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
   gtk_tree_model_get_value (model, iter, 1, &v);
 
   index = g_value_get_int (&v);
-  color = x_color_get_color_from_index (index);
+  color = geda_color_x11_color_from_index (index);
 
   /* Set the cell's background color */
   g_object_set (cell, "background-gdk", color, NULL);
@@ -1139,7 +1139,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   for (i = 0; i < MAX_COLORS; i++) {
 
     /* Skip 'invalid' colors. */
-    if (!x_color_display_enabled(i))
+    if (!geda_color_x11_enabled(i))
       continue;
 
     str = x_dialog_get_color_name(i);

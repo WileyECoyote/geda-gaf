@@ -47,8 +47,8 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   { "gschem-version",            1, 0, 0, g_rc_gschem_version },
 
-  { "display-color-map",         0, 1, 0, g_rc_display_color_map },
-  { "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
+  //{ "display-color-map",         0, 1, 0, g_rc_display_color_map },
+  //{ "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
 
   { "render-adaptor",            1, 0, 0, g_rc_render_adaptor },
 

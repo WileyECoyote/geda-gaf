@@ -10,10 +10,11 @@ INC_LOCAL = -I$(srcdir)/../include
 INC_LIBUIO = -I$(top_srcdir)/libgedauio/include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
+INC_LIBCOLOR = -I$(top_srcdir)/libgedacolor/include
 INC_LIBDRAW  = -I$(top_srcdir)/libgedadraw/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA) \
-		$(INC_LIBCAIRO) $(INC_LIBDRAW)
+		$(INC_LIBCAIRO) $(INC_LIBCOLOR) $(INC_LIBDRAW)
 
 bin_PROGRAMS  = gschem
 
@@ -58,6 +59,7 @@ gschem_LDFLAGS   = $(GLIB_LIBS)     $(GTK_LIBS)      $(LIBSTROKE_LDFLAGS) \
 gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
 				   $(top_builddir)/libgedauio/src/libgedauio.la \
 				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
+				   $(top_builddir)/libgedacolor/src/libgedacolor.la \
 				   $(top_builddir)/libgeda/src/libgeda.la \
 				   @LIBINTL@
 

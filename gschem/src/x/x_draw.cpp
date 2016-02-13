@@ -53,10 +53,10 @@ x_draw_set_color(GschemToplevel *w_current)
   GedaObject *o_current = RenderAdaptor->object;
 
   if (!o_current->selected) {
-    color = x_color_get_color_from_index(o_current->color);
+    color = geda_color_x11_color_from_index(o_current->color);
   }
   else {
-    color = x_color_get_color_from_index(SELECT_COLOR);
+    color = geda_color_x11_color_from_index(SELECT_COLOR);
   }
 
   RenderAdaptor->geda_draw_set_color(color->red, color->green, color->blue);

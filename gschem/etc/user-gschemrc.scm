@@ -41,19 +41,21 @@
 ; Start of color section
 ;
 
-; Make the gschem color maps more user-friendly
-(color-map-make-friendly display-color-map)
-(color-map-make-friendly display-outline-color-map)
-
-; Load up a color scheme which has a dark (black) background.
-; Comment out the first line and comment in the second line for a
-; light (almost white) background.  The dark background is the
-; original look.
+; Load up a color scheme which has a dark (black) background. Comment out
+; the first line and comment in the second line for a light (almost white)
+; background. The dark background is the original look.
 ;
-(load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
-;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
-;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
-;(load (build-path geda-rc-path "gschem-colormap-custom"))
+(primitive-load (build-path geda-rc-path "display-colormap-darkbg")) ; dark background
+;(primitive-load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
+;(primitive-load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
+;(primitive-load (build-path geda-rc-path "gschem-colormap-custom"))
+
+;; Load up a color scheme for printing optimized for a white background.
+; Comment out the second line and comment in the first line for a
+; dark background. The dark background is the original look.
+;
+;(primitive-load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
+(primitive-load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
 
 ; image-color string
 ;
