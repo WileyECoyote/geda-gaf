@@ -6,6 +6,9 @@
     * src/geda/geda_path.c: Revise Doxygen comments in group and move class
       and implements tags.
 
+    * include/libgeda/defines.h: Remove define MAX_COLORS, relocated to toplevel
+      include/idefines.h.
+
 2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_picture.c: Revise Doxygen comments in group and move class

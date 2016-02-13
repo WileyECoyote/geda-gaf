@@ -68,4 +68,7 @@
 /* Flag for defaults to detect keywords absent from RC files */
 #define RC_NIL -1
 
+/* for color mapping systems */
+#define MAX_COLORS 30
+
 /** @} endgroup geda-global-integers */
