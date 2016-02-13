@@ -1,0 +1,207 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Fri Feb 12 22:46:46 2016 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>libgEDAColor</title>
+
+</head>
+<body>
+
+<h1 align="center">libgEDAColor</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#CONFIGURATION">CONFIGURATION</a><br>
+<a href="#FILE FORMAT">FILE FORMAT</a><br>
+<a href="#DOCUMENTATION">DOCUMENTATION</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">libgEDAColor
+&minus; The GPL Electronic Design Automation Color
+Library</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>libgEDAColor</b>
+is an extension library used in the gEDA suite to coordinate
+the mapping of color codes used in gEDA data files to actual
+colors used for output devices based on user configuration
+preferences. <b>libgEDAColor</b> provides functions for
+parsing gEDA scheme color-map data and API functions for
+applications to access color information. This manual page
+explains user aspects of using <b>libgEDAColor</b> ,
+specifically, modifying color map files. For information on
+<b>libgEDAColor</b> API see <b>libgedacolor</b>(3)</p>
+
+<h2>CONFIGURATION
+<a name="CONFIGURATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Predefined
+color map files are installed with the geda-gaf suite. The
+files are really Scheme scripts that are either executed or
+sourced and accordingly the files are located in the
+GEDADATARC directory, see <b>libgeda</b>(1). The files names
+are:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-colormap-bw</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-colormap-custom</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-colormap-darkbg</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-colormap-lightbg</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">print-colormap-lightbg</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">print-colormap-darkbg</p>
+
+<p style="margin-left:11%; margin-top: 1em">The particular
+dialect of Scheme used by <b>Libgedacolor</b> is GNU&rsquo;s
+Guile. While it is required for Guile to be installed on the
+host system for <b>Libgedacolor</b> to to process these
+file, it is not a requirement that gEDA applications
+initialize or even be running Guile. <b>Libgedacolor</b>
+does not initiate the loading &quot;rc&quot; files. Instead,
+application can request that a initialization file be
+processed. Alternatively, application rc files can reference
+the color map files. Example of rc entries in applications
+might look like:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">(primitive-load
+(build-path geda-rc-path
+&quot;display-colormap-darkbg&quot;))</p>
+
+<p style="margin-left:22%; margin-top: 1em">(load
+(build-path geda-rc-path
+&quot;display-colormap-darkbg&quot;))</p>
+
+<p style="margin-left:22%; margin-top: 1em">(load
+(&quot;$HOME/etc/gEDA/display-colormap-darkbg&quot;))</p>
+
+<h2>FILE FORMAT
+<a name="FILE FORMAT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Each color map
+file contains one or more functions that pass a list
+containing color information as arguments. The color maps
+file normally only reference three functions:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-color-map</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">display-outline-color-map</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">print-color-map</p>
+
+<p style="margin-left:11%; margin-top: 1em">The argument
+list to each of these functions is a list of key value pairs
+in the form (&quot;key&quot; &quot;color&quot;).
+&quot;key&quot; must be a string name of a recognized
+component or artifact. Provided color map files contain a
+complete list of all recognized keys, but all keys need not
+be present. The color can be a hex string representation of
+or #f to disable color for the corresponding key entry.</p>
+
+<h2>DOCUMENTATION
+<a name="DOCUMENTATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The gEDA-gaf
+suite utilizes Doxygen for generating source documentation.
+By default this documentation is not generated and must be
+enabled via the configuration option --with-doxygen. When
+enabled, the documentation is then built in the source tree
+using &quot;make doxygen&quot; from the top of the source.
+To only generate source documentation for
+<b>libgEDAColor</b> use &quot;make doxygen&quot; from within
+the top libgEDAColor directory. Note that the configure
+script can also set the configuration to allows generating
+the source documentation out of the source tree using the
+--with-doxygen-out option. For example using
+--with-doxygen-out=/tmp/geda-gaf will cause the resulting
+documentation to be generated in the
+&quot;/tmp/geda-gaf&quot; directory. The target directory
+will be created if it does not already exist. It is not
+necessary to use both doxygen options, using
+--with-doxygen-out automatically enables --with-doxygen. The
+Doxygen configuration is set to produce both HTML and latex.
+Other formats are possible, see the Doxygen documentation
+for details.</p>
+
+<h2>AUTHORS
+<a name="AUTHORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">See the
+&quot;AUTHORS&quot; file included with this library.</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2016 gEDA Contributors. License GPLv2+: GNU GPL <br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>libgedacolor</b>(3),
+<b>libgeda</b>(1), <b>libgedacairo</b>(1),
+<b>libgedathon</b>(1), <b>libgedauio</b>(1)</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>http://wiki.geda-project.org/geda:documentation</i>.</p>
+<hr>
+</body>
+</html>

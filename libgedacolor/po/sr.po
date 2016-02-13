@@ -1,0 +1,642 @@
+# Serbian translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2012-01-27 14:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Serbian <sr@li.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Не могу да пронађем датотеку „%s“: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr "Унос мапе боје мора бити списак два елемента"
+
+#: libgedacolor/src/guile/color_guile.c:160
+#, fuzzy
+msgid "Key in color map entry must be an string"
+msgstr "Вредност у уносу мапе боје мора бити „#f“ или ниска"
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr "Вредност у уносу мапе боје мора бити „#f“ или ниска"
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr "Индекс боје је изван опсега"
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Пронашао сам неисправну боју ( %s )\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Не могу да сачувам датотеку резервног примерка: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Не могу да отворим (%s) за штампање\n"
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "Не могу да сачувам датотеку резервног примерка: %s."
+
+#~ msgid "Index in color map entry must be an integer"
+#~ msgstr "Индекс у уносу мапе боје мора бити цео број"
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "гЕДА — шема електричних кола"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "гЕДА — симбол шеме"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "гЕДА — „gsch2pcb“ пројекат"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "гЕДА — „gsch2pcb“ пројекат"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "гЕДА — шема електричних кола"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "гЕДА — симбол шеме"
+
+#~ msgid "Failed to stat [%s]: %s"
+#~ msgstr "Нисам успео да направим статистику (%s): %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "УПОЗОРЕЊЕ: Нашао сам самосачувану резервну датотеку:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr ""
+#~ "Не могу да погодим да ли је новија, зато ви морате то да урадите ручно.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "Резервни примерак је новији од шеме, зато изгледа да треба да га учитате "
+#~ "уместо оригиналне датотеке.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Гшема обично самостално прави резервне примерке, а до ове ситуације је "
+#~ "дошло када се урушио или је био приморан да нагло изађе.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Не могу да пронађем датотеку „%s“: %s"
+
+#, fuzzy
+#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
+#~ msgstr ""
+#~ "НЕ могу да подесим читање-писање претходног резервног примерка (%s)\n"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Не могу да сачувам датотеку резервног примерка: %s."
+
+#, fuzzy
+#~ msgid "%s: Can not get the real filename of %s."
+#~ msgstr "s_page_delete: Не могу да добавим прави назив датотеке „%s“."
+
+#~ msgid "s_page_delete: Unable to delete backup file %s."
+#~ msgstr ""
+#~ "s_page_delete: Не могу да избришем датотеку резервног примерка „%s“."
+
+#~ msgid "%s: %s"
+#~ msgstr "„%s“: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Не могу да пронађем датотеку „%s“: %s"
+
+#, fuzzy
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': fdopen() failed: %s"
+#~ msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
+
+#~ msgid "Unable to get time of day in f_print_header()\n"
+#~ msgstr "Не могу да добавим време дана у „f_print_header()“\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to locate prolog file [%s]\n"
+#~ msgstr ""
+#~ "s_page_delete: Не могу да избришем датотеку резервног примерка „%s“."
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
+#~ msgstr ""
+#~ "Не могу да отворим пролог датотеку „%s“ за читање у „f_print_header()“\n"
+
+#~ msgid "Giving up on printing\n"
+#~ msgstr "Одустајем од штампања\n"
+
+#~ msgid "Could not execute command [%s] for printing\n"
+#~ msgstr "Не могу да извршим наредбу (%s) за штампање\n"
+
+#~ msgid "Too many UTF-8 characters, cannot print\n"
+#~ msgstr "Превише УТФ-8 знакова, не могу да штампам\n"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Не могу да пронађем датотеку „%s“: %s"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
+
+#, fuzzy
+#~ msgid "libgeda: Loaded RC file [%s]\n"
+#~ msgstr "Није успела наредба библиотеке (%s)\n"
+
+#~ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#~ msgstr ""
+#~ "Пронашао сам лук нултог полупречника ( %c %d, %d, %d, %d, %d, %d )\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Подешавам боју на основну боју\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Покушај да се приложи ставка која није текст као особина!\n"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr "Покушај да се приложи особина (%s) на више од једног објекта\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Покушај да се приложи ставка која није текст као особина!\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Читам неочекивани почетни знак уграђеног симбола у (%s) :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Читам неочекивани почетни знак уграђеног симбола у (%s) :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Читам неочекивани крајњи знак уграђеног симбола у (%s) :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid ""
+#~ "Read an old format sym/sch file!\n"
+#~ "Please run g[sym|sch]update on:\n"
+#~ "[%s]\n"
+#~ msgstr ""
+#~ "Читам датотеку старог формата „sym/sch“!\n"
+#~ "Молим покрените „g[sym|sch]update“ на:\n"
+#~ "(%s)\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read garbage line <%d> in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Читам смеће у (%s) :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid "Read garbage line <%d> in [%s]"
+#~ msgstr ""
+#~ "Читам смеће у (%s) :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Пронашао сам поље нулте ширине/висине ( %c %d %d %d %d %d )\n"
+
+#~ msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Пронашао сам магистралу нулте дужине ( %c %d %d %d %d %d )\n"
+
+#~ msgid "Found an invalid bus ripper direction [ %s ]\n"
+#~ msgstr "Пронашао сам неисправан смер извлачивача магистрале ( %s )\n"
+
+#~ msgid "Resetting direction to neutral (no direction)\n"
+#~ msgstr "Враћам правац на неутралан (без правца)\n"
+
+#~ msgid "Null radius circles are not allowed\n"
+#~ msgstr "Кругови нултог полупречника нису дозвољени\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Нисам пронашао компоненту:\n"
+#~ " %s"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Пронашао сам компоненту са неисправном ротацијом ( %c %d %d %d %d %d "
+#~ "%s )\n"
+
+#~ msgid "Setting angle to 0\n"
+#~ msgstr "Подешавам угао на 0\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Пронашао сам компоненту са неисправном заставицом огледала ( %c %d %d %d "
+#~ "%d %d %s )\n"
+
+#, fuzzy
+#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
+#~ msgstr ""
+#~ "\tИЗМЕНА ГЛАВНОГ ИЗДАЊА (датотека „%.3f“, инстанцирана „%.3f“, %s)!\n"
+
+#, fuzzy
+#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
+#~ msgstr "\tИзмена нижег издања (датотека „%.3f“, инстанцирано „%.3f“)\n"
+
+#, fuzzy
+#~ msgid "WARNING: Symbol version %s on refdes %s:\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
+#~ "\t  Не могу да анализирам приложено издање_симбола=„%s“\n"
+
+#, fuzzy
+#~ msgid "\tCould not parse attached symversion=%s\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
+#~ "\t  Не могу да анализирам приложено издање_симбола=„%s“\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "\tsymversion=%s attached to instantiated symbol, but version not found "
+#~ "inside symbol file\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Настраност издања симбола на рефдес-у „%s“:\n"
+#~ "\t  издање_симбола=%s је приложено инстанцном симболу, али нема "
+#~ "издања_симбола= унутар датотеке симбола\n"
+
+#~ msgid "Component [%s] has been embedded\n"
+#~ msgstr "Компонента (%s) је уграђена\n"
+
+#~ msgid ""
+#~ "Could not find component [%s], while trying to unembed. Component is "
+#~ "still embedded\n"
+#~ msgstr ""
+#~ "Не могу да пронађем компоненту (%s), док покушавам да је избацим. "
+#~ "Компонента је још увек уграђена.\n"
+
+#~ msgid "Component [%s] has been successfully unembedded\n"
+#~ msgstr "Компонента (%s) је успешно избачена\n"
+
+#~ msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Пронашао сам линију нулте дужине ( %c %d %d %d %d %d )\n"
+
+#~ msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Пронашао сам мрежу нулте дужине ( %c %d %d %d %d %d )\n"
+
+#~ msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
+#~ msgstr "Пронашао сам слику нулте ширине/висине ( %c %d %d %d %d )\n"
+
+#~ msgid "Setting mirrored to 0\n"
+#~ msgstr "Подешавам пресликано на 0\n"
+
+#~ msgid "Setting embedded to 0\n"
+#~ msgstr "Подешавам уграђено на 0\n"
+
+#~ msgid "Found an unsupported picture angle [ %d ]\n"
+#~ msgstr "Пронашао сам неподржан угао слике ( %d )\n"
+
+#~ msgid "Failed to load image from embedded data [%s]: %s\n"
+#~ msgstr "Нисам успео да учитам слику из уграђених података (%s): %s\n"
+
+#~ msgid "Base64 decoding failed."
+#~ msgstr "Није успело декодирање базе64."
+
+#~ msgid "Falling back to file loading. Picture unembedded.\n"
+#~ msgstr "Пребацујем се назад на учитавање слике. Слика је избачена.\n"
+
+#~ msgid "ERROR: o_picture_save: unable to encode the picture.\n"
+#~ msgstr "ГРЕШКА: о_сачувај_слику: не могу да шифрујем слику.\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#~ msgid "Picture [%s] has been embedded\n"
+#~ msgstr "Слика (%s) је уграђена\n"
+
+#~ msgid "Failed to load image from file [%s]: %s\n"
+#~ msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
+
+#~ msgid "Picture [%s] has been unembedded\n"
+#~ msgstr "Слика (%s) је избачена\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Found a pin which did not have the whichend field set.\n"
+#~ "Verify and correct manually.\n"
+#~ msgstr ""
+#~ "Пронашао сам ножицу која нема подешено поље „који“.\n"
+#~ "Проверите и исправите ручно.\n"
+
+#~ msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
+#~ msgstr ""
+#~ "Пронашао сам неисправан „који крај“ на ножици (враћам на нулу): %d\n"
+
+#, fuzzy
+#~ msgid "%s: Can't get real filename of %s."
+#~ msgstr "s_page_delete: Не могу да добавим прави назив датотеке „%s“."
+
+#, fuzzy
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "НЕ могу да подесим читање-писање претходног резервног примерка (%s)\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "НЕ могу да подесим само за читање датотеку резервног примерка (%s)\n"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr ""
+#~ "НЕ могу да подесим само за читање датотеку резервног примерка (%s)\n"
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "о_сачувај_објекат: објекат „%p“ има непознату врсту „%c“\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Подешавам боју на основну боју\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Подешавам боју на основну боју\n"
+
+#~ msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Пронашао сам ниску текста нулте величине ( %c %d %d %d %d %d %d %d %d )\n"
+
+#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Пронашао сам неподржано поравнање текста ( %c %d %d %d %d %d %d %d %d )\n"
+
+#~ msgid "Setting alignment to LOWER_LEFT\n"
+#~ msgstr "Подешавам поравнање на НИЖЕ_ЛЕВО\n"
+
+#~ msgid "Library command failed [%s]: %s\n"
+#~ msgstr "Није успела наредба библиотеке (%s): %s\n"
+
+#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
+#~ msgstr "Није успела наредба библиотеке (%s): Неухваћени сигнал „%i“.\n"
+
+#~ msgid "Library command failed [%s]\n"
+#~ msgstr "Није успела наредба библиотеке (%s)\n"
+
+#~ msgid ""
+#~ "Error output was:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Излаз грешке беше:\n"
+#~ "%s\n"
+
+#~ msgid "Library name [%s] already in use.  Using [%s].\n"
+#~ msgstr "Назив библиотеке (%s) је већ у употреби.  Користим (%s).\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#~ msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
+#~ msgstr ""
+#~ "Нисам успео да прегледам библиотеку (%s): Функција шеме није вратила "
+#~ "списак\n"
+
+#~ msgid "Non-string symbol name while scanning library [%s]\n"
+#~ msgstr "Назив симбола не-ниске за време прегледања библиотеке (%s)\n"
+
+#~ msgid "Cannot add library: name not specified\n"
+#~ msgstr "Не могу да додам библиотеку: назив није наведен\n"
+
+#~ msgid ""
+#~ "Cannot add library [%s]: both 'list' and 'get' commands must be "
+#~ "specified.\n"
+#~ msgstr ""
+#~ "Не могу да додам библиотеку (%s): морају бити наведене наредбе и „списак“ "
+#~ "и „добави“.\n"
+
+#~ msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
+#~ msgstr ""
+#~ "Не могу да додам библиотеку шеме (%s): повратни позиви морају бити "
+#~ "затварајући\n"
+
+#~ msgid "Failed to load symbol from file [%s]: %s\n"
+#~ msgstr "Нисам успео да учитам симбол из датотеке (%s): %s\n"
+
+#~ msgid "Failed to load symbol data [%s] from source [%s]\n"
+#~ msgstr "Нисам успео да учитам податак симбола (%s) из извора (%s)\n"
+
+#~ msgid "Component [%s] was not found in the component library\n"
+#~ msgstr "Нисам пронашао компоненту (%s) у библиотеци компоненти\n"
+
+#~ msgid "More than one component found with name [%s]\n"
+#~ msgstr "Пронашао сам више од једне компоненте са називом (%s)\n"
+
+#~ msgid "There are no schematics above the current one!\n"
+#~ msgstr "Нема других електричних шема осим ове!\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy into '%s': %s\n"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Сачувао сам (%s)\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "НЕ МОГУ да сачувам (%s)\n"
+
+#~ msgid "s_page_delete: Can't get the real filename of %s."
+#~ msgstr "s_page_delete: Не могу да добавим прави назив датотеке „%s“."
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=%s\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
+#~ "\t  Не могу да анализирам датотеку издање_симбола=„%s“\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
+#~ "\t  Не могу да анализирам датотеку издање_симбола=\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
+#~ "\tSymbol in library is newer than instantiated symbol\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Неслагање издања симбола на рефдес-у „%s“ (%s):\n"
+#~ "\t  Симбол у библиотеци је новији од инстанцног симбола\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version oddity on refdes %s:\n"
+#~ "\tInstantiated symbol is newer than symbol in library\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Чудност издања симбола на рефдес-у „%s“:\n"
+#~ "\t  Инстанцирани симбол је новији од симбола у библиотеци\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to default=%d\n"
+#~ msgstr "Наведен је неисправан простор, подешавам на 100\n"
+
+#, fuzzy
+#~ msgid "Invalid length specified, setting to default=%d\n"
+#~ msgstr "Наведена је неисправна дужина, подешавам на 100\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to  default=%d\n"
+#~ msgstr "Наведен је неисправан простор, подешавам на 100\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Покрените гшему и исправите ситуацију.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid "Failed to restore permissions on '%s': %s\n"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#, fuzzy
+#~ msgid "Failed to restore ownership on '%s': %s\n"
+#~ msgstr "Нисам успео да отворим директоријум (%s): %s\n"
+
+#, fuzzy
+#~ msgid "Failed to load RC file [%s]: "
+#~ msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
+
+#, fuzzy
+#~ msgid "Invalid path [%s] passed to component-library\n"
+#~ msgstr "Нисам пронашао компоненту (%s) у библиотеци компоненти\n"
+
+#~ msgid ""
+#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
+#~ "Use a list of strings instead\n"
+#~ msgstr ""
+#~ "УПОЗОРЕЊЕ: Коришћење ниске за „увек-промовиши-особине“ је застарело. "
+#~ "Користите уместо тога списак ниски\n"
+
+#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Пронашао сам неподржани угао текста ( %c %d %d %d %d %d %d %d %d )\n"
+
+#~ msgid "Error during reading of the prolog file `%s' in f_print_header()\n"
+#~ msgstr "Грешка приликом читања пролог датотеке „%s“ у „f_print_header()“\n"
+
+#~ msgid ""
+#~ "Error during writing of the output postscript file in f_print_header()\n"
+#~ msgstr ""
+#~ "Грешка приликом писања излазне постскрипт датотеке у „f_print_header()“\n"
+
+#~ msgid ""
+#~ "hierarchy loop detected while visiting page:\n"
+#~ "  \"%s\"\n"
+#~ msgstr ""
+#~ "открио сам петљу хијерархије за време посећивања странице:\n"
+#~ "  „%s“\n"
+
+#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
+#~ msgstr "ГРЕШКА у „s_hierarchy_traverse“: шема није пронађена: %s\n"
+
+#~ msgid "Found [%s]\n"
+#~ msgstr "Нашао сам (%s)\n"
+
+#~ msgid "Could not find [%s] in any SourceLibrary\n"
+#~ msgstr "Не могу да пронађем (%s) у било којој Библиотеци извора\n"

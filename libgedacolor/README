@@ -1,0 +1,48 @@
+==============================================
+ 'gschem and Friends' Electronic Design Suite
+==============================================
+
+Copyright (C) 2016 gEDA Developers
+
+GPL Electronic Design Automation Color library
+==============================================
+
+The libgedacolor library provides a means for applications to relate
+color index codes in gEDA data files with RGB color value.
+
+Please submit bug reports and patches to
+<http://bugs.launchpad.net/geda>, using the `libgedacairo' tag.
+
+Using libgedacairo in your programs
+-----------------------------------
+
+To use the library in your GNU Autotools-based program, add:
+
+  PKG_PROG_PKG_CONFIG
+  PKG_CHECK_MODULES([GEDACAIROCOLOR], [libgedacolor], [], [])
+
+to your `configure.ac', and then add:
+
+  AM_CFLAGS = $(GEDACOLOR_CFLAGS
+  AM_LDFLAGS = $(GEDACOLOR_LDFLAGS)
+
+to your `Makefile.am'.
+
+To compile a very simple program without using a GNU Autotools, you
+could use a command like:
+
+  cc `pkg-config --cflags --libs libgedacolor` -o myprog myprog.c
+
+Header files
+------------
+
+The main header file for the library is `libgedacolor`/libgedacolor`.h'.
+
+geda_colormaps
+
+..
+   Local Variables:
+   mode: text
+   End:
+
+

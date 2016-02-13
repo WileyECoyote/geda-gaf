@@ -1,0 +1,940 @@
+# Russian translation for gEDA libgeda
+# Copyright (c) 2009-2014 gEDA Developers
+# Copyright (c) Sergey Alyoshin <alyoshin.s@gmail.com>, 2009, 2012.
+# Copyright (c) Vladimir Zhbanov <vzhbanov@gmail.com>, 2011, 2014.
+#
+# This file is distributed under the same license as the gEDA libgeda package.
+#
+# Примечание для переводчиков
+#
+#   В нижеследующих переводах используются следующие соглашения.
+#
+#   1. Имена файлов, атрибутов, значения переменных выводятся в
+#      кавычках-ёлочках: «%s»
+#      Цель - единоообразие переводов и уменьшение нагрузки на
+#      переводчиков и редакторов
+#   2. Вывод ошибки, содержащей имя функции должен быть в виде:
+#        имя_функции: описание ошибки
+#   3. Выражения
+#        "Could not ...", "Could NOT ...", "Couldn't ...",
+#        "Can't ...", "Unable to ...", (в некоторых случаях
+#        "Failed ...")
+#      считаются синонимами и переводятся
+#        "Не удалось ..."
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2014-06-06 16:40+0400\n"
+"Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
+"Language-Team: geda-user@delorie.com\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Файл «%s» не найден: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr "Запись в таблице цветов должна быть двухэлементным списком"
+
+#: libgedacolor/src/guile/color_guile.c:160
+#, fuzzy
+msgid "Key in color map entry must be an string"
+msgstr "Значение записи в таблице цветов должно быть «#f» или строкой"
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr "Значение записи в таблице цветов должно быть «#f» или строкой"
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Недопустимое значение цветового индекса «%s»\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Не удалось сохранить файл резервной копии: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Не удалось сохранить файл резервной копии: %s."
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "Не удалось сохранить файл: %s"
+
+#~ msgid "Index in color map entry must be an integer"
+#~ msgstr "Индекс записи в таблице цветов должен быть целым числом"
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "Принципиальная схема gEDA"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "Символ схемы gEDA"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "Проект gsch2pcb gEDA"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "Проект gsch2pcb gEDA"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "Принципиальная схема gEDA"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "Символ схемы gEDA"
+
+#~ msgid "Failed to stat [%s]: %s"
+#~ msgstr "Ошибка чтения статуса «%s»: %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ВНИМАНИЕ: обнаружен файл автоматической резервной копии:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr "Не удалось определить новее ли он, решите это сами.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "Резервная копия новее схемы, поэтому, видимо, следует загрузить её вместо "
+#~ "оригинального файла.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Обычно gschem автоматически создаёт резервные копии, и такая ситуация "
+#~ "может быть результатом крушения или внезапного завершения программы.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Файл «%s» не найден: %s"
+
+# Эта функция пытается найти для указанного имени реальный файл (не являющийся
+# ссылкой).
+#~ msgid "Can't get the real filename of %s: %s"
+#~ msgstr "Не удалось определить имя реального файла для %s: %s"
+
+#~ msgid "File %s is read-only"
+#~ msgstr "Файл %s только для чтения"
+
+#, fuzzy
+#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
+#~ msgstr ""
+#~ "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
+#~ "копии «%s»\n"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Не удалось сохранить файл резервной копии: %s."
+
+# Эта функция пытается найти для указанного имени реальный файл (не являющийся
+# ссылкой).
+#, fuzzy
+#~ msgid "%s: Can not get the real filename of %s."
+#~ msgstr "Не удалось определить имя реального файла для %s: %s"
+
+#~ msgid "s_page_delete: Unable to delete backup file %s."
+#~ msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
+
+#, fuzzy
+#~ msgid "File error"
+#~ msgstr "Ошибка обработки: ~s"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Файл «%s» не найден: %s"
+
+#, fuzzy
+#~ msgid "File \"%s\" is too large"
+#~ msgstr "Файл %s только для чтения"
+
+#, fuzzy
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Не удалось открыть каталог «%s»: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': fdopen() failed: %s"
+#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to locate prolog file [%s]\n"
+#~ msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
+
+#, fuzzy
+#~ msgid "Configuration file"
+#~ msgstr "Не определено имя файла настроек"
+
+#~ msgid "Undefined configuration filename"
+#~ msgstr "Не определено имя файла настроек"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Файл «%s» не найден: %s"
+
+#, fuzzy
+#~ msgid "Configuration does not have group '%s'\n"
+#~ msgstr "В настройках не обнаружено группы «%s»"
+
+#~ msgid "Configuration does not have group '%s'"
+#~ msgstr "В настройках не обнаружено группы «%s»"
+
+#~ msgid "Configuration does not have key '%s'"
+#~ msgstr "В настройках не обнаружено ключа «%s»"
+
+#~ msgid ""
+#~ "\n"
+#~ "Backtrace:\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Последовательность вызовов подпрограмм:\n"
+
+#~ msgid "Invalid path [%s] passed to source-library\n"
+#~ msgstr "source-library: недопустимый путь «%s»\n"
+
+#~ msgid "Invalid path [%s] passed to source-library-search\n"
+#~ msgstr "source-library-search: недопустимый путь «%s»\n"
+
+#~ msgid "always-promote-attribute: list element is not a string"
+#~ msgstr "always-promote-attribute: элемент списка не является строкой"
+
+#~ msgid "RC file already loaded"
+#~ msgstr "Файл настроек уже загружен"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Не удалось загрузить настройки из файла «%s»: %s\n"
+
+#, fuzzy
+#~ msgid "libgeda: Loaded RC file [%s]\n"
+#~ msgstr "Загружен файл настроек «%s»\n"
+
+#~ msgid "ERROR: An unknown error occurred while parsing configuration files."
+#~ msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек"
+
+#~ msgid "ERROR: %s\n"
+#~ msgstr "ОШИБКА: %s\n"
+
+#~ msgid "ERROR: The %s log may contain more information.\n"
+#~ msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"
+
+#~ msgid "Failed to parse arc object"
+#~ msgstr "Ошибка в определении дуги"
+
+#~ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#~ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Установка цвета по умолчанию\n"
+
+#~ msgid "Attribute [%s] already attached\n"
+#~ msgstr "Атрибут «%s» уже прикреплён\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Попытка прикрепить не текстовый элемент как атрибут!\n"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr "Попытка прикрепить атрибут «%s» к более чем одному объекту\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Попытка прикрепить не текстовый элемент как атрибут!"
+
+#, fuzzy
+#~ msgid "unexpected end-of-file in attribute list"
+#~ msgstr "Неожиданный конец файла при обработке списка атрибутов"
+
+#~ msgid "Schematic data was not valid UTF-8"
+#~ msgstr "Данные принципиальной схемы не являются допустимыми для UTF-8"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Неуместный маркер начала списка прикреплённых атрибутов в «%s»:\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Неуместный маркер начала внедрённого символа в «%s»:\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Неуместный маркер конца внедрённого символа в «%s»:\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid ""
+#~ "Read an old format sym/sch file!\n"
+#~ "Please run g[sym|sch]update on:\n"
+#~ "[%s]\n"
+#~ msgstr ""
+#~ "Обнаружен файл символа или схемы в старом формате!\n"
+#~ "Выполните g[sym|sch]update для:\n"
+#~ "«%s»\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read garbage line <%d> in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Некорректные данные в «%s»:\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid "Read garbage line <%d> in [%s]"
+#~ msgstr ""
+#~ "Некорректные данные в «%s»:\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid "Failed to parse box object"
+#~ msgstr "Ошибка в определении прямоугольника"
+
+#~ msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Прямоугольник нулевой ширины или высоты «%c %d %d %d %d %d»\n"
+
+#~ msgid "Failed to parse bus object"
+#~ msgstr "Ошибка в определении шины"
+
+#~ msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Шина нулевой длины «%c %d %d %d %d %d»\n"
+
+#~ msgid "Found an invalid bus ripper direction [ %s ]\n"
+#~ msgstr ""
+#~ "Недопустимое значение поля «ripperdir» (направление ответвления от шины) "
+#~ "«%s»\n"
+
+#~ msgid "Resetting direction to neutral (no direction)\n"
+#~ msgstr "Сброс направления в нейтральное значение (направление не задано)\n"
+
+#~ msgid "Null radius circles are not allowed\n"
+#~ msgstr "Окружности с нулевым радиусом недопустимы\n"
+
+#~ msgid "Failed to parse circle object"
+#~ msgstr "Ошибка в определении окружности"
+
+#~ msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
+#~ msgstr "Окружность с нулевым или отрицательным радиусом «%c %d %d %d %d»\n"
+
+#~ msgid "Setting radius to 0\n"
+#~ msgstr "Установка радиуса в 0\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Не найден компонент:\n"
+#~ " %s"
+
+#~ msgid "Failed to parse complex object"
+#~ msgstr "Ошибка в определении составного объекта"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Недопустимое значение угла поворота в определении компонента «%c %d %d %d "
+#~ "%d %d %s»\n"
+
+#~ msgid "Setting angle to 0\n"
+#~ msgstr "Установка угла поворота в 0\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Недопустимое значение поля «mirror» в определении компонента «%c %d %d %d "
+#~ "%d %d %s»\n"
+
+#~ msgid "Setting mirror to 0\n"
+#~ msgstr "Установка «mirror» в 0\n"
+
+#, fuzzy
+#~ msgid "parse error"
+#~ msgstr "Ошибка обработки: ~s"
+
+# Под file здесь имеется в виду символ. Последняя переменная -- позиционное
+# обозначение. Думаю, не стоит это специально отмечать.
+#, fuzzy
+#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
+#~ msgstr ""
+#~ "\tИЗМЕНЕНИЕ СТАРШЕГО НОМЕРА ВЕРСИИ\t(версия символа %.3f, версия "
+#~ "экземпляра %.3f, %s)!\n"
+
+#, fuzzy
+#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
+#~ msgstr ""
+#~ "\tИзменение младшего номера версии\t(версия символа %.3f, версия "
+#~ "экземпляра %.3f)\n"
+
+#, fuzzy
+#~ msgid "WARNING: Symbol version %s on refdes %s:\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
+#~ "\tПрикреплён некорректный атрибут «symversion=%s»\n"
+
+#, fuzzy
+#~ msgid "\tCould not parse attached symversion=%s\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
+#~ "\tПрикреплён некорректный атрибут «symversion=%s»\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "\tsymversion=%s attached to instantiated symbol, but version not found "
+#~ "inside symbol file\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: некорректное задание версии для символа с поз. обозначением "
+#~ "%s:\n"
+#~ "\tК экземпляру символа прикреплён атрибут «symversion=%s», но в файле "
+#~ "символа «symversion» отсутствует\n"
+
+#~ msgid "Component [%s] has been embedded\n"
+#~ msgstr "Компонент «%s» внедрён\n"
+
+#~ msgid ""
+#~ "Could not find component [%s], while trying to unembed. Component is "
+#~ "still embedded\n"
+#~ msgstr ""
+#~ "Не удалось найти библиотечный символ для исключаемого компонента «%s». "
+#~ "Компонент останется внедрённым\n"
+
+#~ msgid "Component [%s] has been successfully unembedded\n"
+#~ msgstr "Компонент «%s» успешно исключён\n"
+
+#~ msgid "Failed to parse line object"
+#~ msgstr "Ошибка в определении линии"
+
+#~ msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Линия нулевой длины «%c %d %d %d %d %d»\n"
+
+#~ msgid "Failed to parse net object"
+#~ msgstr "Ошибка в определении соединения"
+
+#~ msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Соединение нулевой длины «%c %d %d %d %d %d»\n"
+
+#~ msgid "Failed to parse path object"
+#~ msgstr "Ошибка в определении контура"
+
+#~ msgid "Unexpected end-of-file when reading path"
+#~ msgstr "Неожиданный конец файла при обработке контура"
+
+# Ошибка, если данные изображения уже есть во внутреннем буфере
+#~ msgid "Failed to load buffer image [%s]: %s\n"
+#~ msgstr "Не удалось загрузить изображение «%s» из буфера: %s\n"
+
+#~ msgid "Failed to load image from [%s]: %s\n"
+#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
+
+#~ msgid "Failed to parse picture definition"
+#~ msgstr "Ошибка в определении изображения"
+
+#~ msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
+#~ msgstr "Изображение нулевой ширины или высоты «%c %d %d %d %d»\n"
+
+#~ msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
+#~ msgstr ""
+#~ "Недопустимое значение поля «mirrored» в определении изображения: %d.\n"
+
+#~ msgid "Setting mirrored to 0\n"
+#~ msgstr "Установка «mirrored» в 0\n"
+
+#~ msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
+#~ msgstr ""
+#~ "Недопустимое значение поля «embedded» в определении изображения: %d.\n"
+
+#~ msgid "Setting embedded to 0\n"
+#~ msgstr "Установка «embedded» в 0\n"
+
+#~ msgid "Found an unsupported picture angle [ %d ]\n"
+#~ msgstr "Неподдерживаемое значение угла поворота изображения «%d»\n"
+
+#~ msgid "Failed to load image from embedded data [%s]: %s\n"
+#~ msgstr "Не удалось загрузить изображение из внедрённых данных «%s»: %s\n"
+
+#~ msgid "Base64 decoding failed."
+#~ msgstr "Ошибка расшифровки данных в формате base64."
+
+#~ msgid "Falling back to file loading. Picture unembedded.\n"
+#~ msgstr "Возврат к загрузке из файла. Изображение исключено.\n"
+
+#~ msgid "ERROR: o_picture_save: unable to encode the picture.\n"
+#~ msgstr "ОШИБКА: o_picture_save: невозможно закодировать изображение.\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Не удалось открыть каталог «%s»: %s\n"
+
+# Указатель на данные возвращает NULL
+#~ msgid "Picture [%s] has no image data.\n"
+#~ msgstr "Файл «%s» не содержит данных изображения.\n"
+
+#~ msgid "Falling back to file loading. Picture is still unembedded.\n"
+#~ msgstr "Возврат к загрузке из файла. Изображение всё ещё исключено.\n"
+
+#~ msgid "Picture [%s] has been embedded\n"
+#~ msgstr "Изображение «%s» внедрено\n"
+
+#~ msgid "Failed to load image from file [%s]: %s\n"
+#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
+
+#~ msgid "Picture is still embedded.\n"
+#~ msgstr "Изображение всё ещё внедрено.\n"
+
+#~ msgid "Picture [%s] has been unembedded\n"
+#~ msgstr "Изображение «%s» исключено\n"
+
+#~ msgid "Failed to load fallback image %s: %s.\n"
+#~ msgstr "Не удалось загрузить копию изображения для отката «%s»: %s\n"
+
+#~ msgid "Failed to parse pin object"
+#~ msgstr "Ошибка в определении вывода"
+
+#~ msgid ""
+#~ "Found a pin which did not have the whichend field set.\n"
+#~ "Verify and correct manually.\n"
+#~ msgstr ""
+#~ "Вывод с неустановленным полем «whichend».\n"
+#~ "Проверьте и исправьте вручную.\n"
+
+#~ msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
+#~ msgstr ""
+#~ "Недопустимое значение поля «whichend» в определении вывода (сброс в 0): "
+#~ "%d\n"
+
+# Эта функция пытается найти для указанного имени реальный файл (не являющийся
+# ссылкой).
+#, fuzzy
+#~ msgid "%s: Can't get real filename of %s."
+#~ msgstr "Не удалось определить имя реального файла для %s: %s"
+
+#, fuzzy
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
+#~ "копии «%s»\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Не удалось установить режим доступа только на чтение для резервной копии "
+#~ "файла «%s»\n"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr "Не удалось сохранить файл: %s"
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "o_save_objects: объект %p неизвестного типа «%c»\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Установка цвета по умолчанию\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Установка цвета по умолчанию\n"
+
+#~ msgid "Failed to parse text object"
+#~ msgstr "Ошибка в определении текстового объекта"
+
+#~ msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr "Текстовая строка нулевого размера «%c %d %d %d %d %d %d %d %d»\n"
+
+#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Неподдерживаемое значение поля «alignment» в определении текстового "
+#~ "объекта  «%c %d %d %d %d %d %d %d %d»\n"
+
+#~ msgid "Setting alignment to LOWER_LEFT\n"
+#~ msgstr "Установка выравнивания по левому нижнему углу\n"
+
+#~ msgid "Unexpected end-of-file after %d lines"
+#~ msgstr "Неожиданный конец файла после %d строк"
+
+#~ msgid "Scheme hook"
+#~ msgstr "Функция перехвата Scheme"
+
+#~ msgid "The Scheme-level hook to proxy"
+#~ msgstr "Перехват функций Scheme для EdascmHookProxy"
+
+#~ msgid ""
+#~ "Objects ~A and ~A are not part of the same page and/or complex object"
+#~ msgstr ""
+#~ "Объекты ~A и ~A не являются частями одной схемы и (или) одного составного "
+#~ "объекта"
+
+#~ msgid "Object ~A is already attached as an attribute"
+#~ msgstr "Объект ~A уже прикреплён как атрибут"
+
+#~ msgid "Object ~A is attribute of wrong object"
+#~ msgstr "Объект ~A является атрибутом другого объекта"
+
+#~ msgid "~A is not a valid attribute: invalid string '~A'."
+#~ msgstr "~A не является допустимым атрибутом: недопустимая строка «~A»."
+
+#~ msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
+#~ msgstr ""
+#~ "Недопустимый угол поворота составного объекта ~A. Должен быть 0, 90, 180 "
+#~ "или 270 градусов"
+
+#, fuzzy
+#~ msgid "Object ~A is already on a page"
+#~ msgstr "Объект ~A прикреплён к странице"
+
+#~ msgid "Object ~A is already attached to something"
+#~ msgstr "Объект ~A уже к чему-то прикреплён"
+
+#~ msgid "Object ~A is attached to a different complex"
+#~ msgstr "Объект ~A прикреплён к другому составному объекту"
+
+#~ msgid "Object ~A is attached to a page"
+#~ msgstr "Объект ~A прикреплён к странице"
+
+#~ msgid "Object ~A is attached as an attribute"
+#~ msgstr "Объект ~A прикреплён как атрибут"
+
+#~ msgid "Object ~A has attributes"
+#~ msgstr "К объекту ~A прикреплены атрибуты"
+
+#~ msgid "Invalid pin type ~A, must be 'net or 'bus"
+#~ msgstr "Недопустимый тип вывода ~A, должен быть «'net» или «'bus»"
+
+#~ msgid "Object ~A has invalid stroke cap style ~A"
+#~ msgstr "Недопустимый стиль концов линий объекта ~A: ~A"
+
+# 'stroke' в данном случае означает линию, а не жест
+#~ msgid "Object ~A has invalid stroke dash style ~A"
+#~ msgstr "Недопустимый тип линий для объекта ~A: ~A"
+
+#~ msgid "Object ~A has invalid fill style ~A"
+#~ msgstr "Недопустимый тип заполнения объекта ~A: ~A"
+
+#~ msgid "Invalid fill style ~A."
+#~ msgstr "Недопустимый тип заполнения ~A."
+
+#~ msgid "Missing second space parameter for fill style ~A."
+#~ msgstr "Отсутствует параметр типа заполнения «pitch2»: ~A."
+
+#~ msgid "Missing second angle parameter for fill style ~A."
+#~ msgstr "Отсутствует параметр типа заполнения «angle2»: ~A."
+
+#~ msgid "Missing stroke width parameter for fill style ~A."
+#~ msgstr "Отсутствует параметр типа заполнения «fillwidth»: ~A."
+
+#~ msgid "Missing space parameter for fill style ~A."
+#~ msgstr "Отсутствует параметр типа заполнения «pitch1»: ~A."
+
+#~ msgid "Missing angle parameter for fill style ~A."
+#~ msgstr "Отсутствует параметр типа заполнения «angle1»: ~A."
+
+#~ msgid "Object ~A has invalid pin type."
+#~ msgstr "Недопустимый тип вывода объекта ~A."
+
+#~ msgid "Invalid text alignment ~A."
+#~ msgstr "Недопустимое значение поля «alignment» текстового объекта: ~A."
+
+#~ msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
+#~ msgstr ""
+#~ "Недопустимое значение угла поворота текстового объекта ~A. Угол должен "
+#~ "быть равен  0, 90, 180 или 270 градусов"
+
+#~ msgid "Invalid text name/value visibility ~A."
+#~ msgstr ""
+#~ "Недопустимое значение поля «show_name_value» текстового объекта: ~A."
+
+#~ msgid "Text object ~A has invalid text alignment ~A"
+#~ msgstr "Недопустимое значение поля «alignment» текстового объекта ~A: ~A"
+
+#~ msgid "Text object ~A has invalid visibility ~A"
+#~ msgstr "Недопустимое значение поля «visibility» текстового объекта ~A: ~A"
+
+#~ msgid "Text object ~A has invalid text attribute visibility ~A"
+#~ msgstr ""
+#~ "Недопустимое значение поля «show_name_value» текстового объекта ~A: ~A"
+
+#~ msgid "Object ~A is not included in a page."
+#~ msgstr "Объекта ~A нет на странице."
+
+#~ msgid "Invalid stroke cap style ~A."
+#~ msgstr "Недопустимое значение поля «capstyle» (стиль концов линии): ~A."
+
+#~ msgid "Invalid stroke dash style ~A."
+#~ msgstr "Недопустимое значение поля «dashstyle» (тип линии): ~A."
+
+#~ msgid "Missing dash length parameter for dash style ~A."
+#~ msgstr "Отсутствует поле «dashlength» (длина штриха): ~A."
+
+#~ msgid "Missing dot/dash space parameter for dash style ~A."
+#~ msgstr "Отсутствует поле «dashspace» (тип линии): ~A."
+
+#~ msgid "Object ~A has bad type '~A'"
+#~ msgstr "Недопустимый тип объекта ~A: «~A»"
+
+#~ msgid "Path object ~A has invalid element type ~A at index ~A"
+#~ msgstr ""
+#~ "Контур ~A имеет недопустимое значение типа элемента ~A с индексом ~A"
+
+#~ msgid "Invalid path element type ~A."
+#~ msgstr "Недопустимое значение типа элемента контура: ~A."
+
+#~ msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
+#~ msgstr ""
+#~ "Недопустимое значение угла поворота изображения ~A. Угол должен быть "
+#~ "равен  0, 90, 180 или 270 градусов"
+
+#~ msgid "Parse error: ~s"
+#~ msgstr "Ошибка обработки: ~s"
+
+#~ msgid "Object ~A is attached to a complex or different page"
+#~ msgstr ""
+#~ "Объект ~A прикреплён к составному объекту или находится на другой странице"
+
+#~ msgid "Library command failed [%s]: %s\n"
+#~ msgstr "Ошибка при выполнении команды над библиотекой «%s»: %s\n"
+
+#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
+#~ msgstr "Сбой команды создания библиотеки «%s»: необработанный сигнал %i.\n"
+
+#~ msgid "Library command failed [%s]\n"
+#~ msgstr "Сбой команды создания библиотеки «%s»\n"
+
+#~ msgid ""
+#~ "Error output was:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Вывод ошибки:\n"
+#~ "%s\n"
+
+#~ msgid "Library name [%s] already in use.  Using [%s].\n"
+#~ msgstr "Библиотека с именем «%s» уже имеется. Используется «%s».\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Не удалось открыть каталог «%s»: %s\n"
+
+#~ msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
+#~ msgstr ""
+#~ "Ошибка сканирования библиотеки «%s»: функция Scheme возвратила не список\n"
+
+#~ msgid "Non-string symbol name while scanning library [%s]\n"
+#~ msgstr ""
+#~ "При сканировании библиотеки обнаружено имя символа, не являющееся строкой "
+#~ "«%s»\n"
+
+#~ msgid "Cannot add library: name not specified\n"
+#~ msgstr "Невозможно добавить библиотеку: не указано имя\n"
+
+#~ msgid ""
+#~ "Cannot add library [%s]: both 'list' and 'get' commands must be "
+#~ "specified.\n"
+#~ msgstr ""
+#~ "Невозможно добавить библиотеку «%s»: должны быть указаны обе команды "
+#~ "«list» и «get».\n"
+
+#~ msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
+#~ msgstr ""
+#~ "Невозможно добавить библиотеку Scheme «%s»: функции обратного вызова "
+#~ "должны быть замкнутыми выражениями\n"
+
+#~ msgid "Failed to load symbol from file [%s]: %s\n"
+#~ msgstr "Ошибка загрузки символа из файла «%s»: %s\n"
+
+#~ msgid "Failed to load symbol data [%s] from source [%s]\n"
+#~ msgstr "Ошибка загрузки данных символа «%s» из источника «%s»\n"
+
+#~ msgid "Component [%s] was not found in the component library\n"
+#~ msgstr "Компонент «%s» не найден в библиотеке компонентов\n"
+
+#~ msgid "More than one component found with name [%s]\n"
+#~ msgstr "Обнаружено несколько компонентов с именем «%s»\n"
+
+#~ msgid "Schematic not found in source library."
+#~ msgstr "Схема не найдена в библиотеке исходных данных."
+
+#~ msgid "Hierarchy contains a circular dependency."
+#~ msgstr "Циклическая зависимость в иерархической структуре."
+
+#~ msgid "There are no schematics above the current one!\n"
+#~ msgstr "Для текущей схемы нет схемы, вышестоящей по иерархии!\n"
+
+#~ msgid "Failed to descend hierarchy into '%s': %s\n"
+#~ msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Файл «%s» сохранён\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "Не удалось сохранить «%s»\n"
+
+#, fuzzy
+#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
+#~ msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...»\n"
+
+#~ msgid "Improper slotdef syntax: missing \":\".\n"
+#~ msgstr "Неверный синтаксис атрибута «slotdef»: отсутствует «:».\n"
+
+#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
+#~ msgstr ""
+#~ "Не удалось найти атрибут «slotdef=#:#,#,#...» в допустимом формате\n"
+
+#~ msgid "component missing pinseq= attribute\n"
+#~ msgstr "Отсутствует атрибут «pinseq» у вывода компонента\n"
+
+#~ msgid "Object ~A is not part of a page"
+#~ msgstr "Объект ~A не является частью схемы"
+
+# Эта функция пытается найти для указанного имени реальный файл (не являющийся
+# ссылкой).
+#~ msgid "s_page_delete: Can't get the real filename of %s."
+#~ msgstr "s_page_delete: не удалось определить имя реального файла для %s."
+
+#~ msgid "Found an image with no filename."
+#~ msgstr "Обнаружено изображение без имени файла"
+
+#~ msgid "Picture %p has invalid angle %i\n"
+#~ msgstr "Недопустимое значение угла поворота изображения «%p»: %i\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=%s\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
+#~ "\tНекорректный атрибут «symversion=%s» в файле символа\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
+#~ "\tНекорректный атрибут «symversion» в файле символа\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
+#~ "\tSymbol in library is newer than instantiated symbol\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: неподходящая версия для символа с поз. обозначением %s (%s):\n"
+#~ "\tСимвол в библиотеке новее экземпляра в схеме\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version oddity on refdes %s:\n"
+#~ "\tInstantiated symbol is newer than symbol in library\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: некорректное задание версии для символа с поз. обозначением "
+#~ "%s:\n"
+#~ "\tЭкземпляр в схеме новее символа в библиотеке\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Запустите gschem и устраните проблему.\n"
+#~ "\n"
+
+#~ msgid "Failed to restore permissions on '%s': %s\n"
+#~ msgstr "Не удалось восстановить права для «%s»: %s\n"
+
+#~ msgid "Failed to restore ownership on '%s': %s\n"
+#~ msgstr "Не удалось восстановить владельца для «%s»: %s\n"
+
+#~ msgid "Invalid mode [%s] passed to %s\n"
+#~ msgstr "%2$s: недопустимый режим «%1$s»\n"
+
+#~ msgid "Failed to load RC file [%s]: "
+#~ msgstr "Не удалось загрузить файл настроек «%s»: "
+
+#~ msgid "Invalid path [%s] passed to component-library\n"
+#~ msgstr "component-library: недопустимый путь «%s»\n"
+
+#~ msgid "Invalid path [%s] passed to bitmap-directory\n"
+#~ msgstr "bitmap-directory: недопустимый путь «%s»\n"
+
+#~ msgid ""
+#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
+#~ "Use a list of strings instead\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: для «always-promote-attributes» не рекомендуется использовать "
+#~ "строку. Следует использовать список строк\n"
+
+#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Неподдерживаемое значение угла поворота в определении текстового объекта "
+#~ "«%c %d %d %d %d %d %d %d %d»\n"

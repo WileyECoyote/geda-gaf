@@ -5,14 +5,14 @@ endif
 
 CLEAN_DIRS = M4/*~
 
-SUBDIRS = bitmaps include intl libgeda libgedacairo libgedadraw \
-		  libgedauio libgedathon gaf ${GATTRIB_DIR} \
+SUBDIRS = bitmaps include intl libgeda libgedacolor libgedacairo \
+		  libgedadraw libgedauio libgedathon gaf ${GATTRIB_DIR} \
 		  gschem gsymcheck gnetlist utils symbols docs examples
 
 # See doxygen below (in this same file) - these all have configs.dox
 # including the period which is used to reference the top-level docs
 # directory
-DOXDIRS = . libgeda libgedacairo libgedauio libgedathon \
+DOXDIRS = . libgeda libgedacairo libgedacolor libgedauio libgedathon \
 		  gattrib gsymcheck gnetlist gschem utils
 
 ACLOCAL_AMFLAGS = -I m4
@@ -111,4 +111,3 @@ MOSTLYCLEANFILES     = *~ *.log
 CLEANFILES           = *~ *.log $(CLEAN_DIRS)
 DISTCLEANFILES       = *~ *.log $(CLEAN_DIRS) Makefile.in stamp-git
 MAINTAINERCLEANFILES = *~ *.log $(CLEAN_DIRS) aclocal.m4 config.h.in configure
-

@@ -1,0 +1,278 @@
+# Ukrainian translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2012-01-27 14:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Не можу знайти файл %s: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Key in color map entry must be an string"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr ""
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Недопустимий колір [ %s ]\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Не можу зберегти файл резервної копії: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Не можу відкрити [%s] щоб надрукувати\n"
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "Не можу зберегти файл резервної копії: %s."
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "gEDA проект Gsch2pcb"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ЗАСТЕРЕЖЕННЯ: Знайдено автозбережений файл резервної копії:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr ""
+#~ "Не можу визначити чи він більш новий, тому Вам слід зробити це "
+#~ "самостійно.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "Файл резерної копії новіший за файл схеми, здається Вам слід завантажити "
+#~ "його замість оригіналу.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Gschem зазвичай автоматично створює резервні копії, а така ситуація "
+#~ "трапляється при збої чи вимушеному несподіваному виході.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#, fuzzy
+#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
+#~ msgstr ""
+#~ "Не мжу встановити для файлу резерної копії [%s] режим тільки для читання\n"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Не можу зберегти файл резервної копії: %s."
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#~ msgid "Unable to get time of day in f_print_header()\n"
+#~ msgstr "Не можу отримати годину в f_print_header()\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
+#~ msgstr "Не можу відкрити prolog файл `%s' для читання в f_print_header()\n"
+
+#~ msgid "Giving up on printing\n"
+#~ msgstr "Не можу роздрукувати\n"
+
+#~ msgid "Could not execute command [%s] for printing\n"
+#~ msgstr "Не можу виконати команду [%s] для друку\n"
+
+#~ msgid "Too many UTF-8 characters, cannot print\n"
+#~ msgstr "Забагато UTF-8 символів, не можу відобразити\n"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#~ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#~ msgstr "Дуга з нульовим радіусом [ %c %d, %d, %d, %d, %d, %d ]\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Колір виставлено за замовчуванням\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Спроба встановити не текстовий елемент як атрибут\n"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr "Спроба додати трибут [%s] більш ніж до одного об'єкту\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Спроба встановити не текстовий елемент як атрибут\n"
+
+#~ msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Знайдено прямокутник з нульовою довжиною/шириною [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Знайдено шину нульової довжини [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Null radius circles are not allowed\n"
+#~ msgstr "Кола нульового радіусу заборонені\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Компонент не знайдено:\n"
+#~ " %s"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Знайдено не правильно зорієнтований компонент [ %c %d %d %d %d %d %s ]\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Знайдено компонент з не правильним віддзеркаленням [ %c %d %d %d %d %d "
+#~ "%s ]\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#, fuzzy
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "Не мжу встановити для файлу резерної копії [%s] режим тільки для читання\n"
+
+#, fuzzy
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Не мжу встановити для файлу резерної копії [%s] режим тільки для читання\n"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr "Не можу зберегти файл резервної копії: %s."
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "o_save_objects: об’єкт %p має не визначений тип '%c'\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Колір виставлено за замовчуванням\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Колір виставлено за замовчуванням\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Не можу знайти файл %s: %s"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to default=%d\n"
+#~ msgstr "Вказано не правильний проміжок, змінено на 100\n"
+
+#, fuzzy
+#~ msgid "Invalid length specified, setting to default=%d\n"
+#~ msgstr "Вказано не правильну довжину, змінено на 100\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to  default=%d\n"
+#~ msgstr "Вказано не правильний проміжок, змінено на 100\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Запустіть gschem та виправте ситуацію.\n"
+#~ "\n"
+
+#~ msgid "Error during reading of the prolog file `%s' in f_print_header()\n"
+#~ msgstr "Помилка читання prolog файлу `%s' в f_print_header()\n"
+
+#~ msgid ""
+#~ "Error during writing of the output postscript file in f_print_header()\n"
+#~ msgstr "Помилка під час запису postscript файлу в f_print_header()\n"

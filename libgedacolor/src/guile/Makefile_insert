@@ -1,0 +1,8 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_color_guile
+
+libgedacolor_la_SOURCES += \
+						guile/color_guile.c
+
+

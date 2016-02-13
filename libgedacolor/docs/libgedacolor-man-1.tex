@@ -1,0 +1,126 @@
+libgEDAColor(1)                    -20160214                   libgEDAColor(1)
+
+
+
+NAME
+       libgEDAColor - The GPL Electronic Design Automation Color Library
+
+DESCRIPTION
+       libgEDAColor  is an extension library used in the gEDA suite to coordi-
+       nate the mapping of color codes used in gEDA data files to actual  col-
+       ors  used  for  output devices based on user configuration preferences.
+       libgEDAColor provides functions for parsing gEDA scheme color-map  data
+       and  API  functions  for  applications to access color information. The
+       this manual page explains user aspects of using libgEDAColor , specifi-
+       cally,  configuring  the library and providing details on where to find
+       documentation on other aspect of libgEDAColor such as  the  application
+       API.
+
+CONFIGURATION
+       Library  operations  are controlled parameter variables and some of the
+       key parameters are exposed so that  installations  can  be  customized.
+       These  key  parameters  are  associated  with  "keywords" in text based
+       files. The files are sometimes referred to as  initialization  or  "rc"
+       files  and  in  the  case of libgEDAColor these files are really Scheme
+       scripts that are either executed or sourced.  The   particular  dialect
+       of Scheme used by libgEDAColor is GNU's Guile. While it is required for
+       Guile to be installed on the host system for libgEDAColor to run, it is
+       not  a requirement that gEDA applications initialize or even be running
+       Guile.  libgEDAColor does not initiate the loading "rc" files. Instead,
+       when  application  request  that  a  initialization  file  be processed
+       libgEDAColor first checks for "system-gafrc" in either system  configu-
+       ration  directories,  i.e.  "/etc/gEDA",  "~/etc",  or  the root of the
+       installation directory and precesses these files if  they  exist.  Nor-
+       mally, only one such file is used as a system level "master" configura-
+       tion file. Following processing of the  "system-gafrc"  files  libgEDA-
+       Color  searches  the current directory for local "gafrc" configurations
+       files. The search continues upward in  the  directory  structure  until
+       either  a  file with the name "gafrc" is found or the root of the drive
+       is reached without discovering such a file. If discovered, the  "gafrc"
+       file  is processed, which may over-ride configuration parameters estab-
+       lished in preceding initialization files, and this allows users to cus-
+       tomize  libgEDAColor  on a user and or on project bases. Local initial-
+       ization files are "remembered" so that  when  applications  load  other
+       schematics  or  symbols  in the same or subordinate directory structure
+       the initialization files are not processed a second time  for  a  given
+       session.  The  application requested initialization files are then pro-
+       cessed in a likewise manner, for example system-gschemrc.   Initializa-
+       tion  files  for libgEDAColor should not reference application specific
+       keywords or functions. Since the initialization files are really Scheme
+       scripts  the  possibilities  for  configuration customization is essen-
+       tially unlimited. The basic "system-gafrc" file installed with libgEDA-
+       Color contains details on each keyword. For the most part, the capabil-
+       ity to perform customization and modifications to parameters  are  pro-
+       vided for advanced users, allowing users to deal with complex installa-
+       tions and maximizes flexibility  of  the  suite.  For  example,  system
+       administrators  may  want to change where logs files are written, while
+       ordinary user may desire to disable automatic backups. Project managers
+       might  want  to modify the list of promoted attributes for a particular
+       project. Users should backup initialization  files  before  making  any
+       modifications to the files.
+
+ENVIRONMENT
+       The following environment variables are recognized by libgEDAColor :
+
+          GEDADATA
+              Specifies  the search directory for Scheme and bitmap files. The
+              default is compilation dependent based on the  location  of  the
+              data  directory and can be set using the -datarootdir configura-
+              tion option. Normally the location is "prefix/share/gEDA"  where
+              "prefix"  is  the  root of the installation build.  The GEDADATA
+              environment setting over-rides the default location.
+
+          GEDADATARC
+              Specifies the search directory for rc files. The default is com-
+              pilation  dependent  based on the location of the data directory
+              and can be set  using  --with-rcdir  configuration  option.  The
+              default  is the same as GEDADATA.  Specifying a GEDADATARD envi-
+              ronment setting over-rides the default location.
+
+          GEDALOGS
+              Specifies the directory for log files. The default  is  compila-
+              tion  dependent  based on the location of the user configuration
+              files and can be controlled  using  --with-logdir  configuration
+              option.  The GEDALOGS environment setting over-rides the default
+              location.
+
+DOCUMENTATION
+          SOURCE CODE
+              The gEDA-gaf suite utilizes Doxygen for generating source  docu-
+              mentation.  By  default  this documentation is not generated and
+              must be enabled via  the  configuration  option  --with-doxygen.
+              When enabled, the documentation is then built in the source tree
+              using "make doxygen" from the top of the source. To only  gener-
+              ate  source  documentation  for  libgEDAColor use "make doxygen"
+              from within the top libgEDAColor directory. Note that  the  con-
+              figure  script can also set the configuration to allows generat-
+              ing the source documentation out of the source  tree  using  the
+              --with-doxygen-out  option.  For  example  using --with-doxygen-
+              out=/tmp/geda-gaf will cause the resulting documentation  to  be
+              generated in the "/tmp/geda-gaf" directory. The target directory
+              will created if it does not already exist. It is  not  necessary
+              to  use both doxygen options, using --with-doxygen-out automati-
+              cally enables --with-doxygen.  The Doxygen configuration is  set
+              to  produce both HTML and latex. Other formats are possible, see
+              the Doxygen documentation for details.
+
+AUTHORS
+       See the "AUTHORS" file included with this program.
+
+COPYRIGHT
+       Copyright (C) 2016 gEDA Contributors. License GPLv2+: GNU GPL
+       version 2 or later. Please see the `COPYING' file included with this
+       program for full details.
+
+       This is free software: you are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
+
+SEE ALSO
+       libgEDAColorcairo(1),      libgEDAColorthon(1),      libgEDAColoruio(1)
+       gnetlist(1), gschem(1), gsymcheck(1)
+
+       http://wiki.geda-project.org/geda:documentation.
+
+
+
+gEDA Project                                                   libgEDAColor(1)

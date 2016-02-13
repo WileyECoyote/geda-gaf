@@ -3,6 +3,9 @@
     * include/geda/geda_idefines.h: Define MAX_COLORS 30, (previously
       defined in libgeda/include/libgeda/defines.h).
 
+    * libgedacolor/: Introducing libgedacolor, a semi-stand-alone library
+      for processing color maps, and other general color related routines.
+
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/include/geda/geda_stat.h: Removed conditional inclusion

@@ -1,0 +1,663 @@
+# Portuguese translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2012-01-27 14:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Não é possível encontrar o ficheiro %s: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr "Entrada do mapa de cor  tem de ser uma lista de dois elementos"
+
+#: libgedacolor/src/guile/color_guile.c:160
+#, fuzzy
+msgid "Key in color map entry must be an string"
+msgstr ""
+"Valor na entrada do mapa de cor tem de ser #f ou uma faixa de caracteres"
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr ""
+"Valor na entrada do mapa de cor tem de ser #f ou uma faixa de caracteres"
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr "Índice de cor fora do alcance"
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Foi encontrada uma cor inválida [ %s ]\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Não é possível guardar o ficheiro de salvaguarda: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Não foi possível abrir [%s] para impressão\n"
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "Não é possível guardar o ficheiro de salvaguarda: %s."
+
+#~ msgid "Index in color map entry must be an integer"
+#~ msgstr "Índice no na entrada do mapa de cor tem de ser um inteiro"
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "esquema de circuito gEDA"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "símbolo de esquema gEDA"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "projecto gEDA gsch2pcb"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "Projecto gEDA Gsch2pcb"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "Esquema de circuito gEDA"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "Símbolo de Esquema gEDA"
+
+#~ msgid "Failed to stat [%s]: %s"
+#~ msgstr "Falhou em stat [%s]: %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "AVISO: Foi encontrado um ficheiro de salvaguarda automatica:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr ""
+#~ "Não pude adivinhar se é mais recente, por isso terá de o fazer "
+#~ "manualmente.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "A cópia de salvaguarda é mais recente que o esquema, parece então que "
+#~ "deverá abri-la em vez do ficheiro original.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Gschem normalmente faz cópias de salvaguarda automaticamente, e esta "
+#~ "situação acontece quando encrava ou foi forçado a sair abruptamente.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Não é possível encontrar o ficheiro %s: %s"
+
+#, fuzzy
+#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
+#~ msgstr ""
+#~ "NÃO foi possível definir o ficheiro de salvaguarda anterior [%s] como "
+#~ "leitura e escrita\n"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Não é possível guardar o ficheiro de salvaguarda: %s."
+
+#, fuzzy
+#~ msgid "%s: Can not get the real filename of %s."
+#~ msgstr ""
+#~ "s_page_delete: Não foi possível obter o nome de ficheiro verdadeiro de %s."
+
+#~ msgid "s_page_delete: Unable to delete backup file %s."
+#~ msgstr "s_page_delete: Não foi possível apagar ficheiro de salvaguarda %s."
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Não é possível encontrar o ficheiro %s: %s"
+
+#, fuzzy
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Falha ao carregar imagem a partir do ficheiro [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': fdopen() failed: %s"
+#~ msgstr "Falha ao carregar imagem a partir do ficheiro [%s]: %s\n"
+
+#~ msgid "Unable to get time of day in f_print_header()\n"
+#~ msgstr "Não é possível obter a hora em f_print_header()\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to locate prolog file [%s]\n"
+#~ msgstr "s_page_delete: Não foi possível apagar ficheiro de salvaguarda %s."
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
+#~ msgstr ""
+#~ "Não é possível abrir o ficheiro prolog `%s' para leitura em f_print_header"
+#~ "()\n"
+
+#~ msgid "Giving up on printing\n"
+#~ msgstr "A desistir da impressão\n"
+
+#~ msgid "Could not execute command [%s] for printing\n"
+#~ msgstr "Não foi possível executar o comando [%s] para impressão\n"
+
+#~ msgid "Too many UTF-8 characters, cannot print\n"
+#~ msgstr "Demasiados caracteres UTF-8, não é possível imprimir\n"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Não é possível encontrar o ficheiro %s: %s"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Falha ao carregar imagem a partir do ficheiro [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "libgeda: Loaded RC file [%s]\n"
+#~ msgstr "Comando de biblioteca falhou [%s]\n"
+
+#~ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrado um arco com raio zero [ %c %d, %d, %d, %d, %d, %d ]\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Definindo a cor para cor padrão\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Tentativa de anexar item não textual como um atributo!\n"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr "Tentativa de anexar atributo [%s] a mais de um objecto\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Tentativa de anexar item não textual como um atributo!\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Leitura de símbolo embutido inesperado marcador de início em [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Leitura de símbolo embutido inesperado marcador de início em [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Leitura de símbolo embutido inesperado marcador de fim em [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid ""
+#~ "Read an old format sym/sch file!\n"
+#~ "Please run g[sym|sch]update on:\n"
+#~ "[%s]\n"
+#~ msgstr ""
+#~ "Leitura de um ficheiro sym/sch de formato antigo!\n"
+#~ "Por favor execute g[sym|sch]update em:\n"
+#~ "[%s]\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read garbage line <%d> in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Leitura de lixo em [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid "Read garbage line <%d> in [%s]"
+#~ msgstr ""
+#~ "Leitura de lixo em [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Encontrada caixa de largura/altura zero [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Encontrado barramento com comprimento zero [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found an invalid bus ripper direction [ %s ]\n"
+#~ msgstr ""
+#~ "Encontrado um símbolo de extracção de barramento com direcção invalida "
+#~ "[ %s ]\n"
+
+#~ msgid "Resetting direction to neutral (no direction)\n"
+#~ msgstr "Alterando a direcção para neutral (sem direcção)\n"
+
+#~ msgid "Null radius circles are not allowed\n"
+#~ msgstr "Círculos de raio nulo não são permitidos\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Componente não encontrado:\n"
+#~ " %s"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Foi encontrado um componente com uma rotação inválida [ %c %d %d %d %d %d "
+#~ "%s ]\n"
+
+#~ msgid "Setting angle to 0\n"
+#~ msgstr "Definindo ângulo para 0\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Foi encontrado um componente com atributo de simetria inválido [ %c %d %d "
+#~ "%d %d %d %s ]\n"
+
+#, fuzzy
+#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
+#~ msgstr ""
+#~ "\tALTERAÇÃO DE VERSÃO IMPORTANTE (ficheiro %.3f, instanciado %.3f, %s)!\n"
+
+#, fuzzy
+#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
+#~ msgstr "\tAlteração de versão menor (ficheiro %.3f, instanciado %.3f)\n"
+
+#, fuzzy
+#~ msgid "WARNING: Symbol version %s on refdes %s:\n"
+#~ msgstr ""
+#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
+#~ "\tNão foi possível verificar ficheiro anexado symversion=%s\n"
+
+#, fuzzy
+#~ msgid "\tCould not parse attached symversion=%s\n"
+#~ msgstr ""
+#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
+#~ "\tNão foi possível verificar ficheiro anexado symversion=%s\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "\tsymversion=%s attached to instantiated symbol, but version not found "
+#~ "inside symbol file\n"
+#~ msgstr ""
+#~ "AVISO: Versão de símbolo estranha em refdes %s:\n"
+#~ "\tsymversion=%s anexado ao símbolo instanciado, mas não existe "
+#~ "symversion= dentro do ficheiro de simbolo\n"
+
+#~ msgid "Component [%s] has been embedded\n"
+#~ msgstr "Componente [%s] foi embutido\n"
+
+#~ msgid ""
+#~ "Could not find component [%s], while trying to unembed. Component is "
+#~ "still embedded\n"
+#~ msgstr ""
+#~ "Não foi possível encontrar o componente [%s], ao tentar retirar. "
+#~ "Componente permanece embutido\n"
+
+#~ msgid "Component [%s] has been successfully unembedded\n"
+#~ msgstr "Componente [%s] foi retirado com sucesso\n"
+
+#~ msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrada uma linha de comprimento zero [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrada uma ligação com comprimento zero [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrada uma imagem com largura/altura zero [ %c %d %d %d %d ]\n"
+
+#~ msgid "Setting mirrored to 0\n"
+#~ msgstr "Defenindo simetria para 0\n"
+
+#~ msgid "Setting embedded to 0\n"
+#~ msgstr "Definindo valor embutido para 0\n"
+
+#~ msgid "Found an unsupported picture angle [ %d ]\n"
+#~ msgstr "Foi encontrado um valor não suportado para ângulo de imagem [%d]\n"
+
+#~ msgid "Failed to load image from embedded data [%s]: %s\n"
+#~ msgstr "Falha ao carregar a imagem a partir dos dados embutidos [%s]:%s\n"
+
+#~ msgid "Base64 decoding failed."
+#~ msgstr "Descodificação Base64 falhou."
+
+#~ msgid "Falling back to file loading. Picture unembedded.\n"
+#~ msgstr "A recuar ao modo de carregamento de ficheiro. Imagem removida.\n"
+
+#~ msgid "ERROR: o_picture_save: unable to encode the picture.\n"
+#~ msgstr "ERRO: o_picture_save: não é possível codificar a imagem.\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#~ msgid "Picture [%s] has been embedded\n"
+#~ msgstr "Imagem [%s] foi embutida\n"
+
+#~ msgid "Failed to load image from file [%s]: %s\n"
+#~ msgstr "Falha ao carregar imagem a partir do ficheiro [%s]: %s\n"
+
+#~ msgid "Picture [%s] has been unembedded\n"
+#~ msgstr "Imagem [%s] foi removida\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Found a pin which did not have the whichend field set.\n"
+#~ "Verify and correct manually.\n"
+#~ msgstr ""
+#~ "Foi encontrado um pino que não tinha o campo 'whichone' atribuído.\n"
+#~ "Verifique e corrija manualmente.\n"
+
+#~ msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
+#~ msgstr ""
+#~ "Foi encontrado campo invalido 'whichend' num pino (alterando para zero): "
+#~ "%d\n"
+
+#, fuzzy
+#~ msgid "%s: Can't get real filename of %s."
+#~ msgstr ""
+#~ "s_page_delete: Não foi possível obter o nome de ficheiro verdadeiro de %s."
+
+#, fuzzy
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "NÃO foi possível definir o ficheiro de salvaguarda anterior [%s] como "
+#~ "leitura e escrita\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Não foi possível definir o ficheiro de salvaguarda [%s] apenas como "
+#~ "leitura\n"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr ""
+#~ "Não foi possível definir o ficheiro de salvaguarda [%s] apenas como "
+#~ "leitura\n"
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "o_save_objects: objecto %p tem tipo desconhecido '%c'\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Definindo a cor para cor padrão\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Definindo a cor para cor padrão\n"
+
+#~ msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrada uma faixa de tamanho zero [ %c %d %d %d %d %d %d %d %d ]\n"
+
+#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrado um alinhamento de texto não suportado [ %c %d %d %d %d %d "
+#~ "%d %d %d ]\n"
+
+#~ msgid "Setting alignment to LOWER_LEFT\n"
+#~ msgstr "A definir alinhamento para 'em baixo à esquerda'\n"
+
+#~ msgid "Library command failed [%s]: %s\n"
+#~ msgstr "Comando de biblioteca falhou [%s]: %s\n"
+
+#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
+#~ msgstr "Comando de biblioteca falhou [%s]: Sinal não alcançado %i.\n"
+
+#~ msgid "Library command failed [%s]\n"
+#~ msgstr "Comando de biblioteca falhou [%s]\n"
+
+#~ msgid ""
+#~ "Error output was:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Erro de saida foi:\n"
+#~ "%s\n"
+
+#~ msgid "Library name [%s] already in use.  Using [%s].\n"
+#~ msgstr "Nome de biblioteca [%s] já em uso.  A usar [%s].\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#~ msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
+#~ msgstr ""
+#~ "Falha ao verificar biblioteca [%s]: Função 'scheme' devolveu algo que não "
+#~ "é lista\n"
+
+#~ msgid "Non-string symbol name while scanning library [%s]\n"
+#~ msgstr ""
+#~ "Nome de símbolo que não é faixa de caracteres encontrado enquanto se "
+#~ "verificava a biblioteca [%s]\n"
+
+#~ msgid "Cannot add library: name not specified\n"
+#~ msgstr "Não é possível adicionar biblioteca: nome não foi especificado\n"
+
+#~ msgid ""
+#~ "Cannot add library [%s]: both 'list' and 'get' commands must be "
+#~ "specified.\n"
+#~ msgstr ""
+#~ "Não é possível adicionar biblioteca [%s]: ambos os comandos 'list' e "
+#~ "'get' têm de ser especificados.\n"
+
+#~ msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
+#~ msgstr ""
+#~ "Não é possível adicionar biblioteca Scheme [%s]: rotinas de chamada devem "
+#~ "ser de encerramento\n"
+
+#~ msgid "Failed to load symbol from file [%s]: %s\n"
+#~ msgstr "Falhou ao carregar símbolo a partir do ficheiro  [%s]: %s\n"
+
+#~ msgid "Failed to load symbol data [%s] from source [%s]\n"
+#~ msgstr "Falhou ao carregar dados do símbolo [%s] a partir da fonte [%s]\n"
+
+#~ msgid "Component [%s] was not found in the component library\n"
+#~ msgstr "Componente [%s] não foi encontrado na biblioteca de componentes\n"
+
+#~ msgid "More than one component found with name [%s]\n"
+#~ msgstr "Mais de um componente encontrado com o nome [%s]\n"
+
+#~ msgid "There are no schematics above the current one!\n"
+#~ msgstr "Não existem esquemas acima do esquema presente!\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy into '%s': %s\n"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Guardado [%s]\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "NÃO foi possível guardar [%s]\n"
+
+#~ msgid "s_page_delete: Can't get the real filename of %s."
+#~ msgstr ""
+#~ "s_page_delete: Não foi possível obter o nome de ficheiro verdadeiro de %s."
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=%s\n"
+#~ msgstr ""
+#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
+#~ "\tNão foi possível verificar ficheiro de símbolo symversion=%s\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=\n"
+#~ msgstr ""
+#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
+#~ "\tNão foi possível verificar ficheiro de símbolo symversion=\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
+#~ "\tSymbol in library is newer than instantiated symbol\n"
+#~ msgstr ""
+#~ "AVISO: Versão de símbolo não coincidente em refdes %s (%s):\n"
+#~ "\tSimbolo na biblioteca é mais recente que o símbolo instanciado\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version oddity on refdes %s:\n"
+#~ "\tInstantiated symbol is newer than symbol in library\n"
+#~ msgstr ""
+#~ "AVISO: Versão de símbolo estranha em refdes %s:\n"
+#~ "\tSimbolo instanciado é mais recente que o símbolo na biblioteca\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to default=%d\n"
+#~ msgstr "Especificado espaço inválido, definindo para 100\n"
+
+#, fuzzy
+#~ msgid "Invalid length specified, setting to default=%d\n"
+#~ msgstr "Especificado comprimento inválido, definindo para 100\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to  default=%d\n"
+#~ msgstr "Especificado espaço inválido, definindo para 100\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Execute gschem e corrija a situação.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid "Failed to restore permissions on '%s': %s\n"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to restore ownership on '%s': %s\n"
+#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to load RC file [%s]: "
+#~ msgstr "Falha ao carregar imagem a partir do ficheiro [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Invalid path [%s] passed to component-library\n"
+#~ msgstr "Componente [%s] não foi encontrado na biblioteca de componentes\n"
+
+#~ msgid ""
+#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
+#~ "Use a list of strings instead\n"
+#~ msgstr ""
+#~ "AVISO: usar uma faixa para 'always-promote-attributes' esta ultrapassado. "
+#~ "Use uma lista de faixas em seu lugar\n"
+
+#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Foi encontrado um ângulo para texto não suportado [ %c %d %d %d %d %d %d "
+#~ "%d %d ]\n"
+
+#~ msgid "Error during reading of the prolog file `%s' in f_print_header()\n"
+#~ msgstr ""
+#~ "Erro durante a leitura do ficheiro prolog `%s' em f_print_header()\n"
+
+#~ msgid ""
+#~ "Error during writing of the output postscript file in f_print_header()\n"
+#~ msgstr ""
+#~ "Erro durante a escrita do ficheiro de saída postscript em f_print_header"
+#~ "()\n"
+
+#~ msgid ""
+#~ "hierarchy loop detected while visiting page:\n"
+#~ "  \"%s\"\n"
+#~ msgstr ""
+#~ "Ciclo hierárquico detectado enquanto visitava pagina:\n"
+#~ "  \"%s\"\n"
+
+#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
+#~ msgstr "ERRO em s_hierarchy_traverse: esquema não encontrado: %s\n"
+
+#~ msgid "Found [%s]\n"
+#~ msgstr "Encontrado [%s]\n"
+
+#~ msgid "Could not find [%s] in any SourceLibrary\n"
+#~ msgstr "Não foi possível encontrar [%s] em nenhuma biblioteca fonte\n"

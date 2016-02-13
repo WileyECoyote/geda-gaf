@@ -1,0 +1,568 @@
+# Greek translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2012-09-01 18:46+0000\n"
+"Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
+"Language-Team: Greek <el@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Key in color map entry must be an string"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr ""
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Βρέθηκε ένα μη έγκυρο χρώμα [ %s ]\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Δεν ήταν δυνατό το άνοιγμα του [%s] για εκτύπωση\n"
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "Σχεδιάγραμμα κυκλώματος gEDA"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "Σύμβολο σχεδίου gEDA"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "Έργο gEDA gsch2pcb"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "Έργο gEDA Gsch2pcb"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "Σχεδιάγραμμα Κυκλώματος gEDA"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "Σύμβολο Σχεδίου gEDA"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Βρέθηκε ένα αντίγραφο ασφαλείας αυτόματης αποθήκευσης:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr ""
+#~ "Δεν μπόρεσα να καταλάβω αν είναι νεότερο, οπότε πρέπει να το κάνετε με το "
+#~ "χέρι.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "Το αντίγραφο ασφαλείας είναι νεότερο από το σχεδιάγραμμα, άρα μάλλον "
+#~ "πρέπει να φορτώσετε αυτό αντί για το αρχικό αρχείο.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Το gschem συνήθως δημιουργεί αντίγραφα ασφαλείας αυτόματα, και αυτή η "
+#~ "περίπτωση συμβαίνει όταν κατέρρευσε ή έγινε βίαιη έξοδος.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
+
+#~ msgid "Can't get the real filename of %s: %s"
+#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
+
+#~ msgid "File %s is read-only"
+#~ msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
+
+#, fuzzy
+#~ msgid "%s: Can not get the real filename of %s."
+#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
+
+#~ msgid "s_page_delete: Unable to delete backup file %s."
+#~ msgstr "s_page_delete: Αδυναμία διαγραφής αντιγράφου ασφαλείας %s."
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
+
+#, fuzzy
+#~ msgid "File \"%s\" is too large"
+#~ msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
+
+#, fuzzy
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Αποτυχία φορτώματος του συμβόλου από το αρχείο [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': fdopen() failed: %s"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to locate prolog file [%s]\n"
+#~ msgstr "s_page_delete: Αδυναμία διαγραφής αντιγράφου ασφαλείας %s."
+
+#~ msgid "Giving up on printing\n"
+#~ msgstr "Εγκατάλειψη εκτύπωσης\n"
+
+#~ msgid "Could not execute command [%s] for printing\n"
+#~ msgstr "Δεν ήταν δυνατή η εκτέλεση της εντολής [%s] για εκτύπωση\n"
+
+#~ msgid "Too many UTF-8 characters, cannot print\n"
+#~ msgstr "Πάρα πολλοί χαρακτήρες UTF-8, δεν είναι δυνατή η εκτύπωση\n"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
+
+#, fuzzy
+#~ msgid "RC file already loaded"
+#~ msgstr "Το αρχείο ρυθμίσεων έχει ήδη φορτωθεί"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Αδυναμία φορτώματος εικόνας από [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "libgeda: Loaded RC file [%s]\n"
+#~ msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]\n"
+
+#~ msgid "ERROR: %s\n"
+#~ msgstr "ΣΦΑΛΜΑ: %s\n"
+
+#~ msgid "ERROR: The %s log may contain more information.\n"
+#~ msgstr ""
+#~ "ΣΦΑΛΜΑ: Η καταγραφή %s μπορεί να περιέχει περισσότερες πληροφορίες.\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr ""
+#~ "Προσπάθεια προσθήκης γνωρίσματος [%s] σε περισσότερα από ένα αντικείμενα\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
+
+#, fuzzy
+#~ msgid "unexpected end-of-file in attribute list"
+#~ msgstr "Απροσδόκητο τέλος αρχείου στη λίστα γνωρισμάτων"
+
+#~ msgid ""
+#~ "Read an old format sym/sch file!\n"
+#~ "Please run g[sym|sch]update on:\n"
+#~ "[%s]\n"
+#~ msgstr ""
+#~ "Ανάγνωση παλιάς μορφής αρχείου sym/sch!\n"
+#~ "Παρακαλούμε εκτελέστε το g[sym|sch]update σε:\n"
+#~ "[%s]\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read garbage line <%d> in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Ανάγνωση σκουπιδιών σε [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid "Read garbage line <%d> in [%s]"
+#~ msgstr ""
+#~ "Ανάγνωση σκουπιδιών σε [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid "Resetting direction to neutral (no direction)\n"
+#~ msgstr "Επαναφορά κατεύθυνσης στη φυσική (χωρίς κατεύθυνση)\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Το στοιχείο δε βρέθηκε:\n"
+#~ " %s"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr "Βρέθηκε στοιχείο με μη έγκυρη περιστροφή [ %c %d %d %d %d %d %s ]\n"
+
+#~ msgid "Setting angle to 0\n"
+#~ msgstr "Ρύθμιση γωνίας σε 0\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Βρέθηκε στοιχείο με μη έγκυρη σημαία καθρεπτισμού [ %c %d %d %d %d %d "
+#~ "%s ]\n"
+
+#~ msgid "Setting mirror to 0\n"
+#~ msgstr "Ρύθμιση καθρεπτισμού σε 0\n"
+
+#~ msgid "Component [%s] has been embedded\n"
+#~ msgstr "Το στοιχείο [%s] ενσωματώθηκε\n"
+
+#~ msgid ""
+#~ "Could not find component [%s], while trying to unembed. Component is "
+#~ "still embedded\n"
+#~ msgstr ""
+#~ "Δεν ήταν δυνατή η εύρεση του στοιχείου [%s], κατά τη διάρκεια "
+#~ "αποενσωμάτωσης. Το στοιχείο είναι ακόμα ενσωματωμένο\n"
+
+#~ msgid "Component [%s] has been successfully unembedded\n"
+#~ msgstr "Το στοιχείο [%s] αποενσωματώθηκε επιτυχώς\n"
+
+#~ msgid "Failed to load image from [%s]: %s\n"
+#~ msgstr "Αδυναμία φορτώματος εικόνας από [%s]: %s\n"
+
+#~ msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
+#~ msgstr "Βρέθηκε εικόνα με μηδενικό πλάτος/ύψος [ %c %d %d %d %d ]\n"
+
+#~ msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
+#~ msgstr "Βρέθηκε εικόνα με λανθασμένη παράμετρο καθρεπτισμού: %d.\n"
+
+#~ msgid "Setting mirrored to 0\n"
+#~ msgstr "Ρύθμιση καθρεπτισμού σε 0\n"
+
+#~ msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
+#~ msgstr "Βρέθηκε εικόνα με λανθασμένη παράμετρο ενσωματωμένου: %d.\n"
+
+#~ msgid "Setting embedded to 0\n"
+#~ msgstr "Ρύθμιση ενσωματωμένου σε 0\n"
+
+#~ msgid "Found an unsupported picture angle [ %d ]\n"
+#~ msgstr "Βρέθηκε μη υποστηριζόμενη γωνία εικόνας [ %d ]\n"
+
+#~ msgid "Failed to load image from embedded data [%s]: %s\n"
+#~ msgstr "Αποτυχία φορτώματος εικόνας από τα ενσωματωμένα δεδομένα [%s]: %s\n"
+
+#~ msgid "Base64 decoding failed."
+#~ msgstr "Η αποκωδικοποίηση Base64 απέτυχε."
+
+#~ msgid "Falling back to file loading. Picture unembedded.\n"
+#~ msgstr "Επιστροφή στο φόρτωμα αρχείου. Η εικόνα αποενσωματώθηκε.\n"
+
+#~ msgid "ERROR: o_picture_save: unable to encode the picture.\n"
+#~ msgstr "ΣΦΑΛΜΑ: o_picture_save: αδυναμία κωδικοποίησης εικόνας.\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "%s: Can't get real filename of %s."
+#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
+
+#, fuzzy
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "o_save_objects: το αντικείμενο %p έχει άγνωστο τύπο '%c'\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
+
+#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Βρέθηκε μία μη υποστηριζόμενη στοίχιση κειμένου [ %c %d %d %d %d %d %d %d "
+#~ "%d ]\n"
+
+#~ msgid "Setting alignment to LOWER_LEFT\n"
+#~ msgstr "Ρύθμιση στοίχισης σε LOWER_LEFT\n"
+
+#~ msgid ""
+#~ "Objects ~A and ~A are not part of the same page and/or complex object"
+#~ msgstr ""
+#~ "Τα αντικείμενα ~A και ~A δεν είναι μέρη της ίδια σελίδας ή/και πολύπλοκου "
+#~ "αντικειμένου"
+
+#~ msgid "Object ~A is already attached as an attribute"
+#~ msgstr "Το αντικείμενο Object ~A είναι ήδη συνδεδεμένο με ένα γνώρισμα"
+
+#~ msgid "Object ~A is attribute of wrong object"
+#~ msgstr "Το αντικείμενο ~A είναι γνώρισμα του λάθος αντικειμένου"
+
+#~ msgid "~A is not a valid attribute: invalid string '~A'."
+#~ msgstr "Το ~A δεν είναι έγκυρο γνώρισμα: μη έγκυρη συμβολοσειρά '~A'."
+
+#, fuzzy
+#~ msgid "Object ~A is already on a page"
+#~ msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
+
+#~ msgid "Object ~A is already attached to something"
+#~ msgstr "Το αντικείμενο ~A είναι ήδη συνδεδεμένο με κάτι"
+
+#~ msgid "Object ~A is attached to a page"
+#~ msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
+
+#~ msgid "Object ~A is attached as an attribute"
+#~ msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
+
+#~ msgid "Object ~A has attributes"
+#~ msgstr "Το αντικείμενο ~A έχει γνωρίσματα"
+
+#~ msgid "Object ~A has invalid pin type."
+#~ msgstr "Το αντικείμενο ~A έχει μη έγκυρο τύπο ακροδεκτών."
+
+#~ msgid "Invalid text alignment ~A."
+#~ msgstr "Μη έγκυρη στοίχιση κειμένου ~A."
+
+#~ msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
+#~ msgstr ""
+#~ "Μη έγκυρη γωνία κειμένου ~A. Πρέπει να είναι 0, 90, 180, ή 270 μοίρες"
+
+#~ msgid "Invalid text name/value visibility ~A."
+#~ msgstr "Μη έγκυρο όνομα/τιμή ορατότητας ~A."
+
+#~ msgid "Text object ~A has invalid text alignment ~A"
+#~ msgstr "Το αντικείμενο κειμένου ~A έχει μη έγκυρη στοίχιση κειμένου ~A"
+
+#~ msgid "Text object ~A has invalid visibility ~A"
+#~ msgstr "Το αντικείμενο κειμένου ~A έχει μη έγκυρη ορατότητα ~A"
+
+#~ msgid "Text object ~A has invalid text attribute visibility ~A"
+#~ msgstr ""
+#~ "Το αντικείμενο κειμένου ~A έχει μη έγκυρο γνώρισμα ορατότητας κειμένου ~A"
+
+#~ msgid "Object ~A is not included in a page."
+#~ msgstr "Το αντικείμενο ~A δεν περιλαμβάνεται σε κάποια σελίδα."
+
+#~ msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
+#~ msgstr ""
+#~ "Μη έγκυρη γωνία εικόνας ~A. Πρέπει να είναι 0, 90, 180, ή 270 μοίρες"
+
+#~ msgid "Library command failed [%s]: %s\n"
+#~ msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]: %s\n"
+
+#~ msgid "Library command failed [%s]\n"
+#~ msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]\n"
+
+#~ msgid ""
+#~ "Error output was:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Η έξοδος σφάλματος ήταν:\n"
+#~ "%s\n"
+
+#~ msgid "Library name [%s] already in use.  Using [%s].\n"
+#~ msgstr "Η ονομασία βιβλιοθήκης [%s] χρησιμοποιείται ήδη.  Χρήση [%s].\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#~ msgid "Cannot add library: name not specified\n"
+#~ msgstr "Αδυναμία προσθήκης βιβλιοθήκης: το όνομα δεν έχει οριστεί\n"
+
+#~ msgid ""
+#~ "Cannot add library [%s]: both 'list' and 'get' commands must be "
+#~ "specified.\n"
+#~ msgstr ""
+#~ "Δεν είναι δυνατή η προσθήκη της βιβλιοθήκης [%s]: πρέπει να καθοριστούν "
+#~ "οι εντολές 'list' και 'get'.\n"
+
+#~ msgid "Failed to load symbol from file [%s]: %s\n"
+#~ msgstr "Αποτυχία φορτώματος του συμβόλου από το αρχείο [%s]: %s\n"
+
+#~ msgid "Failed to load symbol data [%s] from source [%s]\n"
+#~ msgstr "Αποτυχία φορτώματος των δεδομένων συμβόλου [%s] από την πηγή [%s]\n"
+
+#~ msgid "Component [%s] was not found in the component library\n"
+#~ msgstr "Το στοιχείο [%s] δε βρέθηκε στη βιβλιοθήκη στοιχείων\n"
+
+#~ msgid "More than one component found with name [%s]\n"
+#~ msgstr "Βρέθηκαν περισσότερα από ένα στοιχεία με το όνομα [%s]\n"
+
+#~ msgid "There are no schematics above the current one!\n"
+#~ msgstr "Δεν υπάρχουν σχεδιαγράμματα πάνω από το τρέχον!\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy into '%s': %s\n"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Αποθηκεύτηκε [%s]\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "ΔΕΝ αποθηκεύτηκε [%s]\n"
+
+#, fuzzy
+#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
+#~ msgstr "Δε βρέθηκε γνώρισμα slotdef=#:#,#,#...\n"
+
+#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
+#~ msgstr "Δε βρέθηκε κατάλληλο γνώρισμα slotdef=#:#,#,#...\n"
+
+#~ msgid "component missing pinseq= attribute\n"
+#~ msgstr "Λείπει το γνώρισμα pinseq= από το στοιχείο\n"
+
+#~ msgid "Object ~A is not part of a page"
+#~ msgstr "Το αντικείμενο ~A δεν είναι μέρος καμίας σελίδας"
+
+#~ msgid "s_page_delete: Can't get the real filename of %s."
+#~ msgstr ""
+#~ "s_page_delete: Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s."
+
+#~ msgid "Found an image with no filename."
+#~ msgstr "Βρέθηκε εικόνα χωρίς όνομα αρχείου."
+
+#~ msgid "Picture %p has invalid angle %i\n"
+#~ msgstr "Η εικόνα %p έχει μη έγκυρη γωνία %i\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to default=%d\n"
+#~ msgstr "Καθορίστηκε μη έγκυρο διάστημα, ορισμός σε 100\n"
+
+#, fuzzy
+#~ msgid "Invalid length specified, setting to default=%d\n"
+#~ msgstr "Καθορίστηκε μη έγκυρο μήκος, ορισμός σε 100\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to  default=%d\n"
+#~ msgstr "Καθορίστηκε μη έγκυρο διάστημα, ορισμός σε 100\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Εκτελέστε το gschem και διορθώστε την κατάσταση.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid "Failed to restore permissions on '%s': %s\n"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to restore ownership on '%s': %s\n"
+#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to load RC file [%s]: "
+#~ msgstr "Αποτυχία φορτώματος του συμβόλου από το αρχείο [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Invalid path [%s] passed to component-library\n"
+#~ msgstr "Το στοιχείο [%s] δε βρέθηκε στη βιβλιοθήκη στοιχείων\n"
+
+#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Βρέθηκε μία μη υποστηριζόμενη γωνία κειμένου [ %c %d %d %d %d %d %d %d "
+#~ "%d ]\n"
+
+#~ msgid ""
+#~ "hierarchy loop detected while visiting page:\n"
+#~ "  \"%s\"\n"
+#~ msgstr ""
+#~ "βρέθηκε βρόγχος ιεραρχίας κατά την επίσκεψη στην ιστοσελίδα:\n"
+#~ "  \"%s\"\n"
+
+#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
+#~ msgstr "ΣΦΑΛΜΑ στο s_hierarchy_traverse: το σχεδιάγραμμα δε βρέθηκε: %s\n"
+
+#~ msgid "Found [%s]\n"
+#~ msgstr "Βρέθηκε [%s]\n"
+
+#~ msgid "Could not find [%s] in any SourceLibrary\n"
+#~ msgstr "Αδυναμία εύρεσης [%s] σε κανένα SourceLibrary\n"

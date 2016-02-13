@@ -1,0 +1,7 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+##FRAGMENTS= geda_color_x11
+
+libgedacolor_la_SOURCES += \
+						x11/color_x11.c
+

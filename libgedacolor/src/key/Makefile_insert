@@ -1,0 +1,7 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_color_key
+
+libgedacolor_la_SOURCES += \
+						key/color_key.c
+

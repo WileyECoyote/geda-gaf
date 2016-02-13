@@ -25,5 +25,3 @@ configure.scan
 *~
 .deps/
 .libs/
-libgedacolor
-libgedacon

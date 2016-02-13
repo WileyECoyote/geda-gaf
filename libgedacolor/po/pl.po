@@ -1,0 +1,825 @@
+# Polish translation for geda
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2010-02-06 22:09+0000\n"
+"Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Nie odnaleziono pliku %s: %s"
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr "Wpis w mapie kolorów musi być dwuelementową listą"
+
+#: libgedacolor/src/guile/color_guile.c:160
+#, fuzzy
+msgid "Key in color map entry must be an string"
+msgstr "Wpis w mapie kolorów musi być wartością #f lub napisem"
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr "Wpis w mapie kolorów musi być wartością #f lub napisem"
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr "Indeks koloru poza zakresem"
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, fuzzy, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr "Napotkano niepoprawny kolor [ %s ]\n"
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, fuzzy, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr "Nie można zapisać kopii zapasowej: %s."
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, fuzzy, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr "Nie można otworzyć [%s] do wydruku\n"
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, fuzzy, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr "o_save: nie można otworzyć [%s]\n"
+
+#~ msgid "Index in color map entry must be an integer"
+#~ msgstr "Indeks koloru musi być liczbą całkowitą"
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "schemat obwodu gEDA"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "element schematu gEDA"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "projekt gsch2pcb gEDA"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "Projekt Gsch2pcb gEDA"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "Schemat Obwodu gEDA"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "Element Schematu gEDA"
+
+#~ msgid "Failed to stat [%s]: %s"
+#~ msgstr "Błąd odczytu atrybutów [%s]: %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "WARNING: Found an autosave backup file:\n"
+#~ " \"%s\".\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "UWAGA: Odnaleziono plik kopii zapasowej:\n"
+#~ "  %s.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Could not detemine which file is newer, so you should do this manually.\n"
+#~ msgstr ""
+#~ "Nie można stwierdzić, czy kopia jest nowsza - musisz sprawdzić to "
+#~ "ręcznie.\n"
+
+#~ msgid ""
+#~ "The backup copy is newer than the schematic, so it seems you should load "
+#~ "it instead of the original file.\n"
+#~ msgstr ""
+#~ "Kopia zapasowa jest nowsza niż plik schematu, a więc powinieneś otworzyć "
+#~ "kopię zamiast oryginalnego pliku.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "This situation may have when an application crashed or was forced to exit "
+#~ "abruptly.\n"
+#~ msgstr ""
+#~ "Gschem tworzy kopie zapasowe automatycznie, a ta sytuacja może być "
+#~ "wynikiem niepoprawnego zamknięcia programu, np. z powodu błędu.\n"
+
+#~ msgid "Cannot find file %s: %s"
+#~ msgstr "Nie odnaleziono pliku %s: %s"
+
+#, fuzzy
+#~ msgid "Can't get the real filename of %s: %s"
+#~ msgstr "Nie można odczytać rzeczywistej nazwy %s."
+
+#, fuzzy
+#~ msgid "Could NOT save file: %s"
+#~ msgstr "Nie można zapisać [%s]\n"
+
+#, fuzzy
+#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
+#~ msgstr ""
+#~ "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
+
+#, fuzzy
+#~ msgid "Can not create backup file: %s: %s\n"
+#~ msgstr "Nie można zapisać kopii zapasowej: %s."
+
+#, fuzzy
+#~ msgid "%s: Can not get the real filename of %s."
+#~ msgstr "Nie można odczytać rzeczywistej nazwy %s."
+
+#~ msgid "s_page_delete: Unable to delete backup file %s."
+#~ msgstr "s_page_delete: Nie można skasować kopii zapasowej %s."
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#, fuzzy
+#~ msgid "Error reading file '%s': %s"
+#~ msgstr "Nie odnaleziono pliku %s: %s"
+
+#, fuzzy
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to open file '%s': fdopen() failed: %s"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#~ msgid "Unable to get time of day in f_print_header()\n"
+#~ msgstr "Błąd odczytu pory dnia w f_print_header()\n"
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to locate prolog file [%s]\n"
+#~ msgstr "s_page_delete: Nie można skasować kopii zapasowej %s."
+
+#, fuzzy
+#~ msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
+#~ msgstr ""
+#~ "Nie można otworzyć pliku nagłówka `%s' do odczytu w f_print_header()\n"
+
+#~ msgid "Giving up on printing\n"
+#~ msgstr "Drukowanie nie powiodło się\n"
+
+#~ msgid "Could not execute command [%s] for printing\n"
+#~ msgstr "Nie można wykonać komendy [%s] do wydruku\n"
+
+#~ msgid "Too many UTF-8 characters, cannot print\n"
+#~ msgstr "Błąd drukowania: zbyt wiele znaków w kodowaniu UTF-8\n"
+
+#, fuzzy
+#~ msgid "bad path in file %s"
+#~ msgstr "Nie odnaleziono pliku %s: %s"
+
+#, fuzzy
+#~ msgid "RC file already loaded"
+#~ msgstr "plik RC [%s] został już wczytany.\n"
+
+#, fuzzy
+#~ msgid "Failed to load configuration from '%s': %s\n"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "libgeda: Loaded RC file [%s]\n"
+#~ msgstr "Wczytano podany plik %s [%%s]\n"
+
+#~ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#~ msgstr "Napotkano łuk o zerowym promieniu [ %c %d, %d, %d, %d, %d, %d ]\n"
+
+#~ msgid "Setting color to default color\n"
+#~ msgstr "Użyję domyślnego koloru\n"
+
+#, fuzzy
+#~ msgid "Attempt to attach non text object as an attribute!\n"
+#~ msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
+
+#~ msgid "Attempt to attach attribute [%s] to more than one object\n"
+#~ msgstr "Próba powiązania atrybutu [%s] z więcej niż jednym obiektem\n"
+
+#, fuzzy
+#~ msgid "tried to attach a non-text object as an attribute"
+#~ msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Napotkano nieoczekiwany znacznik początku osadzonego symbolu w [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Napotkano nieoczekiwany znacznik początku osadzonego symbolu w [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Napotkano nieoczekiwany znacznik końca osadzonego symbolu w [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid ""
+#~ "Read an old format sym/sch file!\n"
+#~ "Please run g[sym|sch]update on:\n"
+#~ "[%s]\n"
+#~ msgstr ""
+#~ "Przestarzały format pliku!\n"
+#~ "Uruchom program gsymupdate/gschemupdate na pliku:\n"
+#~ "[%s]\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Read garbage line <%d> in [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+#~ msgstr ""
+#~ "Napotkano śmieci w [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#, fuzzy
+#~ msgid "Read garbage line <%d> in [%s]"
+#~ msgstr ""
+#~ "Napotkano śmieci w [%s] :\n"
+#~ ">>\n"
+#~ "%s<<\n"
+
+#~ msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Napotkano prostokąt o zerowej wysokości/szerokości [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Napotkano magistralę o zerowej długości [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found an invalid bus ripper direction [ %s ]\n"
+#~ msgstr "Napotkano odczep magistrali z błędnym ustawieniem kierunku [ %s ]\n"
+
+#~ msgid "Resetting direction to neutral (no direction)\n"
+#~ msgstr "Ustawię kierunek na neutralny (brak kierunku)\n"
+
+#~ msgid "Null radius circles are not allowed\n"
+#~ msgstr "Koła o zerowym promieniu są niedozwolone\n"
+
+#, fuzzy
+#~ msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
+#~ msgstr "Napotkano koło o zerowym promieniu [ %c %d %d %d %d ]\n"
+
+#, fuzzy
+#~ msgid "Setting radius to 0\n"
+#~ msgstr "Użyję nachylenia równego 0\n"
+
+#~ msgid ""
+#~ "Component not found:\n"
+#~ " %s"
+#~ msgstr ""
+#~ "Nie odnaleziono komponentu:\n"
+#~ " %s"
+
+#~ msgid ""
+#~ "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Napotkano komponent o błędnej specyfikacji rotacji [ %c %d %d %d %d %d "
+#~ "%s ]\n"
+
+#~ msgid "Setting angle to 0\n"
+#~ msgstr "Użyję nachylenia równego 0\n"
+
+#~ msgid ""
+#~ "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+#~ msgstr ""
+#~ "Napotkano komponent z nieprawidłową wartością flagi odbicia lustrzanego "
+#~ "[ %c %d %d %d %d %d %s ]\n"
+
+#, fuzzy
+#~ msgid "Setting mirror to 0\n"
+#~ msgstr "Przyjmuję 'odbity' równe 0\n"
+
+#, fuzzy
+#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
+#~ msgstr "\tZNACZĄCA ZMIANA WERSJI (plik %.3f, użyto %.3f, %s)!\n"
+
+#, fuzzy
+#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
+#~ msgstr "\tPomniejsza zmiana wersji (plik %.3f, użyto %.3f)\n"
+
+#, fuzzy
+#~ msgid "\tCould not parse symbol file\n"
+#~ msgstr "Nie odnaleziono żadnego pliku %s!\n"
+
+#, fuzzy
+#~ msgid "WARNING: Symbol version %s on refdes %s:\n"
+#~ msgstr ""
+#~ "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
+#~ "\tNiepowodzenie podczas parsowania dołączonego atrybutu symversion=%s\n"
+
+#, fuzzy
+#~ msgid "unknown file"
+#~ msgstr "Nieznany plik: %s\n"
+
+#, fuzzy
+#~ msgid "\tCould not parse attached symversion=%s\n"
+#~ msgstr ""
+#~ "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
+#~ "\tNiepowodzenie podczas parsowania dołączonego atrybutu symversion=%s\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "\tsymversion=%s attached to instantiated symbol, but version not found "
+#~ "inside symbol file\n"
+#~ msgstr ""
+#~ "UWAGA: Dziwna wersja symbolu o identyfikatorze %s:\n"
+#~ "\tAtrybut symversion=%s dołączony do symbolu, ale brak atrybutu "
+#~ "symversion= w pliku symbolu\n"
+
+#~ msgid "Component [%s] has been embedded\n"
+#~ msgstr "Osadzono komponent [%s]\n"
+
+#~ msgid ""
+#~ "Could not find component [%s], while trying to unembed. Component is "
+#~ "still embedded\n"
+#~ msgstr ""
+#~ "Nie odnaleziono komponentu [%s] podczas próby usunięcia osadzenia. "
+#~ "Komponent pozostanie osadzony\n"
+
+#~ msgid "Component [%s] has been successfully unembedded\n"
+#~ msgstr "Komponent [%s] nie jest już osadzony\n"
+
+#~ msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Napotkano linię o zerowej długości [ %c %d %d %d %d %d ]\n"
+
+#~ msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
+#~ msgstr "Napotkano połączenie o zerowej długości [ %c %d %d %d %d %d ]\n"
+
+#, fuzzy
+#~ msgid "Failed to load buffer image [%s]: %s\n"
+#~ msgstr "Błąd podczas ładowania symbolu z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to load image from [%s]: %s\n"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#~ msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Napotkano obrazek o zerowej wysokości/szerokości [ %c %d %d %d %d ]\n"
+
+#, fuzzy
+#~ msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
+#~ msgstr "Napotkano obrazek o niepoprawnej wartości 'odbity': %c.\n"
+
+#~ msgid "Setting mirrored to 0\n"
+#~ msgstr "Przyjmuję 'odbity' równe 0\n"
+
+#, fuzzy
+#~ msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
+#~ msgstr "Napotkano obrazek o niepoprawnej wartości 'osadzony': %c.\n"
+
+#~ msgid "Setting embedded to 0\n"
+#~ msgstr "Przyjmuję 'osadzony' równe 0\n"
+
+#~ msgid "Found an unsupported picture angle [ %d ]\n"
+#~ msgstr "Napotkano obrazek z nieprawidłową wartością nachylenia [ %d ]\n"
+
+#~ msgid "Failed to load image from embedded data [%s]: %s\n"
+#~ msgstr "Błąd odczytu obrazka z osadzonych danych [%s]: %s\n"
+
+#~ msgid "Base64 decoding failed."
+#~ msgstr "Błąd dekodowania Base64."
+
+#~ msgid "Falling back to file loading. Picture unembedded.\n"
+#~ msgstr "Spróbuję odczytać obrazek z pliku. Obrazek nie będzie osadzony.\n"
+
+#~ msgid "ERROR: o_picture_save: unable to encode the picture.\n"
+#~ msgstr "BŁĄD: o_picture_save: nie można zapisać obrazka.\n"
+
+#, fuzzy
+#~ msgid "Failed to export [%s]: %s\n"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Picture [%s] has no image data.\n"
+#~ msgstr "Obrazek [%s] został osadzony\n"
+
+#, fuzzy
+#~ msgid "Falling back to file loading. Picture is still unembedded.\n"
+#~ msgstr "Spróbuję odczytać obrazek z pliku. Obrazek nie będzie osadzony.\n"
+
+#~ msgid "Picture [%s] has been embedded\n"
+#~ msgstr "Obrazek [%s] został osadzony\n"
+
+#~ msgid "Failed to load image from file [%s]: %s\n"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Picture is still embedded.\n"
+#~ msgstr "Obrazek [%s] został osadzony\n"
+
+#~ msgid "Picture [%s] has been unembedded\n"
+#~ msgstr "Obrazek [%s] nie jest już osadzony\n"
+
+#, fuzzy
+#~ msgid "Failed to load fallback image %s: %s.\n"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Found a pin which did not have the whichend field set.\n"
+#~ "Verify and correct manually.\n"
+#~ msgstr ""
+#~ "Napotkano pin bez ustawionego pola 'whichone'.\n"
+#~ "Popraw plik manualnie.\n"
+
+#~ msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
+#~ msgstr ""
+#~ "Napotkano nieprawidłową wartość 'whichend' przypisaną do pinu (użyję "
+#~ "wartości 0): %d\n"
+
+#, fuzzy
+#~ msgid "%s: Can't get real filename of %s."
+#~ msgstr "Nie można odczytać rzeczywistej nazwy %s."
+
+#, fuzzy
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Nie można ustawić pliku kopii zapasowej w tryb tylko do odczytu [%s].\n"
+
+#, fuzzy
+#~ msgid "Could NOT save backup file [%s]: %s\n"
+#~ msgstr "Nie można zapisać [%s]\n"
+
+#, fuzzy
+#~ msgid "%s: object %p has unknown type '%c'\n"
+#~ msgstr "o_save_objects: objekt %p jest nieznanego typu '%c'\n"
+
+#, fuzzy
+#~ msgid "Setting line length to default=%d\n"
+#~ msgstr "Użyję domyślnego koloru\n"
+
+#, fuzzy
+#~ msgid "Setting line space to default=%d\n"
+#~ msgstr "Użyję domyślnego koloru\n"
+
+#~ msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Napotkano napis o zerowych wymiarach [ %c %d %d %d %d %d %d %d %d ]\n"
+
+#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Napotkano napis z nieprawidłowym wyrównaniem tekstu [ %c %d %d %d %d %d "
+#~ "%d %d %d ]\n"
+
+#~ msgid "Setting alignment to LOWER_LEFT\n"
+#~ msgstr "Użyję wyrównania do dolnego lewego rogu\n"
+
+#, fuzzy
+#~ msgid "Object ~A is already on a page"
+#~ msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
+
+#, fuzzy
+#~ msgid "Object ~A is attached as an attribute"
+#~ msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
+
+#~ msgid "Library command failed [%s]: %s\n"
+#~ msgstr "Błąd operacji w bibliotece [%s]: %s\n"
+
+#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
+#~ msgstr "Błąd operacji w bibliotece [%s]: Nieobsługiwany sygnał %i.\n"
+
+#~ msgid "Library command failed [%s]\n"
+#~ msgstr "Błąd operacji w bibliotece [%s]\n"
+
+#~ msgid ""
+#~ "Error output was:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Komunikat o błędzie:\n"
+#~ "%s\n"
+
+#~ msgid "Library name [%s] already in use.  Using [%s].\n"
+#~ msgstr "Nazwa biblioteki [%s] jest już zajęta.  Użyję [%s].\n"
+
+#, fuzzy
+#~ msgid "Failed to open [%s]: %s\n"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#~ msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
+#~ msgstr ""
+#~ "Błąd przeszukiwania biblioteki [%s]: funkcja Scheme zwróciła nie-listę\n"
+
+#~ msgid "Non-string symbol name while scanning library [%s]\n"
+#~ msgstr ""
+#~ "Napotkano niepoprawną nazwę symbolu podczas przeszukiwania biblioteki "
+#~ "[%s]\n"
+
+#~ msgid "Cannot add library: name not specified\n"
+#~ msgstr "Nie można dodać biblioteki: nie podano nazwy\n"
+
+#~ msgid ""
+#~ "Cannot add library [%s]: both 'list' and 'get' commands must be "
+#~ "specified.\n"
+#~ msgstr ""
+#~ "Nie można dodać biblioteki [%s]: komendy 'list' i 'get' muszą być podane\n"
+
+#~ msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
+#~ msgstr ""
+#~ "Nie można dodać biblioteki Scheme [%s]: callbacks must be closures\n"
+
+#~ msgid "Failed to load symbol from file [%s]: %s\n"
+#~ msgstr "Błąd podczas ładowania symbolu z pliku [%s]: %s\n"
+
+#~ msgid "Failed to load symbol data [%s] from source [%s]\n"
+#~ msgstr "Odczyt danych symbolu [%s] z pliku [%s] nie powiódł się\n"
+
+#~ msgid "Component [%s] was not found in the component library\n"
+#~ msgstr "Nie odnaleziono komponentu [%s] w bibliotece komponentów\n"
+
+#~ msgid "More than one component found with name [%s]\n"
+#~ msgstr "Odnaleziono więcej niż jeden komponent o nazwie [%s]\n"
+
+#~ msgid "There are no schematics above the current one!\n"
+#~ msgstr "Jesteś już na szczycie hierarchii schematów!\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy into '%s': %s\n"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Zapisano [%s]\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "Nie można zapisać [%s]\n"
+
+#, fuzzy
+#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
+#~ msgstr "Nie odnaleziono atrybutu slotdef=#:#,#,#...\n"
+
+#~ msgid "Improper slotdef syntax: missing \":\".\n"
+#~ msgstr "Błąd składni atrybutu slotdef: brak \":\".\n"
+
+#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
+#~ msgstr "Nie odnaleziono atrybutu slotdef=#:#,#,#...\n"
+
+#~ msgid "component missing pinseq= attribute\n"
+#~ msgstr "komponent nie ma atrybutu pinseq=\n"
+
+#~ msgid "s_page_delete: Can't get the real filename of %s."
+#~ msgstr "s_page_delete: nie można uzyskać rzeczywistej nazwy pliku %s."
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=%s\n"
+#~ msgstr ""
+#~ "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
+#~ "\tNiepowodzenie podczas parsowania pliku symbolu symversion=%s\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version parse error on refdes %s:\n"
+#~ "\tCould not parse symbol file symversion=\n"
+#~ msgstr ""
+#~ "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
+#~ "\tNiepowodzenie podczas parsowania pliku symbolu symversion=\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
+#~ "\tSymbol in library is newer than instantiated symbol\n"
+#~ msgstr ""
+#~ "UWAGA: Niezgodność wersji symbolu o identyfikatorze %s (%s):\n"
+#~ "\tWersja symbolu w bibliotece jest nowsza niż wersja tej instancji "
+#~ "symbolu\n"
+
+#~ msgid ""
+#~ "WARNING: Symbol version oddity on refdes %s:\n"
+#~ "\tInstantiated symbol is newer than symbol in library\n"
+#~ msgstr ""
+#~ "UWAGA: Dziwna wersja symbolu o identyfikatorze %s:\n"
+#~ "\tWersja symbolu w bibliotece jest nowsza niż wersja tej instancji "
+#~ "symbolu\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to default=%d\n"
+#~ msgstr "Błędna specyfikacja odstępu, użyję wartości 100\n"
+
+#, fuzzy
+#~ msgid "Invalid length specified, setting to default=%d\n"
+#~ msgstr "Błędna specyfikacja długości, użyję wartości 100\n"
+
+#, fuzzy
+#~ msgid "Invalid space specified, setting to  default=%d\n"
+#~ msgstr "Błędna specyfikacja odstępu, użyję wartości 100\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Run gschem and correct the situation.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Uruchom gschem i napraw plik ręcznie.\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid "Failed to restore permissions on '%s': %s\n"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to restore ownership on '%s': %s\n"
+#~ msgstr "Błąd otwarcia katalogu [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Failed to load RC file [%s]: "
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#, fuzzy
+#~ msgid "Invalid path [%s] passed to component-library\n"
+#~ msgstr "Nie odnaleziono komponentu [%s] w bibliotece komponentów\n"
+
+#~ msgid ""
+#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
+#~ "Use a list of strings instead\n"
+#~ msgstr ""
+#~ "UWAGA: użycie napisu jako wartości 'always-promote-attributes' jest "
+#~ "niezalecane. Użyj listy napisów\n"
+
+#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
+#~ msgstr ""
+#~ "Napotkano napis z nieprawidłowym nachyleniem [ %c %d %d %d %d %d %d %d "
+#~ "%d ]\n"
+
+#~ msgid "Error during reading of the prolog file `%s' in f_print_header()\n"
+#~ msgstr "Błąd odczytu pliku nagłówka `%s' w f_print_header()\n"
+
+#~ msgid ""
+#~ "Error during writing of the output postscript file in f_print_header()\n"
+#~ msgstr ""
+#~ "Błąd w trakcie zapisu pliku wyjściowego postscript w f_print_header()\n"
+
+#, fuzzy
+#~ msgid "Parsed config from [%s]\n"
+#~ msgstr "Wczytano plik konfiguracji użytkownika [%%s]\n"
+
+#, fuzzy
+#~ msgid "Unable to parse config from [%s]: %s"
+#~ msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
+
+#~ msgid ""
+#~ "hierarchy loop detected while visiting page:\n"
+#~ "  \"%s\"\n"
+#~ msgstr ""
+#~ "wykryto cykl w hierarchii podczas odczytu strony:\n"
+#~ "  \"%s\"\n"
+
+#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
+#~ msgstr "BŁĄD w s_hierarchy_traverse: nie odnaleziono schematu: %s\n"
+
+#~ msgid "Found [%s]\n"
+#~ msgstr "Odnaleziono [%s]\n"
+
+#~ msgid "Could not find [%s] in any SourceLibrary\n"
+#~ msgstr "Nie odnaleziono [%s] in w żadnej bibliotece\n"
+
+#~ msgid "Error reading picture definition line: %s.\n"
+#~ msgstr "Błąd podczas odczytu linii definiującej obrazek: %s.\n"
+
+#~ msgid "Loading warning picture.\n"
+#~ msgstr "Ładuję ostrzegawcze zdjęcie.\n"
+
+#~ msgid "Error loading picture from file: %s.\n"
+#~ msgstr "Błąd odczytu obrazka z pliku: %s.\n"
+
+#~ msgid "Found a zero length pin: [ %s ]\n"
+#~ msgstr "Napotkano pin o zerowej długości: [ %s ]\n"
+
+#~ msgid "%s:%i:%i: %s\n"
+#~ msgstr "%s:%i:%i: %s\n"
+
+#~ msgid "Evaluation failed: %s\n"
+#~ msgstr "Interpretacja nie powiodła się: %s\n"
+
+#~ msgid "Enable debugging for more detailed information\n"
+#~ msgstr "Włącz tryb debugowania aby uzyskać więcej informacji\n"
+
+#~ msgid "Could not find [%s] for interpretation\n"
+#~ msgstr "Nie odnaleziono [%s] do interpretacji\n"
+
+#~ msgid "Read system config file [%%s]\n"
+#~ msgstr "Wczytano globalny plik konfiguracji [%%s]\n"
+
+#~ msgid "Did not find required system config file [%%s]\n"
+#~ msgstr "Nie odnaleziono wymaganego globalnego pliku konfiguracji [%%s]\n"
+
+#~ msgid "Did not find optional user config file [%%s]\n"
+#~ msgstr "Nie znaleziono opcjonalnego pliku konfiguracji użytkownika [%%s]\n"
+
+#~ msgid "Read local config file [%%s]\n"
+#~ msgstr "Wczytano lokalny plik konfiguracji [%%s]\n"
+
+#~ msgid "Did not find optional local config file [%%s]\n"
+#~ msgstr "Nie znaleziono opcjonalnego pliku lokalnej konfiguracji [%%s]\n"
+
+#~ msgid "Did not find specified %s file [%%s]\n"
+#~ msgstr "Nie odnaleziono podanego pliku %s [%%s]\n"
+
+#~ msgid "Could not read symbolic link information for %s"
+#~ msgstr "Nie można odczytać informacji o dowiązaniu symbolicznym %s"
+
+#~ msgid "The file has too many symbolic links."
+#~ msgstr "Plik używa zbyt wielu dowiązań symbolicznych."
+
+#~ msgid "Read system-%s file [%%s]\n"
+#~ msgstr "Wczytano plik system-%s [%%s]\n"
+
+#~ msgid "Did not find required system-%s file [%%s]\n"
+#~ msgstr "Nie odnaleziono wymaganego pliku system-%s [%%s]\n"
+
+#~ msgid "Read ~/.gEDA/%s file [%%s]\n"
+#~ msgstr "Wczytano plik ~/.gEDA/%s [%%s]\n"
+
+#~ msgid "Did not find optional ~/.gEDA/%s file [%%s]\n"
+#~ msgstr "Nie odnaleziono opcjonalnego pliku ~/.gEDA/%s [%%s]\n"
+
+#~ msgid "Read local %s file [%%s]\n"
+#~ msgstr "Wczytano lokalny plik %s [%%s]\n"
+
+#~ msgid "Did not find optional local %s file [%%s]\n"
+#~ msgstr "Nie odnaleziono opcjonalnego lokalnego pliku %s [%%s]\n"
+
+#~ msgid "Setting color to WHITE\n"
+#~ msgstr "Użyję koloru białego\n"
+
+#~ msgid "Found an improper attribute: _%s_\n"
+#~ msgstr "Napotkano niepoprawny atrybut: _%s_\n"
+
+#~ msgid "Could not find character '%s' definition.\n"
+#~ msgstr "Nie odnaleziono definicji znaku '%s'.\n"
+
+#~ msgid "Could not load question font char -- check font-directory keyword\n"
+#~ msgstr ""
+#~ "Nie można odczytać znaku zapytania -- sprawdź ustawienie font-directory\n"
+
+#~ msgid "Failed to validate utf-8 character in font definition: \"%s\".\n"
+#~ msgstr "Błąd walidacji znaku utf-8 w definicji czcionki: \"%s\".\n"
+
+#~ msgid "Cannot find any schematics above the current one!\n"
+#~ msgstr "Jesteś już na szczycie hierarchii schematów!\n"
+
+#~ msgid "Maybe toplevel schematic page was closed/discarded?\n"
+#~ msgstr "Być może schemat został zamknięty/porzucony?\n"

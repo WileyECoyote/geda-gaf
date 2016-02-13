@@ -1,0 +1,20 @@
+/*! \mainpage libgEDAcolor - The GPL Electronic Design Automation Color library
+\image html logo_512x208.png
+\image latex logo_512x208.png
+\section libgedacolor-geda-intro gEDA Introduction
+    \htmlinclude what-is-geda.html
+    \latexonly
+        \input what-is-geda.tex
+    \endlatexonly
+\ref geda-gaf "gEDA Suite"
+\section libgedacolor-intro libgedacolor Introduction
+    \htmlinclude what-is-libgedacolor.html
+    \latexonly
+        \input what-is-libgedacolor.tex
+    \endlatexonly
+\section libgedacolor-manual libgedacolor Man Page
+    \htmlinclude libgedacolor-man-1.html
+    \latexonly
+        \input libgedacolor-man-1.tex
+    \endlatexonly
+*/

@@ -1,0 +1,7 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_color_struct
+
+libgedacolor_la_SOURCES += \
+						struct/color_struct.c
+

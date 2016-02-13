@@ -1,0 +1,3 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+libgedacolor_la_SOURCES += libgedacolor.c

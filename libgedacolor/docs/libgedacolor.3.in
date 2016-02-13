@@ -1,0 +1,108 @@
+'\" t
+.\"     Title: Libgedacolor
+.\"    Author: Wiley Edward Hill, Jr
+.\"    Manual: Linkage and Environment
+.\"    Source: Libgedacolor
+.\"  Language: English
+.\"
+.TH Libgedacolor 3 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+Libgeda \- The GPL Electronic Design Automation core library
+
+.SH SYNOPSIS
+#include <libgedacolor.h>
+
+.SH DESCRIPTION
+.B Libgedacolor
+is an extension library used in the gEDA suite to coordinate the mapping
+of color codes used in gEDA data files to actual colors used for output
+devices based on user configuration preferences...
+.SH
+.B LINKAGE
+.SS
+Using pkg-config
+LDFLAGS = pkg-config --libs libgedacolor
+.SS
+Base library
+if installed from a package
+.PP
+-lgedacolor
+.PP
+if built from source
+.PP
+-L/${prefix}=installed directory/gEDA/lib -lgedacolor
+(typically /usr/local/gEDA/lib)
+.SH
+.B HEADERS
+.SS
+Using pkg-config
+pkg-config --cflags libgedacolor
+.SS
+if installed from a package
+.PP
+#include <gEDA/libgedacolor.h>
+.SS
+if built from source
+.PP
+-I/${prefix}/gEDA/include/libgedacolor
+.br
+.SH PROTOTYPES
+.IP
+         void    libgedacolor_init               (int *argc, char **argv);
+         int     geda_color_load_display_scheme  (char *scheme);
+         int     geda_color_load_print_scheme    (char *scheme);
+         void    libgedacolor_release            (void);
+
+          SCM    geda_color_guile_display_map    (SCM scm_map);
+          SCM    geda_color_guile_outline_map    (SCM scm_map);
+          SCM    geda_color_guile_print_map      (SCM scm_map);
+
+          SCM    geda_color_guile_map_to_scm     (const COLOR *map);
+         void    geda_color_guile_map_from_scm   (COLOR *map, SCM lst, const char *scheme_proc_name);
+
+         char   *geda_color_get_color_name       (int index, GArray *map, GError **err);
+          int    geda_color_get_object_default   (char type);
+
+       GArray   *geda_color_get_display_map      (void);
+       GArray   *geda_color_get_standard_names   (void);
+       GArray   *geda_color_get_outline_map      (void);
+       GArray   *geda_color_get_print_map        (void);
+
+          int    geda_color_key_get_index        (const char *name);
+
+         bool    geda_color_utility_decode_rgba  (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
+         char   *geda_color_utility_encode_rgba  (uint8 r, uint8 g, uint8 b, uint8 a);
+         char   *geda_color_utility_get_hex      (COLOR *c);
+         char   *geda_color_utility_lookup_name  (COLOR *c1, GError **err);
+         char   *geda_color_utility_postscript   (int color);
+
+         void    geda_color_x11_init             (void);
+         void    geda_color_x11_free             (void);
+         void    geda_color_x11_allocate         (void);
+     GdkColor   *geda_color_x11_color_from_index (int color);
+        COLOR   *geda_color_x11_lookup           (int color);
+         bool    geda_color_x11_get_state        (int color);
+         void    geda_color_x11_set_state        (int color, int state);
+         bool    geda_color_x11_enabled          (int index);
+
+.SH AUTHORS
+See the `AUTHORS' file included with this program.
+
+.SH COPYRIGHT
+.nf
+Copyright \(co @YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
+version 2 or later. Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+\fBlibgedacolor\fR(1), \fBlibgeda\fR(1), \fBlibgedacairo\fR(1),
+\fBlibgedathon\fR(1), \fBlibgedauio\fR(1)
+.PP
+API documentation for
+.B libgedacolor
+can be generated using Doxygen using 'Make doxygen' in the libgedacolor source
+directory.

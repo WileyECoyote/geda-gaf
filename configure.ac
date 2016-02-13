@@ -192,13 +192,16 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([51:3:0])
+AX_LIBGEDA([51:4:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:3:0])
 
 # Set up libgedacairo with the correct ld version number
 AX_LIBGEDACAIRO([1:6:1])
+
+# Set up libgedacolor with the correct ld version number
+AX_LIBGEDACOLOR([0:2:0])
 
 # Set up libgedathon with the correct ld version number
 AX_LIBGEDATHON([0:7:0])
@@ -248,6 +251,22 @@ AC_CONFIG_FILES([Makefile
                  libgedacairo/docs/images/Makefile
                  libgedacairo/include/Makefile
                  libgedacairo/src/Makefile
+
+                 libgedacolor/Makefile
+                 libgedacolor/libgedacolor.pc
+                 libgedacolor/po/Makefile.in
+                 libgedacolor/docs/Makefile
+                 libgedacolor/docs/images/Makefile
+                 libgedacolor/include/Makefile
+                 libgedacolor/etc/Makefile
+                 libgedacolor/src/get/Makefile
+                 libgedacolor/src/globals/Makefile
+                 libgedacolor/src/guile/Makefile
+                 libgedacolor/src/struct/Makefile
+                 libgedacolor/src/utility/Makefile
+                 libgedacolor/src/x11/Makefile
+                 libgedacolor/src/Makefile
+                 libgedacolor/tests/Makefile
 
                  libgedadraw/Makefile
                  libgedadraw/libgedadraw.pc

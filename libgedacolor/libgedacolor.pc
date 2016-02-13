@@ -1,0 +1,15 @@
+prefix=/opt/gEDA
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+gedarcdir=/opt/gEDA/share/gEDA
+gedadatadir=/opt/gEDA/share/gEDA
+
+Name: libgedacolor
+Description: gEDA/gaf's color library 
+Requires: glib-2.0 gdk-pixbuf-2.0 guile-1.8
+Requires.private:
+Version: 20160214
+Libs: -L${libdir} -lgedacolor
+Libs.private:
+Cflags: -I${includedir}

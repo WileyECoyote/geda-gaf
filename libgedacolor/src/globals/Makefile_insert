@@ -1,0 +1,8 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_base_sources
+
+libgedacolor_la_SOURCES += \
+						globals/color_globals.c
+
+

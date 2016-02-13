@@ -1,0 +1,105 @@
+# Danish translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"PO-Revision-Date: 2012-01-27 14:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <da@li.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedacolor/src/guile/color_guile.c:73
+#, c-format
+msgid "Error loading %s, %s\n"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:151
+msgid "Color map entry must be a two-element list"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Key in color map entry must be an string"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:189
+msgid "Value in color map entry must be #f or a string"
+msgstr ""
+
+#: libgedacolor/src/utility/color_utility.c:225
+#, c-format
+msgid "Color index out of range"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:59
+#, c-format
+msgid "Tried to get an invalid color: %d\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:74
+#, c-format
+msgid "Could not allocate the color %s!\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:75
+#, c-format
+msgid "Could not allocate %s color %i!\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:79
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:86
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:107
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:129
+msgid "outline"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:258
+#, c-format
+msgid "Allocating color scheme: %s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:263
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:268
+#, c-format
+msgid "%s: Could not locate file:%s\n"
+msgstr ""
+
+#~ msgid "gEDA circuit schematic"
+#~ msgstr "gEDA kredsløbs diagram"
+
+#~ msgid "gEDA schematic symbol"
+#~ msgstr "gEDA diagram symbol"
+
+#~ msgid "gEDA gsch2pcb project"
+#~ msgstr "gEDA gsch2pcb projekt"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "gEDA Gsch2pcb Projekt"
+
+#~ msgid "gEDA Circuit Schematic"
+#~ msgstr "gEDA Kredsløbs Diagram"
+
+#~ msgid "gEDA Schematic Symbol"
+#~ msgstr "gEDA Diagram Symbol"

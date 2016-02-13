@@ -1,0 +1,6 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=object_manipulators_sources
+
+libgedacolor_la_SOURCES += \
+						get/color_get.c

@@ -25,7 +25,7 @@ ac_script=configure.ac
 am_version=1.9.6
 aclocal_flags="$ACLOCAL_FLAGS -I m4"
 tooldir=build-tools
-podirs="libgeda/po libgedauio/po gaf/po gattrib/po gnetlist/po gschem/po gaf/po gsymcheck/po"
+podirs="libgeda/po libgedauio/po libgedacolor/po gaf/po gattrib/po gnetlist/po gschem/po gaf/po gsymcheck/po"
 
 srcdir=`dirname $0`
 if test "x$srcdir" = x ; then srcdir=.; fi
@@ -56,8 +56,10 @@ EOF
   fi
 }
 
+
 # check_tool TOOLS PKG [URL]
 # --------------------------
+    echo yes >&2
 # Check that a build tool is present. TOOLS is a list of candidates to
 # search for in the path, and PKG is the package which provides the
 # tool. If URL is specified, recommend to the user that he get obtain
