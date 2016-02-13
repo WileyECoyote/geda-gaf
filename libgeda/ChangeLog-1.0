@@ -1,3 +1,18 @@
+2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/Makefile.am: remove print-colormap-darkbg and print-colormap-lightbg.
+
+    * etc/print-colormap-darkbg: Remove file.
+
+    * etc/print-colormap-lightbg: Remove file.
+
+    * src/guile/g_rc.c: Remove handler g_rc_print_color_map.
+
+    * src/guile/g_rc_color.c: Remove include math.h stdio.h, string.h, and
+      function color_map_from_scm.
+
+    * src/guile/g_register.c: Remove register g_rc_print_color_map entry.
+
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgedaguile_priv.h: Remove declaration for nonexistent function

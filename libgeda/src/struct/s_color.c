@@ -323,7 +323,7 @@ bool s_color_load_scheme (const char *inputfile)
  *  Initialises a color map to a simple default: black features on a
  *  white background, with "special" colors as gray.
  *
- *  \warning \a map must be have length of at least #MAX_COLORS.
+ *  \warning \a map must be have length of at least MAX_COLORS.
  *
  *  \param map Color map to initialise.
  */

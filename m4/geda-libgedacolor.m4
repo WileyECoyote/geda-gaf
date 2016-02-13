@@ -29,7 +29,7 @@ AC_DEFUN([AX_LIBGEDACOLOR],
   # First argument is the shared library version to use.
   AC_MSG_CHECKING([libgedacolor shared library version])
   AC_MSG_RESULT($1)
-  AC_SUBST([AX_LIBGEDACOLOR_SHLIB_VERSION], $1)
+  AC_SUBST([LIBGEDACOLOR_SHLIB_VERSION], $1)
 
   # Work out the gettext domain to use
   AC_MSG_CHECKING([libgedacolor gettext domain])

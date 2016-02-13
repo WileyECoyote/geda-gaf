@@ -11,9 +11,9 @@ The libgedacolor library provides a means for applications to relate
 color index codes in gEDA data files with RGB color value.
 
 Please submit bug reports and patches to
-<http://bugs.launchpad.net/geda>, using the `libgedacairo' tag.
+<http://bugs.launchpad.net/geda>, using the `libgedacolor' tag.
 
-Using libgedacairo in your programs
+Using libgedacolor in your programs
 -----------------------------------
 
 To use the library in your GNU Autotools-based program, add:
@@ -23,7 +23,7 @@ To use the library in your GNU Autotools-based program, add:
 
 to your `configure.ac', and then add:
 
-  AM_CFLAGS = $(GEDACOLOR_CFLAGS
+  AM_CFLAGS = $(GEDACOLOR_CFLAGS)
   AM_LDFLAGS = $(GEDACOLOR_LDFLAGS)
 
 to your `Makefile.am'.

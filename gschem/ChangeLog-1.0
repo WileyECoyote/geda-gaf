@@ -1,3 +1,21 @@
+2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/Makefile.am: Remove color map files.
+
+    * etc/gschem-colormap-*: Remove files.
+
+    * Remove color-map-make-friendly, add load print-color-maps, and
+      update display color map file names in:
+
+            * etc/system-gschemrc.scm
+            * gschem/etc/user-gschemrc.scm
+
+    * gschem/include/gschem.h: Include libgedacolor.h.
+
+    * src/Makefile.am: Include headers and link with libgedacolor.
+
+    * src/x/x_color.c: Remove source file.
+
 2016-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Revise/edit atk text, fix spelling identifier.

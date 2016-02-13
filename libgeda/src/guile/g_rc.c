@@ -1167,28 +1167,6 @@ SCM g_rc_postscript_prolog(SCM scmsymname)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the print-color-map SCM keyword.
- *  \par Function Description
- *  Specify a  color map to be used for printing.
- *
- *  \param [in] scm_map The color map to use
- *
- *  \returns SCM_BOOL_T always.
- */
-SCM g_rc_print_color_map (SCM scm_map)
-{
-  if (scm_map == SCM_UNDEFINED) {
-    return g_rc_color_map_to_scm (print_colors);
-  }
-
-  SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
-              scm_map, SCM_ARG1, "print-color-map");
-
-  g_rc_color_map_from_scm (print_colors, scm_map, "print-color-map");
-
-  return SCM_BOOL_T;
-}
-
 /*! \brief Handles the promote-invisible SCM keyword.
  *  \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration

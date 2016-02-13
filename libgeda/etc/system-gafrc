@@ -98,7 +98,6 @@
 ; End of attribute promotion keywords
 ;
 
-
 ;; Location for writing log files
 ;
 ; Set the path to the directory where log files are to be written. This
@@ -129,18 +128,12 @@
 
 ;;;; Color maps
 
-;; Load functions for handling color maps
-(load-from-path "color-map.scm")
-
-;; Make the printing color map more user-friendly
-(color-map-make-friendly print-color-map)
-
 ;; Load up a color scheme for printing optimized for a white background.
 ; Comment out the second line and comment in the first line for a
 ; dark background. The dark background is the original look.
 ;
 ;(primitive-load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
-(primitive-load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
+;(primitive-load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
 
 ;;;; Process configuration script directory
 
