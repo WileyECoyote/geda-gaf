@@ -1,3 +1,11 @@
+2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Include headers and link with libgedacolor.
+
+    * src/export.c: Include libgedacolor.h, revise function cmd_export_impl
+      to initialize and get the print color map from libgedacolor instead of
+      libgeda, also add libgeda_release before exiting function.
+
 2016-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf/src/export.c: Use the length of garray instead of MAX_COLORS in

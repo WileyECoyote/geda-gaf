@@ -37,6 +37,7 @@
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
+#include <libgedacolor.h>
 
 #include <glib/gstdio.h>
 #include <cairo.h>
@@ -125,7 +126,7 @@ static struct ExportFormat formats[] =
     {NULL, NULL, 0, NULL},
   };
 
-static EdaRenderer *renderer = NULL;
+static EdaRenderer  *renderer = NULL;
 static GedaToplevel *toplevel = NULL;
 
 static struct ExportSettings settings = {
@@ -173,9 +174,13 @@ cmd_export_impl (void *data, int argc, char **argv)
   gtk_init_check (&argc, &argv);
 
   libgeda_init (argc, argv);
+  libgedacolor_init(&argc, argv);
 
   scm_dynwind_begin (0);
   toplevel = geda_toplevel_new ();
+
+  /* Default to light, users can change using rc file */
+  geda_color_load_print_scheme(LIGHT_PRINT_MAP); /* call for load */
 
   /* Now load rc files, if necessary */
   if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
@@ -282,7 +287,7 @@ cmd_export_impl (void *data, int argc, char **argv)
                                       renderer);
 
   /* Get the print color map */
-  color_map = s_color_get_print_color_map();
+  color_map = geda_color_get_print_map();
 
   if (!settings.color) {
 
@@ -316,6 +321,9 @@ cmd_export_impl (void *data, int argc, char **argv)
   exporter->func ();
 
   g_array_free (color_map, TRUE);
+
+  libgedacolor_release();
+  libgeda_release();
 
   exit (0);
 }
