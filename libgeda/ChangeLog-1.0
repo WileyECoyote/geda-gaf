@@ -6,6 +6,9 @@
 
     * etc/print-colormap-lightbg: Remove file.
 
+    * src/geda/geda_page.c: Revise Doxygen comments in group and move class
+      and implements tags.
+
     * src/guile/g_rc.c: Remove handler g_rc_print_color_map.
 
     * src/guile/g_rc_color.c: Remove include math.h stdio.h, string.h, and

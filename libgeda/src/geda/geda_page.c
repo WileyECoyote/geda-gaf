@@ -27,15 +27,17 @@
  *  Date Contributed: November, 4, 2013
  */
 /*! \file geda_page.c
- *  \brief Geda Page Object Class derived from the base GObject Class
+ *  \brief Geda Page Object is derived from the base GObject Class
  */
-/** \defgroup geda-page Geda Page Data Structure
- *  @{
- */
-/*! \class Page geda_page.h "include/libgeda/geda_page.h"
- *  \brief
+
+/** \defgroup geda-toplevel Geda Top Level
+ * @{
+ * \brief Implmentation of #GedaToplevel Class
+ * \par
  *  A Geda Page Data Structure is use to manage information related
  *  to a single opened document.
+ *
+ * \class GedaPage geda_page.h "include/libgeda/geda_page.h"
  */
 
 #include <config.h>
