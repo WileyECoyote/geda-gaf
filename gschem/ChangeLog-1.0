@@ -1,3 +1,8 @@
+2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_parsecmd.c: Replace strcmp with u_string_stricmp when
+      checking command-line renderer adapter in gschem_parse_commandline.
+
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_

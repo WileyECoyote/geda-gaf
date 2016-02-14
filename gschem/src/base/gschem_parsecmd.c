@@ -174,10 +174,10 @@ int gschem_parse_commandline(int argc, char *argv[])
       case 'a':
         str = u_string_strdup (optarg);
         if (str) {
-          if (strcmp(str, RC_RENDERER_OPTION_CAIRO) == 0) {
+          if (u_string_stricmp(str, RC_RENDERER_OPTION_CAIRO) == 0) {
             default_render_adaptor = CAIRO_ADAPTOR;
           }
-          else if (strcmp(str, RC_RENDERER_OPTION_X11) == 0) {
+          else if (u_string_stricmp(str, RC_RENDERER_OPTION_X11) == 0) {
             default_render_adaptor = X11_ADAPTOR;
           }
           else {
