@@ -4070,14 +4070,6 @@ COMMAND (do_grid_dots)
   w_current->grid_mode = GRID_DOTS;
   x_grid_configure_variables (w_current);
   i_status_update_grid_info (w_current);
-
-  GArray *color_map = geda_color_get_display_map();
-
-  char *name = s_color_get_colorname(3, color_map, NULL);
-  //fprintf(stderr, "%s: I see <%s>\n", __func__, name);
-  GEDA_FREE(name);
-  g_array_free (color_map, TRUE);
-
   o_invalidate_all (w_current);
 }
 /*! @brief Set the Grid Display to Mesh Mode */

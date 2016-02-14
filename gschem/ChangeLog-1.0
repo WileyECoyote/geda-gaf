@@ -3,6 +3,8 @@
     * src/base/gschem_parsecmd.c: Replace strcmp with u_string_stricmp when
       checking command-line renderer adapter in gschem_parse_commandline.
 
+    * src/iface/i_command.c: Remove debug code from i_cmd_do_grid_dots.
+
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_
