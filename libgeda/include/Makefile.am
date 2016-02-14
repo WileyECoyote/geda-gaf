@@ -38,7 +38,6 @@ libgedainclude_HEADERS = \
 
 noinst_HEADERS = \
 	gettext_priv.h \
-	globals.h \
 	i_vars_priv.h \
 	libgeda_priv.h \
 	prototype_priv.h \

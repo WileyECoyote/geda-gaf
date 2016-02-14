@@ -25,8 +25,6 @@
 #include <geda_config.h>
 #include <geda_errors.h>
 
-#include <globals.h>
-
 #include <geda_color.h>
 #include <geda_colors.h>
 
@@ -50,7 +48,6 @@
 #include <geda_toplevel.h>
 
 /* Private libgeda headers */
-#include "globals.h"
 #include "prototype_priv.h"
 #include "i_vars_priv.h"
 

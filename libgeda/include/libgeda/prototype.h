@@ -54,10 +54,10 @@ extern "C" {
           SCM    g_scm_c_eval_string_protected   (const char *str);
          bool    g_read_scheme_file              (const char *filename, GError **err);
 
-/* g_rc_color.c */
+/* g_rc_color.c
           SCM    g_rc_color_map_to_scm           (const COLOR *map);
          void    g_rc_color_map_from_scm         (COLOR *map, SCM lst, const char *scheme_proc_name);
-
+*/
 /* g_rc_parse.c */
           SCM    g_rc_parse_mode                 (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
          bool    g_rc_parse_file                 (const char *rcfile, EdaConfig *cfg, GError **err);
@@ -453,13 +453,6 @@ const CLibSource *s_clib_symbol_get_source       (const CLibSymbol *symbol);
 const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char    *s_clib_symbol_get_data_by_name (const char *name);
 
-/* s_color.c */
-         char   *s_color_get_colorname           (int index, GArray *map, GError **err);
-       GArray   *s_color_get_standard_names      (void);
-       GArray   *s_color_get_print_color_map     (void);
-         bool    s_color_load_scheme             (const char *scheme);
-         void    s_color_map_defaults            (COLOR *map);
-
 /* s_conn.c */
          void    s_conn_remove_object            (GedaObject *to_remove);
          void    s_conn_update_linear_object     (GedaObject *object);
@@ -601,12 +594,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* u_basic.c */
          char   *u_expand_env_variable           (const char *string);
          void    u_print_object                  (GedaObject *object);
-
-/* u_color.c */
-         bool    u_color_rgba_decode             (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
-         char   *u_color_rgba_encode             (uint8 r, uint8 g, uint8 b, uint8 a);
-         char   *u_color_get_hex                 (COLOR *c);
-         char   *u_color_lookup_colorname        (COLOR *c1, GError **err);
 
 /* u_glist.c */
         GList   *u_glist_clear                   (GList* list);
