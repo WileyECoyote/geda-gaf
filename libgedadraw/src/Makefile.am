@@ -4,15 +4,14 @@
 
 #DEBUGGING                   = --debug --verbose
 
-#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
-
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include
 INC_LIBGEDA                  = -I$(top_srcdir)/libgeda/include
+INC_LIBCOLOR                 = -I$(top_srcdir)/libgedacolor/include
 
 LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedadraw\"
 
-GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
 			      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
@@ -26,17 +25,17 @@ libgedadraw_la_SOURCES       =
 
 include x11/Makefile_insert
 
-libgedadraw_la_CFLAGS         =
+libgedadraw_la_CFLAGS        =
 
-libgedadraw_la_CPPFLAGS       = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
+libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
 
-libgedadraw_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
+libgedadraw_la_LDFLAGS       = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 
-libgedadraw_la_DEPENDENCIES   = $(top_builddir)/libgeda/src/libgeda.la
+libgedadraw_la_DEPENDENCIES  = $(top_builddir)/libgeda/src/libgeda.la
 
-libgedadraw_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la
+libgedadraw_la_LIBADD        = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                       = @LIBTOOL@ --silent
+LIBTOOL                      = @LIBTOOL@ --silent
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedadraw

@@ -32,8 +32,7 @@
 
 #include <fcntl.h>
 
-#include <libgeda/geda_colors.h>
-
+#include <geda_colors.h>
 #include <geda_debug.h>
 
 /*

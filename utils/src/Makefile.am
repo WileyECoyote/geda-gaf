@@ -5,8 +5,9 @@
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+INC_LIBCOLOR = -I$(top_srcdir)/libgedacolor/include
 
-GEDA_INCLUDES    = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+GEDA_INCLUDES    = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
 bin_PROGRAMS     = gmk_sym smash_megafile convert_sym sarlacc_schem olib \
 		   grenum

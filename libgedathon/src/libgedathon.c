@@ -39,6 +39,7 @@
 
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
+#include <libgedacolor.h>
 
 //#include <pygobject.h>
 

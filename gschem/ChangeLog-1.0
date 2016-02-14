@@ -14,7 +14,6 @@
 
     * src/x/x_pagesel.c: Reduce scope of p_current in add_page.
 
-
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_

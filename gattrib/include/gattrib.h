@@ -28,6 +28,8 @@
 #endif
 
 #include <libgeda/libgeda.h>       /* geda library functions  */
+#include <geda_colors.h>           /* ATTRIBUTE_COLOR */
+
 #include "../include/struct.h"     /* typdef and struct declarations */
 #include "../include/globals.h"
 #include "../include/prototype.h"  /* function prototypes */

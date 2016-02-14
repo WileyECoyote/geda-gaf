@@ -14,10 +14,11 @@
 INC_GEDA                 = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                = -I$(srcdir)/../include
 INC_LIBGEDA              = -I$(top_srcdir)/libgeda/include
+INC_LIBCOLOR             = -I$(top_srcdir)/libgedacolor/include
 
 LOG_DOMAIN               = -DG_LOG_DOMAIN=\"libgedathon\"
 
-GEDA_INCLUDES            = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+GEDA_INCLUDES            = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
 PY_INCLUDES              = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 

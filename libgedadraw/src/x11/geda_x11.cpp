@@ -55,7 +55,7 @@
 
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
-
+#include <geda_colors.h>
 #include <geda_draw.h>
 
 /*! \todo Finish function documentation!!!
