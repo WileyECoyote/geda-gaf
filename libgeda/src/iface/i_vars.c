@@ -136,7 +136,7 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
 
   /* Cannot free the default* strings here since new windows */
   /* need them */
-  INIT_STR(toplevel, untitled_name   ,   DEFAULT_UNTITLED_NAME   );
+  INIT_STR(toplevel, untitled_name,      DEFAULT_UNTITLED_NAME);
   INIT_STR(toplevel, bitmap_directory,   DEFAULT_BITMAP_DIRECTORY);
   INIT_STR(toplevel, postscript_prolog,  DEFAULT_POSTSCRIPT_PROLOG);
 }

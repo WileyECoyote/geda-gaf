@@ -6,15 +6,32 @@
 
     * etc/print-colormap-lightbg: Remove file.
 
+    * include/globals.h: Remove file;
+
+    * include/libgeda_priv.h: Remove include: globals.h, (both of them).
+
+    * src/libgeda.c: Remove call to s_color_init.
+
+    * src/file/f_print.c: Add module static print_colormap, add color_map as
+      third argument to f_print_file and f_print_command, saving to color_map
+      and setting to NULL before exiting, a function f_print_get_color_string,
+      lookup value in color_map for f_print_set_color.
+
     * src/geda/geda_page.c: Revise Doxygen comments in group and move class
       and implements tags.
 
     * src/guile/g_rc.c: Remove handler g_rc_print_color_map.
 
+    * src/guile/g_rc_color.c: Remove source file.
+
     * src/guile/g_rc_color.c: Remove include math.h stdio.h, string.h, and
       function color_map_from_scm.
 
     * src/guile/g_register.c: Remove register g_rc_print_color_map entry.
+
+    * src/struct/s_color.c: Remove source file.
+
+    * src/utility/u_color.c: Remove source file.
 
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 

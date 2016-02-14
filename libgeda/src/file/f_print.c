@@ -41,6 +41,8 @@
  */
 static GHashTable *unicode_char_to_glyph = NULL;
 
+static GArray *print_colormap;
+
 static int last_ps_color;  /* used to remember the last code sent */
 
 static int f_print_get_unicode_chars (GedaToplevel        *toplevel,
@@ -64,6 +66,47 @@ void f_print_set_line_width(FILE *fp, int width)
   }
 }
 
+/*!
+ * \brief Lookup Color String from local Print Color Map
+ * \internal
+ * \par Function Description
+ *  Retrieves the a #COLOR from the temporary print_colormap at
+ *  \a index and if enabled, returns a copy of the a string
+ *  representation of the color or NULL if the color is not
+ *  enabled or \a index is out of range of the color map.
+ *
+ *  \param [in] color Integer color to convert and print.
+ *
+ *  \returns color string or NULL if the color is disabled.
+ *
+ *  \sa f_print_file f_print_command
+ */
+static char *f_print_get_color_string(int index)
+{
+  if (print_colormap) {
+
+    if (index < print_colormap->len) {
+
+      COLOR *c = &g_array_index (print_colormap, COLOR, index);
+
+      if (c->enabled && c->a > 0) {
+
+        return u_string_sprintf ("%.3f %.3f %.3f",
+                                 (double) c->r/255.0,
+                                 (double) c->g/255.0,
+                                 (double) c->b/255.0);
+      }
+    }
+    else {
+      fprintf(stderr,_("Color index out of range <%d>"), index);
+    }
+  }
+  else {
+    fprintf(stderr,_("Print color map is not set, was print map read?\n"));
+  }
+  return NULL;
+}
+
 /*! \brief Prints the color to a postscript document
  *  \par Function Description
  *  This function converts the color number passed to a string
@@ -81,7 +124,7 @@ int f_print_set_color(GedaToplevel *toplevel, FILE *fp, int color)
 
   if (!toplevel->print_color || (last_ps_color == color)) return 1;
 
-  string = s_color_postscript_string(color);
+  string = f_print_get_color_string(color);
 
   if (string) {
     fprintf(fp, "%s setrgbcolor\n", string);
@@ -382,13 +425,16 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
  *  \param [in] filename   The file name of the output postscript document.
  *  \return 0 on success, -1 on failure.
  */
-int f_print_file (GedaToplevel *toplevel, Page *page, const char *filename)
+int
+f_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename)
 {
   FILE *fp;
   int result;
 
   /* dots are breaking my filename selection hack hack !!!! */
   fp = fopen(filename, "wb"); /* Use "wb" for safety on e.g. Win32 */
+
+  print_colormap =  color_map;
 
   /* check to see if it worked */
   if (fp == NULL) {
@@ -406,6 +452,8 @@ int f_print_file (GedaToplevel *toplevel, Page *page, const char *filename)
     fclose (fp);
   }
 
+  print_colormap = NULL;
+
   return result;
 }
 
@@ -419,12 +467,15 @@ int f_print_file (GedaToplevel *toplevel, Page *page, const char *filename)
  *  \param [in] command    The command to print to.
  *  \return 0 on success, -1 on failure.
  */
-int f_print_command (GedaToplevel *toplevel, Page *page, const char *command)
+int
+f_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command)
 {
   FILE *fp;
   int   result;
 
   fp = popen (command, "w");
+
+  print_colormap =  color_map;
 
   /* check to see if it worked */
   if (fp == NULL) {
@@ -437,6 +488,8 @@ int f_print_command (GedaToplevel *toplevel, Page *page, const char *command)
     result = f_print_stream (toplevel, page, fp);
     pclose (fp);
   }
+
+  print_colormap = NULL;
 
   return result;
 }
@@ -467,10 +520,9 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
   f_print_initialize_glyph_table();  /* Fill up unicode map */
 
   /* Find all the unicode characters */
-  unicode_count =
-  f_print_get_unicode_chars (toplevel,
-                             s_page_get_objects (page),
-                             0, unicode_table);
+  unicode_count = f_print_get_unicode_chars (toplevel,
+                                             s_page_get_objects (page),
+                                             0, unicode_table);
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
@@ -670,7 +722,6 @@ static int f_print_get_unicode_chars (GedaToplevel *toplevel,
                                       const GList  *obj_list,
                                       int count, gunichar *table)
 {
-
   gunichar current_char;
   int i, found;
   const GList *iter;
