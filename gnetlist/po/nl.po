@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-07 14:27-0600\n"
+"POT-Creation-Date: 2016-02-11 02:07-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,17 +18,17 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:470
+#: gnetlist/src/g_netlist.c:465
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
 
-#: gnetlist/src/gnetlist.c:111
+#: gnetlist/src/gnetlist.c:110
 #, fuzzy, c-format
 msgid "ERROR: Can not open directory [%s:] %s\n"
 msgstr "Kan bestandenmap %s: %s niet openen\n"
 
-#: gnetlist/src/gnetlist.c:146
+#: gnetlist/src/gnetlist.c:147
 #, c-format
 msgid ""
 "List of available backends: \n"
@@ -37,44 +37,44 @@ msgstr ""
 "Lijst van beschikbare backends:\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:228
+#: gnetlist/src/gnetlist.c:229
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:230
+#: gnetlist/src/gnetlist.c:231
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:232
+#: gnetlist/src/gnetlist.c:233
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:276
+#: gnetlist/src/gnetlist.c:277
 #, fuzzy, c-format
 msgid "Loading schematic <%s>\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:277
+#: gnetlist/src/gnetlist.c:278
 #, c-format
 msgid "Loading schematic [%s]\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:283
+#: gnetlist/src/gnetlist.c:284
 #, fuzzy, c-format
 msgid "load failed [%s]: %s\n"
 msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
 
-#: gnetlist/src/gnetlist.c:302 gnetlist/src/gnetlist.c:354
+#: gnetlist/src/gnetlist.c:303 gnetlist/src/gnetlist.c:355
 #, fuzzy, c-format
 msgid "ERROR: File System, could change to directory [%s:] %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
-#: gnetlist/src/gnetlist.c:328
+#: gnetlist/src/gnetlist.c:329
 #, fuzzy, c-format
 msgid "ERROR: Could not find backend `%s' in load path.\n"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:331
+#: gnetlist/src/gnetlist.c:332
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -92,12 +92,12 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:398
+#: gnetlist/src/gnetlist.c:399
 #, fuzzy, c-format
 msgid "ERROR: file [%s:] %s\n"
 msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
 
-#: gnetlist/src/gnetlist.c:463
+#: gnetlist/src/gnetlist.c:464
 #, fuzzy, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
@@ -196,12 +196,12 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
-#: gnetlist/src/s_hierarchy.c:90
+#: gnetlist/src/s_hierarchy.c:88
 #, c-format
 msgid "Going to traverse source [%s]\n"
 msgstr "Ga de bron doorkruisen [%s]\n"
 
-#: gnetlist/src/s_hierarchy.c:109
+#: gnetlist/src/s_hierarchy.c:107
 #, c-format
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
@@ -348,12 +348,12 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:214
+#: gnetlist/src/s_traverse.c:212
 #, c-format
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:224 gnetlist/src/s_traverse.c:360
+#: gnetlist/src/s_traverse.c:224 gnetlist/src/s_traverse.c:359
 #, fuzzy, c-format
 msgid ""
 "WARNING: Found a placeholder/missing component, is symbol file missing? "
@@ -362,25 +362,31 @@ msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
 "bestand? [%s]\n"
 
-#: gnetlist/src/s_traverse.c:286 gnetlist/src/s_traverse.c:432
+#: gnetlist/src/s_traverse.c:286
+#, fuzzy, c-format
+msgid "Did not find refdes or any special attributes on component!<%s>, <%s>\n"
+msgstr ""
+"Kon geen refdes vinden op component en kon geen speciaal attributen vinden!\n"
+
+#: gnetlist/src/s_traverse.c:431
 #, fuzzy, c-format
 msgid ""
 "Could not find refdes on component or any special attributes!<%s>, <%s>\n"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!\n"
 
-#: gnetlist/src/s_traverse.c:542
+#: gnetlist/src/s_traverse.c:541
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:593
+#: gnetlist/src/s_traverse.c:590
 #, c-format
 msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
 msgstr ""
 "WAARSCHUWING: vond label=%s. label= is vervallen, gebruik alstublieft "
 "netname=\n"
 
-#: gnetlist/src/s_traverse.c:654
+#: gnetlist/src/s_traverse.c:652
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"

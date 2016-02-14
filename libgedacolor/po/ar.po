@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-12 22:46-0600\n"
+"POT-Creation-Date: 2016-02-14 01:09-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,71 +18,72 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedacolor/src/guile/color_guile.c:73
-#, fuzzy, c-format
-msgid "Error loading %s, %s\n"
-msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
-
-#: libgedacolor/src/guile/color_guile.c:151
-msgid "Color map entry must be a two-element list"
-msgstr "يجب أن يكون إدخال خارطة اللون قائمة عنصرين"
-
-#: libgedacolor/src/guile/color_guile.c:160
-#, fuzzy
-msgid "Key in color map entry must be an string"
-msgstr "يجب أن تكون القيمة في إدخال خارطة اللون f# أو نص"
-
-#: libgedacolor/src/guile/color_guile.c:189
-msgid "Value in color map entry must be #f or a string"
-msgstr "يجب أن تكون القيمة في إدخال خارطة اللون f# أو نص"
-
+#: libgedacolor/src/get/color_get.c:181
 #: libgedacolor/src/utility/color_utility.c:225
 #, c-format
 msgid "Color index out of range"
 msgstr "﻿فهرس اللون خارج المجال"
 
-#: libgedacolor/src/x11/color_x11.c:59
+#: libgedacolor/src/guile/color_guile.c:66
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
+
+#: libgedacolor/src/guile/color_guile.c:144
+msgid "Color map entry must be a two-element list"
+msgstr "يجب أن يكون إدخال خارطة اللون قائمة عنصرين"
+
+#: libgedacolor/src/guile/color_guile.c:153
+#, fuzzy
+msgid "Key in color map entry must be an string"
+msgstr "يجب أن تكون القيمة في إدخال خارطة اللون f# أو نص"
+
+#: libgedacolor/src/guile/color_guile.c:182
+msgid "Value in color map entry must be #f or a string"
+msgstr "يجب أن تكون القيمة في إدخال خارطة اللون f# أو نص"
+
+#: libgedacolor/src/x11/color_x11.c:60
 #, fuzzy, c-format
 msgid "Tried to get an invalid color: %d\n"
 msgstr "عثر على لون غير صالح [ %s ]\n"
 
-#: libgedacolor/src/x11/color_x11.c:74
+#: libgedacolor/src/x11/color_x11.c:75
 #, fuzzy, c-format
 msgid "Could not allocate the color %s!\n"
 msgstr "يتعذّر حفظ الملف الاحتياطي: %s."
 
-#: libgedacolor/src/x11/color_x11.c:75
+#: libgedacolor/src/x11/color_x11.c:76
 #, fuzzy, c-format
 msgid "Could not allocate %s color %i!\n"
 msgstr "تعذر فتح %s للطباعة\n"
 
-#: libgedacolor/src/x11/color_x11.c:79
+#: libgedacolor/src/x11/color_x11.c:80
 msgid "black"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:86
+#: libgedacolor/src/x11/color_x11.c:87
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:107
+#: libgedacolor/src/x11/color_x11.c:108
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:129
+#: libgedacolor/src/x11/color_x11.c:130
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:258
+#: libgedacolor/src/x11/color_x11.c:259
 #, c-format
 msgid "Allocating color scheme: %s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:263
+#: libgedacolor/src/x11/color_x11.c:264
 #, c-format
 msgid "Something went wrong, check:%s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:268
+#: libgedacolor/src/x11/color_x11.c:269
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "يتعذّر حفظ الملف الاحتياطي: %s."

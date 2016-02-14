@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-01-31 21:40-0600\n"
+"POT-Creation-Date: 2016-02-07 00:23-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -33,12 +33,12 @@ msgstr "Управление атрибутами компонента с пом
 msgid "%s: Could not open [%s]\n"
 msgstr "o_save: Не удалось открыть «%s»\n"
 
-#: gattrib/src/gattrib.c:177
+#: gattrib/src/gattrib.c:178
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:347
+#: gattrib/src/gattrib.c:348
 #, fuzzy, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr "Не удалось найти файл «%s»\n"

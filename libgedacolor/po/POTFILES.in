@@ -1,9 +1,10 @@
 libgedacolor/src/get/color_get.c
 libgedacolor/src/globals/color_globals.c
 libgedacolor/src/guile/color_guile.c
+libgedacolor/src/key/color_key.c
 libgedacolor/src/struct/color_struct.c
 libgedacolor/src/utility/color_utility.c
 libgedacolor/src/x11/color_x11.c
-
+libgedacolor/src/libgedacolor.c
 intl/plural.c
 
