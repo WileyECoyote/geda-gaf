@@ -1,5 +1,11 @@
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_colors.h: Remove file.
+
+    * include/libgeda/geda_colors.h: Remove file.
+
+2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/Makefile.am: remove print-colormap-darkbg and print-colormap-lightbg.
 
     * etc/print-colormap-darkbg: Remove file.

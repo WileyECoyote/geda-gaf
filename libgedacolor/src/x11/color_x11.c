@@ -31,8 +31,6 @@
 
 #include <config.h>
 
-//#include <geda/geda_standard.h>
-
 #include <gdk/gdk.h>
 
 #include <libgeda/libgeda.h>

@@ -10,6 +10,7 @@
 #endif
 
 #include "geda_colormaps.h"
+#include "geda_colors.h"
 
 #ifdef __cplusplus
 extern "C" {

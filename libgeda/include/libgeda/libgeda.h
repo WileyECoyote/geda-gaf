@@ -54,7 +54,6 @@
 #include "geda_config.h"
 #include "geda_errors.h"
 
-#include "geda_colors.h"
 #include "papersizes.h"
 #include "geda_list.h"
 #include "geda_notify.h"

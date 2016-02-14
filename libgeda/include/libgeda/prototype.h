@@ -42,8 +42,8 @@ extern "C" {
           int    f_path_create                   (const char *path, mode_t mode);
 
 /* f_print.c */
-          int    f_print_file                    (GedaToplevel *toplevel, Page *page, const char *filename);
-          int    f_print_command                 (GedaToplevel *toplevel, Page *page, const char *command);
+          int    f_print_file                    (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename);
+          int    f_print_command                 (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command);
           int    f_print_stream                  (GedaToplevel *toplevel, Page *page, FILE *fp);
          void    f_print_set_type                (GedaToplevel *toplevel, int type);
 

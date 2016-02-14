@@ -28,12 +28,13 @@
 
 #include <config.h>
 
-//#include <geda/geda_standard.h>
-
-#include <libgeda/libgeda.h>
+#include <geda/geda.h>
+#include <geda/geda_idefines.h>       /* for MAX_COLORS */
 
 #include <gdk/gdk.h>
 
+#include "../../include/geda_color.h"
+#include "../../include/geda_colors.h"
 #include "../../include/globals.h"
 #include "../../include/gettext_priv.h"
 #include <geda_debug.h>

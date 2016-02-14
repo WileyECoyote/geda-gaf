@@ -36,11 +36,7 @@
 
 #include <math.h>
 
-//#include <glib.h>
-//#include <libguile.h>
 #include <gdk/gdk.h>
-
-//#include <geda/geda_standard.h>
 
 #include <libgeda/libgeda.h>
 

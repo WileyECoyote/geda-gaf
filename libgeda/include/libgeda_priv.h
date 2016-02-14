@@ -11,6 +11,8 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include <geda_colors.h>
+
 /* Public libgeda headers */
 #include <defines.h>
 
@@ -24,9 +26,6 @@
 
 #include <geda_config.h>
 #include <geda_errors.h>
-
-#include <geda_color.h>
-#include <geda_colors.h>
 
 #include <prototype.h>
 

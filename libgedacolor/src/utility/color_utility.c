@@ -27,8 +27,6 @@
 
 #include <gdk/gdk.h>
 
-//#include <geda/geda_standard.h>
-
 #include <libgeda/libgeda.h>
 
 #include "../../include/geda_lumins.h"

@@ -30,7 +30,6 @@ libgeda/src/geda/geda_toplevel.c
 
 libgeda/src/guile/g_evaluate.c
 libgeda/src/guile/g_rc.c
-libgeda/src/guile/g_rc_color.c
 libgeda/src/guile/g_rc_parse.c
 libgeda/src/guile/g_register.c
 
@@ -89,7 +88,6 @@ libgeda/src/scheme/scheme_toplevel.c
 libgeda/src/struct/s_attrib.c
 libgeda/src/struct/s_basic.c
 libgeda/src/struct/s_clib.c
-libgeda/src/struct/s_color.c
 libgeda/src/struct/s_conn.c
 libgeda/src/struct/s_cue.c
 libgeda/src/struct/s_encoding.c
@@ -108,7 +106,6 @@ libgeda/src/struct/s_undo.c
 libgeda/src/struct/s_weakref.c
 
 libgeda/src/utility/u_basic.c
-libgeda/src/utility/u_color.c
 libgeda/src/utility/u_glist.c
 libgeda/src/utility/u_log.c
 libgeda/src/utility/u_program.c

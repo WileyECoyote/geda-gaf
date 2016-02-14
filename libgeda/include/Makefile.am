@@ -11,8 +11,6 @@ libgedainclude_HEADERS = \
 	libgeda/geda_arc.h \
 	libgeda/geda_box.h \
 	libgeda/geda_bus.h \
-	libgeda/geda_color.h\
-	libgeda/geda_colors.h\
 	libgeda/geda_circle.h \
 	libgeda/geda_complex.h \
 	libgeda/geda_config.h \
