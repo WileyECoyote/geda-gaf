@@ -48,37 +48,37 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
                                  GschemToplevel *w_current)
 {
   GtkWidget  *textentry;
-  GedaObject *object;
-  char       *slot_string;
-  const char *string = NULL;
+  const char *string;
   int         len;
 
   switch (response) {
-  case GEDA_RESPONSE_REJECT:
-  case GEDA_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy(ThisDialog);
-    i_status_set_state(w_current, SELECT);
-    break;
-  case GEDA_RESPONSE_APPLY:
-    textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
-    string    =  GetEntryText( textentry );
-    len       = strlen(string);
-    if (len != 0) {
+    case GEDA_RESPONSE_REJECT:
+    case GEDA_RESPONSE_DELETE_EVENT:
+      gtk_widget_destroy(ThisDialog);
+      i_status_set_state(w_current, SELECT);
+      break;
+    case GEDA_RESPONSE_APPLY:
+      textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
+      string    =  GetEntryText( textentry );
+      len       = strlen(string);
+      if (len != 0) {
 
-      object = o_select_return_first_object (w_current);
-      if (object != NULL) {
-        slot_string = u_string_sprintf ("slot=%s", string);
-        o_slot_end (w_current, object, slot_string);
-        GEDA_FREE (slot_string);
-        o_invalidate_object (w_current, object);
+        GedaObject *object = o_select_return_first_object (w_current);
+
+        if (object != NULL) {
+
+          char *slot_string = u_string_sprintf ("slot=%s", string);
+
+          o_slot_end (w_current, object, slot_string);
+          GEDA_FREE (slot_string);
+          o_invalidate_object (w_current, object);
+        }
       }
-    }
-    break;
+      break;
 
-  default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    default:
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
-
 }
 
 /*! \brief Handle selection change event for the Slot Editor Dialog

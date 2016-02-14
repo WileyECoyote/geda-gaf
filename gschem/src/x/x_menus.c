@@ -1216,11 +1216,6 @@ void x_menu_save_state(GschemToplevel *w_current)
   GtkWidget        *menubar;
   EdaConfig        *cfg;
 
-  char *icons_path   = OPT_ICON_MENU_PATH;      /* Menu Paths */
-  char *tooltip_path = OPT_TIPS_MENU_PATH;
-  char *popcons_path = OPT_POPCONS_MENU_PATH;
-  char *poptips_path = OPT_POPTIPS_MENU_PATH;
-
   bool  state;
   int   errors = 0;
 
@@ -1241,24 +1236,29 @@ void x_menu_save_state(GschemToplevel *w_current)
 
   if (menubar != NULL && GTK_IS_MENU_BAR(menubar)) {
 
-     v_log_message (_("Saving menu toolbar options..."));
+    char *icons_path   = OPT_ICON_MENU_PATH;      /* Menu Paths */
+    char *tooltip_path = OPT_TIPS_MENU_PATH;
+    char *popcons_path = OPT_POPCONS_MENU_PATH;
+    char *poptips_path = OPT_POPTIPS_MENU_PATH;
 
-     cfg = eda_config_get_user_context ();
+    v_log_message (_("Saving menu toolbar options..."));
 
-     save_menu_toggler_state("show-menu-icons",  icons_path);
-     save_menu_toggler_state("show-menu-tips",   tooltip_path);
-     save_menu_toggler_state("show-popup-icons", popcons_path);
-     save_menu_toggler_state("show-popup-tips",  poptips_path);
+    cfg = eda_config_get_user_context ();
 
-     if (errors == 0) {
-       v_log_message (_(" done\n"));
-     }
-     else {
-       v_log_message (_(" there were %d errors\n"), errors);
-     }
+    save_menu_toggler_state("show-menu-icons",  icons_path);
+    save_menu_toggler_state("show-menu-tips",   tooltip_path);
+    save_menu_toggler_state("show-popup-icons", popcons_path);
+    save_menu_toggler_state("show-popup-tips",  poptips_path);
 
-     eda_config_set_boolean(cfg, MENU_CONFIG_GROUP, "show-recent-path",
-                                                     show_recent_path);
+    if (errors == 0) {
+      v_log_message (_(" done\n"));
+    }
+    else {
+      v_log_message (_(" there were %d errors\n"), errors);
+    }
+
+    eda_config_set_boolean(cfg, MENU_CONFIG_GROUP, "show-recent-path",
+                           show_recent_path);
   }
 }
 

@@ -659,7 +659,7 @@ static void pagesel_instance_init (Pagesel *pagesel)
   ShowFullNameSwitch = NULL;
 
   /* Create a new Toggle Switch widget */
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, full_names);
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, full_names);
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
   /* Setup callback for Toggle Switch widget */
@@ -729,9 +729,8 @@ static void pagesel_instance_init (Pagesel *pagesel)
 static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
                       PageList     *pages, Page        *page)
 {
-  GtkTreeIter iter;
-  Page  *p_current;
   GList *p_iter;
+  GtkTreeIter iter;
 
   /* add the page to the store */
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter, parent);
@@ -747,7 +746,8 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
         p_iter != NULL;
         p_iter = g_list_next( p_iter ) ) {
 
-    p_current = (Page *)p_iter->data;
+    Page *p_current = (Page *)p_iter->data;
+
     if (p_current->hierarchy_up == page->pid) {
       add_page (model, &iter, pages, p_current);
     }

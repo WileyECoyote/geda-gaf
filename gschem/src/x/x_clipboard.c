@@ -153,13 +153,12 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
 {
     struct query_usable *callback_info = data;
 
-    char *name;
     int   i;
     int   is_usable = FALSE;
 
     for (i = 0; i < ntargets; i++) {
 
-      name = gdk_atom_name (targets[i]);
+      char *name = gdk_atom_name (targets[i]);
 
       if (strcmp (name, MIME_TYPE_SCHEMATIC) == 0) {
         g_free(name);
@@ -301,6 +300,7 @@ x_clipboard_get (GschemToplevel *w_current)
 
   /* Try to get the contents of the clipboard */
   selection_data = gtk_clipboard_wait_for_contents (cb, type);
+
   if (selection_data == NULL) return FALSE;
 
   /* Convert the data buffer to Objects */

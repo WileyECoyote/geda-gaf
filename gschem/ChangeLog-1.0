@@ -5,6 +5,16 @@
 
     * src/iface/i_command.c: Remove debug code from i_cmd_do_grid_dots.
 
+    * src/x/x_clipboard.c: Reduce scope of name in x_clipboard_finish.
+
+    * src/x/x_edit_slot.c: Reduce scope of object and slot_string in function
+      x_dialog_edit_slot_response and remove initializing string to NULL.
+
+    * src/x/x_menus.c: Reduce scope of *_path variables in x_menu_save_state.
+
+    * src/x/x_pagesel.c: Reduce scope of p_current in add_page.
+
+
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_
