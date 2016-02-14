@@ -1,5 +1,5 @@
 
-sch_images  = libgedacolor.sch
+sch_images = libgedacolor.sch
 
 svg_images = color_palette.svg
 
@@ -15,7 +15,7 @@ all:
 images: $(png_images) $(pdf_images)
 
 clean-local:
-	rm -rf $(png_images) $(pdf_images)
+	rm -rf *.png *.pdf
 
 .svg.png:
 	@if [ -x "`which inkscape`" ]; then inkscape -e $@ $< ; else  convert $< $@; fi
@@ -28,7 +28,7 @@ clean-local:
 
 SUFFIXES = .svg .pdf .png
 
-MOSTLYCLEANFILES     = *~ $(png_images) $(pdf_images)
-CLEANFILES           = *~ $(png_images) $(pdf_images)
-DISTCLEANFILES       = *~ $(png_images) $(pdf_images)
-MAINTAINERCLEANFILES = *~ Makefile.in $(png_images) $(pdf_images)
+MOSTLYCLEANFILES     = *~ *.png *.pdf
+CLEANFILES           = *~ *.png *.pdf
+DISTCLEANFILES       = *~ *.png *.pdf
+MAINTAINERCLEANFILES = *~ *.png *.pdf Makefile.in
