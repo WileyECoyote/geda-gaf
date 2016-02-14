@@ -343,6 +343,8 @@ static
 void x_image_write_eps(GschemToplevel *w_current, const char*filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+  Page         *page;
+  GArray       *color_map;
   int result;
   int w, h, orientation, type;
 
@@ -352,11 +354,16 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   orientation = toplevel->print_orientation;
   type        = toplevel->print_output_type;
 
-  toplevel->paper_width = 0;
-  toplevel->paper_height = 0;
+  toplevel->paper_width       = 0;
+  toplevel->paper_height      = 0;
   toplevel->print_orientation = PORTRAIT;
   toplevel->print_output_type = EXTENTS_NOMARGINS;
-  result = f_print_file (toplevel, toplevel->page_current, filename);
+
+  color_map = geda_color_get_print_map();
+  page      = geda_toplevel_get_current_page(toplevel);
+
+  result = f_print_file (toplevel, page, color_map, filename);
+
   if (result) {
     u_log_message(_("Error: Unable to write eps file %s.\n"), filename);
   }
@@ -364,6 +371,9 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
     u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"),
                     filename, toplevel->paper_width, toplevel->paper_height);
   }
+
+  g_array_free (color_map, TRUE);
+
   toplevel->paper_width  = w;
   toplevel->paper_height = h;
   toplevel->print_orientation = orientation;
@@ -1055,7 +1065,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   context = pango_layout_get_context (layout);
 
   if (use_print_map) {
-    color_map = s_color_get_print_color_map();
+    color_map = geda_color_get_print_map();
   }
   else {
     color_map = geda_color_get_display_map();

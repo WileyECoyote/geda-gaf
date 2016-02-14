@@ -1,3 +1,16 @@
+2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_
+      postscript to get the print color map from geda_color_get_print_map
+      and pass to f_print_file and f_print_command, and use accessor
+      geda_toplevel_get_current_page to get the current page.
+
+    * src/x/x_image.c: Revise function x_image_write_eps pass a color map
+      to libgeda as was done in the g_funcs above.
+
+    * src/x/x_print.c: Revise function x_image_write_eps pass a color map
+      to libgeda as was done in the g_funcs above.
+
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Remove color map files.

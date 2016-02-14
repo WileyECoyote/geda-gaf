@@ -323,15 +323,22 @@ SCM g_funcs_png_image(SCM scm_filename)
 SCM g_funcs_postscript(SCM scm_filename)
 {
   GedaToplevel *toplevel;
+  Page         *page;
+  GArray       *color_map;
+  int           success;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-postscript");
 
-  toplevel = edascm_c_current_toplevel ();
+  toplevel  = edascm_c_current_toplevel ();
+  page      = geda_toplevel_get_current_page(toplevel);
+  color_map = geda_color_get_print_map();
+  success   = FALSE;
 
   if (output_filename) {
-    if (f_print_file (toplevel, toplevel->page_current, output_filename))
-      return SCM_BOOL_F;
+    if (f_print_file (toplevel, page, color_map, output_filename)) {
+      success = TRUE;
+    }
   }
   else  {
 
@@ -339,14 +346,17 @@ SCM g_funcs_postscript(SCM scm_filename)
 
     filename = scm_to_utf8_string(scm_filename);
 
-    if (f_print_file (toplevel, toplevel->page_current, filename)) {
+    if (f_print_file (toplevel, page, color_map, filename)) {
       free(filename);
-      return SCM_BOOL_F;
+      success = TRUE;
     }
     free(filename);
   }
 
-  return SCM_BOOL_T;
+  g_array_free (color_map, TRUE);
+
+  /* SCM_BOOL_F = success, SCM_BOOL_T = fail */
+  return success ? SCM_BOOL_F : SCM_BOOL_T;
 }
 
 /*! \brief SCM API Print Current Document
@@ -355,14 +365,23 @@ SCM g_funcs_postscript(SCM scm_filename)
  */
 SCM g_funcs_print(SCM scm_filename)
 {
-  GedaToplevel *toplevel = edascm_c_current_toplevel();
+  GedaToplevel *toplevel;
+  Page         *page;
+  GArray       *color_map;
+  int           success;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-print");
 
+  toplevel = edascm_c_current_toplevel ();
+  page      = geda_toplevel_get_current_page(toplevel);
+  color_map = geda_color_get_print_map();
+  success   = FALSE;
+
   if (output_filename) {
-    if (f_print_file (toplevel, toplevel->page_current, output_filename))
-      return SCM_BOOL_F;
+    if (f_print_file (toplevel, page, color_map, output_filename)) {
+      success = TRUE;
+    }
   }
   else  {
 
@@ -370,14 +389,15 @@ SCM g_funcs_print(SCM scm_filename)
 
     filename = scm_to_utf8_string(scm_filename);
 
-    if (f_print_file (toplevel, toplevel->page_current, filename)) {
+    if (f_print_file (toplevel, page, color_map, filename)) {
       free(filename);
-      return SCM_BOOL_F;
+      success = TRUE;
     }
     free(filename);
   }
 
-  return SCM_BOOL_T;
+  /* SCM_BOOL_F = success, SCM_BOOL_T = fail */
+  return success ? SCM_BOOL_F : SCM_BOOL_T;
 }
 
 /*! \brief Scheme API Save the Current File

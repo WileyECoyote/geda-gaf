@@ -708,7 +708,9 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   if (result == GEDA_RESPONSE_ACCEPT) {
 
-    char *destination;
+    Page     *page;
+    GArray   *color_map;
+    char     *destination;
 
     /* Extract values from dialog and set the paper size */
     g_object_get (dialog,
@@ -727,26 +729,32 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
     /* de select everything first */
     o_select_unselect_all( w_current );
 
+    page = geda_toplevel_get_current_page(toplevel);
+
     if (usefile && filename[0]) {
 
-      /* Print to file */
+      color_map = geda_color_get_print_map();
 
+      /* Print to file */
       destination = filename;
-      result = f_print_file (toplevel,
-                             toplevel->page_current,
-                             filename);
+
+      result = f_print_file (toplevel, page, color_map, filename);
+
+      g_array_free (color_map, TRUE);
     }
     else if (command[0]) {
 
-      /* Print to command and save command for later use. */
+      color_map = geda_color_get_print_map();
 
+      /* Print to command and save command for later use. */
       destination = command;
-      result = f_print_command (toplevel,
-                                toplevel->page_current,
-                                command);
+
+      result = f_print_command (toplevel, page, color_map, command);
 
       GEDA_FREE (w_current->print_command);
       w_current->print_command = u_string_strdup (command);
+
+      g_array_free (color_map, TRUE);
     }
     else {
 
@@ -913,7 +921,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
    * making the background color transparent and replacing all other
    * enabled colors with solid black. */
 
-  color_map = s_color_get_print_color_map();
+  color_map = geda_color_get_print_map();
 
   if (!is_color) {
     int i,len;
