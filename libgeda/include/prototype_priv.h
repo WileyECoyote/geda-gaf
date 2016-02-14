@@ -248,10 +248,6 @@ void        s_clib_init                    (void);
             void     s_clib_free           (void);
 GList      *s_clib_get_symbols             (const GedaToplevel *toplevel);
 
-/* s_color.c */
-void        s_color_init                   (void);
-char       *s_color_postscript_string      (int color);
-
 /* s_conn.c */
 CONN       *s_conn_return_new              (GedaObject *other_object, int type, int x, int y, int whichone, int other_whichone);
 int         s_conn_uniq                    (GList  *conn_list, CONN *input_conn);
