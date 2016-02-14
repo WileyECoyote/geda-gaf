@@ -1,3 +1,7 @@
+2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Bump mutation to 2.1.0.18, 20160214.
+
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * m4/geda-libgedacolor.m4: Add file, forgot to commit 02-12.
