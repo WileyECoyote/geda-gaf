@@ -49,13 +49,6 @@
 #include "../../include/gettext_priv.h"
 #include <geda_debug.h>
 
-int display_cmap_flag = 0;
-int outline_cmap_flag = 0;
-int print_cmap_flag   = 0;
-
-extern COLOR display_colors[MAX_COLORS];
-extern COLOR outline_colors[MAX_COLORS];
-
 /*! \brief Load and Evaluate a Color Map Scheme
  *  \par Function Description
  *  Use to load a color map file.

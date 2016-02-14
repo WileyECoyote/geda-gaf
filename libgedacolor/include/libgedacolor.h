@@ -39,6 +39,7 @@ extern "C" {
        GArray   *geda_color_get_standard_names   (void);
        GArray   *geda_color_get_outline_map      (void);
        GArray   *geda_color_get_print_map        (void);
+         char   *geda_color_get_print_color      (int color);
 
 /* color_key.c */
           int    geda_color_key_get_index        (const char *name);
@@ -56,7 +57,9 @@ extern "C" {
          void    geda_color_x11_init             (void);
          void    geda_color_x11_free             (void);
          void    geda_color_x11_allocate         (void);
+#ifdef __GDK_COLOR_H__
      GdkColor   *geda_color_x11_color_from_index (int color);
+#endif
         COLOR   *geda_color_x11_lookup           (int color);
          bool    geda_color_x11_get_state        (int color);
          void    geda_color_x11_set_state        (int color, int state);

@@ -38,6 +38,8 @@
 #include "../../include/geda_colors.h"
 #include "../../include/globals.h"
 #include "../../include/libgedacolor.h"
+#include "../../include/private.h"
+#include "../../include/gettext_priv.h"
 #include <geda_debug.h>
 
 extern COLOR display_colors[MAX_COLORS];
@@ -163,4 +165,36 @@ GArray *geda_color_get_print_map(void)
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
   return color_map;
+}
+
+/*! \brief Get a Print color given an index
+ *  \par Function Description
+ *  Similar to geda_color_utility_postscript but checks to
+ *  insures the print_colors maps has been initialized.
+ */
+char *geda_color_get_print_color (int color)
+{
+  COLOR c;
+  static bool once = 0;
+
+  if (color >= MAX_COLORS) {
+    fprintf(stderr,_("Color index out of range"));
+    return NULL;
+  }
+
+  if (!print_cmap_flag && !once) {
+    geda_color_struct_init ();
+    once = TRUE;
+  }
+
+  c = print_colors[color];
+
+  if ((c.a == 0) || !c.enabled) {
+    return NULL;
+  } else {
+    return u_string_sprintf ("%.3f %.3f %.3f",
+                            (double) c.r/255.0,
+                            (double) c.g/255.0,
+                            (double) c.b/255.0);
+  }
 }
