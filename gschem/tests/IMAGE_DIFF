@@ -2,7 +2,7 @@
 
 IMAGE_SCRIPT=../../scripts/image.scm
 DEFAULT_FONT_NAME="Arial"
-RENDERER="-a X11"
+DEFAULT_RENDERER="Cairo"
 
 # -- For Colorization ---
 RED='\033[0;40;;31m'
@@ -18,6 +18,11 @@ input=$1
 result=0;
 
 if test -f $input ; then
+
+  if test -z ${RENDERER} ; then
+     RENDERER=${DEFAULT_RENDERER}
+     vecho "Defaulting Renderer Adapter to \"${RENDERER}\" for image tests"
+  fi
 
   # get the base name of the test file without the directory
   filename=$(basename $input)
@@ -36,7 +41,7 @@ if test -f $input ; then
 
   newpng="${filebase}.png"
 
-  $TEST_APP -q -npz ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} >> ${LOG} 2>&1
+  $TEST_APP -q -npz -a ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} >> ${LOG} 2>&1
   ret_code=$?
 
   if [ $ret_code -ne 0 ]; then

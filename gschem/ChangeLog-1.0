@@ -1,5 +1,16 @@
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/IMAGE_DIFF: Allow RENDERER to be define by enviroment and default
+      to Cairo (try again).
+
+    * tests/golden: Regenerate using Cairo renderer:
+
+            * golden/bus_endpoint_to_net.png
+            * golden/bus_ripper_1.png
+            * golden/net_endpoint_to_bus.png
+
+2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_parsecmd.c: Replace strcmp with u_string_stricmp when
       checking command-line renderer adapter in gschem_parse_commandline.
 
