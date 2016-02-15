@@ -63,7 +63,6 @@ int u_glist_find_string(GList *list, char *str) {
 
   int len;
   int index = -1;
-  char *ptr;
 
   /* return -1 if list is empty  */
   len = g_list_length(list);
@@ -71,7 +70,8 @@ int u_glist_find_string(GList *list, char *str) {
 
     for (index = 0; index < len; index++) {
 
-      ptr = g_list_nth_data(list, index);
+      char *ptr = g_list_nth_data(list, index);
+
       if (ptr == NULL ) {
         index = -1;
         break;
@@ -127,8 +127,8 @@ GSList* u_gslist_clear(GSList* list){
   if (list != NULL ) {
 
     g_slist_foreach(list, (GFunc)g_free, NULL);
-    lambda (const char* data)
-    {
+
+    lambda (const char* data) {
       list = g_slist_remove( list, data);
       return FALSE;
     }
@@ -153,7 +153,6 @@ int u_gslist_find_string(GSList *list, char *str) {
 
   int len;
   int index = -1;
-  char *ptr;
 
   /* return -1 if list is empty  */
   len = g_slist_length(list);
@@ -161,7 +160,8 @@ int u_gslist_find_string(GSList *list, char *str) {
 
     for (index = 0; index < len; index++) {
 
-      ptr = g_slist_nth_data(list, index);
+      char *ptr = g_slist_nth_data(list, index);
+
       if (ptr == NULL ) {
         index = -1;
         break;

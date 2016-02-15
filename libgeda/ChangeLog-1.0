@@ -3,7 +3,15 @@
     * src/geda/geda_object.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/object/o_complex_basic.c: Reduce scope of ptr in o_complex_get_promotable
+
     * src/struct/s_basic.c: Rename file s_basic.c -> s_print.c
+
+    * src/struct/s_weakref.c: Reduce scope of entry in s_weakref_notify and
+      s_weakref_remove.
+
+    * src/utility/u_glist.c: Reduce scope of ptr in u_glist_find_string and
+      u_gslist_find_string.
 
     * src/utility/u_refdes.c: Add function prefix geda_utility_refdes_ and
       remove _designators.

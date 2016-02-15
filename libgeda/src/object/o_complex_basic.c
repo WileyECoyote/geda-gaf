@@ -251,7 +251,6 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, GedaObject *object, int
   GList  *promoted = NULL;
   GList  *attribs;
   GList  *iter;
-  GedaObject *ptr;
 
   if (toplevel == NULL)
     return NULL;
@@ -263,7 +262,7 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, GedaObject *object, int
 
   for (iter = attribs; iter != NULL; iter = iter->next) {
 
-    ptr = iter->data;
+    GedaObject *ptr = iter->data;
 
     /* Is it an attribute we want to promote? */
     if (o_complex_is_eligible_attribute(toplevel, ptr)) {

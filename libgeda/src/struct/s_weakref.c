@@ -41,16 +41,18 @@ struct WeakRef
  * \a weak_refs. Should be called during destruction of an structure
  * that allows weak references.
  *
- * \param [in] dead_ptr       Pointer to structure being destroyed.
+ * \param [in]     dead_ptr   Pointer to structure being destroyed.
  * \param [in,out] weak_refs  List of registered weak references.
  */
 void
 s_weakref_notify (void *dead_ptr, GList *weak_refs)
 {
   GList *iter;
-  struct WeakRef *entry;
+
   for (iter = weak_refs; iter != NULL; iter = g_list_next (iter)) {
-    entry = (struct WeakRef *) iter->data;
+
+    struct WeakRef *entry = (struct WeakRef *) iter->data;
+
     if (entry != NULL && entry->notify_func != NULL) {
       entry->notify_func (dead_ptr, entry->user_data);
     }
@@ -98,9 +100,11 @@ s_weakref_remove (GList *weak_refs, void (*notify_func)(void *, void *),
                   void *user_data)
 {
   GList *iter;
-  struct WeakRef *entry;
+
   for (iter = weak_refs; iter != NULL; iter = g_list_next (iter)) {
-    entry = iter->data;
+
+    struct WeakRef *entry = iter->data;
+
     if ((entry != NULL) &&
         (entry->notify_func == notify_func) &&
         (entry->user_data == user_data)) {
@@ -113,7 +117,9 @@ s_weakref_remove (GList *weak_refs, void (*notify_func)(void *, void *),
 
 static void
 weak_ptr_notify_func (void *dead_ptr, void *user_data) {
-  void **weak_pointer_loc = (void **) user_data;
+
+  void **weak_pointer_loc = (void **)user_data;
+
   if (weak_pointer_loc != NULL) {
     *weak_pointer_loc = NULL;
   }
