@@ -14,6 +14,11 @@
 
     * src/x/x_pagesel.c: Reduce scope of p_current in add_page.
 
+    * tests/LOG_DIFF: Include TEST_FUNCS and modify conditionals.
+
+    * tests/runtest.sh: Revise conditionals in test script, remove redirection
+      of errors to /dev/null.
+
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Revise functions g_funcs_postscript and g_funcs_

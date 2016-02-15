@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo -n "Shell="
+(ls -l $(which bash))
+
 test -f ./libgeda/tests/test-suite.log && cat ./libgeda/tests/test-suite.log
 
 test -f ./libgedathon/tests/test-suite.log && cat libgedathon/tests/test-suite.log

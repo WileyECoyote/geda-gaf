@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.0
+VER=0.1.1
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -20,7 +20,7 @@ ERRDIR=mismatched
 
 #DEBUG=false
 REGENERATE=false
-VERBOSE=true
+#VERBOSE=true
 
 TOTALTEST=0
 PASSCOUNT=0
@@ -32,7 +32,7 @@ TMPGEDADIR="gEDA"
 . ./TEST_FUNCS
 
 # Show command line usage
-show_help (){
+show_help () {
    echo Usage:   `basename $0` '[-h] || [[-r || --regen] -v || --verbose] (no dir) input'
 }
 
@@ -95,15 +95,15 @@ show_help (){
   # Create links to bitmaps
 
   # Note that the toplevel bitmaps are setup first because the images
-  # from gschem/do not get sort into subdirectories
+  # from gschem/do not get sorted into subdirectories
   if [ -d $SRCDIR/../../bitmaps ] ; then
      cd $SRCDIR/../../bitmaps
-     ln -s $PWD/*.png $GEDADATARC/bitmap/ 2>/dev/null
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/ 2>/dev/null
+     ln -s $PWD/*.png $GEDADATARC/bitmap/
+     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
      cd $GEDADATARC/bitmap/
-     mv *24x24.* 24x24/ &>/dev/null
-     mv *26x26.* 26x26/ &>/dev/null
-     mv *28x28.* 28x28/ &>/dev/null
+     mv *24x24.* 24x24/
+     mv *26x26.* 26x26/
+     mv *28x28.* 28x28/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find toplevel bitmaps"
@@ -112,8 +112,8 @@ show_help (){
 
   if [ -d $SRCDIR/../bitmap ] ; then
      cd $SRCDIR/../bitmap
-     ln -s $PWD/*.png $GEDADATARC/bitmap/ 2>/dev/null
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/ 2>/dev/null
+     ln -s $PWD/*.png $GEDADATARC/bitmap/
+     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem bitmaps"
@@ -123,8 +123,8 @@ show_help (){
   # Make links to rc files
   if [ -d $SRCDIR/../etc ] ; then
      cd $SRCDIR/../etc
-     ln -s $PWD/gschem-* $GEDADATARC/ 2>/dev/null
-     ln -s $PWD/system-gschemrc $GEDADATARC/ 2>/dev/null
+     ln -s $PWD/gschem-* $GEDADATARC/
+     ln -s $PWD/system-gschemrc $GEDADATARC/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem etc directory"
@@ -133,8 +133,8 @@ show_help (){
 
   if [ -d $SRCDIR/../../libgeda/etc ] ; then
      cd $SRCDIR/../../libgeda/etc
-     ln -s $PWD/print-* $GEDADATARC/ 2>/dev/null
-     ln -s $PWD/system-gafrc $GEDADATARC/ 2>/dev/null
+     ln -s $PWD/print-* $GEDADATARC/
+     ln -s $PWD/system-gafrc $GEDADATARC/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find libgeda etc directory"
@@ -143,8 +143,8 @@ show_help (){
 
   if [ -d $SRCDIR/../../libgedacolor/etc ] ; then
      cd $SRCDIR/../../libgedacolor/etc
-     ln -s $PWD/display-* $GEDADATARC/ 2>${LOG}
-     ln -s $PWD/print-* $GEDADATARC/ 2>${LOG}
+     ln -s $PWD/display-* $GEDADATARC/
+     ln -s $PWD/print-* $GEDADATARC/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find libgeda etc directory"
@@ -154,8 +154,8 @@ show_help (){
   # Create link to RC files
   if [ -d $SRCDIR/../scheme ] ; then
      cd $SRCDIR/../scheme
-     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>${LOG}
-     ln -s $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/ 2>${LOG}
+     ln -s $PWD/*.scm $GEDADATARC/scheme/
+     ln -s $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem scheme"
@@ -164,8 +164,8 @@ show_help (){
 
   if [ -d $SRCDIR/../../libgeda/scheme ] ; then
      cd $SRCDIR/../../libgeda/scheme
-     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
-     ln -s $PWD/geda/*.scm $GEDADATARC/scheme/geda/ 2>/dev/null
+     ln -s $PWD/*.scm $GEDADATARC/scheme/
+     ln -s $PWD/geda/*.scm $GEDADATARC/scheme/geda/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find libgeda scheme directory"
@@ -177,9 +177,9 @@ show_help (){
    export SYMDIR=$PWD
    vecho "SYMDIR=$SYMDIR"
    cd $GEDADATARC/gafrc.d/
-   ln -s $SYMDIR/geda-clib.scm geda-clib.scm 2>/dev/null
+   ln -s $SYMDIR/geda-clib.scm geda-clib.scm
    cd ..
-   ln -s $SYMDIR sym 2>/dev/null
+   ln -s $SYMDIR sym
    cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find symbols directory"
@@ -188,9 +188,9 @@ show_help (){
 
   if [ -d $SRCDIR/../data ] ; then
      cd $SRCDIR/../data
-     ln -s $PWD/*22.png $GEDADATARC/icons/hicolor/22x22/actions/ 2>/dev/null
+     ln -s $PWD/*22.png $GEDADATARC/icons/hicolor/22x22/actions/
      cd  $GEDADATARC/icons/hicolor/22x22/actions/
-     for i in *.png ; do mv "$i" "${i/-22.png/.png}" &>/dev/null ; done
+     for i in *.png ; do mv "$i" "${i/-22.png/.png}" ; done
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find toplevel bitmaps"
@@ -234,12 +234,6 @@ show_help (){
 	  exit 1
    fi
 
-   if $DEBUG ; then
-     export "debugging=true";
-   else
-     unset "debugging"
-   fi
-
    TESTDIR=${RUNDIR}
    export TESTDIR
 
@@ -250,12 +244,6 @@ show_help (){
      export "regenerating=true"
    else
      unset "regenerating"
-   fi
-
-   if $VERBOSE ; then
-     export "verbosity=1"
-   else
-     unset "verbosity"
    fi
 }
 
@@ -274,7 +262,7 @@ do_process_input()
 
   for TEST in ${TESTS[@]} ; do
 
-    if ! $DEBUG ; then
+    if test ! -z ${DEBUG} ; then
       # Empty out the run directory in between each test
       test "-d ${RUNDIR}/ && -f ${RUNDIR}/*" && rm -rf ${RUNDIR}/*
     fi
@@ -324,18 +312,23 @@ elif [ "$#" -eq 2 ] ; then
   SRCDIR=$2
 fi
 
-if test ! -z $DEBUG ; then
+if test ! -z ${DEBUG} ; then
   vecho "Debugging mode is active"
+  vecho "VERBOSE mode is active"
 fi
 
-# Clean up remnants
-if [ -d $ERRDIR ] ; then
+# ------------ Clean old tests files and directories ------------
+
+# Clean up error remnants
+if test -d ${ERRDIR} ; then
   vecho "Removing remnants: ${ERRDIR}"
   rm -rf ${ERRDIR}
 fi
 
-INPUTDIR="${SRCDIR}/inputs"
-RUNDIR="${BUILDDIR}/run"
+# Cleaning remnants if DEBUG was set on the previous run
+test -d ${RUNDIR} && rm -rf ${RUNDIR};
+test -d libs && rm -rf libs;
+test -d gEDA && rm -rf gEDA;
 
 # ------------------- Check for gschem Program ------------------
 APPLICATION=${BUILDDIR}/../src/.libs/$PROGRAM
@@ -350,6 +343,11 @@ else
   APPLICATION="${BUILDDIR}/../../src/.libs/$PROGRAM"
 fi
 
+# --------------------- Set Test Directories --------------------
+
+INPUTDIR="${SRCDIR}/inputs"
+RUNDIR="${BUILDDIR}/run"
+
 # Check that the inputs directory exists
 if test ! -d $INPUTDIR ; then
   echo "Error: Can not find inputs"
@@ -360,43 +358,49 @@ fi
 #
 # If BASE_NAME is nil then NOT single test mode
 #
-if [ -z "$BASE_NAME" ] ; then
+if test -z "$BASE_NAME" ; then
   # Remove any old files from the input directory
   rm -f $INPUTDIR/*~
   INPUTS=$INPUTDIR/*
 fi
 
 # Check that the inputs directory exists
-if [ ${#INPUTS[@]} -eq 0 ] ; then
+if test ${#INPUTS[@]} -eq 0 ; then
   echo "Error: Input directory is empty"
   exit 1;
 fi
 
+# --------------------- Execute Setup Function ------------------
+#
+# Creates mini-installation directory and setup environment to use
+# in-source files
+#
 01_setup_path2libraries
 02_setup_geda_environment
 03_setup_guild_environment
 04_setup_test_environment
 
-# --------------- Process each of the input files ---------------
+# Write header to log file
 cat << \EOF > test-suite.log
 ==========================================================
  gschem regression test-suite gschem/tests/test-suite.log
 ==========================================================
 EOF
 
+# --------------- Process each of the input files ---------------
 for file in $INPUTS ; do
   do_process_input $file
   TOTALTEST=$(($TOTALTEST + $?))
 done
 
-if ${REGENERATE} ; then
-  vecho "Regenerated $TOTALTEST test"
-else
+if test ! -z ${REGENERATE} ; then
   echo "TOTALTEST=$TOTALTEST PASSCOUNT=$PASSCOUNT FAILCOUNT=$FAILCOUNT"
+else
+  vecho "Regenerated $TOTALTEST test"
 fi
 
 # Clean up if not debugging
-if test ! -z $DEBUG ; then
+if test ! -z ${DEBUG} ; then
   image_func_config
 else
   vecho "Removing temporary test directories"

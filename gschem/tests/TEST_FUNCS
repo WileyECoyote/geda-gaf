@@ -8,7 +8,7 @@ LOG=test-suite.log
 #
 
 decho() {
-    if test $debugging ; then
+    if test ! -z "${DEBUG}" ; then
 	cat <<EOF
 $*
 EOF
@@ -21,9 +21,9 @@ EOF
 #
 vecho()
 {
-   if [[ ! $1 = "" ]] ; then
-     if $VERBOSE ; then
-      echo $1
+   if test ! -z "${1}" ; then
+     if test ! -z ${VERBOSE} ; then
+      echo "${1}"
      fi
    fi
 }
@@ -144,7 +144,7 @@ compare_image() {
     if test "$same" != yes ; then
 	  test_failed=yes
       result=1
-	  test $verbosity && echo "FAILED:  \"$tn\" See ${mismatch}"
+	  vecho "FAILED:  \"$tn\" See ${mismatch}"
 	  mkdir -p -m 777 ${mismatch}
 	  ${IM_COMPARE} ${f1} ${f2} ${mismatch}/compare.png
 	  ${IM_COMPOSITE} ${f1} ${f2} -compose difference ${mismatch}/composite.png

@@ -67,11 +67,11 @@ EOF
   goldenpng=golden/${filebase}.png
 
   if test $regenerating ; then
-    test $verbosity && echo "Regenerating ${goldenpng}"
+    vecho "Regenerating ${goldenpng}"
     cp "run/${newpng}" ${goldenpng}
     result=$?;
   elif test -f $goldenpng ; then
-    test $verbosity && echo "Comparing run/${newpng} to ${goldenpng}..."
+    vecho "Comparing run/${newpng} to ${goldenpng}..."
     compare_image $filebase "run/${newpng}" "${goldenpng}"
     result=$?
     if [ $result -eq 0 ]; then

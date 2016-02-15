@@ -10,6 +10,8 @@ rundir=${TESTDIR}
 
 input=$1
 
+. ./TEST_FUNCS
+
 result=0;
 
 if test -f $input ; then
@@ -54,11 +56,11 @@ EOF
   goldenlog=golden/${filebase}.log
 
   if test $regenerating ; then
-    test $verbosity && echo "Regenerating ${goldenlog}"
+    vecho "Regenerating ${goldenlog}"
     cp "run/${testlog}" ${goldenlog}
     result=$?;
   elif test -f $goldenlog ; then
-    test $verbosity && echo "Comparing run/${testlog} to ${goldenlog}..."
+    vecho "Comparing run/${testlog} to ${goldenlog}..."
     diff "run/${testlog}" "${goldenlog}"
     result=$?
     if [ $result -eq 0 ]; then
@@ -76,4 +78,3 @@ else
 fi
 
 exit $result
-
