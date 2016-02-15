@@ -4,7 +4,6 @@
 
 libgeda_la_SOURCES += \
 			struct/s_attrib.c \
-			struct/s_basic.c \
 			struct/s_clib.c \
 			struct/s_conn.c \
 			struct/s_cue.c \
@@ -15,6 +14,7 @@ libgeda_la_SOURCES += \
 			struct/s_papersizes.c \
 			struct/s_path.c \
 			struct/s_place.c \
+			struct/s_print.c \
 			struct/s_slib.c \
 			struct/s_slot.c \
 			struct/s_textbuffer.c \

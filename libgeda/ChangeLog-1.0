@@ -3,6 +3,8 @@
     * src/geda/geda_object.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/struct/s_basic.c: Rename file s_basic.c -> s_print.c
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_colors.h: Remove file.

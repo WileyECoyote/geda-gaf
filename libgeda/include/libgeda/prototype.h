@@ -426,7 +426,7 @@ unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_
          void    s_attrib_init                   (void);
          char   *s_attrib_get                    (int counter);
 
-/* s_basic.c */
+/* s_print.c */
          void    print_struct_forw               (GList *list);
          void    print_struct                    (GedaObject *ptr);
 
