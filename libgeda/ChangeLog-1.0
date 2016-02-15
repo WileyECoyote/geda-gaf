@@ -1,3 +1,8 @@
+2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Revise Doxygen comments in group and move class
+      tag.
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_colors.h: Remove file.

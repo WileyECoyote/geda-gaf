@@ -504,7 +504,6 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   int x, y, angle, len;
   float font_size;
 
-
   if (!o_current->text->string) {
     return;
   }

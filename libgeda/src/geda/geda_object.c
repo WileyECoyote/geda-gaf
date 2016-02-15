@@ -27,19 +27,23 @@
  *  Date Contributed: November, 4, 2013
  */
 /*! \file geda_object.c
- *  \brief Geda GedaObject Class derived from the base GObject Class
+ *  \brief GedaObject Base Class for all Geda Object types
  */
-/** \defgroup geda-object Geda GedaObject
- *  @{
- */
-/*! \class GedaObject geda_object.h "include/libgeda/geda_object.h"
- *  \brief Base Class for all Geda GedaObject types
+
+/** \defgroup geda-object GedaObject
+ * @{
+ * \brief Implmentation of #GedaObject Class
+ * \par
  *  The Geda GedaObject base class provides the foundation for all Geda
  *  objects. Information such as page, object hierarchy, hooks and
- *  geometric bounds are stored in the base GedaObject class.
+ *  geometric bounds are stored in the base GedaObject class. GedaObject
+ *  are derived from the base GObject Class
+ *
+ * \class GedaObject geda_object.h "include/libgeda/geda_object.h"
  */
 
 #include <config.h>
+
 #include <libgeda_priv.h>
 
 enum {
