@@ -170,7 +170,7 @@ void main_prog(void *closure, int argc, char *argv[])
   bool  defaulted_filename;
   GedaToplevel *pr_current;
 
-  u_program_mem_set_vtable();
+  geda_utility_program_mem_set_vtable();
 
 #if ENABLE_NLS
 

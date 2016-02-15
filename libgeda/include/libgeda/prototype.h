@@ -612,7 +612,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *geda_utility_log_read           (void);
           int    geda_utility_log_get_log_time   (void);
          void    geda_utility_log_set_log_time   (int mode);
-         void    geda_utility_set_update_func    (LogUpdateFunc func);
+         void    geda_utility_log_set_update_func(LogUpdateFunc func);
          void    geda_utility_log_quite          (const char *format, ...);
          void    geda_utility_log_verbose        (const char *format, ...);
          void    geda_utility_log_system         (const char *format, ...);
@@ -642,8 +642,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          int     u_string_word_count             (char *str);
 
 /* u_program.c */
-         void    u_program_backtrace             (void);
-         void    u_program_mem_set_vtable        (void);
+         void    geda_utility_program_backtrace       (void);
+         void    geda_utility_program_mem_set_vtable  (void);
 
 /* u_refdes.c */
 const GedaRefDes *u_refdes_get_standard_designators (void);

@@ -122,10 +122,10 @@
 
 #define BUG_TRACE(mesg) fprintf (stderr, "File %s, <%s> at line %d: %s\n", \
                                  __FILE__, __func__, __LINE__, mesg); \
-                                 u_program_backtrace();
+                                 geda_utility_program_backtrace();
 
 #define BUG_ITRACE(mesg, val) fprintf (stderr, "File %s, <%s> at line %d: %s=%d\n", \
                                        __FILE__, __func__, __LINE__, mesg, val); \
-                                       u_program_backtrace();
+                                       geda_utility_program_backtrace();
 
 /** @} endgroup geda-global-macros */

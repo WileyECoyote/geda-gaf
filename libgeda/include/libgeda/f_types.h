@@ -1,5 +1,5 @@
 /*! \typedef LogUpdateFunc
- *  \brief Type of callback function  used by geda_utility_set_update_func */
+ *  \brief Type of callback function  used by geda_utility_log_set_update_func */
 typedef void (*LogUpdateFunc)(const char *, GLogLevelFlags,  const char *);
 
 /*! \typedef ConfigParseErrorFunc

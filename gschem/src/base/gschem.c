@@ -437,7 +437,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 #ifdef G_STAT_MEM
      g_mem_set_vtable(glib_mem_profiler_table);
 #else
-     u_program_mem_set_vtable();
+     geda_utility_program_mem_set_vtable();
 #endif
 
 #if ((GLIB_MAJOR_VERSION >= 2 ) && (GLIB_MINOR_VERSION <= 33 ))

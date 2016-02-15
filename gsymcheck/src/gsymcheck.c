@@ -77,7 +77,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
   /* create log file right away even if logging is enabled */
-  geda_utility_set_update_func(s_log_update);
+  geda_utility_log_set_update_func(s_log_update);
   geda_utility_log_init ("gsymcheck");
 
   pr_current = geda_toplevel_new ();
@@ -102,8 +102,8 @@ static void main_prog(void *closure, int argc, char *argv[])
     page = s_page_new (pr_current, filename);
     s_page_goto (page);
 
-    if (!f_open (pr_current, page, page->filename, &err))
-    {
+    if (!f_open (pr_current, page, page->filename, &err)) {
+
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;
       fprintf(stderr, "%s\n", err->message);

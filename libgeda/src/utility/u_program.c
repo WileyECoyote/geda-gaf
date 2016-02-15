@@ -76,7 +76,7 @@ static void inline traceback(void)  /* "static" means don't export the symbol...
  * locate errent routines.
  *
  */
-void u_program_backtrace(void)
+void geda_utility_program_backtrace(void)
 {
   traceback();
 }
@@ -95,7 +95,7 @@ void u_program_backtrace(void)
  * and g_malloc, free and g_free can be freely mixed. Guile uses
  * GLIBC, and not GLIB.
  */
-void u_program_mem_set_vtable(void)
+void geda_utility_program_mem_set_vtable(void)
 {
    memvtable.malloc      = malloc;
    memvtable.realloc     = realloc;
