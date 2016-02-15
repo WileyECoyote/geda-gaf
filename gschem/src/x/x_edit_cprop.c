@@ -515,7 +515,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
 
     if (attrib) {
 
-      const char *curr_ref = u_refdes_return_numeric (attrib->text->string);
+      const char *curr_ref = geda_utility_refdes_return_numeric (attrib->text->string);
 
       if (curr_ref) {
 
@@ -895,16 +895,16 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
 
   switch ( type ) {
     case RefDesStd:
-      designators = u_refdes_get_standard_designators();
+      designators = geda_utility_refdes_get_standard();
       break;
     case RefDesSpice:
-      designators = u_refdes_get_spice_designators();
+      designators = geda_utility_refdes_get_spice();
       break;
     case RefDesIeee:
-      designators = u_refdes_get_ieee_designators();
+      designators = geda_utility_refdes_get_ieee();
       break;
     default:
-      designators = u_refdes_get_standard_designators();
+      designators = geda_utility_refdes_get_standard();
       break;
   }
 

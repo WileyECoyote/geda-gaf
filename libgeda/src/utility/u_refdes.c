@@ -144,19 +144,19 @@ GedaRefDes IeeeRefDes[] = {
 };
 
 const GedaRefDes*
-u_refdes_get_standard_designators()
+geda_utility_refdes_get_standard()
 {
   return StdRefDes;
 }
 
 const GedaRefDes*
-u_refdes_get_spice_designators()
+geda_utility_refdes_get_spice()
 {
   return SpiceRefDes;
 }
 
 const GedaRefDes*
-u_refdes_get_ieee_designators()
+geda_utility_refdes_get_ieee()
 {
   return IeeeRefDes;
 }
@@ -173,7 +173,7 @@ u_refdes_get_ieee_designators()
  *
  *  \param [in] object      The text object
  */
-void u_refdes_reset(GedaObject *object)
+void geda_utility_refdes_reset(GedaObject *object)
 {
   int   len;
   int   index;
@@ -222,15 +222,15 @@ void u_refdes_reset(GedaObject *object)
  *
  *  example 1:
  *
- *       text_digits = u_refdes_return_numeric (object);
+ *       text_digits = geda_utility_refdes_return_numeric (object);
  *
  *  example 2:
  *
- *       text_digits = u_refdes_return_numeric (attrib->text->string);
+ *       text_digits = geda_utility_refdes_return_numeric (attrib->text->string);
  *
- *  \sa u_refdes_reset
+ *  \sa geda_utility_refdes_reset
  */
-char *u_refdes_return_numeric(void *text)
+char *geda_utility_refdes_return_numeric(void *text)
 {
   char *ptr;
   char *str_out = NULL;

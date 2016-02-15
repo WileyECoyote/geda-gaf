@@ -5,6 +5,9 @@
 
     * src/struct/s_basic.c: Rename file s_basic.c -> s_print.c
 
+    * src/utility/u_refdes.c: Add function prefix geda_utility_refdes_ and
+      remove _designators.
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_colors.h: Remove file.

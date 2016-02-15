@@ -646,11 +646,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_program_mem_set_vtable  (void);
 
 /* u_refdes.c */
-const GedaRefDes *u_refdes_get_standard_designators (void);
-const GedaRefDes *u_refdes_get_spice_designators    (void);
-const GedaRefDes *u_refdes_get_ieee_designators     (void);
-         void     u_refdes_reset                    (GedaObject *object);
-         char    *u_refdes_return_numeric           (void *text);
+const GedaRefDes *geda_utility_refdes_get_standard    (void);
+const GedaRefDes *geda_utility_refdes_get_spice       (void);
+const GedaRefDes *geda_utility_refdes_get_ieee        (void);
+         void     geda_utility_refdes_reset           (GedaObject *object);
+         char    *geda_utility_refdes_return_numeric  (void *text);
 
 #ifdef __cplusplus
 }

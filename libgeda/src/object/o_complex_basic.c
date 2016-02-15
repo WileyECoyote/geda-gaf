@@ -817,7 +817,7 @@ void o_complex_reset_refdes(GedaObject *object)
     GedaObject *attrib = (GedaObject*) iter->data;
 
     if (attrib->type == OBJ_TEXT) {
-      u_refdes_reset(attrib);
+      geda_utility_refdes_reset(attrib);
     }
 
     iter = iter->next;
