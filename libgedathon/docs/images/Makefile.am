@@ -4,7 +4,7 @@ svg_images = libgedathon_overview.svg
 EXTRA_DIST = $(svg_images)
 
 png_images = $(EXTRA_DIST:.svg=.png)
-pdf_images = $(EXTRA_DIST:.svg=.pdf) 
+pdf_images = $(EXTRA_DIST:.svg=.pdf)
 
 all:
 	@echo 'Type: make images  to create all the png/pdf images'

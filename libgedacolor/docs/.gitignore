@@ -1,0 +1,11 @@
+Makefile
+Makefile.in
+*~
+*.1
+*.bak
+*.bak
+*.tex
+libgedacolor-man-1.html
+libgedacolor.html
+TAGS
+
