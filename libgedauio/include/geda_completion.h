@@ -79,6 +79,8 @@ void         geda_completion_set_compare   (GedaCompletion *cmp,
 
 void         geda_completion_free          (GedaCompletion *cmp);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_COMPLETION_H__ */

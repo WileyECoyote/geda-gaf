@@ -69,7 +69,9 @@ struct _GedaAccelLabelClass
 };
 
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType      geda_accel_label_get_type          (void) GEDA_CONST;
 GtkWidget*    geda_accel_label_new               (const char     *string);
@@ -83,6 +85,8 @@ char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *class,
                                                      unsigned int         accelerator_key,
                                                      GdkModifierType      accelerator_mods);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_ACCEL_LABEL_H__ */

@@ -29,10 +29,6 @@
 
 #include <gtk/gtkbin.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
 #define GEDA_HANDLE_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_HANDLE_BOX, GedaHandleBoxClass))
@@ -77,6 +73,10 @@ struct _GedaHandleBoxClass
   void (*child_detached) (GedaHandleBox **handlebox, GtkWidget *child);
 
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType        geda_handle_box_get_type             (void) GEDA_CONST;
 GtkWidget      *geda_handle_box_new                  (void);

@@ -42,8 +42,6 @@
 #define MIN_CHOOSER_PREVIEW_SIZE     100
 #define MAX_CHOOSER_PREVIEW_SIZE     1000
 
-BEGIN_DECLS
-
 /*!
  * ImageChooserAction:
  * #IMAGE_CHOOSER_ACTION_OPEN: Indicates open mode.
@@ -111,6 +109,10 @@ struct _GedaImageChooserClass {
   void (* geometry_restore) (GedaImageChooser *chooser, char *group);
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType      geda_image_chooser_get_type        (void) GEDA_CONST;
 GtkWidget    *geda_image_chooser_new             (GtkWidget         *parent,
                                                   ImageChooserAction action);
@@ -144,6 +146,8 @@ void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidg
 
 void          geda_image_chooser_set_preview_active  (GtkWidget *chooser, bool state);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_IMAGE_CHOOSER_H__ */

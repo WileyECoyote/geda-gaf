@@ -58,8 +58,6 @@ typedef enum
   FILE_CHOOSER_ACTION_CREATE_FOLDER
 } FileChooserAction;
 
-BEGIN_DECLS
-
 /* GedaFileChooser is a widget that displays a file chooser dialog */
 
 #define GEDA_TYPE_FILE_CHOOSER            (geda_file_chooser_get_type ())
@@ -90,6 +88,10 @@ struct _GedaFileChooserClass {
   void (* geometry_restore) (GedaFileChooser *chooser, char *group);
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType      geda_file_chooser_get_type         (void) GEDA_CONST;
 GtkWidget    *geda_file_chooser_new              (GtkWidget         *parent,
                                                   FileChooserAction  action);
@@ -119,6 +121,8 @@ void          geda_file_chooser_set_current_name   (GtkWidget *chooser, const ch
 GtkWidget    *geda_file_chooser_get_extra_widget   (GtkWidget *chooser);
 void          geda_file_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_FILE_CHOOSER_H__ */

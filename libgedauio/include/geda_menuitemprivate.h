@@ -61,7 +61,9 @@ struct _GtkMenuItemPrivate
   unsigned int reserve_indicator      : 1;
 };
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
                                               const char    *prefix,
@@ -80,6 +82,8 @@ void      _gtk_menu_item_popup_submenu       (GtkWidget     *menu_item,
                                               int            with_delay);
 void      _gtk_menu_item_popdown_submenu     (GtkWidget     *menu_item);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_MENU_ITEM_PRIVATE_H__ */

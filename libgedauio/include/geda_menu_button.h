@@ -33,8 +33,6 @@
 
 #include <gtk/gtk.h>
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_MENU_BUTTON             (geda_menu_button_get_type ())
 #define GEDA_MENU_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton))
 #define GEDA_MENU_BUTTON_CONST(obj)       (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton const))
@@ -82,6 +80,10 @@ struct _GedaMenuButtonClass
   void (* show_menu) (GedaMenuButton *button);
 
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GType           geda_menu_button_get_type (void) GEDA_CONST;
 
@@ -143,7 +145,9 @@ void            geda_menu_button_set_arrow_tooltip_text   (GedaMenuButton *butto
                                                            const char     *text);
 void            geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
                                                            const char     *markup);
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_MENU_BUTTON_H__ */
 /* ex:set ts=8 noet: */

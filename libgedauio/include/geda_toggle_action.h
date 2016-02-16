@@ -32,8 +32,6 @@
 #include <gtk/gtkaction.h>
 #include "geda_action.h"       /* only because is current dir, otherwise inclusion belongs in src */
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_TOGGLE_ACTION            (geda_toggle_action_get_type ())
 #define GEDA_TOGGLE_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TOGGLE_ACTION, GedaToggleAction))
 #define GEDA_TOGGLE_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_TOGGLE_ACTION, GedaToggleActionClass))
@@ -56,6 +54,10 @@ struct _GedaToggleActionClass
   GtkToggleActionClass parent_class;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType          geda_toggle_action_get_type    (void) GEDA_CONST;
 
 GedaToggleAction *geda_toggle_action_new         (const char *name,
@@ -64,6 +66,8 @@ GedaToggleAction *geda_toggle_action_new         (const char *name,
                                                   const char *stock_id,
                                                   const char *multikey_accel);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif  /* __GEDA_TOGGLE_ACTION_H__ */

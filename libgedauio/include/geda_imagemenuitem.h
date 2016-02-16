@@ -37,8 +37,6 @@
 
 #include <gtk/gtkmenuitem.h>
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_IMAGE_MENU_ITEM            (geda_image_menu_item_get_type ())
 #define GEDA_IMAGE_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItem))
 #define GEDA_IMAGE_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
@@ -66,6 +64,10 @@ struct _GedaImageMenuItemClass
   GtkMenuItemClass parent_class;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GType	   geda_image_menu_item_get_type              (void) GEDA_CONST;
 GtkWidget* geda_image_menu_item_new                   (void);
 GtkWidget* geda_image_menu_item_new_with_label        (const char        *label);
@@ -84,6 +86,8 @@ bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_
 void       geda_image_menu_item_set_accel_group       (GedaImageMenuItem *image_menu_item,
                                                        GtkAccelGroup     *accel_group);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_IMAGE_MENU_ITEM_H__ */

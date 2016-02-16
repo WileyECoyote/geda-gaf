@@ -47,8 +47,6 @@
 
 #include "geda_completion.h"
 
-BEGIN_DECLS
-
 typedef struct
 {
   char  *name;
@@ -141,6 +139,10 @@ struct _GedaEntryClass
                                unsigned int       time_);
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType   geda_entry_get_type               (void) GEDA_CONST;
 GtkWidget *geda_entry_new                    (GList** history, GList** complete);
 GtkWidget *geda_visible_entry_new            (GList** history, GList** complete);
@@ -215,6 +217,8 @@ void geda_entry_widget_modify_fg             (GtkWidget    *entry,
 void geda_entry_widget_modify_bg             (GtkWidget    *entry,
                                               GtkStateType  state,
                                         const GdkColor     *color);
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GTK_ENTRY_H__ */

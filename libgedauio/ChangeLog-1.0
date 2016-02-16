@@ -1,3 +1,7 @@
+2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_*.h: Remove remaining __cplusplus macros from headers.
+
 2016-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: remove __cplusplus macros, just spell it out for

@@ -47,8 +47,6 @@
 #ifndef __GEDA_FONT_DIALOG_H__
 #define __GEDA_FONT_DIALOG_H__
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_FONT_DIALOG            (geda_font_dialog_get_type ())
 #define GEDA_FONT_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FONT_DIALOG, GedaFontDialog))
 #define GEDA_FONT_DIALOG_CLASS(class)    (G_TYPE_CHECK_CLASS_CAST ((class),  GEDA_TYPE_FONT_DIALOG, GedaFontDialogClass))
@@ -109,6 +107,10 @@ struct _GedaFontDialogClass
   GtkDialogClass parent_class;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType   geda_font_dialog_get_type           (void) GEDA_CONST;
 
 GtkWidget* geda_font_dialog_new                (void);
@@ -138,4 +140,7 @@ bool        geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const cha
 bool geda_font_dialog_get_show_preview (GedaFontDialog *dialog);
 void geda_font_dialog_set_show_preview (GedaFontDialog *dialog, bool show_preview);
 
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 #endif /* __GEDA_FONT_DIALOG_H__ */

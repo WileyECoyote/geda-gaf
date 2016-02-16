@@ -39,8 +39,6 @@ typedef enum
   GEDA_VIEW_MENU,
 } IDE_COMBO_VIEW_STYLE;
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_COMBO_BOX             (geda_combo_box_get_type ())
 #define GEDA_COMBO_BOX(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX, GedaComboBox))
 #define GEDA_COMBO_BOX_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
@@ -75,6 +73,10 @@ struct _GedaComboBoxClass
   char  *  (* get_active_text)   (GedaComboBox *combo_box);
 
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* construction */
 GType         geda_combo_box_get_type                 (void) GEDA_CONST;
@@ -212,6 +214,8 @@ void          geda_combo_widget_popup                  (GtkWidget   *combo_box);
 void          geda_combo_widget_popdown                (GtkWidget   *combo_box);
 AtkObject    *geda_combo_widget_get_popup_accessible   (GtkWidget   *combo_box);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_COMBO_BOX_H__ */

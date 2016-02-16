@@ -109,6 +109,8 @@ void       geda_bulb_set_show_button                  (GtkWidget     *bulb,
 void       geda_bulb_set_group_sensitive              (GSList        *group,
                                                        bool           sensitive);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_BULB_H__ */

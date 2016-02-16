@@ -134,6 +134,8 @@ char        *geda_combo_box_text_widget_get_active_text(GtkWidget          *widg
 
 bool         geda_combo_box_text_widget_set_active_text(GtkWidget          *widget,
                                                         const char         *text);
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_COMBO_BOX_TEXT_H__ */
