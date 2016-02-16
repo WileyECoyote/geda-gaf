@@ -26,6 +26,11 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: September, 2nd, 2014
  */
+/*! \class GedaNotifyList geda_notify.h "libgeda/geda_notify.h"
+ *  \brief GedaNotifyList.
+ *
+ *  GedaNotifyList is derived from GObject.
+ */
 #ifndef __GEDA_NOTIFY_H__
 #define __GEDA_NOTIFY_H__
 

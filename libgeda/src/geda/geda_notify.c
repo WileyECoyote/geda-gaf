@@ -30,7 +30,11 @@
 
 /*! \file geda_notify.c
  *  \brief list derived from GList with GObject properties
- *
+ */
+/** \defgroup geda-notify-list-object Geda Notify List
+ *  @{
+ * \brief Implmentation of #GedaNotifyList Class
+ * \par
  *  GedaNotifyList provides a GOBJECT wrapper for GLIST similar to
  *  a GedaList but without the change signal. The list is intended
  *  hold change_notify_entry structures that are freed when the
@@ -38,9 +42,8 @@
  *  destroyed until all references are removed, this property
  *  allows the list to survive an Undo operation of the Page to
  *  which the GedaNotifyList is assigned.
- */
-/** \defgroup geda-notify-list-object Geda Notify List
- *  @{
+ *
+ * \class GedaNotifyList geda_notify.h "libgeda/geda_notify.h"
  */
 
 #include <config.h>
