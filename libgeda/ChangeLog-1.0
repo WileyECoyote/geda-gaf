@@ -8,6 +8,8 @@
     * src/geda/geda_notify.c: Revise Doxygen comments in group and add class
       tag.
 
+    * src/utility/u_basic.c: Add function prefix geda_utility_.
+
 2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Revise Doxygen comments in group and move class

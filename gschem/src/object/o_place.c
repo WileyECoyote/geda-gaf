@@ -285,7 +285,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
         if (len > 0) {
           for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
             GedaObject *o_current = iter->data;  /* Get pointer to object */
-            u_print_object(o_current);
+            geda_utility_print_object(o_current);
           }
         }
       }

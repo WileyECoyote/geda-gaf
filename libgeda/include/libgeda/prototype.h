@@ -592,8 +592,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* ---------------- Utilities -------------- */
 
 /* u_basic.c */
-         char   *u_expand_env_variable           (const char *string);
-         void    u_print_object                  (GedaObject *object);
+         char   *geda_utility_expand_env_variable(const char *string);
+         void    geda_utility_print_object       (GedaObject *object);
 
 /* u_glist.c */
         GList   *u_glist_clear                   (GList* list);

@@ -53,7 +53,7 @@
  *  if input string was NULL.
  */
 char*
-u_expand_env_variable (const char *string)
+geda_utility_expand_env_variable (const char *string)
 {
   GString *gstring;
   int i;
@@ -131,7 +131,7 @@ u_expand_env_variable (const char *string)
   return NULL;
 }
 
-void u_print_object(GedaObject *object)
+void geda_utility_print_object(GedaObject *object)
 {
   int top    = object->top;
   int left   = object->left;

@@ -105,7 +105,7 @@ SCM g_rc_component_library(SCM path, SCM name)
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
 
-  directory = u_expand_env_variable (temp);
+  directory = geda_utility_expand_env_variable (temp);
   scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
   temp = NULL;
@@ -222,14 +222,14 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
   /* take care of any shell variables */
   /*! \bug this may be a security risk! */
   tmp_str = scm_to_utf8_string (listcmd);
-  lcmdstr = u_expand_env_variable (tmp_str);
+  lcmdstr = geda_utility_expand_env_variable (tmp_str);
   scm_dynwind_unwind_handler (g_free, lcmdstr, SCM_F_WIND_EXPLICITLY);
   free (tmp_str); /* this should stay as free (allocated from guile) */
 
   /* take care of any shell variables */
   /*! \bug this may be a security risk! */
   tmp_str = scm_to_utf8_string (getcmd);
-  gcmdstr = u_expand_env_variable (tmp_str);
+  gcmdstr = geda_utility_expand_env_variable (tmp_str);
   scm_dynwind_unwind_handler (g_free, gcmdstr, SCM_F_WIND_EXPLICITLY);
   free (tmp_str); /* this should stay as free (allocated from guile) */
 
@@ -304,7 +304,7 @@ SCM g_rc_source_library(SCM path)
 
   /* take care of any shell variables */
   temp   = scm_to_utf8_string (path);
-  string = u_expand_env_variable (temp);
+  string = geda_utility_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -353,14 +353,14 @@ SCM g_rc_source_library_search(SCM path)
   SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "source-library-search");
 
   /* take care of any shell variables */
-  temp = scm_to_utf8_string (path);
-  string = u_expand_env_variable (temp);
+  temp   = scm_to_utf8_string (path);
+  string = geda_utility_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr,
-            _("Invalid path [%s] passed to source-library-search\n"),
+
+    fprintf (stderr, _("Invalid path [%s] passed to source-library-search\n"),
              string);
     GEDA_FREE(string);
     return SCM_BOOL_F;
@@ -971,8 +971,8 @@ SCM g_rc_bitmap_directory(SCM path)
   SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "bitmap-directory");
 
   /* take care of any shell variables */
-  temp = scm_to_utf8_string (path);
-  string = u_expand_env_variable (temp);
+  temp   = scm_to_utf8_string (path);
+  string = geda_utility_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -1007,8 +1007,8 @@ SCM g_rc_log_directory(SCM path)
   SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "log-directory");
 
   /* take care of any shell variables */
-  temp = scm_to_utf8_string (path);
-  string = u_expand_env_variable (temp);
+  temp   = scm_to_utf8_string (path);
+  string = geda_utility_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -1045,7 +1045,7 @@ SCM g_rc_scheme_directory(SCM s_path)
 
   /* take care of any shell variables */
   temp     = scm_to_utf8_string (s_path);
-  expanded = u_expand_env_variable (temp);
+  expanded = geda_utility_expand_env_variable (temp);
   s_path   = scm_from_utf8_string (expanded);
 
   free (temp);
@@ -1160,7 +1160,7 @@ SCM g_rc_postscript_prolog(SCM scmsymname)
   /* take care of any shell variables */
   temp = scm_to_utf8_string (scmsymname);
 
-  default_postscript_prolog = u_expand_env_variable (temp);
+  default_postscript_prolog = geda_utility_expand_env_variable (temp);
 
   free (temp);
 
