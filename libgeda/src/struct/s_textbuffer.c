@@ -112,9 +112,7 @@ TextBuffer *s_textbuffer_free (TextBuffer *tb)
 const char *
 s_textbuffer_next (TextBuffer *tb, const gssize count)
 {
-  gboolean eol = FALSE;
-  char c;
-  unsigned int len;
+  bool eol = FALSE;
 
   g_return_val_if_fail (tb != NULL, NULL);
 
@@ -125,6 +123,10 @@ s_textbuffer_next (TextBuffer *tb, const gssize count)
   const char *buf_end = tb->buffer + tb->size;
 
   while (1) {
+
+    unsigned int len;
+    char c;
+
     if (src >= buf_end) break;
     if (count >= 0 && dest - tb->line >= count) break;
     if (count < 0 && eol) break;
@@ -141,13 +143,15 @@ s_textbuffer_next (TextBuffer *tb, const gssize count)
     if (c == '\n') {
       *dest = '\n';
       eol = TRUE;
-    } else if (c == '\r') {
+    }
+    else if (c == '\r') {
       *dest = '\n';
       eol = TRUE;
       /* Peek ahead to absorb a '\n' */
       src++;
       if (src >= buf_end || *src != '\n') src--;
-    } else {
+    }
+    else {
       *dest = c;
     }
 

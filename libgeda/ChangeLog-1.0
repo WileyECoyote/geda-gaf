@@ -7,6 +7,8 @@
 
     * src/struct/s_basic.c: Rename file s_basic.c -> s_print.c
 
+    * src/struct/s_textbuffer.c: Reduce scope of len and c in s_textbuffer_next.
+
     * src/struct/s_weakref.c: Reduce scope of entry in s_weakref_notify and
       s_weakref_remove.
 
