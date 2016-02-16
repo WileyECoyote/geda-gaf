@@ -29,17 +29,12 @@
  *   \ingroup (geda-globals)
  */
 
-#ifdef __GNUC__
-
-  #define WARN_UNUSED __attribute__((warn_unused_result))
-  #define NOWARN_UNUSED __attribute__((unused))
-
-  #define MAX_FILE 255
-
+#ifndef MAX_FILE
+#  define MAX_FILE 255
 #endif
 
 #ifndef _WIN32
-  #define MAX_PATH 248
+#  define MAX_PATH 248
 #endif
 
 #define MAX_FILENAME 64
@@ -52,12 +47,16 @@
 
 /* These are for where status information goes */
 #define CONSOLE_WINDOW		0
-#define STDOUT_TTY		1
+#define STDOUT_TTY			1
 #define BOTH_CONWIN_STDOUT	2
 
+/*! \def DEFAULT_TEXT_SIZE  Default text size */
 #define DEFAULT_TEXT_SIZE   10
 
+/*! \def DEFAULT_ATTRIBUTE_OFFSET Distance from objects to new attributes */
 #define DEFAULT_ATTRIBUTE_OFFSET 50
+
+/*! \def DEFAULT_ATTRIBUTE_SIZE Text size for attributes if not specified */
 #define DEFAULT_ATTRIBUTE_SIZE   8
 
 /* for text cap style */
@@ -65,10 +64,10 @@
 #define UPPER_CASE      1
 #define BOTH_CASES      2
 
-/* Flag for defaults to detect keywords absent from RC files */
+/*! \def RC_NIL Flag for defaults to detect keywords absent from RC files */
 #define RC_NIL -1
 
-/* for color mapping systems */
+/*! \def MAX_COLORS for color mapping systems */
 #define MAX_COLORS 30
 
 /** @} endgroup geda-global-integers */

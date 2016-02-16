@@ -1,3 +1,12 @@
+2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_idefines.h: Remove UNUSED __attribute__ macros, change
+      if __GNUC__ to ifndef MAX_FILE for MAX_FILE.
+
+    * include/geda/geda_macros.h: Add attribute  macro removed from geda_idefines;
+      WARN_UNUSED and NOWARN_UNUSED, should probably just replace the wordier
+      GEDA_WARN_UNUSED_RESULT macro.
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 2.1.0.18, 20160214.

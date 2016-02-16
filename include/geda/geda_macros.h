@@ -77,6 +77,11 @@
 #define GEDA_NULL_TERMINATED
 #endif
 
+#ifdef __GNUC__
+  #define WARN_UNUSED __attribute__((warn_unused_result))
+  #define NOWARN_UNUSED __attribute__((unused))
+#endif
+
 #if GCC_VERSION > 30400
 #define GEDA_WARN_UNUSED_RESULT __attribute__((warn_unused_result))
 #else
