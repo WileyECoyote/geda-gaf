@@ -422,6 +422,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
  *
  *  \param [in] toplevel   The GedaToplevel object.
  *  \param [in] page       The Page to print.
+ *  \param [in] color_map  The color map to use when printing.
  *  \param [in] filename   The file name of the output postscript document.
  *  \return 0 on success, -1 on failure.
  */
@@ -464,6 +465,7 @@ f_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char 
  *
  *  \param [in] toplevel   The GedaToplevel object.
  *  \param [in] page       The Page to print.
+ *  \param [in] color_map  The color map to use when printing.
  *  \param [in] command    The command to print to.
  *  \return 0 on success, -1 on failure.
  */

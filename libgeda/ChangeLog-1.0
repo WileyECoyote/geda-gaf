@@ -1,3 +1,13 @@
+2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_notify.h: Add Doxygen comments with class tag.
+
+    * src/file/f_print.c: Add new color_map arguments to Doxygen documentation
+      for functions f_print_file and f_print_command.
+
+    * src/geda/geda_notify.c: Revise Doxygen comments in group and add class
+      tag.
+
 2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Revise Doxygen comments in group and move class
@@ -24,7 +34,7 @@
 
     * include/libgeda/geda_colors.h: Remove file.
 
-    *src/utility/u_program.c: Add function prefix geda_utility_program_.
+    * src/utility/u_program.c: Add function prefix geda_utility_program_.
 
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
