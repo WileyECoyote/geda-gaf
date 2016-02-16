@@ -25,6 +25,9 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+update-po:
+	$(MAKE) -C po update-po || exit 1;
+
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~ libgedacolor.pc

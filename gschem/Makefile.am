@@ -24,6 +24,9 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+update-po:
+	$(MAKE) -C po update-po || exit 1;
+
 maintainer-clean-local:
 	-rm -rf po/*.sed po/*.header po/*.sin po/*.template po/Rules-quot
 

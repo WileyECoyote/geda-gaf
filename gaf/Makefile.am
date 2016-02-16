@@ -8,6 +8,9 @@ ChangeLog: $(top_builddir)/stamp-git
 	(cd $(srcdir) && $(GIT) log --pretty=medium $(CHANGELOG_BASE).. -- .) > $@
 endif HAVE_GIT_REPO
 
+update-po:
+	$(MAKE) -C po update-po || exit 1;
+
 MOSTLYCLEANFILES      = *.log core FILE *~
 CLEANFILES             = *.log core FILE *~
 DISTCLEANFILES        = *.log core FILE *~
