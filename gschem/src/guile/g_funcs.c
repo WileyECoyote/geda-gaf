@@ -33,6 +33,17 @@
  *  This module contains routines for general Scheme API functions
  *  to dialogs and options under the file menu.
  */
+/* function: g_funcs_common_image
+ *
+ * called by: g_funcs_bmp_image
+ *            g_funcs_jpeg_image
+ *            g_funcs_png_image
+ *            g_funcs_tiff_image
+ *
+ * param scm_filename scm string passed that was passed to caller.
+ * param func         c string of scheme API function name.
+ * param type         c string is basically the file extension.
+ */
 static
 SCM  g_funcs_common_image(SCM scm_filename, const char *func, const char *type)
 {
@@ -78,9 +89,15 @@ SCM  g_funcs_common_image(SCM scm_filename, const char *func, const char *type)
   }
 }
 
-/*! \brief SCM API Export BMP image
- *  \par Function Description
- *   Scheme API to export the current document as a BMP image.
+/*!
+ * \brief SCM API Export BMP image
+ * \par Function Description
+ *  Scheme API to export the current document as a BMP image.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if success, SCM_BOOL_F on failure.
  */
 SCM g_funcs_bmp_image(SCM scm_filename)
 {
@@ -235,6 +252,11 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
 /*! \brief SCM API Export JPEG image
  *  \par Function Description
  *   Scheme API to write the current document as a JPEG image.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if success, SCM_BOOL_F on failure.
  */
 SCM g_funcs_jpeg_image(SCM scm_filename)
 {
@@ -280,6 +302,11 @@ SCM g_funcs_msg(SCM scm_msg)
 /*! \brief SCM API Export PDF Document
  *  \par Function Description
  *   Scheme API to export the current document as a PDF document.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if success, SCM_BOOL_F on failure.
  */
 SCM g_funcs_pdf (SCM scm_filename)
 {
@@ -306,9 +333,15 @@ SCM g_funcs_pdf (SCM scm_filename)
   return (status ? SCM_BOOL_T : SCM_BOOL_F);
 }
 
-/*! \brief SCM API Export PNG image
- *  \par Function Description
- *   Scheme API to write the current document as a PNG image.
+/*!
+ * \brief SCM API Export PNG image
+ * \par Function Description
+ *  Scheme API to write the current document as a PNG image.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if success, SCM_BOOL_F on failure.
  */
 SCM g_funcs_png_image(SCM scm_filename)
 {
@@ -319,6 +352,11 @@ SCM g_funcs_png_image(SCM scm_filename)
  *  \par Function Description
  *   Allows Scheme routines to export the current document
  *   as a Postscript image.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if failure, SCM_BOOL_F on success.
  */
 SCM g_funcs_postscript(SCM scm_filename)
 {
@@ -362,6 +400,11 @@ SCM g_funcs_postscript(SCM scm_filename)
 /*! \brief SCM API Print Current Document
  *  \par Function Description
  *   Scheme API to print the current document.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if failure, SCM_BOOL_F on success.
  */
 SCM g_funcs_print(SCM scm_filename)
 {
@@ -456,6 +499,11 @@ SCM g_funcs_save_file(void)
 /*! \brief SCM API Export TIFF image
  *  \par Function Description
  *   Scheme API to write the current document as a TIFF image.
+ *
+ * \param scm_filename Scheme filename string is ignored if output
+ *                     output specified on the command-line.
+ *
+ * \returns SCM_BOOL_T if success, SCM_BOOL_F on failure.
  */
 SCM g_funcs_tiff_image(SCM scm_filename)
 {

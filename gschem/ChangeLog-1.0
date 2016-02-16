@@ -1,3 +1,7 @@
+2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_funcs.c: Add Doxygen parameter documentation.
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/IMAGE_DIFF: Allow RENDERER to be define by enviroment and default
