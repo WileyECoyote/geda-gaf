@@ -79,9 +79,9 @@ GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
  * \param [in] b  The Object to test for
  * \returns 0 if STRETCH *a points toGedaObject *b, otherwise 1.
  */
-static int find_object (gconstpointer a, gconstpointer b)
+static int find_object (const void *a, const void *b)
 {
-  return (((STRETCH *)a)->object == (GedaObject*)b) ? 0 : 1;
+  return (((STRETCH*)a)->object == (GedaObject*)b) ? 0 : 1;
 }
 
 

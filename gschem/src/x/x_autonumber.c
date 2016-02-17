@@ -245,7 +245,7 @@ static GtkWidget *ScopeOverwriteSwitch=NULL;
 /* ******************* compare functions for g_list_sort, ****************** */
 /*! \brief GCompareFunc function to sort a list with g_list_sort().
  *  \par Function Description
- *  Compares the integer values of the gconstpointers a and b.
+ *  Compares the integer values of the const pointers a and b.
  *  \return -1 if a<b, 1 if a>b, 0 if a==b
  */
 static int autonumber_sort_numbers(const void *a, const void *b) {

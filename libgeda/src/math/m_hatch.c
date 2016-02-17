@@ -39,8 +39,8 @@ struct st_sweep_event {
 };
 
 static int calculate_initial_sweep(int pitch, int min_y, int max_y);
-static int compare_events(gconstpointer a, gconstpointer b);
-static int compare_status(gconstpointer a, gconstpointer b);
+static int compare_events(const void *a, const void *b);
+static int compare_status(const void *a, const void *b);
 
 /*! \brief Calculate the initial y cooridinate of the hatch sweep line
  *
@@ -72,7 +72,7 @@ static int calculate_initial_sweep(int pitch, int min_y, int max_y)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static int compare_events(gconstpointer a, gconstpointer b)
+static int compare_events(const void *a, const void *b)
 {
   SWEEP_EVENT *event_a = (SWEEP_EVENT*) a;
   SWEEP_EVENT *event_b = (SWEEP_EVENT*) b;
@@ -91,7 +91,7 @@ static int compare_events(gconstpointer a, gconstpointer b)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static int compare_status(gconstpointer a, gconstpointer b)
+static int compare_status(const void *a, const void *b)
 {
   SWEEP_STATUS *status_a = (SWEEP_STATUS*) a;
   SWEEP_STATUS *status_b = (SWEEP_STATUS*) b;

@@ -37,7 +37,7 @@ struct st_sweep_event
     SWEEP_STATUS status;
 };
 
-static int compare_points(gconstpointer a, gconstpointer b)
+static int compare_points(const void *a, const void *b)
 {
   POINT *point_a = (POINT*) a;
   POINT *point_b = (POINT*) b;
