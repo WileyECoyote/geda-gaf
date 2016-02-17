@@ -1142,13 +1142,11 @@ o_picture_rgb_data (GdkPixbuf *image)
 bool
 o_picture_embed (GedaObject *object)
 {
-  const char *filename;
-  char       *basename;
-  bool        result;
+  bool result;
 
   if (!o_picture_is_embedded (object)) {
 
-    filename = object->picture->filename;
+    const char *filename = object->picture->filename;
 
     if (object->picture->file_content == NULL) {
 
@@ -1160,11 +1158,11 @@ o_picture_embed (GedaObject *object)
     }
     else {
 
-      object->picture->is_embedded = 1;
-      basename = f_get_basename (filename);
+      char *basename = f_get_basename (filename);
       u_log_message (_("Picture [%s] has been embedded\n"), basename);
-      result = TRUE;
 
+      object->picture->is_embedded = 1;
+      result = TRUE;
     }
   }
   else {
@@ -1187,7 +1185,6 @@ o_picture_unembed (GedaObject *object)
 {
   GError     *err      = NULL;
   const char *filename = o_picture_get_filename(object);
-  char       *basename;
   bool        result;
 
   if (GEDA_IS_PICTURE(object)) {
@@ -1207,9 +1204,10 @@ o_picture_unembed (GedaObject *object)
       }
       else {
 
-        object->picture->is_embedded = 0;
-        basename = f_get_basename(filename);
+        char *basename = f_get_basename(filename);
         u_log_message (_("Picture [%s] has been unembedded\n"), basename);
+
+        object->picture->is_embedded = 0;
         result = TRUE;
 
       }
@@ -1711,10 +1709,12 @@ o_picture_set_from_file (GedaObject *object, const char *filename, GError **erro
 bool
 o_picture_export_pixbuf (GdkPixbuf *pixbuf, const char *filename, const char *type, ...)
 {
-  bool    result;
-  va_list varargs;
+  bool result;
 
   if (pixbuf) {
+
+    va_list varargs;
+
     GEDA_REF(pixbuf); /* Make sure the buffer exist until were done */
     va_start (varargs, type);
     result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
@@ -1742,10 +1742,10 @@ o_picture_get_fallback_pixbuf (void)
   static GdkPixbuf *pixbuf = NULL;
   static bool       failed = FALSE;
 
-  const char *err_msg  = _("Failed to load fallback image %s: %s.\n");
-  const char *filename = "geda_warning.png";
-
   if (pixbuf == NULL && !failed) {
+
+    const char *err_msg  = _("Failed to load fallback image %s: %s.\n");
+    const char *filename = "geda_warning.png";
 
     char   *pathname;
     GError *error = NULL;
@@ -1828,11 +1828,9 @@ o_picture_get_pixbuf_fit (GedaObject *object, int interp)
   Page        *page  = geda_object_get_page (object);
   GedaPicture *o_pic = object->picture;
 
-  GdkPixbuf *pixbuf1;
-  GdkPixbuf *pixbuf2;
-  GdkPixbuf *pixbuf3;
-
   if (page && o_pic->pixbuf != NULL) {
+
+    GdkPixbuf *pixbuf1;
 
     /* upper is considered the origin, world units */
     int width  = o_picture_get_width (object);  /* o_pic->lower_x - o_pic->upper_x */
@@ -1854,7 +1852,11 @@ o_picture_get_pixbuf_fit (GedaObject *object, int interp)
     }
 
     if (pixbuf1) {
+
       /* Adjust for rotation and mirroring */
+
+      GdkPixbuf *pixbuf2;
+      GdkPixbuf *pixbuf3;
 
       if (!angle && !mirror) {                            /* No adjustment required */
         pixbuf3 = g_object_ref (pixbuf1);

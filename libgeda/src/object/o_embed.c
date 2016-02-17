@@ -77,13 +77,13 @@ bool o_embed(GedaToplevel *toplevel, GedaObject *o_current)
  */
 void o_unembed(GedaToplevel *toplevel, GedaObject *o_current)
 {
-  const CLibSymbol *sym;
-  Page *page = geda_object_get_page (o_current);
-  int page_modified = 0;
+  Page *page          = geda_object_get_page (o_current);
+  int   page_modified = 0;
 
   /* check o_current is an embedded complex */
   if (GEDA_IS_COMPLEX(o_current) && o_complex_is_embedded (o_current))
   {
+    const CLibSymbol *sym;
 
     /* search for the symbol in the library */
     sym = s_clib_get_symbol_by_name (o_current->complex->filename);
@@ -94,7 +94,8 @@ void o_unembed(GedaToplevel *toplevel, GedaObject *o_current)
                        "unembed. Component is still embedded\n"),
                      o_current->complex->filename);
 
-    } else {
+    }
+    else {
       /* clear the embedded flag */
       o_current->complex->is_embedded = FALSE;
 

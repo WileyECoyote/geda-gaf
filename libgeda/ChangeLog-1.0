@@ -3,6 +3,17 @@
     * src/geda/geda_net.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/object/o_embed.c: Reduce scope of sym in o_unembed.
+
+    * src/object/o_path_basic.c: Reduce scope of fill_func in o_path_print
+      added conditional to check fill_func was set before calling. Reduce
+      scope of closed and points in o_path_get_nearest_point, and section
+      in o_path_mirror and o_path_modify.
+
+    * src/object/o_picture.c: Reduce scope of variables.
+
+    * src/struct/s_path.c: Reduce scope of variables.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_notify.h: Add Doxygen comments with class tag.

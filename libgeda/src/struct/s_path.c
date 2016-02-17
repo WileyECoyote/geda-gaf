@@ -175,7 +175,6 @@ GedaPath *s_path_copy_modify (GedaPath *path, int dx, int dy,
   GedaPath   *new_path;
   char       *path_string;
 
-  int x1, y1, x2, y2, x3, y3;
   int i;
   int grip_no = 0;
 
@@ -189,6 +188,8 @@ GedaPath *s_path_copy_modify (GedaPath *path, int dx, int dy,
   new_path->num_sections_max = path->num_sections;
 
   for (i = 0; i <  path->num_sections; i++) {
+
+    int x1, y1, x2, y2, x3, y3;
 
     PATH_SECTION *section     = &path->sections[i];
     PATH_SECTION *new_section = &new_path->sections[i];
@@ -555,8 +556,6 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
   bool in_exp        = FALSE;
   bool exp_wait_sign = FALSE;
 
-  char c       = 0;
-
   int sign     = 0;
   int exp      = 0;
   int exp_sign = 0;
@@ -566,7 +565,9 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
   int i;
 
   for (i = 0;; i++) {
-    c = data[i];
+
+    char c = data[i];
+
     if (c >= '0' && c <= '9') {
       /* digit */
       if (in_num) {
@@ -740,14 +741,14 @@ GedaPath *s_path_parse (const char *path_str)
 
 char *s_path_string_from_path (const GedaPath *path)
 {
-  PATH_SECTION *section;
-  GString      *path_string;
+  GString *path_string;
   int i;
 
   path_string = g_string_new ("");
 
   for (i = 0; i < path->num_sections; i++) {
-    section = &path->sections[i];
+
+    PATH_SECTION *section = &path->sections[i];
 
     if (i > 0)
       g_string_append_c (path_string, '\n');

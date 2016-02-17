@@ -378,10 +378,10 @@ void o_path_modify (GedaObject *object, int x, int y, int whichone)
 {
   int i;
   int grip_no = 0;
-  PATH_SECTION *section;
 
   for (i = 0; i <  object->path->num_sections; i++) {
-    section = &object->path->sections[i];
+
+    PATH_SECTION *section = &object->path->sections[i];
 
     switch (section->code) {
     case PATH_CURVETO:
@@ -424,11 +424,11 @@ void o_path_modify (GedaObject *object, int x, int y, int whichone)
  */
 void o_path_mirror (GedaObject *object, int center_x, int center_y)
 {
-  PATH_SECTION *section;
   int i;
 
   for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
+
+    PATH_SECTION *section = &object->path->sections[i];
 
     switch (section->code) {
     case PATH_CURVETO:
@@ -552,10 +552,8 @@ void o_path_translate (GedaObject *object, int dx, int dy)
  */
 bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  GArray *points;
   POINT   target;
   bool    result;
-  int     closed;
 
 #if DEBUG
   fprintf(stderr, "%s begin: x=%d, y=%d\n", __func__, x, y);
@@ -583,7 +581,9 @@ bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
 
   if (GEDA_IS_PATH(object)) {
 
+    GArray   *points;
     GedaLine  segment;
+    int       closed;
 
     points = g_array_new (FALSE, FALSE, sizeof (POINT));
     closed = s_path_to_polygon (object->path, points);
