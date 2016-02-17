@@ -1139,7 +1139,6 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 {
   int line_width, length, space;
   DRAW_FUNC outl_func = NULL;
-  FILL_FUNC fill_func = NULL;
 
   g_return_if_fail(GEDA_IS_PATH(o_current));
 
@@ -1224,6 +1223,8 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
    */
   if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
 
+    FILL_FUNC fill_func = NULL;
+
     int fill_width, angle1, pitch1, angle2, pitch2;
 
     fill_width = o_current->fill_options->fill_width;
@@ -1237,7 +1238,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_path_print_filled;
+        fill_func  = o_path_print_filled;
         break;
 
       case FILLING_MESH:
@@ -1254,7 +1255,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_path_print_filled;
+        fill_func  = o_path_print_filled;
         break;
 
       case FILLING_HOLLOW:
@@ -1269,9 +1270,11 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
       fill_func = o_path_print_filled;
     }
 
-    (*fill_func) (toplevel, fp,
-                  o_current->path, fill_width,
-                  angle1, pitch1, angle2, pitch2, origin_x, origin_y);
+    if (fill_func) {
+      (*fill_func) (toplevel, fp,
+                    o_current->path, fill_width,
+                    angle1, pitch1, angle2, pitch2, origin_x, origin_y);
+    }
   }
 }
 
