@@ -109,7 +109,7 @@ butes = geda.get_attribs(pin)
 for attrib in butes:
     if attrib.name() == "pinnumber":
         attrib.x = attrib.x - 50
-        attrib.y = attrib.y - 150 
+        attrib.y = attrib.y - 150
     else:
         if attrib.name() == "pinlabel":
             attrib.y     = attrib.y - 150

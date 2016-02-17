@@ -120,12 +120,11 @@ static PyMemberDef PyGedaObject_members[] = {
 
 static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  PyGedaObject  *geda_object = (PyGedaObject*)obj;
-  PyMemberDef *member;
+  PyGedaObject *geda_object = (PyGedaObject*)obj;
+  char         *name        = PyString_AsString(key);
 
-  char *name  = PyString_AsString(key);
-  int   result;
-  int   index;
+  int result;
+  int index;
 
   /*Note: The setattrofunc in derived objects only set their integer types.
    *      The following return to PyObject_GenericSetAttr not only will set
@@ -136,7 +135,9 @@ static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   /* Check if key is member of this object, we don't set but we need to
    * know if one of our members is being set so we can set our flag */
   for (index = 0; PyGedaObject_members[index].name; index++){
-    member = &PyGedaObject_members[index];
+
+    PyMemberDef *member = &PyGedaObject_members[index];
+
     if (!strcmp(member->name, name)) {
       geda_object->dirty = 1;
       if(geda_object->pid >= 0) {

@@ -964,7 +964,7 @@ PyGeda_append_symbol_path( const char *path )
   char *namestr    = NULL;
   int result       = 0;
 
-  directory = u_expand_env_variable (path);
+  directory = geda_utility_expand_env_variable (path);
 
   /* is invalid path? */
   if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
@@ -1751,11 +1751,11 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
   PyGedaObject *geda_pyobject = (PyGedaObject*)py_object_B;
   GedaObject   *parent; /* Could be a solo object being added */
   GedaObject   *object;
-  Page       *page;
-  int         pid;
-  int         sid;
-  int         status = 0;
-  int         count  = 0;
+  Page         *page;
+
+  int pid;
+  int sid;
+  int status = 0;
 
   /* The module already cheched that object B was a PyGedaObject */
   sid  = geda_pyobject->sid;
@@ -1767,8 +1767,12 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
     page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     if (page && (GEDA_IS_PAGE(page))) {
+
+      int count = 0;
+
       geda_pyobject->pid = pid; /* save page id to the pyobject */
       parent = retrieve_floating_object(sid);
+
       if (PyGeda_update_object(parent, geda_pyobject)) {
         s_page_append_object(page, parent);
         if (geda_pyobject->auto_attributes == TRUE) {
@@ -1787,10 +1791,11 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
         }
 
         /* Check if this object has any attributes and add them too */
-        int i;
         PyObject *py_list = geda_pyobject->attributes;
 
         if (py_list) {
+
+          int i;
 
           count = (int) PyList_GET_SIZE(py_list);
 
@@ -1868,15 +1873,14 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
 int
 PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
-  PyObject *geda_object;
-  int       i;
-  int       count;
-  int       status = 0;
+  int i;
+  int count;
+  int status = 0;
 
   count = (int) PyList_GET_SIZE(py_object_B);
 
   for (i = 0; i < count; i++) {
-    geda_object = PyList_GET_ITEM(py_object_B, i);
+     PyObject *geda_object = PyList_GET_ITEM(py_object_B, i);
     status += PyGeda_add_object(PyPage, py_object_A, geda_object);
   }
   return status;
@@ -1988,14 +1992,13 @@ PyGeda_remove_object( PyObject *py_object )
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           status      = -1;
-  int           sid;
   Page         *page;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
 
-    sid  = geda_object->sid;
+    int sid  = geda_object->sid;
 
     const GedaObject *object = s_page_get_object(page, sid);
 
@@ -2024,14 +2027,13 @@ PyGeda_remove_object( PyObject *py_object )
 int
 PyGeda_remove_objects( PyObject *pyobjects )
 {
-  PyObject *geda_object;
-  int       i;
-  int       count;
-  int       status = 0;
+  int i;
+  int count;
+  int status = 0;
 
   count = (int) PyList_GET_SIZE(pyobjects);
   for (i = 1; count < i; i++) {
-    geda_object = PyList_GET_ITEM(pyobjects, i);
+    PyObject *geda_object = PyList_GET_ITEM(pyobjects, i);
     status += PyGeda_remove_object(geda_object);
   }
   return status;
@@ -2057,14 +2059,13 @@ PyGeda_delete_object( PyObject *py_object )
   int           sid         = ((PyGedaObject*)geda_object)->sid;
   int           status      = 0;
 
-  Page       *page;
-  const char *name;
-
   if (pid >= 0 ) {
+    Page *page;
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
       if (GEDA_IS_OBJECT(object)) {
+        const char *name;
         name = PyString_AsString(geda_object->name);
         if ( strcmp(object->name, name) == 0){
           s_page_remove_object(page, object);
@@ -2104,14 +2105,13 @@ PyGeda_delete_object( PyObject *py_object )
 int
 PyGeda_delete_objects( PyObject *objects )
 {
-  PyObject *geda_object;
-  int       i;
-  int       count;
-  int       status = 0;
+  int i;
+  int count;
+  int status = 0;
 
   count = (int) PyList_GET_SIZE(objects);
   for (i = 1; count < i; i++) {
-    geda_object = PyList_GET_ITEM(objects, i);
+    PyObject *geda_object = PyList_GET_ITEM(objects, i);
     status += PyGeda_delete_object(geda_object);
   }
   return status;
@@ -2726,7 +2726,6 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
   GedaObject   *parent;
-  GedaObject   *attrib;
   Page         *page        = NULL;
   PyObject     *py_data     = NULL;
 
@@ -2740,8 +2739,13 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
   }
 
   if (GEDA_IS_OBJECT(parent)) {
+
+    GedaObject *attrib;
+
     attrib = o_attrib_find_attrib_by_name (parent->attribs, name, 0);
+
     if (attrib){
+
 #if DEBUG
       if (attrib->page == NULL && page != NULL) {
         fprintf(stderr, "PyGeda_get_attrib: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
@@ -2749,6 +2753,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
         attrib->page = page;
       }
 #endif
+
       py_data = get_text_object_data(attrib);
     }
     else {
@@ -2787,12 +2792,9 @@ PyGeda_get_attribs(PyObject *py_object)
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
-  GedaObject   *parent;
   Page         *page        = NULL;
-  PyObject     *data;
   PyObject     *output_list = Py_None;
-  GList        *attribs;
-  GList        *iter;
+  GedaObject   *parent;
 
   /* Get pointer to the parent object */
   if (pid < 0) {
@@ -2804,12 +2806,23 @@ PyGeda_get_attribs(PyObject *py_object)
   }
 
   if (GEDA_IS_OBJECT(parent)) {
-    attribs = parent->attribs;
+
+    GList *attribs = parent->attribs;
+
     if (attribs){
-      iter = g_list_first(attribs);
+
+      GList *iter;
+
+      iter        = g_list_first(attribs);
       output_list = PyList_New(0);
+
       while(iter != NULL) {
-        GedaObject *object = GEDA_OBJECT(iter->data);
+
+        GedaObject *object;
+        PyObject   *data;
+
+        object = GEDA_OBJECT(iter->data);
+
 #if DEBUG
         if (object->page == NULL && page != NULL) {
           fprintf(stderr, "PyGeda_get_attribs: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
@@ -2850,8 +2863,6 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
   int           pid          = -1;
   int           sid          = -1;
   GedaObject   *object;
-  GedaObject   *attrib;
-  Page         *page;
   PyObject     *py_data      = NULL;
 
   if (py_complex) {
@@ -2867,10 +2878,14 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
       object = get_floating_object(sid);
     }
     else {
+      Page *page;
       page   = geda_toplevel_get_page_by_id(toplevel, pid);
       object = s_page_get_object(page, sid);
     }
     if (GEDA_IS_OBJECT(object)) {
+
+      GedaObject *attrib;
+
       if (py_complex) {
         attrib = o_attrib_find_attrib_by_name (object->attribs, name, 0);
       }
@@ -2919,17 +2934,17 @@ PyGeda_refresh_attribs(PyObject *py_object)
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
-  int           sid         = geda_object->sid;
   int           status      = 1;
-  const
-  GedaObject   *object;
   Page         *page;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
 
-    sid  = geda_object->sid;
+    const GedaObject *object;
+    int sid;
+
+    sid    = geda_object->sid;
     object = s_page_get_object(page, sid);
 
 #if DEBUG
@@ -3087,8 +3102,6 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
   GArray   *junctions;
   GArray   *noconnects;
   GArray   *results;
-  POINT    *point;
-  PyObject *py_pair;
   int       index;
 
   junctions  = g_array_new(FALSE, FALSE, sizeof(POINT));
@@ -3104,6 +3117,10 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
   }
 
   for (index = 0; index<results->len; index++) {
+
+    PyObject *py_pair;
+    POINT    *point;
+
     point   = &g_array_index(results, POINT, index);
     py_pair = Py_BuildValue("ii", point->x, point->y);
     PyList_Append(py_list, py_pair);
@@ -3117,14 +3134,10 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
 static PyObject*
 get_cue_locations(PyObject *py_objects, int flag)
 {
-  Page         *page        = NULL;
   PyGedaObject *geda_object = NULL;
   PyObject     *py_list;
 
-  int         pid;
-  int         sid;
-  int         i;
-  int         count;
+  int count;
 
   if (py_objects) {
     count = (int) PyList_GET_SIZE(py_objects);
@@ -3136,6 +3149,11 @@ get_cue_locations(PyObject *py_objects, int flag)
   py_list = PyList_New(0);
 
   if (count > 0) {
+
+    Page *page;
+    int   pid;
+    int   sid;
+    int   i;
 
     GList *list = NULL;
     geda_object = (PyGedaObject*)PyList_GET_ITEM(py_objects, 1);

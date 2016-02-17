@@ -1,3 +1,11 @@
+2016-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_color.c: Reduce scope of ret in rgb_subscript.
+
+    * module/objects/geda_py_object.c: Reduce scope of member in Object_set_int.
+
+    * src/libgedathon.c: Reduce scope of variables.
+
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_python.h: Declare local tmp integer in macro.
