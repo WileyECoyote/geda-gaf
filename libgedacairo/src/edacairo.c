@@ -84,7 +84,7 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
   if (map == NULL) {
     BUG_MSG ("map = NULL");
   }
-  else if ( (color < 0) || (color > map->len - 1)) {
+  else if ((color < 0) || (color > map->len - 1)) {
     BUG_IMSG("Invalid color index <%d>", color);
   }
   else {

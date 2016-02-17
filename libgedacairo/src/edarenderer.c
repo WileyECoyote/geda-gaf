@@ -607,6 +607,7 @@ eda_renderer_is_drawable_color (EdaRenderer *renderer, int color,
                                                        int use_override)
 {
   GArray *map = renderer->priv->color_map;
+
   /* Check for override color */
   if ((renderer->priv->override_color >= 0) && use_override) {
     color = renderer->priv->override_color;
@@ -1501,27 +1502,32 @@ eda_renderer_draw_mid_cues (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_end_cues (EdaRenderer *renderer, GedaObject *object, int end)
 {
-  int x = object->line->x[end], y = object->line->y[end];
+  int x          = object->line->x[end];
+  int y          = object->line->y[end];
   int conn_count = 0;
-  int conn_type = CONN_ENDPOINT;
-  int is_bus = FALSE;
+  int conn_type  = CONN_ENDPOINT;
+  int is_bus;
   GList *iter;
 
-  /* We should never be at the unconnectable end of a pin */
+  /* Should never be at the unconnectable end of a pin */
   g_return_if_fail ((object->type != OBJ_PIN) || (object->pin->whichend == end));
 
   /* Check whether the current object is a bus or bus pin */
-  is_bus = ((object->type == OBJ_BUS) || ((object->type == OBJ_PIN)
-         && (object->pin->node_type == PIN_BUS_NODE)));
+  is_bus = ((object->type == OBJ_BUS) ||
+           ((object->type == OBJ_PIN) &&
+            (object->pin->node_type == PIN_BUS_NODE)));
 
   for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
+
     CONN *conn = (CONN *) iter->data;
-    if ((conn->x != x) || (conn->y != y)) continue;
+
+    if ((conn->x != x) || (conn->y != y))
+      continue;
 
     /* Check whether the connected object is a bus or bus pin */
-    is_bus |= ((conn->other_object->type == OBJ_BUS)
-               || ((conn->other_object->type == OBJ_PIN)
-                   && (conn->other_object->pin->node_type == PIN_BUS_NODE)));
+    is_bus |= ((conn->other_object->type == OBJ_BUS) ||
+              ((conn->other_object->type == OBJ_PIN) &&
+               (conn->other_object->pin->node_type == PIN_BUS_NODE)));
 
     if (conn->type == CONN_MIDPOINT) {
       /* If it's a mid-line connection, we can stop already. */
@@ -1533,33 +1539,35 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, GedaObject *object, int end)
   }
 
   /* Draw a midpoint, if necessary */
-  if ((conn_type == CONN_MIDPOINT)
-      || ((object->type == OBJ_NET) && (conn_count > 1))) {
+  if ((conn_type == CONN_MIDPOINT) ||
+     ((object->type == OBJ_NET) &&
+      (conn_count > 1)))
+  {
     eda_renderer_draw_junction_cue (renderer, x, y, is_bus);
     return;
   }
 
-  /* Only things left to be drawn are end point cues */
+  /* The only artifacts not drawn are end point cues */
 
   gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_NET_ENDPOINT_COLOR);
 
   switch (object->type) {
-  case OBJ_NET:
-  case OBJ_PIN:
-    /* If less than one thing was connected to this end of the net
-     * segment or pin, draw box cue */
-    if (conn_count > 0) break;
+    case OBJ_NET:
+    case OBJ_PIN:
+      /* If less than one thing was connected to this end of the net
+       * segment or pin, draw box cue */
+      if (conn_count > 0) break;
 
-    eda_cairo_center_box (renderer->priv->cr,
-                          EDA_RENDERER_CAIRO_FLAGS (renderer),
-                          -1, -1, x, y, CUE_BOX_SIZE, CUE_BOX_SIZE);
-    cairo_fill (renderer->priv->cr);
-    break;
+      eda_cairo_center_box (renderer->priv->cr,
+                            EDA_RENDERER_CAIRO_FLAGS (renderer),
+                            -1, -1, x, y, CUE_BOX_SIZE, CUE_BOX_SIZE);
+      cairo_fill (renderer->priv->cr);
+      break;
 
-  case OBJ_BUS:
-    break;
-  default:
-    g_return_if_reached ();
+    case OBJ_BUS:
+      break;
+    default:
+      g_return_if_reached ();
   }
 }
 
