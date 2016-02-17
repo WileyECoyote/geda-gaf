@@ -1,3 +1,8 @@
+2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Remove type Object_PINTYPE, use PIN_NODE instead,
+      fix format specifiers in do_instance::produce proper file name.
+
 2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/smash_megafile.c: Define WITHOUT_GUILE before including libgeda.h

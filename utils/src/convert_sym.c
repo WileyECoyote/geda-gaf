@@ -63,12 +63,6 @@ extern int optind;
 #define MAX_NODES        1024
 #define MAX_POINTS       1024
 
-/* gEDA enumerators */
-/* enumerators LINE_END's, LINE_TYPE's and  OBJECT_FILLING types were
- * moved to (top-src)include/geda_enum.h */
-
-typedef enum {NORMAL_PIN, BUS_PIN} Object_PINTYPE;
-
 /* Viewdraw Colours
  *
  * 0  Black   |  4  Red       |   8  Gray       |  12  Lt. Red
@@ -300,7 +294,7 @@ void line_object(int x1, int y1, int x2, int y2, unsigned int color,
 void circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
                    struct LineStyle *linestyle, struct FillStyle *fillstyle);
 void pin_object(int x1, int y1, int x2, int y2, unsigned int color,
-                Object_PINTYPE pintype, unsigned int whichend);
+                PIN_NODE pintype, unsigned int whichend);
 void box_object(int x1, int y1, unsigned int width, unsigned int height,
             unsigned int color, struct LineStyle *linestyle,
                 struct FillStyle *fillstyle);
@@ -973,11 +967,11 @@ void
 do_pin(FILE *fp)
 {
   unsigned int pindir, pinsense, color;
-  unsigned int bradius = 25;
+  unsigned int bradius   = 25;
   unsigned int bdiameter = 2*bradius;
-  unsigned int bcolor = LOGIC_BUBBLE_COLOR;
+  unsigned int bcolor    = LOGIC_BUBBLE_COLOR;
   int x1, y1, x2, y2, bx, by, bx1, by1, bx2, by2;
-  Object_PINTYPE pintype;
+  PIN_NODE pintype;
   unsigned int whichend;
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
@@ -1101,7 +1095,7 @@ do_pin(FILE *fp)
   }
 
   /* For now, only normal pins are supported */
-  pintype = NORMAL_PIN;
+  pintype = PIN_NET_NODE;
 
   pin_object(x1,y1,x2,y2,color,pintype,whichend);
 
@@ -1507,12 +1501,12 @@ do_instance(FILE *fp)
    *  I #instance LIB:NAME #Page #X #Y #ROTATION #MAGNIFICATION '
    */
 
-  text[0] = 0;
-  lib[0] = 0;
-  name[0] = 0;
+  text[0]   = 0;
+  lib[0]    = 0;
+  name[0]   = 0;
   extension = 9999;
-  x = 0;
-  y = 0;
+  x         = 0;
+  y         = 0;
 
   /* Instance doesn't necessarily have to have the LIB:NAME convention, so */
   /* read this in as a full string and parse later */
@@ -1562,16 +1556,16 @@ do_instance(FILE *fp)
 
   /* produce proper file name: */
 #ifdef HAVE_SNPRINTF
-  snprintf(symName, MAX_TEXTLEN, "%s-%d.sym",name,extension);
+  snprintf(symName, MAX_TEXTLEN, "%s-%u.sym",name,extension);
 #else
-  sprintf(symName, "%s-%d.sym",name,extension);
+  sprintf(symName, "%s-%u.sym",name,extension);
 #endif
 
   complex_object(x, y, selectable, angle, mirror, symName);
 
   /* there could be attributes to follow */
-  add_attributes = 1;     /* add attributes */
-  attach_pending = 1;     /* signal that an attachment could be coming */
+  add_attributes     = 1; /* add attributes */
+  attach_pending     = 1; /* signal that an attachment could be coming */
   complex_attributes = 1; /* and that they are complex attributes */
 
 }
@@ -1935,10 +1929,9 @@ circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
 
 void
 pin_object(int x1, int y1, int x2, int y2, unsigned int color,
-           Object_PINTYPE pintype, unsigned int whichend)
+           PIN_NODE pintype, unsigned int whichend)
 {
-    printf("P %d %d %d %d %u %u %u\n", x1, y1, x2, y2, color,
-           pintype, whichend);
+    printf("P %d %d %d %d %u %d %u\n", x1, y1, x2, y2, color, pintype, whichend);
 }
 
 void
