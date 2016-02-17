@@ -817,7 +817,7 @@ eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 
 static void eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid = FALSE;
+  int fill_solid;
 
   /* Hatch path */
   fill_solid = eda_renderer_draw_hatch (renderer, object);

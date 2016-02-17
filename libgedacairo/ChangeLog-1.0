@@ -1,6 +1,11 @@
+2016-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgedacairo/src/edarenderer.c: Eliminate unnecessary initialization
+      of fill_solid in function eda_renderer_draw_path.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/edarenderer.c: eliminate unnecessary initialization of is_bus in
+    * src/edarenderer.c: Eliminate unnecessary initialization of is_bus in
       function eda_renderer_draw_end_cues.
 
 2016-02-01 Wiley E. Hill <wileyhill@gmail.com>
