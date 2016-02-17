@@ -3,7 +3,7 @@ libgeda/data/x-geda-gsch2pcb-project.desktop.in
 libgeda/data/x-geda-schematic.desktop.in
 libgeda/data/x-geda-symbol.desktop.in
 
-libgeda/src/file/f_basic.c
+libgeda/src/file/f_file.c
 libgeda/src/file/f_get.c
 libgeda/src/file/f_path.c
 libgeda/src/file/f_print.c
@@ -36,8 +36,8 @@ libgeda/src/guile/g_register.c
 libgeda/src/iface/i_vars.c
 libgeda/src/iface/i_menu.c
 
+libgeda/src/math/m_math.c
 libgeda/src/math/m_arc.c
-libgeda/src/math/m_basic.c
 libgeda/src/math/m_bounds.c
 libgeda/src/math/m_box.c
 libgeda/src/math/m_circle.c
@@ -46,9 +46,9 @@ libgeda/src/math/m_line.c
 libgeda/src/math/m_polygon.c
 libgeda/src/math/m_transform.c
 
+libgeda/src/object/o_object.c
 libgeda/src/object/o_arc_basic.c
 libgeda/src/object/o_attrib.c
-libgeda/src/object/o_basic.c
 libgeda/src/object/o_box_basic.c
 libgeda/src/object/o_bus_basic.c
 libgeda/src/object/o_circle_basic.c
@@ -85,8 +85,8 @@ libgeda/src/scheme/scheme_page.c
 libgeda/src/scheme/scheme_smob.c
 libgeda/src/scheme/scheme_toplevel.c
 
+libgeda/src/struct/s_struct.c
 libgeda/src/struct/s_attrib.c
-libgeda/src/struct/s_basic.c
 libgeda/src/struct/s_clib.c
 libgeda/src/struct/s_conn.c
 libgeda/src/struct/s_cue.c
@@ -105,7 +105,7 @@ libgeda/src/struct/s_toplevel.c
 libgeda/src/struct/s_undo.c
 libgeda/src/struct/s_weakref.c
 
-libgeda/src/utility/u_basic.c
+libgeda/src/utility/u_utility.c
 libgeda/src/utility/u_glist.c
 libgeda/src/utility/u_log.c
 libgeda/src/utility/u_program.c

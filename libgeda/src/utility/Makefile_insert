@@ -2,12 +2,12 @@
 
 ##FRAGMENTS= geda_utility_sources
 
+## See ./../po/POTFILES.in
+
 libgeda_la_SOURCES += \
-			utility/u_basic.c \
+			utility/u_utility.c \
 			utility/u_glist.c \
 			utility/u_log.c \
 			utility/u_program.c \
 			utility/u_refdes.c \
 			utility/u_string.c
-
-

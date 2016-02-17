@@ -16,6 +16,16 @@
 
     * src/struct/s_path.c: Reduce scope of variables.
 
+    * src/file/f_file.c: Rename file f_basic.c -> f_file.c.
+
+    * src/math/m_math.c: Rename file m_basic.c -> m_math.c.
+
+    * src/object/o_object.c: Rename file o_basic.c -> o_object.c.
+
+    * src/struct/s_struct.c: Rename file s_print.c -> o_object.c.
+
+    * src/utility/u_utility.c: Rename file u_basic.c -> u_utility.c.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_notify.h: Add Doxygen comments with class tag.

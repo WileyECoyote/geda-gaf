@@ -1,10 +1,12 @@
 ## Makefile.am fragment sourced by Makefile.am.
 
-## FRAGMENTS=geda_gobject_sources
+## FRAGMENTS=geda_math_sources
+
+## See ./../po/POTFILES.in
 
 libgeda_la_SOURCES += \
+			math/m_math.c \
 			math/m_arc.c \
-			math/m_basic.c \
 			math/m_bounds.c \
 			math/m_box.c \
 			math/m_circle.c \

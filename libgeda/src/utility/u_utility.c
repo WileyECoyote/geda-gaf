@@ -70,7 +70,9 @@ geda_utility_expand_env_variable (const char *string)
     start = i;
     /* look for end of string or possible variable name start */
     while (string[i] != '\0' && string[i] != '$') i++;
+
     g_string_append_len (gstring, string + start, i - start);
+
     if (string[i] == '\0') {
       /* end of string, return built string */
       return g_string_free (gstring, FALSE);
@@ -79,9 +81,12 @@ geda_utility_expand_env_variable (const char *string)
     i++;
     switch (string[i]) {
         case ('{'):
+
           /* look for the end of the variable name */
           start = i;
+
           while (string[i] != '\0' && string[i] != '}') i++;
+
           if (string[i] == '\0') {
             /* problem: no closing '}' to variable */
             fprintf (stderr,
@@ -89,7 +94,8 @@ geda_utility_expand_env_variable (const char *string)
                      string);
             g_string_append (gstring, "$");
             g_string_append_len (gstring, string + start, i - start + 1);
-          } else {
+          }
+          else {
             int j;
 
             /* discard "${" */
@@ -105,7 +111,8 @@ geda_utility_expand_env_variable (const char *string)
                        string[j]);
               g_string_append (gstring, "${");
               g_string_append_len (gstring, string + start, i - start + 1);
-            } else {
+            }
+            else {
               /* extract variable name from string and expand it */
               char *variable_name = u_string_strndup (string + start, i - start);
               const char *env = g_getenv (variable_name);

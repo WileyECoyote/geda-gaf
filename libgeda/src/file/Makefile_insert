@@ -5,7 +5,7 @@
 ## See ./../po/POTFILES.in
 
 libgeda_la_SOURCES += \
-			file/f_basic.c  \
+			file/f_file.c  \
 			file/f_get.c  \
 			file/f_path.c  \
 			file/f_print.c \

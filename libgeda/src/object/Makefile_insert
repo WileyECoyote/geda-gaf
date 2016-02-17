@@ -1,11 +1,13 @@
 ## Makefile.am fragment sourced by Makefile.am.
 
-## FRAGMENTS=object_manipulators_sources
+## FRAGMENTS=geda_object_sources
+
+## See ./../po/POTFILES.in
 
 libgeda_la_SOURCES += \
+			object/o_object.c \
 			object/o_arc_basic.c \
 			object/o_attrib.c \
-			object/o_basic.c \
 			object/o_box_basic.c \
 			object/o_bus_basic.c \
 			object/o_circle_basic.c \

@@ -1,8 +1,11 @@
 ## Makefile.am fragment sourced by Makefile.am.
 
-## FRAGMENTS=geda_utility_sources
+## FRAGMENTS=geda_struct_sources
+
+## See ./../po/POTFILES.in
 
 libgeda_la_SOURCES += \
+			struct/s_struct.c \
 			struct/s_attrib.c \
 			struct/s_clib.c \
 			struct/s_conn.c \
@@ -14,7 +17,6 @@ libgeda_la_SOURCES += \
 			struct/s_papersizes.c \
 			struct/s_path.c \
 			struct/s_place.c \
-			struct/s_print.c \
 			struct/s_slib.c \
 			struct/s_slot.c \
 			struct/s_textbuffer.c \

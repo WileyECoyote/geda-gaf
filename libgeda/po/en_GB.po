@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-14 01:09-0600\n"
+"POT-Creation-Date: 2016-02-17 11:03-0600\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -43,12 +43,12 @@ msgstr "gEDA Circuit Schematic"
 msgid "gEDA Schematic Symbol"
 msgstr "gEDA Schematic Symbol"
 
-#: libgeda/src/file/f_basic.c:75 libgeda/src/file/f_basic.c:90
+#: libgeda/src/file/f_file.c:75 libgeda/src/file/f_file.c:90
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Failed to stat [%s]: %s"
 
-#: libgeda/src/file/f_basic.c:149
+#: libgeda/src/file/f_file.c:149
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -61,13 +61,13 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:150
+#: libgeda/src/file/f_file.c:150
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "I could not guess if it is newer, so you have to do it manually.\n"
 
-#: libgeda/src/file/f_basic.c:151
+#: libgeda/src/file/f_file.c:151
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -75,7 +75,7 @@ msgstr ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
 
-#: libgeda/src/file/f_basic.c:152
+#: libgeda/src/file/f_file.c:152
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -84,7 +84,7 @@ msgstr ""
 "Gschem usually makes backup copies automatically, and this situation happens "
 "when it crashed or it was forced to exit abruptly.\n"
 
-#: libgeda/src/file/f_basic.c:153
+#: libgeda/src/file/f_file.c:153
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -92,79 +92,60 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:175
+#: libgeda/src/file/f_file.c:175
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Cannot find file: %s: %s"
 
-#: libgeda/src/file/f_basic.c:192
+#: libgeda/src/file/f_file.c:192
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:107
+#: libgeda/src/file/f_file.c:251 libgeda/src/file/f_sys.c:107
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:314
+#: libgeda/src/file/f_file.c:314
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:370
+#: libgeda/src/file/f_file.c:370
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Can't get the real filename of %s: %s"
 
-#: libgeda/src/file/f_basic.c:371
+#: libgeda/src/file/f_file.c:371
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Could NOT save file: %s"
 
-#: libgeda/src/file/f_basic.c:372
+#: libgeda/src/file/f_file.c:372
 #, c-format
 msgid "File %s is read-only"
 msgstr "File %s is read-only"
 
-#: libgeda/src/file/f_basic.c:374
+#: libgeda/src/file/f_file.c:374
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "Could NOT set previous backup file [%s] read-write\n"
 
-#: libgeda/src/file/f_basic.c:375
+#: libgeda/src/file/f_file.c:375
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Can't save backup file: %s."
 
-#: libgeda/src/file/f_basic.c:675
+#: libgeda/src/file/f_file.c:675
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Can't get the real filename of %s: %s"
 
-#: libgeda/src/file/f_basic.c:687
+#: libgeda/src/file/f_file.c:687
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Unable to delete backup file %s."
-
-#: libgeda/src/file/f_file.c:72
-#, fuzzy
-msgid "File error"
-msgstr "Parse error: ~s"
-
-#: libgeda/src/file/f_file.c:77
-msgid "File lock error"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:78
-#, c-format
-msgid "%s: attempting to unlock file \"%s\"\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:331
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #: libgeda/src/file/f_get.c:295
 #, c-format
@@ -258,19 +239,38 @@ msgstr ""
 msgid "Giving up on printing\n"
 msgstr "Giving up on printing\n"
 
-#: libgeda/src/file/f_print.c:441
+#: libgeda/src/file/f_print.c:442
 #, c-format
 msgid "Could not open [%s] for printing\n"
 msgstr "Could not open [%s] for printing\n"
 
-#: libgeda/src/file/f_print.c:483
+#: libgeda/src/file/f_print.c:485
 #, c-format
 msgid "Could not execute command [%s] for printing\n"
 msgstr "Could not execute command [%s] for printing\n"
 
-#: libgeda/src/file/f_print.c:768
+#: libgeda/src/file/f_print.c:770
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Too many UTF-8 characters, cannot print\n"
+
+#: libgeda/src/file/f_sys.c:72
+#, fuzzy
+msgid "File error"
+msgstr "Parse error: ~s"
+
+#: libgeda/src/file/f_sys.c:77
+msgid "File lock error"
+msgstr ""
+
+#: libgeda/src/file/f_sys.c:78
+#, c-format
+msgid "%s: attempting to unlock file \"%s\"\n"
+msgstr ""
+
+#: libgeda/src/file/f_sys.c:331
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
 
 #: libgeda/src/geda/geda_config.c:229
 msgid "Configuration file"
@@ -309,75 +309,75 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:390
+#: libgeda/src/geda/geda_object.c:393
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:391
+#: libgeda/src/geda/geda_object.c:394
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:400
+#: libgeda/src/geda/geda_object.c:403
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:401
+#: libgeda/src/geda/geda_object.c:404
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:408
+#: libgeda/src/geda/geda_object.c:411
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:409
+#: libgeda/src/geda/geda_object.c:412
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:415
+#: libgeda/src/geda/geda_object.c:418
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:416
+#: libgeda/src/geda/geda_object.c:419
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:421
+#: libgeda/src/geda/geda_object.c:424
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:422
+#: libgeda/src/geda/geda_object.c:425
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:428
+#: libgeda/src/geda/geda_object.c:431
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:429
+#: libgeda/src/geda/geda_object.c:432
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:435
+#: libgeda/src/geda/geda_object.c:438
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:436
+#: libgeda/src/geda/geda_object.c:439
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:443
+#: libgeda/src/geda/geda_object.c:446
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:444
+#: libgeda/src/geda/geda_object.c:447
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:452
+#: libgeda/src/geda/geda_object.c:455
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:456
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -608,6 +608,82 @@ msgstr "ERROR: %s\n"
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ERROR: The %s log may contain more information.\n"
 
+#: libgeda/src/object/o_object.c:96
+msgid "<o_read_buffer> detected NULL pointer to buffer "
+msgstr ""
+
+#: libgeda/src/object/o_object.c:103
+msgid "Schematic data was not valid UTF-8"
+msgstr ""
+
+#: libgeda/src/object/o_object.c:245
+#, fuzzy, c-format
+msgid ""
+"Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
+">>\n"
+"%s<<\n"
+msgstr ""
+"Read unexpected attach symbol start marker in [%s] :\n"
+">>\n"
+"%s<<\n"
+
+#: libgeda/src/object/o_object.c:269 libgeda/src/object/o_object.c:277
+#, fuzzy, c-format
+msgid ""
+"Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
+">>\n"
+"%s<<\n"
+msgstr ""
+"Read unexpected embedded symbol start marker in [%s] :\n"
+">>\n"
+"%s<<\n"
+
+#: libgeda/src/object/o_object.c:309
+#, fuzzy, c-format
+msgid ""
+"Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
+">>\n"
+"%s<<\n"
+msgstr ""
+"Read unexpected embedded symbol end marker in [%s] :\n"
+">>\n"
+"%s<<\n"
+
+#: libgeda/src/object/o_object.c:346
+#, c-format
+msgid ""
+"Read an old format sym/sch file!\n"
+"Please run g[sym|sch]update on:\n"
+"[%s]\n"
+msgstr ""
+"Read an old format sym/sch file!\n"
+"Please run g[sym|sch]update on:\n"
+"[%s]\n"
+
+#: libgeda/src/object/o_object.c:365
+#, fuzzy, c-format
+msgid ""
+"Read garbage line <%d> in [%s] :\n"
+">>\n"
+"%s<<\n"
+msgstr ""
+"Read garbage in [%s] :\n"
+">>\n"
+"%s<<\n"
+
+#: libgeda/src/object/o_object.c:369
+#, fuzzy, c-format
+msgid "Read garbage line <%d> in [%s]"
+msgstr ""
+"Read garbage in [%s] :\n"
+">>\n"
+"%s<<\n"
+
+#: libgeda/src/object/o_object.c:399
+#, c-format
+msgid " On or about line %d, "
+msgstr ""
+
 #: libgeda/src/object/o_arc_basic.c:235 libgeda/src/object/o_arc_basic.c:250
 msgid "Failed to parse arc object"
 msgstr "Failed to parse arc object"
@@ -660,82 +736,6 @@ msgstr "Tried to attach a non-text item as an attribute"
 #, fuzzy
 msgid "unexpected end-of-file in attribute list"
 msgstr "Unexpected end-of-file in attribute list"
-
-#: libgeda/src/object/o_basic.c:96
-msgid "<o_read_buffer> detected NULL pointer to buffer "
-msgstr ""
-
-#: libgeda/src/object/o_basic.c:103
-msgid "Schematic data was not valid UTF-8"
-msgstr ""
-
-#: libgeda/src/object/o_basic.c:245
-#, fuzzy, c-format
-msgid ""
-"Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
-">>\n"
-"%s<<\n"
-msgstr ""
-"Read unexpected attach symbol start marker in [%s] :\n"
-">>\n"
-"%s<<\n"
-
-#: libgeda/src/object/o_basic.c:269 libgeda/src/object/o_basic.c:277
-#, fuzzy, c-format
-msgid ""
-"Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
-">>\n"
-"%s<<\n"
-msgstr ""
-"Read unexpected embedded symbol start marker in [%s] :\n"
-">>\n"
-"%s<<\n"
-
-#: libgeda/src/object/o_basic.c:309
-#, fuzzy, c-format
-msgid ""
-"Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
-">>\n"
-"%s<<\n"
-msgstr ""
-"Read unexpected embedded symbol end marker in [%s] :\n"
-">>\n"
-"%s<<\n"
-
-#: libgeda/src/object/o_basic.c:346
-#, c-format
-msgid ""
-"Read an old format sym/sch file!\n"
-"Please run g[sym|sch]update on:\n"
-"[%s]\n"
-msgstr ""
-"Read an old format sym/sch file!\n"
-"Please run g[sym|sch]update on:\n"
-"[%s]\n"
-
-#: libgeda/src/object/o_basic.c:365
-#, fuzzy, c-format
-msgid ""
-"Read garbage line <%d> in [%s] :\n"
-">>\n"
-"%s<<\n"
-msgstr ""
-"Read garbage in [%s] :\n"
-">>\n"
-"%s<<\n"
-
-#: libgeda/src/object/o_basic.c:369
-#, fuzzy, c-format
-msgid "Read garbage line <%d> in [%s]"
-msgstr ""
-"Read garbage in [%s] :\n"
-">>\n"
-"%s<<\n"
-
-#: libgeda/src/object/o_basic.c:399
-#, c-format
-msgid " On or about line %d, "
-msgstr ""
 
 #: libgeda/src/object/o_box_basic.c:260 libgeda/src/object/o_box_basic.c:291
 msgid "Failed to parse box object"
@@ -902,7 +902,7 @@ msgstr ""
 "Could not find component [%s], while trying to unembed. Component is still "
 "embedded\n"
 
-#: libgeda/src/object/o_embed.c:101
+#: libgeda/src/object/o_embed.c:102
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Component [%s] has been successfully unembedded\n"
@@ -1015,35 +1015,35 @@ msgstr ""
 msgid "Failed to export [%s]: %s\n"
 msgstr "Failed to open directory [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:1155
+#: libgeda/src/object/o_picture.c:1153
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr "Picture [%s] has no image data.\n"
 
-#: libgeda/src/object/o_picture.c:1156
+#: libgeda/src/object/o_picture.c:1154
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr "Falling back to file loading. Picture is still unembedded.\n"
 
-#: libgeda/src/object/o_picture.c:1165
+#: libgeda/src/object/o_picture.c:1162
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "Picture [%s] has been embedded\n"
 
-#: libgeda/src/object/o_picture.c:1201
+#: libgeda/src/object/o_picture.c:1198
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Failed to load image from file [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:1203
+#: libgeda/src/object/o_picture.c:1200
 msgid "Picture is still embedded.\n"
 msgstr "Picture is still embedded.\n"
 
-#: libgeda/src/object/o_picture.c:1212
+#: libgeda/src/object/o_picture.c:1208
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Picture [%s] has been unembedded\n"
 
-#: libgeda/src/object/o_picture.c:1745
+#: libgeda/src/object/o_picture.c:1747
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Failed to load fallback image %s: %s.\n"

@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_basic.c
+/*! \file o_object.c
  *  \brief functions for the basic object type
  *
  *  This file contains the code used to manipulate <b>GedaObjects</b>.
