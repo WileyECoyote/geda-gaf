@@ -177,7 +177,7 @@ SCM g_rc_component_library(SCM path, SCM name)
             temp = g_build_filename (cwd, directory + 2, NULL);
           }
           else { /* Is above so normalize the path */
-            temp = f_file_normalize_name(directory, NULL);
+            temp = f_sys_normalize_name(directory, NULL);
             /*temp = g_build_filename (cwd, directory, NULL);*/
           }
           s_clib_add_directory (temp, namestr);

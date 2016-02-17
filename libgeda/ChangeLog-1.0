@@ -3,6 +3,8 @@
     * src/geda/geda_net.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/file/f_sys.c: Rename file f_basic.c -> f_sys.c.
+
     * src/object/o_embed.c: Reduce scope of sym in o_unembed.
 
     * src/object/o_path_basic.c: Reduce scope of fill_func in o_path_print

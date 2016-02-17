@@ -12,13 +12,13 @@ extern "C" {
          bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
          void    f_remove_backup_file            (const char *filename);
 
-/* f_file.c */
-          int    f_file_copy                     (const char *source, const char *target);
-          int    f_file_cmp_mod_time             (const char *filename, time_t ref_time);
-         char   *f_file_follow_symlinks          (const char *filename, GError **error);
-         char   *f_file_normalize_name           (const char *filename, GError **error);
-          int    f_file_remove                   (const char *pathname);
-         bool    f_file_remove_extension         (      char *filename);
+/* f_sys.c */
+          int    f_sys_copy                      (const char *source, const char *target);
+          int    f_sys_cmp_mod_time              (const char *filename, time_t ref_time);
+         char   *f_sys_follow_symlinks           (const char *filename, GError **error);
+         char   *f_sys_normalize_name            (const char *filename, GError **error);
+          int    f_sys_remove                    (const char *pathname);
+         bool    f_sys_remove_extension          (      char *filename);
 
 /* f_get.c */
          char   *f_get_autosave_filename         (const char *filename);

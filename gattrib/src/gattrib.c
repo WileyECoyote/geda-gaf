@@ -339,7 +339,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
    * argv_index holds the position of the first filename  */
   while (argv_index < argc) {
 
-    char *filename = f_file_normalize_name(argv[argv_index], NULL);
+    char *filename = f_sys_normalize_name(argv[argv_index], NULL);
 
     if (filename != NULL) {
       file_list = g_slist_append(file_list, filename);

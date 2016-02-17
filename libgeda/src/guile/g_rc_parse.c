@@ -245,7 +245,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
     scheme_rc_config_fluid = scm_permanent_object (scm_make_fluid ());
 
   /* Normalise filename */
-  name_norm = f_file_normalize_name (rcfile, err);
+  name_norm = f_sys_normalize_name (rcfile, err);
 
   if (name_norm != NULL) {
 

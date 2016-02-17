@@ -62,7 +62,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
       count++;
 
       /* Get the real filename and file permissions */
-      real_filename = f_file_follow_symlinks (p_current->filename, NULL);
+      real_filename = f_sys_follow_symlinks (p_current->filename, NULL);
 
       if (real_filename == NULL) {
         u_log_message (_("%s: Can't get real filename of %s."),

@@ -317,7 +317,7 @@ void geda_utility_log_close (void)
  *
  *  \param [in] func Pointer to callback function
  */
-void geda_utility_set_update_func (LogUpdateFunc func)
+void geda_utility_log_set_update_func (LogUpdateFunc func)
 {
     x_log_update_func = func;
 }

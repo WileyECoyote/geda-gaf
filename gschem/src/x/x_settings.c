@@ -518,7 +518,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     /* Copy the template user config file to user's folder */
     templatefile = u_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
                                    "user-", rcname, NULL);
-    result = f_file_copy(templatefile, inputfile);
+    result = f_sys_copy(templatefile, inputfile);
   }
 
   if (inputfile == NULL) {

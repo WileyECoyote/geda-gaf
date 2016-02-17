@@ -96,7 +96,7 @@ usage(char *cmd)
     "  -h, --help                 Help; this message.\n"
     "  -m, --safe-mode            Safe Mode.\n"
     "  -n, --no-auto              No auto load last document.\n"
-    "  -o, --output <FILE>        Output filename (for printing).\n"
+    "  -o, --output <FILE>        Output filename (for printing and image output).\n"
     "  -p, --place                Automatically place the window.\n"
     "  -q, --quiet                Quiet mode.\n"
     "  -r, --run <FILE>           Scheme script to run at startup.\n"
@@ -236,7 +236,7 @@ int gschem_parse_commandline(int argc, char *argv[])
          * load. Validate the file and add the necessary expression to
          * be evaluated after loading. */
         err = NULL;
-        str = f_file_normalize_name (optarg, &err);
+        str = f_sys_normalize_name (optarg, &err);
         if (str == NULL) {
           u_log_message(_("error parsing: <%s>: %s\n"), optarg, err->message);
           g_clear_error(&err);

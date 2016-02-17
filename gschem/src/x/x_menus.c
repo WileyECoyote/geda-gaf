@@ -1864,7 +1864,7 @@ void x_menu_recent_files_add(const char *filename)
    GEDA_FREE(basename);
 
    /* Normalize the filename. */
-   save_fn = f_file_normalize_name (filename, &err);
+   save_fn = f_sys_normalize_name (filename, &err);
    if (err != NULL) {
      save_fn = u_string_strdup (filename);
      g_error_free (err);
