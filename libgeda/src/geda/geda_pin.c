@@ -29,7 +29,7 @@
  *  \brief Geda Pin Object Class Module
  */
 
-/** \defgroup geda-pin-object Geda Pin GedaObject
+/** \defgroup geda-pin-object Geda Pin Object
  *  @{
  * \brief Implmentation of #GedaPin Class
  * \par

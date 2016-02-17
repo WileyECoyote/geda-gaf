@@ -3,9 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,16 +25,19 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_net.c
- *  \brief GedaNet Object Class derived from the GedaObject Class
+ *  \brief GedaNet Object Class Module
  */
+
 /** \defgroup geda-net-object GedaNet Object
  *  @{
- */
-/*! \class Net geda_net.h "include/libgeda/geda_net.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Net GedaObjects.
+ * \brief Implmentation of #GedaNet Class
+ * \par
  *  A GedaNet Object represent a conductor or wire, and is used to inter
- *  connect nodes.
+ *  connect nodes. The GedaNet class is derived from the GedaLine class.
+ *
+ * \class GedaPin geda_net.h "include/libgeda/geda_net.h"
+ * \implements geda-line
+ * \implements geda-object
  */
 
 #include <config.h>
