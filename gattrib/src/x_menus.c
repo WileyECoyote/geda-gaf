@@ -82,17 +82,18 @@ void x_menu_file_open()
   GSList *file_list =NULL;
 
   file_list = x_fileselect_open();
+
   if (file_list != NULL ) {
     if( sheet_head->CHANGED == TRUE) {
       switch (x_dialog_file_not_saved()) {
-	case GEDA_RESPONSE_CANCEL:
-	  return; /* user canceled from the save unsaved file dialog */
-	case GEDA_RESPONSE_YES:
-           x_menu_file_save();
+        case GEDA_RESPONSE_CANCEL:
+          return; /* user canceled from the save unsaved file dialog */
+        case GEDA_RESPONSE_YES:
+          x_menu_file_save();
         case GEDA_RESPONSE_NO:
-      	   /* No need to do anything here, just fall through */
-        default:
-          break;
+          /* No need to do anything here, just fall through */
+          default:
+            break;
       }
     }
 
@@ -103,19 +104,21 @@ void x_menu_file_open()
     x_fileselect_load_files(file_list);
 
     s_toplevel_init_data_set(pr_current, sheet_head);
-  /* -------------- update windows --------------- */
+    /* -------------- update windows --------------- */
     x_gtksheet_reinititialize(sheet_head);
     x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
     x_window_update_title(pr_current, sheet_head);
   }
+
 #ifdef DEBUG
-    fprintf(stderr, "open file canceled:%s\n", (char*) g_slist_nth_data(file_list,0));
+  fprintf(stderr, "open file canceled:%s\n", (char*) g_slist_nth_data(file_list,0));
 #endif
-  if (file_list != NULL ){
-    g_slist_foreach(file_list, (GFunc)g_free, NULL);
-    g_slist_free(file_list);
+
+  if (file_list != NULL ) {
+    geda_utility_gslist_free_all(file_list);
   }
 }
+
 /*!
  * \brief Menu Open Recent
  *
