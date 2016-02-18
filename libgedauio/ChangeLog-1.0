@@ -3,6 +3,9 @@
     * src/widgets/geda_completion.c: Revise Doxygen comments, minor format
       adjustments.
 
+    * src/dialogs/geda_image_chooser.c: Release resources for glist in
+      geda_image_chooser_prepend_extra; list of extra widgets.
+
 2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_*.h: Remove remaining __cplusplus macros from headers.
