@@ -39,7 +39,7 @@ PyGedaColorObject_new(const PyGedaColorObject *rgb)
   }
 
   return (PyObject *)self;
-    return pyg_boxed_new(GIMP_TYPE_RGB, (void *)rgb, TRUE, TRUE);
+  //  return pyg_boxed_new(GIMP_TYPE_RGB, (void *)rgb, TRUE, TRUE);
 }
 
 static int
@@ -549,59 +549,65 @@ static PySequenceMethods rgb_as_sequence = {
 static PyObject *
 rgb_subscript(PyObject *self, PyObject *item)
 {
-    if (PyInt_Check(item)) {
-     long i = PyInt_AS_LONG(item);
-     return rgb_getitem(self, i);
-    } else if (PyLong_Check(item)) {
-     long i = PyLong_AsLong(item);
-     if (i == -1 && PyErr_Occurred())
-         return NULL;
-     return rgb_getitem(self, i);
-    } else if (PySlice_Check(item)) {
-     Py_ssize_t start, stop, step, slicelength, cur, i;
-     PyObject *ret;
+  if (PyInt_Check(item)) {
+    long i = PyInt_AS_LONG(item);
+    return rgb_getitem(self, i);
+  }
+  else if (PyLong_Check(item)) {
+    long i = PyLong_AsLong(item);
+    if (i == -1 && PyErr_Occurred())
+      return NULL;
+    return rgb_getitem(self, i);
+  }
+  else if (PySlice_Check(item)) {
 
-     if (PySlice_GetIndicesEx((PySliceObject*)item, 4,
-                          &start, &stop, &step, &slicelength) < 0)
-         return NULL;
+    Py_ssize_t start, stop, step, slicelength, cur, i;
 
-     if (slicelength <= 0) {
-         return PyTuple_New(0);
-     } else {
-         ret = PyTuple_New(slicelength);
-         if (!ret)
-             return NULL;
+    if (PySlice_GetIndicesEx((PySliceObject*)item, 4,
+      &start, &stop, &step, &slicelength) < 0)
+      return NULL;
 
-         for (cur = start, i = 0; i < slicelength; cur += step, i++)
-             PyTuple_SET_ITEM(ret, i, rgb_getitem(self, cur));
-
-         return ret;
-     }
+    if (slicelength <= 0) {
+      return PyTuple_New(0);
     }
-    else if (PyString_Check(item)) {
-     char *s = PyString_AsString(item);
+    else {
 
-     if (g_ascii_strcasecmp(s, "r") == 0 ||
-         g_ascii_strcasecmp(s, "red") == 0)
-         return rgb_get_r(self, NULL);
-     else if (g_ascii_strcasecmp(s, "g")  == 0 ||
-              g_ascii_strcasecmp(s, "green") == 0)
-         return rgb_get_g(self, NULL);
-     else if (g_ascii_strcasecmp(s, "b")  == 0 ||
-              g_ascii_strcasecmp(s, "blue") == 0)
-         return rgb_get_b(self, NULL);
-     else if (g_ascii_strcasecmp(s, "a")  == 0 ||
-              g_ascii_strcasecmp(s, "alpha") == 0)
-         return rgb_get_a(self, NULL);
-     else {
-         PyErr_SetObject(PyExc_KeyError, item);
-         return NULL;
-     }
-    } else {
-     PyErr_SetString(PyExc_TypeError,
-                   "indices must be integers");
-     return NULL;
+      PyObject *ret = PyTuple_New(slicelength);
+
+      if (!ret)
+        return NULL;
+
+      for (cur = start, i = 0; i < slicelength; cur += step, i++)
+        PyTuple_SET_ITEM(ret, i, rgb_getitem(self, cur));
+
+      return ret;
     }
+  }
+  else if (PyString_Check(item)) {
+    char *s = PyString_AsString(item);
+
+    if (g_ascii_strcasecmp(s, "r") == 0 ||
+      g_ascii_strcasecmp(s, "red") == 0)
+      return rgb_get_r(self, NULL);
+    else if (g_ascii_strcasecmp(s, "g")  == 0 ||
+      g_ascii_strcasecmp(s, "green") == 0)
+      return rgb_get_g(self, NULL);
+    else if (g_ascii_strcasecmp(s, "b")  == 0 ||
+      g_ascii_strcasecmp(s, "blue") == 0)
+      return rgb_get_b(self, NULL);
+    else if (g_ascii_strcasecmp(s, "a")  == 0 ||
+      g_ascii_strcasecmp(s, "alpha") == 0)
+      return rgb_get_a(self, NULL);
+    else {
+      PyErr_SetObject(PyExc_KeyError, item);
+      return NULL;
+    }
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError,
+                    "indices must be integers");
+    return NULL;
+  }
 }
 
 static PyMappingMethods rgb_as_mapping = {

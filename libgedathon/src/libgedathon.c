@@ -3140,7 +3140,7 @@ get_cue_locations(PyObject *py_objects, int flag)
   int count;
 
   if (py_objects) {
-    count = (int) PyList_GET_SIZE(py_objects);
+    count = (int)PyList_GET_SIZE(py_objects);
   }
   else  {
     count = 0;
@@ -3152,7 +3152,6 @@ get_cue_locations(PyObject *py_objects, int flag)
 
     Page *page;
     int   pid;
-    int   sid;
     int   i;
 
     GList *list = NULL;
@@ -3166,8 +3165,7 @@ get_cue_locations(PyObject *py_objects, int flag)
       GedaObject *object;
 
       geda_object = (PyGedaObject*)PyList_GET_ITEM(py_objects, i);
-      sid         = geda_object->sid;
-      object      = s_page_get_object(page, sid);
+      object      = s_page_get_object(page, geda_object->sid);
 
       if (object) {
         list = g_list_append(list, object);
