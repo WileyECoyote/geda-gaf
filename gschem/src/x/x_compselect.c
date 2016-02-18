@@ -1443,7 +1443,8 @@ static GtkTreeModel *create_lib_tree_model (Compselect *compselect,
     at_boundary  = g_ascii_strcasecmp (previous_grp, source->group) == 0;
 
     if ((compselect->show_groups == FALSE) &&
-        (u_glist_find_string(group_names, source->group) > -1)) {
+        (geda_utility_glist_find_string(group_names, source->group) > -1))
+    {
       bypassing  = TRUE;
     }
 

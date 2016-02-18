@@ -236,7 +236,7 @@ void geda_utility_log_init (const char *prefix)
     logcount = g_slist_length (files);
     logcount = logcount;
 
-    u_gslist_free_full (files, g_free);
+    geda_utility_gslist_free_full (files, g_free);
     files = NULL;
 
     /* Now try and create a new file. When we fail, increment the number. */

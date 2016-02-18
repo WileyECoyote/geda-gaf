@@ -81,7 +81,7 @@ static void geda_notify_list_instance_init (GTypeInstance *instance, void *class
 static void geda_notify_list_finalize (GObject *object)
 {
   GedaNotifyList *list = GEDA_NOTIFY_LIST( object );
-  u_glist_free_full (list->glist, g_free);
+  geda_utility_glist_free_full (list->glist, g_free);
   list->glist = NULL;
   G_OBJECT_CLASS( geda_notify_list_parent_class )->finalize (object);
 }
@@ -316,7 +316,7 @@ void geda_notify_list_remove (GedaNotifyList *list, void *item)
  */
 void geda_notify_list_remove_all (GedaNotifyList *list)
 {
-  u_glist_free_full (list->glist, g_free);
+  geda_utility_glist_free_full (list->glist, g_free);
 
   list->glist = NULL;
 }

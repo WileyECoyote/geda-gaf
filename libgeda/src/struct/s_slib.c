@@ -253,7 +253,7 @@ void s_slib_print_dirs(void)
       files = files->next;
     }
 
-    u_gslist_free_full (files, g_free);
+    geda_utility_gslist_free_full (files, g_free);
 
     printf("Closed %s\n", directory);
     GEDA_FREE(directory);

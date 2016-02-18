@@ -596,15 +596,15 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_print_object       (GedaObject *object);
 
 /* u_glist.c */
-        GList   *u_glist_clear                   (GList* list);
-          int    u_glist_find_string             (GList* list, char *str);
-         void    u_glist_free_full               (GList* list, GDestroyNotify free_func);
-         void    u_glist_free_strings            (void *data);
+        GList   *geda_utility_glist_clear        (GList* list);
+          int    geda_utility_glist_find_string  (GList* list, char *str);
+         void    geda_utility_glist_free_full    (GList* list, GDestroyNotify free_func);
+         void    geda_utility_glist_free_all     (void *data);
 
-       GSList   *u_gslist_clear                  (GSList* list);
-         int     u_gslist_find_string            (GSList* list, char *str);
-         void    u_gslist_free_full              (GSList* list, GDestroyNotify free_func);
-         void    u_gslist_free_strings           (void *data);
+       GSList   *geda_utility_gslist_clear       (GSList* list);
+         int     geda_utility_gslist_find_string (GSList* list, char *str);
+         void    geda_utility_gslist_free_all    (void *data);
+         void    geda_utility_gslist_free_full   (GSList* list, GDestroyNotify free_func);
 
 /* u_log.c */
          void    geda_utility_log_init           (const char *app_prefix);

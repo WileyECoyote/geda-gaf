@@ -1839,7 +1839,7 @@ int main (int argc, char **argv)
   GEDA_FREE (sch_basename);
 
   if (schematics) {
-    u_glist_free_full(schematics, g_free);
+    geda_utility_glist_free_full(schematics, g_free);
   }
 
   if (pcb_element_list) {

@@ -29,10 +29,11 @@
 
 /*! \brief Free a Glist completely
  *  \par Function Description
- *  This function will free all of the data in a glist.
+ *  This function will free all of the data in a glist but
+ *  does not free the glist.
  *
  */
-GList* u_glist_clear(GList* list){
+GList* geda_utility_glist_clear(GList* list){
 
   if (list != NULL ) {
 
@@ -40,12 +41,12 @@ GList* u_glist_clear(GList* list){
     lambda (const char* data)
     {
       list = g_list_remove( list, data);
-      return FALSE;
+      return FALSE; /* return from lambda */
     }
     foreach (list);
 
-    g_list_free(list);
-    list = NULL;
+    /*g_list_free(list);
+    list = NULL;*/
   }
   return list;
 }
@@ -59,7 +60,7 @@ GList* u_glist_clear(GList* list){
  *
  * \returns 0 if absent, 1 if present
  */
-int u_glist_find_string(GList *list, char *str) {
+int geda_utility_glist_find_string(GList *list, char *str) {
 
   int len;
   int index = -1;
@@ -90,26 +91,14 @@ int u_glist_find_string(GList *list, char *str) {
 
 }
 
-/*! \brief Free a Glist Full
+/*! \brief Free a Glist of Pointers
  *  \par Function Description
- *  This function provides the same functionality as g_list_free_full
- *  which is not avaliable until glib 2.28.
- *
+ *  This function will free all data referenced by pointers in a glist
+ *  and \a list.
  */
-void u_glist_free_full (GList* list, GDestroyNotify free_func)
+void geda_utility_glist_free_all(void *list)
 {
-  g_list_foreach (list, (GFunc) free_func, NULL);
-  g_list_free (list);
-}
-
-/*! \brief Free a Glist of Strings
- *  \par Function Description
- *  This function will free all strings in a glist.
- *
- */
-void u_glist_free_strings(void *data)
-{
-  GList *iter, *glst = *((GList **) data);
+  GList *iter, *glst = *((GList **) list);
 
   for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
     GEDA_FREE (iter->data);
@@ -117,12 +106,23 @@ void u_glist_free_strings(void *data)
   g_list_free (glst);
 }
 
+/*! \brief Free a Glist Full
+ *  \par Function Description
+ *  This function provides the same functionality as g_list_free_full
+ *  which is not avaliable until glib 2.28.
+ */
+void geda_utility_glist_free_full (GList* list, GDestroyNotify free_func)
+{
+  g_list_foreach (list, (GFunc) free_func, NULL);
+  g_list_free (list);
+}
+
 /*! \brief Free a GSlist completely
  *  \par Function Description
- *  This function will free all of the data in a gslist.
- *
+ *  This function will free all of the data in a gslist but
+ *  does not free \a list.
  */
-GSList* u_gslist_clear(GSList* list){
+GSList* geda_utility_gslist_clear(GSList* list){
 
   if (list != NULL ) {
 
@@ -133,9 +133,6 @@ GSList* u_gslist_clear(GSList* list){
       return FALSE;
     }
     mapcar (list);
-
-    g_slist_free(list);
-    list = NULL;
   }
   return list;
 }
@@ -149,7 +146,7 @@ GSList* u_gslist_clear(GSList* list){
  *
  * \returns 0 if absent, 1 if present
  */
-int u_gslist_find_string(GSList *list, char *str) {
+int geda_utility_gslist_find_string(GSList *list, char *str) {
 
   int len;
   int index = -1;
@@ -180,24 +177,13 @@ int u_gslist_find_string(GSList *list, char *str) {
 
 }
 
-/*! \brief Free a GSlist Full
- *  \par Function Description
- *  This function provides the same functionality as g_slist_free_full
- *  which is not avaliable until glib 2.28.
- *
+/*!
+ * \brief Free a GSlist of Pointers
+ * \par Function Description
+ * This function will free data referenced by each pointer in a gslist
+ * and the gslist.
  */
-void u_gslist_free_full (GSList* list, GDestroyNotify free_func)
-{
-  g_slist_foreach (list, (GFunc) free_func, NULL);
-  g_slist_free (list);
-}
-
-/*! \brief Free a GSlist of Strings
- *  \par Function Description
- *  This function will free all strings in a gslist.
- *
- */
-void u_gslist_free_strings(void *data)
+void geda_utility_gslist_free_all(void *data)
 {
   GSList *iter;
 
@@ -205,4 +191,16 @@ void u_gslist_free_strings(void *data)
     GEDA_FREE (iter->data);
   }
   g_slist_free (data);
+}
+
+/*!
+ * \brief Free a GSlist Full
+ * \par Function Description
+ * This function provides the same functionality as g_slist_free_full
+ * which is not avaliable until glib 2.28.
+ */
+void geda_utility_gslist_free_full (GSList* list, GDestroyNotify free_func)
+{
+  g_slist_foreach (list, (GFunc) free_func, NULL);
+  g_slist_free (list);
 }
