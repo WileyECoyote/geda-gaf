@@ -32,7 +32,7 @@ To use the library in your GNU Autotools-based program, add:
 
 to your `configure.ac', and then add:
 
-  AM_CFLAGS = $(GEDACAIRO_CFLAGS
+  AM_CFLAGS = $(GEDACAIRO_CFLAGS)
   AM_LDFLAGS = $(GEDACAIRO_LDFLAGS)
 
 to your `Makefile.am'.
