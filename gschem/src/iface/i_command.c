@@ -793,10 +793,9 @@ open_command_idle_notify (void *data)
     g_source_destroy (source);
   }
 
-  /* free the list of filenames */
-  g_slist_foreach (files, (GFunc)g_free, NULL);
-  /* free the list that held pointers to filenames */
-  g_slist_free (files);
+  /* free all the filenames in the list, and the list */
+  geda_utility_gslist_free_all (files);
+
   /* free the IdleTaskData structure */
   GEDA_FREE(data);
 }

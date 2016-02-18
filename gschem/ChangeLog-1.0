@@ -1,8 +1,16 @@
+2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_toplevel.c: Replace g_slist_foreach and g_slist_free
+      with geda_utility_gslist_free_all in gschem_toplevel_finalize.
+
+    * src/iface/i_command.c: Replace g_slist_foreach and g_slist_free
+      with geda_utility_gslist_free_all in open_command_idle_notify.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Add Doxygen parameter documentation.
 
-2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
+2016-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/IMAGE_DIFF: Allow RENDERER to be define by enviroment and default
       to Cairo (try again).

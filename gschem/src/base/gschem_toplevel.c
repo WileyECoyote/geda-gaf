@@ -318,8 +318,7 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->toolbar_mode_grp != NULL) {
-    g_slist_foreach (w_current->toolbar_mode_grp,(GFunc) g_free, NULL);
-    g_slist_free (w_current->toolbar_mode_grp);
+    geda_utility_gslist_free_all (w_current->toolbar_mode_grp);
     w_current->toolbar_mode_grp = NULL;
   }
 
