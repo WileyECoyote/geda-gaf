@@ -21,12 +21,16 @@
 
 /*! \file geda_list.c
  *  \brief list derived from GList with GObject properties
- *
- *  GedaList provides a GOBJECT wrapper for GLIST which provides
- *  the ability to use GObject signaling mechanisms with GedaList.
  */
+
 /** \defgroup geda-list-object Geda List
  *  @{
+ * \brief Implmentation of #GedaList Class
+ * \par
+ *  GedaList provides a GOBJECT wrapper for GLIST which provides
+ *  the ability to use GObject signaling mechanisms with GedaList.
+ *
+ * \class GedaList geda_list.h "libgeda/geda_list.h"
  */
 
 #include <config.h>
