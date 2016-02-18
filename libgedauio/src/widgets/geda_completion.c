@@ -49,11 +49,11 @@
  * \brief GedaCompletion - Automatic Entry Completion
  * \par
  * #GedaCompletion provides support for automatic completion of a string
- * using any group of target strings. It is typically used for file
+ * using any group of target strings and are typically used for file
  * name completion as is common in many UNIX shells.
  * \par
- * A #GedaCompletion is created using geda_completion_new(). Target items are
- * added and removed with geda_completion_add_items(),
+ * A #GedaCompletion is created using geda_completion_new(). Target items
+ * are added and removed with geda_completion_add_items(),
  * geda_completion_remove_items() and geda_completion_clear_items(). A
  * completion attempt is requested with geda_completion_complete() or
  * geda_completion_complete_utf8(). When no longer needed, the
@@ -116,29 +116,29 @@
 static void completion_check_cache (GedaCompletion* comp,
                                     char**          new_prefix);
 
-/*! \brief Create a New Geda Completion Object
+/*!
+ * \brief Create a New Geda Completion Object
+ * \par Function Description
+ * This function returns a new #GedaCompletion object. If completion
+ * item are string the \a func should be %NULL, otherwise \a func
+ * should be the pointer to a function that will return the string
+ * representing an item in the #GedaCompletion.
  *
- *  \par Function Description
- * This function returns a new #GedaCompletion object. If func
- * to be called to return the string representing an item in the
- * #GedaCompletion, or %NULL if strings are going to  be used as
- * the #GedaCompletion items.
- *
- * \param [in] func: A return handler
+ * \param [in] func: pointer to return handler or NULL
  *
  * Returns: the new #GedaCompletion.
  */
 GedaCompletion*
 geda_completion_new (GedaCompletionFunc func)
 {
-  GedaCompletion* comp;
+  GedaCompletion *comp;
 
   comp               = g_new (GedaCompletion, 1);
   comp->items        = NULL;
   comp->cache        = NULL;
   comp->prefix       = NULL;
   comp->func         = func;
-  comp->strncmp_func = (GedaStrCompareNFunc) strncmp;
+  comp->strncmp_func = (GedaStrCompareNFunc)strncmp;
 
   return comp;
 }
@@ -148,7 +148,7 @@ geda_completion_new (GedaCompletionFunc func)
  *
  * Adds items to the #GedaCompletion.
  *
- * \param [in] comp:   A #GedaCompletion object.
+ * \param [in] comp:  A #GedaCompletion object.
  * \param [in] items: List of items to add.
  */
 void
@@ -184,11 +184,11 @@ geda_completion_add_items (GedaCompletion *comp, GList *items)
  *  \par Function Description
  *
  * Removes items from a #GedaCompletion. The items are not freed, if the
- * memory was dynamically allocated, free items with u_glist_free_full()
+ * memory was dynamically allocated, free items with geda_gslist_free_full
  * after calling this function.
  *
- * \param [in] comp:   A #GedaCompletion object.
- * \param [in] items: List of items to remove.
+ * \param [in] comp   A #GedaCompletion object.
+ * \param [in] items  List of items to remove.
  *
  */
 void
@@ -265,8 +265,9 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
 
   while (list && plen) {
 
-    s = comp->func ? comp->func (list->data) : (char*) list->data;
+    s  = comp->func ? comp->func (list->data) : (char*) list->data;
     s += len;
+
     for (i = 0; i < plen; ++i) {
 
       if (postfix[i] != s[i])
@@ -294,63 +295,63 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
  *
  * \remark This string should be freed when no longer needed.
  *
- * \param [in] comp          A #GedaCompletion object.
- * \param [in] prefix       A the prefix string.
- * \param [in] new_prefix   A the new prefix string.
+ * \param [in] comp         A #GedaCompletion object.
+ * \param [in] prefix       the prefix string.
+ * \param [in] new_prefix   the new prefix string.
  *
- * Return value: List of items whose strings begin with prefix. This should
- *               not be changed.
+ * \returns List of items whose strings begin with prefix. This should list
+ *          should not be changed.
  *
  * \sa geda_completion_complete
  *
  * \note This function should be used instead of geda_completion_complete()
- * if strings contains only UTF-8 characters.
+ *       if strings contains only UTF-8 characters.
  */
 GList*
 geda_completion_complete_utf8 (GedaCompletion  *comp,
-                               const char  *prefix,
-                               char       **new_prefix)
+                               const char      *prefix,
+                               char           **new_prefix)
 {
   GList *list;
   char *p, *q;
 
   list = geda_completion_complete (comp, prefix, new_prefix);
 
-  if (new_prefix && *new_prefix)
+  if (new_prefix && *new_prefix) {
+
+    p = *new_prefix + strlen (*new_prefix);
+    q = g_utf8_find_prev_char (*new_prefix, p);
+
+    switch (g_utf8_get_char_validated (q, p - q))
     {
-      p = *new_prefix + strlen (*new_prefix);
-      q = g_utf8_find_prev_char (*new_prefix, p);
-
-      switch (g_utf8_get_char_validated (q, p - q))
-	{
-	case (gunichar)-2:
-	case (gunichar)-1:
-	  *q = 0;
-	  break;
-	default: ;
-	}
-
+      case (gunichar)-2:
+      case (gunichar)-1:
+        *q = 0;
+        break;
+      default: ;
     }
+
+  }
 
   return list;
 }
 
-/*! \brief Geda Completion Complete
- *  \par Function Description
- *
+/*!
+ * \brief Geda Completion Complete
+ * \par Function Description
  * Attempts to complete the string prefix using the #GedaCompletion
  * target items. The prefix string, typically typed by the user, which
- * is compared with each of the items. if new_prefix non-%NULL, returns
+ * is compared with each of the items. If new_prefix non-%NULL, returns
  * the longest prefix which is common to all items that matched prefix,
  * or %NULL if no items matched prefix. This string should be freed
  * when no longer needed.
  *
- * \param [in] comp          A #GedaCompletion object.
- * \param [in] prefix       A the prefix string.
- * \param [in] new_prefix   A the new prefix string.
+ * \param [in] comp         A #GedaCompletion object.
+ * \param [in] prefix       the prefix string.
+ * \param [in] new_prefix   the new prefix string.
  *
- * Returns: the list of items whose strings begin with
- *          prefix. This should not be changed.
+ * \returns list of items whose strings begin with prefix. This should
+ *          not be changed.
  *
  * \sa geda_completion_complete_utf8
  *
@@ -373,7 +374,6 @@ geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_p
 
     if (plen <= len && ! comp->strncmp_func (prefix, comp->prefix, plen))
     {
-
       /* use the cache */
       list = comp->cache;
 
@@ -433,8 +433,8 @@ geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_p
 /*! \brief Free a Geda Completion Object
  *  \par Function Description
  *
- * Frees all memory used by the #GedaCompletion. The items are not freed, so
- * if the memory was dynamically allocated, it should be freed after calling
+ * Frees all memory used by the #GedaCompletion. The items are not freed,
+ * dynamically allocated memory for the items should be freed after calling
  * this function.
  *
  * \param [in] comp A #GedaCompletion object.
@@ -454,7 +454,7 @@ geda_completion_free (GedaCompletion* comp)
  * Sets the function to use for string comparisons. The default string
  * comparison function is strncmp().
  *
- * \param [in] comp          A #GedaCompletion object.
+ * \param [in] comp         A #GedaCompletion object.
  * \param [in] strncmp_func Pointer to a string comparator function.
  *
  */
@@ -521,5 +521,7 @@ main (int argc, char *argv[])
 
   return 0;
 }
+
 #endif
+
 /** @} end group GedaCompletion */
