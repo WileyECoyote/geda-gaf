@@ -3,6 +3,9 @@
     * src/geda/geda_list.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/utility/u_glist.c: Remove indirect reference to list in function
+      geda_utility_glist_free_all, minor cleaning.
+
 2016-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_net.c: Revise Doxygen comments in group and move class
