@@ -31,6 +31,7 @@
 #include <geda/geda.h>
 #include "../../include/geda_python.h"
 #include "../../include/geda_py_struct.h"
+#include "../../include/geda_py_object.h"
 #include "../../include/geda_py_page.h"
 #include "../../include/geda_py_docs.h"
 
@@ -138,8 +139,16 @@ static PyObject* go_get_objects(PyObject *self, PyObject *args)
 
 static PyObject* go_add(PyObject *self, PyObject *args)
 {
-  return PyObject_CallMethod(geda_module, "add_object", "OO", self, args);
+  PyObject *object;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.add_object",
+                       PyGedaObjectClass(), &object))
+  {
+    return NULL;
+  }
+  return PyObject_CallMethod(geda_module, "add_object", "OO", self, object);
 }
+
 static PyObject* go_delete(PyObject *self, PyObject *args)
 {
   return PyObject_CallMethod(geda_module, "delete_object", "O", args);
@@ -154,7 +163,7 @@ static PyMethodDef Page_methods[] = {
   {"objects",  (PyCFunction)go_get_objects, METH_VARARGS, get_objects_docs},
   {"add",      (PyCFunction)go_add,         METH_VARARGS, add_object_docs},
   {"delete",   (PyCFunction)go_delete,      METH_VARARGS, delete_object_docs},
-  {NULL}  // Sentinel
+  {NULL}  /* Sentinel */
 };
 
 /* -------------------------- PyGedaPageObject GetSeters ------------------------- */
