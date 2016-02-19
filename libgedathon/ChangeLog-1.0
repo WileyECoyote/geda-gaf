@@ -5,6 +5,9 @@
     * src/libgedathon.c: Update function PyGeda_open_page similarly to what was
       done for gschem::x_window_open_page; reducing scope of variables and get
       untitled-name prior to looping, remove superfluous call to s_page_goto.
+      Check for zero length filename string and set such to NULL to allow for
+      "untitled" files, seems bizarre, but is better than having Python scripts
+      error-out.
 
     * src/update_objects.c: Fix BUG: remove extra declaration of count inside
       for loop so that the count outside will be updated along with the list

@@ -1899,7 +1899,7 @@ METHOD(new_line)
  *  \return [out] PyObject Or NULL if an error occurs.
  *
  *  example 1. net = geda.new_net(7200, 5500, 7800, 5500)
- *              geda.add_object(schematic, net)
+ *             geda.add_object(schematic, net)
  */
 METHOD(new_net)
 {

@@ -1241,6 +1241,11 @@ PyGeda_open_page( const char *filename )
     }
   }
 
+  /* If filename string has length, NULL the pointer */
+  if (filename && !strlen(filename)) {
+    filename = NULL;
+  }
+
   if (filename == NULL) {
     page = empty_page(NULL); /* and were done */
     filename = page->filename;
