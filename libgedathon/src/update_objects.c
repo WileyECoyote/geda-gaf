@@ -416,11 +416,13 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
   int         count = 0;
 
   if ( PyList_Check(py_object->attributes)) {
-    int i, count;
+
+    int i;
+
     count = (int) PyList_GET_SIZE(py_object->attributes);
 
-    for (i = 0; i < count ; i++)
-    {
+    for (i = 0; i < count ; i++) {
+
       GedaCapsule *capsule  = (GedaCapsule*)PyList_GET_ITEM(py_object->attributes, i);
 
       if (GEDA_IS_TEXT(capsule->object)) {
@@ -430,15 +432,16 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
         butes  = g_list_append(butes, attrib);
 
 #if DEBUG
-        fprintf(stderr, "PyGeda_update_complex_butes: adding %s\n", attrib->text->string);
+        fprintf(stderr, "%s: adding %s\n", __func__, attrib->text->string);
 #endif
 
       }
       else {
-        fprintf(stderr, "PyGeda_update_complex_butes: invalid capsule contents\n");
+        fprintf(stderr, "%s: invalid capsule contents\n", __func__);
       }
     }
   }
+
   if (count > 0) {
     g_list_free(object->attribs);
     object->attribs = butes;

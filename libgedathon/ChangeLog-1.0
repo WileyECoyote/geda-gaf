@@ -1,3 +1,9 @@
+2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/update_objects.c: Fix BUG: remove extra declaration of count inside
+      for loop so that the count outside will be updated along with the list
+      of attributes, use __func__ in error messages to shorten lines.
+
 2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Eliminate integer sid in get_cue_locations.
