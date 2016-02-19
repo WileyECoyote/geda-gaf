@@ -1165,51 +1165,58 @@ PyGeda_goto_page( int pid )
 PyObject*
 PyGeda_open_page( const char *filename )
 {
-  Page     *old_current, *page;
-  char      untitled[] = "untitled";
-  char      strbuff[MAX_PATH];
-  char     *path;
-  char     *ptr;
-  int       file_err;
+  Page *old_current, *page;
+  char *ptr;
+  char  strbuff[MAX_PATH];
 
   g_return_val_if_fail (toplevel != NULL, Py_None);
 
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled(void) {
 
-    char  s_val[3];
-    char *tmp;
     char *str;
+    char *untitled;
 
-    inline void unique_untitled (void) {
+    inline void unique_untitled(void) {
+
+      char *tmp;
+      char  s_val[3];
+
       /* Get DIR in buffer */
+      ptr = str = getcwd (&strbuff[0], MAX_PATH - 1);
 
-      ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
       /* Append a seperator onto the end of DIR */
-      while ( *ptr != '\0') ++ptr; /* advance to end of string */
-        *ptr = DIR_SEPARATOR;    /* add separator */
-        ++ptr;                     /* advance over separator */
-        *ptr = '\0';               /* Add new NULL */
+      while (*ptr != '\0') {
+        ++ptr; /* advance to end of string */
+      }
 
-        /* Append default name from config */
-        if (toplevel->untitled_name) {
-          str = strcat  ( str, toplevel->untitled_name );
-        }
-        else {
-          str = &untitled[0];
-        }
-      /* Coverted and append an integer to the string */
-      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
-      str = strcat  ( str, tmp );
+       *ptr = DIR_SEPARATOR;     /* add separator */
+      ++ptr;                     /* advance over separator */
+       *ptr = '\0';              /* Add new NULL */
+
+      /* Append untitled-name */
+      str = strcat (str, untitled);
+
+      /* Converted and append an integer to the string */
+      tmp = u_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
+
+      str = strcat (str, tmp);
+
       /* Append our file extension */
-      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
+      str = strcat (str, SCHEMATIC_FILE_DOT_SUFFIX);
     }
+
+    /* Get untitled-name prior to looping */
+    if (!toplevel->untitled_name) {
+      untitled = "untitled";            /* Set to fall-back name */
+    }
+    else {
+      untitled = toplevel->untitled_name;  /* Set to string from config */
+    }
+
     memset(&strbuff[0], '\0', sizeof(strbuff));
-
     unique_untitled ();
-
-    while ( g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
-
+    while (g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
     return str;
   }
 
@@ -1230,7 +1237,6 @@ PyGeda_open_page( const char *filename )
       s_page_goto (old_current);
     }
     else { /* There was error and no previous page */
-      /*fprintf(stderr, "creating empty page\n"); */
       page = empty_page(name);
     }
   }
@@ -1244,9 +1250,10 @@ PyGeda_open_page( const char *filename )
     old_current = toplevel->page_current; /* save fallback point */
 
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
-      /* An existing filename was passed, see if already loaded */
 
+      /* An existing filename was passed, see if already loaded */
       page = s_page_search (toplevel, filename);
+
       if (page == NULL ) {
         GError *err = NULL;
         /* Problem: f_open needs a pointer to a page so we have to create
@@ -1255,7 +1262,7 @@ PyGeda_open_page( const char *filename )
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
         page = s_page_new (toplevel, u_string_strdup (filename));
-        s_page_goto (page);
+
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
@@ -1270,19 +1277,26 @@ PyGeda_open_page( const char *filename )
       }
     }
     else {  /* File name specified but does not exist, check path */
+
+      char *path;
+      int   file_err;
+
       errno = 0;
       access (filename,  W_OK && F_OK);
-      file_err = errno;                        /* save file error */
-      path = strcpy (&strbuff[0], filename);
-      path = dirname(path);                    /* f_get_dirname makes a copy */
+
+      file_err = errno;                     /* save file error */
+      path     = strcpy (&strbuff[0], filename);
+      path     = dirname(path);             /* f_path_get_dirname make copy */
+
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
         /* Filespec may not exist but user has authority to create */
         page = empty_page(filename);
       }
       else { /* Houston, we have problem */
-        /* Filename was specified and but path error, so we still
-         * don't know if base name is okay. Break down filespec and try
+
+        /* Filename was specified but path error, so we still do not
+         * know if the base name is okay. Break down filespec and try
          * to sort out the problem:
          */
         if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
@@ -1297,13 +1311,31 @@ PyGeda_open_page( const char *filename )
         }
 
         if (errno != NO_ERROR) {
-          const char   *homedir = g_getenv ("HOME"); /* does not allocate */
-          if (!homedir) homedir = g_get_home_dir (); /* does not allocate */
-            path = strcpy(&strbuff[0], homedir);
-          ptr  = (char*) filename;
-          while ( *ptr != '\0') ++ptr;      /* advance to end of argument */
-            while ( *ptr != DIR_SEPARATOR) --ptr;  /* backup to separator */
-              path = strcat(path, ptr);
+
+          const char *home_dir;
+
+#ifdef OS_LINUX
+
+          home_dir = g_getenv ("HOME");   /* does not allocate */
+
+          if (!home_dir)
+            home_dir = g_get_home_dir (); /* does not allocate */
+#else
+          home_dir = (char*)g_get_home_dir ();
+#endif
+          path = strcpy(&strbuff[0], home_dir);
+
+          ptr  = (char*)filename;
+
+          while (*ptr != '\0') ++ptr;     /* advance to end of argument */
+
+          while (*ptr != DIR_SEPARATOR) --ptr;   /* backup to separator */
+
+          path = strcat(path, ptr);
+
+#if DEBUG
+          perror(stderr, "filename:%s\n path:%s\n", path, filename);
+#endif
           resolve_2_recover(path);
         }
       }
