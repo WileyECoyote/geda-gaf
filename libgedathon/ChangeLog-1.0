@@ -1,5 +1,7 @@
 2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/geda.c: Revise comments for refresh_attribs.
+
     * src/libgedathon.c: Update function PyGeda_open_page similarly to what was
       done for gschem::x_window_open_page; reducing scope of variables and get
       untitled-name prior to looping, remove superfluous call to s_page_goto.

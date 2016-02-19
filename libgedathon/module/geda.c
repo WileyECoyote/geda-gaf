@@ -2468,9 +2468,10 @@ METHOD(set_attrib)
  * in Python scripts after a complex object associates with the attributes was
  * placed (on a page). If the attribute was modified before committing to a
  * page, or if a new attribute is created and added to a complex then it is
- * not required to use this method. If applicable attributes are modified
- * without calling this function, only the Python version of the object is
- * modified, hence the changes will not be saved when the file is saved.
+ * not required to use this method. If attributes whose parent object has been
+ * placed on a page are modified without calling this function, only the Python
+ * version of the object is modified, hence the changes will not be saved when
+ * the file is saved.
  *
  *  [in] PyObject Complex for which attributes are to be synchronized
  *
@@ -2482,8 +2483,8 @@ METHOD(refresh_attribs)
   PyObject *object;
   int       status;
 
-  if(!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", PyGedaObjectClass(), &object)) {
-
+  if (!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", PyGedaObjectClass(), &object))
+  {
     const char *syntax = "syntax: refresh_attribs(PyGedaObject)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
