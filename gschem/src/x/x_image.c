@@ -164,10 +164,6 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
         /* Compare the name with default and store the index */
         name = gdk_pixbuf_format_get_name(list->data);
 
-#if DEBUG_IMAGING
-        fprintf(stderr, "default_type=[%d], buf=[%s]\n",default_type, name);
-#endif
-
         if (strcasecmp(name, ImageTypeStrings[default_type]) == 0) {
           default_index = i;
         }
@@ -178,7 +174,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
       }
       list = list->next;
     }
-    g_slist_free (formats);
+    g_slist_free (formats); /* Free the list, not the formats */
   }
 
   geda_combo_box_text_widget_append(combo, "Encapsulated Postscript");
@@ -227,7 +223,7 @@ static char *x_image_get_type_from_description(char *descr) {
       formats = gdk_pixbuf_get_formats ();
       list    = formats;
 
-      if(list) {
+      if (list) {
 
         while (formats) {
 
@@ -243,7 +239,7 @@ static char *x_image_get_type_from_description(char *descr) {
           GEDA_FREE(ptr_descr);
           formats = formats->next;
         }
-        g_slist_free (list);
+        g_slist_free (list);    /* Free the list, not the formats */
       }
     }
   }
@@ -277,10 +273,6 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
   char string[MAX_FILE];
 
   GtkWidget *file_chooser;
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: begin\n", __func__);
-#endif
 
   image_type_descr = GetGedaComboActiveText (type_);
   image_type = x_image_get_type_from_description(image_type_descr);
@@ -322,10 +314,6 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
   else {
     u_log_message("%s: No parent file chooser found!.\n", __func__);
   }
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: exit\n", __func__);
-#endif
 }
 
 /*! \brief Write eps image file.
@@ -417,10 +405,6 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
     bool use_print_map, bool invert_color_bw )
 {
   GedaToplevel *toplevel = w_current->toplevel;
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: begin filename=<%s>\n", __func__, filename);
-#endif
 
   float prop;
   int   width, height;
@@ -535,10 +519,6 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
                                                          save_page_top,
                                                          save_page_bottom);
   o_invalidate_all (w_current);
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: exit\n", __func__);
-#endif
 }
 
 /** \defgroup X-Image-Switch-Callback Switch Callback Functions
@@ -673,10 +653,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   bool  image_color_save   = w_current->toplevel->image_color;
   bool  invert_images_save = w_current->toplevel->invert_images;
 
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: begin\n", __func__);
-#endif
-
   /* de-select everything first */
   o_select_unselect_all( w_current );
 
@@ -706,10 +682,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_misc_set_padding   (GTK_MISC (label), 0, 0);
   gtk_box_pack_start     (GTK_BOX (vbox1), label, FALSE, FALSE, 0);
 
-#if DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: Creating image size button\n");
-#endif
-
   /* Label image size selector combo */
   size_Combo = create_size_menu ();
   gtk_box_pack_start (GTK_BOX (vbox1), size_Combo, TRUE, TRUE, 0);
@@ -721,10 +693,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_misc_set_alignment( GTK_MISC (label), 0, 0);
   gtk_misc_set_padding (GTK_MISC (label), 0, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, FALSE, 0);
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: Creating image type button\n");
-#endif
 
   type_Combo = create_type_menu ( default_type);
   gtk_box_pack_start (GTK_BOX (vbox2), type_Combo, TRUE, TRUE, 0);
@@ -740,10 +708,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
 
-#if DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: Creating check buttons\n");
-#endif
-
   /* This two check buttons are for color imaging only */
   use_print = gtk_check_button_new_with_label("Use print colors");
   invert_bw = gtk_check_button_new_with_label("B&W only");
@@ -751,10 +715,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   /* So add them to list to pass to the color switch callback */
   widget_list = g_list_append (widget_list, use_print);
   widget_list = g_list_append (widget_list, invert_bw);
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: Creating toggle switches\n");
-#endif
 
   /* Create switches, aka check boxes with custom images */
   /* Add Switch widget for "extents or Display using Switch_Responder */
@@ -813,17 +773,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   /* Update the filename */
   x_image_update_dialog_filename(GEDA_COMBO_BOX(type_Combo), w_current);
 
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: configuring the dialog window\n", __func__);
-#endif
-
   gtk_dialog_set_default_response((GtkDialog*) ThisDialog, GEDA_RESPONSE_ACCEPT);
 
   gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
   g_object_set (ThisDialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
-  g_object_set ( ((GtkDialog*)ThisDialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
+  g_object_set (((GtkDialog*)ThisDialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 
   g_object_set (ThisDialog, "visible", TRUE, NULL);
 
@@ -833,10 +789,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     char *image_size;
     char *image_type;
     char *image_type_descr;
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: Dialog GEDA_RESPONSE_ACCEPT \n", __func__);
-#endif
 
     /* Retrieve values from the dialog controls */
     image_size      = GetGedaComboActiveText (size_);
@@ -965,10 +917,10 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
     rowstride = gdk_pixbuf_get_rowstride (pixbuf);
     pixels    = gdk_pixbuf_get_pixels (pixbuf);
 
-    for (j = 0; j < height; j++)
-    {
-      for (i = 0; i < width; i++)
-      {
+    for (j = 0; j < height; j++) {
+
+      for (i = 0; i < width; i++) {
+
         p = pixels + j * rowstride + i * n_channels;
 
         if (bw_only) {
@@ -1003,20 +955,15 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 {
   GschemToplevel *new_w_current;
   GedaToplevel   *toplevel;
-
-  GArray       *color_map;
-  GdkPixbuf    *pixbuf;
-  GdkRectangle  rect;
-  EdaRenderer  *renderer;
-  PangoLayout  *layout;
-  PangoContext *context;
+  EdaRenderer    *renderer;
+  GArray         *color_map;
+  GdkPixbuf      *pixbuf;
+  PangoLayout    *layout;
+  PangoContext   *context;
+  GdkRectangle    rect;
 
   int origin_x, origin_y, bottom, right;
   int size_x, size_y, s_right, s_left, s_top,s_bottom;
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: begin\n", __func__);
-#endif
 
   new_w_current = malloc(sizeof(GschemToplevel));
   toplevel      = malloc(sizeof(GedaToplevel));
@@ -1135,10 +1082,6 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 
   free (toplevel);
   free (new_w_current);
-
-#if DEBUG_IMAGING
-  fprintf(stderr, "x_image_get_pixbuf: exit\n");
-#endif
 
   return(pixbuf);
 }

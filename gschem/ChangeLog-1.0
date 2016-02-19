@@ -6,6 +6,8 @@
     * src/iface/i_command.c: Replace g_slist_foreach and g_slist_free
       with geda_utility_gslist_free_all in open_command_idle_notify.
 
+    * src/x/x_image.c: Remove DEBUG_IMAGING, minor cleaning, add comments.
+
     * src/iface/i_sessions.c: Free file_list using geda_utility_gslist_free_all
       instead of g_slist_free in i_session_load_session and release slightly
       sooner.
