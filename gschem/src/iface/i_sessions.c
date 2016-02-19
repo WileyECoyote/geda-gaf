@@ -293,13 +293,15 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
 
   if (i_session_close_all(w_current)) {
 
+    GSList *file_list;
     GSList *iter;
     Page   *blank;
     int     exist_count;
     int     missing_path;
 
     blank        = gschem_toplevel_get_current_page(w_current);
-    iter         = i_sessions_get_file_list(record);
+    file_list    = i_sessions_get_file_list(record);
+    iter         = file_list;
     exist_count  = 0;
     missing_path = 0;
 
@@ -324,6 +326,9 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
       q_log_message(_("Warning relative file names detected in session \"%s\"\n"),
                        record->session_name);
     }
+
+    /* Free the filenames and the list */
+    geda_utility_gslist_free_all (file_list);
 
     /* Note: blank could be NULL if x_window_set_current_page
      * was not called after loading a blank "dummy" page */
@@ -352,8 +357,6 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     i_status_update_sensitivities(w_current);
     i_status_update_title (w_current);
     x_pagesel_update (w_current); /* If dialog open, update tree */
-
-    g_slist_free (iter);
   }
 
   return load_count;
