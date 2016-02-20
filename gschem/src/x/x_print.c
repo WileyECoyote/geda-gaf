@@ -752,7 +752,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
       result = f_print_command (toplevel, page, color_map, command);
 
       GEDA_FREE (w_current->print_command);
-      w_current->print_command = u_string_strdup (command);
+      w_current->print_command = geda_utility_string_strdup (command);
 
       g_array_free (color_map, TRUE);
     }

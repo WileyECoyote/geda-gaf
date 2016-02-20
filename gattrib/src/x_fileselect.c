@@ -111,7 +111,7 @@ bool x_fileselect ( char* filename )
 
   /* preset a directory name */
   if (pr_current->page_current->filename != NULL) {
-    cwd = u_string_strdup(pr_current->page_current->filename);
+    cwd = geda_utility_string_strdup(pr_current->page_current->filename);
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
 #ifdef DEBUG
     fprintf(stderr, "Going to use file name=%s\n", cwd);

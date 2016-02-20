@@ -255,7 +255,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
-        if (u_string_stricmp(temp_uref,"none") == 0) {
+        if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
           GEDA_FREE(temp_uref);          /* Release and set to NULL */
         }
       }
@@ -286,7 +286,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
                   _("Did not find refdes or any special attributes on component!<%s>, <%s>\n"),
                   o_current->complex->filename, net_name);
 
-                  netlist->component_uref = u_string_strdup("U?");
+                  netlist->component_uref = geda_utility_string_strdup("U?");
         }
         else {
 
@@ -390,7 +390,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
-        if (u_string_stricmp(temp_uref,"none") == 0) {
+        if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
           GEDA_FREE(temp_uref);          /* Release and set to NULL */
         }
       }
@@ -403,7 +403,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       else {
 
         if (hierarchy_tag) {
-          netlist->component_uref = u_string_strdup (hierarchy_tag);
+          netlist->component_uref = geda_utility_string_strdup (hierarchy_tag);
         }
         else {
           netlist->component_uref = NULL;
@@ -411,7 +411,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       }
 
       if (hierarchy_tag) {
-        netlist->hierarchy_tag = u_string_strdup (hierarchy_tag);
+        netlist->hierarchy_tag = geda_utility_string_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
@@ -431,7 +431,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
             o_current->complex->filename, net_name);
 
-          netlist->component_uref = u_string_strdup("U?");
+          netlist->component_uref = geda_utility_string_strdup("U?");
         }
         else {
 

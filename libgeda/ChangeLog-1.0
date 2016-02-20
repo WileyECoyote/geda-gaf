@@ -3,6 +3,8 @@
     * src/geda/geda_line.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/utility/u_string.c Add function prefix geda_utility_.
+
 2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Revise Doxygen comments in group and move class

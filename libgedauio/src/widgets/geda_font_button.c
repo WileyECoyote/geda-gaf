@@ -263,11 +263,11 @@ geda_font_button_label_set_text (GedaFontButton *font_button)
       const char *face_name;
       face_name = pango_font_face_get_face_name (font_button->font_face);
 
-      data->label_text = u_string_concat( data->family, " ", face_name, NULL);
+      data->label_text = geda_utility_string_concat( data->family, " ", face_name, NULL);
 
     }
     else {
-      data->label_text = u_string_strdup (data->family);
+      data->label_text = geda_utility_string_strdup (data->family);
     }
 
   }
@@ -353,7 +353,7 @@ geda_font_button_update_font_data (GedaFontButton *font_button)
 
   /* Update the family */
   if (data->family) g_free (data->family);
-  data->family = u_string_strdup ( pango_font_description_get_family (font_button->font_desc));
+  data->family = geda_utility_string_strdup ( pango_font_description_get_family (font_button->font_desc));
 
   /* Get a list of all families */
   n_families = 0;
@@ -435,7 +435,7 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
   data = font_button->priv;
 
   if ( FONT_NAME == NULL) {
-    FONT_NAME = u_string_strdup (_(DEFAULT_FONT_NAME));
+    FONT_NAME = geda_utility_string_strdup (_(DEFAULT_FONT_NAME));
   }
 
   /* Is saftely net: should not need to do this */
@@ -899,7 +899,7 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
     g_object_get (settings, "gtk-font-name", &FONT_NAME, NULL);
   }
   else {
-    FONT_NAME    = u_string_strdup (_(DEFAULT_FONT_NAME));
+    FONT_NAME    = geda_utility_string_strdup (_(DEFAULT_FONT_NAME));
   }
 
   /* Initialize fields */
@@ -915,8 +915,8 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
   font_button->priv->font_dialog  = NULL;
   font_button->font_face          = NULL;
 
-  font_button->title              = u_string_strdup ("Select Font");
-  font_button->priv->preview_text = u_string_strdup (DEFAULT_PREVIEW_TEXT);
+  font_button->title              = geda_utility_string_strdup ("Select Font");
+  font_button->priv->preview_text = geda_utility_string_strdup (DEFAULT_PREVIEW_TEXT);
 
   geda_font_button_update_from_name (font_button);
 
@@ -1024,7 +1024,7 @@ geda_font_button_set_title (GedaFontButton *font_button,
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
   old_title = font_button->title;
-  font_button->title = u_string_strdup (title);
+  font_button->title = geda_utility_string_strdup (title);
   g_free (old_title);
 
   if (font_button->priv->font_dialog)
@@ -1148,7 +1148,7 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
   if (g_ascii_strcasecmp (font_button->priv->font_name, font_name)) {
 
     old_fontname = font_button->priv->font_name;
-    font_button->priv->font_name = u_string_strdup (font_name);
+    font_button->priv->font_name = geda_utility_string_strdup (font_name);
     g_free (old_fontname);
 
     geda_font_button_update_from_name (font_button);
@@ -1258,7 +1258,7 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
-  return u_string_sprintf ("%d", font_button->priv->font_size);
+  return geda_utility_string_sprintf ("%d", font_button->priv->font_size);
 }
 /*! \brief Font Button Get Font Size
  *  \par Function Description
@@ -1408,7 +1408,7 @@ geda_font_button_get_preview_text (GedaFontButton *font_button)
   if (priv->font_dialog)
     return geda_font_dialog_get_preview_text ((GedaFontDialog*)priv->font_dialog);
 
-  return u_string_strdup (priv->preview_text);
+  return geda_utility_string_strdup (priv->preview_text);
 }
 
 void
@@ -1428,7 +1428,7 @@ geda_font_button_set_preview_text (GedaFontButton *font_button,
   }
 
   g_free (priv->preview_text);
-  priv->preview_text = u_string_strdup (preview_text);
+  priv->preview_text = geda_utility_string_strdup (preview_text);
 }
 
 /*! \brief Font Button Get Pango Font Description

@@ -323,7 +323,7 @@ char *o_circle_save(GedaObject *object)
   angle2       = object->circle->fill_options.fill_angle2;
   pitch2       = object->circle->fill_options.fill_pitch2;
 
-  buf = u_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
                          object->type, x, y, radius, object->color,
                          circle_width, circle_end, circle_type, circle_length,
                          circle_space, circle_fill,

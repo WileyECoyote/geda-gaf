@@ -131,7 +131,7 @@ char *x_dialog_new_attrib()
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GEDA_RESPONSE_OK:
-      entry_text = u_string_strdup(GetEntryText(attrib_entry) );
+      entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
       break;
     case GEDA_RESPONSE_CANCEL:
     default:
@@ -245,10 +245,10 @@ int x_dialog_file_not_saved()
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = u_string_concat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
+  str = geda_utility_string_concat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
 
   tmp = _("If you don't save, all your changes will be permanently lost.");
-  str = u_string_concat (str, "\n\n", tmp, NULL);
+  str = geda_utility_string_concat (str, "\n\n", tmp, NULL);
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
                                    GTK_DIALOG_MODAL |
@@ -439,7 +439,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-  title = u_string_concat(_("Find "), prompt, NULL);
+  title = geda_utility_string_concat(_("Find "), prompt, NULL);
 
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
                                                     GTK_WINDOW(main_window),
@@ -470,7 +470,7 @@ char *x_dialog_get_search_text(const char *prompt)
 
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
-    real_prompt = u_string_concat(_("Enter "), prompt, ":", NULL);
+    real_prompt = geda_utility_string_concat(_("Enter "), prompt, ":", NULL);
     label       = geda_aligned_label_new(real_prompt, 0, 0);
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
@@ -490,7 +490,7 @@ char *x_dialog_get_search_text(const char *prompt)
     response = gtk_dialog_run ((GtkDialog*)dialog);
 
     if (response ==  GEDA_RESPONSE_ACCEPT)
-      text = u_string_strdup( GetEntryText(textentry) );
+      text = geda_utility_string_strdup( GetEntryText(textentry) );
 
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
@@ -570,7 +570,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
   void add_search_history(char *new_text) {
     /*! \note: String added to search_history is freed at program exit */
     if (!g_list_stri_inlist(search_history, new_text)) {
-      search_history = g_list_prepend(search_history, u_string_strdup(new_text));
+      search_history = g_list_prepend(search_history, geda_utility_string_strdup(new_text));
     }
   }
 
@@ -596,7 +596,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
   case GEDA_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
-    replacement_text = u_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
+    replacement_text = geda_utility_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
     if(search_text) GEDA_FREE(search_text);

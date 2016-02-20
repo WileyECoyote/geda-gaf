@@ -66,7 +66,7 @@
 #ifndef OS_WIN32_NATIVE
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_toplevel_get_pages(toplevel))) */
-#define msgbox(...)x_dialog_show_message(u_string_sprintf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
+#define msgbox(...)x_dialog_show_message(geda_utility_string_sprintf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 

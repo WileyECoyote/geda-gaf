@@ -172,12 +172,12 @@ int gschem_parse_commandline(int argc, char *argv[])
     switch (ch) {
 
       case 'a':
-        str = u_string_strdup (optarg);
+        str = geda_utility_string_strdup (optarg);
         if (str) {
-          if (u_string_stricmp(str, RC_RENDERER_OPTION_CAIRO) == 0) {
+          if (geda_utility_string_stricmp(str, RC_RENDERER_OPTION_CAIRO) == 0) {
             default_render_adaptor = CAIRO_ADAPTOR;
           }
-          else if (u_string_stricmp(str, RC_RENDERER_OPTION_X11) == 0) {
+          else if (geda_utility_string_stricmp(str, RC_RENDERER_OPTION_X11) == 0) {
             default_render_adaptor = X11_ADAPTOR;
           }
           else {
@@ -187,11 +187,11 @@ int gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'c':
-        rc_filename = u_string_strdup (optarg);
+        rc_filename = geda_utility_string_strdup (optarg);
         break;
 
       case 'f':
-        comline_font = u_string_strdup (optarg);
+        comline_font = geda_utility_string_strdup (optarg);
         break;
 
       case 'g':
@@ -220,7 +220,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'o':
-        output_filename = u_string_strdup (optarg);
+        output_filename = geda_utility_string_strdup (optarg);
         break;
 
       case 'p':
@@ -250,16 +250,16 @@ int gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 's':
-        start_session = u_string_strdup (optarg);
+        start_session = geda_utility_string_strdup (optarg);
         break;
 
       case 't':
-        comline_tblock = u_string_strdup (optarg);
+        comline_tblock = geda_utility_string_strdup (optarg);
         override_autoload = 1; /* do not auto load if tblock is not found */
         break;
 
       case 'u':
-        tmp_directory = u_string_strdup (optarg);
+        tmp_directory = geda_utility_string_strdup (optarg);
         break;
 
       case 'v':

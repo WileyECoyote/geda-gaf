@@ -188,7 +188,7 @@ static void x_menu_execute(GtkAction *action, void *user_data)
   }
   else {
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
-      menu_action = u_string_concat (action_name, "-menu", NULL);
+      menu_action = geda_utility_string_concat (action_name, "-menu", NULL);
       g_action_eval_by_name (w_current, menu_action);
       GEDA_FREE(menu_action);
     }
@@ -559,8 +559,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             is_a_toggle = TRUE;
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
-            toggler_data->menu_item_name = u_string_strdup(menu_item_name);
-            toggler_data->menu_path      = u_string_concat (*raw_menu_name, "/", raw_menu_item_name, NULL);
+            toggler_data->menu_item_name = geda_utility_string_strdup(menu_item_name);
+            toggler_data->menu_path      = geda_utility_string_concat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
             action = (GedaAction*)
@@ -622,7 +622,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     /* add a handle to the menu_bar object to get access to widget
      * objects. This string should NOT be internationalized */
-    buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
+    buf = geda_utility_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, buf);
     GEDA_FREE(buf);
 
@@ -1483,7 +1483,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   GtkWidget* menubar;
   menubar = x_menu_get_main_menu(w_current);
 
-  menu_path = u_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
+  menu_path = geda_utility_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
   menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
   if (menu_item != NULL) {
     gtk_check_menu_item_set_active((GtkCheckMenuItem*) menu_item, state);
@@ -1866,7 +1866,7 @@ void x_menu_recent_files_add(const char *filename)
    /* Normalize the filename. */
    save_fn = f_sys_normalize_name (filename, &err);
    if (err != NULL) {
-     save_fn = u_string_strdup (filename);
+     save_fn = geda_utility_string_strdup (filename);
      g_error_free (err);
    }
 

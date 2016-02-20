@@ -193,7 +193,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
   accelerator = get_last_command();
 
   /* This should almost always happen */
-  if (u_string_strequal(command_struc[accelerator].name, command)) {
+  if (geda_utility_string_strequal(command_struc[accelerator].name, command)) {
     route(accelerator);
   }
   else {
@@ -202,7 +202,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
 
     /* TODO: Add debug and find out if this is ever executed */
     for (i = 1; i < COMMAND_COUNT; i++) {
-      if (u_string_strequal(command_struc[i].name, command)) {
+      if (geda_utility_string_strequal(command_struc[i].name, command)) {
         route(i);
         break;
       }
@@ -276,7 +276,7 @@ const char *i_command_get_action_icon (const char *command)
 
     for (index = icache; index < LAST_ACTION; index++) {
 
-      if (u_string_strequal(command_struc[index].name, command)) {
+      if (geda_utility_string_strequal(command_struc[index].name, command)) {
         if (command_struc[index].icon_id) {
           icon_id = command_struc[index].icon_id;
           icache = index;
@@ -287,7 +287,7 @@ const char *i_command_get_action_icon (const char *command)
     if (!icon_id) {
       icache = index;
       for (index = 1; index < icache; index++) {
-        if (u_string_strequal(command_struc[index].name, command)) {
+        if (geda_utility_string_strequal(command_struc[index].name, command)) {
           if (command_struc[index].icon_id) {
             icon_id = command_struc[index].icon_id;
             icache = index;
@@ -314,7 +314,7 @@ bool i_command_is_valid(const char *command)
   int i;
   bool result = FALSE;
   for (i = 1; i < COMMAND_COUNT; i++) {
-    if (u_string_strequal(command_struc[i].name, command)) {
+    if (geda_utility_string_strequal(command_struc[i].name, command)) {
       result = TRUE;
       break;
     }
@@ -327,12 +327,12 @@ bool i_command_map_icon  (const char *command, const char *icon)
   int i;
   bool result = FALSE;
   for (i = 1; i < LAST_ACTION; i++) {
-    if (u_string_strequal(command_struc[i].name, command)) {
+    if (geda_utility_string_strequal(command_struc[i].name, command)) {
       if (command_struc[i].icon_id) {
         GEDA_FREE(command_struc[i].icon_id);
       }
       if (icon) {
-        command_struc[i].icon_id = u_string_strdup(icon);
+        command_struc[i].icon_id = geda_utility_string_strdup(icon);
       }
       else {
         command_struc[i].icon_id = NULL;
@@ -352,7 +352,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
   for (i = 1; i < COMMAND_COUNT; i++) {
 
-    if (u_string_strequal(command_struc[i].name, command)) {
+    if (geda_utility_string_strequal(command_struc[i].name, command)) {
 
       v_log_message(_("Processing Action <%s>, at index %d\n"), command_struc[i].name, i);
 
@@ -408,7 +408,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
       /* Fill in parameter arguments for this task */
       command_struc[i].narg      = narg;
       command_struc[i].who       = who;
-      command_struc[i].sarg      = (unsigned char *) u_string_strdup(arg);
+      command_struc[i].sarg      = (unsigned char *) geda_utility_string_strdup(arg);
       command_struc[i].w_current = w_current;
 
 #ifdef PERFORMANCE
@@ -484,9 +484,9 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
   if (command_struc[index].sarg != NULL) {
-    arg  = u_string_strdup((char *)command_struc[index].sarg);
+    arg  = geda_utility_string_strdup((char *)command_struc[index].sarg);
     GEDA_FREE(command_struc[index].sarg);
-    arg  = u_string_strstr_rep(arg, "  ", " ");
+    arg  = geda_utility_string_strstr_rep(arg, "  ", " ");
    *argv = g_strsplit (g_strstrip(arg), " ", 0);
    *argc = g_strv_length(*argv);
   }
@@ -586,7 +586,7 @@ COMMAND (do_debug)
       average = total / 10;
       count   = g_list_length((GList*)s_page_get_objects(p_current));
       per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
-      results = u_string_sprintf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
+      results = geda_utility_string_sprintf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
       printf ("file=%s, has %d objects: %s\n", p_current->filename, count, results);
       msg = complete;
       g_free(results);
@@ -612,7 +612,7 @@ COMMAND (do_debug)
         count   = g_list_length(s_page_get_objects(p_current));
         per_obj = ((average / count) * 1000) / NUMBER_UNDO_TEST;
         printf ("file=%s, has %d objects after testing\n", p_current->filename, count);
-        results = u_string_sprintf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
+        results = geda_utility_string_sprintf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
         printf ("%s\n", results);
         msg = complete;
         g_free(results);
@@ -905,7 +905,7 @@ COMMAND (do_save_as) {
   p_current  = gschem_toplevel_get_current_page(w_current);
 
  /* Make a copy of the page file name */
-  old_name   = u_string_strdup(p_current->filename);
+  old_name   = geda_utility_string_strdup(p_current->filename);
 
   x_fileselect_save (w_current);
 
@@ -994,11 +994,11 @@ COMMAND (do_print) {
     else {
 
       /* the filename does not end with .sch */
-      base = u_string_strdup (filename);
+      base = geda_utility_string_strdup (filename);
     }
 
     /* add ".ps" to the base filename */
-    ps_filename = u_string_concat (base, ".ps", NULL);
+    ps_filename = geda_utility_string_concat (base, ".ps", NULL);
 
     GEDA_FREE(base);
 
@@ -2726,7 +2726,7 @@ COMMAND (do_page_revert_all)
       Page *page = (Page*)iter->data;
 
       /* Copy the filename to the list */
-      files = g_slist_append(files, u_string_strdup(page->filename));
+      files = g_slist_append(files, geda_utility_string_strdup(page->filename));
 
       if (!strncmp(page->filename, c_filename, strlen(c_filename))) {
         CMD_INTEGER(do_page_revert_all) = index;
@@ -2855,7 +2855,7 @@ COMMAND (do_down_schematic)
 
     /* look for source=filename,filename, ... */
     int   pcount = 0;
-    char *current_filename = u_string_split(attrib, ',', pcount);
+    char *current_filename = geda_utility_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while(current_filename != NULL) {
@@ -2901,7 +2901,7 @@ COMMAND (do_down_schematic)
 
         u_log_message("%s '%s': %s\n", msg1, current_filename, msg2);
 
-        char *secondary = u_string_sprintf ("%s '%s': <i>%s</i>",
+        char *secondary = geda_utility_string_sprintf ("%s '%s': <i>%s</i>",
                                             msg1, current_filename, msg2);
 
         titled_pango_error_dialog("<b>Failed to descend hierarchy</b>",
@@ -2918,7 +2918,7 @@ COMMAND (do_down_schematic)
 
       GEDA_FREE(current_filename);
       pcount++;
-      current_filename = u_string_split(attrib, ',', pcount);
+      current_filename = geda_utility_string_split(attrib, ',', pcount);
     }
 
     GEDA_FREE(attrib);

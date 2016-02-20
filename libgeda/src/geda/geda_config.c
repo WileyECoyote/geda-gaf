@@ -407,7 +407,7 @@ eda_config_find_project_root (const char *path, const char *filename)
   }
 
   while (dir && strlen(dir) > 1){
-      char *filespec = u_string_concat(dir, DIR_SEPARATOR_S, filename, NULL);
+      char *filespec = geda_utility_string_concat(dir, DIR_SEPARATOR_S, filename, NULL);
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         free(filespec);
         found = 1;
@@ -418,7 +418,7 @@ eda_config_find_project_root (const char *path, const char *filename)
   }
 
   if (found) {
-    proj_root = u_string_strdup (dir);
+    proj_root = geda_utility_string_strdup (dir);
     free(root_path);
   }
   else {
@@ -485,10 +485,10 @@ eda_config_get_system_context (const char *context)
     char *filespec = NULL;
 
     if ( context == NULL) {
-      filename=u_string_strdup(SYSTEM_CONFIG_FILE);
+      filename=geda_utility_string_strdup(SYSTEM_CONFIG_FILE);
     }
     else {
-      filename = u_string_concat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
+      filename = geda_utility_string_concat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
     }
 
 #if defined (_WIN32) || defined (GEDA_USE_XDG)
@@ -599,7 +599,7 @@ eda_config_get_user_context (void)
     char *filename = NULL;
     char *tmpname;
 
-    tmpname  = u_string_concat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
+    tmpname  = geda_utility_string_concat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
     filename = g_build_filename(f_path_user_config(), tmpname, NULL);
     GEDA_FREE (tmpname);
 
@@ -971,7 +971,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
     char *scratch;
 
     filename = cfg->priv->filename;
-    scratch  = u_string_strdup(filename);
+    scratch  = geda_utility_string_strdup(filename);
 
     /* First try and make the directory, if necessary. */
     dir = dirname (scratch);

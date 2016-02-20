@@ -100,7 +100,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     u_log_message (_("ERROR: %s\n"), err_msg_unknown);
 
     /* Dialog message */
-    msg2 = u_string_concat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
+    msg2 = geda_utility_string_concat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
   }
   else {
 
@@ -114,9 +114,9 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     }
 
     /* Check if this was an "Unbound variable:" message */
-    unbound_msg = u_string_istr ((*err)->message, unbound_needle) + 18;
+    unbound_msg = geda_utility_string_istr ((*err)->message, unbound_needle) + 18;
     int len     = strlen(unbound_msg);
-    if (len > 0) { /* True if u_string_istr found "Unbound variable:" */
+    if (len > 0) { /* True if geda_utility_string_istr found "Unbound variable:" */
 
       char *unbound_sym;      /* Unbound Symbol name */
 
@@ -136,7 +136,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
       u_log_message (_("ERROR: %s\n"), (*err)->message);
     }
     /* Dialog message */
-    msg2 = u_string_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
+    msg2 = geda_utility_string_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
   }
 
   /* Inform the user */

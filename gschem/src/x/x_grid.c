@@ -637,7 +637,7 @@ void x_grid_draw_tiles(GschemToplevel *w_current)
 
       cairo_set_font_size (w_current->cr, TILES_FONT_SIZE);
 
-      tempstring = u_string_sprintf ("(%d,%d)", i, j);
+      tempstring = geda_utility_string_sprintf ("(%d,%d)", i, j);
 
       cairo_show_text (w_current->cr, tempstring);
 

@@ -319,7 +319,7 @@ o_arc_save(GedaObject *object)
   arc_space  = object->line_options->line_space;
 
   /* Describe a circle with post-20000704 file format */
-  buf = u_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
                           x, y, radius, start_angle, arc_sweep, object->color,
                           arc_width, arc_end, arc_type, arc_length, arc_space);
 

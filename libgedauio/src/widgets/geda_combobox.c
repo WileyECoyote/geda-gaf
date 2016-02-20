@@ -783,7 +783,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    *                       THE_DOUBLE_VALUE_COLUMN, &value,
    *                       -1);
    *
-   *   return u_string_sprintf ("&percnt;g", value);
+   *   return geda_utility_string_sprintf ("&percnt;g", value);
    * }
    * ]|
    *

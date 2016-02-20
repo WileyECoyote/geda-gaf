@@ -358,16 +358,16 @@ GedaObject *o_attrib_new_attached(GedaObject *parent, const char *name,
 
   /* first create text item */
   if ( name && value) {
-    text = u_string_sprintf("%s=%s", name, value);
+    text = geda_utility_string_sprintf("%s=%s", name, value);
   }
   else if (name) {
-    text = u_string_strdup(name);
+    text = geda_utility_string_strdup(name);
   }
   else if (value) {
-    text = u_string_strdup(value);
+    text = geda_utility_string_strdup(value);
   }
   else {
-    text = u_string_strdup("unknown=empty");
+    text = geda_utility_string_strdup("unknown=empty");
   }
   new_obj = o_text_new(color, world_x, world_y,
                        align, angle,               /* zero is angle */
@@ -634,7 +634,7 @@ o_attrib_string_get_name_value (const char *string,
   }
 
   if (value_ptr != NULL) {
-    *value_ptr = u_string_strdup (next_char);
+    *value_ptr = geda_utility_string_strdup (next_char);
   }
 
   return TRUE;
@@ -672,7 +672,7 @@ o_attrib_set_value (const GedaObject *attrib, const char *name_ptr, const char *
 
   GEDA_FREE(attrib->text->string);
 
-  attrib->text->string = u_string_concat(name_ptr, "=", value_ptr, NULL);
+  attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -684,7 +684,7 @@ void
 o_attrib_set_integer_value (const GedaObject *attrib, const char *name_ptr, int value)
 {
   GEDA_FREE(attrib->text->string);
-  attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value, NULL);
+  attrib->text->string = geda_utility_string_sprintf("%s=%d", name_ptr, value, NULL);
 }
 
 /*! \brief Find all floating attributes in the given object list.

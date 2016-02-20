@@ -180,7 +180,7 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Move Mode");
     case PASTEMODE:
       GEDA_FREE(buf);
-      buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
+      buf = geda_utility_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
       return buf;
     case STARTBREAK:
       return _("First point?");
@@ -260,7 +260,7 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 
      char *ptr = what_to_say;
 
-     what_to_say = u_string_sprintf("%s\t\t %s", w_current->keyaccel_string,
+     what_to_say = geda_utility_string_sprintf("%s\t\t %s", w_current->keyaccel_string,
                                                  what_to_say);
      GEDA_FREE(ptr);
   }

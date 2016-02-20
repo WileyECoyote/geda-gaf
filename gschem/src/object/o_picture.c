@@ -361,7 +361,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
     gtk_widget_show (dialog);
 
     if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
-      filename = u_string_strdup(geda_image_chooser_get_filename (dialog));
+      filename = geda_utility_string_strdup(geda_image_chooser_get_filename (dialog));
     }
     else {
       filename = NULL;
@@ -596,7 +596,7 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     int width;
 
     w_current->current_pixbuf  = pixbuf;
-    w_current->pixbuf_filename = (char *) u_string_strdup(filename);
+    w_current->pixbuf_filename = (char *) geda_utility_string_strdup(filename);
 
     width  = gdk_pixbuf_get_width (pixbuf);
     height = gdk_pixbuf_get_height (pixbuf);
@@ -610,11 +610,11 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     char *errmsg;
 
     if (error) {
-      errmsg = u_string_sprintf ( _("Error: %s."), error->message);
+      errmsg = geda_utility_string_sprintf ( _("Error: %s."), error->message);
       g_error_free(error);
     }
     else {
-      errmsg = u_string_sprintf ( _("Error: %s\n%s."), filename,
+      errmsg = geda_utility_string_sprintf ( _("Error: %s\n%s."), filename,
                                   _("An unknown error occurred"));
     }
 

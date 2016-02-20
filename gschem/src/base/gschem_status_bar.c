@@ -1572,7 +1572,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
         index = COORD_FORMAT_V180;
       }
 
-      string = u_string_sprintf(coordinate_formats[index].text, length, degrees);
+      string = geda_utility_string_sprintf(coordinate_formats[index].text, length, degrees);
     }
     else {
 
@@ -1585,7 +1585,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
         mode = mode>>1;
       }
 
-      string = u_string_sprintf(coordinate_formats[index].text, x1, y1);
+      string = geda_utility_string_sprintf(coordinate_formats[index].text, x1, y1);
     }
 
     return string;
@@ -1783,11 +1783,11 @@ update_grid_label (GschemStatusBar *widget)
         break;
 
       case SNAP_GRID:
-        strcat (ptr, u_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_utility_string_int2str(widget->snap_size, &scratch[0], 10));
         break;
 
       case SNAP_RESNAP:
-        strcat (ptr, u_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_utility_string_int2str(widget->snap_size, &scratch[0], 10));
         strcat (ptr, "R");
         break;
 
@@ -1807,7 +1807,7 @@ update_grid_label (GschemStatusBar *widget)
         ptr = strcat(ptr,_("NONE"));
       }
       else {
-        strcat (ptr, u_string_int2str(widget->grid_size,&scratch[0], 10));
+        strcat (ptr, geda_utility_string_int2str(widget->grid_size,&scratch[0], 10));
       }
     }
 

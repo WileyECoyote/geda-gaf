@@ -64,7 +64,7 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
   scm_puts ("#<gschem-window", port);
 
   scm_dynwind_begin (0);
-  hexstring = u_string_sprintf (" %zx", SCM_SMOB_DATA (smob));
+  hexstring = geda_utility_string_sprintf (" %zx", SCM_SMOB_DATA (smob));
   scm_dynwind_unwind_handler (g_free, hexstring, SCM_F_WIND_EXPLICITLY);
   scm_puts (hexstring, port);
   scm_dynwind_end ();

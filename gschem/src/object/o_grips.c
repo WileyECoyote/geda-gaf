@@ -934,7 +934,7 @@ o_grips_start_picture(GschemToplevel *w_current, GedaObject *o_current, int x, i
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
   w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
-  w_current->pixbuf_filename = u_string_strdup (o_picture_get_filename (o_current));
+  w_current->pixbuf_filename = geda_utility_string_strdup (o_picture_get_filename (o_current));
 
   w_current->pixbuf_wh_ratio = o_picture_get_effective_ratio (o_current);
 

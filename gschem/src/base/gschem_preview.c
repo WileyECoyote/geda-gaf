@@ -410,7 +410,7 @@ preview_set_property (GObject *object, unsigned int property_id,
           g_object_notify (object, "buffer");
         }
         GEDA_FREE (preview->filename);
-        preview->filename = u_string_strdup (g_value_get_string (value));
+        preview->filename = geda_utility_string_strdup (g_value_get_string (value));
         break;
 
       case PROP_BUFFER:
@@ -420,7 +420,7 @@ preview_set_property (GObject *object, unsigned int property_id,
           g_object_notify (object, "filename");
         }
         GEDA_FREE (preview->buffer);
-        preview->buffer = u_string_strdup (g_value_get_string (value));
+        preview->buffer = geda_utility_string_strdup (g_value_get_string (value));
         break;
 
       case PROP_ACTIVE:

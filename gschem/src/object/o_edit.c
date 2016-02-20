@@ -59,7 +59,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
   ext = ext - 4;
 
   if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
-    sym_file = u_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+    sym_file = geda_utility_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
   }
   else {
     sym_file = g_strdup(tblock);
@@ -882,7 +882,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
       if (attrib) {
 
         pcount = 0;
-        current_filename = u_string_split(attrib, ',', pcount);
+        current_filename = geda_utility_string_split(attrib, ',', pcount);
 
         if (current_filename != NULL) {
 

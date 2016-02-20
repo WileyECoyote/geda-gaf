@@ -364,7 +364,7 @@ x_draw_get_font(void)
 {
   char strBuffer[128];
   RenderAdaptor->geda_draw_set_font(&strBuffer[0], sizeof(strBuffer));
-  return u_string_strdup(&strBuffer[0]);
+  return geda_utility_string_strdup(&strBuffer[0]);
 }
 
 extern "C" void
@@ -446,7 +446,7 @@ x_draw_strip_font_provider(const char *font_string)
       strBuffer[index] = strBuffer[index] ^ 0x20; /* Make lower case*/
     }
   }
-  return u_string_strdup(font_name);
+  return geda_utility_string_strdup(font_name);
 }
 
 extern "C" int

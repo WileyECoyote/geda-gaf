@@ -598,7 +598,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
     /* Do a case insensitive uppercase comparison */
     compname_upper = g_ascii_strup (compname, -1);
     text_upper     = g_ascii_strup (text, -1);
-    pattern        = u_string_concat ("*", text_upper, "*", NULL);
+    pattern        = geda_utility_string_concat ("*", text_upper, "*", NULL);
     ret            = g_pattern_match_simple (pattern, compname_upper);
 
     GEDA_FREE (compname_upper);
@@ -1478,10 +1478,10 @@ static GtkTreeModel *create_lib_tree_model (Compselect *compselect,
 
     if (sym_count > 1) {
       /* Add tool tip to the source row */
-      tooltip_text = u_string_sprintf("%s contains %d symbols", source->name, sym_count);
+      tooltip_text = geda_utility_string_sprintf("%s contains %d symbols", source->name, sym_count);
     }
     else
-      tooltip_text = u_string_sprintf("%s Group", source->name);
+      tooltip_text = geda_utility_string_sprintf("%s Group", source->name);
 
     gtk_tree_store_set (store, &tree_iter,
                         LVC_ROW_TYPE, FALSE,
@@ -1676,7 +1676,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
       const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
 
-      sym_name = u_string_strdup(ptr_sym_name);
+      sym_name = geda_utility_string_strdup(ptr_sym_name);
 
       gtk_tree_model_iter_parent (model, &parent, &iter);
       was_expanded = TRUE;
@@ -1692,11 +1692,11 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     }
 
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
-    src_name = u_string_strdup(source->name);
+    src_name = geda_utility_string_strdup(source->name);
 
     if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-      gp_src_name = u_string_strdup(source->name);
+      gp_src_name = geda_utility_string_strdup(source->name);
     }
 
     do_restore = TRUE;
@@ -2378,7 +2378,7 @@ bool SearchTreeView (GtkTreeModel *model, int column, const char *key,
     CLibSymbol *sym;
 
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
-    return u_string_stristr (sym->name, key);
+    return geda_utility_string_stristr (sym->name, key);
 }
 
 /*! \brief Creates the treeview for each notebook Library Tab */

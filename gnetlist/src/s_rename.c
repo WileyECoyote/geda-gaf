@@ -184,8 +184,8 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   g_return_if_fail(new_rename != NULL);
 
   new_rename->next = NULL;
-  new_rename->src  = u_string_strdup(src);
-  new_rename->dest = u_string_strdup(dest);
+  new_rename->src  = geda_utility_string_strdup(src);
+  new_rename->dest = geda_utility_string_strdup(dest);
 
   if (last_set->first_rename == NULL) {
     last_set->first_rename = last_set->last_rename = new_rename;
@@ -268,8 +268,8 @@ void s_rename_add(char *src, char *dest)
 
     new_rename = GEDA_MEM_ALLOC(sizeof(RENAME));
     new_rename->next = NULL;
-    new_rename->src = u_string_strdup(src);
-    new_rename->dest = u_string_strdup(dest);
+    new_rename->src = geda_utility_string_strdup(src);
+    new_rename->dest = geda_utility_string_strdup(dest);
 
     if (last_set->first_rename == NULL) {
 
@@ -317,7 +317,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
           if (strcmp(pl_current->net_name, src) == 0) {
 
             GEDA_FREE(pl_current->net_name);
-            pl_current->net_name = u_string_strdup(dest);
+            pl_current->net_name = geda_utility_string_strdup(dest);
 
           }
         }

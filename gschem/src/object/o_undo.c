@@ -92,28 +92,28 @@ void o_undo_init(GschemToplevel *w_current)
 
     if (tmp_tmp != NULL) {
       if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-        tmp_path = u_string_strdup(tmp_tmp);
+        tmp_path = geda_utility_string_strdup(tmp_tmp);
       }
     }
     if (tmp_path == NULL) {
       tmp_tmp = getenv("TMPDIR");
       if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-        tmp_path = u_string_strdup(tmp_tmp);
+        tmp_path = geda_utility_string_strdup(tmp_tmp);
       }
     }
     if (tmp_path == NULL) {
       tmp_tmp = getenv("TEMP");
       if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-        tmp_path = u_string_strdup(tmp_tmp);
+        tmp_path = geda_utility_string_strdup(tmp_tmp);
       }
     }
     if (tmp_path == NULL) {
-      tmp_path = u_string_strdup(g_get_tmp_dir());
+      tmp_path = geda_utility_string_strdup(g_get_tmp_dir());
     }
   }
   if (w_current->undo_type == UNDO_DISK) {
     if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
-      char *errmsg = u_string_sprintf (msg_not_rw, tmp_path);
+      char *errmsg = geda_utility_string_sprintf (msg_not_rw, tmp_path);
       titled_pango_warning_dialog (msg_use_mem,  errmsg, _("Gschem Undo System"));
       GEDA_FREE(errmsg);
       w_current->undo_type = UNDO_MEMORY;
@@ -138,7 +138,7 @@ void o_undo_finalize(void)
 
     char *filename;
 
-    filename = u_string_sprintf(UNDO_FILE_PATTERN, tmp_path,
+    filename = geda_utility_string_sprintf(UNDO_FILE_PATTERN, tmp_path,
                                 DIR_SEPARATOR, prog_pid, i);
     unlink(filename);
     GEDA_FREE(filename);
@@ -246,7 +246,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
 
-      filename = u_string_sprintf(UNDO_FILE_PATTERN,
+      filename = geda_utility_string_sprintf(UNDO_FILE_PATTERN,
                                   tmp_path, DIR_SEPARATOR,
                                   prog_pid, undo_file_index++);
 
@@ -533,7 +533,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     GError *err          = NULL;
 
-    char *save_filename  = u_string_strdup (Current_Page->filename);
+    char *save_filename  = geda_utility_string_strdup (Current_Page->filename);
     int   save_logging   = logging;
     int   old_flags      = toplevel->open_flags;
 
@@ -544,7 +544,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       restored = TRUE;
     }
     else {
-      char *errmsg = u_string_sprintf (disk_err_msg, err->message);
+      char *errmsg = geda_utility_string_sprintf (disk_err_msg, err->message);
       titled_pango_error_dialog(_("<b>Undo error.</b>"), errmsg, _("Undo failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);

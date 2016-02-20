@@ -167,7 +167,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
   value   = GetEntryText(value_entry);
   label   = GetEntryText(name_entry);
-  newtext = u_string_concat (label, "=", value, NULL);
+  newtext = geda_utility_string_concat (label, "=", value, NULL);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext))
   {

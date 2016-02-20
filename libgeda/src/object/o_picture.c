@@ -99,7 +99,7 @@ o_picture_new (const char *file_content, unsigned int file_length,
   }
 
   if (filename) {
-    picture->filename = u_string_strdup (filename);
+    picture->filename = geda_utility_string_strdup (filename);
   }
 
   if (file_content != NULL) {
@@ -178,7 +178,7 @@ o_picture_copy(GedaObject *o_current)
     }
 
     new_picture->file_length = old_picture->file_length;
-    new_picture->filename    = u_string_strdup (old_picture->filename);
+    new_picture->filename    = geda_utility_string_strdup (old_picture->filename);
     new_picture->ratio       = old_picture->ratio;
     new_picture->angle       = old_picture->angle;
     new_picture->mirrored    = old_picture->mirrored;
@@ -387,8 +387,8 @@ o_picture_read (const char  *first_line,
 
   }
 
-  tmpstr = u_string_strdup(s_textbuffer_next_line(tb));
-  tmpstr = u_string_remove_last_nl(tmpstr);
+  tmpstr = geda_utility_string_strdup(s_textbuffer_next_line(tb));
+  tmpstr = geda_utility_string_remove_last_nl(tmpstr);
 
   if (f_get_is_path_absolute(tmpstr)) {
 
@@ -522,7 +522,7 @@ o_picture_save(GedaObject *object)
   if (filename == NULL) filename = "";
 
   if (o_picture_is_embedded(object) && encoded_picture != NULL) {
-    out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
+    out = geda_utility_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
                            object->type,
                            x1, y1, width, height,
                            object->picture->angle,
@@ -534,7 +534,7 @@ o_picture_save(GedaObject *object)
                            ".");
   }
   else {
-    out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
+    out = geda_utility_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
                            object->type,
                            x1, y1, width, height,
                            object->picture->angle,
@@ -1632,7 +1632,7 @@ o_picture_set_from_buffer (GedaObject        *object,
    * in effect, rounding the ratio to a whole number */
   object->picture->ratio = (double) width / height;
 
-  tmp_name = u_string_strdup (filename);
+  tmp_name = geda_utility_string_strdup (filename);
   GEDA_FREE (object->picture->filename);
   object->picture->filename = tmp_name;
 

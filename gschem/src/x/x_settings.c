@@ -292,7 +292,7 @@ bool x_settings_set_scm_int(char *symbol_name, int value )
 
     /* Get string representation of the integer */
     strbuff = &buffer[0];
-    str     = u_string_int2str(value, s_val, 10);
+    str     = geda_utility_string_int2str(value, s_val, 10);
 
     strcpy(strbuff, "(define ");
     strcat(strbuff, symbol_name );
@@ -388,7 +388,7 @@ bool get_titleblock_list(char **Buffer) {
 
       const char *suffix = f_get_filename_ext(ent->d_name);
 
-      if (suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+      if (suffix && geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
       {
         char tmpbuff[MAX_FILENAME];
         int  namelen;
@@ -508,7 +508,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   int result;                /* Our exit code */
 
   /* Build path for user config file */
-  inputfile = u_string_concat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
+  inputfile = geda_utility_string_concat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
@@ -516,7 +516,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     char *templatefile;      /* Name of the Template file */
 
     /* Copy the template user config file to user's folder */
-    templatefile = u_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
+    templatefile = geda_utility_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
                                    "user-", rcname, NULL);
     result = f_sys_copy(templatefile, inputfile);
   }
@@ -526,7 +526,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     return -1;
   }
 
-  outputfile = u_string_concat (f_path_user_config (), DIR_SEPARATOR_S,
+  outputfile = geda_utility_string_concat (f_path_user_config (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
   if (( input = fopen (inputfile, "r" )) == NULL) {
@@ -692,7 +692,7 @@ KEYWORD (define_in_rc) {
 
       char Terminator[]= LineTerminator;
 
-      /* could do this: ptr = u_string_scm2c( "default-titleblock" ) */
+      /* could do this: ptr = geda_utility_string_scm2c( "default-titleblock" ) */
       strcpy (output_buffer, "(define default-titleblock \""); /* add a new semi-colon*/
       strcat (output_buffer, rc_options.titleblock_fname );
       strcat (output_buffer, "\")" );
@@ -1290,7 +1290,7 @@ KEYWORD ( text_marker_threshold ) {
   strcpy(output_buffer, "(" );
   strcat(output_buffer, KEY_NAME(text_marker_threshold));
   strcat(output_buffer, " ");
-  strcat(output_buffer, u_string_int2str( number, s_val, 10 ));
+  strcat(output_buffer, geda_utility_string_int2str( number, s_val, 10 ));
   strcat(output_buffer, ")\n");
   fputs(output_buffer, output);
 }

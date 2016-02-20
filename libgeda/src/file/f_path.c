@@ -122,7 +122,7 @@ const char *f_path_sys_data () {
     const char *path;
     path = getenv ("GEDADATA");
     if (path != NULL) {
-      sys_data_path = u_string_strdup(path);
+      sys_data_path = geda_utility_string_strdup(path);
     }
   }
 
@@ -136,7 +136,7 @@ const char *f_path_sys_data () {
     GEDA_FREE (directory);
 # else
     /* On other platforms, use the compiled-in path */
-    sys_data_path = u_string_strdup(GEDADATADIR);
+    sys_data_path = geda_utility_string_strdup(GEDADATADIR);
 # endif
 
     setenv ("GEDADATA", sys_data_path, FALSE);
@@ -167,12 +167,12 @@ const char *f_path_sys_doc () {
     const char *path;
     path = getenv ("GEDADOC");
     if (path != NULL) {
-      sys_doc_path = u_string_strdup(path);
+      sys_doc_path = geda_utility_string_strdup(path);
     }
   }
 
   if (sys_doc_path == NULL) {
-    sys_doc_path = u_string_strdup(GEDADOCDIR);
+    sys_doc_path = geda_utility_string_strdup(GEDADOCDIR);
     setenv ("GEDADOC", sys_doc_path, FALSE);
   }
   return sys_doc_path;
@@ -203,7 +203,7 @@ const char *f_path_sys_config () {
     const char *path;
     path = getenv ("GEDADATARC");
     if (path != NULL) {
-      sys_config_path = u_string_strdup(path);
+      sys_config_path = geda_utility_string_strdup(path);
     }
   }
 
@@ -216,10 +216,10 @@ const char *f_path_sys_config () {
 
 #elif defined (GEDARCDIR) && !defined(_WIN32)
     /* If available, use the rc directory set during configure. */
-    sys_config_path = u_string_strdup(GEDARCDIR);
+    sys_config_path = geda_utility_string_strdup(GEDARCDIR);
 #else
     /* Otherwise, just use the data directory */
-    sys_config_path = u_string_strdup(f_path_sys_data ());
+    sys_config_path = geda_utility_string_strdup(f_path_sys_data ());
 #endif
 
   }
@@ -283,10 +283,10 @@ const char *f_path_user_config () {
 #endif
 
     user_config_path =
-    u_string_concat(homedir, DIR_SEPARATOR_S, configdir, DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
+    geda_utility_string_concat(homedir, DIR_SEPARATOR_S, configdir, DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
     if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
-      user_config_path = u_string_strdup(f_path_sys_data ());
+      user_config_path = geda_utility_string_strdup(f_path_sys_data ());
     }
   }
   return user_config_path;
@@ -377,7 +377,7 @@ int f_path_create(const char *path, mode_t mode)
 
   if (path) {
 
-    copypath = u_string_strdup(path);
+    copypath = geda_utility_string_strdup(path);
     pp       = copypath;
 
     while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
@@ -434,7 +434,7 @@ f_path_get_dirname (const char *filepath)
     path = NULL;
   }
   else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
-    path = u_string_strdup(filepath);
+    path = geda_utility_string_strdup(filepath);
   }
   else {
 
@@ -478,7 +478,7 @@ f_path_get_dirname (const char *filepath)
 
 #endif
 
-      return u_string_strdup (root_path);
+      return geda_utility_string_strdup (root_path);
     }
 
     while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;

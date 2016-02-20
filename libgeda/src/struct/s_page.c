@@ -149,7 +149,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
 
   if (filename != NULL) {
     if (f_get_is_path_absolute (filename)) {
-      page->filename = u_string_strdup (filename);
+      page->filename = geda_utility_string_strdup (filename);
     }
     else {
       char *pwd = getcwd(0,0);
@@ -158,7 +158,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
     }
   }
   else {
-    page->filename = u_string_strdup (toplevel->untitled_name);
+    page->filename = geda_utility_string_strdup (toplevel->untitled_name);
   }
 
   page->width  = toplevel->width;
@@ -185,7 +185,7 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
 
   if (filename != NULL) {
     if (f_get_is_path_absolute (filename)) {
-      page->filename = u_string_strdup (filename);
+      page->filename = geda_utility_string_strdup (filename);
     }
     else {
       char *pwd = getcwd(0,0);
@@ -194,7 +194,7 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
     }
   }
   else {
-    page->filename = u_string_strdup (toplevel->untitled_name);
+    page->filename = geda_utility_string_strdup (toplevel->untitled_name);
   }
 
   page->width  = toplevel->width;

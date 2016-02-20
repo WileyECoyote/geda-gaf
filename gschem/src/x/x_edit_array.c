@@ -115,7 +115,7 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
 
     count = g_list_length(dog->selection->glist);
 
-    str = u_string_int2str(count, s_val, 10);
+    str = geda_utility_string_int2str(count, s_val, 10);
     gtk_entry_set_text ((GtkEntry*)dialog_data->cnt_sel_entry, str);
 
     if (o_get_bounds_list (Current_Selection->glist, &left, &top, &right, &bottom))
@@ -124,9 +124,9 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
 
       dx = right - left;
       dy = bottom - top;
-      str = u_string_int2str(dx, s_val, 10);
+      str = geda_utility_string_int2str(dx, s_val, 10);
       gtk_entry_set_text ((GtkEntry*)dialog_data->x_size_entry, str);
-      str = u_string_int2str(dy, s_val, 10);
+      str = geda_utility_string_int2str(dy, s_val, 10);
       gtk_entry_set_text ((GtkEntry*)dialog_data->y_size_entry, str);
       /* Save the bottom left corner to data structure */
       dialog_data->wx = left;
@@ -151,7 +151,7 @@ static void post_response_row (GschemToplevel *w_current)
 
     int diff_y = abs(w_current->second_wy - w_current->first_wy);
 
-    char *y_str = u_string_int2str(diff_y, s_val, 10);
+    char *y_str = geda_utility_string_int2str(diff_y, s_val, 10);
 
     SetEntryText(dialog_data->row_off_entry, y_str);
   }
@@ -176,11 +176,11 @@ static void post_response_row_col (GschemToplevel *w_current)
     int diff_x = abs(w_current->second_wx - w_current->first_wx);
     int diff_y = abs(w_current->second_wy - w_current->first_wy);
 
-    char *x_str = u_string_int2str(diff_x, s_val, 10);
+    char *x_str = geda_utility_string_int2str(diff_x, s_val, 10);
 
     SetEntryText(dialog_data->col_off_entry, x_str);
 
-    char *y_str = u_string_int2str(diff_y, s_val, 10);
+    char *y_str = geda_utility_string_int2str(diff_y, s_val, 10);
 
     SetEntryText(dialog_data->row_off_entry, y_str);
   }
@@ -206,7 +206,7 @@ static void post_response_col (GschemToplevel *w_current)
     char  s_val[6];
 
     diff_x = abs(w_current->second_wx - w_current->first_wx);
-    x_str  = u_string_int2str(diff_x, s_val, 10);
+    x_str  = geda_utility_string_int2str(diff_x, s_val, 10);
 
     SetEntryText(dialog_data->col_off_entry, x_str);
   }
@@ -524,7 +524,7 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
         if (mess) {
           const char *question = _("Components may overlay, Continue?");
-          char *msg2 = u_string_concat (mess, question, NULL);
+          char *msg2 = geda_utility_string_concat (mess, question, NULL);
           int response = x_dialog_confirmation(msg2, GEDA_MESSAGE_WARNING, FALSE);
           GEDA_FREE(msg2);
           if (response == GEDA_RESPONSE_YES) {

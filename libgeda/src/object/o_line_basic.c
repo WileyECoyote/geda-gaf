@@ -307,7 +307,7 @@ char *o_line_save(GedaObject *object)
   line_length= line->line_options.line_length;
   line_space = line->line_options.line_space;
 
-  buf = u_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d", object->type,
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d", object->type,
                           x1, y1, x2, y2, object->color,
                           line_width, line_end, line_type,
                           line_length, line_space);

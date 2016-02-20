@@ -283,7 +283,7 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
 
   /* retrieve the character string from the GString */
   string = g_string_free (pathstr, FALSE);
-  string = u_string_remove_last_nl (string);
+  string = geda_utility_string_remove_last_nl (string);
 
   /* create a new path */
   new_obj = o_path_new (color, string);
@@ -350,7 +350,7 @@ char *o_path_save (GedaObject *object)
   path_string = s_path_string_from_path (object->path);
 
   num_lines = o_get_num_text_lines (path_string);
-  buf = u_string_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
+  buf = geda_utility_string_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
                            object->type, object->color, line_width, line_end,
                            line_type, line_length, line_space, fill_type,
                            fill_width, angle1, pitch1, angle2, pitch2,

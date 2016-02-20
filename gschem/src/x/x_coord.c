@@ -151,7 +151,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 
         /* Check for errors */
         if (err) {
-          char *errmsg = u_string_sprintf ( _("An error occurred while receiving dropped data: %s."), err->message);
+          char *errmsg = geda_utility_string_sprintf ( _("An error occurred while receiving dropped data: %s."), err->message);
           titled_pango_error_dialog ( _("<b>Data error.</b>"), errmsg, _("Drag & Drop failed") );
           GEDA_FREE(errmsg);
           g_error_free(err);
@@ -339,7 +339,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   screen_entry = GEDA_OBJECT_GET_DATA(Dialog, "screen");
   world_entry  = GEDA_OBJECT_GET_DATA(Dialog, "world");
 
-  string = u_string_sprintf("(%d, %d)", x, y);
+  string = geda_utility_string_sprintf("(%d, %d)", x, y);
   SetEntryText(screen_entry, string );
   GEDA_FREE(string);
 
@@ -350,7 +350,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
     world_y = snap_grid (w_current, world_y);
   }
 
-  string = u_string_sprintf("(%d, %d)", world_x, world_y);
+  string = geda_utility_string_sprintf("(%d, %d)", world_x, world_y);
   SetEntryText(world_entry, string );
   GEDA_FREE(string);
 }
@@ -365,7 +365,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 
     int x, y;
 
-    if (u_string_parse_xy(str, &x, &y)) {
+    if (geda_utility_string_parse_xy(str, &x, &y)) {
 
       GschemToplevel *w_current;
       GedaToplevel   *toplevel;
@@ -501,7 +501,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
     gtk_container_add(GTK_CONTAINER (frame), world_entry);
     geda_entry_set_valid_input((GedaEntry*)world_entry, ACCEPT_COORDINATE);
 
-    world_name = u_string_sprintf("GschemWorldEntry:%i", prog_pid);
+    world_name = geda_utility_string_sprintf("GschemWorldEntry:%i", prog_pid);
     g_object_set (world_entry, "name", world_name, NULL);
     GEDA_FREE(world_name);
 

@@ -82,7 +82,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   SCM_ASSERT (scm_is_symbol (show_s), show_s, SCM_ARG5, s_add_attrib_x);
 
   GschemToplevel *w_current = g_current_window ();
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel   *toplevel  = w_current->toplevel;
 
   /* Check target object, if present */
   GedaObject *obj = NULL;
@@ -112,10 +112,8 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   else {
     scm_misc_error (s_add_attrib_x,
                     _("Invalid text name/value visibility ~A."),
-                    scm_list_1 (show_s));
+                      scm_list_1 (show_s));
   }
-
-
   scm_dynwind_begin (0);
 
   char *name;
@@ -126,7 +124,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   value = scm_to_utf8_string (value_s);
   scm_dynwind_free (value);
 
-  char *str = u_string_sprintf ("%s=%s", name, value);
+  char *str = geda_utility_string_sprintf ("%s=%s", name, value);
   scm_dynwind_unwind_handler (g_free, str, SCM_F_WIND_EXPLICITLY);
 
   GedaObject *result = o_attrib_add_attrib (w_current, str, visibility, show, obj);

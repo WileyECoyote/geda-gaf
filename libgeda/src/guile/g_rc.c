@@ -68,7 +68,7 @@ SCM g_rc_component_groups(SCM stringlist)
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
     str = scm_to_utf8_string(elem);
-    attr = u_string_strdup(str);
+    attr = geda_utility_string_strdup(str);
     free(str);
     list = g_list_prepend(list, attr);
   }
@@ -130,7 +130,7 @@ SCM g_rc_component_library(SCM path, SCM name)
          * aka a pointer to a NULL */
         if (!strlen(namestr)) {
 
-          name = u_string_concat("Local/", name, NULL);
+          name = geda_utility_string_concat("Local/", name, NULL);
 
           s_clib_add_directory (directory, name);
 
@@ -141,7 +141,7 @@ SCM g_rc_component_library(SCM path, SCM name)
           /* Check if scheme passed child dir with a leading slash */
           if (strcmp (namestr + 1, name) == 0 ) {
 
-            name = u_string_concat("Local/", name, NULL);
+            name = geda_utility_string_concat("Local/", name, NULL);
 
             s_clib_add_directory (directory, name);
 
@@ -880,7 +880,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
     for (i=0; attr2[i] != NULL; i++) {
       if (strlen(attr2[i]) > 0) {
-        list = g_list_prepend(list, u_string_strdup(attr2[i]));
+        list = g_list_prepend(list, geda_utility_string_strdup(attr2[i]));
       }
     }
     g_strfreev(attr2);
@@ -902,7 +902,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
                  scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
                _("always-promote-attribute: list element is not a string"));
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
-      attr = u_string_strdup(temp);
+      attr = geda_utility_string_strdup(temp);
       free (temp);
       list = g_list_prepend(list, attr);
     }
@@ -1207,7 +1207,7 @@ SCM g_rc_untitled_name(SCM name)
 
   temp = scm_to_utf8_string (name);
 
-  default_untitled_name = u_string_strdup (temp);
+  default_untitled_name = geda_utility_string_strdup (temp);
 
   free (temp);
 

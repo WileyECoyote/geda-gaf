@@ -82,7 +82,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
         dirname         = f_path_get_dirname (real_filename);
         only_filename   = g_path_get_basename(real_filename);
 
-        backup_filename = u_string_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
+        backup_filename = geda_utility_string_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
                                             dirname, DIR_SEPARATOR, only_filename);
 
         /* If there is not an existing file with that name, compute the

@@ -173,7 +173,7 @@ void x_guile_dialog (GschemToplevel *w_current)
 
   guile_ver = scm_to_utf8_string(scm_version());
 
-  title     = u_string_concat(guile_str, guile_ver, ")",NULL);
+  title     = geda_utility_string_concat(guile_str, guile_ver, ")",NULL);
 
   GEDA_FREE(guile_ver);
 

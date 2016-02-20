@@ -194,7 +194,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
           break;
 
         case 'g':
-          guile_proc = u_string_strdup(optarg);
+          guile_proc = geda_utility_string_strdup(optarg);
           backend_flag = TRUE;
           break;
 
@@ -219,7 +219,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
              fprintf(stderr, _("WARNING: output already specified <%s>\n"), *output_filename);
              g_free(*output_filename);
            }
-          *output_filename = u_string_strdup(optarg);
+          *output_filename = geda_utility_string_strdup(optarg);
           break;
 
         case 'O':

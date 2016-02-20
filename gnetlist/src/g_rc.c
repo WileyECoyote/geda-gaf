@@ -151,12 +151,12 @@ SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
  *  \todo move this function some place else
  */
 static char *
-u_string_strdup_scm_string(SCM scm_s)
+geda_utility_string_strdup_scm_string(SCM scm_s)
 {
   char *s, *ret;
 
   s = scm_to_utf8_string (scm_s);
-  ret = u_string_strdup (s);
+  ret = geda_utility_string_strdup (s);
   free (s);
   return ret;
 }
@@ -174,7 +174,7 @@ SCM g_rc_hierarchy_netname_separator(SCM name)
 
   GEDA_FREE(default_hierarchy_netname_separator);
 
-  default_hierarchy_netname_separator = u_string_strdup_scm_string (name);
+  default_hierarchy_netname_separator = geda_utility_string_strdup_scm_string (name);
 
   return SCM_BOOL_T;
 }
@@ -192,7 +192,7 @@ SCM g_rc_hierarchy_netattrib_separator(SCM name)
 
   GEDA_FREE(default_hierarchy_netattrib_separator);
 
-  default_hierarchy_netattrib_separator = u_string_strdup_scm_string (name);
+  default_hierarchy_netattrib_separator = geda_utility_string_strdup_scm_string (name);
 
   return SCM_BOOL_T;
 }
@@ -210,7 +210,7 @@ SCM g_rc_hierarchy_uref_separator(SCM name)
 
   GEDA_FREE(default_hierarchy_uref_separator);
 
-  default_hierarchy_uref_separator = u_string_strdup_scm_string (name);
+  default_hierarchy_uref_separator = geda_utility_string_strdup_scm_string (name);
 
   return SCM_BOOL_T;
 }
@@ -281,7 +281,7 @@ SCM g_rc_unnamed_netname(SCM name)
 
   GEDA_FREE(default_unnamed_netname);
 
-  default_unnamed_netname = u_string_strdup_scm_string (name);
+  default_unnamed_netname = geda_utility_string_strdup_scm_string (name);
 
   return SCM_BOOL_T;
 }
@@ -298,7 +298,7 @@ SCM g_rc_unnamed_busname(SCM name)
 
   GEDA_FREE(default_unnamed_busname);
 
-  default_unnamed_busname = u_string_strdup_scm_string (name);
+  default_unnamed_busname = geda_utility_string_strdup_scm_string (name);
 
   return SCM_BOOL_T;
 }

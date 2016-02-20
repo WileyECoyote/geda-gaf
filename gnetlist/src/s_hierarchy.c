@@ -80,7 +80,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
 
     /* look for source=filename,filename, ... */
     int   pcount = 0;
-    char *current_filename = u_string_split(attrib, ',', pcount);
+    char *current_filename = geda_utility_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while (current_filename != NULL) {
@@ -123,7 +123,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
 
         netlist->composite_component = TRUE;
 
-        netlist->hierarchy_tag = u_string_strdup (netlist->component_uref);
+        netlist->hierarchy_tag = geda_utility_string_strdup (netlist->component_uref);
 
         s_traverse_hierarchy_sheet (pr_current, netlist);
 
@@ -134,7 +134,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
 
       GEDA_FREE(current_filename);
       pcount++;
-      current_filename = u_string_split(attrib, ',', pcount);
+      current_filename = geda_utility_string_split(attrib, ',', pcount);
     }
 
     GEDA_FREE(attrib);
@@ -289,13 +289,13 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
             return_value =
-            u_string_concat (hierarchy_tag,
+            geda_utility_string_concat (hierarchy_tag,
                              pr_current->hierarchy_uref_separator,
                              basename, NULL);
             break;
           case (PREPEND):
             return_value =
-            u_string_concat (basename,
+            geda_utility_string_concat (basename,
                              pr_current->hierarchy_uref_separator,
                              hierarchy_tag, NULL);
 
@@ -305,10 +305,10 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
       else {
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
-            return_value = u_string_concat (hierarchy_tag, basename, NULL);
+            return_value = geda_utility_string_concat (hierarchy_tag, basename, NULL);
             break;
           case (PREPEND):
-            return_value = u_string_concat (basename, hierarchy_tag, NULL);
+            return_value = geda_utility_string_concat (basename, hierarchy_tag, NULL);
             break;
 
         }
@@ -320,7 +320,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = u_string_strdup (basename);
+      return_value = geda_utility_string_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -560,7 +560,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netname_mangle == FALSE) {
 
     if (basename) {
-      return (u_string_strdup (basename));
+      return (geda_utility_string_strdup (basename));
     }
     else {
       return (NULL);
@@ -574,7 +574,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
             return_value =
-            u_string_concat (hierarchy_tag,
+            geda_utility_string_concat (hierarchy_tag,
                              pr_current->hierarchy_netname_separator,
                              basename, NULL);
 
@@ -582,7 +582,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
 
           case (PREPEND):
             return_value =
-            u_string_concat (basename,
+            geda_utility_string_concat (basename,
                              pr_current->hierarchy_netname_separator,
                              hierarchy_tag, NULL);
 
@@ -594,11 +594,11 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
 
-            return_value = u_string_concat (hierarchy_tag, basename, NULL);
+            return_value = geda_utility_string_concat (hierarchy_tag, basename, NULL);
             break;
 
           case (PREPEND):
-            return_value = u_string_concat (basename, hierarchy_tag, NULL);
+            return_value = geda_utility_string_concat (basename, hierarchy_tag, NULL);
             break;
         }
 
@@ -610,7 +610,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = u_string_strdup (basename);
+      return_value = geda_utility_string_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -633,7 +633,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
 
     if (basename) {
-      return (u_string_strdup (basename));
+      return (geda_utility_string_strdup (basename));
     }
     else {
       return (NULL);
@@ -650,13 +650,13 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
-            u_string_concat (hierarchy_tag,
+            geda_utility_string_concat (hierarchy_tag,
                          pr_current->hierarchy_netattrib_separator,
                          basename, NULL);
             break;
           case (PREPEND):
             return_value =
-            u_string_concat (basename,
+            geda_utility_string_concat (basename,
                          pr_current->hierarchy_netattrib_separator,
                          hierarchy_tag, NULL);
 
@@ -668,11 +668,11 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
-            u_string_concat (hierarchy_tag, basename, NULL);
+            geda_utility_string_concat (hierarchy_tag, basename, NULL);
             break;
           case (PREPEND):
             return_value =
-            u_string_concat (basename, hierarchy_tag, NULL);
+            geda_utility_string_concat (basename, hierarchy_tag, NULL);
             break;
         }
       }
@@ -684,7 +684,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   else {
 
     if (basename) {
-      return_value = u_string_strdup (basename);
+      return_value = geda_utility_string_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -737,7 +737,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
           sscanf(n_current->connected_to, "%s %s", uref, pin);
 
           new_uref         = s_hierarchy_return_baseuref(pr_current, uref);
-          new_connected_to = u_string_sprintf("%s %s", new_uref, pin, NULL);
+          new_connected_to = geda_utility_string_sprintf("%s %s", new_uref, pin, NULL);
 
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
@@ -776,10 +776,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
-      return (u_string_strdup (uref));
+      return (geda_utility_string_strdup (uref));
     }
 
-    return_value = u_string_strdup (start_of_base + 1);
+    return_value = geda_utility_string_strdup (start_of_base + 1);
 
   }
   else if (pr_current->hierarchy_uref_order == PREPEND) {
@@ -787,7 +787,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
-      return (u_string_strdup (uref));
+      return (geda_utility_string_strdup (uref));
     }
 
     return_value = g_strndup(uref, end_of_base - uref);

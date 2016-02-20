@@ -192,7 +192,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   temp_uref = o_attrib_search_object_attribs_by_name (o_current->parent_object, "refdes", 0);
 
   if (temp_uref) {
-    if (u_string_stricmp(temp_uref,"none") == 0) {
+    if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
        GEDA_FREE(temp_uref);
     }
   }
@@ -202,7 +202,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   GEDA_FREE(temp_uref);
 
   if (uref && pinnum) {
-    string = u_string_sprintf("%s %s", uref, pinnum);
+    string = geda_utility_string_sprintf("%s %s", uref, pinnum);
 
   }
   else {
@@ -215,11 +215,11 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
     else {
       if (hierarchy_tag) {
         misc = s_hierarchy_create_uref(pr_current, "U?", hierarchy_tag);
-        string = u_string_sprintf("%s ?", misc);
+        string = geda_utility_string_sprintf("%s ?", misc);
         GEDA_FREE(misc);
       }
       else {
-        string = u_string_strdup("U? ?");
+        string = geda_utility_string_strdup("U? ?");
       }
 
       fprintf(stderr, _("Missing Attributes (refdes and pin number)\n"));
@@ -306,7 +306,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
          * the strings each pointer must be unique, otherwise, only the
          * first encounter will is renamed as s_rename_all_lowlevel will
          * not find the other instances */
-        name = u_string_strdup (n_current->net_name);
+        name = geda_utility_string_strdup (n_current->net_name);
 
       }
       else if (strcmp(name, n_current->net_name) != 0) {
@@ -335,7 +335,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 #endif
             s_rename_add(name, n_current->net_name);
             GEDA_FREE(name);
-            name = u_string_strdup (n_current->net_name);
+            name = geda_utility_string_strdup (n_current->net_name);
 
           }
           else {
@@ -355,7 +355,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
                       name, n_current->net_name);
                       s_rename_add(name, n_current->net_name);
               GEDA_FREE(name);
-              name = u_string_strdup (n_current->net_name); /* See note above */
+              name = geda_utility_string_strdup (n_current->net_name); /* See note above */
             }
           }
 
@@ -394,7 +394,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 
               s_rename_add(name, n_current->net_name);
               GEDA_FREE(name);
-              name = u_string_strdup (n_current->net_name); /* See note above */
+              name = geda_utility_string_strdup (n_current->net_name); /* See note above */
             }
           }
 
@@ -495,7 +495,7 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
       net_head->prev == NULL &&
       net_head->next == NULL)
   {
-    string = u_string_sprintf("unconnected_pin-%d", unnamed_pin_counter++);
+    string = geda_utility_string_sprintf("unconnected_pin-%d", unnamed_pin_counter++);
 
     return (string);
 
@@ -519,11 +519,11 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
   if (*unnamed_counter < MAX_UNNAMED_NETS) {
 
     if (netlist_mode == SPICE) {
-      string = u_string_sprintf("%d", (*unnamed_counter)++);
+      string = geda_utility_string_sprintf("%d", (*unnamed_counter)++);
     }
     else {
 
-      temp = u_string_sprintf ("%s%d", unnamed_string, (*unnamed_counter)++);
+      temp = geda_utility_string_sprintf ("%s%d", unnamed_string, (*unnamed_counter)++);
 
       if (hierarchy_tag) {
         string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);

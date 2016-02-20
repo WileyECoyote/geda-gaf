@@ -246,29 +246,29 @@ typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 /* These don't really justify their own functions - just do inline */
 /* Plain Text dialogs */
 #define information_dialog(...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         message_dialog( msg, GEDA_MESSAGE_INFO) \
         GEDA_FREE (msg); }
 #define warning_dialog(...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         message_dialog(msg, GEDA_MESSAGE_WARNING) \
         GEDA_FREE (msg); }
 #define error_dialog(...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         titled_message_dialog(msg, GEDA_MESSAGE_ERROR, NULL) \
         GEDA_FREE (msg); }
 
 /* Titled Plain Text dialogs */
 #define titled_information_dialog(title, ...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         titled_message_dialog(msg, GEDA_MESSAGE_INFO, title) \
         GEDA_FREE (msg); }
 #define titled_warning_dialog(title, ...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         titled_message_dialog(msg, GEDA_MESSAGE_WARNING, title) \
         GEDA_FREE (msg); }
 #define titled_error_dialog(title, ...) { \
-        char *msg = (char*)u_string_sprintf(__VA_ARGS__); \
+        char *msg = (char*)geda_utility_string_sprintf(__VA_ARGS__); \
         titled_message_dialog(msg, GEDA_MESSAGE_ERROR, title) \
         GEDA_FREE (msg); }
 

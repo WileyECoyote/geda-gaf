@@ -107,7 +107,7 @@ int geda_dialog_get_integer(const char *title, const char *prompt, int offer)
   float value;
 
   if (offer != -0) {
-    string = u_string_sprintf("%d", offer);
+    string = geda_utility_string_sprintf("%d", offer);
   }
   else {
     string = NULL;
@@ -136,7 +136,7 @@ float geda_dialog_get_real(const char *title, const char *prompt, float offer)
   float value;
 
   if (offer != -0) {
-    string = tail = u_string_sprintf("%f", offer);
+    string = tail = geda_utility_string_sprintf("%f", offer);
     while (*tail) {
       if (*tail == ASCII_DIGIT_ZERO) {
         tail++;

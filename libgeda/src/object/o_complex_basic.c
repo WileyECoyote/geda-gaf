@@ -414,7 +414,7 @@ create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   /* Add some useful text */
-  not_found_text = u_string_sprintf (_("Component not found:\n %s"), complex->filename);
+  not_found_text = geda_utility_string_sprintf (_("Component not found:\n %s"), complex->filename);
 
   new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
                             x + NOT_FOUND_TEXT_X,
@@ -500,10 +500,10 @@ GedaObject *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   complex =  GEDA_COMPLEX(new_obj);
 
   if (clib != NULL) {
-    complex->filename = u_string_strdup (s_clib_symbol_get_name (clib));
+    complex->filename = geda_utility_string_strdup (s_clib_symbol_get_name (clib));
   }
   else {
-    complex->filename = u_string_strdup (basename);
+    complex->filename = geda_utility_string_strdup (basename);
   }
 
   /* get the symbol data */
@@ -606,7 +606,7 @@ GedaObject *o_complex_new_embedded(int x, int y, int angle, int mirror,
   complex->angle = angle;
   complex->mirror = mirror;
 
-  complex->filename = u_string_strdup(basename);
+  complex->filename = geda_utility_string_strdup(basename);
 
   complex->is_embedded = TRUE;
 
@@ -725,13 +725,13 @@ char *o_complex_save(GedaObject *object)
 
   complex = GEDA_COMPLEX(object);
 
-  basename = u_string_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
+  basename = geda_utility_string_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
 
   selectable = (object->selectable) ? 1 : 0;
 
   /* Force the object type to be output as OBJ_COMPLEX for both
    * these object types. */
-  buf = u_string_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
                          complex->x, complex->y,
                          selectable, complex->angle,
                          complex->mirror, basename);
@@ -764,7 +764,7 @@ GedaObject *o_complex_copy(GedaObject *o_current)
     new_complex = GEDA_COMPLEX(o_new);
     old_complex = GEDA_COMPLEX(o_current);
 
-    new_complex->filename    = u_string_strdup(old_complex->filename);
+    new_complex->filename    = geda_utility_string_strdup(old_complex->filename);
     new_complex->is_embedded = old_complex->is_embedded;
     new_complex->x           = old_complex->x;
     new_complex->y           = old_complex->y;
@@ -1160,7 +1160,7 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, GedaObject* object)
 
             /* Add the refdes to the major_changed_refdes GList */
             /* if a page was found */
-            refdes_copy = u_string_concat (refdes,
+            refdes_copy = geda_utility_string_concat (refdes,
                                      " (", object->complex->filename, ")",
                                            NULL);
             page->major_changed_refdes =

@@ -179,7 +179,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   /* write full, absolute filename into page->filename */
   GEDA_FREE(page->filename);
-  page->filename = u_string_strdup(full_filename);
+  page->filename = geda_utility_string_strdup(full_filename);
 
   /* Before we open the page, load the corresponding gafrc. */
   /* First change into file's directory. */
@@ -419,7 +419,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
            f_file_Size (real_filename))
       {
-        backup_filename = u_string_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
+        backup_filename = geda_utility_string_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
                                           only_filename);
 
         /* Make the backup file read-write before saving a new one */

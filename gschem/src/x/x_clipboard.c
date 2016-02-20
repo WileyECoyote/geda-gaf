@@ -316,7 +316,7 @@ x_clipboard_get (GschemToplevel *w_current)
   if (err) {
     char *errmsg;
     u_log_message(_("%s: Invalid schematic on clipboard. %s\n"),__func__, err->message);
-    errmsg = u_string_sprintf (_("An error occurred while inserting clipboard data: %s."), err->message);
+    errmsg = geda_utility_string_sprintf (_("An error occurred while inserting clipboard data: %s."), err->message);
     titled_pango_error_dialog (_("<b>Invalid schematic on clipboard.</b>"), errmsg, _("Clipboard Insertion Failed"));
     GEDA_FREE(errmsg);
     g_error_free(err);

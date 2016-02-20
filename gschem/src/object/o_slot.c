@@ -62,14 +62,14 @@ void o_slot_start (GschemToplevel *w_current, GedaObject *object)
 
   if (slot_count == NULL) {
     /* we didn't find a slot=? attribute, make something up */
-    slot_count = u_string_strdup ("0");
+    slot_count = geda_utility_string_strdup ("0");
   }
 
   slot_value = o_attrib_search_object_attribs_by_name (object, "slot", 0);
 
   if (slot_value == NULL) {
     /* we didn't find a slot=? attribute, make something up */
-    slot_value = u_string_strdup ("1");
+    slot_value = geda_utility_string_strdup ("1");
   }
 
   x_dialog_edit_slot (w_current, slot_count, slot_value);

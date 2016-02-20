@@ -414,7 +414,7 @@ void about_dialog (GschemToplevel *w_current)
   GError     *error = NULL;
   GtkWidget  *Dialog;
 
-  version_string = u_string_sprintf ("%s (g%.7s)",
+  version_string = geda_utility_string_sprintf ("%s (g%.7s)",
                                      PACKAGE_DOTTED_VERSION,
                                      PACKAGE_GIT_COMMIT);
 
@@ -436,7 +436,7 @@ void about_dialog (GschemToplevel *w_current)
 
   guile_ver = scm_to_utf8_string(scm_version());
 
-  comments  = u_string_concat (gEDA_str, gnu_get_libc_version(),
+  comments  = geda_utility_string_concat (gEDA_str, gnu_get_libc_version(),
                                guile_str, guile_ver, NULL);
 
   free(guile_ver);
@@ -1287,45 +1287,45 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", width);
+    text = geda_utility_string_sprintf ("%d", width);
 
   SetEntryText   ( fill_data->width_entry, text );
   EntrySelectAll ( fill_data->width_entry );
   GEDA_FREE(text);
 
   if (pitch1 == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", pitch1);
+    text = geda_utility_string_sprintf ("%d", pitch1);
 
   SetEntryText   ( fill_data->pitch1_entry, text );
   EntrySelectAll ( fill_data->pitch1_entry );
   GEDA_FREE(text);
 
   if (angle1 == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", angle1);
+    text = geda_utility_string_sprintf ("%d", angle1);
 
   SetEntryText   ( fill_data->angle1_entry, text );
   EntrySelectAll ( fill_data->angle1_entry );
   GEDA_FREE(text);
 
   if (pitch2 == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", pitch2);
+    text = geda_utility_string_sprintf ("%d", pitch2);
 
   SetEntryText   ( fill_data->pitch2_entry, text );
   EntrySelectAll ( fill_data->pitch2_entry );
   GEDA_FREE(text);
 
   if (angle2 == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", angle2);
+    text = geda_utility_string_sprintf ("%d", angle2);
 
   SetEntryText   ( fill_data->angle2_entry, text );
   EntrySelectAll ( fill_data->angle2_entry );
@@ -1897,18 +1897,18 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", width);
+    text = geda_utility_string_sprintf ("%d", width);
 
   SetEntryText   ( line_data->width_entry, text );
   EntrySelectAll ( line_data->width_entry );
   GEDA_FREE(text);
 
   if (length == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", length);
+    text = geda_utility_string_sprintf ("%d", length);
 
   SetEntryText   ( line_data->length_entry, text );
   EntrySelectAll ( line_data->length_entry );
@@ -1916,9 +1916,9 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (space == LEAVE_ALONE)
-    text = u_string_strdup(_("*unchanged*"));
+    text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = u_string_sprintf ("%d", space);
+    text = geda_utility_string_sprintf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
   EntrySelectAll ( line_data->space_entry );
   GEDA_FREE(text);
@@ -3202,7 +3202,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
         icon_id = i_command_get_action_icon(binding);
 
-        ptr = action = u_string_strdup(binding);
+        ptr = action = geda_utility_string_strdup(binding);
 
         action[0] = action[0] ^ 0x20;
 
@@ -3515,7 +3515,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
     /* Primary label */
-  tmp = u_string_concat ("<big><b>", _("Major symbol changes detected."),
+  tmp = geda_utility_string_concat ("<big><b>", _("Major symbol changes detected."),
                          "</b></big>", NULL);
 
   label = g_object_new (GTK_TYPE_LABEL,
@@ -3819,7 +3819,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
   }
 
   if (flags & FSB_LOAD) {
-    title = u_string_sprintf("%s: Open", msg);
+    title = geda_utility_string_sprintf("%s: Open", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_OPEN,
@@ -3831,7 +3831,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 
   }
   else {
-    title = u_string_sprintf("%s: Save", msg);
+    title = geda_utility_string_sprintf("%s: Save", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_SAVE,
@@ -3868,7 +3868,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     char *seed;
 
     printf ("shortcuts = \"%s\"\n", shortcuts);
-    folder = u_string_strdup (shortcuts);
+    folder = geda_utility_string_strdup (shortcuts);
     seed = folder;
     while ((folder = strtok (seed, ":")) != NULL) {
       gtk_file_chooser_add_shortcut_folder (GTK_FILE_CHOOSER (dialog),

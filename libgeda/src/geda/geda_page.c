@@ -540,7 +540,7 @@ int geda_page_rename(Page *page, const char *newname)
     if (page->filename) {
       GEDA_FREE(page->filename);
     }
-    page->filename = u_string_strdup(newname);
+    page->filename = geda_utility_string_strdup(newname);
     page->CHANGED = TRUE;
     result = TRUE;
   }

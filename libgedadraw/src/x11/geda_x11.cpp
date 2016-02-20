@@ -540,7 +540,7 @@ HashSetFont (void)
 
   if (!font) {
 
-    char *tmp_string = u_string_strdup(font_string.c_str());
+    char *tmp_string = geda_utility_string_strdup(font_string.c_str());
 
 #ifdef HAVE_XFT
 
@@ -566,7 +566,7 @@ HashSetFont (void)
 inline std::string EdaX11Render::
 GetFontString(int size) {
 
-  char *tmp_string = u_string_sprintf(font_format.c_str(), size);
+  char *tmp_string = geda_utility_string_sprintf(font_format.c_str(), size);
 
   std::string str = tmp_string;
 
@@ -1385,13 +1385,13 @@ geda_x11_draw_get_font_slant (const char *font_descr)
 {
   int slant;
 
-  if (!u_string_stristr (font_descr, "ital")) {          /* Italic */
+  if (!geda_utility_string_stristr (font_descr, "ital")) {          /* Italic */
     slant = FC_SLANT_ITALIC;
   }
-  else if (!u_string_stristr (font_descr, "obli")) {     /* Oblique */
+  else if (!geda_utility_string_stristr (font_descr, "obli")) {     /* Oblique */
     slant = FC_SLANT_OBLIQUE;
   }
-  else if (!u_string_stristr (font_descr, "roma")) {     /* Roman */
+  else if (!geda_utility_string_stristr (font_descr, "roma")) {     /* Roman */
     slant = FC_SLANT_ROMAN;
   }
   else {
@@ -1412,18 +1412,18 @@ geda_x11_draw_get_font_weight (const char *font_descr)
   int weight;
 
   // integer: Light, medium, demibold, bold or black, etc
-  if (!u_string_stristr (font_descr, "regu")) {        /* Regular */
+  if (!geda_utility_string_stristr (font_descr, "regu")) {        /* Regular */
     weight = FC_WEIGHT_REGULAR;
   }
-  else if (!u_string_stristr (font_descr, "medi")) {   /* Medium */
+  else if (!geda_utility_string_stristr (font_descr, "medi")) {   /* Medium */
     weight = FC_WEIGHT_MEDIUM;
   }
-  else if (!u_string_stristr (font_descr, "old"))  {   /* Bold, which one? */
+  else if (!geda_utility_string_stristr (font_descr, "old"))  {   /* Bold, which one? */
 
-    if (!u_string_stristr (font_descr, "demi")) {      /* bad choice of characters */
+    if (!geda_utility_string_stristr (font_descr, "demi")) {      /* bad choice of characters */
       weight = FC_WEIGHT_DEMIBOLD;
     }
-    else if (!u_string_stristr (font_descr, "semi")) { /* Another wizard */
+    else if (!geda_utility_string_stristr (font_descr, "semi")) { /* Another wizard */
       /* FC_WEIGHT_DEMIBOLD == FC_WEIGHT_SEMIBOLD */
       weight = FC_WEIGHT_DEMIBOLD;
     }
@@ -1431,31 +1431,31 @@ geda_x11_draw_get_font_weight (const char *font_descr)
       weight = FC_WEIGHT_BOLD;
     }
   }
-  else if (!u_string_stristr (font_descr, "ight")) {    /* light */
+  else if (!geda_utility_string_stristr (font_descr, "ight")) {    /* light */
 
-    if (!u_string_stristr (font_descr, "extr")) {       /* Extra Light */
+    if (!geda_utility_string_stristr (font_descr, "extr")) {       /* Extra Light */
       weight = FC_WEIGHT_EXTRALIGHT;
     }
-    else if (!u_string_stristr (font_descr, "ultr")) {  /* Ultra Light */
+    else if (!geda_utility_string_stristr (font_descr, "ultr")) {  /* Ultra Light */
       weight = FC_WEIGHT_ULTRALIGHT;
     }
     else {
       weight = FC_WEIGHT_LIGHT;
     }
   }
-  else if (!u_string_stristr (font_descr, "boo")) {     /* Book */
+  else if (!geda_utility_string_stristr (font_descr, "boo")) {     /* Book */
     weight = FC_WEIGHT_BOOK;
   }
-  else if (!u_string_stristr (font_descr, "heav")) {    /* Heavy */
+  else if (!geda_utility_string_stristr (font_descr, "heav")) {    /* Heavy */
     /* FC_WEIGHT_HEAVY == FC_WEIGHT_BLACK */
     weight = FC_WEIGHT_BLACK;
   }
-  else if (!u_string_stristr (font_descr, "blac")) {    /* Black, which one?  */
+  else if (!geda_utility_string_stristr (font_descr, "blac")) {    /* Black, which one?  */
 
-    if (!u_string_stristr (font_descr, "extr")) {       /* Extra Black */
+    if (!geda_utility_string_stristr (font_descr, "extr")) {       /* Extra Black */
       weight = FC_WEIGHT_EXTRABLACK;
     }
-    else if (!u_string_stristr (font_descr, "ultr")) {  /* Ultra Black */
+    else if (!geda_utility_string_stristr (font_descr, "ultr")) {  /* Ultra Black */
     /* FC_WEIGHT_ULTRABLACK == FC_WEIGHT_EXTRABLACK */
       weight = FC_WEIGHT_EXTRABLACK;
     }
@@ -1607,12 +1607,12 @@ geda_x11_draw_set_font_name (const char *font_name)
     font_slant  = EDA_SLANT_NONE;
   }
 
-  tmp_string    = u_string_sprintf("%s,", font_name);
+  tmp_string    = geda_utility_string_sprintf("%s,", font_name);
 
 #else
 
   font_family   = font_name;
-  tmp_string    = u_string_sprintf("-*-%s", font_name);
+  tmp_string    = geda_utility_string_sprintf("-*-%s", font_name);
 
 #endif
 
@@ -1676,7 +1676,7 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
       if (FcPatternGetString(pattern, FC_FAMILY, 0, &family) == FcResultMatch &&
           FcPatternGetString(pattern, FC_STYLE, 0, &style) == FcResultMatch)
       {
-        char *name = u_string_sprintf("-%s-%s", family, style);
+        char *name = geda_utility_string_sprintf("-%s-%s", family, style);
         g_array_append_val (listing, name);
       }
     }
@@ -1699,7 +1699,7 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
   font_list = XListFonts (display, pattern, maxnames, &count);
 
   for (index = 0; index < count; index++) {
-    char *name = u_string_strdup(font_list[index]);
+    char *name = geda_utility_string_strdup(font_list[index]);
     g_array_append_val (listing, name);
   }
   XFreeFontNames(font_list);

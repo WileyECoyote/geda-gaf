@@ -114,10 +114,10 @@ bool geda_color_utility_decode_rgba (const char *rgba,
 char *geda_color_utility_encode_rgba (uint8 r, uint8 g, uint8 b, uint8 a)
 {
   if (a < 0xff)
-    return u_string_sprintf("#%02x%02x%02x%02x",
+    return geda_utility_string_sprintf("#%02x%02x%02x%02x",
                            (int) r, (int) g, (int) b, (int) a);
   else
-    return u_string_sprintf("#%02x%02x%02x",
+    return geda_utility_string_sprintf("#%02x%02x%02x",
                            (int) r, (int) g, (int) b);
 }
 
@@ -190,7 +190,7 @@ fprintf(stderr, "%s: looking for %02x%02x%02x\n", __func__,(int)c1->r, (int)c1->
     if (c2.r == c1->r && c2.g == c1->g && c2.b == c1->b) {
 
       if (record->name) {
-        name = u_string_strdup(record->name);
+        name = geda_utility_string_strdup(record->name);
       }
       else {
 
@@ -229,7 +229,7 @@ char *geda_color_utility_postscript(int color)
   if ((c.a == 0) || !c.enabled) {
     return NULL;
   } else {
-    return u_string_sprintf ("%.3f %.3f %.3f",
+    return geda_utility_string_sprintf ("%.3f %.3f %.3f",
                             (double) c.r/255.0,
                             (double) c.g/255.0,
                             (double) c.b/255.0);

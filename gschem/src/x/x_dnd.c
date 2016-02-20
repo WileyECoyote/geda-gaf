@@ -188,7 +188,7 @@ x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
       string_1 = "Error:";
       string_2 = "unidentified complex object";
   }
-  return u_string_concat (string_1, string_2, NULL);;
+  return geda_utility_string_concat (string_1, string_2, NULL);;
 }
 
 /******************* Shape Catagory Data Helpers *******************/
@@ -212,30 +212,30 @@ static const char *x_dnd_string_data_name(char *name)
 static char *x_dnd_string_data_arc_properties(GedaArc *arc)
 {
   return
-  u_string_sprintf("center=(%d,%d), radius=%d, angle=%d",
+  geda_utility_string_sprintf("center=(%d,%d), radius=%d, angle=%d",
              arc->x, arc->y, arc->width, arc->start_angle);
 }
 static char *x_dnd_string_data_circle_properties(GedaCircle *circle)
 {
   return
-  u_string_sprintf("center=(%d,%d), radius=%d", circle->center_x,
+  geda_utility_string_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
 static char *x_dnd_string_data_line_properties(GedaLine *line)
 {
   return
-  u_string_sprintf("start (%d,%d), end (%d,%d)",
+  geda_utility_string_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
 static char *x_dnd_string_data_path_properties(GedaPath *path)
 {
   return
-  u_string_sprintf("sections=%d",path->num_sections);
+  geda_utility_string_sprintf("sections=%d",path->num_sections);
 }
 static char *x_dnd_string_data_box_properties(GedaBox *box)
 {
   return
-  u_string_sprintf("upper point (%d,%d), lower point (%d,%d)",
+  geda_utility_string_sprintf("upper point (%d,%d), lower point (%d,%d)",
                   box->upper_x, box->upper_y, box->lower_x, box->lower_y);
 }
 
@@ -248,7 +248,7 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObjec
 
   name   = x_dnd_string_data_name(object->name);
 
-  common = u_string_sprintf("line width=%d, dash=%d",
+  common = geda_utility_string_sprintf("line width=%d, dash=%d",
                            object->line_options->line_width,
                            object->line_options->line_space);
 
@@ -269,10 +269,10 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObjec
         properties = x_dnd_string_data_box_properties(object->box);
         break;
       default:
-        properties = u_string_sprintf("%s", " object data error");
+        properties = geda_utility_string_sprintf("%s", " object data error");
   }
 
-  string = u_string_sprintf ("%s, sequence id=%d, %s, %s, color=%d",
+  string = geda_utility_string_sprintf ("%s, sequence id=%d, %s, %s, color=%d",
                              name, object->sid, common, properties,
                              object->color);
 
@@ -293,9 +293,9 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
   netname = o_attrib_search_object_attribs_by_name(object, "netname", 0);
 
   if (netname == NULL)
-      netname = u_string_sprintf("%s","NONE,");
+      netname = geda_utility_string_sprintf("%s","NONE,");
 
-  string = u_string_sprintf ("%s, sequence id=%d, netname=%s color=%d",
+  string = geda_utility_string_sprintf ("%s, sequence id=%d, netname=%s color=%d",
                              name, object->sid, netname,
                              object->color);
 
@@ -309,7 +309,7 @@ x_dnd_send_string_text (GschemToplevel *w_current, GedaObject *object)
   const char *string;
   const char *name;
   name   = x_dnd_string_data_name(object->name);
-  string = u_string_sprintf ("%s:%s, sequence id=%d, color=%d", name,
+  string = geda_utility_string_sprintf ("%s:%s, sequence id=%d, color=%d", name,
                              object->text->string, object->sid,
                              object->color);
   return string;
@@ -470,7 +470,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
     result         = TRUE;
     files          = NULL;
     len            = strlen(string);
-    buffer         = u_string_strdup (string);
+    buffer         = geda_utility_string_strdup (string);
 
     /* Replace line feeds and carriage returns with nulls */
     for(tail = 0; tail < len; tail++) {
@@ -494,7 +494,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
 
       if (index < len) {
         if (buffer + index) {
-          filename = u_string_strdup (buffer + index);  /* copy file spec */
+          filename = geda_utility_string_strdup (buffer + index);  /* copy file spec */
           if (filename) {
             files = g_list_append(files, filename);
           }
@@ -574,7 +574,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
                                                buffer,
                                                -1, "Drag & Drop", &err);
     if (err) {
-      char *errmsg = u_string_sprintf ( _("An error occurred while dropping data: %s."), err->message);
+      char *errmsg = geda_utility_string_sprintf ( _("An error occurred while dropping data: %s."), err->message);
       titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed") );
       GEDA_FREE(errmsg);
       g_error_free(err);

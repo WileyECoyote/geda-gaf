@@ -797,13 +797,13 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
 
   if ( slot > 0) {
     /* update the slot on the owner object */
-    u_string_int2str( slot, &string[5], 10);
+    geda_utility_string_int2str( slot, &string[5], 10);
     o_slot_end (autotext->w_current, o_current->attached_to, string);
   }
 
   /* replace old text, looks like "set=refdes=U1"*/
   strcpy(string, autotext->current_searchtext);
-  strcat(string, u_string_int2str( number, s_val, 10));
+  strcat(string, geda_utility_string_int2str( number, s_val, 10));
   o_text_set_string (o_current, string);
 }
 

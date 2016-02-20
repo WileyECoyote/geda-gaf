@@ -113,7 +113,7 @@ char *s_misc_remaining_string(char *string, char delimiter, int count)
   }
 
   /* copy remainder into allocated return string */
-  return_value = u_string_strdup(remaining);
+  return_value = geda_utility_string_strdup(remaining);
 
   /* return string */
   return (return_value);

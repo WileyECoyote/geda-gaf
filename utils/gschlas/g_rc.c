@@ -59,14 +59,14 @@ SCM g_rc_gschlas_version(SCM scm_version)
     rc_filename = g_rc_rc_filename ();
 
     if (rc_filename == SCM_BOOL_F) {
-      sourcefile = u_string_strdup ("gschlasrc");
+      sourcefile = geda_utility_string_strdup ("gschlasrc");
     }
     else {
 
       char *scmfile;
 
       scmfile    = scm_to_utf8_string (rc_filename);
-      sourcefile = u_string_strdup (scmfile);
+      sourcefile = geda_utility_string_strdup (scmfile);
       free (scmfile);
     }
 

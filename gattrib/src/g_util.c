@@ -45,7 +45,7 @@ bool g_list_str_inlist(GList *list, char *string)
 
   for(i=0; i<len; i++){
     str = (char*) g_list_nth_data(list, i);
-    if (u_string_strequal( str, string)) {
+    if (geda_utility_string_strequal( str, string)) {
       answer = TRUE;
       break;
     }
@@ -74,7 +74,7 @@ bool g_list_stri_inlist(GList *list, char *string)
 
   for(i=0; i<len; i++){
     str = (char*) g_list_nth_data(list, i);
-    if (u_string_stricmp( str, string)==0) {
+    if (geda_utility_string_stricmp( str, string)==0) {
       answer = TRUE;
       break;
     }

@@ -146,7 +146,7 @@ void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   gtk_container_add(GTK_CONTAINER(window), DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
-  char *unique_name = u_string_sprintf("GschemDrawingArea:%i", prog_pid);
+  char *unique_name = geda_utility_string_sprintf("GschemDrawingArea:%i", prog_pid);
   g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
   GEDA_FREE(unique_name);
 
@@ -811,7 +811,7 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
       str = strcat (str, untitled);
 
       /* Converted and append an integer to the string */
-      tmp = u_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
+      tmp = geda_utility_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
 
       str = strcat (str, tmp);
 
@@ -861,7 +861,7 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
 
     char *fname;
 
-    fname = u_string_strdup (name ? name : generate_untitled());
+    fname = geda_utility_string_strdup (name ? name : generate_untitled());
 
     new_page(fname);
 
@@ -1145,7 +1145,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->filename, filename) != 0) {
       GEDA_FREE (page->filename);
-      page->filename = u_string_strdup (filename);
+      page->filename = geda_utility_string_strdup (filename);
 
       log_msg = _("Saved as [%s] Okay\n");
     }
@@ -1250,7 +1250,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         }
       }
 
-      if ((u_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
+      if ((geda_utility_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
         q_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
@@ -1321,24 +1321,24 @@ void x_window_update_title(GschemToplevel *w_current)
     if (geda_page_get_changed(current_page) > 0) {
 
       if (w_current->session_name != NULL) {
-        print_string = u_string_sprintf ("*%s: %s - gschem",
+        print_string = geda_utility_string_sprintf ("*%s: %s - gschem",
                                          w_current->session_name,
                                          filename);
       }
       else {
-        print_string = u_string_sprintf("*%s - gschem", filename);
+        print_string = geda_utility_string_sprintf("*%s - gschem", filename);
       }
 
     }
     else {
 
       if (w_current->session_name != NULL) {
-        print_string = u_string_sprintf("%s: %s - gschem",
+        print_string = geda_utility_string_sprintf("%s: %s - gschem",
         w_current->session_name,
         filename);
       }
       else {
-        print_string = u_string_sprintf("%s - gschem", filename);
+        print_string = geda_utility_string_sprintf("%s - gschem", filename);
       }
     }
 

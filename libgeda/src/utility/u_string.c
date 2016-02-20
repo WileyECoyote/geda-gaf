@@ -59,7 +59,7 @@
  *
  *  \warning **** the last argument MUST be NULL! ****
  */
-char *u_string_concat (const char *string1, ...)
+char *geda_utility_string_concat (const char *string1, ...)
 {
   char *concat;
   char *ptr;
@@ -116,10 +116,10 @@ char *u_string_concat (const char *string1, ...)
 
 /*! \brief Find substring in string, ignore case.
  *  \par Function Description
- *  This function uses u_string_stricmp or u_string_strncmpi to locate
+ *  This function uses geda_utility_string_stricmp or geda_utility_string_strncmpi to locate
  *  a substring in a string. This is not normally found in standard
- *  libraries but sometimes is. The difference between u_string_istr
- *  and u_string_stricmp returns a pointer rather than an integer.
+ *  libraries but sometimes is. The difference between geda_utility_string_istr
+ *  and geda_utility_string_stricmp returns a pointer rather than an integer.
  *
  *  \param [in] str1 is the string to be search
  *  \param [in] str2 is the string to search for
@@ -127,7 +127,7 @@ char *u_string_concat (const char *string1, ...)
  *  \retval char* to the first occurance of str2 in str2 or
  *                NULL if str2 is not contained in str1.
  */
-const char *u_string_istr(const char *str1, const char *str2)
+const char *geda_utility_string_istr(const char *str1, const char *str2)
 {
   const char *ptr = NULL;
   int len1, len2;
@@ -140,10 +140,10 @@ const char *u_string_istr(const char *str1, const char *str2)
 
   /* if strings are the same length then can do */
   if (len2 == len1)
-    return (!u_string_stricmp ( str1, str2)) ? str1 : NULL;
+    return (!geda_utility_string_stricmp ( str1, str2)) ? str1 : NULL;
 
   for (ptr = str1; *ptr ; ++ptr) {
-    if (u_string_strncmpi(ptr, str2, len2) == 0)
+    if (geda_utility_string_strncmpi(ptr, str2, len2) == 0)
       return ptr;
   }
 
@@ -160,7 +160,7 @@ const char *u_string_istr(const char *str1, const char *str2)
  *
  *  \note used by o_text_read
  */
-char *u_string_remove_nl(char *string)
+char *geda_utility_string_remove_nl(char *string)
 {
   int i;
 
@@ -187,7 +187,7 @@ char *u_string_remove_nl(char *string)
  *  \note used by o_text_read
  */
 /* used by o_text_read */
-char *u_string_remove_last_nl(char *string)
+char *geda_utility_string_remove_last_nl(char *string)
 {
   unsigned int length;
 
@@ -219,11 +219,11 @@ char *u_string_remove_last_nl(char *string)
  *                           macro subsitution or literal value.
  *  int number = 4;      <-- Some integer declared somewhere.
  *
- *  *str = u_string_int2str( number, s_val, 10 ));
+ *  *str = geda_utility_string_int2str( number, s_val, 10 ));
  *
- *  example:  strcat(strbuffer, u_string_int2str( total, s_val, 10 ));
+ *  example:  strcat(strbuffer, geda_utility_string_int2str( total, s_val, 10 ));
  */
-char *u_string_int2str(int value, char* str, int radix) {
+char *geda_utility_string_int2str(int value, char* str, int radix) {
 
   static char dig[] ="0123456789"
                      "abcdefghijklmnopqrstuvwxyz";
@@ -257,7 +257,7 @@ char *u_string_int2str(int value, char* str, int radix) {
  *
  *  \returns TRUE if all of the characters in \a str are alpha-numeric.
  */
-bool u_string_isalnum (const char *str)
+bool geda_utility_string_isalnum (const char *str)
 {
   int i;
 
@@ -291,7 +291,7 @@ bool u_string_isalnum (const char *str)
  *
  *  acceptable formats: "(4500,380)", "4500,380", "5", ",72"
  */
-int u_string_parse_xy(const char *string, int *x, int *y)
+int geda_utility_string_parse_xy(const char *string, int *x, int *y)
 {
   char *x_str, *y_str;
   int   icomma;
@@ -308,7 +308,7 @@ int u_string_parse_xy(const char *string, int *x, int *y)
     int   index;
     int   length;
 
-    buffer = u_string_strdup(string);
+    buffer = geda_utility_string_strdup(string);
     length = strlen(string);
 
     for (index = 0; index < length; index++) {
@@ -364,7 +364,7 @@ int u_string_parse_xy(const char *string, int *x, int *y)
  *  String utility function to get a c pointer to a scm string.
  * \remarks  caller is responsible for freeing the pointer.
  */
-char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
+char *geda_utility_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
 {
   SCM s_symbol, s_value;
 
@@ -379,7 +379,7 @@ char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
  *  \par Function Description
  *  sort array using qsort functions
  */
-void u_string_sort_array( char *strings[], size_t strings_size) {
+void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
 
   int cstring_cmp(const void *a, const void *b)
   {
@@ -402,7 +402,7 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
  *
  *  \remarks returned string must be freed using GEDA_FREE.
  */
-char *u_string_sprintf (const char *format, ...)
+char *geda_utility_string_sprintf (const char *format, ...)
 {
   char *buffer;
   int   size;
@@ -414,7 +414,7 @@ char *u_string_sprintf (const char *format, ...)
   }
 
   va_start (args, format);
-  size = u_string_strsize(format, args);
+  size = geda_utility_string_strsize(format, args);
   va_end (args);
 
   if (size < 0) {
@@ -457,7 +457,7 @@ char *u_string_sprintf (const char *format, ...)
  *  \returns a newly allocated string copy of \a str.
  *  \remarks returned string must be freed using GEDA_FREE.
  */
-char *u_string_strdup (const char *str)
+char *geda_utility_string_strdup (const char *str)
 {
   if (!str) return NULL;
 
@@ -474,7 +474,7 @@ char *u_string_strdup (const char *str)
  *   with a NULL.
  *  \remarks returned string must be freed using GEDA_FREE.
  */
-char *u_string_strndup(const char *str, size_t n)
+char *geda_utility_string_strndup(const char *str, size_t n)
 {
   char *ptr;
 
@@ -501,7 +501,7 @@ char *u_string_strndup(const char *str, size_t n)
  *  haystack, a negative result means needle was not found OR one
  *  of the two inputs is NULL.
  */
-int u_string_stristr ( const char *haystack, const char *needle)
+int geda_utility_string_stristr ( const char *haystack, const char *needle)
 {
    int result = -1;
 
@@ -539,7 +539,7 @@ int u_string_stristr ( const char *haystack, const char *needle)
  *
  *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
-bool u_string_strequal(const char *str1, const char *str2)
+bool geda_utility_string_strequal(const char *str1, const char *str2)
 {
   while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
   return ((*str1 == '\0') && (*str2 == '\0'));
@@ -550,7 +550,7 @@ bool u_string_strequal(const char *str1, const char *str2)
  *  Returns the number of bytes needed to hold the string formed
  *  after substituting variable arguments into the format specifier.
  */
-int u_string_strsize (const char *format, va_list args)
+int geda_utility_string_strsize (const char *format, va_list args)
 {
   int size;
 
@@ -588,7 +588,7 @@ int u_string_strsize (const char *format, va_list args)
  *
  *  example: str = strstr_rep(str, "  ", " ");
  */
-char *u_string_strstr_rep(char *original, const char *old, const char *new)
+char *geda_utility_string_strstr_rep(char *original, const char *old, const char *new)
 {
   char *temp;
 
@@ -635,7 +635,7 @@ char *u_string_strstr_rep(char *original, const char *old, const char *new)
  *
  *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
-int u_string_stricmp(const char *str1, const char *str2)
+int geda_utility_string_stricmp(const char *str1, const char *str2)
 {
   while (( toupper(*str1) == toupper(*str2)) && (*str1))
   {
@@ -658,7 +658,7 @@ int u_string_stricmp(const char *str1, const char *str2)
  *  first mis-match is because str2 is greater, or 1 if the
  *  first mis-match is because str1 is greater.
  */
-int u_string_strncmpi(const char *str1, const char *str2, int n)
+int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
 {
   unsigned int i = 0;
   while ((toupper(*str1) == toupper(*str2)) && i < n)
@@ -699,7 +699,7 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
  *          allocating memory.
  *
  */
-char *u_string_strsubst(char *source, char *old_str, char *new_str)
+char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 {
   if (source && old_str) {
 
@@ -751,7 +751,7 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
       }
     }
     else {
-      fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
+      fprintf(stderr, "geda_utility_string_strsubst: Memory allocation error\n");
     }
   }
   return NULL;
@@ -761,7 +761,7 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  *  \par Function Description
  *  This function replaces the first occurrence of str1 with str2
  *  in the source. This version dynamically allocates temporary storage
- *  and uses pointer returned from the previously defined u_string_istr
+ *  and uses pointer returned from the previously defined geda_utility_string_istr
  *  to get the first position of old_str in the source. The Caller is
  *  responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
@@ -775,7 +775,7 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  *  allocating memory.
  *
  */
-char *u_string_strisubst(char *source, char *old_str, char *new_str)
+char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 {
   if (source && old_str) {
 
@@ -798,7 +798,7 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
       memset(temp, 0, size); /* initialize new memory */
 
       /* Get pointer to the old string */
-      if (!(ptr1 = (char*)u_string_istr(source, old_str))) {
+      if (!(ptr1 = (char*)geda_utility_string_istr(source, old_str))) {
         free(temp);
         return NULL;
       }
@@ -821,7 +821,7 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
       return source;
     }
     else {
-      fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
+      fprintf(stderr, "geda_utility_string_strsubst: Memory allocation error\n");
     }
   }
   return NULL;
@@ -833,7 +833,7 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
  *  The delimiter is what is passed in or spaces count starts at zero
  *  \remarks Caller should GEDA_FREE returned pointer.
  */
-char *u_string_split(char *string, char delimiter, int count)
+char *geda_utility_string_split(char *string, char delimiter, int count)
 {
   int i=0, j=0;
   int internal_counter=0;
@@ -891,7 +891,7 @@ char *u_string_split(char *string, char delimiter, int count)
  *  \par Function Description
  *  returns the number of spaces in a string plus one.
  */
-int u_string_word_count(char* str) {
+int geda_utility_string_word_count(char* str) {
     int count = 0;
     while ( *str != ASCII_NUL) {
       if (*str == ASCII_SPACE ) ++count;

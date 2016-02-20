@@ -737,7 +737,7 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
     if (GTK_IS_ENTRY(entry)) {
 
       if (gtk_entry_get_text_length (entry)) {
-        name = u_string_strdup (gtk_entry_get_text(entry));
+        name = geda_utility_string_strdup (gtk_entry_get_text(entry));
       }
     }
   }

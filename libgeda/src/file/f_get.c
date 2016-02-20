@@ -77,7 +77,7 @@ char *f_get_autosave_filename (const char *filename)
 
     old_basename  = f_get_basename(filename);
     path_spec     = f_path_get_dirname(filename);
-    new_basename  = u_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
+    new_basename  = geda_utility_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
     GEDA_FREE(new_basename);
@@ -135,7 +135,7 @@ char *f_get_bitmap_filespec (const char *filename)
       /* default_bitmap_directory was checked by g_rc, we double check here
        * because the directory could have been removed */
       if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
-        filespec = u_string_concat (directory, seperator, filename, NULL);
+        filespec = geda_utility_string_concat (directory, seperator, filename, NULL);
       }
       else {
         fprintf (stderr, "Path invalid[%s], %s\n", directory, strerror(errno));
@@ -149,7 +149,7 @@ char *f_get_bitmap_filespec (const char *filename)
 
       base      = f_path_sys_data();
       subfolder = "bitmap";
-      filespec  = u_string_concat (base, seperator, subfolder,
+      filespec  = geda_utility_string_concat (base, seperator, subfolder,
                                          seperator, filename, NULL);
     }
 
@@ -203,7 +203,7 @@ char *f_get_data_filespec (const char *filename)
     }
     else {
 
-      filespec = u_string_concat (cwd, seperator, filename, NULL);
+      filespec = geda_utility_string_concat (cwd, seperator, filename, NULL);
       free (cwd);
 
       if ((access (filespec, R_OK)) != 0) {
@@ -216,7 +216,7 @@ char *f_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = f_path_user_config();
-      filespec  = u_string_concat (directory, seperator, filename, NULL);
+      filespec  = geda_utility_string_concat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
@@ -228,7 +228,7 @@ char *f_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = f_path_sys_data();
-      filespec  = u_string_concat (directory, seperator, filename, NULL);
+      filespec  = geda_utility_string_concat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
@@ -280,12 +280,12 @@ GSList *f_get_dir_list_files(char *path, char *filter)
         const char *suffix = f_get_filename_ext(ent->d_name);
 
         if ( suffix && strcmp (suffix, real_filter) == 0) {
-          filename = u_string_strdup(ent->d_name);
+          filename = geda_utility_string_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
         }
       }
       else {
-        filename = u_string_strdup(ent->d_name);
+        filename = geda_utility_string_strdup(ent->d_name);
         files = g_slist_prepend(files, filename);
       }
     }
@@ -582,7 +582,7 @@ const char *f_get_format_header()
   static char *header = NULL;
 
   if (header == NULL)
-    header = u_string_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
+    header = geda_utility_string_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
                              FILEFORMAT_VERSION);
 
   return header;

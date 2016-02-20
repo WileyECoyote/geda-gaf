@@ -92,7 +92,7 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
   char *slotdef;
   char *search_for;
 
-  search_for = u_string_sprintf ("%d:", slotnumber);
+  search_for = geda_utility_string_sprintf ("%d:", slotnumber);
 
   while (1) {
     slotdef = o_attrib_search_object_attribs_by_name (object, "slotdef",
@@ -209,7 +209,7 @@ void s_slot_update_object (GedaObject *object)
     char    tmp_str[5];
 
     /* Get pin on this component with pinseq == pin_counter */
-    pinstr       = u_string_int2str(pin_counter, tmp_str, 10);
+    pinstr       = geda_utility_string_int2str(pin_counter, tmp_str, 10);
     o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinstr);
 
     if (o_pin_object != NULL) {
@@ -221,7 +221,7 @@ void s_slot_update_object (GedaObject *object)
       g_list_free (attributes);
 
       if (o_pinnum_attrib != NULL) {
-        pinstr = u_string_sprintf ("pinnumber=%s", current_pin);
+        pinstr = geda_utility_string_sprintf ("pinnumber=%s", current_pin);
         o_text_set_string (o_pinnum_attrib, pinstr);
         GEDA_FREE(pinstr);
       }

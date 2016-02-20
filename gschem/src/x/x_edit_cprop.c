@@ -166,7 +166,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       }
       else {
 
-        char *newtext = u_string_concat(key, "=", new_value, NULL);
+        char *newtext = geda_utility_string_concat(key, "=", new_value, NULL);
         o_attrib_add_attrib(w_current, newtext, VISIBLE, SHOW_NAME_VALUE, NULL);
         GEDA_FREE (newtext);
         result = TRUE;
@@ -523,7 +523,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
         char *new_text;
 
         str_val = GetEntryText ( properties->refdes_entry );
-        new_text = u_string_concat(str_val, curr_ref, NULL);
+        new_text = geda_utility_string_concat(str_val, curr_ref, NULL);
         g_signal_handler_block(widget,properties->ref_handler);
         SetEntryText(properties->refdes_entry, new_text);
         g_signal_handler_unblock(widget,properties->ref_handler);
@@ -573,10 +573,10 @@ static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
 
     if (!state && (str_val[0] != '-')) {
       const char *dash = "-";
-      str = u_string_concat(&dash[0], str_val,NULL);
+      str = geda_utility_string_concat(&dash[0], str_val,NULL);
     }
     else if (state && (str_val[0] == '-')) {
-      str = u_string_strdup(&str_val[1]);
+      str = geda_utility_string_strdup(&str_val[1]);
     }
     else{
       str = NULL;

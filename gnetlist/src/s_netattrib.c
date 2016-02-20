@@ -43,7 +43,7 @@
  */
 char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
 {
-  return u_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
+  return geda_utility_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
 /*! \brief Get the Pin Number of connected Net Attribute string
@@ -103,7 +103,7 @@ char *s_netattrib_extract_netname(char *value)
   int i = 1;
 
   /* a bit larger than needed ... */
-  return_value = u_string_strdup (value);
+  return_value = geda_utility_string_strdup (value);
 
   while (value[i] != ':' && value[i] != '\0') {
     return_value[i] = value[i];
@@ -113,7 +113,7 @@ char *s_netattrib_extract_netname(char *value)
   if (value[i] != ':') {
     fprintf(stderr, _("Found malformed net attribute\n"));
     GEDA_FREE(return_value);
-    return_value = u_string_strdup ("unknown");
+    return_value = geda_utility_string_strdup ("unknown");
   }
   else {
     return_value[i] = '\0'; /* Replace colon with NULL */
@@ -197,7 +197,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
           GEDA_FREE(old_cpin->nets->connected_to);
 
           old_cpin->nets->connected_to =
-          u_string_sprintf("%s %s", netlist->component_uref, current_pin);
+          geda_utility_string_sprintf("%s %s", netlist->component_uref, current_pin);
 
           old_cpin->nets->net_name_has_priority = TRUE;
 
@@ -214,7 +214,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
 
         new_cpin             = s_cpinlist_add(cpinlist_tail);
 
-        new_cpin->pin_number = u_string_strdup (current_pin);
+        new_cpin->pin_number = geda_utility_string_strdup (current_pin);
         new_cpin->net_name   = NULL;
         new_cpin->plid       = o_current->sid;
 
@@ -228,7 +228,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
         s_hierarchy_create_netattrib(pr_current, net_name, hierarchy_tag);
 
         new_cpin->nets->connected_to =
-        u_string_sprintf("%s %s", netlist->component_uref, current_pin);
+        geda_utility_string_sprintf("%s %s", netlist->component_uref, current_pin);
 
         new_cpin->nets->nid = o_current->sid;
 

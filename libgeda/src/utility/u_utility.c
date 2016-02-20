@@ -114,7 +114,7 @@ geda_utility_expand_env_variable (const char *string)
             }
             else {
               /* extract variable name from string and expand it */
-              char *variable_name = u_string_strndup (string + start, i - start);
+              char *variable_name = geda_utility_string_strndup (string + start, i - start);
               const char *env = g_getenv (variable_name);
               GEDA_FREE (variable_name);
               g_string_append (gstring, (env == NULL) ? "" : env);

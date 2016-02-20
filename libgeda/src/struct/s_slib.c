@@ -73,7 +73,7 @@ int s_slib_add_entry(const char *new_path)
   }
 
   if (!s_slib_search_for_dirname(new_path)) {
-    slib[slib_index].dir_name = u_string_strdup (new_path);
+    slib[slib_index].dir_name = geda_utility_string_strdup (new_path);
     slib_index++;
   }
 
@@ -351,7 +351,7 @@ char *s_slib_search_dirs(const char *basename)
         /* Do a substring comp for a match */
         if (strstr (dptr->d_name, basename) != 0)  {
 
-          char *slib_path = u_string_strdup (slib[i].dir_name);
+          char *slib_path = geda_utility_string_strdup (slib[i].dir_name);
 
           if (ptr) {
             closedir (ptr);

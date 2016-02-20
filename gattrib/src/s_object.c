@@ -74,7 +74,7 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 
     char *name_value_pair;
 
-    name_value_pair = u_string_concat(new_attrib_name, "=",
+    name_value_pair = geda_utility_string_concat(new_attrib_name, "=",
                                       new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
@@ -132,7 +132,7 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 
     char *name_value_pair;
 
-    name_value_pair = u_string_concat(new_attrib_name, "=",
+    name_value_pair = geda_utility_string_concat(new_attrib_name, "=",
                                       new_attrib_value, NULL);
 
     s_object_attrib_add_attrib_in_object (toplevel,
@@ -184,15 +184,15 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
       /* found an attribute? */
 
       /* may need to check more thoroughly here. . . . */
-      old_attrib_text = u_string_strdup(a_current->text->string);
-      old_attrib_name = u_string_split(old_attrib_text, '=', 0);
+      old_attrib_text = geda_utility_string_strdup(a_current->text->string);
+      old_attrib_name = geda_utility_string_split(old_attrib_text, '=', 0);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
         /* create attrib=value text string & stuff it back into toplevel */
-        new_attrib_text = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+        new_attrib_text = geda_utility_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
         GEDA_FREE(a_current->text->string);   /* remove old attrib string */
-        a_current->text->string = u_string_strdup(new_attrib_text);   /* insert new attrib string */
+        a_current->text->string = geda_utility_string_strdup(new_attrib_text);   /* insert new attrib string */
         if (visibility != LEAVE_VISIBILITY_ALONE)
           o_set_visibility (a_current, visibility);
         if (show_name_value != LEAVE_NAME_VALUE_ALONE)
@@ -253,8 +253,8 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {  /* found an attribute */
 
       /* may need to check more thoroughly here. . . . */
-      old_attrib_text = u_string_strdup(a_current->text->string);
-      old_attrib_name = u_string_split(old_attrib_text, '=', 0);
+      old_attrib_text = geda_utility_string_strdup(a_current->text->string);
+      old_attrib_name = geda_utility_string_split(old_attrib_text, '=', 0);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 

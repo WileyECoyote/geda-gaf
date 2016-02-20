@@ -54,7 +54,7 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
     if (local_list_item->data == NULL)
       continue;
 
-    local_name = u_string_split(local_list_item->data, '=', 0);
+    local_name = geda_utility_string_split(local_list_item->data, '=', 0);
 
     if (strcmp(local_name, name) == 0) {
       GEDA_FREE (local_name);
@@ -104,7 +104,7 @@ char *s_attrib_get_refdes(GedaObject *object)
 
         char *suffixed;
 
-        suffixed = u_string_concat(temp_uref, ".", slot_value, NULL);
+        suffixed = geda_utility_string_concat(temp_uref, ".", slot_value, NULL);
         GEDA_FREE (temp_uref);
         temp_uref = suffixed;
       }

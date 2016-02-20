@@ -45,7 +45,7 @@ SCM buffer_ ## name ## number(SCM rest)             \
 {                                                   \
   GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
-  status_msg_str = u_string_concat ( #name, " ", #number, NULL); \
+  status_msg_str = geda_utility_string_concat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_KEYBOARD); \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
@@ -55,7 +55,7 @@ SCM buffer_ ## name ## number ##_menu(SCM rest)     \
 {                                                   \
   GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
-  status_msg_str = u_string_concat ( #name, " ", #number, NULL); \
+  status_msg_str = geda_utility_string_concat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_MENU); \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
@@ -417,8 +417,8 @@ GArray *g_keys_dump_keymap (void)
                           SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
                           scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
 
-    keymap_entry.action = u_string_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
-    keymap_entry.keyseq = u_string_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
+    keymap_entry.action = geda_utility_string_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
+    keymap_entry.keyseq = geda_utility_string_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
     ret = g_array_append_val (ret, keymap_entry);
   }
 
@@ -509,7 +509,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 
     char *ptr = w_current->keyaccel_string;
 
-    w_current->keyaccel_string = u_string_concat (ptr, " ", keystr, NULL);
+    w_current->keyaccel_string = geda_utility_string_concat (ptr, " ", keystr, NULL);
 
     GEDA_FREE (ptr);
     GEDA_FREE (keystr);
@@ -595,7 +595,7 @@ char *g_keys_find_key (char *func_name) {
       ret_keys = NULL;
     }
     else {
-      ret_keys = u_string_sprintf ("%s", keys);
+      ret_keys = geda_utility_string_sprintf ("%s", keys);
     }
     free(keys);
   }

@@ -147,8 +147,8 @@ int make_box(int fldcnt,char *pFields[]);
 static char *strLabel(char *p, char *pTemp);
 void strtrail(char *wrk);
 int line_chk(char *pBuf);
-#if !defined(HAVE_STRCASECMP) && defined(HAVE_STRICMP) && !defined(u_string_stricmp)
-#define strcasecmp u_string_stricmp
+#if !defined(HAVE_STRCASECMP) && defined(HAVE_STRICMP) && !defined(geda_utility_string_stricmp)
+#define strcasecmp geda_utility_string_stricmp
 #endif
 #if !defined(HAVE_STRNCASECMP) && defined(HAVE_STRNICMP) && !defined(strnicmp)
 #define strncasecmp strnicmp

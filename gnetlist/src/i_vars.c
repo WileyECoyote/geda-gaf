@@ -75,30 +75,30 @@ void i_vars_set(GedaToplevel * pr_current)
       strcpy(pr_current->hierarchy_uref_separator, "/");
     }
     else {
-      pr_current->hierarchy_uref_separator = u_string_strdup("/");
+      pr_current->hierarchy_uref_separator = geda_utility_string_strdup("/");
     }
   }
 
   if (!default_hierarchy_netname_separator) {
     default_hierarchy_netname_separator =
-    u_string_strdup (DEFAULT_HIERARCHY_NETNAME_SEPARATOR);
+    geda_utility_string_strdup (DEFAULT_HIERARCHY_NETNAME_SEPARATOR);
   }
 
   if (!default_hierarchy_netattrib_separator) {
     default_hierarchy_netattrib_separator =
-    u_string_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
+    geda_utility_string_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
   }
   if (!default_hierarchy_uref_separator) {
     default_hierarchy_uref_separator =
-    u_string_strdup (DEFAULT_HIERARCHY_UREF_SEPARATOR);
+    geda_utility_string_strdup (DEFAULT_HIERARCHY_UREF_SEPARATOR);
   }
   if (!default_unnamed_netname) {
     default_unnamed_netname =
-    u_string_strdup (DEFAULT_UNNAMED_NETNAME);
+    geda_utility_string_strdup (DEFAULT_UNNAMED_NETNAME);
   }
   if (!default_unnamed_busname) {
     default_unnamed_busname =
-    u_string_strdup (DEFAULT_UNNAMED_BUSNAME);
+    geda_utility_string_strdup (DEFAULT_UNNAMED_BUSNAME);
   }
 
   INIT_STR(pr_current, hierarchy_netname_separator,

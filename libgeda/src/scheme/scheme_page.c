@@ -422,7 +422,7 @@ EDA_SCM_DEFINE (page_set_filename_x, "%set-page-filename!", 2, 0, 0,
     g_free (page->filename);
   }
 
-  page->filename = u_string_strdup(new_fn);
+  page->filename = geda_utility_string_strdup(new_fn);
   free (new_fn);
 
   return page_s;

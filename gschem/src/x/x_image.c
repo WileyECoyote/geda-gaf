@@ -210,10 +210,10 @@ static char *x_image_get_type_from_description(char *descr) {
   if (descr != NULL) {
 
     if (strcmp(descr, _("Encapsulated Postscript")) == 0) {
-      ret_val = u_string_strdup("eps");
+      ret_val = geda_utility_string_strdup("eps");
     }
     else if (strcmp(descr, "Portable Document Format") == 0) {
-      ret_val = u_string_strdup("pdf");
+      ret_val = geda_utility_string_strdup("pdf");
     }
     else {
 
@@ -474,7 +474,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
         if (!gdk_pixbuf_save(pixbuf, filename, filetype, &err, NULL)) {
           /* Log the error */
           u_log_message(_("Unable to write %s file %s. %s\n"), filetype, filename, err->message);
-          char *errmsg = u_string_sprintf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
+          char *errmsg = geda_utility_string_sprintf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
                                             filetype, filename, err->message);
           /* Warn the user */
           titled_pango_error_dialog ( _("<b>Error Writing Imaging.</b>"), errmsg, _("Write Image") );

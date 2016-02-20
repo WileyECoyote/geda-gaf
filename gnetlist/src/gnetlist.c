@@ -67,7 +67,7 @@ void gnetlist_quit(void)
 
   i_vars_finalize();
 
-  /* Free GSList *backend_params */
+  /* Free GSList backend_params */
   g_slist_free (backend_params);
 
   g_slist_free (input_files);
@@ -130,7 +130,7 @@ gnetlist_backends (GedaToplevel *pr_current)
 
       /* Copy filename and remove prefix & suffix.  Add to list of
        * backend names. */
-      name = u_string_strdup (dentry->d_name + 5);
+      name = geda_utility_string_strdup (dentry->d_name + 5);
       name[strlen(name)-4] = '\0';
       backend_names = g_list_prepend (backend_names, name);
     }
@@ -245,7 +245,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   if (!output_filename) {
     /* was not specified so set default output filename */
-    output_filename = u_string_strdup("output.net");
+    output_filename = geda_utility_string_strdup("output.net");
     defaulted_filename = TRUE;
   }
   else {
@@ -267,7 +267,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
     if (f_get_is_path_absolute(argv[i])) {
       /* Path is already absolute so no need to do any concat of cwd */
-      filename = u_string_strdup (argv[i]);
+      filename = geda_utility_string_strdup (argv[i]);
     }
     else {
       filename = g_build_filename (cwd, argv[i], NULL);
@@ -320,7 +320,7 @@ void main_prog(void *closure, int argc, char *argv[])
     char *str;
 
     /* Search for backend scm file in load path */
-    str = u_string_sprintf("gnet-%s.scm", guile_proc);
+    str = geda_utility_string_sprintf("gnet-%s.scm", guile_proc);
     s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
     GEDA_FREE (str);
 
@@ -448,7 +448,7 @@ void main_prog(void *closure, int argc, char *argv[])
     char *eval;
 
     /* check size here hack */
-    eval = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
+    eval = geda_utility_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
 
     /* Execute the back-end passing the name of the output file */
     scm_c_eval_string (eval);

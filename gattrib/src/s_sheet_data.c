@@ -196,7 +196,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
 
     for (blank = 0; blank < 5; blank++) {
 
-      char *str = u_string_int2str(blank, tmp_str, 10);
+      char *str = geda_utility_string_int2str(blank, tmp_str, 10);
 
       s_sheet_data_add_comp (PageData, str);
       s_sheet_data_add_comp_attrib(PageData, comp_attrib[blank]);
@@ -329,8 +329,8 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 
 	  if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */
 	  /* found an attribute */
-	  attrib_text = u_string_strdup(a_current->text->string);
-	  attrib_name = u_string_split(attrib_text, '=', 0);
+	  attrib_text = geda_utility_string_strdup(a_current->text->string);
+	  attrib_name = geda_utility_string_split(attrib_text, '=', 0);
 
 	  /* Don't include "refdes" or "slot" because they form the row name */
 	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
@@ -458,7 +458,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
             temp_pinnumber = o_attrib_search_object_attribs_by_name (o_lower_current, "pinnumber", 0);
 
             if (temp_pinnumber != NULL) {
-              row_label = u_string_concat (temp_uref, ":", temp_pinnumber, NULL);
+              row_label = geda_utility_string_concat (temp_uref, ":", temp_pinnumber, NULL);
 #if DEBUG
               printf ("In s_sheet_data_add_master_pin_list_items, about to add to master pin list row_label = %s\n", row_label);
 #endif
@@ -554,8 +554,8 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 		pin_attrib = a_iter->data;
 		if (pin_attrib->type == OBJ_TEXT
 		    && pin_attrib->text != NULL) {  /* found an attribute */
-		  attrib_text = u_string_strdup(pin_attrib->text->string);
-		  attrib_name = u_string_split(attrib_text, '=', 0);
+		  attrib_text = geda_utility_string_strdup(pin_attrib->text->string);
+		  attrib_name = geda_utility_string_split(attrib_text, '=', 0);
 		  attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
 		if ( (strcmp(attrib_name, "pinnumber") != 0)
 		//  if ( (strcmp(attrib_name, "pinnumber") == 0)
