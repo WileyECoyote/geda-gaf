@@ -644,18 +644,19 @@ int geda_utility_string_stricmp(const char *str1, const char *str2)
   return !((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*! \brief Compare n characters ignoring case.
- *  \par Function Description
+/*!
+ * \brief Compare n characters ignoring case.
+ * \par Function Description
  *  Another garden varity string compare using toupper on both inputs.
  *  This is somthimes found in standard libraries but not always.
  *
- *  \param [in] str1  is the string to be search
- *  \param [in] str2  is the string to search for
- *  \param [in] n     is the number of char to compare
+ * \param [in] str1  is the string to be search
+ * \param [in] str2  is the string to search for
+ * \param [in] n     is the number of char to compare
  *
- *  \retval 0 if the strings are equivalent, or
- *         -1 if str2 if first mis-match is because str2 is greater, or
- *          1 if the first mis-match is because str1 is greater.
+ * \retval 0 if the strings are equivalent, or
+ *        -1 if str2 if first mis-match is because str2 is greater, or
+ *         1 if the first mis-match is because str1 is greater.
  */
 int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
 {
@@ -686,32 +687,35 @@ int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
           return ((*str1 > *str2 ) ? -1 : 1);
 }
 
-/*! \brief Replace substring in string.
- *  \par Function Description
+/*!
+ * \brief Replace substring in string.
+ * \par Function Description
  *  This function replaces the first occurrence of str1 with str2
  *  in the source. This version uses array indexes and dynamically
  *  allocates temporary storage. The Caller is responsible for insuring
  *  source is sufficiently large enough to hold the new string, ie
  *  original - old + new + 1.
  *
- *  \param [in] source   is the string to be modified
- *  \param [in] old_str  is the string to be replaced
- *  \param [in] new_str  is the replacement for old_str
+ * \param [in] source   is the string to be modified
+ * \param [in] old_str  is the string to be replaced
+ * \param [in] new_str  is the replacement for old_str
  *
- *  \retval char* source (the orginal pointer) or NULL if old_str was not
- *          not found in the source string or if there was a error
- *          allocating memory.
+ * \retval char* source (the orginal pointer) or NULL if old_str was not
+ *         not found in the source string or if there was a error
+ *         allocating memory.
  *
+ * \todo less than idea.
  */
 char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 {
-  if (source && old_str) {
+  if (source && old_str && new_str) {
 
     char *temp;
     int   position;
 
     unsigned int length;
     unsigned int size;
+
 
     length   = strlen (old_str);
     size     = strlen (source)- length + strlen (new_str) + 1;
@@ -720,42 +724,41 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 
     if (temp) { /* If memory was allocated */
 
-      unsigned int i;
+      unsigned int i, j, k;
 
       memset(temp, 0, size); /* initialize new memory */
 
       /* Getting starting position for replacement */
-      for (i = 0; source[i] && ( position == -1 ); ++i) {
-
-        unsigned int j, k;
-
-        for (j = i, k = 0; source[j] == old_str[k]; j++, k++)
-
-          if (!old_str[k+1])
-            position = i;
-
-          /* Start replacing */
-          if (position!=-1) {                    /* if we found position   */
-
-            for (j = 0; j < position; j++)       /* copy the prefix        */
-              temp[j] = source[j];
-
-            for (i = 0; new_str[i]; i++, j++)    /* add the new string and */
-              temp[j] = new_str[i];
-
-            for (k = position + length; source[k]; k++, j++) /* remainder of source */
-              temp[j] = source[k];
-
-            temp[j] = '\0';                      /* then add terminator  */
-
-            for (i = 0; (source[i] = temp[i]); i++);  /* write back to source */
-          }
-          free(temp);
-          return source;
+      for(i = 0; source[i] && ( position == -1 ); ++i) {
+        for(j = i,k = 0; source[j] == old_str[k]; j++, k++) {
+          if(!old_str[k+1]) position = i;
+        }
       }
+
+      /* Start replacing */
+      if (position!=-1) {               /* if we found position   */
+
+        for (j = 0; j < position; j++)      /* copy the prefix        */
+          temp[j] = source[j];
+
+        for(i = 0; new_str[i]; i++, j++)  /* add the new string and */
+          temp[j] = new_str[i];
+
+        for(k = position + length; source[k]; k++, j++) /* remainder of source */
+          temp[j] = source[k];
+
+        temp[j] = '\0';                          /* then add terminator  */
+
+        for(i = 0; (source[i] = temp[i]); i++);  /* write back to source */
+
+        free(temp);
+        return source;
+      }
+
+      free(temp);
     }
     else {
-      fprintf(stderr, "geda_utility_string_strsubst: Memory allocation error\n");
+      fprintf(stderr, "%s: Memory allocation error\n", __func__);
     }
   }
   return NULL;
@@ -825,7 +828,7 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
       return source;
     }
     else {
-      fprintf(stderr, "geda_utility_string_strsubst: Memory allocation error\n");
+      fprintf(stderr, "%s: Memory allocation error\n", __func__);
     }
   }
   return NULL;
