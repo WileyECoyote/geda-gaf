@@ -1,3 +1,8 @@
+2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Rename and revise geda_entry_strncmpi, add
+      check for NULL inputs.
+
 2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_completion.c: Revise Doxygen comments, minor format

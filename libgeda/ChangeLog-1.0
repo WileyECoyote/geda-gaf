@@ -1,9 +1,14 @@
+2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Revise geda_utility_string_strncmpi, adding a
+      check for NULL inputs.
+
 2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_line.c: Revise Doxygen comments in group and move class
       tag.
 
-    * src/utility/u_string.c Add function prefix geda_utility_.
+    * src/utility/u_string.c: Add function prefix geda_utility_.
 
     * src/utility/u_string.c: Fix BUG geda_utility_string_strncmpi; missing
       pointer references, revise comments.

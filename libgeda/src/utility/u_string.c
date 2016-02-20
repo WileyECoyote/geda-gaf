@@ -660,13 +660,18 @@ int geda_utility_string_stricmp(const char *str1, const char *str2)
 int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
 {
   unsigned int i = 0;
+  if (!str1 || !str2) {
+    errno = EINVAL;
+    return -2;
+  }
+
   while ((toupper(*str1) == toupper(*str2)) && i < n)
   {
     str1++;
     str2++;
     i++;
   }
-  if ( i == n)
+  if (i == n)
     return 0;
   else
     if ((*str1 == *str2 ) && (!*str1))

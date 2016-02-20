@@ -130,7 +130,7 @@ static void    geda_entry_get_property       (GObject          *object,
                                               GValue           *value,
                                               GParamSpec       *pspec);
 
-static int geda_utility_string_strncmpi(char *str1, char *str2, int n);
+static int     geda_entry_strncmpi (char *str1, char *str2, int n);
 
 static GList  *history_list;
 static GList **history_list_arg;
@@ -317,7 +317,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
                                    (GedaStrCompareNFunc) strncmp);
     else
       geda_completion_set_compare( entry->priv->command_completion,
-                                 (GedaStrCompareNFunc) geda_utility_string_strncmpi);
+                                 (GedaStrCompareNFunc) geda_entry_strncmpi);
   }
 }
 
@@ -1108,10 +1108,15 @@ geda_entry_history_down (GedaEntry *entry)
  *  first mis-match is because str2 is greater, or 1 if the
  *  first mis-match is because str1 is greater.
  */
-static int geda_utility_string_strncmpi(char *str1, char *str2, int n)
+static int geda_entry_strncmpi(char *str1, char *str2, int n)
 {
-  int i = 0;
-  while (( toupper(*str1) == toupper(*str2)) && i < n)
+  unsigned int i = 0;
+  if (!str1 || !str2) {
+    errno = EINVAL;
+    return -2;
+  }
+
+  while ((toupper(*str1) == toupper(*str2)) && i < n)
   {
     str1++;
     str2++;
@@ -1120,13 +1125,13 @@ static int geda_utility_string_strncmpi(char *str1, char *str2, int n)
   if ( i == n)
     return 0;
   else
-    if ((*str1 == *str2 ) && (!str1))
+    if ((*str1 == *str2 ) && (!*str1))
       return 0;
     else
-      if ((*str1) && (!str2))
+      if ((*str1) && (!*str2))
         return -1;
       else
-        if ((*str2) && (!str1))
+        if ((*str2) && (!*str1))
           return 1;
         else
           return ((*str1 > *str2 ) ? -1 : 1);
