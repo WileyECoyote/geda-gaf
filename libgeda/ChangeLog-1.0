@@ -17,6 +17,9 @@
     * src/utility/u_string.c: Revise function geda_utility_string_strisubst;
       check 3rd argument is not NULL, revise/edit comments.
 
+    * src/utility/u_string.c: Revise function geda_utility_string_split to
+      check 1st argument is not NULL, revise/edit comments.
+
 2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_line.c: Revise Doxygen comments in group and move class

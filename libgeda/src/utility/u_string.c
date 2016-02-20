@@ -835,63 +835,79 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 }
 
 /* Copyright (C) 1998, 1999, 2000 Kazu Hirata / Ales Hvezda */
-/*! \brief Split a string using an optional delimiter
- *  \par Function Description
- *  The delimiter is what is passed in or spaces count starts at zero
- *  \remarks Caller should GEDA_FREE returned pointer.
+/*!
+ * \brief Split a string using an optional delimiter
+ * \par Function Description
+ *  If \a delimiter is zero a copy of string is returned.
+ *
+ * \note The orginal string is NOT altered.
+ *
+ * \remarks returned pointer should be freed.
+ *
+ * \param [in] string     is the string to parse
+ * \param [in] delimiter  optional delimiter
+ * \param [in] count      which base 0 splits to return
+ *
+ * \returns pointer to allocated string[count], or
+ *          NULL if \a string is NULL, or
+ *          \a string if \a delimiter is zero.
  */
 char *geda_utility_string_split(char *string, char delimiter, int count)
 {
-  int i=0, j=0;
-  int internal_counter=0;
-  int done=FALSE;
-  char *return_value;
+  if (string != NULL) {
 
-  g_return_val_if_fail ((string != NULL), NULL);
-
-  /* skip over any leading white space */
-  while(string[i] == ' ' && !string[i]) {
-    i++;
-  }
-
-  /* Allocate space for temp string storage (+1 for null character) */
-  return_value = GEDA_MEM_ALLOC(sizeof(char)*(strlen(string) + 1));
-
-  while(!done) {
-
-    /* oops, ran out of string before we found what we were */
-    /* looking for */
-    if (i > strlen(string)) {
-      GEDA_FREE(return_value);
-      return(NULL);
-    }
+    char *return_value;
+    int done=FALSE;
+    int internal_counter = 0;
+    int i = 0, j = 0;
 
     /* skip over any leading white space */
-    while(string[i] == ' ' && string[i] != '\0') {
+    while (string[i] == ' ' && !string[i]) {
       i++;
     }
 
-    j = 0;
+    /* Allocate space for temp string storage (+1 for null character) */
+    return_value = GEDA_MEM_ALLOC(sizeof(char)*(strlen(string) + 1));
 
-    /* Old forgiving parsing */
-    /*          while(string[i] != ',' && string[i] != ';' && */
-    /*                string[i] != ' ' && string[i] != '\0') {*/
+    while (!done) {
 
-    while(string[i] != delimiter && string[i] != '\0') {
-      return_value[j] = string[i];
-      i++; j++;
+      /* oops, ran out of string before we found what we were */
+      /* looking for */
+      if (i > strlen(string)) {
+        GEDA_FREE(return_value);
+        return(NULL);
+      }
+
+      /* skip over any leading white space */
+      while(string[i] == ' ' && string[i] != '\0') {
+        i++;
+      }
+
+      j = 0;
+
+      /* Old forgiving parsing */
+      /*          while(string[i] != ',' && string[i] != ';' && */
+      /*                string[i] != ' ' && string[i] != '\0') {*/
+
+      while(string[i] != delimiter && string[i] != '\0') {
+        return_value[j] = string[i];
+        i++; j++;
+      }
+
+      if (internal_counter == count)  {
+        done = TRUE;
+      }
+      else {
+        internal_counter++;
+        i++; /* skip the offending character */
+      }
     }
 
-    if (internal_counter == count)  {
-      done = TRUE;
-    } else {
-      internal_counter++;
-      i++; /* skip the offending character */
-    }
+    return_value[j] = '\0';
+
+    return(return_value);
   }
-
-  return_value[j] = '\0';
-  return(return_value);
+  return NULL;
 }
 
 /*! \brief  Get Word Count
