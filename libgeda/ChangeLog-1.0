@@ -5,6 +5,9 @@
 
     * src/utility/u_string.c Add function prefix geda_utility_.
 
+    * src/utility/u_string.c: Fix BUG geda_utility_string_strncmpi; missing
+      pointer references, revise comments.
+
 2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Revise Doxygen comments in group and move class

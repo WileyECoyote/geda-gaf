@@ -646,17 +646,16 @@ int geda_utility_string_stricmp(const char *str1, const char *str2)
 
 /*! \brief Compare n characters ignoring case.
  *  \par Function Description
- *  Another garden varity string compare using toupper
- *  on both inputs. This is somthimes found in standard
- *  libraries but not always.
+ *  Another garden varity string compare using toupper on both inputs.
+ *  This is somthimes found in standard libraries but not always.
  *
  *  \param [in] str1  is the string to be search
  *  \param [in] str2  is the string to search for
  *  \param [in] n     is the number of char to compare
  *
- *  \retval 0 if the strings are equivalent, -1 if str2 if
- *  first mis-match is because str2 is greater, or 1 if the
- *  first mis-match is because str1 is greater.
+ *  \retval 0 if the strings are equivalent, or
+ *         -1 if str2 if first mis-match is because str2 is greater, or
+ *          1 if the first mis-match is because str1 is greater.
  */
 int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
 {
@@ -670,13 +669,13 @@ int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
   if ( i == n)
     return 0;
   else
-    if ((*str1 == *str2 ) && (!str1))
+    if ((*str1 == *str2 ) && (!*str1))
       return 0;
     else
-      if ((*str1) && (!str2))
+      if ((*str1) && (!*str2))
         return -1;
       else
-        if ((*str2) && (!str1))
+        if ((*str2) && (!*str1))
           return 1;
         else
           return ((*str1 > *str2 ) ? -1 : 1);
