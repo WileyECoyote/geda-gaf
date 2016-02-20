@@ -24,13 +24,18 @@
  *
  */
 /*! \file geda_config.c
- *  \brief EdaConfig Object Class derived from the GedaObject Class
- */
-/** \defgroup geda-config Geda Configuration Object
- *  @{
- *  \implements EdaConfig
+ *  \brief Geda Configuration Class
  */
 
+/** \defgroup geda-config Geda Configuration Class
+ * @{
+ * \brief Implmentation of #EdaConfig Class
+ * \par
+ *  This module implements EdaConfig system in libgeda. The EdaConfig class
+ *  is derived from the GObject base class.
+ *
+ * \class EdaConfig geda_config.h "include/libgeda/geda_config.h"
+ */
 #include <config.h>
 
 #include <errno.h>

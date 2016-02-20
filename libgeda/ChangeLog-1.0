@@ -1,5 +1,8 @@
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_config.c: Revise Doxygen comments in group and add class
+      tag.
+
     * src/utility/u_string.c: Revise geda_utility_string_strncmpi, adding a
       check for NULL inputs. Revise geda_utility_string_strsubst to return
       NULL instead of the source if the new text is not found because that
