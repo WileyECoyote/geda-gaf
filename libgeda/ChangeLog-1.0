@@ -4,13 +4,18 @@
       tag.
 
     * src/utility/u_string.c: Revise geda_utility_string_strncmpi, adding a
-      check for NULL inputs. Revise geda_utility_string_strsubst to return
+      check for NULL inputs.
+
+    * src/utility/u_string.c: Revise geda_utility_string_strsubst to return
       NULL instead of the source if the new text is not found because that
       is what documentation states the functions does, maybe would be better
       to return the source unmodified. Fix BUG introduced 2016-02-01 when
       scope of int J and k were reduced; new text was not being found even
       when present and add check that new_str is not NULL on entry, reformat
       comments; reducing indentation 1 space.
+
+    * src/utility/u_string.c: Revise function geda_utility_string_strisubst;
+      check 3rd argument is not NULL, revise/edit comments.
 
 2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -766,11 +766,11 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 
 /*! \brief Replace substring in string ignoring case
  *  \par Function Description
- *  This function replaces the first occurrence of str1 with str2
- *  in the source. This version dynamically allocates temporary storage
- *  and uses pointer returned from the previously defined geda_utility_string_istr
- *  to get the first position of old_str in the source. The Caller is
- *  responsible for insuring source is sufficiently large enough to
+ *  This function replaces the first occurrence of str1 with str2 in
+ *  the \a source string. This version dynamically allocates temporary
+ *  storage and uses pointer returned from the geda_utility_string_istr
+ *  to get the starting position of \a old_str in the source. The Caller
+ *  is responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
  *
  *  \param [in] source  source is the string to be modified
@@ -784,7 +784,7 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
  */
 char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 {
-  if (source && old_str) {
+  if (source && old_str && new_str) {
 
     unsigned int length;
     unsigned int size;
@@ -818,7 +818,7 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
       }
 
       /* copy the new string to the source starting add the old position*/
-      strcpy(ptr1, new_str); /* This also terminated the string for us */
+      strcpy(ptr1, new_str); /* This also terminates the string for us */
 
       /* If there was as suffix, then add it */
       if (strlen (temp))
