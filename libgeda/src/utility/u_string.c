@@ -914,14 +914,17 @@ char *geda_utility_string_split(char *string, char delimiter, int count)
  *  \par Function Description
  *  returns the number of spaces in a string plus one.
  */
-int geda_utility_string_word_count(char* str) {
-    int count = 0;
+int geda_utility_string_word_count(char *str)
+{
+  if (str) {
+    int count = 1;
     while ( *str != ASCII_NUL) {
       if (*str == ASCII_SPACE ) ++count;
       ++str;
     }
     return count;
-
+  }
+  return -1;
 }
 
 /** @} endgroup Libgeda-String-Utilities */
