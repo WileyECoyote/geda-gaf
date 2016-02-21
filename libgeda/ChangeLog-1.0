@@ -14,6 +14,11 @@
       when present and add check that new_str is not NULL on entry, reformat
       comments; reducing indentation 1 space.
 
+    * src/utility/u_string.c: Fix BUG;geda_utility_string_stricmp; remove !
+      from return, add checks for NULL inputs and return -1 if 1st argument
+      is NULL and -2 if the 2nd arguments is NULL. Adjust indentation of
+      comments.
+
     * src/utility/u_string.c: Revise function geda_utility_string_strisubst;
       check 3rd argument is not NULL, revise/edit comments.
 
