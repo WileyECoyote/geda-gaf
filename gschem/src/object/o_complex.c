@@ -79,18 +79,15 @@ static void o_complex_end (GschemToplevel *w_current)
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
-/*! \brief Prepare for Placement of New Complex Object
- *
- *  \par Function Description
+/*!
+ * \brief Prepare for Placement of New Complex Object
+ * \par Function Description
  *  Creates a new Complex object and adds the object to #Current_PlaceList
  *  after ensuring the place list is empty.
  */
 static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GedaObject   *o_current;
-  GList        *temp_list;
-  char         *buffer;
   const char   *sym_name = s_clib_symbol_get_name (sym);
   GError       *err      = NULL;
   bool          success  = FALSE;
@@ -106,11 +103,11 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
 
   if (w_current->include_complex) {
 
-    temp_list = NULL;
+    GList *temp_list;
+    char  *buffer;
 
-    buffer = s_clib_symbol_get_data (sym);
-
-    temp_list = o_read_buffer(toplevel, temp_list, buffer, -1, sym_name, &err);
+    buffer    = s_clib_symbol_get_data (sym);
+    temp_list = o_read_buffer(toplevel, NULL, buffer, -1, sym_name, &err);
 
     GEDA_FREE (buffer);
 
@@ -141,6 +138,8 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
       i_status_set_state (w_current, SELECT);
     }
     else {
+
+      GedaObject *o_current;
 
       GList *promoted   = o_complex_promote_attribs (toplevel, new_object);
 
