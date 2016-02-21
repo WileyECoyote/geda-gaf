@@ -1,5 +1,8 @@
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_funcs.c: Update Doxygen comments for functions g_funcs_confirm
+      and g_funcs_confirm_cancel.
+
     * src/object/o_edit.c: Revise function o_edit_find_text; eliminate integer
       variable pcount, reduce scope of char *attrib and current_filename, free
       current_filename.

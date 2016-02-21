@@ -104,10 +104,15 @@ SCM g_funcs_bmp_image(SCM scm_filename)
   return g_funcs_common_image (scm_filename, "gschem-bmp-image", "bmp");
 }
 
-/*! \brief SCM API Yes No Confirmation Dialog
- *  \par Function Description
- *   Launches a confirmation dialog with the given \a scm_msg
- *   and returns True or False based on the users response.
+/*!
+ * \brief SCM API Yes No Confirmation Dialog
+ * \par Function Description
+ *  Launches a confirmation dialog with the given \a scm_msg
+ *  and returns True or False based on the users response.
+ *
+ * \param scm_msg Scheme string with message to display in dialog
+ *
+ * \returns SCM_BOOL_T if response was yes, otherwise SCM_BOOL_F.
  */
 SCM g_funcs_confirm(SCM scm_msg)
 {
@@ -126,11 +131,16 @@ SCM g_funcs_confirm(SCM scm_msg)
     return SCM_BOOL_F;
 }
 
-/*! \brief SCM API Yes No Cancel Confirmation Dialog
- *  \par Function Description
- *   Launches a confirmation dialog with the given \a scm_msg
- *   and returns True or False based on the users response.
- *   If the user chooses to cancel, then -1 is returned.
+/*!
+ * \brief SCM API Yes No Cancel Confirmation Dialog
+ * \par Function Description
+ *  Launches a confirmation dialog with the given \a scm_msg
+ *  and returns True or False based on the users response.
+ *  If the user chooses to cancel, then -1 is returned.
+ *
+ * \param scm_msg Scheme string with message to display in dialog
+ *
+ * \returns 1 if response was yes, 0 if no, or -1 for user pressed cancel.
  */
 SCM g_funcs_confirm_cancel(SCM scm_msg)
 {
@@ -237,6 +247,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   scm_dynwind_begin (0);
   msg = scm_to_utf8_string (scm_msg);
   scm_dynwind_free (msg);
+
   templ = scm_to_utf8_string (scm_templ);
   scm_dynwind_free (templ);
 
