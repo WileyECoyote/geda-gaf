@@ -73,6 +73,13 @@ static PyGedaFunc FunctionTable[] = {
  *  @{
  */
 
+static inline void add_floating_object (GedaObject *new_object)
+{
+  if (GEDA_IS_OBJECT(new_object)) {
+    floating_objects = g_list_append(floating_objects, new_object);
+  }
+}
+
 static void destroy_all_floating_objects (void)
 {
   GList *iter = g_list_first(floating_objects);
@@ -894,6 +901,7 @@ void initialize( API_FunctionTable* user_table)
      apa_list = g_list_prepend(apa_list, geda_utility_string_strdup(promote_list[i]));
     }
   }
+
   floating_objects = NULL;
 
   /* make a copy of the function table for the module */
@@ -1813,7 +1821,9 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
       parent = retrieve_floating_object(sid);
 
       if (PyGeda_update_object(parent, geda_pyobject)) {
+
         s_page_append_object(page, parent);
+
         if (geda_pyobject->auto_attributes == TRUE) {
           if (parent->type == OBJ_PIN) {
             o_pin_realize_attributes(toplevel, parent);
@@ -1984,16 +1994,18 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     }
   }
   else {
+
     src_object = get_floating_object(sid);
+
     if (GEDA_IS_OBJECT(src_object)) {
       new_object = o_copy_object(src_object);
-      floating_objects = g_list_append(floating_objects, new_object);
+      add_floating_object(new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           GedaObject *a_current = iter->data;
           GedaObject *a_new = o_copy_object(a_current);
           dest_list = g_list_append(dest_list, a_new);
-          floating_objects = g_list_append(floating_objects, a_new);
+          add_floating_object(a_new);
           o_attrib_add(new_object, a_new);
         }
       }
@@ -2043,7 +2055,7 @@ PyGeda_remove_object( PyObject *py_object )
 
     if (object) {
       s_page_remove_object(page, (GedaObject*)object);
-      floating_objects = g_list_append(floating_objects, (GedaObject*) object);
+      add_floating_object((GedaObject*)object);
     }
     status = 0;
   }
@@ -2228,7 +2240,7 @@ PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sw
 
   object = o_arc_new(color, x, y, radius, start_angle, arc_sweep);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_arc: name=%s\n", object->name);
@@ -2260,7 +2272,7 @@ PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, Py
    * backwards, is cause X11 is upside down */
   object = o_box_new(color, lower_x, upper_y, upper_x, lower_y);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_box: name=%s\n", object->name);
@@ -2299,7 +2311,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
     GedaObject *net_attrib;
     object->bus->bus_name  = geda_utility_string_strdup(busname);
     net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
-    floating_objects = g_list_append(floating_objects, net_attrib);
+    add_floating_object(net_attrib);
   }
   else {
     object->bus->bus_name  = geda_utility_string_strdup(object->name);
@@ -2307,7 +2319,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
 
   object->bus->bus_ripper_direction = o_bus_get_direction(object);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_bus: name=%s\n", object->name);
@@ -2336,7 +2348,7 @@ PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
 
   object = o_circle_new(GRAPHIC_COLOR, x, y, radius);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_circle: name=%s\n", object->name);
@@ -2392,7 +2404,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
 
     object->complex->is_embedded = emb;
 
-    floating_objects = g_list_append(floating_objects, object);
+    add_floating_object(object);
   }
   else {
     return NULL;
@@ -2428,7 +2440,7 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 
   object = o_line_new(color, x1, y1, x2, y2);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_line: name=%s\n", object->name);
@@ -2468,7 +2480,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
     GedaObject *net_attrib;
     object->net->net_name  = geda_utility_string_strdup(netname);
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
-    floating_objects = g_list_append(floating_objects, net_attrib);
+    add_floating_object(net_attrib);
   }
   else {
     object->net->net_name  = geda_utility_string_strdup(object->name);
@@ -2476,7 +2488,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
 
   object->net->nid = object->sid;
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
     fprintf(stderr, "PyGeda_new_net: name=%s, netname=%s\n", object->name,
@@ -2504,7 +2516,7 @@ PyObject *PyGeda_new_path (const char *path_string)
   object = o_path_new(GRAPHIC_COLOR, path_string);
 
   if (GEDA_IS_PATH(object)) {
-    floating_objects = g_list_append(floating_objects, object);
+      add_floating_object(object);
   }
   else {
     return NULL;
@@ -2552,7 +2564,7 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
   object = o_picture_new (NULL, 0, filepath, x1, y1, x2, y2, ang, mirr, emb);
 
   if (GEDA_IS_PICTURE(object)) {
-    floating_objects = g_list_append(floating_objects, object);
+    add_floating_object(object);
   }
   else {
     return NULL;
@@ -2637,7 +2649,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   else
     object->pin->number = geda_utility_string_strdup("");
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   int  elect_type = object->pin->elect_type;
@@ -2681,7 +2693,7 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
 
   object = o_text_new(color, x, y, alg, ang, sze, VISIBLE, SHOW_NAME_VALUE, text);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_text: name=%s\n", object->name);
@@ -2737,7 +2749,7 @@ PyGeda_new_attrib(const char *name, const char *value, int x, int y,
 
   object = o_text_new(color, x, y, alg, ang, size, vis, shw, text);
 
-  floating_objects = g_list_append(floating_objects, object);
+  add_floating_object(object);
 
 #if DEBUG
   fprintf(stderr, "PyGeda_new_text: name=%s\n", object->name);

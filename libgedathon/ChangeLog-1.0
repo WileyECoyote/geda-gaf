@@ -1,3 +1,7 @@
+2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: add inline function add_floating_object.
+
 2016-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise comments for refresh_attribs.
