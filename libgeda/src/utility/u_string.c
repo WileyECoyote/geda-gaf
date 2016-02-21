@@ -116,11 +116,10 @@ char *geda_utility_string_concat (const char *string1, ...)
 
 /*! \brief Find substring in string, ignore case.
  *  \par Function Description
- *  This function uses geda_utility_string_stricmp or
- *  geda_utility_string_strncmpi to locate a substring in a string. This is
- *  not normally found in standard libraries but sometimes is. The difference
- *  between geda_utility_string_istr and geda_utility_string_stricmp returns
- *  a pointer rather than an integer.
+ *  This function uses geda_utility_string_stricmp or geda_utility_string_strncmpi to locate
+ *  a substring in a string. This is not normally found in standard
+ *  libraries but sometimes is. The difference between geda_utility_string_istr
+ *  and geda_utility_string_stricmp returns a pointer rather than an integer.
  *
  *  \param [in] str1 is the string to be search
  *  \param [in] str2 is the string to search for
@@ -496,10 +495,9 @@ char *geda_utility_string_strndup(const char *str, size_t n)
   return ptr;
 }
 
-/*!
- * \brief Non case sensitive search for string in a string
- * \par Function Description
- * \returns  A non zero result is the position needle was found in
+/*! \brief Non case sensitive search for string in a string
+ *  \par Function Description
+ *  \retval  A non zero result is the position needle was found in
  *  haystack, a negative result means needle was not found OR one
  *  of the two inputs is NULL.
  */
@@ -531,16 +529,15 @@ int geda_utility_string_stristr ( const char *haystack, const char *needle)
    return result;
 }
 
-/*!
- * \brief Check for equal strings
- * \par Function Description
+/*! \brief Check for equal strings
+ *  \par Function Description
  *  This function compares two strings and returns TRUE if
  *  they are equal or FALSE if they are not.
  *
- * \param [in] str1 is the string to be search
- * \param [in] str2 is the string to search for
+ *  \param [in] str1 is the string to be search
+ *  \param [in] str2 is the string to search for
  *
- * \retval TRUE if strings are equivalent, otherwise FALSE.
+ *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
 bool geda_utility_string_strequal(const char *str1, const char *str2)
 {
@@ -548,9 +545,8 @@ bool geda_utility_string_strequal(const char *str1, const char *str2)
   return ((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*!
- * \brief  Get the formated size of a string
- * \par Function Description
+/*! \brief  Get the formated size of a string
+ *  \par Function Description
  *  Returns the number of bytes needed to hold the string formed
  *  after substituting variable arguments into the format specifier.
  */
@@ -582,14 +578,13 @@ int geda_utility_string_strsize (const char *format, va_list args)
   return size;
 }
 
-/*!
- * \brief strstr_rep for c
- * \par Function Description
+/*! \brief strstr_rep for c
+ *  \par Function Description
  *  replace substring in string with new string
  *
- * \param[in]  original ptr to input string.
- * \param[in]  old      ptr to the string to be replaced
- * \param[in]  new      ptr to the replacement string.
+ *  @param[in]  original ptr to input string.
+ *  @param[in]  old      ptr to the string to be replaced
+ *  @param[in]  new      ptr to the replacement string.
  *
  *  example: str = strstr_rep(str, "  ", " ");
  */
@@ -629,28 +624,24 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
   return original;
 }
 
-/*!
- * \brief Compare strings ignoring case
- * \par Function Description
+/*! \brief Compare strings ignoring case
+ *  \par Function Description
  *  This is a garden varity string compare using toupper
  *  on both inputs. This is commonly in standard libraries,
  *  but not always.
  *
- * \param [in] str1 is a string
- * \param [in] str2 string to compare to \a str1
+ *  \param [in] str1 is the string to be search
+ *  \param [in] str2 is the string to search for
  *
- * \retval TRUE if strings are equivalent, otherwise FALSE.
+ *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
 int geda_utility_string_stricmp(const char *str1, const char *str2)
 {
-  if (str1 && str2) {
-    while (( toupper(*str1) == toupper(*str2)) && (*str1))
-    {
-      str1++; str2++;
-    }
-    return ((*str1 == '\0') && (*str2 == '\0'));
+  while (( toupper(*str1) == toupper(*str2)) && (*str1))
+  {
+    str1++; str2++;
   }
-  return !str1 ? -1 : -2;
+  return !((*str1 == '\0') && (*str2 == '\0'));
 }
 
 /*!
@@ -773,9 +764,8 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
   return NULL;
 }
 
-/*!
- * \brief Replace substring in string ignoring case
- * \par Function Description
+/*! \brief Replace substring in string ignoring case
+ *  \par Function Description
  *  This function replaces the first occurrence of str1 with str2 in
  *  the \a source string. This version dynamically allocates temporary
  *  storage and uses pointer returned from the geda_utility_string_istr
@@ -783,11 +773,11 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
  *  is responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
  *
- * \param [in] source  source is the string to be modified
- * \param [in] old_str old_str is the string to be replaced
- * \param [in] new_str is the replacement for old_str
+ *  \param [in] source  source is the string to be modified
+ *  \param [in] old_str old_str is the string to be replaced
+ *  \param [in] new_str is the replacement for old_str
  *
- * \retval char* source (the orginal pointer) or NULL if old_str
+ *  \retval char* source (the orginal pointer) or NULL if old_str
  *  was not found in the source string or if there was a error
  *  allocating memory.
  *
@@ -920,10 +910,9 @@ char *geda_utility_string_split(char *string, char delimiter, int count)
   return NULL;
 }
 
-/*!
- * \brief  Get Word Count
- * \par Function Description
- * \returns number of spaces in a string plus one.
+/*! \brief  Get Word Count
+ *  \par Function Description
+ *  returns the number of spaces in a string plus one.
  */
 int geda_utility_string_word_count(char *str)
 {
