@@ -396,7 +396,6 @@ SCM g_funcs_postscript(SCM scm_filename)
     filename = scm_to_utf8_string(scm_filename);
 
     if (f_print_file (toplevel, page, color_map, filename)) {
-      free(filename);
       success = TRUE;
     }
     free(filename);
@@ -444,7 +443,6 @@ SCM g_funcs_print(SCM scm_filename)
     filename = scm_to_utf8_string(scm_filename);
 
     if (f_print_file (toplevel, page, color_map, filename)) {
-      free(filename);
       success = TRUE;
     }
     free(filename);

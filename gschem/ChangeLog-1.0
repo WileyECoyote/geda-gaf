@@ -1,7 +1,8 @@
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Update Doxygen comments for functions g_funcs_confirm
-      and g_funcs_confirm_cancel.
+      and g_funcs_confirm_cancel, remove double free in functions g_funcs_print,
+      and g_funcs_postscript.
 
     * src/object/o_edit.c: Revise function o_edit_find_text; eliminate integer
       variable pcount, reduce scope of char *attrib and current_filename, free
