@@ -1,3 +1,9 @@
+2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Revise function o_edit_find_text; eliminate integer
+      variable pcount, reduce scope of char *attrib and current_filename, free
+      current_filename.
+
 2016-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_toplevel.c: Replace g_slist_foreach and g_slist_free

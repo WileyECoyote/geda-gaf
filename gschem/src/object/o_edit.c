@@ -796,17 +796,13 @@ int skiplast;
 int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                       const char     *stext,       int flags, int skip)
 {
-  GedaToplevel *toplevel     = w_current->toplevel;
+  GedaToplevel *toplevel = w_current->toplevel;
+  int   count            = 0;
+  int   page_control     = 0;
+  int   rv;
+  int   text_screen_height;
 
-  char     *attrib           = NULL;
-  char     *current_filename = NULL;
-  int       count            = 0;
-  int       page_control     = 0;
-  int       pcount           = 0;
-  int       rv;
-  int       text_screen_height;
-
-  const     GList *iter;
+  const GList *iter;
 
   skiplast = skip;
   iter     = o_list;
@@ -871,6 +867,8 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
     if ((flags & SEARCH_DESCEND) && (o_current->type == OBJ_COMPLEX)) {
 
+      char *attrib;
+
       attrib = o_attrib_search_attached_attribs_by_name (o_current, "source", count);
 
       /* if above is null, then look inside symbol */
@@ -881,8 +879,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
       /* Check if a source attribute was found */
       if (attrib) {
 
-        pcount = 0;
-        current_filename = geda_utility_string_split(attrib, ',', pcount);
+        char *current_filename = geda_utility_string_split(attrib, ',', 0);
 
         if (current_filename != NULL) {
 
@@ -924,6 +921,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             }
           }
         }
+        GEDA_FREE(current_filename);
       }
     }
 
