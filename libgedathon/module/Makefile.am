@@ -41,7 +41,7 @@ geda_la_CPPFLAGS     = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 
 geda_la_LDFLAGS      = $(AM_LDFLAGS) $(PY_LIBFLAGS) $(GLIB_LIBS) $(LDFLAGS) $(PYTHON_LIBS)
 
-geda_la_LIBADD       = $(LIB_OBJECTS)/libobjects.la
+geda_la_LIBADD	     = $(LIB_OBJECTS)/libobjects.la
 
 LIBTOOL              = @LIBTOOL@ --silent
 
