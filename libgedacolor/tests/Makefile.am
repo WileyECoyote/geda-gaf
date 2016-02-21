@@ -6,7 +6,7 @@ TESTS = $(check_PROGRAMS)
 
 tests: $(check_PROGRAMS)
 
-check-am: update-library
+check-am: update-dependents
 
 AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgedacolor \
@@ -22,14 +22,15 @@ AM_LDFLAGS = $(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
 
 test_color_LDADD  = $(top_builddir)/libgedacolor/src/libgedacolor.la @LIBINTL@
 
-DEPENDS=libgedacolor/src
+DEPENDS=	libgeda/src \
+	libgedacolor/src
 
-update-library:
+update-dependents:
 	@for d in $(DEPENDS); do \
 	  (cd $(top_builddir)/$$d && $(MAKE) $(AM_MAKEFLAGS) all); \
 	done
 
-.PHONY: update-library
+.PHONY: update-dependents
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
