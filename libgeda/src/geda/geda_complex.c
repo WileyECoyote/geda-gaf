@@ -27,20 +27,22 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_complex.c
- *  \brief Geda Complex Object Class derived from the GedaObject Class
+ *  \brief Geda Complex Object Class Module
  */
+
 /** \defgroup geda-complex-object Geda Complex Object
- *  @{
- */
-/*! \class Complex geda_complex.h "include/libgeda/geda_complex.h"
- *  \implements geda-complex-object
- *  \brief This is an implementaion class for GEDA Complex.
+ * @{
+ * \brief Implmentation of #GedaComplex Class
+ * \par
  *  A Geda Complex Object is a graphical symbol used to represent
  *  components or module information and are generally associated
  *  with another file. Information from Complexes, such as ordinary
- *  symbols, can optionally be embedded into schematics.
+ *  symbols, can optionally be embedded into schematics. A Complex
+ *  is derived from the GedaObject base class.
+ *
+ * \class GedaComplex geda_complex.h "include/libgeda/geda_complex.h"
+ * \implements geda-object
  */
-/** @} endgroup geda-complex-object */
 
 #include <config.h>
 
@@ -283,3 +285,5 @@ bool is_a_geda_complex_object (GedaComplex *cpx)
  return FALSE;
 
 }
+
+/** @} endgroup geda-complex-object */

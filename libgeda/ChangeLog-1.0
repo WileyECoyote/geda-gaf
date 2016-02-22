@@ -1,3 +1,8 @@
+2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Revise Doxygen comments in group and move class
+      tag.
+
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise Doxygen comments in group and add class
