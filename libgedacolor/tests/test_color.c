@@ -59,13 +59,16 @@ main (int argc, char *argv[])
 {
   int result = 0;
 
-  libgedacolor_init(&argc, argv);
+  if (libgedacolor_init(&argc, argv)) {
 
-  geda_color_load_display_scheme("../etc/display-colormap-darkbg");
+    geda_color_load_display_scheme("../etc/display-colormap-darkbg");
 
-  result = check_display_colors();
+    result = check_display_colors();
 
-  libgedacolor_release();
-
+    libgedacolor_release();
+  }
+  else {
+    fprintf (stderr, "Host configuration not supported\n");
+  }
   return result;
 }

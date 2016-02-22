@@ -18,7 +18,7 @@ extern "C" {
 
 /* libgedacolor.c */
 
-         void    libgedacolor_init               (int *argc, char **argv);
+         int     libgedacolor_init               (int *argc, char **argv);
          int     geda_color_load_display_scheme  (char *scheme);
          int     geda_color_load_print_scheme    (char *scheme);
          void    libgedacolor_release            (void);

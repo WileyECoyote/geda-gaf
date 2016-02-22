@@ -69,19 +69,25 @@ static void *guile_init(void *lame)
  *  the client is in guile mode.
  *
  */
-void libgedacolor_init(int *argc, char **argv)
+int libgedacolor_init(int *argc, char **argv)
 {
   int lame;
 
-  gdk_init_check (argc, &argv);
+  if (gdk_init_check (argc, &argv)) {
 
-  /* Initialize scheme even if client has not booted Guile */
-  scm_with_guile(guile_init, &lame);
+    /* Initialize scheme even if client has not booted Guile */
+    scm_with_guile(guile_init, &lame);
 
-  geda_color_x11_init();
-  geda_color_struct_init();
+    geda_color_x11_init();
+    geda_color_struct_init();
 
-  geda_color_x11_allocate();
+    geda_color_x11_allocate();
+  }
+  else {
+    fprintf (stderr, "FAILED: gdk_init_check\n");
+    return FALSE;
+  }
+  return TRUE;
 }
 
 int geda_color_load_display_scheme (char *scheme)
