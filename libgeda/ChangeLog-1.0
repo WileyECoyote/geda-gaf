@@ -9,6 +9,9 @@
       o_selection_print_all. Replace fprintf with BUG_PMSG in o_selection_select
       o_selection_unselect.
 
+    * src/struct/s_object.c: Combine conditionals in s_object_release and edit
+      Doxygen comments.
+
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise Doxygen comments in group and add class
