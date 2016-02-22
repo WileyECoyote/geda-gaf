@@ -1,3 +1,13 @@
+2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * travis.yml: Add install libx11-dev; not required for run-time per se,
+      but is needed for tests.
+
+2016-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * travis-after-failure.sh: Add scheme/test-suite.log and libgedacolor/
+      tests/test-suite.log to list.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_idefines.h: Remove UNUSED __attribute__ macros, change
@@ -10,10 +20,6 @@
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 2.1.0.18, 20160214.
-
-2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
-
-    * m4/geda-libgedacolor.m4: Add file, forgot to commit 02-12.
 
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
