@@ -2,7 +2,7 @@
 
 IMAGE_SCRIPT=../../scripts/image.scm
 DEFAULT_FONT_NAME="Arial"
-DEFAULT_RENDERER="Cairo"
+DEFAULT_RENDERER="x11"
 
 # -- For Colorization ---
 RED='\033[0;40;;31m'
