@@ -114,24 +114,24 @@ int o_selection_remove (SELECTION *selection, GedaObject *object)
   return result;
 }
 
-/*! \brief Prints the given selection list
+/*!
+ * \brief Prints the given selection list
+ * \par Function Description
+ * Prints the given selection list.
  *
- *  \par Function Description
- *  Prints the given selection list.
- *
- *  \param [in] selection Pointer to selection list to print.
+ * \param [in] selection Pointer to selection list to print.
  *
  */
 void o_selection_print_all(const SELECTION *selection)
 {
-  const GList *s_current;
-  GedaObject      *object;
-
-  s_current = geda_list_get_glist (selection);
+  const GList *s_current = geda_list_get_glist (selection);
 
   printf("START printing selection ********************\n");
+
   while(s_current != NULL) {
-    object = s_current->data;
+
+    GedaObject *object = s_current->data;
+
     if (object) {
       printf("Selected object: %d, name=%s\n", object->sid, object->name);
     }
@@ -169,8 +169,8 @@ int o_selection_select(GedaObject *object)
     }
   }
   else {
-     fprintf(stderr, "%s: Is not gEDA GedaObject:<%p>\n", __func__, object);
-     result = -1;
+    BUG_PMSG("Not a gEDA GedaObject: <%p>", object);
+    result = -1;
   }
 
   return result;
@@ -200,7 +200,7 @@ int o_selection_unselect (GedaObject *object)
     }
   }
   else {
-    fprintf(stderr, "%s: Is not gEDA GedaObject:<%p>\n", __func__, object);
+    BUG_PMSG("Not a gEDA GedaObject: <%p>", object);
     result = -1;
   }
   return result;
@@ -224,23 +224,21 @@ int o_selection_unselect_all (SELECTION *selection)
   if (GEDA_IS_LIST(selection)) {
 
     GList  *iter;
-    GList  *list;
-    GedaObject *object;
 
-    list = geda_list_get_glist(selection);
-
-    object = list->data;
+    iter = geda_list_get_glist(selection);
 
     result = 0;
 
-    for (iter = list; iter != NULL; iter = g_list_next (iter)) {
+    while (iter) {
 
-      object = iter->data;
+      GedaObject *object = iter->data;
+
       if ((result += object->selected)) { /* if was selected */
         o_notify_emit_pre_change (object);
         object->selected = FALSE;
         o_notify_emit_change (object);
       }
+      iter = iter->next;
     }
   }
   else {

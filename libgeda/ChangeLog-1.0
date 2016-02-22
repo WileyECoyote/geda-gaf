@@ -3,6 +3,12 @@
     * src/geda/geda_complex.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/object/o_selection.c: Simplify o_selection_unselect_all; change For
+      loop to While loop, remove initial read list->data, eliminate variable
+      list, and reduce scope of object in both o_selection_unselect_all and
+      o_selection_print_all. Replace fprintf with BUG_PMSG in o_selection_select
+      o_selection_unselect.
+
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise Doxygen comments in group and add class
