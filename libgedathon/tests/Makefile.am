@@ -11,22 +11,29 @@ TESTS         = ${RUN_TESTS}
 
 EXTRA_DIST    = ${RUN_TESTS} lpfilter.sch README.txt
 
-check-am: update-gsymcheck
+check-am: update-dependents
 
 tests:
 	@exec $(srcdir)/${RUN_TESTS}
 
-tester:
+regen:
 	mv $(srcdir)/tmp/lpfilter.sch $(BUILDDIR)/lpfilter.sch
 	rm -rf $(BUILDDIR)/tmp
 
-update-gsymcheck:
-	(cd $(top_builddir)/gsymcheck/src && $(MAKE) $(AM_MAKEFLAGS) all);
+DEPENDS=\
+	libgeda/src \
+	libgedathon/src \
+	gsymcheck/src
+
+update-dependents:
+	@for d in $(DEPENDS); do \
+	  (cd $(top_builddir)/$$d && $(MAKE) $(AM_MAKEFLAGS) all); \
+	done
 
 uninstall-hook:
 	@(test -d geda && rm -rf geda) || : ;
 
-.PHONY: update-gsymcheck
+.PHONY: regen update-dependents
 
 clean-local:
 	test -d tmp && rm -rf tmp || : ;
