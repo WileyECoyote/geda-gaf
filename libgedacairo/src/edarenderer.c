@@ -796,7 +796,7 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid = FALSE;
+  int fill_solid;
 
   /* Hatch circle */
   fill_solid = eda_renderer_draw_hatch (renderer, object);
