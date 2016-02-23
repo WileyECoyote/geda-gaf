@@ -529,18 +529,21 @@ int geda_utility_string_stristr ( const char *haystack, const char *needle)
    return result;
 }
 
-/*! \brief Check for equal strings
- *  \par Function Description
+/*!
+ * \brief Check for equal strings
+ * \par Function Description
  *  This function compares two strings and returns TRUE if
  *  they are equal or FALSE if they are not.
  *
- *  \param [in] str1 is the string to be search
- *  \param [in] str2 is the string to search for
+ * \param [in] str1 is the string to be search
+ * \param [in] str2 is the string to search for
  *
- *  \retval TRUE if strings are equivalent, otherwise FALSE.
+ * \retval TRUE if strings are equivalent, otherwise FALSE.
  */
 bool geda_utility_string_strequal(const char *str1, const char *str2)
 {
+  if ((str1 && !str2) || (!str1 && str2))
+    return -0;
   while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
   return ((*str1 == '\0') && (*str2 == '\0'));
 }
@@ -578,15 +581,25 @@ int geda_utility_string_strsize (const char *format, va_list args)
   return size;
 }
 
-/*! \brief strstr_rep for c
- *  \par Function Description
- *  replace substring in string with new string
+/*!
+ * \brief strstr_rep for c
+ * \par Function Description
+ *  Recursively replace substring in string with new string. This
+ *  function can be used to reduce multiple occurrence of a pattern
+ *  in a string to a single occurrence. For general string substitution
+ *  see geda_utility_string_strsubst.
  *
- *  @param[in]  original ptr to input string.
- *  @param[in]  old      ptr to the string to be replaced
- *  @param[in]  new      ptr to the replacement string.
+ * \warning if \a new is the same pattern as \a old, new should have
+ *          fewer characters than \a old, i.e. do not use to add
+ *          characters like strstr_rep(str, " ", "  ")!
+ *
+ * \param[in]  original ptr to input string.
+ * \param[in]  old      ptr to the string to be replaced
+ * \param[in]  new      ptr to the replacement string.
  *
  *  example: str = strstr_rep(str, "  ", " ");
+ *
+ * \sa geda_utility_string_strsubst
  */
 char *geda_utility_string_strstr_rep(char *original, const char *old, const char *new)
 {
@@ -613,6 +626,9 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
     }
   }
 
+  if (!original || !old || !new)
+    return(NULL);
+
   if ((temp = (char*)malloc(sizeof(char)*(strlen(original)+1))) == NULL)
     return(NULL);
 
@@ -624,16 +640,20 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
   return original;
 }
 
-/*! \brief Compare strings ignoring case
- *  \par Function Description
+/*!
+ * \brief Compare strings ignoring case
+ * \par Function Description
  *  This is a garden varity string compare using toupper
  *  on both inputs. This is commonly in standard libraries,
  *  but not always.
  *
- *  \param [in] str1 is the string to be search
- *  \param [in] str2 is the string to search for
+ * \param [in] str1 is the string to be search
+ * \param [in] str2 is the string to search for
  *
- *  \retval TRUE if strings are equivalent, otherwise FALSE.
+ * \remarks str1 and str2 must not be NULL!
+ *
+ * \retval 0 if the strings are equivalent, or
+ *         1 if the strings are NOT equivalent.
  */
 int geda_utility_string_stricmp(const char *str1, const char *str2)
 {

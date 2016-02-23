@@ -2,6 +2,9 @@
 
     * src/object/o_save.c: Reduce scope of variables.
 
+    * src/utility/u_string.c: Check for NULL argument in geda_utility_string_
+      strstr_rep, revise Doxygen comments.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revise Doxygen comments in group and move class
