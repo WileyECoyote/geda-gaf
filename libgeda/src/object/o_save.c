@@ -48,10 +48,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
   for (iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
   {
-    Page *p_current;
-    char *real_filename;
-
-    p_current = (Page*)iter->data;
+    Page *p_current = (Page*)iter->data;
 
     if (p_current->do_autosave_backup == 0) {
       continue;
@@ -59,10 +56,12 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
     if (p_current->ops_since_last_backup != 0) {
 
-      count++;
+      char *real_filename;
 
       /* Get the real filename and file permissions */
       real_filename = f_sys_follow_symlinks (p_current->filename, NULL);
+
+      count++;
 
       if (real_filename == NULL) {
         u_log_message (_("%s: Can't get real filename of %s."),
@@ -177,7 +176,6 @@ void o_save_auto_backup(GedaToplevel *toplevel)
  */
 char *o_save_objects (const GList *object_list, bool save_attribs)
 {
-  GedaObject  *o_current;
   const    GList *iter;
   char    *out;
   GString *acc;
@@ -189,7 +187,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
   while ( iter != NULL ) {
 
-    o_current = (GedaObject*)iter->data;
+    GedaObject *o_current = (GedaObject*)iter->data;
 
     if (save_attribs || o_current->attached_to == NULL) {
 
@@ -308,9 +306,9 @@ char *o_save_buffer (const GList *object_list)
   GString *acc;
   char    *buffer;
 
-  acc = g_string_new (f_get_format_header());
-
+  acc    = g_string_new (f_get_format_header());
   buffer = o_save_objects (object_list, FALSE);
+
   g_string_append (acc, buffer);
   GEDA_FREE (buffer);
 
@@ -330,9 +328,7 @@ char *o_save_buffer (const GList *object_list)
 bool
 o_save (const GList *object_list, const char *filename, GError **err)
 {
-  char *buffer;
   char *path;
-
   int   result;
 
   errno = 0;
@@ -346,7 +342,8 @@ o_save (const GList *object_list, const char *filename, GError **err)
   }
   else {
 
-    FILE  *output;
+    FILE *output;
+    char *buffer;
 
     output = fopen (filename, "w" );
 
@@ -363,4 +360,3 @@ o_save (const GList *object_list, const char *filename, GError **err)
   GEDA_FREE (path);
   return result;
 }
-

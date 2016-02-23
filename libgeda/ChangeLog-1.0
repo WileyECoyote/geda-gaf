@@ -1,3 +1,7 @@
+2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: Reduce scope of variables.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revise Doxygen comments in group and move class
