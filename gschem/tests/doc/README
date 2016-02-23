@@ -30,15 +30,13 @@ the value is the name of the shell script in the tests directory
 to run. The relative file name of the inputs is passed as an
 argument to the "value" script, aka ${src_dir}/inputs/file.sch
 
-runtest.sh sets four environment varibles:
+runtest.sh sets three environment varibles:
 
 	1.) TEST_APP is the qualified path for gschem program
 
 	2.) "TESTDIR" the "run" directory, ${build_dir}/run)
 
-    3.) "regenerating" set if golden outputs are to be recreated
-
-    4.) "verbosity" set if verbose mode
+	3.) "regenerating" set if golden outputs are to be recreated
 
 The "logs" directory is created if the directory does not exist.
 The "logs" directory is emptied if the directory does exist.

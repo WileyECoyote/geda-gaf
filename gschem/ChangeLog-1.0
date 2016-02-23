@@ -1,3 +1,16 @@
+2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/golden: Regenerate using X11 renderer due to scaling of line
+      width changes in libgedadraw.
+
+            * golden/bus_endpoint_to_net.png
+            * golden/bus_ripper_1.png
+            * golden/net_endpoint_to_bus.png
+
+    * tests/TEST_FUNCS: Add COMPARE_OPTIONS for options arguments for image
+      magic compare, using alpha opaque with MAE metric helps get results
+      closer for Cairo renderer but still not quite there.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base: Invert test of geda_utility_string_stricmp in:
@@ -12,9 +25,6 @@
             * golden/bus_endpoint_to_net.png
             * golden/bus_ripper_1.png
             * golden/net_endpoint_to_bus.png
-
-
-
 
 2016-02-21 Wiley E. Hill <wileyhill@gmail.com>
 

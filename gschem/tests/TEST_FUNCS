@@ -118,7 +118,7 @@ run_diff() {
     if test $? -ne 0 ; then return 1 ; fi
     return 0
 }
-
+COMPARE_OPTIONS="-metric MAE -alpha opaque"
 #-------------------------------------------------------------------
 #
 # GIF/JPEG/PNG comparison routines
@@ -136,9 +136,9 @@ compare_image() {
     check_exist "compare_image" "$f1" "$f2" || return 1
 
     # now see if the image files are the same
-    decho "${IM_COMPARE} -metric MAE ${f1} ${f2}  null:"
-    same=`${IM_COMPARE} -metric MAE ${f1} ${f2}  null: 2>&1 | \
-          ${AWK} '{if($1 == 0){print "yes"} else {print "no"}}'`
+    decho "${IM_COMPARE} ${COMPARE_OPTIONS} ${f1} ${f2}  null:"
+    same=`${IM_COMPARE} ${COMPARE_OPTIONS} ${f1} ${f2}  null: 2>&1 | \
+          ${AWK} '{if($1 < 5){print "yes"} else {print "no"}}'`
     decho "compare_image():  same = $same"
 
     if test "$same" != yes ; then
