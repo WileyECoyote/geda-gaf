@@ -106,7 +106,7 @@ bool x_find_main_search(char* text, char *replacement) {
       if (Search.Case)
         return !(strcmp ( cell_text, text));
       else
-        return !(geda_utility_string_stricmp ( cell_text, text));
+        return (!geda_utility_string_stricmp ( cell_text, text));
     else
       if (Search.Case)
         return (strstr ( cell_text, text)) ? (strlen (strstr ( cell_text, text))) : 0;

@@ -9,6 +9,9 @@
       o_selection_print_all. Replace fprintf with BUG_PMSG in o_selection_select
       o_selection_unselect.
 
+    * src/struct/s_clib.c: Invert test of geda_utility_string_stricmp in
+      function refresh_directory.
+
     * src/struct/s_object.c: Combine conditionals in s_object_release and edit
       Doxygen comments.
 

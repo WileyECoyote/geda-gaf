@@ -388,7 +388,7 @@ bool get_titleblock_list(char **Buffer) {
 
       const char *suffix = f_get_filename_ext(ent->d_name);
 
-      if (suffix && geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+      if (suffix && !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX))
       {
         char tmpbuff[MAX_FILENAME];
         int  namelen;

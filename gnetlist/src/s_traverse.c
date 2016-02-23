@@ -390,7 +390,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
-        if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
+        if (!geda_utility_string_stricmp(temp_uref,"none")) {
           GEDA_FREE(temp_uref);          /* Release and set to NULL */
         }
       }

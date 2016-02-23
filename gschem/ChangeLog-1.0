@@ -1,5 +1,10 @@
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base: Invert test of geda_utility_string_stricmp in:
+
+            * src/base/gschem_parsecmd.c
+            * src/x/x_settings.c
+
     * tests/IMAGE_DIFF: Set default renderer adapter back to X11.
 
     * tests/golden: Regenerate using X11 renderer:
@@ -7,6 +12,9 @@
             * golden/bus_endpoint_to_net.png
             * golden/bus_ripper_1.png
             * golden/net_endpoint_to_bus.png
+
+
+
 
 2016-02-21 Wiley E. Hill <wileyhill@gmail.com>
 

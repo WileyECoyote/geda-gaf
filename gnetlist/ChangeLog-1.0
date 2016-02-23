@@ -1,3 +1,7 @@
+2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Invert test of geda_utility_string_stricmp.
+
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/gnetlist.c: Reduce scope of dentry in gnetlist_backends.

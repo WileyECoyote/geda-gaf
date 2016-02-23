@@ -314,7 +314,7 @@ static bool s_check_is_known_device (const char *device)
     int  index;
 
     for (index = 0; known_devices[index] != NULL; index++) {
-      if (geda_utility_string_stricmp(device, known_devices[index]) == 0)
+      if (!geda_utility_string_stricmp(device, known_devices[index]))
         return TRUE;
     }
     known = FALSE;

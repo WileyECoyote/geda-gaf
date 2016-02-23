@@ -1,3 +1,7 @@
+2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Invert test of geda_utility_string_stricmp.
+
 2015-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_rc.c: Change include "version.h" to include <version.h> because

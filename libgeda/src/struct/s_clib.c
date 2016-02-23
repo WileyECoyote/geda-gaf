@@ -648,7 +648,7 @@ static void refresh_directory (CLibSource *source)
 
         suffix = f_get_filename_ext(entry->d_name);
 
-        if (suffix && geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
+        if (suffix && !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX)) {
 
           /* skip filenames that we already know about. */
           if (source_has_symbol (source, entry->d_name) == NULL) {
