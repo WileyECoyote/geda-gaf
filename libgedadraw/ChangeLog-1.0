@@ -1,3 +1,12 @@
+2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+     * include/geda_x11.hpp: Tweak inline GetLineWidth to use linear scaling;
+       m=1/(scale + 0.14) and b=1.15 seems to closely approximate the scaling
+       used by Cairo but Cairo's anti-aliasing blurs edge definitions a bit
+       and this make it difficult to compare pixels wise, is close enough.
+       Edges of lines using X11 look sharp, but neither do a good job with
+       angles.
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/x11/geda_x11.cpp: : Reduce scope and unnecessary initialization

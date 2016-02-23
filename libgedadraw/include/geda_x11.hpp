@@ -105,7 +105,8 @@ protected:
   std::string   font_string;
 
   inline int GetLineWidth (int line_width) {
-    return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / 12;
+
+    return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / (scale + 0.14) + 1.15;
   }
 
   inline std::string GetFontString(int size);
