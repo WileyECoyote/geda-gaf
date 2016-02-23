@@ -1,3 +1,7 @@
+2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Revise logic for geda_utility_string_stristr results.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Invert test of geda_utility_string_stricmp.

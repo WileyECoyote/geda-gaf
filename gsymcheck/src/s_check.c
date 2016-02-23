@@ -594,7 +594,7 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
       /* Check is attribute has directive */
       const char *string = o_current->text->string;
 
-      if (geda_utility_string_stristr(string, directive) >= 0) {
+      if (!geda_utility_string_stristr(string, directive) < 0) {
         s_current->has_directive = TRUE;
       }
     }

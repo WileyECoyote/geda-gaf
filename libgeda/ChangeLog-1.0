@@ -5,6 +5,10 @@
     * src/utility/u_string.c: Check for NULL argument in geda_utility_string_
       strstr_rep and geda_utility_string_strequal, revise Doxygen comments.
 
+    * src/utility/u_string.c: Revise geda_utility_string_stristr to actually
+      return the position of the string if found, replace g_strstr_len with
+      strstr and invert tests for NULL arguments.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revise Doxygen comments in group and move class

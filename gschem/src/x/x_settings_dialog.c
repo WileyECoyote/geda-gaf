@@ -1622,8 +1622,8 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
     if (reduced) {
 
-      for (iter = geda_list_get_glist(font_list); iter; iter = iter->next) {
-
+      for (iter = geda_list_get_glist(font_list); iter; iter = iter->next)
+      {
         const char *needle;
         const char *haystack;
 
@@ -1637,7 +1637,8 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
           haystack = reduced; needle = pfont;
         }
 
-        if ( pfont && !geda_utility_string_stristr(haystack, needle)) {
+        if (pfont && !geda_utility_string_stristr(haystack, needle) < 0)
+        {
           current = index;
           break;
         }

@@ -1,5 +1,11 @@
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/.../: Revise logic for geda_utility_string_stristr results in:
+
+            * src/object/o_page.c
+            * src/x/x_compselect.c
+            * src/x/x_settings_dialog.c
+
     * tests/golden: Regenerate using X11 renderer due to scaling of line
       width changes in libgedadraw.
 

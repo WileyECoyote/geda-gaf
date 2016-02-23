@@ -495,38 +495,44 @@ char *geda_utility_string_strndup(const char *str, size_t n)
   return ptr;
 }
 
-/*! \brief Non case sensitive search for string in a string
- *  \par Function Description
- *  \retval  A non zero result is the position needle was found in
- *  haystack, a negative result means needle was not found OR one
+/*! U613
+ * \brief Non case sensitive search for string in a string
+ * \par Function Description
+ * \retval  A non negative result is the position needle was found
+ *  in haystack, a negative result means needle was not found OR one
  *  of the two inputs is NULL.
  */
 int geda_utility_string_stristr ( const char *haystack, const char *needle)
 {
-   int result = -1;
+  int result;
 
-   if (needle && haystack) {
+  if (!needle || !haystack) {
+    result = -1;
+  }
+  else {
 
-     if (g_strstr_len( haystack, -1, needle) != NULL) {
-       result = 0;
-     }
-     else {
+    char *ptr = strstr(haystack, needle);
 
-       char *upper_needle;
-       char *upper_haystack;
+    if (!ptr) {
 
-       upper_needle   = g_ascii_strup( needle, -1);
-       upper_haystack = g_ascii_strup( haystack, -1);
+      char *upper_needle;
+      char *upper_haystack;
 
-       if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL)
-         result = 0;
-       else
-         GEDA_FREE(upper_needle);
+      upper_needle   = g_ascii_strup( needle, -1);
+      upper_haystack = g_ascii_strup( haystack, -1);
 
-       GEDA_FREE(upper_haystack);
-     }
-   }
-   return result;
+      ptr = strstr(upper_haystack, upper_needle);
+
+      result = ptr ? ptr - upper_haystack : -1;
+
+      GEDA_FREE(upper_needle);
+      GEDA_FREE(upper_haystack);
+    }
+    else {
+      result = ptr - haystack;
+    }
+  }
+  return result;
 }
 
 /*!
