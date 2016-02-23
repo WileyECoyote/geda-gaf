@@ -1,5 +1,8 @@
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_circle.c: Revise Doxygen comments in group and move class
+      tag.
+
     * src/object/o_save.c: Reduce scope of variables.
 
     * src/utility/u_string.c: Check for NULL argument in geda_utility_string_
