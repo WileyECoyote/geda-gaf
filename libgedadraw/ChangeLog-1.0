@@ -7,6 +7,11 @@
        Edges of lines using X11 look sharp, but neither do a good job with
        angles.
 
+     * src/x11/geda_x11.cpp: Fix resetting of gc GCLineStyle bits for solid
+       line types when rendering nets and buses. If discontinuous lines were
+       drawn prior to rendering nets and buses, the same style was applied to
+       the nets and buses, regular lines were not affected.
+
 2016-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/x11/geda_x11.cpp: : Reduce scope and unnecessary initialization

@@ -779,6 +779,7 @@ SetLineAttributes(XGCValues *gcvals, int total)
   else {
     success = false;
   }
+
   return success ? GCCapStyle | GCLineStyle | GCLineWidth : 0;
 }
 
@@ -1112,8 +1113,9 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
   XGCValues gcvals;
 
   if (GEDA_IS_OBJECT(object)) {
+    gcvals.line_style = LineSolid;
     gcvals.line_width = GetLineWidth(object->line_options->line_width);
-    XChangeGC(display, gc, GCLineWidth, &gcvals);
+    XChangeGC(display, gc, GCLineWidth | GCLineStyle, &gcvals);
     XDrawLine(display, drawable, gc, x1, y1, x2, y2);
   }
   return;
