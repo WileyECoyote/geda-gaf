@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.1
+VER=0.1.2
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -279,6 +279,9 @@ do_process_input()
     else
       echo "Found bad or missing test $TEST"
     fi
+
+    test "-f run/${LOG}" && cat run/${LOG} >> ${BUILDDIR}/${LOG}
+
   done
 
   return $SUBTOTAL
