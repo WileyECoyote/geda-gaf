@@ -368,7 +368,7 @@ i_vars_recall_user_settings(GschemToplevel *w_current)
   const char   *group;
   const char   *key;
 
-  v_log_message("Restoring user settings\n");
+  v_log_message(_("Restoring user settings\n"));
 
   if (comline_font) { /* If font-family was specified on command line */
     eda_renderer_set_font_name(CairoRenderer, comline_font);
@@ -756,7 +756,7 @@ void i_vars_init(GschemToplevel *w_current)
   g_rc_parse_gtkrc();
 
   /* Set values for all variables */
-  v_log_message("Initializing default configuration settings\n");
+  v_log_message(_("Initializing default configuration settings\n"));
 
   /* This is the prefix of the default filename used for newly created
    * schematics and symbols. */

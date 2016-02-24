@@ -130,7 +130,7 @@ void v_log_message(const char *format, ...)
  */
 void x_console_destroy_command_buffer(void * user_data) {
   if (command_buffer) {
-      v_log_message("destroying history\n");
+      v_log_message(_("destroying history\n"));
       g_list_foreach(command_buffer, (GFunc)g_free, NULL);
       g_list_free (command_buffer);
       command_buffer = NULL; /* This is not optional */
@@ -141,7 +141,7 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
   inline void i_setv_rc(volatile int *var, int rc) { if (rc != RC_NIL) *var = rc; };
 
-  v_log_message("Initializing Log & Console Systems configuration settings\n");
+  v_log_message(_("Initializing Log & Console Systems configuration settings\n"));
 
   EdaConfig    *cfg   = eda_config_get_user_context ();
   const char   *group = LOG_CONFIG_GROUP;
@@ -183,10 +183,10 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
     mode = mode - 1;
     nlevel = mode > nlevel ? nlevel - 1 : mode;
     i_command_engage(w_current);
-    v_log_message(_("Command interface: engaged using (%s)"), describe_level[mode]);
+    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[mode]);
   }
   else {
-    v_log_message(_("Command interface: engaged using (%s)"), describe_level[0]);
+    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
   }
 #endif

@@ -1168,7 +1168,7 @@ void i_sessions_set_show_at_startup(bool show)
   eda_config_set_boolean (cfg, group, key, show);
 
   if (show) {
-    v_log_message(_("Show Sessions at startup is now ENABLED.\n"));
+    v_log_message(_("Show Sessions at startup is now ENABLED\n"));
   }
   else {
     v_log_message(_("Show Sessions at startup is now DISABLED\n"));

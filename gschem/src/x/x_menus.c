@@ -1364,10 +1364,10 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
   x_menu_update_recent_files();
 
   if (state) {
-    v_log_message(_("gschem: Enabling menu tooltips\n"));
+    v_log_message(_("Enabling menu tooltips\n"));
   }
   else {
-    v_log_message(_("gschem: Disabling menu tooltips\n"));
+    v_log_message(_("Disabling menu tooltips\n"));
   }
 }
 

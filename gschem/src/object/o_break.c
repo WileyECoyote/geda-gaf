@@ -181,10 +181,10 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
       result = TRUE;
     }
     else
-      v_log_message("Point 2 missed x=%d, y=%d)\n", point2.x, point2.y);
+      v_log_message(_("Point 2 missed x=%d, y=%d\n"), point2.x, point2.y);
   }
   else
-    v_log_message("Point 1 missed x=%d, y=%d)\n", point1.x, point1.y);
+    v_log_message(_("Point 1 missed x=%d, y=%d\n"), point1.x, point1.y);
 
   return result;
 }
@@ -511,10 +511,10 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
       result = TRUE;
     }
     else
-      v_log_message("Point 2 missed x=%d, y=%d)\n", point2.x, point2.y);
+      v_log_message(_("Point 2 missed x=%d, y=%d\n"), point2.x, point2.y);
   }
   else
-    v_log_message("Point 1 missed x=%d, y=%d)\n", point1.x, point1.y);
+    v_log_message(_("Point 1 missed x=%d, y=%d\n"), point1.x, point1.y);
 
   return result;
 }
@@ -833,10 +833,10 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       result = TRUE;
     }
     else
-      v_log_message("Point 2 missed x=%d, y=%d)\n", point2.x, point2.y);
+      v_log_message(_("Point 2 missed x=%d, y=%d\n"), point2.x, point2.y);
   }
   else
-    v_log_message("Point 1 missed x=%d, y=%d)\n", point1.x, point1.y);
+    v_log_message(_("Point 1 missed x=%d, y=%d\n"), point1.x, point1.y);
 
   g_array_free (points, TRUE);
   return result;

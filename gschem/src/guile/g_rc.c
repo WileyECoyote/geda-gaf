@@ -80,22 +80,22 @@ void g_rc_parse_gtkrc()
   /* System */
   filename = g_build_filename (f_path_sys_config (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
-    v_log_message("Processing %s\n", filename);
+    v_log_message(_("Processing %s\n"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message("Skipping %s, %s\n", filename, strerror(errno));
+    v_log_message(_("Skipping %s, %s\n"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 
   /* User */
   filename = g_build_filename (f_path_user_config (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
-    v_log_message("Processing %s\n", filename);
+    v_log_message(_("Processing %s\n"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message("Skipping %s, %s\n", filename, strerror(errno));
+    v_log_message(_("Skipping %s, %s\n"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 }

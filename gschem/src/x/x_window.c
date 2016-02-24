@@ -661,13 +661,13 @@ void x_window_close(GschemToplevel *w_current)
   /* If we're closing whilst inside an action, re-wind the
    * page contents back to their state before we started */
   if (w_current->inside_action) {
-    v_log_message("Aborting action\n");
+    v_log_message(_("Aborting action\n"));
     i_callback_cancel (w_current, 0, NULL);
   }
 
   /* last chance to save possible unsaved pages */
   if (!x_confirm_close_window (w_current)) {
-    v_log_message("Close Window canceled\n");
+    v_log_message(_("Close Window canceled\n"));
     /* user canceled the close */
     return;
   }
@@ -1037,7 +1037,7 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);
     o_invalidate_all (w_current);
-    v_log_message("Set page <%s> active.", f_get_basename(page->filename));
+    v_log_message(_("Set page <%s> active.\n"), f_get_basename(page->filename));
   }
 }
 
@@ -1207,7 +1207,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
       /* If we're closing whilst inside an action, re-wind the
        * page contents back to their state before we started */
       if (w_current->inside_action) {
-        v_log_message("Aborting action\n");
+        v_log_message(_("Aborting action\n"));
         i_callback_cancel (w_current, 0, NULL);
       }
 

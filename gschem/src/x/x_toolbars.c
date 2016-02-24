@@ -647,7 +647,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
       if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
         RestoreAllBars();
-        v_log_message("Toolbar configuration restored from %s\n", filename);
+        v_log_message("Toolbar configuration restored from %s\n", TOOLBAR_CONFIG_STORE);
       }
       else {
         u_log_message("Warning, Error Restoring Toolbar configuration, %s %s\n",

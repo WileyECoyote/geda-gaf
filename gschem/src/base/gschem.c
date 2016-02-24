@@ -156,8 +156,8 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
       /* Check for non-expanded wild-card, if not match then no expansion */
       if (strstr(argv[i], "*") != NULL) {
-        u_log_message("Warning: <%s> did not expand\n", argv[i]);
-        v_log_message("Command-line error: disabling auto load last\n");
+        u_log_message(_("Warning: <%s> did not expand\n"), argv[i]);
+        v_log_message(_("Command-line error: disabling auto load last\n"));
         override_autoload = TRUE;
         continue;
       }
@@ -187,7 +187,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
           if (access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
             if(verbose_mode) {
-              v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+              v_log_message(_("Assumming schematic file suffix for [%s]\n"), basename (filename));
             }
           }
           else {
@@ -197,7 +197,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
             if ( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
               filename = tmpfilename;
               if (verbose_mode) {
-                v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
+                v_log_message(_("Assumming symbol file suffix for [%s]\n"), basename (filename));
               }
             }
           }
@@ -378,7 +378,7 @@ static void gschem( int argc, char *argv[])
                      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
   }
   else {
-    v_log_message("Logging system is disabled");
+    v_log_message(_("Logging system is disabled\n"));
   }
 
   /*! \internal End Setup Log & Console Systems > */
@@ -502,7 +502,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     }
 
     gschem_quit();
-    v_log_message(_("Exiting normal"));
+    v_log_message(_("Exiting normal\n"));
   }
 }
 

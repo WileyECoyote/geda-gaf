@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-14 01:09-0600\n"
+"POT-Creation-Date: 2016-02-24 13:53-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,6 +18,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
+
+#: gschem/src/base/gschem.c:159
+#, c-format
+msgid "Warning: <%s> did not expand\n"
+msgstr ""
+
+#: gschem/src/base/gschem.c:160
+msgid "Command-line error: disabling auto load last\n"
+msgstr ""
+
+#: gschem/src/base/gschem.c:190
+#, c-format
+msgid "Assumming schematic file suffix for [%s]\n"
+msgstr ""
+
+#: gschem/src/base/gschem.c:200
+#, c-format
+msgid "Assumming symbol file suffix for [%s]\n"
+msgstr ""
 
 #: gschem/src/base/gschem.c:230
 #, fuzzy, c-format
@@ -56,6 +75,10 @@ msgstr "Falha ao ler o arquivo scm [%s]\n"
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem versão %s%s.%s\n"
 
+#: gschem/src/base/gschem.c:381
+msgid "Logging system is disabled\n"
+msgstr ""
+
 #: gschem/src/base/gschem.c:417
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
@@ -65,7 +88,7 @@ msgstr ""
 "O log do gschem log deve conter mais informações.\n"
 
 #: gschem/src/base/gschem.c:505
-msgid "Exiting normal"
+msgid "Exiting normal\n"
 msgstr ""
 
 #: gschem/src/base/gschem_dialog.c:569
@@ -113,7 +136,8 @@ msgid ""
 "  -h, --help                 Help; this message.\n"
 "  -m, --safe-mode            Safe Mode.\n"
 "  -n, --no-auto              No auto load last document.\n"
-"  -o, --output <FILE>        Output filename (for printing).\n"
+"  -o, --output <FILE>        Output filename (for printing and image "
+"output).\n"
 "  -p, --place                Automatically place the window.\n"
 "  -q, --quiet                Quiet mode.\n"
 "  -r, --run <FILE>           Scheme script to run at startup.\n"
@@ -153,10 +177,10 @@ msgstr ""
 "Reportagens de bugs para <https://bugs.launchpad.net/geda>\n"
 "Homepage gEDA/gaf: <http://www.geda-project.org/>\n"
 
-#: gschem/src/base/gschem_parsecmd.c:127
+#: gschem/src/base/gschem_parsecmd.c:128
 #, fuzzy, c-format
 msgid ""
-"gEDA %s (g%.7s)\n"
+"gEDA %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2016 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
@@ -170,7 +194,7 @@ msgstr ""
 "é incluído na distribuição gEDA.\n"
 "Ele é SEM GARANTIA, dentro do permitido pela lei.\n"
 
-#: gschem/src/base/gschem_parsecmd.c:241
+#: gschem/src/base/gschem_parsecmd.c:244
 #, c-format
 msgid "error parsing: <%s>: %s\n"
 msgstr ""
@@ -338,6 +362,16 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:94
+#, fuzzy, c-format
+msgid "Processing %s\n"
+msgstr "Fechando [%s]\n"
+
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:98
+#, c-format
+msgid "Skipping %s, %s\n"
+msgstr ""
+
 #: gschem/src/guile/g_rc.c:119 gschem/src/guile/g_rc.c:124
 #, c-format
 msgid "Bad Value [%d], check %s entry in rc file\n"
@@ -461,7 +495,7 @@ msgstr ""
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2598
+#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2597
 #, c-format
 msgid "New page created [%s]\n"
 msgstr "Criada Nova Página [%s]\n"
@@ -471,205 +505,205 @@ msgstr "Criada Nova Página [%s]\n"
 msgid "New Window created [%s]\n"
 msgstr "Criada nova Janela [%s]\n"
 
-#: gschem/src/iface/i_command.c:932
+#: gschem/src/iface/i_command.c:931
 msgid "Failed to Save All"
 msgstr "Falha ao salvar tudo"
 
-#: gschem/src/iface/i_command.c:935 gschem/src/iface/i_command.c:952
+#: gschem/src/iface/i_command.c:934 gschem/src/iface/i_command.c:951
 msgid "Saved All"
 msgstr "Tudo foi salvo"
 
-#: gschem/src/iface/i_command.c:949
+#: gschem/src/iface/i_command.c:948
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1019 gschem/src/x/x_image.c:496
+#: gschem/src/iface/i_command.c:1018 gschem/src/x/x_image.c:480
 #, fuzzy
 msgid "Write Image"
 msgstr "Gravar imagem..."
 
-#: gschem/src/iface/i_command.c:1035
+#: gschem/src/iface/i_command.c:1034
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1101
+#: gschem/src/iface/i_command.c:1100
 msgid "Close all canceled\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1110 gschem/src/iface/i_sessions.c:188
+#: gschem/src/iface/i_command.c:1109 gschem/src/iface/i_sessions.c:188
 #, fuzzy
 msgid "Closing all documents\n"
 msgstr "Fechar página"
 
-#: gschem/src/iface/i_command.c:1133
+#: gschem/src/iface/i_command.c:1132
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1147
+#: gschem/src/iface/i_command.c:1146
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1171
+#: gschem/src/iface/i_command.c:1170
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1303
+#: gschem/src/iface/i_command.c:1302
 msgid "Empty buffer"
 msgstr "Buffer vazio"
 
-#: gschem/src/iface/i_command.c:1566
+#: gschem/src/iface/i_command.c:1565
 #, fuzzy
 msgid "Offset Mode"
 msgstr "Modo de Conexão (NET)"
 
-#: gschem/src/iface/i_command.c:1567
+#: gschem/src/iface/i_command.c:1566
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2096
+#: gschem/src/iface/i_command.c:2095
 #, fuzzy
 msgid "Zoom Magnification"
 msgstr "/Zoom maior"
 
-#: gschem/src/iface/i_command.c:2096
+#: gschem/src/iface/i_command.c:2095
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2147
+#: gschem/src/iface/i_command.c:2146
 #, fuzzy
 msgid "No component selected\n"
 msgstr "Usar grade de pontos\n"
 
-#: gschem/src/iface/i_command.c:2684
+#: gschem/src/iface/i_command.c:2683
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2866
+#: gschem/src/iface/i_command.c:2865
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr "Procurando por origem [%s]\n"
 
-#: gschem/src/iface/i_command.c:2900
+#: gschem/src/iface/i_command.c:2899
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "Falhou descendo em '%s': %s\n"
 
-#: gschem/src/iface/i_command.c:2909
+#: gschem/src/iface/i_command.c:2908
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "Hie_rarquia"
 
-#: gschem/src/iface/i_command.c:2985
+#: gschem/src/iface/i_command.c:2984
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr "Procurando por símbolo [%s]\n"
 
-#: gschem/src/iface/i_command.c:2992
+#: gschem/src/iface/i_command.c:2991
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Símbolo não é um arquivo real. Não pode ser lido.\n"
 
-#: gschem/src/iface/i_command.c:3039
+#: gschem/src/iface/i_command.c:3038
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Impossível encontrar um esquema sobre o corrente!\n"
 
-#: gschem/src/iface/i_command.c:3545
+#: gschem/src/iface/i_command.c:3544
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3935
+#: gschem/src/iface/i_command.c:3934
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ATENÇÃO: Não translade com o Ajuste (snap) desligado!\n"
 
-#: gschem/src/iface/i_command.c:3936
+#: gschem/src/iface/i_command.c:3935
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "ATENÇÃO: Ligando o Ajuste e continuando o translado.\n"
 
-#: gschem/src/iface/i_command.c:3942
+#: gschem/src/iface/i_command.c:3941
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ATENÇÃO: A grade de Ajuste não está em 100!\n"
 
-#: gschem/src/iface/i_command.c:3943
+#: gschem/src/iface/i_command.c:3942
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 "ATENÇÃO: Se transladar um símbolo para origem, a grade deve estar em 100\n"
 
-#: gschem/src/iface/i_command.c:4108
+#: gschem/src/iface/i_command.c:4107
 msgid "Grid OFF\n"
 msgstr "Grade DESLIGADA\n"
 
-#: gschem/src/iface/i_command.c:4109
+#: gschem/src/iface/i_command.c:4108
 #, fuzzy
 msgid "Dot grid activated\n"
 msgstr "Usar grade de pontos\n"
 
-#: gschem/src/iface/i_command.c:4110
+#: gschem/src/iface/i_command.c:4109
 #, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Usar grade em malha\n"
 
-#: gschem/src/iface/i_command.c:4189
+#: gschem/src/iface/i_command.c:4188
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Ajuste desligado (CUIDADO!)\n"
 
-#: gschem/src/iface/i_command.c:4194
+#: gschem/src/iface/i_command.c:4193
 msgid "Snap ON\n"
 msgstr "Ajuste ligado\n"
 
-#: gschem/src/iface/i_command.c:4198
+#: gschem/src/iface/i_command.c:4197
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Reajuste à grade (CUIDADO!)\n"
 
-#: gschem/src/iface/i_command.c:4215
+#: gschem/src/iface/i_command.c:4214
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Retorno de ação ajustado para silhueta\n"
 
-#: gschem/src/iface/i_command.c:4219
+#: gschem/src/iface/i_command.c:4218
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Retorno de ação ajustado para caixa completa\n"
 
-#: gschem/src/iface/i_command.c:4244
+#: gschem/src/iface/i_command.c:4243
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "Elástico desligado \n"
 
-#: gschem/src/iface/i_command.c:4247
+#: gschem/src/iface/i_command.c:4246
 #, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Elástico ligado\n"
 
-#: gschem/src/iface/i_command.c:4258
+#: gschem/src/iface/i_command.c:4257
 #, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "Modo conexão magnética: LIGADA\n"
 
-#: gschem/src/iface/i_command.c:4261
+#: gschem/src/iface/i_command.c:4260
 #, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "Modo conexão magnética: DESLIGADA\n"
 
-#: gschem/src/iface/i_command.c:4279
+#: gschem/src/iface/i_command.c:4278
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4282
+#: gschem/src/iface/i_command.c:4281
 #, fuzzy
 msgid "On"
 msgstr "Abrir"
 
-#: gschem/src/iface/i_command.c:4284
+#: gschem/src/iface/i_command.c:4283
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4338 gschem/src/iface/i_command.c:4366
-#: gschem/src/iface/i_command.c:4386 gschem/src/iface/i_command.c:4406
+#: gschem/src/iface/i_command.c:4337 gschem/src/iface/i_command.c:4365
+#: gschem/src/iface/i_command.c:4385 gschem/src/iface/i_command.c:4405
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4500
+#: gschem/src/iface/i_command.c:4499
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -688,103 +722,105 @@ msgstr "Arquivo de inicialização scm [%s] não encontrado\n"
 msgid "file: <%s> is not accessible\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:324
+#: gschem/src/iface/i_sessions.c:326
 #, c-format
 msgid "Warning relative file names detected in session \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:331
+#: gschem/src/iface/i_sessions.c:336
 #, c-format
 msgid "Session %s, opening %d of %d documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:341
+#: gschem/src/iface/i_sessions.c:346
 #, c-format
 msgid "Session \"%s\" did not contain any accessible documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:823
+#: gschem/src/iface/i_sessions.c:826
 #, c-format
 msgid "Removing session: %s"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:848
+#: gschem/src/iface/i_sessions.c:851
 #, fuzzy, c-format
 msgid "%s: Failed to remove session: %s"
 msgstr "Falhou ao ler imagem: %s"
 
-#: gschem/src/iface/i_sessions.c:851
+#: gschem/src/iface/i_sessions.c:854
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:897
+#: gschem/src/iface/i_sessions.c:900
 #, c-format
 msgid "session %s created with %d documents.\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:906
+#: gschem/src/iface/i_sessions.c:909
 #, fuzzy, c-format
 msgid "An error occurred attemting to create session %s: %s."
 msgstr "ERRO: Erro desconhecido ao analisar arquivos de configuração.\n"
 
-#: gschem/src/iface/i_sessions.c:912 gschem/src/iface/i_sessions.c:1081
+#: gschem/src/iface/i_sessions.c:915 gschem/src/iface/i_sessions.c:1084
 #, fuzzy
 msgid "<b>Session Error</b>"
 msgstr "<b>Escopo</b>"
 
-#: gschem/src/iface/i_sessions.c:912
+#: gschem/src/iface/i_sessions.c:915
 #, fuzzy
 msgid "Creation failed"
 msgstr "Inserção da área de tranferência falhou"
 
-#: gschem/src/iface/i_sessions.c:955
+#: gschem/src/iface/i_sessions.c:958
 #, c-format
 msgid "Opened session %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1003
+#: gschem/src/iface/i_sessions.c:1006
 #, c-format
 msgid "Renaming session %s to renamed %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1028
+#: gschem/src/iface/i_sessions.c:1031
 #, fuzzy, c-format
 msgid "%s: Failed to rename session: %s"
 msgstr "Falhou ao ler imagem: %s"
 
-#: gschem/src/iface/i_sessions.c:1031
+#: gschem/src/iface/i_sessions.c:1034
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1062
+#: gschem/src/iface/i_sessions.c:1065
 #, c-format
 msgid "Created session %s with %d documents.\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1070
+#: gschem/src/iface/i_sessions.c:1073
 #, fuzzy, c-format
 msgid "Saved %d documents to session %s\n"
 msgstr "Página Atual"
 
-#: gschem/src/iface/i_sessions.c:1076
+#: gschem/src/iface/i_sessions.c:1079
 #, fuzzy, c-format
 msgid "An error occurred attempting to save session %s: %s."
 msgstr "ERRO: Erro desconhecido ao analisar arquivos de configuração.\n"
 
-#: gschem/src/iface/i_sessions.c:1081
+#: gschem/src/iface/i_sessions.c:1084
 #, fuzzy
 msgid "Save session failed"
 msgstr "Salvar arquivo"
 
-#: gschem/src/iface/i_sessions.c:1168
-msgid "Show Sessions at startup is now ENABLED.\n"
-msgstr ""
-
 #: gschem/src/iface/i_sessions.c:1171
-msgid "Show Sessions at startup is now DISABLED\n"
-msgstr ""
+#, fuzzy
+msgid "Show Sessions at startup is now ENABLED\n"
+msgstr "Mostrar texto iniciado com:"
 
-#: gschem/src/iface/i_sessions.c:1238
+#: gschem/src/iface/i_sessions.c:1174
+#, fuzzy
+msgid "Show Sessions at startup is now DISABLED\n"
+msgstr "Mostrar texto iniciado com:"
+
+#: gschem/src/iface/i_sessions.c:1241
 msgid "Session system initialized!\n"
 msgstr ""
 
@@ -924,6 +960,14 @@ msgstr "Ajuste desligado"
 msgid "Resnap Active"
 msgstr "Reajuste Ativo"
 
+#: gschem/src/iface/i_vars.c:371
+msgid "Restoring user settings\n"
+msgstr ""
+
+#: gschem/src/iface/i_vars.c:759
+msgid "Initializing default configuration settings\n"
+msgstr ""
+
 #: gschem/src/iface/i_vars.c:794
 #, fuzzy, c-format
 msgid "Failed to save user configuration to '%s': %s."
@@ -968,7 +1012,19 @@ msgstr "Desfazer última operação"
 msgid "Zoom too small! Cannot zoom further.\n"
 msgstr "Zoom muito pequeno! Não posso diminuir.\n"
 
-#: gschem/src/object/o_complex.c:238 gschem/src/object/o_complex.c:242
+#: gschem/src/object/o_break.c:184 gschem/src/object/o_break.c:514
+#: gschem/src/object/o_break.c:836
+#, c-format
+msgid "Point 2 missed x=%d, y=%d\n"
+msgstr ""
+
+#: gschem/src/object/o_break.c:187 gschem/src/object/o_break.c:517
+#: gschem/src/object/o_break.c:839
+#, c-format
+msgid "Point 1 missed x=%d, y=%d\n"
+msgstr ""
+
+#: gschem/src/object/o_complex.c:237 gschem/src/object/o_complex.c:241
 #, c-format
 msgid "Translating schematic [%d %d]\n"
 msgstr "Transladando diagrama [%d %d]\n"
@@ -998,12 +1054,12 @@ msgstr "Texto oculto agora está visível\n"
 msgid "Hidden text is now invisible\n"
 msgstr "Texto oculto agora está invisível\n"
 
-#: gschem/src/object/o_edit.c:1105 gschem/src/x/x_edit_cprop.c:367
+#: gschem/src/object/o_edit.c:1103 gschem/src/x/x_edit_cprop.c:367
 #, c-format
 msgid "Could not find symbol [%s] in library. Update failed.\n"
 msgstr "Impossível encontrar simbolo [%s] na biblioteca. Atualização falhou.\n"
 
-#: gschem/src/object/o_edit.c:1110
+#: gschem/src/object/o_edit.c:1108
 #, fuzzy, c-format
 msgid "Updating symbol [%s]\n"
 msgstr "Procurando por símbolo [%s]\n"
@@ -1261,121 +1317,129 @@ msgstr "Embutir componente no diagrama"
 msgid "Include component as individual objects"
 msgstr "Incluir como objetos individuais"
 
-#: gschem/src/x/x_compselect.c:2066 gschem/src/x/x_compselect.c:2432
+#: gschem/src/x/x_compselect.c:2067 gschem/src/x/x_compselect.c:2433
 msgid "Components"
 msgstr "Componentes"
 
-#: gschem/src/x/x_compselect.c:2508 gschem/src/x/x_multiattrib.c:1986
+#: gschem/src/x/x_compselect.c:2509 gschem/src/x/x_multiattrib.c:1986
 #: gschem/src/x/x_multiattrib.c:1992
 msgid "Name"
 msgstr "Nome"
 
-#: gschem/src/x/x_compselect.c:2520 gschem/src/x/x_multiattrib.c:1988
+#: gschem/src/x/x_compselect.c:2521 gschem/src/x/x_multiattrib.c:1988
 #: gschem/src/x/x_multiattrib.c:1994
 msgid "Value"
 msgstr "Valor"
 
-#: gschem/src/x/x_compselect.c:2700 gschem/src/x/x_dialog.c:1742
+#: gschem/src/x/x_compselect.c:2701 gschem/src/x/x_dialog.c:1742
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2701
+#: gschem/src/x/x_compselect.c:2702
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2702
+#: gschem/src/x/x_compselect.c:2703
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2703
+#: gschem/src/x/x_compselect.c:2704
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2704
+#: gschem/src/x/x_compselect.c:2705
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2705
+#: gschem/src/x/x_compselect.c:2706
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2706
+#: gschem/src/x/x_compselect.c:2707
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2707
+#: gschem/src/x/x_compselect.c:2708
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2708
+#: gschem/src/x/x_compselect.c:2709
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2709
+#: gschem/src/x/x_compselect.c:2710
 msgid "All"
 msgstr "Todos"
 
-#: gschem/src/x/x_compselect.c:2745
+#: gschem/src/x/x_compselect.c:2746
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2746
+#: gschem/src/x/x_compselect.c:2747
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2769
+#: gschem/src/x/x_compselect.c:2770
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2770
+#: gschem/src/x/x_compselect.c:2771
 msgid "Embed"
 msgstr "Embutir"
 
-#: gschem/src/x/x_compselect.c:2771
+#: gschem/src/x/x_compselect.c:2772
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3181
+#: gschem/src/x/x_compselect.c:3182
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3182
+#: gschem/src/x/x_compselect.c:3183
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3193
+#: gschem/src/x/x_compselect.c:3194
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3194
+#: gschem/src/x/x_compselect.c:3195
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3222
+#: gschem/src/x/x_compselect.c:3223
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3230
+#: gschem/src/x/x_compselect.c:3231
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3232
+#: gschem/src/x/x_compselect.c:3233
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3425 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3426 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Visualização"
 
-#: gschem/src/x/x_compselect.c:3461
+#: gschem/src/x/x_compselect.c:3462
 msgid "Attributes"
 msgstr "Atributos"
 
+#: gschem/src/x/x_console.c:133
+msgid "destroying history\n"
+msgstr ""
+
+#: gschem/src/x/x_console.c:144
+msgid "Initializing Log & Console Systems configuration settings\n"
+msgstr ""
+
 #: gschem/src/x/x_console.c:186 gschem/src/x/x_console.c:189
 #, c-format
-msgid "Command interface: engaged using (%s)"
+msgid "Command interface: engaged using (%s)\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:344
@@ -2450,35 +2514,35 @@ msgstr ""
 msgid "Click to select size of the image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:192
+#: gschem/src/x/x_image.c:188
 msgid "Click to select the type of image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:216
+#: gschem/src/x/x_image.c:212
 msgid "Encapsulated Postscript"
 msgstr ""
 
-#: gschem/src/x/x_image.c:368
+#: gschem/src/x/x_image.c:356
 #, fuzzy, c-format
 msgid "Error: Unable to write eps file %s.\n"
 msgstr "x_image_lowlevel: Impossível captura do pixbuf da janela gschem.\n"
 
-#: gschem/src/x/x_image.c:371 gschem/src/x/x_image.c:513
+#: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:497
 #, c-format
 msgid "Wrote black and white image to [%s] [%d x %d]\n"
 msgstr "Imagem em preto e branco salva [%s] [%d x %d]\n"
 
-#: gschem/src/x/x_image.c:481
+#: gschem/src/x/x_image.c:465
 #, fuzzy, c-format
 msgid "Generated PDF file [%s]\n"
 msgstr "Novo arquivo [%s]\n"
 
-#: gschem/src/x/x_image.c:492
+#: gschem/src/x/x_image.c:476
 #, fuzzy, c-format
 msgid "Unable to write %s file %s. %s\n"
 msgstr "x_image_lowlevel: Impossível captura do pixbuf da janela gschem.\n"
 
-#: gschem/src/x/x_image.c:493
+#: gschem/src/x/x_image.c:477
 #, fuzzy, c-format
 msgid ""
 "An error occured while saving image with type %s to filename:\n"
@@ -2491,37 +2555,37 @@ msgstr ""
 "\n"
 "%s.\n"
 
-#: gschem/src/x/x_image.c:496
+#: gschem/src/x/x_image.c:480
 msgid "<b>Error Writing Imaging.</b>"
 msgstr ""
 
-#: gschem/src/x/x_image.c:509
+#: gschem/src/x/x_image.c:493
 #, c-format
 msgid "Wrote color image to [%s] [%d x %d]\n"
 msgstr "Salva imagem colorida [%s] [%d x %d]\n"
 
-#: gschem/src/x/x_image.c:523
+#: gschem/src/x/x_image.c:507
 #, fuzzy
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr "x_image_lowlevel: Impossível captura do pixbuf da janela gschem.\n"
 
-#: gschem/src/x/x_image.c:684
+#: gschem/src/x/x_image.c:660
 msgid "Write image..."
 msgstr "Gravar imagem..."
 
-#: gschem/src/x/x_image.c:704
+#: gschem/src/x/x_image.c:680
 msgid "Width x Height"
 msgstr "Largura x Altura"
 
-#: gschem/src/x/x_image.c:720
+#: gschem/src/x/x_image.c:692
 msgid "Image type"
 msgstr "Tipo de imagem"
 
-#: gschem/src/x/x_image.c:797
+#: gschem/src/x/x_image.c:757
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:798
+#: gschem/src/x/x_image.c:758
 msgid ""
 "When enbled for reversed color images, only black and white will be reversed"
 msgstr ""
@@ -2931,11 +2995,11 @@ msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:1367
-msgid "gschem: Enabling menu tooltips\n"
+msgid "Enabling menu tooltips\n"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:1370
-msgid "gschem: Disabling menu tooltips\n"
+msgid "Disabling menu tooltips\n"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:1411
@@ -3402,20 +3466,20 @@ msgstr ""
 msgid "Cancel"
 msgstr "Pan/Cancelar"
 
-#: gschem/src/x/x_settings_dialog.c:2617
+#: gschem/src/x/x_settings_dialog.c:2618
 #, fuzzy
 msgid "Close without changing any settings"
 msgstr "_Fechar sem salvar"
 
-#: gschem/src/x/x_settings_dialog.c:2619 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2620 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr "Salvar"
 
-#: gschem/src/x/x_settings_dialog.c:2623
+#: gschem/src/x/x_settings_dialog.c:2624
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2629
+#: gschem/src/x/x_settings_dialog.c:2630
 msgid "Change settings and close but do not write settings to storage.."
 msgstr ""
 
@@ -3480,6 +3544,15 @@ msgstr ""
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
+#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1210
+msgid "Aborting action\n"
+msgstr ""
+
+#: gschem/src/x/x_window.c:670
+#, fuzzy
+msgid "Close Window canceled\n"
+msgstr "_Fechar janela"
+
 #: gschem/src/x/x_window.c:746
 #, fuzzy, c-format
 msgid "Loading \"%s\"\n"
@@ -3489,6 +3562,11 @@ msgstr "Carregando o diagrama [%s]\n"
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Novo arquivo [%s]\n"
+
+#: gschem/src/x/x_window.c:1040
+#, c-format
+msgid "Set page <%s> active.\n"
+msgstr ""
 
 #: gschem/src/x/x_window.c:1135
 #, fuzzy, c-format
