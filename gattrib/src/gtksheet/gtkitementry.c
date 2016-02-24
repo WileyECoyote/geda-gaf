@@ -894,16 +894,18 @@ gtk_item_entry_real_insert_text(GtkEditable *editable,
   {
     gdk_beep();
     n_chars = entry->text_max_length - entry->text_length;
-    text_length = g_utf8_offset_to_pointer(new_text, n_chars) - new_text;
-  }
 
 #ifdef GTK_TYPE_ENTRY_BUFFER
+  }
 
   GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
 
   gtk_entry_buffer_insert_text(buffer, *position, new_text, n_chars);
 
 #else
+
+    text_length = g_utf8_offset_to_pointer(new_text, n_chars) - new_text;
+  }
 
   if (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
   {

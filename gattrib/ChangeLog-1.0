@@ -1,3 +1,12 @@
+2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheetcolumn.c: Move bracket inside conditional
+      directive for GTK_TYPE_ENTRY_BUFFER, text_length need not be
+      assigned if GTK_TYPE_ENTRY_BUFFER defined.
+
+    * src/gtksheet/gtksheet.c: Reduce scope of variables, last three in
+      module.
+
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_fileselect.c: Replace GtkFileChooser with GedaFileChooser,
