@@ -59,6 +59,10 @@ bool x_fileselect ( char* filename )
                 "do-overwrite-confirmation", TRUE,  /* version?*/
                 NULL);                              /* end options */
 
+  cwd = g_get_current_dir();
+  geda_file_chooser_set_current_folder (dialog, cwd);
+  GEDA_FREE (cwd);
+
   /* preset a directory name */
   if (pr_current->page_current->filename != NULL) {
 
@@ -70,11 +74,6 @@ bool x_fileselect ( char* filename )
 #endif
 
   }
-  else { /* no filename then get current working dir */
-    cwd = g_get_current_dir();
-    geda_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
-  }
-  GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
 

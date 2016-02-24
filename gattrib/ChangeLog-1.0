@@ -1,7 +1,10 @@
-2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_fileselect.c: Replace GtkFileChooser with GedaFileChooser,
-      remove function x_fileselect_setup_filechooser_filters
+      remove function x_fileselect_setup_filechooser_filters, set the
+      folder name in x_fileselect regardless of whether there is a file
+      name so that the cwd is always the starting, do not use recent
+      folder, is crapware.
 
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
