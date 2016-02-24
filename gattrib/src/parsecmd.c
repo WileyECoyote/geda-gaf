@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2015 Stuart D. Brorson.
+ * Copyright (C) 2003-2016 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ void usage(char *cmd)
 "     If slots are present on the component, then the different slots appear\n"
 "     in different rows with the slot number after the period.  Example:  C101.2.\n"
 "\n"
-"Copyright (C) 2003-2015 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) net.\n"
+"Copyright (C) 2003-2016 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) net.\n"
 "\n"), cmd);
     exit(0);
 }
@@ -95,15 +95,18 @@ void usage(char *cmd)
  */
 static void version (void)
 {
-  printf(
-    "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2015 gEDA developers\n"
-    "This is free software, and you are welcome to redistribute it under\n"
-    "certain conditions. For details, see the file `COPYING', which is\n"
-    "included in the gEDA distribution.\n"
-    "There is NO WARRANTY, to the extent permitted by law.\n",
-    PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
-    exit (0);
+  if (!quiet_mode)
+    printf(_(
+      "gEDA %s (%s) (g%.7s)\n"
+      "Copyright (C) 1998-2016 gEDA developers\n"
+      "This is free software, and you are welcome to redistribute it under\n"
+      "certain conditions. For details, see the file `COPYING', which is\n"
+      "included in the gEDA distribution.\n"
+      "There is NO WARRANTY, to the extent permitted by law.\n"),
+      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+  else
+    printf("%s\n", PACKAGE_DOTTED_VERSION);
+  exit (0);
 }
 
 /*!
@@ -116,7 +119,7 @@ static void version (void)
  * - help
  * \param argc Number of command line arguments
  * \param argv Command line arguments (array of strings)
- * \returns I don't know what - looks uninitialised in some circumstances.
+ * \returns unknown - looks uninitialised in some circumstances.
  *
  */
 int parse_commandline(int argc, char *argv[])

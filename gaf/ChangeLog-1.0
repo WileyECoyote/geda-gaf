@@ -1,3 +1,7 @@
+2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gaf.c: Revise version to include date with dotted and git version.
+
 2016-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Include headers and link with libgedacolor.

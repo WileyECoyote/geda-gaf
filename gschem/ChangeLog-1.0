@@ -1,5 +1,8 @@
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_parsecmd.c: Revise version to only output the dotted
+      version if quite mode and include date with dotted and git version.
+
     * src/x/x_fileselect.c: Replace gtk_file_chooser_get_preview_filename
       with geda_file_chooser_get_filename, only going to preview if user
       clicked on a file.

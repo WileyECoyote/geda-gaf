@@ -1,12 +1,15 @@
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/globals.h: Fix spelling; Visiablity->Visibility.
+
     * src/gtksheet/gtksheetcolumn.c: Move bracket inside conditional
       directive for GTK_TYPE_ENTRY_BUFFER, text_length need not be
       assigned if GTK_TYPE_ENTRY_BUFFER defined.
 
-    * gattrib/include/globals.h: Fix spelling; Visiablity->Visibility.
+    * src/gtksheet/gtksheet.c: Reduce scope of variables, last three.
 
-    * src/gtksheetgtksheet.c: Reduce scope of variables, last three.
+    * src/parsecmd.c: Revise version to only output the dotted version
+      if quite mode and include date with dotted and git version.
 
     * src/x_gtksheet.c: Fix spelling; toggle Visibility, not Visiablity.
       Add new function x_gtksheet_reveal_columns with popup menu item

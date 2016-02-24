@@ -123,15 +123,18 @@ usage(char *cmd)
  */
 static void version (void)
 {
-  printf(_(
-    "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2016 gEDA developers\n"
-    "This is free software, and you are welcome to redistribute it under\n"
-    "certain conditions. For details, see the file `COPYING', which is\n"
-    "included in the gEDA distribution.\n"
-    "There is NO WARRANTY, to the extent permitted by law.\n"),
-    PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
-    exit (0);
+  if (!quiet_mode)
+    printf(_(
+      "gEDA %s (%s) (g%.7s)\n"
+      "Copyright (C) 1998-2016 gEDA developers\n"
+      "This is free software, and you are welcome to redistribute it under\n"
+      "certain conditions. For details, see the file `COPYING', which is\n"
+      "included in the gEDA distribution.\n"
+      "There is NO WARRANTY, to the extent permitted by law.\n"),
+      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+  else
+    printf("%s\n", PACKAGE_DOTTED_VERSION);
+  exit (0);
 }
 
 /*! \brief Parse gschem command-line options.

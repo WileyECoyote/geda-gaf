@@ -1,3 +1,9 @@
+2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Revise version to only output the dotted version
+      if quite mode, include date with dotted and git version if not
+      quite mode.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Invert test of geda_utility_string_stricmp.
