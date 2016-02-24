@@ -617,7 +617,7 @@ geda_combo_box_finalize (GObject *object)
 
   for (iter = combo_box->priv->cells; iter; iter = iter->next) {
 
-    ComboCellInfo *info = (ComboCellInfo *)iter->data;
+    ComboCellInfo *info = (ComboCellInfo*)iter->data;
     GSList        *list = info->attributes;
 
     if (info->destroy)
@@ -1537,27 +1537,28 @@ geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
   gtk_widget_set_parent (widget, GTK_WIDGET (container));
   GTK_BIN (container)->child = widget;
 
-  if (priv->cell_view &&
-      widget != priv->cell_view)
-    {
-      /* since the cell_view was unparented, it's gone now */
-      priv->cell_view = NULL;
+  if (priv->cell_view && widget != priv->cell_view) {
 
-      if (!priv->tree_view && priv->separator)
-        {
-	  gtk_container_remove (GTK_CONTAINER (priv->separator->parent),
-				priv->separator);
-	  priv->separator = NULL;
+    /* since the cell_view was unparented, it's gone now */
+    priv->cell_view = NULL;
 
-          gtk_widget_queue_resize (GTK_WIDGET (container));
-        }
-      else if (priv->cell_view_frame)
-        {
-          gtk_widget_unparent (priv->cell_view_frame);
-          priv->cell_view_frame = NULL;
-          priv->box = NULL;
-        }
+    if (!priv->tree_view && priv->separator) {
+
+      gtk_container_remove (GTK_CONTAINER (priv->separator->parent),
+                            priv->separator);
+      priv->separator = NULL;
+
+      gtk_widget_queue_resize (GTK_WIDGET (container));
     }
+    else if (priv->cell_view_frame) {
+
+      gtk_widget_unparent (priv->cell_view_frame);
+
+      priv->cell_view_frame = NULL;
+
+      priv->box = NULL;
+    }
+  }
 
   if (priv->has_entry) {
 

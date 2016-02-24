@@ -1787,7 +1787,7 @@ METHOD(new_circle)
  *           arguments.
  *
  *  example 1. titleblock = geda.new_complex("title-B", 1000, 1000)
- *              titleblock.locked = True
+ *             titleblock.locked = True
  *
  *  example 2. amp1 = geda.new_complex("lm2902-1", 1000, 4000, -1, 1)
  */

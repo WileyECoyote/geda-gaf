@@ -47,9 +47,6 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   { "gschem-version",            1, 0, 0, g_rc_gschem_version },
 
-  //{ "display-color-map",         0, 1, 0, g_rc_display_color_map },
-  //{ "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
-
   { "render-adaptor",            1, 0, 0, g_rc_render_adaptor },
 
   { "action-color",              1, 0, 0, g_rc_action_color },
@@ -273,7 +270,11 @@ create_hook (const char *name, int n_args)
  */
 void g_register_funcs (void)
 {
-  struct gsubr_t *func[4] = { gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, gschem_buffer_funcs};
+  struct gsubr_t *func[4] = { gschem_rc_funcs,
+                              gschem_g_funcs,
+                              gschem_hk_funcs,
+                              gschem_buffer_funcs};
+
   static GList   *action_list;
 
   int j;

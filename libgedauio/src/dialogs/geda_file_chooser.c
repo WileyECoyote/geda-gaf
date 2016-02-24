@@ -877,5 +877,7 @@ geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
     BUG_MSG ("Operative is not a GtkFileChooser");
   }
 }
+
 #undef ChooseClass
+
 /** @} end group GedaFileChooser */

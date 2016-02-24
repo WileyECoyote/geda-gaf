@@ -92,7 +92,7 @@ typedef enum
   GEDA_RESPONSE_SELECT,       /* 4 */
   GEDA_RESPONSE_DESELECT,     /* 4 */
   GEDA_RESPONSE_GET_DIST,     /* 5 */
-}  IDE_RESPONSE_TYPE;
+} IDE_RESPONSE_TYPE;
 
 /*! \enum IDE_OBJECT_FILTER Used by Libgedathon
  *  \brief Control returned Object types.

@@ -436,17 +436,20 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
         }
         iter = g_list_next (iter);
       }
-
     }
-  } else {
+  }
+  else {
     return;
   }
 
   iter = object_list;
   while (iter != NULL) {
+
     o_current = (GedaObject *)iter->data;
+
     /* Determine which end of the pin is on or nearest the boundary */
     if (o_current->type == OBJ_PIN && o_current->pin->whichend == -1) {
+
       if (o_current->line->y[0] == o_current->line->y[1]) {
 
         /* horizontal */
@@ -477,7 +480,8 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
           o_current->pin->whichend = min1_whichend;
         }
 
-      } else if (o_current->line->x[0] == o_current->line->x[1]) {
+      }
+      else if (o_current->line->x[0] == o_current->line->x[1]) {
         /* vertical */
 
         d1 = abs(o_current->line->y[0] - top);

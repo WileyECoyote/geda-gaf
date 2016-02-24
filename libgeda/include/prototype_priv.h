@@ -245,7 +245,7 @@ void        s_attrib_free                  (void);
 
 /* s_clib.c */
 void        s_clib_init                    (void);
-            void     s_clib_free           (void);
+void        s_clib_free                    (void);
 GList      *s_clib_get_symbols             (const GedaToplevel *toplevel);
 
 /* s_conn.c */

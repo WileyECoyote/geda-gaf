@@ -34,7 +34,7 @@ SCM_SYMBOL (object_state_sym, "object-state");
  * \note Scheme API: Implements the %page-selection procedure in the
  * (gschem core selection) module.
  *
- * \param page_s Page smob for the page from which to get the selection.
+ *  param page_s Page smob for the page from which to get the selection.
  * \return a list of Object smobs.
  */
 SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,

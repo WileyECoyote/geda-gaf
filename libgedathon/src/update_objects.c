@@ -248,7 +248,7 @@ PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
 int
 PyGeda_update_text(GedaObject *object, PyGedaObject *py_object )
 {
-  const char* str;
+  const char *str;
   PyGedaTextObject *py_text        = (PyGedaTextObject*)py_object;
 
   object->text->x                  = py_text->x;
@@ -461,6 +461,7 @@ PyGeda_update_bus_butes(GedaObject *object, PyGedaObject *py_object )
   //PyGedaBusObject *py_bus          = (PyGedaBusObject*)py_object;
   return 1;
 }
+
 int
 PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object )
 {
