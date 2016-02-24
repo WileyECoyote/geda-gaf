@@ -1,3 +1,9 @@
+2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_fileselect.c: Replace gtk_file_chooser_get_preview_filename
+      with geda_file_chooser_get_filename, only going to preview if user
+      clicked on a file.
+
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/.../: Revise logic for geda_utility_string_stristr results in:

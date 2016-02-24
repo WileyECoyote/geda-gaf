@@ -54,14 +54,14 @@
  *  \param [in] user_data A pointer on the preview widget.
  */
 static void
-x_fileselect_callback_update_preview (GtkFileChooser *chooser,
-                                      void           *user_data)
+x_fileselect_callback_update_preview (GtkWidget *chooser,
+                                      void      *user_data)
 {
   GschemPreview *preview = GSCHEM_PREVIEW(user_data);
   char *preview_filename = NULL;
   char *filename;
 
-  filename = gtk_file_chooser_get_preview_filename (chooser);
+  filename = geda_file_chooser_get_filename(chooser);
 
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
     preview_filename = filename;
