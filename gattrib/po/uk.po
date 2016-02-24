@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-07 00:23-0600\n"
+"POT-Creation-Date: 2016-02-24 00:16-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -322,38 +322,14 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:50
-msgid "Schematics"
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:55
-msgid "Symbols"
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:60
-msgid "Schematics and symbols"
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:66
-msgid "All files"
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:92
-msgid "Save as..."
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:156
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:162
+#: gattrib/src/x_fileselect.c:119
 #, c-format
 msgid "Could not load schematic [%s]\n"
-msgstr ""
-
-#: gattrib/src/x_fileselect.c:231
-msgid "Open..."
 msgstr ""
 
 #: gattrib/src/x_find.c:267
@@ -365,7 +341,7 @@ msgstr "gEDA Attribute Editor"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:594
+#: gattrib/src/x_menus.c:597
 #, c-format
 msgid ""
 "Error loading %s:\n"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-07 00:23-0600\n"
+"POT-Creation-Date: 2016-02-24 00:16-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -373,39 +373,15 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:50
-msgid "Schematics"
-msgstr "Схемы"
-
-#: gattrib/src/x_fileselect.c:55
-msgid "Symbols"
-msgstr "Символы"
-
-#: gattrib/src/x_fileselect.c:60
-msgid "Schematics and symbols"
-msgstr "Схемы и символы"
-
-#: gattrib/src/x_fileselect.c:66
-msgid "All files"
-msgstr "Все файлы"
-
-#: gattrib/src/x_fileselect.c:92
-msgid "Save as..."
-msgstr "Сохранить как..."
-
-#: gattrib/src/x_fileselect.c:156
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr "Загрузка файла «%s»\n"
 
-#: gattrib/src/x_fileselect.c:162
+#: gattrib/src/x_fileselect.c:119
 #, fuzzy, c-format
 msgid "Could not load schematic [%s]\n"
 msgstr "Не удалось загрузить схему «%s»\n"
-
-#: gattrib/src/x_fileselect.c:231
-msgid "Open..."
-msgstr "Открыть..."
 
 #: gattrib/src/x_find.c:267
 #, fuzzy
@@ -416,7 +392,7 @@ msgstr "Добавление нового атрибута"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:594
+#: gattrib/src/x_menus.c:597
 #, c-format
 msgid ""
 "Error loading %s:\n"
@@ -432,6 +408,24 @@ msgstr ""
 #: gattrib/src/x_window.c:196
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Schematics"
+#~ msgstr "Схемы"
+
+#~ msgid "Symbols"
+#~ msgstr "Символы"
+
+#~ msgid "Schematics and symbols"
+#~ msgstr "Схемы и символы"
+
+#~ msgid "All files"
+#~ msgstr "Все файлы"
+
+#~ msgid "Save as..."
+#~ msgstr "Сохранить как..."
+
+#~ msgid "Open..."
+#~ msgstr "Открыть..."
 
 #~ msgid ""
 #~ "In s_object_replace_attrib_in_object, we have failed to find the attrib "

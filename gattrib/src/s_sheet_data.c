@@ -587,8 +587,3 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
   return;
 
 }
-
-
-
-
-

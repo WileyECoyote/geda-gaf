@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-07 00:23-0600\n"
+"POT-Creation-Date: 2016-02-24 00:16-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -376,39 +376,15 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:50
-msgid "Schematics"
-msgstr "Schema's"
-
-#: gattrib/src/x_fileselect.c:55
-msgid "Symbols"
-msgstr "Symbolen"
-
-#: gattrib/src/x_fileselect.c:60
-msgid "Schematics and symbols"
-msgstr "Schema's en symbolen"
-
-#: gattrib/src/x_fileselect.c:66
-msgid "All files"
-msgstr "Alle bestanden"
-
-#: gattrib/src/x_fileselect.c:92
-msgid "Save as..."
-msgstr "Opslaan als..."
-
-#: gattrib/src/x_fileselect.c:156
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr "Laad bestand [%s]\n"
 
-#: gattrib/src/x_fileselect.c:162
+#: gattrib/src/x_fileselect.c:119
 #, fuzzy, c-format
 msgid "Could not load schematic [%s]\n"
 msgstr "Kon schema [%s] niet laden\n"
-
-#: gattrib/src/x_fileselect.c:231
-msgid "Open..."
-msgstr "Open..."
 
 #: gattrib/src/x_find.c:267
 #, fuzzy
@@ -419,7 +395,7 @@ msgstr "Voeg nieuwe attribuut toe"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:594
+#: gattrib/src/x_menus.c:597
 #, c-format
 msgid ""
 "Error loading %s:\n"
@@ -435,6 +411,24 @@ msgstr ""
 #: gattrib/src/x_window.c:196
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Schematics"
+#~ msgstr "Schema's"
+
+#~ msgid "Symbols"
+#~ msgstr "Symbolen"
+
+#~ msgid "Schematics and symbols"
+#~ msgstr "Schema's en symbolen"
+
+#~ msgid "All files"
+#~ msgstr "Alle bestanden"
+
+#~ msgid "Save as..."
+#~ msgstr "Opslaan als..."
+
+#~ msgid "Open..."
+#~ msgstr "Open..."
 
 #~ msgid ""
 #~ "In s_object_replace_attrib_in_object, we have failed to find the attrib "

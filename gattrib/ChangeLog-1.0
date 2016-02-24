@@ -6,8 +6,16 @@
 
     * gattrib/include/globals.h: Fix spelling; Visiablity->Visibility.
 
-    * src/gtksheet/gtksheet.c: Reduce scope of variables, last three in
-      module. Fix spelling; toggle Visibility, not Visiablity.
+    * src/gtksheetgtksheet.c: Reduce scope of variables, last three.
+
+    * src/x_gtksheet.c: Fix spelling; toggle Visibility, not Visiablity.
+      Add new function x_gtksheet_reveal_columns with popup menu item
+      RevealAttribute to reveal hidden columns, seems to work pretty
+      good as long as one knows where the hidden columns are located.
+      Rename function build_menu->build_popup_menu.
+
+    * src/s_table.c: Reduce scope of attrib_name, attrib_value, and
+      name_value_pair in s_table_create_attrib_pair.
 
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 

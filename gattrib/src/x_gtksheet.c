@@ -54,6 +54,7 @@ static char *popup_items[]={ "Toggle Visibility",
                              "Add Attribute",
                              "Insert Attribute",
                              "Hide Attribute",
+                             "Reveal Attribute",
                              "Delete Attribute",
                              "Clear Attribute Data"
 };
@@ -81,6 +82,19 @@ void x_gtksheet_destroy_all(){
   }
 }
 
+void x_gtksheet_reveal_columns(GtkSheet *sheet) {
+
+  GtkSheetRange range = sheet->range;
+  int i;
+
+  for (i = range.col0; i <= range.coli; i++)
+  {
+    if (!gtk_sheet_column_visible(sheet, i)) {
+      gtk_sheet_column_set_visibility(sheet, i, TRUE);
+    }
+  }
+}
+
 /*! \brief Callback Handler for Popup Mouse Context Menu
  *
  *  \par Function Description
@@ -92,7 +106,7 @@ void x_gtksheet_destroy_all(){
  *  \param [in] widget is button widget
  *  \param [in] selection pointer to enumerated menu selection
  */
-static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
+static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
 {
     GtkSheet *sheet;
     sheet = x_gtksheet_get_current_sheet();
@@ -114,6 +128,9 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
         break;
       case HideAttribute:
         gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
+        break;
+      case RevealAttribute:
+        x_gtksheet_reveal_columns(sheet);
         break;
       case DeleteAttribute:
         s_toplevel_delete_attrib_col(sheet);
@@ -138,17 +155,16 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
  *
  *  \param [in] sheet is the active sheet widget
  */
-static GtkWidget *build_menu(GtkWidget *sheet)
+static GtkWidget *build_popup_menu(GtkWidget *sheet)
 {
   GtkWidget *menu;
-  GtkWidget *item;
   int i;
 
-  menu=gtk_menu_new();
+  menu = gtk_menu_new();
 
-  for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
+  for (i = 0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
-    item=gtk_menu_item_new_with_label(popup_items[i]);
+    GtkWidget *item = gtk_menu_item_new_with_label(popup_items[i]);
 
     GEDA_SIGNAL_CONNECT(item,"activate", popup_activated, (void*)(long) i);
 
@@ -180,6 +196,12 @@ static GtkWidget *build_menu(GtkWidget *sheet)
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+      case RevealAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
       case DeleteAttribute:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
@@ -204,7 +226,7 @@ static GtkWidget *build_menu(GtkWidget *sheet)
  *
  *  \par Function Description
  * This function check mouse botton press and when the 3rd button
- * is released the build_menu function is called to create the mouse
+ * is released the build_popup_menu function is called to create the mouse
  * menu.
  *
  *  \param [in] widget is the active sheet widget
@@ -219,15 +241,13 @@ static int on_mouse_button_press(GtkWidget *widget,
 
     gdk_window_get_pointer (gtk_widget_get_window(sheet), NULL, NULL, &mods);
 
-    if (mods&GDK_BUTTON3_MASK)
-    {
-        if (popup)
-        {
+    if (mods&GDK_BUTTON3_MASK) {
+        if (popup) {
             gtk_object_destroy(GTK_OBJECT(popup));
             popup = NULL;
         }
 
-        popup=build_menu(sheet);
+        popup = build_popup_menu(sheet);
         /* Tell GTK to do the menu we just created */
         gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL, NULL,
                        event->button, event->time);
@@ -487,11 +507,11 @@ static void activate_sheet_entry(GtkWidget *widget, void * data)
 /*! \brief Call back for "change" signal from embeded Entry widget */
 static void show_entry(GtkWidget *widget, void *data)
 {
-  const char *text;
-  GtkSheet   *sheet;
-  GtkWidget  *sheet_entry;
-
   if (GTK_WIDGET_HAS_FOCUS(widget)) {
+
+    GtkSheet   *sheet;
+    GtkWidget  *sheet_entry;
+    const char *text;
 
     sheet       = x_gtksheet_get_current_sheet();
     sheet_entry = gtk_sheet_get_entry(sheet);
@@ -701,14 +721,14 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
 			       STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
-  char *text;
+
   int j;
-  int width = 0;
-  int new_width = 0;
+  int width = 1;
   int char_width;
 
   /* Leave if no items to add are available */
-  if ((count == 0) || (list_head == NULL)) return;
+  if ((count == 0) || (list_head == NULL))
+    return;
 
   /* Get character width based upon "X", which is a large char. */
   if ( GTK_WIDGET(sheet)->style->private_font )
@@ -717,11 +737,15 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
     char_width = DEFAULT_FONT_WIDTH;
 
   string_list_item = list_head;
-  for (j = 0; j < count; j++) {
-    text = string_list_item->data;
 
+  for (j = 0; j < count; j++) {
+
+    char *text;
+    int   new_width;
+
+    text      = string_list_item->data;
     new_width = strlen(text);
-    width = (new_width > width) ? new_width : width;
+    width     = (new_width > width) ? new_width : width;
 
     gtk_sheet_row_button_add_label(sheet, j, text);
     gtk_sheet_row_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
@@ -742,17 +766,18 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
  * \param count
  * \param list_head pointer to top of STRING_LIST
  */
-void x_gtksheet_add_col_labels(GtkSheet *sheet, int count,
-			       STRING_LIST *list_head)
+void x_gtksheet_add_col_labels(GtkSheet    *sheet,
+                               int          count,
+                               STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
-  char *text;
+
   int j;
-  int width = 0;
   int char_width;
 
   /* Leave if no items to add are available */
-  if ((count == 0) || (list_head == NULL)) return;
+  if ((count == 0) || (list_head == NULL))
+    return;
 
   if ( GTK_WIDGET(sheet)->style->private_font )
     char_width = gdk_char_width (GTK_WIDGET(sheet)->style->private_font, (char)'X');
@@ -760,10 +785,15 @@ void x_gtksheet_add_col_labels(GtkSheet *sheet, int count,
     char_width = DEFAULT_FONT_WIDTH;
 
   string_list_item = list_head;
+
   for (j = 0; j < count; j++) {
 
-    text = string_list_item->data;
+    char *text;
+    int   width;
+
+    text  = string_list_item->data;
     width = strlen(text);
+
     if (width < COLUMN_MIN_WIDTH) width = COLUMN_MIN_WIDTH;
     gtk_sheet_set_column_width(sheet, j, char_width * width);
 

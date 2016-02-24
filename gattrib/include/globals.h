@@ -154,6 +154,7 @@ typedef enum  { ToggleVisibility,
                 AddAttribute,
                 InsertAttribute,
                 HideAttribute,
+                RevealAttribute,
                 DeleteAttribute,
                 ClearAttributeData
 }  IDS_Popup_items;

@@ -250,7 +250,6 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 
   for (col = 0; col < num_attribs; col++) {
 
-    char *attrib_name, *attrib_value, *name_value_pair;
     int is_inherited;
     int is_promoted;
 
@@ -261,6 +260,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 
     /* pull attrib from table.  If non-null, add it to attrib_pair_list  */
     if ((table[col][row]).attrib_value != NULL) {
+      char *attrib_name, *attrib_value, *name_value_pair;
       attrib_name = (table[col][row]).col_name;
       attrib_value = (table[col][row]).attrib_value;
       name_value_pair = geda_utility_string_concat(attrib_name, "=", attrib_value, NULL);
