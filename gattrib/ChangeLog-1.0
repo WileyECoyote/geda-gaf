@@ -1,3 +1,8 @@
+2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_fileselect.c: Replace GtkFileChooser with GedaFileChooser,
+      remove function x_fileselect_setup_filechooser_filters
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_util.c: Invert test of geda_utility_string_stricmp.

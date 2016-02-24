@@ -29,47 +29,10 @@
  */
 
 #include <gattrib.h>
+#include <geda_file_chooser.h>
 #include <geda_debug.h>
 
 /* ----- x_fileselect stuff begins here ----- */
-/*------------------------------------------------------------------*/
-/*! \brief Set up file filter for the file chooser
- *
- * This fcn creates and sets the file filter for the filechooser.
- *
- * \param filechooser GtkFileChooser to set up
- *
- */
-static void
-x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
-{
-  GtkFileFilter *filter;
-
-  /* file filter for schematic files (*.sch) */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Schematics"));
-  gtk_file_filter_add_pattern (filter, "*.sch");
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter for symbol files (*.sym) */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Symbols"));
-  gtk_file_filter_add_pattern (filter, "*.sym");
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter for both symbol and schematic files (*.sym+*.sch) */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Schematics and symbols"));
-  gtk_file_filter_add_pattern (filter, "*.sym");
-  gtk_file_filter_add_pattern (filter, "*.sch");
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter that match any file */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("All files"));
-  gtk_file_filter_add_pattern (filter, "*");
-  gtk_file_chooser_add_filter (filechooser, filter);
-
-}
-
-/*------------------------------------------------------------------*/
 
 /*! \brief Generic File Dialog
  *
@@ -85,48 +48,43 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
 bool x_fileselect ( char* filename )
 {
   GtkWidget *dialog;
-  bool   result = FALSE;
-  char  *fname  = NULL;
-  char  *cwd    = NULL;
+  char      *cwd;
+  bool       result;
 
-  dialog = gtk_file_chooser_dialog_new (_("Save as..."),
-                                        GTK_WINDOW(main_window),
-                                        GTK_FILE_CHOOSER_ACTION_SAVE,
-                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
-                                        GTK_STOCK_SAVE,   GEDA_RESPONSE_ACCEPT,
-                                        NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GEDA_RESPONSE_ACCEPT,
-					  GEDA_RESPONSE_CANCEL,
-					  -1);
+  dialog = geda_file_chooser_new (main_window,
+                                  FILE_CHOOSER_ACTION_SAVE);
 
   g_object_set (dialog,                     /* GtkFileChooser */
                 "select-multiple", FALSE,   /* only in GTK 2.8 */
                 "do-overwrite-confirmation", TRUE,  /* version?*/
                 NULL);                              /* end options */
 
-  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
-
   /* preset a directory name */
   if (pr_current->page_current->filename != NULL) {
+
     cwd = geda_utility_string_strdup(pr_current->page_current->filename);
-    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
+    geda_file_chooser_set_filename (dialog, cwd);
+
 #ifdef DEBUG
     fprintf(stderr, "Going to use file name=%s\n", cwd);
 #endif
+
   }
   else { /* no filename then get current working dir */
     cwd = g_get_current_dir();
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    geda_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
   }
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
+
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
-    fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    strcpy(filename,fname);
+
+    char *fname;
+
+    fname = geda_file_chooser_get_filename (dialog);
+
+    strcpy(filename, fname);
     GEDA_FREE(fname); /* GTK actually does this when dialog is destroyed */
     result = TRUE;
   }
@@ -194,17 +152,14 @@ bool x_fileselect_load_file (char *filename) {
  */
 bool x_fileselect_load_files (GSList *filenames)
 {
-
   GSList *ptrname;
-  char   *filename;
   int ret_val = TRUE;
 
   /* iterate over selected files */
-  for (ptrname = filenames;
-       ptrname != NULL;
-       ptrname = g_slist_next (ptrname)) {
+  for (ptrname = filenames; ptrname != NULL; ptrname = ptrname->next) {
 
-    filename = (char*)ptrname->data;
+    char *filename = ptrname->data;
+
     if ( !x_fileselect_load_file(filename))
        ret_val = FALSE;
   }   /* end of loop over files     */
@@ -226,47 +181,39 @@ GSList *x_fileselect_open (void)
   GSList *filenames = NULL;
   char  *cwd    = NULL;
   GSList *ptrname;
-  char *filename;
 
-  dialog = gtk_file_chooser_dialog_new (_("Open..."),
-                                        GTK_WINDOW(main_window),
-                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,   GEDA_RESPONSE_ACCEPT,
-                                        NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GEDA_RESPONSE_ACCEPT,
-					  GEDA_RESPONSE_CANCEL,
-					  -1);
-
+  dialog = geda_file_chooser_new (main_window,
+                                  FILE_CHOOSER_ACTION_OPEN);
   g_object_set (dialog,
                 /* GtkFileChooser */
                 "select-multiple", TRUE,
                 NULL);
+
   /* add file filters to dialog */
-  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
+
   gtk_widget_show (dialog);
 
   /* get current working dir */
   cwd = getcwd(0,0);
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  geda_file_chooser_set_current_folder (dialog, cwd);
   free (cwd);
 
+  geda_file_chooser_set_filter(dialog, FILTER_SCHEMATIC);
+
   if(gtk_dialog_run (GTK_DIALOG(dialog)) == GEDA_RESPONSE_ACCEPT) {
-     filenames = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
-     for (ptrname = filenames;
-       ptrname != NULL;
-       ptrname = g_slist_next (ptrname)) {
-       filename = (char*)ptrname->data;
-       gtk_recent_manager_add_item (recent_manager,
-				    g_filename_to_uri(filename,
-						      NULL, NULL));
-     }
+
+    filenames = geda_file_chooser_get_filenames (dialog);
+
+    for (ptrname = filenames;  ptrname != NULL; ptrname = ptrname->next)
+    {
+      char *filename = (char*)ptrname->data;
+
+      gtk_recent_manager_add_item (recent_manager,
+                                   g_filename_to_uri(filename,
+                                                     NULL, NULL));
+    }
   }
 
   gtk_widget_destroy (GTK_WIDGET(dialog));
   return filenames;
 }
-
