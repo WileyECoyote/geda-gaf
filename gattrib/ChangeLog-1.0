@@ -4,8 +4,10 @@
       directive for GTK_TYPE_ENTRY_BUFFER, text_length need not be
       assigned if GTK_TYPE_ENTRY_BUFFER defined.
 
+    * gattrib/include/globals.h: Fix spelling; Visiablity->Visibility.
+
     * src/gtksheet/gtksheet.c: Reduce scope of variables, last three in
-      module.
+      module. Fix spelling; toggle Visibility, not Visiablity.
 
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 

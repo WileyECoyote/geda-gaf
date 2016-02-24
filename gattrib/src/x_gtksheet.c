@@ -43,14 +43,14 @@
 
 #define COLUMN_MIN_WIDTH 10
 
-const char* Colors [] = { "black",      "red",    "blue",
+const char *Colors [] = { "black",      "red",    "blue",
                           "green",      "orange", "purple",
                           "gray",       "pink",   "skyblue",
                           "lightgreen", "tan",    "violet",
                           "yellow",     "white"
 };
 
-static char *popup_items[]={ "Toggle Visiablity",
+static char *popup_items[]={ "Toggle Visibility",
                              "Add Attribute",
                              "Insert Attribute",
                              "Hide Attribute",
@@ -100,7 +100,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
     int WhichItem = (int)(long)selection;
 
     switch ( WhichItem ) {
-      case ToggleVisiablity:
+      case ToggleVisibility:
         if(s_properties_get_visibility(sheet->active_cell.row, sheet->active_cell.col))
           s_properties_set_invisible();
         else
@@ -156,7 +156,7 @@ static GtkWidget *build_menu(GtkWidget *sheet)
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
 
     switch (i) {
-      case ToggleVisiablity:
+      case ToggleVisibility:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);

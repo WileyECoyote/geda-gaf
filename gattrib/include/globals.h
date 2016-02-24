@@ -150,7 +150,7 @@ typedef enum { Black, Red, Blue,
 } ColorId;
 
 typedef enum  { Components, Nets, Pins } SheetId;
-typedef enum  { ToggleVisiablity,
+typedef enum  { ToggleVisibility,
                 AddAttribute,
                 InsertAttribute,
                 HideAttribute,
