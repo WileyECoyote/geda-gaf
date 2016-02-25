@@ -3,6 +3,8 @@
     * src/libgedathon.c: Fix get_floating_object and retrieve_floating_object
       to not return the last object checked in loop.
 
+    * src/update_objects.c: Add debug code, reduce scope of variables.
+
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: add inline function add_floating_object.

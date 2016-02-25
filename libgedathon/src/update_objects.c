@@ -100,10 +100,10 @@ PyGeda_update_bus(GedaObject *object, PyGedaObject *py_object )
 int
 PyGeda_update_circle(GedaObject *object, PyGedaObject *py_object )
 {
-  PyGedaCircleObject *py_circle    = (PyGedaCircleObject*)py_object;
-  object->circle->center_x   = py_circle->center_x;
-  object->circle->center_y   = py_circle->center_y;
-  object->circle->radius     = py_circle->radius;
+  PyGedaCircleObject *py_circle     = (PyGedaCircleObject*)py_object;
+  object->circle->center_x          = py_circle->center_x;
+  object->circle->center_y          = py_circle->center_y;
+  object->circle->radius            = py_circle->radius;
 
   //COLOR color;
   //COLOR locked_color;
@@ -131,6 +131,7 @@ PyGeda_update_complex(GedaObject *object, PyGedaObject *py_object )
   object->complex->y           = py_complex->y;
   object->complex->angle       = py_complex->angle;
   object->complex->mirror      = py_complex->mirror;
+
   return 1;
 }
 
@@ -164,16 +165,20 @@ PyGeda_update_net(GedaObject *object, PyGedaObject *py_object )
   //COLOR locked_color;
   return 1;
 }
+
 int
 PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaPathObject *py_path = (PyGedaPathObject*)py_object;
+
+#ifdef DEBUG
   const char *str;
 
   if (py_path->dirty_string) {
     str = PyString_AsString(py_path->path_string);
-    fprintf(stderr, "yelp: the string <%s> is dirty", str);
+    fprintf(stderr, "%s: string <%s> is dirty", __func__, str);
   }
+#endif
 
   object->fill_options->fill_type   = py_path->fill_type;
   object->fill_options->fill_width  = py_path->fill_width;
@@ -188,6 +193,7 @@ PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
   object->line_options->line_space = py_path->line_space;
   return 1;
 }
+
 int
 PyGeda_update_picture(GedaObject *object, PyGedaObject *py_object )
 {
@@ -204,8 +210,8 @@ PyGeda_update_picture(GedaObject *object, PyGedaObject *py_object )
 int
 PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
 {
-  const char* str;
-  PyGedaPinObject *py_pin          = (PyGedaPinObject*)py_object;
+  PyGedaPinObject *py_pin = (PyGedaPinObject*)py_object;
+  const char *str;
 
   if (py_pin->dirty_electrical) {
     str = PyString_AsString(py_pin->electrical);
@@ -246,9 +252,8 @@ PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
 }
 
 int
-PyGeda_update_text(GedaObject *object, PyGedaObject *py_object )
+PyGeda_update_text(GedaObject *object, PyGedaObject *py_object)
 {
-  const char *str;
   PyGedaTextObject *py_text        = (PyGedaTextObject*)py_object;
 
   object->text->x                  = py_text->x;
@@ -261,7 +266,7 @@ PyGeda_update_text(GedaObject *object, PyGedaObject *py_object )
   object->visibility               = py_text->visible;
 
   if (py_text->dirty_text) {
-    str = PyString_AsString(py_text->string);
+    const char *str = PyString_AsString(py_text->string);
     o_text_set_string(object, str);
     py_text->dirty_text = 0;
   }
@@ -328,7 +333,6 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
   //PyGedaPinObject *py_pin           = (PyGedaPinObject*)py_object;
   GedaObject *attrib;
   char       *value;
-  int         number;
 
   inline bool is_number(char *str) {
     char *ptr = str;
@@ -356,10 +360,14 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
   attrib = o_attrib_first_attrib_by_name (object, "pinseq");
 
   if (attrib) {
+
     value = strstr(attrib->text->string, "=");
     value++;
+
     if (is_number(value)) {
-      number = atoi(value);
+
+      int number = atoi(value);
+
       if (number != object->pin->sequence) {
         o_attrib_set_integer_value(attrib, "pinseq", object->pin->sequence);
         o_text_recreate(attrib);
@@ -411,9 +419,8 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
 static int
 PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
 {
-  GedaObject *o_attrib;
-  GList      *butes = NULL;
-  int         count = 0;
+  GList *butes = NULL;
+  int    count = 0;
 
   if ( PyList_Check(py_object->attributes)) {
 
@@ -431,7 +438,7 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
 
         butes  = g_list_append(butes, attrib);
 
-#if DEBUG
+#ifdef DEBUG
         fprintf(stderr, "%s: adding %s\n", __func__, attrib->text->string);
 #endif
 
@@ -447,14 +454,21 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
     object->attribs = butes;
   }
 
+#ifdef DEBUG
+  else {
+    fprintf(stderr, "%s: no attributes to update\n", __func__);
+  }
+#endif
+
   while (butes != NULL) {
-    o_attrib = (GedaObject*)butes->data;
-    o_text_recreate  (o_attrib);
+    GedaObject *o_attrib = (GedaObject*)butes->data;
+    o_text_recreate (o_attrib);
     NEXT (butes);
   }; /* wend*/
 
   return 1;
 }
+
 static int
 PyGeda_update_bus_butes(GedaObject *object, PyGedaObject *py_object )
 {
