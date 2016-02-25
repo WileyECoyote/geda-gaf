@@ -101,37 +101,35 @@ static void destroy_all_floating_objects (void)
 
 GedaObject *get_floating_object (int sid)
 {
-  GedaObject *object = NULL;
-  GList      *iter   = g_list_first(floating_objects);
+  GList *iter = g_list_first(floating_objects);
 
   while (iter != NULL) {
 
-    object = (GedaObject*)iter->data;
+    GedaObject *object = iter->data;
 
     if (object->sid == sid) {
-      break;
+      return object;
     }
     NEXT(iter);
   }
-  return object;
+  return NULL;
 }
 
 GedaObject *retrieve_floating_object (int sid)
 {
-  GedaObject *object = NULL;
-  GList      *iter   = g_list_first(floating_objects);
+  GList *iter = g_list_first(floating_objects);
 
   while (iter != NULL) {
 
-    object = (GedaObject*)iter->data;
+    GedaObject *object = iter->data;
 
     if (object->sid == sid) {
       floating_objects = g_list_remove(floating_objects, object);
-      break;
+      return object;
     }
     NEXT(iter);
   }
-  return object;
+  return NULL;
 }
 
 /*! \brief Append an Object to a PyList (of GedaCapules)
@@ -197,7 +195,7 @@ PyGeda_glist_2_pylist(GList *object_list)
 
   ptr = g_list_first(object_list);
 
-  while(ptr != NULL) {
+  while (ptr != NULL) {
 
     capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
 
@@ -1829,17 +1827,20 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
             o_pin_realize_attributes(toplevel, parent);
           }
         }
+
+        /* Check if this object has attached attributes and add them too */
         if (parent->type == OBJ_COMPLEX) {
             GList  *butes = parent->attribs;
             while (butes != NULL) {
               object = (GedaObject*)butes->data;
-              if (!object->page)
+              if (!object->page) {
                 s_page_append_object(page, object);
+              }
               NEXT (butes);
             }; /* wend*/
         }
 
-        /* Check if this object has any attributes and add them too */
+        /* Check if this object has attributes from Python and add them too */
         PyObject *py_list = geda_pyobject->attributes;
 
         if (py_list) {
@@ -1853,6 +1854,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
             GedaCapsule *py_capsule;
 
             py_capsule = (GedaCapsule*)PyList_GET_ITEM(py_list, i);
+
             object     = retrieve_floating_object(py_capsule->sid);
 
             if (object) {
@@ -2830,9 +2832,8 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
 /*! \brief Python API Library Get Attribute Objects
  *  \ingroup Python_API_Attribute_Functions
  *  \par Function Description
- *  This function provides a gets all of the attributes attached to
- *  given Gedaobject and return a PyList data to contruct the
- *  attributes.
+ *  This function provides a medthod to get all of the attributes attached to
+ *  given Gedaobject and return a PyList data to contruct the attributes.
  *
  *  \param [in] py_object    PyGedaObject whose attributes are to be returned
  *
