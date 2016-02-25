@@ -27,16 +27,20 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_bus.c
- *  \brief Geda Bus Object Class derived from the GedaObject Class
+ *  \brief GedaBus Object Class Module
  */
-/** \defgroup geda-bus-object Geda Bus Object
+
+/** \defgroup geda-bus-object GedaBus Object
  *  @{
- */
-/*! \class GedaBus geda_bus.h "include/libgeda/geda_bus.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Bus Objects.
+ * \brief Implmentation of #GedaBus Class
+ * \par
  *  A Geda Bus Object is similar to net objects but are intended to
- *  represent multiple conductors.
+ *  represent multiple conductors. The GedaBus class is derived from
+ *  the GedaLine class.
+ *
+ * \class GedaBus geda_bus.h "include/libgeda/geda_bus.h"
+ * \implements geda-line
+ * \implements geda-object
  */
 
 #include <config.h>
