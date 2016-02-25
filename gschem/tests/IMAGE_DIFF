@@ -41,12 +41,12 @@ if test -f $input ; then
 
   newpng="${filebase}.png"
 
-  $TEST_APP -q -npz -a ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} > ${LOG} 2>&1
+  $TEST_APP -mv -npz -a ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename} > ${LOG} 2>&1
   ret_code=$?
 
   if [ $ret_code -ne 0 ]; then
     cat << EOF >> ${LOG}
-      ${TEST_APP} --verbose -npz ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
+      ${TEST_APP} -mv -npz ${RENDERER} -f ${DEFAULT_FONT_NAME} -o ${newpng} -r ${IMAGE_SCRIPT} ${filename}
       exited with code ${ret_code}
 EOF
   elif [ ! -f "$newpng" ] ; then

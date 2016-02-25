@@ -2,6 +2,10 @@
 
     * tests/Makefile.am: Add rule regen to regenerate golden outputs.
 
+    * tests/LOG_DIFF: Change gschem option -q to -mv, at least for now.
+
+    * tests/IMAGE_DIFF: Change gschem option -q to -mv.
+
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/xxx/.c: Translate verbose log messages ensuring carriage return

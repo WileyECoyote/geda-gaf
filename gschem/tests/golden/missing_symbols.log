@@ -1,3 +1,10 @@
+gschem: Restoring user settings
+gschem: Initializing icon factory
+gschem: Retrieving toolbar geometry
+gschem: Toolbar configuration restored from gschem-toolbar-user.conf
+gschem: Retrieving main Window geometry and settings.
+gschem: Initializing: Graphics Renderer Adaptor....gschem: done
+gschem: Session system initialized!
 Component [Missing_4000-1.sym] was not found in the component library
 Component [Missing_4000-1.sym] was not found in the component library
 Component [Missing_4000-1.sym] was not found in the component library
@@ -6,4 +13,5 @@ Component [Missing_4000-1.sym] was not found in the component library
 Component [Missing_4000-1.sym] was not found in the component library
 Component [Missing_4000-1.sym] was not found in the component library
 Component [Missing_4000-1.sym] was not found in the component library
+gschem: Set page <missing_symbols.sch> active.
 Running Log Diff Tests

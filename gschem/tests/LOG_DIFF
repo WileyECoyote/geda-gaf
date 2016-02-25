@@ -26,27 +26,34 @@ if test -f $input ; then
 
   cd $rundir/
 
-  $TEST_APP -q -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename > ${LOG} 2>&1
+  $TEST_APP -mv -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename > ${LOG} 2>&1
   ret_code=$?
 
   if test $ret_code -ne 0 ; then
     cat << EOF >> ${LOG}
-      $TEST_APP -q -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+      $TEST_APP -mv -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
       exited with code ${ret_code}
 EOF
   fi
 
-  # Get the latest file in the gschem log directory
-  newlog=$(ls -Art ../logs | tail -n 1)
+  if test -d "../logs" ; then
 
-  if test -z "$newlog" ; then
-    echo "Error: Was the log file created in the right place?"
-    exit 1;
+    # Get the latest file in the gschem log directory
+    newlog=$(ls -Art ../logs | tail -n 1)
+
+    if test -z "$newlog" ; then
+      echo "Error: Was the log file created in the right place?"
+      ls -l "../logs/*"
+      exit 1;
+    fi
+    testlog="${filebase}.log"
+
+    # Remove the version line and write to run directory
+    grep -v "version" ../logs/$newlog > temp && mv temp ${testlog}
+  else
+    echo "Error: host directory \"../logs\" is not accessible!"
+    exit 0;
   fi
-  testlog="${filebase}.log"
-
-  # Remove the version line and write to run directory
-  grep -v "version" ../logs/$newlog > temp && mv temp ${testlog}
 
   cd ..
 

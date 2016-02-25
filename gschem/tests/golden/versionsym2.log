@@ -1,3 +1,10 @@
+gschem: Restoring user settings
+gschem: Initializing icon factory
+gschem: Retrieving toolbar geometry
+gschem: Toolbar configuration restored from gschem-toolbar-user.conf
+gschem: Retrieving main Window geometry and settings.
+gschem: Initializing: Graphics Renderer Adaptor....gschem: done
+gschem: Session system initialized!
 	MAJOR VERSION CHANGE (instantiated 0.000, library 24.000, U1)!
 	MAJOR VERSION CHANGE (instantiated 0.500, library 24.000, U3)!
 		Could not parse symbol file
