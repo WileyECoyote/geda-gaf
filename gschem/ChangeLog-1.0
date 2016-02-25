@@ -6,8 +6,11 @@
 
     * tests/IMAGE_DIFF: Change gschem option -q to -mv.
 
-    * tests/runtest.sh: output gschem version prior to running tests, bump
-      version 0.1.3.
+    * tests/runtest.sh: output gschem version prior to running tests, revise
+      setup_path2libraries() to create links to libraries instead of coping,
+      which reduces setup time a few seconds, add "sudo ldconfig" after
+      exporting LD_LIBRARY_PATH -- appears to be a deficiency in ldconfig
+      on Travis workers, bump version 0.1.4.
 
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 

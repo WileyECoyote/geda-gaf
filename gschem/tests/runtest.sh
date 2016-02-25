@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.3
+VER=0.1.4
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -44,11 +44,13 @@ show_help () {
 
    for link2lib in ${LIBS[*]} ; do
     if [ -L $link2lib ] ; then
-        cp ${link2lib} "libs/"
+       ln -s ../${link2lib} "libs/"
     fi
    done
 
-   export LD_LIBRARY_PATH=$PWD/libs:$LD_LIBRARY_PATH
+   export LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
+
+   sudo ldconfig;
 
    vecho "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 }
