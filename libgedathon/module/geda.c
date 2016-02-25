@@ -2348,7 +2348,7 @@ METHOD(get_attribs)
     parent =  do_get_object(self, args);
   }
   else {
-    PyErr_SetString(PyExc_TypeError, syntax);
+    PyErr_SetString(PyExc_TypeError, syntax);             /* Set error message */
     py_output_list = NULL;
     parent = NULL;
   }
@@ -2360,7 +2360,7 @@ METHOD(get_attribs)
     py_input_list  = library.func(parent);
     py_output_list = PyList_New(0);
 
-    if ( PyList_Check(py_input_list)) {
+    if (PyList_Check(py_input_list)) {
 
       int i, count = (int)PyList_GET_SIZE(py_input_list);
 
@@ -2372,8 +2372,9 @@ METHOD(get_attribs)
         object_data  = PyList_GET_ITEM(py_input_list, i);
         py_text      = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
 
-        if(py_text && PyObject_Type(py_text))
+        if(py_text && PyObject_Type(py_text)) {
           PyList_Append(py_output_list, py_text);
+        }
       }
     }
 

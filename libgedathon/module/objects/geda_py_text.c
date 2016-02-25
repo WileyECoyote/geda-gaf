@@ -326,7 +326,7 @@ PyGedaTextObject_set_text(PyGedaTextObject *self, PyObject *value, void *closure
 
   self->dirty_text = 1;
   self->object.dirty = 1;
-  if(self->object.pid >= 0) {
+  if (self->object.pid >= 0) {
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
   }
 

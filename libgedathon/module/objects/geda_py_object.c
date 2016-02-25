@@ -36,7 +36,7 @@
 #include "../../include/geda_py_docs.h"
 
 static PyObject* object_module;
-static PyObject* geda_module;
+static PyObject *geda_module;
 
 /* ------------------------- PyGedaObject Destructor ------------------------- */
 
@@ -173,7 +173,7 @@ PyGedaObject_name(PyGedaObject* self)
   return result;
 }
 
-static PyObject* go_add(PyObject *self, PyObject *args)
+static PyObject *go_add(PyObject *self, PyObject *args)
 {
   PyObject *unknown;
   PyObject *bute;
@@ -188,7 +188,7 @@ static PyObject* go_add(PyObject *self, PyObject *args)
   return PyObject_CallMethod(geda_module, "add_object", "OO", self, args);
 }
 
-static PyObject* go_copy(PyObject *self, PyObject *args)
+static PyObject *go_copy(PyObject *self, PyObject *args)
 {
   int       dx = -1;
   int       dy = -1;
@@ -197,22 +197,22 @@ static PyObject* go_copy(PyObject *self, PyObject *args)
   return PyObject_CallMethod(geda_module, "copy_object", "Oii", self, dx, dy);
 }
 
-static PyObject* go_delete(PyObject *self)
+static PyObject *go_delete(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "delete_object", "O", self);
 }
 
-static PyObject* go_rotate(PyObject *self, PyObject *args)
+static PyObject *go_rotate(PyObject *self, PyObject *args)
 {
   return PyObject_CallMethod(geda_module, "rotate_object", "O", self, args);
 }
 
-static PyObject* go_select(PyObject *self)
+static PyObject *go_select(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "select_object", "O", self);
 }
 
-static PyObject* go_unselect(PyObject *self)
+static PyObject *go_unselect(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "unselect_object", "O", self);
 }
