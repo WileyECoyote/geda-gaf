@@ -19,6 +19,11 @@ SRCDIR=$(srcdir)
 tests:
 	$(SRCDIR)/runtest.sh $(BUILDDIR) $(SRCDIR)
 
+regen:
+	$(SRCDIR)/runtest.sh --regen $(BUILDDIR) $(SRCDIR)
+
+.PHONY: regen
+
 MOSTLYCLEANFILES     = *.log doc/*~ sort/*~ src/*~ sym/*~ *~
 CLEANFILES           = *.log doc/*~ sort/*~ src/*~ sym/*~ *~
 DISTCLEANFILES       = *.log doc/*~ sort/*~ src/*~ sym/*~ *~ core FILE

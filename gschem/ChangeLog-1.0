@@ -1,3 +1,7 @@
+2016-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Add rule regen to regenerate golden outputs.
+
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/xxx/.c: Translate verbose log messages ensuring carriage return
