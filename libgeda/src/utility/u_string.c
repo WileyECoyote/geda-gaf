@@ -271,23 +271,26 @@ bool geda_utility_string_isalnum (const char *str)
   return TRUE;
 }
 
-/*! \brief Parse a c String for X and Y integer pair
- *  \par Function Description
+/*! U6070
+ * \brief Parse a c String for X and Y integer pair
+ * \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are
  *  ignored. The first character digits are interrupted as the string for
  *  X unless a comma was previously encountered, in which case the string
- *  is interrupted as the Y. If the is Y set and X has not been set then X
- *  is presumed zero, and this allows input such as ",600" to mean (0,600).
+ *  is interrupted as the Y. If is Y set and X has not been set then X is
+ *  presumed zero, and this allows input such as ",600" to mean (0,600).
  *  If only one value was interrupted and a comma had not be encountered,
- *  the Y is presumed to be zero. If the string contains two set of valid
+ *  the Y is presumed to be zero. If the string contains two sets of valid
  *  digits, X and Y, then the comma may also be an ASKii SPACE character.
- *  If neither X nor Y is interpreted then False is returned.
+ *  If neither X nor Y is interpreted then False is returned. Either X or
+ *  Y, or both, can be NULL, the returned value will still indicate the
+ *  validity of the \a string.
  *
- *  \param[in]  string  The string to parse.
- *  \param[out] *x      Set to integer X value
- *  \param[out] *y      Set to integer Y value
+ * \param[in]  string  The string to parse.
+ * \param[out] *x      Set to integer X value
+ * \param[out] *y      Set to integer Y value
  *
- *  \return True of the string was accepted and the X,Y value are valid
+ * \return True of the string was accepted and the X,Y value are valid
  *
  *  acceptable formats: "(4500,380)", "4500,380", "5", ",72"
  */
@@ -347,8 +350,10 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
       if (icomma >= 0) {
         buffer[icomma] = '\0';
       }
-      *x = atoi(x_str);
-      *y = atoi(y_str);
+      if (x)
+        *x = atoi(x_str);
+      if (y)
+        *y = atoi(y_str);
       valid = 1;
     }
     free(buffer);
@@ -359,24 +364,29 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
   return valid;
 }
 
-/*! \brief return c pointer to SCM string.
- *  \par Function Description
+/*! U6080
+ * \brief return c pointer to SCM string.
+ * \par Function Description
  *  String utility function to get a c pointer to a scm string.
  * \remarks  caller is responsible for freeing the pointer.
  */
-char *geda_utility_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
+char *geda_utility_string_scm2c( char *scm_str_name) /* WEH: couldn't find it, made it */
 {
-  SCM s_symbol, s_value;
+  if (scm_str_name) {
+    SCM s_symbol, s_value;
 
-  /* Now get string */
-  s_symbol = scm_c_lookup(scm_str_name);
-  s_value  = scm_variable_ref(s_symbol);
+    /* Now get string */
+    s_symbol = scm_c_lookup(scm_str_name);
+    s_value  = scm_variable_ref(s_symbol);
 
-  return scm_to_locale_string(s_value);
+    return scm_to_locale_string(s_value);
+  }
+  return NULL;
 }
 
-/*! \brief  Sort an array of Characters
- *  \par Function Description
+/*! U6090
+ * \brief  Sort an array of Characters
+ * \par Function Description
  *  sort array using qsort functions
  */
 void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
@@ -387,7 +397,7 @@ void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
     const char **ib = (const char **)b;
     return strcmp(*ia, *ib);
     /* strcmp functions works exactly as expected from
-     *       comparison function */
+     * comparison function */
   }
   size_t strings_len = strings_size / sizeof(char *);
 
@@ -395,12 +405,13 @@ void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
   qsort(strings, strings_len, sizeof(char*), cstring_cmp);
 }
 
-/*! \brief  Get formated string using printf like specifiers
- *  \par Function Description
- *  \returns a newly allocated string that is the result of
- *   the substitution of the variable arguments into \a format.
+/*! U610
+ * \brief  Get formated string using printf like specifiers
+ * \par Function Description
+ * \returns a newly allocated string that is the result of
+ *  the substitution of the variable arguments into \a format.
  *
- *  \remarks returned string must be freed using GEDA_FREE.
+ * \remarks returned string must be freed using GEDA_FREE.
  */
 char *geda_utility_string_sprintf (const char *format, ...)
 {
@@ -452,10 +463,11 @@ char *geda_utility_string_sprintf (const char *format, ...)
   return buffer;
 }
 
-/*! \brief  Get a Duplicate string
- *  \par Function Description
- *  \returns a newly allocated string copy of \a str.
- *  \remarks returned string must be freed using GEDA_FREE.
+/*! U611
+ * \brief  Get a Duplicate string
+ * \par Function Description
+ * \returns a newly allocated string copy of \a str.
+ * \remarks returned string must be freed using GEDA_FREE.
  */
 char *geda_utility_string_strdup (const char *str)
 {
@@ -467,19 +479,23 @@ char *geda_utility_string_strdup (const char *str)
   return ptr ? (char*)memcpy(ptr, str, len) : NULL;
 }
 
-/*! \brief  Duplicate a specified number of characters
- *  \par Function Description
- *  \returns a newly allocated string containing the first
- *  \a n characters of \a str. The new string is terminated
- *   with a NULL.
- *  \remarks returned string must be freed using GEDA_FREE.
+/*! U612
+ * \brief  Duplicate a specified number of characters
+ * \par Function Description
+ *  The newly allocated NULL terminated string.
+ *
+ * \returns string containing the first \a n characters of \a str.
+ *
+ * \remarks returned string must be freed using GEDA_FREE.
  */
-char *geda_utility_string_strndup(const char *str, size_t n)
+char *geda_utility_string_strndup(const char *str, int n)
 {
   char *ptr;
 
-  if (str) {
+  if (n > 0 && str) {
+
     ptr = GEDA_MEM_ALLOC(n+1);
+
     if (ptr != NULL) {
        memcpy(ptr, str, n);
        ptr[n] = '\0';

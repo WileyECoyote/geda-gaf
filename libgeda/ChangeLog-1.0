@@ -3,6 +3,12 @@
     * src/geda/geda_bus.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/utility/u_string.c: Revise geda_utility_string_parse_xy to check
+      x and y outputs on a per input variable basis, either or both X and Y
+      can be NULL. Check for NULL argument geda_utility_string_scm2c and
+      check for negative argument to geda_utility_string_strndup, revise
+      Doxygen comments.
+
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_circle.c: Revise Doxygen comments in group and move class
