@@ -34,6 +34,10 @@
  *
  * -lX11 -lXft `pkg-config --cflags freetype2
  */
+
+/* Not optional! See include/geda_x11.hpp (included by geda_draw.h) */
+#include "../../config.h"
+
 #include <string>
 #include <cmath>
 
@@ -557,7 +561,11 @@ HashSetFont (void)
       g_hash_table_insert (font_cache, tmp_string, font);
     }
     else {
+
+#ifdef DEBUG
       fprintf(stderr, "%s did not get a font for %s\n", __func__, font_string.c_str());
+#endif
+
       GEDA_FREE(tmp_string);
     }
   }

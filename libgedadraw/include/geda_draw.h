@@ -58,5 +58,4 @@
 
 #include "geda_x11.hpp"
 
-
 #endif /* __GEDA_DRAW_H__ */

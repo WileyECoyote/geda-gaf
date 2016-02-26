@@ -1,3 +1,11 @@
+2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x11/geda_x11.cpp: Include config.h, this changes the offsets in
+       the class structure when HAVE_XFT is or is not defined.
+
+     * include/geda_x11.hpp: Add comments to document the issue including
+       config.h.
+
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
      * include/geda_x11.hpp: Tweak inline GetLineWidth to use linear scaling;

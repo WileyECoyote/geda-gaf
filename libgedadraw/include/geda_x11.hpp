@@ -32,6 +32,8 @@
  *
  * \remarks This module is under development
  *
+ * \warning config.h MUST be included before this file because offsets
+ *          to class members will change if HAVE_XFT is defined!
  */
 #define Picture xPicture
 
