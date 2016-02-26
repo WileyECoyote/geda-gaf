@@ -629,7 +629,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_string_sort_array       (char *strings[], size_t strings_size);
          char   *geda_utility_string_sprintf          (const char *format, ...)   GEDA_WARN_UNUSED_RESULT;
          char   *geda_utility_string_strdup           (const char *str)           GEDA_WARN_UNUSED_RESULT;
-         char   *geda_utility_string_strndup          (const char *str, size_t n) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_strndup          (const char *str, int n) GEDA_WARN_UNUSED_RESULT;
          int     geda_utility_string_stristr          (const char *haystack, const char *needle);
          bool    geda_utility_string_strequal         (const char *str1, const char *str2) GEDA_WARN_UNUSED_RESULT;
          int     geda_utility_string_strsize          (const char *format, va_list args);

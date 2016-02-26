@@ -2,6 +2,8 @@
 
     * src/geda/geda_box.c: A Doxygen file and group comments.
 
+    * src/file/f_file.c: Reduce scope of message and str in function f_open.
+
     * src/object/o_pin_basic.c: Reduce scope of variables; found in function
       o_pin_update_whichend, new_bute in o_pin_create_elect_attrib, new_bute
       in o_pin_create_label_attrib, and attrib in o_pin_realize_attributes,

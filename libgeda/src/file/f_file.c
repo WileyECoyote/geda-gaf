@@ -217,9 +217,6 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (flags & F_OPEN_CHECK_BACKUP) {
 
-    char       *message;
-    const char *str;
-
     /* Check for a newer autosave backup file */
     bool active_backup = f_has_active_autosave (full_filename, &tmp_err);
     backup_filename    = f_get_autosave_filename (full_filename);
@@ -230,7 +227,9 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     if (active_backup) {
 
-      unsigned int mem_needed;
+      const char   *str;
+      char         *message;
+      unsigned int  mem_needed;
 
       mem_needed = strlen(log_auto_back) + strlen(backup_filename);
 
@@ -351,17 +350,14 @@ static int f_file_Size(const char *filename)
 bool
 f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
-  char   *backup_filename;
-  char   *real_filename;
-  char   *only_filename;
-  char   *dirname;
-
   const char *err_not_real;
   const char *err_not_saved;
   const char *err_read_only;
 
   const char *log_set_back;
   const char *log_not_back;
+
+  char   *real_filename;
 
   GError *tmp_err;
   struct  stat st_ActiveFile;
@@ -399,6 +395,9 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (result) {
 
+    char *only_filename;
+    char *dirname;
+
     /* Get the files original permissions */
     if (stat (real_filename, &st_ActiveFile) != 0) {
 
@@ -419,6 +418,8 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
            f_file_Size (real_filename))
       {
+        char *backup_filename;
+
         backup_filename = geda_utility_string_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
                                           only_filename);
 
