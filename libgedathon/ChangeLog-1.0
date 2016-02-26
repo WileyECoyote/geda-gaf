@@ -1,4 +1,8 @@
-2016-02-25 Wiley E. Hill <wileyhill@gmail.com>
+2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Reduce scope of variables.
+
+2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Fix get_floating_object and retrieve_floating_object
       to not return the last object checked in loop.

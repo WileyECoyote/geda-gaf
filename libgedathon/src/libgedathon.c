@@ -150,7 +150,6 @@ static PyObject*
 PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
 
   PyObject *list;
-  PyObject *capsule;
 
   if (pylist == NULL) {
     list = PyList_New(0);
@@ -160,7 +159,7 @@ PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
   }
 
   if (GEDA_IS_OBJECT(object)) {
-    capsule = GedaCapsule_New(object);
+    PyObject *capsule = GedaCapsule_New(object);
     PyList_Append(list, capsule);
   }
   else {
@@ -189,15 +188,13 @@ PyGeda_glist_2_pylist(GList *object_list)
 {
   GList    *ptr;
   PyObject *objects;
-  PyObject *capsule;
 
   objects = PyList_New(0);
-
-  ptr = g_list_first(object_list);
+  ptr     = g_list_first(object_list);
 
   while (ptr != NULL) {
 
-    capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
+    PyObject *capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
 
     if (capsule) {
       PyList_Append(objects, capsule);
@@ -821,13 +818,10 @@ static int translate_color(PyObject *py_color, int default_color)
  */
 static void setup_source_library (void)
 {
-  char           *data_path;
-  const char     *name;
-  const char     *nested;
   struct dirent **namelist;
   struct dirent **nestedlist;
+  char           *data_path;
   int n;
-  int i;
 
   data_path = geda_utility_string_concat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
 
@@ -835,24 +829,38 @@ static void setup_source_library (void)
   if (n < 0)
     fprintf(stderr, "libgedathon <setup_source_library> bad f_path_sys_data, %s\n",strerror (errno));
   else {
+
+    int i;
+
     while (n--) {
       if ((g_ascii_strcasecmp (namelist[n]->d_name, ".")  != 0) &&
         (g_ascii_strcasecmp (namelist[n]->d_name, "..") != 0) &&
         (namelist[n]->d_type == DT_DIR))
       {
-        name = namelist[n]->d_name;
-        char *fullpath = g_build_filename (data_path, name, NULL);
+        const char *name;
+              char *fullpath;
+
+        name     = namelist[n]->d_name;
+        fullpath = g_build_filename (data_path, name, NULL);
+
         s_clib_add_directory(fullpath,name);
+
         i = scandir(fullpath, &nestedlist, NULL, alphasort);
+
         if (i > 0) {
           while (i--) {
             if ((g_ascii_strcasecmp (nestedlist[i]->d_name, ".")  != 0) &&
                 (g_ascii_strcasecmp (nestedlist[i]->d_name, "..") != 0) &&
                 (nestedlist[i]->d_type == DT_DIR))
             {
-              nested = nestedlist[i]->d_name;
-              char *nestedpath = g_build_filename (fullpath, nested, NULL);
+              const char *nested;
+                    char *nestedpath;
+
+              nested     = nestedlist[i]->d_name;
+              nestedpath = g_build_filename (fullpath, nested, NULL);
+
               s_clib_add_directory (nestedpath, nested);
+
               free(nestedpath);
               free(nestedlist[i]);
             }
@@ -887,14 +895,19 @@ static void setup_source_library (void)
 void initialize( API_FunctionTable* user_table)
 {
   int i;
-  const char *promote_list[] = {  /* always-promote-attributes */
-  "footprint", "device", "value", "model-name", NULL};
 
   libgeda_init(0, NULL);
+
   toplevel = geda_toplevel_new();
   toplevel->open_flags = 0;
+
   setup_source_library();
+
   if (toplevel->always_promote_attributes == NULL ) {
+
+    const char *promote_list[] = {  /* always-promote-attributes */
+    "footprint", "device", "value", "model-name", NULL};
+
     for ( i = 0; promote_list[i]; i++) {
      apa_list = g_list_prepend(apa_list, geda_utility_string_strdup(promote_list[i]));
     }
@@ -934,12 +947,12 @@ void initialize( API_FunctionTable* user_table)
 void
 PyGeda_shutdown(void)
 {
-  GList    *iter;
-  Page     *page;
+  GList *iter = g_list_first(toplevel->pages->glist);
 
-  iter = g_list_first(toplevel->pages->glist);
   while (iter) {
-    page = iter->data;
+
+    Page *page = iter->data;
+
     if (page && (GEDA_IS_PAGE(page))) {
       PyGeda_close_page(page->pid);
     }
@@ -967,15 +980,15 @@ int
 PyGeda_append_symbol_path( const char *path )
 {
   char *directory;
-  char *namestr    = NULL;
-  int result       = 0;
+  int result;
 
   directory = geda_utility_expand_env_variable (path);
+  result    = 0;
 
   /* is invalid path? */
   if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
 
-    namestr = basename(directory);
+    char *namestr = basename(directory);
 
     if (f_get_is_path_absolute (directory)) {
       s_clib_add_directory (directory, namestr);
@@ -1049,13 +1062,14 @@ PyGeda_get_pages( void )
 {
   PyObject *pages;
   GList    *iter;
-  Page     *page;
 
   pages = PyList_New(0);
+  iter  = g_list_first(toplevel->pages->glist);
 
-  iter = g_list_first(toplevel->pages->glist);
   while (iter) {
-    page = iter->data;
+
+    Page *page = iter->data;
+
     if (page && (GEDA_IS_PAGE(page))) {
       PyObject *page_info;
       page_info = Py_BuildValue("si", page->filename, page->pid);
@@ -1171,7 +1185,7 @@ PyGeda_goto_page( int pid )
 PyObject*
 PyGeda_open_page( const char *filename )
 {
-  Page *old_current, *page;
+  Page *page;
   char *ptr;
   char  strbuff[MAX_PATH];
 
@@ -1182,6 +1196,14 @@ PyGeda_open_page( const char *filename )
 
     char *str;
     char *untitled;
+
+    /* Get untitled-name prior to looping */
+    if (!toplevel->untitled_name) {
+      untitled = "untitled";            /* Set to fall-back name */
+    }
+    else {
+      untitled = toplevel->untitled_name;  /* Set to string from config */
+    }
 
     inline void unique_untitled(void) {
 
@@ -1212,14 +1234,6 @@ PyGeda_open_page( const char *filename )
       str = strcat (str, SCHEMATIC_FILE_DOT_SUFFIX);
     }
 
-    /* Get untitled-name prior to looping */
-    if (!toplevel->untitled_name) {
-      untitled = "untitled";            /* Set to fall-back name */
-    }
-    else {
-      untitled = toplevel->untitled_name;  /* Set to string from config */
-    }
-
     memset(&strbuff[0], '\0', sizeof(strbuff));
     unique_untitled ();
     while (g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
@@ -1236,17 +1250,6 @@ PyGeda_open_page( const char *filename )
     return page;
   }
 
-  /* Recover by switching back to Old or a create blank */
-  inline void resolve_2_recover( const char *name ) {
-    /* There was an error, try go back to old page */
-    if (old_current != NULL ) {
-      s_page_goto (old_current);
-    }
-    else { /* There was error and no previous page */
-      page = empty_page(name);
-    }
-  }
-
   /* If filename string has length, NULL the pointer */
   if (filename && !strlen(filename)) {
     filename = NULL;
@@ -1258,7 +1261,18 @@ PyGeda_open_page( const char *filename )
   }
   else {
 
-    old_current = toplevel->page_current; /* save fallback point */
+    Page *old_current = toplevel->page_current; /* save fallback point */
+
+    /* Recover by switching back to Old or a create blank */
+    inline void resolve_2_recover( const char *name ) {
+      /* There was an error, try go back to old page */
+      if (old_current != NULL ) {
+        s_page_goto (old_current);
+      }
+      else { /* There was error and no previous page */
+        page = empty_page(name);
+      }
+    }
 
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
@@ -1373,10 +1387,9 @@ PyGeda_open_page( const char *filename )
 int
 PyGeda_close_page(int pid)
 {
-  Page  *page;
-  Page  *new_current = NULL;
-  GList *iter;
-  int    new_pid;
+  Page *page;
+  Page *new_current = NULL;
+  int   new_pid;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
@@ -1389,8 +1402,9 @@ PyGeda_close_page(int pid)
     new_current = s_page_search_by_page_id (toplevel->pages, up);
 
     if (new_current == NULL) {
+
       /* no up in hierarchy, choice is prev, next, new page */
-      iter = g_list_find( geda_list_get_glist(toplevel->pages), page);
+      GList *iter = g_list_find( geda_list_get_glist(toplevel->pages), page);
 
       if (g_list_previous( iter ) ) {
         new_current = (Page *)g_list_previous( iter )->data;
@@ -1449,10 +1463,12 @@ PyObject*
 PyGeda_new_page( const char *filename, int over_write)
 {
   char *fname = NULL;
-  char *command;
 
   if (filename) {
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
+
+      char *command;
+
       if (toplevel->make_backup_files && !over_write) {
         command = geda_utility_string_concat("mv ", filename, " ", filename, ".bak", NULL);
       }
@@ -1629,17 +1645,17 @@ PyGeda_GedaCapsule_Type(PyObject *py_object)
 PyObject*
 PyGeda_get_bounds( int pid, int sid )
 {
-  GList      *list;
-  GedaObject *object;
-  Page       *page;
-  PyObject   *py_list;
+  Page     *page;
+  PyObject *py_list;
 
   int left, top, right, bottom;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if ( sid < 0) {
-    list = s_page_get_objects(page);
+
+    GList *list = s_page_get_objects(page);
+
     if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
@@ -1649,7 +1665,7 @@ PyGeda_get_bounds( int pid, int sid )
   }
   else {
 
-    object = s_page_get_object(page, sid);
+    GedaObject *object = s_page_get_object(page, sid);
 
     if (!object) {
       object = get_floating_object(sid);
@@ -2781,7 +2797,6 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
   GedaObject   *parent;
-  Page         *page        = NULL;
   PyObject     *py_data     = NULL;
 
   /* Get a pointer to the parent object */
@@ -2789,6 +2804,9 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
     parent = get_floating_object(sid);
   }
   else {
+
+    Page *page;
+
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
     parent = s_page_get_object(page, sid);
   }
@@ -2846,7 +2864,6 @@ PyGeda_get_attribs(PyObject *py_object)
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
-  Page         *page        = NULL;
   PyObject     *output_list = Py_None;
   GedaObject   *parent;
 
@@ -2855,6 +2872,9 @@ PyGeda_get_attribs(PyObject *py_object)
     parent = get_floating_object(sid);
   }
   else {
+
+    Page *page;
+
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
     parent = s_page_get_object(page, sid);
   }

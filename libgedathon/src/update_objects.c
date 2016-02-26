@@ -172,10 +172,8 @@ PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
   PyGedaPathObject *py_path = (PyGedaPathObject*)py_object;
 
 #ifdef DEBUG
-  const char *str;
-
   if (py_path->dirty_string) {
-    str = PyString_AsString(py_path->path_string);
+    const char *str = PyString_AsString(py_path->path_string);
     fprintf(stderr, "%s: string <%s> is dirty", __func__, str);
   }
 #endif
