@@ -98,7 +98,7 @@ static GList *remove_title_blocks(GList **page_list)
 
       const char *filename = object->complex->filename;
 
-      if (!geda_utility_string_stristr(filename, "title") < 0) {
+      if (geda_utility_string_stristr(filename, "title") >= 0) {
 
         GList *children;
 

@@ -1415,7 +1415,7 @@ int setup_titleblock_combo( char *titleblock ) {
      get_titleblock_list(strBuffer); /* get list of files */
 
      /* Maybe someone really smart can fix */
-     geda_utility_string_sort_array(strBuffer, sizeof(strBuffer));
+
 
      f_sys_remove_extension(titleblock);
 
@@ -1637,7 +1637,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
           haystack = reduced; needle = pfont;
         }
 
-        if (pfont && !geda_utility_string_stristr(haystack, needle) < 0)
+        if (pfont && geda_utility_string_stristr(haystack, needle) >= 0)
         {
           current = index;
           break;

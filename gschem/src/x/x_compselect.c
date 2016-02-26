@@ -2378,7 +2378,7 @@ bool SearchTreeView (GtkTreeModel *model, int column, const char *key,
     CLibSymbol *sym;
 
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
-    return !geda_utility_string_stristr (sym->name, key) < 0;
+    return geda_utility_string_stristr (sym->name, key) >= 0;
 }
 
 /*! \brief Creates the treeview for each notebook Library Tab */
