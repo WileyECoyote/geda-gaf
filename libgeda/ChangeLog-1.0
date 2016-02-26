@@ -1,7 +1,10 @@
+2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_box.c: A Doxygen file and group comments.
+
 2016-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_bus.c: Revise Doxygen comments in group and move class
-      tag.
+    * src/geda/geda_bus.c: A Doxygen file and group comments.
 
     * src/utility/u_string.c: Revise geda_utility_string_parse_xy to check
       x and y outputs on a per input variable basis, either or both X and Y

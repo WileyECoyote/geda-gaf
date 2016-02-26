@@ -3,10 +3,9 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2015 Wiley Edward Hill
- *
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Ales Hvezda
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +25,23 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_box.c
+ *  \brief Geda Box Object Class Module
+ */
+
+/** \defgroup geda-box-object Geda Box Object
+ * @{
+ * \brief Implmentation of #GedaBox Class
+ * \par
+ *  A Geda Box Object is a graphical object that does not involve
+ *  electrical interconnections. GedaBox objects have line-type and
+ *  fill-type properties and are derived from the GedaObject base
+ *  class.
+ *
+ * \class GedaBox geda_box.h "include/libgeda/geda_box.h"
+ * \implements geda-object
+ */
+
 #include <config.h>
 
 #include <libgeda_priv.h>
@@ -210,3 +226,4 @@ bool is_a_geda_box_object (GedaBox *box)
 {
   return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }
+/** @} endgroup geda-box-object */
