@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-17 11:03-0600\n"
+"POT-Creation-Date: 2016-02-26 00:46-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -260,39 +260,39 @@ msgstr ""
 msgid "%s: %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:229
+#: libgeda/src/geda/geda_config.c:234
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:230
+#: libgeda/src/geda/geda_config.c:235
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:847 libgeda/src/geda/geda_config.c:961
+#: libgeda/src/geda/geda_config.c:852 libgeda/src/geda/geda_config.c:966
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:988
+#: libgeda/src/geda/geda_config.c:993
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1032
+#: libgeda/src/geda/geda_config.c:1037
 #, c-format
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1348
+#: libgeda/src/geda/geda_config.c:1353
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1412
+#: libgeda/src/geda/geda_config.c:1417
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1426
+#: libgeda/src/geda/geda_config.c:1431
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -1015,37 +1015,37 @@ msgstr ""
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:68
+#: libgeda/src/object/o_save.c:67
 #, c-format
 msgid "%s: Can't get real filename of %s."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:127
+#: libgeda/src/object/o_save.c:126
 #, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:135
+#: libgeda/src/object/o_save.c:134
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:147
+#: libgeda/src/object/o_save.c:146
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:153
+#: libgeda/src/object/o_save.c:152
 #, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:263
+#: libgeda/src/object/o_save.c:261
 #, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:343
+#: libgeda/src/object/o_save.c:339
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

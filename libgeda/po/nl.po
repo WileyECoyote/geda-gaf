@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-17 11:03-0600\n"
+"POT-Creation-Date: 2016-02-26 00:46-0600\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -274,40 +274,40 @@ msgstr ""
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/geda/geda_config.c:229
+#: libgeda/src/geda/geda_config.c:234
 #, fuzzy
 msgid "Configuration file"
 msgstr "Ongedefinieerde configuratie bestandsnaam"
 
-#: libgeda/src/geda/geda_config.c:230
+#: libgeda/src/geda/geda_config.c:235
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:847 libgeda/src/geda/geda_config.c:961
+#: libgeda/src/geda/geda_config.c:852 libgeda/src/geda/geda_config.c:966
 msgid "Undefined configuration filename"
 msgstr "Ongedefinieerde configuratie bestandsnaam"
 
-#: libgeda/src/geda/geda_config.c:988
+#: libgeda/src/geda/geda_config.c:993
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1032
+#: libgeda/src/geda/geda_config.c:1037
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Kan bestand %s niet vinden: %s"
 
-#: libgeda/src/geda/geda_config.c:1348
+#: libgeda/src/geda/geda_config.c:1353
 #, fuzzy, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr "Configuratie heeft geen groep '%s'"
 
-#: libgeda/src/geda/geda_config.c:1412
+#: libgeda/src/geda/geda_config.c:1417
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr "Configuratie heeft geen groep '%s'"
 
-#: libgeda/src/geda/geda_config.c:1426
+#: libgeda/src/geda/geda_config.c:1431
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr "Configuratie heeft geen toets '%s'"
@@ -1076,37 +1076,37 @@ msgstr ""
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr "Pen met een ongeldige whichend gevonden (instellen op nul): %d\n"
 
-#: libgeda/src/object/o_save.c:68
+#: libgeda/src/object/o_save.c:67
 #, fuzzy, c-format
 msgid "%s: Can't get real filename of %s."
 msgstr "Kan de werkelijke bestandsnaam van %s: %s niet krijgen"
 
-#: libgeda/src/object/o_save.c:127
+#: libgeda/src/object/o_save.c:126
 #, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr "Kan vorige reservekopie [%s] NIET op lezen-schrijven instellen\n"
 
-#: libgeda/src/object/o_save.c:135
+#: libgeda/src/object/o_save.c:134
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:147
+#: libgeda/src/object/o_save.c:146
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr "Kan reservekopie [%s] NIET op alleen-lezen instellen\n"
 
-#: libgeda/src/object/o_save.c:153
+#: libgeda/src/object/o_save.c:152
 #, fuzzy, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr "Kan reservekopie [%s] NIET op alleen-lezen instellen\n"
 
-#: libgeda/src/object/o_save.c:263
+#: libgeda/src/object/o_save.c:261
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: object %p heeft een onbekend type '%c'\n"
 
-#: libgeda/src/object/o_save.c:343
+#: libgeda/src/object/o_save.c:339
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

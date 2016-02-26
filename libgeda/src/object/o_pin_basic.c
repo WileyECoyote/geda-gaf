@@ -404,17 +404,19 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
   int min0, min1;
   int min0_whichend, min1_whichend;
   int rleft, rtop, rright, rbottom;
-  int found;
 
   if (object_list && num_pins) {
+
     if (num_pins == 1) {
       o_get_bounds_list (object_list, &left, &top, &right, &bottom);
     }
     else {
-      found = 0;
+
+      int found = 0;
 
       /* only look at the pins to calculate bounds of the symbol */
       iter = object_list;
+
       while (iter != NULL) {
         o_current = (GedaObject *)iter->data;
         if (o_current->type == OBJ_PIN) {
@@ -434,7 +436,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
             found  = 1;
           }
         }
-        iter = g_list_next (iter);
+        iter = iter->next;
       }
     }
   }
@@ -512,7 +514,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
         }
       }
     }
-    iter = g_list_next (iter);
+    iter = iter->next;
   }
 }
 
@@ -618,11 +620,11 @@ void o_pin_set_node_type (GedaObject *o_current, PIN_NODE node_type)
  *  \return TRUE on succes, FALSE otherwise
  */
 bool o_pin_get_attributes(GedaObject *object, const char **label,
-                                          const char **number,
-                                          int         *sequence,
-                                          PIN_ELECT   *e_type,
-                                          PIN_MECH    *m_type,
-                                          PIN_NODE    *n_type)
+                                              const char **number,
+                                              int         *sequence,
+                                              PIN_ELECT   *e_type,
+                                              PIN_MECH    *m_type,
+                                              PIN_NODE    *n_type)
 {
   bool        result;
   char       *pinnumber_str = NULL;
@@ -695,7 +697,7 @@ bool o_pin_get_attributes(GedaObject *object, const char **label,
         }
       }
 
-      a_iter = g_list_next (a_iter);
+      a_iter = a_iter->next;
     }
   }
   if(!pinnumber_str)
@@ -717,11 +719,11 @@ bool o_pin_get_attributes(GedaObject *object, const char **label,
 }
 
 void o_pin_set_attributes(GedaObject *object, const char *label_str,
-                                          const char *number,
-                                                int   sequence,
-                                          PIN_ELECT   e_type,
-                                          PIN_MECH    m_type,
-                                          PIN_NODE    n_type)
+                                              const char *number,
+                                              int         sequence,
+                                              PIN_ELECT   e_type,
+                                              PIN_MECH    m_type,
+                                              PIN_NODE    n_type)
 {
   if (object != NULL && object->type == OBJ_PIN) {
 
@@ -852,17 +854,17 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
  *
  *  \sa o_pin_create_mech_attrib
  */
-GedaObject *o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                    const char   *descr,
-                                                          int     x,
-                                                          int     y)
+GedaObject *
+o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
+                                                  const char *descr,
+                                                         int  x,
+                                                         int  y)
 {
-  GedaObject *new_bute;
-  char   *text;
-  int     align = -1;
-  int     offset;
-  int     size;
-  int     x_pos, y_pos;
+  char *text;
+  int   align = -1;
+  int   offset;
+  int   size;
+  int   x_pos, y_pos;
 
   if (descr == NULL && object->pin->electrical == NULL) {
     return NULL;
@@ -922,6 +924,8 @@ GedaObject *o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object
     text = geda_utility_string_concat("pintype", "=", object->pin->electrical, NULL);
   }
 
+  GedaObject *new_bute;
+
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, INVISIBLE, SHOW_VALUE, text);
 
@@ -961,18 +965,18 @@ GedaObject *o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object
  *
  *  \sa o_pin_create_number_attrib o_pin_create_seq_attrib
  */
-GedaObject *o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                    const char   *label,
-                                                          int     x,
-                                                          int     y)
+GedaObject *
+o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
+                                                  const char *label,
+                                                         int  x,
+                                                         int  y)
 {
-  GedaObject *new_bute;
-  char   *text;
-  int     align = -1;
-  int     angle = -1;
-  int     offset;
-  int     size;
-  int     x_pos, y_pos;
+  char *text;
+  int   align = -1;
+  int   angle = -1;
+  int   offset;
+  int   size;
+  int   x_pos, y_pos;
 
   if (label == NULL && object->pin->label == NULL) {
     return NULL;
@@ -1043,6 +1047,8 @@ GedaObject *o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object
   else
     text = geda_utility_string_concat("pinlabel", "=", object->pin->label, NULL);
 
+  GedaObject *new_bute;
+
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, angle,
                          size, VISIBLE, SHOW_VALUE, text);
 
@@ -1083,10 +1089,11 @@ GedaObject *o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object
  *
  *  \sa o_pin_create_elect_attrib
  */
-GedaObject *o_pin_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                   const char   *descr,
-                                                         int     x,
-                                                         int     y)
+GedaObject *
+o_pin_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
+                                                 const char *descr,
+                                                        int  x,
+                                                        int  y)
 {
   GedaObject *new_bute;
   char   *text;
@@ -1437,8 +1444,6 @@ GedaObject *o_pin_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
 
 GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
 {
-  GedaObject   *attrib;
-
   PIN_ELECT etype;
   PIN_MECH  mtype;
   PIN_NODE  ntype;  /* Does not get attribute but need for get_attributes */
@@ -1448,6 +1453,8 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
         int   sequence;
 
   if (o_pin_get_attributes(object, &label_str, &number, &sequence, &etype, &mtype, &ntype)) {
+
+    GedaObject  *attrib;
 
     if (label_str == NULL) {
       attrib = o_pin_create_label_attrib(toplevel, object, NULL, -1, -1);
@@ -1534,7 +1541,7 @@ void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
  *  \par Function Description
  *
  */
-const char* o_pin_get_electrical(GedaObject *object)
+const char *o_pin_get_electrical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->electrical;
@@ -1545,7 +1552,7 @@ const char* o_pin_get_electrical(GedaObject *object)
  *  \par Function Description
  *
  */
-const char* o_pin_get_label(GedaObject *object)
+const char *o_pin_get_label(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->label;
@@ -1556,7 +1563,7 @@ const char* o_pin_get_label(GedaObject *object)
  *  \par Function Description
  *
  */
-const char* o_pin_get_mechanical(GedaObject *object)
+const char *o_pin_get_mechanical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->mechanical;
