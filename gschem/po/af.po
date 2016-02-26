@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-24 13:53-0600\n"
+"POT-Creation-Date: 2016-02-26 13:09-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -17,26 +17,26 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: gschem/src/base/gschem.c:159
+#: gschem/src/base/gschem.c:162
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:160
+#: gschem/src/base/gschem.c:163
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:190
+#: gschem/src/base/gschem.c:193
 #, c-format
 msgid "Assumming schematic file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:200
+#: gschem/src/base/gschem.c:203
 #, c-format
 msgid "Assumming symbol file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:230
+#: gschem/src/base/gschem.c:233
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
@@ -72,29 +72,29 @@ msgstr "gEDA/gschem uitgawe %s%s.%s\n"
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:417
+#: gschem/src/base/gschem.c:414
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:505
+#: gschem/src/base/gschem.c:502
 msgid "Exiting normal\n"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:569
+#: gschem/src/base/gschem_dialog.c:568
 #, fuzzy
 msgid "Parent Window"
 msgstr "Huidige Venster"
 
-#: gschem/src/base/gschem_dialog.c:570
+#: gschem/src/base/gschem_dialog.c:569
 msgid "Parent window for this dialog"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:590
+#: gschem/src/base/gschem_dialog.c:589
 msgid "Title"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:591
+#: gschem/src/base/gschem_dialog.c:590
 msgid "Dialog window title"
 msgstr ""
 
@@ -435,7 +435,7 @@ msgstr "Ongeldige zoemmaat [%d] aan %s gegee\n"
 msgid "Object ~A is not directly included in a page."
 msgstr ""
 
-#: gschem/src/guile/g_util.c:72
+#: gschem/src/guile/g_util.c:67
 #, fuzzy, c-format
 msgid "Could not launch URI %s\n"
 msgstr "Kon nie %s oproep nie\n"

@@ -1,5 +1,14 @@
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Reduce scope of p, renaming to ptr, in function
+      gschem_quit and filename in
+
+    * src/base/gschem_dialog.c: Reduce scope of Dialog and w_current in
+      gd_callback_selection_changed.
+
+    * src/object/o_bus.c: Reduce scope of new_obj and prev_conn_objects in
+      function o_bus_end.
+
     * src/.../: Revise logic for geda_utility_string_stristr results in:
 
             * src/object/o_page.c

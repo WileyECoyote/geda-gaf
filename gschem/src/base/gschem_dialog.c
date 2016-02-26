@@ -102,10 +102,10 @@ bool is_a_gschem_dialog (void *dialog)
  */
 static void gd_callback_selection_changed (SELECTION *selection, void * user_data)
 {
-  GschemDialog   *Dialog;
-  GschemToplevel *w_current;
-
   if (GSCHEM_IS_DIALOG(user_data)) {
+
+    GschemDialog   *Dialog;
+    GschemToplevel *w_current;
 
     Dialog    = GSCHEM_DIALOG(user_data);
     w_current = Dialog->w_current;
@@ -142,9 +142,8 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
  */
 static void gd_callback_selection_finalized (void *data, GObject *where_the_object_was)
 {
-  GschemDialog *Dialog;
   if (GSCHEM_IS_DIALOG(data)) {
-    Dialog = (GschemDialog*)data;
+    GschemDialog *Dialog = (GschemDialog*)data;
     Dialog->selection = NULL;
     GEDA_OBJECT_SET_DATA (Dialog, NULL, DIALOG_SELECTION_TRACKER);
   }

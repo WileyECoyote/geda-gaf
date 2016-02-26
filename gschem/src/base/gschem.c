@@ -88,14 +88,17 @@ void geda_atexit(geda_atexit_func func, void* data)
 static void gschem_quit(void)
 {
   GList *list;
-  geda_atexit_struct *p;
 
-  /* Call all registered functions in order */
+  /* Call registered functions in atexit list */
   list = exit_functions;
+
   while(list != NULL) {
-    p = (geda_atexit_struct *) list->data;
-    p->func(p->arg);
-    GEDA_FREE(p);
+
+    geda_atexit_struct *ptr;
+
+    ptr = (geda_atexit_struct*)list->data;
+    ptr->func(ptr->arg);
+    GEDA_FREE(ptr);
     list = g_list_next(list);
   }
   g_list_free(exit_functions);
@@ -103,7 +106,6 @@ static void gschem_quit(void)
   libgeda_release();
   libgedacolor_release();
 
-  //x_color_free();
   x_menu_free_all();
 
 #ifdef HAVE_LIBSTROKE
@@ -128,7 +130,6 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
   int   load_last     = FALSE;
   int   page_loaded   = FALSE;
   char *cwd           = NULL;
-  char *filename;
   char  tmpfilename[MAX_PATH];
 
   cwd = g_get_current_dir();
@@ -153,6 +154,8 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
     /* Load any file listed on command-line */
     for (i = argv_index; i < argc; i++) {
+
+      char *filename;
 
       /* Check for non-expanded wild-card, if not match then no expansion */
       if (strstr(argv[i], "*") != NULL) {
@@ -298,9 +301,6 @@ static void gschem( int argc, char *argv[])
   g_keys_init ();
   g_init_util ();
 
-  /* initialise color map (need to do this before reading rc files */
-  //x_color_init ();
-
   if (f_path_sys_data () == NULL) {
     const char *message =
       _("You must set the GEDADATA environment variable!\n\n"
@@ -389,9 +389,6 @@ static void gschem( int argc, char *argv[])
   /* Load recent files list before calling x_window_setup.*/
   x_menu_recent_files_load();
   geda_atexit(x_menu_recent_files_save, NULL);
-
-  /* At end, complete set up of window. */
-  //x_color_allocate();
 
   /*! \internal Bring up the GUI */
   x_window_setup (w_current);

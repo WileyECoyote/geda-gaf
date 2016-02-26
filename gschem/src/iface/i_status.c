@@ -601,7 +601,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
       if (state != last_state) {
 
-        while(menu_string[length] != '/')length--;
+        while (menu_string[length] != '/')length--;
 
         menu_string[++length]   = '\0';
         buffer = strcat(buffer, "Copy into 1");

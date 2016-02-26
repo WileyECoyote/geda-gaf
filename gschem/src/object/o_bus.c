@@ -71,10 +71,9 @@ void o_bus_draw_rubber (GschemToplevel *w_current)
  */
 static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel          = w_current->toplevel;
-  GList        *prev_conn_objects = NULL;
-  GedaObject   *new_obj;
-  int           color;
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  int color;
 
   if (w_current->override_bus_color == -1) {
     color = BUS_COLOR;
@@ -95,6 +94,9 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
   }
   else
   {
+    GedaObject *new_obj;
+    GList      *prev_conn_objects;
+
     new_obj = o_bus_new(color,
                         w_current->first_wx, w_current->first_wy,
                         w_current->second_wx, w_current->second_wy, 0);
@@ -103,7 +105,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     s_page_append_object (toplevel->page_current, new_obj);
 
     /* connect the new bus to the other busses */
-    prev_conn_objects = s_conn_return_others (prev_conn_objects, new_obj);
+    prev_conn_objects = s_conn_return_others (NULL, new_obj);
     o_invalidate_list (w_current, prev_conn_objects);
     g_list_free (prev_conn_objects);
 
