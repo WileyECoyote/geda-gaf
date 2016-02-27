@@ -22,7 +22,7 @@
 	    (and
 	     ; Bad expression samples
 	     (setenv "USER" "myuser")
-	     (setenv "HOME" "myhome")	     
+	     (setenv "HOME" "myhome")
 	     (assert-equal "/a/${USER myhome }/b/c"
 	     		   (expand-env-variables "/a/${USER ${HOME} }/b/c"))
 	     (assert-equal "/a/${USER=myhome }/b/c"
@@ -32,7 +32,7 @@
 	     (assert-equal "/a/${=USER=}/b/c"
 	     		   (expand-env-variables "/a/${=USER=}/b/c"))
 	     (assert-equal "/a//b/c"
-	     		   (expand-env-variables "/a/${}/b/c"))			       
+	     		   (expand-env-variables "/a/${}/b/c"))
 	     (assert-equal "/a/${-USER-}/b/c"
 			   (expand-env-variables "/a/${-USER-}/b/c"))
 	     ; Good expression samples
