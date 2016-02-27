@@ -1,3 +1,8 @@
+2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_keysyms.h: include -compat.h when present, otherwise include
+      gdkkeysyms.h plus defines.
+
 2016-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Rename and revise geda_entry_strncmpi, add

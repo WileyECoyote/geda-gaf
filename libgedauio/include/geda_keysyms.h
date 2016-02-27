@@ -3,9 +3,11 @@
 
 #if (HAVE_GDK_GDKKEYSYMS_COMPAT_H)
 
-#include <gdk/gdkkeysyms.h>
+#include <gdk/gdkkeysyms-compat.h>
 
 #else
+
+#include <gdk/gdkkeysyms.h>
 
 #define GDK_KEY_VoidSymbol 0xffffff
 #define GDK_KEY_BackSpace 0xff08
