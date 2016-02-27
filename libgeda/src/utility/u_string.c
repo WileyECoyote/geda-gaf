@@ -47,17 +47,18 @@
 
 #define USS_BUFFER_SIZE 256
 
-/*! \brief Append variable number of strings together
- *  \par Function Description
+/*! U601
+ * \brief Append variable number of strings together
+ * \par Function Description
  *  The string are not formated.
  *
- *  \param [in] string1 The first string,
- *  \param [in] ...     NULL terminated list strings.
+ * \param [in] string1 The first string,
+ * \param [in] ...     NULL terminated list strings.
  *
- *  \retval char* to all of the string as a new allocation.
- *  \remarks Caller should GEDA_FREE returned pointer.
+ * \retval char* to all of the string as a new allocation.
+ * \remarks Caller should GEDA_FREE returned pointer.
  *
- *  \warning **** the last argument MUST be NULL! ****
+ * \warning **** the last argument MUST be NULL! ****
  */
 char *geda_utility_string_concat (const char *string1, ...)
 {
@@ -114,23 +115,32 @@ char *geda_utility_string_concat (const char *string1, ...)
   return concat;
 }
 
-/*! \brief Find substring in string, ignore case.
- *  \par Function Description
- *  This function uses geda_utility_string_stricmp or geda_utility_string_strncmpi to locate
- *  a substring in a string. This is not normally found in standard
+/*! U602
+ * \brief Find substring in string, ignore case.
+ * \par Function Description
+ *  Uses geda_utility_string_stricmp or geda_utility_string_strncmpi to
+ *  locate a substring in a string. This is not normally found in standard
  *  libraries but sometimes is. The difference between geda_utility_string_istr
- *  and geda_utility_string_stricmp returns a pointer rather than an integer.
+ *  and geda_utility_string_stristr is that geda_utility_string_istr returns a
+ *  pointer rather than an integer.
  *
- *  \param [in] str1 is the string to be search
- *  \param [in] str2 is the string to search for
+ * \param [in] str1 is the string to be search
+ * \param [in] str2 is the string to search for
  *
- *  \retval char* to the first occurance of str2 in str2 or
- *                NULL if str2 is not contained in str1.
+ * \retval char* to the first occurance of str2 in str2 or
+ *               NULL if str2 is not contained in str1.
+ *
+ * \sa geda_utility_string_stristr
  */
 const char *geda_utility_string_istr(const char *str1, const char *str2)
 {
-  const char *ptr = NULL;
+  const char *ptr;
   int len1, len2;
+
+  if ( ! str1 || ! str2)
+    return NULL;
+
+  ptr  = NULL;
 
   len1 = strlen(str1);
   len2 = strlen(str2);
@@ -150,41 +160,41 @@ const char *geda_utility_string_istr(const char *str1, const char *str2)
   return NULL;
 }
 
-/*! \brief Remove Line Feed and Carriage Return Characters from string
- *  \par Function Description
- *  This function search a string and replace all occurences of 0x0D
- *  and 0x0A, Carriage Return and Line feed characters respectively,
+/*! U603
+ * \brief Remove Line Feed and Carriage Return Characters from string
+ * \par Function Description
+ *  This function searches a string and replaces the first occurrences of
+ *  0x0D and 0x0A, Carriage Return and Line feed characters respectively,
  *  with a NULL.
  *
- *  \sa remove_last_nl
+ * \sa geda_utility_string_remove_last_nl
  *
- *  \note used by o_text_read
+ * \note used by o_text_read
  */
 char *geda_utility_string_remove_nl(char *string)
 {
-  int i;
+  if (string) {
 
-  if (!string)
-    return NULL;
+    int i = 0;
+    while(string[i] != '\0' && string[i] != '\n' && string[i] != '\r') {
+      i++;
+    }
 
-  i = 0;
-  while(string[i] != '\0' && string[i] != '\n' && string[i] != '\r') {
-    i++;
+    string[i] = '\0';
   }
 
-  string[i] = '\0';
-
-  return(string);
+  return (string);
 }
 
-/*! \brief Remove Last Line Feed and Carriage Return from string
- *  \par Function Description
+/*! U604
+ * \brief Remove Last Line Feed and Carriage Return from string
+ * \par Function Description
  *  This function replaces trailing 0x0D and 0x0A, Carriage Return
  *  and Line feed characters respectively, with a NULL.
  *
- *  \sa remove_nl
+ * \sa geda_utility_string_remove_nl
  *
- *  \note used by o_text_read
+ * \note used by o_text_read
  */
 /* used by o_text_read */
 char *geda_utility_string_remove_last_nl(char *string)
@@ -202,16 +212,17 @@ char *geda_utility_string_remove_last_nl(char *string)
   return(string);
 }
 
-/*! \brief itoa() for c
- *  \par Function Description
+/*! U605
+ * \brief itoa() for c
+ * \par Function Description
  *  Translate an integer to askii, like itoa cpp function
  *
  * \copyright public domain
  * \author ArkM
  *
- *  @param[in]  value  int value to convert.
- *  @param[in]  str    ptr to array for the results
- *  @param[in]  radix  int base to resolve.
+ * \param[in]  value  int value to convert.
+ * \param[in]  str    ptr to array for the results
+ * \param[in]  radix  int base to resolve.
  *
  * usage:
  *
@@ -223,39 +234,48 @@ char *geda_utility_string_remove_last_nl(char *string)
  *
  *  example:  strcat(strbuffer, geda_utility_string_int2str( total, s_val, 10 ));
  */
-char *geda_utility_string_int2str(int value, char* str, int radix) {
+char *geda_utility_string_int2str(int value, char *str, int radix) {
 
-  static char dig[] ="0123456789"
-                     "abcdefghijklmnopqrstuvwxyz";
-  int n = 0, neg = 0;
-  unsigned int v;
-  char* p, *q;
-  char c;
+  if (str) {
 
-  if (radix == 10 && value < 0) {
-    value = -value;
-    neg = 1;
+    static char dig[] = "0123456789"
+                        "abcdefghijklmnopqrstuvwxyz";
+    int n = 0, neg = 0;
+    unsigned int v;
+    char *p, *q;
+    char  c;
+
+    if (radix == 10 && value < 0) {
+      value = -value;
+      neg   = 1;
+    }
+
+    v = value;
+
+    do {
+      str[n++] = dig[v%radix];
+      v /= radix;
+    } while (v);
+
+    if (neg)
+      str[n++] = '-';
+
+    str[n] = '\0';
+
+    for (p = str, q = p + (n-1); p < q; ++p, --q)
+      c = *p, *p = *q, *q = c;
   }
-  v = value;
-  do {
-    str[n++] = dig[v%radix];
-    v /= radix;
-  } while (v);
-  if (neg)
-  str[n++] = '-';
-  str[n] = '\0';
-  for (p = str, q = p + (n-1); p < q; ++p, --q)
-  c = *p, *p = *q, *q = c;
   return str;
 }
 
-/*! \brief Interrogate string for alpha-numeric characters
- *  \par Function Description
+/*! U606
+ * \brief Interrogate string for alpha-numeric characters
+ * \par Function Description
  *  Determines if a string contains only alpha-numeric character.
  *
- *  \param[in] str  The string to parse.
+ * \param[in] str  The string to parse.
  *
- *  \returns TRUE if all of the characters in \a str are alpha-numeric.
+ * \returns TRUE if all of the characters in \a str are alpha-numeric.
  */
 bool geda_utility_string_isalnum (const char *str)
 {
@@ -271,7 +291,7 @@ bool geda_utility_string_isalnum (const char *str)
   return TRUE;
 }
 
-/*! U6070
+/*! U607
  * \brief Parse a c String for X and Y integer pair
  * \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are
@@ -364,7 +384,7 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
   return valid;
 }
 
-/*! U6080
+/*! U608
  * \brief return c pointer to SCM string.
  * \par Function Description
  *  String utility function to get a c pointer to a scm string.
@@ -384,7 +404,7 @@ char *geda_utility_string_scm2c( char *scm_str_name) /* WEH: couldn't find it, m
   return NULL;
 }
 
-/*! U6090
+/*! U609
  * \brief  Sort an array of Characters
  * \par Function Description
  *  sort array using qsort functions
@@ -471,7 +491,8 @@ char *geda_utility_string_sprintf (const char *format, ...)
  */
 char *geda_utility_string_strdup (const char *str)
 {
-  if (!str) return NULL;
+  if (!str)
+    return NULL;
 
   size_t len = 1 + strlen(str);
   char  *ptr = (char*)GEDA_MEM_ALLOC(len);
@@ -551,7 +572,7 @@ int geda_utility_string_stristr ( const char *haystack, const char *needle)
   return result;
 }
 
-/*!
+/*! U614
  * \brief Check for equal strings
  * \par Function Description
  *  This function compares two strings and returns TRUE if
@@ -570,8 +591,9 @@ bool geda_utility_string_strequal(const char *str1, const char *str2)
   return ((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*! \brief  Get the formated size of a string
- *  \par Function Description
+/*! U615
+ * \brief  Get the formated size of a string
+ * \par Function Description
  *  Returns the number of bytes needed to hold the string formed
  *  after substituting variable arguments into the format specifier.
  */
@@ -603,7 +625,7 @@ int geda_utility_string_strsize (const char *format, va_list args)
   return size;
 }
 
-/*!
+/*! U616
  * \brief strstr_rep for c
  * \par Function Description
  *  Recursively replace substring in string with new string. This
@@ -662,7 +684,7 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
   return original;
 }
 
-/*!
+/*! U617
  * \brief Compare strings ignoring case
  * \par Function Description
  *  This is a garden varity string compare using toupper
@@ -686,7 +708,7 @@ int geda_utility_string_stricmp(const char *str1, const char *str2)
   return !((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*!
+/*! U618
  * \brief Compare n characters ignoring case.
  * \par Function Description
  *  Another garden varity string compare using toupper on both inputs.
@@ -729,7 +751,7 @@ int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
           return ((*str1 > *str2 ) ? -1 : 1);
 }
 
-/*!
+/*! U619
  * \brief Replace substring in string.
  * \par Function Description
  *  This function replaces the first occurrence of str1 with str2
@@ -806,8 +828,9 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
   return NULL;
 }
 
-/*! \brief Replace substring in string ignoring case
- *  \par Function Description
+/*! U620
+ * \brief Replace substring in string ignoring case
+ * \par Function Description
  *  This function replaces the first occurrence of str1 with str2 in
  *  the \a source string. This version dynamically allocates temporary
  *  storage and uses pointer returned from the geda_utility_string_istr
@@ -815,14 +838,13 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
  *  is responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
  *
- *  \param [in] source  source is the string to be modified
- *  \param [in] old_str old_str is the string to be replaced
- *  \param [in] new_str is the replacement for old_str
+ * \param [in] source  source is the string to be modified
+ * \param [in] old_str old_str is the string to be replaced
+ * \param [in] new_str is the replacement for old_str
  *
- *  \retval char* source (the orginal pointer) or NULL if old_str
- *  was not found in the source string or if there was a error
- *  allocating memory.
- *
+ * \retval char* source (the orginal pointer) or NULL if old_str
+ *         was not found in the source string or if there was a error
+ *         allocating memory.
  */
 char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 {
@@ -877,7 +899,7 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 }
 
 /* Copyright (C) 1998, 1999, 2000 Kazu Hirata / Ales Hvezda */
-/*!
+/*! U621
  * \brief Split a string using an optional delimiter
  * \par Function Description
  *  If \a delimiter is zero a copy of string is returned.
@@ -952,8 +974,9 @@ char *geda_utility_string_split(char *string, char delimiter, int count)
   return NULL;
 }
 
-/*! \brief  Get Word Count
- *  \par Function Description
+/*! U622
+ * \brief  Get Word Count
+ * \par Function Description
  *  returns the number of spaces in a string plus one.
  */
 int geda_utility_string_word_count(char *str)

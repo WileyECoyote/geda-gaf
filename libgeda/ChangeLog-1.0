@@ -1,3 +1,9 @@
+2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_utility.c: Revise functions geda_utility_string_istr
+      and geda_utility_string_int2str to check for NULL arguments, revise
+      Doxygen comments.
+
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_box.c: A Doxygen file and group comments.
