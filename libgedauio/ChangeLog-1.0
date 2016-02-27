@@ -1,3 +1,7 @@
+2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_keysyms.h: include gdkkeysyms.h
+
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_keysyms.h: include -compat.h when present, otherwise include
