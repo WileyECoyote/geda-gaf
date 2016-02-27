@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.4
+VER=0.1.5
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -336,7 +336,7 @@ test -d libs && rm -rf libs;
 test -d gEDA && rm -rf gEDA;
 
 # ------------------- Check for gschem Program ------------------
-APPLICATION=${BUILDDIR}/../src/.libs/$PROGRAM
+APPLICATION=${BUILDDIR}/../src/$PROGRAM
 
 if test ! -x $APPLICATION ; then
   echo "Error: Can not find $APPLICATION"
@@ -348,7 +348,7 @@ else
 
   # Note: Tested for gschem one level up but gschem will be ran
   # from the run directory, which will be 1 level down, so:
-  APPLICATION="${BUILDDIR}/../../src/.libs/$PROGRAM"
+  APPLICATION="${BUILDDIR}/../../src/$PROGRAM"
 fi
 
 # --------------------- Set Test Directories --------------------
