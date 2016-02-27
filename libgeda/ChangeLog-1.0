@@ -1,8 +1,12 @@
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * utility/u_refdes.c: Revise function geda_utility_refdes_return_numeric
+      to check for string lengths greater than 1, eliminate str_out, fix
+      Doxygen comments, add Doxygen comments for other functions.
+
     * src/utility/u_utility.c: Revise functions geda_utility_string_istr
       and geda_utility_string_int2str to check for NULL arguments, revise
-      Doxygen comments.
+      Doxygen comments. Simplify logic in geda_utility_string_strequal.
 
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 

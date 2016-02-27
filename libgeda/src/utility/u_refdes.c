@@ -143,26 +143,42 @@ GedaRefDes IeeeRefDes[] = {
                              { '\0'}
 };
 
+/*! U501
+ * \brief Return gEDA standard refdes prefixes
+ * \par Function Description
+ *  Returns a pointer to StdRefDes.
+ */
 const GedaRefDes*
-geda_utility_refdes_get_standard()
+geda_utility_refdes_get_standard(void)
 {
   return StdRefDes;
 }
 
+/*! U502
+ * \brief Return refdes prefixes Associated with SPICE components
+ * \par Function Description
+ *  Returns a pointer to SpiceRefDes.
+ */
 const GedaRefDes*
-geda_utility_refdes_get_spice()
+geda_utility_refdes_get_spice(void)
 {
   return SpiceRefDes;
 }
 
+/*! U503
+ * \brief Return refdes prefixes Associated with IEEE standards
+ * \par Function Description
+ *  Returns a pointer to IeeeRefDes.
+ */
 const GedaRefDes*
-geda_utility_refdes_get_ieee()
+geda_utility_refdes_get_ieee(void)
 {
   return IeeeRefDes;
 }
 
-/*! \brief Reset the refdes number back to a question mark
- *  \par Function Description
+/*! U504
+ * \brief Reset the refdes number back to a question mark
+ * \par Function Description
  *  If this text object represents a refdes attribute, then
  *  this function resets the refdes number back to a question
  *  mark if the length of the string is less than the buffer
@@ -171,7 +187,7 @@ geda_utility_refdes_get_ieee()
  *  for a inter-page connection and not a normal refdes.
  *  In other cases, this function does nothing.
  *
- *  \param [in] object      The text object
+ * \param [in] object      The text object
  */
 void geda_utility_refdes_reset(GedaObject *object)
 {
@@ -209,16 +225,16 @@ void geda_utility_refdes_reset(GedaObject *object)
   }
 }
 
-/*! \brief Return first numeris portionof a refdes
- *
- *  \par This function accepts both plain text and GedaText objects
+/*! U505
+ * \brief Return first numeric portion of a refdes
+ * \par This function accepts both plain text and GedaText objects
  *  Text Objects should be a reference designator attribute, other
- *  wise just pass in the raw text. The return pointer point to a
+ *  wise just pass in the raw text. The return pointer points to a
  *  char in the passed string and should not be freed directly.
  *
- *  \param [in] text Either Text object or a string.
+ * \param [in] text Either Text object or a string.
  *
- *  \returns pointer to the first numeric text character in the text
+ * \returns pointer to the first numeric text character in the text
  *
  *  example 1:
  *
@@ -228,14 +244,13 @@ void geda_utility_refdes_reset(GedaObject *object)
  *
  *       text_digits = geda_utility_refdes_return_numeric (attrib->text->string);
  *
- *  \sa geda_utility_refdes_reset
+ * \sa geda_utility_refdes_reset
  */
 char *geda_utility_refdes_return_numeric(void *text)
 {
-  char *ptr;
-  char *str_out = NULL;
-
   if (text != NULL) {
+
+    char *ptr;
 
     if (GEDA_IS_TEXT(text)) {
       ptr   = ((GedaObject*)text)->text->string;
@@ -244,12 +259,17 @@ char *geda_utility_refdes_return_numeric(void *text)
       ptr = text;
     }
 
-    while ( *ptr && !isdigit(*ptr) ) ptr++;
+    if (ptr) {
 
-    if (isdigit(*ptr)) {
-      str_out = ptr;
+      if (strlen(ptr) > 1) {
+
+        while ( *ptr && !isdigit(*ptr) ) ptr++;
+
+        if (isdigit(*ptr)) {
+          return ptr;
+        }
+      }
     }
   }
-
-  return str_out;
+  return NULL;
 }

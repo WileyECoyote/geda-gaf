@@ -585,7 +585,7 @@ int geda_utility_string_stristr ( const char *haystack, const char *needle)
  */
 bool geda_utility_string_strequal(const char *str1, const char *str2)
 {
-  if ((str1 && !str2) || (!str1 && str2))
+  if (!str1 || !str2)
     return -0;
   while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
   return ((*str1 == '\0') && (*str2 == '\0'));
