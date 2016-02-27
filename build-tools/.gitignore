@@ -1,4 +1,5 @@
 *~
+*.orig
 compile
 config.guess
 config.rpath

@@ -1,0 +1,10 @@
+Makefile
+Makefile.in
+TAGS
+*~
+*#
+*.bak
+*.swp
+*-swp
+ChangeLog
+libgedacolor.pc
