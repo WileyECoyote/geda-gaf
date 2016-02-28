@@ -1,6 +1,8 @@
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/runtest.sh: Run ../src/gschem instead of ../src/libs/gschem
+    * src/base/gschem.c: Add error output message when gtk_init_check fails.
+
+    * tests/runtest.sh: Run ../src/gschem instead of ../src/libs/gschem.
 
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
