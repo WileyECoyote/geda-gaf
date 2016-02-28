@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.5
+VER=0.1.6
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -49,8 +49,6 @@ show_help () {
    done
 
    export LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
-
-   sudo ldconfig;
 
    vecho "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 }
@@ -343,7 +341,7 @@ if test ! -x $APPLICATION ; then
   exit 1;
 else
 
-  appver=$($APPLICATION -q --version)
+  appver=$($APPLICATION -q --version) 2>&1
   echo "Testing $PROGRAM version: $appver"
 
   # Note: Tested for gschem one level up but gschem will be ran
