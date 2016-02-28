@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-27 17:44-0600\n"
+"POT-Creation-Date: 2016-02-28 13:25-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -2830,7 +2830,7 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2686
+#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2740
 msgid "<various>"
 msgstr ""
 
@@ -2870,7 +2870,7 @@ msgstr ""
 msgid "Copy to all"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2577
+#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2563
 msgid "Edit Attributes"
 msgstr ""
 
@@ -2895,39 +2895,45 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2582
-#, c-format
-msgid "%i symbol (%s)"
-msgid_plural "%i symbols (%s)"
-msgstr[0] ""
-msgstr[1] ""
+msgid "symbols"
+msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2589
-#, c-format
-msgid "%i pin"
-msgid_plural "%i pins"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2586
+msgid "symbol"
+msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2596
-#, c-format
-msgid "%i net"
-msgid_plural "%i nets"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2597
+msgid "pins"
+msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2603
-#, c-format
-msgid "%i bus"
-msgid_plural "%i buses"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2601
+#, fuzzy
+msgid "pin"
+msgstr "Na_tisni ..."
 
-#: gschem/src/x/x_multiattrib.c:2610
-#, c-format
-msgid "%i attribute"
-msgid_plural "%i attributes"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2612
+msgid "nets"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2616
+msgid "net"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2627
+msgid "buses"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2631
+msgid "bus"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2642
+msgid "attributes"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2646
+msgid "attribute"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:287
 msgid "New Page"

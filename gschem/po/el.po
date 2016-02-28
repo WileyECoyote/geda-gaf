@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-27 17:44-0600\n"
+"POT-Creation-Date: 2016-02-28 13:25-0600\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -3024,7 +3024,7 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr "Το λειτουργικό σύστημα είναι εκτός ορίων μνήμης ή πηγών."
 
-#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2686
+#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2740
 msgid "<various>"
 msgstr ""
 
@@ -3069,7 +3069,7 @@ msgstr "Αντίγραφο"
 msgid "Copy to all"
 msgstr "Αντιγραφή σε 1"
 
-#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2577
+#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2563
 msgid "Edit Attributes"
 msgstr "Επεξεργασία γνωρισμάτων"
 
@@ -3094,39 +3094,51 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2582
-#, c-format
-msgid "%i symbol (%s)"
-msgid_plural "%i symbols (%s)"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "symbols"
+msgstr "Σύμβολα"
 
-#: gschem/src/x/x_multiattrib.c:2589
-#, fuzzy, c-format
-msgid "%i pin"
-msgid_plural "%i pins"
-msgstr[0] "Ακροδέκτης δικτύου"
-msgstr[1] "Ακροδέκτης δικτύου"
+#: gschem/src/x/x_multiattrib.c:2586
+#, fuzzy
+msgid "symbol"
+msgstr "Σύμβολα"
 
-#: gschem/src/x/x_multiattrib.c:2596
-#, c-format
-msgid "%i net"
-msgid_plural "%i nets"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2597
+msgid "pins"
+msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2603
-#, c-format
-msgid "%i bus"
-msgid_plural "%i buses"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2601
+#, fuzzy
+msgid "pin"
+msgstr "Ακροδέκτης"
 
-#: gschem/src/x/x_multiattrib.c:2610
-#, fuzzy, c-format
-msgid "%i attribute"
-msgid_plural "%i attributes"
-msgstr[0] "Γνώρισμα"
-msgstr[1] "Γνώρισμα"
+#: gschem/src/x/x_multiattrib.c:2612
+msgid "nets"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2616
+#, fuzzy
+msgid "net"
+msgstr "Δίκτυο"
+
+#: gschem/src/x/x_multiattrib.c:2627
+msgid "buses"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2631
+#, fuzzy
+msgid "bus"
+msgstr "Δίαυλος"
+
+#: gschem/src/x/x_multiattrib.c:2642
+#, fuzzy
+msgid "attributes"
+msgstr "Γνωρίσματα"
+
+#: gschem/src/x/x_multiattrib.c:2646
+#, fuzzy
+msgid "attribute"
+msgstr "Γνωρίσματα"
 
 #: gschem/src/x/x_pagesel.c:287
 msgid "New Page"
@@ -5075,6 +5087,18 @@ msgstr "Το ~S δεν είναι έγκυρος συνδιασμός πλήκτ
 msgid "~S is not a prefix key sequence."
 msgstr ""
 
+#, fuzzy
+#~ msgid "%i pin"
+#~ msgid_plural "%i pins"
+#~ msgstr[0] "Ακροδέκτης δικτύου"
+#~ msgstr[1] "Ακροδέκτης δικτύου"
+
+#, fuzzy
+#~ msgid "%i attribute"
+#~ msgid_plural "%i attributes"
+#~ msgstr[0] "Γνώρισμα"
+#~ msgstr[1] "Γνώρισμα"
+
 #~ msgid "Tried to get an invalid color: %d\n"
 #~ msgstr "Προσπάθεια εισαγωγής μη έγκυρου χρώματος: %d\n"
 
@@ -5403,9 +5427,6 @@ msgstr ""
 
 #~ msgid "Schematics"
 #~ msgstr "Σχεδιαγράμματα"
-
-#~ msgid "Symbols"
-#~ msgstr "Σύμβολα"
 
 #~ msgid "Schematics and symbols"
 #~ msgstr "Σχεδιαγράμματα και σύμβολα"

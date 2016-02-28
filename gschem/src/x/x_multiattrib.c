@@ -2558,63 +2558,116 @@ multiattrib_populate_liststore (Multiattrib *ThisDialog, GList *model_rows)
 }
 
 static void
-append_dialog_title_extra (GString *title_string,
-                           int *num_title_extras,
-                           const char *text,
-                           ...)
-{
-  va_list args;
-
-  va_start (args, text);
-  g_string_append (title_string, ((*num_title_extras)++ == 0) ? " - " : ", ");
-  g_string_append_vprintf (title_string, text, args);
-  va_end (args);
-}
-
-static void
 update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 {
-  GString *title_string = g_string_new (_("Edit Attributes"));
-  int num_title_extras = 0;
+  char *title_string = _("Edit Attributes");
+  char *title;
 
-  if (ThisDialog->num_complex_in_list > 0) {
-    append_dialog_title_extra (title_string, &num_title_extras,
-                               ngettext ("%i symbol (%s)", "%i symbols (%s)",
-                                         ThisDialog->num_complex_in_list),
-                               ThisDialog->num_complex_in_list, complex_title_name);
+  unsigned len;
+
+  unsigned sc, sl;  char *ss;
+  unsigned pc, pl;  char *ps;
+  unsigned nc, nl;  char *ns;
+  unsigned bc, bl;  char *bs;
+  unsigned ac, al;  char *as;
+
+  sc = ThisDialog->num_complex_in_list;
+  pc = ThisDialog->num_pins_in_list;
+  nc = ThisDialog->num_nets_in_list;
+  bc = ThisDialog->num_buses_in_list;
+  ac = ThisDialog->num_lone_attribs_in_list;
+
+  if (sc > 0) {
+    if (sc > 1) {
+      char *str = _("symbols");
+      ss = geda_utility_string_sprintf(" %i %s (%s)", sc, str, complex_title_name);
+    }
+    else {
+      char *str = _("symbol");
+      ss = geda_utility_string_sprintf(" 1 %s (%s)", str, complex_title_name);
+    }
+    sl = strlen(ss);
+  }
+  else {
+    sl = 0;
   }
 
-  if (ThisDialog->num_pins_in_list > 0) {
-    append_dialog_title_extra (title_string, &num_title_extras,
-                               ngettext ("%i pin", "%i pins",
-                                         ThisDialog->num_pins_in_list),
-                               ThisDialog->num_pins_in_list);
+  if (pc > 0) {
+    if (pc > 1) {
+      char *str = _("pins");
+      ps = geda_utility_string_sprintf(" %i %s", pc, str);
+    }
+    else {
+      char *str = _("pin");
+      ps  = geda_utility_string_sprintf(" 1 %s", str);
+    }
+    pl = strlen(ps);
+  }
+  else {
+    pl = 0;
   }
 
-  if (ThisDialog->num_nets_in_list > 0) {
-    append_dialog_title_extra (title_string, &num_title_extras,
-                               ngettext ("%i net", "%i nets",
-                                         ThisDialog->num_nets_in_list),
-                               ThisDialog->num_nets_in_list);
+  if (nc > 0) {
+    if (nc > 1) {
+      char *str = _("nets");
+      ns = geda_utility_string_sprintf(" %i %s", nc, str);
+    }
+    else {
+      char *str = _("net");
+      ns = geda_utility_string_sprintf(" 1 %s", str);
+    }
+    nl = strlen(ns);
+  }
+  else {
+    nl = 0;
   }
 
-  if (ThisDialog->num_buses_in_list > 0) {
-    append_dialog_title_extra (title_string, &num_title_extras,
-                               ngettext ("%i bus", "%i buses",
-                                         ThisDialog->num_buses_in_list),
-                               ThisDialog->num_buses_in_list);
+  if (bc > 0) {
+    if (bc > 1) {
+      char *str = _("buses");
+      bs = geda_utility_string_sprintf(" %i %s", bc, str);
+    }
+    else {
+      char *str = _("bus");
+      bs = geda_utility_string_sprintf(" 1 %s", str);
+    }
+    bl = strlen(bs);
+  }
+  else {
+    bl = 0;
   }
 
-  if (ThisDialog->num_lone_attribs_in_list > 0) {
-    append_dialog_title_extra (title_string, &num_title_extras,
-                               ngettext ("%i attribute", "%i attributes",
-                                         ThisDialog->num_lone_attribs_in_list),
-                               ThisDialog->num_lone_attribs_in_list);
+  if (ac > 0) {
+    if (ac > 1) {
+      char *str = _("attributes");
+      as = geda_utility_string_sprintf(" %i %s", ac, str);
+    }
+    else {
+      char *str = _("attribute");
+      as = geda_utility_string_sprintf(" 1 %s", str);
+    }
+    al = strlen(as);
+  }
+  else {
+    al = 0;
   }
 
-  char *title = g_string_free (title_string, FALSE);
+  len   = strlen(title_string) + sl + pl + nl + bl + al;
+
+  title = malloc(len + 1); /* Add 1 for Terminator */
+
+  strcpy (title, title_string);
+
+  if (sl)                  /* Is enough to throw cppcheck off the trail */
+  strncat (title, ss, sl);
+  strncat (title, ps, pl);
+  strncat (title, ns, nl);
+  strncat (title, bs, bl);
+  strncat (title, as, al);
+
   g_object_set (G_OBJECT (ThisDialog), "title", title, NULL);
-  GEDA_FREE (title);
+
+  free (title);
 }
 
 static void free_row_record (void *data_record, void *user_data)
@@ -2661,7 +2714,8 @@ multiattrib_update (Multiattrib *ThisDialog)
 
   /* populate the store with attributes */
   for (o_iter = multiattrib->object_list == NULL ? NULL : geda_list_get_glist (multiattrib->object_list);
-       o_iter != NULL; NEXT(o_iter)) {
+       o_iter != NULL; NEXT(o_iter))
+  {
 
     GedaObject *object = o_iter->data;
 

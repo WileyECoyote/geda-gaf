@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-27 17:44-0600\n"
+"POT-Creation-Date: 2016-02-28 13:25-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2972,7 +2972,7 @@ msgstr "Maak Skoon"
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2686
+#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2740
 msgid "<various>"
 msgstr ""
 
@@ -3016,7 +3016,7 @@ msgstr "Dupliseer"
 msgid "Copy to all"
 msgstr "Kopieer in 1 in"
 
-#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2577
+#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2563
 msgid "Edit Attributes"
 msgstr "Bewerk Eienskappe"
 
@@ -3041,39 +3041,51 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2582
-#, c-format
-msgid "%i symbol (%s)"
-msgid_plural "%i symbols (%s)"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "symbols"
+msgstr "Simbole"
 
-#: gschem/src/x/x_multiattrib.c:2589
-#, c-format
-msgid "%i pin"
-msgid_plural "%i pins"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2586
+#, fuzzy
+msgid "symbol"
+msgstr "Simbole"
 
-#: gschem/src/x/x_multiattrib.c:2596
-#, c-format
-msgid "%i net"
-msgid_plural "%i nets"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2597
+msgid "pins"
+msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2603
-#, c-format
-msgid "%i bus"
-msgid_plural "%i buses"
-msgstr[0] ""
-msgstr[1] ""
+#: gschem/src/x/x_multiattrib.c:2601
+#, fuzzy
+msgid "pin"
+msgstr "Pen"
 
-#: gschem/src/x/x_multiattrib.c:2610
-#, fuzzy, c-format
-msgid "%i attribute"
-msgid_plural "%i attributes"
-msgstr[0] "Eienskap"
-msgstr[1] "Eienskap"
+#: gschem/src/x/x_multiattrib.c:2612
+msgid "nets"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2616
+#, fuzzy
+msgid "net"
+msgstr "Skakeling"
+
+#: gschem/src/x/x_multiattrib.c:2627
+msgid "buses"
+msgstr ""
+
+#: gschem/src/x/x_multiattrib.c:2631
+#, fuzzy
+msgid "bus"
+msgstr "Bus"
+
+#: gschem/src/x/x_multiattrib.c:2642
+#, fuzzy
+msgid "attributes"
+msgstr "Eienskappe"
+
+#: gschem/src/x/x_multiattrib.c:2646
+#, fuzzy
+msgid "attribute"
+msgstr "Eienskappe"
 
 #: gschem/src/x/x_pagesel.c:287
 msgid "New Page"
@@ -5007,6 +5019,12 @@ msgstr ""
 msgid "~S is not a prefix key sequence."
 msgstr ""
 
+#, fuzzy
+#~ msgid "%i attribute"
+#~ msgid_plural "%i attributes"
+#~ msgstr[0] "Eienskap"
+#~ msgstr[1] "Eienskap"
+
 #~ msgid "Tried to get an invalid color: %d\n"
 #~ msgstr "Het probeer om 'n ongeldige kleur te kry: %d\n"
 
@@ -5307,9 +5325,6 @@ msgstr ""
 
 #~ msgid "Schematics"
 #~ msgstr "Stroombaandiagramme"
-
-#~ msgid "Symbols"
-#~ msgstr "Simbole"
 
 #~ msgid "Schematics and symbols"
 #~ msgstr "Stroombaandiagramme en simbole"
