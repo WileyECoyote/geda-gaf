@@ -503,7 +503,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   }
   else {
     fprintf (stderr, "FAILED: gtk_init_check\n");
-    exit 1;
+    exit (1);
   }
 }
 
