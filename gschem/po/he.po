@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-26 13:09-0600\n"
+"POT-Creation-Date: 2016-02-27 17:44-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1886,19 +1886,19 @@ msgstr ""
 msgid "<b>Invalid Data.</b>"
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:474
+#: gschem/src/x/x_draw.cpp:472
 msgid "Initializing: Graphics Renderer Adaptor...."
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:490
+#: gschem/src/x/x_draw.cpp:488
 msgid "done\n"
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:496
+#: gschem/src/x/x_draw.cpp:494
 msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:498
+#: gschem/src/x/x_draw.cpp:496
 msgid "Done, renderer is down\n"
 msgstr ""
 
@@ -2223,7 +2223,7 @@ msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:794
-msgid "Pin Propties Editor"
+msgid "Pin Properties Editor"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:872

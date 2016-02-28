@@ -791,7 +791,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   pin_type_data *pin_data; /* Structure is allocated after widget creation */
 
   /* nonmodal Editing ThisDialog */
-  ThisDialog = NEW_GSCHEM_DIALOG(_("Pin Propties Editor"),
+  ThisDialog = NEW_GSCHEM_DIALOG(_("Pin Properties Editor"),
                                     GSCHEM_MODELESS_DIALOG,
                                     IDS_PIN_EDIT,
                                     w_current);
