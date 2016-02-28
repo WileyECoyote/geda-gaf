@@ -1,3 +1,17 @@
+2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Revert using file name in x_toolbars_restore_state,
+      which was done while debugging test on Travis, since these filename
+      included the path with user name and this would not be the same path
+      on Travis work, consequently failing regression tests involving logs.
+
+    * tests/IMAGE_DIFF: Revert using verbose safe mode, use quite, issue with
+      testing on Travis (finally) resolved.
+
+    * tests/LOG_DIFF: Revert using verbose safe mode, use quite, issue with
+      testing on Travis resolved. Troubleshooting test failures on remove
+      workstations can be a time consumming, almost more that its worth.
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Add error output message when gtk_init_check fails.

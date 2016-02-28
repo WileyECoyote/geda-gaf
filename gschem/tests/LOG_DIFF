@@ -26,12 +26,12 @@ if test -f $input ; then
 
   cd $rundir/
 
-  $TEST_APP -mv -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename > ${LOG} 2>&1
+  $TEST_APP -q -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename > ${LOG} 2>&1
   ret_code=$?
 
   if test $ret_code -ne 0 ; then
     cat << EOF >> ${LOG}
-      $TEST_APP -mv -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+      $TEST_APP -q -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
       exited with code ${ret_code}
 EOF
   fi
