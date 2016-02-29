@@ -824,13 +824,13 @@ EDA_SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
             (SCM  cfg_s, SCM group_s, SCM key_s),
             "Get a configuration parameter's value as a string list.")
 {
-  EdaConfig    *cfg;
-  GError       *error      = NULL;
-  size_t        length;
-  int           i;
-  char         *group;
-  char         *key;
-  char        **value;
+  EdaConfig *cfg;
+  GError    *error;
+  size_t     length;
+  int        i;
+  char      *group;
+  char      *key;
+  char     **value;
 
   ASSERT_CFG_GROUP_KEY (scheme_config_string_list);
 
@@ -843,6 +843,7 @@ EDA_SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
   scm_dynwind_free (group);
   scm_dynwind_free (key);
 
+  error = NULL;
   value  = eda_config_get_string_list (cfg, group, key, &length, &error);
 
   if (value == NULL) {

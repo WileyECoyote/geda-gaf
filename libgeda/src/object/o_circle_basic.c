@@ -804,7 +804,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  in <B>color</B>.
  *  The parameters <B>length</B> and <B>space</B> are ignored.
  *
- *  It uses the function #o_arc_print_solid() to print the outline.
+ *  It uses the function #geda_arc_object_print_solid() to print the outline.
  *  Therefore it acts as an interface between the way a circle is defined
  *  and the way an arc is defined.
  *
@@ -829,12 +829,12 @@ void o_circle_print_solid(GedaToplevel *toplevel, FILE *fp,
                           int circle_width, int capstyle, int length, int space,
                           int origin_x, int origin_y)
 {
-  o_arc_print_solid(toplevel, fp,
-                    x, y, radius,
-                    0, FULL_CIRCLE / 64,
-                    color,
-                    circle_width, BUTT_CAP, -1, -1,
-                    origin_x, origin_y);
+  geda_arc_object_print_solid(toplevel, fp,
+                              x, y, radius,
+                              0, FULL_CIRCLE / 64,
+                              color,
+                              circle_width, BUTT_CAP, -1, -1,
+                              origin_x, origin_y);
 
 }
 
@@ -846,7 +846,7 @@ void o_circle_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  with the color given in <B>color</B>.
  *  The parameter <B>length</B> is ignored.
  *
- *  It uses the function #o_arc_print_dotted() to print the outline.
+ *  It uses the function #geda_arc_object_print_dotted() to print the outline.
  *  Therefore it acts as an interface between the way a circle is
  *  defined and the way an arc is defined.
  *
@@ -872,12 +872,12 @@ void o_circle_print_dotted(GedaToplevel *toplevel, FILE *fp,
                            int origin_x, int origin_y)
 {
 
-  o_arc_print_dotted(toplevel, fp,
-                     x, y, radius,
-                     0, FULL_CIRCLE / 64,
-                     color,
-                     circle_width, capstyle, -1, space,
-                     origin_x, origin_y);
+  geda_arc_object_print_dotted(toplevel, fp,
+                               x, y, radius,
+                               0, FULL_CIRCLE / 64,
+                               color,
+                               circle_width, capstyle, -1, space,
+                               origin_x, origin_y);
 
 }
 
@@ -888,7 +888,7 @@ void o_circle_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
  *  color given in <B>color</B>.
  *
- *  It uses the function #o_arc_print_dashed() to print the outline.
+ *  It uses the function #geda_arc_object_print_dashed() to print the outline.
  *  Therefore it acts as an interface between the way a circle is
  *  defined and the way an arc is defined.
  *
@@ -915,12 +915,12 @@ void o_circle_print_dashed(GedaToplevel *toplevel, FILE *fp,
                            int origin_x, int origin_y)
 {
 
-  o_arc_print_dashed(toplevel, fp,
-                     x, y, radius,
-                     0, FULL_CIRCLE / 64,
-                     color,
-                     circle_width, capstyle, length, space,
-                     origin_x, origin_y);
+  geda_arc_object_print_dashed(toplevel, fp,
+                               x, y, radius,
+                               0, FULL_CIRCLE / 64,
+                               color,
+                               circle_width, capstyle, length, space,
+                               origin_x, origin_y);
 
 }
 
@@ -931,7 +931,7 @@ void o_circle_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
  *  color given in <B>color</B>.
  *
- *  It uses the function #o_arc_print_center() to print the outline.
+ *  It uses the function #geda_arc_object_print_center() to print the outline.
  *  Therefore it acts as an interface between the way a circle is
  *  defined and the way an arc is defined.
  *
@@ -958,12 +958,12 @@ void o_circle_print_center(GedaToplevel *toplevel, FILE *fp,
                            int origin_x, int origin_y)
 {
 
-  o_arc_print_center(toplevel, fp,
-                     x, y, radius,
-                     0, FULL_CIRCLE / 64,
-                     color,
-                     circle_width, capstyle, length, space,
-                     origin_x, origin_y);
+  geda_arc_object_print_center(toplevel, fp,
+                               x, y, radius,
+                               0, FULL_CIRCLE / 64,
+                               color,
+                               circle_width, capstyle, length, space,
+                               origin_x, origin_y);
 
 }
 
@@ -975,7 +975,7 @@ void o_circle_print_center(GedaToplevel *toplevel, FILE *fp,
  *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
  *  color given in <B>color</B>.
  *
- *  It uses the function #o_arc_print_phantom() to print the outline.
+ *  It uses the function #geda_arc_object_print_phantom() to print the outline.
  *  Therefore it acts as an interface between the way a circle is defined
  *  and the way an arc is defined.
  *
@@ -1000,12 +1000,12 @@ void o_circle_print_phantom(GedaToplevel *toplevel, FILE *fp,
                             int origin_x, int origin_y)
 {
 
-  o_arc_print_phantom(toplevel, fp,
-                      x, y, radius,
-                      0, FULL_CIRCLE / 64,
-                      color,
-                      circle_width, capstyle, length, space,
-                      origin_x, origin_y);
+  geda_arc_object_print_phantom(toplevel, fp,
+                                x, y, radius,
+                                0, FULL_CIRCLE / 64,
+                                color,
+                                circle_width, capstyle, length, space,
+                                origin_x, origin_y);
 
 }
 

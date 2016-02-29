@@ -948,10 +948,10 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
 
   o_notify_emit_pre_change (obj);
 
-  o_arc_modify (obj, scm_to_int(x_s), scm_to_int(y_s), ARC_CENTER);
-  o_arc_modify (obj, scm_to_int(r_s), 0, ARC_RADIUS);
-  o_arc_modify (obj, scm_to_int(start_angle_s), 0, ARC_START_ANGLE);
-  o_arc_modify (obj, scm_to_int(arc_sweep_s), 0, ARC_END_ANGLE);
+  geda_arc_object_modify (obj, scm_to_int(x_s), scm_to_int(y_s), ARC_CENTER);
+  geda_arc_object_modify (obj, scm_to_int(r_s), 0, ARC_RADIUS);
+  geda_arc_object_modify (obj, scm_to_int(start_angle_s), 0, ARC_START_ANGLE);
+  geda_arc_object_modify (obj, scm_to_int(arc_sweep_s), 0, ARC_END_ANGLE);
 
   o_set_color (obj, scm_to_int (color_s));
 

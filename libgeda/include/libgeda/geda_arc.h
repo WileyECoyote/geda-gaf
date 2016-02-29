@@ -53,17 +53,17 @@ struct _GedaArc {
 
   GedaObject parent_instance;
 
-  int       x;
-  int       y;
+  int x;
+  int y;
 
-  int       width;
-  int       height;
+  int width;
+  int height;
 
-  int       start_angle;
-  int       arc_sweep;
+  int start_angle;
+  int arc_sweep;
 
-  FILL_OPTIONS  fill_options;
-  LINE_OPTIONS  line_options;
+  FILL_OPTIONS fill_options;
+  LINE_OPTIONS line_options;
 };
 
 #ifdef __cplusplus

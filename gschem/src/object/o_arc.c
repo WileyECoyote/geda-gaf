@@ -123,9 +123,9 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   GedaObject   *new_obj;
 
   /* create, initialize and link the new arc object */
-  new_obj = o_arc_new (GRAPHIC_COLOR,
-                       w_current->first_wx, w_current->first_wy,
-                       radius, start_angle, arc_sweep);
+  new_obj = geda_arc_object_new (GRAPHIC_COLOR,
+                                 w_current->first_wx, w_current->first_wy,
+                                 radius, start_angle, arc_sweep);
   new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
   s_page_append_object (toplevel->page_current, new_obj);
 

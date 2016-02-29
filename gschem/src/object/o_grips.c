@@ -1164,12 +1164,12 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
  *  updating and redrawing.
  *
  *  If the grip at the center of the arc has been moved - modifying the radius
- *  of the arc -, the new radius is calculated expressed in world unit
- *  (the center is unchanged). It is updated with the function o_arc_modify().
+ *  of the arc -, the new radius is calculated expressed in world unit (the
+ *  center is unchanged) and updated with the function geda_arc_object_modify().
  *
  *  If one of the end of arc grip has been moved - modifying one of the
  *  angles describing the arc -, this angle is updated with the
- *  o_arc_modify() function.
+ *  geda_arc_object_modify() function.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Arc Object to end modification on.
@@ -1182,7 +1182,7 @@ o_grips_end_arc(GschemToplevel *w_current, GedaObject *o_current)
   /* erase the temporary arc */
   /* o_arc_invalidate_rubber (w_current); */
 
-  /* determination of the parameters to give to o_arc_modify() */
+  /* determination of the parameters for geda_arc_object_modify() */
   switch (w_current->which_grip) {
     case ARC_RADIUS:
       /* get the radius from w_current */
@@ -1210,7 +1210,7 @@ o_grips_end_arc(GschemToplevel *w_current, GedaObject *o_current)
   }
 
   /* modify the arc with the parameters determined above */
-  o_arc_modify(o_current, arg1, arg2, w_current->which_grip);
+  geda_arc_object_modify(o_current, arg1, arg2, w_current->which_grip);
 }
 
 /*! \brief End process of modifying box object with grip

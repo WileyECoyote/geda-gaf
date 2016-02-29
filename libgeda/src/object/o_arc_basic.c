@@ -55,7 +55,8 @@
  *  \param [in] arc_sweep
  *  \return
  */
-GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_sweep)
+GedaObject *
+geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int arc_sweep)
 {
   GedaObject *new_obj;
   GedaArc    *arc;
@@ -104,13 +105,13 @@ GedaObject *o_arc_new(int color, int x, int y, int radius, int start_angle, int 
  *
  *  \return The new GedaObject
  */
-GedaObject *o_arc_copy(GedaObject *o_current)
+GedaObject *geda_arc_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_ARC(o_current)) {
 
     GedaObject *new_obj;
 
-    new_obj = o_arc_new (o_current->color,
+    new_obj = geda_arc_object_new (o_current->color,
                          o_current->arc->x, o_current->arc->y,
                          o_current->arc->width / 2,
                          o_current->arc->start_angle,
@@ -149,7 +150,7 @@ GedaObject *o_arc_copy(GedaObject *o_current)
  *  \param [in]     whichone
  */
 void
-o_arc_modify(GedaObject *object, int x, int y, int whichone)
+geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case ARC_CENTER:
@@ -199,7 +200,7 @@ o_arc_modify(GedaObject *object, int x, int y, int whichone)
  *  #o_set_fill_options(). The second one is only used to put initialize
  *  unused values for an arc as an arc can not be filled.
  *
- *  The arc is allocated initialized with the function #o_arc_new().
+ *  The arc is allocated initialized with the function #geda_arc_object_new().
  *
  *  A negative or null radius is not allowed.
  *
@@ -212,7 +213,7 @@ o_arc_modify(GedaObject *object, int x, int y, int whichone)
  *  \return The ARC GedaObject that was created, or NULL on error.
  */
 GedaObject*
-o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
   char type;
@@ -266,7 +267,7 @@ o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_
   }
 
   /* Allocation and initialization */
-  new_obj = o_arc_new(color, x1, y1, radius, start_angle, arc_sweep);
+  new_obj = geda_arc_object_new(color, x1, y1, radius, start_angle, arc_sweep);
 
   new_obj->line_options->line_end     = arc_end;
   new_obj->line_options->line_type    = arc_type;
@@ -296,7 +297,7 @@ o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_
  *  \return the string representation of the arc object
  */
 char*
-o_arc_save(GedaObject *object)
+geda_arc_object_save(GedaObject *object)
 {
   int x, y, radius, start_angle, arc_sweep;
   int arc_width, arc_length, arc_space;
@@ -342,7 +343,7 @@ o_arc_save(GedaObject *object)
  *  \param [in] center_y
  */
 void
-o_arc_mirror(GedaObject *object, int center_x, int center_y)
+geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
   object->arc->x -= center_x;
@@ -386,7 +387,7 @@ o_arc_mirror(GedaObject *object, int center_x, int center_y)
  *  \param [in] angle
  */
 void
-o_arc_rotate(GedaObject *object, int center_x, int center_y, int angle)
+geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int x, y, newx, newy;
 
@@ -430,7 +431,7 @@ o_arc_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *  \param [in] dy
  */
 void
-o_arc_translate(GedaObject *object, int dx, int dy)
+geda_arc_object_translate(GedaObject *object, int dx, int dy)
 {
   if (object == NULL) {
     return;
@@ -463,7 +464,7 @@ o_arc_translate(GedaObject *object, int dx, int dy)
  *           GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
 bool
-o_arc_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaArc *arc;
   bool result;
@@ -609,7 +610,7 @@ o_arc_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
-o_arc_get_position (int *x, int *y, GedaObject *object)
+geda_arc_object_get_position (int *x, int *y, GedaObject *object)
 {
   *x = object->arc->x;
   *y = object->arc->y;
@@ -632,8 +633,8 @@ o_arc_get_position (int *x, int *y, GedaObject *object)
  *  \param [in] origin_y
  */
 void
-o_arc_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
-            int origin_x, int origin_y)
+geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
+                      int origin_x, int origin_y)
 {
   int x, y, radius, start_angle, arc_sweep;
   int color;
@@ -654,9 +655,9 @@ o_arc_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
 
   /*! \note
    *  Depending on the type of the line for this particular arc, the
-   *  appropriate function is chosen among #o_arc_print_solid(),
-   *  #o_arc_print_dotted(), #o_arc_print_dashed(), #o_arc_print_center()
-   *  and #o_arc_print_phantom().
+   *  appropriate function is chosen among #geda_arc_object_print_solid(),
+   *  #geda_arc_object_print_dotted(), #geda_arc_object_print_dashed(), #geda_arc_object_print_center()
+   *  and #geda_arc_object_print_phantom().
    *
    *  The needed parameters for each of these types are extracted from the
    *  <B>object</B> object. Depending on the type, unused parameters are set to -1.
@@ -681,36 +682,36 @@ o_arc_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
   switch(object->line_options->line_type) {
     case(TYPE_SOLID):
       length = -1; space = -1;
-      outl_func = o_arc_print_solid;
+      outl_func = geda_arc_object_print_solid;
       break;
 
     case(TYPE_DOTTED):
       length = -1;
-      outl_func = o_arc_print_dotted;
+      outl_func = geda_arc_object_print_dotted;
       break;
 
     case(TYPE_DASHED):
-      outl_func = o_arc_print_dashed;
+      outl_func = geda_arc_object_print_dashed;
       break;
 
     case(TYPE_CENTER):
-      outl_func = o_arc_print_center;
+      outl_func = geda_arc_object_print_center;
       break;
 
     case(TYPE_PHANTOM):
-      outl_func = o_arc_print_phantom;
+      outl_func = geda_arc_object_print_phantom;
       break;
 
     case(TYPE_ERASE):
       /* Unused for now, print it solid */
       length = -1; space = -1;
-      outl_func = o_arc_print_solid;
+      outl_func = geda_arc_object_print_solid;
       break;
   }
 
   if((space == 0) || (length == 0)) {
     length = -1; space = -1;
-    outl_func = o_arc_print_solid;
+    outl_func = geda_arc_object_print_solid;
   }
 
   (*outl_func)(toplevel, fp,
@@ -746,12 +747,13 @@ o_arc_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void o_arc_print_solid(GedaToplevel *toplevel, FILE *fp,
-                       int x, int y, int radius,
-                       int angle1, int angle2,
-                       int color,
-                       int arc_width, int capstyle, int length, int space,
-                       int origin_x, int origin_y)
+void geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                                 int x, int y, int radius,
+                                 int angle1, int angle2,
+                                 int color,
+                                 int arc_width,
+                                 int capstyle, int length, int space,
+                                 int origin_x, int origin_y)
 {
   f_print_set_color(toplevel, fp, color);
 
@@ -797,12 +799,13 @@ void o_arc_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void o_arc_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y, int radius,
-                        int angle1, int angle2,
-                        int color,
-                        int arc_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                                  int x, int y, int radius,
+                                  int angle1, int angle2,
+                                  int color,
+                                  int arc_width,
+                                  int capstyle, int length, int space,
+                                  int origin_x, int origin_y)
 {
   int da, d;
 
@@ -830,7 +833,7 @@ void o_arc_print_dotted(GedaToplevel *toplevel, FILE *fp,
 
   /* If da is too small to display arc as dotted, draw a solid arc */
   if (da <= 0) {
-    o_arc_print_solid(toplevel, fp,
+    geda_arc_object_print_solid(toplevel, fp,
                       x, y, radius,
                       angle1, angle2,
                       color,
@@ -881,12 +884,13 @@ void o_arc_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y, int radius,
-                        int angle1, int angle2,
-                        int color,
-                        int arc_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                                  int x, int y, int radius,
+                                  int angle1, int angle2,
+                                  int color,
+                                  int arc_width,
+                                  int capstyle, int length, int space,
+                                  int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -918,7 +922,7 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
 
   /* If da or db too small for arc to be displayed as dotted, draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
-    o_arc_print_solid(toplevel, fp,
+    geda_arc_object_print_solid(toplevel, fp,
                       x, y, radius,
                       angle1, angle2,
                       color,
@@ -983,12 +987,13 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y, int radius,
-                        int angle1, int angle2,
-                        int color,
-                        int arc_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
+                                  int x, int y, int radius,
+                                  int angle1, int angle2,
+                                  int color,
+                                  int arc_width,
+                                  int capstyle, int length, int space,
+                                  int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -1020,7 +1025,7 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
 
   /* If either da or db are too small to be displayed, draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
-    o_arc_print_solid(toplevel, fp,
+    geda_arc_object_print_solid(toplevel, fp,
                       x, y, radius,
                       angle1, angle2,
                       color,
@@ -1107,12 +1112,13 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                         int x, int y, int radius,
-                         int angle1, int angle2,
-                         int color,
-                         int arc_width, int capstyle, int length, int space,
-                         int origin_x, int origin_y)
+void geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
+                                   int x, int y, int radius,
+                                   int angle1, int angle2,
+                                   int color,
+                                   int arc_width,
+                                   int capstyle, int length, int space,
+                                   int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -1145,7 +1151,7 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
   /* If either da or db are too small for arc to be displayed as dotted,
    * then draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
-    o_arc_print_solid(toplevel, fp,
+    geda_arc_object_print_solid(toplevel, fp,
                       x, y, radius,
                       angle1, angle2,
                       color,
@@ -1232,7 +1238,8 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \return The shortest distance from the object to the point. With an
  *          invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_arc_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double
+geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
   double radius;
@@ -1241,7 +1248,7 @@ double o_arc_shortest_distance (GedaObject *object, int x, int y, int force_soli
 
   radius = ((double)object->arc->width) / 2.0;
 
-  if (o_arc_within_sweep (object->arc, x, y)) {
+  if (geda_arc_object_within_sweep (object->arc, x, y)) {
 
     double distance_to_center;
     double dx;
@@ -1305,7 +1312,7 @@ double o_arc_shortest_distance (GedaObject *object, int x, int y, int force_soli
  *          With an invalid parameter, this function returns FALSE.
  */
 bool
-o_arc_within_sweep(GedaArc *arc, int x, int y)
+geda_arc_object_within_sweep(GedaArc *arc, int x, int y)
 {
   double a0;
   double a1;

@@ -372,7 +372,7 @@ bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
     case OBJ_COMPLEX: getter = o_complex_get_nearest_point;   break;
     case OBJ_TEXT:    getter = o_text_get_nearest_point;      break;
     case OBJ_PATH:    getter = o_path_get_nearest_point;      break;
-    case OBJ_ARC:     getter = o_arc_get_nearest_point;       break;
+    case OBJ_ARC:     getter = geda_arc_object_get_nearest_point;       break;
     default:
       break;
   }
@@ -587,7 +587,7 @@ bool o_get_position (GedaObject *object, int *x, int *y )
       case OBJ_TEXT:    func = o_text_get_position;    break;
       case OBJ_PATH:    func = o_path_get_position;    break;
       case OBJ_PIN:     func = o_pin_get_position;     break;
-      case OBJ_ARC:     func = o_arc_get_position;     break;
+      case OBJ_ARC:     func = geda_arc_object_get_position;     break;
       default:
         BUG_IMSG("object has bad type '%c'\n", object->type);
   }
@@ -631,7 +631,7 @@ double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force
       case OBJ_COMPLEX:     func = o_complex_shortest_distance;  break;
       case OBJ_TEXT:        func = o_text_shortest_distance;     break;
       case OBJ_PATH:        func = o_path_shortest_distance;     break;
-      case OBJ_ARC:         func = o_arc_shortest_distance;      break;
+      case OBJ_ARC:         func = geda_arc_object_shortest_distance;      break;
     }
 
     if (func != NULL) {

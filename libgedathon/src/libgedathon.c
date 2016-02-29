@@ -2258,7 +2258,7 @@ PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sw
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
-  object = o_arc_new(color, x, y, radius, start_angle, arc_sweep);
+  object = geda_arc_object_new(color, x, y, radius, start_angle, arc_sweep);
 
   add_floating_object(object);
 

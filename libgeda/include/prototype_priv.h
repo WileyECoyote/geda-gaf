@@ -90,22 +90,22 @@ void     m_transform_scale        (TRANSFORM *transform, double factor);
 void     m_transform_translate    (TRANSFORM *transform, double dx, double dy);
 
 /* o_arc_basic.c */
-GedaObject *o_arc_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_arc_save               (GedaObject *object);
-void        o_arc_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-void        o_arc_print_solid        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
-                                      int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_arc_print_dotted       (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
-                                      int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_arc_print_dashed       (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
-                                      int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_arc_print_center       (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
-                                      int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_arc_print_phantom      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
-                                      int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
-double      o_arc_shortest_distance  (GedaObject *object, int x, int y, int force_soild);
-bool        o_arc_within_sweep       (GedaArc *arc, int x, int y);
-bool        o_arc_get_position       (int *x, int *y, GedaObject *object);
+GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_arc_object_save                 (GedaObject *object);
+void        geda_arc_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+void        geda_arc_object_print_solid          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
+                                                  int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_arc_object_print_dotted         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
+                                                  int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_arc_object_print_dashed         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
+                                                  int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_arc_object_print_center         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
+                                                  int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_arc_object_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
+                                                  int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
+bool        geda_arc_object_within_sweep         (GedaArc *arc, int x, int y);
+bool        geda_arc_object_get_position         (int *x, int *y, GedaObject *object);
 
 /* o_attrib.c */
 GList      *o_read_attribs           (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,

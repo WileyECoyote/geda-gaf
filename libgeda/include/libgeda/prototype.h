@@ -133,14 +133,14 @@ extern "C" {
          void    m_polygon_append_bezier         (GArray *points, BEZIER *bezier, int segments);
          void    m_polygon_append_point          (GArray *points, int x, int y);
 
-/* o_arc_basic.c */
-   GedaObject   *o_arc_new                       (int color, int x, int y, int radius, int start_angle, int arc_sweep);
-   GedaObject   *o_arc_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_arc_mirror                    (GedaObject *object, int center_x, int center_y);
-         void    o_arc_modify                    (GedaObject *object, int x, int y, int whichone);
-         void    o_arc_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_arc_translate                 (GedaObject *object, int dx, int dy);
-         bool    o_arc_get_nearest_point         (GedaObject *object, int x, int y, int *nx, int *ny);
+/* o_arc_object.c */
+   GedaObject   *geda_arc_object_new             (int color, int x, int y, int radius, int start_angle, int arc_sweep);
+   GedaObject   *geda_arc_object_copy            (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    geda_arc_object_mirror          (GedaObject *object, int center_x, int center_y);
+         void    geda_arc_object_modify          (GedaObject *object, int x, int y, int whichone);
+         void    geda_arc_object_rotate          (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_arc_object_translate            (GedaObject *object, int dx, int dy);
+         bool    geda_arc_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_attrib.c */
          void    o_attrib_add                              (GedaObject *object, GedaObject *item);

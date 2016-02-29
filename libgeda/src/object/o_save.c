@@ -247,7 +247,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_ARC):
-          out = o_arc_save(o_current);
+          out = geda_arc_object_save(o_current);
           break;
 
         case(OBJ_PICTURE):

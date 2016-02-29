@@ -207,7 +207,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(OBJ_ARC):
-        if ((new_obj = o_arc_read (line, release_ver, fileformat_ver, err)) == NULL)
+        if ((new_obj = geda_arc_object_read (line, release_ver, fileformat_ver, err)) == NULL)
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
@@ -497,7 +497,7 @@ GedaObject *o_copy_object (GedaObject *o_current)
       break;
 
     case(OBJ_ARC):
-      new_obj = o_arc_copy (o_current);
+      new_obj = geda_arc_object_copy (o_current);
       break;
 
     default:
@@ -546,7 +546,7 @@ void o_mirror_object (GedaObject *object, int center_x, int center_y)
       case OBJ_TEXT:    topless = o_text_mirror;       break;
       case OBJ_PATH:    topless = o_path_mirror;       break;
       case OBJ_PIN:     topless = o_pin_mirror;        break;
-      case OBJ_ARC:     topless = o_arc_mirror;        break;
+      case OBJ_ARC:     topless = geda_arc_object_mirror;        break;
   }
 
   if (topless != NULL) {
@@ -595,7 +595,7 @@ void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
     case OBJ_TEXT:    topless = o_text_rotate;       break;
     case OBJ_PATH:    topless = o_path_rotate;       break;
     case OBJ_PIN:     topless = o_pin_rotate;        break;
-    case OBJ_ARC:     topless = o_arc_rotate;        break;
+    case OBJ_ARC:     topless = geda_arc_object_rotate;        break;
     default:
       break;
   }
@@ -643,7 +643,7 @@ void o_translate_object (GedaObject *object, int dx, int dy)
       case OBJ_TEXT:    topless = o_text_translate;    break;
       case OBJ_PATH:    topless = o_path_translate;    break;
       case OBJ_PIN:     topless = o_pin_translate;     break;
-      case OBJ_ARC:     topless = o_arc_translate;     break;
+      case OBJ_ARC:     topless = geda_arc_object_translate;     break;
       default:
         break;
   }

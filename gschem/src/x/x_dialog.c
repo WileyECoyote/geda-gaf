@@ -829,9 +829,9 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
         if(object->type == OBJ_ARC) {
           /* invalidate the old arc object */
           o_invalidate_object (w_current, object);
-          o_arc_modify(object, radius,      0, ARC_RADIUS);
-          o_arc_modify(object, start_angle, 0, ARC_START_ANGLE);
-          o_arc_modify(object, sweep_angle, 0, ARC_END_ANGLE);
+          geda_arc_object_modify(object, radius,      0, ARC_RADIUS);
+          geda_arc_object_modify(object, start_angle, 0, ARC_START_ANGLE);
+          geda_arc_object_modify(object, sweep_angle, 0, ARC_END_ANGLE);
           o_invalidate_object (w_current, object);
           modified++;
         }
