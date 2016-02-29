@@ -42,7 +42,7 @@ static void o_bus_consolidate_lowlevel (GedaObject *object,  GedaObject *del_obj
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_bus_get_position(int *x, int *y, GedaObject *object)
+bool o_bus_get_position(GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_BUS(object), FALSE);
 

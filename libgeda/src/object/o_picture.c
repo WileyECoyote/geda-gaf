@@ -1308,11 +1308,9 @@ o_picture_get_filename (GedaObject *object)
  *  \param [out] y       pointer to the y-position
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
- *
- *  TODO Why are these parameter backwards from all the othe functions?
  */
 bool
-o_picture_get_position (int *x, int *y, GedaObject *object)
+o_picture_get_position (GedaObject *object, int *x, int *y)
 {
   *x = min(object->picture->lower_x, object->picture->upper_x);
   *y = min(object->picture->lower_y, object->picture->upper_y);

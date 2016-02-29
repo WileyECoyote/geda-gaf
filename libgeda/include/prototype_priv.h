@@ -90,8 +90,7 @@ void     m_transform_scale        (TRANSFORM *transform, double factor);
 void     m_transform_translate    (TRANSFORM *transform, double dx, double dy);
 
 /* o_arc_basic.c */
-GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_arc_object_save                 (GedaObject *object);
+bool        geda_arc_object_get_position         (GedaObject *object, int *x, int *y);
 void        geda_arc_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 void        geda_arc_object_print_solid          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
                                                   int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
@@ -103,17 +102,18 @@ void        geda_arc_object_print_center         (GedaToplevel *toplevel, FILE *
                                                   int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 void        geda_arc_object_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
                                                   int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
+GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_arc_object_save                 (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
 bool        geda_arc_object_within_sweep         (GedaArc *arc, int x, int y);
-bool        geda_arc_object_get_position         (int *x, int *y, GedaObject *object);
+
 
 /* o_attrib.c */
 GList      *o_read_attribs           (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
                                       unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
 
 /* o_box_basic.c */
-GedaObject *o_box_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_box_save               (GedaObject *object);
+bool        o_box_get_position       (GedaObject *object, int *x, int *y);
 void        o_box_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 void        o_box_print_solid        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
                                       int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
@@ -131,19 +131,19 @@ void        o_box_print_mesh         (GedaToplevel *toplevel, FILE *fp, int x, i
                                       int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 void        o_box_print_hatch        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
                                       int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+GedaObject *o_box_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *o_box_save               (GedaObject *object);
 double      o_box_shortest_distance  (GedaObject *object, int x, int y, int force_soild);
-bool        o_box_get_position       (int *x, int *y, GedaObject *object);
 
 /* o_bus_basic.c */
+bool        o_bus_get_position       (GedaObject *object, int *x, int *y);
+void        o_bus_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *o_bus_read               (const char buf[], unsigned int release_ver,
                                       unsigned int fileformat_ver, GError **err);
 char       *o_bus_save               (GedaObject *object);
-void        o_bus_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-bool        o_bus_get_position       (int *x, int *y, GedaObject *object);
 
 /* o_circle_basic.c */
-GedaObject *o_circle_read                  (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_circle_save                  (GedaObject *object);
+bool        o_circle_get_position          (GedaObject *object, int *x, int *y);
 void        o_circle_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 void        o_circle_print_solid           (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
                                             int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
@@ -161,25 +161,25 @@ void        o_circle_print_mesh            (GedaToplevel *toplevel, FILE *fp, in
                                             int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 void        o_circle_print_hatch           (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
                                             int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+GedaObject *o_circle_read                  (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *o_circle_save                  (GedaObject *object);
 double      o_circle_shortest_distance     (GedaObject *object, int x, int y, int force_soild);
-bool        o_circle_get_position          (int *x, int *y, GedaObject *object);
+
 
 /* o_complex_basic.c */
+bool        o_complex_get_position         (GedaObject *object, int *x, int *y);
+GList      *o_complex_get_promotable       (GedaToplevel *toplevel, GedaObject *object, int detach);
+int         o_complex_get_world_bounds     (GedaObject *complex);
 GedaObject *o_complex_read                 (GedaToplevel *toplevel, const char buf[], unsigned int release_ver,
                                             unsigned int fileformat_ver, GError **err);
 char       *o_complex_save                 (GedaObject *object);
 double      o_complex_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
-int         o_complex_get_world_bounds     (GedaObject *complex);
-bool        o_complex_get_position         (int *x, int *y, GedaObject *object);
-GList      *o_complex_get_promotable       (GedaToplevel *toplevel, GedaObject *object, int detach);
 
 /* o_get.c */
 int         o_get_capstyle                 (LINE_END end);
 
 /* o_line_basic.c */
-GedaObject *o_line_read                    (const const char buf[], unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_line_save                    (GedaObject *object);
+bool        o_line_get_position            (GedaObject *object, int *x, int *y);
 void        o_line_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 void        o_line_print_solid             (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
                                             int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
@@ -192,52 +192,55 @@ void        o_line_print_center            (GedaToplevel *toplevel, FILE *fp, in
 void        o_line_print_phantom           (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
                                             int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
 double      o_line_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-bool        o_line_get_position            (int *x, int *y, GedaObject *object);
+GedaObject *o_line_read                    (const const char buf[], unsigned int release_ver,
+                                            unsigned int fileformat_ver, GError **err);
+char       *o_line_save                    (GedaObject *object);
 
 /* o_net_basic.c */
+bool        o_net_get_position             (GedaObject *object, int *x, int *y);
+void        o_net_print                    (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *o_net_read                     (const char buf[], unsigned int release_ver,
                                             unsigned int fileformat_ver, GError **err);
 char       *o_net_save                     (GedaObject *object);
-void        o_net_print                    (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-bool        o_net_get_position             (int *x, int *y, GedaObject *object);
 
 /* o_notify.c */
 void         o_notify_emit_pre_change      (GedaObject *object);
 void         o_notify_emit_change          (GedaObject *object);
 
 /* o_path_basic.c */
+bool        o_path_get_position            (GedaObject *object, int *x, int *y);
+void        o_path_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *o_path_read                    (const char *first_line, TextBuffer *tb,
                                             unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *o_path_save                    (GedaObject *object);
-void        o_path_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 double      o_path_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-bool        o_path_get_position            (int *x, int *y, GedaObject *object);
+
 
 /* o_picture.c */
+bool        o_picture_get_position         (GedaObject *object, int *x, int *y);
+bool        o_picture_embed                (GedaObject *object);
 GedaObject *o_picture_read                 (const char *first_line, TextBuffer *tb,
                                             unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *o_picture_save                 (GedaObject *object);
 double      o_picture_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
-bool        o_picture_embed                (GedaObject *object);
 bool        o_picture_unembed              (GedaObject *object);
-bool        o_picture_get_position         (int *x, int *y, GedaObject *object);
 
 /* o_pin_basic.c */
-bool        o_pin_get_position             (int *x, int *y, GedaObject *object);
+bool        o_pin_get_position             (GedaObject *object, int *x, int *y);
 void        o_pin_print                    (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *o_pin_read                     (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *o_pin_save                     (GedaObject *object);
 void        o_pin_update_read_property     (GedaObject *o_pin, GedaObject *o_text);
 
 /* o_text_basic.c */
-GedaObject *o_text_read                    (const char *first_line, TextBuffer *tb, unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_text_save                    (GedaObject *object);
+bool        o_text_get_position            (GedaObject *object, int *x, int *y);
 void        o_text_print_text_string       (FILE *fp, char *string, int unicode_count, gunichar *unicode_table);
 void        o_text_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y,
                                             int unicode_count, gunichar *unicode_table);
+GedaObject *o_text_read                    (const char *first_line, TextBuffer *tb, unsigned int release_ver,
+                                            unsigned int fileformat_ver, GError **err);
+char       *o_text_save                    (GedaObject *object);
 double      o_text_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-bool        o_text_get_position            (int *x, int *y, GedaObject *object);
 void        o_text_update_disp_string      (GedaObject *object);
 
 /* s_attrib.c */

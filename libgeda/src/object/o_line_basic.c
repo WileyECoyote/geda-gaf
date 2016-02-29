@@ -162,6 +162,27 @@ void o_line_modify(GedaObject *object, int x, int y, int whichone)
 }
 
 /*!
+ * \brief get the position of the first line point
+ * \par Function Description
+ *  This function gets the position of the first point of a line object.
+ *
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ * \param [in] object   The object to get the position.
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool o_line_get_position (GedaObject *object, int *x, int *y)
+{
+  g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
+
+  *x = object->line->x[0];
+  *y = object->line->y[0];
+
+  return TRUE;
+}
+
+/*!
  * \brief Create line Object from character string.
  *
  * \par Function Description
@@ -423,27 +444,6 @@ void o_line_mirror(GedaObject *object, int center_x, int center_y)
 
   /* translate back in position */
   o_line_translate(object, center_x, center_y);
-}
-
-/*!
- * \brief get the position of the first line point
- * \par Function Description
- *  This function gets the position of the first point of a line object.
- *
- * \param [out] x       pointer to the x-position
- * \param [out] y       pointer to the y-position
- * \param [in] object   The object to get the position.
- *
- * \return TRUE if successfully determined the position, FALSE otherwise
- */
-bool o_line_get_position (int *x, int *y, GedaObject *object)
-{
-  g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
-
-  *x = object->line->x[0];
-  *y = object->line->y[0];
-
-  return TRUE;
 }
 
 /*!

@@ -96,7 +96,7 @@
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_text_get_position (int *x, int *y, GedaObject *object)
+bool o_text_get_position (GedaObject *object, int *x, int *y)
 {
   *x = object->text->x;
   *y = object->text->y;

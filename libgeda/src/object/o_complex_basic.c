@@ -61,7 +61,7 @@ o_complex_get_bounds(GedaObject *object)
  *  \return TRUE if successfully determined the position, FALSE otherwise.
  */
 bool
-o_complex_get_position (int *x, int *y, GedaObject *object)
+o_complex_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_COMPLEX(object), FALSE);
   *x = object->complex->x;

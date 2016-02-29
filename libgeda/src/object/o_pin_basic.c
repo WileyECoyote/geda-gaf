@@ -110,7 +110,7 @@ GedaObject *o_pin_copy(GedaObject *o_current)
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_pin_get_position (int *x, int *y, GedaObject *object)
+bool o_pin_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), FALSE);
 

@@ -29,6 +29,201 @@
 
 #include <libgeda_priv.h>
 
+/*! \brief Get Point on a Box Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on a Box object given
+ *  a point \a x, \a y, that is on or about the vicinity of \a object. If
+ *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
+ *  on the box that is the closest point on the box to the point given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to a Box object
+ *  \param [in]  x       Integer x of point near or on the box
+ *  \param [in]  y       Integer y of point near or on the box
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
+ */
+bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+{
+  GedaBox *box;
+  bool result;
+
+  if (GEDA_IS_BOX(object)) {
+
+    GedaLine *closest;
+    GedaLine  segments[4];
+
+    box    = object->box;
+    result = FALSE;
+
+    int  left   = /* min */ box->upper_x < box->lower_x ? box->upper_x : box->lower_x;
+    int  bottom = /* min */ box->upper_y < box->lower_y ? box->upper_y : box->lower_y;
+    int  right  = /* max */ box->upper_x > box->lower_x ? box->upper_x : box->lower_x;
+    int  top    = /* max */ box->upper_y > box->lower_y ? box->upper_y : box->lower_y;
+
+    if (left >= x) {
+
+      *nx = left;
+
+      if (y >= top) {
+        *ny = top;
+      }
+      else if (bottom >= y) {
+        *ny = bottom;
+      }
+      else {
+        *ny = y;
+      }
+    }
+    else if (x >= right) {
+
+      *nx = right;
+
+      if (y >= top) {
+        *ny = top;
+      }
+      else if (bottom >= y) {
+        *ny = bottom;
+      }
+      else {
+        *ny = y;
+      }
+    }
+    else if (y >= top) {
+      *ny = top;
+      *nx = x;
+    }
+    else if (bottom >= y) {
+      *ny = bottom;
+      *nx = x;
+    }
+    else { /* point is inside the box */
+
+      double dl, dr, dt, db;
+
+      /* Left Side */
+      segments[0].x[0] = left;
+      segments[0].y[0] = bottom;
+      segments[0].x[1] = left;
+      segments[0].y[1] = top;
+
+      dl = m_line_shortest_distance (&segments[0], x, y);
+
+      /* Right Side */
+      segments[1].x[0] = right;
+      segments[1].y[0] = bottom;
+      segments[1].x[1] = right;
+      segments[1].y[1] = top;
+
+      dr = m_line_shortest_distance (&segments[1], x, y);
+
+      /* Top Side */
+      segments[2].x[0] = left;
+      segments[2].y[0] = top;
+      segments[2].x[1] = right;
+      segments[2].y[1] = top;
+
+      dt = m_line_shortest_distance (&segments[2], x, y);
+
+      /* Bottom Side */
+      segments[3].x[0] = left;
+      segments[3].y[0] = bottom;
+      segments[3].x[1] = right;
+      segments[3].y[1] = bottom;
+
+      db = m_line_shortest_distance (&segments[3], x, y);
+
+      /* Check for corners */
+
+      if (db == dl) {                       /* bottom left */
+        *ny = bottom;
+        *nx = left;
+      }
+      else if (dt == dl) {                  /* top left */
+        *ny = top;
+        *nx = left;
+      }
+
+      if (db == dr) {                       /* bottom right */
+        *ny = bottom;
+        *nx = right;
+      }
+      else if (dt == dr) {                  /* top right */
+        *ny = top;
+        *nx = right;
+      }
+      else {
+
+        if (dl < db && dl < dt) {           /* left */
+          closest = &segments[0];
+        }
+        else if (dr < db && dr < dt) {      /* right */
+          closest = &segments[1];
+        }
+        else if (db > dt) {                 /* top */
+          closest = &segments[2];
+        }
+        else {                              /* bottom */
+          closest = &segments[3];
+        }
+
+        double dx, dy, ix, iy;
+        double m1, m2, b1, b2;
+
+        dx = closest->x[1] - closest->x[0];
+        dy = closest->y[1] - closest->y[0];
+
+        m1 = dy / dx;
+        b1 = closest->y[0] - m1 * closest->x[0];
+        m2 = -1 / m1;
+        b2 = y - m2 * x;
+
+        ix = (b2 - b1) / (m1 - m2);
+        iy = m2 * ix + b2;
+
+#ifdef HAVE_LRINT
+
+        *nx = lrint(ix);
+        *nx = lrint(iy);
+
+#else
+
+        *nx = ix + 0.5;
+        *nx = iy + 0.5;
+
+#endif
+      }
+    }
+    result = TRUE;
+  }
+  else { /* was not an Box */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
+}
+
+/*! \brief get the position of the left bottom point
+ *  \par Function Description
+ *  This function gets the position of the bottom left point of a box object.
+ *
+ *  \param [out] x       pointer to the x-position
+ *  \param [out] y       pointer to the y-position
+ *  \param [in] object   The object to get the position.
+ *  \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool o_box_get_position (GedaObject *object, int *x, int *y)
+{
+  *x = min(object->box->lower_x, object->box->upper_x);
+  *y = min(object->box->lower_y, object->box->upper_y);
+  return TRUE;
+}
+
 /*! \brief Create a Box Object
  *  \par Function Description
  *  This function creates a new object representing a box.
@@ -543,201 +738,6 @@ void o_box_translate(GedaObject *object, int dx, int dy)
 
   /* recalc the screen coords and the bounding box */
   object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Get Point on a Box Nearest a Given Point
- *  \par Function Description
- *  This function is intended to locate a point on a Box object given
- *  a point \a x, \a y, that is on or about the vicinity of \a object. If
- *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
- *  on the box that is the closest point on the box to the point given by \a x, \a y.
- *
- *  \param [in]  object  Pointer to a Box object
- *  \param [in]  x       Integer x of point near or on the box
- *  \param [in]  y       Integer y of point near or on the box
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
- *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
- */
-bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
-{
-  GedaBox *box;
-  bool result;
-
-  if (GEDA_IS_BOX(object)) {
-
-    GedaLine *closest;
-    GedaLine  segments[4];
-
-    box    = object->box;
-    result = FALSE;
-
-    int  left   = /* min */ box->upper_x < box->lower_x ? box->upper_x : box->lower_x;
-    int  bottom = /* min */ box->upper_y < box->lower_y ? box->upper_y : box->lower_y;
-    int  right  = /* max */ box->upper_x > box->lower_x ? box->upper_x : box->lower_x;
-    int  top    = /* max */ box->upper_y > box->lower_y ? box->upper_y : box->lower_y;
-
-    if (left >= x) {
-
-      *nx = left;
-
-      if (y >= top) {
-        *ny = top;
-      }
-      else if (bottom >= y) {
-        *ny = bottom;
-      }
-      else {
-        *ny = y;
-      }
-    }
-    else if (x >= right) {
-
-      *nx = right;
-
-      if (y >= top) {
-        *ny = top;
-      }
-      else if (bottom >= y) {
-        *ny = bottom;
-      }
-      else {
-        *ny = y;
-      }
-    }
-    else if (y >= top) {
-      *ny = top;
-      *nx = x;
-    }
-    else if (bottom >= y) {
-      *ny = bottom;
-      *nx = x;
-    }
-    else { /* point is inside the box */
-
-      double dl, dr, dt, db;
-
-      /* Left Side */
-      segments[0].x[0] = left;
-      segments[0].y[0] = bottom;
-      segments[0].x[1] = left;
-      segments[0].y[1] = top;
-
-      dl = m_line_shortest_distance (&segments[0], x, y);
-
-      /* Right Side */
-      segments[1].x[0] = right;
-      segments[1].y[0] = bottom;
-      segments[1].x[1] = right;
-      segments[1].y[1] = top;
-
-      dr = m_line_shortest_distance (&segments[1], x, y);
-
-      /* Top Side */
-      segments[2].x[0] = left;
-      segments[2].y[0] = top;
-      segments[2].x[1] = right;
-      segments[2].y[1] = top;
-
-      dt = m_line_shortest_distance (&segments[2], x, y);
-
-      /* Bottom Side */
-      segments[3].x[0] = left;
-      segments[3].y[0] = bottom;
-      segments[3].x[1] = right;
-      segments[3].y[1] = bottom;
-
-      db = m_line_shortest_distance (&segments[3], x, y);
-
-      /* Check for corners */
-
-      if (db == dl) {                       /* bottom left */
-        *ny = bottom;
-        *nx = left;
-      }
-      else if (dt == dl) {                  /* top left */
-        *ny = top;
-        *nx = left;
-      }
-
-      if (db == dr) {                       /* bottom right */
-        *ny = bottom;
-        *nx = right;
-      }
-      else if (dt == dr) {                  /* top right */
-        *ny = top;
-        *nx = right;
-      }
-      else {
-
-        if (dl < db && dl < dt) {           /* left */
-          closest = &segments[0];
-        }
-        else if (dr < db && dr < dt) {      /* right */
-          closest = &segments[1];
-        }
-        else if (db > dt) {                 /* top */
-          closest = &segments[2];
-        }
-        else {                              /* bottom */
-          closest = &segments[3];
-        }
-
-        double dx, dy, ix, iy;
-        double m1, m2, b1, b2;
-
-        dx = closest->x[1] - closest->x[0];
-        dy = closest->y[1] - closest->y[0];
-
-        m1 = dy / dx;
-        b1 = closest->y[0] - m1 * closest->x[0];
-        m2 = -1 / m1;
-        b2 = y - m2 * x;
-
-        ix = (b2 - b1) / (m1 - m2);
-        iy = m2 * ix + b2;
-
-#ifdef HAVE_LRINT
-
-        *nx = lrint(ix);
-        *nx = lrint(iy);
-
-#else
-
-        *nx = ix + 0.5;
-        *nx = iy + 0.5;
-
-#endif
-      }
-    }
-    result = TRUE;
-  }
-  else { /* was not an Box */
-    result = FALSE;
-  }
-
-  if (!result) {
-    *nx = x;
-    *ny = y;
-  }
-  return result;
-}
-
-/*! \brief get the position of the left bottom point
- *  \par Function Description
- *  This function gets the position of the bottom left point of a box object.
- *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
- */
-bool o_box_get_position (int *x, int *y, GedaObject *object)
-{
-  *x = min(object->box->lower_x, object->box->upper_x);
-  *y = min(object->box->lower_y, object->box->upper_y);
-  return TRUE;
 }
 
 /*! \brief Print a GedaBox to Postscript document.

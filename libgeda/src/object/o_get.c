@@ -573,7 +573,7 @@ int o_get_parent_id (GedaObject *object)
  */
 bool o_get_position (GedaObject *object, int *x, int *y )
 {
-  bool (*func) ( int*, int*, GedaObject*) = NULL;
+  bool (*func) (GedaObject*, int*, int*) = NULL;
 
   switch (object->type) {
       case OBJ_LINE:    func = o_line_get_position;    break;
@@ -593,7 +593,7 @@ bool o_get_position (GedaObject *object, int *x, int *y )
   }
 
   if (func != NULL) {
-    return (*func) (x, y, object);
+    return (*func) (object, x, y);
   }
   return FALSE;
 }

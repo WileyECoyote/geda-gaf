@@ -28,47 +28,6 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Create and add circle Object to list.
- *  \par Function Description
- *  This function creates a new object representing a circle.
- *
- *  The circle is described by its center (<B>x</B>,<B>y</B>) and its radius
- *  <B>radius</B>.
- *  The <B>color</B> corresponds to the color the box will be drawn with.
- *
- *  The <B>GedaObject</B> structure is allocated with the#geda_object_new()
- *  function. The structure describing the circle is allocated and initialized
- *  with the parameters given to the function.
- *
- *  Both the line type and the filling type are set to default values : solid
- *  line type with a width of 0, and no filling. It can be changed after
- *  with#o_set_line_options() and#o_set_fill_options().
- *
- *  \param [in]     color        Circle line color.
- *  \param [in]     x            Center x coordinate.
- *  \param [in]     y            Center y coordinate.
- *  \param [in]     radius       Radius of new circle.
- *  \return A pointer to the new end of the object list.
- */
-GedaObject*
-o_circle_new(int color, int x, int y, int radius)
-{
-  GedaObject *new_obj;
-  GedaCircle *circle;
-
-  new_obj = geda_circle_new();
-  circle  = GEDA_CIRCLE(new_obj);
-
-  new_obj->color = color;
-
-  /* describe the circle with its center and radius */
-  circle->center_x = x;
-  circle->center_y = y;
-  circle->radius   = radius;
-
-  return new_obj;
-}
-
 /*! \brief Create a copy of a circle.
  *
  *  \par Function Description
@@ -105,6 +64,187 @@ GedaObject *o_circle_copy(GedaObject *o_current)
     return new_obj;
   }
   return NULL;
+}
+
+/*! \brief Get Point on a Circle Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on an Circle object given
+ *  a point \a x, \a y, that is on or about the vicinity of the \a object.
+ *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
+ *  point on the circle that is the closest point on \a object to the point
+ *  given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to an Circle object
+ *  \param [in]  x       Integer x of point near or on the circle
+ *  \param [in]  y       Integer y of point near or on the circle
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not an
+ *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
+ *           the circle.
+ */
+bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+{
+  bool    result;
+
+
+  if (GEDA_IS_CIRCLE(object)) {
+
+    int cx, cy;
+
+    cx = object->circle->center_x;
+    cy = object->circle->center_y;
+
+    /* If the point is the center, every point on the circle is equal
+     * distance to the point, so answer is false */
+    if ((y == cy) && (x == cx)) {
+      result = FALSE;
+    }
+    else {
+
+      int     x1, y1, x2, y2;
+      double  dx, dy, r;
+      double  A, B, C, D;
+
+      volatile double  b;
+      volatile double  m;
+
+      r  = object->circle->radius;
+
+      x1 = x;
+      y1 = y;
+      x2 = cx;
+      y2 = cy;
+
+      dx = x2 - x1;
+      dy = y2 - y1;
+
+      /* Get coefficients of quadratic */
+      if (dx == 0) {                   /* In terms of Y, because X1 = X2 */
+
+        /* Special vertical case: (x-cx)^2 + (y-cy)^2 = r^2, solve for y */
+
+        A = 1;
+        B = -2 * cy;
+        C = (x1 * x1) - (2 * cx * x1) + (cx * cx) + (cy * cy) - (r * r);
+      }
+      else {                           /* In terms of X */
+
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
+
+        m  = dy / dx;
+        b  = (-1 * m * x2) + y2;
+
+        A = m * m + 1;
+        B = 2 * ((m * b) - (m * cy) - cx);
+        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+      }
+
+      D = B * B - 4 * A * C;           /* The discriminant */
+
+      /* The discriminant can not be negative */
+
+#if HAVE_LRINT
+
+      if (dx == 0) {      /* Vertical = special, find y first*/
+
+       *nx = x1;          /* Line vertical so x is known */
+
+        if (x > cx) {
+         *ny = lrint((-1 * B + sqrt(D)) / (2 * A));
+        }
+        else {
+         *ny = lrint((-1 * B - sqrt(D)) / (2 * A));
+        }
+      }
+      else {              /* For all non-vertical line */
+
+        double tmp_x;
+
+        if (x > cx) {     /* Use positive root */
+
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+
+        }
+        else {            /* Use negative root */
+
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+
+        }
+
+       *nx = lrint(tmp_x);
+       *ny = lrint(m * tmp_x + b); /* Must use non rounded x here */
+      }
+
+#else
+
+      if (dx == 0) {      /* Vertical special, find y first*/
+
+        *nx = x1;         /* Line vertical so x is known */
+
+        if (x > cx) {     /* Use positive root */
+
+          *ny = ((-1 * B + sqrt(D)) / (2 * A)) + 0.5;
+
+        }
+        else {
+
+          *ny = ((-1 * B - sqrt(D)) / (2 * A)) + 0.5;
+
+        }
+      }
+      else {             /* For all non-vertical line */
+
+        double tmp_x;
+
+        if (x > cx) {     /* Use positive root */
+
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+
+        }
+        else {
+
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+
+        }
+        *nx = tmp_x + 0.5;
+        *ny = (m * tmp_x + b) + 0.5;  /* Must use non rounded x here */
+      }
+
+#endif
+
+      result = TRUE;
+    }
+  }
+  else { /* was not an Circle */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
+}
+
+/*! \brief get the position of the center point
+ *
+ *  \par Function Description
+ *  This function gets the position of the center point of a circle object.
+ *
+ *  \param [in] object   The object to get the position.
+ *  \param [out] x       pointer to the x-position
+ *  \param [out] y       pointer to the y-position
+
+ *  \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool o_circle_get_position (GedaObject *object, int *x, int *y)
+{
+  g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
+  *x = object->circle->center_x;
+  *y = object->circle->center_y;
+  return TRUE;
 }
 
 /*! \brief Modify the description of a circle Object.
@@ -363,6 +503,46 @@ void o_circle_mirror(GedaObject *object, int center_x, int center_y)
 
 }
 
+/*! \brief Create and add circle Object to list.
+ *  \par Function Description
+ *  This function creates a new object representing a circle.
+ *
+ *  The circle is described by its center (<B>x</B>,<B>y</B>) and its radius
+ *  <B>radius</B>.
+ *  The <B>color</B> corresponds to the color the box will be drawn with.
+ *
+ *  The <B>GedaObject</B> structure is allocated with the#geda_object_new()
+ *  function. The structure describing the circle is allocated and initialized
+ *  with the parameters given to the function.
+ *
+ *  Both the line type and the filling type are set to default values : solid
+ *  line type with a width of 0, and no filling. It can be changed after
+ *  with#o_set_line_options() and#o_set_fill_options().
+ *
+ *  \param [in]     color        Circle line color.
+ *  \param [in]     x            Center x coordinate.
+ *  \param [in]     y            Center y coordinate.
+ *  \param [in]     radius       Radius of new circle.
+ *  \return A pointer to the new end of the object list.
+ */
+GedaObject *o_circle_new(int color, int x, int y, int radius)
+{
+  GedaObject *new_obj;
+  GedaCircle *circle;
+
+  new_obj = geda_circle_new();
+  circle  = GEDA_CIRCLE(new_obj);
+
+  new_obj->color = color;
+
+  /* describe the circle with its center and radius */
+  circle->center_x = x;
+  circle->center_y = y;
+  circle->radius   = radius;
+
+  return new_obj;
+}
+
 /*! \brief Rotate Circle GedaObject using WORLD coordinates
  *
  *  \par Function Description
@@ -433,187 +613,6 @@ void o_circle_translate(GedaObject *object, int dx, int dy)
   /* recalc the screen coords and the bounding box */
   object->w_bounds_valid_for = NULL;
 
-}
-
-/*! \brief Get Point on a Circle Nearest a Given Point
- *  \par Function Description
- *  This function is intended to locate a point on an Circle object given
- *  a point \a x, \a y, that is on or about the vicinity of the \a object.
- *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
- *  point on the circle that is the closest point on \a object to the point
- *  given by \a x, \a y.
- *
- *  \param [in]  object  Pointer to an Circle object
- *  \param [in]  x       Integer x of point near or on the circle
- *  \param [in]  y       Integer y of point near or on the circle
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
- *
- *  \returns TRUE is the results are valid, FALSE if \a object was not an
- *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
- *           the circle.
- */
-bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
-{
-  bool    result;
-
-
-  if (GEDA_IS_CIRCLE(object)) {
-
-    int cx, cy;
-
-    cx = object->circle->center_x;
-    cy = object->circle->center_y;
-
-    /* If the point is the center, every point on the circle is equal
-     * distance to the point, so answer is false */
-    if ((y == cy) && (x == cx)) {
-      result = FALSE;
-    }
-    else {
-
-      int     x1, y1, x2, y2;
-      double  dx, dy, r;
-      double  A, B, C, D;
-
-      volatile double  b;
-      volatile double  m;
-
-      r  = object->circle->radius;
-
-      x1 = x;
-      y1 = y;
-      x2 = cx;
-      y2 = cy;
-
-      dx = x2 - x1;
-      dy = y2 - y1;
-
-      /* Get coefficients of quadratic */
-      if (dx == 0) {                   /* In terms of Y, because X1 = X2 */
-
-        /* Special vertical case: (x-cx)^2 + (y-cy)^2 = r^2, solve for y */
-
-        A = 1;
-        B = -2 * cy;
-        C = (x1 * x1) - (2 * cx * x1) + (cx * cx) + (cy * cy) - (r * r);
-      }
-      else {                           /* In terms of X */
-
-        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
-
-        m  = dy / dx;
-        b  = (-1 * m * x2) + y2;
-
-        A = m * m + 1;
-        B = 2 * ((m * b) - (m * cy) - cx);
-        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
-      }
-
-      D = B * B - 4 * A * C;           /* The discriminant */
-
-      /* The discriminant can not be negative */
-
-#if HAVE_LRINT
-
-      if (dx == 0) {      /* Vertical = special, find y first*/
-
-       *nx = x1;          /* Line vertical so x is known */
-
-        if (x > cx) {
-         *ny = lrint((-1 * B + sqrt(D)) / (2 * A));
-        }
-        else {
-         *ny = lrint((-1 * B - sqrt(D)) / (2 * A));
-        }
-      }
-      else {              /* For all non-vertical line */
-
-        double tmp_x;
-
-        if (x > cx) {     /* Use positive root */
-
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
-
-        }
-        else {            /* Use negative root */
-
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
-
-        }
-
-       *nx = lrint(tmp_x);
-       *ny = lrint(m * tmp_x + b); /* Must use non rounded x here */
-      }
-
-#else
-
-      if (dx == 0) {      /* Vertical special, find y first*/
-
-        *nx = x1;         /* Line vertical so x is known */
-
-        if (x > cx) {     /* Use positive root */
-
-          *ny = ((-1 * B + sqrt(D)) / (2 * A)) + 0.5;
-
-        }
-        else {
-
-          *ny = ((-1 * B - sqrt(D)) / (2 * A)) + 0.5;
-
-        }
-      }
-      else {             /* For all non-vertical line */
-
-        double tmp_x;
-
-        if (x > cx) {     /* Use positive root */
-
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
-
-        }
-        else {
-
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
-
-        }
-        *nx = tmp_x + 0.5;
-        *ny = (m * tmp_x + b) + 0.5;  /* Must use non rounded x here */
-      }
-
-#endif
-
-      result = TRUE;
-    }
-  }
-  else { /* was not an Circle */
-    result = FALSE;
-  }
-
-  if (!result) {
-    *nx = x;
-    *ny = y;
-  }
-  return result;
-}
-
-/*! \brief get the position of the center point
- *
- *  \par Function Description
- *  This function gets the position of the center point of a circle object.
- *
- *  \param [in] object   The object to get the position.
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
-
- *  \return TRUE if successfully determined the position, FALSE otherwise
- */
-bool o_circle_get_position (int *x, int *y, GedaObject *object)
-{
-  g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
-  *x = object->circle->center_x;
-  *y = object->circle->center_y;
-  return TRUE;
 }
 
 /*! \brief Print circle to Postscript document.
