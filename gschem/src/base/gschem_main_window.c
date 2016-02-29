@@ -45,10 +45,10 @@ static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
 
 static void
-gschem_main_window_class_init (GschemMainWindowClass *klass);
+gschem_main_window_class_init (void *class, void *data);
 
 static void
-gschem_main_window_instance_init (GschemMainWindow *window);
+gschem_main_window_instance_init (GTypeInstance *instance, void *class);
 
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
@@ -75,17 +75,30 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemMainWindow class
  *
- *  \param [in] klass The class for the GschemMainWindow
+ *  \param [in]  g_class       GschemMainWindow being initialized
+ *  \param [in]  g_class_data  (unused)
  */
 static void
-gschem_main_window_class_init (GschemMainWindowClass *klass)
+gschem_main_window_class_init (void *g_class, void *g_class_data)
 {
-  G_OBJECT_CLASS (klass)->get_property = get_property;
-  G_OBJECT_CLASS (klass)->set_property = set_property;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (g_class);
+
+  gobject_class->get_property = get_property;
+  gobject_class->set_property = set_property;
 }
 
+/*! \brief Initialize GschemMainWindow instance -NOP
+ *
+ *  \param [in,out] instance GschemMainWindow being initialized.
+ *  \param [in]     g_class  Class of the type the instance is created for.
+ */
+static void
+gschem_main_window_instance_init (GTypeInstance *instance, void *g_class)
+{
+ /* GschemMainWindow *window = (GschemMainWindow*)*/
+}
 
-/*! \brief Get/register GschemSelection type.
+/*! \brief Get/register GschemMainWindow type.
  */
 GedaType gschem_main_window_get_type (void)
 {
@@ -94,30 +107,20 @@ GedaType gschem_main_window_get_type (void)
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof(GschemMainWindowClass),
-      NULL,                                                    /* base_init */
-      NULL,                                                    /* base_finalize */
-      (GClassInitFunc) gschem_main_window_class_init,
-      NULL,                                                    /* class_finalize */
-      NULL,                                                    /* class_data */
+      NULL,                                      /* base_init */
+      NULL,                                      /* base_finalize */
+      gschem_main_window_class_init,             /* (GClassInitFunc) */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data */
       sizeof(GschemMainWindow),
-      0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_main_window_instance_init,
+      0,                                         /* n_preallocs */
+      gschem_main_window_instance_init,          /* (GInstanceInitFunc) */
     };
 
     type = g_type_register_static (GTK_TYPE_WINDOW, "GschemMainWindow", &info, 0);
   }
 
   return type;
-}
-
-/*! \brief Initialize GschemSelection instance -NOP
- *
- *  \param [in,out] window
- */
-static void
-gschem_main_window_instance_init (GschemMainWindow *window)
-{
-
 }
 
 /*! \brief Create a new instanceof the GschemMainWindow
