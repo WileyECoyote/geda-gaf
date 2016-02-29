@@ -24,34 +24,8 @@
 #include <gattrib.h>
 #include <geda_debug.h>
 
-/*-------------------------- g_list_helper -----------------------*/
-/*! \brief Compare strings in Glist to string.
- *
- *  \par Function Description
- *  Returns TRUE if the string is an element of the GLIST.
- *
- *  \param [in] list*  GList containing strings to be search
- *  \param [in] string pointer the string to search for
- *
- *  \retval TRUE if string is in GLIST data, otherwise FALSE.
- */
-bool g_list_str_inlist(GList *list, char *string)
-{
-  bool answer = FALSE;
-  char* str;
-  int i, len;
+/*-------------------------- g_list_helpers -----------------------*/
 
-  len = g_list_length(list);
-
-  for(i=0; i<len; i++){
-    str = (char*) g_list_nth_data(list, i);
-    if (geda_utility_string_strequal( str, string)) {
-      answer = TRUE;
-      break;
-    }
-  }
-  return answer;
-}
 /*! \brief Compare strings in Glist to string, ignoring case
  *
  *  \par Function Description
