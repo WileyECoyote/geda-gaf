@@ -28,16 +28,19 @@
  */
 
 /*! \file geda_arc.c
- *  \brief Geda Arc Object Class derived from the GedaObject Class
+ *  \brief Geda Arc Object Class Module
  */
+
 /** \defgroup geda-arc-object Geda Arc Object
- *  @{
- */
-/*! \class GedaArc geda_arc.h "include/libgeda/geda_arc.h"
- *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Arc Objects.
+ * @{
+ * \brief Implmentation of #GedaArc Class
+ * \par
  *  A Geda Arc Object is a graphical object, do not involve electrical
- *  interconnections. Arcs have line-type and fill-type properties.
+ *  interconnections. Arcs have line-type and fill-type properties
+ *  and are derived from the GedaObject base class.
+ *
+ * \class GedaArc geda_arc.h "include/libgeda/geda_arc.h"
+ * \implements geda-object
  */
 
 #include <config.h>

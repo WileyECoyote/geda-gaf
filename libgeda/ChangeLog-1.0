@@ -1,3 +1,8 @@
+2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_arc.c: Revise Doxygen comments in group and move class
+      tag.
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * utility/u_refdes.c: Revise function geda_utility_refdes_return_numeric
@@ -10,7 +15,7 @@
 
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_box.c: A Doxygen file and group comments.
+    * src/geda/geda_box.c: Add Doxygen file and group comments.
 
     * src/file/f_file.c: Reduce scope of message and str in function f_open.
 
