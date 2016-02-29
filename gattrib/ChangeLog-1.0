@@ -3,6 +3,12 @@
     * src/g_util.c: Remove unused function g_list_str_inlist, which
       provide similar functionality as geda_utility_glist_find_string.
 
+    * src/x_dialog.c:Replace g_list_stri_inlist with geda_utility_glist_
+      stri_inlist.
+
+    * src/g_util.c: Remove unused file, the functionality is now in
+      libgeda.
+
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/globals.h: Fix spelling; Visiablity->Visibility.

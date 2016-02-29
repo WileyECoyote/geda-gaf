@@ -34,9 +34,6 @@ SCM g_quit(void);
 SCM  g_rc_gattrib_version(SCM version);
 SCM  g_rc_sort_components(SCM mode);
 
-/* -------------- g_util.c -------------- */
-bool g_list_stri_inlist(GList *list, char *string);
-
 /* -------------- i_basic.c -------------- */
 void i_show_wiki_help(const char *html_file);
 

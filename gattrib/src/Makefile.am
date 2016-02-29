@@ -22,7 +22,6 @@ gattrib_SOURCES = $(BUILT_SOURCES) \
 		listsort.c \
 		parsecmd.c \
 		f_export.c \
-		g_util.c \
 		gattrib_dialog.c \
 		g_register.c \
 		g_rc.c \
