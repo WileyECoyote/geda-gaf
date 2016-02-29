@@ -218,7 +218,7 @@ EDA_SCM_DEFINE (object_make_circle, "%make-circle", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
                (), "Create a new arc object.")
 {
-  GedaObject *obj = o_arc_new (DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
+  GedaObject *obj = geda_arc_object_new (DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
 
   SCM result = edascm_from_object (obj);
 

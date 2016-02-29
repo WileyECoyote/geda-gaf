@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-/*! \file o_arc_basic.c
+/*! \file o_arc_object.c
  *  \brief functions for the arc object
  */
 
@@ -28,6 +28,177 @@
 #include <math.h>
 
 #include <libgeda_priv.h>
+
+/*! \brief Get Point on an GedaArc Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on an GedaArc object given
+ *  a point \a x, \a y, that is on or about the vicinity of the \a object.
+ *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
+ *  point on the arc that is the closest point on the arc to the point
+ *  given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to an GedaArc object
+ *  \param [in]  x       Integer x of point near or on the arc
+ *  \param [in]  y       Integer y of point near or on the arc
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not an
+ *           GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
+ */
+bool
+geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+{
+  GedaArc *arc;
+  bool result;
+
+  if (GEDA_IS_ARC(object)) {
+
+    arc = object->arc;
+
+    /* If the point is the center, every point on the arc is equal
+     * distance to the point, so answer is false */
+    if ((y == arc->y) && (x == arc->x)) {
+      result = FALSE;
+    }
+    else {
+
+      int    cx, cy, r;
+      double dx, dy;
+
+      cx = arc->x;
+      cy = arc->y;
+      r  = arc->width / 2;
+
+      int    arc_angle   = arc->start_angle + arc->arc_sweep;
+      double start_angle = m_degrees_to_radians(arc->start_angle);
+      double end_angle   = m_degrees_to_radians(arc_angle);
+
+      /* Get angle of ray from point to center */
+      double radians = atan2((y - cy), (x - cx));
+
+      /* If negative, make the angle positive */
+      if (radians < 0) {
+        radians += 2 * M_PI;
+      }
+
+      if (radians < end_angle || radians > start_angle) {
+
+        int x1, y1, x2, y2;
+        double A, B, C, D;
+
+        volatile double b;
+        volatile double m;
+                 double tmp_x, tmp_y;
+
+        x1 = cx;
+        y1 = cy;
+        x2 = x;
+        y2 = y;
+
+        dx = x2 - x1;
+        dy = y2 - y1;
+
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
+        m  = dy / dx;
+        b  = (-1 * m * x2) + y2;
+
+        A = m * m + 1;
+        B = 2 * ((m * b) - (m * cy) - cx);
+        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+
+        D = B * B - 4 * A * C;                   /* The discriminant */
+
+        if (x1 > x2) {                           /* Easterly */
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+        }
+        else {                                   /* Westward */
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+        }
+
+        tmp_y = m * tmp_x + b;
+
+#ifdef HAVE_LRINT
+
+        *nx = lrint(tmp_x);
+        *ny = lrint(tmp_y);
+
+#else
+
+        *nx = tmp_x + 0.5;
+        *ny = tmp_y + 0.5;
+
+#endif
+      }
+      else {
+
+        double distance_to_end0;
+        double distance_to_end1;
+        double sx, sy, ex, ey;
+
+        sx = cx + r * cos (start_angle);
+        sy = cy + r * sin (start_angle);
+
+        dx = sx - x;
+        dy = sy - y;
+
+#if HAVE_HYPOT
+        distance_to_end0 = hypot (dx, dy);
+#else
+        distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+        ex = arc->x + r * cos (end_angle);
+        ey = arc->y + r * sin (end_angle);
+
+        dx = ex - x;
+        dy = ey - y;
+
+#if HAVE_HYPOT
+        distance_to_end1 = hypot (dx, dy);
+#else
+        distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+        if (distance_to_end0 < distance_to_end1) {
+          *nx = sx;
+          *ny = sy;
+        }
+        else {
+          *nx = ex;
+          *ny = ey;
+        }
+      }
+      result = TRUE;
+    }
+  }
+  else { /* was not an GedaArc */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
+}
+
+/*! \brief get the position of the center point
+ *  \par Function Description
+ *  This function gets the position of the center point of an arc object.
+ *
+ *  \param [out] x       pointer to the x-position
+ *  \param [out] y       pointer to the y-position
+ *  \param [in] object   The object to get the position.
+ *  \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool
+geda_arc_object_get_position (GedaObject *object, int *x, int *y)
+{
+  *x = object->arc->x;
+  *y = object->arc->y;
+  return TRUE;
+}
 
 /*! \brief
  *  \par Function Description
@@ -444,177 +615,6 @@ geda_arc_object_translate(GedaObject *object, int dx, int dy)
 
   /* Recalculate screen coords from new world coords */
   object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Get Point on an GedaArc Nearest a Given Point
- *  \par Function Description
- *  This function is intended to locate a point on an GedaArc object given
- *  a point \a x, \a y, that is on or about the vicinity of the \a object.
- *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
- *  point on the arc that is the closest point on the arc to the point
- *  given by \a x, \a y.
- *
- *  \param [in]  object  Pointer to an GedaArc object
- *  \param [in]  x       Integer x of point near or on the arc
- *  \param [in]  y       Integer y of point near or on the arc
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
- *
- *  \returns TRUE is the results are valid, FALSE if \a object was not an
- *           GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
- */
-bool
-geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
-{
-  GedaArc *arc;
-  bool result;
-
-  if (GEDA_IS_ARC(object)) {
-
-    arc = object->arc;
-
-    /* If the point is the center, every point on the arc is equal
-     * distance to the point, so answer is false */
-    if ((y == arc->y) && (x == arc->x)) {
-      result = FALSE;
-    }
-    else {
-
-      int    cx, cy, r;
-      double dx, dy;
-
-      cx = arc->x;
-      cy = arc->y;
-      r  = arc->width / 2;
-
-      int    arc_angle   = arc->start_angle + arc->arc_sweep;
-      double start_angle = m_degrees_to_radians(arc->start_angle);
-      double end_angle   = m_degrees_to_radians(arc_angle);
-
-      /* Get angle of ray from point to center */
-      double radians = atan2((y - cy), (x - cx));
-
-      /* If negative, make the angle positive */
-      if (radians < 0) {
-        radians += 2 * M_PI;
-      }
-
-      if (radians < end_angle || radians > start_angle) {
-
-        int x1, y1, x2, y2;
-        double A, B, C, D;
-
-        volatile double b;
-        volatile double m;
-                 double tmp_x, tmp_y;
-
-        x1 = cx;
-        y1 = cy;
-        x2 = x;
-        y2 = y;
-
-        dx = x2 - x1;
-        dy = y2 - y1;
-
-        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
-        m  = dy / dx;
-        b  = (-1 * m * x2) + y2;
-
-        A = m * m + 1;
-        B = 2 * ((m * b) - (m * cy) - cx);
-        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
-
-        D = B * B - 4 * A * C;                   /* The discriminant */
-
-        if (x1 > x2) {                           /* Easterly */
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
-        }
-        else {                                   /* Westward */
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
-        }
-
-        tmp_y = m * tmp_x + b;
-
-#ifdef HAVE_LRINT
-
-        *nx = lrint(tmp_x);
-        *ny = lrint(tmp_y);
-
-#else
-
-        *nx = tmp_x + 0.5;
-        *ny = tmp_y + 0.5;
-
-#endif
-      }
-      else {
-
-        double distance_to_end0;
-        double distance_to_end1;
-        double sx, sy, ex, ey;
-
-        sx = cx + r * cos (start_angle);
-        sy = cy + r * sin (start_angle);
-
-        dx = sx - x;
-        dy = sy - y;
-
-#if HAVE_HYPOT
-        distance_to_end0 = hypot (dx, dy);
-#else
-        distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-        ex = arc->x + r * cos (end_angle);
-        ey = arc->y + r * sin (end_angle);
-
-        dx = ex - x;
-        dy = ey - y;
-
-#if HAVE_HYPOT
-        distance_to_end1 = hypot (dx, dy);
-#else
-        distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-        if (distance_to_end0 < distance_to_end1) {
-          *nx = sx;
-          *ny = sy;
-        }
-        else {
-          *nx = ex;
-          *ny = ey;
-        }
-      }
-      result = TRUE;
-    }
-  }
-  else { /* was not an GedaArc */
-    result = FALSE;
-  }
-
-  if (!result) {
-    *nx = x;
-    *ny = y;
-  }
-  return result;
-}
-
-/*! \brief get the position of the center point
- *  \par Function Description
- *  This function gets the position of the center point of an arc object.
- *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
- */
-bool
-geda_arc_object_get_position (int *x, int *y, GedaObject *object)
-{
-  *x = object->arc->x;
-  *y = object->arc->y;
-  return TRUE;
 }
 
 /*! \brief

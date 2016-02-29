@@ -6,7 +6,7 @@
 
 libgeda_la_SOURCES += \
 			object/o_object.c \
-			object/o_arc_basic.c \
+			object/o_arc_object.c \
 			object/o_attrib.c \
 			object/o_box_basic.c \
 			object/o_bus_basic.c \

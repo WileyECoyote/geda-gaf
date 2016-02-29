@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-28 20:35-0600\n"
+"POT-Creation-Date: 2016-02-29 14:35-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -706,30 +706,30 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_basic.c:235 libgeda/src/object/o_arc_basic.c:250
+#: libgeda/src/object/o_arc_object.c:407 libgeda/src/object/o_arc_object.c:422
 msgid "Failed to parse arc object"
 msgstr "Ошибка в определении дуги"
 
-#: libgeda/src/object/o_arc_basic.c:257
+#: libgeda/src/object/o_arc_object.c:429
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
-#: libgeda/src/object/o_arc_basic.c:263 libgeda/src/object/o_box_basic.c:302
+#: libgeda/src/object/o_arc_object.c:435 libgeda/src/object/o_box_basic.c:497
 #: libgeda/src/object/o_bus_basic.c:139
-#: libgeda/src/object/o_circle_basic.c:247
-#: libgeda/src/object/o_line_basic.c:247 libgeda/src/object/o_net_basic.c:153
-#: libgeda/src/object/o_path_basic.c:265 libgeda/src/object/o_pin_basic.c:178
+#: libgeda/src/object/o_circle_basic.c:428
+#: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:153
+#: libgeda/src/object/o_path_basic.c:541 libgeda/src/object/o_pin_basic.c:178
 #: libgeda/src/object/o_text_basic.c:255
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
 
-#: libgeda/src/object/o_arc_basic.c:264 libgeda/src/object/o_box_basic.c:303
+#: libgeda/src/object/o_arc_object.c:436 libgeda/src/object/o_box_basic.c:498
 #: libgeda/src/object/o_bus_basic.c:140
-#: libgeda/src/object/o_circle_basic.c:248
-#: libgeda/src/object/o_line_basic.c:248 libgeda/src/object/o_net_basic.c:154
-#: libgeda/src/object/o_path_basic.c:266 libgeda/src/object/o_pin_basic.c:179
+#: libgeda/src/object/o_circle_basic.c:429
+#: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:154
+#: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:179
 #: libgeda/src/object/o_text_basic.c:256
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
@@ -759,11 +759,11 @@ msgstr "Попытка прикрепить не текстовый элемен
 msgid "unexpected end-of-file in attribute list"
 msgstr "Неожиданный конец файла при обработке списка атрибутов"
 
-#: libgeda/src/object/o_box_basic.c:260 libgeda/src/object/o_box_basic.c:291
+#: libgeda/src/object/o_box_basic.c:455 libgeda/src/object/o_box_basic.c:486
 msgid "Failed to parse box object"
 msgstr "Ошибка в определении прямоугольника"
 
-#: libgeda/src/object/o_box_basic.c:297
+#: libgeda/src/object/o_box_basic.c:492
 #, c-format
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr "Прямоугольник нулевой ширины или высоты «%c %d %d %d %d %d»\n"
@@ -793,21 +793,21 @@ msgstr "Сброс направления в нейтральное значен
 msgid "null in o_bus_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_circle_basic.c:148
+#: libgeda/src/object/o_circle_basic.c:329
 msgid "Null radius circles are not allowed\n"
 msgstr "Окружности с нулевым радиусом недопустимы\n"
 
-#: libgeda/src/object/o_circle_basic.c:204
-#: libgeda/src/object/o_circle_basic.c:233
+#: libgeda/src/object/o_circle_basic.c:385
+#: libgeda/src/object/o_circle_basic.c:414
 msgid "Failed to parse circle object"
 msgstr "Ошибка в определении окружности"
 
-#: libgeda/src/object/o_circle_basic.c:240
+#: libgeda/src/object/o_circle_basic.c:421
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr "Окружность с нулевым или отрицательным радиусом «%c %d %d %d %d»\n"
 
-#: libgeda/src/object/o_circle_basic.c:242
+#: libgeda/src/object/o_circle_basic.c:423
 msgid "Setting radius to 0\n"
 msgstr "Установка радиуса в 0\n"
 
@@ -940,11 +940,11 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"
 
-#: libgeda/src/object/o_line_basic.c:210 libgeda/src/object/o_line_basic.c:230
+#: libgeda/src/object/o_line_basic.c:231 libgeda/src/object/o_line_basic.c:251
 msgid "Failed to parse line object"
 msgstr "Ошибка в определении линии"
 
-#: libgeda/src/object/o_line_basic.c:242
+#: libgeda/src/object/o_line_basic.c:263
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Линия нулевой длины «%c %d %d %d %d %d»\n"
@@ -958,11 +958,11 @@ msgstr "Ошибка в определении соединения"
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Соединение нулевой длины «%c %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_path_basic.c:259
+#: libgeda/src/object/o_path_basic.c:535
 msgid "Failed to parse path object"
 msgstr "Ошибка в определении контура"
 
-#: libgeda/src/object/o_path_basic.c:277
+#: libgeda/src/object/o_path_basic.c:553
 msgid "Unexpected end-of-file when reading path"
 msgstr "Неожиданный конец файла при обработке контура"
 
@@ -1078,7 +1078,7 @@ msgstr "Изображение всё ещё внедрено.\n"
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Изображение «%s» исключено\n"
 
-#: libgeda/src/object/o_picture.c:1747
+#: libgeda/src/object/o_picture.c:1745
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Не удалось загрузить копию изображения для отката «%s»: %s\n"

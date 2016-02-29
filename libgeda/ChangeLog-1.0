@@ -2,6 +2,8 @@
 
     * src/object/o_arc_basic.c: Change function prefix geda_arc_object_.
 
+    * src/object/o_arc_object.c: Rename file o_arc_basic->o_arc_object.
+
 2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise Doxygen comments in group and move class
