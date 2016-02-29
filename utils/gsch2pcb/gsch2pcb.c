@@ -31,7 +31,7 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.11"
+#define GSC2PCB_VERSION "1.12"
 
 #define DEFAULT_PCB_INC    "pcb.inc"
 
@@ -254,7 +254,6 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
               char *basename, GList *largs)
 {
   struct stat st;
-  time_t mtime;
   static const char *gnetlist = NULL;
   GList *verboseList = NULL;
  _Bool   result;
@@ -278,9 +277,7 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
                                   pins_file,
                                   extra_gnetlist_arg_list,
                                   largs);
-
   if (result) {
-
 
     result = build_and_run_command ("%s %l -g PCB -o %s %l %l",
                                     gnetlist,
@@ -288,10 +285,10 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
                                     net_file,
                                     extra_gnetlist_arg_list,
                                     largs);
-
     if (result) {
 
       GList *args1 = NULL;
+      time_t mtime;
 
       create_m4_override_file ();
 
@@ -445,7 +442,7 @@ PcbElement *
 pcb_element_line_parse (char * line)
 {
   PcbElement *el;
-  char *s, *t;
+  char *t;
 
   if (strncmp (line, "Element", 7) == 0) {
 
@@ -453,7 +450,7 @@ pcb_element_line_parse (char * line)
 
     if (el) {
 
-      s = line + 7;                    /* Skip the word "Element" */
+      char *s = line + 7;                    /* Skip the word "Element" */
 
       while (*s == ' ' || *s == '\t')  /* Skip over spaces and tabs */
         ++s;
@@ -579,10 +576,10 @@ static PcbElement *
 pcb_element_exists (PcbElement * el_test, _Bool record)
 {
   GList *list;
-  PcbElement *el;
 
   for (list = pcb_element_list; list; list = g_list_next (list)) {
-    el = (PcbElement *) list->data;
+
+    PcbElement *el = (PcbElement *) list->data;
 
     if (strcmp (el_test->refdes, el->refdes))
       continue;
@@ -629,10 +626,13 @@ static _Bool
 insert_element (FILE *f_out,     char *element_file,
                 char *footprint, char *refdes, char *value)
 {
-  FILE *f_in;
+  FILE       *f_in;
   PcbElement *el;
-  char *fmt, *str, buf[1024];
-  _Bool retval = FALSE;
+  char       *str;
+  char        buf[1024];
+  _Bool       retval;
+
+  retval = FALSE;
 
   if ((f_in = fopen (element_file, "r")) == NULL) {
     str = geda_utility_string_sprintf ("insert_element() can't open %s", element_file);
@@ -667,10 +667,13 @@ insert_element (FILE *f_out,     char *element_file,
 
       if ((el = pcb_element_line_parse (str)) != NULL) {
 
+        char *fmt;
+
         simple_translate (el);
+
         fmt = el->quoted_flags ?
-             "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
-             "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
+               "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
+               "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
 
         fprintf (f_out, fmt,
                  el->res_char, el->flags, footprint, refdes, value,
@@ -691,26 +694,36 @@ char *
 find_element (char * dir_path, char * element)
 {
   GDir *dir;
-  char *path, *name, *str, *found = NULL;
+  char *name;
+  char *found = NULL;
 
   if ((dir = g_dir_open (dir_path, 0, NULL)) == NULL) {
+
+    char *str;
+
     str = geda_utility_string_sprintf ("find_element can't open dir \"%s\"", dir_path);
+
     perror (str);
     GEDA_FREE (str);
     return NULL;
   }
+
   if (verbose > 1)
     printf ("\t  Searching: \"%s\" for \"%s\"\n", dir_path, element);
+
   while ((name = (char *) g_dir_read_name (dir)) != NULL) {
-    path = geda_utility_string_concat (dir_path, "/", name, NULL);
+
+    char *path;
+
+    path  = geda_utility_string_concat (dir_path, "/", name, NULL);
     found = NULL;
 
     /* if we got a directory name, then recurse down into it */
-    if (g_file_test (path, G_FILE_TEST_IS_DIR))
+    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
       found = find_element (path, element);
-
-    /* otherwise assume it is a file and see if it is the one we want */
+    }
     else {
+      /* assume it is a file and see if it is the one we want */
       if (verbose > 1)
         printf ("\t           : %s\t", name);
       if (!strcmp (name, element)) {
@@ -739,19 +752,23 @@ char *
 search_element_directories (PcbElement * el)
 {
   GList *list;
-  char *str, *elname = NULL, *dir_path, *path = NULL;
-  int n1, n2;
+  char  *elname = NULL;
+  char  *path   = NULL;
 
   /* See comment before pkg_to_element() */
   if (el->pkg_name_fix) {
 
     if (strchr (el->description, '-')) {
 
+      char *str;
+      int   n1, n2;
+
       n1  = strlen (el->description);
       n2  = strlen (el->pkg_name_fix);
       str = el->description + n1 - n2 - 1;
 
-      if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix) {
+      if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix)
+      {
         str = geda_utility_string_strndup (el->description, n1 - n2 - 1);
         elname = geda_utility_string_concat (str, " ", el->pkg_name_fix, NULL);
         GEDA_FREE (str);
@@ -760,11 +777,11 @@ search_element_directories (PcbElement * el)
     if (!elname) {
       printf ("Warning: argument passing may have been confused by\n");
       printf ("         a comma in a component value:\n");
-      printf ("         Check %s %s %s\n",
-              el->refdes, el->description, el->value);
+      printf ("         Check %s %s %s\n", el->refdes, el->description, el->value);
       printf ("         Maybe just use a space instead of a comma?\n");
     }
   }
+
   if (!elname)
     elname = geda_utility_string_strdup (el->description);
 
@@ -772,13 +789,19 @@ search_element_directories (PcbElement * el)
     GEDA_FREE (elname);
     return NULL;
   }
+
   if (verbose > 1)
     printf ("\tSearching directories looking for file element: %s\n", elname);
+
   for (list = element_directory_list; list; list = g_list_next (list)) {
-    dir_path = (char *) list->data;
+
+    char *dir_path = list->data;
+
     if (verbose > 1)
       printf ("\tLooking in directory: \"%s\"\n", dir_path);
+
     path = find_element (dir_path, elname);
+
     if (path) {
       if (verbose)
         printf ("\tFound: %s\n", path);
@@ -979,7 +1002,7 @@ add_elements (char * pcb_file)
       continue;
     }
 
-    if (!is_m4 || (is_m4 && force_element_files)) {
+    if (!is_m4 || force_element_files) {
 
       if (verbose && !is_m4) {
         printf ("%s: need new file element for footprint  %s (value=%s)\n",
@@ -1060,10 +1083,12 @@ add_elements (char * pcb_file)
 static void
 update_element_descriptions (char * pcb_file, char * bak)
 {
-  FILE *f_in, *f_out;
-  GList *list;
-  PcbElement *el, *el_exists;
-  char *fmt, *tmp, *s, buf[1024];
+  FILE       *f_in;
+  FILE       *f_out;
+  GList      *list;
+  PcbElement *el;
+  char       *fmt, *tmp, *s;
+  char        buf[1024];
 
   for (list = pcb_element_list; list; list = g_list_next (list)) {
     el = (PcbElement *) list->data;
@@ -1086,23 +1111,28 @@ update_element_descriptions (char * pcb_file, char * bak)
   }
 
   while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
-    for (s = buf; *s == ' ' || *s == '\t'; ++s);
-    if ((el = pcb_element_line_parse (s)) != NULL
-        && (el_exists = pcb_element_exists (el, FALSE)) != NULL
-        && el_exists->changed_description) {
-      fmt = el->quoted_flags ?
-        "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
-        "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
-      fprintf (f_out, fmt,
-               el->res_char,
-               el->flags, el_exists->changed_description,
-               el->refdes, el->value, el->x, el->y, el->tail);
-      printf ("%s: updating element Description: %s -> %s\n",
-              el->refdes, el->description, el_exists->changed_description);
-      el_exists->still_exists = TRUE;
-    }
-    else {
-      fputs (buf, f_out);
+
+    for (s = buf; *s == ' ' || *s == '\t'; ++s); {
+
+      PcbElement *el_exists;
+
+      if ((el = pcb_element_line_parse (s)) != NULL &&
+          (el_exists = pcb_element_exists (el, FALSE)) != NULL &&
+           el_exists->changed_description)
+      {
+        fmt = el->quoted_flags ?
+          "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
+          "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
+
+        fprintf (f_out, fmt, el->res_char, el->flags, el_exists->changed_description,
+                 el->refdes, el->value, el->x, el->y, el->tail);
+        printf ("%s: updating element Description: %s -> %s\n",
+                 el->refdes, el->description, el_exists->changed_description);
+        el_exists->still_exists = TRUE;
+      }
+      else {
+        fputs (buf, f_out);
+      }
     }
     pcb_element_free (el);
   }
@@ -1205,12 +1235,10 @@ prune_elements (char * pcb_file, char * bak)
 static void
 add_m4_file (char *arg)
 {
-  char *s;
-
   if (!m4_files)
     m4_files = geda_utility_string_strdup (arg);
   else {
-    s = m4_files;
+    char *s = m4_files;
     m4_files = geda_utility_string_concat (m4_files, " ", arg, NULL);
     GEDA_FREE (s);
   }
@@ -1310,17 +1338,19 @@ add_multiple_schematics (char *sch)
 static int
 parse_config (char *config, char *arg)
 {
-  char *s;
   int   result;
 
   /* remove trailing white space otherwise strange things can happen */
   if ((arg != NULL) && (strlen (arg) >= 1)) {
-    s = arg + strlen (arg) - 1;
+
+    char *s = arg + strlen (arg) - 1;
+
     while ((*s == ' ' || *s == '\t') && (s != arg))
       s--;
     s++;
     *s = '\0';
   }
+
   if (verbose)
     printf ("    %s \"%s\"\n", config, arg ? arg : "");
 
@@ -1563,10 +1593,11 @@ usage ()
 static void
 get_args (int argc, char **argv)
 {
-  char *opt, *arg;
   int i, r;
 
   for (i = 1; i < argc; ++i) {
+
+    char *opt, *arg;
 
     opt = argv[i];
     arg = argv[i + 1];

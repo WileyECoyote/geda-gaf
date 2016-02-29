@@ -1,3 +1,7 @@
+2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: reduce scope of variables though-out module.
+
 2016-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: Remove type Object_PINTYPE, use PIN_NODE instead,

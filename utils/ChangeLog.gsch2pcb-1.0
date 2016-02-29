@@ -1,5 +1,27 @@
 gsch2pcb Changelog
 ------------------
+1.12
+---------
+
+2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: reduce scope of variables though-out module:
+
+        * mtime in function run_gnetlist
+        * char *s in function pcb_element_line_parse
+        * PcbElement *el in function pcb_element_exists
+        * char *fmt in function insert_element
+        * char *str in function find_element
+        * char *path in function find_element
+        * char *str in function search_element_directories
+        * integers n1, n2 in function search_element_directories
+        * char *dir_path in function search_element_directories
+        * PcbElement *el_exists in function update_element_descriptions
+        * char *s in function prune_elements
+        * char *s in function add_multiple_schematics
+        * char *opt and *arg in function get_args
+
+------------------
 1.11
 ---------
 
