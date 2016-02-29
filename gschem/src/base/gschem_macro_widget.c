@@ -295,7 +295,7 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
 
 /*! \brief Initialize GschemMacroWidget instance
  *
- *  \param [in,out] instance The GschemMacroWidget we are initialising.
+ *  \param [in,out] instance The GschemMacroWidget being initialized.
  *  \param [in]     g_class  The class of the type the instance is created for.
  */
 static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)

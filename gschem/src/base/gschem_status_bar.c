@@ -95,10 +95,10 @@ static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
 
 static void
-gschem_status_bar_class_init (GschemStatusBarClass *klass);
+gschem_status_bar_class_init (void *g_class, void *g_class_data);
 
 static void
-gschem_status_bar_instance_init (GschemStatusBar *view);
+gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class);
 
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
@@ -484,15 +484,16 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
  *  \param [in] klass The class for the GschemStatusBar
  */
 static void
-gschem_status_bar_class_init (GschemStatusBarClass *klass)
+gschem_status_bar_class_init (void *klass, void *g_class_data)
 {
-  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class    = (GtkWidgetClass*)klass;
-  GParamSpec     *pspec;
+  GschemStatusBarClass *bar_class = (GschemStatusBarClass*)klass;
+  GObjectClass    *gobject_class  = G_OBJECT_CLASS (klass);
+  GtkWidgetClass  *widget_class   = (GtkWidgetClass*)klass;
+  GParamSpec      *pspec;
 
   gschem_status_bar_parent_class  = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
 
-  klass->reformat_coordinates     = gschem_status_bar_reformat_coordinates;
+  bar_class->reformat_coordinates = gschem_status_bar_reformat_coordinates;
 
   gobject_class->dispose          = dispose;
   gobject_class->finalize         = finalize;
@@ -997,14 +998,14 @@ gschem_status_bar_get_type (void)
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof(GschemStatusBarClass),
-      NULL,                                                    /* base_init */
-      NULL,                                                    /* base_finalize */
-      (GClassInitFunc) gschem_status_bar_class_init,
-      NULL,                                                    /* class_finalize */
-      NULL,                                                    /* class_data */
+      NULL,                                      /* base_init */
+      NULL,                                      /* base_finalize */
+      gschem_status_bar_class_init,              /* GClassInitFunc */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data */
       sizeof(GschemStatusBar),
-      0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_status_bar_instance_init,
+      0,                                         /* n_preallocs */
+      gschem_status_bar_instance_init,           /* GInstanceInitFunc */
     };
 
     type = g_type_register_static (GTK_TYPE_HBOX, "GschemStatusBar", &info, 0);
@@ -1068,11 +1069,13 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 
 /*! \brief Initialize GschemStatusBar instance
  *
- *  \param [in] widget This GschemStatusBar
+ *  \param [in,out] instance The GschemStatusBar being initialized.
+ *  \param [in]     g_class  The class of the type the instance is created for.
  */
 static void
-gschem_status_bar_instance_init (GschemStatusBar *widget)
+gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 {
+  GschemStatusBar *widget = (GschemStatusBar*)instance;
   EdaConfig  *cfg;
 
   GtkWidget  *coord_event;

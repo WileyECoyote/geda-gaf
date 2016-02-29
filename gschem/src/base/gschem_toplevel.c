@@ -51,7 +51,7 @@ static GObjectClass *gschem_toplevel_parent_class = NULL;
  *  \par Function Description
  *  Type instance initializer for GschemToplevel.
  *
- *  \param [in]  instance       The GschemToplevel we are initialising.
+ *  \param [in]  instance       The GschemToplevel being initialized.
  *  \param [in]  g_class        The class of the type the instance is created for.
  */
 static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_class )
