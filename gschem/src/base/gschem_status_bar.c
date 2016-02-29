@@ -481,7 +481,8 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemStatusBar class
  *
- *  \param [in] klass The class for the GschemStatusBar
+ *  \param [in]  g_class       The GschemStatusBarClass to be initialized
+ *  \param [in]  g_class_data  (unused)
  */
 static void
 gschem_status_bar_class_init (void *klass, void *g_class_data)

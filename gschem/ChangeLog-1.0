@@ -2,7 +2,15 @@
 
     * src/base/gschem_macro_widget.c: Change arguments to _class_init and
       _instance_init so as to remove cast in gschem_macro_widget_get_type
-      without warning message from preprocessor.
+      without warning message from preprocessor, remove g_return_if_fail
+      from gschem_macro_widget_instance_init.
+
+    * src/base/gschem_page_view.c: Change arguments to _class_init and
+      _instance_init as was done for GschemMacroWidget, add GParamSpec
+      pspec and seperate from stack call;
+
+    * src/base/gschem_status_bar.c: Change arguments to _class_init and
+      _instance_init as was done for GschemMacroWidget.
 
 2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
 

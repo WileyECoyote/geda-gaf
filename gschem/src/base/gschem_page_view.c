@@ -63,10 +63,10 @@ static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
 
 static void
-gschem_page_view_class_init (GschemPageViewClass *klass);
+gschem_page_view_class_init (void *g_class, void *g_class_data);
 
 static void
-gschem_page_view_instance_init (GschemPageView *view);
+gschem_page_view_instance_init (GTypeInstance *instance, void *g_class);
 
 static void
 gschem_page_view_update_hadjustment (GschemPageView *view);
@@ -226,73 +226,77 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemPageView class
  *
- *  \param [in] klass The class for the GschemPageView
+ *  \param [in]  g_class       GschemPageViewClass being initialized
+ *  \param [in]  g_class_data  (unused)
  */
 static void
-gschem_page_view_class_init (GschemPageViewClass *klass)
+gschem_page_view_class_init (void *g_class, void *g_class_data)
 {
-  gschem_page_view_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+  GObjectClass   *gobject_class = G_OBJECT_CLASS (g_class);
+  GtkWidgetClass *widget_class  = (GtkWidgetClass*)g_class;
+  GParamSpec     *pspec;
 
-  G_OBJECT_CLASS (klass)->dispose  = dispose;
-  G_OBJECT_CLASS (klass)->finalize = finalize;
+  gschem_page_view_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (g_class));
 
-  G_OBJECT_CLASS (klass)->get_property = get_property;
-  G_OBJECT_CLASS (klass)->set_property = set_property;
+  gobject_class->dispose  = dispose;
+  gobject_class->finalize = finalize;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_HADJUSTMENT,
-                                   g_param_spec_object ("hadjustment",
-                                                        "Horizontal adjustment",
-                                                        "Horizontal adjustment",
-                                                        GTK_TYPE_ADJUSTMENT,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  gobject_class->get_property = get_property;
+  gobject_class->set_property = set_property;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_PAGE,
-                                   g_param_spec_pointer ("page",
-                                                         "Page",
-                                                         "Page",
-                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+  pspec = g_param_spec_object ("hadjustment",
+                               "Horizontal adjustment",
+                               "Horizontal adjustment",
+                               GTK_TYPE_ADJUSTMENT,
+                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_PAGE_GEOMETRY,
-                                   g_param_spec_boxed ("page-geometry",
-                                                       "Page Geometry",
-                                                       "Page Geometry",
-                                                       GSCHEM_TYPE_PAGE_GEOMETRY,
-                                                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+  g_object_class_install_property (gobject_class, PROP_HADJUSTMENT, pspec);
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_VADJUSTMENT,
-                                   g_param_spec_object ("vadjustment",
-                                                        "Vertical adjustment",
-                                                        "Vertical adjustment",
-                                                        GTK_TYPE_ADJUSTMENT,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  pspec = g_param_spec_pointer ("page",
+                                "Page",
+                                "Page",
+                                G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-  GTK_WIDGET_CLASS (klass)->set_scroll_adjustments_signal = g_signal_new (
-    "set-scroll-adjustments",
-    G_OBJECT_CLASS_TYPE (klass),
-    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-    0,
-    NULL,
-    NULL,
-    geda_marshal_VOID__OBJECT_OBJECT,
-    G_TYPE_NONE,
-    2,
-    GTK_TYPE_ADJUSTMENT,
-    GTK_TYPE_ADJUSTMENT);
+  g_object_class_install_property (gobject_class, PROP_PAGE, pspec);
 
-  g_signal_new (
-    "update-grid-info",
-    G_OBJECT_CLASS_TYPE (klass),
-    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-    0,
-    NULL,
-    NULL,
-    g_cclosure_marshal_VOID__VOID,
-    G_TYPE_NONE,
-    0);
+  pspec = g_param_spec_boxed ("page-geometry",
+                              "Page Geometry",
+                              "Page Geometry",
+                              GSCHEM_TYPE_PAGE_GEOMETRY,
+                              G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+
+  g_object_class_install_property (gobject_class, PROP_PAGE_GEOMETRY, pspec);
+
+  pspec = g_param_spec_object ("vadjustment",
+                               "Vertical adjustment",
+                               "Vertical adjustment",
+                               GTK_TYPE_ADJUSTMENT,
+                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+  g_object_class_install_property (gobject_class, PROP_VADJUSTMENT, pspec);
+
+  widget_class->set_scroll_adjustments_signal =
+      g_signal_new ("set-scroll-adjustments",
+                    G_OBJECT_CLASS_TYPE (g_class),
+                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                    0,
+                    NULL,
+                    NULL,
+                    geda_marshal_VOID__OBJECT_OBJECT,
+                    G_TYPE_NONE,
+                    2,
+                    GTK_TYPE_ADJUSTMENT,
+                    GTK_TYPE_ADJUSTMENT);
+
+  g_signal_new ("update-grid-info",
+                G_OBJECT_CLASS_TYPE (g_class),
+                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                0,
+                NULL,
+                NULL,
+                g_cclosure_marshal_VOID__VOID,
+                G_TYPE_NONE,
+                0);
 }
 
 /*! \brief Get a graphics context for this view
@@ -420,14 +424,14 @@ gschem_page_view_get_type ()
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof(GschemPageViewClass),
-      NULL,                                                    /* base_init */
-      NULL,                                                    /* base_finalize */
-      (GClassInitFunc) gschem_page_view_class_init,
-      NULL,                                                    /* class_finalize */
-      NULL,                                                    /* class_data */
+      NULL,                                      /* base_init */
+      NULL,                                      /* base_finalize */
+      gschem_page_view_class_init,               /* GClassInitFunc */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data */
       sizeof(GschemPageView),
-      0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_page_view_instance_init,
+      0,                                         /* n_preallocs */
+      gschem_page_view_instance_init,            /* GInstanceInitFunc */
     };
 
     type = g_type_register_static (GTK_TYPE_DRAWING_AREA, "GschemPageView", &info, 0);
@@ -591,12 +595,13 @@ gschem_page_view_invalidate_world_rect (GschemToplevel *w_current, int left, int
 
 /*! \brief Initialize GschemPageView instance
  *
- *  \param [in,out] view the gschem page view
+ *  \param [in,out] instance The GschemPageView being initialized.
+ *  \param [in]     g_class  Class of the type the instance is created for.
  */
 static void
-gschem_page_view_instance_init (GschemPageView *view)
+gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
 {
-  g_return_if_fail (view != NULL);
+  GschemPageView *view = (GschemPageView*)instance;
 
   view->hadjustment = NULL;
   view->vadjustment = NULL;
