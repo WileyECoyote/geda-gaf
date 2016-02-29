@@ -73,10 +73,10 @@ static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
 
 static void
-gschem_macro_widget_class_init (GschemMacroWidgetClass *klass);
+gschem_macro_widget_class_init (void *g_class, void *g_class_data);
 
 static void
-gschem_macro_widget_instance_init (GschemMacroWidget *view);
+gschem_macro_widget_instance_init (GTypeInstance *instance, void *g_class);
 
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
@@ -185,11 +185,13 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemMacroWidget class
  *
- *  \param [in] klass The class for the GschemMacroWidget
+ *  \param [in]  g_class       The GschemMacroWidgetClass to be initialized
+ *  \param [in]  g_class_data  (unused)
  */
 static void
-gschem_macro_widget_class_init (GschemMacroWidgetClass *klass)
+gschem_macro_widget_class_init (void *g_class, void *g_class_data)
 {
+  GschemMacroWidgetClass *klass    = (GschemMacroWidgetClass*)g_class;
   gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
 
   G_OBJECT_CLASS (klass)->dispose  = dispose;
@@ -293,17 +295,20 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
 
 /*! \brief Initialize GschemMacroWidget instance
  *
- *  \param [in,out] widget the GschemMacroWidget
+ *  \param [in,out] instance The GschemMacroWidget we are initialising.
+ *  \param [in]     g_class  The class of the type the instance is created for.
  */
-static void
-gschem_macro_widget_instance_init (GschemMacroWidget *widget)
+static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GtkWidget *action = gtk_info_bar_get_action_area (GTK_INFO_BAR (widget));
+  GschemMacroWidget *widget = (GschemMacroWidget*)instance;
+
+  GtkWidget *action;
   GtkWidget *button_box;
   GtkWidget *cancel_button;
-  GtkWidget *content = gtk_info_bar_get_content_area (GTK_INFO_BAR (widget));
+  GtkWidget *content;
 
-  g_return_if_fail (widget != NULL);
+  action  = gtk_info_bar_get_action_area (GTK_INFO_BAR (widget));
+  content = gtk_info_bar_get_content_area (GTK_INFO_BAR (widget));
 
   gtk_widget_set_no_show_all (GTK_WIDGET (widget), TRUE);
 
@@ -359,14 +364,14 @@ GedaType gschem_macro_widget_get_type (void)
 
     static const GTypeInfo info = {
       sizeof(GschemMacroWidgetClass),
-      NULL,                                                    /* base_init */
-      NULL,                                                    /* base_finalize */
-      (GClassInitFunc) gschem_macro_widget_class_init,
-      NULL,                                                    /* class_finalize */
-      NULL,                                                    /* class_data */
+      NULL,                                      /* base_init */
+      NULL,                                      /* base_finalize */
+      gschem_macro_widget_class_init,            /* GClassInitFunc */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data */
       sizeof(GschemMacroWidget),
-      0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_macro_widget_instance_init
+      0,                                         /* n_preallocs */
+      gschem_macro_widget_instance_init          /* GInstanceInitFunc */
     };
 
     type = g_type_register_static (GTK_TYPE_INFO_BAR, "GschemMacroWidget", &info, 0);

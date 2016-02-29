@@ -360,7 +360,7 @@ static void gschem_toplevel_finalize( GObject *object )
  *  Type class initializer for GschemToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The GschemToplevel we are initialising
+ *  \param [in]  g_class       The GschemToplevel being initialized
  *  \param [in]  g_class_data  (unused)
  */
 static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
