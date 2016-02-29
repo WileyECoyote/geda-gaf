@@ -1,5 +1,10 @@
 2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_pin.c: Revise o_pin_end to use stack value when checking
+      for zero length pins. Revise o_pin_motion to eliminate double setting
+      of second_wx or second_wy when determining whether to draw the pin
+      vertical or horizontal.
+
     * src/x/x_edit_pin.c: Fix spelling; Propties->Properties.
 
     * src/x/x_multiattrib.c: Simplify multiattrib_update, eliminate g_string.

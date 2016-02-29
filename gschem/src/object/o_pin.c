@@ -69,10 +69,7 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  int     color;
-
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+  int color;
 
   i_status_action_stop(w_current);
 
@@ -86,9 +83,8 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = FALSE;
 
   /* don't allow zero length pins */
-  if ((w_current->first_wx - w_current->second_wx) ||
-      (w_current->first_wy - w_current->second_wy))
-  {
+  if ((w_x - w_current->first_wx) || (w_y - w_current->first_wy)) {
+
     GedaObject *new_obj;
 
     new_obj = o_pin_new(color,
@@ -124,17 +120,15 @@ void o_pin_motion (GschemToplevel *w_current, int w_x, int w_y)
     if (w_current->rubber_visible)
       o_pin_invalidate_rubber (w_current);
 
-    w_current->second_wx = w_x;
-    w_current->second_wy = w_y;
-
     /* decide whether to draw the pin vertical or horizontal */
-    if (abs(w_current->second_wx - w_current->first_wx)
-      >= abs(w_current->second_wy - w_current->first_wy))
+    if (abs(w_x - w_current->first_wx) >= abs(w_y - w_current->first_wy))
     {
+      w_current->second_wx = w_x;
       w_current->second_wy = w_current->first_wy;
     }
     else {
       w_current->second_wx = w_current->first_wx;
+      w_current->second_wy = w_y;
     }
 
     o_pin_invalidate_rubber (w_current);
