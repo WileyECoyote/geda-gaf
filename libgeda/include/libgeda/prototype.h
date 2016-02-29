@@ -4,21 +4,13 @@
 extern "C" {
 #endif
 
-/* f_basic.c */
+/* f_file.c */
          bool    f_has_active_autosave           (const char   *filename, GError **err);
           int    f_open                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
           int    f_open_flags                    (GedaToplevel *toplevel, Page *page, const char *filename, const int flags, GError **err);
          void    f_close                         (GedaToplevel *toplevel);
          bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
          void    f_remove_backup_file            (const char *filename);
-
-/* f_sys.c */
-          int    f_sys_copy                      (const char *source, const char *target);
-          int    f_sys_cmp_mod_time              (const char *filename, time_t ref_time);
-         char   *f_sys_follow_symlinks           (const char *filename, GError **error);
-         char   *f_sys_normalize_name            (const char *filename, GError **error);
-          int    f_sys_remove                    (const char *pathname);
-         bool    f_sys_remove_extension          (      char *filename);
 
 /* f_get.c */
          char   *f_get_autosave_filename         (const char *filename);
@@ -46,6 +38,14 @@ extern "C" {
           int    f_print_command                 (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command);
           int    f_print_stream                  (GedaToplevel *toplevel, Page *page, FILE *fp);
          void    f_print_set_type                (GedaToplevel *toplevel, int type);
+
+/* f_sys.c */
+          int    f_sys_copy                      (const char *source, const char *target);
+          int    f_sys_cmp_mod_time              (const char *filename, time_t ref_time);
+         char   *f_sys_follow_symlinks           (const char *filename, GError **error);
+         char   *f_sys_normalize_name            (const char *filename, GError **error);
+          int    f_sys_remove                    (const char *pathname);
+         bool    f_sys_remove_extension          (      char *filename);
 
 /* g_evaluate.c */
           SCM    g_scm_eval_action               (SCM action);
@@ -596,15 +596,19 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_print_object       (GedaObject *object);
 
 /* u_glist.c */
-        GList   *geda_utility_glist_clear        (GList* list);
-          int    geda_utility_glist_find_string  (GList* list, char *str);
-         void    geda_utility_glist_free_full    (GList* list, GDestroyNotify free_func);
-         void    geda_utility_glist_free_all     (void *data);
+        GList   *geda_utility_glist_clear        (GList *list);
+          int    geda_utility_glist_find_string  (GList *list, char *string);
+         void    geda_utility_glist_free_all     (void  *data);
+         void    geda_utility_glist_free_full    (GList *list, GDestroyNotify free_func);
+         bool    geda_utility_glist_str_inlist   (GList *list, char *string);
+         bool    geda_utility_glist_stri_inlist  (GList *list, char *string);
 
-       GSList   *geda_utility_gslist_clear       (GSList* list);
-         int     geda_utility_gslist_find_string (GSList* list, char *str);
-         void    geda_utility_gslist_free_all    (void *data);
-         void    geda_utility_gslist_free_full   (GSList* list, GDestroyNotify free_func);
+       GSList   *geda_utility_gslist_clear       (GSList *list);
+          int    geda_utility_gslist_find_string (GSList *list, char *string);
+         void    geda_utility_gslist_free_all    (void   *data);
+         void    geda_utility_gslist_free_full   (GSList *list, GDestroyNotify free_func);
+         bool    geda_utility_gslist_str_inlist  (GSList *list, char *string);
+         bool    geda_utility_gslist_stri_inlist (GSList *list, char *string);
 
 /* u_log.c */
          void    geda_utility_log_init           (const char *app_prefix);
@@ -618,7 +622,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_log_system         (const char *format, ...);
 
 /* u_string.c */
-         char   *geda_utility_string_concat           (const char *string1, ...)  GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_concat           (const char *string1, ...) GEDA_WARN_UNUSED_RESULT;
    const char   *geda_utility_string_istr             (const char *str1, const char *str2);
          char   *geda_utility_string_remove_nl        (char *string);
          char   *geda_utility_string_remove_last_nl   (char *string);
@@ -627,8 +631,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    geda_utility_string_parse_xy         (const char *string, int *x, int *y) GEDA_WARN_UNUSED_RESULT;
          char   *geda_utility_string_scm2c            (char *scm_str_name) GEDA_WARN_UNUSED_RESULT;
          void    geda_utility_string_sort_array       (char *strings[], size_t strings_size);
-         char   *geda_utility_string_sprintf          (const char *format, ...)   GEDA_WARN_UNUSED_RESULT;
-         char   *geda_utility_string_strdup           (const char *str)           GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_sprintf          (const char *format, ...) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_strdup           (const char *str) GEDA_WARN_UNUSED_RESULT;
          char   *geda_utility_string_strndup          (const char *str, int n) GEDA_WARN_UNUSED_RESULT;
          int     geda_utility_string_stristr          (const char *haystack, const char *needle);
          bool    geda_utility_string_strequal         (const char *str1, const char *str2) GEDA_WARN_UNUSED_RESULT;

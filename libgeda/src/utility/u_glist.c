@@ -27,8 +27,9 @@
 
 #include <geda_debug.h>
 
-/*! \brief Free a Glist completely
- *  \par Function Description
+/*!
+ * \brief Free a Glist completely
+ * \par Function Description
  *  This function will free all of the data in a glist but
  *  does not free the glist.
  *
@@ -48,14 +49,16 @@ GList *geda_utility_glist_clear(GList *list)
   return list;
 }
 
-/*! \brief Detect item in double linked list
- *
+/*!
+ * \brief Detect item in double linked list
+ * \par Function Description
  * Look for item in the list.
  *
  * \param list pointer to the STRING_LIST struct
  * \param str  string to search for
  *
- * \returns 0 if absent, 1 if present
+ * \returns index where first occurence of the string was
+ *          found or -1 if not found.
  */
 int geda_utility_glist_find_string(GList *list, char *str)
 {
@@ -75,6 +78,7 @@ int geda_utility_glist_find_string(GList *list, char *str)
         break;
       }
 
+      /* S/B geda_utility_string_strequal ?*/
       if (strcmp(ptr, str) == 0) {
       /* Found item already in list.  return index. */
         break;
@@ -88,8 +92,9 @@ int geda_utility_glist_find_string(GList *list, char *str)
 
 }
 
-/*! \brief Free a Glist of Pointers
- *  \par Function Description
+/*!
+ * \brief Free a Glist of Pointers
+ * \par Function Description
  *  This function will free all data referenced by pointers in a glist
  *  and \a list.
  */
@@ -104,8 +109,9 @@ void geda_utility_glist_free_all(void *list)
   g_list_free (list);
 }
 
-/*! \brief Free a Glist Full
- *  \par Function Description
+/*!
+ * \brief Free a Glist Full
+ * \par Function Description
  *  This function provides the same functionality as g_list_free_full
  *  which is not avaliable until glib 2.28.
  */
@@ -115,12 +121,74 @@ void geda_utility_glist_free_full (GList *list, GDestroyNotify free_func)
   g_list_free (list);
 }
 
-/*! \brief Free a GSlist completely
- *  \par Function Description
+/*!
+ * \brief Compare strings in Glist to string.
+ * \par Function Description
+ *  Returns TRUE if the string is an element of the GLIST. Provides
+ *  functionality similar to geda_utility_glist_find_string except
+ *  that geda_utility_glist_find_string returns the index, which
+ *  could be index zero.
+ *
+ * \param [in] list*  GList containing strings to be search
+ * \param [in] string pointer the string to search for
+ *
+ * \retval TRUE if string is in the GLIST data, otherwise FALSE.
+ *
+ * \sa geda_utility_glist_find_string
+ */
+bool
+geda_utility_glist_str_inlist(GList *list, char *string)
+{
+  bool   answer = FALSE;
+  GList *iter;
+
+  for (iter = list; iter; iter = iter->next){
+
+    if (!geda_utility_string_strequal(iter->data, string)) {
+      answer = TRUE;
+      break;
+    }
+  }
+  return answer;
+}
+
+/*!
+ * \brief Compare strings in Glist to string, ignoring case
+ * \par Function Description
+ *  Returns TRUE if there is an equivalent string element in
+ *  the GLIST.
+ *
+ * \param [in] list   A GList containing strings to be search
+ * \param [in] string pointer the string to search for
+ *
+ * \retval TRUE if equivalent string is found in GLIST,
+ *              otherwise FALSE.
+ */
+bool geda_utility_glist_stri_inlist(GList *list, char *string)
+{
+  bool   answer = FALSE;
+  GList *iter;
+
+  for (iter = list; iter; iter = iter->next){
+
+    if (!geda_utility_string_stricmp(iter->data, string)) {
+      answer = TRUE;
+      break;
+    }
+  }
+  return answer;
+}
+
+/*------------------------ gslist utilities ----------------------*/
+
+/*!
+ * \brief Free a GSlist completely
+ * \par Function Description
  *  This function will free all of the data in a gslist but
  *  does not free \a list.
  */
-GSList *geda_utility_gslist_clear(GSList *list){
+GSList *
+geda_utility_gslist_clear(GSList *list) {
 
   if (list != NULL ) {
 
@@ -135,16 +203,18 @@ GSList *geda_utility_gslist_clear(GSList *list){
   return list;
 }
 
-/*! \brief Detect item in single linked list
- *
- * Look for \a str in the \a list.
+/*!
+ * \brief Detect item in single linked list
+ * \par Function Description
+ *  Look for \a str in the \a list.
  *
  * \param list pointer to the STRING_LIST struct
  * \param str  string to search for
  *
  * \returns 0 if absent, 1 if present
  */
-int geda_utility_gslist_find_string(GSList *list, char *str) {
+int
+geda_utility_gslist_find_string(GSList *list, char *str) {
 
   int len;
   int index = -1;
@@ -202,4 +272,61 @@ void geda_utility_gslist_free_full (GSList *list, GDestroyNotify free_func)
 {
   g_slist_foreach (list, (GFunc)free_func, NULL);
   g_slist_free (list);
+}
+
+/*!
+ * \brief Is strings in GSlist.
+ * \par Function Description
+ *  Returns TRUE if the string is an element of the GLIST. Provides
+ *  functionality similar to geda_utility_glist_find_string except
+ *  that geda_utility_glist_find_string returns the index, which
+ *  could be index zero.
+ *
+ * \param [in] list*  GSList containing strings to be search
+ * \param [in] string pointer the string to search for
+ *
+ * \retval TRUE if string is in the GSLIST data, otherwise FALSE.
+ *
+ * \sa geda_utility_gslist_find_string
+ */
+bool geda_utility_gslist_str_inlist(GSList *list, char *string)
+{
+  bool    answer = FALSE;
+  GSList *iter;
+
+  for (iter = list; iter; iter = iter->next){
+
+    if (!geda_utility_string_strequal(iter->data, string)) {
+      answer = TRUE;
+      break;
+    }
+  }
+  return answer;
+}
+
+/*!
+ * \brief Compare strings in GSlist to string, ignoring case
+ * \par Function Description
+ *  Returns TRUE if there is an equivalent string element in
+ *  the GSLIST.
+ *
+ * \param [in] list   A GSList containing strings to be search
+ * \param [in] string pointer the string to search for
+ *
+ * \retval TRUE if equivalent string is found in \a list data,
+ *              otherwise FALSE.
+ */
+bool geda_utility_gslist_stri_inlist(GSList *list, char *string)
+{
+  bool    answer = FALSE;
+  GSList *iter;
+
+  for (iter = list; iter; iter = iter->next){
+
+    if (!geda_utility_string_stricmp(iter->data, string)) {
+      answer = TRUE;
+      break;
+    }
+  }
+  return answer;
 }

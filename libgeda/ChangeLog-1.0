@@ -3,6 +3,13 @@
     * src/geda/geda_arc.c: Revise Doxygen comments in group and move class
       tag.
 
+    * src/utility/u_glist.c: Add functions:
+
+            * geda_utility_glist_str_inlist
+            * geda_utility_glist_stri_inlist
+            * geda_utility_gslist_str_inlist
+            * geda_utility_gslist_stri_inlist
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * utility/u_refdes.c: Revise function geda_utility_refdes_return_numeric

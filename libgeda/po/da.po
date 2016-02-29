@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-26 00:46-0600\n"
+"POT-Creation-Date: 2016-02-28 20:35-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -91,47 +91,47 @@ msgstr ""
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:251 libgeda/src/file/f_sys.c:107
+#: libgeda/src/file/f_file.c:250 libgeda/src/file/f_sys.c:107
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:314
+#: libgeda/src/file/f_file.c:313
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:370
+#: libgeda/src/file/f_file.c:366
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:371
+#: libgeda/src/file/f_file.c:367
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:372
+#: libgeda/src/file/f_file.c:368
 #, c-format
 msgid "File %s is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:374
+#: libgeda/src/file/f_file.c:370
 #, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:375
+#: libgeda/src/file/f_file.c:371
 #, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:675
+#: libgeda/src/file/f_file.c:676
 #, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr ""
 
-#: libgeda/src/file/f_file.c:687
+#: libgeda/src/file/f_file.c:688
 #, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr ""
@@ -282,17 +282,17 @@ msgstr ""
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1353
+#: libgeda/src/geda/geda_config.c:1354
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1417
+#: libgeda/src/geda/geda_config.c:1418
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1431
+#: libgeda/src/geda/geda_config.c:1432
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
