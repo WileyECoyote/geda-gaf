@@ -1,5 +1,8 @@
 2016-02-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_dialog.h: Use relative path to ugly geda_dialog_controls
+      so static analyzers can find, and hopefully decipher.
+
     * src/base/gschem_macro_widget.c: Change arguments to _class_init and
       _instance_init so as to remove cast in gschem_macro_widget_get_type
       without warning message from preprocessor, remove g_return_if_fail

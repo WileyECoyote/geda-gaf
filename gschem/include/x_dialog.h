@@ -36,7 +36,7 @@
 
 #define LEAVE_ALONE -2  /* Used as a flag for multible selections */
 
-#include <geda/geda_dialog_controls.h>
+#include "../../include/geda/geda_dialog_controls.h"
 
 /* Define spacings for dialogs. Defines are in a sperate header,
  * some dialog use only the define, for example x_compselect
