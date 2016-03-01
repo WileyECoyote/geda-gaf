@@ -121,6 +121,13 @@ int geda_object_bounds(GedaObject *object)
   return object_class ? object_class->bounds(object) : 0;
 }
 
+int geda_object_get_color (GedaObject *object) {
+  if (is_a_geda_object(object)) {
+    return object->color;
+  }
+  return -0;
+}
+
 /*! \brief GedaObject property getter function
  *
  *  \par Function Description
@@ -715,4 +722,11 @@ Page *geda_object_get_page (GedaObject *object)
 
   return NULL;
 }
+
+void geda_object_set_color (GedaObject *object, int index) {
+  if (is_a_geda_object(object)) {
+    object->color = index;
+  }
+}
+
 /** @} endgroup geda-object */

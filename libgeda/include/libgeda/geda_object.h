@@ -135,8 +135,8 @@ extern "C" {
 GedaObjectType geda_object_get_type          (void) GEDA_CONST;
 bool           is_a_geda_object              (const void *object);
 
-GedaObject       *geda_object_new                (int type, char const *name);
-GedaObject       *geda_object_ref                (GedaObject *object);
+GedaObject   *geda_object_new                (int type, char const *name);
+GedaObject   *geda_object_ref                (GedaObject *object);
 void          geda_object_unref              (GedaObject *object);
 void          geda_object_weakref_notify     (GedaObject *object);
 void          geda_object_weak_ref           (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
@@ -145,8 +145,11 @@ void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_poi
 void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
 
 int           geda_object_bounds             (GedaObject *object);
+int           geda_object_get_color          (GedaObject *object);
 Page         *geda_object_get_page           (GedaObject *object);
 int           geda_object_get_filltype       (GedaObject *object);
+
+void          geda_object_set_color          (GedaObject *object, int color);
 
 #ifdef __cplusplus
 }
