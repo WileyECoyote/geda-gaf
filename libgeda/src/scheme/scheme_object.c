@@ -990,7 +990,7 @@ EDA_SCM_DEFINE (object_arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc par
 
   return scm_list_n (scm_from_int (obj->arc->x),
                      scm_from_int (obj->arc->y),
-                     scm_from_int (obj->arc->width / 2),
+                     scm_from_int (obj->arc->radius),
                      scm_from_int (obj->arc->start_angle),
                      scm_from_int (obj->arc->arc_sweep),
                      scm_from_int (obj->color),
