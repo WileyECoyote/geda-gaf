@@ -275,15 +275,171 @@ GedaObject *geda_arc_new (void)
   return GEDA_OBJECT(arc);
 }
 
-/*! \brief Determine if object is a Geda Arc Object.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if an object is a Geda Arc Object.
+ * \par Function Description
  *  Returns true if the argument is a Geda Arc object.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_arc_object (GedaArc *arc)
 {
   return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }
+
+/*!
+ * \brief Retrieve arc_sweep value from a Geda Arc Object.
+ * \par Function Description
+ *  Returns the current arc_sweep value of \a arc if and only if
+ *  \a arc is a valid Geda Arc object.
+ *
+ * \return integer value of arc_sweep or 0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_get_arc_sweep
+ */
+int geda_arc_get_arc_sweep (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->arc_sweep;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve ordinate value of the an Arc center coordinate.
+ * \par Function Description
+ *  Returns the current X value of \a arc if and only if \a arc is
+ *  a valid Geda Arc object.
+ *
+ * \return integer value of center X or 0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_get_center_x
+ */
+int geda_arc_get_center_x (GedaArc *arc)  {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->x;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve abscisa of an Arc center coordinate.
+ * \par Function Description
+ *  Returns the current Y value of \a arc if and only if \a arc is
+ *  a valid Geda Arc object.
+ *
+ * \return integer value of center Y or 0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_get_center_y
+ */
+int geda_arc_get_center_y (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->y;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the radius of a Geda Arc Object
+ * \par Function Description
+ *  Returns the current radius value of \a arc if and only if
+ * \a arc is a valid Geda Arc object.
+ *
+ * \return integer value of radius or 0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_get_radius
+ */
+int geda_arc_get_radius (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->radius;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve start_angle of a Geda Arc Object
+ * \par Function Description
+ *  Returns the current start_angle of \a arc if and only if
+ * \a arc is a valid Geda Arc object.
+ *
+ * \return integer value of start_angle or 0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_get_start_angle
+ */
+int geda_arc_get_start_angle (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->start_angle;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Set the sweep of a Geda Arc Object
+ * \par Function Description
+ *  Sets the current arc_sweep of \a arc if \a arc is a valid Geda
+ *  Arc object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_object_set_arc_sweep
+ */
+void geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->arc_sweep = sweep;
+  }
+}
+
+/*!
+ * \brief Set the ordinate of a Geda Arc Object
+ * \par Function Description
+ *  Sets the X center value of \a arc if \a arc is a valid Geda
+ *  Arc object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_object_set_center_x
+ */
+void geda_arc_set_center_x (GedaArc *arc, int x) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->x = x;
+  }
+}
+
+/*!
+ * \brief Set the Y center value of a Geda Arc Object
+ * \par Function Description
+ *  Sets the abscisa of \a arc if \a arc is a valid Geda Arc
+ *  object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_object_set_center_y
+ */
+void geda_arc_set_center_y (GedaArc *arc, int y) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->y = y;
+  }
+}
+
+/*!
+ * \brief Set the radius of a Geda Arc Object
+ * \par Function Description
+ *  Sets the radius of \a arc if \a arc is a valid Geda Arc
+ *  object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_object_set_radius
+ */
+void geda_arc_set_radius (GedaArc *arc, int radius) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->radius = radius;
+  }
+}
+
+/*!
+ * \brief Set the start_angle of a Geda Arc Object
+ * \par Function Description
+ *  Sets the starting angle of \a arc if \a arc is a valid Geda
+ *  Arc object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_object_set_start_angle
+ */
+void geda_arc_set_start_angle (GedaArc *arc, int angle) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->start_angle = angle;
+  }
+}
+
 /** @} endgroup geda-arc-object */

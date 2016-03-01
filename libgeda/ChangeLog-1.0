@@ -1,7 +1,7 @@
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Add property radius, can not recall why
-      retained old height/width.
+      retained old height/width, add getter and setter functions.
 
     * src/geda/geda_arc.c: Use radius geda_arc_bounds instead of width / 2.
 

@@ -71,10 +71,22 @@ struct _GedaArc {
 extern "C" {
 #endif
 
-GedaObjectType geda_arc_get_type       (void);
-bool           is_a_geda_arc_object    (GedaArc *object);
+GedaObjectType geda_arc_get_type           (void);
+bool           is_a_geda_arc_object        (GedaArc *arc);
 
-GedaObject    *geda_arc_new            (void);
+GedaObject    *geda_arc_new                (void);
+
+int            geda_arc_get_arc_sweep      (GedaArc *arc);
+int            geda_arc_get_center_x       (GedaArc *arc);
+int            geda_arc_get_center_y       (GedaArc *arc);
+int            geda_arc_get_radius         (GedaArc *arc);
+int            geda_arc_get_start_angle    (GedaArc *arc);
+
+void           geda_arc_set_arc_sweep      (GedaArc *arc, int sweep);
+void           geda_arc_set_center_x       (GedaArc *arc, int x);
+void           geda_arc_set_center_y       (GedaArc *arc, int y);
+void           geda_arc_set_radius         (GedaArc *arc, int radius);
+void           geda_arc_set_start_angle    (GedaArc *arc, int angle);
 
 #ifdef __cplusplus
 }
