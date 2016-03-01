@@ -298,179 +298,6 @@ void o_circle_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Create circle Object from character string.
- *
- *  \par Function Description
- *  The#o_circle_read() function gets from the character string <B>*buff</B> the
- *  description of a circle.
- *
- *  Depending on <B>*version</B>, the right file format is considered.
- *  Currently two file format revisions are supported :
- *  <DL>
- *    <DT>*</DT><DD>the file format used until 2000704 release.
- *    <DT>*</DT><DD>the file format used for the releases after 20000704.
- *  </DL>
- *
- *  \param [in]  buf             Character string with circle description.
- *  \param [in]  release_ver     libgeda release version number.
- *  \param [in]  fileformat_ver  libgeda file format version number.
- *
- *  \param [out] err             A GError object
- *
- *  \return A pointer to the new circle object, or NULL on error.
- */
-GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
-                                         unsigned int fileformat_ver,
-                                         GError **err)
-{
-  GedaObject *new_obj;
-  char type;
-  int x1, y1;
-  int radius;
-  int color;
-  int circle_width, circle_space, circle_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  int circle_end;
-  int circle_type;
-  int circle_fill;
-
-  if(release_ver <= VERSION_20000704) {
-    /*
-     * The old geda file format, i.e. releases 20000704 and older, does not
-     * handle the line type and the filling of the box object. They are set
-     * to default.
-     */
-    if (sscanf(buf, "%c %d %d %d %d\n", &type, &x1, &y1, &radius, &color) != 5) {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
-      return NULL;
-    }
-
-    circle_width  = 0;
-    circle_end    = END_NONE;
-    circle_type   = TYPE_SOLID;
-    circle_length = -1;
-    circle_space  = -1;
-
-    circle_fill   = FILLING_HOLLOW;
-    fill_width    = 0;
-    angle1        = -1;
-    pitch1        = -1;
-    angle2        = -1;
-    pitch2        = -1;
-
-  } else {
-
-    /*
-     * The current line format to describe a circle is a space separated
-     * list of characters and numbers in plain ASCII on a single line. The
-     * meaning of each item is described in the file format documentation.
-     */
-    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-      &type, &x1, &y1, &radius, &color,
-      &circle_width, &circle_end, &circle_type,
-      &circle_length, &circle_space, &circle_fill,
-      &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
-    return NULL;
-      }
-  }
-
-
-  if (radius <= 0) {
-    u_log_message(_("Found a zero or negative radius circle [ %c %d %d %d %d ]\n"),
-                  type, x1, y1, radius, color);
-    u_log_message (_("Setting radius to 0\n"));
-    radius = 0;
-  }
-
-  if (color < 0 || color > MAX_COLORS) {
-    u_log_message(_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message(_("Setting color to default color\n"));
-    color = DEFAULT_CIRCLE_COLOR_INDEX;
-  }
-
-  /*
-   * A circle is internally described by its center and its radius.
-   *
-   * A new object is allocated, initialized and added to the object list.
-   * Its filling and line type are set according to the values of the field
-   * on the line.
-   */
-  new_obj = o_circle_new(color, x1, y1, radius);
-
-  new_obj->line_options->line_end     = circle_end;
-  new_obj->line_options->line_type    = circle_type;
-  new_obj->line_options->line_width   = circle_width;
-  new_obj->line_options->line_length  = circle_length;
-  new_obj->line_options->line_space   = circle_space;
-
-  /* set its fill options */
-  new_obj->fill_options->fill_type   = circle_fill;
-  new_obj->fill_options->fill_width  = fill_width;
-  new_obj->fill_options->fill_angle1 = angle1;
-  new_obj->fill_options->fill_angle2 = angle2;
-  new_obj->fill_options->fill_pitch1 = pitch1;
-  new_obj->fill_options->fill_pitch2 = pitch2;
-  return new_obj;
-}
-
-/*! \brief Create a character string representation of a circle Object
- *
- *  \par Function Description
- *  This function formats a string in the buffer <B>*buff</B> to describe the
- *  circle object <B>*object</B>.
- *  It follows the post-20000704 release file format that handle the line
- *  type and fill options.
- *
- *  \param [in] object  Circle GedaObject to create string from.
- *
- *  \return A pointer to the circle Object character string.
- *
- *  \note
- *  Caller must GEDA_FREE returned character string.
- *
- */
-char *o_circle_save(GedaObject *object)
-{
-  int x,y;
-  int radius;
-  int circle_width, circle_space, circle_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  char *buf;
-  LINE_END circle_end;
-  LINE_TYPE  circle_type;
-  OBJECT_FILLING circle_fill;
-
-  g_return_val_if_fail(GEDA_IS_CIRCLE(object), NULL);
-
-  /* circle center and radius */
-  x = object->circle->center_x;
-  y = object->circle->center_y;
-  radius = object->circle->radius;
-
-  /* line type parameters */
-  circle_width = object->circle->line_options.line_width;
-  circle_end   = object->circle->line_options.line_end;
-  circle_type  = object->circle->line_options.line_type;
-  circle_length= object->circle->line_options.line_length;
-  circle_space = object->circle->line_options.line_space;
-
-  /* filling parameters */
-  circle_fill  = object->circle->fill_options.fill_type;
-  fill_width   = object->circle->fill_options.fill_width;
-  angle1       = object->circle->fill_options.fill_angle1;
-  pitch1       = object->circle->fill_options.fill_pitch1;
-  angle2       = object->circle->fill_options.fill_angle2;
-  pitch2       = object->circle->fill_options.fill_pitch2;
-
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
-                         object->type, x, y, radius, object->color,
-                         circle_width, circle_end, circle_type, circle_length,
-                         circle_space, circle_fill,
-                         fill_width, angle1, pitch1, angle2, pitch2);
-  return(buf);
-}
-
 /*! \brief Mirror circle using WORLD coordinates.
  *
  *  \par Function Description
@@ -541,78 +368,6 @@ GedaObject *o_circle_new(int color, int x, int y, int radius)
   circle->radius   = radius;
 
   return new_obj;
-}
-
-/*! \brief Rotate Circle GedaObject using WORLD coordinates
- *
- *  \par Function Description
- *  The function#o_circle_rotate() rotate the circle described by
- *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point by
- *  angle <B>angle</B> degrees.
- *  The center of rotation is in world unit.
- *
- *  \param [in,out]  object    Circle GedaObject to rotate.
- *  \param [in]      center_x  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_y  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle     Rotation angle in degrees (See note below).
-
- */
-void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
-{
-  int newx, newy;
-  int x, y;
-
-  /* Only 90 degree multiple and positive angles are allowed. */
-  /* angle must be positive */
-  if(angle < 0) angle = -angle;
-  /* angle must be a 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
-
-  /*
-   * The center of rotation (<B>center_x</B>,<B>center_y</B>) is
-   * translated to the origin. The rotation of the center around the origin
-   * is then performed. Finally, the rotated circle is translated back to
-   * its previous location.
-   */
-
-  /* translate object to origin */
-  object->circle->center_x -= center_x;
-  object->circle->center_y -= center_y;
-
-  /* rotate the center of the circle around the origin */
-  x = object->circle->center_x;
-  y = object->circle->center_y;
-  m_rotate_point_90(x, y, angle, &newx, &newy);
-  object->circle->center_x = newx;
-  object->circle->center_y = newy;
-
-  /* translate back in position */
-  object->circle->center_x += center_x;
-  object->circle->center_y += center_y;
-
-  object->w_bounds_valid_for = NULL;
-
-}
-
-/*! \brief Translate a circle position in WORLD coordinates by a delta
- *
- *  \par Function Description
- *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle
- *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
- *
- *  \param [in]     dx         x distance to move.
- *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Circle GedaObject to translate.
- */
-void o_circle_translate(GedaObject *object, int dx, int dy)
-{
-  /* Do world coords */
-  object->circle->center_x = object->circle->center_x + dx;
-  object->circle->center_y = object->circle->center_y + dy;
-
-  /* recalc the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
-
 }
 
 /*! \brief Print circle to Postscript document.
@@ -1178,6 +933,230 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
+/*! \brief Create circle Object from character string.
+ *
+ *  \par Function Description
+ *  The#o_circle_read() function gets from the character string <B>*buff</B> the
+ *  description of a circle.
+ *
+ *  Depending on <B>*version</B>, the right file format is considered.
+ *  Currently two file format revisions are supported :
+ *  <DL>
+ *    <DT>*</DT><DD>the file format used until 2000704 release.
+ *    <DT>*</DT><DD>the file format used for the releases after 20000704.
+ *  </DL>
+ *
+ *  \param [in]  buf             Character string with circle description.
+ *  \param [in]  release_ver     libgeda release version number.
+ *  \param [in]  fileformat_ver  libgeda file format version number.
+ *
+ *  \param [out] err             A GError object
+ *
+ *  \return A pointer to the new circle object, or NULL on error.
+ */
+GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
+                                         unsigned int fileformat_ver,
+                                         GError **err)
+{
+  GedaObject *new_obj;
+  char type;
+  int x1, y1;
+  int radius;
+  int color;
+  int circle_width, circle_space, circle_length;
+  int fill_width, angle1, pitch1, angle2, pitch2;
+  int circle_end;
+  int circle_type;
+  int circle_fill;
+
+  if(release_ver <= VERSION_20000704) {
+    /*
+     * The old geda file format, i.e. releases 20000704 and older, does not
+     * handle the line type and the filling of the box object. They are set
+     * to default.
+     */
+    if (sscanf(buf, "%c %d %d %d %d\n", &type, &x1, &y1, &radius, &color) != 5) {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
+      return NULL;
+    }
+
+    circle_width  = 0;
+    circle_end    = END_NONE;
+    circle_type   = TYPE_SOLID;
+    circle_length = -1;
+    circle_space  = -1;
+
+    circle_fill   = FILLING_HOLLOW;
+    fill_width    = 0;
+    angle1        = -1;
+    pitch1        = -1;
+    angle2        = -1;
+    pitch2        = -1;
+
+  } else {
+
+    /*
+     * The current line format to describe a circle is a space separated
+     * list of characters and numbers in plain ASCII on a single line. The
+     * meaning of each item is described in the file format documentation.
+     */
+    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
+      &type, &x1, &y1, &radius, &color,
+      &circle_width, &circle_end, &circle_type,
+      &circle_length, &circle_space, &circle_fill,
+      &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
+    return NULL;
+      }
+  }
+
+
+  if (radius <= 0) {
+    u_log_message(_("Found a zero or negative radius circle [ %c %d %d %d %d ]\n"),
+                  type, x1, y1, radius, color);
+    u_log_message (_("Setting radius to 0\n"));
+    radius = 0;
+  }
+
+  if (color < 0 || color > MAX_COLORS) {
+    u_log_message(_("Found an invalid color [ %s ]\n"), buf);
+    u_log_message(_("Setting color to default color\n"));
+    color = DEFAULT_CIRCLE_COLOR_INDEX;
+  }
+
+  /*
+   * A circle is internally described by its center and its radius.
+   *
+   * A new object is allocated, initialized and added to the object list.
+   * Its filling and line type are set according to the values of the field
+   * on the line.
+   */
+  new_obj = o_circle_new(color, x1, y1, radius);
+
+  new_obj->line_options->line_end     = circle_end;
+  new_obj->line_options->line_type    = circle_type;
+  new_obj->line_options->line_width   = circle_width;
+  new_obj->line_options->line_length  = circle_length;
+  new_obj->line_options->line_space   = circle_space;
+
+  /* set its fill options */
+  new_obj->fill_options->fill_type   = circle_fill;
+  new_obj->fill_options->fill_width  = fill_width;
+  new_obj->fill_options->fill_angle1 = angle1;
+  new_obj->fill_options->fill_angle2 = angle2;
+  new_obj->fill_options->fill_pitch1 = pitch1;
+  new_obj->fill_options->fill_pitch2 = pitch2;
+  return new_obj;
+}
+
+/*! \brief Rotate Circle GedaObject using WORLD coordinates
+ *
+ *  \par Function Description
+ *  The function#o_circle_rotate() rotate the circle described by
+ *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point by
+ *  angle <B>angle</B> degrees.
+ *  The center of rotation is in world unit.
+ *
+ *  \param [in,out]  object    Circle GedaObject to rotate.
+ *  \param [in]      center_x  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_y  Rotation center y coordinate in WORLD units.
+ *  \param [in]      angle     Rotation angle in degrees (See note below).
+
+ */
+void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
+{
+  int newx, newy;
+  int x, y;
+
+  /* Only 90 degree multiple and positive angles are allowed. */
+  /* angle must be positive */
+  if(angle < 0) angle = -angle;
+  /* angle must be a 90 multiple or no rotation performed */
+  if((angle % 90) != 0) return;
+
+  /*
+   * The center of rotation (<B>center_x</B>,<B>center_y</B>) is
+   * translated to the origin. The rotation of the center around the origin
+   * is then performed. Finally, the rotated circle is translated back to
+   * its previous location.
+   */
+
+  /* translate object to origin */
+  object->circle->center_x -= center_x;
+  object->circle->center_y -= center_y;
+
+  /* rotate the center of the circle around the origin */
+  x = object->circle->center_x;
+  y = object->circle->center_y;
+  m_rotate_point_90(x, y, angle, &newx, &newy);
+  object->circle->center_x = newx;
+  object->circle->center_y = newy;
+
+  /* translate back in position */
+  object->circle->center_x += center_x;
+  object->circle->center_y += center_y;
+
+  object->w_bounds_valid_for = NULL;
+
+}
+
+/*! \brief Create a character string representation of a circle Object
+ *
+ *  \par Function Description
+ *  This function formats a string in the buffer <B>*buff</B> to describe the
+ *  circle object <B>*object</B>.
+ *  It follows the post-20000704 release file format that handle the line
+ *  type and fill options.
+ *
+ *  \param [in] object  Circle GedaObject to create string from.
+ *
+ *  \return A pointer to the circle Object character string.
+ *
+ *  \note
+ *  Caller must GEDA_FREE returned character string.
+ *
+ */
+char *o_circle_save(GedaObject *object)
+{
+  int x,y;
+  int radius;
+  int circle_width, circle_space, circle_length;
+  int fill_width, angle1, pitch1, angle2, pitch2;
+  char *buf;
+  LINE_END circle_end;
+  LINE_TYPE  circle_type;
+  OBJECT_FILLING circle_fill;
+
+  g_return_val_if_fail(GEDA_IS_CIRCLE(object), NULL);
+
+  /* circle center and radius */
+  x = object->circle->center_x;
+  y = object->circle->center_y;
+  radius = object->circle->radius;
+
+  /* line type parameters */
+  circle_width = object->circle->line_options.line_width;
+  circle_end   = object->circle->line_options.line_end;
+  circle_type  = object->circle->line_options.line_type;
+  circle_length= object->circle->line_options.line_length;
+  circle_space = object->circle->line_options.line_space;
+
+  /* filling parameters */
+  circle_fill  = object->circle->fill_options.fill_type;
+  fill_width   = object->circle->fill_options.fill_width;
+  angle1       = object->circle->fill_options.fill_angle1;
+  pitch1       = object->circle->fill_options.fill_pitch1;
+  angle2       = object->circle->fill_options.fill_angle2;
+  pitch2       = object->circle->fill_options.fill_pitch2;
+
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+                         object->type, x, y, radius, object->color,
+                         circle_width, circle_end, circle_type, circle_length,
+                         circle_space, circle_fill,
+                         fill_width, angle1, pitch1, angle2, pitch2);
+  return(buf);
+}
+
 /*! \brief Calculates shortest distance to a Circle
  *  \par Function Description
  *   Calculates the distance between the given point and the closest
@@ -1202,3 +1181,23 @@ double o_circle_shortest_distance (GedaObject *object, int x, int y, int force_s
   return m_circle_shortest_distance (object->circle, x, y, solid);
 }
 
+/*! \brief Translate a circle position in WORLD coordinates by a delta
+ *
+ *  \par Function Description
+ *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle
+ *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
+ *
+ *  \param [in]     dx         x distance to move.
+ *  \param [in]     dy         y distance to move.
+ *  \param [in,out] object     Circle GedaObject to translate.
+ */
+void o_circle_translate(GedaObject *object, int dx, int dy)
+{
+  /* Do world coords */
+  object->circle->center_x = object->circle->center_x + dx;
+  object->circle->center_y = object->circle->center_y + dy;
+
+  /* recalc the screen coords and the bounding box */
+  object->w_bounds_valid_for = NULL;
+
+}

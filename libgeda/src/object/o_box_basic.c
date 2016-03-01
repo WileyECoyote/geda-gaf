@@ -29,6 +29,47 @@
 
 #include <libgeda_priv.h>
 
+/*! \brief Copy a box to a list.
+ *
+ *  \par Function Description
+ *  The function #o_box_copy() creates a verbatim copy of the object
+ *  pointed by <B>\a o_current</B> describing a box.
+ *
+ *  \param [in] o_current Box Object to copy.
+ *
+ *  \return The new GedaObject
+ */
+GedaObject *o_box_copy(GedaObject *o_current)
+{
+  if (GEDA_IS_BOX(o_current)) {
+
+    GedaObject *new_obj;
+    GedaBox    *old_box;
+
+    old_box = GEDA_BOX(o_current);
+
+    /* A new box object is created with #o_box_new().
+     * Values for its fields are default and need to be modified. */
+    new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
+
+    /* The dimensions of the new box are set with the ones of the original box.
+     * The two boxes have the same line type and the same filling options.
+     */
+    new_obj->box->upper_x = old_box->upper_x;
+    new_obj->box->upper_y = old_box->upper_y;
+    new_obj->box->lower_x = old_box->lower_x;
+    new_obj->box->lower_y = old_box->lower_y;
+
+    o_set_line_options(new_obj, &old_box->line_options);
+    o_set_fill_options(new_obj, &old_box->fill_options);
+
+    new_obj->w_bounds_valid_for = NULL;
+
+    return new_obj;
+  }
+  return NULL;
+}
+
 /*! \brief Get Point on a Box Nearest a Given Point
  *  \par Function Description
  *  This function is intended to locate a point on a Box object given
@@ -208,14 +249,16 @@ bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny
   return result;
 }
 
-/*! \brief get the position of the left bottom point
- *  \par Function Description
+/*!
+ * \brief get the position of the left bottom point
+ * \par Function Description
  *  This function gets the position of the bottom left point of a box object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \param [in]  object  GedaBox object whose position is to be returned
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_box_get_position (GedaObject *object, int *x, int *y)
 {
@@ -224,115 +267,50 @@ bool o_box_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief Create a Box Object
- *  \par Function Description
- *  This function creates a new object representing a box.
- *
- *  The box is described by its upper left corner - <B>x1</B>, <B>y1</B> - and
- *  its lower right corner - <B>x2</B>, <B>y2</B>.
- *  The <B>type</B> parameter must be equal to <B>OBJ_BOX</B>. The <B>color</B>
- *  corresponds to the color the box will be drawn with.
- *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
- *  function. The structure describing the box is allocated and initialized
- *  with the parameters given to the function.
- *
- *  Both the line type and the filling type are set to default values : solid
- *  line type with a width of 0, and no filling. It can be changed after
- *  with the #o_set_line_options() and #o_set_fill_options().
- *
- *  \param [in]     color        Box border color.
- *  \param [in]     x1           Upper x coordinate.
- *  \param [in]     y1           Upper y coordinate.
- *  \param [in]     x2           Lower x coordinate.
- *  \param [in]     y2           Lower y coordinate.
- *
- *  \return The new GedaObject
- */
-GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
-{
-  GedaBox    *box;
-  GedaObject *new_obj;
-
-  /* create the object */
-  new_obj = geda_box_new();
-  box     = GEDA_BOX(new_obj);
-
-  new_obj->color = color;
-
-  /* describe the box with its upper left and lower right corner */
-  box->upper_x = x1;
-  box->upper_y = y1;
-  box->lower_x = x2;
-  box->lower_y = y2;
-
-  return new_obj;
-}
-
-/*! \brief Copy a box to a list.
+/*! \brief Mirror Box using WORLD coordinates.
  *
  *  \par Function Description
- *  The function #o_box_copy() creates a verbatim copy of the object
- *  pointed by <B>\a o_current</B> describing a box.
+ *  This function mirrors the box from the point
+ *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in] o_current Box Object to copy.
+ *  The box is first translated to the origin, then mirrored and finally
+ *  translated back at its previous position.
  *
- *  \return The new GedaObject
+ *  \param [in,out] object    GedaBox Object to mirror
+ *  \param [in]     center_x  Origin x coordinate in WORLD units
+ *  \param [in]     center_y  Origin y coordinate in WORLD units
  */
-GedaObject *o_box_copy(GedaObject *o_current)
+void o_box_mirror(GedaObject *object, int center_x, int center_y)
 {
-  if (GEDA_IS_BOX(o_current)) {
+  int newx1, newy1;
+  int newx2, newy2;
 
-    GedaObject *new_obj;
-    GedaBox    *old_box;
+  /* translate object to origin */
+  object->box->upper_x -= center_x;
+  object->box->upper_y -= center_y;
+  object->box->lower_x -= center_x;
+  object->box->lower_y -= center_y;
 
-    old_box = GEDA_BOX(o_current);
+  /* mirror the corners */
+  newx1 = -object->box->upper_x;
+  newy1 =  object->box->upper_y;
+  newx2 = -object->box->lower_x;
+  newy2 =  object->box->lower_y;
 
-    /* A new box object is created with #o_box_new().
-     * Values for its fields are default and need to be modified. */
-    new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
+  /* reorder the corners */
+  object->box->upper_x = min(newx1,newx2);
+  object->box->upper_y = max(newy1,newy2);
+  object->box->lower_x = max(newx1,newx2);
+  object->box->lower_y = min(newy1,newy2);
 
-    /* The dimensions of the new box are set with the ones of the original box.
-     * The two boxes have the same line type and the same filling options.
-     */
-    new_obj->box->upper_x = old_box->upper_x;
-    new_obj->box->upper_y = old_box->upper_y;
-    new_obj->box->lower_x = old_box->lower_x;
-    new_obj->box->lower_y = old_box->lower_y;
+  /* translate back in position */
+  object->box->upper_x += center_x;
+  object->box->upper_y += center_y;
+  object->box->lower_x += center_x;
+  object->box->lower_y += center_y;
 
-    o_set_line_options(new_obj, &old_box->line_options);
-    o_set_fill_options(new_obj, &old_box->fill_options);
-
-    new_obj->w_bounds_valid_for = NULL;
-
-    return new_obj;
-  }
-  return NULL;
-}
-
-/*! \brief Modify a Box Object's coordinates.
- *
- * \par Function Description
- * Modifies the coordinates of all four corners of \a box, by setting
- * the box to the rectangle enclosed by the points (\a x1, \a y1) and
- * (\a x2, \a y2).
- *
- * \param [in,out] object   box #GedaObject to be modified.
- * \param [in]     x1       x coordinate of first corner of box.
- * \param [in]     y1       y coordinate of first corner of box.
- * \param [in]     x2       x coordinate of second corner of box.
- * \param [in]     y2       y coordinate of second corner of box,
- */
-void o_box_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
-{
-  object->box->lower_x = (x1 > x2) ? x1 : x2;
-  object->box->lower_y = (y1 > y2) ? y2 : y1;
-
-  object->box->upper_x = (x1 > x2) ? x2 : x1;
-  object->box->upper_y = (y1 > y2) ? y1 : y2;
-
-  /* recalculate the world coords and bounds */
+  /* recalc boundings and world coords */
   object->w_bounds_valid_for = NULL;
-
 }
 
 /*! \brief Modify a Box Object's coordinates.
@@ -404,6 +382,76 @@ void o_box_modify(GedaObject *object, int x, int y, int whichone)
 
   /* recalculate the world coords and the boundings */
   object->w_bounds_valid_for = NULL;
+}
+
+/*! \brief Modify a Box Object's coordinates.
+ *
+ * \par Function Description
+ * Modifies the coordinates of all four corners of \a box, by setting
+ * the box to the rectangle enclosed by the points (\a x1, \a y1) and
+ * (\a x2, \a y2).
+ *
+ * \param [in,out] object   box #GedaObject to be modified.
+ * \param [in]     x1       x coordinate of first corner of box.
+ * \param [in]     y1       y coordinate of first corner of box.
+ * \param [in]     x2       x coordinate of second corner of box.
+ * \param [in]     y2       y coordinate of second corner of box,
+ */
+void o_box_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
+{
+  object->box->lower_x = (x1 > x2) ? x1 : x2;
+  object->box->lower_y = (y1 > y2) ? y2 : y1;
+
+  object->box->upper_x = (x1 > x2) ? x2 : x1;
+  object->box->upper_y = (y1 > y2) ? y1 : y2;
+
+  /* recalculate the world coords and bounds */
+  object->w_bounds_valid_for = NULL;
+
+}
+
+/*! \brief Create a Box Object
+ *  \par Function Description
+ *  This function creates a new object representing a box.
+ *
+ *  The box is described by its upper left corner - <B>x1</B>, <B>y1</B> - and
+ *  its lower right corner - <B>x2</B>, <B>y2</B>.
+ *  The <B>type</B> parameter must be equal to <B>OBJ_BOX</B>. The <B>color</B>
+ *  corresponds to the color the box will be drawn with.
+ *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
+ *  function. The structure describing the box is allocated and initialized
+ *  with the parameters given to the function.
+ *
+ *  Both the line type and the filling type are set to default values : solid
+ *  line type with a width of 0, and no filling. It can be changed after
+ *  with the #o_set_line_options() and #o_set_fill_options().
+ *
+ *  \param [in]     color        Box border color.
+ *  \param [in]     x1           Upper x coordinate.
+ *  \param [in]     y1           Upper y coordinate.
+ *  \param [in]     x2           Lower x coordinate.
+ *  \param [in]     y2           Lower y coordinate.
+ *
+ *  \return The new GedaObject
+ */
+GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
+{
+  GedaBox    *box;
+  GedaObject *new_obj;
+
+  /* create the object */
+  new_obj = geda_box_new();
+  box     = GEDA_BOX(new_obj);
+
+  new_obj->color = color;
+
+  /* describe the box with its upper left and lower right corner */
+  box->upper_x = x1;
+  box->upper_y = y1;
+  box->lower_x = x2;
+  box->lower_y = y2;
+
+  return new_obj;
 }
 
 /*! \brief Create a box from a character string.
@@ -536,208 +584,6 @@ GedaObject* o_box_read (const char buf[], unsigned int release_ver,
   new_obj->fill_options->fill_pitch2 = pitch2;
 
   return new_obj;
-}
-
-/*! \brief Create a character string representation of a GedaBox.
- *  \par Function Description
- *  This function formats a string in the buffer <B>*buff</B> to describe the
- *  box object <B>*object</B>.
- *  It follows the post-20000704 release file format that handle the line type
- *  and fill options.
- *
- *  \param [in] object  The GedaBox Object to create string from.
- *
- *  \return A pointer to the GedaBox character string.
- *
- *  \warning
- *  Caller must GEDA_FREE returned character string.
- */
-char *o_box_save(GedaObject *object)
-{
-  int x1, y1;
-  int width, height;
-  int box_width, box_space, box_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  LINE_END box_end;
-  LINE_TYPE  box_type;
-  OBJECT_FILLING box_fill;
-  GedaBox *box;
-  char    *buf;
-
-  g_return_val_if_fail(GEDA_IS_BOX(object), NULL);
-  box = GEDA_BOX(object);
-
-  /*! \note
-   *  A box is internally represented by its lower right and upper left corner
-   *  whereas it is described in the file format as its lower left corner and
-   *  its width and height.
-   */
-
-  /* calculate the width and height of the box */
-  width  = abs(box->lower_x - box->upper_x);
-  height = abs(box->upper_y - box->lower_y);
-
-  /* calculate the lower left corner of the box */
-  x1 = box->upper_x;
-  y1 = box->upper_y - height; /* move the origin to 0, 0*/
-
-  #if DEBUG
-  printf("box: %d %d %d %d\n", x1, y1, width, height);
-  #endif
-
-  /* description of the line type for the outline */
-  box_end    = object->line_options->line_end;
-  box_width  = object->line_options->line_width;
-  box_type   = object->line_options->line_type;
-  box_length = object->line_options->line_length;
-  box_space  = object->line_options->line_space;
-
-  /* description of the filling of the box */
-  box_fill   = object->fill_options->fill_type;
-  fill_width = object->fill_options->fill_width;
-  angle1     = object->fill_options->fill_angle1;
-  pitch1     = object->fill_options->fill_pitch1;
-  angle2     = object->fill_options->fill_angle2;
-  pitch2     = object->fill_options->fill_pitch2;
-
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
-                         object->type,
-                         x1, y1, width, height, object->color,
-                         box_width, box_end, box_type, box_length, box_space,
-                         box_fill,
-                         fill_width, angle1, pitch1, angle2, pitch2);
-
-  return(buf);
-}
-
-/*! \brief Mirror Box using WORLD coordinates.
- *
- *  \par Function Description
- *  This function mirrors the box from the point
- *  (<B>center_x</B>,<B>center_y</B>) in world unit.
- *
- *  The box is first translated to the origin, then mirrored and finally
- *  translated back at its previous position.
- *
- *  \param [in,out] object    GedaBox Object to mirror
- *  \param [in]     center_x  Origin x coordinate in WORLD units
- *  \param [in]     center_y  Origin y coordinate in WORLD units
- */
-void o_box_mirror(GedaObject *object, int center_x, int center_y)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /* translate object to origin */
-  object->box->upper_x -= center_x;
-  object->box->upper_y -= center_y;
-  object->box->lower_x -= center_x;
-  object->box->lower_y -= center_y;
-
-  /* mirror the corners */
-  newx1 = -object->box->upper_x;
-  newy1 =  object->box->upper_y;
-  newx2 = -object->box->lower_x;
-  newy2 =  object->box->lower_y;
-
-  /* reorder the corners */
-  object->box->upper_x = min(newx1,newx2);
-  object->box->upper_y = max(newy1,newy2);
-  object->box->lower_x = max(newx1,newx2);
-  object->box->lower_y = min(newy1,newy2);
-
-  /* translate back in position */
-  object->box->upper_x += center_x;
-  object->box->upper_y += center_y;
-  object->box->lower_x += center_x;
-  object->box->lower_y += center_y;
-
-  /* recalc boundings and world coords */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Rotate GedaBox Object
- *  \par Function Description
- *  The function #o_box_rotate() rotate the box described by <B>*object</B>
- *  around the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B> degrees.
- *  The center of rotation is in world unit.
- *
- *  \param [in,out]  object    GedaBox Object to rotate
- *  \param [in]      center_x  Rotation center x coordinate in WORLD units
- *  \param [in]      center_y  Rotation center y coordinate in WORLD units
- *  \param [in]      angle     Rotation angle in degrees (See note below)
-
- *
- */
-void o_box_rotate(GedaObject *object, int center_x, int center_y, int angle)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /*! \note
-   *  Only 90 degree multiple and positive angles are allowed.
-   */
-
-  /* angle must be positive */
-  if (angle < 0) angle = -angle;
-  /* angle must be a 90 multiple or no rotation performed */
-  if ((angle % 90) != 0) return;
-
-  /*! \note
-   *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
-   *  translated to the origin. The rotation of the upper left and lower right
-   *  corner are then performed. Finally, the rotated box is translated back
-   *  to its previous location.
-   */
-  /* translate object to origin */
-  object->box->upper_x -= center_x;
-  object->box->upper_y -= center_y;
-  object->box->lower_x -= center_x;
-  object->box->lower_y -= center_y;
-
-  /* rotate the upper left corner of the box */
-  m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
-                  &newx1, &newy1);
-
-  /* rotate the lower left corner of the box */
-  m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
-                  &newx2, &newy2);
-
-  /* reorder the corners after rotation */
-  object->box->upper_x = min(newx1,newx2);
-  object->box->upper_y = max(newy1,newy2);
-  object->box->lower_x = max(newx1,newx2);
-  object->box->lower_y = min(newy1,newy2);
-
-  /* translate object back to normal position */
-  object->box->upper_x += center_x;
-  object->box->upper_y += center_y;
-  object->box->lower_x += center_x;
-  object->box->lower_y += center_y;
-
-  /* recalc boundings and world coords */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Translate a Box position in WORLD coordinates by a delta.
- *  \par Function Description
- *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
- *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
- *
- *  \param [in,out] object     Box Object to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move
- */
-void o_box_translate(GedaObject *object, int dx, int dy)
-{
-  /* Do world coords */
-  object->box->upper_x = object->box->upper_x + dx;
-  object->box->upper_y = object->box->upper_y + dy;
-  object->box->lower_x = object->box->lower_x + dx;
-  object->box->lower_y = object->box->lower_y + dy;
-
-  /* recalc the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Print a GedaBox to Postscript document.
@@ -1426,6 +1272,161 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
   }
 
   g_array_free(lines, TRUE);
+}
+
+/*! \brief Rotate GedaBox Object
+ *  \par Function Description
+ *  The function #o_box_rotate() rotate the box described by <B>*object</B>
+ *  around the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B> degrees.
+ *  The center of rotation is in world unit.
+ *
+ *  \param [in,out]  object    GedaBox Object to rotate
+ *  \param [in]      center_x  Rotation center x coordinate in WORLD units
+ *  \param [in]      center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]      angle     Rotation angle in degrees (See note below)
+
+ *
+ */
+void o_box_rotate(GedaObject *object, int center_x, int center_y, int angle)
+{
+  int newx1, newy1;
+  int newx2, newy2;
+
+  /*! \note
+   *  Only 90 degree multiple and positive angles are allowed.
+   */
+
+  /* angle must be positive */
+  if (angle < 0) angle = -angle;
+  /* angle must be a 90 multiple or no rotation performed */
+  if ((angle % 90) != 0) return;
+
+  /*! \note
+   *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
+   *  translated to the origin. The rotation of the upper left and lower right
+   *  corner are then performed. Finally, the rotated box is translated back
+   *  to its previous location.
+   */
+  /* translate object to origin */
+  object->box->upper_x -= center_x;
+  object->box->upper_y -= center_y;
+  object->box->lower_x -= center_x;
+  object->box->lower_y -= center_y;
+
+  /* rotate the upper left corner of the box */
+  m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
+                  &newx1, &newy1);
+
+  /* rotate the lower left corner of the box */
+  m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
+                  &newx2, &newy2);
+
+  /* reorder the corners after rotation */
+  object->box->upper_x = min(newx1,newx2);
+  object->box->upper_y = max(newy1,newy2);
+  object->box->lower_x = max(newx1,newx2);
+  object->box->lower_y = min(newy1,newy2);
+
+  /* translate object back to normal position */
+  object->box->upper_x += center_x;
+  object->box->upper_y += center_y;
+  object->box->lower_x += center_x;
+  object->box->lower_y += center_y;
+
+  /* recalc boundings and world coords */
+  object->w_bounds_valid_for = NULL;
+}
+/*! \brief Create a character string representation of a GedaBox.
+ *  \par Function Description
+ *  This function formats a string in the buffer <B>*buff</B> to describe the
+ *  box object <B>*object</B>.
+ *  It follows the post-20000704 release file format that handle the line type
+ *  and fill options.
+ *
+ *  \param [in] object  The GedaBox Object to create string from.
+ *
+ *  \return A pointer to the GedaBox character string.
+ *
+ *  \warning
+ *  Caller must GEDA_FREE returned character string.
+ */
+char *o_box_save(GedaObject *object)
+{
+  int x1, y1;
+  int width, height;
+  int box_width, box_space, box_length;
+  int fill_width, angle1, pitch1, angle2, pitch2;
+  LINE_END box_end;
+  LINE_TYPE  box_type;
+  OBJECT_FILLING box_fill;
+  GedaBox *box;
+  char    *buf;
+
+  g_return_val_if_fail(GEDA_IS_BOX(object), NULL);
+  box = GEDA_BOX(object);
+
+  /*! \note
+   *  A box is internally represented by its lower right and upper left corner
+   *  whereas it is described in the file format as its lower left corner and
+   *  its width and height.
+   */
+
+  /* calculate the width and height of the box */
+  width  = abs(box->lower_x - box->upper_x);
+  height = abs(box->upper_y - box->lower_y);
+
+  /* calculate the lower left corner of the box */
+  x1 = box->upper_x;
+  y1 = box->upper_y - height; /* move the origin to 0, 0*/
+
+  #if DEBUG
+  printf("box: %d %d %d %d\n", x1, y1, width, height);
+  #endif
+
+  /* description of the line type for the outline */
+  box_end    = object->line_options->line_end;
+  box_width  = object->line_options->line_width;
+  box_type   = object->line_options->line_type;
+  box_length = object->line_options->line_length;
+  box_space  = object->line_options->line_space;
+
+  /* description of the filling of the box */
+  box_fill   = object->fill_options->fill_type;
+  fill_width = object->fill_options->fill_width;
+  angle1     = object->fill_options->fill_angle1;
+  pitch1     = object->fill_options->fill_pitch1;
+  angle2     = object->fill_options->fill_angle2;
+  pitch2     = object->fill_options->fill_pitch2;
+
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+                         object->type,
+                         x1, y1, width, height, object->color,
+                         box_width, box_end, box_type, box_length, box_space,
+                         box_fill,
+                         fill_width, angle1, pitch1, angle2, pitch2);
+
+  return(buf);
+}
+
+/*! \brief Translate a Box position in WORLD coordinates by a delta.
+ *  \par Function Description
+ *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
+ *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
+ *
+ *  \param [in,out] object     Box Object to translate
+ *  \param [in]     dx         x distance to move
+ *  \param [in]     dy         y distance to move
+ */
+void o_box_translate(GedaObject *object, int dx, int dy)
+{
+  /* Do world coords */
+  object->box->upper_x = object->box->upper_x + dx;
+  object->box->upper_y = object->box->upper_y + dy;
+  object->box->lower_x = object->box->lower_x + dx;
+  object->box->lower_y = object->box->lower_y + dy;
+
+  /* recalc the screen coords and the bounding box */
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Calculates the distance between the given point and the closest

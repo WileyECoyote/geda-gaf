@@ -560,16 +560,17 @@ int o_get_parent_id (GedaObject *object)
   return cid;
 }
 
-/*! \brief get the base position of an object
+/*!
+ * \brief get the base position of an object
  *
- *  \par Function Description
+ * \par Function Description
  *  This function gets the position of an object in world coordinates.
  *
- *  \param [in] object   The object to get the position,
- *  \param [out] x       pointer to the x-position,
- *  \param [out] y       pointer to the y-position.
+ * \param [in]  object  Pointer to a #GedaObject
+ * \param [out] x       pointer to the x-position,
+ * \param [out] y       pointer to the y-position.
  *
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_get_position (GedaObject *object, int *x, int *y )
 {

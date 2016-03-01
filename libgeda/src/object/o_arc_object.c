@@ -29,6 +29,40 @@
 
 #include <libgeda_priv.h>
 
+/*! \brief
+ *  \par Function Description
+ *  This function creates a new object representing an arc. The
+ *  values of the <B>\a o_current</B> pointed GedaObject are then copied
+ *  to the new object. Line options are initialized whereas the
+ *  fill options are initialized to passive values - as an arc
+ *  can not be filled.
+ *
+ *  \param [in] o_current
+ *
+ *  \return The new GedaObject
+ */
+GedaObject*
+geda_arc_object_copy(GedaObject *o_current)
+{
+  if (GEDA_IS_ARC(o_current)) {
+
+    GedaObject *new_obj;
+
+    new_obj = geda_arc_object_new (o_current->color,
+                         o_current->arc->x, o_current->arc->y,
+                         o_current->arc->width / 2,
+                         o_current->arc->start_angle,
+                         o_current->arc->arc_sweep);
+
+    o_set_line_options(new_obj, o_current->line_options);
+
+    o_set_fill_options(new_obj, o_current->fill_options);
+
+    return new_obj;
+  }
+  return NULL;
+}
+
 /*! \brief Get Point on an GedaArc Nearest a Given Point
  *  \par Function Description
  *  This function is intended to locate a point on an GedaArc object given
@@ -187,9 +221,10 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
  *  \par Function Description
  *  This function gets the position of the center point of an arc object.
  *
+ *  \param [in]  object  Pointer to a GedaArc object
  *  \param [out] x       pointer to the x-position
  *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+ *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
@@ -200,101 +235,44 @@ geda_arc_object_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief
+/*! \brief Mirror the WORLD coordinates of an ARC.
  *  \par Function Description
- *  The function creates a new GedaObject of type arc.
+ *  This function mirrors the world coordinates of an arc.
+ *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
  *
- *  The arc is defined by its center in parameters x and y.
- *  The radius parameter specifies the radius of the arc. The start
- *  angle is given by start_angle and the end angle by arc_sweep.
- *  The line and fill type of the created arc are set to default.
+ *  The arc is translated in order to put the point (<B>center_x</B>,<B>center_y</B>)
+ *  on the origin. The center of the arc is then mirrored. The start angle of the arc
+ *  and the sweep of the arc are also mirrored.
  *
- *  All dimensions are in world unit, except start_angle and
- *  arc_sweep in degrees.
+ *  The arc is finally back translated to its previous location on the page.
  *
- *  A new object of type GedaObject is allocated. Its type and color
- *  are initilized. The description of the arc characteristics
- *  are stored in a new GedaArc structure.
- *
- *  Now fixed for world coordinates.
- *
- *  \param [in] color
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] start_angle
- *  \param [in] arc_sweep
- *  \return
+ *  \param [in] object
+ *  \param [in] center_x
+ *  \param [in] center_y
  */
-GedaObject *
-geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int arc_sweep)
+void
+geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
 {
-  GedaObject *new_obj;
-  GedaArc    *arc;
+  /* translate object to origin */
+  object->arc->x -= center_x;
+  object->arc->y -= center_y;
 
-  new_obj = geda_arc_new();
-  arc     = GEDA_ARC(new_obj);
+  /* get center, and mirror it (vertical mirror) */
+  object->arc->x = -object->arc->x;
+  // object->arc->y =  object->arc->y;
 
-  new_obj->color = color;
+  /* apply mirror to angles (vertical mirror) */
+  object->arc->start_angle = (180 - object->arc->start_angle) % 360;
+  /* start_angle *MUST* be positive */
+  if(object->arc->start_angle < 0) object->arc->start_angle += 360;
+  object->arc->arc_sweep = -object->arc->arc_sweep;
 
-  /*! \note
-   *  The GedaArc structure is initialized with the parameters.
-   *  A default initialization is performed for the line and
-   *  fill type to avoid misunderstanding.
-   *
-   *  The functions relative to the use of the object are sets.
-   */
+  /* translate object back to its previous position */
+  object->arc->x += center_x;
+  object->arc->y += center_y;
 
-  /* World coordinates */
-  arc->x      = x;
-  arc->y      = y;
-  arc->width  = 2 * radius;
-  arc->height = 2 * radius;
-
-  /* must check the sign of start_angle, arc_sweep ... */
-  if(arc_sweep < 0) {
-    start_angle = start_angle + arc_sweep;
-    arc_sweep   = -arc_sweep;
-  }
-  if(start_angle < 0) start_angle = 360 + start_angle;
-
-  arc->start_angle = start_angle;
-  arc->arc_sweep   = arc_sweep;
-
-  return new_obj;
-}
-
-/*! \brief
- *  \par Function Description
- *  This function creates a new object representing an arc. The
- *  values of the <B>\a o_current</B> pointed GedaObject are then copied
- *  to the new object. Line options are initialized whereas the
- *  fill options are initialized to passive values - as an arc
- *  can not be filled.
- *
- *  \param [in] o_current
- *
- *  \return The new GedaObject
- */
-GedaObject *geda_arc_object_copy(GedaObject *o_current)
-{
-  if (GEDA_IS_ARC(o_current)) {
-
-    GedaObject *new_obj;
-
-    new_obj = geda_arc_object_new (o_current->color,
-                         o_current->arc->x, o_current->arc->y,
-                         o_current->arc->width / 2,
-                         o_current->arc->start_angle,
-                         o_current->arc->arc_sweep);
-
-    o_set_line_options(new_obj, o_current->line_options);
-
-    o_set_fill_options(new_obj, o_current->fill_options);
-
-    return new_obj;
-  }
-  return NULL;
+  /* update the screen coords and bounding box */
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief
@@ -356,265 +334,67 @@ geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
 
 /*! \brief
  *  \par Function Description
- *  This function reads a formatted text buffer describing an arc
- *  in the gEDA file format and initializes the corresponding object.
+ *  The function creates a new GedaObject of type arc.
  *
- *  Depending on the version of the file format the data extraction is
- *  performed differently : currently pre-20000704 and 20000704 on one
- *  hand and post-20000704 file format version on the other hand are supported.
- *  The version is specified in string pointed by <B>fileformat_ver</B>.
+ *  The arc is defined by its center in parameters x and y.
+ *  The radius parameter specifies the radius of the arc. The start
+ *  angle is given by start_angle and the end angle by arc_sweep.
+ *  The line and fill type of the created arc are set to default.
  *
- *  To get information on the various file formats have a
- *  look to the fileformats.html document.
+ *  All dimensions are in world unit, except start_angle and
+ *  arc_sweep in degrees.
  *
- *  The object is initialized with the functions #o_set_line_options() and
- *  #o_set_fill_options(). The second one is only used to put initialize
- *  unused values for an arc as an arc can not be filled.
+ *  A new object of type GedaObject is allocated. Its type and color
+ *  are initilized. The description of the arc characteristics
+ *  are stored in a new GedaArc structure.
  *
- *  The arc is allocated initialized with the function #geda_arc_object_new().
+ *  Now fixed for world coordinates.
  *
- *  A negative or null radius is not allowed.
- *
- *  \param [in] buf
- *  \param [in] release_ver
- *  \param [in] fileformat_ver
- *
- *  \param [out] err           A GError object
- *
- *  \return The ARC GedaObject that was created, or NULL on error.
+ *  \param [in] color
+ *  \param [in] x
+ *  \param [in] y
+ *  \param [in] radius
+ *  \param [in] start_angle
+ *  \param [in] arc_sweep
+ *  \return
  */
-GedaObject*
-geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+GedaObject *
+geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int arc_sweep)
 {
   GedaObject *new_obj;
-  char type;
-  int x1, y1;
-  int radius;
-  int start_angle, arc_sweep;
-  int color;
-  int arc_width, arc_length, arc_space;
-  int arc_type;
-  int arc_end;
+  GedaArc    *arc;
+
+  new_obj = geda_arc_new();
+  arc     = GEDA_ARC(new_obj);
+
+  new_obj->color = color;
 
   /*! \note
-   *  Depending on the version of the file format used to describe this arc,
-   *  the buffer is parsed differently. The unknown parameters of the less
-   *  restrictive - the oldest - file format are set to common values
+   *  The GedaArc structure is initialized with the parameters.
+   *  A default initialization is performed for the line and
+   *  fill type to avoid misunderstanding.
+   *
+   *  The functions relative to the use of the object are sets.
    */
-  if(release_ver <= VERSION_20000704) {
-    if (sscanf(buf, "%c %d %d %d %d %d %d", &type,
-               &x1, &y1, &radius, &start_angle, &arc_sweep, &color) != 7) {
-      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
-      return NULL;
-    }
 
-    arc_width = 0;
-    arc_end   = END_NONE;
-    arc_type  = TYPE_SOLID;
-    arc_space = -1;
-    arc_length= -1;
+  /* World coordinates */
+  arc->x      = x;
+  arc->y      = y;
+  arc->width  = 2 * radius;
+  arc->height = 2 * radius;
+  arc->radius = radius;
+
+  /* must check the sign of start_angle, arc_sweep ... */
+  if(arc_sweep < 0) {
+    start_angle = start_angle + arc_sweep;
+    arc_sweep   = -arc_sweep;
   }
-  else {
-    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d", &type,
-               &x1, &y1, &radius, &start_angle, &arc_sweep, &color,
-               &arc_width, &arc_end, &arc_type, &arc_length, &arc_space) != 12)
-    {
-      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
-      return NULL;
-    }
-  }
+  if(start_angle < 0) start_angle = 360 + start_angle;
 
-  /* Error check */
-  if (radius <= 0) {
-    u_log_message (_("Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"),
-                   type, x1, y1, radius, start_angle, arc_sweep, color);
-    radius = 0;
-  }
-
-  if (color < 0 || color > MAX_COLORS) {
-    u_log_message(_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message(_("Setting color to default color\n"));
-    color = DEFAULT_ARC_COLOR_INDEX;
-  }
-
-  /* Allocation and initialization */
-  new_obj = geda_arc_object_new(color, x1, y1, radius, start_angle, arc_sweep);
-
-  new_obj->line_options->line_end     = arc_end;
-  new_obj->line_options->line_type    = arc_type;
-  new_obj->line_options->line_width   = arc_width;
-  new_obj->line_options->line_space   = arc_space;
-  new_obj->line_options->line_length  = arc_length;
-
-  new_obj->fill_options->fill_type   = default_fill_type;
-  new_obj->fill_options->fill_width  = default_fill_width;
-  new_obj->fill_options->fill_angle1 = default_fill_angle1;
-  new_obj->fill_options->fill_angle2 = default_fill_angle2;
-  new_obj->fill_options->fill_pitch1 = default_fill_pitch1;
-  new_obj->fill_options->fill_pitch2 = default_fill_pitch2;
+  arc->start_angle = start_angle;
+  arc->arc_sweep   = arc_sweep;
 
   return new_obj;
-}
-
-/*! \brief create the string representation of an arc object
- *  \par Function Description
- *  This function formats a string in the <B>buffer</B> to describe
- *  the #GedaArc object <B>\a object</B>.
- *  A pointer to the new allocated and formated string is returned.
- *  The string must be freed at some point.
- *
- *  \param [in] object
- *
- *  \return the string representation of the arc object
- */
-char*
-geda_arc_object_save(GedaObject *object)
-{
-  int x, y, radius, start_angle, arc_sweep;
-  int arc_width, arc_length, arc_space;
-  char *buf;
-  LINE_END arc_end;
-  LINE_TYPE arc_type;
-
-  /* radius, center and angles of the arc */
-  radius      = object->arc->width / 2;
-  x           = object->arc->x;
-  y           = object->arc->y;
-  start_angle = object->arc->start_angle;
-  arc_sweep   = object->arc->arc_sweep;
-
-  /* line type parameters */
-  arc_width  = object->line_options->line_width;
-  arc_end    = object->line_options->line_end;
-  arc_type   = object->line_options->line_type;
-  arc_length = object->line_options->line_length;
-  arc_space  = object->line_options->line_space;
-
-  /* Describe a circle with post-20000704 file format */
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
-                          x, y, radius, start_angle, arc_sweep, object->color,
-                          arc_width, arc_end, arc_type, arc_length, arc_space);
-
-  return(buf);
-}
-
-/*! \brief Mirror the WORLD coordinates of an ARC.
- *  \par Function Description
- *  This function mirrors the world coordinates of an arc.
- *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
- *
- *  The arc is translated in order to put the point (<B>center_x</B>,<B>center_y</B>)
- *  on the origin. The center of the arc is then mirrored. The start angle of the arc
- *  and the sweep of the arc are also mirrored.
- *
- *  The arc is finally back translated to its previous location on the page.
- *
- *  \param [in] object
- *  \param [in] center_x
- *  \param [in] center_y
- */
-void
-geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
-{
-  /* translate object to origin */
-  object->arc->x -= center_x;
-  object->arc->y -= center_y;
-
-  /* get center, and mirror it (vertical mirror) */
-  object->arc->x = -object->arc->x;
-  // object->arc->y =  object->arc->y;
-
-  /* apply mirror to angles (vertical mirror) */
-  object->arc->start_angle = (180 - object->arc->start_angle) % 360;
-  /* start_angle *MUST* be positive */
-  if(object->arc->start_angle < 0) object->arc->start_angle += 360;
-  object->arc->arc_sweep = -object->arc->arc_sweep;
-
-  /* translate object back to its previous position */
-  object->arc->x += center_x;
-  object->arc->y += center_y;
-
-  /* update the screen coords and bounding box */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief
- *  \par Function Description
- *  This function rotates the world coordinates of an arc of an angle
- *  specified by <B>angle</B>. The center of the rotation is given by
- *  (<B>center_x</B>,<B>center_y</B>).
- *
- *  The arc is translated in order to put the center of the rotation
- *  on the origin. The center of the arc is then rotated of the angle
- *  specified by <B>angle</B>. The start angle of the arc is incremented by <B>angle</B>.
- *
- *  The arc is finally back translated to its previous location on the page.
- *
- *  <B>center_x</B> and <B>center_y</B> are in world units, <B>angle</B> is in degrees.
- *
- *  \param [in] object
- *  \param [in] center_x
- *  \param [in] center_y
- *  \param [in] angle
- */
-void
-geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
-{
-  int x, y, newx, newy;
-
-  /* translate object to origin */
-  object->arc->x -= center_x;
-  object->arc->y -= center_y;
-
-  /* get center, and rotate center */
-  x = object->arc->x;
-  y = object->arc->y;
-  if(angle % 90 == 0) {
-    m_rotate_point_90(x, y, angle % 360, &newx, &newy);
-  }
-  else {
-    m_rotate_point(x, y, angle % 360, &newx, &newy);
-  }
-  object->arc->x = newx;
-  object->arc->y = newy;
-
-  /* apply rotation to angles */
-  object->arc->start_angle = (object->arc->start_angle + angle) % 360;
-  /* arc_sweep is unchanged as it is the sweep of the arc */
-  /* object->arc->arc_sweep = (object->arc->arc_sweep); */
-
-  /* translate object to its previous place */
-  object->arc->x += center_x;
-  object->arc->y += center_y;
-
-  /* update the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
-
-}
-
-/*! \brief Apply Translation to an GedaArc Object
- *  \par Function Description
- *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
- *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
- *
- *  \param [in] object
- *  \param [in] dx
- *  \param [in] dy
- */
-void
-geda_arc_object_translate(GedaObject *object, int dx, int dy)
-{
-  if (object == NULL) {
-    return;
-  }
-
-  /* Do world coords */
-  object->arc->x = object->arc->x + dx;
-  object->arc->y = object->arc->y + dy;
-
-
-  /* Recalculate screen coords from new world coords */
-  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief
@@ -1227,6 +1007,204 @@ void geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
+/*! \brief
+ *  \par Function Description
+ *  This function reads a formatted text buffer describing an arc
+ *  in the gEDA file format and initializes the corresponding object.
+ *
+ *  Depending on the version of the file format the data extraction is
+ *  performed differently : currently pre-20000704 and 20000704 on one
+ *  hand and post-20000704 file format version on the other hand are supported.
+ *  The version is specified in string pointed by <B>fileformat_ver</B>.
+ *
+ *  To get information on the various file formats have a
+ *  look to the fileformats.html document.
+ *
+ *  The object is initialized with the functions #o_set_line_options() and
+ *  #o_set_fill_options(). The second one is only used to put initialize
+ *  unused values for an arc as an arc can not be filled.
+ *
+ *  The arc is allocated initialized with the function #geda_arc_object_new().
+ *
+ *  A negative or null radius is not allowed.
+ *
+ *  \param [in] buf
+ *  \param [in] release_ver
+ *  \param [in] fileformat_ver
+ *
+ *  \param [out] err           A GError object
+ *
+ *  \return The ARC GedaObject that was created, or NULL on error.
+ */
+GedaObject*
+geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+{
+  GedaObject *new_obj;
+  char type;
+  int x1, y1;
+  int radius;
+  int start_angle, arc_sweep;
+  int color;
+  int arc_width, arc_length, arc_space;
+  int arc_type;
+  int arc_end;
+
+  /*! \note
+   *  Depending on the version of the file format used to describe this arc,
+   *  the buffer is parsed differently. The unknown parameters of the less
+   *  restrictive - the oldest - file format are set to common values
+   */
+  if(release_ver <= VERSION_20000704) {
+    if (sscanf(buf, "%c %d %d %d %d %d %d", &type,
+               &x1, &y1, &radius, &start_angle, &arc_sweep, &color) != 7) {
+      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
+      return NULL;
+    }
+
+    arc_width = 0;
+    arc_end   = END_NONE;
+    arc_type  = TYPE_SOLID;
+    arc_space = -1;
+    arc_length= -1;
+  }
+  else {
+    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d", &type,
+               &x1, &y1, &radius, &start_angle, &arc_sweep, &color,
+               &arc_width, &arc_end, &arc_type, &arc_length, &arc_space) != 12)
+    {
+      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
+      return NULL;
+    }
+  }
+
+  /* Error check */
+  if (radius <= 0) {
+    u_log_message (_("Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"),
+                   type, x1, y1, radius, start_angle, arc_sweep, color);
+    radius = 0;
+  }
+
+  if (color < 0 || color > MAX_COLORS) {
+    u_log_message(_("Found an invalid color [ %s ]\n"), buf);
+    u_log_message(_("Setting color to default color\n"));
+    color = DEFAULT_ARC_COLOR_INDEX;
+  }
+
+  /* Allocation and initialization */
+  new_obj = geda_arc_object_new(color, x1, y1, radius, start_angle, arc_sweep);
+
+  new_obj->line_options->line_end     = arc_end;
+  new_obj->line_options->line_type    = arc_type;
+  new_obj->line_options->line_width   = arc_width;
+  new_obj->line_options->line_space   = arc_space;
+  new_obj->line_options->line_length  = arc_length;
+
+  new_obj->fill_options->fill_type   = default_fill_type;
+  new_obj->fill_options->fill_width  = default_fill_width;
+  new_obj->fill_options->fill_angle1 = default_fill_angle1;
+  new_obj->fill_options->fill_angle2 = default_fill_angle2;
+  new_obj->fill_options->fill_pitch1 = default_fill_pitch1;
+  new_obj->fill_options->fill_pitch2 = default_fill_pitch2;
+
+  return new_obj;
+}
+
+/*! \brief
+ *  \par Function Description
+ *  This function rotates the world coordinates of an arc of an angle
+ *  specified by <B>angle</B>. The center of the rotation is given by
+ *  (<B>center_x</B>,<B>center_y</B>).
+ *
+ *  The arc is translated in order to put the center of the rotation
+ *  on the origin. The center of the arc is then rotated of the angle
+ *  specified by <B>angle</B>. The start angle of the arc is incremented by <B>angle</B>.
+ *
+ *  The arc is finally back translated to its previous location on the page.
+ *
+ *  <B>center_x</B> and <B>center_y</B> are in world units, <B>angle</B> is in degrees.
+ *
+ *  \param [in] object
+ *  \param [in] center_x
+ *  \param [in] center_y
+ *  \param [in] angle
+ */
+void
+geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+{
+  int x, y, newx, newy;
+
+  /* translate object to origin */
+  object->arc->x -= center_x;
+  object->arc->y -= center_y;
+
+  /* get center, and rotate center */
+  x = object->arc->x;
+  y = object->arc->y;
+  if(angle % 90 == 0) {
+    m_rotate_point_90(x, y, angle % 360, &newx, &newy);
+  }
+  else {
+    m_rotate_point(x, y, angle % 360, &newx, &newy);
+  }
+  object->arc->x = newx;
+  object->arc->y = newy;
+
+  /* apply rotation to angles */
+  object->arc->start_angle = (object->arc->start_angle + angle) % 360;
+  /* arc_sweep is unchanged as it is the sweep of the arc */
+  /* object->arc->arc_sweep = (object->arc->arc_sweep); */
+
+  /* translate object to its previous place */
+  object->arc->x += center_x;
+  object->arc->y += center_y;
+
+  /* update the screen coords and the bounding box */
+  object->w_bounds_valid_for = NULL;
+
+}
+
+/*! \brief create the string representation of an arc object
+ *  \par Function Description
+ *  This function formats a string in the <B>buffer</B> to describe
+ *  the #GedaArc object <B>\a object</B>.
+ *  A pointer to the new allocated and formated string is returned.
+ *  The string must be freed at some point.
+ *
+ *  \param [in] object
+ *
+ *  \return the string representation of the arc object
+ */
+char*
+geda_arc_object_save(GedaObject *object)
+{
+  int x, y, radius, start_angle, arc_sweep;
+  int arc_width, arc_length, arc_space;
+  char *buf;
+  LINE_END arc_end;
+  LINE_TYPE arc_type;
+
+  /* radius, center and angles of the arc */
+  radius      = object->arc->width / 2;
+  x           = object->arc->x;
+  y           = object->arc->y;
+  start_angle = object->arc->start_angle;
+  arc_sweep   = object->arc->arc_sweep;
+
+  /* line type parameters */
+  arc_width  = object->line_options->line_width;
+  arc_end    = object->line_options->line_end;
+  arc_type   = object->line_options->line_type;
+  arc_length = object->line_options->line_length;
+  arc_space  = object->line_options->line_space;
+
+  /* Describe a circle with post-20000704 file format */
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
+                          x, y, radius, start_angle, arc_sweep, object->color,
+                          arc_width, arc_end, arc_type, arc_length, arc_space);
+
+  return(buf);
+}
+
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the arc.
  *
@@ -1299,6 +1277,31 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   }
 
   return shortest_distance;
+}
+
+/*! \brief Apply Translation to an GedaArc Object
+ *  \par Function Description
+ *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
+ *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
+ *
+ *  \param [in] object
+ *  \param [in] dx
+ *  \param [in] dy
+ */
+void
+geda_arc_object_translate(GedaObject *object, int dx, int dy)
+{
+  if (object == NULL) {
+    return;
+  }
+
+  /* Do world coords */
+  object->arc->x = object->arc->x + dx;
+  object->arc->y = object->arc->y + dy;
+
+
+  /* Recalculate screen coords from new world coords */
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Determines if a point lies within the sweep of the arc.

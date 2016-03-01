@@ -171,7 +171,7 @@ extern "C" {
          void    o_attrib_freeze_hooks                     (GedaObject *object);
          void    o_attrib_thaw_hooks                       (GedaObject *object);
 
-/* o_basic.c */
+/* o_object.c */
         GList   *o_read_buffer                   (GedaToplevel *toplevel, GList *object_list, const char *buffer,
                                                   const int size, const char *name, GError **err);
         GList   *o_read                          (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
@@ -181,50 +181,51 @@ extern "C" {
          void    o_rotate_object                 (GedaObject *object, int center_x, int center_y, int angle);
          void    o_translate_object              (GedaObject *object, int dx, int dy);
 
-/* o_box_basic.c */
-   GedaObject   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
+/* o_box_object.c */
    GedaObject   *o_box_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_box_modify_all                (GedaObject *object, int x1, int y1, int x2, int y2);
          void    o_box_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    o_box_modify_all                (GedaObject *object, int x1, int y1, int x2, int y2);
          void    o_box_mirror                    (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
          void    o_box_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
          void    o_box_translate                 (GedaObject *object, int dx, int dy);
          bool    o_box_get_nearest_point         (GedaObject *object, int x, int y, int *nx, int *ny);
 
-/* o_bus_basic.c */
-   GedaObject   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
+/* o_bus_object.c */
+         void    o_bus_consolidate               (void);
    GedaObject   *o_bus_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+          int    o_bus_get_direction             (GedaObject *object);
          void    o_bus_modify                    (GedaObject *object, int x, int y, int whichone);
          void    o_bus_mirror                    (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
+          int    o_bus_orientation               (GedaObject *object);
          void    o_bus_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
          void    o_bus_translate                 (GedaObject *object, int dx, int dy);
-          int    o_bus_orientation               (GedaObject *object);
-          int    o_bus_get_direction             (GedaObject *object);
-         void    o_bus_consolidate               (void);
 
-/* o_circle_basic.c */
-   GedaObject   *o_circle_new                    (int color, int x, int y, int radius);
+/* o_circle_object.c */
+
    GedaObject   *o_circle_copy                   (GedaObject *o_current);
+         bool    o_circle_get_nearest_point      (GedaObject *object, int x, int y, int *nx, int *ny);
          void    o_circle_modify                 (GedaObject *object, int x, int y, int whichone);
          void    o_circle_mirror                 (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_circle_new                    (int color, int x, int y, int radius);
          void    o_circle_rotate                 (GedaObject *object, int center_x, int center_y, int angle);
          void    o_circle_translate              (GedaObject *object, int dx, int dy);
-         bool    o_circle_get_nearest_point      (GedaObject *object, int x, int y, int *nx, int *ny);
 
-/* o_complex_basic.c */
+/* o_complex_object.c */
+   GedaObject   *o_complex_copy                  (GedaObject *o_current);
+         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
+         bool    o_complex_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+   GedaObject   *o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
+          int    o_complex_is_embedded           (GedaObject *o_current);
+         void    o_complex_mirror                (GedaObject *object, int center_x, int center_y);
    GedaObject   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
                                                   const CLibSymbol *clib_sym, const char *basename, int selectable);
    GedaObject   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
-   GedaObject   *o_complex_copy                  (GedaObject *o_current);
-         void    o_complex_mirror                (GedaObject *object, int center_x, int center_y);
         GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, GedaObject *object);
          void    o_complex_reset_refdes          (GedaObject *object);
          void    o_complex_rotate                (GedaObject *object, int center_x, int center_y, int angle);
          void    o_complex_translate             (GedaObject *object, int dx, int dy);
-          int    o_complex_is_embedded           (GedaObject *o_current);
-         bool    o_complex_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
-   GedaObject   *o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
-         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
 
 /* o_color.c */
           int    o_color_get_object_default      (char type);
@@ -261,14 +262,8 @@ extern "C" {
           int    o_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
           int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
-/* o_line_basic.c */
-   GedaObject   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+/* o_line_object.c */
    GedaObject   *o_line_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-         void    o_line_modify                   (GedaObject *object, int x, int y, int whichone);
-         void    o_line_mirror                   (GedaObject *object, int center_x, int center_y);
-         void    o_line_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_line_translate                (GedaObject *object, int dx, int dy);
-         void    o_line_scale                    (GedaObject *object, int x_scale, int y_scale);
          bool    o_line_is_endpoint              (GedaObject *object, POINT *point);
          int     o_line_get_closest_endpoint     (GedaObject *object, int x, int y);
          bool    o_line_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
@@ -276,6 +271,12 @@ extern "C" {
          bool    o_line_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
          bool    o_line_get_slope                (GedaObject *object, double *anwser);
        double    o_line_length                   (GedaObject *object);
+         void    o_line_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    o_line_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+         void    o_line_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_line_scale                    (GedaObject *object, int x_scale, int y_scale);
+         void    o_line_translate                (GedaObject *object, int dx, int dy);
 
 /* o_list.c */
         GList   *o_list_copy_all                 (const GList *src_list, GList *dest_list);
@@ -284,17 +285,17 @@ extern "C" {
          void    o_list_translate                (const GList *list, int dx, int dy);
          void    o_list_set_color                (const GList *list, int color);
 
-/* o_net_basic.c */
-   GedaObject   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
+/* o_net_object.c */
+         void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
    GedaObject   *o_net_copy                      (GedaObject *o_current);
+         bool    o_net_is_fully_connected        (GedaObject *object);
          void    o_net_modify                    (GedaObject *object, int x, int y, int whichone);
          void    o_net_mirror                    (GedaObject *object, int center_x, int center_y);
-         void    o_net_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_net_translate                 (GedaObject *object, int dx, int dy);
+   GedaObject   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
           int    o_net_orientation               (GedaObject *object);
-         void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
+         void    o_net_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
          void    o_net_refresh_conn_cache        (GedaObject *object);
-         bool    o_net_is_fully_connected        (GedaObject *object);
+         void    o_net_translate                 (GedaObject *object, int dx, int dy);
 
 /* o_notify.c */
          void    o_notify_change_add             (Page *page, ChangeNotifyFunc pre_change_func,
@@ -303,28 +304,20 @@ extern "C" {
                                                   ChangeNotifyFunc change_func, void *user_data);
          void    o_notify_change_remove_all      (Page *page);
 
-/* o_path_basic.c */
+/* o_path_object.c */
+   GedaObject   *o_path_copy                     (GedaObject *o_current);
+         bool    o_path_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);
    GedaObject   *o_path_new                      (int color, const char *path_string);
    GedaObject   *o_path_new_from_polygon         (GArray *points,  int color);
    GedaObject   *o_path_new_take_path            (int color, GedaPath *path_data);
-   GedaObject   *o_path_copy                     (GedaObject *o_current);
-         void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
-         void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);
          void    o_path_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
          void    o_path_translate                (GedaObject *object, int x, int y);
-         bool    o_path_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_picture.c */
-   GedaObject   *o_picture_new                   (const char *file_content, unsigned int file_length,
-                                                  const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
-                                                  int embedded)      GEDA_WARN_UNUSED_RESULT;
-   GedaObject   *o_picture_copy                  (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_picture_modify                (GedaObject *object, int x, int y, int whichone);
-         void    o_picture_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
-         void    o_picture_mirror                (GedaObject *object, int center_x, int center_y);
-         void    o_picture_rotate                (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_picture_translate             (GedaObject *object, int dx, int dy);
 
+   GedaObject   *o_picture_copy                  (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
          bool    o_picture_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
          bool    o_picture_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
          bool    o_picture_is_embedded           (GedaObject *object);
@@ -334,44 +327,54 @@ extern "C" {
           int    o_picture_get_width             (GedaObject *object);
        double    o_picture_get_effective_ratio   (GedaObject *object);
          bool    o_picture_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+         void    o_picture_modify                (GedaObject *object, int x, int y, int whichone);
+         void    o_picture_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
+         void    o_picture_mirror                (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_picture_new                   (const char *file_content, unsigned int file_length,
+                                                  const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
+                                                  int embedded)      GEDA_WARN_UNUSED_RESULT;
          void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
          bool    o_picture_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
          bool    o_picture_set_from_file         (GedaObject *object, const char *filename, GError **error);
+         void    o_picture_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_picture_translate             (GedaObject *object, int dx, int dy);
 
 #ifdef GDK_PIXBUF_H
          bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
-    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void)           GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void) GEDA_WARN_UNUSED_RESULT;
     GdkPixbuf   *o_picture_get_pixbuf            (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
     GdkPixbuf   *o_picture_get_pixbuf_fit        (GedaObject *object, int interpolate) GEDA_WARN_UNUSED_RESULT;
 unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
         uint8   *o_picture_get_mask_data         (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
 #endif
 
-/* o_pin_basic.c */
-   GedaObject   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
+/* o_pin_object.c */
+
    GedaObject   *o_pin_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_pin_mirror                    (GedaObject *object, int center_x, int center_y);
-         void    o_pin_modify                    (GedaObject *object, int x, int y, int whichone);
-         void    o_pin_normalize                 (GedaObject *object);
-         void    o_pin_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_pin_translate                 (GedaObject *object, int dx, int dy);
-         void    o_pin_update_whichend           (GList *object_list, int num_pins);
-         bool    o_pin_set_elect_type            (GedaObject *o_current, PIN_ELECT e_type);
-         bool    o_pin_set_mech_type             (GedaObject *o_current, PIN_MECH m_type);
-         void    o_pin_set_node_type             (GedaObject *o_current, PIN_NODE node_type);
-         bool    o_pin_get_attributes            (GedaObject *object, const char **label, const char **number, int *sequence,
-                                                  PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
-         void    o_pin_set_attributes            (GedaObject *object, const char *label_str, const char *number, int sequence,
-                                                  PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
    GedaObject   *o_pin_create_elect_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
    GedaObject   *o_pin_create_label_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *label, int x, int y);
    GedaObject   *o_pin_create_mech_attrib        (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
    GedaObject   *o_pin_create_number_attrib      (GedaToplevel *toplevel, GedaObject *object, const char *number, int x, int y);
    GedaObject   *o_pin_create_seq_attrib         (GedaToplevel *toplevel, GedaObject *object, int sequence, int x, int y);
-        GList   *o_pin_realize_attributes        (GedaToplevel *toplevel, GedaObject *object);
+         bool    o_pin_get_attributes            (GedaObject *object, const char **label, const char **number, int *sequence,
+                                                  PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
    const char   *o_pin_get_electrical            (GedaObject *object);
    const char   *o_pin_get_label                 (GedaObject *object);
    const char   *o_pin_get_mechanical            (GedaObject *object);
+         void    o_pin_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    o_pin_modify                    (GedaObject *object, int x, int y, int whichone);
+   GedaObject   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
+         void    o_pin_normalize                 (GedaObject *object);
+        GList   *o_pin_realize_attributes        (GedaToplevel *toplevel, GedaObject *object);
+         void    o_pin_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_pin_set_attributes            (GedaObject *object, const char *label_str, const char *number, int sequence,
+                                                  PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
+         bool    o_pin_set_elect_type            (GedaObject *o_current, PIN_ELECT e_type);
+         bool    o_pin_set_mech_type             (GedaObject *o_current, PIN_MECH m_type);
+         void    o_pin_set_node_type             (GedaObject *o_current, PIN_NODE node_type);
+         void    o_pin_translate                 (GedaObject *object, int dx, int dy);
+         void    o_pin_update_whichend           (GList *object_list, int num_pins);
+
 
 /* o_save.c */
          void    o_save_auto_backup              (GedaToplevel *toplevel);
@@ -403,20 +406,19 @@ unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_
           int    o_style_get_pin_width           (GedaToplevel *toplevel, int type);
          void    o_style_set_object              (GedaToplevel *toplevel, GedaObject *o_current);
 
-/* o_text_basic.c */
-   GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
-                                                  int size, int visibility, int show_name_value, const char *string);
-         void    o_text_recreate                 (GedaObject *o_current);
-         void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
+/* o_text_object.c */
    GedaObject   *o_text_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-         void    o_text_translate                (GedaObject *object, int dx, int dy);
-         void    o_text_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
-
        double    o_text_get_font_size_in_points  (GedaObject *object);
          bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
    const char   *o_text_get_string               (GedaObject *object);
+         void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
+                                                  int size, int visibility, int show_name_value, const char *string);
+         void    o_text_recreate                 (GedaObject *o_current);
+         void    o_text_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
          void    o_text_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
          void    o_text_set_string               (GedaObject *object, const char *new_string);
+         void    o_text_translate                (GedaObject *object, int dx, int dy);
 
 /* s_attrib.c */
           int    s_attrib_add_entry              (char *new_attrib);

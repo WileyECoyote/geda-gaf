@@ -1,3 +1,7 @@
+2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_*.c: Reorganize some functions within modules.
+
 2016-02-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Change function prefix geda_arc_object_.
