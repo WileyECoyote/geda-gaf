@@ -29,15 +29,16 @@
  *  \brief functions for the net object
  */
 
-/*! \brief get the position of the first net point
- *
- *  \par Function Description
+/*!
+ * \brief get the position of the first net point
+ * \par Function Description
  *  This function gets the position of the first point of a net object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \param [in]  object  Pointer to a #GedaNet object
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_net_get_position (GedaObject *object, int *x, int *y)
 {

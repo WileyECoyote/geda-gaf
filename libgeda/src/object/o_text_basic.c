@@ -85,16 +85,16 @@
  */
 #define PRINT_LINE_SPACING 1.12
 
-/*! \brief get the position of a text object
- *
- *  \par Function Description
+/*!
+ * \brief get the position of a text object
+ * \par Function Description
  *  This function gets the position of the base point of a text object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+ * \param [in]  object  Pointer to a #GedaText object
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
  *
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_text_get_position (GedaObject *object, int *x, int *y)
 {

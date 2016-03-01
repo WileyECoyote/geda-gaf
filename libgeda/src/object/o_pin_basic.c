@@ -101,14 +101,16 @@ GedaObject *o_pin_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief get the position of a whichend of the pin object
- *  \par Function Description
+/*!
+ * \brief get the position of a whichend of the pin object
+ * \par Function Description
  *  This function gets the position of the whichend side of a pin object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \param [in]  object  Pointer to a #GedaPin object
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_pin_get_position (GedaObject *object, int *x, int *y)
 {

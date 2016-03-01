@@ -1299,15 +1299,16 @@ o_picture_get_filename (GedaObject *object)
   return object->picture->filename;
 }
 
-/*! \brief Get Picture position of the left bottom point
- *
- *  \par Function Description
+/*!
+ * \brief Get Picture position of the left bottom point
+ * \par Function Description
  *  This function gets the position of the bottom left point of a picture object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \param [in]  object  Pointer to a #GedaPicture object
+ * \param [out] x       pointer to save the x-position
+ * \param [out] y       pointer to save the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
 o_picture_get_position (GedaObject *object, int *x, int *y)

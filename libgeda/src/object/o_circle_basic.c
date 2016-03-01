@@ -233,7 +233,7 @@ bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int 
  *  \par Function Description
  *  This function gets the position of the center point of a circle object.
  *
- *  \param [in] object   The object to get the position.
+ *  \param [in]  object  Pointer to a #GedaCircle object
  *  \param [out] x       pointer to the x-position
  *  \param [out] y       pointer to the y-position
 

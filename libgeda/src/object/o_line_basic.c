@@ -166,9 +166,9 @@ void o_line_modify(GedaObject *object, int x, int y, int whichone)
  * \par Function Description
  *  This function gets the position of the first point of a line object.
  *
- * \param [out] x       pointer to the x-position
- * \param [out] y       pointer to the y-position
- * \param [in] object   The object to get the position.
+ * \param [in] object  GedaLine object whose position is to be returned
+ * \param [out] x      pointer to the x-position
+ * \param [out] y      pointer to the y-position
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
