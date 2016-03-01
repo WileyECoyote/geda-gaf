@@ -1,6 +1,13 @@
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_arc.h: Add property radius, can not recall why
+      retained old height/width.
+
+    * src/geda/geda_arc.c: Use radius geda_arc_bounds instead of width / 2.
+
     * src/object/o_*.c: Reorganize some functions within modules.
+
+    * src/object/o_arc_object.c: Implement arc->radius.
 
 2016-02-29 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -76,7 +76,7 @@ geda_arc_bounds(GedaObject *object)
 
   halfwidth = object->line_options->line_width / 2;
 
-  radius      = object->arc->width / 2;
+  radius      = object->arc->radius;
   start_angle = object->arc->start_angle;
   arc_sweep   = object->arc->arc_sweep;
 
@@ -115,7 +115,8 @@ geda_arc_bounds(GedaObject *object)
       if(angle % 360 == 90)  bottom = y1 + radius;
       if(angle % 360 == 180) left   = x1 - radius;
       if(angle % 360 == 270) top    = y1 - radius;
-    } else {
+    }
+    else {
       break;
     }
   }
@@ -148,6 +149,7 @@ static void geda_arc_instance_init(GTypeInstance *instance, void *class)
 
   arc->width        = 0;
   arc->height       = 0;
+  arc->radius       = 0;
 
   arc->start_angle  = 0;
   arc->arc_sweep    = 0;

@@ -50,7 +50,7 @@ geda_arc_object_copy(GedaObject *o_current)
 
     new_obj = geda_arc_object_new (o_current->color,
                          o_current->arc->x, o_current->arc->y,
-                         o_current->arc->width / 2,
+                         o_current->arc->radius,
                          o_current->arc->start_angle,
                          o_current->arc->arc_sweep);
 
@@ -102,7 +102,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 
       cx = arc->x;
       cy = arc->y;
-      r  = arc->width / 2;
+      r  = arc->radius;
 
       int    arc_angle   = arc->start_angle + arc->arc_sweep;
       double start_angle = m_degrees_to_radians(arc->start_angle);
@@ -310,8 +310,7 @@ geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
 
     case ARC_RADIUS:
       /* modify the radius of arc object */
-      object->arc->width  = 2 * x;
-      object->arc->height = 2 * x;
+      object->arc->radius = x;
       break;
 
     case ARC_START_ANGLE:
@@ -377,11 +376,9 @@ geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int a
    *  The functions relative to the use of the object are sets.
    */
 
-  /* World coordinates */
+  /* User coordinates */
   arc->x      = x;
   arc->y      = y;
-  arc->width  = 2 * radius;
-  arc->height = 2 * radius;
   arc->radius = radius;
 
   /* must check the sign of start_angle, arc_sweep ... */
@@ -427,7 +424,7 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
   x = object->arc->x;
   y = object->arc->y;
 
-  radius      = object->arc->width / 2;
+  radius      = object->arc->radius;
   start_angle = object->arc->start_angle;
   arc_sweep   = object->arc->arc_sweep;
   color       = object->color;
@@ -1184,7 +1181,7 @@ geda_arc_object_save(GedaObject *object)
   LINE_TYPE arc_type;
 
   /* radius, center and angles of the arc */
-  radius      = object->arc->width / 2;
+  radius      = object->arc->radius;
   x           = object->arc->x;
   y           = object->arc->y;
   start_angle = object->arc->start_angle;
