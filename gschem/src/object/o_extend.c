@@ -425,7 +425,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
 
   cx = boundary->arc->x;
   cy = boundary->arc->y;
-  r  = boundary->arc->width / 2;
+  r  = boundary->arc->radius;
 
   dx = x2 - x1;
   dy = y2 - y1;

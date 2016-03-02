@@ -1,7 +1,8 @@
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Add property radius, can not recall why
-      retained old height/width, add getter and setter functions.
+      retained old height/width, add getter and setter functions. Removed
+      integers height and width.
 
     * include/libgeda/geda_object.h: Add declaration geda_object_get_color
       and geda_object_set_color.

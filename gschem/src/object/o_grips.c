@@ -413,7 +413,7 @@ o_grips_search_arc_world(GschemToplevel *w_current, GedaObject *o_current,
 
   centerx     = o_current->arc->x;
   centery     = o_current->arc->y;
-  radius      = o_current->arc->width / 2;
+  radius      = o_current->arc->radius;
   start_angle = o_current->arc->start_angle;
   arc_sweep   = o_current->arc->arc_sweep;
 
@@ -766,7 +766,7 @@ o_grips_start_arc(GschemToplevel *w_current, GedaObject *o_current, int x, int y
   w_current->first_wx  = o_current->arc->x;
   w_current->first_wy  = o_current->arc->y;
   /* radius */
-  w_current->distance  = o_current->arc->width / 2;
+  w_current->distance  = o_current->arc->radius;
   /* angles */
   w_current->second_wx = o_current->arc->start_angle;
   w_current->second_wy = o_current->arc->arc_sweep;

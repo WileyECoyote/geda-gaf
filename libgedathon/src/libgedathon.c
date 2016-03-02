@@ -234,7 +234,7 @@ get_arc_object_data(GedaObject *object)
 
   int x           = object->arc->x;
   int y           = object->arc->y;
-  int radius      = object->arc->width / 2;
+  int radius      = object->arc->radius;
   int start_angle = object->arc->start_angle;
   int arc_sweep   = object->arc->arc_sweep;
 

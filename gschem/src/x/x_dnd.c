@@ -213,7 +213,7 @@ static char *x_dnd_string_data_arc_properties(GedaArc *arc)
 {
   return
   geda_utility_string_sprintf("center=(%d,%d), radius=%d, angle=%d",
-             arc->x, arc->y, arc->width, arc->start_angle);
+             arc->x, arc->y, arc->radius, arc->start_angle);
 }
 static char *x_dnd_string_data_circle_properties(GedaCircle *circle)
 {

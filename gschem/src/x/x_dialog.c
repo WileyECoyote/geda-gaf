@@ -774,7 +774,7 @@ x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, GedaObject *object
   else {
     if (object->type == OBJ_ARC) {
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_radius),
-                                object->arc->width / 2);
+                                object->arc->radius);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),
                                 object->arc->start_angle);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_sweep),

@@ -781,7 +781,7 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
                  object->line_options->line_width,
                  object->arc->x,
                  object->arc->y,
-                 object->arc->width / 2,
+                 object->arc->radius,
                  object->arc->start_angle,
                  object->arc->arc_sweep);
 
@@ -1368,9 +1368,9 @@ eda_renderer_draw_arc_grips (EdaRenderer *renderer, GedaObject *object)
   x1 = object->arc->x;
   y1 = object->arc->y;
 
-  radius      = object->arc->width / 2.;
-  start_angle = object->arc->start_angle;
-  arc_sweep   = object->arc->arc_sweep;
+  radius      = (double)object->arc->radius;
+  start_angle = (double)object->arc->start_angle;
+  arc_sweep   = (double)object->arc->arc_sweep;
 
   x2 = x1 + radius * cos ( start_angle              * M_PI / 180);
   y2 = y1 + radius * sin ( start_angle              * M_PI / 180);

@@ -40,8 +40,7 @@ PyGeda_update_arc(GedaObject *object, PyGedaObject *py_object )
   PyGedaArcObject *py_arc    = (PyGedaArcObject*)py_object;
   object->arc->x             = py_arc->x;
   object->arc->y             = py_arc->y;
-  object->arc->width         = py_arc->radius * 2;
-  object->arc->height        = py_arc->radius * 2;
+  object->arc->radius        = py_arc->radius;
   object->arc->start_angle   = py_arc->start_angle;
   object->arc->arc_sweep     = py_arc->arc_sweep;
 

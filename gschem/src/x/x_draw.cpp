@@ -79,7 +79,7 @@ x_draw_arc (GschemToplevel *w_current)
     x_draw_set_color (w_current);
 
     o_arc   = o_current->arc;
-    radius  = o_arc->width / 2;
+    radius  = o_arc->radius;
     sradi   = SCREENabs(w_current, radius);
     angle1  = o_arc->start_angle;
     angle2  = o_arc->arc_sweep;
@@ -257,8 +257,6 @@ x_draw_picture (GschemToplevel *w_current)
     GedaPicture *o_pic;
     int sx1, sy1, sx2, sy2;
     int width, height;
-
-    //x_draw_set_color (w_current);
 
     o_pic = o_current->picture;
 

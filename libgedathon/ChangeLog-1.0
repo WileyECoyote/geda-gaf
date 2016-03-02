@@ -1,3 +1,11 @@
+2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Replace arc->width/2.0 with arc->radius in function
+      get_arc_object_data.
+
+    * src/update_objects.c: Replace arc->width/2.0 with arc->radius in function
+      PyGeda_update_arc, eliminate setting object->arc->height.
+
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Reduce scope of variables.

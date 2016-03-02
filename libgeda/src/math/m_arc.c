@@ -63,22 +63,20 @@ bool m_arc_includes_point (GedaArc *arc, POINT *point)
   int  delta;  /* Will be difference between point to center and radius */
 
   /* Rounding here provides a fuzz distance effect */
-  delta = m_distance(arc->x, arc->y, point->x, point->y) - (arc->width / 2);
+  delta = m_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
 
 #if DEBUG
 
   int  dist;
-  int  radius;
+  int  radius = arc->radius;
 
 #ifdef HAVE_LRINT
 
   dist   = lrint(m_distance(arc->x, arc->y, point->x, point->y));
-  radius = lrint(arc->width / 2);
 
 #else
 
   dist   = (int) (m_distance(arc->x, arc->y, point->x, point->y)) + 0.5;
-  radius = (int) (arc->width / 2) + 0.5;
 
 #endif
 

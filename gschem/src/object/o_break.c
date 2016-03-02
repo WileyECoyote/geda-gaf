@@ -118,7 +118,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
       color   = object->color;
       cx      = object->arc->x;
       cy      = object->arc->y;
-      radius  = object->arc->width / 2;
+      radius  = object->arc->radius;
 
       /* Get angle to first point */
       radians = atan2((point1.y - cy), (point1.x - cx));

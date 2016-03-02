@@ -1,3 +1,14 @@
+2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src: Replace arc->width/2.0 with arc->radius in modules:
+
+            * src/object/o_break.c
+            * src/object/o_extend.c
+            * src/object/o_grips.c
+            * src/x/x_dialog.c
+            * src/x/x_dnd.c
+            * src/x/x_draw.cpp
+
 2016-02-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_dialog.h: Use relative path to ugly geda_dialog_controls

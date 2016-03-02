@@ -147,10 +147,7 @@ static void geda_arc_instance_init(GTypeInstance *instance, void *class)
   arc->x            = 0;
   arc->y            = 0;
 
-  arc->width        = 0;
-  arc->height       = 0;
   arc->radius       = 0;
-
   arc->start_angle  = 0;
   arc->arc_sweep    = 0;
 

@@ -1399,7 +1399,7 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
 
   g_return_val_if_fail (GEDA_IS_ARC(object), G_MAXDOUBLE);
 
-  radius = ((double)object->arc->width) / 2.0;
+  radius = (double)object->arc->radius;
 
   if (geda_arc_object_within_sweep (object->arc, x, y)) {
 

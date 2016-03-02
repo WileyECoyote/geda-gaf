@@ -48,7 +48,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
             cairo,
             object->arc->x,
             object->arc->y,
-            object->arc->width / 2.0,
+            object->arc->radius,
             M_PI * object->arc->start_angle / 180.0,
             M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
             );
@@ -59,7 +59,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
             cairo,
             object->arc->x,
             object->arc->y,
-            object->arc->width / 2.0,
+            object->arc->radius,
             M_PI * object->arc->start_angle / 180.0,
             M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
             );

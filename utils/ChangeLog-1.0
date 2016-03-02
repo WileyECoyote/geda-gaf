@@ -1,3 +1,7 @@
+2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pdf/main.c: Replace arc->width/2.0 with arc->radius in print_arc.
+
 2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: reduce scope of variables though-out module.
