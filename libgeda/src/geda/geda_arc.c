@@ -336,6 +336,28 @@ int geda_arc_get_center_y (GedaArc *arc) {
 }
 
 /*!
+ * \brief get the position of the center point
+ * \par Function Description
+ *  This function gets the position of the center point of an arc object.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [out] x      pointer to the x-position
+ * \param [out] y      pointer to the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool
+geda_arc_get_position (GedaArc *arc, int *x, int *y)
+{
+  if (GEDA_IS_ARC(arc)) {
+    *x = arc->x;
+    *y = arc->y;
+    return TRUE;
+  }
+  return 0;
+}
+
+/*!
  * \brief Retrieve the radius of a Geda Arc Object
  * \par Function Description
  *  Returns the current radius value of \a arc if and only if
@@ -407,6 +429,21 @@ void geda_arc_set_center_x (GedaArc *arc, int x) {
  */
 void geda_arc_set_center_y (GedaArc *arc, int y) {
   if (is_a_geda_arc_object(arc)) {
+    arc->y = y;
+  }
+}
+
+/*!
+ * \brief Set the position of a Geda Arc Object
+ * \par Function Description
+ *  Sets the radius of \a arc if \a arc is a valid Geda Arc
+ *  object, if \a arc is invalid then nothing is done.
+ *
+ * \sa geda_arc_set_center_x geda_arc_set_center_y
+ */
+void geda_arc_set_position (GedaArc *arc, int x, int y) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->x = x;
     arc->y = y;
   }
 }

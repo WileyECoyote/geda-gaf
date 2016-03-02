@@ -10,7 +10,8 @@
     * include/libgeda/prototype.h: Add declaration for getter and setter
       functions.
 
-    * src/geda/geda_arc.c: Use radius geda_arc_bounds instead of width / 2.
+    * src/geda/geda_arc.c: Use radius geda_arc_bounds instead of width/2,
+      add geda_arc_get_position and geda_arc_set_position.
 
     * src/geda/geda_config.c: Add methods geda_object_get_color and
       geda_object_set_color.
