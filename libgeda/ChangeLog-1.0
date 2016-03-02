@@ -6,6 +6,9 @@
     * include/libgeda/geda_object.h: Add declaration geda_object_get_color
       and geda_object_set_color.
 
+    * include/libgeda/prototype.h: Add declaration for getter and setter
+      functions.
+
     * src/geda/geda_arc.c: Use radius geda_arc_bounds instead of width / 2.
 
     * src/geda/geda_config.c: Add methods geda_object_get_color and
@@ -13,7 +16,8 @@
 
     * src/object/o_*.c: Reorganize some functions within modules.
 
-    * src/object/o_arc_object.c: Implement arc->radius.
+    * src/object/o_arc_object.c: Implement arc->radius, add getter and setter
+      functions.
 
     * src/scheme/scheme_object.c: Update arc->radius property.
 

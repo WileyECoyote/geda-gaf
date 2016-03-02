@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-29 14:35-0600\n"
+"POT-Creation-Date: 2016-03-01 22:13-0600\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -316,75 +316,75 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:393
+#: libgeda/src/geda/geda_object.c:400
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:394
+#: libgeda/src/geda/geda_object.c:401
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:403
+#: libgeda/src/geda/geda_object.c:410
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:404
+#: libgeda/src/geda/geda_object.c:411
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:411
+#: libgeda/src/geda/geda_object.c:418
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:412
+#: libgeda/src/geda/geda_object.c:419
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:418
+#: libgeda/src/geda/geda_object.c:425
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:419
+#: libgeda/src/geda/geda_object.c:426
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:424
+#: libgeda/src/geda/geda_object.c:431
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:425
+#: libgeda/src/geda/geda_object.c:432
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:431
+#: libgeda/src/geda/geda_object.c:438
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:432
+#: libgeda/src/geda/geda_object.c:439
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:438
+#: libgeda/src/geda/geda_object.c:445
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:439
+#: libgeda/src/geda/geda_object.c:446
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:446
+#: libgeda/src/geda/geda_object.c:453
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:447
+#: libgeda/src/geda/geda_object.c:454
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:455
+#: libgeda/src/geda/geda_object.c:462
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:456
+#: libgeda/src/geda/geda_object.c:463
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -694,31 +694,32 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:407 libgeda/src/object/o_arc_object.c:422
+#: libgeda/src/object/o_arc_object.c:1155
+#: libgeda/src/object/o_arc_object.c:1170
 msgid "Failed to parse arc object"
 msgstr "Falló el procesamiento de objeto arco"
 
-#: libgeda/src/object/o_arc_object.c:429
+#: libgeda/src/object/o_arc_object.c:1177
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 "Se ha encontrado un arco con radio cero [ %c %d, %d, %d, %d, %d, %d ]\n"
 
-#: libgeda/src/object/o_arc_object.c:435 libgeda/src/object/o_box_basic.c:497
-#: libgeda/src/object/o_bus_basic.c:139
-#: libgeda/src/object/o_circle_basic.c:428
-#: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:153
-#: libgeda/src/object/o_path_basic.c:541 libgeda/src/object/o_pin_basic.c:178
+#: libgeda/src/object/o_arc_object.c:1183 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_bus_basic.c:406
+#: libgeda/src/object/o_circle_basic.c:1022
+#: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
+#: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
 #: libgeda/src/object/o_text_basic.c:255
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Se ha encontrado un color no válido [%s]\n"
 
-#: libgeda/src/object/o_arc_object.c:436 libgeda/src/object/o_box_basic.c:498
-#: libgeda/src/object/o_bus_basic.c:140
-#: libgeda/src/object/o_circle_basic.c:429
-#: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:154
-#: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:179
+#: libgeda/src/object/o_arc_object.c:1184 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_bus_basic.c:407
+#: libgeda/src/object/o_circle_basic.c:1023
+#: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
+#: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
 #: libgeda/src/object/o_text_basic.c:256
 msgid "Setting color to default color\n"
 msgstr "Asignando el color por defecto al color\n"
@@ -748,156 +749,120 @@ msgstr "Se trató de ajuntar un item de texto inválido como atributo."
 msgid "unexpected end-of-file in attribute list"
 msgstr "Fin de Fichero inesperado en lista de atributos."
 
-#: libgeda/src/object/o_box_basic.c:455 libgeda/src/object/o_box_basic.c:486
+#: libgeda/src/object/o_box_basic.c:503 libgeda/src/object/o_box_basic.c:534
 msgid "Failed to parse box object"
 msgstr "Falló el procesamiento de objeto caja"
 
-#: libgeda/src/object/o_box_basic.c:492
+#: libgeda/src/object/o_box_basic.c:540
 #, c-format
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado un rectángulo con altura o anchura cero [ %c %d %d %d %d "
 "%d ]\n"
 
-#: libgeda/src/object/o_bus_basic.c:117 libgeda/src/object/o_bus_basic.c:124
+#: libgeda/src/object/o_bus_basic.c:337
+#, c-format
+msgid "null in o_bus_print\n"
+msgstr ""
+
+#: libgeda/src/object/o_bus_basic.c:384 libgeda/src/object/o_bus_basic.c:391
 msgid "Failed to parse bus object"
 msgstr "Falló el procesamiento de objeto bus"
 
-#: libgeda/src/object/o_bus_basic.c:130
+#: libgeda/src/object/o_bus_basic.c:397
 #, c-format
 msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
 msgstr "Se ha encontrado un bus de longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_bus_basic.c:145
+#: libgeda/src/object/o_bus_basic.c:412
 #, c-format
 msgid "Found an invalid bus ripper direction [ %s ]\n"
 msgstr ""
 "Se ha encontrado una dirección del símbolo de extracción de bus no válida "
 "[ %s ]\n"
 
-#: libgeda/src/object/o_bus_basic.c:146
+#: libgeda/src/object/o_bus_basic.c:413
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Cambiando la dirección al valor por defecto neutro (sin dirección)\n"
 
-#: libgeda/src/object/o_bus_basic.c:256
-#, c-format
-msgid "null in o_bus_print\n"
-msgstr ""
-
-#: libgeda/src/object/o_circle_basic.c:329
+#: libgeda/src/object/o_circle_basic.c:288
 msgid "Null radius circles are not allowed\n"
 msgstr "No se permiten círculos con radio cero\n"
 
-#: libgeda/src/object/o_circle_basic.c:385
-#: libgeda/src/object/o_circle_basic.c:414
+#: libgeda/src/object/o_circle_basic.c:979
+#: libgeda/src/object/o_circle_basic.c:1008
 msgid "Failed to parse circle object"
 msgstr "Falló el procesamiento de objeto círculo"
 
-#: libgeda/src/object/o_circle_basic.c:421
+#: libgeda/src/object/o_circle_basic.c:1015
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr "Se encontró radio menor o igual a cero en círculo [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_basic.c:423
+#: libgeda/src/object/o_circle_basic.c:1017
 msgid "Setting radius to 0\n"
 msgstr "Asignando radio nulo.\n"
 
-#: libgeda/src/object/o_complex_basic.c:417
-#, c-format
-msgid ""
-"Component not found:\n"
-" %s"
-msgstr ""
-"No se ha encontrado el componente:\n"
-" %s"
-
-#: libgeda/src/object/o_complex_basic.c:654
-msgid "Failed to parse complex object"
-msgstr "Falló el procesamiento de objeto complejo"
-
-#: libgeda/src/object/o_complex_basic.c:667
-#, c-format
-msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
-msgstr ""
-"Se ha encontrado un componente con un ángulo de rotación no válido [ %c %d "
-"%d %d %d %d %s ]\n"
-
-#: libgeda/src/object/o_complex_basic.c:668 libgeda/src/object/o_picture.c:384
-msgid "Setting angle to 0\n"
-msgstr "Cambiando el parámetro 'ángulo' a 0\n"
-
-#: libgeda/src/object/o_complex_basic.c:680
-#, c-format
-msgid ""
-"Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
-msgstr ""
-"Se ha encontrado un componente con un atributo de simetría no válido [ %c %d "
-"%d %d %d %d %s ]\n"
-
-#: libgeda/src/object/o_complex_basic.c:681
-msgid "Setting mirror to 0\n"
-msgstr "Estableciendo espejo en 0\n"
-
-#: libgeda/src/object/o_complex_basic.c:1004
+#: libgeda/src/object/o_complex_basic.c:135
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1005
+#: libgeda/src/object/o_complex_basic.c:136
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1006
+#: libgeda/src/object/o_complex_basic.c:137
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1007
+#: libgeda/src/object/o_complex_basic.c:138
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1008
+#: libgeda/src/object/o_complex_basic.c:139
 #, fuzzy
 msgid "parse error"
 msgstr "Error de procesado: %s"
 
-#: libgeda/src/object/o_complex_basic.c:1010
+#: libgeda/src/object/o_complex_basic.c:141
 #, c-format
 msgid "\t<%s> Instantiated symbol <%s> is %s than the version in library\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1011
+#: libgeda/src/object/o_complex_basic.c:142
 #, fuzzy, c-format
 msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
 msgstr ""
 "\t¡CAMBIO DE VERSIÓN IMPORTANTE (archivo %.3f, instanciado %.3f, %s)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:1012
+#: libgeda/src/object/o_complex_basic.c:143
 #, fuzzy, c-format
 msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
 msgstr "\tCambio menor en la versión (archivo %.3f, instanciado %.3f)\n"
 
-#: libgeda/src/object/o_complex_basic.c:1013
+#: libgeda/src/object/o_complex_basic.c:144
 msgid "\tCould not parse symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1014
+#: libgeda/src/object/o_complex_basic.c:145
 #, fuzzy, c-format
 msgid "WARNING: Symbol version %s on refdes %s:\n"
 msgstr ""
 "ADVERTENCIA: Error al obtener la versión de símbolo en la referencia %s:\n"
 "\tNo se ha podido procesar el atributo añadido symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1038
+#: libgeda/src/object/o_complex_basic.c:169
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1091
+#: libgeda/src/object/o_complex_basic.c:222
 #, fuzzy, c-format
 msgid "\tCould not parse attached symversion=%s\n"
 msgstr ""
 "ADVERTENCIA: Error al obtener la versión de símbolo en la referencia %s:\n"
 "\tNo se ha podido procesar el atributo añadido symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1113
+#: libgeda/src/object/o_complex_basic.c:244
 #, fuzzy, c-format
 msgid ""
 "\tsymversion=%s attached to instantiated symbol, but version not found "
@@ -907,6 +872,43 @@ msgstr ""
 "referencia %s:\n"
 "\tse ha añadido el atributo symversion=%s a la instancia del símbolo, pero "
 "no hay ningún atributo symversion= dentro del archivo del símbolo\n"
+
+#: libgeda/src/object/o_complex_basic.c:356
+#, c-format
+msgid ""
+"Component not found:\n"
+" %s"
+msgstr ""
+"No se ha encontrado el componente:\n"
+" %s"
+
+#: libgeda/src/object/o_complex_basic.c:1030
+msgid "Failed to parse complex object"
+msgstr "Falló el procesamiento de objeto complejo"
+
+#: libgeda/src/object/o_complex_basic.c:1043
+#, c-format
+msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
+msgstr ""
+"Se ha encontrado un componente con un ángulo de rotación no válido [ %c %d "
+"%d %d %d %d %s ]\n"
+
+#: libgeda/src/object/o_complex_basic.c:1044
+#: libgeda/src/object/o_picture.c:384
+msgid "Setting angle to 0\n"
+msgstr "Cambiando el parámetro 'ángulo' a 0\n"
+
+#: libgeda/src/object/o_complex_basic.c:1056
+#, c-format
+msgid ""
+"Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
+msgstr ""
+"Se ha encontrado un componente con un atributo de simetría no válido [ %c %d "
+"%d %d %d %d %s ]\n"
+
+#: libgeda/src/object/o_complex_basic.c:1057
+msgid "Setting mirror to 0\n"
+msgstr "Estableciendo espejo en 0\n"
 
 #: libgeda/src/object/o_embed.c:52
 #, c-format
@@ -936,21 +938,21 @@ msgstr "Falló el procesamiento de objeto línea"
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Se ha encontrado una línea con longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_net_basic.c:138
+#: libgeda/src/object/o_net_basic.c:139
 msgid "Failed to parse net object"
 msgstr "Falló el procesamiento de objeto red"
 
-#: libgeda/src/object/o_net_basic.c:143
+#: libgeda/src/object/o_net_basic.c:144
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado una conexión con longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_basic.c:535
+#: libgeda/src/object/o_path_basic.c:536
 msgid "Failed to parse path object"
 msgstr "Falló el procesamiento de objeto ruta"
 
-#: libgeda/src/object/o_path_basic.c:553
+#: libgeda/src/object/o_path_basic.c:554
 msgid "Unexpected end-of-file when reading path"
 msgstr "Fin de fichero inesperado mientras se leía la ruta"
 
@@ -1068,16 +1070,16 @@ msgstr "Imagen aún está empotrada.\n"
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Se ha desincrustado la imagen [%s]\n"
 
-#: libgeda/src/object/o_picture.c:1745
+#: libgeda/src/object/o_picture.c:1746
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Falló la carga de imagen de respaldo %s: %s.\n"
 
-#: libgeda/src/object/o_pin_basic.c:152 libgeda/src/object/o_pin_basic.c:162
+#: libgeda/src/object/o_pin_basic.c:154 libgeda/src/object/o_pin_basic.c:164
 msgid "Failed to parse pin object"
 msgstr "Falló el procesamiento de objeto pin"
 
-#: libgeda/src/object/o_pin_basic.c:168
+#: libgeda/src/object/o_pin_basic.c:170
 #, fuzzy
 msgid ""
 "Found a pin which did not have the whichend field set.\n"
@@ -1086,7 +1088,7 @@ msgstr ""
 "Se ha encontrado una pata que no tiene el campo 'whichone'.\n"
 "Por favor, compruébelo y corríjalo manualmente.\n"
 
-#: libgeda/src/object/o_pin_basic.c:172
+#: libgeda/src/object/o_pin_basic.c:174
 #, c-format
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""

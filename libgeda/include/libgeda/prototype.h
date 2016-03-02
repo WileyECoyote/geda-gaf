@@ -134,13 +134,24 @@ extern "C" {
          void    m_polygon_append_point          (GArray *points, int x, int y);
 
 /* o_arc_object.c */
-   GedaObject   *geda_arc_object_new             (int color, int x, int y, int radius, int start_angle, int arc_sweep);
-   GedaObject   *geda_arc_object_copy            (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    geda_arc_object_mirror          (GedaObject *object, int center_x, int center_y);
-         void    geda_arc_object_modify          (GedaObject *object, int x, int y, int whichone);
-         void    geda_arc_object_rotate          (GedaObject *object, int center_x, int center_y, int angle);
-         void    geda_arc_object_translate            (GedaObject *object, int dx, int dy);
+   GedaObject   *geda_arc_object_copy                 (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+          int    geda_arc_object_get_arc_sweep        (const GedaObject *object);
+          int    geda_arc_object_get_center_x         (const GedaObject *object);
+          int    geda_arc_object_get_center_y         (const GedaObject *object);
          bool    geda_arc_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
+          int    geda_arc_object_get_radius           (const GedaObject *object);
+          int    geda_arc_object_get_start_angle      (const GedaObject *object);
+         void    geda_arc_object_mirror               (GedaObject *object, int center_x, int center_y);
+         void    geda_arc_object_modify               (GedaObject *object, int x, int y, int whichone);
+   GedaObject   *geda_arc_object_new                  (int color, int x, int y, int radius, int start_angle, int arc_sweep);
+         void    geda_arc_object_set_arc_sweep        (GedaObject *object, int sweep);
+         void    geda_arc_object_set_center_x         (GedaObject *object, int x);
+         void    geda_arc_object_set_center_y         (GedaObject *object, int y);
+         void    geda_arc_object_set_radius           (GedaObject *object, int radius);
+         void    geda_arc_object_set_start_angle      (GedaObject *object, int angle);
+         void    geda_arc_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_arc_object_translate            (GedaObject *object, int dx, int dy);
+
 
 /* o_attrib.c */
          void    o_attrib_add                              (GedaObject *object, GedaObject *item);

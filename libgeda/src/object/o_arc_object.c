@@ -63,22 +63,77 @@ geda_arc_object_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Get Point on an GedaArc Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get the sweep angle of the arc
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return The sweep angle of the arc
+ *
+ * \sa geda_arc_get_arc_sweep
+ */
+int
+geda_arc_object_get_arc_sweep (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object))
+    return object->arc->arc_sweep;
+  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  return -0;
+}
+
+/*!
+ * \brief Get the x coordinate of the center of the arc
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return The x coordinate of the center of the arc
+ *
+ * \sa geda_arc_get_arc_center_x
+ */
+int
+geda_arc_object_get_center_x (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object))
+    return object->arc->x;
+  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  return -0;
+}
+
+/*!
+ * \brief Get the y coordinate of the center of the arc
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return The y coordinate of the center of the arc
+ *
+ * \sa geda_arc_get_arc_center_y
+ */
+int
+geda_arc_object_get_center_y (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object))
+    return object->arc->y;
+  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  return -0;
+}
+
+/*!
+ * \brief Get Point on an GedaArc Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on an GedaArc object given
  *  a point \a x, \a y, that is on or about the vicinity of the \a object.
  *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
  *  point on the arc that is the closest point on the arc to the point
  *  given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to an GedaArc object
- *  \param [in]  x       Integer x of point near or on the arc
- *  \param [in]  y       Integer y of point near or on the arc
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to an Arc GedaObject
+ * \param [in]  x       Integer x of point near or on the arc
+ * \param [in]  y       Integer y of point near or on the arc
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not an
- *           GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
+ * \returns TRUE is the results are valid, FALSE if \a object was not an
+ *          GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
 bool
 geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -217,22 +272,65 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   return result;
 }
 
-/*! \brief get the position of the center point
- *  \par Function Description
+/*!
+ * \brief get the position of the center point
+ * \par Function Description
  *  This function gets the position of the center point of an arc object.
  *
- *  \param [in]  object  Pointer to a GedaArc object
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [out] x      pointer to the x-position
+ * \param [out] y      pointer to the y-position
  *
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
 geda_arc_object_get_position (GedaObject *object, int *x, int *y)
 {
-  *x = object->arc->x;
-  *y = object->arc->y;
-  return TRUE;
+  if (GEDA_IS_ARC(object)) {
+    *x = object->arc->x;
+    *y = object->arc->y;
+    return TRUE;
+  }
+  else {
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  return 0;
+}
+
+/*!
+ * \brief Get the radius of the arc
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return radius of the arc
+ *
+ * \sa geda_arc_get_arc_radius
+ */
+int
+geda_arc_object_get_radius (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object))
+    return object->arc->radius;
+  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  return -0;
+}
+
+/*!
+ * \brief Get the starting angle of the arc
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return The starting angle of the arc
+ *
+ * \sa geda_arc_get_arc_start_angle
+ */
+int
+geda_arc_object_get_start_angle (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object))
+    return object->arc->start_angle;
+  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  return -0;
 }
 
 /*! \brief Mirror the WORLD coordinates of an ARC.
@@ -1200,6 +1298,86 @@ geda_arc_object_save(GedaObject *object)
                           arc_width, arc_end, arc_type, arc_length, arc_space);
 
   return(buf);
+}
+
+/*!
+ * \brief Set sweep angle of an Arc GedaObject
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] sweep   New value for the arc sweep
+ *
+ * \sa geda_arc_set_arc_arc_sweep
+ */
+void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
+{
+  if (GEDA_IS_ARC(object))
+    object->arc->arc_sweep = sweep;
+  else
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+}
+
+/*!
+ * \brief Set center X coordinate of an Arc GedaObject
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] x       New value for the arc X coordinate
+ *
+ * \sa geda_arc_set_arc_center_x
+ */
+void geda_arc_object_set_center_x (GedaObject *object, int x)
+{
+  if (GEDA_IS_ARC(object))
+    object->arc->x = x;
+  else
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+}
+
+/*!
+ * \brief Set center Y coordinate of an Arc GedaObject
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] y       New value for the arc Y coordinate
+ *
+ * \sa geda_arc_set_arc_center_y
+ */
+void geda_arc_object_set_center_y (GedaObject *object, int y)
+{
+  if (GEDA_IS_ARC(object))
+    object->arc->y = y;
+  else
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+}
+
+/*!
+ * \brief Set radius of an Arc GedaObject
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] radius  New value for the arc radius
+ *
+ * \sa geda_arc_set_arc_start_angle
+ */
+void geda_arc_object_set_radius (GedaObject *object, int radius)
+{
+  if (GEDA_IS_ARC(object))
+    object->arc->radius = radius;
+  else
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+}
+
+/*!
+ * \brief Set the starting angle of an Arc GedaObject
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] angle   New value for the arc starting angle
+ *
+ * \sa geda_arc_set_arc_start_angle
+ */
+void geda_arc_object_set_start_angle (GedaObject *object, int angle)
+{
+  if (GEDA_IS_ARC(object))
+    object->arc->start_angle = angle;
+  else
+    BUG_PMSG("Not a valid GedaArc object <%p>", object);
 }
 
 /*! \brief Calculates the distance between the given point and the closest
