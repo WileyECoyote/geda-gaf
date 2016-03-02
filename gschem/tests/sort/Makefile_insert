@@ -5,7 +5,6 @@ EXTRA_DIST += \
 			sort/alignment.sch \
 			sort/all_1.sch \
 			sort/all_74_1.sch \
-			sort/arc.sch \
 			sort/attributes.sch \
 			sort/autonumber.sch \
 			sort/embedded_1.sch \

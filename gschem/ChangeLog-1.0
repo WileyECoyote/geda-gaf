@@ -1,3 +1,9 @@
+2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/inputs/arc.sch: Move arc.sch to inputs directory to be included
+      in image comparison tests, seems to be stable enough to test across
+      platforms.
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src: Replace arc->width/2.0 with arc->radius in modules:
