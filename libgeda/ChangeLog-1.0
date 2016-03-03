@@ -1,3 +1,7 @@
+2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgeda.c: Reduce scope of opt in parse_args.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise comments, update file header.

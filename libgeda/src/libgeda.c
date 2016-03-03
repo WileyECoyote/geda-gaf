@@ -45,7 +45,6 @@ int libgeda_verbose_mode;
  */
 static void parse_args (int argc, char **argv)
 {
-  char *opt;
   int i;
 
   libgeda_quiet_mode   = FALSE;
@@ -53,7 +52,7 @@ static void parse_args (int argc, char **argv)
 
   for (i = 1; i < argc; ++i) {
 
-    opt = argv[i];
+    char *opt = argv[i];
 
     if (*opt == '-') {
 
