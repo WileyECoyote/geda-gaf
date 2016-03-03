@@ -5,6 +5,10 @@
     * src/object/o_arc_object.c: Rename function geda_arc_object_save to
       geda_arc_object_to_buffer.
 
+    * src/utility/u_log.c: Revise geda_utility_log_read to use malloc and
+      realloc, no need for fancy stuff to sequentially read in characters
+      from a text file.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise comments, update file header.

@@ -329,31 +329,42 @@ void geda_utility_log_set_update_func (LogUpdateFunc func)
  */
 char *geda_utility_log_read (void)
 {
-  bool tmp;
-
-  char buf[LOG_READ_BUFFER_SIZE];
-  GString *contents;
-  int len;
+  bool  tmp;
+  int   len;
+  int   size;
+  char *contents;
+  char  buf[LOG_READ_BUFFER_SIZE];
 
   if (logfile_fd == -1) {
     return NULL;
   }
 
-  tmp = is_logging;
+  tmp        = is_logging;
   is_logging = FALSE;
+  contents   = NULL;
+  size       = 0;
 
   /* rewind the file */
   lseek(logfile_fd, 0, SEEK_SET);
 
   /* read its contents and build a string */
-  contents = g_string_new ("");
   while ((len = read (logfile_fd, &buf, LOG_READ_BUFFER_SIZE)) != 0) {
-    contents = g_string_append_len (contents, buf, len);
+    size = size + len;
+    if (!contents) {
+      contents = (char*)malloc(size + 1);
+      strncpy(contents, &buf[0], len);
+    }
+    else {
+      contents = (char*)realloc(contents, size + 1);
+      if (!contents)
+        break;
+      strncat(contents, &buf[0], len);
+    }
   }
 
   is_logging = tmp;
 
-  return g_string_free (contents, FALSE);
+  return contents;
 }
 
 /*! \brief Write Message to Log if Not Quiet Mode
