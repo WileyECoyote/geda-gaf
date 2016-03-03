@@ -1,3 +1,8 @@
+2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Fix Cario version in configuration summary; CAIRO_PKG ->
+      CAIRO_VERSION.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * travis.yml: Add install libx11-dev; not required for run-time per se,

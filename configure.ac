@@ -439,7 +439,7 @@ Configuration:      ${PACKAGE} Ver ${VERSION} ${DATE_VERSION}
                   PYTHON_LDFLAGS:     ${PYTHON_LDFLAGS}
 
                            Guile:     ${GUILE_PKG_NAME}
-                           Cairo:     ${CAIRO_PKG}
+                           Cairo:     ${CAIRO_VERSION}
                            Pango:     ${PANGO_PKG}
                           Python:     ${PYTHON_VERSION}
                        PyModules:     ${PYTHON_MODDIR}
