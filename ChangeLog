@@ -3,6 +3,9 @@
     * configure.ac: Fix Cario version in configuration summary; CAIRO_PKG ->
       CAIRO_VERSION.
 
+    * Makefile.am: Include patch build-tools/ltmain-asneeded.patch for libtool
+      in distribution.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * travis.yml: Add install libx11-dev; not required for run-time per se,

@@ -30,12 +30,15 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 BUILT_SOURCES = version.h
 
-EXTRA_DIST    = $(BUILT_SOURCES) \
-				COPYING.LGPL \
-				HACKING \
-				autogen.sh \
-				config.h \
-				version.h version.h.in
+BUILD_TOOLS   = build-tools/ltmain-asneeded.patch
+
+EXTRA_DIST    =	$(BUILT_SOURCES) \
+		$(BUILD_TOOLS) \
+		COPYING.LGPL \
+		HACKING \
+		autogen.sh \
+		config.h \
+		version.h version.h.in
 
 #
 # Generate version.h. This works by looking at any git repository that
