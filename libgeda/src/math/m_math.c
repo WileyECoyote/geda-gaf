@@ -127,21 +127,31 @@ double m_radians_to_degrees(double radians)
   return (double)radians * 180.0 / M_PI;
 }
 
-/*! \brief Return a randon Number between given limits.
- *  \par Function Description
- *  This function intentionally does not seed the generator.
- *  Seems to work just fine.
+/*!
+ * \brief Return a random number specifying min and max values.
+ * \par Function Description
+ *  This function returns a random integer from \a min_num to
+ *  \a max_num.
  *
- *  \param [in]  min_num The smallest value.
- *  \param [in]  max_num The largest value.
+ * \param [in]  min_num The smallest value.
+ * \param [in]  max_num The largest value.
  *
- *  \returns random integer
+ * \returns random integer
  */
 int m_random_number (int min_num, int max_num)
 {
   int result  = 0;
   int low_num = 0;
   int hi_num  = 0;
+
+  static int once = 0;
+
+  /* Initialize random number generator */
+  if (!once) {
+    time_t t;
+    once++;
+    srand((unsigned int)time(&t));
+  }
 
   if (min_num < max_num) {
     low_num = min_num;
