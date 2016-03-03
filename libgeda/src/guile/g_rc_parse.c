@@ -367,12 +367,11 @@ g_rc_parse_user (const char *rcname, GError **err)
 bool
 g_rc_parse_local (const char *rcname, const char *path, GError **err)
 {
-  bool  status;
-  char *dir      = NULL;
-  char *ptr;
-  char *rcfile   = NULL;
+  EdaConfig *cfg;
 
-  EdaConfig *cfg = NULL;
+  char *dir      = NULL;
+  char *rcfile   = NULL;
+  bool  status;
 
   char  buffer[PATH_MAX];
 
@@ -385,8 +384,11 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
 
     /* If path isn't a directory, get the dirname. */
     if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
-      ptr = dir;
+
+      char *ptr = dir;
+
       while (*ptr != '\0') ++ptr;
+
       while (*ptr != DIR_SEPARATOR && ptr > dir) --ptr;
       *ptr = '\0';
     }

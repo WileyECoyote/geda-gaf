@@ -4,6 +4,9 @@
 
     * src/file/f_file.c: Simplify f_sys_normalize_name.
 
+    * src/guile/g_rc_parse.c: Eliminate unnecessary initialization of cfg
+      and reduce scope of ptr in function g_rc_parse_local.
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Add property radius, can not recall why
