@@ -1270,7 +1270,7 @@ geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle
  *  \return the string representation of the arc object
  */
 char*
-geda_arc_object_save(GedaObject *object)
+geda_arc_object_to_buffer(GedaObject *object)
 {
   int x, y, radius, start_angle, arc_sweep;
   int arc_width, arc_length, arc_space;

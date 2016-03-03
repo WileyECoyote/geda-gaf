@@ -103,7 +103,7 @@ void        geda_arc_object_print_center         (GedaToplevel *toplevel, FILE *
 void        geda_arc_object_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
                                                   int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_arc_object_save                 (GedaObject *object);
+char       *geda_arc_object_to_buffer            (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
 bool        geda_arc_object_within_sweep         (GedaArc *arc, int x, int y);
 

@@ -2,6 +2,9 @@
 
     * src/libgeda.c: Reduce scope of opt in parse_args.
 
+    * src/object/o_arc_object.c: Rename function geda_arc_object_save to
+      geda_arc_object_to_buffer.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise comments, update file header.
