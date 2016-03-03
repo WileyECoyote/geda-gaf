@@ -1,3 +1,44 @@
+2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pmosfet-0/pmosfet-*.sym: Revise symbols; fixing dgs sequence,
+      improve appearence, reorgainize attributes:
+
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-1.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-2.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-3.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-4.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-5.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-6.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-7.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gds-8.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-1.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-2.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-3.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-4.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-5.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-6.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-7.sym
+            * transistor/pmosfet-0/pmosfet-diode-enh-gsd-8.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-1.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-2.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-3.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-4.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-5.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-6.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-7.sym
+            * transistor/pmosfet-0/pmosfet-enh-gds-8.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-1.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-2.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-3.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-4.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-5.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-6.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-7.sym
+            * transistor/pmosfet-0/pmosfet-enh-gsd-8.sym
+            * transistor/pmosfet-0/pmosfet-enh-p8.sym
+            * transistor/pmosfet-0/pmosfet-nb-gds-2.sym
+            * transistor/pmosfet-0/pmosfet-wb-gds-2.sym
+
 2016-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM53600L-1.sym: Add symbol Adjustable Buck, 36V, 0.65A.
