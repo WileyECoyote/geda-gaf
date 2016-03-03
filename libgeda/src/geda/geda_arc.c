@@ -3,14 +3,13 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2015 Ales Hvezda
- * Copyright (C) 2013-2015 Wiley Edward Hill
- *
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Ales Hvezda
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -36,7 +35,7 @@
  * \brief Implmentation of #GedaArc Class
  * \par
  *  A Geda Arc Object is a graphical object, do not involve electrical
- *  interconnections. Arcs have line-type and fill-type properties
+ *  interconnections. GedaArcs have line-type and fill-type properties
  *  and are derived from the GedaObject base class.
  *
  * \class GedaArc geda_arc.h "include/libgeda/geda_arc.h"
