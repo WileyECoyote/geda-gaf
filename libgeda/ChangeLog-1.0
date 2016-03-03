@@ -9,6 +9,8 @@
 
     * src/math/m_math.c: Seed random number generator once.
 
+    * tests/test_arc.c: Append tests to include getter and setter functions.
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Add property radius, can not recall why
