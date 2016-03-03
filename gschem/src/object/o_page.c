@@ -162,15 +162,17 @@ static GList *restore_title_blocks(GList *page_list, GList *titleblocks)
  *  last member of the second list.
  *
  *  \param [in] w_current   Pointer to GschemToplevel structure.
+ *  \todo unstable
  */
 void o_page_draw_after (GschemToplevel *w_current)
 {
   if (o_select_is_selection(w_current)) {
 
-    Page   *page      = Current_Page;
+    Page   *page      = gschem_toplevel_get_current_page(w_current);
 
     GList  *page_list = s_page_get_objects (page);
-    GList  *set2      = g_list_copy(geda_list_get_glist (Current_Selection));
+    GList  *list      = geda_list_get_glist (s_page_get_selection (page));
+    GList  *set2      = g_list_copy(list);
     GList  *set1      = g_list_copy(w_current->primary_selection);
     GList  *iter;
 
@@ -178,8 +180,9 @@ void o_page_draw_after (GschemToplevel *w_current)
 
     /* Remove duplicate selection in after and remove from page */
     for (iter = set1; iter; iter = iter->next) {
-      GedaObject *object = iter->data;
-      set2           = g_list_remove(set2, object);
+      GedaObject *object;
+      object = iter->data;
+      set2   = g_list_remove(set2, object);
     }
 
     /* Is there still a set 2 or was second selection the
@@ -191,8 +194,9 @@ void o_page_draw_after (GschemToplevel *w_current)
       GList  *tail      = NULL;
 
       for (iter = set1; iter; iter = iter->next) {
-        GedaObject *object = iter->data;
-        page_list      = g_list_remove(page_list, object);
+        GedaObject *object;
+        object    = iter->data;
+        page_list = g_list_remove(page_list, object);
       }
 
       last = g_list_last (page_list);

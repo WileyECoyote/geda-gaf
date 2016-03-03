@@ -1,3 +1,9 @@
+2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_page.c: Replace macros Current_Page and Current_Selection
+      with accessors gschem_toplevel_get_current_page and s_page_get_selection
+      in function o_page_draw_after.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/inputs/arc.sch: Move arc.sch to inputs directory to be included
