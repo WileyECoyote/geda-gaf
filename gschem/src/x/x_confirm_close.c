@@ -36,8 +36,10 @@
 
 #include <x_confirm_close.h>
 
-static void     confirm_close_dialog_class_init   (ConfirmCloseDialogClass *klass);
-static void     confirm_close_dialog_init         (ConfirmCloseDialog      *self);
+static void     confirm_close_dialog_class_init   (void *g_class,
+                                                   void *g_class_data);
+static void     confirm_close_dialog_init         (GTypeInstance *instance,
+                                                   void *g_class);
 static void     confirm_close_dialog_set_property (GObject      *object,
                                                    unsigned int  property_id,
                                                    const GValue *value,
@@ -568,11 +570,11 @@ static void confirm_close_dialog_finalize (GObject *object)
  *  *  TODO: Update parameter spec strings!
  */
 static void
-confirm_close_dialog_class_init (ConfirmCloseDialogClass *klass)
+confirm_close_dialog_class_init (void *g_class, void *g_class_data)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  GObjectClass *gobject_class = G_OBJECT_CLASS (g_class);
 
-  confirm_close_dialog_parent_class = g_type_class_peek_parent (klass);
+  confirm_close_dialog_parent_class = g_type_class_peek_parent (g_class);
 
   gobject_class->constructor  = confirm_close_dialog_constructor;
   gobject_class->finalize     = confirm_close_dialog_finalize;
@@ -601,8 +603,10 @@ confirm_close_dialog_class_init (ConfirmCloseDialogClass *klass)
 }
 
 static void
-confirm_close_dialog_init (ConfirmCloseDialog *self)
+confirm_close_dialog_init (GTypeInstance *instance, void *g_class)
 {
+  ConfirmCloseDialog *self = (ConfirmCloseDialog*)instance;
+
   /* create model for treeview and populate */
   self->store_unsaved_pages = gtk_list_store_new (NUM_COLUMNS,
                                                   G_TYPE_BOOLEAN,  /* save? */
@@ -627,14 +631,14 @@ GedaType confirm_close_dialog_get_type (void)
 
     static const GTypeInfo confirm_close_dialog_info = {
       sizeof(ConfirmCloseDialogClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) confirm_close_dialog_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                            /* base_init */
+      NULL,                            /* base_finalize */
+      confirm_close_dialog_class_init, /* (GClassInitFunc) */
+      NULL,                            /* class_finalize */
+      NULL,                            /* class_data */
       sizeof(ConfirmCloseDialog),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) confirm_close_dialog_init,
+      0,                               /* n_preallocs */
+      confirm_close_dialog_init,       /* (GInstanceInitFunc) */
     };
 
     confirm_close_dialog_type =

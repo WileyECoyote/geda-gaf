@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-28 13:25-0600\n"
+"POT-Creation-Date: 2016-03-01 23:39-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -99,11 +99,11 @@ msgstr ""
 msgid "Dialog window title"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:206
+#: gschem/src/base/gschem_macro_widget.c:208
 msgid "Macro:"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:321
+#: gschem/src/base/gschem_macro_widget.c:326
 msgid "Evaluate"
 msgstr ""
 
@@ -164,149 +164,149 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:507
+#: gschem/src/base/gschem_status_bar.c:509
 #, fuzzy
 msgid "Coordinates Mode"
 msgstr "Döndürme kipi"
 
-#: gschem/src/base/gschem_status_bar.c:508
+#: gschem/src/base/gschem_status_bar.c:510
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:517
+#: gschem/src/base/gschem_status_bar.c:519
 #, fuzzy
 msgid "Grid Mode"
 msgstr "Ayna modu"
 
-#: gschem/src/base/gschem_status_bar.c:518
+#: gschem/src/base/gschem_status_bar.c:520
 msgid "Sets the Gride Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:527
+#: gschem/src/base/gschem_status_bar.c:529
 msgid "Grid Size"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:528
+#: gschem/src/base/gschem_status_bar.c:530
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:537
+#: gschem/src/base/gschem_status_bar.c:539
 msgid "height"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:538
+#: gschem/src/base/gschem_status_bar.c:540
 msgid "Sets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:547
+#: gschem/src/base/gschem_status_bar.c:549
 msgid "Left Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:548
+#: gschem/src/base/gschem_status_bar.c:550
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:554
+#: gschem/src/base/gschem_status_bar.c:556
 msgid "Middle Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:555
+#: gschem/src/base/gschem_status_bar.c:557
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:561
+#: gschem/src/base/gschem_status_bar.c:563
 msgid "Right Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:562
+#: gschem/src/base/gschem_status_bar.c:564
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:568
+#: gschem/src/base/gschem_status_bar.c:570
 #, fuzzy
 msgid "Snap Mode"
 msgstr "Kopyalama Kipi"
 
-#: gschem/src/base/gschem_status_bar.c:569
+#: gschem/src/base/gschem_status_bar.c:571
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:578 gschem/src/x/x_dialog.c:535
+#: gschem/src/base/gschem_status_bar.c:580 gschem/src/x/x_dialog.c:535
 msgid "Snap Size"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:579
+#: gschem/src/base/gschem_status_bar.c:581
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:588
+#: gschem/src/base/gschem_status_bar.c:590
 #, fuzzy
 msgid "Status Text"
 msgstr "Metni Düzenle"
 
-#: gschem/src/base/gschem_status_bar.c:589
+#: gschem/src/base/gschem_status_bar.c:591
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:595
-#: gschem/src/base/gschem_status_bar.c:596
+#: gschem/src/base/gschem_status_bar.c:597
+#: gschem/src/base/gschem_status_bar.c:598
 #, fuzzy
 msgid "Status State"
 msgstr "Metni Düzenle"
 
-#: gschem/src/base/gschem_status_bar.c:609
+#: gschem/src/base/gschem_status_bar.c:611
 #, fuzzy
 msgid "Status Bar Height"
 msgstr "Metni Düzenle"
 
-#: gschem/src/base/gschem_status_bar.c:610
+#: gschem/src/base/gschem_status_bar.c:612
 msgid "Sets or gets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1091
+#: gschem/src/base/gschem_status_bar.c:1095
 msgid "Coordinate display, right click for format options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1092
+#: gschem/src/base/gschem_status_bar.c:1096
 msgid "Left pointer button assignment"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1093
+#: gschem/src/base/gschem_status_bar.c:1097
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1094
+#: gschem/src/base/gschem_status_bar.c:1098
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1095
+#: gschem/src/base/gschem_status_bar.c:1099
 msgid "Indicates the current snap,grid units or states"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1096
+#: gschem/src/base/gschem_status_bar.c:1100
 msgid "Indicates the current command state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1097
+#: gschem/src/base/gschem_status_bar.c:1101
 msgid "Gschem status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1776
+#: gschem/src/base/gschem_status_bar.c:1780
 #, fuzzy
 msgid "Grid"
 msgstr "Ayna modu"
 
-#: gschem/src/base/gschem_status_bar.c:1782
-#: gschem/src/base/gschem_status_bar.c:1803
+#: gschem/src/base/gschem_status_bar.c:1786
+#: gschem/src/base/gschem_status_bar.c:1807
 msgid "OFF"
 msgstr "KAPALI"
 
-#: gschem/src/base/gschem_status_bar.c:1795
+#: gschem/src/base/gschem_status_bar.c:1799
 #, fuzzy
 msgid "Error"
 msgstr "Ayna modu"
 
-#: gschem/src/base/gschem_status_bar.c:1807
+#: gschem/src/base/gschem_status_bar.c:1811
 msgid "NONE"
 msgstr ""
 

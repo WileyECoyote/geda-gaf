@@ -4,6 +4,10 @@
       with accessors gschem_toplevel_get_current_page and s_page_get_selection
       in function o_page_draw_after.
 
+    * src/x/x_confirm_close.c: Revise arguments to confirm_close_dialog_init
+      and confirm_close_dialog_class_init so as to remove cast in function
+      confirm_close_dialog_get_type without warning message from preprocessor.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/inputs/arc.sch: Move arc.sch to inputs directory to be included
