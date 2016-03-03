@@ -2,6 +2,8 @@
 
     * src/geda/geda_arc.c: Revise comments, update file header.
 
+    * src/file/f_file.c: Simplify f_sys_normalize_name.
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Add property radius, can not recall why

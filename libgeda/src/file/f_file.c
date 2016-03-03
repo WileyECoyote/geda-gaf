@@ -518,13 +518,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
  */
 char *f_sys_normalize_name (const char *name, GError **error)
 {
-
-#if defined (OS_WIN32_NATIVE)
-    char buf[MAX_PATH];
-#else
-    GString    *rpath;
-    const char *start, *end;
-#endif
+  char *result;
 
   if (name == NULL) {
     g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_INVAL,
@@ -539,6 +533,7 @@ char *f_sys_normalize_name (const char *name, GError **error)
   }
 
 #if defined (OS_WIN32_NATIVE)
+
   /* Windows method (modified) from libiberty's lrealpath.c, GPL V2+
    *
    * We assume we don't have symlinks and just canonicalize to a
@@ -548,8 +543,10 @@ char *f_sys_normalize_name (const char *name, GError **error)
    * drive (eg, "E:foo"). It also converts all forward slashes to
    * back slashes.
    */
+
+  char buf[MAX_PATH];
+
   DWORD len = GetFullPathName (name, MAX_PATH, buf, NULL);
-  char *result;
 
   if (len == 0 || len > MAX_PATH - 1) {
     result = g_strdup (name);
@@ -562,96 +559,25 @@ char *f_sys_normalize_name (const char *name, GError **error)
     result = g_strdup (buf);
   }
 
-  /* Test that the file actually exists, and fail if it doesn't.  We
-   * do this to be consistent with the behaviour on POSIX platforms. */
+  /* Test that the file actually exists, and fail if it does not.
+   * This is consistent with behaviour on POSIX platforms. */
   if (!g_file_test (result, G_FILE_TEST_EXISTS)) {
     g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
                  "%s", strerror (ENOENT));
     GEDA_FREE (result);
     return NULL;
   }
-  return result;
 
 #else
 
-#define ROOT_MARKER_LEN 1 /* What the ?*/
+  if (!g_file_test(name, G_FILE_TEST_EXISTS))
+    return NULL;
 
-  rpath = g_string_sized_new (strlen (name));
+  result = realpath(name, NULL);
 
-  /* if relative path, prepend current dir */
-  if (!f_get_is_path_absolute (name)) {
-
-    char *cwd = g_get_current_dir ();
-
-    g_string_append (rpath, cwd);
-    GEDA_FREE (cwd);
-
-    if (!G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1])) {
-      g_string_append_c (rpath, DIR_SEPARATOR);
-    }
-  }
-  else {
-    g_string_append_len (rpath, name, ROOT_MARKER_LEN);
-    /* move to first path separator */
-    name += ROOT_MARKER_LEN - 1;
-  }
-
-  for (start = end = name; *start != '\0'; start = end) {
-    /* skip sequence of multiple path-separators */
-    while (G_IS_DIR_SEPARATOR (*start)) {
-      ++start;
-    }
-
-    /* find end of path component */
-    for (end = start; *end != '\0' && !G_IS_DIR_SEPARATOR (*end); ++end);
-
-    if (end - start == 0) {
-      break;
-    }
-    else if (end - start == 1 && start[0] == '.') {
-      /* nothing */;
-    }
-    else if (end - start == 2 && start[0] == '.' && start[1] == '.') {
-      /* back up to previous component, ignore if at root already.  */
-      if (rpath->len > ROOT_MARKER_LEN) {
-        while (!G_IS_DIR_SEPARATOR (rpath->str[(--rpath->len) - 1]));
-        g_string_set_size (rpath, rpath->len);
-      }
-    }
-    else {
-      /* path component, copy to new path */
-      if (!G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1])) {
-        g_string_append_c (rpath, DIR_SEPARATOR);
-      }
-
-      g_string_append_len (rpath, start, end - start);
-
-      if (!g_file_test (rpath->str, G_FILE_TEST_EXISTS)) {
-        g_set_error (error,G_FILE_ERROR, G_FILE_ERROR_NOENT,
-                     "%s", strerror (ENOENT));
-        goto error;
-      }
-      else if (!g_file_test (rpath->str, G_FILE_TEST_IS_DIR) &&
-                 *end != '\0') {
-        g_set_error (error,G_FILE_ERROR, G_FILE_ERROR_NOTDIR,
-                     "%s", strerror (ENOTDIR));
-        goto error;
-      }
-    }
-  }
-
-  if (G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1]) &&
-      rpath->len > ROOT_MARKER_LEN) {
-    g_string_set_size (rpath, rpath->len - 1);
-  }
-
-  return g_string_free (rpath, FALSE);
-
-error:
-  g_string_free (rpath, TRUE);
-  return NULL;
-#undef ROOT_MARKER_LEN
 #endif
+
+  return result;
 }
 
 /*! \brief Remove backup file
