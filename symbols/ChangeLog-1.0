@@ -1,5 +1,12 @@
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/pmosfet-0/pmosfet: Add 3 pmosfet symbols to complement
+      existing nmosfet symbols:
+
+            * transistor/pmosfet-0/dual_gate_pmos-1.sym
+            * transistor/pmosfet-0/pmosfet-enh-p8.sym
+            * transistor/pmosfet-0/pmosfet-wb-gds-4.sym
+
     * transistor/pmosfet-0/pmosfet-*.sym: Revise symbols; fixing dgs sequence,
       improve appearence, reorgainize attributes:
 
@@ -35,7 +42,6 @@
             * transistor/pmosfet-0/pmosfet-enh-gsd-6.sym
             * transistor/pmosfet-0/pmosfet-enh-gsd-7.sym
             * transistor/pmosfet-0/pmosfet-enh-gsd-8.sym
-            * transistor/pmosfet-0/pmosfet-enh-p8.sym
             * transistor/pmosfet-0/pmosfet-nb-gds-2.sym
             * transistor/pmosfet-0/pmosfet-wb-gds-2.sym
 
