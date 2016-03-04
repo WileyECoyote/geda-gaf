@@ -12,6 +12,9 @@
             * diode/led/rgb-led-2.sym
             * diode/led/rgb-led-3.sym
 
+    * ti/DRV2603-1.sym: Add symbol; Haptic Driver with with Auto-Resonance
+      detection for Linear Resonance Actuators.
+
 2016-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pmosfet-0/pmosfet: Add 3 pmosfet symbols to complement
