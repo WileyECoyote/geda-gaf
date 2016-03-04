@@ -203,16 +203,16 @@ gschem_macro_widget_class_init (void *g_class, void *g_class_data)
   g_object_class_install_property (G_OBJECT_CLASS (klass),
                                    PROP_LABEL_TEXT,
                                    g_param_spec_string ("label-text",
-                                                        "Label Text",
-                                                        "Label Text",
-                                                        _("Macro:"),
+                                                       _("Label Text"),
+                                                       _("Text to be displayed for the Macro label"),
+                                                       _("Macro:"),
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
   g_object_class_install_property (G_OBJECT_CLASS (klass),
                                    PROP_MACRO_STRING,
                                    g_param_spec_string ("macro-string",
-                                                        "Macro String",
-                                                        "Macro String",
+                                                      _("Macro String"),
+                                                      _("Macro String"),
                                                         "",
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }

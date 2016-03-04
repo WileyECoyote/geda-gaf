@@ -536,32 +536,32 @@ static void preview_class_init (void *g_class, void *class_data)
   g_object_class_install_property (
     gobject_class, PROP_FILENAME,
     g_param_spec_string ("filename",
-                         "Filename",
-                         "",
-                         NULL,
+                       _("Filename"),
+                       _("name of file to be previewed"),
+                         NULL, /* default value */
                          G_PARAM_READWRITE));
 
   g_object_class_install_property (
     gobject_class, PROP_BUFFER,
     g_param_spec_string ("buffer",
-                         "Buffer",
-                         "",
-                         NULL,
+                       _("Buffer"),
+                       _("object list to be previewed"),
+                         NULL, /* default value */
                          G_PARAM_WRITABLE));
 
   g_object_class_install_property(
     gobject_class, PROP_ACTIVE,
     g_param_spec_boolean ("active",
-                          "Active",
-                          "",
+                        _("Active"),
+                        _("Whether the preview widget is enabled or disabled"),
                           FALSE,
                           G_PARAM_READWRITE));
 
   g_object_class_install_property(
     gobject_class, PROP_LARGE,
     g_param_spec_boolean ("large-size",
-                          "Large size",
-                          "",
+                        _("Large size"),
+                        _("Whether the preview widget show be large or small"),
                           FALSE,
                           G_PARAM_WRITABLE));
 }

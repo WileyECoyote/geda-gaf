@@ -504,7 +504,7 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
  */
 static void gschem_dialog_class_init (GschemDialogClass *klass)
 {
-  GObjectClass     *gobject_class = G_OBJECT_CLASS (klass);
+  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
   GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
 
   klass->geometry_save            = geometry_save;

@@ -584,19 +584,19 @@ confirm_close_dialog_class_init (void *g_class, void *g_class_data)
   g_object_class_install_property (
     gobject_class, PROP_UNSAVED_Page,
     g_param_spec_pointer ("unsaved-page",
-                          "",
+                        _("unsaved page"),
                           "",
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE));
   g_object_class_install_property (
     gobject_class, PROP_UNSAVED_PageS,
     g_param_spec_pointer ("unsaved-pages",
-                          "",
+                        _("unsaved pages"),
                           "",
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE));
   g_object_class_install_property (
     gobject_class, PROP_SELECTED_PageS,
     g_param_spec_pointer ("selected-pages",
-                          "",
+                        _("selected pages"),
                           "",
                           G_PARAM_READABLE));
 

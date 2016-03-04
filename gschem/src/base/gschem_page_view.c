@@ -245,31 +245,31 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
   gobject_class->set_property = set_property;
 
   pspec = g_param_spec_object ("hadjustment",
-                               "Horizontal adjustment",
-                               "Horizontal adjustment",
+                             _("Horizontal adjustment"),
+                             _("Horizontal adjustment"),
                                GTK_TYPE_ADJUSTMENT,
                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
   g_object_class_install_property (gobject_class, PROP_HADJUSTMENT, pspec);
 
   pspec = g_param_spec_pointer ("page",
-                                "Page",
-                                "Page",
+                              _("Page"),
+                              _("Page"),
                                 G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_property (gobject_class, PROP_PAGE, pspec);
 
   pspec = g_param_spec_boxed ("page-geometry",
-                              "Page Geometry",
-                              "Page Geometry",
+                            _("Page Geometry"),
+                            _("Page Geometry"),
                               GSCHEM_TYPE_PAGE_GEOMETRY,
                               G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_property (gobject_class, PROP_PAGE_GEOMETRY, pspec);
 
   pspec = g_param_spec_object ("vadjustment",
-                               "Vertical adjustment",
-                               "Vertical adjustment",
+                             _("Vertical adjustment"),
+                             _("Vertical adjustment"),
                                GTK_TYPE_ADJUSTMENT,
                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 

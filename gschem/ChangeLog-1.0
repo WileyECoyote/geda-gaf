@@ -1,3 +1,17 @@
+2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_macro_widget.c: Translate nick names and blurb in
+      gschem_macro_widget_class_init.
+
+    * src/base/gschem_page_view.c: Translate nick names and blurb in
+      gschem_page_view_class_init.
+
+    * src/base/gschem_preview.c: Translate nick names and blurb in
+      preview_class_init.
+
+    * src/x/x_confirm_close.c: Translate nick names and blurb in
+      confirm_close_dialog_class_init.
+
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_page.c: Replace macros Current_Page and Current_Selection
