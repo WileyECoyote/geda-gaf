@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-01 23:39-0600\n"
+"POT-Creation-Date: 2016-03-04 01:26-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -112,13 +112,48 @@ msgstr "безымянный"
 msgid "Dialog window title"
 msgstr ""
 
+#: gschem/src/base/gschem_macro_widget.c:206
+#, fuzzy
+msgid "Label Text"
+msgstr "Поиск"
+
+#: gschem/src/base/gschem_macro_widget.c:207
+msgid "Text to be displayed for the Macro label"
+msgstr ""
+
 #: gschem/src/base/gschem_macro_widget.c:208
 msgid "Macro:"
 msgstr "Макрос:"
 
+#: gschem/src/base/gschem_macro_widget.c:214
+#: gschem/src/base/gschem_macro_widget.c:215
+msgid "Macro String"
+msgstr ""
+
 #: gschem/src/base/gschem_macro_widget.c:326
 msgid "Evaluate"
 msgstr "Выполнить"
+
+#: gschem/src/base/gschem_page_view.c:248
+#: gschem/src/base/gschem_page_view.c:249
+msgid "Horizontal adjustment"
+msgstr ""
+
+#: gschem/src/base/gschem_page_view.c:256
+#: gschem/src/base/gschem_page_view.c:257
+#, fuzzy
+msgid "Page"
+msgstr "Ст_раница"
+
+#: gschem/src/base/gschem_page_view.c:263
+#: gschem/src/base/gschem_page_view.c:264
+msgid "Page Geometry"
+msgstr ""
+
+#: gschem/src/base/gschem_page_view.c:271
+#: gschem/src/base/gschem_page_view.c:272
+msgid "Vertical adjustment"
+msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, fuzzy, c-format
@@ -205,6 +240,40 @@ msgstr ""
 #: gschem/src/base/gschem_preview.c:298
 msgid "Preview Buffer"
 msgstr "Буфер предпросмотра"
+
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:569
+msgid "Filename"
+msgstr "Имя файла"
+
+#: gschem/src/base/gschem_preview.c:540
+msgid "name of file to be previewed"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:547
+#, fuzzy
+msgid "Buffer"
+msgstr "Буфер предпросмотра"
+
+#: gschem/src/base/gschem_preview.c:548
+msgid "object list to be previewed"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:555
+#, fuzzy
+msgid "Active"
+msgstr "Действие"
+
+#: gschem/src/base/gschem_preview.c:556
+msgid "Whether the preview widget is enabled or disabled"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:563
+msgid "Large size"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:564
+msgid "Whether the preview widget show be large or small"
+msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:509
 #, fuzzy
@@ -3243,10 +3312,6 @@ msgstr "Закрытие «%s» без сохранения изменений\n
 #: gschem/src/x/x_pagesel.c:506 gschem/scheme/gschem/builtins.scm:215
 msgid "Page Manager"
 msgstr "Менеджер страниц"
-
-#: gschem/src/x/x_pagesel.c:569
-msgid "Filename"
-msgstr "Имя файла"
 
 #: gschem/src/x/x_pagesel.c:592
 msgid "Changed"

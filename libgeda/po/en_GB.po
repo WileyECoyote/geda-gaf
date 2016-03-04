@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-01 22:13-0600\n"
+"POT-Creation-Date: 2016-03-04 01:26-0600\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -137,12 +137,12 @@ msgstr "Could NOT set previous backup file [%s] read-write\n"
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Can't save backup file: %s."
 
-#: libgeda/src/file/f_file.c:676
+#: libgeda/src/file/f_file.c:602
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Can't get the real filename of %s: %s"
 
-#: libgeda/src/file/f_file.c:688
+#: libgeda/src/file/f_file.c:614
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Unable to delete backup file %s."
@@ -594,16 +594,16 @@ msgstr ""
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Library command failed [%s]\n"
 
-#: libgeda/src/guile/g_rc_parse.c:423
+#: libgeda/src/guile/g_rc_parse.c:425
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr "ERROR: An unknown error occurred while parsing configuration files."
 
-#: libgeda/src/guile/g_rc_parse.c:436 libgeda/src/guile/g_rc_parse.c:437
+#: libgeda/src/guile/g_rc_parse.c:438 libgeda/src/guile/g_rc_parse.c:439
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ERROR: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:443
+#: libgeda/src/guile/g_rc_parse.c:445
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ERROR: The %s log may contain more information.\n"
@@ -684,17 +684,17 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1155
-#: libgeda/src/object/o_arc_object.c:1170
+#: libgeda/src/object/o_arc_object.c:1158
+#: libgeda/src/object/o_arc_object.c:1173
 msgid "Failed to parse arc object"
 msgstr "Failed to parse arc object"
 
-#: libgeda/src/object/o_arc_object.c:1177
+#: libgeda/src/object/o_arc_object.c:1180
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1183 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_arc_object.c:1186 libgeda/src/object/o_box_basic.c:545
 #: libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
@@ -704,7 +704,7 @@ msgstr "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Found an invalid colour [ %s ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1184 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_arc_object.c:1187 libgeda/src/object/o_box_basic.c:546
 #: libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155

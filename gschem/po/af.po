@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-01 23:39-0600\n"
+"POT-Creation-Date: 2016-03-04 01:26-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -98,12 +98,46 @@ msgstr ""
 msgid "Dialog window title"
 msgstr ""
 
+#: gschem/src/base/gschem_macro_widget.c:206
+#, fuzzy
+msgid "Label Text"
+msgstr "Verskuil Teks"
+
+#: gschem/src/base/gschem_macro_widget.c:207
+msgid "Text to be displayed for the Macro label"
+msgstr ""
+
 #: gschem/src/base/gschem_macro_widget.c:208
 msgid "Macro:"
 msgstr ""
 
+#: gschem/src/base/gschem_macro_widget.c:214
+#: gschem/src/base/gschem_macro_widget.c:215
+msgid "Macro String"
+msgstr ""
+
 #: gschem/src/base/gschem_macro_widget.c:326
 msgid "Evaluate"
+msgstr ""
+
+#: gschem/src/base/gschem_page_view.c:248
+#: gschem/src/base/gschem_page_view.c:249
+msgid "Horizontal adjustment"
+msgstr ""
+
+#: gschem/src/base/gschem_page_view.c:256
+#: gschem/src/base/gschem_page_view.c:257
+msgid "Page"
+msgstr "Bladsy"
+
+#: gschem/src/base/gschem_page_view.c:263
+#: gschem/src/base/gschem_page_view.c:264
+msgid "Page Geometry"
+msgstr ""
+
+#: gschem/src/base/gschem_page_view.c:271
+#: gschem/src/base/gschem_page_view.c:272
+msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
@@ -161,6 +195,39 @@ msgstr ""
 
 #: gschem/src/base/gschem_preview.c:298
 msgid "Preview Buffer"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:569
+msgid "Filename"
+msgstr "Lêernaam"
+
+#: gschem/src/base/gschem_preview.c:540
+msgid "name of file to be previewed"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:547
+msgid "Buffer"
+msgstr "Buffer"
+
+#: gschem/src/base/gschem_preview.c:548
+msgid "object list to be previewed"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:555
+#, fuzzy
+msgid "Active"
+msgstr "Handeling"
+
+#: gschem/src/base/gschem_preview.c:556
+msgid "Whether the preview widget is enabled or disabled"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:563
+msgid "Large size"
+msgstr ""
+
+#: gschem/src/base/gschem_preview.c:564
+msgid "Whether the preview widget show be large or small"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:509
@@ -3112,10 +3179,6 @@ msgstr "Werp Bladsy Weg"
 msgid "Page Manager"
 msgstr "Bladsybestuurder"
 
-#: gschem/src/x/x_pagesel.c:569
-msgid "Filename"
-msgstr "Lêernaam"
-
 #: gschem/src/x/x_pagesel.c:592
 msgid "Changed"
 msgstr "Veranderd"
@@ -5584,14 +5647,8 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "Lêer"
 
-#~ msgid "Buffer"
-#~ msgstr "Buffer"
-
 #~ msgid "View"
 #~ msgstr "Aansig"
-
-#~ msgid "Page"
-#~ msgstr "Bladsy"
 
 #~ msgid "Options"
 #~ msgstr "Opsies"

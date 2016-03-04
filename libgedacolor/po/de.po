@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-14 01:09-0600\n"
+"POT-Creation-Date: 2016-02-22 02:52-0600\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,72 +19,72 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: libgedacolor/src/get/color_get.c:181
-#: libgedacolor/src/utility/color_utility.c:225
+#: libgedacolor/src/get/color_get.c:179
+#: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
 msgstr "Farbindex außerhalb des gültigen Wertebereichs"
 
-#: libgedacolor/src/guile/color_guile.c:66
+#: libgedacolor/src/guile/color_guile.c:62
 #, fuzzy, c-format
 msgid "Error loading %s, %s\n"
 msgstr "Konnte Datei nicht finden %s: %s"
 
-#: libgedacolor/src/guile/color_guile.c:144
+#: libgedacolor/src/guile/color_guile.c:140
 msgid "Color map entry must be a two-element list"
 msgstr "Der Eintrag in der Farbtabelle muss eine zweielementige Liste sein"
 
-#: libgedacolor/src/guile/color_guile.c:153
+#: libgedacolor/src/guile/color_guile.c:149
 #, fuzzy
 msgid "Key in color map entry must be an string"
 msgstr "Der Wert in der Farbtabelle muss '#f' oder ein String sein."
 
-#: libgedacolor/src/guile/color_guile.c:182
+#: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"
 msgstr "Der Wert in der Farbtabelle muss '#f' oder ein String sein."
 
-#: libgedacolor/src/x11/color_x11.c:60
+#: libgedacolor/src/x11/color_x11.c:57
 #, fuzzy, c-format
 msgid "Tried to get an invalid color: %d\n"
 msgstr "Fehlerhafte Farbangabe entdeckt [%s]\n"
 
-#: libgedacolor/src/x11/color_x11.c:75
+#: libgedacolor/src/x11/color_x11.c:72
 #, fuzzy, c-format
 msgid "Could not allocate the color %s!\n"
 msgstr "Konnte Backupdatei nicht speichern: %s."
 
-#: libgedacolor/src/x11/color_x11.c:76
+#: libgedacolor/src/x11/color_x11.c:73
 #, fuzzy, c-format
 msgid "Could not allocate %s color %i!\n"
 msgstr "Konnte die Datei [%s] nicht zum Drucken öffnen\n"
 
-#: libgedacolor/src/x11/color_x11.c:80
+#: libgedacolor/src/x11/color_x11.c:77
 msgid "black"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:87
+#: libgedacolor/src/x11/color_x11.c:84
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:108
+#: libgedacolor/src/x11/color_x11.c:105
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:130
+#: libgedacolor/src/x11/color_x11.c:127
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:259
+#: libgedacolor/src/x11/color_x11.c:256
 #, c-format
 msgid "Allocating color scheme: %s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:264
+#: libgedacolor/src/x11/color_x11.c:261 libgedacolor/src/libgedacolor.c:120
 #, c-format
 msgid "Something went wrong, check:%s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:269
+#: libgedacolor/src/x11/color_x11.c:266 libgedacolor/src/libgedacolor.c:125
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "o_save: Konnte Datei [%s] nicht öffnen\n"

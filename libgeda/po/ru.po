@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-01 22:13-0600\n"
+"POT-Creation-Date: 2016-03-04 01:26-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -159,12 +159,12 @@ msgstr "Не удалось сохранить файл резервной ко�
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:676
+#: libgeda/src/file/f_file.c:602
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:688
+#: libgeda/src/file/f_file.c:614
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
@@ -616,16 +616,16 @@ msgstr ""
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Загружен файл настроек «%s»\n"
 
-#: libgeda/src/guile/g_rc_parse.c:423
+#: libgeda/src/guile/g_rc_parse.c:425
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек"
 
-#: libgeda/src/guile/g_rc_parse.c:436 libgeda/src/guile/g_rc_parse.c:437
+#: libgeda/src/guile/g_rc_parse.c:438 libgeda/src/guile/g_rc_parse.c:439
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ОШИБКА: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:443
+#: libgeda/src/guile/g_rc_parse.c:445
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"
@@ -706,17 +706,17 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1155
-#: libgeda/src/object/o_arc_object.c:1170
+#: libgeda/src/object/o_arc_object.c:1158
+#: libgeda/src/object/o_arc_object.c:1173
 msgid "Failed to parse arc object"
 msgstr "Ошибка в определении дуги"
 
-#: libgeda/src/object/o_arc_object.c:1177
+#: libgeda/src/object/o_arc_object.c:1180
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
-#: libgeda/src/object/o_arc_object.c:1183 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_arc_object.c:1186 libgeda/src/object/o_box_basic.c:545
 #: libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
@@ -726,7 +726,7 @@ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d�
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
 
-#: libgeda/src/object/o_arc_object.c:1184 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_arc_object.c:1187 libgeda/src/object/o_box_basic.c:546
 #: libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155

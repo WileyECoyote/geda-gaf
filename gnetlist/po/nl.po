@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-11 02:07-0600\n"
+"POT-Creation-Date: 2016-02-26 00:46-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -155,12 +155,29 @@ msgstr ""
 "Rapporteer gebreken op <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 
-#: gnetlist/src/parsecmd.c:219
+#: gnetlist/src/parsecmd.c:111
+#, fuzzy, c-format
+msgid ""
+"gEDA %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
+"Dit is vrije software, en u bent welkom om deze te herdistribueren onder\n"
+"bepaalde condities. Voor details, zie het bestand `COPYING', welke is\n"
+"bijgesloten in de gEDA distributie.\n"
+"Er is GEEN GARANTIE, voor zover toegestaan door de wet.\n"
+
+#: gnetlist/src/parsecmd.c:222
 #, c-format
 msgid "WARNING: output already specified <%s>\n"
 msgstr ""
 
-#: gnetlist/src/parsecmd.c:261
+#: gnetlist/src/parsecmd.c:264
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -169,7 +186,7 @@ msgstr ""
 "FOUT: -%c optie vereist een argument.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:265
+#: gnetlist/src/parsecmd.c:268
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -178,7 +195,7 @@ msgstr ""
 "FOUT: Onbekende optie -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:268
+#: gnetlist/src/parsecmd.c:271
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -187,7 +204,7 @@ msgstr ""
 "FOUT: Onbekend optie karakter `\\x%x'.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:272
+#: gnetlist/src/parsecmd.c:275
 #, c-format
 msgid ""
 "\n"
@@ -435,21 +452,6 @@ msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
 #~ "maar U heeft een versie [%s] gnetlistrc bestand:\n"
 #~ "[%s]\n"
 #~ "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
-
-#~ msgid ""
-#~ "gEDA %s (g%.7s)\n"
-#~ "Copyright (C) 1998-2012 gEDA developers\n"
-#~ "This is free software, and you are welcome to redistribute it under\n"
-#~ "certain conditions. For details, see the file `COPYING', which is\n"
-#~ "included in the gEDA distribution.\n"
-#~ "There is NO WARRANTY, to the extent permitted by law.\n"
-#~ msgstr ""
-#~ "gEDA %s (g%.7s)\n"
-#~ "Copyright (C) 1998-2012 gEDA developers\n"
-#~ "Dit is vrije software, en u bent welkom om deze te herdistribueren onder\n"
-#~ "bepaalde condities. Voor details, zie het bestand `COPYING', welke is\n"
-#~ "bijgesloten in de gEDA distributie.\n"
-#~ "Er is GEEN GARANTIE, voor zover toegestaan door de wet.\n"
 
 #~ msgid ""
 #~ "\n"

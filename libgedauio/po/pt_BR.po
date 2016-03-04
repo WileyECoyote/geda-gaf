@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-07 00:23-0600\n"
+"POT-Creation-Date: 2016-02-28 20:35-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,56 +20,56 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:445
-#: libgedauio/src/dialogs/geda_image_chooser.c:1005
+#: libgedauio/src/dialogs/geda_image_chooser.c:1006
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:446
-#: libgedauio/src/dialogs/geda_image_chooser.c:1006
+#: libgedauio/src/dialogs/geda_image_chooser.c:1007
 msgid "IDE_FILTER"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:592
-#: libgedauio/src/dialogs/geda_image_chooser.c:1152
+#: libgedauio/src/dialogs/geda_image_chooser.c:1153
 #, fuzzy
 msgid "_Open"
 msgstr "_Abrir..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:593
-#: libgedauio/src/dialogs/geda_image_chooser.c:1153
+#: libgedauio/src/dialogs/geda_image_chooser.c:1154
 msgid "Open..."
 msgstr "Abrir..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:597
-#: libgedauio/src/dialogs/geda_image_chooser.c:1157
+#: libgedauio/src/dialogs/geda_image_chooser.c:1158
 msgid "_Save"
 msgstr "_Salvar"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:598
-#: libgedauio/src/dialogs/geda_image_chooser.c:1158
+#: libgedauio/src/dialogs/geda_image_chooser.c:1159
 #, fuzzy
 msgid "Save As.."
 msgstr "Salvar _Como..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:602
-#: libgedauio/src/dialogs/geda_image_chooser.c:1162
+#: libgedauio/src/dialogs/geda_image_chooser.c:1163
 #, fuzzy
 msgid "_Select Folder..."
 msgstr "Modo de Seleção"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:603
-#: libgedauio/src/dialogs/geda_image_chooser.c:1163
+#: libgedauio/src/dialogs/geda_image_chooser.c:1164
 #, fuzzy
 msgid "Select Folder"
 msgstr "Modo de Seleção"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:607
-#: libgedauio/src/dialogs/geda_image_chooser.c:1167
+#: libgedauio/src/dialogs/geda_image_chooser.c:1168
 msgid "OOPS"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:612
-#: libgedauio/src/dialogs/geda_image_chooser.c:1172
+#: libgedauio/src/dialogs/geda_image_chooser.c:1173
 #, fuzzy
 msgid "_Cancel"
 msgstr "Pan/Cancelar"
@@ -138,17 +138,17 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1202
+#: libgedauio/src/widgets/geda_entry.c:1207
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Inserir Componente..."
 
-#: libgedauio/src/widgets/geda_entry.c:1209
+#: libgedauio/src/widgets/geda_entry.c:1214
 #, fuzzy
 msgid "On"
 msgstr "Abrir"
 
-#: libgedauio/src/widgets/geda_entry.c:1213
+#: libgedauio/src/widgets/geda_entry.c:1218
 msgid "Off"
 msgstr ""
 
@@ -498,16 +498,16 @@ msgstr ""
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5780
+#: libgedauio/src/widgets/geda_label.c:5782
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5905
+#: libgedauio/src/widgets/geda_label.c:5907
 #, fuzzy
 msgid "_Open Link"
 msgstr "Abrir arquivo..."
 
-#: libgedauio/src/widgets/geda_label.c:5917
+#: libgedauio/src/widgets/geda_label.c:5919
 msgid "Copy _Link Address"
 msgstr ""
 
