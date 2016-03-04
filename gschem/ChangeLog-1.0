@@ -1,5 +1,8 @@
 2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_confirm_close.h: Fix Camel case property enumeration,
+      presumably from global search and replace operations.
+
     * src/base/gschem_macro_widget.c: Translate nick names and blurb in
       gschem_macro_widget_class_init.
 
@@ -11,7 +14,8 @@
 
     * src/x/x_confirm_close.c: Translate nick names and blurb in
       confirm_close_dialog_class_init. Add GParamSpec and set params prior
-      to calling g_object_class_install_property.
+      to calling g_object_class_install_property, fix Camel case properties;
+      i.e. PROP_*_PageS -> PROP_*_PAGES.
 
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 

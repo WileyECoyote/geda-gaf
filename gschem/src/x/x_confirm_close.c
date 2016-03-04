@@ -338,7 +338,7 @@ confirm_close_dialog_set_property (GObject      *object,
   GtkTreeIter iter;
 
   switch(property_id) {
-    case PROP_UNSAVED_Page:
+    case PROP_UNSAVED_PAGE:
       data = g_value_get_pointer (value);
       if (data != NULL) {
         /* add single page to model */
@@ -352,7 +352,7 @@ confirm_close_dialog_set_property (GObject      *object,
       }
       break;
 
-    case PROP_UNSAVED_PageS:
+    case PROP_UNSAVED_PAGES:
       data = g_value_get_pointer (value);
       /* add set of pages to model */
       for (p_current = (GList*)data; p_current != NULL; NEXT(p_current))
@@ -381,7 +381,7 @@ confirm_close_dialog_get_property (GObject     *object,
   ConfirmCloseDialog *dialog = CLOSE_CONFIRMATION_DIALOG (object);
 
   switch(property_id) {
-    case PROP_SELECTED_PageS:
+    case PROP_SELECTED_PAGES:
       g_value_set_pointer (value,
                            confirm_close_dialog_get_selected_pages (dialog));
       break;
@@ -588,21 +588,21 @@ confirm_close_dialog_class_init (void *g_class, void *g_class_data)
                                  "",
                                  G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
 
-  g_object_class_install_property (gobject_class, PROP_UNSAVED_Page, params);
+  g_object_class_install_property (gobject_class, PROP_UNSAVED_PAGE, params);
 
   params = g_param_spec_pointer ("unsaved-pages",
                                _("unsaved pages"),
                                  "",
                                  G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
 
-  g_object_class_install_property (gobject_class, PROP_UNSAVED_PageS,params);
+  g_object_class_install_property (gobject_class, PROP_UNSAVED_PAGES,params);
 
   params = g_param_spec_pointer ("selected-pages",
                                _("selected pages"),
                                  "",
                                  G_PARAM_READABLE);
 
-  g_object_class_install_property (gobject_class, PROP_SELECTED_PageS, params);
+  g_object_class_install_property (gobject_class, PROP_SELECTED_PAGES, params);
 }
 
 static void

@@ -61,9 +61,9 @@ struct _ConfirmCloseDialogClass
 };
 
 enum {
-  PROP_UNSAVED_Page=1,
-  PROP_UNSAVED_PageS,
-  PROP_SELECTED_PageS
+  PROP_UNSAVED_PAGE=1,
+  PROP_UNSAVED_PAGES,
+  PROP_SELECTED_PAGES
 };
 
 enum {
