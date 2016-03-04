@@ -10,7 +10,8 @@
       preview_class_init.
 
     * src/x/x_confirm_close.c: Translate nick names and blurb in
-      confirm_close_dialog_class_init.
+      confirm_close_dialog_class_init. Add GParamSpec and set params prior
+      to calling g_object_class_install_property.
 
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 

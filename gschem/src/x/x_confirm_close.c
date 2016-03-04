@@ -572,6 +572,8 @@ static void confirm_close_dialog_finalize (GObject *object)
 static void
 confirm_close_dialog_class_init (void *g_class, void *g_class_data)
 {
+  GParamSpec *params;
+
   GObjectClass *gobject_class = G_OBJECT_CLASS (g_class);
 
   confirm_close_dialog_parent_class = g_type_class_peek_parent (g_class);
@@ -581,25 +583,26 @@ confirm_close_dialog_class_init (void *g_class, void *g_class_data)
   gobject_class->set_property = confirm_close_dialog_set_property;
   gobject_class->get_property = confirm_close_dialog_get_property;
 
-  g_object_class_install_property (
-    gobject_class, PROP_UNSAVED_Page,
-    g_param_spec_pointer ("unsaved-page",
-                        _("unsaved page"),
-                          "",
-                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE));
-  g_object_class_install_property (
-    gobject_class, PROP_UNSAVED_PageS,
-    g_param_spec_pointer ("unsaved-pages",
-                        _("unsaved pages"),
-                          "",
-                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE));
-  g_object_class_install_property (
-    gobject_class, PROP_SELECTED_PageS,
-    g_param_spec_pointer ("selected-pages",
-                        _("selected pages"),
-                          "",
-                          G_PARAM_READABLE));
+  params = g_param_spec_pointer ("unsaved-page",
+                               _("unsaved page"),
+                                 "",
+                                 G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
 
+  g_object_class_install_property (gobject_class, PROP_UNSAVED_Page, params);
+
+  params = g_param_spec_pointer ("unsaved-pages",
+                               _("unsaved pages"),
+                                 "",
+                                 G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
+
+  g_object_class_install_property (gobject_class, PROP_UNSAVED_PageS,params);
+
+  params = g_param_spec_pointer ("selected-pages",
+                               _("selected pages"),
+                                 "",
+                                 G_PARAM_READABLE);
+
+  g_object_class_install_property (gobject_class, PROP_SELECTED_PageS, params);
 }
 
 static void
