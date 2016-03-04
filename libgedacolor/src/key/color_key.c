@@ -84,11 +84,11 @@ const char *color_keys [] = {
 int geda_color_key_get_index(const char *name)
 {
   int index;
-  int trip = 0;
 
   if (name) {
 
     static int last = -1;
+    int trip = 0;
 
     index = last < sizeof (color_keys) / sizeof (color_keys[0]) - 2 ? ++last : 0;
 
