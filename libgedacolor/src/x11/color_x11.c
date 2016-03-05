@@ -62,6 +62,7 @@ static void inline x11_color_invalid_index(int index)
  * \par Function Documentation
  *  Allocates system colors found in color maps. Called
  *  after initialization of the colormaps.
+ * \todo Do not allocate blocks each time this function called.
  */
 void geda_color_x11_allocate (void)
 {
@@ -197,27 +198,39 @@ bool geda_color_x11_enabled (int index)
   return (x_display_colors[index] != NULL);
 }
 
-/*! \brief Frees memory used by the color system.
- *  \par Function Documentation
- *  This function frees the colors from colormap along with
+/*!
+ * \brief Frees colors used by the color system.
+ * \par Function Documentation
+ *  This function frees colors in the X11 colormap along with
  *  \b black and \b white.
  */
 void
 geda_color_x11_free (void)
 {
-  int i;
+  if (x_colormap) {
 
-  gdk_colormap_free_colors (x_colormap, &black, 1);
-  gdk_colormap_free_colors (x_colormap, &white, 1);
+    int i;
 
-  for (i = 0; i < MAX_COLORS; i++) {
+    gdk_colormap_free_colors (x_colormap, &black, 1);
+    gdk_colormap_free_colors (x_colormap, &white, 1);
 
-    if (display_colors[i].enabled) {
-      gdk_colormap_free_colors (x_colormap, x_display_colors[i], 1);
-    }
+    for (i = 0; i < MAX_COLORS; i++) {
 
-    if (outline_colors[i].enabled) {
-      gdk_colormap_free_colors (x_colormap, x_outline_colors[i], 1);
+      if (x_display_colors[i]) {
+        if (display_colors[i].enabled) {
+          gdk_colormap_free_colors (x_colormap, x_display_colors[i], 1);
+        }
+        free (x_display_colors[i]);
+        x_display_colors[i] = NULL;
+      }
+
+      if (x_outline_colors[i]) {
+        if (outline_colors[i].enabled) {
+          gdk_colormap_free_colors (x_colormap, x_outline_colors[i], 1);
+        }
+        free (x_outline_colors[i]);
+        x_outline_colors[i] = NULL;
+      }
     }
   }
 }

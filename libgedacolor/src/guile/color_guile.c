@@ -42,6 +42,7 @@
 
 #include "../../include/globals.h"
 #include "../../include/libgedacolor.h"
+#include "../../include/private.h"
 #include "../../include/gettext_priv.h"
 #include <geda_debug.h>
 
@@ -235,6 +236,8 @@ SCM geda_color_guile_display_map (SCM scm_map)
   display_cmap_flag = 1;
 
   geda_color_guile_map_from_scm (display_colors, scm_map, me);
+
+  geda_color_x11_free();
 
   geda_color_x11_allocate();
 
