@@ -275,7 +275,9 @@ static void eda_config_class_init(void *class, void *class_data)
 static void
 eda_config_instance_init(GTypeInstance *instance, void *class)
 {
-  EdaConfig *config = (EdaConfig*)instance;
+  EdaConfig *config     = (EdaConfig*)instance;
+
+  config->instance_type = eda_config_get_type();
 
   config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
                                               EDA_TYPE_CONFIG,
@@ -327,6 +329,14 @@ GedaConfigType eda_config_get_type (void)
   }
 
   return eda_config_type;
+}
+
+bool is_a_eda_config (EdaConfig *cfg)
+{
+  if (G_IS_OBJECT(cfg)) {
+    return (eda_config_get_type() == cfg->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Create an #EdaConfigError from a GKeyFileError.
@@ -857,13 +867,13 @@ eda_config_load (EdaConfig *cfg, GError **error)
   }
   else {
 
-    char *buf;
-    size_t len;
-
     int key_file_flags = G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS;
     GKeyFile *key_file = g_key_file_new ();
 
     if (access(filename, R_OK) == 0) {
+
+      char  *buf;
+      size_t len;
 
       if (g_file_get_contents (filename, &buf, &len, error)) {
 
@@ -1323,9 +1333,10 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
   GHashTable *key_table = NULL;
-  EdaConfig *curr;
+  EdaConfig  *curr;
 
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
+
     size_t len;
     int    i;
     char **local_keys = g_key_file_get_keys (curr->priv->keyfile,
