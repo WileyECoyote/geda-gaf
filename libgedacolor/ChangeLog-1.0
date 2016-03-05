@@ -1,3 +1,22 @@
+2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x11/color_x11.c: Use simpler more efficient scheme, only allocate
+      display_colors slots onces; allocate and release gdk_colors on demand;
+      free all gdk_colors and display_colors, and the map at exit.
+
+          * function geda_color_x11_allocate: Do not allocate memory in slot
+            and do set pointer to NULL (which points to previouly allocated
+            memory).
+
+          * function geda_color_x11_init: Allocate memory for each color slot
+            one time (also allocates the gdk_colormap).
+
+          * function geda_color_x11_free: do not free allocated display_colors
+            slot, only the gdk_colors space.
+
+          * function geda_color_x11_release_resources: Release memory allocated
+            in geda_color_x11_init.
+
 2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/private.h: Relocate declarations from libgedacolor.h:

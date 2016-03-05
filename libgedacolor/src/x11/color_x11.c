@@ -62,7 +62,6 @@ static void inline x11_color_invalid_index(int index)
  * \par Function Documentation
  *  Allocates system colors found in color maps. Called
  *  after initialization of the colormaps.
- * \todo Do not allocate blocks each time this function called.
  */
 void geda_color_x11_allocate (void)
 {
@@ -90,8 +89,6 @@ void geda_color_x11_allocate (void)
 
     if (display_colors[i].enabled) {
 
-      x_display_colors[i] = (GdkColor*) GEDA_MEM_ALLOC(sizeof(GdkColor));
-
       c = display_colors[i];
 
       /* Interpolate 8-bpp colours into 16-bpp GDK color space
@@ -106,13 +103,8 @@ void geda_color_x11_allocate (void)
         u_log_message (err_allocate_s1i1, _("display"), i);
       }
     }
-    else {
-      x_display_colors[i] = NULL;
-    }
 
     if (outline_colors[i].enabled) {
-
-      x_outline_colors[i] = (GdkColor*) GEDA_MEM_ALLOC(sizeof(GdkColor));
 
       c = outline_colors[i];
 
@@ -127,9 +119,6 @@ void geda_color_x11_allocate (void)
       if (error == FALSE) {
         u_log_message (err_allocate_s1i1, _("outline"), i);
       }
-    }
-    else {
-      x_outline_colors[i] = NULL;
     }
   }
 }
@@ -168,20 +157,21 @@ COLOR *geda_color_x11_lookup (int color)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get if color is enabled or disabled
+ * \par Function Description
+ * \note is only relavent to display color
+ * \returns the enable flag corresponding to \a color
  */
 bool geda_color_x11_get_state (int color)
 {
   return display_colors[color].enabled;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set state of a color enabled or disabled
+ * \par Function Description
+ * \note is only relavent to display color
  */
 void geda_color_x11_set_state (int color, int state)
 {
@@ -193,9 +183,9 @@ void geda_color_x11_set_state (int color, int state)
  *  \par Function Description
  *  \note is only relavent to display color
  */
-bool geda_color_x11_enabled (int index)
+bool geda_color_x11_is_enabled (int index)
 {
-  return (x_display_colors[index] != NULL);
+  return (x_display_colors[index].enabled);
 }
 
 /*!
@@ -216,20 +206,11 @@ geda_color_x11_free (void)
 
     for (i = 0; i < MAX_COLORS; i++) {
 
-      if (x_display_colors[i]) {
-        if (display_colors[i].enabled) {
-          gdk_colormap_free_colors (x_colormap, x_display_colors[i], 1);
-        }
-        free (x_display_colors[i]);
-        x_display_colors[i] = NULL;
+      if (display_colors[i].enabled) {
+        gdk_colormap_free_colors (x_colormap, x_display_colors[i], 1);
       }
-
-      if (x_outline_colors[i]) {
-        if (outline_colors[i].enabled) {
-          gdk_colormap_free_colors (x_colormap, x_outline_colors[i], 1);
-        }
-        free (x_outline_colors[i]);
-        x_outline_colors[i] = NULL;
+      if (outline_colors[i].enabled) {
+        gdk_colormap_free_colors (x_colormap, x_outline_colors[i], 1);
       }
     }
   }
@@ -243,7 +224,14 @@ geda_color_x11_free (void)
 void
 geda_color_x11_init (void)
 {
+  int i;
+
   x_colormap = gdk_colormap_get_system ();
+
+  for (i = 0; i < MAX_COLORS; i++) {
+    x_display_colors[i] = (GdkColor*) GEDA_MEM_ALLOC(sizeof(GdkColor));
+    x_outline_colors[i] = (GdkColor*) GEDA_MEM_ALLOC(sizeof(GdkColor));
+  }
 }
 
 /*! \brief Loads and executes a color map scheme
@@ -265,7 +253,7 @@ int geda_color_x11_load_scheme(char *scheme) {
     geda_color_x11_free();
 
     if (geda_color_guile_load_scheme(inputfile)) {
-      // quite or verbose?
+
       u_log_message(_("Allocating color scheme: %s\n"), scheme);
       geda_color_x11_allocate();
       result = TRUE;
@@ -288,7 +276,7 @@ int geda_color_x11_load_scheme(char *scheme) {
 
 /*! \brief Release resources memory used by X11 color system.
  *  \par Function Documentation
- *  This function frees the colors and unreferences the colormap.
+ *  Releases resources allocated by geda_color_x11_init.
  */
 void
 geda_color_x11_release_resources (void)
@@ -299,15 +287,11 @@ geda_color_x11_release_resources (void)
 
   for (i = 0; i < MAX_COLORS; i++) {
 
-    if (display_colors[i].enabled) {
-      free (x_display_colors[i]);
-      x_display_colors[i] = NULL;
-    }
+    free (x_display_colors[i]);
+    x_display_colors[i] = NULL;
 
-    if (x_outline_colors[i]) {
-      free(x_outline_colors[i]);
-      x_outline_colors[i] = NULL;
-    }
+    free(x_outline_colors[i]);
+    x_outline_colors[i] = NULL;
   }
 
   if (GDK_IS_COLORMAP(x_colormap)) {
