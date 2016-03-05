@@ -1,5 +1,9 @@
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_keys.c: Reduce scope of SCM variables in g_keys_find_key,
+      remove initializing s_lst to NULL, eliminate variables ret_keys and
+      return keys directly, add Doxygen comment block.
+
     * src/x/x_dialog.c: Replace geda_color_x11_enabled  with geda_color_
       x11_get_state.
 

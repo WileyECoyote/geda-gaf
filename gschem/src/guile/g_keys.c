@@ -550,39 +550,51 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
   return !scm_is_false (s_retval);
 }
 
-/* Search the global keymap for a particular symbol and return the
- * keys which execute this hotkey, as a string suitable for display
- * to the user. This is used by the gschem menu system.
+/*!
+ * \brief Retrieve keys for an action
+ * \par Function Description
+ *  Search the global keymap for a particular \a action and return the
+ *  keys which execute this hotkey, as a string suitable for display
+ *  to the user. This is used by the gschem menu system.
  *
  * example: (find-key (quote file-new))
  *
+ * \note returned string should be released with free, not g_free
+ *
+ * \param action The action whose keys are to be returned.
+ *
+ * \return keys if found and not equal to (null), otherwise NULL.
  */
-char *g_keys_find_key (char *func_name) {
-  SCM s_expr;
-  SCM s_iter;
-  SCM s_lst  = NULL;
+char *g_keys_find_key (char *action) {
+
+  SCM   s_lst;
   char *keys = NULL;
-  char *ret_keys;
 
   if (run_mode == 2) {
+
+    SCM s_expr;
+
     /* Call Scheme procedure to dump global keymap into list */
     s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
-    s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+    s_lst  = g_scm_eval_protected (s_expr, scm_interaction_environment ());
   }
   else {
     s_lst = SCM_UNDEFINED;
   }
+
   if (scm_is_true (scm_list_p (s_lst))) {
+
+    SCM s_iter;
 
     for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
 
       char *binding;
-      SCM s_binding = scm_caar (s_iter);
-      SCM s_keys = scm_cdar (s_iter);
+      SCM   s_binding = scm_caar (s_iter);
+      SCM   s_keys    = scm_cdar (s_iter);
 
       binding = scm_to_utf8_string (s_binding);
 
-      if ( strcmp( func_name, binding) == 0) {
+      if (!strcmp(action, binding)) {
         keys = scm_to_utf8_string (s_keys);
         free(binding);
         break;
@@ -590,20 +602,13 @@ char *g_keys_find_key (char *func_name) {
       free(binding);
     }
   }
-  if (keys != NULL) {
-    if (strcmp( keys, "(null)") == 0) {
-      ret_keys = NULL;
-    }
-    else {
-      ret_keys = geda_utility_string_sprintf ("%s", keys);
-    }
+
+  if (keys && !strcmp(keys, "(null)")) {
     free(keys);
-  }
-  else {
-    ret_keys = NULL;
+    keys = NULL;
   }
 
-  return ret_keys;
+  return keys;
 }
 
 /*! \brief Exports the keymap in Scheme to a GtkListStore
@@ -638,6 +643,7 @@ GtkListStore *g_keys_to_new_list_store (void)
   scm_dynwind_unwind_handler (g_object_unref, list_store, 0);
 
   for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
+
     SCM s_binding = scm_caar (s_iter);
     SCM s_keys    = scm_cdar (s_iter);
     char *binding, *keys;
@@ -654,8 +660,7 @@ GtkListStore *g_keys_to_new_list_store (void)
     gtk_list_store_insert_with_values (list_store, &iter, -1,
                                        0, binding,
                                        1, keys,
-                                       -1);
-
+                                      -1);
     scm_dynwind_end ();
   }
 
