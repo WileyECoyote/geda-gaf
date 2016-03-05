@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-22 02:52-0600\n"
+"POT-Creation-Date: 2016-03-05 01:25-0600\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -25,21 +25,21 @@ msgstr ""
 msgid "Color index out of range"
 msgstr "Farbindex außerhalb des gültigen Wertebereichs"
 
-#: libgedacolor/src/guile/color_guile.c:62
+#: libgedacolor/src/guile/color_guile.c:63
 #, fuzzy, c-format
 msgid "Error loading %s, %s\n"
 msgstr "Konnte Datei nicht finden %s: %s"
 
-#: libgedacolor/src/guile/color_guile.c:140
+#: libgedacolor/src/guile/color_guile.c:141
 msgid "Color map entry must be a two-element list"
 msgstr "Der Eintrag in der Farbtabelle muss eine zweielementige Liste sein"
 
-#: libgedacolor/src/guile/color_guile.c:149
+#: libgedacolor/src/guile/color_guile.c:150
 #, fuzzy
 msgid "Key in color map entry must be an string"
 msgstr "Der Wert in der Farbtabelle muss '#f' oder ein String sein."
 
-#: libgedacolor/src/guile/color_guile.c:178
+#: libgedacolor/src/guile/color_guile.c:179
 msgid "Value in color map entry must be #f or a string"
 msgstr "Der Wert in der Farbtabelle muss '#f' oder ein String sein."
 
@@ -66,25 +66,25 @@ msgstr ""
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:105
+#: libgedacolor/src/x11/color_x11.c:103
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:127
+#: libgedacolor/src/x11/color_x11.c:120
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:256
+#: libgedacolor/src/x11/color_x11.c:247
 #, c-format
 msgid "Allocating color scheme: %s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:261 libgedacolor/src/libgedacolor.c:120
+#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:120
 #, c-format
 msgid "Something went wrong, check:%s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:266 libgedacolor/src/libgedacolor.c:125
+#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:125
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "o_save: Konnte Datei [%s] nicht öffnen\n"

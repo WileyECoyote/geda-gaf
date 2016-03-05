@@ -201,7 +201,7 @@ AX_LIBGEDADRAW([0:3:0])
 AX_LIBGEDACAIRO([1:6:1])
 
 # Set up libgedacolor with the correct ld version number
-AX_LIBGEDACOLOR([0:2:0])
+AX_LIBGEDACOLOR([0:3:0])
 
 # Set up libgedathon with the correct ld version number
 AX_LIBGEDATHON([0:7:0])

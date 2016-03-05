@@ -178,16 +178,6 @@ void geda_color_x11_set_state (int color, int state)
   display_colors[color].enabled = state != FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *  \note is only relavent to display color
- */
-bool geda_color_x11_is_enabled (int index)
-{
-  return (x_display_colors[index].enabled);
-}
-
 /*!
  * \brief Frees colors used by the color system.
  * \par Function Documentation

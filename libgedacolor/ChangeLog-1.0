@@ -17,6 +17,8 @@
           * function geda_color_x11_release_resources: Release memory allocated
             in geda_color_x11_init.
 
+      Remove funection geda_color_x11_is_enabled.
+
 2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/private.h: Relocate declarations from libgedacolor.h:

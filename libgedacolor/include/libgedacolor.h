@@ -61,7 +61,6 @@ extern "C" {
         COLOR   *geda_color_x11_lookup           (int color);
          bool    geda_color_x11_get_state        (int color);
          void    geda_color_x11_set_state        (int color, int state);
-         bool    geda_color_x11_enabled          (int index);
 
 #ifdef __cplusplus
 }

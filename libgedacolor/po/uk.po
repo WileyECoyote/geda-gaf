@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-22 02:52-0600\n"
+"POT-Creation-Date: 2016-03-05 01:25-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -24,20 +24,20 @@ msgstr ""
 msgid "Color index out of range"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:62
+#: libgedacolor/src/guile/color_guile.c:63
 #, fuzzy, c-format
 msgid "Error loading %s, %s\n"
 msgstr "Не можу знайти файл %s: %s"
 
-#: libgedacolor/src/guile/color_guile.c:140
+#: libgedacolor/src/guile/color_guile.c:141
 msgid "Color map entry must be a two-element list"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:149
+#: libgedacolor/src/guile/color_guile.c:150
 msgid "Key in color map entry must be an string"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:178
+#: libgedacolor/src/guile/color_guile.c:179
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
@@ -64,25 +64,25 @@ msgstr ""
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:105
+#: libgedacolor/src/x11/color_x11.c:103
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:127
+#: libgedacolor/src/x11/color_x11.c:120
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:256
+#: libgedacolor/src/x11/color_x11.c:247
 #, c-format
 msgid "Allocating color scheme: %s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:261 libgedacolor/src/libgedacolor.c:120
+#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:120
 #, c-format
 msgid "Something went wrong, check:%s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:266 libgedacolor/src/libgedacolor.c:125
+#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:125
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "Не можу зберегти файл резервної копії: %s."
