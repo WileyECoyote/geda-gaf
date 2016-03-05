@@ -1,3 +1,7 @@
+/2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * packages/DIP24-300-1.sym: Repostion attributes.
+
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/led: Revise LED symbols; reposition/clean attributes, rotate diodes
