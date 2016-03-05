@@ -1,4 +1,11 @@
+2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/private.h: Relocate declarations from libgedacolor.h:
+
+            * geda_color_x11_init
+            * geda_color_x11_free
+            * geda_color_x11_allocate
+
 2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * Initial Release.
-

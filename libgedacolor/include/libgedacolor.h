@@ -55,9 +55,6 @@ extern "C" {
          char   *geda_color_utility_postscript   (int color);
 
 /* xcolor.c */
-         void    geda_color_x11_init             (void);
-         void    geda_color_x11_free             (void);
-         void    geda_color_x11_allocate         (void);
 #ifdef __GDK_COLOR_H__
      GdkColor   *geda_color_x11_color_from_index (int color);
 #endif
