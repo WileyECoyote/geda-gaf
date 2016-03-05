@@ -134,6 +134,6 @@ int geda_color_load_print_scheme(char *scheme) {
 void libgedacolor_release(void)
 {
   geda_color_struct_release_resources();
-  geda_color_x11_free();
+  geda_color_x11_release_resources();
 }
 

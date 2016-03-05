@@ -271,3 +271,33 @@ int geda_color_x11_load_scheme(char *scheme) {
 
   return result;
 }
+
+
+/*! \brief Release resources memory used by X11 color system.
+ *  \par Function Documentation
+ *  This function frees the colors and unreferences the colormap.
+ */
+void
+geda_color_x11_release_resources (void)
+{
+  int i;
+
+  geda_color_x11_free();
+
+  for (i = 0; i < MAX_COLORS; i++) {
+
+    if (display_colors[i].enabled) {
+      free (x_display_colors[i]);
+      x_display_colors[i] = NULL;
+    }
+
+    if (x_outline_colors[i]) {
+      free(x_outline_colors[i]);
+      x_outline_colors[i] = NULL;
+    }
+  }
+
+  if (GDK_IS_COLORMAP(x_colormap)) {
+   g_object_unref(x_colormap);
+  }
+}

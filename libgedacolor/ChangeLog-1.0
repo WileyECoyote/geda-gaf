@@ -6,6 +6,13 @@
             * geda_color_x11_free
             * geda_color_x11_allocate
 
+    * src/libgedacolor.c: Call geda_color_x11_release_resources instead of
+      geda_color_x11_free.
+
+    * src/x11/color_x11.c: Add function geda_color_x11_release_resources to
+      insure resources are released. (declartion included in header in last
+      commit becasue git error.)
+
 2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * Initial Release.
