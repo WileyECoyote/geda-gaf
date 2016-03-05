@@ -1139,7 +1139,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   for (i = 0; i < MAX_COLORS; i++) {
 
     /* Skip 'invalid' colors. */
-    if (!geda_color_x11_enabled(i))
+    if (!geda_color_x11_get_state(i))
       continue;
 
     str = x_dialog_get_color_name(i);
