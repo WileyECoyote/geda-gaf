@@ -166,7 +166,6 @@ void geda_utility_log_init (const char *prefix)
   /* FIXME we assume that the prefix is in the filesystem encoding. */
   GSList *files           = NULL;
   char   *dir_path        = NULL;
-  char   *filename        = NULL;
   char   *full_prefix     = NULL;
   size_t  full_prefix_len = 0;
   struct  tm *nowtm;
@@ -190,9 +189,9 @@ void geda_utility_log_init (const char *prefix)
 
   full_prefix_len = strlen (full_prefix);
 
-  /* Find/create the directory where we are going to put the logs.
-   * Then run through it finding the "biggest" existing filename with
-   * a matching prefix & date. */
+  /* Find/create the directory where we are going to put the logs. Then
+   * iterate over files in the directory finding the "biggest" existing
+   * filename with a matching prefix & date. */
 
   if (default_log_directory) {
     dir_path = default_log_directory;
@@ -242,10 +241,15 @@ void geda_utility_log_init (const char *prefix)
     /* Now try and create a new file. When we fail, increment the number. */
     index = 0;
     while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > index++)) {
+
+      char *filename;
+
       filename = geda_utility_string_sprintf ("%s%s%s%i.log", dir_path,
                                    DIR_SEPARATOR_S, full_prefix,
       ++last_exist_logn);
       logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);
+
+      GEDA_FREE (filename);
 
       if (logfile_fd == -1 && (errno != EEXIST)) {
         break;
@@ -262,8 +266,8 @@ void geda_utility_log_init (const char *prefix)
     }
     else {
 
-      /* It's okay to use the logging functions from here,
-       * because there's already a default handler.
+      /* It is okay to use the logging functions from here,
+       * because there is already a default handler.
        */
       if (errno == EEXIST) {
         fprintf(stderr, "Could not create unique log filename in %s\n",
@@ -274,8 +278,6 @@ void geda_utility_log_init (const char *prefix)
                 strerror (errno));
       }
     }
-
-    GEDA_FREE (filename);
   }
 
   if (!default_log_directory) {
@@ -288,7 +290,8 @@ void geda_utility_log_init (const char *prefix)
 /*! \brief Terminates the logging of messages.
  *  \par Function Description
  *  This function de-registers the handler for redirection to the log
- *  file and closes it. Subsequent messages are lost after the close.
+ *  file and then close the log file. Subsequent messages are lost after
+ *  the close.
  */
 void geda_utility_log_close (void)
 {

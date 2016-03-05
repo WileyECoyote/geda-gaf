@@ -1,3 +1,13 @@
+2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_config.h: Declare is_a_eda_config and implement
+      in macro EDA_IS_CONFIG.
+
+    * src/geda/geda_config.c: Add function is_a_eda_config to check type.
+
+    * src/utility/u_log.c: Reduce scope of filename in geda_utility_log_init,
+      free filename inside of loop, edit comments.
+
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgeda.c: Reduce scope of opt in parse_args.
