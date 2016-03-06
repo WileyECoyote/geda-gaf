@@ -1,3 +1,10 @@
+2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_menus.h: Add st_toggle_menu_data member action.
+
+    * src/x/x_menus.c: Unreference actions for toggle items in function
+      x_menu_free_toggler.
+
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_keys.c: Reduce scope of SCM variables in g_keys_find_key,

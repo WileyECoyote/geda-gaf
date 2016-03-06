@@ -224,9 +224,11 @@ static void x_menu_popup_execute(GtkObject *widget, int action_id)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_MOUSE);
 }
 
-static void x_menu_free_toggler (void *data_record, void *user_data)
+static void x_menu_free_toggler (void *data_record, void *nothing)
 {
   ToggleMenuData *toggler_data = data_record;
+
+  g_object_unref (toggler_data->action);
 
   g_free(toggler_data->toggle_name);
   g_free(toggler_data->menu_item_name);
@@ -564,6 +566,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                     menu_item_tip ? menu_item_tip : menu_item_name,
                                     menu_icon_name,    /* Icon stock ID */
                                     action_keys);      /* Accelerator string */
+            toggler_data->action = (GtkWidget*)action;
           }
           else {
 

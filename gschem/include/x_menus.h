@@ -113,6 +113,7 @@ struct st_recent_file_menu_data {
 
 struct st_toggle_menu_data {
   GschemToplevel *w_current;   /* We can do this because the menu is unique to the window */
+  GtkWidget      *action;      /* Action associated with this toggle menu item */
   int   toggle_id;             /* Index in st_menu_data.menu_togglers list */
   char *toggle_name;           /* Menu string DOES NOT APPEAR TO BE SET */
   char *menu_item_name;        /* String for the label in the menu */
