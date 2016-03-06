@@ -80,11 +80,6 @@ void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,
                                                   const char     *accel_string);
 bool          geda_accel_label_refetch           (GedaAccelLabel *accel_label);
 
-/* private */
-char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *class,
-                                                     unsigned int         accelerator_key,
-                                                     GdkModifierType      accelerator_mods);
-
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -46,9 +46,9 @@ typedef enum
 #define GEDA_IS_COMBO_BOX_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), GEDA_TYPE_COMBO_BOX))
 #define GEDA_COMBO_BOX_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_CLASS ((inst), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
 
-typedef struct _GedaComboBox        GedaComboBox;
-typedef struct _GedaComboBoxClass   GedaComboBoxClass;
-typedef struct _GedaComboBoxPrivate GedaComboBoxPrivate;
+typedef struct _GedaComboBox      GedaComboBox;
+typedef struct _GedaComboBoxClass GedaComboBoxClass;
+typedef struct _GedaComboBoxData  GedaComboBoxData;
 
 struct _GedaComboBox
 {
@@ -57,7 +57,7 @@ struct _GedaComboBox
   /*< private >*/
   int tip_column;
 
-  GedaComboBoxPrivate *priv;
+  GedaComboBoxData *priv;
 };
 
 struct _GedaComboBoxClass

@@ -1,8 +1,14 @@
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_combobox.h: Rename GedaComboBoxPrivate->GedaComboBoxData.
+
     * src/widgets/geda_accel_label.c: Utilize string functions in libgeda.
 
     * src/widgets/geda_entry.c: Utilize string functions in libgeda.
+
+    * src/widgets/geda_combobox.c: Eliminate use of GEDA_COMBO_BOX_GET_PRIVATE,
+      G_TYPE_INSTANCE_GET_PRIVATE, allocate using g_malloc0 in geda_combo_box_init
+      release in geda_image_menu_item_finalize.
 
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 

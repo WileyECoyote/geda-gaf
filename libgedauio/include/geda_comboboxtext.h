@@ -41,9 +41,8 @@ BEGIN_DECLS
 #define GEDA_IS_COMBO_BOX_TEXT_CLASS(klass)      (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_COMBO_BOX_TEXT))
 #define GEDA_COMBO_BOX_TEXT_GET_CLASS(obj)       (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxTextClass))
 
-typedef struct _GedaComboBoxText             GedaComboBoxText;
-typedef struct _GedaComboBoxTextPrivate      GedaComboBoxTextPrivate;
-typedef struct _GedaComboBoxTextClass        GedaComboBoxTextClass;
+typedef struct _GedaComboBoxText      GedaComboBoxText;
+typedef struct _GedaComboBoxTextClass GedaComboBoxTextClass;
 
 struct _GedaComboBoxText
 {
