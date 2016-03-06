@@ -44,7 +44,8 @@
 #include "config.h"
 #endif
 
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
 
 #include <gtk/gtkaccellabel.h>
 #include "geda_gtk_compat.h"
@@ -135,8 +136,8 @@ geda_accel_label_set_property (GObject      *object,
 static void
 geda_accel_label_get_property (GObject      *object,
                                unsigned int  prop_id,
-                               GValue     *value,
-                               GParamSpec *pspec)
+                               GValue       *value,
+                               GParamSpec   *pspec)
 {
   GedaAccelLabel  *accel_label;
 
@@ -169,7 +170,7 @@ geda_accel_label_finalize (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
 
-  g_free (accel_label->accel_string);
+  GEDA_FREE (accel_label->accel_string);
 
   G_OBJECT_CLASS (geda_accel_label_parent_class)->finalize (object);
 }
@@ -180,7 +181,7 @@ geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
   g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), 0);
 
   return (accel_label->accel_string_width +
-          (accel_label->accel_string_width ? accel_label->accel_padding : 0));
+         (accel_label->accel_string_width ? accel_label->accel_padding : 0));
 }
 
 static void
@@ -430,11 +431,12 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
 {
   g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
 
-  if (accel_label->accel_string)
+  if (accel_label->accel_string) {
     g_free (accel_label->accel_string);
+  }
 
   if (accel_string) {
-    accel_label->accel_string = g_strdup (accel_string);
+    accel_label->accel_string = geda_utility_string_strdup (accel_string);
     substitute_underscores (accel_label->accel_string);
   }
   else {

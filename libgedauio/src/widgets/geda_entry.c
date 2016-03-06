@@ -31,7 +31,8 @@
 #include "config.h"
 #endif
 
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
 #include <ctype.h>
@@ -591,7 +592,8 @@ geda_entry_drag_data_get (GtkWidget        *widget,
 static void
 geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
@@ -620,9 +622,7 @@ static void geda_entry_finalize (GObject *object)
     entry->priv->font_map = NULL;
   }
 
-  if (entry->priv) {
-    g_free (entry->priv);
-  }
+  g_free (entry->priv);
 }
 
 /*! \brief GedaEntry Type Class Initializer
@@ -793,7 +793,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaEntry *entry      = (GedaEntry*)instance;
-  entry->priv           = g_malloc0 (sizeof (GedaEntryPriv));
+  entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
 
   entry->priv->font_map = pango_cairo_font_map_get_default();
 
@@ -1030,18 +1030,20 @@ geda_entry_activate (GedaEntry *entry, void    *data)
           prev->data = iter->data;                           /* rotate pointers down */
           prev       = iter;
         }
-        iter       = g_list_last(history_list);          /* get the last entry again */
-        iter->data = g_strdup (entry_text);                     /* save the new text */
+        iter        = g_list_last(history_list);         /* get the last entry again */
+        iter->data  = geda_utility_string_strdup (entry_text);  /* save the new text */
         list_length = g_list_length (history_list); /* is really ++list_length | max */
       }
       else { /* the buffer is not full so just add to the end */
-        history_list = g_list_append(history_list, g_strdup(entry_text));
+        char *text   = geda_utility_string_strdup (entry_text);
+        history_list = g_list_append(history_list, text);
       }
     }
   }
   else { /* we were created with a NULL list, this means glist is a new buffer list */
-    history_list = g_list_append(history_list, g_strdup(entry_text));
-    list_length = 1;
+    char *text   = geda_utility_string_strdup (entry_text);
+    history_list = g_list_append(history_list, text);
+    list_length  = 1;
   }
   entry->history_index = list_length;
 }

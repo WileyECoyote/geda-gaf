@@ -1,3 +1,9 @@
+2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Utilize string functions in libgeda.
+
+    * src/widgets/geda_entry.c: Utilize string functions in libgeda.
+
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Include relative path in local includes and
