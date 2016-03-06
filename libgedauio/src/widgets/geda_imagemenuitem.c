@@ -32,8 +32,11 @@
 #include "config.h"
 #endif
 
-#include <geda/geda.h>
 #include <geda/geda_standard.h>
+
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+
 #include "geda_gtk_compat.h"
 #include "geda_imagemenuitem.h"
 
@@ -109,6 +112,11 @@ enum {
   PROP_USE_STOCK,
   PROP_ACCEL_GROUP,
   PROP_SHOW_IMAGE
+};
+
+struct _GedaImageMenuItemData
+{
+  GtkAction *action;
 };
 
 static GtkActivatableIface *parent_activatable_iface;
@@ -218,6 +226,8 @@ geda_image_menu_item_class_init (GedaImageMenuItemClass *klass)
 static void
 geda_image_menu_item_init (GedaImageMenuItem *image_menu_item)
 {
+  /* Note data->initialization not required because memset 0 */
+  image_menu_item->priv      = GEDA_MEM_ALLOC0(sizeof(GedaImageMenuItemData));
   image_menu_item->use_stock = FALSE;
   image_menu_item->label     = NULL;
   image_menu_item->image     = NULL;
@@ -234,10 +244,10 @@ geda_image_menu_item_init (GedaImageMenuItem *image_menu_item)
 static void
 geda_image_menu_item_finalize (GObject *object)
 {
-  GedaImageMenuItem *image_menu_item = (GedaImageMenuItem *)object;
+  GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
-  g_free (image_menu_item->label);
-  image_menu_item->label  = NULL;
+  GEDA_FREE (image_menu_item->label);
+  GEDA_FREE (image_menu_item->priv);
 
   G_OBJECT_CLASS (geda_image_menu_item_parent_class)->finalize (object);
 }
@@ -264,7 +274,7 @@ geda_image_menu_item_set_property (GObject       *object,
   switch (property)
     {
     case PROP_IMAGE:
-      geda_image_menu_item_set_image (image_menu_item, (GtkWidget *) g_value_get_object (value));
+      geda_image_menu_item_set_image (image_menu_item, (GtkWidget*)g_value_get_object (value));
       break;
     case PROP_USE_STOCK:
       geda_image_menu_item_set_use_stock (image_menu_item, g_value_get_boolean (value));
@@ -350,9 +360,10 @@ geda_image_menu_item_destroy (GtkObject *object)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (object);
 
-  if (image_menu_item->image)
+  if (image_menu_item->image) {
     gtk_container_remove (GTK_CONTAINER (image_menu_item),
                           image_menu_item->image);
+  }
 
   GTK_OBJECT_CLASS (geda_image_menu_item_parent_class)->destroy (object);
 }
@@ -400,19 +411,19 @@ geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
 static void
 geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 {
-  //GedaImageMenuItemPrivate *priv = GET_PRIVATE (image_menu_item);
-  GtkStockItem              stock_item;
-  GtkWidget                *image;
-  const char               *resolved_label = image_menu_item->label;
+  GtkWidget    *image;
+  GtkStockItem  stock_item;
 
-  if (image_menu_item->use_stock && image_menu_item->label) {
+  const char *resolved_label = image_menu_item->label;
+
+  if (image_menu_item->use_stock && resolved_label) {
 
     if (!image_menu_item->image) {
-      image = gtk_image_new_from_stock (image_menu_item->label, GTK_ICON_SIZE_MENU);
+      image = gtk_image_new_from_stock (resolved_label, GTK_ICON_SIZE_MENU);
       geda_image_menu_item_set_image (image_menu_item, image);
     }
 
-    if (gtk_stock_lookup (image_menu_item->label, &stock_item)) {
+    if (gtk_stock_lookup (resolved_label, &stock_item)) {
       resolved_label = stock_item.label;
     }
 
@@ -434,7 +445,7 @@ geda_image_menu_item_set_label (GtkMenuItem *menu_item,
   if (image_menu_item->label != label) {
 
     g_free (image_menu_item->label);
-    image_menu_item->label = g_strdup (label);
+    image_menu_item->label = geda_utility_string_strdup (label);
 
     geda_image_menu_item_recalculate (GEDA_IMAGE_MENU_ITEM (menu_item));
 
@@ -454,26 +465,31 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
                                    GtkRequisition *requisition)
 {
   GedaImageMenuItem *image_menu_item;
-  int child_width = 0;
-  int child_height = 0;
-  GtkPackDirection pack_dir;
+  GtkPackDirection   pack_dir;
+  int child_width;
+  int child_height;
 
-  if (GTK_IS_MENU_BAR (widget->parent))
+  if (GTK_IS_MENU_BAR (widget->parent)) {
     pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
-  else
+  }
+  else {
     pack_dir = GTK_PACK_DIRECTION_LTR;
+  }
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (widget);
 
-  if (image_menu_item->image &&
-      gtk_widget_get_visible (image_menu_item->image)) {
+  if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
+  {
       GtkRequisition child_requisition;
 
-      gtk_widget_size_request (image_menu_item->image,
-                               &child_requisition);
+      gtk_widget_size_request (image_menu_item->image, &child_requisition);
 
-      child_width = child_requisition.width;
+      child_width  = child_requisition.width;
       child_height = child_requisition.height;
+  }
+  else {
+      child_width  = 0;
+      child_height = 0;
   }
 
   GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->size_request (widget, requisition);
@@ -642,9 +658,10 @@ activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
   image = geda_image_menu_item_get_image (image_menu_item);
 
   if (icon && GTK_IS_IMAGE (image) &&
-    !(stock_id && gtk_icon_factory_lookup_default (stock_id))) {
-      gtk_image_set_from_gicon (GTK_IMAGE (image), icon, GTK_ICON_SIZE_MENU);
-      return TRUE;
+    !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
+  {
+    gtk_image_set_from_gicon (GTK_IMAGE (image), icon, GTK_ICON_SIZE_MENU);
+    return TRUE;
   }
 
   return FALSE;
@@ -672,14 +689,12 @@ geda_image_menu_item_update (GtkActivatable *activatable,
                              const char     *property_name)
 {
   GedaImageMenuItem *image_menu_item;
-  bool   use_appearance;
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
 
   parent_activatable_iface->update (activatable, action, property_name);
 
-  use_appearance = gtk_activatable_get_use_action_appearance (activatable);
-  if (!use_appearance)
+  if (!gtk_activatable_get_use_action_appearance (activatable))
     return;
 
   if (strcmp (property_name, "stock-id") == 0)
@@ -694,19 +709,27 @@ static void
 geda_image_menu_item_sync_action_properties (GtkActivatable *activatable,
                                              GtkAction      *action)
 {
-  GedaImageMenuItem *image_menu_item;
-  GtkWidget *image;
-  bool   use_appearance;
+  GedaImageMenuItem     *image_menu_item;
+  GedaImageMenuItemData *priv;
+  GtkWidget             *image;
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
+  priv            = image_menu_item->priv;
 
+  /* Chain-up */
   parent_activatable_iface->sync_action_properties (activatable, action);
 
-  if (!action)
-    return;
+  if (priv->action) {
+    g_object_unref(priv->action);  /* regardless if new action is NULL */
+  }
 
-  use_appearance = gtk_activatable_get_use_action_appearance (activatable);
-  if (!use_appearance)
+  priv->action = action; /* Which could be NULL */
+
+  if (!action) {
+    return;
+  }
+
+  if (!gtk_activatable_get_use_action_appearance (activatable))
     return;
 
   image = geda_image_menu_item_get_image (image_menu_item);
@@ -723,8 +746,10 @@ geda_image_menu_item_sync_action_properties (GtkActivatable *activatable,
   }
 
   if (!activatable_update_stock_id (image_menu_item, action) &&
-    !activatable_update_gicon (image_menu_item, action))
+      !activatable_update_gicon (image_menu_item, action))
+  {
     activatable_update_icon_name (image_menu_item, action);
+  }
 
   geda_image_menu_item_set_show_image (image_menu_item,
                                        gtk_action_get_always_show_image (action));
@@ -838,14 +863,14 @@ geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
-  if (image_menu_item->use_stock != use_stock)
-    {
-      image_menu_item->use_stock = use_stock;
+  if (image_menu_item->use_stock != use_stock) {
 
-      geda_image_menu_item_recalculate (image_menu_item);
+    image_menu_item->use_stock = use_stock;
 
-      g_object_notify (G_OBJECT (image_menu_item), "use-stock");
-    }
+    geda_image_menu_item_recalculate (image_menu_item);
+
+    g_object_notify (G_OBJECT (image_menu_item), "use-stock");
+  }
 }
 
 /*! \brief Get GedaImageMenuItem Use-Stock Property
@@ -941,7 +966,7 @@ void
 geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
                                       GtkAccelGroup     *accel_group)
 {
-  GtkStockItem             stock_item;
+  GtkStockItem stock_item;
 
   /* Silent return for the constructor */
   if (!accel_group)
@@ -952,7 +977,8 @@ geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
 
   if (image_menu_item->use_stock &&
       image_menu_item->label &&
-      gtk_stock_lookup (image_menu_item->label, &stock_item)) {
+      gtk_stock_lookup (image_menu_item->label, &stock_item))
+  {
     if (stock_item.keyval){
       gtk_widget_add_accelerator (GTK_WIDGET (image_menu_item),
                                   "activate",
@@ -1051,8 +1077,7 @@ geda_image_menu_item_remove (GtkContainer *container,
 
     g_object_notify (G_OBJECT (image_menu_item), "image");
   }
-  else
-  {
+  else {
     GTK_CONTAINER_CLASS (geda_image_menu_item_parent_class)->remove (container, child);
   }
 }

@@ -2,6 +2,8 @@
 
     * include/geda_combobox.h: Rename GedaComboBoxPrivate->GedaComboBoxData.
 
+    * include/geda_imagemenuitem.h: Add type GedaImageMenuItemData.
+
     * src/widgets/geda_accel_label.c: Utilize string functions in libgeda.
 
     * src/widgets/geda_entry.c: Utilize string functions in libgeda.
@@ -9,6 +11,16 @@
     * src/widgets/geda_combobox.c: Eliminate use of GEDA_COMBO_BOX_GET_PRIVATE,
       G_TYPE_INSTANCE_GET_PRIVATE, allocate using g_malloc0 in geda_combo_box_init
       release in geda_image_menu_item_finalize.
+
+    * src/widgets/geda_imagemenuitem.c: Utilize string functions in libgeda,
+      add struc _GedaImageMenuItemData and allocate as priv using g_malloc0
+      in geda_image_menu_item_init, release in geda_image_menu_item_finalize.
+      Eliminate use_appearance in functions geda_image_menu_item_update and
+      geda_image_menu_item_sync_action_properties, revise geda_image_menu_
+      item_sync_action_properties retain pointer to action and unreference
+      previous priv->action, (geda_image_menu_item_sync_action_properties is
+      called when geda_action_create_menu_item calls gtk_activatable_set_
+      related_action), minor cleaning/reformating.
 
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 

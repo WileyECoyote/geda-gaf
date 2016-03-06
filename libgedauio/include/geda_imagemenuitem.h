@@ -44,9 +44,9 @@
 #define GEDA_IS_IMAGE_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_IMAGE_MENU_ITEM))
 #define GEDA_IMAGE_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
 
-
-typedef struct _GedaImageMenuItem       GedaImageMenuItem;
-typedef struct _GedaImageMenuItemClass  GedaImageMenuItemClass;
+typedef struct _GedaImageMenuItem      GedaImageMenuItem;
+typedef struct _GedaImageMenuItemClass GedaImageMenuItemClass;
+typedef struct _GedaImageMenuItemData  GedaImageMenuItemData;
 
 struct _GedaImageMenuItem
 {
@@ -57,6 +57,7 @@ struct _GedaImageMenuItem
   unsigned int  use_stock  : 1;
   unsigned int  show_image : 1;
 
+  GedaImageMenuItemData *priv;
 };
 
 struct _GedaImageMenuItemClass
@@ -69,17 +70,18 @@ extern "C" {
 #endif
 
 GType	   geda_image_menu_item_get_type              (void) GEDA_CONST;
-GtkWidget* geda_image_menu_item_new                   (void);
-GtkWidget* geda_image_menu_item_new_with_label        (const char        *label);
-GtkWidget* geda_image_menu_item_new_with_mnemonic     (const char        *label);
-GtkWidget* geda_image_menu_item_new_from_stock        (const char        *stock_id,
+GtkWidget *geda_image_menu_item_new                   (void);
+
+GtkWidget *geda_image_menu_item_new_with_label        (const char        *label);
+GtkWidget *geda_image_menu_item_new_with_mnemonic     (const char        *label);
+GtkWidget *geda_image_menu_item_new_from_stock        (const char        *stock_id,
                                                        GtkAccelGroup     *accel_group);
 void       geda_image_menu_item_set_show_image        (GedaImageMenuItem *image_menu_item,
                                                        bool               always_show);
 bool       geda_image_menu_item_get_show_image        (GedaImageMenuItem *image_menu_item);
 void       geda_image_menu_item_set_image             (GedaImageMenuItem *image_menu_item,
                                                        GtkWidget         *image);
-GtkWidget* geda_image_menu_item_get_image             (GedaImageMenuItem *image_menu_item);
+GtkWidget *geda_image_menu_item_get_image             (GedaImageMenuItem *image_menu_item);
 void       geda_image_menu_item_set_use_stock         (GedaImageMenuItem *image_menu_item,
                                                        bool               use_stock);
 bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_menu_item);
