@@ -4,6 +4,12 @@
       remove initializing s_lst to NULL, eliminate variables ret_keys and
       return keys directly, add Doxygen comment block.
 
+    * src/x/x_menus.c: Revise x_menu_setup_ui; eliminate menu_item_keys and
+      buffer_menu reduce scope of is_a_toggle, free action_keys instead of
+      g_free, call to geda_action_create_menu_item for menu items in and
+      menu_toggle_items instead of calling gtk_action_create_menu_item for
+      toggle items.
+
     * src/x/x_dialog.c: Replace geda_color_x11_enabled  with geda_color_
       x11_get_state.
 

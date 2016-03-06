@@ -153,9 +153,9 @@ const char* IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
    NULL
 };
 
-static int      show_recent_path;
-static GList   *recent_files = NULL;
-static GSList  *ui_list      = NULL;
+static int     show_recent_path;
+static GList  *recent_files = NULL;
+static GSList *ui_list      = NULL;
 
 int npopup_items = sizeof(popup_items) / sizeof(popup_items[0]);
 
@@ -278,13 +278,13 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
  */
 GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 {
-  EdaConfig    *cfg;
-  const char   *group = MENU_CONFIG_GROUP;
+  EdaConfig   *cfg;
+  const char  *group = MENU_CONFIG_GROUP;
 
-  GedaAction   *action;
-  GtkWidget    *image;
-  GtkWidget    *menu_item;
-  GtkWidget    *menu;
+  GedaAction  *action;
+  GtkWidget   *image;
+  GtkWidget   *menu_item;
+  GtkWidget   *menu;
 
   SCM scm_items;
   SCM scm_item;
@@ -298,7 +298,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   char  *dummy = NULL;
 
   const char  *menu_item_name;
-        char  *menu_item_keys;
         char  *menu_item_tip;
         char  *menu_item_stock;
         char  *raw_menu_item_name;
@@ -306,9 +305,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   unsigned long handler;
   int i, j;
-  bool buffer_menu;
-  bool menus_broken;
-  bool is_a_toggle;
+
+  bool menus_broken = FALSE;   /* static for get_menu_item_from_scheme */
 
   bool show_menu_icons;
   bool show_menu_tips;
@@ -345,7 +343,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
    * the menu data not being loaded by scheme, the subfunction creates a basic
    * file menu with items for open, save and quit.
    */
-  inline GtkWidget *create_file_menu() {
+  inline GtkWidget *create_file_menu(void) {
 
     GtkWidget *file_menu = gtk_menu_new ();  /* Don't need to show menus */
 
@@ -399,7 +397,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
    * view menu with a single item for Redraw. Note that the parent function
    * will append other items under the View menu.
    */
-  inline GtkWidget *create_View_menu() {
+  inline GtkWidget *create_View_menu(void) {
 
     GtkWidget *view_menu = gtk_menu_new ();  /* Don't need to show menus */
 
@@ -425,7 +423,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   }
 
   /* Subfunction to extract menu item properties from scheme using
-   * data at given index and create a menu item widget */
+   * data at the given index and create a menu item widget */
   inline GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
 
     GtkWidget *menu_item;
@@ -443,10 +441,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     /* Check the first member */
     if (!scm_is_string(scm_item_name)) {
-      if (!menus_broken) /* Issue message only for first occurence */
+
+      if (!menus_broken) { /* Issue message only for first occurence */
         fprintf(stderr, _("Error reading menu item <%d>, Bad string\n"), i);
-      else
+      }
+      else {
         u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
+      }
       menus_broken = TRUE;
       menu_item    = NULL;
     }
@@ -521,27 +522,21 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
         }
         else {
-
-          char  *action_name;
-          char  *action_keys;
-
-          const char *menu_icon_name;
+                 char *action_name;
+                 char *action_keys;
+          const  char *menu_icon_name;
+                 bool  is_a_toggle;
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
           action_keys = g_keys_find_key(action_name);
 
-          if (!buffer_menu && strcmp(action_name, "buffer-copy1") == 0) {
-            /* Set flag to indicate we found */
-            buffer_menu = TRUE;
-            /*Save a copy of the string for x_menu_get_buffer_menu*/
-            menu_data->buffer_menu_name = menu_name; /* Not a copy */;
-          }
+          if (!menu_data->buffer_menu_name) {
 
-          if (!action_keys) {
-            menu_item_keys = NULL;
-          }
-          else {
-            menu_item_keys = action_keys;
+            if (strcmp(action_name, "buffer-copy1") == 0) {
+
+              /* Save a copy of the string for x_menu_get_buffer_menu*/
+              menu_data->buffer_menu_name = menu_name; /* Not a copy! */;
+            }
           }
 
           if (!menu_item_stock) {
@@ -564,14 +559,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
             action = (GedaAction*)
-            geda_toggle_action_new (action_name,     /* Action name */
-                                    menu_item_name,  /* Text */
+            geda_toggle_action_new (action_name,       /* Action name */
+                                    menu_item_name,    /* Text */
                                     menu_item_tip ? menu_item_tip : menu_item_name,
-                                    menu_icon_name,  /* Icon stock ID */
-                                    menu_item_keys); /* Accelerator string */
-
-            menu_item = gtk_action_create_menu_item (GTK_ACTION (action));
-
+                                    menu_icon_name,    /* Icon stock ID */
+                                    action_keys);      /* Accelerator string */
           }
           else {
 
@@ -579,16 +571,16 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                       menu_item_name,  /* Text */
                                       menu_item_tip ? menu_item_tip : menu_item_name,  /* Tooltip */
                                       menu_icon_name,  /* Icon stock ID */
-                                      menu_item_keys); /* Accelerator string */
-
-            menu_item = geda_action_create_menu_item (GEDA_ACTION(action));
-
+                                      action_keys);    /* Accelerator string */
           }
+
+          /* Cast is for GedaToggleAction items */
+          menu_item = geda_action_create_menu_item ((GedaAction*)(action));
 
           free(action_name);
 
           if (action_keys) {
-            g_free(action_keys);
+            free(action_keys);
             action_keys = NULL;
           }
 
@@ -596,7 +588,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                       G_CALLBACK(x_menu_execute),
                                       w_current);
 
-          if(is_a_toggle) {
+          if (is_a_toggle) {
             toggler_data->handler = handler;     /* Save handler ID of toggle items */
             menu_register_toggler(toggler_data); /* Appends the struct to a list */
           }
