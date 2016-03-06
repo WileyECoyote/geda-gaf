@@ -4,6 +4,8 @@
       revise geda_action_create_menu_item to process GedaToggleAction widgets
       for convenience.
 
+    * src/widgets/geda_combobox.c: Redo Doxygen comments for properties.
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_keysyms.h: include gdkkeysyms.h

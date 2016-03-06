@@ -703,9 +703,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
-  /**
-   * GedaComboBox::move-active:
-   * which gets emitted to move the active selection.
+
+  /*! property "move-active": GedaComboBox::move-active
+   *  \brief emitted to move the active selection.
    */
   combo_box_signals[MOVE_ACTIVE] =
   g_signal_new_class_handler (_("move-active"),
@@ -866,12 +866,11 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                     PROP_EDITING_CANCELED,
                                     "editing-canceled");
 
-  /**
-   * GedaComboBox:model:
-   *
+  /*! property "model": GedaComboBox::model
+   *  \brief Sets a model for a GedaComboBox.
+   *  \par
    * The model from which the combo box takes the values shown
    * in the list.
-   *
    */
   params = g_param_spec_object ("model",
                               _("ComboBox model"),
@@ -881,9 +880,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_MODEL, params);
 
-  /**
-   * GedaComboBox:wrap-width:
-   *
+  /*! property "wrap-width": GedaComboBox::wrap-width
+   *  \brief Sets the wrap-width for a GedaComboBox.
+   *  \par
    * If wrap-width is set to a positive value, the list will be
    * displayed in multiple columns, the number of columns is
    * determined by wrap-width.
@@ -897,12 +896,11 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                G_PARAM_READWRITE);
   g_object_class_install_property (object_class, PROP_WRAP_WIDTH, params);
 
-
-  /**
-   * GedaComboBox:row-span-column:
-   *
-   * If this is set to a non-negative value, it must be the index of a column
-   * of type %G_TYPE_INT in the model.
+  /*! property "row-span-column": GedaComboBox::row-span-column
+   *  \brief Sets the row-span-column for a GedaComboBox.
+   *  \par
+   * If this is set to a non-negative value, the value must be the index of a
+   * column of type %G_TYPE_INT in the model.
    *
    * The values of that column are used to determine how many rows a value in
    * the list will span. Therefore, the values in the model column pointed to
@@ -918,11 +916,11 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_ROW_SPAN_COLUMN, params);
 
-  /**
-   * GedaComboBox:column-span-column:
-   *
-   * If this is set to a non-negative value, it must be the index of a column
-   * of type G_TYPE_INT in the model.
+  /*! property "column-span-column": GedaComboBox::column-span-column
+   *  \brief Sets the rocolumnw-span-column for a GedaComboBox.
+   *  \par
+   * If this is set to a non-negative value, the value  must be the index of a
+   * column of type G_TYPE_INT in the model.
    *
    * The values of that column are used to determine how many columns a value
    * in the list will span.
@@ -939,10 +937,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                    PROP_COLUMN_SPAN_COLUMN,
                                    params);
 
-
-  /**
-   * GedaComboBox:active:
-   *
+  /*! property "active": GedaComboBox::active
+   *  \brief Sets the wrap-width for a GedaComboBox.
+   *  \par
    * The item which is currently active. If the model is a non-flat treemodel,
    * and the active item is not an immediate child of the root of the tree,
    * this property has the value <b>gtk_tree_path_get_indices (path)[0]</b>,
@@ -958,14 +955,13 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_ACTIVE, params);
 
-  /**
-   * GedaComboBox:add-tearoffs:
-   *
+  /*! property "add-tearoffs": GedaComboBox::add-tearoffs
+   *  \brief Sets the add-tearoffs for a GedaComboBox.
+   *  \par
    * The add-tearoffs property controls whether generated menus
    * have tearoff menu items.
    *
-   * \note that this only affects menu style combo boxes.
-   *
+   * \note that this only applicable to menu style combo boxes.
    */
   params = g_param_spec_boolean ("add-tearoffs",
                                _("Add tearoffs to menus"),
@@ -975,9 +971,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_ADD_TEAROFFS, params);
 
-  /**
-   * GedaComboBox:has-frame:
-   *
+  /*! property "has-frame": GedaComboBox::has-frame
+   *  \brief Sets the has-frame for a GedaComboBox.
+   *  \par
    * The has-frame property controls whether a frame
    * is drawn around the entry.
    */
@@ -989,6 +985,12 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_HAS_FRAME, params);
 
+  /*! property "focus-on-click": GedaComboBox::focus-on-click
+   *  \brief Sets the focus-on-click for a GedaComboBox.
+   *  \par
+   * The focus-on-click property controls whether the combo box grabs focus
+   * when it is clicked with the mouse.
+   */
   params = g_param_spec_boolean ("focus-on-click",
                                _("Focus on click"),
                                _("Whether the combo box grabs focus when it is clicked with the mouse"),
@@ -999,9 +1001,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                    PROP_FOCUS_ON_CLICK,
                                    params);
 
-  /**
-   * GedaComboBox:tearoff-title:
-   *
+  /*! property "tearoff-title": GedaComboBox::tearoff-title
+   *  \brief Sets the tearoff-title for a GedaComboBox.
+   *  \par
    * A title that may be displayed by the window manager
    * when the popup is torn-off.
    */
@@ -1013,9 +1015,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_TEAROFF_TITLE, params);
 
-  /**
-   * GedaComboBox:popup-shown:
-   *
+  /*! property "popup-shown": GedaComboBox::popup-shown
+   *  \brief Gets the popup-shown state for a GedaComboBox.
+   *  \par
    * Whether the combo boxes dropdown is popped up.
    * Note that this property is mainly useful, because
    * it allows you to connect to notify::popup-shown.
@@ -1028,10 +1030,9 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_POPUP_SHOWN, params);
 
-
-  /**
-   * GedaComboBox:button-sensitivity:
-   *
+  /*! property "button-sensitivity": GedaComboBox::button-sensitivity
+   *  \brief Sets or gets the button-sensitivity for a GedaComboBox.
+   *  \par
    * Whether the dropdown button is sensitive when
    * the model is empty.
    */
@@ -1044,10 +1045,10 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
   g_object_class_install_property (object_class, PROP_BUTTON_SENSITIVITY, params);
 
-  /**
-   * GedaComboBox:has-entry:
-   *
-   * Whether the combo box has an entry.
+  /*! property "has-entry": GedaComboBox::has-entry
+   *  \brief Sets or gets has-entry for a GedaComboBox.
+   *  \par
+   *  Sets the combo box has an entry.
    */
   params = g_param_spec_boolean ("has-entry",
                                  _("Has Entry"),
@@ -1055,18 +1056,13 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                  FALSE,
                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
- g_object_class_install_property (object_class, PROP_HAS_ENTRY, params);
+  g_object_class_install_property (object_class, PROP_HAS_ENTRY, params);
 
- /**
-  * GedaComboBox:list-view:
-  *
-  * Whether the combo box has an entry.
-
- params = g_param_spec_boolean ("list-view",
-                              _("Appear as list"),
-                              _("Whether popup should look like lists rather than menus"),
-                                 FALSE,
-                                 G_PARAM_READWRITE);  */
+  /*! property "list-view": GedaComboBox::list-view
+   *  \brief Sets or gets list-view for a GedaComboBox.
+   *  \par
+   * Whether popup should look like lists rather than menus.
+   */
   params = g_param_spec_int  ("list-view",
                             _("Appear as list"),
                             _("Whether popup should look like lists rather than menus"),
@@ -1075,72 +1071,70 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                               GEDA_VIEW_AUTO,  /* Default */
                               G_PARAM_READWRITE);
 
- g_object_class_install_property (object_class, PROP_LIST_VIEW, params );
+  g_object_class_install_property (object_class, PROP_LIST_VIEW, params );
 
- /**
-  * GedaComboBox:entry-text-column:
-  *
-  * The column in the combo box's model to associate with strings from the entry
-  * if the combo was created with #GedaComboBox:has-entry = %TRUE.
-  */
+  /*! property "entry-text-column": GedaComboBox::entry-text-column
+   *  \brief Sets or gets entry-text-column for a GedaComboBox.
+   *  \par
+   * The column in the combo box's model to associate with strings from the
+   * entry if the combo was created with #GedaComboBox:has-entry = %TRUE.
+   */
+  params = g_param_spec_int ("entry-text-column",
+                           _("Entry Text Column"),
+                           _("The column in the combo box's model to associate "
+                             "with strings from the entry if the combo was "
+                             "created with #GedaComboBox:has-entry = %TRUE"),
+                             -1, G_MAXINT, -1,
+                             G_PARAM_READWRITE);
 
- params = g_param_spec_int ("entry-text-column",
-                          _("Entry Text Column"),
-                          _("The column in the combo box's model to associate "
-                            "with strings from the entry if the combo was "
-                            "created with #GedaComboBox:has-entry = %TRUE"),
-                            -1, G_MAXINT, -1,
-                            G_PARAM_READWRITE);
+  g_object_class_install_property (object_class,
+                                   PROP_ENTRY_TEXT_COLUMN,
+                                   params);
 
- g_object_class_install_property (object_class,
-                                  PROP_ENTRY_TEXT_COLUMN,
-                                  params);
+  /*! property "arrow-size": GedaComboBox::arrow-size
+   *  \brief Sets or gets entry-text-column for a GedaComboBox.
+   *  \par
+   * Sets the minimum size of the arrow in the combo box.  Note
+   * that the arrow size is coupled to the font size, so in case
+   * a larger font is used, the arrow will be larger than set
+   * by arrow size.
+   */
+  params = g_param_spec_int ("arrow-size",
+                           _("Arrow Size"),
+                           _("The minimum size of the arrow in the combo box"),
+                             0, G_MAXINT, 15,
+                             G_PARAM_READABLE);
 
+  gtk_widget_class_install_style_property (widget_class, params);
 
- /**
-  * GedaComboBox:arrow-size:
-  *
-  * Sets the minimum size of the arrow in the combo box.  Note
-  * that the arrow size is coupled to the font size, so in case
-  * a larger font is used, the arrow will be larger than set
-  * by arrow size.
-  */
- params = g_param_spec_int ("arrow-size",
-                          _("Arrow Size"),
-                          _("The minimum size of the arrow in the combo box"),
-                            0, G_MAXINT, 15,
-                            G_PARAM_READABLE);
+  /*! property "appear-as-list": GedaComboBox::appear-as-list
+   *  \brief Gets the appear-as-list for a GedaComboBox.
+   *  \par
+   * Sets whether the widget should appears a menu list or treeview.
+   */
+  params = g_param_spec_boolean ("appear-as-list",
+                               _("List View"),
+                               _("When true, the drop-down appears as a list view, otherwise an ugly menus"),
+                                 FALSE,
+                                 G_PARAM_READABLE);
 
- gtk_widget_class_install_style_property (widget_class, params);
+  gtk_widget_class_install_style_property (widget_class, params);
 
-  /**
-  * GedaComboBox:appear-as-list:
-  *
-  * Sets whether the widget should appears a menu list or treeview.
-  */
- params = g_param_spec_boolean ("appear-as-list",
-                              _("List View"),
-                              _("When true, the drop-down appears as a list view, otherwise an ugly menus"),
-                                FALSE,
-                                G_PARAM_READABLE);
+  /*! property "shadow-type": GedaComboBox::shadow-type
+   *  \brief Gets theshadow-type for a GedaComboBox.
+   *  \par
+   * Which kind of shadow to draw around the combo box.
+   */
+  params = g_param_spec_enum ("shadow-type",
+                            _("Shadow type"),
+                            _("Which kind of shadow to draw around the combo box"),
+                               GTK_TYPE_SHADOW_TYPE,
+                               GTK_SHADOW_NONE,
+                               G_PARAM_READABLE);
 
- gtk_widget_class_install_style_property (widget_class, params);
+  gtk_widget_class_install_style_property (widget_class,params);
 
- /**
-  * GedaComboBox:shadow-type:
-  *
-  * Which kind of shadow to draw around the combo box.
-  */
- params = g_param_spec_enum ("shadow-type",
-                           _("Shadow type"),
-                           _("Which kind of shadow to draw around the combo box"),
-                              GTK_TYPE_SHADOW_TYPE,
-                              GTK_SHADOW_NONE,
-                              G_PARAM_READABLE);
-
- gtk_widget_class_install_style_property (widget_class,params);
-
- g_type_class_add_private (object_class, sizeof (GedaComboBoxPrivate));
+  g_type_class_add_private (object_class, sizeof (GedaComboBoxPrivate));
 }
 
 static void
