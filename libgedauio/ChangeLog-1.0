@@ -1,3 +1,9 @@
+2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_action.c: Include relative path in local includes and
+      revise geda_action_create_menu_item to process GedaToggleAction widgets
+      for convenience.
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_keysyms.h: include gdkkeysyms.h

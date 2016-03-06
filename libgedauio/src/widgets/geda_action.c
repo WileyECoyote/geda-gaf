@@ -37,20 +37,24 @@
  * WEH | 03/11/14 | Renamed class geda instead of gschem and relocated code
  *                | to libgedauio (to declutter gschems src and more
  *                | importantly to make available to all geda-gaf programs.
+ * WEH | 03/11/14 | Include relative path in local includes, revise function
+ *                | geda_action_create_menu_item to process GedaToggleAction
+ *                | widget for convenience.
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 
 #include <geda/geda.h>
 
 #include <gtk/gtk.h>
 
-#include "geda_action.h"
-#include "geda_accel_label.h"
-#include "geda_imagemenuitem.h"
-#include "gettext.h"
+#include "../../include/geda_action.h"
+#include "../../include/geda_toggle_action.h"
+#include "../../include/geda_accel_label.h"
+#include "../../include/geda_imagemenuitem.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 
@@ -83,8 +87,9 @@ static void geda_action_finalize (GObject *object)
 {
   GedaAction *action = GEDA_ACTION (object);
 
-  if(action->multikey_accel) {
+  if (action->multikey_accel) {
     g_free (action->multikey_accel);
+    action->multikey_accel = NULL;
   }
   g_free (action->icon_name);
 
@@ -234,22 +239,6 @@ geda_action_class_init(void *class, void *class_data)
                                (G_PARAM_READWRITE));
 
   g_object_class_install_property( object_class, PROP_ICON_ID, params);
-/*
-  params = g_param_spec_string ("icon-id",
-                              _("icon-identification"),
-                              _("String name of the icon image"),
-                                 NULL,
-                               (G_PARAM_WRITABLE));
-
-  g_object_class_install_property (object_class,
-                                   PROP_TOOLBAR_STYLE,
-                                   g_param_spec_enum ("toolbar-style",
-                                                      P_("Toolbar Style"),
-                                                      P_("How to draw the toolbar"),
-                                                      GTK_TYPE_TOOLBAR_STYLE,
-                                                      DEFAULT_TOOLBAR_STYLE,
-                                                      GTK_PARAM_READWRITE));
-*/
 }
 
 /*! \brief Initialize new GedaAction data structure instance.
@@ -326,15 +315,23 @@ geda_action_create_menu_item (GedaAction *action)
   GtkWidget *menu_item;
   GtkAction *parent_action;
 
-  g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
-
   parent_action = (GtkAction*)action;
 
-  menu_item = geda_image_menu_item_new ();
+  if (GEDA_IS_ACTION (action)) {
 
-  gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
-  gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
+    menu_item = geda_image_menu_item_new ();
 
+    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
+  }
+  else if (GEDA_IS_TOGGLE_ACTION(action)) {
+    menu_item = gtk_action_create_menu_item (GTK_ACTION (action));
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
+  }
+  else {
+    fprintf(stderr, "%s: Error: invalid action\n",__func__);
+    menu_item = NULL;
+  }
   return menu_item;
 }
 
@@ -351,8 +348,7 @@ geda_action_create_menu_item (GedaAction *action)
 GtkWidget *
 geda_action_widget_create_menu_item (GtkWidget *widget)
 {
-
-  return geda_action_create_menu_item(GEDA_ACTION (widget));
+  return geda_action_create_menu_item((GedaAction*)widget);
 }
 
 /*! \brief Creates a new GedaAction object
