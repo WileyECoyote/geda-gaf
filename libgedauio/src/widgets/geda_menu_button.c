@@ -909,6 +909,18 @@ static void geda_menu_button_dispose (GObject *object)
 }
 
 static void
+geda_menu_button_finalize (GObject *object)
+{
+  GedaMenuButton *button = GEDA_MENU_BUTTON (object);
+
+  if (button->label_text) {
+    g_free (button->label_text);
+  }
+
+  G_OBJECT_CLASS (geda_menu_button_parent_class)->finalize (object);
+}
+
+static void
 geda_menu_button_destroy (GtkObject *object)
 {
   GedaMenuButton *button;
@@ -1019,12 +1031,13 @@ static void geda_menu_button_class_init (GedaMenuButtonClass *klass)
   GObjectClass     *object_class;
   GtkWidgetClass   *widget_class;
 
-  gtk_object_class      = (GtkObjectClass *)klass;
+  gtk_object_class      = (GtkObjectClass*)klass;
   object_class          = (GObjectClass*)klass;
   widget_class          = (GtkWidgetClass*)klass;
 
   gtk_object_class->destroy            = geda_menu_button_destroy;
 
+  object_class->finalize               = geda_menu_button_finalize;
   object_class->dispose                = geda_menu_button_dispose;
   object_class->get_property           = geda_menu_button_get_property;
   object_class->set_property           = geda_menu_button_set_property;

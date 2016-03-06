@@ -6,6 +6,9 @@
 
     * src/widgets/geda_combobox.c: Redo Doxygen comments for properties.
 
+    * src/widgets/geda_menu_button.c: Add geda_menu_button_finalize and free
+      label_text before chaining up.
+
 2016-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_keysyms.h: include gdkkeysyms.h
