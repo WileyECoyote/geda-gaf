@@ -1,3 +1,18 @@
+2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_config.h: Rename EdaConfigPrivate->EdaConfigData,
+      change final argument from size_t to int, (maybe more convenient and
+      size_t being a variable variable type suck!) for functions:
+
+            * eda_config_set_string_list
+            * eda_config_set_boolean_list
+            * eda_config_set_int_list
+            * eda_config_set_double_list
+
+    * src/geda/geda_config.c: Eliminate use of G_TYPE_INSTANCE_GET_PRIVATE,
+      allocate priate data using g_malloc0 in eda_config_instance_init and
+      release in eda_config_finalize.
+
 2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_config.h: Declare is_a_eda_config and implement

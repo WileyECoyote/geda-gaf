@@ -52,7 +52,7 @@ enum _EdaConfigPropertyId {
 
 /*! \private \memberof EdaConfig
  * Private data for configuration context. */
-struct _EdaConfigPrivate
+struct _EdaConfigData
 {
   /* Accessed via properties */
   EdaConfig    *parent;
@@ -66,10 +66,10 @@ struct _EdaConfigPrivate
   bool          changed;
 };
 
-static void eda_config_dispose (GObject *object);
-static void eda_config_finalize (GObject *object);
-static void eda_config_set_property (GObject *object, unsigned int property_id, const GValue *value, GParamSpec *pspec);
-static void eda_config_get_property (GObject *object, unsigned int property_id, GValue *value, GParamSpec *pspec);
+static void eda_config_dispose       (GObject *object);
+static void eda_config_finalize      (GObject *object);
+static void eda_config_set_property  (GObject *object, unsigned int property_id, const GValue *value, GParamSpec *pspec);
+static void eda_config_get_property  (GObject *object, unsigned int property_id, GValue *value, GParamSpec *pspec);
 static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent);
 
 static void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
@@ -79,8 +79,8 @@ static void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
                                                   void *invocation_hint,
                                                   void *marshal_data);
 static void default_config_changed_handler (EdaConfig *cfg, const char *group, const char *key);
-static void parent_config_changed_handler (EdaConfig *parent, const char *group, const char* key, EdaConfig *cfg);
-static void propagate_key_file_error (GError *src, GError **dest);
+static void parent_config_changed_handler  (EdaConfig *parent, const char *group, const char* key, EdaConfig *cfg);
+static void propagate_key_file_error       (GError *src, GError **dest);
 
 static GObjectClass *eda_config_parent_class = NULL;
 
@@ -89,9 +89,10 @@ static
 void eda_config_set_property (GObject *object, unsigned int property_id,
                               const GValue *value, GParamSpec *pspec)
 {
-  EdaConfig *config = EDA_CONFIG (object);
-  EdaConfig *parent;
-  EdaConfigPrivate *priv = config->priv;
+  EdaConfig     *config = EDA_CONFIG (object);
+  EdaConfig     *parent;
+  EdaConfigData *priv = config->priv;
+
   switch (property_id) {
 
   case PROP_CONFIG_FILE:
@@ -174,9 +175,7 @@ static void eda_config_dispose (GObject *object)
 {
   EdaConfig *config = EDA_CONFIG (object);
 
-  g_object_set (object,
-                "parent", NULL,
-                NULL);
+  g_object_set (object, "parent", NULL, NULL);
 
   if (config->RC_list != NULL) {
     g_list_foreach(config->RC_list, (GFunc) g_free, NULL);
@@ -200,6 +199,8 @@ static void eda_config_finalize (GObject *object)
 
   g_key_file_free (config->priv->keyfile);
 
+  GEDA_FREE (config->priv);
+
   /* Chain up to the parent class */
   G_OBJECT_CLASS (eda_config_parent_class)->finalize (object);
 }
@@ -219,8 +220,6 @@ static void eda_config_class_init(void *class, void *class_data)
   EdaConfigClass *config_class = (EdaConfigClass*)class;
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GParamSpec     *pspec;
-
-  g_type_class_add_private (object_class, sizeof (EdaConfigPrivate));
 
   /* Register functions with base class */
   object_class->dispose        = eda_config_dispose;
@@ -279,9 +278,7 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
 
   config->instance_type = eda_config_get_type();
 
-  config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
-                                              EDA_TYPE_CONFIG,
-                                              EdaConfigPrivate);
+  config->priv          = GEDA_MEM_ALLOC0 (sizeof (EdaConfigData));
 
   config->priv->parent            = NULL;
   config->priv->keyfile           = g_key_file_new ();
@@ -1640,7 +1637,7 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
  */
 char **
 eda_config_get_string_list (EdaConfig *cfg, const char *group,
-                            const char *key, size_t *length, GError **error)
+                            const char *key,size_t *length, GError **error)
 {
   GError *sys_err;
   char **result;
@@ -1718,11 +1715,11 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  * \return configuration value as an array of integers.
  */
 int *
-eda_config_get_int_list (EdaConfig *cfg, const char *group,
+eda_config_get_int_list (EdaConfig  *cfg, const char *group,
                          const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
-  int *result;
+  int    *result;
 
   cfg = eda_config_get_source (cfg, group, key, error);
 
@@ -1873,7 +1870,7 @@ eda_config_set_double (EdaConfig *cfg, const char *group,
 void
 eda_config_set_string_list (EdaConfig *cfg, const char *group,
                             const char *key, const char * const list[],
-                            size_t length)
+                            int length)
 {
   g_key_file_set_string_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -1897,7 +1894,7 @@ eda_config_set_string_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, bool list[], size_t length)
+                             const char *key, bool list[], int length)
 {
   g_key_file_set_boolean_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1921,7 +1918,7 @@ eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, int list[], size_t length)
+                         const char *key, int list[], int length)
 {
   g_key_file_set_integer_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1946,7 +1943,7 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, double list[], size_t length)
+                            const char *key, double list[], int length)
 {
   g_key_file_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);
