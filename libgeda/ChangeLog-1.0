@@ -12,6 +12,10 @@
             * src/utility/u_string.c
             * src/utility/u_utility.c
 
+    * src/utility/u_glist.c: Revise function geda_utility_glist_find_string
+      to use pointers, but not geda_utility_gslist_find_string, revise both
+      to check for NULL arguments and return -2 if either argument is NULL.
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/HACKING: Add additional comments regarding function and modules

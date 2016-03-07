@@ -27,7 +27,7 @@
 
 #include <geda_debug.h>
 
-/*!
+/*! U0201
  * \brief Free a Glist completely
  * \par Function Description
  *  This function will free all of the data in a glist but
@@ -49,47 +49,40 @@ GList *geda_utility_glist_clear(GList *list)
   return list;
 }
 
-/*!
+/*! U0202
  * \brief Detect item in double linked list
  * \par Function Description
- * Look for item in the list.
+ * Look for str item in the list.
  *
- * \param list pointer to the STRING_LIST struct
+ * \param list pointer to the double linked list of strings
  * \param str  string to search for
  *
- * \returns index where first occurence of the string was
- *          found or -1 if not found.
+ * \returns index where first occurence of the string was found
+ *          -1 if not found or
+ *          -2 if either if the argument is NULL
  */
 int geda_utility_glist_find_string(GList *list, char *str)
 {
-  int len;
-  int index = -1;
+  int index = -2;
 
-  /* return -1 if list is empty  */
-  len = g_list_length(list);
-  if ( len != 0 ) {
+  if ((list != NULL) && (str != NULL)) {
 
-    for (index = 0; index < len; index++) {
+    GList *iter;
+    int found = index = 0;
 
-      char *ptr = g_list_nth_data(list, index);
-
-      if (ptr == NULL ) {
-        index = -1;
+    for (iter = list; iter != NULL; iter = iter->next) {
+      if (iter->data && geda_utility_string_strequal(iter->data, str)) {
+        found = 1;
         break;
       }
-
-      /* S/B geda_utility_string_strequal ?*/
-      if (strcmp(ptr, str) == 0) {
-      /* Found item already in list.  return index. */
-        break;
-      }
+      index++;
     }
+
+    if (!found)
+      index = -1;     /* item was not in the list, so return -1 */
   }
-  if (index == len)
-    index = -1;     /* item was not in the list, so return -2 */
 
   return index;
-
 }
 
 /*!
@@ -216,6 +209,9 @@ geda_utility_gslist_clear(GSList *list) {
 int
 geda_utility_gslist_find_string(GSList *list, char *str) {
 
+  if ((list == NULL) || (str == NULL))
+    return -2;
+
   int len;
   int index = -1;
 
@@ -239,10 +235,9 @@ geda_utility_gslist_find_string(GSList *list, char *str) {
     }
   }
   if (index == len)
-    index = -1;     /* item was not in the list, so return -2 */
+    index = -1;     /* item was not in the list, so return -1 */
 
   return index;
-
 }
 
 /*!
