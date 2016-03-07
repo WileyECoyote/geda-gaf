@@ -1,5 +1,7 @@
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_arc.h: Add declaration of geda_arc_within_sweep.
+
     * include/libgeda/geda_config.h: Rename EdaConfigPrivate->EdaConfigData,
       change final argument from size_t to int, (maybe more convenient and
       size_t being a variable variable type suck!) for functions:
@@ -8,6 +10,15 @@
             * eda_config_set_boolean_list
             * eda_config_set_int_list
             * eda_config_set_double_list
+
+    * include/libgeda/prototype.h: Add declare geda_arc_object_within_sweep
+      from priv.h, does not seem a reason to hide.
+
+    * include/prototype_priv.h: Remove declare geda_arc_object_within_sweep.
+
+    * src/geda/geda_arc.c: Add function geda_arc_within_sweep from using
+      code from geda_arc_object_within_sweep. Fix Doxygen argument for
+      geda_arc_get_position (object->Arc).
 
     * src/geda/geda_config.c: Eliminate use of G_TYPE_INSTANCE_GET_PRIVATE,
       allocate priate data using g_malloc0 in eda_config_instance_init and

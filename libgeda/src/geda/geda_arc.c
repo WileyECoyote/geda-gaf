@@ -339,9 +339,9 @@ int geda_arc_get_center_y (GedaArc *arc) {
  * \par Function Description
  *  This function gets the position of the center point of an arc object.
  *
- * \param [in] object  Pointer to an Arc GedaObject
- * \param [out] x      pointer to the x-position
- * \param [out] y      pointer to the y-position
+ * \param [in]  arc  Pointer to an Arc GedaObject
+ * \param [out] x    pointer to the x-position
+ * \param [out] y    pointer to the y-position
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
@@ -473,6 +473,51 @@ void geda_arc_set_start_angle (GedaArc *arc, int angle) {
   if (is_a_geda_arc_object(arc)) {
     arc->start_angle = angle;
   }
+}
+
+/*!
+ * \brief Determines if a point lies within the sweep of the arc.
+ *
+ * \param [in] arc The arc of object
+ * \param [in] x   The x coordinate of the given point
+ * \param [in] y   The y coordinate of the given point
+ *
+ * \return TRUE if the point lies within the sweep of the arc.
+ *         FALSE if the point lies outside the sweep of the arc.
+ *         With an invalid parameter, this function returns FALSE.
+ */
+bool
+geda_arc_within_sweep(GedaArc *arc, int x, int y)
+{
+  if (is_a_geda_arc_object(arc)) {
+
+    double a0;
+    double a1;
+    double angle;
+    double dx;
+    double dy;
+
+    dx = ((double) x) - ((double) arc->x);
+    dy = ((double) y) - ((double) arc->y);
+
+    angle = 180 * atan2(dy, dx) / M_PI;
+
+    if (arc->arc_sweep > 0) {
+      a0 = arc->start_angle;
+      a1 = arc->start_angle + arc->arc_sweep;
+    }
+    else {
+      a0 = arc->start_angle + arc->arc_sweep + 360;
+      a1 = arc->start_angle + 360;
+    }
+
+    while (angle < a0) {
+      angle += 360;
+    }
+
+    return (angle < a1);
+  }
+  return FALSE;
 }
 
 /** @} endgroup geda-arc-object */

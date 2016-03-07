@@ -105,8 +105,6 @@ void        geda_arc_object_print_phantom        (GedaToplevel *toplevel, FILE *
 GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *geda_arc_object_to_buffer            (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
-bool        geda_arc_object_within_sweep         (GedaArc *arc, int x, int y);
-
 
 /* o_attrib.c */
 GList      *o_read_attribs           (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
