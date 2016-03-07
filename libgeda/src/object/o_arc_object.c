@@ -29,41 +29,56 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief
- *  \par Function Description
+static void
+geda_arc_object_error(const char *func, const void *object)
+{
+  fprintf(stderr, "File %s, <%s>: ", __FILE__, func);
+
+  if (!object) {
+    fprintf(stderr, "GedaArc object argument is NULL\n");
+  }
+  else {
+    fprintf(stderr, "Not a valid GedaArc object <%p>\n", object);
+  }
+}
+
+/*! O0201
+ * \brief
+ * \par Function Description
  *  This function creates a new object representing an arc. The
  *  values of the <B>\a o_current</B> pointed GedaObject are then copied
  *  to the new object. Line options are initialized whereas the
  *  fill options are initialized to passive values - as an arc
  *  can not be filled.
  *
- *  \param [in] o_current
+ * \param [in] o_source  GedaObject object of type GedaArc
  *
- *  \return The new GedaObject
+ * \return The new GedaObject
  */
 GedaObject*
-geda_arc_object_copy(GedaObject *o_current)
+geda_arc_object_copy(GedaObject *o_source)
 {
-  if (GEDA_IS_ARC(o_current)) {
+  if (GEDA_IS_ARC(o_source)) {
 
     GedaObject *new_obj;
 
-    new_obj = geda_arc_object_new (o_current->color,
-                         o_current->arc->x, o_current->arc->y,
-                         o_current->arc->radius,
-                         o_current->arc->start_angle,
-                         o_current->arc->arc_sweep);
+    new_obj = geda_arc_object_new (o_source->color,
+                         o_source->arc->x, o_source->arc->y,
+                         o_source->arc->radius,
+                         o_source->arc->start_angle,
+                         o_source->arc->arc_sweep);
 
-    o_set_line_options(new_obj, o_current->line_options);
+    o_set_line_options(new_obj, o_source->line_options);
 
-    o_set_fill_options(new_obj, o_current->fill_options);
+    o_set_fill_options(new_obj, o_source->fill_options);
 
     return new_obj;
   }
+  geda_arc_object_error(__func__, o_source);
   return NULL;
 }
 
-/*!
+/*! O0202
  * \brief Get the sweep angle of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -77,47 +92,50 @@ geda_arc_object_get_arc_sweep (const GedaObject *object)
 {
   if (GEDA_IS_ARC(object))
     return object->arc->arc_sweep;
-  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+
+  geda_arc_object_error(__func__, object);
   return -0;
 }
 
-/*!
+/*! O0203
  * \brief Get the x coordinate of the center of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
  *
  * \return The x coordinate of the center of the arc
  *
- * \sa geda_arc_get_arc_center_x
+ * \sa geda_arc_get_center_x
  */
 int
 geda_arc_object_get_center_x (const GedaObject *object)
 {
   if (GEDA_IS_ARC(object))
     return object->arc->x;
-  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+
+  geda_arc_object_error(__func__, object);
   return -0;
 }
 
-/*!
+/*! O0204
  * \brief Get the y coordinate of the center of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
  *
  * \return The y coordinate of the center of the arc
  *
- * \sa geda_arc_get_arc_center_y
+ * \sa geda_arc_get_center_y
  */
 int
 geda_arc_object_get_center_y (const GedaObject *object)
 {
   if (GEDA_IS_ARC(object))
     return object->arc->y;
-  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+
+  geda_arc_object_error(__func__, object);
   return -0;
 }
 
-/*!
+/*! O0205
  * \brief Get Point on an GedaArc Nearest a Given Point
  * \par Function Description
  *  This function is intended to locate a point on an GedaArc object given
@@ -262,6 +280,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
     }
   }
   else { /* was not an GedaArc */
+    geda_arc_object_error(__func__, object);
     result = FALSE;
   }
 
@@ -272,7 +291,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   return result;
 }
 
-/*!
+/*! O0206
  * \brief get the position of the center point
  * \par Function Description
  *  This function gets the position of the center point of an arc object.
@@ -291,13 +310,12 @@ geda_arc_object_get_position (GedaObject *object, int *x, int *y)
     *y = object->arc->y;
     return TRUE;
   }
-  else {
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
-  }
+
+  geda_arc_object_error(__func__, object);
   return 0;
 }
 
-/*!
+/*! O0207
  * \brief Get the radius of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -311,11 +329,12 @@ geda_arc_object_get_radius (const GedaObject *object)
 {
   if (GEDA_IS_ARC(object))
     return object->arc->radius;
-  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+
+  geda_arc_object_error(__func__, object);
   return -0;
 }
 
-/*!
+/*! O0208
  * \brief Get the starting angle of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -329,12 +348,14 @@ geda_arc_object_get_start_angle (const GedaObject *object)
 {
   if (GEDA_IS_ARC(object))
     return object->arc->start_angle;
-  BUG_PMSG("Not a valid GedaArc object <%p>", object);
+
+  geda_arc_object_error(__func__, object);
   return -0;
 }
 
-/*! \brief Mirror the WORLD coordinates of an ARC.
- *  \par Function Description
+/*! O0209
+ * \brief Mirror the WORLD coordinates of an ARC.
+ * \par Function Description
  *  This function mirrors the world coordinates of an arc.
  *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
  *
@@ -344,37 +365,44 @@ geda_arc_object_get_start_angle (const GedaObject *object)
  *
  *  The arc is finally back translated to its previous location on the page.
  *
- *  \param [in] object
- *  \param [in] center_x
- *  \param [in] center_y
+ * \param [in] object    GedaObject object of type GedaArc
+ * \param [in] center_x
+ * \param [in] center_y
  */
 void
 geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
 {
-  /* translate object to origin */
-  object->arc->x -= center_x;
-  object->arc->y -= center_y;
+  if (GEDA_IS_ARC(object)) {
 
-  /* get center, and mirror it (vertical mirror) */
-  object->arc->x = -object->arc->x;
-  // object->arc->y =  object->arc->y;
+    /* translate object to origin */
+    object->arc->x -= center_x;
+    object->arc->y -= center_y;
 
-  /* apply mirror to angles (vertical mirror) */
-  object->arc->start_angle = (180 - object->arc->start_angle) % 360;
-  /* start_angle *MUST* be positive */
-  if(object->arc->start_angle < 0) object->arc->start_angle += 360;
-  object->arc->arc_sweep = -object->arc->arc_sweep;
+    /* get center, and mirror it (vertical mirror) */
+    object->arc->x = -object->arc->x;
 
-  /* translate object back to its previous position */
-  object->arc->x += center_x;
-  object->arc->y += center_y;
+    /* apply mirror to angles (vertical mirror) */
+    object->arc->start_angle = (180 - object->arc->start_angle) % 360;
+    /* start_angle *MUST* be positive */
+    if(object->arc->start_angle < 0) object->arc->start_angle += 360;
+    object->arc->arc_sweep = -object->arc->arc_sweep;
 
-  /* update the screen coords and bounding box */
-  object->w_bounds_valid_for = NULL;
+    /* translate object back to its previous position */
+    object->arc->x += center_x;
+    object->arc->y += center_y;
+
+    /* update the screen coords and bounding box */
+    object->w_bounds_valid_for = NULL;
+
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*! \brief
- *  \par Function Description
+/*! O0210
+ * \brief
+ * \par Function Description
  *  This function modifies the internal values of the arc object
  *  object according to the whichone parameter.
  *
@@ -391,47 +419,54 @@ geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
  *  If <B>whichone</B> is equal to #ARC_END_ANGLE, the <B>x</B> parameter is the
  *  ending angle of the arc. <B>x</B> is in degrees. <B>y</B> is ignored.
  *
- *  \param [in,out] object
- *  \param [in]     x
- *  \param [in]     y
- *  \param [in]     whichone
+ * \param [in,out] object    A GedaObject object of type GedaArc
+ * \param [in]     x
+ * \param [in]     y
+ * \param [in]     whichone
  */
 void
 geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
 {
-  switch(whichone) {
-    case ARC_CENTER:
-      /* modify the center of arc object */
-      object->arc->x = x;
-      object->arc->y = y;
-      break;
+  if (GEDA_IS_ARC(object)) {
 
-    case ARC_RADIUS:
-      /* modify the radius of arc object */
-      object->arc->radius = x;
-      break;
+    switch(whichone) {
+      case ARC_CENTER:
+        /* modify the center of arc object */
+        object->arc->x = x;
+        object->arc->y = y;
+        break;
 
-    case ARC_START_ANGLE:
-      /* modify the start angle of the arc object */
-      object->arc->start_angle = x;
-      break;
+      case ARC_RADIUS:
+        /* modify the radius of arc object */
+        object->arc->radius = x;
+        break;
 
-    case ARC_END_ANGLE:
-      /* modify the end angle of the arc object */
-      object->arc->arc_sweep = x;
-      break;
+      case ARC_START_ANGLE:
+        /* modify the start angle of the arc object */
+        object->arc->start_angle = x;
+        break;
 
-    default:
-      break;
+      case ARC_END_ANGLE:
+        /* modify the end angle of the arc object */
+        object->arc->arc_sweep = x;
+        break;
+
+      default:
+        break;
+    }
+
+    /* update the screen coords and the bounding box */
+    object->w_bounds_valid_for = NULL;
   }
-
-  /* update the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*! \brief
- *  \par Function Description
- *  The function creates a new GedaObject of type arc.
+/*! O0211
+ * \brief
+ * \par Function Description
+ *  The function creates a new GedaObject of type GedaArc.
  *
  *  The arc is defined by its center in parameters x and y.
  *  The radius parameter specifies the radius of the arc. The start
@@ -447,13 +482,14 @@ geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
  *
  *  Now fixed for world coordinates.
  *
- *  \param [in] color
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] start_angle
- *  \param [in] arc_sweep
- *  \return
+ * \param [in] color
+ * \param [in] x
+ * \param [in] y
+ * \param [in] radius
+ * \param [in] start_angle
+ * \param [in] arc_sweep
+ *
+ * \returns new GedaObject of type GedaArc
  */
 GedaObject *
 geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int arc_sweep)
@@ -492,20 +528,19 @@ geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int a
   return new_obj;
 }
 
-/*! \brief
- *  \par Function Description
- *  This function writes in a postscript file the arc described by
- *  the <B>\a o_current</B> pointed object.
- *  The postscript resulting file is described by the <B>\a fp</B> file pointer.
+/*! O0212
+ * \brief
+ * \par Function Description
+ *  This function writes in a postscript file pointed to by <B>\a fp</B>
+ *  an  Arc to descripe by<B>\a object </B>.  Parameters extracted from
+ *  \a object are formatted to suit future calls to specialized arc
+ *  printing functions.
  *
- *  Parameters of the arc are extracted from object pointed by <B>\a o_current</B>
- *  and formatted to suit future calls to specialized arc printing functions.
- *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp         The postscript document to print to.
- *  \param [in] object
- *  \param [in] origin_x
- *  \param [in] origin_y
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp         The postscript document to print to.
+ * \param [in] object
+ * \param [in] origin_x
+ * \param [in] origin_y
  */
 void
 geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
@@ -531,8 +566,8 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
   /*! \note
    *  Depending on the type of the line for this particular arc, the
    *  appropriate function is chosen among #geda_arc_object_print_solid(),
-   *  #geda_arc_object_print_dotted(), #geda_arc_object_print_dashed(), #geda_arc_object_print_center()
-   *  and #geda_arc_object_print_phantom().
+   *  #geda_arc_object_print_dotted(), #geda_arc_object_print_dashed(),
+   *  #geda_arc_object_print_center() and #geda_arc_object_print_phantom().
    *
    *  The needed parameters for each of these types are extracted from the
    *  <B>object</B> object. Depending on the type, unused parameters are set to -1.
@@ -595,8 +630,9 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
                color, arc_width, capstyle, length, space, origin_x, origin_y);
 }
 
-/*! \brief
- *  \par Function Description
+/*! O0213
+ * \brief Print a Solid Arc
+ * \par Function Description
  *  This function prints an arc when a solid line type is required.
  *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
  *  in <B>radius</B> and the start and end angles of the arc on the circle.
@@ -607,28 +643,29 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
  *
  *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to postscript document.
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] angle1
- *  \param [in] angle2
- *  \param [in] color
- *  \param [in] arc_width
- *  \param [in] capstyle
- *  \param [in] length
- *  \param [in] space
- *  \param [in] origin_x
- *  \param [in] origin_y
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp         FILE pointer to postscript document.
+ * \param [in] x
+ * \param [in] y
+ * \param [in] radius
+ * \param [in] angle1
+ * \param [in] angle2
+ * \param [in] color
+ * \param [in] arc_width
+ * \param [in] capstyle
+ * \param [in] length
+ * \param [in] space
+ * \param [in] origin_x
+ * \param [in] origin_y
  */
-void geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
-                                 int x, int y, int radius,
-                                 int angle1, int angle2,
-                                 int color,
-                                 int arc_width,
-                                 int capstyle, int length, int space,
-                                 int origin_x, int origin_y)
+void
+geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                            int x, int y, int radius,
+                            int angle1, int angle2,
+                            int color,
+                            int arc_width,
+                            int capstyle, int length, int space,
+                            int origin_x, int origin_y)
 {
   f_print_set_color(toplevel, fp, color);
 
@@ -643,7 +680,8 @@ void geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! \brief
+/*! O0214
+ * \brief
  *  \par Function Description
  *  This function prints an arc when a dotted line type is required.
  *  The arc is defined by its center in <B>x</B> and <B>y</B>, its
@@ -674,13 +712,14 @@ void geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                                  int x, int y, int radius,
-                                  int angle1, int angle2,
-                                  int color,
-                                  int arc_width,
-                                  int capstyle, int length, int space,
-                                  int origin_x, int origin_y)
+void
+geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y, int radius,
+                             int angle1, int angle2,
+                             int color,
+                             int arc_width,
+                             int capstyle, int length, int space,
+                             int origin_x, int origin_y)
 {
   int da, d;
 
@@ -730,7 +769,8 @@ void geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
-/*! \brief
+/*! O0215
+ * \brief
  *  \par Function Description
  *  This function prints an arc when a dashed line type is required. The arc
  *  is defined by its center in <B>x</B> and <B>y</B>, its radius in <B>radius</B>
@@ -759,13 +799,14 @@ void geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                                  int x, int y, int radius,
-                                  int angle1, int angle2,
-                                  int color,
-                                  int arc_width,
-                                  int capstyle, int length, int space,
-                                  int origin_x, int origin_y)
+void
+geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y, int radius,
+                             int angle1, int angle2,
+                             int color,
+                             int arc_width,
+                             int capstyle, int length, int space,
+                             int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -832,7 +873,8 @@ void geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! \brief
+/*! O0216
+ * \brief
  *  \par Function Description
  *  This function prints an arc when a centered line type is required. The
  *  arc is defined by its center in <B>x</B> and <B>y</B>, its radius in
@@ -862,13 +904,14 @@ void geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x
  *  \param [in] origin_y
  */
-void geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
-                                  int x, int y, int radius,
-                                  int angle1, int angle2,
-                                  int color,
-                                  int arc_width,
-                                  int capstyle, int length, int space,
-                                  int origin_x, int origin_y)
+void
+geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y, int radius,
+                             int angle1, int angle2,
+                             int color,
+                             int arc_width,
+                             int capstyle, int length, int space,
+                             int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -957,8 +1000,9 @@ void geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *  <B>ya</B>) and its radius is the <B>arc_width</B> parameter.
  */
 
-/*! \brief
- *  \par Function Description
+/*! O0217
+ * \brief
+ * \par Function Description
  *  This function prints an arc when a phantom line type is required.
  *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
  *  in <B>radius</B> and the start and end angles of the arc on the circle.
@@ -972,28 +1016,29 @@ void geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *
  * The function sets the color in which the line will be printed with.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp        FILE pointer to postscript document.
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] angle1
- *  \param [in] angle2
- *  \param [in] color
- *  \param [in] arc_width
- *  \param [in] capstyle
- *  \param [in] length
- *  \param [in] space
- *  \param [in] origin_x
- *  \param [in] origin_y
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp        FILE pointer to postscript document.
+ * \param [in] x
+ * \param [in] y
+ * \param [in] radius
+ * \param [in] angle1
+ * \param [in] angle2
+ * \param [in] color
+ * \param [in] arc_width
+ * \param [in] capstyle
+ * \param [in] length
+ * \param [in] space
+ * \param [in] origin_x
+ * \param [in] origin_y
  */
-void geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                                   int x, int y, int radius,
-                                   int angle1, int angle2,
-                                   int color,
-                                   int arc_width,
-                                   int capstyle, int length, int space,
-                                   int origin_x, int origin_y)
+void
+geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
+                              int x, int y, int radius,
+                              int angle1, int angle2,
+                              int color,
+                              int arc_width,
+                              int capstyle, int length, int space,
+                              int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -1102,8 +1147,9 @@ void geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
-/*! \brief
- *  \par Function Description
+/*! O0218
+ * \brief
+ * \par Function Description
  *  This function reads a formatted text buffer describing an arc
  *  in the gEDA file format and initializes the corresponding object.
  *
@@ -1123,13 +1169,13 @@ void geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *
  *  A negative or null radius is not allowed.
  *
- *  \param [in] buf
- *  \param [in] release_ver
- *  \param [in] fileformat_ver
+ * \param [in] buf
+ * \param [in] release_ver
+ * \param [in] fileformat_ver
  *
- *  \param [out] err           A GError object
+ * \param [out] err           A GError object
  *
- *  \return The ARC GedaObject that was created, or NULL on error.
+ * \return The ARC GedaObject that was created, or NULL on error.
  */
 GedaObject*
 geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
@@ -1204,8 +1250,9 @@ geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int f
   return new_obj;
 }
 
-/*! \brief
- *  \par Function Description
+/*! O0219
+ * \brief
+ * \par Function Description
  *  This function rotates the world coordinates of an arc of an angle
  *  specified by <B>angle</B>. The center of the rotation is given by
  *  (<B>center_x</B>,<B>center_y</B>).
@@ -1218,10 +1265,10 @@ geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int f
  *
  *  <B>center_x</B> and <B>center_y</B> are in world units, <B>angle</B> is in degrees.
  *
- *  \param [in] object
- *  \param [in] center_x
- *  \param [in] center_y
- *  \param [in] angle
+ * \param [in] object
+ * \param [in] center_x
+ * \param [in] center_y
+ * \param [in] angle
  */
 void
 geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
@@ -1258,49 +1305,7 @@ geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle
 
 }
 
-/*! \brief create the string representation of an arc object
- *  \par Function Description
- *  This function formats a string in the <B>buffer</B> to describe
- *  the #GedaArc object <B>\a object</B>.
- *  A pointer to the new allocated and formated string is returned.
- *  The string must be freed at some point.
- *
- *  \param [in] object
- *
- *  \return the string representation of the arc object
- */
-char*
-geda_arc_object_to_buffer(GedaObject *object)
-{
-  int x, y, radius, start_angle, arc_sweep;
-  int arc_width, arc_length, arc_space;
-  char *buf;
-  LINE_END arc_end;
-  LINE_TYPE arc_type;
-
-  /* radius, center and angles of the arc */
-  radius      = object->arc->radius;
-  x           = object->arc->x;
-  y           = object->arc->y;
-  start_angle = object->arc->start_angle;
-  arc_sweep   = object->arc->arc_sweep;
-
-  /* line type parameters */
-  arc_width  = object->line_options->line_width;
-  arc_end    = object->line_options->line_end;
-  arc_type   = object->line_options->line_type;
-  arc_length = object->line_options->line_length;
-  arc_space  = object->line_options->line_space;
-
-  /* Describe a circle with post-20000704 file format */
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
-                          x, y, radius, start_angle, arc_sweep, object->color,
-                          arc_width, arc_end, arc_type, arc_length, arc_space);
-
-  return(buf);
-}
-
-/*!
+/*! O0220
  * \brief Set sweep angle of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1308,7 +1313,8 @@ geda_arc_object_to_buffer(GedaObject *object)
  *
  * \sa geda_arc_set_arc_arc_sweep
  */
-void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
+void
+geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
 {
   if (GEDA_IS_ARC(object))
     object->arc->arc_sweep = sweep;
@@ -1316,7 +1322,7 @@ void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
     BUG_PMSG("Not a valid GedaArc object <%p>", object);
 }
 
-/*!
+/*! O0221
  * \brief Set center X coordinate of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1324,15 +1330,18 @@ void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
  *
  * \sa geda_arc_set_arc_center_x
  */
-void geda_arc_object_set_center_x (GedaObject *object, int x)
+void
+geda_arc_object_set_center_x (GedaObject *object, int x)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     object->arc->x = x;
-  else
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*!
+/*! O0222
  * \brief Set center Y coordinate of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1340,15 +1349,18 @@ void geda_arc_object_set_center_x (GedaObject *object, int x)
  *
  * \sa geda_arc_set_arc_center_y
  */
-void geda_arc_object_set_center_y (GedaObject *object, int y)
+void
+geda_arc_object_set_center_y (GedaObject *object, int y)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     object->arc->y = y;
-  else
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*!
+/*! O0223
  * \brief Set radius of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1356,15 +1368,18 @@ void geda_arc_object_set_center_y (GedaObject *object, int y)
  *
  * \sa geda_arc_set_arc_start_angle
  */
-void geda_arc_object_set_radius (GedaObject *object, int radius)
+void
+geda_arc_object_set_radius (GedaObject *object, int radius)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     object->arc->radius = radius;
-  else
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*!
+/*! O0224
  * \brief Set the starting angle of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1372,24 +1387,28 @@ void geda_arc_object_set_radius (GedaObject *object, int radius)
  *
  * \sa geda_arc_set_arc_start_angle
  */
-void geda_arc_object_set_start_angle (GedaObject *object, int angle)
+void
+geda_arc_object_set_start_angle (GedaObject *object, int angle)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     object->arc->start_angle = angle;
-  else
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on the perimeter of the arc.
+/*! O0225
+ * \brief Calculates the distance between the given point and the closest
+ *  point on the perimeter of the arc.
  *
- *  \param [in] object       An arc Object
- *  \param [in] x            The x coordinate of the given point
- *  \param [in] y            The y coordinate of the given point
- *  \param [in] force_solid  If true, force treating the object as solid.
+ * \param [in] object       An GedaObject object of type GedaArc
+ * \param [in] x            The x coordinate of the given point
+ * \param [in] y            The y coordinate of the given point
+ * \param [in] force_solid  If true, force treating the object as solid.
  *
- *  \return The shortest distance from the object to the point. With an
- *          invalid parameter, this function returns G_MAXDOUBLE.
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
 geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
@@ -1401,7 +1420,7 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
 
   radius = (double)object->arc->radius;
 
-  if (geda_arc_object_within_sweep (object->arc, x, y)) {
+  if (geda_arc_within_sweep (object->arc, x, y)) {
 
     double distance_to_center;
     double dx;
@@ -1454,14 +1473,58 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   return shortest_distance;
 }
 
-/*! \brief Apply Translation to an GedaArc Object
- *  \par Function Description
+/*! O0226
+ * \brief Create String Representation of an Arc object
+ * \par Function Description
+ *  This function formats a string in the <B>buffer</B> to describe
+ *  the #GedaArc object <B>\a object</B>.
+ *  A pointer to the new allocated and formated string is returned.
+ *  The string must be freed at some point.
+ *
+ * \param [in] object
+ *
+ * \return the string representation of the arc object
+ */
+char*
+geda_arc_object_to_buffer(GedaObject *object)
+{
+  int x, y, radius, start_angle, arc_sweep;
+  int arc_width, arc_length, arc_space;
+  char *buf;
+  LINE_END arc_end;
+  LINE_TYPE arc_type;
+
+  /* radius, center and angles of the arc */
+  radius      = object->arc->radius;
+  x           = object->arc->x;
+  y           = object->arc->y;
+  start_angle = object->arc->start_angle;
+  arc_sweep   = object->arc->arc_sweep;
+
+  /* line type parameters */
+  arc_width  = object->line_options->line_width;
+  arc_end    = object->line_options->line_end;
+  arc_type   = object->line_options->line_type;
+  arc_length = object->line_options->line_length;
+  arc_space  = object->line_options->line_space;
+
+  /* Describe a circle with post-20000704 file format */
+  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
+                          x, y, radius, start_angle, arc_sweep, object->color,
+                          arc_width, arc_end, arc_type, arc_length, arc_space);
+
+  return(buf);
+}
+
+/*! O0227
+ * \brief Apply Translation to an Arc Object
+ * \par Function Description
  *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
  *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
  *
- *  \param [in] object
- *  \param [in] dx
- *  \param [in] dy
+ * \param [in] object
+ * \param [in] dx
+ * \param [in] dy
  */
 void
 geda_arc_object_translate(GedaObject *object, int dx, int dy)
@@ -1479,44 +1542,25 @@ geda_arc_object_translate(GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Determines if a point lies within the sweep of the arc.
+/*! O0228
+ * \brief Determines if a point lies within the sweep of the arc.
  *
- *  \param [in] arc The arc of object
- *  \param [in] x   The x coordinate of the given point
- *  \param [in] y   The y coordinate of the given point
+ * \param [in] object GedaObject object of type GedaArc
+ * \param [in] x      The x coordinate of the given point
+ * \param [in] y      The y coordinate of the given point
  *
- *  \return TRUE if the point lies within the sweep of the arc.
- *          FALSE if the point lies outside the sweep of the arc.
- *          With an invalid parameter, this function returns FALSE.
+ * \return TRUE if the point lies within the sweep of the arc.
+ *         FALSE if the point lies outside the sweep of the arc.
+ *         With an invalid parameter, this function returns FALSE.
  */
 bool
-geda_arc_object_within_sweep(GedaArc *arc, int x, int y)
+geda_arc_object_within_sweep(GedaObject *object, int x, int y)
 {
-  double a0;
-  double a1;
-  double angle;
-  double dx;
-  double dy;
-
-  g_return_val_if_fail (GEDA_IS_ARC(arc), FALSE);
-
-  dx = ((double) x) - ((double) arc->x);
-  dy = ((double) y) - ((double) arc->y);
-
-  angle = 180 * atan2(dy, dx) / M_PI;
-
-  if (arc->arc_sweep > 0) {
-    a0 = arc->start_angle;
-    a1 = arc->start_angle + arc->arc_sweep;
+  if (GEDA_IS_ARC(object)) {
+    return geda_arc_within_sweep(object->arc, x, y);
   }
   else {
-    a0 = arc->start_angle + arc->arc_sweep + 360;
-    a1 = arc->start_angle + 360;
+    geda_arc_object_error(__func__, object);
   }
-
-  while (angle < a0) {
-    angle += 360;
-  }
-
-  return (angle < a1);
+  return FALSE;
 }

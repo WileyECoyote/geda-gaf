@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-04 01:26-0600\n"
+"POT-Creation-Date: 2016-03-06 19:47-0600\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -276,39 +276,39 @@ msgstr ""
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/geda/geda_config.c:234
+#: libgeda/src/geda/geda_config.c:233
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:235
+#: libgeda/src/geda/geda_config.c:234
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:852 libgeda/src/geda/geda_config.c:966
+#: libgeda/src/geda/geda_config.c:859 libgeda/src/geda/geda_config.c:973
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:993
+#: libgeda/src/geda/geda_config.c:1000
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1037
+#: libgeda/src/geda/geda_config.c:1044
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Impossible de trouver le fichier %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1354
+#: libgeda/src/geda/geda_config.c:1361
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1418
+#: libgeda/src/geda/geda_config.c:1425
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1432
+#: libgeda/src/geda/geda_config.c:1439
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -688,17 +688,17 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1158
-#: libgeda/src/object/o_arc_object.c:1173
+#: libgeda/src/object/o_arc_object.c:1183
+#: libgeda/src/object/o_arc_object.c:1198
 msgid "Failed to parse arc object"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1180
+#: libgeda/src/object/o_arc_object.c:1205
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Trouvé un arc avec rayon nul [ %c %d, %d, %d, %d, %d, %d ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1186 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_arc_object.c:1211 libgeda/src/object/o_box_basic.c:545
 #: libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
@@ -708,7 +708,7 @@ msgstr "Trouvé un arc avec rayon nul [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Trouvé une couleur invalide [ %s ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1187 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_arc_object.c:1212 libgeda/src/object/o_box_basic.c:546
 #: libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
@@ -1144,11 +1144,11 @@ msgstr "Alignement positionné à LOWER_LEFT\n"
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
 
-#: libgeda/src/scheme/edascmhookproxy.c:81
+#: libgeda/src/scheme/edascmhookproxy.c:79
 msgid "Scheme hook"
 msgstr ""
 
-#: libgeda/src/scheme/edascmhookproxy.c:82
+#: libgeda/src/scheme/edascmhookproxy.c:80
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 

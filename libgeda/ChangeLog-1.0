@@ -24,6 +24,11 @@
       allocate priate data using g_malloc0 in eda_config_instance_init and
       release in eda_config_finalize.
 
+    * src/object/o_arc_object.c: Add local error (message) function geda_
+      arc_object_error and revise other functions to utilize the function.
+      Revise geda_arc_object_within_sweep to call geda_arc_within_sweep,
+      revise edit Doxygen comments.
+
 2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_config.h: Declare is_a_eda_config and implement
