@@ -27,3 +27,4 @@ libgeda_la_SOURCES += \
 			object/o_set.c \
 			object/o_style.c \
 			object/o_text_basic.c
+

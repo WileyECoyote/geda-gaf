@@ -1,19 +1,20 @@
-## Makefile.am fragment sourced by Makefile.am.
+## Makefile.am fragment sourced by ../Makefile.am.
 
 ## FRAGMENTS=edascm_api_sources
 
 libgeda_la_SOURCES += \
+	scheme/edascmhookproxy.c \
+	scheme/edascmvaluetypes.c \
+	scheme/scheme_attrib.c \
+	scheme/scheme_closure.c \
+	scheme/scheme_complex.c \
+	scheme/scheme_config.c \
+	scheme/scheme_deprecated.c \
 	scheme/scheme_init.c \
 	scheme/scheme_make.c \
-	scheme/scheme_smob.c \
-	scheme/scheme_toplevel.c \
 	scheme/scheme_object.c \
-	scheme/scheme_complex.c \
 	scheme/scheme_os.c \
 	scheme/scheme_page.c \
-	scheme/scheme_attrib.c \
-	scheme/scheme_config.c \
-	scheme/scheme_closure.c \
-	scheme/scheme_deprecated.c \
-	scheme/edascmhookproxy.c \
-	scheme/edascmvaluetypes.c
+	scheme/scheme_smob.c \
+	scheme/scheme_toplevel.c
+
