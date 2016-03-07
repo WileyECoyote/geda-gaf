@@ -626,38 +626,38 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    geda_utility_gslist_stri_inlist (GSList *list, char *string);
 
 /* u_log.c */
-         void    geda_utility_log_init           (const char *app_prefix);
          void    geda_utility_log_close          (void);
-         char   *geda_utility_log_read           (void);
           int    geda_utility_log_get_log_time   (void);
+         void    geda_utility_log_init           (const char *app_prefix);
+         void    geda_utility_log_quite          (const char *format, ...);
+         char   *geda_utility_log_read           (void);
          void    geda_utility_log_set_log_time   (int mode);
          void    geda_utility_log_set_update_func(LogUpdateFunc func);
-         void    geda_utility_log_quite          (const char *format, ...);
-         void    geda_utility_log_verbose        (const char *format, ...);
          void    geda_utility_log_system         (const char *format, ...);
+         void    geda_utility_log_verbose        (const char *format, ...);
 
 /* u_string.c */
          char   *geda_utility_string_concat           (const char *string1, ...) GEDA_WARN_UNUSED_RESULT;
-   const char   *geda_utility_string_istr             (const char *str1, const char *str2);
-         char   *geda_utility_string_remove_nl        (char *string);
-         char   *geda_utility_string_remove_last_nl   (char *string);
          char   *geda_utility_string_int2str          (int value, char *str, int radix);
          bool    geda_utility_string_isalnum          (const char *string);
+   const char   *geda_utility_string_istr             (const char *str1, const char *str2);
          bool    geda_utility_string_parse_xy         (const char *string, int *x, int *y) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_remove_last_nl   (char *string);
+         char   *geda_utility_string_remove_nl        (char *string);
          char   *geda_utility_string_scm2c            (char *scm_str_name) GEDA_WARN_UNUSED_RESULT;
          void    geda_utility_string_sort_array       (char *strings[], size_t strings_size);
+         char   *geda_utility_string_split            (char *string, char delimiter, int count) GEDA_WARN_UNUSED_RESULT;
          char   *geda_utility_string_sprintf          (const char *format, ...) GEDA_WARN_UNUSED_RESULT;
          char   *geda_utility_string_strdup           (const char *str) GEDA_WARN_UNUSED_RESULT;
-         char   *geda_utility_string_strndup          (const char *str, int n) GEDA_WARN_UNUSED_RESULT;
-         int     geda_utility_string_stristr          (const char *haystack, const char *needle);
          bool    geda_utility_string_strequal         (const char *str1, const char *str2) GEDA_WARN_UNUSED_RESULT;
+         int     geda_utility_string_stricmp          (const char *str1, const char *str2);
+         int     geda_utility_string_stristr          (const char *haystack, const char *needle);
+         char   *geda_utility_string_strisubst        (char *source, char *old_str, char *new_str);
+         int     geda_utility_string_strncmpi         (const char *str1, const char *str2, int n);
+         char   *geda_utility_string_strndup          (const char *str, int n) GEDA_WARN_UNUSED_RESULT;
          int     geda_utility_string_strsize          (const char *format, va_list args);
          char   *geda_utility_string_strstr_rep       (char *original,   const char *old_str, const char *new_str);
-         int     geda_utility_string_stricmp          (const char *str1, const char *str2);
-         int     geda_utility_string_strncmpi         (const char *str1, const char *str2, int n);
          char   *geda_utility_string_strsubst         (char *source, char *old_str, char *new_str);
-         char   *geda_utility_string_strisubst        (char *source, char *old_str, char *new_str);
-         char   *geda_utility_string_split            (char *string, char delimiter, int count) GEDA_WARN_UNUSED_RESULT;
          int     geda_utility_string_word_count       (char *str);
 
 /* u_program.c */
@@ -665,9 +665,9 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_program_mem_set_vtable  (void);
 
 /* u_refdes.c */
-const GedaRefDes *geda_utility_refdes_get_standard    (void);
-const GedaRefDes *geda_utility_refdes_get_spice       (void);
 const GedaRefDes *geda_utility_refdes_get_ieee        (void);
+const GedaRefDes *geda_utility_refdes_get_spice       (void);
+const GedaRefDes *geda_utility_refdes_get_standard    (void);
          void     geda_utility_refdes_reset           (GedaObject *object);
          char    *geda_utility_refdes_return_numeric  (void *text);
 

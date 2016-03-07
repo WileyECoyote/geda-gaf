@@ -1,4 +1,21 @@
+2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_utility.h: Remove extra geda_strconcat - 1 too many,
+      move spice before standard designators.
+
+    * include/libgeda/prototype.h: sort utilities alphabetically.
+
+    * src/utility/: Resequence functions alphabetically:
+
+            * src/utility/u_log.c
+            * src/utility/u_refdes.c
+            * src/utility/u_string.c
+            * src/utility/u_utility.c
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgeda/HACKING: Add additional comments regarding function and modules
+      names.
 
     * include/libgeda/geda_arc.h: Add declaration of geda_arc_within_sweep.
 
@@ -10,6 +27,10 @@
             * eda_config_set_boolean_list
             * eda_config_set_int_list
             * eda_config_set_double_list
+
+    * include/libgeda/geda_file.h: Add file with macro/alias, seeing HACKING.
+
+    * include/libgeda/geda_utility.h: Add file with macros, seeing HACKING.
 
     * include/libgeda/prototype.h: Add declare geda_arc_object_within_sweep
       from priv.h, does not seem a reason to hide.

@@ -33,8 +33,9 @@
 
 #include <geda_debug.h>
 
-/*! \brief Expand environment variables in string.
- *  \par Function Description
+/*! U0101
+ * \brief Expand environment variables in string.
+ * \par Function Description
  *  This function returns the passed string with environment variables
  *  expanded.
  *
@@ -44,13 +45,13 @@
  *  possible to escape a '$' character in the string by repeating it
  *  twice.
  *
- *  It outputs error messages to console and leaves the malformed and
- *  bad variable names in the returned string.
+ *  Error messages are directed to stderr and the malformed and or
+ *  bad variable names remain in the returned string.
  *
- *  \param [in] string The string with variables to expand.
+ * \param [in] string The string with variables to expand.
  *
- *  \return A newly-allocated string with variables expanded or NULL
- *  if input string was NULL.
+ * \return A newly-allocated string with variables expanded or NULL
+ *         if input string was NULL.
  */
 char*
 geda_utility_expand_env_variable (const char *string)
@@ -63,11 +64,12 @@ geda_utility_expand_env_variable (const char *string)
   }
 
   gstring = g_string_sized_new (strlen (string));
+
   i = 0;
   while (TRUE) {
-    int start;
 
-    start = i;
+    int start = i;
+
     /* look for end of string or possible variable name start */
     while (string[i] != '\0' && string[i] != '$') i++;
 

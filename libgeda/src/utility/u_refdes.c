@@ -29,6 +29,56 @@
 #include <libgeda_priv.h>
 
 static
+GedaRefDes IeeeRefDes[] = {
+                             {"A",     "Separable assembly or sub-assembly"},
+                             {"AT",    "Attenuator or isolator"},
+                             {"BR",    "Bridge rectifier"},
+                             {"BT",    "Battery"},
+                             {"C",     "Capacitor"},
+                             {"CN",    "Capacitor network"},
+                             {"D",     "Diode (including LEDs)"},
+                             {"DL",    "Delay line"},
+                             {"DS",    "Display"},
+                             {"F",     "Fuse"},
+                             {"FB",    "Ferrite bead"},
+                             {"FD",    "Fiducial"},
+                             {"FL",    "Filter"},
+                             {"G",     "generator or oscillator"},
+                             {"GN",    "General network"},
+                             {"HY",    "circulator or directional coupler"},
+                             {"J",     "Receptacle Jack"},
+                             {"JP",    "Link (Jumper)"},
+                             {"K",     "Relay or contactor"},
+                             {"L",     "Inductor or coil or ferrite bead"},
+                             {"LS",    "Loudspeaker or buzzer"},
+                             {"M",     "Motor"},
+                             {"MK",    "Microphone"},
+                             {"MP",    "Mechanical part, screws and fasteners"},
+                             {"P",     "Plug"},
+                             {"PS",    "Power supply"},
+                             {"Q",     "Transistor (all types)"},
+                             {"R",     "Resistor"},
+                             {"RN",    "Resistor network"},
+                             {"RT",    "Thermistor"},
+                             {"RV",    "Varistor"},
+                             {"S",     "Switch (all types)"},
+                             {"T",     "Transformer"},
+                             {"TC",    "Thermocouple"},
+                             {"TUN",   "Tuner"},
+                             {"TP",    "Test point"},
+                             {"U",     "Inseparable assembly"},
+                             {"V",     "Vacuum tube"},
+                             {"VR",    "Variable resistor"},
+                             {"X",     "Receptacle socket"},
+                             {"XA",    "Receptacle socket for printed circuit assembly"},
+                             {"XF",    "Receptacle socket for fuse holder"},
+                             {"XV",    "Receptacle socket for vacuum tube"},
+                             {"Y",     "Crystal or oscillator"},
+                             {"Z",     "Zener diode"},
+                             { '\0'}
+};
+
+static
 GedaRefDes StdRefDes[] = {
                              {"A",     "Directive"},
                              {"ANT",   "Antanna"},
@@ -93,68 +143,18 @@ GedaRefDes SpiceRefDes[] = {
                              { '\0'}
 };
 
-static
-GedaRefDes IeeeRefDes[] = {
-                             {"A",     "Separable assembly or sub-assembly"},
-                             {"AT",    "Attenuator or isolator"},
-                             {"BR",    "Bridge rectifier"},
-                             {"BT",    "Battery"},
-                             {"C",     "Capacitor"},
-                             {"CN",    "Capacitor network"},
-                             {"D",     "Diode (including LEDs)"},
-                             {"DL",    "Delay line"},
-                             {"DS",    "Display"},
-                             {"F",     "Fuse"},
-                             {"FB",    "Ferrite bead"},
-                             {"FD",    "Fiducial"},
-                             {"FL",    "Filter"},
-                             {"G",     "generator or oscillator"},
-                             {"GN",    "General network"},
-                             {"HY",    "circulator or directional coupler"},
-                             {"J",     "Receptacle Jack"},
-                             {"JP",    "Link (Jumper)"},
-                             {"K",     "Relay or contactor"},
-                             {"L",     "Inductor or coil or ferrite bead"},
-                             {"LS",    "Loudspeaker or buzzer"},
-                             {"M",     "Motor"},
-                             {"MK",    "Microphone"},
-                             {"MP",    "Mechanical part, screws and fasteners"},
-                             {"P",     "Plug"},
-                             {"PS",    "Power supply"},
-                             {"Q",     "Transistor (all types)"},
-                             {"R",     "Resistor"},
-                             {"RN",    "Resistor network"},
-                             {"RT",    "Thermistor"},
-                             {"RV",    "Varistor"},
-                             {"S",     "Switch (all types)"},
-                             {"T",     "Transformer"},
-                             {"TC",    "Thermocouple"},
-                             {"TUN",   "Tuner"},
-                             {"TP",    "Test point"},
-                             {"U",     "Inseparable assembly"},
-                             {"V",     "Vacuum tube"},
-                             {"VR",    "Variable resistor"},
-                             {"X",     "Receptacle socket"},
-                             {"XA",    "Receptacle socket for printed circuit assembly"},
-                             {"XF",    "Receptacle socket for fuse holder"},
-                             {"XV",    "Receptacle socket for vacuum tube"},
-                             {"Y",     "Crystal or oscillator"},
-                             {"Z",     "Zener diode"},
-                             { '\0'}
-};
-
 /*! U501
- * \brief Return gEDA standard refdes prefixes
+ * \brief Return refdes prefixes Associated with IEEE standards
  * \par Function Description
- *  Returns a pointer to StdRefDes.
+ *  Returns a pointer to IeeeRefDes.
  */
 const GedaRefDes*
-geda_utility_refdes_get_standard(void)
+geda_utility_refdes_get_ieee(void)
 {
-  return StdRefDes;
+  return IeeeRefDes;
 }
 
-/*! U502
+/*! U503
  * \brief Return refdes prefixes Associated with SPICE components
  * \par Function Description
  *  Returns a pointer to SpiceRefDes.
@@ -165,15 +165,15 @@ geda_utility_refdes_get_spice(void)
   return SpiceRefDes;
 }
 
-/*! U503
- * \brief Return refdes prefixes Associated with IEEE standards
+/*! U501
+ * \brief Return gEDA standard refdes prefixes
  * \par Function Description
- *  Returns a pointer to IeeeRefDes.
+ *  Returns a pointer to StdRefDes.
  */
 const GedaRefDes*
-geda_utility_refdes_get_ieee(void)
+geda_utility_refdes_get_standard(void)
 {
-  return IeeeRefDes;
+  return StdRefDes;
 }
 
 /*! U504

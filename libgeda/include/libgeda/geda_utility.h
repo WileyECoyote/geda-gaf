@@ -65,7 +65,6 @@
 
 /* u_string.c */
 #define geda_strconcat            geda_utility_string_concat
-#define geda_strconcat            geda_utility_string_concat
 #define geda_string_int2str       geda_utility_string_int2str
 #define geda_string_isalnum       geda_utility_string_isalnum
 #define geda_string_istr          geda_utility_string_istr
@@ -94,8 +93,8 @@
 
 /* u_refdes.c */
 #define geda_get_ieee_refdes      geda_utility_refdes_get_ieee
-#define geda_get_standard_refdes  geda_utility_refdes_get_standard
 #define geda_get_spice_refdes     geda_utility_refdes_get_spice
+#define geda_get_standard_refdes  geda_utility_refdes_get_standard
 #define geda_reset_refdes         geda_utility_refdes_reset
 #define geda_refdes_get_numeric   geda_utility_refdes_return_numeric
 

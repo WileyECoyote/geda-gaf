@@ -62,29 +62,6 @@ static int log_time   =  1;
 
 static unsigned int log_handler_id;
 
-/*! \brief Get whether log entries are prefixed with the Time Of Day
- *  \par Function Description
- *  Getter function for the static module integer log_time.
- *
- *  \returns the current log-time setting.
- *  \todo Add Scheme API
- */
-int geda_utility_log_get_log_time(void)
-{
-  return log_time;
-}
-
-/*! \brief Set whether log entries are prefixed with the Time Of Day
- *  \par Function Description
- *  Setter function for the static module integer log_time.
- *
- *  \param [in] mode If 0 entries will not be prefixed with the TOD
- */
-void geda_utility_log_set_log_time(int mode)
-{
-  log_time = mode;
-}
-
 /*! \brief Write a message to the current log file.
  *  \par Function Description
  *  Writes <B>message</B> to the current log file whose file descriptor
@@ -152,6 +129,43 @@ static void u_log_handler (const char    *log_domain,
   if (x_log_update_func) {
     (*x_log_update_func) (log_domain, log_level, message);
   }
+}
+
+/*! \brief Terminates the logging of messages.
+ *  \par Function Description
+ *  This function de-registers the handler for redirection to the log
+ *  file and then close the log file. Subsequent messages are lost after
+ *  the close.
+ */
+void geda_utility_log_close (void)
+{
+  is_logging = FALSE;
+
+  if (logfile_fd == -1) {
+    return;
+  }
+
+  /* remove the handler */
+  g_log_remove_handler (NULL, log_handler_id);
+
+  /* close the file */
+  if (logfile_fd != -1) {
+    close (logfile_fd);
+    logfile_fd = -1;
+  }
+
+}
+
+/*! \brief Get whether log entries are prefixed with the Time Of Day
+ *  \par Function Description
+ *  Getter function for the static module integer log_time.
+ *
+ *  \returns the current log-time setting.
+ *  \todo Add Scheme API
+ */
+int geda_utility_log_get_log_time(void)
+{
+  return log_time;
 }
 
 /*! \brief Initialize libgeda logging feature.
@@ -287,41 +301,33 @@ void geda_utility_log_init (const char *prefix)
   GEDA_FREE (full_prefix);
 }
 
-/*! \brief Terminates the logging of messages.
+/*! \brief Write Message to Log if Not Quiet Mode
  *  \par Function Description
- *  This function de-registers the handler for redirection to the log
- *  file and then close the log file. Subsequent messages are lost after
- *  the close.
+ *  This is a utlitity function to write a formatted message to
+ *  the log handler if quiet mode is not set.
  */
-void geda_utility_log_close (void)
+void geda_utility_log_quite(const char *format, ...)
 {
-  is_logging = FALSE;
+  if (!libgeda_quiet_mode) {
 
-  if (logfile_fd == -1) {
-    return;
+    va_list args;
+    char   *buffer;
+    int     size;
+
+    va_start (args, format);
+    size = geda_utility_string_strsize(format, args) + 1;
+    va_end (args);
+
+    buffer = malloc(size);
+
+    va_start (args, format);
+    vsnprintf (buffer, size, format, args);
+    va_end (args);
+
+    u_log_message("%s", buffer);
+
+    if (buffer) free(buffer);
   }
-
-  /* remove the handler */
-  g_log_remove_handler (NULL, log_handler_id);
-
-  /* close the file */
-  if (logfile_fd != -1) {
-    close (logfile_fd);
-    logfile_fd = -1;
-  }
-
-}
-
-/*! \brief  Set Log callback function.
- *  \par Function Description
- *  Call to set the a handler function to be called for each log
- *  event.
- *
- *  \param [in] func Pointer to callback function
- */
-void geda_utility_log_set_update_func (LogUpdateFunc func)
-{
-    x_log_update_func = func;
 }
 
 /*! \brief  Reads the current log file and returns its contents.
@@ -370,62 +376,27 @@ char *geda_utility_log_read (void)
   return contents;
 }
 
-/*! \brief Write Message to Log if Not Quiet Mode
+/*! \brief Set whether log entries are prefixed with the Time Of Day
  *  \par Function Description
- *  This is a utlitity function to write a formatted message to
- *  the log handler if quiet mode is not set.
+ *  Setter function for the static module integer log_time.
+ *
+ *  \param [in] mode If 0 entries will not be prefixed with the TOD
  */
-void geda_utility_log_quite(const char *format, ...)
+void geda_utility_log_set_log_time(int mode)
 {
-  if (!libgeda_quiet_mode) {
-
-    va_list args;
-    char   *buffer;
-    int     size;
-
-    va_start (args, format);
-    size = geda_utility_string_strsize(format, args) + 1;
-    va_end (args);
-
-    buffer = malloc(size);
-
-    va_start (args, format);
-    vsnprintf (buffer, size, format, args);
-    va_end (args);
-
-    u_log_message("%s", buffer);
-
-    if (buffer) free(buffer);
-  }
+  log_time = mode;
 }
 
-/*! \brief Write Message to Log if Verbose Mode
+/*! \brief  Set Log callback function.
  *  \par Function Description
- *  This is a utlitity function to write a formatted message to
- *  the log handler if verbose mode was set.
+ *  Call to set the a handler function to be called for each log
+ *  event.
+ *
+ *  \param [in] func Pointer to callback function
  */
-void geda_utility_log_verbose(const char *format, ...)
+void geda_utility_log_set_update_func (LogUpdateFunc func)
 {
-  if (libgeda_verbose_mode) {
-
-    va_list args;
-    char   *buffer;
-    int     size;
-
-    va_start (args, format);
-    size = geda_utility_string_strsize(format, args) + 1;
-    va_end (args);
-
-    buffer = malloc(size);
-
-    va_start (args, format);
-    vsnprintf (buffer, size, format, args);
-    va_end (args);
-
-    u_log_message("%s", buffer);
-
-    if (buffer) free(buffer);
-  }
+    x_log_update_func = func;
 }
 
 void
@@ -456,6 +427,35 @@ geda_utility_log_system(const char *format, ...)
 
   if (buffer) free(buffer);
 
+}
+
+/*! \brief Write Message to Log if Verbose Mode
+ *  \par Function Description
+ *  This is a utlitity function to write a formatted message to
+ *  the log handler if verbose mode was set.
+ */
+void geda_utility_log_verbose(const char *format, ...)
+{
+  if (libgeda_verbose_mode) {
+
+    va_list args;
+    char   *buffer;
+    int     size;
+
+    va_start (args, format);
+    size = geda_utility_string_strsize(format, args) + 1;
+    va_end (args);
+
+    buffer = malloc(size);
+
+    va_start (args, format);
+    vsnprintf (buffer, size, format, args);
+    va_end (args);
+
+    u_log_message("%s", buffer);
+
+    if (buffer) free(buffer);
+  }
 }
 
 /** @} endgroup Libgeda-Logging-Utilities */
