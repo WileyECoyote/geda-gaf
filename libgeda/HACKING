@@ -1,19 +1,68 @@
 
+geda libraries contains an extensive collection of both procedural
+and object oriented functions, the functions are organized into
+modules (files) and these modules are further organized into groups.
+Function names are prefixed with the library base name, module group
+and the modules:
 
-Here's what the prefix letters mean:
+           lib_group_module_
 
-        a_ : Action (this was a really poor choice, and will be removed)
+For the case of libgeda this becomes
+
+           geda_group_module_
+
+File names for the source code include the group or group-code and module;
+modules containing object oriented code are all in the geda group and thus
+appear as lib_group.c, and therefore function names within object modules
+always contain the file name.
+
+Example:
+         geda_foo.c contains only foo object members with names
+         geda_foo_member with one exceptions, the member is_a_geda_foo
+
+Procedural modules are organized into subdirectories whose names are the
+group and have file names in the form group-code_module.c, with the group
+code being the first letter of the group name, lower case.
+
+Here's what the group prefix letters mean:
+
+        f_ : File related functions
         g_ : Guile related functions
         i_ : Interface related functions
-        o_ : graphic Object related functions
-        x_ : X related functions
-        f_ : File related functions
         m_ : Math related functions
+        o_ : Object related functions
         s_ : data Structure related functions
+        u_ : miscellaneous Utility functions
 
-        I've tried to keep the function names in the files correct, but
-        sometimes I failed.  (look at libgeda/a_basic.c for an example of
-        a file which has a bunch of functions which shouldn't be in there)
+Special purpose groups, there is only one in libgeda, scheme, have separate
+subdirectories with all files prefixed with purpose, object modules related
+to the purpose need not contain the purpose in the file but are included in
+subdirectory of the purpose. Function names within the object module follow
+the same conventions as other object module but functions in procedural use
+the naming convention appropriate for the purpose.
 
-								-Ales
+Examples:
 
+        src/utility/u_log.c contains API function names prefixed with
+        geda_utility_log_.
+
+        src/scheme/scheme_make.c contains scheme API function names prefixed
+        with object_make_.
+
+This nomenclature allows functions to be identified in a systematic manner,
+reducing potential conflicts between modules, applications and other libraries.
+Equally important, using modularized function names facilitate maintenance.
+
+None the less, function names can be excessively long, contributing
+to line continuations, which impairs readability of source code. In
+an attempt to alleviate long file names, there is a header for each
+procedural groups containing aliases for function names without the
+group name. Aliases can take the form geda_foo_module or geda_module
+foo but there could be exceptions like geda_bar_foo_yada where this
+would improve readability. The are also deviations where the location
+of the function is implicit in the name.
+
+Example:
+
+    1.) geda_utility_string_strncmpi -> geda_strncmpi
+    2.) 	geda_utility_log_set_update_func -> geda_set_log_update_func

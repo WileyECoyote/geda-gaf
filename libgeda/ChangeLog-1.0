@@ -16,6 +16,9 @@
 
     * include/prototype_priv.h: Remove declare geda_arc_object_within_sweep.
 
+    * src/xxx/Makefile_insert: Resequence files in list alphabetically,
+      excepting the group file.
+
     * src/geda/geda_arc.c: Add function geda_arc_within_sweep from using
       code from geda_arc_object_within_sweep. Fix Doxygen argument for
       geda_arc_get_position (object->Arc).

@@ -15,6 +15,7 @@ libgedainclude_HEADERS = \
 	libgeda/geda_complex.h \
 	libgeda/geda_config.h \
 	libgeda/geda_errors.h \
+	libgeda/geda_file.h \
 	libgeda/geda_line.h \
 	libgeda/geda_list.h \
 	libgeda/geda_net.h \
@@ -26,6 +27,7 @@ libgedainclude_HEADERS = \
 	libgeda/geda_pin.h \
 	libgeda/geda_text.h \
 	libgeda/geda_toplevel.h \
+	libgeda/geda_utility.h \
 	libgeda/libgeda.h \
 	libgeda/o_types.h \
 	libgeda/papersizes.h \
