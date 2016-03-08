@@ -14,5 +14,6 @@ libgedauio/src/widgets/geda_menu_button.c
 libgedauio/src/widgets/geda_accel_label.c
 libgedauio/src/widgets/geda_action.c
 libgedauio/src/widgets/geda_font_button.c
+libgedauio/src/widgets/geda_separator.c
 libgedauio/src/widgets/geda_swatch_renderer.c
 libgedauio/src/widgets/geda_toggle_action.c

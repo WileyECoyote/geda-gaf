@@ -1,3 +1,9 @@
+2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_separator.h: new file, GedaSeparator.
+
+    * src/widgets/geda_separator.c: Add seperator widget.
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: Rename GedaComboBoxPrivate->GedaComboBoxData.

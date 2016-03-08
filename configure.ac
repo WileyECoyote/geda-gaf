@@ -207,7 +207,7 @@ AX_LIBGEDACOLOR([0:3:0])
 AX_LIBGEDATHON([0:7:0])
 
 # Set up libgedauio with the correct ld version number
-AX_LIBGEDAUIO([0:8:0])
+AX_LIBGEDAUIO([0:9:0])
 
 #####################################################################
 # Generate output
