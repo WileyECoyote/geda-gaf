@@ -1107,7 +1107,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   gtk_box_pack_start (GTK_BOX (widget), widget->left_label, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->left_label), left_label_tip);
 
-  separator = gtk_vseparator_new ();
+  separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
@@ -1120,7 +1120,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   gtk_container_add(GTK_CONTAINER(middle_event), widget->middle_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->middle_label), middle_label_tip);
 
-  separator = gtk_vseparator_new ();
+  separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
@@ -1133,7 +1133,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   gtk_container_add(GTK_CONTAINER(third_event), widget->right_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->right_label), right_label_tip);
 
-  separator = gtk_vseparator_new ();
+  separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
@@ -1142,7 +1142,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   gtk_box_pack_start (GTK_BOX (widget), widget->grid_label, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->grid_label), grid_label_tip);
 
-  separator = gtk_vseparator_new ();
+  separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 1);
 
@@ -1155,7 +1155,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   gtk_container_add(GTK_CONTAINER(coord_event), widget->coord_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->coord_label), coord_label_tip);
 
-  separator = gtk_vseparator_new ();
+  separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
