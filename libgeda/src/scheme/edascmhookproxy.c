@@ -28,7 +28,7 @@ enum {
 
 /*! \private \memberof EdascmHookProxy
  * Private data for hook proxy. */
-struct _EdascmHookProxyPrivate
+struct _EdascmHookProxyData
 {
   /*! Closure around the EdascmHookProxy that's called when the hook is
    * run */
@@ -62,8 +62,6 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GParamFlags param_flags;
-
-  g_type_class_add_private (gobject_class, sizeof (EdascmHookProxyPrivate));
 
   /* Register functions with base class */
   gobject_class->finalize = edascm_hook_proxy_finalize;
@@ -101,9 +99,7 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {
   SCM proc;
 
-  proxy->priv = G_TYPE_INSTANCE_GET_PRIVATE (proxy,
-                                             EDASCM_TYPE_HOOK_PROXY,
-                                             EdascmHookProxyPrivate);
+  proxy->priv = GEDA_MEM_ALLOC (sizeof (EdascmHookProxyData));
   proxy->priv->hook = SCM_UNDEFINED;
   proxy->priv->closure = SCM_UNDEFINED;
 
@@ -125,6 +121,8 @@ edascm_hook_proxy_finalize (GObject *object)
   if (proxy->priv->closure != SCM_UNDEFINED) {
     scm_gc_unprotect_object (proxy->priv->closure);
   }
+
+  GEDA_FREE (proxy->priv);
 
   /* Chain up to the parent class */
   G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);

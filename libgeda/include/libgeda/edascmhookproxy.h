@@ -69,8 +69,8 @@ extern "C" {
 #endif
 
 typedef struct _EdascmHookProxyClass EdascmHookProxyClass;
-typedef struct _EdascmHookProxy EdascmHookProxy;
-typedef struct _EdascmHookProxyPrivate EdascmHookProxyPrivate;
+typedef struct _EdascmHookProxy      EdascmHookProxy;
+typedef struct _EdascmHookProxyData  EdascmHookProxyData;
 
 struct _EdascmHookProxyClass
 {
@@ -85,7 +85,7 @@ struct _EdascmHookProxy
   GObject parent_instance;
 
   /* Private members */
-  EdascmHookProxyPrivate *priv;
+  EdascmHookProxyData *priv;
 };
 
 GedaType edascm_hook_proxy_get_type (void) GEDA_CONST;

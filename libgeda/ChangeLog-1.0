@@ -1,9 +1,16 @@
 2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/edascmhookproxy.h: Rename EdascmHookProxyPrivate->
+      EdascmHookProxyData, is still too long but shorter.
+
     * include/libgeda/geda_utility.h: Remove extra geda_strconcat - 1 too many,
       move spice before standard designators.
 
     * include/libgeda/prototype.h: sort utilities alphabetically.
+
+    * src/scheme/edascmhookproxy.c: Remove G_TYPE_INSTANCE_GET_PRIVATE, and
+      allocate priate data using g_malloc0 in edascm_hook_proxy_init and
+      release in edascm_hook_proxy_finalize.
 
     * src/utility/: Resequence functions alphabetically:
 
