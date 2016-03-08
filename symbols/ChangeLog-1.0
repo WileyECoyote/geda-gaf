@@ -1,4 +1,8 @@
-/2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/motor/MCP8025PT-1.sym: fix device id MCP8026->MCP8025.
+
+2016-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * packages/DIP24-300-1.sym: Repostion attributes.
 
