@@ -137,10 +137,7 @@ static void
 dispose (GObject *object)
 {
   /* lastly, chain up to the parent dispose */
-  if (gschem_macro_widget_parent_class == NULL) {
-    BUG_MSG("parent class NULL");
-  }
-  else {
+  if (gschem_macro_widget_parent_class) {
     gschem_macro_widget_parent_class->dispose (object);
   }
 }
@@ -151,7 +148,6 @@ static void
 finalize (GObject *object)
 {
   /* lastly, chain up to the parent finalize */
-
   g_return_if_fail (gschem_macro_widget_parent_class != NULL);
   gschem_macro_widget_parent_class->finalize (object);
 }

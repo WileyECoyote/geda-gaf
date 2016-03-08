@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-04 01:26-0600\n"
+"POT-Creation-Date: 2016-03-08 04:41-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,32 +18,32 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:162
+#: gschem/src/base/gschem.c:161
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:163
+#: gschem/src/base/gschem.c:162
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:193
+#: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Assumming schematic file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:203
+#: gschem/src/base/gschem.c:202
 #, c-format
 msgid "Assumming symbol file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:232
 #, fuzzy, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 "BŁĄD: Wystąpił nieznany błąd podczas przetwarzania plików konfiguracyjnych.\n"
 
-#: gschem/src/base/gschem.c:306
+#: gschem/src/base/gschem.c:307
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -56,30 +56,30 @@ msgstr ""
 "gschem nie może odnaleźć plików z danymi. Należy wskazać lokalizację\n"
 "plików poprzez zmienną środowiskową GEDADATA.\n"
 
-#: gschem/src/base/gschem.c:343
+#: gschem/src/base/gschem.c:344
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:349
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Wczytano plik inicjalizacji scm [%s]\n"
 
-#: gschem/src/base/gschem.c:351
+#: gschem/src/base/gschem.c:352
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
 
-#: gschem/src/base/gschem.c:377
+#: gschem/src/base/gschem.c:378
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem, wersja %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:381
+#: gschem/src/base/gschem.c:382
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:414
+#: gschem/src/base/gschem.c:415
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Logi programu mogą zawierać dodatkowe informacje."
 
-#: gschem/src/base/gschem.c:502
+#: gschem/src/base/gschem.c:503
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -108,25 +108,25 @@ msgstr ""
 msgid "Dialog window title"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:206
+#: gschem/src/base/gschem_macro_widget.c:202
 #, fuzzy
 msgid "Label Text"
 msgstr "Ukryj tekst"
 
-#: gschem/src/base/gschem_macro_widget.c:207
+#: gschem/src/base/gschem_macro_widget.c:203
 msgid "Text to be displayed for the Macro label"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:208
+#: gschem/src/base/gschem_macro_widget.c:204
 msgid "Macro:"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:214
-#: gschem/src/base/gschem_macro_widget.c:215
+#: gschem/src/base/gschem_macro_widget.c:210
+#: gschem/src/base/gschem_macro_widget.c:211
 msgid "Macro String"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:326
+#: gschem/src/base/gschem_macro_widget.c:322
 msgid "Evaluate"
 msgstr ""
 
@@ -242,154 +242,154 @@ msgstr ""
 msgid "Whether the preview widget show be large or small"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:509
+#: gschem/src/base/gschem_status_bar.c:497
 #, fuzzy
 msgid "Coordinates Mode"
 msgstr "Tryb elementów"
 
-#: gschem/src/base/gschem_status_bar.c:510
+#: gschem/src/base/gschem_status_bar.c:498
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:519
+#: gschem/src/base/gschem_status_bar.c:507
 #, fuzzy
 msgid "Grid Mode"
 msgstr "Tryb łuków"
 
-#: gschem/src/base/gschem_status_bar.c:520
+#: gschem/src/base/gschem_status_bar.c:508
 msgid "Sets the Gride Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:529
+#: gschem/src/base/gschem_status_bar.c:517
 #, fuzzy
 msgid "Grid Size"
 msgstr "Punkt siatki"
 
-#: gschem/src/base/gschem_status_bar.c:530
+#: gschem/src/base/gschem_status_bar.c:518
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:539
+#: gschem/src/base/gschem_status_bar.c:527
 #, fuzzy
 msgid "height"
 msgstr "Szerokość x Wysokość"
 
-#: gschem/src/base/gschem_status_bar.c:540
+#: gschem/src/base/gschem_status_bar.c:528
 msgid "Sets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:549
+#: gschem/src/base/gschem_status_bar.c:537
 #, fuzzy
 msgid "Left Button Text"
 msgstr "Od lewej do prawej"
 
-#: gschem/src/base/gschem_status_bar.c:550
+#: gschem/src/base/gschem_status_bar.c:538
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:556
+#: gschem/src/base/gschem_status_bar.c:544
 #, fuzzy
 msgid "Middle Button Text"
 msgstr "Na środku po lewej"
 
-#: gschem/src/base/gschem_status_bar.c:557
+#: gschem/src/base/gschem_status_bar.c:545
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:563
+#: gschem/src/base/gschem_status_bar.c:551
 #, fuzzy
 msgid "Right Button Text"
 msgstr "Od prawej do lewej"
 
-#: gschem/src/base/gschem_status_bar.c:564
+#: gschem/src/base/gschem_status_bar.c:552
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:570
+#: gschem/src/base/gschem_status_bar.c:558
 #, fuzzy
 msgid "Snap Mode"
 msgstr "Tryb przesuwania widoku"
 
-#: gschem/src/base/gschem_status_bar.c:571
+#: gschem/src/base/gschem_status_bar.c:559
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:580 gschem/src/x/x_dialog.c:535
+#: gschem/src/base/gschem_status_bar.c:568 gschem/src/x/x_dialog.c:535
 msgid "Snap Size"
 msgstr "Odległość przyciągania"
 
-#: gschem/src/base/gschem_status_bar.c:581
+#: gschem/src/base/gschem_status_bar.c:569
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:590
+#: gschem/src/base/gschem_status_bar.c:578
 #, fuzzy
 msgid "Status Text"
 msgstr "Stan"
 
-#: gschem/src/base/gschem_status_bar.c:591
+#: gschem/src/base/gschem_status_bar.c:579
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:597
-#: gschem/src/base/gschem_status_bar.c:598
+#: gschem/src/base/gschem_status_bar.c:585
+#: gschem/src/base/gschem_status_bar.c:586
 #, fuzzy
 msgid "Status State"
 msgstr "Stan"
 
-#: gschem/src/base/gschem_status_bar.c:611
+#: gschem/src/base/gschem_status_bar.c:599
 #, fuzzy
 msgid "Status Bar Height"
 msgstr "Stan"
 
-#: gschem/src/base/gschem_status_bar.c:612
+#: gschem/src/base/gschem_status_bar.c:600
 msgid "Sets or gets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1095
+#: gschem/src/base/gschem_status_bar.c:1083
 msgid "Coordinate display, right click for format options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1096
+#: gschem/src/base/gschem_status_bar.c:1084
 msgid "Left pointer button assignment"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1097
+#: gschem/src/base/gschem_status_bar.c:1085
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1098
+#: gschem/src/base/gschem_status_bar.c:1086
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1099
+#: gschem/src/base/gschem_status_bar.c:1087
 msgid "Indicates the current snap,grid units or states"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1100
+#: gschem/src/base/gschem_status_bar.c:1088
 msgid "Indicates the current command state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1101
+#: gschem/src/base/gschem_status_bar.c:1089
 msgid "Gschem status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1780
+#: gschem/src/base/gschem_status_bar.c:1768
 #, fuzzy
 msgid "Grid"
 msgstr "Tryb łuków"
 
-#: gschem/src/base/gschem_status_bar.c:1786
-#: gschem/src/base/gschem_status_bar.c:1807
+#: gschem/src/base/gschem_status_bar.c:1774
+#: gschem/src/base/gschem_status_bar.c:1795
 msgid "OFF"
 msgstr "WYŁĄCZONE"
 
-#: gschem/src/base/gschem_status_bar.c:1799
+#: gschem/src/base/gschem_status_bar.c:1787
 #, fuzzy
 msgid "Error"
 msgstr "Lustrzane odbicie"
 
-#: gschem/src/base/gschem_status_bar.c:1811
+#: gschem/src/base/gschem_status_bar.c:1799
 msgid "NONE"
 msgstr "BRAK"
 
@@ -453,59 +453,59 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:735
+#: gschem/src/guile/g_rc.c:711
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:740
+#: gschem/src/guile/g_rc.c:716
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:741 gschem/src/guile/g_rc.c:1251
-#: gschem/src/guile/g_rc.c:1403 gschem/src/guile/g_rc.c:1997
+#: gschem/src/guile/g_rc.c:717 gschem/src/guile/g_rc.c:1227
+#: gschem/src/guile/g_rc.c:1379 gschem/src/guile/g_rc.c:1973
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:825
+#: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1245
+#: gschem/src/guile/g_rc.c:1221
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1250
+#: gschem/src/guile/g_rc.c:1226
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1397
+#: gschem/src/guile/g_rc.c:1373
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1402
+#: gschem/src/guile/g_rc.c:1378
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1991
+#: gschem/src/guile/g_rc.c:1967
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1996
+#: gschem/src/guile/g_rc.c:1972
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2041
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid "Invalid zoomfactor [%d] passed to %s\n"
 msgstr "Nieprawidłowa skala powiększenia [%d] przekazana do funkcji %s\n"
@@ -2915,170 +2915,170 @@ msgstr ""
 msgid "redraw the current window"
 msgstr "Bieżący widok"
 
-#: gschem/src/x/x_menus.c:447 gschem/src/x/x_menus.c:449
+#: gschem/src/x/x_menus.c:448 gschem/src/x/x_menus.c:451
 #, c-format
 msgid "Error reading menu item <%d>, Bad string\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:660
+#: gschem/src/x/x_menus.c:655
 #, c-format
 msgid "Oops.. got a NULL menu name in %s()\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:777
+#: gschem/src/x/x_menus.c:772
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:778
+#: gschem/src/x/x_menus.c:773
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:779
+#: gschem/src/x/x_menus.c:774
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:780
+#: gschem/src/x/x_menus.c:775
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:781
+#: gschem/src/x/x_menus.c:776
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:782
+#: gschem/src/x/x_menus.c:777
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:783
+#: gschem/src/x/x_menus.c:778
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:784
+#: gschem/src/x/x_menus.c:779
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:839
+#: gschem/src/x/x_menus.c:834
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:840
+#: gschem/src/x/x_menus.c:835
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:841
+#: gschem/src/x/x_menus.c:836
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:842
+#: gschem/src/x/x_menus.c:837
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:906
+#: gschem/src/x/x_menus.c:901
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:907
+#: gschem/src/x/x_menus.c:902
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:908
+#: gschem/src/x/x_menus.c:903
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:909
+#: gschem/src/x/x_menus.c:904
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1160
+#: gschem/src/x/x_menus.c:1155
 #, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
 msgstr "Próba aktywacji nieistniejącego elementu menu '%s'\n"
 
-#: gschem/src/x/x_menus.c:1164
+#: gschem/src/x/x_menus.c:1159
 #, fuzzy, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
 msgstr "Próba aktywacji nieistniejącego elementu menu '%s'\n"
 
-#: gschem/src/x/x_menus.c:1168
+#: gschem/src/x/x_menus.c:1163
 #, c-format
 msgid "Excessive errors <%d>, disabling sensitivity warnings\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1189
+#: gschem/src/x/x_menus.c:1184
 #, fuzzy, c-format
 msgid "Popup menu widget doesn't exist!\n"
 msgstr "Popup_menu_item_factory nie istnieje!\n"
 
-#: gschem/src/x/x_menus.c:1244
+#: gschem/src/x/x_menus.c:1239
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1254
+#: gschem/src/x/x_menus.c:1249
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1257
+#: gschem/src/x/x_menus.c:1252
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1301
+#: gschem/src/x/x_menus.c:1296
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1304
+#: gschem/src/x/x_menus.c:1299
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1367
+#: gschem/src/x/x_menus.c:1362
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1370
+#: gschem/src/x/x_menus.c:1365
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1411
+#: gschem/src/x/x_menus.c:1406
 #, c-format
 msgid "%s: Action not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1414
+#: gschem/src/x/x_menus.c:1409
 #, c-format
 msgid "%s: Menu path not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1417
+#: gschem/src/x/x_menus.c:1412
 #, c-format
 msgid "%s: invalid pointer [menubar]\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1492
+#: gschem/src/x/x_menus.c:1487
 #, c-format
 msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1590
+#: gschem/src/x/x_menus.c:1585
 #, fuzzy, c-format
 msgid "Could not open file %s\n"
 msgstr "Nie znaleziono pliku inicjalizacyjnego scm [%s]\n"
 
-#: gschem/src/x/x_menus.c:1685
+#: gschem/src/x/x_menus.c:1680
 #, fuzzy
 msgid "Open"
 msgstr "Otwórz..."
 
-#: gschem/src/x/x_menus.c:1694
+#: gschem/src/x/x_menus.c:1689
 #, fuzzy
 msgid "Remove"
 msgstr "Usuń numery"
 
-#: gschem/src/x/x_menus.c:1703
+#: gschem/src/x/x_menus.c:1698
 #, fuzzy
 msgid "_Show path"
 msgstr "Pokazuj o_bie"
 
-#: gschem/src/x/x_menus.c:1828
+#: gschem/src/x/x_menus.c:1823
 msgid "Clear"
 msgstr ""
 
