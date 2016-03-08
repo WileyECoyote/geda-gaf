@@ -1,4 +1,30 @@
-#include <glib.h>
+/* -*- test_arc.c -*-
+ *
+ * gEDA - GPL Electronic Design Automation
+ * libgeda - gEDA's library
+ *
+ * Copyright (C) 2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ *  Contributing Author: Wiley Edward Hill
+ *  Date Contributed: January, 30th, 2016
+ */
+
+//#include <glib.h>
 #include <libgeda.h>
 
 #define TOBJECT "GedaArc"
@@ -118,9 +144,9 @@ int test_arc (void)
       geda_arc_get_position (arc, &cx, &cy);
       geda_arc_set_position (arc, cx - dx, cy - dy);
 
-      value = geda_arc_get_arc_sweep(arc);
-      if ( s - value ) {
-        fprintf(stderr, "FAILED: %s get/set arc sweep <%d>\n", TOBJECT, value);
+      value = geda_arc_get_start_angle(arc);
+      if (value - a) {
+        fprintf(stderr, "FAILED: %s get/set start angle <%d>\n", TOBJECT, value);
         fail++;
       }
 
@@ -142,15 +168,16 @@ int test_arc (void)
         fail++;
       }
 
-      value = geda_arc_get_start_angle(arc);
-      if (value - a) {
-        fprintf(stderr, "FAILED: %s get/set start angle <%d>\n", TOBJECT, value);
+      value = geda_arc_get_arc_sweep(arc);
+      if ( s - value) {
+        fprintf(stderr, "FAILED: %s get/set arc sweep <%d>\n", TOBJECT, value);
         fail++;
       }
 
       if (fail) {
 
-        fprintf(stderr, "FAILED: to get or set %d %s properties\n", fail, TOBJECT);
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
         fprintf(stderr, "Conditions:\n");
         fprintf(stderr, "\tstart angle: %d\n", a);
         fprintf(stderr, "\t     radius: %d\n", r);
@@ -191,6 +218,9 @@ main (int argc, char *argv[])
 #endif
 
   result = test_arc();
+  if (result) {
+    fprintf(stderr, "Check module geda_arc.c");
+  }
 
   return (result > 0);
 }

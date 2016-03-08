@@ -23,6 +23,10 @@
       to use pointers, but not geda_utility_gslist_find_string, revise both
       to check for NULL arguments and return -2 if either argument is NULL.
 
+    * tests/test_arc.c: Add file prolog, swap test geda_arc_get_start_angle
+      and geda_arc_get_start_angle, and revise output message to distinguish
+      between singular and plural property failures.
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/HACKING: Add additional comments regarding function and modules
