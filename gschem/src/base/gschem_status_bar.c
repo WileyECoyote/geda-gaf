@@ -481,22 +481,21 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemStatusBar class
  *
- *  \param [in]  g_class       The GschemStatusBarClass to be initialized
- *  \param [in]  g_class_data  (unused)
+ *  \param [in]  class       The GschemStatusBarClass to be initialized
+ *  \param [in]  class_data  (unused)
  */
 static void
-gschem_status_bar_class_init (void *klass, void *g_class_data)
+gschem_status_bar_class_init (void *class, void *g_class_data)
 {
-  GschemStatusBarClass *bar_class = (GschemStatusBarClass*)klass;
-  GObjectClass    *gobject_class  = G_OBJECT_CLASS (klass);
-  GtkWidgetClass  *widget_class   = (GtkWidgetClass*)klass;
+  GschemStatusBarClass *bar_class = (GschemStatusBarClass*)class;
+  GObjectClass    *gobject_class  = G_OBJECT_CLASS (class);
+  GtkWidgetClass  *widget_class   = (GtkWidgetClass*)class;
   GParamSpec      *pspec;
 
-  gschem_status_bar_parent_class  = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+  gschem_status_bar_parent_class  = G_OBJECT_CLASS (g_type_class_peek_parent (class));
 
   bar_class->reformat_coordinates = gschem_status_bar_reformat_coordinates;
 
-  gobject_class->dispose          = dispose;
   gobject_class->finalize         = finalize;
 
   gobject_class->get_property     = get_property;
@@ -1023,17 +1022,17 @@ gschem_status_bar_get_type (void)
 /*! \brief Gschem Status Bar Setup Buffers
  *
  *  \par Function Description
- *  This function  dynamically allocates memory for a structure similar to
- *  the private structures used by GtkWidgets, except that we don't use the
+ *  This function dynamically allocates memory for a structure similar to
+ *  private structures used by GtkWidgets, except that we don't use the
  *  g_type_class_add_private() function. Currently, the structure contains
  *  only string buffers but other data could be added. The buffers are used
  *  to create compound strings for status-bar text rather than using strdup
- *  or derivitve to constantly allocate and de-allocate trival amounts of
- *  ram. In or to facilitates usage, the status-bar object provides puplic
- *  pointers to these buffers. The pointers are defined as char * const, so
- *  the content can be changed but the pointers can not. Since the pointers
- *  point to dynamicaly allocated ram, we must initially write to the read
- *  only pointers. This function does that.
+ *  or derivatives to constantly allocate and de-allocate trival amounts of
+ *  ram. To facilitates usage, the status-bar object provides puplic pointers
+ *  to these buffers. The pointers are defined as char * const, so the content
+ *  can be changed but the pointers can not. Since the pointers point to
+ *  dynamicaly allocated ram, we must initially write to the read only ram
+ *  that the pointers are pointing to, this function does that.
  *
  *  \param [in] widget This GschemStatusBar
  */

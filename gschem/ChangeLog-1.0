@@ -1,3 +1,9 @@
+2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_status_bar.c: Fix parameter in Doxygen comment for
+      function gschem_status_bar_class_init. Fix spelling in comments for
+      function gschem_status_bar_setup_buffers,
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Add st_toggle_menu_data member action.

@@ -391,7 +391,7 @@ GedaType gschem_toplevel_get_type(void)
       sizeof (GschemToplevelClass),
       NULL,                            /* base_init */
       NULL,                            /* base_finalize */
-      gschem_toplevel_class_init,         /* class_init */
+      gschem_toplevel_class_init,      /* class_init */
       NULL,                            /* class_finalize */
       NULL,                            /* class_data */
       sizeof (GschemToplevel),
