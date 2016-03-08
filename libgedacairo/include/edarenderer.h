@@ -83,9 +83,9 @@ typedef enum {
 #define EDA_IS_RENDERER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), EDA_TYPE_RENDERER))
 #define EDA_RENDERER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDA_TYPE_RENDERER, EdaRendererClass))
 
+typedef struct _EdaRenderer      EdaRenderer;
 typedef struct _EdaRendererClass EdaRendererClass;
-typedef struct _EdaRenderer EdaRenderer;
-typedef struct _EdaRendererPrivate EdaRendererPrivate;
+typedef struct _EdaRendererData  EdaRendererData;
 
 struct _EdaRendererClass
 {
@@ -122,7 +122,7 @@ struct _EdaRenderer
   GdkColor text_marker_color;     /* The stroke color to be used for text origin marker */
 
   /* Private members */
-  EdaRendererPrivate *priv;
+  EdaRendererData *priv;
 };
 
 #define EDA_TYPE_RENDERER_FLAGS (eda_renderer_flags_get_type ())

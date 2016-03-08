@@ -72,7 +72,7 @@ enum {
   EDAR_GRIP_CIRCLE,
 };
 
-struct _EdaRendererPrivate
+struct _EdaRendererData
 {
   cairo_t          *cr;
   PangoContext     *pc;
@@ -257,11 +257,11 @@ eda_renderer_finalize (GObject *object)
   }
 
   GEDA_FREE (renderer->priv->font_name);
-  renderer->priv->font_name = NULL;
+
+  GEDA_FREE (renderer->priv);
 
   /* Chain up to the parent class */
   G_OBJECT_CLASS (eda_renderer_parent_class)->finalize (object);
-
 }
 
 static void
@@ -319,7 +319,6 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
   case PROP_ENDPOINT_COLOR:
     eda_renderer_set_net_endpoint_color (renderer, g_value_get_boxed (value));
     break;
-
 
   case PROP_MARKER_COLOR:  /* Marker Stroke Color */
     eda_renderer_set_text_marker_color (renderer, g_value_get_boxed (value));
@@ -1788,8 +1787,6 @@ eda_renderer_class_init(void *g_class, void *class_data)
   GParamSpec       *params;
   GParamFlags       param_flags;
 
-  g_type_class_add_private (gobject_class, sizeof (EdaRendererPrivate));
-
   /* Register functions with base class */
   gobject_class->constructor  = eda_renderer_constructor;
   gobject_class->finalize     = eda_renderer_finalize;
@@ -1946,9 +1943,7 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
 {
   EdaRenderer *renderer = (EdaRenderer*)instance;
 
-  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
-                                                EDA_TYPE_RENDERER,
-                                                EdaRendererPrivate);
+  renderer->priv = GEDA_MEM_ALLOC0 (sizeof(EdaRendererData));
 
   EdaFontOptions = cairo_font_options_create();
 
