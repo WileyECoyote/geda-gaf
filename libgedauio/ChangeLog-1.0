@@ -1,3 +1,9 @@
+2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_imagemenuitem.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
+      define with code, is clearer and a few extra lines in a 1200+ line file
+      does not make difference.
+
 2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_separator.h: new file, GedaSeparator.

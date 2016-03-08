@@ -99,12 +99,12 @@ static void geda_image_menu_item_get_property         (GObject          *object,
 */
 static void geda_image_menu_item_recalculate          (GedaImageMenuItem *image_menu_item);
 
-static void geda_image_menu_item_activatable_interface_init (GtkActivatableIface  *iface);
-static void geda_image_menu_item_update                     (GtkActivatable       *activatable,
-                                                             GtkAction            *action,
-                                                             const char           *property_name);
-static void geda_image_menu_item_sync_action_properties     (GtkActivatable       *activatable,
-                                                             GtkAction            *action);
+static void geda_image_menu_item_update               (GtkActivatable       *activatable,
+                                                       GtkAction            *action,
+                                                       const char           *property_name);
+static void geda_image_menu_item_sync_action          (GtkActivatable       *activatable,
+                                                       GtkAction            *action);
+static void geda_image_menu_item_activatable_init     (GtkActivatableIface  *iface);
 
 enum {
   PROP_0,
@@ -121,135 +121,139 @@ struct _GedaImageMenuItemData
 
 static GtkActivatableIface *parent_activatable_iface;
 
+static void *geda_image_menu_item_parent_class = NULL;
 
-G_DEFINE_TYPE_WITH_CODE (GedaImageMenuItem, geda_image_menu_item, GTK_TYPE_MENU_ITEM,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_ACTIVATABLE,
-                                                geda_image_menu_item_activatable_interface_init))
-
-/*! \brief Type class initializer for GedaImageMenuItem
- *
- *  \par Function Description
- *  Type class initializer for GedaImageMenuItem. We override our parent
- *  virtual class methods as needed and register our GObject properties.
- *
- *  param [in] klass  The instance of GedaActionClass to be initialized
- */
-static void
-geda_image_menu_item_class_init (GedaImageMenuItemClass *klass)
+static bool
+activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  GObjectClass      *gobject_class     = (GObjectClass*) klass;
-  GtkObjectClass    *object_class      = (GtkObjectClass*) klass;
-  GtkWidgetClass    *widget_class      = (GtkWidgetClass*) klass;
-  GtkMenuItemClass  *menu_item_class   = (GtkMenuItemClass*) klass;
-  GtkContainerClass *container_class   = (GtkContainerClass*) klass;
+  GtkWidget   *image;
+  const char *stock_id  = gtk_action_get_stock_id (action);
 
-  object_class->destroy                = geda_image_menu_item_destroy;
+  image = geda_image_menu_item_get_image (image_menu_item);
 
-  widget_class->size_request           = geda_image_menu_item_size_request;
-  widget_class->size_allocate          = geda_image_menu_item_size_allocate;
-  widget_class->map                    = geda_image_menu_item_map;
+  if (GTK_IS_IMAGE (image) &&
+    stock_id && gtk_icon_factory_lookup_default (stock_id))
+  {
+    gtk_image_set_from_stock (GTK_IMAGE (image), stock_id, GTK_ICON_SIZE_MENU);
+    return TRUE;
+  }
 
-  container_class->forall              = geda_image_menu_item_forall;
-  container_class->remove              = geda_image_menu_item_remove;
-
-  menu_item_class->toggle_size_request = geda_image_menu_item_toggle_size_request;
-  menu_item_class->set_label           = geda_image_menu_item_set_label;
-  menu_item_class->get_label           = geda_image_menu_item_get_label;
-
-  gobject_class->finalize              = geda_image_menu_item_finalize;
-  gobject_class->set_property          = geda_image_menu_item_set_property;
-  gobject_class->get_property          = geda_image_menu_item_get_property;
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_IMAGE,
-                                   g_param_spec_object ("image",
-                                                      _("Image widget"),
-                                                      _("Child widget to appear next to the menu text"),
-                                                        GTK_TYPE_WIDGET,
-                                                        G_PARAM_WRITABLE));
-  /**
-   * GedaImageMenuItem:use-stock:
-   *
-   * If %TRUE, the label set in the menuitem is used as a
-   * stock id to select the stock item for the item.
-   *
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_USE_STOCK,
-                                   g_param_spec_boolean ("use-stock",
-                                                       _("Use stock"),
-                                                       _("Whether to use the label text to create a stock menu item"),
-                                                         FALSE,
-                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
-
-  /**
-   * GedaImageMenuItem:show-image:
-   *
-   * If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
-   * setting and always show the image, if available.
-   *
-   * Use this property if the menuitem would be useless or hard to use
-   * without the image.
-   *
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_SHOW_IMAGE,
-                                   g_param_spec_boolean ("show-image",
-                                                       _("Show image"),
-                                                       _("Whether the image will always be shown"),
-                                                         FALSE,
-                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
-
-  /**
-   * GedaImageMenuItem:accel-group:
-   *
-   * The Accel Group to use for stock accelerator keys
-   *
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACCEL_GROUP,
-                                   g_param_spec_object ("accel-group",
-                                                      _("Accel Group"),
-                                                      _("The Accel Group to use for stock accelerator keys"),
-                                                        GTK_TYPE_ACCEL_GROUP,
-                                                        G_PARAM_WRITABLE));
+  return FALSE;
 }
 
-/*! \brief Initialize GedaImageMenuItem data structure.
- *
- *  \par Function Description
- *  Function tois call after the GedaImageMenuItemClass is created
- *  to initialize the data structure.
- *
- * \param [in] image_menu_item A GedaImageMenuItem object (structure)
- */
-static void
-geda_image_menu_item_init (GedaImageMenuItem *image_menu_item)
+static bool
+activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  /* Note data->initialization not required because memset 0 */
-  image_menu_item->priv      = GEDA_MEM_ALLOC0(sizeof(GedaImageMenuItemData));
-  image_menu_item->use_stock = FALSE;
-  image_menu_item->label     = NULL;
-  image_menu_item->image     = NULL;
+  GtkWidget   *image;
+  GIcon       *icon     = gtk_action_get_gicon (action);
+  const char  *stock_id = gtk_action_get_stock_id (action);
+
+  image = geda_image_menu_item_get_image (image_menu_item);
+
+  if (icon && GTK_IS_IMAGE (image) &&
+    !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
+  {
+    gtk_image_set_from_gicon (GTK_IMAGE (image), icon, GTK_ICON_SIZE_MENU);
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
-/*! \brief GedaImageMenuItem Object finalize handler
- *
- *  \par Function Description
- *  Just before the GtkImageMenuItem GObject is finalized, free our
- *  allocated data, and then chain up to the parent handler.
- *
- *  \param [in] object The GObject being finalized.
- */
 static void
-geda_image_menu_item_finalize (GObject *object)
+activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
+  GtkWidget  *image;
+  const char *icon_name = gtk_action_get_icon_name (action);
 
-  GEDA_FREE (image_menu_item->label);
-  GEDA_FREE (image_menu_item->priv);
+  image = geda_image_menu_item_get_image (image_menu_item);
 
-  G_OBJECT_CLASS (geda_image_menu_item_parent_class)->finalize (object);
+  if (GTK_IS_IMAGE (image) &&
+    (gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_EMPTY ||
+    gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_ICON_NAME))
+  {
+    gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, GTK_ICON_SIZE_MENU);
+  }
+}
+
+static void
+geda_image_menu_item_sync_action (GtkActivatable *activatable,
+                                             GtkAction      *action)
+{
+  GedaImageMenuItem     *image_menu_item;
+  GedaImageMenuItemData *priv;
+  GtkWidget             *image;
+
+  image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
+  priv            = image_menu_item->priv;
+
+  /* Chain-up */
+  parent_activatable_iface->sync_action_properties (activatable, action);
+
+  if (priv->action) {
+    g_object_unref(priv->action);  /* regardless if new action is NULL */
+  }
+
+  priv->action = action; /* Which could be NULL */
+
+  if (!action) {
+    return;
+  }
+
+  if (!gtk_activatable_get_use_action_appearance (activatable))
+    return;
+
+  image = geda_image_menu_item_get_image (image_menu_item);
+  if (image && !GTK_IS_IMAGE (image)) {
+    geda_image_menu_item_set_image (image_menu_item, NULL);
+    image = NULL;
+  }
+
+  if (!image) {
+    image = gtk_image_new ();
+    gtk_widget_show (image);
+    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (activatable),
+                                    image);
+  }
+
+  if (!activatable_update_stock_id (image_menu_item, action) &&
+      !activatable_update_gicon (image_menu_item, action))
+  {
+    activatable_update_icon_name (image_menu_item, action);
+  }
+
+  geda_image_menu_item_set_show_image (image_menu_item,
+                                       gtk_action_get_always_show_image (action));
+}
+
+static void
+geda_image_menu_item_update (GtkActivatable *activatable,
+                             GtkAction      *action,
+                             const char     *property_name)
+{
+  GedaImageMenuItem *image_menu_item;
+
+  image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
+
+  parent_activatable_iface->update (activatable, action, property_name);
+
+  if (!gtk_activatable_get_use_action_appearance (activatable))
+    return;
+
+  if (strcmp (property_name, "stock-id") == 0)
+    activatable_update_stock_id (image_menu_item, action);
+  else if (strcmp (property_name, "gicon") == 0)
+    activatable_update_gicon (image_menu_item, action);
+  else if (strcmp (property_name, "icon-name") == 0)
+    activatable_update_icon_name (image_menu_item, action);
+}
+
+static void
+geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
+{
+  parent_activatable_iface      = g_type_interface_peek_parent (iface);
+  iface->update                 = geda_image_menu_item_update;
+  iface->sync_action_properties = geda_image_menu_item_sync_action;
 }
 
 /*! \brief GedaImageMenuItem GObject property setter function
@@ -325,6 +329,186 @@ geda_image_menu_item_get_property (GObject      *object,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property, pspec);
       break;
     }
+}
+
+/*! \brief GedaImageMenuItem Object finalize handler
+ *
+ *  \par Function Description
+ *  Just before the GtkImageMenuItem GObject is finalized, free our
+ *  allocated data, and then chain up to the parent handler.
+ *
+ *  \param [in] object The GObject being finalized.
+ */
+static void
+geda_image_menu_item_finalize (GObject *object)
+{
+  GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
+
+  GEDA_FREE (image_menu_item->label);
+  GEDA_FREE (image_menu_item->priv);
+
+  G_OBJECT_CLASS (geda_image_menu_item_parent_class)->finalize (object);
+}
+
+/*! \brief Type class initializer for GedaImageMenuItem
+ *
+ *  \par Function Description
+ *  Type class initializer for GedaImageMenuItem. We override our parent
+ *  virtual class methods as needed and register our GObject properties.
+ *
+ *  param [in] class  The instance of GedaActionClass to be initialized
+ */
+static void
+geda_image_menu_item_class_init (void *class, void *class_data)
+{
+  GObjectClass      *gobject_class     = (GObjectClass*) class;
+  GtkObjectClass    *object_class      = (GtkObjectClass*) class;
+  GtkWidgetClass    *widget_class      = (GtkWidgetClass*) class;
+  GtkMenuItemClass  *menu_item_class   = (GtkMenuItemClass*) class;
+  GtkContainerClass *container_class   = (GtkContainerClass*) class;
+
+  object_class->destroy                = geda_image_menu_item_destroy;
+
+  widget_class->size_request           = geda_image_menu_item_size_request;
+  widget_class->size_allocate          = geda_image_menu_item_size_allocate;
+  widget_class->map                    = geda_image_menu_item_map;
+
+  container_class->forall              = geda_image_menu_item_forall;
+  container_class->remove              = geda_image_menu_item_remove;
+
+  menu_item_class->toggle_size_request = geda_image_menu_item_toggle_size_request;
+  menu_item_class->set_label           = geda_image_menu_item_set_label;
+  menu_item_class->get_label           = geda_image_menu_item_get_label;
+
+  gobject_class->finalize              = geda_image_menu_item_finalize;
+  gobject_class->set_property          = geda_image_menu_item_set_property;
+  gobject_class->get_property          = geda_image_menu_item_get_property;
+
+  geda_image_menu_item_parent_class    = g_type_class_peek_parent (class);
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_IMAGE,
+                                   g_param_spec_object ("image",
+                                                      _("Image widget"),
+                                                      _("Child widget to appear next to the menu text"),
+                                                        GTK_TYPE_WIDGET,
+                                                        G_PARAM_WRITABLE));
+  /**
+   * GedaImageMenuItem:use-stock:
+   *
+   * If %TRUE, the label set in the menuitem is used as a
+   * stock id to select the stock item for the item.
+   *
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_USE_STOCK,
+                                   g_param_spec_boolean ("use-stock",
+                                                       _("Use stock"),
+                                                       _("Whether to use the label text to create a stock menu item"),
+                                                         FALSE,
+                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+
+  /**
+   * GedaImageMenuItem:show-image:
+   *
+   * If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
+   * setting and always show the image, if available.
+   *
+   * Use this property if the menuitem would be useless or hard to use
+   * without the image.
+   *
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_IMAGE,
+                                   g_param_spec_boolean ("show-image",
+                                                       _("Show image"),
+                                                       _("Whether the image will always be shown"),
+                                                         FALSE,
+                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+
+  /**
+   * GedaImageMenuItem:accel-group:
+   *
+   * The Accel Group to use for stock accelerator keys
+   *
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_ACCEL_GROUP,
+                                   g_param_spec_object ("accel-group",
+                                                      _("Accel Group"),
+                                                      _("The Accel Group to use for stock accelerator keys"),
+                                                        GTK_TYPE_ACCEL_GROUP,
+                                                        G_PARAM_WRITABLE));
+}
+
+/*! \brief Initialize GedaImageMenuItem data structure.
+ *
+ *  \par Function Description
+ *  Function tois call after the GedaImageMenuItemClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] image_menu_item A GedaImageMenuItem object (structure)
+ */
+static void
+geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
+{
+  GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)instance;
+
+  /* Note data->initialization not required because memset 0 */
+  image_menu_item->priv      = GEDA_MEM_ALLOC0(sizeof(GedaImageMenuItemData));
+  image_menu_item->use_stock = FALSE;
+  image_menu_item->label     = NULL;
+  image_menu_item->image     = NULL;
+}
+
+/*! \brief Retrieve GedaImageMenuItem's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaImageMenuItem Type identifier. When
+ *  first called, the function registers a #GedaImageMenuItem in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaImageMenuItem and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaImageMenuItem.
+ */
+GedaType
+geda_image_menu_item_get_type (void)
+{
+  static GedaType geda_image_menu_item_type = 0;
+
+  if (g_once_init_enter (&geda_image_menu_item_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaImageMenuItemClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_image_menu_item_class_init, /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(GedaImageMenuItem),
+      0,                               /* n_preallocs         */
+      geda_image_menu_item_init        /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaImageMenuItem");
+    type   = g_type_register_static (GTK_TYPE_MENU_ITEM, string, &info, 0);
+
+    const GInterfaceInfo interface_info = {
+      (GInterfaceInitFunc) geda_image_menu_item_activatable_init,
+      NULL,
+      NULL
+    };
+
+    g_type_add_interface_static (type, GTK_TYPE_ACTIVATABLE, &interface_info);
+
+    g_once_init_leave (&geda_image_menu_item_type, type);
+  }
+
+  return geda_image_menu_item_type;
 }
 
 /*! \brief return internal show image property
@@ -619,140 +803,6 @@ geda_image_menu_item_forall (GtkContainer   *container,
 
   if (include_internals && image_menu_item->image)
     (* callback) (image_menu_item->image, callback_data);
-}
-
-
-static void
-geda_image_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
-{
-  parent_activatable_iface = g_type_interface_peek_parent (iface);
-  iface->update = geda_image_menu_item_update;
-  iface->sync_action_properties = geda_image_menu_item_sync_action_properties;
-}
-
-static bool
-activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *action)
-{
-  GtkWidget   *image;
-  const char *stock_id  = gtk_action_get_stock_id (action);
-
-  image = geda_image_menu_item_get_image (image_menu_item);
-
-  if (GTK_IS_IMAGE (image) &&
-    stock_id && gtk_icon_factory_lookup_default (stock_id))
-  {
-    gtk_image_set_from_stock (GTK_IMAGE (image), stock_id, GTK_ICON_SIZE_MENU);
-    return TRUE;
-  }
-
-  return FALSE;
-}
-
-static bool
-activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
-{
-  GtkWidget   *image;
-  GIcon       *icon     = gtk_action_get_gicon (action);
-  const char  *stock_id = gtk_action_get_stock_id (action);
-
-  image = geda_image_menu_item_get_image (image_menu_item);
-
-  if (icon && GTK_IS_IMAGE (image) &&
-    !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
-  {
-    gtk_image_set_from_gicon (GTK_IMAGE (image), icon, GTK_ICON_SIZE_MENU);
-    return TRUE;
-  }
-
-  return FALSE;
-}
-
-static void
-activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *action)
-{
-  GtkWidget  *image;
-  const char *icon_name = gtk_action_get_icon_name (action);
-
-  image = geda_image_menu_item_get_image (image_menu_item);
-
-  if (GTK_IS_IMAGE (image) &&
-    (gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_EMPTY ||
-    gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_ICON_NAME))
-  {
-    gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, GTK_ICON_SIZE_MENU);
-  }
-}
-
-static void
-geda_image_menu_item_update (GtkActivatable *activatable,
-                             GtkAction      *action,
-                             const char     *property_name)
-{
-  GedaImageMenuItem *image_menu_item;
-
-  image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
-
-  parent_activatable_iface->update (activatable, action, property_name);
-
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
-
-  if (strcmp (property_name, "stock-id") == 0)
-    activatable_update_stock_id (image_menu_item, action);
-  else if (strcmp (property_name, "gicon") == 0)
-    activatable_update_gicon (image_menu_item, action);
-  else if (strcmp (property_name, "icon-name") == 0)
-    activatable_update_icon_name (image_menu_item, action);
-}
-
-static void
-geda_image_menu_item_sync_action_properties (GtkActivatable *activatable,
-                                             GtkAction      *action)
-{
-  GedaImageMenuItem     *image_menu_item;
-  GedaImageMenuItemData *priv;
-  GtkWidget             *image;
-
-  image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
-  priv            = image_menu_item->priv;
-
-  /* Chain-up */
-  parent_activatable_iface->sync_action_properties (activatable, action);
-
-  if (priv->action) {
-    g_object_unref(priv->action);  /* regardless if new action is NULL */
-  }
-
-  priv->action = action; /* Which could be NULL */
-
-  if (!action) {
-    return;
-  }
-
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
-
-  image = geda_image_menu_item_get_image (image_menu_item);
-  if (image && !GTK_IS_IMAGE (image)) {
-    geda_image_menu_item_set_image (image_menu_item, NULL);
-    image = NULL;
-  }
-
-  if (!image) {
-    image = gtk_image_new ();
-    gtk_widget_show (image);
-    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (activatable),
-                                    image);
-  }
-
-  if (!activatable_update_stock_id (image_menu_item, action) &&
-      !activatable_update_gicon (image_menu_item, action))
-  {
-    activatable_update_icon_name (image_menu_item, action);
-  }
-
-  geda_image_menu_item_set_show_image (image_menu_item,
-                                       gtk_action_get_always_show_image (action));
 }
 
 
