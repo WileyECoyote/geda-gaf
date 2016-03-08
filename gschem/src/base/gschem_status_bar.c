@@ -86,9 +86,6 @@ struct _GschemStatusBarBuffers
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
 static void
-dispose (GObject *object);
-
-static void
 finalize (GObject *object);
 
 static void
@@ -395,20 +392,12 @@ static void gschem_status_bar_style_set (GtkWidget *widget, GtkStyle *previous)
   gschem_status_bar_set_height (widget, height);
 }
 
-/*! \brief Dispose of the object
- */
-static void dispose (GObject *object)
-{
-  /* lastly, chain up to the parent dispose */
-  g_return_if_fail (gschem_status_bar_parent_class != NULL);
-  gschem_status_bar_parent_class->dispose (object);
-}
-
 /*! \brief Finalize object
  */
 static void finalize (GObject *object)
 {
   GschemStatusBar *status_bar = GSCHEM_STATUS_BAR (object);
+
   GEDA_FREE(status_bar->buffers);
 
   /* lastly, chain up to the parent finalize */
