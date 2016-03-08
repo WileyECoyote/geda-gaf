@@ -48,8 +48,6 @@
 
 #include <geda_keysyms.h>
 
-#define MAX_ICONS 2
-
 /**
  * \brief GedaEntry - A single line text entry field
  * \par
@@ -68,7 +66,7 @@
  * because the compiler is expecting a GList**, a convienence macro is
  * provided in the header: NO_HISTORY, in order to type cast the argument.
  * A second macro, NO_COMPLETION is also provided for the second argument,
- * which could all be NULL because a NULL completion is interpreted to
+ * which could also be NULL because a NULL completion is interpreted to
  * mean disabling the completion feature.
  * \par
  * example:    entry = geda_visible_entry_new (NO_HISTORY, NO_COMPLETION);
@@ -146,26 +144,6 @@ static bool    do_auto_complete;
 
 static GObjectClass *geda_entry_parent_class = NULL;
 
-typedef struct
-{
-  GdkWindow     *window;
-  char          *tooltip;
-  unsigned int   insensitive    : 1;
-  unsigned int   nonactivatable : 1;
-  unsigned int   prelight       : 1;
-  unsigned int   in_drag        : 1;
-  unsigned int   pressed        : 1;
-
-  GtkImageType   storage_type;
-  GdkPixbuf     *pixbuf;
-  char          *stock_id;
-  char          *icon_name;
-  GIcon         *gicon;
-
-  GtkTargetList *target_list;
-  GdkDragAction  actions;
-} EntryIconInfo;
-
 struct _GedaEntryPriv
 {
   GedaCompletion *command_completion;
@@ -173,8 +151,6 @@ struct _GedaEntryPriv
 
   PangoAttrList *attrs;
   PangoFontMap  *font_map;
-
-  EntryIconInfo *icons[MAX_ICONS];
 };
 
 const char* IDS_CONSOLE_POPUP[] = {
