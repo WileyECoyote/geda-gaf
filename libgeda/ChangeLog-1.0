@@ -1,4 +1,4 @@
-2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
    ** src/geda/geda_arc.c: Resolve two issues with geda_arc_within_sweep:
 
@@ -9,6 +9,10 @@
            in the sweep, resolve by changing "return angle < a1" to angle <= a1.
 
       Also changed integer constants to floating.
+
+    * tests/test_arc.c: Add tests for function geda_arc_within_sweep.
+
+2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Use malloc and realloc in o_picture_read instead
       of GString.

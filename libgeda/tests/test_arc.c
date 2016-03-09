@@ -24,7 +24,6 @@
  *  Date Contributed: January, 30th, 2016
  */
 
-//#include <glib.h>
 #include <libgeda.h>
 
 #define TOBJECT "GedaArc"
@@ -36,6 +35,267 @@
  *  of GedaArc objects, type checking is also tested to insure intergration
  *  with other object types drived from the same base class, i.e. GedaObject.
  */
+
+int test_geda_arc_within_sweep(GedaArc *arc)
+{
+  int result = 0;
+
+  /* === Function: geda_arc_within_sweep === */
+
+  int x, y;
+
+  geda_arc_set_center_x (arc, 1000);
+  geda_arc_set_center_y (arc, 1000);
+  geda_arc_set_radius (arc, 100);
+  geda_arc_set_start_angle (arc, 0);
+  geda_arc_set_arc_sweep (arc, 90);
+
+  if (geda_arc_within_sweep(NULL, 1000, 1000)) {
+    fprintf(stderr, "FAILED: geda_arc_within_sweep NULL\n");
+    result++;
+  }
+
+  /* Note: geda_arc_within_sweep inside for loops ==  TRUE */
+
+  for (x = 1000; x < 1250; x = x + 50) {
+    for (y = 1000; y < 1200; y = y + 50) {
+      if (!geda_arc_within_sweep(arc, x, y)) {
+        fprintf(stderr, "FAILED: SA0AS90F geda_arc_within_sweep (%d,%d)\n", x, y);
+        result++;
+      }
+    }
+  }
+
+  /* Below */
+  /* x = 1200 */
+  y = m_random_number (0, 999);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS90B geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* Left */
+  x = m_random_number (0, 999);
+  y = 1000;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS90L geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South West */
+  y = m_random_number (0, 999);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS90SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South West other side of origin */
+  x = -1 * y;
+  y = -1 * x;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS90SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 90);
+
+  for (x = 1000; x > 750; x = x - 50) {
+    for (y = 1000; y < 1200; y = y + 50) {
+      if (!geda_arc_within_sweep(arc, x, y)) {
+        fprintf(stderr, "FAILED: SA90AS90F geda_arc_within_sweep (%d,%d)\n", x, y);
+        result++;
+      }
+    }
+  }
+
+ /* Right */
+  x = m_random_number (1001, 5000);
+  y = 1000;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS90R geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* Below */
+  x = 1000;
+  y = m_random_number (0, 999);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS90B geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South East */
+  x = m_random_number (0, 999);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS90SE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 180);
+
+  for (x = 1000; x > 750; x = x - 50) {
+    for (y = 1000; y > 750; y = y - 50) {
+      if (!geda_arc_within_sweep(arc, x, y)) {
+        fprintf(stderr, "FAILED: SA180AS90F geda_arc_within_sweep (%d,%d)\n", x, y);
+        result++;
+      }
+    }
+  }
+
+  /* Right */
+  x = m_random_number (1001, 5000);
+  y = 1000;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS90R geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* Above */
+  x = 1000;
+  y = m_random_number (1001, 5000);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS90A geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North West */
+  x =  m_random_number (1001, 5000);
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS90NW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 0);
+  geda_arc_set_arc_sweep (arc, 180);
+
+  int e = m_random_number (1000, 10000);
+  int w = -1 * e;
+  int n = m_random_number (1000, 10000);
+  int s = -1 * n;
+
+  /* North East ++ */
+  x = n ; y = e;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS180NE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North West -+ */
+  x = w;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS180NW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South West -- */
+  y = s;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS180SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South East +- */
+  x = e;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA0AS180SE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 90);
+
+  /* South East +- */
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS180SE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North East ++ */
+  x = e;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS180NE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North West -+ */
+  x = w;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS180NW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South West -- */
+  y = s;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA90AS180SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 180);
+
+  e = m_random_number (1000, 10000);
+  w = -1 * e;
+  n = m_random_number (1000, 10000);
+  s = -1 * n;
+
+  /* South West -- */
+  x = w;
+  y = s;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS180SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South East +- */
+  x = e;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS180SE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North East ++ */
+  y = n;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS180NE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North West -+ */
+  x = w;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA180AS180NW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  geda_arc_set_start_angle (arc, 270);
+  /* North West -+ */
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA270AS180NW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South West -- */
+  y = s;
+  if (geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA270AS180SW geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* South East +- */
+  x = e;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA270AS180SE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  /* North East ++ */
+  y = n;
+  if (!geda_arc_within_sweep(arc, x, y)) {
+    fprintf(stderr, "FAILED: SA270AS180NE geda_arc_within_sweep (%d,%d)\n", x, y);
+    result++;
+  }
+
+  return result;
+}
 
 int test_arc (void)
 {
@@ -190,6 +450,11 @@ int test_arc (void)
         break;
       }
     }
+  }
+
+  /* If can construct, get and set properties then */
+  if (!result) {
+    result = test_geda_arc_within_sweep(arc);
   }
 
   g_object_unref(object);
