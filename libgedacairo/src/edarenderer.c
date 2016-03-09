@@ -80,7 +80,7 @@ struct _EdaRendererData
   EdaPangoRenderer *pr;
   int pc_from_cr;
 
-  GedaType          flags;
+  int               flags;
   char             *font_name;
   int               override_color;
 
@@ -100,10 +100,11 @@ static inline void
 EDA_RENDERER_SET_FLAG (EdaRenderer *r, int f, bool e) {
   if (e) { r->priv->flags |= f; } else { r->priv->flags &= ~f; }
 }
-static inline GedaType
+static inline int
 EDA_RENDERER_CAIRO_FLAGS (EdaRenderer *r) {
   return EDA_RENDERER_CHECK_FLAG (r, FLAG_HINTING) ? EDA_CAIRO_ENABLE_HINTS : 0;
 }
+
 static inline double
 EDA_RENDERER_STROKE_WIDTH (EdaRenderer *r,  double line_width) {
   return fmax (line_width, MIN_LINE_WIDTH_THRESHOLD);
@@ -165,41 +166,10 @@ static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObje
 
 static GObjectClass *eda_renderer_parent_class = NULL;
 
-/*! \brief Function to retrieve EdaRendererFlags's Type identifier.
- *
- *  \par Function Description
- *  Function to retrieve EdaRendererFlags's Type identifier. Upon
- *  first call, this registers the EdaRendererFlags in the GedaType
- *  system.  Subsequently it returns the saved value from its first
- *  execution.
- *
- *  \return the Type identifier associated with EdaRendererFlags.
- */
-GedaType
-eda_renderer_flags_get_type ()
+static GObject *eda_renderer_constructor(GType type,
+                                         unsigned int n_construct_properties,
+                                         GObjectConstructParam *construct_params)
 {
-  static const GFlagsValue values[] = {
-    {FLAG_HINTING,         "hinting",         _("Enable hinting")},
-    {FLAG_PICTURE_OUTLINE, "picture-outline", _("Picture outlines")},
-    {FLAG_TEXT_HIDDEN,     "text-hidden",     _("Hidden text")},
-    {FLAG_TEXT_OUTLINE,    "text-outline",    _("Text outlines")},
-    {FLAG_TEXT_ORIGIN,     "text-origin",     _("Text origins")},
-    {0, 0, 0},
-  };
-
-  static GedaType flags_type = 0;
-
-  if (flags_type == 0) {
-    flags_type = g_flags_register_static ("EdaRendererFlags", values);
-  }
-
-  return flags_type;
-}
-
-static GObject *
-eda_renderer_constructor (GType type,
-                          unsigned int n_construct_properties,
-                          GObjectConstructParam *construct_params) {
   GObject *object;
   GObjectClass *parent_object_class;
 
@@ -333,7 +303,7 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
     break;
 
   case PROP_RENDER_FLAGS:
-    renderer->priv->flags          = g_value_get_flags (value);
+    renderer->priv->flags          = g_value_get_int (value);
     break;
 
   default:
@@ -404,7 +374,7 @@ eda_renderer_get_property (GObject *object, unsigned int property_id,
     break;
 
   case PROP_RENDER_FLAGS:
-    g_value_set_flags (value, renderer->priv->flags);
+    g_value_set_int (value, renderer->priv->flags);
     break;
 
   default:
@@ -1828,27 +1798,28 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
 
-  params =g_param_spec_pointer ("color-map",
-                              _("Color map"),
-                              _("Map for determining colors from color indices"),
-                                 param_flags);
+  params = g_param_spec_pointer ("color-map",
+                               _("Color map"),
+                               _("Map for determining colors from color indices"),
+                                  param_flags);
 
   g_object_class_install_property (gobject_class, PROP_COLOR_MAP, params);
 
-  params =g_param_spec_int ("override-color",
-                          _("Override color"),
-                          _("Index of color to force used for all drawing."),
-                            -1, MAX_COLORS, -1,
-                             param_flags);
+  params = g_param_spec_int ("override-color",
+                           _("Override color"),
+                           _("Index of color to force used for all drawing."),
+                             -1, MAX_COLORS, -1,
+                              param_flags);
 
   g_object_class_install_property (gobject_class, PROP_OVERRIDE_COLOR, params);
 
-  params = g_param_spec_flags ("render-flags",
-                             _("Rendering  Flags"),
-                             _("Flags controlling rendering"),
-                                EDA_TYPE_RENDERER_FLAGS,
-                                FLAG_HINTING | FLAG_TEXT_ORIGIN,
-                                param_flags);
+  params = g_param_spec_int ("render-flags",
+                           _("Rendering  Flags"),
+                           _("Flags controlling rendering"),
+                              0,
+                              FLAG_HINTING | FLAG_TEXT_ORIGIN,
+                              EDA_RENDERER_FLAG_HINTING,
+                              param_flags);
 
   g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS, params);
 
@@ -1884,11 +1855,11 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_JUNCTION_COLOR, params);
 
-  params =g_param_spec_int ("junction-size",
-                          _("Junction size"),
-                          _("Size to draw junction cue points."),
-                             0, 999, 10,
-                             param_flags);
+  params = g_param_spec_int ("junction-size",
+                           _("Junction size"),
+                           _("Size to draw junction cue points."),
+                              0, 999, 10,
+                              param_flags);
 
   g_object_class_install_property (gobject_class, PROP_JUNCTION_SIZE, params);
 

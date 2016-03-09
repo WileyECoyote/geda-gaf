@@ -1,3 +1,10 @@
+2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Remove eda_renderer_flags_get_type and replace
+      g_param_spec_flags with g_param_spec_int, g_value_get_flags with
+      g_value_get_int, and g_value_set_flags with g_value_set_int because
+      glib is not releasing the memory associated with spec_flags strings.
+
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/edarenderer.h: Rename EdaRendererPrivate->EdaRendererData.
