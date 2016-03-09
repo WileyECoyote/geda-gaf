@@ -127,7 +127,6 @@ static void gschem_quit(void)
 static
 void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
-  int   load_last     = FALSE;
   int   page_loaded   = FALSE;
   char *cwd           = NULL;
   char  tmpfilename[MAX_PATH];
@@ -243,6 +242,8 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
       x_sessions_open_dialog(w_current);
     }
     else {
+
+      int load_last;
 
       /*! \brief Auto-Load */
       /* Retrieve the setting for auto-load-last */

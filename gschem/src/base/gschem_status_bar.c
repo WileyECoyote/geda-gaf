@@ -474,7 +474,7 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
  *  \param [in]  class_data  (unused)
  */
 static void
-gschem_status_bar_class_init (void *class, void *g_class_data)
+gschem_status_bar_class_init (void *class, void *class_data)
 {
   GschemStatusBarClass *bar_class = (GschemStatusBarClass*)class;
   GObjectClass    *gobject_class  = G_OBJECT_CLASS (class);

@@ -162,8 +162,8 @@ finalize (GObject *object)
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
 {
-  GschemMacroWidget *gmw     = GSCHEM_MACRO_WIDGET (object);
-  GtkWidget         *widget  = (GtkWidget*)gmw;
+  GschemMacroWidget *gmw    = GSCHEM_MACRO_WIDGET (object);
+  GtkWidget         *widget = (GtkWidget*)gmw;
 
   switch (param_id) {
     case PROP_LABEL_TEXT:
