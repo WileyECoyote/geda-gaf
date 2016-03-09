@@ -986,13 +986,13 @@ o_picture_export_object(GedaObject *o_current, const char *filename, const char 
 {
   GdkPixbuf *pixbuf;
   bool       result;
-  va_list    varargs;
+
 
   /* This added a reference to pixbuf */
   pixbuf = o_picture_get_pixbuf_fit (o_current, GDK_INTERP_BILINEAR);
 
   if (pixbuf) {
-
+    va_list varargs;
     va_start (varargs, type);
     result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
@@ -1037,11 +1037,11 @@ o_picture_export_orginal (GedaObject *o_current, const char *filename, const cha
 {
   GdkPixbuf *pixbuf;
   bool       result;
-  va_list    varargs;
 
   pixbuf = o_picture_get_pixbuf(o_current); /* This added a reference to pixbuf */
 
   if (pixbuf) {
+    va_list varargs;
     va_start (varargs, type);
     result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
