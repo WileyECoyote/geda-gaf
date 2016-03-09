@@ -13,6 +13,8 @@
     * src/object/o_picture.c: Reduce scope of varargs in o_picture_export_object
       and o_picture_export_orginal.
 
+    * src/utility/u_log.c: Use intermediary pointer for realloc.
+
     * tests/test_arc.c: Add tests for function geda_arc_within_sweep.
 
 2016-03-08 Wiley E. Hill <wileyhill@gmail.com>

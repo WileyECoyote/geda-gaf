@@ -364,9 +364,10 @@ char *geda_utility_log_read (void)
       strncpy(contents, &buf[0], len);
     }
     else {
-      contents = (char*)realloc(contents, size + 1);
+      char *buffer = (char*)realloc(contents, size + 1);
       if (!contents)
         break;
+      contents = buffer;
       strncat(contents, &buf[0], len);
     }
   }
