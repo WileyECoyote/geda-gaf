@@ -477,6 +477,9 @@ void geda_arc_set_start_angle (GedaArc *arc, int angle) {
 
 /*!
  * \brief Determines if a point lies within the sweep of the arc.
+ *  The "sweep" of the arc includes all points on the rays of the arc,
+ *  including those beyond the arc radius, inclusive of the insertion
+ *  point and both stating and ending rays.
  *
  * \param [in] arc The arc of object
  * \param [in] x   The x coordinate of the given point
@@ -500,22 +503,29 @@ geda_arc_within_sweep(GedaArc *arc, int x, int y)
     dx = ((double) x) - ((double) arc->x);
     dy = ((double) y) - ((double) arc->y);
 
-    angle = 180 * atan2(dy, dx) / M_PI;
+    /* atan2 is undefined if both dx and dy are zero, this would
+     * be the insertion position of the arc, which was included
+     * in our definition of sweep */
+    if ((dx == 0) && (dy == 0)) {
+      return TRUE;
+    }
+
+    angle = 180.0 * atan2(dy, dx) / M_PI;
 
     if (arc->arc_sweep > 0) {
       a0 = arc->start_angle;
       a1 = arc->start_angle + arc->arc_sweep;
     }
     else {
-      a0 = arc->start_angle + arc->arc_sweep + 360;
-      a1 = arc->start_angle + 360;
+      a0 = arc->start_angle + arc->arc_sweep + 360.0;
+      a1 = arc->start_angle + 360.0;
     }
 
     while (angle < a0) {
-      angle += 360;
+      angle += 360.0;
     }
 
-    return (angle < a1);
+    return (angle <= a1);
   }
   return FALSE;
 }

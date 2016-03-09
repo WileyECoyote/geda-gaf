@@ -1,5 +1,15 @@
 2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+   ** src/geda/geda_arc.c: Resolve two issues with geda_arc_within_sweep:
+
+        1. atan2 is undefined if both x and y are zero, which would correspond
+           to the arc position, resolve by including this point in arc "sweep".
+
+        2. points on second axis, last ray, of the arc were not being included
+           in the sweep, resolve by changing "return angle < a1" to angle <= a1.
+
+      Also changed integer constants to floating.
+
     * src/object/o_picture.c: Use malloc and realloc in o_picture_read instead
       of GString.
 
