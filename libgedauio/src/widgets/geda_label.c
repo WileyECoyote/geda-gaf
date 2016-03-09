@@ -89,20 +89,20 @@ struct _GedaLabelPrivate
   GtkWidget *mnemonic_widget;
   GtkWindow *mnemonic_window;
 
-  unsigned int    mnemonics_visible  : 1;
-  unsigned int    jtype              : 2;
-  unsigned int    wrap               : 1;
-  unsigned int    use_underline      : 1;
-  unsigned int    use_markup         : 1;
-  unsigned int    ellipsize          : 3;
-  unsigned int    single_line_mode   : 1;
-  unsigned int    have_transform     : 1;
-  unsigned int    in_click           : 1;
-  unsigned int    wrap_mode          : 3;
-  unsigned int    pattern_set        : 1;
-  unsigned int    track_links        : 1;
+  unsigned int  mnemonics_visible  : 1;
+  unsigned int  jtype              : 2;
+  unsigned int  wrap               : 1;
+  unsigned int  use_underline      : 1;
+  unsigned int  use_markup         : 1;
+  unsigned int  ellipsize          : 3;
+  unsigned int  single_line_mode   : 1;
+  unsigned int  have_transform     : 1;
+  unsigned int  in_click           : 1;
+  unsigned int  wrap_mode          : 3;
+  unsigned int  pattern_set        : 1;
+  unsigned int  track_links        : 1;
 
-  unsigned int    mnemonic_keyval;
+  unsigned int  mnemonic_keyval;
 
 };
 
@@ -173,18 +173,18 @@ static unsigned int signals[LAST_SIGNAL] = { 0 };
 static const GdkColor default_link_color = { 0, 0, 0, 0xeeee };
 static const GdkColor default_visited_link_color = { 0, 0x5555, 0x1a1a, 0x8b8b };
 
-static void geda_label_set_property          (GObject         *object,
-                                              unsigned int     prop_id,
-                                              const GValue    *value,
-                                              GParamSpec      *pspec);
-static void geda_label_get_property          (GObject         *object,
-                                              unsigned int     prop_id,
-                                              GValue          *value,
-                                              GParamSpec      *pspec);
-static void geda_label_destroy               (GtkObject *object);
-static void geda_label_finalize              (GObject         *object);
-static void geda_label_size_allocate         (GtkWidget       *widget,
-                                              GtkAllocation   *allocation);
+static void geda_label_set_property          (GObject          *object,
+                                              unsigned int      prop_id,
+                                              const GValue     *value,
+                                              GParamSpec       *pspec);
+static void geda_label_get_property          (GObject          *object,
+                                              unsigned int      prop_id,
+                                              GValue           *value,
+                                              GParamSpec       *pspec);
+static void geda_label_destroy               (GtkObject        *object);
+static void geda_label_finalize              (GObject          *object);
+static void geda_label_size_allocate         (GtkWidget        *widget,
+                                              GtkAllocation    *allocation);
 static void geda_label_size_request          (GtkWidget        *widget,
                                               GtkRequisition   *requisition);
 static void geda_label_state_changed         (GtkWidget        *widget,
@@ -195,13 +195,13 @@ static void geda_label_direction_changed     (GtkWidget        *widget,
                                               GtkTextDirection  direction);
 static int  geda_label_expose                (GtkWidget        *widget,
                                               GdkEventExpose   *event);
-static bool geda_label_focus                 (GtkWidget       *widget,
-                                             GtkDirectionType direction);
+static bool geda_label_focus                 (GtkWidget        *widget,
+                                             GtkDirectionType   direction);
 
-static void geda_label_realize               (GtkWidget       *widget);
-static void geda_label_unrealize             (GtkWidget       *widget);
-static void geda_label_map                   (GtkWidget       *widget);
-static void geda_label_unmap                 (GtkWidget       *widget);
+static void geda_label_realize               (GtkWidget        *widget);
+static void geda_label_unrealize             (GtkWidget        *widget);
+static void geda_label_map                   (GtkWidget        *widget);
+static void geda_label_unmap                 (GtkWidget        *widget);
 
 static bool geda_label_button_press          (GtkWidget        *widget,
                                               GdkEventButton   *event);
@@ -253,7 +253,7 @@ static void geda_label_select_region_index        (GedaLabel  *label,
 
 static bool geda_label_mnemonic_activate          (GtkWidget         *widget,
                                                    bool               group_cycling);
-static void geda_label_setup_mnemonic             (GedaLabel          *label,
+static void geda_label_setup_mnemonic             (GedaLabel         *label,
                                                    unsigned int       last_key);
 static void geda_label_drag_data_get              (GtkWidget         *widget,
                                                    GdkDragContext    *context,
@@ -284,13 +284,13 @@ static bool separate_uline_pattern                (const char        *str,
 
 /* For selectable labels: */
 static void geda_label_move_cursor                (GedaLabel        *label,
-                                                   GtkMovementStep  step,
-                                                   int              count,
-                                                   bool             extend_selection);
+                                                   GtkMovementStep   step,
+                                                   int               count,
+                                                   bool              extend_selection);
 static void geda_label_copy_clipboard             (GedaLabel        *label);
 static void geda_label_select_all                 (GedaLabel        *label);
 static void geda_label_do_popup                   (GedaLabel        *label,
-                                                   GdkEventButton  *event);
+                                                   GdkEventButton   *event);
 static int geda_label_move_forward_word           (GedaLabel        *label,
                                                    int              start);
 static int geda_label_move_backward_word          (GedaLabel        *label,
@@ -321,7 +321,7 @@ G_DEFINE_TYPE_WITH_CODE (GedaLabel, geda_label, GTK_TYPE_MISC,
 
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
-                  unsigned int    modmask,     GtkMovementStep step,
+                  unsigned int  modmask,     GtkMovementStep step,
                   int    count)
 {
   g_return_if_fail ((modmask & GDK_SHIFT_MASK) == 0);
@@ -2403,9 +2403,9 @@ geda_label_get_label (GedaLabel *label)
 typedef struct
 {
   GedaLabel *label;
-  GList *links;
-  GString *new_str;
-  gsize text_len;
+  GList     *links;
+  GString   *new_str;
+  size_t     text_len;
 } UriParserData;
 
 static void
@@ -2413,18 +2413,19 @@ start_element_handler (GMarkupParseContext  *context,
                        const char          *element_name,
                        const char         **attribute_names,
                        const char         **attribute_values,
-                       void *              user_data,
+                       void                *user_data,
                        GError              **error)
 {
   GedaLabelPrivate *priv;
-  UriParserData *pdata = user_data;
+  UriParserData    *pdata = user_data;
 
   if (strcmp (element_name, "a") == 0) {
 
     GedaLabelLink *link;
-    const char *uri = NULL;
-    const char *title = NULL;
-    bool visited = FALSE;
+    const char    *uri = NULL;
+    const char    *title = NULL;
+    bool           visited = FALSE;
+
     int line_number;
     int char_number;
     int i;
@@ -2432,6 +2433,7 @@ start_element_handler (GMarkupParseContext  *context,
     g_markup_parse_context_get_position (context, &line_number, &char_number);
 
     for (i = 0; attribute_names[i] != NULL; i++) {
+
       const char *attr = attribute_names[i];
 
       if (strcmp (attr, "href") == 0)
@@ -2477,12 +2479,12 @@ start_element_handler (GMarkupParseContext  *context,
       }
     }
 
-    link = g_malloc0 (sizeof(GedaLabelLink));
-    link->uri = g_strdup (uri);
-    link->title = g_strdup (title);
+    link          = g_malloc0 (sizeof(GedaLabelLink));
+    link->uri     = g_strdup (uri);
+    link->title   = g_strdup (title);
     link->visited = visited;
-    link->start = pdata->text_len;
-    pdata->links = g_list_prepend (pdata->links, link);
+    link->start   = pdata->text_len;
+    pdata->links  = g_list_prepend (pdata->links, link);
   }
   else {
 
@@ -2512,30 +2514,30 @@ start_element_handler (GMarkupParseContext  *context,
 }
 
 static void
-end_element_handler (GMarkupParseContext  *context,
+end_element_handler (GMarkupParseContext *context,
                      const char          *element_name,
-                     void *              user_data,
+                     void                *user_data,
                      GError              **error)
 {
   UriParserData *pdata = user_data;
 
   if (!strcmp (element_name, "a")) {
-      GedaLabelLink *link = pdata->links->data;
-      link->end = pdata->text_len;
+    GedaLabelLink *link = pdata->links->data;
+    link->end = pdata->text_len;
   }
   else {
-      g_string_append (pdata->new_str, "</");
-      g_string_append (pdata->new_str, element_name);
-      g_string_append_c (pdata->new_str, '>');
-    }
+    g_string_append (pdata->new_str, "</");
+    g_string_append (pdata->new_str, element_name);
+    g_string_append_c (pdata->new_str, '>');
+  }
 }
 
 static void
-text_handler (GMarkupParseContext  *context,
+text_handler (GMarkupParseContext *context,
               const char          *text,
-              gsize                 text_len,
-              void *              user_data,
-              GError              **error)
+              size_t               text_len,
+              void                *user_data,
+              GError             **error)
 {
   UriParserData *pdata = user_data;
   char *newtext;
@@ -2562,9 +2564,9 @@ static bool xml_isspace (char c)
 
 static void link_free (GedaLabelLink *link)
 {
-  g_free (link->uri);
-  g_free (link->title);
-  g_free (link);
+  free (link->uri);
+  free (link->title);
+  free (link);
 }
 
 static void
@@ -2585,23 +2587,23 @@ geda_label_get_link_colors (GtkWidget  *widget,
 }
 
 static bool
-parse_uri_markup (GedaLabel *label,   const char  *str,
-                  char     **new_str, GList      **links,
-                  GError   **error)
+parse_uri_markup (GedaLabel *label, const char *str, char **new_str,
+                  GList    **links, GError    **error)
 {
   GMarkupParseContext *context = NULL;
-  const char *p, *end;
-  bool needs_root = TRUE;
-  gsize length;
+  const char          *p;
+  const char          *end;
+  bool  needs_root = TRUE;
+  size_t length;
   UriParserData pdata;
 
   length = strlen (str);
-  p = str;
-  end = str + length;
+  p      = str;
+  end    = str + length;
 
-  pdata.label = label;
-  pdata.links = NULL;
-  pdata.new_str = g_string_sized_new (length);
+  pdata.label    = label;
+  pdata.links    = NULL;
+  pdata.new_str  = g_string_sized_new (length);
   pdata.text_len = 0;
 
   while (p != end && xml_isspace (*p))
@@ -2631,7 +2633,7 @@ parse_uri_markup (GedaLabel *label,   const char  *str,
   g_markup_parse_context_free (context);
 
   *new_str = g_string_free (pdata.new_str, FALSE);
-  *links = pdata.links;
+  *links   = pdata.links;
 
   return TRUE;
 
@@ -2707,9 +2709,9 @@ geda_label_set_markup_internal (GedaLabel    *label,
       unsigned int key;
 
       if (separate_uline_pattern (new_str, &key, &tmp, &pattern)) {
-        g_free (new_str);
+        free (new_str);
         new_str = tmp;
-        g_free (pattern);
+        free (pattern);
       }
     }
   }
@@ -5000,8 +5002,8 @@ static void
 geda_label_drag_data_get (GtkWidget        *widget,
                           GdkDragContext   *context,
                           GtkSelectionData *selection_data,
-                          unsigned int      info,
-                          unsigned int      time)
+                          unsigned int    info,
+                          unsigned int    time)
 {
   geda_label_set_selection_text (GEDA_LABEL (widget), selection_data);
 }
@@ -5009,7 +5011,7 @@ geda_label_drag_data_get (GtkWidget        *widget,
 static void
 get_text_callback (GtkClipboard     *clipboard,
                    GtkSelectionData *selection_data,
-                   unsigned int      info,
+                   unsigned int    info,
                    void *          user_data_or_owner)
 {
   geda_label_set_selection_text (GEDA_LABEL (user_data_or_owner), selection_data);

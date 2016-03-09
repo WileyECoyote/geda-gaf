@@ -169,7 +169,6 @@ geda_combo_box_text_init (GedaComboBoxText *combo_box)
   geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
   combo_box->count = 0;
   combo_box->store = store;
-
 }
 
 /*! \brief GedaComboBoxText Class Initializer
@@ -177,17 +176,19 @@ geda_combo_box_text_init (GedaComboBoxText *combo_box)
  *  \par Function Description
  *  Function is called to initialize the class instance.
  *
- * \param [in] klass A GedaComboBoxTextClass Object
+ * \param [in] class A GedaComboBoxTextClass Object
  */
 static void
-geda_combo_box_text_class_init (GedaComboBoxTextClass *klass)
+geda_combo_box_text_class_init (GedaComboBoxTextClass *class)
 {
   GObjectClass   *object_class;
 
-  object_class = (GObjectClass*)klass;
+  object_class = (GObjectClass*)class;
 
   object_class->constructor  = geda_combo_box_text_constructor;
   object_class->finalize     = geda_combo_box_text_finalize;
+
+  geda_combo_box_text_parent_class = g_type_class_peek_parent (class);
 }
 
 static void

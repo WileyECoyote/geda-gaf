@@ -192,9 +192,9 @@ geda_completion_add_items (GedaCompletion *comp, GList *items)
  *
  */
 void
-geda_completion_remove_items (GedaCompletion* comp, GList* items)
+geda_completion_remove_items (GedaCompletion *comp, GList *items)
 {
-  GList* iter;
+  GList *iter;
 
   g_return_if_fail (comp != NULL);
 
@@ -242,26 +242,27 @@ static void
 completion_check_cache (GedaCompletion *comp, char **new_prefix)
 {
   register GList *list;
-  register gsize len;
-  register gsize i;
-  register gsize plen;
+  register size_t len;
+  register size_t i;
+  register size_t plen;
   char    *postfix;
   char    *s;
 
-  if (!new_prefix)
-    return;
-  if (!comp->cache) {
-
-    *new_prefix = NULL;
+  if (!new_prefix) {
     return;
   }
 
-  len = strlen(comp->prefix);
-  list = comp->cache;
-  s = comp->func ? comp->func (list->data) : (char*) list->data;
+  if (!comp->cache) {
+   *new_prefix = NULL;
+    return;
+  }
+
+  len     = strlen(comp->prefix);
+  list    = comp->cache;
+  s       = comp->func ? comp->func (list->data) : (char*) list->data;
   postfix = s + len;
-  plen = strlen (postfix);
-  list = list->next;
+  plen    = strlen (postfix);
+  list    = list->next;
 
   while (list && plen) {
 
@@ -270,14 +271,15 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
 
     for (i = 0; i < plen; ++i) {
 
-      if (postfix[i] != s[i])
+      if (postfix[i] != s[i]) {
         break;
+      }
     }
     plen = i;
     list = list->next;
   }
 
-  *new_prefix = g_malloc0 (sizeof (char) * len + plen + 1);
+ *new_prefix = g_malloc0 (sizeof (char) * len + plen + 1);
   strncpy (*new_prefix, comp->prefix, len);
   strncpy (*new_prefix + len, postfix, plen);
 }
@@ -313,11 +315,12 @@ geda_completion_complete_utf8 (GedaCompletion  *comp,
                                char           **new_prefix)
 {
   GList *list;
-  char *p, *q;
 
   list = geda_completion_complete (comp, prefix, new_prefix);
 
   if (new_prefix && *new_prefix) {
+
+    char *p, *q;
 
     p = *new_prefix + strlen (*new_prefix);
     q = g_utf8_find_prev_char (*new_prefix, p);
@@ -360,7 +363,7 @@ GList*
 geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_prefix)
 {
   bool   done = FALSE;
-  gsize  plen, len;
+  size_t len;
   GList *list;
 
   g_return_val_if_fail (comp != NULL, NULL);
@@ -370,7 +373,7 @@ geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_p
 
   if (comp->prefix && comp->cache) {
 
-    plen = strlen (comp->prefix);
+    size_t plen = strlen (comp->prefix);
 
     if (plen <= len && ! comp->strncmp_func (prefix, comp->prefix, plen))
     {

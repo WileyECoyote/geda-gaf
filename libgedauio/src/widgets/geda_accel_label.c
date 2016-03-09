@@ -164,7 +164,6 @@ geda_accel_label_get_property (GObject      *object,
     }
 }
 
-
 static void
 geda_accel_label_finalize (GObject *object)
 {

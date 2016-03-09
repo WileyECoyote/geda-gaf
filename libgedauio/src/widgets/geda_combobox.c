@@ -216,113 +216,113 @@ static void     geda_combo_box_finalize             (GObject          *object);
 static void     geda_combo_box_destroy              (GtkObject        *object);
 
 static void     geda_combo_box_set_property         (GObject         *object,
-                                                     unsigned int      prop_id,
-                                                     const GValue     *value,
-                                                     GParamSpec       *spec);
+                                                     unsigned int     prop_id,
+                                                     const GValue    *value,
+                                                     GParamSpec      *spec);
 static void     geda_combo_box_get_property         (GObject         *object,
                                                      unsigned int     prop_id,
                                                      GValue          *value,
                                                      GParamSpec      *spec);
 
-static void     geda_combo_box_state_changed        (GtkWidget        *widget,
-                                                     GtkStateType      previous);
+static void     geda_combo_box_state_changed        (GtkWidget       *widget,
+                                                     GtkStateType     previous);
 static void     geda_combo_box_grab_focus           (GtkWidget       *widget);
 static void     geda_combo_box_style_set            (GtkWidget       *widget,
                                                      GtkStyle        *previous);
 static void     geda_combo_box_button_toggled       (GtkWidget       *widget,
-                                                     void             *data);
+                                                     void            *data);
 static void     geda_combo_box_button_state_changed (GtkWidget       *widget,
-                                                     GtkStateType      previous,
+                                                     GtkStateType     previous,
                                                      void            *data);
 static void     geda_combo_box_add                  (GtkContainer    *container,
                                                      GtkWidget        *widget);
 static void     geda_combo_box_remove               (GtkContainer    *container,
                                                      GtkWidget        *widget);
 
-static ComboCellInfo *geda_combo_box_get_cell_info  (GedaComboBox     *combo_box,
-                                                     GtkCellRenderer   *cell);
+static ComboCellInfo *geda_combo_box_get_cell_info  (GedaComboBox    *combo_box,
+                                                     GtkCellRenderer *cell);
 
-static void     geda_combo_box_menu_show            (GtkWidget        *menu,
-                                                     void             *user_data);
-static void     geda_combo_box_menu_hide            (GtkWidget        *menu,
-                                                     void              *user_data);
+static void     geda_combo_box_menu_show            (GtkWidget       *menu,
+                                                     void            *user_data);
+static void     geda_combo_box_menu_hide            (GtkWidget       *menu,
+                                                     void            *user_data);
 
-static void     geda_combo_box_set_popup_widget     (GedaComboBox     *combo_box,
-                                                     GtkWidget         *popup);
-static void     geda_combo_box_menu_position_below  (GtkMenu          *menu,
-                                                     int              *x,
-                                                     int              *y,
-                                                     int              *push_in,
-                                                     void             *user_data);
-static void     geda_combo_box_menu_position_over   (GtkMenu          *menu,
-                                                     int              *x,
-                                                     int              *y,
-                                                     int              *push_in,
-                                                     void             *user_data);
-static void     geda_combo_box_menu_position        (GtkMenu          *menu,
-                                                     int              *x,
-                                                     int              *y,
-                                                     int              *push_in,
-                                                     void             *user_data);
+static void     geda_combo_box_set_popup_widget     (GedaComboBox    *combo_box,
+                                                     GtkWidget       *popup);
+static void     geda_combo_box_menu_position_below  (GtkMenu         *menu,
+                                                     int             *x,
+                                                     int             *y,
+                                                     int             *push_in,
+                                                     void            *user_data);
+static void     geda_combo_box_menu_position_over   (GtkMenu         *menu,
+                                                     int             *x,
+                                                     int             *y,
+                                                     int             *push_in,
+                                                     void            *user_data);
+static void     geda_combo_box_menu_position        (GtkMenu         *menu,
+                                                     int             *x,
+                                                     int             *y,
+                                                     int             *push_in,
+                                                     void            *user_data);
 
-static int      geda_combo_box_calc_requested_width (GedaComboBox     *combo_box,
-                                                     GtkTreePath      *path);
-static void     geda_combo_box_remeasure            (GedaComboBox     *combo_box);
+static int      geda_combo_box_calc_requested_width (GedaComboBox    *combo_box,
+                                                     GtkTreePath     *path);
+static void     geda_combo_box_remeasure            (GedaComboBox    *combo_box);
 
-static void     geda_combo_box_unset_model          (GedaComboBox     *combo_box);
+static void     geda_combo_box_unset_model          (GedaComboBox    *combo_box);
 
-static void     geda_combo_box_size_request         (GtkWidget        *widget,
-                                                     GtkRequisition   *requisition);
-static void     geda_combo_box_size_allocate        (GtkWidget        *widget,
-                                                     GtkAllocation    *allocation);
-static void     geda_combo_box_forall               (GtkContainer     *container,
-                                                     bool              include_internals,
-                                                     GtkCallback       callback,
-                                                     void             *callback_data);
-static bool     geda_combo_box_expose_event         (GtkWidget        *widget,
-                                                     GdkEventExpose   *event);
-static bool     geda_combo_box_scroll_event         (GtkWidget        *widget,
-                                                     GdkEventScroll   *event);
-static void     geda_combo_box_set_active_internal  (GedaComboBox     *combo_box,
-                                                     GtkTreePath      *path);
+static void     geda_combo_box_size_request         (GtkWidget       *widget,
+                                                     GtkRequisition  *requisition);
+static void     geda_combo_box_size_allocate        (GtkWidget       *widget,
+                                                     GtkAllocation   *allocation);
+static void     geda_combo_box_forall               (GtkContainer    *container,
+                                                     bool             include_internals,
+                                                     GtkCallback      callback,
+                                                     void            *callback_data);
+static bool     geda_combo_box_expose_event         (GtkWidget       *widget,
+                                                     GdkEventExpose  *event);
+static bool     geda_combo_box_scroll_event         (GtkWidget       *widget,
+                                                     GdkEventScroll  *event);
+static void     geda_combo_box_set_active_internal  (GedaComboBox    *combo_box,
+                                                     GtkTreePath     *path);
 
-static void     geda_combo_box_check_appearance     (GedaComboBox     *combo_box);
-static char    *geda_combo_box_real_get_active_text (GedaComboBox     *combo_box);
-static void     geda_combo_box_real_move_active     (GedaComboBox     *combo_box,
-                                                     GtkScrollType     scroll);
-static void     geda_combo_box_real_popup           (GedaComboBox     *combo_box);
-static bool     geda_combo_box_real_popdown         (GedaComboBox     *combo_box);
+static void     geda_combo_box_check_appearance     (GedaComboBox    *combo_box);
+static char    *geda_combo_box_real_get_active_text (GedaComboBox    *combo_box);
+static void     geda_combo_box_real_move_active     (GedaComboBox    *combo_box,
+                                                     GtkScrollType    scroll);
+static void     geda_combo_box_real_popup           (GedaComboBox    *combo_box);
+static bool     geda_combo_box_real_popdown         (GedaComboBox    *combo_box);
 
 /* listening to the model */
-static void     geda_combo_box_model_row_inserted   (GtkTreeModel     *model,
-                                                     GtkTreePath      *path,
-                                                     GtkTreeIter      *iter,
-                                                     void             *user_data);
-static void     geda_combo_box_model_row_deleted    (GtkTreeModel     *model,
-                                                     GtkTreePath      *path,
-                                                     void             *user_data);
-static void     geda_combo_box_model_rows_reordered (GtkTreeModel     *model,
-                                                     GtkTreePath      *path,
-                                                     GtkTreeIter      *iter,
-                                                     int              *new_order,
-                                                     void             *user_data);
-static void     geda_combo_box_model_row_changed    (GtkTreeModel     *model,
-                                                     GtkTreePath      *path,
-                                                     GtkTreeIter      *iter,
-                                                     void             *data);
-static void     geda_combo_box_model_row_expanded   (GtkTreeModel     *model,
-                                                     GtkTreePath      *path,
-                                                     GtkTreeIter      *iter,
-                                                     void             *data);
+static void     geda_combo_box_model_row_inserted   (GtkTreeModel    *model,
+                                                     GtkTreePath     *path,
+                                                     GtkTreeIter     *iter,
+                                                     void            *user_data);
+static void     geda_combo_box_model_row_deleted    (GtkTreeModel    *model,
+                                                     GtkTreePath     *path,
+                                                     void            *user_data);
+static void     geda_combo_box_model_rows_reordered (GtkTreeModel    *model,
+                                                     GtkTreePath     *path,
+                                                     GtkTreeIter     *iter,
+                                                     int             *new_order,
+                                                     void            *user_data);
+static void     geda_combo_box_model_row_changed    (GtkTreeModel    *model,
+                                                     GtkTreePath     *path,
+                                                     GtkTreeIter     *iter,
+                                                     void            *data);
+static void     geda_combo_box_model_row_expanded   (GtkTreeModel    *model,
+                                                     GtkTreePath     *path,
+                                                     GtkTreeIter     *iter,
+                                                     void            *data);
 
 /* list */
-static void     geda_combo_box_list_position        (GedaComboBox     *combo_box,
-                                                     int              *x,
-                                                     int              *y,
-                                                     int              *width,
-                                                     int              *height);
-static void     geda_combo_box_list_setup           (GedaComboBox     *combo_box);
-static void     geda_combo_box_list_destroy         (GedaComboBox     *combo_box);
+static void     geda_combo_box_list_position        (GedaComboBox    *combo_box,
+                                                     int             *x,
+                                                     int             *y,
+                                                     int             *width,
+                                                     int             *height);
+static void     geda_combo_box_list_setup           (GedaComboBox    *combo_box);
+static void     geda_combo_box_list_destroy         (GedaComboBox    *combo_box);
 
 static bool     geda_combo_box_list_button_released (GtkWidget        *widget,
                                                      GdkEventButton   *event,
@@ -354,49 +354,49 @@ static void     geda_combo_box_list_row_changed     (GtkTreeModel     *model,
 static void     geda_combo_box_list_popup_resize    (GedaComboBox     *combo_box);
 
 /* menu */
-static void     geda_combo_box_menu_setup           (GedaComboBox      *combo_box,
-                                                     bool               add_children);
-static void     geda_combo_box_menu_fill            (GedaComboBox      *combo_box);
-static void     geda_combo_box_menu_fill_level      (GedaComboBox      *combo_box,
+static void     geda_combo_box_menu_setup           (GedaComboBox     *combo_box,
+                                                     bool              add_children);
+static void     geda_combo_box_menu_fill            (GedaComboBox     *combo_box);
+static void     geda_combo_box_menu_fill_level      (GedaComboBox     *combo_box,
                                                      GtkWidget        *menu,
                                                      GtkTreeIter      *iter);
-static void     geda_combo_box_update_title         (GedaComboBox      *combo_box);
-static void     geda_combo_box_menu_destroy         (GedaComboBox      *combo_box);
+static void     geda_combo_box_update_title         (GedaComboBox     *combo_box);
+static void     geda_combo_box_menu_destroy         (GedaComboBox     *combo_box);
 
-static void     geda_combo_box_relayout_item        (GedaComboBox      *combo_box,
-                                                     GtkWidget         *item,
-                                                     GtkTreeIter       *iter,
-                                                     GtkWidget         *last);
-static void     geda_combo_box_relayout             (GedaComboBox      *combo_box);
+static void     geda_combo_box_relayout_item        (GedaComboBox     *combo_box,
+                                                     GtkWidget        *item,
+                                                     GtkTreeIter      *iter,
+                                                     GtkWidget        *last);
+static void     geda_combo_box_relayout             (GedaComboBox     *combo_box);
 
-static bool     geda_combo_box_menu_button_press    (GtkWidget         *widget,
-                                                     GdkEventButton    *event,
-                                                     void              *user_data);
-static void     geda_combo_box_menu_item_activate   (GtkWidget         *item,
-                                                     void              *user_data);
+static bool     geda_combo_box_menu_button_press    (GtkWidget        *widget,
+                                                     GdkEventButton   *event,
+                                                     void             *user_data);
+static void     geda_combo_box_menu_item_activate   (GtkWidget        *item,
+                                                     void             *user_data);
 
-static void     geda_combo_box_update_sensitivity   (GedaComboBox      *combo_box);
-static void     geda_combo_box_menu_row_inserted    (GtkTreeModel      *model,
-                                                     GtkTreePath       *path,
-                                                     GtkTreeIter       *iter,
-                                                     void              *user_data);
-static void     geda_combo_box_menu_row_deleted     (GtkTreeModel      *model,
-                                                     GtkTreePath       *path,
-                                                     void              *user_data);
-static void     geda_combo_box_menu_rows_reordered  (GtkTreeModel      *model,
-                                                     GtkTreePath       *path,
-                                                     GtkTreeIter       *iter,
-                                                     int               *new_order,
-                                                     void              *user_data);
-static bool     geda_combo_box_menu_key_press       (GtkWidget         *widget,
-                                                     GdkEventKey       *event,
-                                                     void              *data);
-static void     geda_combo_box_menu_popup           (GedaComboBox      *combo_box,
-                                                     unsigned int       button,
-                                                     unsigned int       activate_time);
-static GtkWidget *gtk_cell_view_menu_item_new       (GedaComboBox      *combo_box,
-                                                     GtkTreeModel      *model,
-                                                     GtkTreeIter       *iter);
+static void     geda_combo_box_update_sensitivity   (GedaComboBox     *combo_box);
+static void     geda_combo_box_menu_row_inserted    (GtkTreeModel     *model,
+                                                     GtkTreePath      *path,
+                                                     GtkTreeIter      *iter,
+                                                     void             *user_data);
+static void     geda_combo_box_menu_row_deleted     (GtkTreeModel     *model,
+                                                     GtkTreePath      *path,
+                                                     void             *user_data);
+static void     geda_combo_box_menu_rows_reordered  (GtkTreeModel     *model,
+                                                     GtkTreePath      *path,
+                                                     GtkTreeIter      *iter,
+                                                     int              *new_order,
+                                                     void             *user_data);
+static bool     geda_combo_box_menu_key_press       (GtkWidget        *widget,
+                                                     GdkEventKey      *event,
+                                                     void             *data);
+static void     geda_combo_box_menu_popup           (GedaComboBox     *combo_box,
+                                                     unsigned int      button,
+                                                     unsigned int      activate_time);
+static GtkWidget *gtk_cell_view_menu_item_new       (GedaComboBox     *combo_box,
+                                                     GtkTreeModel     *model,
+                                                     GtkTreeIter      *iter);
 
 /* cell layout */
 static void     geda_combo_box_cell_layout_pack_start         (GtkCellLayout         *layout,
@@ -479,8 +479,7 @@ G_DEFINE_TYPE_WITH_CODE (GedaComboBox, geda_combo_box, GTK_TYPE_BIN,
 
 
 static char *
-geda_combo_box_format_entry_text (GedaComboBox   *combo_box,
-                                  const char     *path)
+geda_combo_box_format_entry_text (GedaComboBox *combo_box, const char *path)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
@@ -510,7 +509,7 @@ geda_combo_box_buildable_custom_tag_start (GtkBuildable  *buildable,
                                            void         **data)
 {
   if (parent_buildable_iface->custom_tag_start (buildable, builder, child,
-    tagname, parser, data))
+                                                tagname, parser, data))
     return TRUE;
 /*
   return _gtk_cell_layout_buildable_custom_tag_start (buildable, builder, child,
@@ -534,8 +533,8 @@ geda_combo_box_buildable_get_internal_child (GtkBuildable *buildable,
                                              GtkBuilder   *builder,
                                              const char   *childname)
 {
-  GObject *object;
   GedaComboBox *combo_box = GEDA_COMBO_BOX (buildable);
+  GObject      *object;
 
   if (combo_box->priv->has_entry && strcmp (childname, "entry") == 0) {
     object = G_OBJECT (gtk_bin_get_child (GTK_BIN (buildable)));
@@ -551,12 +550,12 @@ geda_combo_box_constructor (GType                  type,
                             unsigned int           n_construct_properties,
                             GObjectConstructParam *construct_properties)
 {
-  GObject             *object;
-  GedaComboBox        *combo_box;
+  GObject          *object;
+  GedaComboBox     *combo_box;
   GedaComboBoxData *priv;
 
   object = G_OBJECT_CLASS (geda_combo_box_parent_class)->constructor
-  (type, n_construct_properties, construct_properties);
+                          (type, n_construct_properties, construct_properties);
 
   combo_box = GEDA_COMBO_BOX (object);
   priv      = combo_box->priv;
@@ -673,15 +672,15 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
   widget_class->style_set         = geda_combo_box_style_set;
   widget_class->state_changed     = geda_combo_box_state_changed;
 
-  gtk_object_class           = (GtkObjectClass *)class;
-  gtk_object_class->destroy  = geda_combo_box_destroy;
+  gtk_object_class            = (GtkObjectClass *)class;
+  gtk_object_class->destroy   = geda_combo_box_destroy;
 
-  object_class               = (GObjectClass*)class;
-  object_class->constructor  = geda_combo_box_constructor;
-  object_class->dispose      = geda_combo_box_dispose;
-  object_class->finalize     = geda_combo_box_finalize;
-  object_class->set_property = geda_combo_box_set_property;
-  object_class->get_property = geda_combo_box_get_property;
+  object_class                = (GObjectClass*)class;
+  object_class->constructor   = geda_combo_box_constructor;
+  object_class->dispose       = geda_combo_box_dispose;
+  object_class->finalize      = geda_combo_box_finalize;
+  object_class->set_property  = geda_combo_box_set_property;
+  object_class->get_property  = geda_combo_box_get_property;
 
   class->format_entry_text    = geda_combo_box_format_entry_text;
 
@@ -1135,8 +1134,6 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                G_PARAM_READABLE);
 
   gtk_widget_class_install_style_property (widget_class,params);
-
-  //g_type_class_add_private (object_class, sizeof (GedaComboBoxData));
 }
 
 static void
@@ -1218,7 +1215,7 @@ geda_combo_box_set_property (GObject      *object,
   GedaComboBox *combo_box = GEDA_COMBO_BOX (object);
 
   switch (prop_id)
-    {
+  {
     case PROP_MODEL:
       geda_combo_box_set_model (combo_box, g_value_get_object (value));
       break;
@@ -1246,15 +1243,15 @@ geda_combo_box_set_property (GObject      *object,
     case PROP_HAS_FRAME:
       combo_box->priv->has_frame = g_value_get_boolean (value);
 
-      if (combo_box->priv->has_entry)
-        {
-          GtkWidget *child;
+      if (combo_box->priv->has_entry) {
 
-          child = gtk_bin_get_child (GTK_BIN (combo_box));
+        GtkWidget *child;
 
-          gtk_entry_set_has_frame (GTK_ENTRY (child),
-                                   combo_box->priv->has_frame);
-        }
+        child = gtk_bin_get_child (GTK_BIN (combo_box));
+
+        gtk_entry_set_has_frame (GTK_ENTRY (child),
+                                 combo_box->priv->has_frame);
+      }
 
       break;
 
@@ -1276,7 +1273,7 @@ geda_combo_box_set_property (GObject      *object,
 
     case PROP_BUTTON_SENSITIVITY:
       geda_combo_box_set_button_sensitivity (combo_box,
-                                            g_value_get_enum (value));
+                                             g_value_get_enum (value));
       break;
 
     case PROP_EDITING_CANCELED:
@@ -1298,7 +1295,7 @@ geda_combo_box_set_property (GObject      *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-    }
+  }
 }
 
 static void
@@ -1383,13 +1380,14 @@ geda_combo_box_state_changed (GtkWidget    *widget,
                               GtkStateType  previous)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBoxData *priv  = combo_box->priv;
 
-  if (gtk_widget_get_realized (widget))
-  {
-    if (priv->tree_view && priv->cell_view)
+  if (gtk_widget_get_realized (widget)) {
+
+    if (priv->tree_view && priv->cell_view) {
       gtk_cell_view_set_background_color (GTK_CELL_VIEW (priv->cell_view),
                                           &widget->style->base[gtk_widget_get_state (widget)]);
+    }
   }
 
   gtk_widget_queue_draw (widget);
@@ -1400,8 +1398,8 @@ geda_combo_box_button_state_changed (GtkWidget    *widget,
                                      GtkStateType  previous,
                                      void         *data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (gtk_widget_get_realized (widget)) {
 
@@ -1409,10 +1407,11 @@ geda_combo_box_button_state_changed (GtkWidget    *widget,
 
       if ((gtk_widget_get_state (widget) == GTK_STATE_INSENSITIVE) !=
         (gtk_widget_get_state (priv->cell_view) == GTK_STATE_INSENSITIVE))
+      {
         gtk_widget_set_sensitive (priv->cell_view, gtk_widget_get_sensitive (widget));
+      }
 
-      gtk_widget_set_state (priv->cell_view,
-                            gtk_widget_get_state (widget));
+      gtk_widget_set_state (priv->cell_view, gtk_widget_get_state (widget));
     }
   }
 
@@ -1484,7 +1483,7 @@ static void
 geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBoxData *priv  = combo_box->priv;
 
   geda_combo_box_check_appearance (combo_box);
 
@@ -1503,13 +1502,15 @@ geda_combo_box_button_toggled (GtkWidget *widget, void *data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)))
-    {
-      if (!combo_box->priv->popup_in_progress)
-        geda_combo_box_popup (combo_box);
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
+
+    if (!combo_box->priv->popup_in_progress) {
+      geda_combo_box_popup (combo_box);
     }
-  else
+  }
+  else {
     geda_combo_box_popdown (combo_box);
+  }
 }
 
 static void
@@ -1573,8 +1574,8 @@ geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 static void
 geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (container);
-  GedaComboBoxData *priv      = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   bool appears_as_list;
 
@@ -1627,7 +1628,6 @@ geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
     geda_combo_box_sync_cells (combo_box, GTK_CELL_LAYOUT (priv->cell_view));
   }
 
-
   if (appears_as_list) {
     geda_combo_box_list_setup (combo_box);
   }
@@ -1651,18 +1651,18 @@ geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 }
 
 static ComboCellInfo *
-geda_combo_box_get_cell_info (GedaComboBox     *combo_box,
-                             GtkCellRenderer *cell)
+geda_combo_box_get_cell_info (GedaComboBox *combo_box, GtkCellRenderer *cell)
 {
   GSList *i;
 
-  for (i = combo_box->priv->cells; i; i = i->next)
-    {
-      ComboCellInfo *info = (ComboCellInfo *)i->data;
+  for (i = combo_box->priv->cells; i; i = i->next) {
 
-      if (info && info->cell == cell)
-        return info;
+    ComboCellInfo *info = (ComboCellInfo *)i->data;
+
+    if (info && info->cell == cell) {
+      return info;
     }
+  }
 
   return NULL;
 }
@@ -1671,13 +1671,14 @@ static void
 geda_combo_box_menu_show (GtkWidget *menu, void *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBoxData *priv  = combo_box->priv;
 
   geda_combo_box_child_show (menu, user_data);
 
   priv->popup_in_progress = TRUE;
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button),
-                                TRUE);
+
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
+
   priv->popup_in_progress = FALSE;
 }
 
@@ -1695,8 +1696,8 @@ geda_combo_box_menu_hide (GtkWidget *menu, void *user_data)
 static void
 geda_combo_box_detacher (GtkWidget *widget, GtkMenu *menu)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxData *priv      = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   g_return_if_fail (priv->popup_widget == (GtkWidget *) menu);
 
@@ -1974,8 +1975,8 @@ geda_combo_box_menu_position (GtkMenu  *menu,
                               int      *push_in,
                               void     *user_data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (priv->wrap_width > 0 || priv->cell_view == NULL) {
     geda_combo_box_menu_position_below (menu, x, y, push_in, user_data);
@@ -2007,13 +2008,13 @@ geda_combo_box_list_position (GedaComboBox *combo_box,
                               int          *height)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  GtkAllocation       *allocation;
-  GtkPolicyType        hpolicy, vpolicy;
-  GtkRequisition       popup_req;
-  GdkRectangle         monitor;
-  GdkScreen           *screen;
-  GdkWindow           *window;
-  int                  monitor_num;
+  GtkAllocation    *allocation;
+  GtkPolicyType     hpolicy, vpolicy;
+  GtkRequisition    popup_req;
+  GdkRectangle      monitor;
+  GdkScreen        *screen;
+  GdkWindow        *window;
+  int               monitor_num;
 
   /* under windows, the drop down list is as wide as the combo box
    * itself. see bug #340204 */
@@ -2106,8 +2107,7 @@ cell_view_is_sensitive (GtkCellView *cell_view)
 }
 
 static bool
-tree_column_row_is_sensitive (GedaComboBox *combo_box,
-                              GtkTreeIter  *iter)
+tree_column_row_is_sensitive (GedaComboBox *combo_box, GtkTreeIter *iter)
 {
   GedaComboBoxData *priv = combo_box->priv;
   GList *cells, *list;
@@ -2182,8 +2182,9 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
         g_object_set (item, "visible", sensitive, NULL);
         g_object_set (separator, "visible", sensitive, NULL);
       }
-      else
+      else {
         gtk_widget_set_sensitive (item, sensitive);
+      }
     }
   }
 
@@ -2212,8 +2213,9 @@ geda_combo_box_menu_popup (GedaComboBox *combo_box,
 
     gtk_tree_path_free (path);
 
-    if (priv->add_tearoffs)
+    if (priv->add_tearoffs) {
       active_item++;
+    }
   }
 
   /* FIXME handle nested menus better */
@@ -2248,11 +2250,12 @@ popup_grab_on_window (GdkWindow    *window,
                                        GDK_POINTER_MOTION_MASK,
                          NULL, NULL, activate_time) == 0))
   {
-    if (!grab_keyboard ||
-      gdk_keyboard_grab (window, TRUE, activate_time) == 0)
+    if (!grab_keyboard || gdk_keyboard_grab (window, TRUE, activate_time) == 0)
+    {
       return TRUE;
-    else {
-
+    }
+    else
+    {
       GdkDisplay *display;
 
 #if GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24
@@ -2272,7 +2275,6 @@ popup_grab_on_window (GdkWindow    *window,
 
 /**
  * geda_combo_box_popup:
-
  *
  * Pops up the menu or dropdown list of \a combo_box.
  *
@@ -2293,17 +2295,18 @@ static void
 geda_combo_box_real_popup (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  GtkTreePath         *path = NULL;
-
-  GtkWidget           *toplevel;
+  GtkTreePath      *path = NULL;
+  GtkWidget        *toplevel;
 
   int x, y, width, height;
 
-  if (!gtk_widget_get_realized (GTK_WIDGET (combo_box)))
+  if (!gtk_widget_get_realized (GTK_WIDGET (combo_box))) {
     return;
+  }
 
-  if (gtk_widget_get_mapped (priv->popup_widget))
+  if (gtk_widget_get_mapped (priv->popup_widget)) {
     return;
+  }
 
   if (GTK_IS_MENU (priv->popup_widget)) {
     geda_combo_box_menu_popup (combo_box,
@@ -2393,13 +2396,12 @@ geda_combo_box_popdown (GedaComboBox *combo_box)
     return;
   }
 
-  if (!gtk_widget_get_realized (GTK_WIDGET (combo_box)))
-    return;
+  if (gtk_widget_get_realized (GTK_WIDGET (combo_box))) {
 
-  gtk_grab_remove (priv->popup_window);
-  gtk_widget_hide_all (priv->popup_window);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button),
-                                FALSE);
+    gtk_grab_remove (priv->popup_window);
+    gtk_widget_hide_all (priv->popup_window);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), FALSE);
+  }
 }
 
 static int
@@ -2419,14 +2421,13 @@ geda_combo_box_calc_requested_width (GedaComboBox *combo_box,
     padding = 0;
   }
 
-  /* add some pixels for good measure */
-  //padding += BONUS_PADDING;
-
-  if (priv->cell_view)
+  if (priv->cell_view) {
     gtk_cell_view_get_size_of_row (GTK_CELL_VIEW (priv->cell_view),
                                    path, &req);
-  else
+  }
+  else {
     req.width = 0;
+  }
 
   return req.width + padding;
 }
@@ -2439,9 +2440,10 @@ geda_combo_box_remeasure (GedaComboBox *combo_box)
   GtkTreePath *path;
   int width, height;
 
-  if (!priv->model ||
-      !gtk_tree_model_get_iter_first (priv->model, &iter))
+  if (!priv->model || !gtk_tree_model_get_iter_first (priv->model, &iter))
+  {
     return;
+  }
 
   width  = 0;
   height = 0;
@@ -2497,8 +2499,8 @@ geda_combo_box_size_request (GtkWidget      *widget,
   int font_size;
   int arrow_size;
 
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (widget);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   child = geda_get_child_widget(widget);
 
@@ -2628,10 +2630,11 @@ static void
 geda_combo_box_size_allocate (GtkWidget     *widget,
                               GtkAllocation *allocation)
 {
-  GedaComboBox        *combo_box  = GEDA_COMBO_BOX (widget);
+  GedaComboBox     *combo_box  = GEDA_COMBO_BOX (widget);
   GedaComboBoxData *priv       = combo_box->priv;
-  GtkAllocation        child_alloc;
-  GtkRequisition       req;
+  GtkAllocation     child_alloc;
+  GtkRequisition    req;
+
   int shadow_width;
   int shadow_height;
   int focus_width;
@@ -2922,9 +2925,9 @@ geda_combo_box_child_hide (GtkWidget *widget,
 static bool geda_combo_box_expose_event (GtkWidget      *widget,
                                          GdkEventExpose *event)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (widget);
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (widget);
   GedaComboBoxData *priv      = combo_box->priv;
-  GtkWidget           *child;
+  GtkWidget        *child;
 
   if (gtk_widget_is_drawable (widget) &&
       GTK_SHADOW_NONE != priv->shadow_type)
@@ -3196,12 +3199,10 @@ geda_combo_box_sync_cells (GedaComboBox  *combo_box,
     ComboCellInfo *info = (ComboCellInfo *)k->data;
 
     if (info->pack == GTK_PACK_START) {
-      gtk_cell_layout_pack_start (cell_layout,
-                                  info->cell, info->expand);
+      gtk_cell_layout_pack_start (cell_layout, info->cell, info->expand);
     }
     else if (info->pack == GTK_PACK_END) {
-      gtk_cell_layout_pack_end (cell_layout,
-                                info->cell, info->expand);
+      gtk_cell_layout_pack_end (cell_layout, info->cell, info->expand);
     }
 
     gtk_cell_layout_set_cell_data_func (cell_layout,
@@ -3354,14 +3355,16 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
                                 GtkWidget    *menu,
                                 GtkTreeIter  *parent)
 {
-  GedaComboBoxData *priv = combo_box->priv;
-  GtkTreeModel *model = priv->model;
-  GtkWidget *item, *submenu, *subitem, *separator;
-  GtkTreeIter iter;
+  GedaComboBoxData *priv  = combo_box->priv;
+  GtkTreeModel     *model = priv->model;
+  GtkWidget        *item, *submenu, *subitem, *separator;
+  GtkTreeIter       iter;
+  GtkWidget        *last;
+  GtkTreePath      *path;
+
   bool is_separator;
-  int i, n_children;
-  GtkWidget *last;
-  GtkTreePath *path;
+  int  i;
+  int  n_children;
 
   n_children = gtk_tree_model_iter_n_children (model, parent);
 
@@ -3383,9 +3386,9 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
       item = gtk_separator_menu_item_new ();
       path = gtk_tree_model_get_path (model, &iter);
       g_object_set_data_full (G_OBJECT (item),
-                              _("gtk-combo-box-item-path"),
-                                gtk_tree_row_reference_new (model, path),
-                                (GDestroyNotify)gtk_tree_row_reference_free);
+                            _("gtk-combo-box-item-path"),
+                              gtk_tree_row_reference_new (model, path),
+                             (GDestroyNotify)gtk_tree_row_reference_free);
                               gtk_tree_path_free (path);
     }
     else {
@@ -3420,8 +3423,9 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
     }
 
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-    if (priv->wrap_width && menu == priv->popup_widget)
+    if (priv->wrap_width && menu == priv->popup_widget) {
       geda_combo_box_relayout_item (combo_box, item, &iter, last);
+    }
     gtk_widget_show (item);
 
     last = item;
@@ -3587,8 +3591,8 @@ geda_combo_box_relayout (GedaComboBox *combo_box)
 static void
 geda_combo_box_clicked_view_auto (GtkMenuItem *menuitem, void *user_data)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv      = combo_box->priv;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (priv->as_list) {
 
@@ -3623,8 +3627,8 @@ geda_combo_box_clicked_view_auto (GtkMenuItem *menuitem, void *user_data)
 static void
 geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_data)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv      = combo_box->priv;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (priv->as_list) {
 
@@ -3655,8 +3659,8 @@ geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_data)
 static void
 geda_combo_clicked_view_list (GtkMenuItem *menuitem, void *user_data)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv      = combo_box->priv;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (!priv->as_list) {
 
@@ -3738,8 +3742,8 @@ static bool geda_combo_box_menu_button_press (GtkWidget      *widget,
                                               GdkEventButton *event,
                                               void           *user_data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
   bool ret_val;
 
   if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
@@ -3851,8 +3855,8 @@ geda_combo_box_model_row_deleted (GtkTreeModel *model,
                                   GtkTreePath  *path,
                                   void         *user_data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (!gtk_tree_row_reference_valid (priv->active_row)) {
 
@@ -3894,8 +3898,8 @@ geda_combo_box_model_row_changed (GtkTreeModel *model,
                                   GtkTreeIter  *iter,
                                   void         *user_data)
 {
-  GedaComboBox *combo_box   = (GedaComboBox*)user_data;
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = (GedaComboBox*)user_data;
+  GedaComboBoxData *priv  = combo_box->priv;
 
   /* FIXME this belongs to GtkCellView */
   if (gtk_tree_row_reference_valid (priv->active_row)) {
@@ -3919,7 +3923,7 @@ static bool
 list_popup_resize_idle (void  *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBoxData *priv  = combo_box->priv;
   int x, y, width, height;
 
   if (priv->tree_view && gtk_widget_get_mapped (priv->popup_window)) {
@@ -3940,9 +3944,10 @@ geda_combo_box_list_popup_resize (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
-  if (!priv->resize_idle_id)
+  if (!priv->resize_idle_id) {
     priv->resize_idle_id =
       gdk_threads_add_idle (list_popup_resize_idle, combo_box);
+  }
 }
 
 static void
@@ -3976,12 +3981,15 @@ find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
     if (GTK_IS_SEPARATOR_MENU_ITEM (i->data)) {
 
       mref = GEDA_OBJECT_GET_DATA (i->data, "gtk-combo-box-item-path");
-      if (!mref)
+      if (!mref) {
         continue;
-      else if (!gtk_tree_row_reference_valid (mref))
+      }
+      else if (!gtk_tree_row_reference_valid (mref)) {
         mpath = NULL;
-      else
+      }
+      else {
         mpath = gtk_tree_row_reference_get_path (mref);
+      }
     }
     else if (GTK_IS_CELL_VIEW (GTK_BIN (i->data)->child)) {
       if (skip) {
@@ -3989,7 +3997,8 @@ find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
         continue;
       }
 
-      mpath = gtk_cell_view_get_displayed_row (GTK_CELL_VIEW (GTK_BIN (i->data)->child));
+      mpath =
+      gtk_cell_view_get_displayed_row(GTK_CELL_VIEW(GTK_BIN(i->data)->child));
     }
     else
       continue;
@@ -4026,41 +4035,14 @@ find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
   return item;
 }
 
-#if 0
-static void
-dump_menu_tree (GtkWidget *menu, int level)
-{
-  GList *i, *list;
-  GtkWidget *submenu;
-  GtkTreePath *path;
-
-  list = gtk_container_get_children (GTK_CONTAINER (menu));
-  for (i = list; i; i = i->next)
-    {
-      if (GTK_IS_CELL_VIEW (GTK_BIN (i->data)->child))
-	{
-	  path = gtk_cell_view_get_displayed_row (GTK_CELL_VIEW (GTK_BIN (i->data)->child));
-	  g_print ("%*s%s\n", 2 * level, " ", gtk_tree_path_to_string (path));
-	  gtk_tree_path_free (path);
-
-	  submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (i->data));
-	  if (submenu != NULL)
-	    dump_menu_tree (submenu, level + 1);
-	}
-    }
-
-  g_list_free (list);
-}
-#endif
-
 static void
 geda_combo_box_menu_row_inserted (GtkTreeModel *model,
                                   GtkTreePath  *path,
                                   GtkTreeIter  *iter,
                                   void         *user_data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (priv->popup_widget) {
 
@@ -4153,11 +4135,11 @@ geda_combo_box_menu_row_inserted (GtkTreeModel *model,
 
 static void
 geda_combo_box_menu_row_deleted (GtkTreeModel *model,
-                                GtkTreePath  *path,
-                                void *      user_data)
+                                 GtkTreePath  *path,
+                                 void         *user_data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxData *priv  = combo_box->priv;
 
   if (priv->popup_widget) {
 
@@ -4210,9 +4192,9 @@ static void
 geda_combo_box_list_setup (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  GtkTreeSelection    *sel;
-  GtkStyle            *style;
-  GtkWidget           *widget = GTK_WIDGET (combo_box);
+  GtkTreeSelection *sel;
+  GtkStyle         *style;
+  GtkWidget        *widget = GTK_WIDGET (combo_box);
 
   priv->button = gtk_toggle_button_new ();
 
@@ -4414,8 +4396,8 @@ geda_combo_box_list_button_pressed (GtkWidget      *widget,
                                     GdkEventButton *event,
                                     void           *data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
+  GedaComboBoxData *priv  = combo_box->priv;
   bool ret_val;
 
   GtkWidget *ewidget = gtk_get_event_widget((GdkEvent *)event);
@@ -4430,10 +4412,8 @@ geda_combo_box_list_button_pressed (GtkWidget      *widget,
   }
   else {
 
-
-
     if ((ewidget != priv->button && ewidget != priv->box) ||
-      gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
+         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
       return FALSE;
 
     if (priv->focus_on_click && !gtk_widget_has_focus (priv->button)) {
@@ -4459,17 +4439,17 @@ geda_combo_box_list_button_pressed (GtkWidget      *widget,
 
 static bool
 geda_combo_box_list_button_released (GtkWidget      *widget,
-                                    GdkEventButton *event,
-                                    void *        data)
+                                     GdkEventButton *event,
+                                     void           *data)
 {
   bool ret;
   GtkTreePath *path = NULL;
-  GtkTreeIter iter;
+  GtkTreeIter  iter;
 
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
-  GedaComboBoxData *priv = combo_box->priv;
-  bool popup_in_progress    = FALSE;
-  GtkWidget *ewidget        = gtk_get_event_widget ((GdkEvent *)event);
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
+  GedaComboBoxData *priv  = combo_box->priv;
+  bool popup_in_progress  = FALSE;
+  GtkWidget *ewidget      = gtk_get_event_widget ((GdkEvent *)event);
 
   if (priv->popup_in_progress) {
 
@@ -4488,17 +4468,16 @@ geda_combo_box_list_button_released (GtkWidget      *widget,
   if (ewidget != priv->tree_view) {
 
     if ((ewidget == priv->button ||
-      ewidget == priv->box) &&
-      !popup_in_progress &&
-      gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
+         ewidget == priv->box) && !popup_in_progress &&
+         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
     {
       geda_combo_box_popdown (combo_box);
       return TRUE;
     }
 
     /* released outside treeview */
-    if (ewidget != priv->button && ewidget != priv->box)
-    {
+    if (ewidget != priv->button && ewidget != priv->box) {
+
       geda_combo_box_popdown (combo_box);
 
       return TRUE;
@@ -4542,8 +4521,8 @@ geda_combo_box_menu_key_press (GtkWidget *widget, GdkEventKey *event, void *data
 
 static bool
 geda_combo_box_list_key_press (GtkWidget   *widget,
-                              GdkEventKey *event,
-                              void *     data)
+                               GdkEventKey *event,
+                               void        *data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
   GtkTreeIter iter;
@@ -4583,7 +4562,7 @@ geda_combo_box_list_key_press (GtkWidget   *widget,
 static void
 geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int y)
 {
-  GtkWidget *tree_view = combo_box->priv->tree_view;
+  GtkWidget     *tree_view = combo_box->priv->tree_view;
   GtkAdjustment *adj;
   GtkAllocation *allocation;
   double value;
@@ -4712,8 +4691,8 @@ geda_combo_box_list_row_changed (GtkTreeModel *model,
                                  GtkTreeIter  *iter,
                                  void         *data)
 {
-  GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
+  GedaComboBoxData *priv  = combo_box->priv;
   int width;
 
   width = geda_combo_box_calc_requested_width (combo_box, path);
@@ -4764,8 +4743,8 @@ geda_combo_box_cell_layout_pack_start (GtkCellLayout   *layout,
                                        GtkCellRenderer *cell,
                                        bool             expand)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (layout);
-  ComboCellInfo       *info;
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (layout);
+  ComboCellInfo    *info;
   GedaComboBoxData *priv;
 
   priv = combo_box->priv;
@@ -4827,11 +4806,9 @@ geda_combo_box_cell_layout_pack_end (GtkCellLayout   *layout,
                                      GtkCellRenderer *cell,
                                      bool             expand)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (layout);
-  ComboCellInfo *info;
-  GedaComboBoxData *priv;
-
-  priv = combo_box->priv;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (layout);
+  GedaComboBoxData *priv      = combo_box->priv;
+  ComboCellInfo    *info;
 
   g_object_ref_sink (cell);
 
@@ -4902,9 +4879,9 @@ static void clear_recurse (GtkWidget *menu)
 
 static void geda_combo_box_cell_layout_clear (GtkCellLayout *layout)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (layout);
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (layout);
   GedaComboBoxData *priv      = combo_box->priv;
-  GSList              *iter;
+  GSList           *iter;
 
   if (priv->cell_view) {
     gtk_cell_layout_clear (GTK_CELL_LAYOUT (priv->cell_view));
@@ -5066,9 +5043,9 @@ geda_combo_box_cell_layout_set_cell_data_func (GtkCellLayout         *layout,
                                                void                  *func_data,
                                                GDestroyNotify         destroy)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (layout);
-  GedaComboBoxData *priv = combo_box->priv;
-  ComboCellInfo *info;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (layout);
+  GedaComboBoxData *priv      = combo_box->priv;
+  ComboCellInfo    *info;
 
   info = geda_combo_box_get_cell_info (combo_box, cell);
 
@@ -5132,10 +5109,10 @@ static void
 geda_combo_box_cell_layout_clear_attributes (GtkCellLayout   *layout,
                                              GtkCellRenderer *cell)
 {
-  GedaComboBox        *combo_box = GEDA_COMBO_BOX (layout);
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (layout);
   GedaComboBoxData *priv;
-  ComboCellInfo       *info;
-  GSList              *list;
+  ComboCellInfo    *info;
+  GSList           *list;
 
   priv = combo_box->priv;
 
@@ -5143,10 +5120,12 @@ geda_combo_box_cell_layout_clear_attributes (GtkCellLayout   *layout,
   g_return_if_fail (info != NULL);
 
   list = info->attributes;
+
   while (list && list->next) {
     g_free (list->data);
     list = list->next->next;
   }
+
   g_slist_free (info->attributes);
   info->attributes = NULL;
 
@@ -5197,10 +5176,10 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
                                    GtkCellRenderer *cell,
                                    int             position)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (layout);
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (layout);
   GedaComboBoxData *priv;
-  ComboCellInfo *info;
-  GSList *link;
+  ComboCellInfo    *info;
+  GSList           *link;
 
   priv = combo_box->priv;
 
@@ -5216,16 +5195,17 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
   priv->cells = g_slist_delete_link (priv->cells, link);
   priv->cells = g_slist_insert (priv->cells, info, position);
 
-  if (priv->cell_view)
-    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->cell_view),
-                             cell, position);
+  if (priv->cell_view) {
+    gtk_cell_layout_reorder (GTK_CELL_LAYOUT(priv->cell_view), cell, position);
+  }
 
-  if (priv->column)
-    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->column),
-                             cell, position);
+  if (priv->column) {
+    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->column), cell, position);
+  }
 
-  if (GTK_IS_MENU (priv->popup_widget))
+  if (GTK_IS_MENU (priv->popup_widget)) {
     reorder_recurse (priv->popup_widget, cell, position);
+  }
 
   gtk_widget_queue_draw (GTK_WIDGET (combo_box));
 }
@@ -5521,12 +5501,13 @@ geda_combo_box_set_active_internal (GedaComboBox *combo_box,
   }
 
   if (!path) {
+
     if (priv->tree_view) {
       gtk_tree_selection_unselect_all (
         gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->tree_view)));
     }
-    else
-    {
+    else {
+
       GtkMenu *menu = GTK_MENU (priv->popup_widget);
 
       if (GTK_IS_MENU (menu))
@@ -5779,6 +5760,7 @@ GtkWidget *geda_combo_box_new_text (void)
 
   store     = gtk_list_store_new (1, G_TYPE_STRING);
   combo_box = geda_combo_box_new_with_model (GTK_TREE_MODEL (store));
+
   g_object_unref (store);
 
   cell = gtk_cell_renderer_text_new ();

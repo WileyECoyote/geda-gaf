@@ -595,14 +595,16 @@ geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
 static void
 geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 {
-  GtkWidget    *image;
-  GtkStockItem  stock_item;
-
   const char *resolved_label = image_menu_item->label;
 
   if (image_menu_item->use_stock && resolved_label) {
 
+    GtkStockItem  stock_item;
+
     if (!image_menu_item->image) {
+
+      GtkWidget    *image;
+
       image = gtk_image_new_from_stock (resolved_label, GTK_ICON_SIZE_MENU);
       geda_image_menu_item_set_image (image_menu_item, image);
     }
@@ -614,10 +616,10 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
     gtk_menu_item_set_use_underline (GTK_MENU_ITEM (image_menu_item), TRUE);
   }
 
-  GTK_MENU_ITEM_CLASS
-  (geda_image_menu_item_parent_class)->
-   set_label (GTK_MENU_ITEM (image_menu_item), resolved_label);
+  gtk_menu_item_set_label(GTK_MENU_ITEM (image_menu_item), resolved_label);
 
+  GTK_MENU_ITEM_CLASS(geda_image_menu_item_parent_class)->
+    set_label (GTK_MENU_ITEM (image_menu_item), resolved_label);
 }
 
 static void
