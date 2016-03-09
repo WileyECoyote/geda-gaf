@@ -75,7 +75,7 @@ echo "          when the --prefix arguments was given during configuration and c
 echo "          after \"make install\" completes successfully to add links in local folders."
 echo "          User that install geda-gaf from a distribution package should NOT normally"
 echo "          use this script. This allows local builds to an alternate directory such as"
-echo "          /opt/gEDA.9 (using configure --prefix=/opt/gEDA.9) to remain \"intact\"."
+echo "          /opt/gEDA-1.9 (using configure --prefix=/opt/gEDA-1.9) to remain \"intact\"."
 echo
 echo "Options: -h, --help       Show this information"
 echo "         -f, --force      Just do it"
