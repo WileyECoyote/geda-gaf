@@ -331,16 +331,16 @@ o_picture_read (const char  *first_line,
                 GError     **err)
 {
   GedaObject *new_obj;
-  int     angle, height, width;
-  int     embedded, mirrored;
-  int     x1, y1;
-  int     num_conv;
 
-  const char *line         = NULL;
-        char *file_content = NULL;
-        char *filename;
-        char *tmpstr;
-        char  type;
+  char *file_content = NULL;
+  char *filename;
+  char *tmpstr;
+  char  type;
+
+  int   angle, height, width;
+  int   embedded, mirrored;
+  int   x1, y1;
+  int   num_conv;
 
   unsigned int file_length = 0;
 
@@ -424,17 +424,38 @@ o_picture_read (const char  *first_line,
 
   if (embedded == 1) {
 
-    GString *encoded_picture=g_string_new("");
+    char *encoded_picture = NULL;
+    unsigned size = 0;
     char finished = 0;
 
     /* Read the encoded picture */
     do {
 
-      line = s_textbuffer_next_line(tb);
-      if (line == NULL) break;
+      const char *line = s_textbuffer_next_line(tb);
+
+      if (line == NULL) {
+        break;
+      }
 
       if (g_ascii_strcasecmp(line, ".\n") != 0) {
-        encoded_picture = g_string_append (encoded_picture, line);
+
+        int len = strlen(line);
+
+        if (!encoded_picture) {
+          len++;
+          encoded_picture = (char*)malloc(len);
+          strncpy(encoded_picture, line, len);
+          size = len;
+        }
+        else {
+          char *buffer;
+          size = size + len;
+          buffer = (char*)realloc(encoded_picture, size);
+          if (!buffer)
+            break;
+          encoded_picture = buffer;
+          strncat(encoded_picture, line, len);
+        }
       }
       else {
         finished = 1;
@@ -443,10 +464,9 @@ o_picture_read (const char  *first_line,
 
     /* Decode the picture */
     if (encoded_picture != NULL) {
-      file_content = s_encoding_base64_decode(encoded_picture->str,
-                                              encoded_picture->len,
-                                              &file_length);
-      g_string_free (encoded_picture, TRUE);
+      file_content = s_encoding_base64_decode(encoded_picture, size,
+                                             &file_length);
+      free(encoded_picture);
     }
 
     if (file_content == NULL) {

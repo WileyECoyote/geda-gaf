@@ -1,3 +1,8 @@
+2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Use malloc and realloc in o_picture_read instead
+      of GString.
+
 2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/edascmhookproxy.h: Rename EdascmHookProxyPrivate->
@@ -25,7 +30,7 @@
 
     * tests/test_arc.c: Add file prolog, swap test geda_arc_get_start_angle
       and geda_arc_get_start_angle, and revise output message to distinguish
-      between singular and plural property failures.
+      between singular and plural property failures, and exit message.
 
 2016-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
