@@ -1,3 +1,7 @@
+2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM2734Z-1.sym: fix device id: LM2724Z->LM2734Z.
+
 2016-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/motor/MCP8025PT-1.sym: fix device id MCP8026->MCP8025.
