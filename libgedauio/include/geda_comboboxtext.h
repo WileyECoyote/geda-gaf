@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_tree_view.h
+ * File: geda_comboboxtext.h
  *
  * GTK - The GIMP Toolkit
  *
@@ -32,8 +32,6 @@
 #ifndef __GEDA_COMBO_BOX_TEXT_H__
 #define __GEDA_COMBO_BOX_TEXT_H__
 
-BEGIN_DECLS
-
 #define GEDA_TYPE_COMBO_BOX_TEXT                 (geda_combo_box_text_get_type ())
 #define GEDA_COMBO_BOX_TEXT(obj)                 (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxText))
 #define GEDA_COMBO_BOX_TEXT_CLASS(klass)         (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxTextClass))
@@ -59,6 +57,10 @@ struct _GedaComboBoxTextClass
 {
   GedaComboBoxClass parent_class;
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GType        geda_combo_box_text_get_type              (void) GEDA_CONST;
 GtkWidget   *geda_combo_box_text_new                   (void);
