@@ -52,8 +52,6 @@
 
 #include <geda_debug.h>
 
-#define GEDA_FONT_BUTTON_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GEDA_TYPE_FONT_BUTTON, GedaFontButtonPrivate))
-
 #define FONT_NAME font_button->priv->font_name
 
 /**
@@ -95,10 +93,10 @@ enum
   PROP_SHOW_SIZE
 };
 
-/*! \struct _GedaFontButtonPrivate
+/*! \struct _GedaFontButtonData
  *  \memberof GedaFontButton
  */
-struct _GedaFontButtonPrivate
+struct _GedaFontButtonData
 {
   char         *family;
   char         *font_name;
@@ -185,7 +183,7 @@ clear_font_data (GedaFontButton *font_button)
 static void
 clear_font_filter_data (GedaFontButton *font_button)
 {
-  GedaFontButtonPrivate *priv = font_button->priv;
+  GedaFontButtonData *priv = font_button->priv;
 
   if (priv->font_filter_data_destroy)
     priv->font_filter_data_destroy (priv->font_filter_data);
@@ -252,7 +250,7 @@ geda_font_button_label_set_text (GedaFontButton *font_button)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
-  GedaFontButtonPrivate *data;
+  GedaFontButtonData *data;
   data = font_button->priv;
 
   /* Check for label_text and re-create if needed */
@@ -338,7 +336,7 @@ geda_font_button_update_font_data (GedaFontButton *font_button)
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
   g_return_if_fail (font_button->font_desc != NULL);
 
-  GedaFontButtonPrivate *data;
+  GedaFontButtonData *data;
   data = font_button->priv;
 
   /* De-reference old objects */
@@ -428,7 +426,7 @@ geda_font_button_update_font_data (GedaFontButton *font_button)
 static void
 geda_font_button_update_from_name (GedaFontButton *font_button)
 {
-  GedaFontButtonPrivate *data;
+  GedaFontButtonData *data;
 
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -656,9 +654,9 @@ dialog_destroy (GtkWidget *widget, void * data)
 static void
 geda_font_button_clicked (GtkButton *button)
 {
-  GedaFontDialog        *font_dialog;
-  GedaFontButton        *font_button;
-  GedaFontButtonPrivate *priv;
+  GedaFontDialog     *font_dialog;
+  GedaFontButton     *font_button;
+  GedaFontButtonData *priv;
 
   font_button = GEDA_FONT_BUTTON (button);
   priv        = font_button->priv;
@@ -704,21 +702,21 @@ geda_font_button_finalize (GObject *object)
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (object);
 
-  if (font_button->priv->font_dialog != NULL)
+  if (font_button->priv->font_dialog != NULL) {
     gtk_widget_destroy (font_button->priv->font_dialog);
+  }
 
   font_button->priv->font_dialog = NULL;
 
-  g_free (font_button->title);
-  font_button->title = NULL;
+  GEDA_FREE (font_button->title);
 
-  g_free(font_button->priv->preview_text);
-  font_button->priv->preview_text = NULL;
+  GEDA_FREE(font_button->priv->preview_text);
 
   clear_font_data (font_button);
 
-  G_OBJECT_CLASS (geda_font_button_parent_class)->finalize (object);
+  GEDA_FREE(font_button->priv);
 
+  G_OBJECT_CLASS (geda_font_button_parent_class)->finalize (object);
 }
 
 /*! \brief GedaFontButton Type Class Initializer
@@ -867,8 +865,6 @@ geda_font_button_class_init(void *g_class, void *class_data)
                                                 NULL, NULL,
                                                 g_cclosure_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
-
-  g_type_class_add_private (gobject_class, sizeof (GedaFontButtonPrivate));
 }
 
 /*! \brief Type instance initializer for GedaFontButton
@@ -884,7 +880,7 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
 {
   GedaFontButton *font_button = (GedaFontButton*)instance;
 
-  font_button->priv = GEDA_FONT_BUTTON_GET_PRIVATE(font_button);
+  font_button->priv = GEDA_MEM_ALLOC0 (sizeof(GedaFontButtonData));
 
   GtkSettings *settings;
   const char  *fontbutton_tip;
@@ -895,11 +891,11 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
 
   gtk_widget_set_tooltip_text (GTK_WIDGET(font_button), fontbutton_tip);
 
-  if ( (settings = gtk_settings_get_default ()) != NULL ) {
+  if ((settings = gtk_settings_get_default ()) != NULL ) {
     g_object_get (settings, "gtk-font-name", &FONT_NAME, NULL);
   }
   else {
-    FONT_NAME    = geda_utility_string_strdup (_(DEFAULT_FONT_NAME));
+    FONT_NAME = geda_utility_string_strdup (_(DEFAULT_FONT_NAME));
   }
 
   /* Initialize fields */
@@ -1294,7 +1290,7 @@ void
 geda_font_button_set_size (GedaFontButton *font_button, int font_size)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
-  GedaFontButtonPrivate *data;
+  GedaFontButtonData *data;
   data = font_button->priv;
 
   if ( data->font_size != font_size) {
@@ -1377,7 +1373,7 @@ bool geda_font_button_get_show_preview (GedaFontButton *font_button)
 
 void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable)
 {
-  GedaFontButtonPrivate *priv;
+  GedaFontButtonData *priv;
 
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1399,7 +1395,7 @@ void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable
 const char*
 geda_font_button_get_preview_text (GedaFontButton *font_button)
 {
-  GedaFontButtonPrivate *priv;
+  GedaFontButtonData *priv;
 
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
@@ -1415,7 +1411,7 @@ void
 geda_font_button_set_preview_text (GedaFontButton *font_button,
                                      const char       *preview_text)
 {
-  GedaFontButtonPrivate *priv;
+  GedaFontButtonData *priv;
 
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 

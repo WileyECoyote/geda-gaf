@@ -1,3 +1,10 @@
+2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Remove g_type_class_add_private from
+      geda_font_button_class_init and add allocate private data using GEDA_
+      MEM_ALLOC0 in geda_font_button_instance_init and free in geda_font_
+      button_finalize. Rename GedaFontButtonPrivate GedaFontButtonData.
+
 2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_imagemenuitem.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and

@@ -49,16 +49,16 @@
 #define GEDA_IS_FONT_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_FONT_BUTTON))
 #define GEDA_FONT_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_FONT_BUTTON, GedaFontButtonClass))
 
-typedef struct _GedaFontButton        GedaFontButton;
-typedef struct _GedaFontButtonClass   GedaFontButtonClass;
-typedef struct _GedaFontButtonPrivate GedaFontButtonPrivate;
+typedef struct _GedaFontButton      GedaFontButton;
+typedef struct _GedaFontButtonClass GedaFontButtonClass;
+typedef struct _GedaFontButtonData  GedaFontButtonData;
 
 struct _GedaFontButton {
 
   GtkButton button;
 
   /*< private >*/
-  GedaFontButtonPrivate *priv;
+  GedaFontButtonData    *priv;
 
   PangoFontDescription  *font_desc;
   PangoFontFace         *font_face;
