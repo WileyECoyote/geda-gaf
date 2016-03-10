@@ -1,3 +1,8 @@
+2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Revise geda_utility_string_strndup to accept
+      strings of zero length.
+
 2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
    ** src/geda/geda_arc.c: Resolve two issues with geda_arc_within_sweep:

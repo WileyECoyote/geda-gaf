@@ -803,7 +803,7 @@ geda_utility_string_strndup(const char *str, int n)
 {
   char *ptr;
 
-  if (n > 0 && str) {
+  if (n >= 0 && str) {
 
     ptr = GEDA_MEM_ALLOC(n+1);
 
