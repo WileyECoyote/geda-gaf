@@ -1,3 +1,9 @@
+2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM53600M-1.sym: Add symbol Adjustable Buck, 36V, 0.65A.
+
+    * ti/switchreg/LM53601M-1.sym: Add symbol Adjustable Buck, 36V, 1A.
+
 2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM2734Z-1.sym: fix device id: LM2724Z->LM2734Z.
