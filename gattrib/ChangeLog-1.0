@@ -1,3 +1,7 @@
+2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Reduce scope of int ch in parse_commandline.
+
 2016-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_util.c: Remove unused function g_list_str_inlist, which

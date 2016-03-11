@@ -124,7 +124,6 @@ static void version (void)
  */
 int parse_commandline(int argc, char *argv[])
 {
-  int ch;
 
 #if defined(HAVE_GETOPT_LONG) && defined(HAVE_GETOPT_H)
 
@@ -139,6 +138,8 @@ int parse_commandline(int argc, char *argv[])
   };
 
   while (1) {
+
+    int ch;
 
     ch = getopt_long(argc, argv, "hqvV", long_options, &option_index);
 
