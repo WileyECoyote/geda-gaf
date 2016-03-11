@@ -54,9 +54,9 @@
 
 #define GTK_COMPILATION 1
 
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
-
 
 #include <glib.h>
 #include <glib-object.h>
@@ -81,7 +81,7 @@
 
 #define PangoFontDescr  PangoFontDescription
 
-struct _GedaLabelPrivate
+struct _GedaLabelData
 {
   GedaLabelSelectionInfo *select_info;
   PangoFontMap           *font_map;
@@ -459,7 +459,7 @@ geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
 static void
 geda_label_update_layout_width (GedaLabel *label)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   GtkWidget        *widget;
 
   widget = GTK_WIDGET (label);
@@ -590,7 +590,7 @@ pango_merge_attribute_list (PangoAttrList *into, PangoAttrList *from)
  */
 static void geda_label_ensure_layout (GedaLabel *label)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   GtkWidget        *widget;
   bool R2L;
 
@@ -600,6 +600,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
   R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   if (!label->layout) {
+
     PangoAlignment alignment; /* pango default this to PANGO_ALIGN_LEFT */
     PangoAttrList *attrs;
     PangoContext  *context;
@@ -634,10 +635,12 @@ static void geda_label_ensure_layout (GedaLabel *label)
     label->layout = pango_layout_new (context);
     g_object_unref (context);
 
-    if ( label->text )
+    if ( label->text ) {
       pango_layout_set_text (label->layout, label->text, -1);
+    }
 
     if (priv->select_info && priv->select_info->links) {
+
       GdkColor link_color, visited_color;
       PangoAttribute *attribute;
       GList *list;
@@ -646,43 +649,54 @@ static void geda_label_ensure_layout (GedaLabel *label)
       attrs = pango_attr_list_new ();
 
       for (list = priv->select_info->links; list; list = list->next) {
+
         GedaLabelLink *link = list->data;
 
-        attribute = pango_attr_underline_new (TRUE);
+        attribute              = pango_attr_underline_new (TRUE);
         attribute->start_index = link->start;
-        attribute->end_index = link->end;
+        attribute->end_index   = link->end;
         pango_attr_list_insert (attrs, attribute);
 
-        if (link->visited)
+        if (link->visited) {
           attribute = pango_attr_foreground_new (visited_color.red,
                                                  visited_color.green,
                                                  visited_color.blue);
-          else
-            attribute = pango_attr_foreground_new (link_color.red,
-                                                   link_color.green,
-                                                   link_color.blue);
-            attribute->start_index = link->start;
-          attribute->end_index = link->end;
+        }
+        else {
+          attribute = pango_attr_foreground_new (link_color.red,
+                                                 link_color.green,
+                                                 link_color.blue);
+        }
+
+        attribute->start_index = link->start;
+        attribute->end_index   = link->end;
+
         pango_attr_list_insert (attrs, attribute);
       }
     }
-    else if (label->markup_attrs || label->attrs)
+    else if (label->markup_attrs || label->attrs) {
       attrs = pango_attr_list_new ();
-    else
+    }
+    else {
       attrs = NULL;
+    }
 
     if (label->markup_attrs) {
-      if (attrs)
+      if (attrs) {
         pango_merge_attribute_list (attrs, label->markup_attrs);
-      else
+      }
+      else {
         attrs = pango_attr_list_ref (label->markup_attrs);
+      }
     }
 
     if (label->attrs) {
-      if (attrs)
+      if (attrs) {
         pango_merge_attribute_list (attrs, label->attrs);
-      else
+      }
+      else {
         attrs = pango_attr_list_ref (label->attrs);
+      }
     }
 
     if (attrs) {
@@ -742,7 +756,7 @@ geda_label_class_init (GedaLabelClass *class)
   gobject_class->get_property        = geda_label_get_property;
   gobject_class->finalize            = geda_label_finalize;
 
-   object_class->destroy             = geda_label_destroy;
+  object_class->destroy              = geda_label_destroy;
 
   widget_class->size_request         = geda_label_size_request;
   widget_class->size_allocate        = geda_label_size_allocate;
@@ -1228,7 +1242,7 @@ geda_label_class_init (GedaLabelClass *class)
   gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,
                                 "activate-current-link", 0);
 
-  g_type_class_add_private (class, sizeof (GedaLabelPrivate));
+  g_type_class_add_private (class, sizeof (GedaLabelData));
 
 }
 
@@ -1299,7 +1313,7 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
   GedaLabel *label       = GEDA_LABEL (object);
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   switch (prop_id)
     {
@@ -1366,11 +1380,10 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
 static void
 geda_label_init (GedaLabel *label)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
 
-  label->priv = G_TYPE_INSTANCE_GET_PRIVATE (label,
-                                             GEDA_TYPE_LABEL,
-                                             GedaLabelPrivate);
+  label->priv = GEDA_MEM_ALLOC0 (sizeof(GedaLabelData));
+
   priv = label->priv;
 
   gtk_widget_set_has_window    (GTK_WIDGET (label), FALSE);
@@ -1857,23 +1870,24 @@ GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char *str,
 static bool
 geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelPrivate *priv = label->priv;
-  GtkWidget *parent;
+  GedaLabel     *label  = GEDA_LABEL (widget);
+  GedaLabelData *priv   = label->priv;
+  GtkWidget     *parent;
 
-  if (priv->mnemonic_widget)
+  if (priv->mnemonic_widget) {
     return gtk_widget_mnemonic_activate (priv->mnemonic_widget, group_cycling);
+  }
 
   /* Try to find the widget to activate by traversing the
    * widget's ancestry.
    */
   parent = gtk_widget_get_parent (widget);
 
-  if (GTK_IS_NOTEBOOK (parent))
+  if (GTK_IS_NOTEBOOK (parent)) {
     return FALSE;
+  }
 
-  while (parent)
-  {
+  while (parent) {
     if (gtk_widget_get_can_focus (parent) ||
       (!group_cycling && GTK_WIDGET_GET_CLASS (parent)->activate_signal) ||
       GTK_IS_NOTEBOOK (gtk_widget_get_parent (parent)) ||
@@ -1892,11 +1906,13 @@ geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 static void
 geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 {
-  GedaLabelPrivate *priv = label->priv;
-  GtkWidget *widget = GTK_WIDGET (label);
-  GtkWidget *toplevel;
-  GtkWidget *mnemonic_menu;
+  GedaLabelData *priv;
+  GtkWidget     *widget;
+  GtkWidget     *toplevel;
+  GtkWidget     *mnemonic_menu;
 
+  priv          = label->priv;
+  widget        = GTK_WIDGET (label);
   mnemonic_menu = GEDA_OBJECT_GET_DATA(label, "gtk-mnemonic-menu");
 
   if (last_key != GDK_KEY_VoidSymbol) {
@@ -1980,16 +1996,15 @@ label_shortcut_setting_changed (GtkSettings *settings)
 }
 
 static void
-mnemonics_visible_apply (GtkWidget *widget,
-                         bool   mnemonics_visible)
+mnemonics_visible_apply (GtkWidget *widget, bool mnemonics_visible)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabelData *priv  = label->priv;
 
   mnemonics_visible = mnemonics_visible != FALSE;
 
-  if (priv->mnemonics_visible != mnemonics_visible)
-    {
+  if (priv->mnemonics_visible != mnemonics_visible) {
+
       priv->mnemonics_visible = mnemonics_visible;
 
       geda_label_recalculate (label);
@@ -1998,7 +2013,7 @@ mnemonics_visible_apply (GtkWidget *widget,
 
 static void
 label_mnemonics_visible_traverse_container (GtkWidget *widget,
-                                            void *   data)
+                                            void      *data)
 {
   bool mnemonics_visible = (int)(long) (data);
 
@@ -2007,7 +2022,7 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
 
 void
 _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
-                                                bool   mnemonics_visible)
+                                                 bool mnemonics_visible)
 {
   if (GEDA_IS_LABEL (widget))
     mnemonics_visible_apply (widget, mnemonics_visible);
@@ -2020,7 +2035,7 @@ _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
 static void
 label_mnemonics_visible_changed (GtkWindow  *window,
                                  GParamSpec *pspec,
-                                 void *    data)
+                                 void       *data)
 {
   bool mnemonics_visible;
 
@@ -2068,10 +2083,11 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
 static void
 label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 {
-  GedaLabel *label = data;
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabel     *label = data;
+  GedaLabelData *priv  = label->priv;
 
   priv->mnemonic_widget = NULL;
+
   g_object_notify (G_OBJECT (label), "mnemonic-widget");
 }
 
@@ -2100,26 +2116,29 @@ label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 void
 geda_label_set_mnemonic_widget (GedaLabel  *label, GtkWidget *widget)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
 
   g_return_if_fail (GEDA_IS_LABEL (label));
 
   priv = label->priv;
 
-  if (widget)
+  if (widget) {
     g_return_if_fail (GTK_IS_WIDGET (widget));
+  }
 
-  if (priv->mnemonic_widget)
-  {
+  if (priv->mnemonic_widget) {
+
     gtk_widget_remove_mnemonic_label (priv->mnemonic_widget,
                                       GTK_WIDGET (label));
     g_object_weak_unref (G_OBJECT (priv->mnemonic_widget),
                          label_mnemonic_widget_weak_notify,
                          label);
   }
+
   priv->mnemonic_widget = widget;
-  if (priv->mnemonic_widget)
-  {
+
+  if (priv->mnemonic_widget) {
+
     g_object_weak_ref (G_OBJECT (priv->mnemonic_widget),
                        label_mnemonic_widget_weak_notify,
                        label);
@@ -2172,7 +2191,7 @@ geda_label_get_mnemonic_keyval (GedaLabel *label)
 static void
 geda_label_set_text_internal (GedaLabel *label, char *str)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
   bool text_changed;
   bool is_selectable;
 
@@ -2201,30 +2220,32 @@ geda_label_set_label_internal (GedaLabel *label, char *str)
 static void
 geda_label_set_use_markup_internal (GedaLabel *label, bool val)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   val = val != FALSE;
-  if (priv->use_markup != val)
-    {
-      priv->use_markup = val;
 
-      g_object_notify (G_OBJECT (label), "use-markup");
+  if (priv->use_markup != val) {
 
-    }
+    priv->use_markup = val;
+
+    g_object_notify (G_OBJECT (label), "use-markup");
+
+  }
 }
 
 static void
 geda_label_set_use_underline_internal (GedaLabel *label, bool val)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   val = val != FALSE;
-  if (priv->use_underline != val)
-    {
-      priv->use_underline = val;
 
-      g_object_notify (G_OBJECT (label), "use-underline");
-    }
+  if (priv->use_underline != val) {
+
+    priv->use_underline = val;
+
+    g_object_notify (G_OBJECT (label), "use-underline");
+  }
 }
 
 /* Calculates text, attrs and mnemonic_keyval from
@@ -2232,15 +2253,17 @@ geda_label_set_use_underline_internal (GedaLabel *label, bool val)
  */
 static void geda_label_recalculate (GedaLabel *label)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
   unsigned int keyval = priv->mnemonic_keyval;
 
   geda_label_clear_links (label);
 
-  if (priv->use_markup)
+  if (priv->use_markup) {
     geda_label_set_markup_internal (label, label->label, priv->use_underline);
-  else if (priv->use_underline)
+  }
+  else if (priv->use_underline) {
     geda_label_set_uline_text_internal (label, label->label);
+  }
   else
   {
     if (!priv->pattern_set) {
@@ -2251,8 +2274,9 @@ static void geda_label_recalculate (GedaLabel *label)
     geda_label_set_text_internal (label, g_strdup (label->label));
   }
 
-  if (!priv->use_underline)
+  if (!priv->use_underline) {
     priv->mnemonic_keyval = GDK_KEY_VoidSymbol;
+  }
 
   if (keyval != priv->mnemonic_keyval) {
     geda_label_setup_mnemonic (label, keyval);
@@ -2317,11 +2341,14 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 {
   g_return_if_fail (GEDA_IS_LABEL (label));
 
-  if (attrs)
+  if (attrs) {
     pango_attr_list_ref (attrs);
+  }
 
-  if (label->attrs)
+  if (label->attrs) {
     pango_attr_list_unref (label->attrs);
+  }
+
   label->attrs = attrs;
 
   g_object_notify (G_OBJECT (label), "attributes");
@@ -2416,8 +2443,8 @@ start_element_handler (GMarkupParseContext  *context,
                        void                *user_data,
                        GError              **error)
 {
-  GedaLabelPrivate *priv;
-  UriParserData    *pdata = user_data;
+  GedaLabelData *priv;
+  UriParserData *pdata = user_data;
 
   if (strcmp (element_name, "a") == 0) {
 
@@ -2436,10 +2463,12 @@ start_element_handler (GMarkupParseContext  *context,
 
       const char *attr = attribute_names[i];
 
-      if (strcmp (attr, "href") == 0)
+      if (strcmp (attr, "href") == 0) {
         uri = attribute_values[i];
-      else if (strcmp (attr, "title") == 0)
+      }
+      else if (strcmp (attr, "title") == 0) {
         title = attribute_values[i];
+      }
       else {
         g_set_error (error,
                      G_MARKUP_ERROR,
@@ -2663,17 +2692,17 @@ static void geda_label_ensure_has_tooltip (GedaLabel *label)
 }
 
 static void
-geda_label_set_markup_internal (GedaLabel    *label,
-                                const char   *str,
-                                bool          with_uline)
+geda_label_set_markup_internal (GedaLabel  *label,
+                                const char *str,
+                                bool        with_uline)
 {
-  GedaLabelPrivate *priv  = label->priv;
-  PangoAttrList    *attrs = NULL;
-  GError           *error = NULL;
-  GList            *links = NULL;
-  gunichar          accel = 0;     /* Accelerator Character */
-  char             *text  = NULL;
-  char             *new_str;
+  GedaLabelData *priv  = label->priv;
+  PangoAttrList *attrs = NULL;
+  GError        *error = NULL;
+  GList         *links = NULL;
+  gunichar       accel = 0;     /* Accelerator Character */
+  char          *text  = NULL;
+  char          *new_str;
 
   if (!parse_uri_markup (label, str, &new_str, &links, &error)) {
     fprintf(stderr, "Failed to set text from markup due to error");
@@ -2699,9 +2728,9 @@ geda_label_set_markup_internal (GedaLabel    *label,
                   NULL);
 
     if (!(enable_mnemonics && priv->mnemonics_visible &&
-      (!auto_mnemonics ||
-      (gtk_widget_is_sensitive (GTK_WIDGET (label)) &&
-      (!priv->mnemonic_widget ||
+       (!auto_mnemonics ||
+       (gtk_widget_is_sensitive (GTK_WIDGET (label)) &&
+       (!priv->mnemonic_widget ||
       gtk_widget_is_sensitive (priv->mnemonic_widget))))))
     {
       char *tmp;
@@ -2728,8 +2757,9 @@ geda_label_set_markup_internal (GedaLabel    *label,
 
   g_free (new_str);
 
-  if (text)
+  if (text) {
     geda_label_set_text_internal (label, text);
+  }
 
   if (attrs) {
     if (label->markup_attrs)
@@ -2737,10 +2767,12 @@ geda_label_set_markup_internal (GedaLabel    *label,
     label->markup_attrs = attrs;
   }
 
-  if (accel != 0)
+  if (accel != 0) {
     priv->mnemonic_keyval = gdk_keyval_to_lower (gdk_unicode_to_keyval (accel));
-  else
+  }
+  else {
     priv->mnemonic_keyval = GDK_KEY_VoidSymbol;
+  }
 }
 
 /*! \brief geda_label_set_markup
@@ -2849,25 +2881,26 @@ geda_label_pattern_to_attrs (GedaLabel *label, const char *pattern)
 
   attrs = pango_attr_list_new ();
 
-  while (1)
-  {
-    while (*p && *q && *q != '_')
-    {
-      p = g_utf8_next_char (p);
-      q++;
-    }
-    start = p;
-    while (*p && *q && *q == '_')
-    {
+  while (1) {
+
+    while (*p && *q && *q != '_') {
       p = g_utf8_next_char (p);
       q++;
     }
 
-    if (p > start)
-    {
+    start = p;
+
+    while (*p && *q && *q == '_') {
+      p = g_utf8_next_char (p);
+      q++;
+    }
+
+    if (p > start) {
+
       PangoAttribute *attr = pango_attr_underline_new (PANGO_UNDERLINE_LOW);
+
       attr->start_index = start - label->text;
-      attr->end_index = p - label->text;
+      attr->end_index   = p - label->text;
 
       pango_attr_list_insert (attrs, attr);
     }
@@ -2883,16 +2916,17 @@ geda_label_set_pattern_internal (GedaLabel *label,
                                  const char *pattern,
                                  bool is_mnemonic)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
   PangoAttrList *attrs;
   bool enable_mnemonics;
   bool auto_mnemonics;
 
-  if (priv->pattern_set)
+  if (priv->pattern_set) {
     return;
+  }
 
-  if (is_mnemonic)
-  {
+  if (is_mnemonic) {
+
     g_object_get (gtk_widget_get_settings (GTK_WIDGET (label)),
                   "gtk-enable-mnemonics", &enable_mnemonics,
                   "gtk-auto-mnemonics", &auto_mnemonics,
@@ -2903,15 +2937,21 @@ geda_label_set_pattern_internal (GedaLabel *label,
       (gtk_widget_is_sensitive (GTK_WIDGET (label)) &&
       (!priv->mnemonic_widget ||
       gtk_widget_is_sensitive (priv->mnemonic_widget)))))
+    {
       attrs = geda_label_pattern_to_attrs (label, pattern);
+    }
     else
+    {
       attrs = NULL;
+    }
   }
-  else
+  else {
     attrs = geda_label_pattern_to_attrs (label, pattern);
+  }
 
-  if (label->markup_attrs)
+  if (label->markup_attrs) {
     pango_attr_list_unref (label->markup_attrs);
+  }
 
   label->markup_attrs = attrs;
 }
@@ -3002,6 +3042,7 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
 
   }
 }
+
 void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 {
   geda_label_set_justify ((GedaLabel*) widget, jtype);
@@ -3277,27 +3318,31 @@ static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
 
-  g_free (label->label);
-  g_free (label->text);
+  GEDA_FREE (label->label);
+  GEDA_FREE (label->text);
 
   if (label->layout) {
     g_object_unref (label->layout);
   }
 
-  if (label->attrs)
+  if (label->attrs) {
     pango_attr_list_unref (label->attrs);
+  }
 
-  if (label->markup_attrs)
+  if (label->markup_attrs) {
     pango_attr_list_unref (label->markup_attrs);
+  }
 
   geda_label_clear_links (label);
 
-  g_free (label->priv->select_info);
+  GEDA_FREE (label->priv->select_info);
 
   if ( label->priv->font_map &&  G_IS_OBJECT(label->priv->font_map) ) {
     g_object_unref (label->priv->font_map);
     label->priv->font_map = NULL;
   }
+
+  GEDA_FREE(label->priv);
 
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 }
@@ -3413,7 +3458,7 @@ geda_label_size_allocate (GtkWidget     *widget,
                           GtkAllocation *allocation)
 {
   GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->size_allocate (widget, allocation);
 
@@ -3432,7 +3477,7 @@ geda_label_size_allocate (GtkWidget     *widget,
 static void
 geda_label_update_cursor (GedaLabel *label)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   GtkWidget        *widget;
 
   priv = label->priv;
@@ -4093,7 +4138,7 @@ static void geda_label_select_word (GedaLabel *label)
 static void geda_label_grab_focus (GtkWidget *widget)
 {
   GedaLabel *label;
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   GedaLabelLink *link;
 
   label = GEDA_LABEL (widget);
@@ -4523,7 +4568,7 @@ static void
 drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 {
   GedaLabel *label         = GEDA_LABEL (widget);
-  GedaLabelPrivate *priv   = label->priv;
+  GedaLabelData *priv   = label->priv;
   GdkPixmap *pixmap        = NULL;
 
   g_signal_handlers_disconnect_by_func (widget, drag_begin_cb, NULL);
@@ -4710,7 +4755,7 @@ geda_label_leave_notify (GtkWidget        *widget,
 static void
 geda_label_create_window (GedaLabel *label)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   GtkAllocation    *allocation;
   GtkWidget        *widget;
   GdkWindowAttr     attributes;
@@ -4788,7 +4833,7 @@ geda_label_destroy_window (GedaLabel *label)
 static bool
 geda_label_ensure_select_info (GedaLabel *label)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   if (priv->select_info == NULL) {
 
@@ -4864,7 +4909,7 @@ bool geda_label_widget_get_selectable (GtkWidget *widget)
  */
 void geda_label_set_selectable (GedaLabel *label, bool setting)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
   bool old_setting;
 
   g_return_if_fail (GEDA_IS_LABEL (label));
@@ -5036,7 +5081,7 @@ static void geda_label_select_region_index (GedaLabel *label,
                                             int anchor_index,
                                             int end_index)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
 
   g_return_if_fail (GEDA_IS_LABEL (label));
 
@@ -5794,7 +5839,7 @@ static void
 popup_menu_detach (GtkWidget *attach_widget, GtkMenu *menu)
 {
   GedaLabel        *label = GEDA_LABEL (attach_widget);
-  GedaLabelPrivate *priv  = label->priv;
+  GedaLabelData *priv  = label->priv;
 
   if (priv->select_info) {
     priv->select_info->popup_menu = NULL;
@@ -6011,7 +6056,7 @@ geda_label_activate_link (GedaLabel *label, const char *uri)
 static void
 emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
   bool handled;
 
   g_signal_emit (label, signals[ACTIVATE_LINK], 0, link->uri, &handled);
@@ -6126,7 +6171,7 @@ geda_label_get_current_uri (GedaLabel *label)
 void
 geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 {
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
 
   g_return_if_fail (GEDA_IS_LABEL (label));
 
@@ -6213,7 +6258,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
 int
 _geda_label_get_cursor_position (GedaLabel *label)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   if (priv->select_info && priv->select_info->selectable)
     return g_utf8_pointer_to_offset (label->text,
@@ -6225,7 +6270,7 @@ _geda_label_get_cursor_position (GedaLabel *label)
 int
 _geda_label_get_selection_bound (GedaLabel *label)
 {
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabelData *priv = label->priv;
 
   if (priv->select_info && priv->select_info->selectable)
     return g_utf8_pointer_to_offset (label->text,

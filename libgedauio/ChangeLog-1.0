@@ -1,10 +1,15 @@
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_label.h: Rename GedaLabelPrivate GedaLabelData.
+
     * include/geda_menu_button.h: Rename GedaMenuButtonPrivate GedaMenuButtonData.
 
     * src/widgets/geda_menu_button.c: Eliminate use of GEDA_MENU_BUTTON_GET_PRIVATE,
       G_TYPE_INSTANCE_GET_PRIVATE, allocate using g_malloc0 in geda_menu_button_init
       release in geda_menu_button_finalize.
+
+    * src/widgets/geda_label.c: Use GEDA_MEM_ALLOC0 in geda_label_init instead of
+      g_type_class_add_private in geda_label_class_init.
 
 2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 

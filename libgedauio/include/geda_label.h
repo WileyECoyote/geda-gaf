@@ -68,9 +68,9 @@ typedef struct _GdkRGBA  GdkRGBA;
 #define GEDA_AM_LABEL_NEW  geda_aligned_mnemonic_label_new
 #define GEDA_AVM_LABEL_NEW geda_aligned_visible_mnemonic_label_new
 
-typedef struct _GedaLabel              GedaLabel;
-typedef struct _GedaLabelPrivate       GedaLabelPrivate;
-typedef struct _GedaLabelClass         GedaLabelClass;
+typedef struct _GedaLabel      GedaLabel;
+typedef struct _GedaLabelData  GedaLabelData;
+typedef struct _GedaLabelClass GedaLabelClass;
 
 typedef struct _GedaLabelSelectionInfo GedaLabelSelectionInfo;
 
@@ -91,7 +91,7 @@ struct _GedaLabel
   int     max_width_chars;
 
   /*< private >*/
-  GedaLabelPrivate *priv;
+  GedaLabelData *priv;
 
 };
 

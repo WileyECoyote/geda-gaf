@@ -41,15 +41,15 @@
 #define GEDA_IS_MENU_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_MENU_BUTTON))
 #define GEDA_MENU_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
 
-typedef struct _GedaMenuButton           GedaMenuButton;
-typedef struct _GedaMenuButtonClass      GedaMenuButtonClass;
-typedef struct _GedaMenuButtonPrivate    GedaMenuButtonPrivate;
+typedef struct _GedaMenuButton      GedaMenuButton;
+typedef struct _GedaMenuButtonClass GedaMenuButtonClass;
+typedef struct _GedaMenuButtonData  GedaMenuButtonData;
 
 struct _GedaMenuButton
 {
   GtkEventBox parent;
 
-  GedaMenuButtonPrivate *priv;
+  GedaMenuButtonData *priv;
   GdkWindow *event_window;
 
   char *label_text;
