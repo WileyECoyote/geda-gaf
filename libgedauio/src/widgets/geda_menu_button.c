@@ -127,13 +127,12 @@ enum
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
+static void *geda_menu_button_parent_class = NULL;
+
 static GtkBuildableIface *parent_buildable_iface;
 
-G_DEFINE_TYPE_WITH_CODE (GedaMenuButton, geda_menu_button, GTK_TYPE_EVENT_BOX,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-                                                geda_menu_button_buildable_interface_init))
-
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
+
 void
 geda_menu_button_set_style (GedaMenuButton *button, GtkStyle *new_style)
 {
@@ -962,21 +961,34 @@ geda_menu_button_destroy (GtkObject *object)
 
 /* BEGIN ------+-------+-------^ Constructors  ^-------+-------+-------+-----*/
 
-static void geda_menu_button_init (GedaMenuButton *button)
+/*! \brief Type instance initializer for GedaMenuButton
+ *
+ *  \par Function Description
+ *  Type instance initializer for GedaMenuButton, initializes a new empty
+ *  GedaMenuButton object.
+ *
+ *  \param [in] instance The GedaMenuButton structure being initialized,
+ *  \param [in] class    The GedaMenuButton class we are initializing.
+ */
+static void
+geda_menu_button_init (GTypeInstance *instance, void *class)
 {
-  GtkWidget *box;
-  GtkWidget *arrow;
-  GtkWidget *arrow_button;
-  GtkWidget *main_button;
+  GedaMenuButton *button;
+  GtkWidget      *box;
+  GtkWidget      *arrow;
+  GtkWidget      *arrow_button;
+  GtkWidget      *main_button;
 
+  button       = (GedaMenuButton*)instance;
   button->priv = GEDA_MEM_ALLOC0 (sizeof(GedaMenuButtonData));
+
   box          = gtk_hbox_new (FALSE, 0);
   main_button  = gtk_button_new ();
 
-  gtk_container_add (GTK_CONTAINER(box), main_button);
-
   arrow_button = gtk_toggle_button_new ();
   arrow        = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+
+  gtk_container_add (GTK_CONTAINER(box), main_button);
 
   gtk_container_add (GTK_CONTAINER (arrow_button), arrow);
 
@@ -1014,17 +1026,20 @@ static void geda_menu_button_init (GedaMenuButton *button)
  *  \par Function Description
  *  Function is called to initialize the class instance.
  *
- * \param [in] klass A GedaMenuButtonClass Object
+ * \param [in] class    A GedaMenuButtonClass Object
+ * \param [in] class_data GedaMenuButton structure associated with the class
  */
-static void geda_menu_button_class_init (GedaMenuButtonClass *klass)
+static void geda_menu_button_class_init (void *class, void *class_data)
 {
-  GtkObjectClass   *gtk_object_class;
-  GObjectClass     *object_class;
-  GtkWidgetClass   *widget_class;
+  GedaMenuButtonClass *menu_button_class;
+  GtkObjectClass      *gtk_object_class;
+  GObjectClass        *object_class;
+  GtkWidgetClass      *widget_class;
 
-  gtk_object_class = (GtkObjectClass*)klass;
-  object_class     = (GObjectClass*)klass;
-  widget_class     = (GtkWidgetClass*)klass;
+  menu_button_class = (GedaMenuButtonClass*)class;
+  gtk_object_class  = (GtkObjectClass*)class;
+  object_class      = (GObjectClass*)class;
+  widget_class      = (GtkWidgetClass*)class;
 
   gtk_object_class->destroy        = geda_menu_button_destroy;
 
@@ -1041,12 +1056,14 @@ static void geda_menu_button_class_init (GedaMenuButtonClass *klass)
   widget_class->leave_notify_event = geda_menu_button_leave_notify;
   widget_class->state_changed      = geda_menu_button_state_changed;
 
-  klass->pressed                   = geda_menu_button_button_pressed;
-  klass->released                  = geda_menu_button_button_released;
-  klass->clicked                   = geda_menu_button_button_clicked;
-  klass->enter                     = geda_menu_button_update_state;
-  klass->leave                     = geda_menu_button_update_state;
-  klass->activate                  = geda_menu_button_activate;
+  menu_button_class->pressed       = geda_menu_button_button_pressed;
+  menu_button_class->released      = geda_menu_button_button_released;
+  menu_button_class->clicked       = geda_menu_button_button_clicked;
+  menu_button_class->enter         = geda_menu_button_update_state;
+  menu_button_class->leave         = geda_menu_button_update_state;
+  menu_button_class->activate      = geda_menu_button_activate;
+
+  geda_menu_button_parent_class    = g_type_class_peek_parent (class);
 
   g_object_class_install_property (object_class,
                                    PROP_MENU,
@@ -1256,14 +1273,62 @@ static void geda_menu_button_class_init (GedaMenuButtonClass *klass)
    * since the arrow is made insensitive if the menu is not set.
    */
   signals[SHOW_MENU] = g_signal_new ("show-menu",
-                         G_OBJECT_CLASS_TYPE (klass),
+                         G_OBJECT_CLASS_TYPE (menu_button_class),
                          G_SIGNAL_RUN_FIRST,
                          G_STRUCT_OFFSET (GedaMenuButtonClass, show_menu),
                          NULL, NULL,
                          g_cclosure_marshal_VOID__VOID,
                          G_TYPE_NONE, 0);
+}
 
-  g_type_class_add_private (object_class, sizeof (GedaMenuButtonData));
+/*! \brief Retrieve GedaMenuButton's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaMenuButton Type identifier. When
+ *  first called, the function registers a #GedaMenuButton in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaMenuButton and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaMenuButton.
+ */
+GedaType
+geda_menu_button_get_type (void)
+{
+  static GedaType geda_menu_button_type = 0;
+
+  if (g_once_init_enter (&geda_menu_button_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaMenuButtonClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_menu_button_class_init,     /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(GedaMenuButton),
+      0,                               /* n_preallocs         */
+      geda_menu_button_init            /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaMenuButton");
+    type   = g_type_register_static (GTK_TYPE_EVENT_BOX, string, &info, 0);
+
+    const GInterfaceInfo interface_info = {
+      (GInterfaceInitFunc) geda_menu_button_buildable_interface_init,
+      NULL,
+      NULL
+    };
+
+    g_type_add_interface_static (type, GTK_TYPE_BUILDABLE, &interface_info);
+
+    g_once_init_leave (&geda_menu_button_type, type);
+  }
+
+  return geda_menu_button_type;
 }
 
 /* END ------------------------- Initialization ---------------------------- */
@@ -1284,7 +1349,8 @@ geda_menu_deactivate_cb (GtkMenuShell *menu_shell, GedaMenuButton *button)
   return TRUE;
 }
 
-static void menu_detacher (GtkWidget *widget, GtkMenu *menu)
+static void
+menu_detacher (GtkWidget *widget, GtkMenu *menu)
 {
   GedaMenuButtonData *priv = GEDA_MENU_BUTTON (widget)->priv;
 
@@ -1352,17 +1418,19 @@ geda_menu_button_buildable_add_child (GtkBuildable *buildable,
                                       GObject      *child,
                                       const char   *type)
 {
-  if (type && strcmp (type, "menu") == 0)
+  if (type && strcmp (type, "menu") == 0) {
     geda_menu_button_set_menu (GEDA_MENU_BUTTON (buildable), GTK_WIDGET (child));
-  else
+  }
+  else {
     parent_buildable_iface->add_child (buildable, builder, child, type);
+  }
 }
 
 static void
 geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
 {
   parent_buildable_iface = g_type_interface_peek_parent (iface);
-  iface->add_child = geda_menu_button_buildable_add_child;
+  iface->add_child       = geda_menu_button_buildable_add_child;
 }
 
 /*! \brief Set the Menu Widget for GedaMenuButton object
@@ -1387,33 +1455,33 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
 
   if (priv->menu != menu) {
 
-      if (priv->menu && gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
-        gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
+    if (priv->menu && gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
+      gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
 
-      if (priv->menu) {
+    if (priv->menu) {
 
-          g_signal_handlers_disconnect_by_func (priv->menu,
-                                                geda_menu_deactivate_cb,
-                                                button);
-          gtk_menu_detach ((GtkMenu*)priv->menu);
-      }
-
-      priv->menu = menu;
-
-      if (priv->menu) {
-
-          gtk_menu_attach_to_widget ((GtkMenu*)priv->menu, GTK_WIDGET (button),
-                                     menu_detacher);
-
-          gtk_widget_set_sensitive (priv->arrow_button, TRUE);
-
-          g_signal_connect (priv->menu, "deactivate",
-                            G_CALLBACK (geda_menu_deactivate_cb), button);
-      }
-      else {
-       gtk_widget_set_sensitive (priv->arrow_button, FALSE);
-      }
+      g_signal_handlers_disconnect_by_func (priv->menu,
+                                            geda_menu_deactivate_cb,
+                                            button);
+      gtk_menu_detach ((GtkMenu*)priv->menu);
     }
+
+    priv->menu = menu;
+
+    if (priv->menu) {
+
+      gtk_menu_attach_to_widget ((GtkMenu*)priv->menu, GTK_WIDGET (button),
+                                 menu_detacher);
+
+      gtk_widget_set_sensitive (priv->arrow_button, TRUE);
+
+      g_signal_connect (priv->menu, "deactivate",
+                        G_CALLBACK (geda_menu_deactivate_cb), button);
+    }
+    else {
+      gtk_widget_set_sensitive (priv->arrow_button, FALSE);
+    }
+  }
 
   g_object_notify (G_OBJECT (button), "menu");
 }
@@ -1483,7 +1551,6 @@ GedaMenuButton *geda_menu_button_new_from_stock (const char *stock_id)
                                                 "border-width", 0,
                                                 "menu-relief", GTK_RELIEF_NONE,
                                                  NULL);
-
   return button;
 }
 
@@ -1495,7 +1562,6 @@ geda_menu_button_new(GtkWidget *icon_widget, const char *label)
   button = g_object_new (GEDA_TYPE_MENU_BUTTON, "border-width", 0,
                                                 "menu-relief", GTK_RELIEF_NONE,
                                                 NULL);
-
   if (label)
     geda_menu_button_set_label(button, label);
 

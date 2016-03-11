@@ -8,6 +8,14 @@
       removing in geda_entry_unrealize, and call pango_cairo_font_map_set_default
       with NULL argument and this causes Pango to releases the resources.
 
+    * src/widgets/geda_handlebox.c: Remove g_type_class_add_private from
+      geda_handle_box_class_init and add allocate private data using GEDA_
+      MEM_ALLOC0 in geda_handle_box_instance_init and free in new overide
+      geda_handle_box_finalize. Rename GedaHandlePrivate GedaHandleBoxData.
+
+    * src/widgets/geda_menu_button.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
+      define with buildable interface in code.
+
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Rename GedaLabelPrivate GedaLabelData.
