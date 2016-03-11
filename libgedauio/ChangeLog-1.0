@@ -1,3 +1,8 @@
+2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * widgets/geda_font_button.c: Replace gtk_vseparator with geda_vseparator,
+      use relative path for local includes.
+
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Rename GedaLabelPrivate GedaLabelData.

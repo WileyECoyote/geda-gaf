@@ -44,11 +44,11 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include "geda_label.h"
-#include "geda_font_button.h"
-#include "geda_font_dialog.h"
-
-#include "gettext.h"
+#include "../../include/geda_label.h"
+#include "../../include/geda_font_button.h"
+#include "../../include/geda_font_dialog.h"
+#include "../../include/geda_separator.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 
@@ -1493,7 +1493,7 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
   gtk_widget_show(font_label);
 
   if (font_button->priv->show_size) {
-    gtk_box_pack_start (GTK_BOX (widget), gtk_vseparator_new (), FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (widget), geda_vseparator_new (), FALSE, FALSE, 0);
     size_label = geda_label_new ("10");
 
     gtk_box_pack_start (GTK_BOX (widget), size_label, FALSE, FALSE, 5);
