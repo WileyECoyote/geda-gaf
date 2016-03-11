@@ -1,3 +1,9 @@
+2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_macros.h: Declare gschem_macro_widget_new.
+
+    * src/base/gschem_macro_widget.c: Add function gschem_macro_widget_new.
+
 2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Reduce scope of load_last in load_documents.

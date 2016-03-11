@@ -59,11 +59,13 @@ extern "C" {
 
 GedaType      gschem_macro_widget_get_type            (void);
 
-GtkWidget*    gschem_macro_widget_get_entry           (GtkWidget *widget);
+GtkWidget    *gschem_macro_widget_new                 (void);
 
-const char*   gschem_macro_widget_get_label_text      (GtkWidget *widget);
+GtkWidget    *gschem_macro_widget_get_entry           (GtkWidget *widget);
 
-const char*   gschem_macro_widget_get_macro_string    (GtkWidget *widget);
+const char   *gschem_macro_widget_get_label_text      (GtkWidget *widget);
+
+const char   *gschem_macro_widget_get_macro_string    (GtkWidget *widget);
 
 void          gschem_macro_widget_set_label_text      (GtkWidget *widget, const char *text);
 

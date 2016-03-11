@@ -376,6 +376,12 @@ GedaType gschem_macro_widget_get_type (void)
   return type;
 }
 
+GtkWidget*
+gschem_macro_widget_new(void)
+{
+  return g_object_new (GSCHEM_TYPE_MACRO_WIDGET, NULL);
+}
+
 /*! \brief Set the label text
  *
  *  \param [in,out] widget This GschemMacroWidget
