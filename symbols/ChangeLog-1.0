@@ -1,4 +1,11 @@
-2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 2 symbols, Power-Distribution switches:
+
+            * ti/TPS2041BD-1.sym (SOIC8)
+            * ti/TPS2041BDBV-1.sym (SOT23-5)
+
+2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM53600M-1.sym: Add symbol Adjustable Buck, 36V, 0.65A.
 
