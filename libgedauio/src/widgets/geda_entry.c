@@ -594,8 +594,8 @@ static void geda_entry_finalize (GObject *object)
   if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
     pango_attr_list_unref (entry->priv->attrs);
 
-  if ( entry->priv->font_map) {
-    g_object_unref (entry->priv->font_map);
+  if (entry->priv->font_map) {
+    pango_cairo_font_map_set_default (NULL);
     entry->priv->font_map = NULL;
   }
 
@@ -770,14 +770,15 @@ geda_entry_class_init(void *g_class, void *class_data)
  */
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaEntry         *entry   = (GedaEntry*)instance;
-  entry->priv                = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
-  GedaEntryPriv     *priv    = entry->priv;
+  GedaEntry      *entry  = (GedaEntry*)instance;
+  entry->priv            = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
+  GedaEntryPriv  *priv   = entry->priv;
+  priv->font_map         = pango_cairo_font_map_get_default();
 
   g_signal_connect_after (G_OBJECT (entry), "key_press_event",
                           G_CALLBACK (geda_entry_key_press), NULL);
 
-  entry->have_history   = have_history;
+  entry->have_history = have_history;
 
   if (have_history) {
 
@@ -819,7 +820,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   entry->validation_mode      = ACCEPT_ALL_ASCII;
   entry->text_case            = BOTH_CASES;
   entry->activates_default    = FALSE;
-  priv->case_sensitive = FALSE;
+  priv->case_sensitive        = FALSE;
 
   entry->priv->attrs          = NULL;
 #if DEBUG_GEDA_ENTRY
@@ -969,16 +970,13 @@ static void geda_entry_realize (GtkWidget *widget)
   if (gtk_widget_has_screen(widget)) {
 
     GedaEntry     *entry;
-    GedaEntryPriv *priv;
     PangoContext  *context;
     PangoLayout   *layout;
 
     entry = GEDA_ENTRY (widget);
-    priv  = entry->priv;
 
-    priv->font_map = pango_cairo_font_map_get_default();
-    layout         = gtk_entry_get_layout ((GtkEntry*) widget);
-    context        = pango_layout_get_context (layout);
+    layout  = gtk_entry_get_layout ((GtkEntry*) widget);
+    context = pango_layout_get_context (layout);
 
     pango_context_set_font_map (context, entry->priv->font_map);
     entry->priv->font_map = g_object_ref (entry->priv->font_map);
@@ -993,7 +991,6 @@ static void geda_entry_unrealize (GtkWidget *widget)
 
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
-    entry->priv->font_map = NULL;
   }
 }
 

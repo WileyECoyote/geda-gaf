@@ -3,6 +3,11 @@
     * widgets/geda_font_button.c: Replace gtk_vseparator with geda_vseparator,
       use relative path for local includes.
 
+    * src/widgets/geda_entry.c: Go back to calling pango_cairo_font_map_get_default
+      geda_entry_instance_init, keep adding reference in geda_entry_realize and
+      removing in geda_entry_unrealize, and call pango_cairo_font_map_set_default
+      with NULL argument and this causes Pango to releases the resources.
+
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Rename GedaLabelPrivate GedaLabelData.
