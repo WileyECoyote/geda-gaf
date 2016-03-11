@@ -8,6 +8,10 @@
       G_TYPE_INSTANCE_GET_PRIVATE, allocate using g_malloc0 in geda_menu_button_init
       release in geda_menu_button_finalize.
 
+    * src/widgets/geda_entry.c: Revise module to call pango_cairo_font_map_get_default
+      in geda_entry_realize instead of geda_entry_instance_init, and unreference
+      in new overide geda_entry_unrealize.
+
     * src/widgets/geda_label.c: Use GEDA_MEM_ALLOC0 in geda_label_init instead of
       g_type_class_add_private in geda_label_class_init.
 

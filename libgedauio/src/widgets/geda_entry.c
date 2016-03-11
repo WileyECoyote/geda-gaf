@@ -108,6 +108,7 @@ static bool    geda_entry_key_press          (GedaEntry        *widget,
                                               void             *data);
 static void    geda_entry_grab_focus         (GtkWidget        *widget);
 static void    geda_entry_realize            (GtkWidget        *widget);
+static void    geda_entry_unrealize          (GtkWidget        *widget);
 static void    geda_entry_activate           (GedaEntry        *entry,
                                               void             *data);
 static void    geda_entry_history_up         (GedaEntry        *entry);
@@ -593,7 +594,7 @@ static void geda_entry_finalize (GObject *object)
   if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
     pango_attr_list_unref (entry->priv->attrs);
 
-  if ( entry->priv->font_map && G_IS_OBJECT(entry->priv->font_map) ) {
+  if ( entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
     entry->priv->font_map = NULL;
   }
@@ -750,6 +751,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 
   widget_class->grab_focus = geda_entry_grab_focus;
   widget_class->realize    = geda_entry_realize;
+  widget_class->unrealize  = geda_entry_unrealize;
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s created: history=%d, completion=%d\n",
@@ -768,20 +770,21 @@ geda_entry_class_init(void *g_class, void *class_data)
  */
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaEntry *entry      = (GedaEntry*)instance;
-  entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
+  GedaEntry         *entry   = (GedaEntry*)instance;
+  entry->priv                = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
+  GedaEntryPriv     *priv    = entry->priv;
 
-  entry->priv->font_map = pango_cairo_font_map_get_default();
-
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
+  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+                          G_CALLBACK (geda_entry_key_press), NULL);
 
   entry->have_history   = have_history;
 
   if (have_history) {
 
-    g_signal_connect     (G_OBJECT (entry), "process-entry",   G_CALLBACK (geda_entry_activate), NULL);
+    g_signal_connect     (G_OBJECT (entry), "process-entry",
+                          G_CALLBACK (geda_entry_activate), NULL);
 
-    if(history_list_arg) {
+    if (history_list_arg) {
 
       history_list         = *history_list_arg;
       entry->history_index = g_list_length (history_list);
@@ -792,16 +795,18 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
     }
   }
 
-  g_signal_connect       (G_OBJECT (entry), "populate-popup",  G_CALLBACK (geda_entry_populate_popup), NULL);
+  g_signal_connect (G_OBJECT (entry), "populate-popup",
+                    G_CALLBACK (geda_entry_populate_popup), NULL);
 
-  g_signal_connect       (G_OBJECT (entry), "insert_text",     G_CALLBACK (geda_entry_validate_input), NULL);
+  g_signal_connect (G_OBJECT (entry), "insert_text",
+                    G_CALLBACK (geda_entry_validate_input), NULL);
 
   /* Initialize & populate a GCompletion for commands */
   if (old_complete_list) {
 
     complete_list = *old_complete_list;
-    entry->priv->command_completion = geda_completion_new (NULL);
-    geda_completion_add_items (entry->priv->command_completion, complete_list);
+    priv->command_completion = geda_completion_new (NULL);
+    geda_completion_add_items (priv->command_completion, complete_list);
     entry->auto_complete = TRUE;
   }
   else {
@@ -814,7 +819,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   entry->validation_mode      = ACCEPT_ALL_ASCII;
   entry->text_case            = BOTH_CASES;
   entry->activates_default    = FALSE;
-  entry->priv->case_sensitive = FALSE;
+  priv->case_sensitive = FALSE;
 
   entry->priv->attrs          = NULL;
 #if DEBUG_GEDA_ENTRY
@@ -947,6 +952,7 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   }
   return handled;
 }
+
 static void
 geda_entry_grab_focus (GtkWidget *widget)
 {
@@ -955,18 +961,24 @@ geda_entry_grab_focus (GtkWidget *widget)
   */
   GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
+
 static void geda_entry_realize (GtkWidget *widget)
 {
-  PangoContext         *context;
-  PangoLayout          *layout;
-
-  GedaEntry *entry = GEDA_ENTRY (widget);
-
   GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
 
   if (gtk_widget_has_screen(widget)) {
-    layout = gtk_entry_get_layout ( (GtkEntry*) widget);
-    context = pango_layout_get_context (layout);
+
+    GedaEntry     *entry;
+    GedaEntryPriv *priv;
+    PangoContext  *context;
+    PangoLayout   *layout;
+
+    entry = GEDA_ENTRY (widget);
+    priv  = entry->priv;
+
+    priv->font_map = pango_cairo_font_map_get_default();
+    layout         = gtk_entry_get_layout ((GtkEntry*) widget);
+    context        = pango_layout_get_context (layout);
 
     pango_context_set_font_map (context, entry->priv->font_map);
     entry->priv->font_map = g_object_ref (entry->priv->font_map);
@@ -974,6 +986,17 @@ static void geda_entry_realize (GtkWidget *widget)
 
   }
 }
+
+static void geda_entry_unrealize (GtkWidget *widget)
+{
+  GedaEntry *entry = GEDA_ENTRY (widget);
+
+  if (entry->priv->font_map) {
+    g_object_unref (entry->priv->font_map);
+    entry->priv->font_map = NULL;
+  }
+}
+
 static void
 geda_entry_activate (GedaEntry *entry, void    *data)
 {
