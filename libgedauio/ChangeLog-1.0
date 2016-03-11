@@ -1,3 +1,11 @@
+2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_button.h: Rename GedaMenuButtonPrivate GedaMenuButtonData.
+
+    * src/widgets/geda_menu_button.c: Eliminate use of GEDA_MENU_BUTTON_GET_PRIVATE,
+      G_TYPE_INSTANCE_GET_PRIVATE, allocate using g_malloc0 in geda_menu_button_init
+      release in geda_menu_button_finalize.
+
 2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Remove g_type_class_add_private from
