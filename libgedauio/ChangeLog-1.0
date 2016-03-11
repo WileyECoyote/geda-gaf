@@ -1,12 +1,16 @@
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_entry.h: Declare geda_entry_get_text and geda_entry_widget_
+      get_text.
+
     * widgets/geda_font_button.c: Replace gtk_vseparator with geda_vseparator,
       use relative path for local includes.
 
     * src/widgets/geda_entry.c: Go back to calling pango_cairo_font_map_get_default
       geda_entry_instance_init, keep adding reference in geda_entry_realize and
       removing in geda_entry_unrealize, and call pango_cairo_font_map_set_default
-      with NULL argument and this causes Pango to releases the resources.
+      with NULL argument and this causes Pango to releases the resources. Add
+      functions geda_entry_get_text and geda_entry_widget_get_text.
 
     * src/widgets/geda_handlebox.c: Remove g_type_class_add_private from
       geda_handle_box_class_init and add allocate private data using GEDA_

@@ -80,21 +80,22 @@ typedef enum {
 
 struct _GedaEntry
 {
-        GtkEntry          parent;
-        GedaEntryAccept   validation_mode;
-        volatile int      enable_drag_n_drop   : 1;
-        volatile int      activates_default    : 1;
-        volatile int      auto_complete        : 1;
-        volatile int      have_history;
-        volatile int      history_index;
-        volatile int      text_case;
-        volatile int      max_history;
-        GedaEntryPriv    *priv;
+    GtkEntry          parent;
+    GedaEntryAccept   validation_mode;
+    volatile int      enable_drag_n_drop   : 1;
+    volatile int      activates_default    : 1;
+    volatile int      auto_complete        : 1;
+    volatile int      have_history;
+    volatile int      history_index;
+    volatile int      text_case;
+    volatile int      max_history;
+    PangoLayout      *cached_layout;
+    GedaEntryPriv    *priv;
 };
 
 struct _GedaEntryClass
 {
-        GtkEntryClass   parent_class;
+  GtkEntryClass   parent_class;
 
   /* Action signals */
   void (* activate)           (GedaEntry        *entry);
@@ -166,6 +167,8 @@ void geda_entry_completion_set_case          (GedaEntry *entry,
 bool geda_entry_get_input_case               (GedaEntry *entry);
 void geda_entry_set_input_case               (GedaEntry *entry,
                                               int mode);
+const char*
+     geda_entry_get_text                     (GedaEntry *entry);
 bool geda_entry_get_activates_default        (GedaEntry *entry);
 void geda_entry_set_activates_default        (GedaEntry *entry,
                                               bool  setting);
@@ -194,7 +197,7 @@ void geda_entry_widget_set_max_history       (GtkWidget *entry,
                                               int value);
 void geda_entry_widget_set_completion        (GtkWidget *entry,
                                               GedaCompletion *completion);
-GedaCompletion *
+GedaCompletion*
      geda_entry_widget_get_completion        (GtkWidget *entry);
 
 bool geda_entry_widget_completion_get_case   (GtkWidget *entry);
@@ -203,6 +206,9 @@ void geda_entry_widget_completion_set_case   (GtkWidget *entry,
 bool geda_entry_widget_get_input_case        (GtkWidget *entry);
 void geda_entry_widget_set_input_case        (GtkWidget *entry,
                                               int mode);
+const char*
+     geda_entry_widget_get_text              (GtkWidget *entry);
+
 bool geda_entry_widget_get_activates_default (GtkWidget *entry);
 void geda_entry_widget_set_activates_default (GtkWidget *entry,
                                               bool  setting);

@@ -159,6 +159,18 @@ const char* IDS_CONSOLE_POPUP[] = {
   NULL
 };
 
+const char*
+geda_entry_get_text (GedaEntry *entry)
+{
+  GtkEntryBuffer *buffer;
+
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+
+  g_object_get (entry, "buffer", &buffer, NULL);
+
+  return gtk_entry_buffer_get_text (buffer);
+}
+
 /*! \brief GedaEntry Get Activates Default
  *  \par Function Description
  *
@@ -213,7 +225,8 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
  * \param [in] entry: Pointer to a #GedaEntry object.
  * \param [in] attrs: Pointer to a PangoAttrList structure.
  */
-void geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
+void
+geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
 {
   PangoAttrList *old_attrs;
   PangoLayout* layout;
@@ -249,19 +262,22 @@ void geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
  * \retval PangoAttrList attribute list, or %NULL
  *         if none was set.
  */
-PangoAttrList  *geda_entry_get_attributes (GedaEntry *entry)
+PangoAttrList  *
+geda_entry_get_attributes (GedaEntry *entry)
 {
   g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
 
   return entry->priv->attrs;
 }
 
-void geda_entry_set_max_history (GedaEntry *entry, int value)
+void
+geda_entry_set_max_history (GedaEntry *entry, int value)
 {
   entry->max_history = value;
 }
 
-int  geda_entry_get_max_history (GedaEntry *entry)
+int
+geda_entry_get_max_history (GedaEntry *entry)
 {
   return entry->max_history;
 }
@@ -273,7 +289,8 @@ GedaCompletion * geda_entry_get_completion (GedaEntry *entry)
 }
 
 /*! \brief Get sensitivity of internal completion algorithms */
-bool geda_entry_completion_get_case (GedaEntry *entry) {
+bool
+geda_entry_completion_get_case (GedaEntry *entry) {
 
   g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
 
@@ -299,13 +316,15 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
   }
 }
 
-bool geda_entry_get_input_case (GedaEntry *entry)
+bool
+geda_entry_get_input_case (GedaEntry *entry)
 {
   g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
   return entry->text_case;
 }
 
-void geda_entry_set_input_case  (GedaEntry *entry, int mode)
+void
+geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
   GEDA_ENTRY(entry)->text_case = mode;
 }
@@ -317,7 +336,8 @@ geda_entry_get_valid_input (GedaEntry *entry)
   return entry->validation_mode;
 }
 
-void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
+void
+geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
@@ -416,11 +436,12 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
     }
 }
 
-static void geda_entry_validate_input (GtkEntry    *entry,
-                                       const char  *text,
-                                       int          length,
-                                       int         *position,
-                                       void        *data)
+static void
+geda_entry_validate_input (GtkEntry    *entry,
+                           const char  *text,
+                           int          length,
+                           int         *position,
+                           void        *data)
 {
   GtkEditable *editable   = GTK_EDITABLE (entry);
   GedaEntry   *geda_entry = GEDA_ENTRY   (entry);
@@ -505,9 +526,10 @@ geda_entry_drag_end (GtkWidget      *widget,
 
 }
 
-static void geda_entry_drag_leave (GtkWidget        *widget,
-                                   GdkDragContext   *context,
-                                   unsigned int      time)
+static void
+geda_entry_drag_leave (GtkWidget      *widget,
+                       GdkDragContext *context,
+                       unsigned int    time)
 {
   GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
@@ -515,10 +537,12 @@ static void geda_entry_drag_leave (GtkWidget        *widget,
   gtk_widget_queue_draw (widget);
 }
 
-static bool geda_entry_drag_drop (GtkWidget      *widget,
-                                  GdkDragContext *context,
-                                  int x, int y,
-                                  unsigned int time)
+static bool
+geda_entry_drag_drop (GtkWidget      *widget,
+                      GdkDragContext *context,
+                      int             x,
+                      int             y,
+                      unsigned int    time)
 {
   GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
@@ -528,11 +552,12 @@ static bool geda_entry_drag_drop (GtkWidget      *widget,
   return FALSE; /* No continue */
 }
 
-static bool geda_entry_drag_motion (GtkWidget       *widget,
-                                    GdkDragContext  *context,
-                                    int              x,
-                                    int              y,
-                                    unsigned int     time)
+static bool
+geda_entry_drag_motion (GtkWidget       *widget,
+                        GdkDragContext  *context,
+                        int              x,
+                        int              y,
+                        unsigned int     time)
 {
   GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
@@ -963,7 +988,8 @@ geda_entry_grab_focus (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
 
-static void geda_entry_realize (GtkWidget *widget)
+static void
+geda_entry_realize (GtkWidget *widget)
 {
   GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
 
@@ -985,7 +1011,8 @@ static void geda_entry_realize (GtkWidget *widget)
   }
 }
 
-static void geda_entry_unrealize (GtkWidget *widget)
+static void
+geda_entry_unrealize (GtkWidget *widget)
 {
   GedaEntry *entry = GEDA_ENTRY (widget);
 
@@ -1106,7 +1133,8 @@ geda_entry_history_down (GedaEntry *entry)
  *  first mis-match is because str2 is greater, or 1 if the
  *  first mis-match is because str1 is greater.
  */
-static int geda_entry_strncmpi(char *str1, char *str2, int n)
+static int
+geda_entry_strncmpi(char *str1, char *str2, int n)
 {
   unsigned int i = 0;
   if (!str1 || !str2) {
@@ -1135,7 +1163,8 @@ static int geda_entry_strncmpi(char *str1, char *str2, int n)
           return ((*str1 > *str2 ) ? -1 : 1);
 }
 
-static bool geda_entry_tab_complete (GtkEntry *entry)
+static bool
+geda_entry_tab_complete (GtkEntry *entry)
 {
   char  *buffer;
   char  *s_ptr;
@@ -1305,16 +1334,18 @@ geda_entry_modify_color_component (GtkWidget      *widget,
   gtk_widget_modify_style (widget, rc_style);
 }
 
-void geda_entry_modify_fg (GedaEntry *entry,
-                           GtkStateType state,
-                           const GdkColor *color)
+void
+geda_entry_modify_fg (GedaEntry *entry,
+                      GtkStateType state,
+                      const GdkColor *color)
 {
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_FG, state, color);
 }
 
-void geda_entry_modify_bg (GedaEntry      *entry,
-                           GtkStateType    state,
-                           const GdkColor *color)
+void
+geda_entry_modify_bg (GedaEntry      *entry,
+                      GtkStateType    state,
+                      const GdkColor *color)
 {
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
 }
@@ -1340,76 +1371,96 @@ geda_entry_widget_modify_color (GtkWidget      *widget,
  *  @{
  */
 
-PangoAttrList *geda_entry_widget_get_attributes (GtkWidget *entry)
+PangoAttrList*
+geda_entry_widget_get_attributes (GtkWidget *entry)
 {
   return geda_entry_get_attributes (GEDA_ENTRY(entry));
 }
 
-int  geda_entry_widget_get_max_history (GtkWidget *entry)
+int
+geda_entry_widget_get_max_history (GtkWidget *entry)
 {
   return geda_entry_get_max_history (GEDA_ENTRY(entry));
 }
 
-void geda_entry_widget_set_max_history (GtkWidget *entry, int value)
+void
+geda_entry_widget_set_max_history (GtkWidget *entry, int value)
 {
   geda_entry_set_max_history (GEDA_ENTRY(entry), value);
 }
 
-GedaCompletion *geda_entry_widget_get_completion (GtkWidget *entry)
+GedaCompletion *
+geda_entry_widget_get_completion (GtkWidget *entry)
 {
   return geda_entry_get_completion (GEDA_ENTRY(entry));
 }
 
-bool geda_entry_widget_completion_get_case (GtkWidget *entry)
+bool
+geda_entry_widget_completion_get_case (GtkWidget *entry)
 {
   return geda_entry_completion_get_case (GEDA_ENTRY(entry));
 }
 
-void geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
+void
+geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
 {
   geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
 }
 
-bool geda_entry_widget_get_input_case (GtkWidget *entry)
+bool
+geda_entry_widget_get_input_case (GtkWidget *entry)
 {
   return geda_entry_get_input_case (GEDA_ENTRY(entry));
 }
 
-void geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
+void
+geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
 {
   return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
 }
 
-bool geda_entry_widget_get_activates_default (GtkWidget *entry)
+const char*
+geda_entry_widget_get_text (GtkWidget *entry)
+{
+  return geda_entry_get_text (GEDA_ENTRY(entry));
+}
+
+bool
+geda_entry_widget_get_activates_default (GtkWidget *entry)
 {
   return geda_entry_get_activates_default (GEDA_ENTRY(entry));
 }
 
-void geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
+void
+geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
 {
   geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
 }
 
-void geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
+void
+geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
 {
   geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
 }
 
-void geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
+void
+geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {
   geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
 }
 
-void geda_entry_widget_modify_fg (GtkWidget *entry,
-                                  GtkStateType state,
-                                  const GdkColor *color)
+void
+geda_entry_widget_modify_fg (GtkWidget *entry,
+                             GtkStateType state,
+                             const GdkColor *color)
 {
   geda_entry_widget_modify_color (entry, GTK_RC_FG, state, color);
 }
 
-void geda_entry_widget_modify_bg (GtkWidget      *entry,
-                                  GtkStateType    state,
-                                  const GdkColor *color)
+void
+geda_entry_widget_modify_bg (GtkWidget      *entry,
+                             GtkStateType    state,
+                             const GdkColor *color)
 {
   geda_entry_widget_modify_color (entry, GTK_RC_BG, state, color);
 }
@@ -1422,7 +1473,8 @@ void geda_entry_widget_modify_bg (GtkWidget      *entry,
  *  @{
  */
 
-GtkWidget *geda_entry_new (GList** history, GList** complete)
+GtkWidget*
+geda_entry_new (GList** history, GList** complete)
 {
 
   if ((int)(long)history == -1)
@@ -1446,7 +1498,8 @@ GtkWidget *geda_entry_new (GList** history, GList** complete)
   return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
 }
 
-GtkWidget *geda_visible_entry_new (GList** history, GList** complete)
+GtkWidget*
+geda_visible_entry_new (GList** history, GList** complete)
 {
   GtkWidget *entry;
   entry = geda_entry_new ( history, complete);
@@ -1480,7 +1533,8 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
  *
  * \return a new #GedaEntry
  */
-GtkWidget *geda_entry_new_with_max_length (int max_length)
+GtkWidget*
+geda_entry_new_with_max_length (int max_length)
 {
   GtkWidget *entry;
   entry = geda_entry_new (NO_HISTORY, NO_COMPLETION);
