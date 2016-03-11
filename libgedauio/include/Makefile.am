@@ -28,6 +28,7 @@ libgedauio_HEADERS = \
 			geda_label.h             \
 			geda_marshal.h           \
 			geda_menu_button.h       \
+			geda_separator.h         \
 			geda_swatch_renderer.h   \
 			geda_threads.h           \
 			geda_toggle_action.h     \
