@@ -38,6 +38,7 @@
 
 typedef struct _GedaHandleBox       GedaHandleBox;
 typedef struct _GedaHandleBoxClass  GedaHandleBoxClass;
+typedef struct _GedaHandleBoxData   GedaHandleBoxData;
 
 struct _GedaHandleBox
 {
@@ -59,10 +60,12 @@ struct _GedaHandleBox
   int            deskoff_x; /* Offset between root relative coords */
   int            deskoff_y; /* and deskrelative coords             */
 
-  GtkOrientation  dock_orientation;
+  GtkOrientation dock_orientation;
 
-  GtkAllocation   attach_allocation;
-  GtkAllocation   float_allocation;
+  GtkAllocation  attach_allocation;
+  GtkAllocation  float_allocation;
+
+  GedaHandleBoxData *priv;
 };
 
 struct _GedaHandleBoxClass

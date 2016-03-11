@@ -59,9 +59,7 @@
  * @{
  */
 
-typedef struct _GedaHandleBoxPrivate GedaHandleBoxPrivate;
-
-struct _GedaHandleBoxPrivate
+struct _GedaHandleBoxData
 {
   int orig_x;
   int orig_y;
@@ -146,6 +144,7 @@ enum {
  *                | Reduce scope of variables in geda_handle_box_button_press.
  *                | Add call gtk_container_propagate_expose in geda_handle_box
  *                | _expose so internals are painted properly.
+ *
 */
 static void geda_handle_box_set_property  (GObject        *object,
                                            unsigned int    param_id,
@@ -188,6 +187,78 @@ static unsigned int handle_box_signals[SIGNAL_LAST] = { 0 };
 
 static GObjectClass *geda_handle_box_parent_class = NULL;
 
+static void
+geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
+                              const GValue *value, GParamSpec *pspec)
+{
+  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
+
+  switch (prop_id)
+  {
+    case PROP_SHADOW:
+    case PROP_SHADOW_TYPE:
+      geda_handle_box_set_shadow_type (handle_box, g_value_get_enum (value));
+      break;
+    case PROP_HANDLE_POSITION:
+      geda_handle_box_set_handle_position (handle_box, g_value_get_enum (value));
+      break;
+    case PROP_SNAP_EDGE:
+      geda_handle_box_set_snap_edge (handle_box, g_value_get_enum (value));
+      break;
+    case PROP_SNAP_EDGE_SET:
+      if (!g_value_get_boolean (value))
+        geda_handle_box_set_snap_edge (handle_box, (GtkPositionType)-1);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_handle_box_get_property (GObject        *object,
+                             unsigned int     prop_id,
+                             GValue          *value,
+                             GParamSpec      *pspec)
+{
+  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
+
+  switch (prop_id)
+  {
+    case PROP_SHADOW:
+    case PROP_SHADOW_TYPE:
+      g_value_set_enum (value, handle_box->shadow_type);
+      break;
+    case PROP_HANDLE_POSITION:
+      g_value_set_enum (value, handle_box->handle_position);
+      break;
+    case PROP_SNAP_EDGE:
+      g_value_set_enum (value,
+                        (handle_box->snap_edge == -1 ?
+                        GTK_POS_TOP : handle_box->snap_edge));
+      break;
+    case PROP_SNAP_EDGE_SET:
+      g_value_set_boolean (value, handle_box->snap_edge != -1);
+      break;
+    case PROP_CHILD_DETACHED:
+      g_value_set_boolean (value, handle_box->child_detached);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_handle_box_finalize (GObject *object)
+{
+  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (object);
+
+  g_free (handlebox->priv);
+
+  G_OBJECT_CLASS (geda_handle_box_parent_class)->finalize (object);
+}
+
 /*! \brief GedaHandleBoxClass Type Class Initializer
  *
  *  \par Function Description
@@ -213,6 +284,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   object_class->set_property   = geda_handle_box_set_property;
   object_class->get_property   = geda_handle_box_get_property;
+  object_class->finalize       = geda_handle_box_finalize;
 
   geda_handle_box_parent_class = g_type_class_peek_parent(class);
 
@@ -279,7 +351,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
   widget_class->button_press_event = geda_handle_box_button_press;
   widget_class->delete_event       = geda_handle_box_delete_event;
 
-  container_class->add = geda_handle_box_add;
+  container_class->add    = geda_handle_box_add;
   container_class->remove = geda_handle_box_remove;
 
   class->child_attached = NULL;
@@ -305,16 +377,6 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                 g_cclosure_marshal_VOID__POINTER,
                 G_TYPE_NONE, 1,
                 G_TYPE_POINTER);
-
-  g_type_class_add_private (object_class, sizeof (GedaHandleBoxPrivate));
-
-
-}
-
-static GedaHandleBoxPrivate *
-geda_handle_box_get_private (GedaHandleBox *handlebox)
-{
-  return G_TYPE_INSTANCE_GET_PRIVATE (handlebox, GEDA_TYPE_HANDLE_BOX, GedaHandleBoxPrivate);
 }
 
 /*! \brief Type instance initializer for GedaHandleBox
@@ -332,6 +394,8 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
 
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
+
+  handle_box->priv = g_malloc0 (sizeof (GedaHandleBoxData));
 
   handle_box->bin_window          = NULL;
   handle_box->float_window        = NULL;
@@ -386,80 +450,20 @@ GedaType geda_handle_box_get_type (void)
   return geda_handle_box_type;
 }
 
-static void
-geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
-                              const GValue *value, GParamSpec *pspec)
-{
-  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
-
-  switch (prop_id)
-  {
-    case PROP_SHADOW:
-    case PROP_SHADOW_TYPE:
-      geda_handle_box_set_shadow_type (handle_box, g_value_get_enum (value));
-      break;
-    case PROP_HANDLE_POSITION:
-      geda_handle_box_set_handle_position (handle_box, g_value_get_enum (value));
-      break;
-    case PROP_SNAP_EDGE:
-      geda_handle_box_set_snap_edge (handle_box, g_value_get_enum (value));
-      break;
-    case PROP_SNAP_EDGE_SET:
-      if (!g_value_get_boolean (value))
-        geda_handle_box_set_snap_edge (handle_box, (GtkPositionType)-1);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void
-geda_handle_box_get_property (GObject        *object,
-                             unsigned int     prop_id,
-                             GValue          *value,
-                             GParamSpec      *pspec)
-{
-  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
-
-  switch (prop_id)
-  {
-    case PROP_SHADOW:
-    case PROP_SHADOW_TYPE:
-      g_value_set_enum (value, handle_box->shadow_type);
-      break;
-    case PROP_HANDLE_POSITION:
-      g_value_set_enum (value, handle_box->handle_position);
-      break;
-    case PROP_SNAP_EDGE:
-      g_value_set_enum (value,
-                        (handle_box->snap_edge == -1 ?
-                        GTK_POS_TOP : handle_box->snap_edge));
-      break;
-    case PROP_SNAP_EDGE_SET:
-      g_value_set_boolean (value, handle_box->snap_edge != -1);
-      break;
-    case PROP_CHILD_DETACHED:
-      g_value_set_boolean (value, handle_box->child_detached);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
 /*! \brief Get a New GedaHandleBox Object
  *  \par Function Description
  *  Creates and returns a new GedaHandleBox instance
  */
-GtkWidget* geda_handle_box_new (void)
+GtkWidget*
+geda_handle_box_new (void)
 {
   return g_object_new (GEDA_TYPE_HANDLE_BOX, NULL);
 }
 
-static void geda_handle_box_map (GtkWidget *widget)
+static void
+geda_handle_box_map (GtkWidget *widget)
 {
-  GtkBin *bin;
+  GtkBin        *bin;
   GedaHandleBox *handlebox;
 
   gtk_widget_set_mapped (widget, TRUE);
@@ -470,7 +474,9 @@ static void geda_handle_box_map (GtkWidget *widget)
   if (bin->child &&
       gtk_widget_get_visible (bin->child) &&
      !gtk_widget_get_mapped (bin->child))
+  {
     gtk_widget_map (bin->child);
+  }
 
   if (handlebox->child_detached && !handlebox->float_window_mapped) {
 
@@ -483,7 +489,8 @@ static void geda_handle_box_map (GtkWidget *widget)
   gdk_window_show (widget->window);
 }
 
-static void geda_handle_box_unmap (GtkWidget *widget)
+static void
+geda_handle_box_unmap (GtkWidget *widget)
 {
   GedaHandleBox *handlebox;
 
@@ -499,7 +506,8 @@ static void geda_handle_box_unmap (GtkWidget *widget)
     }
 }
 
-static void geda_handle_box_realize (GtkWidget *widget)
+static void
+geda_handle_box_realize (GtkWidget *widget)
 {
   GdkWindowAttr  attributes;
   GtkAllocation *allocation;
@@ -606,7 +614,8 @@ geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
   }
 }
 
-static int effective_handle_position (GedaHandleBox *handlebox)
+static int
+effective_handle_position (GedaHandleBox *handlebox)
 {
   int handle_position;
 
@@ -1196,7 +1205,8 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
   return TRUE;
 }
 
-static GtkWidget *geda_handle_box_get_invisible (void)
+static GtkWidget *
+geda_handle_box_get_invisible (void)
 {
   static GtkWidget *handle_box_invisible = NULL;
 
@@ -1295,14 +1305,15 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 
     if (in_handle) {
 
-      GedaHandleBoxPrivate *private;
-      GdkCursor            *fleur;
-      GtkWidget            *invisible;
+      GedaHandleBoxData *priv;
+      GdkCursor         *fleur;
+      GtkWidget         *invisible;
+
       int desk_x, desk_y;
       int root_x, root_y;
       int width, height;
 
-      private   = geda_handle_box_get_private (handlebox);
+      priv   = handlebox->priv;
       invisible = geda_handle_box_get_invisible ();
 
       gtk_invisible_set_screen (GTK_INVISIBLE (invisible),
@@ -1317,8 +1328,8 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       gdk_window_get_size(handlebox->bin_window, &width, &height);
 #endif
 
-      private->orig_x = event->x_root;
-      private->orig_y = event->y_root;
+      priv->orig_x = event->x_root;
+      priv->orig_y = event->y_root;
 
       handlebox->float_allocation.x      = root_x - event->x_root;
       handlebox->float_allocation.y      = root_y - event->y_root;
@@ -1413,10 +1424,10 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 
   if (pointer_screen != screen) {
 
-    GedaHandleBoxPrivate *private = geda_handle_box_get_private (handlebox);
+    GedaHandleBoxData *priv = handlebox->priv;
 
-    new_x = private->orig_x;
-    new_y = private->orig_y;
+    new_x = priv->orig_x;
+    new_y = priv->orig_y;
   }
 
   new_x += handlebox->float_allocation.x;
@@ -1590,7 +1601,8 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
   return TRUE;
 }
 
-void geda_handle_box_dock (GedaHandleBox *handlebox) {
+void
+geda_handle_box_dock (GedaHandleBox *handlebox) {
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
     g_object_set (GTK_BIN (handlebox)->child, "orientation", handlebox->dock_orientation, NULL);
     geda_handle_box_reattach (handlebox);
