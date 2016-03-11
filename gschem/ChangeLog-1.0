@@ -1,8 +1,12 @@
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/gschem_macros.h: Declare gschem_macro_widget_new.
+    * include/gschem_macros.h: Declare gschem_macro_widget_new, add member
+      cancel_button.
 
-    * src/base/gschem_macro_widget.c: Add function gschem_macro_widget_new.
+    * src/base/gschem_macro_widget.c: Add function gschem_macro_widget_new,
+      remove dispose and finalize, add realize and unrealize, retain pointer
+      to cancel_button connect signals in realize function instead of gschem_
+      macro_widget_instance_init and disconnect signals in unrealize.
 
 2016-03-09 Wiley E. Hill <wileyhill@gmail.com>
 

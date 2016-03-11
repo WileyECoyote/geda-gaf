@@ -64,10 +64,10 @@ static void
 click_evaluate (GtkWidget *entry, GschemMacroWidget *widget);
 
 static void
-dispose (GObject *object);
+realize (GtkWidget *widget);
 
 static void
-finalize (GObject *object);
+unrealize (GtkWidget *widget);
 
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
@@ -107,7 +107,6 @@ activate_entry (GtkWidget *entry, GschemMacroWidget *widget)
   }
 }
 
-
 /* Callback; called when the user clicks the cancel button
  */
 static void
@@ -131,25 +130,51 @@ click_evaluate (GtkWidget *entry, GschemMacroWidget *widget)
   }
 }
 
-/*! \brief Dispose of the object
- */
-static void
-dispose (GObject *object)
+static void realize (GtkWidget *widget)
 {
-  /* lastly, chain up to the parent dispose */
-  if (gschem_macro_widget_parent_class) {
-    gschem_macro_widget_parent_class->dispose (object);
-  }
+  GschemMacroWidget *gmw = GSCHEM_MACRO_WIDGET (widget);
+
+ /* Note: We do not need the "activate" signal here because the geda-entry
+   * widget generates a "process-entry" signal instead. */
+  GEDA_SIGNAL_CONNECT (gmw->entry, "process-entry",
+                       G_CALLBACK (activate_entry), gmw);
+
+  GEDA_SIGNAL_CONNECT (gmw->cancel_button, "clicked",
+                       G_CALLBACK (click_cancel),
+                       gmw);
+
+  GEDA_SIGNAL_CONNECT (gmw->evaluate_button, "clicked",
+                       G_CALLBACK (click_evaluate),
+                       gmw);
+
+  GEDA_SIGNAL_CONNECT (gmw->entry, "notify::text",
+                       G_CALLBACK (notify_entry_text),
+                       gmw);
+
+  GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->realize (widget);
 }
 
-/*! \brief Finalize object
- */
-static void
-finalize (GObject *object)
+static void unrealize (GtkWidget *widget)
 {
-  /* lastly, chain up to the parent finalize */
-  g_return_if_fail (gschem_macro_widget_parent_class != NULL);
-  gschem_macro_widget_parent_class->finalize (object);
+  GschemMacroWidget *gmw = GSCHEM_MACRO_WIDGET (widget);
+
+  g_signal_handlers_disconnect_by_func (gmw->entry,
+                                        activate_entry,
+                                        gmw);
+
+  g_signal_handlers_disconnect_by_func (gmw->cancel_button,
+                                        click_cancel,
+                                        gmw);
+
+  g_signal_handlers_disconnect_by_func (gmw->evaluate_button,
+                                        click_evaluate,
+                                        gmw);
+
+  g_signal_handlers_disconnect_by_func (gmw->entry,
+                                        notify_entry_text,
+                                        gmw);
+
+  GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->unrealize (widget);
 }
 
 /*! \brief Get a property
@@ -188,13 +213,15 @@ static void
 gschem_macro_widget_class_init (void *g_class, void *g_class_data)
 {
   GschemMacroWidgetClass *klass    = (GschemMacroWidgetClass*)g_class;
-  gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+  GtkWidgetClass *widget_class     = GTK_WIDGET_CLASS (g_class);
 
-  G_OBJECT_CLASS (klass)->dispose  = dispose;
-  G_OBJECT_CLASS (klass)->finalize = finalize;
+  gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
 
   G_OBJECT_CLASS (klass)->get_property = get_property;
   G_OBJECT_CLASS (klass)->set_property = set_property;
+
+  widget_class->realize    = realize;
+  widget_class->unrealize  = unrealize;
 
   g_object_class_install_property (G_OBJECT_CLASS (klass),
                                    PROP_LABEL_TEXT,
@@ -263,7 +290,6 @@ gschem_macro_widget_get_label_text (GtkWidget *widget)
   return ret_val;
 }
 
-
 /*! \brief Get the macro string
  *
  *  \param [in] widget This GschemMacroWidget
@@ -296,13 +322,13 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
  */
 static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GschemMacroWidget *widget = (GschemMacroWidget*)instance;
+  GschemMacroWidget *widget;
 
   GtkWidget *action;
   GtkWidget *button_box;
-  GtkWidget *cancel_button;
   GtkWidget *content;
 
+  widget  = (GschemMacroWidget*)instance;
   action  = gtk_info_bar_get_action_area (GTK_INFO_BAR (widget));
   content = gtk_info_bar_get_content_area (GTK_INFO_BAR (widget));
 
@@ -312,7 +338,6 @@ static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_c
   gtk_box_pack_start (GTK_BOX (content), widget->label, FALSE, FALSE, 0);
 
   widget->entry = geda_visible_entry_new (NO_HISTORY, NO_COMPLETION);
-
   gtk_box_pack_start (GTK_BOX (content), widget->entry, TRUE, TRUE, 0);
 
   button_box = gtk_hbutton_box_new ();
@@ -324,30 +349,13 @@ static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_c
   g_object_set (widget->evaluate_button, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (button_box), widget->evaluate_button, FALSE, FALSE, 0);
 
-  cancel_button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-  g_object_set (cancel_button, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (button_box), cancel_button, FALSE, FALSE, 0);
+  widget->cancel_button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  g_object_set (widget->cancel_button, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (button_box), widget->cancel_button, FALSE, FALSE, 0);
 
   gtk_widget_set_no_show_all (action, TRUE);
 
   g_object_set (action, "visible", FALSE, NULL);
-
-  /* Note: We do not need the "activate" signal here because the geda-entry
-   * widget generates a "process-entry" signal instead. */
-  GEDA_SIGNAL_CONNECT (widget->entry, "process-entry",
-                       G_CALLBACK (activate_entry), widget);
-
-  GEDA_SIGNAL_CONNECT (cancel_button, "clicked",
-                       G_CALLBACK (click_cancel),
-                       widget);
-
-  GEDA_SIGNAL_CONNECT (widget->evaluate_button, "clicked",
-                       G_CALLBACK (click_evaluate),
-                       widget);
-
-  GEDA_SIGNAL_CONNECT (widget->entry, "notify::text",
-                       G_CALLBACK (notify_entry_text),
-                       widget);
 }
 
 /*! \brief Get/register GschemMacroWidget type.

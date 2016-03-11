@@ -49,6 +49,7 @@ struct _GschemMacroWidget
   GtkInfoBar parent;
 
   GtkWidget *entry;
+  GtkWidget *cancel_button;
   GtkWidget *evaluate_button;
   GtkWidget *label;
 };
