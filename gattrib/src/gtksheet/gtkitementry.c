@@ -1034,7 +1034,7 @@ gtk_item_entry_real_delete_text(GtkEditable *editable,
  */
 static int
 _item_entry_get_better_cursor_x(GtkEntry *entry,
-    int      offset)
+                                int       offset)
 {
     GtkTextDirection keymap_direction =
 	(gdk_keymap_get_direction(gdk_keymap_get_default()) == PANGO_DIRECTION_LTR) ?
@@ -1061,182 +1061,182 @@ _item_entry_get_better_cursor_x(GtkEntry *entry,
 
 static void
 gtk_item_entry_move_cursor(GtkEntry       *entry,
-    GtkMovementStep step,
-    int            count,
-    gboolean        extend_selection)
+                           GtkMovementStep step,
+                           int             count,
+                           gboolean        extend_selection)
 {
-    int new_pos = entry->current_pos;
+  int new_pos = entry->current_pos;
 
-    gtk_entry_reset_im_context(entry);
+  gtk_entry_reset_im_context(entry);
 
-    if (entry->current_pos != entry->selection_bound && !extend_selection)
-    {
-	/* If we have a current selection and aren't extending it, move to the
-	 * start/or end of the selection as appropriate
-	 */
-	switch(step)
-	{
-	    case GTK_MOVEMENT_VISUAL_POSITIONS:
-		{
-		    int current_x = _item_entry_get_better_cursor_x(entry, entry->current_pos);
-		    int bound_x = _item_entry_get_better_cursor_x(entry, entry->selection_bound);
+  if (entry->current_pos != entry->selection_bound && !extend_selection)
+  {
+    /* If we have a current selection and aren't extending it, move to the
+     * start/or end of the selection as appropriate
+     */
+    switch(step) {
 
-		    if (count < 0)
-			new_pos = current_x < bound_x ? entry->current_pos : entry->selection_bound;
-		    else
-			new_pos = current_x > bound_x ? entry->current_pos : entry->selection_bound;
+      case GTK_MOVEMENT_VISUAL_POSITIONS:
+      {
+        int current_x = _item_entry_get_better_cursor_x(entry, entry->current_pos);
+        int bound_x = _item_entry_get_better_cursor_x(entry, entry->selection_bound);
 
-		    break;
-		}
-	    case GTK_MOVEMENT_LOGICAL_POSITIONS:
-	    case GTK_MOVEMENT_WORDS:
-		if (count < 0)
-		    new_pos = MIN(entry->current_pos, entry->selection_bound);
-		else
-		    new_pos = MAX(entry->current_pos, entry->selection_bound);
-		break;
-	    case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
-	    case GTK_MOVEMENT_PARAGRAPH_ENDS:
-	    case GTK_MOVEMENT_BUFFER_ENDS:
-		new_pos = count < 0 ? 0 : entry->text_length;
-		break;
-	    case GTK_MOVEMENT_DISPLAY_LINES:
-	    case GTK_MOVEMENT_PARAGRAPHS:
-	    case GTK_MOVEMENT_PAGES:
-	    case GTK_MOVEMENT_HORIZONTAL_PAGES:
-		break;
-	}
+        if (count < 0)
+          new_pos = current_x < bound_x ? entry->current_pos : entry->selection_bound;
+        else
+          new_pos = current_x > bound_x ? entry->current_pos : entry->selection_bound;
+
+        break;
+      }
+      case GTK_MOVEMENT_LOGICAL_POSITIONS:
+      case GTK_MOVEMENT_WORDS:
+        if (count < 0)
+          new_pos = MIN(entry->current_pos, entry->selection_bound);
+        else
+          new_pos = MAX(entry->current_pos, entry->selection_bound);
+        break;
+      case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
+      case GTK_MOVEMENT_PARAGRAPH_ENDS:
+      case GTK_MOVEMENT_BUFFER_ENDS:
+        new_pos = count < 0 ? 0 : entry->text_length;
+        break;
+      case GTK_MOVEMENT_DISPLAY_LINES:
+      case GTK_MOVEMENT_PARAGRAPHS:
+      case GTK_MOVEMENT_PAGES:
+      case GTK_MOVEMENT_HORIZONTAL_PAGES:
+        break;
     }
-    else
+  }
+  else {
+
+    switch(step)
     {
-	switch(step)
-	{
-	    case GTK_MOVEMENT_LOGICAL_POSITIONS:
-		new_pos = gtk_item_entry_move_logically(entry, new_pos, count);
-		break;
-	    case GTK_MOVEMENT_VISUAL_POSITIONS:
-		new_pos = gtk_item_entry_move_visually(entry, new_pos, count);
-		break;
-	    case GTK_MOVEMENT_WORDS:
-		while (count > 0)
-		{
-		    new_pos = gtk_item_entry_move_forward_word(entry, new_pos);
-		    count--;
-		}
-		while (count < 0)
-		{
-		    new_pos = gtk_item_entry_move_backward_word(entry, new_pos);
-		    count++;
-		}
-		break;
-	    case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
-	    case GTK_MOVEMENT_PARAGRAPH_ENDS:
-	    case GTK_MOVEMENT_BUFFER_ENDS:
-		new_pos = count < 0 ? 0 : entry->text_length;
-		break;
-	    case GTK_MOVEMENT_DISPLAY_LINES:
-	    case GTK_MOVEMENT_PARAGRAPHS:
-	    case GTK_MOVEMENT_PAGES:
-	    case GTK_MOVEMENT_HORIZONTAL_PAGES:
-		break;
-	}
+      case GTK_MOVEMENT_LOGICAL_POSITIONS:
+        new_pos = gtk_item_entry_move_logically(entry, new_pos, count);
+        break;
+      case GTK_MOVEMENT_VISUAL_POSITIONS:
+        new_pos = gtk_item_entry_move_visually(entry, new_pos, count);
+        break;
+      case GTK_MOVEMENT_WORDS:
+        while (count > 0)
+        {
+          new_pos = gtk_item_entry_move_forward_word(entry, new_pos);
+          count--;
+        }
+        while (count < 0)
+        {
+          new_pos = gtk_item_entry_move_backward_word(entry, new_pos);
+          count++;
+        }
+        break;
+      case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
+      case GTK_MOVEMENT_PARAGRAPH_ENDS:
+      case GTK_MOVEMENT_BUFFER_ENDS:
+        new_pos = count < 0 ? 0 : entry->text_length;
+        break;
+      case GTK_MOVEMENT_DISPLAY_LINES:
+      case GTK_MOVEMENT_PARAGRAPHS:
+      case GTK_MOVEMENT_PAGES:
+      case GTK_MOVEMENT_HORIZONTAL_PAGES:
+        break;
     }
+  }
 
-    if (extend_selection)
-	gtk_editable_select_region(GTK_EDITABLE(entry), entry->selection_bound, new_pos);
-    else
-	gtk_editable_set_position(GTK_EDITABLE(entry), new_pos);
+  if (extend_selection)
+    gtk_editable_select_region(GTK_EDITABLE(entry), entry->selection_bound, new_pos);
+  else
+    gtk_editable_set_position(GTK_EDITABLE(entry), new_pos);
 
-    gtk_item_entry_pend_cursor_blink(entry);
+  gtk_item_entry_pend_cursor_blink(entry);
 }
 
 static void
 gtk_item_entry_insert_at_cursor(GtkEntry    *entry,
-    const char *str)
+                                const char  *str)
 {
-    GtkEditable *editable = GTK_EDITABLE(entry);
-    int pos = entry->current_pos;
+  GtkEditable *editable = GTK_EDITABLE(entry);
+  int pos = entry->current_pos;
 
-    if (entry->editable)
-    {
-	gtk_entry_reset_im_context(entry);
+  if (entry->editable) {
 
-	gtk_editable_insert_text(editable, str, -1, &pos);
-	gtk_editable_set_position(editable, pos);
-    }
+    gtk_entry_reset_im_context(entry);
+
+    gtk_editable_insert_text(editable, str, -1, &pos);
+    gtk_editable_set_position(editable, pos);
+  }
 }
 
 static void
 gtk_item_entry_delete_from_cursor(GtkEntry       *entry,
-    GtkDeleteType   type,
-    int            count)
+                                  GtkDeleteType   type,
+                                  int             count)
 {
-    GtkEditable *editable = GTK_EDITABLE(entry);
-    int start_pos = entry->current_pos;
-    int end_pos = entry->current_pos;
+  GtkEditable *editable = GTK_EDITABLE(entry);
+  int start_pos = entry->current_pos;
+  int end_pos = entry->current_pos;
 
-    gtk_entry_reset_im_context(entry);
+  gtk_entry_reset_im_context(entry);
 
-    if (!entry->editable)
-	return;
+  if (!entry->editable)
+    return;
 
-    if (entry->selection_bound != entry->current_pos)
-    {
-	gtk_editable_delete_selection(editable);
-	return;
-    }
+  if (entry->selection_bound != entry->current_pos) {
 
-    switch(type)
-    {
-	case GTK_DELETE_CHARS:
-	    end_pos = gtk_item_entry_move_logically(entry, entry->current_pos, count);
-	    gtk_editable_delete_text(editable, MIN(start_pos, end_pos), MAX(start_pos, end_pos));
-	    break;
-	case GTK_DELETE_WORDS:
-	    if (count < 0)
-	    {
-		/* Move to end of current word, or if not on a word, end of previous word */
-		end_pos = gtk_item_entry_move_backward_word(entry, end_pos);
-		end_pos = gtk_item_entry_move_forward_word(entry, end_pos);
-	    }
-	    else if (count > 0)
-	    {
-		/* Move to beginning of current word, or if not on a word, begining of next word */
-		start_pos = gtk_item_entry_move_forward_word(entry, start_pos);
-		start_pos = gtk_item_entry_move_backward_word(entry, start_pos);
-	    }
+    gtk_editable_delete_selection(editable);
+    return;
+  }
 
-	    /* Fall through */
-	case GTK_DELETE_WORD_ENDS:
-	    while (count < 0)
-	    {
-		start_pos = gtk_item_entry_move_backward_word(entry, start_pos);
-		count++;
-	    }
-	    while (count > 0)
-	    {
-		end_pos = gtk_item_entry_move_forward_word(entry, end_pos);
-		count--;
-	    }
-	    gtk_editable_delete_text(editable, start_pos, end_pos);
-	    break;
-	case GTK_DELETE_DISPLAY_LINE_ENDS:
-	case GTK_DELETE_PARAGRAPH_ENDS:
-	    if (count < 0)
-		gtk_editable_delete_text(editable, 0, entry->current_pos);
-	    else
-		gtk_editable_delete_text(editable, entry->current_pos, -1);
-	    break;
-	case GTK_DELETE_DISPLAY_LINES:
-	case GTK_DELETE_PARAGRAPHS:
-	    gtk_editable_delete_text(editable, 0, -1);
-	    break;
-	case GTK_DELETE_WHITESPACE:
-	    gtk_item_entry_delete_whitespace(entry);
-	    break;
-    }
+  switch(type)
+  {
+    case GTK_DELETE_CHARS:
+      end_pos = gtk_item_entry_move_logically(entry, entry->current_pos, count);
+      gtk_editable_delete_text(editable, MIN(start_pos, end_pos), MAX(start_pos, end_pos));
+      break;
+    case GTK_DELETE_WORDS:
+      if (count < 0) {
 
-    gtk_item_entry_pend_cursor_blink(entry);
+        /* Move to end of current word, or if not on a word, end of previous word */
+        end_pos = gtk_item_entry_move_backward_word(entry, end_pos);
+        end_pos = gtk_item_entry_move_forward_word(entry, end_pos);
+      }
+      else if (count > 0) {
+
+        /* Move to beginning of current word, or if not on a word, begining of next word */
+        start_pos = gtk_item_entry_move_forward_word(entry, start_pos);
+        start_pos = gtk_item_entry_move_backward_word(entry, start_pos);
+      }
+
+      /* Fall through */
+      case GTK_DELETE_WORD_ENDS:
+        while (count < 0) {
+
+          start_pos = gtk_item_entry_move_backward_word(entry, start_pos);
+          count++;
+        }
+        while (count > 0)
+        {
+          end_pos = gtk_item_entry_move_forward_word(entry, end_pos);
+          count--;
+        }
+        gtk_editable_delete_text(editable, start_pos, end_pos);
+        break;
+      case GTK_DELETE_DISPLAY_LINE_ENDS:
+      case GTK_DELETE_PARAGRAPH_ENDS:
+        if (count < 0)
+          gtk_editable_delete_text(editable, 0, entry->current_pos);
+        else
+          gtk_editable_delete_text(editable, entry->current_pos, -1);
+        break;
+      case GTK_DELETE_DISPLAY_LINES:
+      case GTK_DELETE_PARAGRAPHS:
+        gtk_editable_delete_text(editable, 0, -1);
+        break;
+      case GTK_DELETE_WHITESPACE:
+        gtk_item_entry_delete_whitespace(entry);
+        break;
+  }
+
+  gtk_item_entry_pend_cursor_blink(entry);
 }
 
 /* IM Context Callbacks
@@ -1244,15 +1244,14 @@ gtk_item_entry_delete_from_cursor(GtkEntry       *entry,
 
 static void
 gtk_item_entry_commit_cb(GtkIMContext *context,
-    const char  *str,
-    GtkEntry     *entry)
+                         const char   *str,
+                         GtkEntry     *entry)
 {
     gtk_item_entry_enter_text(entry, str);
 }
 
 static void
-gtk_item_entry_preedit_changed_cb(GtkIMContext *context,
-    GtkEntry     *entry)
+gtk_item_entry_preedit_changed_cb(GtkIMContext *context, GtkEntry *entry)
 {
     char *preedit_string;
     int cursor_pos;
@@ -1270,7 +1269,7 @@ gtk_item_entry_preedit_changed_cb(GtkIMContext *context,
 
 static gboolean
 gtk_item_entry_retrieve_surrounding_cb(GtkIMContext *context,
-    GtkEntry     *entry)
+                                       GtkEntry     *entry)
 {
     GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
 
@@ -1284,9 +1283,9 @@ gtk_item_entry_retrieve_surrounding_cb(GtkIMContext *context,
 
 static gboolean
 gtk_item_entry_delete_surrounding_cb(GtkIMContext *slave,
-    int          offset,
-    int          n_chars,
-    GtkEntry     *entry)
+                                     int           offset,
+                                     int           n_chars,
+                                     GtkEntry     *entry)
 {
     gtk_editable_delete_text(GTK_EDITABLE(entry),
 	entry->current_pos + offset,
@@ -1304,20 +1303,21 @@ static void
 gtk_item_entry_enter_text(GtkEntry       *entry,
     const char    *str)
 {
-    GtkEditable *editable = GTK_EDITABLE(entry);
-    int tmp_pos;
+  GtkEditable *editable = GTK_EDITABLE(entry);
+  int tmp_pos;
 
-    if (gtk_editable_get_selection_bounds(editable, NULL, NULL))
-	gtk_editable_delete_selection(editable);
-    else
-    {
-	if (entry->overwrite_mode)
-	    gtk_item_entry_delete_from_cursor(entry, GTK_DELETE_CHARS, 1);
-    }
+  if (gtk_editable_get_selection_bounds(editable, NULL, NULL)) {
+    gtk_editable_delete_selection(editable);
+  }
+  else {
 
-    tmp_pos = entry->current_pos;
-    gtk_editable_insert_text(editable, str, strlen(str), &tmp_pos);
-    gtk_editable_set_position(editable, tmp_pos);
+    if (entry->overwrite_mode)
+      gtk_item_entry_delete_from_cursor(entry, GTK_DELETE_CHARS, 1);
+  }
+
+  tmp_pos = entry->current_pos;
+  gtk_editable_insert_text(editable, str, strlen(str), &tmp_pos);
+  gtk_editable_set_position(editable, tmp_pos);
 }
 
 /* All changes to entry->current_pos and entry->selection_bound
@@ -1328,71 +1328,68 @@ gtk_item_entry_set_positions(GtkEntry *entry,
     int      current_pos,
     int      selection_bound)
 {
-    gboolean changed = FALSE;
+  gboolean changed = FALSE;
 
-    g_object_freeze_notify(G_OBJECT(entry));
+  g_object_freeze_notify(G_OBJECT(entry));
 
-    if (current_pos != -1 &&
-	entry->current_pos != current_pos)
-    {
-	entry->current_pos = current_pos;
-	changed = TRUE;
+  if (current_pos != -1 && entry->current_pos != current_pos)
+  {
+    entry->current_pos = current_pos;
+    changed = TRUE;
 
-	g_object_notify(G_OBJECT(entry), "cursor_position");
-    }
+    g_object_notify(G_OBJECT(entry), "cursor_position");
+  }
 
-    if (selection_bound != -1 &&
-	entry->selection_bound != selection_bound)
-    {
-	entry->selection_bound = selection_bound;
-	changed = TRUE;
+  if (selection_bound != -1 && entry->selection_bound != selection_bound)
+  {
+    entry->selection_bound = selection_bound;
+    changed = TRUE;
 
-	g_object_notify(G_OBJECT(entry), "selection_bound");
-    }
+    g_object_notify(G_OBJECT(entry), "selection_bound");
+  }
 
-    g_object_thaw_notify(G_OBJECT(entry));
+  g_object_thaw_notify(G_OBJECT(entry));
 
-    if (changed)
-	gtk_item_entry_recompute(entry);
+  if (changed)
+    gtk_item_entry_recompute(entry);
 }
 
 static void
 gtk_item_entry_reset_layout(GtkEntry *entry)
 {
-    if (entry->cached_layout)
-    {
-	g_object_unref(G_OBJECT(entry->cached_layout));
-	entry->cached_layout = NULL;
-    }
+  if (entry->cached_layout) {
+    g_object_unref(G_OBJECT(entry->cached_layout));
+    entry->cached_layout = NULL;
+  }
 }
 
 static void
 _item_entry_update_im_cursor_location(GtkEntry *entry)
 {
-    GdkRectangle area;
-    int strong_x;
-    int strong_xoffset;
-    int x, y, area_width, area_height;
+  GdkRectangle area;
+  int strong_x;
+  int strong_xoffset;
+  int x, y, area_width, area_height;
 
-    gtk_item_entry_get_cursor_locations(entry, CURSOR_STANDARD, &strong_x, NULL)
-    ;
-    _item_entry_get_text_area_size(entry, &x, &y, &area_width, &area_height);
+  gtk_item_entry_get_cursor_locations(entry, CURSOR_STANDARD, &strong_x, NULL);
 
-    strong_xoffset = strong_x - entry->scroll_offset;
-    if (strong_xoffset < 0)
-    {
-	strong_xoffset = 0;
-    }
-    else if (strong_xoffset > area_width)
-    {
-	strong_xoffset = area_width;
-    }
-    area.x = x + strong_xoffset;
-    area.y = y + area_height;
-    area.width = area_width;
-    area.height = area_height;
+  _item_entry_get_text_area_size(entry, &x, &y, &area_width, &area_height);
 
-    gtk_im_context_set_cursor_location(entry->im_context, &area);
+  strong_xoffset = strong_x - entry->scroll_offset;
+  if (strong_xoffset < 0) {
+
+    strong_xoffset = 0;
+  }
+  else if (strong_xoffset > area_width) {
+
+    strong_xoffset = area_width;
+  }
+  area.x = x + strong_xoffset;
+  area.y = y + area_height;
+  area.width = area_width;
+  area.height = area_height;
+
+  gtk_im_context_set_cursor_location(entry->im_context, &area);
 }
 
 static gboolean
@@ -1422,158 +1419,151 @@ gtk_item_entry_recompute(GtkEntry *entry)
     gtk_item_entry_reset_layout(entry);
     gtk_item_entry_check_cursor_blink(entry);
 
+    if (!entry->recompute_idle) {
 
-    if (!entry->recompute_idle)
-    {
 	entry->recompute_idle = g_idle_add_full(G_PRIORITY_HIGH_IDLE + 15, /* between resize and redraw */
 	    _item_entry_recompute_idle_func, entry, NULL);
     }
 }
 
 static void
-_item_entry_append_char(GString *str,
-    gunichar ch,
-    int     count)
+_item_entry_append_char(GString *str, gunichar ch, int count)
 {
-    int i;
-    int char_len;
-    char buf[7];
+  int i;
+  int char_len;
+  char buf[7];
 
-    char_len = g_unichar_to_utf8(ch, buf);
+  char_len = g_unichar_to_utf8(ch, buf);
 
-    i = 0;
-    while (i < count)
-    {
-	g_string_append_len(str, buf, char_len);
-	++i;
-    }
+  i = 0;
+  while (i < count) {
+    g_string_append_len(str, buf, char_len);
+    ++i;
+  }
 }
 
 static PangoLayout *
-gtk_item_entry_create_layout(GtkEntry *entry,
-    gboolean  include_preedit)
+gtk_item_entry_create_layout(GtkEntry *entry, gboolean  include_preedit)
 {
-    PangoLayout *layout = gtk_widget_create_pango_layout(GTK_WIDGET(entry), NULL);
-    PangoAttrList *tmp_attrs = pango_attr_list_new();
+  PangoLayout *layout = gtk_widget_create_pango_layout(GTK_WIDGET(entry), NULL);
+  PangoAttrList *tmp_attrs = pango_attr_list_new();
 
-    char *preedit_string = NULL;
-    int preedit_length = 0;
-    PangoAttrList *preedit_attrs = NULL;
+  char *preedit_string = NULL;
+  int preedit_length = 0;
+  PangoAttrList *preedit_attrs = NULL;
 
-    pango_layout_set_single_paragraph_mode(layout, TRUE);
+  pango_layout_set_single_paragraph_mode(layout, TRUE);
 
-    if (include_preedit)
-    {
-	gtk_im_context_get_preedit_string(entry->im_context,
-	    &preedit_string, &preedit_attrs, NULL);
-	preedit_length = entry->preedit_length;
+  if (include_preedit) {
+
+    gtk_im_context_get_preedit_string(entry->im_context,
+                                      &preedit_string, &preedit_attrs, NULL);
+    preedit_length = entry->preedit_length;
+  }
+
+  if (preedit_length) {
+
+    GString *tmp_string = g_string_new(NULL);
+    GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+
+    int cursor_index = g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text;
+
+    if (entry->visible) {
+
+
+      g_string_prepend_len(tmp_string, entry->text, gtk_entry_buffer_get_bytes(buffer));
+      g_string_insert(tmp_string, cursor_index, preedit_string);
+    }
+    else {
+
+      int ch_len;
+      int preedit_len_chars;
+      gunichar invisible_char;
+
+      ch_len = g_utf8_strlen(entry->text, gtk_entry_buffer_get_bytes(buffer));
+      preedit_len_chars = g_utf8_strlen(preedit_string, -1);
+      ch_len += preedit_len_chars;
+
+      if (entry->invisible_char != 0)
+        invisible_char = entry->invisible_char;
+      else
+        invisible_char = ' '; /* just pick a char */
+
+        _item_entry_append_char(tmp_string, invisible_char, ch_len);
+
+      /* Fix cursor index to point to invisible char corresponding
+       * to the preedit, fix preedit_length to be the length of
+       * the invisible chars representing the preedit
+       */
+      cursor_index =
+      g_utf8_offset_to_pointer(tmp_string->str, entry->current_pos) -
+      tmp_string->str;
+      preedit_length =
+      preedit_len_chars *
+      g_unichar_to_utf8(invisible_char, NULL);
     }
 
-    if (preedit_length)
-    {
-	GString *tmp_string = g_string_new(NULL);
-	GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+    pango_layout_set_text(layout, tmp_string->str, tmp_string->len);
 
-	int cursor_index = g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text;
+    pango_attr_list_splice(tmp_attrs, preedit_attrs,
+                           cursor_index, preedit_length);
 
-	if (entry->visible)
-	{
+    g_string_free(tmp_string, TRUE);
+  }
+  else {
 
-	    g_string_prepend_len(tmp_string, entry->text, gtk_entry_buffer_get_bytes(buffer));
-	    g_string_insert(tmp_string, cursor_index, preedit_string);
-	}
-	else
-	{
-	    int ch_len;
-	    int preedit_len_chars;
-	    gunichar invisible_char;
+    if (entry->visible) {
 
-	    ch_len = g_utf8_strlen(entry->text, gtk_entry_buffer_get_bytes(buffer));
-	    preedit_len_chars = g_utf8_strlen(preedit_string, -1);
-	    ch_len += preedit_len_chars;
-
-	    if (entry->invisible_char != 0)
-		invisible_char = entry->invisible_char;
-	    else
-		invisible_char = ' '; /* just pick a char */
-
-	    _item_entry_append_char(tmp_string, invisible_char, ch_len);
-
-	    /* Fix cursor index to point to invisible char corresponding
-	     * to the preedit, fix preedit_length to be the length of
-	     * the invisible chars representing the preedit
-	     */
-	    cursor_index =
-		g_utf8_offset_to_pointer(tmp_string->str, entry->current_pos) -
-		tmp_string->str;
-	    preedit_length =
-		preedit_len_chars *
-		g_unichar_to_utf8(invisible_char, NULL);
-	}
-
-	pango_layout_set_text(layout, tmp_string->str, tmp_string->len);
-
-	pango_attr_list_splice(tmp_attrs, preedit_attrs,
-	    cursor_index, preedit_length);
-
-	g_string_free(tmp_string, TRUE);
+      GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+      pango_layout_set_text(layout, entry->text, gtk_entry_buffer_get_bytes(buffer));
     }
-    else
-    {
-	if (entry->visible)
-	{
-	    GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
-	    pango_layout_set_text(layout, entry->text, gtk_entry_buffer_get_bytes(buffer));
-	}
-	else
-	{
-	    GString *str = g_string_new(NULL);
-	    gunichar invisible_char;
+    else {
 
-	    if (entry->invisible_char != 0)
-		invisible_char = entry->invisible_char;
-	    else
-		invisible_char = ' '; /* just pick a char */
+      GString *str = g_string_new(NULL);
 
-	    _item_entry_append_char(str, invisible_char, entry->text_length);
-	    pango_layout_set_text(layout, str->str, str->len);
-	    g_string_free(str, TRUE);
-	}
+      gunichar invisible_char;
+
+      if (entry->invisible_char != 0)
+        invisible_char = entry->invisible_char;
+      else
+        invisible_char = ' '; /* just pick a char */
+
+        _item_entry_append_char(str, invisible_char, entry->text_length);
+      pango_layout_set_text(layout, str->str, str->len);
+      g_string_free(str, TRUE);
     }
+  }
 
-    pango_layout_set_attributes(layout, tmp_attrs);
+  pango_layout_set_attributes(layout, tmp_attrs);
 
-    if (preedit_string)
-	g_free(preedit_string);
-    if (preedit_attrs)
-	pango_attr_list_unref(preedit_attrs);
+  if (preedit_string)
+    g_free(preedit_string);
 
-    pango_attr_list_unref(tmp_attrs);
+  if (preedit_attrs)
+    pango_attr_list_unref(preedit_attrs);
 
-    return layout;
+  pango_attr_list_unref(tmp_attrs);
+
+  return layout;
 }
 
 static PangoLayout *
-gtk_item_entry_ensure_layout(GtkEntry *entry,
-    gboolean  include_preedit)
+gtk_item_entry_ensure_layout(GtkEntry *entry, gboolean  include_preedit)
 {
-    if (entry->preedit_length > 0 &&
-	!include_preedit != !entry->cache_includes_preedit)
-	gtk_item_entry_reset_layout(entry);
+  if (entry->preedit_length > 0 &&
+    !include_preedit != !entry->cache_includes_preedit)
+    gtk_item_entry_reset_layout(entry);
 
-    if (!entry->cached_layout)
-    {
-	entry->cached_layout = gtk_item_entry_create_layout(entry, include_preedit);
-	entry->cache_includes_preedit = include_preedit;
-    }
+  if (!entry->cached_layout) {
+    entry->cached_layout = gtk_item_entry_create_layout(entry, include_preedit);
+    entry->cache_includes_preedit = include_preedit;
+  }
 
-    return entry->cached_layout;
+  return entry->cached_layout;
 }
 
 static void
-_item_entry_get_layout_position(GtkEntry *entry,
-    int     *x,
-    int     *y)
+_item_entry_get_layout_position(GtkEntry *entry, int *x, int *y)
 {
     PangoLayout *layout;
     PangoRectangle logical_rect;
