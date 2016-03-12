@@ -1,6 +1,9 @@
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/guile/g_funcs.c: Call x_window_close_all in g_funcs_exit.
+    * src/base/gschem_macro_widget.c: Use geda_entry_widget_get_text instead
+      of gtk_entry_get_text in function gschem_macro_widget_get_macro_string.
+
+    * src/guile/g_funcs.c: Call x_window_close_all in g_funcs_exit.
 
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 

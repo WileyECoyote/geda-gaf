@@ -130,7 +130,8 @@ click_evaluate (GtkWidget *entry, GschemMacroWidget *widget)
   }
 }
 
-static void realize (GtkWidget *widget)
+static void
+realize (GtkWidget *widget)
 {
   GschemMacroWidget *gmw = GSCHEM_MACRO_WIDGET (widget);
 
@@ -154,7 +155,8 @@ static void realize (GtkWidget *widget)
   GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->realize (widget);
 }
 
-static void unrealize (GtkWidget *widget)
+static void
+unrealize (GtkWidget *widget)
 {
   GschemMacroWidget *gmw = GSCHEM_MACRO_WIDGET (widget);
 
@@ -307,7 +309,6 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
      ret_val = geda_entry_widget_get_text (gmw->entry);
-     ret_val = gtk_entry_get_text (GTK_ENTRY (gmw->entry));
    }
    else {
      BUG_MSG("widget is not a GschemMacroWidget");
