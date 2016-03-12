@@ -365,7 +365,7 @@ char *geda_utility_log_read (void)
     }
     else {
       char *buffer = (char*)realloc(contents, size + 1);
-      if (!contents)
+      if (!buffer)
         break;
       contents = buffer;
       strncat(contents, &buf[0], len);
