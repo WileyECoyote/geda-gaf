@@ -3,6 +3,8 @@
     * include/geda_entry.h: Declare geda_entry_get_text and geda_entry_widget_
       get_text.
 
+    * src/widgets/geda_combobox.c: replace gtk_vseparator with geda_vseparator.
+
     * widgets/geda_font_button.c: Replace gtk_vseparator with geda_vseparator,
       use relative path for local includes.
 
