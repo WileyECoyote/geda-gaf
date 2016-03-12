@@ -1,3 +1,7 @@
+2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/README: Add some documentation for tests.
+
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revise geda_utility_string_strndup to accept

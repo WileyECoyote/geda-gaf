@@ -1,0 +1,69 @@
+/*
+ * To facilitate locating defects, messages from tests failure includes
+ * a unique identifier. The nomenclature for the identifiers is thus:
+ *
+ *
+ *    Test Identifiers:  G  01  02, 03
+ *                       ^   ^   ^   ^
+ *    group-code ________|   |   |   |
+ *                           |   |   |
+ *    Module/File number ____|   |   |
+ *                               |   |
+ *    Function number ___________|   |
+ *                                   |
+ *    Tests number __________________|
+ *
+ *  Where:
+ *
+ *  group-code is the capital first letter of the containing directory,
+ *  which are also prefixed on file names of procedural modules:
+ *
+ *       f : File related functions
+ *       g : Guile related functions
+ *       i : Interface related functions
+ *       m : Math related functions
+ *       o : Object related functions
+ *       s : data Structure related functions
+ *       u : miscellaneous Utility functions
+ *
+ *  Object modules and special purpose groups do not have group-codes,
+ *  Object modules are identified using the typedef, such as EdaConfig.
+ *  Special purpose groups, there is only one, scheme, have separate
+ *  tests, see libgeda/scheme/unit-test.scm.
+ *
+ *  Module/File Number is the sequential number of the file within the
+ *  Makefile_insert, noting that files having the group in the file name,
+ *  such as u_utility, is file #1 for the group. When a test module contains
+ *  tests for more than one source module the Module/File Number is also the
+ *  Doxygen group number within the test module.
+ *
+ *  Function number is the sequential number of the non-static functions
+ *  within the source module.
+ *
+ *  Tests number is the number of the test or group of tests for a specific
+ *  function. Where multiple tests are performed on the same call/results a
+ *  alphabetical character is suffixed to the test number omitting I,O, and
+ *  Q, or when the same function is tested repeatedly for the same purpose.
+ *
+ *  Note: 1. Test number 00 is researved for tests passing NULL as an argument
+ *           to the function being tested. Tests of functions accepting more
+ *           than one arguments are distinguished by suffixing an alphabetical
+ *           character to the identifier.
+ *
+ *           Ex. 1: U062900C => function 29 in file 6 of the utilities groups
+ *                              is being tested with a NULL 3rd (C).
+ *
+ *  The test identifiers are not critical and are for reference only. The
+ *  intent of the test identifiers is have a unique identifier associated
+ *  with each test. Identifying which test failed is the first step in
+ *  trouble-shooting errors and ultimately resolving the issue.
+ *
+ *  Note: 2. Uniqueness of Test Identifiers can be verified by searching the
+ *           libgeda/ tree using text utilities.
+ *
+ *           Ex. 2: grep -rnw 'libgeda/' -e "U062900C"
+ *
+ *           Ex. 3: ack 'U0629' 'libgeda/src' (ack-grep for debian derivatives)
+ *
+ *  WEH 03/06/16
+ */
