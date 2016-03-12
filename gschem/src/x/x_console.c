@@ -226,9 +226,10 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
  */
 void x_console_open (GschemToplevel *w_current)
 {
-
   if (console_dialog == NULL) {
+
     char *contents;
+
     console_dialog = GTK_WIDGET (g_object_new (TYPE_CONSOLE,
                                            "type", GTK_WINDOW_TOPLEVEL,
                                            "settings-name", IDS_CONSOLE,
@@ -244,13 +245,10 @@ void x_console_open (GschemToplevel *w_current)
     /* and add its contents to the dialog */
     contents = geda_utility_log_read ();
 
-    /* geda_utility_log_read can return NULL if the log file cannot be written to */
-    if (contents == NULL) {
-      return;
+    if (contents) {
+      log_message (CONSOLE (console_dialog), contents, "old");
+      GEDA_FREE (contents);
     }
-
-    log_message (CONSOLE (console_dialog), contents, "old");
-    GEDA_FREE (contents);
 
     geda_utility_log_set_update_func(x_log_message);
 

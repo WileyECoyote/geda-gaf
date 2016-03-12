@@ -5,6 +5,9 @@
 
     * src/guile/g_funcs.c: Call x_window_close_all in g_funcs_exit.
 
+    * src/x/x_console.c: Do not let NULL from geda_utility_log_read inhibit
+      launching of log console in x_console_open.
+
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macros.h: Declare gschem_macro_widget_new, add member
