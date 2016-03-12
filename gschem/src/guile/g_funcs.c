@@ -182,6 +182,8 @@ SCM g_funcs_exit(SCM status)
 {
   int status_code;
 
+  x_window_close_all(g_current_window ());
+
   if (scm_is_integer (status)) {
     status_code = scm_to_int(status);
   }

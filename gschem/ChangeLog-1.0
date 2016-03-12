@@ -1,3 +1,7 @@
+2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/guile/g_funcs.c: Call x_window_close_all in g_funcs_exit.
+
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macros.h: Declare gschem_macro_widget_new, add member
