@@ -306,6 +306,7 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
   else {
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
+     ret_val = geda_entry_widget_get_text (gmw->entry);
      ret_val = gtk_entry_get_text (GTK_ENTRY (gmw->entry));
    }
    else {
@@ -320,7 +321,8 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
  *  \param [in,out] instance The GschemMacroWidget being initialized.
  *  \param [in]     g_class  The class of the type the instance is created for.
  */
-static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
+static void
+gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
 {
   GschemMacroWidget *widget;
 
@@ -362,26 +364,32 @@ static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_c
  */
 GedaType gschem_macro_widget_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType macro_widget_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&macro_widget_type)) {
 
     static const GTypeInfo info = {
       sizeof(GschemMacroWidgetClass),
-      NULL,                                      /* base_init */
-      NULL,                                      /* base_finalize */
-      gschem_macro_widget_class_init,            /* GClassInitFunc */
-      NULL,                                      /* class_finalize */
-      NULL,                                      /* class_data */
+      NULL,                             /* base_init           */
+      NULL,                             /* base_finalize       */
+      gschem_macro_widget_class_init,   /* (GClassInitFunc)    */
+      NULL,                             /* class_finalize      */
+      NULL,                             /* class_data          */
       sizeof(GschemMacroWidget),
-      0,                                         /* n_preallocs */
-      gschem_macro_widget_instance_init          /* GInstanceInitFunc */
+      0,                                /* n_preallocs         */
+      gschem_macro_widget_instance_init /* (GInstanceInitFunc) */
     };
 
-    type = g_type_register_static (GTK_TYPE_INFO_BAR, "GschemMacroWidget", &info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GschemMacroWidget");
+    type   = g_type_register_static (GTK_TYPE_INFO_BAR, string, &info, 0);
+
+    g_once_init_leave (&macro_widget_type, type);
   }
 
-  return type;
+  return macro_widget_type;
 }
 
 GtkWidget*

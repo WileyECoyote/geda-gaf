@@ -10,7 +10,8 @@
       geda_entry_instance_init, keep adding reference in geda_entry_realize and
       removing in geda_entry_unrealize, and call pango_cairo_font_map_set_default
       with NULL argument and this causes Pango to releases the resources. Add
-      functions geda_entry_get_text and geda_entry_widget_get_text.
+      functions geda_entry_get_text and geda_entry_widget_get_text. Revised
+      gschem_macro_widget_get_type.
 
     * src/widgets/geda_handlebox.c: Remove g_type_class_add_private from
       geda_handle_box_class_init and add allocate private data using GEDA_
