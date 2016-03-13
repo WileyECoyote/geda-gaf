@@ -1,5 +1,9 @@
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_object.c: Revise function geda_arc_object_get_nearest_point;
+      fixed || should have been && to only use the discriminant method when point
+      within sweep.
+
     * tests/README: Add some documentation for tests.
 
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>

@@ -164,7 +164,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
     arc = object->arc;
 
     /* If the point is the center, every point on the arc is equal
-     * distance to the point, so answer is false */
+     * distance to the point, so the answer is false */
     if ((y == arc->y) && (x == arc->x)) {
       result = FALSE;
     }
@@ -189,7 +189,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
         radians += 2 * M_PI;
       }
 
-      if (radians < end_angle || radians > start_angle) {
+      if (radians < end_angle && radians > start_angle) {
 
         int x1, y1, x2, y2;
         double A, B, C, D;
@@ -284,6 +284,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
     result = FALSE;
   }
 
+  /* If FALSE set output to the input values */
   if (!result) {
     *nx = x;
     *ny = y;
