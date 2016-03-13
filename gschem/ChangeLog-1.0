@@ -5,6 +5,9 @@
 
     * src/guile/g_funcs.c: Call x_window_close_all in g_funcs_exit.
 
+    * src/iface/i_window.c: Revise function i_window_on_page_changed to use
+      gschem_toplevel_get_current_page and Eliminate Current_Page macro.
+
     * src/x/x_console.c: Do not let NULL from geda_utility_log_read inhibit
       launching of log console in x_console_open.
 
