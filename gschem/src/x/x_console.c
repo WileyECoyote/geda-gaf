@@ -253,7 +253,7 @@ void x_console_open (GschemToplevel *w_current)
     geda_utility_log_set_update_func(x_log_message);
 
     if ( auto_place_mode ) {
-      gtk_widget_set_uposition ( console_dialog, 10, 10);
+      gtk_widget_set_uposition (console_dialog, 10, 10);
     }
     gtk_widget_show (console_dialog);
   }
@@ -680,9 +680,10 @@ static void console_init (Console *console) /* *Self */
  * the command_buffer list is passed as an argument to the Our Entry
  * control so that we retain command history between instances...
 */
-  /* if 1st time using global buffer add to the geda_atexit */
-  if (!command_buffer)
-    geda_atexit(x_console_destroy_command_buffer, NULL);
+  /* if 1st time using global buffer add to the gschem_atexit */
+  if (!command_buffer) {
+    gschem_atexit(x_console_destroy_command_buffer, NULL);
+  }
 
 /*! \note:command list is an extended version of the action list, and
  * includes all the RC variables, the glist list is passed to our
@@ -696,10 +697,12 @@ static void console_init (Console *console) /* *Self */
 
   geda_entry_completion_set_case((GedaEntry*) console_entry, FALSE);
 
-  if(console_window_type == DECORATED)
+  if (console_window_type == DECORATED) {
     gtk_entry_set_has_frame((GtkEntry*)console_entry, TRUE);
-  else
+  }
+  else {
     gtk_entry_set_has_frame((GtkEntry*)console_entry, FALSE);
+  }
 
   /* create the command entry buffer */
   command_entry_buffer = gtk_entry_buffer_new(NULL, -1);

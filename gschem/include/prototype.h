@@ -232,7 +232,7 @@ typedef void (*geda_predicator)  (GschemToplevel *);
 
 /* globals.c */
 /* gschem.c */
-void geda_atexit   (geda_atexit_func func, void * data);
+void gschem_atexit (geda_atexit_func func, void * data);
 int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
 

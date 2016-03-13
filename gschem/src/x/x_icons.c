@@ -440,7 +440,7 @@ void x_icons_initialize (void)
 
   x_icons_setup_factory();
 
-  geda_atexit(x_icons_shutdown_factory, NULL);
+  gschem_atexit(x_icons_shutdown_factory, NULL);
 
 }
 /** @} endgroup Gschem-Icons */

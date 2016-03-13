@@ -70,7 +70,7 @@ void shut_down_gui (void)
  *  \param [in] data an arbitrary argument provided to the function
  *                   when it is called
  */
-void geda_atexit(geda_atexit_func func, void* data)
+void gschem_atexit(geda_atexit_func func, void* data)
 {
   geda_atexit_struct *p;
 

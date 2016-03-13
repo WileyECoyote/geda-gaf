@@ -1,5 +1,7 @@
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Rename geda_atexit -> gschem_atexit.
+
     * src/base/gschem_macro_widget.c: Use geda_entry_widget_get_text instead
       of gtk_entry_get_text in function gschem_macro_widget_get_macro_string.
 

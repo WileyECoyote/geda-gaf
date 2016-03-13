@@ -483,7 +483,7 @@ x_draw_initialize(GschemToplevel *w_current)
 
   GEDA_FREE(font_string);
 
-  geda_atexit(x_draw_shutdown, NULL);
+  gschem_atexit(x_draw_shutdown, NULL);
 
   v_log_message(_("done\n"));
 }

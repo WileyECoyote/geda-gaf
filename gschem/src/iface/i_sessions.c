@@ -1226,7 +1226,7 @@ void i_sessions_init(GschemToplevel *w_current)
   EdaConfig  *cfg       = eda_config_get_user_context();
 
   i_sessions_load_data();
-  geda_atexit((geda_atexit_func)i_sessions_destroy_sessions, NULL);
+  gschem_atexit((geda_atexit_func)i_sessions_destroy_sessions, NULL);
   w_current->session_name = NULL;     /* means no session */
   i_sessions_update_menus(w_current);
 
