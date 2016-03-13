@@ -1,0 +1,13 @@
+*.lo
+.deps
+.libs
+Makefile
+Makefile.in
+libgedauio.la
+*.o
+*~
+*.log
+*.trs
+test_accel_label
+test_accumulate
+test_file_chooser

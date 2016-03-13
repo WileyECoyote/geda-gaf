@@ -1,3 +1,15 @@
+2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests: Setup foundation for basic libgedauio test framework:
+
+    * tests/Makefile.am: AutoMake file.
+
+    * tests/test_accel_label.c: initial pilot representing the widget group.
+
+    * tests/test_accumulate.c: skeleton placeholder for the functions groups.
+
+    * tests/test_file_chooser.c: chosen representative for the dialogs group.
+
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Use relative path to included file.
