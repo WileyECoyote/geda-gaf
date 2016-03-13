@@ -1,3 +1,7 @@
+2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Use relative path to included file.
+
 2016-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Declare geda_entry_get_text and geda_entry_widget_
