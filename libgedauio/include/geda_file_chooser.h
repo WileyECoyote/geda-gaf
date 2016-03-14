@@ -109,7 +109,7 @@ int           geda_file_chooser_get_filter         (GtkWidget *chooser);
 void          geda_file_chooser_set_filter         (GtkWidget *chooser, int value);
 
 char         *geda_file_chooser_get_filename       (GtkWidget *chooser);
-void          geda_file_chooser_set_filename       (GtkWidget *chooser, const char *name);
+bool          geda_file_chooser_set_filename       (GtkWidget *chooser, const char *name);
 
 GSList       *geda_file_chooser_get_filenames      (GtkWidget *chooser);
 

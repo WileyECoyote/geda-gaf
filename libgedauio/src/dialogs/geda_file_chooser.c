@@ -788,16 +788,26 @@ geda_file_chooser_get_filename(GtkWidget *hideous)
   return name;
 }
 
-void
+bool
 geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
+  int result;
+
   if (GTK_IS_FILE_CHOOSER(hideous)) {
-    gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
-    geda_file_chooser_set_entry_text(hideous, name);
+    result = gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
+    if (result) {
+      geda_file_chooser_set_entry_text(hideous, name);
+    }
+    else {
+      geda_file_chooser_set_entry_text(hideous, "");
+    }
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
+    result = FALSE;
   }
+
+  return result;
 }
 
 GSList*

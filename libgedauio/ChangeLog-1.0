@@ -1,5 +1,8 @@
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_set_filename to
+      return result from gtk_file_chooser_set_filename.
+
     * tests: Setup foundation for basic libgedauio test framework:
 
     * tests/Makefile.am: AutoMake file.
