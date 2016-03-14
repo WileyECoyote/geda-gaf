@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 2 -*- */
 /* vi: set et ts=2 sw=2 sts=2: */
 /*
- * File: test_accumulate.c
+ * File: prop-editor.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
@@ -27,26 +27,19 @@
  * Contributing Author: Wiley Edward Hill
  */
 
-#include <geda/geda.h>
-#include <geda_accumulate.h>
+#include <gtk/gtk.h>
 
-#define TWIDGET "GedaAccelLabel"
+#ifndef __PROP_EDITOR_H__
+#define __PROP_EDITOR_H__
 
-/*! \file test_accumulate.c
- *  \brief Tests for accumulate.c module
- */
-
-int
-main (int argc, char *argv[])
-{
-  int result = 0;
-//  int subtotal = 0;
-
-  /* Initialize gobject
-#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
-  g_type_init();
+#ifdef __cplusplus
+extern "C" {
 #endif
- */
 
-  return result;
+GtkWidget *create_prop_editor (GObject *object, GType type);
+
+#ifdef __cplusplus
 }
+#endif /* __cplusplus */
+
+#endif /* __PROP_EDITOR_H__ */

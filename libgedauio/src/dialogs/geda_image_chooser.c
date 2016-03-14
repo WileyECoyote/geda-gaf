@@ -1,5 +1,5 @@
-/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
-/* vi: set et ts=4 sw=2 sts=2: */
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 2 -*- */
+/* vi: set et ts=2 sw=2 sts=2: */
 /*
  * File: geda_image_chooser.c
  *

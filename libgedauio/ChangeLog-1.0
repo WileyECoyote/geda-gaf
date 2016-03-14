@@ -11,7 +11,14 @@
 
     * tests/test_accumulate.c: skeleton placeholder for the functions groups.
 
-    * tests/test_file_chooser.c: chosen representative for the dialogs group.
+    * tests/test_file_chooser.c: Modified test file from Gtk, not very useful
+      yet, get and set dialog properties.
+
+    * tests/prop-editor.h: Add header for declaration of create_prop_editor in
+      prop-editor.c.
+
+    * tests/prop-editor.c: Borrowed test file from Gtk and tidied up a bit but
+      will need over-haul.
 
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
