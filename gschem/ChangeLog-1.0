@@ -2,6 +2,9 @@
 
     * src/base/gschem.c: Free global_window_list in gschem_quit.
 
+    * src/iface/i_command.c: output performance not compiled message to log
+      instead of terminal.
+
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Rename geda_atexit -> gschem_atexit.

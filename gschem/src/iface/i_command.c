@@ -630,7 +630,7 @@ COMMAND (do_debug)
   p_current->CHANGED = old_page_state;
 
 #else
-  printf("Performance_diagnostic is not enable, must recompile\n");
+  u_log_message("Performance diagnostic is not enable, must recompile\n");
 #endif
 
   EXIT_COMMAND(do_debug);
