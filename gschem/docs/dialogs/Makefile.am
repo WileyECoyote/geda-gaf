@@ -6,6 +6,7 @@ dialogimagesdir   = $(docdir)/dialogs
 dialogimages_DATA = array_dialog.png \
 					auto_number_dialog.png \
 					component_select_dialog.png \
+					confirm_close_dialog.png \
 					console_dialog.png \
 					fileselect_dialog.png \
 					image_chooser_dialog.png \

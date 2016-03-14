@@ -1090,6 +1090,7 @@ HTML_EXTRA_FILES       = \
                          dialogs/array_dialog.png \
                          dialogs/auto_number_dialog.png \
                          dialogs/component_select_dialog.png \
+                         dialogs/confirm_close_dialog.png \
                          dialogs/console_dialog.png \
                          dialogs/fileselect_dialog.png \
                          dialogs/image_chooser_dialog.png \
@@ -1653,6 +1654,7 @@ LATEX_EXTRA_FILES      = what-is-geda.tex \
                          dialogs/array_dialog.png \
                          dialogs/auto_number_dialog.png \
                          dialogs/component_select_dialog.png \
+                         dialogs/confirm_close_dialog.png \
                          dialogs/console_dialog.png \
                          dialogs/fileselect_dialog.png \
                          dialogs/image_chooser_dialog.png \
