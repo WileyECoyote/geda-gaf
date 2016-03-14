@@ -6,9 +6,9 @@ SUBDIRS     = images dialogs
 
 # These "extra" files are for the Doxygen source documentation
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
-	      what-is-geda.tex
+	        what-is-geda.tex
 
-LOCAL_DOX   = gschem.dox gschem-main.txt
+LOCAL_DOX   = README gschem.dox gschem-main.txt
 
 LOCAL_HTML  = $(html_man_files) what-is-gschem.html
 

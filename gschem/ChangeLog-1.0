@@ -8,6 +8,9 @@
     * docs/gschem.dox: Include dialogs/confirm_close_dialog.png to lists:
       HTML_EXTRA_FILES and LATEX_EXTRA_FILES.
 
+    * docs/README: Add file; a reference checklist for inserting images into
+      DOxygen generated source documentation.
+
     * src/: Update function name geda_entry_new_visible in:
 
             * src/base/gschem_macro_widget.c

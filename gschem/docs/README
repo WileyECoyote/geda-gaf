@@ -1,0 +1,39 @@
+  For reference only.
+
+  Checklist: Inserting images in gschem Source Documentation
+
+  1.0 Is desired image drawn in gschem?
+
+     Yes:
+
+        1.1 Put .sch file in docs/images/ directory.
+        1.2 Add the file name to sch_images in docs/images/Makefile.am
+
+     No:
+
+        1.3 Generate the image
+        1.4 Put image file in docs/dialogs
+        1.5 Add the file name to dialogimages_DATA in docs/dialogs/Makefile.am
+
+
+  2.0 Include the image file name, including the relative directory, to the
+      HTML_EXTRA_FILES and LATEX_EXTRA_FILES lists in docs/gschem.dox.
+
+
+  3.0 Add the appropriate DOxygen tags, such as \image html or \image latex,
+      in a DOxygen comment block somewhere in the code or as a seperate text
+      file. An example of using a text is the file docs/gschem-main.txt. Note
+      that seperate files must be included either by the preprocessor or by
+      DOxygen using the INPUT tag.
+
+
+  4.0 Generaly, images inserted in latex should have a caption and may require
+      "fitting", for an example see src/x/x_confirm_close.c.
+
+
+  5.0 Generate/Re-generate the DOxygen output using "make doxygen", either in
+      top-level or gschem directory.
+
+
+  6.0 Verify the new image has been properly inserted in the DOxygen output.
+
