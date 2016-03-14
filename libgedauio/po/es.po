@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-13 20:34-0500\n"
+"POT-Creation-Date: 2016-03-14 12:29-0500\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -84,6 +84,272 @@ msgstr "Vista preliminar"
 msgid "Active to enable the preview pane"
 msgstr ""
 
+#: libgedauio/src/widgets/geda_accel_label.c:483
+msgid "Accelerator Closure"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_accel_label.c:484
+msgid "The closure to be monitored for accelerator changes"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_accel_label.c:490
+msgid "Accelerator Widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_accel_label.c:491
+msgid "The widget to be monitored for accelerator changes"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_accel_label.c:497
+msgid "Accelerator String"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_accel_label.c:498
+msgid "The accelerator string to be displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:229
+msgid "multikey-accelerator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:230
+msgid "A string with characters in positions key characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:237
+msgid "icon-identification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:238
+msgid "String name of the icon image"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:703
+msgid "Group"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:704
+msgid "The bulb button whose group this widget belongs to."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:715
+#, fuzzy
+msgid "Show Button"
+msgstr "Mostrar am_bos"
+
+#: libgedauio/src/widgets/geda_bulb.c:716
+msgid "Whether the draw the button during mouse over events"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:723
+#, fuzzy
+msgid "Indicator Size"
+msgstr "Tamaño de la rejilla"
+
+#: libgedauio/src/widgets/geda_bulb.c:724
+msgid "Size of check or radio indicator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:733
+msgid "Indicator Spacing"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:734
+msgid "Spacing around check or radio indicator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_bulb.c:756
+#, fuzzy
+msgid "group-changed"
+msgstr "*sin modificar*"
+
+#: libgedauio/src/widgets/geda_combobox.c:700
+#, fuzzy
+msgid "changed"
+msgstr "Modificado"
+
+#: libgedauio/src/widgets/geda_combobox.c:712
+msgid "move-active"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:730
+msgid "popup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:745
+msgid "popdown"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:795
+msgid "format-entry-text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:804
+#, fuzzy
+msgid "view-changed"
+msgstr "Modificado"
+
+#: libgedauio/src/widgets/geda_combobox.c:877
+#, fuzzy
+msgid "ComboBox model"
+msgstr "Modo Rectángulo"
+
+#: libgedauio/src/widgets/geda_combobox.c:878
+msgid "The model for the combo box"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:892
+#, fuzzy
+msgid "Wrap width"
+msgstr "Ancho:"
+
+#: libgedauio/src/widgets/geda_combobox.c:893
+msgid "Wrap width for laying out the items in a grid"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:911
+msgid "Row span column"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:912
+msgid "TreeModel column containing the row span values"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:930
+msgid "Column span column"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:931
+msgid "TreeModel column containing the column span values"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:950
+msgid "Active item"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:951
+msgid "The item which is currently active"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:968
+msgid "Add tearoffs to menus"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:969
+msgid "Whether dropdowns should have a tearoff menu item"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:982
+msgid "Has Frame"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:983
+msgid "Whether the combo box draws a frame around the child"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:996
+#: libgedauio/src/widgets/geda_menu_button.c:1094
+msgid "Focus on click"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:997
+msgid "Whether the combo box grabs focus when it is clicked with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1012
+msgid "Tearoff Title"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1013
+msgid ""
+"A title that may be displayed by the window manager when the popup is torn-"
+"off"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1027
+msgid "Popup shown"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1028
+msgid "Whether the combo's dropdown is shown"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1041
+msgid "Button Sensitivity"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1042
+msgid "Whether the dropdown button is sensitive when the model is empty"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1055
+msgid "Has Entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1056
+msgid "Whether combo box has an entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1068
+msgid "Appear as list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1069
+msgid "Whether popup should look like lists rather than menus"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1084
+msgid "Entry Text Column"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1085
+msgid ""
+"The column in the combo box's model to associate with strings from the entry "
+"if the combo was created with #GedaComboBox:has-entry = %TRUE"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1104
+msgid "Arrow Size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1105
+msgid "The minimum size of the arrow in the combo box"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1117
+msgid "List View"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1118
+msgid ""
+"When true, the drop-down appears as a list view, otherwise an ugly menus"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1130
+msgid "Shadow type"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:1131
+msgid "Which kind of shadow to draw around the combo box"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:3389
+#: libgedauio/src/widgets/geda_combobox.c:4118
+msgid "gtk-combo-box-item-path"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:3702
+msgid "Auto view"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:3709
+msgid "view as Menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_combobox.c:3716
+msgid "view as List"
+msgstr ""
+
 #: libgedauio/src/widgets/geda_entry.c:683
 msgid "Activates default"
 msgstr ""
@@ -93,7 +359,7 @@ msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:691
-#: libgedauio/src/widgets/geda_label.c:1075
+#: libgedauio/src/widgets/geda_label.c:1071
 msgid "Attributes"
 msgstr "Propiedades"
 
@@ -150,6 +416,96 @@ msgstr "Abrir"
 
 #: libgedauio/src/widgets/geda_entry.c:1245
 msgid "Off"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:760
+#: libgedauio/src/widgets/geda_font_dialog.c:1486
+msgid "Title"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:761
+#: libgedauio/src/widgets/geda_font_dialog.c:1487
+msgid "The title of the font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:762
+#: libgedauio/src/widgets/geda_font_dialog.c:1488
+msgid "Pick a Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:771
+#: libgedauio/src/widgets/geda_font_dialog.c:1510
+msgid "Font name"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:772
+msgid "The name of the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:783
+msgid "Use font in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:784
+msgid "Whether the label is drawn in the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:795
+msgid "Use size in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:796
+msgid "Whether the label is drawn with the selected font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:808
+#, fuzzy
+msgid "Show style"
+msgstr "Mostrar _valor"
+
+#: libgedauio/src/widgets/geda_font_button.c:809
+msgid "Whether the selected font style is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:821
+#, fuzzy
+msgid "Show size"
+msgstr "Mostrar ocultos"
+
+#: libgedauio/src/widgets/geda_font_button.c:822
+msgid "Whether selected font size is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:832
+#: libgedauio/src/widgets/geda_font_dialog.c:1521
+#, fuzzy
+msgid "Set Size"
+msgstr "Tamaño de texto"
+
+#: libgedauio/src/widgets/geda_font_button.c:833
+#: libgedauio/src/widgets/geda_font_dialog.c:1522
+msgid "Set point size of the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:853
+msgid "font-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:861
+msgid "size-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:888
+msgid "Open font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:926
+msgid "Font button"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:1489
+#: libgedauio/src/widgets/geda_font_dialog.c:1494
+msgid "Font"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1143
@@ -215,26 +571,6 @@ msgstr ""
 msgid "Font preview text entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1486
-#: libgedauio/src/widgets/geda_font_button.c:760
-msgid "Title"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_dialog.c:1487
-#: libgedauio/src/widgets/geda_font_button.c:761
-msgid "The title of the font selection dialog"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_dialog.c:1488
-#: libgedauio/src/widgets/geda_font_button.c:762
-msgid "Pick a Font"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_dialog.c:1494
-#: libgedauio/src/widgets/geda_font_button.c:1489
-msgid "Font"
-msgstr ""
-
 #: libgedauio/src/widgets/geda_font_dialog.c:1495
 msgid "The GdkFont that is currently selected"
 msgstr ""
@@ -247,24 +583,8 @@ msgstr ""
 msgid "Pango Font Description struct"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1510
-#: libgedauio/src/widgets/geda_font_button.c:771
-msgid "Font name"
-msgstr ""
-
 #: libgedauio/src/widgets/geda_font_dialog.c:1511
 msgid "The string that represents this font"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_dialog.c:1521
-#: libgedauio/src/widgets/geda_font_button.c:832
-#, fuzzy
-msgid "Set Size"
-msgstr "Tamaño de texto"
-
-#: libgedauio/src/widgets/geda_font_dialog.c:1522
-#: libgedauio/src/widgets/geda_font_button.c:833
-msgid "Set point size of the font"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1532
@@ -316,198 +636,234 @@ msgid ""
 "detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:965
+#: libgedauio/src/widgets/geda_imagemenuitem.c:392
+#: libgedauio/src/widgets/geda_menu_button.c:1121
+#, fuzzy
+msgid "Image widget"
+msgstr "Tipo de imagen"
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:393
+msgid "Child widget to appear next to the menu text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:406
+#: libgedauio/src/widgets/geda_menu_button.c:1086
+msgid "Use stock"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:407
+msgid "Whether to use the label text to create a stock menu item"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:424
+#, fuzzy
+msgid "Show image"
+msgstr "Mostrar ocultos"
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:425
+msgid "Whether the image will always be shown"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:438
+msgid "Accel Group"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_imagemenuitem.c:439
+msgid "The Accel Group to use for stock accelerator keys"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:961
 msgid "move-cursor"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:985
+#: libgedauio/src/widgets/geda_label.c:981
 #, fuzzy
 msgid "copy-clipboard"
 msgstr "Copiar al portapapeles"
 
-#: libgedauio/src/widgets/geda_label.c:1006
+#: libgedauio/src/widgets/geda_label.c:1002
 msgid "populate-popup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1068
-#: libgedauio/src/widgets/geda_label.c:1439
+#: libgedauio/src/widgets/geda_label.c:1064
+#: libgedauio/src/widgets/geda_label.c:1435
 #: libgedauio/src/widgets/geda_menu_button.c:1078
 msgid "Label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1069
+#: libgedauio/src/widgets/geda_label.c:1065
 msgid "The text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1076
+#: libgedauio/src/widgets/geda_label.c:1072
 msgid "A list of style attributes to apply to the text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1082
+#: libgedauio/src/widgets/geda_label.c:1078
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1083
+#: libgedauio/src/widgets/geda_label.c:1079
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1089
+#: libgedauio/src/widgets/geda_label.c:1085
 msgid "Use underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1090
+#: libgedauio/src/widgets/geda_label.c:1086
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1095
+#: libgedauio/src/widgets/geda_label.c:1091
 #, fuzzy
 msgid "Justification"
 msgstr "Destino"
 
-#: libgedauio/src/widgets/geda_label.c:1096
+#: libgedauio/src/widgets/geda_label.c:1092
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1103
+#: libgedauio/src/widgets/geda_label.c:1099
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1104
+#: libgedauio/src/widgets/geda_label.c:1100
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1110
+#: libgedauio/src/widgets/geda_label.c:1106
 #, fuzzy
 msgid "Line wrap"
 msgstr "Línea"
 
-#: libgedauio/src/widgets/geda_label.c:1111
+#: libgedauio/src/widgets/geda_label.c:1107
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1125
+#: libgedauio/src/widgets/geda_label.c:1121
 #, fuzzy
 msgid "Line wrap mode"
 msgstr "Modo Línea"
 
-#: libgedauio/src/widgets/geda_label.c:1126
+#: libgedauio/src/widgets/geda_label.c:1122
 msgid "If wrap is set, controls how linewrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1133
+#: libgedauio/src/widgets/geda_label.c:1129
 #, fuzzy
 msgid "Selectable"
 msgstr "Seleccionar"
 
-#: libgedauio/src/widgets/geda_label.c:1134
+#: libgedauio/src/widgets/geda_label.c:1130
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1140
+#: libgedauio/src/widgets/geda_label.c:1136
 msgid "Mnemonic key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1141
+#: libgedauio/src/widgets/geda_label.c:1137
 msgid "The mnemonic accelerator key for this label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1149
+#: libgedauio/src/widgets/geda_label.c:1145
 msgid "Mnemonic widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1150
+#: libgedauio/src/widgets/geda_label.c:1146
 msgid "The widget to be activated when the label's mnemonic key is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1157
+#: libgedauio/src/widgets/geda_label.c:1153
 msgid "Cursor Position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1158
+#: libgedauio/src/widgets/geda_label.c:1154
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1166
+#: libgedauio/src/widgets/geda_label.c:1162
 #, fuzzy
 msgid "Selection Bound"
 msgstr "Selección"
 
-#: libgedauio/src/widgets/geda_label.c:1167
+#: libgedauio/src/widgets/geda_label.c:1163
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1191
+#: libgedauio/src/widgets/geda_label.c:1187
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1192
+#: libgedauio/src/widgets/geda_label.c:1188
 msgid "The preferred place to break the string, if ellipes needed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1210
+#: libgedauio/src/widgets/geda_label.c:1206
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1211
+#: libgedauio/src/widgets/geda_label.c:1207
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1229
+#: libgedauio/src/widgets/geda_label.c:1225
 #, fuzzy
 msgid "Single Line Mode"
 msgstr "Modo Línea"
 
-#: libgedauio/src/widgets/geda_label.c:1230
+#: libgedauio/src/widgets/geda_label.c:1226
 msgid "Whether the label is in single line mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1245
+#: libgedauio/src/widgets/geda_label.c:1241
 #, fuzzy
 msgid "Angle"
 msgstr "Ángulo 1:"
 
-#: libgedauio/src/widgets/geda_label.c:1246
+#: libgedauio/src/widgets/geda_label.c:1242
 msgid "Angle at which the label is rotated"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1265
+#: libgedauio/src/widgets/geda_label.c:1261
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1266
+#: libgedauio/src/widgets/geda_label.c:1262
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1282
+#: libgedauio/src/widgets/geda_label.c:1278
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1283
+#: libgedauio/src/widgets/geda_label.c:1279
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:2019
+#: libgedauio/src/widgets/geda_label.c:2015
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5892
+#: libgedauio/src/widgets/geda_label.c:5888
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6017
+#: libgedauio/src/widgets/geda_label.c:6013
 #, fuzzy
 msgid "_Open Link"
 msgstr "Abrir archivo"
 
-#: libgedauio/src/widgets/geda_label.c:6029
+#: libgedauio/src/widgets/geda_label.c:6025
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -525,17 +881,9 @@ msgid ""
 "widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1086
-msgid "Use stock"
-msgstr ""
-
 #: libgedauio/src/widgets/geda_menu_button.c:1087
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_menu_button.c:1094
-msgid "Focus on click"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_menu_button.c:1095
@@ -557,11 +905,6 @@ msgstr ""
 #: libgedauio/src/widgets/geda_menu_button.c:1112
 msgid "The arrow border relief style"
 msgstr ""
-
-#: libgedauio/src/widgets/geda_menu_button.c:1121
-#, fuzzy
-msgid "Image widget"
-msgstr "Tipo de imagen"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1122
 msgid "Child widget to appear next to the button text"
@@ -601,76 +944,6 @@ msgstr "Orden de archivos:"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1171
 msgid "Border between button edges and child."
-msgstr ""
-
-#: libgedauio/src/widgets/geda_action.c:229
-msgid "multikey-accelerator"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_action.c:230
-msgid "A string with characters in positions key characters"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_action.c:237
-msgid "icon-identification"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_action.c:238
-msgid "String name of the icon image"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:772
-msgid "The name of the selected font"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:783
-msgid "Use font in label"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:784
-msgid "Whether the label is drawn in the selected font"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:795
-msgid "Use size in label"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:796
-msgid "Whether the label is drawn with the selected font size"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:808
-#, fuzzy
-msgid "Show style"
-msgstr "Mostrar _valor"
-
-#: libgedauio/src/widgets/geda_font_button.c:809
-msgid "Whether the selected font style is shown in the label"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:821
-#, fuzzy
-msgid "Show size"
-msgstr "Mostrar ocultos"
-
-#: libgedauio/src/widgets/geda_font_button.c:822
-msgid "Whether selected font size is shown in the label"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:853
-msgid "font-set"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:861
-msgid "size-set"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:888
-msgid "Open font selection dialog"
-msgstr ""
-
-#: libgedauio/src/widgets/geda_font_button.c:926
-msgid "Font button"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:262
@@ -868,9 +1141,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Path Mode"
 #~ msgstr "Modo Centrar"
-
-#~ msgid "Box Mode"
-#~ msgstr "Modo Rectángulo"
 
 #~ msgid "Picture Mode"
 #~ msgstr "Modo Imagen"
@@ -1535,9 +1805,6 @@ msgstr ""
 #~ msgid "Enter new text size:"
 #~ msgstr "Introduzca nuevo tamaño de texto:"
 
-#~ msgid "Snap Size"
-#~ msgstr "Tamaño de la rejilla"
-
 #~ msgid "Enter new snap grid spacing:"
 #~ msgstr "Introduzca el nuevo espaciado de la rejilla:"
 
@@ -1833,9 +2100,6 @@ msgstr ""
 
 #~ msgid "Filename"
 #~ msgstr "Nombre de archivo"
-
-#~ msgid "Changed"
-#~ msgstr "Modificado"
 
 #~ msgid "Right click on the filename for more options..."
 #~ msgstr "Pulse con el botón derecho para ver más opciones..."
@@ -2241,9 +2505,6 @@ msgstr ""
 #~ msgid "Show _Name"
 #~ msgstr "Mostrar _nombre"
 
-#~ msgid "Show _Both"
-#~ msgstr "Mostrar am_bos"
-
 #~ msgid "_Toggle Visibility"
 #~ msgstr "Cambiar v_isibilidad"
 
@@ -2629,14 +2890,8 @@ msgstr ""
 #~ msgid "Phantom"
 #~ msgstr "Fantasma"
 
-#~ msgid "*unchanged*"
-#~ msgstr "*sin modificar*"
-
 #~ msgid "Type:"
 #~ msgstr "Tipo:"
-
-#~ msgid "Width:"
-#~ msgstr "Ancho:"
 
 #~ msgid "Dash Length:"
 #~ msgstr "Longitud de la línea en la discontinuidad:"
