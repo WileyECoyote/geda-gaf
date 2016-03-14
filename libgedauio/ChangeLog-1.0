@@ -1,5 +1,8 @@
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Define gtk_hseparator_new and gtk_vseparator_new
+      as geda_separator_new with appropriate flag.
+
     * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_set_filename to
       return result from gtk_file_chooser_set_filename.
 

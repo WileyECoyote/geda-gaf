@@ -126,8 +126,8 @@
 #   define gtk_hbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL)
 
 /* Gtk[VH]Separator */
-#   define gtk_vseparator_new() gtk_separator_new(GTK_ORIENTATION_VERTICAL)
-#   define gtk_hseparator_new() gtk_separator_new(GTK_ORIENTATION_HORIZONTAL)
+#   define gtk_vseparator_new() geda_separator_new(GTK_ORIENTATION_VERTICAL)
+#   define gtk_hseparator_new() geda_separator_new(GTK_ORIENTATION_HORIZONTAL)
 
 /* Gtk[VH]Paned */
 #   define gtk_vpaned_new() gtk_paned_new(GTK_ORIENTATION_VERTICAL)
