@@ -48,12 +48,12 @@
 #include <libgeda/libgeda.h>
 
 #include <gtk/gtkaccellabel.h>
-#include "geda_gtk_compat.h"
-#include "geda_accel_label.h"
+
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_accel_label.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
-
-#define P_(x) (x)
 
 /**
  * \brief GedaAccelLabel - A Button Widget for Menus
@@ -307,10 +307,10 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
 
 static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 {
-  GtkAccelLabel   *accel_label;
-  unsigned int     ac_width;
-  GtkAllocation   *allocation;
-  GtkRequisition   requisition;
+  GtkAccelLabel  *accel_label;
+  unsigned int    ac_width;
+  GtkAllocation  *allocation;
+  GtkRequisition  requisition;
 
   accel_label = GTK_ACCEL_LABEL (widget);
 
@@ -463,40 +463,39 @@ geda_accel_label_class_init(void *g_class, void *class_data)
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
-  object_class->finalize      = geda_accel_label_finalize;
-  object_class->set_property  = geda_accel_label_set_property;
-  object_class->get_property  = geda_accel_label_get_property;
+  object_class->finalize       = geda_accel_label_finalize;
+  object_class->set_property   = geda_accel_label_set_property;
+  object_class->get_property   = geda_accel_label_get_property;
 
-  widget_class->size_request  = geda_accel_label_size_request;
+  widget_class->size_request   = geda_accel_label_size_request;
 
 #if GTK_MAJOR_VERSION < 3
-  widget_class->expose_event  = geda_accel_label_expose_event;
+  widget_class->expose_event   = geda_accel_label_expose_event;
 #else
-  widget_class->draw          = geda_accel_label_draw;
+  widget_class->draw           = geda_accel_label_draw;
 #endif
-
 
   geda_accel_label_parent_class = g_type_class_peek_parent (class);
 
   g_object_class_install_property (object_class,
                                    PROP_ACCEL_CLOSURE,
                                    g_param_spec_boxed ("accel-closure",
-                                                       P_("Accelerator Closure"),
-                                                       P_("The closure to be monitored for accelerator changes"),
+                                                     _("Accelerator Closure"),
+                                                     _("The closure to be monitored for accelerator changes"),
                                                        G_TYPE_CLOSURE,
                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class,
                                    PROP_ACCEL_WIDGET,
                                    g_param_spec_object ("accel-widget",
-                                                        P_("Accelerator Widget"),
-                                                        P_("The widget to be monitored for accelerator changes"),
+                                                      _("Accelerator Widget"),
+                                                      _("The widget to be monitored for accelerator changes"),
                                                         GTK_TYPE_WIDGET,
                                                         G_PARAM_READWRITE));
   g_object_class_install_property (object_class,
                                    PROP_ACCEL_STRING,
                                    g_param_spec_string ("accel-string",
-                                                        P_("Accelerator String"),
-                                                        P_("The accelerator string to be displayed"),
+                                                      _("Accelerator String"),
+                                                      _("The accelerator string to be displayed"),
                                                         NULL,
                                                         G_PARAM_READWRITE));
 }
@@ -516,11 +515,10 @@ geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
   GedaAccelLabel *accel_label = (GedaAccelLabel*)instance;
 
   accel_label->accel_padding = 3;
-  accel_label->accel_string = NULL;
+  accel_label->accel_string  = NULL;
 }
 
 /*! \brief Function to retrieve GedaAccelLabel's Type identifier.
- *
  *  \par Function Description
  *  Function to retrieve a #GedaAccelLabel Type identifier. When
  *  first called, the function registers a #GedaAccelLabel in the
@@ -558,6 +556,29 @@ GedaType geda_accel_label_get_type (void)
   }
 
   return geda_accel_label_type;
+}
+
+/*!
+ * \brief Create a New GedaAccelLabel.
+ * \par Function Description
+ * Creates a brand spanking new #GedaAccelLabel.
+ *
+ * \param [in] string The label string, Must be not NULL.
+ *
+ * \returns a new #GedaAccelLabel.
+ */
+GtkWidget*
+geda_accel_label_new (const char *string)
+{
+  GedaAccelLabel *accel_label;
+
+  g_return_val_if_fail (string != NULL, NULL);
+
+  accel_label = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
+
+  gtk_label_set_text (GTK_LABEL (accel_label), string);
+
+  return GTK_WIDGET (accel_label);
 }
 
 /** @} endgroup GedaAccelLabel */

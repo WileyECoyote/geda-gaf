@@ -58,9 +58,9 @@ struct _GedaAccelLabel
 {
   GtkAccelLabel label;
 
-  unsigned int   accel_padding;
-  char          *accel_string;
-  guint16        accel_string_width;
+  unsigned int  accel_padding;
+  char         *accel_string;
+  guint16       accel_string_width;
 };
 
 struct _GedaAccelLabelClass

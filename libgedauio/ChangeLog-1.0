@@ -4,6 +4,8 @@
 
     * src/dialogs/geda_input_dialog.c: Update geda_entry_new_visible
 
+    * src/widgets/geda_accel_label.c: Add function geda_accel_label_new.
+
     * src/widgets/geda_entry.c: Rename function geda_visible_entry_new to
       geda_entry_new_visible, clearly a temporary loss of reason.
 
