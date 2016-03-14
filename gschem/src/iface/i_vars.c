@@ -202,7 +202,19 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
   return tmpstr;
 }
 
-/* Retrieves a color from key file in specified group */
+/*! \brief Retrieve a color from config given a key and specified group
+ *  \par
+ *   Retrieve interger list from configuration with \a key in \a group and
+ *   set members of \a var from the retrieved values, if the key does not
+ *   exist then the values are set from the current display color map using
+ *   the color \a index.
+ *
+ *  \param cfg    Pointer to EdaConfig Object
+ *  \param group  String name of configuration group
+ *  \param key    string name of record key to be retrieved
+ *  \param var    Pointer to GdkColor structure whose values are to be set
+ *  \param index  index of default color used if key does not exist.
+ */
 void
 i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
                           GdkColor  *var, int index)

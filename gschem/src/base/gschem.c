@@ -66,9 +66,9 @@ void shut_down_gui (void)
  *  program exit. Multiple functions will be executed in
  *  the order they are registered.
  *
- *  \param [in] func a pointer to the function to be registered
- *  \param [in] data an arbitrary argument provided to the function
- *                   when it is called
+ *  \param [in] func Pointer to the function to be registered
+ *  \param [in] data Arbitrary argument passed to \a func when
+ *                   the function is called.
  */
 void gschem_atexit(geda_atexit_func func, void* data)
 {
@@ -359,7 +359,7 @@ static void gschem( int argc, char *argv[])
   i_vars_init(w_current);         /* Set defaults */
 
   if (w_current->save_ui_settings) {
-    geda_atexit (i_vars_atexit_save_user_config, NULL);
+    gschem_atexit (i_vars_atexit_save_user_config, NULL);
   }
 
   /*! \internal Begin Setup Log & Console System */
@@ -389,7 +389,7 @@ static void gschem( int argc, char *argv[])
 
   /* Load recent files list before calling x_window_setup.*/
   x_menu_recent_files_load();
-  geda_atexit(x_menu_recent_files_save, NULL);
+  gschem_atexit(x_menu_recent_files_save, NULL);
 
   /*! \internal Bring up the GUI */
   x_window_setup (w_current);

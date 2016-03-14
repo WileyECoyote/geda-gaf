@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-08 04:41-0600\n"
+"POT-Creation-Date: 2016-03-13 20:34-0500\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -21,31 +21,31 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:161
+#: gschem/src/base/gschem.c:163
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:162
+#: gschem/src/base/gschem.c:164
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:192
+#: gschem/src/base/gschem.c:194
 #, c-format
 msgid "Assumming schematic file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:202
+#: gschem/src/base/gschem.c:204
 #, c-format
 msgid "Assumming symbol file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:232
+#: gschem/src/base/gschem.c:234
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:307
+#: gschem/src/base/gschem.c:309
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -59,30 +59,30 @@ msgstr ""
 "d'ambiente \n"
 "GEDADATA in modo che punti alla locazione corretta.\n"
 
-#: gschem/src/base/gschem.c:344
+#: gschem/src/base/gschem.c:346
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:349
+#: gschem/src/base/gschem.c:351
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Lettura del file init scm [%s]\n"
 
-#: gschem/src/base/gschem.c:352
+#: gschem/src/base/gschem.c:354
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Fallita la lettura del file init scm [%s]\n"
 
-#: gschem/src/base/gschem.c:378
+#: gschem/src/base/gschem.c:380
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem versione %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:382
+#: gschem/src/base/gschem.c:384
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:415
+#: gschem/src/base/gschem.c:417
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -90,7 +90,7 @@ msgstr ""
 "\n"
 "Il file di log di gschem potrebbe contenere ulteriori informazioni.\n"
 
-#: gschem/src/base/gschem.c:503
+#: gschem/src/base/gschem.c:505
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -112,25 +112,25 @@ msgstr "senzanome"
 msgid "Dialog window title"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:202
+#: gschem/src/base/gschem_macro_widget.c:231
 #, fuzzy
 msgid "Label Text"
 msgstr "Nascondi testo"
 
-#: gschem/src/base/gschem_macro_widget.c:203
+#: gschem/src/base/gschem_macro_widget.c:232
 msgid "Text to be displayed for the Macro label"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:204
+#: gschem/src/base/gschem_macro_widget.c:233
 msgid "Macro:"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:210
-#: gschem/src/base/gschem_macro_widget.c:211
+#: gschem/src/base/gschem_macro_widget.c:239
+#: gschem/src/base/gschem_macro_widget.c:240
 msgid "Macro String"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:322
+#: gschem/src/base/gschem_macro_widget.c:350
 msgid "Evaluate"
 msgstr ""
 
@@ -1049,33 +1049,38 @@ msgstr "Fallita la discesa in \"%s\": %s\n"
 msgid "Closing Page\n"
 msgstr "Chiudi pagina"
 
-#: gschem/src/iface/i_window.c:188
+#: gschem/src/iface/i_window.c:169
+#, c-format
+msgid "Set page <%s> active.\n"
+msgstr ""
+
+#: gschem/src/iface/i_window.c:194
 msgid "Really revert page?"
 msgstr "Vuoi veramente ritornare alla pagina precedente?"
 
-#: gschem/src/iface/i_window.c:244
+#: gschem/src/iface/i_window.c:250
 #, fuzzy, c-format
 msgid "An error occurred during a File Revert operation: %s."
 msgstr ""
 "ERRORE: un errore sconosciuto si è verificato durante l'analisi dei file di "
 "configurazione.\n"
 
-#: gschem/src/iface/i_window.c:247
+#: gschem/src/iface/i_window.c:253
 #, fuzzy
 msgid "<b>File error.</b>"
 msgstr "<b>Visibilità</b>"
 
-#: gschem/src/iface/i_window.c:247
+#: gschem/src/iface/i_window.c:253
 #, fuzzy
 msgid "Revert failed"
 msgstr "Annulla i cambiamenti"
 
-#: gschem/src/iface/i_window.c:254
+#: gschem/src/iface/i_window.c:260
 #, c-format
 msgid "Error encountered during file operation <%s>\n"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:255
+#: gschem/src/iface/i_window.c:261
 #, fuzzy
 msgid "Recovery: undo last action\n"
 msgstr "Annulla l'ultima operazione"
@@ -1517,13 +1522,13 @@ msgstr ""
 msgid "Command interface: engaged using (%s)\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:344
+#: gschem/src/x/x_console.c:342
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 "**  UTF-8 non valido in messaggio del log. Verificare in stderr o gschem."
 "log.\n"
 
-#: gschem/src/x/x_console.c:607
+#: gschem/src/x/x_console.c:605
 msgid "gEDA Console"
 msgstr ""
 
@@ -3634,59 +3639,54 @@ msgstr ""
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1210
+#: gschem/src/x/x_window.c:665 gschem/src/x/x_window.c:1214
 msgid "Aborting action\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:670
+#: gschem/src/x/x_window.c:671
 #, fuzzy
 msgid "Close Window canceled\n"
 msgstr "Chiudi finestra"
 
-#: gschem/src/x/x_window.c:746
+#: gschem/src/x/x_window.c:751
 #, fuzzy, c-format
 msgid "Loading \"%s\"\n"
 msgstr "Chiusura [%s]\n"
 
-#: gschem/src/x/x_window.c:870
+#: gschem/src/x/x_window.c:875
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Nuovo file [%s]\n"
 
-#: gschem/src/x/x_window.c:1040
-#, c-format
-msgid "Set page <%s> active.\n"
-msgstr ""
-
-#: gschem/src/x/x_window.c:1135
+#: gschem/src/x/x_window.c:1139
 #, fuzzy, c-format
 msgid "Could NOT save page [%s]:\n"
 msgstr "Non è possibile salvare la pagina [%s]\n"
 
-#: gschem/src/x/x_window.c:1137
+#: gschem/src/x/x_window.c:1141
 msgid "Error while trying to save"
 msgstr "Errore durante il salvataggio"
 
-#: gschem/src/x/x_window.c:1150
+#: gschem/src/x/x_window.c:1154
 #, fuzzy, c-format
 msgid "Saved as [%s] Okay\n"
 msgstr "Salvato con il nome [%s]\n"
 
-#: gschem/src/x/x_window.c:1153
+#: gschem/src/x/x_window.c:1157
 #, fuzzy, c-format
 msgid "Saved [%s] Okay\n"
 msgstr "Salvato [%s]\n"
 
-#: gschem/src/x/x_window.c:1156
+#: gschem/src/x/x_window.c:1160
 msgid "Saved"
 msgstr "Salvato"
 
-#: gschem/src/x/x_window.c:1256
+#: gschem/src/x/x_window.c:1260
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Annulla pagina [%s]\n"
 
-#: gschem/src/x/x_window.c:1256
+#: gschem/src/x/x_window.c:1260
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Chiusura [%s]\n"
