@@ -78,9 +78,9 @@ struct _GedaLabel
 {
   GtkMisc        misc;
 
-  PangoAttrList        *attrs;
-  PangoAttrList        *markup_attrs;
-  PangoLayout          *layout;
+  PangoAttrList *attrs;
+  PangoAttrList *markup_attrs;
+  PangoLayout   *layout;
 
   char   *label;
   char   *text;
@@ -105,7 +105,7 @@ struct _GedaLabelClass
   /* Hook to customize right-click popup for selectable labels */
   void (* populate_popup)  (GedaLabel  *label, GtkMenu *menu);
 
-  bool (*activate_link)    (GedaLabel *label, const char *uri);
+  bool (* activate_link)   (GedaLabel *label, const char *uri);
 
 };
 

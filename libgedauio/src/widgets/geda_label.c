@@ -311,13 +311,12 @@ static void geda_label_get_link_colors            (GtkWidget     *widget,
 static void emit_activate_link                    (GedaLabel     *label,
                                                    GedaLabelLink *link);
 
+static void *geda_label_parent_class = NULL;
+
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
 static GQuark quark_aux_info = 0;
 
-G_DEFINE_TYPE_WITH_CODE (GedaLabel, geda_label, GTK_TYPE_MISC,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-                                                geda_label_buildable_interface_init))
 
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
@@ -732,23 +731,157 @@ static void geda_label_ensure_layout (GedaLabel *label)
   }
 }
 
+static void
+geda_label_set_property (GObject *object,     unsigned int  prop_id,
+                         const GValue *value, GParamSpec   *pspec)
+{
+  GedaLabel *label = GEDA_LABEL (object);
+
+  switch (prop_id)
+  {
+    case PROP_LABEL:
+      geda_label_set_label (label, g_value_get_string (value));
+      break;
+    case PROP_ATTRIBUTES:
+      geda_label_set_attributes (label, g_value_get_boxed (value));
+      break;
+    case PROP_USE_MARKUP:
+      geda_label_set_use_markup (label, g_value_get_boolean (value));
+      break;
+    case PROP_USE_UNDERLINE:
+      geda_label_set_use_underline (label, g_value_get_boolean (value));
+      break;
+    case PROP_JUSTIFY:
+      geda_label_set_justify (label, g_value_get_enum (value));
+      break;
+    case PROP_PATTERN:
+      geda_label_set_pattern (label, g_value_get_string (value));
+      break;
+    case PROP_WRAP:
+      geda_label_set_line_wrap (label, g_value_get_boolean (value));
+      break;
+    case PROP_WRAP_MODE:
+      geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
+      break;
+    case PROP_SELECTABLE:
+      geda_label_set_selectable (label, g_value_get_boolean (value));
+      break;
+    case PROP_MNEMONIC_WIDGET:
+      geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
+      break;
+    case PROP_ELLIPSIZE:
+      geda_label_set_ellipsize (label, g_value_get_enum (value));
+      break;
+    case PROP_WIDTH_CHARS:
+      geda_label_set_width_chars (label, g_value_get_int (value));
+      break;
+    case PROP_SINGLE_LINE_MODE:
+      geda_label_set_single_line_mode (label, g_value_get_boolean (value));
+      break;
+    case PROP_ANGLE:
+      geda_label_set_angle (label, g_value_get_double (value));
+      break;
+    case PROP_MAX_WIDTH:
+      geda_label_set_max_width_chars (label, g_value_get_int (value));
+      break;
+    case PROP_TRACK_VISITED_LINKS:
+      geda_label_set_track_visited_links (label, g_value_get_boolean (value));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_label_get_property (GObject *object, unsigned int  prop_id,
+                         GValue  *value,  GParamSpec   *pspec)
+{
+  GedaLabel *label       = GEDA_LABEL (object);
+  GedaLabelData *priv = label->priv;
+
+  switch (prop_id)
+    {
+    case PROP_LABEL:
+      g_value_set_string (value, label->label);
+      break;
+    case PROP_ATTRIBUTES:
+      g_value_set_boxed (value, label->attrs);
+      break;
+    case PROP_USE_MARKUP:
+      g_value_set_boolean (value, priv->use_markup);
+      break;
+    case PROP_USE_UNDERLINE:
+      g_value_set_boolean (value, priv->use_underline);
+      break;
+    case PROP_JUSTIFY:
+      g_value_set_enum (value, priv->jtype);
+      break;
+    case PROP_WRAP:
+      g_value_set_boolean (value, priv->wrap);
+      break;
+    case PROP_WRAP_MODE:
+      g_value_set_enum (value, priv->wrap_mode);
+      break;
+    case PROP_SELECTABLE:
+      g_value_set_boolean (value, geda_label_get_selectable (label));
+      break;
+    case PROP_MNEMONIC_KEYVAL:
+      g_value_set_uint (value, priv->mnemonic_keyval);
+      break;
+    case PROP_MNEMONIC_WIDGET:
+      g_value_set_object (value, (GObject*) priv->mnemonic_widget);
+      break;
+    case PROP_CURSOR_POSITION:
+      g_value_set_int (value, _geda_label_get_cursor_position (label));
+      break;
+    case PROP_SEL_BOUND:
+      g_value_set_int (value, _geda_label_get_selection_bound (label));
+      break;
+    case PROP_ELLIPSIZE:
+      g_value_set_enum (value, priv->ellipsize);
+      break;
+    case PROP_WIDTH_CHARS:
+      g_value_set_int (value, geda_label_get_width_chars (label));
+      break;
+    case PROP_SINGLE_LINE_MODE:
+      g_value_set_boolean (value, geda_label_get_single_line_mode (label));
+      break;
+    case PROP_ANGLE:
+      g_value_set_double (value, geda_label_get_angle (label));
+      break;
+    case PROP_MAX_WIDTH:
+      g_value_set_int (value, geda_label_get_max_width_chars (label));
+      break;
+    case PROP_TRACK_VISITED_LINKS:
+      g_value_set_boolean (value, geda_label_get_track_visited_links (label));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
 /*! \brief GedaLabel Class Initializer
  *
  *  \par Function Description
  *  Function is called to initialize the class instance.
  *
- * \param [in] class A GedaLabelClass Object
+ * \param [in] class      A GedaLabelClass Object
+ * \param [in] class_data GedaLabel structure associated with the class
  */
 static void
-geda_label_class_init (GedaLabelClass *class)
+geda_label_class_init  (void *class, void *class_data)
 {
   GParamSpec     *params;
   GObjectClass   *gobject_class;
   GtkObjectClass *object_class;
   GtkWidgetClass *widget_class;
   GtkBindingSet  *binding_set;
+  GedaLabelClass *label_class;
 
   gobject_class  = G_OBJECT_CLASS (class);
+  label_class    = GEDA_LABEL_CLASS (class);
   object_class   = GTK_OBJECT_CLASS (class);
   widget_class   = GTK_WIDGET_CLASS (class);
 
@@ -780,9 +913,11 @@ geda_label_class_init (GedaLabelClass *class)
   widget_class->popup_menu           = geda_label_popup_menu;
   widget_class->focus                = geda_label_focus;
 
-  class->move_cursor                 = geda_label_move_cursor;
-  class->copy_clipboard              = geda_label_copy_clipboard;
-  class->activate_link               = geda_label_activate_link;
+  label_class->move_cursor           = geda_label_move_cursor;
+  label_class->copy_clipboard        = geda_label_copy_clipboard;
+  label_class->activate_link         = geda_label_activate_link;
+
+  geda_label_parent_class            = g_type_class_peek_parent (class);
 
   /**
    * GedaLabel::move-cursor:
@@ -1147,7 +1282,6 @@ geda_label_class_init (GedaLabelClass *class)
 
   g_object_class_install_property (gobject_class, PROP_TRACK_VISITED_LINKS, params);
 
-
   /*  Key bindings */
 
   binding_set = gtk_binding_set_by_class (class);
@@ -1241,147 +1375,24 @@ geda_label_class_init (GedaLabelClass *class)
                                 "activate-current-link", 0);
   gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,
                                 "activate-current-link", 0);
-
-  g_type_class_add_private (class, sizeof (GedaLabelData));
-
 }
 
+/*! \brief Type instance initializer for GedaLabel
+ *
+ *  \par Function Description
+ *  Type instance initializer for GedaLabel, initializes a new empty
+ *  GedaLabel object.
+ *
+ *  \param [in] instance The GedaLabel structure being initialized,
+ *  \param [in] g_class  The GedaLabel class we are initializing.
+ */
 static void
-geda_label_set_property (GObject *object,     unsigned int  prop_id,
-                         const GValue *value, GParamSpec   *pspec)
+geda_label_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaLabel *label = GEDA_LABEL (object);
-
-  switch (prop_id)
-  {
-    case PROP_LABEL:
-      geda_label_set_label (label, g_value_get_string (value));
-      break;
-    case PROP_ATTRIBUTES:
-      geda_label_set_attributes (label, g_value_get_boxed (value));
-      break;
-    case PROP_USE_MARKUP:
-      geda_label_set_use_markup (label, g_value_get_boolean (value));
-      break;
-    case PROP_USE_UNDERLINE:
-      geda_label_set_use_underline (label, g_value_get_boolean (value));
-      break;
-    case PROP_JUSTIFY:
-      geda_label_set_justify (label, g_value_get_enum (value));
-      break;
-    case PROP_PATTERN:
-      geda_label_set_pattern (label, g_value_get_string (value));
-      break;
-    case PROP_WRAP:
-      geda_label_set_line_wrap (label, g_value_get_boolean (value));
-      break;
-    case PROP_WRAP_MODE:
-      geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
-      break;
-    case PROP_SELECTABLE:
-      geda_label_set_selectable (label, g_value_get_boolean (value));
-      break;
-    case PROP_MNEMONIC_WIDGET:
-      geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
-      break;
-    case PROP_ELLIPSIZE:
-      geda_label_set_ellipsize (label, g_value_get_enum (value));
-      break;
-    case PROP_WIDTH_CHARS:
-      geda_label_set_width_chars (label, g_value_get_int (value));
-      break;
-    case PROP_SINGLE_LINE_MODE:
-      geda_label_set_single_line_mode (label, g_value_get_boolean (value));
-      break;
-    case PROP_ANGLE:
-      geda_label_set_angle (label, g_value_get_double (value));
-      break;
-    case PROP_MAX_WIDTH:
-      geda_label_set_max_width_chars (label, g_value_get_int (value));
-      break;
-    case PROP_TRACK_VISITED_LINKS:
-      geda_label_set_track_visited_links (label, g_value_get_boolean (value));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void
-geda_label_get_property (GObject *object, unsigned int  prop_id,
-                         GValue  *value,  GParamSpec   *pspec)
-{
-  GedaLabel *label       = GEDA_LABEL (object);
-  GedaLabelData *priv = label->priv;
-
-  switch (prop_id)
-    {
-    case PROP_LABEL:
-      g_value_set_string (value, label->label);
-      break;
-    case PROP_ATTRIBUTES:
-      g_value_set_boxed (value, label->attrs);
-      break;
-    case PROP_USE_MARKUP:
-      g_value_set_boolean (value, priv->use_markup);
-      break;
-    case PROP_USE_UNDERLINE:
-      g_value_set_boolean (value, priv->use_underline);
-      break;
-    case PROP_JUSTIFY:
-      g_value_set_enum (value, priv->jtype);
-      break;
-    case PROP_WRAP:
-      g_value_set_boolean (value, priv->wrap);
-      break;
-    case PROP_WRAP_MODE:
-      g_value_set_enum (value, priv->wrap_mode);
-      break;
-    case PROP_SELECTABLE:
-      g_value_set_boolean (value, geda_label_get_selectable (label));
-      break;
-    case PROP_MNEMONIC_KEYVAL:
-      g_value_set_uint (value, priv->mnemonic_keyval);
-      break;
-    case PROP_MNEMONIC_WIDGET:
-      g_value_set_object (value, (GObject*) priv->mnemonic_widget);
-      break;
-    case PROP_CURSOR_POSITION:
-      g_value_set_int (value, _geda_label_get_cursor_position (label));
-      break;
-    case PROP_SEL_BOUND:
-      g_value_set_int (value, _geda_label_get_selection_bound (label));
-      break;
-    case PROP_ELLIPSIZE:
-      g_value_set_enum (value, priv->ellipsize);
-      break;
-    case PROP_WIDTH_CHARS:
-      g_value_set_int (value, geda_label_get_width_chars (label));
-      break;
-    case PROP_SINGLE_LINE_MODE:
-      g_value_set_boolean (value, geda_label_get_single_line_mode (label));
-      break;
-    case PROP_ANGLE:
-      g_value_set_double (value, geda_label_get_angle (label));
-      break;
-    case PROP_MAX_WIDTH:
-      g_value_set_int (value, geda_label_get_max_width_chars (label));
-      break;
-    case PROP_TRACK_VISITED_LINKS:
-      g_value_set_boolean (value, geda_label_get_track_visited_links (label));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
-
-static void
-geda_label_init (GedaLabel *label)
-{
+  GedaLabel     *label;
   GedaLabelData *priv;
 
+  label       = (GedaLabel*)instance;
   label->priv = GEDA_MEM_ALLOC0 (sizeof(GedaLabelData));
 
   priv = label->priv;
@@ -1433,6 +1444,56 @@ geda_label_buildable_interface_init (GtkBuildableIface *iface)
 
   iface->custom_tag_start = geda_label_buildable_custom_tag_start;
   iface->custom_finished = geda_label_buildable_custom_finished;
+}
+
+/*! \brief Retrieve GedaLabel's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaLabel Type identifier. When
+ *  first called, the function registers a #GedaLabel in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaLabel and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaLabel.
+ */
+GedaType
+geda_label_get_type (void)
+{
+  static GedaType geda_label_type = 0;
+
+  if (g_once_init_enter (&geda_label_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaLabelClass),
+      NULL,                      /* base_init           */
+      NULL,                      /* base_finalize       */
+      geda_label_class_init,     /* (GClassInitFunc)    */
+      NULL,                      /* class_finalize      */
+      NULL,                      /* class_data          */
+      sizeof(GedaLabel),
+      0,                         /* n_preallocs         */
+      geda_label_instance_init   /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaLabel");
+    type   = g_type_register_static (GTK_TYPE_MISC, string, &info, 0);
+
+    const GInterfaceInfo interface_info = {
+      (GInterfaceInitFunc) geda_label_buildable_interface_init,
+      NULL,
+      NULL
+    };
+
+    g_type_add_interface_static (type, GTK_TYPE_BUILDABLE, &interface_info);
+
+    g_once_init_leave (&geda_label_type, type);
+  }
+
+  return geda_label_type;
 }
 
 typedef struct {
@@ -3337,7 +3398,7 @@ static void geda_label_finalize (GObject *object)
 
   GEDA_FREE (label->priv->select_info);
 
-  if ( label->priv->font_map &&  G_IS_OBJECT(label->priv->font_map) ) {
+  if (label->priv->font_map) {
     g_object_unref (label->priv->font_map);
     label->priv->font_map = NULL;
   }

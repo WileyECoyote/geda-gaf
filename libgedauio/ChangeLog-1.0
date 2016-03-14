@@ -7,6 +7,9 @@
     * src/widgets/geda_entry.c: Rename function geda_visible_entry_new to
       geda_entry_new_visible, clearly a temporary loss of reason.
 
+    * src/widgets/geda_label.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
+      define buildable interface with code.
+
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define gtk_hseparator_new and gtk_vseparator_new
@@ -59,7 +62,7 @@
       geda_handle_box_finalize. Rename GedaHandlePrivate GedaHandleBoxData.
 
     * src/widgets/geda_menu_button.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
-      define with buildable interface in code.
+      define buildable interface in code.
 
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -171,6 +171,7 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 
   /* Override the type of label widget used with the menu item */
   if (GTK_IS_MENU_ITEM (proxy)) {
+
     GtkWidget *label;
 
     label = GTK_BIN (proxy)->child;

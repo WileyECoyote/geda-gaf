@@ -599,11 +599,11 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 
   if (image_menu_item->use_stock && resolved_label) {
 
-    GtkStockItem  stock_item;
+    GtkStockItem stock_item;
 
     if (!image_menu_item->image) {
 
-      GtkWidget    *image;
+      GtkWidget *image;
 
       image = gtk_image_new_from_stock (resolved_label, GTK_ICON_SIZE_MENU);
       geda_image_menu_item_set_image (image_menu_item, image);
