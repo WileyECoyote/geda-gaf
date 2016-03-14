@@ -116,6 +116,8 @@ static void gschem_quit(void)
   i_vars_freenames();
   i_command_shutdown();
 
+  g_list_free (global_window_list);
+
   /* Enable this to get more memory usage from glib */
   /* You also have to enable something in glib I think RUSAGE_CHILDREN*/
 #ifdef G_STAT_MEM
