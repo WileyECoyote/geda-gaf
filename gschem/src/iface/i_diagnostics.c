@@ -234,7 +234,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Program:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 0,1,0,1, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -245,7 +245,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Process ID:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 4,5,0,1, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -265,7 +265,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
     widget = geda_aligned_label_new (_("Max resident Size:"), 0, 0);
     gtk_table_attach(GTK_TABLE(table), widget, 0,1,2,3, GTK_FILL,0,0,0);
 
-    widget = geda_visible_entry_new ( DISABLE, DISABLE);
+    widget = geda_entry_new_visible ( DISABLE, DISABLE);
     gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
     geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -279,7 +279,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Max Threads:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 2,3,2,3, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -292,7 +292,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Max Unused:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 4,5,2,3, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -310,7 +310,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Number of threads:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 0,1,3,4, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -323,7 +323,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Pending:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 2,3,3,4, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -336,7 +336,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_aligned_label_new (_("Max Idle:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 4,5,3,4, GTK_FILL,0,0,0);
 
-  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);

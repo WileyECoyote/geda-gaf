@@ -340,7 +340,7 @@ gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
   widget->label = geda_visible_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (content), widget->label, FALSE, FALSE, 0);
 
-  widget->entry = geda_visible_entry_new (NO_HISTORY, NO_COMPLETION);
+  widget->entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
   gtk_box_pack_start (GTK_BOX (content), widget->entry, TRUE, TRUE, 0);
 
   button_box = gtk_hbutton_box_new ();

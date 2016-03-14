@@ -484,7 +484,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
     gtk_container_add(GTK_CONTAINER (vbox), frame);
     g_object_set (frame, "visible", TRUE, NULL);
 
-    screen_entry = geda_visible_entry_new ( DISABLE, DISABLE);
+    screen_entry = geda_entry_new_visible ( DISABLE, DISABLE);
     gtk_entry_set_has_frame (GTK_ENTRY(screen_entry), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(screen_entry), 0.5);
     geda_entry_widget_modify_color (screen_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
@@ -494,7 +494,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
     gtk_container_add(GTK_CONTAINER (vbox), frame);
     g_object_set (frame, "visible", TRUE, NULL);
 
-    world_entry = geda_visible_entry_new ( DISABLE, DISABLE);
+    world_entry = geda_entry_new_visible ( DISABLE, DISABLE);
     gtk_entry_set_has_frame (GTK_ENTRY(world_entry), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(world_entry), 0.5);
     geda_entry_widget_modify_color (world_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);

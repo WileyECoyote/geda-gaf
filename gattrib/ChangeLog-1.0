@@ -1,3 +1,7 @@
+2016-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/x_dialog.c: Update function name geda_entry_new_visible.
+
 2016-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Reduce scope of int ch in parse_commandline.

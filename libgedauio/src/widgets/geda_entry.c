@@ -69,7 +69,7 @@
  * which could also be NULL because a NULL completion is interpreted to
  * mean disabling the completion feature.
  * \par
- * example:    entry = geda_visible_entry_new (NO_HISTORY, NO_COMPLETION);
+ * example:    entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
  * \par
  * example:    entry = geda_entry_new(&history_list, &word_list);
  *
@@ -1499,7 +1499,7 @@ geda_entry_new (GList** history, GList** complete)
 }
 
 GtkWidget*
-geda_visible_entry_new (GList** history, GList** complete)
+geda_entry_new_visible (GList** history, GList** complete)
 {
   GtkWidget *entry;
   entry = geda_entry_new ( history, complete);

@@ -8,6 +8,13 @@
     * docs/gschem.dox: Include dialogs/confirm_close_dialog.png to lists:
       HTML_EXTRA_FILES and LATEX_EXTRA_FILES.
 
+    * src/: Update function name geda_entry_new_visible in:
+
+            * src/base/gschem_macro_widget.c
+            * src/iface/i_diagnostics.c
+            * src/x/x_coord.c
+
+
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Free global_window_list in gschem_quit.
