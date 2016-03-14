@@ -17,6 +17,8 @@
             * src/iface/i_diagnostics.c
             * src/x/x_coord.c
 
+    * src/x/x_confirm_close.c: Revise Doxygen Confirm-Exit-Dialog group block
+      to include confirm_close_dialog.png image.
 
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
 

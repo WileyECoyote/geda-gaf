@@ -32,6 +32,8 @@
 
 /** \defgroup Confirm-Exit-Dialog Confirm Exit Dialog
  *  @{ \memberof Systemic-Dialogs
+ *  \image html confirm_close_dialog.png
+ *  \image latex confirm_close_dialog.png "Confirm Close" width=14cm
 */
 
 #include <x_confirm_close.h>
