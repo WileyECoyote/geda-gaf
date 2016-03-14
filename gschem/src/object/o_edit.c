@@ -86,13 +86,22 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *   break with the tradition here and input a list.
+/*  break with the tradition here and input a list.
  *
  *  \todo probably should go back and do the same for o_copy o_move
  *        o_delete...
+ */
+/*!
+ * \brief What happens when user "edits" an object
+ * \par Function Description
+ *  Which is also what happens when user double-clicks on an object.
+ *  Calls an editing function based on the type of object.
+ *
+ * \todo This function is wrong, the functions accepts a list but
+ *  calls func with first member of list, but does not check other
+ *  members in the list, see geda_glist_is_homogeneous_objects and
+ *  the object argument to editors with multible objects of the same
+ *  type should be NULL.
  */
 void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 {
@@ -102,7 +111,6 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 
   if (list == NULL) {
     i_status_action_stop(w_current);
-    //i_status_set_state(w_current, SELECT);
     return;
   }
 
@@ -167,7 +175,6 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
       }
       break;
   }
-
 }
 
 /*! \brief Lock Selected Objects
@@ -232,10 +239,11 @@ void o_edit_unlock(GschemToplevel *w_current)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Mirror list of objects
+ * \par Function Description
+ * Wrapper for libgeda::o_list_mirror, performs gschem tasks to ensure
+ * members of \a list are redrawn, run hooks and calls undo state.
  */
 void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
 {
@@ -248,7 +256,8 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
     o_list_mirror(list, centerx, centery);
 
-    o_invalidate_list (w_current, list);
+    /* Objects will be in redraw by ChangeNotifyFunc */
+    //o_invalidate_list (w_current, list);
 
     /* Run mirror-objects-hook */
     g_hook_run_object_list (w_current, MIRROR_OBJECTS_HOOK, list);

@@ -5,6 +5,10 @@
     * src/iface/i_command.c: output performance not compiled message to log
       instead of terminal.
 
+    * src/object/o_edit.c Remove second call to o_invalidate_list so objects
+      are not redrawn twice in function o_edit_mirror_world, add Doxygen
+      comments for o_edit_objects and o_edit_mirror_world.
+
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Rename geda_atexit -> gschem_atexit.
