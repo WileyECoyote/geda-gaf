@@ -65,5 +65,13 @@ T 300 2300 5 10 0 0 0 0 1
 device=INA193A
 T 300 1900 5 10 0 0 0 0 1
 symversion=0.1
-T 300 1450 9 10 1 0 0 0 1
-INA193A
+T 300 1450 9 10 1 1 0 0 1
+value=INA193A
+T 300 2500 5 10 0 0 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/ina193a-ep.pdf
+T 300 3100 5 10 0 0 0 0 1
+author=AutoTron
+T 300 2900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 2700 5 10 0 0 0 0 1
+use-license=unlimited
