@@ -184,6 +184,8 @@ SCM g_funcs_exit(SCM status)
 
   x_window_close_all(g_current_window ());
 
+  gschem_quit();
+
   if (scm_is_integer (status)) {
     status_code = scm_to_int(status);
   }

@@ -233,8 +233,9 @@ typedef void (*geda_predicator)  (GschemToplevel *);
 /* globals.c */
 /* gschem.c */
 void gschem_atexit (geda_atexit_func func, void * data);
-int  main          (int argc, char *argv[]);
+//int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
+void gschem_quit   (void);
 
 /*! \note WEH: MACRO: I_CALLBACK_ARGUMENTS is left defined and is without a
  *             semi-colon. This macro is re-used in the associated source file */

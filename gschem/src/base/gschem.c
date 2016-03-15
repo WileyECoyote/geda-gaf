@@ -83,9 +83,9 @@ void gschem_atexit(geda_atexit_func func, void* data)
 /*! \brief Cleanup gSchem on exit.
  *  \par Function Description
  *  This function cleans up all memory objects allocated during the
- *  gSchem runtime.
+ *  gschem runtime.
  */
-static void gschem_quit(void)
+void gschem_quit(void)
 {
   GList *list;
 

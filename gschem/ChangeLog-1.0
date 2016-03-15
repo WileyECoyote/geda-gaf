@@ -11,11 +11,18 @@
     * docs/README: Add file; a reference checklist for inserting images into
       DOxygen generated source documentation.
 
+    * include/prototype.h: Add declaration for gschem_quit.
+
+    * src/base/gschem.c: Make gschem_quit non-static.
+
     * src/: Update function name geda_entry_new_visible in:
 
             * src/base/gschem_macro_widget.c
             * src/iface/i_diagnostics.c
             * src/x/x_coord.c
+
+    * src/guile/g_funcs.c: Call gschem_quit after x_window_close_all in
+      g_funcs_exit.
 
     * src/x/x_confirm_close.c: Revise Doxygen Confirm-Exit-Dialog group block
       to include confirm_close_dialog.png image.
