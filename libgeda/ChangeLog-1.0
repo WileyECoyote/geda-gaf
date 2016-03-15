@@ -1,3 +1,11 @@
+2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc_object.c: Revise function geda_arc_object_get_nearest_point;
+      again, this time to prevent over-flow errors for arcs more the 32k or so from
+      the origin, essentially perform calculation as if arcs are at the origin when
+      the point is within the arc sweep, as a bonus this significantly simplifies
+      the calculation.
+
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise function geda_arc_object_get_nearest_point;

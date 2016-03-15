@@ -191,39 +191,38 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 
       if (radians < end_angle && radians > start_angle) {
 
-        int x1, y1, x2, y2;
         double A, B, C, D;
 
         volatile double b;
         volatile double m;
                  double tmp_x, tmp_y;
 
-        x1 = cx;
-        y1 = cy;
-        x2 = x;
-        y2 = y;
+        dx = x - cx;
+        dy = y - cy;
 
-        dx = x2 - x1;
-        dy = y2 - y1;
-
-        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x
+         *
+         * note: calculating as if the arc is at the origin, cx = cy = 0,
+         * to prevent over-flow errors for arcs > ~32k from origin */
         m  = dy / dx;
-        b  = (-1 * m * x2) + y2;
+
+        /* using dx,dy here, instead of x,y translates the line to the origin */
+        b  = -1 * m * dx + dy;
 
         A = m * m + 1;
-        B = 2 * ((m * b) - (m * cy) - cx);
-        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+        B = 2 * m * b;          /* B = 2 * ((m * b) - (m * cy) - cx); */
+        C = -1 * r * r + b * b; /* C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b); */
 
-        D = B * B - 4 * A * C;                   /* The discriminant */
+        D = B * B - 4 * A * C;                        /* The discriminant */
 
-        if (x1 > x2) {                           /* Easterly */
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+        if (cx > x) {                                /* Easterly */
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A) + cx; /* Add offset to true cx */
         }
-        else {                                   /* Westward */
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+        else {                                       /* Westward */
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A) + cx; /* Add offset to true cx */
         }
 
-        tmp_y = m * tmp_x + b;
+        tmp_y = m * tmp_x + b + cy;                  /* Add offset to true cy */
 
 #ifdef HAVE_LRINT
 

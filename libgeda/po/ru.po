@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-06 19:47-0600\n"
+"POT-Creation-Date: 2016-03-15 14:31-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -706,17 +706,17 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1183
-#: libgeda/src/object/o_arc_object.c:1198
+#: libgeda/src/object/o_arc_object.c:1201
+#: libgeda/src/object/o_arc_object.c:1216
 msgid "Failed to parse arc object"
 msgstr "Ошибка в определении дуги"
 
-#: libgeda/src/object/o_arc_object.c:1205
+#: libgeda/src/object/o_arc_object.c:1223
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
-#: libgeda/src/object/o_arc_object.c:1211 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_arc_object.c:1229 libgeda/src/object/o_box_basic.c:545
 #: libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
@@ -726,7 +726,7 @@ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d�
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
 
-#: libgeda/src/object/o_arc_object.c:1212 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_arc_object.c:1230 libgeda/src/object/o_box_basic.c:546
 #: libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
@@ -1024,63 +1024,63 @@ msgstr "Файл «%s» не найден: %s"
 msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:453
+#: libgeda/src/object/o_picture.c:473
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из внедрённых данных «%s»: %s\n"
 
-#: libgeda/src/object/o_picture.c:454
+#: libgeda/src/object/o_picture.c:474
 msgid "Base64 decoding failed."
 msgstr "Ошибка расшифровки данных в формате base64."
 
-#: libgeda/src/object/o_picture.c:455
+#: libgeda/src/object/o_picture.c:475
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Возврат к загрузке из файла. Изображение исключено.\n"
 
-#: libgeda/src/object/o_picture.c:516
+#: libgeda/src/object/o_picture.c:536
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "ОШИБКА: o_picture_save: невозможно закодировать изображение.\n"
 
-#: libgeda/src/object/o_picture.c:907
+#: libgeda/src/object/o_picture.c:927
 #, c-format
 msgid "Can not export to type %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:919
+#: libgeda/src/object/o_picture.c:939
 #, fuzzy, c-format
 msgid "Failed to export [%s]: %s\n"
 msgstr "Не удалось открыть каталог «%s»: %s\n"
 
 # Указатель на данные возвращает NULL
-#: libgeda/src/object/o_picture.c:1153
+#: libgeda/src/object/o_picture.c:1173
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr "Файл «%s» не содержит данных изображения.\n"
 
-#: libgeda/src/object/o_picture.c:1154
+#: libgeda/src/object/o_picture.c:1174
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr "Возврат к загрузке из файла. Изображение всё ещё исключено.\n"
 
-#: libgeda/src/object/o_picture.c:1162
+#: libgeda/src/object/o_picture.c:1182
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "Изображение «%s» внедрено\n"
 
-#: libgeda/src/object/o_picture.c:1198
+#: libgeda/src/object/o_picture.c:1218
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/object/o_picture.c:1200
+#: libgeda/src/object/o_picture.c:1220
 msgid "Picture is still embedded.\n"
 msgstr "Изображение всё ещё внедрено.\n"
 
-#: libgeda/src/object/o_picture.c:1208
+#: libgeda/src/object/o_picture.c:1228
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Изображение «%s» исключено\n"
 
-#: libgeda/src/object/o_picture.c:1746
+#: libgeda/src/object/o_picture.c:1766
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Не удалось загрузить копию изображения для отката «%s»: %s\n"
@@ -1496,7 +1496,7 @@ msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...» в 
 msgid "component missing pinseq= attribute\n"
 msgstr "Отсутствует атрибут «pinseq» у вывода компонента\n"
 
-#: libgeda/src/utility/u_log.c:211
+#: libgeda/src/utility/u_log.c:225
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
