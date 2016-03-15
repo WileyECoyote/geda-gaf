@@ -44,7 +44,7 @@
 /**
  * \brief GedaTreeView - A Button Widget for Menus
  * \par
- * A GedaTreeView is a variant of GedaTreeView with additonal function
+ * A GedaTreeView is a variant of GtkTreeView with additonal function
  * support.
  *
  * \defgroup GedaTreeView Geda Tree View Widget
