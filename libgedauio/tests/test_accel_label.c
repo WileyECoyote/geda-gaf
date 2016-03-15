@@ -27,8 +27,13 @@
  * Contributing Author: Wiley Edward Hill
  */
 
+#include "config.h"
+
+#include <string.h>
+
 #include <glib.h>
 #include <gtk/gtk.h>
+
 #include <geda/geda.h>
 #include <geda_accel_label.h>
 #include <geda_imagemenuitem.h>
@@ -43,8 +48,8 @@ int check_construction (void)
 {
   int result = 0;
 
-  const char *label_string   = "GedaAccelLabel";
-  const char *multikey_accel = "GA";
+  const char *label_string   = "Geda_Accel_Label";
+  const char *multikey_accel = "G_A";
 
   GtkWidget *menu_item = geda_image_menu_item_new_with_label("GedaMenuItem");
 
@@ -62,7 +67,7 @@ int check_construction (void)
                                     NULL);
 
   if (!GEDA_IS_ACCEL_LABEL(widget)) {
-    fprintf(stderr, "FAILED: is a %s\n", TWIDGET);
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
 
@@ -70,8 +75,34 @@ int check_construction (void)
   g_object_unref(widget);    /* Does not destroy widget */
 
   if (!GEDA_IS_ACCEL_LABEL(widget)) {
-    fprintf(stderr, "FAILED: is a %s\n", TWIDGET);
+    fprintf(stderr, "FAILED: is a %s <%d>\n", TWIDGET, __LINE__);
     result++;
+  }
+  else {
+
+    GedaAccelLabel *accel_label = (GedaAccelLabel*)widget;
+
+    if (!accel_label->accel_string) {
+      fprintf(stderr, "FAILED: %s, accel_string is NULL\n", TWIDGET);
+      result++;
+    }
+    else {
+
+      const char *accel_string = accel_label->accel_string;
+      const char *label;
+
+      if (strcmp(accel_string, "G A")) {
+        fprintf(stderr, "FAILED: accel_string <%s>\n", accel_string);
+        result++;
+      }
+
+      label = gtk_label_get_label(GTK_LABEL(widget));
+
+      if (strcmp(label, label_string)) {
+        fprintf(stderr, "FAILED: accel_string <%s>\n", label);
+        result++;
+      }
+    }
   }
 
   g_object_ref_sink(menu_item); /* menu_item is not attached to anything */

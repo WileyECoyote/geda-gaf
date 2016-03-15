@@ -190,15 +190,19 @@ geda_accel_label_size_request (GtkWidget      *widget,
   GedaAccelLabel *accel_label     = GEDA_ACCEL_LABEL (widget);
   GtkAccelLabel  *gtk_accel_label = GTK_ACCEL_LABEL (widget);
   PangoLayout    *layout;
+  const char     *accel_string;
   int width;
 
   GTK_WIDGET_CLASS (geda_accel_label_parent_class)->size_request (widget, requisition);
 
-  layout = gtk_widget_create_pango_layout (widget, geda_accel_label_get_string (accel_label));
+  accel_string = geda_accel_label_get_string (accel_label);
+  layout       = gtk_widget_create_pango_layout (widget, accel_string);
+
   pango_layout_get_pixel_size (layout, &width, NULL);
-  accel_label->accel_string_width = width;
-  gtk_accel_label->accel_string_width = width; /* HACK: This field is private to GtkAccelLabel */
   g_object_unref (layout);
+
+  accel_label->accel_string_width     = width;
+  gtk_accel_label->accel_string_width = width; /* HACK: This field is private to GtkAccelLabel */
 }
 
 static int
