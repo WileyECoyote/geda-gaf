@@ -58,10 +58,10 @@
  * \since 1.10.
  */
 
-#define EDASCM_TYPE_HOOK_PROXY (edascm_hook_proxy_get_type ())
-#define EDASCM_HOOK_PROXY(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxy))
-#define EDASCM_HOOK_PROXY_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxyClass))
-#define EDASCM_IS_HOOK_PROXY(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EDASCM_TYPE_HOOK_PROXY))
+#define EDASCM_TYPE_HOOK_PROXY           (edascm_hook_proxy_get_type ())
+#define EDASCM_HOOK_PROXY(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxy))
+#define EDASCM_HOOK_PROXY_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxyClass))
+#define EDASCM_IS_HOOK_PROXY(obj)        (is_a_edascm_hook_proxy((EdascmHookProxy*)obj))
 #define EDASCM_HOOK_PROXY_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxy))
 
 #ifdef __cplusplus
@@ -72,6 +72,16 @@ typedef struct _EdascmHookProxyClass EdascmHookProxyClass;
 typedef struct _EdascmHookProxy      EdascmHookProxy;
 typedef struct _EdascmHookProxyData  EdascmHookProxyData;
 
+struct _EdascmHookProxy
+{
+  GObject parent_instance;
+
+  GedaType instance_type;  /* Type Identifier */
+
+  /* Private members */
+  EdascmHookProxyData *priv;
+};
+
 struct _EdascmHookProxyClass
 {
   GObjectClass parent_class;
@@ -80,16 +90,8 @@ struct _EdascmHookProxyClass
   void (*run)(EdascmHookProxy *proxy, SCM args);
 };
 
-struct _EdascmHookProxy
-{
-  GObject parent_instance;
-
-  /* Private members */
-  EdascmHookProxyData *priv;
-};
-
-GedaType edascm_hook_proxy_get_type (void) GEDA_CONST;
-
+GedaType         edascm_hook_proxy_get_type      (void) GEDA_CONST;
+bool             is_a_edascm_hook_proxy          (EdascmHookProxy *proxy);
 EdascmHookProxy *edascm_hook_proxy_new_with_hook (SCM hook_s) GEDA_WARN_UNUSED_RESULT;
 
 #ifdef __cplusplus

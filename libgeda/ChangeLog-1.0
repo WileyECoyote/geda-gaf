@@ -1,10 +1,17 @@
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/edascmhookproxy.h: Add _EdascmHookProxy member instance_type,
+      add declare is_a_edascm_hook_proxy. Remove G_TYPE_CHECK_INSTANCE_TYPE and use
+      is_a_edascm_hook_proxy instead.
+
     * src/object/o_arc_object.c: Revise function geda_arc_object_get_nearest_point;
       again, this time to prevent over-flow errors for arcs more the 32k or so from
       the origin, essentially perform calculation as if arcs are at the origin when
       the point is within the arc sweep, as a bonus this significantly simplifies
       the calculation.
+
+    * src/scheme/edascmhookproxy.c: Add function is_a_edascm_hook_proxy and set
+      instance_type in edascm_hook_proxy_init, re-arrange functions slightly.
 
 2016-03-12 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -56,6 +56,68 @@ static void cclosure_marshal_VOID__SCM            (GClosure *closure,
 
 static GObjectClass *edascm_hook_proxy_parent_class = NULL;
 
+/*! Set a property of an EdascmHookProxy instance. */
+static void
+edascm_hook_proxy_set_property (GObject *object, guint property_id,
+                                const GValue *value, GParamSpec *pspec)
+{
+  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
+  SCM hook;
+
+  switch (property_id) {
+
+  case PROP_HOOK:
+    hook = edascm_value_get_scm (value);
+    if (hook == SCM_UNDEFINED) {
+      edascm_hook_proxy_disconnect (proxy);
+    } else {
+      edascm_hook_proxy_connect (proxy, hook);
+    }
+    break;
+
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
+  }
+}
+
+/*! Get a property of an EdascmHookProxy instance. */
+static void
+edascm_hook_proxy_get_property (GObject *object, guint property_id,
+                                GValue *value, GParamSpec *pspec)
+{
+  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
+
+  switch (property_id) {
+
+  case PROP_HOOK:
+    edascm_value_set_scm (value, proxy->priv->hook);
+    break;
+
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
+  }
+}
+
+/*! Finalize an EdascmHookProxy instance. Free all resources held by
+ * the instance. */
+static void
+edascm_hook_proxy_finalize (GObject *object)
+{
+  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
+
+  edascm_hook_proxy_disconnect (proxy);
+  if (proxy->priv->closure != SCM_UNDEFINED) {
+    scm_gc_unprotect_object (proxy->priv->closure);
+  }
+
+  GEDA_FREE (proxy->priv);
+
+  /* Chain up to the parent class */
+  G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);
+}
+
 /*! Initialise EdascmHookProxy class. */
 static void
 edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
@@ -103,6 +165,8 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
   proxy->priv->hook = SCM_UNDEFINED;
   proxy->priv->closure = SCM_UNDEFINED;
 
+  proxy->instance_type = edascm_hook_proxy_get_type();
+
   /* Try and create our internal closure */
   proc = edascm_c_make_closure (edascm_hook_proxy_closure, proxy);
 
@@ -110,66 +174,53 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
   proxy->priv->closure = scm_gc_protect_object (proc);
 }
 
-/*! Finalize an EdascmHookProxy instance. Free all resources held by
- * the instance. */
-static void
-edascm_hook_proxy_finalize (GObject *object)
+/*! \brief Retrieve EdascmHookProxy GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdascmHookProxy GedaType identifier. Upon
+ *  first call, this registers the EdascmHookProxy in the Type system.
+ *  The saved value from the first execution is returned on subsequent
+ *  calls.
+ *
+ *  \return the GedaType identifier associated with EdascmHookProxy.
+ */
+GedaType edascm_hook_proxy_get_type (void)
 {
-  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
+  static GedaType edascm_hook_proxy_type = 0;
 
-  edascm_hook_proxy_disconnect (proxy);
-  if (proxy->priv->closure != SCM_UNDEFINED) {
-    scm_gc_unprotect_object (proxy->priv->closure);
+  if (!edascm_hook_proxy_type) {
+
+    const char *string;
+
+    static const GTypeInfo edascm_hook_proxy_info = {
+      sizeof(EdascmHookProxyClass),
+      NULL, /* base_init */
+      NULL, /* base_finalize */
+      (GClassInitFunc) edascm_hook_proxy_class_init,
+      NULL, /* class_finalize */
+      NULL, /* class_data */
+      sizeof(EdascmHookProxy),
+      0,    /* n_preallocs */
+      (GInstanceInitFunc) edascm_hook_proxy_init, /* instance_init */
+    };
+
+    string = g_intern_static_string ("EdascmHookProxy");
+
+    edascm_hook_proxy_type = g_type_register_static (G_TYPE_OBJECT,
+                                                     string,
+                                                     &edascm_hook_proxy_info,
+                                                     0);
   }
 
-  GEDA_FREE (proxy->priv);
-
-  /* Chain up to the parent class */
-  G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);
+  return edascm_hook_proxy_type;
 }
 
-/*! Set a property of an EdascmHookProxy instance. */
-static void
-edascm_hook_proxy_set_property (GObject *object, guint property_id,
-                                const GValue *value, GParamSpec *pspec)
+bool is_a_edascm_hook_proxy (EdascmHookProxy *proxy)
 {
-  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
-  SCM hook;
-
-  switch (property_id) {
-
-  case PROP_HOOK:
-    hook = edascm_value_get_scm (value);
-    if (hook == SCM_UNDEFINED) {
-      edascm_hook_proxy_disconnect (proxy);
-    } else {
-      edascm_hook_proxy_connect (proxy, hook);
-    }
-    break;
-
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
+  if (G_IS_OBJECT(proxy)) {
+    return (edascm_hook_proxy_get_type() == proxy->instance_type);
   }
-}
-
-/*! Get a property of an EdascmHookProxy instance. */
-static void
-edascm_hook_proxy_get_property (GObject *object, guint property_id,
-                                GValue *value, GParamSpec *pspec)
-{
-  EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
-
-  switch (property_id) {
-
-  case PROP_HOOK:
-    edascm_value_set_scm (value, proxy->priv->hook);
-    break;
-
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
+  return FALSE;
 }
 
 /*! Connect up an EdascmHookProxy to a new target hook. */
@@ -263,47 +314,6 @@ cclosure_marshal_VOID__SCM (GClosure *closure,
   callback = (MarshalFunc_VOID__SCM) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1, edascm_value_get_scm (param_values + 1), data2);
-}
-
-/*! \brief Retrieve EdascmHookProxy GedaType identifier.
- *
- *  \par Function Description
- *  Function to retrieve EdascmHookProxy GedaType identifier. Upon
- *  first call, this registers the EdascmHookProxy in the Type system.
- *  The saved value from the first execution is returned on subsequent
- *  calls.
- *
- *  \return the GedaType identifier associated with EdascmHookProxy.
- */
-GedaType edascm_hook_proxy_get_type (void)
-{
-  static GedaType edascm_hook_proxy_type = 0;
-
-  if (!edascm_hook_proxy_type) {
-
-    const char *string;
-
-    static const GTypeInfo edascm_hook_proxy_info = {
-      sizeof(EdascmHookProxyClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) edascm_hook_proxy_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
-      sizeof(EdascmHookProxy),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) edascm_hook_proxy_init, /* instance_init */
-    };
-
-    string = g_intern_static_string ("EdascmHookProxy");
-
-    edascm_hook_proxy_type = g_type_register_static (G_TYPE_OBJECT,
-                                                     string,
-                                                     &edascm_hook_proxy_info,
-                                                     0);
-  }
-
-  return edascm_hook_proxy_type;
 }
 
 /* ---------------------------------------------------------------- */
