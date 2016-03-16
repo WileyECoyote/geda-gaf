@@ -1,4 +1,12 @@
 v 20160214 2
+T 300 1900 8 10 1 1 0 0 1
+refdes=U?
+T 300 2300 5 10 0 0 0 0 1
+device=TPS2041
+T 300 2500 5 10 0 1 0 0 1
+description=Power-Distribution Switch, Current-Limited
+T 300 1500 9 10 1 1 0 0 1
+footprint=SOT23-5
 B 300 300 1200 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 1800 1100 1500 1100 1 0 0
 {
@@ -55,15 +63,15 @@ pinnumber=5
 T 200 1150 5 8 0 1 0 6 1
 pinseq=5
 }
-T 300 1500 9 10 1 1 0 0 1
-footprint=SOT23-5
-T 300 2500 5 10 0 1 0 0 1
-description=Power-Distribution Switch, Current-Limited
-T 300 1900 8 10 1 1 0 0 1
-refdes=U?
-T 300 2300 5 10 0 0 0 0 1
-device=TPS2041
 T 300 2100 5 8 0 0 0 0 1
 symversion=0.1
 T 300 1700 9 10 1 1 0 0 1
 value=TPS2041BDBV
+T 300 2700 5 10 0 1 0 0 1
+documentation=http://www.ti.com.cn/cn/lit/ds/symlink/tps2041.pdf
+T 300 3300 5 10 0 0 0 0 1
+author=AutoTron
+T 300 2900 5 10 0 0 0 0 1
+dist-license=GPL3
+T 300 3100 5 10 0 0 0 0 1
+use-license=unlimited
