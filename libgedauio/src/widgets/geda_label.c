@@ -2021,8 +2021,12 @@ label_shortcut_setting_apply (GedaLabel *label)
 {
   geda_label_recalculate (label);
 
-  if (GTK_IS_ACCEL_LABEL (label))
+  if (GEDA_IS_ACCEL_LABEL (label)) {
+    geda_accel_label_refetch (GEDA_ACCEL_LABEL (label));
+  }
+  else if (GTK_IS_ACCEL_LABEL (label)) {
     gtk_accel_label_refetch (GTK_ACCEL_LABEL (label));
+  }
 }
 
 static void

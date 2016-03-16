@@ -8,8 +8,10 @@
     * src/widgets/geda_label.c: Rename struct _GedaLabelSelectionInfo
       and define a type SelectionInfo. Revise geda_label_expose; eliminate
       unused variable allocation, reduce scope of cr, state and style, increase
-      scope of range and elinminate defining twice, eliminate second call to
-      gtk_widget_get_state and use state variable instead.
+      scope of range and eliminate defining twice, eliminate second call to
+      gtk_widget_get_state and use state variable instead. Revise function
+      label_shortcut_setting_apply to check for GedaAccelLabel before calling
+      gtk_accel_label_refetch and use geda_accel_label_refetch if appropriate.
 
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
