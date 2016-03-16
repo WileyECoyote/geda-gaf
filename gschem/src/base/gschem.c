@@ -126,8 +126,8 @@ void gschem_quit(void)
 
 }
 
-static
-void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
+static void
+load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
   int   page_loaded   = FALSE;
   char *cwd           = NULL;

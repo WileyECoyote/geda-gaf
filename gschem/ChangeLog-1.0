@@ -1,3 +1,11 @@
+2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Add map/unmap hooks and set/unset the
+      widget name for the main window using gtk_widget_set_name function.
+
+    * src/x/x_window.c: Remove setting the widget name for the main window,
+      which is now done in by the gschem_main_window_map widget.
+
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_window.c: Revise function i_window_on_page_changed output

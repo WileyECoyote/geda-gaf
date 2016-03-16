@@ -53,6 +53,7 @@ gschem_main_window_instance_init (GTypeInstance *instance, void *class);
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
 
+static void *gschem_main_window_parent_class = NULL;
 
 /*! \brief Get a property
  *
@@ -72,30 +73,67 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
   }
 }
 
+/*! \brief GtkWidget map signal handler
+ *
+ *  \par Function Description
+ *  Just before the main window is unmapped.
+ *
+ *  This typically happens when you call gtk_widget_destroy().
+ *
+ *  \param [in] widget  The GtkWidget being unmapped.
+ */
+static void
+gschem_main_window_map (GtkWidget *widget)
+{
+  gtk_widget_set_name (widget, "gschem");
+  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->map (widget);
+}
+
+/*! \brief GtkWidget unmap signal handler
+ *
+ *  \par Function Description
+ *  Just before the main window is unmapped.
+ *
+ *  This typically happens when you call gtk_widget_destroy().
+ *
+ *  \param [in] widget  The GtkWidget being unmapped.
+ */
+static void
+gschem_main_window_unmap (GtkWidget *widget)
+{
+  gtk_widget_set_name (widget, NULL);
+  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->unmap (widget);
+}
 
 /*! \brief Initialize GschemMainWindow class
  *
- *  \param [in]  g_class       GschemMainWindow being initialized
- *  \param [in]  g_class_data  (unused)
+ *  \param [in]  class       GschemMainWindow being initialized
+ *  \param [in]  class_data  (unused)
  */
 static void
-gschem_main_window_class_init (void *g_class, void *g_class_data)
+gschem_main_window_class_init (void *class, void *g_class_data)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (g_class);
+  GObjectClass   *gobject_class   = G_OBJECT_CLASS (class);
+  GtkWidgetClass *widget_class    = GTK_WIDGET_CLASS (class);
 
-  gobject_class->get_property = get_property;
-  gobject_class->set_property = set_property;
+  gobject_class->get_property     = get_property;
+  gobject_class->set_property     = set_property;
+
+  widget_class->map               = gschem_main_window_map;
+  widget_class->unmap             = gschem_main_window_unmap;
+
+  gschem_main_window_parent_class = g_type_class_peek_parent (class);
 }
 
 /*! \brief Initialize GschemMainWindow instance -NOP
  *
  *  \param [in,out] instance GschemMainWindow being initialized.
- *  \param [in]     g_class  Class of the type the instance is created for.
+ *  \param [in]     class    Class of the type the instance is created for.
  */
 static void
-gschem_main_window_instance_init (GTypeInstance *instance, void *g_class)
+gschem_main_window_instance_init (GTypeInstance *instance, void *class)
 {
- /* GschemMainWindow *window = (GschemMainWindow*)*/
+ /* GschemMainWindow *window = (GschemMainWindow*)class*/
 }
 
 /*! \brief Get/register GschemMainWindow type.

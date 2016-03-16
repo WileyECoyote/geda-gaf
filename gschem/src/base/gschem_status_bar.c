@@ -490,7 +490,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
   gobject_class->get_property     = get_property;
   gobject_class->set_property     = set_property;
 
-  widget_class->style_set          = gschem_status_bar_style_set;
+  widget_class->style_set         = gschem_status_bar_style_set;
 
   /* Register properties */
   pspec = g_param_spec_int ("coord-mode",

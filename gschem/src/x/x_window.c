@@ -362,6 +362,7 @@ static void x_window_invoke_macro (GtkWidget      *widget, int response,
                                    GschemToplevel *w_current)
 {
   if (response == GEDA_RESPONSE_OK) {
+
     const char *macro = gschem_macro_widget_get_macro_string (widget);
 
     SCM interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
@@ -400,7 +401,6 @@ void x_window_create_main(GschemToplevel *w_current)
 
   MainWindow = GTK_WIDGET (gschem_main_window_new ());
 
-  gtk_widget_set_name (MainWindow, "gschem");
   gtk_window_set_resizable (GTK_WINDOW(MainWindow), TRUE);
 
   /* We want the widgets to flow around the drawing area, so we don't
@@ -410,8 +410,9 @@ void x_window_create_main(GschemToplevel *w_current)
    * (generating a pdf of all schematics for example) we want to
    * override this.  Hence "auto_place_mode".
    */
-  if (auto_place_mode)
+  if (auto_place_mode) {
     gtk_widget_set_uposition (MainWindow, 10, 10);
+  }
 
   /* delete_event is sent of close with the X in the window */
   g_signal_connect (G_OBJECT (MainWindow), "delete_event",
