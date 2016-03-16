@@ -6,6 +6,12 @@
     * src/x/x_window.c: Remove u_log_message from x_window_set_current_page,
       call relocate to i_window_on_page_changed.
 
+    * tests/golden/missing_symbols.log: regenerate output for page set active
+      in log.
+
+    * tests/runtest.sh: Change version message when regenerating to not use
+      the word "Testing", bump to 0.1.7.
+
 2016-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/confirm_close_dialog.png: New file for insertion in Doxygen

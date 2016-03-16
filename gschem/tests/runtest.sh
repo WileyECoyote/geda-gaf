@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.6
+VER=0.1.7
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -342,7 +342,12 @@ if test ! -x $APPLICATION ; then
 else
 
   appver=$($APPLICATION -q --version) 2>&1
-  echo "Testing $PROGRAM version: $appver"
+
+  if $REGENERATE ; then
+    echo "Current version: $PROGRAM $appver"
+  else
+    echo "Testing $PROGRAM version: $appver"
+  fi
 
   # Note: Tested for gschem one level up but gschem will be ran
   # from the run directory, which will be 1 level down, so:
