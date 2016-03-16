@@ -544,9 +544,15 @@ geda_image_menu_item_destroy (GtkObject *object)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (object);
 
+  GtkWidget *child = gtk_bin_get_child(GTK_BIN(image_menu_item));
+
   if (image_menu_item->image) {
     gtk_container_remove (GTK_CONTAINER (image_menu_item),
                           image_menu_item->image);
+  }
+
+  if (child) {
+    gtk_widget_destroy(child);
   }
 
   GTK_OBJECT_CLASS (geda_image_menu_item_parent_class)->destroy (object);
@@ -1064,16 +1070,18 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
   if (image == image_menu_item->image)
     return;
 
-  if (image_menu_item->image)
+  if (image_menu_item->image) {
     gtk_container_remove (GTK_CONTAINER (image_menu_item),
                           image_menu_item->image);
+  }
 
-    image_menu_item->image = image;
+  image_menu_item->image = image;
 
   if (image == NULL)
     return;
 
   gtk_widget_set_parent (image, GTK_WIDGET (image_menu_item));
+
   g_object_set (image,
                 "visible", show_image (image_menu_item),
                 "no-show-all", TRUE,
@@ -1108,24 +1116,25 @@ geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
  *  \par Function Description
  */
 static void
-geda_image_menu_item_remove (GtkContainer *container,
-                            GtkWidget    *child)
+geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
 {
   GedaImageMenuItem *image_menu_item;
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (container);
 
   if (child == image_menu_item->image) {
-    bool widget_was_visible;
 
-    widget_was_visible = gtk_widget_get_visible (child);
+    bool was_visible;
+
+    was_visible = gtk_widget_get_visible (child);
 
     gtk_widget_unparent (child);
     image_menu_item->image = NULL;
 
-    if (widget_was_visible &&
-      gtk_widget_get_visible (GTK_WIDGET (container)))
+    if (was_visible && gtk_widget_get_visible (GTK_WIDGET (container)))
+    {
       gtk_widget_queue_resize (GTK_WIDGET (container));
+    }
 
     g_object_notify (G_OBJECT (image_menu_item), "image");
   }
