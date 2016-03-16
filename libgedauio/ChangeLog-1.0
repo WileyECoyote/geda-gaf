@@ -2,6 +2,8 @@
 
     * src/widgets/geda_label.c: Use relative path to included files.
 
+    * tests/Makefile.am: Add GTK_CFLAGS and GTK_LIBS.
+
 2016-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Update _visible_entry_new -> _entry_new_visible.
