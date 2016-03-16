@@ -3,6 +3,10 @@
     * src/base/gschem_main_window.c: Add map/unmap hooks and set/unset the
       widget name for the main window using gtk_widget_set_name function.
 
+    * gschem/src/x/x_menus.c: Sink the reference of the pop-up menu and then
+      unreferenced the top pop-up in x_menu_free_all, seems to work better
+      than gtk_widget_destroy - famous last words?
+
     * src/x/x_window.c: Remove setting the widget name for the main window,
       which is now done in by the gschem_main_window_map widget.
 

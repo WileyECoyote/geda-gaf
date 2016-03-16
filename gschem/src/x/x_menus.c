@@ -243,16 +243,23 @@ static void x_menu_free_toggler (void *data_record, void *nothing)
  */
 void x_menu_free_all(void)
 {
-  lambda (MenuData *menu_data){
-    g_slist_free (MENU_ITEMS_LIST);
-    g_slist_free (POPUP_ITEMS_LIST);
-    g_slist_foreach(TOGGLERS_LIST, x_menu_free_toggler, NULL);
+  lambda (MenuData *menu_data) {
+
+    g_slist_foreach (TOGGLERS_LIST, x_menu_free_toggler, NULL);
     g_slist_free (TOGGLERS_LIST);
+
+    g_slist_free (MENU_ITEMS_LIST);
+
+    g_slist_free (POPUP_ITEMS_LIST);
     g_hash_table_unref (POPUP_HASH_TABLE);
+    g_object_ref_sink(POPUP_MENU);
+    g_object_unref(POPUP_MENU);
+
     g_free(menu_data);
     return FALSE;
   }
-  mapcar(ui_list)
+  mapcar(ui_list);
+
   i_menu_free();
 }
 
@@ -949,13 +956,13 @@ static bool strhashcmp (const void *a, const void *b)
  */
 int x_menu_setup_popup (GschemToplevel *w_current)
 {
-  EdaConfig    *cfg   = NULL;
-  const char   *group = MENU_CONFIG_GROUP;
-  GtkWidget    *menu;
-  GtkWidget    *menu_item;
-  GtkWidget    *submenu;
-  GtkWidget    *save_nest;
-  GtkWidget    *image;
+  EdaConfig  *cfg   = NULL;
+  const char *group = MENU_CONFIG_GROUP;
+  GtkWidget  *menu;
+  GtkWidget  *menu_item;
+  GtkWidget  *submenu;
+  GtkWidget  *save_nest;
+  GtkWidget  *image;
 
   bool show_pop_icons;
   bool show_pop_tips;
