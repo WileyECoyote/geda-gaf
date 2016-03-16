@@ -3607,34 +3607,42 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
   misc   = GTK_MISC (label);
   widget = GTK_WIDGET (label);
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
     xalign = misc->xalign;
-  else
+  }
+  else {
     xalign = 1.0 - misc->xalign;
+  }
 
   pango_layout_get_pixel_extents (label->layout, NULL, &logical);
 
   if (label->priv->ellipsize || label->width_chars > 0) {
-    int width;
 
-    width = pango_layout_get_width (label->layout);
+    int width = pango_layout_get_width (label->layout);
 
     req_width = logical.width;
-    if (width != -1)
+
+    if (width != -1) {
       req_width = MIN(PANGO_PIXELS (width), req_width);
+    }
+
     req_width += 2 * misc->xpad;
   }
-  else
+  else {
     req_width = widget->requisition.width;
+  }
 
   allocation = geda_get_widget_allocation (widget);
 
   x = floor (allocation->x + (int)misc->xpad + xalign * (allocation->width - req_width));
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
     x = MAX (x, allocation->x + misc->xpad);
-  else
+  }
+  else {
     x = MIN (x, allocation->x + allocation->width - misc->xpad);
+  }
+
   x -= logical.x;
 
   /* bgo#315462 - For single-line labels, *do* align the requisition with
@@ -3650,25 +3658,27 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
    * - Multi-line labels should not be clipped to showing "something in the
    *   middle".  You want to read the first line, at least, to get some context.
    */
-  if (pango_layout_get_line_count (label->layout) == 1)
+  if (pango_layout_get_line_count (label->layout) == 1) {
     y = floor (allocation->y + (int)misc->ypad
     + (allocation->height - widget->requisition.height) * misc->yalign);
-  else
+  }
+  else {
     y = floor (allocation->y + (int)misc->ypad
     + MAX (((allocation->height - widget->requisition.height) * misc->yalign),
            0));
+  }
 
-    if (xp)
-      *xp = x;
+  if (xp)
+    *xp = x;
 
-    if (yp)
-      *yp = y;
+  if (yp)
+    *yp = y;
 }
 
 static PangoDirection get_cursor_direction (GedaLabel *label)
 {
   SelectionInfo *select_info;
-  GSList *l;
+
   int result;
 
   select_info = label->priv->select_info;
@@ -3679,11 +3689,16 @@ static PangoDirection get_cursor_direction (GedaLabel *label)
   }
   else {
 
+    GSList *iter;
+    GSList *list;
+
     geda_label_ensure_layout (label);
 
-    for (l = pango_layout_get_lines_readonly (label->layout); l; l = l->next)
-    {
-      PangoLayoutLine *line = l->data;
+    list = pango_layout_get_lines_readonly (label->layout);
+
+    for (iter = list; iter; iter = iter->next) {
+
+      PangoLayoutLine *line = iter->data;
 
       /* If priv->select_info->selection_end is at the very end of
        * the line, we don't know if the cursor is on this line or
@@ -3709,10 +3724,12 @@ draw_insertion_cursor (GedaLabel      *label,
   GtkWidget *widget = GTK_WIDGET (label);
   GtkTextDirection text_dir;
 
-  if (direction == PANGO_DIRECTION_LTR)
+  if (direction == PANGO_DIRECTION_LTR) {
     text_dir = GTK_TEXT_DIR_LTR;
-  else
+  }
+  else {
     text_dir = GTK_TEXT_DIR_RTL;
+  }
 
   gtk_draw_insertion_cursor (widget, widget->window, &(widget->allocation),
                              cursor_location,
@@ -3729,8 +3746,8 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
 
   widget = GTK_WIDGET (label);
 
-  if (gtk_widget_is_drawable (widget))
-  {
+  if (gtk_widget_is_drawable (widget)) {
+
     PangoDirection keymap_direction;
     PangoDirection cursor_direction;
     PangoRectangle strong_pos, weak_pos;
@@ -3755,19 +3772,18 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
 
     dir1 = cursor_direction;
 
-    if (split_cursor)
-    {
+    if (split_cursor) {
+
       cursor1 = &strong_pos;
 
-      if (strong_pos.x != weak_pos.x ||
-        strong_pos.y != weak_pos.y)
-      {
-        dir2 = (cursor_direction == PANGO_DIRECTION_LTR) ? PANGO_DIRECTION_RTL : PANGO_DIRECTION_LTR;
+      if (strong_pos.x != weak_pos.x || strong_pos.y != weak_pos.y) {
+        dir2 = (cursor_direction == PANGO_DIRECTION_LTR) ?
+                                    PANGO_DIRECTION_RTL : PANGO_DIRECTION_LTR;
         cursor2 = &weak_pos;
       }
     }
-    else
-    {
+    else {
+
       if (keymap_direction == cursor_direction)
         cursor1 = &strong_pos;
       else
@@ -3783,16 +3799,14 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
                            &cursor_location, TRUE, dir1,
                            dir2 != PANGO_DIRECTION_NEUTRAL);
 
-    if (dir2 != PANGO_DIRECTION_NEUTRAL)
-    {
+    if (dir2 != PANGO_DIRECTION_NEUTRAL) {
+
       cursor_location.x = xoffset + PANGO_PIXELS (cursor2->x);
       cursor_location.y = yoffset + PANGO_PIXELS (cursor2->y);
       cursor_location.width = 0;
       cursor_location.height = PANGO_PIXELS (cursor2->height);
 
-      draw_insertion_cursor (label,
-                             &cursor_location, FALSE, dir2,
-                             TRUE);
+      draw_insertion_cursor (label, &cursor_location, FALSE, dir2, TRUE);
     }
   }
 }
@@ -3800,7 +3814,7 @@ static GedaLabelLink *
 geda_label_get_focus_link (GedaLabel *label)
 {
   SelectionInfo *info = label->priv->select_info;
-  GList *l;
+  GList *list;
 
   if (!info)
     return NULL;
@@ -3808,9 +3822,10 @@ geda_label_get_focus_link (GedaLabel *label)
   if (info->selection_anchor != info->selection_end)
     return NULL;
 
-  for (l = info->links; l; l = l->next)
-    {
-      GedaLabelLink *link = l->data;
+  for (list = info->links; list; list = list->next) {
+
+      GedaLabelLink *link = list->data;
+
       if (link->start <= info->selection_anchor &&
           info->selection_anchor <= link->end)
         return link;
@@ -3822,25 +3837,22 @@ geda_label_get_focus_link (GedaLabel *label)
 static int
 geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-  SelectionInfo *info = label->priv->select_info;
-  GtkAllocation allocation;
-  GtkStyle *style;
-  GtkStateType state;
-  int x, y;
-  cairo_t *cr;
+  GedaLabel     *label = GEDA_LABEL (widget);
+  SelectionInfo *info  = label->priv->select_info;
 
   geda_label_ensure_layout (label);
 
-  style = widget->style;
-
-  state = gtk_widget_get_state (widget);
-
-  gtk_widget_get_allocation (widget, &allocation);
-
   if (label->text && (*label->text != '\0')) {
 
-    cr = gdk_cairo_create (event->window);
+    cairo_t      *cr;
+    GtkStyle     *style;
+    GtkStateType  state;
+
+    int x, y, range[2];
+
+    cr    = gdk_cairo_create (event->window);
+    style = widget->style;
+    state = gtk_widget_get_state (widget);
 
     get_layout_location (label, &x, &y);
 
@@ -3849,15 +3861,15 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 
     if (info && (info->selection_anchor != info->selection_end)) {
 
-      int range[2];
       GdkRegion *clip;
 
       range[0] = info->selection_anchor;
       range[1] = info->selection_end;
 
-      if (range[0] > range[1])
-      {
-        int tmp = range[0];
+      if (range[0] > range[1]) {
+
+        int tmp  = range[0];
+
         range[0] = range[1];
         range[1] = tmp;
       }
@@ -3882,8 +3894,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 
       GedaLabelLink *focus_link;
       GedaLabelLink *active_link;
-      int range[2];
-      GdkRegion *clip;
+      GdkRegion     *clip;
       GdkRectangle   rect;
       GdkColor      *text_color;
       GdkColor      *base_color;
@@ -3943,7 +3954,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 
         gdk_region_get_clipbox (clip, &rect);
 
-        gtk_paint_focus (widget->style, widget->window, gtk_widget_get_state (widget),
+        gtk_paint_focus (widget->style, widget->window, state,
                          &event->area, widget, "label",
                          rect.x, rect.y, rect.width, rect.height);
         gdk_region_destroy (clip);

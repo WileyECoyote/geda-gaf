@@ -6,7 +6,10 @@
       child in geda_image_menu_item_destroy.
 
     * src/widgets/geda_label.c: Rename struct _GedaLabelSelectionInfo
-      and define a type SelectionInfo.
+      and define a type SelectionInfo. Revise geda_label_expose; eliminate
+      unused variable allocation, reduce scope of cr, state and style, increase
+      scope of range and elinminate defining twice, eliminate second call to
+      gtk_widget_get_state and use state variable instead.
 
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
