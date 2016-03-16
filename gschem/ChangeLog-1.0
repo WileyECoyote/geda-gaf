@@ -1,3 +1,11 @@
+2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_window.c: Revise function i_window_on_page_changed output
+      log non-verbose message with file base name only.
+
+    * src/x/x_window.c: Remove u_log_message from x_window_set_current_page,
+      call relocate to i_window_on_page_changed.
+
 2016-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/confirm_close_dialog.png: New file for insertion in Doxygen

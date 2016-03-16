@@ -1037,7 +1037,6 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);
     o_invalidate_all (w_current);
-    v_log_message(_("Set page <%s> active.\n"), f_get_basename(page->filename));
   }
 }
 

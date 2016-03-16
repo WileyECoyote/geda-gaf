@@ -166,6 +166,8 @@ void i_window_on_page_changed (GschemToplevel *w_current)
 
   page = gschem_toplevel_get_current_page (w_current);
 
+  u_log_message(_("Set page <%s> active.\n"), f_get_basename(page->filename));
+
   g_hook_run_page (w_current, CHANGE_PAGE_HOOK, page);
 }
 
