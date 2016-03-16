@@ -72,8 +72,6 @@ typedef struct _GedaLabel      GedaLabel;
 typedef struct _GedaLabelData  GedaLabelData;
 typedef struct _GedaLabelClass GedaLabelClass;
 
-typedef struct _GedaLabelSelectionInfo GedaLabelSelectionInfo;
-
 struct _GedaLabel
 {
   GtkMisc        misc;

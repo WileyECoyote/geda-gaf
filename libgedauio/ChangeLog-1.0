@@ -1,7 +1,12 @@
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_label.h: Remove typedef GedaLabelSelectionInfo.
+
     * src/widgets/geda_imagemenuitem.c: Call gtk_widget_destroy on the bin
       child in geda_image_menu_item_destroy.
+
+    * src/widgets/geda_label.c: Rename struct _GedaLabelSelectionInfo
+      and define a type SelectionInfo.
 
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 

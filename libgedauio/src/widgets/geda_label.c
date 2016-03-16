@@ -80,10 +80,12 @@
 
 #define PangoFontDescr  PangoFontDescription
 
+typedef struct _SelectionInfo SelectionInfo;
+
 struct _GedaLabelData
 {
-  GedaLabelSelectionInfo *select_info;
   PangoFontMap           *font_map;
+  SelectionInfo *select_info;
 
   GtkWidget *mnemonic_widget;
   GtkWindow *mnemonic_window;
@@ -116,7 +118,7 @@ typedef struct
   int end;
 } GedaLabelLink;
 
-struct _GedaLabelSelectionInfo
+struct _SelectionInfo
 {
   GdkWindow *window;
   int selection_anchor;
@@ -3665,7 +3667,7 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
 
 static PangoDirection get_cursor_direction (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *select_info;
+  SelectionInfo *select_info;
   GSList *l;
   int result;
 
@@ -3797,7 +3799,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
 static GedaLabelLink *
 geda_label_get_focus_link (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
   GList *l;
 
   if (!info)
@@ -3821,7 +3823,7 @@ static int
 geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
   GtkAllocation allocation;
   GtkStyle *style;
   GtkStateType state;
@@ -4178,7 +4180,7 @@ get_layout_index (GedaLabel *label, int x, int y, int *index)
 /*         Selection   this is out of place       */
 static void geda_label_select_word (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info;
+  SelectionInfo *info;
   int min, max;
 
   info = label->priv->select_info;
@@ -4222,8 +4224,8 @@ static void geda_label_grab_focus (GtkWidget *widget)
 static bool
 geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
 {
-  GedaLabel *label;
-  GedaLabelSelectionInfo *info;
+  GedaLabel     *label;
+  SelectionInfo *info;
   GedaLabelLink *focus_link;
   GList *l;
 
@@ -4346,8 +4348,8 @@ bool geda_event_triggers_context_menu (GdkEventButton *event)
 static bool
 geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaLabel *label;
-  GedaLabelSelectionInfo *info;
+  GedaLabel     *label;
+  SelectionInfo *info;
   int index = 0;
   int min, max;
   bool triggers_menu;
@@ -4449,8 +4451,8 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
 static bool
 geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaLabel *label;
-  GedaLabelSelectionInfo *info;
+  GedaLabel     *label;
+  SelectionInfo *info;
   int index;
 
   label = GEDA_LABEL (widget);
@@ -4670,8 +4672,8 @@ drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 
 static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
 {
-  GedaLabel *label;
-  GedaLabelSelectionInfo *info;
+  GedaLabel     *label;
+  SelectionInfo *info;
   int index;
 
   label = GEDA_LABEL (widget);
@@ -4868,7 +4870,7 @@ geda_label_create_window (GedaLabel *label)
 static void
 geda_label_destroy_window (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info;
+  SelectionInfo *info;
 
   if (label->priv->select_info == NULL) {
     BUG_MSG ("select_info = NULL");
@@ -4897,7 +4899,7 @@ geda_label_ensure_select_info (GedaLabel *label)
 
   if (priv->select_info == NULL) {
 
-    priv->select_info = g_malloc0 (sizeof(GedaLabelSelectionInfo));
+    priv->select_info = g_malloc0 (sizeof(SelectionInfo));
 
     gtk_widget_set_can_focus (GTK_WIDGET (label), TRUE);
 
@@ -4946,7 +4948,7 @@ geda_label_clear_select_info (GedaLabel *label)
  */
 bool geda_label_get_selectable (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info;
+  SelectionInfo *info;
   g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
   info = label->priv->select_info;
   return info && info->selectable;
@@ -5078,7 +5080,7 @@ static void
 geda_label_set_selection_text (GedaLabel *label,
                                GtkSelectionData *selection_data)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
 
   if ( info &&  label->text &&
      ( info->selection_anchor != info->selection_end) )
@@ -5125,8 +5127,8 @@ get_text_callback (GtkClipboard     *clipboard,
 static void
 clear_text_callback (GtkClipboard *clipboard, void * user_data_or_owner)
 {
-  GedaLabel *label;
-  GedaLabelSelectionInfo *info;
+  GedaLabel     *label;
+  SelectionInfo *info;
 
   label = GEDA_LABEL (user_data_or_owner);
   info  = label->priv->select_info;
@@ -5250,7 +5252,7 @@ geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
 bool
 geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
 {
-  GedaLabelSelectionInfo *info;
+  SelectionInfo *info;
 
   g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
 
@@ -5697,7 +5699,7 @@ static void
 geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
                         int        count, bool extend_selection)
 {
-  GedaLabelSelectionInfo *info;
+  SelectionInfo *info;
 
   int old_pos;
   int new_pos;
@@ -5825,7 +5827,7 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
 static void
 geda_label_copy_clipboard (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
 
   if (label->text && info) {
 
@@ -5975,12 +5977,12 @@ geda_label_popup_menu (GtkWidget *widget)
 static void
 geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
-  GtkWidget *menuitem;
-  GtkWidget *menu;
-  GtkWidget *image;
-  bool have_selection;
+  SelectionInfo *info = label->priv->select_info;
+  GtkWidget     *menuitem;
+  GtkWidget     *menu;
+  GtkWidget     *image;
   GedaLabelLink *link;
+  bool           have_selection;
 
   if (!info)
     return;
@@ -6071,7 +6073,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 static void
 geda_label_clear_links (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
 
   if (info) {
 
@@ -6171,7 +6173,7 @@ static void geda_label_activate_current_link (GedaLabel *label)
 static GedaLabelLink *
 geda_label_get_current_link (GedaLabel *label)
 {
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  SelectionInfo *info = label->priv->select_info;
   GedaLabelLink *link;
 
   if (!info)
@@ -6275,8 +6277,8 @@ geda_label_query_tooltip (GtkWidget  *widget,
                           bool        keyboard_tip,
                           GtkTooltip *tooltip)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelSelectionInfo *info = label->priv->select_info;
+  GedaLabel     *label = GEDA_LABEL (widget);
+  SelectionInfo *info  = label->priv->select_info;
   int index = -1;
   GList *l;
 
