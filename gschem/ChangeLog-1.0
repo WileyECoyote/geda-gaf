@@ -7,6 +7,10 @@
       x_pagesel.h. Revise i_window_idle_notify_dialogs to call pagesel_update
       instead of x_pagesel_update.
 
+    * src/object/o_edit.c: Revise functions o_edit_objects, o_edit_find_text,
+      o_edit_unlock, and o_edit_show_hidden to use accessor gschem_toplevel_
+      get_current_page, eliminating Current_Page macro.
+
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member instance_

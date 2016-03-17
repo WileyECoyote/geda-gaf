@@ -106,7 +106,8 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
 void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 {
   GedaObject *o_current;
-  const char *str = NULL;
+  Page       *page;
+  const char *str;
   bool        isSymbol;
 
   if (list == NULL) {
@@ -121,7 +122,8 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
     return;
   }
 
-  isSymbol = s_page_is_symbol_file (Current_Page);
+  page     = gschem_toplevel_get_current_page(w_current);
+  isSymbol = s_page_is_symbol_file (page);
 
   /* for now deal with only the first item */
   switch(o_current->type) {
@@ -220,7 +222,7 @@ void o_edit_lock (GschemToplevel *w_current)
  */
 void o_edit_unlock(GschemToplevel *w_current)
 {
-  Page  *page      = Current_Page;
+  Page  *page      = gschem_toplevel_get_current_page(w_current);
   GList *s_current = geda_list_get_glist(Current_Selection);
 
   while(s_current != NULL) {
@@ -685,7 +687,8 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
  */
 bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inherited)
 {
-  bool result = FALSE;
+  bool  result = FALSE;
+  Page *page;
 
   if (o_list != NULL) {
 
@@ -705,9 +708,11 @@ bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
     result = TRUE;
   }
 
-  Current_Page->show_hidden_text = ! Current_Page->show_hidden_text;
+  page = gschem_toplevel_get_current_page(w_current);
 
-  if (Current_Page->show_hidden_text) {
+  page->show_hidden_text = ! page->show_hidden_text;
+
+  if (page->show_hidden_text) {
     q_log_message(_("Hidden text is now visible\n"));
   }
   else {
@@ -833,6 +838,8 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
           if (!skiplast) {
 
+            Page *page;
+
             int x1, y1, x2, y2;
 
             if (!visible) {
@@ -844,8 +851,10 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                 return 0;
             }
 
+            page = gschem_toplevel_get_current_page(w_current);
+
             i_zoom_world_extents(w_current,
-                                 s_page_get_objects (Current_Page),
+                                 s_page_get_objects (page),
                                  I_PAN_DONT_REDRAW);
 
             text_screen_height = SCREENabs (w_current, y2 - y1);
