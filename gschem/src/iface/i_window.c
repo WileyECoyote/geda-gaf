@@ -23,9 +23,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <gschem.h>
-#include <gschem_dialog.h>
-#include <x_window.h>
+#include "../../include/gschem.h"
+#include "../../include/gschem_dialog.h"
+#include "../../include/x_window.h"
+#include "../../include/x_pagesel.h"
 
 #include <geda_debug.h>
 
@@ -76,8 +77,11 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
                                                   Current_Selection, NULL);
   }
 
+  if (w_current->pswindow != NULL) { /* Page Select Dialog */
+    pagesel_update (PAGESEL(w_current->pswindow));
+  }
+
   x_multiattrib_update (w_current);
-  x_pagesel_update (w_current);
 
   return FALSE;
 }

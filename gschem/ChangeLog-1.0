@@ -3,17 +3,21 @@
     * gschem/src/base/gschem.c: Move g_main_loop_unref from shut_down_gui
       to main_prog.
 
+    * src/iface/i_window.c: Use relative path to included files and include
+      x_pagesel.h. Revise i_window_idle_notify_dialogs to call pagesel_update
+      instead of x_pagesel_update.
+
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member
-      instance_type, Remove G_TYPE_CHECK_INSTANCE_TYPE.
+    * include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member instance_
+      type, Remove G_TYPE_CHECK_INSTANCE_TYPE.
 
     * src/base/gschem_main_window.c: Add map/unmap hooks and set/unset the
       widget name for the main window using gtk_widget_set_name function.
 
-    * gschem/src/x/x_menus.c: Sink the reference of the pop-up menu and then
-      unreferenced the top pop-up in x_menu_free_all, seems to work better
-      than gtk_widget_destroy - famous last words?
+    * src/x/x_menus.c: Sink the reference of the pop-up menu and  unreferenced
+      the top pop-up in x_menu_free_all, seems to work better than calling
+      gtk_widget_destroy - famous last words?
 
     * src/x/x_pagesel.c: Set instance_type in pagesel_get_type, add function
       is_a_pagesel.
