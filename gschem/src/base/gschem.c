@@ -54,7 +54,6 @@ static GMainLoop *main_loop       = NULL;
 void shut_down_gui (void)
 {
   if (main_loop && g_main_loop_is_running (main_loop)) {
-    g_main_loop_unref(main_loop);
     g_main_loop_quit(main_loop);
   }
 }
@@ -500,6 +499,8 @@ static void main_prog(void *closure, int argc, char *argv[])
       gschem_threads_enter();
       gdk_flush ();
     }
+
+    g_main_loop_unref(main_loop);
 
     gschem_quit();
     v_log_message(_("Exiting normal\n"));

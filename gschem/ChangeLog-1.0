@@ -1,3 +1,8 @@
+2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/base/gschem.c: Move g_main_loop_unref from shut_down_gui
+      to main_prog.
+
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member

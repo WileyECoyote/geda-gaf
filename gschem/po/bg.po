@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-13 20:34-0500\n"
+"POT-Creation-Date: 2016-03-17 00:11-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:163
+#: gschem/src/base/gschem.c:162
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:164
+#: gschem/src/base/gschem.c:163
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:194
+#: gschem/src/base/gschem.c:193
 #, c-format
 msgid "Assumming schematic file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:204
+#: gschem/src/base/gschem.c:203
 #, c-format
 msgid "Assumming symbol file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:234
+#: gschem/src/base/gschem.c:233
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:309
+#: gschem/src/base/gschem.c:308
 msgid ""
 "You must set the GEDADATA environment variable!\n"
 "\n"
@@ -50,35 +50,35 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:346
+#: gschem/src/base/gschem.c:345
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:351
+#: gschem/src/base/gschem.c:350
 #, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:353
 #, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:379
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:384
+#: gschem/src/base/gschem.c:383
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:417
+#: gschem/src/base/gschem.c:416
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:505
+#: gschem/src/base/gschem.c:506
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:569
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:586
 msgid "Filename"
 msgstr ""
 
@@ -961,15 +961,15 @@ msgstr ""
 msgid "Resnap Active"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:371
+#: gschem/src/iface/i_vars.c:383
 msgid "Restoring user settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:759
+#: gschem/src/iface/i_vars.c:771
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:794
+#: gschem/src/iface/i_vars.c:806
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
@@ -1038,30 +1038,30 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gschem/src/object/o_edit.c:505
+#: gschem/src/object/o_edit.c:515
 #, c-format
 msgid "%d attributes were hidden\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:509
+#: gschem/src/object/o_edit.c:519
 #, c-format
 msgid "%d hidden attributes were revealed\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:702
+#: gschem/src/object/o_edit.c:712
 msgid "Hidden text is now visible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:705
+#: gschem/src/object/o_edit.c:715
 msgid "Hidden text is now invisible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1103 gschem/src/x/x_edit_cprop.c:367
+#: gschem/src/object/o_edit.c:1112 gschem/src/x/x_edit_cprop.c:367
 #, c-format
 msgid "Could not find symbol [%s] in library. Update failed.\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1108
+#: gschem/src/object/o_edit.c:1117
 #, c-format
 msgid "Updating symbol [%s]\n"
 msgstr ""
@@ -2757,183 +2757,183 @@ msgstr ""
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:355 gschem/etc/system-gschemrc.scm:2024
+#: gschem/src/x/x_menus.c:363 gschem/etc/system-gschemrc.scm:2024
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:366 gschem/etc/system-gschemrc.scm:2029
+#: gschem/src/x/x_menus.c:374 gschem/etc/system-gschemrc.scm:2029
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:376 gschem/etc/system-gschemrc.scm:2047
+#: gschem/src/x/x_menus.c:384 gschem/etc/system-gschemrc.scm:2047
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:409 gschem/etc/system-gschemrc.scm:2151
+#: gschem/src/x/x_menus.c:417 gschem/etc/system-gschemrc.scm:2151
 msgid "redraw the current window"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:448 gschem/src/x/x_menus.c:451
+#: gschem/src/x/x_menus.c:456 gschem/src/x/x_menus.c:459
 #, c-format
 msgid "Error reading menu item <%d>, Bad string\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:655
+#: gschem/src/x/x_menus.c:663
 #, c-format
 msgid "Oops.. got a NULL menu name in %s()\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:772
+#: gschem/src/x/x_menus.c:780
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:773
+#: gschem/src/x/x_menus.c:781
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:774
+#: gschem/src/x/x_menus.c:782
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:775
+#: gschem/src/x/x_menus.c:783
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:776
+#: gschem/src/x/x_menus.c:784
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:777
+#: gschem/src/x/x_menus.c:785
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:778
+#: gschem/src/x/x_menus.c:786
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:779
+#: gschem/src/x/x_menus.c:787
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:834
+#: gschem/src/x/x_menus.c:842
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:835
+#: gschem/src/x/x_menus.c:843
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:836
+#: gschem/src/x/x_menus.c:844
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:837
+#: gschem/src/x/x_menus.c:845
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:901
+#: gschem/src/x/x_menus.c:909
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:902
+#: gschem/src/x/x_menus.c:910
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:903
+#: gschem/src/x/x_menus.c:911
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:904
+#: gschem/src/x/x_menus.c:912
 msgid "Toggle main context menu tooltips"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:1155
-#, c-format
-msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:1159
-#, c-format
-msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:1163
 #, c-format
+msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:1167
+#, c-format
+msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:1171
+#, c-format
 msgid "Excessive errors <%d>, disabling sensitivity warnings\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1184
+#: gschem/src/x/x_menus.c:1192
 #, c-format
 msgid "Popup menu widget doesn't exist!\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1239
+#: gschem/src/x/x_menus.c:1247
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1249
+#: gschem/src/x/x_menus.c:1257
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1252
+#: gschem/src/x/x_menus.c:1260
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1296
+#: gschem/src/x/x_menus.c:1304
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1299
+#: gschem/src/x/x_menus.c:1307
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1362
+#: gschem/src/x/x_menus.c:1370
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1365
+#: gschem/src/x/x_menus.c:1373
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1406
+#: gschem/src/x/x_menus.c:1414
 #, c-format
 msgid "%s: Action not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1409
+#: gschem/src/x/x_menus.c:1417
 #, c-format
 msgid "%s: Menu path not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1412
+#: gschem/src/x/x_menus.c:1420
 #, c-format
 msgid "%s: invalid pointer [menubar]\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1487
+#: gschem/src/x/x_menus.c:1495
 #, c-format
 msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1585
+#: gschem/src/x/x_menus.c:1593
 #, c-format
 msgid "Could not open file %s\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1680
+#: gschem/src/x/x_menus.c:1688
 msgid "Open"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1689
+#: gschem/src/x/x_menus.c:1697
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1698
+#: gschem/src/x/x_menus.c:1706
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1823
+#: gschem/src/x/x_menus.c:1831
 msgid "Clear"
 msgstr ""
 
@@ -3048,36 +3048,36 @@ msgstr ""
 msgid "attribute"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:287
+#: gschem/src/x/x_pagesel.c:294
 msgid "New Page"
 msgstr "Нова Страница"
 
-#: gschem/src/x/x_pagesel.c:288
+#: gschem/src/x/x_pagesel.c:295
 #, fuzzy
 msgid "Goto Page..."
 msgstr "Отвори Страница..."
 
-#: gschem/src/x/x_pagesel.c:290
+#: gschem/src/x/x_pagesel.c:297
 msgid "Save Page"
 msgstr "Съхрани Страницата"
 
-#: gschem/src/x/x_pagesel.c:291 gschem/scheme/gschem/builtins.scm:224
+#: gschem/src/x/x_pagesel.c:298 gschem/scheme/gschem/builtins.scm:224
 msgid "Close Page"
 msgstr "Затвори Страницата"
 
-#: gschem/src/x/x_pagesel.c:292
+#: gschem/src/x/x_pagesel.c:299
 msgid "Discard Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:506 gschem/scheme/gschem/builtins.scm:215
+#: gschem/src/x/x_pagesel.c:523 gschem/scheme/gschem/builtins.scm:215
 msgid "Page Manager"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:592
+#: gschem/src/x/x_pagesel.c:609
 msgid "Changed"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:625
+#: gschem/src/x/x_pagesel.c:642
 msgid "Right click on rows for more options..."
 msgstr ""
 
