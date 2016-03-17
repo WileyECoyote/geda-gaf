@@ -13,6 +13,11 @@
 
     * object/o_move.c: Remove setting page_current->CHANGED in o_move_end.
 
+    * src/object/o_undo.c: Temporarily add call x_pagesel_update, look bad
+      when dialog open and copy, move, change color and dialog not updated.
+
+    * src/x/x_pagesel.c
+
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member instance_

@@ -194,8 +194,8 @@ void o_undo_finalize(void)
  */
 void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
-  GedaToplevel *toplevel     = w_current->toplevel;
-  GError       *err          = NULL;
+  GedaToplevel *toplevel = w_current->toplevel;
+  GError       *err      = NULL;
 
   Page         *p_current;
   UNDO         *u_current;
@@ -227,6 +227,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     int levels;
 
     if (flag == UNDO_ALL) {
+
+      /* Temporary until can fix */
+      x_pagesel_update (w_current);
 
       /* Increment the number of operations since last backup if
        *      auto-save is enabled */
