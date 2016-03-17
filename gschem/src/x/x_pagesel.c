@@ -63,7 +63,8 @@ static void x_pagesel_callback_response (GtkDialog *d, int r, void *log);
  *
  *  \param [in] w_current  The GschemToplevel object to open page manager for.
  */
-void x_pagesel_open (GschemToplevel *w_current)
+void
+x_pagesel_open (GschemToplevel *w_current)
 {
   if (w_current->pswindow == NULL) {
 
@@ -83,7 +84,6 @@ void x_pagesel_open (GschemToplevel *w_current)
   else {
     gtk_window_present(GTK_WINDOW(w_current->pswindow));
   }
-
 }
 
 /*! \brief Close the page manager dialog.
@@ -92,9 +92,13 @@ void x_pagesel_open (GschemToplevel *w_current)
  *
  *  \param [in] w_current  The GschemToplevel object to close page manager for.
  */
-void x_pagesel_close (GschemToplevel *w_current)
+void
+x_pagesel_close (GschemToplevel *w_current)
 {
+  /* Check if PageSelect dialog active */
   if (w_current->pswindow) {
+
+    /* Validate the pointer to the Dialog */
     if (IS_PAGESEL (w_current->pswindow)) {
       gtk_widget_destroy (w_current->pswindow);
     }
@@ -104,18 +108,44 @@ void x_pagesel_close (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Update the list and status of <B>toplevel</B>'s pages.
+/*! \brief Idle Update Page Select Dialog
  *  \par Function Description
- *  Updates the list and status of <B>toplevel</B>\'s pages if the page
- *  manager dialog is opened.
+ *   Calls pagesel_update and then decrements reference on the Pagesel
+ *   dialog that was added in x_pagesel_update to insure dialog was not
+ *   destroyed whilst waiting for an idle state.
  *
- *  \param [in] w_current  The GschemToplevel object to update.
+ *  \param [in] dialog  The Pagesel dialog
  */
-void x_pagesel_update (GschemToplevel *w_current)
+static int
+x_pagesel_idle_update (void *dialog)
 {
+  Pagesel *pagesel = dialog;
+
+  pagesel_update (pagesel);
+
+  g_object_unref(pagesel);
+
+  return FALSE;
+}
+
+/*! \brief Update the Page Select Dialog.
+ *  \par Function Description
+ *  Spawns thread to call x_pagesel_idle_update when loop is idle.
+ *
+ *  \param [in] w_current  A GschemToplevel object.
+ */
+void
+x_pagesel_update (GschemToplevel *w_current)
+{
+  /* Check if PageSelect dialog active */
   if (w_current->pswindow) {
+
+    /* Validate the pointer to the Dialog */
     if (IS_PAGESEL (w_current->pswindow)) {
-      pagesel_update (PAGESEL (w_current->pswindow));
+
+      /* Add a reference to the object */
+      g_object_ref(w_current->pswindow);
+      g_idle_add (x_pagesel_idle_update, w_current->pswindow);
     }
     else {
       BUG_MSG ("pswindow is wrong object");
@@ -131,28 +161,28 @@ void x_pagesel_update (GschemToplevel *w_current)
  *  \param [in] response Response argument of page manager dialog.
  *  \param [in] data     Pointer to relevant GschemToplevel structure.
  */
-static
-void x_pagesel_callback_response (GtkDialog *dialog, int response, void *data)
+static void
+x_pagesel_callback_response (GtkDialog *dialog, int response, void *data)
 {
   GschemToplevel *w_current;
 
   w_current = (GschemToplevel*)data;
 
   switch (response) {
-      case GEDA_RESPONSE_DELETE_EVENT:
-      case GEDA_RESPONSE_CLOSE:
-        if (IS_PAGESEL (w_current->pswindow)) {
-          gtk_widget_destroy (GTK_WIDGET (dialog));
-        }
-        else {
-          BUG_MSG ("pswindow is wrong object");
-        }
-        break;
-      case GEDA_RESPONSE_REFRESH:
-        pagesel_update (PAGESEL (dialog));
-        break;
-      default:
-        BUG_IMSG("unhandled case <%d>", response);
+    case GEDA_RESPONSE_DELETE_EVENT:
+    case GEDA_RESPONSE_CLOSE:
+      if (IS_PAGESEL (w_current->pswindow)) {
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+      }
+      else {
+        BUG_MSG ("pswindow is wrong object");
+      }
+      break;
+    case GEDA_RESPONSE_REFRESH:
+      pagesel_update (PAGESEL (dialog));
+      break;
+    default:
+      BUG_IMSG("unhandled case <%d>", response);
   }
 }
 
@@ -164,9 +194,9 @@ enum {
   NUM_COLUMNS
 };
 
-static void pagesel_class_init (PageselClass *class);
-static void pagesel_instance_init       (Pagesel *pagesel);
-static void pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event);
+static void pagesel_class_init    (PageselClass *class);
+static void pagesel_instance_init (Pagesel *pagesel);
+static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
 
 /*! \brief Page Manager Dialog Tree View Page Selected
  *  \par Function Description
@@ -206,9 +236,10 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
  *  over a treeview row. If the event was a "right-click" then a
  *  a the pagesel_popup_menu () function is called to present a menu.
  */
-static bool pagesel_callback_button_pressed (GtkWidget      *widget,
-                                             GdkEventButton *event,
-                                             void           *user_data)
+static bool
+pagesel_callback_button_pressed (GtkWidget      *widget,
+                                 GdkEventButton *event,
+                                 void           *user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
   bool ret_val;
@@ -239,8 +270,8 @@ static bool pagesel_callback_button_pressed (GtkWidget      *widget,
  *  \par Function Description
  *
  */
-static bool pagesel_callback_popup_menu (GtkWidget *widget,
-                                         void      *user_data)
+static bool
+pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
 
@@ -389,8 +420,8 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
  *       use OFF image and if OFF use ON image. The function then
  *       calls multiattrib_update to update the attribute list.
  */
-static void pagesel_show_fullnames_toggled (GtkWidget *widget,
-                                            Pagesel   *pagesel)
+static void
+pagesel_show_fullnames_toggled (GtkWidget *widget, Pagesel *pagesel)
 {
   TOGGLE_SWITCH(widget);
   pagesel_update(pagesel);
@@ -414,7 +445,8 @@ pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
  *  \par Function Description
  *   Save the user preference to configuration system.
  */
-static void pagesel_finalize(GObject *object)
+static void
+pagesel_finalize(GObject *object)
 {
   Pagesel    *pagesel = PAGESEL(object);
   GtkWidget  *widget  = GET_EDA_OBJECT(ShowFullName);
@@ -438,7 +470,8 @@ static void pagesel_finalize(GObject *object)
  *
  *  \return the Type identifier associated with pagesel.
  */
-GedaType pagesel_get_type()
+GedaType
+pagesel_get_type (void)
 {
   static GedaType pagesel_type = 0;
 
@@ -463,7 +496,8 @@ GedaType pagesel_get_type()
   return pagesel_type;
 }
 
-bool is_a_pagesel (Pagesel *pagesel)
+bool
+is_a_pagesel (Pagesel *pagesel)
 {
   if (G_IS_OBJECT(pagesel)) {
     return (pagesel_get_type() == pagesel->instance_type);
@@ -476,7 +510,8 @@ bool is_a_pagesel (Pagesel *pagesel)
  *  \par Function Description
  *
  */
-static void pagesel_class_init (PageselClass *class)
+static void
+pagesel_class_init (PageselClass *class)
 {
   GObjectClass *gobject_class  = G_OBJECT_CLASS (class);
 
@@ -490,7 +525,8 @@ static void pagesel_class_init (PageselClass *class)
  *  \par Function Description
  *
  */
-static void pagesel_instance_init (Pagesel *pagesel)
+static void
+pagesel_instance_init (Pagesel *pagesel)
 {
   GtkWidget *scrolled_win, *treeview, *label;
   GtkTreeModel *store;
@@ -552,16 +588,14 @@ static void pagesel_instance_init (Pagesel *pagesel)
                     G_CALLBACK (pagesel_callback_button_pressed),
                     pagesel);
 
-  g_signal_connect (treeview,
-                    "popup-menu",
+  g_signal_connect (treeview, "popup-menu",
                     G_CALLBACK (pagesel_callback_popup_menu),
                     pagesel);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
-  g_signal_connect (selection,
-                    "changed",
+  g_signal_connect (selection, "changed",
                     G_CALLBACK (pagesel_callback_selection_changed),
                     pagesel);
 
@@ -736,8 +770,8 @@ static void pagesel_instance_init (Pagesel *pagesel)
  *  \param [in] pages   PageList of pages for this toplevel.
  *  \param [in] page    The Page object to update tree model from.
  */
-static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
-                      PageList     *pages, Page        *page)
+static void
+add_page(GtkTreeModel *model, GtkTreeIter *parent, PageList *pages, Page *page)
 {
   GList *p_iter;
   GtkTreeIter iter;
@@ -770,8 +804,8 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
  *  Recursive function to select the current page in the treeview
  *
  */
-static
-void select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
+static void
+select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
 {
   GtkTreeModel *treemodel = gtk_tree_view_get_model (treeview);
   GtkTreeIter iter;
@@ -801,14 +835,15 @@ void select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
  *  \par Function Description
  *
  */
-void pagesel_update (Pagesel *pagesel)
+void
+pagesel_update (Pagesel *pagesel)
 {
-
   GschemToplevel *w_current;
   GedaToplevel   *toplevel;
   Page           *p_current;
   GtkTreeModel   *model;
   GList          *iter;
+  GList          *pages;
 
   w_current = GSCHEM_DIALOG (pagesel)->w_current;
   toplevel  = w_current->toplevel;
@@ -817,10 +852,11 @@ void pagesel_update (Pagesel *pagesel)
 
   /* wipe out every thing in the store */
   gtk_tree_store_clear (GTK_TREE_STORE (model));
+
+  pages = geda_list_get_glist(toplevel->pages);
+
   /* now rebuild */
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
+  for ( iter = pages; iter != NULL; iter = iter->next) {
 
     int pid;
 

@@ -1,3 +1,8 @@
+    * src/x/x_window.c: Disconnect macro_widget in x_window_close_all.
+
+    * src/x/x_window.c: Utilize gschem_macro_widget_new to create a new macro
+      widget in x_window_create_main.
+
 2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/base/gschem.c: Move g_main_loop_unref from shut_down_gui
@@ -16,7 +21,11 @@
     * src/object/o_undo.c: Temporarily add call x_pagesel_update, look bad
       when dialog open and copy, move, change color and dialog not updated.
 
-    * src/x/x_pagesel.c
+    * src/x/x_pagesel.c: Add function x_pagesel_idle_thread_update to call
+      pagesel_update in an idle thread, revise x_pagesel_update to spawn
+      call to x_pagesel_idle_thread_update when loop is idle, works quite
+      well but Pagesel should probably still have an update_this_page method.
+      Add GList pages in pagesel_update and adjust indentations.
 
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
