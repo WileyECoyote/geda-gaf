@@ -1,11 +1,17 @@
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/include/x_pagesel.h: Declare is_a_pagesel, add Pagesel member
+      instance_type, Remove G_TYPE_CHECK_INSTANCE_TYPE.
+
     * src/base/gschem_main_window.c: Add map/unmap hooks and set/unset the
       widget name for the main window using gtk_widget_set_name function.
 
     * gschem/src/x/x_menus.c: Sink the reference of the pop-up menu and then
       unreferenced the top pop-up in x_menu_free_all, seems to work better
       than gtk_widget_destroy - famous last words?
+
+    * src/x/x_pagesel.c: Set instance_type in pagesel_get_type, add function
+      is_a_pagesel.
 
     * src/x/x_window.c: Remove setting the widget name for the main window,
       which is now done in by the gschem_main_window_map widget.

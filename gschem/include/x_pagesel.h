@@ -40,7 +40,7 @@
 #define TYPE_PAGESEL         (pagesel_get_type())
 #define PAGESEL(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PAGESEL, Pagesel))
 #define PAGESEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PAGESEL, PageselClass))
-#define IS_PAGESEL(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PAGESEL))
+#define IS_PAGESEL(obj)      (is_a_pagesel((Pagesel*)obj))
 
 
 typedef struct _PageselClass PageselClass;
@@ -54,11 +54,11 @@ struct _PageselClass {
 struct _Pagesel {
 
   GschemDialog parent_instance;
-
+  GedaType     instance_type;
   GtkTreeView *treeview;
 
 };
 
 GedaType pagesel_get_type (void) GEDA_CONST;
-
-void pagesel_update (Pagesel *pagesel);
+bool     is_a_pagesel     (Pagesel *pagesel);
+void     pagesel_update   (Pagesel *pagesel);

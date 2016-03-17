@@ -463,6 +463,14 @@ GedaType pagesel_get_type()
   return pagesel_type;
 }
 
+bool is_a_pagesel (Pagesel *pagesel)
+{
+  if (G_IS_OBJECT(pagesel)) {
+    return (pagesel_get_type() == pagesel->instance_type);
+  }
+  return FALSE;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -496,6 +504,8 @@ static void pagesel_instance_init (Pagesel *pagesel)
 
   int full_names;
 
+  pagesel->instance_type = pagesel_get_type();
+
   i_var_restore_group_boolean(cfg, group, key, &full_names, TRUE);
 
   /* dialog initialization */
@@ -504,8 +514,8 @@ static void pagesel_instance_init (Pagesel *pagesel)
                 "border-width",    DIALOG_BORDER_WIDTH,
                 /* GtkWindow */
                 "title",           _("Page Manager"),
-                "default-height",  180,
-                "default-width",   250,
+                "default-height",  220,
+                "default-width",   280,
                 "modal",           FALSE,
                 "window-position", GTK_WIN_POS_MOUSE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
