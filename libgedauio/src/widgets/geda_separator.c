@@ -38,6 +38,15 @@
 
 #include "../../include/geda_separator.h"
 
+/**
+ * \brief GedaSeparator - A Seperator for Menus and Toolbars
+ * \par
+ * A visual widget use to seperate items in meu and toolbars.
+ *
+ * \defgroup GedaSeparator Geda Separator
+ * @{
+ */
+
 enum {
   PROP_0,
   PROP_ORIENTATION
@@ -358,16 +367,16 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   widget->requisition.height = widget->style->ythickness;
 }
 
-/*! \brief Function to retrieve GedaSeparator's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaSeparator's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaSeparator Type identifier. When
  *  first called, the function registers a #GedaSeparator in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaSeparator and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaSeparator.
+ * \return GedaType identifier associated with GedaSeparator.
  */
 GedaType geda_separator_get_type (void)
 {
@@ -428,3 +437,5 @@ GtkWidget *geda_vseparator_new (void)
                        "orientation", 1,
                        NULL);
 }
+
+/** @} endgroup GedaSeparator */

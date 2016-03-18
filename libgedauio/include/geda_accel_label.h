@@ -78,6 +78,7 @@ GtkWidget*    geda_accel_label_new               (const char     *string);
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
 void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,
                                                   const char     *accel_string);
+
 bool          geda_accel_label_refetch           (GedaAccelLabel *accel_label);
 
 #ifdef __cplusplus
