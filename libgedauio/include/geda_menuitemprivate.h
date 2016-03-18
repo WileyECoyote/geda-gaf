@@ -73,14 +73,14 @@ int      _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
 void     _gtk_menu_item_popup_submenu        (GtkWidget     *menu_item,
                                               int            with_delay);
 void     _gtk_menu_item_popdown_submenu      (GtkWidget     *menu_item);
-void	     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
+void	 _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
                                               const char    *prefix,
                                               GtkAccelGroup *accel_group,
-                                              int      	   group_changed);
-int       _gtk_menu_item_is_selectable       (GtkWidget     *menu_item);
-void      _gtk_menu_item_popup_submenu       (GtkWidget     *menu_item,
+                                              int            group_changed);
+int      _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
+void     _gtk_menu_item_popup_submenu        (GtkWidget     *menu_item,
                                               int            with_delay);
-void      _gtk_menu_item_popdown_submenu     (GtkWidget     *menu_item);
+void     _gtk_menu_item_popdown_submenu      (GtkWidget     *menu_item);
 
 #ifdef __cplusplus
 }

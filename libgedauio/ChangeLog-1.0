@@ -1,3 +1,11 @@
+2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_tearoff_menuitem.h: Add Add new header file for class
+      GedaTearoffMenuItem.
+
+    * src/widgets/geda_tearoff_menuitem.c: New file implements GedaTearoffMenuItem
+      as a replacement for GtkTearoffMenuItem.
+
 2016-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Remove typedef GedaLabelSelectionInfo.
