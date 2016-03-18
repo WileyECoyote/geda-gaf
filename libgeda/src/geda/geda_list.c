@@ -60,7 +60,9 @@ static GObjectClass *geda_list_parent_class = NULL;
  */
 static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaList *list = (GedaList *)instance;
+  GedaList *list       = (GedaList *)instance;
+
+  list->instance_type  = geda_notify_list_get_type();
 
   /* Strictly un-necessary, as the memory is zero'd after allocation */
   list->glist = NULL;
@@ -158,6 +160,14 @@ GedaListType geda_list_get_type (void)
   }
 
   return geda_list_type;
+}
+
+bool is_a_geda_list (GedaList *list)
+{
+  if (G_IS_OBJECT(list)) {
+    return (geda_list_get_type() == list->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Returns a pointer to a new GedaList object.

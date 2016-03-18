@@ -1,3 +1,12 @@
+2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_list.h:Add _GedaList member instance_type, add declare
+      is_a_geda_list. Remove G_TYPE_CHECK_INSTANCE_TYPE and use is_a_geda_list
+      instead.
+
+    * src/geda/geda_list.c: Add function is_a_geda_list and set instance_type in
+      geda_list_instance_init.
+
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/edascmhookproxy.h: Add _EdascmHookProxy member instance_type,
