@@ -1,3 +1,9 @@
+2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM53600N-1.sym: Add symbol Fixed 3.3V Buck, 36Vin, 0.65A.
+
+    * ti/switchreg/LM53601N-1.sym: Add symbol Fixed 3.3V Buck, 36Vin, 1A.
+
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/INA193A-1.sym: Add documentation attribute and change plain text
