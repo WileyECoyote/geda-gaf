@@ -3,6 +3,10 @@
     * include/geda_tearoff_menuitem.h: Add Add new header file for class
       GedaTearoffMenuItem.
 
+    * src/widgets/geda_label.c: Add accessible member to _GedaLabelData and store
+      pointer to AtkObject in geda_label_instance_init, unreference in geda_label_
+      finalize,
+
     * src/widgets/geda_tearoff_menuitem.c: New file implements GedaTearoffMenuItem
       as a replacement for GtkTearoffMenuItem.
 

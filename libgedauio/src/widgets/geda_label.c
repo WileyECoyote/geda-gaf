@@ -65,6 +65,7 @@
 
 #include <gtk/gtk.h>
 
+#include "../../include/geda_accel_label.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_label.h"
@@ -84,8 +85,9 @@ typedef struct _SelectionInfo SelectionInfo;
 
 struct _GedaLabelData
 {
-  PangoFontMap           *font_map;
+  AtkObject     *accessible;
   SelectionInfo *select_info;
+  PangoFontMap  *font_map;
 
   GtkWidget *mnemonic_widget;
   GtkWindow *mnemonic_window;
@@ -1390,6 +1392,7 @@ geda_label_class_init  (void *class, void *class_data)
 static void
 geda_label_instance_init(GTypeInstance *instance, void *g_class)
 {
+  AtkObject     *accessible;
   GedaLabel     *label;
   GedaLabelData *priv;
 
@@ -1430,21 +1433,24 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   geda_label_set_text (label, "label");
 
-  {
-    AtkObject *obj;
-    obj = gtk_widget_get_accessible(GTK_WIDGET(label));
-    atk_object_set_name (obj, _("Label"));
+  accessible = gtk_widget_get_accessible(GTK_WIDGET(label));
+
+  if (accessible) {
+    priv->accessible = g_object_ref(accessible);
+    atk_object_set_name (priv->accessible, _("Label"));
+  }
+  else {
+    priv->accessible = NULL;
   }
 }
-
 
 static void
 geda_label_buildable_interface_init (GtkBuildableIface *iface)
 {
-  buildable_parent_iface = g_type_interface_peek_parent (iface);
+  buildable_parent_iface  = g_type_interface_peek_parent (iface);
 
   iface->custom_tag_start = geda_label_buildable_custom_tag_start;
-  iface->custom_finished = geda_label_buildable_custom_finished;
+  iface->custom_finished  = geda_label_buildable_custom_finished;
 }
 
 /*! \brief Retrieve GedaLabel's Type identifier.
@@ -3403,9 +3409,11 @@ static void geda_label_finalize (GObject *object)
 
   GEDA_FREE (label->priv->select_info);
 
-  if (label->priv->font_map) {
-    g_object_unref (label->priv->font_map);
-    label->priv->font_map = NULL;
+  GEDA_UNREF (label->priv->font_map);
+
+  if (label->priv->accessible){
+    atk_object_set_name (label->priv->accessible, "");
+    GEDA_UNREF (label->priv->accessible);
   }
 
   GEDA_FREE(label->priv);
