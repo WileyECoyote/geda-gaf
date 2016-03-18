@@ -78,7 +78,7 @@ GedaList *geda_list_new                     ( void );
 void      geda_list_add                     ( GedaList *list, void  *item );
 void      geda_list_add_glist               ( GedaList *list, GList *items );
 void      geda_list_add_glist_unique        ( GedaList *list, GList *items );
-void      geda_list_add_unique              ( GedaList *list, void  *item );
+bool      geda_list_add_unique              ( GedaList *list, void  *item );
 bool      geda_list_add_unique_string       ( GedaList *list, char  *text );
 GList    *geda_list_copy_glist              ( GedaList *list );
 void     *geda_list_find                    ( GedaList *list, void *item );

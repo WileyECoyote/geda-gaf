@@ -238,13 +238,15 @@ void geda_list_add_glist_unique (GedaList *list, GList *items)
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item item to add to the GedaList.
  *
- *  \todo Should return whether item was added or not.
+ *  \return TRUE if \a item was added or FALSE if \a item was not added.
  */
-void geda_list_add_unique (GedaList *list, void *item)
+bool geda_list_add_unique (GedaList *list, void *item)
 {
   if (!geda_list_is_in_list(list, item)) {
     geda_list_add(list, item);
+    return TRUE;
   }
+  return FALSE;
 }
 
 /*! \brief Add pointer to a string to the GedaList if not already in list

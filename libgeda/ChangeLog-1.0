@@ -5,7 +5,8 @@
       instead.
 
     * src/geda/geda_list.c: Add function is_a_geda_list and set instance_type in
-      geda_list_instance_init.
+      geda_list_instance_init, revise geda_list_add_unique to return boolean
+      whether the item was added or not.
 
 2016-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
