@@ -44,7 +44,7 @@ enum {
   PROP_CAIRO_CONTEXT = 1,
 };
 
-struct _EdaPangoRendererPrivate
+struct _EdaPangoRendererData
 {
   cairo_t *cr;
   bool overbar;
@@ -152,6 +152,8 @@ eda_pango_renderer_finalize (GObject *object)
   if (renderer->priv->cr != NULL) {
     cairo_destroy (renderer->priv->cr);
   }
+
+  g_free(renderer->priv);
 }
 
 static void
@@ -274,13 +276,11 @@ eda_pango_renderer_class_init(void *g_class, void *class_data)
   GObjectClass          *object_class  = G_OBJECT_CLASS (class);
   PangoRendererClass    *parent_class  = PANGO_RENDERER_CLASS (class);
 
-  g_type_class_add_private (object_class, sizeof (EdaPangoRendererPrivate));
-
   /* Register functions with base class */
-  object_class->constructor  = eda_pango_renderer_constructor;
-  object_class->set_property = eda_pango_renderer_set_property;
-  object_class->get_property = eda_pango_renderer_get_property;
-  object_class->finalize     = eda_pango_renderer_finalize;
+  object_class->constructor          = eda_pango_renderer_constructor;
+  object_class->set_property         = eda_pango_renderer_set_property;
+  object_class->get_property         = eda_pango_renderer_get_property;
+  object_class->finalize             = eda_pango_renderer_finalize;
 
   /* Register functions with parent class */
   parent_class->draw_glyphs          = eda_pango_renderer_draw_glyphs;
@@ -309,9 +309,7 @@ eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
 {
   EdaPangoRenderer *renderer = (EdaPangoRenderer*)instance;
 
-  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
-                                                EDA_TYPE_PANGO_RENDERER,
-                                                EdaPangoRendererPrivate);
+  renderer->priv = g_malloc0 (sizeof(EdaPangoRendererData));
 }
 
 /*! \brief Retrieve EdaPangoRenderer's Type identifier.

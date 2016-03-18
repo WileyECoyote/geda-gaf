@@ -33,9 +33,9 @@
 #define EDA_IS_PANGO_RENDERER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), EDA_TYPE_PANGO_RENDERER))
 #define EDA_PANGO_RENDERER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDA_TYPE_PANGO_RENDERER, EdaPangoRendererClass))
 
-typedef struct _EdaPangoRendererClass EdaPangoRendererClass;
 typedef struct _EdaPangoRenderer EdaPangoRenderer;
-typedef struct _EdaPangoRendererPrivate EdaPangoRendererPrivate;
+typedef struct _EdaPangoRendererClass EdaPangoRendererClass;
+typedef struct _EdaPangoRendererData EdaPangoRendererData;
 
 struct _EdaPangoRendererClass
 {
@@ -47,7 +47,7 @@ struct _EdaPangoRenderer
   PangoRenderer parent_instance;
 
   /* Private members */
-  EdaPangoRendererPrivate *priv;
+  EdaPangoRendererData *priv;
 };
 
 BEGIN_DECLS

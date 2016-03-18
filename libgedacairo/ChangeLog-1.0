@@ -1,3 +1,12 @@
+2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/edapangorenderer.h: Rename EdaPangoRendererPrivate->
+      EdaPangoRendererData.
+
+    * src/edapangorenderer.c: Eliminate use of G_TYPE_INSTANCE_GET_PRIVATE,
+      allocate priate data using g_malloc0 in eda_pango_renderer_instance_init
+      and release in eda_pango_renderer_finalize.
+
 2016-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Remove eda_renderer_flags_get_type and replace
@@ -9,7 +18,7 @@
 
     * include/edarenderer.h: Rename EdaRendererPrivate->EdaRendererData.
 
-    * src/edarenderer.c: Eliminate use of  G_TYPE_INSTANCE_GET_PRIVATE,
+    * src/edarenderer.c: Eliminate use of G_TYPE_INSTANCE_GET_PRIVATE,
       allocate priate data using g_malloc0 in eda_renderer_instance_init
       and release in eda_renderer_finalize.
 

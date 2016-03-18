@@ -243,13 +243,13 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
   switch (property_id) {
   case PROP_CAIRO_CONTEXT:
     eda_renderer_update_contexts (renderer,
-                                  (cairo_t *) g_value_get_pointer (value),
+                                  (cairo_t*)g_value_get_pointer (value),
                                   NULL);
     break;
 
   case PROP_PANGO_CONTEXT:
     eda_renderer_update_contexts (renderer, NULL,
-                                  PANGO_CONTEXT (g_value_get_pointer (value)));
+                                  PANGO_CONTEXT(g_value_get_pointer (value)));
     break;
 
   case PROP_FONT_NAME:
