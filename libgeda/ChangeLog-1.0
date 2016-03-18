@@ -1,3 +1,12 @@
+2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_notify.h: Add _GedaNotifyList member instance_type, add
+      declare is_a_geda_notify_list. Remove G_TYPE_CHECK_INSTANCE_TYPE and use
+      is_a_geda_notify_list instead.
+
+    * src/geda/geda_notify.c: Add function is_a_geda_notify_list and set instance
+      type in geda_notify_list_instance_init.
+
 2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_list.h:Add _GedaList member instance_type, add declare

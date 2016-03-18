@@ -63,11 +63,13 @@ static GObjectClass *geda_notify_list_parent_class = NULL;
  */
 static void geda_notify_list_instance_init (GTypeInstance *instance, void *class)
 {
-  GedaNotifyList *list = (GedaNotifyList *)instance;
+  GedaNotifyList *list = (GedaNotifyList*)instance;
+
+  list->instance_type  = geda_notify_list_get_type();
 
   /* Strictly un-necessary, as the memory is zero'd after allocation */
-  list->glist = NULL;
-  list->freeze_count = 0;
+  list->glist          = NULL;
+  list->freeze_count   = 0;
 }
 
 /*! \brief GObject finalise handler
@@ -145,6 +147,14 @@ GedaNotifyType geda_notify_list_get_type (void)
   }
 
   return geda_notify_list_type;
+}
+
+bool is_a_geda_notify_list (GedaNotifyList *list)
+{
+  if (G_IS_OBJECT(list)) {
+    return (geda_notify_list_get_type() == list->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Returns a pointer to a new GedaNotifyList object.
