@@ -703,6 +703,10 @@ void x_window_close(GschemToplevel *w_current)
     w_current->smob = SCM_UNDEFINED;
   }
 
+  g_signal_handlers_disconnect_by_func (w_current->macro_widget,
+                                        x_window_invoke_macro,
+                                        w_current);
+
   /* finally close the main window */
   gtk_widget_destroy(MainWindow);
 
