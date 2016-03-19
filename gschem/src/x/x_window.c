@@ -529,7 +529,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
   /* -------------------- macro box -------------------- */
 
-  w_current->macro_widget = GTK_WIDGET (g_object_new (GSCHEM_TYPE_MACRO_WIDGET, NULL));
+  w_current->macro_widget = gschem_macro_widget_new();
 
   gtk_box_pack_start (GTK_BOX (main_box),
                       w_current->macro_widget,
