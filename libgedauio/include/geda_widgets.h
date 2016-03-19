@@ -39,7 +39,7 @@
 #include "geda_font_button.h"
 #include "geda_font_dialog.h"
 #include "geda_handlebox.h"
-#include "geda_imagemenuitem.h"
+#include "geda_image_menu_item.h"
 #include "geda_label.h"
 #include "geda_menu_button.h"
 #include "geda_separator.h"

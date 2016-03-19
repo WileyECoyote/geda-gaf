@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_imagemenuitem.h
+ * File: geda_image_menu_item.h
  *
  * GTK - The GIMP Toolkit
  * Copyright (C) 2001 Red Hat, Inc.
@@ -38,7 +38,7 @@
 #include <libgeda/libgeda.h>
 
 #include "geda_gtk_compat.h"
-#include "geda_imagemenuitem.h"
+#include "geda_image_menu_item.h"
 
 #include <gtk/gtk.h>
 

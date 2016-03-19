@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_imagemenuitem.h
+ * File: geda_image_menu_item.h
  *
  * GTK - The GIMP Toolkit
  * Copyright (C) Red Hat, Inc.
@@ -69,7 +69,7 @@ struct _GedaImageMenuItemClass
 extern "C" {
 #endif
 
-GType	   geda_image_menu_item_get_type              (void) GEDA_CONST;
+GedaType   geda_image_menu_item_get_type              (void) GEDA_CONST;
 GtkWidget *geda_image_menu_item_new                   (void);
 
 GtkWidget *geda_image_menu_item_new_with_label        (const char        *label);

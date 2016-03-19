@@ -1,5 +1,8 @@
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_image_menu_item.h: Rename file geda_image_menu_item ->
+      geda_image_menu_item.
+
     * include/geda_keyboard.h: Add new header.
 
     * include/geda_key_hash.h: Add new header for class GedaKeyHash.
@@ -12,6 +15,9 @@
     * src/functions/geda_key_hash.c: Add implementation module for GedaKeyHash.
 
     * src/functions/geda_mnemonic_hash.c: Add implementation module for GedaKeyHash.
+
+    * src/widgets/geda_tearoff_menu_item.c: Rename file geda_image_menu_item ->
+      geda_image_menu_item.
 
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
 

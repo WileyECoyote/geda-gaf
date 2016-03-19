@@ -22,7 +22,7 @@ libgedauio_HEADERS = \
 			geda_gtk_compat.h         \
 			geda_handlebox.h          \
 			geda_image_chooser.h      \
-			geda_image_menuitem.h     \
+			geda_image_menu_item.h    \
 			geda_input_dialog.h       \
 			geda_keyboard.h           \
 			geda_key_hash.h           \
