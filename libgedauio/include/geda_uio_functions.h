@@ -31,6 +31,7 @@
 
 #include "geda_accumulate.h"
 #include "geda_keyboard.h"
+#include "geda_key_hash.h"
 #include "geda_marshal.h"
 
 #include "geda_threads.h"

@@ -22,9 +22,10 @@ libgedauio_HEADERS = \
 			geda_gtk_compat.h         \
 			geda_handlebox.h          \
 			geda_image_chooser.h      \
-			geda_image_menu_item.h    \
+			geda_image_menuitem.h     \
 			geda_input_dialog.h       \
 			geda_keyboard.h           \
+			geda_key_hash.h           \
 			geda_keysyms.h            \
 			geda_label.h              \
 			geda_marshal.h            \
@@ -33,7 +34,7 @@ libgedauio_HEADERS = \
 			geda_menu_item_private.h  \
 			geda_separator.h          \
 			geda_swatch_renderer.h    \
-			geda_tearoff_menu_item.h  \
+			geda_tearoff_menuitem.h   \
 			geda_threads.h            \
 			geda_toggle_action.h      \
 			geda_tree_view.h          \
