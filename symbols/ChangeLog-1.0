@@ -1,3 +1,8 @@
+2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD7789-1.sym: Add symbol; 24-Bit Single-Channel sigma
+      delta type A/D converter.
+
 2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM53600N-1.sym: Add symbol Fixed 3.3V Buck, 36Vin, 0.65A.
