@@ -5,6 +5,7 @@ libgedauio_la_SOURCES += \
 				functions/geda_keyboard.c      \
 				functions/geda_key_hash.c      \
 				functions/geda_marshal.c       \
+				functions/geda_mnemonic_hash.c \
 				functions/geda_threads.c       \
 				functions/geda_tree.c
 

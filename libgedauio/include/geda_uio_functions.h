@@ -33,7 +33,7 @@
 #include "geda_keyboard.h"
 #include "geda_key_hash.h"
 #include "geda_marshal.h"
-
+#include "geda_mnemonic_hash.h"
 #include "geda_threads.h"
 #include "geda_tree.h"
 

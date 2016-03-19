@@ -4,10 +4,14 @@
 
     * include/geda_key_hash.h: Add new header for class GedaKeyHash.
 
+    * include/geda_mnemonic_hash.h: Add new header for class GedaMnemonicHash.
+
     * src/functions/geda_keyboard.c: New file, add wrapper function for
       gdk_keymap_translate_keyboard_state.
 
-    * src/functions/geda_key_hash.c: Add implementatin module for GedaKeyHash.
+    * src/functions/geda_key_hash.c: Add implementation module for GedaKeyHash.
+
+    * src/functions/geda_mnemonic_hash.c: Add implementation module for GedaKeyHash.
 
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
