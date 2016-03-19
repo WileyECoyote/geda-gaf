@@ -988,7 +988,7 @@ export_config (void)
   double *lst;
   double  dval;
   double  bval;
-  gsize n;
+  size_t  n;
   GError *err = NULL;
 
   /* Parse orientation */
