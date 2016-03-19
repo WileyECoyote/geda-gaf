@@ -36,7 +36,7 @@
 
 #include <geda/geda.h>
 #include <geda_accel_label.h>
-#include <geda_imagemenuitem.h>
+#include <geda_image_menu_item.h>
 
 #define TWIDGET "GedaAccelLabel"
 

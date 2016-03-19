@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_tearoff_menuitem.h
+ * File: geda_tearoff_menu_item.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
@@ -23,8 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  *
- *  Date: March 31, 2016
- *  Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date: March 31, 2016
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
  */
 

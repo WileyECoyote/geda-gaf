@@ -53,7 +53,7 @@
 #include "../../include/geda_action.h"
 #include "../../include/geda_toggle_action.h"
 #include "../../include/geda_accel_label.h"
-#include "../../include/geda_imagemenuitem.h"
+#include "../../include/geda_image_menu_item.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

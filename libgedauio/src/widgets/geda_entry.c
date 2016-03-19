@@ -40,7 +40,7 @@
 #include <gtk/gtk.h>
 
 #include "geda_entry.h"
-#include "geda_imagemenuitem.h"
+#include "geda_image_menu_item.h"
 
 #include "gettext.h"
 

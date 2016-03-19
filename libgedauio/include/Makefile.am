@@ -29,13 +29,12 @@ libgedauio_HEADERS = \
 			geda_keysyms.h            \
 			geda_label.h              \
 			geda_marshal.h            \
-			geda_menu.h               \
 			geda_menu_button.h        \
 			geda_menu_item_private.h  \
 			geda_mnemonic_hash.h      \
 			geda_separator.h          \
 			geda_swatch_renderer.h    \
-			geda_tearoff_menuitem.h   \
+			geda_tearoff_menu_item.h  \
 			geda_threads.h            \
 			geda_toggle_action.h      \
 			geda_tree_view.h          \
