@@ -44,7 +44,7 @@ static void edascm_hook_proxy_get_property        (GObject *object, guint proper
                                                    GValue *value, GParamSpec *pspec);
 static void edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
                                                    SCM args);
-static SCM edascm_hook_proxy_closure              (SCM args, void *user_data);
+static SCM  edascm_hook_proxy_closure             (SCM args, void *user_data);
 static void edascm_hook_proxy_connect             (EdascmHookProxy *proxy, SCM hook);
 static void edascm_hook_proxy_disconnect          (EdascmHookProxy *proxy);
 static void cclosure_marshal_VOID__SCM            (GClosure *closure,

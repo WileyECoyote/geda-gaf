@@ -233,7 +233,6 @@ typedef void (*geda_predicator)  (GschemToplevel *);
 /* globals.c */
 /* gschem.c */
 void gschem_atexit (geda_atexit_func func, void * data);
-//int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
 void gschem_quit   (void);
 
@@ -448,7 +447,6 @@ void       o_circle_start               (GschemToplevel *w_current, int x, int y
 
 /* o_complex.c */
 void       o_complex_export                  (GschemToplevel *w_current, GedaObject *o_current);
-//void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset);
 bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, GedaObject *complex);
@@ -524,7 +522,6 @@ void       o_line_start                 (GschemToplevel *w_current, int x, int y
 
 /* o_move.c */
 void       o_move_cancel                (GschemToplevel *w_current);
-//void       o_move_check_endpoint        (GschemToplevel *w_current, GedaObject *object);
 void       o_move_draw_rubber           (GschemToplevel *w_current, int drawing);
 void       o_move_end                   (GschemToplevel *w_current);
 void       o_move_end_lowlevel          (GschemToplevel *w_current, GedaObject *object, int diff_x, int diff_y);
@@ -586,8 +583,6 @@ void       o_pin_start                       (GschemToplevel *w_current, int x, 
 /* o_place.c */
 void       o_place_end                       (GschemToplevel *w_current, int continue_placing, GList **ret_new_objects, Hooker id);
 void       o_place_component_end             (GschemToplevel *w_current);
-//void       o_place_text_end                  (GschemToplevel *w_current);
-//void       o_buffer_paste_end                 (GschemToplevel *w_current);
 void       o_place_motion                    (GschemToplevel *w_current, int x, int y);
 void       o_place_invalidate_rubber         (GschemToplevel *w_current, int drawing);
 void       o_place_draw_rubber               (GschemToplevel *w_current, int drawing);

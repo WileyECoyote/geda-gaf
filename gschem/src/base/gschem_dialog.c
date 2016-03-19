@@ -657,14 +657,12 @@ GedaType gschem_dialog_get_type (void)
  *  \param [in]  first_button_text  The text string for the first button
  *  \param [in]  args               The va_list containging the remaining button strings
  */
-static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
-                                              const char    *first_button_text,
-                                              va_list         args)
+static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
+                                              const char *first_button_text,
+                                              va_list     args)
 {
   const char* text;
   int response_id;
-
-  //g_return_if_fail (GTK_IS_DIALOG (dialog));
 
   if (first_button_text == NULL)
     return;

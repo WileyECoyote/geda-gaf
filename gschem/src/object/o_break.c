@@ -1106,7 +1106,6 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
     }
   }
   else if (count == 1) {
-    //o_current = object_list->data;
     breakable = TRUE;
   }
   else {

@@ -259,7 +259,6 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
     o_list_mirror(list, centerx, centery);
 
     /* Objects will be in redraw by ChangeNotifyFunc */
-    //o_invalidate_list (w_current, list);
 
     /* Run mirror-objects-hook */
     g_hook_run_object_list (w_current, MIRROR_OBJECTS_HOOK, list);

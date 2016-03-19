@@ -181,6 +181,7 @@ static void x_menu_execute(GtkAction *action, void *user_data)
   char           *menu_action  = NULL;
 
   if (i_command_is_valid(action_name)) {
+
 #if DEBUG
     fprintf(stderr, "Bypassing, guile for menu action %s\n",action_name);
 #endif

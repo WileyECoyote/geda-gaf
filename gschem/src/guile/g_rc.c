@@ -204,8 +204,6 @@ SCM g_rc_gschem_version(SCM scm_version)
 }
 
 /* Color Related */
-//extern COLOR display_colors[MAX_COLORS];
-//extern COLOR outline_colors[MAX_COLORS];
 
 /*! \brief This function processes the display-color-map RC entry.
  *  \par Function Description
@@ -215,17 +213,6 @@ SCM g_rc_gschem_version(SCM scm_version)
  */
 SCM g_rc_display_color_map (SCM scm_map)
 {
-  /*
-  if (scm_map == SCM_UNDEFINED) {
-    return g_rc_color_map_to_scm (display_colors);
-  }
-
-  SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
-              scm_map, SCM_ARG1, "display-color-map");
-  cmap_flag = 1;
-
-  g_rc_color_map_from_scm (display_colors, scm_map, "display-color-map");
-*/
   fprintf(stderr, "%s ignoring display-color-map\n",__func__);
   return SCM_BOOL_T;
 }
@@ -239,17 +226,6 @@ SCM g_rc_display_color_map (SCM scm_map)
  */
 SCM g_rc_display_outline_color_map (SCM scm_map)
 {
-  /*
-  if (scm_map == SCM_UNDEFINED) {
-    return g_rc_color_map_to_scm (outline_colors);
-  }
-
-  SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
-              scm_map, SCM_ARG1, "display-outline-color-map");
-  cmap_flag = cmap_flag * -1;
-
-  g_rc_color_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
-*/
 
   return SCM_BOOL_T;
 }

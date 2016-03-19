@@ -123,9 +123,6 @@ static bool o_extend_is_valid_projectile (GedaObject *object)
 
   if (GEDA_IS_OBJECT(object)) {
     switch (object->type) {
-      //case OBJ_ARC:
-      //case OBJ_BOX:
-      //case OBJ_PATH:
       case OBJ_LINE:
       case OBJ_NET:
       case OBJ_BUS:
