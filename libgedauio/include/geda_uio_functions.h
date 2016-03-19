@@ -30,6 +30,7 @@
 #define __GEDA_FUNCTIONS_H__
 
 #include "geda_accumulate.h"
+#include "geda_keyboard.h"
 #include "geda_marshal.h"
 
 #include "geda_threads.h"

@@ -1,3 +1,10 @@
+2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_keyboard.h: Add new header.
+
+    * src/functions/geda_keyboard.c: New file, add wrapper function for
+      gdk_keymap_translate_keyboard_state.
+
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_tearoff_menuitem.h: Add Add new header file for class
