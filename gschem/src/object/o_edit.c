@@ -986,10 +986,10 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
   o_invalidate_all (w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Show Specified Text
  *  \par Function Description
- *
+ *  Searches string component of Text Objects and calls for
+ *  o_set_visibility string matching the given text.
  */
 void o_edit_show_specific_text (GschemToplevel *w_current,
                                 const GList    *o_list,
@@ -1063,9 +1063,8 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
   }
 }
 
-/*! \brief Update a component.
- *
- * \par Function Description
+/*! \brief Update a component
+ *  \par Function Description
  * Updates \a o_current to the latest version of the symbol available
  * in the symbol library, while preserving any attributes set in the
  * current schematic. On success, returns the new Object which
