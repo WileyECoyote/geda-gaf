@@ -108,10 +108,10 @@ gschem_main_window_unmap (GtkWidget *widget)
 /*! \brief Initialize GschemMainWindow class
  *
  *  \param [in]  class       GschemMainWindow being initialized
- *  \param [in]  class_data  (unused)
+ *  \param [in]  class_data  (do not use)
  */
 static void
-gschem_main_window_class_init (void *class, void *g_class_data)
+gschem_main_window_class_init (void *class, void *class_data)
 {
   GObjectClass   *gobject_class   = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class    = GTK_WIDGET_CLASS (class);
