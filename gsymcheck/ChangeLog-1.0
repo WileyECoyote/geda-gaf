@@ -1,3 +1,8 @@
+2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Add Doxygen comments for functions: s_check_list_has_item,
+      s_check_is_known_device, and s_check_is_valid_directive
+
 2016-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Revise logic for geda_utility_string_stristr results.

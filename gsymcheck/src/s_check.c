@@ -267,10 +267,13 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
   return (errors || warnings) ? 1 : 0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if Device Value is a Known type case sensitive
+ * \par Function Description
+ *  This function is called to perform the string comparisons for
+ *  s_check_is_known_device when "strict" mode is someday active.
  *
+ * \returns TRUE if a string matching \a item is found in \a list
  */
 static bool s_check_list_has_item(char **list , const char *item)
 {
@@ -282,6 +285,20 @@ static bool s_check_list_has_item(char **list , const char *item)
   return FALSE;
 }
 
+/*!
+ * \brief Check if Device Value is a Known type
+ * \par Function Description
+ *  This function is used when checking device=xxx attributes.
+ *  When the device value is not found in the file name then
+ *  this function is called to check if the device is a known
+ *  type, types listed in the structure "known_devices" and
+ *  values containing the character sequence "SPICE" are not
+ *  expected to be in the file name.
+ *
+ * \param [in] device Attribute string to be checked
+ *
+ * \returns TRUE if device value is known
+ */
 static bool s_check_is_known_device (const char *device)
 {
   bool  strict = FALSE;
@@ -326,10 +343,17 @@ static bool s_check_is_known_device (const char *device)
   return known;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if Attribute string is a valid directive
+ * \par Function Description
+ *  Check if string contains "directive=" or "Directive="
+ *  and is an attribute.
  *
+ * \note Strings containing prefixes, such as "DRC_Directive="
+ *       are valid.
+ *
+ * \param [in] string Attribute string to be checked
+ * \returns TRUE if string is a valid directive attribute
  */
 static bool s_check_is_valid_directive(const char *string)
 {
@@ -734,7 +758,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
       /* then is an ordinary device attribute, check the file name */
       if (geda_utility_string_stristr(s_current->filename, string) < 0) {
 
-        /* And if not a know device type */
+        /* And if not a known device type */
         if (!s_check_is_known_device(string)) {
           s_current->device_attribute_incorrect=TRUE;
           message = geda_utility_string_strdup (_("Device not found in symbol filename\n"));
