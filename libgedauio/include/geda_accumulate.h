@@ -33,6 +33,12 @@
 #include <glib-object.h>
 
 bool
+geda_boolean_handled_accumulator (GSignalInvocationHint *ihint,
+                                  GValue                *return_accu,
+                                  const GValue          *handler_return,
+                                  void                  *dummy);
+
+bool
 geda_single_string_accumulator (GSignalInvocationHint *ihint,
                                 GValue                *return_accu,
                                 const GValue          *handler_return,

@@ -1,3 +1,11 @@
+2016-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_accumulate.h: Add declaration for geda_boolean_handled_
+      accumulator.
+
+    * src/functions/geda_accumulate.c: Add function geda_boolean_handled_
+      accumulator.
+
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_image_menu_item.h: Rename file geda_image_menuitem ->
