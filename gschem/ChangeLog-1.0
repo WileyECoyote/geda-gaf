@@ -1,5 +1,12 @@
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_notify.h: Add _Console member instance_type, add
+      declare is_a_console. Remove G_TYPE_CHECK_INSTANCE_TYPE and use
+      is_a_console instead.
+
+    * src/x/x_console.c: Add function is_a_console and set type value in
+      console_instance_init, which was renamed from console_init.
+
     * src/x/x_window.c: Disconnect macro_widget in x_window_close_all.
 
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>

@@ -3,9 +3,9 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -44,6 +44,9 @@
  * -----------------------------------------------------------------
  * WEH | 06/28/15 |  Retrieve Log & Console Systems variables in function
  *     |          |  x_console_init_commands.
+ * -----------------------------------------------------------------
+ * WEH | 03/19/16 |  Rename console_init console_instance_init and add
+ *                   function is_a_console for type internal checking.
 */
 
 #ifdef HAVE_FCNTL_H
@@ -425,7 +428,7 @@ GedaType console_get_type ()
       NULL, /* class_data */
       sizeof(Console),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) console_init,
+      (GInstanceInitFunc) console_instance_init,
     };
 
     console_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
@@ -434,6 +437,14 @@ GedaType console_get_type ()
   }
 
   return console_type;
+}
+
+bool is_a_console (Console *console)
+{
+  if (G_IS_OBJECT(console)) {
+    return (console_get_type() == console->instance_type);
+  }
+  return FALSE;
 }
 
 void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
@@ -585,16 +596,18 @@ static void console_class_init (ConsoleClass *klass)
  *
  * \param console the instance of the class to initialize
  */
-static void console_init (Console *console) /* *Self */
+static void console_instance_init (Console *console) /* *Self */
 {
-  GtkWidget*      scrolled_win;
-  GtkWidget*      text_view;
-  GtkTextBuffer*  text_buffer;
+  GtkWidget      *scrolled_win;
+  GtkWidget      *text_view;
+  GtkTextBuffer  *text_buffer;
 
-  GtkEntryBuffer* command_entry_buffer;
-  GtkWidget*      console_box;
+  GtkEntryBuffer *command_entry_buffer;
+  GtkWidget      *console_box;
 
-  GtkTextMark*    mark;
+  GtkTextMark    *mark;
+
+  console->instance_type     = console_get_type();
 
   bool            decorate   = (console_window_type == DECORATED);
 
