@@ -1,3 +1,11 @@
+2016-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 2 symbols, Triple Power-Distribution switches:
+
+            * ti/TPS2043BD-1.sym (Enable Active Low)
+
+            * ti/TPS2053BD-1.sym (Enable Active High)
+
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD7789-1.sym: Add symbol; 24-Bit Single-Channel sigma
