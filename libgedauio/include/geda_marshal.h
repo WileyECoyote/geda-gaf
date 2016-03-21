@@ -100,16 +100,25 @@ extern void geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
                                          void         *marshal_data);
 #define geda_marshal_BOOL__BOXED        geda_marshal_BOOLEAN__BOXED
 
-/* BOOL:INT,INT (geda-marshal.list:11) */
+/* BOOL:INT (geda-marshal.list:11) */
+extern void geda_marshal_BOOLEAN__INT (GClosure     *closure,
+                                       GValue       *return_value GEDA_UNUSED,
+                                       unsigned int  n_param_values,
+                                       const GValue *param_values,
+                                       void         *invocation_hint GEDA_UNUSED,
+                                       void         *marshal_data);
+#define geda_marshal_BOOL__INT  geda_marshal_BOOLEAN__INT
+
+/* BOOL:INT,INT (geda-marshal.list:12) */
 extern void geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
                                            GValue       *return_value,
                                            unsigned int  n_param_values,
                                            const GValue *param_values,
-                                           void         *  invocation_hint,
+                                           void         *invocation_hint,
                                            void         *marshal_data);
-#define geda_marshal_BOOL__INT_INT      geda_marshal_BOOLEAN__INT_INT
+#define geda_marshal_BOOL__INT_INT geda_marshal_BOOLEAN__INT_INT
 
-/* STRING:STRING (./gtkmarshalers.list:12) */
+/* STRING:STRING (geda-marshal.list:13) */
 extern void geda_marshal_STRING__STRING (GClosure     *closure,
                                          GValue       *return_value,
                                          unsigned int  n_param_values,
@@ -117,10 +126,10 @@ extern void geda_marshal_STRING__STRING (GClosure     *closure,
                                          void         *invocation_hint,
                                          void         *marshal_data);
 
-/* VOID:INT (geda-marshal.list:13) */
+/* VOID:INT (geda-marshal.list:14) */
 #define geda_marshal_VOID__INT	g_cclosure_marshal_VOID__INT
 
-/* VOID:INT,STRING (geda-marshal.list:14) */
+/* VOID:INT,STRING (geda-marshal.list:15) */
 extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,
                                            GValue       *return_value,
                                            unsigned int  n_param_values,
@@ -128,20 +137,20 @@ extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,
                                            void         *invocation_hint,
                                            void         *marshal_data);
 
-/* VOID:BOXED (geda-marshal.list:14) */
+/* VOID:BOXED (geda-marshal.list:16) */
 #define geda_marshal_VOID__BOXED	g_cclosure_marshal_VOID__BOXED
 
-/* VOID:VOID (geda-marshal.list:16) */
+/* VOID:VOID (geda-marshal.list:17) */
 #define geda_marshal_VOID__VOID	g_cclosure_marshal_VOID__VOID
 
-/* VOID:BOOL (geda-marshal.list:17) */
+/* VOID:BOOL (geda-marshal.list:18) */
 #define geda_marshal_VOID__BOOLEAN	g_cclosure_marshal_VOID__BOOLEAN
 #define geda_marshal_VOID__BOOL	geda_marshal_VOID__BOOLEAN
 
-/* VOID:POINTER (geda-marshal.list:18) */
+/* VOID:POINTER (geda-marshal.list:19) */
 #define geda_marshal_VOID__POINTER	g_cclosure_marshal_VOID__POINTER
 
-/* VOID:INT,INT (geda-marshal.list:19) */
+/* VOID:INT,INT (geda-marshal.list:20) */
 extern void geda_marshal_VOID__INT_INT (GClosure     *closure,
                                         GValue       *return_value,
                                         unsigned int  n_param_values,
@@ -149,7 +158,7 @@ extern void geda_marshal_VOID__INT_INT (GClosure     *closure,
                                         void         *invocation_hint,
                                         void         *marshal_data);
 
-/* VOID:INT,POINTER (geda-marshal.list:20) */
+/* VOID:INT,POINTER (geda-marshal.list:21) */
 extern void geda_marshal_VOID__INT_POINTER (GClosure     *closure,
                                             GValue       *return_value,
                                             unsigned int  n_param_values,
@@ -157,7 +166,7 @@ extern void geda_marshal_VOID__INT_POINTER (GClosure     *closure,
                                             void         *invocation_hint,
                                             void         *marshal_data);
 
-/* VOID:POINTER,POINTER (geda-marshal.list:21) */
+/* VOID:POINTER,POINTER (geda-marshal.list:22) */
 extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                 GValue       *return_value,
                                                 unsigned int  n_param_values,
@@ -165,7 +174,7 @@ extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                 void         *invocation_hint,
                                                 void         *marshal_data);
 
-/* VOID:POINTER,STRING (geda-marshal.list:22) */
+/* VOID:POINTER,STRING (geda-marshal.list:23) */
 void geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                         GValue       *return_value,
                                         unsigned int  n_param_values,
@@ -174,7 +183,7 @@ void geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                         void         *marshal_data);
 
 
-/* VOID:BOXED,POINTER (geda-marshal.list:23) */
+/* VOID:BOXED,POINTER (geda-marshal.list:24) */
 extern void geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
                                               GValue       *return_value,
                                               unsigned int  n_param_values,
@@ -182,7 +191,7 @@ extern void geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
                                               void         *invocation_hint,
                                               void         *marshal_data);
 
-/* VOID:BOXED,BOXED (geda-marshal.list:24) */
+/* VOID:BOXED,BOXED (geda-marshal.list:25) */
 extern void geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
                                             GValue       *return_value,
                                             unsigned int  n_param_values,
@@ -190,15 +199,24 @@ extern void geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
                                             void         *invocation_hint,
                                             void         *marshal_data);
 
-/* VOID:OBJECT,OBJECT (geda-marshal.list:25) */
+
+/* VOID:OBJECT,INT (geda-marshal.list:26) */
+extern void geda_marshal_VOID__OBJECT_INT (GClosure     *closure,
+                                           GValue       *return_value GEDA_UNUSED,
+                                           unsigned int  n_param_values,
+                                           const GValue *param_values,
+                                           void         *invocation_hint GEDA_UNUSED,
+                                           void         *marshal_data);
+
+/* VOID:OBJECT,OBJECT (geda-marshal.list:27) */
 extern void geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
-                                              GValue       *return_value,
+                                              GValue       *return_value GEDA_UNUSED,
                                               unsigned int  n_param_values,
                                               const GValue *param_values,
-                                              void         *invocation_hint,
+                                              void         *invocation_hint GEDA_UNUSED,
                                               void         *marshal_data);
 
-/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (geda-marshal.list:26) */
+/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (geda-marshal.list:28) */
 extern void geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
                                                             GValue       *return_value,
                                                             unsigned int  n_param_values,

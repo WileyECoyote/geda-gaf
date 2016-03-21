@@ -3,8 +3,14 @@
     * include/geda_accumulate.h: Add declaration for geda_boolean_handled_
       accumulator.
 
+    * include/geda_marshal.h: Declare geda_marshal_BOOLEAN__INT and
+      geda_marshal_VOID__OBJECT_INT.
+
     * src/functions/geda_accumulate.c: Add function geda_boolean_handled_
       accumulator.
+
+    * src/functions/geda_marshal.c: Add marshals geda_marshal_BOOLEAN__INT
+      and geda_marshal_VOID__OBJECT_INT.
 
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
