@@ -460,4 +460,54 @@ void geda_action_disconnect_accelerator (GedaAction  *action)
   gtk_action_disconnect_accelerator(GTK_ACTION (action));
 }
 
+/*!
+ * \brief Synchronize Visibility of Proxy widget with GedaAction
+ * \par Function Description
+ *  Set the visibility of \a proxy to the visibility if \a action.
+ *  If \a action is NULL, set the visibility of \a proxy to the
+ *  visibility of the related activatable if set, otherwise the
+ *  visibility of \a proxy is set to visible.
+ *
+ * \param [in] action A GedaAction object
+ */
+void geda_action_sync_menu_visible (GedaAction *action,
+                                    GtkWidget  *proxy,
+                                    bool        empty)
+{
+  GtkWidget *object;
+  bool visible       = TRUE;
+  bool hide_if_empty = TRUE;
+
+  g_return_if_fail (GTK_IS_WIDGET (proxy));
+
+  /* A Menu object for a popup does not have to have an action */
+  if (action == NULL) {
+
+    GtkAction *relative;
+
+    relative = gtk_activatable_get_related_action (GTK_ACTIVATABLE (proxy));
+
+    if (relative)
+      object = (GtkWidget*)relative;
+    else {
+      object = NULL;
+    }
+  }
+  else {
+    object = GTK_WIDGET (action);
+  }
+
+  if (object) {
+    g_object_get(object, "hide-if-empty", &hide_if_empty,
+                         "visible", &visible, NULL);
+  }
+
+  if (visible && !(empty && hide_if_empty)) {
+    gtk_widget_show (proxy);
+  }
+  else {
+    gtk_widget_hide (proxy);
+  }
+}
+
 /** @} end group GedaAction */

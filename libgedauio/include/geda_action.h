@@ -65,4 +65,8 @@ GtkWidget  *geda_action_widget_create_menu_item  (GtkWidget    *widget);
 
 void        geda_action_disconnect_accelerator   (GedaAction   *action);
 
+void        geda_action_sync_menu_visible        (GedaAction   *action,
+                                                  GtkWidget    *proxy,
+                                                  bool          empty);
+
 #endif /* __GEDA_ACTION_H__ */

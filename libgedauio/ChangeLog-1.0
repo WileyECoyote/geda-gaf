@@ -3,8 +3,8 @@
     * include/geda_accumulate.h: Add declaration for geda_boolean_handled_
       accumulator.
 
-    * include/geda_action.h: Add declaration for function geda_action_
-      disconnect_accelerator.
+    * include/geda_action.h: Add declaration for functions geda_action_
+      disconnect_accelerator and geda_action_sync_menu_visible.
 
     * include/geda_marshal.h: Declare geda_marshal_BOOLEAN__INT and
       geda_marshal_VOID__OBJECT_INT.
@@ -18,7 +18,8 @@
     * src/functions/geda_accumulate.c: Add function geda_boolean_handled_
       accumulator.
 
-    * src/widgets/geda_action.c: Add geda_action_disconnect_accelerator.
+    * src/widgets/geda_action.c: Add geda_action_disconnect_accelerator
+      and geda_action_sync_menu_visible.
 
     * src/widgets/geda_label.c: Rename functions _geda_label_ with leading
       underscore.
