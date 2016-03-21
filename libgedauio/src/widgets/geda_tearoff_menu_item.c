@@ -496,7 +496,7 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
   }
 }
 
-bool geda_tearoff_menu_is_torn (GtkWidget *menu);
+bool geda_tearoff_menu_is_torn (GtkWidget *menu)
 {
   if (GEDA_IS_TEAROFF_MENU_ITEM (menu)) {
 
