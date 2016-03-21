@@ -63,4 +63,6 @@ void        geda_action_set_icon_name            (GedaAction   *action,
 GtkWidget  *geda_action_create_menu_item         (GedaAction   *action);
 GtkWidget  *geda_action_widget_create_menu_item  (GtkWidget    *widget);
 
+void        geda_action_disconnect_accelerator   (GedaAction   *action);
+
 #endif /* __GEDA_ACTION_H__ */

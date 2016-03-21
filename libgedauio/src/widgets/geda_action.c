@@ -219,11 +219,11 @@ geda_action_class_init(void *class, void *class_data)
 
   gtkaction_class->connect_proxy  = geda_action_connect_proxy;
 
-  object_class->finalize         = geda_action_finalize;
-  object_class->set_property     = geda_action_set_property;
-  object_class->get_property     = geda_action_get_property;
+  object_class->finalize          = geda_action_finalize;
+  object_class->set_property      = geda_action_set_property;
+  object_class->get_property      = geda_action_get_property;
 
-  geda_action_parent_class      = g_type_class_peek_parent (class);
+  geda_action_parent_class        = g_type_class_peek_parent (class);
 
   params = g_param_spec_string ("multikey-accel",
                               _("multikey-accelerator"),
@@ -409,7 +409,6 @@ const char *geda_action_get_icon_name (GedaAction *action)
 
 /*! \brief GedaAction Set Icon Name
  *  \par Function Description
- *
  * Set the name of the icon asociated with the GedaAction
  * object.
  *
@@ -445,4 +444,20 @@ void geda_action_set_icon_name (GedaAction *action,
     }
   }
 }
+
+/*!
+ * \brief Disconnect accelerator from a GedaAction
+ * \par Function Description
+ *  Disconnects \a action from any accelerator group with which
+ *  the action is associated, if the action is not associated
+ *  with an accelerator group then nothing is done.
+ *
+ * \param [in] action A GedaAction object
+ */
+void geda_action_disconnect_accelerator (GedaAction  *action)
+{
+  g_return_if_fail (GEDA_IS_ACTION (action));
+  gtk_action_disconnect_accelerator(GTK_ACTION (action));
+}
+
 /** @} end group GedaAction */
