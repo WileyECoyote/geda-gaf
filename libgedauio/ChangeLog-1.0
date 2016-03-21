@@ -1,3 +1,9 @@
+2016-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_action.h: Add declaration for geda_action_activate.
+
+    * src/widgets/geda_action.c: Add "wrapper" geda_action_activate.
+
 2016-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_accumulate.h: Add declaration for geda_boolean_handled_

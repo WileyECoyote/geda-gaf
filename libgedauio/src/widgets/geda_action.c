@@ -391,9 +391,22 @@ GedaAction *geda_action_new (const char *name,
   return action;
 }
 
+/*! \brief Activate a GedaAction
+ *  \par Function Description
+ *  Calls base class to emits the "activate" signal on the \a action,
+ *  if it is not insensitive. This gets called by the proxy widgets
+ *  when they get activated and can also be used to manually activate
+ *  an action.
+ *
+ * \param [in] action A GedaAction object
+ */
+void geda_action_activate (GedaAction *action)
+{
+  gtk_action_activate (GTK_ACTION(action));
+}
+
 /*! \brief GedaAction Get Icon Name
  *  \par Function Description
- *
  * Returns the name of the icon asociated with the GedaAction
  * object.
  *
