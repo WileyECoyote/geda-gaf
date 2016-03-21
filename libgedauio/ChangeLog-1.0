@@ -2,6 +2,9 @@
 
     * include/geda_action.h: Add declaration for geda_action_activate.
 
+    * include/geda_gtk_compat.h: Add geda_device_grab_remove as alias for
+      Gdk-2 gtk_grab_remove or Gdk-3 gtk_device_grab_remove.
+
     * src/widgets/geda_action.c: Add "wrapper" geda_action_activate.
 
 2016-03-20 Wiley E. Hill <wileyhill@gmail.com>

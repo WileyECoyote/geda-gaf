@@ -94,6 +94,8 @@
 
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
+#define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
+
 #else /* GTK >= 3 */
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
@@ -120,6 +122,9 @@
 
 #   define gtk_hbox_new(homogeneous, spacing) \
         geda_compat_box_new(GTK_ORIENTATION_HORIZONTAL, (homogeneous), (spacing))
+
+
+#   define geda_device_grab_remove(w,p) gtk_device_grab_remove(GTK_WIDGET(w),p)
 
 /* Gtk[VH]ButtonBox */
 #   define gtk_vbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_VERTICAL)
