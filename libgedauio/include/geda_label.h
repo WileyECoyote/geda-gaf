@@ -111,7 +111,7 @@ struct _GedaLabelClass
 extern "C" {
 #endif
 
-GType       geda_label_get_type                     (void)           GEDA_CONST;
+GedaType    geda_label_get_type                     (void) GEDA_CONST;
 
 GtkWidget  *geda_label_new                          (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_mnemonic_label_new                 (const char     *str) __attribute__((warn_unused_result));
@@ -232,10 +232,10 @@ void           geda_label_set_track_visited_links   (GedaLabel      *label,
 
 /* private */
 
-void _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
-                                                      bool       mnemonics_visible);
-int  _geda_label_get_cursor_position                 (GedaLabel *label);
-int  _geda_label_get_selection_bound                 (GedaLabel *label);
+void geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
+                                                     bool       mnemonics_visible);
+int  geda_label_get_cursor_position                 (GedaLabel *label);
+int  geda_label_get_selection_bound                 (GedaLabel *label);
 
 #ifdef __cplusplus
 }

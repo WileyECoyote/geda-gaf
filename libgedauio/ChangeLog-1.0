@@ -9,8 +9,14 @@
     * include/geda_menu_item_private.h: Replace file geda_menuitemprivate
       with new version without private functions.
 
+    * include/geda_label.h: Change get_type to GedaType, update function
+      name geda_label_mnemonics_visible_apply_recursively.
+
     * src/functions/geda_accumulate.c: Add function geda_boolean_handled_
       accumulator.
+
+    * src/widgets/geda_label.c: Rename functions _geda_label_ with leading
+      underscore.
 
     * src/functions/geda_marshal.c: Add marshals geda_marshal_BOOLEAN__INT
       and geda_marshal_VOID__OBJECT_INT.

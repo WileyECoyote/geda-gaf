@@ -836,10 +836,10 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
       g_value_set_object (value, (GObject*) priv->mnemonic_widget);
       break;
     case PROP_CURSOR_POSITION:
-      g_value_set_int (value, _geda_label_get_cursor_position (label));
+      g_value_set_int (value, geda_label_get_cursor_position (label));
       break;
     case PROP_SEL_BOUND:
-      g_value_set_int (value, _geda_label_get_selection_bound (label));
+      g_value_set_int (value, geda_label_get_selection_bound (label));
       break;
     case PROP_ELLIPSIZE:
       g_value_set_enum (value, priv->ellipsize);
@@ -2089,11 +2089,11 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
 {
   bool mnemonics_visible = (int)(long) (data);
 
-  _geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
+  geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
 }
 
 void
-_geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
+geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
                                                  bool mnemonics_visible)
 {
   if (GEDA_IS_LABEL (widget))
@@ -6323,6 +6323,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
       for (l = info->links; l != NULL; l = l->next)  {
 
         GedaLabelLink *link = l->data;
+
         if (index >= link->start && index <= link->end)  {
 
           if (link->title)  {
@@ -6341,7 +6342,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
 }
 
 int
-_geda_label_get_cursor_position (GedaLabel *label)
+geda_label_get_cursor_position (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
@@ -6353,7 +6354,7 @@ _geda_label_get_cursor_position (GedaLabel *label)
 }
 
 int
-_geda_label_get_selection_bound (GedaLabel *label)
+geda_label_get_selection_bound (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
