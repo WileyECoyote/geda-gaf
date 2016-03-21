@@ -28,7 +28,7 @@ struct _GedaSeparatorClass
 extern "C" {
 #endif
 
-GedaType   geda_separator_get_type (void) G_GNUC_CONST;
+GedaType   geda_separator_get_type (void) GEDA_CONST;
 
 GtkWidget *geda_separator_new      (int orientation);
 GtkWidget *geda_hseparator_new     (void);
