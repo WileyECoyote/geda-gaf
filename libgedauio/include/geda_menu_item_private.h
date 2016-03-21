@@ -1,10 +1,12 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_menuitemprivate.h
+ * File: geda_menu_item_private.h
  *
- * GTK - The GIMP Toolkit
- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+ * gEDA - GPL Electronic Design Automation
+ * libgedauio - gEDA's library for User Interface Objects
+ *
+ * Copyright (C) 2016 gEDA Contributors (see ChangeLog for details)
  *
  * This Library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,12 +32,10 @@
 #ifndef __GEDA_MENU_ITEM_PRIVATE_H__
 #define __GEDA_MENU_ITEM_PRIVATE_H__
 
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkaction.h>
+#include "geda_menu_item.h"
+#include "geda_action.h"
 
-#include <gtk/gtk.h>
-
-struct _GtkMenuItemPrivate
+struct _GedaMenuItemPrivate
 {
   GtkWidget *submenu;
   GdkWindow *event_window;
@@ -47,7 +47,7 @@ struct _GtkMenuItemPrivate
 
   char        *accel_path;
 
-  GtkAction   *action;
+  GedaAction  *action;
   //GtkActionHelper *action_helper;
   void        *action_helper;
 
@@ -60,30 +60,5 @@ struct _GtkMenuItemPrivate
   unsigned int use_action_appearance  : 1;
   unsigned int reserve_indicator      : 1;
 };
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
-                                              const char    *prefix,
-                                              GtkAccelGroup *accel_group,
-                                              int            group_changed);
-int      _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
-void     _gtk_menu_item_popup_submenu        (GtkWidget     *menu_item,
-                                              int            with_delay);
-void     _gtk_menu_item_popdown_submenu      (GtkWidget     *menu_item);
-void	 _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
-                                              const char    *prefix,
-                                              GtkAccelGroup *accel_group,
-                                              int            group_changed);
-int      _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
-void     _gtk_menu_item_popup_submenu        (GtkWidget     *menu_item,
-                                              int            with_delay);
-void     _gtk_menu_item_popdown_submenu      (GtkWidget     *menu_item);
-
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
 
 #endif /* __GEDA_MENU_ITEM_PRIVATE_H__ */

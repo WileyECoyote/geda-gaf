@@ -6,6 +6,9 @@
     * include/geda_marshal.h: Declare geda_marshal_BOOLEAN__INT and
       geda_marshal_VOID__OBJECT_INT.
 
+    * include/geda_menu_item_private.h: Replace file geda_menuitemprivate
+      with new version without private functions.
+
     * src/functions/geda_accumulate.c: Add function geda_boolean_handled_
       accumulator.
 
