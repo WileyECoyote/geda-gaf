@@ -63,6 +63,7 @@ extern "C" {
 
 GedaType   geda_tearoff_menu_item_get_type (void) GEDA_CONST;
 GtkWidget *geda_tearoff_menu_item_new	      (void);
+bool       geda_tearoff_menu_is_torn       (GtkWidget *menu_item);
 
 #ifdef __cplusplus
 }

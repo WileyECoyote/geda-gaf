@@ -496,4 +496,15 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
   }
 }
 
+bool geda_tearoff_menu_is_torn (GtkWidget *menu);
+{
+  if (GEDA_IS_TEAROFF_MENU_ITEM (menu)) {
+
+    GedaTearoffMenuItem *tearoff_menu_item = GEDA_TEAROFF_MENU_ITEM (menu);
+    GedaTearoffMenuItemData *priv = tearoff_menu_item->priv;
+    return priv->torn_off;
+  }
+  return FALSE;
+}
+
 /** @} endgroup GedaTearoffMenuItem */
