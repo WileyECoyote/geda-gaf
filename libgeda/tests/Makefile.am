@@ -1,3 +1,5 @@
+check_file = \
+	test_file
 
 check_geda = \
 	test_arc \
@@ -14,6 +16,7 @@ check_geda = \
 	test_text
 
 check_PROGRAMS = \
+	$(check_file) \
 	$(check_geda)
 
 TESTS = $(check_PROGRAMS)

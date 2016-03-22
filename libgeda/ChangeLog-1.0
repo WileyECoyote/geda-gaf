@@ -1,5 +1,8 @@
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_file.c: Add test_file, only tests function f_sys_normalize_name,
+      but gotta start some where.
+
     * tests/test_list.c: Add skelton tests/test_list.c.
 
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
