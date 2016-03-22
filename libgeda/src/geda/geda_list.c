@@ -62,7 +62,7 @@ static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaList *list       = (GedaList *)instance;
 
-  list->instance_type  = geda_notify_list_get_type();
+  list->instance_type  = geda_list_get_type();
 
   /* Strictly un-necessary, as the memory is zero'd after allocation */
   list->glist = NULL;
