@@ -1,3 +1,8 @@
+2016-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TPS54231-1.sym: add symbol TPS54231 3.5 to 28V Input, 2A, 570kHz
+      Step-Down Converter.
+
 2016-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/: Add 2 symbols, Triple Power-Distribution switches:
