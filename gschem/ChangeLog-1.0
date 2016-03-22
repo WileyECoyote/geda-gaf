@@ -1,8 +1,9 @@
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/libgeda/geda_notify.h: Add _Console member instance_type, add
-      declare is_a_console. Remove G_TYPE_CHECK_INSTANCE_TYPE and use
-      is_a_console instead.
+    * src/object/o_select.c: Revise function o_select_unselect_all; reducing
+      reducing scope list for hooks, and not call o_selection_remove twice.
+
+2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Add function is_a_console and set type value in
       console_instance_init, which was renamed from console_init.
@@ -16,8 +17,8 @@
 
 2016-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/base/gschem.c: Move g_main_loop_unref from shut_down_gui
-      to main_prog.
+    * src/base/gschem.c: Move g_main_loop_unref from function shut_down_gui
+      to function main_prog.
 
     * src/iface/i_window.c: Use relative path to included files and include
       x_pagesel.h. Revise i_window_idle_notify_dialogs to call pagesel_update
@@ -503,9 +504,8 @@
     * src/base/gschem_status_bar.c: Revise Doxygen group comments, update
       copyright date.
 
-    * gschem/src/x/x_rc.c: Reduce scope of unbound_msg unbound_sym, and,
-      unbound_needle in x_rc_parse_gschem_error, reduce scope of attempt in
-      x_rc_parse_gschem.
+    * src/x/x_rc.c: Reduce scope of unbound_msg unbound_sym, and unbound_needle
+      in x_rc_parse_gschem_error, reduce scope of attempt in x_rc_parse_gschem.
 
     * src/x/x_scroll.c: Reduce scope of vadjustment in x_vscrollbar_set_ranges.
 
@@ -554,8 +554,8 @@
 
 2016-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_window.c: Revise unique_untitled to retrieve the
-      base untitled file name from the user configuration context.
+    * src/x/x_window.c: Revise unique_untitled to retrieve the base untitled
+      file name from the user configuration context.
 
 2016-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1122,8 +1122,8 @@
       Selection with Current_Selection with intermediate variable and
       let compiler optimize out.
 
-    * gschem/src/x/x_console.c: Move bracket inside conditional directive
-      to fix build without GTHREAD.
+    * src/x/x_console.c: Move bracket inside conditional directive to fix
+      build without GTHREAD.
 
     * tests/runtest.sh: Make links of scheme files instead of copies.
       during testing.
@@ -1168,8 +1168,8 @@
     * src/object/o_extend.c: Reduce scope of many variables, eliminate variable
       "result" in function o_extend_blind, revise comments o_extend_selection.
 
-    * gschem/src/guile/g_funcs.c: Reduce scope of integers use_color and invert
-      in function g_funcs_common_image.
+    * src/guile/g_funcs.c: Reduce scope of integers use_color and invert in
+      function g_funcs_common_image.
 
     * src/base/gschem_page_view.c: Reduce scope of pdiff_x, pdiff_y, new_bottom
       current_bottom, viewport_center_x, viewport_center_y, viewport_width, k,
@@ -1609,7 +1609,7 @@
     * src/x/x_toolbars.c: Convert toggle-visibilty, view-show-hidden and
       view-show-inherited to new temporary macro GSCHEM_TOOLBAR_BUTTON.
 
-    * gschem/src/x/x_icons.c: Add gschem icons: show-hidden and show-inherited.
+    * src/x/x_icons.c: Add gschem icons: show-hidden and show-inherited.
 
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2370,8 +2370,7 @@
 
 2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_window.c: Add verbose log message when active file/page
-      changes.
+    * src/x/x_window.c: Add verbose log message when active file/page changes.
 
 2015-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2379,8 +2378,8 @@
 
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_toolbars.c: Add toolbar button for geda-show-nets to the
-      attribute tool-bar.
+    * src/x/x_toolbars.c: Add toolbar button for geda-show-nets to the attribute
+      tool-bar.
 
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2398,7 +2397,7 @@
 
 2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_icons.c: Add bitmaps "gaf-add-attribute",  "gaf-tools",
+    * src/x/x_icons.c: Add bitmaps "gaf-add-attribute",  "gaf-tools",
       "geda-close", "geda-tools", "geda-redo", "geda-undo",  "gschem-comp"
       and "gschem-print-document". Add IDS_GSCHEM_XCONS. Revamp function
       x_icons_get_action_icon and x_icons_get_factory_icon.
@@ -2408,7 +2407,7 @@
     * Temporary revisions to Toolbars until implementation of new system:
       Phase out use nested network of toolbar macros.
 
-    * gschem/include/x_toolbars.h: Add macro GSCHEM_TOOLBAR_BUTTON, define
+    * include/x_toolbars.h: Add macro GSCHEM_TOOLBAR_BUTTON, define
       TBTS_PAGE_FIRST and TBTS_PAGE_LAST.
 
     * src/x/x_toolbars.c: Add enumerators for page first and last; etb_first_page,
@@ -2433,10 +2432,10 @@
 
     * New Feature: Menu or Action icon
 
-    * gschem/src/x/x_menus.c: Revise sub-function get_menu_item_from_scheme
-      to check for icon associated with action if not define in the menu data.
-      Also, make action_name and action_keys local variables and add a couple
-      of source comments in the same function.
+    * src/x/x_menus.c: Revise sub-function get_menu_item_from_scheme to check
+      for icon associated with action if not define in the menu data. Also,
+      make action_name and action_keys local variables and add a couple of
+      source comments in the same function.
 
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2537,13 +2536,13 @@
 
     * GUI Enhancement: Enhance Hot Key Dialog
 
-    * gschem/src/x/x_dialog.c: Make Hotkey "Action" column visibility togglable.
+    * src/x/x_dialog.c: Make Hotkey "Action" column visibility togglable.
 
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * GUI Enhancement: Enhance Hot Key Dialog
 
-    * gschem/src/x/x_dialog.c: Add "Action" column to hot-key dialog, using
+    * src/x/x_dialog.c: Add "Action" column to hot-key dialog, using
       capitalized action string with hyphen replaced with space.
 
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
@@ -2597,7 +2596,7 @@
 
     * Code Enhancement: New Feature Page First and Page Last
 
-    * gschem/etc/system-gschemrc.scm: Add keys and menu entries for new actions
+    * etc/system-gschemrc.scm: Add keys and menu entries for new actions
       page-first and page-last.
 
     * include/i_actions.h: Add new action macros PAGE_FIRST and PAGE_LAST.
@@ -2611,11 +2610,10 @@
 
     * Code Enhancement: New Feature
 
-  ** gschem/src/x/x_compselect.c: Initial focus on the Component Dialog is the
-     component tree view and this seems reasonable but some might prefer to have
-     the filter entry receive the initial focus. Add GtkWidget style property
-     focus-filter and function compselect_style_set so users can set preference
-     in the gschem-gtkrc.
+  ** src/x/x_compselect.c: Initial focus on the Component Dialog is the component
+     tree view and this seems reasonable but some might prefer to have the filter
+     entry receive the initial focus. Add GtkWidget style property focus-filter
+     and function compselect_style_set so users can set preference in gschem-gtkrc.
 
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2670,7 +2668,7 @@
 
     * Code Enhancement: Improve Stability
 
-    * gschem/src/x/x_menus.c: Revise function x_menu_setup_ui, adding subfunctions;
+    * src/x/x_menus.c: Revise function x_menu_setup_ui, adding subfunctions;
       create_file_menu and create_View_menu, which are used to help build a basic
       menu in the event there was an error while processing system-gschemrc.scm,
       and this does commonly occurs with gschem.
@@ -2691,8 +2689,8 @@
 
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_color.c: Remove function x_color_lookup_dark, the function
-      is not implemented.
+    * src/x/x_color.c: Remove function x_color_lookup_dark, the function is not
+      implemented.
 
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2720,22 +2718,21 @@
 
     * Code Enhancement: New Feature.
 
-    * gschem/src/x/x_edit_cprop.c: Revised function x_dialog_ep_revise_symbol
-      _attribs to retrieve and check the symbol file name from the dialog and
-      update the file name if the string has changed. This allows user to rename
-      a symbol file without using "Save As", except the file is not saved.
+    * src/x/x_edit_cprop.c: Revised function x_dialog_ep_revise_symbol _attribs
+      to retrieve and check the symbol file name from the dialog and update the
+      file name if the string has changed. This allows user to rename a symbol
+      file without using "Save As", except the file is not saved.
 
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: BUG Fix.
 
-    * src/x/x_edit_pin.c: Fix seg-fault during auto-number pins when pins
-      do not have a label strings.
+    * src/x/x_edit_pin.c: Fix seg-fault during auto-number pins when pins do
+      not have a label strings.
 
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * etc/system-gschemrc.scm: Assigned common/standard functions to
-      F-Keys.
+    * etc/system-gschemrc.scm: Assigned common/standard functions to F-Keys.
 
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2767,9 +2764,8 @@
       do_down_symbol, the first change made in the child symbol can
       not be undone.
 
-    * gschem/src/x/x_event.c: Revert not calling i_status_set_state after
-      calling o_edit_objects in function x_event_button_pressed; breaks
-      the SAE.
+    * src/x/x_event.c: Revert not calling i_status_set_state after calling
+      o_edit_objects in function x_event_button_pressed; breaks the SAE.
 
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
@@ -3254,9 +3250,9 @@
     * Code Enhancement: Fix startup errors when sessions on command line fails
       to successfully open any documents.
 
-    * gschem/src/base/gschem.c: Add comment for non-expanded wild-card, removed
-      calling x_window_open_page if session returns error, error recovery is
-      handled in the module, revised error message for session load fail.
+    * src/base/gschem.c: Add comment for non-expanded wild-card, removed
+      calling x_window_open_page if session returns error, error recovery
+      is handled in the module, revised error message for session load fail.
 
     * src/iface/i_sessions.c: Revised function i_session_load_session to
       request loading a blank document if no files were opened, and check
@@ -3547,8 +3543,8 @@
 
     * Code Enhancement: Restructure SCM Hook System
 
-    * gschem/src/guile/g_hook.c: Use union inside st_idle_hook_data
-      structure and identify with enumerated EID_HOOK_TYPE.
+    * src/guile/g_hook.c: Use union inside st_idle_hook_data structure and
+      identify with enumerated EID_HOOK_TYPE.
 
     * include/gschem_struct.h: True again, stability theory did not
       pan out as expected. Revise as necessary to access union member.
@@ -3665,11 +3661,11 @@
 
     *  Symbol Versioning System Enhancements
 
-    * gschem/src/x/x_dialog.c: The symbol changed notification dialog does
-      not default to close and requires users to "click" the close button
-      to close the dialog (as stipulated in the gtk documentation). This is
-      undesirable behavior, the dialog is a message dialog and should simply
-      go away if the user presses the enter key.
+    * src/x/x_dialog.c: The symbol changed notification dialog does not default
+      to close and requires users to "click" the close button to close the dialog
+      (as stipulated in the gtk documentation). This is undesirable behavior, the
+      dialog is a message dialog and should simply go away if the user presses
+      the enter key.
 
       Revise x_dialog_symbol_changed; create message dialog without buttons
       and then create a close button and add to the dialog, set tool tip
@@ -4132,17 +4128,16 @@
 
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_dnd.c: Added i_status_set_state to SELECT after calling
-      o_move_cancel in x_dnd_drag_end, due to recent changes in events, what
-      a drag.
+    * src/x/x_dnd.c: Added i_status_set_state to SELECT after calling o_move_
+      cancel in x_dnd_drag_end, due to recent changes in events, what a drag.
 
     * src/x/x_coord.c: Reformat functions and fix indentations.
 
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/: WEH: Modified per commit to Master branch by Vladimir Zhbanov,
-      see commit c44138dc6ad0409036c85af29d1035a1b9997173. Replaces state
-      enumeration STARTPASTE, ENDPASTE with PASTEMODE:
+    * ./: WEH: Modified per commit to Master branch by Vladimir Zhbanov, see
+      commit c44138dc6ad0409036c85af29d1035a1b9997173. Replaces state enumeration
+      STARTPASTE, ENDPASTE with PASTEMODE:
 
     * include/x_states.h: Revise state enumerators and resequence.
 
@@ -4179,12 +4174,12 @@
 
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/: Revised similar to modifications to the Master branch by
-      Vladimir Zhbanov, see commit d05cdff849010233a7bfb6af36e9ac303bf6f9e7
-      Replaces state enumeration MOVE, STARTMOVE, and ENDMOVE with MOVEMODE,
-      but the MOVEMODE state is handled differently so as to allow user to
-      move objects without having to hold the 1st button down the entire time
-      of the move operation. Add new state flag DRAGMOVE to distinguish moves
+    * ./: Revised similar to modifications to the Master branch by Vladimir
+      Zhbanov, see commit d05cdff849010233a7bfb6af36e9ac303bf6f9e7 Replaces
+      state enumeration MOVE, STARTMOVE, and ENDMOVE with MOVEMODE, but the
+      MOVEMODE state is handled differently so as to allow user to move
+      objects without having to hold the 1st button down the entire time of
+      the move operation. Add new state flag DRAGMOVE to distinguish moves
       initiated by dragging from the command action "edit-move". Dragging is
       terminated when the user releases the button.
 
@@ -5377,18 +5372,16 @@
 
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_icons.c: Break-out missing 22x22 icon image into
-      a seperated data structure and rename existing theme structure
-      to IDS_THEME_ICONS_22, new structure is IDS_THEME_ICONS_16.
-      manually load IDS_THEME_ICONS_22 in x_icons_setup_factory, Gtk
-      does not seem to be getting the job done!
+    * src/x/x_icons.c: Break-out missing 22x22 icon image into a seperated
+      data structure and rename existing theme structure to IDS_THEME_ICONS_22,
+      new structure is IDS_THEME_ICONS_16. manually load IDS_THEME_ICONS_22
+      in x_icons_setup_factory, Gtk does not seem to be getting the job done!
 
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Implement new action view-zoom-to-mag
 
     * src/x/x_menus.c: Implement new menu action view-zoom-to-mag
-
 
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -6012,8 +6005,8 @@
 
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_grid.c: Redo x_draw_tiles similar to changes in master
-      branch keep text in upper left corner.
+    * src/x/x_grid.c: Redo x_draw_tiles similar to changes in master branch
+      keep text in upper left corner.
 
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -6033,9 +6026,9 @@
       i_session_load_session so that the dialog need not be close when
       before loading sessions.
 
-    * gschem/src/x/x_window.c: Move call to x_pagesel_close from function
-      x_window_close_edit_dialogs to function x_window_close_all_dialogs so
-      the page manager will not be close when opening a session.
+    * src/x/x_window.c: Move call to x_pagesel_close from function
+      x_window_close_edit_dialogs to function x_window_close_all_dialogs
+      so the page manager will not be close when opening a session.
 
 2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
 

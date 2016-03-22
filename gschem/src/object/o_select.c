@@ -690,9 +690,10 @@ void o_select_unselect_all(GschemToplevel *w_current)
 
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
-      GList *list = geda_list_get_glist (selection);
+      if (o_selection_unselect_all(selection) > 0) {
 
-      if (o_selection_unselect_all(selection)) {
+        GList *list = geda_list_get_glist (selection);
+
         g_hook_run_object_list (w_current, DESELECT_OBJECTS_HOOK, list);
       }
 
@@ -703,7 +704,6 @@ void o_select_unselect_all(GschemToplevel *w_current)
       GedaObject *object = geda_list_get_glist (selection)->data;
 
       if (o_selection_remove(selection, object) == 1) {
-        o_selection_remove(selection, object);
         o_select_run_hooks (w_current, object, DESELECT_OBJECTS_HOOK);
       }
     }
