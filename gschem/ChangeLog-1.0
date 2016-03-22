@@ -9,6 +9,11 @@
     * src/object/o_select.c: Revise function o_select_unselect_all; reducing
       reducing scope list for hooks, and not call o_selection_remove twice.
 
+    * src/x/x_console.c: Rename console_init->console_instance_init and revise
+      arguments to console_instance_init and console_class_init to eliminate
+      cast in console_get_type, re-arrange order of apperance of functions
+      moving console_get_type after console_instance_init.
+
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Add function is_a_console and set type value in

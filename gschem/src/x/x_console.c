@@ -64,8 +64,8 @@
 
 #define MAX_COMMAND_LENGTH 128
 
-static void console_class_init (ConsoleClass *class);
-static void console_init       (Console      *console);
+static void console_class_init    (void *class, void *class_data);
+static void console_instance_init (GTypeInstance *self, void *class);
 
 static GList     *command_list;
 static GList     *command_buffer;
@@ -403,50 +403,6 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
  *  derived from #GschemDialogClass.
  */
 
-/*!
- *  \brief Get the Console class type
- *
- *  \par Function Description
- *
- * On first call, registers the Console class with the GedaType dynamic
- * type system. On subsequent calls, returns the saved value from first
- * execution.
- *
- * \returns GedaType identifier for the Console class
- */
-GedaType console_get_type ()
-{
-  static GedaType console_type = 0;
-
-  if (!console_type) {
-    static const GTypeInfo console_info = {
-      sizeof(ConsoleClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) console_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
-      sizeof(Console),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) console_instance_init,
-    };
-
-    console_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
-                                           "Console",
-                                           &console_info, 0);
-  }
-
-  return console_type;
-}
-
-bool is_a_console (Console *console)
-{
-  if (G_IS_OBJECT(console)) {
-    return (console_get_type() == console->instance_type);
-  }
-  return FALSE;
-}
-
 void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
@@ -570,34 +526,34 @@ const char *x_console_get_string() {
 }
 
 /*!
- *  \brief Console class initialization function
+ * \brief Console class initialization function
+ * \par Function Description
+ *  Class initialization function for the Console class. Currently
+ *  does nothing.
  *
- *  \par Function Description
- *
- * Class initialization function for the Console class. Currently
- * does nothing.
+ * \param [in] class       The Console Class to be initialized
+ * \param [in] class_data  (do not use)
  */
-
-static void console_class_init (ConsoleClass *klass)
+static void
+console_class_init (void *class, void *class_data)
 {
-  console_parent_class = g_type_class_peek_parent (klass);
+  console_parent_class = g_type_class_peek_parent (class);
 }
 
 /*!
- *  \brief Console class instance initialization function
- *
- *  \par Function Description
- *
- * Instance initialization for the Console class. This function sets up
- * the Console Dialog. A scrollable text view is created for log output
- * and highlighting parameters are configured. Below the scroll window,
- * a Custom Entry box is setup to receive "typed" command user input.
+ * \brief Console class instance initialization function
+ * \par Function Description
+ *  Instance initialization for the Console class. This function sets up
+ *  the Console Dialog. A scrollable text view is created for log output
+ *  and highlighting parameters are configured. Below the scroll window,
+ *  a Custom Entry box is setup to receive "typed" command user input.
  *  and a Close button.
  *
  * \param console the instance of the class to initialize
  */
-static void console_instance_init (Console *console) /* *Self */
+static void console_instance_init (GTypeInstance *self, void *class)
 {
+  Console        *console = (Console*)self;
   GtkWidget      *scrolled_win;
   GtkWidget      *text_view;
   GtkTextBuffer  *text_buffer;
@@ -757,4 +713,47 @@ static void console_instance_init (Console *console) /* *Self */
   gtk_widget_grab_focus(console_entry); /* Not the Close the Button */
 }
 
+/*!
+ *  \brief Get the Console class type
+ *
+ *  \par Function Description
+ *
+ * On first call, registers the Console class with the GedaType dynamic
+ * type system. On subsequent calls, returns the saved value from first
+ * execution.
+ *
+ * \returns GedaType identifier for the Console class
+ */
+GedaType console_get_type ()
+{
+  static GedaType console_type = 0;
+
+  if (!console_type) {
+    static const GTypeInfo console_info = {
+      sizeof(ConsoleClass),
+      NULL,                            /* base_init */
+      NULL,                            /* base_finalize */
+      console_class_init,              /* (GClassInitFunc) */
+      NULL,                            /* class_finalize */
+      NULL,                            /* class_data */
+      sizeof(Console),
+      0,                               /* n_preallocs */
+      console_instance_init,           /* (GInstanceInitFunc) */
+    };
+
+    console_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
+                                           "Console",
+                                           &console_info, 0);
+  }
+
+  return console_type;
+}
+
+bool is_a_console (Console *console)
+{
+  if (G_IS_OBJECT(console)) {
+    return (console_get_type() == console->instance_type);
+  }
+  return FALSE;
+}
 /** @} end group Console-Dialog-Class */
