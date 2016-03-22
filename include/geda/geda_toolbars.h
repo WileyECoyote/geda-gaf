@@ -195,7 +195,7 @@ typedef struct
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
                                      GTK_SIGNAL_FUNC(func), \
-                                     GUINT_TO_POINTER(data)); /* ptr to IDS_xxxx_Toolbar enumerator */
+                                     (void*)(unsigned int)data); /* ptr to IDS_xxxx_Toolbar enumerator */
 
 #define GEDA_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
    g_object_set (icon, "visible", TRUE, NULL); \
