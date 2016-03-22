@@ -7,6 +7,9 @@
 
     * src/widgets/geda_action.c: Add "wrapper" geda_action_activate.
 
+    * src/widgets/geda_label.c: Reduce of variables widget and window in
+      geda_label_activate_current_link.
+
 2016-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_accumulate.h: Add declaration for geda_boolean_handled_

@@ -866,7 +866,6 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
 }
 
 /*! \brief GedaLabel Class Initializer
- *
  *  \par Function Description
  *  Function is called to initialize the class instance.
  *
@@ -6157,10 +6156,7 @@ emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 
 static void geda_label_activate_current_link (GedaLabel *label)
 {
-  GedaLabelLink *link;
-  GtkWidget *widget = GTK_WIDGET (label);
-
-  link = geda_label_get_focus_link (label);
+  GedaLabelLink *link = geda_label_get_focus_link (label);
 
   if (link) {
 
@@ -6170,7 +6166,8 @@ static void geda_label_activate_current_link (GedaLabel *label)
 
     GtkWidget *toplevel;
     GtkWindow *window;
-    GtkWidget *default_widget, *focus_widget;
+
+    GtkWidget *widget = GTK_WIDGET (label);
 
     toplevel = gtk_widget_get_toplevel (widget);
 
@@ -6179,6 +6176,8 @@ static void geda_label_activate_current_link (GedaLabel *label)
       window = GTK_WINDOW (toplevel);
 
       if (window) {
+
+        GtkWidget *default_widget, *focus_widget;
 
         default_widget = gtk_window_get_default_widget (window);
         focus_widget   = gtk_window_get_focus (window);
