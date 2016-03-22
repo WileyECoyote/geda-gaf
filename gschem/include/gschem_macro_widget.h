@@ -33,7 +33,7 @@
 #define GSCHEM_TYPE_MACRO_WIDGET           (gschem_macro_widget_get_type())
 #define GSCHEM_MACRO_WIDGET(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_MACRO_WIDGET, GschemMacroWidget))
 #define GSCHEM_MACRO_WIDGET_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),  GSCHEM_TYPE_MACRO_WIDGET, GschemMacroWidgetClass))
-#define GSCHEM_IS_MACRO_WIDGET(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_MACRO_WIDGET))
+#define GSCHEM_IS_MACRO_WIDGET(obj)        (is_a_gschem_macro_widget((GschemMacroWidget*)obj))
 #define GSCHEM_MACRO_WIDGET_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GSCHEM_TYPE_MACRO_WIDGET, GschemMacroWidgetClass))
 
 typedef struct _GschemMacroWidgetClass GschemMacroWidgetClass;
@@ -47,6 +47,7 @@ struct _GschemMacroWidgetClass
 struct _GschemMacroWidget
 {
   GtkInfoBar parent;
+  GedaType   instance_type;
 
   GtkWidget *entry;
   GtkWidget *cancel_button;
@@ -59,6 +60,7 @@ extern "C" {
 #endif
 
 GedaType      gschem_macro_widget_get_type            (void);
+bool          is_a_gschem_macro_widget                (GschemMacroWidget *widget);
 
 GtkWidget    *gschem_macro_widget_new                 (void);
 

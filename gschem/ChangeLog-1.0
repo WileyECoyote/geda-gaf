@@ -1,4 +1,10 @@
-2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_macro_widget.h: Declare is_a_gschem_macro_widget, add
+      GschemMacroWidget member instance_type, Remove G_TYPE_CHECK_INSTANCE_TYPE.
+
+    * src/base/gschem_macro_widget.c: Set instance_type in gschem_macro_widget_
+      instance_init, add function is_a_gschem_macro_widget.
 
     * src/object/o_select.c: Revise function o_select_unselect_all; reducing
       reducing scope list for hooks, and not call o_selection_remove twice.

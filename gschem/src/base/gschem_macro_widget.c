@@ -208,24 +208,24 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 
 /*! \brief Initialize GschemMacroWidget class
  *
- *  \param [in]  g_class       The GschemMacroWidgetClass to be initialized
- *  \param [in]  g_class_data  (unused)
+ *  \param [in]  class       The GschemMacroWidgetClass to be initialized
+ *  \param [in]  class_data  (unused)
  */
 static void
-gschem_macro_widget_class_init (void *g_class, void *g_class_data)
+gschem_macro_widget_class_init (void *class, void *class_data)
 {
-  GschemMacroWidgetClass *klass    = (GschemMacroWidgetClass*)g_class;
-  GtkWidgetClass *widget_class     = GTK_WIDGET_CLASS (g_class);
+  GschemMacroWidgetClass *macro_class  = (GschemMacroWidgetClass*)class;
+  GtkWidgetClass         *widget_class = GTK_WIDGET_CLASS (class);
 
-  gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+  gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (macro_class));
 
-  G_OBJECT_CLASS (klass)->get_property = get_property;
-  G_OBJECT_CLASS (klass)->set_property = set_property;
+  G_OBJECT_CLASS (macro_class)->get_property = get_property;
+  G_OBJECT_CLASS (macro_class)->set_property = set_property;
 
   widget_class->realize    = realize;
   widget_class->unrealize  = unrealize;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
+  g_object_class_install_property (G_OBJECT_CLASS (macro_class),
                                    PROP_LABEL_TEXT,
                                    g_param_spec_string ("label-text",
                                                        _("Label Text"),
@@ -233,7 +233,7 @@ gschem_macro_widget_class_init (void *g_class, void *g_class_data)
                                                        _("Macro:"),
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
+  g_object_class_install_property (G_OBJECT_CLASS (macro_class),
                                    PROP_MACRO_STRING,
                                    g_param_spec_string ("macro-string",
                                                       _("Macro String"),
@@ -320,10 +320,10 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
 /*! \brief Initialize GschemMacroWidget instance
  *
  *  \param [in,out] instance The GschemMacroWidget being initialized.
- *  \param [in]     g_class  The class of the type the instance is created for.
+ *  \param [in]     class  The class of the type the instance is created for.
  */
 static void
-gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
+gschem_macro_widget_instance_init(GTypeInstance *instance, void *class)
 {
   GschemMacroWidget *widget;
 
@@ -334,6 +334,8 @@ gschem_macro_widget_instance_init(GTypeInstance *instance, void *g_class)
   widget  = (GschemMacroWidget*)instance;
   action  = gtk_info_bar_get_action_area (GTK_INFO_BAR (widget));
   content = gtk_info_bar_get_content_area (GTK_INFO_BAR (widget));
+
+  widget->instance_type = gschem_macro_widget_get_type();
 
   gtk_widget_set_no_show_all (GTK_WIDGET (widget), TRUE);
 
@@ -391,6 +393,25 @@ GedaType gschem_macro_widget_get_type (void)
   }
 
   return macro_widget_type;
+}
+
+/*!
+ * \brief Check if Obect is GschemMacroWidget
+ * \par Function Description
+ *  Compares unsigned long/int to at instance_type offset to the
+ *  value stored by gschem_macro_widget_get_type if widget is a
+ *  g_object.
+ *
+ * \param [in] widget Object to be tested.
+ *
+ * \returns TRUE if \a widget is a bona fided GschemMacroWidget
+ */
+bool is_a_gschem_macro_widget (GschemMacroWidget *widget)
+{
+  if (G_IS_OBJECT(widget)) {
+    return (gschem_macro_widget_get_type() == widget->instance_type);
+  }
+  return FALSE;
 }
 
 GtkWidget*
