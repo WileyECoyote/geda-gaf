@@ -1,16 +1,20 @@
 
-check_PROGRAMS = \
+check_geda = \
 	test_arc \
 	test_box \
 	test_bus \
 	test_circle \
 	test_complex \
 	test_line \
+	test_list \
 	test_net \
 	test_path  \
 	test_picture \
 	test_pin \
 	test_text
+
+check_PROGRAMS = \
+	$(check_geda)
 
 TESTS = $(check_PROGRAMS)
 
