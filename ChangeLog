@@ -1,3 +1,7 @@
+2016-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda/geda_types.h: Add types uint16 and uint32.
+
 2016-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Fix Cario version in configuration summary; CAIRO_PKG ->

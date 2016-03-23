@@ -29,6 +29,8 @@
  *   \ingroup (geda-globals)
  */
 
+#  include <stdint.h>
+
 #ifndef __cplusplus
 
 typedef int bool;
@@ -47,6 +49,9 @@ typedef enum { FALSE, TRUE } Boolean;
 
 typedef unsigned char uint8;
 typedef unsigned long DWORD;
+
+typedef uint16_t uint16;
+typedef uint32_t uint32;
 
 #if defined(__LP64__) || defined(_LP64)
 # define IS64BIT
