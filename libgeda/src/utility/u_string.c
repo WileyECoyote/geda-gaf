@@ -560,7 +560,7 @@ geda_utility_string_sprintf (const char *format, ...)
     buffer = (char*)GEDA_MEM_ALLOC(size);
 
     if (buffer) {
-      buffer[size] = '\0';
+      buffer[size - 1] = '\0';
       vsprintf (buffer, format, args);
     }
   }
