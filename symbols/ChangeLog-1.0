@@ -1,3 +1,10 @@
+2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 2 symbols; 16-Bit sigma-delta type A/D converter:
+
+            * ti/ADS1110-1.sym
+            * ti/ADS1110-2.sym
+
 2016-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPS54231-1.sym: add symbol TPS54231 3.5 to 28V Input, 2A, 570kHz
@@ -8,7 +15,6 @@
     * ti/: Add 2 symbols, Triple Power-Distribution switches:
 
             * ti/TPS2043BD-1.sym (Enable Active Low)
-
             * ti/TPS2053BD-1.sym (Enable Active High)
 
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
@@ -33,7 +39,6 @@
     * ti/: Add 2 symbols, Dual Power-Distribution switches:
 
             * ti/TPS2042BD-1.sym (Enable Active Low)
-
             * ti/TPS2052BD-1.sym (Enable Active High)
 
 2016-03-13 Wiley E. Hill <wileyhill@gmail.com>
