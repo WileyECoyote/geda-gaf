@@ -1,5 +1,8 @@
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_object.c: Revise geda_arc_object_get_nearest_point, again;
+      simplify algorithms accounting for translation of the arc to the origin.
+
     * tests/test_file.c: Add test_file, only tests function f_sys_normalize_name,
       but gotta start some where.
 

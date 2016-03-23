@@ -191,7 +191,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 
       if (radians < end_angle && radians > start_angle) {
 
-        double A, B, C, D;
+        double A, /* B, */ C, D;
 
         volatile double b;
         volatile double m;
@@ -204,25 +204,40 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
          *
          * note: calculating as if the arc is at the origin, cx = cy = 0,
          * to prevent over-flow errors for arcs > ~32k from origin */
-        m  = dy / dx;
 
-        /* using dx,dy here, instead of x,y translates the line to the origin */
-        b  = -1 * m * dx + dy;
+        /* get slope of line connecting the point to the center of the arc */
+        m = dy / dx;
 
         A = m * m + 1;
-        B = 2 * m * b;          /* B = 2 * ((m * b) - (m * cy) - cx); */
-        C = -1 * r * r + b * b; /* C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b); */
 
-        D = B * B - 4 * A * C;                        /* The discriminant */
+        /* reduce   B = 2 * ((m * b) - (m * cy) - cx);
+         * to  ==>  B = 2 * m * b;
+         * to  ==>  B = 0;  */
+
+        /* B = 0; since intercept is the origin */
+
+        /* reduce   C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+         * to  ==>  C = -1 * r * r + b * b; and since intercept is the origin
+         * to  ==>  C = -1 * r * r;
+         */
+        C = -1 * r * r;
+
+        /* The D = (B * B) - (4 * A * C) reduces to */
+        D = 0 - (4 * A * C);                         /* The discriminant */
 
         if (cx > x) {                                /* Easterly */
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A) + cx; /* Add offset to true cx */
+          tmp_x = (0 - sqrt(D)) / (2 * A);
         }
         else {                                       /* Westward */
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A) + cx; /* Add offset to true cx */
+          tmp_x = sqrt(D) / (2 * A);
         }
 
-        tmp_y = m * tmp_x + b + cy;                  /* Add offset to true cy */
+        tmp_x = tmp_x + cx;                          /* Add offset to true cx */
+
+        /* Using original x, y to get original intercept */
+        b = y - m * x;
+
+        tmp_y = m * tmp_x + b;
 
 #ifdef HAVE_LRINT
 
