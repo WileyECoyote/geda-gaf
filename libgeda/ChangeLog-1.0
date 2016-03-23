@@ -2,6 +2,10 @@
 
     * include/libgeda/libgeda.h: include "geda_file.h".
 
+    * object/o_picture.c: Use size_t for len embedded line, and tweak malloc size
+      and add NULL of initial allocation of encoded_picture, [size - 1], because
+      length argument to strncpy is exactly n so strncpy does not add the  NULL.
+
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_get_nearest_point, again;

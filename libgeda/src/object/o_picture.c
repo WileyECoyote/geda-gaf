@@ -424,9 +424,9 @@ o_picture_read (const char  *first_line,
 
   if (embedded == 1) {
 
-    char *encoded_picture = NULL;
-    unsigned size = 0;
-    char finished = 0;
+    char     *encoded_picture = NULL;
+    unsigned  size            = 0;
+    bool      finished        = FALSE;
 
     /* Read the encoded picture */
     do {
@@ -439,28 +439,33 @@ o_picture_read (const char  *first_line,
 
       if (g_ascii_strcasecmp(line, ".\n") != 0) {
 
-        int len = strlen(line);
+        size_t len = strlen(line);
 
         if (!encoded_picture) {
-          len++;
-          encoded_picture = (char*)malloc(len);
+          encoded_picture = (char*)malloc(len + 1);
           strncpy(encoded_picture, line, len);
-          size = len;
+          size = ++len;
+          encoded_picture[size - 1] = '\0';
         }
         else {
+
           char *buffer;
-          size = size + len;
+
+          size   = size + len;
+
           buffer = (char*)realloc(encoded_picture, size);
+
           if (!buffer)
             break;
+
           encoded_picture = buffer;
           strncat(encoded_picture, line, len);
         }
       }
       else {
-        finished = 1;
+        finished = TRUE;
       }
-    } while (finished == 0);
+    } while (!finished);
 
     /* Decode the picture */
     if (encoded_picture != NULL) {
