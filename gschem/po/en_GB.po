@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-17 00:11-0500\n"
+"POT-Creation-Date: 2016-03-22 23:54-0500\n"
 "PO-Revision-Date: 2012-01-31 12:14+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Macro String"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:350
+#: gschem/src/base/gschem_macro_widget.c:352
 #, fuzzy
 msgid "Evaluate"
 msgstr "Evaluate:"
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr "Preview Buffer"
 
-#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:586
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:613
 msgid "Filename"
 msgstr "Filename"
 
@@ -1040,41 +1040,41 @@ msgstr ""
 msgid "Failed to save user configuration to '%s': %s."
 msgstr "Failed to replace pictures: %s"
 
-#: gschem/src/iface/i_window.c:100
+#: gschem/src/iface/i_window.c:104
 #, fuzzy
 msgid "Closing Page\n"
 msgstr "Close Page"
 
-#: gschem/src/iface/i_window.c:169
+#: gschem/src/iface/i_window.c:173
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:194
+#: gschem/src/iface/i_window.c:198
 msgid "Really revert page?"
 msgstr "Really revert page?"
 
-#: gschem/src/iface/i_window.c:250
+#: gschem/src/iface/i_window.c:254
 #, fuzzy, c-format
 msgid "An error occurred during a File Revert operation: %s."
 msgstr "ERROR: An unknown error occurred while parsing configuration files.\n"
 
-#: gschem/src/iface/i_window.c:253
+#: gschem/src/iface/i_window.c:257
 #, fuzzy
 msgid "<b>File error.</b>"
 msgstr "<b>Scope</b>"
 
-#: gschem/src/iface/i_window.c:253
+#: gschem/src/iface/i_window.c:257
 #, fuzzy
 msgid "Revert failed"
 msgstr "Really revert page?"
 
-#: gschem/src/iface/i_window.c:260
+#: gschem/src/iface/i_window.c:264
 #, fuzzy, c-format
 msgid "Error encountered during file operation <%s>\n"
 msgstr "ERROR: An unknown error occurred while parsing configuration files.\n"
 
-#: gschem/src/iface/i_window.c:261
+#: gschem/src/iface/i_window.c:265
 #, fuzzy
 msgid "Recovery: undo last action\n"
 msgstr "Undo last operation"
@@ -1118,25 +1118,25 @@ msgstr ""
 msgid "%d hidden attributes were revealed\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:712
+#: gschem/src/object/o_edit.c:715
 msgid "Hidden text is now visible\n"
 msgstr "Hidden text is now visible\n"
 
-#: gschem/src/object/o_edit.c:715
+#: gschem/src/object/o_edit.c:718
 msgid "Hidden text is now invisible\n"
 msgstr "Hidden text is now invisible\n"
 
-#: gschem/src/object/o_edit.c:1112 gschem/src/x/x_edit_cprop.c:367
+#: gschem/src/object/o_edit.c:1119 gschem/src/x/x_edit_cprop.c:367
 #, c-format
 msgid "Could not find symbol [%s] in library. Update failed.\n"
 msgstr "Could not find symbol [%s] in library. Update failed.\n"
 
-#: gschem/src/object/o_edit.c:1117
+#: gschem/src/object/o_edit.c:1124
 #, fuzzy, c-format
 msgid "Updating symbol [%s]\n"
 msgstr "Searching for symbol [%s]\n"
 
-#: gschem/src/object/o_move.c:494
+#: gschem/src/object/o_move.c:492
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1155,55 +1155,55 @@ msgstr "Warning: Ending net at off grid coordinate\n"
 msgid "Bus ripper symbol [%s] was not found in any component library\n"
 msgstr "Bus ripper symbol [%s] was not found in any component library\n"
 
-#: gschem/src/object/o_picture.c:355
+#: gschem/src/object/o_picture.c:357
 #, fuzzy
 msgid "Update All"
 msgstr "Update"
 
-#: gschem/src/object/o_picture.c:357
+#: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:395
+#: gschem/src/object/o_picture.c:397
 #, fuzzy, c-format
 msgid "%s: Failed to replace picture: %s"
 msgstr "Failed to load picture: %s"
 
-#: gschem/src/object/o_picture.c:398
+#: gschem/src/object/o_picture.c:400
 #, fuzzy
 msgid "<b>Failed to replace picture</b>"
 msgstr "Failed to replace pictures: %s"
 
-#: gschem/src/object/o_picture.c:423
+#: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:425
+#: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:613
+#: gschem/src/object/o_picture.c:615
 #, c-format
 msgid "Error: %s."
 msgstr ""
 
-#: gschem/src/object/o_picture.c:617
+#: gschem/src/object/o_picture.c:619
 #, c-format
 msgid ""
 "Error: %s\n"
 "%s."
 msgstr ""
 
-#: gschem/src/object/o_picture.c:618
+#: gschem/src/object/o_picture.c:620
 msgid "An unknown error occurred"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/object/o_picture.c:623
 #, fuzzy
 msgid "<b>Failed to load picture</b>"
 msgstr "Failed to replace pictures: %s"
 
-#: gschem/src/object/o_picture.c:622
+#: gschem/src/object/o_picture.c:624
 msgid "Load failed"
 msgstr ""
 
@@ -1257,22 +1257,22 @@ msgstr ""
 msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:458
+#: gschem/src/object/o_undo.c:461
 #, fuzzy, c-format
 msgid "An error occurred during an UNDO disk operation: %s."
 msgstr "ERROR: An unknown error occurred while parsing configuration files.\n"
 
-#: gschem/src/object/o_undo.c:461
+#: gschem/src/object/o_undo.c:464
 #, fuzzy
 msgid "Undo/Redo disabled\n"
 msgstr "Undo/Redo disabled in rc file\n"
 
-#: gschem/src/object/o_undo.c:548
+#: gschem/src/object/o_undo.c:551
 #, fuzzy
 msgid "<b>Undo error.</b>"
 msgstr "<b>Scope</b>"
 
-#: gschem/src/object/o_undo.c:548
+#: gschem/src/object/o_undo.c:551
 #, fuzzy
 msgid "Undo failed"
 msgstr "Undo/Redo disabled in rc file\n"
@@ -1501,24 +1501,24 @@ msgstr "Preview"
 msgid "Attributes"
 msgstr "Attributes"
 
-#: gschem/src/x/x_console.c:133
+#: gschem/src/x/x_console.c:136
 msgid "destroying history\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:144
+#: gschem/src/x/x_console.c:147
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:186 gschem/src/x/x_console.c:189
+#: gschem/src/x/x_console.c:189 gschem/src/x/x_console.c:192
 #, c-format
 msgid "Command interface: engaged using (%s)\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:342
+#: gschem/src/x/x_console.c:345
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 
-#: gschem/src/x/x_console.c:605
+#: gschem/src/x/x_console.c:574
 msgid "gEDA Console"
 msgstr ""
 
@@ -2415,39 +2415,39 @@ msgstr ""
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:794
+#: gschem/src/x/x_edit_pin.c:795
 #, fuzzy
 msgid "Pin Properties Editor"
 msgstr "Single Attribute Editor"
 
-#: gschem/src/x/x_edit_pin.c:872
+#: gschem/src/x/x_edit_pin.c:873
 #, fuzzy
 msgid "Set"
 msgstr "Net"
 
-#: gschem/src/x/x_edit_pin.c:875
+#: gschem/src/x/x_edit_pin.c:876
 msgid "Auto"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:906
+#: gschem/src/x/x_edit_pin.c:907
 #, fuzzy
 msgid "Attribute Type List"
 msgstr "Attributes"
 
-#: gschem/src/x/x_edit_pin.c:910
+#: gschem/src/x/x_edit_pin.c:911
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:914
+#: gschem/src/x/x_edit_pin.c:915
 #, fuzzy
 msgid "Pin Number"
 msgstr "Starting number:"
 
-#: gschem/src/x/x_edit_pin.c:918
+#: gschem/src/x/x_edit_pin.c:919
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:922
+#: gschem/src/x/x_edit_pin.c:923
 msgid "Pin Label"
 msgstr ""
 
@@ -3229,36 +3229,36 @@ msgstr "Attributes"
 msgid "attribute"
 msgstr "Attributes"
 
-#: gschem/src/x/x_pagesel.c:294
+#: gschem/src/x/x_pagesel.c:318
 msgid "New Page"
 msgstr "New Page"
 
-#: gschem/src/x/x_pagesel.c:295
+#: gschem/src/x/x_pagesel.c:319
 #, fuzzy
 msgid "Goto Page..."
 msgstr "Open Page..."
 
-#: gschem/src/x/x_pagesel.c:297
+#: gschem/src/x/x_pagesel.c:321
 msgid "Save Page"
 msgstr "Save Page"
 
-#: gschem/src/x/x_pagesel.c:298 gschem/scheme/gschem/builtins.scm:224
+#: gschem/src/x/x_pagesel.c:322 gschem/scheme/gschem/builtins.scm:224
 msgid "Close Page"
 msgstr "Close Page"
 
-#: gschem/src/x/x_pagesel.c:299
+#: gschem/src/x/x_pagesel.c:323
 msgid "Discard Page"
 msgstr "Discard Page"
 
-#: gschem/src/x/x_pagesel.c:523 gschem/scheme/gschem/builtins.scm:215
+#: gschem/src/x/x_pagesel.c:552 gschem/scheme/gschem/builtins.scm:215
 msgid "Page Manager"
 msgstr "Page Manager"
 
-#: gschem/src/x/x_pagesel.c:609
+#: gschem/src/x/x_pagesel.c:636
 msgid "Changed"
 msgstr "Changed"
 
-#: gschem/src/x/x_pagesel.c:642
+#: gschem/src/x/x_pagesel.c:669
 #, fuzzy
 msgid "Right click on rows for more options..."
 msgstr "Right click on the filename for more options..."

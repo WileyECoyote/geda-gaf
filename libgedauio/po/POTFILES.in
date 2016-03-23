@@ -13,12 +13,12 @@ libgedauio/src/widgets/geda_entry.c
 libgedauio/src/widgets/geda_font_button.c
 libgedauio/src/widgets/geda_font_dialog.c
 libgedauio/src/widgets/geda_handlebox.c
-libgedauio/src/widgets/geda_imagemenuitem.c
+libgedauio/src/widgets/geda_image_menu_item.c
 libgedauio/src/widgets/geda_label.c
 libgedauio/src/widgets/geda_menu_button.c
 libgedauio/src/widgets/geda_separator.c
 libgedauio/src/widgets/geda_swatch_renderer.c
-libgedauio/src/widgets/geda_tearoff_menuitem.c
+libgedauio/src/widgets/geda_tearoff_menu_item.c
 libgedauio/src/widgets/geda_toggle_action.c
 libgedauio/src/widgets/geda_tree_view.c
 

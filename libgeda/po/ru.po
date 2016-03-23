@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-15 14:31-0500\n"
+"POT-Creation-Date: 2016-03-22 23:52-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -706,17 +706,17 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1201
 #: libgeda/src/object/o_arc_object.c:1216
+#: libgeda/src/object/o_arc_object.c:1231
 msgid "Failed to parse arc object"
 msgstr "Ошибка в определении дуги"
 
-#: libgeda/src/object/o_arc_object.c:1223
+#: libgeda/src/object/o_arc_object.c:1238
 #, c-format
 msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
-#: libgeda/src/object/o_arc_object.c:1229 libgeda/src/object/o_box_basic.c:545
+#: libgeda/src/object/o_arc_object.c:1244 libgeda/src/object/o_box_basic.c:545
 #: libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
@@ -726,7 +726,7 @@ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d�
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
 
-#: libgeda/src/object/o_arc_object.c:1230 libgeda/src/object/o_box_basic.c:546
+#: libgeda/src/object/o_arc_object.c:1245 libgeda/src/object/o_box_basic.c:546
 #: libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
@@ -1180,11 +1180,11 @@ msgstr "Установка выравнивания по левому нижне
 msgid "Unexpected end-of-file after %d lines"
 msgstr "Неожиданный конец файла после %d строк"
 
-#: libgeda/src/scheme/edascmhookproxy.c:79
+#: libgeda/src/scheme/edascmhookproxy.c:141
 msgid "Scheme hook"
 msgstr "Функция перехвата Scheme"
 
-#: libgeda/src/scheme/edascmhookproxy.c:80
+#: libgeda/src/scheme/edascmhookproxy.c:142
 msgid "The Scheme-level hook to proxy"
 msgstr "Перехват функций Scheme для EdascmHookProxy"
 
