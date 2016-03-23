@@ -1,3 +1,7 @@
+2016-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/libgeda.h: include "geda_file.h".
+
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_get_nearest_point, again;

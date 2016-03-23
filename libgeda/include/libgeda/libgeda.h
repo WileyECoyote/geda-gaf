@@ -74,5 +74,6 @@
 
 #include "geda_toplevel.h"
 
+#include "geda_file.h"
 #include "prototype.h"
 #endif
