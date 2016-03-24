@@ -690,14 +690,14 @@ void o_path_modify (GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Mirror a path using WORLD coordinates.
+/*! \brief Mirror a Path.
  *  \par Function Description
  *  This function mirrors the path from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
  *  \param [in,out] object    Line GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate in WORLD units.
- *  \param [in]     center_y  Origin y coordinate in WORLD units.
+ *  \param [in]     center_x  Origin x coordinate.
+ *  \param [in]     center_y  Origin y coordinate.
  */
 void o_path_mirror (GedaObject *object, int center_x, int center_y)
 {
@@ -727,15 +727,15 @@ void o_path_mirror (GedaObject *object, int center_x, int center_y)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Rotate Line GedaObject using WORLD coordinates.
+/*! \brief Rotate Line GedaObject.
  *  \par Function Description
  *  This function rotates the path described by  <B>*object</B> around
  *  the (<B>center_x</B>,<B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
  *  \param [in,out] object    Line GedaObject to rotate
- *  \param [in]     center_x  Rotation center x coordinate in WORLD units
- *  \param [in]     center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]     center_x  Rotation center x coordinate
+ *  \param [in]     center_y  Rotation center y coordinate
  *  \param [in]     angle     Rotation angle in degrees (See note below).
  */
 void o_path_rotate (GedaObject *object, int center_x, int center_y, int angle)
@@ -771,7 +771,7 @@ void o_path_rotate (GedaObject *object, int center_x, int center_y, int angle)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Translate a path position in WORLD coordinates by a delta.
+/*! \brief Translate a path position by a delta.
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.

@@ -48,7 +48,7 @@
 
 static GObjectClass *geda_box_parent_class = NULL;
 
-/*! \brief Get Box bounding rectangle in WORLD coordinates.
+/*! \brief Get Box bounding rectangle.
  *
  *  \par Function Description
  *  Sets the <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B>

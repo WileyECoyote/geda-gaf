@@ -521,13 +521,13 @@ GedaObject *o_copy_object (GedaObject *o_current)
   return new_obj;
 }
 
-/*! \brief Mirrors an object in world coordinates
+/*! \brief Mirrors an object
  *  \par Function Description
  *  This function mirrors an object about the point
  *  (<B>center_wx</B>,<B>center_wy</B>) in world units.
  *
- *  \param [in]     center_x  Origin x coordinate in WORLD units.
- *  \param [in]     center_y  Origin y coordinate in WORLD units.
+ *  \param [in]     center_x  Origin x coordinate.
+ *  \param [in]     center_y  Origin y coordinate.
  *  \param [in,out] object    The GedaObject to mirror.
  */
 void o_mirror_object (GedaObject *object, int center_x, int center_y)

@@ -9,6 +9,10 @@
     * src/utility/u_string.c: Revise function geda_utility_string_sprintf to
       fix writing pass the array; add terminator at size - 1 instead of size.
 
+    * src/.c: Remove the word "World", which is used in gschem to distinct from
+      screen coordinates, libgeda is dimensionless and there is no concept of a
+      World.
+
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_get_nearest_point, again;

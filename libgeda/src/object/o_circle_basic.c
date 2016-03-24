@@ -298,7 +298,7 @@ void o_circle_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Mirror circle using WORLD coordinates.
+/*! \brief Mirror a Circle.
  *
  *  \par Function Description
  *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
@@ -308,8 +308,8 @@ void o_circle_modify(GedaObject *object, int x, int y, int whichone)
  *  GedaObject specific (line width, filling ...).
  *
  *  \param [in,out] object    Circle GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate in WORLD units.
- *  \param [in]     center_y  Origin y coordinate in WORLD units.
+ *  \param [in]     center_x  Origin x coordinate.
+ *  \param [in]     center_y  Origin y coordinate.
 
  */
 void o_circle_mirror(GedaObject *object, int center_x, int center_y)
@@ -1049,7 +1049,7 @@ GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Rotate Circle GedaObject using WORLD coordinates
+/*! \brief Rotate Circle GedaObject
  *
  *  \par Function Description
  *  The function#o_circle_rotate() rotate the circle described by
@@ -1058,8 +1058,8 @@ GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
  *  The center of rotation is in world unit.
  *
  *  \param [in,out]  object    Circle GedaObject to rotate.
- *  \param [in]      center_x  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_y  Rotation center y coordinate in WORLD units.
+ *  \param [in]      center_x  Rotation center x coordinate.
+ *  \param [in]      center_y  Rotation center y coordinate.
  *  \param [in]      angle     Rotation angle in degrees (See note below).
 
  */
@@ -1181,7 +1181,7 @@ double o_circle_shortest_distance (GedaObject *object, int x, int y, int force_s
   return m_circle_shortest_distance (object->circle, x, y, solid);
 }
 
-/*! \brief Translate a circle position in WORLD coordinates by a delta
+/*! \brief Translate a circle position by a delta
  *
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle

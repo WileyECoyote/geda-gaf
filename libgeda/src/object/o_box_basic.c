@@ -267,18 +267,18 @@ bool o_box_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief Mirror Box using WORLD coordinates.
+/*! \brief Mirror a Box.
  *
  *  \par Function Description
  *  This function mirrors the box from the point
- *  (<B>center_x</B>,<B>center_y</B>) in world unit.
+ *  (<B>center_x</B>,<B>center_y</B>).
  *
  *  The box is first translated to the origin, then mirrored and finally
  *  translated back at its previous position.
  *
  *  \param [in,out] object    GedaBox Object to mirror
- *  \param [in]     center_x  Origin x coordinate in WORLD units
- *  \param [in]     center_y  Origin y coordinate in WORLD units
+ *  \param [in]     center_x  Origin x coordinate
+ *  \param [in]     center_y  Origin y coordinate
  */
 void o_box_mirror(GedaObject *object, int center_x, int center_y)
 {
@@ -1281,8 +1281,8 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  The center of rotation is in world unit.
  *
  *  \param [in,out]  object    GedaBox Object to rotate
- *  \param [in]      center_x  Rotation center x coordinate in WORLD units
- *  \param [in]      center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]      center_x  Rotation center x coordinate
+ *  \param [in]      center_y  Rotation center y coordinate
  *  \param [in]      angle     Rotation angle in degrees (See note below)
 
  *
@@ -1408,7 +1408,7 @@ char *o_box_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief Translate a Box position in WORLD coordinates by a delta.
+/*! \brief Translate a Box position by a delta.
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.

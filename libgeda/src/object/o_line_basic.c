@@ -337,7 +337,7 @@ char *o_line_save(GedaObject *object)
 }
 
 /*!
- * \brief Translate a line position in WORLD coordinates by a delta
+ * \brief Translate a line position in by a delta
  * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the line
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
@@ -363,7 +363,7 @@ void o_line_translate( GedaObject *object, int dx, int dy)
 }
 
 /*!
- * \brief Rotate a GedaLine Object using WORLD coordinates
+ * \brief Rotate a GedaLine Object
  * \par Function Description
  *  This function rotates the line described by
  *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>)
@@ -371,8 +371,8 @@ void o_line_translate( GedaObject *object, int dx, int dy)
  *  The center of rotation is in world units.
  *
  * \param [in,out]  object    GedaLine Object to rotate
- * \param [in]      center_x  Rotation center x coordinate in WORLD units
- * \param [in]      center_y  Rotation center y coordinate in WORLD units
+ * \param [in]      center_x  Rotation center x coordinate
+ * \param [in]      center_y  Rotation center y coordinate
  * \param [in]      angle     Rotation angle in degrees (See note below).
  */
 void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
@@ -419,7 +419,7 @@ void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
 }
 
 /*!
- * \brief Mirror a line using WORLD coordinates
+ * \brief Mirror a line
  * \par Function Description
  *  This function mirrors the line from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
@@ -428,8 +428,8 @@ void o_line_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *  and finally translated back at its previous position.
  *
  * \param [in,out] object    GedaLine Object to mirror
- * \param [in]     center_x  Origin x coordinate in WORLD units
- * \param [in]     center_y  Origin y coordinate in WORLD units.
+ * \param [in]     center_x  Origin x coordinate
+ * \param [in]     center_y  Origin y coordinate.
  */
 void o_line_mirror(GedaObject *object, int center_x, int center_y)
 {

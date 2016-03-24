@@ -574,7 +574,7 @@ o_picture_save(GedaObject *object)
   return(out);
 }
 
-/*! \brief Mirror a picture using WORLD coordinates
+/*! \brief Mirror a picture
  *
  *  \par Function Description
  *  This function mirrors the picture from the point (<B>center_x</B>,
@@ -583,8 +583,8 @@ o_picture_save(GedaObject *object)
  *  position.
  *
  *  \param [in,out] object    Picture GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate in WORLD units.
- *  \param [in]     center_y  Origin y coordinate in WORLD units.
+ *  \param [in]     center_x  Origin x coordinate.
+ *  \param [in]     center_y  Origin y coordinate.
 
  */
 void
@@ -634,7 +634,7 @@ o_picture_mirror(GedaObject *object, int center_x, int center_y)
 
 }
 
-/*! \brief Rotate picture Object using WORLD coordinates.
+/*! \brief Rotate picture Object.
  *  \par Function Description
  *  This function rotates the picture described by <B>*object</B> around
  *  the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B>
@@ -696,7 +696,7 @@ o_picture_rotate(GedaObject *object, int center_x, int center_y, int angle)
 
 }
 
-/*! \brief Translate a picture position in WORLD coordinates by a delta
+/*! \brief Translate a picture position by a delta
  *
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture

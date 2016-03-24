@@ -49,11 +49,11 @@
 
 static GObjectClass *geda_picture_parent_class = NULL;
 
-/*! \brief Get picture bounding rectangle in WORLD coordinates.
+/*! \brief Get picture bounding rectangle.
  *  \par Function Description
  *  This function sets the <B>left</B>, <B>top</B>, <B>right</B> and
  *  <B>bottom</B> parameters to the boundings of the picture object
- *  described in <B>*picture</B> in WORLD units.
+ *  described in <B>*picture</B>.
  *
  *  \param [in]  object     Picture GedaObject to read coordinates from.
  */

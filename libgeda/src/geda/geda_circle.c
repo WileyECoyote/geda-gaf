@@ -48,7 +48,7 @@
 
 static GObjectClass *geda_circle_parent_class = NULL;
 
-/*! \brief Get circle bounding rectangle in WORLD coordinates
+/*! \brief Get circle bounding rectangle
  *
  *  \par Function Description
  *  Sets the <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B>

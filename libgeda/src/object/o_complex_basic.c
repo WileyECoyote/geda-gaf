@@ -721,8 +721,8 @@ int o_complex_is_embedded(GedaObject *object)
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
  *  \param [in,out] object    Complex GedaObject to mirror
- *  \param [in]     center_x  Origin x coordinate in WORLD units
- *  \param [in]     center_y  Origin y coordinate in WORLD units
+ *  \param [in]     center_x  Origin x coordinate
+ *  \param [in]     center_y  Origin y coordinate
  */
 void o_complex_mirror(GedaObject *object, int center_x, int center_y)
 {

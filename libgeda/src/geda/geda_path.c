@@ -48,7 +48,7 @@
 
 static GObjectClass *geda_path_parent_class = NULL;
 
-/*! \brief Get path bounding rectangle in WORLD coordinates.
+/*! \brief Get path bounding rectangle.
  *  \par Function Description
  *  This function sets the <B>left</B>, <B>top</B>, <B>right</B> and
  *  <B>bottom</B> parameters to the boundings of the path object described

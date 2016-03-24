@@ -369,7 +369,7 @@ geda_arc_object_get_start_angle (const GedaObject *object)
 }
 
 /*! O0209
- * \brief Mirror the WORLD coordinates of an ARC.
+ * \brief Mirror the coordinates of an ARC.
  * \par Function Description
  *  This function mirrors the world coordinates of an arc.
  *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
