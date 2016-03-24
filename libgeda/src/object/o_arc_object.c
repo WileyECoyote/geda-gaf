@@ -1331,10 +1331,12 @@ geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle
 void
 geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     object->arc->arc_sweep = sweep;
-  else
-    BUG_PMSG("Not a valid GedaArc object <%p>", object);
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
 /*! O0221
