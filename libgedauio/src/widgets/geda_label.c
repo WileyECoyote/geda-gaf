@@ -122,13 +122,13 @@ typedef struct
 
 struct _SelectionInfo
 {
-  GdkWindow *window;
+  GedaLabelLink *active_link;
+  GtkWidget     *popup_menu;
+  GdkWindow     *window;
+  GList         *links;
+
   int selection_anchor;
   int selection_end;
-  GtkWidget *popup_menu;
-
-  GList *links;
-  GedaLabelLink *active_link;
 
   int drag_start_x;
   int drag_start_y;
@@ -442,10 +442,10 @@ geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
   g_return_if_fail (GTK_IS_MISC (misc));
 
   gtk_misc_get_padding (misc, &xpad, &ypad);
-  border->top += ypad;
-  border->left += xpad;
+  border->top    += ypad;
+  border->left   += xpad;
   border->bottom += ypad;
-  border->right += xpad;
+  border->right  += xpad;
 
   gtk_misc_get_alignment (misc, &xalign, &yalign);
 
@@ -492,10 +492,11 @@ geda_label_update_layout_width (GedaLabel *label)
     height = allocation->height - border.top  - border.bottom;
 
     if (priv->have_transform) {
-      PangoContext *context = gtk_widget_get_pango_context (widget);
+
+      PangoContext *context     = gtk_widget_get_pango_context (widget);
       const PangoMatrix *matrix = pango_context_get_matrix (context);
-      const double dx = matrix->xx; /* cos (M_PI * angle / 180) */
-      const double dy = matrix->xy; /* sin (M_PI * angle / 180) */
+      const double dx           = matrix->xx; /* cos (M_PI * angle / 180) */
+      const double dy           = matrix->xy; /* sin (M_PI * angle / 180) */
 
       pango_layout_set_width (label->layout, -1);
       pango_layout_get_pixel_extents (label->layout, NULL, &logical);
@@ -593,10 +594,10 @@ pango_merge_attribute_list (PangoAttrList *into, PangoAttrList *from)
 static void geda_label_ensure_layout (GedaLabel *label)
 {
   GedaLabelData *priv;
-  GtkWidget        *widget;
+  GtkWidget     *widget;
   bool R2L;
 
-  priv = label->priv;
+  priv   = label->priv;
   widget = GTK_WIDGET (label);
 
   R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
@@ -628,9 +629,9 @@ static void geda_label_ensure_layout (GedaLabel *label)
       priv->have_transform = TRUE;
     }
     else {
-      if (priv->have_transform)
+      if (priv->have_transform) {
         pango_context_set_matrix (context, NULL);
-
+      }
       priv->have_transform = FALSE;
     }
 
@@ -643,20 +644,22 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
     if (priv->select_info && priv->select_info->links) {
 
-      GdkColor link_color, visited_color;
       PangoAttribute *attribute;
-      GList *list;
+      GList          *list;
+      GdkColor        link_color;
+      GdkColor        visited_color;
 
       geda_label_get_link_colors (widget, &link_color, &visited_color);
       attrs = pango_attr_list_new ();
 
       for (list = priv->select_info->links; list; list = list->next) {
 
-        GedaLabelLink *link = list->data;
+        GedaLabelLink *link    = list->data;
 
         attribute              = pango_attr_underline_new (TRUE);
         attribute->start_index = link->start;
         attribute->end_index   = link->end;
+
         pango_attr_list_insert (attrs, attribute);
 
         if (link->visited) {
@@ -800,8 +803,8 @@ static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
-  GedaLabel *label       = GEDA_LABEL (object);
-  GedaLabelData *priv = label->priv;
+  GedaLabel     *label = GEDA_LABEL (object);
+  GedaLabelData *priv  = label->priv;
 
   switch (prop_id)
     {
@@ -1397,14 +1400,13 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   label       = (GedaLabel*)instance;
   label->priv = GEDA_MEM_ALLOC0 (sizeof(GedaLabelData));
-
-  priv = label->priv;
+  priv        = label->priv;
 
   gtk_widget_set_has_window    (GTK_WIDGET (label), FALSE);
   gtk_widget_set_app_paintable (GTK_WIDGET (label), TRUE);
   gtk_widget_set_can_default   (GTK_WIDGET (label), FALSE);
 
-  priv->font_map  = pango_cairo_font_map_new ();
+  priv->font_map          = pango_cairo_font_map_new ();
 
   label->width_chars      = -1;
   label->max_width_chars  = -1;
@@ -1680,26 +1682,29 @@ pango_start_element (GMarkupParseContext *context,
 
   if (strcmp (element_name, "attribute") == 0)
   {
-    PangoAttribute *attr = NULL;
-    const char *name = NULL;
-    const char *value = NULL;
-    const char *start = NULL;
-    const char *end = NULL;
-    unsigned int start_val = 0;
-    unsigned int end_val   = G_MAXUINT;
+    PangoAttribute *attr      = NULL;
+    const char     *name      = NULL;
+    const char     *value     = NULL;
+    const char     *start     = NULL;
+    const char     *end       = NULL;
+    unsigned int    start_val = 0;
+    unsigned int    end_val   = G_MAXUINT;
 
-    for (i = 0; names[i]; i++)
-    {
-      if (strcmp (names[i], "name") == 0)
+    for (i = 0; names[i]; i++) {
+
+      if (strcmp (names[i], "name") == 0) {
         name = values[i];
-      else if (strcmp (names[i], "value") == 0)
+      }
+      else if (strcmp (names[i], "value") == 0) {
         value = values[i];
-      else if (strcmp (names[i], "start") == 0)
+      }
+      else if (strcmp (names[i], "start") == 0) {
         start = values[i];
-      else if (strcmp (names[i], "end") == 0)
+      }
+      else if (strcmp (names[i], "end") == 0) {
         end = values[i];
-      else
-      {
+      }
+      else  {
         g_markup_parse_context_get_position (context,
                                              &line_number,
                                              &char_number);
@@ -6298,29 +6303,37 @@ geda_label_query_tooltip (GtkWidget  *widget,
                           bool        keyboard_tip,
                           GtkTooltip *tooltip)
 {
-  GedaLabel     *label = GEDA_LABEL (widget);
-  SelectionInfo *info  = label->priv->select_info;
-  int index = -1;
-  GList *l;
+  GedaLabel     *label;
+  SelectionInfo *info;
+
+  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
+
+  label = (GedaLabel*)widget;
+  info  = label->priv->select_info;
 
   if (info && info->links) {
 
+    GList *iter;
+    int    index = -1;
+
     if (keyboard_tip) {
 
-      if (info->selection_anchor == info->selection_end)
+      if (info->selection_anchor == info->selection_end) {
         index = info->selection_anchor;
+      }
     }
     else {
 
-      if (!get_layout_index (label, x, y, &index))
+      if (!get_layout_index (label, x, y, &index)) {
         index = -1;
+      }
     }
 
     if (index != -1)  {
 
-      for (l = info->links; l != NULL; l = l->next)  {
+      for (iter = info->links; iter != NULL; iter = iter->next) {
 
-        GedaLabelLink *link = l->data;
+        GedaLabelLink *link = iter->data;
 
         if (index >= link->start && index <= link->end)  {
 
@@ -6344,10 +6357,12 @@ geda_label_get_cursor_position (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
-  if (priv->select_info && priv->select_info->selectable)
+  g_return_val_if_fail (GEDA_IS_LABEL (label), 0);
+
+  if (priv->select_info && priv->select_info->selectable) {
     return g_utf8_pointer_to_offset (label->text,
                                      label->text + priv->select_info->selection_end);
-
+  }
   return 0;
 }
 
@@ -6356,10 +6371,12 @@ geda_label_get_selection_bound (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
-  if (priv->select_info && priv->select_info->selectable)
+  g_return_val_if_fail (GEDA_IS_LABEL (label), 0);
+
+  if (priv->select_info && priv->select_info->selectable) {
     return g_utf8_pointer_to_offset (label->text,
                                      label->text + priv->select_info->selection_anchor);
-
+  }
   return 0;
 }
 #undef PangoFontDescr
