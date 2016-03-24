@@ -137,7 +137,7 @@ geda_utility_glist_str_inlist(GList *list, char *string)
 
   for (iter = list; iter; iter = iter->next){
 
-    if (!geda_utility_string_strequal(iter->data, string)) {
+    if (geda_utility_string_strequal(iter->data, string)) {
       answer = TRUE;
       break;
     }
@@ -291,7 +291,7 @@ bool geda_utility_gslist_str_inlist(GSList *list, char *string)
 
   for (iter = list; iter; iter = iter->next){
 
-    if (!geda_utility_string_strequal(iter->data, string)) {
+    if (geda_utility_string_strequal(iter->data, string)) {
       answer = TRUE;
       break;
     }

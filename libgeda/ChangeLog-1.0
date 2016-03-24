@@ -1,3 +1,9 @@
+2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_glist.c: Fix inverted logic in geda_utility_glist_str_inlist
+      and geda_utility_gslist_str_inlist; geda_utility_string_strequal returns
+      TRUE is the string is found.
+
 2016-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/libgeda.h: include "geda_file.h".
