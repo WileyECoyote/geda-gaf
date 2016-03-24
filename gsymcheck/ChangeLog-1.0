@@ -1,3 +1,8 @@
+2016-03-2? Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Add Doxygen comments for functions: s_check_symbol_structure,
+      s_check_text, add param docs for s_check_graphical and s_check_connections.
+
 2016-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Add Doxygen comments for functions: s_check_list_has_item,

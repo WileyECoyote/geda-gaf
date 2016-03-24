@@ -353,6 +353,7 @@ static bool s_check_is_known_device (const char *device)
  *       are valid.
  *
  * \param [in] string Attribute string to be checked
+ *
  * \returns TRUE if string is a valid directive attribute
  */
 static bool s_check_is_valid_directive(const char *string)
@@ -369,10 +370,15 @@ static bool s_check_is_valid_directive(const char *string)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check a symbol attributes
  *  \par Function Description
- *  \todo get list of valid_attributes using scheme
+ *  Checks for "valid", "forbidden", obsolete, and improperly attached
+ *  attributes.
+ *
+ * \param [in] obj_list  List of all object in the symbol.
+ * \param [in] s_current Pointer to current s_symcheck data structure
+ *
+ * \todo get list of valid_attributes using scheme
  */
 static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -477,10 +483,13 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check Texts attributes
  *  \par Function Description
+ *  Checks the text of Text objects for un-escaped backslash characters
+ *  and unbalanced over-bar markers.
  *
+ * \param [in]     obj_list  List of all object in the symbol.
+ * \param [in,out] s_current Pointer to current s_symcheck data structure
  */
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -561,6 +570,9 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
  *  \par Function Description
  *   Checks for the existence of graphical attribute and set flag
  *   in \a s_current if found. Does not set any error or warnings.
+ *
+ * \param [in]     obj_list  List of all object in the symbol.
+ * \param [in,out] s_current Pointer to current s_symcheck data structure
  */
 static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -578,6 +590,9 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
 /*! \brief Check if object in list have a connection and report error
  *  \par Function Description
  *  symbol files should not have internal connections.
+ *
+ * \param [in]     obj_list  List of all object in the symbol.
+ * \param [in,out] s_current Pointer to current s_symcheck data structure
  */
 static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 {
