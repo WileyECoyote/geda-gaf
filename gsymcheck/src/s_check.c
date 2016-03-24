@@ -1323,8 +1323,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
     GEDA_FREE(temp);
 
-    GEDA_FREE(slotdef);
-    slotdef = NULL;
+    g_free(slotdef);
 
     i++;
     slotdef = o_attrib_search_floating_attribs_by_name (obj_list, "slotdef", i);

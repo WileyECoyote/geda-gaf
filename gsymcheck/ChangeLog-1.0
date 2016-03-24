@@ -26,7 +26,9 @@
         s_check_symbol_structure and replace s_check_list_has_item with function
         geda_glist_str_inlist when checking if token is a valid attributes.
 
-      * src/s_symstruct.c:
+    * src/s_check.c: Remove redundant setting of slotdef to NULL in s_check_slotdef
+      and replace GEDA_FREE with g_free because slotdef will be re-assigned after
+      index is incremented.
 
 2016-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
