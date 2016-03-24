@@ -1,18 +1,18 @@
 
-; 
+;
 ; Init file for gsymcheck
 ;
 
 ;  ;'s are comments
 ;  keywords are case sensitive (guile feature)
 ;  mode strings are case sensitive
-;  colors are not case sensitive 
-;  
+;  colors are not case sensitive
+;
 
 ; gsymcheck-version string
 ;
-; Specifies the version of this file.  This number is used to make sure 
-; that the rc file is compatible with the version of gschem that is 
+; Specifies the version of this file.  This number is used to make sure
+; that the rc file is compatible with the version of gschem that is
 ; being run. The end user should *not* change this value.
 ;
 (gsymcheck-version "@DATE_VERSION@")
@@ -36,16 +36,16 @@
 ; End of path related keywords
 ;
 
-; world-size width height border
+; valid-attributes stringlist
 ;
-; Specifies the size of the world and a border 
-; Be sure all inputs are reals (floats/doubles) and don't try to reverse
-; the values: to get a portrait mode.  Code to support that needs to be added
-; The code that implements this automatically transforms the dimensions into
-; the proper aspect ratio.  All units are in inches.
-; This is not the paper size.  That is specified elsewhere.  End users should
-; not change this at all
+; Sets the list of attributes that is used when checking for valid attributes,
+; this list does not include pin, obsolete or forbidden attributes. Attributes
+; found in symbols that are not found in this list are reported as "unknown"
+; and a warning is issued. In older versions this list was hard-coded. For
+; some installations, users may desire to modify this list.
 ;
-;(world-size 120.0 90.0 1.0)
-;(world-size 60.0 45.0 1.0)
-
+(valid-attributes '("device" "footprint" "numslots" "refdes" "author"
+                    "description" "documentation" "symversion" "dist-license"
+                    "use-license" "graphical" "net" "netname" "slot" "slotdef"
+                    "value" "comment" "footprints" "model-name" "file" "pins"
+                    "spice-type"))

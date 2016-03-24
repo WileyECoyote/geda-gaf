@@ -87,6 +87,8 @@ int s_check_all(GedaToplevel *toplevel)
 
     GList *pages;
 
+    i_vars_set_valid_attributes(s_current);
+
     pages = geda_toplevel_get_pages (toplevel);
 
     for (iter = pages; iter != NULL; iter = g_list_next(iter)) {
@@ -390,34 +392,6 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   char *valid_pin_attributes[] = {"pinlabel", "pintype",
   "pinseq", "pinnumber", "electtype", "mechtype",
   NULL};
-  /*
-   * const char* DefaultAttributeList[] = { "source", "model-name", "model",
-   *                                       "file", NULL};
-   */
-  char *valid_attributes[] = {
-                                "device",
-                                "footprint",
-                                "numslots",
-                                "refdes",
-                                "author",
-                                "description",
-                                "documentation",
-                                "symversion",
-                                "dist-license",
-                                "use-license",
-                                "graphical",
-                                "net",
-                                "netname",
-                                "slot",
-                                "slotdef",
-                                "value",
-                                "comment",
-                                "footprints",
-                                "model-name",
-                                "file",
-                                "pins",
-                                "spice-type",
-                                NULL};
 
   char *obsolete_attributes[]  = {"email", "label", "uref", NULL};
   char *forbidden_attributes[] = {"name",  "type", NULL};
@@ -459,7 +433,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
             ADD_ERROR_MESSAGE(message);
           }
         }
-        else if (!s_check_list_has_item(valid_attributes, tokens[0])) {
+        else if (!geda_glist_str_inlist(s_current->valid_attributes, tokens[0])) {
           message = geda_utility_string_sprintf (_("Found unknown %s= attribute: [%s=%s]\n"),
                                      tokens[0], tokens[0], tokens[1]);
           ADD_WARN_MESSAGE(message);

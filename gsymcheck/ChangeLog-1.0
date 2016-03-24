@@ -1,4 +1,34 @@
-2016-03-2? Wiley E. Hill <wileyhill@gmail.com>
+2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Program Enhancement: New feature - User Configurable Attribute List
+
+      * etc/system-gsymcheckrc.in: Add valid-attributes key-word, remove world-size?
+
+      * include/i_vars.h: Declare GList default_valid_attributes as extern.
+
+      * include/prototype.h: Declaration for function g_rc_valid_attributes,
+        i_vars_release_all and i_vars_set_valid_attributes.
+
+      * include/struct.h: Add member GList *valid_attributes.
+
+      * src/g_rc.c: Include i_vars.h and add function g_rc_valid_attributes.
+
+      * src/g_register.c: Register subroutine g_rc_valid_attributes.
+
+      * src/gsymcheck.c: Call i_vars_release_all in gsymcheck_quit to free the
+        new glist of valid attributes.
+
+      * src/i_vars.c: Include i_vars.h, add GList *default_valid_attributes, add
+        functions i_vars_release_all and i_vars_set_valid_attributes.
+
+      * src/s_check.c: Call i_vars_set_valid_attributes in s_check_all before
+        entering loop (through files). Remove structure valid_attributes from
+        s_check_symbol_structure and replace s_check_list_has_item with function
+        geda_glist_str_inlist when checking if token is a valid attributes.
+
+      * src/s_symstruct.c:
+
+2016-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Add Doxygen comments for functions: s_check_symbol_structure,
       s_check_text, add param docs for s_check_graphical and s_check_connections.

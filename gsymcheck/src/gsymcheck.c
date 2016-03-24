@@ -41,6 +41,9 @@
 void
 gsymcheck_quit(void)
 {
+
+  i_vars_release_all();
+
   /* Shutdown libgeda */
   libgeda_release();
 }
@@ -53,15 +56,15 @@ gsymcheck_quit(void)
  */
 static void main_prog(void *closure, int argc, char *argv[])
 {
-  int i;
-  int argv_index;
-  int exit_status;
   char *cwd;
+  int   argv_index;
+  int   exit_status;
+  int   i;
 
   GedaToplevel *pr_current;
 
   argv_index = parse_commandline(argc, argv);
-  cwd = g_get_current_dir();
+  cwd        = g_get_current_dir();
 
   libgeda_init(argc, argv);
 

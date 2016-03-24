@@ -30,13 +30,15 @@ typedef struct st_symcheck SYMCHECK;
 /* gsymcheck structure */
 struct st_symcheck {
 
+  GList *valid_attributes;
+
   /* unused for now */
   int unattached_attribs;
 
   /* info / warning / error messages */
-  GList* info_messages;
-  GList* warning_messages;
-  GList* error_messages;
+  GList *info_messages;
+  GList *warning_messages;
+  GList *error_messages;
 
   /* Influential Symbol Properties */
   const char *filename;              /* Not freed, points to page */

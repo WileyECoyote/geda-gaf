@@ -47,7 +47,7 @@ void g_register_funcs(void)
 
   /* gsymcheckrc functions */
   scm_c_define_gsubr ("gsymcheck-version", 1, 0, 0, g_rc_gsymcheck_version);
-
+  scm_c_define_gsubr ("valid-attributes",1, 0, 0, g_rc_valid_attributes);
 }
 
 /*! \brief SCM API terminated program
