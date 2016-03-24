@@ -1,5 +1,12 @@
 2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_list.h: Rename geda_glist_is_homogeneous_objects to
+      geda_list_is_homogeneous_objects and change argument type.
+
+    * libgeda/src/geda/geda_list.c: Rename geda_glist_is_homogeneous_objects to
+      geda_list_is_homogeneous_objects and change argument type, add test to
+      check if elements are GedaObjects.
+
     * src/utility/u_glist.c: Fix inverted logic in geda_utility_glist_str_inlist
       and geda_utility_gslist_str_inlist; geda_utility_string_strequal returns
       TRUE is the string is found.

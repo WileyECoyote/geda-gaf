@@ -326,14 +326,26 @@ void *geda_list_find(GedaList *list, void *item)
  *
  *  \return TRUE if all elements are objects of the same type
  */
-int geda_glist_is_homogeneous_objects (GList *list)
+int geda_list_is_homogeneous_objects (GedaList *list)
 {
-  bool    answer;
+  bool        answer;
   GedaObject *object;
-  GList  *o_iter;
+  GList      *o_iter;
 
-  o_iter = list;
-  object = (GedaObject *)o_iter->data;
+  if (GEDA_IS_LIST(list)) {
+    GList *glist = geda_list_get_glist(list);
+    if (GEDA_IS_OBJECT(glist->data)) {
+      object = (GedaObject*)glist->data;
+      o_iter = glist;
+    }
+    else {
+      object = NULL;
+    }
+  }
+  else {
+    BUG_PMSG("<%p> is not a valid GedaList", list);
+    object = NULL;
+  }
 
   if (object) {
 
@@ -345,7 +357,13 @@ int geda_glist_is_homogeneous_objects (GList *list)
 
     while (o_iter != NULL) {
 
-      object = (GedaObject *)o_iter->data;
+      if (GEDA_IS_OBJECT(o_iter->data)) {
+        object = (GedaObject*)o_iter->data;
+      }
+      else {
+        answer = FALSE;
+        break;
+      }
 
       if (object->type != otype) {
         answer = FALSE;

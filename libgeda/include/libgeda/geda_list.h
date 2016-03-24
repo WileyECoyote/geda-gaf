@@ -82,7 +82,7 @@ bool      geda_list_add_unique              ( GedaList *list, void  *item );
 bool      geda_list_add_unique_string       ( GedaList *list, char  *text );
 GList    *geda_list_copy_glist              ( GedaList *list );
 void     *geda_list_find                    ( GedaList *list, void *item );
-int       geda_glist_is_homogeneous_objects ( GList    *list);
+int       geda_list_is_homogeneous_objects  ( GedaList *list);
 bool      geda_list_is_in_list              ( GedaList *list, void *item );
 void      geda_list_remove                  ( GedaList *list, void *item );
 void      geda_list_unref                   ( GedaList *list );
