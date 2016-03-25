@@ -1,5 +1,9 @@
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/gsymcheck.1.in: Document version option.
+
+    * src/parsecmd.c: Add version command-line option.
+
     * src/s_check.c: Reduce scope of iter in s_check_all and net_tokens and string
       in s_check_pinnumber.
 

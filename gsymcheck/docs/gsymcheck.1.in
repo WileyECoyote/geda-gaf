@@ -55,6 +55,10 @@ Verbose mode 2.  This mode will show all error and warning messages (optional)
 .B -vvv
 Verbose mode 2.  This mode will show all error, warning, and info messages (optional)
 .TP 8
+.BR \-V ", " \-\-version
+Print \fBgsymcheck\fR version information. If the \-\-quiet option precedes the version option,
+such as in \-qV, output will be limited to the dotted version.
+.TP 8
 .BR -h ", " \-\-help
 Usage summary /
 .B gsymcheck

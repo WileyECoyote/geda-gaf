@@ -25,6 +25,7 @@
  */
 
 #include <config.h>
+#include <version.h>
 
 #include <libgeda/libgeda.h>
 
@@ -33,7 +34,7 @@
 #include "../include/prototype.h"
 #include "../include/gettext.h"
 
-#define OPTIONS "hquv"
+#define OPTIONS "hquvV"
 
 #ifndef OPTARG_IN_UNISTD
   extern char *optarg;
@@ -50,7 +51,8 @@ struct option long_options[] =
     {"help",     0, 0, 'h'},
     {"quiet",    0, 0, 'q'},
     {"suppress", 0, 0, 'u'},
-    {"verbose",  0, 0, 'v'}
+    {"verbose",  0, 0, 'v'},
+    {"version",  0, 0, 'V'}
   };
 #endif
 
@@ -71,11 +73,34 @@ usage(char *cmd)
     "  -q, --quiet       Quiet mode\n"
     "  -u, --suppress    Suppress \"No errors found\" when no errors\n"
     "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+    "  -V, --version     Show version information.\n"
     "                    Use this to get the actual symbol error messages\n"
     "\nfilename1 ... filenameN are the symbols to check\n"
     "\n"),
     cmd);
     exit(0);
+}
+
+/*!
+ * \brief Print version info and exit.
+ * \par Function Description
+ * Print gEDA version, and copyright/warranty notices, and exit with
+ * exit status 0.
+ */
+static void version (void)
+{
+  if (!quiet_mode)
+    printf(_(
+      "gEDA %s (%s) (g%.7s)\n"
+      "Copyright (C) 1998-2016 gEDA developers\n"
+      "This is free software, and you are welcome to redistribute it under\n"
+      "certain conditions. For details, see the file `COPYING', which is\n"
+      "included in the gEDA distribution.\n"
+      "There is NO WARRANTY, to the extent permitted by law.\n"),
+      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+  else
+    printf("%s\n", PACKAGE_DOTTED_VERSION);
+  exit (0);
 }
 
 /*! \brief Parse gsymcheck command-line options.
@@ -88,7 +113,6 @@ usage(char *cmd)
  *
  * \return index into \a argv of first non-option argument.
  *
- * \todo Version option?
  * \todo strict option?
  * \todo Consider adding option for attributes to selectively check,
  *       example: gsymcheck --documentation *.sch
@@ -102,6 +126,7 @@ int parse_commandline(int argc, char *argv[])
 #else
   while ((ch = getopt (argc, argv, OPTIONS)) != -1) {
 #endif
+
     switch (ch) {
 
       case 'h':
@@ -118,6 +143,10 @@ int parse_commandline(int argc, char *argv[])
 
       case 'v':
         verbose_mode++;
+        break;
+
+      case 'V':
+        version ();
         break;
 
 #if 0
