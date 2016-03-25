@@ -1107,9 +1107,15 @@ int o_net_add_busrippers(GschemToplevel *w_current,
  *  This function resets all variables in GschemToplevel that are used
  *  for net drawing. This function should be called when escaping from
  *  a net drawing action or before entering it.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *
+ *  \return state of inside_action on entry
  */
-void o_net_reset(GschemToplevel *w_current)
+bool o_net_reset(GschemToplevel *w_current)
 {
+  int was_action = w_current->inside_action;
+
   o_net_invalidate_rubber (w_current);
 
   i_status_action_stop(w_current);
@@ -1120,6 +1126,8 @@ void o_net_reset(GschemToplevel *w_current)
   w_current->magnetic_wx    = w_current->magnetic_wy = -1;
 
   w_current->rubber_visible = FALSE;
+
+  return was_action;
 }
 
 /*! \brief Start the process to input new Net objects.

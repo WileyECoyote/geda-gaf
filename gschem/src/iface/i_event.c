@@ -290,9 +290,9 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
       switch (w_current->event_state) {
 
         case(NETMODE):
-          o_net_reset (w_current);
-          break;
-
+          if (o_net_reset (w_current)) {
+            break;
+          }
         case(PINMODE):
         case(LINEMODE):
         case(BOXMODE):

@@ -1,3 +1,15 @@
+2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_event.c: Revised function i_event_adder_pressed to break if
+      o_net_reset returns TRUE so that NETMODE is terminated by a right-click
+      if not inside and action, i.e. if no net is being drawn - A good thing
+      for a Good friday!
+
+    * src/object/o_net.c: Revised function o_net_reset to return boolean state
+      of w_current->inside_action on entry, (may or may not be inside_action
+      at exit) so that in effect if call when w_current->inside_action then
+      the function return FALSE.
+
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macro_widget.h: Declare is_a_gschem_macro_widget, add
@@ -8319,7 +8331,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           This function allows Scheme code to open a browser to a wiki page
           by calling gschemdoc with its -w option.
 
-          This will facilitate adding more useful things to gschem's "Help"
+          This will facilitate adding more useful things to gschem`s "Help"
           menu without needing a large number of callbacks to be added to
           gschem.
 

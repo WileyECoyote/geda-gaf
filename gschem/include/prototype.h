@@ -543,7 +543,7 @@ void       o_net_draw_rubber            (GschemToplevel *w_current );
 void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);
-void       o_net_reset                  (GschemToplevel *w_current);
+bool       o_net_reset                  (GschemToplevel *w_current);
 void       o_net_start                  (GschemToplevel *w_current, int x, int y);
 void       o_net_start_magnetic         (GschemToplevel *w_current, int x, int y);
 
