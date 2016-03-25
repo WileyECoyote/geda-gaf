@@ -1,11 +1,20 @@
 2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_slot.c Revise function s_slot_search_slotdef to use _int2str
+      instead of geda_utility_string_sprintf to convert slotnumber to a string.
+
+2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/geda_list.h: Rename geda_glist_is_homogeneous_objects to
       geda_list_is_homogeneous_objects and change argument type.
 
     * libgeda/src/geda/geda_list.c: Rename geda_glist_is_homogeneous_objects to
       geda_list_is_homogeneous_objects and change argument type, add test to
       check if elements are GedaObjects.
+
+    * src/object/o_arc_object.c: Revise geda_arc_object_set_arc_sweep to use
+      geda_arc_object_error  instead of BUG_PMSG like functions in module,
+      was suppose to be but must have missed.
 
     * src/utility/u_glist.c: Fix inverted logic in geda_utility_glist_str_inlist
       and geda_utility_gslist_str_inlist; geda_utility_string_strequal returns

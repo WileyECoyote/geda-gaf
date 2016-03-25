@@ -56,9 +56,9 @@
  */
 char *s_slot_search_slot (GedaObject *object, GedaObject **found)
 {
-  GList  *attributes;
+  GList      *attributes;
   GedaObject *attrib;
-  char   *value = NULL;
+  char       *value = NULL;
 
   attributes = o_attrib_return_attribs (object);
   attrib     = o_attrib_find_attrib_by_name (attributes, "slot", 0);
@@ -88,13 +88,16 @@ char *s_slot_search_slot (GedaObject *object, GedaObject **found)
  */
 static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
 {
-  int counter = 0;
+  int   counter = 0;
   char *slotdef;
   char *search_for;
+  char  tmp_str[4];
 
-  search_for = geda_utility_string_sprintf ("%d:", slotnumber);
+  /* Get pin on this component with pinseq == pin_counter */
+  search_for = geda_utility_string_int2str(slotnumber, tmp_str, 10);
 
   while (1) {
+
     slotdef = o_attrib_search_object_attribs_by_name (object, "slotdef",
                                                       counter++);
     if (slotdef == NULL ||
@@ -104,7 +107,6 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
     GEDA_FREE (slotdef);
   }
 
-  GEDA_FREE (search_for);
   return slotdef;
 }
 
@@ -123,13 +125,13 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
  *  TODO: If old symbol has slot def and the slot has been set, and
  *  replacement does not then "Did not find slotdef" error message
  *  below shows up in the log. if this occurs, then should check if
- *  "numslot=0", in which case the call should remove "slotdef"
+ *  "numslot=0", in which case the caller should remove "slotdef"
  *   attribute.
  */
 void s_slot_update_object (GedaObject *object)
 {
   GedaObject *o_pinnum_attrib;
-  GList  *attributes;
+  GList      *attributes;
 
   char *string;
   char *slotdef;
@@ -205,8 +207,8 @@ void s_slot_update_object (GedaObject *object)
   while (current_pin != NULL) {
 
     GedaObject *o_pin_object;
-    char   *pinstr;       /* used as pointer to tmp_str[0] & pinnumber= */
-    char    tmp_str[5];
+    char       *pinstr;       /* used as pointer to tmp_str[0] & pinnumber= */
+    char        tmp_str[5];
 
     /* Get pin on this component with pinseq == pin_counter */
     pinstr       = geda_utility_string_int2str(pin_counter, tmp_str, 10);
