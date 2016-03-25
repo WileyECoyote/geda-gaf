@@ -1492,7 +1492,6 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char *ptr;
   char *message;
   int   found_old      = FALSE;
   int   number_counter = 0;
@@ -1506,7 +1505,7 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
       if (strstr(o_current->text->string, "slot")) {
 
         /* skip over "slot" */
-        ptr = o_current->text->string + 4;
+        char *ptr = o_current->text->string + 4;
 
         found_old = FALSE;
         number_counter = 0;
@@ -1520,17 +1519,14 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
           found_old++;
         }
 
-        if (!ptr)
-          continue;
-
         /* found no numbers inbetween pin and = */
-        if (number_counter == 0)
+        if (!ptr || number_counter == 0)
           continue;
 
         /* skip over = char */
         ptr++;
 
-        while ((ptr && (*ptr > '0') && (*ptr < '9')) || (*ptr == ',')) {
+        while (((*ptr > '0') && (*ptr < '9')) || (*ptr == ',')) {
           ptr++;
         }
 

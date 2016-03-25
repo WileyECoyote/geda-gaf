@@ -5,7 +5,8 @@
     * src/parsecmd.c: Add version command-line option.
 
     * src/s_check.c: Reduce scope of iter in s_check_all and net_tokens and string
-      in s_check_pinnumber.
+      in s_check_pinnumber. Reduce scope of ptr in s_check_oldslot and simplify,
+      remove checking for NULL pointer after checking for NULL pointer.
 
 2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
