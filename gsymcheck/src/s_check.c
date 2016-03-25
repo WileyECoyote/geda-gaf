@@ -76,7 +76,6 @@ static void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_curren
  */
 int s_check_all(GedaToplevel *toplevel)
 {
-  GList    *iter;
   SYMCHECK *s_current;
 
   int total = 0;
@@ -85,6 +84,7 @@ int s_check_all(GedaToplevel *toplevel)
 
   if (s_current) {
 
+    GList *iter;
     GList *pages;
 
     i_vars_set_valid_attributes(s_current);
@@ -767,18 +767,16 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
 {
-  char *string;
   int missing_pinnumber_attrib_sum=0;
   int multiple_pinnumber_attrib_sum=0;
   int counter=0;
   int i;
 
-  char **net_tokens;
   char **pin_tokens;
   GList *net_numbers = NULL;
   GList *pin_numbers = NULL;
-  GList *cur = NULL;
-  GList *cur2 = NULL;
+  GList *cur         = NULL;
+  GList *cur2        = NULL;
   const GList *iter;
   char *message;
   char *net = NULL;
@@ -786,6 +784,8 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   /* collect all net pins */
   for (counter = 0; (net = o_attrib_search_floating_attribs_by_name (obj_list, "net", counter)) != NULL; counter++)
   {
+    char **net_tokens;
+
     message = geda_utility_string_sprintf (_("Found net=%s attribute\n"), net);
     ADD_INFO_MESSAGE(message);
 
@@ -841,6 +841,9 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
     GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
+
+      char *string;
+
       s_current->numpins++;
 
       missing_pinnumber_attrib_sum = 0;
@@ -938,18 +941,18 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 {
+  char *number;
+  char *message;
   char *string;
-  int found_first=FALSE;
-  int missing_pinseq_attrib_sum=0;
-  int multiple_pinseq_attrib_sum=0;
-  int counter=0;
 
-  GList *found_numbers = NULL;
-  GList *ptr1 = NULL;
-  GList *ptr2 = NULL;
-  const GList *iter;
-  char  *number;
-  char  *message;
+  int found_first                = FALSE;
+  int missing_pinseq_attrib_sum  = 0;
+  int multiple_pinseq_attrib_sum = 0;
+  int counter                    = 0;
+
+         GList *found_numbers    = NULL;
+         GList *ptr1             = NULL;
+  const  GList *iter;
 
   /* Loop through object list and look for pins */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
@@ -1017,8 +1020,9 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 
   while (ptr1) {
 
-    char *string = (char *) ptr1->data;
-    int found = 0;
+    GList *ptr2;
+    char  *string = (char*)ptr1->data;
+    int    found  = 0;
 
     ptr2 = found_numbers;
 
