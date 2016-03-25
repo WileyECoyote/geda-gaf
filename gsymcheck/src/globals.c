@@ -31,8 +31,8 @@
 char *rc_filename = 0L;
 
 int logfile_fd=-1;
-volatile int logging=1;
-volatile int log_destiny=STDOUT_TTY;
+int logging=1;
+int log_destiny=STDOUT_TTY;
 
 /* command line arguments */
 int verbose_mode=0;

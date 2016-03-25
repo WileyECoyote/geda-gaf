@@ -27,8 +27,8 @@
 extern char *rc_filename;
 
 extern int logfile_fd;
-extern volatile int logging;
-extern volatile int log_destiny;
+extern int logging;
+extern int log_destiny;
 
 /* gnetlist specific stuff */
 extern int interactive_mode;
