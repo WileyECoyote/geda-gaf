@@ -1,7 +1,9 @@
-2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_slot.c Revise function s_slot_search_slotdef to use _int2str
       instead of geda_utility_string_sprintf to convert slotnumber to a string.
+
+    * tests/test_list.c: Add tests for methods in src/geda/geda_list class.
 
 2016-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
