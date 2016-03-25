@@ -1153,11 +1153,9 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 {
-  char *value = NULL;
-  char *slotdef = NULL;
-  char *slotnum = NULL;
-  char *pins = NULL;
-  char *temp = NULL;
+  char *value;
+  char *slotdef;
+  char *temp    = NULL;
   char  numslots_str[10];
   int   slot;
   int   i,j;
@@ -1166,7 +1164,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
   /*  pinlist will store the pin definitions for each slot */
   /* example: pinlist[0] = 3,2,8,4,1 ; pinlist[1] = 5,6,8,4,7 */
-  char **pinlist = NULL;
+  char **pinlist     = NULL;
   bool error_parsing = FALSE;
 
   /* look for numslots to see if this symbol has slotting info */
@@ -1198,6 +1196,9 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   slotdef = o_attrib_search_floating_attribs_by_name (obj_list, "slotdef", 0);
 
   while ((slotdef != NULL) && (!error_parsing)) {
+
+    char *pins;
+    char *slotnum;
 
     if (i > s_current->numslots-1) {
 
@@ -1365,20 +1366,20 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
         for (n = 1; n <= s_current->numpins; n++) {
 
-          char *cmp;
-          char *pin;
-
           /* Get the number of one pin */
-          pin = geda_utility_string_split(pinlist[i], ',', n);
+          char *pin = geda_utility_string_split(pinlist[i], ',', n);
 
           if (pin && *pin) {
 
             int match = FALSE;
 
             for (j = i - 1; j >= 0 && !match; j--) {
+
               for (m = 1; m <= s_current->numpins && !match; m++) {
+
                 /* Get the number of the other pin */
-                cmp = geda_utility_string_split(pinlist[j], ',', m);
+                char *cmp = geda_utility_string_split(pinlist[j], ',', m);
+
                 if (cmp && *cmp) {
                   match = (0 == strcmp (pin, cmp));
                   GEDA_FREE(cmp);
