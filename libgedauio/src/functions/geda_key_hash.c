@@ -61,7 +61,7 @@ key_hash_clear_keycode (void *key, void *value, void *data)
 }
 
 static void
-key_hash_insert_entry (GedaKeyHash  *key_hash, GedaKeyHashEntry *entry)
+key_hash_insert_entry (GedaKeyHash *key_hash, GedaKeyHashEntry *entry)
 {
   int i;
 
@@ -75,12 +75,12 @@ key_hash_insert_entry (GedaKeyHash  *key_hash, GedaKeyHashEntry *entry)
     GSList *old_keys;
 
     old_keys = g_hash_table_lookup (key_hash->keycode_hash,
-                                   (void*)(unsigned int) (entry->keys[i].keycode));
+                                   (void*)(DWORD) (entry->keys[i].keycode));
 
     old_keys = g_slist_prepend (old_keys, entry);
 
     g_hash_table_insert (key_hash->keycode_hash,
-                        (void*)(unsigned int) (entry->keys[i].keycode), old_keys);
+                        (void*)(DWORD) (entry->keys[i].keycode), old_keys);
   }
 }
 
@@ -241,7 +241,7 @@ geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
       for (i = 0; i < entry->n_keys; i++) {
 
         GSList *old_keys = g_hash_table_lookup (key_hash->keycode_hash,
-                                                (void*)(unsigned int) (entry->keys[i].keycode));
+                                                (void*)(DWORD) (entry->keys[i].keycode));
 
         GSList *new_keys = g_slist_remove (old_keys, entry);
 
@@ -249,12 +249,12 @@ geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
 
           if (new_keys)  {
             g_hash_table_insert (key_hash->keycode_hash,
-                                 (void*)(unsigned int) (entry->keys[i].keycode),
+                                 (void*)(DWORD) (entry->keys[i].keycode),
                                  new_keys);
           }
           else  {
             g_hash_table_remove (key_hash->keycode_hash,
-                                 (void*)(unsigned int) (entry->keys[i].keycode));
+                                 (void*)(DWORD) (entry->keys[i].keycode));
           }
         }
       }
@@ -382,7 +382,7 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
                       int              group)
 {
   GHashTable *keycode_hash = key_hash_get_keycode_hash (key_hash);
-  GSList *keys = g_hash_table_lookup (keycode_hash, (void*)(unsigned int) ((unsigned int)hardware_keycode));
+  GSList *keys = g_hash_table_lookup (keycode_hash, (void*)(DWORD) ((DWORD)hardware_keycode));
   GSList *results = NULL;
   GSList *l;
   bool have_exact = FALSE;
@@ -554,7 +554,7 @@ geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
   if (n_keys) {
 
     GHashTable *keycode_hash = key_hash_get_keycode_hash (key_hash);
-    GSList *entries = g_hash_table_lookup (keycode_hash, (void*)(unsigned int) (keys[0].keycode));
+    GSList *entries = g_hash_table_lookup (keycode_hash, (void*)(DWORD) (keys[0].keycode));
 
     while (entries) {
 
