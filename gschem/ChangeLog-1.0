@@ -2,7 +2,9 @@
 
     * Program Enhancement: New feature - Auto Panning while Creating Nets
 
-    * etc/system-gschemrc.scm: Add keywords auto_pan and auto_pan_step.
+    * etc/system-gschemrc.scm: Add keywords auto_pan and auto_pan_step, add
+      hotkeys keys "O D" for "options-dragcanmove", resequence toggle menu
+      options moving options-action-feedback after options-dragcanmove.
 
     * include/gschem_idefines.h: Add define AUTO_PAN_INTERVAL, DEFAULT_AUTO_PAN,
       MIN_AUTO_PAN_STEP, MAX_AUTO_PAN_STEP, and DEFAULT_AUTO_PAN_STEP.

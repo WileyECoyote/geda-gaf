@@ -86,8 +86,9 @@ typedef enum {
   pop_cb_paste
 } pop_MenuItem;
 
-typedef enum { RESET_TOGGLERS=-1, SNAP_TOGGLE, OUTLINE_TOGGLE, RUBBER_TOGGLE,
-               MAGNETIC_TOGGLE, DRAG_CAN_MOVE
+/* Order of items is not important */
+typedef enum { RESET_TOGGLERS=-1, SNAP_TOGGLE, RUBBER_TOGGLE, MAGNETIC_TOGGLE,
+               DRAG_CAN_MOVE, OUTLINE_TOGGLE
 } MenuToggleItem;
 
 typedef struct st_menu_data             MenuData;

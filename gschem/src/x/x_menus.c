@@ -1450,10 +1450,10 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
 
   if (toggle_id == RESET_TOGGLERS) {
     set_toggler(SNAP_TOGGLE,     (w_current->snap > 0));
-    set_toggler(OUTLINE_TOGGLE,  (w_current->action_feedback_mode > 0));
     set_toggler(RUBBER_TOGGLE,   (w_current->netconn_rubberband > 0));
     set_toggler(MAGNETIC_TOGGLE, (w_current->magnetic_net_mode > 0));
     set_toggler(DRAG_CAN_MOVE,   (w_current->drag_can_move > 0));
+    set_toggler(OUTLINE_TOGGLE,  (w_current->action_feedback_mode > 0));
   }
   else {
    if(toggle_id < number_of_togglers)
