@@ -55,6 +55,7 @@
 #define RECENT_FILES_STORE "gschem-recent-files"
 #define SENSITIVITY_ERROR_LIMIT 5
 
+/* Used to reference IDS_Popup_Actions in x_menus.c */
 typedef enum {
   pop_edit_select,
   pop_add_net,
@@ -71,13 +72,16 @@ typedef enum {
   pop_edit_objects,
   pop_edit_component,
   pop_edit_pintype,
+  pop_edit_array,
+  pop_edit_break,
+  pop_edit_extend,
   pop_edit_delete,
   pop_edit_copy,
   pop_edit_mcopy,
   pop_edit_move,
   pop_edit_mirror,
   pop_edit_rotate,
-  pop_edit_extend,
+  pop_edit_snap,
   pop_down_schemat,
   pop_down_symbol,
   pop_hierarchy_up,

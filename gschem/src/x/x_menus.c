@@ -58,11 +58,12 @@ const char* IDS_Popup_Actions[] = {
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),
   ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG),  ACTION(VIEW_SELECTED),
   ACTION(EDIT_ATTRIB),    ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),
+  ACTION(EDIT_ARRAY),     ACTION(EDIT_BREAK),     ACTION(EDIT_EXTEND),
   ACTION(EDIT_DELETE),    ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),
   ACTION(EDIT_MOVE),      ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
-  ACTION(EDIT_EXTEND),
-  ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),    ACTION(HIERARCHY_UP),
-  ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),   ACTION(EDIT_CB_PASTE),
+  ACTION(EDIT_SNAP),      ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),
+  ACTION(HIERARCHY_UP),   ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),
+  ACTION(EDIT_CB_PASTE),
   NULL
 };
 
@@ -116,13 +117,16 @@ static PopupEntry popup_items[] = {
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
+  { N_("Array"),             x_menu_popup_execute, pop_edit_array,     1, "array",          N_("Create and array of objects") },
+  { N_("Break"),             x_menu_popup_execute, pop_edit_break,     1, "gschem-break",   N_("Break an object into seperate objects") },
+  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         N_("Project a linear objects to other objects") },
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete",     N_("Delete the current selection" )},
   { N_("Copy"),              x_menu_popup_execute, pop_edit_copy,      1, "geda-copy",      N_("Copy selection") },
   { N_("MCopy"),             x_menu_popup_execute, pop_edit_mcopy,     1, "geda-multi",     N_("Make multible copies of selection") },
   { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      N_("Move selection") },
   { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    N_("Rotate the current selection about a point") },
   { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    N_("Mirror an object about a point") },
-  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         N_("Project a linear objects to other objects") },
+  { N_("Snap"),              x_menu_popup_execute, pop_edit_snap,      1, "snap",           N_("Snap objects to the current grid") },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
