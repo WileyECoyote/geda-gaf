@@ -277,6 +277,8 @@ struct _GschemToplevel {
 
   int attribute_placement_grid;
 
+  int auto_pan;
+
   int chooser_filter;     /* retains user's file chooser filter preference */
 
   /* holds a list of attribute names displayed in the component select dialog */

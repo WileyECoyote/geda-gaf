@@ -237,6 +237,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->action_feedback_mode      = OUTLINE;
   w_current->add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
   w_current->attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
+  w_current->auto_pan                  = 1;
   w_current->chooser_filter            = 0;
   w_current->component_select_attrlist = NULL;
   w_current->continue_component_place  = 0;

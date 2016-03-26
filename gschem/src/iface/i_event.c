@@ -38,6 +38,11 @@ struct event_reg_t {
   GschemDrawEvent  handler;
 };
 
+int i_event_enter(GtkWidget *widget, GdkEventCrossing *event,
+                                     GschemToplevel   *w_current);
+int i_event_leave(GtkWidget *widget, GdkEventCrossing *event,
+                                     GschemToplevel   *w_current);
+
 static struct event_reg_t drawing_area_events[] = {
   { "expose_event",         0, 0, GSE_HANDLER( x_event_expose          )},
   { "button_press_event",   0, 0, GSE_HANDLER( x_event_button_pressed  )},
@@ -47,6 +52,12 @@ static struct event_reg_t drawing_area_events[] = {
   { "key_press_event",      0, 0, GSE_HANDLER( x_event_key             )},
   { "key_release_event",    0, 0, GSE_HANDLER( x_event_key             )},
   { "scroll_event",         0, 0, GSE_HANDLER( x_event_scroll          )},
+  {  NULL,                  0, 0, NULL }
+};
+
+static struct event_reg_t page_view_events[] = {
+  { "enter_notify_event",   0, 0, G_CALLBACK( i_event_enter )},
+  { "leave_notify_event",   0, 0, G_CALLBACK( i_event_leave )},
   {  NULL,                  0, 0, NULL }
 };
 
@@ -118,6 +129,64 @@ void i_event_unblock_handler (GschemToplevel *w_current, EventHandler id)
   }
 }
 
+/*! \brief Enter Drawing Canvas Event Handler
+ *  \par Function Description
+ *  Called when the pointers enters the DrawingArea widget. Currently,
+ *  this function serves to deactivate sources added to the main loop
+ *  using g_timeout_add by i_pan_auto, essentialy this function causes
+ *  auto-pan scrolling to stop when the pointer is brought back on the
+ *  canvas.
+ *
+ *  \sa i_event_leave i_pan_auto
+ */
+int i_event_enter(GtkWidget *widget, GdkEventCrossing *event,
+                                     GschemToplevel   *w_current)
+{
+  if (w_current->inside_action) {
+
+    switch (w_current->event_state) {
+      case NETMODE:
+      case BUSMODE:
+        w_current->doing_pan = 0;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return(0);
+}
+
+/*! \brief Leave Drawing Canvas Event Handler
+ *  \par Function Description
+ *  Called when the pointers leaves the DrawingArea widget. This
+ *  function initiates auto-panning in side a NETMODE or BUSMODE
+ *  action by calling i_pan_auto.
+ *
+ *  \sa i_event_enter i_pan_auto
+ */
+int i_event_leave(GtkWidget *widget, GdkEventCrossing *event,
+                                     GschemToplevel   *w_current)
+{
+  if (event->mode == GDK_CROSSING_NORMAL) {
+    if (w_current->inside_action) {
+
+      switch (w_current->event_state) {
+        case NETMODE:
+        case BUSMODE:
+          i_pan_auto(w_current, event);
+          break;
+
+        default:
+          break;
+      }
+    }
+  }
+  return(0);
+}
+
+
 /*! \brief Setup X-Events Event Handlers
  *  \par Function Description
  *   This function configures events for the Drawing Area and connects
@@ -134,8 +203,10 @@ void i_event_setup_handlers (GschemToplevel *w_current)
   gtk_widget_set_events (DrawingArea,
                          GDK_BUTTON_PRESS_MASK        |
                          GDK_BUTTON_RELEASE_MASK      |
+                         GDK_ENTER_NOTIFY_MASK        |
                          GDK_EXPOSURE_MASK            |
                          GDK_KEY_PRESS_MASK           |
+                         GDK_LEAVE_NOTIFY_MASK        |
                          GDK_POINTER_MOTION_MASK      |
                          GDK_SCROLL_MASK              |
                          GDK_VISIBILITY_NOTIFY_MASK);
@@ -145,10 +216,14 @@ void i_event_setup_handlers (GschemToplevel *w_current)
                                  G_CALLBACK(tmp->handler), w_current);
   }
 
+  for (tmp = page_view_events; tmp->detailed_signal != NULL; tmp++) {
+    tmp->hid = g_signal_connect (DrawingArea, tmp->detailed_signal,
+                                 G_CALLBACK(tmp->handler), w_current);
+  }
+
   x_dnd_setup_event_handlers(w_current);
   x_event_governor(w_current);
 }
-
 
 /* ----------------------- Setup Adder Event Handlers ---------------------- */
 

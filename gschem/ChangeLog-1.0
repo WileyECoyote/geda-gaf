@@ -1,3 +1,29 @@
+2016-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Program Enhancement: New feature - Auto Panning while Creating Nets
+
+    * include/gschem_idefines.h: Add define AUTO_PAN_INTERVAL.
+
+    * include/gschem_toplevel.h: Add integer member auto_pan.
+
+    * include/prototype.h: Declare function i_pan_auto.
+
+    * src/base/gschem_toplevel.c: Initialize auto_pan to TRUE.
+
+    * src/iface/i_event.c: Add structure page_view_events and functions
+      i_event_enter and i_event_leave. Setup event handlers in function
+      i_event_setup_handlers.
+
+    * src/iface/i_pan_world.c: Add functions; i_pan_auto_down, i_pan_auto_left,
+      i_pan_auto_right, i_pan_auto_up and i_pan_auto to handler automatic
+      scrolling/panning of the drawing area based on leave_notify_events. Is
+      basic be seems to work fairly well, not annoying like in some other EDA
+      programs - more famous last words? Will need to add RC and menu toggler
+      as this seems to be the appropriate thing to do.
+
+    * src/x/x_dnd.c: No need to call gtk_widget_add_events since the widget is
+      now set to receive the enter and leave events in i_event_setup_handlers.
+
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Set-reset icons for "attributes-detach" and

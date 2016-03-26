@@ -33,6 +33,112 @@
 #include <math.h>
 #include <geda_debug.h>
 
+/*! \brief Auto Pan Scroll Down Source Function
+ *  \par Function Description
+ *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
+ *   view port downwards, until doing_pan is FALSE. Calls i_pan_world_
+ *   mouse with x = 0, y = - scrollpan_steps.
+ *
+ *  \param [in] user_data  pointer to GschemToplevel data structure.
+ */
+static bool i_pan_auto_down(void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+
+  if (w_current->doing_pan) {
+    i_pan_world_mouse(w_current, 0, - w_current->scrollpan_steps);
+  }
+  return (w_current->doing_pan != 0);
+}
+
+/*! \brief Auto Pan Scroll Left Source Function
+ *  \par Function Description
+ *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
+ *   view port westwards, until doing_pan is FALSE. Calls i_pan_world_
+ *   mouse with x = + scrollpan_steps, y = 0.
+ *
+ *  \param [in] user_data  pointer to GschemToplevel data structure.
+ */
+static bool i_pan_auto_left(void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+
+  if (w_current->doing_pan) {
+    i_pan_world_mouse(w_current, w_current->scrollpan_steps, 0);
+  }
+  return (w_current->doing_pan != 0);
+}
+
+/*! \brief Auto Pan Scroll Right Source Function
+ *  \par Function Description
+ *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
+ *   view port eastwards, until doing_pan is FALSE. Calls i_pan_world_
+ *   mouse with x = - scrollpan_steps, y = 0.
+ *
+ *  \param [in] user_data  pointer to GschemToplevel data structure.
+ */
+static bool i_pan_auto_right(void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+
+  if (w_current->doing_pan) {
+    i_pan_world_mouse(w_current, - w_current->scrollpan_steps, 0);
+  }
+  return (w_current->doing_pan != 0);
+}
+
+/*! \brief Auto Pan Scroll Up Source Function
+ *  \par Function Description
+ *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
+ *   view port upwards, until doing_pan is FALSE. Calls i_pan_world_
+ *   mouse with x = 0, y = +scrollpan_steps.
+ *
+ *  \param [in] user_data  pointer to GschemToplevel data structure.
+ */
+static bool i_pan_auto_up(void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+
+  if (w_current->doing_pan) {
+    i_pan_world_mouse(w_current, 0, w_current->scrollpan_steps);
+  }
+  return (w_current->doing_pan != 0);
+}
+
+/*! \brief Auto Pan On Leave Canvas Event Handler
+ *  \par Function Description
+ *   Determines which side of the canvas the pointer exited and
+ *   adds a time-out source function to pan/scroll in the same
+ *   direction at #AUTO_PAN_INTERVAL intervals.
+ *
+ *  \param [in] w_current  pointer to GschemToplevel data structure.
+ *  \param [in] event      Structure describing the crossing event.
+ *
+ *  \sa i_event_leave
+ */
+void i_pan_auto(GschemToplevel *w_current, GdkEventCrossing *event)
+{
+  if (w_current->auto_pan) {
+
+    if (!((int) event->x - w_current->screen_width) ) {
+      w_current->doing_pan = 1;
+      g_timeout_add(AUTO_PAN_INTERVAL, i_pan_auto_right, w_current);
+    }
+    else if (!((int) event->y - w_current->screen_height) ) {
+      w_current->doing_pan = 1;
+      g_timeout_add(AUTO_PAN_INTERVAL, i_pan_auto_down, w_current);
+    }
+    else if (!((int) event->y + 1) ) {
+      w_current->doing_pan = 1;
+      g_timeout_add(AUTO_PAN_INTERVAL, i_pan_auto_up, w_current);
+    }
+    else if (!((int) event->x + 1) ) {
+      w_current->doing_pan = 1;
+      g_timeout_add(AUTO_PAN_INTERVAL, i_pan_auto_left, w_current);
+    }
+  }
+}
+
 /*! \brief Set Cursor/Pointer Position
  *  \par Function Description
  *   This function sets the pointer position to relative

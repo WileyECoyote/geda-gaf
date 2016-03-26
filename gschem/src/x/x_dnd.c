@@ -1102,7 +1102,7 @@ void x_dnd_setup_event_handlers (GschemToplevel *w_current)
 
   struct event_reg_t *tmp;
 
-  gtk_widget_add_events(DrawingArea, GDK_LEAVE_NOTIFY_MASK );
+  //gtk_widget_add_events(DrawingArea, GDK_LEAVE_NOTIFY_MASK );
                                    //GDK_ENTER_NOTIFY_MASK );
 
   /* Make the Drawing Area a DnD destination. */
