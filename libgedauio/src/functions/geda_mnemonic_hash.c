@@ -74,7 +74,7 @@ geda_mnemonic_hash_add (GedaMnemonicHash *mnemonic_hash,
                         unsigned int      keyval,
                         GtkWidget        *target)
 {
-  void *key = (void*)(unsigned int) (keyval);
+  void *key = (void*)(DWORD) (keyval);
   GSList *targets, *new_targets;
 
   g_return_if_fail (GTK_IS_WIDGET (target));
@@ -95,7 +95,7 @@ geda_mnemonic_hash_remove (GedaMnemonicHash *mnemonic_hash,
                            unsigned int      keyval,
                            GtkWidget        *target)
 {
-  void *key = (void*)(unsigned int) (keyval);
+  void *key = (void*)(DWORD) (keyval);
   GSList *targets, *new_targets;
 
   g_return_if_fail (GTK_IS_WIDGET (target));
@@ -126,7 +126,7 @@ geda_mnemonic_hash_activate (GedaMnemonicHash *mnemonic_hash,
   bool overloaded;
 
   targets = g_hash_table_lookup (mnemonic_hash->hash,
-                                 (void*)(unsigned int) (keyval));
+                                 (void*)(DWORD) (keyval));
   if (!targets)
     return FALSE;
 
@@ -160,7 +160,7 @@ geda_mnemonic_hash_activate (GedaMnemonicHash *mnemonic_hash,
     targets = g_slist_remove (targets, chosen_widget);
     targets = g_slist_append (targets, chosen_widget);
     g_hash_table_insert (mnemonic_hash->hash,
-                         (void*)(unsigned int)keyval,
+                         (void*)(DWORD)keyval,
                          targets);
 
     return gtk_widget_mnemonic_activate (chosen_widget, overloaded);
@@ -172,7 +172,7 @@ GSList *
 geda_mnemonic_hash_lookup (GedaMnemonicHash *mnemonic_hash,
                            unsigned int      keyval)
 {
-  return g_hash_table_lookup (mnemonic_hash->hash, (void*)(unsigned int)keyval);
+  return g_hash_table_lookup (mnemonic_hash->hash, (void*)(DWORD)keyval);
 }
 
 static void
