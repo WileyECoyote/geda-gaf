@@ -2507,9 +2507,9 @@ METHOD(refresh_attribs)
  *  \par Method Description
  *    This function provides a method to obtain a list of all of objects
  *  connected with a given PyGedaObject or GedaCapsule. The returned list
- *  contains is GedaCapsule and is guaranteed to contain at least one
- *  object -- the object used as an argument, unless the optional filter
- *  argument excludes the object used as an argument.
+ *  contains GedaCapsules and is guaranteed to contain at least one object
+ *  -- the object used as an argument, unless the optional filter argument
+ *  excludes the object used as an argument.
  *
  *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
@@ -2527,7 +2527,7 @@ METHOD(refresh_attribs)
  *      for net in U10_SCI:
  *          set_attrib(net, "netname", "U10_SCI")
  *
- *  note: In in example 2, the pin does not get a netname attribute
+ *  note: In example 2, the pin does not get a netname attribute
  *        attached to the pin because pins were excluded by the NET
  *        filter.
  */
