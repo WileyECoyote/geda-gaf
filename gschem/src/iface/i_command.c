@@ -4203,28 +4203,6 @@ COMMAND (do_cycle_snap)
   i_status_update_grid_info (w_current); /* update on screen grid status */
 }
 
-/*! @brief Toggle Action Feedback Mode in i_command_Option_Actions */
-COMMAND (do_toggle_feedback)
-{
-  NOT_NULL(w_current);
-  BEGIN_NO_ARGUMENT(do_toggle_feedback);
-
-  if (w_current->action_feedback_mode == BOUNDINGBOX) {
-    w_current->action_feedback_mode = OUTLINE;
-    q_log_message(_("Action feedback mode set to OUTLINE\n"));
-  }
-  else {
-    w_current->action_feedback_mode = BOUNDINGBOX;
-    q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
-  }
-
-  if (w_current->inside_action && Current_PlaceList != NULL) {
-    o_place_invalidate_rubber (w_current, FALSE);
-  }
-
-  x_menu_set_togglable(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
-}
-
 /*! \brief Toggle Rubberband Mode in i_command_Option_Actions
  *  \par Function Description
  *  This is a callback function for the Toggle Rubberband action API.
@@ -4284,8 +4262,49 @@ COMMAND (do_toggle_dragcanmove)
   x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
 }
 
+/*! \brief Toggle Action Feedback Mode in i_command_Option_Actions */
+COMMAND (do_toggle_feedback)
+{
+  NOT_NULL(w_current);
+  BEGIN_NO_ARGUMENT(do_toggle_feedback);
 
-/*! @brief Launch the Show Text Dialog */
+  if (w_current->action_feedback_mode == BOUNDINGBOX) {
+    w_current->action_feedback_mode = OUTLINE;
+    q_log_message(_("Action feedback mode set to OUTLINE\n"));
+  }
+  else {
+    w_current->action_feedback_mode = BOUNDINGBOX;
+    q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
+  }
+
+  if (w_current->inside_action && Current_PlaceList != NULL) {
+    o_place_invalidate_rubber (w_current, FALSE);
+  }
+
+  x_menu_set_togglable(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
+}
+
+/*! \brief Toggle Auto-Pan Mode in i_command_Option_Actions
+ *  \par Function Description
+ *  This is a callback function for the Toggle options-auto-pan action API.
+ */
+COMMAND (do_toggle_auto_pan)
+{
+  NOT_NULL(w_current);
+  BEGIN_NO_ARGUMENT(do_toggle_auto_pan);
+  const char *OnOff;
+  if (w_current->auto_pan) {
+    w_current->auto_pan = 0;
+    OnOff =_("Off");
+  } else {
+    w_current->auto_pan = 1;
+    OnOff =_("On");
+  }
+  q_log_message(_("Auto-Pan is now %s\n"), OnOff);
+  x_menu_set_togglable(w_current, AUTO_PAN_TOGGLE, w_current->auto_pan);
+}
+
+/*! \brief Launch the Show Text Dialog */
 COMMAND (do_show_text_size)
 {
   NOT_NULL(w_current);
@@ -4296,7 +4315,6 @@ COMMAND (do_show_text_size)
 }
 
 /*! \brief Preferences Dialog Action Responder API Function
- *
  *  @brief i_cmd_do_show_settings in i_command_Option_Actions
  *
  *  \par Function Description
