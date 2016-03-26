@@ -2,13 +2,30 @@
 
     * Program Enhancement: New feature - Auto Panning while Creating Nets
 
-    * include/gschem_idefines.h: Add define AUTO_PAN_INTERVAL.
+    * etc/system-gschemrc.scm: Add keywords auto_pan and auto_pan_step.
 
-    * include/gschem_toplevel.h: Add integer member auto_pan.
+    * include/gschem_idefines.h: Add define AUTO_PAN_INTERVAL, DEFAULT_AUTO_PAN,
+      MIN_AUTO_PAN_STEP, MAX_AUTO_PAN_STEP, and DEFAULT_AUTO_PAN_STEP.
 
-    * include/prototype.h: Declare function i_pan_auto.
+    * include/gschem_toplevel.h: Add integer members auto_pan and auto_pan_step.
 
-    * src/base/gschem_toplevel.c: Initialize auto_pan to TRUE.
+    * include/i_command.h: Add members auto_pan and auto_pan_step.
+
+    * include/i_vars.h: Add default_auto_pan and default_auto_pan_step.
+
+    * include/keywords.h: Declare keyword writers auto_pan and auto_pan_step.
+
+    * include/prototype.h: Declare function i_pan_auto, g_rc_auto_pan and
+      g_rc_auto_pan_step.
+
+    * src/base/gschem_toplevel.c: Initialize auto_pan and auto_pan_step to
+      "no rc" defaults.
+
+    * src/guile/g_rc.c: Add function g_rc_auto_pan and g_rc_auto_pan_step.
+
+    * src/guile/g_register.c: Register subroutines auto-pan and auto-pan-step.
+
+    * src/iface/i_command.c: Add i_cmd_auto_pan and i_cmd_auto_pan_step.
 
     * src/iface/i_event.c: Add structure page_view_events and functions
       i_event_enter and i_event_leave. Setup event handlers in function
@@ -21,8 +38,13 @@
       programs - more famous last words? Will need to add RC and menu toggler
       as this seems to be the appropriate thing to do.
 
+    * src/iface/i_vars.c: Initialize auto_pan and auto_pan_step with default_
+      auto_pan and default_auto_pan_step respectively.
+
     * src/x/x_dnd.c: No need to call gtk_widget_add_events since the widget is
       now set to receive the enter and leave events in i_event_setup_handlers.
+
+    * src/x/x_settings.c: Add keyword writers auto_pan and auto_pan_step.
 
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 

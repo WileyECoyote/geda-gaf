@@ -37,7 +37,7 @@
  *  \par Function Description
  *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
  *   view port downwards, until doing_pan is FALSE. Calls i_pan_world_
- *   mouse with x = 0, y = - scrollpan_steps.
+ *   mouse with x = 0, y = - auto_pan_step.
  *
  *  \param [in] user_data  pointer to GschemToplevel data structure.
  */
@@ -46,7 +46,7 @@ static bool i_pan_auto_down(void *user_data)
   GschemToplevel *w_current = (GschemToplevel*)user_data;
 
   if (w_current->doing_pan) {
-    i_pan_world_mouse(w_current, 0, - w_current->scrollpan_steps);
+    i_pan_world_mouse(w_current, 0, - w_current->auto_pan_step);
   }
   return (w_current->doing_pan != 0);
 }
@@ -55,7 +55,7 @@ static bool i_pan_auto_down(void *user_data)
  *  \par Function Description
  *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
  *   view port westwards, until doing_pan is FALSE. Calls i_pan_world_
- *   mouse with x = + scrollpan_steps, y = 0.
+ *   mouse with x = + auto_pan_step, y = 0.
  *
  *  \param [in] user_data  pointer to GschemToplevel data structure.
  */
@@ -64,7 +64,7 @@ static bool i_pan_auto_left(void *user_data)
   GschemToplevel *w_current = (GschemToplevel*)user_data;
 
   if (w_current->doing_pan) {
-    i_pan_world_mouse(w_current, w_current->scrollpan_steps, 0);
+    i_pan_world_mouse(w_current, w_current->auto_pan_step, 0);
   }
   return (w_current->doing_pan != 0);
 }
@@ -73,7 +73,7 @@ static bool i_pan_auto_left(void *user_data)
  *  \par Function Description
  *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
  *   view port eastwards, until doing_pan is FALSE. Calls i_pan_world_
- *   mouse with x = - scrollpan_steps, y = 0.
+ *   mouse with x = - auto_pan_step, y = 0.
  *
  *  \param [in] user_data  pointer to GschemToplevel data structure.
  */
@@ -82,7 +82,7 @@ static bool i_pan_auto_right(void *user_data)
   GschemToplevel *w_current = (GschemToplevel*)user_data;
 
   if (w_current->doing_pan) {
-    i_pan_world_mouse(w_current, - w_current->scrollpan_steps, 0);
+    i_pan_world_mouse(w_current, - w_current->auto_pan_step, 0);
   }
   return (w_current->doing_pan != 0);
 }
@@ -91,7 +91,7 @@ static bool i_pan_auto_right(void *user_data)
  *  \par Function Description
  *   Called every #AUTO_PAN_INTERVAL milliseconds to scroll/pan the
  *   view port upwards, until doing_pan is FALSE. Calls i_pan_world_
- *   mouse with x = 0, y = +scrollpan_steps.
+ *   mouse with x = 0, y = +auto_pan_step.
  *
  *  \param [in] user_data  pointer to GschemToplevel data structure.
  */
@@ -100,7 +100,7 @@ static bool i_pan_auto_up(void *user_data)
   GschemToplevel *w_current = (GschemToplevel*)user_data;
 
   if (w_current->doing_pan) {
-    i_pan_world_mouse(w_current, 0, w_current->scrollpan_steps);
+    i_pan_world_mouse(w_current, 0, w_current->auto_pan_step);
   }
   return (w_current->doing_pan != 0);
 }

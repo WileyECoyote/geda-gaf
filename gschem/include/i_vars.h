@@ -54,8 +54,10 @@ extern int default_console_window_type;
 /* Miscellaneous - in  alphabetical order */
 extern int default_action_feedback_mode;
 extern int default_add_attribute_offset;
-extern int default_auto_load_last;
 extern int default_attribute_placement_grid;
+extern int default_auto_load_last;
+extern int default_auto_pan;
+extern int default_auto_pan_step;
 extern int default_auto_save_interval;
 extern int default_chooser_filter;
 extern GList *default_component_select_attrlist;

@@ -56,8 +56,8 @@ static struct event_reg_t drawing_area_events[] = {
 };
 
 static struct event_reg_t page_view_events[] = {
-  { "enter_notify_event",   0, 0, G_CALLBACK( i_event_enter )},
-  { "leave_notify_event",   0, 0, G_CALLBACK( i_event_leave )},
+  { "enter_notify_event",   0, 0, GSE_HANDLER( i_event_enter )},
+  { "leave_notify_event",   0, 0, GSE_HANDLER( i_event_leave )},
   {  NULL,                  0, 0, NULL }
 };
 

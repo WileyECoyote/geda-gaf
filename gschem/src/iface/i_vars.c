@@ -105,9 +105,12 @@ int     default_console_window_type       = RC_NIL;
 /* Miscellaneous - in  alphabetical order */
 int     default_action_feedback_mode      = OUTLINE;
 int     default_add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
-int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
-int     default_auto_save_interval        = RC_NIL;
 int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
+int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
+int     default_auto_pan                  = DEFAULT_AUTO_PAN;
+int     default_auto_pan_step             = DEFAULT_AUTO_PAN_STEP;
+int     default_auto_save_interval        = RC_NIL;
+
 int     default_chooser_filter            = RC_NIL;
 GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = RC_NIL;
@@ -655,9 +658,11 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->add_attribute_offset      = default_add_attribute_offset;
   toplevel->attribute_offset           = default_add_attribute_offset;
 
-  i_set_rc (&toplevel->auto_save_interval, default_auto_save_interval);
-
   w_current->attribute_placement_grid  = default_attribute_placement_grid;
+  w_current->auto_pan                  = default_auto_pan;
+  w_current->auto_pan_step             = default_auto_pan_step;
+
+  i_set_rc (&toplevel->auto_save_interval, default_auto_save_interval);
 
   i_set_rc (&w_current->chooser_filter,  default_chooser_filter);
 

@@ -67,6 +67,9 @@
  * WEH | 06/28/15 | Add saving Log & Console Related to key file,
  *     |          | (previously the variables were not  being saved).
  * ---------------|--------------------------------------------------
+ * WEH | 06/28/15 | Add keyword writers auto_pan and auto_pan_step
+ *                | (to support new keywors).
+ * ---------------|--------------------------------------------------
 */
 
 /*!
@@ -879,19 +882,29 @@ KEYWORD (add_attribute_offset) {
   RC_INTEGER_WOUT (add_attribute_offset);
 }
 
+/** @brief function do_kw_attribute_placement_grid in Settings-Keyword-Handlers */
+KEYWORD (attribute_placement_grid) {
+  RC_INTEGER_WOUT (attribute_placement_grid);
+}
+
 /** @brief function do_kw_auto_load_last in Settings-Keyword-Handlers */
 KEYWORD (auto_load_last) {
   RC_BOOLEAN_GOUT (auto_load_last);
 }
 
+/** @brief function do_kw_auto_pan in Settings-Keyword-Handlers */
+KEYWORD (auto_pan) {
+  RC_BOOLEAN_WOUT (auto_pan);
+}
+
+/** @brief function do_kw_auto_pan_step in Settings-Keyword-Handlers */
+KEYWORD (auto_pan_step) {
+  RC_INTEGER_WOUT (auto_pan_step);
+}
+
 /** @brief function do_kw_auto_save_interval in Settings-Keyword-Handlers */
 KEYWORD (auto_save_interval) {
   RC_INTEGER_TOUT (auto_save_interval);
-}
-
-/** @brief function do_kw_attribute_placement_grid in Settings-Keyword-Handlers */
-KEYWORD (attribute_placement_grid) {
-  RC_INTEGER_WOUT (attribute_placement_grid);
 }
 
 /** @brief function do_kw_component_dialog_attributes in Settings-Keyword-Handlers */

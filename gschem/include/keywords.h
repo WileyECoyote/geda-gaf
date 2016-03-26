@@ -43,7 +43,9 @@
  * ------------------------------------------------------------------
  * WEH | 01/06/16 |  Setup remaining Net Ripper variables (to complete
  *     |          |  the integration of the Ripper settings on the
- *     |          |  configure settings dailog.
+ *     |          |  configure settings dailog).
+ * WEH | 03/26/16 |  Add auto_pan and auto_pan_step (to support new
+ *                |  keywords).
  * ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
@@ -107,9 +109,11 @@
      KEYWORD ( console_window_type )
      KEYWORD ( action_feedback_mode )
      KEYWORD ( add_attribute_offset )
-     KEYWORD ( auto_load_last )
-     KEYWORD ( auto_save_interval )
      KEYWORD ( attribute_placement_grid )
+     KEYWORD ( auto_load_last )
+     KEYWORD ( auto_pan )
+     KEYWORD ( auto_pan_step )
+     KEYWORD ( auto_save_interval )
      KEYWORD ( component_dialog_attributes )
      KEYWORD ( continue_component_place )
      KEYWORD ( embed_components )
@@ -215,9 +219,11 @@ enum {
      KEYWORD(console-window-type,          0, 0, console_window_type)
      KEYWORD(action-feedback-mode,         0, 0, action_feedback_mode)
      KEYWORD(add-attribute-offset,         0, 0, add_attribute_offset)
-     KEYWORD(auto-load-last,               0, 0, auto_load_last)
-     KEYWORD(auto-save-interval,           0, 0, auto_save_interval)
      KEYWORD(attribute-placement-grid,     0, 0, attribute_placement_grid)
+     KEYWORD(auto-load-last,               0, 0, auto_load_last)
+     KEYWORD(auto-pan,                     0, 0, auto_pan)
+     KEYWORD(auto-pan-step,                0, 0, auto_pan_step)
+     KEYWORD(auto-save-interval,           0, 0, auto_save_interval)
      /* component-groups here */
      KEYWORD(component-dialog-attributes,  1, 0, component_dialog_attributes)
      KEYWORD(continue-component-place,     0, 0, continue_component_place)

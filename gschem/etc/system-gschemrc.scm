@@ -451,17 +451,32 @@
 ; If these four conditions are not met, then this offset is not added.
 (add-attribute-offset 50)
 
+; Attribute autoplacement grid
+(define autoplace-attributes-grid 50)
+
 ; auto-load-last string
 ;
-; Determines if the newly placed components are embedded in the schematic
-; or if only the filename is specified and the component is searched for
-; instead.  If it is enabled, then all new components will be embedded
-; othewise they are not embedded. This can be controlled on the fly during
-; runtime with the "Embed Component" checkbox on the select component dialog
-; box
+; Determines if the last document is automatially loaded if no document is
+; specified when gschem is started.
 ;
 (auto-load-last "enabled")
 ;(auto-load-last "disabled")
+
+; auto-load-last string
+;
+; Determines if the auto-panning is performed while drawing nets and buses.
+;
+(auto-pan "enabled")
+;(auto-pan "disabled")
+
+; auto-pan-step integer
+;
+; The number of pixels per pan events during auto-pan events.
+; Larger numbers mean more scroll step.
+;
+;;(auto-pan-step 0)
+;;(auto-pan-step  8)
+(auto-pan-step 16)
 
 ; autosave interval
 ;
@@ -470,9 +485,6 @@
 ; and there were more than "interval" seconds from the last autosave.
 ; Autosaving will not be allowed if setting it to zero.
 ;(auto-save-interval 180)
-
-; Attribute autoplacement grid
-(define autoplace-attributes-grid 50)
 
 ; component-dialog-attributes stringlist
 ;

@@ -56,6 +56,9 @@
  * WEH | 11/18/15 |  Revised error messages in check_and_convert_scm_integer
  *                |  because non-RC Scheme code can execute routines in this
  *                |  module and the message were misleading.
+ * ------------------------------------------------------------------
+ * WEH | 03/26/16 |  Move g_rc_attribute_placement_grid to alphabetical position,
+ *                |  add g_rc_auto_pan and g_rc_auto_pan_step.
  */
 
 #ifdef HAVE_LOCALE_H
@@ -968,6 +971,25 @@ SCM g_rc_map_keys(SCM keys, SCM action)
 
 }
 
+/*! \brief This function processes the autoplace-attributes-grid RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the autoplacement-grid  RC entry.
+ *       The keyword is used to set the value of autoplace-attributes-grid.
+ */
+SCM g_rc_attribute_placement_grid(SCM offset)
+{
+  default_attribute_placement_grid = ICHECK( offset,
+                                     MIN_AUTOPLACE_GRID,
+                                     MAX_AUTOPLACE_GRID,
+                                     DEFAULT_ATTRIB_PLACE_GRID,
+                                     "attribute-placement-grid");
+
+   x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid );
+
+  return SCM_BOOL_T;
+}
+
 /*! \brief This function processes the auto-load-last RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -983,6 +1005,40 @@ SCM g_rc_auto_load_last(SCM mode)
   RETURN_G_RC_MODE("auto-load-last",
             default_auto_load_last, mode_table);
 }
+
+/*! \brief This function processes the auto-pan RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the auto-pan RC entry.
+ */
+SCM g_rc_auto_pan(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("auto-pan",
+            default_auto_pan, mode_table);
+}
+
+/*! \brief This function processes the auto-pan-step RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the auto-pan-step RC entry.
+ *
+ */
+SCM g_rc_auto_pan_step(SCM step)
+{
+  default_auto_pan_step = ICHECK( step,
+                                  MIN_AUTOPLACE_GRID,
+                                  MAX_AUTOPLACE_GRID,
+                                  DEFAULT_ATTRIB_PLACE_GRID,
+                                  "auto-pan-step");
+
+  return SCM_BOOL_T;
+}
+
 /*! \brief This function processes the auto-save-interval RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1021,24 +1077,6 @@ SCM g_rc_attribute_name(SCM scm_path)
 
   free(path);
   return ret;
-}
-/*! \brief This function processes the autoplace-attributes-grid RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the autoplacement-grid  RC entry.
- *       The keyword is used to set the value of autoplace-attributes-grid.
- */
-SCM g_rc_attribute_placement_grid(SCM offset)
-{
-  default_attribute_placement_grid = ICHECK( offset,
-                                     MIN_AUTOPLACE_GRID,
-                                     MAX_AUTOPLACE_GRID,
-                                     DEFAULT_ATTRIB_PLACE_GRID,
-                                     "attribute-placement-grid");
-
-   x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid );
-
-  return SCM_BOOL_T;
 }
 
 /*! \brief This function processes the component dialog RC entry.
@@ -1952,7 +1990,6 @@ SCM g_rc_scrollbars_visible(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollpan_steps RC entry.
- * Depreciated!
  */
 SCM g_rc_scrollpan_steps(SCM steps)
 {

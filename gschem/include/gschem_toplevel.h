@@ -277,7 +277,8 @@ struct _GschemToplevel {
 
   int attribute_placement_grid;
 
-  int auto_pan;
+  int auto_pan;           /* controls if auto-pan is enabled */
+  int auto_pan_step;      /* Number of pixels to scroll per auto-pan event */
 
   int chooser_filter;     /* retains user's file chooser filter preference */
 

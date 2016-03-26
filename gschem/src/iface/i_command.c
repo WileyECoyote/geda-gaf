@@ -4548,6 +4548,16 @@ COMMAND (auto_load_last) {
   SHOW_VARIABLE(auto_load_last, G);
 }
 
+/** @brief i_cmd_auto_pan in i_command_Variable_Handlers */
+COMMAND (auto_pan) {
+  SHOW_VARIABLE(auto_pan, W);
+}
+
+/** @brief i_cmd_auto_pan_step in i_command_Variable_Handlers */
+COMMAND (auto_pan_step) {
+  SHOW_VARIABLE(auto_pan_step, W);
+}
+
 /** @brief i_cmd_auto_save_interval in i_command_Variable_Handlers */
 COMMAND (auto_save_interval) {
 

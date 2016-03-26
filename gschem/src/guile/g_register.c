@@ -114,8 +114,10 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "force-boundingbox",         1, 0, 0, g_rc_force_boundingbox },
 
   { "add-attribute-offset",      1, 0, 0, g_rc_add_attribute_offset },
-  { "auto-load-last",            1, 0, 0, g_rc_auto_load_last },
   { "attribute-placement-grid",  1, 0, 0, g_rc_attribute_placement_grid },
+  { "auto-load-last",            1, 0, 0, g_rc_auto_load_last },
+  { "auto-pan",                  1, 0, 0, g_rc_auto_pan },
+  { "auto-pan-step",             1, 0, 0, g_rc_auto_pan_step },
 
   { "keyboardpan-gain",          1, 0, 0, g_rc_keyboardpan_gain },
   { "print-command",             1, 0, 0, g_rc_print_command },
