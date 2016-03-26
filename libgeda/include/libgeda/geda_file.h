@@ -1,19 +1,19 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*
- * File: geda_utility.h
+ * File: geda_file.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2016 Wiley Edward Hill
+ * Copyright (C) 2016 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This Library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -21,14 +21,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ * 02110-1301 USA <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: November, 18, 2013
+ *  Date Contributed: March, 06, 2016
  */
 /*! \file geda_file.h "libgeda/geda_file.h"
  *  \brief Libgeda macros for file modules.
- *  \todo functions names in the file subdirectories have still
+ *  \todo functions names in the file subdirectories are still
           using f_prefix
  */
 
