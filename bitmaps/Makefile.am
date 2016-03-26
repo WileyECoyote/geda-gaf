@@ -18,9 +18,11 @@ bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
 
 bitmapdata_DATA   = \
 			close_box.png                      \
-			gaf-tools.png                      \
 			gaf-add-attribute.png              \
+			gaf-demote.png                     \
+			gaf-promote.png                    \
 			gaf-see-notes.png                  \
+			gaf-tools.png                      \
 			geda-analysis.png                  \
 			geda-bus.png                       \
 			geda-arc.png                       \
@@ -43,6 +45,7 @@ bitmapdata_DATA   = \
 			geda-close-all.png                 \
 			geda-component.png                 \
 			geda-copy.png                      \
+			geda-demote.png                    \
 			geda_demote_16x16.png              \
 			geda_demote_grn_16x16.png          \
 			geda-design.png                    \
@@ -87,6 +90,7 @@ bitmapdata_DATA   = \
 			geda-plot.png                      \
 			geda-probe.png                     \
 			geda-probe2.png                    \
+			geda-promote.png                   \
 			geda-prompt.png                    \
 			geda-redo.png                      \
 			geda-rotate.png                    \

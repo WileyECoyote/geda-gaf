@@ -1946,8 +1946,13 @@
 (map-icon "geda-open-recent"           "session-save-as")
 (map-icon "gtk-properties"             "session-manage")
 
-(map-icon "gtk-go-up"                  "attributes-attach")
-(map-icon "gtk-go-down"                "attributes-detach")
+(map-icon "gaf-demote"                 "attributes-detach")
+(map-icon "gaf-promote"                "attributes-attach")
+;(map-icon "geda-demote"                "attributes-attach")
+;(map-icon "geda-promote"               "attributes-detach")
+;(map-icon "gtk-go-up"                  "attributes-attach")
+;(map-icon "gtk-go-down"                "attributes-detach")
+
 ;(map-icon "show-value"                "attributes-show-value")
 ;(map-icon "show-name"                 "attributes-show-name")
 ;(map-icon "show-both"                 "attributes-show-both")
@@ -2242,20 +2247,20 @@
 ;;
 ;;      menu item name             menu action                   menu icon name                Menu Item Tooltip
 ;;
-     `( (,(N_ "_Attach")           attributes-attach             "gtk-go-up"        ,(N_ "Attach selected attributes to symbol"))
-        (,(N_ "_Detach")           attributes-detach             "gtk-go-down"      ,(N_ "Dettach selected attributes from a symbol"))
-        (,(N_ "Show _Value")       attributes-show-value         #f                 ,(N_ "Set selected value visible"))
-        (,(N_ "Show _Name")        attributes-show-name          #f                 ,(N_ "Set selected name visible"))
-        (,(N_ "Show _Both")        attributes-show-both          #f                 ,(N_ "Set selected name and value visible"))
+     `( (,(N_ "_Attach")           attributes-attach             #f            ,(N_ "Attach selected attributes to symbol"))
+        (,(N_ "_Detach")           attributes-detach             #f            ,(N_ "Dettach selected attributes from a symbol"))
+        (,(N_ "Show _Value")       attributes-show-value         #f            ,(N_ "Set selected value visible"))
+        (,(N_ "Show _Name")        attributes-show-name          #f            ,(N_ "Set selected name visible"))
+        (,(N_ "Show _Both")        attributes-show-both          #f            ,(N_ "Set selected name and value visible"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "_Toggle Visibility")      attributes-visibility   #f                 ,(N_ "Toggle attribute visibilty"))
-        (,(N_ "_Reset Position")         attributes-home         #f                 ,(N_ "Restore attribute positions and orientation"))
+        (,(N_ "_Toggle Visibility")      attributes-visibility   #f            ,(N_ "Toggle attribute visibilty"))
+        (,(N_ "_Reset Position")         attributes-home         #f            ,(N_ "Restore attribute positions and orientation"))
 
-        (,(N_ "_Find Specific Text...")  attributes-find-text    #f                 ,(N_ "Find an attribute"))
-        (,(N_ "_Hide Specific Text...")  attributes-hide-text    #f                 ,(N_ "Hide selected attribute"))
-        (,(N_ "_Show Specific Text...")  attributes-show-text    #f                 ,(N_ "Show a specific attribute"))
+        (,(N_ "_Find Specific Text...")  attributes-find-text    #f            ,(N_ "Find an attribute"))
+        (,(N_ "_Hide Specific Text...")  attributes-hide-text    #f            ,(N_ "Hide selected attribute"))
+        (,(N_ "_Show Specific Text...")  attributes-show-text    #f            ,(N_ "Show a specific attribute"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "Attribute _Editor...")    attributes-editor       "gtk-indent"       ,(N_ "Open the Attibutes Editor Dialog"))
+        (,(N_ "Attribute _Editor...")    attributes-editor       "gtk-indent"  ,(N_ "Open the Attibutes Editor Dialog"))
       )
 )
 

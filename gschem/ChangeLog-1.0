@@ -1,5 +1,8 @@
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Set-reset icons for "attributes-detach" and
+      "attributes-attach".
+
     * src/iface/i_event.c: Revised function i_event_adder_pressed to break if
       o_net_reset returns TRUE so that NETMODE is terminated by a right-click
       if not inside and action, i.e. if no net is being drawn - A good thing
@@ -9,6 +12,9 @@
       of w_current->inside_action on entry, (may or may not be inside_action
       at exit) so that in effect if call when w_current->inside_action then
       the function return FALSE.
+
+    * src/x/x_icons.c: Add icons: "gaf-demote", "gaf-promote", "geda-demote",
+      "geda-promote" to IDS_GEDA_ICONS group.
 
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 

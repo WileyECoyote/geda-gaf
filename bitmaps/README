@@ -39,6 +39,7 @@ gaf_demote_24x24.png               Created by wileyhill@gmail.com, GPL2
 gaf_demote_26x26.png               Created by wileyhill@gmail.com, GPL2
 gaf_demote_28x28.png               Created by wileyhill@gmail.com, GPL2
 gaf_demote_32x32.png               Created by wileyhill@gmail.com, GPL2
+gaf-demote.png                     Created by wileyhill@gmail.com, GPL2
 gaf_pdf_22x22.xpm                  Created by wileyhill@gmail.com, GPL2
 gaf_pdf_24x24.xpm                  Created by wileyhill@gmail.com, GPL2
 gaf_pdf_26x26.xpm                  Created by wileyhill@gmail.com, GPL2
@@ -50,6 +51,7 @@ gaf_promote_24x24.png              Created by wileyhill@gmail.com, GPL2
 gaf_promote_26x26.png              Created by wileyhill@gmail.com, GPL2
 gaf_promote_28x28.png              Created by wileyhill@gmail.com, GPL2
 gaf_promote_32x32.png              Created by wileyhill@gmail.com, GPL2
+gaf-promote.png                    Created by wileyhill@gmail.com, GPL2
 gaf_see_notes_28x20.png            Created by wileyhill@gmail.com, GPL2
 gaf_see_notes_32x32.png            Created by wileyhill@gmail.com, GPL2
 gaf_see_notes_36x36.png            Created by wileyhill@gmail.com, GPL2
@@ -123,6 +125,7 @@ geda_demote_24x24.png              Created by wileyhill@gmail.com, GPL2
 geda_demote_26x26.png              Created by wileyhill@gmail.com, GPL2
 geda_demote_28x28.png              Created by wileyhill@gmail.com, GPL2
 geda_demote_32x32.png              Created by wileyhill@gmail.com, GPL2
+geda-demote.png                    Created by wileyhill@gmail.com, GPL2
 geda_deselect_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_deselect_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_deselect_26x26.png            Created by wileyhill@gmail.com, GPL2
@@ -350,6 +353,7 @@ geda_promote_24x24.png             Created by wileyhill@gmail.com, GPL2
 geda_promote_26x26.png             Created by wileyhill@gmail.com, GPL2
 geda_promote_28x28.png             Created by wileyhill@gmail.com, GPL2
 geda_promote_32x32.png             Created by wileyhill@gmail.com, GPL2
+geda-promote.png                   Created by wileyhill@gmail.com, GPL2
 geda-prompt.png                    Created by wileyhill@gmail.com, GPL2
 
 geda_rotate_22x22.png              Created by wileyhill@gmail.com, GPL2
