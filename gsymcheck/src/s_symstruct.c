@@ -44,7 +44,9 @@ SYMCHECK *s_symstruct_init(void)
 
   s_symcheck = (SYMCHECK*) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
 
-  return memset(s_symcheck, 0, sizeof(SYMCHECK));
+  i_vars_set_valid_attributes (memset(s_symcheck, 0, sizeof(SYMCHECK)));
+
+  return s_symcheck;
 }
 
 /*! \brief Print results stored in SYMCHECK structure
@@ -157,6 +159,8 @@ void s_symstruct_reset(SYMCHECK *s_current)
     g_list_free(s_current->error_messages);
 
     memset(s_current, 0, sizeof(SYMCHECK));
+
+    i_vars_set_valid_attributes(s_current);
   }
 }
 

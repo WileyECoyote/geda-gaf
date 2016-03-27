@@ -87,8 +87,6 @@ int s_check_all(GedaToplevel *toplevel)
     GList *iter;
     GList *pages;
 
-    i_vars_set_valid_attributes(s_current);
-
     pages = geda_toplevel_get_pages (toplevel);
 
     for (iter = pages; iter != NULL; iter = g_list_next(iter)) {

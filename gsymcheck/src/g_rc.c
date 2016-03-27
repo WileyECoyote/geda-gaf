@@ -72,7 +72,7 @@ SCM g_rc_valid_attributes(SCM stringlist)
 {
   GList *list=NULL;
   int    length, i;
-fprintf(stderr, "%s handling\n", __func__);
+
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
   length = scm_ilength(stringlist);
 
@@ -102,7 +102,7 @@ fprintf(stderr, "%s handling\n", __func__);
   scm_dynwind_end();
 
   default_valid_attributes = g_list_reverse(list);
-fprintf(stderr, "%s done <%p>\n", __func__, default_valid_attributes);
+
   return SCM_BOOL_T;
 
 }
