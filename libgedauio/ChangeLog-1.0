@@ -1,3 +1,8 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/prop-editor.c: Replace GTkComboBox and GtkComboBoxText with
+      GedaComboBox and GedaComboBoxText, respectively.
+
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_key_hash.c: Change unsigned int cast to DWORD.

@@ -34,8 +34,9 @@
 
 #include <gtk/gtk.h>
 
+#include <geda/geda.h>
 #include "prop-editor.h"
-
+#include "../include/geda_widgets.h"
 
 typedef struct
 {
@@ -415,7 +416,7 @@ bool_changed (GObject *object, GParamSpec *pspec, void *data)
 
 
 static void
-enum_modified (GtkComboBox *cb, void *data)
+enum_modified (GedaComboBox *cb, void *data)
 {
   ObjectProperty *p = data;
   int i;
@@ -423,7 +424,7 @@ enum_modified (GtkComboBox *cb, void *data)
 
   eclass = G_ENUM_CLASS (g_type_class_peek (p->spec->value_type));
 
-  i = gtk_combo_box_get_active (cb);
+  i = geda_combo_box_get_active (cb);
 
   if (is_child_property (p->spec)) {
 
@@ -441,7 +442,7 @@ enum_modified (GtkComboBox *cb, void *data)
 static void
 enum_changed (GObject *object, GParamSpec *pspec, void *data)
 {
-  GtkComboBox *cb = GTK_COMBO_BOX (data);
+  GedaComboBox *cb = GEDA_COMBO_BOX (data);
   GValue val = { 0, };
   GEnumClass *eclass;
   int i;
@@ -459,10 +460,10 @@ enum_changed (GObject *object, GParamSpec *pspec, void *data)
     ++i;
   }
 
-  if (gtk_combo_box_get_active (cb) != i) {
+  if (geda_combo_box_get_active (cb) != i) {
 
     block_controller (G_OBJECT (cb));
-    gtk_combo_box_set_active (cb, i);
+    geda_combo_box_set_active (cb, i);
     unblock_controller (G_OBJECT (cb));
   }
 
@@ -853,14 +854,14 @@ property_widget (GObject *object, GParamSpec *spec, int can_modify)
     GEnumClass *eclass;
     int j;
 
-    prop_edit = gtk_combo_box_text_new ();
+    prop_edit = geda_combo_box_text_new ();
 
     eclass = G_ENUM_CLASS (g_type_class_ref (spec->value_type));
 
     j = 0;
     while (j < eclass->n_values) {
 
-      gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (prop_edit),
+      geda_combo_box_text_append_text (GEDA_COMBO_BOX_TEXT (prop_edit),
                                       eclass->values[j].value_name);
       ++j;
     }
