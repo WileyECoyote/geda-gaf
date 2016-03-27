@@ -24,7 +24,7 @@
     * include/prototype.h: Declare function i_pan_auto, g_rc_auto_pan and
       g_rc_auto_pan_step.
 
-    * /x_menus.h: Enumerate AUTO_PAN_TOGGLE.
+    * include/x_menus.h: Enumerate AUTO_PAN_TOGGLE.
 
     * src/base/gschem_toplevel.c: Initialize auto_pan and auto_pan_step to
       "no rc" defaults.
@@ -56,6 +56,15 @@
     * src/x/x_menus.c: Set state of auto pan toggler in x_menu_set_togglable.
 
     * src/x/x_settings.c: Add keyword writers auto_pan and auto_pan_step.
+
+    * Program Enhancement: Additional Popup Menu Options
+
+    * include/x_menus.h: Add enumeration pop_edit_array, pop_edit_break, and
+      pop_edit_snap. Move pop_edit_extend before pop_edit_delete.
+
+    * src/x/x_menus.c: Add IDS_Popup_Actions structure members actions EDIT_ARRAY,
+      EDIT_BREAK, and EDIT_SNAP, move action EDIT_EXTEND before EDIT_DELETE. Add
+      popup_items; Array, Break, Snap and reposition Extend.
 
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 

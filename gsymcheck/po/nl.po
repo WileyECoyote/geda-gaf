@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-22 23:54-0500\n"
+"POT-Creation-Date: 2016-03-25 22:42-0500\n"
 "PO-Revision-Date: 2012-12-09 15:10+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gsymcheck/src/g_rc.c:52
+#: gsymcheck/src/g_rc.c:53
 #, c-format
 msgid ""
 "You are running gEDA/gaf version [%s%s.%s],\n"
@@ -31,12 +31,12 @@ msgstr ""
 "[%s]\n"
 "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
 
-#: gsymcheck/src/gsymcheck.c:114
+#: gsymcheck/src/gsymcheck.c:117
 #, c-format
 msgid "Loaded file [%s]\n"
 msgstr "Laadde bestand [%s]\n"
 
-#: gsymcheck/src/gsymcheck.c:121
+#: gsymcheck/src/gsymcheck.c:124
 #, c-format
 msgid ""
 "\n"
@@ -47,7 +47,7 @@ msgstr ""
 "FOUT! U moet tenminste een bestandsnaam specificeren\n"
 "\n"
 
-#: gsymcheck/src/parsecmd.c:68
+#: gsymcheck/src/parsecmd.c:70
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -56,6 +56,7 @@ msgid ""
 "  -q, --quiet       Quiet mode\n"
 "  -u, --suppress    Suppress \"No errors found\" when no errors\n"
 "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
 "                    Use this to get the actual symbol error messages\n"
 "\n"
 "filename1 ... filenameN are the symbols to check\n"
@@ -70,387 +71,398 @@ msgstr ""
 "bestandsnaam1 ... bestandsnaamN zijn de te controleren symbolen\n"
 "\n"
 
-#: gsymcheck/src/s_check.c:105
+#: gsymcheck/src/parsecmd.c:94
+#, c-format
+msgid ""
+"gEDA %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: gsymcheck/src/s_check.c:107
 #, fuzzy, c-format
 msgid ""
 "\n"
 "Checking: %s\n"
 msgstr "Controleer: %s\n"
 
-#: gsymcheck/src/s_check.c:120
+#: gsymcheck/src/s_check.c:122
 msgid "No errors or warnings were detected.\n"
 msgstr ""
 
-#: gsymcheck/src/s_check.c:205
+#: gsymcheck/src/s_check.c:207
 #, c-format
 msgid "File: %s\n"
 msgstr ""
 
-#: gsymcheck/src/s_check.c:214
+#: gsymcheck/src/s_check.c:216
 msgid "No warnings detected\n"
 msgstr ""
 
-#: gsymcheck/src/s_check.c:220
+#: gsymcheck/src/s_check.c:222
 #, fuzzy
 msgid "1 warning found"
 msgstr "%d waarschuwingen gevonden "
 
-#: gsymcheck/src/s_check.c:223
+#: gsymcheck/src/s_check.c:225
 #, fuzzy, c-format
 msgid "%d warnings found"
 msgstr "%d waarschuwingen gevonden "
 
-#: gsymcheck/src/s_check.c:227
+#: gsymcheck/src/s_check.c:229
 #, fuzzy
 msgid " (use -vv to view details)\n"
 msgstr "(gebruik -vv om details te zien)\n"
 
-#: gsymcheck/src/s_check.c:240
+#: gsymcheck/src/s_check.c:242
 #, fuzzy
 msgid "No errors detected\n"
 msgstr "Geen fouten gevonden\n"
 
-#: gsymcheck/src/s_check.c:252
+#: gsymcheck/src/s_check.c:254
 #, fuzzy
 msgid "1 error found"
 msgstr "Geen fouten gevonden\n"
 
-#: gsymcheck/src/s_check.c:255
+#: gsymcheck/src/s_check.c:257
 #, fuzzy, c-format
 msgid "%d errors found"
 msgstr "Geen fouten gevonden\n"
 
-#: gsymcheck/src/s_check.c:259
+#: gsymcheck/src/s_check.c:261
 #, fuzzy
 msgid " (use -v to view details)\n"
 msgstr "(gebruik -v om details te zien)\n"
 
-#: gsymcheck/src/s_check.c:445
+#: gsymcheck/src/s_check.c:419
 #, c-format
 msgid "Found forbidden %s= attribute: [%s=%s]\n"
 msgstr "Verboden %s= attribuut: [%s=%s] gevonden\n"
 
-#: gsymcheck/src/s_check.c:450
+#: gsymcheck/src/s_check.c:424
 #, c-format
 msgid "Found obsolete %s= attribute: [%s=%s]\n"
 msgstr "Overbodige %s= attribuut: [%s=%s] gevonden\n"
 
-#: gsymcheck/src/s_check.c:458
+#: gsymcheck/src/s_check.c:432
 #, c-format
 msgid "Found misplaced pin attribute: [%s=%s]\n"
 msgstr "Misplaatst pen attribuut: [%s=%s] gevonden\n"
 
-#: gsymcheck/src/s_check.c:463
+#: gsymcheck/src/s_check.c:437
 #, c-format
 msgid "Found unknown %s= attribute: [%s=%s]\n"
 msgstr "Onbekend %s= attribuut: [%s=%s] gevonden\n"
 
-#: gsymcheck/src/s_check.c:468
+#: gsymcheck/src/s_check.c:442
 #, fuzzy, c-format
 msgid "Found incorrectly attached attribute: [%s=%s]\n"
 msgstr "Verkeerd bevestigd attribuut: [%s=%s] gevonden\n"
 
-#: gsymcheck/src/s_check.c:475
+#: gsymcheck/src/s_check.c:449
 #, c-format
 msgid "Found a simple text object with only SHOW_NAME or SHOW_VALUE set [%s]\n"
 msgstr ""
 "Een eenvoudig tekst object gevonden met alleen SHOW_NAME of SHOW_VALUE "
 "ingesteld [%s]\n"
 
-#: gsymcheck/src/s_check.c:545
+#: gsymcheck/src/s_check.c:519
 #, c-format
 msgid "Found text with a '\\' in it: consider to escape it with '\\\\' [%s]\n"
 msgstr ""
 "Tekst met een '\\' gevonden: overweeg om met een '\\\\' stuurcode te "
 "ontkomen [%s]\n"
 
-#: gsymcheck/src/s_check.c:554
+#: gsymcheck/src/s_check.c:528
 #, c-format
 msgid "Found text with a trailing '': consider to escape it with '\\\\' [%s]\n"
 msgstr ""
 "Tekst met een achterblijvende '': overweeg om met een '\\\\' stuurcode te "
 "ontkomen [%s]\n"
 
-#: gsymcheck/src/s_check.c:561
+#: gsymcheck/src/s_check.c:535
 #, c-format
 msgid "Found text with unbalanced overbar markers '\\_' in it' [%s]\n"
 msgstr "Tekst met ongebalanceerde overstreep merkers '\\_' gevonden' [%s]\n"
 
-#: gsymcheck/src/s_check.c:608
+#: gsymcheck/src/s_check.c:582
 msgid "Found a connection inside a symbol\n"
 msgstr "Een verbinding binnen in een symbool gevonden\n"
 
-#: gsymcheck/src/s_check.c:664
+#: gsymcheck/src/s_check.c:638
 #, fuzzy, c-format
 msgid "Found description=%s\n"
 msgstr "device=%s gevonden\n"
 
-#: gsymcheck/src/s_check.c:671
+#: gsymcheck/src/s_check.c:645
 #, fuzzy, c-format
 msgid "Found Duplicate description=%s attributes\n"
 msgstr "pintype=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:682
+#: gsymcheck/src/s_check.c:656
 #, fuzzy
 msgid "Missing description= attribute\n"
 msgstr "Ontbrekend device= attribuut\n"
 
-#: gsymcheck/src/s_check.c:717
+#: gsymcheck/src/s_check.c:691
 #, c-format
 msgid "Found device=%s\n"
 msgstr "device=%s gevonden\n"
 
-#: gsymcheck/src/s_check.c:724
+#: gsymcheck/src/s_check.c:698
 #, fuzzy, c-format
 msgid "Found Duplicate device=%s attributes\n"
 msgstr "pintype=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:730 gsymcheck/src/s_check.c:738
+#: gsymcheck/src/s_check.c:704 gsymcheck/src/s_check.c:712
 #, fuzzy
 msgid "Found multiple device= attributes\n"
 msgstr "Meerdere pinseq=%s attributen op een pen gevonden\n"
 
-#: gsymcheck/src/s_check.c:749
+#: gsymcheck/src/s_check.c:723
 msgid "Missing device= attribute\n"
 msgstr "Ontbrekend device= attribuut\n"
 
-#: gsymcheck/src/s_check.c:760
+#: gsymcheck/src/s_check.c:734
 msgid "Found graphical symbol, device=none\n"
 msgstr "Grafisch symbool gevonden, device=none\n"
 
-#: gsymcheck/src/s_check.c:766
+#: gsymcheck/src/s_check.c:740
 msgid "Found graphical symbol, device= should be set to none\n"
 msgstr "Grafisch symbool gevonden, device= dient op none te worden ingesteld\n"
 
-#: gsymcheck/src/s_check.c:779
+#: gsymcheck/src/s_check.c:753
 msgid "Device not found in symbol filename\n"
 msgstr ""
 
-#: gsymcheck/src/s_check.c:815
+#: gsymcheck/src/s_check.c:789
 #, c-format
 msgid "Found net=%s attribute\n"
 msgstr "net=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:821 gsymcheck/src/s_check.c:826
+#: gsymcheck/src/s_check.c:795 gsymcheck/src/s_check.c:800
 #, c-format
 msgid "Bad net= attribute [net=%s]\n"
 msgstr "Slecht net= attribuut [net=%s]\n"
 
-#: gsymcheck/src/s_check.c:836
+#: gsymcheck/src/s_check.c:810
 #, c-format
 msgid "Found pin number %s in net attribute\n"
 msgstr "Pen met nummer %s gevonden in een net attribuut\n"
 
-#: gsymcheck/src/s_check.c:853
+#: gsymcheck/src/s_check.c:827
 #, c-format
 msgid "Found duplicate pin in net= attributes [%s]\n"
 msgstr "Dubbele pen in een net= attribuut gevonden [%s]\n"
 
-#: gsymcheck/src/s_check.c:878
+#: gsymcheck/src/s_check.c:855
 msgid "Found pinnumber 0 in net= attribute\n"
 msgstr "Pen met nummer 0 in net= attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:885
+#: gsymcheck/src/s_check.c:862
 #, c-format
 msgid "Found multiple pinnumber=%s attributes on one pin\n"
 msgstr "Meerdere pinnumber=%s attributen gevonden in een pen\n"
 
-#: gsymcheck/src/s_check.c:893
+#: gsymcheck/src/s_check.c:870
 msgid "Missing pinnumber= attribute\n"
 msgstr "Ontbrekend pinnumber= attribuut\n"
 
-#: gsymcheck/src/s_check.c:909
+#: gsymcheck/src/s_check.c:886
 #, c-format
 msgid "Found duplicate pinnumber=%s attribute in the symbol\n"
 msgstr "Dubbel pinnumber=%s attribuut gevonden in het symbool\n"
 
-#: gsymcheck/src/s_check.c:914
+#: gsymcheck/src/s_check.c:891
 msgid "Found pinnumber=0 attribute\n"
 msgstr "pinnumber=0 attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:933
+#: gsymcheck/src/s_check.c:910
 #, c-format
 msgid "Notice: net attribute using defined pin number [%s]\n"
 msgstr "Otice: netto-kenmerk met opgegeven pennummer [%s]\n"
 
-#: gsymcheck/src/s_check.c:946
+#: gsymcheck/src/s_check.c:923
 #, c-format
 msgid "Found %d pins inside symbol\n"
 msgstr "%d pennen gevonden in een symbool\n"
 
-#: gsymcheck/src/s_check.c:996
+#: gsymcheck/src/s_check.c:973
 msgid "Missing pinseq= attribute\n"
 msgstr "Ontbrekend pinseq= attribuut\n"
 
-#: gsymcheck/src/s_check.c:1003
+#: gsymcheck/src/s_check.c:980
 #, c-format
 msgid "Found pinseq=%s attribute\n"
 msgstr "pinseq=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1009
+#: gsymcheck/src/s_check.c:986
 msgid "Found pinseq=0 attribute\n"
 msgstr "pinseq=0 attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1015
+#: gsymcheck/src/s_check.c:992
 #, c-format
 msgid "Found multiple pinseq=%s attributes on one pin\n"
 msgstr "Meerdere pinseq=%s attributen op een pen gevonden\n"
 
-#: gsymcheck/src/s_check.c:1065
+#: gsymcheck/src/s_check.c:1043
 #, c-format
 msgid "Found duplicate pinseq=%s attribute in the symbol\n"
 msgstr "Dubbel pinseq=%s attribuut in het symbool gevonden\n"
 
-#: gsymcheck/src/s_check.c:1111
+#: gsymcheck/src/s_check.c:1089
 #, c-format
 msgid "Found pintype=%s attribute\n"
 msgstr "pintype=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1115
+#: gsymcheck/src/s_check.c:1093
 #, fuzzy, c-format
 msgid "Unknown pintype=%s attribute\n"
 msgstr "pintype=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1152
+#: gsymcheck/src/s_check.c:1130
 #, c-format
 msgid "Found offgrid pin at location (x1=%d,y1=%d)\n"
 msgstr "Pen naast het raster gevonden op locatie (x1=%d,y1=%d)\n"
 
-#: gsymcheck/src/s_check.c:1162
+#: gsymcheck/src/s_check.c:1140
 #, c-format
 msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
 msgstr "Pen naast het raster gevonden op locatie (x2=%d,y2=%d)\n"
 
-#: gsymcheck/src/s_check.c:1210
+#: gsymcheck/src/s_check.c:1186
 #, c-format
 msgid "Found numslots=%s attribute\n"
 msgstr "numslots=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1215
+#: gsymcheck/src/s_check.c:1191
 msgid "numslots set to zero, symbol does not have slots\n"
 msgstr "numslots op nul ingesteld, symbool heeft geen slots\n"
 
-#: gsymcheck/src/s_check.c:1232
+#: gsymcheck/src/s_check.c:1211
 #, fuzzy, c-format
 msgid "Found %s slotdef= attributes. Expecting %s slotdef= attributes\n"
 msgstr "%s slotdef= attributen gevonden.  Verwachtte %s slotdef= attributen\n"
 
-#: gsymcheck/src/s_check.c:1238
+#: gsymcheck/src/s_check.c:1217
 #, c-format
 msgid "Found slotdef=%s attribute\n"
 msgstr "slotdef=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1245 gsymcheck/src/s_check.c:1275
-#: gsymcheck/src/s_check.c:1285 gsymcheck/src/s_check.c:1294
+#: gsymcheck/src/s_check.c:1224 gsymcheck/src/s_check.c:1254
+#: gsymcheck/src/s_check.c:1264 gsymcheck/src/s_check.c:1273
 #, fuzzy, c-format
 msgid "Invalid slotdef=%s attributes\n"
 msgstr "slotdef=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1253
+#: gsymcheck/src/s_check.c:1232
 #, c-format
 msgid "Found a zero slot in slotdef=%s\n"
 msgstr "Een nul slot gevonden in slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1265
+#: gsymcheck/src/s_check.c:1244
 #, c-format
 msgid "Slot %s is larger then the maximum number (%s) of slots\n"
 msgstr "Slot %s is groter dan het maximum aantal (%s) slots\n"
 
-#: gsymcheck/src/s_check.c:1305
+#: gsymcheck/src/s_check.c:1284
 #, c-format
 msgid "Duplicate slot number in slotdef=%s\n"
 msgstr "Dubbel slot nummer in slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1325
+#: gsymcheck/src/s_check.c:1304
 #, c-format
 msgid "Not enough pins in slotdef=%s\n"
 msgstr "Niet genoeg pennen in slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1333
+#: gsymcheck/src/s_check.c:1312
 #, c-format
 msgid "Too many pins in slotdef=%s\n"
 msgstr "Teveel pennen in slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1343
+#: gsymcheck/src/s_check.c:1322
 #, c-format
 msgid "Found a zero pin in slotdef=%s\n"
 msgstr "Nul pen gevonden in slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1361
+#: gsymcheck/src/s_check.c:1339
 #, c-format
 msgid "Missing slotdef= (there should be %s slotdef= attributes)\n"
 msgstr "Ontbrekend slotdef= (er zouden %s slotdef= attributen moeten zijn)\n"
 
-#: gsymcheck/src/s_check.c:1380
+#: gsymcheck/src/s_check.c:1358
 msgid "Malformed slotdef= (the format is #:#,#,#,...)\n"
 msgstr "Misvormd slotdef= (het formaat is #:#,#,#,...)\n"
 
-#: gsymcheck/src/s_check.c:1425
+#: gsymcheck/src/s_check.c:1403
 #, c-format
 msgid "Found %d distinct pins in slots\n"
 msgstr "%d aparte pennen in slots gevonden\n"
 
-#: gsymcheck/src/s_check.c:1499
+#: gsymcheck/src/s_check.c:1477
 #, c-format
 msgid "Found old pin#=# attribute: %s\n"
 msgstr "Oud pin#=# attribuut gevonden: %s\n"
 
-#: gsymcheck/src/s_check.c:1567
+#: gsymcheck/src/s_check.c:1541
 #, c-format
 msgid "Found old slot#=# attribute: %s\n"
 msgstr "Oud slot#=# attribuut gevonden: %s\n"
 
-#: gsymcheck/src/s_check.c:1592
+#: gsymcheck/src/s_check.c:1566
 #, c-format
 msgid "Missing %s= attribute\n"
 msgstr "Ontbrekend %s= attribuut\n"
 
-#: gsymcheck/src/s_check.c:1599
+#: gsymcheck/src/s_check.c:1573
 #, c-format
 msgid "Found %s=%s attribute\n"
 msgstr "%s=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1609
+#: gsymcheck/src/s_check.c:1583
 #, fuzzy, c-format
 msgid "Found multiple %s=%s attributes\n"
 msgstr "Meerdere  %s=%s attributen op een pen gevonden\n"
 
-#: gsymcheck/src/s_check.c:1647
+#: gsymcheck/src/s_check.c:1621
 #, fuzzy, c-format
 msgid "Check pin number=<%s>\n"
 msgstr "Controleer: %s\n"
 
-#: gsymcheck/src/s_check.c:1654
+#: gsymcheck/src/s_check.c:1628
 #, c-format
 msgid "Check pin sequence=<%s>\n"
 msgstr ""
 
-#: gsymcheck/src/s_check.c:1666 gsymcheck/src/s_check.c:1673
+#: gsymcheck/src/s_check.c:1640 gsymcheck/src/s_check.c:1647
 #, c-format
 msgid "Found %s attribute\n"
 msgstr "%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1682
+#: gsymcheck/src/s_check.c:1656
 msgid "Missing footprint= attribute\n"
 msgstr "Ontbrekend footprint= attribuut\n"
 
-#: gsymcheck/src/s_check.c:1687
+#: gsymcheck/src/s_check.c:1661
 msgid "Multiple footprint= attributes found\n"
 msgstr "Meerdere footprint= attributen gevonden\n"
 
-#: gsymcheck/src/s_check.c:1692
+#: gsymcheck/src/s_check.c:1666
 msgid "Missing refdes= attribute\n"
 msgstr "Ontbrekend refdes= attribuut\n"
 
-#: gsymcheck/src/s_check.c:1697
+#: gsymcheck/src/s_check.c:1671
 msgid "Multiple refdes= attributes found\n"
 msgstr "Meerdere refdes= attributen gevonden\n"
 
-#: gsymcheck/src/s_check.c:1718
+#: gsymcheck/src/s_check.c:1692
 msgid "Found a net inside a symbol\n"
 msgstr "Een net binnen in een symbool gevonden\n"
 
-#: gsymcheck/src/s_check.c:1725
+#: gsymcheck/src/s_check.c:1699
 msgid "Found a bus inside a symbol\n"
 msgstr "Een bus binnen in een symbool gevonden\n"
 
