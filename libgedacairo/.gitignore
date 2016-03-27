@@ -1,10 +1,5 @@
 Makefile
 Makefile.in
 TAGS
-*~
-*#
-*.bak
-*.swp
-*-swp
 ChangeLog
 libgedacairo.pc

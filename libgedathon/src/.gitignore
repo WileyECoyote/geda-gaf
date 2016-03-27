@@ -3,11 +3,6 @@ Makefile.in
 *.la
 *.lo
 *.o
-*.x
-*~
-*#
-*.bak
-*.swp
-*-swp
+
 
 

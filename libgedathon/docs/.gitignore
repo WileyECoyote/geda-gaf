@@ -1,11 +1,8 @@
-Makefile
 Makefile.in
-*~
+Makefile
+latex
+html
 *.1
-*.bak
-*.bak
-*.txt
-TAGS
 geda-snap-grid.html
 gsym-attribute.html
 gsym-set-font-size.html

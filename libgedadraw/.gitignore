@@ -1,11 +1,6 @@
 Makefile
 Makefile.in
 TAGS
-*~
-*#
-*.txt
-*.bak
 ChangeLog
-geda.pc
 libgedadraw.pc
 

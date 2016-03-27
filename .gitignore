@@ -19,9 +19,11 @@ version.h
 INSTALL
 autoscan.log
 configure.scan
+*.bak
 *.log
 *.swp
 *-swp
 *~
+*#
 .deps/
 .libs/

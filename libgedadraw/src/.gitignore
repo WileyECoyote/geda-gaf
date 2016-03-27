@@ -3,8 +3,4 @@ Makefile.in
 *.la
 *.lo
 *.o
-*.x
-*~
-*#
-*.swp
-*-swp
+

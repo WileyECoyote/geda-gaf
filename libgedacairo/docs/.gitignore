@@ -1,7 +1,6 @@
-Makefile
 Makefile.in
-*~
-*.bak
-*.bak
-*.txt
-TAGS
+Makefile
+latex
+html
+libgedacairo.1
+libgedacairo.html
