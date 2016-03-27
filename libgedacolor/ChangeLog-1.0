@@ -1,3 +1,18 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: rm redundant inclusion in libgedacolor-man-1.html
+      libgedacolor-man-1.tex in EXTRA_DIST.
+
+    * docs/libgedacolor-man-1.html: Built to include in Doxygen but added to
+      EXTRA_DIST because some may not have the capability to build but
+      could otherwise compile Doxygen documentation.
+
+    * docs/libgedacolor-man-1.tex: Built to include in Doxygen but added
+      to EXTRA_DIST because some may not have the capability to build but
+      could otherwise compile Doxygen documentation.
+
+    * tests/Makefile.am: Add GTK_CFLAGS in order to include GDK headers.
+
 2016-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x11/color_x11.c: Use simpler more efficient scheme, only allocate

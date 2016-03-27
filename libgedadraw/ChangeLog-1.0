@@ -1,3 +1,8 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedadraw-main.txt: No longer ignored by git, required for
+      Doxygen builds but is not built. 
+
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/x11/geda_x11.cpp: Include config.h, this changes the offsets in

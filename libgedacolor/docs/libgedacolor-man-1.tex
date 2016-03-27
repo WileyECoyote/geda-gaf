@@ -1,0 +1,218 @@
+libgEDAColor(1)                    -20160214                   libgEDAColor(1)
+
+
+
+NAME
+       libgEDAColor - The GPL Electronic Design Automation Color Library
+
+DESCRIPTION
+       libgEDAColor  is an extension library used in the gEDA suite to coordi-
+       nate the mapping of color codes used in gEDA data files to actual  col-
+       ors  used  for  output devices based on user configuration preferences.
+       libgEDAColor provides functions for parsing gEDA scheme color-map  data
+       and  API  functions  for applications to access color information. This
+       manual page explains user aspects of using libgEDAColor , specifically,
+       modifying  color  map  files.  For  information on libgEDAColor API see
+       libgedacolor(3)
+
+CONFIGURATION
+       Predefined color map files are installed with the geda-gaf  suite.  The
+       files are really Scheme scripts that are either executed or sourced and
+       accordingly the files are located  in  the  GEDADATARC  directory,  see
+       libgeda(1).  The files names are:
+
+              display-colormap-bw
+
+              display-colormap-custom
+
+              display-colormap-darkbg
+
+              display-colormap-lightbg
+
+              print-colormap-lightbg
+
+              print-colormap-darkbg
+
+       The  particular  dialect of Scheme used by Libgedacolor is GNU's Guile.
+       While it is required for Guile to be installed on the host  system  for
+       Libgedacolor  to  to  process  these file, it is not a requirement that
+       gEDA applications initialize or even be  running  Guile.   Libgedacolor
+       does  not  initiate  the  loading  "rc" files. Instead, application can
+       request that a initialization file be processed. Alternatively,  appli-
+       cation  rc  files  can  reference  the  color  map files. Example of rc
+       entries in applications might look like:
+
+              (primitive-load  (build-path   geda-rc-path   "display-colormap-
+              darkbg"))
+
+              (load (build-path geda-rc-path "display-colormap-darkbg"))
+
+              (load ("$HOME/etc/gEDA/display-colormap-darkbg"))
+
+FILE FORMAT
+       Each  color  map  file  contains one or more functions that pass a list
+       containing color information as arguments. The color maps file normally
+       only reference three functions:
+
+              display-color-map
+
+              display-outline-color-map
+
+              print-color-map
+
+       The  argument  list  to  each of these functions is a list of key value
+       pairs in the form ("key" "color"). "key" must be a  string  name  of  a
+       recognized  component  or  artifact. Provided color map files contain a
+       complete list of all recognized keys, but all keys need not be present.
+       The  color can be a hex string representation of or #f to disable color
+       for the corresponding key entry.
+
+DOCUMENTATION
+       The gEDA-gaf suite utilizes Doxygen for  generating  source  documenta-
+       tion.  By  default  this  documentation  is  not  generated and must be
+       enabled via the configuration option --with-doxygen. When enabled,  the
+       documentation  is  then  built  in the source tree using "make doxygen"
+       from the top of the source. To only generate source  documentation  for
+       libgEDAColor use "make doxygen" from within the top libgEDAColor direc-
+       tory. Note that the configure script can also set the configuration  to
+       allows generating the source documentation out of the source tree using
+       the  --with-doxygen-out  option.  For  example  using   --with-doxygen-
+       out=/tmp/geda-gaf  will  cause the resulting documentation to be gener-
+       ated in the "/tmp/geda-gaf" directory. The  target  directory  will  be
+       created  if  it does not already exist. It is not necessary to use both
+       doxygen options, using --with-doxygen-out automatically enables --with-
+       doxygen.   The  Doxygen  configuration  is set to produce both HTML and
+       latex. Other formats are possible, see the  Doxygen  documentation  for
+       details.
+
+AUTHORS
+       See the "AUTHORS" file included with this library.
+
+COPYRIGHT
+       Copyright (C) 2016 gEDA Contributors. License GPLv2+: GNU GPL
+       version 2 or later. Please see the `COPYING' file included with this
+       program for full details.
+
+       This is free software: you are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
+
+SEE ALSO
+       libgedacolor(3),     libgeda(1),    libgedacairo(1),    libgedathon(1),
+       libgedauio(1)
+
+       http://wiki.geda-project.org/geda:documentation.
+
+
+
+Libgedacolor(3)                    .20160214                   Libgedacolor(3)
+
+
+
+NAME
+       Libgeda - The GPL Electronic Design Automation core library
+
+
+SYNOPSIS
+       #include <libgedacolor.h>
+
+
+DESCRIPTION
+       Libgedacolor is an extension library used in the gEDA suite to  coordi-
+       nate  the mapping of color codes used in gEDA data files to actual col-
+       ors used for output devices based on user configuration preferences...
+
+LINKAGE
+   Using pkg-config
+       LDFLAGS = pkg-config --libs libgedacolor
+
+   Base library
+       if installed from a package
+
+       -lgedacolor
+
+       if built from source
+
+       -L/${prefix}=installed   directory/gEDA/lib   -lgedacolor    (typically
+       /usr/local/gEDA/lib)
+
+HEADERS
+   Using pkg-config
+       pkg-config --cflags libgedacolor
+
+   if installed from a package
+       #include <gEDA/libgedacolor.h>
+
+   if built from source
+       -I/${prefix}/gEDA/include/libgedacolor
+
+PROTOTYPES
+                       void      libgedacolor_init                (int  *argc,
+              char **argv);
+                       int     geda_color_load_display_scheme  (char *scheme);
+                       int     geda_color_load_print_scheme    (char *scheme);
+                       void    libgedacolor_release            (void);
+
+                        SCM    geda_color_guile_display_map    (SCM scm_map);
+                        SCM    geda_color_guile_outline_map    (SCM scm_map);
+                        SCM    geda_color_guile_print_map      (SCM scm_map);
+
+                        SCM     geda_color_guile_map_to_scm      (const  COLOR
+              *map);
+                       void     geda_color_guile_map_from_scm    (COLOR  *map,
+              SCM lst, const char *scheme_proc_name);
+
+                       char    *geda_color_get_color_name        (int   index,
+              GArray *map, GError **err);
+                        int    geda_color_get_object_default   (char type);
+
+                     GArray   *geda_color_get_display_map      (void);
+                     GArray   *geda_color_get_standard_names   (void);
+                     GArray   *geda_color_get_outline_map      (void);
+                     GArray   *geda_color_get_print_map        (void);
+
+                        int      geda_color_key_get_index         (const  char
+              *name);
+
+                       bool     geda_color_utility_decode_rgba   (const   char
+              *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
+                       char   *geda_color_utility_encode_rgba  (uint8 r, uint8
+              g, uint8 b, uint8 a);
+                       char   *geda_color_utility_get_hex      (COLOR *c);
+                       char    *geda_color_utility_lookup_name   (COLOR   *c1,
+              GError **err);
+                       char   *geda_color_utility_postscript   (int color);
+
+                       void    geda_color_x11_init             (void);
+                       void    geda_color_x11_free             (void);
+                       void    geda_color_x11_allocate         (void);
+                   GdkColor   *geda_color_x11_color_from_index (int color);
+                      COLOR   *geda_color_x11_lookup           (int color);
+                       bool    geda_color_x11_get_state        (int color);
+                       void    geda_color_x11_set_state        (int color, int
+              state);
+                       bool    geda_color_x11_enabled          (int index);
+
+
+AUTHORS
+       See the `AUTHORS' file included with this program.
+
+
+COPYRIGHT
+       Copyright (C) 2016 gEDA Contributors. License GPLv2+: GNU GPL
+       version 2 or later. Please see the `COPYING' file included with this
+       program for full details.
+
+       This is free software: you are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
+
+
+SEE ALSO
+       libgedacolor(1),    libgeda(1),    libgedacairo(1),     libgedathon(1),
+       libgedauio(1)
+
+       API documentation for libgedacolor can be generated using Doxygen using
+       'Make doxygen' in the libgedacolor source directory.
+
+
+
+gEDA Project                                                   Libgedacolor(3)

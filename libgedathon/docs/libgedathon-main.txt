@@ -1,0 +1,30 @@
+/*! \mainpage libgedathon - The GPL Electronic Design Automation Python API Library.
+\image html logo_512x208.png
+\image latex logo_512x208.png
+\section libgedathon-geda-intro gEDA Introduction
+    \htmlinclude what-is-geda.html
+    \latexonly
+        \input what-is-geda.tex
+    \endlatexonly
+\ref geda-gaf "gEDA Suite"
+\section libgedathon-intro Libgedathon Introduction
+    \htmlinclude what-is-libgedathon.html
+    \latexonly
+        \input what-is-libgedathon.tex
+    \endlatexonly
+\section libgedathon-howto Importing Libgedathon
+    \htmlinclude include-libgedathon.html
+    \latexonly
+        \input include-libgedathon.tex
+    \endlatexonly
+\section libgedathon-quick Quick Guide
+    \htmlinclude guide-libgedathon.html
+    \latexonly
+        \input guide-libgedathon.tex
+    \endlatexonly
+\section libgedathon-quick-reference Quick Reference
+    \htmlinclude reference-libgedathon.html
+    \latexonly
+       \input reference-libgedathon.tex
+   \endlatexonly
+*/

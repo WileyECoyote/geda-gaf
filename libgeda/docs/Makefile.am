@@ -2,7 +2,7 @@ SUBDIRS     = images
 
 # These "extra" files are all for the Doxygen source documentation
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
-	      what-is-geda.tex libgeda-man-1.html libgeda-man-1.tex
+	      what-is-geda.tex
 
 LOCAL_DOX   = libgeda.dox libgeda-main.txt
 
@@ -88,6 +88,10 @@ if ENABLE_GROFF_HTML
 	mv -f $@.tmp $(basename $@)-man-1.tex
 else
 .1.html:
+	@echo "No working groff available: cannot create $@"
+	@! :
+
+.1.tex:
 	@echo "No working groff available: cannot create $@"
 	@! :
 endif

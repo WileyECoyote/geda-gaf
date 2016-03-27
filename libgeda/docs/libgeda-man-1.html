@@ -1,0 +1,220 @@
+<!-- Creator     : groff version 1.20.1 -->
+<!-- CreationDate: Sat Nov 28 19:06:07 2015 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>Libgeda</title>
+
+</head>
+<body>
+
+<h1 align="center">Libgeda</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#CONFIGURATION">CONFIGURATION</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#DOCUMENTATION">DOCUMENTATION</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Libgeda &minus;
+The GPL Electronic Design Automation core library</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>Libgeda</b>
+is a set of library routines used by applications to
+manipulate data for electronic schematics and symbols,
+primarily in the gEDA suite of applications. <b>Libgeda</b>
+provides utility functions for creating, modifying, parsing
+and traversing gEDA data, handles all disk i/o operations
+for gEDA applications, as well as providing an API for
+Scheme based programs and routines for evaluation of Scheme
+expressions and files for gEDA applications. <b>Libgeda</b>
+also provides a limited collection of other common routines
+like string manipulators, a configuration system, and math
+functions useful in gEDA applications. The purpose of the
+this manual page is to explains user oriented aspects of
+using <b>Libgeda</b> , specifically, configuring the library
+and providing details on where to find documentation on
+other aspect of <b>Libgeda</b> such as the Scheme API.</p>
+
+<h2>CONFIGURATION
+<a name="CONFIGURATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Library
+operations are controlled parameter variables and some of
+the key parameters are exposed so that installations can be
+customized. These key parameters are associated with
+&quot;keywords&quot; in text based files. The files are
+sometimes referred to as initialization or &quot;rc&quot;
+files and in the case of <b>Libgeda</b> these files are
+really Scheme scripts that are either executed or sourced.
+The particular dialect of Scheme used by <b>Libgeda</b> is
+GNU&rsquo;s Guile. While it is required for Guile to be
+installed on the host system for <b>Libgeda</b> to run, it
+is not a requirement that gEDA applications initialize or
+even be running Guile. <b>Libgeda</b> does not initiate the
+loading &quot;rc&quot; files. Instead, when application
+request that a initialization file be processed
+<b>Libgeda</b> first checks for &quot;system-gafrc&quot; in
+either system configuration directories, i.e.
+&quot;/etc/gEDA&quot;, &quot;~/etc&quot;, or the root of the
+installation directory and precesses these files if they
+exist. Normally, only one such file is used as a system
+level &quot;master&quot; configuration file. Following
+processing of the &quot;system-gafrc&quot; files
+<b>Libgeda</b> searches the current directory for local
+&quot;gafrc&quot; configurations files. The search continues
+upward in the directory structure until either a file with
+the name &quot;gafrc&quot; is found or the root of the drive
+is reached without discovering such a file. If discovered,
+the &quot;gafrc&quot; file is processed, which may over-ride
+configuration parameters established in preceding
+initialization files, and this allows users to customize
+<b>Libgeda</b> on a user and or on project bases. Local
+initialization files are &quot;remembered&quot; so that when
+applications load other schematics or symbols in the same or
+subordinate directory structure the initialization files are
+not processed a second time for a given session. The
+application requested initialization files are then
+processed in a likewise manner, for example system-gschemrc.
+Initialization files for <b>Libgeda</b> should not reference
+application specific keywords or functions. Since the
+initialization files are really Scheme scripts the
+possibilities for configuration customization is essentially
+unlimited. The basic &quot;system-gafrc&quot; file installed
+with <b>Libgeda</b> contains details on each keyword. For
+the most part, the capability to perform customization and
+modifications to parameters are provided for advanced users,
+allowing users to deal with complex installations and
+maximizes flexibility of the suite. For example, system
+administrators may want to change where logs files are
+written, while ordinary user may desire to disable automatic
+backups. Project managers might want to modify the list of
+promoted attributes for a particular project. Users should
+backup initialization files before making any modifications
+to the files.</p>
+
+<h2>ENVIRONMENT
+<a name="ENVIRONMENT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The following
+environment variables are recognized by <b>Libgeda</b> :</p>
+
+<p style="margin-left:22%;"><b>GEDADATA</b> <br>
+Specifies the search directory for Scheme and bitmap files.
+The default is compilation dependent based on the location
+of the data directory and can be set using the -datarootdir
+configuration option. Normally the location is
+&quot;prefix/share/gEDA&quot; where &quot;prefix&quot; is
+the root of the installation build. The GEDADATA environment
+setting over-rides the default location. <b><br>
+GEDADATARC</b> <br>
+Specifies the search directory for rc files. The default is
+compilation dependent based on the location of the data
+directory and can be set using --with-rcdir configuration
+option. The default is the same as GEDADATA. Specifying a
+GEDADATARD environment setting over-rides the default
+location. <b><br>
+GEDALOGS</b> <br>
+Specifies the directory for log files. The default is
+compilation dependent based on the location of the user
+configuration files and can be controlled using
+--with-logdir configuration option. The GEDALOGS environment
+setting over-rides the default location.</p>
+
+<h2>DOCUMENTATION
+<a name="DOCUMENTATION"></a>
+</h2>
+
+
+<p style="margin-left:22%; margin-top: 1em"><b>SOURCE
+CODE</b> <br>
+The gEDA-gaf suite utilizes Doxygen for generating source
+documentation. By default this documentation is not
+generated and must be enabled via the configuration option
+--with-doxygen. When enabled, the documentation is then
+built in the source tree using &quot;make doxygen&quot; from
+the top of the source. To only generate source documentation
+for <b>Libgeda</b> use &quot;make doxygen&quot; from within
+the top libgeda directory. Note that the configure script
+can also set the configuration to allows generating the
+source documentation out of the source tree using the
+--with-doxygen-out option. For example using
+--with-doxygen-out=/tmp/geda-gaf will cause the resulting
+documentation to be generated in the
+&quot;/tmp/geda-gaf&quot; directory. The target directory
+will created if it does not already exist. It is not
+necessary to use both doxygen options, using
+--with-doxygen-out automatically enables --with-doxygen. The
+Doxygen configuration is set to produce both HTML and latex.
+Other formats are possible, see the Doxygen documentation
+for details.</p>
+
+<h2>AUTHORS
+<a name="AUTHORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">See the
+&quot;AUTHORS&quot; file included with this program.</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2015 gEDA Contributors. License GPLv2+: GNU GPL <br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>libgedacairo</b>(1),
+<b>libgedathon</b>(1), <b>libgedauio</b>(1)
+<b>gnetlist</b>(1), <b>gschem</b>(1),
+<b>gsymcheck</b>(1)</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>http://wiki.geda-project.org/geda:documentation</i>.</p>
+<hr>
+</body>
+</html>

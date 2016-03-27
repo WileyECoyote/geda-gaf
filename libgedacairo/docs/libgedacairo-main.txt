@@ -1,0 +1,25 @@
+/*! \mainpage libgedacairo - The GPL Electronic Design Automation Rendering Library.
+\image html logo_512x208.png
+\image latex logo_512x208.png
+\section libgedacairo-geda-intro gEDA Introduction
+    \htmlinclude what-is-geda.html
+    \latexonly
+        \input what-is-geda.tex
+    \endlatexonly
+\ref geda-gaf "gEDA Suite"
+\section libgedacairo-intro libgedacairo Introduction
+    \htmlinclude what-is-libgedacairo.html
+    \latexonly
+        \input what-is-libgedacairo.tex
+    \endlatexonly
+\section libgedacairo-howto Using Libgedacairo in Programs
+    \htmlinclude include-libgedacairo.html
+    \latexonly
+        \input include-libgedacairo.tex
+    \endlatexonly
+\section libgedacairo-quick General Guide
+    \htmlinclude guide-libgedacairo.html
+    \latexonly
+        \input guide-libgedacairo.tex
+    \endlatexonly
+*/

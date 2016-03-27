@@ -1,3 +1,8 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedathon-main.txt: No longer ignored by git, required for
+      Doxygen builds but is not built. 
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Replace arc->width/2.0 with arc->radius in function

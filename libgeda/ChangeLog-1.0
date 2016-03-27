@@ -1,3 +1,16 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: rm redundant inclusion in libgeda-man-1.html
+      libgeda-man-1.tex in EXTRA_DIST.
+
+    * docs/libgeda-man-1.html: Built to include in Doxygen but added to
+      EXTRA_DIST because some may not have the capability to build but
+      could otherwise compile Doxygen documentation.
+
+    * docs/libgeda-man-1.tex: Built to include in Doxygen but added
+      to EXTRA_DIST because some may not have the capability to build but
+      could otherwise compile Doxygen documentation.
+
 2016-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_file.h: Update file header.

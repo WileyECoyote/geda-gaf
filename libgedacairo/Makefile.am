@@ -1,7 +1,7 @@
 
 SUBDIRS = docs include src
 
-EXTRA_DIST = README ChangeLog
+EXTRA_DIST = README ChangeLog ChangeLog-1.0
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libgedacairo.pc
