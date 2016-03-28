@@ -1,5 +1,18 @@
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add some "template" symbols for DIP packages so DIP24-300 would be lonely.
+
+            * packages/DIP8-300-1.sym
+            * packages/DIP14-300-1.sym
+            * packages/DIP16-300-1.sym
+            * packages/DIP18-300-1.sym
+            * packages/DIP20-300-1.sym
+            * packages/DIP24-600-1.sym
+            * packages/DIP28-300-1.sym
+            * packages/DIP28-600-1.sym
+            * packages/DIP32-600-1.sym
+            * packages/DIP40-600-1.sym
+
     * analogdevices/AD7788-1.sym: Fix chip-select over-bar
 
     * analogdevices/AD7789-1.sym: Correct documentation link.
