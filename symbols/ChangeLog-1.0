@@ -1,3 +1,15 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD7788-1.sym: Fix chip-select over-bar
+
+    * analogdevices/AD7789-1.sym: Correct documentation link.
+
+    * analogdevices/AD7798-1.sym: Add symbol; 3-Channel 24-Bit,sigma-delta
+      type A/D converter.
+
+    * analogdevices/AD7799-1.sym: Add symbol; 3-Channel 24-Bit,sigma-delta
+      type A/D converter
+
 2016-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/: Add 2 symbols; 12-Bit sigma-delta type A/D converter:

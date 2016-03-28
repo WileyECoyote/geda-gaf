@@ -1,0 +1,200 @@
+v 20160316 2
+T 500 3800 5 10 0 0 0 0 1
+device=AD7799
+T 2600 3400 8 10 1 1 0 0 1
+refdes=U?
+T 500 4000 5 10 0 1 0 0 1
+description=3-Channel ADC,24-Bit,sigma-delta
+B 500 0 2400 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 3100 500 3100 1 0 0
+{
+T 550 3100 9 10 1 1 0 0 1
+pinlabel=SCLK
+T 250 3150 5 10 1 1 0 0 1
+pinnumber=1
+T 250 3150 5 10 1 1 0 0 1
+pinseq=1
+T 550 3050 5 10 1 1 0 2 1
+pintype=in
+}
+P 100 2700 500 2700 1 0 0
+{
+T 250 2750 5 10 1 1 0 0 1
+pinnumber=2
+T 550 2700 9 10 1 1 0 0 1
+pinlabel=\_CS\_
+T 250 2750 5 10 1 1 0 0 1
+pinseq=2
+T 550 2650 5 10 1 1 0 2 1
+pintype=in
+}
+P 100 2300 500 2300 1 0 0
+{
+T 250 2400 5 10 1 1 0 0 1
+pinnumber=3
+T 550 2300 9 10 1 1 0 0 1
+pinlabel=AIN3(+)/P1
+T 250 2400 5 10 1 1 0 0 1
+pinseq=3
+T 550 2250 5 10 1 1 0 2 1
+pintype=pas
+}
+P 100 1900 500 1900 1 0 0
+{
+T 250 1950 5 10 1 1 0 0 1
+pinnumber=4
+T 550 1900 9 10 1 1 0 0 1
+pinlabel=AIN3(-)/P2
+T 250 1950 5 10 1 1 0 0 1
+pinseq=4
+T 550 1850 5 10 1 1 0 2 1
+pintype=pas
+}
+P 100 1500 500 1500 1 0 0
+{
+T 250 1550 5 10 1 1 0 0 1
+pinnumber=5
+T 556 1511 9 10 1 1 0 0 1
+pinlabel=AIN1(+)
+T 250 1550 5 10 1 1 0 0 1
+pinseq=5
+T 550 1450 5 10 1 1 0 2 1
+pintype=pas
+}
+P 100 1100 500 1100 1 0 0
+{
+T 250 1150 5 10 1 1 0 0 1
+pinnumber=6
+T 556 1094 9 10 1 1 0 0 1
+pinlabel=AIN1(-)
+T 250 1150 5 10 1 1 0 0 1
+pinseq=6
+T 550 1050 5 10 1 1 0 2 1
+pintype=pas
+}
+P 100 700 500 700 1 0 0
+{
+T 250 750 5 10 1 1 0 0 1
+pinnumber=7
+T 538 711 9 10 1 1 0 0 1
+pinlabel=AIN2(+)
+T 250 750 5 10 1 1 0 0 1
+pinseq=7
+T 550 650 5 10 1 1 0 2 1
+pintype=pas
+}
+P 100 300 500 300 1 0 0
+{
+T 250 350 5 10 1 1 0 0 1
+pinnumber=8
+T 550 300 9 10 1 1 0 0 1
+pinlabel=AIN2(-)
+T 250 350 5 10 1 1 0 0 1
+pinseq=8
+T 550 250 5 10 1 1 0 2 1
+pintype=pas
+}
+P 3300 300 2900 300 1 0 0
+{
+T 3050 350 5 10 1 1 0 0 1
+pinnumber=9
+T 2850 300 9 10 1 1 0 6 1
+pinlabel=REFIN(+)
+T 3050 350 5 10 1 1 0 0 1
+pinseq=9
+T 2850 250 5 10 1 1 0 8 1
+pintype=pas
+}
+P 3300 700 2900 700 1 0 0
+{
+T 3050 750 5 10 1 1 0 0 1
+pinnumber=10
+T 2850 700 9 10 1 1 0 6 1
+pinlabel=REFIN(-)
+T 3050 750 5 10 1 1 0 0 1
+pinseq=10
+T 2850 650 5 10 1 1 0 8 1
+pintype=in
+}
+P 3300 1100 2900 1100 1 0 0
+{
+T 3050 1150 5 10 1 1 0 0 1
+pinnumber=11
+T 2850 1100 9 10 1 1 0 6 1
+pinlabel=PSW
+T 3050 1150 5 10 1 1 0 0 1
+pinseq=11
+T 2850 1050 5 10 1 1 0 8 1
+pintype=pas
+}
+P 3300 1500 2900 1500 1 0 0
+{
+T 3050 1550 5 10 1 1 0 0 1
+pinnumber=12
+T 2850 1500 9 10 1 1 0 6 1
+pinlabel=GND
+T 3050 1550 5 10 1 1 0 0 1
+pinseq=12
+T 2850 1450 5 10 1 1 0 8 1
+pintype=pwr
+}
+P 3300 1900 2900 1900 1 0 0
+{
+T 3050 1950 5 10 1 1 0 0 1
+pinnumber=13
+T 2850 1900 9 10 1 1 0 6 1
+pinlabel=AVdd
+T 3050 1950 5 10 1 1 0 0 1
+pinseq=13
+T 2850 1850 5 10 1 1 0 8 1
+pintype=pwr
+}
+P 3300 2300 2900 2300 1 0 0
+{
+T 3050 2350 5 10 1 1 0 0 1
+pinnumber=14
+T 2850 2300 9 10 1 1 0 6 1
+pinlabel=DVdd
+T 3050 2350 5 10 1 1 0 0 1
+pinseq=14
+T 2850 2250 5 10 1 1 0 8 1
+pintype=pwr
+}
+P 3300 2700 2900 2700 1 0 0
+{
+T 3050 2750 5 10 1 1 0 0 1
+pinnumber=15
+T 2850 2700 9 10 1 1 0 6 1
+pinlabel=DOUT/RDY
+T 3050 2750 5 10 1 1 0 0 1
+pinseq=15
+T 2850 2650 5 10 1 1 0 8 1
+pintype=out
+}
+P 3300 3100 2900 3100 1 0 0
+{
+T 3050 3150 5 10 1 1 0 0 1
+pinnumber=16
+T 2850 3100 9 10 1 1 0 6 1
+pinlabel=DIN
+T 3050 3150 5 10 1 1 0 0 1
+pinseq=16
+T 2850 3050 5 10 1 1 0 8 1
+pintype=in
+}
+T 500 3400 5 10 1 1 0 0 1
+value=AD7799
+T 500 3600 9 10 0 1 0 0 1
+footprint=TSSOP16
+T 500 4200 5 10 0 0 0 0 1
+numslots=0
+T 500 4400 5 10 0 1 0 0 1
+documentation=http://www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7788.html
+T 1350 50 5 8 0 0 0 0 1
+symversion=0.1
+T 500 5000 5 10 0 0 0 0 1
+author=AutoTron
+T 500 4800 5 10 0 0 0 0 1
+dist-license=GPLv3
+T 500 4600 5 10 0 0 0 0 1
+use-license=unlimited
