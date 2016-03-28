@@ -253,6 +253,8 @@ o_picture_exchange (GschemToplevel *w_current,
         break;
       }
     }
+
+    g_list_free(list);
   }
 
   if (result) {

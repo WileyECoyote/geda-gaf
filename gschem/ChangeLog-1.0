@@ -1,3 +1,8 @@
+2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Free list returned from o_select_get_list_selected
+      in o_picture_exchange.
+
 2016-03-27 Sergey Stepanov <no.such.process@gmail.com>
 
     * src/object/o_grips.c: WEH: Modified per commit Sergey Stepanov, commit
