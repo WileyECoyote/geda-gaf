@@ -29,10 +29,15 @@
 /*! \def EDAR_DEFAULT_MARKER_DIST_THLD
  *  The text marker size threashold, "x" values smaller then this value
  *  are not drawn.
-*/
+ */
+#define EDAR_DEFAULT_MARKER_DIST_THLD      2.0
 #define EDAR_MIN_MARKER_DIST_THLD          0.5
 #define EDAR_MAX_MARKER_DIST_THLD         25.0
-#define EDAR_DEFAULT_MARKER_DIST_THLD      2.0
+
+/*! \def EDAR_DEFAULT_CIRCLE_GRIP_QUAD
+ *  Default quadrant of circle where grip is to be drawn.
+ */
+#define EDAR_DEFAULT_CIRCLE_GRIP_QUAD     1
 
 #define EDAR_DEFAULT_GRIP_SIZE             100
 #define EDAR_DEFAULT_JUNCTION_SIZE          50
@@ -54,6 +59,7 @@
 #define EDAR_DEFAULT_OVERRIDE_COLOR_INDEX 1
 
 /* These macros are used to help reduce lines lengths */
+#define EDAR_CIRCLE_GRIP_QUAD   renderer->circle_grip_quadrant
 #define EDAR_GRIP_SIZE          renderer->grip_size
 #define EDAR_GRIP_STROKE_COLOR  renderer->grip_stroke_color
 #define EDAR_GRIP_FILL_COLOR    renderer->grip_fill_color
@@ -105,6 +111,7 @@ struct _EdaRenderer
   GObject parent_instance;
 
   /* Public members */
+  int      circle_grip_quadrant;  /* Controls where grips are drawn on circles */
   int      draw_grips;            /* controls if grips are enabled or not */
   double   grip_size;
   GdkColor grip_stroke_color;
@@ -189,9 +196,12 @@ int      eda_renderer_get_override_color_index (EdaRenderer *renderer);
 void     eda_renderer_set_override_color_index (EdaRenderer *renderer,
                                                 int          color_index);
 
-double   eda_renderer_get_grips_size           (EdaRenderer *renderer);
-void     eda_renderer_set_grips_size           (EdaRenderer *renderer,
-                                                double       new_size);
+int      eda_renderer_get_circle_grip_quad    (EdaRenderer *renderer);
+void     eda_renderer_set_circle_grip_quad    (EdaRenderer *renderer,
+                                               int          quadrant);
+double   eda_renderer_get_grips_size          (EdaRenderer *renderer);
+void     eda_renderer_set_grips_size          (EdaRenderer *renderer,
+                                               double       new_size);
 const
 GdkColor* eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
 void      eda_renderer_set_grips_stroke_color (EdaRenderer *renderer,

@@ -1,3 +1,9 @@
+2016-03-27 Sergey Stepanov <no.such.process@gmail.com>
+
+    * src/object/o_grips.c: WEH: Modified per commit Sergey Stepanov, commit
+      6d0eeaa8537a0840ed02ea06ac4b823aec88f0ff: gschem: put the circle grip
+      onto the circle to be edited.
+
 2016-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * Program Enhancement: New feature - Auto Panning while Creating Nets

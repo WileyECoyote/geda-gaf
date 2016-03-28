@@ -53,6 +53,7 @@ enum {
   PROP_GRIP_SIZE,
   PROP_GRIP_STROKE,
   PROP_GRIP_FILL,
+  PROP_CIRCLE_GRIP_QUAD,
   PROP_JUNCTION_COLOR,
   PROP_JUNCTION_SIZE,
   PROP_ENDPOINT_COLOR,
@@ -278,6 +279,10 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
     eda_renderer_set_grips_fill_color (renderer, g_value_get_boxed (value));
     break;
 
+  case PROP_CIRCLE_GRIP_QUAD:
+    EDAR_CIRCLE_GRIP_QUAD = g_value_get_int (value);
+    break;
+
   case PROP_JUNCTION_COLOR:
     eda_renderer_set_junction_color (renderer, g_value_get_boxed (value));
     break;
@@ -347,6 +352,10 @@ eda_renderer_get_property (GObject *object, unsigned int property_id,
 
   case PROP_GRIP_FILL: /* Grip Fill Color */
     g_value_set_boxed (value, &EDAR_GRIP_FILL_COLOR);
+    break;
+
+  case PROP_CIRCLE_GRIP_QUAD:
+    g_value_set_int (value, EDAR_CIRCLE_GRIP_QUAD);
     break;
 
   case PROP_JUNCTION_COLOR:
@@ -1252,10 +1261,24 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
       eda_renderer_draw_arc_grips (renderer, object);
       break;
     case OBJ_CIRCLE:
-      /* Grip at bottom right of containing square */
-      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
-                                    object->circle->center_x + object->circle->radius,
-                                    object->circle->center_y - object->circle->radius);
+      switch (EDAR_CIRCLE_GRIP_QUAD) {
+        case 1: /* Grip at right side */
+          eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                        object->circle->center_x + object->circle->radius,
+                                        object->circle->center_y);
+        case 2: /* Grip at top */
+          eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                        object->circle->center_x,
+                                        object->circle->center_y + object->circle->radius);
+        case 3: /* Grip at left side */
+          eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                        object->circle->center_x - object->circle->radius,
+                                        object->circle->center_y);
+        case 4: /* Grip at bottom */
+          eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                        object->circle->center_x,
+                                        object->circle->center_y); // - object->circle->radius);
+      }
       break;
     case OBJ_PATH:
       eda_renderer_draw_path_grips (renderer, object);
@@ -1847,6 +1870,21 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_GRIP_FILL, params);
 
+   /*! property "circle-grip-quadrant": EdaRenderer::circle-grip-quadrant
+   *  \brief Sets or gets circle-grip-quadrant for a EdaRenderer.
+   *  \par
+   *   Controls quadrant of circle where the grip are to be drawn.
+   */
+  params = g_param_spec_int ("circle-grip-quadrant",
+                           _("Circle Grip Quadrant"),
+                           _("Controls where grips are drawn on circles."),
+                              1,
+                              4,
+                              EDAR_DEFAULT_CIRCLE_GRIP_QUAD,
+                              param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_CIRCLE_GRIP_QUAD, params);
+
   params = g_param_spec_boxed ("junction-color",
                              _("Junction Color"),
                              _("GDK color to use when rendering Junctions"),
@@ -1925,6 +1963,7 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
 
   renderer->priv->override_color = -1;
 
+  EDAR_CIRCLE_GRIP_QUAD    = EDAR_DEFAULT_CIRCLE_GRIP_QUAD;
   EDAR_GRIP_SIZE           = EDAR_DEFAULT_GRIP_SIZE;
   EDAR_JUNCTION_SIZE       = EDAR_DEFAULT_JUNCTION_SIZE;
   EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
@@ -2145,6 +2184,28 @@ void
 eda_renderer_set_override_color_index (EdaRenderer *renderer, int color_index)
 {
   renderer->priv->override_color = color_index;
+}
+
+/*! \brief Get the current EdaRenderer Grip Circle Quadrant Property
+ *  \par Function Description
+ *  Function to retrieve the current circle-grip-quadrant property.
+ */
+int eda_renderer_get_circle_grip_quad (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return EDAR_CIRCLE_GRIP_QUAD;
+}
+
+/*! \brief Set the EdaRenderer Grip Circle Quadrant Property
+ *  \par Function Description
+ *  Sets the circle-grip-quadrant property.
+ */
+void eda_renderer_set_circle_grip_quad (EdaRenderer *renderer, int quad)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  if (quad > 0 && quad < 5) {
+    EDAR_CIRCLE_GRIP_QUAD = quad;
+  }
 }
 
 /*! \brief Get the current EdaRenderer Grip Size Property

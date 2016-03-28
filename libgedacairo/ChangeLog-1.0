@@ -3,11 +3,16 @@
     * Makefile.am: Add ChangeLog to EXTRA_DIST.
 
     * docs/libgedacairo-main.txt: No longer ignored by git, required for
-      Doxygen builds but is not built. 
+      Doxygen builds but is not built.
+
+    * include/edarenderer.h: Add defines to support "circle-grip-quadrant"
+      properrty.
 
     * src/Makefile.am: Revert b48e510acb4c1c3f8282c559f5ba4ea6f689226a, the
       GTK_CFLAGS are use to access header for GDK.
 
+    * src/edarenderer.c: Add "circle-grip-quadrant" so applications can control
+      where the frip is to be drawn for circle,
 
 2016-03-22 Wiley E. Hill <wileyhill@gmail.com>
 

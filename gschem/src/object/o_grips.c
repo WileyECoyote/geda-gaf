@@ -180,11 +180,11 @@ o_grips_half_size(GschemToplevel *w_current, GedaObject *object)
  *  This function checks if the point (<b>x</b>,<b>y</b>) is
  *  inside the grip centered at (<b>grip_x</b>,<b>grip_y</b>).
  *
- *  \param [in]  x          Current x coordinate of pointer in world units.
- *  \param [in]  y          Current y coordinate of pointer in world units.
- *  \param [in]  grip_x     Current x coordinate of grip center in world units.
- *  \param [in]  grip_y     Current y coordinate of grip center in world units.
- *  \param [in]  size       Half the width of the grip square in world units.
+ *  \param [in]  x       Current x coordinate of pointer in world units.
+ *  \param [in]  y       Current y coordinate of pointer in world units.
+ *  \param [in]  grip_x  Current x coordinate of grip center in world units.
+ *  \param [in]  grip_y  Current y coordinate of grip center in world units.
+ *  \param [in]  size    Half the width of the grip square in world units.
  *  \return True / False whether the mouse pointer is inside the grip.
  */
 static bool
@@ -679,7 +679,7 @@ o_grips_search_circle_world(GschemToplevel *w_current, GedaObject *o_current,
   /* check the grip for radius */
   if (o_grips_inside_grip(x, y,
                   o_current->circle->center_x + o_current->circle->radius,
-                  o_current->circle->center_y - o_current->circle->radius,
+                  o_current->circle->center_y,
                   size)) {
     *whichone = CIRCLE_RADIUS;
     return(o_current);
