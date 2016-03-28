@@ -171,7 +171,7 @@ EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s),
 EDA_SCM_DEFINE (object_make_box, "%make-box", 0, 0, 0,
             (), "Create a new box object.")
 {
-  GedaObject *obj = o_box_new (DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
+  GedaObject *obj = geda_box_object_new (DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 

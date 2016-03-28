@@ -2290,7 +2290,7 @@ PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, Py
 
   /* The Y's are intentional reversed here to compensate for Libgeda, being
    * backwards, is cause X11 is upside down */
-  object = o_box_new(color, lower_x, upper_y, upper_x, lower_y);
+  object = geda_box_object_new(color, lower_x, upper_y, upper_x, lower_y);
 
   add_floating_object(object);
 

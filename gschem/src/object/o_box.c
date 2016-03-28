@@ -131,10 +131,13 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject   *new_obj;
 
     /* create the object */
-    new_obj = o_box_new (GRAPHIC_COLOR,
-                         box_left, box_top,
-                         box_left + box_width, box_top - box_height);
+    new_obj = geda_box_object_new (GRAPHIC_COLOR,
+                                   box_left,  box_top,
+                                   box_left + box_width,
+                                   box_top -  box_height);
+
     new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+
     s_page_append_object (toplevel->page_current, new_obj);
 
 #if DEBUG

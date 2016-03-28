@@ -32,14 +32,14 @@
 /*! \brief Copy a box to a list.
  *
  *  \par Function Description
- *  The function #o_box_copy() creates a verbatim copy of the object
+ *  The function #geda_box_object_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a box.
  *
  *  \param [in] o_current Box Object to copy.
  *
  *  \return The new GedaObject
  */
-GedaObject *o_box_copy(GedaObject *o_current)
+GedaObject *geda_box_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_BOX(o_current)) {
 
@@ -48,9 +48,9 @@ GedaObject *o_box_copy(GedaObject *o_current)
 
     old_box = GEDA_BOX(o_current);
 
-    /* A new box object is created with #o_box_new().
+    /* A new box object is created with #geda_box_object_new().
      * Values for its fields are default and need to be modified. */
-    new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
+    new_obj = geda_box_object_new (o_current->color, 0, 0, 0, 0);
 
     /* The dimensions of the new box are set with the ones of the original box.
      * The two boxes have the same line type and the same filling options.
@@ -85,7 +85,7 @@ GedaObject *o_box_copy(GedaObject *o_current)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
  */
-bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaBox *box;
   bool result;
@@ -260,7 +260,7 @@ bool o_box_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_box_get_position (GedaObject *object, int *x, int *y)
+bool geda_box_object_get_position (GedaObject *object, int *x, int *y)
 {
   *x = min(object->box->lower_x, object->box->upper_x);
   *y = min(object->box->lower_y, object->box->upper_y);
@@ -280,7 +280,7 @@ bool o_box_get_position (GedaObject *object, int *x, int *y)
  *  \param [in]     center_x  Origin x coordinate
  *  \param [in]     center_y  Origin y coordinate
  */
-void o_box_mirror(GedaObject *object, int center_x, int center_y)
+void geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -337,7 +337,7 @@ void o_box_mirror(GedaObject *object, int center_x, int center_y)
  *    <DT>*</DT><DD>BOX_LOWER_RIGHT
  *  </DL>
  */
-void o_box_modify(GedaObject *object, int x, int y, int whichone)
+void geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   int tmp;
 
@@ -397,7 +397,7 @@ void o_box_modify(GedaObject *object, int x, int y, int whichone)
  * \param [in]     x2       x coordinate of second corner of box.
  * \param [in]     y2       y coordinate of second corner of box,
  */
-void o_box_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
+void geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
   object->box->lower_x = (x1 > x2) ? x1 : x2;
   object->box->lower_y = (y1 > y2) ? y2 : y1;
@@ -434,7 +434,7 @@ void o_box_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
  *
  *  \return The new GedaObject
  */
-GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
+GedaObject *geda_box_object_new(int color, int x1, int y1, int x2, int y2)
 {
   GedaBox    *box;
   GedaObject *new_obj;
@@ -474,7 +474,7 @@ GedaObject *o_box_new(int color, int x1, int y1, int x2, int y2)
  *
  *  \return The GedaBox Object that was created, or NULL on error.
  */
-GedaObject* o_box_read (const char buf[], unsigned int release_ver,
+GedaObject* geda_box_object_read (const char buf[], unsigned int release_ver,
                     unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
@@ -566,7 +566,7 @@ GedaObject* o_box_read (const char buf[], unsigned int release_ver,
   d_y2 = y1;
 
   /* create a new box */
-  new_obj = o_box_new (color, d_x1, d_y1, d_x2, d_y2);
+  new_obj = geda_box_object_new (color, d_x1, d_y1, d_x2, d_y2);
 
   /* set its line options */
   new_obj->line_options->line_end     = box_end;
@@ -610,7 +610,7 @@ GedaObject* o_box_read (const char buf[], unsigned int release_ver,
  *  \param [in] origin_x   Page x coordinate to place GedaBox Object.
  *  \param [in] origin_y   Page y coordinate to place GedaBox Object.
  */
-void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+void geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                  int origin_x, int origin_y)
 {
   int x, y, width, height;
@@ -621,7 +621,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   GedaBox *box;
 
   if (o_current == NULL) {
-    printf("got null in o_box_print\n");
+    printf("got null in geda_box_object_print\n");
     return;
   }
 
@@ -638,9 +638,9 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*! \note
    *  Depending on the type of the line for this particular box, the
-   *  appropriate function is chosen among #o_box_print_solid(),
-   *  #o_box_print_dotted(), #o_box_print_dashed(),
-   *  #o_box_print_center() and #o_box_print_phantom().
+   *  appropriate function is chosen among #geda_box_object_print_solid(),
+   *  #geda_box_object_print_dotted(), #geda_box_object_print_dashed(),
+   *  #geda_box_object_print_center() and #geda_box_object_print_phantom().
    *
    *  The needed parameters for each of these type is extracted from the
    *  <B>#GedaBox</B> object. Depending on the type, unused parameters are
@@ -668,36 +668,36 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   switch(o_current->line_options->line_type) {
     case(TYPE_SOLID):
       length = -1; space  = -1;
-      outl_func = o_box_print_solid;
+      outl_func = geda_box_object_print_solid;
       break;
 
     case(TYPE_DOTTED):
       length = -1;
-      outl_func = o_box_print_dotted;
+      outl_func = geda_box_object_print_dotted;
       break;
 
     case(TYPE_DASHED):
-      outl_func = o_box_print_dashed;
+      outl_func = geda_box_object_print_dashed;
       break;
 
     case(TYPE_CENTER):
-      outl_func = o_box_print_center;
+      outl_func = geda_box_object_print_center;
       break;
 
     case(TYPE_PHANTOM):
-      outl_func = o_box_print_phantom;
+      outl_func = geda_box_object_print_phantom;
       break;
 
     case(TYPE_ERASE):
       /* Unused for now, print it solid */
       length = -1; space  = -1;
-      outl_func = o_box_print_solid;
+      outl_func = geda_box_object_print_solid;
       break;
   }
 
   if ((length == 0) || (space == 0)) {
     length = -1; space  = -1;
-    outl_func = o_box_print_solid;
+    outl_func = geda_box_object_print_solid;
   }
 
   (*outl_func)(toplevel, fp,
@@ -710,8 +710,8 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*! \note
    *  If the filling type of the box is not <B>HOLLOW</B>, the appropriate
-   *  function is chosen among #o_box_print_filled(), #o_box_print_mesh()
-   *  and #o_box_print_hatch(). The corresponding parameters are extracted
+   *  function is chosen among #geda_box_object_print_filled(), #geda_box_object_print_mesh()
+   *  and #geda_box_object_print_hatch(). The corresponding parameters are extracted
    *  from the <B>\a o_current</B> object and corrected afterward.
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
@@ -734,16 +734,16 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_box_print_filled;
+        fill_func = geda_box_object_print_filled;
         break;
 
       case(FILLING_MESH):
-        fill_func = o_box_print_mesh;
+        fill_func = geda_box_object_print_mesh;
         break;
 
       case(FILLING_HATCH):
         angle2 = -1; pitch2 = 1;
-        fill_func = o_box_print_hatch;
+        fill_func = geda_box_object_print_hatch;
         break;
 
       case(FILLING_VOID):
@@ -751,7 +751,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_box_print_filled;
+        fill_func = geda_box_object_print_filled;
         break;
       case(FILLING_HOLLOW):
         /* nop */
@@ -762,7 +762,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
     if ((pitch1 <= 0) || (pitch2 <= 0)) {
       angle1 = -1; pitch1 = 1;
       angle2 = -1; pitch2 = 1;
-      fill_func = o_box_print_filled;
+      fill_func = geda_box_object_print_filled;
     }
 
     (*fill_func)(toplevel, fp,
@@ -802,7 +802,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_solid(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
                        int x, int y,
                        int width, int height,
                        int color,
@@ -866,7 +866,7 @@ void o_box_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_dotted(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
                         int x, int y,
                         int width, int height,
                         int color,
@@ -929,7 +929,7 @@ void o_box_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_dashed(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
                         int x, int y,
                         int width, int height,
                         int color,
@@ -993,7 +993,7 @@ void o_box_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_center(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
                         int x, int y,
                         int width, int height,
                         int color,
@@ -1056,7 +1056,7 @@ void o_box_print_center(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_phantom(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
                          int x, int y,
                          int width, int height,
                          int color,
@@ -1124,7 +1124,7 @@ void o_box_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_filled(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
                         int x, int y,
                         int width, int height,
                         int color,
@@ -1153,11 +1153,11 @@ void o_box_print_filled(GedaToplevel *toplevel, FILE *fp,
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *
  *  The inside mesh is achieved by two successive call to the
- *  #o_box_print_hatch() function, given <B>angle1</B> and <B>pitch1</B> the first
+ *  #geda_box_object_print_hatch() function, given <B>angle1</B> and <B>pitch1</B> the first
  *  time and <B>angle2</B> and <B>pitch2</B> the second time.
  *
  *  Negative or null values for <B>pitch1</B> and/or <B>pitch2</B> are not allowed
- *  as it leads to an endless loop in #o_box_print_hatch().
+ *  as it leads to an endless loop in #geda_box_object_print_hatch().
  *
  *  All dimensions are in mils.
  *
@@ -1176,7 +1176,7 @@ void o_box_print_filled(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void o_box_print_mesh(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
                       int x, int y,
                       int width, int height,
                       int color,
@@ -1185,13 +1185,13 @@ void o_box_print_mesh(GedaToplevel *toplevel, FILE *fp,
                       int angle2, int pitch2,
                       int origin_x, int origin_y)
 {
-  o_box_print_hatch(toplevel, fp,
+  geda_box_object_print_hatch(toplevel, fp,
                     x, y, width, height,
                     color,
                     fill_width,
                     angle1, pitch1, -1, -1,
                     origin_x, origin_y);
-  o_box_print_hatch(toplevel, fp,
+  geda_box_object_print_hatch(toplevel, fp,
                     x, y, width, height,
                     color,
                     fill_width,
@@ -1231,7 +1231,7 @@ void o_box_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place box Object.
  *  \param [in] origin_y    Page y coordinate to place box Object.
  */
-void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
+void geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
                        int x, int y,
                        int width, int height,
                        int color,
@@ -1276,7 +1276,7 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
 
 /*! \brief Rotate GedaBox Object
  *  \par Function Description
- *  The function #o_box_rotate() rotate the box described by <B>*object</B>
+ *  The function #geda_box_object_rotate() rotate the box described by <B>*object</B>
  *  around the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
@@ -1284,10 +1284,9 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  \param [in]      center_x  Rotation center x coordinate
  *  \param [in]      center_y  Rotation center y coordinate
  *  \param [in]      angle     Rotation angle in degrees (See note below)
-
  *
  */
-void o_box_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -1350,7 +1349,7 @@ void o_box_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-char *o_box_save(GedaObject *object)
+char *geda_box_object_save(GedaObject *object)
 {
   int x1, y1;
   int width, height;
@@ -1417,7 +1416,7 @@ char *o_box_save(GedaObject *object)
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move
  */
-void o_box_translate(GedaObject *object, int dx, int dy)
+void geda_box_object_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->box->upper_x = object->box->upper_x + dx;
@@ -1439,7 +1438,7 @@ void o_box_translate(GedaObject *object, int dx, int dy)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_box_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 

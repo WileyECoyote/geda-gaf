@@ -1479,7 +1479,7 @@ bool o_picture_get_nearest_point(GedaObject *object, int x, int y, int *nx, int 
     tmp->box->lower_x = picture->lower_x;
     tmp->box->lower_y = picture->lower_y;
 
-    result = o_box_get_nearest_point (tmp, x, y, nx, ny);
+    result = geda_box_object_get_nearest_point (tmp, x, y, nx, ny);
 
     g_object_unref(tmp);
   }
@@ -1541,7 +1541,7 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   if (image == NULL) {
     int line_width = o_style_get_line_width(toplevel);
     //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
-    o_box_print_solid (toplevel, fp, x1, y1, width, height,
+    geda_box_object_print_solid (toplevel, fp, x1, y1, width, height,
                        DEFAULT_COLOR_INDEX, line_width, SQUARE_CAP, -1, -1, -1, -1);
     o_line_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
                         DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);

@@ -803,9 +803,9 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_box_x);
 
   GedaObject *obj = edascm_to_object (box_s);
-  o_box_modify_all (obj,
-                    scm_to_int (x1_s), scm_to_int (y1_s),
-                    scm_to_int (x2_s), scm_to_int (y2_s));
+  geda_box_object_modify_all (obj,
+                              scm_to_int (x1_s), scm_to_int (y1_s),
+                              scm_to_int (x2_s), scm_to_int (y2_s));
 
   o_set_color (obj, scm_to_int (color_s));
 

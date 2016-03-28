@@ -859,7 +859,7 @@ bool o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
       tmp->box->lower_x = right;
       tmp->box->lower_y = bottom;
 
-      result = o_box_get_nearest_point (tmp, x, y, nx, ny);
+      result = geda_box_object_get_nearest_point (tmp, x, y, nx, ny);
 
       g_object_unref(tmp);
     }

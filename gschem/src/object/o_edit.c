@@ -375,7 +375,7 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
       tmp->box->lower_x = right;
       tmp->box->lower_y = ymax;
 
-      valid = o_box_get_nearest_point (tmp, x, y, &nx, &ny);
+      valid = geda_box_object_get_nearest_point (tmp, x, y, &nx, &ny);
 
       g_object_unref(tmp);
 

@@ -1235,7 +1235,9 @@ o_grips_end_box(GschemToplevel *w_current, GedaObject *o_current)
     return;
   }
 
-  o_box_modify(o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
+  geda_box_object_modify(o_current, w_current->second_wx,
+                                    w_current->second_wy,
+                                    w_current->which_grip);
 }
 
 /*! \brief End process of modifying path object with a grip point

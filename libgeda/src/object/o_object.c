@@ -150,7 +150,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(OBJ_BOX):
-        if ((new_obj = o_box_read (line, release_ver, fileformat_ver, err)) == NULL)
+        if ((new_obj = geda_box_object_read (line, release_ver, fileformat_ver, err)) == NULL)
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
@@ -468,7 +468,7 @@ GedaObject *o_copy_object (GedaObject *o_current)
       break;
 
     case(OBJ_BOX):
-      new_obj = o_box_copy (o_current);
+      new_obj = geda_box_object_copy (o_current);
       break;
 
     case(OBJ_PICTURE):
@@ -538,7 +538,7 @@ void o_mirror_object (GedaObject *object, int center_x, int center_y)
       case OBJ_LINE:    topless = o_line_mirror;       break;
       case OBJ_NET:     topless = o_net_mirror;        break;
       case OBJ_BUS:     topless = o_bus_mirror;        break;
-      case OBJ_BOX:     topless = o_box_mirror;        break;
+      case OBJ_BOX:     topless = geda_box_object_mirror;        break;
       case OBJ_PICTURE: topless = o_picture_mirror;    break;
       case OBJ_CIRCLE:  topless = o_circle_mirror;     break;
       case OBJ_PLACEHOLDER:
@@ -587,7 +587,7 @@ void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
     case OBJ_LINE:    topless = o_line_rotate;       break;
     case OBJ_NET:     topless = o_net_rotate;        break;
     case OBJ_BUS:     topless = o_bus_rotate;        break;
-    case OBJ_BOX:     topless = o_box_rotate;        break;
+    case OBJ_BOX:     topless = geda_box_object_rotate;        break;
     case OBJ_PICTURE: topless = o_picture_rotate;    break;
     case OBJ_CIRCLE:  topless = o_circle_rotate;     break;
     case OBJ_PLACEHOLDER:
@@ -635,7 +635,7 @@ void o_translate_object (GedaObject *object, int dx, int dy)
       case OBJ_LINE:    topless = o_line_translate;    break;
       case OBJ_NET:     topless = o_net_translate;     break;
       case OBJ_BUS:     topless = o_bus_translate;     break;
-      case OBJ_BOX:     topless = o_box_translate;     break;
+      case OBJ_BOX:     topless = geda_box_object_translate;     break;
       case OBJ_PICTURE: topless = o_picture_translate; break;
       case OBJ_CIRCLE:  topless = o_circle_translate;  break;
       case OBJ_PLACEHOLDER:

@@ -195,14 +195,14 @@ extern "C" {
          void    o_translate_object              (GedaObject *object, int dx, int dy);
 
 /* o_box_object.c */
-   GedaObject   *o_box_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_box_modify                    (GedaObject *object, int x, int y, int whichone);
-         void    o_box_modify_all                (GedaObject *object, int x1, int y1, int x2, int y2);
-         void    o_box_mirror                    (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
-         void    o_box_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_box_translate                 (GedaObject *object, int dx, int dy);
-         bool    o_box_get_nearest_point         (GedaObject *object, int x, int y, int *nx, int *ny);
+   GedaObject   *geda_box_object_copy                 (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    geda_box_object_modify               (GedaObject *object, int x, int y, int whichone);
+         void    geda_box_object_modify_all           (GedaObject *object, int x1, int y1, int x2, int y2);
+         void    geda_box_object_mirror               (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_box_object_new                  (int color, int x1, int y1, int x2, int y2);
+         void    geda_box_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_box_object_translate            (GedaObject *object, int dx, int dy);
+         bool    geda_box_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
 
 /* o_bus_object.c */
          void    o_bus_consolidate               (void);

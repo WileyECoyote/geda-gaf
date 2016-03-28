@@ -1,3 +1,7 @@
+2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_box_basic.c: Replace function prefix o_box geda_box_object.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: rm redundant inclusion in libgeda-man-1.html
