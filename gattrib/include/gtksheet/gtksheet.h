@@ -23,10 +23,7 @@
 #ifndef __GTK_SHEET_H__
 #define __GTK_SHEET_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif /* __cplusplus */
+#include <stdint.h>
 
 typedef enum
 {
@@ -284,23 +281,21 @@ struct _GtkSheetRange
 struct _GtkSheetRow
 {
     /*< private >*/
-    char *name;
-    int height;
-    guint16 requisition;
-    int top_ypixel;
-    int max_extent_height;  /* := max(Cell.extent.height) */
+    char    *name;
+    int      height;
+    uint16_t requisition;
+    int      top_ypixel;
+    int      max_extent_height;  /* := max(Cell.extent.height) */
 
     GtkSheetButton button;
     int is_sensitive;
     int is_visible;
 
     char *tooltip_markup; /* tooltip, which is marked up with the Pango text markup language */
-    char *tooltip_text;  /* tooltip, without markup */
+    char *tooltip_text;   /* tooltip, without markup */
 };
 
 #include "gtksheetcolumn.h"
-
-
 
 /**
  * GtkSheet:
@@ -312,7 +307,7 @@ struct _GtkSheet
 {
     GtkContainer container;    /* parent instance */
 
-    guint16 flags;
+    uint16_t flags;
 
     GtkSelectionMode selection_mode;
     int autoresize_columns;
@@ -329,7 +324,7 @@ struct _GtkSheet
     GdkColor tm_color;    /* tooltip marker color */
     int show_grid;
 
-    GList *children;    /* sheet children */
+    GList *children;      /* sheet children */
 
     /* allocation rectangle after the container_border_width
        and the width of the shadow border */
@@ -363,17 +358,17 @@ struct _GtkSheet
     GtkSheetCell active_cell;
     GtkWidget *sheet_entry;
 
-    GType entry_type;  /* wanted entry type */
+    GType entry_type;            /* wanted entry type */
     GType installed_entry_type;  /* installed entry type */
 
     /* expanding selection */
     GtkSheetCell selection_cell;
 
     /* timer for automatic scroll during selection */
-    gint32 timer;
+    int32_t timer;
     /* timer for flashing clipped range */
-    gint32 clip_timer;
-    int interval;
+    int32_t clip_timer;
+    int     interval;
 
     /* global selection button */
     GtkWidget *button;
@@ -483,8 +478,13 @@ struct _GtkSheetClass
                         int  extend_selection);
 };
 
-GType gtk_sheet_get_type(void);
-GType gtk_sheet_range_get_type(void);
+#ifdef __cplusplus
+extern "C"
+{
+#endif /* __cplusplus */
+
+GType      gtk_sheet_get_type       (void);
+GType      gtk_sheet_range_get_type (void);
 
 /* create a new sheet */
 GtkWidget *gtk_sheet_new       (unsigned int rows, unsigned int columns, const char *title);
