@@ -1,6 +1,7 @@
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_box_basic.c: Replace function prefix o_box geda_box_object.
+    * src/object/o_box_basic.c: Replace function prefix o_box geda_box_object,
+      and adjust line wrap on function definitions.
 
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 

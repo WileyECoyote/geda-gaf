@@ -39,7 +39,8 @@
  *
  *  \return The new GedaObject
  */
-GedaObject *geda_box_object_copy(GedaObject *o_current)
+GedaObject*
+geda_box_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_BOX(o_current)) {
 
@@ -85,7 +86,8 @@ GedaObject *geda_box_object_copy(GedaObject *o_current)
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
  */
-bool geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool
+geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaBox *box;
   bool result;
@@ -260,7 +262,8 @@ bool geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *n
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool geda_box_object_get_position (GedaObject *object, int *x, int *y)
+bool
+geda_box_object_get_position (GedaObject *object, int *x, int *y)
 {
   *x = min(object->box->lower_x, object->box->upper_x);
   *y = min(object->box->lower_y, object->box->upper_y);
@@ -280,7 +283,8 @@ bool geda_box_object_get_position (GedaObject *object, int *x, int *y)
  *  \param [in]     center_x  Origin x coordinate
  *  \param [in]     center_y  Origin y coordinate
  */
-void geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
+void
+geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -337,7 +341,8 @@ void geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
  *    <DT>*</DT><DD>BOX_LOWER_RIGHT
  *  </DL>
  */
-void geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
+void
+geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   int tmp;
 
@@ -397,7 +402,8 @@ void geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
  * \param [in]     x2       x coordinate of second corner of box.
  * \param [in]     y2       y coordinate of second corner of box,
  */
-void geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
+void
+geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
   object->box->lower_x = (x1 > x2) ? x1 : x2;
   object->box->lower_y = (y1 > y2) ? y2 : y1;
@@ -434,7 +440,8 @@ void geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int
  *
  *  \return The new GedaObject
  */
-GedaObject *geda_box_object_new(int color, int x1, int y1, int x2, int y2)
+GedaObject*
+geda_box_object_new(int color, int x1, int y1, int x2, int y2)
 {
   GedaBox    *box;
   GedaObject *new_obj;
@@ -450,138 +457,6 @@ GedaObject *geda_box_object_new(int color, int x1, int y1, int x2, int y2)
   box->upper_y = y1;
   box->lower_x = x2;
   box->lower_y = y2;
-
-  return new_obj;
-}
-
-/*! \brief Create a box from a character string.
- *  \par Function Description
- *  This function gets the description of a box from the <B>*buf</B> character
- *  string.
- *
- *  Depending on <B>*version</B>, the correct file format is considered.
- *  Currently two file format revisions are supported :
- *  <DL>
- *    <DT>*</DT><DD>the file format used until 20000704 release
- *    <DT>*</DT><DD>the file format used for the releases after 2000704.
- *  </DL>
- *
- *  \param [in]     buf             Character string with box description.
- *  \param [in]     release_ver     libgeda release version number.
- *  \param [in]     fileformat_ver  libgeda file format version number.
- *
- *  \param [out] err                A GError object
- *
- *  \return The GedaBox Object that was created, or NULL on error.
- */
-GedaObject* geda_box_object_read (const char buf[], unsigned int release_ver,
-                    unsigned int fileformat_ver, GError **err)
-{
-  GedaObject *new_obj;
-  char type;
-  int x1, y1;
-  int width, height;
-  int d_x1, d_y1;
-  int d_x2, d_y2;
-  int color;
-  int box_width, box_space, box_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  int box_end;
-  int box_type;
-  int box_filling;
-
-  if (release_ver <= VERSION_20000704) {
-
-  /*! \note
-   *  The old geda file format, i.e. releases 20000704 and older, does not
-   *  handle the line type and the filling of the box object. They are set
-   *  to default.
-   */
-
-    if (sscanf (buf, "%c %d %d %d %d %d\n",
-        &type, &x1, &y1, &width, &height, &color) != 6) {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse box object"));
-      return NULL;
-    }
-
-    box_width   = 0;
-    box_end     = END_NONE;
-    box_type    = TYPE_SOLID;
-    box_length  = -1;
-    box_space   = -1;
-
-    box_filling = FILLING_HOLLOW;
-    fill_width  = 0;
-    angle1      = -1;
-    pitch1      = -1;
-    angle2      = -1;
-    pitch2      = -1;
-
-  }
-  else {
-
-    /*! \note
-     *  The current line format to describe a box is a space separated list of
-     *  characters and numbers in plain ASCII on a single line. The meaning of
-     *  each item is described in the file format documentation.
-     */
-    if (sscanf (buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-                &type, &x1, &y1, &width, &height, &color,
-                &box_width, &box_end, &box_type, &box_length,
-                &box_space, &box_filling,
-                &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 17)
-    {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse box object"));
-      return NULL;
-    }
-  }
-
-  if (width == 0 || height == 0) {
-    u_log_message (_("Found a zero width/height box [ %c %d %d %d %d %d ]\n"),
-                   type, x1, y1, width, height, color);
-  }
-
-  if (color < 0 || color > MAX_COLORS) {
-    u_log_message (_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message (_("Setting color to default color\n"));
-    color = DEFAULT_BOX_COLOR_INDEX;
-  }
-
-  /*! \note
-   *  A box is internally described by its lower right and upper left corner
-   *  whereas the line describe it with the lower left corner and the width
-   *  and height.
-   *
-   *  A new object is allocated, initialized and added to the object list.
-   *  Its filling and line type are set according to the values of the field
-   *  on the line.
-   */
-
-  /* upper left corner of the box */
-  d_x1 = x1;
-  d_y1 = y1 + height; /* move box origin to top left */
-
-  /* lower right corner of the box */
-  d_x2 = x1 + width;  /* end points of the box */
-  d_y2 = y1;
-
-  /* create a new box */
-  new_obj = geda_box_object_new (color, d_x1, d_y1, d_x2, d_y2);
-
-  /* set its line options */
-  new_obj->line_options->line_end     = box_end;
-  new_obj->line_options->line_type    = box_type;
-  new_obj->line_options->line_width   = box_width;
-  new_obj->line_options->line_length  = box_length;
-  new_obj->line_options->line_space   = box_space;
-
-  /* set its fill options */
-  new_obj->fill_options->fill_type   = box_filling;
-  new_obj->fill_options->fill_width  = fill_width;
-  new_obj->fill_options->fill_angle1 = angle1;
-  new_obj->fill_options->fill_angle2 = angle2;
-  new_obj->fill_options->fill_pitch1 = pitch1;
-  new_obj->fill_options->fill_pitch2 = pitch2;
 
   return new_obj;
 }
@@ -610,8 +485,9 @@ GedaObject* geda_box_object_read (const char buf[], unsigned int release_ver,
  *  \param [in] origin_x   Page x coordinate to place GedaBox Object.
  *  \param [in] origin_y   Page y coordinate to place GedaBox Object.
  */
-void geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                 int origin_x, int origin_y)
+void
+geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+                      int origin_x, int origin_y)
 {
   int x, y, width, height;
   int color;
@@ -802,12 +678,13 @@ void geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curre
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
-                       int x, int y,
-                       int width, int height,
-                       int color,
-                       int line_width, int capstyle, int length, int space,
-                       int origin_x, int origin_y)
+void
+geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                            int x, int y,
+                            int width, int height,
+                            int color,
+                            int line_width, int capstyle, int length, int space,
+                            int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -866,12 +743,14 @@ void geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y,
-                        int width, int height,
-                        int color,
-                        int line_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void
+geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                             int x,     int y,
+                             int width, int height,
+                             int color,
+                             int line_width, int capstyle,
+                             int length,     int space,
+                             int origin_x,   int origin_y)
 {
   int x1, y1;
 
@@ -929,12 +808,13 @@ void geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y,
-                        int width, int height,
-                        int color,
-                        int line_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void
+geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y,
+                             int width, int height,
+                             int color,
+                             int line_width, int capstyle, int length, int space,
+                             int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -993,12 +873,13 @@ void geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y,
-                        int width, int height,
-                        int color,
-                        int line_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
+void
+geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y,
+                             int width, int height,
+                             int color,
+                             int line_width, int capstyle, int length, int space,
+                             int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -1056,12 +937,13 @@ void geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                         int x, int y,
-                         int width, int height,
-                         int color,
-                         int line_width, int capstyle, int length, int space,
-                         int origin_x, int origin_y)
+void
+geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
+                              int x, int y,
+                              int width, int height,
+                              int color,
+                              int line_width, int capstyle, int length, int space,
+                              int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -1124,14 +1006,15 @@ void geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
-                        int x, int y,
-                        int width, int height,
-                        int color,
-                        int fill_width,
-                        int angle1, int pitch1,
-                        int angle2, int pitch2,
-                        int origin_x, int origin_y)
+void
+geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
+                             int x,     int y,
+                             int width, int height,
+                             int color,
+                             int fill_width,
+                             int angle1,   int pitch1,
+                             int angle2,   int pitch2,
+                             int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -1176,14 +1059,15 @@ void geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
-                      int x, int y,
-                      int width, int height,
-                      int color,
-                      int fill_width,
-                      int angle1, int pitch1,
-                      int angle2, int pitch2,
-                      int origin_x, int origin_y)
+void
+geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
+                           int x,     int y,
+                           int width, int height,
+                           int color,
+                           int fill_width,
+                           int angle1,   int pitch1,
+                           int angle2,   int pitch2,
+                           int origin_x, int origin_y)
 {
   geda_box_object_print_hatch(toplevel, fp,
                     x, y, width, height,
@@ -1231,14 +1115,15 @@ void geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place box Object.
  *  \param [in] origin_y    Page y coordinate to place box Object.
  */
-void geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
-                       int x, int y,
-                       int width, int height,
-                       int color,
-                       int fill_width,
-                       int angle1, int pitch1,
-                       int angle2, int pitch2,
-                       int origin_x, int origin_y)
+void
+geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
+                            int x,     int y,
+                            int width, int height,
+                            int color,
+                            int fill_width,
+                            int angle1,   int pitch1,
+                            int angle2,   int pitch2,
+                            int origin_x, int origin_y)
 {
   GedaBox box;
   int index;
@@ -1274,6 +1159,139 @@ void geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
+/*! \brief Create a box from a character string.
+ *  \par Function Description
+ *  This function gets the description of a box from the <B>*buf</B> character
+ *  string.
+ *
+ *  Depending on <B>*version</B>, the correct file format is considered.
+ *  Currently two file format revisions are supported :
+ *  <DL>
+ *    <DT>*</DT><DD>the file format used until 20000704 release
+ *    <DT>*</DT><DD>the file format used for the releases after 2000704.
+ *  </DL>
+ *
+ *  \param [in]     buf             Character string with box description.
+ *  \param [in]     release_ver     libgeda release version number.
+ *  \param [in]     fileformat_ver  libgeda file format version number.
+ *
+ *  \param [out] err                A GError object
+ *
+ *  \return The GedaBox Object that was created, or NULL on error.
+ */
+GedaObject*
+geda_box_object_read (const char buf[], unsigned int release_ver,
+                      unsigned int fileformat_ver, GError **err)
+{
+  GedaObject *new_obj;
+  char type;
+  int x1, y1;
+  int width, height;
+  int d_x1, d_y1;
+  int d_x2, d_y2;
+  int color;
+  int box_width, box_space, box_length;
+  int fill_width, angle1, pitch1, angle2, pitch2;
+  int box_end;
+  int box_type;
+  int box_filling;
+
+  if (release_ver <= VERSION_20000704) {
+
+  /*! \note
+   *  The old geda file format, i.e. releases 20000704 and older, does not
+   *  handle the line type and the filling of the box object. They are set
+   *  to default.
+   */
+
+    if (sscanf (buf, "%c %d %d %d %d %d\n",
+        &type, &x1, &y1, &width, &height, &color) != 6) {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse box object"));
+      return NULL;
+    }
+
+    box_width   = 0;
+    box_end     = END_NONE;
+    box_type    = TYPE_SOLID;
+    box_length  = -1;
+    box_space   = -1;
+
+    box_filling = FILLING_HOLLOW;
+    fill_width  = 0;
+    angle1      = -1;
+    pitch1      = -1;
+    angle2      = -1;
+    pitch2      = -1;
+
+  }
+  else {
+
+    /*! \note
+     *  The current line format to describe a box is a space separated list of
+     *  characters and numbers in plain ASCII on a single line. The meaning of
+     *  each item is described in the file format documentation.
+     */
+    if (sscanf (buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
+                &type, &x1, &y1, &width, &height, &color,
+                &box_width, &box_end, &box_type, &box_length,
+                &box_space, &box_filling,
+                &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 17)
+    {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse box object"));
+      return NULL;
+    }
+  }
+
+  if (width == 0 || height == 0) {
+    u_log_message (_("Found a zero width/height box [ %c %d %d %d %d %d ]\n"),
+                   type, x1, y1, width, height, color);
+  }
+
+  if (color < 0 || color > MAX_COLORS) {
+    u_log_message (_("Found an invalid color [ %s ]\n"), buf);
+    u_log_message (_("Setting color to default color\n"));
+    color = DEFAULT_BOX_COLOR_INDEX;
+  }
+
+  /*! \note
+   *  A box is internally described by its lower right and upper left corner
+   *  whereas the line describe it with the lower left corner and the width
+   *  and height.
+   *
+   *  A new object is allocated, initialized and added to the object list.
+   *  Its filling and line type are set according to the values of the field
+   *  on the line.
+   */
+
+  /* upper left corner of the box */
+  d_x1 = x1;
+  d_y1 = y1 + height; /* move box origin to top left */
+
+  /* lower right corner of the box */
+  d_x2 = x1 + width;  /* end points of the box */
+  d_y2 = y1;
+
+  /* create a new box */
+  new_obj = geda_box_object_new (color, d_x1, d_y1, d_x2, d_y2);
+
+  /* set its line options */
+  new_obj->line_options->line_end     = box_end;
+  new_obj->line_options->line_type    = box_type;
+  new_obj->line_options->line_width   = box_width;
+  new_obj->line_options->line_length  = box_length;
+  new_obj->line_options->line_space   = box_space;
+
+  /* set its fill options */
+  new_obj->fill_options->fill_type   = box_filling;
+  new_obj->fill_options->fill_width  = fill_width;
+  new_obj->fill_options->fill_angle1 = angle1;
+  new_obj->fill_options->fill_angle2 = angle2;
+  new_obj->fill_options->fill_pitch1 = pitch1;
+  new_obj->fill_options->fill_pitch2 = pitch2;
+
+  return new_obj;
+}
+
 /*! \brief Rotate GedaBox Object
  *  \par Function Description
  *  The function #geda_box_object_rotate() rotate the box described by <B>*object</B>
@@ -1286,7 +1304,8 @@ void geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  \param [in]      angle     Rotation angle in degrees (See note below)
  *
  */
-void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -1349,7 +1368,8 @@ void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int 
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-char *geda_box_object_save(GedaObject *object)
+char*
+geda_box_object_save(GedaObject *object)
 {
   int x1, y1;
   int width, height;
@@ -1407,27 +1427,6 @@ char *geda_box_object_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief Translate a Box position by a delta.
- *  \par Function Description
- *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
- *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
- *
- *  \param [in,out] object     Box Object to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move
- */
-void geda_box_object_translate(GedaObject *object, int dx, int dy)
-{
-  /* Do world coords */
-  object->box->upper_x = object->box->upper_x + dx;
-  object->box->upper_y = object->box->upper_y + dy;
-  object->box->lower_x = object->box->lower_x + dx;
-  object->box->lower_y = object->box->lower_y + dy;
-
-  /* recalc the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
-}
-
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the box.
  *
@@ -1438,7 +1437,8 @@ void geda_box_object_translate(GedaObject *object, int dx, int dy)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double
+geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 
@@ -1449,3 +1449,24 @@ double geda_box_object_shortest_distance (GedaObject *object, int x, int y, int 
   return m_box_shortest_distance (object->box, x, y, solid);
 }
 
+/*! \brief Translate a Box position by a delta.
+ *  \par Function Description
+ *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
+ *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
+ *
+ *  \param [in,out] object     Box Object to translate
+ *  \param [in]     dx         x distance to move
+ *  \param [in]     dy         y distance to move
+ */
+void
+geda_box_object_translate(GedaObject *object, int dx, int dy)
+{
+  /* Do world coords */
+  object->box->upper_x = object->box->upper_x + dx;
+  object->box->upper_y = object->box->upper_y + dy;
+  object->box->lower_x = object->box->lower_x + dx;
+  object->box->lower_y = object->box->lower_y + dy;
+
+  /* recalc the screen coords and the bounding box */
+  object->w_bounds_valid_for = NULL;
+}
