@@ -187,10 +187,10 @@ for t in $all_tests ; do
 	    chmod 644 ${rundir}/${f}
 	done
     fi
-    
+
     # run gxyrs
     #
-    
+
     if test "X$adjust_file" = "X" -o "X$adjust_file" = "X " ; then
 	command="cd ${rundir} && ${PERL} -I${gxyrs_srcdir} -w ${GXYRS_SCRIPT} $args $files --output $out_file 2> $error_file"
     else
@@ -229,7 +229,10 @@ for t in $all_tests ; do
 		    fail=`expr $fail + 1`
 		    bad=1
 		    good=0
-	    fi
+		    if test $DEBUG ; then 
+			exit 1;
+		    fi
+		fi
 	    else
 		echo "FAILED:  See diff -w ${ref} ${out}"
 		fail=`expr $fail + 1`
@@ -251,7 +254,7 @@ for t in $all_tests ; do
     skip=`expr $skip + $soso`
 
     cd $here
-    
+
     # clean up the rundirectory
     rm -fr ${rundir}
 

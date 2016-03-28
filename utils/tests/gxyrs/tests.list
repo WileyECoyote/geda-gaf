@@ -79,7 +79,7 @@ chunits_negative_col_num | pcb_example1.xy | | --eval "return change_col_units '
 chunits_col_num_too_high | pcb_example1.xy | | --eval "return change_col_units 'mm', 100"| 255
 chunits_no_units | pcb_example1.xy | | --eval "return change_col_units 'mm', 4"| 254
 chunits_to_mm_6col_tab | protel_example1_mil.txt | | --tabulate --eval "return change_col_units 'mm', 3, 4, 5, 6, 7, 8"| 254
-chunits_2mm_6col_tab_notit | protel_example1_mil.txt | | --tabulate --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mm', 3, 4, 5, 6, 7, 8}"| 1
+chunits_2mm_6col_tab_nt | protel_example1_mil.txt | | --tabulate --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mm', 3, 4, 5, 6, 7, 8}"| 1
 chunits_already_done | protel_example1_mil.txt | | --eval "return change_col_units 'mil', 3"| 254
 chunits_done_notitle | protel_example1_mil.txt | | --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mil', 3}"| 0
 chunits_unsupported | protel_example1_mil.txt | | --eval "return change_col_units 'gallons', 3"| 255

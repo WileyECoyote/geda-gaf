@@ -2,8 +2,8 @@
 # dir | sort | awk '{printf("\t%s \\\n", $0)}' |grep -v Makefile >> Makefile.am
 
 EXTRA_DIST= \
-	chunits_2mm_6col_tab_notit-protel_example1_mil.txt \
-	chunits_2mm_6col_tab_notit-protel_example1_mil.txt-error \
+	chunits_2mm_6col_tab_nt-protel_example1_mil.txt \
+	chunits_2mm_6col_tab_nt-protel_example1_mil.txt-error \
 	chunits_already_done-protel_example1_mil.txt \
 	chunits_already_done-protel_example1_mil.txt-error \
 	chunits_bad_col_num1-pcb_example1.xy \

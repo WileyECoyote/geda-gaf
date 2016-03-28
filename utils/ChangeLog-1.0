@@ -1,3 +1,17 @@
+2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/gxyrs/run_tests.sh: Exit testing if error when DEBUG is defined.
+
+    * tests/gxyrs: Rename chunits_2mm_6col_tab_notit-protel_example1_mil.txt to
+      chunits_2mm_6col_tab_nt-protel_example1_mil.txt, the longer "error" version
+      can fail distchecks when lengthly paths are prefixed to the file name, as
+      occured on 2014-08-27, see previous log entries for details:
+
+            * tests/gxyrs/Makefile.am
+            * tests/gxyrs/tests.list
+            * outputs/chunits_2mm_6col_tab_nt-protel_example1_mil.txt
+            * outputs/chunits_2mm_6col_tab_nt-protel_example1_mil.txt-error
+
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/main.c: Replace arc->width/2.0 with arc->radius in print_arc.
@@ -373,7 +387,7 @@
 
           geda-gaf-2.0.8.10/utils/tests/gxyrs/outputs/chunits_units_not_supported-protel_example1_mil.txt-error: file name is too long (max 99); not dumped
 
-          Which has name that is 102 characters long. Also renamed case_insens
+          Which has a name that is 102 characters long. Also renamed case_insens
           file to icase for consistency.
 
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
