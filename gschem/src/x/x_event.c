@@ -634,6 +634,7 @@ int x_event_expose (GtkWidget      *widget,
 static bool x_event_raise_dialogs(void *user_data)
 {
   GschemToplevel *w_current = (GschemToplevel*)user_data;
+
   /* raise the dialog boxes if this feature is enabled */
   if (w_current->raise_dialog_boxes) {
     x_dialog_raise_all(w_current);

@@ -73,14 +73,14 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
   }
 }
 
-/*! \brief GtkWidget map signal handler
- *
- *  \par Function Description
+/*!
+ * \brief GtkWidget map signal handler
+ * \par Function Description
  *  Just before the main window is unmapped.
  *
  *  This typically happens when you call gtk_widget_destroy().
  *
- *  \param [in] widget  The GtkWidget being unmapped.
+ * \param [in] widget  The GtkWidget being unmapped.
  */
 static void
 gschem_main_window_map (GtkWidget *widget)

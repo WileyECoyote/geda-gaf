@@ -149,7 +149,6 @@ void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   char *unique_name = geda_utility_string_sprintf("GschemDrawingArea:%i", prog_pid);
   g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
   GEDA_FREE(unique_name);
-
 }
 
 /*! \brief Save Window Geometry
@@ -496,9 +495,9 @@ void x_window_create_main(GschemToplevel *w_current)
     g_object_set (draw_window, "visible", TRUE, NULL);
     gtk_container_add(GTK_CONTAINER(center_vbox), draw_window);
 
-    scroll_window = GTK_SCROLLED_WINDOW (draw_window);
+    scroll_window    = GTK_SCROLLED_WINDOW (draw_window);
     HorizontalScroll = gtk_scrolled_window_get_hscrollbar(scroll_window);
-    VerticalScroll = gtk_scrolled_window_get_vscrollbar(scroll_window);
+    VerticalScroll   = gtk_scrolled_window_get_vscrollbar(scroll_window);
 
     policy = (w_current->scrollbars) ? GTK_POLICY_ALWAYS : GTK_POLICY_NEVER;
 

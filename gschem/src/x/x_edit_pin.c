@@ -360,8 +360,9 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
       }
 
     }
-    else
+    else {
       BUG_MSG("got FALSE pin object\n");
+    }
   }
   else { /* More than 1 pin is selected */
 

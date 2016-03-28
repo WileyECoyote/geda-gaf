@@ -3773,7 +3773,7 @@ COMMAND (do_show_both)
   EXIT_COMMAND(do_show_both);
 }
 
-/*! @brief Toggle Visibility of ALL Attribute Text */
+/*! \brief Toggle Visibility of ALL Attribute Text */
 COMMAND (do_toggle_visibility)
 {
   /* Do Not toggle visibility while inside an action */
@@ -3801,7 +3801,7 @@ COMMAND (do_toggle_visibility)
   EXIT_COMMAND(do_toggle_visibility);
 }
 
-/*! @brief Launch the Find Attribute Text Dialog */
+/*! \brief Launch the Find Attribute Text Dialog */
 COMMAND (do_find_text)
 {
   NOT_NULL(w_current);
@@ -3813,7 +3813,7 @@ COMMAND (do_find_text)
   }
 }
 
-/*! @brief Launch the Hide Attribute Text Dialog */
+/*! \brief Launch the Hide Attribute Text Dialog */
 COMMAND (do_hide_text)
 {
   NOT_NULL(w_current);
@@ -3824,7 +3824,7 @@ COMMAND (do_hide_text)
   }
 }
 
-/*! @brief Launch the Show Attribute Text Dialog */
+/*! \brief Launch the Show Attribute Text Dialog */
 COMMAND (do_show_text)
 {
   NOT_NULL(w_current);
@@ -3835,7 +3835,7 @@ COMMAND (do_show_text)
   }
 }
 
-/*! @brief Launch the Multi-Attributes Dialog */
+/*! \brief Launch the Multi-Attributes Dialog */
 COMMAND (do_attributes)
 {
   NOT_NULL(w_current);
@@ -3850,7 +3850,7 @@ COMMAND (do_attributes)
 
 /* ------------------- Tools ----------------- */
 
-/*! @brief Launch the Auto Number Dialog */
+/*! \brief Launch the Auto Number Dialog */
 COMMAND (do_autonumber)
 {
   NOT_NULL(w_current);
@@ -3918,7 +3918,7 @@ COMMAND (do_macro)
   EXIT_COMMAND(do_macro);
 }
 
-/*! @brief Launch the Guile Path Dialog */
+/*! \brief Launch the Guile Path Dialog */
 COMMAND (do_guile_path)
 {
   BEGIN_NO_ARGUMENT(do_guile_path);
@@ -4061,7 +4061,7 @@ COMMAND (do_update)
  * @{
  */
 
-/*! @brief Set the Grid Display to Dots Mode */
+/*! \brief Set the Grid Display to Dots Mode */
 COMMAND (do_grid_dots)
 {
   NOT_NULL(w_current);
@@ -4071,7 +4071,7 @@ COMMAND (do_grid_dots)
   i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 }
-/*! @brief Set the Grid Display to Mesh Mode */
+/*! \brief Set the Grid Display to Mesh Mode */
 COMMAND (do_grid_mesh)
 {
   NOT_NULL(w_current);
@@ -4081,7 +4081,7 @@ COMMAND (do_grid_mesh)
   i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 }
-/*! @brief Turn the Grid Display Off in i_command_Option_Actions */
+/*! \brief Turn the Grid Display Off in i_command_Option_Actions */
 COMMAND (do_grid_off)
 {
   NOT_NULL(w_current);
@@ -4091,7 +4091,7 @@ COMMAND (do_grid_off)
   o_invalidate_all (w_current);
 }
 
-/*! @brief Cycle the Grid Mode in i_command_Option_Actions */
+/*! \brief Cycle the Grid Mode in i_command_Option_Actions */
 COMMAND (do_cycle_grid)
 {
   NOT_NULL(w_current);
@@ -4114,7 +4114,7 @@ COMMAND (do_cycle_grid)
 
 }
 
-/*! @brief Increase the Snap Scale in i_command_Option_Actions */
+/*! \brief Increase the Snap Scale in i_command_Option_Actions */
 COMMAND (do_snap_up)
 {
   NOT_NULL(w_current);
@@ -4126,7 +4126,7 @@ COMMAND (do_snap_up)
   EXIT_COMMAND(do_snap_up);
 }
 
-/*! @brief Decrease the Snap Scale in i_command_Option_Actions */
+/*! \brief Decrease the Snap Scale in i_command_Option_Actions */
 COMMAND (do_snap_down)
 {
   NOT_NULL(w_current);
@@ -4139,7 +4139,7 @@ COMMAND (do_snap_down)
   EXIT_COMMAND(do_snap_down);
 }
 
-/*! @brief Launch the Snap Settings Dialog */
+/*! \brief Launch the Snap Settings Dialog */
 COMMAND (do_show_snap)
 {
   NOT_NULL(w_current);
@@ -4159,7 +4159,7 @@ COMMAND (do_snap_off)
   i_status_update_grid_info (w_current); /* update on screen grid status */
 
 }
-/*! @brief Turn-On Snap Mode in i_command_Option_Actions */
+/*! \brief Turn-On Snap Mode in i_command_Option_Actions */
 COMMAND (do_snap_on)
 {
   NOT_NULL(w_current);
@@ -4175,7 +4175,7 @@ COMMAND (do_snap_on)
 
 }
 
-/*! @brief Cycle the Snap Mode in i_command_Option_Actions */
+/*! \brief Cycle the Snap Mode in i_command_Option_Actions */
 COMMAND (do_cycle_snap)
 {
   NOT_NULL(w_current);
@@ -4226,7 +4226,7 @@ COMMAND (do_toggle_rubberband)
   x_menu_set_togglable(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
 
-/*! @brief Toggle Magnetic Nets Mode in i_command_Option_Actions */
+/*! \brief Toggle Magnetic Nets Mode in i_command_Option_Actions */
 COMMAND (do_toggle_magneticnet)
 {
   NOT_NULL(w_current);
@@ -4244,7 +4244,6 @@ COMMAND (do_toggle_magneticnet)
 /*! \brief Toggle Drag-Can-Move Mode in i_command_Option_Actions
  *  \par Function Description
  *  This is a callback function for the Toggle draw-can-move action API.
- *
  */
 COMMAND (do_toggle_dragcanmove)
 {
@@ -4339,7 +4338,7 @@ COMMAND (do_show_settings)
  * @{
  */
 
-/*! @brief Spawn the Help Guide in Browser */
+/*! \brief Spawn the Help Guide in Browser */
 COMMAND (do_show_manual)
 {
   BEGIN_COMMAND(do_show_manual);
@@ -4360,7 +4359,8 @@ COMMAND (do_show_manual)
 
   EXIT_COMMAND(do_show_manual);
 }
-/*! @brief Launch the Help Hotkeys Dialog */
+
+/*! \brief Launch the Help Hotkeys Dialog */
 COMMAND (do_show_hotkeys)
 {
   BEGIN_COMMAND(do_show_hotkeys);
@@ -4368,7 +4368,7 @@ COMMAND (do_show_hotkeys)
   EXIT_COMMAND(do_show_hotkeys);
 }
 
-/*! @brief Spawn the Help FAQ in Browser */
+/*! \brief Spawn the Help FAQ in Browser */
 COMMAND (do_show_faq)
 {
   BEGIN_COMMAND(do_show_faq);
@@ -4388,7 +4388,7 @@ COMMAND (do_show_faq)
   EXIT_COMMAND(do_show_faq);
 }
 
-/*! @brief Spawn the Help Geda in Browser */
+/*! \brief Spawn the Help Geda in Browser */
 COMMAND (do_show_geda)
 {
   BEGIN_COMMAND(do_show_geda);
@@ -4408,7 +4408,7 @@ COMMAND (do_show_geda)
   EXIT_COMMAND(do_show_geda);
 }
 
-/*! @brief Spawn the Help Wiki in Browser */
+/*! \brief Spawn the Help Wiki in Browser */
 COMMAND (do_show_wiki)
 {
   BEGIN_COMMAND(do_show_wiki);
@@ -4428,7 +4428,7 @@ COMMAND (do_show_wiki)
   EXIT_COMMAND(do_show_wiki);
 }
 
-/*! @brief Launch the Help About Dialog */
+/*! \brief Launch the Help About Dialog */
 COMMAND (do_show_about)
 {
   BEGIN_NO_ARGUMENT(do_show_about);
