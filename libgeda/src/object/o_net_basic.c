@@ -550,7 +550,6 @@ static int o_net_consolidate_segments (GedaToplevel *toplevel, GedaObject *objec
  */
 void o_net_consolidate(GedaToplevel *toplevel, Page *page)
 {
-  GedaObject *o_current;
   const GList *iter;
   int status = 0;
 
@@ -560,7 +559,8 @@ void o_net_consolidate(GedaToplevel *toplevel, Page *page)
   iter = s_page_get_objects (page);
 
   while (iter != NULL) {
-    o_current = (GedaObject *)iter->data;
+
+    GedaObject *o_current = (GedaObject *)iter->data;
 
     if (o_current->type == OBJ_NET) {
       status = o_net_consolidate_segments(toplevel, o_current);

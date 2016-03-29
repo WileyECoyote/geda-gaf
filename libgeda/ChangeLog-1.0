@@ -1,8 +1,10 @@
-2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_list.h: Declare method geda_list_prepend.
 
     * src/geda/geda_list.c: Add new method geda_list_prepend.
+
+    * src/object/o_net_basic.c: Reduce scope of o_current in o_net_consolidate.
 
     * tests/test_list.c: Add a test for geda_list_prepend, is something.
 
