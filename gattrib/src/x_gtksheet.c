@@ -475,7 +475,7 @@ static void show_sheet_entry(GtkWidget *widget, void * data)
 
  if(!GTK_WIDGET_HAS_FOCUS(widget)) return;
 
- sheet=x_gtksheet_get_current_sheet();
+ sheet       = x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
  text = GetEntryText(sheet_entry);
@@ -490,15 +490,17 @@ static void activate_sheet_entry(GtkWidget *widget, void * data)
   GtkSheet *sheet;
   GtkEntry *sheet_entry;
   int row, col;
-  int justification=GTK_JUSTIFY_LEFT;
+  int justification = GTK_JUSTIFY_LEFT;
 
-  sheet=x_gtksheet_get_current_sheet();
-  row=sheet->active_cell.row; col=sheet->active_cell.col;
+  sheet = x_gtksheet_get_current_sheet();
+  row   = sheet->active_cell.row;
+  col   = sheet->active_cell.col;
 
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
-  if(GTK_IS_ITEM_ENTRY(sheet_entry))
-         justification = GTK_ITEM_ENTRY(sheet_entry)->justification;
+  if (GTK_IS_ITEM_ENTRY(sheet_entry)) {
+    justification = GTK_ITEM_ENTRY(sheet_entry)->justification;
+  }
 
   gtk_sheet_set_cell(sheet, row, col, justification, GetEntryText(sheet_entry));
 
@@ -531,7 +533,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
   GtkEntry   *sheet_entry;
   char        cell[100];
 
-  sheet=GTK_SHEET(widget);
+  sheet       = GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
   if(GTK_SHEET(widget)->column[column]->title)
@@ -539,7 +541,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
   else
     sprintf(cell, "R:%d C: %d", row, column);
 
-  gtk_label_set(GTK_LABEL(location), cell);
+  geda_label_widget_set_text(location, cell);
 
   g_object_set (entry, "max-length", GTK_ENTRY(sheet_entry)->text_max_length, NULL);
 

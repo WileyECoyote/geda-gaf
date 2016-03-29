@@ -1,3 +1,11 @@
+2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Replace GtkLabel with GedaLabel in x_window_init and
+      x_window_clipboard_handler.
+
+    * src/x_gtksheet.c: Revise function activate_sheet_cell to call geda_
+      label_widget_set_text instead of gtk_label_set.
+
 2016-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/x_dialog.c: Update function name geda_entry_new_visible.

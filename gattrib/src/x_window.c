@@ -92,16 +92,17 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 void x_window_clipboard_handler(int do_what) {
 
   GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(main_window));
+
   switch (do_what ) {
     case cut:
-      if(GTK_IS_LABEL(widget) && gtk_label_get_selectable(GTK_LABEL(widget)))
+      if (GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
         g_signal_emit_by_name(widget, "copy-clipboard", NULL); /* just copy */
       else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
         x_window_update_title(pr_current, sheet_head);
       break;
     case copy:
-      if((GTK_IS_LABEL(widget) && gtk_label_get_selectable(GTK_LABEL(widget)))
+      if((GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
           || GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
         g_signal_emit_by_name(widget, "copy-clipboard", NULL);
       break;
@@ -274,6 +275,7 @@ void x_window_init()
                        GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */
+
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
   gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
@@ -286,19 +288,19 @@ void x_window_init()
    /* -----  Initialize the Toolbar Module ----- */
   x_toolbars_init(main_vbox);
 
-  edit_box=gtk_hbox_new(FALSE, 1);
+  edit_box = gtk_hbox_new(FALSE, 1);
   gtk_container_set_border_width(GTK_CONTAINER(edit_box),0);
   gtk_box_pack_start(GTK_BOX(main_vbox), edit_box, FALSE, TRUE, 0);
   gtk_widget_show(edit_box);
 
    /* This is the RC box in the top left cell */
-  location = gtk_label_new("");
+  location = geda_visible_label_new("");
+
   gtk_widget_size_request(location, &request);
   gtk_widget_set_usize(location, 150, request.height);
   gtk_box_pack_start(GTK_BOX(edit_box), location, FALSE, TRUE, 0);
-  gtk_widget_show(location);
 
-  entry=gtk_entry_new();
+  entry = gtk_entry_new();
   gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0);
   gtk_widget_show(entry);
 
