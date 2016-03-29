@@ -1760,7 +1760,7 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
       priv->popup_window = gtk_window_new (GTK_WINDOW_POPUP);
       window             = GTK_WINDOW(priv->popup_window);
 
-      gtk_widget_set_name (priv->popup_window, "gtk-combobox-popup-window");
+      gtk_widget_set_name (priv->popup_window, "combobox-popup-window");
 
       gtk_window_set_type_hint (window, GDK_WINDOW_TYPE_HINT_COMBO);
 
@@ -3276,7 +3276,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 
   /* create our funky menu */
   menu = gtk_menu_new ();
-  gtk_widget_set_name (menu, "gtk-combobox-popup-menu");
+  gtk_widget_set_name (menu, "combobox-popup-menu");
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 
   g_signal_connect (menu, "key-press-event",
@@ -5740,7 +5740,6 @@ geda_combo_box_set_model (GedaComboBox *combo_box,
 /* convenience API for simple text combos */
 
 /*! \brief Get a New #GedaComboBox with Text column
- *
  *  \par Function Description
  * Convenience function which constructs a new text combo box, which is a
  * #GedaComboBox displaying only strings. Only manipulate the data source
@@ -5748,7 +5747,7 @@ geda_combo_box_set_model (GedaComboBox *combo_box,
  * geda_combo_box_insert_text(), geda_combo_box_prepend_text() and
  * geda_combo_box_remove_text().
  *
- * \return value: (transfer none): A new text combo box.
+ * \return A new text combo box.
  *
  * \sa #GedaComboBoxText
  */
@@ -5875,7 +5874,6 @@ geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
 }
 
 /*! \brief Remove Text from a GedaComboTextBox
- *
  *  \par Function Description
  *  Removes the string at \a position from \a combo_box. Note that you can only use
  *  this function with combo boxes constructed with geda_combo_box_new_text().
