@@ -84,6 +84,7 @@ GList    *geda_list_copy_glist              ( GedaList *list );
 void     *geda_list_find                    ( GedaList *list, void *item );
 int       geda_list_is_homogeneous_objects  ( GedaList *list);
 bool      geda_list_is_in_list              ( GedaList *list, void *item );
+void      geda_list_prepend                 ( GedaList *list, void  *item );
 void      geda_list_remove                  ( GedaList *list, void *item );
 void      geda_list_unref                   ( GedaList *list );
 

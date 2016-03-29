@@ -1,5 +1,13 @@
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_list.h: Declare method geda_list_prepend.
+
+    * src/geda/geda_list.c: Add new method geda_list_prepend.
+
+    * tests/test_list.c: Add a test for geda_list_prepend, is something.
+
+2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_box_basic.c: Replace function prefix o_box geda_box_object,
       and adjust line wrap on function definitions.
 

@@ -234,7 +234,25 @@ int check_methods (void)
     result++;
   }
 
-  /* === Function 11: geda_list_remove === */
+  /* === Function 11: geda_list_prepend === */
+
+  GedaList *geda_list3 = geda_list_new();
+
+  GedaObject *object5 = geda_arc_new();
+
+  geda_list_add(geda_list3, object4);
+
+  geda_list_prepend(geda_list3, object5);
+
+  if (geda_list3->glist->data != object5) {
+    fprintf(stderr, "FAILED: geda_list_prepend <%d>:",__LINE__);
+    result++;
+  }
+
+  g_object_unref(object5);
+  g_object_unref(geda_list3);
+
+  /* === Function 12: geda_list_remove === */
 
   /* void geda_list_remove (GedaList *list, void *item) */
 
@@ -250,7 +268,7 @@ int check_methods (void)
     result++;
   }
 
-  /* === Function 12: geda_list_unref === */
+  /* === Function 13: geda_list_unref === */
 
   /* void geda_list_unref (GedaList *list) */
 
@@ -261,7 +279,7 @@ int check_methods (void)
     result++;
   }
 
-  /* === Function 13: geda_list_remove_all === */
+  /* === Function 14: geda_list_remove_all === */
 
   /* void geda_list_remove_all (GedaList *list) */
 

@@ -394,6 +394,20 @@ bool geda_list_is_in_list(GedaList *list, void *item)
   return g_list_find(list->glist, item) ? 1 : 0;
 }
 
+/*! \brief Prepends the given item to the GedaList
+ *
+ *  \par Function Description
+ *  Prepends the given item to the GedaList
+ *
+ *  \param [in] list Pointer to the GedaList
+ *  \param [in] item item to prepend to the GedaList.
+ */
+void geda_list_prepend(GedaList *list, void *item)
+{
+  list->glist = g_list_prepend(list->glist, item);
+  g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
+}
+
 /*! \brief Removes the given item from the GedaList
  *
  *  \par Function Description
