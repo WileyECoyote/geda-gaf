@@ -1,5 +1,9 @@
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add geda_get_container_border_width and
+      gtk_box_new. Move geda_compat_box_new to outside Gtk versioning,
+      should work with either Gtk-2 or Gtk-3.
+
     * src/widgets/geda_combobox.c: "gtk-combobox-popup-window" and "gtk-
       combobox-popup-menu" widget string name without the "gtk-" prefix,
       neither string appears to be utilize by gtk.

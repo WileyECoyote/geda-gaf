@@ -40,6 +40,20 @@
 
 #include <gtk/gtk.h>
 
+#if !GTK_CHECK_VERSION(3, 0, 0)
+#define gtk_box_new(orientation, spacing) (orientation == GTK_ORIENTATION_HORIZONTAL \
+        ? gtk_hbox_new (FALSE, spacing)\
+        : gtk_vbox_new (FALSE, spacing))
+#endif
+
+# define geda_compat_box_new(orientation, homogeneous, spacing) \
+        g_object_new(GTK_TYPE_BOX, \
+                     "orientation", (orientation), \
+                     "homogeneous", (homogeneous), \
+                     "spacing", (spacing), \
+                     NULL)
+
+
 #if GTK_MAJOR_VERSION < 3
 
 #if !GTK_CHECK_VERSION(2,20,0)
@@ -96,6 +110,8 @@
 
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
 
+#define geda_get_container_border_width(w) GTK_CONTAINER (w)->border_width
+
 #else /* GTK >= 3 */
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
@@ -110,13 +126,6 @@
 #define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
 
 /* Gtk[VH]Box */
-#   define geda_compat_box_new(orientation, homogeneous, spacing) \
-        g_object_new(GTK_TYPE_BOX, \
-                     "orientation", (orientation), \
-                     "homogeneous", (homogeneous), \
-                     "spacing", (spacing), \
-                     NULL)
-
 #   define gtk_vbox_new(homogeneous, spacing) \
         geda_compat_box_new(GTK_ORIENTATION_VERTICAL, (homogeneous), (spacing))
 
@@ -141,6 +150,8 @@
 /* Gtk[VH]Scrollbar */
 #   define gtk_vscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
 #   define gtk_hscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
+
+#   define geda_get_container_border_width(w)  gtk_container_get_border_width(GTK_CONTAINER (w))
 
 #endif
 
