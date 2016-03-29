@@ -1,3 +1,10 @@
+2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ADC0831-1.sym: Add symbol; 8-Bit Serial I/O A/D Converter, DIP8.
+
+    * ti/ADC0831NPA-1.sym:: Single Differential,8-Bit Serial I/O A/D
+      Converters, SOIC14.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add some "template" symbols for DIP packages so DIP24-300 would be lonely.

@@ -1,0 +1,177 @@
+v 20160316 2
+T 2000 3500 8 10 1 1 0 6 1
+refdes=U?
+T 400 4100 5 10 0 0 0 0 1
+device=ADC0831
+B 400 400 1600 3000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+V 350 700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 300 700 100 700 1 0 1
+{
+T 250 750 5 8 1 1 0 6 1
+pinnumber=1
+T 250 750 5 8 0 1 0 6 1
+pinseq=1
+T 450 700 9 10 1 1 0 0 1
+pinlabel=\_CS\_
+T 450 650 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 1100 100 1100 1 0 1
+{
+T 250 1150 5 8 1 1 0 6 1
+pinnumber=2
+T 250 1150 5 8 0 1 0 6 1
+pinseq=2
+T 450 1100 9 10 1 1 0 0 1
+pinlabel=NC
+T 450 1050 5 8 0 1 0 2 1
+pintype=pas
+}
+P 400 1500 100 1500 1 0 1
+{
+T 250 1550 5 8 1 1 0 6 1
+pinnumber=3
+T 250 1550 5 8 0 1 0 6 1
+pinseq=3
+T 450 1500 9 10 1 1 0 0 1
+pinlabel=Ain+
+T 450 1450 5 8 0 1 0 2 1
+pintype=in
+}
+P 1200 400 1200 100 1 0 1
+{
+T 1250 150 5 8 1 1 0 0 1
+pinnumber=7
+T 1250 150 5 8 0 1 0 0 1
+pinseq=7
+T 1050 500 9 10 1 1 0 0 1
+pinlabel=GND
+T 1250 350 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2000 1100 2300 1100 1 0 1
+{
+T 2150 1150 5 8 1 1 0 0 1
+pinnumber=13
+T 2150 1150 5 8 0 1 0 0 1
+pinseq=13
+T 1950 1100 9 10 1 1 0 6 1
+pinlabel=NC
+T 1950 1050 5 8 0 1 0 8 1
+pintype=in
+}
+P 2000 2300 2300 2300 1 0 1
+{
+T 2100 2350 5 8 1 1 0 0 1
+pinnumber=10
+T 2100 2350 5 8 0 1 0 0 1
+pinseq=10
+T 1950 2300 9 10 1 1 0 6 1
+pinlabel=D0
+T 1950 2250 5 8 0 1 0 8 1
+pintype=out
+}
+P 2000 1900 2300 1900 1 0 1
+{
+T 2100 1950 5 8 1 1 0 0 1
+pinnumber=11
+T 2100 1950 5 8 0 1 0 0 1
+pinseq=11
+T 1950 1900 9 10 1 1 0 6 1
+pinlabel=NC
+T 1950 1850 5 8 0 1 0 8 1
+pintype=clk
+}
+P 400 1900 100 1900 1 0 1
+{
+T 250 1950 5 8 1 1 0 6 1
+pinnumber=4
+T 250 1950 5 8 0 1 0 6 1
+pinseq=4
+T 450 1900 9 10 1 1 0 0 1
+pinlabel=NC
+T 450 1850 5 8 0 1 0 2 1
+pintype=pwr
+}
+T 400 3500 5 10 1 1 0 0 1
+value=ADC0831NPA
+T 400 3900 5 10 0 1 0 0 1
+description=8-Bit Serial I/O A/D Converter,Differential,SOIC14
+T 400 4500 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/adc0831-n.pdf
+T 400 4300 5 10 0 0 0 0 1
+symversion=0.1
+T 400 3700 9 10 0 1 0 0 1
+footprint=SOIC14
+T 400 5100 5 10 0 0 0 0 1
+author=AutoTron
+T 400 4900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 4700 5 10 0 0 0 0 1
+use-license=unlimited
+P 2000 1500 2300 1500 1 0 1
+{
+T 2100 1550 5 8 1 1 0 0 1
+pinnumber=12
+T 2100 1550 5 8 0 1 0 0 1
+pinseq=12
+T 1950 1500 9 10 1 1 0 6 1
+pinlabel=CLK
+T 1950 1450 5 8 0 1 0 8 1
+pintype=in
+}
+P 400 2300 100 2300 1 0 1
+{
+T 250 2350 5 8 1 1 0 6 1
+pinnumber=5
+T 250 2350 5 8 0 1 0 6 1
+pinseq=5
+T 450 2300 9 10 1 1 0 0 1
+pinlabel=Vin-
+T 450 2250 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2000 2700 2300 2700 1 0 1
+{
+T 2100 2750 5 8 1 1 0 0 1
+pinnumber=9
+T 2100 2750 5 8 0 1 0 0 1
+pinseq=9
+T 1950 2700 9 10 1 1 0 6 1
+pinlabel=NC
+T 1950 2650 5 8 0 1 0 8 1
+pintype=pas
+}
+P 400 2700 100 2700 1 0 1
+{
+T 250 2750 5 8 1 1 0 6 1
+pinnumber=6
+T 250 2750 5 8 0 1 0 6 1
+pinseq=6
+T 450 2700 9 10 1 1 0 0 1
+pinlabel=NC
+T 450 2650 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2000 3100 2300 3100 1 0 1
+{
+T 2100 3150 5 8 1 1 0 0 1
+pinnumber=8
+T 2100 3150 5 8 0 1 0 0 1
+pinseq=8
+T 1950 3100 9 10 1 1 0 6 1
+pinlabel=VREF
+T 1950 3050 5 8 0 1 0 8 1
+pintype=pas
+}
+P 400 3100 100 3100 1 0 1
+{
+T 250 3150 5 8 1 1 0 6 1
+pinnumber=14
+T 250 3150 5 8 0 1 0 6 1
+pinseq=14
+T 450 3100 9 10 1 1 0 0 1
+pinlabel=VCC
+T 450 3050 5 8 0 1 0 2 1
+pintype=pwr
+}
