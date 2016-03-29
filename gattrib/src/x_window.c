@@ -89,30 +89,38 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
  *
  *  \param [in] do_what Enumerated integer ID of operation to perform
  */
-void x_window_clipboard_handler(int do_what) {
-
+void x_window_clipboard_handler(int do_what)
+{
   GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(main_window));
 
   switch (do_what ) {
     case cut:
-      if (GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
+      if (GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget)) {
         g_signal_emit_by_name(widget, "copy-clipboard", NULL); /* just copy */
-      else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
+      }
+      else if(GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
-        x_window_update_title(pr_current, sheet_head);
+      }
+      x_window_update_title(pr_current, sheet_head);
       break;
+
     case copy:
-      if((GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
-          || GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
+      if ((GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
+        || GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
+      {
         g_signal_emit_by_name(widget, "copy-clipboard", NULL);
+      }
       break;
+
     case paste:
-      if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
+      if (GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
-	x_window_update_title(pr_current, sheet_head);
+      }
+      x_window_update_title(pr_current, sheet_head);
       break;
+
     default:
-     u_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
+      u_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
   }
 }
 
@@ -300,9 +308,9 @@ void x_window_init()
   gtk_widget_set_usize(location, 150, request.height);
   gtk_box_pack_start(GTK_BOX(edit_box), location, FALSE, TRUE, 0);
 
-  entry = gtk_entry_new();
+   /* Global in include/globals.h - likely a bad thing */
+  entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
   gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0);
-  gtk_widget_show(entry);
 
   /* TODO togglable legend ? */
   /* -----  Now init notebook widget  ----- */

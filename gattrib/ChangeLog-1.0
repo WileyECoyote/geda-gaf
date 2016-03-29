@@ -1,3 +1,8 @@
+2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Replace gtk_entry with geda_entry in x_window_init.
+      and x_window_clipboard_handler.
+
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Replace GtkLabel with GedaLabel in x_window_init and

@@ -118,19 +118,19 @@ GtkWidget        *menu_bar;
 GtkUIManager     *menu_manager;   /* Manager for menus */
 GtkRecentManager *recent_manager; /* Manager for recently used files */
 
-GtkWidget *Standard_handlebox;
-GtkWidget *Standard_Toolbar;
+GtkWidget  *Standard_handlebox;
+GtkWidget  *Standard_Toolbar;
 
-GtkWidget *Attribute_handlebox;
-GtkWidget *Attribute_Toolbar;
+GtkWidget  *Attribute_handlebox;
+GtkWidget  *Attribute_Toolbar;
 
-GtkWidget *notebook;
-GtkWidget *popup;
-GtkWidget *edit_box;
-GtkSheet **sheets;             /* These are the spreadsheet widgets themselves */
+GtkWidget  *notebook;
+GtkWidget  *popup;
+GtkWidget  *edit_box;
+GtkSheet  **sheets;             /* These are the spreadsheet widgets themselves */
 GtkWidget **scrolled_windows;
-GtkWidget *entry;
-GtkWidget *location;
+GtkWidget  *entry;
+GtkWidget  *location;
 
 GSList *ComponentMenuItems;
 GSList *ComponentToolbarButtons;
