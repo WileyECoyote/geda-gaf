@@ -33,12 +33,12 @@ BUILT_SOURCES = version.h
 BUILD_TOOLS   = build-tools/ltmain-asneeded.patch
 
 EXTRA_DIST    =	$(BUILT_SOURCES) \
-		$(BUILD_TOOLS) \
-		COPYING.LGPL \
-		HACKING \
-		autogen.sh \
-		config.h \
-		version.h version.h.in
+				$(BUILD_TOOLS) \
+				COPYING.LGPL \
+				HACKING \
+				autogen.sh \
+				config.h \
+				version.h version.h.in
 
 #
 # Generate version.h. This works by looking at any git repository that
@@ -68,7 +68,7 @@ version.h: stamp-git $(top_builddir)/configure $(srcdir)/version.h.in
 	  rm version.h.new; \
 	else \
 	  echo "Recreating version.h"; \
-	  mv version.h.new version.h; \
+	  mv -f version.h.new version.h; \
 	fi
 stamp-git:
 	@last_version=`if test -f stamp-git; then cat stamp-git; else :; fi`; \
