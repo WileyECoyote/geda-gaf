@@ -1,5 +1,9 @@
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_button.c: Reduce scope of old_fontname in
+      geda_font_button_set_font_name, and size_label in geda_font_button_
+      create_widgets.
+
     * src/widgets/geda_handlebox.c: Reorganize functions, add Doxygen
       group GedaHandleBoxFunctions, fix file extension in header.
 

@@ -1134,14 +1134,13 @@ bool
 geda_font_button_set_font_name (GedaFontButton *font_button,
                                 const char     *font_name)
 {
-  bool result;
-  char *old_fontname;
-
-  result = FALSE;
+  bool result = FALSE;
 
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), result);
 
   if (g_ascii_strcasecmp (font_button->priv->font_name, font_name)) {
+
+    char *old_fontname;
 
     old_fontname = font_button->priv->font_name;
     font_button->priv->font_name = geda_utility_string_strdup (font_name);
@@ -1152,8 +1151,8 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
 
     if (font_button->priv->font_dialog)
       result = geda_font_dialog_set_font_name
-              (GEDA_FONT_DIALOG (font_button->priv->font_dialog),
-               font_button->priv->font_name);
+                (GEDA_FONT_DIALOG (font_button->priv->font_dialog),
+                                   font_button->priv->font_name);
     else
       result = FALSE;
 
@@ -1290,6 +1289,7 @@ void
 geda_font_button_set_size (GedaFontButton *font_button, int font_size)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
+
   GedaFontButtonData *data;
   data = font_button->priv;
 
@@ -1352,8 +1352,9 @@ geda_font_button_set_show_style (GedaFontButton *font_button,
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
   show_style = (show_style != FALSE);
-  if (font_button->priv->show_style != show_style)
-    {
+
+  if (font_button->priv->show_style != show_style) {
+
       font_button->priv->show_style = show_style;
 
       g_free(font_button->priv->label_text);
@@ -1362,7 +1363,7 @@ geda_font_button_set_show_style (GedaFontButton *font_button,
       geda_font_button_label_set_text (font_button);
 
       g_object_notify (G_OBJECT (font_button), "show-style");
-    }
+  }
 }
 
 bool geda_font_button_get_show_preview (GedaFontButton *font_button)
@@ -1384,9 +1385,10 @@ void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable
   show_preview = (enable != FALSE);
   priv->show_preview = show_preview;
 
-  if (show_preview)
+  if (show_preview) {
      geda_font_dialog_set_preview_text ((GedaFontDialog*)priv->font_dialog,
                                           priv->preview_text);
+  }
   else {
     geda_font_dialog_set_preview_text ((GedaFontDialog*)priv->font_dialog,"");
   }
@@ -1401,8 +1403,9 @@ geda_font_button_get_preview_text (GedaFontButton *font_button)
 
   priv = font_button->priv;
 
-  if (priv->font_dialog)
+  if (priv->font_dialog) {
     return geda_font_dialog_get_preview_text ((GedaFontDialog*)priv->font_dialog);
+  }
 
   return geda_utility_string_strdup (priv->preview_text);
 }
@@ -1457,8 +1460,9 @@ geda_font_button_set_font_desc (GedaFontButton *font_button,
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
-  if (font_button->font_desc)
+  if (font_button->font_desc) {
     pango_font_description_free (font_button->font_desc);
+  }
 
   font_button->font_desc = pango_font_description_copy (pfd);
 
@@ -1479,7 +1483,6 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
 
   GtkWidget *widget;
   GtkWidget *font_label;
-  GtkWidget *size_label;
 
   gtk_widget_push_composite_child ();
 
@@ -1493,9 +1496,12 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
   gtk_widget_show(font_label);
 
   if (font_button->priv->show_size) {
-    gtk_box_pack_start (GTK_BOX (widget), geda_vseparator_new (), FALSE, FALSE, 0);
-    size_label = geda_label_new ("10");
 
+    GtkWidget *size_label;
+
+    gtk_box_pack_start (GTK_BOX (widget), geda_vseparator_new (), FALSE, FALSE, 0);
+
+    size_label = geda_label_new ("10");
     gtk_box_pack_start (GTK_BOX (widget), size_label, FALSE, FALSE, 5);
     gtk_widget_show(size_label);
     font_button->priv->size_label = size_label;
