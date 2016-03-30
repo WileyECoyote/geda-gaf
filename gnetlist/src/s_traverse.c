@@ -189,7 +189,6 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   char        *net_name;
   char        *value;
   char        *temp_uref;
-  bool         is_graphical;
   bool         is_hierarchy;
 
 #if PERFORMANCE
@@ -198,8 +197,6 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 #endif
 
   err          = NULL;
-  is_graphical = FALSE;
-
   cfg          = eda_config_get_context_for_file (NULL);
   is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
 
@@ -212,7 +209,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
     printf(_("- Starting internal netlist creation\n"));
   }
 
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
 
     GedaObject *o_current;
     NETLIST    *netlist;
@@ -227,7 +224,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
     if (o_current->type == OBJ_COMPLEX) {
 
-      is_graphical = FALSE;
+      bool is_graphical = FALSE;
 
 #if DEBUG
       printf("starting NEW component\n\n");
@@ -243,7 +240,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
         if (g_strcmp0 (value, "1") == 0) {
 
           /* traverse graphical elements, and add to the graphical netlist */
-          netlist = s_netlist_return_tail (graphical_netlist_head);
+          netlist      = s_netlist_return_tail (graphical_netlist_head);
           is_graphical = TRUE;
         }
         GEDA_FREE(value);
@@ -336,8 +333,6 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
   bool         is_hierarchy;
 
   err          = NULL;
-  is_graphical = FALSE;
-
   cfg          = eda_config_get_context_for_file (NULL);
   is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
 

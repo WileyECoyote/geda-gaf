@@ -40,15 +40,15 @@
  *   called to traverse page.
  */
 void
-s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
-                     NETLIST  *netlist)
+s_hierarchy_traverse(GedaToplevel *pr_current,
+                     GedaObject   *o_current,
+                     NETLIST      *netlist)
 {
   char *attrib;
-  int   page_control         =-1;
-  int   count                = 0;
-  int   looking_inside       = FALSE;
-  int   loaded_flag          = FALSE;
-  int   graphical            = FALSE;
+  int   page_control   =-1;
+  int   count          = 0;
+  int   looking_inside = FALSE;
+  int   loaded_flag    = FALSE;
 
   Page *p_current;
   Page *child_page;
@@ -59,16 +59,15 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
   if (attrib == NULL) {
 
     attrib = o_attrib_search_inherited_attribs_by_name (o_current,
-                                                        "source", count);
+                                                       "source", count);
     looking_inside = TRUE;
+
 #if DEBUG
     printf("going to look inside now\n");
 #endif
   }
 
-  graphical = s_hierarchy_graphical_search(o_current, count);
-
-  if (graphical) {
+  if (s_hierarchy_graphical_search(o_current, count)) {
 
     /* Do not bother traversing the hierarchy if symbol has a */
     /* graphical attribute attached to it. WEH: Is this really
@@ -95,7 +94,9 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
 #if DEBUG
       printf("Going down %s\n", current_filename);
 #endif
+
       GError *err = NULL;
+
       child_page = s_hierarchy_down_schematic_single(pr_current,
                                                      current_filename,
                                                      pr_current->page_current,
@@ -170,9 +171,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,GedaObject *o_current,
       o_attrib_search_inherited_attribs_by_name (o_current, "source", count);
     }
 
-    graphical = s_hierarchy_graphical_search(o_current, count);
-
-    if (graphical) {
+    if (s_hierarchy_graphical_search(o_current, count)) {
 
       /* Do not bother looking further in the hierarchy if the symbol */
       /* has an graphical attribute attached to it. */

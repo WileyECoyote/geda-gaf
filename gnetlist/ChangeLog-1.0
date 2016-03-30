@@ -12,6 +12,13 @@
         3. Redo "help" function
         4. Revise while loop to read REPLY
 
+    * src/s_hierarchy.c: Eliminate boolean variable graphical in function
+      s_hierarchy_traverse.
+
+    * src/s_traverse.c: Reduce scope of is_graphical in s_traverse_sheet to
+      inside the for loop eliminate unnecessary initializing to FALSE. May
+      have tried this before but I think I got it psyched-out now.
+
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Revise version to only output the dotted version
