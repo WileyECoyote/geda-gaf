@@ -1,3 +1,7 @@
+2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Add file gnetlist/scripts/sch2eaglepos.sh.
+
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add force option to mv when over-writing version.h to

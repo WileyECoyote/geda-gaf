@@ -26,4 +26,4 @@ dist_bin_SCRIPTS=$(SH_FILES)
 CLEANFILES           = *.log *~ $(SH_FILES)
 MOSTLYCLEANFILES     = *.log *~ $(CONFIG_CLEAN) $(SH_FILES)
 DISTCLEANFILES       = *.log *~ $(SH_FILES)
-MAINTAINERCLEANFILES = *.log *~ $(SH_FILES) Makefile.in 
+MAINTAINERCLEANFILES = *.log *~ $(SH_FILES) Makefile.in

@@ -20,7 +20,8 @@ dist_docsreadme_DATA = \
 	README.bom README.pcb README.switcap README.verilog \
 	README.vhdl README.sysc README.eagle
 
-dist_man_MANS = gnetlist.1 mk_verilog_syms.1 annotate.1
+dist_man_MANS = gnetlist.1 mk_verilog_syms.1 annotate.1 sch2eaglepos.1 \
+		unannotate.1
 
 all:	$(MANS)
 if ENABLE_DOXYGEN

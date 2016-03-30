@@ -1,0 +1,54 @@
+.TH sch2eaglepos 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+sch2eaglepos \- extract relative positions from a schematic and generate instructions for Eagle
+
+.SH SYNOPSIS
+.B sch2eaglepos
+.RI [ OPTIONS ] <input-file>
+
+.SH DESCRIPTION
+.B sch2eaglepos
+will read a gschem schematic and attempt to extract the relative positions of the components
+in the schematic and generate corresponding MOVE instructions for Eagle. You will likely have
+to adjust XOFFSET, YOFFSET, XSCAL, and YSCALE at the top of the script to obtain usable positions.
+
+.SH QUICK
+.B usage: [-h, --help] | [--version] | [options]  input-file.sch
+
+example:
+sch2eaglepos schematic1.sch<ENTER>.
+
+.SH INFORMATION
+
+Use of the following options displays information related to sch2eaglepos
+but does not alter any files:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-u, --usage"
+Displays examples on usage"
+.IP "-V, --version"
+Displays software version information"
+.IP "-v, --verbose"
+Display additional information during processing. Verbose mode is not recommended when using redirection.
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of sch2eaglepos:
+https://bugs.launchpad.net/geda/sch2eaglepos/+filebug
+
+.SH AUTHOR
+Braddock Gaskill (braddock@braddock.com), August 2004
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2004-@YEAR@ Braddock Gaskill License: public domain.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+.BR annotate (1) unannotate (1) gnetlist (1) bompp (1) bom_xref (1)
+.

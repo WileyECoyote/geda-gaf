@@ -373,6 +373,7 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/scripts/annotate.sh
                  gnetlist/scripts/bompp.sh
                  gnetlist/scripts/bom_xref.sh
+                 gnetlist/scripts/sch2eaglepos.sh
 
                  utils/Makefile
                  utils/docs/Makefile

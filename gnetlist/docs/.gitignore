@@ -8,5 +8,9 @@ gnetlist.1
 gnetlist.html
 mk_verilog_syms.1
 mk_verilog_syms.html
+sch2eaglepos.1
+sch2eaglepos.html
+unannotate.1
+unannotate.html
 *~
 *-swp

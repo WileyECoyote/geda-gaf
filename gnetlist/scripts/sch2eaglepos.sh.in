@@ -1,5 +1,7 @@
 #!/bin/sh
 
+VER=@VERSION@
+
 # By Braddock Gaskill (braddock@braddock.com), August 2004.  This
 # software is hereby declared to be in the public domain by Braddock
 # Gaskill, the author.
@@ -12,92 +14,57 @@ YOFFSET=33000
 XSCALE=9000
 YSCALE=9000
 
-# ------------------------- Define General Functions ----------------------
-vecho()
-{
-   if [[ ! $1 = "" ]] ; then
-     if $Be_Verbose ; then
-      echo $1
-     fi
-   fi
-}
+ERR_FILE_NOT_FOUND=2
 
-do_scream()
-{
-   if [[ ! $1 = "" ]] ; then
-     if $Be_Verbose ; then
-      echo $1
-     elif ! $Be_Quite ; then
-      echo $1
-     fi
-   else
-    echo "Nothing to babel!"    # The function was called without an argument
-   fi
-}
+BeVerbose=false   # toggle babel on off
+
+# ------------------------- Define General Functions ----------------------
 
 do_show_help()
 {
    case $1 in
          "1") # Quick help
               echo
-              cecho "A script to generate HTML files for PCB footprint Libraries" $BLUE false
+              echo "A script to extract relative positions in a schematic"
+              echo  "and generate corresponding MOVE instructions for Eagle"
               echo
-              echo Usage:   `basename $0` '[-options] [[-l] Library]'
+              echo Usage:   `basename $0` '[-options] <inputfile.sch>'
               echo
-              cecho ;;
+              echo ;;
 
          "2") # Basic help
               echo
-              cecho "A script to generate HTML files for PCB footprint Libraries" $GREEN
+              echo "sch2eaglepos will read a gschem schematic and attempt to extract"
+              echo "the relative positions of the components in the schematic and"
+              echo "generate corresponding MOVE instructions for Eagle. You will"
+              echo "likely have to adjust XOFFSET, YOFFSET, XSCAL, and YSCALE at the"
+              echo "top of the script to obtain usable positions."
               echo
-              echo Usage:   `basename $0` '[-options] [[-l] Library]'
-              echo
-#             echo '   -s | --sdd          add package to repository'
-              echo '   -e | --extension    Change file extension of the HTML files, default="html"'
-              echo '   -f | --filter       Change the file filter, default="*.fp"'
-              echo '   -n | --no-overwite  Do not overwrite any of the existing html files'
-              echo '   -o | --output       Set the name of the HTML files, default="index.html"'
-              echo '   -l | --library      Set the name of the library, default is to scan for "xxx.html"'
+              echo Usage:   `basename $0` '[-options] <inputfile.sch>'
               echo
               echo '   -h | --help         Show this information'
               echo '   -u | --usage        Show basic command-line usage'
               echo '   -v | --verbose      Display extra information'
-              echo '        --version      Display version information'
-              echo
-              echo Example 1: `basename $0` '-v stdlib  (verbose mode and process stdlib folder)'
-              echo Example 2: `basename $0` '-q         (No extra output, scan for library folder)'
+              echo '   -V | --version      Display version information'
               echo
               echo 'Note: arguments are case sensitive.'
               echo  ;;
-         "3") # Alternative syntax
-              echo Usage:   `basename $0` '"plain english statements go here!"'
-              echo
-              echo 'Example 1 (formal explicit):' `basename $0` 'add package icedtea to distribution wheezy)'
-              echo 'Example 2 (slang implicit):' `basename $0` ' remove banshee from natty'
-              echo 'Example 2 (explicit):' `basename $0` 'list all packages in sid'
-              echo
-              echo ;;
    esac
+
+   exit 0
 }
 
+if [ "$#" -eq 0 ] ; then do_show_help 1 ; fi
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then do_show_help 2 ; fi
+if [ "$1" = "-u" ] || [ "$1" = "--usage" ] ; then do_show_help 2 ; fi
+if [ "$1" = "-v" ] || [ "$1" = "--verbose" ] ; then VERBOSE=true ; shift ; fi
+if [ "$1" = "-V" ] || [ "$1" = "--version" ] ; then echo `basename $0` "Version $VER"; return 0 ; fi
+
 FNAME="$1"
-if [ -z "$FNAME" ]; then
-    cat << EOF
-
-$0 <inputfile.sch>
-
-This script will read a gschem schematic and attempt to
-extract the relative positions of the components in the schematic,
-and generate corresponding MOVE instructions for Eagle.  You will
-likely have to adjust XOFFSET, YOFFSET, XSCAL, and YSCALE at the
-top of the script to obtain usable positions.
-
-By Braddock Gaskill (braddock@braddock.com), August 2004
-
-EOF
-    exit -1
+if [ ! -f "$FNAME" ]; then
+  echo "File not found: $FNAME" $GREEN
+  exit $ERR_FILE_NOT_FOUND
 fi
-
 
 tmpdir=/tmp/$$
 mkdir -m 0700 -p $tmpdir
@@ -105,7 +72,7 @@ rc=$?
 if test $rc -ne 0 ; then
 	cat << EOF
 
-$0: ERROR -- Failed to create $tmpdir with 0700 permissions.  mkdir returned $rc.
+$0: ERROR -- Failed to create $tmpdir with 0700 permissions. mkdir returned $rc.
 
 Make sure that $tmpdir does not already exist and that you have permissions to
 create it.
@@ -116,16 +83,14 @@ fi
 tmpf=${tmpdir}/tmpf
 grep -B1 refdes= "$FNAME" |sed 's/=/ /' | cut -d" " -f2,3 |grep -v '^--' >${tmpf}
 
-
-while read; do
+while read REPLY; do
     # the directory on the client to backup
     X=`echo $REPLY | cut -d' ' -f1`
     Y=`echo $REPLY | cut -d' ' -f2`
-    read;
+    read REPLY;
     PART="$REPLY"
     X=`echo "scale=5; ($X - $XOFFSET) / $XSCALE" |bc`
     Y=`echo "scale=5; ($Y - $YOFFSET) / $YSCALE" |bc`
     echo "MOVE '$PART' ($X $Y);"
 done < $tmpf
 rm -fr "${tmpdir}"
-

@@ -1,3 +1,17 @@
+2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Add sch2eaglepos.1m include unannotate.1.
+
+    * docs/sch2eaglepos.1.in: Add basic man page.
+
+    * scripts/sch2eaglepos.sh.in: Update script, is old but this scripts
+      still seems to work, applied general updates:
+
+        1. Remove color stuff
+        2. Add checks for basic CL; help, usage, verbose, version
+        3. Redo "help" function
+        4. Revise while loop to read REPLY
+
 2016-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Revise version to only output the dotted version
