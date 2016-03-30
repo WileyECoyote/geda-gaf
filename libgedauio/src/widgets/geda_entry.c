@@ -164,7 +164,7 @@ geda_entry_get_text (GedaEntry *entry)
 {
   GtkEntryBuffer *buffer;
 
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
 
   g_object_get (entry, "buffer", &buffer, NULL);
 
@@ -183,7 +183,7 @@ geda_entry_get_text (GedaEntry *entry)
 bool
 geda_entry_get_activates_default (GedaEntry *entry)
 {
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
 
   return entry->activates_default;
 }
@@ -206,7 +206,7 @@ geda_entry_get_activates_default (GedaEntry *entry)
 void
 geda_entry_set_activates_default (GedaEntry *entry, bool setting)
 {
-  g_return_if_fail (IS_GEDA_ENTRY (entry));
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
 
   setting = setting != FALSE;
 
@@ -231,7 +231,7 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
   PangoAttrList *old_attrs;
   PangoLayout* layout;
 
-  g_return_if_fail (IS_GEDA_ENTRY (entry));
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
 
   old_attrs = entry->priv->attrs;
 
@@ -265,7 +265,7 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
 PangoAttrList  *
 geda_entry_get_attributes (GedaEntry *entry)
 {
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
 
   return entry->priv->attrs;
 }
@@ -284,7 +284,7 @@ geda_entry_get_max_history (GedaEntry *entry)
 
 GedaCompletion * geda_entry_get_completion (GedaEntry *entry)
 {
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
   return entry->priv->command_completion;
 }
 
@@ -292,7 +292,7 @@ GedaCompletion * geda_entry_get_completion (GedaEntry *entry)
 bool
 geda_entry_completion_get_case (GedaEntry *entry) {
 
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
 
   return entry->priv->case_sensitive;
 }
@@ -301,7 +301,7 @@ geda_entry_completion_get_case (GedaEntry *entry) {
 void
 geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 {
-  g_return_if_fail (IS_GEDA_ENTRY (entry));
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
 
   if(have_auto_complete) {
 
@@ -319,7 +319,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 bool
 geda_entry_get_input_case (GedaEntry *entry)
 {
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
   return entry->text_case;
 }
 
@@ -332,7 +332,7 @@ geda_entry_set_input_case  (GedaEntry *entry, int mode)
 GedaEntryAccept
 geda_entry_get_valid_input (GedaEntry *entry)
 {
-  g_return_val_if_fail (IS_GEDA_ENTRY (entry), ACCEPT_ALL_ASCII);
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), ACCEPT_ALL_ASCII);
   return entry->validation_mode;
 }
 

@@ -1,3 +1,7 @@
+2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_entry.h: Rename IS_GEDA_ENTRY to GEDA_IS_ENTRY.
+
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Eliminate variable bulb in geda_bulb_get_
