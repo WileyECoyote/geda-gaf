@@ -127,20 +127,18 @@ geda_bulb_set_property (GObject      *object,
                         const GValue *value,
                         GParamSpec   *pspec)
 {
-  GedaBulb  *bulb;
   GtkWidget *widget;
 
-  bulb   = GEDA_BULB (object);
-  widget = (GtkWidget*)bulb;
+  widget = (GtkWidget*)GEDA_BULB (object);
 
   switch (prop_id) {
 
-    GSList *slist;
+    GSList   *slist;
     GedaBulb *button;
 
     case PROP_GROUP:
-      button = g_value_get_object (value);
 
+      button = g_value_get_object (value);
       if (button) {
         slist = geda_bulb_get_group ((GtkWidget*)button);
       }
@@ -166,11 +164,9 @@ geda_bulb_get_property (GObject       *object,
                         GValue        *value,
                         GParamSpec    *pspec)
 {
-  GedaBulb  *bulb;
   GtkWidget *widget;
 
-  bulb = GEDA_BULB (object);
-  widget = (GtkWidget*)bulb;
+  widget = (GtkWidget*)GEDA_BULB(object);
 
   if (prop_id == PROP_SHOW_BUTT) {
 
@@ -182,9 +178,10 @@ geda_bulb_get_property (GObject       *object,
   }
 }
 
-static void geda_bulb_finalize (GObject *object)
+static void
+geda_bulb_finalize (GObject *object)
 {
-  GtkWidget *old_group_singleton = NULL;
+  GtkWidget *old_group_singleton;
   GedaBulb  *bulb                = GEDA_BULB (object);
   GSList    *tmp_list;
   bool       was_in_group;
@@ -192,8 +189,12 @@ static void geda_bulb_finalize (GObject *object)
   was_in_group = bulb->group && bulb->group->next;
   bulb->group  = g_slist_remove (bulb->group, bulb);
 
-  if (bulb->group && !bulb->group->next)
+  if (bulb->group && !bulb->group->next) {
     old_group_singleton = bulb->group->data;
+  }
+  else {
+    old_group_singleton = NULL;
+  }
 
   tmp_list = bulb->group;
 
@@ -284,7 +285,6 @@ geda_bulb_focus (GtkWidget         *widget,
                  GtkDirectionType   direction)
 {
   GedaBulb *bulb = GEDA_BULB (widget);
-  GSList   *tmp_slist;
   bool      result;
 
   /* Bulbs with draw_indicator unset focus "normally", since
@@ -375,14 +375,18 @@ geda_bulb_focus (GtkWidget         *widget,
     }
     else {
 
-      GedaBulb *selected_button = NULL;
+      GedaBulb *selected_button;
+      GSList   *tmp_slist;
 
-      /* We accept the focus if, we don't have the focus and
-       *  - we are the currently active button in the group
+      /* Accept the focus if:
+       *
+       *  - we don't have the focus and
+       *  - we are the currently active button in the group and
        *  - there is no currently active bulb button.
        */
 
-      tmp_slist = bulb->group;
+      selected_button = NULL;
+      tmp_slist       = bulb->group;
 
       while (tmp_slist) {
 
