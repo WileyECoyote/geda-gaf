@@ -1,3 +1,8 @@
+2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Reorganize functions, add Doxygen
+      group GedaHandleBoxFunctions, fix file extension in header.
+
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add geda_get_container_border_width and
