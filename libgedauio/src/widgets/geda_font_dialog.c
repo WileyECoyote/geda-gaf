@@ -867,20 +867,21 @@ callback_select_family (GtkTreeSelection *selection, void * data)
   GedaFontDialog *dialog;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-  const char     *family_name;
   char           *font_name;
 
   dialog = GEDA_FONT_DIALOG (data);
   model  = NULL;
-  family_name = NULL;
 
-  if (gtk_tree_selection_get_selected (selection, &model, &iter))
-  {
+  if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+
     PangoFontFamily *family;
 
     gtk_tree_model_get (model, &iter, FAMILY_COLUMN, &family, -1);
-    if ( family != dialog->family )
-    {
+
+    if ( family != dialog->family ) {
+
+      const char  *family_name;
+
       if (dialog->family) {
         g_object_unref (dialog->family);
       }
@@ -891,8 +892,8 @@ callback_select_family (GtkTreeSelection *selection, void * data)
       if (dialog->font_desc)
         pango_font_description_free(dialog->font_desc);
 
-      family_name = pango_font_family_get_name (dialog->family);
-      font_name = geda_utility_string_sprintf ("%s %d",family_name, dialog->font_size);
+      family_name       = pango_font_family_get_name(dialog->family);
+      font_name         = geda_sprintf("%s %d",family_name, dialog->font_size);
       dialog->font_desc = pango_font_description_from_string(font_name);
       g_free (font_name);
 
@@ -1034,14 +1035,15 @@ static void
 callback_size_entry_activate (GtkWidget *w, void * data)
 {
   GedaFontDialog *dialog;
-  int new_size;
-  const char *text;
+  const char     *text;
 
   dialog = GEDA_FONT_DIALOG (data);
 
-  text = gtk_entry_get_text (GTK_ENTRY (dialog->size_entry));
+  text   = gtk_entry_get_text (GTK_ENTRY (dialog->size_entry));
 
   if ( text[0] != '0') {
+
+    int new_size;
 
     new_size = MAX (0.1, atof (text) + 0.5);
 
