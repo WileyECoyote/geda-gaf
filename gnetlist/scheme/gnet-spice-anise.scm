@@ -484,15 +484,16 @@
 ;;   Sort procedure to order refdes's alphabetically but
 ;;   keep A? packages at the end of list so SPICE simulation
 ;;   directives operate correctly.
-;;  This fcn written by Ken Healy to enable SPICE netlisting for
-;;  Gnucap, which wants A refdes cards (i.e. SPICE directives)
-;;  to appear last in the SPICE netlist.  Slightly modified
-;;  and incorporated into main spice-anise release by SDB on 9.1.2003.
+;;
+;;  This routine was written by Ken Healy to enable SPICE netlisting
+;;  for Gnucap, which requires refdes cards (i.e. SPICE directives)
+;;  to appear last in the SPICE netlist but was modified slightly
+;;  by SDB on 9.1.2003 before incorporating into the main release.
 ;;  To output the netlist in sorted order, use the -s switch
 ;;  when invoking gnetlist from the command line.  Example:
 ;;  gnetlist -s -g spice-anise -o output.spice Schematic.sch
-;;  The default behavior (i.e. if -s is not specified) is to do
-;;  no sorting.
+;;  The default behavior (i.e. if -s is not specified) is to not
+;;  perform sorting.
 ;;---------------------------------------------------------------
 (define spice-anise:packsort
   (lambda (x y)
@@ -517,24 +518,23 @@
 
 ;;----------------------------------------------------------------
 ;;
-;; Write-transistor-diode: writes out component followed by
-;; model or model file associated
-;; with the component.
-;;  This function does the following:
+;; Write-transistor-diode: writes out component followed by model or model
+;;                         file associated with the component.
+;;
+;;  This subroutine performs the following operations:
 ;;   1.  Writes out the correct refdes prefix (if specified and necessary).
 ;;   2.  Writes out the refdes and nets
-;;   3.  Looks for "model-name" attribute. Writes it out if it exists.
-;;   4.  If there is no "model-name" attribute, it writes out the "value"
-;;       attribute.  If there is no "value" attribute, it writes out "unknown"
-;;       and returns, causing the spice simulator to puke when the netlist
-;;       is run.  This is important
-;;       'cause the spice simulator needs to have some indication of what
-;;       model to look for.
-;;   5.  Outputs optional attributes attached to device, if any.  Feature
+;;   3.  Looks for "model-name" attribute and writes it out if it exists.
+;;   4.  If there is no "model-name" attribute, the subroutine writes out
+;;       the "value" attribute. If there is no "value" attribute, "unknown"
+;;       written out and the subroutine returns, causing the spice simulator
+;;       to puke when the netlist is run. This is important because the spice
+;;       simulator needs to have some indication of what model to look for.
+;;   5.  Outputs optional attributes attached to device, if any. Feature
 ;;       added by SDB on 12.25.2003.
 ;;   6.  Outputs a new line
-;;   7.  Looks for a the "model" attribute.  If it exists, it it writes out
-;;       a .MODEL line like this:  .MODEL model-name type (model)
+;;   7.  Looks for a "model" attribute and if found, writes out a .MODEL
+;;       line in the form:  .MODEL model-name type (model)
 ;;
 ;;----------------------------------------------------------------
 (define spice-anise:write-transistor-diode
