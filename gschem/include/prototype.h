@@ -12,9 +12,10 @@ BEGIN_DECLS
 /* gschem_toplevel.c - refer to gschem_toplevel.h */
 
 /* g_action.c */
-SCM   g_process_action       (SCM action);
-bool  g_action_eval_by_name  (GschemToplevel *w_current, const char *action_name);
-bool  g_action_get_position  (bool snap, int *x, int *y);
+SCM   g_process_action            (SCM action);
+SCM   g_process_anonymous_action  (void);
+bool  g_action_eval_by_name       (GschemToplevel *w_current, const char *action_name);
+bool  g_action_get_position       (bool snap, int *x, int *y);
 
 /* g_attrib.c */
 void  g_init_attrib ();

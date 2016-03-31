@@ -37,6 +37,39 @@ SCM g_process_action(SCM action)
   return SCM_BOOL_T;
 }
 
+SCM g_process_anonymous_action()
+{
+  SCM   stack;
+  SCM   s_subr;
+  SCM   s_name;
+  SCM   s_frame;
+  char *action;
+  char *real_action;
+
+  stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);
+
+  s_frame = scm_stack_ref(stack, scm_from_int(0));
+
+  s_subr= scm_frame_procedure (s_frame);
+
+  s_name = scm_procedure_name(s_subr);
+
+  action = scm_to_utf8_string(scm_symbol_to_string(s_name));
+
+  GschemToplevel *w_current = g_current_window ();
+
+  if (*action == '%') {
+    real_action = action + 1;
+  }
+  else {
+    real_action = action;
+  }
+
+  i_command_process(w_current, real_action, 0, NULL, ID_ORIGIN_SCM);
+  free(action);
+  return SCM_BOOL_T;
+}
+
 /*! \brief Evaluate a gschem action by name.
  * \par Function Description
  * Evaluates the action named \a action_name, which should be a UTF-8

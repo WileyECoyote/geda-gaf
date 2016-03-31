@@ -2,6 +2,10 @@
 
     * scheme/gschem/builtins.scm: Update actions (and some icons).
 
+    * include/prototype.h: Add declare g_process_anonymous_action.
+
+    * src/guile/g_action.c: Add new function g_process_anonymous_action.
+
     * src/x/x_icons.c: Add icon "geda-offset" to IDS_GEDA_ICONS group.
 
     * src/x/x_dialog.c: Remove shortcuts crap, start dialog in cwd.
