@@ -1041,9 +1041,9 @@ COMMAND (do_write_pdf) {
 /** @brief i_cmd_do_run_script in i_command_File_Actions */
 COMMAND (do_run_script) {
   BEGIN_W_COMMAND(do_run_script);
-  char* filename = NULL;
+  char *filename;
   gschem_threads_enter();
-  filename = x_dialog_select_file("Execute Script...", filename, FSB_LOAD);
+  filename = x_dialog_select_file("Execute Script...", NULL, FSB_LOAD);
   if (filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
