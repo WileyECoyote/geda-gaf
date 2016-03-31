@@ -242,7 +242,8 @@ int o_selection_unselect_all (SELECTION *selection)
     }
   }
   else {
-    fprintf(stderr, "%s: Invalid selection\n", __func__);
+    /*! \todo need to set error message somewhere instead of blurting */
+    fprintf(stderr, "%s: Invalid selection <%p>\n", __func__, selection);
     result = -1;
   }
   return result;
