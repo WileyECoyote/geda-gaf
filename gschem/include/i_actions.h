@@ -194,7 +194,7 @@
 
 #define TOOLS_EMBED          tools-embed
 #define TOOLS_UNEMBED        tools-unembed
-#define TOOLS_UPDATE         tools_update
+#define TOOLS_UPDATE         tools-update
 
 /* Grid */
 #define OPT_GRID_DOT     options-grid-dot

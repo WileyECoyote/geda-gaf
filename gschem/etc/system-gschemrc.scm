@@ -1716,7 +1716,7 @@
 (map-keys "T <Shift>colon" "tools-invoke-macro")
 (map-keys "T E"            "tools-embed")
 (map-keys "T U"            "tools-unembed")
-(map-keys "T P"            "tools_update")
+(map-keys "T P"            "tools-update")
 ;(map-keys "T <Shift>R"     "tools-repl")
 
 (map-keys "U"             "edit-undo")
@@ -1803,7 +1803,7 @@
 (map-keys "F11"           "options-rubberband")
 (map-keys "F12"           "edit-component")
 
-(map-keys "<Shift>F5"     "tools_update")
+(map-keys "<Shift>F5"     "tools-update")
 
 ; Map icons to actions
 (map-icon "gtk-new"                    "file-new")
@@ -1988,7 +1988,7 @@
 ;(map-icon "gtk-convert"                "tools-translate")
 (map-icon "geda-translate"             "tools-translate")
 
-(map-icon "gtk-refresh"                "tools_update")
+(map-icon "gtk-refresh"                "tools-update")
 (map-icon "geda-inbed"                 "tools-embed")
 (map-icon "geda-bed"                   "tools-unembed")
 
@@ -2294,7 +2294,7 @@
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))
         (,(N_ "Unembed Component/Picture") tools-unembed         "geda-bed"         ,(N_ "Unembed a component or image object"))
-        (,(N_ "Update Component")          tools_update          "gtk-refresh"      ,(N_ "Reload definition of selected component"))
+        (,(N_ "Update Component")          tools-update          "gtk-refresh"      ,(N_ "Reload definition of selected component"))
       )
 )
 

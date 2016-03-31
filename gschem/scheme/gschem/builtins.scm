@@ -331,8 +331,8 @@
 (define-action-public (&tools-unembed #:label (_ "Unembed Component/Picture"))
   (%tools-unembed))
 
-(define-action-public (&tools_update #:label (_ "Update Component") #:icon "gtk-refresh")
-  (%tools_update))
+(define-action-public (&tools-update #:label (_ "Update Component") #:icon "gtk-refresh")
+  (%tools-update))
 
 
 ;; -------------------------------------------------------------------
