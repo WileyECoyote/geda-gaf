@@ -62,89 +62,131 @@
 (define-action-public (&file-save-all #:label (_ "Save All") #:icon "gtk-save")
   (%file-save-all))
 
+(define-action-public (&file-save-modified #:label (_ "Save Modified") #:icon "gtk-save")
+  (%file-save-all))
+
 (define-action-public (&file-print #:label (_ "Print") #:icon "gtk-print")
   (%file-print))
 
-(define-action-public (&file-image #:label (_ "Export Image"))
-  (%file-image))
+(define-action-public (&file-write-image #:label (_ "Export Image") #:icon "geda-save-image")
+  (%file-write-image))
 
-(define-action-public (&file-script #:label (_ "Run Script") #:icon "gtk-execute")
-  (%file-script))
+(define-action-public (&file-run-script #:label (_ "Run Script") #:icon "gtk-execute")
+  (%file-run-script))
 
 (define-action-public (&file-new-window #:label (_ "New Window") #:icon "window-new")
   (%file-new-window))
 
-(define-action-public (&file-close-window #:label (_ "Close Window") #:icon "gtk-close")
-  (%file-close-window))
+(define-action-public (&file-close #:label (_ "Close Window") #:icon "geda-close")
+  (%file-close))
+
+(define-action-public (&file-close-all #:label (_ "Close Window") #:icon "geda-close-all")
+  (%file-close-all))
 
 (define-action-public (&file-quit #:label (_ "Quit") #:icon "gtk-quit")
   (%file-quit))
 
+(define-action-public (&export-symbol #:label (_ "Export Symbol") #:icon "geda-inbed")
+  (%export-symbol))
+
+(define-action-public (&export-picture #:label (_ "Export Picture") #:icon "gtk-orientation-portrait")
+  (%export-picture))
+
 ;; -------------------------------------------------------------------
 ;;;; General editing actions
 
-(define-action-public (&edit-undo #:label (_ "Undo") #:icon "gtk-undo")
+(define-action-public (&edit-undo #:label (_ "Undo") #:icon "edit-undo")
   (%edit-undo))
 
-(define-action-public (&edit-redo #:label (_ "Redo") #:icon "gtk-redo")
+(define-action-public (&edit-redo #:label (_ "Redo") #:icon "edit-redo")
   (%edit-redo))
-
-(define-action-public (&edit-select #:label (_ "Select Mode") #:icon "select")
-  (%edit-select))
-
-(define-action-public (&edit-select-all #:label (_ "Select All") #:icon "gtk-select-all")
-  (%edit-select-all))
-
-(define-action-public (&edit-deselect #:label (_ "Deselect"))
-  (%edit-deselect))
 
 (define-action-public (&edit-delete #:label (_ "Delete") #:icon "gtk-delete")
   (%edit-delete))
 
-(define-action-public (&edit-move #:label (_ "Move Mode"))
-  (%edit-move))
-
-(define-action-public (&edit-copy #:label (_ "Copy Mode") #:icon "clone")
+(define-action-public (&edit-copy #:label (_ "Copy Mode") #:icon "geda-copy")
   (%edit-copy))
 
-(define-action-public (&edit-mcopy #:label (_ "Multiple Copy Mode") #:icon "multi-clone")
+(define-action-public (&edit-move #:label (_ "Move Mode") #:icon "geda-move")
+  (%edit-move))
+
+(define-action-public (&edit-mcopy #:label (_ "Multiple Copy Mode") #:icon "geda-multi")
   (%edit-mcopy))
 
-(define-action-public (&edit-rotate-90 #:label (_ "Rotate Mode") #:icon "object-rotate-left")
-  (%edit-rotate-90))
-
-(define-action-public (&edit-mirror #:label (_ "Mirror Mode") #:icon "object-flip-horizontal")
+(define-action-public (&edit-mirror #:label (_ "Mirror Mode") #:icon "geda-mirror")
   (%edit-mirror))
 
-(define-action-public (&edit-edit #:label (_ "Edit..."))
-  (%edit-edit))
+(define-action-public (&edit-offset #:label (_ "Offest selection") #:icon "geda-offset")
+  (%edit-offset))
+
+(define-action-public (&edit-rotate-90 #:label (_ "Rotate Mode") #:icon "geda-rotate")
+  (%edit-rotate-90))
+
+(define-action-public (&edit-snap #:label (_ "Snap to Grid") #:icon "geda-snap")
+  (%edit-snap))
+
+(define-action-public (&edit-array #:label (_ "Snap to Grid") #:icon "geda-array")
+  (%edit-array))
+
+(define-action-public (&edit-break #:label (_ "Edit...") #:icon "gschem-break")
+  (%edit-break))
+
+(define-action-public (&edit-extend #:label (_ "Edit...") #:icon "extend")
+  (%edit-extend))
+
+(define-action-public (&edit-arc #:label (_ "Edit Arc") #:icon "geda-arc-edit")
+  (%edit-arc))
+
+(define-action-public (&edit-attributes #:label (_ "Edit Object") #:icon "gtk-indent")
+  (%edit-attributes))
 
 (define-action-public (&edit-text #:label (_ "Edit Text") #:icon "gtk-edit")
   (%edit-text))
 
-(define-action-public (&edit-slot #:label (_ "Choose Slot"))
-  (%edit-slot))
-
-(define-action-public (&edit-color #:label (_ "Edit Color") #:icon "gtk-select-color")
+(define-action-public (&edit-color #:label (_ "Edit Color") #:icon "geda-display-color")
   (%edit-color))
 
-(define-action-public (&edit-linetype #:label (_ "Edit Line Width & Type"))
-  (%edit-linetype))
-
-(define-action-public (&edit-filltype #:label (_ "Edit Fill Type"))
-  (%edit-filltype))
-
-(define-action-public (&edit-pin-type #:label (_ "Edit Pin Type"))
+(define-action-public (&edit-pin-type #:label (_ "Edit Pin Type") #:icon "geda-pin-type")
   (%edit-pin-type))
 
-(define-action-public (&edit-lock #:label (_ "Lock"))
+(define-action-public (&edit-linetype #:label (_ "Edit Line Width & Type") #:icon "geda-line-type")
+  (%edit-linetype))
+
+(define-action-public (&edit-filltype #:label (_ "Edit Fill Type") #:icon "geda-mesh")
+  (%edit-filltype))
+
+(define-action-public (&edit-slot #:label (_ "Choose Slot") #:icon "geda-slot")
+  (%edit-slot))
+
+(define-action-public (&edit-component #:label (_ "Choose Slot") #:icon "geda-component")
+  (%edit-component))
+
+;; -------------------------------------------------------------------
+;;;; Select actions
+
+(define-action-public (&edit-select #:label (_ "Select Mode") #:icon "gschem-select")
+  (%edit-select))
+
+(define-action-public (&edit-select-all #:label (_ "Select All") #:icon "gschem-select-all")
+  (%edit-select-all))
+
+(define-action-public (&edit-select-invert #:label (_ "Invert Selection") #:icon "gschem-invert")
+  (%edit-select-invert))
+
+(define-action-public (&edit-select-last #:label (_ "Select Last") #:icon "gtk-select-all")
+  (%edit-select-last))
+
+(define-action-public (&edit-deselect #:label (_ "Deselect mode") #:icon "gschem-unselect")
+  (%edit-deselect))
+
+(define-action-public (&edit-deselect-all #:label (_ "Deselect All")#:icon "gschem-invert")
+  (%edit-deselect-all))
+
+(define-action-public (&edit-lock #:label (_ "Lock") #:icon "geda-lock")
   (%edit-lock))
 
-(define-action-public (&edit-unlock #:label (_ "Unlock"))
+(define-action-public (&edit-unlock #:label (_ "Unlock") #:icon "geda-unlock")
   (%edit-unlock))
-
-(define-action-public (&edit-show-hidden #:label (_ "Show/Hide Invisible Text"))
-  (%edit-show-hidden))
 
 ;; -------------------------------------------------------------------
 ;;;; Clipboard actions
@@ -164,7 +206,7 @@
 (define-action-public (&view-redraw #:label (_ "Redraw") #:icon "gtk-refresh")
   (%view-redraw))
 
-(define-action-public (&view-pan #:label (_ "Pan"))
+(define-action-public (&view-pan #:label (_ "Pan") #:icon "geda-zoom-pan")
   (%view-pan))
 
 (define-action-public (&view-pan-left #:label (_ "Pan Left"))
@@ -182,6 +224,9 @@
 (define-action-public (&view-zoom-box #:label (_ "Zoom Box"))
   (%view-zoom-box))
 
+(define-action-public (&view-zoom-selected #:label (_ "Zoom Selection") #:icon "gtk-zoom-fit")
+  (%view-zoom-selected))
+
 (define-action-public (&view-zoom-extents #:label (_ "Zoom Extents") #:icon "gtk-zoom-fit")
   (%view-zoom-extents))
 
@@ -191,8 +236,23 @@
 (define-action-public (&view-zoom-out #:label (_ "Zoom Out") #:icon "gtk-zoom-out")
   (%view-zoom-out))
 
-(define-action-public (&view-zoom-full #:label (_ "Zoom Full"))
-  (%view-zoom-full))
+(define-action-public (&view-zoom-all #:label (_ "Zoom All"))
+  (%view-zoom-all))
+
+(define-action-public (&view-zoom-to-mag #:label (_ "Zoom to Mag"))
+  (%view-zoom-to-mag))
+
+(define-action-public (&view-documentation #:label (_ "Documentation"))
+  (%view-documentation))
+
+(define-action-public (&view-show-hidden #:label (_ "Show/Hide Invisible Text"))
+  (%view-show-hidden))
+
+(define-action-public (&view-show-inherited #:label (_ "Show/Hide Inherited Attributes"))
+  (%view-show-inherited))
+
+(define-action-public (&view-show-nets #:label (_ "Show/Hide net names"))
+  (%view-show-nets))
 
 (define-action-public (&view-dark-colors #:label (_ "Dark Color Scheme"))
   (%view-dark-colors))
@@ -204,67 +264,61 @@
   (%view-bw-colors))
 
 ;; -------------------------------------------------------------------
+;;;; Page draw order actions
+
+(define-action-public (&page-draw-after #:label (_ "Draw After"))
+  (%page-draw-after))
+
+(define-action-public (&page-draw-before #:label (_ "Draw Before"))
+  (%page-draw-before))
+
+(define-action-public (&page-draw-first #:label (_ "Draw First"))
+  (%page-draw-first))
+
+(define-action-public (&page-draw-last #:label (_ "Draw Last"))
+  (%page-draw-last))
+
+;; -------------------------------------------------------------------
 ;;;; Page-related actions
-
-(define-action-public (&page-revert #:label (_ "Revert Changes") #:icon "gtk-revert-to-saved")
-  (%page-revert))
-
-(define-action-public (&page-revert #:label (_ "Revert Changes") #:icon "gtk-revert-to-saved")
-  (%page-revert-all))
 
 (define-action-public (&page-manager #:label (_ "Page Manager"))
   (%page-manager))
 
-(define-action-public (&page-up #:label (_ "Previous Page") #:icon "gtk-go-up")
+(define-action-public (&page-first #:label (_ "First Page") #:icon "gtk-go-up")
+  (%page-first))
+
+(define-action-public (&page-previous #:label (_ "Previous Page") #:icon "gtk-go-up")
+  (%page-previous))
+
+(define-action-public (&page-next #:label (_ "Next Page") #:icon "gtk-go-up")
+  (%page-next))
+
+(define-action-public (&page-up #:label (_ "Page Up") #:icon "gtk-go-up")
   (%page-up))
 
-(define-action-public (&page-down #:label (_ "Next Page") #:icon "gtk-go-down")
+(define-action-public (&page-down #:label (_ "Page Down") #:icon "gtk-go-down")
   (%page-down))
 
-(define-action-public (&page-close #:label (_ "Close Page") #:icon "gtk-close")
-  (%page-close))
+(define-action-public (&page-last #:label (_ "Last Page") #:icon "gtk-go-up")
+  (%page-last))
+
+(define-action-public (&page-new #:label (_ "New Page") #:icon "gtk-go-up")
+  (%page-new))
 
 (define-action-public (&page-print #:label (_ "Print Page") #:icon "gtk-print")
   (%page-print))
 
-;; -------------------------------------------------------------------
-;;;; Actions related to adding things
+(define-action-public (&page-revert #:label (_ "Revert Changes") #:icon "gtk-revert-to-saved")
+  (%page-revert))
 
-(define-action-public (&add-component #:label (_ "Add Component") #:icon "insert-symbol")
-  (%add-component))
+(define-action-public (&page-revert-all #:label (_ "Revert All") #:icon "gtk-revert-to-saved")
+  (%page-revert-all))
 
-(define-action-public (&add-attribute #:label (_ "Add Attribute") #:icon "insert-attribute")
-  (%add-attribute))
+(define-action-public (&page-discard #:label (_ "Close Page") #:icon "gtk-close")
+  (%page-discard))
 
-(define-action-public (&add-net #:label (_ "Add Net") #:icon "insert-net")
-  (%add-net))
-
-(define-action-public (&add-bus #:label (_ "Add Bus") #:icon "insert-bus")
-  (%add-bus))
-
-(define-action-public (&add-text #:label (_ "Add Text") #:icon "insert-text")
-  (%add-text))
-
-(define-action-public (&add-line #:label (_ "Add Line") #:icon "insert-line")
-  (%add-line))
-
-(define-action-public (&add-path #:label (_ "Add Path") #:icon "insert-path")
-  (%add-path))
-
-(define-action-public (&add-box #:label (_ "Add Box") #:icon "insert-box")
-  (%add-box))
-
-(define-action-public (&add-circle #:label (_ "Add Circle") #:icon "insert-circle")
-  (%add-circle))
-
-(define-action-public (&add-arc #:label (_ "Add Arc") #:icon "insert-arc")
-  (%add-arc))
-
-(define-action-public (&add-pin #:label (_ "Add Pin") #:icon "insert-pin")
-  (%add-pin))
-
-(define-action-public (&add-picture #:label (_ "Add Picture") #:icon "insert-image")
-  (%add-picture))
+(define-action-public (&page-close #:label (_ "Discard Page") #:icon "gtk-close")
+  (%page-close))
 
 ;; -------------------------------------------------------------------
 ;;;; Hierarchy actions
@@ -279,6 +333,63 @@
   (%hierarchy-up))
 
 ;; -------------------------------------------------------------------
+;;;; Actions related to adding things
+
+(define-action-public (&add-component #:label (_ "Add Component") #:icon "insert-symbol")
+  (%add-component))
+
+(define-action-public (&add-net #:label (_ "Add Net") #:icon "insert-net")
+  (%add-net))
+
+(define-action-public (&add-bus #:label (_ "Add Bus") #:icon "insert-bus")
+  (%add-bus))
+
+(define-action-public (&add-attribute #:label (_ "Add Attribute") #:icon "insert-attribute")
+  (%add-attribute))
+
+(define-action-public (&add-text #:label (_ "Add Text") #:icon "insert-text")
+  (%add-text))
+
+(define-action-public (&add-line #:label (_ "Add Line") #:icon "insert-line")
+  (%add-line))
+
+(define-action-public (&add-pin #:label (_ "Add Pin") #:icon "insert-pin")
+  (%add-pin))
+
+(define-action-public (&add-box #:label (_ "Add Box") #:icon "insert-box")
+  (%add-box))
+
+(define-action-public (&add-circle #:label (_ "Add Circle") #:icon "insert-circle")
+  (%add-circle))
+
+(define-action-public (&add-arc #:label (_ "Add Arc") #:icon "insert-arc")
+  (%add-arc))
+
+(define-action-public (&add-path #:label (_ "Add Path") #:icon "insert-path")
+  (%add-path))
+
+(define-action-public (&add-picture #:label (_ "Add Picture") #:icon "insert-image")
+  (%add-picture))
+
+;; -------------------------------------------------------------------
+;;;; Session System actions
+
+(define-action-public (&session-new #:label (_ "Create New Session") #:icon "insert-image")
+  (%session-new))
+
+(define-action-public (&session-open #:label (_ "Open a Session") #:icon "insert-image")
+  (%session-open))
+
+(define-action-public (&session-save #:label (_ "Save Session") #:icon "insert-image")
+  (%session-save))
+
+(define-action-public (&session-save-as #:label (_ "Save Session As") #:icon "insert-image")
+  (%session-save-as))
+
+(define-action-public (&session-manage #:label (_ "Manage Sessions") #:icon "insert-image")
+  (%session-manage))
+
+;; -------------------------------------------------------------------
 ;;;; Attribute actions
 
 (define-action-public (&attributes-attach #:label (_ "Attach Attributes") #:icon "attribute-attach")
@@ -286,6 +397,9 @@
 
 (define-action-public (&attributes-detach #:label (_ "Detach Attributes") #:icon "attribute-detach")
   (%attributes-detach))
+
+(define-action-public (&attributes-home #:label (_ "Reset Attribute Positions") #:icon "show-value")
+  (%attributes-home))
 
 (define-action-public (&attributes-show-value #:label (_ "Show Attribute Value") #:icon "show-value")
   (%attributes-show-value))
@@ -299,14 +413,17 @@
 (define-action-public (&attributes-visibility #:label (_ "Toggle Text Visibility"))
   (%attributes-visibility))
 
-(define-action-public (&edit-find-text #:label (_ "Find Specific Text") #:icon "gtk-find")
-  (%edit-find-text))
+(define-action-public (&attributes-find-text #:label (_ "Find Specific Text") #:icon "gtk-find")
+  (%attributes-find-text))
 
-(define-action-public (&edit-hide-text #:label (_ "Hide Specific Text"))
-  (%edit-hide-text))
+(define-action-public (&attributes-hide-text #:label (_ "Hide Specific Text"))
+  (%attributes-hide-text))
 
-(define-action-public (&edit-show-text #:label (_ "Show Specific Text"))
-  (%edit-show-text))
+(define-action-public (&attributes-show-text #:label (_ "Show Specific Text"))
+  (%attributes-show-text))
+
+(define-action-public (&attributes-editor #:label (_ "Open Attributes Editor"))
+  (%attributes-editor))
 
 ;; -------------------------------------------------------------------
 ;;;; Tools actions
@@ -318,6 +435,9 @@
 
 (define-action-public (&tools-show-coordinates #:label (_ "Show Coordinate Window"))
   (%tools-show-coordinates))
+
+(define-action-public (&tools-guile-path #:label (_ "Guile Path"))
+  (%tools-guile-path))
 
 (define-action-public (&tools-invoke-macro #:label (_ "Invoke Macro"))
   (%tools-invoke-macro))
@@ -334,33 +454,38 @@
 (define-action-public (&tools-update #:label (_ "Update Component") #:icon "gtk-refresh")
   (%tools-update))
 
-
 ;; -------------------------------------------------------------------
 ;;;; Configuration actions
 
-(define-action-public (&help-hotkeys #:label (_ "Show Hotkeys") #:icon "preferences-desktop-keyboard-shortcuts")
-  (%help-hotkeys))
+(define-action-public (&options-grid-dots #:label (_ "Dots Grid Style"))
+  (%options-grid-dot))
 
-(define-action-public (&options-text-size #:label (_ "Set Default Text Size"))
-  (%options-text-size))
+(define-action-public (&options-grid-mesh #:label (_ "Mesh Grid Style"))
+  (%options-grid-mesh))
 
-(define-action-public (&options-grid #:label (_ "Switch Grid Style"))
-  (%options-grid))
+(define-action-public (&options-grid-off #:label (_ "Turn Grid Off"))
+  (%options-grid-off))
 
-(define-action-public (&options-snap #:label (_ "Switch Snap Mode"))
-  (%options-snap))
+(define-action-public (&options-cycle-grid #:label (_ "Cycle Grid Mode"))
+  (%options-cycle-grid))
 
-(define-action-public (&options-snap-size #:label (_ "Set Grid Spacing"))
+(define-action-public (&scale-up-snap-size #:label (_ "Increase Grid Spacing"))
+  (%scale-up-snap-size))
+
+(define-action-public (&scale-down-snap-size #:label (_ "Decrease Grid Spacing"))
+  (%scale-down-snap-size))
+
+(define-action-public (&options-snap-size #:label (_ "Set Snap Spacing"))
   (%options-snap-size))
 
-(define-action-public (&options-scale-up-snap-size #:label (_ "Increase Grid Spacing"))
-  (%options-scale-up-snap-size))
+(define-action-public (&options-snap-off #:label (_ "Turn Snap off"))
+  (%options-snap-size))
 
-(define-action-public (&options-scale-down-snap-size #:label (_ "Decrease Grid Spacing"))
-  (%options-scale-down-snap-size))
+(define-action-public (&options-snap-on #:label (_ "Turn Snap on"))
+  (%options-snap-on))
 
-(define-action-public (&options-action-feedback #:label (_ "Toggle Outline Drawing"))
-  (%options-action-feedback))
+(define-action-public (&options-cycle-grid #:label (_ "Cycle Snap Mode"))
+  (%options-cycle-snap))
 
 (define-action-public (&options-rubberband #:label (_ "Toggle Net Rubber Band"))
   (%options-rubberband))
@@ -368,8 +493,31 @@
 (define-action-public (&options-magneticnet #:label (_ "Toggle Magnetic Nets"))
   (%options-magneticnet))
 
+(define-action-public (&options-dragcanmove #:label (_ "Enable/Disable Drag move"))
+  (%options-dragcanmove))
+
+(define-action-public (&options-action-feedback #:label (_ "Toggle Outline Drawing"))
+  (%options-action-feedback))
+
+(define-action-public (&options-auto-pan #:label (_ "Enable/Disable Auto Panning"))
+  (%options-auto-pan))
+
+(define-action-public (&options-text-size #:label (_ "Set Default Text Size"))
+  (%options-text-size))
+
+(define-action-public (&options-show-settings #:label (_ "Open Preference Dialog"))
+  (%options-show-settings))
+
 ;; -------------------------------------------------------------------
 ;;;; Documentation-related actions
+
+(define-action-public
+    (&help-show-manual #:label (_ "gEDA Manuals") #:icon "help-browser"
+     #:tooltip (_ "View the front page of the gEDA documentation in a browser."))
+  (show-wiki "geda:documentation"))
+
+(define-action-public (&help-show-hotkeys #:label (_ "Show Hotkeys") #:icon "preferences-desktop-keyboard-shortcuts")
+  (%help-show-hotkeys))
 
 (define-action-public
     (&hierarchy-documentation #:label (_ "Component Documentation")
@@ -393,13 +541,6 @@ found, shows a dialog with an error message."
                   (_ "Could not show documentation for selected component:\n\n")
                   (apply format #f msg args))))))
 
-
-(define-action-public
-    (&help-manual #:label (_ "gEDA Manuals") #:icon "help-browser"
-     #:tooltip (_ "View the front page of the gEDA documentation in a browser."))
-  (show-wiki "geda:documentation"))
-
-
 (define-action-public
     (&help-guide #:label (_ "gschem User Guide") #:icon "gtk-help"
                  #:tooltip (_ "View the gschem User Guide in a browser."))
@@ -407,19 +548,19 @@ found, shows a dialog with an error message."
 
 
 (define-action-public
-    (&help-faq #:label (_ "gschem FAQ") #:icon "help-faq"
+    (&help-show-faq #:label (_ "gschem FAQ") #:icon "help-faq"
      #:tooltip (_ "Frequently Asked Questions about using gschem."))
   (show-wiki "geda:faq-gschem"))
 
 
 (define-action-public
-    (&help-wiki #:label (_ "gEDA wiki") #:icon "web-browser"
+    (&help-show-wiki #:label (_ "gEDA wiki") #:icon "web-browser"
      #:tooltip (_ "View the front page of the gEDA wiki in a browser."))
   (show-wiki))
 
 
-(define-action-public (&help-about #:label (_ "About gschem") #:icon "gtk-about")
-  (%help-about))
+(define-action-public (&help-show-about #:label (_ "About gschem") #:icon "gtk-about")
+  (%help-show-about))
 
 ;; Local Variables:
 ;; eval: (put 'define-action-public 'scheme-indent-function 1)

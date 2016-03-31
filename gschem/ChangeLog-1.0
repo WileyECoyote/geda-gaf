@@ -1,5 +1,7 @@
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gschem/builtins.scm: Update actions (and some icons).
+
     * src/x/x_icons.c: Add icon "geda-offset" to IDS_GEDA_ICONS group.
 
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
