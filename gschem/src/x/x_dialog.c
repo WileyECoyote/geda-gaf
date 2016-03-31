@@ -3807,11 +3807,9 @@ int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, boo
 char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 {
   GtkWidget   *dialog;
-  char        *folder;
   char        *title;
   char        *result    = NULL;
   static char *path      = NULL;
-  static char *shortcuts = NULL;
 
   /* Default to load if not specified.  Maybe this should cause an error. */
   if (! (flags & (FSB_LOAD | FSB_SAVE))) {
@@ -3862,20 +3860,10 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
       gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), templ);
     }
   }
-
-  if (shortcuts && *shortcuts) {
-
-    char *seed;
-
-    printf ("shortcuts = \"%s\"\n", shortcuts);
-    folder = geda_utility_string_strdup (shortcuts);
-    seed = folder;
-    while ((folder = strtok (seed, ":")) != NULL) {
-      gtk_file_chooser_add_shortcut_folder (GTK_FILE_CHOOSER (dialog),
-                                            folder, NULL);
-      seed = NULL;
-    }
-    GEDA_FREE (folder);
+  else {
+    char *cwd = g_get_current_dir();
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    GEDA_FREE (cwd);
   }
 
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GEDA_RESPONSE_OK) {
