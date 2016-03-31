@@ -1,5 +1,10 @@
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/: Add 2 symbols: Multi Channel Analog Multiplexers:
+
+            * analogdevices/ADG658-1.sym (Single 8-to-1 multiplexer)
+            * analogdevices/ADG659-1.sym (Differential 4-to-1 multiplexer)
+
     * ti/: Add 2 symbols: Power Switches, Current-Limited
 
             * ti/TPS2051BD-1.sym (SOIC8, Enable Active High)
