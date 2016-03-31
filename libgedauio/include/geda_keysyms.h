@@ -1,3 +1,6 @@
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
+/* vi: set et ts=4 sw=2 sts=2: */
+
 #ifndef _GEDA_KEYSYMS_H
 #define _GEDA_KEYSYMS_H
 
