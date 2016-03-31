@@ -83,6 +83,7 @@ bitmapdata_DATA   = \
 			geda-new.png                       \
 			geda-node.png                      \
 			geda-npn.png                       \
+			geda-offset.png                    \
 			geda-open-recent.png               \
 			geda-path.png                      \
 			geda-pin.png                       \

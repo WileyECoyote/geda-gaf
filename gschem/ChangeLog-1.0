@@ -1,3 +1,7 @@
+2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_icons.c: Add icon "geda-offset" to IDS_GEDA_ICONS group.
+
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Replace tools_update with tools-update

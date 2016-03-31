@@ -1,3 +1,7 @@
+2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/geda-offset.png: Add new icon for offset action.
+
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add file gnetlist/scripts/sch2eaglepos.sh.
