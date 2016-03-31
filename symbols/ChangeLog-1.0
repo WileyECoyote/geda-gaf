@@ -1,3 +1,10 @@
+2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 2 symbols: Power Switches, Current-Limited
+
+            * ti/TPS2051BD-1.sym (SOIC8, Enable Active High)
+            * ti/TPS2051BDBV-1.sym (SOT23-5, Enable Active High)
+
 2016-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ADC0831-1.sym: Add symbol; 8-Bit Serial I/O A/D Converter, DIP8.
