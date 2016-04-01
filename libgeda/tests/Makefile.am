@@ -1,3 +1,5 @@
+EXTRA_DIST = README
+
 check_file = \
 	test_file
 
@@ -15,9 +17,13 @@ check_geda = \
 	test_pin \
 	test_text
 
+check_object = \
+	test_arc_object
+
 check_PROGRAMS = \
 	$(check_file) \
-	$(check_geda)
+	$(check_geda) \
+	$(check_object)
 
 TESTS = $(check_PROGRAMS)
 

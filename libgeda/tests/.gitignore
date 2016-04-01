@@ -10,6 +10,7 @@ libgeda.la
 *.log
 *.trs
 test_arc
+test_arc_object
 test_box
 test_bus
 test_circle

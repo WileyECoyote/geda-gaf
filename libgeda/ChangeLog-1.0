@@ -1,3 +1,7 @@
+2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_object.c: Add test module for arc objects.
+
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_list.h: Declare method geda_list_prepend.
