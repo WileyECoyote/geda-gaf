@@ -7,6 +7,12 @@
             * diode/tunnel_diode-1.sym
             * diode/tunnel_diode-2.sym
 
+    * diode: Add 2 symbols BAS40:
+
+            * diode/BAS40-1.sym (SOT-23)
+
+            * diode/BAS40H-1.sym (SOD-123)
+
     * display/BB-LCD-1.sym: New symbol for BeagleBoard LCD header.
 
     * display/BB-LCD-BL-1.sym: Rename symbol LCD-BL-1 -> BB-LCD-BL-1.
