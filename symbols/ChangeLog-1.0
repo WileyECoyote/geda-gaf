@@ -7,6 +7,17 @@
             * diode/tunnel_diode-1.sym
             * diode/tunnel_diode-2.sym
 
+    * transistor/darl-npn: Add styles for PMV65XP PMOS transistors:
+
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-1.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-2.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-3.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-4.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-5.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-6.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-7.sym
+            * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-8.sym
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/darl-npn: Add 3 NPN Power transistors:
