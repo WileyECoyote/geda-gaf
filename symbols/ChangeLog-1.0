@@ -7,6 +7,18 @@
             * diode/tunnel_diode-1.sym
             * diode/tunnel_diode-2.sym
 
+    * display/BB-LCD-1.sym: New symbol for BeagleBoard LCD header.
+
+    * display/BB-LCD-BL-1.sym: Rename symbol LCD-BL-1 -> BB-LCD-BL-1.
+
+    * display/BB-LCD-DT-1.sym: Rename symbol LCD-Data-1 -> BB-LCD-DT-1.
+
+    * display/LCD-1.sym: Fix duplicate pin number and sequence 36.
+
+    * display/LTP-757G-1.sym: Rename file using Upper case letters.
+
+    * display/LTS-546AP-1.sym: Rename file using Upper case letters.
+
     * transistor/darl-npn: Add styles for PMV65XP PMOS transistors:
 
             * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-1.sym

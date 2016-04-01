@@ -1,4 +1,4 @@
-v 20150823 2
+v 20160316 2
 P 600 600 900 600 1 0 1
 {
 T 645 645 5 8 1 1 0 0 1
@@ -22,9 +22,9 @@ T 650 200 5 8 0 1 0 0 1
 pintype=pas
 }
 T 100 1300 5 10 0 0 0 0 1
-device=CONNECTOR_2
+device=LCD-BL
 T 100 1500 5 10 0 0 0 0 1
-footprint=CONNECTOR_2
+footprint=CONNECTOR_1-2
 B 100 100 500 700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 600 850 8 10 1 1 0 6 1
 refdes=J?

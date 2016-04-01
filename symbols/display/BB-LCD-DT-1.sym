@@ -1,4 +1,4 @@
-v 20150823 2
+v 20160316 2
 P 600 400 600 100 1 0 1
 {
 T 650 250 5 8 1 1 0 2 1
@@ -286,10 +286,10 @@ T 2450 6150 5 8 0 1 0 0 1
 pintype=pas
 }
 B 100 400 2000 6600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 2450 7450 5 10 0 0 0 0 1
-device=CONNECTOR_40
-T 2450 7650 5 10 0 0 0 0 1
-footprint=CONNECTOR_40
+T 2400 7400 5 10 0 0 0 0 1
+device=LCD-Data
+T 2400 7600 5 10 0 0 0 0 1
+footprint=none
 T 2100 7050 8 10 1 1 0 6 1
 refdes=J?
 P 2100 6700 2400 6700 1 0 1
@@ -369,17 +369,6 @@ pinlabel=VSYNC
 T 2450 950 5 8 0 1 0 0 1
 pintype=pas
 }
-P 400 7000 400 7300 1 0 1
-{
-T 450 7200 5 8 1 1 0 0 1
-pinnumber=36
-T 450 7200 5 8 0 1 0 0 1
-pinseq=36
-T 395 6950 9 8 1 1 0 5 1
-pinlabel=5V
-T 450 7050 5 8 0 1 0 0 1
-pintype=pas
-}
 P 1500 400 1500 100 1 0 1
 {
 T 1550 250 5 8 1 1 0 2 1
@@ -413,5 +402,5 @@ pinlabel=GND
 T 1250 300 5 8 0 1 0 0 1
 pintype=pas
 }
-T 2450 7200 5 10 0 0 0 0 1
+T 2400 7200 5 10 0 0 0 0 1
 description=40 way connector for LCD data lines
