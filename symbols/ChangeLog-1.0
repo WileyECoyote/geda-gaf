@@ -1,3 +1,11 @@
+2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/darl-npn: Add 3 NPN Power transistors:
+
+            * transistor/darl-npn/2N6383_40V_10A_TO3.sym
+            * transistor/darl-npn/2N6384_60V_10A_TO3.sym
+            * transistor/darl-npn/2N6385_80V_10A_TO3.sym
+
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/: Add 2 symbols: Multi Channel Analog Multiplexers:
