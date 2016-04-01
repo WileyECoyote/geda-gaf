@@ -20,6 +20,9 @@ bool  g_action_get_position       (bool snap, int *x, int *y);
 /* g_attrib.c */
 void  g_init_attrib ();
 
+/* g_builtins.c */
+void  g_init_builtins (void);
+
 /* g_funcs.c */
 SCM   g_funcs_bmp_image      (SCM filename);
 SCM   g_funcs_confirm        (SCM msg);

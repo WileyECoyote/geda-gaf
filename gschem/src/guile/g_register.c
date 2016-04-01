@@ -277,7 +277,7 @@ void g_register_funcs (void)
                               gschem_hk_funcs,
                               gschem_buffer_funcs};
 
-  static GList   *action_list;
+  static GList *action_list;
 
   int j;
   for(j = 0; j < 4; j++) {
@@ -292,7 +292,7 @@ void g_register_funcs (void)
 
   i_command_get_action_list(&action_list);
 
-  lambda (char* action) {
+  lambda (char *action) {
     scm_c_define_gsubr (action, 1, 0, 0, g_process_action);
     return FALSE;
   }

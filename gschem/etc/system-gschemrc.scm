@@ -1835,7 +1835,7 @@
 (map-icon "geda-multi"                 "edit-mcopy")
 (map-icon "geda-mirror"                "edit-mirror")
 (map-icon "geda-move"                  "edit-move")
-(map-icon #f                           "edit-offset")
+(map-icon "geda-offset"                "edit-offset")
 (map-icon "geda-rotate"                "edit-rotate")
 (map-icon "geda-snap"                  "edit-snap")
 

@@ -301,6 +301,7 @@ static void gschem( int argc, char *argv[])
   g_hook_init ();
   g_init_attrib ();
   g_keys_init ();
+  g_init_builtins ();
   g_init_util ();
 
   if (f_path_sys_data () == NULL) {

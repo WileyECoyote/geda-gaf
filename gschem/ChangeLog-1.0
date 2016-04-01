@@ -6,6 +6,8 @@
 
     * src/guile/g_action.c: Add new function g_process_anonymous_action.
 
+    * src/guile/g_builtins.c: Add builtins for "gschem core builtins" module.
+
     * src/iface/i_command.c: Pass NULL to x_dialog_select_file in function
       i_cmd_do_run_script.
 
