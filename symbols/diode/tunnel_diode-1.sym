@@ -1,4 +1,4 @@
-v 20150315 2
+v 20160316 2
 L 200 200 295 200 3 0 0 0 -1 -1
 L 500 200 600 200 3 0 0 0 -1 -1
 L 300 100 500 200 3 0 2 0 -1 -1
@@ -33,21 +33,21 @@ T 300 400 8 10 1 1 0 0 1
 refdes=D?
 T 100 600 9 10 0 1 0 0 1
 footprint=DO-35
-T 1400 1150 5 10 0 0 0 0 1
+T 1400 1200 5 10 0 0 0 0 1
 numslots=0
-T 100 1300 5 10 0 1 0 0 1
+T 100 1400 5 10 0 1 0 0 1
 documentation=http://en.wikipedia.org/wiki/Tunnel_diode
 T 100 800 5 10 0 1 0 0 1
 description=Tunnel Diode
-T 100 950 5 10 0 1 0 0 1
-device=TUNNEL DIODE
-T 100 1450 5 10 0 0 0 0 1
-use-license=unlimited
+T 100 1000 5 10 0 1 0 0 1
+device=TUNNEL_DIODE
 T 100 1600 5 10 0 0 0 0 1
+use-license=unlimited
+T 100 1800 5 10 0 0 0 0 1
 dist-license=GPL
-T 100 1750 5 10 0 0 0 0 1
+T 100 2000 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 700 0 5 10 1 1 0 0 1
 value=1N3716
-T 100 1150 9 10 0 0 0 0 1
+T 100 1200 9 10 0 0 0 0 1
 symversion=0.2

@@ -1,3 +1,12 @@
+2016-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode: Rename symbol files add "diode":
+
+            * diode/gunn_diode-1.sym
+            * diode/gunn_diode-2.sym
+            * diode/tunnel_diode-1.sym
+            * diode/tunnel_diode-2.sym
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/darl-npn: Add 3 NPN Power transistors:

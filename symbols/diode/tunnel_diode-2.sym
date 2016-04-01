@@ -1,6 +1,6 @@
-v 20150401 2
+v 20160316 2
 T 600 1100 5 10 0 1 0 0 1
-device=DIODE
+device=TUNNEL_DIODE
 T 600 500 8 10 1 1 0 0 1
 refdes=D?
 L 325 200 200 200 3 0 0 0 -1 -1
@@ -51,4 +51,3 @@ T 600 1900 5 10 0 0 0 0 1
 dist-license=GPL3
 T 600 1700 5 10 0 0 0 0 1
 use-license=unlimited
-
