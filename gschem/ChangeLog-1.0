@@ -4,6 +4,9 @@
 
     * include/prototype.h: Add declare g_process_anonymous_action.
 
+    * src/base/gschem.c: Remove conditional that will never be !TRUE in
+      load_documents for case if nothing else load blank and update header.
+
     * src/guile/g_action.c: Add new function g_process_anonymous_action.
 
     * src/guile/g_builtins.c: Add builtins for "gschem core builtins" module.
