@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-25 22:41-0500\n"
+"POT-Creation-Date: 2016-03-30 02:55-0500\n"
 "PO-Revision-Date: 2012-01-31 12:12+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -124,41 +124,41 @@ msgstr ""
 msgid "String name of the icon image"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:703
+#: libgedauio/src/widgets/geda_bulb.c:707
 msgid "Group"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:704
+#: libgedauio/src/widgets/geda_bulb.c:708
 msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:715
+#: libgedauio/src/widgets/geda_bulb.c:719
 #, fuzzy
 msgid "Show Button"
 msgstr "Mostra _entrambi"
 
-#: libgedauio/src/widgets/geda_bulb.c:716
+#: libgedauio/src/widgets/geda_bulb.c:720
 msgid "Whether the draw the button during mouse over events"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:723
+#: libgedauio/src/widgets/geda_bulb.c:727
 #, fuzzy
 msgid "Indicator Size"
 msgstr "Dimensione Snap"
 
-#: libgedauio/src/widgets/geda_bulb.c:724
+#: libgedauio/src/widgets/geda_bulb.c:728
 msgid "Size of check or radio indicator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:733
+#: libgedauio/src/widgets/geda_bulb.c:737
 msgid "Indicator Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:734
+#: libgedauio/src/widgets/geda_bulb.c:738
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:756
+#: libgedauio/src/widgets/geda_bulb.c:760
 #, fuzzy
 msgid "group-changed"
 msgstr "*non cambiato*"
@@ -419,22 +419,22 @@ msgid "Off"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_button.c:760
-#: libgedauio/src/widgets/geda_font_dialog.c:1486
+#: libgedauio/src/widgets/geda_font_dialog.c:1488
 msgid "Title"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_button.c:761
-#: libgedauio/src/widgets/geda_font_dialog.c:1487
+#: libgedauio/src/widgets/geda_font_dialog.c:1489
 msgid "The title of the font selection dialog"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_button.c:762
-#: libgedauio/src/widgets/geda_font_dialog.c:1488
+#: libgedauio/src/widgets/geda_font_dialog.c:1490
 msgid "Pick a Font"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_button.c:771
-#: libgedauio/src/widgets/geda_font_dialog.c:1510
+#: libgedauio/src/widgets/geda_font_dialog.c:1512
 msgid "Font name"
 msgstr ""
 
@@ -477,13 +477,13 @@ msgid "Whether selected font size is shown in the label"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_button.c:832
-#: libgedauio/src/widgets/geda_font_dialog.c:1521
+#: libgedauio/src/widgets/geda_font_dialog.c:1523
 #, fuzzy
 msgid "Set Size"
 msgstr "Dimensione Testo"
 
 #: libgedauio/src/widgets/geda_font_button.c:833
-#: libgedauio/src/widgets/geda_font_dialog.c:1522
+#: libgedauio/src/widgets/geda_font_dialog.c:1524
 msgid "Set point size of the font"
 msgstr ""
 
@@ -503,134 +503,134 @@ msgstr ""
 msgid "Font button"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:1489
-#: libgedauio/src/widgets/geda_font_dialog.c:1494
+#: libgedauio/src/widgets/geda_font_button.c:1492
+#: libgedauio/src/widgets/geda_font_dialog.c:1496
 msgid "Font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1143
+#: libgedauio/src/widgets/geda_font_dialog.c:1145
 msgid "Select the desired font family"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1144
+#: libgedauio/src/widgets/geda_font_dialog.c:1146
 msgid "Select the style to apply to the font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1145
+#: libgedauio/src/widgets/geda_font_dialog.c:1147
 #, fuzzy
 msgid "Current font size"
 msgstr "Pagina corrente"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1146
+#: libgedauio/src/widgets/geda_font_dialog.c:1148
 msgid "Select the desired font size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1147
+#: libgedauio/src/widgets/geda_font_dialog.c:1149
 msgid "Editable sample preview of the currently selected font settings"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1155
+#: libgedauio/src/widgets/geda_font_dialog.c:1157
 msgid "_Family:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1160
+#: libgedauio/src/widgets/geda_font_dialog.c:1162
 msgid "_Style:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1165
+#: libgedauio/src/widgets/geda_font_dialog.c:1167
 msgid "Si_ze:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1218
+#: libgedauio/src/widgets/geda_font_dialog.c:1220
 msgid "Family"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1258
-#: libgedauio/src/widgets/geda_font_dialog.c:1298
+#: libgedauio/src/widgets/geda_font_dialog.c:1260
+#: libgedauio/src/widgets/geda_font_dialog.c:1300
 msgid "Face"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1332
+#: libgedauio/src/widgets/geda_font_dialog.c:1334
 #, fuzzy
 msgid "_Preview:"
 msgstr "Anteprima"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1359
+#: libgedauio/src/widgets/geda_font_dialog.c:1361
 msgid "Font scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1363
+#: libgedauio/src/widgets/geda_font_dialog.c:1365
 msgid "Font style scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1367
+#: libgedauio/src/widgets/geda_font_dialog.c:1369
 msgid "Font size scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1371
+#: libgedauio/src/widgets/geda_font_dialog.c:1373
 msgid "Font preview text entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1495
+#: libgedauio/src/widgets/geda_font_dialog.c:1497
 msgid "The GdkFont that is currently selected"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1502
+#: libgedauio/src/widgets/geda_font_dialog.c:1504
 msgid "Font description"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1503
+#: libgedauio/src/widgets/geda_font_dialog.c:1505
 msgid "Pango Font Description struct"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1511
+#: libgedauio/src/widgets/geda_font_dialog.c:1513
 msgid "The string that represents this font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1532
+#: libgedauio/src/widgets/geda_font_dialog.c:1534
 #, fuzzy
 msgid "Preview text"
 msgstr "Anteprima"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1533
+#: libgedauio/src/widgets/geda_font_dialog.c:1535
 msgid "The text to display in order to demonstrate the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1540
+#: libgedauio/src/widgets/geda_font_dialog.c:1542
 msgid "Show preview text entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1541
+#: libgedauio/src/widgets/geda_font_dialog.c:1543
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1643
+#: libgedauio/src/widgets/geda_font_dialog.c:1645
 #, fuzzy
 msgid "_Select"
 msgstr "Seleziona"
 
-#: libgedauio/src/widgets/geda_handlebox.c:295
-#: libgedauio/src/widgets/geda_handlebox.c:304
+#: libgedauio/src/widgets/geda_handlebox.c:1356
+#: libgedauio/src/widgets/geda_handlebox.c:1365
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:313
+#: libgedauio/src/widgets/geda_handlebox.c:1374
 msgid "Position of the handle relative to the child widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:322
+#: libgedauio/src/widgets/geda_handlebox.c:1383
 msgid ""
 "Side of the handlebox that's lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:331
+#: libgedauio/src/widgets/geda_handlebox.c:1392
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:339
+#: libgedauio/src/widgets/geda_handlebox.c:1400
 msgid ""
 "A boolean value indicating whether the handlebox's child is attached or "
 "detached."

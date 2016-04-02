@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-26 00:46-0600\n"
+"POT-Creation-Date: 2016-03-30 02:55-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -415,11 +415,11 @@ msgstr ""
 "Fout tijdens laden %s:\n"
 "%s\n"
 
-#: gattrib/src/x_window.c:159
+#: gattrib/src/x_window.c:168
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:196
+#: gattrib/src/x_window.c:205
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 

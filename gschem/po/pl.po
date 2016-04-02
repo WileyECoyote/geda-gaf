@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-26 18:03-0500\n"
+"POT-Creation-Date: 2016-04-01 23:35-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -43,7 +43,7 @@ msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 "BŁĄD: Wystąpił nieznany błąd podczas przetwarzania plików konfiguracyjnych.\n"
 
-#: gschem/src/base/gschem.c:308
+#: gschem/src/base/gschem.c:306
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -56,26 +56,26 @@ msgstr ""
 "gschem nie może odnaleźć plików z danymi. Należy wskazać lokalizację\n"
 "plików poprzez zmienną środowiskową GEDADATA.\n"
 
-#: gschem/src/base/gschem.c:345
+#: gschem/src/base/gschem.c:343
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:350
+#: gschem/src/base/gschem.c:348
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Wczytano plik inicjalizacji scm [%s]\n"
 
-#: gschem/src/base/gschem.c:353
+#: gschem/src/base/gschem.c:351
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
 
-#: gschem/src/base/gschem.c:379
+#: gschem/src/base/gschem.c:377
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem, wersja %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:383
+#: gschem/src/base/gschem.c:381
 msgid "Logging system is disabled\n"
 msgstr ""
 
@@ -208,7 +208,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:613
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:614
 msgid "Filename"
 msgstr "Nazwa pliku"
 
@@ -534,7 +534,7 @@ msgstr ""
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2597
+#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2615
 #, c-format
 msgid "New page created [%s]\n"
 msgstr "Utworzono nowy arkusz [%s]\n"
@@ -613,140 +613,140 @@ msgstr ""
 msgid "No component selected\n"
 msgstr "Siatka kropkowana\n"
 
-#: gschem/src/iface/i_command.c:2683
+#: gschem/src/iface/i_command.c:2701
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2865
+#: gschem/src/iface/i_command.c:2883
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr "Szukam źródła [%s]\n"
 
-#: gschem/src/iface/i_command.c:2899
+#: gschem/src/iface/i_command.c:2917
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
 
-#: gschem/src/iface/i_command.c:2908
+#: gschem/src/iface/i_command.c:2926
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "Hie_rarchia"
 
-#: gschem/src/iface/i_command.c:2984
+#: gschem/src/iface/i_command.c:3002
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr "Szukam symbolu [%s]\n"
 
-#: gschem/src/iface/i_command.c:2991
+#: gschem/src/iface/i_command.c:3009
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Symbol nie jest plikiem. Nie można wczytać symbolu.\n"
 
-#: gschem/src/iface/i_command.c:3038
+#: gschem/src/iface/i_command.c:3056
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Nie znaleziono żadnego schematu wyżej w hierarchii!\n"
 
-#: gschem/src/iface/i_command.c:3544
+#: gschem/src/iface/i_command.c:3562
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3934
+#: gschem/src/iface/i_command.c:3952
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3935
+#: gschem/src/iface/i_command.c:3953
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3941
+#: gschem/src/iface/i_command.c:3959
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "UWAGA: Rozmiar siatki przyciągania jest inny niż 100!\n"
 
-#: gschem/src/iface/i_command.c:3942
+#: gschem/src/iface/i_command.c:3960
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4107
+#: gschem/src/iface/i_command.c:4125
 msgid "Grid OFF\n"
 msgstr "Siatka: włączona\n"
 
-#: gschem/src/iface/i_command.c:4108
+#: gschem/src/iface/i_command.c:4126
 #, fuzzy
 msgid "Dot grid activated\n"
 msgstr "Siatka kropkowana\n"
 
-#: gschem/src/iface/i_command.c:4109
+#: gschem/src/iface/i_command.c:4127
 #, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Siatka z linii\n"
 
-#: gschem/src/iface/i_command.c:4188
+#: gschem/src/iface/i_command.c:4206
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)\n"
 
-#: gschem/src/iface/i_command.c:4193
+#: gschem/src/iface/i_command.c:4211
 msgid "Snap ON\n"
 msgstr "Przyciąganie do siatki: włączone\n"
 
-#: gschem/src/iface/i_command.c:4197
+#: gschem/src/iface/i_command.c:4215
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4221
+#: gschem/src/iface/i_command.c:4239
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "Uzupełnianie połączeń przy przesuwaniu: włączone \n"
 
-#: gschem/src/iface/i_command.c:4224
+#: gschem/src/iface/i_command.c:4242
 #, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Uzupełnianie połączeń przy przesuwaniu: wyłączone\n"
 
-#: gschem/src/iface/i_command.c:4235
+#: gschem/src/iface/i_command.c:4253
 #, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "tryb \"magnesu\": włączony\n"
 
-#: gschem/src/iface/i_command.c:4238
+#: gschem/src/iface/i_command.c:4256
 #, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "tryb \"magnesu\": wyłączony\n"
 
-#: gschem/src/iface/i_command.c:4255 gschem/src/iface/i_command.c:4297
+#: gschem/src/iface/i_command.c:4273 gschem/src/iface/i_command.c:4315
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4258 gschem/src/iface/i_command.c:4300
+#: gschem/src/iface/i_command.c:4276 gschem/src/iface/i_command.c:4318
 #, fuzzy
 msgid "On"
 msgstr "Otwórz"
 
-#: gschem/src/iface/i_command.c:4260
+#: gschem/src/iface/i_command.c:4278
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4272
+#: gschem/src/iface/i_command.c:4290
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Tryb wyświetlania przemieszczanych elementów\n"
 
-#: gschem/src/iface/i_command.c:4276
+#: gschem/src/iface/i_command.c:4294
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Tryb wyświetlania obwiedni przemieszczanych elementów\n"
 
-#: gschem/src/iface/i_command.c:4302
+#: gschem/src/iface/i_command.c:4320
 #, c-format
 msgid "Auto-Pan is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4354 gschem/src/iface/i_command.c:4383
-#: gschem/src/iface/i_command.c:4403 gschem/src/iface/i_command.c:4423
+#: gschem/src/iface/i_command.c:4372 gschem/src/iface/i_command.c:4401
+#: gschem/src/iface/i_command.c:4421 gschem/src/iface/i_command.c:4441
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4517
+#: gschem/src/iface/i_command.c:4535
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -875,7 +875,7 @@ msgid "Deselect Mode"
 msgstr "Tryb zaznaczania"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
-#: gschem/etc/system-gschemrc.scm:2110 gschem/scheme/gschem/builtins.scm:92
+#: gschem/etc/system-gschemrc.scm:2110 gschem/scheme/gschem/builtins.scm:167
 msgid "Select Mode"
 msgstr "Tryb zaznaczania"
 
@@ -884,7 +884,7 @@ msgstr "Tryb zaznaczania"
 msgid "Select Box Mode"
 msgstr "Tryb zaznaczania"
 
-#: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:182
+#: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:224
 msgid "Zoom Box"
 msgstr "Dopasuj do fragmentu"
 
@@ -893,7 +893,7 @@ msgstr "Dopasuj do fragmentu"
 msgid "Copy to point"
 msgstr "Kopiuj do schowka"
 
-#: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:113
+#: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 msgid "Rotate Mode"
 msgstr "Tryb obrotu"
 
@@ -959,7 +959,7 @@ msgstr "Tryb obrazów"
 msgid "Bus Mode"
 msgstr "Tryb magistrali"
 
-#: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:104
+#: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
 msgstr "Tryb przesuwania"
 
@@ -1562,7 +1562,7 @@ msgstr ""
 "Copyright © 1998-2012 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2012 Kontrybutorzy gEDA (szczegóły w pliku ChangeLog)"
 
-#: gschem/src/x/x_dialog.c:453 gschem/scheme/gschem/builtins.scm:421
+#: gschem/src/x/x_dialog.c:453 gschem/scheme/gschem/builtins.scm:562
 msgid "About gschem"
 msgstr "O programie"
 
@@ -1686,7 +1686,7 @@ msgid "Stroke"
 msgstr "Gest"
 
 #: gschem/src/x/x_dialog.c:1014 gschem/etc/system-gschemrc.scm:2134
-#: gschem/scheme/gschem/builtins.scm:140
+#: gschem/scheme/gschem/builtins.scm:185
 msgid "Lock"
 msgstr "Zablokuj"
 
@@ -1779,7 +1779,7 @@ msgstr "Kreskowanie"
 msgid "*unchanged*"
 msgstr "*bez zmian*"
 
-#: gschem/src/x/x_dialog.c:1589 gschem/scheme/gschem/builtins.scm:134
+#: gschem/src/x/x_dialog.c:1589 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Fill Type"
 msgstr "Edytuj typ wypełnienia"
 
@@ -1859,7 +1859,7 @@ msgstr "Kropka-kreska"
 msgid "Phantom"
 msgstr "Kropka-kropka-kreska"
 
-#: gschem/src/x/x_dialog.c:2171 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_dialog.c:2171 gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Line Width & Type"
 msgstr "Edycja stylu linii"
 
@@ -2093,7 +2093,7 @@ msgid "Show Name Only"
 msgstr "Wyświetlaj nazwę"
 
 #: gschem/src/x/x_edit_attrib.c:317 gschem/src/x/x_multiattrib.c:1635
-#: gschem/scheme/gschem/builtins.scm:296
+#: gschem/scheme/gschem/builtins.scm:410
 msgid "Show Name & Value"
 msgstr "Wyświetlaj nazwę i wartość"
 
@@ -2548,11 +2548,11 @@ msgid ""
 "Do you want to load the backup file?\n"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:416
+#: gschem/src/x/x_icons.c:417
 msgid "Shutting down icon factory\n"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:435
+#: gschem/src/x/x_icons.c:436
 msgid "Initializing icon factory\n"
 msgstr ""
 
@@ -2805,7 +2805,7 @@ msgid "Project a linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:123 gschem/src/x/x_multiattrib.c:1675
-#: gschem/scheme/gschem/builtins.scm:101
+#: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Usuń"
 
@@ -2814,7 +2814,7 @@ msgid "Delete the current selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2084
-#: gschem/scheme/gschem/builtins.scm:155
+#: gschem/scheme/gschem/builtins.scm:197
 msgid "Copy"
 msgstr "Kopiuj"
 
@@ -2877,7 +2877,7 @@ msgstr "Hie_rarchia"
 msgid "Edit operations"
 msgstr "Edycja właściwości tekstu"
 
-#: gschem/src/x/x_menus.c:136 gschem/scheme/gschem/builtins.scm:272
+#: gschem/src/x/x_menus.c:136 gschem/scheme/gschem/builtins.scm:326
 #, fuzzy
 msgid "Down Schematic"
 msgstr "/Wgłąb schematu"
@@ -2887,7 +2887,7 @@ msgstr "/Wgłąb schematu"
 msgid "Descend down in the schematic hierarchy"
 msgstr "Szukaj również wewnątrz elementów"
 
-#: gschem/src/x/x_menus.c:137 gschem/scheme/gschem/builtins.scm:275
+#: gschem/src/x/x_menus.c:137 gschem/scheme/gschem/builtins.scm:329
 #, fuzzy
 msgid "Down Symbol"
 msgstr "/Wgłąb symbolu"
@@ -3170,7 +3170,7 @@ msgstr "Kopiuj do 1"
 msgid "Edit Attributes"
 msgstr "Zmodyfikuj atrybuty"
 
-#: gschem/src/x/x_multiattrib.c:2175 gschem/scheme/gschem/builtins.scm:236
+#: gschem/src/x/x_multiattrib.c:2175 gschem/scheme/gschem/builtins.scm:347
 msgid "Add Attribute"
 msgstr "Dodaj atrybut"
 
@@ -3237,36 +3237,36 @@ msgstr "Atrybuty"
 msgid "attribute"
 msgstr "Atrybuty"
 
-#: gschem/src/x/x_pagesel.c:318
+#: gschem/src/x/x_pagesel.c:319 gschem/scheme/gschem/builtins.scm:305
 msgid "New Page"
 msgstr "Nowy arkusz"
 
-#: gschem/src/x/x_pagesel.c:319
+#: gschem/src/x/x_pagesel.c:320
 #, fuzzy
 msgid "Goto Page..."
 msgstr "Otwórz arkusz"
 
-#: gschem/src/x/x_pagesel.c:321
+#: gschem/src/x/x_pagesel.c:322
 msgid "Save Page"
 msgstr "Zapisz arkusz"
 
-#: gschem/src/x/x_pagesel.c:322 gschem/scheme/gschem/builtins.scm:224
+#: gschem/src/x/x_pagesel.c:323 gschem/scheme/gschem/builtins.scm:317
 msgid "Close Page"
 msgstr "Zamknij arkusz"
 
-#: gschem/src/x/x_pagesel.c:323
+#: gschem/src/x/x_pagesel.c:324 gschem/scheme/gschem/builtins.scm:320
 msgid "Discard Page"
 msgstr "Porzuć arkusz"
 
-#: gschem/src/x/x_pagesel.c:552 gschem/scheme/gschem/builtins.scm:215
+#: gschem/src/x/x_pagesel.c:553 gschem/scheme/gschem/builtins.scm:284
 msgid "Page Manager"
 msgstr "Zarządzanie arkuszami"
 
-#: gschem/src/x/x_pagesel.c:636
+#: gschem/src/x/x_pagesel.c:637
 msgid "Changed"
 msgstr "Zmieniono"
 
-#: gschem/src/x/x_pagesel.c:669
+#: gschem/src/x/x_pagesel.c:670
 #, fuzzy
 msgid "Right click on rows for more options..."
 msgstr "Kliknij prawym przyciskiem myszy na nazwie pliku aby zobaczyć opcje..."
@@ -3464,7 +3464,7 @@ msgstr ""
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:593
+#: gschem/src/x/x_sessions.c:593 gschem/scheme/gschem/builtins.scm:389
 msgid "Manage Sessions"
 msgstr ""
 
@@ -3489,7 +3489,7 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:842
+#: gschem/src/x/x_sessions.c:842 gschem/scheme/gschem/builtins.scm:386
 #, fuzzy
 msgid "Save Session As"
 msgstr "Zapisz _wszystkie"
@@ -3620,7 +3620,7 @@ msgstr ""
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1213
+#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1214
 msgid "Aborting action\n"
 msgstr ""
 
@@ -3639,35 +3639,35 @@ msgstr "Wczytywanie schematu [%s]\n"
 msgid "New file [%s]\n"
 msgstr "Nowy plik [%s]\n"
 
-#: gschem/src/x/x_window.c:1138
+#: gschem/src/x/x_window.c:1139
 #, fuzzy, c-format
 msgid "Could NOT save page [%s]:\n"
 msgstr "Zapisanie arkusza [%s] nie powiodło się\n"
 
-#: gschem/src/x/x_window.c:1140
+#: gschem/src/x/x_window.c:1141
 msgid "Error while trying to save"
 msgstr "Błąd podczas próby zapisania"
 
-#: gschem/src/x/x_window.c:1153
+#: gschem/src/x/x_window.c:1154
 #, fuzzy, c-format
 msgid "Saved as [%s] Okay\n"
 msgstr "Zapisano jako [%s]\n"
 
-#: gschem/src/x/x_window.c:1156
+#: gschem/src/x/x_window.c:1157
 #, fuzzy, c-format
 msgid "Saved [%s] Okay\n"
 msgstr "Zapisano [%s]\n"
 
-#: gschem/src/x/x_window.c:1159
+#: gschem/src/x/x_window.c:1160
 msgid "Saved"
 msgstr "Zapisano"
 
-#: gschem/src/x/x_window.c:1259
+#: gschem/src/x/x_window.c:1262
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Porzucanie arkusza [%s]\n"
 
-#: gschem/src/x/x_window.c:1259
+#: gschem/src/x/x_window.c:1262
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Zamykanie [%s]\n"
@@ -3720,7 +3720,7 @@ msgstr "Zapisz _wszystkie"
 msgid "Save all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2051
+#: gschem/etc/system-gschemrc.scm:2051 gschem/scheme/gschem/builtins.scm:65
 #, fuzzy
 msgid "Save Modified"
 msgstr "Tryb przesuwania"
@@ -3860,7 +3860,8 @@ msgstr ""
 msgid "Break a linear object into seperate objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2098 gschem/scheme/gschem/builtins.scm:119
+#: gschem/etc/system-gschemrc.scm:2098 gschem/scheme/gschem/builtins.scm:131
+#: gschem/scheme/gschem/builtins.scm:134
 msgid "Edit..."
 msgstr "Edytuj..."
 
@@ -3919,7 +3920,7 @@ msgstr ""
 msgid "Activate Deselect mode"
 msgstr "Tryb zaznaczania"
 
-#: gschem/etc/system-gschemrc.scm:2112 gschem/scheme/gschem/builtins.scm:95
+#: gschem/etc/system-gschemrc.scm:2112 gschem/scheme/gschem/builtins.scm:170
 msgid "Select All"
 msgstr ""
 
@@ -3928,7 +3929,7 @@ msgstr ""
 msgid "Select all objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2113
+#: gschem/etc/system-gschemrc.scm:2113 gschem/scheme/gschem/builtins.scm:182
 #, fuzzy
 msgid "Deselect All"
 msgstr "Odznacz"
@@ -4071,7 +4072,7 @@ msgstr ""
 msgid "Lock selected objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2135 gschem/scheme/gschem/builtins.scm:143
+#: gschem/etc/system-gschemrc.scm:2135 gschem/scheme/gschem/builtins.scm:188
 msgid "Unlock"
 msgstr "Odblokuj"
 
@@ -4350,7 +4351,7 @@ msgstr "Linię"
 msgid "Pat_h"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2239 gschem/scheme/gschem/builtins.scm:251
+#: gschem/etc/system-gschemrc.scm:2239 gschem/scheme/gschem/builtins.scm:368
 #, fuzzy
 msgid "Add Path"
 msgstr "/Dodaj połączenie"
@@ -4529,7 +4530,7 @@ msgstr "Pokaż okno współrzędnych..."
 msgid "Display coordinates"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2290 gschem/scheme/gschem/builtins.scm:322
+#: gschem/etc/system-gschemrc.scm:2290 gschem/scheme/gschem/builtins.scm:442
 msgid "Invoke Macro"
 msgstr "Wykonaj makro"
 
@@ -4546,7 +4547,7 @@ msgstr ""
 msgid "View or manage guile path"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2295 gschem/scheme/gschem/builtins.scm:328
+#: gschem/etc/system-gschemrc.scm:2295 gschem/scheme/gschem/builtins.scm:448
 msgid "Embed Component/Picture"
 msgstr "Osadź element/obraz"
 
@@ -4555,7 +4556,7 @@ msgstr "Osadź element/obraz"
 msgid "Embed a component or image object"
 msgstr "Osadź element w pliku schematu"
 
-#: gschem/etc/system-gschemrc.scm:2296 gschem/scheme/gschem/builtins.scm:331
+#: gschem/etc/system-gschemrc.scm:2296 gschem/scheme/gschem/builtins.scm:451
 msgid "Unembed Component/Picture"
 msgstr "Cofnij osadzanie elem./obr."
 
@@ -4564,7 +4565,7 @@ msgstr "Cofnij osadzanie elem./obr."
 msgid "Unembed a component or image object"
 msgstr "Cofnij osadzanie elem./obr."
 
-#: gschem/etc/system-gschemrc.scm:2297 gschem/scheme/gschem/builtins.scm:334
+#: gschem/etc/system-gschemrc.scm:2297 gschem/scheme/gschem/builtins.scm:454
 msgid "Update Component"
 msgstr "Aktualizuj element"
 
@@ -4789,377 +4790,549 @@ msgstr "Otwórz plik..."
 msgid "Save As"
 msgstr "Zapisz _wszystkie"
 
-#: gschem/scheme/gschem/builtins.scm:65
+#: gschem/scheme/gschem/builtins.scm:68
 #, fuzzy
 msgid "Print"
 msgstr "Drukuj..."
 
-#: gschem/scheme/gschem/builtins.scm:68
+#: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:71
+#: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:74
+#: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
 msgstr "Nowe o_kno"
 
-#: gschem/scheme/gschem/builtins.scm:77
+#: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
 #, fuzzy
 msgid "Close Window"
 msgstr "Zamykanie okna\n"
 
-#: gschem/scheme/gschem/builtins.scm:80
+#: gschem/scheme/gschem/builtins.scm:86
 #, fuzzy
 msgid "Quit"
 msgstr "Za_kończ"
 
-#: gschem/scheme/gschem/builtins.scm:86
+#: gschem/scheme/gschem/builtins.scm:89
+#, fuzzy
+msgid "Export Symbol"
+msgstr "/Wgłąb symbolu"
+
+#: gschem/scheme/gschem/builtins.scm:92
+#, fuzzy
+msgid "Export Picture"
+msgstr "Osadź element/obraz"
+
+#: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
 msgstr "Cofnij"
 
-#: gschem/scheme/gschem/builtins.scm:89
+#: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
 msgstr "Przywróć"
-
-#: gschem/scheme/gschem/builtins.scm:98
-msgid "Deselect"
-msgstr "Odznacz"
 
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
 msgstr "Tryb kopiowania"
 
-#: gschem/scheme/gschem/builtins.scm:110
+#: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
 msgstr "Duplikuj wielokrotnie"
 
-#: gschem/scheme/gschem/builtins.scm:122
+#: gschem/scheme/gschem/builtins.scm:119
+#, fuzzy
+msgid "Offest selection"
+msgstr "Zaznaczenie"
+
+#: gschem/scheme/gschem/builtins.scm:125 gschem/scheme/gschem/builtins.scm:128
+#, fuzzy
+msgid "Snap to Grid"
+msgstr "Tryb przesuwania widoku"
+
+#: gschem/scheme/gschem/builtins.scm:137
+#, fuzzy
+msgid "Edit Arc"
+msgstr "Kolor"
+
+#: gschem/scheme/gschem/builtins.scm:140
+#, fuzzy
+msgid "Edit Object"
+msgstr "Edytuj tekst"
+
+#: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Text"
 msgstr "Edytuj tekst"
 
-#: gschem/scheme/gschem/builtins.scm:125
-msgid "Choose Slot"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:128
+#: gschem/scheme/gschem/builtins.scm:146
 #, fuzzy
 msgid "Edit Color"
 msgstr "Kolor"
 
-#: gschem/scheme/gschem/builtins.scm:137
+#: gschem/scheme/gschem/builtins.scm:149
 #, fuzzy
 msgid "Edit Pin Type"
 msgstr "Edytuj rodzaj pinu"
 
-#: gschem/scheme/gschem/builtins.scm:146
-#, fuzzy
-msgid "Show/Hide Invisible Text"
-msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+#: gschem/scheme/gschem/builtins.scm:158 gschem/scheme/gschem/builtins.scm:161
+msgid "Choose Slot"
+msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:152
+#: gschem/scheme/gschem/builtins.scm:173
+#, fuzzy
+msgid "Invert Selection"
+msgstr "Zaznaczenie"
+
+#: gschem/scheme/gschem/builtins.scm:176
+#, fuzzy
+msgid "Select Last"
+msgstr "Zaznaczanie"
+
+#: gschem/scheme/gschem/builtins.scm:179
+#, fuzzy
+msgid "Deselect mode"
+msgstr "Tryb zaznaczania"
+
+#: gschem/scheme/gschem/builtins.scm:194
 #, fuzzy
 msgid "Cut"
 msgstr "Wy_tnij"
 
-#: gschem/scheme/gschem/builtins.scm:158
+#: gschem/scheme/gschem/builtins.scm:200
 #, fuzzy
 msgid "Paste"
 msgstr "_Wklej"
 
-#: gschem/scheme/gschem/builtins.scm:164
+#: gschem/scheme/gschem/builtins.scm:206
 #, fuzzy
 msgid "Redraw"
 msgstr "_Aktualizuj"
 
-#: gschem/scheme/gschem/builtins.scm:167
+#: gschem/scheme/gschem/builtins.scm:209
 msgid "Pan"
 msgstr "Przesuń widok"
 
-#: gschem/scheme/gschem/builtins.scm:170
+#: gschem/scheme/gschem/builtins.scm:212
 #, fuzzy
 msgid "Pan Left"
 msgstr "Tryb przesuwania widoku"
 
-#: gschem/scheme/gschem/builtins.scm:173
+#: gschem/scheme/gschem/builtins.scm:215
 #, fuzzy
 msgid "Pan Right"
 msgstr "Na górze po prawej"
 
-#: gschem/scheme/gschem/builtins.scm:176
+#: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Up"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:179
+#: gschem/scheme/gschem/builtins.scm:221
 #, fuzzy
 msgid "Pan Down"
 msgstr "Tryb przesuwania widoku"
 
-#: gschem/scheme/gschem/builtins.scm:185
+#: gschem/scheme/gschem/builtins.scm:227
+#, fuzzy
+msgid "Zoom Selection"
+msgstr "Zaznaczenie"
+
+#: gschem/scheme/gschem/builtins.scm:230
 #, fuzzy
 msgid "Zoom Extents"
 msgstr "/Dopasuj do ekranu"
 
-#: gschem/scheme/gschem/builtins.scm:188
+#: gschem/scheme/gschem/builtins.scm:233
 #, fuzzy
 msgid "Zoom In"
 msgstr "/Powiększ"
 
-#: gschem/scheme/gschem/builtins.scm:191
+#: gschem/scheme/gschem/builtins.scm:236
 #, fuzzy
 msgid "Zoom Out"
 msgstr "/Pomniejsz"
 
-#: gschem/scheme/gschem/builtins.scm:194
+#: gschem/scheme/gschem/builtins.scm:239
 #, fuzzy
-msgid "Zoom Full"
+msgid "Zoom All"
 msgstr "Maksymalne pomniejszenie"
 
-#: gschem/scheme/gschem/builtins.scm:197
+#: gschem/scheme/gschem/builtins.scm:242
+#, fuzzy
+msgid "Zoom to Mag"
+msgstr "Pow_iększ"
+
+#: gschem/scheme/gschem/builtins.scm:245
+#, fuzzy
+msgid "Documentation"
+msgstr "Do_kumentacja..."
+
+#: gschem/scheme/gschem/builtins.scm:248
+#, fuzzy
+msgid "Show/Hide Invisible Text"
+msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+
+#: gschem/scheme/gschem/builtins.scm:251
+#, fuzzy
+msgid "Show/Hide Inherited Attributes"
+msgstr "Odłączony atrybut"
+
+#: gschem/scheme/gschem/builtins.scm:254
+#, fuzzy
+msgid "Show/Hide net names"
+msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+
+#: gschem/scheme/gschem/builtins.scm:257
 #, fuzzy
 msgid "Dark Color Scheme"
 msgstr "_Ciemny zestaw kolorów"
 
-#: gschem/scheme/gschem/builtins.scm:200
+#: gschem/scheme/gschem/builtins.scm:260
 #, fuzzy
 msgid "Light Color Scheme"
 msgstr "_Jasny zestaw kolorów"
 
-#: gschem/scheme/gschem/builtins.scm:203
+#: gschem/scheme/gschem/builtins.scm:263
 msgid "Monochrome Color Scheme"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:209 gschem/scheme/gschem/builtins.scm:212
-#, fuzzy
-msgid "Revert Changes"
-msgstr "Czy na pewno przywrócić arkusz?"
+#: gschem/scheme/gschem/builtins.scm:269
+msgid "Draw After"
+msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:218
+#: gschem/scheme/gschem/builtins.scm:272
+msgid "Draw Before"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:275
+msgid "Draw First"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:278
+msgid "Draw Last"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:287
+#, fuzzy
+msgid "First Page"
+msgstr "_Poprzedni"
+
+#: gschem/scheme/gschem/builtins.scm:290
 #, fuzzy
 msgid "Previous Page"
 msgstr "_Poprzedni"
 
-#: gschem/scheme/gschem/builtins.scm:221
+#: gschem/scheme/gschem/builtins.scm:293
 #, fuzzy
 msgid "Next Page"
 msgstr "Nowy arkusz"
 
-#: gschem/scheme/gschem/builtins.scm:227
+#: gschem/scheme/gschem/builtins.scm:296
+#, fuzzy
+msgid "Page Up"
+msgstr "_Arkusz"
+
+#: gschem/scheme/gschem/builtins.scm:299
+#, fuzzy
+msgid "Page Down"
+msgstr "Tryb przesuwania widoku"
+
+#: gschem/scheme/gschem/builtins.scm:302
+#, fuzzy
+msgid "Last Page"
+msgstr "Nowy arkusz"
+
+#: gschem/scheme/gschem/builtins.scm:308
 #, fuzzy
 msgid "Print Page"
 msgstr "_Poprzedni"
 
-#: gschem/scheme/gschem/builtins.scm:233
+#: gschem/scheme/gschem/builtins.scm:311
 #, fuzzy
-msgid "Add Component"
-msgstr "/Dodaj element..."
+msgid "Revert Changes"
+msgstr "Czy na pewno przywrócić arkusz?"
 
-#: gschem/scheme/gschem/builtins.scm:239
+#: gschem/scheme/gschem/builtins.scm:314
 #, fuzzy
-msgid "Add Net"
-msgstr "/Dodaj połączenie"
+msgid "Revert All"
+msgstr "Czy na pewno przywrócić arkusz?"
 
-#: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
-msgid "Add Bus"
-msgstr "/Dodaj magistralę"
-
-#: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
-msgid "Add Text"
-msgstr "/Dodaj tekst"
-
-#: gschem/scheme/gschem/builtins.scm:248
-#, fuzzy
-msgid "Add Line"
-msgstr "Linię"
-
-#: gschem/scheme/gschem/builtins.scm:254
-#, fuzzy
-msgid "Add Box"
-msgstr "/Dodaj magistralę"
-
-#: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
-msgid "Add Circle"
-msgstr "Okrąg"
-
-#: gschem/scheme/gschem/builtins.scm:260
-#, fuzzy
-msgid "Add Arc"
-msgstr "Dodaj atrybut"
-
-#: gschem/scheme/gschem/builtins.scm:263
-msgid "Add Pin"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:266
-#, fuzzy
-msgid "Add Picture"
-msgstr "Obraz"
-
-#: gschem/scheme/gschem/builtins.scm:278
+#: gschem/scheme/gschem/builtins.scm:332
 #, fuzzy
 msgid "Up Hierarchy"
 msgstr "Hie_rarchia"
 
-#: gschem/scheme/gschem/builtins.scm:284
+#: gschem/scheme/gschem/builtins.scm:338
+#, fuzzy
+msgid "Add Component"
+msgstr "/Dodaj element..."
+
+#: gschem/scheme/gschem/builtins.scm:341
+#, fuzzy
+msgid "Add Net"
+msgstr "/Dodaj połączenie"
+
+#: gschem/scheme/gschem/builtins.scm:344
+#, fuzzy
+msgid "Add Bus"
+msgstr "/Dodaj magistralę"
+
+#: gschem/scheme/gschem/builtins.scm:350
+#, fuzzy
+msgid "Add Text"
+msgstr "/Dodaj tekst"
+
+#: gschem/scheme/gschem/builtins.scm:353
+#, fuzzy
+msgid "Add Line"
+msgstr "Linię"
+
+#: gschem/scheme/gschem/builtins.scm:356
+msgid "Add Pin"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:359
+#, fuzzy
+msgid "Add Box"
+msgstr "/Dodaj magistralę"
+
+#: gschem/scheme/gschem/builtins.scm:362
+#, fuzzy
+msgid "Add Circle"
+msgstr "Okrąg"
+
+#: gschem/scheme/gschem/builtins.scm:365
+#, fuzzy
+msgid "Add Arc"
+msgstr "Dodaj atrybut"
+
+#: gschem/scheme/gschem/builtins.scm:371
+#, fuzzy
+msgid "Add Picture"
+msgstr "Obraz"
+
+#: gschem/scheme/gschem/builtins.scm:377
+#, fuzzy
+msgid "Create New Session"
+msgstr "Bieżący widok"
+
+#: gschem/scheme/gschem/builtins.scm:380
+#, fuzzy
+msgid "Open a Session"
+msgstr "Zapisz _wszystkie"
+
+#: gschem/scheme/gschem/builtins.scm:383
+#, fuzzy
+msgid "Save Session"
+msgstr "Zapisz _wszystkie"
+
+#: gschem/scheme/gschem/builtins.scm:395
 #, fuzzy
 msgid "Attach Attributes"
 msgstr "Zmodyfikuj atrybuty"
 
-#: gschem/scheme/gschem/builtins.scm:287
+#: gschem/scheme/gschem/builtins.scm:398
 #, fuzzy
 msgid "Detach Attributes"
 msgstr "Odłączony atrybut"
 
-#: gschem/scheme/gschem/builtins.scm:290
+#: gschem/scheme/gschem/builtins.scm:401
+#, fuzzy
+msgid "Reset Attribute Positions"
+msgstr "Lokalizacja docelowa"
+
+#: gschem/scheme/gschem/builtins.scm:404
 #, fuzzy
 msgid "Show Attribute Value"
 msgstr "Nieprawidłowa wartość atrybutu \"slot\"\n"
 
-#: gschem/scheme/gschem/builtins.scm:293
+#: gschem/scheme/gschem/builtins.scm:407
 #, fuzzy
 msgid "Show Attribute Name"
 msgstr "Nieprawidłowa wartość atrybutu \"slot\"\n"
 
-#: gschem/scheme/gschem/builtins.scm:299
+#: gschem/scheme/gschem/builtins.scm:413
 #, fuzzy
 msgid "Toggle Text Visibility"
 msgstr "Przełącz _widoczność"
 
-#: gschem/scheme/gschem/builtins.scm:302
+#: gschem/scheme/gschem/builtins.scm:416
 #, fuzzy
 msgid "Find Specific Text"
 msgstr "_Szukaj tekstu..."
 
-#: gschem/scheme/gschem/builtins.scm:305
+#: gschem/scheme/gschem/builtins.scm:419
 #, fuzzy
 msgid "Hide Specific Text"
 msgstr "_Ukryj wybrany tekst..."
 
-#: gschem/scheme/gschem/builtins.scm:308
+#: gschem/scheme/gschem/builtins.scm:422
 #, fuzzy
 msgid "Show Specific Text"
 msgstr "_Pokazuj wybrany tekst..."
 
-#: gschem/scheme/gschem/builtins.scm:313
+#: gschem/scheme/gschem/builtins.scm:425
+#, fuzzy
+msgid "Open Attributes Editor"
+msgstr "Edycja pojedyńczego atrybutu"
+
+#: gschem/scheme/gschem/builtins.scm:430
 #, fuzzy
 msgid "Autonumber Text"
 msgstr "Automatyczna numeracja"
 
-#: gschem/scheme/gschem/builtins.scm:316
+#: gschem/scheme/gschem/builtins.scm:433
 #, fuzzy
 msgid "Show Console Window"
 msgstr "Pokaż okno współrzędnych..."
 
-#: gschem/scheme/gschem/builtins.scm:319
+#: gschem/scheme/gschem/builtins.scm:436
 #, fuzzy
 msgid "Show Coordinate Window"
 msgstr "Pokaż okno współrzędnych..."
 
-#: gschem/scheme/gschem/builtins.scm:325
+#: gschem/scheme/gschem/builtins.scm:439
+msgid "Guile Path"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:445
 #, fuzzy
 msgid "Translate Symbol"
 msgstr "Tłumacz"
 
-#: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
-msgid "Show Hotkeys"
-msgstr "Klawisze skrótów"
-
-#: gschem/scheme/gschem/builtins.scm:344
-#, fuzzy
-msgid "Set Default Text Size"
-msgstr "Rozmiar czcionki"
-
-#: gschem/scheme/gschem/builtins.scm:347
-msgid "Switch Grid Style"
+#: gschem/scheme/gschem/builtins.scm:460
+msgid "Dots Grid Style"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:350
-msgid "Switch Snap Mode"
+#: gschem/scheme/gschem/builtins.scm:463
+#, fuzzy
+msgid "Mesh Grid Style"
+msgstr "Siatka z linii\n"
+
+#: gschem/scheme/gschem/builtins.scm:466
+msgid "Turn Grid Off"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:353
+#: gschem/scheme/gschem/builtins.scm:469
 #, fuzzy
-msgid "Set Grid Spacing"
-msgstr "Z_mniejsz siatkę przyciągania"
+msgid "Cycle Grid Mode"
+msgstr "Tryb łuków"
 
-#: gschem/scheme/gschem/builtins.scm:356
+#: gschem/scheme/gschem/builtins.scm:472
 #, fuzzy
 msgid "Increase Grid Spacing"
 msgstr "Z_mniejsz siatkę przyciągania"
 
-#: gschem/scheme/gschem/builtins.scm:359
+#: gschem/scheme/gschem/builtins.scm:475
 #, fuzzy
 msgid "Decrease Grid Spacing"
 msgstr "Z_mniejsz siatkę przyciągania"
 
-#: gschem/scheme/gschem/builtins.scm:362
+#: gschem/scheme/gschem/builtins.scm:478
 #, fuzzy
-msgid "Toggle Outline Drawing"
-msgstr "Przełącz wyświetlanie _konturów"
+msgid "Set Snap Spacing"
+msgstr "Z_mniejsz siatkę przyciągania"
 
-#: gschem/scheme/gschem/builtins.scm:365
+#: gschem/scheme/gschem/builtins.scm:481
+#, fuzzy
+msgid "Turn Snap off"
+msgstr "Wyłącz przyciąganie"
+
+#: gschem/scheme/gschem/builtins.scm:484
+msgid "Turn Snap on"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:487
+#, fuzzy
+msgid "Cycle Snap Mode"
+msgstr "Tryb przesuwania widoku"
+
+#: gschem/scheme/gschem/builtins.scm:490
 #, fuzzy
 msgid "Toggle Net Rubber Band"
 msgstr "Przełącz _rozciąganie połączeń"
 
-#: gschem/scheme/gschem/builtins.scm:368
+#: gschem/scheme/gschem/builtins.scm:493
 #, fuzzy
 msgid "Toggle Magnetic Nets"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-#: gschem/scheme/gschem/builtins.scm:375
+#: gschem/scheme/gschem/builtins.scm:496
+msgid "Enable/Disable Drag move"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:499
+#, fuzzy
+msgid "Toggle Outline Drawing"
+msgstr "Przełącz wyświetlanie _konturów"
+
+#: gschem/scheme/gschem/builtins.scm:502
+msgid "Enable/Disable Auto Panning"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:505
+#, fuzzy
+msgid "Set Default Text Size"
+msgstr "Rozmiar czcionki"
+
+#: gschem/scheme/gschem/builtins.scm:508
+msgid "Open Preference Dialog"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:515
+msgid "gEDA Manuals"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:516
+msgid "View the front page of the gEDA documentation in a browser."
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:519
+#, fuzzy
+msgid "Show Hotkeys"
+msgstr "Klawisze skrótów"
+
+#: gschem/scheme/gschem/builtins.scm:523
 #, fuzzy
 msgid "Component Documentation"
 msgstr "Dokumentacja _elementu..."
 
-#: gschem/scheme/gschem/builtins.scm:377
+#: gschem/scheme/gschem/builtins.scm:525
 msgid "View documentation for selected component"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:393
+#: gschem/scheme/gschem/builtins.scm:541
 msgid ""
 "Could not show documentation for selected component:\n"
 "\n"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:398
-msgid "gEDA Manuals"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:399
-msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:404
+#: gschem/scheme/gschem/builtins.scm:545
 #, fuzzy
 msgid "gschem User Guide"
 msgstr "_FAQ gschem..."
 
-#: gschem/scheme/gschem/builtins.scm:405
+#: gschem/scheme/gschem/builtins.scm:546
 msgid "View the gschem User Guide in a browser."
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:410
+#: gschem/scheme/gschem/builtins.scm:551
 #, fuzzy
 msgid "gschem FAQ"
 msgstr "_FAQ gschem..."
 
-#: gschem/scheme/gschem/builtins.scm:411
+#: gschem/scheme/gschem/builtins.scm:552
 msgid "Frequently Asked Questions about using gschem."
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:416
+#: gschem/scheme/gschem/builtins.scm:557
 #, fuzzy
 msgid "gEDA wiki"
 msgstr "_Wiki gEDA..."
 
-#: gschem/scheme/gschem/builtins.scm:417
+#: gschem/scheme/gschem/builtins.scm:558
 msgid "View the front page of the gEDA wiki in a browser."
 msgstr ""
 
@@ -5190,6 +5363,13 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "Deselect"
+#~ msgstr "Odznacz"
+
+#, fuzzy
+#~ msgid "Zoom Full"
+#~ msgstr "Maksymalne pomniejszenie"
 
 #, fuzzy
 #~ msgid "%i attribute"

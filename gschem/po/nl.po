@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-26 18:03-0500\n"
+"POT-Creation-Date: 2016-04-01 23:35-0500\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:308
+#: gschem/src/base/gschem.c:306
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -55,26 +55,26 @@ msgstr ""
 "gschem kan geen lokatie vinden van de data bestanden. Je moet de GEDADATA\n"
 "omgevingsvariablele naar de juiste lokatie laten wijzen.\n"
 
-#: gschem/src/base/gschem.c:345
+#: gschem/src/base/gschem.c:343
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:350
+#: gschem/src/base/gschem.c:348
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Lees init scm bestand [%s]\n"
 
-#: gschem/src/base/gschem.c:353
+#: gschem/src/base/gschem.c:351
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Fout bij het lezen van het init scm bestand [%s]\n"
 
-#: gschem/src/base/gschem.c:379
+#: gschem/src/base/gschem.c:377
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem versie %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:383
+#: gschem/src/base/gschem.c:381
 msgid "Logging system is disabled\n"
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr "Vooraf zien Buffer"
 
-#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:613
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:614
 msgid "Filename"
 msgstr "Bestandsnaam"
 
@@ -566,7 +566,7 @@ msgstr ""
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2597
+#: gschem/src/iface/i_command.c:696 gschem/src/iface/i_command.c:2615
 #, c-format
 msgid "New page created [%s]\n"
 msgstr "Nieuwe pagina gemaakt [%s]\n"
@@ -644,55 +644,55 @@ msgstr ""
 msgid "No component selected\n"
 msgstr "Punt raster geselecteerd\n"
 
-#: gschem/src/iface/i_command.c:2683
+#: gschem/src/iface/i_command.c:2701
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2865
+#: gschem/src/iface/i_command.c:2883
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr "Zoek naar bron [%s]\n"
 
-#: gschem/src/iface/i_command.c:2899
+#: gschem/src/iface/i_command.c:2917
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "Faalde bij het afdalen in '%s': %s\n"
 
-#: gschem/src/iface/i_command.c:2908
+#: gschem/src/iface/i_command.c:2926
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "Hie_rarchie"
 
-#: gschem/src/iface/i_command.c:2984
+#: gschem/src/iface/i_command.c:3002
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr "Zoek naar symbool [%s]\n"
 
-#: gschem/src/iface/i_command.c:2991
+#: gschem/src/iface/i_command.c:3009
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Symbool is geen werkelijk bestand. Symbool kan niet geladen worden.\n"
 
-#: gschem/src/iface/i_command.c:3038
+#: gschem/src/iface/i_command.c:3056
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Kan geen schema's vinden boven het huidige schema!\n"
 
-#: gschem/src/iface/i_command.c:3544
+#: gschem/src/iface/i_command.c:3562
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3934
+#: gschem/src/iface/i_command.c:3952
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WAARSCHUWING: Niet verplaatsen met snap uit!\n"
 
-#: gschem/src/iface/i_command.c:3935
+#: gschem/src/iface/i_command.c:3953
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "WAARSCHUWING: Zet snap aan en vervolg de verplaatsing.\n"
 
-#: gschem/src/iface/i_command.c:3941
+#: gschem/src/iface/i_command.c:3959
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "WAARSCHUWING: Snap grid waarde is niet gelijk aan 100!\n"
 
-#: gschem/src/iface/i_command.c:3942
+#: gschem/src/iface/i_command.c:3960
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -700,86 +700,86 @@ msgstr ""
 "WAARSCHUWING: Als je een symbool naar de oorsprong verschuift, dan moet de "
 "snap grip waarde op 100 gezet worden\n"
 
-#: gschem/src/iface/i_command.c:4107
+#: gschem/src/iface/i_command.c:4125
 msgid "Grid OFF\n"
 msgstr "Raster UIT\n"
 
-#: gschem/src/iface/i_command.c:4108
+#: gschem/src/iface/i_command.c:4126
 #, fuzzy
 msgid "Dot grid activated\n"
 msgstr "Punt raster geselecteerd\n"
 
-#: gschem/src/iface/i_command.c:4109
+#: gschem/src/iface/i_command.c:4127
 #, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Maas raster geselecteerd\n"
 
-#: gschem/src/iface/i_command.c:4188
+#: gschem/src/iface/i_command.c:4206
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Snap UIT (PAS OP!)\n"
 
-#: gschem/src/iface/i_command.c:4193
+#: gschem/src/iface/i_command.c:4211
 msgid "Snap ON\n"
 msgstr "Snap AAN\n"
 
-#: gschem/src/iface/i_command.c:4197
+#: gschem/src/iface/i_command.c:4215
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Snap terug op raster (PAS OP!)\n"
 
-#: gschem/src/iface/i_command.c:4221
+#: gschem/src/iface/i_command.c:4239
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "Elastiek band UIT \n"
 
-#: gschem/src/iface/i_command.c:4224
+#: gschem/src/iface/i_command.c:4242
 #, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Elastiek band AAN\n"
 
-#: gschem/src/iface/i_command.c:4235
+#: gschem/src/iface/i_command.c:4253
 #, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "magnetische draad mode: AAN\n"
 
-#: gschem/src/iface/i_command.c:4238
+#: gschem/src/iface/i_command.c:4256
 #, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "magnetische draad mode: UIT\n"
 
-#: gschem/src/iface/i_command.c:4255 gschem/src/iface/i_command.c:4297
+#: gschem/src/iface/i_command.c:4273 gschem/src/iface/i_command.c:4315
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4258 gschem/src/iface/i_command.c:4300
+#: gschem/src/iface/i_command.c:4276 gschem/src/iface/i_command.c:4318
 #, fuzzy
 msgid "On"
 msgstr "Open"
 
-#: gschem/src/iface/i_command.c:4260
+#: gschem/src/iface/i_command.c:4278
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4272
+#: gschem/src/iface/i_command.c:4290
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Aktie terugkoppel mode is ingesteld op OUTLINE\n"
 
-#: gschem/src/iface/i_command.c:4276
+#: gschem/src/iface/i_command.c:4294
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Aktie terugkoppel mode is ingesteld op BOUNDINGBOX.\n"
 
-#: gschem/src/iface/i_command.c:4302
+#: gschem/src/iface/i_command.c:4320
 #, c-format
 msgid "Auto-Pan is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4354 gschem/src/iface/i_command.c:4383
-#: gschem/src/iface/i_command.c:4403 gschem/src/iface/i_command.c:4423
+#: gschem/src/iface/i_command.c:4372 gschem/src/iface/i_command.c:4401
+#: gschem/src/iface/i_command.c:4421 gschem/src/iface/i_command.c:4441
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4517
+#: gschem/src/iface/i_command.c:4535
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -907,7 +907,7 @@ msgid "Deselect Mode"
 msgstr "Selectie Mode"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
-#: gschem/etc/system-gschemrc.scm:2110 gschem/scheme/gschem/builtins.scm:92
+#: gschem/etc/system-gschemrc.scm:2110 gschem/scheme/gschem/builtins.scm:167
 msgid "Select Mode"
 msgstr "Selectie Mode"
 
@@ -916,7 +916,7 @@ msgstr "Selectie Mode"
 msgid "Select Box Mode"
 msgstr "Selectie Mode"
 
-#: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:182
+#: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:224
 msgid "Zoom Box"
 msgstr "Vergroot Venster"
 
@@ -925,7 +925,7 @@ msgstr "Vergroot Venster"
 msgid "Copy to point"
 msgstr "Kopieer naar klembord"
 
-#: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:113
+#: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 msgid "Rotate Mode"
 msgstr "Rotatie Mode"
 
@@ -990,7 +990,7 @@ msgstr "Afbeelding Mode"
 msgid "Bus Mode"
 msgstr "Bus Mode"
 
-#: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:104
+#: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
 msgstr "Verplaats Mode"
 
@@ -1589,7 +1589,7 @@ msgstr ""
 "Copyright © 1998-2012 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2012 gEDA Contributors (zie het ChangeLog voor details)"
 
-#: gschem/src/x/x_dialog.c:453 gschem/scheme/gschem/builtins.scm:421
+#: gschem/src/x/x_dialog.c:453 gschem/scheme/gschem/builtins.scm:562
 msgid "About gschem"
 msgstr "Over gschem"
 
@@ -1713,7 +1713,7 @@ msgid "Stroke"
 msgstr "Slag"
 
 #: gschem/src/x/x_dialog.c:1014 gschem/etc/system-gschemrc.scm:2134
-#: gschem/scheme/gschem/builtins.scm:140
+#: gschem/scheme/gschem/builtins.scm:185
 msgid "Lock"
 msgstr "Vergrendel"
 
@@ -1806,7 +1806,7 @@ msgstr "Arcering"
 msgid "*unchanged*"
 msgstr "*onveranderd*"
 
-#: gschem/src/x/x_dialog.c:1589 gschem/scheme/gschem/builtins.scm:134
+#: gschem/src/x/x_dialog.c:1589 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Fill Type"
 msgstr "Bewerk Arcering Type"
 
@@ -1887,7 +1887,7 @@ msgstr "Hart"
 msgid "Phantom"
 msgstr "Begrenzing"
 
-#: gschem/src/x/x_dialog.c:2171 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_dialog.c:2171 gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Line Width & Type"
 msgstr "Bewerk Lijn Dikte & Type"
 
@@ -2123,7 +2123,7 @@ msgid "Show Name Only"
 msgstr "Toon Alleen Naam"
 
 #: gschem/src/x/x_edit_attrib.c:317 gschem/src/x/x_multiattrib.c:1635
-#: gschem/scheme/gschem/builtins.scm:296
+#: gschem/scheme/gschem/builtins.scm:410
 msgid "Show Name & Value"
 msgstr "Toon Naam & Waarde"
 
@@ -2582,11 +2582,11 @@ msgstr ""
 "\n"
 "Wil je het reserve bestand laden ?\n"
 
-#: gschem/src/x/x_icons.c:416
+#: gschem/src/x/x_icons.c:417
 msgid "Shutting down icon factory\n"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:435
+#: gschem/src/x/x_icons.c:436
 msgid "Initializing icon factory\n"
 msgstr ""
 
@@ -2840,7 +2840,7 @@ msgid "Project a linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:123 gschem/src/x/x_multiattrib.c:1675
-#: gschem/scheme/gschem/builtins.scm:101
+#: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Verwijder"
 
@@ -2849,7 +2849,7 @@ msgid "Delete the current selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2084
-#: gschem/scheme/gschem/builtins.scm:155
+#: gschem/scheme/gschem/builtins.scm:197
 msgid "Copy"
 msgstr "Kopieer"
 
@@ -2911,7 +2911,7 @@ msgstr "Hie_rarchie"
 msgid "Edit operations"
 msgstr "Bewerk Tekst Eigenschappen"
 
-#: gschem/src/x/x_menus.c:136 gschem/scheme/gschem/builtins.scm:272
+#: gschem/src/x/x_menus.c:136 gschem/scheme/gschem/builtins.scm:326
 msgid "Down Schematic"
 msgstr "Naar Schema"
 
@@ -2920,7 +2920,7 @@ msgstr "Naar Schema"
 msgid "Descend down in the schematic hierarchy"
 msgstr "afdalen in hierarchie"
 
-#: gschem/src/x/x_menus.c:137 gschem/scheme/gschem/builtins.scm:275
+#: gschem/src/x/x_menus.c:137 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Symbol"
 msgstr "Naar Symbool"
 
@@ -3202,7 +3202,7 @@ msgstr "Kopieer naar alles"
 msgid "Edit Attributes"
 msgstr "Bewerk Attribuut"
 
-#: gschem/src/x/x_multiattrib.c:2175 gschem/scheme/gschem/builtins.scm:236
+#: gschem/src/x/x_multiattrib.c:2175 gschem/scheme/gschem/builtins.scm:347
 msgid "Add Attribute"
 msgstr "Plaats Attribuut"
 
@@ -3269,36 +3269,36 @@ msgstr "Attributen"
 msgid "attribute"
 msgstr "Attribuut"
 
-#: gschem/src/x/x_pagesel.c:318
+#: gschem/src/x/x_pagesel.c:319 gschem/scheme/gschem/builtins.scm:305
 msgid "New Page"
 msgstr "Nieuwe Pagina"
 
-#: gschem/src/x/x_pagesel.c:319
+#: gschem/src/x/x_pagesel.c:320
 #, fuzzy
 msgid "Goto Page..."
 msgstr "Open Pagina..."
 
-#: gschem/src/x/x_pagesel.c:321
+#: gschem/src/x/x_pagesel.c:322
 msgid "Save Page"
 msgstr "Opslaan Pagina"
 
-#: gschem/src/x/x_pagesel.c:322 gschem/scheme/gschem/builtins.scm:224
+#: gschem/src/x/x_pagesel.c:323 gschem/scheme/gschem/builtins.scm:317
 msgid "Close Page"
 msgstr "Sluit Pagina"
 
-#: gschem/src/x/x_pagesel.c:323
+#: gschem/src/x/x_pagesel.c:324 gschem/scheme/gschem/builtins.scm:320
 msgid "Discard Page"
 msgstr "Pagina Wegdoen"
 
-#: gschem/src/x/x_pagesel.c:552 gschem/scheme/gschem/builtins.scm:215
+#: gschem/src/x/x_pagesel.c:553 gschem/scheme/gschem/builtins.scm:284
 msgid "Page Manager"
 msgstr "Pagina Manager"
 
-#: gschem/src/x/x_pagesel.c:636
+#: gschem/src/x/x_pagesel.c:637
 msgid "Changed"
 msgstr "Veranderd"
 
-#: gschem/src/x/x_pagesel.c:669
+#: gschem/src/x/x_pagesel.c:670
 #, fuzzy
 msgid "Right click on rows for more options..."
 msgstr "Klik met rechts op de bestandnaam voor meer opties..."
@@ -3498,7 +3498,7 @@ msgstr ""
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:593
+#: gschem/src/x/x_sessions.c:593 gschem/scheme/gschem/builtins.scm:389
 msgid "Manage Sessions"
 msgstr ""
 
@@ -3524,7 +3524,7 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:842
+#: gschem/src/x/x_sessions.c:842 gschem/scheme/gschem/builtins.scm:386
 #, fuzzy
 msgid "Save Session As"
 msgstr "Opslaan Als"
@@ -3652,7 +3652,7 @@ msgstr ""
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1213
+#: gschem/src/x/x_window.c:664 gschem/src/x/x_window.c:1214
 msgid "Aborting action\n"
 msgstr ""
 
@@ -3671,35 +3671,35 @@ msgstr "Sluiten [%s]\n"
 msgid "New file [%s]\n"
 msgstr "Nieuw bestand [%s]\n"
 
-#: gschem/src/x/x_window.c:1138
+#: gschem/src/x/x_window.c:1139
 #, fuzzy, c-format
 msgid "Could NOT save page [%s]:\n"
 msgstr "Pagina [%s] kan NIET opgeslagen worden\n"
 
-#: gschem/src/x/x_window.c:1140
+#: gschem/src/x/x_window.c:1141
 msgid "Error while trying to save"
 msgstr "Fout tijdens het opslaan"
 
-#: gschem/src/x/x_window.c:1153
+#: gschem/src/x/x_window.c:1154
 #, fuzzy, c-format
 msgid "Saved as [%s] Okay\n"
 msgstr "Opgeslagen Als [%s]\n"
 
-#: gschem/src/x/x_window.c:1156
+#: gschem/src/x/x_window.c:1157
 #, fuzzy, c-format
 msgid "Saved [%s] Okay\n"
 msgstr "Opgeslagen [%s]\n"
 
-#: gschem/src/x/x_window.c:1159
+#: gschem/src/x/x_window.c:1160
 msgid "Saved"
 msgstr "Opgeslagen"
 
-#: gschem/src/x/x_window.c:1259
+#: gschem/src/x/x_window.c:1262
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Pagina [%s] wegdoen\n"
 
-#: gschem/src/x/x_window.c:1259
+#: gschem/src/x/x_window.c:1262
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Sluiten [%s]\n"
@@ -3752,7 +3752,7 @@ msgstr "Alles Opslaan"
 msgid "Save all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2051
+#: gschem/etc/system-gschemrc.scm:2051 gschem/scheme/gschem/builtins.scm:65
 #, fuzzy
 msgid "Save Modified"
 msgstr "Verplaats Mode"
@@ -3892,7 +3892,8 @@ msgstr ""
 msgid "Break a linear object into seperate objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2098 gschem/scheme/gschem/builtins.scm:119
+#: gschem/etc/system-gschemrc.scm:2098 gschem/scheme/gschem/builtins.scm:131
+#: gschem/scheme/gschem/builtins.scm:134
 msgid "Edit..."
 msgstr "Bewerk..."
 
@@ -3951,7 +3952,7 @@ msgstr ""
 msgid "Activate Deselect mode"
 msgstr "Selectie mode"
 
-#: gschem/etc/system-gschemrc.scm:2112 gschem/scheme/gschem/builtins.scm:95
+#: gschem/etc/system-gschemrc.scm:2112 gschem/scheme/gschem/builtins.scm:170
 msgid "Select All"
 msgstr "Selecteer Alles"
 
@@ -3960,7 +3961,7 @@ msgstr "Selecteer Alles"
 msgid "Select all objects"
 msgstr "Geselecteerde objecten"
 
-#: gschem/etc/system-gschemrc.scm:2113
+#: gschem/etc/system-gschemrc.scm:2113 gschem/scheme/gschem/builtins.scm:182
 #, fuzzy
 msgid "Deselect All"
 msgstr "Selecteer Alles"
@@ -4103,7 +4104,7 @@ msgstr ""
 msgid "Lock selected objects"
 msgstr "Geselecteerde objecten"
 
-#: gschem/etc/system-gschemrc.scm:2135 gschem/scheme/gschem/builtins.scm:143
+#: gschem/etc/system-gschemrc.scm:2135 gschem/scheme/gschem/builtins.scm:188
 msgid "Unlock"
 msgstr "Ontgrendel"
 
@@ -4382,7 +4383,7 @@ msgstr "Voeg Lijn Toe"
 msgid "Pat_h"
 msgstr "Pat_h"
 
-#: gschem/etc/system-gschemrc.scm:2239 gschem/scheme/gschem/builtins.scm:251
+#: gschem/etc/system-gschemrc.scm:2239 gschem/scheme/gschem/builtins.scm:368
 msgid "Add Path"
 msgstr "Voeg Pad Toe"
 
@@ -4558,7 +4559,7 @@ msgstr "Toon _Coordinaten venster..."
 msgid "Display coordinates"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2290 gschem/scheme/gschem/builtins.scm:322
+#: gschem/etc/system-gschemrc.scm:2290 gschem/scheme/gschem/builtins.scm:442
 msgid "Invoke Macro"
 msgstr "Macro Aanroepen"
 
@@ -4575,7 +4576,7 @@ msgstr ""
 msgid "View or manage guile path"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2295 gschem/scheme/gschem/builtins.scm:328
+#: gschem/etc/system-gschemrc.scm:2295 gschem/scheme/gschem/builtins.scm:448
 msgid "Embed Component/Picture"
 msgstr "Component/Afbeelding Insluiten"
 
@@ -4584,7 +4585,7 @@ msgstr "Component/Afbeelding Insluiten"
 msgid "Embed a component or image object"
 msgstr "Component insluiten in schema"
 
-#: gschem/etc/system-gschemrc.scm:2296 gschem/scheme/gschem/builtins.scm:331
+#: gschem/etc/system-gschemrc.scm:2296 gschem/scheme/gschem/builtins.scm:451
 msgid "Unembed Component/Picture"
 msgstr "Component/Afbeelding Uitsluiten"
 
@@ -4593,7 +4594,7 @@ msgstr "Component/Afbeelding Uitsluiten"
 msgid "Unembed a component or image object"
 msgstr "Component/Afbeelding Uitsluiten"
 
-#: gschem/etc/system-gschemrc.scm:2297 gschem/scheme/gschem/builtins.scm:334
+#: gschem/etc/system-gschemrc.scm:2297 gschem/scheme/gschem/builtins.scm:454
 msgid "Update Component"
 msgstr "Hernieuw Component"
 
@@ -4815,288 +4816,472 @@ msgstr "Open Bestand"
 msgid "Save As"
 msgstr "Opslaan Als"
 
-#: gschem/scheme/gschem/builtins.scm:65
+#: gschem/scheme/gschem/builtins.scm:68
 msgid "Print"
 msgstr "Afdrukken"
 
-#: gschem/scheme/gschem/builtins.scm:68
+#: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
 msgstr "Exporteer Afbeelding"
 
-#: gschem/scheme/gschem/builtins.scm:71
+#: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
 msgstr "Voer Script Uit"
 
-#: gschem/scheme/gschem/builtins.scm:74
+#: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
 msgstr "Nieuw Venster"
 
-#: gschem/scheme/gschem/builtins.scm:77
+#: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
 msgid "Close Window"
 msgstr "Sluit Venster"
 
-#: gschem/scheme/gschem/builtins.scm:80
+#: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
 msgstr "Stoppen"
 
-#: gschem/scheme/gschem/builtins.scm:86
+#: gschem/scheme/gschem/builtins.scm:89
+#, fuzzy
+msgid "Export Symbol"
+msgstr "Naar Symbool"
+
+#: gschem/scheme/gschem/builtins.scm:92
+#, fuzzy
+msgid "Export Picture"
+msgstr "Component/Afbeelding Insluiten"
+
+#: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: gschem/scheme/gschem/builtins.scm:89
+#: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
 msgstr "Herstel"
-
-#: gschem/scheme/gschem/builtins.scm:98
-msgid "Deselect"
-msgstr "Deselecteer"
 
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
 msgstr "Kopieer Mode"
 
-#: gschem/scheme/gschem/builtins.scm:110
+#: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
 msgstr "Meervoudige Kopieer Mode"
 
-#: gschem/scheme/gschem/builtins.scm:122
+#: gschem/scheme/gschem/builtins.scm:119
+#, fuzzy
+msgid "Offest selection"
+msgstr "Selectie"
+
+#: gschem/scheme/gschem/builtins.scm:125 gschem/scheme/gschem/builtins.scm:128
+#, fuzzy
+msgid "Snap to Grid"
+msgstr "Schakel Snap Modus"
+
+#: gschem/scheme/gschem/builtins.scm:137
+#, fuzzy
+msgid "Edit Arc"
+msgstr "Bewerk Kleur"
+
+#: gschem/scheme/gschem/builtins.scm:140
+#, fuzzy
+msgid "Edit Object"
+msgstr "Bewerk Tekst"
+
+#: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Text"
 msgstr "Bewerk Tekst"
 
-#: gschem/scheme/gschem/builtins.scm:125
-msgid "Choose Slot"
-msgstr "Kies Slot"
-
-#: gschem/scheme/gschem/builtins.scm:128
+#: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Color"
 msgstr "Bewerk Kleur"
 
-#: gschem/scheme/gschem/builtins.scm:137
+#: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Pin Type"
 msgstr "Bewerk Pen Type"
 
-#: gschem/scheme/gschem/builtins.scm:146
-msgid "Show/Hide Invisible Text"
-msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
+#: gschem/scheme/gschem/builtins.scm:158 gschem/scheme/gschem/builtins.scm:161
+msgid "Choose Slot"
+msgstr "Kies Slot"
 
-#: gschem/scheme/gschem/builtins.scm:152
+#: gschem/scheme/gschem/builtins.scm:173
+#, fuzzy
+msgid "Invert Selection"
+msgstr "Selectie"
+
+#: gschem/scheme/gschem/builtins.scm:176
+#, fuzzy
+msgid "Select Last"
+msgstr "Selecteer"
+
+#: gschem/scheme/gschem/builtins.scm:179
+#, fuzzy
+msgid "Deselect mode"
+msgstr "Selectie Mode"
+
+#: gschem/scheme/gschem/builtins.scm:194
 msgid "Cut"
 msgstr "Knip"
 
-#: gschem/scheme/gschem/builtins.scm:158
+#: gschem/scheme/gschem/builtins.scm:200
 msgid "Paste"
 msgstr "Plak"
 
-#: gschem/scheme/gschem/builtins.scm:164
+#: gschem/scheme/gschem/builtins.scm:206
 msgid "Redraw"
 msgstr "Hertekenen"
 
-#: gschem/scheme/gschem/builtins.scm:167
+#: gschem/scheme/gschem/builtins.scm:209
 msgid "Pan"
 msgstr "Schuif"
 
-#: gschem/scheme/gschem/builtins.scm:170
+#: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan Left"
 msgstr "Verschuif Links"
 
-#: gschem/scheme/gschem/builtins.scm:173
+#: gschem/scheme/gschem/builtins.scm:215
 msgid "Pan Right"
 msgstr "Verschuif Rechts"
 
-#: gschem/scheme/gschem/builtins.scm:176
+#: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Up"
 msgstr "Verschuif Omhoog"
 
-#: gschem/scheme/gschem/builtins.scm:179
+#: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Down"
 msgstr "Verschuif Omlaag"
 
-#: gschem/scheme/gschem/builtins.scm:185
+#: gschem/scheme/gschem/builtins.scm:227
+#, fuzzy
+msgid "Zoom Selection"
+msgstr "Selectie"
+
+#: gschem/scheme/gschem/builtins.scm:230
 msgid "Zoom Extents"
 msgstr "Toon Alles"
 
-#: gschem/scheme/gschem/builtins.scm:188
+#: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom In"
 msgstr "Vergroot"
 
-#: gschem/scheme/gschem/builtins.scm:191
+#: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom Out"
 msgstr "Verklein"
 
-#: gschem/scheme/gschem/builtins.scm:194
-msgid "Zoom Full"
-msgstr "Toon Volledig"
+#: gschem/scheme/gschem/builtins.scm:239
+#, fuzzy
+msgid "Zoom All"
+msgstr "Toon _Maximaal"
 
-#: gschem/scheme/gschem/builtins.scm:197
+#: gschem/scheme/gschem/builtins.scm:242
+#, fuzzy
+msgid "Zoom to Mag"
+msgstr "Ver_groot"
+
+#: gschem/scheme/gschem/builtins.scm:245
+#, fuzzy
+msgid "Documentation"
+msgstr "D_ocumentatie..."
+
+#: gschem/scheme/gschem/builtins.scm:248
+msgid "Show/Hide Invisible Text"
+msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
+
+#: gschem/scheme/gschem/builtins.scm:251
+#, fuzzy
+msgid "Show/Hide Inherited Attributes"
+msgstr "%i attribuut"
+
+#: gschem/scheme/gschem/builtins.scm:254
+#, fuzzy
+msgid "Show/Hide net names"
+msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
+
+#: gschem/scheme/gschem/builtins.scm:257
 msgid "Dark Color Scheme"
 msgstr "Donker Kleuren Schema"
 
-#: gschem/scheme/gschem/builtins.scm:200
+#: gschem/scheme/gschem/builtins.scm:260
 msgid "Light Color Scheme"
 msgstr "Licht Kleuren Schema"
 
-#: gschem/scheme/gschem/builtins.scm:203
+#: gschem/scheme/gschem/builtins.scm:263
 msgid "Monochrome Color Scheme"
 msgstr "Monochroom Kleuren Schema"
 
-#: gschem/scheme/gschem/builtins.scm:209 gschem/scheme/gschem/builtins.scm:212
-msgid "Revert Changes"
-msgstr "Terughalen Wijzigingen"
+#: gschem/scheme/gschem/builtins.scm:269
+msgid "Draw After"
+msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:218
+#: gschem/scheme/gschem/builtins.scm:272
+msgid "Draw Before"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:275
+msgid "Draw First"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:278
+msgid "Draw Last"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:287
+#, fuzzy
+msgid "First Page"
+msgstr "Druk Pagina Af"
+
+#: gschem/scheme/gschem/builtins.scm:290
 msgid "Previous Page"
 msgstr "Vorige Pagina"
 
-#: gschem/scheme/gschem/builtins.scm:221
+#: gschem/scheme/gschem/builtins.scm:293
 msgid "Next Page"
 msgstr "Volgende Pagina"
 
-#: gschem/scheme/gschem/builtins.scm:227
+#: gschem/scheme/gschem/builtins.scm:296
+#, fuzzy
+msgid "Page Up"
+msgstr "_Pagina"
+
+#: gschem/scheme/gschem/builtins.scm:299
+#, fuzzy
+msgid "Page Down"
+msgstr "Verschuif Omlaag"
+
+#: gschem/scheme/gschem/builtins.scm:302
+#, fuzzy
+msgid "Last Page"
+msgstr "Volgende Pagina"
+
+#: gschem/scheme/gschem/builtins.scm:308
 msgid "Print Page"
 msgstr "Druk Pagina Af"
 
-#: gschem/scheme/gschem/builtins.scm:233
-msgid "Add Component"
-msgstr "Voeg Component Toe"
+#: gschem/scheme/gschem/builtins.scm:311
+msgid "Revert Changes"
+msgstr "Terughalen Wijzigingen"
 
-#: gschem/scheme/gschem/builtins.scm:239
-msgid "Add Net"
-msgstr "Voeg Draad Toe"
+#: gschem/scheme/gschem/builtins.scm:314
+#, fuzzy
+msgid "Revert All"
+msgstr "Terughalen Wijzigingen"
 
-#: gschem/scheme/gschem/builtins.scm:242
-msgid "Add Bus"
-msgstr "Voeg Bus Toe"
-
-#: gschem/scheme/gschem/builtins.scm:245
-msgid "Add Text"
-msgstr "Voeg Tekst Toe"
-
-#: gschem/scheme/gschem/builtins.scm:248
-msgid "Add Line"
-msgstr "Voeg Lijn Toe"
-
-#: gschem/scheme/gschem/builtins.scm:254
-msgid "Add Box"
-msgstr "Voeg Rechthoek Toe"
-
-#: gschem/scheme/gschem/builtins.scm:257
-msgid "Add Circle"
-msgstr "Voeg Cirkel Toe"
-
-#: gschem/scheme/gschem/builtins.scm:260
-msgid "Add Arc"
-msgstr "Voeg Boog Toe"
-
-#: gschem/scheme/gschem/builtins.scm:263
-msgid "Add Pin"
-msgstr "Voeg Pen Toe"
-
-#: gschem/scheme/gschem/builtins.scm:266
-msgid "Add Picture"
-msgstr "Voeg Afbeelding Toe"
-
-#: gschem/scheme/gschem/builtins.scm:278
+#: gschem/scheme/gschem/builtins.scm:332
 msgid "Up Hierarchy"
 msgstr "Hierarchie Omhoog"
 
-#: gschem/scheme/gschem/builtins.scm:284
+#: gschem/scheme/gschem/builtins.scm:338
+msgid "Add Component"
+msgstr "Voeg Component Toe"
+
+#: gschem/scheme/gschem/builtins.scm:341
+msgid "Add Net"
+msgstr "Voeg Draad Toe"
+
+#: gschem/scheme/gschem/builtins.scm:344
+msgid "Add Bus"
+msgstr "Voeg Bus Toe"
+
+#: gschem/scheme/gschem/builtins.scm:350
+msgid "Add Text"
+msgstr "Voeg Tekst Toe"
+
+#: gschem/scheme/gschem/builtins.scm:353
+msgid "Add Line"
+msgstr "Voeg Lijn Toe"
+
+#: gschem/scheme/gschem/builtins.scm:356
+msgid "Add Pin"
+msgstr "Voeg Pen Toe"
+
+#: gschem/scheme/gschem/builtins.scm:359
+msgid "Add Box"
+msgstr "Voeg Rechthoek Toe"
+
+#: gschem/scheme/gschem/builtins.scm:362
+msgid "Add Circle"
+msgstr "Voeg Cirkel Toe"
+
+#: gschem/scheme/gschem/builtins.scm:365
+msgid "Add Arc"
+msgstr "Voeg Boog Toe"
+
+#: gschem/scheme/gschem/builtins.scm:371
+msgid "Add Picture"
+msgstr "Voeg Afbeelding Toe"
+
+#: gschem/scheme/gschem/builtins.scm:377
+#, fuzzy
+msgid "Create New Session"
+msgstr "Opslaan Als"
+
+#: gschem/scheme/gschem/builtins.scm:380
+#, fuzzy
+msgid "Open a Session"
+msgstr "Opslaan Als"
+
+#: gschem/scheme/gschem/builtins.scm:383
+#, fuzzy
+msgid "Save Session"
+msgstr "Opslaan Als"
+
+#: gschem/scheme/gschem/builtins.scm:395
 msgid "Attach Attributes"
 msgstr "Bevestig Attributen"
 
-#: gschem/scheme/gschem/builtins.scm:287
+#: gschem/scheme/gschem/builtins.scm:398
 msgid "Detach Attributes"
 msgstr "Maak Attributen Los"
 
-#: gschem/scheme/gschem/builtins.scm:290
+#: gschem/scheme/gschem/builtins.scm:401
+#, fuzzy
+msgid "Reset Attribute Positions"
+msgstr "Bestemming"
+
+#: gschem/scheme/gschem/builtins.scm:404
 msgid "Show Attribute Value"
 msgstr "Toon Attribuut Waarde"
 
-#: gschem/scheme/gschem/builtins.scm:293
+#: gschem/scheme/gschem/builtins.scm:407
 msgid "Show Attribute Name"
 msgstr "Toon Attribuut Naam"
 
-#: gschem/scheme/gschem/builtins.scm:299
+#: gschem/scheme/gschem/builtins.scm:413
 msgid "Toggle Text Visibility"
 msgstr "Schakel Tekst Zichtbaarheid"
 
-#: gschem/scheme/gschem/builtins.scm:302
+#: gschem/scheme/gschem/builtins.scm:416
 msgid "Find Specific Text"
 msgstr "Vind Specifieke Tekst"
 
-#: gschem/scheme/gschem/builtins.scm:305
+#: gschem/scheme/gschem/builtins.scm:419
 msgid "Hide Specific Text"
 msgstr "Verberg Specifieke Tekst"
 
-#: gschem/scheme/gschem/builtins.scm:308
+#: gschem/scheme/gschem/builtins.scm:422
 msgid "Show Specific Text"
 msgstr "Toon Specifieke Tekst"
 
-#: gschem/scheme/gschem/builtins.scm:313
+#: gschem/scheme/gschem/builtins.scm:425
+#, fuzzy
+msgid "Open Attributes Editor"
+msgstr "Enkelvoudige Attribuut Bewerking"
+
+#: gschem/scheme/gschem/builtins.scm:430
 msgid "Autonumber Text"
 msgstr "Automatisch Tekst Nummeren"
 
-#: gschem/scheme/gschem/builtins.scm:316
+#: gschem/scheme/gschem/builtins.scm:433
 #, fuzzy
 msgid "Show Console Window"
 msgstr "Toon Coordinaten Venster"
 
-#: gschem/scheme/gschem/builtins.scm:319
+#: gschem/scheme/gschem/builtins.scm:436
 msgid "Show Coordinate Window"
 msgstr "Toon Coordinaten Venster"
 
-#: gschem/scheme/gschem/builtins.scm:325
+#: gschem/scheme/gschem/builtins.scm:439
+msgid "Guile Path"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:445
 msgid "Translate Symbol"
 msgstr "Verschuif Symbool"
 
-#: gschem/scheme/gschem/builtins.scm:341
-msgid "Show Hotkeys"
-msgstr "Toon Sneltoets"
-
-#: gschem/scheme/gschem/builtins.scm:344
-msgid "Set Default Text Size"
-msgstr "Stel Standaard Tekst Hoogte In"
-
-#: gschem/scheme/gschem/builtins.scm:347
-msgid "Switch Grid Style"
+#: gschem/scheme/gschem/builtins.scm:460
+#, fuzzy
+msgid "Dots Grid Style"
 msgstr "Schakel Raster Stijl"
 
-#: gschem/scheme/gschem/builtins.scm:350
-msgid "Switch Snap Mode"
-msgstr "Schakel Snap Modus"
+#: gschem/scheme/gschem/builtins.scm:463
+#, fuzzy
+msgid "Mesh Grid Style"
+msgstr "Schakel Raster Stijl"
 
-#: gschem/scheme/gschem/builtins.scm:353
-msgid "Set Grid Spacing"
-msgstr "Ste Raster Afstand In"
+#: gschem/scheme/gschem/builtins.scm:466
+msgid "Turn Grid Off"
+msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:356
+#: gschem/scheme/gschem/builtins.scm:469
+#, fuzzy
+msgid "Cycle Grid Mode"
+msgstr "Boog Mode"
+
+#: gschem/scheme/gschem/builtins.scm:472
 msgid "Increase Grid Spacing"
 msgstr "Verhoog Raster Afstand"
 
-#: gschem/scheme/gschem/builtins.scm:359
+#: gschem/scheme/gschem/builtins.scm:475
 msgid "Decrease Grid Spacing"
 msgstr "Verlaag schalen Raster Afstand"
 
-#: gschem/scheme/gschem/builtins.scm:362
-msgid "Toggle Outline Drawing"
-msgstr "Schakel Omtrek Tekening"
+#: gschem/scheme/gschem/builtins.scm:478
+#, fuzzy
+msgid "Set Snap Spacing"
+msgstr "Ste Raster Afstand In"
 
-#: gschem/scheme/gschem/builtins.scm:365
+#: gschem/scheme/gschem/builtins.scm:481
+#, fuzzy
+msgid "Turn Snap off"
+msgstr "Snap Aan"
+
+#: gschem/scheme/gschem/builtins.scm:484
+msgid "Turn Snap on"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:487
+#, fuzzy
+msgid "Cycle Snap Mode"
+msgstr "Schakel Snap Modus"
+
+#: gschem/scheme/gschem/builtins.scm:490
 msgid "Toggle Net Rubber Band"
 msgstr "Schakel Draad Elastiekband"
 
-#: gschem/scheme/gschem/builtins.scm:368
+#: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Magnetic Nets"
 msgstr "Schakel Magnetische Draden"
 
-#: gschem/scheme/gschem/builtins.scm:375
+#: gschem/scheme/gschem/builtins.scm:496
+msgid "Enable/Disable Drag move"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:499
+msgid "Toggle Outline Drawing"
+msgstr "Schakel Omtrek Tekening"
+
+#: gschem/scheme/gschem/builtins.scm:502
+msgid "Enable/Disable Auto Panning"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:505
+msgid "Set Default Text Size"
+msgstr "Stel Standaard Tekst Hoogte In"
+
+#: gschem/scheme/gschem/builtins.scm:508
+msgid "Open Preference Dialog"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:515
+msgid "gEDA Manuals"
+msgstr "gEDA Handleidingen"
+
+#: gschem/scheme/gschem/builtins.scm:516
+#, fuzzy
+msgid "View the front page of the gEDA documentation in a browser."
+msgstr "Toon de voorpagina van de gEDA documentatie in een browser."
+
+#: gschem/scheme/gschem/builtins.scm:519
+msgid "Show Hotkeys"
+msgstr "Toon Sneltoets"
+
+#: gschem/scheme/gschem/builtins.scm:523
 msgid "Component Documentation"
 msgstr "Component Documentatie"
 
-#: gschem/scheme/gschem/builtins.scm:377
+#: gschem/scheme/gschem/builtins.scm:525
 msgid "View documentation for selected component"
 msgstr "Toon documentatie voor geselecteerde component"
 
-#: gschem/scheme/gschem/builtins.scm:393
+#: gschem/scheme/gschem/builtins.scm:541
 msgid ""
 "Could not show documentation for selected component:\n"
 "\n"
@@ -5104,36 +5289,27 @@ msgstr ""
 "Kan geen documentatie tonen voor de geselecteerde component:\n"
 "\n"
 
-#: gschem/scheme/gschem/builtins.scm:398
-msgid "gEDA Manuals"
-msgstr "gEDA Handleidingen"
-
-#: gschem/scheme/gschem/builtins.scm:399
-#, fuzzy
-msgid "View the front page of the gEDA documentation in a browser."
-msgstr "Toon de voorpagina van de gEDA documentatie in een browser."
-
-#: gschem/scheme/gschem/builtins.scm:404
+#: gschem/scheme/gschem/builtins.scm:545
 msgid "gschem User Guide"
 msgstr "gschem Gebruikers Gids"
 
-#: gschem/scheme/gschem/builtins.scm:405
+#: gschem/scheme/gschem/builtins.scm:546
 msgid "View the gschem User Guide in a browser."
 msgstr "Toon de gschem Gebruikers Gids in een browser."
 
-#: gschem/scheme/gschem/builtins.scm:410
+#: gschem/scheme/gschem/builtins.scm:551
 msgid "gschem FAQ"
 msgstr "gschem FAQ"
 
-#: gschem/scheme/gschem/builtins.scm:411
+#: gschem/scheme/gschem/builtins.scm:552
 msgid "Frequently Asked Questions about using gschem."
 msgstr "Veel Gestelde Vragen over het gebruik van gschem."
 
-#: gschem/scheme/gschem/builtins.scm:416
+#: gschem/scheme/gschem/builtins.scm:557
 msgid "gEDA wiki"
 msgstr "gEDA wiki"
 
-#: gschem/scheme/gschem/builtins.scm:417
+#: gschem/scheme/gschem/builtins.scm:558
 msgid "View the front page of the gEDA wiki in a browser."
 msgstr "Toon de voorpagina van de gEDA wiki in een browser."
 
@@ -5164,6 +5340,15 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
+
+#~ msgid "Deselect"
+#~ msgstr "Deselecteer"
+
+#~ msgid "Zoom Full"
+#~ msgstr "Toon Volledig"
+
+#~ msgid "Switch Snap Mode"
+#~ msgstr "Schakel Snap Modus"
 
 #~ msgid "%i pin"
 #~ msgid_plural "%i pins"

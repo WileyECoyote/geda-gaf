@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-03-25 22:41-0500\n"
+"POT-Creation-Date: 2016-03-30 02:55-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -705,8 +705,8 @@ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 "Se ha encontrado un arco con radio cero [ %c %d, %d, %d, %d, %d, %d ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1244 libgeda/src/object/o_box_basic.c:545
-#: libgeda/src/object/o_bus_basic.c:406
+#: libgeda/src/object/o_arc_object.c:1244
+#: libgeda/src/object/o_box_basic.c:1251 libgeda/src/object/o_bus_basic.c:406
 #: libgeda/src/object/o_circle_basic.c:1022
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
 #: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
@@ -715,8 +715,8 @@ msgstr ""
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Se ha encontrado un color no válido [%s]\n"
 
-#: libgeda/src/object/o_arc_object.c:1245 libgeda/src/object/o_box_basic.c:546
-#: libgeda/src/object/o_bus_basic.c:407
+#: libgeda/src/object/o_arc_object.c:1245
+#: libgeda/src/object/o_box_basic.c:1252 libgeda/src/object/o_bus_basic.c:407
 #: libgeda/src/object/o_circle_basic.c:1023
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
 #: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
@@ -749,11 +749,11 @@ msgstr "Se trató de ajuntar un item de texto inválido como atributo."
 msgid "unexpected end-of-file in attribute list"
 msgstr "Fin de Fichero inesperado en lista de atributos."
 
-#: libgeda/src/object/o_box_basic.c:503 libgeda/src/object/o_box_basic.c:534
+#: libgeda/src/object/o_box_basic.c:1209 libgeda/src/object/o_box_basic.c:1240
 msgid "Failed to parse box object"
 msgstr "Falló el procesamiento de objeto caja"
 
-#: libgeda/src/object/o_box_basic.c:540
+#: libgeda/src/object/o_box_basic.c:1246
 #, c-format
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr ""

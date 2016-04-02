@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-26 00:46-0600\n"
+"POT-Creation-Date: 2016-04-01 23:36-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -213,12 +213,12 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
-#: gnetlist/src/s_hierarchy.c:88
+#: gnetlist/src/s_hierarchy.c:87
 #, c-format
 msgid "Going to traverse source [%s]\n"
 msgstr "Ga de bron doorkruisen [%s]\n"
 
-#: gnetlist/src/s_hierarchy.c:107
+#: gnetlist/src/s_hierarchy.c:108
 #, c-format
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
@@ -365,12 +365,12 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:212
+#: gnetlist/src/s_traverse.c:209
 #, c-format
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:224 gnetlist/src/s_traverse.c:359
+#: gnetlist/src/s_traverse.c:221 gnetlist/src/s_traverse.c:354
 #, fuzzy, c-format
 msgid ""
 "WARNING: Found a placeholder/missing component, is symbol file missing? "
@@ -379,31 +379,31 @@ msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
 "bestand? [%s]\n"
 
-#: gnetlist/src/s_traverse.c:286
+#: gnetlist/src/s_traverse.c:283
 #, fuzzy, c-format
 msgid "Did not find refdes or any special attributes on component!<%s>, <%s>\n"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!\n"
 
-#: gnetlist/src/s_traverse.c:431
+#: gnetlist/src/s_traverse.c:426
 #, fuzzy, c-format
 msgid ""
 "Could not find refdes on component or any special attributes!<%s>, <%s>\n"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!\n"
 
-#: gnetlist/src/s_traverse.c:541
+#: gnetlist/src/s_traverse.c:536
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:590
+#: gnetlist/src/s_traverse.c:585
 #, c-format
 msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
 msgstr ""
 "WAARSCHUWING: vond label=%s. label= is vervallen, gebruik alstublieft "
 "netname=\n"
 
-#: gnetlist/src/s_traverse.c:652
+#: gnetlist/src/s_traverse.c:647
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
