@@ -1,3 +1,19 @@
+2016-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/vams/commonrc: remove component-library and source-library
+
+    * examples/vams/gafrc: Add to load ./sym component-library and ./sch
+      source-library instead of commonrc, which is included by gnetlistrc
+      and gschemrc.
+
+    * examples/vams/gnetlistrc: remove define-module which is done in commonrc.
+
+    * examples/vams/gschemrc: remove define-module which is done in commonrc.
+
+          * examples/vams/sch: updated .sch example files.
+
+          * examples/vams/sym: updated .sym example files.
+
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add sch2eaglepos.1m include unannotate.1.

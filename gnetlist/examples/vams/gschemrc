@@ -1,7 +1,9 @@
 (load "./commonrc")
 
-(define-module (ice-9 ls) :use-module (ice-9 common-list)
-			  :use-module (ice-9 string-fun))
+;;(define-module (ice-9 ls) :use-module (ice-9 common-list)
+;;			  :use-module (ice-9 string-fun))
+
+(use-modules (gschem keymap))
 
 (define gnetlist-keymap
   '(("n" . generate-netlist)
@@ -19,7 +21,7 @@
     ("g" . gnetlist-keymap)
     ("h" . help-keymap)
     ("i" . add-component)
-    ("l" . add-line-hotkey) 
+    ("l" . add-line-hotkey)
     ("m" . edit-move-hotkey)
     ("n" . add-net-hotkey)
     ("o" . options-keymap)
@@ -46,7 +48,8 @@
     ("Shift R" . edit-redo)
     ("Shift Z" . view-zoom-out-hotkey)))
 
-(set! current-keymap global-keymap)
+;(set! current-keymap global-keymap)
+(define current-keymap global-keymap)
 
 (attribute-promotion "enabled")
 (promote-invisible "enabled")
