@@ -1,5 +1,11 @@
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * NEWS: Update news, is 18th birthday!
+
+    * configure.ac: Bump mutation to 2.1.0.20, 20160401.
+
+2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * bitmaps/geda-offset.png: Add new icon for offset action.
 
 2016-03-30 Wiley E. Hill <wileyhill@gmail.com>

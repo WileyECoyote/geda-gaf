@@ -7,37 +7,61 @@ Copyright (C) 1998-2015 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
+Notable changes in gEDA/gaf gEDA 2.1.0.20 - 04/01/16 Rampage Edition
 
 * Improvements were made to both the build system and source code to ensure
   gEDA-GAF builds more reliably on 64 bit platforms. Testing was performed
   using Ubuntu 12.04 and Ubuntu 14.04 64 bit host systems.
 
-* The path for logs file can now be set in initialization files, include local
-  gafrc file. This allows logs to be organized on a per project basis. The
-  location for logs can also be set using a new GEDALOGS environment varible.
+* Extensive revisions have been made to improve performance of gEDA application.
+  This is particular noticeable in gschem.
+
+* A new library, libgedacolor, now unifies color management for the gEDA suite.
+  Color-maps are still configured using scheme files, but the use of "friendly-
+  color-maps"  is no longer applicable; the new color maps for libgedacolor are
+  already "friendly". The library was added to provide a unified API for gEDA
+  applications and should be transparent to most users. User who are using
+  custom color-maps will need to modify their custom map files.
+
+* A new auto-panning feature has been added to gschem. The auto-pan is only in
+  effect while drawing nets and buses and can enabled or disabled through menu
+  options.
+
+* The path for logs file can now be set in initialization files, including
+  local gafrc files. This allows logs to be organized on a per project basis.
+  The location for logs can also be set using a new GEDALOGS environment variable.
+
+* A new libgeda keyword "log-time" can be use to enable or disable prefixes of
+  log entries with the time of day.
 
 * The Multi-Attribute Editor Dialog entry now has attribute "word" completion
   identical to the Single-Attribute Editor Dialog.
+
+* The list of valid attribute used by gsymcheck when checking symbol files is
+  now users configurable. The list can be set in system-gsymcheckrc.
 
 * Symbol files can now be renamed using the Component Dialog.
 
 * The number of user defined colors was increased by 6 to a total of
   10 user definable colors in each color map.
 
-* The main menu system has been modified to automatical build a basic
-  fallback menu when errors are discovered in the menu RC file.
+* The main menu system has been modified to automatically build a basic
+  fall-back menu when errors are discovered in the menu RC file.
 
 * The height of the status bar in Gschem can now be set in the gschem-gtkrc
 
 * HotKey dialog now includes actions icon and a column to display the actual
   binding string. User can enable or disable viewing the action column and
-  the setting is retained bewteen session.
+  the setting is retained between session.
 
 * The Slot Editor Dialog now displays the total number of slots per component.
 
-* Additional preferences variables have been incorperated in new configuration
-  system allow retention of changes using preferences dialog:
+* Exchange image file now retains the user preference to update all selected
+  image between session. Previously the user preference was only retained for
+  current session.
+
+* Additional preferences variables have been incorporated in new configuration
+  system allow retention of changes using the Preferences dialog:
 
       continue-component-place
       embed-components
@@ -50,19 +74,31 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
       sort-component-library
       object-clipping
 
-  Uses of these keywords in rc files is still permissable and will over-ride the
+  Uses of these keywords in rc files is still permissible and will over-ride the
   preference setting.
 
-* A new command line options has been provide to specify a title-block at startup.
+* A new gschem command line options has been provided to specify a title-block at
+  startup.
+
+* A new gschem command line options has been provided to startup minimized.
 
 * The command line option to add a directory to the Guile path now has a long option.
   The "-L" option has been replaced with "-g" or "--guile".
+
+* gsymcheck now supports the standard command-line version options.
+
+* Programs in the geda-gaf suite now support quite mode in conjunction with the version
+  option to assist extraction of dotted version information.
 
 * New Scheme API have been added:
 
       gschem-bmp-image
       gschem-jpeg-image
       gschem-tiff-image
+
+* The maximum zoom magnification has been increased slightly.
+
+* gnetlist automatically creates any subdirectories specified in the output name.
 
 * Scheme API function gschem-exit has been enhanced to allow routine to optionally
   pass an exit code
@@ -78,11 +114,17 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
       * geda-inspect-grn.png
       * guile-logo.png
 
+
 * Context menu now have tool-tips.
+
+* Symbol for basic flow-charting have been added to the symbol library!
 
 * Issues resolved:
 
-* Dettaching an attribute no longer sets the undo state if nothing was dettached.
+* gnetlist now aborts with a useful message if the output file cannot be created
+  due to insufficient permission.
+
+* Detaching an attribute no longer sets the undo state if nothing was detached.
 
 * Attaching an attribute to an object now updates the Multi-attribute Dialog if
   the dialog is open.
@@ -105,20 +147,44 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
 
 * Minor issues have been resolved in gsch2pcb.
 
-* gsch2pcb now XDG compliant if this option was compiled into geda-gaf.
+* gsch2pcb is now XDG compliant if this option was compiled into geda-gaf.
 
 * Fixed errors in Libgedathon when processing pin objects with missing
   label and or pinnumber attributes.
 
+* gschem now zooms to a small grid area when the schematic is empty and the
+  zoom extents function is used. Previously zoom extents would zoom to the
+  limits if the drawing if no objects were present.
+
 * gschem no longer has to be restarted to enable auto-save when enabled from
   preference dialog.
 
-* gschem --output <filename> has been fixed.
+* gschem now closes the single documents after confirming to save changes,
+  previously the document was saved but not closed if the document was
+  modified and the user selected save and close. The multi-document close
+  confirmation dialog was unaffected.
 
-* Icon states on the pop-up menu in gschem are now displayed start-up if
+* gschem --output <filename> command line option has been fixed.
+
+* The array dialog function no longer transposes X-Y offset distances.
+
+* Page changed status is now updated more regularly on the Page Select Dialog.
+
+* New pins are drawn orthogonal in gschem, this make adding pins easier.
+
+* Issues with the Pin dialog selection tracking have been resolved. This issues
+  also effect the Line Type and Slot Editor dialogs.
+
+* Icon states on the pop-up menu in gschem are now displayed at start-up if
   the setting is enabled.
 
+* After ascending hierarchy the selection objects in the parent page remain
+  selected and become the current selection.
+
 * libgeda no longer makes backups of empty files.
+
+* libgeda has improved support for builds with NLS disable. Previous versions
+  initialized language support for scheme when configured with --disable-nls.
 
 * libgeda has improved handling of embedded picture filenames without a path
   in the name.
@@ -132,6 +198,9 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
 * The Scheme function component-library-search without an optional prefix now
   results in the symbols being listed on the "Local" tab of the component select
   dialog.
+
+* Missing Components no longer loose their X-Y position when files are saved
+  with placeholders.
 
 * The command-line option for the layout now works correctly with the gaf utility.
 
@@ -192,7 +261,7 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
   export the image at the original or the current aspect ratio and size.
 
 * Coordinates can now be displayed in the status bar using Cartesian and vector
-  formats. The format can be changed at any time, include inside of an action,
+  formats. The format can be changed at any time, including inside of an action,
   by right clicking on the coordinates widget and selecting the format from a
   pop-up menu. Vector formats revert to the previous selected format when not
   applicable to the active context.
@@ -842,8 +911,8 @@ Notable changes in gEDA/gaf 1.5.3/1.5.4
   building of 'gattrib'.  This is useful if you are building against
   gtk+ 2.17.x which breaks 'gattrib'.
 
-* 'gnetlist' does not recommend drc2 every time it runs.  The drc2
-  backend is only useful in certain circumstances.
+* 'gnetlist' does not recommend drc2 every time it runs. The drc2 backend
+   is only useful in certain circumstances.
 
 * Assign shortcuts "vd" and "vl" for changing between color schemes
   in 'gschem'.
