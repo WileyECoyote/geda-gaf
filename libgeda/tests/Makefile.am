@@ -20,10 +20,14 @@ check_geda = \
 check_object = \
 	test_arc_object
 
+check_utility = \
+	test_utility
+
 check_PROGRAMS = \
 	$(check_file) \
 	$(check_geda) \
-	$(check_object)
+	$(check_object) \
+	$(check_utility)
 
 TESTS = $(check_PROGRAMS)
 

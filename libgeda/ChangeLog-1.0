@@ -1,3 +1,7 @@
+2016-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_utility.c: Add test module for the utilities group.
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_object.c: Add test module for arc objects.
