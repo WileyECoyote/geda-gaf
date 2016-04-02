@@ -25,6 +25,18 @@
 
     * display/LTS-546AP-1.sym: Rename file using Upper case letters.
 
+    * display: Rename with dash 1:
+
+            * serial/SC28L198-1.sym
+            * serial/SP3223-1.sym  (clean symbol)
+            * serial/TUSB2046-1.sym
+            * serial/TUSB3410-1.sym
+
+    * toshiba/converter/TB62752AFUG-1.sym: Rename; add dash 1.
+
+    * transistor/nmosfet-e/2N7002A_60V_280mA_SOT23-1.sym: Rename file
+      and change footprint TO-92 -> SOT23.
+
     * transistor/darl-npn: Add styles for PMV65XP PMOS transistors:
 
             * transistor/pmosfet-e/PMV65XP_20V_0.833W_sot23-1.sym
