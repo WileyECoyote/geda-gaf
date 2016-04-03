@@ -1,3 +1,11 @@
+2016-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/: Add some graphics images for hierarchy icons:
+
+        * bitmaps/gaf-hierarchy-sch.png
+        * bitmaps/gaf-hierarchy-sym.png
+        * bitmaps/gaf-hierarchy-up.png
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * NEWS: Update news, is 18th birthday!

@@ -20,6 +20,9 @@ bitmapdata_DATA   = \
 			close_box.png                      \
 			gaf-add-attribute.png              \
 			gaf-demote.png                     \
+			gaf-hierarchy-sch.png              \
+			gaf-hierarchy-sym.png              \
+			gaf-hierarchy-up.png               \
 			gaf-promote.png                    \
 			gaf-see-notes.png                  \
 			gaf-tools.png                      \
