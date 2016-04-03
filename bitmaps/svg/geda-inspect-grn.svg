@@ -148,27 +148,6 @@
          offset="1"
          id="stop11106" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient2843"
-       id="linearGradient5784"
-       gradientUnits="userSpaceOnUse"
-       x1="17.25"
-       y1="12.5625"
-       x2="21"
-       y2="28.4375"
-       gradientTransform="matrix(0.51411111,0,0,0.51411147,748.83075,577.96417)" />
-    <linearGradient
-       id="linearGradient2843">
-      <stop
-         style="stop-color:#eeeeec;stop-opacity:1"
-         offset="0"
-         id="stop2845" />
-      <stop
-         style="stop-color:white;stop-opacity:1;"
-         offset="1"
-         id="stop2847" />
-    </linearGradient>
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4919"

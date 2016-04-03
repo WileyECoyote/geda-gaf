@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    sodipodi:docname="geda_display.svg"
    inkscape:export-filename="../geda-display.png"
    height="128"
@@ -9,7 +14,8 @@
    width="128"
    inkscape:export-xdpi="90"
    version="1.0"
-   inkscape:version="0.48.3.1 r9886">
+   inkscape:version="0.48.3.1 r9886"
+   id="svg1139">
   <defs
      id="defs1903">
     <filter

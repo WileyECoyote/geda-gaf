@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="17.984388"
    height="17.928316"
    id="svg6025"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="Inkscape_icons_document_open_recent.svg"
+   sodipodi:docname="geda_open_recent.svg"
    inkscape:export-filename="../geda_open_recent.png"
    inkscape:export-xdpi="110.09549"
    inkscape:export-ydpi="110.09549">
@@ -57,14 +62,6 @@
          offset="1" />
     </linearGradient>
     <linearGradient
-       x1="283.98041"
-       y1="25.257681"
-       x2="279.47864"
-       y2="21.160408"
-       id="linearGradient5612"
-       xlink:href="#linearGradient5734"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
        id="linearGradient5734">
       <stop
          id="stop5736"
@@ -75,70 +72,6 @@
          style="stop-color:#ffffff;stop-opacity:1"
          offset="1" />
     </linearGradient>
-    <linearGradient
-       x1="279.64499"
-       y1="22.038395"
-       x2="283.10538"
-       y2="25.592152"
-       id="linearGradient5620"
-       xlink:href="#linearGradient5704"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       x1="272.95816"
-       y1="24.096111"
-       x2="276.83484"
-       y2="29.518064"
-       id="linearGradient6219"
-       xlink:href="#linearGradient1887"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0.5,1.547499)" />
-    <linearGradient
-       x1="273.12143"
-       y1="24.153297"
-       x2="278.52783"
-       y2="28.991222"
-       id="linearGradient6221"
-       xlink:href="#linearGradient5704"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,0.047499)" />
-    <linearGradient
-       x1="272.95816"
-       y1="24.096111"
-       x2="276.83484"
-       y2="29.518064"
-       id="linearGradient6228"
-       xlink:href="#linearGradient1887"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(19.642859,440.1309)" />
-    <linearGradient
-       x1="273.12143"
-       y1="24.153297"
-       x2="278.52783"
-       y2="28.991222"
-       id="linearGradient6230"
-       xlink:href="#linearGradient5704"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(19.142859,438.6309)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient1887"
-       id="linearGradient3009"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(19.642859,440.1309)"
-       x1="272.95816"
-       y1="24.096111"
-       x2="276.83484"
-       y2="29.518064" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient5704"
-       id="linearGradient3011"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(19.142859,438.6309)"
-       x1="273.12143"
-       y1="24.153297"
-       x2="278.52783"
-       y2="28.991222" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5734"
@@ -188,7 +121,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

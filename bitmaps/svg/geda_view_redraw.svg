@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:export-ydpi="90.000000"
    inkscape:export-xdpi="90.000000"
    inkscape:export-filename="../geda_view_redraw_48x48.png"
@@ -11,7 +12,7 @@
    id="svg11300"
    sodipodi:version="0.32"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="geda-refresh.svg"
+   sodipodi:docname="geda_view_redraw.svg"
    version="1.1">
   <defs
      id="defs3">
@@ -25,17 +26,6 @@
          style="stop-color:#c4d7eb;stop-opacity:0;"
          offset="1"
          id="stop2694" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient2682">
-      <stop
-         style="stop-color:#3977c3;stop-opacity:1;"
-         offset="0"
-         id="stop2684" />
-      <stop
-         style="stop-color:#89aedc;stop-opacity:0;"
-         offset="1"
-         id="stop2686" />
     </linearGradient>
     <linearGradient
        id="linearGradient2402">
@@ -337,4 +327,3 @@
        sodipodi:nodetypes="cccc" />
   </g>
 </svg>
-

@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="48px"
    height="48px"
    id="svg2992"
    version="1.1"
-   sodipodi:docname="geda_line_48x48.svg">
+   sodipodi:docname="geda_line_48x48.svg"
+   inkscape:version="0.48.3.1 r9886">
+  <metadata
+     id="metadata1671">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <defs
      id="defs2994">
-    <marker
-       inkscape:stockid="Arrow1Lstart"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="Arrow1Lstart"
-       style="overflow:visible">
-      <path
-         id="path4002"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(12.5,0)" />
-    </marker>
-    <linearGradient
-       id="linearGradient3790">
-      <stop
-         style="stop-color:#1fff0f;stop-opacity:0.94166666;"
-         offset="0"
-         id="stop3792" />
-      <stop
-         id="stop4626"
-         offset="0.5"
-         style="stop-color:#0fff07;stop-opacity:0.47843137;" />
-      <stop
-         style="stop-color:#00ff00;stop-opacity:0;"
-         offset="1"
-         id="stop3794" />
-    </linearGradient>
     <linearGradient
        id="linearGradient3760"
        osb:paint="solid">
@@ -46,17 +35,6 @@
          offset="0"
          id="stop3762" />
     </linearGradient>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3790"
-       id="radialGradient4624"
-       cx="22.126984"
-       cy="24.188005"
-       fx="22.126984"
-       fy="24.188005"
-       r="20.594759"
-       gradientTransform="matrix(1,0,0,0.99164189,0,0.20216606)"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"

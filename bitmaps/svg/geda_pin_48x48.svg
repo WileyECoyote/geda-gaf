@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="48px"
    height="48px"
    id="svg2985"
    version="1.1"
-   sodipodi:docname="geda_pin_48x48.svg">
+   sodipodi:docname="geda_pin_48x48.svg"
+   inkscape:version="0.48.3.1 r9886">
   <defs
      id="defs2987">
     <linearGradient
@@ -43,28 +49,6 @@
        r="13.930322"
        gradientTransform="matrix(1.0442613,-0.00316575,0.00206188,0.33467718,-1.6036368,3.0408166)"
        gradientUnits="userSpaceOnUse" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3763-7"
-       id="radialGradient3771-0"
-       cx="24.787502"
-       cy="13.341678"
-       fx="24.787502"
-       fy="13.341678"
-       r="13.930322"
-       gradientTransform="matrix(1,0,0,0.45688119,0,7.2461163)"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       id="linearGradient3763-7">
-      <stop
-         style="stop-color:#000000;stop-opacity:0.61392403;"
-         offset="0"
-         id="stop3765-0" />
-      <stop
-         style="stop-color:#000000;stop-opacity:0.76582277;"
-         offset="1"
-         id="stop3767-2" />
-    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3855"
@@ -103,7 +87,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
