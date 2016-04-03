@@ -14,6 +14,9 @@
       then add pagesel_callback_popup_new_page so that users have choice to
       create a new schematic with or without a title block, i.e. for symbol.
 
+    * src/x/x_toolbars.c: Re-arrange buttons on PageToolBar, change default/
+      fall-back icon zoom-out, remove remnant TOOLBAR_GEDA_BUTTON.
+
     * src/x/x_window: Revise function x_window_save_page:
 
         * Eliminate: save/goto/restoring current page.

@@ -202,7 +202,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_SELECTED),      "Selected",   TBTS_VIEW_SELECTED,      "zoom-selection",       TB_ICON_BITMAP, NULL},
   { ACTION(VIEW_EXTENTS),       "Extents",    TBTS_VIEW_EXTENTS,       GEDA_MAP(ZOOM_EXTENTS), TB_ICON_BITMAP, NULL},
   { ACTION(VIEW_ZOOM_IN),       "In",         TBTS_VIEW_ZOOM_IN,       GEDA_MAP(ZOOM_IN),      TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,      GEDA_MAP(ZOOM_OUT),     TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,      "zoom-out",             TB_ICON_STOCK,  NULL},
   { ACTION(VIEW_ZOOM_ALL),      "All",        TBTS_VIEW_ZOOM_ALL,      GEDA_MAP(ZOOM_LIMITS),  TB_ICON_BITMAP, NULL},
 
   /* Edit Toolbar */
@@ -404,9 +404,9 @@ static void x_toolbars_load_icons( GschemToplevel *w_current)
       u_log_message("Toolbar: icon not found <%s>\n",tb_data->icon_id);
     }
 
-#if  DEBUG_TB_CONS
+#if DEBUG_TB_CONS
     else {
-      if (strcmp(tb_data->action, ACTION(EDIT_UNDO)) == 0) {
+      if (strcmp(tb_data->action, ACTION(VIEW_ZOOM_OUT)) == 0) {
         fprintf(stderr, "Got action <%s> icon %p\n", tb_data->action, tb_data->icon);
       }
     }
@@ -1204,16 +1204,17 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER  (Page_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->page_handlebox), Page_Toolbar);
 
-  GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
 
-  GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_up_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_down_page);
+
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_prev_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_next_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_last_page);
 
-  GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
 
@@ -1499,12 +1500,6 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_name);
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_both);
 
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_attach,     LOCAL_PIX, GAF_PROMOTE_BITMAP,  x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_detach,     LOCAL_PIX, GAF_DEMOTE_BITMAP,   x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_value, LOCAL_PIX, GEDA_VALUE_BITMAP,   x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_name,  LOCAL_PIX, GEDA_NAME_TAG_BITMAP,    x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_both,  LOCAL_PIX, GEDA_NAME_VALUE_BITMAP,  x_toolbars_execute,  w_current);
-
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_visibilty);
@@ -1518,11 +1513,6 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_hide_text);
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_specific);
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_auto_number);
-
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_STR, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
 
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_attach     ));
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_detach     ));
