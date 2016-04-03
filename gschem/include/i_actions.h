@@ -103,8 +103,6 @@
 #define EDIT_FILL        edit-filltype
 #define EDIT_SLOT        edit-slot
 #define EDIT_COMPONENT   edit-component
-#define EDIT_LOCK        edit-lock
-#define EDIT_UNLOCK      edit-unlock
 
 #define EDIT_SELECT       edit-select
 #define EDIT_SELECT_ALL   edit-select-all
@@ -112,6 +110,9 @@
 #define EDIT_DESELECT     edit-deselect
 #define EDIT_DESELECT_ALL edit-deselect-all
 #define EDIT_SELECT_LAST  edit-select-last
+
+#define EDIT_LOCK        edit-lock
+#define EDIT_UNLOCK      edit-unlock
 
 #define VIEW_REDRAW      view-redraw
 #define VIEW_PAN         view-pan

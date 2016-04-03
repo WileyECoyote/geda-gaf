@@ -1,3 +1,12 @@
+2016-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/i_actions.h: Resqeuence EDIT_LOCK and EDIT_UNLOCK after
+      SELECT actions because that is where they are in the menu.
+
+    * src/x/x_toolbars.c: Re-arrange buttons on PageToolBar again; move
+      page_first left of page up, whould be nice if Gtk space worked
+      properly.
+
 2016-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem.h: Include new header gschem_page_history.h.

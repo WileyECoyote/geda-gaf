@@ -1206,10 +1206,11 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
 
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
+
   GSCHEM_TOOLBAR_BUTTON (Page, etb_up_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_down_page);
 
-  GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_prev_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_next_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_last_page);
