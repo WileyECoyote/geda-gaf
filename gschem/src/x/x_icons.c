@@ -91,7 +91,7 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-waves",         "geda-redo",          "geda-rotate",        "geda-snap-on",
   "geda-spectrum",      "geda-text-editor",   "geda-tools",         "geda-translate",
   "geda-value",         "geda-undo",          "geda-unlock",        "geda-unselect-all",
-  "geda-zoom-box",      "geda-zoom-extents",  "geda-zoom-in",       "geda-zoom-limits"
+  "geda-zoom-box",      "geda-zoom-extents",  "geda-zoom-in",       "geda-zoom-limits",
   "geda-zoom-out",      "geda-zoom-pan",      "geda-zoom-selection","git-logo",
   "guile-logo",
   NULL
