@@ -5,6 +5,7 @@
 gschem_SOURCES += \
 		guile/g_action.c \
 		guile/g_attrib.c \
+		guile/g_builtins.c \
 		guile/g_funcs.c \
 		guile/g_hook.c \
 		guile/g_keys.c \

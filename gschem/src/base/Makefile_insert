@@ -11,6 +11,7 @@ gschem_SOURCES += \
 		base/gschem_macro_widget.c \
 		base/gschem_main_window.c \
 		base/gschem_page_geometry.c \
+		base/gschem_page_history.c \
 		base/gschem_page_view.c \
 		base/gschem_parsecmd.c \
 		base/gschem_preview.c \

@@ -1206,6 +1206,8 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
 
       current_page = geda_toplevel_get_current_page(toplevel);
 
+      gschem_page_history_remove_page(w_current->page_history, current_page);
+
       if (current_page && page == current_page) {
 
         int pid = page->hierarchy_up;

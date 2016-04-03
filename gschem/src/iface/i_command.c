@@ -2411,11 +2411,10 @@ COMMAND (do_page_first)
   if (p_first != NULL && p_first != p_current) {
     x_window_set_current_page (w_current, p_first);
   }
-
 }
 
 /** @brief i_cmd_do_page_prev in i_command_Command_Functions */
-COMMAND (do_page_prev)
+COMMAND (do_page_prev) /* Aka Back */
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2424,14 +2423,17 @@ COMMAND (do_page_prev)
 
   GedaToplevel *toplevel = w_current->toplevel;
 
-  Page *p_old;
   Page *p_new;
+  Page *p_old;
 
   p_old = geda_toplevel_get_current_page (toplevel);
-  p_new = geda_toplevel_get_page_up (toplevel);
+
+  p_new = gschem_page_history_get_back(w_current->page_history);
 
   if (p_new != NULL && p_new != p_old) {
-    x_window_set_current_page (w_current, p_new);
+
+   x_window_set_current_page (w_current, p_new);
+
   }
 }
 
@@ -2449,7 +2451,8 @@ COMMAND (do_page_next)
   Page *p_new;
 
   p_old = geda_toplevel_get_current_page (toplevel);
-  p_new = geda_toplevel_get_page_down (toplevel);
+
+  p_new = gschem_page_history_get_forward (w_current->page_history);
 
   if (p_new != NULL && p_new != p_old) {
     x_window_set_current_page (w_current, p_new);

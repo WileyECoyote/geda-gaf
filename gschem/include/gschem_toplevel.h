@@ -62,8 +62,7 @@ struct _GschemToplevel {
 
   GedaToplevel *toplevel;
 
-  GSList   *pages_back;
-  GSList   *pages_forw;
+  GschemPageHistory *page_history;
 
   /* ----------------- main window widgets ---------------- */
   GtkWidget *main_window;

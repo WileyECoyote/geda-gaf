@@ -56,12 +56,11 @@ static GObjectClass *gschem_toplevel_parent_class = NULL;
  */
 static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_class )
 {
-  GschemToplevel *w_current = (GschemToplevel *)instance;
+  GschemToplevel *w_current     = (GschemToplevel *)instance;
 
   w_current->toplevel           = NULL;
 
-  w_current->pages_back         = NULL;
-  w_current->pages_forw         = NULL;
+  w_current->page_history       = gschem_page_history_new();
 
   /* ----------------- main window widgets ----------------- */
   w_current->main_window        = NULL;
@@ -339,6 +338,11 @@ static void gschem_toplevel_finalize( GObject *object )
     w_current->print_command = NULL;
   }
 
+  if (w_current->page_history != NULL) {
+    gschem_page_history_free(w_current->page_history);
+    w_current->page_history = NULL;
+  }
+
   if (w_current->action_event != NULL) {
     g_object_unref(w_current->action_event);;
   }
@@ -474,6 +478,9 @@ bool gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
   toplevel = gschem_toplevel_get_geda_toplevel (w_current);
 
   if (toplevel) {
+
+    gschem_page_history_push_back(w_current->page_history, page);
+
     result = geda_toplevel_set_current_page(toplevel, page);
   }
   else {

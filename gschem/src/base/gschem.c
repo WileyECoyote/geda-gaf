@@ -404,6 +404,8 @@ static void gschem( int argc, char *argv[])
 
   load_documents(w_current, argv_index, argc, argv);
 
+  gschem_page_history_seed_back(w_current->page_history, geda_toplevel_get_pages (toplevel));
+
 #if DEBUG
   scm_c_eval_string ("(display \"hello guile\n\")");
 #endif
