@@ -287,7 +287,8 @@ pagesel_callback_popup_##name (GtkMenuItem *menuitem, void *pagesel) { \
                     action, 0, NULL, ID_ORIGIN_MENU); \
 }
 
-DEFINE_POPUP_CALLBACK (new_page,     ACTION(FILE_NEW))
+DEFINE_POPUP_CALLBACK (new_blank,    ACTION(FILE_NEW))
+DEFINE_POPUP_CALLBACK (new_page,     ACTION(PAGE_NEW))
 DEFINE_POPUP_CALLBACK (open_page,    ACTION(FILE_OPEN))
 DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
@@ -315,8 +316,9 @@ static void pagesel_popup_menu (Pagesel        *pagesel,
   };
 
   struct menuitem_t menuitems[] = {
+    { N_("New Blank"),    G_CALLBACK (pagesel_callback_popup_new_blank)    },
     { N_("New Page"),     G_CALLBACK (pagesel_callback_popup_new_page)     },
-    { N_("Goto Page..."), G_CALLBACK (pagesel_callback_popup_open_page)    },
+    { N_("Open Page..."), G_CALLBACK (pagesel_callback_popup_open_page)    },
     { "-",                NULL                                             },
     { N_("Save Page"),    G_CALLBACK (pagesel_callback_popup_save_page)    },
     { N_("Close Page"),   G_CALLBACK (pagesel_callback_popup_close_page)   },

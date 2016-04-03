@@ -9,6 +9,11 @@
       "zoom too small" when either width or height is zero, is most likely
       mouse erractica.
 
+    * src/x/x_pagesel.c: Reneme pagesel_callback_popup_new_page to pagesel_
+      callback_popup_new_blank and fix "Goto.." in popup menu = "Open", and
+      then add pagesel_callback_popup_new_page so that users have choice to
+      create a new schematic with or without a title block, i.e. for symbol.
+
     * src/x/x_window: Revise function x_window_save_page:
 
         * Eliminate: save/goto/restoring current page.
