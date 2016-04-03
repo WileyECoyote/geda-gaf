@@ -358,8 +358,11 @@ geda_utility_string_remove_last_nl(char *string)
 
   length = strlen(string);
 
-  if (string[length-1] == '\n' || string[length-1] == '\r')
-    string[length-1] = '\0';
+  if (length) {
+    if (string[length-1] == '\n' || string[length-1] == '\r') {
+      string[length-1] = '\0';
+    }
+  }
 
   return(string);
 }
