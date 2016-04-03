@@ -1928,9 +1928,12 @@
 (map-icon "gtk-sort-ascending"         "page-draw-last")
 (map-icon "gtk-sort-descending"        "page-draw-first")
 
-(map-icon "gtk-go-down"                "hierarchy-down-schematic")
-(map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
-(map-icon "gtk-go-up"                  "hierarchy-up")
+(map-icon "gaf-hierarchy-sch"          "hierarchy-down-schematic")
+(map-icon "gaf-hierarchy-sym"          "hierarchy-down-symbol")
+(map-icon "gaf-hierarchy-up"           "hierarchy-up")
+;(map-icon "gtk-go-down"                "hierarchy-down-schematic")
+;(map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
+;(map-icon "gtk-go-up"                  "hierarchy-up")
 
 ;(map-icon "gtk-info"                   "hierarchy-documentation")
 ;(map-icon "gtk-indent"                 "hierarchy-documentation")
@@ -1942,10 +1945,10 @@
 
 (map-icon "gschem-net"                 "add-net")
 (map-icon "gschem-bus"                 "add-bus")
-;(map-icon "insert-attribute"           "add-attribute")
 (map-icon "gaf-add-attribute"          "add-attribute")
-;(map-icon "gtk-bold"                   "add-text")
+;(map-icon "insert-attribute"           "add-attribute")
 (map-icon "gschem-text"                "add-text")
+;(map-icon "gtk-bold"                   "add-text")
 (map-icon "geda-arc"                   "add-arc")
 (map-icon "geda-box"                   "add-box")
 (map-icon "geda-circle"                "add-circle")
