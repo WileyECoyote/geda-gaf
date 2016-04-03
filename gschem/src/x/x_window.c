@@ -1015,7 +1015,6 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
    */
   x_pagesel_update (w_current); /* If dialog open, update tree */
   o_invalidate_all(w_current);
-
   return page;
 }
 
@@ -1113,7 +1112,6 @@ void x_window_setup_page(GschemToplevel *w_current, Page *page,
 int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Page         *old_current;
   const char   *log_msg;
   const char   *state_msg;
   int           result;
@@ -1124,11 +1122,6 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   g_return_val_if_fail (page     != NULL, 0);
   g_return_val_if_fail (filename != NULL, 0);
 
-  /* save current page for restore after saving */
-  old_current = toplevel->page_current;
-
-  /* change to page */
-  s_page_goto (page);
 
   /* and try saving current page to filename */
   result = f_save (toplevel, toplevel->page_current, filename, &err);
@@ -1158,10 +1151,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
 
     state_msg  = _("Saved");
 
-    /* reset page modified flag */
-    geda_page_set_changed (page, FALSE);
-
-    /* add to recent file list */
+    /* Update recent file list */
     x_menu_recent_files_add(filename);
   }
 
@@ -1169,8 +1159,8 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   u_log_message (log_msg, filename);
 
   /* update display and page manager */
-  x_window_set_current_page (w_current, old_current);
-
+  x_pagesel_update (w_current);
+  i_status_update_title (w_current);
   i_status_set_state_msg  (w_current, SELECT, state_msg);
 
   return result;

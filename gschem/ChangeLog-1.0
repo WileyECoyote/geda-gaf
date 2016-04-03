@@ -6,6 +6,17 @@
       i_zoom_world_box "zoom too small" when either width or height is
       zero, is most likely mouse erractica.
 
+    * src/x/x_window: Revise function x_window_save_page:
+
+        * Eliminate: save/goto/restoring current page.
+
+        * Eliminate: old_current -d no longer needed.
+
+        * Eliminate: geda_page_set_changed - is done by f_save.
+
+        * Call x_pagesel_update and i_status_update_title instead of
+          i_status_set_state_msg.
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/builtins.scm: Update actions (and some icons).
