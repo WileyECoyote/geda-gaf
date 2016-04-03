@@ -1994,16 +1994,21 @@ COMMAND (do_zoom_box)
 COMMAND (do_zoom_selected)
 {
   BEGIN_W_COMMAND(do_zoom_selected);
-  /* scroll bar stuff */
-  const GList *selection;
 
-  selection = Current_Selection->glist;
-  i_zoom_world_extents (w_current, selection, 0);
+  if (o_select_is_selection(w_current)) {
 
-  i_zoom_world(w_current, ZOOM_OUT_DIRECTIVE, CMD_WHO(do_zoom_selected), 0);
+    const GList *selection;
 
-  if (w_current->undo_panzoom)
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+    selection = s_page_get_selection(Current_Page)->glist;
+
+    i_zoom_world_extents (w_current, selection, 0);
+    i_zoom_world(w_current, ZOOM_OUT_DIRECTIVE, CMD_WHO(do_zoom_selected), 0);
+
+    if (w_current->undo_panzoom) {
+      o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+    }
+  }
+
   EXIT_COMMAND(do_zoom_selected);
 }
 

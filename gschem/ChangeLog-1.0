@@ -2,9 +2,12 @@
 
     * src/x/x_icons.c: Add missing comma.
 
-    * gschem/src/iface/i_zoom_world.c: Remove pesky message from
-      i_zoom_world_box "zoom too small" when either width or height is
-      zero, is most likely mouse erractica.
+    * src/iface/i_command.c: i_cmd_do_zoom_selected to not cause the zoom
+      to be changed if nothing is selected.
+
+    * src/iface/i_zoom_world.c: Remove pesky message from i_zoom_world_box
+      "zoom too small" when either width or height is zero, is most likely
+      mouse erractica.
 
     * src/x/x_window: Revise function x_window_save_page:
 
