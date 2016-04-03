@@ -272,15 +272,14 @@ void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
   /*test if there is really a box*/
   if (w_current->first_wx == w_current->second_wx ||
       w_current->first_wy == w_current->second_wy) {
-    u_log_message(_("Zoom too small! Cannot zoom further.\n"));
     return;
   }
 
   /*calc new zoomfactors and choose the smaller one*/
   zx = (double) abs(toplevel->page_current->left - toplevel->page_current->right) /
-    abs(w_current->first_wx - w_current->second_wx);
+                abs(w_current->first_wx - w_current->second_wx);
   zy = (double) abs(toplevel->page_current->top - toplevel->page_current->bottom) /
-    abs(w_current->first_wy - w_current->second_wy);
+                abs(w_current->first_wy - w_current->second_wy);
 
   relative_zoom_factor = (zx < zy ? zx : zy);
 

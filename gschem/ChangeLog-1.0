@@ -2,6 +2,10 @@
 
     * src/x/x_icons.c: Add missing comma.
 
+    * gschem/src/iface/i_zoom_world.c: Remove pesky message from
+      i_zoom_world_box "zoom too small" when either width or height is
+      zero, is most likely mouse erractica.
+
 2016-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/builtins.scm: Update actions (and some icons).
