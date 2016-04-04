@@ -157,31 +157,31 @@ extern "C" {
 
 /* o_attrib.c */
          void    geda_attrib_object_add                      (GedaObject *object, GedaObject *item);
-        GList   *geda_attrib_object_get_attached             (const GedaObject *object);
-         bool    geda_attrib_object_is_attached_to           (const GedaObject *attrib, const GedaObject *object);
+         void    geda_attrib_object_append_changed_hook      (Page *page, AttribsChangedFunc func, void *data);
          void    geda_attrib_object_attach                   (GedaObject *object, GedaObject *attrib, int set_color);
          void    geda_attrib_object_attach_list              (GedaObject *object, const GList *attr_list, int set_color);
          void    geda_attrib_object_detach                   (GedaObject *object);
          void    geda_attrib_object_detach_all               (GedaObject *object);
-   GedaObject   *geda_attrib_object_new_attached             (GedaObject *object, const char *name, const char *value, int visibility, int show_name_value);
-         void    geda_attrib_object_print                    (const GList  *attributes);
-         void    geda_attrib_object_remove                   (GList **list, GedaObject *remove);
-         bool    geda_attrib_object_string_get_name_value    (const char   *string, char **name_ptr,  char **value_ptr);
-         bool    geda_attrib_object_get_name_value           (const GedaObject *attrib, char **name_ptr,  char **value_ptr);
-         void    geda_attrib_object_set_value                (const GedaObject *attrib, const char *name_ptr, const char *value_ptr);
-         void    geda_attrib_object_set_integer_value        (const GedaObject *attrib, const char *name_ptr, int value);
+         void    geda_attrib_object_emit_changed             (GedaObject *object);
         GList   *geda_attrib_object_find_floating            (const GList  *list);
    GedaObject   *geda_attrib_object_find_attrib_by_name      (const GList  *list,   const char *name, int count);
    GedaObject   *geda_attrib_object_first_attrib_by_name     (const GedaObject *object,       char *name);
-         char   *geda_attrib_object_search_floating_by_name  (const GList  *list,   const char *name, int counter);
+         void    geda_attrib_object_freeze_hooks             (GedaObject *object);
+        GList   *geda_attrib_object_get_attached             (const GedaObject *object);
+         bool    geda_attrib_object_get_name_value           (const GedaObject *attrib, char **name_ptr,  char **value_ptr);
+         bool    geda_attrib_object_is_attached_to           (const GedaObject *attrib, const GedaObject *object);
+          int    geda_attrib_object_is_inherited             (const GedaObject *attrib);
+   GedaObject   *geda_attrib_object_new_attached             (GedaObject *object, const char *name, const char *value, int visibility, int show_name_value);
+         void    geda_attrib_object_print                    (const GList  *attributes);
+         void    geda_attrib_object_remove                   (GList **list, GedaObject *remove);
+        GList   *geda_attrib_object_return_attribs           (const GedaObject *object);
          char   *geda_attrib_object_search_attached_by_name  (const GedaObject *object, const char *name, int counter);
+         char   *geda_attrib_object_search_floating_by_name  (const GList  *list,   const char *name, int counter);
          char   *geda_attrib_object_search_inherited_by_name (const GedaObject *object, const char *name, int counter);
          char   *geda_attrib_object_search_object_by_name    (const GedaObject *object, const char *name, int counter);
-        GList   *geda_attrib_object_return_attribs           (const GedaObject *object);
-          int    geda_attrib_object_is_inherited             (const GedaObject *attrib);
-         void    geda_attrib_object_append_changed_hook      (Page *page, AttribsChangedFunc func, void *data);
-         void    geda_attrib_object_emit_changed             (GedaObject *object);
-         void    geda_attrib_object_freeze_hooks             (GedaObject *object);
+         void    geda_attrib_object_set_integer_value        (const GedaObject *attrib, const char *name_ptr, int value);
+         void    geda_attrib_object_set_value                (const GedaObject *attrib, const char *name_ptr, const char *value_ptr);
+         bool    geda_attrib_object_string_get_name_value    (const char   *string, char **name_ptr,  char **value_ptr);
          void    geda_attrib_object_thaw_hooks               (GedaObject *object);
 
 /* o_object.c */
