@@ -340,7 +340,7 @@ GedaObject*
 geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
 {
   if (GEDA_IS_OBJECT(object)) {
-    return geda_attrib_object_find_attrib_by_name (object->attribs, name, 0);
+    return geda_attrib_find_attrib_by_name (object->attribs, name, 0);
   }
   BUG_MSG("Invalid GEDA GedaObject");
   return NULL;
@@ -393,8 +393,8 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
 {
   g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
 
-  return geda_attrib_object_string_get_name_value (attrib->text->string,
-                                         name_ptr, value_ptr);
+  return geda_attrib_string_get_name_value (attrib->text->string,
+                                            name_ptr, value_ptr);
 }
 
 /*! \brief Check whether a attrib is attached to another object
@@ -940,8 +940,8 @@ geda_attrib_object_search_inherited_by_name (const GedaObject *object,
   g_return_val_if_fail (object->type == OBJ_COMPLEX ||
                         object->type == OBJ_PLACEHOLDER, NULL);
 
-  return geda_attrib_object_search_floating_by_name (object->complex->prim_objs,
-                                                     name, counter);
+  return geda_attrib_search_floating_by_name (object->complex->prim_objs,
+                                              name, counter);
 }
 
 /*! \brief Search attributes of object by name
@@ -967,7 +967,7 @@ geda_attrib_object_search_object_by_name (const GedaObject *object,
   char  *result;
   GList *attributes;
 
-  attributes = geda_attrib_object_return_attribs (object);
+  attributes = geda_attrib_return_attribs (object);
   result     = geda_attrib_object_search_attrib_list_by_name (attributes, name, counter);
   g_list_free (attributes);
 

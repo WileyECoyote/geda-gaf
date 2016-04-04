@@ -266,14 +266,14 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
 bool o_complex_reset_attrib_positions (GschemToplevel *w_current, GedaObject *o_current)
 {
   int    modified = FALSE;
-  GList *attributes = geda_attrib_object_return_attribs (o_current);
+  GList *attributes = geda_attrib_return_attribs (o_current);
   GList *a_iter;
 
   for (a_iter = attributes; a_iter != NULL; a_iter = a_iter->next) {
 
    GedaObject *a_current = a_iter->data;
 
-    if (!geda_attrib_object_is_inherited(a_current)) {
+    if (!geda_attrib_is_inherited(a_current)) {
       if (o_attrib_reset_position(w_current, o_current, a_current)) {
         modified = TRUE;
       }

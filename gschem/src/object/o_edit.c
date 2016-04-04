@@ -752,7 +752,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 
       /* If the parent is not selectable then don't display this attribute */
       if (o_current->attached_to && o_current->attached_to->selectable) {
-        if (geda_attrib_object_string_get_name_value(o_current->text->string, &name, &value)) {
+        if (geda_attrib_string_get_name_value(o_current->text->string, &name, &value)) {
           if( strcmp(name, "netname") == 0) {
             if (o_current->visibility == INVISIBLE) {
               o_current->visibility = 2;
@@ -773,7 +773,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
     }
     else if (o_current->type == OBJ_COMPLEX) {
 
-     GedaObject *a_current = geda_attrib_object_first_attrib_by_name (o_current, "netname");
+     GedaObject *a_current = geda_attrib_first_attrib_by_name (o_current, "netname");
 
       if ( a_current != NULL) {
         if (a_current->visibility == INVISIBLE) {
@@ -886,11 +886,11 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
       char *attrib;
 
-      attrib = geda_attrib_object_search_attached_by_name (o_current, "source", count);
+      attrib = geda_attrib_search_attached_by_name (o_current, "source", count);
 
       /* if above is null, then look inside symbol */
       if (attrib == NULL) {
-        attrib = geda_attrib_object_search_inherited_by_name (o_current, "source", count);
+        attrib = geda_attrib_search_inherited_by_name (o_current, "source", count);
       }
 
       /* Check if a source attribute was found */
@@ -1167,14 +1167,14 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-            attr_old = geda_attrib_object_find_attrib_by_name (o_current->attribs, name, 0);
+            attr_old = geda_attrib_find_attrib_by_name (o_current->attribs, name, 0);
             geda_attrib_object_set_value (attr_old, name,  new_value);
             break;
           }
           index++;
         } while (keepers[index]);
 
-        attr_old = geda_attrib_object_find_attrib_by_name (o_current->attribs, name, 0);
+        attr_old = geda_attrib_find_attrib_by_name (o_current->attribs, name, 0);
         if (attr_old != NULL && (attr_old->text->size != attr_new->text->size))
         {
           attr_old->dont_redraw = TRUE;

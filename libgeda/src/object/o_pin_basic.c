@@ -739,7 +739,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
 
     /* pin number */
     if (number && geda_pin_set_number(pin, number)) {
-      bute = geda_attrib_object_first_attrib_by_name (object, "pinnumber");
+      bute = geda_attrib_first_attrib_by_name (object, "pinnumber");
       if(bute != NULL) {
         geda_attrib_object_set_value(bute, "pinnumber",  number);
         o_text_recreate(bute);
@@ -757,7 +757,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
     char *str_seq = geda_utility_string_sprintf ("%d", sequence);
 
     if (geda_pin_set_sequence(pin, str_seq)) {
-      bute = geda_attrib_object_first_attrib_by_name (object, "pinseq");
+      bute = geda_attrib_first_attrib_by_name (object, "pinseq");
       if(bute !=NULL) {
         geda_attrib_object_set_value(bute, "pinseq", str_seq);
         o_text_recreate(bute);
@@ -778,7 +778,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
 
     /* pin label */
     if (label_str && geda_pin_set_label(pin, label_str)) {
-      bute = geda_attrib_object_first_attrib_by_name (object, "pinlabel");
+      bute = geda_attrib_first_attrib_by_name (object, "pinlabel");
       if(bute !=NULL && bute->type == OBJ_TEXT) {
         geda_attrib_object_set_value(bute, "pinlabel", (char*)label_str);
         o_text_recreate(bute);
@@ -796,7 +796,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
       const char *electrical = geda_pin_lookup_estring(e_type);
       if (pin->electrical == NULL || (strcmp(pin->electrical, electrical) != 0))
         geda_pin_set_electrical(pin, electrical);
-      bute = geda_attrib_object_first_attrib_by_name (object, "pintype");
+      bute = geda_attrib_first_attrib_by_name (object, "pintype");
       if (bute !=NULL) {
         geda_attrib_object_set_value(bute, "pintype", (char*)electrical);
         o_text_recreate(bute);
@@ -814,7 +814,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
       const char *mechanical = geda_pin_lookup_mstring(m_type);
       if (pin->mechanical == NULL || (strcmp(pin->mechanical, mechanical) != 0))
         geda_pin_set_mechanical(pin, mechanical);
-      bute = geda_attrib_object_first_attrib_by_name (object, "mechtype");
+      bute = geda_attrib_first_attrib_by_name (object, "mechtype");
       if(bute !=NULL) {
         geda_attrib_object_set_value(bute, "mechtype", (char*)mechanical);
         o_text_recreate(bute);
@@ -1518,7 +1518,7 @@ void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
   char *value;
 
   if (GEDA_IS_TEXT(o_text)) {
-    if (geda_attrib_object_string_get_name_value(o_text->text->string, &attrib, &value)) {
+    if (geda_attrib_string_get_name_value(o_text->text->string, &attrib, &value)) {
 
       /* We skip the first 3 chars because "pin" as in "pinlabel" or
        * "pinnumber" is not part of the property name */

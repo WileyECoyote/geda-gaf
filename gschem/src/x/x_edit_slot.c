@@ -101,8 +101,8 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
     char *slot_value = NULL;
 
     if (object->type == OBJ_COMPLEX) {
-      slot_count = geda_attrib_object_search_object_by_name (object, "numslots", 0);
-      slot_value = geda_attrib_object_search_object_by_name (object, "slot", 0);
+      slot_count = geda_attrib_search_object_by_name (object, "numslots", 0);
+      slot_value = geda_attrib_search_object_by_name (object, "slot", 0);
     }
     else {
       if (object->type == OBJ_TEXT) {

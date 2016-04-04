@@ -279,13 +279,11 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
       continue;
 
     /* Look outside symbol */
-    filename =
-    geda_attrib_object_search_attached_by_name (o_current, "source", 0);
+    filename = geda_attrib_search_attached_by_name (o_current, "source", 0);
 
     /* If not outside, then look inside symbol */
     if (filename == NULL) {
-      filename =
-      geda_attrib_object_search_inherited_by_name (o_current, "source", 0);
+      filename = geda_attrib_search_inherited_by_name (o_current, "source", 0);
     }
 
     /* If no source attribute found then next component */

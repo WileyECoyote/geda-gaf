@@ -643,7 +643,7 @@ void o_net_refresh_conn_cache(GedaObject *o_current)
   g_hash_table_insert (visited, o_current, o_current);
 
   /* Check if a netname= is attached to the starting net segment */
-  result = geda_attrib_object_search_object_by_name (o_current, "netname", 0);
+  result = geda_attrib_search_object_by_name (o_current, "netname", 0);
   if (result != NULL) {
      GEDA_FREE(result);
      num_conns += 1;
@@ -695,7 +695,7 @@ void o_net_refresh_conn_cache(GedaObject *o_current)
           g_hash_table_insert (visited, obj, obj);
 
           /* Check if a netname= is attached to this net segment */
-          result = geda_attrib_object_search_object_by_name (obj, "netname", 0);
+          result = geda_attrib_search_object_by_name (obj, "netname", 0);
           if (result != NULL) {
             GEDA_FREE(result);
             num_conns += 1;

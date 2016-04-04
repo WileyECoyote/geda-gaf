@@ -549,14 +549,14 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
       if (autotext->slotting && o_parent != NULL) {
         /* check for slotted symbol */
         numslot_str =
-        geda_attrib_object_search_object_by_name (o_parent, "numslots", 0);
+        geda_attrib_search_object_by_name (o_parent, "numslots", 0);
         if (numslot_str != NULL) {
           sscanf(numslot_str," %d",&numslots);
           GEDA_FREE(numslot_str);
 
           if (numslots > 0) {
 
-            slot_str = geda_attrib_object_search_object_by_name (o_parent, "slot", 0);
+            slot_str = geda_attrib_search_object_by_name (o_parent, "slot", 0);
             if (slot_str == NULL) {
               u_log_message(_("slotted object without slot attribute may cause "
               "problems when autonumbering slots\n"));
@@ -700,8 +700,7 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
     char *numslot_str;
     int   numslots;
 
-    numslot_str =
-    geda_attrib_object_search_object_by_name (o_parent, "numslots", 0);
+    numslot_str = geda_attrib_search_object_by_name (o_parent, "numslots", 0);
 
     if (numslot_str != NULL) {
 
@@ -763,7 +762,7 @@ static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, GedaObject *o_c
       /* \remark s_slot_search_slot updates o_slot variable */
       g_free (s_slot_search_slot (o_parent, &o_slot));
       /* Only attempt to remove non-inherited slot attributes */
-      if (o_slot != NULL && !geda_attrib_object_is_inherited (o_slot)) {
+      if (o_slot != NULL && !geda_attrib_is_inherited (o_slot)) {
         /* delete the slot attribute */
         o_delete (autotext->w_current, o_slot);
       }

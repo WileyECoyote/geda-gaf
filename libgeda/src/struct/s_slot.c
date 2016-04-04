@@ -60,8 +60,8 @@ char *s_slot_search_slot (GedaObject *object, GedaObject **found)
   GedaObject *attrib;
   char       *value = NULL;
 
-  attributes = geda_attrib_object_return_attribs (object);
-  attrib     = geda_attrib_object_find_attrib_by_name (attributes, "slot", 0);
+  attributes = geda_attrib_return_attribs (object);
+  attrib     = geda_attrib_find_attrib_by_name (attributes, "slot", 0);
   g_list_free (attributes);
 
   if (attrib != NULL)
@@ -98,8 +98,7 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
 
   while (1) {
 
-    slotdef = geda_attrib_object_search_object_by_name (object, "slotdef",
-                                                      counter++);
+    slotdef = geda_attrib_search_object_by_name (object, "slotdef", counter++);
     if (slotdef == NULL ||
         strncmp (slotdef, search_for, strlen (search_for)) == 0)
       break;
@@ -145,7 +144,7 @@ void s_slot_update_object (GedaObject *object)
 
   /* For this particular graphic object (component instantiation) */
   /* get the slot number as a string */
-  string = geda_attrib_object_search_object_by_name (object, "slot", 0);
+  string = geda_attrib_search_object_by_name (object, "slot", 0);
 
   if (string == NULL) {
     /* Did not find slot= attribute.
@@ -218,8 +217,8 @@ void s_slot_update_object (GedaObject *object)
 
       /* Now rename pinnumber= attrib on this part with value found */
       /* in slotdef attribute  */
-      attributes = geda_attrib_object_return_attribs (o_pin_object);
-      o_pinnum_attrib = geda_attrib_object_find_attrib_by_name (attributes, "pinnumber", 0);
+      attributes = geda_attrib_return_attribs (o_pin_object);
+      o_pinnum_attrib = geda_attrib_find_attrib_by_name (attributes, "pinnumber", 0);
       g_list_free (attributes);
 
       if (o_pinnum_attrib != NULL) {

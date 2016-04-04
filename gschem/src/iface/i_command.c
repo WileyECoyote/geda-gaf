@@ -556,7 +556,7 @@ COMMAND (do_debug)
   p_current  = gschem_toplevel_get_current_page(w_current);
 
 /*
-  geda_attrib_object_append_changed_hook (p_current,
+  geda_attrib_append_changed_hook (p_current,
                                          (AttribsChangedFunc) o_diagnostics_notify_attribute,
                                           w_current);
 */
@@ -2127,7 +2127,7 @@ COMMAND (do_documentation)
       char *attrib_doc;
 
       /* look for "documentation" */
-      attrib_doc = geda_attrib_object_search_object_by_name (object, "documentation", 0);
+      attrib_doc = geda_attrib_search_object_by_name (object, "documentation", 0);
 
       if (attrib_doc) {
 
@@ -2847,12 +2847,11 @@ COMMAND (do_down_schematic)
     return;
 
   parent = gschem_toplevel_get_current_page (w_current);
-  attrib = geda_attrib_object_search_attached_by_name (object, "source", count);
+  attrib = geda_attrib_search_attached_by_name (object, "source", count);
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
-    attrib =
-      geda_attrib_object_search_inherited_by_name (object, "source", count);
+    attrib = geda_attrib_search_inherited_by_name (object, "source", count);
     looking_inside = TRUE;
 #if DEBUG
     printf("going to look inside now\n");
@@ -2936,8 +2935,7 @@ COMMAND (do_down_schematic)
 
     /* continue looking outside first */
     if (!looking_inside) {
-      attrib =
-        geda_attrib_object_search_attached_by_name (object, "source", count);
+      attrib = geda_attrib_search_attached_by_name (object, "source", count);
     }
 
     /* okay we were looking outside and didn't find anything,
@@ -2958,7 +2956,7 @@ COMMAND (do_down_schematic)
       printf("looking inside\n");
 #endif
 
-      attrib = geda_attrib_object_search_inherited_by_name(object, "source", count);
+      attrib = geda_attrib_search_inherited_by_name(object, "source", count);
     }
   }
 

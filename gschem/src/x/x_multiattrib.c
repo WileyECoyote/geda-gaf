@@ -2403,7 +2403,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
 {
   GList *model_rows = NULL;
   GList *a_iter;
-  GList *object_attribs = geda_attrib_object_return_attribs (object);
+  GList *object_attribs = geda_attrib_return_attribs (object);
 
   for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter))
   {
@@ -2413,7 +2413,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
 
     geda_attrib_object_get_name_value (a_current, &m_row->name, &m_row->value);
 
-    m_row->inherited       = geda_attrib_object_is_inherited (a_current);
+    m_row->inherited       = geda_attrib_is_inherited (a_current);
     m_row->visibility      = o_get_is_visible (a_current);
     m_row->show_name_value = a_current->show_name_value;
     m_row->nth_with_name   = 0; /* Provisional value until we check below */
@@ -2484,7 +2484,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
     ThisDialog->num_lone_attribs_in_list ++;
 
     m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
-    m_row->inherited = geda_attrib_object_is_inherited (object);
+    m_row->inherited = geda_attrib_is_inherited (object);
     geda_attrib_object_get_name_value (object, &m_row->name, &m_row->value);
     m_row->visibility = o_get_is_visible (object);
     m_row->show_name_value = object->show_name_value;

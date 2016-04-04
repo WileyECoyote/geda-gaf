@@ -53,13 +53,12 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
   Page *p_current;
   Page *child_page;
 
-  attrib = geda_attrib_object_search_attached_by_name (o_current, "source", 0);
+  attrib = geda_attrib_search_attached_by_name (o_current, "source", 0);
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
 
-    attrib = geda_attrib_object_search_inherited_by_name (o_current,
-                                                        "source", count);
+    attrib = geda_attrib_search_inherited_by_name (o_current, "source", count);
     looking_inside = TRUE;
 
 #if DEBUG
@@ -146,8 +145,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
 
     /* continue looking outside first */
     if (!looking_inside) {
-      attrib =
-      geda_attrib_object_search_attached_by_name (o_current, "source", count);
+      attrib = geda_attrib_search_attached_by_name (o_current, "source", count);
     }
 
     /* Did not find anything outside, so now look inside symbol */
@@ -167,8 +165,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
       printf("looking inside\n");
 #endif
 
-      attrib =
-      geda_attrib_object_search_inherited_by_name (o_current, "source", count);
+      attrib = geda_attrib_search_inherited_by_name (o_current, "source", count);
     }
 
     if (s_hierarchy_graphical_search(o_current, count)) {
@@ -810,8 +807,8 @@ int s_hierarchy_graphical_search (GedaObject* o_current, int count)
   bool  result;
   char *graphical_attrib;
 
-  graphical_attrib =
-  geda_attrib_object_search_object_by_name (o_current, "graphical", count);
+  graphical_attrib = geda_attrib_search_object_by_name (o_current,
+                                                        "graphical", count);
 
   if (graphical_attrib) {
     char value = graphical_attrib[0];

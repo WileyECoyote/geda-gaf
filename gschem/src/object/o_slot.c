@@ -58,14 +58,14 @@ void o_slot_start (GschemToplevel *w_current, GedaObject *object)
   if (object->type != OBJ_COMPLEX)
     return;
 
-  slot_count = geda_attrib_object_search_object_by_name (object, "numslots", 0);
+  slot_count = geda_attrib_search_object_by_name (object, "numslots", 0);
 
   if (slot_count == NULL) {
     /* we didn't find a slot=? attribute, make something up */
     slot_count = geda_utility_string_strdup ("0");
   }
 
-  slot_value = geda_attrib_object_search_object_by_name (object, "slot", 0);
+  slot_value = geda_attrib_search_object_by_name (object, "slot", 0);
 
   if (slot_value == NULL) {
     /* we didn't find a slot=? attribute, make something up */
@@ -108,14 +108,13 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
 
   g_return_if_fail (object != NULL);
 
-  status = geda_attrib_object_string_get_name_value (string, NULL, &value);
+  status = geda_attrib_string_get_name_value (string, NULL, &value);
   if (!status) {
     u_log_message (_("Slot attribute malformed\n"));
     return;
   }
 
-  numslots_value =
-    geda_attrib_object_search_object_by_name (object, "numslots", 0);
+  numslots_value = geda_attrib_search_object_by_name (object, "numslots", 0);
 
   if (!numslots_value) {
     u_log_message (_("numslots attribute missing\n"));
@@ -143,7 +142,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
   slot_value = s_slot_search_slot (object, &o_slot);
   GEDA_FREE (slot_value);
 
-  if (o_slot != NULL && !geda_attrib_object_is_inherited (o_slot)) {
+  if (o_slot != NULL && !geda_attrib_is_inherited (o_slot)) {
     o_text_set_string (o_slot, string);
   }
   else {

@@ -828,9 +828,9 @@ static void s_conn_init_page (Page *page)
                   (ConnsChangedFunc)refresh_connectivity_cache,
                                     toplevel);
 
-  geda_attrib_object_append_changed_hook (page,
-                    (AttribsChangedFunc)refresh_connectivity_cache,
-                                        toplevel);
+  geda_attrib_append_changed_hook (page,
+                                  (AttribsChangedFunc)refresh_connectivity_cache,
+                                   toplevel);
 }
 
 /*! \brief Initialize LibGeda Connection system
