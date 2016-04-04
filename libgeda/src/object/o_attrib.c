@@ -64,6 +64,27 @@ call_attribs_changed_hook (void *data, void *user_data)
   hook->func (hook->data, object);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_attrib_object_emit_changed (GedaObject *object)
+{
+  if (object->attrib_notify_freeze_count > 0) {
+    object->attrib_notify_pending = 1;
+    return;
+  }
+
+  object->attrib_notify_pending = 0;
+
+  if (object->page != NULL) {
+    g_list_foreach (object->page->attribs_changed_hooks,
+                    call_attribs_changed_hook, object);
+  }
+}
+
 /*! \brief Add an attribute to an existing attribute list.
  *  \par Function Description
  *  Add an attribute to an existing attribute list.
@@ -225,27 +246,6 @@ geda_attrib_object_detach_all(GedaObject *object)
       page->CHANGED = TRUE;
     }
     geda_attrib_object_thaw_hooks (object);
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_attrib_object_emit_changed (GedaObject *object)
-{
-  if (object->attrib_notify_freeze_count > 0) {
-    object->attrib_notify_pending = 1;
-    return;
-  }
-
-  object->attrib_notify_pending = 0;
-
-  if (object->page != NULL) {
-    g_list_foreach (object->page->attribs_changed_hooks,
-                    call_attribs_changed_hook, object);
   }
 }
 

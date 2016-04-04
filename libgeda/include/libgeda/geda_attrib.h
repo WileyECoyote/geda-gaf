@@ -40,7 +40,6 @@
 #define geda_attrib_attach_list                geda_attrib_object_attach_list
 #define geda_attrib_detach                     geda_attrib_object_detach
 #define geda_attrib_detach_all                 geda_attrib_object_detach_all
-#define geda_attrib_emit_changed               geda_attrib_object_emit_changed
 #define geda_attrib_find_floating              geda_attrib_object_find_floating
 #define geda_attrib_find_attrib_by_name        geda_attrib_object_find_attrib_by_name
 #define geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name

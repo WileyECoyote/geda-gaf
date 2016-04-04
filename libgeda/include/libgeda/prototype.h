@@ -162,7 +162,6 @@ extern "C" {
          void    geda_attrib_object_attach_list              (GedaObject *object, const GList *attr_list, int set_color);
          void    geda_attrib_object_detach                   (GedaObject *object);
          void    geda_attrib_object_detach_all               (GedaObject *object);
-         void    geda_attrib_object_emit_changed             (GedaObject *object);
         GList   *geda_attrib_object_find_floating            (const GList  *list);
    GedaObject   *geda_attrib_object_find_attrib_by_name      (const GList  *list,   const char *name, int count);
    GedaObject   *geda_attrib_object_first_attrib_by_name     (const GedaObject *object,       char *name);
