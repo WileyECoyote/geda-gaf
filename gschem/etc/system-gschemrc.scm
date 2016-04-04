@@ -1227,8 +1227,8 @@
 ;; Uncomment this scheme code if you want automatic numbering when
 ;; placing new component and copying components.
 ;
-;(load-from-path "auto-uref.scm")
-;(add-hook! add-component-hook auto-uref)
+(load-from-path "auto-uref.scm")
+(add-hook! add-component-hook auto-uref)
 ;(add-hook! copy-component-hook auto-uref)
 
 ;; Define value of page-offset for auto number on insert.
@@ -1263,29 +1263,28 @@
 (load-from-path "default-attrib-positions.scm")
 
 ; Adds the default pin attributes to each newly placed pin.
-;(define (add-default-pin-attributes object)
-;  (for-each
-;    (lambda (a)
-;      (apply add-attribute-to-object object a)) default-pin-attributes))
+(define (add-default-pin-attributes object)
+  (for-each
+    (lambda (a)
+      (apply add-attribute-to-object object a)) default-pin-attributes))
 
 ; Comment in this hook to automatically add the default attributes to
 ; each newly placed pin
-;(add-hook! add-pin-hook add-default-pin-attributes)
+(add-hook! add-pin-hook add-default-pin-attributes)
 
 ; Comment in this to load the functions to place the attributes automatically.
 (load-from-path "auto-place-attribs.scm")
 
 (define (reset-attribute-positions object)
-  (autoplace-object-attributes object)
-  ;;
-)
+  (autoplace-object-attributes object))
 
 ; Autoplace pin text attributes hook.
 ; Comment in these if you want the pin attributes to be automatically placed.
 ; There are different hooks for situations like adding a new pin and rotating
-; or mirroring an existing one.
+; or mirroring an existing one. load-from-path "default-attrib-positions" and
+; load-from-path "auto-place-attribs" above must NOT be commented out!
 ; The #t at the end means that function is appended to the end of the hook.
-;(add-hook! add-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+(add-hook! add-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 ;(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 ;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 
@@ -1306,11 +1305,9 @@
 ;(add-hook! complex-place-list-changed-hook (lambda (object)
 ;         (autoplace-object-attributes object)) #t)
 
-; Autoplace netname= attribute hook. This autoplaces netname attributes or
-; causes seg-faults if either the load-from-path "default-attrib-positions"
-; and load-from-path "auto-place-attribs" above are commented out!
-;(load-from-path "auto-place-netname.scm")
-;(add-hook! add-objects-hook place-netname-attribute-handler)
+; Autoplace netname= attribute hook. This autoplaces netname attributes.
+(load-from-path "auto-place-netname.scm")
+(add-hook! add-objects-hook place-netname-attribute-handler)
 
 ;; Automatically place a titleblock (or other components) when creating
 ;; a new page.
@@ -1454,6 +1451,16 @@
 ("21489" . edit-copy)
 ("32478" . edit-copy)
 
+; Letter D for delete
+("14786321" . edit-delete)
+("14789621" . edit-delete)
+("147896321" . edit-delete)
+("15896321" . edit-delete)
+("257896321" . edit-delete)
+("25896321" . edit-delete)
+("4789621" . edit-delete)
+("741236987" . edit-delete)
+
 ; Letter B for Box
 ("7417654456987" . add-box)
 
@@ -1478,6 +1485,7 @@
 ("74148963" . add-net)
 ("74158963" . add-net)
 ("7415963" .  add-net)
+("7418963" .  add-net)
 
 ; Letter M for move
 ("741236963" . edit-move)
@@ -1508,15 +1516,6 @@
 ; Capital Letter O for Open
 ("12369874" . file-open)
 ("74123698" . file-open)
-
-; Letter D for delete
-("14786321" . edit-delete)
-("14789621" . edit-delete)
-("147896321" . edit-delete)
-("15896321" . edit-delete)
-("257896321" . edit-delete)
-("25896321" . edit-delete)
-("4789621" . edit-delete)
 
 ; Letter S for save
 ("2145987" . edit-select )

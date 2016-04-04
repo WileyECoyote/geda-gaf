@@ -1,6 +1,9 @@
 2016-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * etc/system-gschemrc.scm: Use new custom icons for hierarchy.
+    * etc/system-gschemrc.scm: Use new custom icons for hierarchy, add a
+      couple of strokes, enable add-pin-hook add-default-pin-attributes,
+      autoplace-pin-attributes, and place-netname-attribute-handler hook
+      as default.
 
     * include/i_actions.h: Resqeuence EDIT_LOCK and EDIT_UNLOCK after
       SELECT actions because that is where they are in the menu.
