@@ -107,8 +107,8 @@ char       *geda_arc_object_to_buffer            (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
 
 /* o_attrib.c */
-GList      *o_read_attribs           (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
-                                      unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
+GList      *geda_attrib_object_read            (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
+                                                unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
 
 /* o_box_basic.c */
 bool        geda_box_object_get_position       (GedaObject *object, int *x, int *y);

@@ -28,7 +28,7 @@
 #include <geda_errors.h>
 
 #include <prototype.h>
-
+#include <geda_attrib.h>
 #include <geda_list.h>
 #include <geda_notify.h>
 #include <geda_object.h>

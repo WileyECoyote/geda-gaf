@@ -1,5 +1,8 @@
 2016-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_attrib.h: Add header with macros as alias to
+      functions in geda_attrib_object.
+
     * include/prototype_priv.h: Replace private prefix o_attrib geda_attrib_object.
 
     * src/object/o_attrib.c: Replace function prefix o_attrib geda_attrib_object,
