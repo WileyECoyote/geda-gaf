@@ -96,7 +96,7 @@ gschem_page_geometry_get_screen_width (GschemPageGeometry *geometry)
  *  \return The GschemPageGeometry type.
  */
 GedaType
-gschem_page_geometry_get_type ()
+gschem_page_geometry_get_type (void)
 {
   static GedaType type = 0;
 
