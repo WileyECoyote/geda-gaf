@@ -352,7 +352,7 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
     if (o_current->type == OBJ_COMPLEX) {    /* Note that OBJ_COMPLEX = component + attribs */
 
 #if 0
-      if (o_attrib_search_object_attribs_by_name (o_current, "graphical", 0)) {
+      if (geda_attrib_object_search_object_by_name (o_current, "graphical", 0)) {
         break;  /* Ignore graphical components */
       }
 #endif
@@ -618,7 +618,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
           int status;
 
-          status = o_attrib_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
+          status = geda_attrib_object_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
 
           if (status == 0) {
 
@@ -667,7 +667,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     /*  Now get the old attrib name & value from complete_comp_attrib_list
      *  and value from o_current  */
     old_attrib_name = geda_utility_string_split(local_list->data, '=', 0);
-    old_attrib_value = o_attrib_search_attached_attribs_by_name (o_current, old_attrib_name, 0);
+    old_attrib_value = geda_attrib_object_search_attached_by_name (o_current, old_attrib_name, 0);
 
 #if DEBUG
     printf("%s: old name = \"%s\" .\n", __func__, old_attrib_name);
@@ -840,7 +840,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
   /* First find pos of this pin in the master pin list */
   /* first convert refdes, pin to refdes:pinno text string. Then call table_get_index.  */
 
-  pinnumber = o_attrib_search_object_attribs_by_name (pin, "pinnumber", 0);
+  pinnumber = geda_attrib_object_search_object_by_name (pin, "pinnumber", 0);
 
   if ( (refdes != NULL) && (pinnumber != NULL) ) {
     row_label = geda_utility_string_concat(refdes, ":", pinnumber, NULL);
@@ -952,7 +952,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
       GEDA_FREE(new_attrib_value);
       new_attrib_value = NULL;  /* s_misc_remaining_string doesn't return NULL for empty substring. */
     }
-    old_attrib_value = o_attrib_search_attached_attribs_by_name (o_pin, new_attrib_name, 0);
+    old_attrib_value = geda_attrib_object_search_attached_by_name (o_pin, new_attrib_name, 0);
 
     /* -------  Four cases to consider: Case 1: old and new attribs exist ----- */
     if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&

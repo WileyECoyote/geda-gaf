@@ -91,7 +91,7 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
     }
 
     /* Get the attribute name and value string components */
-    o_attrib_get_name_value (object, &name, &val);
+    geda_attrib_object_get_name_value (object, &name, &val);
 
     /* Update the Value Entry */
     widget = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");

@@ -1,4 +1,4 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
 /*
  * File: vams_misc.c
  *
@@ -41,7 +41,7 @@ SCM vams_get_attribs_list (GedaObject *object)
   SCM    list = SCM_EOL;
 
   /* search outside the symbol (attached attributes only) */
-  a_iter = o_attrib_get_attached_attribs(object);
+  a_iter = geda_attrib_object_get_attached(object);
 
   while (a_iter != NULL) {
 
@@ -51,7 +51,7 @@ SCM vams_get_attribs_list (GedaObject *object)
 
       char *found_name;
 
-      if (o_attrib_get_name_value (a_current, &found_name, NULL)) {
+      if (geda_attrib_object_get_name_value (a_current, &found_name, NULL)) {
         list = scm_cons (scm_from_utf8_string (found_name), list);
       }
 

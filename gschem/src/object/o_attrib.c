@@ -102,7 +102,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
     if (object != NULL && object->attached_to == NULL && object != target) {
 
       if (o_get_is_valid_attribute(object)) {
-        o_attrib_attach (target, object, TRUE);
+        geda_attrib_object_attach (target, object, TRUE);
         attached_objects = g_list_prepend (attached_objects, object);
       }
     }
@@ -429,11 +429,11 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
   char     *name;
   bool      modified;
 
-  if (o_attrib_get_name_value (attrib, &name,  NULL)) {
+  if (geda_attrib_object_get_name_value (attrib, &name,  NULL)) {
 
-    GList *attributes = o_attrib_return_attribs (parent);
-    GList *floating   = o_attrib_find_floating_attribs(attributes);
-    floater           = (GedaText*)o_attrib_find_attrib_by_name(floating, name, 0);
+    GList *attributes = geda_attrib_object_return_attribs (parent);
+    GList *floating   = geda_attrib_object_find_floating(attributes);
+    floater           = (GedaText*)geda_attrib_object_find_attrib_by_name(floating, name, 0);
     g_list_free (attributes);
     g_list_free (floating);
 

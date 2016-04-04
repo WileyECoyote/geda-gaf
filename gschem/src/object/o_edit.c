@@ -166,7 +166,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 
     case(OBJ_TEXT):
       str = o_text_get_string (o_current);
-      if (o_attrib_get_name_value (o_current, NULL, NULL) &&
+      if (geda_attrib_object_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
         o_get_num_text_lines (str) == 1)
       {
@@ -752,7 +752,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 
       /* If the parent is not selectable then don't display this attribute */
       if (o_current->attached_to && o_current->attached_to->selectable) {
-        if (o_attrib_string_get_name_value(o_current->text->string, &name, &value)) {
+        if (geda_attrib_object_string_get_name_value(o_current->text->string, &name, &value)) {
           if( strcmp(name, "netname") == 0) {
             if (o_current->visibility == INVISIBLE) {
               o_current->visibility = 2;
@@ -773,7 +773,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
     }
     else if (o_current->type == OBJ_COMPLEX) {
 
-     GedaObject *a_current = o_attrib_first_attrib_by_name (o_current, "netname");
+     GedaObject *a_current = geda_attrib_object_first_attrib_by_name (o_current, "netname");
 
       if ( a_current != NULL) {
         if (a_current->visibility == INVISIBLE) {
@@ -886,11 +886,11 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
       char *attrib;
 
-      attrib = o_attrib_search_attached_attribs_by_name (o_current, "source", count);
+      attrib = geda_attrib_object_search_attached_by_name (o_current, "source", count);
 
       /* if above is null, then look inside symbol */
       if (attrib == NULL) {
-        attrib = o_attrib_search_inherited_attribs_by_name (o_current, "source", count);
+        attrib = geda_attrib_object_search_inherited_by_name (o_current, "source", count);
       }
 
       /* Check if a source attribute was found */
@@ -1159,22 +1159,22 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
 
       char *old_value;
 
-      o_attrib_get_name_value (attr_new, &name, &new_value);
+      geda_attrib_object_get_name_value (attr_new, &name, &new_value);
 
-      old_value = o_attrib_search_attached_attribs_by_name (o_current, name, 0);
+      old_value = geda_attrib_object_search_attached_by_name (o_current, name, 0);
 
       if (old_value != NULL) {
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-            attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
-            o_attrib_set_value (attr_old, name,  new_value);
+            attr_old = geda_attrib_object_find_attrib_by_name (o_current->attribs, name, 0);
+            geda_attrib_object_set_value (attr_old, name,  new_value);
             break;
           }
           index++;
         } while (keepers[index]);
 
-        attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+        attr_old = geda_attrib_object_find_attrib_by_name (o_current->attribs, name, 0);
         if (attr_old != NULL && (attr_old->text->size != attr_new->text->size))
         {
           attr_old->dont_redraw = TRUE;
@@ -1183,7 +1183,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
           attr_old->dont_redraw = FALSE;
         }
 
-        o_attrib_remove (&o_new->attribs, attr_new);
+        geda_attrib_object_remove (&o_new->attribs, attr_new);
         s_object_release (attr_new);
         iter->data = NULL;
       }
@@ -1197,8 +1197,8 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
 
   /* Detach attributes from old Object and attach to newGedaObject */
   old_attribs = g_list_copy (o_current->attribs);
-  o_attrib_detach_all (o_current);
-  o_attrib_attach_list (o_new, old_attribs, 1);
+  geda_attrib_object_detach_all (o_current);
+  geda_attrib_object_attach_list (o_new, old_attribs, 1);
   g_list_free (old_attribs);
 
   /* Add new attributes to page */

@@ -2007,7 +2007,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
           GedaObject *a_new = o_copy_object(a_current);
           s_page_append_object (page, a_new);
           dest_list = g_list_append(dest_list, a_new);
-          o_attrib_add(new_object, a_new);
+          geda_attrib_object_add(new_object, a_new);
         }
       }
       dest_list = g_list_prepend(dest_list, new_object);
@@ -2026,7 +2026,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
           GedaObject *a_new = o_copy_object(a_current);
           dest_list = g_list_append(dest_list, a_new);
           add_floating_object(a_new);
-          o_attrib_add(new_object, a_new);
+          geda_attrib_object_add(new_object, a_new);
         }
       }
       dest_list = g_list_prepend(dest_list, new_object);
@@ -2330,7 +2330,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
   if (busname) { /* then create a text attribute for netname */
     GedaObject *net_attrib;
     object->bus->bus_name  = geda_utility_string_strdup(busname);
-    net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
+    net_attrib = geda_attrib_object_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
     add_floating_object(net_attrib);
   }
   else {
@@ -2499,7 +2499,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   if (netname) { /* then create a text attribute for netname */
     GedaObject *net_attrib;
     object->net->net_name  = geda_utility_string_strdup(netname);
-    net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
+    net_attrib = geda_attrib_object_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
     add_floating_object(net_attrib);
   }
   else {
@@ -2815,7 +2815,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
 
     GedaObject *attrib;
 
-    attrib = o_attrib_find_attrib_by_name (parent->attribs, name, 0);
+    attrib = geda_attrib_object_find_attrib_by_name (parent->attribs, name, 0);
 
     if (attrib){
 
@@ -2830,8 +2830,8 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
       py_data = get_text_object_data(attrib);
     }
     else {
-      GList *all_butes = o_attrib_return_attribs(parent);
-      attrib = o_attrib_find_attrib_by_name (all_butes, name, 0);
+      GList *all_butes = geda_attrib_object_return_attribs(parent);
+      attrib = geda_attrib_object_find_attrib_by_name (all_butes, name, 0);
       if (attrib){
 #if DEBUG
         if (attrib->page == NULL && page != NULL) {
@@ -2961,23 +2961,23 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
       GedaObject *attrib;
 
       if (py_complex) {
-        attrib = o_attrib_find_attrib_by_name (object->attribs, name, 0);
+        attrib = geda_attrib_object_find_attrib_by_name (object->attribs, name, 0);
       }
       else {
         attrib = object;
       }
       if (attrib) {
-        o_attrib_set_value(attrib, name, value);
+        geda_attrib_object_set_value(attrib, name, value);
       }
       else {
-        GList * floaters = o_attrib_return_attribs(object);
-        attrib = o_attrib_find_attrib_by_name (floaters, name, 0);
+        GList * floaters = geda_attrib_object_return_attribs(object);
+        attrib = geda_attrib_object_find_attrib_by_name (floaters, name, 0);
         if (attrib) {
-          o_attrib_set_value(attrib, name, value);
-          o_attrib_attach (object, attrib, TRUE);
+          geda_attrib_object_set_value(attrib, name, value);
+          geda_attrib_object_attach (object, attrib, TRUE);
         }
         else{
-          attrib = o_attrib_new_attached(object, name, value, VISIBLE, SHOW_VALUE);
+          attrib = geda_attrib_object_new_attached(object, name, value, VISIBLE, SHOW_VALUE);
         }
         g_list_free(floaters);
       }

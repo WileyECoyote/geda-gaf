@@ -667,7 +667,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
         s_page_append_object (toplevel->page_current, o_new);
 
         /* add the attribute its parent */
-        o_attrib_attach (o_attrib->parent_object, o_new, TRUE);
+        geda_attrib_object_attach (o_attrib->parent_object, o_new, TRUE);
 
         /* Call add-objects-hook */
         g_hook_run_object (w_current, ADD_OBJECT_HOOK, o_new);
@@ -2403,7 +2403,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
 {
   GList *model_rows = NULL;
   GList *a_iter;
-  GList *object_attribs = o_attrib_return_attribs (object);
+  GList *object_attribs = geda_attrib_object_return_attribs (object);
 
   for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter))
   {
@@ -2411,9 +2411,9 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
     MODEL_ROW *m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
     GList *m_iter;
 
-    o_attrib_get_name_value (a_current, &m_row->name, &m_row->value);
+    geda_attrib_object_get_name_value (a_current, &m_row->name, &m_row->value);
 
-    m_row->inherited       = o_attrib_is_inherited (a_current);
+    m_row->inherited       = geda_attrib_object_is_inherited (a_current);
     m_row->visibility      = o_get_is_visible (a_current);
     m_row->show_name_value = a_current->show_name_value;
     m_row->nth_with_name   = 0; /* Provisional value until we check below */
@@ -2476,7 +2476,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
 
     /* Consider a selected text object might be an attribute */
     if (object->type != OBJ_TEXT ||
-        !o_attrib_get_name_value (object, NULL, NULL))
+        !geda_attrib_object_get_name_value (object, NULL, NULL))
       continue;
 
     /* We have an OBJ_TEXT which libgeda can parse as an attribute */
@@ -2484,8 +2484,8 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
     ThisDialog->num_lone_attribs_in_list ++;
 
     m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
-    m_row->inherited = o_attrib_is_inherited (object);
-    o_attrib_get_name_value (object, &m_row->name, &m_row->value);
+    m_row->inherited = geda_attrib_object_is_inherited (object);
+    geda_attrib_object_get_name_value (object, &m_row->name, &m_row->value);
     m_row->visibility = o_get_is_visible (object);
     m_row->show_name_value = object->show_name_value;
     m_row->nth_with_name = 0; /* All selected attributes are treated individually */

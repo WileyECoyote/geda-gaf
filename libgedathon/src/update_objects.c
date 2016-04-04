@@ -342,19 +342,19 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     return 1;
   }
 
-  attrib = o_attrib_first_attrib_by_name (object, "pinnumber");
+  attrib = geda_attrib_object_first_attrib_by_name (object, "pinnumber");
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
       if ( strcmp(object->pin->number, value) != 0) {
-        o_attrib_set_value(attrib, "pinlabel", object->pin->number);
+        geda_attrib_object_set_value(attrib, "pinlabel", object->pin->number);
         o_text_recreate(attrib);
       }
     }
   }
 
-  attrib = o_attrib_first_attrib_by_name (object, "pinseq");
+  attrib = geda_attrib_object_first_attrib_by_name (object, "pinseq");
 
   if (attrib) {
 
@@ -366,46 +366,46 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
       int number = atoi(value);
 
       if (number != object->pin->sequence) {
-        o_attrib_set_integer_value(attrib, "pinseq", object->pin->sequence);
+        geda_attrib_object_set_integer_value(attrib, "pinseq", object->pin->sequence);
         o_text_recreate(attrib);
       }
     }
   }
 
-  attrib = o_attrib_first_attrib_by_name (object, "pinlabel");
+  attrib = geda_attrib_object_first_attrib_by_name (object, "pinlabel");
 
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
       if ( strcmp(object->pin->label, value) != 0) {
-        o_attrib_set_value(attrib, "pinlabel", object->pin->label);
+        geda_attrib_object_set_value(attrib, "pinlabel", object->pin->label);
         o_text_recreate(attrib);
       }
     }
   }
 
-  attrib = o_attrib_first_attrib_by_name (object, "pintype");
+  attrib = geda_attrib_object_first_attrib_by_name (object, "pintype");
 
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
       if ( strcmp(object->pin->electrical, value) != 0) {
-        o_attrib_set_value(attrib, "pintype", object->pin->electrical);
+        geda_attrib_object_set_value(attrib, "pintype", object->pin->electrical);
         o_text_recreate(attrib);
       }
     }
   }
 
-  attrib = o_attrib_first_attrib_by_name (object, "mechtype");
+  attrib = geda_attrib_object_first_attrib_by_name (object, "mechtype");
 
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
       if ( strcmp(object->pin->mechanical, value) != 0) {
-        o_attrib_set_value(attrib, "mechtype", object->pin->mechanical);
+        geda_attrib_object_set_value(attrib, "mechtype", object->pin->mechanical);
         o_text_recreate(attrib);
       }
     }
@@ -447,7 +447,7 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
   }
 
   if (count > 0) {
-    g_list_free(o_attrib_get_attached_attribs(object));
+    g_list_free(geda_attrib_object_get_attached(object));
     object->attribs = butes;
   }
 

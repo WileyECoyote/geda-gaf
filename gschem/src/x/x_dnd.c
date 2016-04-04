@@ -290,7 +290,7 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
 
   name        = x_dnd_string_data_name(object->name);
 
-  netname = o_attrib_search_object_attribs_by_name(object, "netname", 0);
+  netname = geda_attrib_object_search_object_by_name(object, "netname", 0);
 
   if (netname == NULL)
       netname = geda_utility_string_sprintf("%s","NONE,");

@@ -323,7 +323,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
     /*-----  only process if this is a component with attributes ----*/
     //if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL) {
     if (o_current->type == OBJ_COMPLEX) {
-      object_attribs = o_attrib_return_attribs (o_current);
+      object_attribs = geda_attrib_object_return_attribs (o_current);
       for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter)) {
         a_current = a_iter->data;
 
@@ -403,7 +403,7 @@ void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
  * -# Dive down to o_lower_current = o_current->complex->prim_objs
  * -# Loop on o_lower_current looking for OBJ_PIN
  * -# When we find a pin, find the pinnumber by calling
- *    o_attrib_search_object_attribs_by_name(o_lower_current, "pinnumber", 0)
+ *    geda_attrib_object_search_object_by_name(o_lower_current, "pinnumber", 0)
  * -# Create the pin list label as "refdes=XXX", and stick it into
  *    the master pin list.
  * Since this function operates on the global sheet_data->master_pin_list,
@@ -455,7 +455,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
           printf ("In s_sheet_data_add_master_pin_list_items, examining object name %s\n", o_lower_current->name);
 #endif
           if (o_lower_current->type == OBJ_PIN) {
-            temp_pinnumber = o_attrib_search_object_attribs_by_name (o_lower_current, "pinnumber", 0);
+            temp_pinnumber = geda_attrib_object_search_object_by_name (o_lower_current, "pinnumber", 0);
 
             if (temp_pinnumber != NULL) {
               row_label = geda_utility_string_concat (temp_uref, ":", temp_pinnumber, NULL);

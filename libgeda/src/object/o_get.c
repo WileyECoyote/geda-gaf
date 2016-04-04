@@ -445,7 +445,7 @@ const char *o_get_object_attrib_value (GedaObject *object, const char *name)
 
     if (object->attribs) {
 
-      attrib = o_attrib_find_attrib_by_name (object->attribs, name, 0);
+      attrib = geda_attrib_object_find_attrib_by_name (object->attribs, name, 0);
 
       if (o_get_is_valid_attribute(attrib)) {
 

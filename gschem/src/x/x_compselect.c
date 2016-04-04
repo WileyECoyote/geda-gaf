@@ -774,7 +774,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
     return;
   }
 
-  o_attrlist = o_attrib_find_floating_attribs (
+  o_attrlist = geda_attrib_object_find_floating (
                               s_page_get_objects (preview_toplevel->page_current));
 
   filter_list = GSCHEM_DIALOG (compselect)->w_current->component_select_attrlist;
@@ -788,7 +788,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 
       GedaObject *o_current = o_iter->data;
 
-      o_attrib_get_name_value (o_current, &name, &value);
+      geda_attrib_object_get_name_value (o_current, &name, &value);
       gtk_list_store_append (model, &iter);
       gtk_list_store_set (model, &iter, 0, name, 1, value, -1);
       GEDA_FREE (name);
@@ -806,7 +806,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 
         GedaObject *o_current = o_iter->data;
 
-        if (o_attrib_get_name_value (o_current, &name, &value)) {
+        if (geda_attrib_object_get_name_value (o_current, &name, &value)) {
 
           if (strcmp (name, listiter->data) == 0) {
             gtk_list_store_append (model, &iter);

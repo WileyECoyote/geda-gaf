@@ -828,7 +828,7 @@ static void s_conn_init_page (Page *page)
                   (ConnsChangedFunc)refresh_connectivity_cache,
                                     toplevel);
 
-  o_attrib_append_attribs_changed_hook (page,
+  geda_attrib_object_append_changed_hook (page,
                     (AttribsChangedFunc)refresh_connectivity_cache,
                                         toplevel);
 }

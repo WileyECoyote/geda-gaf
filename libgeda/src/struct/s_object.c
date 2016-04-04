@@ -39,7 +39,7 @@ GedaObject *s_object_new (int type, char const *name)
 /*!
  * \brief Attach attribute to an GedaObject and append Parent's Page
  * \par Function Description
- *  This function is similar to o_attrib_add, which is called by
+ *  This function is similar to geda_attrib_object_add, which is called by
  *  the function, the difference being that this function also
  *  adds the attribute being attached to the page if the parent
  *  is already on a page.
@@ -58,7 +58,7 @@ void s_object_add_child(GedaObject *parent, GedaObject *child) {
     s_page_append_object(page, child);
   }
 
-  o_attrib_add(parent, child);
+  geda_attrib_object_add(parent, child);
 }
 
 /*!
@@ -89,10 +89,10 @@ s_object_release(GedaObject *o_current)
     }
 
     if (o_current->attached_to != NULL) {
-      o_attrib_remove(&o_current->attached_to->attribs, o_current);
+      geda_attrib_object_remove(&o_current->attached_to->attribs, o_current);
     }
 
-    o_attrib_detach_all (o_current);
+    geda_attrib_object_detach_all (o_current);
 
     if (o_current->complex && o_current->complex->prim_objs) {
       s_object_release_objects (o_current->complex->prim_objs);

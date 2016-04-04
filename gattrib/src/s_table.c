@@ -371,7 +371,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
           a_iter = g_list_next (a_iter);
         } /* while (a_iter != NULL) */
         /* Do it again but this time for ALL attributes associated with this component */
-        a_iter = o_attrib_return_attribs (o_current);
+        a_iter = geda_attrib_object_return_attribs (o_current);
         while (a_iter != NULL) {
           a_current = a_iter->data;
           is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
@@ -585,7 +585,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 
 	  if (o_lower_current->type == OBJ_PIN) {
 	    /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
-	    pinnumber = o_attrib_search_object_attribs_by_name (o_lower_current, "pinnumber", 0);
+	    pinnumber = geda_attrib_object_search_object_by_name (o_lower_current, "pinnumber", 0);
 	    row_label = geda_utility_string_concat(temp_uref, ":", pinnumber, NULL);
 
 #if DEBUG

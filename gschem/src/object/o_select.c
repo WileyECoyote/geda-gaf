@@ -585,7 +585,7 @@ void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
 
           /* collect netnames */
           netname =
-          o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+          geda_attrib_object_search_object_by_name (o_current, "netname", 0);
 
           if (netname != NULL) {
             if (g_list_find_custom(netnamestack, netname,
@@ -618,7 +618,7 @@ void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
 
           GedaObject *parent = o_current->attached_to;
 
-          netname = o_attrib_search_object_attribs_by_name (parent, "netname", 0);
+          netname = geda_attrib_object_search_object_by_name (parent, "netname", 0);
 
           if (netname != NULL) {
             if (g_list_find_custom (netnamestack,

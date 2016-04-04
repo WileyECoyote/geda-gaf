@@ -3667,7 +3667,7 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
 int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 {
   /* validate the new attribute */
-  if (!o_attrib_string_get_name_value (attribute, NULL, NULL)) {
+  if (!geda_attrib_object_string_get_name_value (attribute, NULL, NULL)) {
 
     GtkWidget* message_box;
 

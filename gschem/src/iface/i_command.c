@@ -556,9 +556,9 @@ COMMAND (do_debug)
   p_current  = gschem_toplevel_get_current_page(w_current);
 
 /*
-  o_attrib_append_attribs_changed_hook (p_current,
-                                       (AttribsChangedFunc) o_diagnostics_notify_attribute,
-                                        w_current);
+  geda_attrib_object_append_changed_hook (p_current,
+                                         (AttribsChangedFunc) o_diagnostics_notify_attribute,
+                                          w_current);
 */
   int test = gschem_diagnostics_dialog(w_current);
 
@@ -2127,7 +2127,7 @@ COMMAND (do_documentation)
       char *attrib_doc;
 
       /* look for "documentation" */
-      attrib_doc = o_attrib_search_object_attribs_by_name (object, "documentation", 0);
+      attrib_doc = geda_attrib_object_search_object_by_name (object, "documentation", 0);
 
       if (attrib_doc) {
 
@@ -2847,12 +2847,12 @@ COMMAND (do_down_schematic)
     return;
 
   parent = gschem_toplevel_get_current_page (w_current);
-  attrib = o_attrib_search_attached_attribs_by_name (object, "source", count);
+  attrib = geda_attrib_object_search_attached_by_name (object, "source", count);
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
     attrib =
-      o_attrib_search_inherited_attribs_by_name (object, "source", count);
+      geda_attrib_object_search_inherited_by_name (object, "source", count);
     looking_inside = TRUE;
 #if DEBUG
     printf("going to look inside now\n");
@@ -2937,7 +2937,7 @@ COMMAND (do_down_schematic)
     /* continue looking outside first */
     if (!looking_inside) {
       attrib =
-        o_attrib_search_attached_attribs_by_name (object, "source", count);
+        geda_attrib_object_search_attached_by_name (object, "source", count);
     }
 
     /* okay we were looking outside and didn't find anything,
@@ -2958,7 +2958,7 @@ COMMAND (do_down_schematic)
       printf("looking inside\n");
 #endif
 
-      attrib = o_attrib_search_inherited_attribs_by_name(object, "source", count);
+      attrib = geda_attrib_object_search_inherited_by_name(object, "source", count);
     }
   }
 
@@ -3603,11 +3603,11 @@ COMMAND (do_detach)
       if (o_current->attribs) {
         detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                           detached_attribs);
-        o_attrib_detach_all (o_current);
+        geda_attrib_object_detach_all (o_current);
       }
       else {
         if (o_current->attached_to) {
-          o_attrib_detach (o_current);
+          geda_attrib_object_detach (o_current);
           detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                             detached_attribs);
         }

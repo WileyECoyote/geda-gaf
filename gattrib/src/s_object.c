@@ -52,7 +52,7 @@
  * -# It gets the position info from o_current's refdes attrib and
  *    calls s_object_attrib_add_attrib_in_object() to add position
  *    info and name=value string to attrib_graphic.
- * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute
+ * -# It calls geda_attrib_object_add() to wrap attrib_graphic with (attribute
  *    Object )
  * \param toplevel GedaToplevel structure
  * \param o_current pointer to object to add attribute to
@@ -112,7 +112,7 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
  * -# gets the position info from o_current's refdes attrib and
  *    calls s_object_attrib_add_attrib_in_object() to add position
  *    info and name=value string to attrib_graphic.
- * -# calls o_attrib_add() to wrap attrib_graphic with (attribute Object )
+ * -# calls geda_attrib_object_add() to wrap attrib_graphic with (attribute Object )
  *
  * \param toplevel         GedaToplevel structure
  * \param o_current        Pointer to pin object
@@ -369,7 +369,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   /* now attach the attribute to the object (if o_current is not NULL) */
   /* note that o_current contains the object to get the attribute */
   if (o_current) {
-    o_attrib_attach (o_current, new_obj, FALSE);
+    geda_attrib_object_attach (o_current, new_obj, FALSE);
   }
 
   o_selection_add (toplevel->page_current->selection_list, new_obj);

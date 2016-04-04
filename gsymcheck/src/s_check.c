@@ -551,7 +551,7 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
   char *temp;
 
   /* look for special graphical tag */
-  temp = o_attrib_search_floating_attribs_by_name (obj_list, "graphical", 0);
+  temp = geda_attrib_object_search_floating_by_name (obj_list, "graphical", 0);
 
   if (temp) {
     s_current->graphical_symbol=TRUE;
@@ -628,7 +628,7 @@ static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
 
   /* look for special description tag */
   for (counter = 0;
-      (string = o_attrib_search_floating_attribs_by_name (obj_list, "description", counter)) != NULL;
+      (string = geda_attrib_object_search_floating_by_name (obj_list, "description", counter)) != NULL;
        counter++)
   {
     if (counter == 0) { /* collect the first appearance */
@@ -681,7 +681,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
   /* search for device attributes */
 
   for (counter = 0;
-      (string = o_attrib_search_floating_attribs_by_name (obj_list, "device", counter)) != NULL;
+      (string = geda_attrib_object_search_floating_by_name (obj_list, "device", counter)) != NULL;
        counter++)
   {
     if (counter == 0) { /* collect the first appearance */
@@ -780,7 +780,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   char *net = NULL;
 
   /* collect all net pins */
-  for (counter = 0; (net = o_attrib_search_floating_attribs_by_name (obj_list, "net", counter)) != NULL; counter++)
+  for (counter = 0; (net = geda_attrib_object_search_floating_by_name (obj_list, "net", counter)) != NULL; counter++)
   {
     char **net_tokens;
 
@@ -847,7 +847,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
       missing_pinnumber_attrib_sum = 0;
       multiple_pinnumber_attrib_sum = 0;
 
-      for (counter = 0; (string = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", counter)) != NULL; counter++)
+      for (counter = 0; (string = geda_attrib_object_search_object_by_name (o_current, "pinnumber", counter)) != NULL; counter++)
       {
 
         message = geda_utility_string_strdup (_("Found pinnumber 0 in net= attribute\n"));
@@ -964,7 +964,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
       found_first = FALSE;
       counter = 0;
 
-      string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
+      string = geda_attrib_object_search_object_by_name (o_current, "pinseq",
                                                        counter);
       if (!string) {
 
@@ -1005,7 +1005,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
         }
 
         counter++;
-        string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
+        string = geda_attrib_object_search_object_by_name (o_current, "pinseq",
                                                          counter);
       }
 
@@ -1080,7 +1080,7 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 
       do {
 
-        pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter);
+        pintype = geda_attrib_object_search_object_by_name (o_current, "pintype", counter);
 
         if (pintype != NULL) {
 
@@ -1170,7 +1170,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   bool error_parsing = FALSE;
 
   /* look for numslots to see if this symbol has slotting info */
-  value = o_attrib_search_floating_attribs_by_name (obj_list, "numslots", 0);
+  value = geda_attrib_object_search_floating_by_name (obj_list, "numslots", 0);
 
   if (!value) {
     /* Since there's no numslots= attribute, don't check slotting at all. */
@@ -1195,7 +1195,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
   i = 0;
   /* get the slotdef attribute */
-  slotdef = o_attrib_search_floating_attribs_by_name (obj_list, "slotdef", 0);
+  slotdef = geda_attrib_object_search_floating_by_name (obj_list, "slotdef", 0);
 
   while ((slotdef != NULL) && (!error_parsing)) {
 
@@ -1329,7 +1329,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     g_free(slotdef);
 
     i++;
-    slotdef = o_attrib_search_floating_attribs_by_name (obj_list, "slotdef", i);
+    slotdef = geda_attrib_object_search_floating_by_name (obj_list, "slotdef", i);
   }
 
   if (!slotdef && i < s_current->numslots) {
@@ -1558,7 +1558,7 @@ static bool s_check_missing_attribute(GedaObject *object, const char *attribute,
   int   counter=0;
   char *message;
 
-  string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
+  string = geda_attrib_object_search_object_by_name (object, attribute, counter);
 
   if (!string) {
     message = geda_utility_string_sprintf (_("Missing %s= attribute\n"), attribute);
@@ -1573,7 +1573,7 @@ static bool s_check_missing_attribute(GedaObject *object, const char *attribute,
     GEDA_FREE(string);
     found = TRUE;
     counter++;
-    string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
+    string = geda_attrib_object_search_object_by_name (object, attribute, counter);
   }
 
   while (string) {
@@ -1583,7 +1583,7 @@ static bool s_check_missing_attribute(GedaObject *object, const char *attribute,
 
     GEDA_FREE(string);
     counter++;
-    string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
+    string = geda_attrib_object_search_object_by_name (object, attribute, counter);
   }
 
   return found;
@@ -1614,14 +1614,14 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
         char *pin;
 
-        pin = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", 0);
+        pin = geda_attrib_object_search_object_by_name (o_current, "pinnumber", 0);
         if (pin) {
           message = geda_utility_string_sprintf (_("Check pin number=<%s>\n"), pin);
           ADD_WARN_LOCATION(message);
           GEDA_FREE(pin);
         }
         else {
-          pin = o_attrib_search_object_attribs_by_name (o_current, "pinseq", 0);
+          pin = geda_attrib_object_search_object_by_name (o_current, "pinseq", 0);
           if (pin) {
             message = geda_utility_string_sprintf (_("Check pin sequence=<%s>\n"), pin);
             ADD_WARN_LOCATION(message);

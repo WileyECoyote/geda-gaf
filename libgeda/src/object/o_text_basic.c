@@ -510,7 +510,7 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   f_print_set_color(toplevel, fp, o_current->color);
 
-  if (o_attrib_get_name_value (o_current, &name, &value)) {
+  if (geda_attrib_object_get_name_value (o_current, &name, &value)) {
     switch(o_current->show_name_value) {
       case(SHOW_NAME_VALUE):
         output_string = geda_utility_string_strdup(o_current->text->string);
@@ -951,7 +951,7 @@ void o_text_update_disp_string (GedaObject *object)
 
   GEDA_FREE (text->disp_string);
 
-  if (o_attrib_get_name_value (object, &name, &value)) {
+  if (geda_attrib_object_get_name_value (object, &name, &value)) {
     switch (object->show_name_value) {
       case (SHOW_NAME_VALUE):
         text->disp_string = geda_utility_string_strdup (text->string);
@@ -977,7 +977,7 @@ void o_text_update_disp_string (GedaObject *object)
         }
         break;
     }
-    /* free the strings allocated by o_attrib_get_name_value */
+    /* free the strings allocated by geda_attrib_object_get_name_value */
     GEDA_FREE(name);
     GEDA_FREE(value);
   }

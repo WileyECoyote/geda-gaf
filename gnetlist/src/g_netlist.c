@@ -585,7 +585,7 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
     if (nl_current->component_uref) {
       if (strcmp(nl_current->component_uref, uref) == 0) {
         char *value =
-        o_attrib_search_object_attribs_by_name (nl_current->object_ptr,
+        geda_attrib_object_search_object_by_name (nl_current->object_ptr,
                                                 wanted_attrib, 0);
 
         ret = scm_cons (value ? scm_from_utf8_string (value) : SCM_BOOL_F, ret);
@@ -672,7 +672,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 
         if (o_pin_object) {
           return_value =
-          o_attrib_search_object_attribs_by_name (o_pin_object,
+          geda_attrib_object_search_object_by_name (o_pin_object,
                                                   wanted_attrib, 0);
           if (return_value) {
             break;
@@ -769,7 +769,7 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
         if (pin_object) {
 
           /* only look for the first occurance of wanted_attrib */
-          return_value = o_attrib_search_object_attribs_by_name (pin_object,
+          return_value = geda_attrib_object_search_object_by_name (pin_object,
                                                                  wanted_attrib, 0);
 
           if (return_value) {
@@ -854,8 +854,8 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 
     /* only look for first occurrance of the attribute on each page */
     attrib_value =
-    o_attrib_search_floating_attribs_by_name (s_page_get_objects (p_current),
-                                              wanted_attrib, 0);
+    geda_attrib_object_search_floating_by_name (s_page_get_objects (p_current),
+                                                wanted_attrib, 0);
 
     /* Stop when we find the first one */
     if (attrib_value != NULL)
@@ -988,10 +988,10 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
           char *has_attrib_value = NULL;
           char *has_attrib_name  = NULL;
 
-          if (o_attrib_string_get_name_value (has_attrib, &has_attrib_name, &has_attrib_value) != 0)
+          if (geda_attrib_object_string_get_name_value (has_attrib, &has_attrib_name, &has_attrib_value) != 0)
           {
             char *attrib_value =
-            o_attrib_search_object_attribs_by_name (nl_current->object_ptr,
+            geda_attrib_object_search_object_by_name (nl_current->object_ptr,
                                                     has_attrib_name, 0);
 
             if (((has_attrib_value == NULL) && (attrib_value == NULL)) ||
@@ -1000,7 +1000,7 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
             {
               GEDA_FREE (attrib_value);
               attrib_value =
-              o_attrib_search_object_attribs_by_name (nl_current->object_ptr,
+              geda_attrib_object_search_object_by_name (nl_current->object_ptr,
                                                       wanted_attrib, 0);
               if (attrib_value) {
 

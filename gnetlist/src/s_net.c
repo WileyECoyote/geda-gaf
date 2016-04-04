@@ -183,13 +183,13 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
 
   o_current = object;
 
-  pinnum = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", 0);
+  pinnum = geda_attrib_object_search_object_by_name (o_current, "pinnumber", 0);
 
 #if DEBUG
   printf("found pinnum: %s\n", pinnum);
 #endif
 
-  temp_uref = o_attrib_search_object_attribs_by_name (o_current->parent_object, "refdes", 0);
+  temp_uref = geda_attrib_object_search_object_by_name (o_current->parent_object, "refdes", 0);
 
   if (temp_uref) {
     if (geda_utility_string_stricmp(temp_uref,"none") == 0) {

@@ -93,7 +93,7 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
 
   /* Carry out the attachment */
   o_notify_emit_pre_change (attrib);
-  o_attrib_attach (obj, attrib, TRUE);
+  geda_attrib_object_attach (obj, attrib, TRUE);
   o_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);
@@ -141,7 +141,7 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
 
   /* Detach object */
   o_notify_emit_pre_change (attrib);
-  o_attrib_remove (&obj->attribs, attrib);
+  geda_attrib_object_remove (&obj->attribs, attrib);
   o_set_color (attrib, DETACHED_ATTRIBUTE_COLOR);
   o_notify_emit_change (attrib);
 
@@ -232,7 +232,7 @@ EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
   scm_dynwind_unwind_handler (g_free, name, SCM_F_WIND_EXPLICITLY);
   scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
 
-  if (o_attrib_get_name_value (text, &name, &value)) {
+  if (geda_attrib_object_get_name_value (text, &name, &value)) {
     result = scm_cons (scm_from_utf8_string (name),
                        scm_from_utf8_string (value));
   }

@@ -263,7 +263,7 @@ s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
   /* Look inside the component */
   for (counter = 0; ;) {
 
-    value = o_attrib_search_inherited_attribs_by_name (o_current, "net",
+    value = geda_attrib_object_search_inherited_by_name (o_current, "net",
                                                        counter);
     if (value == NULL)
       break;
@@ -279,7 +279,7 @@ s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
   /* Look outside the component */
   for (counter = 0; ;) {
 
-    value = o_attrib_search_attached_attribs_by_name (o_current, "net",
+    value = geda_attrib_object_search_attached_by_name (o_current, "net",
                                                       counter);
     if (value == NULL)
       break;
@@ -321,7 +321,7 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
 
     char *net_name;
 
-    value = o_attrib_search_inherited_attribs_by_name (o_current,
+    value = geda_attrib_object_search_inherited_by_name (o_current,
                                                        "net", counter);
     if (value == NULL)
       break;
@@ -365,7 +365,7 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
 
     char *net_name;
 
-    value = o_attrib_search_attached_attribs_by_name (o_current,
+    value = geda_attrib_object_search_attached_by_name (o_current,
                                                       "net", counter);
     if (value == NULL)
       break;

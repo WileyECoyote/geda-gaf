@@ -233,7 +233,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
       verbose_print(" C");
 
       /* look for special graphical tag */
-      value = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
+      value = geda_attrib_object_search_object_by_name (o_current, "graphical", 0);
 
       if (value) {
 
@@ -249,7 +249,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
       netlist = s_netlist_add (netlist);
       netlist->nlid = o_current->sid;
 
-      temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
+      temp_uref = geda_attrib_object_search_object_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
         if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
@@ -272,12 +272,12 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
         /* search object for net attribute, noting that symbol may
          * not be a normal component but a power or gnd symbol */
-        value = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
+        value = geda_attrib_object_search_object_by_name (o_current, "net", 0);
 
         /* nope net attribute not found */
         if ((!value) && (!is_graphical)) {
 
-          net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+          net_name = geda_attrib_object_search_object_by_name (o_current, "netname", 0);
 
           fprintf(stderr,
                   _("Did not find refdes or any special attributes on component!<%s>, <%s>\n"),
@@ -366,7 +366,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       verbose_print(" C");
 
       /* look for special graphical tag */
-      value = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
+      value = geda_attrib_object_search_object_by_name (o_current, "graphical", 0);
 
       if (value) {
 
@@ -382,7 +382,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       netlist       = s_netlist_add (netlist);
       netlist->nlid = o_current->sid;
 
-      temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
+      temp_uref = geda_attrib_object_search_object_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
         if (!geda_utility_string_stricmp(temp_uref,"none")) {
@@ -415,12 +415,12 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 
         /* search object for net attribute, noting that symbol may
          * not be a normal component but a power or gnd symbol */
-        value = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
+        value = geda_attrib_object_search_object_by_name (o_current, "net", 0);
 
         /* nope net attribute not found */
         if ((!value) && (!is_graphical)) {
 
-          net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+          net_name = geda_attrib_object_search_object_by_name (o_current, "netname", 0);
 
           fprintf(stderr,
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
@@ -496,10 +496,10 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     cpins->node_type = o_current->pin->node_type;
 
     cpins->pin_number =
-      o_attrib_search_object_attribs_by_name (o_current, "pinnumber", 0);
+      geda_attrib_object_search_object_by_name (o_current, "pinnumber", 0);
 
     cpins->pin_label =
-      o_attrib_search_object_attribs_by_name (o_current, "pinlabel", 0);
+      geda_attrib_object_search_object_by_name (o_current, "pinlabel", 0);
 
     /* head nets node, is this really needed? */
     nets_head = nets = s_net_add(NULL);
@@ -566,7 +566,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
     /* Ignore netname attributes on buses */
     if (object->type == OBJ_NET) {
-      temp = o_attrib_search_object_attribs_by_name (object, "netname", 0);
+      temp = geda_attrib_object_search_object_by_name (object, "netname", 0);
     }
 
     if (temp) { /* If a net WITH a "netname" attribute */
@@ -578,7 +578,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     else if (object->type == OBJ_NET) { /* If net WITHOUT a "netname" */
 
       /* search for the old label= attribute on nets */
-      temp = o_attrib_search_object_attribs_by_name (object, "label", 0);
+      temp = geda_attrib_object_search_object_by_name (object, "label", 0);
 
       if (temp) { /* Accept the attribute here but issue notice */
 
@@ -605,7 +605,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     new_net->connected_to =
     s_net_return_connected_string (pr_current, object, hierarchy_tag);
 
-    temp = o_attrib_search_object_attribs_by_name (object, "pinlabel", 0);
+    temp = geda_attrib_object_search_object_by_name (object, "pinlabel", 0);
 
     if (temp) {
       new_net->pin_label = temp;

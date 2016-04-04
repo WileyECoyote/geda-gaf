@@ -57,6 +57,12 @@ struct st_symcheck {
   int   duplicate_device_attrib;
   int   multiple_device_attrib;
 
+  /* documentation = check */
+  int   missing_doc_attrib;          /* Not implemented */
+  char *documentation_attribute;     /* Not implemented */
+  int   duplicate_doc_attribute;     /* Not implemented */
+  int   multiple_doc_attrib;         /* Not implemented */
+
   /* pinseq= check */
   int missing_pinseq_attrib;
   int multiple_pinseq_attrib;

@@ -51,7 +51,7 @@ void print_struct_forw (GList *list)
       print_struct_forw(o_current->complex->prim_objs);
     }
 
-    o_attrib_print (o_current->attribs);
+    geda_attrib_object_print (o_current->attribs);
 
     printf("----\n");
     iter = g_list_next (iter);
@@ -62,7 +62,7 @@ void print_struct_forw (GList *list)
  *  \brief
  *  \par Function Description
  *
-
+*/
 void print_struct(GedaObject *ptr)
 {
   GedaObject *o_current=NULL;
@@ -80,10 +80,8 @@ void print_struct(GedaObject *ptr)
       printf("Line points.y2: %d\n", o_current->line->y[1]);
     }
 
-    o_attrib_print (o_current->attribs);
+    geda_attrib_object_print (o_current->attribs);
 
     printf("----\n");
   }
 }
-
- */

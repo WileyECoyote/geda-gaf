@@ -83,7 +83,7 @@ char *s_attrib_get_refdes(GedaObject *object)
   char *temp_uref;
 
   /*------ Try to get the refdes -----*/
-  temp_uref = o_attrib_search_object_attribs_by_name (object, "refdes", 0);
+  temp_uref = geda_attrib_object_search_object_by_name (object, "refdes", 0);
 
   if (temp_uref) {
 
@@ -91,7 +91,7 @@ char *s_attrib_get_refdes(GedaObject *object)
 
     /*------- Now append .slot to refdes if part is slotted -------- */
     /* Check if this is a multislotted component */
-    numslots = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
+    numslots = geda_attrib_object_search_object_by_name (object, "numslots", 0);
 
     if (numslots != NULL) {
 

@@ -1572,7 +1572,7 @@ GList *s_clib_get_symbols (const GedaToplevel *toplevel)
   const GList *p_iter;
   const GList *o_iter;
 
-  for ( p_iter = geda_toplevel_get_pages(toplevel); p_iter != NULL; NEXT(p_iter))
+  for (p_iter = geda_toplevel_get_pages(toplevel); p_iter != NULL; NEXT(p_iter))
   {
 
     Page *page = (Page*)p_iter->data;

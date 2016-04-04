@@ -170,7 +170,7 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, GedaObject *object)
   }
 
   /* look for the symversion= attached to object */
-  outside = o_attrib_search_attached_attribs_by_name (object, "symversion", 0);
+  outside = geda_attrib_object_search_attached_by_name (object, "symversion", 0);
 
   /* Check is version checking is enabled for this refdes */
   if (outside && outside[0] == '-') {
@@ -179,7 +179,7 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, GedaObject *object)
   }
 
   /* look on the inside for the symversion= attribute */
-  inside = o_attrib_search_inherited_attribs_by_name (object, "symversion", 0);
+  inside = geda_attrib_object_search_inherited_by_name (object, "symversion", 0);
 
   /* get the uref for future use */
   refdes = o_get_object_attrib_value(object, "refdes");
@@ -558,7 +558,7 @@ o_complex_get_promotable (GedaToplevel *toplevel, GedaObject *object, int detach
   if (!toplevel->attribute_promotion) /* controlled through rc file */
     return NULL;
 
-  attribs = o_attrib_find_floating_attribs (object->complex->prim_objs);
+  attribs = geda_attrib_object_find_floating (object->complex->prim_objs);
 
   for (iter = attribs; iter != NULL; iter = iter->next) {
 
@@ -613,7 +613,7 @@ o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted)
     if (o_current->type != OBJ_PIN)
       continue;
 
-    value = o_attrib_search_object_attribs_by_name (o_current, name, 0);
+    value = geda_attrib_object_search_object_by_name (o_current, name, 0);
     found = (value != NULL && strcmp (value, wanted) == 0);
     GEDA_FREE (value);
 
@@ -662,7 +662,7 @@ o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
         /* check list against attributes which can be promoted */
         if (toplevel->always_promote_attributes != NULL) {
 
-          if (o_attrib_get_name_value (object, &name, NULL)) {
+          if (geda_attrib_object_get_name_value (object, &name, NULL)) {
             if (g_list_find_custom(toplevel->always_promote_attributes,
                 name, (GCompareFunc) strcmp) != NULL) {
               /* Name of the attribute was in the always promote attributes list */
@@ -943,7 +943,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, GedaObject *object)
   }
 
   /* Attach promoted attributes to the original complex object */
-  o_attrib_attach_list (object, promoted, TRUE);
+  geda_attrib_object_attach_list (object, promoted, TRUE);
 
   g_list_free (promotable);
 
