@@ -1502,7 +1502,7 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
 /*! \brief Update a GedaPin Object Property with Read Attribute GedaObject
  *
  *  \par Function Description
- *  This function is called from o_read_attribs after a text attribute
+ *  This function is called from geda_attrib_object_read after a text attribute
  *  has been read in for pin object. The functions passes the attribute
  *  oject to the GedaPin Object to set internal values.
  *
@@ -1510,7 +1510,7 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
  *  \param [in] o_text  The attribute object being attached to the pin
 
  *  \note The pin object is not likely associated with a page or even
- *  attached to complex when this function is called by o_read_attribs.
+ *  attached to complex when this function is called by geda_attrib_object_read.
  */
 void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
 {
@@ -1533,7 +1533,7 @@ void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
 
       GEDA_FREE(attrib);
       GEDA_FREE(value);
-      /* Note, not creating an attribute because o_read_attribs already did */
+      /* Note, not creating an attribute because geda_attrib_object_read already did */
     }
   }
 }

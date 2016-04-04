@@ -460,7 +460,7 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
  *  \todo Bad Error recovery
  */
 GList*
-o_read_attribs (GedaToplevel *toplevel,
+geda_attrib_object_read (GedaToplevel *toplevel,
                 GedaObject       *parent,
                 TextBuffer   *tb,
                 unsigned int  release_ver, unsigned int fileformat_ver,

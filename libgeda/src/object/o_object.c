@@ -217,7 +217,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         /* 2nd is the object to get the attributes */
         if (new_obj != NULL) {
           geda_attrib_object_freeze_hooks (new_obj);
-          new_attrs_list = o_read_attribs (toplevel, new_obj, tb, release_ver, fileformat_ver, err);
+          new_attrs_list = geda_attrib_object_read (toplevel, new_obj, tb, release_ver, fileformat_ver, err);
           if (new_attrs_list == NULL) {
             goto error;
           }
@@ -314,7 +314,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(ENDATTACH_ATTR):
-        /* this case is never hit, since the } is consumed by o_read_attribs */
+        /* this case is never hit, since the } is consumed by geda_attrib_object_read */
         break;
 
       case(INFO_FONT):
