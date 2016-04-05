@@ -8,7 +8,8 @@
     * include/prototype_priv.h: Replace private prefix o_attrib geda_attrib_object.
 
     * src/object/o_attrib.c: Replace function prefix o_attrib geda_attrib_object,
-      reorganize module. Make geda_attrib_object_emit_changed static.
+      reorganize module. Make geda_attrib_object_emit_changed static. Update
+      Doxygen comments.
 
 2016-04-03 Wiley E. Hill <wileyhill@gmail.com>
 

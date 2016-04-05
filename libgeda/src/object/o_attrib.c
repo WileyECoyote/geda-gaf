@@ -64,10 +64,12 @@ call_attribs_changed_hook (void *data, void *user_data)
   hook->func (hook->data, object);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \internal Emit Attribute Change
+ * \par Function Description
+ * \todo does not compress notifiees, so if refresh_connectivity_cache
+ *       is in the list 10 times does refresh_connectivity_cache is
+ *       called 10 time?
  */
 static void
 geda_attrib_object_emit_changed (GedaObject *object)
@@ -85,12 +87,13 @@ geda_attrib_object_emit_changed (GedaObject *object)
   }
 }
 
-/*! \brief Add an attribute to an existing attribute list.
- *  \par Function Description
+/*!
+ * \brief Add an attribute to an existing attribute list.
+ * \par Function Description
  *  Add an attribute to an existing attribute list.
  *
- *  \param [in]  object The GedaObject that item is being added to.
- *  \param [in]  item   The attribute that is to be added to object.
+ * \param [in]  object The GedaObject that item is being added to.
+ * \param [in]  item   The attribute that is to be added to object.
  */
 void
 geda_attrib_object_add(GedaObject *object, GedaObject *item)
@@ -101,6 +104,12 @@ geda_attrib_object_add(GedaObject *object, GedaObject *item)
   geda_attrib_object_emit_changed (object);
 }
 
+/*!
+ * \todo Finish function documentation!!!
+ * \brief
+ * \par Function Description
+ *
+ */
 void
 geda_attrib_object_append_changed_hook (Page *page,
                                         AttribsChangedFunc func,
@@ -116,14 +125,14 @@ geda_attrib_object_append_changed_hook (Page *page,
     g_list_append (page->attribs_changed_hooks, new_hook);
 }
 
-/*! \brief Attach existing attribute to an object
- *
- *  \par Function Description
+/*!
+ * \brief Attach existing attribute to an object
+ * \par Function Description
  *  Attach existing attribute to an object.
  *
- *  \param [out] object       The object where you want to add item as an attribute.
- *  \param [in]  attrib       The attribute to be added.
- *  \param [in]  set_color    Whether or not we should set the new attribute's color.
+ * \param [out] object       The object where you want to add item as an attribute.
+ * \param [in]  attrib       The attribute to be added.
+ * \param [in]  set_color    Whether or not we should set the new attribute's color.
  */
 void
 geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color)
@@ -157,14 +166,14 @@ geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color
     o_set_color (attrib, ATTRIBUTE_COLOR);
 }
 
-/*! \brief Attach list of existing attributes to an object
- *
- *  \par Function Description
+/*!
+ * \brief Attach list of existing attributes to an object
+ * \par Function Description
  *  Attach list of existing attributes to an object.
  *
- *  \param [out] object     The object where you want to add item as an attribute.
- *  \param [in]  attr_list  The list of attributes to be added.
- *  \param [in]  set_color  Whether or not we should set the new attribute's color.
+ * \param [out] object     The object where you want to add item as an attribute.
+ * \param [in]  attr_list  The list of attributes to be added.
+ * \param [in]  set_color  Whether or not we should set the new attribute's color.
  */
 void
 geda_attrib_object_attach_list (GedaObject  *object,
@@ -177,15 +186,15 @@ geda_attrib_object_attach_list (GedaObject  *object,
     geda_attrib_object_attach (object, iter->data, set_color);
 }
 
-/*! \brief Detach an attribute from parent
- *
- *  \par Function Description
+/*!
+ * \brief Detach an attribute from parent
+ * \par Function Description
  *  Detaches \a attribute from the parent object.
  *  Currently in gschem, this would only apply to floating
  *  attributes because a non-floating can not be selected
  *  individually.
  *
- *  \param [in,out] attribute The Attribute to be detached.
+ * \param [in,out] attribute The Attribute to be detached.
  */
 void
 geda_attrib_object_detach(GedaObject *attribute)
@@ -211,12 +220,12 @@ geda_attrib_object_detach(GedaObject *attribute)
   }
 }
 
-/*! \brief Detach all attribute items in a list
- *
- *  \par Function Description
+/*!
+ * \brief Detach all attribute items in a list
+ * \par Function Description
  *  Detach all attributes from an object.
  *
- *  \param [in,out] object    The object whos attributes to detach.
+ * \param [in,out] object    The object whos attributes to detach.
  */
 void
 geda_attrib_object_detach_all(GedaObject *object)
@@ -249,15 +258,16 @@ geda_attrib_object_detach_all(GedaObject *object)
   }
 }
 
-/*! \brief Find all floating attributes in the given object list.
- *  \par Function Description
+/*!
+ * \brief Find all floating attributes in the given object list.
+ * \par Function Description
  *  Find all floating attributes in the given object list.
  *
- *  \param [in] list  GList of Objects to search for floating attributes.
+ * \param [in] list  GList of Objects to search for floating attributes.
  *
- *  \return GList of floating attributes from the input list
+ * \return GList of floating attributes from the input list
  *
- *  \note Caller must g_list_free returned list.
+ * \note Caller must g_list_free returned list.
  */
 GList*
 geda_attrib_object_find_floating (const GList *list)
@@ -283,17 +293,18 @@ geda_attrib_object_find_floating (const GList *list)
   return g_list_reverse (floating_attributes);
 }
 
-/*! \brief Find an attribute in a list.
- *  \par Function Description
+/*!
+ * \brief Find an attribute in a list.
+ * \par Function Description
  *  Case sensitive search for attribute by name. Counter is the n'th
  *  occurance of the attribute, and starts searching from zero.  Zero
  *  is the first occurance of an attribute.
  *
- *  \param [in] list   GList of attributes to search.
- *  \param [in] name   Character string with attribute name to search for.
- *  \param [in] count  Which occurance to return.
+ * \param [in] list   GList of attributes to search.
+ * \param [in] name   Character string with attribute name to search for.
+ * \param [in] count  Which occurance to return.
  *
- *  \return The n'th attribute object in the given list with the given name.
+ * \return The n'th attribute object in the given list with the given name.
  */
 GedaObject*
 geda_attrib_object_find_attrib_by_name (const GList *list,
@@ -327,14 +338,15 @@ geda_attrib_object_find_attrib_by_name (const GList *list,
   return NULL;
 }
 
-/*! \brief Find first occurance of attribute object attached to an object.
- *  \par Function Description
+/*!
+ * \brief Find first occurance of attribute object attached to an object.
+ * \par Function Description
  *  Search for attribute by name.
  *
- *  \param [in] object   GedaObject whose attributes are to searched.
- *  \param [in] name     Character string with attribute name to search for.
+ * \param [in] object   GedaObject whose attributes are to searched.
+ * \param [in] name     Character string with attribute name to search for.
  *
- *  \return The n'th attribute object in the given list with the given name.
+ * \return The n'th attribute object in the given list with the given name.
  */
 GedaObject*
 geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
@@ -346,10 +358,11 @@ geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Freeze Attribute Notification Hooks
+ * \par Function Description
+ *  Increments the freeze count notify count, effectively blocking
+ *  notifications until the freeze count was has been reduce to zero.
  */
 void
 geda_attrib_object_freeze_hooks (GedaObject *object)
@@ -357,13 +370,14 @@ geda_attrib_object_freeze_hooks (GedaObject *object)
   object->attrib_notify_freeze_count ++;
 }
 
-/*! \brief Get List of Attributes Attached to GedaObject
- *  \par Function Description
+/*!
+ * \brief Get List of Attributes Attached to GedaObject
+ * \par Function Description
  *  return the GedaObject-atrribs glist assocaiated with the given object.
  *
- *  \param [in]  object The GedaObject from which to get the attribute list.
+ * \param [in]  object The GedaObject from which to get the attribute list.
  *
- *  \return List of attached attributes.
+ * \return List of attached attributes.
  */
 GList*
 geda_attrib_object_get_attached (const GedaObject *object)
@@ -374,17 +388,18 @@ geda_attrib_object_get_attached (const GedaObject *object)
   return NULL;
 }
 
-/*! \brief Get name and value from an attribute GedaObject
- *  \par Function Description
+/*!
+ * \brief Get name and value from an attribute GedaObject
+ * \par Function Description
  *  Calls geda_attrib_object_get_name_value to do the work
  *
- *  \param [in]  attrib     The attribute GedaObject whos name/value to return.
- *  \param [out] name_ptr   The return location for the name, or NULL.
- *  \param [out] value_ptr  The return location for the value, or NULL.
+ * \param [in]  attrib     The attribute GedaObject whos name/value to return.
+ * \param [out] name_ptr   The return location for the name, or NULL.
+ * \param [out] value_ptr  The return location for the value, or NULL.
  *
- *  \return TRUE on success, FALSE otherwise.
+ * \return TRUE on success, FALSE otherwise.
  *
- *  \sa geda_attrib_object_string_get_name_value()
+ * \sa geda_attrib_object_string_get_name_value()
  */
 bool
 geda_attrib_object_get_name_value (const GedaObject  *attrib,
@@ -397,15 +412,16 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
                                             name_ptr, value_ptr);
 }
 
-/*! \brief Check whether a attrib is attached to another object
- *  \par Function Description
+/*!
+ * \brief Check whether a attrib is attached to another object
+ * \par Function Description
  *  This function checks whether the object \a attrib is attached to
  *  the \a object.
  *
- *  \param [in]  attrib     The attribute to be checket.
- *  \param [in]  object     The object where you want to add item as an attribute.
+ * \param [in]  attrib     The attribute to be checket.
+ * \param [in]  object     The object where you want to add item as an attribute.
  *
- *  \return TRUE if attrib is an attribute of object, FALSE otherwise
+ * \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
 bool
 geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObject *object)
@@ -419,14 +435,15 @@ geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObject *o
   return FALSE;
 }
 
-/*! \brief Query whether a given attribute GedaObject is "inherited"
- *  \par Function Description
+/*!
+ * \brief Query whether a given attribute GedaObject is "inherited"
+ * \par Function Description
  *  This function returns TRUE if the given attribute GedaObject is a
  *  toplevel un-attached attribute inside a complex's prim_objs.
  *
- *  \param [in] attrib       GedaObject who's status to query.
+ * \param [in] attrib       GedaObject who's status to query.
  *
- *  \return TRUE if the given attribute is inside a symbol
+ * \return TRUE if the given attribute is inside a symbol
  */
 int
 geda_attrib_object_is_inherited (const GedaObject *attrib)
@@ -434,21 +451,21 @@ geda_attrib_object_is_inherited (const GedaObject *attrib)
   return (attrib->attached_to == NULL && attrib->parent_object != NULL);
 }
 
-/*! \brief Create a new Attributes GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Create a new Attributes GedaObject
+ * \par Function Description
  *  This function creates a new text object and attaches the
  *  attribute to the given parent object of the Parent argument
  *  is not NULL, if the parent object is on a page, then the
  *  new attribute will be appended to the same page.
  *
- *  \param [in] parent          GedaObject the new attribute is to be attached to.
- *  \param [in] name            Attribute name string.
- *  \param [in] value           Attribute value string.
- *  \param [in] visibility      Attribute GedaObject visibility.
- *  \param [in] show_name_value Show name value visibility flag.
+ * \param [in] parent          GedaObject the new attribute is to be attached to.
+ * \param [in] name            Attribute name string.
+ * \param [in] value           Attribute value string.
+ * \param [in] visibility      Attribute GedaObject visibility.
+ * \param [in] show_name_value Show name value visibility flag.
  *
- *  \return [out] the new Text attribute GedaObject
+ * \return [out] the new Text attribute GedaObject
  */
 GedaObject*
 geda_attrib_object_new_attached(GedaObject *parent,
@@ -619,21 +636,22 @@ geda_attrib_object_print(const GList *attributes)
   }
 }
 
-/*! \brief Read attributes from a buffer.
- *  \par Function Description
+/*!
+ * \brief Read attributes from a buffer.
+ * \par Function Description
  *  Read attributes from a TextBuffer.
  *
- *  \param [in]  toplevel               The GedaToplevel object.
- *  \param [in]  parent  GedaObject which gets these attribs.
- *  \param [in]  tb                     The text buffer to read from.
- *  \param [in]  release_ver            libgeda release version number.
- *  \param [in]  fileformat_ver         file format version number.
+ * \param [in]  toplevel               The GedaToplevel object.
+ * \param [in]  parent  GedaObject which gets these attribs.
+ * \param [in]  tb                     The text buffer to read from.
+ * \param [in]  release_ver            libgeda release version number.
+ * \param [in]  fileformat_ver         file format version number.
  *
- *  \param [out] err                    A GError object
+ * \param [out] err                    A GError object
  *
- *  \return GList of attributes read, or NULL on error.
+ * \return GList of attributes read, or NULL on error.
  *
- *  \todo Bad Error recovery
+ * \todo Bad Error recovery
  */
 GList*
 geda_attrib_object_read (GedaToplevel *toplevel,
@@ -755,14 +773,14 @@ error:
   return NULL;
 }
 
-/*! \brief Remove an attribute item from an attribute list
- *
- *  \par Function Description
+/*!
+ * \brief Remove an attribute item from an attribute list
+ * \par Function Description
  *  This function removes the given attribute from an attribute list.
  *  This function should be used when detaching an attribute.
  *
- *  \param [in] list      The attribute list to remove attribute from.
- *  \param [in] remove    The GedaObject to remove from list.
+ * \param [in] list      The attribute list to remove attribute from.
+ * \param [in] remove    The GedaObject to remove from list.
  */
 void
 geda_attrib_object_remove(GList **list, GedaObject *remove)
@@ -781,8 +799,9 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
     BUG_MSG("can not remove NULL attribute");
 }
 
-/*! \brief Get all attached attributes of the specified GedaObject.
- *  \par Function Description
+/*!
+ * \brief Get all attached attributes of the specified GedaObject.
+ * \par Function Description
  *  This function returns all attributes of the specified object.
  *
  *  The returned GList should be freed using the g_list_free().
@@ -792,9 +811,9 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
  *  which live as toplevel un-attached attributes inside in a
  *  complex Object's prim_objs).
  *
- *  \param [in] object       GedaObject whos attributes to return.
+ * \param [in] object       GedaObject whos attributes to return.
  *
- *  \return A GList of attributes belinging to the passed object.
+ * \return A GList of attributes belinging to the passed object.
  */
 GList*
 geda_attrib_object_return_attribs (const GedaObject *object)
@@ -835,18 +854,19 @@ geda_attrib_object_return_attribs (const GedaObject *object)
   return attribs;
 }
 
-/*! \brief Search attribute list by name.
- *  \par Function Description
+/*!
+ * \brief Search attribute list by name.
+ * \par Function Description
  *  Search for attribute by name.
  *
  *  Counter is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- *  \param [in] list     GList of attributes to search.
- *  \param [in] name     Character string with attribute name to search for.
- *  \param [in] counter  Which occurance to return.
+ * \param [in] list     GList of attributes to search.
+ * \param [in] name     Character string with attribute name to search for.
+ * \param [in] counter  Which occurance to return.
  *
- *  \return Character string with attribute value, NULL otherwise.
+ * \return Character string with attribute value, NULL otherwise.
  */
 static char*
 geda_attrib_object_search_attrib_list_by_name (const GList *list,
@@ -887,20 +907,21 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
   return geda_attrib_object_search_attrib_list_by_name (object->attribs, name, counter);
 }
 
-/*! \brief Search floating attribute by name.
- *  \par Function Description
+/*!
+ * \brief Search floating attribute by name.
+ * \par Function Description
  *  Search for attribute by name.
  *
  *  Counter is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- *  \param [in] list     GList of Objects to search for floating attributes.
- *  \param [in] name     Character string with attribute name to search for.
- *  \param [in] counter  Which occurance to return.
+ * \param [in] list     GList of Objects to search for floating attributes.
+ * \param [in] name     Character string with attribute name to search for.
+ * \param [in] counter  Which occurance to return.
  *
- *  \return Character string with attribute value, NULL otherwise.
+ * \return Character string with attribute value, NULL otherwise.
  *
- *  \note Caller must release the returned character string.
+ * \note Caller must release the returned character string.
  */
 char*
 geda_attrib_object_search_floating_by_name (const GList *list,
@@ -944,20 +965,21 @@ geda_attrib_object_search_inherited_by_name (const GedaObject *object,
                                               name, counter);
 }
 
-/*! \brief Search attributes of object by name
- *  \par Function Description
+/*!
+ * \brief Search attributes of object by name
+ * \par Function Description
  *  Search for attribute by name. The search includes attributes directly
  *  attached and inherited attributes. Counter is the n'th occurance of the
  *  attribute, and starts searching from zero. Zero is the first occurance
  *  of an attribute.
  *
- *  \param [in] object  GedaObject who's attributes to search,
- *  \param [in] name    Character string with attribute name to search for,
- *  \param [in] counter Which occurance to return.
+ * \param [in] object  GedaObject who's attributes to search,
+ * \param [in] name    Character string with attribute name to search for,
+ * \param [in] counter Which occurance to return.
  *
- *  \return Character string with attribute value, NULL otherwise.
+ * \return Character string with attribute value, NULL otherwise.
  *
- *  \note Caller should release the returned character string.
+ * \note Caller should release the returned character string.
  */
 char*
 geda_attrib_object_search_object_by_name (const GedaObject *object,
@@ -974,25 +996,46 @@ geda_attrib_object_search_object_by_name (const GedaObject *object,
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set Attribute to Interger Value
+ * \par Function Description
+ *  Sets the value of \a attrib using the string representation
+ *  of \a value.
  *
+ * \param [in] attrib   Attribute whose value is to be set,
+ * \param [in] name_ptr Ponter to string of attribute name,
+ * \param [in] value    Integer value to be set.
+ *
+ * \sa geda_attrib_object_set_value
+ *
+ * \todo why is geda_attrib_object_emit_changed not called?
  */
 void
-geda_attrib_object_set_integer_value (const GedaObject *attrib, const char *name_ptr, int value)
+geda_attrib_object_set_integer_value (const GedaObject *attrib,
+                                      const char       *name_ptr,
+                                            int         value)
 {
   GEDA_FREE(attrib->text->string);
   attrib->text->string = geda_utility_string_sprintf("%s=%d", name_ptr, value, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief  Set Attribute to Interger Value
+ * \par Function Description
+ *  Sets the attribute value of \a attrib to the given value.
  *
+ * \param [in] attrib    Attribute whose value is to be set,
+ * \param [in] name_ptr  Pointer to string of attribute name,
+ * \param [in] value_ptr Pointer the new value.
+ *
+ * \sa geda_attrib_object_set_integer_value
+ *
+ * \todo why is geda_attrib_object_emit_changed not called?
  */
 void
-geda_attrib_object_set_value (const GedaObject *attrib, const char *name_ptr, const char *value_ptr)
+geda_attrib_object_set_value (const GedaObject *attrib,
+                              const char       *name_ptr,
+                              const char       *value_ptr)
 {
 
   GEDA_FREE(attrib->text->string);
@@ -1000,8 +1043,9 @@ geda_attrib_object_set_value (const GedaObject *attrib, const char *name_ptr, co
   attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
 }
 
-/*! \brief Get name and value from an attribute 'name=value' string.
- *  \par Function Description
+/*!
+ * \brief Get name and value from an attribute 'name=value' string.
+ * \par Function Description
  *  This function parses the character string \a string expected to be
  *  an attribute string of the form 'name=value'.
  *
@@ -1012,20 +1056,21 @@ geda_attrib_object_set_value (const GedaObject *attrib, const char *name_ptr, co
  *  \a name_ptr and/or \a value_ptr can be NULL.
  *  If not NULL, the caller must GEDA_FREE these returned strings.
  *
- *  \note
+ * \note
  *  If you get an invalid attribute (improper) with a name and no
  *  value, then it is NOT an attribute. Also, there cannot be any
  *  spaces beside the equals sign
  *
- *  \param [in]  string     String to split into name/value pair.
- *  \param [out] name_ptr   The return location for the name, or NULL.
- *  \param [out] value_ptr  The return location for the value, or NULL.
+ * \param [in]  string     String to split into name/value pair.
+ * \param [out] name_ptr   The return location for the name, or NULL.
+ * \param [out] value_ptr  The return location for the value, or NULL.
  *
- *  \return TRUE on success, FALSE otherwise.
+ * \return TRUE on success, FALSE otherwise.
  */
 bool
-geda_attrib_object_string_get_name_value (const char *string,
-                                      char **name_ptr, char **value_ptr)
+geda_attrib_object_string_get_name_value (const char  *string,
+                                                char **name_ptr,
+                                                char **value_ptr)
 {
   char *ptr, *prev_char, *next_char;
 
@@ -1060,10 +1105,11 @@ geda_attrib_object_string_get_name_value (const char *string,
   return TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Thaw Attribute Notification Hooks
+ * \par Function Description
+ *  Decreases the notify_freeze_count of \a object, if the count
+ *  has been reduced to zero pending notifications are completed.
  */
 void
 geda_attrib_object_thaw_hooks (GedaObject *object)
@@ -1074,5 +1120,7 @@ geda_attrib_object_thaw_hooks (GedaObject *object)
 
   if (object->attrib_notify_freeze_count == 0 &&
       object->attrib_notify_pending)
+  {
     geda_attrib_object_emit_changed (object);
+  }
 }
