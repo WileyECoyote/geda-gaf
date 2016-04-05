@@ -2,6 +2,10 @@
 
     * src/object/o_bus_basic.c: Replace prefix o_bus->geda_bus_object.
 
+    * src/object/o_box_object.c: Rename file o_box_basic -> o_box_object.
+
+    * src/object/o_bus_object.c: Rename file o_bus_basic -> o_bus_object.
+
 2016-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Remove geda_attrib_object_emit_changed.
