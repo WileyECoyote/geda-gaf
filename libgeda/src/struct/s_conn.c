@@ -808,12 +808,12 @@ static void refresh_connectivity_cache (GedaToplevel *toplevel, GedaObject *obje
     }
 }
 
-/*! \brief Initialize Page Connection Notification System
- *
+/*!
+ * \brief Initialize Page Connection Notification System
  * \par Function Description
  *  This function add a hook to each new page object so that the
- *  function refresh_connectivity_cache is whenever an object on
- *  the page is created or modified.
+ *  function refresh_connectivity_cache is called whenever an object
+ *  on the page is created or modified.
  *
  * \param page #Page Object to emit notifications for.
  */

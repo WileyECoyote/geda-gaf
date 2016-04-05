@@ -549,11 +549,12 @@ console_class_init (void *class, void *class_data)
  *  a Custom Entry box is setup to receive "typed" command user input.
  *  and a Close button.
  *
- * \param console the instance of the class to initialize
+ *  \param [in]  instance  The Console Dialog being initialized.
+ *  \param [in]  class     Class of the type the instance is created for.
  */
-static void console_instance_init (GTypeInstance *self, void *class)
+static void console_instance_init (GTypeInstance *instance, void *class)
 {
-  Console        *console = (Console*)self;
+  Console        *console = (Console*)instance;
   GtkWidget      *scrolled_win;
   GtkWidget      *text_view;
   GtkTextBuffer  *text_buffer;
