@@ -30,8 +30,8 @@
  *  to the object it is attached to. Each object that has attributes has a
  *  list of pionters to its attributes.
  *
- *  \image html geda_attrib_object_overview.png
- *  \image latex geda_attrib_object_overview.pdf "attribute overview" width=14cm
+ *  \image html o_attrib_overview.png
+ *  \image latex o_attrib_overview.pdf "attribute overview" width=14cm
  *
  *  \note
  *  Be sure in o_copy o_move o_delete you maintain the attributes
