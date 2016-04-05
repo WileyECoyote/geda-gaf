@@ -97,9 +97,10 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject *new_obj;
     GList      *prev_conn_objects;
 
-    new_obj = o_bus_new(color,
-                        w_current->first_wx, w_current->first_wy,
-                        w_current->second_wx, w_current->second_wy, 0);
+    new_obj = geda_object_bus_new(color,
+                                  w_current->first_wx, w_current->first_wy,
+                                  w_current->second_wx, w_current->second_wy,
+                                  0);
 
     new_obj->line_options->line_width = o_style_get_bus_width(toplevel);
     s_page_append_object (toplevel->page_current, new_obj);

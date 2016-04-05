@@ -28,8 +28,8 @@
 
 #include <libgeda_priv.h>
 
-static int  o_bus_consolidate_segments (GedaObject *object) __attribute__((unused));
-static void o_bus_consolidate_lowlevel (GedaObject *object,  GedaObject *del_object, int orient) __attribute__((unused));
+static int  geda_object_bus_consolidate_segments (GedaObject *object) __attribute__((unused));
+static void geda_object_bus_consolidate_lowlevel (GedaObject *object,  GedaObject *del_object, int orient) __attribute__((unused));
 
 /* \brief
  * \par Function Description
@@ -39,7 +39,7 @@ static void o_bus_consolidate_lowlevel (GedaObject *object,  GedaObject *del_obj
  *
  * \todo This function is currently not used. Check it before using it
  */
-static void o_bus_consolidate_lowlevel (GedaObject *object,
+static void geda_object_bus_consolidate_lowlevel (GedaObject *object,
                                         GedaObject *del_object, int orient)
 {
   int temp1, temp2;
@@ -114,7 +114,7 @@ static void o_bus_consolidate_lowlevel (GedaObject *object,
  *
  * \todo Not Implemented Yet
  */
-static int o_bus_consolidate_segments (GedaObject *object)
+static int geda_object_bus_consolidate_segments (GedaObject *object)
 {
 
   return(0);
@@ -125,7 +125,7 @@ static int o_bus_consolidate_segments (GedaObject *object)
  *
  * \todo Not Implemented Yet
  */
-void o_bus_consolidate( void)
+void geda_object_bus_consolidate( void)
 {
 
 }
@@ -139,7 +139,7 @@ void o_bus_consolidate( void)
  *
  *  \return a new bus object
  */
-GedaObject *o_bus_copy(GedaObject *o_current)
+GedaObject *geda_object_bus_copy(GedaObject *o_current)
 {
   GedaObject *new_obj;
 
@@ -149,7 +149,7 @@ GedaObject *o_bus_copy(GedaObject *o_current)
   /* still doesn't work... you need to pass in the new values */
   /* or don't update and update later */
   /* I think for now I'll disable the update and manually update */
-  new_obj = o_bus_new (o_current->color,
+  new_obj = geda_object_bus_new (o_current->color,
                        o_current->line->x[0], o_current->line->y[0],
                        o_current->line->x[1], o_current->line->y[1],
                        o_current->bus->bus_ripper_direction);
@@ -165,7 +165,7 @@ GedaObject *o_bus_copy(GedaObject *o_current)
  *
  */
 /* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
-int o_bus_get_direction(GedaObject *object)
+int geda_object_bus_get_direction(GedaObject *object)
 {
   int direction = 0;
 
@@ -203,7 +203,7 @@ int o_bus_get_direction(GedaObject *object)
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_bus_get_position(GedaObject *object, int *x, int *y)
+bool geda_object_bus_get_position(GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_BUS(object), FALSE);
 
@@ -224,16 +224,16 @@ bool o_bus_get_position(GedaObject *object, int *x, int *y)
  *  \param [in]     center_y  y-coord of the mirror position
 
  */
-void o_bus_mirror(GedaObject *object, int center_x, int center_y)
+void geda_object_bus_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
-  o_bus_translate(object, -center_x, -center_y);
+  geda_object_bus_translate(object, -center_x, -center_y);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_bus_translate(object, center_x, center_y);
+  geda_object_bus_translate(object, center_x, center_y);
 }
 
 /*! \brief modify one point of a bus object
@@ -248,7 +248,7 @@ void o_bus_mirror(GedaObject *object, int center_x, int center_y)
  *  \param [in] y          new y-coord of the bus point
  *  \param [in] whichone   bus point to modify
  */
-void o_bus_modify(GedaObject *object, int x, int y, int whichone)
+void geda_object_bus_modify(GedaObject *object, int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
@@ -272,7 +272,7 @@ void o_bus_modify(GedaObject *object, int x, int y, int whichone)
  *
  *  \return A new bus Object
  */
-GedaObject *o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
+GedaObject *geda_object_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
 {
   GedaObject *new_obj;
   GedaBus    *bus;
@@ -301,7 +301,7 @@ GedaObject *o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_
  *  \param [in] object   The bus object
  *  \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
-int o_bus_orientation(GedaObject *object)
+int geda_object_bus_orientation(GedaObject *object)
 {
   if (object->line->y[0] == object->line->y[1]) {
     return(HORIZONTAL);
@@ -326,7 +326,7 @@ int o_bus_orientation(GedaObject *object)
  *  \param [in] origin_x     x-coord of the postscript origin
  *  \param [in] origin_y     y-coord of the postscript origin
  */
-void o_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+void geda_object_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                  int origin_x, int origin_y)
 {
   int bus_width;
@@ -334,7 +334,7 @@ void o_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   int x2, y2;
 
   if (o_current == NULL) {
-    printf (_("null in o_bus_print\n"));
+    printf (_("null in geda_object_bus_print\n"));
     return;
   }
 
@@ -369,7 +369,7 @@ void o_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *
  *  \return The object list, or NULL on error.
  */
-GedaObject *o_bus_read(const char buf[], unsigned int release_ver,
+GedaObject *geda_object_bus_read(const char buf[], unsigned int release_ver,
                                      unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
@@ -414,7 +414,7 @@ GedaObject *o_bus_read(const char buf[], unsigned int release_ver,
     ripper_dir = 0;
   }
 
-  new_obj = o_bus_new (color, x1, y1, x2, y2, ripper_dir);
+  new_obj = geda_object_bus_new (color, x1, y1, x2, y2, ripper_dir);
 
   return new_obj;
 }
@@ -432,7 +432,7 @@ GedaObject *o_bus_read(const char buf[], unsigned int release_ver,
 
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void geda_object_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -440,7 +440,7 @@ void o_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
   return;
 
   /* translate object to origin */
-  o_bus_translate(object, -center_x, -center_y);
+  geda_object_bus_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle,
                   &newx, &newy);
@@ -454,7 +454,7 @@ void o_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_bus_translate(object, center_x, center_y);
+  geda_object_bus_translate(object, center_x, center_y);
 }
 
 /*! \brief Create a string representation of the bus object
@@ -467,7 +467,7 @@ void o_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *
  *  \return the string representation of the bus Object
  */
-char *o_bus_save(GedaObject *object)
+char *geda_object_bus_save(GedaObject *object)
 {
   int x1, x2, y1, y2;
   char *buf;
@@ -494,7 +494,7 @@ char *o_bus_save(GedaObject *object)
  *  \param [in] dx           The x-distance to move the object
  *  \param [in] dy           The y-distance to move the object
  */
-void o_bus_translate(GedaObject *object, int dx, int dy)
+void geda_object_bus_translate(GedaObject *object, int dx, int dy)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;

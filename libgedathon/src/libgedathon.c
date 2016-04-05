@@ -2325,7 +2325,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
 
   int color = translate_color(py_color, BUS_COLOR);
 
-  object = o_bus_new(color, x1, y1, x2, y2, 0);
+  object = geda_object_bus_new(color, x1, y1, x2, y2, 0);
 
   if (busname) { /* then create a text attribute for netname */
     GedaObject *net_attrib;
@@ -2337,7 +2337,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
     object->bus->bus_name  = geda_utility_string_strdup(object->name);
   }
 
-  object->bus->bus_ripper_direction = o_bus_get_direction(object);
+  object->bus->bus_ripper_direction = geda_object_bus_get_direction(object);
 
   add_floating_object(object);
 

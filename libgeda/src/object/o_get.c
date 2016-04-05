@@ -579,7 +579,7 @@ bool o_get_position (GedaObject *object, int *x, int *y )
   switch (object->type) {
       case OBJ_LINE:    func = o_line_get_position;    break;
       case OBJ_NET:     func = o_net_get_position;     break;
-      case OBJ_BUS:     func = o_bus_get_position;     break;
+      case OBJ_BUS:     func = geda_object_bus_get_position;     break;
       case OBJ_BOX:     func = geda_box_object_get_position;     break;
       case OBJ_PICTURE: func = o_picture_get_position; break;
       case OBJ_CIRCLE:  func = o_circle_get_position;  break;
