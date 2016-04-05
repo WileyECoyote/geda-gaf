@@ -25,7 +25,7 @@
              (geda object)
              (srfi srfi-1))
 
-;; Define an eval-in-currentmodule procedure
+;; Define an eval-in-current module procedure
 (define (eval-cm expr) (eval expr (current-module)))
 
 (define current-keys '())
