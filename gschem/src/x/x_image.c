@@ -646,7 +646,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GtkWidget *use_print;
   GtkWidget *invert_bw;
 
-  char *cwd;
+  char *path;
 
   int   width              = w_current->image_width;
   int   height             = w_current->image_height;
@@ -664,12 +664,22 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
                                             GTK_STOCK_SAVE,   GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
-  /* force start in current working directory, NOT in 'Recently Used' */
-  cwd = g_get_current_dir ();
+  path = gschem_toplevel_get_last_image_path (w_current);
 
-  geda_image_chooser_set_current_folder (dialog, cwd);
+  if (path) {
+    geda_image_chooser_set_current_folder (dialog, path);
+  }
+  else {
 
-  GEDA_FREE (cwd);
+    char *cwd;
+
+    /* start in current working directory, NOT in 'Recently Used' */
+    cwd = g_get_current_dir ();
+
+    geda_image_chooser_set_current_folder (dialog, cwd);
+
+    GEDA_FREE (cwd);
+  }
 
   hbox = gtk_hbox_new(FALSE, 0);
 
@@ -786,6 +796,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   if (gtk_dialog_run((GtkDialog*)ThisDialog) == GEDA_RESPONSE_ACCEPT) {
 
     char *filename;
+    char *file_path;
     char *image_size;
     char *image_type;
     char *image_type_descr;
@@ -831,6 +842,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     x_image_lowlevel(w_current, filename, width, height, image_type,
                      last_extents, use_print_map, invert_color_bw);
 
+    file_path = f_path_get_dirname(filename);
+    gschem_toplevel_set_last_image_path(w_current, file_path);
+
+    /* file_path is not free here, pointer stored in toplevel */
     GEDA_FREE(image_type);
     GEDA_FREE(filename);
   }

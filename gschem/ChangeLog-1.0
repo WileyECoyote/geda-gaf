@@ -11,6 +11,9 @@
       file and unused x_print_export_pdf_page inplace of x_image_setup and this
       allow for "quick printing".
 
+    * src/x/x_image.c: Use, and set last_image_path to coordinate paths with
+      other image file operations.
+
     * src/x/x_dialog.c: Revise function x_dialog_select_file adding new first
       argument w_current so that w_current.last_image_path can be used to set
       the current folder rather than using the cwd.
