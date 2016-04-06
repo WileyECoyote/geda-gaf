@@ -225,7 +225,7 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
 
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
-    filename = x_dialog_select_file(_("Select export file"), name, FSB_SAVE);
+    filename = x_dialog_select_file(NULL, _("Select export file"), name, FSB_SAVE);
 
     if(filename != NULL) { /* if user did not cancel */
       i_sessions_export_session(name, filename);

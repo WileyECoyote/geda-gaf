@@ -1,3 +1,20 @@
+2016-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_toplevel.h: Add toplevel new member last_image_path,
+      and declare getter and setter gschem_toplevel_get_current_page, and
+      gschem_toplevel_set_current_page.
+
+    * src/base/gschem_toplevel.c: Implement gschem_toplevel_get_current_page
+      and gschem_toplevel_set_current_page.
+
+    * src/x/x_dialog.c: Revise function x_dialog_select_file adding new first
+      argument w_current so that w_current.last_image_path can be used to set
+      the current folder rather than using the cwd.
+
+    * src/guile/g_funcs.c: Pass NULL to x_dialog_select_file for w_current.
+
+    * src/x/x_sessions.c: Pass NULL to x_dialog_select_file for w_current.
+
 2016-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Use new custom icons for hierarchy, add a

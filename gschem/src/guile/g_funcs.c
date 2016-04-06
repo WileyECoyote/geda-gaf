@@ -255,7 +255,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   templ = scm_to_utf8_string (scm_templ);
   scm_dynwind_free (templ);
 
-  r = x_dialog_select_file (msg, templ, c_flags);
+  r = x_dialog_select_file (NULL, msg, templ, c_flags);
   scm_dynwind_unwind_handler (g_free, r, SCM_F_WIND_EXPLICITLY);
 
   v = scm_from_utf8_string (r);

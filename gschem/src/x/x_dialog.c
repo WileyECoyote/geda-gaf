@@ -3801,15 +3801,23 @@ int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, boo
  *  \par Function Description
  *  The function creates a generic file open or save files.
  *
+ *  \note \a w_current can be NULL, theGschemToplevel is used
+ *        to store and retrive the last path member.
+ *
  *  \warning
  *   Caller must GEDA_FREE returned character string.
  */
-char *x_dialog_select_file (const char *msg, const char *templ, int flags)
+char *x_dialog_select_file (GschemToplevel *w_current,
+                            const char     *msg,
+                            const char     *templ,
+                            int             flags)
 {
-  GtkWidget   *dialog;
-  char        *title;
-  char        *result    = NULL;
-  static char *path      = NULL;
+  GtkWidget *dialog;
+  char      *title;
+  char      *result;
+  char      *path;
+
+  result  = NULL;
 
   /* Default to load if not specified.  Maybe this should cause an error. */
   if (! (flags & (FSB_LOAD | FSB_SAVE))) {
@@ -3846,9 +3854,16 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_OK);
 
+  path = gschem_toplevel_get_last_image_path (w_current);
+
   /* Pick the current default folder to look for files in */
   if (path && *path) {
     gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), path);
+  }
+  else {
+    char *cwd = g_get_current_dir();
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    GEDA_FREE (cwd);
   }
 
   /* Pick the current template (*.rc) or default file name */
@@ -3860,14 +3875,16 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
       gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), templ);
     }
   }
-  else {
-    char *cwd = g_get_current_dir();
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
-    GEDA_FREE (cwd);
-  }
 
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GEDA_RESPONSE_OK) {
+
     result = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+
+    if (result !=NULL) {
+      char *file_path = f_path_get_dirname(result);
+      gschem_toplevel_set_last_image_path(w_current, file_path);
+       fprintf(stderr, "%s file_path=<%s>\n", __func__, file_path);
+    }
   }
 
   gtk_widget_destroy (dialog);
