@@ -1,3 +1,9 @@
+2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_object.c: Add kludge test for geda_arc_object_shortest_
+      distance, O0225. Allow variance for O02050x-Q13-90B, change variance
+      for O020505-Q24-90B and O020506-Q24-90B to OR not AND.
+
 2016-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_basic.c: Replace prefix o_bus->geda_bus_object.

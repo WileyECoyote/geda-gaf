@@ -57,7 +57,7 @@
  *      O0202    geda_arc_object_get_arc_sweep
  *      O0203    geda_arc_object_get_center_x
  *      O0204    geda_arc_object_get_center_y
- *               geda_arc_object_get_nearest_point
+ *      O0205    geda_arc_object_get_nearest_point
  *      O0206    geda_arc_object_get_position
  *      O0207    geda_arc_object_get_radius
  *      O0208    geda_arc_object_get_start_angle
@@ -72,7 +72,7 @@
  *      O0222    geda_arc_object_set_center_y
  *      O0223    geda_arc_object_set_radius
  *      O0224    geda_arc_object_set_start_angle
- *               geda_arc_object_shortest_distance
+ *      O0225    geda_arc_object_shortest_distance
  *      O0226    geda_arc_object_to_buffer
  *               geda_arc_object_translate
  *               geda_arc_object_within_sweep
@@ -558,7 +558,7 @@ query_nearest_Q13_90 (GedaObject *object)
       break;
     }
     else {
-      if ((nx != spx) && (ny != spy)) {
+      if ((nx - spx > 1) || (ny - spy > 1)) {
         fprintf(stderr, "\nFAILED: (O020502-Q13-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions     (  x=%d,\t  y=%d,\t  r=%d,\t  a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated starting point (spx=%d,\tspy=%d,\tepx=%d,\tepy=%d)\n", spx, spy, epx, epy);
@@ -589,7 +589,7 @@ query_nearest_Q13_90 (GedaObject *object)
       break;
     }
     else {
-      if ((nx != epx) && (ny != epy)) {
+      if ((nx - epx > 1) || (ny - epy > 1)) {
         fprintf(stderr, "\nFAILED: (O020503-Q13-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions  (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated end-point   (epx=%d,\tepy=%d)\n", epx, epy);
@@ -622,7 +622,7 @@ query_nearest_Q13_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx) && (ny - mpy)) {
+    if  ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020504-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (   mpx=%d,\t    mpy=%d)\n", mpx, mpy);
@@ -642,7 +642,7 @@ query_nearest_Q13_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx) && (ny - mpy)) {
+    if ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020505-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
@@ -660,7 +660,7 @@ query_nearest_Q13_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx) && (ny - mpy)) {
+    if ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020506-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n\n", mpx, mpy);
@@ -741,7 +741,7 @@ query_nearest_Q24_90 (GedaObject *object)
       break;
     }
     else {
-      if ((nx != epx) && (ny != epy)) {
+      if ((nx - epx > 1) || (ny - epy > 1)) {
         fprintf(stderr, "\nFAILED: (O020502-Q24-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated end point  (epx=%d,\tepy=%d)\n", epx, epy);
@@ -772,7 +772,7 @@ query_nearest_Q24_90 (GedaObject *object)
       break;
     }
     else {
-      if ((nx != spx) && (ny != spy)) {
+      if ((nx - spx > 1) || (ny - spy > 1)) {
         fprintf(stderr, "\nFAILED: (O020503-Q24-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions  (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated start-point (spx=%d,\tspy=%d)\n", spx, spy);
@@ -805,7 +805,7 @@ query_nearest_Q24_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx > 1) && (ny - mpy > 1)) {
+    if ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020504-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated end-point (   spx=%d,\t    spy=%d)\n", spx, spy);
@@ -825,7 +825,7 @@ query_nearest_Q24_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx) && (ny - mpy)) {
+    if ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020505-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
@@ -843,11 +843,60 @@ query_nearest_Q24_90 (GedaObject *object)
     result++;
   }
   else {
-    if ((nx - mpx > 1) && (ny - mpy > 1)) {
+    if ((nx - mpx > 1) || (ny - mpy > 1)) {
       fprintf(stderr, "\nFAILED: (O020506-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (   mpx=%d,\t    mpy=%d)\n\n", mpx, mpy);
       result++;
+    }
+  }
+
+  return result;
+}
+
+/* Is somewhat of a kludge; get distance to a random point (px,py)
+ * then gets the nearest point on the arc and compares D(px,py) to
+ * the distence from (px,py) to the (nx,ny). If the rounded integer
+ * differ by less than 1 then result is considered correct. This
+ * assume previously tested geda_arc_object_get_nearest_point passed.
+ */
+int
+query_nearest_shortest_distance (GedaObject *object)
+{
+  int result = 0;
+
+  int nx;
+  int ny;
+
+  int px = m_random_number (0, 120000);
+  int py = m_random_number (0, 80000);
+
+  double shortest;
+
+  shortest = geda_arc_object_shortest_distance (object, px, py, 1);
+
+  if (geda_arc_object_get_nearest_point (object, px, py, &nx, &ny)) {
+
+    int dx;
+    int dy;
+
+    dx = px - nx;
+    dy = py - ny;
+
+    if (dy) {
+
+      double nearest = hypot (dx, dy);
+
+      int id1 = rint(shortest);
+      int id2 = rint(nearest);
+
+      if ( (id1 - id2) > 1) {
+        fprintf(stderr, "FAILED: (O022501) (%d,%d) %f incorrect\n", px, py, shortest);
+        result++;
+      }
+    }
+    else {
+      fprintf(stderr, "skipped shortest_distance\n");
     }
   }
 
@@ -913,19 +962,19 @@ check_query ()
     /* insure starting angle is reset after looping */
     geda_arc_object_set_start_angle(object, 0);
 
-    result = query_nearest_Q13_90(object);
+    result += query_nearest_Q13_90(object);
 
     geda_arc_object_set_start_angle(object, 90);
 
-    result = query_nearest_Q24_90(object);
+    result += query_nearest_Q24_90(object);
 
     geda_arc_object_set_start_angle(object, 180);
 
-    result = query_nearest_Q13_90(object);
+    result += query_nearest_Q13_90(object);
 
     geda_arc_object_set_start_angle(object, 270);
 
-    result = query_nearest_Q24_90(object);
+    result += query_nearest_Q24_90(object);
 
   /* === Function 06: geda_arc_object_get_position === */
 
@@ -938,7 +987,7 @@ check_query ()
 
   /* === Function 25: geda_arc_object_shortest_distance === */
 
-    //result = query_nearest_shortest_distance(object);
+    result += query_nearest_shortest_distance(object);
 
   /* === Function 28: geda_arc_object_within_sweep === */
 
