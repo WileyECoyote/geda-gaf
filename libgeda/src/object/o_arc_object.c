@@ -150,7 +150,7 @@ geda_arc_object_get_center_y (const GedaObject *object)
  * \param [out] nx      Integer pointer to resulting x value
  * \param [out] ny      Integer pointer to resulting y value
  *
- * \returns TRUE is the results are valid, FALSE if \a object was not an
+ * \returns TRUE if the results are valid, FALSE if \a object was not an
  *          GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
 bool
@@ -1193,7 +1193,8 @@ geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  * \return The ARC GedaObject that was created, or NULL on error.
  */
 GedaObject*
-geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+geda_arc_object_read (const char buf[], unsigned int release_ver,
+                      unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
   char type;
@@ -1288,36 +1289,41 @@ geda_arc_object_read (const char buf[], unsigned int release_ver, unsigned int f
 void
 geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
-  int x, y, newx, newy;
+  if (GEDA_IS_ARC(object)) {
 
-  /* translate object to origin */
-  object->arc->x -= center_x;
-  object->arc->y -= center_y;
+    int x, y, newx, newy;
 
-  /* get center, and rotate center */
-  x = object->arc->x;
-  y = object->arc->y;
-  if(angle % 90 == 0) {
-    m_rotate_point_90(x, y, angle % 360, &newx, &newy);
+    /* translate object to origin */
+    object->arc->x -= center_x;
+    object->arc->y -= center_y;
+
+    /* get center, and rotate center */
+    x = object->arc->x;
+    y = object->arc->y;
+    if(angle % 90 == 0) {
+      m_rotate_point_90(x, y, angle % 360, &newx, &newy);
+    }
+    else {
+      m_rotate_point(x, y, angle % 360, &newx, &newy);
+    }
+    object->arc->x = newx;
+    object->arc->y = newy;
+
+    /* apply rotation to angles */
+    object->arc->start_angle = (object->arc->start_angle + angle) % 360;
+    /* arc_sweep is unchanged as it is the sweep of the arc */
+    /* object->arc->arc_sweep = (object->arc->arc_sweep); */
+
+    /* translate object to its previous place */
+    object->arc->x += center_x;
+    object->arc->y += center_y;
+
+    /* update the screen coords and the bounding box */
+    object->w_bounds_valid_for = NULL;
   }
   else {
-    m_rotate_point(x, y, angle % 360, &newx, &newy);
+    geda_arc_object_error(__func__, object);
   }
-  object->arc->x = newx;
-  object->arc->y = newy;
-
-  /* apply rotation to angles */
-  object->arc->start_angle = (object->arc->start_angle + angle) % 360;
-  /* arc_sweep is unchanged as it is the sweep of the arc */
-  /* object->arc->arc_sweep = (object->arc->arc_sweep); */
-
-  /* translate object to its previous place */
-  object->arc->x += center_x;
-  object->arc->y += center_y;
-
-  /* update the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
-
 }
 
 /*! O0220
@@ -1433,7 +1439,10 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   double shortest_distance;
   double radius;
 
-  g_return_val_if_fail (GEDA_IS_ARC(object), G_MAXDOUBLE);
+  if (!GEDA_IS_ARC(object)) {
+    geda_arc_object_error(__func__, object);
+    return G_MAXDOUBLE;
+  }
 
   radius = (double)object->arc->radius;
 
@@ -1526,7 +1535,7 @@ geda_arc_object_to_buffer(GedaObject *object)
   arc_space  = object->line_options->line_space;
 
   /* Describe a circle with post-20000704 file format */
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
+  buf = geda_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
                           x, y, radius, start_angle, arc_sweep, object->color,
                           arc_width, arc_end, arc_type, arc_length, arc_space);
 
