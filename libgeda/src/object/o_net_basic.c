@@ -161,15 +161,17 @@ GedaObject *o_net_read (const char buf[], unsigned int release_ver, unsigned int
   return new_obj;
 }
 
-/*! \brief Create a string representation of the net object
- *
- *  \par Function Description
+/*!
+ * \brief Create a string representation of the net object
+ * \par Function Description
  *  This function takes a net \a object and return a string
  *  according to the file format definition.
  *
- *  \param [in] object  a net Object
+ * \note object was validated by o_save_objects
  *
- *  \return the string representation of the net Object
+ * \param [in] object Pointer to a net Object
+ *
+ * \return the string representation of the net Object
  */
 char *o_net_save(GedaObject *object)
 {

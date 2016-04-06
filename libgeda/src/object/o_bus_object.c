@@ -53,7 +53,6 @@ static void geda_object_bus_consolidate_lowlevel (GedaObject *object,
   printf("d %d %d %d %d\n", del_object->line->x[0], del_object->line->y[0], del_object->line->x[1], del_object->line->y[1]);
 #endif
 
-
   if (orient == HORIZONTAL) {
 
     temp1 = min(object->line->x[0], del_object->line->x[0]);
@@ -457,22 +456,23 @@ void geda_object_bus_rotate(GedaObject *object, int center_x, int center_y, int 
   geda_object_bus_translate(object, center_x, center_y);
 }
 
-/*! \brief Create a string representation of the bus object
- *
- *  \par Function Description
+/*!
+ * \brief Create a string representation of the bus object
+ * \par Function Description
  *  This function takes a bus \a object and return a string
  *  according to the file format definition.
  *
- *  \param [in] object  a bus Object
+ * \note object was validated by o_save_objects.
  *
- *  \return the string representation of the bus Object
+ * \param [in] object  a bus Object
+ *
+ * \returns string representation of the bus Object, which should
+ *          be freed at some point.
  */
 char *geda_object_bus_save(GedaObject *object)
 {
   int x1, x2, y1, y2;
   char *buf;
-
-  g_return_val_if_fail(GEDA_IS_BUS(object), NULL);
 
   x1 = object->line->x[0];
   y1 = object->line->y[0];

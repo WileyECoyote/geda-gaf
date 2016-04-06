@@ -292,9 +292,10 @@ GedaObject* o_line_read (const char buf[], unsigned int release_ver,
  * \brief Create a character string representation of a line Object.
  * \par Function Description
  *  The function formats a string in the buffer <B>*buff</B> to describe
- *  the box object <B>*object</B>.
- *  It follows the post-20000704 release file format that handle the
- *  line type and fill options - filling is irrelevant here.
+ *  the box <B>*object</B> following the post-20000704 release file format
+ *  that handle the line type and fill options - filling is irrelevant here.
+ *
+ * \note object was validated by o_save_objects
  *
  * \param [in] object  GedaLine Object to create string from.
  *
@@ -310,8 +311,6 @@ char *o_line_save(GedaObject *object)
   LINE_TYPE line_type;
   int line_width, line_space, line_length;
   int x1, x2, y1, y2;
-
-  g_return_val_if_fail(GEDA_IS_LINE(object), NULL);
 
   line = GEDA_LINE(object);
 

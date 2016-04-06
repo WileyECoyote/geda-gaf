@@ -81,8 +81,8 @@ void o_save_auto_backup(GedaToplevel *toplevel)
         dirname         = f_path_get_dirname (real_filename);
         only_filename   = g_path_get_basename(real_filename);
 
-        backup_filename = geda_utility_string_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
-                                            dirname, DIR_SEPARATOR, only_filename);
+        backup_filename = geda_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
+                                       dirname, DIR_SEPARATOR, only_filename);
 
         /* If there is not an existing file with that name, compute the
          * permissions and uid/gid that we will use for the newly-created file.
@@ -118,7 +118,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
         /* Make the backup file writable before saving a new one */
         if (g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
-           (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
+           (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
         {
           saved_umask = umask(0);
           if (chmod(backup_filename, (S_IWRITE|S_IWGRP|S_IWOTH) &
@@ -139,8 +139,8 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           /* Make the backup file readonly so a 'rm *' command will ask
              the user before deleting it */
           saved_umask = umask(0);
-          mask = (S_IWRITE|S_IWGRP|S_IEXEC|S_IXGRP|S_IXOTH);
-          mask = (~mask)&0777;
+          mask  = (S_IWRITE|S_IWGRP|S_IEXEC|S_IXGRP|S_IXOTH);
+          mask  = (~mask)&0777;
           mask &= ((~saved_umask) & 0777);
           if (chmod(backup_filename,mask) != 0) {
             u_log_message (_("Could NOT set backup file [%s] readonly\n"),
@@ -159,20 +159,22 @@ void o_save_auto_backup(GedaToplevel *toplevel)
   }
 }
 
-/*! \brief Save a series of objects into a string buffer
- *  \par Function Description
- *  This function recursively saves a set of objects into a buffer in
- *  libgeda format.  User code should not normally call this function;
- *  they should call o_save_buffer() instead.
+/*!
+ * \brief Save a series of objects into a string buffer
+ * \par Function Description
+ *  Recursively saves a set of objects into a buffer in libgeda format.
+ *  User code should not normally call this function; use o_save_buffer()
+ *  instead.
  *
- *  With save_attribs passed as FALSE, attribute objects are skipped over,
- *  and saved separately - after the objects they are attached to. When
- *  we recurse for saving out those attributes, the function must be called
- *  with save_attribs passed as TRUE.
+ *  If \a save_attribs is FALSE, attribute objects are skipped over and are
+ *  saved separately - after the objects they are attached to. When recursing
+ *  to save out skipped attributes, this function should be called with
+ *  \a save_attribs TRUE.
  *
- *  \param [in] object_list   The head of a GList of objects to save.
- *  \param [in] save_attribs  Should attribute objects encounterd be saved?
- *  \returns a buffer containing schematic data or NULL on failure.
+ * \param [in] object_list   The head of a GList of objects to save.
+ * \param [in] save_attribs  Should encountered attribute objects be saved?
+ *
+ * \returns a buffer containing schematic data or NULL on failure.
  */
 char *o_save_objects (const GList *object_list, bool save_attribs)
 {
@@ -187,7 +189,10 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
   while ( iter != NULL ) {
 
-    GedaObject *o_current = (GedaObject*)iter->data;
+    GedaObject *o_current = GEDA_OBJECT(iter->data);
+
+    if (!o_current)
+      continue;
 
     if (save_attribs || o_current->attached_to == NULL) {
 
@@ -255,14 +260,13 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         default:
-          /*! \todo Maybe we can continue instead of just failing completely?
-           *  In any case, failing gracefully is better than killing the
-           *  program, which is what this used to do... */
+          /*! Continue instead of just failing completely! Save as much of
+           *  the user's data as possible, in any case, failing gracefully
+           *  is better than killing the program, which is what this used
+           *  to do... */
           g_critical (_("%s: object %p has unknown type '%c'\n"),
                       __func__, o_current, o_current->type);
-          /* Dump string built so far */
-          g_string_free(acc, TRUE);
-          return NULL;
+          continue;
       }
 
       /* output the line */

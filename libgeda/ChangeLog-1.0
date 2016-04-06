@@ -1,8 +1,24 @@
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda_priv.h: include geda_utility.h.
+
     * src/object/o_arc_object.c: Validate object in geda_arc_object_rotate,
       remove g_return_val_if_fail in geda_arc_object_shortest_distance, use
       GEDA_IS_ARC and geda_arc_object_error instead.
+
+    * src/object/: Remove g_return_val_if_fail in o_<object>_ save, object
+      was already validated in o_save_objects, add note in comments.
+
+            * src/object/o_bus_object.c
+            * src/object/o_circle_basic.c
+            * src/object/o_complex_basic.c
+            * src/object/o_line_basic.c
+            * src/object/o_picture.c
+
+    * src/object/o_save.c: Replace geda_utility_string_sprintf with shorter
+      version geda_sprint, revise comments for o_save_objects and replace
+      cast with crutch GEDA_OBJECT and add continue if NULL and continue
+      for case default.
 
     * tests/test_arc_object.c: Add kludge test for geda_arc_object_shortest_
       distance, O0225. Allow variance for O02050x-Q13-90B, change variance

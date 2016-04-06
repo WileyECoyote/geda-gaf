@@ -1503,13 +1503,16 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
  * \brief Create String Representation of an Arc object
  * \par Function Description
  *  This function formats a string in the <B>buffer</B> to describe
- *  the #GedaArc object <B>\a object</B>.
- *  A pointer to the new allocated and formated string is returned.
- *  The string must be freed at some point.
+ *  the #GedaArc <B>\a object</B>. A pointer to the new allocated
+ *  formated string is returned.
+ *
+ * \note object was validated by o_save_objects
  *
  * \param [in] object
  *
  * \return the string representation of the arc object
+ *
+ * \remarks The string should be freed at some point.
  */
 char*
 geda_arc_object_to_buffer(GedaObject *object)

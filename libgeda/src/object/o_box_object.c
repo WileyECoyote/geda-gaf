@@ -29,29 +29,42 @@
 
 #include <libgeda_priv.h>
 
+static void
+geda_box_object_error(const char *func, const void *object)
+{
+  fprintf(stderr, "File %s, <%s>: ", __FILE__, func);
+
+  if (!object) {
+    fprintf(stderr, "GedaBox object argument is NULL\n");
+  }
+  else {
+    fprintf(stderr, "Not a valid GedaBox object <%p>\n", object);
+  }
+}
+
 /*! \brief Copy a box to a list.
  *
  *  \par Function Description
  *  The function #geda_box_object_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a box.
  *
- *  \param [in] o_current Box Object to copy.
+ *  \param [in] o_source Box Object to copy.
  *
  *  \return The new GedaObject
  */
 GedaObject*
-geda_box_object_copy(GedaObject *o_current)
+geda_box_object_copy(GedaObject *o_source)
 {
-  if (GEDA_IS_BOX(o_current)) {
+  if (GEDA_IS_BOX(o_source)) {
 
     GedaObject *new_obj;
     GedaBox    *old_box;
 
-    old_box = GEDA_BOX(o_current);
+    old_box = GEDA_BOX(o_source);
 
     /* A new box object is created with #geda_box_object_new().
      * Values for its fields are default and need to be modified. */
-    new_obj = geda_box_object_new (o_current->color, 0, 0, 0, 0);
+    new_obj = geda_box_object_new (o_source->color, 0, 0, 0, 0);
 
     /* The dimensions of the new box are set with the ones of the original box.
      * The two boxes have the same line type and the same filling options.
@@ -68,23 +81,25 @@ geda_box_object_copy(GedaObject *o_current)
 
     return new_obj;
   }
+  geda_box_object_error(__func__, o_source);
   return NULL;
 }
 
-/*! \brief Get Point on a Box Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a Box Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on a Box object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
  *  on the box that is the closest point on the box to the point given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to a Box object
- *  \param [in]  x       Integer x of point near or on the box
- *  \param [in]  y       Integer y of point near or on the box
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to a Box object
+ * \param [in]  x       Integer x of point near or on the box
+ * \param [in]  y       Integer y of point near or on the box
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
+ * \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
  */
 bool
 geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -241,6 +256,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
     result = TRUE;
   }
   else { /* was not an Box */
+    geda_box_object_error(__func__, object);
     result = FALSE;
   }
 
@@ -265,9 +281,14 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 bool
 geda_box_object_get_position (GedaObject *object, int *x, int *y)
 {
-  *x = min(object->box->lower_x, object->box->upper_x);
-  *y = min(object->box->lower_y, object->box->upper_y);
-  return TRUE;
+  if (GEDA_IS_BOX(object)) {
+    *x = min(object->box->lower_x, object->box->upper_x);
+    *y = min(object->box->lower_y, object->box->upper_y);
+    return TRUE;
+  }
+
+  geda_box_object_error(__func__, object);
+  return 0;
 }
 
 /*! \brief Mirror a Box.
@@ -286,35 +307,41 @@ geda_box_object_get_position (GedaObject *object, int *x, int *y)
 void
 geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
 {
-  int newx1, newy1;
-  int newx2, newy2;
+  if (GEDA_IS_BOX(object)) {
 
-  /* translate object to origin */
-  object->box->upper_x -= center_x;
-  object->box->upper_y -= center_y;
-  object->box->lower_x -= center_x;
-  object->box->lower_y -= center_y;
+    int newx1, newy1;
+    int newx2, newy2;
 
-  /* mirror the corners */
-  newx1 = -object->box->upper_x;
-  newy1 =  object->box->upper_y;
-  newx2 = -object->box->lower_x;
-  newy2 =  object->box->lower_y;
+    /* translate object to origin */
+    object->box->upper_x -= center_x;
+    object->box->upper_y -= center_y;
+    object->box->lower_x -= center_x;
+    object->box->lower_y -= center_y;
 
-  /* reorder the corners */
-  object->box->upper_x = min(newx1,newx2);
-  object->box->upper_y = max(newy1,newy2);
-  object->box->lower_x = max(newx1,newx2);
-  object->box->lower_y = min(newy1,newy2);
+    /* mirror the corners */
+    newx1 = -object->box->upper_x;
+    newy1 =  object->box->upper_y;
+    newx2 = -object->box->lower_x;
+    newy2 =  object->box->lower_y;
 
-  /* translate back in position */
-  object->box->upper_x += center_x;
-  object->box->upper_y += center_y;
-  object->box->lower_x += center_x;
-  object->box->lower_y += center_y;
+    /* reorder the corners */
+    object->box->upper_x = min(newx1,newx2);
+    object->box->upper_y = max(newy1,newy2);
+    object->box->lower_x = max(newx1,newx2);
+    object->box->lower_y = min(newy1,newy2);
 
-  /* recalc boundings and world coords */
-  object->w_bounds_valid_for = NULL;
+    /* translate back in position */
+    object->box->upper_x += center_x;
+    object->box->upper_y += center_y;
+    object->box->lower_x += center_x;
+    object->box->lower_y += center_y;
+
+    /* recalc boundings and world coords */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
 }
 
 /*! \brief Modify a Box Object's coordinates.
@@ -344,49 +371,55 @@ geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
 void
 geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
 {
-  int tmp;
+  if (GEDA_IS_BOX(object)) {
 
-  /* change the position of the selected corner */
-  switch(whichone) {
-    case BOX_UPPER_LEFT:
-      object->box->upper_x = x;
-      object->box->upper_y = y;
-      break;
+    int tmp;
 
-    case BOX_LOWER_LEFT:
-      object->box->upper_x = x;
-      object->box->lower_y = y;
-      break;
+    /* change the position of the selected corner */
+    switch(whichone) {
+      case BOX_UPPER_LEFT:
+        object->box->upper_x = x;
+        object->box->upper_y = y;
+        break;
 
-    case BOX_UPPER_RIGHT:
-      object->box->lower_x = x;
-      object->box->upper_y = y;
-      break;
+      case BOX_LOWER_LEFT:
+        object->box->upper_x = x;
+        object->box->lower_y = y;
+        break;
 
-    case BOX_LOWER_RIGHT:
-      object->box->lower_x = x;
-      object->box->lower_y = y;
-      break;
+      case BOX_UPPER_RIGHT:
+        object->box->lower_x = x;
+        object->box->upper_y = y;
+        break;
 
-    default:
-      return;
+      case BOX_LOWER_RIGHT:
+        object->box->lower_x = x;
+        object->box->lower_y = y;
+        break;
+
+      default:
+        return;
+    }
+
+    /* need to update the upper left and lower right corners */
+    if (object->box->upper_x > object->box->lower_x) {
+      tmp                  = object->box->upper_x;
+      object->box->upper_x = object->box->lower_x;
+      object->box->lower_x = tmp;
+    }
+
+    if (object->box->upper_y < object->box->lower_y) {
+      tmp                  = object->box->upper_y;
+      object->box->upper_y = object->box->lower_y;
+      object->box->lower_y = tmp;
+    }
+
+    /* recalculate the world coords and the boundings */
+    object->w_bounds_valid_for = NULL;
   }
-
-  /* need to update the upper left and lower right corners */
-  if (object->box->upper_x > object->box->lower_x) {
-    tmp                  = object->box->upper_x;
-    object->box->upper_x = object->box->lower_x;
-    object->box->lower_x = tmp;
+  else {
+    geda_box_object_error(__func__, object);
   }
-
-  if (object->box->upper_y < object->box->lower_y) {
-    tmp                  = object->box->upper_y;
-    object->box->upper_y = object->box->lower_y;
-    object->box->lower_y = tmp;
-  }
-
-  /* recalculate the world coords and the boundings */
-  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Modify a Box Object's coordinates.
@@ -405,15 +438,20 @@ geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
 void
 geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
-  object->box->lower_x = (x1 > x2) ? x1 : x2;
-  object->box->lower_y = (y1 > y2) ? y2 : y1;
+  if (GEDA_IS_BOX(object)) {
 
-  object->box->upper_x = (x1 > x2) ? x2 : x1;
-  object->box->upper_y = (y1 > y2) ? y1 : y2;
+    object->box->lower_x = (x1 > x2) ? x1 : x2;
+    object->box->lower_y = (y1 > y2) ? y2 : y1;
 
-  /* recalculate the world coords and bounds */
-  object->w_bounds_valid_for = NULL;
+    object->box->upper_x = (x1 > x2) ? x2 : x1;
+    object->box->upper_y = (y1 > y2) ? y1 : y2;
 
+    /* recalculate the world coords and bounds */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
 }
 
 /*! \brief Create a Box Object
@@ -486,8 +524,11 @@ geda_box_object_new(int color, int x1, int y1, int x2, int y2)
  *  \param [in] origin_y   Page y coordinate to place GedaBox Object.
  */
 void
-geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                      int origin_x, int origin_y)
+geda_box_object_print(GedaToplevel *toplevel,
+                      FILE         *fp,
+                      GedaObject   *o_current,
+                      int           origin_x,
+                      int           origin_y)
 {
   int x, y, width, height;
   int color;
@@ -496,20 +537,17 @@ geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   void (*fill_func)() = NULL;
   GedaBox *box;
 
-  if (o_current == NULL) {
-    printf("got null in geda_box_object_print\n");
-    return;
-  }
-
   g_return_if_fail(GEDA_IS_BOX(o_current));
+
   box = GEDA_BOX(o_current);
 
   x = box->upper_x;
   y = box->upper_y;
+
   width  = abs(box->lower_x - box->upper_x);
   height = abs(box->lower_y - box->upper_y);
 
-  color  = o_current->color;
+  color    = o_current->color;
   capstyle = o_get_capstyle (o_current->line_options->line_end);
 
   /*! \note
@@ -525,9 +563,6 @@ geda_box_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
    *  In the eventuality of a length and/or space null, the line is printed
    *  solid to avoid and endless loop produced by other functions in such a
    *  case.
-   */
-  /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN
-   *            styles, and eliminated hard-coded integer values.
    */
 
   line_width = o_current->line_options->line_width;
@@ -1307,81 +1342,91 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
 void
 geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
-  int newx1, newy1;
-  int newx2, newy2;
 
-  /*! \note
-   *  Only 90 degree multiple and positive angles are allowed.
-   */
+  if (GEDA_IS_BOX(object)) {
 
-  /* angle must be positive */
-  if (angle < 0) angle = -angle;
-  /* angle must be a 90 multiple or no rotation performed */
-  if ((angle % 90) != 0) return;
+    int newx1, newy1;
+    int newx2, newy2;
 
-  /*! \note
-   *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
-   *  translated to the origin. The rotation of the upper left and lower right
-   *  corner are then performed. Finally, the rotated box is translated back
-   *  to its previous location.
-   */
-  /* translate object to origin */
-  object->box->upper_x -= center_x;
-  object->box->upper_y -= center_y;
-  object->box->lower_x -= center_x;
-  object->box->lower_y -= center_y;
+    /*! \note
+     *  Only 90 degree multiple and positive angles are allowed.
+     */
 
-  /* rotate the upper left corner of the box */
-  m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
-                  &newx1, &newy1);
+    /* angle must be positive */
+    if (angle < 0) angle = -angle;
+    /* angle must be a 90 multiple or no rotation performed */
+    if ((angle % 90) != 0) return;
 
-  /* rotate the lower left corner of the box */
-  m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
-                  &newx2, &newy2);
+    /*! \note
+     *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
+     *  translated to the origin. The rotation of the upper left and lower right
+     *  corner are then performed. Finally, the rotated box is translated back
+     *  to its previous location.
+     */
+    /* translate object to origin */
+    object->box->upper_x -= center_x;
+    object->box->upper_y -= center_y;
+    object->box->lower_x -= center_x;
+    object->box->lower_y -= center_y;
 
-  /* reorder the corners after rotation */
-  object->box->upper_x = min(newx1,newx2);
-  object->box->upper_y = max(newy1,newy2);
-  object->box->lower_x = max(newx1,newx2);
-  object->box->lower_y = min(newy1,newy2);
+    /* rotate the upper left corner of the box */
+    m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
+                      &newx1, &newy1);
 
-  /* translate object back to normal position */
-  object->box->upper_x += center_x;
-  object->box->upper_y += center_y;
-  object->box->lower_x += center_x;
-  object->box->lower_y += center_y;
+    /* rotate the lower left corner of the box */
+    m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
+                      &newx2, &newy2);
 
-  /* recalc boundings and world coords */
-  object->w_bounds_valid_for = NULL;
+    /* reorder the corners after rotation */
+    object->box->upper_x = min(newx1,newx2);
+    object->box->upper_y = max(newy1,newy2);
+    object->box->lower_x = max(newx1,newx2);
+    object->box->lower_y = min(newy1,newy2);
+
+    /* translate object back to normal position */
+    object->box->upper_x += center_x;
+    object->box->upper_y += center_y;
+    object->box->lower_x += center_x;
+    object->box->lower_y += center_y;
+
+    /* recalc boundings and world coords */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
 }
-/*! \brief Create a character string representation of a GedaBox.
- *  \par Function Description
+
+/*!
+ * \brief Create a character string representation of a GedaBox.
+ * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
- *  box object <B>*object</B>.
- *  It follows the post-20000704 release file format that handle the line type
- *  and fill options.
+ *  box object <B>*object</B> following the post-20000704 release file format,
+ *  (which handles the line type and fill options).
  *
- *  \param [in] object  The GedaBox Object to create string from.
+ * \note object was validated by o_save_objects
  *
- *  \return A pointer to the GedaBox character string.
+ * \param [in] object  The GedaBox Object to create string from.
  *
- *  \warning
- *  Caller must GEDA_FREE returned character string.
+ * \return A pointer to the GedaBox character string.
+ *
+ * \remarks Caller should GEDA_FREE returned character string.
  */
 char*
 geda_box_object_save(GedaObject *object)
 {
+  GedaBox *box;
+  char    *buf;
+
   int x1, y1;
   int width, height;
   int box_width, box_space, box_length;
   int fill_width, angle1, pitch1, angle2, pitch2;
-  LINE_END box_end;
-  LINE_TYPE  box_type;
-  OBJECT_FILLING box_fill;
-  GedaBox *box;
-  char    *buf;
 
-  g_return_val_if_fail(GEDA_IS_BOX(object), NULL);
+  LINE_END       box_end;
+  LINE_TYPE      box_type;
+  OBJECT_FILLING box_fill;
+
   box = GEDA_BOX(object);
 
   /*! \note
@@ -1398,9 +1443,9 @@ geda_box_object_save(GedaObject *object)
   x1 = box->upper_x;
   y1 = box->upper_y - height; /* move the origin to 0, 0*/
 
-  #if DEBUG
+#if DEBUG
   printf("box: %d %d %d %d\n", x1, y1, width, height);
-  #endif
+#endif
 
   /* description of the line type for the outline */
   box_end    = object->line_options->line_end;
@@ -1427,46 +1472,59 @@ geda_box_object_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on the perimeter of the box.
+/*!
+ * \brief Calculates the distance between the given point and the closest
+ *  point on the perimeter of the box.
  *
- *  \param [in] object       A box GedaObject.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
- *  \return The shortest distance from the object to the point. With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] object       A box GedaObject.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
+ *
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
 geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
-  int solid;
+  if (GEDA_IS_BOX(object)) {
 
-  g_return_val_if_fail (GEDA_IS_BOX(object), G_MAXDOUBLE);
+    int solid;
 
-  solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
 
-  return m_box_shortest_distance (object->box, x, y, solid);
+    return m_box_shortest_distance (object->box, x, y, solid);
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+  return ( G_MAXDOUBLE);
 }
 
-/*! \brief Translate a Box position by a delta.
- *  \par Function Description
+/*!
+ * \brief Translate a Box position by a delta.
+ * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     Box Object to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move
+ * \param [in,out] object     Box Object to translate
+ * \param [in]     dx         x distance to move
+ * \param [in]     dy         y distance to move
  */
 void
 geda_box_object_translate(GedaObject *object, int dx, int dy)
 {
-  /* Do world coords */
-  object->box->upper_x = object->box->upper_x + dx;
-  object->box->upper_y = object->box->upper_y + dy;
-  object->box->lower_x = object->box->lower_x + dx;
-  object->box->lower_y = object->box->lower_y + dy;
+  if (GEDA_IS_BOX(object)) {
 
-  /* recalc the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
+    object->box->upper_x = object->box->upper_x + dx;
+    object->box->upper_y = object->box->upper_y + dy;
+    object->box->lower_x = object->box->lower_x + dx;
+    object->box->lower_y = object->box->lower_y + dy;
+
+    /* recalc the screen coords and the bounding box */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
 }

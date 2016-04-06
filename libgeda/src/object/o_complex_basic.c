@@ -1142,15 +1142,17 @@ o_complex_rotate(GedaObject *object, int center_x, int center_y, int angle)
   object->complex->angle = (object->complex->angle + angle ) % 360;
 }
 
-/*! \brief Create a string representation of the complex object
- *
- *  \par Function Description
+/*!
+ * \brief Create a string representation of the complex object
+ * \par Function Description
  *  This function takes a complex \a object and return a string
  *  according to the file format definition.
  *
- *  \param [in] object  a complex Object
+ * \note object was validated by o_save_objects.
  *
- *  \return the string representation of the complex Object
+ * \param [in] object  a complex Object
+ *
+ * \return the string representation of the complex Object
  */
 char *o_complex_save(GedaObject *object)
 {
@@ -1158,8 +1160,6 @@ char *o_complex_save(GedaObject *object)
   char        *basename;
   char        *buf = NULL;
   int          selectable;
-
-  g_return_val_if_fail(GEDA_IS_COMPLEX(object), NULL);
 
   complex = GEDA_COMPLEX(object);
 

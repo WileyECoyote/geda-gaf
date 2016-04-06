@@ -187,13 +187,14 @@ GedaObject *o_pin_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Create a string representation of the pin object
- *  \par Function Description
+/*!
+ * \brief Create a string representation of the pin object
+ * \par Function Description
  *  This function takes a pin \a object and return a string
  *  according to the file format definition.
- *
- *  \param [in] object  a pin Object
- *  \return the string representation of the pin Object
+ * \note object was validated by o_save_objects
+ * \param [in] object  a pin Object
+ * \returns string representation of the pin Object
  */
 char *o_pin_save(GedaObject *object)
 {
@@ -208,7 +209,7 @@ char *o_pin_save(GedaObject *object)
 
   /* description of the pin */
   node_type = object->pin->node_type;
-  whichend = object->pin->whichend;
+  whichend  = object->pin->whichend;
 
   buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d", object->type,
                           x1, y1, x2, y2, object->color, node_type, whichend);

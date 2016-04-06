@@ -494,18 +494,19 @@ o_picture_read (const char  *first_line,
   return new_obj;
 }
 
-/*! \brief Create a character string representation of a picture Object
- *
- *  \par Function Description
+/*!
+ * \brief Create a character string representation of a picture Object
+ * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe
  *  the picture object <B>*object</B>.
  *
- *  \param [in] object  Picture GedaObject to create string from.
- *  \return A pointer to the picture Object character string.
+ * \note object was validated by o_save_objects
  *
- *  \note
- *  Caller must GEDA_FREE returned character string.
+ * \param [in] object  Picture GedaObject to create string from.
  *
+ * \return A pointer to the picture Object character string.
+ *
+ * \note returned character string should be freed with GEDA_FREE.
  */
 char*
 o_picture_save(GedaObject *object)
@@ -515,8 +516,6 @@ o_picture_save(GedaObject *object)
   char         *out=NULL;
   unsigned int  encoded_picture_length;
   const char   *filename = NULL;
-
-  g_return_val_if_fail(GEDA_IS_PICTURE(object), NULL);
 
   /* calculate the width and height of the box */
   width  = abs(object->picture->lower_x - object->picture->upper_x);

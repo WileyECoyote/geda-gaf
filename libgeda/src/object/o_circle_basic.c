@@ -1104,16 +1104,16 @@ void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *
  *  \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
- *  circle object <B>*object</B>.
- *  It follows the post-20000704 release file format that handle the line
- *  type and fill options.
+ *  circle <B>*object</B> following the post-20000704 release file format that
+ *  handles the line type and fill options.
  *
- *  \param [in] object  Circle GedaObject to create string from.
+ * \note object was validated by o_save_objects
  *
- *  \return A pointer to the circle Object character string.
+ * \param [in] object  Circle GedaObject to create string from.
  *
- *  \note
- *  Caller must GEDA_FREE returned character string.
+ * \return A pointer to the circle Object character string.
+ *
+ * \remarks The string should be freed at some point.
  *
  */
 char *o_circle_save(GedaObject *object)
@@ -1126,8 +1126,6 @@ char *o_circle_save(GedaObject *object)
   LINE_END circle_end;
   LINE_TYPE  circle_type;
   OBJECT_FILLING circle_fill;
-
-  g_return_val_if_fail(GEDA_IS_CIRCLE(object), NULL);
 
   /* circle center and radius */
   x = object->circle->center_x;
