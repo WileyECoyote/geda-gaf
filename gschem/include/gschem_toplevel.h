@@ -62,8 +62,6 @@ struct _GschemToplevel {
 
   GedaToplevel *toplevel;
 
-  GschemPageHistory *page_history;
-
   /* ----------------- main window widgets ---------------- */
   GtkWidget *main_window;
   GtkWidget *drawing_area;
@@ -173,7 +171,7 @@ struct _GschemToplevel {
                                            Its range of values depends on the
                                            type of object being manipulated. */
   GedaObject *which_object;             /* Object being manipulated */
-  GedaPath   *temp_path;                /* Path being created */
+  GedaPath   *temp_path;                /* Path Object being created */
 
   int override_color;
   int override_net_color;
@@ -359,6 +357,14 @@ struct _GschemToplevel {
   int undo_panzoom;       /* sets if pan / zoom info is saved in undo */
   int undo_preserve;      /* sets whether views should be restored when undoing */
 
+  /* ------------- end of rc/user parameters -------------- */
+
+  /* ---------------- History/Session Retention ----------------- */
+
+  GschemPageHistory *page_history;
+
+  char *last_image_path;  /* Use by file dialogs */
+
   SCM smob;               /* The Scheme representation of this window */
 
 };
@@ -367,15 +373,17 @@ struct _GschemToplevel {
 extern "C" {
 #endif
 
-GedaType        gschem_toplevel_get_type          (void) GEDA_CONST;
-GschemToplevel *gschem_toplevel_new               (void);
+GedaType        gschem_toplevel_get_type              (void) GEDA_CONST;
+GschemToplevel *gschem_toplevel_new                   (void);
 
-void            gschem_toplevel_free              (GschemToplevel *w_current);
-void            gschem_toplevel_free_primary      (GschemToplevel *w_current);
-Page           *gschem_toplevel_get_current_page  (GschemToplevel *w_current);
-GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
+void            gschem_toplevel_free                  (GschemToplevel *w_current);
+void            gschem_toplevel_free_primary          (GschemToplevel *w_current);
+Page           *gschem_toplevel_get_current_page      (GschemToplevel *w_current);
+GedaToplevel   *gschem_toplevel_get_geda_toplevel     (GschemToplevel *w_current);
+char           *gschem_toplevel_get_last_image_path   (GschemToplevel *w_current);
 
-bool            gschem_toplevel_set_current_page  (GschemToplevel *w_current, Page *page);
+bool            gschem_toplevel_set_current_page      (GschemToplevel *w_current, Page *page);
+void            gschem_toplevel_set_last_image_path   (GschemToplevel *w_current, char *path);
 
 #ifdef __cplusplus
 }

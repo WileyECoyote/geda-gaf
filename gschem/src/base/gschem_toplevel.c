@@ -60,8 +60,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
 
   w_current->toplevel           = NULL;
 
-  w_current->page_history       = gschem_page_history_new();
-
   /* ----------------- main window widgets ----------------- */
   w_current->main_window        = NULL;
   w_current->drawing_area       = NULL;
@@ -292,6 +290,11 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   w_current->undo_type                 = 0;
   w_current->undo_panzoom              = FALSE;
   w_current->undo_preserve             = TRUE;
+
+  w_current->page_history              = gschem_page_history_new();
+
+  w_current->last_image_path                 = NULL;
+
   w_current->smob                      = SCM_UNDEFINED;
 }
 
@@ -341,6 +344,11 @@ static void gschem_toplevel_finalize( GObject *object )
   if (w_current->page_history != NULL) {
     gschem_page_history_free(w_current->page_history);
     w_current->page_history = NULL;
+  }
+
+  if (w_current->last_image_path != NULL) {
+    GEDA_FREE (w_current->last_image_path);
+    w_current->last_image_path = NULL;
   }
 
   if (w_current->action_event != NULL) {
@@ -431,6 +439,14 @@ void gschem_toplevel_free(GschemToplevel *w_current)
   }
 }
 
+void gschem_toplevel_free_primary (GschemToplevel *w_current)
+{
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    g_list_free (w_current->primary_selection);
+    w_current->primary_selection = NULL;
+  }
+}
+
 /*! \brief Get the Current Page from toplevel
  *
  *  \param [in] w_current This gschem toplevel
@@ -460,15 +476,26 @@ gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
   return w_current->toplevel;
 }
 
-void gschem_toplevel_free_primary (GschemToplevel *w_current)
+/*!
+ * \brief Get the last_image_path in the GschemToplevel
+ *  Returns the last_image_path in \a w_current, which could be NULL.
+ *  Silently returns NULL if w_current is not a GschemToplevel
+ *
+ *  \param [in] w_current This GschemToplevel
+ *
+ *  \returns last_image_path if \a w_current is a GschemToplevel
+ */
+char*
+gschem_toplevel_get_last_image_path (GschemToplevel *w_current)
 {
-  if (GSCHEM_IS_TOPLEVEL(w_current)) {
-    g_list_free (w_current->primary_selection);
-    w_current->primary_selection = NULL;
+  if (w_current && GSCHEM_IS_TOPLEVEL(w_current)) {
+    return w_current->last_image_path;
   }
+  return NULL;
 }
 
-bool gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
+bool
+gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel;
   int result;
@@ -487,6 +514,31 @@ bool gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
     result = FALSE;
   }
   return result;
+}
+
+/*!
+ * \brief Set the last_image_path in the GschemToplevel
+ *  Set the last_image_path in \a w_current, which can be NULL. If \a w_current
+ *  is not NULL then last_image_path will be set to \a path if \a path is also
+ *  no NULL. The previous last_image_path is released if the pointer is retained
+ *  otherwise the previous last_image_path is retained. Does not generate an
+ *  error if either argument is NULL. This allows callers to not check the
+ *  inputs, only the returned path, which callers would already need to do.
+ *
+ *  \param [in] w_current This GschemToplevel
+ *  \param [in] path      New string for last_image_path.
+ */
+void
+gschem_toplevel_set_last_image_path (GschemToplevel *w_current, char *path)
+{
+  if (w_current && path) {
+    if (GSCHEM_IS_TOPLEVEL(w_current)) {
+      if (w_current->last_image_path) {
+        GEDA_FREE(w_current->last_image_path);
+      }
+      w_current->last_image_path = path;
+    }
+  }
 }
 
 /** @} endgroup Gschem-Top-Level */
