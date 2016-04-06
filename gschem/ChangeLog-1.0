@@ -1,3 +1,8 @@
+2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_fileselect.c: incorporate last_image_path in x_fileselect_
+      select_image to coordinate paths with other image file operations.
+
 2016-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_toplevel.h: Add toplevel new member last_image_path,

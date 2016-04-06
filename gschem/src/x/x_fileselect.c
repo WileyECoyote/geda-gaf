@@ -408,16 +408,29 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
     }
     geda_image_chooser_set_filename (dialog, f_get_basename(filename));
   }
-  else { /* start in current working directory, NOT in 'Recently Used' */
-    char *cwd = g_get_current_dir ();
-    geda_image_chooser_set_current_folder (dialog, cwd);
-    GEDA_FREE (cwd);
+  else {
+
+    /* Check for w_current last_image_path and use if present */
+    char *path = gschem_toplevel_get_last_image_path (w_current);
+
+    if (path) {
+      geda_image_chooser_set_current_folder (dialog, path);
+    }
+    else { /* start in current working directory, NOT in 'Recently Used' */
+      char *cwd = g_get_current_dir ();
+      geda_image_chooser_set_current_folder (dialog, cwd);
+      GEDA_FREE (cwd);
+    }
   }
 
   gtk_widget_show (dialog);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
-    outfile = geda_utility_string_strdup(geda_image_chooser_get_filename (dialog));
+    outfile = geda_image_chooser_get_filename (dialog);
+    if (outfile !=NULL) {
+      char *file_path = f_path_get_dirname(outfile);
+      gschem_toplevel_set_last_image_path(w_current, file_path);
+    }
   }
   else {
     outfile = NULL;
