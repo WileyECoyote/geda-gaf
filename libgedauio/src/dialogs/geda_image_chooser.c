@@ -1289,8 +1289,6 @@ GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
 char*
 geda_image_chooser_get_entry_text(GtkWidget *despicable)
 {
-  char *name = NULL;
-
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
     GtkEntry *entry = geda_image_chooser_get_entry(despicable);
@@ -1298,31 +1296,26 @@ geda_image_chooser_get_entry_text(GtkWidget *despicable)
     if (GTK_IS_ENTRY(entry)) {
 
       if (gtk_entry_get_text_length (entry)) {
-        name = geda_utility_string_strdup (gtk_entry_get_text(entry));
+        return geda_utility_string_strdup (gtk_entry_get_text(entry));
       }
     }
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
-    name = NULL;
   }
-  return name;
+  return NULL;
 }
 
 char*
 geda_image_chooser_get_filename(GtkWidget *hideous)
 {
-  char     *name;
-
   if (GTK_IS_FILE_CHOOSER(hideous)) {
-    name = gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
-
+    return gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
-    name = NULL;
   }
-  return name;
+  return NULL;
 }
 
 void
@@ -1339,31 +1332,25 @@ geda_image_chooser_set_filename (GtkWidget *hideous, const char *name)
 GSList*
 geda_image_chooser_get_filenames(GtkWidget *hideous)
 {
-  GSList *list;
-
   if (GTK_IS_FILE_CHOOSER(hideous)) {
-    list = gtk_file_chooser_get_filenames((GtkFileChooser*)hideous);
+    return gtk_file_chooser_get_filenames((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
-    list = NULL;
   }
-  return list;
+  return NULL;
 }
 
 char*
 geda_image_chooser_get_current_folder(GtkWidget *hideous)
 {
-  char *folder;
-
   if (GTK_IS_FILE_CHOOSER(hideous)) {
-    folder = gtk_file_chooser_get_current_folder((GtkFileChooser*)hideous);
+    return gtk_file_chooser_get_current_folder((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
-    folder = NULL;
   }
-  return folder;
+  return NULL;
 }
 
 void
@@ -1445,16 +1432,13 @@ geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
 GtkWidget*
 geda_image_chooser_get_extra_widget(GtkWidget *chooser)
 {
-  GtkWidget *extra;
-
   if (GEDA_IMAGE_CHOOSER(chooser)) {
-    extra = ((GedaImageChooser*)chooser)->extra;
+    return ((GedaImageChooser*)chooser)->extra;
   }
   else {
     BUG_MSG ("Operative is not a GedaImageChooser");
-    extra = NULL;
   }
-  return extra;
+  return NULL;
 }
 
 void
