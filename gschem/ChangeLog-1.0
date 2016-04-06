@@ -7,6 +7,10 @@
     * src/base/gschem_toplevel.c: Implement gschem_toplevel_get_current_page
       and gschem_toplevel_set_current_page.
 
+    * src/iface/i_command.c: Revise i_cmd_do_write_pdf to use x_dialog_select_
+      file and unused x_print_export_pdf_page inplace of x_image_setup and this
+      allow for "quick printing".
+
     * src/x/x_dialog.c: Revise function x_dialog_select_file adding new first
       argument w_current so that w_current.last_image_path can be used to set
       the current folder rather than using the cwd.

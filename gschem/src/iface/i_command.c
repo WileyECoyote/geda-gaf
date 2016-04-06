@@ -1029,12 +1029,21 @@ COMMAND (do_write_image) {
  */
 COMMAND (do_write_pdf) {
   BEGIN_W_COMMAND(do_write_pdf);
-    i_status_action_stop(w_current);
-    o_redraw_cleanstates (w_current);
-    i_status_set_state_msg(w_current, SELECT, _("Write PDF"));
-    i_status_set_state(w_current, SELECT);
-    i_status_update_sensitivities(w_current);
-    x_image_setup(w_current, pdf_image);
+
+  char *filename;
+
+  i_status_action_stop(w_current);
+  o_redraw_cleanstates (w_current);
+  i_status_set_state_msg(w_current, SELECT, _("Write PDF"));
+  i_status_set_state(w_current, SELECT);
+  i_status_update_sensitivities(w_current);
+
+  filename = x_dialog_select_file(w_current, "Select destination...", "*.pdf", FSB_SAVE);
+
+  if (filename != NULL) { /* if user did not cancel */
+    x_print_export_pdf_page(w_current,filename);
+    GEDA_FREE(filename);
+  }
   EXIT_COMMAND(do_write_pdf);
 }
 
@@ -1043,7 +1052,7 @@ COMMAND (do_run_script) {
   BEGIN_W_COMMAND(do_run_script);
   char *filename;
   gschem_threads_enter();
-  filename = x_dialog_select_file("Execute Script...", NULL, FSB_LOAD);
+  filename = x_dialog_select_file(w_current, "Execute Script...", NULL, FSB_LOAD);
   if (filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
