@@ -408,7 +408,6 @@ geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
 
     /* update the screen coords and bounding box */
     object->w_bounds_valid_for = NULL;
-
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1558,17 +1557,17 @@ geda_arc_object_to_buffer(GedaObject *object)
 void
 geda_arc_object_translate(GedaObject *object, int dx, int dy)
 {
-  if (object == NULL) {
-    return;
+  if (GEDA_IS_ARC(object)) {
+
+    object->arc->x = object->arc->x + dx;
+    object->arc->y = object->arc->y + dy;
+
+    /* Set flag bounds invalid */
+    object->w_bounds_valid_for = NULL;
   }
-
-  /* Do world coords */
-  object->arc->x = object->arc->x + dx;
-  object->arc->y = object->arc->y + dy;
-
-
-  /* Recalculate screen coords from new world coords */
-  object->w_bounds_valid_for = NULL;
+  else {
+    geda_arc_object_error(__func__, object);
+  }
 }
 
 /*! O0228
