@@ -353,7 +353,7 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   /* Add some useful text */
-  not_found_text = geda_utility_string_sprintf (_("Component not found:\n %s"), complex->filename);
+  not_found_text = geda_sprintf (_("Component not found:\n %s"), complex->filename);
 
   new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
                             x + NOT_FOUND_TEXT_X,
@@ -1163,13 +1163,13 @@ char *o_complex_save(GedaObject *object)
 
   complex = GEDA_COMPLEX(object);
 
-  basename = geda_utility_string_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
+  basename = geda_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
 
   selectable = (object->selectable) ? 1 : 0;
 
   /* Force the object type to be output as OBJ_COMPLEX for both
    * these object types. */
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
+  buf = geda_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
                          complex->x, complex->y,
                          selectable, complex->angle,
                          complex->mirror, basename);

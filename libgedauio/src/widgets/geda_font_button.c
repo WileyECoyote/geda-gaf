@@ -1253,7 +1253,7 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
-  return geda_utility_string_sprintf ("%d", font_button->priv->font_size);
+  return geda_sprintf ("%d", font_button->priv->font_size);
 }
 /*! \brief Font Button Get Font Size
  *  \par Function Description

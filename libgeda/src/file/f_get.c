@@ -77,7 +77,7 @@ char *f_get_autosave_filename (const char *filename)
 
     old_basename  = f_get_basename(filename);
     path_spec     = f_path_get_dirname(filename);
-    new_basename  = geda_utility_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
+    new_basename  = geda_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
     GEDA_FREE(new_basename);
@@ -582,7 +582,7 @@ const char *f_get_format_header()
   static char *header = NULL;
 
   if (header == NULL)
-    header = geda_utility_string_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
+    header = geda_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
                              FILEFORMAT_VERSION);
 
   return header;

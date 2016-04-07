@@ -2765,7 +2765,7 @@ PyGeda_new_attrib(const char *name, const char *value, int x, int y,
 
   int color = translate_color(py_color, ATTRIBUTE_COLOR);
 
-  text = geda_utility_string_sprintf("%s=%s", name, value);
+  text = geda_sprintf("%s=%s", name, value);
 
   object = o_text_new(color, x, y, alg, ang, size, vis, shw, text);
 

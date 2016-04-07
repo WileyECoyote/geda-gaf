@@ -197,7 +197,7 @@ void geda_utility_log_init (const char *prefix)
   nowtm = gmtime (&nowt);
 
   /* create "real" prefix -- this has the form "<prefix>-<date>-" */
-  full_prefix = geda_utility_string_sprintf ("%s-%04i%02i%02i-", prefix,
+  full_prefix = geda_sprintf ("%s-%04i%02i%02i-", prefix,
                                   nowtm->tm_year + 1900, nowtm->tm_mon + 1,
                                   nowtm->tm_mday);
 
@@ -258,7 +258,7 @@ void geda_utility_log_init (const char *prefix)
 
       char *filename;
 
-      filename = geda_utility_string_sprintf ("%s%s%s%i.log", dir_path,
+      filename = geda_sprintf ("%s%s%s%i.log", dir_path,
                                    DIR_SEPARATOR_S, full_prefix,
       ++last_exist_logn);
       logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);

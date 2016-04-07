@@ -67,7 +67,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
 
         if (object != NULL) {
 
-          char *slot_string = geda_utility_string_sprintf ("slot=%s", string);
+          char *slot_string = geda_sprintf ("slot=%s", string);
 
           o_slot_end (w_current, object, slot_string);
           GEDA_FREE (slot_string);

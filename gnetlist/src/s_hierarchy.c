@@ -733,7 +733,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
           sscanf(n_current->connected_to, "%s %s", uref, pin);
 
           new_uref         = s_hierarchy_return_baseuref(pr_current, uref);
-          new_connected_to = geda_utility_string_sprintf("%s %s", new_uref, pin, NULL);
+          new_connected_to = geda_sprintf("%s %s", new_uref, pin, NULL);
 
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);

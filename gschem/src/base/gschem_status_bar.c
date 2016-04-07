@@ -1564,7 +1564,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
         index = COORD_FORMAT_V180;
       }
 
-      string = geda_utility_string_sprintf(coordinate_formats[index].text, length, degrees);
+      string = geda_sprintf(coordinate_formats[index].text, length, degrees);
     }
     else {
 
@@ -1577,7 +1577,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
         mode = mode>>1;
       }
 
-      string = geda_utility_string_sprintf(coordinate_formats[index].text, x1, y1);
+      string = geda_sprintf(coordinate_formats[index].text, x1, y1);
     }
 
     return string;

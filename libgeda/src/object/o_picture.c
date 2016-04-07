@@ -543,28 +543,21 @@ o_picture_save(GedaObject *object)
 
   /* Cope with null filename */
   filename = o_picture_get_filename (object);
+
   if (filename == NULL) filename = "";
 
   if (o_picture_is_embedded(object) && encoded_picture != NULL) {
-    out = geda_utility_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
-                           object->type,
-                           x1, y1, width, height,
-                           object->picture->angle,
+    out = geda_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s", object->type,
+                           x1, y1, width, height, object->picture->angle,
                            /* Convert the (0,1) chars to ASCII */
-                           (object->picture->mirrored)+0x30,
-                           '1',
-                           filename,
-                           encoded_picture,
-                           ".");
+                          (object->picture->mirrored)+0x30, '1',
+                           filename, encoded_picture, ".");
   }
   else {
-    out = geda_utility_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
-                           object->type,
-                           x1, y1, width, height,
-                           object->picture->angle,
+    out = geda_sprintf("%c %d %d %d %d %d %c %c\n%s", object->type,
+                           x1, y1, width, height, object->picture->angle,
                            /* Convert the (0,1) chars to ASCII */
-                           (object->picture->mirrored)+0x30,
-                           '0',
+                           (object->picture->mirrored)+0x30, '0',
                            filename);
   }
 

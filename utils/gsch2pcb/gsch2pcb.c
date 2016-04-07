@@ -635,7 +635,7 @@ insert_element (FILE *f_out,     char *element_file,
   retval = FALSE;
 
   if ((f_in = fopen (element_file, "r")) == NULL) {
-    str = geda_utility_string_sprintf ("insert_element() can't open %s", element_file);
+    str = geda_sprintf ("insert_element() can't open %s", element_file);
     perror (str);
     GEDA_FREE (str);
   }
@@ -701,7 +701,7 @@ find_element (char * dir_path, char * element)
 
     char *str;
 
-    str = geda_utility_string_sprintf ("find_element can't open dir \"%s\"", dir_path);
+    str = geda_sprintf ("find_element can't open dir \"%s\"", dir_path);
 
     perror (str);
     GEDA_FREE (str);
@@ -1727,7 +1727,7 @@ int main (int argc, char **argv)
 
   for (i = 0; g_file_test (bak_file_name, G_FILE_TEST_EXISTS); ++i) {
     GEDA_FREE (bak_file_name);
-    bak_file_name = geda_utility_string_sprintf ("%s%d", tmp, i);
+    bak_file_name = geda_sprintf ("%s%d", tmp, i);
   }
   GEDA_FREE (tmp);
 

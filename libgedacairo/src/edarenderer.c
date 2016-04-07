@@ -1174,7 +1174,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
     char *err_msg;
 
     filename  = object->picture->filename;
-    err_msg = geda_utility_string_sprintf (_("Error loading: %s"), filename);
+    err_msg = geda_sprintf (_("Error loading: %s"), filename);
     cairo_set_font_size(renderer->priv->cr, 6);
 
     /* add the text */

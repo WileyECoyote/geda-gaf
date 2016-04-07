@@ -1478,10 +1478,10 @@ static GtkTreeModel *create_lib_tree_model (Compselect *compselect,
 
     if (sym_count > 1) {
       /* Add tool tip to the source row */
-      tooltip_text = geda_utility_string_sprintf("%s contains %d symbols", source->name, sym_count);
+      tooltip_text = geda_sprintf("%s contains %d symbols", source->name, sym_count);
     }
     else
-      tooltip_text = geda_utility_string_sprintf("%s Group", source->name);
+      tooltip_text = geda_sprintf("%s Group", source->name);
 
     gtk_tree_store_set (store, &tree_iter,
                         LVC_ROW_TYPE, FALSE,

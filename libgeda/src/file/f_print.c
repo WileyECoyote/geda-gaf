@@ -91,7 +91,7 @@ static char *f_print_get_color_string(int index)
 
       if (c->enabled && c->a > 0) {
 
-        return geda_utility_string_sprintf ("%.3f %.3f %.3f",
+        return geda_sprintf ("%.3f %.3f %.3f",
                                  (double) c->r/255.0,
                                  (double) c->g/255.0,
                                  (double) c->b/255.0);

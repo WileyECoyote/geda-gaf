@@ -420,8 +420,8 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       {
         char *backup_filename;
 
-        backup_filename = geda_utility_string_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
-                                          only_filename);
+        backup_filename = geda_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
+                                       only_filename);
 
         /* Make the backup file read-write before saving a new one */
         if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&

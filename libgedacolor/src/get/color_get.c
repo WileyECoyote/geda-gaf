@@ -190,7 +190,7 @@ char *geda_color_get_print_color (int color)
   if ((c.a == 0) || !c.enabled) {
     return NULL;
   } else {
-    return geda_utility_string_sprintf ("%.3f %.3f %.3f",
+    return geda_sprintf ("%.3f %.3f %.3f",
                             (double) c.r/255.0,
                             (double) c.g/255.0,
                             (double) c.b/255.0);

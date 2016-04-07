@@ -1029,11 +1029,14 @@ draw_page__print_operation (GtkPrintOperation *print,
   GEDA_UNREF (pc);
 }
 
-/*! \brief Export a print-style PDF file of the current page.
+/*!
+ * \brief Export a print-style PDF file of the current page.
  * \par Function Description
  * Exports the current page as a PDF file to \a filename. The
- * export is carried out using a normal paper size and margins, as if
- * printing.
+ * export is carried out using a normal paper size and margins,
+ * as if printing. This function is associated with the action
+ * write-pdf, which is similar to the gschem-pdf action but this
+ * function always writes the entire page.
  *
  * \param w_current A GschemToplevel structure.
  * \param filename  The filename for generated PDF.

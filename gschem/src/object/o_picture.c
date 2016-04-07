@@ -612,11 +612,11 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     char *errmsg;
 
     if (error) {
-      errmsg = geda_utility_string_sprintf ( _("Error: %s."), error->message);
+      errmsg = geda_sprintf ( _("Error: %s."), error->message);
       g_error_free(error);
     }
     else {
-      errmsg = geda_utility_string_sprintf ( _("Error: %s\n%s."), filename,
+      errmsg = geda_sprintf ( _("Error: %s\n%s."), filename,
                                   _("An unknown error occurred"));
     }
 

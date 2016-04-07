@@ -629,7 +629,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     /* add a handle to the menu_bar object to get access to widget
      * objects. This string should NOT be internationalized */
-    buf = geda_utility_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
+    buf = geda_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, buf);
     GEDA_FREE(buf);
 

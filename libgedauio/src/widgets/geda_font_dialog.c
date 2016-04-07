@@ -486,7 +486,7 @@ geda_font_dialog_select_best_size (GedaFontDialog *dialog)
   {
     char *size;
 
-    size = geda_utility_string_sprintf ("%d", dialog->font_size ); //dialog->font_size);
+    size = geda_sprintf ("%d", dialog->font_size ); //dialog->font_size);
 
     /* Changing the entry triggers an update to the preview entry*/
     gtk_entry_set_text (GTK_ENTRY (dialog->size_entry), size);
@@ -556,7 +556,7 @@ static void callback_select_size (GtkTreeSelection *selection, void * data)
       pango_font_description_set_size (dialog->font_desc, dialog->font_size);
 
     }
-    size = geda_utility_string_sprintf ("%d", new_size ); //dialog->font_size);
+    size = geda_sprintf ("%d", new_size ); //dialog->font_size);
     /* Changing the entry triggers an update to the preview entry*/
     gtk_entry_set_text (GTK_ENTRY (dialog->size_entry), size);
     g_free ( size );

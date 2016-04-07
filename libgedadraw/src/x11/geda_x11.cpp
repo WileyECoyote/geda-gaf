@@ -574,7 +574,7 @@ HashSetFont (void)
 inline std::string EdaX11Render::
 GetFontString(int size) {
 
-  char *tmp_string = geda_utility_string_sprintf(font_format.c_str(), size);
+  char *tmp_string = geda_sprintf(font_format.c_str(), size);
 
   std::string str = tmp_string;
 
@@ -1617,12 +1617,12 @@ geda_x11_draw_set_font_name (const char *font_name)
     font_slant  = EDA_SLANT_NONE;
   }
 
-  tmp_string    = geda_utility_string_sprintf("%s,", font_name);
+  tmp_string    = geda_sprintf("%s,", font_name);
 
 #else
 
   font_family   = font_name;
-  tmp_string    = geda_utility_string_sprintf("-*-%s", font_name);
+  tmp_string    = geda_sprintf("-*-%s", font_name);
 
 #endif
 
@@ -1686,7 +1686,7 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
       if (FcPatternGetString(pattern, FC_FAMILY, 0, &family) == FcResultMatch &&
           FcPatternGetString(pattern, FC_STYLE, 0, &style) == FcResultMatch)
       {
-        char *name = geda_utility_string_sprintf("-%s-%s", family, style);
+        char *name = geda_sprintf("-%s-%s", family, style);
         g_array_append_val (listing, name);
       }
     }

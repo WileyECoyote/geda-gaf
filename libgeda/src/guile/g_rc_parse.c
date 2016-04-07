@@ -310,7 +310,7 @@ g_rc_parse_system (const char *rcname, GError **err)
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
 
-  sysname = geda_utility_string_sprintf ("system-%s", rcname);
+  sysname = geda_sprintf ("system-%s", rcname);
 
   rcfile = g_build_filename (f_path_sys_config (), sysname, NULL);
 

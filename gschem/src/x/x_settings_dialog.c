@@ -1570,9 +1570,9 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
         if(provider && family) {
 
 #ifdef HAVE_XFT
-          ptr = geda_utility_string_sprintf("%s-%s", provider, family);
+          ptr = geda_sprintf("%s-%s", provider, family);
 #else
-          ptr = geda_utility_string_sprintf("%s, %s", provider, family);
+          ptr = geda_sprintf("%s, %s", provider, family);
 #endif
 
         }

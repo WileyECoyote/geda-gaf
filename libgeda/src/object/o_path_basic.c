@@ -607,8 +607,6 @@ char *o_path_save (GedaObject *object)
   int fill_width, angle1, pitch1, angle2, pitch2;
   char *path_string;
 
-  g_return_val_if_fail(GEDA_IS_PATH(object), NULL);
-
   /* description of the line type */
   line_width  = object->line_options->line_width;
   line_end    = object->line_options->line_end;
@@ -627,11 +625,11 @@ char *o_path_save (GedaObject *object)
   path_string = s_path_string_from_path (object->path);
 
   num_lines = o_get_num_text_lines (path_string);
-  buf = geda_utility_string_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
-                           object->type, object->color, line_width, line_end,
-                           line_type, line_length, line_space, fill_type,
-                           fill_width, angle1, pitch1, angle2, pitch2,
-                           num_lines, path_string);
+  buf = geda_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
+                      object->type, object->color, line_width, line_end,
+                      line_type, line_length, line_space, fill_type,
+                      fill_width, angle1, pitch1, angle2, pitch2,
+                      num_lines, path_string);
   GEDA_FREE (path_string);
 
   return buf;

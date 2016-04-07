@@ -527,7 +527,7 @@ static char *get_unique_source_name (const char *name)
   do {
     GEDA_FREE (newname);
     i++;
-    newname = geda_utility_string_sprintf ("%s-%i", name, i);
+    newname = geda_sprintf ("%s-%i", name, i);
   } while (s_clib_get_source_by_name (newname) != NULL);
 
   u_log_message (_("Library name [%s] already in use.  Using [%s].\n"),
@@ -1252,7 +1252,7 @@ static char *get_data_command (const CLibSymbol *symbol)
   g_return_val_if_fail ((symbol != NULL), NULL);
   g_return_val_if_fail ((symbol->source->type == CLIB_CMD), NULL);
 
-  command = geda_utility_string_sprintf ("%s %s", symbol->source->get_cmd, symbol->name);
+  command = geda_sprintf ("%s %s", symbol->source->get_cmd, symbol->name);
 
   result = run_source_command ( command );
 
@@ -1412,10 +1412,10 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   /* Use different cache keys based on search mode */
   switch (mode) {
     case CLIB_GLOB: /* keytype = g */
-      key = geda_utility_string_sprintf("g%s", pattern);
+      key = geda_sprintf("g%s", pattern);
       break;
     case CLIB_EXACT: /* keytype = s */
-      key = geda_utility_string_sprintf("s%s", pattern);
+      key = geda_sprintf("s%s", pattern);
       break;
     default:
       BUG_IMSG ("Bad search mode %i\n", mode);

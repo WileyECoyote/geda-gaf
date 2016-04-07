@@ -477,14 +477,14 @@ confirm_close_dialog_constructor (GedaType type,
     char *page_name;
 
     page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages), NULL);
-    tmp = geda_utility_string_sprintf (
+    tmp = geda_sprintf (
       _("Save the changes to schematic \"%s\" before closing?"), page_name);
 
     GEDA_FREE (page_name);
   }
   else {
     /* multi page */
-    tmp = geda_utility_string_sprintf (
+    tmp = geda_sprintf (
       _("There are %d schematics with unsaved changes. "
         "Save changes before closing?"),
       count_pages (GTK_TREE_MODEL (dialog->store_unsaved_pages)));

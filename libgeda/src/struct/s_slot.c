@@ -222,7 +222,7 @@ void s_slot_update_object (GedaObject *object)
       g_list_free (attributes);
 
       if (o_pinnum_attrib != NULL) {
-        pinstr = geda_utility_string_sprintf ("pinnumber=%s", current_pin);
+        pinstr = geda_sprintf ("pinnumber=%s", current_pin);
         o_text_set_string (o_pinnum_attrib, pinstr);
         GEDA_FREE(pinstr);
       }

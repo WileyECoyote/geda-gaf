@@ -320,7 +320,7 @@ void main_prog(void *closure, int argc, char *argv[])
     char *str;
 
     /* Search for backend scm file in load path */
-    str = geda_utility_string_sprintf("gnet-%s.scm", guile_proc);
+    str = geda_sprintf("gnet-%s.scm", guile_proc);
     s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
     GEDA_FREE (str);
 
@@ -448,7 +448,7 @@ void main_prog(void *closure, int argc, char *argv[])
     char *eval;
 
     /* check size here hack */
-    eval = geda_utility_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
+    eval = geda_sprintf ("(%s \"%s\")", guile_proc, output_filename);
 
     /* Execute the back-end passing the name of the output file */
     scm_c_eval_string (eval);

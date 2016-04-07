@@ -576,7 +576,7 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
   GList          *iter;
   char           *newtext;
 
-  newtext = geda_utility_string_sprintf ("%s=%s", name, value);
+  newtext = geda_sprintf ("%s=%s", name, value);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
     GEDA_FREE(newtext);
@@ -929,7 +929,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
                       COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                       -1);
 
-  newtext = geda_utility_string_sprintf ("%s=%s", new_name, value);
+  newtext = geda_sprintf ("%s=%s", new_name, value);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
     GEDA_FREE (value);
@@ -994,7 +994,7 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
     /* If the edit didn't change anything, don't adjust any attributes */
     if (strcmp (old_value, new_value) != 0) {
 
-      char *newtext = geda_utility_string_sprintf ("%s=%s", name, new_value);
+      char *newtext = geda_sprintf ("%s=%s", name, new_value);
 
       if (x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
 
@@ -2580,11 +2580,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   if (sc > 0) {
     if (sc > 1) {
       char *str = _("symbols");
-      ss = geda_utility_string_sprintf(" %i %s (%s)", sc, str, complex_title_name);
+      ss = geda_sprintf(" %i %s (%s)", sc, str, complex_title_name);
     }
     else {
       char *str = _("symbol");
-      ss = geda_utility_string_sprintf(" 1 %s (%s)", str, complex_title_name);
+      ss = geda_sprintf(" 1 %s (%s)", str, complex_title_name);
     }
     sl = strlen(ss);
   }
@@ -2595,11 +2595,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   if (pc > 0) {
     if (pc > 1) {
       char *str = _("pins");
-      ps = geda_utility_string_sprintf(" %i %s", pc, str);
+      ps = geda_sprintf(" %i %s", pc, str);
     }
     else {
       char *str = _("pin");
-      ps  = geda_utility_string_sprintf(" 1 %s", str);
+      ps  = geda_sprintf(" 1 %s", str);
     }
     pl = strlen(ps);
   }
@@ -2610,11 +2610,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   if (nc > 0) {
     if (nc > 1) {
       char *str = _("nets");
-      ns = geda_utility_string_sprintf(" %i %s", nc, str);
+      ns = geda_sprintf(" %i %s", nc, str);
     }
     else {
       char *str = _("net");
-      ns = geda_utility_string_sprintf(" 1 %s", str);
+      ns = geda_sprintf(" 1 %s", str);
     }
     nl = strlen(ns);
   }
@@ -2625,11 +2625,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   if (bc > 0) {
     if (bc > 1) {
       char *str = _("buses");
-      bs = geda_utility_string_sprintf(" %i %s", bc, str);
+      bs = geda_sprintf(" %i %s", bc, str);
     }
     else {
       char *str = _("bus");
-      bs = geda_utility_string_sprintf(" 1 %s", str);
+      bs = geda_sprintf(" 1 %s", str);
     }
     bl = strlen(bs);
   }
@@ -2640,11 +2640,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   if (ac > 0) {
     if (ac > 1) {
       char *str = _("attributes");
-      as = geda_utility_string_sprintf(" %i %s", ac, str);
+      as = geda_sprintf(" %i %s", ac, str);
     }
     else {
       char *str = _("attribute");
-      as = geda_utility_string_sprintf(" 1 %s", str);
+      as = geda_sprintf(" 1 %s", str);
     }
     al = strlen(as);
   }

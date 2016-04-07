@@ -3,4 +3,5 @@ Makefile.in
 *.la
 *.lo
 *.o
-
+# tmp reference
+xfonts.txt

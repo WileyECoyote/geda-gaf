@@ -184,8 +184,8 @@ char *o_net_save(GedaObject *object)
   x2 = object->line->x[1];
   y2 = object->line->y[1];
 
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d",
-                         object->type, x1, y1, x2, y2, object->color);
+  buf = geda_sprintf("%c %d %d %d %d %d", object->type,
+                         x1, y1, x2, y2, object->color);
   return (buf);
 }
 

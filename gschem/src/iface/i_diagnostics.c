@@ -251,7 +251,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,0,1, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", prog_pid);
+  string = geda_sprintf("%i", prog_pid);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 
@@ -271,7 +271,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
     geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
     gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
 
-    string = geda_utility_string_sprintf("%ld", usage.ru_maxrss);
+    string = geda_sprintf("%ld", usage.ru_maxrss);
     SetEntryText(widget, string);
     GEDA_FREE(string);
   }
@@ -285,7 +285,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,2,3, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", MAX_THREADS);
+  string = geda_sprintf("%i", MAX_THREADS);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 
@@ -298,7 +298,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,2,3, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", MAX_THREADS_UNUSED);
+  string = geda_sprintf("%i", MAX_THREADS_UNUSED);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 
@@ -316,7 +316,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 1,2,3,4, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", nt);
+  string = geda_sprintf("%i", nt);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 
@@ -329,7 +329,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,3,4, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", up);
+  string = geda_sprintf("%i", up);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 
@@ -342,7 +342,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,3,4, GTK_FILL,0,0,0);
 
-  string = geda_utility_string_sprintf("%i", it);
+  string = geda_sprintf("%i", it);
   SetEntryText(widget, string);
   GEDA_FREE(string);
 

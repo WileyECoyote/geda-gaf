@@ -219,7 +219,7 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
 
     scm_dynwind_begin (0);
 
-    hexstring = geda_utility_string_sprintf (" %p", (void *) SCM_SMOB_DATA (smob));
+    hexstring = geda_sprintf (" %p", (void *) SCM_SMOB_DATA (smob));
 
     scm_dynwind_unwind_handler (g_free, hexstring, SCM_F_WIND_EXPLICITLY);
     scm_puts (hexstring, port);

@@ -124,7 +124,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   value = scm_to_utf8_string (value_s);
   scm_dynwind_free (value);
 
-  char *str = geda_utility_string_sprintf ("%s=%s", name, value);
+  char *str = geda_sprintf ("%s=%s", name, value);
   scm_dynwind_unwind_handler (g_free, str, SCM_F_WIND_EXPLICITLY);
 
   GedaObject *result = o_attrib_add_attrib (w_current, str, visibility, show, obj);

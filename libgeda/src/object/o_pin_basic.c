@@ -211,7 +211,7 @@ char *o_pin_save(GedaObject *object)
   node_type = object->pin->node_type;
   whichend  = object->pin->whichend;
 
-  buf = geda_utility_string_sprintf("%c %d %d %d %d %d %d %d", object->type,
+  buf = geda_sprintf("%c %d %d %d %d %d %d %d", object->type,
                           x1, y1, x2, y2, object->color, node_type, whichend);
   return(buf);
 }
@@ -755,7 +755,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
     }
 
     /* pin sequence */
-    char *str_seq = geda_utility_string_sprintf ("%d", sequence);
+    char *str_seq = geda_sprintf ("%d", sequence);
 
     if (geda_pin_set_sequence(pin, str_seq)) {
       bute = geda_attrib_first_attrib_by_name (object, "pinseq");
@@ -1301,7 +1301,7 @@ GedaObject* o_pin_create_number_attrib(GedaToplevel *toplevel, GedaObject *objec
     str_num = number;
   }
 
-  text = geda_utility_string_sprintf("pinnumber=%s", str_num);
+  text = geda_sprintf("pinnumber=%s", str_num);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, VISIBLE, SHOW_VALUE, text);
@@ -1433,7 +1433,7 @@ GedaObject *o_pin_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
     value = sequence;
   }
 
-  text = geda_utility_string_sprintf("pinseq=%d", value);
+  text = geda_sprintf("pinseq=%d", value);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, INVISIBLE, SHOW_NAME_VALUE, text);

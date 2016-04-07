@@ -43,7 +43,7 @@
  */
 char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
 {
-  return geda_utility_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
+  return geda_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
 /*! \brief Get the Pin Number of connected Net Attribute string
@@ -197,7 +197,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
           GEDA_FREE(old_cpin->nets->connected_to);
 
           old_cpin->nets->connected_to =
-          geda_utility_string_sprintf("%s %s", netlist->component_uref, current_pin);
+          geda_sprintf("%s %s", netlist->component_uref, current_pin);
 
           old_cpin->nets->net_name_has_priority = TRUE;
 
@@ -228,7 +228,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
         s_hierarchy_create_netattrib(pr_current, net_name, hierarchy_tag);
 
         new_cpin->nets->connected_to =
-        geda_utility_string_sprintf("%s %s", netlist->component_uref, current_pin);
+        geda_sprintf("%s %s", netlist->component_uref, current_pin);
 
         new_cpin->nets->nid = o_current->sid;
 

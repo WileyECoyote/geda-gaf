@@ -414,7 +414,7 @@ void about_dialog (GschemToplevel *w_current)
   GError     *error = NULL;
   GtkWidget  *Dialog;
 
-  version_string = geda_utility_string_sprintf ("%s (g%.7s)",
+  version_string = geda_sprintf ("%s (g%.7s)",
                                      PACKAGE_DOTTED_VERSION,
                                      PACKAGE_GIT_COMMIT);
 
@@ -1289,7 +1289,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (width == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", width);
+    text = geda_sprintf ("%d", width);
 
   SetEntryText   ( fill_data->width_entry, text );
   EntrySelectAll ( fill_data->width_entry );
@@ -1298,7 +1298,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (pitch1 == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", pitch1);
+    text = geda_sprintf ("%d", pitch1);
 
   SetEntryText   ( fill_data->pitch1_entry, text );
   EntrySelectAll ( fill_data->pitch1_entry );
@@ -1307,7 +1307,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (angle1 == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", angle1);
+    text = geda_sprintf ("%d", angle1);
 
   SetEntryText   ( fill_data->angle1_entry, text );
   EntrySelectAll ( fill_data->angle1_entry );
@@ -1316,7 +1316,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (pitch2 == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", pitch2);
+    text = geda_sprintf ("%d", pitch2);
 
   SetEntryText   ( fill_data->pitch2_entry, text );
   EntrySelectAll ( fill_data->pitch2_entry );
@@ -1325,7 +1325,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (angle2 == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", angle2);
+    text = geda_sprintf ("%d", angle2);
 
   SetEntryText   ( fill_data->angle2_entry, text );
   EntrySelectAll ( fill_data->angle2_entry );
@@ -1899,7 +1899,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (width == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", width);
+    text = geda_sprintf ("%d", width);
 
   SetEntryText   ( line_data->width_entry, text );
   EntrySelectAll ( line_data->width_entry );
@@ -1908,7 +1908,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (length == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", length);
+    text = geda_sprintf ("%d", length);
 
   SetEntryText   ( line_data->length_entry, text );
   EntrySelectAll ( line_data->length_entry );
@@ -1918,7 +1918,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (space == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
   else
-    text = geda_utility_string_sprintf ("%d", space);
+    text = geda_sprintf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
   EntrySelectAll ( line_data->space_entry );
   GEDA_FREE(text);
@@ -3825,7 +3825,7 @@ char *x_dialog_select_file (GschemToplevel *w_current,
   }
 
   if (flags & FSB_LOAD) {
-    title = geda_utility_string_sprintf("%s: Open", msg);
+    title = geda_sprintf("%s: Open", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_OPEN,
@@ -3837,7 +3837,7 @@ char *x_dialog_select_file (GschemToplevel *w_current,
 
   }
   else {
-    title = geda_utility_string_sprintf("%s: Save", msg);
+    title = geda_sprintf("%s: Save", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_SAVE,

@@ -136,7 +136,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
       u_log_message (_("ERROR: %s\n"), (*err)->message);
     }
     /* Dialog message */
-    msg2 = geda_utility_string_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
+    msg2 = geda_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
   }
 
   /* Inform the user */

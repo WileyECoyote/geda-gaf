@@ -577,7 +577,7 @@ geda_attrib_object_new_attached(GedaObject *parent,
 
   /* first create text item */
   if ( name && value) {
-    text = geda_utility_string_sprintf("%s=%s", name, value);
+    text = geda_sprintf("%s=%s", name, value);
   }
   else if (name) {
     text = geda_utility_string_strdup(name);
@@ -1016,7 +1016,7 @@ geda_attrib_object_set_integer_value (const GedaObject *attrib,
                                             int         value)
 {
   GEDA_FREE(attrib->text->string);
-  attrib->text->string = geda_utility_string_sprintf("%s=%d", name_ptr, value, NULL);
+  attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
 }
 
 /*!

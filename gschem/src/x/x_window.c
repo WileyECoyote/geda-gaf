@@ -146,7 +146,7 @@ void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   gtk_container_add(GTK_CONTAINER(window), DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
-  char *unique_name = geda_utility_string_sprintf("GschemDrawingArea:%i", prog_pid);
+  char *unique_name = geda_sprintf("GschemDrawingArea:%i", prog_pid);
   g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
   GEDA_FREE(unique_name);
 }
@@ -1316,24 +1316,24 @@ void x_window_update_title(GschemToplevel *w_current)
     if (geda_page_get_changed(current_page) > 0) {
 
       if (w_current->session_name != NULL) {
-        print_string = geda_utility_string_sprintf ("*%s: %s - gschem",
+        print_string = geda_sprintf ("*%s: %s - gschem",
                                          w_current->session_name,
                                          filename);
       }
       else {
-        print_string = geda_utility_string_sprintf("*%s - gschem", filename);
+        print_string = geda_sprintf("*%s - gschem", filename);
       }
 
     }
     else {
 
       if (w_current->session_name != NULL) {
-        print_string = geda_utility_string_sprintf("%s: %s - gschem",
+        print_string = geda_sprintf("%s: %s - gschem",
         w_current->session_name,
         filename);
       }
       else {
-        print_string = geda_utility_string_sprintf("%s - gschem", filename);
+        print_string = geda_sprintf("%s - gschem", filename);
       }
     }
 

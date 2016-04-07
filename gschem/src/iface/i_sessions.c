@@ -845,7 +845,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 
     char    *msg;
 
-    msg = geda_utility_string_sprintf ("%s, %s", record->session_file, strerror(errno));
+    msg = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
     u_log_message( _("%s: Failed to remove session: %s"), __func__, msg);
@@ -906,7 +906,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
     char *msg;
 
-    msg = geda_utility_string_sprintf ( _("An error occurred attemting to create session %s: %s."),
+    msg = geda_sprintf ( _("An error occurred attemting to create session %s: %s."),
                          name, err->message);
     /* Log the error */
     u_log_message( "%s %s", __func__, msg);
@@ -1025,7 +1025,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
   }
   else {
 
-    str = geda_utility_string_sprintf ("%s, %s", record->session_file, strerror(errno));
+    str = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
     u_log_message( _("%s: Failed to rename session: %s"), __func__, str);
@@ -1062,7 +1062,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 
     if (!err) {
       update_sessions_menus(w_current);
-      msg = geda_utility_string_sprintf(_("Created session %s with %d documents.\n"), name, count);
+      msg = geda_sprintf(_("Created session %s with %d documents.\n"), name, count);
     }
   }
   else {
@@ -1070,13 +1070,13 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = i_sessions_save(w_current, err);
 
     if (!err) {
-      msg = geda_utility_string_sprintf(_("Saved %d documents to session %s\n"), count, w_current->session_name);
+      msg = geda_sprintf(_("Saved %d documents to session %s\n"), count, w_current->session_name);
     }
   }
 
   if (err) {
 
-    msg = geda_utility_string_sprintf(_("An error occurred attempting to save session %s: %s."), name, err->message);
+    msg = geda_sprintf(_("An error occurred attempting to save session %s: %s."), name, err->message);
 
     u_log_message ("%s", msg); /* Log the error */
 
