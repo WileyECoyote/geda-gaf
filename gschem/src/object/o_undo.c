@@ -210,7 +210,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   /* save auto save backups if necessary */
   o_save_auto_backup(w_current->toplevel);
 
-  //i_status_update_title (w_current);
+  i_status_update_title (w_current);
 
   if (w_current->undo_control == FALSE) {
     return;
