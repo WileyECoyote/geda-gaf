@@ -302,13 +302,14 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Create a string representation of the text object
- *  \par Function Description
+/*!
+ * \brief Create a string representation of the text object
+ * \par Function Description
  *  This function takes a text \a object and return a string
  *  according to the file format definition.
- *
- *  \param [in] object  a text Object
- *  \return the string representation of the text Object
+ * \note object was validated by o_save_objects
+ * \param [in] object  a text Object
+ * \return the string representation of the text Object
  */
 char *o_text_save(GedaObject *object)
 {

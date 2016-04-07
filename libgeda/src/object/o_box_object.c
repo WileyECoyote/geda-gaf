@@ -42,15 +42,15 @@ geda_box_object_error(const char *func, const void *object)
   }
 }
 
-/*! \brief Copy a box to a list.
- *
- *  \par Function Description
+/*!
+ * \brief Copy a box to a list.
+ * \par Function Description
  *  The function #geda_box_object_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a box.
  *
- *  \param [in] o_source Box Object to copy.
+ * \param [in] o_source Box Object to copy.
  *
- *  \return The new GedaObject
+ * \return The new GedaObject
  */
 GedaObject*
 geda_box_object_copy(GedaObject *o_source)
@@ -291,18 +291,18 @@ geda_box_object_get_position (GedaObject *object, int *x, int *y)
   return 0;
 }
 
-/*! \brief Mirror a Box.
- *
- *  \par Function Description
+/*!
+ * \brief Mirror a Box.
+ * \par Function Description
  *  This function mirrors the box from the point
  *  (<B>center_x</B>,<B>center_y</B>).
  *
  *  The box is first translated to the origin, then mirrored and finally
  *  translated back at its previous position.
  *
- *  \param [in,out] object    GedaBox Object to mirror
- *  \param [in]     center_x  Origin x coordinate
- *  \param [in]     center_y  Origin y coordinate
+ * \param [in,out] object    GedaBox Object to mirror
+ * \param [in]     center_x  Origin x coordinate
+ * \param [in]     center_y  Origin y coordinate
  */
 void
 geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
@@ -344,9 +344,9 @@ geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! \brief Modify a Box Object's coordinates.
- *
- *  \par Function Description
+/*!
+ * \brief Modify a Box Object's coordinates.
+ * \par Function Description
  *  This function modifies the coordinates of one of the four corner of
  *  the box. The new coordinates of the corner identified by <B>whichone</B>
  *  are given by <B>x</B> and <B>y</B> in world unit.
@@ -354,12 +354,12 @@ geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
  *  The coordinates of the corner is modified in the world coordinate system.
  *  Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     GedaBox Object to be modified.
- *  \param [in]     x          x coordinate.
- *  \param [in]     y          y coordinate.
- *  \param [in]     whichone   coordinate to change.
+ * \param [in,out] object     GedaBox Object to be modified.
+ * \param [in]     x          x coordinate.
+ * \param [in]     y          y coordinate.
+ * \param [in]     whichone   coordinate to change.
  *
- *  \note
+ * \note
  *  <B>whichone</B> can take the following values:
  *  <DL>
  *    <DT>*</DT><DD>BOX_UPPER_LEFT
@@ -422,12 +422,12 @@ geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*! \brief Modify a Box Object's coordinates.
- *
+/*!
+ * \brief Modify a Box Object's coordinates.
  * \par Function Description
- * Modifies the coordinates of all four corners of \a box, by setting
- * the box to the rectangle enclosed by the points (\a x1, \a y1) and
- * (\a x2, \a y2).
+ *  Modifies the coordinates of all four corners of \a box, by setting
+ *  the box to the rectangle enclosed by the points (\a x1, \a y1) and
+ *  (\a x2, \a y2).
  *
  * \param [in,out] object   box #GedaObject to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
@@ -454,8 +454,9 @@ geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
   }
 }
 
-/*! \brief Create a Box Object
- *  \par Function Description
+/*!
+ * \brief Create a Box Object
+ * \par Function Description
  *  This function creates a new object representing a box.
  *
  *  The box is described by its upper left corner - <B>x1</B>, <B>y1</B> - and
@@ -470,13 +471,13 @@ geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
  *  line type with a width of 0, and no filling. It can be changed after
  *  with the #o_set_line_options() and #o_set_fill_options().
  *
- *  \param [in]     color        Box border color.
- *  \param [in]     x1           Upper x coordinate.
- *  \param [in]     y1           Upper y coordinate.
- *  \param [in]     x2           Lower x coordinate.
- *  \param [in]     y2           Lower y coordinate.
+ * \param [in]     color        Box border color.
+ * \param [in]     x1           Upper x coordinate.
+ * \param [in]     y1           Upper y coordinate.
+ * \param [in]     x2           Lower x coordinate.
+ * \param [in]     y2           Lower y coordinate.
  *
- *  \return The new GedaObject
+ * \return The new GedaObject
  */
 GedaObject*
 geda_box_object_new(int color, int x1, int y1, int x2, int y2)
@@ -499,8 +500,9 @@ geda_box_object_new(int color, int x1, int y1, int x2, int y2)
   return new_obj;
 }
 
-/*! \brief Print a GedaBox to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a GedaBox to Postscript document.
+ * \par Function Description
  *  This function prints the box described by the <B>\a o_current</B>
  *  parameter to a Postscript document. It takes into account its line
  *  type and fill type.
@@ -517,11 +519,11 @@ geda_box_object_new(int color, int x1, int y1, int x2, int y2)
  *  The outline and the inside of the box are successively handled by two
  *  differend sets of functions.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  GedaBox Object to write to document.
- *  \param [in] origin_x   Page x coordinate to place GedaBox Object.
- *  \param [in] origin_y   Page y coordinate to place GedaBox Object.
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp         FILE pointer to Postscript document.
+ * \param [in] o_current  GedaBox Object to write to document.
+ * \param [in] origin_x   Page x coordinate to place GedaBox Object.
+ * \param [in] origin_y   Page y coordinate to place GedaBox Object.
  */
 void
 geda_box_object_print(GedaToplevel *toplevel,
@@ -685,8 +687,9 @@ geda_box_object_print(GedaToplevel *toplevel,
   }
 }
 
-/*! \brief Print a solid Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a solid Box to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a box when a solid line type is
  *  required. The box is defined by the coordinates of its upper left corner
  *  in (<B>x</B>,<B>y</B>) and its width and height given by the <B>width</B> and
@@ -699,19 +702,19 @@ geda_box_object_print(GedaToplevel *toplevel,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of the box.
- *  \param [in] y           Upper y coordinate of the box.
- *  \param [in] width       Width of the box.
- *  \param [in] height      Height of the box.
- *  \param [in] color       Box color.
- *  \param [in] line_width  Box Line width.
- *  \param [in] capstyle    Box Line capstyle.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of the box.
+ * \param [in] y           Upper y coordinate of the box.
+ * \param [in] width       Width of the box.
+ * \param [in] height      Height of the box.
+ * \param [in] color       Box color.
+ * \param [in] line_width  Box Line width.
+ * \param [in] capstyle    Box Line capstyle.
+ * \param [in] length      Dashed line length.
+ * \param [in] space       Amount of space between dashes.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
@@ -750,8 +753,9 @@ geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
                      origin_x, origin_y);
 }
 
-/*! \brief Print a dotted GedaBox to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dotted GedaBox to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a box when a dotted line type is
  *  required. The box is defined by the coordinates of its upper left corner
  *  in (<B>x</B>,<B>y</B>) and its width and height given by the <B>width</B> and
@@ -764,19 +768,19 @@ geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] line_width  Box Line width.
- *  \param [in] capstyle    Box Line capstyle.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] line_width  Box Line width.
+ * \param [in] capstyle    Box Line capstyle.
+ * \param [in] length      Dashed line length.
+ * \param [in] space       Amount of space between dashes.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
@@ -816,8 +820,9 @@ geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
                       origin_x, origin_y);
 }
 
-/*! \brief Print a dashed Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dashed Box to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a box when a dashed line type is
  *  required. The box is defined by the coordinates of its upper left corner
  *  in (<B>x</B>,<B>y</B>) and its width and height given by the <B>width</B> and
@@ -829,19 +834,19 @@ geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] line_width  Box Line width.
- *  \param [in] capstyle    Box Line capstyle.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] line_width  Box Line width.
+ * \param [in] capstyle    Box Line capstyle.
+ * \param [in] length      Dashed line length.
+ * \param [in] space       Amount of space between dashes.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
@@ -881,8 +886,9 @@ geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
                       origin_x, origin_y);
 }
 
-/*! \brief Print centered line type Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print centered line type Box to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a box when a centered line type is
  *  required. The box is defined by the coordinates of its upper left corner
  *  in (<B>x</B>,<B>y</B>) and its width and height given by the <B>width</B> and
@@ -894,19 +900,19 @@ geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] line_width  Box Line width.
- *  \param [in] capstyle    Box Line capstyle.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] line_width  Box Line width.
+ * \param [in] capstyle    Box Line capstyle.
+ * \param [in] length      Dashed line length.
+ * \param [in] space       Amount of space between dashes.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
@@ -945,8 +951,9 @@ geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
                       origin_x, origin_y);
 }
 
-/*! \brief Print phantom line type Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print phantom line type Box to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a box when a phantom line type is
  *  required. The box is defined by the coordinates of its upper left corner
  *  in (<B>x</B>,<B>y</B>) and its width and height given by the <B>width</B> and
@@ -958,19 +965,19 @@ geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] line_width  Box Line width.
- *  \param [in] capstyle    Box Line capstyle.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] line_width  Box Line width.
+ * \param [in] capstyle    Box Line capstyle.
+ * \param [in] length      Dashed line length.
+ * \param [in] space       Amount of space between dashes.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
@@ -1009,8 +1016,9 @@ geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
                        origin_x, origin_y);
 }
 
-/*! \brief Print a solid pattern Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a solid pattern Box to Postscript document.
+ * \par Function Description
  *  The function prints a filled box with a solid pattern. No outline is
  *  printed.
  *  The box is defined by the coordinates of its upper left corner in
@@ -1026,20 +1034,20 @@ geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] fill_width  Box fill width. (unused).
- *  \param [in] angle1      (unused).
- *  \param [in] pitch1      (unused).
- *  \param [in] angle2      (unused).
- *  \param [in] pitch2      (unused).
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] fill_width  Box fill width. (unused).
+ * \param [in] angle1      (unused).
+ * \param [in] pitch1      (unused).
+ * \param [in] angle2      (unused).
+ * \param [in] pitch2      (unused).
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
@@ -1063,8 +1071,9 @@ geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! \brief Print a mesh pattern Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a mesh pattern Box to Postscript document.
+ * \par Function Description
  *  This function prints a meshed box. No outline is printed. The box is
  *  defined by the coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and
  *  its width and height given by the <B>width</B> and <B>height</B> parameters.
@@ -1079,20 +1088,20 @@ geda_box_object_print_filled(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of Box.
- *  \param [in] y           Upper y coordinate of Box.
- *  \param [in] width       Width of Box.
- *  \param [in] height      Height of Box.
- *  \param [in] color       Box color.
- *  \param [in] fill_width  Box fill width.
- *  \param [in] angle1      1st angle for mesh pattern.
- *  \param [in] pitch1      1st pitch for mesh pattern.
- *  \param [in] angle2      2nd angle for mesh pattern.
- *  \param [in] pitch2      2nd pitch for mesh pattern.
- *  \param [in] origin_x    Page x coordinate to place Box Object.
- *  \param [in] origin_y    Page y coordinate to place Box Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of Box.
+ * \param [in] y           Upper y coordinate of Box.
+ * \param [in] width       Width of Box.
+ * \param [in] height      Height of Box.
+ * \param [in] color       Box color.
+ * \param [in] fill_width  Box fill width.
+ * \param [in] angle1      1st angle for mesh pattern.
+ * \param [in] pitch1      1st pitch for mesh pattern.
+ * \param [in] angle2      2nd angle for mesh pattern.
+ * \param [in] pitch2      2nd pitch for mesh pattern.
+ * \param [in] origin_x    Page x coordinate to place Box Object.
+ * \param [in] origin_y    Page y coordinate to place Box Object.
  */
 void
 geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
@@ -1119,8 +1128,9 @@ geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! \brief Print a hatch pattern Box to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a hatch pattern Box to Postscript document.
+ * \par Function Description
  *  The function prints a hatched box. No outline is printed. The box is
  *  defined by the coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and
  *  its width and height given by the <B>width</B> and <B>height</B> parameters.
@@ -1135,20 +1145,20 @@ geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Upper x coordinate of the box.
- *  \param [in] y           Upper y coordinate of the box.
- *  \param [in] width       Width of the box.
- *  \param [in] height      Height of the box.
- *  \param [in] color       Box color.
- *  \param [in] fill_width  Box fill width.
- *  \param [in] angle1      Angle of hatch pattern.
- *  \param [in] pitch1      Pitch of hatch pattern.
- *  \param [in] angle2      (unused).
- *  \param [in] pitch2      (unused).
- *  \param [in] origin_x    Page x coordinate to place box Object.
- *  \param [in] origin_y    Page y coordinate to place box Object.
+ * \param [in] toplevel    The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Upper x coordinate of the box.
+ * \param [in] y           Upper y coordinate of the box.
+ * \param [in] width       Width of the box.
+ * \param [in] height      Height of the box.
+ * \param [in] color       Box color.
+ * \param [in] fill_width  Box fill width.
+ * \param [in] angle1      Angle of hatch pattern.
+ * \param [in] pitch1      Pitch of hatch pattern.
+ * \param [in] angle2      (unused).
+ * \param [in] pitch2      (unused).
+ * \param [in] origin_x    Page x coordinate to place box Object.
+ * \param [in] origin_y    Page y coordinate to place box Object.
  */
 void
 geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
@@ -1194,8 +1204,9 @@ geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
-/*! \brief Create a box from a character string.
- *  \par Function Description
+/*!
+ * \brief Create a box from a character string.
+ * \par Function Description
  *  This function gets the description of a box from the <B>*buf</B> character
  *  string.
  *
@@ -1206,13 +1217,13 @@ geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *    <DT>*</DT><DD>the file format used for the releases after 2000704.
  *  </DL>
  *
- *  \param [in]     buf             Character string with box description.
- *  \param [in]     release_ver     libgeda release version number.
- *  \param [in]     fileformat_ver  libgeda file format version number.
+ * \param [in]     buf             Character string with box description.
+ * \param [in]     release_ver     libgeda release version number.
+ * \param [in]     fileformat_ver  libgeda file format version number.
  *
- *  \param [out] err                A GError object
+ * \param [out] err                A GError object
  *
- *  \return The GedaBox Object that was created, or NULL on error.
+ * \return The GedaBox Object that was created, or NULL on error.
  */
 GedaObject*
 geda_box_object_read (const char buf[], unsigned int release_ver,
@@ -1327,16 +1338,17 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Rotate GedaBox Object
- *  \par Function Description
+/*!
+ * \brief Rotate GedaBox Object
+ * \par Function Description
  *  The function #geda_box_object_rotate() rotate the box described by <B>*object</B>
  *  around the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in,out]  object    GedaBox Object to rotate
- *  \param [in]      center_x  Rotation center x coordinate
- *  \param [in]      center_y  Rotation center y coordinate
- *  \param [in]      angle     Rotation angle in degrees (See note below)
+ * \param [in,out]  object    GedaBox Object to rotate
+ * \param [in]      center_x  Rotation center x coordinate
+ * \param [in]      center_y  Rotation center y coordinate
+ * \param [in]      angle     Rotation angle in degrees (See note below)
  *
  */
 void

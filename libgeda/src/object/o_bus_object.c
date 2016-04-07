@@ -129,14 +129,14 @@ void geda_object_bus_consolidate( void)
 
 }
 
-/*! \brief create a copy of a bus object
- *
- *  \par Function Description
+/*!
+ * \brief create a copy of a bus object
+ * \par Function Description
  *  This function creates a copy of the bus object \a o_current.
  *
- *  \param [in] o_current    The object that is copied
+ * \param [in] o_current    The object that is copied
  *
- *  \return a new bus object
+ * \return a new bus object
  */
 GedaObject *geda_object_bus_copy(GedaObject *o_current)
 {
@@ -158,12 +158,13 @@ GedaObject *geda_object_bus_copy(GedaObject *o_current)
   return new_obj;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the direction of a bus
+ * \par Function Description
+ *  1 for right, -1 for left (horizontal bus) or
+ *  1 for up, -1 for down (vertial bus).
  */
-/* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
+
 int geda_object_bus_get_direction(GedaObject *object)
 {
   int direction = 0;
@@ -191,16 +192,16 @@ int geda_object_bus_get_direction(GedaObject *object)
   return direction;
 }
 
-/*! \brief get the position of the first bus point
- *
- *  \par Function Description
+/*!
+ * \brief get the position of the first bus point
+ * \par Function Description
  *  This function gets the position of the first point of a bus object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
+ * \param [in] object   The object to get the position.
  *
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool geda_object_bus_get_position(GedaObject *object, int *x, int *y)
 {
@@ -235,17 +236,17 @@ void geda_object_bus_mirror(GedaObject *object, int center_x, int center_y)
   geda_object_bus_translate(object, center_x, center_y);
 }
 
-/*! \brief modify one point of a bus object
- *
- *  \par Function Description
+/*!
+ * \brief modify one point of a bus object
+ * \par Function Description
  *  This function modifies one point of a bus \a object. The point
  *  is specified by the \a whichone variable and the new coordinate
  *  is (\a x, \a y).
  *
- *  \param [in] object     The bus Object to modify
- *  \param [in] x          new x-coord of the bus point
- *  \param [in] y          new y-coord of the bus point
- *  \param [in] whichone   bus point to modify
+ * \param [in] object     The bus Object to modify
+ * \param [in] x          new x-coord of the bus point
+ * \param [in] y          new y-coord of the bus point
+ * \param [in] whichone   bus point to modify
  */
 void geda_object_bus_modify(GedaObject *object, int x, int y, int whichone)
 {
@@ -257,19 +258,19 @@ void geda_object_bus_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief create a new bus object
- *
- *  \par Function Description
+/*!
+ * \brief create a new bus object
+ * \par Function Description
  *  This function creates and returns a new bus object.
  *
- *  \param [in]     color       The color of the bus
- *  \param [in]     x1          x-coord of the first point
- *  \param [in]     y1          y-coord of the first point
- *  \param [in]     x2          x-coord of the second point
- *  \param [in]     y2          y-coord of the second point
- *  \param [in]  bus_ripper_direction direction of the bus rippers
+ * \param [in]     color       The color of the bus
+ * \param [in]     x1          x-coord of the first point
+ * \param [in]     y1          y-coord of the first point
+ * \param [in]     x2          x-coord of the second point
+ * \param [in]     y2          y-coord of the second point
+ * \param [in]  bus_ripper_direction direction of the bus rippers
  *
- *  \return A new bus Object
+ * \return A new bus Object
  */
 GedaObject *geda_object_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
 {
@@ -292,13 +293,13 @@ GedaObject *geda_object_bus_new(int color, int x1, int y1, int x2, int y2, int b
   return new_obj;
 }
 
-/*! \brief calculate the orientation of a bus object
- *
- *  \par Function Description
+/*!
+ * \brief calculate the orientation of a bus object
+ * \par Function Description
  *  This function calculates the orientation of a bus object.
  *
- *  \param [in] object   The bus object
- *  \return The orientation: HORIZONTAL, VERTICAL or NEITHER
+ * \param [in] object   The bus object
+ * \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
 int geda_object_bus_orientation(GedaObject *object)
 {
@@ -313,17 +314,17 @@ int geda_object_bus_orientation(GedaObject *object)
   return(NEITHER);
 }
 
-/*! \brief postscript print command for a bus object
- *
- *  \par Function Description
+/*!
+ * \brief postscript print command for a bus object
+ * \par Function Description
  *  This function writes the postscript command of the bus object \a o_current
  *  into the FILE \a fp points to.
  *
- *  \param [in] toplevel     The GedaToplevel object
- *  \param [in] fp           pointer to a FILE structure
- *  \param [in] o_current    The GedaObject to print
- *  \param [in] origin_x     x-coord of the postscript origin
- *  \param [in] origin_y     y-coord of the postscript origin
+ * \param [in] toplevel     The GedaToplevel object
+ * \param [in] fp           pointer to a FILE structure
+ * \param [in] o_current    The GedaObject to print
+ * \param [in] origin_x     x-coord of the postscript origin
+ * \param [in] origin_y     y-coord of the postscript origin
  */
 void geda_object_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                  int origin_x, int origin_y)
@@ -353,20 +354,19 @@ void geda_object_bus_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curre
   fprintf(fp, "%d %d %d %d %d %d bus\n", x1,y1,x2,y2,bus_width,SQUARE_CAP);
 
 }
-/*! \brief read a bus object from a char buffer
- *
- *  \par Function Description
+/*!
+ * \brief read a bus object from a char buffer
+ * \par Function Description
  *  This function reads a bus object from the buffer \a buf.
  *  If the bus object was read successfully, a new bus object is
  *  allocated and appended to the \a object_list.
  *
- *  \param [in] buf            a text buffer (usually a line of a schematic file)
- *  \param [in] release_ver    The release number gEDA
- *  \param [in] fileformat_ver integer value of the file format
+ * \param [in] buf            a text buffer (usually a line of a schematic file)
+ * \param [in] release_ver    The release number gEDA
+ * \param [in] fileformat_ver integer value of the file format
+ * \param [out] err           A GError object
  *
- *  \param [out] err           A GError object
- *
- *  \return The object list, or NULL on error.
+ * \return The object list, or NULL on error.
  */
 GedaObject *geda_object_bus_read(const char buf[], unsigned int release_ver,
                                      unsigned int fileformat_ver, GError **err)
@@ -418,18 +418,18 @@ GedaObject *geda_object_bus_read(const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief rotate a bus object around a centerpoint
- *
- *  \par Function Description
+/*!
+ * \brief rotate a bus object around a centerpoint
+ * \par Function Description
  *  This function rotates a bus \a object around the point
  *  (\a center_x, \a center_y).
  *
- *  \param [in] object    The bus object
- *  \param [in] center_x  x-coord of the rotation center
- *  \param [in] center_y  y-coord of the rotation center
- *  \param [in] angle     The angle to rotate the bus object
-
- *  \note only steps of 90 degrees are allowed for the \a angle
+ * \param [in] object    The bus object
+ * \param [in] center_x  x-coord of the rotation center
+ * \param [in] center_y  y-coord of the rotation center
+ * \param [in] angle     The angle to rotate the bus object
+ *
+ * \note only steps of 90 degrees are allowed for the \a angle
  */
 void geda_object_bus_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
@@ -485,14 +485,14 @@ char *geda_object_bus_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief move a bus object
- *
- *  \par Function Description
+/*!
+ * \brief move a bus object
+ * \par Function Description
  *  This function changes the position of a bus \a object.
  *
- *  \param [in] object       The bus Object to be moved
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object
+ * \param [in] object       The bus Object to be moved
+ * \param [in] dx           The x-distance to move the object
+ * \param [in] dy           The y-distance to move the object
  */
 void geda_object_bus_translate(GedaObject *object, int dx, int dy)
 {

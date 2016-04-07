@@ -414,7 +414,6 @@ int f_path_create(const char *path, mode_t mode)
 #endif
 
 /*! \brief Gets Directory Component of a File Name
- *
  *  \par Function Description
  *   Returns directory portion of \a filepath. If \a filepath is
  *  a directory a copy of \a filepath is returned. If \a filepath
