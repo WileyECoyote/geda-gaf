@@ -348,7 +348,7 @@ int geda_arc_get_center_y (GedaArc *arc) {
 bool
 geda_arc_get_position (GedaArc *arc, int *x, int *y)
 {
-  if (GEDA_IS_ARC(arc)) {
+  if (is_a_geda_arc_object(arc)) {
     *x = arc->x;
     *y = arc->y;
     return TRUE;
