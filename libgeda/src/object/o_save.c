@@ -32,6 +32,8 @@
 
 #include <libgeda_priv.h>
 
+#define IO_BUFFER_SLICE_SIZE 2048
+
 /*! \brief Do autosave on all pages that are marked.
  *  \par Function Description
  *  Looks for pages with the do_autosave_backup flag activated and
@@ -178,14 +180,42 @@ void o_save_auto_backup(GedaToplevel *toplevel)
  */
 char *o_save_objects (const GList *object_list, bool save_attribs)
 {
-  const    GList *iter;
-  char    *out;
-  GString *acc;
-  bool     already_wrote = FALSE;
+  const  GList *iter;
+  char  *out;
+  char  *acc;
+  int    acc_size;
+  int    allocated;
+  bool   already_wrote = FALSE;
 
-  acc = g_string_new("");
+  void string_append (char *str) {
 
-  iter = object_list;
+    int len, new_size;
+
+    len      = strlen(str);
+    new_size = acc_size + len;
+
+    if (new_size > allocated) {
+
+      char *buffer;
+
+      allocated = allocated + IO_BUFFER_SLICE_SIZE;
+      buffer    = (char*)realloc(acc, allocated);
+
+      if (!buffer)
+        return;
+      acc = buffer;
+    }
+
+    strncat(&acc[acc_size], str, len); /* use offset forward */
+    acc_size = new_size;
+    return;
+  }
+
+  allocated      = IO_BUFFER_SLICE_SIZE;
+  acc            = GEDA_MEM_ALLOC(allocated);
+  acc[0]         = '\0';
+  acc_size       = 0;
+  iter           = object_list;
 
   while ( iter != NULL ) {
 
@@ -198,6 +228,39 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
       switch (o_current->type) {
 
+        case(OBJ_ARC):
+          out = geda_arc_object_to_buffer(o_current);
+          break;
+
+        case(OBJ_BOX):
+          out = geda_box_object_save(o_current);
+          break;
+
+        case(OBJ_COMPLEX):
+          out = o_complex_save(o_current);
+          string_append(out);
+          string_append("\n");
+          already_wrote = TRUE;
+          GEDA_FREE(out); /* need to free here because of the above flag */
+
+          if (o_complex_is_embedded(o_current)) {
+
+            string_append("[\n");
+            out = o_save_objects(o_current->complex->prim_objs, FALSE);
+            string_append (out);
+            GEDA_FREE(out);
+            string_append("]\n");
+          }
+          break;
+
+        case(OBJ_PICTURE):
+          out = o_picture_save(o_current);
+          break;
+
+        case(OBJ_PATH):
+          out = o_path_save(o_current);
+          break;
+
         case(OBJ_LINE):
           out = o_line_save(o_current);
           break;
@@ -206,57 +269,24 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           out = o_net_save(o_current);
           break;
 
-        case(OBJ_BUS):
-          out = geda_object_bus_save(o_current);
-          break;
-
-        case(OBJ_BOX):
-          out = geda_box_object_save(o_current);
-          break;
-
-        case(OBJ_CIRCLE):
-          out = o_circle_save(o_current);
-          break;
-
-        case(OBJ_COMPLEX):
-          out = o_complex_save(o_current);
-          g_string_append_printf(acc, "%s\n", out);
-          already_wrote = TRUE;
-          GEDA_FREE(out); /* need to free here because of the above flag */
-
-          if (o_complex_is_embedded(o_current)) {
-            g_string_append(acc, "[\n");
-
-            out = o_save_objects(o_current->complex->prim_objs, FALSE);
-            g_string_append (acc, out);
-            GEDA_FREE(out);
-
-            g_string_append(acc, "]\n");
-          }
-          break;
-
-        case(OBJ_PLACEHOLDER):  /* new type by SDB 1.20.2005 */
-          out = o_complex_save(o_current);
+        case(OBJ_PIN):
+          out = o_pin_save(o_current);
           break;
 
         case(OBJ_TEXT):
           out = o_text_save(o_current);
           break;
 
-        case(OBJ_PATH):
-          out = o_path_save(o_current);
+        case(OBJ_BUS):
+          out = geda_object_bus_save(o_current);
           break;
 
-        case(OBJ_PIN):
-          out = o_pin_save(o_current);
+        case(OBJ_CIRCLE):
+          out = o_circle_save(o_current);
           break;
 
-        case(OBJ_ARC):
-          out = geda_arc_object_to_buffer(o_current);
-          break;
-
-        case(OBJ_PICTURE):
-          out = o_picture_save(o_current);
+        case(OBJ_PLACEHOLDER):  /* new type by SDB 1.20.2005 */
+          out = o_complex_save(o_current);
           break;
 
         default:
@@ -271,7 +301,8 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
       /* output the line */
       if (!already_wrote) {
-        g_string_append_printf(acc, "%s\n", out);
+        string_append(out);
+        string_append ("\n");
         GEDA_FREE(out);
       }
       else {
@@ -280,19 +311,19 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
 
       /* save any attributes */
       if (o_current->attribs != NULL) {
-        g_string_append (acc, "{\n");
+
+        string_append ("{\n");
         out = o_save_objects (o_current->attribs, TRUE);
-        g_string_append (acc, out);
+        string_append (out);
         GEDA_FREE(out);
 
-        g_string_append (acc, "}\n");
+        string_append ("}\n");
       }
     }
 
     iter = g_list_next (iter);
   }
-
-  return g_string_free(acc, FALSE);
+  return acc;
 }
 
 /*! \brief "Save" a file into a string buffer
