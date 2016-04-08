@@ -338,16 +338,27 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
  */
 char *o_save_buffer (const GList *object_list)
 {
-  GString *acc;
-  char    *buffer;
+  const char *header;
+        char *acc;
+        char *buffer;
+        int   size;
 
-  acc    = g_string_new (f_get_format_header());
+  header = f_get_format_header();
   buffer = o_save_objects (object_list, FALSE);
+  size   = strlen(header) + strlen(buffer);
+  acc    = GEDA_MEM_ALLOC(size + 1);
 
-  g_string_append (acc, buffer);
+  if (!acc) {
+    u_log_message (_("%s: Memory allocation error."), __func__);
+    acc = NULL;
+  }
+  else {
+    acc = strcat (strcpy (acc, header), buffer);
+  }
+
   GEDA_FREE (buffer);
 
-  return g_string_free(acc, FALSE);
+  return acc;
 }
 
 /*! \brief Save a file

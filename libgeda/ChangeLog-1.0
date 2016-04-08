@@ -1,3 +1,9 @@
+2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: Revamp o_save; eliminate GString and allocate
+      memory directly. Does not seem to make a difference one way or the
+      other terms of performance.
+
 2016-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/geda_list.h: Remove unused macro Top_Selection.
@@ -6,7 +12,7 @@
       in geda_arc_object_translate - missed that one.
 
     * src/object/o_save.c: Revamp o_save_objects; eliminate GString and
-      allocated memory directly in chunks using constant IO_BUFFER_SLICE_SIZE
+      allocate memory directly in chunks using constant IO_BUFFER_SLICE_SIZE
       = 2048, using 1024 slices was only moderately slower (0.6um per object).
       Add sub-function string_append to perform reallocation and appendage.
       New version averages 2.7us per object faster old version, also moved
