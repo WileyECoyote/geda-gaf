@@ -1049,13 +1049,57 @@ check_transformer ()
     result++;
   }
 
-  /* === Function 09: geda_arc_object_mirror === */
+  /* Now check the same function with actual arguments */
 
-  /* === Function 10: geda_arc_object_modify === */
+    /* _new(int color, int x, int y, int radius, int start_angle, int arc_sweep) */
+  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  /* === Function 19: geda_arc_object_rotate === */
+  int count;
 
-  /* === Function 27: geda_arc_object_translate === */
+  for (count = 0; count < 10; count++) {
+
+#if USE_RANDOM_NUMBERS
+    int x = m_random_number (0, 120000);
+    int y = m_random_number (0, 80000);
+    int r = m_random_number (5, 5000);
+#else
+    int x = 1050; //1000;
+    int y = 6000; //1000;
+    int r = 3233; //100;
+#endif
+
+    geda_arc_object_set_radius (object, r);
+    geda_arc_object_set_center_x (object, x);
+    geda_arc_object_set_center_y (object, y);
+
+    geda_arc_object_set_start_angle(object, 0);
+
+    int dx, dy;
+
+    /* === Function 09: geda_arc_object_mirror === */
+
+    geda_arc_object_mirror (object, x + r, y);
+
+    geda_arc_object_get_position(object, &dx, &dy);
+    if ((dx - x - 2 * r) || (dy - y)) {
+      fprintf(stderr, "FAILED: (O020901) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
+      result++;
+    }
+
+    /* === Function 10: geda_arc_object_modify === */
+
+    /* === Function 19: geda_arc_object_rotate === */
+
+    /* === Function 27: geda_arc_object_translate === */
+
+
+#if !USE_RANDOM_NUMBERS
+    break;
+#endif
+
+  }
+
+  g_object_unref (object);
 
   return result;
 }
