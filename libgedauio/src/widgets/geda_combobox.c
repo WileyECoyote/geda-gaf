@@ -445,8 +445,6 @@ static void     geda_combo_box_entry_active_changed           (GedaComboBox    *
 
 
 /* GtkBuildable method implementation */
-static GtkBuildableIface *parent_buildable_iface;
-
 static void     geda_combo_box_buildable_init                 (GtkBuildableIface *iface);
 
 static bool     geda_combo_box_buildable_custom_tag_start     (GtkBuildable  *buildable,
@@ -466,17 +464,12 @@ static GObject *geda_combo_box_buildable_get_internal_child   (GtkBuildable  *bu
 
 
 /* GtkCellEditable method implementations */
-static void geda_combo_box_start_editing (GtkCellEditable *cell_editable,
-                                          GdkEvent        *event);
+static void     geda_combo_box_start_editing                  (GtkCellEditable *cell_editable,
+                                                               GdkEvent        *event);
 
-G_DEFINE_TYPE_WITH_CODE (GedaComboBox, geda_combo_box, GTK_TYPE_BIN,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_CELL_LAYOUT,
-                                                geda_combo_box_cell_layout_init)
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_CELL_EDITABLE,
-                                                geda_combo_box_cell_editable_init)
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-                                                geda_combo_box_buildable_init))
+static void *geda_combo_box_parent_class = NULL;
 
+static GtkBuildableIface *parent_buildable_iface;
 
 static char *
 geda_combo_box_format_entry_text (GedaComboBox *combo_box, const char *path)
@@ -638,16 +631,188 @@ geda_combo_box_finalize (GObject *object)
   G_OBJECT_CLASS (geda_combo_box_parent_class)->finalize (object);
 }
 
-/*! \brief GedaComboBox Class Initializer
- *
+static void
+geda_combo_box_get_property (GObject      *object,
+                             unsigned int  prop_id,
+                             GValue       *value,
+                             GParamSpec   *pspec)
+{
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (object);
+  GedaComboBoxData *priv  = combo_box->priv;
+
+  switch (prop_id)
+  {
+    case PROP_MODEL:
+      g_value_set_object (value, combo_box->priv->model);
+      break;
+
+    case PROP_WRAP_WIDTH:
+      g_value_set_int (value, combo_box->priv->wrap_width);
+      break;
+
+    case PROP_ROW_SPAN_COLUMN:
+      g_value_set_int (value, combo_box->priv->row_column);
+      break;
+
+    case PROP_COLUMN_SPAN_COLUMN:
+      g_value_set_int (value, combo_box->priv->col_column);
+      break;
+
+    case PROP_ACTIVE:
+      g_value_set_int (value, geda_combo_box_get_active (combo_box));
+      break;
+
+    case PROP_ADD_TEAROFFS:
+      g_value_set_boolean (value, geda_combo_box_get_add_tearoffs (combo_box));
+      break;
+
+    case PROP_HAS_FRAME:
+      g_value_set_boolean (value, combo_box->priv->has_frame);
+      break;
+
+    case PROP_FOCUS_ON_CLICK:
+      g_value_set_boolean (value, combo_box->priv->focus_on_click);
+      break;
+
+    case PROP_TEAROFF_TITLE:
+      g_value_set_string (value, geda_combo_box_get_title (combo_box));
+      break;
+
+    case PROP_POPUP_SHOWN:
+      g_value_set_boolean (value, combo_box->priv->popup_shown);
+      break;
+
+    case PROP_BUTTON_SENSITIVITY:
+      g_value_set_enum (value, combo_box->priv->button_sensitivity);
+      break;
+
+    case PROP_EDITING_CANCELED:
+      g_value_set_boolean (value, priv->editing_canceled);
+      break;
+
+    case PROP_HAS_ENTRY:
+      g_value_set_boolean (value, priv->has_entry);
+      break;
+
+    case PROP_LIST_VIEW:
+      g_value_set_boolean (value, priv->list_view);
+      break;
+
+    case PROP_ENTRY_TEXT_COLUMN:
+      g_value_set_int (value, priv->text_column);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_combo_box_set_property (GObject      *object,
+                            unsigned int         prop_id,
+                            const GValue *value,
+                            GParamSpec   *pspec)
+{
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (object);
+
+  switch (prop_id)
+  {
+    case PROP_MODEL:
+      geda_combo_box_set_model (combo_box, g_value_get_object (value));
+      break;
+
+    case PROP_WRAP_WIDTH:
+      geda_combo_box_set_wrap_width (combo_box, g_value_get_int (value));
+      break;
+
+    case PROP_ROW_SPAN_COLUMN:
+      geda_combo_box_set_row_span_column (combo_box, g_value_get_int (value));
+      break;
+
+    case PROP_COLUMN_SPAN_COLUMN:
+      geda_combo_box_set_column_span_column (combo_box, g_value_get_int (value));
+      break;
+
+    case PROP_ACTIVE:
+      geda_combo_box_set_active (combo_box, g_value_get_int (value));
+      break;
+
+    case PROP_ADD_TEAROFFS:
+      geda_combo_box_set_add_tearoffs (combo_box, g_value_get_boolean (value));
+      break;
+
+    case PROP_HAS_FRAME:
+      combo_box->priv->has_frame = g_value_get_boolean (value);
+
+      if (combo_box->priv->has_entry) {
+
+        GtkWidget *child;
+
+        child = gtk_bin_get_child (GTK_BIN (combo_box));
+
+        gtk_entry_set_has_frame (GTK_ENTRY (child),
+                                 combo_box->priv->has_frame);
+      }
+
+      break;
+
+    case PROP_FOCUS_ON_CLICK:
+      geda_combo_box_set_focus_on_click (combo_box,
+                                         g_value_get_boolean (value));
+      break;
+
+    case PROP_TEAROFF_TITLE:
+      geda_combo_box_set_title (combo_box, g_value_get_string (value));
+      break;
+
+    case PROP_POPUP_SHOWN:
+      if (g_value_get_boolean (value))
+        geda_combo_box_popup (combo_box);
+      else
+        geda_combo_box_popdown (combo_box);
+      break;
+
+    case PROP_BUTTON_SENSITIVITY:
+      geda_combo_box_set_button_sensitivity (combo_box,
+                                             g_value_get_enum (value));
+      break;
+
+    case PROP_EDITING_CANCELED:
+      combo_box->priv->editing_canceled = g_value_get_boolean (value);
+      break;
+
+    case PROP_HAS_ENTRY:
+      combo_box->priv->has_entry = g_value_get_boolean (value);
+      break;
+
+    case PROP_LIST_VIEW:
+      combo_box->priv->list_view = g_value_get_int (value);
+      break;
+
+    case PROP_ENTRY_TEXT_COLUMN:
+      geda_combo_box_set_entry_text_column (combo_box, g_value_get_int (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+/*! \brief GedaComboBox Type Class Initializer
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaComboBoxClass Object
+ *  \param [in]  class       GedaComboClass class we are initializing
+ *  \param [in]  class_data  GedaCombo structure associated with the class
  */
 static void
-geda_combo_box_class_init (GedaComboBoxClass *class)
+geda_combo_box_class_init(void *class, void *class_data)
 {
+  GedaComboBoxClass *combo_class;
   GObjectClass      *object_class;
   GtkObjectClass    *gtk_object_class;
   GtkContainerClass *container_class;
@@ -655,12 +820,14 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
   GtkBindingSet     *binding_set;
   GParamSpec        *params;
 
-  class->get_active_text = geda_combo_box_real_get_active_text;
+  combo_class                     = (GedaComboBoxClass*)class;
+  combo_class->get_active_text    = geda_combo_box_real_get_active_text;
+  combo_class->format_entry_text  = geda_combo_box_format_entry_text;
 
-  container_class            = (GtkContainerClass *)class;
-  container_class->forall    = geda_combo_box_forall;
-  container_class->add       = geda_combo_box_add;
-  container_class->remove    = geda_combo_box_remove;
+  container_class                 = (GtkContainerClass*)class;
+  container_class->forall         = geda_combo_box_forall;
+  container_class->add            = geda_combo_box_add;
+  container_class->remove         = geda_combo_box_remove;
 
   widget_class                    = (GtkWidgetClass*)class;
   widget_class->size_allocate     = geda_combo_box_size_allocate;
@@ -672,17 +839,15 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
   widget_class->style_set         = geda_combo_box_style_set;
   widget_class->state_changed     = geda_combo_box_state_changed;
 
-  gtk_object_class            = (GtkObjectClass*)class;
-  gtk_object_class->destroy   = geda_combo_box_destroy;
+  gtk_object_class                = (GtkObjectClass*)class;
+  gtk_object_class->destroy       = geda_combo_box_destroy;
 
-  object_class                = (GObjectClass*)class;
-  object_class->constructor   = geda_combo_box_constructor;
-  object_class->dispose       = geda_combo_box_dispose;
-  object_class->finalize      = geda_combo_box_finalize;
-  object_class->set_property  = geda_combo_box_set_property;
-  object_class->get_property  = geda_combo_box_get_property;
-
-  class->format_entry_text    = geda_combo_box_format_entry_text;
+  object_class                    = (GObjectClass*)class;
+  object_class->constructor       = geda_combo_box_constructor;
+  object_class->dispose           = geda_combo_box_dispose;
+  object_class->finalize          = geda_combo_box_finalize;
+  object_class->get_property      = geda_combo_box_get_property;
+  object_class->set_property      = geda_combo_box_set_property;
 
   geda_combo_box_parent_class = g_type_class_peek_parent (class);
 
@@ -1133,7 +1298,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                                GTK_SHADOW_NONE,
                                G_PARAM_READABLE);
 
-  gtk_widget_class_install_style_property (widget_class,params);
+  gtk_widget_class_install_style_property (widget_class, params);
 }
 
 static void
@@ -1166,10 +1331,22 @@ geda_combo_box_cell_editable_init (GtkCellEditableIface *iface)
   iface->start_editing = geda_combo_box_start_editing;
 }
 
+/*! \brief Initialize new GedaComboBox data structure instance.
+ *  \par Function Description
+ *  This function is call after the GedaComboBoxClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaComboBox data structure
+ * \param [in] class     A GedaComboBoxClass Object
+ */
 static void
-geda_combo_box_init (GedaComboBox *combo_box)
+geda_combo_box_instance_init(GTypeInstance *instance, void *class)
 {
-  GedaComboBoxData *priv = g_malloc0 (sizeof (GedaComboBoxData));
+  GedaComboBox     *combo_box;
+  GedaComboBoxData *priv;
+
+  combo_box = (GedaComboBox*)instance;
+  priv      = g_malloc0 (sizeof (GedaComboBoxData));
 
   priv->cell_view = gtk_cell_view_new ();
 
@@ -1206,178 +1383,75 @@ geda_combo_box_init (GedaComboBox *combo_box)
   geda_combo_box_check_appearance (combo_box);
 }
 
-static void
-geda_combo_box_set_property (GObject      *object,
-                            unsigned int         prop_id,
-                            const GValue *value,
-                            GParamSpec   *pspec)
+/*! \brief Retrieve GedaComboBox's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaComboBox Type identifier. When
+ *  first called, the function registers a #GedaComboBox in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaComboBox and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaComboBox.
+ */
+GedaType
+geda_combo_box_get_type (void)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (object);
+  static GedaType geda_combo_box_type = 0;
 
-  switch (prop_id)
-  {
-    case PROP_MODEL:
-      geda_combo_box_set_model (combo_box, g_value_get_object (value));
-      break;
+  if (g_once_init_enter (&geda_combo_box_type)) {
 
-    case PROP_WRAP_WIDTH:
-      geda_combo_box_set_wrap_width (combo_box, g_value_get_int (value));
-      break;
+    static const GTypeInfo info = {
+      sizeof(GedaComboBoxClass),
+      NULL,                      /* base_init           */
+      NULL,                      /* base_finalize       */
+      geda_combo_box_class_init, /* (GClassInitFunc)    */
+      NULL,                      /* class_finalize      */
+      NULL,                      /* class_data          */
+      sizeof(GedaComboBox),
+      0,                         /* n_preallocs         */
+      geda_combo_box_instance_init   /* (GInstanceInitFunc) */
+    };
 
-    case PROP_ROW_SPAN_COLUMN:
-      geda_combo_box_set_row_span_column (combo_box, g_value_get_int (value));
-      break;
+    const char *string;
+    GedaType    type;
 
-    case PROP_COLUMN_SPAN_COLUMN:
-      geda_combo_box_set_column_span_column (combo_box, g_value_get_int (value));
-      break;
+    string = g_intern_static_string ("GedaComboBox");
+    type   = g_type_register_static (GTK_TYPE_BIN, string, &info, 0);
 
-    case PROP_ACTIVE:
-      geda_combo_box_set_active (combo_box, g_value_get_int (value));
-      break;
+    const GInterfaceInfo layout_info = {
+      (GInterfaceInitFunc) geda_combo_box_cell_layout_init,
+      NULL,
+      NULL
+    };
 
-    case PROP_ADD_TEAROFFS:
-      geda_combo_box_set_add_tearoffs (combo_box, g_value_get_boolean (value));
-      break;
+    g_type_add_interface_static (type, GTK_TYPE_CELL_LAYOUT, &layout_info);
 
-    case PROP_HAS_FRAME:
-      combo_box->priv->has_frame = g_value_get_boolean (value);
+    const GInterfaceInfo editable_info = {
+      (GInterfaceInitFunc) geda_combo_box_cell_editable_init,
+      NULL,
+      NULL
+    };
 
-      if (combo_box->priv->has_entry) {
+    g_type_add_interface_static (type, GTK_TYPE_CELL_EDITABLE, &editable_info);
 
-        GtkWidget *child;
+    const GInterfaceInfo buildable_info = {
+      (GInterfaceInitFunc) geda_combo_box_buildable_init,
+      NULL,
+      NULL
+    };
 
-        child = gtk_bin_get_child (GTK_BIN (combo_box));
+    g_type_add_interface_static (type, GTK_TYPE_BUILDABLE, &buildable_info);
 
-        gtk_entry_set_has_frame (GTK_ENTRY (child),
-                                 combo_box->priv->has_frame);
-      }
-
-      break;
-
-    case PROP_FOCUS_ON_CLICK:
-      geda_combo_box_set_focus_on_click (combo_box,
-                                         g_value_get_boolean (value));
-      break;
-
-    case PROP_TEAROFF_TITLE:
-      geda_combo_box_set_title (combo_box, g_value_get_string (value));
-      break;
-
-    case PROP_POPUP_SHOWN:
-      if (g_value_get_boolean (value))
-        geda_combo_box_popup (combo_box);
-      else
-        geda_combo_box_popdown (combo_box);
-      break;
-
-    case PROP_BUTTON_SENSITIVITY:
-      geda_combo_box_set_button_sensitivity (combo_box,
-                                             g_value_get_enum (value));
-      break;
-
-    case PROP_EDITING_CANCELED:
-      combo_box->priv->editing_canceled = g_value_get_boolean (value);
-      break;
-
-    case PROP_HAS_ENTRY:
-      combo_box->priv->has_entry = g_value_get_boolean (value);
-      break;
-
-    case PROP_LIST_VIEW:
-      combo_box->priv->list_view = g_value_get_int (value);
-      break;
-
-    case PROP_ENTRY_TEXT_COLUMN:
-      geda_combo_box_set_entry_text_column (combo_box, g_value_get_int (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+    g_once_init_leave (&geda_combo_box_type, type);
   }
+
+  return geda_combo_box_type;
 }
 
-static void
-geda_combo_box_get_property (GObject      *object,
-                             unsigned int  prop_id,
-                             GValue       *value,
-                             GParamSpec   *pspec)
-{
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (object);
-  GedaComboBoxData *priv  = combo_box->priv;
-
-  switch (prop_id)
-  {
-    case PROP_MODEL:
-      g_value_set_object (value, combo_box->priv->model);
-      break;
-
-    case PROP_WRAP_WIDTH:
-      g_value_set_int (value, combo_box->priv->wrap_width);
-      break;
-
-    case PROP_ROW_SPAN_COLUMN:
-      g_value_set_int (value, combo_box->priv->row_column);
-      break;
-
-    case PROP_COLUMN_SPAN_COLUMN:
-      g_value_set_int (value, combo_box->priv->col_column);
-      break;
-
-    case PROP_ACTIVE:
-      g_value_set_int (value, geda_combo_box_get_active (combo_box));
-      break;
-
-    case PROP_ADD_TEAROFFS:
-      g_value_set_boolean (value, geda_combo_box_get_add_tearoffs (combo_box));
-      break;
-
-    case PROP_HAS_FRAME:
-      g_value_set_boolean (value, combo_box->priv->has_frame);
-      break;
-
-    case PROP_FOCUS_ON_CLICK:
-      g_value_set_boolean (value, combo_box->priv->focus_on_click);
-      break;
-
-    case PROP_TEAROFF_TITLE:
-      g_value_set_string (value, geda_combo_box_get_title (combo_box));
-      break;
-
-    case PROP_POPUP_SHOWN:
-      g_value_set_boolean (value, combo_box->priv->popup_shown);
-      break;
-
-    case PROP_BUTTON_SENSITIVITY:
-      g_value_set_enum (value, combo_box->priv->button_sensitivity);
-      break;
-
-    case PROP_EDITING_CANCELED:
-      g_value_set_boolean (value, priv->editing_canceled);
-      break;
-
-    case PROP_HAS_ENTRY:
-      g_value_set_boolean (value, priv->has_entry);
-      break;
-
-    case PROP_LIST_VIEW:
-      g_value_set_boolean (value, priv->list_view);
-      break;
-
-    case PROP_ENTRY_TEXT_COLUMN:
-      g_value_set_int (value, priv->text_column);
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
 
 static void
-geda_combo_box_state_changed (GtkWidget    *widget,
-                              GtkStateType  previous)
+geda_combo_box_state_changed (GtkWidget *widget, GtkStateType previous)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
   GedaComboBoxData *priv  = combo_box->priv;

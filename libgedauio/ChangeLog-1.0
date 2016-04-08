@@ -1,3 +1,8 @@
+2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
+      define cell_layout, editable, and buildable interface with code.
+
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Simplify getters, return function
