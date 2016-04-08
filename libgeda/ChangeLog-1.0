@@ -10,6 +10,8 @@
       New version averages 2.7us per object faster old version, also moved
       OBJ_PLACEHOLDER to last case. Seems to work nicely.
 
+    * src/struct/s_toplevel.c: Add function s_toplevel_get_selection.
+
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: include geda_utility.h.

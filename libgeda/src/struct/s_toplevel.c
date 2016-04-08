@@ -23,22 +23,49 @@
 #include <config.h>
 #include <libgeda_priv.h>
 
-/*! \brief Get a list of symbols in-use.
- *  \par Function Description
+/*!
+ * \brief Get a list of the currently selected objects.
+ * \par Function Description
+ *  Retrieves a list of all currently selected component on the
+ *  current/active page of \a toplevel, which could be a NULL or
+ *  empty GList.
  *
+ * \param toplevel #GedaToplevel structure.
+ *
+ * \return GList of selected components.
+ *
+ * \sa s_page_get_selection
+ */
+GList *s_toplevel_get_selection (GedaToplevel *toplevel)
+{
+  Page      *page;
+  SELECTION *selection;
+
+  page = geda_toplevel_get_current_page (toplevel);
+  if (!page)
+    return NULL;
+
+  selection = s_page_get_selection (page);
+
+  return geda_list_get_glist(selection);
+}
+
+/*!
+ * \brief Get a list of symbols in-use.
+ * \par Function Description
  *  Retrieves a list of all symbols currently in use by the component
  *  library module and returns the list.
  *
- *  \warning The #CLibSymbol instances in the \b GList returned belong
+ * \warning The #CLibSymbol instances in the \b GList returned belong
  *  to the component library, and should be considered constants; they
  *  should not be manipulated or free'd.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
  *  call to s_clib_free() or s_clib_refresh().
  *
- *  \param toplevel #GedaToplevel structure.
+ * \param toplevel #GedaToplevel structure.
  *
- *  \return GList of symbols.
+ * \return GList of symbols.
  */
 GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
 {
