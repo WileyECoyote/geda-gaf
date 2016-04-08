@@ -74,7 +74,7 @@ struct _GedaPage {
   GList      *_object_list;            /* Glist of all Object on this page*/
   SELECTION  *selection_list;          /* new selection mechanism */
   GList      *place_list;
-  GedaObject     *object_lastplace;        /* the last found item */
+  GedaObject *object_lastplace;        /* the last found item */
 
   GList* major_changed_refdes;         /* A list of all refdes's that have */
                                        /* major symbol version changes */

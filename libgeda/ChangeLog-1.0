@@ -1,5 +1,7 @@
 2016-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/geda_list.h: Remove unused macro Top_Selection.
+
     * object/o_arc_object.c: Utilize GEDA_IS_ARC and geda_arc_object_error
       in geda_arc_object_translate - missed that one.
 
