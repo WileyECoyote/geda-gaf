@@ -42,7 +42,7 @@ typedef enum
 #define GEDA_TYPE_COMBO_BOX             (geda_combo_box_get_type ())
 #define GEDA_COMBO_BOX(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX, GedaComboBox))
 #define GEDA_COMBO_BOX_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
-#define GEDA_IS_COMBO_BOX(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_COMBO_BOX))
+#define GEDA_IS_COMBO_BOX(obj)          (is_a_geda_combo_box((GedaComboBox*)obj))
 #define GEDA_IS_COMBO_BOX_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), GEDA_TYPE_COMBO_BOX))
 #define GEDA_COMBO_BOX_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_CLASS ((inst), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
 
@@ -52,7 +52,8 @@ typedef struct _GedaComboBoxData  GedaComboBoxData;
 
 struct _GedaComboBox
 {
-  GtkBin parent_instance;
+  GtkBin   parent_instance;
+  GedaType instance_type;
 
   /*< private >*/
   int tip_column;
@@ -79,7 +80,8 @@ extern "C" {
 #endif
 
 /* construction */
-GType         geda_combo_box_get_type                 (void) GEDA_CONST;
+GedaType      geda_combo_box_get_type                 (void) GEDA_CONST;
+bool          is_a_geda_combo_box                     (GedaComboBox  *combo_box);
 GtkWidget    *geda_combo_box_new                      (void);
 GtkWidget    *geda_combo_box_new_with_entry           (void);
 GtkWidget    *geda_combo_box_new_with_model           (GtkTreeModel *model);
@@ -88,13 +90,13 @@ GtkWidget    *geda_combo_box_new_with_model_and_entry (GtkTreeModel *model);
 /* grids */
 int           geda_combo_box_get_wrap_width         (GedaComboBox *combo_box);
 void          geda_combo_box_set_wrap_width         (GedaComboBox *combo_box,
-                                                    int            width);
+                                                     int           width);
 int           geda_combo_box_get_row_span_column    (GedaComboBox *combo_box);
 void          geda_combo_box_set_row_span_column    (GedaComboBox *combo_box,
-                                                    int            row_span);
+                                                     int           row_span);
 int           geda_combo_box_get_column_span_column (GedaComboBox *combo_box);
 void          geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
-                                                    int            column_span);
+                                                     int           column_span);
 
 bool          geda_combo_box_get_add_tearoffs       (GedaComboBox *combo_box);
 void          geda_combo_box_set_add_tearoffs       (GedaComboBox *combo_box,

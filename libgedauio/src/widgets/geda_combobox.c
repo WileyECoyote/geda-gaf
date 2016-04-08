@@ -1346,7 +1346,10 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
   GedaComboBoxData *priv;
 
   combo_box = (GedaComboBox*)instance;
-  priv      = g_malloc0 (sizeof (GedaComboBoxData));
+
+  combo_box->instance_type = geda_combo_box_get_type();
+
+  priv = g_malloc0 (sizeof (GedaComboBoxData));
 
   priv->cell_view = gtk_cell_view_new ();
 
@@ -1449,6 +1452,14 @@ geda_combo_box_get_type (void)
   return geda_combo_box_type;
 }
 
+bool
+is_a_geda_combo_box (GedaComboBox *combo_box)
+{
+  if (G_IS_OBJECT(combo_box)) {
+    return (geda_combo_box_get_type() == combo_box->instance_type);
+  }
+  return FALSE;
+}
 
 static void
 geda_combo_box_state_changed (GtkWidget *widget, GtkStateType previous)
