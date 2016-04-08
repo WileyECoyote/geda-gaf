@@ -12,6 +12,14 @@
 
     * src/struct/s_toplevel.c: Add function s_toplevel_get_selection.
 
+    * tests/test-suite.h: Add common header to facilitate use of setjmp, and
+      longjmp for trapping SEGV during testing.
+
+    * tests/test_arc_object.c: Implement basic setjmp/longjmp for all groups
+      in main and checks for response with NULL objects in check_transformer
+      to trap SEGV, which is what occurs when members of the transformer
+      group do not check for an invalid object.
+
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: include geda_utility.h.

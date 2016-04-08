@@ -78,6 +78,8 @@
  *               geda_arc_object_within_sweep
  */
 
+#include "test-suite.h"
+
 int
 check_construction ()
 {
@@ -1007,7 +1009,45 @@ check_query ()
 int
 check_transformer ()
 {
-  int  result = 0;
+  int result = 0;
+
+  /* === Function 09: geda_arc_object_mirror NULL === */
+  if (setjmp(point) == 0) {
+    geda_arc_object_mirror (NULL, 0, 0);
+  }
+  else {
+    fprintf(stderr, "FAILED: (O020900) geda_arc_object_mirror NULL\n");
+    result++;
+  }
+
+  /* === Function 10: geda_arc_object_modify NULL === */
+  if (setjmp(point) == 0) {
+    geda_arc_object_modify (NULL, 0, 0, 2);
+  }
+  else {
+    fprintf(stderr, "FAILED: (O021000) geda_arc_object_modify NULL\n");
+    result++;
+  }
+
+  /* === Function 19: geda_arc_object_rotate NULL === */
+
+  if (setjmp(point) == 0) {
+    geda_arc_object_rotate (NULL, 0, 0, 180);
+  }
+  else {
+    fprintf(stderr, "FAILED: (O021900) geda_arc_object_rotate NULL\n");
+    result++;
+  }
+
+  /* === Function 27: geda_arc_object_translate NULL === */
+
+  if (setjmp(point) == 0) {
+    geda_arc_object_translate (NULL, 0, 0);
+  }
+  else {
+    fprintf(stderr, "FAILED: (O022700) geda_arc_object_translate NULL\n");
+    result++;
+  }
 
   /* === Function 09: geda_arc_object_mirror === */
 
@@ -1022,25 +1062,43 @@ check_transformer ()
 
 /** @} endgroup test-object-geda-arc */
 
+
+
 int
 main (int argc, char *argv[])
 {
   int result = 0;
   int subtotal = 0;
 
+  SETUP_SIGSEGV_HANDLER;
+
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
 
-  subtotal = check_construction();
+  if (setjmp(point) == 0) {
+    subtotal = check_construction();
+  }
+  else {
+    fprintf(stderr, "Caught signal in constructors in src/object/o_arc_object.c\n\n");
+    return 1;
+  }
+
   if (subtotal) {
     fprintf(stderr, "Check constructors in src/object/o_arc_object.c\n\n");
     result   = subtotal;
     subtotal = 0;
   }
 
-  subtotal = check_accessors();
+  if (setjmp(point) == 0) {
+    subtotal = check_accessors();
+  }
+  else {
+    fprintf(stderr, "Caught signal in accessors in src/object/o_arc_object.c\n\n");
+    return 1;
+  }
+
   if (subtotal) {
     fprintf(stderr, "Check accessors in src/object/o_arc_object.c\n\n");
     result   = result + subtotal;
@@ -1049,22 +1107,45 @@ main (int argc, char *argv[])
 
   if (!result) {
 
-    subtotal = check_serialization();
+    if (setjmp(point) == 0) {
+      subtotal = check_serialization();
+    }
+    else {
+      fprintf(stderr, "Caught serialization in query in src/object/o_arc_object.c\n\n");
+      return 1;
+    }
     if (subtotal) {
       fprintf(stderr, "Check serialization in src/object/o_arc_object.c\n\n");
       result = result + subtotal;
     }
 
-    subtotal = check_query();
+    if (setjmp(point) == 0) {
+      subtotal = check_query();
+    }
+    else {
+      fprintf(stderr, "Caught signal in query in src/object/o_arc_object.c\n\n");
+      return 1;
+    }
     if (subtotal) {
       fprintf(stderr, "Check query functions in src/object/o_arc_object.c\n\n");
       result = result + subtotal;
     }
 
-    subtotal = check_transformer();
-    if (subtotal) {
-      fprintf(stderr, "Check transformers in src/object/o_arc_object.c\n\n");
-      result = result + subtotal;
+    if (!result) {
+      if (setjmp(point) == 0) {
+        subtotal = check_transformer();
+      }
+      else {
+        fprintf(stderr, "Caught signal in transformers in src/object/o_arc_object.c\n\n");
+        return 1;
+      }
+      if (subtotal) {
+        fprintf(stderr, "Check transformers in src/object/o_arc_object.c\n\n");
+        result = result + subtotal;
+      }
+    }
+    else {
+      fprintf(stderr, "skipping transformation checks src/object/o_arc_object.c\n\n");
     }
   }
   else {

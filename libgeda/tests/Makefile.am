@@ -1,4 +1,4 @@
-EXTRA_DIST = README
+EXTRA_DIST = README test-suite.h
 
 check_file = \
 	test_file
