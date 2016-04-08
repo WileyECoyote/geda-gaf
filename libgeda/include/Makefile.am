@@ -9,6 +9,7 @@ libgedainclude_HEADERS = \
 	libgeda/f_types.h \
 	libgeda/g_types.h \
 	libgeda/geda_arc.h \
+	libgeda/geda_attrib.h \
 	libgeda/geda_box.h \
 	libgeda/geda_bus.h \
 	libgeda/geda_circle.h \
