@@ -1,3 +1,11 @@
+2016-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Replace macro Top_Selection with function
+      s_toplevel_get_selection in i_status_idle_update_sensitivities.
+
+    * src/object/o_move.c: Replace macro Top_Selection with function
+      s_toplevel_get_selection in o_move_end.
+
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_fileselect.c: incorporate last_image_path in x_fileselect_

@@ -580,6 +580,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          GList  *s_tile_get_objectlists          (Page   *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
+        GList   *s_toplevel_get_selection                (GedaToplevel *toplevel);
         GList   *s_toplevel_get_symbols                  (const GedaToplevel *toplevel);
          void    s_toplevel_release                      (GedaToplevel *toplevel);
          void    s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...);
