@@ -1,5 +1,8 @@
 2016-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Remove unneeded cast in i_command_get_action_list
+      and add Doxygen comments.
+
     * src/x/x_icons.c: Add image files: "gaf-bom", "gaf-pdf"
 
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>

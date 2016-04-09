@@ -246,12 +246,19 @@ void i_command_disengage(bool immediate, bool wait_return)
 
 /* Command Interface Helpers */
 
+/*! \brief Get List of actions
+ *  \par Function Description
+ *  Indexes through the main command table and adds each action
+ *  member to the \a list.
+ *
+ *  \param [out] list Pointer of GList to be populated
+ */
 void i_command_get_action_list(GList** list)
 {
   int i;
 
   for (i = 1; i < LAST_ACTION; i++)
-    *list = g_list_prepend(*list, (char*)command_struc[i].name);
+    *list = g_list_prepend(*list, command_struc[i].name);
   return;
 }
 
