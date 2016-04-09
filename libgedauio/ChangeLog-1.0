@@ -4,7 +4,7 @@
       define cell_layout, editable, and buildable interface with code.
       Add function is_a_geda_combo_box and member instance_type eliminating
       G_TYPE_CHECK_INSTANCE_TYPE (because is like a box of cracker jacks;
-      you never know what you are going to get inside).
+      you never know what you are going to get inside). Reorganize module.
 
 2016-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
