@@ -27,7 +27,7 @@
  *  Date Contributed: February, 02, 2013
  *
  */
-#define PERFORMANCE 1
+//#define PERFORMANCE 1
 
 #include <gschem.h>
 

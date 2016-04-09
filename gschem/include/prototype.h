@@ -338,9 +338,10 @@ void       i_status_update_sensitivities    (GschemToplevel *w_current);
 void       i_status_update_title            (GschemToplevel *w_current);
 
 /* i_threads.c */
-void       gschem_threads_enter             (void);
-void       gschem_threads_leave             (void);
-bool       gschem_threads_init              (void);
+void          gschem_threads_enter          (void);
+void          gschem_threads_leave          (void);
+bool          gschem_threads_init           (void);
+unsigned int  gschem_threads_idle_add       (GschemSourceFunc function, void *data);
 
 /* i_vars.c */
 char      *i_var_get_global_config_string   (EdaConfig *cfg, const char *str);

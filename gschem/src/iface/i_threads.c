@@ -129,4 +129,35 @@ bool gschem_threads_init (void)
   return result;
 }
 
+/*! \brief Initialize Thread Support
+ *  \par Function Description
+ *  Adds a function to be called whenever there are no higher priority
+ *  events pending to the default main loop. The function is given the
+ *  default idle priority, #G_PRIORITY_DEFAULT_IDLE. If the function
+ *  returns %FALSE it is automatically removed from the list of event
+ *  sources and will not be called again.
+ *
+ *  This internally creates a main loop source using g_idle_source_new()
+ *  and attaches it to the main loop context using g_source_attach().
+ *
+ *  \param function  function to call
+ *  \param data      data to pass to \a function
+ *
+ *  \returns the ID (greater than 0) of the event source.
+ */
+unsigned int
+gschem_threads_idle_add (GschemSourceFunc function, void *data)
+{
+  GSource     *source;
+  unsigned int id;
+
+  source = g_idle_source_new ();
+
+  g_source_set_callback (source, (GSourceFunc)function, data, NULL);
+  id = g_source_attach (source, NULL);
+  g_source_unref (source);
+
+  return id;
+}
+
 /** @} endgroup Gschem-Thread-System */

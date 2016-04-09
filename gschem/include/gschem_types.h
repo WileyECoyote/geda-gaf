@@ -34,6 +34,9 @@
 #ifndef _GSCHEM_TYPES_H
 #define _GSCHEM_TYPES_H
 
+/*! \brief Type of callback function for gschem_threads_idle_add */
+typedef bool (*GschemSourceFunc)(GschemToplevel *);
+
 /*! \brief Type of callback function for event handler */
 typedef void (*ActionInit)(GschemToplevel*, int, int);
 typedef void (*ActionPaster)(GschemToplevel*);

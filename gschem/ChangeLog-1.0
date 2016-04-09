@@ -1,3 +1,13 @@
+2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_types.h: Add type GschemSourceFunc, is like a GSource
+      Func but passes GschemToplevel so every usage in gschem does not have
+      to be cast to (GSourceFunc).
+
+    * src/iface/i_threads.c: Add function gschem_threads_idle_add, which
+      by-passes g_idle_add and g_idle_add_full and creates an idle source
+      directly.
+
 2016-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Replace macro Top_Selection with function
