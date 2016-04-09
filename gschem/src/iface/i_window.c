@@ -166,7 +166,7 @@ void i_window_on_page_changed (GschemToplevel *w_current)
 
   i_window_set_viewport_size (w_current);
 
-  g_idle_add ((GSourceFunc)i_window_idle_notify_dialogs, w_current);
+  gschem_threads_idle_add (i_window_idle_notify_dialogs, w_current);
 
   page = gschem_toplevel_get_current_page (w_current);
 

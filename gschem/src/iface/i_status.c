@@ -296,7 +296,7 @@ void i_status_update_action_state(GschemToplevel *w_current, int state)
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     if (w_current->inside_action != state) {
       w_current->inside_action = state;
-      g_idle_add ((GSourceFunc)i_status_idle_thread_update_action, w_current);
+      gschem_threads_idle_add (i_status_idle_thread_update_action, w_current);
     }
   }
 }
@@ -358,7 +358,7 @@ i_status_idle_update_grid_info (GschemToplevel *w_current)
 void i_status_update_grid_info(GschemToplevel *w_current)
 {
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
-    g_idle_add ((GSourceFunc)i_status_idle_update_grid_info, w_current);
+    gschem_threads_idle_add (i_status_idle_update_grid_info, w_current);
   }
 #if DEBUG_STATUS
   else {
@@ -864,7 +864,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 void i_status_update_sensitivities(GschemToplevel *w_current)
 {
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
-    g_idle_add ((GSourceFunc)i_status_idle_update_sensitivities, w_current);
+    gschem_threads_idle_add (i_status_idle_update_sensitivities, w_current);
   }
 #if DEBUG_SENSITIVITY
   else {
@@ -891,7 +891,7 @@ i_status_idle_thread_update_title (GschemToplevel *w_current)
 void i_status_update_title(GschemToplevel *w_current)
 {
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
-    g_idle_add ((GSourceFunc)i_status_idle_thread_update_title, w_current);
+    gschem_threads_idle_add (i_status_idle_thread_update_title, w_current);
   }
 #if DEBUG_SENSITIVITY
   else {

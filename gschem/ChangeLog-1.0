@@ -8,6 +8,16 @@
       by-passes g_idle_add and g_idle_add_full and creates an idle source
       directly.
 
+    * src/iface/i_status.c: Replace g_idle_add with gschem_threads_idle_add.
+
+    * src/iface/i_window.c: Replace g_idle_add with gschem_threads_idle_add.
+
+    * src/x/x_pagesel.c: Revise argument to x_pagesel_idle_update and add
+      conditional to validate pswindow, replace g_idle_add with new function
+      gschem_threads_idle_add.
+
+    * src/x/x_scroll.c: Replace g_idle_add with gschem_threads_idle_add.
+
 2016-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Replace macro Top_Selection with function

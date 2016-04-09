@@ -105,7 +105,7 @@ x_hscrollbar_idle_update(GschemToplevel *w_current)
 void x_hscrollbar_update(GschemToplevel *w_current)
 {
   if (w_current->scrollbars) {
-    g_idle_add ((GSourceFunc)x_hscrollbar_idle_update, w_current);
+    gschem_threads_idle_add (x_hscrollbar_idle_update, w_current);
   }
 
 }
@@ -177,7 +177,7 @@ x_vscrollbar_idle_update(GschemToplevel *w_current)
 void x_vscrollbar_update(GschemToplevel *w_current)
 {
   if (w_current->scrollbars) {
-    g_idle_add ((GSourceFunc)x_vscrollbar_idle_update, w_current);
+    gschem_threads_idle_add (x_vscrollbar_idle_update, w_current);
   }
 }
 
@@ -189,8 +189,8 @@ void x_vscrollbar_update(GschemToplevel *w_current)
 void x_scrollbars_update(GschemToplevel *w_current)
 {
   if (w_current->scrollbars) {
-    g_idle_add ((GSourceFunc)x_hscrollbar_idle_update, w_current);
-    g_idle_add ((GSourceFunc)x_vscrollbar_idle_update, w_current);
+    gschem_threads_idle_add (x_hscrollbar_idle_update, w_current);
+    gschem_threads_idle_add (x_vscrollbar_idle_update, w_current);
   }
 }
 

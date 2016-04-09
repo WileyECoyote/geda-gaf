@@ -117,14 +117,14 @@ x_pagesel_close (GschemToplevel *w_current)
  *  \param [in] dialog  The Pagesel dialog
  */
 static int
-x_pagesel_idle_update (void *dialog)
+x_pagesel_idle_update (GschemToplevel *w_current)
 {
-  Pagesel *pagesel = dialog;
+  Pagesel *pagesel = PAGESEL(w_current->pswindow);
 
-  pagesel_update (pagesel);
-
-  g_object_unref(pagesel);
-
+  if (pagesel) {
+    pagesel_update (pagesel);
+    g_object_unref(pagesel);
+  }
   return FALSE;
 }
 
@@ -145,7 +145,7 @@ x_pagesel_update (GschemToplevel *w_current)
 
       /* Add a reference to the object */
       g_object_ref(w_current->pswindow);
-      g_idle_add (x_pagesel_idle_update, w_current->pswindow);
+      gschem_threads_idle_add (x_pagesel_idle_update, w_current);
     }
     else {
       BUG_MSG ("pswindow is wrong object");
