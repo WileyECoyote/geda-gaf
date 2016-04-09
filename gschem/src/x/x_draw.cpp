@@ -47,7 +47,7 @@
 static EdaX11Render *RenderAdaptor;
 
 static void
-x_draw_set_color(GschemToplevel *w_current)
+x_draw_set_object_color(GschemToplevel *w_current)
 {
   GdkColor   *color;
   GedaObject *o_current = RenderAdaptor->object;
@@ -63,7 +63,7 @@ x_draw_set_color(GschemToplevel *w_current)
 }
 
 static void
-x_draw_arc (GschemToplevel *w_current)
+x_draw_arc_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -75,8 +75,6 @@ x_draw_arc (GschemToplevel *w_current)
     int sradi;
     int angle1;
     int angle2;
-
-    x_draw_set_color (w_current);
 
     o_arc   = o_current->arc;
     radius  = o_arc->radius;
@@ -91,7 +89,7 @@ x_draw_arc (GschemToplevel *w_current)
 }
 
 static void
-x_draw_circle (GschemToplevel *w_current)
+x_draw_circle_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -100,8 +98,6 @@ x_draw_circle (GschemToplevel *w_current)
     GedaCircle *o_circle;
     int scx, scy;
     int radius;
-
-    x_draw_set_color (w_current);
 
     o_circle = o_current->circle;
 
@@ -114,7 +110,7 @@ x_draw_circle (GschemToplevel *w_current)
 }
 
 static void
-x_draw_box (GschemToplevel *w_current)
+x_draw_box_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -123,8 +119,6 @@ x_draw_box (GschemToplevel *w_current)
     GedaBox *o_box;
     int sx1, sy1, sx2, sy2;
     int width, height;
-
-    x_draw_set_color (w_current);
 
     o_box = o_current->box;
 
@@ -139,7 +133,7 @@ x_draw_box (GschemToplevel *w_current)
 }
 
 static void
-x_draw_line (GschemToplevel *w_current)
+x_draw_line_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -147,8 +141,6 @@ x_draw_line (GschemToplevel *w_current)
 
     GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
-
-    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -160,7 +152,7 @@ x_draw_line (GschemToplevel *w_current)
 }
 
 static void
-x_draw_bus (GschemToplevel *w_current)
+x_draw_bus_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -168,8 +160,6 @@ x_draw_bus (GschemToplevel *w_current)
 
     GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
-
-    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -181,7 +171,7 @@ x_draw_bus (GschemToplevel *w_current)
 }
 
 static void
-x_draw_net (GschemToplevel *w_current)
+x_draw_net_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -189,8 +179,6 @@ x_draw_net (GschemToplevel *w_current)
 
     GedaLine *o_line;
     int sx1, sy1, sx2, sy2;
-
-    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -202,7 +190,7 @@ x_draw_net (GschemToplevel *w_current)
 }
 
 static void
-x_draw_path (GschemToplevel *w_current)
+x_draw_path_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -212,8 +200,6 @@ x_draw_path (GschemToplevel *w_current)
     GedaPath   *s_path;
     int         nsections;
     int         i;
-
-    x_draw_set_color (w_current);
 
     tmp_obj   = o_path_copy (o_current);
     s_path    = tmp_obj->path;
@@ -243,12 +229,13 @@ x_draw_path (GschemToplevel *w_current)
 }
 
 static void
-x_draw_pin (GschemToplevel *w_current)
+x_draw_pin_object (GschemToplevel *w_current)
 {
-  x_draw_line (w_current);
+  x_draw_line_object (w_current);
 }
+
 static void
-x_draw_picture (GschemToplevel *w_current)
+x_draw_picture_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -271,7 +258,7 @@ x_draw_picture (GschemToplevel *w_current)
 }
 
 static void
-x_draw_text (GschemToplevel *w_current)
+x_draw_text_object (GschemToplevel *w_current)
 {
   GedaObject *o_current = RenderAdaptor->object;
 
@@ -282,8 +269,6 @@ x_draw_text (GschemToplevel *w_current)
 
       GedaText *o_text;
       int   sx, sy;
-
-      x_draw_set_color (w_current);
 
       o_text = o_current->text;
 
@@ -319,16 +304,16 @@ x_draw_object (GschemToplevel *w_current, GedaObject *o_current)
     void (*draw_func)(GschemToplevel *w_current);
 
     switch (o_current->type) {
-      case OBJ_LINE:        draw_func = x_draw_line;    break;
-      case OBJ_NET:         draw_func = x_draw_net;     break;
-      case OBJ_BUS:         draw_func = x_draw_bus;     break;
-      case OBJ_PIN:         draw_func = x_draw_pin;     break;
-      case OBJ_BOX:         draw_func = x_draw_box;     break;
-      case OBJ_ARC:         draw_func = x_draw_arc;     break;
-      case OBJ_CIRCLE:      draw_func = x_draw_circle;  break;
-      case OBJ_PATH:        draw_func = x_draw_path;    break;
-      case OBJ_TEXT:        draw_func = x_draw_text;    break;
-      case OBJ_PICTURE:     draw_func = x_draw_picture; break;
+      case OBJ_LINE:        draw_func = x_draw_line_object;    break;
+      case OBJ_NET:         draw_func = x_draw_net_object;     break;
+      case OBJ_BUS:         draw_func = x_draw_bus_object;     break;
+      case OBJ_PIN:         draw_func = x_draw_pin_object;     break;
+      case OBJ_BOX:         draw_func = x_draw_box_object;     break;
+      case OBJ_ARC:         draw_func = x_draw_arc_object;     break;
+      case OBJ_CIRCLE:      draw_func = x_draw_circle_object;  break;
+      case OBJ_PATH:        draw_func = x_draw_path_object;    break;
+      case OBJ_TEXT:        draw_func = x_draw_text_object;    break;
+      case OBJ_PICTURE:     draw_func = x_draw_picture_object; break;
       case OBJ_COMPLEX:
       case OBJ_PLACEHOLDER: draw_func = x_draw_complex;
       break;
@@ -341,6 +326,8 @@ x_draw_object (GschemToplevel *w_current, GedaObject *o_current)
     RenderAdaptor->object = o_current;
 
     //CALLGRIND_START_INSTRUMENTATION;
+
+    x_draw_set_object_color (w_current);
 
     draw_func (w_current);
 
