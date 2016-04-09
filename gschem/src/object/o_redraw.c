@@ -409,6 +409,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     }
   }
 
+  cairo_restore (w_current->cr);
+
   g_list_free (obj_list);
   GEDA_UNREF (renderer);
   g_array_free (render_color_map, TRUE);
