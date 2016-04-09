@@ -19,10 +19,12 @@ bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
 bitmapdata_DATA   = \
 			close_box.png                      \
 			gaf-add-attribute.png              \
+			gaf-bom.png                        \
 			gaf-demote.png                     \
 			gaf-hierarchy-sch.png              \
 			gaf-hierarchy-sym.png              \
 			gaf-hierarchy-up.png               \
+			gaf-pdf.png                        \
 			gaf-promote.png                    \
 			gaf-see-notes.png                  \
 			gaf-tools.png                      \
