@@ -72,12 +72,14 @@
  * ---------------|--------------------------------------------------
  * WEH | 03/13/15 | Add spinner for text marker threshold as a double.
  *                | Annotated notes to instructions for clarification.
- *
  * ---------------|--------------------------------------------------
  * WEH | 08/01/15 | Remove include <guile/gh.h>, (<ref> libgeda::u_string.c)
  * ---------------|--------------------------------------------------
  * WEH | 10/02/15 | Add missing FontNameCombo to combo_responder
+ * ---------------|--------------------------------------------------
+ * WEH | 04/09/16 | Adjust Renderer and AntiAlias Combo width and padding.
  * ------------------------------------------------------------------
+ *
  */
 
 /*!
@@ -2466,12 +2468,12 @@ create_settings_dialog (GschemToplevel *w_current)
   { /*-------------------- Start Render TAB Contents --------------------*/
    GTK_START_TAB (RenderPref);
      HSECTION(RenderPrefTab_vbox, RenderOptionsRow1); /* ST Grp 1 */
-       GTK_NEW_COMBO (RenderOptionsRow1_hbox, Renderer, 10, 8);
-           gtk_widget_set_size_request (RendererCombo, 110, 31);
+       GTK_NEW_COMBO (RenderOptionsRow1_hbox, Renderer, 10, 6);
+           gtk_widget_set_size_request (RendererCombo, 120, 31);
            GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
            GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
-       GTK_NEW_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 75);
-           gtk_widget_set_size_request (AntiAliasCombo, 130, 31);
+       GTK_NEW_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 74);
+           gtk_widget_set_size_request (AntiAliasCombo, 160, 31);
            GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
            GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
            GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);

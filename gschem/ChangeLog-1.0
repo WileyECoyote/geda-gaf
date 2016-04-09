@@ -10,6 +10,8 @@
     * src/x/x_draw.cpp: Call x_draw_set_object_color in x_draw_object, rename
       functions.
 
+    * x/x_settings_dialog.c: Adjust Renderer and AntiAlias width and padding.
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_types.h: Add type GschemSourceFunc, is like a GSource
