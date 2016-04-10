@@ -2,7 +2,8 @@
 
     * src/iface/i_pan_world.c: Use gschem_toplevel_get_current_page in
       i_pan_world_general instead of toplevel->page_current->everywhere,
-      and adjust indentations based on above.
+      and adjust indentations based on above and add Doxyen comments.
+      Revise comments for function i_pan_warp_cursor.
 
 2016-04-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -139,17 +139,18 @@ void i_pan_auto(GschemToplevel *w_current, GdkEventCrossing *event)
   }
 }
 
-/*! \brief Set Cursor/Pointer Position
- *  \par Function Description
- *   This function sets the pointer position to relative
- *  screen coordinates of the given widget.
+/*!
+ * \brief Set Cursor/Pointer Position
+ * \par Function Description
+ *  This function sets the pointer position to relative screen coordinates
+ *  of the given widget. For setting the cursor relative to the drawing
+ *  area using world coordinates see i_window_set_pointer_position.
  *
- *  \param [in] widget to which the coordinates will be relative
- *  \param [in] x      integer abscissa in screen units
- *  \param [in] y      integer ordinate in screen units
+ * \param [in] widget to which the coordinates will be relative
+ * \param [in] x      integer abscissa in screen units
+ * \param [in] y      integer ordinate in screen units
  *
- * \note WEH: For setting the cursor relative to the drawing area
- *       using world coordinates see i_window_set_pointer_position.
+ * \sa i_window_set_pointer_position
  */
 void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
 {
@@ -165,16 +166,26 @@ void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
   gdk_display_warp_pointer (display, screen, window_x + x, window_y + y);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Pan World to X,Y Center with given Zoom Factor
+ * \par Function Description
+ *  Sets page left, right, top and bottom base on the center given by
+ *  \a world_cx and \a world_cy and the given \a relative_zoom_factor.
+ *  If the borders should be ignored include I_PAN_IGNORE_BORDERS in
+ *  the \a flags. The function calls o_invalidate_all by default, to
+ *  inhibit include I_PAN_DONT_REDRAW in the \a flags.
  *
- *  see gschem_idefines.h for flags
- *  if the borders should be ignored always, remove, outcomment or changes
- *  the flags in the function-calls flags |= I_PAN_IGNORE_BORDERS;
+ * \param [in] w_current            The GschemToplevel object
+ * \param [in] world_cx             world value of X center point
+ * \param [in] world_cy             world value of Y center point
+ * \param [in] relative_zoom_factor Unit-less scale factor
+ * \param [in] flags                Enumerated #EID_PAN_DIRECTIVES
  */
-void i_pan_world_general(GschemToplevel *w_current, double world_cx, double world_cy,
-                         double relative_zoom_factor,int flags)
+void i_pan_world_general (GschemToplevel *w_current,
+                          double          world_cx,
+                          double          world_cy,
+                          double          relative_zoom_factor,
+                          int             flags)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
