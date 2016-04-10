@@ -156,15 +156,24 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
   }
 }
 
-/*! \brief gschem Zoom to Extents of a list of Objects
- *  \par Function Description
- *   This function zooms to the bounds of the objects in \a list.
- *   if the list NULL the function calls i_zoom_world_box to after
- *   setting top-level coordinates to default values.
+/*!
+ * \brief gschem Zoom to Extents of a list of Objects
+ * \par Function Description
+ *  This function zooms to the bounds of the objects in \a list.
+ *  if the list NULL the function calls i_zoom_world_box to after
+ *  setting top-level coordinates to default values.
+ *
+ * \param [in] w_current The GschemToplevel object
+ * \param [in] list      List of objects whose bound will determine limits
+ * \param [in] pan_flags to be passed to i_pan_world_general
+ *
+ * \sa i_pan_world_general
  */
-void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flags)
+void
+i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flags)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  Page *page = gschem_toplevel_get_current_page(w_current);
+
   int lleft, lright, ltop, lbottom;
   double zx, zy, relative_zoom_factor;
   double world_pan_center_x,world_pan_center_y;
@@ -177,7 +186,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
     return i_zoom_world_box(w_current, I_PAN_REDRAW);
   }
 
-  if (!o_get_bounds_list (list,&lleft, &ltop, &lright, &lbottom)) {
+  if (!o_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
     return;
   }
 
@@ -186,7 +195,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
          __func_, lleft, lright, ltop, lbottom);
 #endif
 
-  /* Calculate the necessary zoomfactor to show everything
+  /* Calculate the necessary zoom factor to show everything
    * Start with the windows width and height (minus a small padding in pixels),
    * then scale back to world coordinates with the to_screen_y_constant as the
    * initial page data may not have the correct aspect ratio. */
@@ -194,15 +203,16 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
   zy = (double)(w_current->screen_height - 2 * ZOOM_EXTENTS_PADDING_PX) / (lbottom-ltop);
 
   /* choose the smaller one */
-  relative_zoom_factor = (zx < zy ? zx : zy) / toplevel->page_current->
-                                               to_screen_y_constant;
-  /*get the center of the objects*/
+  relative_zoom_factor = (zx < zy ? zx : zy) / page->to_screen_y_constant;
+
+  /* get the center of the objects*/
   world_pan_center_x = (double) (lright + lleft) / 2.0;
   world_pan_center_y = (double) (lbottom + ltop) / 2.0;
 
   /* and create the new window*/
-  i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
-                      relative_zoom_factor, pan_flags );
+  i_pan_world_general(w_current, world_pan_center_x,
+                                 world_pan_center_y,
+                                 relative_zoom_factor, pan_flags );
 }
 
 /*! \brief Zoom World to Magnification Level

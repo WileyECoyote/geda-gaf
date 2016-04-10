@@ -267,6 +267,7 @@ void i_window_revert_page (GschemToplevel *w_current)
       /* Do error recovery */
       o_undo_callback(w_current, UNDO_ACTION);
     }
+
     x_window_set_current_page (w_current, page);
     i_event_unblock_handler (w_current, EXPOSE_EVENT_HANDLER);
     geda_notify_list_thaw (page->change_notify_funcs);

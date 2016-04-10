@@ -5,6 +5,9 @@
       and adjust indentations based on above and add Doxyen comments.
       Revise comments for function i_pan_warp_cursor.
 
+    * src/iface/i_zoom_world.c: Use gschem_toplevel_get_current_page in
+      i_pan_world_general and add Doxyen comments.
+
 2016-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove unneeded cast in i_command_get_action_list
