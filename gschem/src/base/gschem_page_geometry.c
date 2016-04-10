@@ -706,13 +706,6 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
                                     world_pan_center_y,
                                     relativ_zoom_factor,
                                     pan_flags);
-
-/*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
- *  this will redraw rubberband lines after zooming
- *  removed!, it has side effects in the preview of the part dialog
- *  need to find another way to trigger x_event_motion() (Werner)
- */
- /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
 }
 
 /*! \brief Update the constants (coefficients) for calculations

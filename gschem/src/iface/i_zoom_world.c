@@ -192,25 +192,17 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
    * initial page data may not have the correct aspect ratio. */
   zx = (double)(w_current->screen_width - 2 * ZOOM_EXTENTS_PADDING_PX) / (lright-lleft);
   zy = (double)(w_current->screen_height - 2 * ZOOM_EXTENTS_PADDING_PX) / (lbottom-ltop);
-  /* choose the smaller one */
-  relative_zoom_factor = (zx < zy ? zx : zy) /
-  toplevel->page_current->to_screen_y_constant;
 
+  /* choose the smaller one */
+  relative_zoom_factor = (zx < zy ? zx : zy) / toplevel->page_current->
+                                               to_screen_y_constant;
   /*get the center of the objects*/
   world_pan_center_x = (double) (lright + lleft) / 2.0;
   world_pan_center_y = (double) (lbottom + ltop) / 2.0;
 
   /* and create the new window*/
   i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
-                relative_zoom_factor, pan_flags );
-
-  /*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
-   *  this will redraw rubberband lines after zooming
-   *  removed!, it has side effects in the preview of the part dialog
-   *  need to find another way to trigger x_event_motion() (Werner)
-   */
-  /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
-
+                      relative_zoom_factor, pan_flags );
 }
 
 /*! \brief Zoom World to Magnification Level
@@ -289,7 +281,7 @@ void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
 
   /* and create the new window*/
   i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
-                relative_zoom_factor, pan_flags);
+                      relative_zoom_factor, pan_flags);
 }
 
 /*! \todo Finish function documentation!!!
