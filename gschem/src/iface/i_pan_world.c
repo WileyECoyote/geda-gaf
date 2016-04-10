@@ -176,29 +176,29 @@ void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
 void i_pan_world_general(GschemToplevel *w_current, double world_cx, double world_cy,
                          double relative_zoom_factor,int flags)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  Page *page = gschem_toplevel_get_current_page(w_current);
 
   /* think it's better that the zoomfactor is defined as pix/mills
-   *    this will be the same as w_current->page_current->to_screen_x/y_constant*/
+   * this will be the same as page->to_screen_x/y_constant */
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
 #if DEBUG
-  printf("i_pan_world_general(): world_cx=%f, world_cy=%f\n",world_cx, world_cy);
+  printf("i_pan_world_general(): world_cx=%f, world_cy=%f\n", world_cx, world_cy);
 #endif
 
   /* calc minimum zoomfactors and choose the smaller one. They are equal
-   *    if the aspectratio of the world is the same as the screen ratio */
-  zx = (double) w_current->screen_width / (w_current->world_right - w_current->world_left);
+   * if the aspectratio of the world is the same as the screen ratio */
+  zx = (double) w_current->screen_width  / (w_current->world_right  - w_current->world_left);
   zy = (double) w_current->screen_height / (w_current->world_bottom - w_current->world_top);
   zoom_min = zx < zy ? zx : zy;
 
 #if DEBUG
-  printf("  zx_min=%f, zy_min=%f , flags=%d\n ",zx, zy, flags);
+  printf("  zx_min=%f, zy_min=%f , flags=%d\n ", zx, zy, flags);
 #endif
 
-  /* to_screen_x_constant and to_screen_y_constant are almost the same.
-   *    lets use to_screen_y_constant */
-  zoom_old = toplevel->page_current->to_screen_y_constant;
+  /* to_screen_x_constant and to_screen_y_constant are almost the same,
+   * so lets use to_screen_y_constant */
+  zoom_old = page->to_screen_y_constant;
 
   /* calc new zooming factor */
   /* check if there's a zoom_full (relative_zoom_factor == -1) */
@@ -211,20 +211,17 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
     zoom_new = zoom_old * relative_zoom_factor;
     zoom_new = zoom_new > zoom_max ? zoom_max : zoom_new;
+
     if (!(flags & I_PAN_IGNORE_BORDERS)) {
       zoom_new = zoom_new < zoom_min ? zoom_min : zoom_new;
     }
   }
 
   /* calculate the new visible area; adding 0.5 to round */
-  toplevel->page_current->left = world_cx - (double) w_current->screen_width
-  / 2 / zoom_new + 0.5;
-  toplevel->page_current->right = world_cx + (double) w_current->screen_width
-  / 2 / zoom_new + 0.5;
-  toplevel->page_current->top = world_cy - (double) w_current->screen_height
-  / 2 / zoom_new + 0.5;
-  toplevel->page_current->bottom = world_cy + (double) w_current->screen_height
-  / 2 / zoom_new + 0.5;
+  page->left   = world_cx - (double) w_current->screen_width / 2 / zoom_new + 0.5;
+  page->right  = world_cx + (double) w_current->screen_width / 2 / zoom_new + 0.5;
+  page->top    = world_cy - (double) w_current->screen_height / 2 / zoom_new + 0.5;
+  page->bottom = world_cy + (double) w_current->screen_height / 2 / zoom_new + 0.5;
 
   /* and put it back to the borders */
   if (!(flags & I_PAN_IGNORE_BORDERS)) {
@@ -232,67 +229,59 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
     int diff;
 
     /* check right border */
-    if (toplevel->page_current->right > w_current->world_right) {
-      toplevel->page_current->left += w_current->world_right -
-      toplevel->page_current->right;
-      toplevel->page_current->right = w_current->world_right;
+    if (page->right > w_current->world_right) {
+        page->left += w_current->world_right - page->right;
+        page->right = w_current->world_right;
     }
+
     /* check left border */
-    if (toplevel->page_current->left < w_current->world_left) {
-      toplevel->page_current->right += w_current->world_left - toplevel->page_current->left;
-      toplevel->page_current->left = w_current->world_left; }
+    if (page->left < w_current->world_left) {
+        page->right += w_current->world_left - page->left;
+        page->left   = w_current->world_left;
+    }
 
     /* If there is any slack, center the view */
-    diff = (toplevel->page_current->right -
-    toplevel->page_current->left) -
-    (w_current->world_right - w_current->world_left);
+    diff = (page->right - page->left) - (w_current->world_right - w_current->world_left);
+
     if (diff > 0) {
-      toplevel->page_current->left -= diff / 2;
-      toplevel->page_current->right -= diff / 2;
+        page->left  -= diff / 2;
+        page->right -= diff / 2;
     }
 
     /* check bottom border */
-    if (toplevel->page_current->bottom > w_current->world_bottom) {
-      toplevel->page_current->top += w_current->world_bottom -
-      toplevel->page_current->bottom;
-      toplevel->page_current->bottom = w_current->world_bottom;
+    if (page->bottom > w_current->world_bottom) {
+        page->top   += w_current->world_bottom - page->bottom;
+        page->bottom = w_current->world_bottom;
     }
+
     /* check top border */
-    if (toplevel->page_current->top < w_current->world_top) {
-      toplevel->page_current->bottom += w_current->world_top -
-      toplevel->page_current->top;
-      toplevel->page_current->top = w_current->world_top;
+    if (page->top < w_current->world_top) {
+        page->bottom += w_current->world_top - page->top;
+        page->top     = w_current->world_top;
     }
 
-    /* If there is any slack, center the view */
-    diff = (toplevel->page_current->bottom -
-    toplevel->page_current->top) -
-    (w_current->world_bottom - w_current->world_top);
+      /* If there is any slack, center the view */
+    diff = (page->bottom - page->top) - (w_current->world_bottom - w_current->world_top);
     if (diff > 0) {
-      toplevel->page_current->top -= diff / 2;
-      toplevel->page_current->bottom -= diff / 2;
+        page->top -= diff / 2;
+        page->bottom -= diff / 2;
     }
-
   }
 
 #if DEBUG
   printf("zoom_old: %f, zoom_new: %f \n ",zoom_old, zoom_new);
   printf("left: %d, right: %d, top: %d, bottom: %d\n",
-         toplevel->page_current->left, toplevel->page_current->right,
-         toplevel->page_current->top, toplevel->page_current->bottom);
-  printf("aspect: %f\n",
-         (float) fabs(toplevel->page_current->right
-         - toplevel->page_current->left) /
-         (float) fabs(toplevel->page_current->bottom
-         - toplevel->page_current->top ));
+         page->left, page->right, page->top, page->bottom);
+  printf("aspect: %f\n", (float) fabs(page->right - page->left) /
+         (float) fabs(page->bottom - page->top ));
 #endif
 
   /* x_window_setup_page */
-  x_window_setup_page(w_current, toplevel->page_current,
-             toplevel->page_current->left  ,
-             toplevel->page_current->right ,
-             toplevel->page_current->top   ,
-             toplevel->page_current->bottom);
+  x_window_setup_page(w_current, page,
+                                 page->left,
+                                 page->right,
+                                 page->top,
+                                 page->bottom);
 
   /* update the status bar if the zoom changed */
   if (zoom_new != zoom_old && w_current->status_bar) {

@@ -1,3 +1,9 @@
+2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_pan_world.c: Use gschem_toplevel_get_current_page in
+      i_pan_world_general instead of toplevel->page_current->everywhere,
+      and adjust indentations based on above.
+
 2016-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove unneeded cast in i_command_get_action_list
