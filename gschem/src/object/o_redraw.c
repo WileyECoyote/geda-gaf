@@ -176,7 +176,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
-}*/
+  }*/
 
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
@@ -295,11 +295,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   if (w_current->event_state == NETMODE) {
 
-      cairo_set_matrix (w_current->cr, &render_mtx);
       eda_renderer_set_color_map (renderer, render_outline_color_map);
-
       o_net_draw_rubber (w_current);
-
       eda_renderer_set_color_map (renderer, render_color_map);
   }
   else if (w_current->inside_action) {
@@ -316,20 +313,14 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           case TEXTMODE:
           case MCOPYMODE:
           case PASTEMODE:
-
-            cairo_set_matrix (w_current->cr, &render_mtx);
             eda_renderer_set_color_map (renderer, render_outline_color_map);
-
             o_place_draw_rubber (w_current, draw_selected);
-
             eda_renderer_set_color_map (renderer, render_color_map);
 
           case DRAGMOVE:
           case MOVEMODE:
 
             if (w_current->last_drawb_mode != -1) {
-
-              cairo_set_matrix (w_current->cr, &render_mtx);
               eda_renderer_set_color_map (renderer, render_outline_color_map);
               o_move_draw_rubber (w_current, draw_selected);
               eda_renderer_set_color_map (renderer, render_color_map);
@@ -385,7 +376,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
             break;
 
           case BUSMODE:
-            cairo_set_matrix (w_current->cr, &render_mtx);
             eda_renderer_set_color_map (renderer, render_outline_color_map);
             o_bus_draw_rubber(w_current);
             eda_renderer_set_color_map (renderer, render_color_map);
@@ -399,11 +389,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
       if (w_current->last_drawb_mode != -1) {
 
-        cairo_set_matrix (w_current->cr, &render_mtx);
         eda_renderer_set_color_map (renderer, render_outline_color_map);
-
         o_move_draw_rubber (w_current, draw_selected);
-
         eda_renderer_set_color_map (renderer, render_color_map);
       }
     }

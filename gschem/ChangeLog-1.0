@@ -3,7 +3,8 @@
     * src/iface/i_command.c: Remove unneeded cast in i_command_get_action_list
       and add Doxygen comments.
 
-    * src/object/o_redraw.c: Add missing cairo_restore in o_redraw_rectangle.
+    * src/object/o_redraw.c: Add missing cairo_restore in o_redraw_rectangle
+      and remove redundant application of cairo_set_matrix.
 
     * src/x/x_icons.c: Add image files: "gaf-bom", "gaf-pdf"
 
