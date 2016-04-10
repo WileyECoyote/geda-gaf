@@ -26,6 +26,10 @@
 
     * x/x_settings_dialog.c: Adjust Renderer and AntiAlias width and padding.
 
+    * src/x/x_window.c: Revise x_window_open_page to pass page instead of
+      toplevel->page_current to i_zoom_world_extents, should not make any
+      difference. More famous last words?
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_types.h: Add type GschemSourceFunc, is like a GSource

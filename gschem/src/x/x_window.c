@@ -759,7 +759,7 @@ static bool x_window_idle_thread_post_load_file (void *filename)
  *
  *  If there is no page for <B>filename</B> in <B>toplevel</B>'s list
  *  of pages, it creates a new Page, loads the file in it and returns
- *  a pointer on the new page. Otherwise it returns a pointer on the
+ *  a pointer to the new page. Otherwise it returns a pointer to the
  *  existing page.
  *
  *  If the filename passed is NULL, this function creates an empty,
@@ -771,7 +771,7 @@ static bool x_window_idle_thread_post_load_file (void *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] filename The name of the file to open or NULL for a blank page.
  *
- *  \returns A pointer on the new page.
+ *  \returns pointer to the new page.
  *
  *  \note When we want a new string allocated we use the glib file utilities,
  *  when we don't want to deal with freeing we use our local buffer and glibc.
@@ -1002,9 +1002,7 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
                       (ChangeNotifyFunc) o_invalidate_object,
                       (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-  i_zoom_world_extents (w_current,
-                        s_page_get_objects (toplevel->page_current),
-                        I_PAN_DONT_REDRAW);
+  i_zoom_world_extents (w_current, s_page_get_objects(page), I_PAN_DONT_REDRAW);
 
   o_undo_savestate (w_current, UNDO_ALL);
 
