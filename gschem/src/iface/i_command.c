@@ -562,6 +562,7 @@ COMMAND (do_debug)
   /* Get ptr to the current page */
   p_current  = gschem_toplevel_get_current_page(w_current);
 
+  i_zoom_world_extents (w_current, s_page_get_objects(p_current), I_PAN_REDRAW);
 /*
   geda_attrib_append_changed_hook (p_current,
                                          (AttribsChangedFunc) o_diagnostics_notify_attribute,

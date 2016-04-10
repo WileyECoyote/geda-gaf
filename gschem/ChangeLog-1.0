@@ -8,6 +8,9 @@
 
     * src/x/x_icons.c: Add image files: "gaf-bom", "gaf-pdf".
 
+    * src/iface/i_command.c: Add zoom extent after resizing as a convenience
+      and to make sure this gets done before performing redraw tests.
+
     * src/iface/i_zoom_world.c: (and src/base/gschem_page_geometry.c): Remove
       comments in i_zoom_world_extents regarding the use of i_pan_warp_cursor,
       Triggering or blocking an event is not a problem; i_pan_warp_cursor sets
