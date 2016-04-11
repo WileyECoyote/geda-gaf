@@ -768,6 +768,24 @@ x_window_idle_thread_post_load_file (void *filename)
   return FALSE;
 }
 
+static void
+x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
+{
+  const GList *list = s_page_get_objects(page);
+  int left, right, top, bottom;
+
+  if (!o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+    return;
+  }
+
+  page->left   = left;
+  page->right  = right;
+  page->top    = top;
+  page->bottom = bottom;
+
+  i_zoom_world_extents (w_current, list, I_PAN_DONT_REDRAW);
+}
+
 /*! \brief Opens a new page from a file.
  *  \par Function Description
  *  This function opens the file whose name is <B>filename</B> in a
@@ -1019,9 +1037,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
                       (ChangeNotifyFunc) o_invalidate_object,
                       (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-  i_zoom_world_extents (w_current, s_page_get_objects(page), I_PAN_DONT_REDRAW);
-
-  o_undo_savestate (w_current, UNDO_ALL);
+  x_window_reset_page_geometry(w_current, page);
 
   /* This line is generally un-needed, however if some code
    * wants to open a page, yet not bring it to the front, it is
@@ -1029,6 +1045,9 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
    * get done in x_window_set_current_page.
    */
   x_pagesel_update (w_current); /* If dialog open, update tree */
+
+  o_undo_savestate (w_current, UNDO_ALL);
+
   return page;
 }
 

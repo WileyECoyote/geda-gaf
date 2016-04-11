@@ -20,7 +20,9 @@
       i_window_set_viewport_size in x_window_setup after restore the window
       geometry so that screen_width and screen_height are promptly updated.
       Remove o_invalidate_all before x_window_open_page exit, does not seem
-      to do anything.
+      to do anything. Add static function x_window_reset_page_geometry to
+      set page boundaries based on content after opening a page and zoom
+      to extents before returning to x_window_open_page.
 
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
