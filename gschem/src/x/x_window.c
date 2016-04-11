@@ -80,6 +80,9 @@ x_window_setup (GschemToplevel *w_current)
 
   i_window_set_grid_type (w_current);
 
+  /* Update allocation of canvas after restoring window geometry */
+  i_window_set_viewport_size (w_current);
+
   x_draw_initialize(w_current);
 
   x_menu_attach_recent_submenu (w_current);
