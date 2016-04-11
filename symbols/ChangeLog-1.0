@@ -1,3 +1,9 @@
+2016-04-?? Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/battery/MCP73826-1.sym: Single Cell LiIon Charge Controller.
+
+    * microchip/battery/MCP73826-2.sym: Alternate pin layout.
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * display/GG0804A1FSN6G-1.sym: Add LCD module
