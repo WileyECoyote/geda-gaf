@@ -94,6 +94,14 @@ gschem_page_history_push_forward (GschemPageHistory *history, Page *page)
   }
 }
 
+/*!
+ * \brief Release resources allocated by GschemPageHistory
+ * \par Function Description
+ *  Unreferences the two GedaList used to track history and
+ *  then frees the structure containing the two pointers.
+ *
+ * \param [in] history GschemPageHistory object to be destroyed.
+ */
 void
 gschem_page_history_free (GschemPageHistory *history)
 {
@@ -111,6 +119,19 @@ gschem_page_history_free (GschemPageHistory *history)
   }
 }
 
+/*!
+ * \brief Get Page Back in History
+ * \par Function Description
+ *  Returns the page on top the pages-back history stack
+ *  after removing the current page, which pushed to the
+ *  list of pages forward.
+ *
+ * \param [in] history GschemPageHistory object.
+ *
+ * \returns pointer to the previous page in history.
+ *
+ * \sa gschem_page_history_get_forward.
+ */
 Page*
 gschem_page_history_get_back (GschemPageHistory *history)
 {
@@ -134,6 +155,19 @@ gschem_page_history_get_back (GschemPageHistory *history)
   return NULL;
 }
 
+/*!
+ * \brief Get Page forward in History
+ * \par Function Description
+ *  Returns the last page added to the page forward stack.
+ *  Pages are automactically added to the forward stack when
+ *  gschem_page_history_get_back is called.
+ *
+ * \param [in] history GschemPageHistory object.
+ *
+ * \returns pointer to the next page in history after going back.
+ *
+ * \sa gschem_page_history_get_back.
+ */
 Page*
 gschem_page_history_get_forward (GschemPageHistory *history)
 {
@@ -151,15 +185,36 @@ gschem_page_history_get_forward (GschemPageHistory *history)
   return NULL;
 }
 
+/*!
+ * \brief Create a new GschemPageHistory
+ * \par Function Description
+ *  Allocates resources for a new GschemPageHistory, if successful
+ *  returns the object.
+ *
+ * \returns a GschemPageHistory object.
+ */
 GschemPageHistory*
 gschem_page_history_new ()
 {
-  GschemPageHistory *history = GEDA_MEM_ALLOC0 (sizeof(GschemPageHistory));
-  history->pages_forw = geda_list_new();
-  history->pages_back = geda_list_new();
-  return history;
+  GschemPageHistory *history = GEDA_MEM_ALLOC0(sizeof(GschemPageHistory));
+
+  if (history) {
+    history->pages_forw = geda_list_new();
+    history->pages_back = geda_list_new();
+    return history;
+  }
+  return NULL;
 }
 
+/*!
+ * \brief Remove a Page from History
+ * \par Function Description
+ *  This function is called when the page is closed to removes all
+ *  references to \a page from the history.
+ *
+ * \param [in] history GschemPageHistory object,
+ * \param [in] page    Page to be removed from history.
+ */
 void
 gschem_page_history_remove_page (GschemPageHistory *history, Page *page)
 {
@@ -173,6 +228,17 @@ gschem_page_history_remove_page (GschemPageHistory *history, Page *page)
   }
 }
 
+/*!
+ * \brief Add a list of pages to the Page History
+ * \par Function Description
+ *  This function allows a list of pages to be added to the history
+ *  list of pages and is used when gschem is started with a list of
+ *  documents to open so gschem_page_history_push_back does not need
+ *  to be called for each document.
+ *
+ * \param [in] history GschemPageHistory object,
+ * \param [in] pages   List of pages to be add to history.
+ */
 void
 gschem_page_history_seed_back (GschemPageHistory *history, GList *pages)
 {

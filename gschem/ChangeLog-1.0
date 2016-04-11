@@ -1,5 +1,9 @@
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_page_history.c: Add some DOxygen comments, add
+      conditional in gschem_page_history_new in the unlikely event the
+      structure for two longs is not successfully allocated.
+
     * src/iface/i_pan_world.c: Use gschem_toplevel_get_current_page in
       i_pan_world_general instead of toplevel->page_current->everywhere,
       and adjust indentations based on above and add Doxyen comments.
