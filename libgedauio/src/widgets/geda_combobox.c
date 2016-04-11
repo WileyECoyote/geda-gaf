@@ -4098,16 +4098,16 @@ geda_combo_box_model_row_changed (GtkTreeModel *model,
   GedaComboBox *combo_box = (GedaComboBox*)user_data;
   GedaComboBoxData *priv  = combo_box->priv;
 
-  /* FIXME this belongs to GtkCellView */
+  /* Does this belong to GtkCellView */
   if (gtk_tree_row_reference_valid (priv->active_row)) {
 
     GtkTreePath *active_path;
 
     active_path = gtk_tree_row_reference_get_path (priv->active_row);
 
-    if (gtk_tree_path_compare (path, active_path) == 0 &&
-      priv->cell_view)
+    if (gtk_tree_path_compare (path, active_path) == 0 && priv->cell_view)
       gtk_widget_queue_resize (GTK_WIDGET (priv->cell_view));
+
     gtk_tree_path_free (active_path);
   }
 
@@ -4142,8 +4142,7 @@ geda_combo_box_list_popup_resize (GedaComboBox *combo_box)
   GedaComboBoxData *priv = combo_box->priv;
 
   if (!priv->resize_idle_id) {
-    priv->resize_idle_id =
-      gdk_threads_add_idle (list_popup_resize_idle, combo_box);
+    priv->resize_idle_id = g_idle_add (list_popup_resize_idle, combo_box);
   }
 }
 
@@ -6325,7 +6324,7 @@ popdown_idle (void * data)
 static void
 popdown_handler (GtkWidget *widget, void *data)
 {
-  gdk_threads_add_idle (popdown_idle, g_object_ref (data));
+  g_idle_add (popdown_idle, g_object_ref (data));
 }
 
 static bool
@@ -6393,7 +6392,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
     }
 
     combo_box->priv->popup_idle_id =
-    gdk_threads_add_idle (popup_idle, combo_box);
+    g_idle_add (popup_idle, combo_box);
   }
 }
 

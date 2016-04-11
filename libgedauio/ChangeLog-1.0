@@ -1,3 +1,10 @@
+2016-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace gdk_threads_add_idle with g_idle_add
+      in functions; geda_combo_box_list_popup_resize, popdown_handler and
+      geda_combo_box_start_editing. gdk_threads_add_idle is just a wrapper for
+      g_idle_add_full but add some undesired and seemly unnecessary over-head.
+
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and

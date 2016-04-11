@@ -35,7 +35,7 @@
 #define GEDA_TYPE_COMBO_BOX_TEXT                 (geda_combo_box_text_get_type ())
 #define GEDA_COMBO_BOX_TEXT(obj)                 (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxText))
 #define GEDA_COMBO_BOX_TEXT_CLASS(klass)         (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxTextClass))
-#define GEDA_IS_COMBO_BOX_TEXT(obj)              (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_COMBO_BOX_TEXT))
+#define GEDA_IS_COMBO_BOX_TEXT(obj)              (is_a_geda_combo_box_text((GedaComboBoxText*)obj))
 #define GEDA_IS_COMBO_BOX_TEXT_CLASS(klass)      (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_COMBO_BOX_TEXT))
 #define GEDA_COMBO_BOX_TEXT_GET_CLASS(obj)       (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxTextClass))
 
@@ -46,6 +46,7 @@ struct _GedaComboBoxText
 {
   /*< private >*/
   GedaComboBox  parent_instance;
+  GedaType      instance_type;
   GtkListStore *store;
   GtkWidget    *tree;
   GtkWidget    *button;
@@ -63,6 +64,7 @@ extern "C" {
 #endif
 
 GType        geda_combo_box_text_get_type              (void) GEDA_CONST;
+bool         is_a_geda_combo_box_text                  (GedaComboBoxText  *combo_box);
 GtkWidget   *geda_combo_box_text_new                   (void);
 GtkWidget   *geda_combo_box_text_new_with_entry        (void);
 GtkWidget   *geda_combo_box_text_list_new              (void);
