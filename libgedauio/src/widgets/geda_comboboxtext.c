@@ -97,11 +97,9 @@ static void geda_combo_box_text_buildable_custom_finished   (GtkBuildable      *
                                                              const char        *tagname,
                                                              void *           user_data);
 
-static GtkBuildableIface *buildable_parent_iface = NULL;
+static void *geda_combo_box_text_parent_class = NULL;
 
-G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GEDA_TYPE_COMBO_BOX,
-                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-                         geda_combo_box_text_buildable_interface_init));
+static GtkBuildableIface *buildable_parent_iface = NULL;
 
 static void FixGtkCrap(GtkWidget *widget, void *combo)
 {
@@ -158,37 +156,6 @@ static void geda_combo_box_text_finalize  (GObject *object)
 
   g_object_unref (self->store);
   G_OBJECT_CLASS (geda_combo_box_text_parent_class)->finalize (object);
-}
-
-static void
-geda_combo_box_text_init (GedaComboBoxText *combo_box)
-{
-  GtkListStore *store;
-
-  store  = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-  geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
-  combo_box->count = 0;
-  combo_box->store = store;
-}
-
-/*! \brief GedaComboBoxText Class Initializer
- *
- *  \par Function Description
- *  Function is called to initialize the class instance.
- *
- * \param [in] class A GedaComboBoxTextClass Object
- */
-static void
-geda_combo_box_text_class_init (GedaComboBoxTextClass *class)
-{
-  GObjectClass   *object_class;
-
-  object_class = (GObjectClass*)class;
-
-  object_class->constructor  = geda_combo_box_text_constructor;
-  object_class->finalize     = geda_combo_box_text_finalize;
-
-  geda_combo_box_text_parent_class = g_type_class_peek_parent (class);
 }
 
 static void
@@ -379,6 +346,101 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
     g_string_free (parser_data->string, TRUE);
     free (parser_data);
   }
+}
+
+/*! \brief GedaComboBox Type Class Initializer
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  class       GedaComboClass class we are initializing
+ *  \param [in]  class_data  GedaCombo structure associated with the class
+ */
+static void
+geda_combo_box_text_class_init (void *class, void *class_data)
+{
+  GObjectClass   *object_class;
+
+  object_class = (GObjectClass*)class;
+
+  object_class->constructor  = geda_combo_box_text_constructor;
+  object_class->finalize     = geda_combo_box_text_finalize;
+
+  geda_combo_box_text_parent_class = g_type_class_peek_parent (class);
+}
+
+/*! \brief Initialize new GedaComboBoxText data structure instance.
+ *  \par Function Description
+ *  This function is call after the GedaComboBoxTextClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaComboBoxText data structure
+ * \param [in] class     A GedaComboBoxTextClass Object
+ */
+static void
+geda_combo_box_text_instance_init (GTypeInstance *instance, void *class)
+{
+  GedaComboBoxText *combo_box;
+  GtkListStore     *store;
+
+  combo_box = (GedaComboBoxText*)instance;
+
+  store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+
+  geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
+  combo_box->count = 0;
+  combo_box->store = store;
+}
+
+/*! \brief Retrieve GedaComboBoxText's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaComboBoxText Type identifier. When
+ *  first called, the function registers a #GedaComboBoxText in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaComboBoxText and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaComboBoxText.
+ */
+GedaType
+geda_combo_box_text_get_type (void)
+{
+  static GedaType geda_combo_box_text_type = 0;
+
+  if (g_once_init_enter (&geda_combo_box_text_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaComboBoxTextClass),
+      NULL,                               /* base_init           */
+      NULL,                               /* base_finalize       */
+      geda_combo_box_text_class_init,     /* (GClassInitFunc)    */
+      NULL,                               /* class_finalize      */
+      NULL,                               /* class_data          */
+      sizeof(GedaComboBoxText),
+      0,                                  /* n_preallocs         */
+      geda_combo_box_text_instance_init   /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaComboBoxText");
+    type   = g_type_register_static (GEDA_TYPE_COMBO_BOX, string, &info, 0);
+
+    const GInterfaceInfo buildable_info = {
+      (GInterfaceInitFunc) geda_combo_box_text_buildable_interface_init,
+      NULL,
+      NULL
+    };
+
+    g_type_add_interface_static (type, GTK_TYPE_BUILDABLE, &buildable_info);
+
+    g_once_init_leave (&geda_combo_box_text_type, type);
+  }
+
+  return geda_combo_box_text_type;
 }
 
 /*! \brief Create a New GedaComboBoxText

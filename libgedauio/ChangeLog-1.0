@@ -1,7 +1,12 @@
+2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
+      define calass and buildable interface with code.
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
-      define cell_layout, editable, and buildable interface with code.
+      define class, cell_layout, editable, and buildable interface with code.
       Add function is_a_geda_combo_box and member instance_type eliminating
       G_TYPE_CHECK_INSTANCE_TYPE (because is like a box of cracker jacks;
       you never know what you are going to get inside). Reorganize module.
