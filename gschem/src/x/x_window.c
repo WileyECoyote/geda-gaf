@@ -35,7 +35,7 @@
 
 #include <geda/geda_stat.h>
 #include <geda/geda_dialog_controls.h>
-#include <geda_file_chooser.h>  /* Need for group and key defines */
+#include <geda_file_chooser.h>         /* Need for group and key defines */
 
 extern int iconify_main_window;
 
@@ -49,7 +49,8 @@ extern int iconify_main_window;
  *  calls various lower level functions to actually create sub-components
  *  of the graphical interface.
  */
-void x_window_setup (GschemToplevel *w_current)
+void
+x_window_setup (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -93,7 +94,8 @@ void x_window_setup (GschemToplevel *w_current)
  *  with the GdKWindow'ed Drawing Area for later use by low level
  *  drawing routines, but not libgedacairo.
  */
-bool x_window_setup_context(GschemToplevel *w_current)
+bool
+x_window_setup_context(GschemToplevel *w_current)
 {
   bool result = FALSE;
   if (!w_current) {
@@ -128,21 +130,22 @@ bool x_window_setup_context(GschemToplevel *w_current)
  * \param [in] w_current The toplevel environment.
  * \param [in] window    The Main window
  */
-static
-void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
+static void
+x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 {
   DrawingArea = GTK_WIDGET (gschem_page_view_new ());
 
   GTK_WIDGET_UNSET_FLAGS (DrawingArea, GTK_DOUBLE_BUFFERED);
   /* Set the size here. Be sure that it has an aspect ratio of 1.333
-* We could calculate this based on root window size, but for now
-* lets just set it to:
-* Width = root_width*3/4 Height = Width/1.3333333333
-* 1.3333333 is the desired aspect ratio!
-*/
+   * We could calculate this based on root window size, but for now
+   * lets just set it to:
+   * Width = root_width*3/4 Height = Width/1.3333333333
+   * 1.3333333 is the desired aspect ratio!
+   */
   gtk_drawing_area_size (GTK_DRAWING_AREA (DrawingArea),
                          w_current->screen_width,
                          w_current->screen_height);
+
   gtk_container_add(GTK_CONTAINER(window), DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
@@ -162,7 +165,8 @@ void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
  *  settings related to the Window are saved here. We can not save this
  *  data in an at_exit because w_current was destroyed by x_window_close()!
  */
-void x_window_save_settings(GschemToplevel *w_current)
+void
+x_window_save_settings(GschemToplevel *w_current)
 {
   GtkWindow  *window;
   EdaConfig  *cfg;
@@ -287,7 +291,8 @@ void x_window_save_settings(GschemToplevel *w_current)
  *
  *  \param [in] w_current  Gschem toplevel object.
  */
-void x_window_restore_settings(GschemToplevel *w_current)
+void
+x_window_restore_settings(GschemToplevel *w_current)
 {
   GtkWindow *window;
   EdaConfig  *cfg;
@@ -357,8 +362,8 @@ void x_window_restore_settings(GschemToplevel *w_current)
  *  Called to handle the response emitted from the Macro Widget, if the
  *  response is GEDA_RESPONSE_OK the macro string is evaluated.
  */
-static void x_window_invoke_macro (GtkWidget      *widget, int response,
-                                   GschemToplevel *w_current)
+static void
+x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_current)
 {
   if (response == GEDA_RESPONSE_OK) {
 
@@ -384,7 +389,8 @@ static void x_window_invoke_macro (GtkWidget      *widget, int response,
  *  high-level containers, calling auxiliary functions to populate
  *  the containers with the menus and toolbars.
  */
-void x_window_create_main(GschemToplevel *w_current)
+void
+x_window_create_main(GschemToplevel *w_current)
 {
   GtkPolicyType policy;
 
@@ -591,7 +597,8 @@ void x_window_create_main(GschemToplevel *w_current)
  *   This function close any currently open editing dialog boxes
  *   This includes the edit preference dialog.
  */
-void x_window_close_edit_dialogs(GschemToplevel *w_current)
+void
+x_window_close_edit_dialogs(GschemToplevel *w_current)
 {
   /* close all the dialog boxes */
 
@@ -634,7 +641,8 @@ void x_window_close_edit_dialogs(GschemToplevel *w_current)
  *   This function closes all currently open dialog windows.
  *   This called in preperation for program shutdown.
  */
-void x_window_close_all_dialogs(GschemToplevel *w_current)
+void
+x_window_close_all_dialogs(GschemToplevel *w_current)
 {
   x_window_close_edit_dialogs(w_current);
 
@@ -654,7 +662,8 @@ void x_window_close_all_dialogs(GschemToplevel *w_current)
  *  \par Function Description
  *  Close the current window, in effect the GUI.
  */
-void x_window_close(GschemToplevel *w_current)
+void
+x_window_close(GschemToplevel *w_current)
 {
   bool last_window = FALSE;
 
@@ -726,7 +735,8 @@ void x_window_close(GschemToplevel *w_current)
  *  open a new window is not enabled by default so normally there
  *  is only one window.
  */
-void x_window_close_all(GschemToplevel *w_current)
+void
+x_window_close_all(GschemToplevel *w_current)
 {
 
   GList *list_copy, *iter;
@@ -745,7 +755,8 @@ void x_window_close_all(GschemToplevel *w_current)
 }
 
 /* Threaded from x_window_open_page after successful open */
-static bool x_window_idle_thread_post_load_file (void *filename)
+static bool
+x_window_idle_thread_post_load_file (void *filename)
 {
   q_log_message (_("Loading \"%s\"\n"), filename);
   x_menu_recent_files_add (filename);
@@ -777,7 +788,8 @@ static bool x_window_idle_thread_post_load_file (void *filename)
  *  when we don't want to deal with freeing we use our local buffer and glibc.
  *
  */
-Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
+Page*
+x_window_open_page(GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page *old_current, *page;
@@ -1029,7 +1041,8 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to become current page.
  */
-void x_window_set_current_page (GschemToplevel *w_current, Page *page)
+void
+x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
   if (gschem_toplevel_set_current_page (w_current, page)) {
     o_redraw_cleanstates (w_current);
@@ -1052,8 +1065,9 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
  *  \param [in]     ymin       The minimum y coordinate for the page.
  *  \param [in]     ymax       The maximum y coordinate for the page.
  */
-void x_window_setup_page(GschemToplevel *w_current, Page *page,
-                         int xmin, int xmax, int ymin, int ymax)
+void
+x_window_setup_page(GschemToplevel *w_current, Page *page,
+                    int xmin, int xmax, int ymin, int ymax)
 {
   double fs,f0,f1;
   double fw0,fw1,fw;
@@ -1107,7 +1121,8 @@ void x_window_setup_page(GschemToplevel *w_current, Page *page,
  *  \param [in] filename  The name of the file in which to save page.
  *  \returns 1 on success, 0 otherwise.
  */
-int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
+int
+x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   const char   *log_msg;
@@ -1175,7 +1190,8 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to close.
  */
-void x_window_close_page (GschemToplevel *w_current, Page *page)
+void
+x_window_close_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -1281,7 +1297,8 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
  *
  *  \param [in] w_current GschemToplevel structure
  */
-void x_window_update_title(GschemToplevel *w_current)
+void
+x_window_update_title(GschemToplevel *w_current)
 {
 
   Page *current_page = gschem_toplevel_get_current_page(w_current);
