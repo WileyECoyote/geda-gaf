@@ -1,7 +1,9 @@
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Eliminate G_DEFINE_TYPE_WITH_MACRO and
-      define calass and buildable interface with code.
+      define class and buildable interface with code. Add function is_a_geda_
+      combo_box_text and member instance_type eliminating G_TYPE_CHECK_INSTANCE
+      _TYPE.
 
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 

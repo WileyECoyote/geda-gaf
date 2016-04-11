@@ -443,6 +443,15 @@ geda_combo_box_text_get_type (void)
   return geda_combo_box_text_type;
 }
 
+bool
+is_a_geda_combo_box_text (GedaComboBoxText *combo_text_box)
+{
+  if (G_IS_OBJECT(combo_text_box)) {
+    return (geda_combo_box_text_get_type() == combo_text_box->instance_type);
+  }
+  return FALSE;
+}
+
 /*! \brief Create a New GedaComboBoxText
  *  \par Function Description
  *
