@@ -64,3 +64,7 @@ GdkWindow         *gschem_main_window_get_window (GtkWidget *main_window);
 GtkStyle          *gschem_main_window_get_style  (GtkWidget *main_window);
 
 #endif
+
+void               gschem_main_window_set_size   (GtkWidget *main_window,
+                                                  int        width,
+                                                  int        height);

@@ -213,4 +213,31 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 
 #endif
 
+/*!
+ * \brief Set the size of the GschemMainWindow widget
+ * \par Function Description
+ *  Provides functionality similar to gtk_window_resize except that
+ *  gdk_window_process_updates is called to immediately process the
+ *  request so that the configure_event signal is propagated in a
+ *  timely manner.
+ *
+ * \param [in] main_window GschemMainWindow widget,
+ * \param [in] width       New widget width.
+ * \param [in] height      New widget height.
+ */
+
+void
+gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
+{
+  GdkWindow *window;
+
+  window = geda_get_widget_window(main_window);
+
+  gdk_window_flush(window);
+
+  gtk_window_resize(GTK_WINDOW(main_window), width, height);
+
+  gdk_window_process_updates (window, TRUE);
+}
+
 /** @} endgroup Gschem-Main-Window */
