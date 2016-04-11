@@ -8,6 +8,9 @@
     * src/iface/i_zoom_world.c: Use gschem_toplevel_get_current_page in
       i_pan_world_general and add Doxyen comments.
 
+    * src/iface/i_window.c: Use gschem_toplevel_get_current_page in
+      i_window_set_viewport_size and skip page setup of nonexistent.
+
     * src/x/x_settings_dialog.c: Increase width of ConsoleWindowType and
       DotGridMode comboxes.
 

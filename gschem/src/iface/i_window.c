@@ -337,7 +337,6 @@ void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
  */
 void i_window_set_viewport_size(GschemToplevel *w_current)
 {
-  GedaToplevel  *toplevel = w_current->toplevel;
   GtkAllocation *allocation;
 
   allocation = geda_get_widget_allocation(DrawingArea);
@@ -347,20 +346,24 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
   w_current->screen_height = allocation->height;
 
 #if DEBUG_EVENTS
-  printf("manual: %d %d\n", w_current->screen_width, w_current->screen_height);
-#endif
 
-  /* need to do this every time the width / height change */
-  x_window_setup_page(w_current, toplevel->page_current,
-                      toplevel->page_current->left,
-                      toplevel->page_current->right,
-                      toplevel->page_current->top,
-                      toplevel->page_current->bottom);
-
-#if DEBUG_EVENTS
   float aspect = (float) w_current->screen_width / w_current->screen_height;
-  printf("Window aspect: %f\n", aspect);
+
+  printf("%s: screen_width %d screen_height %d\n", __func__, w_current->screen_width, w_current->screen_height);
+  printf(" Window aspect: %f\n", aspect);
+
 #endif
+
+  Page *page = gschem_toplevel_get_current_page(w_current);
+
+  if (page) {
+    /* need to do this every time the width / height change */
+    x_window_setup_page(w_current, page,
+                                   page->left,
+                                   page->right,
+                                   page->top,
+                                   page->bottom);
+  }
 }
 
 /*! \brief Interface for Toggling Visibility of Attributes
