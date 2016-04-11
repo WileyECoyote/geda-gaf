@@ -1029,7 +1029,6 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
    * get done in x_window_set_current_page.
    */
   x_pagesel_update (w_current); /* If dialog open, update tree */
-  o_invalidate_all(w_current);
   return page;
 }
 
