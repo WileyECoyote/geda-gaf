@@ -345,7 +345,9 @@ x_window_restore_settings(GschemToplevel *w_current)
   if (height == 0) {
     height = DEFAULT_WINDOW_HEIGHT;
   }
-  gtk_window_resize (window, width, height);
+
+  /* Results in a "configure_event" being generated */
+  gschem_main_window_set_size(MainWindow, width, height);
 
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);

@@ -15,6 +15,9 @@
       The solution is to call gdk_window_process_updates which integrated
       into the new function.
 
+    * src/x/x_window.c: Adjust function line wrap, replace gtk_window_resize
+      with gschem_main_window_set_size in x_window_restore_settings!
+
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_history.c: Add some DOxygen comments, add
