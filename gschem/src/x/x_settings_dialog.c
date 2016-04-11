@@ -77,7 +77,8 @@
  * ---------------|--------------------------------------------------
  * WEH | 10/02/15 | Add missing FontNameCombo to combo_responder
  * ---------------|--------------------------------------------------
- * WEH | 04/09/16 | Adjust Renderer and AntiAlias Combo width and padding.
+ * WEH | 04/10/16 | Adjust Renderer, AntiAlias  ConsoleWindowType and
+ *                | DotGridMode Combo width and padding.
  * ------------------------------------------------------------------
  *
  */
@@ -2340,7 +2341,7 @@ create_settings_dialog (GschemToplevel *w_current)
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
          GTK_SWITCH(LogOptions_vbox, EnableLog, 5, TRUE);
          GTK_SWITCH(LogOptions_vbox, InitConsoleWindow, 0, FALSE);
-         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 160, 5);
+         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 170, 5);
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
          GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 10, Window, TTY, Both, Window);
@@ -2445,7 +2446,7 @@ create_settings_dialog (GschemToplevel *w_current)
        HPSECTION(WindowPrefTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
          VPSECTION(GridOptions_hbox, GridDotOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
-           GTK_NEW_COMBO (GridDotOptions_vbox, DotGridMode, 150, DIALOG_V_SPACING);
+           GTK_NEW_COMBO (GridDotOptions_vbox, DotGridMode, 160, DIALOG_V_SPACING);
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE);
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED);
            GTK_NUMERIC_SPIN (GridDotOptions_vbox, DotGridThreshold, DIALOG_V_SPACING, DEFAULT_GRID_DOT_SIZE, MIN_GRID_DOT_SIZE, MAX_GRID_DOT_THRESHOLD);
