@@ -15,6 +15,8 @@
       The solution is to call gdk_window_process_updates which integrated
       into the new function.
 
+    * src/iface/i_pan_world.c: Revise debug prints to use __func__ string.
+
     * src/x/x_window.c: Adjust function line wrap, replace gtk_window_resize
       with gschem_main_window_set_size in x_window_restore_settings! Call
       i_window_set_viewport_size in x_window_setup after restore the window
@@ -22,7 +24,8 @@
       Remove o_invalidate_all before x_window_open_page exit, does not seem
       to do anything. Add static function x_window_reset_page_geometry to
       set page boundaries based on content after opening a page and zoom
-      to extents before returning to x_window_open_page.
+      to extents before returning to x_window_open_page. Revise and add
+      some comments.
 
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -194,7 +194,7 @@ void i_pan_world_general (GschemToplevel *w_current,
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
 #if DEBUG
-  printf("i_pan_world_general(): world_cx=%f, world_cy=%f\n", world_cx, world_cy);
+  printf("%s: world_cx=%f, world_cy=%f", __func__, world_cx, world_cy);
 #endif
 
   /* calc minimum zoomfactors and choose the smaller one. They are equal
@@ -204,7 +204,7 @@ void i_pan_world_general (GschemToplevel *w_current,
   zoom_min = zx < zy ? zx : zy;
 
 #if DEBUG
-  printf("  zx_min=%f, zy_min=%f , flags=%d\n ", zx, zy, flags);
+  printf(" zx_min=%f, zy_min=%f , flags=%d\n ", zx, zy, flags);
 #endif
 
   /* to_screen_x_constant and to_screen_y_constant are almost the same,
@@ -336,7 +336,7 @@ void i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y)
   double page_cx, page_cy;
 
 #if DEBUG
-  printf("i_pan_world_mouse(): diff_x=%d, diff_y=%d\n", diff_x, diff_y);
+  printf("%s: diff_x=%d, diff_y=%d", __func__, diff_x, diff_y);
 #endif
 
   page_cx = (toplevel->page_current->left + toplevel->page_current->right) / 2.0;
