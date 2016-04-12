@@ -172,7 +172,7 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
 void
 i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flags)
 {
-  Page *page = gschem_toplevel_get_current_page(w_current);
+  Page *page;
 
   int lleft, lright, ltop, lbottom;
   double zx, zy, relative_zoom_factor;
@@ -195,6 +195,8 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
          __func_, lleft, lright, ltop, lbottom);
 #endif
 
+  page = gschem_toplevel_get_current_page(w_current);
+
   /* Calculate the necessary zoom factor to show everything
    * Start with the windows width and height (minus a small padding in pixels),
    * then scale back to world coordinates with the to_screen_y_constant as the
@@ -212,7 +214,7 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
   /* and create the new window*/
   i_pan_world_general(w_current, world_pan_center_x,
                                  world_pan_center_y,
-                                 relative_zoom_factor, pan_flags );
+                                 relative_zoom_factor, pan_flags);
 }
 
 /*! \brief Zoom World to Magnification Level
