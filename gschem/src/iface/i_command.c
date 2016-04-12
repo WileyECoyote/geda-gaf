@@ -585,7 +585,6 @@ COMMAND (do_debug)
       break;
 
     case RUN_REDRAW_TESTS:
-
       printf ("Running Redraw tests, 10 cycles x %d redraws per cycle\n", NUMBER_REDRAW_TEST);
       for (cycle = 0; cycle < 10; cycle++) {
         cpu_time[cycle] = test_draw_time(w_current, NUMBER_REDRAW_TEST);

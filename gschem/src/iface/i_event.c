@@ -161,7 +161,7 @@ int i_event_enter(GtkWidget *widget, GdkEventCrossing *event,
 /*! \brief Leave Drawing Canvas Event Handler
  *  \par Function Description
  *  Called when the pointers leaves the DrawingArea widget. This
- *  function initiates auto-panning in side a NETMODE or BUSMODE
+ *  function initiates auto-panning inside a NETMODE or BUSMODE
  *  action by calling i_pan_auto.
  *
  *  \sa i_event_enter i_pan_auto
@@ -185,7 +185,6 @@ int i_event_leave(GtkWidget *widget, GdkEventCrossing *event,
   }
   return(0);
 }
-
 
 /*! \brief Setup X-Events Event Handlers
  *  \par Function Description

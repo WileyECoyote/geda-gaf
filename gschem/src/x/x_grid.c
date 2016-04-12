@@ -461,7 +461,6 @@ static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
 #endif
 
 /*! \brief Configure Grid Variables for the Current Grid Mode
- *
  *  \par Function Description
  *  This function sets up toplevel variables used by the grid system
  *  for the grid mode and must be called if the grid color settings
@@ -469,7 +468,6 @@ static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
  *  the computations are performed outside of the expose event loop.
  *
  *  \param [in] w_current  The GschemToplevel
- *
  */
 void x_grid_configure_variables (GschemToplevel *w_current)
 {

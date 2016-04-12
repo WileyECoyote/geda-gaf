@@ -76,8 +76,10 @@ x_window_setup (GschemToplevel *w_current)
 
   x_window_create_main (w_current);
 
+  /* Restores the Main Window size and position */
   x_window_restore_settings (w_current);
 
+  /* Configure grid colors and set toolbar radio state */
   i_window_set_grid_type (w_current);
 
   /* Update allocation of canvas after restoring window geometry */
@@ -883,20 +885,21 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   }
 
   /* Create an empty page with optional filename */
-  inline Page* new_page(const char *fname) {
+  inline Page *new_page(const char *fname) {
 
     page = s_page_new_with_notify (toplevel, fname);
 
+    /* No objects yet, set values to entire world */
     x_window_setup_page(w_current, page, w_current->world_left,
-                        w_current->world_right,
-                        w_current->world_top,
-                        w_current->world_bottom);
+                                         w_current->world_right,
+                                         w_current->world_top,
+                                         w_current->world_bottom);
     s_page_goto (page);
     return page;
   }
 
   /* Create an empty page with optional filename */
-  inline Page* empty_page(const char *name) {
+  inline Page *empty_page(const char *name) {
 
     char *fname;
 
@@ -1039,10 +1042,10 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
 
   x_window_reset_page_geometry(w_current, page);
 
-  /* This line is generally un-needed, however if some code
-   * wants to open a page, yet not bring it to the front, it is
-   * needed to add it into the page manager. Otherwise, it will
-   * get done in x_window_set_current_page.
+  /* This line is generally un-needed, however if some code wants
+   * to open a page, yet not bring it to the front, it is needed
+   * to add it into the page manager. Otherwise, it will get done
+   * in x_window_set_current_page.
    */
   x_pagesel_update (w_current); /* If dialog open, update tree */
 
