@@ -72,6 +72,17 @@ gschem_page_history_pop_forward (GschemPageHistory *history)
   return NULL;
 }
 
+/*!
+ * \brief Add a Page to the Back History
+ * \par Function Description
+ *  Adds \a page to the top of the pages-back history stack if
+ *  \a page is not the page on top of the stack. This is not
+ *  just a feature, this is instrumental to the operation of
+ *  the page history logic.
+ *
+ * \param [in] history GschemPageHistory object,
+ * \param [in] page    Page to be removed from history.
+ */
 void
 gschem_page_history_push_back (GschemPageHistory *history, Page *page)
 {
