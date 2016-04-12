@@ -3883,7 +3883,6 @@ char *x_dialog_select_file (GschemToplevel *w_current,
     if (result !=NULL) {
       char *file_path = f_path_get_dirname(result);
       gschem_toplevel_set_last_image_path(w_current, file_path);
-       fprintf(stderr, "%s file_path=<%s>\n", __func__, file_path);
     }
   }
 
