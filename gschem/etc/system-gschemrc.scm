@@ -1648,6 +1648,7 @@
 (map-keys "F R"        "page-revert")
 (map-keys "F V"        "page-revert-all")
 (map-keys "F I"        "file-write-image")
+(map-keys "F F"        "file-write-pdf")
 (map-keys "F T"        "file-run-script")
 (map-keys "<Shift>C A" "file-close-all")
 (map-keys "F Q"        "file-quit")
@@ -1812,6 +1813,7 @@
 (map-icon "gtk-save"                   "file-save-all")
 (map-icon "gtk-save"                   "file-save-modified")
 (map-icon "gtk-print"                  "file-print")
+(map-icon "gaf-pdf"                    "file-write-pdf")
 (map-icon "geda-save-image"            "file-write-image")
 
 (map-icon "gtk-execute"                "file-run-script")
@@ -2057,6 +2059,7 @@
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
+        (,(N_ "Write p_df")        file-write-pdf            #f                    ,(N_ "Create PDF document"))
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
 
         ("SEPARATOR"               #f                   #f            #f)
