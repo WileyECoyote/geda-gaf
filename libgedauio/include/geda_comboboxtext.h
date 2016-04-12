@@ -29,6 +29,8 @@
 
 #include <gtk/gtk.h>
 
+#include "geda_combobox.h"
+
 #ifndef __GEDA_COMBO_BOX_TEXT_H__
 #define __GEDA_COMBO_BOX_TEXT_H__
 

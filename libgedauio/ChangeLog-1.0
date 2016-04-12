@@ -1,3 +1,7 @@
+2016-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_comboboxtext.h: Include parent "geda_combobox.h" header.
+
 2016-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace gdk_threads_add_idle with g_idle_add
