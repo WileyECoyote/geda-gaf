@@ -129,11 +129,11 @@ int pix_x (GschemToplevel *w_current, int val)
 #endif
 
     /* this is a temp solution to fix the wrapping associated with */
-    /* X coords being greated/less than than 2^15 */
+    /* X coords being greater/less than than 2^15 */
     if (j >= 32768) {
       j = 32767;
     }
-    if (j <= -32768) {
+    else if (j <= -32768) {
       j = -32767;
     }
   }
@@ -174,11 +174,11 @@ int pix_y(GschemToplevel *w_current, int val)
 #endif
 
     /* This is a temp solution to fix the wrapping associated with */
-    /* X coords being greated/less than than 2^15 */
+    /* Y coords being greater/less than than 2^15 */
     if (j >= 32768) {
       j = 32767;
     }
-    if (j <= -32768) {
+    else if (j <= -32768) {
       j = -32767;
     }
   }

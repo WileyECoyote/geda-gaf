@@ -6,6 +6,10 @@
     * src/iface/i_zoom_world.c: Move call to gschem_toplevel_get_current_page
       in i_zoom_world_extents after o_get_bounds_list.
 
+   ** src/math/m_basic.c: Change conditionals in pix_x and pix_y (j <= -32768)
+      to be else clauses of (j >= 32768) because if the first if was true then
+      there is no reason to check if j <= -32768, also fix old typo "greated".
+
 2016-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_main_window.h: Add function gschem_main_window_set_size.

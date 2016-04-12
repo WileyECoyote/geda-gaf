@@ -477,11 +477,11 @@ gschem_page_geometry_pix_x (GschemPageGeometry *geometry, int value)
 #endif
 
   /* this is a temp solution to fix the wrapping associated with */
-  /* X coords being greated/less than than 2^15 */
+  /* X coords being greater/less than than 2^15 */
   if (j >= 32768) {
     j = 32767;
   }
-  if (j <= -32768) {
+  else if (j <= -32768) {
     j = -32767;
   }
 
@@ -512,11 +512,11 @@ gschem_page_geometry_pix_y (GschemPageGeometry *geometry, int value)
 #endif
 
   /* this is a temp solution to fix the wrapping associated with */
-  /* X coords being greated/less than than 2^15 */
+  /* X coords being greater/less than than 2^15 */
   if (j >= 32768) {
     j = 32767;
   }
-  if (j <= -32768) {
+  else if (j <= -32768) {
     j = -32767;
   }
 
