@@ -2,6 +2,11 @@
 
     * include/geda_comboboxtext.h: Include parent "geda_combobox.h" header.
 
+    * tests/: Add simple tests for creating and checking combobox types:
+
+        * tests/test_combobox.c
+        * tests/test_combobox_text.c
+
 2016-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace gdk_threads_add_idle with g_idle_add

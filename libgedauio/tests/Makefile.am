@@ -9,7 +9,9 @@ check_functions = \
 	test_accumulate
 
 check_widgets = \
-	test_accel_label
+	test_accel_label \
+	test_combobox \
+	test_combobox_text
 
 check_PROGRAMS = \
 	$(check_functions) \
