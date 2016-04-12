@@ -66,7 +66,7 @@
 #define FILE_SAVE_MODS   file-save-modified
 #define FILE_PRINT       file-print
 #define FILE_WRITE_IMAGE file-write-image
-#define FILE_WRITE_PDF   write-pdf
+#define FILE_WRITE_PDF   file-write-pdf
 #define FILE_RUN_SCRIPT  file-run-script
 #define FILE_CLOSE       file-close
 #define FILE_CLOSE_ALL   file-close-all

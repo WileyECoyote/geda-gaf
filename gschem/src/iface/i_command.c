@@ -1032,7 +1032,7 @@ COMMAND (do_write_image) {
 /** @brief i_cmd_do_write_pdf in i_command_File_Actions */
 /*! \brief Write PDF command
  *  \par Function Description
- *  This is handles the write-pdf action
+ *  This is handles the file-write-pdf action
  */
 COMMAND (do_write_pdf) {
   BEGIN_W_COMMAND(do_write_pdf);
