@@ -339,8 +339,10 @@ extern "C" void
 x_draw_set_surface(GschemToplevel *w_current)
 {
   if (Current_Page && w_current->render_adaptor == X11_ADAPTOR) {
-    RenderAdaptor->geda_draw_set_surface(w_current->cr,
-                                         Current_Page->to_world_x_constant);
+
+    double kx = Current_Page->to_screen_x_constant;
+
+    RenderAdaptor->geda_draw_set_surface(w_current->cr, kx);
   }
 }
 
