@@ -120,17 +120,17 @@ static void    geda_entry_populate_popup     (GedaEntry        *entry,
                                               void             *data);
 static void    popup_menu_callback           (GtkMenuItem      *item,
                                               void             *data);
-
-static void    geda_entry_set_property       (GObject          *object,
-                                              unsigned int      property_id,
-                                              const GValue     *value,
-                                              GParamSpec       *pspec);
 static void    geda_entry_get_property       (GObject          *object,
                                               unsigned int      property_id,
                                               GValue           *value,
                                               GParamSpec       *pspec);
-
-static int     geda_entry_strncmpi (char *str1, char *str2, int n);
+static void    geda_entry_set_property       (GObject          *object,
+                                              unsigned int      property_id,
+                                              const GValue     *value,
+                                              GParamSpec       *pspec);
+static int     geda_entry_strncmpi           (char             *str1,
+                                              char             *str2,
+                                              int               n);
 
 static GList  *history_list;
 static GList **history_list_arg;
@@ -210,11 +210,10 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
 
   setting = setting != FALSE;
 
-  if (setting != entry->activates_default)
-    {
-      entry->activates_default = setting;
-      g_object_notify (G_OBJECT (entry), "activates-default");
-    }
+  if (setting != entry->activates_default) {
+    entry->activates_default = setting;
+    g_object_notify (G_OBJECT (entry), "activates-default");
+  }
 }
 
 /*! \brief Set Entry attribute List
@@ -229,7 +228,7 @@ void
 geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
 {
   PangoAttrList *old_attrs;
-  PangoLayout* layout;
+  PangoLayout   *layout;
 
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
@@ -262,7 +261,7 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
  * \retval PangoAttrList attribute list, or %NULL
  *         if none was set.
  */
-PangoAttrList  *
+PangoAttrList*
 geda_entry_get_attributes (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
@@ -282,7 +281,8 @@ geda_entry_get_max_history (GedaEntry *entry)
   return entry->max_history;
 }
 
-GedaCompletion * geda_entry_get_completion (GedaEntry *entry)
+GedaCompletion *
+geda_entry_get_completion (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
   return entry->priv->command_completion;
@@ -511,7 +511,7 @@ static void
 geda_entry_drag_begin (GtkWidget      *widget,
                        GdkDragContext *context)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
@@ -520,7 +520,7 @@ static void
 geda_entry_drag_end (GtkWidget      *widget,
                      GdkDragContext *context)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 
@@ -531,7 +531,7 @@ geda_entry_drag_leave (GtkWidget      *widget,
                        GdkDragContext *context,
                        unsigned int    time)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
   gtk_widget_queue_draw (widget);
@@ -544,7 +544,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
                       int             y,
                       unsigned int    time)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 
@@ -559,7 +559,7 @@ geda_entry_drag_motion (GtkWidget       *widget,
                         int              y,
                         unsigned int     time)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
   return FALSE; /* not here */
@@ -568,13 +568,13 @@ geda_entry_drag_motion (GtkWidget       *widget,
 static void
 geda_entry_drag_data_received (GtkWidget        *widget,
                                GdkDragContext   *context,
-                               int              x,
-                               int              y,
+                               int               x,
+                               int               y,
                                GtkSelectionData *selection_data,
-                               unsigned int     info,
-                               unsigned int     time)
+                               unsigned int      info,
+                               unsigned int      time)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
@@ -586,7 +586,7 @@ geda_entry_drag_data_get (GtkWidget        *widget,
                           unsigned int      info,
                           unsigned int      time)
 {
-  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
@@ -600,7 +600,8 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
-static void geda_entry_finalize (GObject *object)
+static void
+geda_entry_finalize (GObject *object)
 {
   GedaEntry *entry;
 
@@ -795,10 +796,10 @@ geda_entry_class_init(void *g_class, void *class_data)
  */
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaEntry      *entry  = (GedaEntry*)instance;
-  entry->priv            = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
-  GedaEntryPriv  *priv   = entry->priv;
-  priv->font_map         = pango_cairo_font_map_get_default();
+  GedaEntry     *entry  = (GedaEntry*)instance;
+  entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
+  GedaEntryPriv *priv   = entry->priv;
+  priv->font_map        = pango_cairo_font_map_get_default();
 
   g_signal_connect_after (G_OBJECT (entry), "key_press_event",
                           G_CALLBACK (geda_entry_key_press), NULL);
@@ -1166,9 +1167,9 @@ geda_entry_strncmpi(char *str1, char *str2, int n)
 static bool
 geda_entry_tab_complete (GtkEntry *entry)
 {
-  char  *buffer;
-  char  *s_ptr;
-  char  *match;
+  char *buffer;
+  char *s_ptr;
+  char *match;
 
   GList     *options;
   GedaEntry *geda_entry = GEDA_ENTRY (entry);
@@ -1184,14 +1185,14 @@ geda_entry_tab_complete (GtkEntry *entry)
 
   while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
 
-  if (s_ptr == buffer)  /* if string empty */
+  if (s_ptr == buffer)                  /* if string empty */
 
   if ( *(--s_ptr) == ASCII_SPACE)       /* If previous char is space then */
     return exit (TRUE);                 /* there is nothing to complete */
 
   while ((s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
 
-  if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
+  if (s_ptr != buffer) ++s_ptr;         /* if compounding then skip space */
 
   options = geda_completion_complete (geda_entry->priv->command_completion, s_ptr, &match);
 
