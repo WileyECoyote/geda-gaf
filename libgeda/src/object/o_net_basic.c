@@ -422,29 +422,35 @@ static void o_net_consolidate_lowlevel (GedaObject *object,
   }
 }
 
-/*! \brief Check if there's a midpoint connection at (x,y)
- *  \par Function Description
+/*!
+ * \brief Check if there's a midpoint connection at (x,y)
+ * \par Function Description
  *  This function checks if the \a object is connected to another net
  *  between it's endpoints. Net segment's only can be merged if there
  *  is no midpoint connection.
  *
- *  \param object  a net Object to check
- *  \param x       x-coord of the connection location
- *  \param y       y-coord of the connection location
- *  \return TRUE if there's no midpoint connection, else return FALSE
+ * \param object  a net Object to check
+ * \param x       x-coord of the connection location
+ * \param y       y-coord of the connection location
+ *
+ * \return TRUE if there's no midpoint connection, else return FALSE
  */
-static int o_net_consolidate_nomidpoint (GedaObject *object, int x, int y)
+static int
+o_net_consolidate_nomidpoint (GedaObject *object, int x, int y)
 {
-  GList *c_current;
-  CONN  *conn;
+  GList *c_current = object->conn_list;
 
-  c_current = object->conn_list;
   while(c_current != NULL) {
-    conn = (CONN *) c_current->data;
+
+    CONN *conn = (CONN *) c_current->data;
+
     if (conn->other_object) {
+
       if (conn->other_object->sid != object->sid &&
-          conn->x == x && conn->y == y &&
-          conn->type == CONN_MIDPOINT) {
+          conn->x == x &&
+          conn->y == y &&
+          conn->type == CONN_MIDPOINT)
+      {
 #if DEBUG
         printf("Found one! %s\n", conn->other_object->name);
 #endif
@@ -462,27 +468,27 @@ static int o_net_consolidate_nomidpoint (GedaObject *object, int x, int y)
  *  This function tries to consolidate a net with any other object
  *  that is connected to the current \a object.
  *
- *  \param toplevel   The GedaToplevel object
- *  \param object     The object to consolidate
- *  \return 0 if no consolidation was possible, -1 otherwise
+ *  \param object  The Net object to consolidate
  *
+ *  \return 0 if no consolidation was possible, -1 otherwise
  */
-static int o_net_consolidate_segments (GedaToplevel *toplevel, GedaObject *object)
+static int
+o_net_consolidate_segments (GedaObject *object)
 {
+  GList      *c_current;
+  GedaObject *other_object;
+  Page       *page;
+
   int     object_orient;
   int     other_orient;
-  GList  *c_current;
-  CONN   *conn;
-  GedaObject *other_object;
-  Page   *page;
   int     changed = 0;
 
-  g_return_val_if_fail ((toplevel != NULL), 0);
   g_return_val_if_fail ((object != NULL), 0);
   g_return_val_if_fail ((object->type == OBJ_NET), 0);
 
   /* It's meaningless to do anything here if the object isn't in a page. */
   page = geda_object_get_page (object);
+
   if (page == NULL) {
     BUG_MSG ("page should not be NULL");
     return 0;
@@ -491,14 +497,19 @@ static int o_net_consolidate_segments (GedaToplevel *toplevel, GedaObject *objec
   object_orient = o_net_orientation(object);
 
   c_current = object->conn_list;
+
   while(c_current != NULL) {
-    conn = (CONN *) c_current->data;
+
+    CONN *conn   = c_current->data;
     other_object = conn->other_object;
 
     /* only look at end points which have a valid end on the other side */
-    if (other_object != NULL && conn->type == CONN_ENDPOINT &&
-        conn->other_whichone != -1 && conn->whichone != -1 &&
-        o_net_consolidate_nomidpoint(object, conn->x, conn->y) ) {
+    if (other_object != NULL &&
+        conn->type == CONN_ENDPOINT &&
+        conn->other_whichone != -1 &&
+        conn->whichone != -1 &&
+        o_net_consolidate_nomidpoint(object, conn->x, conn->y) )
+    {
 
       if (other_object->type == OBJ_NET) {
         other_orient = o_net_orientation(other_object);
@@ -506,7 +517,7 @@ static int o_net_consolidate_segments (GedaToplevel *toplevel, GedaObject *objec
         /* - both objects have the same orientation (either vert or horiz) */
         /* - it's not the same object */
         if (object_orient == other_orient &&
-            object->sid != other_object->sid &&
+            object->sid  != other_object->sid &&
             other_orient != NEITHER) {
 
 #if DEBUG
@@ -565,13 +576,14 @@ void o_net_consolidate(GedaToplevel *toplevel, Page *page)
     GedaObject *o_current = (GedaObject *)iter->data;
 
     if (o_current->type == OBJ_NET) {
-      status = o_net_consolidate_segments(toplevel, o_current);
+      status = o_net_consolidate_segments(o_current);
     }
 
     if (status == -1) {
       iter = s_page_get_objects (page);
       status = 0;
-    } else {
+    }
+    else {
       iter = g_list_next (iter);
     }
   }

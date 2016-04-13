@@ -13,6 +13,10 @@
 
     * src/object/o_circle_object.c: Rename file suffix; _basic -> _object.
 
+    * src/object/o_net_basic.c: Remove unused toplevel parameter for function
+      o_net_consolidate_segments. Reduce scope of CONN *conn in functions
+      o_net_consolidate_nomidpoint and o_net_consolidate_segments.
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revamp o_save; eliminate GString and allocate
@@ -7797,7 +7801,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
         Added code in configure.in to ignore the requirement for X11 for
         cygwin
 
-8/3/99        Added to TOPLEVEL the net_consolidate flag
+8/3/99  Added to TOPLEVEL the net_consolidate flag
 
         Upgraded to libtool 1.3.3
 
