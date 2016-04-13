@@ -700,7 +700,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         break;
 
       case(OBJ_CIRCLE):
-        if ((new_obj = o_circle_read (line, release_ver, fileformat_ver, err)) == NULL)
+        if ((new_obj = geda_circle_object_read (line, release_ver, fileformat_ver, err)) == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);
         break;

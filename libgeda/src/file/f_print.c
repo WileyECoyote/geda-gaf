@@ -357,7 +357,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       case(OBJ_CIRCLE):
-        o_circle_print(toplevel, fp, o_current, origin_x, origin_y);
+        geda_circle_object_print(toplevel, fp, o_current, origin_x, origin_y);
         break;
 
       case(OBJ_COMPLEX):

@@ -367,7 +367,7 @@ bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
     case OBJ_LINE:    getter = o_line_get_nearest_point;      break;
     case OBJ_BOX:     getter = geda_box_object_get_nearest_point;       break;
     case OBJ_PICTURE: getter = o_picture_get_nearest_point;   break;
-    case OBJ_CIRCLE:  getter = o_circle_get_nearest_point;    break;
+    case OBJ_CIRCLE:  getter = geda_circle_object_get_nearest_point;    break;
     case OBJ_PLACEHOLDER:
     case OBJ_COMPLEX: getter = o_complex_get_nearest_point;   break;
     case OBJ_TEXT:    getter = o_text_get_nearest_point;      break;
@@ -582,7 +582,7 @@ bool o_get_position (GedaObject *object, int *x, int *y )
       case OBJ_BUS:     func = geda_object_bus_get_position;     break;
       case OBJ_BOX:     func = geda_box_object_get_position;     break;
       case OBJ_PICTURE: func = o_picture_get_position; break;
-      case OBJ_CIRCLE:  func = o_circle_get_position;  break;
+      case OBJ_CIRCLE:  func = geda_circle_object_get_position;  break;
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: func = o_complex_get_position; break;
       case OBJ_TEXT:    func = o_text_get_position;    break;
@@ -627,7 +627,7 @@ double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force
       case OBJ_LINE:        func = o_line_shortest_distance;     break;
       case OBJ_BOX:         func = geda_box_object_shortest_distance;      break;
       case OBJ_PICTURE:     func = o_picture_shortest_distance;  break;
-      case OBJ_CIRCLE:      func = o_circle_shortest_distance;   break;
+      case OBJ_CIRCLE:      func = geda_circle_object_shortest_distance;   break;
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX:     func = o_complex_shortest_distance;  break;
       case OBJ_TEXT:        func = o_text_shortest_distance;     break;

@@ -2366,7 +2366,7 @@ PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
 {
   GedaObject *object;
 
-  object = o_circle_new(GRAPHIC_COLOR, x, y, radius);
+  object = geda_circle_object_new(GRAPHIC_COLOR, x, y, radius);
 
   add_floating_object(object);
 

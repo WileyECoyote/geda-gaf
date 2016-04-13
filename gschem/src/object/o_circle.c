@@ -96,7 +96,7 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject   *new_obj;
 
     /* create the object */
-    new_obj = o_circle_new (GRAPHIC_COLOR,
+    new_obj = geda_circle_object_new (GRAPHIC_COLOR,
                             w_current->first_wx, w_current->first_wy,
                             w_current->distance);
     new_obj->line_options->line_width =  o_style_get_line_width(toplevel);

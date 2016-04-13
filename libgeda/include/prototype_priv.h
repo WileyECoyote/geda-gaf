@@ -107,61 +107,61 @@ char       *geda_arc_object_to_buffer            (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
 
 /* o_attrib.c */
-GList      *geda_attrib_object_read            (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
-                                                unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
+GList      *geda_attrib_object_read              (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
+                                                  unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
 
 /* o_box_basic.c */
-bool        geda_box_object_get_position       (GedaObject *object, int *x, int *y);
-void        geda_box_object_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-void        geda_box_object_print_solid        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        geda_box_object_print_dotted       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        geda_box_object_print_dashed       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        geda_box_object_print_center       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        geda_box_object_print_phantom      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        geda_box_object_print_filled       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void        geda_box_object_print_mesh         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void        geda_box_object_print_hatch        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                                int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-GedaObject *geda_box_object_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_box_object_save               (GedaObject *object);
-double      geda_box_object_shortest_distance  (GedaObject *object, int x, int y, int force_soild);
+bool        geda_box_object_get_position         (GedaObject *object, int *x, int *y);
+void        geda_box_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+void        geda_box_object_print_solid          (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_box_object_print_dotted         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_box_object_print_dashed         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_box_object_print_center         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_box_object_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_box_object_print_filled         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void        geda_box_object_print_mesh           (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void        geda_box_object_print_hatch          (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+GedaObject *geda_box_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_box_object_save                 (GedaObject *object);
+double      geda_box_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
 
 /* o_bus_object.c */
-bool        geda_object_bus_get_position       (GedaObject *object, int *x, int *y);
-void        geda_object_bus_print              (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-GedaObject *geda_object_bus_read               (const char buf[], unsigned int release_ver,
-                                                unsigned int fileformat_ver, GError **err);
-char       *geda_object_bus_save               (GedaObject *object);
+bool        geda_object_bus_get_position         (GedaObject *object, int *x, int *y);
+void        geda_object_bus_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+GedaObject *geda_object_bus_read                 (const char buf[], unsigned int release_ver,
+                                                  unsigned int fileformat_ver, GError **err);
+char       *geda_object_bus_save                 (GedaObject *object);
 
 /* o_circle_object.c */
-bool        o_circle_get_position          (GedaObject *object, int *x, int *y);
-void        o_circle_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-void        o_circle_print_solid           (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_circle_print_dotted          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_circle_print_dashed          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_circle_print_center          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_circle_print_phantom         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_circle_print_filled          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void        o_circle_print_mesh            (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void        o_circle_print_hatch           (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                            int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-GedaObject *o_circle_read                  (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_circle_save                  (GedaObject *object);
-double      o_circle_shortest_distance     (GedaObject *object, int x, int y, int force_soild);
+bool        geda_circle_object_get_position      (GedaObject *object, int *x, int *y);
+void        geda_circle_object_print             (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+void        geda_circle_object_print_solid       (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_circle_object_print_dotted      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_circle_object_print_dashed      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_circle_object_print_center      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_circle_object_print_phantom     (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_circle_object_print_filled      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void        geda_circle_object_print_mesh        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void        geda_circle_object_print_hatch       (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+GedaObject *geda_circle_object_read              (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_circle_object_save              (GedaObject *object);
+double      geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_soild);
 
 
 /* o_complex_object.c */

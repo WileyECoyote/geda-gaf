@@ -195,7 +195,7 @@ EDA_SCM_DEFINE (object_make_box, "%make-box", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_circle, "%make-circle", 0, 0, 0,
                (), "Create a new circle object.")
 {
-  GedaObject *obj = o_circle_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
+  GedaObject *obj = geda_circle_object_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
 
   SCM result = edascm_from_object (obj);
 

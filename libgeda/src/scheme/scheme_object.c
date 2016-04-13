@@ -872,8 +872,8 @@ EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG5, scheme_object_set_circle_x);
 
   GedaObject *obj = edascm_to_object (circle_s);
-  o_circle_modify (obj, scm_to_int(x_s), scm_to_int(y_s), CIRCLE_CENTER);
-  o_circle_modify (obj, scm_to_int(r_s), 0, CIRCLE_RADIUS);
+  geda_circle_object_modify (obj, scm_to_int(x_s), scm_to_int(y_s), CIRCLE_CENTER);
+  geda_circle_object_modify (obj, scm_to_int(r_s), 0, CIRCLE_RADIUS);
   o_set_color (obj, scm_to_int (color_s));
 
   s_object_set_page_changed ( obj);

@@ -282,7 +282,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_CIRCLE):
-          out = o_circle_save(o_current);
+          out = geda_circle_object_save(o_current);
           break;
 
         case(OBJ_PLACEHOLDER):  /* new type by SDB 1.20.2005 */

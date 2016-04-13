@@ -31,13 +31,13 @@
 /*! \brief Create a copy of a circle.
  *
  *  \par Function Description
- *  The function#o_circle_copy() creates a verbatim copy of the object
+ *  The function #geda_circle_object_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a circle.
  *
  *  \param [in]  o_current  Circle GedaObject to copy.
  *  \return The new GedaObject
  */
-GedaObject *o_circle_copy(GedaObject *o_current)
+GedaObject *geda_circle_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_CIRCLE(o_current)) {
 
@@ -46,9 +46,9 @@ GedaObject *o_circle_copy(GedaObject *o_current)
 
     old_circle = GEDA_CIRCLE(o_current);
 
-    /* A new circle object is created with#o_circle_new().
+    /* A new circle object is created with #geda_circle_object_new().
      * Values for its fields are default and need to be modified. */
-    new_obj = o_circle_new (o_current->color, 0, 0, 0);
+    new_obj = geda_circle_object_new (o_current->color, 0, 0, 0);
 
     /* The parameters of the new circle are set with the ones of the original
      * circle. The two circle have the same line type and filling options.
@@ -84,7 +84,7 @@ GedaObject *o_circle_copy(GedaObject *o_current)
  *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
  *           the circle.
  */
-bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
 
@@ -239,7 +239,7 @@ bool o_circle_get_nearest_point (GedaObject *object, int x, int y, int *nx, int 
 
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_circle_get_position (GedaObject *object, int *x, int *y)
+bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
   *x = object->circle->center_x;
@@ -274,7 +274,7 @@ bool o_circle_get_position (GedaObject *object, int *x, int *y)
  *    <DT>*</DT><DD>CIRCLE_RADIUS
  *  </DL>
  */
-void o_circle_modify(GedaObject *object, int x, int y, int whichone)
+void geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case CIRCLE_CENTER:
@@ -312,7 +312,7 @@ void o_circle_modify(GedaObject *object, int x, int y, int whichone)
  *  \param [in]     center_y  Origin y coordinate.
 
  */
-void o_circle_mirror(GedaObject *object, int center_x, int center_y)
+void geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
   object->circle->center_x -= center_x;
@@ -338,7 +338,7 @@ void o_circle_mirror(GedaObject *object, int center_x, int center_y)
  *  <B>radius</B>.
  *  The <B>color</B> corresponds to the color the box will be drawn with.
  *
- *  The <B>GedaObject</B> structure is allocated with the#geda_object_new()
+ *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
  *  function. The structure describing the circle is allocated and initialized
  *  with the parameters given to the function.
  *
@@ -352,7 +352,7 @@ void o_circle_mirror(GedaObject *object, int center_x, int center_y)
  *  \param [in]     radius       Radius of new circle.
  *  \return A pointer to the new end of the object list.
  */
-GedaObject *o_circle_new(int color, int x, int y, int radius)
+GedaObject *geda_circle_object_new(int color, int x, int y, int radius)
 {
   GedaObject *new_obj;
   GedaCircle *circle;
@@ -393,7 +393,7 @@ GedaObject *o_circle_new(int color, int x, int y, int radius)
  *  \param [in] origin_x   Page x coordinate to place circle Object.
  *  \param [in] origin_y   Page y coordinate to place circle Object.
  */
-void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+void geda_circle_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                     int origin_x, int origin_y)
 {
   int x, y, radius;
@@ -412,9 +412,9 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*
    * Depending on the type of the line for this particular circle, the
-   * appropriate function is chosen among #o_circle_print_solid(),
-   * #o_circle_print_dotted(),#o_circle_print_dashed(),
-   * #o_circle_print_center() and#o_circle_print_phantom().
+   * appropriate function is chosen among #geda_circle_object_print_solid(),
+   * #geda_circle_object_print_dotted(),#geda_circle_object_print_dashed(),
+   * #geda_circle_object_print_center() and#geda_circle_object_print_phantom().
    *
    * The needed parameters for each of these type is extracted from the
    * <B>\a o_current</B> object. Depending on the type, unused parameters are
@@ -442,36 +442,36 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   switch(o_current->line_options->line_type) {
     case(TYPE_SOLID):
       length = -1; space  = -1;
-      outl_func = o_circle_print_solid;
+      outl_func = geda_circle_object_print_solid;
       break;
 
     case(TYPE_DOTTED):
       length = -1;
-      outl_func = o_circle_print_dotted;
+      outl_func = geda_circle_object_print_dotted;
       break;
 
     case(TYPE_DASHED):
-      outl_func = o_circle_print_dashed;
+      outl_func = geda_circle_object_print_dashed;
       break;
 
     case(TYPE_CENTER):
-      outl_func = o_circle_print_center;
+      outl_func = geda_circle_object_print_center;
       break;
 
     case(TYPE_PHANTOM):
-      outl_func = o_circle_print_phantom;
+      outl_func = geda_circle_object_print_phantom;
       break;
 
     case(TYPE_ERASE):
       /* Unused for now print it solid */
       length = -1; space  = -1;
-      outl_func = o_circle_print_solid;
+      outl_func = geda_circle_object_print_solid;
       break;
   }
 
   if ((length == 0) || (space == 0)) {
     length = -1; space  = -1;
-    outl_func = o_circle_print_solid;
+    outl_func = geda_circle_object_print_solid;
   }
 
   (*outl_func)(toplevel, fp,
@@ -483,9 +483,10 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*
    * If the filling type of the circle is not <B>HOLLOW</B>, the appropriate
-   * function is chosen among #o_circle_print_filled(),# o_circle_print_mesh()
-   * and #o_circle_print_hatch(). The corresponding parameters are extracted
-   * from the <B>\a o_current</B> object and corrected afterward.
+   * function is chosen among #geda_circle_object_print_filled(),
+   * #geda_circle_object_print_mesh() and #geda_circle_object_print_hatch().
+   * The corresponding parameters are extracted from the <B>\a o_current</B>
+   * object and corrected afterward.
    *
    * The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    * avoided as it leads to an endless loop in most of the called functions.
@@ -509,23 +510,23 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_circle_print_filled;
+        fill_func = geda_circle_object_print_filled;
         break;
 
       case(FILLING_MESH):
-        fill_func = o_circle_print_mesh;
+        fill_func = geda_circle_object_print_mesh;
         break;
 
       case(FILLING_HATCH):
         angle2 = -1; pitch2 = 1;
-        fill_func = o_circle_print_hatch;
+        fill_func = geda_circle_object_print_hatch;
         break;
 
       case(FILLING_VOID):          /* Unused for now, print it filled */
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func = o_circle_print_filled;
+        fill_func = geda_circle_object_print_filled;
         break;
 
       case(FILLING_HOLLOW):
@@ -537,7 +538,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
     if((pitch1 <= 0) || (pitch2 <= 0)) {
       angle1 = -1; pitch1 = 1;
       angle2 = -1; pitch2 = 1;
-      fill_func = o_circle_print_filled;
+      fill_func = geda_circle_object_print_filled;
     }
 
     if (fill_func)
@@ -577,7 +578,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  \param [in] origin_x      Page x coordinate to place circle Object.
  *  \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void o_circle_print_solid(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_solid(GedaToplevel *toplevel, FILE *fp,
                           int x, int y, int radius,
                           int color,
                           int circle_width, int capstyle, int length, int space,
@@ -619,7 +620,7 @@ void o_circle_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x      Page x coordinate to place circle Object.
  *  \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void o_circle_print_dotted(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
                            int x, int y, int radius,
                            int color,
                            int circle_width, int capstyle, int length, int space,
@@ -661,7 +662,7 @@ void o_circle_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x      Page x coordinate to place circle Object.
  *  \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void o_circle_print_dashed(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
                            int x, int y,
                            int radius,
                            int color,
@@ -704,7 +705,7 @@ void o_circle_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x      Page x coordinate to place circle Object.
  *  \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void o_circle_print_center(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_center(GedaToplevel *toplevel, FILE *fp,
                            int x, int y,
                            int radius,
                            int color,
@@ -748,7 +749,7 @@ void o_circle_print_center(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x      Page x coordinate to place circle Object.
  *  \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void o_circle_print_phantom(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
                             int x, int y, int radius, int color,
                             int circle_width, int capstyle, int length, int space,
                             int origin_x, int origin_y)
@@ -791,7 +792,7 @@ void o_circle_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place circle Object.
  *  \param [in] origin_y    Page y coordinate to place circle Object.
  */
-void o_circle_print_filled(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_filled(GedaToplevel *toplevel, FILE *fp,
               int x, int y, int radius,
               int color,
               int fill_width,
@@ -816,11 +817,11 @@ void o_circle_print_filled(GedaToplevel *toplevel, FILE *fp,
  *  The Postscript document is defined by the file pointer <B>fp</B>.
  *
  *  The inside mesh is achieved by two successive call to the
- *  #o_circle_print_hatch() function, given <B>angle1</B> and <B>pitch1</B>
+ *  #geda_circle_object_print_hatch() function, given <B>angle1</B> and <B>pitch1</B>
  *  the first time and <B>angle2</B> and <B>pitch2</B> the second time.
  *
  *  Negative or null values for <B>pitch1</B> and/or <B>pitch2</B> are
- *  not allowed as it leads to an endless loop in #o_circle_print_hatch().
+ *  not allowed as it leads to an endless loop in #geda_circle_object_print_hatch().
  *
  *  All dimensions are in mils (except <B>angle1</B> and <B>angle2</B> in degree).
  *
@@ -838,7 +839,7 @@ void o_circle_print_filled(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place circle Object.
  *  \param [in] origin_y    Page y coordinate to place circle Object.
  */
-void o_circle_print_mesh(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
                          int x, int y, int radius,
                          int color,
                          int fill_width,
@@ -846,14 +847,14 @@ void o_circle_print_mesh(GedaToplevel *toplevel, FILE *fp,
                          int angle2, int pitch2,
                          int origin_x, int origin_y)
 {
-  o_circle_print_hatch(toplevel, fp,
+  geda_circle_object_print_hatch(toplevel, fp,
                        x, y, radius,
                        color,
                        fill_width,
                        angle1, pitch1,
                        -1, -1,
                        origin_x, origin_y);
-  o_circle_print_hatch(toplevel, fp,
+  geda_circle_object_print_hatch(toplevel, fp,
                        x, y, radius,
                        color,
                        fill_width,
@@ -893,7 +894,7 @@ void o_circle_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *  \param [in] origin_x    Page x coordinate to place circle Object.
  *  \param [in] origin_y    Page y coordinate to place circle Object.
  */
-void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
+void geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
                           int x, int y, int radius,
                           int color,
                           int fill_width,
@@ -936,8 +937,8 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
 /*! \brief Create circle Object from character string.
  *
  *  \par Function Description
- *  The#o_circle_read() function gets from the character string <B>*buff</B> the
- *  description of a circle.
+ *  The #geda_circle_object_read() function gets from the character string
+ *  <B>*buff</B> the description of a circle.
  *
  *  Depending on <B>*version</B>, the right file format is considered.
  *  Currently two file format revisions are supported :
@@ -954,7 +955,7 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *
  *  \return A pointer to the new circle object, or NULL on error.
  */
-GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
+GedaObject *geda_circle_object_read (const char buf[], unsigned int release_ver,
                                          unsigned int fileformat_ver,
                                          GError **err)
 {
@@ -1031,7 +1032,7 @@ GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
    * Its filling and line type are set according to the values of the field
    * on the line.
    */
-  new_obj = o_circle_new(color, x1, y1, radius);
+  new_obj = geda_circle_object_new(color, x1, y1, radius);
 
   new_obj->line_options->line_end     = circle_end;
   new_obj->line_options->line_type    = circle_type;
@@ -1052,10 +1053,9 @@ GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
 /*! \brief Rotate Circle GedaObject
  *
  *  \par Function Description
- *  The function#o_circle_rotate() rotate the circle described by
- *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point by
- *  angle <B>angle</B> degrees.
- *  The center of rotation is in world unit.
+ *  The function #geda_circle_object_rotate() rotate the circle described
+ *  by <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point
+ *  by angle <B>angle</B> degrees
  *
  *  \param [in,out]  object    Circle GedaObject to rotate.
  *  \param [in]      center_x  Rotation center x coordinate.
@@ -1063,7 +1063,7 @@ GedaObject *o_circle_read (const char buf[], unsigned int release_ver,
  *  \param [in]      angle     Rotation angle in degrees (See note below).
 
  */
-void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   int x, y;
@@ -1116,7 +1116,7 @@ void o_circle_rotate(GedaObject *object, int center_x, int center_y, int angle)
  * \remarks The string should be freed at some point.
  *
  */
-char *o_circle_save(GedaObject *object)
+char *geda_circle_object_save(GedaObject *object)
 {
   int x,y;
   int radius;
@@ -1168,7 +1168,7 @@ char *o_circle_save(GedaObject *object)
  *  \return The shortest distance from point to \a object to the point or
  *          G_MAXDOUBLE if the parameters are invalid parameter.
  */
-double o_circle_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 
@@ -1189,7 +1189,7 @@ double o_circle_shortest_distance (GedaObject *object, int x, int y, int force_s
  *  \param [in]     dy         y distance to move.
  *  \param [in,out] object     Circle GedaObject to translate.
  */
-void o_circle_translate(GedaObject *object, int dx, int dy)
+void geda_circle_object_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->circle->center_x = object->circle->center_x + dx;
