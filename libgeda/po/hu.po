@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-04-13 01:03-0500\n"
+"POT-Creation-Date: 2016-04-13 01:39-0500\n"
 "PO-Revision-Date: 2010-02-06 22:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -736,7 +736,7 @@ msgstr ""
 
 #: libgeda/src/object/o_bus_object.c:373
 #, c-format
-msgid "null in geda_object_bus_print\n"
+msgid "null in geda_bus_object_print\n"
 msgstr ""
 
 #: libgeda/src/object/o_bus_object.c:422 libgeda/src/object/o_bus_object.c:429

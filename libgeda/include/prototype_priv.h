@@ -134,11 +134,11 @@ double      geda_box_object_shortest_distance    (GedaObject *object, int x, int
 char       *geda_box_object_to_buffer            (GedaObject *object);
 
 /* o_bus_object.c */
-bool        geda_object_bus_get_position         (GedaObject *object, int *x, int *y);
-void        geda_object_bus_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-GedaObject *geda_object_bus_read                 (const char buf[], unsigned int release_ver,
+bool        geda_bus_object_get_position         (GedaObject *object, int *x, int *y);
+void        geda_bus_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+GedaObject *geda_bus_object_read                 (const char buf[], unsigned int release_ver,
                                                   unsigned int fileformat_ver, GError **err);
-char       *geda_object_bus_save                 (GedaObject *object);
+char       *geda_bus_object_to_buffer            (GedaObject *object);
 
 /* o_circle_object.c */
 bool        geda_circle_object_get_position      (GedaObject *object, int *x, int *y);

@@ -97,7 +97,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject *new_obj;
     GList      *prev_conn_objects;
 
-    new_obj = geda_object_bus_new(color,
+    new_obj = geda_bus_object_new(color,
                                   w_current->first_wx, w_current->first_wy,
                                   w_current->second_wx, w_current->second_wy,
                                   0);

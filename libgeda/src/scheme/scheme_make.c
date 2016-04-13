@@ -103,7 +103,7 @@ EDA_SCM_DEFINE (object_make_bus, "%make-bus", 0, 0, 0, (),
   GedaObject *obj;
   SCM result;
 
-  obj = geda_object_bus_new (BUS_COLOR, 0, 0, 0, 0, 0);
+  obj = geda_bus_object_new (BUS_COLOR, 0, 0, 0, 0, 0);
 
   result = edascm_from_object (obj);
 
