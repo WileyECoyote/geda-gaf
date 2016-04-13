@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-04-07 21:34-0500\n"
+"POT-Creation-Date: 2016-04-13 01:03-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -707,8 +707,8 @@ msgstr ""
 
 #: libgeda/src/object/o_arc_object.c:1244
 #: libgeda/src/object/o_box_object.c:1297
-#: libgeda/src/object/o_bus_object.c:405
-#: libgeda/src/object/o_circle_basic.c:1022
+#: libgeda/src/object/o_bus_object.c:444
+#: libgeda/src/object/o_circle_object.c:1023
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
 #: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
 #: libgeda/src/object/o_text_basic.c:255
@@ -718,8 +718,8 @@ msgstr "Se ha encontrado un color no válido [%s]\n"
 
 #: libgeda/src/object/o_arc_object.c:1245
 #: libgeda/src/object/o_box_object.c:1298
-#: libgeda/src/object/o_bus_object.c:406
-#: libgeda/src/object/o_circle_basic.c:1023
+#: libgeda/src/object/o_bus_object.c:445
+#: libgeda/src/object/o_circle_object.c:1024
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
 #: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
 #: libgeda/src/object/o_text_basic.c:256
@@ -763,46 +763,46 @@ msgstr ""
 "Se ha encontrado un rectángulo con altura o anchura cero [ %c %d %d %d %d "
 "%d ]\n"
 
-#: libgeda/src/object/o_bus_object.c:337
+#: libgeda/src/object/o_bus_object.c:373
 #, c-format
 msgid "null in geda_object_bus_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:383 libgeda/src/object/o_bus_object.c:390
+#: libgeda/src/object/o_bus_object.c:422 libgeda/src/object/o_bus_object.c:429
 msgid "Failed to parse bus object"
 msgstr "Falló el procesamiento de objeto bus"
 
-#: libgeda/src/object/o_bus_object.c:396
+#: libgeda/src/object/o_bus_object.c:435
 #, c-format
 msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
 msgstr "Se ha encontrado un bus de longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_bus_object.c:411
+#: libgeda/src/object/o_bus_object.c:450
 #, c-format
 msgid "Found an invalid bus ripper direction [ %s ]\n"
 msgstr ""
 "Se ha encontrado una dirección del símbolo de extracción de bus no válida "
 "[ %s ]\n"
 
-#: libgeda/src/object/o_bus_object.c:412
+#: libgeda/src/object/o_bus_object.c:451
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Cambiando la dirección al valor por defecto neutro (sin dirección)\n"
 
-#: libgeda/src/object/o_circle_basic.c:288
+#: libgeda/src/object/o_circle_object.c:288
 msgid "Null radius circles are not allowed\n"
 msgstr "No se permiten círculos con radio cero\n"
 
-#: libgeda/src/object/o_circle_basic.c:979
-#: libgeda/src/object/o_circle_basic.c:1008
+#: libgeda/src/object/o_circle_object.c:980
+#: libgeda/src/object/o_circle_object.c:1009
 msgid "Failed to parse circle object"
 msgstr "Falló el procesamiento de objeto círculo"
 
-#: libgeda/src/object/o_circle_basic.c:1015
+#: libgeda/src/object/o_circle_object.c:1016
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr "Se encontró radio menor o igual a cero en círculo [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_basic.c:1017
+#: libgeda/src/object/o_circle_object.c:1018
 msgid "Setting radius to 0\n"
 msgstr "Asignando radio nulo.\n"
 

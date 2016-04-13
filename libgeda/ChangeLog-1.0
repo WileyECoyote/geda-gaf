@@ -6,6 +6,9 @@
     * src/object/o_circle_basic.c: Replace function prefix o_circle with
       geda_circle_object.
 
+    * src/object/o_circle_object.c: Rename file suffix; _basic -> _object.
+
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revamp o_save; eliminate GString and allocate
