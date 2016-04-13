@@ -103,8 +103,8 @@ void        geda_arc_object_print_center         (GedaToplevel *toplevel, FILE *
 void        geda_arc_object_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2,
                                                   int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 GedaObject *geda_arc_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_arc_object_to_buffer            (GedaObject *object);
 double      geda_arc_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
+char       *geda_arc_object_to_buffer            (GedaObject *object);
 
 /* o_attrib.c */
 GList      *geda_attrib_object_read              (GedaToplevel *toplevel, GedaObject *receiving_object, TextBuffer *tb,
@@ -130,8 +130,8 @@ void        geda_box_object_print_mesh           (GedaToplevel *toplevel, FILE *
 void        geda_box_object_print_hatch          (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
                                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 GedaObject *geda_box_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_box_object_save                 (GedaObject *object);
 double      geda_box_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
+char       *geda_box_object_to_buffer            (GedaObject *object);
 
 /* o_bus_object.c */
 bool        geda_object_bus_get_position         (GedaObject *object, int *x, int *y);

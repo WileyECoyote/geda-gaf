@@ -1410,6 +1410,35 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
 }
 
 /*!
+ * \brief Calculates the distance between the given point and the closest
+ *  point on the perimeter of the box.
+ *
+ * \param [in] object       A box GedaObject.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
+ *
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
+ */
+double
+geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+{
+  if (GEDA_IS_BOX(object)) {
+
+    int solid;
+
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+
+    return m_box_shortest_distance (object->box, x, y, solid);
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+  return ( G_MAXDOUBLE);
+}
+
+/*!
  * \brief Create a character string representation of a GedaBox.
  * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
@@ -1425,7 +1454,7 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
  * \remarks Caller should GEDA_FREE returned character string.
  */
 char*
-geda_box_object_save(GedaObject *object)
+geda_box_object_to_buffer(GedaObject *object)
 {
   GedaBox *box;
   char    *buf;
@@ -1482,35 +1511,6 @@ geda_box_object_save(GedaObject *object)
                      fill_width, angle1, pitch1, angle2, pitch2);
 
   return(buf);
-}
-
-/*!
- * \brief Calculates the distance between the given point and the closest
- *  point on the perimeter of the box.
- *
- * \param [in] object       A box GedaObject.
- * \param [in] x            The x coordinate of the given point.
- * \param [in] y            The y coordinate of the given point.
- * \param [in] force_solid  If true, force treating the object as solid.
- *
- * \return The shortest distance from the object to the point. With an
- *         invalid parameter, this function returns G_MAXDOUBLE.
- */
-double
-geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
-{
-  if (GEDA_IS_BOX(object)) {
-
-    int solid;
-
-    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
-
-    return m_box_shortest_distance (object->box, x, y, solid);
-  }
-  else {
-    geda_box_object_error(__func__, object);
-  }
-  return ( G_MAXDOUBLE);
 }
 
 /*!

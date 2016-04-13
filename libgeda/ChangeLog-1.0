@@ -6,8 +6,10 @@
     * src/object/o_circle_basic.c: Replace function prefix o_circle with
       geda_circle_object.
 
-    * src/object/o_circle_object.c: Rename file suffix; _basic -> _object.
+    * src/object/o_box_object.c: Rename function geda_box_object_save to
+      geda_box_object_to_buffer.
 
+    * src/object/o_circle_object.c: Rename file suffix; _basic -> _object.
 
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
