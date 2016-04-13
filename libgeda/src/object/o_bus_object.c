@@ -45,9 +45,7 @@ geda_object_bus_consolidate_lowlevel (GedaObject *object,
 {
   int temp1, temp2;
   int final1, final2;
-  int changed=0;
-  GList *a_iter;
-  GedaObject *a_current;
+  int changed = 0;
 
 #if DEBUG
   printf("o %d %d %d %d\n", object->line->x[0], object->line->y[0], object->line->x[1], object->line->y[1]);
@@ -95,10 +93,14 @@ geda_object_bus_consolidate_lowlevel (GedaObject *object,
   if (changed && del_object->attribs != NULL) {
 
     /* Reassign the attached_to pointer on attributes from the del object */
-    a_iter = del_object->attribs;
+    GList *a_iter = del_object->attribs;
+
     while (a_iter != NULL) {
-      a_current = a_iter->data;
+
+      GedaObject *a_current = a_iter->data;
+
       a_current->attached_to = object;
+
       a_iter = g_list_next (a_iter);
     }
 

@@ -1,3 +1,8 @@
+2016-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_bus_object.c: Reduce scope of a_current and aiter in
+      geda_object_bus_consolidate_lowlevel.
+
 2016-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revamp o_save; eliminate GString and allocate
