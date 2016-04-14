@@ -1066,8 +1066,7 @@ geda_entry_activate (GedaEntry *entry, void    *data)
   GList *iter;
   GList *prev;
 
-  const char *entry_text;
-  entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
+  const char *entry_text = geda_entry_get_text(entry);
 
   /* if user hit enter with no value then ignore entry */
   if ( (entry_text) && (strlen (entry_text) == 0) ) {
@@ -1217,7 +1216,7 @@ geda_entry_tab_complete (GedaEntry *entry)
   if (!buffer)
     return FALSE;
 
-  s_ptr = strcpy(buffer, gtk_entry_get_text(GTK_ENTRY(entry)));   /* get the text */
+  s_ptr = strcpy(buffer, geda_entry_get_text(entry));   /* get the text */
 
   while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
 
@@ -1242,13 +1241,12 @@ geda_entry_tab_complete (GedaEntry *entry)
   else
     strcpy (s_ptr, match);
 
-  gtk_entry_set_text (entry, buffer);
+  geda_entry_set_text (entry, buffer);
   gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
 
   g_free (match);
   /* Don't free buffer! */;
   return exit (TRUE);
-
 }
 
 /** \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
