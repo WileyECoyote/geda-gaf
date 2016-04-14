@@ -1086,12 +1086,68 @@ check_transformer ()
       result++;
     }
 
+    int ang = geda_arc_object_get_start_angle(object);
+    if (ang != 180) {
+      fprintf(stderr, "FAILED: (O020902) %d != 180\n", ang);
+      result++;
+    }
+
     /* === Function 10: geda_arc_object_modify === */
+
+    geda_arc_object_modify(object, x, y, ARC_CENTER);
+
+    geda_arc_object_get_position(object, &dx, &dy);
+    if ((dx - x) || (dy - y)) {
+      fprintf(stderr, "FAILED: (O021001) ARC_CENTER (%d,%d) != (%d,%d)\n", x, y, dx, dy);
+      result++;
+    }
+
+    geda_arc_object_modify(object, r + 100, 100, ARC_RADIUS);
+
+    int rad = geda_arc_object_get_radius(object);
+    if (rad - r - 100) {
+      fprintf(stderr, "FAILED: (O021002) ARC_RADIUS <%d>\n", rad);
+      result++;
+    }
+
+    geda_arc_object_modify(object, 90, 100, ARC_START_ANGLE);
+
+    ang = geda_arc_object_get_start_angle(object);
+    if (ang != 90) {
+      fprintf(stderr, "FAILED: (O021003) ARC_START_ANGLE %d != 90\n", ang);
+      result++;
+    }
+
+    geda_arc_object_modify(object, 180, 100, ARC_END_ANGLE);
+
+    ang = geda_arc_object_get_arc_sweep(object);
+    if (ang != 180) {
+      fprintf(stderr, "FAILED: (O021004) ARC_END_ANGLE %d != 180\n", ang);
+      result++;
+    }
 
     /* === Function 19: geda_arc_object_rotate === */
 
+    geda_arc_object_rotate(object, x, y, 270);
+
+    ang = geda_arc_object_get_start_angle(object);
+    if (ang != 0) {
+      fprintf(stderr, "FAILED: (O021901) start angle %d != 0\n", ang);
+      result++;
+    }
+
     /* === Function 27: geda_arc_object_translate === */
 
+    int tx = -x + 100;
+    int ty = -y + 100;
+
+    geda_arc_object_translate(object, tx, ty);
+
+    geda_arc_object_get_position(object, &dx, &dy);
+    if ((dx - 100) || (dy - 100)) {
+      fprintf(stderr, "FAILED: (O022701) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
+      result++;
+    }
 
 #if !USE_RANDOM_NUMBERS
     break;
@@ -1105,8 +1161,6 @@ check_transformer ()
 }
 
 /** @} endgroup test-object-geda-arc */
-
-
 
 int
 main (int argc, char *argv[])
