@@ -2,6 +2,9 @@
 
     * tests/test_bulb.c: Add test for GedaBulb construction.
 
+    * tests/test_combobox.c: Add some tests for alternate _new constructors,
+      revise message in main.
+
 2016-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_comboboxtext.h: Include parent "geda_combobox.h" header.

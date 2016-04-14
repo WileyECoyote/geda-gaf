@@ -73,6 +73,48 @@ int check_construction (void)
     result++;
   }
 
+  widget = NULL;
+
+  /* geda_combo_box_new_with_entry */
+
+  widget = geda_combo_box_new_with_entry();
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
+
+  widget = NULL;
+
+  GtkListStore *model = gtk_list_store_new (2, G_TYPE_INT, G_TYPE_INT);
+
+  /* geda_combo_box_new_with_model */
+
+  widget = geda_combo_box_new_with_model (GTK_TREE_MODEL(model));
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
+
+  widget = NULL;
+
+  /* geda_combo_box_new_with_model_and_entry */
+
+  widget = geda_combo_box_new_with_model_and_entry (GTK_TREE_MODEL(model));
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
+  g_object_unref(model);     /* Destroy the model */
+
   return result;
 }
 
@@ -91,7 +133,7 @@ main (int argc, char *argv[])
 
     subtotal = check_construction();
     if (subtotal) {
-      fprintf(stderr, "Check GedaComboBox constructors");
+      fprintf(stderr, "Check %s constructors", TWIDGET);
       result   = subtotal;
       subtotal = 0;
     }
