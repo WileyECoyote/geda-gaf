@@ -437,20 +437,52 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
 }
 
 static void
+geda_entry_real_insert_text (GedaEntry  *entry,
+                             const char *new_text,
+                             int         new_text_length,
+                             int        *position)
+{
+  GtkEntryBuffer *buffer;
+  unsigned int n_inserted;
+  int n_chars;
+
+  n_chars = g_utf8_strlen (new_text, new_text_length);
+
+  /* The actual insertion into the buffer. This will end up firing the
+   * following signal handlers:
+   *
+   *       buffer_inserted_text(),
+   *       buffer_notify_display_text(),
+   *       buffer_notify_text(),
+   *       buffer_notify_length()
+   */
+  begin_change (entry);
+
+  g_object_get (entry, "buffer", &buffer, NULL);
+
+  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
+
+  end_change (entry);
+
+  *position += n_inserted;
+}
+
+static void
 geda_entry_validate_input (GtkEntry    *entry,
                            const char  *text,
                            int          length,
                            int         *position,
                            void        *data)
 {
-  GtkEditable *editable   = GTK_EDITABLE (entry);
-  GedaEntry   *geda_entry = GEDA_ENTRY   (entry);
+  GedaEntry *geda_entry = GEDA_ENTRY (entry);
 
-  int i, count=0;
   char *result = g_new (char, length);
-  bool valid = FALSE;
+  bool  valid  = FALSE;
+  int   count  = 0;
+  int   i;
 
-  for (i=0; i < length; i++) {
+  for (i = 0; i < length; i++) {
+
     switch (geda_entry->validation_mode) {
       case ACCEPT_ALL_ASCII:
          valid = TRUE;
@@ -484,25 +516,30 @@ geda_entry_validate_input (GtkEntry    *entry,
     if (!valid)
       continue;
 
-    if (geda_entry->text_case == LOWER_CASE)
+    if (geda_entry->text_case == LOWER_CASE) {
       result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
-    else
+    }
+    else {
       if (geda_entry->text_case == UPPER_CASE)
         result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
       else
         result[count++] = text[i];
+    }
   }
 
   if (count > 0) {
-    g_signal_handlers_block_by_func (G_OBJECT (editable),
+
+    g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
                                      G_CALLBACK (geda_entry_validate_input),
                                      data);
-    gtk_editable_insert_text (editable, result, count, position);
-    g_signal_handlers_unblock_by_func (G_OBJECT (editable),
+
+    geda_entry_real_insert_text (geda_entry, result, count, position);
+
+    g_signal_handlers_unblock_by_func (G_OBJECT (geda_entry),
                                        G_CALLBACK (geda_entry_validate_input),
                                        data);
   }
-  g_signal_stop_emission_by_name (G_OBJECT (editable), "insert_text");
+  g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
 
   g_free (result);
 }
