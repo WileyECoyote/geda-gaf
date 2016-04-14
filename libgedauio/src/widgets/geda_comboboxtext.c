@@ -463,7 +463,7 @@ is_a_geda_combo_box_text (GedaComboBoxText *combo_text_box)
  * \return new #GedaComboBoxText
  *
  */
-GtkWidget *geda_combo_box_text_new ()
+GtkWidget *geda_combo_box_text_new (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, NULL);
 }
@@ -493,13 +493,12 @@ GtkWidget *geda_combo_box_text_new_with_entry (void)
  * \return new #GedaComboBoxText
  *
  */
-GtkWidget *geda_combo_box_text_list_new()
+GtkWidget *geda_combo_box_text_list_new(void)
 {
   GtkWidget *widget;
 
   widget = g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE,
-                                                   "list-view", TRUE,
-                         NULL);
+                                                   "list-view", TRUE, NULL);
 
   gtk_container_forall (GTK_CONTAINER (widget), FixGtkCrap, widget);
 

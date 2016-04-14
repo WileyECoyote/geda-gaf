@@ -1,3 +1,8 @@
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_combobox_text.c:: Add some tests for alternate _new
+      constructors, revise message in main.
+
 2016-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_bulb.c: Add test for GedaBulb construction.

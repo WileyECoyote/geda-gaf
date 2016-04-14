@@ -78,6 +78,30 @@ int check_construction (void)
     result++;
   }
 
+  widget = NULL;
+
+  /* geda_combo_box_text_new_with_entry */
+
+  widget = geda_combo_box_text_new_with_entry();
+
+  if (!GEDA_IS_COMBO_BOX_TEXT(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
+
+  /* geda_combo_box_text_list_new */
+
+  widget = geda_combo_box_text_list_new();
+
+  if (!GEDA_IS_COMBO_BOX_TEXT(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
+
   return result;
 }
 
@@ -96,7 +120,7 @@ main (int argc, char *argv[])
 
     subtotal = check_construction();
     if (subtotal) {
-      fprintf(stderr, "Check GedaComboBoxText constructors");
+      fprintf(stderr, "Check %s constructors", TWIDGET);
       result   = subtotal;
       subtotal = 0;
     }
