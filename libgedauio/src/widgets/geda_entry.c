@@ -113,7 +113,7 @@ static void    geda_entry_activate           (GedaEntry        *entry,
                                               void             *data);
 static void    geda_entry_history_up         (GedaEntry        *entry);
 static void    geda_entry_history_down       (GedaEntry        *entry);
-static bool    geda_entry_tab_complete       (GtkEntry         *entry);
+static bool    geda_entry_tab_complete       (GedaEntry        *entry);
 
 static void    geda_entry_populate_popup     (GedaEntry        *entry,
                                               GtkMenu          *menu,
@@ -1008,7 +1008,7 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
       break;
     case GDK_KEY_Tab:
       if ( (state  == 0) && (entry->auto_complete) ) {
-        handled = geda_entry_tab_complete (GTK_ENTRY (entry));
+        handled = geda_entry_tab_complete (entry);
       }
       break;
     default:
@@ -1186,6 +1186,7 @@ geda_entry_strncmpi(char *str1, char *str2, int n)
     str2++;
     i++;
   }
+
   if ( i == n)
     return 0;
   else
@@ -1202,14 +1203,12 @@ geda_entry_strncmpi(char *str1, char *str2, int n)
 }
 
 static bool
-geda_entry_tab_complete (GtkEntry *entry)
+geda_entry_tab_complete (GedaEntry *entry)
 {
-  char *buffer;
-  char *s_ptr;
-  char *match;
-
-  GList     *options;
-  GedaEntry *geda_entry = GEDA_ENTRY (entry);
+  char  *buffer;
+  char  *s_ptr;
+  char  *match;
+  GList *options;
 
   bool exit ( bool answer ) { free ( buffer ); return answer; }
 
@@ -1222,16 +1221,16 @@ geda_entry_tab_complete (GtkEntry *entry)
 
   while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
 
-  if (s_ptr == buffer)                  /* if string empty */
+  if (s_ptr == buffer)  /* if string empty */
 
   if ( *(--s_ptr) == ASCII_SPACE)       /* If previous char is space then */
     return exit (TRUE);                 /* there is nothing to complete */
 
   while ((s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
 
-  if (s_ptr != buffer) ++s_ptr;         /* if compounding then skip space */
+  if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
 
-  options = geda_completion_complete (geda_entry->priv->command_completion, s_ptr, &match);
+  options = geda_completion_complete (entry->priv->command_completion, s_ptr, &match);
 
   if (g_list_length (options) == 0)                    /* if no matches */
     return exit (TRUE);

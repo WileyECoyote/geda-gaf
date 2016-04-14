@@ -1,7 +1,8 @@
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add function geda_entry_real_insert_text,
-      eliminate editable in geda_entry_validate_input.
+      eliminate editable in geda_entry_validate_input. Change argument to
+      geda_entry_tab_complete to a GedaEntry instead of GtkEntry.
 
     * tests/test_combobox_text.c:: Add some tests for alternate _new
       constructors, revise message in main.
