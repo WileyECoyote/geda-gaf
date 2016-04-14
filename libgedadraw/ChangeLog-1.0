@@ -1,7 +1,16 @@
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_draw.h: Increase FONT_SIZE_FACTOR from 13.6 to 13.8.
+
+    * include/geda_x11.hpp: Tweak line width scaling.
+
+    * src/x11/geda_x11.cpp: Adjust font scaling in QueryCurrentFont to
+      compensate for screen scale factor.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedadraw-main.txt: No longer ignored by git, required for
-      Doxygen builds but is not built. 
+      Doxygen builds but is not built.
 
 2016-02-26 Wiley E. Hill <wileyhill@gmail.com>
 

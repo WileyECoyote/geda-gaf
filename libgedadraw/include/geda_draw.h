@@ -45,7 +45,7 @@
 
 /* */
 #ifdef HAVE_XFT
-#  define FONT_SIZE_FACTOR     13.6
+#  define FONT_SIZE_FACTOR     13.8
 #else
 #  define FONT_SIZE_FACTOR     19
 #endif

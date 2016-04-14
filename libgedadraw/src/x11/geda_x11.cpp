@@ -604,7 +604,7 @@ QueryCurrentFont (const char *font_name, int size)
     update = true;
   }
 
-  new_size = rint((size / scale) * FONT_SIZE_FACTOR);
+  new_size = rint(size * scale * FONT_SIZE_FACTOR);
 
   if (font_size != new_size || update) {
 
