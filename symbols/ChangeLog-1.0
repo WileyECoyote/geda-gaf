@@ -1,4 +1,8 @@
-2016-04-?? Wiley E. Hill <wileyhill@gmail.com>
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * display/AY0438A-1.sym: Add symbol, 32-Segment CMOS LCD Driver.
+
+2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/battery/MCP73826-1.sym: Single Cell LiIon Charge Controller.
 
