@@ -1376,7 +1376,9 @@ static void
 eda_renderer_draw_path_grips (EdaRenderer *renderer, GedaObject *object)
 {
   int i, last_x = 0, last_y = 0, next_x, next_y;
+
   for (i = 0; i < object->path->num_sections; i++) {
+
     PATH_SECTION *section = object->path->sections + i;
 
     if (section->code != PATH_END) {
@@ -1421,6 +1423,7 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
 {
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
+
   int x = object->text->x;
   int y = object->text->y;
 
@@ -1432,7 +1435,9 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
 
   /* If the text marker is too tiny, don't draw it. */
   cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
-  if (marker_dist < EDAR_MARKER_THRESHOLD) return;
+
+  if (marker_dist < EDAR_MARKER_THRESHOLD)
+    return;
 
   gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
@@ -1479,7 +1484,9 @@ static void
 eda_renderer_draw_mid_cues (EdaRenderer *renderer, GedaObject *object)
 {
   GList *iter;
+
   for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
+
     CONN *conn = (CONN *) iter->data;
 
     if (conn->type == CONN_MIDPOINT) {
@@ -1661,6 +1668,7 @@ eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
   case OBJ_PIN:
     /* No rendered bounds available for most Object types. */
     return FALSE;
+
   default:
     BUG_IMSG("object->type=%c\n", object->type);
     g_return_val_if_reached (FALSE);
@@ -1673,7 +1681,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
                                    int         *right,    int *bottom)
 
 {
-  PangoRectangle inked_rect; /* logical_rect; */
   int ret_val = FALSE;
   int visible;
 
@@ -1693,6 +1700,8 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
       if (eda_renderer_prepare_text (renderer, object)) {
 
         if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
+
+          PangoRectangle inked_rect; /* logical_rect; */
 
           /* Figure out the bounds, send them back. Note that Pango thinks
            * in device coordinates, but we need world coordinates. */
