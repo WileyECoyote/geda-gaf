@@ -732,7 +732,7 @@ eda_renderer_draw_pin (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid = FALSE;
+  int fill_solid;
 
   /* Hatch box */
   fill_solid = eda_renderer_draw_hatch (renderer, object);

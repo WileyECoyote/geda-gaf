@@ -1,3 +1,8 @@
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgedacairo/src/edarenderer.c: Eliminate unnecessary initialization
+      of fill_solid in function eda_renderer_draw_box.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add ChangeLog to EXTRA_DIST.
