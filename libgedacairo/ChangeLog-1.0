@@ -1,3 +1,10 @@
+2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Move calling cairo_font_options_set_antialias and
+      cairo_font_options_set_hint_metrics to eda_renderer_instance_init, both
+      of which need only be called once since libgedacairo has no provisions
+      to change either option.
+
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgedacairo/src/edarenderer.c: Eliminate unnecessary initialization

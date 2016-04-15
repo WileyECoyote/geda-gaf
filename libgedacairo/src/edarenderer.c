@@ -421,7 +421,6 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   /* Now recreate anything necessary */
   if ((renderer->priv->pc == NULL) && (renderer->priv->cr != NULL)) {
     renderer->priv->pc = pango_cairo_create_context (renderer->priv->cr);
-    cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
     pango_cairo_context_set_font_options (renderer->priv->pc, EdaFontOptions);
     renderer->priv->pc_from_cr = 1;
   }
@@ -1006,8 +1005,6 @@ eda_renderer_prepare_text (EdaRenderer *renderer, GedaObject *object)
   pango_size = lrint (points_size * PANGO_SCALE);
 
   /* Set hinting as appropriate */
-  cairo_font_options_set_hint_metrics (EdaFontOptions, CAIRO_HINT_METRICS_OFF);
-
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
     cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_MEDIUM);
   }
@@ -1960,6 +1957,10 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
   if (renderer->priv->font_name == NULL) {
     renderer->priv->font_name = geda_utility_string_strdup (EDAR_DEFAULT_FONT_NAME);
   }
+
+  cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
+
+  cairo_font_options_set_hint_metrics (EdaFontOptions, CAIRO_HINT_METRICS_OFF);
 
   renderer->priv->override_color = -1;
 
