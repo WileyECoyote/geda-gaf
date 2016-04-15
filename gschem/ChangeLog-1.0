@@ -3,6 +3,14 @@
     * src/x/x_draw.cpp: Revise x_draw_set_surface to pass to_screen constant
       not to_world.
 
+    * tests/golden/: Regenerate images for tests, the result of scaling line
+      width in libgedadraw produces slightly thicker lines:
+
+            * tests/golden/arc.png
+            * tests/golden/bus_endpoint_to_net.png
+            * tests/golden/bus_ripper_1.png
+            * tests/golden/net_endpoint_to_bus.png
+
 2016-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_actions.h: Rename action "write-pdf" back to the old name;
