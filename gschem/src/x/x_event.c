@@ -598,7 +598,7 @@ int x_event_expose (GtkWidget      *widget,
 
   if (w_current != NULL) {
 
-    cairo_t      *save_cr;
+    cairo_t *save_cr;
 
     save_cr = w_current->cr;
 

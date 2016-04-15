@@ -1837,7 +1837,7 @@ COMMAND (do_select)
 
   /* If inside action get rid of any rubber and put everything
    * back where it belongs, for example stretched nets */
-  if (w_current->inside_action){
+  if (w_current->inside_action) {
     if (!o_invalidate_rubber (w_current)) {
       i_callback_cancel(w_current, 0, NULL);
     }

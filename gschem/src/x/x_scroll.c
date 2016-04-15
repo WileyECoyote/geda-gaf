@@ -146,7 +146,7 @@ x_vscrollbar_idle_update(GschemToplevel *w_current)
     gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
 
     vadjustment->page_size = fabs(toplevel->page_current->bottom -
-    toplevel->page_current->top);
+                                  toplevel->page_current->top);
 
     vadjustment->page_increment = vadjustment->page_size - 100.0;
 

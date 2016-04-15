@@ -125,7 +125,6 @@ o_invalidate_rectangle (GschemToplevel *w_current,
 {
   GdkRectangle rect;
 
-
 #if DEBUG
   fprintf(stderr, "%s x1 %d, y1 %d, x2 %d, y2 %d\n", __func__, x1, y1, x2, y2);
 #endif
@@ -146,13 +145,11 @@ o_invalidate_rectangle (GschemToplevel *w_current,
 
     rect.x = MIN(x1, x2) - bloat;
     rect.y = MIN(y1, y2) - bloat;
-    rect.width =  1 + abs( x1 - x2 ) + 2 * bloat;
+    rect.width  = 1 + abs( x1 - x2 ) + 2 * bloat;
     rect.height = 1 + abs( y1 - y2 ) + 2 * bloat;
 
     gdk_window_invalidate_rect( w_current->window, &rect, FALSE );
   }
-  else
-    BUG_MSG("w_current->window no bueno");
 }
 
 /*! \brief Invalidate the whole on-screen area

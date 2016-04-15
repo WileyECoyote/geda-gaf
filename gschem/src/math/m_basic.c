@@ -353,8 +353,9 @@ struct st_halfspace {
 
 /* \note
  * encode_halfspace and clip are part of the cohen-sutherland clipping
- * algorithm.  They are used to determine if an object is visible or not
+ * algorithm. They are used to determine if an object is visible or not
  */
+
 /*! \brief Encode WORLD coordinates as halfspace matrix.
  *  \par Function Description
  *   This function takes a point and checks if it is in the bounds of the
@@ -508,6 +509,7 @@ int WORLDclip_change (GschemToplevel *w_current,
   *y1 = point1.y;
   *x2 = point2.x;
   *y2 = point2.y;
+
   return(visible);
 }
 
@@ -728,7 +730,6 @@ int visible (GschemToplevel *w_current,
   return(visible);
 }
 
-
 /*! \brief Rounds numbers by a power of 10.
  *  \par Function Description
  *  This function will round numbers using a power of 10 method.
@@ -767,5 +768,4 @@ double m_round_5_2_1(double unrounded)
   else {
     return(10*pow(10,digits));
   }
-
 }

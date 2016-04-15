@@ -92,7 +92,6 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
     g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
     o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
-
   }
 
 }
@@ -137,7 +136,6 @@ void o_line_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
 
   o_invalidate_rectangle (w_current, x1, y1, x2, y2);
-
 }
 
 /*! \brief Draw temporary line while dragging end.
@@ -192,21 +190,6 @@ void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
     BUG_MSG ("Not inside action");
   }
 }
-
-/*
-int o_line_visible (GschemToplevel *w_current, LINE *line,
-                    int *x1, int *y1, int *x2, int *y2)
-{
-  *x1 = line->x[0];  *y1 = line->y[0];
-  *x2 = line->x[1];  *y2 = line->y[1];
-
-  // Do we want to skip clipping?
-  if (!w_current->object_clipping)
-    return TRUE;
-fprintf(stderr, "o_line_visible\n");
-  return WORLDclip_change (w_current, x1, y1, x2, y2);
-}
- */
 
 /*! \brief Start the process to input a new line.
  *  \par Function Description
