@@ -31,8 +31,8 @@
 
 /*! \brief Get Bounds of text object
  *  \par Function Description
- *  This function is used basically as a callback for text object
- *  to determine the XY bounderies of the Text objects.
+ *  This function is used as a callback for text objects
+ *  to determine the XY bounderies of the objects.
  */
 int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
                                 int  *min_x, int *min_y,
@@ -88,6 +88,7 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
     else {
 
       result =  x_draw_set_text_bounds(o_current);
+
       if (result) {
         *min_x = o_current->left;
         *max_x = o_current->right;

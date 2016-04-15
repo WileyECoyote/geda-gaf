@@ -25,21 +25,25 @@
  * \file o_invalidate.c
  * \brief Low-level module invalidate object and regions
  */
+
 #include <gschem.h>
 #include <geda_debug.h>
 
 #define INVALIDATE_MARGIN 1
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Invalidate Temporary drawing artifacts
+ * \par Function Description
+ *  Calls appropriate handler if inside an action in order
+ *  to remove temporary drawing objects from the screen.
+ *  Note that there is no o_text_invalidate_rubber, text
+ *  is entered into a dialog entry and is not "drawn".
  *
+ * \return TRUE is something erased, otherwise FALSE.
  */
 int
 o_invalidate_rubber (GschemToplevel *w_current)
 {
-  /* return FALSE if it did not erase anything */
-
   if (!w_current->inside_action)
     return(FALSE);
 
@@ -152,13 +156,13 @@ o_invalidate_rectangle (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Invalidate the whole on-screen area
- *
- *  \par Function Description
+/*!
+ * \brief Invalidate the whole on-screen area
+ * \par Function Description
  *  This function calls gdk_window_invalidate_rect() with a rect
  *  of NULL, causing the entire drawing area to be invalidated.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void
 o_invalidate_all (GschemToplevel *w_current)
@@ -170,16 +174,16 @@ o_invalidate_all (GschemToplevel *w_current)
     BUG_MSG("w_current->window no bueno")
 }
 
-/*! \brief Invalidate on-screen area for an object
- *
- *  \par Function Description
+/*!
+ * \brief Invalidate on-screen area for an object
+ * \par Function Description
  *  This function calls o_invalidate_rectangle(), after validating the bounds of
  *  the passed Object, converted to screen coordinates.
  *
- *  \sa o_invalidate_force
+ * \sa o_invalidate_force
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     The Object invalidated on screen.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] object     The Object invalidated on screen.
  */
 void
 o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
@@ -199,16 +203,16 @@ o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
   }
 }
 
-/*! \brief Force invalidate on-screen area for an object
- *
- *  \par Function Description
+/*!
+ * \brief Force invalidate on-screen area for an object
+ * \par Function Description
  *  This function calls o_invalidate_rectangle() with the bounds of the
  *  passed Object, converted to screen coordinates.
  *
- *  \sa o_invalidate_object
+ * \sa o_invalidate_object
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     The Object invalidated on screen.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] object     The Object invalidated on screen.
  */
 void
 o_invalidate_force(GschemToplevel *w_current, GedaObject *object)
@@ -218,14 +222,15 @@ o_invalidate_force(GschemToplevel *w_current, GedaObject *object)
   WORLDtoSCREEN (w_current, object->right, object->bottom, &s_right, &s_bottom);
   o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
 }
-/*! \brief Invalidate on-screen area for a GList of objects
- *
- *  \par Function Description
+
+/*!
+ * \brief Invalidate on-screen area for a GList of objects
+ * \par Function Description
  *  This function calls o_invalidate_rectangle() with the bounds of the
  *  passed GList, converted to screen coordinates.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] list       The glist objects invalidated on screen.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] list       The glist objects invalidated on screen.
  */
 void
 o_invalidate_list (GschemToplevel *w_current, GList *list)
