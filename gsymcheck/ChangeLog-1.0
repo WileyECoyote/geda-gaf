@@ -1,3 +1,8 @@
+2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Change upper case "Duplicate Device" to lower case, was
+      really annoying me.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_rc.c: Remove debug code.

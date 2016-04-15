@@ -617,7 +617,7 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
  *   Checks for:
  *  <DL>
  *    <DT>Existence of Description attributes</DT>
- *    <DT>Duplicate Device attribute values</DT>
+ *    <DT>Duplicate description attribute values</DT>
  *  </DL>
  */
 static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
@@ -640,7 +640,7 @@ static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
 
       if (strlen(string) == strlen(s_current->description_attribute)) {
         if (strcmp(s_current->description_attribute, string) == 0) {
-          message = geda_sprintf (_("Found Duplicate description=%s attributes\n"), string);
+          message = geda_sprintf (_("Found duplicate description=%s attributes\n"), string);
           ADD_ERROR_MESSAGE(message);
           s_current->duplicate_descr_attribute++;
         }
@@ -660,9 +660,9 @@ static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
  *  \par Function Description
  *   Checks for:
  *  <DL>
- *    <DT>Existence of Device attributes</DT>
- *    <DT>Duplicate Device attribute values</DT>
- *    <DT>Multiple Device attributes</DT>
+ *    <DT>Existence of device attributes</DT>
+ *    <DT>Duplicate device attribute values</DT>
+ *    <DT>Multiple device attributes</DT>
  *    <DT>device=none if graphical</DT>
  *    <DT>Present of device value in symbol filename</DT>
  *  </DL>
@@ -693,7 +693,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 
       if (strlen(string) == strlen(s_current->device_attribute)) {
         if (strcmp(s_current->device_attribute, string) == 0) {
-          message = geda_sprintf (_("Found Duplicate device=%s attributes\n"), string);
+          message = geda_sprintf (_("Found duplicate device=%s attributes\n"), string);
           ADD_ERROR_MESSAGE(message);
           s_current->duplicate_device_attrib++;
         }
