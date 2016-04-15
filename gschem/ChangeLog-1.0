@@ -1,4 +1,9 @@
-2016-04-13 Wiley E. Hill <wileyhill@gmail.com>
+2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-tools-menu.scm; Assign "gaf-bom" image to
+      tools:run-bom.
+
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_draw.cpp: Revise x_draw_set_surface to pass to_screen constant
       not to_world.

@@ -244,7 +244,7 @@
     ("Run DRC 1"            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
     ("Run DRC 2"            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
     ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
-    ("Bill of Materials"    tools:run-bom              #f                   "Generate a BOM")
+    ("Bill of Materials"    tools:run-bom              "gaf-bom"            "Generate a BOM")
 
     ("SEPARATOR"                #f                     #f)
     ("gEDA netlist"         tools:geda-netlist         "gschem-net")
