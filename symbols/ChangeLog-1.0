@@ -1,5 +1,11 @@
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * lineartech/LT4351-1.sym: Add symbol: High Side OR-ing FET Controller.
+
+    * lineartech/LTC4352-1.sym: Add symbol: High Side OR-ing FET Controller.
+
+2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * display/AY0438A-1.sym: Add symbol, 32-Segment CMOS LCD Driver.
 
 2016-04-10 Wiley E. Hill <wileyhill@gmail.com>
