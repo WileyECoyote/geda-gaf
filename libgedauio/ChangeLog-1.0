@@ -1,6 +1,12 @@
+2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Add function geda_entry_set_text with helpers
+      begin_change() and end_change(), replace gtk_entry_set_text with the
+      new function where appropriate.
+
 2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_entry.c: Add tests for constructing GedaEntry widgets:
+    * tests/test_entry.c: Add tests for constructing GedaEntry widgets.
 
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -149,15 +149,40 @@ struct _GedaEntryPriv
 {
   GedaCompletion *command_completion;
   bool            case_sensitive;
-
-  PangoAttrList *attrs;
-  PangoFontMap  *font_map;
+  int             change_count;
+  PangoAttrList  *attrs;
+  PangoFontMap   *font_map;
 };
 
-const char* IDS_CONSOLE_POPUP[] = {
+const char *IDS_CONSOLE_POPUP[] = {
   "Auto Complete", "On", "Off", /* Popup Menu Strings*/
   NULL
 };
+
+static void
+begin_change (GedaEntry *entry)
+{
+  GedaEntryPriv *priv = entry->priv;
+
+  priv->change_count++;
+
+  g_object_freeze_notify (G_OBJECT (entry));
+}
+
+static void
+end_change (GedaEntry *entry)
+{
+  GedaEntryPriv *priv = entry->priv;
+
+  g_object_thaw_notify (G_OBJECT (entry));
+
+  priv->change_count--;
+/*
+  if (priv->change_count == 0) {
+    g_signal_emit_by_name (entry, "changed");
+  }
+*/
+}
 
 const char*
 geda_entry_get_text (GedaEntry *entry)
@@ -169,6 +194,38 @@ geda_entry_get_text (GedaEntry *entry)
   g_object_get (entry, "buffer", &buffer, NULL);
 
   return gtk_entry_buffer_get_text (buffer);
+}
+
+void
+geda_entry_set_text (GedaEntry *entry, const char *new_text)
+{
+  GtkEntryBuffer *buffer;
+  const char     *curr_text;
+  int             length;
+
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  if (!new_text) {
+    return;
+  }
+
+  g_object_get (entry, "buffer", &buffer, NULL);
+
+  curr_text = gtk_entry_buffer_get_text(buffer);
+
+  if (curr_text) {
+    if (strcmp (curr_text, new_text) == 0) {
+      return;
+    }
+  }
+
+  length = strlen(new_text);
+
+  begin_change(entry);
+
+  gtk_entry_buffer_set_text (buffer, new_text, length);
+
+  end_change(entry);
 }
 
 /*! \brief GedaEntry Get Activates Default
@@ -242,7 +299,8 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
 
   entry->priv->attrs = attrs;
 
-  layout = gtk_entry_get_layout ( (GtkEntry*) entry );
+  layout = gtk_entry_get_layout ((GtkEntry*)entry);
+
   if (layout) {
     pango_layout_set_attributes (layout, entry->priv->attrs);
     g_object_notify (G_OBJECT (entry), "attributes");
@@ -281,7 +339,7 @@ geda_entry_get_max_history (GedaEntry *entry)
   return entry->max_history;
 }
 
-GedaCompletion *
+GedaCompletion*
 geda_entry_get_completion (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
@@ -605,11 +663,11 @@ geda_entry_drag_motion (GtkWidget       *widget,
 static void
 geda_entry_drag_data_received (GtkWidget        *widget,
                                GdkDragContext   *context,
-                               int               x,
-                               int               y,
+                               int              x,
+                               int              y,
                                GtkSelectionData *selection_data,
-                               unsigned int      info,
-                               unsigned int      time)
+                               unsigned int     info,
+                               unsigned int     time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if(geda_entry->enable_drag_n_drop)
@@ -868,9 +926,11 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   /* Initialize & populate a GCompletion for commands */
   if (old_complete_list) {
 
-    complete_list = *old_complete_list;
+    complete_list            = *old_complete_list;
     priv->command_completion = geda_completion_new (NULL);
+
     geda_completion_add_items (priv->command_completion, complete_list);
+
     entry->auto_complete = TRUE;
   }
   else {
@@ -878,14 +938,15 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   }
 
   /* set initial flag state for popup menu*/
-  set_auto_complete           = FALSE;
-  entry->enable_drag_n_drop   = FALSE;
-  entry->validation_mode      = ACCEPT_ALL_ASCII;
-  entry->text_case            = BOTH_CASES;
-  entry->activates_default    = FALSE;
-  priv->case_sensitive        = FALSE;
+  set_auto_complete         = FALSE;
+  entry->enable_drag_n_drop = FALSE;
+  entry->validation_mode    = ACCEPT_ALL_ASCII;
+  entry->text_case          = BOTH_CASES;
+  entry->activates_default  = FALSE;
+  priv->case_sensitive      = FALSE;
 
-  entry->priv->attrs          = NULL;
+  entry->priv->attrs        = NULL;
+
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s exit: history=%d, completion=%d\n",
           __func__, entry->have_history, have_auto_complete );
@@ -953,7 +1014,7 @@ geda_entry_real_activate (GedaEntry *entry)
   GtkWidget *widget;
 
 #if DEBUG_GEDA_ENTRY
-  fprintf(stderr, "<geda_entry_real_activate> in over-ride: got <activate> signal\n");
+  fprintf(stderr, "<%s> in over-ride: got <activate> signal\n", __func__);
 #endif
 
   widget = GTK_WIDGET (entry);
@@ -967,8 +1028,10 @@ geda_entry_real_activate (GedaEntry *entry)
       window = GTK_WINDOW (toplevel);
 
       if (window) {
+
         default_widget = gtk_window_get_default_widget (window);
-        focus_widget = gtk_window_get_focus (window);
+        focus_widget   = gtk_window_get_focus (window);
+
         if (widget != default_widget &&
           !(widget == focus_widget && (!default_widget || !gtk_widget_get_sensitive (default_widget))))
           gtk_window_activate_default (window);
@@ -1060,7 +1123,7 @@ geda_entry_unrealize (GtkWidget *widget)
 }
 
 static void
-geda_entry_activate (GedaEntry *entry, void    *data)
+geda_entry_activate (GedaEntry *entry, void *data)
 {
   int list_length;
   GList *iter;
@@ -1076,7 +1139,7 @@ geda_entry_activate (GedaEntry *entry, void    *data)
   if (history_list) {                                         /* if not a new buffer */
 
     list_length = g_list_length (history_list);   /* hit enter so end is now current */
-    iter = g_list_last(history_list);                          /* get the last entry */
+    iter        = g_list_last(history_list);                   /* get the last entry */
 
     if (g_ascii_strcasecmp (iter->data, entry_text) != 0) {   /* same as last entry? */
 
@@ -1116,7 +1179,7 @@ geda_entry_history_up (GedaEntry *entry)
   if (entry->history_index > 0) {
     --entry->history_index;
       new_line = g_list_nth_data(history_list, entry->history_index);
-      gtk_entry_set_text (GTK_ENTRY (entry), new_line);
+      geda_entry_set_text (entry, new_line);
       gtk_editable_set_position (GTK_EDITABLE (GTK_ENTRY (entry)), -1);
   }
 }
@@ -1139,19 +1202,19 @@ geda_entry_history_down (GedaEntry *entry)
 
         ++entry->history_index;
         new_line = g_list_nth_data(history_list, entry->history_index);
-        gtk_entry_set_text (gtk_entry, new_line);
+        geda_entry_set_text (entry, new_line);
         gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
       }
       else { /* There is no more data so set blank line */
-        gtk_entry_set_text (gtk_entry, "");
+        geda_entry_set_text (entry, "");
       }
     }
     else {
-      gtk_entry_set_text (gtk_entry, "");
+      geda_entry_set_text (entry, "");
     }
   }
   else { /* user hit "down" at the end of the buffer make blank line */
-    gtk_entry_set_text (gtk_entry, "");
+    geda_entry_set_text (entry, "");
   }
 }
 
