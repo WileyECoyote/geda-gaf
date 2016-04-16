@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 2 -*- */
 /* vi: set et ts=2 sw=2 sts=2: */
 /*
- * File: test_entry.c
+ * File: test_font_button.c
  *
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
@@ -23,7 +23,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  *
- * Date: April, 15, 2016
+ * Date: April, 16, 2016
  * Contributing Author: Wiley Edward Hill
  */
 
@@ -36,29 +36,34 @@
 
 #include <geda/geda.h>
 
-#include <../include/geda_entry.h>
+#include <../include/geda_font_button.h>
 #include <../include/geda_bulb.h>
 
-#define TWIDGET "GedaEntry"
+#define TWIDGET "GedaFontButton"
 
-/*! \file test_entry.c
- *  \brief Tests for geda_entry.c module
+/*! \file test_font_button.c
+ *  \brief Tests for geda_font_button.c module
  */
 
 int check_construction (void)
 {
   int result = 0;
 
-  /* geda_entry_new */
+  /* geda_font_button_new */
 
-  GtkWidget *widget = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+  GtkWidget *widget = geda_font_button_new ();
 
-  if (!GEDA_IS_ENTRY(widget)) {
+  if (!GEDA_IS_FONT_BUTTON(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
 
-  if (!GTK_IS_ENTRY(widget)) {
+  if (!GTK_IS_BUTTON(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  if (!GTK_IS_BIN(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
@@ -71,18 +76,18 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
-  if (GEDA_IS_ENTRY(widget)) {
+  if (GEDA_IS_FONT_BUTTON(widget)) {
     fprintf(stderr, "FAILED %s destruction\n", TWIDGET);
     result++;
   }
 
   widget = NULL;
 
-  /* geda_entry_new_visible */
+  /* geda_font_button_new_with_font */
 
-  widget = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+  widget = geda_font_button_new_with_font ("Arial");
 
-  if (!GEDA_IS_ENTRY(widget)) {
+  if (!GEDA_IS_FONT_BUTTON(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
@@ -91,43 +96,6 @@ int check_construction (void)
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
-
-  /* geda_entry_new_with_buffer */
-
-  GtkEntryBuffer *buffer;
-
-  widget = geda_entry_new_with_buffer (NULL);
-
-  if (GEDA_IS_ENTRY(widget)) {
-    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
-    result++;
-  }
-
-  buffer = gtk_entry_buffer_new ("abc", 6);
-
-  widget = geda_entry_new_with_buffer (buffer);
-
-  if (!GEDA_IS_ENTRY(widget)) {
-    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
-    result++;
-  }
-
-  g_object_ref_sink(widget); /* Sink reference to entry widget */
-  g_object_unref(widget);    /* Destroy the widget */
-
-  widget = NULL;
-
-  /* geda_entry_new_with_max_length */
-
-  widget = geda_entry_new_with_max_length (10);
-
-  if (!GEDA_IS_ENTRY(widget)) {
-    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
-    result++;
-  }
-
-  g_object_ref_sink(widget); /* Sink reference to entry widget */
-  g_object_unref(widget);    /* Destroy the widget */
 
   return result;
 }

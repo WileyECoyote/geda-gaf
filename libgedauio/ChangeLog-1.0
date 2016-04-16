@@ -4,6 +4,9 @@
       begin_change() and end_change(), replace gtk_entry_set_text with the
       new function where appropriate.
 
+    * tests/test_font_button.c: Add tests for constructing GedaFontButton
+      widgets.
+
 2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_entry.c: Add tests for constructing GedaEntry widgets.

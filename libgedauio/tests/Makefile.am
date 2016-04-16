@@ -13,7 +13,8 @@ check_widgets = \
 	test_bulb \
 	test_combobox \
 	test_combobox_text \
-	test_entry
+	test_entry \
+	test_font_button
 
 check_PROGRAMS = \
 	$(check_functions) \
