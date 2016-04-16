@@ -1,3 +1,7 @@
+2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: add getter/setter for auto_save_interval.
+
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_object.c: Add some checks for transformer functions.

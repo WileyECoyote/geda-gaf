@@ -515,6 +515,20 @@ void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
   }
 }
 
+/*! \brief Get the Auto Save Interval
+*   \par Function Description
+*   Returns the current auto save interval.
+*
+*   \param [in] toplevel This toplevel
+*/
+int
+geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), -1);
+
+  return toplevel->auto_save_interval;
+}
+
 /*! \brief Get the current page
 *   \par Function Description
 *   This function returns a pointer the current Page object.
@@ -646,7 +660,25 @@ void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
   }
 }
 
-bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
+
+/*! \brief Set Toplevel Auto Save Interval
+*   \par Function Description
+*   Stores \a interval to \a toplevel.
+*
+*   \param [in] toplevel This toplevel
+*/
+bool
+geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  toplevel->auto_save_interval = interval;
+
+  return TRUE;
+}
+
+bool
+geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 

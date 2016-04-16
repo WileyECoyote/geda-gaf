@@ -209,24 +209,27 @@ extern "C" {
 #endif
 
 /* geda_toplevel.c */
-GedaTopType   geda_toplevel_get_type         (void) GEDA_CONST;
-GedaToplevel *geda_toplevel_new              (void);
+GedaTopType   geda_toplevel_get_type                (void) GEDA_CONST;
+GedaToplevel *geda_toplevel_new                     (void);
 
-bool          is_a_geda_toplevel             (GedaToplevel *toplevel);
-void          geda_toplevel_weakref_notify   (GedaToplevel *toplevel);
-void          geda_toplevel_weak_ref         (GedaToplevel *toplevel, WeakNotifyFunc notify_func, void *user_data);
-void          geda_toplevel_weak_unref       (GedaToplevel *toplevel, WeakNotifyFunc notify_func, void *user_data);
-void          geda_toplevel_add_weak_ptr     (GedaToplevel *toplevel, void *weak_pointer_loc);
-void          geda_toplevel_remove_weak_ptr  (GedaToplevel *toplevel, void *weak_pointer_loc);
+bool          is_a_geda_toplevel                    (GedaToplevel *toplevel);
+void          geda_toplevel_weakref_notify          (GedaToplevel *toplevel);
+void          geda_toplevel_weak_ref                (GedaToplevel *toplevel, WeakNotifyFunc notify_func, void *user_data);
+void          geda_toplevel_weak_unref              (GedaToplevel *toplevel, WeakNotifyFunc notify_func, void *user_data);
+void          geda_toplevel_add_weak_ptr            (GedaToplevel *toplevel, void *weak_pointer_loc);
+void          geda_toplevel_remove_weak_ptr         (GedaToplevel *toplevel, void *weak_pointer_loc);
 
-void          geda_toplevel_add_page         (GedaToplevel *toplevel, Page *page);
-Page         *geda_toplevel_get_current_page (GedaToplevel *toplevel);
-Page         *geda_toplevel_get_page_by_id   (GedaToplevel *toplevel, int page_id);
-Page         *geda_toplevel_get_page_down    (GedaToplevel *toplevel);
-Page         *geda_toplevel_get_page_up      (GedaToplevel *toplevel);
+void          geda_toplevel_add_page                (GedaToplevel *toplevel, Page *page);
+int           geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel);
+Page         *geda_toplevel_get_current_page        (GedaToplevel *toplevel);
+Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int page_id);
+Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
+Page         *geda_toplevel_get_page_up             (GedaToplevel *toplevel);
 
-void          geda_toplevel_remove_page      (GedaToplevel *toplevel, Page *page);
-bool          geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page);
+void          geda_toplevel_remove_page             (GedaToplevel *toplevel, Page *page);
+
+bool          geda_toplevel_set_auto_save_interval  (GedaToplevel *toplevel, int interval);
+bool          geda_toplevel_set_current_page        (GedaToplevel *toplevel, Page *page);
 
 #ifdef __cplusplus
 }
