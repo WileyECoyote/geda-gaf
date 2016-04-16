@@ -2248,7 +2248,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 /* The Spin Controls - Alphabetically (24) */
   SetSpin (AttributeOffset, w_current->add_attribute_offset);
   SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
-  SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
+  SetSpin (AutoSaveInterval, geda_toplevel_get_auto_save_interval(toplevel));
   SetSpin (DotGridThreshold, w_current->dots_grid_threshold);
   SetSpin (GripPixelSize, w_current->grip_size);
   SetSpin (JunctionSize, CairoRenderer->junction_size);
@@ -2841,13 +2841,15 @@ void GatherSettings(GschemToplevel *w_current) {
   /* auto save interval */ {
 
     /* Save the current auto_save_interval */
-    int old_auto_save = toplevel->auto_save_interval;
-
+    int old_auto_save = geda_toplevel_get_auto_save_interval(toplevel);
+    int new_auto_save;
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
-     toplevel->auto_save_interval       = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
+                          new_auto_save = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
+
+    geda_toplevel_set_auto_save_interval(toplevel, new_auto_save);
 
      /* Check if Auto save was enabled, i.e. from 0 -> >0 */
-    if (!old_auto_save && toplevel->auto_save_interval)
+    if (!old_auto_save && new_auto_save)
       s_page_autosave_init(toplevel);
   }
 
