@@ -729,6 +729,25 @@ eda_renderer_draw_pin (EdaRenderer *renderer, GedaObject *object)
 }
 
 static void
+eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
+{
+  eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                 object->line_options->line_width,
+                 object->arc->x,
+                 object->arc->y,
+                 object->arc->radius,
+                 object->arc->start_angle,
+                 object->arc->arc_sweep);
+
+  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                    object->line_options->line_type,
+                    object->line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
+                    object->line_options->line_length,
+                    object->line_options->line_space);
+}
+
+static void
 eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 {
   int fill_solid;
@@ -749,25 +768,6 @@ eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
                     object->line_options->line_type, object->line_options->line_end,
                     EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
                     object->line_options->line_length, object->line_options->line_space);
-}
-
-static void
-eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
-{
-  eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                 object->line_options->line_width,
-                 object->arc->x,
-                 object->arc->y,
-                 object->arc->radius,
-                 object->arc->start_angle,
-                 object->arc->arc_sweep);
-
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type,
-                    object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                    object->line_options->line_length,
-                    object->line_options->line_space);
 }
 
 static void
@@ -792,7 +792,8 @@ eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
                     object->line_options->line_length, object->line_options->line_space);
 }
 
-static void eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
+static void
+eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 {
   int fill_solid;
 
@@ -1200,7 +1201,8 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
  *  \param [in] renderer Pointer to a EdaRenderer object.
  *  \param [in] list     List of Objects for which grips are to be drawn.
  */
-void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
+void
+eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
 {
   if(renderer->draw_grips) {
     GList *iter;

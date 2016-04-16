@@ -4,7 +4,8 @@
       cairo_font_options_set_hint_metrics to eda_renderer_instance_init, both
       of which need only be called once since libgedacairo has no provisions
       to change either option. Reduce scope of inked_rect eda_renderer_get_
-      text_user_bounds.
+      text_user_bounds. Move function move eda_renderer_draw_arc before
+      eda_renderer_draw_box.
 
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
