@@ -12,7 +12,8 @@ check_widgets = \
 	test_accel_label \
 	test_bulb \
 	test_combobox \
-	test_combobox_text
+	test_combobox_text \
+	test_entry
 
 check_PROGRAMS = \
 	$(check_functions) \

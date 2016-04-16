@@ -1,3 +1,7 @@
+2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_entry.c: Add tests for constructing GedaEntry widgets:
+
 2016-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add function geda_entry_real_insert_text,
