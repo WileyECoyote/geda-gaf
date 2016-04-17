@@ -105,6 +105,69 @@ gschem_main_window_unmap (GtkWidget *widget)
   GTK_WIDGET_CLASS (gschem_main_window_parent_class)->unmap (widget);
 }
 
+static void
+gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
+{
+  if GTK_IS_WINDOW (widget) {
+
+    GtkBin      *bin;
+    GtkWindow   *window;
+    unsigned int border;
+
+    window = (GtkWindow*)widget;
+    bin    = (GtkBin*)window;
+    border = gtk_container_get_border_width (GTK_CONTAINER (window));
+
+    requisition->width = requisition->height = border << 1;
+
+    if (bin->child && gtk_widget_get_visible (bin->child)) {
+
+      GtkRequisition child_requisition;
+
+      gtk_widget_size_request (bin->child, &child_requisition);
+
+      requisition->width  += child_requisition.width;
+      requisition->height += child_requisition.height;
+    }
+  }
+}
+
+static void
+gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
+{
+  GtkWindow    *window;
+  GtkAllocation child_allocation;
+  unsigned int  border_2x;
+
+  window             = GTK_WINDOW (widget);
+  widget->allocation = *allocation;
+
+  border_2x = gtk_container_get_border_width (GTK_CONTAINER (window)) << 1;
+
+  if (window->bin.child && gtk_widget_get_visible (window->bin.child))
+  {
+    child_allocation.x      = border_2x;
+    child_allocation.y      = border_2x;
+    child_allocation.width  = MAX (1, (int)allocation->width - child_allocation.x);
+    child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y);
+
+    gtk_widget_size_allocate (window->bin.child, &child_allocation);
+  }
+
+  if (gtk_widget_get_realized (widget)) {
+
+    GdkWindow *frame;
+    int width;
+    int heigth;
+
+    frame  = geda_get_widget_window(widget);
+    width  = allocation->width + border_2x;
+    heigth = allocation->height + border_2x;
+
+    gdk_window_resize (frame, width, heigth);
+  }
+}
+
 /*! \brief Initialize GschemMainWindow class
  *
  *  \param [in]  class       GschemMainWindow being initialized
@@ -121,6 +184,8 @@ gschem_main_window_class_init (void *class, void *class_data)
 
   widget_class->map               = gschem_main_window_map;
   widget_class->unmap             = gschem_main_window_unmap;
+  widget_class->size_request      = gschem_window_size_request;
+  widget_class->size_allocate     = gschem_window_size_allocate;
 
   gschem_main_window_parent_class = g_type_class_peek_parent (class);
 }
@@ -143,6 +208,7 @@ GedaType gschem_main_window_get_type (void)
   static GedaType type = 0;
 
   if (type == 0) {
+
     static const GTypeInfo info = {
       sizeof(GschemMainWindowClass),
       NULL,                                      /* base_init */

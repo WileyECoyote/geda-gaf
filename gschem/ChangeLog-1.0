@@ -6,6 +6,9 @@
             * include/gschem_page_view.h
             * include/gschem_status_bar.h
 
+    * src/base/gschem_main_window.c: Add over-rides for size_request and
+      size_allocate.
+
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Use getter/setter for auto_save_interval.
