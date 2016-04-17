@@ -240,7 +240,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 1,4,0,1, GTK_FILL,0,0,0);
 
-  SetEntryText(widget, getenv("_"));
+  geda_entry_widget_set_text(widget, getenv("_"));
 
   widget = geda_aligned_label_new (_("Process ID:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), widget, 4,5,0,1, GTK_FILL,0,0,0);
@@ -252,7 +252,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,0,1, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", prog_pid);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   /* Row 2 */
@@ -272,7 +272,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
     gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
 
     string = geda_sprintf("%ld", usage.ru_maxrss);
-    SetEntryText(widget, string);
+    geda_entry_widget_set_text(widget, string);
     GEDA_FREE(string);
   }
 
@@ -286,7 +286,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,2,3, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", MAX_THREADS);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   widget = geda_aligned_label_new (_("Max Unused:"), 0, 0);
@@ -299,7 +299,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,2,3, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", MAX_THREADS_UNUSED);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   /* Row 4 */
@@ -317,7 +317,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 1,2,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", nt);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   widget = geda_aligned_label_new (_("Pending:"), 0, 0);
@@ -330,7 +330,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", up);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   widget = geda_aligned_label_new (_("Max Idle:"), 0, 0);
@@ -343,7 +343,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", it);
-  SetEntryText(widget, string);
+  geda_entry_widget_set_text(widget, string);
   GEDA_FREE(string);
 
   /* -------------------------- Table 2 -------------------------- */

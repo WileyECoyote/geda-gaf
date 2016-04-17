@@ -329,8 +329,8 @@ void x_dialog_coord_dialog_response(GtkWidget      *Dialog, int response,
 void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
 {
   GtkWidget *Dialog;
-  GtkEntry  *screen_entry;
-  GtkEntry  *world_entry;
+  GedaEntry *screen_entry;
+  GedaEntry *world_entry;
 
   char *string;
   int   world_x, world_y;
@@ -340,7 +340,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   world_entry  = GEDA_OBJECT_GET_DATA(Dialog, "world");
 
   string = geda_sprintf("(%d, %d)", x, y);
-  SetEntryText(screen_entry, string );
+  geda_entry_set_text(screen_entry, string);
   GEDA_FREE(string);
 
   SCREENtoWORLD (w_current, x, y, &world_x, &world_y);
@@ -351,7 +351,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   }
 
   string = geda_sprintf("(%d, %d)", world_x, world_y);
-  SetEntryText(world_entry, string );
+  geda_entry_set_text(world_entry, string);
   GEDA_FREE(string);
 }
 

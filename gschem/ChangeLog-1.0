@@ -13,6 +13,11 @@
       about 4 or 5 days and then quick working completely and could not
       determine what made it stop working.
 
+    * src/iface/i_diagnostics.c: Replace SetEntryText with geda_entry_set_text.
+
+    * src/x/x_coord.c: Replace SetEntryText with geda_entry_set_text
+      in function x_dialog_coord_update_display.
+
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Use getter/setter for auto_save_interval.
