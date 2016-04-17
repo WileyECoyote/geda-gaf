@@ -30,6 +30,8 @@
 
 #include <math.h>
 
+#include "test-suite.h"
+
 #define TOBJECT "GedaArc"
 
 #define USE_RANDOM_NUMBERS 1
@@ -61,12 +63,12 @@
  *      O0206    geda_arc_object_get_position
  *      O0207    geda_arc_object_get_radius
  *      O0208    geda_arc_object_get_start_angle
- *               geda_arc_object_mirror
- *               geda_arc_object_modify
+ *      O0209    geda_arc_object_mirror
+ *      O0210    geda_arc_object_modify
  *      O0211    geda_arc_object_new
  *
  *      O0218    geda_arc_object_read
- *               geda_arc_object_rotate
+ *      O0219    geda_arc_object_rotate
  *      O0220    geda_arc_object_set_arc_sweep
  *      O0221    geda_arc_object_set_center_x
  *      O0222    geda_arc_object_set_center_y
@@ -74,11 +76,9 @@
  *      O0224    geda_arc_object_set_start_angle
  *      O0225    geda_arc_object_shortest_distance
  *      O0226    geda_arc_object_to_buffer
- *               geda_arc_object_translate
- *               geda_arc_object_within_sweep
+ *      O0227    geda_arc_object_translate
+ *      O0228    geda_arc_object_within_sweep
  */
-
-#include "test-suite.h"
 
 int
 check_construction ()
