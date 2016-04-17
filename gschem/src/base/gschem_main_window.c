@@ -296,6 +296,7 @@ void
 gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
 {
   GdkWindow *window;
+  bool lame;
 
   window = geda_get_widget_window(main_window);
 
@@ -304,6 +305,8 @@ gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
   gtk_window_resize(GTK_WINDOW(main_window), width, height);
 
   gdk_window_process_updates (window, TRUE);
+
+  g_signal_emit_by_name(main_window, "configure_event", window, &lame);
 }
 
 /** @} endgroup Gschem-Main-Window */

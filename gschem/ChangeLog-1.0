@@ -7,7 +7,11 @@
             * include/gschem_status_bar.h
 
     * src/base/gschem_main_window.c: Add over-rides for size_request and
-      size_allocate.
+      size_allocate, revise gschem_main_window_set_size to try and persuade
+      somebody to update the window by emitting the "configure_event" signal
+      on the window, seems to work but so did gdk_window_process_updates for
+      about 4 or 5 days and then quick working completely and could not
+      determine what made it stop working.
 
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
