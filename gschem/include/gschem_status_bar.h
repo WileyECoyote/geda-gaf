@@ -124,6 +124,10 @@ struct _GschemStatusBar
   int        y1;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType      gschem_status_bar_get_type               (void);
 GtkWidget    *gschem_status_bar_new                    (void);
 
@@ -170,3 +174,7 @@ void          gschem_status_bar_set_snap_size          (GtkWidget *widget, int s
 void          gschem_status_bar_set_status_text        (GtkWidget *widget, const char *text);
 
 void          gschem_status_bar_set_status_text_color  (GtkWidget *widget, int color);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */

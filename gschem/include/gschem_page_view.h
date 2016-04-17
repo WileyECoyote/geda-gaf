@@ -69,6 +69,9 @@ struct _GschemPageView
   Page *page;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GdkGC*
 gschem_page_view_get_gc (GschemToplevel *w_current);
@@ -153,3 +156,7 @@ gschem_page_view_zoom_extents (GschemPageView *view, const GList *list);
 
 void
 gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */

@@ -1,3 +1,11 @@
+2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/: add wrapper declare extern "C":
+
+            * include/gschem_main_window.h
+            * include/gschem_page_view.h
+            * include/gschem_status_bar.h
+
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Use getter/setter for auto_save_interval.

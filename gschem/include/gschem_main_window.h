@@ -54,6 +54,10 @@ struct _GschemMainWindow
   GtkWindow parent;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType           gschem_main_window_get_type   (void);
 GschemMainWindow  *gschem_main_window_new        (void);
 
@@ -68,3 +72,7 @@ GtkStyle          *gschem_main_window_get_style  (GtkWidget *main_window);
 void               gschem_main_window_set_size   (GtkWidget *main_window,
                                                   int        width,
                                                   int        height);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
