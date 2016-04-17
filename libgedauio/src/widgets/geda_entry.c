@@ -1541,6 +1541,11 @@ geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
   geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
 }
 
+void geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
+{
+  geda_entry_set_text (GEDA_ENTRY(entry), new_text);
+}
+
 void
 geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {

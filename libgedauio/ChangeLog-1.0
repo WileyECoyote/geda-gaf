@@ -1,3 +1,10 @@
+2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_entry.h: Add declarations for geda_entry_set_text and
+      geda_entry_widget_set_text.
+
+    * src/widgets/geda_entry.c: Add new function geda_entry_widget_set_text.
+
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add function geda_entry_set_text with helpers

@@ -151,78 +151,82 @@ GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
 GtkWidget *geda_entry_new_with_max_length    (int length);
 
 PangoAttrList*
-     geda_entry_get_attributes               (GedaEntry *entry);
+     geda_entry_get_attributes               (GedaEntry      *entry);
 
-int  geda_entry_get_max_history              (GedaEntry *entry);
-void geda_entry_set_max_history              (GedaEntry *entry,
-                                              int value);
-void geda_entry_set_completion               (GedaEntry *entry,
+int  geda_entry_get_max_history              (GedaEntry      *entry);
+void geda_entry_set_max_history              (GedaEntry      *entry,
+                                              int             value);
+void geda_entry_set_completion               (GedaEntry      *entry,
                                               GedaCompletion *completion);
 GedaCompletion*
-     geda_entry_get_completion               (GedaEntry *entry);
+     geda_entry_get_completion               (GedaEntry      *entry);
 
-bool geda_entry_completion_get_case          (GedaEntry *entry);
-void geda_entry_completion_set_case          (GedaEntry *entry,
-                                              bool sensitive);
-bool geda_entry_get_input_case               (GedaEntry *entry);
-void geda_entry_set_input_case               (GedaEntry *entry,
-                                              int mode);
+bool geda_entry_completion_get_case          (GedaEntry      *entry);
+void geda_entry_completion_set_case          (GedaEntry      *entry,
+                                              bool            sensitive);
+bool geda_entry_get_input_case               (GedaEntry      *entry);
+void geda_entry_set_input_case               (GedaEntry      *entry,
+                                              int             mode);
 const char*
-     geda_entry_get_text                     (GedaEntry *entry);
-bool geda_entry_get_activates_default        (GedaEntry *entry);
-void geda_entry_set_activates_default        (GedaEntry *entry,
-                                              bool  setting);
+     geda_entry_get_text                     (GedaEntry      *entry);
+bool geda_entry_get_activates_default        (GedaEntry      *entry);
+void geda_entry_set_activates_default        (GedaEntry      *entry,
+                                              bool            setting);
 
-void geda_entry_set_attributes               (GedaEntry *entry,
-                                              PangoAttrList *attrs);
-void geda_entry_set_valid_input              (GedaEntry *entry,
+void geda_entry_set_attributes               (GedaEntry      *entry,
+                                              PangoAttrList  *attrs);
+void geda_entry_set_text                     (GedaEntry      *entry,
+                                        const char           *new_text);
+void geda_entry_set_valid_input              (GedaEntry      *entry,
                                               GedaEntryAccept mode);
 
-void geda_entry_modify_fg                    (GedaEntry    *entry,
-                                              GtkStateType  state,
-                                        const GdkColor     *color);
-void geda_entry_modify_bg                    (GedaEntry    *entry,
-                                              GtkStateType  state,
-                                        const GdkColor     *color);
+void geda_entry_modify_fg                    (GedaEntry      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
+void geda_entry_modify_bg                    (GedaEntry      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
 
-void geda_entry_widget_modify_color          (GtkWidget    *widget,
-                                              GtkRcFlags    component,
-                                              GtkStateType  state,
-                                        const GdkColor     *color);
+void geda_entry_widget_modify_color          (GtkWidget      *widget,
+                                              GtkRcFlags      component,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
 PangoAttrList*
-     geda_entry_widget_get_attributes        (GtkWidget *entry);
+     geda_entry_widget_get_attributes        (GtkWidget      *entry);
 
-int  geda_entry_widget_get_max_history       (GtkWidget *entry);
-void geda_entry_widget_set_max_history       (GtkWidget *entry,
+int  geda_entry_widget_get_max_history       (GtkWidget      *entry);
+void geda_entry_widget_set_max_history       (GtkWidget      *entry,
                                               int value);
-void geda_entry_widget_set_completion        (GtkWidget *entry,
+void geda_entry_widget_set_completion        (GtkWidget      *entry,
                                               GedaCompletion *completion);
 GedaCompletion*
-     geda_entry_widget_get_completion        (GtkWidget *entry);
+     geda_entry_widget_get_completion        (GtkWidget      *entry);
 
-bool geda_entry_widget_completion_get_case   (GtkWidget *entry);
-void geda_entry_widget_completion_set_case   (GtkWidget *entry,
-                                              bool sensitive);
-bool geda_entry_widget_get_input_case        (GtkWidget *entry);
-void geda_entry_widget_set_input_case        (GtkWidget *entry,
-                                              int mode);
+bool geda_entry_widget_completion_get_case   (GtkWidget      *entry);
+void geda_entry_widget_completion_set_case   (GtkWidget      *entry,
+                                              bool            sensitive);
+bool geda_entry_widget_get_input_case        (GtkWidget      *entry);
+void geda_entry_widget_set_input_case        (GtkWidget      *entry,
+                                              int             mode);
 const char*
-     geda_entry_widget_get_text              (GtkWidget *entry);
+     geda_entry_widget_get_text              (GtkWidget      *entry);
 
-bool geda_entry_widget_get_activates_default (GtkWidget *entry);
-void geda_entry_widget_set_activates_default (GtkWidget *entry,
-                                              bool  setting);
-void geda_entry_widget_set_attributes        (GtkWidget *entry,
-                                              PangoAttrList *attrs);
-void geda_entry_widget_set_valid_input       (GtkWidget *entry,
+bool geda_entry_widget_get_activates_default (GtkWidget      *entry);
+void geda_entry_widget_set_activates_default (GtkWidget      *entry,
+                                              bool            setting);
+void geda_entry_widget_set_attributes        (GtkWidget      *entry,
+                                              PangoAttrList  *attrs);
+void geda_entry_widget_set_text              (GtkWidget      *entry,
+                                        const char           *new_text);
+void geda_entry_widget_set_valid_input       (GtkWidget      *entry,
                                               GedaEntryAccept mode);
 
-void geda_entry_widget_modify_fg             (GtkWidget    *entry,
-                                              GtkStateType  state,
-                                        const GdkColor     *color);
-void geda_entry_widget_modify_bg             (GtkWidget    *entry,
-                                              GtkStateType  state,
-                                        const GdkColor     *color);
+void geda_entry_widget_modify_fg             (GtkWidget      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
+void geda_entry_widget_modify_bg             (GtkWidget      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
