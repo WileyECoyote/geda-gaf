@@ -3,7 +3,7 @@
     * src/struct/color_struct.c: Add table entry for 008B00, which is index 3
       in the light color map.
 
-    * tests/test_color.c: Include some test using light color map.
+    * tests/test_color.c: Include some tests using light and bw color maps.
 
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 

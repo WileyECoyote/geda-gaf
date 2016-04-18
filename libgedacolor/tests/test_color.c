@@ -6,7 +6,7 @@
 
 #include <libgedacolor.h>
 
-int check_display_dark_colors (void)
+int check_dark_display_colors (void)
 {
   int result = 0;
 
@@ -62,7 +62,7 @@ int check_display_dark_colors (void)
   return result;
 }
 
-int check_display_light_colors (void)
+int check_light_display_colors (void)
 {
   int result = 0;
 
@@ -82,7 +82,37 @@ int check_display_light_colors (void)
     }
     else {
       if (!strcmp(name,"green4") == 0) {
-        fprintf(stderr, "%s: FAILED: index 3 is not green <%s>\n", __func__, name);
+        fprintf(stderr, "%s: FAILED: index 3 is not green4 <%s>\n", __func__, name);
+        result++;
+      }
+      g_free(name);
+    }
+  }
+
+  return result;
+}
+
+int check_bw_display_colors (void)
+{
+  int result = 0;
+
+  GArray *color_map = geda_color_get_display_map();
+
+  if (!color_map) {
+    fprintf(stderr, "%s: FAILED: geda_color_get_display_map\n", __func__);
+    result++;
+  }
+  else {
+
+    char *name = geda_color_get_color_name(3, color_map, NULL);
+
+    if (!name) {
+      fprintf(stderr, "%s: FAILED: geda_color_get_color_name <%s>\n", __func__, name);
+      result++;
+    }
+    else {
+      if (!strcmp(name,"black") == 0) {
+        fprintf(stderr, "%s: FAILED: index 3 is not black <%s>\n", __func__, name);
         result++;
       }
       g_free(name);
@@ -101,11 +131,15 @@ main (int argc, char *argv[])
 
     geda_color_load_display_scheme("../etc/display-colormap-darkbg");
 
-    result = check_display_dark_colors();
+    result = check_dark_display_colors();
 
     geda_color_load_display_scheme("../etc/display-colormap-lightbg");
 
-    result += check_display_light_colors();
+    result += check_light_display_colors();
+
+    geda_color_load_display_scheme("../etc/display-colormap-bw");
+
+    result += check_bw_display_colors();
 
     libgedacolor_release();
   }
