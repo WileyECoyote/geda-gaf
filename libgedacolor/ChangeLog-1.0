@@ -3,6 +3,8 @@
     * src/struct/color_struct.c: Add table entry for 008B00, which is index 3
       in the light color map.
 
+    * tests/test_color.c: Include some test using light color map.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: rm redundant inclusion in libgedacolor-man-1.html
