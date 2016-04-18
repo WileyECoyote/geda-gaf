@@ -16,7 +16,9 @@
     * src/iface/i_diagnostics.c: Replace SetEntryText with geda_entry_set_text.
 
     * src/x/x_coord.c: Replace SetEntryText with geda_entry_set_text
-      in function x_dialog_coord_update_display.
+      in function x_dialog_coord_update_display. Remove int X & Y arguments
+      from x_dialog_coord_dialog - is only passed zeroes from i_cmd_do_show_
+      coordinates.
 
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 

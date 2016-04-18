@@ -693,8 +693,8 @@ void          x_log_message                 (const char *log_domain, GLogLevelFl
                                              const char *message);
 
 /* x_coord.c */
-void          x_dialog_coord_update_display (GschemToplevel *w_current, int x, int y);
-void          x_dialog_coord_dialog         (GschemToplevel *w_current, int x, int y);
+void          x_dialog_coord_update_display (GschemToplevel *w_current, int sx, int sy);
+void          x_dialog_coord_dialog         (GschemToplevel *w_current);
 
 /* x_dialog.c */
   /* Dialog-Utility functions */

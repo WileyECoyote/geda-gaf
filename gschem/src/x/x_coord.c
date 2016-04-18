@@ -448,7 +448,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
  *
  *  This function creates the coord dialog box.
  */
-void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
+void x_dialog_coord_dialog (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
 
@@ -551,7 +551,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
   }
 
   /* always update the coords when the dialog is requested */
-  x_dialog_coord_update_display(w_current, x, y);
+  x_dialog_coord_update_display(w_current, 0, 0);
 }
 /** @} end-subgroup Coordinates-Dialog  */
 /***************** End of coord dialog box **************************/

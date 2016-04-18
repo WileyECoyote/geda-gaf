@@ -3911,7 +3911,7 @@ COMMAND (do_show_console)
 COMMAND (do_show_coordinates)
 {
   BEGIN_COMMAND(do_show_coordinates);
-  x_dialog_coord_dialog (w_current, 0, 0);
+  x_dialog_coord_dialog (w_current);
   EXIT_COMMAND(do_show_coordinates);
 }
 
