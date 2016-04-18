@@ -1,9 +1,11 @@
 2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Add declarations for geda_entry_set_text and
-      geda_entry_widget_set_text.
+      geda_entry_widget_set_text. Remove macro G_TYPE_CHECK_INSTANCE_TYPE,
+      add member instance_type.
 
-    * src/widgets/geda_entry.c: Add new function geda_entry_widget_set_text.
+    * src/widgets/geda_entry.c: Add new functions geda_entry_widget_set_text
+      and is_a_geda_entry.
 
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 

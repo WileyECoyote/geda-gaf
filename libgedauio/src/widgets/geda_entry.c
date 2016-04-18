@@ -896,6 +896,8 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   GedaEntryPriv *priv   = entry->priv;
   priv->font_map        = pango_cairo_font_map_get_default();
 
+  entry->instance_type  = geda_entry_get_type();
+
   g_signal_connect_after (G_OBJECT (entry), "key_press_event",
                           G_CALLBACK (geda_entry_key_press), NULL);
 
@@ -993,6 +995,14 @@ GedaType geda_entry_get_type (void)
   }
 
   return geda_entry_type;
+}
+
+bool is_a_geda_entry (GedaEntry *entry)
+{
+  if (G_IS_OBJECT(entry)) {
+    return (geda_entry_get_type() == entry->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Entry Stop Activate Default signal Responder

@@ -58,7 +58,7 @@ typedef struct
 #define GEDA_TYPE_ENTRY            (geda_entry_get_type ())
 #define GEDA_ENTRY(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ENTRY, GedaEntry))
 #define GEDA_ENTRY_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ENTRY, GedaEntryClass))
-#define GEDA_IS_ENTRY(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_ENTRY))
+#define GEDA_IS_ENTRY(obj)         (is_a_geda_entry((GedaEntry*)obj))
 #define GEDA_IS_ENTRY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ENTRY))
 #define GEDA_ENTRY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ENTRY, GedaEntryClass))
 
@@ -81,6 +81,7 @@ typedef enum {
 struct _GedaEntry
 {
     GtkEntry          parent;
+    GedaType          instance_type;
     GedaEntryAccept   validation_mode;
     volatile int      enable_drag_n_drop   : 1;
     volatile int      activates_default    : 1;
@@ -145,6 +146,7 @@ extern "C" {
 #endif
 
 GedaType   geda_entry_get_type               (void) GEDA_CONST;
+bool       is_a_geda_entry                   (GedaEntry      *entry);
 GtkWidget *geda_entry_new                    (GList** history, GList** complete);
 GtkWidget *geda_entry_new_visible            (GList** history, GList** complete);
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
