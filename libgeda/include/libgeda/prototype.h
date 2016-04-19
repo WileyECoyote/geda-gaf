@@ -248,6 +248,8 @@ extern "C" {
 
 /* o_get.c */
           int    o_get_attached_parent_id        (GedaObject *object);
+          int    o_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
+          int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
          bool    o_get_fill_options              (GedaObject *object, OBJECT_FILLING *type, int *width, int *pitch1,
                                                   int *angle1, int *pitch2, int *angle2);
          bool    o_get_has_slope                 (GedaObject *object);
@@ -271,8 +273,6 @@ extern "C" {
          bool    o_get_position                  (GedaObject *object, int *x, int *y);
        double    o_get_shortest_distance         (GedaObject *object, int x, int y);
        double    o_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
-          int    o_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
-          int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
 /* o_line_object.c */
    GedaObject   *o_line_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;

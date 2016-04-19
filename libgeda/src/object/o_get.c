@@ -35,24 +35,6 @@
 #include <libgeda_priv.h>
 #include <geda_text.h>
 
-bool o_get_has_slope (GedaObject *object)
-{
-  bool answer;
-
-  if (GEDA_IS_LINE(object)) {
-    if (object->line->x[0] != object->line->x[1]) {
-      answer = TRUE;
-    }
-    else {
-      answer = FALSE;
-    }
-  }
-  else {
-    answer = FALSE;
-  }
-  return answer;
-}
-
 /*! \brief Get the Parent index an object is attached to
  *
  * \par Function Description
@@ -63,7 +45,8 @@ bool o_get_has_slope (GedaObject *object)
  *
  * \return sid of the parent \a object is attached or -1 if none.
  */
-int o_get_attached_parent_id (GedaObject *object)
+int
+o_get_attached_parent_id (GedaObject *object)
 {
   int sid;
 
@@ -76,6 +59,95 @@ int o_get_attached_parent_id (GedaObject *object)
   return sid;
 }
 
+/*! \brief Return the bounds of the given object
+ *
+ *  \par Given an object, calculate the bounds coordinates.
+ *
+ *  \param [in] o_current The object to look the bounds for.
+ *  \param [out] rleft   pointer to the left coordinate of the object.
+ *  \param [out] rtop    pointer to the top coordinate of the object.
+ *  \param [out] rright  pointer to the right coordinate of the object.
+ *  \param [out] rbottom pointer to the bottom coordinate of the object.
+ *  \return If any bounds were found for the object
+ *  \retval 0 No bound was found
+ *  \retval 1 Bound was found
+ */
+int
+o_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
+                                    int *rright, int *rbottom)
+{
+  int result = 0;
+
+  if (GEDA_IS_OBJECT(o_current)) {
+
+    result = geda_object_bounds(o_current);
+
+    if (result) {
+
+      *rleft   = o_current->left;
+      *rtop    = o_current->top;
+      *rright  = o_current->right;
+      *rbottom = o_current->bottom;
+    }
+  }
+  else {
+    BUG_MSG("Oops, Not a GedaObject");
+  }
+  return result;
+}
+
+/*! \brief Return the bounds of the given GList of objects.
+ *
+ *  \par Given a list of objects, calculates the bounds coordinates.
+ *
+ *  \param [in]  list   The list of objects to look the bounds for.
+ *  \param [out] left   pointer to the left coordinate of the object.
+ *  \param [out] top    pointer to the top coordinate of the object.
+ *  \param [out] right  pointer to the right coordinate of the object.
+ *  \param [out] bottom pointer to the bottom coordinate of the object.
+ *  \return If any bounds were found for the list of objects
+ *  \retval 0 No bounds were found
+ *  \retval 1 Bound was found
+ */
+int
+o_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
+{
+  const GList *s_current;
+
+  int rleft   = 0;
+  int rtop    = 0;
+  int rright  = 0;
+  int rbottom = 0;
+  int found   = 0;
+
+  s_current = g_list_first((GList *)list);
+
+  /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
+  while ( s_current != NULL ) {
+
+    if (o_get_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
+    {
+      if ( found ) {
+        *left   = min( *left, rleft );
+        *top    = min( *top, rtop );
+        *right  = max( *right, rright );
+        *bottom = max( *bottom, rbottom );
+      }
+      else {
+        *left   = rleft;
+        *top    = rtop;
+        *right  = rright;
+        *bottom = rbottom;
+        found   = 1;
+      }
+    }
+
+    NEXT(s_current);
+  }
+
+  return found;
+}
+
 /*! \brief Get capstyle for printing of an object.
  *  \par Function Description
  *  This function gets the object's capstyle for printing from its line end.
@@ -85,7 +157,8 @@ int o_get_attached_parent_id (GedaObject *object)
  *
  *  TODO: Change this function to use it also in gschem_cairo.c
  */
-int o_get_capstyle (LINE_END end)
+int
+o_get_capstyle (LINE_END end)
 {
   switch(end) {
     case(END_NONE):   return BUTT_CAP; break;
@@ -111,10 +184,11 @@ int o_get_capstyle (LINE_END end)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool o_get_fill_options(GedaObject *object,
-                        OBJECT_FILLING   *type, int *width,
-                        int *pitch1, int *angle1,
-                        int *pitch2, int *angle2)
+bool
+o_get_fill_options(GedaObject *object,
+                   OBJECT_FILLING   *type, int *width,
+                   int *pitch1, int *angle1,
+                   int *pitch2, int *angle2)
 {
   bool answer;
 
@@ -137,6 +211,25 @@ bool o_get_fill_options(GedaObject *object,
   return answer;
 }
 
+bool
+o_get_has_slope (GedaObject *object)
+{
+  bool answer;
+
+  if (GEDA_IS_LINE(object)) {
+    if (object->line->x[0] != object->line->x[1]) {
+      answer = TRUE;
+    }
+    else {
+      answer = FALSE;
+    }
+  }
+  else {
+    answer = FALSE;
+  }
+  return answer;
+}
+
 /*! \brief Checks if an object is attached to something
  *
  *  \par Function Description
@@ -148,7 +241,8 @@ bool o_get_fill_options(GedaObject *object,
  *
  *  \return TRUE if attached to another object, other wise FALSE.
  */
-bool o_get_is_attached (GedaObject *object)
+bool
+o_get_is_attached (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
 }
@@ -162,7 +256,8 @@ bool o_get_is_attached (GedaObject *object)
  *
  *  \return TRUE if the object is a bus, or bus pin
  */
-bool o_get_is_bus_related (GedaObject *object)
+bool
+o_get_is_bus_related (GedaObject *object)
 {
   return (GEDA_IS_BUS(object) || (GEDA_IS_PIN(object)
           && object->pin->node_type == PIN_BUS_NODE));
@@ -179,7 +274,8 @@ bool o_get_is_bus_related (GedaObject *object)
  *
  *  \return TRUE if the object is embedded
  */
-bool o_get_is_embedded (GedaObject *object)
+bool
+o_get_is_embedded (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_OBJECT (object), FALSE);
 
@@ -200,7 +296,8 @@ bool o_get_is_embedded (GedaObject *object)
  *  \param [in] y       y coordinate of the point to check.
  *  \return 1 if the point is inside the region, 0 otherwise.
  */
-int o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
+int
+o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
 {
   return ((x >= xmin && x <= xmax && y >= ymin && y <= ymax) ? 1 : 0);
 }
@@ -214,7 +311,8 @@ int o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
  *
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
-bool o_get_is_selectable (GedaObject *object)
+bool
+o_get_is_selectable (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selectable);
 }
@@ -228,7 +326,8 @@ bool o_get_is_selectable (GedaObject *object)
  *
  *  \return TRUE when the object is selected, FALSE otherwise
  */
-bool o_get_is_selected (GedaObject *object)
+bool
+o_get_is_selected (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selected);
 }
@@ -243,7 +342,8 @@ bool o_get_is_selected (GedaObject *object)
  *
  *  \return TRUE if valid, otherwise FALSE.
  */
-bool o_get_is_valid_attribute (GedaObject *object)
+bool
+o_get_is_valid_attribute (GedaObject *object)
 {
   bool result = FALSE;
 
@@ -281,7 +381,8 @@ bool o_get_is_valid_attribute (GedaObject *object)
  *
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
-bool o_get_is_visible (GedaObject *object)
+bool
+o_get_is_visible (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }
@@ -295,7 +396,8 @@ bool o_get_is_visible (GedaObject *object)
  *
  *  \param [in]     capstyle
  */
-LINE_END o_get_line_end (int capstyle)
+LINE_END
+o_get_line_end (int capstyle)
 {
   switch(capstyle) {
     case(BUTT_CAP): return END_NONE; break;
@@ -321,9 +423,10 @@ LINE_END o_get_line_end (int capstyle)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool o_get_line_options(GedaObject *object,
-                        LINE_END *end, LINE_TYPE *type,
-                        int *width, int *length, int *space)
+bool
+o_get_line_options(GedaObject *object,
+                   LINE_END *end, LINE_TYPE *type,
+                   int *width, int *length, int *space)
 {
   bool result;
 
@@ -355,7 +458,8 @@ bool o_get_line_options(GedaObject *object,
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  */
-bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
+bool
+o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool (*getter) (GedaObject *, int, int, int *, int *) = NULL;
 
@@ -393,7 +497,8 @@ bool o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
  *
  *  \return the number of lines
  */
-int o_get_num_text_lines(const char *string)
+int
+o_get_num_text_lines(const char *string)
 {
   const char *aux;
         int   line_count = 0;
@@ -436,7 +541,8 @@ int o_get_num_text_lines(const char *string)
  *  \return If objects is valid and has an attribute with a matching \a name
  *          then the value of the attribute is returned , otherwise NULL.
  */
-const char *o_get_object_attrib_value (GedaObject *object, const char *name)
+const char*
+o_get_object_attrib_value (GedaObject *object, const char *name)
 {
         GedaObject *attrib;
   const char   *value;
@@ -480,7 +586,8 @@ const char *o_get_object_attrib_value (GedaObject *object, const char *name)
  *  \return list of Objects if found, or %NULL if no member was the requested
  *          type or the input list was empty.
  */
-GList* o_get_objects_by_type (GList *olist, int type)
+GList*
+o_get_objects_by_type (GList *olist, int type)
 {
   GList  *objects = NULL;
 
@@ -506,7 +613,8 @@ GList* o_get_objects_by_type (GList *olist, int type)
  *
  *  \return page GedaObject which owns \a object, or %NULL.
  */
-Page *o_get_page (GedaObject *object)
+Page *
+o_get_page (GedaObject *object)
 {
   return geda_object_get_page(object);
 }
@@ -521,7 +629,8 @@ Page *o_get_page (GedaObject *object)
  *
  *  \return The complex Object which owns \a object, or %NULL.
  */
-GedaObject *o_get_parent (GedaObject *object)
+GedaObject*
+o_get_parent (GedaObject *object)
 {
   GedaObject *parent;
 
@@ -546,7 +655,8 @@ GedaObject *o_get_parent (GedaObject *object)
  *
  *  \return The complex Object which owns \a object, or %NULL.
  */
-int o_get_parent_id (GedaObject *object)
+int
+o_get_parent_id (GedaObject *object)
 {
   int cid;
 
@@ -572,7 +682,8 @@ int o_get_parent_id (GedaObject *object)
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_get_position (GedaObject *object, int *x, int *y )
+bool
+o_get_position (GedaObject *object, int *x, int *y )
 {
   bool (*func) (GedaObject*, int*, int*) = NULL;
 
@@ -612,7 +723,8 @@ bool o_get_position (GedaObject *object, int *x, int *y )
  *  number (G_MAXDOUBLE).  If an error occurs, this function returns
  *  G_MAXDOUBLE.
  */
-double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
+double
+o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
 
@@ -661,94 +773,8 @@ double o_get_shortest_distance_full (GedaObject *object, int x, int y, int force
  *
  *  \return The shortest distance from the object to the point.
  */
-double o_get_shortest_distance (GedaObject *object, int x, int y)
+double
+o_get_shortest_distance (GedaObject *object, int x, int y)
 {
   return o_get_shortest_distance_full (object, x, y, FALSE);
-}
-
-/*! \brief Return the bounds of the given object
- *
- *  \par Given an object, calculate the bounds coordinates.
- *
- *  \param [in] o_current The object to look the bounds for.
- *  \param [out] rleft   pointer to the left coordinate of the object.
- *  \param [out] rtop    pointer to the top coordinate of the object.
- *  \param [out] rright  pointer to the right coordinate of the object.
- *  \param [out] rbottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the object
- *  \retval 0 No bound was found
- *  \retval 1 Bound was found
- */
-int o_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
-                                    int *rright, int *rbottom)
-{
-  int result = 0;
-
-  if (GEDA_IS_OBJECT(o_current)) {
-
-    result = geda_object_bounds(o_current);
-
-    if (result) {
-
-      *rleft   = o_current->left;
-      *rtop    = o_current->top;
-      *rright  = o_current->right;
-      *rbottom = o_current->bottom;
-    }
-  }
-  else {
-    BUG_MSG("Oops, Not a GedaObject");
-  }
-  return result;
-}
-
-/*! \brief Return the bounds of the given GList of objects.
- *
- *  \par Given a list of objects, calculates the bounds coordinates.
- *
- *  \param [in]  list   The list of objects to look the bounds for.
- *  \param [out] left   pointer to the left coordinate of the object.
- *  \param [out] top    pointer to the top coordinate of the object.
- *  \param [out] right  pointer to the right coordinate of the object.
- *  \param [out] bottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the list of objects
- *  \retval 0 No bounds were found
- *  \retval 1 Bound was found
- */
-int o_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
-{
-  const GList *s_current;
-
-  int rleft   = 0;
-  int rtop    = 0;
-  int rright  = 0;
-  int rbottom = 0;
-  int found   = 0;
-
-  s_current = g_list_first((GList *)list);
-
-  /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
-  while ( s_current != NULL ) {
-
-    if (o_get_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
-    {
-      if ( found ) {
-        *left   = min( *left, rleft );
-        *top    = min( *top, rtop );
-        *right  = max( *right, rright );
-        *bottom = max( *bottom, rbottom );
-      }
-      else {
-        *left   = rleft;
-        *top    = rtop;
-        *right  = rright;
-        *bottom = rbottom;
-        found   = 1;
-      }
-    }
-
-    NEXT(s_current);
-  }
-
-  return found;
 }
