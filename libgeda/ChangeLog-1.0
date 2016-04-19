@@ -1,3 +1,9 @@
+2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_attrib_object.c: Add test module for src/object/o_attrib.c
+      with test for geda_attrib_object_add and geda_attrib_object_append_
+      changed_hook.
+
 2016-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: add getter/setter for auto_save_interval.
