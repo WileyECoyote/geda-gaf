@@ -822,7 +822,7 @@ bool x_event_motion (GtkWidget      *widget,
 
   /* If visible update the Coord Dialog */
   if (w_current->cowindow) {
-    x_dialog_coord_update_display(w_current, (int) event->x, (int) event->y);
+    x_dialog_coord_update_display(w_current, (int)event->x, (int)event->y, w_x, w_y);
   }
 
   /* Update coordinates display on the status bar*/

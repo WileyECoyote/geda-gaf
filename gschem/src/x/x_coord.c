@@ -326,31 +326,23 @@ void x_dialog_coord_dialog_response(GtkWidget      *Dialog, int response,
  *  This function takes the screen coordinates and prints the
  *  screen and the world coordinates in the coord dialog.
  */
-void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
+void x_dialog_coord_update_display(GschemToplevel *w_current, int sx, int sy, int wx, int wy)
 {
   GtkWidget *Dialog;
   GedaEntry *screen_entry;
   GedaEntry *world_entry;
 
   char *string;
-  int   world_x, world_y;
 
   Dialog = w_current->cowindow;
   screen_entry = GEDA_OBJECT_GET_DATA(Dialog, "screen");
   world_entry  = GEDA_OBJECT_GET_DATA(Dialog, "world");
 
-  string = geda_sprintf("(%d, %d)", x, y);
+  string = geda_sprintf("(%d, %d)", sx, sy);
   geda_entry_set_text(screen_entry, string);
   GEDA_FREE(string);
 
-  SCREENtoWORLD (w_current, x, y, &world_x, &world_y);
-
-  if (w_current->snap != SNAP_OFF) {
-    world_x = snap_grid (w_current, world_x);
-    world_y = snap_grid (w_current, world_y);
-  }
-
-  string = geda_sprintf("(%d, %d)", world_x, world_y);
+  string = geda_sprintf("(%d, %d)", wx, wy);
   geda_entry_set_text(world_entry, string);
   GEDA_FREE(string);
 }
@@ -551,7 +543,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
   }
 
   /* always update the coords when the dialog is requested */
-  x_dialog_coord_update_display(w_current, 0, 0);
+  x_dialog_coord_update_display(w_current, 0, 0, 0, 0);
 }
 /** @} end-subgroup Coordinates-Dialog  */
 /***************** End of coord dialog box **************************/
