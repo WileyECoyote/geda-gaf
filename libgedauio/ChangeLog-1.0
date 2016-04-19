@@ -10,6 +10,9 @@
 
     * src/widgets/geda_label.c: Add function is_a_geda_label.
 
+    * tests/test_font_dialog.c: Add tests for constructing GedaFontDialog
+      widgets.
+
 2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Add declarations for geda_entry_set_text and
