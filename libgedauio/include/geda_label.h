@@ -56,7 +56,7 @@ typedef struct _GdkRGBA  GdkRGBA;
 #define GEDA_TYPE_LABEL            (geda_label_get_type ())
 #define GEDA_LABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_LABEL, GedaLabel))
 #define GEDA_LABEL_CLASS(class)    (G_TYPE_CHECK_CLASS_CAST ((class),  GEDA_TYPE_LABEL, GedaLabelClass))
-#define GEDA_IS_LABEL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_LABEL))
+#define GEDA_IS_LABEL(obj)         (is_a_geda_label((GedaLabel*)obj))
 #define GEDA_IS_LABEL_CLASS(class) (G_TYPE_CHECK_CLASS_TYPE ((class),  GEDA_TYPE_LABEL))
 #define GEDA_LABEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_LABEL, GedaLabelClass))
 
@@ -75,18 +75,19 @@ typedef struct _GedaLabelClass GedaLabelClass;
 struct _GedaLabel
 {
   GtkMisc        misc;
+  GedaType       instance_type;
 
   PangoAttrList *attrs;
   PangoAttrList *markup_attrs;
   PangoLayout   *layout;
 
-  char   *label;
-  char   *text;
-  double  angle;
+  char          *label;
+  char          *text;
+  double         angle;
 
-  int     wrap_width;
-  int     width_chars;
-  int     max_width_chars;
+  int            wrap_width;
+  int            width_chars;
+  int            max_width_chars;
 
   /*< private >*/
   GedaLabelData *priv;
@@ -112,6 +113,7 @@ extern "C" {
 #endif
 
 GedaType    geda_label_get_type                     (void) GEDA_CONST;
+bool        is_a_geda_label                         (GedaLabel      *label);
 
 GtkWidget  *geda_label_new                          (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_mnemonic_label_new                 (const char     *str) __attribute__((warn_unused_result));

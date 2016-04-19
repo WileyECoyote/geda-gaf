@@ -1406,6 +1406,7 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   gtk_widget_set_app_paintable (GTK_WIDGET (label), TRUE);
   gtk_widget_set_can_default   (GTK_WIDGET (label), FALSE);
 
+  label->instance_type    = geda_label_get_type();
   priv->font_map          = pango_cairo_font_map_new ();
 
   label->width_chars      = -1;
@@ -1502,6 +1503,15 @@ geda_label_get_type (void)
   }
 
   return geda_label_type;
+}
+
+bool
+is_a_geda_label (GedaLabel *label)
+{
+  if (G_IS_OBJECT(label)) {
+    return (geda_label_get_type() == label->instance_type);
+  }
+  return FALSE;
 }
 
 typedef struct {
