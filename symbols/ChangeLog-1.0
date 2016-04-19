@@ -4,6 +4,10 @@
 
     * dec/DC004C-1.sym: Revise attributes, update pintype, add missing.
 
+    * lineartech/LTC4358-1.sym: Add symbol: High Side OR-ing FET Controller.
+
+    * lineartech/LTC4358-2.sym: Add symbol: alternate pin layout for LTC4358.
+
 2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC4357-1.sym: Add symbol: High Side OR-ing FET Controller.
