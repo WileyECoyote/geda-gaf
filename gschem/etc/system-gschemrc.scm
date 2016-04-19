@@ -316,8 +316,8 @@
 ; These numbers are NOT the true size of the window, but of the drawing area.
 ;
 ;(window-size 650 487)  ; Good size for 800x600
-(window-size 900 650)  ; Good size for 1024x768
-;(window-size 950 712)  ; Good size for 1152x864
+;(window-size 900 650)  ; Good size for 1024x768
+(window-size 950 712)  ; Good size for 1152x864
 ;(window-size 1100 825) ; Good size for 1280x1024
 
 ; world-size width height border
@@ -401,7 +401,7 @@
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show console Window)
 ;
-(console-window "enabled")
+;(console-window "enabled")
 ;(console-window "disabled")
 
 ; console-window-type string
@@ -1131,7 +1131,7 @@
 ; Sets the default size of the text marker, this value is ignored
 ; when the text-origin-marker is disabled.
 ;
-;(text-marker-size 15)
+;(text-marker-size 16)
 
 ; text-marker-threshold
 ;
