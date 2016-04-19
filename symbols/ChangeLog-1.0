@@ -1,3 +1,9 @@
+2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * dec/DC003C-1.sym: Revise attributes, update pintype, add missing.
+
+    * dec/DC004C-1.sym: Revise attributes, update pintype, add missing.
+
 2016-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC4357-1.sym: Add symbol: High Side OR-ing FET Controller.
