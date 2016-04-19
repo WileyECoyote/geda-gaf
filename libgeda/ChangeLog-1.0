@@ -1,3 +1,8 @@
+2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_attrib_object.c: Add more tests, include test for functions
+      geda_attrib_object_attach and geda_attrib_object_attach_list.
+
 2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_attrib_object.c: Add test module for src/object/o_attrib.c

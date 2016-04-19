@@ -26,6 +26,7 @@
 
 #include <libgeda.h>
 #include <prototype_priv.h>
+#include <geda_colors.h>
 
 #include "test-suite.h"
 
@@ -57,7 +58,7 @@
  *
  *      O0301   geda_attrib_object_add
  *      O0302   geda_attrib_object_append_changed_hook
- *              geda_attrib_object_attach
+ *      O0303   geda_attrib_object_attach
  *              geda_attrib_object_attach_list
  *              geda_attrib_object_detach
  *              geda_attrib_object_detach_all
@@ -88,8 +89,6 @@ int notify_attribute;
 static void
 test_attrib_object_notify (GedaToplevel *toplevel, GedaObject *object)
 {
-  notify_attribute = 0;
-
   if (GEDA_IS_TOPLEVEL(toplevel))
     notify_attribute++;
 
@@ -107,7 +106,7 @@ check_add(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0,0, 10, 1, 1, "A=a");
+  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
 
@@ -144,7 +143,7 @@ check_append_changed_hook(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0,0, 10, 1, 1, "A=a");
+  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
 
@@ -153,9 +152,12 @@ check_append_changed_hook(GedaToplevel *toplevel)
   /* Note leaving connected */
   geda_attrib_append_changed_hook (page, (AttribsChangedFunc) test_attrib_object_notify,
                                          toplevel);
+
+  notify_attribute = 0;
+
   geda_attrib_add(object, attrib);
 
-  if (notify_attribute < 2) {
+  if (notify_attribute != 2) {
     fprintf(stderr, "FAILED: (O030201) geda_attrib_append_changed_hook\n");
     result++;
   }
@@ -169,8 +171,142 @@ check_append_changed_hook(GedaToplevel *toplevel)
   return result;
 }
 
-/* geda_attrib_attach                     geda_attrib_object_attach */
-/* geda_attrib_attach_list                geda_attrib_object_attach_list */
+int
+check_attrib_attach (GedaToplevel *toplevel)
+{
+  int result = 0;
+  int color;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object1 = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib  = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  s_page_append_object(page, object1);
+
+  /* === Function 03: geda_attrib_object_attach === */
+
+  notify_attribute = 0;
+
+  /* Note FALSE = do not modify color */
+  geda_attrib_attach(object1, attrib, FALSE);
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O030301A) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  color = geda_object_get_color(attrib);
+  if (color != 3) {
+    fprintf(stderr, "FAILED: (O030301B) geda_attrib_object_attach color <%d>\n", color);
+    result++;
+  }
+
+  attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+
+  /* Note TRUE = set attribute color */
+  geda_attrib_attach(object1, attrib, TRUE);
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O030302A) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  color = geda_object_get_color(attrib);
+  if (color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "FAILED: (O030302B) geda_attrib_object_attach color <%d>\n", color);
+    result++;
+  }
+
+  /* Try to attach the same object again */
+  geda_attrib_attach(object1, attrib, TRUE);
+
+  if (notify_attribute != 0) { /* Should not notify since no change made */
+    fprintf(stderr, "FAILED: (O030303) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  GedaObject *object2 = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  /* Try to attach a non-text object */
+  geda_attrib_attach(object1, object2, FALSE);
+
+  if (notify_attribute != 0) { /* Should not notify since no change made */
+    fprintf(stderr, "FAILED: (O030304) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  s_page_append_object(page, object2);
+
+  /* Try to attach last attrib to object2 when already attached to object1 */
+  geda_attrib_attach(object2, attrib, FALSE);
+
+  if (notify_attribute != 0) { /* Should not notify since no change made */
+    fprintf(stderr, "FAILED: (O030305) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  if (g_list_length(object1->attribs) != 2) { /* Just checking count here */
+    fprintf(stderr, "FAILED: (O030306) geda_attrib_object_attach\n");
+    result++;
+  }
+
+  s_page_remove_object (page, object2);
+  s_page_remove_object (page, object1);
+
+  g_object_unref (object2);
+  g_object_unref (object1);
+
+  return result;
+}
+
+int
+check_attrib_attach_list (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page   = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+
+  s_page_append_object(page, object);
+
+  /* === Function 03: geda_attrib_object_attach_list === */
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+
+  /* Note TRUE = set attribute color */
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  if (notify_attribute != 4) {
+    fprintf(stderr, "FAILED: (O030401) geda_attrib_object_attach_list\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
 /* geda_attrib_detach                     geda_attrib_object_detach */
 /* geda_attrib_detach_all                 geda_attrib_object_detach_all */
 /* geda_attrib_find_floating              geda_attrib_object_find_floating */
@@ -241,6 +377,13 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_append_changed_hook\n\n");
+    }
+
+    if (setjmp(point) == 0) {
+      result = check_attrib_attach(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_attach\n\n");
     }
 
 
