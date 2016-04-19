@@ -34,7 +34,9 @@
 
 #include <glib.h>
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct _GedaCompletion     GedaCompletion;
 

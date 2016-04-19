@@ -70,7 +70,9 @@ struct _GedaBulbClass
   void (*group_changed) (GedaBulb *bulb);
 };
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType   geda_bulb_get_type                         (void) GEDA_CONST;
 bool       is_a_geda_bulb                             (GedaBulb      *bulb);
