@@ -782,6 +782,8 @@ geda_bulb_instance_init (GTypeInstance *instance, void *class)
   GtkButton *button = (GtkButton*)bulb;
   GtkWidget *widget = (GtkWidget*)bulb;
 
+  bulb->instance_type = geda_bulb_get_type();
+
   if (off_pixbuf == NULL) {
     off_pixbuf = gdk_pixbuf_new_from_xpm_data (geda_bulb_off_xpm);
   }
@@ -855,6 +857,15 @@ GedaType geda_bulb_get_type (void)
   }
 
   return geda_bulb_type;
+}
+
+bool
+is_a_geda_bulb (GedaBulb *bulb)
+{
+  if (G_IS_OBJECT(bulb)) {
+    return (geda_bulb_get_type() == bulb->instance_type);
+  }
+  return FALSE;
 }
 
 /* -------------------------------------------------------------- */

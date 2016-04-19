@@ -1,7 +1,12 @@
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_bulb.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE,
+      add member instance_type and declarations for is_a_geda_bulb.
+
     * include/geda_label.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE,
       add member instance_type and declarations for is_a_geda_label.
+
+    * src/widgets/geda_bulb.c: Add function is_a_geda_bulb.
 
     * src/widgets/geda_label.c: Add function is_a_geda_label.
 
