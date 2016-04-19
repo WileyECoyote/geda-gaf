@@ -82,7 +82,7 @@ its behaviour:
       The font to use when drawing text.  By default, this is "Arial".
   "color-map"  [pointer]
       A GArray of libgeda `COLOR' structures which is used as the
-      color map for drawing.  Note that the EdaRenderer does not make
+      color map for drawing. Note that the EdaRenderer does not make
       a copy of this array, and doesn't free it when the EdaRenderer
       is destroyed.
   "override-color"  [int] Index of a colour to force all drawing to
@@ -97,8 +97,8 @@ its behaviour:
 A EdaRendererFlags value can include any of these flags:
 
   EDA_RENDERER_FLAG_HINTING
-      Enable line hinting.  Set this flag if when rendering to a screen
-      or to a raster image file, because it makes things look prettier.
+      Enable line hinting. Set this flag when rendering to a screen
+      or raster image file, because it makes things look prettier.
   EDA_RENDERER_FLAG_PICTURE_OUTLINE
       Draw only the outlines of pictures, and not their contents.
   EDA_RENDERER_FLAG_TEXT_HIDDEN

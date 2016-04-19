@@ -1341,20 +1341,19 @@ eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
   va_end (coordinates);
 }
 
+/* Draw Grips for an Arc
+ * An arc has three grips:
+ * <DL>
+ *   <DT>*</DT><DD>one at the center that allows changes on the
+ *                 radius - at (<B>x</B>,<B>y</B>).
+ *   <DT>*</DT><DD>one at the start of the arc - at (<B>x1</B>,<B>y1</B>).
+ *   <DT>*</DT><DD>one at the end of the arc - at (<B>x2</B>,<B>y2</B>).
+ */
 static void
 eda_renderer_draw_arc_grips (EdaRenderer *renderer, GedaObject *object)
 {
   double radius, start_angle, arc_sweep;
   int x1, y1, x2, y2, x3, y3;
-
-  /*
-   * An arc has three grips:
-   * <DL>
-   *   <DT>*</DT><DD>one at the center that allows changes on the
-   *                 radius - at (<B>x</B>,<B>y</B>).
-   *   <DT>*</DT><DD>one at the start of the arc - at (<B>x1</B>,<B>y1</B>).
-   *   <DT>*</DT><DD>one at the end of the arc - at (<B>x2</B>,<B>y2</B>).
-   */
 
   x1 = object->arc->x;
   y1 = object->arc->y;
@@ -1686,8 +1685,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
   int ret_val = FALSE;
   int visible;
 
-  //visible = o_get_is_visible(object);
-
   visible = object->visibility != INVISIBLE;
 
   /* First check if this is hidden text. */
@@ -1970,7 +1967,6 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
   }
 
   cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
-
   cairo_font_options_set_hint_metrics (EdaFontOptions, CAIRO_HINT_METRICS_OFF);
 
   renderer->priv->override_color = -1;

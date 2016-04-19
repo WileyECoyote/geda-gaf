@@ -209,6 +209,7 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
   double offset;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
+    /* outline box */
     cairo_rectangle (cr, x1, y1, (x2 - x1), (y2 - y1));
     return;
   }

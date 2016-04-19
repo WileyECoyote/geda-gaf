@@ -27,7 +27,7 @@
 #define __EDA_RENDERER_H__
 
 /*! \def EDAR_DEFAULT_MARKER_DIST_THLD
- *  The text marker size threashold, "x" values smaller then this value
+ *  The text marker size threshold, "x" values smaller then this value
  *  are not drawn.
  */
 #define EDAR_DEFAULT_MARKER_DIST_THLD      2.0
