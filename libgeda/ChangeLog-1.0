@@ -7,6 +7,9 @@
       freeze/thaw and only set the page change flag if at least one if the
       attributes was on a page, revise comments
 
+    * tests/test_attrib_object.c: Add more tests, include test for functions
+      geda_attrib_object_detach and geda_attrib_object_detach_all.
+
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add Doxygen comments for geda_attrib_object_

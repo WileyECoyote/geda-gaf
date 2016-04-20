@@ -59,8 +59,8 @@
  *      O0301   geda_attrib_object_add
  *      O0302   geda_attrib_object_append_changed_hook
  *      O0303   geda_attrib_object_attach
- *              geda_attrib_object_attach_list
- *              geda_attrib_object_detach
+ *      O0304   geda_attrib_object_attach_list
+ *      O0305   geda_attrib_object_detach
  *              geda_attrib_object_detach_all
  *              geda_attrib_object_find_floating
  *              geda_attrib_object_find_attrib_by_name
@@ -102,6 +102,8 @@ check_add(GedaToplevel *toplevel)
 {
   int result = 0;
 
+  GList      *list;
+
   Page       *page   = geda_toplevel_get_current_page(toplevel);
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
@@ -112,12 +114,21 @@ check_add(GedaToplevel *toplevel)
 
   /* === Function 01: geda_attrib_object_add === */
 
-  /* The functionality of the change-notify feature is not check
-   * here since geda_attrib_append_changed_hook if function #2 */
+  geda_attrib_add(object, NULL);
+
+  list = object->attribs;
+
+  if (list != NULL) {
+    fprintf(stderr, "FAILED: (O030100) geda_attrib_object_add\n");
+    result++;
+  }
+
+  /* The functionality of the change-notify feature is not checked
+   * here since geda_attrib_append_changed_hook is function #2 */
 
   geda_attrib_add(object, attrib);
 
-  GList *list = object->attribs;
+  list = object->attribs;
 
   if (list == NULL) {
     fprintf(stderr, "FAILED: (O030101A) geda_attrib_object_add\n");
@@ -148,6 +159,13 @@ check_append_changed_hook(GedaToplevel *toplevel)
   s_page_append_object(page, object);
 
   /* === Function 02: geda_attrib_object_append_changed_hook === */
+
+  geda_attrib_append_changed_hook (page, (AttribsChangedFunc) NULL, toplevel);
+
+  if (page->attribs_changed_hooks) {
+    fprintf(stderr, "FAILED: (O030200) geda_attrib_append_changed_hook\n");
+    result++;
+  }
 
   /* Note leaving connected */
   geda_attrib_append_changed_hook (page, (AttribsChangedFunc) test_attrib_object_notify,
@@ -186,6 +204,15 @@ check_attrib_attach (GedaToplevel *toplevel)
   s_page_append_object(page, object1);
 
   /* === Function 03: geda_attrib_object_attach === */
+
+  notify_attribute = 0;
+
+  geda_attrib_attach(object1, NULL, FALSE);
+
+  if (notify_attribute != 0) {
+    fprintf(stderr, "FAILED: (O030300) geda_attrib_object_attach\n");
+    result++;
+  }
 
   notify_attribute = 0;
 
@@ -281,11 +308,18 @@ check_attrib_attach_list (GedaToplevel *toplevel)
 
   s_page_append_object(page, object);
 
-  /* === Function 03: geda_attrib_object_attach_list === */
+  /* === Function 04: geda_attrib_object_attach_list === */
+
+  geda_attrib_attach_list(object, NULL, FALSE);
 
   GList *list;
 
-  list = g_list_append(NULL, attrib1);
+  list = g_list_append(NULL, attrib2);
+  list = g_list_remove(list, attrib2);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  list = g_list_append(list, attrib1);
   list = g_list_append(list, attrib2);
 
   /* Note TRUE = set attribute color */
@@ -307,28 +341,155 @@ check_attrib_attach_list (GedaToplevel *toplevel)
   return result;
 }
 
-/* geda_attrib_detach                     geda_attrib_object_detach */
-/* geda_attrib_detach_all                 geda_attrib_object_detach_all */
-/* geda_attrib_find_floating              geda_attrib_object_find_floating */
-/* geda_attrib_find_attrib_by_name        geda_attrib_object_find_attrib_by_name */
-/* geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name */
-/* geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks */
-/* geda_attrib_get_attached               geda_attrib_object_get_attached */
-/* geda_attrib_get_name_value             geda_attrib_object_get_name_value */
-/* geda_attrib_is_attached_to             geda_attrib_object_is_attached_to */
-/* geda_attrib_is_inherited               geda_attrib_object_is_inherited */
-/* geda_attrib_new_attached               geda_attrib_object_new_attached */
-/* geda_attrib_print                      geda_attrib_object_print */
-/* geda_attrib_remove                     geda_attrib_object_remove */
-/* geda_attrib_return_attribs             geda_attrib_object_return_attribs */
-/* geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name */
-/* geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name */
-/* geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name */
-/* geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name */
-/* geda_attrib_set_integer_value          geda_attrib_object_set_integer_value */
-/* geda_attrib_set_value                  geda_attrib_object_set_value */
-/* geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value */
-/* geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks */
+int
+check_attrib_detach (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+
+  s_page_append_object(page, object);
+  s_page_append_object(page, attrib1);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+  /* Note TRUE = set attribute color */
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  notify_attribute = 0;
+
+  /* === Function 05: geda_attrib_object_detach === */
+
+  geda_attrib_detach(attrib2);
+
+  /* attrib2 is floating so there should be no notification */
+  if (notify_attribute != 0) {
+    fprintf(stderr, "FAILED: (O030501) geda_attrib_object_detach\n");
+    result++;
+  }
+  notify_attribute = 0;
+
+  geda_attrib_detach(attrib1);
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O030502A) geda_attrib_object_detach\n");
+    result++;
+  }
+  notify_attribute = 0;
+
+  if (g_list_length(object->attribs) != 1) { /* Just checking count here */
+    fprintf(stderr, "FAILED: (O030502B) geda_attrib_object_detach\n");
+    result++;
+  }
+
+  list = object->attribs;
+
+  if (list->data != attrib3) { /* The only one still atached */
+    fprintf(stderr, "FAILED: (O030503) geda_attrib_object_detach\n");
+    result++;
+  }
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_attrib_detach_all (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+
+  s_page_append_object(page, object);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  notify_attribute = 0;
+
+  /* === Function 06: geda_attrib_object_detach_all === */
+
+  geda_attrib_detach_all (object);
+
+  if (object->attribs) {
+    fprintf(stderr, "FAILED: (O030601) geda_attrib_object_detach_all\n");
+    result++;
+  }
+
+  /* All of the attribute were floating so there should be no notification */
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O030602) geda_attrib_object_detach_all %d\n", notify_attribute);
+    result++;
+  }
+  notify_attribute = 0;
+
+  s_page_append_object(page, attrib1);          /* Add one attrib to the page */
+
+  geda_attrib_attach_list(object, list, FALSE); /* reattach the attributes */
+
+  notify_attribute = 0;
+
+  geda_attrib_detach_all (object);
+
+  if (notify_attribute != 4) {
+    fprintf(stderr, "FAILED: (O030603) geda_attrib_object_detach_all\n");
+    result++;
+  }
+  notify_attribute = 0;
+
+  s_page_remove_object (page, object);
+  g_list_free(list);
+  g_object_unref (object);
+
+  return result;
+}
+
+  /* === Function 07: geda_attrib_find_floating              geda_attrib_object_find_floating  === */
+  /* === Function 08: geda_attrib_find_attrib_by_name        geda_attrib_object_find_attrib_by_name  === */
+  /* === Function 09: geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name  === */
+  /* === Function 10: geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks  === */
+  /* === Function 11: geda_attrib_get_attached               geda_attrib_object_get_attached  === */
+  /* === Function 12: geda_attrib_get_name_value             geda_attrib_object_get_name_value  === */
+  /* === Function 13: geda_attrib_is_attached_to             geda_attrib_object_is_attached_to  === */
+  /* === Function 14: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
+  /* === Function 15: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
+  /* === Function 16: geda_attrib_print                      geda_attrib_object_print  === */
+  /* === Function 17: geda_attrib_remove                     geda_attrib_object_remove  === */
+  /* === Function 18: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
+  /* === Function 19: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
+  /* === Function 20: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
+  /* === Function 21: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
+  /* === Function 22: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
+  /* === Function 23: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
+  /* === Function 24: geda_attrib_set_value                  geda_attrib_object_set_value  === */
+  /* === Function 25: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
+  /* === Function 26: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
 
 /** @} endgroup test-attrib-object */
 
@@ -386,6 +547,19 @@ main (int argc, char *argv[])
       fprintf(stderr, "Caught signal checking geda_attrib_object_attach\n\n");
     }
 
+    if (setjmp(point) == 0) {
+      result = check_attrib_detach(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking check_attrib_detach\n\n");
+    }
+
+    if (setjmp(point) == 0) {
+      result = check_attrib_detach_all(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking check_attrib_detach_all\n\n");
+    }
 
   }
   else {
