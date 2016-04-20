@@ -1,5 +1,8 @@
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Add Doxygen comments for geda_attrib_object_
+      append_changed_hook, edit other comment blocks.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions
       geda_attrib_object_attach and geda_attrib_object_attach_list.
 

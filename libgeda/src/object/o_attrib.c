@@ -105,15 +105,15 @@ geda_attrib_object_add(GedaObject *object, GedaObject *item)
 }
 
 /*!
- * \todo Finish function documentation!!!
- * \brief
+ * \brief Append Attribute Change List
  * \par Function Description
- *
+ *  Appends \a func to the list of functions to be called when
+ *  an attribute is modified passing \a data to the function.
  */
 void
-geda_attrib_object_append_changed_hook (Page *page,
+geda_attrib_object_append_changed_hook (Page              *page,
                                         AttribsChangedFunc func,
-                                        void *data)
+                                        void              *data)
 {
   AttribsChangedHook *new_hook;
 
@@ -267,7 +267,7 @@ geda_attrib_object_detach_all(GedaObject *object)
  *
  * \return GList of floating attributes from the input list
  *
- * \note Caller must g_list_free returned list.
+ * \note Caller should g_list_free returned list.
  */
 GList*
 geda_attrib_object_find_floating (const GList *list)
@@ -413,15 +413,15 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
 }
 
 /*!
- * \brief Check whether a attrib is attached to another object
+ * \brief Query whether an attrib is attached to a specific object
  * \par Function Description
  *  This function checks whether the object \a attrib is attached to
  *  the \a object.
  *
- * \param [in]  attrib     The attribute to be checket.
- * \param [in]  object     The object where you want to add item as an attribute.
+ * \param [in]  attrib  The attribute to be checked.
+ * \param [in]  object  Object to query.
  *
- * \return TRUE if attrib is an attribute of object, FALSE otherwise
+ * \return TRUE if attrib is an attribute of object, otherwise FALSE
  */
 bool
 geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObject *object)
@@ -459,7 +459,7 @@ geda_attrib_object_is_inherited (const GedaObject *attrib)
  *  is not NULL, if the parent object is on a page, then the
  *  new attribute will be appended to the same page.
  *
- * \param [in] parent          GedaObject the new attribute is to be attached to.
+ * \param [in] parent          Object the new attribute is to be attached to.
  * \param [in] name            Attribute name string.
  * \param [in] value           Attribute value string.
  * \param [in] visibility      Attribute GedaObject visibility.
@@ -610,12 +610,12 @@ geda_attrib_object_new_attached(GedaObject *parent,
   return new_obj;
 }
 
-/*! \brief Print all attributes to a Postscript document
- *
- *  \par Function Description
+/*!
+ * \brief Print all attributes to a Postscript document
+ * \par Function Description
  *  Print all attributes to a Postscript document.
  *
- *  \param [in] attributes  List of attributes to print.
+ * \param [in] attributes  List of attributes to print.
  */
 void
 geda_attrib_object_print(const GList *attributes)
@@ -884,20 +884,21 @@ geda_attrib_object_search_attrib_list_by_name (const GList *list,
   return value;
 }
 
-/*! \brief Search attached attributes by name.
- *  \par Function Description
+/*!
+ * \brief Search attached attributes by name.
+ * \par Function Description
  *  Search for attribute by name.
  *
  *  Counter is the n'th occurance of the attribute, and starts searching
- *  from zero.  Zero is the first occurance of an attribute.
+ *  from zero. Zero is the first occurance of an attribute.
  *
- *  \param [in] object   The GedaObject whos attached attributes to search.
- *  \param [in] name     Character string with attribute name to search for.
- *  \param [in] counter  Which occurance to return.
+ * \param [in] object   The GedaObject whos attached attributes to search.
+ * \param [in] name     Character string with attribute name to search for.
+ * \param [in] counter  Which occurance to return.
  *
- *  \return Character string with attribute value, NULL otherwise.
+ * \return Character string with attribute value, NULL otherwise.
  *
- *  \note Caller must release the returned character string.
+ * \note Caller should release the returned character string.
  */
 char*
 geda_attrib_object_search_attached_by_name (const GedaObject *object,
@@ -921,7 +922,7 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
  *
  * \return Character string with attribute value, NULL otherwise.
  *
- * \note Caller must release the returned character string.
+ * \note Caller should release the returned character string.
  */
 char*
 geda_attrib_object_search_floating_by_name (const GList *list,
@@ -938,20 +939,21 @@ geda_attrib_object_search_floating_by_name (const GList *list,
   return result;
 }
 
-/*! \brief Search inherited attribute by name.
- *  \par Function Description
+/*!
+ * \brief Search inherited attribute by name.
+ * \par Function Description
  *  Search for attribute by name.
  *
  *  Counter is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- *  \param [in] object   The GedaObject whos inherited attributes to search.
- *  \param [in] name     Character string with attribute name to search for.
- *  \param [in] counter  Which occurance to return.
+ * \param [in] object   The GedaObject whos inherited attributes to search.
+ * \param [in] name     Character string with attribute name to search for.
+ * \param [in] counter  Which occurance to return.
  *
- *  \return Character string with attribute value, NULL otherwise.
+ * \return Character string with attribute value, NULL otherwise.
  *
- *  \note Caller must release the returned character string.
+ * \note Caller should release the returned character string.
  */
 char*
 geda_attrib_object_search_inherited_by_name (const GedaObject *object,
@@ -1054,7 +1056,7 @@ geda_attrib_object_set_value (const GedaObject *attrib,
  *  FALSE, in that case \a *name_ptr and \a *value_ptr are set to NULL.
  *
  *  \a name_ptr and/or \a value_ptr can be NULL.
- *  If not NULL, the caller must GEDA_FREE these returned strings.
+ *  If not NULL, the caller should GEDA_FREE these returned strings.
  *
  * \note
  *  If you get an invalid attribute (improper) with a name and no
