@@ -34,10 +34,12 @@
 #ifndef __GEDA_OBJECT_LIST_MAC__
 #define __GEDA_OBJECT_LIST_MAC__
 
-#define geda_copy_list         geda_object_list_copy_all
-#define geda_mirror_list       geda_object_list_mirror
-#define geda_rotate_list       geda_object_list_rotate
-#define geda_translate_list    geda_object_list_translate
-#define geda_list_set_color    geda_object_list_set_color
+#define geda_copy_list           geda_object_list_copy_all
+#define geda_list_find_floating  geda_object_list_find_floating
+#define geda_find_attrib_by_name geda_object_list_find_attrib_by_name
+#define geda_mirror_list         geda_object_list_mirror
+#define geda_rotate_list         geda_object_list_rotate
+#define geda_translate_list      geda_object_list_translate
+#define geda_list_set_color      geda_object_list_set_color
 
 #endif /* __GEDA_OBJECT_LIST_MAC__ */

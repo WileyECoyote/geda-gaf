@@ -18,7 +18,8 @@ check_geda = \
 	test_text
 
 check_object = \
-	test_arc_object
+	test_arc_object \
+	test_attrib_object
 
 check_utility = \
 	test_utility
@@ -35,7 +36,8 @@ tests: $(check_PROGRAMS)
 
 AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgeda \
-	-I$(top_srcdir) -I$(top_srcdir)/include
+	-I$(top_srcdir) -I$(top_srcdir)/include \
+	-I$(top_srcdir)/libgedacolor/include
 
 AM_CFLAGS = -DWOW \
 	$(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \

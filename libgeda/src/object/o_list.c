@@ -133,6 +133,91 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
   return(dest);
 }
 
+/*!
+ * \brief Find all floating attributes in the given object list.
+ * \par Function Description
+ *  Find all floating attributes in the given object list.
+ *
+ * \param [in] list  GList of Objects to search for floating attributes.
+ *
+ * \return GList of floating attributes from the input list
+ *
+ * \note Caller should g_list_free returned list.
+ *
+ * \todo This function should not be called geda_attrib_object since it
+ *       does not accept an object as a argument!
+ */
+GList*
+geda_object_list_find_floating (const GList *list)
+{
+  GList *floating_attributes = NULL;
+  const  GList *iter;
+
+  for (iter = list; iter != NULL; iter = iter->next) {
+
+    GedaObject *o_current = iter->data;
+
+    /* Skip non text objects, attached attributes and text which doesn't
+     * constitute a valid attributes (e.g. general text placed on the page)
+     */
+    if (o_current->type == OBJ_TEXT &&
+        o_current->attached_to == NULL &&
+        o_get_is_valid_attribute (o_current)) {
+
+      floating_attributes = g_list_prepend (floating_attributes, o_current);
+    }
+  }
+
+  return g_list_reverse (floating_attributes);
+}
+
+/*!
+ * \brief Find an attribute in a list.
+ * \par Function Description
+ *  Case sensitive search for attribute by name. Counter is the n'th
+ *  occurance of the attribute, and starts searching from zero.  Zero
+ *  is the first occurance of an attribute.
+ *
+ * \param [in] list   GList of attributes to search.
+ * \param [in] name   Character string with attribute name to search for.
+ * \param [in] count  Which occurance to return.
+ *
+ * \return The n'th attribute object in the given list with the given name.
+ * \todo This function should not be called geda_attrib_object since it
+ *       does not accept an object as a argument!
+ */
+GedaObject*
+geda_object_list_find_attrib_by_name (const GList *list,
+                                      const char  *name,
+                                            int    count)
+{
+  const GList *iter;
+  char *found_name;
+  int   internal_counter = 0;
+
+  for (iter = list; iter != NULL; iter = iter->next) {
+
+    GedaObject *attribute = iter->data;
+
+    g_return_val_if_fail (attribute->type == OBJ_TEXT, NULL);
+
+    if (!geda_attrib_object_get_name_value (attribute, &found_name, NULL))
+      continue;
+
+    if (strcmp (name, found_name) == 0) {
+      if (internal_counter == count) {
+        GEDA_FREE (found_name);
+        return attribute;
+      }
+      internal_counter++;
+    }
+
+    GEDA_FREE (found_name);
+  }
+
+  return NULL;
+}
+
 /*! \brief Translates a glist of Objects
  *  \par Function Description
  *  Calls o_translate_object for each glist data member

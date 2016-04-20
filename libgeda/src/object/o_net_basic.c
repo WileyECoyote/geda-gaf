@@ -553,10 +553,11 @@ o_net_consolidate_segments (GedaObject *object)
   return(0);
 }
 
-/*! \brief consolidate all net objects
- *  \par Function Description
- *  This function consolidates all net objects in a page until no more
- *  consolidations are possible.
+/*!
+ * \brief consolidate all net objects
+ * \par Function Description
+ *  This function consolidates all net objects in a page until no
+ *  more consolidations are possible.
  *
  *  \param toplevel  The GedaToplevel object.
  *  \param page      The Page to consolidate nets in.

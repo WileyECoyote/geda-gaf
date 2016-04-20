@@ -162,8 +162,6 @@ extern "C" {
          void    geda_attrib_object_attach_list              (GedaObject *object, const GList *attr_list, int set_color);
          void    geda_attrib_object_detach                   (GedaObject *object);
          void    geda_attrib_object_detach_all               (GedaObject *object);
-        GList   *geda_attrib_object_find_floating            (const GList  *list);
-   GedaObject   *geda_attrib_object_find_attrib_by_name      (const GList  *list,   const char *name, int count);
    GedaObject   *geda_attrib_object_first_attrib_by_name     (const GedaObject *object,       char *name);
          void    geda_attrib_object_freeze_hooks             (GedaObject *object);
         GList   *geda_attrib_object_get_attached             (const GedaObject *object);
@@ -292,6 +290,8 @@ extern "C" {
 
 /* o_list.c */
         GList   *geda_object_list_copy_all                 (const GList *src_list, GList *dest_list);
+        GList   *geda_object_list_find_floating            (const GList  *list);
+   GedaObject   *geda_object_list_find_attrib_by_name      (const GList  *list,   const char *name, int count);
          void    geda_object_list_mirror                   (const GList *list, int x, int y);
          void    geda_object_list_rotate                   (const GList *list, int x, int y, int angle);
          void    geda_object_list_translate                (const GList *list, int dx, int dy);

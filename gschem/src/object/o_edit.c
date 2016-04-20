@@ -1167,14 +1167,14 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-            attr_old = geda_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+            attr_old = geda_find_attrib_by_name (o_current->attribs, name, 0);
             geda_attrib_object_set_value (attr_old, name,  new_value);
             break;
           }
           index++;
         } while (keepers[index]);
 
-        attr_old = geda_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+        attr_old = geda_find_attrib_by_name (o_current->attribs, name, 0);
         if (attr_old != NULL && (attr_old->text->size != attr_new->text->size))
         {
           attr_old->dont_redraw = TRUE;

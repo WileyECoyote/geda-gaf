@@ -432,8 +432,8 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
   if (geda_attrib_object_get_name_value (attrib, &name,  NULL)) {
 
     GList *attributes = geda_attrib_return_attribs (parent);
-    GList *floating   = geda_attrib_find_floating(attributes);
-    floater           = (GedaText*)geda_attrib_find_attrib_by_name(floating, name, 0);
+    GList *floating   = geda_list_find_floating(attributes);
+    floater           = (GedaText*)geda_find_attrib_by_name(floating, name, 0);
     g_list_free (attributes);
     g_list_free (floating);
 

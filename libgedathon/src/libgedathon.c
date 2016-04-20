@@ -2815,7 +2815,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
 
     GedaObject *attrib;
 
-    attrib = geda_attrib_find_attrib_by_name (parent->attribs, name, 0);
+    attrib = geda_find_attrib_by_name (parent->attribs, name, 0);
 
     if (attrib){
 
@@ -2831,7 +2831,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
     }
     else {
       GList *all_butes = geda_attrib_return_attribs(parent);
-      attrib = geda_attrib_find_attrib_by_name (all_butes, name, 0);
+      attrib = geda_find_attrib_by_name (all_butes, name, 0);
       if (attrib){
 #if DEBUG
         if (attrib->page == NULL && page != NULL) {
@@ -2961,7 +2961,7 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
       GedaObject *attrib;
 
       if (py_complex) {
-        attrib = geda_attrib_find_attrib_by_name (object->attribs, name, 0);
+        attrib = geda_find_attrib_by_name (object->attribs, name, 0);
       }
       else {
         attrib = object;
@@ -2971,7 +2971,7 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
       }
       else {
         GList * floaters = geda_attrib_return_attribs(object);
-        attrib = geda_attrib_find_attrib_by_name (floaters, name, 0);
+        attrib = geda_find_attrib_by_name (floaters, name, 0);
         if (attrib) {
           geda_attrib_object_set_value(attrib, name, value);
           geda_attrib_object_attach (object, attrib, TRUE);

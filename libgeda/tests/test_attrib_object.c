@@ -62,8 +62,8 @@
  *      O0304   geda_attrib_object_attach_list
  *      O0305   geda_attrib_object_detach
  *              geda_attrib_object_detach_all
- *              geda_attrib_object_find_floating
- *              geda_attrib_object_find_attrib_by_name
+ *              geda_object_list_find_floating
+ *              geda_object_list_find_floating
  *              geda_attrib_object_first_attrib_by_name
  *              geda_attrib_object_freeze_hooks
  *              geda_attrib_object_get_attached
@@ -470,26 +470,24 @@ check_attrib_detach_all (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 07: geda_attrib_find_floating              geda_attrib_object_find_floating  === */
-  /* === Function 08: geda_attrib_find_attrib_by_name        geda_attrib_object_find_attrib_by_name  === */
-  /* === Function 09: geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name  === */
-  /* === Function 10: geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks  === */
-  /* === Function 11: geda_attrib_get_attached               geda_attrib_object_get_attached  === */
-  /* === Function 12: geda_attrib_get_name_value             geda_attrib_object_get_name_value  === */
-  /* === Function 13: geda_attrib_is_attached_to             geda_attrib_object_is_attached_to  === */
-  /* === Function 14: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
-  /* === Function 15: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
-  /* === Function 16: geda_attrib_print                      geda_attrib_object_print  === */
-  /* === Function 17: geda_attrib_remove                     geda_attrib_object_remove  === */
-  /* === Function 18: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
-  /* === Function 19: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
-  /* === Function 20: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
-  /* === Function 21: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
-  /* === Function 22: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
-  /* === Function 23: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
-  /* === Function 24: geda_attrib_set_value                  geda_attrib_object_set_value  === */
-  /* === Function 25: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
-  /* === Function 26: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
+  /* === Function 07: geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name  === */
+  /* === Function 08: geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks  === */
+  /* === Function 09: geda_attrib_get_attached               geda_attrib_object_get_attached  === */
+  /* === Function 10: geda_attrib_get_name_value             geda_attrib_object_get_name_value  === */
+  /* === Function 11: geda_attrib_is_attached_to             geda_attrib_object_is_attached_to  === */
+  /* === Function 12: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
+  /* === Function 13: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
+  /* === Function 14: geda_attrib_print                      geda_attrib_object_print  === */
+  /* === Function 15: geda_attrib_remove                     geda_attrib_object_remove  === */
+  /* === Function 16: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
+  /* === Function 17: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
+  /* === Function 18: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
+  /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
+  /* === Function 20: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
+  /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
+  /* === Function 22: geda_attrib_set_value                  geda_attrib_object_set_value  === */
+  /* === Function 23: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
+  /* === Function 24: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
 
 /** @} endgroup test-attrib-object */
 
@@ -529,6 +527,7 @@ main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking geda_attrib_object_add\n\n");
+    result++;
   }
 
   if (!result) {
@@ -538,29 +537,49 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_append_changed_hook\n\n");
+      result++;
     }
 
     if (setjmp(point) == 0) {
-      result = check_attrib_attach(toplevel);
+      result += check_attrib_attach(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_attach\n\n");
+      result++;
     }
 
     if (setjmp(point) == 0) {
-      result = check_attrib_detach(toplevel);
+      result += check_attrib_detach(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking check_attrib_detach\n\n");
+      result++;
     }
 
     if (setjmp(point) == 0) {
-      result = check_attrib_detach_all(toplevel);
+      result += check_attrib_detach_all(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking check_attrib_detach_all\n\n");
+      result++;
+    }
+/*
+    if (setjmp(point) == 0) {
+      result += check_attrib_find_floating(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_object_list_find_floating\n\n");
+      result++;
     }
 
+    if (setjmp(point) == 0) {
+      result += check_attrib_find_by_name(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_object_list_find_floating\n\n");
+      result++;
+    }
+    */
   }
   else {
     fprintf(stderr, "discontinuing checks for src/object/o_attrib\n\n");

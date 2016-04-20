@@ -558,7 +558,7 @@ o_complex_get_promotable (GedaToplevel *toplevel, GedaObject *object, int detach
   if (!toplevel->attribute_promotion) /* controlled through rc file */
     return NULL;
 
-  attribs = geda_attrib_find_floating (object->complex->prim_objs);
+  attribs = geda_object_list_find_floating (object->complex->prim_objs);
 
   for (iter = attribs; iter != NULL; iter = iter->next) {
 

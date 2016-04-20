@@ -774,8 +774,8 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
     return;
   }
 
-  o_attrlist = geda_attrib_find_floating (
-                              s_page_get_objects (preview_toplevel->page_current));
+  o_attrlist =
+    geda_list_find_floating (s_page_get_objects (preview_toplevel->page_current));
 
   filter_list = GSCHEM_DIALOG (compselect)->w_current->component_select_attrlist;
 

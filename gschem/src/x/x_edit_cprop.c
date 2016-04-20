@@ -115,7 +115,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       attribs = geda_attrib_object_get_attached(object);
 
       /* If object, then look for an attached attribute */
-      a_current = geda_attrib_find_attrib_by_name (attribs, key, 0);
+      a_current = geda_find_attrib_by_name (attribs, key, 0);
 
     }
     else {
@@ -151,7 +151,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
         all_butes = o_get_objects_by_type (attribs, OBJ_TEXT);
       }
 
-      a_current = geda_attrib_find_attrib_by_name (all_butes, key, 0);
+      a_current = geda_find_attrib_by_name (all_butes, key, 0);
       g_list_free (all_butes);
 
       if (a_current) {
@@ -503,10 +503,9 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
                                              GtkWidget *dialog)
 {
   property_data *properties;
- GedaObject *o_current;
+  GedaObject    *o_current;
 
   properties = GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
-
   o_current  = GEDA_OBJECT_GET_DATA (dialog, "object");
 
   if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
@@ -612,7 +611,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
   void entry_page_setter(const char *name, GtkWidget *entry) {
 
-    a_current = geda_attrib_find_attrib_by_name (all_butes, name, 0);
+    a_current = geda_find_attrib_by_name (all_butes, name, 0);
     if (a_current) {
       geda_attrib_object_get_name_value (a_current, NULL, &value);
       SetEntryText(entry, value);
@@ -625,14 +624,14 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
   void entry_object_setter(const char *name, GtkWidget *entry) {
 
-    a_current = geda_attrib_find_attrib_by_name (attribs, name, 0);
+    a_current = geda_find_attrib_by_name (attribs, name, 0);
     if (a_current) {
       geda_attrib_object_get_name_value (a_current, NULL, &value);
       SetEntryText(entry, value);
       GEDA_FREE(value);
     }
     else {
-      a_current = geda_attrib_find_attrib_by_name (all_butes, name, 0);
+      a_current = geda_find_attrib_by_name (all_butes, name, 0);
       if (a_current) {
         geda_attrib_object_get_name_value (a_current, NULL, &value);
         SetEntryText(entry, value);
@@ -706,7 +705,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   SetToggleState(properties->version_cb, (str_val[0] != '-'));
   g_signal_handler_unblock(properties->version_cb,properties->ver_handler);
 
-  if (geda_attrib_find_attrib_by_name (all_butes, "graphical", 0)) {
+  if (geda_find_attrib_by_name (all_butes, "graphical", 0)) {
 
     /* Then this is a Graphical object */
     if (GetToggleState(properties->electrical_cb)) {
@@ -743,7 +742,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
     set_entry ("model-name",    properties->mname_entry);
 
     /* Hard to image anyone promoting these */
-    a_current = geda_attrib_find_attrib_by_name (all_butes, "numslots", 0);
+    a_current = geda_find_attrib_by_name (all_butes, "numslots", 0);
     if (a_current) {
       if (geda_attrib_object_get_name_value (a_current, NULL, &value)) {
         SetSpinValue(properties->slots_spin, atoi(value));
@@ -754,7 +753,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
       SetSpinValue(properties->slots_spin, 0);
     }
 
-    a_current = geda_attrib_find_attrib_by_name (all_butes, "pins", 0);
+    a_current = geda_find_attrib_by_name (all_butes, "pins", 0);
 
     if (a_current) {
 

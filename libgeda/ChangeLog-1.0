@@ -15,6 +15,9 @@
       in geda_attrib_object_find_floating, revise comments.
 
     * src/object/o_list.c: Rename functions using prefix geda_object_list.
+      relocated functions geda_attrib_object_find_floating and geda_attrib_
+      object_find_attrib_by_name since both accept list of objects, not an
+      object.
 
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 

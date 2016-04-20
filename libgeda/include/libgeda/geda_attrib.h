@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*
- * File: geda_utility.h
+ * File: geda_attrib.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
@@ -40,8 +40,6 @@
 #define geda_attrib_attach_list                geda_attrib_object_attach_list
 #define geda_attrib_detach                     geda_attrib_object_detach
 #define geda_attrib_detach_all                 geda_attrib_object_detach_all
-#define geda_attrib_find_floating              geda_attrib_object_find_floating
-#define geda_attrib_find_attrib_by_name        geda_attrib_object_find_attrib_by_name
 #define geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name
 #define geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks
 #define geda_attrib_get_attached               geda_attrib_object_get_attached
