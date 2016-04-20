@@ -52,7 +52,7 @@ static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
     object_buffer[buf_num] = NULL;
   }
 
-  object_buffer[buf_num] = o_list_copy_all(s_current, object_buffer[buf_num]);
+  object_buffer[buf_num] = geda_copy_list(s_current, object_buffer[buf_num]);
 }
 
 /*! \brief Copy Selection to Buffer

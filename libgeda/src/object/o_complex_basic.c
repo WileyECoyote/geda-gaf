@@ -65,7 +65,7 @@ GedaObject *o_complex_copy(GedaObject *o_current)
     new_complex->mirror      = old_complex->mirror;
 
     /* Copy contents and set the parent pointers on the copied objects. */
-    new_complex->prim_objs = o_list_copy_all (old_complex->prim_objs, NULL);
+    new_complex->prim_objs = geda_object_list_copy_all (old_complex->prim_objs, NULL);
 
     for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
 
@@ -735,7 +735,7 @@ void o_complex_mirror(GedaObject *object, int center_x, int center_y)
 
   o_complex_translate(object, -object->complex->x, -object->complex->y);
 
-  o_list_mirror (object->complex->prim_objs, 0, 0);
+  geda_object_list_mirror (object->complex->prim_objs, 0, 0);
 
   switch(object->complex->angle) {
     case(90):
@@ -1132,7 +1132,7 @@ o_complex_rotate(GedaObject *object, int center_x, int center_y, int angle)
 
   o_complex_translate(object, -object->complex->x, -object->complex->y);
 
-  o_list_rotate (object->complex->prim_objs, 0, 0, angle);
+  geda_object_list_rotate (object->complex->prim_objs, 0, 0, angle);
 
   object->complex->x = 0;
   object->complex->y = 0;
@@ -1265,7 +1265,7 @@ void o_complex_translate(GedaObject *object, int dx, int dy)
   object->complex->x = object->complex->x + dx;
   object->complex->y = object->complex->y + dy;
 
-  o_list_translate (object->complex->prim_objs, dx, dy);
+  geda_object_list_translate (object->complex->prim_objs, dx, dy);
 
   object->w_bounds_valid_for = NULL;
 }

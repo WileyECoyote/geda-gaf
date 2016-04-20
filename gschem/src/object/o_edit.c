@@ -244,7 +244,7 @@ void o_edit_unlock(GschemToplevel *w_current)
 /*!
  * \brief Mirror list of objects
  * \par Function Description
- * Wrapper for libgeda::o_list_mirror, performs gschem tasks to ensure
+ * Wrapper for libgeda::geda_object_list_mirror, performs gschem tasks to ensure
  * members of \a list are redrawn, run hooks and calls undo state.
  */
 void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
@@ -256,7 +256,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
     o_invalidate_list (w_current, list);
 
-    o_list_mirror(list, centerx, centery);
+    geda_object_list_mirror(list, centerx, centery);
 
     /* Objects will be in redraw by ChangeNotifyFunc */
 
@@ -484,7 +484,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
 
   o_invalidate_list (w_current, list);
 
-  o_list_rotate(list, centerx, centery, angle);
+  geda_rotate_list(list, centerx, centery, angle);
 
   o_invalidate_list (w_current, list);
 
@@ -1161,7 +1161,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
 
       geda_attrib_object_get_name_value (attr_new, &name, &new_value);
 
-      old_value = geda_attrib_object_search_attached_by_name (o_current, name, 0);
+      old_value = geda_attrib_search_attached_by_name (o_current, name, 0);
 
       if (old_value != NULL) {
         int index = 0;

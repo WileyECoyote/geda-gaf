@@ -291,11 +291,11 @@ extern "C" {
          void    o_line_translate                (GedaObject *object, int dx, int dy);
 
 /* o_list.c */
-        GList   *o_list_copy_all                 (const GList *src_list, GList *dest_list);
-         void    o_list_mirror                   (const GList *list, int x, int y);
-         void    o_list_rotate                   (const GList *list, int x, int y, int angle);
-         void    o_list_translate                (const GList *list, int dx, int dy);
-         void    o_list_set_color                (const GList *list, int color);
+        GList   *geda_object_list_copy_all                 (const GList *src_list, GList *dest_list);
+         void    geda_object_list_mirror                   (const GList *list, int x, int y);
+         void    geda_object_list_rotate                   (const GList *list, int x, int y, int angle);
+         void    geda_object_list_translate                (const GList *list, int dx, int dy);
+         void    geda_object_list_set_color                (const GList *list, int color);
 
 /* o_net_object.c */
          void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);

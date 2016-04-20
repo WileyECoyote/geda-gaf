@@ -235,11 +235,11 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
 
   if (offset == 0) {
     u_log_message(_("Translating schematic [%d %d]\n"), -x, -y);
-    o_list_translate (object_list, -x, -y);
+    geda_translate_list (object_list, -x, -y);
   }
   else {
     u_log_message(_("Translating schematic [%d %d]\n"), offset, offset);
-    o_list_translate (object_list, offset, offset);
+    geda_translate_list (object_list, offset, offset);
   }
 
   /* Experimental mod, to be able to translate to all places */

@@ -190,7 +190,7 @@ UNDO *s_undo_add_memory (int type, Page *page)
 
   u_new->filename     = NULL;
 
-  u_new->object_list  = o_list_copy_all (s_page_get_objects (page), NULL);
+  u_new->object_list  = geda_copy_list (s_page_get_objects (page), NULL);
 
   u_new->type         = type;
   u_new->modified     = page->CHANGED;

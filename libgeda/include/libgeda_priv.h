@@ -30,6 +30,7 @@
 #include <prototype.h>
 
 #include <geda_attrib.h>
+#include "geda_object_list.h"
 #include "geda_utility.h"
 
 #include <geda_list.h>

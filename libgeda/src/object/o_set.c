@@ -60,8 +60,8 @@ void o_set_bounds_invalid(GedaObject *obj)
  *  the page change flag is set if the object is on a page.
  *
  *  \note For complex objects, this function is called recursively,
- *        since o_list_set_color calls this function for each child
- *        of the complex.
+ *        since geda_object_list_set_color calls this function for each
+ *        child of the complex.
  *
  *  \param [in] object    The GedaObject to change color.
  *  \param [in] color     The new color.
@@ -80,7 +80,7 @@ void o_set_color (GedaObject *object, int color)
     }
 
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-      o_list_set_color (object->complex->prim_objs, color);
+      geda_object_list_set_color (object->complex->prim_objs, color);
     }
 
   }

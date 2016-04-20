@@ -40,7 +40,7 @@
  *
  *  \todo should be o_list_concat?
  */
-GList* o_list_copy_all (const GList *src_list, GList *dest_list)
+GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 {
   const GList *src;
   GList *dest;
@@ -137,7 +137,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
  *  \par Function Description
  *  Calls o_translate_object for each glist data member
  */
-void o_list_translate(const GList *list, int dx, int dy)
+void geda_object_list_translate(const GList *list, int dx, int dy)
 {
   const GList *o_iter;
 
@@ -167,7 +167,7 @@ void o_list_translate(const GList *list, int dx, int dy)
  *  \par Function Description
  *  Calls o_rotate_object for each glist data member
  */
-void o_list_rotate (const GList *list, int x, int y, int angle)
+void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 {
   const GList *o_iter;
 
@@ -205,7 +205,7 @@ void o_list_rotate (const GList *list, int x, int y, int angle)
  *  \par Function Description
  *   Calls o_mirror_object for each glist data member
  */
-void o_list_mirror (const GList *list, int x, int y)
+void geda_object_list_mirror (const GList *list, int x, int y)
 {
   const GList *o_iter;
 
@@ -246,7 +246,7 @@ void o_list_mirror (const GList *list, int x, int y)
  *  \param [in] list    The list of Objects to change color.
  *  \param [in] color   The new color.
  */
-void o_list_set_color (const GList *list, int color)
+void geda_object_list_set_color (const GList *list, int color)
 {
   const GList *iter;
 

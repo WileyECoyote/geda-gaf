@@ -1,5 +1,9 @@
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_object_list.h: Add header with macros as alias to
+      functions in geda_object_list and include in both libgeda.h and libgeda
+      _priv.h.
+
     * src/object/o_attrib.c: Simply geda_attrib_object_detach by utilizing
       s_object_set_page_changed to set the page change flag if the attribute
       (not the parent) is on a page. Revise geda_attrib_object_detach_all to
@@ -10,8 +14,14 @@
       Replace geda_attrib_object_get_name_value with o_get_is_valid_attribute
       in geda_attrib_object_find_floating, revise comments.
 
-    * tests/test_attrib_object.c: Add more tests, include test for functions
-      geda_attrib_object_detach and geda_attrib_object_detach_all.
+    * src/object/o_list.c: Rename functions using prefix geda_object_list.
+
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_detach,
+            * geda_attrib_object_detach_all,
+            * geda_attrib_object_find_floating,
+            * geda_attrib_object_find_attrib_by_name,
 
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 

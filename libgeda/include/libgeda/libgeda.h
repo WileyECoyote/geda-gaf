@@ -76,6 +76,7 @@
 
 #include "geda_attrib.h"
 #include "geda_file.h"
+#include "geda_object_list.h"
 #include "geda_utility.h"
 #include "prototype.h"
 #endif

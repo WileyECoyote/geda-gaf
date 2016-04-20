@@ -121,7 +121,7 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
     if (continue_placing) {
       /* Make a copy of the place list if we want to keep it afterwards */
-      object_list = o_list_copy_all (Current_PlaceList, object_list);
+      object_list = geda_copy_list (Current_PlaceList, object_list);
     }
     else {
       /* Otherwise just take it */
@@ -416,7 +416,7 @@ void o_place_mirror (GschemToplevel *w_current)
 
     o_place_invalidate_rubber (w_current, FALSE);
 
-    o_list_mirror(list, wx, wy);
+    geda_object_list_mirror(list, wx, wy);
 
     /* Run mirror-objects-hook */
     g_hook_run_object_list (w_current, MIRROR_OBJECTS_HOOK, list);
@@ -429,7 +429,7 @@ void o_place_mirror (GschemToplevel *w_current)
 /*! \brief Rotate objects being placed
  *
  *  \par Function Description
- *   Passes list of objects being placed to o_list_rotate
+ *   Passes list of objects being placed to geda_rotate_list
  *   with and angle of 90.
  */
 void o_place_rotate (GschemToplevel *w_current)
@@ -442,7 +442,7 @@ void o_place_rotate (GschemToplevel *w_current)
     int wy = w_current->first_wy;
 
     o_place_invalidate_rubber (w_current, FALSE);
-    o_list_rotate (list, wx, wy, 90);
+    geda_rotate_list (list, wx, wy, 90);
 
     /* Run rotate-objects-hook */
     g_hook_run_object_list (w_current, ROTATE_OBJECTS_HOOK, list);

@@ -514,7 +514,7 @@ geda_utility_string_split(char *string, char delimiter, int count)
   return NULL;
 }
 
-/*! U0611
+/*! U0611 - geda_sprintf
  * \brief  Get formated string using printf like specifiers
  * \par Function Description
  * \returns a newly allocated string that is the result of

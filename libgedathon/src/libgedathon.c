@@ -2034,7 +2034,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   }
   if (dest_list) {
     if (dx != -1 && dy != -1) {
-      o_list_translate(dest_list, dx, dy);
+      geda_translate_list(dest_list, dx, dy);
     }
 
     py_capsule = GedaCapsule_New(new_object);

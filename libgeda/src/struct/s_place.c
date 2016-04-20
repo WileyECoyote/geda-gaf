@@ -107,7 +107,7 @@ void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
 
       GList *list;
 
-      list = o_list_copy_all (new_place_list, page->place_list);
+      list = geda_copy_list (new_place_list, page->place_list);
 
       geda_page_set_place_list (page, list);
     }
