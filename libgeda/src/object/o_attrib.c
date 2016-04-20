@@ -162,8 +162,9 @@ geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color
   /* Only gets set if object is on a page */
   s_object_set_page_changed (object);
 
-  if (set_color)
+  if (set_color) {
     o_set_color (attrib, ATTRIBUTE_COLOR);
+  }
 }
 
 /*!
@@ -201,7 +202,6 @@ geda_attrib_object_detach(GedaObject *attribute)
 {
   if (attribute && attribute->attached_to != NULL) {
 
-    Page   *page;
     GedaObject *parent;
 
     parent = attribute->attached_to;
@@ -212,20 +212,19 @@ geda_attrib_object_detach(GedaObject *attribute)
 
     parent->attribs = g_list_remove (parent->attribs, attribute);
 
-    page = geda_object_get_page(parent);
-
-    if (page && (GEDA_IS_PAGE(page))) {
-      page->CHANGED = TRUE;
-    }
+    s_object_set_page_changed (attribute);
   }
 }
 
 /*!
  * \brief Detach all attribute items in a list
  * \par Function Description
- *  Detach all attributes from an object.
+ *  Detach all attributes from an object. The color of each attribute
+ *  is set to DETACHED_ATTRIBUTE_COLOR and the page change flag is set
+ *  if at least one of the attributes was on a page.
  *
- * \param [in,out] object    The object whos attributes to detach.
+ * \param [in,out] object The object whos attributes are to be detached.
+ *
  */
 void
 geda_attrib_object_detach_all(GedaObject *object)
@@ -235,7 +234,7 @@ geda_attrib_object_detach_all(GedaObject *object)
     GList *a_iter;
     Page  *page;
 
-    geda_attrib_object_freeze_hooks (object);
+    page = NULL;
 
     for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
 
@@ -243,18 +242,22 @@ geda_attrib_object_detach_all(GedaObject *object)
 
       attribute->attached_to = NULL;
       o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
-      geda_attrib_object_emit_changed (object);
+
+      geda_attrib_object_emit_changed (attribute);
+
+      if (!page) {
+        page = geda_object_get_page(attribute);
+      }
     }
 
     g_list_free (object->attribs);
     object->attribs = NULL;
 
-    page = geda_object_get_page(object);
-
     if (page && (GEDA_IS_PAGE(page))) {
       page->CHANGED = TRUE;
     }
-    geda_attrib_object_thaw_hooks (object);
+
+    geda_attrib_object_emit_changed (object);
   }
 }
 

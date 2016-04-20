@@ -1,3 +1,12 @@
+2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Simply geda_attrib_object_detach by utilizing
+      s_object_set_page_changed to set the page change flag if the attribute
+      (not the parent) is on a page. Revise geda_attrib_object_detach_all to
+      emit change for each of the attributes and the parent object, removing
+      freeze/thaw and only set the page change flag if at least one if the
+      attributes was on a page, revise comments
+
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add Doxygen comments for geda_attrib_object_
