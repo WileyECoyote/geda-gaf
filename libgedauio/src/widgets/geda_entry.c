@@ -159,6 +159,11 @@ const char *IDS_CONSOLE_POPUP[] = {
   NULL
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 begin_change (GedaEntry *entry)
 {
@@ -169,6 +174,11 @@ begin_change (GedaEntry *entry)
   g_object_freeze_notify (G_OBJECT (entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 end_change (GedaEntry *entry)
 {
@@ -184,6 +194,11 @@ end_change (GedaEntry *entry)
 */
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char*
 geda_entry_get_text (GedaEntry *entry)
 {
@@ -196,6 +211,11 @@ geda_entry_get_text (GedaEntry *entry)
   return gtk_entry_buffer_get_text (buffer);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_set_text (GedaEntry *entry, const char *new_text)
 {
@@ -327,18 +347,33 @@ geda_entry_get_attributes (GedaEntry *entry)
   return entry->priv->attrs;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_set_max_history (GedaEntry *entry, int value)
 {
   entry->max_history = value;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_entry_get_max_history (GedaEntry *entry)
 {
   return entry->max_history;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaCompletion*
 geda_entry_get_completion (GedaEntry *entry)
 {
@@ -373,7 +408,11 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
                                  (GedaStrCompareNFunc) geda_entry_strncmpi);
   }
 }
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_entry_get_input_case (GedaEntry *entry)
 {
@@ -381,6 +420,11 @@ geda_entry_get_input_case (GedaEntry *entry)
   return entry->text_case;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
@@ -394,6 +438,11 @@ geda_entry_get_valid_input (GedaEntry *entry)
   return entry->validation_mode;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
@@ -494,6 +543,11 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
     }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_real_insert_text (GedaEntry  *entry,
                              const char *new_text,
@@ -525,6 +579,11 @@ geda_entry_real_insert_text (GedaEntry  *entry,
   *position += n_inserted;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_validate_input (GtkEntry    *entry,
                            const char  *text,
@@ -602,6 +661,11 @@ geda_entry_validate_input (GtkEntry    *entry,
   g_free (result);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_drag_begin (GtkWidget      *widget,
                        GdkDragContext *context)
@@ -611,6 +675,11 @@ geda_entry_drag_begin (GtkWidget      *widget,
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_drag_end (GtkWidget      *widget,
                      GdkDragContext *context)
@@ -621,6 +690,11 @@ geda_entry_drag_end (GtkWidget      *widget,
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_drag_leave (GtkWidget      *widget,
                        GdkDragContext *context,
@@ -632,6 +706,11 @@ geda_entry_drag_leave (GtkWidget      *widget,
   gtk_widget_queue_draw (widget);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static bool
 geda_entry_drag_drop (GtkWidget      *widget,
                       GdkDragContext *context,
@@ -647,6 +726,11 @@ geda_entry_drag_drop (GtkWidget      *widget,
   return FALSE; /* No continue */
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static bool
 geda_entry_drag_motion (GtkWidget       *widget,
                         GdkDragContext  *context,
@@ -660,6 +744,11 @@ geda_entry_drag_motion (GtkWidget       *widget,
   return FALSE; /* not here */
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_drag_data_received (GtkWidget        *widget,
                                GdkDragContext   *context,
@@ -686,6 +775,11 @@ geda_entry_drag_data_get (GtkWidget        *widget,
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 {
@@ -695,6 +789,11 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_finalize (GObject *object)
 {
@@ -889,7 +988,8 @@ geda_entry_class_init(void *g_class, void *class_data)
  *  \param [in] instance The GedaEntry structure being initialized,
  *  \param [in] g_class  The GedaEntry class we are initializing.
  */
-static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
+static void
+geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaEntry     *entry  = (GedaEntry*)instance;
   entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
@@ -901,7 +1001,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   g_signal_connect_after (G_OBJECT (entry), "key_press_event",
                           G_CALLBACK (geda_entry_key_press), NULL);
 
-  entry->have_history = have_history;
+  entry->have_history   = have_history;
 
   if (have_history) {
 
@@ -967,7 +1067,8 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
  *
  *  \return GedaType identifier associated with GedaEntry.
  */
-GedaType geda_entry_get_type (void)
+GedaType
+geda_entry_get_type (void)
 {
   static GedaType geda_entry_type = 0;
 
@@ -997,7 +1098,13 @@ GedaType geda_entry_get_type (void)
   return geda_entry_type;
 }
 
-bool is_a_geda_entry (GedaEntry *entry)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_entry (GedaEntry *entry)
 {
   if (G_IS_OBJECT(entry)) {
     return (geda_entry_get_type() == entry->instance_type);
@@ -1050,6 +1157,11 @@ geda_entry_real_activate (GedaEntry *entry)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static bool
 geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
 {
@@ -1090,6 +1202,11 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   return handled;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_grab_focus (GtkWidget *widget)
 {
@@ -1099,6 +1216,11 @@ geda_entry_grab_focus (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_realize (GtkWidget *widget)
 {
@@ -1122,6 +1244,11 @@ geda_entry_realize (GtkWidget *widget)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_unrealize (GtkWidget *widget)
 {
@@ -1132,6 +1259,11 @@ geda_entry_unrealize (GtkWidget *widget)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_activate (GedaEntry *entry, void *data)
 {
@@ -1181,6 +1313,11 @@ geda_entry_activate (GedaEntry *entry, void *data)
   entry->history_index = list_length;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_history_up (GedaEntry *entry)
 {
@@ -1194,6 +1331,11 @@ geda_entry_history_up (GedaEntry *entry)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 geda_entry_history_down (GedaEntry *entry)
 {
@@ -1228,8 +1370,7 @@ geda_entry_history_down (GedaEntry *entry)
   }
 }
 
-  /*! \brief GedaEntry Internal Compare n characters ignoring case.
- *
+/*! \brief GedaEntry Internal Compare n characters ignoring case.
  *  \par Function Description
  *  Another garden varity string compare using toupper
  *  on both inputs. This is somthimes found in standard.
@@ -1442,6 +1583,11 @@ geda_entry_modify_color_component (GtkWidget      *widget,
   gtk_widget_modify_style (widget, rc_style);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_modify_fg (GedaEntry *entry,
                       GtkStateType state,
@@ -1450,6 +1596,11 @@ geda_entry_modify_fg (GedaEntry *entry,
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_FG, state, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_modify_bg (GedaEntry      *entry,
                       GtkStateType    state,
@@ -1458,6 +1609,11 @@ geda_entry_modify_bg (GedaEntry      *entry,
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_modify_color (GtkWidget      *widget,
                                 GtkRcFlags      component,
@@ -1485,83 +1641,154 @@ geda_entry_widget_get_attributes (GtkWidget *entry)
   return geda_entry_get_attributes (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_entry_widget_get_max_history (GtkWidget *entry)
 {
   return geda_entry_get_max_history (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_max_history (GtkWidget *entry, int value)
 {
   geda_entry_set_max_history (GEDA_ENTRY(entry), value);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaCompletion *
 geda_entry_widget_get_completion (GtkWidget *entry)
 {
   return geda_entry_get_completion (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_entry_widget_completion_get_case (GtkWidget *entry)
 {
   return geda_entry_completion_get_case (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
 {
   geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_entry_widget_get_input_case (GtkWidget *entry)
 {
   return geda_entry_get_input_case (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
 {
   return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char*
 geda_entry_widget_get_text (GtkWidget *entry)
 {
   return geda_entry_get_text (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_entry_widget_get_activates_default (GtkWidget *entry)
 {
   return geda_entry_get_activates_default (GEDA_ENTRY(entry));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
 {
   geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
 {
   geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
 }
 
-void geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
 {
   geda_entry_set_text (GEDA_ENTRY(entry), new_text);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {
   geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_modify_fg (GtkWidget *entry,
                              GtkStateType state,
@@ -1570,6 +1797,11 @@ geda_entry_widget_modify_fg (GtkWidget *entry,
   geda_entry_widget_modify_color (entry, GTK_RC_FG, state, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_modify_bg (GtkWidget      *entry,
                              GtkStateType    state,
