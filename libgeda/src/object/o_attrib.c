@@ -277,6 +277,9 @@ geda_attrib_object_detach_all(GedaObject *object)
  * \return GList of floating attributes from the input list
  *
  * \note Caller should g_list_free returned list.
+ *
+ * \todo This function should not be called geda_attrib_object since it
+ *       does not accept an object as a argument!
  */
 GList*
 geda_attrib_object_find_floating (const GList *list)
@@ -293,7 +296,7 @@ geda_attrib_object_find_floating (const GList *list)
      */
     if (o_current->type == OBJ_TEXT &&
         o_current->attached_to == NULL &&
-        geda_attrib_object_get_name_value (o_current, NULL, NULL)) {
+        o_get_is_valid_attribute (o_current)) {
 
       floating_attributes = g_list_prepend (floating_attributes, o_current);
     }
@@ -314,6 +317,8 @@ geda_attrib_object_find_floating (const GList *list)
  * \param [in] count  Which occurance to return.
  *
  * \return The n'th attribute object in the given list with the given name.
+ * \todo This function should not be called geda_attrib_object since it
+ *       does not accept an object as a argument!
  */
 GedaObject*
 geda_attrib_object_find_attrib_by_name (const GList *list,
