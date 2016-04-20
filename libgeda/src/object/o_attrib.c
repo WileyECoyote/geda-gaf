@@ -98,10 +98,14 @@ geda_attrib_object_emit_changed (GedaObject *object)
 void
 geda_attrib_object_add(GedaObject *object, GedaObject *item)
 {
-  /* Add link from item to attrib listing */
-  item->attached_to = object;
-  object->attribs   = g_list_append (object->attribs, item);
-  geda_attrib_object_emit_changed (object);
+  if (GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(item)) {
+
+    /* Add link from item to attrib listing */
+    item->attached_to = object;
+    object->attribs   = g_list_append (object->attribs, item);
+    geda_attrib_object_emit_changed (object);
+
+  }
 }
 
 /*!
@@ -117,12 +121,14 @@ geda_attrib_object_append_changed_hook (Page              *page,
 {
   AttribsChangedHook *new_hook;
 
-  new_hook = GEDA_MEM_ALLOC0(sizeof(AttribsChangedHook));
-  new_hook->func = func;
-  new_hook->data = data;
+  if (func != NULL) {
+    new_hook = GEDA_MEM_ALLOC0(sizeof(AttribsChangedHook));
+    new_hook->func = func;
+    new_hook->data = data;
 
-  page->attribs_changed_hooks =
-    g_list_append (page->attribs_changed_hooks, new_hook);
+    page->attribs_changed_hooks =
+      g_list_append (page->attribs_changed_hooks, new_hook);
+  }
 }
 
 /*!
@@ -137,33 +143,33 @@ geda_attrib_object_append_changed_hook (Page              *page,
 void
 geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color)
 {
-  g_return_if_fail (attrib != NULL);
-  g_return_if_fail (object != NULL);
+  if (GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(attrib)) {
 
-  /* is the object already part of the list ? */
-  if (g_list_find (object->attribs, attrib)) {
-    fprintf(stderr, _("Attribute [%s] already attached\n"), attrib->text->string);
-    return;
-  }
+    /* is the object already part of the list ? */
+    if (g_list_find (object->attribs, attrib)) {
+      fprintf(stderr, _("Attribute [%s] already attached\n"), attrib->text->string);
+      return;
+    }
 
-  if (attrib->type != OBJ_TEXT) {
-    fprintf(stderr, _("Attempt to attach non text object as an attribute!\n"));
-    return;
-  }
+    if (attrib->type != OBJ_TEXT) {
+      fprintf(stderr, _("Attempt to attach non text object as an attribute!\n"));
+      return;
+    }
 
-  if (attrib->attached_to != NULL && attrib->attached_to != object) {
-   fprintf(stderr, _("Attempt to attach attribute [%s] to more than one object\n"),
-                attrib->text->string);
-    return;
-  }
+    if (attrib->attached_to != NULL && attrib->attached_to != object) {
+      fprintf(stderr, _("Attempt to attach attribute [%s] to more than one object\n"),
+      attrib->text->string);
+      return;
+    }
 
-  geda_attrib_object_add (object, attrib);
+    geda_attrib_object_add (object, attrib);
 
-  /* Only gets set if object is on a page */
-  s_object_set_page_changed (object);
+    /* Only gets set if object is on a page */
+    s_object_set_page_changed (object);
 
-  if (set_color) {
-    o_set_color (attrib, ATTRIBUTE_COLOR);
+    if (set_color) {
+      o_set_color (attrib, ATTRIBUTE_COLOR);
+    }
   }
 }
 
@@ -411,8 +417,8 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
 {
   g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
 
-  return geda_attrib_string_get_name_value (attrib->text->string,
-                                            name_ptr, value_ptr);
+  return geda_attrib_object_string_get_name_value (attrib->text->string,
+                                                   name_ptr, value_ptr);
 }
 
 /*!
