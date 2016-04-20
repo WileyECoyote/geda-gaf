@@ -49,8 +49,9 @@ char *default_hierarchy_uref_separator      = NULL;
 char *default_unnamed_netname               = NULL;
 char *default_unnamed_busname               = NULL;
 
-/*! \brief Set Variables from Defaults after reading RC
- *  \par Function Description
+/*!
+ * \brief Set Variables from Defaults after reading RC
+ * \par Function Description
  *  This function assigns default values for top-level variables. The default
  *  variables is declared extern in i_var.h so that the variables maybe set by
  *  RC handlers.
@@ -116,7 +117,8 @@ void i_vars_set(GedaToplevel * pr_current)
 
 }
 
-/*! \brief Setup gnetlist default configuration.
+/*!
+ * \brief Setup gnetlist default configuration.
  * \par Function Description
  * Populate the default configuration context with compiled-in
  * defaults.
@@ -141,12 +143,12 @@ i_vars_init_gnetlist_defaults(void)
   eda_config_set_integer (cfg, "gnetlist", "net-naming-priority", NETATTRIB_ATTRIBUTE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Release resources for global strings
+ * \par Function Description
+ * Called during shutdown to free the global strings.
  */
-void i_vars_finalize (void)
+void i_vars_free_strings (void)
 {
   GEDA_FREE(default_hierarchy_netname_separator);
   GEDA_FREE(default_hierarchy_netattrib_separator);

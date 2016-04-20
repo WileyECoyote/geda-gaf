@@ -65,7 +65,7 @@ void gnetlist_quit(void)
 
   libgeda_release();
 
-  i_vars_finalize();
+  i_vars_free_strings();
 
   /* Free GSList backend_params */
   g_slist_free (backend_params);
