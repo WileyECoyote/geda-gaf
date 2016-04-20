@@ -334,7 +334,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
   inline bool is_number(char *str) {
     char *ptr = str;
     while (*ptr) {
-      if(!isdigit(*ptr)) {
+      if (!isdigit(*ptr)) {
         return 0;
       }
       ptr++;
@@ -347,15 +347,14 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
-      if ( strcmp(object->pin->number, value) != 0) {
-        geda_attrib_object_set_value(attrib, "pinlabel", object->pin->number);
+      if (strcmp(object->pin->number, value) != 0) {
+        geda_attrib_object_set_value(attrib, "pinnumber", object->pin->number);
         o_text_recreate(attrib);
       }
     }
   }
 
   attrib = geda_attrib_first_attrib_by_name (object, "pinseq");
-
   if (attrib) {
 
     value = strstr(attrib->text->string, "=");
@@ -378,7 +377,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
-      if ( strcmp(object->pin->label, value) != 0) {
+      if (strcmp(object->pin->label, value) != 0) {
         geda_attrib_object_set_value(attrib, "pinlabel", object->pin->label);
         o_text_recreate(attrib);
       }
@@ -391,7 +390,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
-      if ( strcmp(object->pin->electrical, value) != 0) {
+      if (strcmp(object->pin->electrical, value) != 0) {
         geda_attrib_object_set_value(attrib, "pintype", object->pin->electrical);
         o_text_recreate(attrib);
       }
@@ -404,7 +403,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     value = strstr(attrib->text->string, "=");
     value++;
     if (value != NULL) {
-      if ( strcmp(object->pin->mechanical, value) != 0) {
+      if (strcmp(object->pin->mechanical, value) != 0) {
         geda_attrib_object_set_value(attrib, "mechtype", object->pin->mechanical);
         o_text_recreate(attrib);
       }
@@ -473,6 +472,7 @@ PyGeda_update_bus_butes(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
+/* Called to update attributes of an objects */
 int
 PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object )
 {

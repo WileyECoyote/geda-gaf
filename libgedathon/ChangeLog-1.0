@@ -1,7 +1,12 @@
+2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/update_objects.c: Fix update incorrect attribute "pinlabel" should
+      have been "pinnumber" in PyGeda_update_pin_butes.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedathon-main.txt: No longer ignored by git, required for
-      Doxygen builds but is not built. 
+      Doxygen builds but is not built.
 
 2016-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
