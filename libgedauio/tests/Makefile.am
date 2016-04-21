@@ -15,7 +15,8 @@ check_widgets = \
 	test_combobox_text \
 	test_entry \
 	test_font_button \
-	test_font_dialog
+	test_font_dialog \
+	test_handlebox
 
 check_PROGRAMS = \
 	$(check_functions) \
