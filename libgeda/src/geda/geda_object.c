@@ -121,6 +121,24 @@ int geda_object_bounds(GedaObject *object)
   return object_class ? object_class->bounds(object) : 0;
 }
 
+/*!
+ * \brief Get List of Attributes Attached to GedaObject
+ * \par Function Description
+ *  Returns the attribs list associated with the given object.
+ *
+ * \param [in]  object The GedaObject from which to get the attribute list.
+ *
+ * \return List of attached attributes.
+ */
+GList*
+geda_object_get_attached (const GedaObject *object)
+{
+  if (is_a_geda_object(object)) {
+    return object->attribs;
+  }
+  return NULL;
+}
+
 int geda_object_get_color (GedaObject *object) {
   if (is_a_geda_object(object)) {
     return object->color;

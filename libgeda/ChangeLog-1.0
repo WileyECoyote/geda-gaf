@@ -4,6 +4,9 @@
       functions in geda_object_list and include in both libgeda.h and libgeda
       _priv.h.
 
+    * src/geda/geda_object.c: Relocate function geda_attrib_object_get_attached
+      renaming to geda_object_get_attached.
+
     * src/object/o_attrib.c: Simply geda_attrib_object_detach by utilizing
       s_object_set_page_changed to set the page change flag if the attribute
       (not the parent) is on a page. Revise geda_attrib_object_detach_all to
@@ -23,8 +26,6 @@
 
             * geda_attrib_object_detach,
             * geda_attrib_object_detach_all,
-            * geda_attrib_object_find_floating,
-            * geda_attrib_object_find_attrib_by_name,
 
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 

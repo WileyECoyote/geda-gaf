@@ -164,7 +164,6 @@ extern "C" {
          void    geda_attrib_object_detach_all               (GedaObject *object);
    GedaObject   *geda_attrib_object_first_attrib_by_name     (const GedaObject *object,       char *name);
          void    geda_attrib_object_freeze_hooks             (GedaObject *object);
-        GList   *geda_attrib_object_get_attached             (const GedaObject *object);
          bool    geda_attrib_object_get_name_value           (const GedaObject *attrib, char **name_ptr,  char **value_ptr);
          bool    geda_attrib_object_is_attached_to           (const GedaObject *attrib, const GedaObject *object);
           int    geda_attrib_object_is_inherited             (const GedaObject *attrib);

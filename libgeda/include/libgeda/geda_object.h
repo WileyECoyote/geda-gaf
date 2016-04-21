@@ -145,6 +145,7 @@ void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_poi
 void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
 
 int           geda_object_bounds             (GedaObject *object);
+GList        *geda_object_get_attached       (const GedaObject *object);
 int           geda_object_get_color          (GedaObject *object);
 Page         *geda_object_get_page           (GedaObject *object);
 int           geda_object_get_filltype       (GedaObject *object);

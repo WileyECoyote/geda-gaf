@@ -104,7 +104,7 @@ static GList *remove_title_blocks(GList **page_list)
 
         list     = g_list_remove (list, object);
         titles   = g_list_prepend (titles, object);
-        children = geda_attrib_object_get_attached(object);
+        children = geda_object_get_attached(object);
         if (children) {
           GList *iter2 = children;
           while (iter2) {

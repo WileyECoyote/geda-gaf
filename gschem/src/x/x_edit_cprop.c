@@ -112,7 +112,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
     if (object) {
 
       /* This is object->attribs, do not free this list */
-      attribs = geda_attrib_object_get_attached(object);
+      attribs = geda_object_get_attached(object);
 
       /* If object, then look for an attached attribute */
       a_current = geda_find_attrib_by_name (attribs, key, 0);
@@ -419,7 +419,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
           geda_attrib_object_thaw_hooks (o_new);
 
-          old_ribs = geda_attrib_object_get_attached (o_current);
+          old_ribs = geda_object_get_attached (o_current);
 
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
            GedaObject *obj = (GedaObject*) iter->data;
@@ -662,7 +662,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
     GEDA_FREE(fullname);
 
-    attribs   = geda_attrib_object_get_attached(object);
+    attribs   = geda_object_get_attached(object);
     all_butes = geda_attrib_return_attribs(object);
 
     set_entry = entry_object_setter;

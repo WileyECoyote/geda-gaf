@@ -42,7 +42,6 @@
 #define geda_attrib_detach_all                 geda_attrib_object_detach_all
 #define geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name
 #define geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks
-#define geda_attrib_get_attached               geda_attrib_object_get_attached
 #define geda_attrib_get_name_value             geda_attrib_object_get_name_value
 #define geda_attrib_is_attached_to             geda_attrib_object_is_attached_to
 #define geda_attrib_is_inherited               geda_attrib_object_is_inherited

@@ -300,24 +300,6 @@ geda_attrib_object_freeze_hooks (GedaObject *object)
 }
 
 /*!
- * \brief Get List of Attributes Attached to GedaObject
- * \par Function Description
- *  return the GedaObject-atrribs glist assocaiated with the given object.
- *
- * \param [in]  object The GedaObject from which to get the attribute list.
- *
- * \return List of attached attributes.
- */
-GList*
-geda_attrib_object_get_attached (const GedaObject *object)
-{
-  if (GEDA_IS_OBJECT(object)) {
-    return object->attribs;
-  }
-  return NULL;
-}
-
-/*!
  * \brief Get name and value from an attribute GedaObject
  * \par Function Description
  *  Calls geda_attrib_object_get_name_value to do the work

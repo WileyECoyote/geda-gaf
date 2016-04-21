@@ -66,7 +66,6 @@
  *              geda_object_list_find_floating
  *              geda_attrib_object_first_attrib_by_name
  *              geda_attrib_object_freeze_hooks
- *              geda_attrib_object_get_attached
  *              geda_attrib_object_get_name_value
  *              geda_attrib_object_is_attached_to
  *              geda_attrib_object_is_inherited
