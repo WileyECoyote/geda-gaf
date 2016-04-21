@@ -6,6 +6,11 @@
     * src/object/o_attrib.c: Add function geda_object_error and implement
       module level error message output utilizing geda_error_object_argument
 
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_first_attrib_by_name,
+            * geda_attrib_object_freeze_hooks,
+
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object_list.h: Add header with macros as alias to

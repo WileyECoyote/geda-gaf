@@ -61,11 +61,9 @@
  *      O0303   geda_attrib_object_attach
  *      O0304   geda_attrib_object_attach_list
  *      O0305   geda_attrib_object_detach
- *              geda_attrib_object_detach_all
- *              geda_object_list_find_floating
- *              geda_object_list_find_floating
- *              geda_attrib_object_first_attrib_by_name
- *              geda_attrib_object_freeze_hooks
+ *      O0306   geda_attrib_object_detach_all
+ *      O0307   geda_attrib_object_first_attrib_by_name
+ *      O0308   geda_attrib_object_freeze_hooks
  *              geda_attrib_object_get_name_value
  *              geda_attrib_object_is_attached_to
  *              geda_attrib_object_is_inherited
@@ -469,10 +467,89 @@ check_attrib_detach_all (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 07: geda_attrib_first_attrib_by_name       geda_attrib_object_first_attrib_by_name  === */
-  /* === Function 08: geda_attrib_freeze_hooks               geda_attrib_object_freeze_hooks  === */
-  /* === Function 09: geda_attrib_get_attached               geda_attrib_object_get_attached  === */
-  /* === Function 10: geda_attrib_get_name_value             geda_attrib_object_get_name_value  === */
+int
+check_attrib_find_first_by_name (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
+  GedaObject *found;
+
+  s_page_append_object(page, object);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  /* === Function 07: geda_attrib_object_first_attrib_by_name  === */
+
+  found = geda_attrib_first_attrib_by_name (object, "A");
+
+  if (!found) {
+    fprintf(stderr, "FAILED: (O030701A) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+  else if (found != attrib1) {
+    fprintf(stderr, "FAILED: (O030701B) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_attrib_freeze_hooks (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  s_page_append_object(page, object);
+
+  /* === Function 08: geda_attrib_object_freeze_hooks  === */
+
+  geda_attrib_freeze_hooks(object);
+
+  notify_attribute = 0;
+
+  geda_attrib_attach(object, attrib1, FALSE);
+
+  if (notify_attribute != 0) {
+    fprintf(stderr, "FAILED: (O030801) geda_attrib_object_freeze_hooks\n");
+    result++;
+  }
+
+  notify_attribute = 0;
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
   /* === Function 11: geda_attrib_is_attached_to             geda_attrib_object_is_attached_to  === */
   /* === Function 12: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
   /* === Function 13: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
@@ -562,23 +639,23 @@ main (int argc, char *argv[])
       fprintf(stderr, "Caught signal checking check_attrib_detach_all\n\n");
       result++;
     }
-/*
+
     if (setjmp(point) == 0) {
-      result += check_attrib_find_floating(toplevel);
+      result += check_attrib_find_first_by_name(toplevel);
     }
     else {
-      fprintf(stderr, "Caught signal checking geda_object_list_find_floating\n\n");
+      fprintf(stderr, "Caught signal checking geda_attrib_object_first_attrib_by_name\n\n");
       result++;
     }
 
     if (setjmp(point) == 0) {
-      result += check_attrib_find_by_name(toplevel);
+      result += check_attrib_freeze_hooks(toplevel);
     }
     else {
-      fprintf(stderr, "Caught signal checking geda_object_list_find_floating\n\n");
+      fprintf(stderr, "Caught signal checking geda_attrib_object_freeze_hooks\n\n");
       result++;
     }
-    */
+
   }
   else {
     fprintf(stderr, "discontinuing checks for src/object/o_attrib\n\n");
