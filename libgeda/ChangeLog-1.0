@@ -4,7 +4,9 @@
       message output for errors with object arguments.
 
     * src/object/o_attrib.c: Add function geda_object_error and implement
-      module level error message output utilizing geda_error_object_argument
+      module level error message output utilizing geda_error_object_argument.
+      Revise function eliminating g_return_if_fail if freeze count is already
+      zero in geda_attrib_object_thaw_hooks and ignore the error.
 
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 

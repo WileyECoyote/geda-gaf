@@ -115,7 +115,6 @@ geda_attrib_object_add(GedaObject *object, GedaObject *item)
     item->attached_to = object;
     object->attribs   = g_list_append (object->attribs, item);
     geda_attrib_object_emit_changed (object);
-
   }
 }
 
@@ -1098,22 +1097,23 @@ geda_attrib_object_string_get_name_value (const char  *string,
  * \par Function Description
  *  Decreases the notify_freeze_count of \a object, if the count
  *  has been reduced to zero pending notifications are completed.
- *
- * \todo fix this!
+ *  Silently ignores error if freeze_count already zero and does
+ *  not emit_changed signal on the object.
  */
 void
 geda_attrib_object_thaw_hooks (GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    g_return_if_fail (object->attrib_notify_freeze_count > 0);
+    if (object->attrib_notify_freeze_count > 0) {
 
-    object->attrib_notify_freeze_count --;
+      object->attrib_notify_freeze_count --;
 
-    if (object->attrib_notify_freeze_count == 0 &&
-      object->attrib_notify_pending)
-    {
-      geda_attrib_object_emit_changed (object);
+      if (object->attrib_notify_freeze_count == 0 &&
+          object->attrib_notify_pending)
+      {
+        geda_attrib_object_emit_changed (object);
+      }
     }
   }
   else {
