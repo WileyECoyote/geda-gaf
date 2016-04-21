@@ -1,3 +1,7 @@
+2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_enum.h: Add enumeration IDE_OBJECT_TYPE.
+
 2016-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/: Add some graphics images for hierarchy icons:

@@ -34,6 +34,22 @@
  *   \ingroup (geda-globals)
  */
 
+typedef enum
+{
+  GEDA_OBJECT_ALL,
+  GEDA_OBJECT_ARC,
+  GEDA_OBJECT_BOX,
+  GEDA_OBJECT_BUS,
+  GEDA_OBJECT_CIRCLE,
+  GEDA_OBJECT_COMPLEX,
+  GEDA_OBJECT_LINE,
+  GEDA_OBJECT_NET,
+  GEDA_OBJECT_PATH,
+  GEDA_OBJECT_PICTURE,
+  GEDA_OBJECT_PIN,
+  GEDA_OBJECT_TEXT
+} IDE_OBJECT_TYPE;
+
 /*! \enum LINE_END line end style for an open line of an object */
 typedef enum {END_NONE, END_SQUARE, END_ROUND, END_VOID} LINE_END;
 
