@@ -64,8 +64,8 @@
  *      O0306   geda_attrib_object_detach_all
  *      O0307   geda_attrib_object_first_attrib_by_name
  *      O0308   geda_attrib_object_freeze_hooks
- *              geda_attrib_object_get_name_value
- *              geda_attrib_object_is_attached_to
+ *      O0309   geda_attrib_object_get_name_value
+ *      O0310   geda_attrib_object_is_attached_to
  *              geda_attrib_object_is_inherited
  *              geda_attrib_object_new_attached
  *              geda_attrib_object_print
@@ -550,20 +550,122 @@ check_attrib_freeze_hooks (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 11: geda_attrib_is_attached_to             geda_attrib_object_is_attached_to  === */
-  /* === Function 12: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
-  /* === Function 13: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
-  /* === Function 14: geda_attrib_print                      geda_attrib_object_print  === */
-  /* === Function 15: geda_attrib_remove                     geda_attrib_object_remove  === */
-  /* === Function 16: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
-  /* === Function 17: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
-  /* === Function 18: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
-  /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
-  /* === Function 20: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
-  /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
-  /* === Function 22: geda_attrib_set_value                  geda_attrib_object_set_value  === */
-  /* === Function 23: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
-  /* === Function 24: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
+int
+check_get_name_value(GedaToplevel *toplevel)
+
+{
+  int result = 0;
+
+  char *name;
+  char *value;
+
+  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  /* === Function 10: geda_attrib_object_get_name_value  === */
+
+  if (geda_attrib_get_name_value(NULL, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O030900A) geda_attrib_object_get_name_value\n");
+    result++;
+  }
+
+  if (!geda_attrib_get_name_value(attrib, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O030900B) geda_attrib_object_get_name_value\n");
+    result++;
+  }
+
+  if (!geda_attrib_get_name_value(attrib, &name, NULL)) {
+    fprintf(stderr, "FAILED: (O030901A) geda_attrib_object_get_name_value\n");
+    result++;
+  }
+  else if (strncmp(name, "A", 1)) {
+    fprintf(stderr, "FAILED: (O030901B) geda_attrib_object_get_name_value <%s>\n", name);
+    result++;
+  }
+
+  GEDA_FREE(name);
+
+  if (!geda_attrib_get_name_value(attrib, NULL, &value)) {
+    fprintf(stderr, "FAILED: (O030902A) geda_attrib_object_get_name_value\n");
+    result++;
+  }
+  else if (strncmp(value, "a", 1)) {
+    fprintf(stderr, "FAILED: (O030902B) geda_attrib_object_get_name_value <%s>\n", value);
+    result++;
+  }
+
+  GEDA_FREE(value);
+
+  if (!geda_attrib_get_name_value(attrib, &name, &value)) {
+    fprintf(stderr, "FAILED: (O030903A) geda_attrib_object_get_name_value\n");
+    result++;
+  }
+  else if (strncmp(name, "A", 1) || strncmp(value, "a", 1)) {
+    fprintf(stderr, "FAILED: (O030903B) geda_attrib_object_get_name_value <%s=%s>\n", name, value);
+    result++;
+  }
+
+  GEDA_FREE(name);
+  GEDA_FREE(value);
+
+  g_object_unref (attrib);
+
+  return result;
+}
+
+int
+check_attrib_is_attached_to (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  GedaObject *object1 = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *object2 = geda_box_object_new(3, 10, 20, 30, 40);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  /* === Function 10: geda_attrib_object_is_attached_to  === */
+
+  if (geda_attrib_is_attached_to(NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O031000A) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  if (geda_attrib_is_attached_to(object1, NULL)) {
+    fprintf(stderr, "FAILED: (O031000A) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  geda_attrib_attach(object1, attrib1, FALSE);
+
+  if (!geda_attrib_is_attached_to(attrib1, object1)) {
+    fprintf(stderr, "FAILED: (O031001) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  if (geda_attrib_is_attached_to( attrib1, object2)) {
+    fprintf(stderr, "FAILED: (O031002) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  g_object_unref (object1);
+  g_object_unref (object2);
+
+  return result;
+}
+
+  /* === Function 11: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
+  /* === Function 12: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
+  /* === Function 13: geda_attrib_print                      geda_attrib_object_print  === */
+  /* === Function 14: geda_attrib_remove                     geda_attrib_object_remove  === */
+  /* === Function 15: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
+  /* === Function 16: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
+  /* === Function 17: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
+  /* === Function 18: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
+  /* === Function 19: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
+  /* === Function 20: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
+  /* === Function 21: geda_attrib_set_value                  geda_attrib_object_set_value  === */
+  /* === Function 22: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
+  /* === Function 23: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
 
 /** @} endgroup test-attrib-object */
 
@@ -656,6 +758,21 @@ main (int argc, char *argv[])
       result++;
     }
 
+    if (setjmp(point) == 0) {
+      result += check_get_name_value(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_get_name_value\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_is_attached_to(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_is_attached_to\n\n");
+      result++;
+    }
   }
   else {
     fprintf(stderr, "discontinuing checks for src/object/o_attrib\n\n");

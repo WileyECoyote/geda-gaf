@@ -12,6 +12,8 @@
 
             * geda_attrib_object_first_attrib_by_name,
             * geda_attrib_object_freeze_hooks,
+            * geda_attrib_object_get_name_value,
+            * geda_attrib_object_is_attached_to.
 
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
