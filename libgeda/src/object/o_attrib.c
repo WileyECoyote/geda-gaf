@@ -87,6 +87,12 @@ geda_attrib_object_emit_changed (GedaObject *object)
   }
 }
 
+static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
 /*!
  * \brief Add an attribute to an existing attribute list.
  * \par Function Description
@@ -98,8 +104,13 @@ geda_attrib_object_emit_changed (GedaObject *object)
 void
 geda_attrib_object_add(GedaObject *object, GedaObject *item)
 {
-  if (GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(item)) {
-
+  if (!GEDA_IS_OBJECT(object)) {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+  }
+  else if (!GEDA_IS_OBJECT(item)) {
+    geda_object_error(__func__, item, GEDA_OBJECT_ALL);
+  }
+  else {
     /* Add link from item to attrib listing */
     item->attached_to = object;
     object->attribs   = g_list_append (object->attribs, item);
@@ -143,7 +154,13 @@ geda_attrib_object_append_changed_hook (Page              *page,
 void
 geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color)
 {
-  if (GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(attrib)) {
+  if (!GEDA_IS_OBJECT(object)) {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+  }
+  else if (!GEDA_IS_OBJECT(attrib)) {
+    geda_object_error(__func__, attrib, GEDA_OBJECT_ALL);
+  }
+  else {
 
     /* is the object already part of the list ? */
     if (g_list_find (object->attribs, attrib)) {
@@ -206,19 +223,25 @@ geda_attrib_object_attach_list (GedaObject  *object,
 void
 geda_attrib_object_detach(GedaObject *attribute)
 {
-  if (attribute && attribute->attached_to != NULL) {
+  if (GEDA_IS_OBJECT(attribute)) {
 
-    GedaObject *parent;
+    if (attribute->attached_to != NULL) {
 
-    parent = attribute->attached_to;
-    attribute->attached_to = NULL;
+      GedaObject *parent;
 
-    o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
-    geda_attrib_object_emit_changed (attribute);
+      parent = attribute->attached_to;
+      attribute->attached_to = NULL;
 
-    parent->attribs = g_list_remove (parent->attribs, attribute);
+      o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
+      geda_attrib_object_emit_changed (attribute);
 
-    s_object_set_page_changed (attribute);
+      parent->attribs = g_list_remove (parent->attribs, attribute);
+
+      s_object_set_page_changed (attribute);
+    }
+  }
+  else {
+    geda_object_error(__func__, attribute, GEDA_OBJECT_ALL);
   }
 }
 
@@ -235,35 +258,41 @@ geda_attrib_object_detach(GedaObject *attribute)
 void
 geda_attrib_object_detach_all(GedaObject *object)
 {
-  if (object && object->attribs != NULL) {
+  if (GEDA_IS_OBJECT(object)) {
 
-    GList *a_iter;
-    Page  *page;
+    if (object->attribs != NULL) {
 
-    page = NULL;
+      GList *a_iter;
+      Page  *page;
 
-    for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
+      page = NULL;
 
-      GedaObject *attribute = a_iter->data;
+      for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
 
-      attribute->attached_to = NULL;
-      o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
+        GedaObject *attribute = a_iter->data;
 
-      geda_attrib_object_emit_changed (attribute);
+        attribute->attached_to = NULL;
+        o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
 
-      if (!page) {
-        page = geda_object_get_page(attribute);
+        geda_attrib_object_emit_changed (attribute);
+
+        if (!page) {
+          page = geda_object_get_page(attribute);
+        }
       }
+
+      g_list_free (object->attribs);
+      object->attribs = NULL;
+
+      if (page && (GEDA_IS_PAGE(page))) {
+        page->CHANGED = TRUE;
+      }
+
+      geda_attrib_object_emit_changed (object);
     }
-
-    g_list_free (object->attribs);
-    object->attribs = NULL;
-
-    if (page && (GEDA_IS_PAGE(page))) {
-      page->CHANGED = TRUE;
-    }
-
-    geda_attrib_object_emit_changed (object);
+  }
+  else {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
   }
 }
 
@@ -283,7 +312,7 @@ geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
   if (GEDA_IS_OBJECT(object)) {
     return geda_find_attrib_by_name (object->attribs, name, 0);
   }
-  BUG_MSG("Invalid GEDA GedaObject");
+  geda_object_error(__func__, object, GEDA_OBJECT_ALL);
   return NULL;
 }
 
@@ -296,7 +325,12 @@ geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
 void
 geda_attrib_object_freeze_hooks (GedaObject *object)
 {
-  object->attrib_notify_freeze_count ++;
+  if (GEDA_IS_OBJECT(object)) {
+    object->attrib_notify_freeze_count ++;
+  }
+  else {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+  }
 }
 
 /*!
@@ -322,7 +356,7 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
     return geda_attrib_object_string_get_name_value (attrib->text->string,
                                                      name_ptr, value_ptr);
   }
-  BUG_MSG("Invalid GEDA GedaObject");
+  geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
   return FALSE;
 }
 
@@ -340,12 +374,15 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
 bool
 geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObject *object)
 {
-  if (attrib == NULL || object == NULL)
-    return FALSE;
+  if (GEDA_IS_TEXT(attrib)) {
 
-  if (attrib->attached_to == object)
-    return TRUE;
+    if (object == NULL)
+      return FALSE;
 
+    if (attrib->attached_to == object)
+      return TRUE;
+  }
+  geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
   return FALSE;
 }
 
@@ -366,7 +403,7 @@ geda_attrib_object_is_inherited (const GedaObject *attrib)
 
     return (attrib->attached_to == NULL && attrib->parent_object != NULL);
   }
-  BUG_MSG("Invalid GEDA GedaObject");
+  geda_object_error(__func__, attrib, GEDA_OBJECT_ALL);
   return FALSE;
 }
 
@@ -599,7 +636,6 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         object_list = g_list_prepend (object_list, new_obj);
         break;
 
-
       case(OBJ_NET):
         if ((new_obj = o_net_read (line, release_ver, fileformat_ver, err)) == NULL)
           goto error;
@@ -659,7 +695,6 @@ geda_attrib_object_read (GedaToplevel *toplevel,
                                          toplevel->rendered_text_bounds_func,
                                          toplevel->rendered_text_bounds_data);
 
-
         if (parent->type == OBJ_PIN)
           o_pin_update_read_property(parent, new_obj);
 
@@ -704,7 +739,7 @@ error:
 void
 geda_attrib_object_remove(GList **list, GedaObject *remove)
 {
-  if (remove != NULL) {
+  if (GEDA_IS_OBJECT(remove)) {
 
     GedaObject *attached_to = remove->attached_to;
 
@@ -714,8 +749,9 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
 
     geda_attrib_object_emit_changed (attached_to);
   }
-  else
-    BUG_MSG("can not remove NULL attribute");
+  else {
+    geda_object_error(__func__, remove, GEDA_OBJECT_ALL);
+  }
 }
 
 /*!
@@ -737,40 +773,44 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
 GList*
 geda_attrib_object_return_attribs (const GedaObject *object)
 {
-  GList  *a_iter;
   GList  *attribs = NULL;
 
-  g_return_val_if_fail (object != NULL, NULL);
+  if (GEDA_IS_OBJECT(object)) {
 
-  /* Directly attached attributes */
-  for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
-  {
-     GedaObject *attribute;
+    GList  *a_iter;
 
-     if ((attribute = a_iter->data) != NULL) {
-      if (attribute->type != OBJ_TEXT)
-        continue;
+    /* Directly attached attributes */
+    for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
+    {
+      GedaObject *attribute;
 
-      /* Don't add invalid attributes to the list */
-      if (!geda_attrib_object_get_name_value (attribute, NULL, NULL))
-        continue;
+      if ((attribute = a_iter->data) != NULL) {
+        if (attribute->type != OBJ_TEXT)
+          continue;
 
-      attribs = g_list_prepend (attribs, attribute);
+        /* Don't add invalid attributes to the list */
+        if (!geda_attrib_object_get_name_value (attribute, NULL, NULL))
+          continue;
+
+        attribs = g_list_prepend (attribs, attribute);
+      }
+    }
+
+    attribs = g_list_reverse (attribs);
+
+    /* Inherited attributes (inside complex objects) */
+    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
+    {
+      GList *inherited_attribs;
+
+      inherited_attribs = geda_list_find_floating (object->complex->prim_objs);
+
+      attribs = g_list_concat (attribs, inherited_attribs);
     }
   }
-
-  attribs = g_list_reverse (attribs);
-
-  /* Inherited attributes (inside complex objects) */
-  if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
-  {
-    GList *inherited_attribs;
-
-    inherited_attribs = geda_list_find_floating (object->complex->prim_objs);
-
-    attribs = g_list_concat (attribs, inherited_attribs);
+  else {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
   }
-
   return attribs;
 }
 
@@ -787,6 +827,8 @@ geda_attrib_object_return_attribs (const GedaObject *object)
  * \param [in] counter  Which occurance to return.
  *
  * \return Character string with attribute value, NULL otherwise.
+ *
+ * \todo remove from module?
  */
 static char*
 geda_attrib_object_search_attrib_list_by_name (const GList *list,
@@ -794,12 +836,13 @@ geda_attrib_object_search_attrib_list_by_name (const GList *list,
                                                      int    counter)
 {
   GedaObject *attrib;
-  char *value = NULL;
+  char       *value = NULL;
 
   attrib = geda_object_list_find_attrib_by_name (list, name, counter);
 
-  if (attrib != NULL)
+  if (attrib != NULL) {
     geda_attrib_object_get_name_value (attrib, NULL, &value);
+  }
 
   return value;
 }
@@ -825,7 +868,11 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
                                             const char       *name,
                                                   int         counter)
 {
-  return geda_attrib_object_search_attrib_list_by_name (object->attribs, name, counter);
+  if (GEDA_IS_OBJECT(object)) {
+    return geda_attrib_object_search_attrib_list_by_name (object->attribs, name, counter);
+  }
+  geda_object_error(__func__, remove, GEDA_OBJECT_ALL);
+  return NULL;
 }
 
 /*!
@@ -843,6 +890,8 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
  * \return Character string with attribute value, NULL otherwise.
  *
  * \note Caller should release the returned character string.
+ *
+ * \todo remove from module?
  */
 char*
 geda_attrib_object_search_floating_by_name (const GList *list,
@@ -880,11 +929,13 @@ geda_attrib_object_search_inherited_by_name (const GedaObject *object,
                                              const char       *name,
                                                    int         counter)
 {
-  g_return_val_if_fail (object->type == OBJ_COMPLEX ||
-                        object->type == OBJ_PLACEHOLDER, NULL);
+  if (GEDA_IS_COMPLEX(object)) {
 
   return geda_attrib_search_floating_by_name (object->complex->prim_objs,
                                               name, counter);
+  }
+  geda_object_error(__func__, object, GEDA_OBJECT_COMPLEX);
+  return NULL;
 }
 
 /*!
@@ -908,14 +959,19 @@ geda_attrib_object_search_object_by_name (const GedaObject *object,
                                           const char       *name,
                                           int               counter)
 {
-  char  *result;
-  GList *attributes;
+  if (GEDA_IS_OBJECT(object)) {
 
-  attributes = geda_attrib_return_attribs (object);
-  result     = geda_attrib_object_search_attrib_list_by_name (attributes, name, counter);
-  g_list_free (attributes);
+    char  *result;
+    GList *attributes;
 
-  return result;
+    attributes = geda_attrib_return_attribs (object);
+    result     = geda_attrib_object_search_attrib_list_by_name (attributes, name, counter);
+    g_list_free (attributes);
+
+    return result;
+  }
+  geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+  return NULL;
 }
 
 /*!
@@ -937,8 +993,13 @@ geda_attrib_object_set_integer_value (const GedaObject *attrib,
                                       const char       *name_ptr,
                                             int         value)
 {
-  GEDA_FREE(attrib->text->string);
-  attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
+  if (GEDA_IS_TEXT(attrib)) {
+    GEDA_FREE(attrib->text->string);
+    attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
+  }
+  else {
+    geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
+  }
 }
 
 /*!
@@ -959,10 +1020,13 @@ geda_attrib_object_set_value (const GedaObject *attrib,
                               const char       *name_ptr,
                               const char       *value_ptr)
 {
-
-  GEDA_FREE(attrib->text->string);
-
-  attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
+  if (GEDA_IS_TEXT(attrib)) {
+    GEDA_FREE(attrib->text->string);
+    attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
+  }
+  else {
+    geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
+  }
 }
 
 /*!
@@ -988,6 +1052,8 @@ geda_attrib_object_set_value (const GedaObject *attrib,
  * \param [out] value_ptr  The return location for the value, or NULL.
  *
  * \return TRUE on success, FALSE otherwise.
+ *
+ * \todo remove from module
  */
 bool
 geda_attrib_object_string_get_name_value (const char  *string,
@@ -1032,17 +1098,25 @@ geda_attrib_object_string_get_name_value (const char  *string,
  * \par Function Description
  *  Decreases the notify_freeze_count of \a object, if the count
  *  has been reduced to zero pending notifications are completed.
+ *
+ * \todo fix this!
  */
 void
 geda_attrib_object_thaw_hooks (GedaObject *object)
 {
-  g_return_if_fail (object->attrib_notify_freeze_count > 0);
+  if (GEDA_IS_OBJECT(object)) {
 
-  object->attrib_notify_freeze_count --;
+    g_return_if_fail (object->attrib_notify_freeze_count > 0);
 
-  if (object->attrib_notify_freeze_count == 0 &&
+    object->attrib_notify_freeze_count --;
+
+    if (object->attrib_notify_freeze_count == 0 &&
       object->attrib_notify_pending)
-  {
-    geda_attrib_object_emit_changed (object);
+    {
+      geda_attrib_object_emit_changed (object);
+    }
+  }
+  else {
+    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
   }
 }
