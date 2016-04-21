@@ -1,5 +1,10 @@
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_errors.c: Add error message output function to handle
+      message output for errors with object arguments.
+
+2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/geda_object_list.h: Add header with macros as alias to
       functions in geda_object_list and include in both libgeda.h and libgeda
       _priv.h.
@@ -26,7 +31,7 @@
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_detach,
-            * geda_attrib_object_detach_all,
+            * geda_attrib_object_detach_all.
 
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
