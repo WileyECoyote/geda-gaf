@@ -317,10 +317,13 @@ geda_attrib_object_get_name_value (const GedaObject  *attrib,
                                          char       **name_ptr,
                                          char       **value_ptr)
 {
-  g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
+  if (GEDA_IS_TEXT(attrib)) {
 
-  return geda_attrib_object_string_get_name_value (attrib->text->string,
-                                                   name_ptr, value_ptr);
+    return geda_attrib_object_string_get_name_value (attrib->text->string,
+                                                     name_ptr, value_ptr);
+  }
+  BUG_MSG("Invalid GEDA GedaObject");
+  return FALSE;
 }
 
 /*!
@@ -359,7 +362,12 @@ geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObject *o
 int
 geda_attrib_object_is_inherited (const GedaObject *attrib)
 {
-  return (attrib->attached_to == NULL && attrib->parent_object != NULL);
+  if (GEDA_IS_OBJECT(attrib)) {
+
+    return (attrib->attached_to == NULL && attrib->parent_object != NULL);
+  }
+  BUG_MSG("Invalid GEDA GedaObject");
+  return FALSE;
 }
 
 /*!

@@ -13,7 +13,8 @@
       emit change for each of the attributes and the parent object, removing
       freeze/thaw and only set the page change flag if at least one of the
       attributes was on a page validate arguments in geda_attrib_object_add,
-      geda_attrib_object_append_changed_hook adn geda_attrib_object_attach.
+      geda_attrib_object_append_changed_hook geda_attrib_object_is_inherited
+      geda_attrib_object_get_name_value and geda_attrib_object_attach
       Replace geda_attrib_object_get_name_value with o_get_is_valid_attribute
       in geda_attrib_object_find_floating, revise comments.
 
