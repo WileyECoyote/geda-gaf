@@ -198,14 +198,18 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     int zoom = toplevel->page_current->to_world_x_constant;
 
     if ((zoom > w_current->text_display_zoomfactor) &&
-      (w_current->text_feedback != ALWAYS_FEEDBACK))
+       (w_current->text_feedback != ALWAYS_FEEDBACK))
+    {
       render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
+    }
   }
 
   if ((is_only_text) &&
      (w_current->text_feedback != ALWAYS_FEEDBACK) &&
      (w_current->inside_action))
+  {
     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
+  }
 
   /* The display color map is used for "normal" rendering. */
   render_color_map = geda_color_get_display_map();

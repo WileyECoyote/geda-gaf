@@ -35,6 +35,7 @@
 #include <libgeda_priv.h>
 #include <geda_text.h>
 
+
 /*! \brief Get the Parent index an object is attached to
  *
  * \par Function Description
@@ -544,8 +545,8 @@ o_get_num_text_lines(const char *string)
 const char*
 o_get_object_attrib_value (GedaObject *object, const char *name)
 {
-        GedaObject *attrib;
-  const char   *value;
+  GedaObject *attrib;
+  const char *value;
 
   if (GEDA_IS_OBJECT(object)) {
 

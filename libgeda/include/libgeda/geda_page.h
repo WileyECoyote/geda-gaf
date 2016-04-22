@@ -76,7 +76,7 @@ struct _GedaPage {
   GList      *place_list;
   GedaObject *object_lastplace;        /* the last found item */
 
-  GList* major_changed_refdes;         /* A list of all refdes's that have */
+  GList      *major_changed_refdes;    /* A list of all refdes's that have */
                                        /* major symbol version changes */
   char       *filename;
   int         CHANGED;                 /* changed flag */
@@ -104,7 +104,7 @@ struct _GedaPage {
   UNDO *undo_tos;                  /* Top Of Stack */
 
   /* used to control which pages are viewable when traversing hierarchy */
-  int page_control; /* WEH sound's hokey */
+  int page_control;                /* WEH sound's hokey */
 
   /* For hierarchy */
   int hierarchy_up;                /* pid of the parent page */
@@ -115,7 +115,7 @@ struct _GedaPage {
   /* backup variables */
   char saved_since_first_loaded;
   int  ops_since_last_backup;      /* page->CHANGED since last backup */
-  char do_autosave_backup;         /* If true file should backed up */
+  char do_autosave_backup;         /* If true files should be backed up */
 
   /* Callback function for calculating text bounds */
   RenderedBoundsFunc rendered_text_bounds_func;
