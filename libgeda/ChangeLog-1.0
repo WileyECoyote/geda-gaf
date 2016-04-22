@@ -6,6 +6,8 @@
     * tests/test_arc_object.c: Revise output messages, add output of conditions
       for O020506-Q13-90A and O020506-Q24-90A.
 
+    * tests/test_box_object.c: create new test module.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_is_attached_to,
