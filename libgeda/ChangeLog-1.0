@@ -6,6 +6,11 @@
     * tests/test_arc_object.c: Revise output messages, add output of conditions
       for O020506-Q13-90A and O020506-Q24-90A.
 
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_is_attached_to,
+            * geda_attrib_object_new_attached,
+
 2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_errors.c: Add error message output function to handle

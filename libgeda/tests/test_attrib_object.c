@@ -653,8 +653,139 @@ check_attrib_is_attached_to (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 11: geda_attrib_is_inherited               geda_attrib_object_is_inherited  === */
-  /* === Function 12: geda_attrib_new_attached               geda_attrib_object_new_attached  === */
+int
+check_attrib_is_inherited (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  GedaObject *object1 = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  /* === Function 11: geda_attrib_object_is_inherited  === */
+
+  if (geda_attrib_is_inherited(NULL)) {
+    fprintf(stderr, "FAILED: (O031100A) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  if (geda_attrib_is_inherited(attrib1)) {
+    fprintf(stderr, "FAILED: (O031101) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  attrib1->parent_object = object1;
+
+  /* Note did not bother adding attrib1 to parent's attribute list */
+  if (!geda_attrib_is_inherited(attrib1)) {
+    fprintf(stderr, "FAILED: (O031102) geda_attrib_object_is_attached_to\n");
+    result++;
+  }
+
+  g_object_unref (object1);
+
+  return result;
+}
+
+int
+check_new_attached(GedaToplevel *toplevel)
+
+{
+  int result = 0;
+
+  GedaObject *attrib;
+
+  Page       *page   = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object1 = geda_complex_new ();
+  GedaObject *object2 = geda_complex_new ();
+
+  s_page_append_object(page, object2);
+
+  /* === Function 12: geda_attrib_object_new_attached  === */
+
+  /* Yes this does produce an attribute, "unknown=empty" */
+  attrib = geda_attrib_new_attached (NULL, NULL, NULL, 0, 0);
+
+  if (!GEDA_IS_OBJECT(attrib)) {
+    fprintf(stderr, "FAILED: (O031200A) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!GEDA_IS_TEXT(attrib)) {
+    fprintf(stderr, "FAILED: (O031200B) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (attrib->page) {
+    fprintf(stderr, "FAILED: (O031200C) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  g_object_unref (attrib);
+
+  attrib = geda_attrib_new_attached (NULL, "A", "a", 1, 1);
+
+  if (!GEDA_IS_OBJECT(attrib)) {
+    fprintf(stderr, "FAILED: (O031201A) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!GEDA_IS_TEXT(attrib)) {
+    fprintf(stderr, "FAILED: (O031201B) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (attrib->page) {
+    fprintf(stderr, "FAILED: (O031201C) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  g_object_unref (attrib);
+
+  attrib = geda_attrib_new_attached (object1, "A", "a", 1, 1);
+
+  if (!GEDA_IS_OBJECT(attrib)) {
+    fprintf(stderr, "FAILED: (O031202A) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!GEDA_IS_TEXT(attrib)) {
+    fprintf(stderr, "FAILED: (O031202B) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (attrib->page) {
+    fprintf(stderr, "FAILED: (O031202C) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!geda_attrib_object_is_attached_to(attrib, object1)) {
+    fprintf(stderr, "FAILED: (O031202D) geda_attrib_object_new_attached");
+    result++;
+  }
+  g_object_unref (attrib);
+
+  attrib = geda_attrib_new_attached (object2, "A", "a", 1, 1);
+
+  if (!GEDA_IS_OBJECT(attrib)) {
+    fprintf(stderr, "FAILED: (O031203A) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!GEDA_IS_TEXT(attrib)) {
+    fprintf(stderr, "FAILED: (O031203B) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (attrib->page != page) {
+    fprintf(stderr, "FAILED: (O031203C) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  else if (!geda_attrib_object_is_attached_to(attrib, object2)) {
+    fprintf(stderr, "FAILED: (O031203D) geda_attrib_object_new_attached\n");
+    result++;
+  }
+  g_object_unref (attrib);
+
+  s_page_remove_object (page, attrib); /* now floating */
+  s_page_remove_object (page, object2);
+
+  g_object_unref (object1);
+  g_object_unref (object2);
+
+  return result;
+}
+
   /* === Function 13: geda_attrib_print                      geda_attrib_object_print  === */
   /* === Function 14: geda_attrib_remove                     geda_attrib_object_remove  === */
   /* === Function 15: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
@@ -771,6 +902,22 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_is_attached_to\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_is_inherited(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_is_inherited\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_new_attached(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_new_attached\n\n");
       result++;
     }
   }
