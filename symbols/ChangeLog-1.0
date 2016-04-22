@@ -1,3 +1,11 @@
+2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ADC0832-1.sym: Add symbol; 2-Channel MUX,8-Bit Serial I/O A/D
+      Converters, DIP8.
+
+    * ti/ADC0832NPA-1.sym: Single Differential, 8-Bit Serial I/O A/D
+      Converters, SOIC14.
+
 2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * dec/DC003C-1.sym: Revise attributes, update pintype, add missing.
@@ -125,7 +133,7 @@
 
     * ti/ADC0831-1.sym: Add symbol; 8-Bit Serial I/O A/D Converter, DIP8.
 
-    * ti/ADC0831NPA-1.sym:: Single Differential,8-Bit Serial I/O A/D
+    * ti/ADC0831NPA-1.sym: Single Differential,8-Bit Serial I/O A/D
       Converters, SOIC14.
 
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
