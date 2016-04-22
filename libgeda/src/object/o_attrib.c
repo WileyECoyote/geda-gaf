@@ -410,7 +410,7 @@ geda_attrib_object_is_inherited (const GedaObject *attrib)
  * \brief Create a new Attributes GedaObject
  * \par Function Description
  *  This function creates a new text object and attaches the
- *  attribute to the given parent object of the Parent argument
+ *  attribute to the given parent object if the \a parent argument
  *  is not NULL, if the parent object is on a page, then the
  *  new attribute will be appended to the same page.
  *
@@ -445,7 +445,7 @@ geda_attrib_object_new_attached(GedaObject *parent,
   angle   = 0;
 
   /* creating a toplevel or unattached attribute */
-  if (parent) {
+  if (parent && GEDA_IS_OBJECT(parent)) {
 
     color = ATTRIBUTE_COLOR;
 

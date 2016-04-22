@@ -1,3 +1,8 @@
+2016-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Add parent validation in geda_attrib_object_new
+      _attached and revise comments.
+
 2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_errors.c: Add error message output function to handle
