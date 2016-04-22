@@ -394,7 +394,7 @@ check_serialization ()
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O022601) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O022601A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -405,7 +405,7 @@ check_serialization ()
                                                 NULL);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O021801A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O021801A) Read GedaObject Failed\n");
       result++;
       break;
     }
@@ -478,7 +478,7 @@ check_serialization ()
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O021101J) sub-pointer not a %s\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O022601B) %s buffer mismatch\n", TOBJECT);
         result++;
         break;
       }
@@ -659,6 +659,10 @@ query_nearest_Q13_90 (GedaObject *object)
   /* Finally check on the exterior/far-side of the bulge */
   if (!geda_arc_object_get_nearest_point (object, mpx + 10, mpy + 10, &nx, &ny)) {
     fprintf(stderr, "FAILED: (O020506-Q13-90A) nearest arc object point\n");
+    fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
+    fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
+    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
+    fprintf(stderr, " returned INVALID     ( nx=%d,\t  ny=%d)\n\n", nx, ny);
     result++;
   }
   else {
@@ -842,6 +846,10 @@ query_nearest_Q24_90 (GedaObject *object)
   /* Finally check on the exterior/far-side of the bulge */
   if (!geda_arc_object_get_nearest_point (object, mpx - 10, mpy + 10, &nx, &ny)) {
     fprintf(stderr, "FAILED: (O020506-Q24-90A) nearest arc object point\n");
+    fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
+    fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
+    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
+    fprintf(stderr, " returned INVALID     ( nx=%d,\t  ny=%d)\n\n", nx, ny);
     result++;
   }
   else {
@@ -1209,7 +1217,7 @@ main (int argc, char *argv[])
       subtotal = check_serialization();
     }
     else {
-      fprintf(stderr, "Caught serialization in query in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Caught serialization in src/object/o_arc_object.c\n\n");
       return 1;
     }
     if (subtotal) {
