@@ -1,3 +1,10 @@
+2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_print,
+            * geda_attrib_object_read,
+
 2016-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add parent validation in geda_attrib_object_new
@@ -11,7 +18,7 @@
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_is_attached_to,
-            * geda_attrib_object_new_attached,
+            * geda_attrib_object_new_attached.
 
 2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
 

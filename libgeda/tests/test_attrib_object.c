@@ -26,6 +26,7 @@
 
 #include <libgeda.h>
 #include <prototype_priv.h>
+#include <version.h>
 #include <geda_colors.h>
 
 #include "test-suite.h"
@@ -66,8 +67,8 @@
  *      O0308   geda_attrib_object_freeze_hooks
  *      O0309   geda_attrib_object_get_name_value
  *      O0310   geda_attrib_object_is_attached_to
- *              geda_attrib_object_is_inherited
- *              geda_attrib_object_new_attached
+ *      O0311   geda_attrib_object_is_inherited
+ *      O0312   geda_attrib_object_new_attached
  *              geda_attrib_object_print
  *              geda_attrib_object_remove
  *              geda_attrib_object_return_attribs
@@ -786,17 +787,147 @@ check_new_attached(GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 13: geda_attrib_print                      geda_attrib_object_print  === */
-  /* === Function 14: geda_attrib_remove                     geda_attrib_object_remove  === */
-  /* === Function 15: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
-  /* === Function 16: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
-  /* === Function 17: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
-  /* === Function 18: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
-  /* === Function 19: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
-  /* === Function 20: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
-  /* === Function 21: geda_attrib_set_value                  geda_attrib_object_set_value  === */
-  /* === Function 22: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
-  /* === Function 23: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
+int
+check_attrib_print (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+   /* === Function 13: geda_attrib_object_print  === */
+  geda_attrib_print (NULL);
+
+  geda_attrib_print (list);
+
+  g_list_free(list);
+
+  return result;
+}
+
+int
+check_attrib_read (GedaToplevel *toplevel)
+{
+  int  converted;
+  int  result;
+  unsigned version;
+
+  result    = 0;
+  converted = sscanf (PACKAGE_DATE_VERSION, "%u", &version);
+
+  if (!converted) {
+    fprintf(stderr, "File %s, <%s>: could not scan version", __FILE__, __func__);
+    version=19700101;
+    result++;
+  }
+
+  GedaObject *object1 = geda_complex_new ();
+
+  const char *buffer0 = "T 250 1650 5 8 1 1 0 6 1\n"
+                        "pinnumber=3\n"
+                        "T 450 1550 9 10 1 1 0 0 1\n"
+                        "pinlabel=COMP\n"
+                        "T 250 1650 5 8 0 1 0 6 1\n"
+                        "pinseq=3\n"
+                        "T 450 1525 5 8 0 1 0 2 1\n"
+                        "pintype=pas\n"
+                        "}\n";
+
+  TextBuffer *tb = s_textbuffer_new (buffer0, strlen(buffer0));
+
+  /* === Function 14: geda_attrib_object_read  === */
+
+  GList *list = geda_attrib_object_read (toplevel,
+                                         object1,
+                                         tb,
+                                         version,
+                                         FILEFORMAT_VERSION,
+                                         NULL);
+
+  if (!list) {
+    fprintf(stderr, "FAILED: (O031401A) geda_attrib_object_read\n");
+    result++;
+  }
+  else {
+
+    GList *a_iter = geda_object_get_attached(object1);
+
+    if (!a_iter) {
+      fprintf(stderr, "FAILED: (O031401B) geda_attrib_object_read\n");
+      result++;
+    }
+    else {
+
+      if (g_list_length(a_iter) != 4) {
+        fprintf(stderr, "FAILED: (O031401C) geda_attrib_object_read\n");
+        result++;
+      }
+
+      /* \note: geda_attrib_object_read uses o_text_read so along as
+       *        as text objects are returned, any errors within the data
+       *        would be on o_text_read not geda_attrib_object_read.
+       */
+
+      GedaObject *attrib1 = a_iter->data;
+
+      if (!GEDA_IS_TEXT(attrib1)) {
+        fprintf(stderr, "FAILED: (O031401D1) geda_attrib_object_read\n");
+        result++;
+      }
+      else {
+
+        char *str = attrib1->text->string;
+
+        if (!str || strcmp(str, "pinnumber=3") != 0) {
+          fprintf(stderr, "FAILED: (O031401D2) geda_attrib_object_read <%s>\n", str);
+          result++;
+        }
+      }
+
+      a_iter = a_iter->next;
+
+      GedaObject *attrib2 = a_iter->data;
+
+      if (!GEDA_IS_TEXT(attrib2)) {
+        fprintf(stderr, "FAILED: (O031401D1) geda_attrib_object_read\n");
+        result++;
+      }
+      else {
+
+        char *str = attrib2->text->string;
+
+        if (!str || strcmp(str, "pinlabel=COMP") != 0) {
+          fprintf(stderr, "FAILED: (O031401D2) geda_attrib_object_read <%s>\n", str);
+          result++;
+        }
+      }
+    }
+  }
+
+  s_textbuffer_free (tb);
+  g_object_unref (object1);
+  g_list_free(list);
+
+  return result;
+}
+
+  /* === Function 15: geda_attrib_remove                     geda_attrib_object_remove  === */
+  /* === Function 16: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
+  /* === Function 17: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
+  /* === Function 18: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
+  /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
+  /* === Function 20: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
+  /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
+  /* === Function 22: geda_attrib_set_value                  geda_attrib_object_set_value  === */
+  /* === Function 23: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
+  /* === Function 24: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
 
 /** @} endgroup test-attrib-object */
 
@@ -920,6 +1051,23 @@ main (int argc, char *argv[])
       fprintf(stderr, "Caught signal checking geda_attrib_object_new_attached\n\n");
       result++;
     }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_print(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_print\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_read(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_read\n\n");
+      result++;
+    }
+
   }
   else {
     fprintf(stderr, "discontinuing checks for src/object/o_attrib\n\n");
