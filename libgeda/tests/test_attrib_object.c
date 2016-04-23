@@ -69,9 +69,10 @@
  *      O0310   geda_attrib_object_is_attached_to
  *      O0311   geda_attrib_object_is_inherited
  *      O0312   geda_attrib_object_new_attached
- *              geda_attrib_object_print
- *              geda_attrib_object_remove
- *              geda_attrib_object_return_attribs
+ *      O0313   geda_attrib_object_print
+ *      O0314   geda_attrib_object_read
+ *      O0315   geda_attrib_object_remove
+ *      O0316   geda_attrib_object_return_attribs
  *              geda_attrib_object_search_attached_by_name
  *              geda_attrib_object_search_floating_by_name
  *              geda_attrib_object_search_inherited_by_name
@@ -95,7 +96,7 @@ test_attrib_object_notify (GedaToplevel *toplevel, GedaObject *object)
 }
 
 int
-check_add(GedaToplevel *toplevel)
+check_attrib_add(GedaToplevel *toplevel)
 
 {
   int result = 0;
@@ -144,7 +145,7 @@ check_add(GedaToplevel *toplevel)
 }
 
 int
-check_append_changed_hook(GedaToplevel *toplevel)
+check_append_attrib_changed_hook(GedaToplevel *toplevel)
 {
   int result = 0;
 
@@ -469,7 +470,7 @@ check_attrib_detach_all (GedaToplevel *toplevel)
 }
 
 int
-check_attrib_find_first_by_name (GedaToplevel *toplevel)
+check_find_first_attrib_by_name (GedaToplevel *toplevel)
 {
   int result = 0;
 
@@ -552,7 +553,7 @@ check_attrib_freeze_hooks (GedaToplevel *toplevel)
 }
 
 int
-check_get_name_value(GedaToplevel *toplevel)
+check_get_attrib_name_value(GedaToplevel *toplevel)
 
 {
   int result = 0;
@@ -689,7 +690,7 @@ check_attrib_is_inherited (GedaToplevel *toplevel)
 }
 
 int
-check_new_attached(GedaToplevel *toplevel)
+check_new_attached_attrib(GedaToplevel *toplevel)
 
 {
   int result = 0;
@@ -918,8 +919,174 @@ check_attrib_read (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 15: geda_attrib_remove                     geda_attrib_object_remove  === */
-  /* === Function 16: geda_attrib_return_attribs             geda_attrib_object_return_attribs  === */
+int
+check_attrib_remove (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_box_object_new(3, 10, 20, 30, 40);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+
+  s_page_append_object(page, object);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  /* === Function 15: geda_attrib_object_remove  === */
+
+  notify_attribute = 0;
+
+  geda_attrib_remove(&object->attribs, attrib3);
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O031501A) geda_attrib_object_remove\n");
+    result++;
+  }
+  else {
+
+    GedaObject *found = geda_attrib_first_attrib_by_name (object, "C");
+
+    if (found) {
+      fprintf(stderr, "FAILED: (O031501B) geda_attrib_object_remove\n");
+      result++;
+    }
+  }
+
+  notify_attribute = 0;
+
+  geda_attrib_remove(&object->attribs, attrib1);
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O031502A) geda_attrib_object_remove\n");
+    result++;
+  }
+  else {
+
+    GedaObject *found = geda_attrib_first_attrib_by_name (object, "A");
+
+    if (found) {
+      fprintf(stderr, "FAILED: (O031502B) geda_attrib_object_remove\n");
+      result++;
+    }
+  }
+
+  notify_attribute = 0;
+
+  list = object->attribs;
+
+  if (g_list_length(list) != 1) {
+    fprintf(stderr, "FAILED: (O031503A) geda_attrib_object_remove\n");
+    result++;
+  }
+  else {
+    GedaObject *attrib4 = list->data;
+    if (attrib4 != attrib2) {
+      fprintf(stderr, "FAILED: (O031503B) geda_attrib_object_remove\n");
+      result++;
+    }
+  }
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (attrib1); /* Not attached so explicitly destroy */
+  g_object_unref (attrib3);
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_return_attribs (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FA=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FB=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FC=c");
+  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+
+  s_page_append_object(page, object);
+
+  geda_complex_append (object->complex, attrib1);
+  geda_complex_append (object->complex, attrib2);
+  geda_complex_append (object->complex, attrib3);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib4);
+  list = g_list_append(list, attrib5);
+  list = g_list_append(list, attrib6);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  notify_attribute = 0;
+
+  /* === Function 16: geda_attrib_object_return_attribs  === */
+
+  list = geda_attrib_return_attribs (object);
+
+  if (!list) {
+    fprintf(stderr, "FAILED: (O031601A) geda_attrib_object_return_attribs\n");
+    result++;
+  }
+  else if (g_list_length(list) != 6) {
+    fprintf(stderr, "FAILED: (O031601B) geda_attrib_object_return_attribs\n");
+    result++;
+  }
+
+  /* First member is the first floating attibute */
+  GedaObject *attrib4R = list->data;
+
+  if (!attrib4R) {
+    fprintf(stderr, "FAILED: (O031602A) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+  else if (attrib4R != attrib4) {
+    fprintf(stderr, "FAILED: (O031602B) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+
+  /* Forth member is the first attached attibute */
+  GedaObject *attrib1R = g_list_nth_data(list, 3);
+
+  if (!attrib1R) {
+    fprintf(stderr, "FAILED: (O031603A) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+  else if (attrib1R != attrib1) {
+    fprintf(stderr, "FAILED: (O031603B) geda_attrib_object_first_attrib_by_name\n");
+    result++;
+  }
+
+  g_list_free(list);
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
   /* === Function 17: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
   /* === Function 18: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
   /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
@@ -963,7 +1130,7 @@ main (int argc, char *argv[])
   toplevel = setup_new_toplevel ();
 
   if (setjmp(point) == 0) {
-    result = check_add(toplevel);
+    result = check_attrib_add(toplevel);
   }
   else {
     fprintf(stderr, "Caught signal checking geda_attrib_object_add\n\n");
@@ -973,7 +1140,7 @@ main (int argc, char *argv[])
   if (!result) {
 
     if (setjmp(point) == 0) {
-      result = check_append_changed_hook(toplevel);
+      result = check_append_attrib_changed_hook(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_append_changed_hook\n\n");
@@ -1005,7 +1172,7 @@ main (int argc, char *argv[])
     }
 
     if (setjmp(point) == 0) {
-      result += check_attrib_find_first_by_name(toplevel);
+      result += check_find_first_attrib_by_name(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_first_attrib_by_name\n\n");
@@ -1021,7 +1188,7 @@ main (int argc, char *argv[])
     }
 
     if (setjmp(point) == 0) {
-      result += check_get_name_value(toplevel);
+      result += check_get_attrib_name_value(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_get_name_value\n\n");
@@ -1045,7 +1212,7 @@ main (int argc, char *argv[])
     }
 
     if (setjmp(point) == 0) {
-      result += check_new_attached(toplevel);
+      result += check_new_attached_attrib(toplevel);
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_new_attached\n\n");
@@ -1065,6 +1232,22 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_read\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_remove(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_remove\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_return_attribs(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_return_attribs\n\n");
       result++;
     }
 

@@ -56,26 +56,27 @@ struct _GedaGedaComplexClass {
 
 struct _GedaComplex {
 
-  GedaObject  parent_instance; /* Pointer to _GedaObject */
+  GedaObject parent_instance;  /* Pointer to _GedaObject */
 
-  char   *filename;            /* Component Library Symbol name */
-  bool    is_embedded;         /* is embedded component? */
+  char  *filename;             /* Component Library Symbol name */
+  bool   is_embedded;          /* is embedded component? */
 
-  int x;                       /* world origin */
-  int y;
+  int    x;                    /* insertion coordinates */
+  int    y;
 
-  int angle;                   /* orientation in degrees */
+  int    angle;                /* orientation in degrees */
 
-  int mirror;
+  int    mirror;
 
   GList *pin_objs;             /* A list of pins belonging to this complex */
   GList *prim_objs;            /* Primitive objects which make up the complex */
 };
 
 GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
-bool           is_a_geda_complex_object (GedaComplex *object);
+bool           is_a_geda_complex_object (GedaComplex *complex);
 
 GedaObject    *geda_complex_new         (void);
+bool           geda_complex_append      (GedaComplex *complex, GedaObject *object);
 
 #ifdef __cplusplus
 }

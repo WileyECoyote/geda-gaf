@@ -1,9 +1,13 @@
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda/geda_complex.c: Add method geda_complex_append.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_print,
             * geda_attrib_object_read,
+            * geda_attrib_object_remove,
+            * geda_attrib_object_return_attribs,
 
 2016-04-22 Wiley E. Hill <wileyhill@gmail.com>
 

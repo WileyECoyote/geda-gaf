@@ -276,7 +276,7 @@ int geda_object_get_next_sid(void)
  */
 static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaObject *object                 = (GedaObject *)instance;
+  GedaObject *object             = (GedaObject *)instance;
 
   /* setup sid */
   object->sid                    = global_sid++;
