@@ -81,7 +81,7 @@ int geda_complex_bounds(GedaObject *object)
     g_return_val_if_fail (GEDA_IS_OBJECT(sub_object), FALSE);
 
     object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(sub_object);
-    result = object_class->bounds(sub_object);
+    result       = object_class->bounds(sub_object);
 
     NEXT(iter);
 
@@ -199,16 +199,16 @@ static void geda_complex_finalize(GObject *object)
  */
 static void geda_complex_class_init(void *g_class, void *class_data)
 {
-  GedaComplexClass*class         = (GedaComplexClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaComplexClass *class         = (GedaComplexClass*)g_class;
+  GObjectClass     *gobject_class = G_OBJECT_CLASS(class);
+  GedaObjectClass  *geda_class    = GEDA_OBJECT_CLASS(class);
 
-  geda_complex_parent_class      = g_type_class_peek_parent(class);
+  geda_complex_parent_class       = g_type_class_peek_parent(class);
 
-  gobject_class->dispose         = geda_complex_dispose;
-  gobject_class->finalize        = geda_complex_finalize;
+  gobject_class->dispose          = geda_complex_dispose;
+  gobject_class->finalize         = geda_complex_finalize;
 
-  geda_class->bounds             = geda_complex_bounds;
+  geda_class->bounds              = geda_complex_bounds;
 }
 
 /*! \brief Function to retrieve Complex's Type identifier.
@@ -252,22 +252,6 @@ GedaObjectType geda_complex_get_type (void)
   return geda_complex_type;
 }
 
-/*! \brief Returns a pointer to a new Complex object.
- *
- *  \par Function Description
- *  Returns a pointer to a new Complex object.
- *
- *  \return pointer to the new Complex object.
- */
-GedaObject *geda_complex_new (void)
-{
-  GedaObject *complex = g_object_new( GEDA_TYPE_COMPLEX,
-                                 "type", OBJ_COMPLEX,
-                                 "name", "complex",
-                                 NULL );
-  return GEDA_OBJECT(complex);
-}
-
 /*! \brief Determine if object is a Geda Complex GedaObject.
  *
  *  \par Function Description
@@ -285,5 +269,58 @@ bool is_a_geda_complex_object (GedaComplex *cpx)
  return FALSE;
 
 }
+
+/*! \brief Appends an Object to a Complex object
+ *
+ *  \par Function Description
+ *  Appends \a object to the complex's list of prim_objs and sets the
+ *  parent_object member of \a object to that of the complex's parent
+ *  object. If \a object is a pin object then the pin is also appended
+ *  to the complex's list of pin_objs.
+ *
+ *  \note This method is for special purposes and proably not what you
+ *        want! Object appended using this method are not saved with the
+ *        schematic! To attach attributes to a complex, see function
+ *        geda_attrib_object_attach!
+ *
+ *  \return pointer to the new Complex object.
+ */
+bool geda_complex_append (GedaComplex *complex, GedaObject *object)
+{
+ if (GEDA_IS_COMPLEX (complex)) {
+
+   if (GEDA_IS_OBJECT (object) && !GEDA_IS_COMPLEX (object)) {
+
+     if (GEDA_IS_PIN(object)) {
+       complex->pin_objs = g_list_append(complex->pin_objs, object);
+     }
+
+     complex->prim_objs = g_list_append (complex->prim_objs, object);
+     object->parent_object = &complex->parent_instance;
+     return TRUE;
+   }
+ }
+
+ return FALSE;
+}
+
+/*! \brief Returns a pointer to a new Complex object.
+ *
+ *  \par Function Description
+ *  Returns a pointer to a new Complex object.
+ *
+ *  \return pointer to the new Complex object.
+ */
+GedaObject*
+geda_complex_new (void)
+{
+  GedaObject *complex = g_object_new( GEDA_TYPE_COMPLEX,
+                                 "type", OBJ_COMPLEX,
+                                 "name", "complex",
+                                 NULL );
+  return GEDA_OBJECT(complex);
+}
+
+
 
 /** @} endgroup geda-complex-object */
