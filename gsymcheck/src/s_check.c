@@ -758,10 +758,16 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief  Performs checks of the pinnumber= attribute
+ * \par Function Description
+ *  Checks for:
+ *  <DL>
+ *    <DT>Existence of pin using number assigned by a net attribute</DT>
+ *    <DT>Duplicate pinnumbers</DT>
+ *    <DT>Multiple pinnumber attributes on the same pin</DT>
+ *    <DT>Pins Missing a pinnumber attribute</DT>
+ *  </DL>
  */
 static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -892,7 +898,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   }
 
   /* Check for all pins that are in both lists and print a message.
-   *     Sometimes this is useful and sometimes it's an error. */
+   * Sometimes this is useful and sometimes it's an error. */
 
   cur  = net_numbers;
   cur2 = pin_numbers;
