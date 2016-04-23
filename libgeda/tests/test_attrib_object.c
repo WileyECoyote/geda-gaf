@@ -1087,8 +1087,169 @@ check_return_attribs (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 17: geda_attrib_search_attached_by_name    geda_attrib_object_search_attached_by_name  === */
-  /* === Function 18: geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name  === */
+int
+check_attrib_search_attached_by_name (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
+
+  s_page_append_object(page, object);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib1);
+  list = g_list_append(list, attrib2);
+  list = g_list_append(list, attrib3);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  /* === Function 17: geda_attrib_object_search_attached_by_name  === */
+
+  char *value = geda_attrib_search_attached_by_name (object, "A", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031701A) geda_attrib_object_search_attached_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "a")) {
+    fprintf(stderr, "FAILED: (O031701B) geda_attrib_object_search_attached_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+  value = geda_attrib_search_attached_by_name (object, "A", 1);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031702A) geda_attrib_object_search_attached_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "b")) {
+    fprintf(stderr, "FAILED: (O031702B) geda_attrib_object_search_attached_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+    value = geda_attrib_search_attached_by_name (object, "A", 2);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031703A) geda_attrib_object_search_attached_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "c")) {
+    fprintf(stderr, "FAILED: (O031703B) geda_attrib_object_search_attached_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+  notify_attribute = 0;
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_search_floating_by_name (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+
+  s_page_append_object(page, object);
+
+  geda_complex_append (object->complex, attrib1);
+  geda_complex_append (object->complex, attrib2);
+  geda_complex_append (object->complex, attrib3);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib4);
+  list = g_list_append(list, attrib5);
+  list = g_list_append(list, attrib6);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  notify_attribute = 0;
+
+  /* === Function 18: geda_attrib_object_search_floating_by_name  === */
+
+  char *value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "A", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031801A) geda_attrib_object_search_floating_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "a")) {
+    fprintf(stderr, "FAILED: (O031801B) geda_attrib_object_search_floating_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+  value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "B", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031802A) geda_attrib_object_search_floating_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "b")) {
+    fprintf(stderr, "FAILED: (O031802B) geda_attrib_object_search_floating_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+    value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "C", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031803A) geda_attrib_object_search_floating_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "c")) {
+    fprintf(stderr, "FAILED: (O031803B) geda_attrib_object_search_floating_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    result++;
+  }
+  g_free(value);
+  value = NULL;
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
   /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
   /* === Function 20: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
   /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
@@ -1251,6 +1412,21 @@ main (int argc, char *argv[])
       result++;
     }
 
+    if (setjmp(point) == 0) {
+      result += check_attrib_search_attached_by_name(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_search_attached_by_name\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_search_floating_by_name(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_search_floating_by_name\n\n");
+      result++;
+    }
   }
   else {
     fprintf(stderr, "discontinuing checks for src/object/o_attrib\n\n");

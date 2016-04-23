@@ -13,6 +13,8 @@
             * geda_attrib_object_read,
             * geda_attrib_object_remove,
             * geda_attrib_object_return_attribs,
+            * geda_attrib_object_search_attached_by_name,
+            * geda_attrib_object_search_floating_by_name.
 
 2016-04-22 Wiley E. Hill <wileyhill@gmail.com>
 

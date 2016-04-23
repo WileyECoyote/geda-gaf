@@ -127,6 +127,15 @@ main (int argc, char *argv[])
 {
   int result = 0;
 
+  char *srcdir = getenv("srcdir");
+
+  if (srcdir) {
+    if (chdir(srcdir)) {
+      fprintf (stderr, "check environment variable <srcdir>\n");
+      return 0;
+    }
+  }
+
   if (libgedacolor_init(&argc, argv)) {
 
     geda_color_load_display_scheme("../etc/display-colormap-darkbg");
