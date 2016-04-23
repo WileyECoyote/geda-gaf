@@ -106,11 +106,11 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   tb = s_textbuffer_new (buffer, size);
 
-  while (1) {
+  line = s_textbuffer_next_line(tb);
 
-    line = s_textbuffer_next_line(tb);
+  while (line) {
+
     ++line_count;
-    if (line == NULL) break;
 
     sscanf(line, "%c", &objtype);
 
@@ -376,6 +376,8 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         new_obj = NULL;
         goto error2;
     }
+
+    line = s_textbuffer_next_line(tb);
   }
 
   /* Was the very last thing we read a complex and has it not been checked */

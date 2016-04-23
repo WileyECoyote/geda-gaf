@@ -2,10 +2,14 @@
 
     * geda/geda_complex.c: Add method geda_complex_append.
 
+    * src/object/o_attrib.c. Eliminate infinite while in geda_attrib_object_read,
+      prime line before loop instead and then get the next line at end of loop.
+
    ** object/o_object.c: Revise function o_read_buffer in case END_EMBEDDED to
       collect a list of pin objects while looping to set the parent fields and
       then save the list to pin_objs. The pin_objs list was not being populated
-      for embedded complexes.
+      for embedded complexes. Eliminate infinite while in o_read_buffer, prime
+      line instead and get the next line at end of loop.
 
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 

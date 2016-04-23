@@ -596,11 +596,11 @@ geda_attrib_object_print(const GList *attributes)
  * \par Function Description
  *  Read attributes from a TextBuffer.
  *
- * \param [in]  toplevel               The GedaToplevel object.
- * \param [in]  parent  GedaObject which gets these attribs.
- * \param [in]  tb                     The text buffer to read from.
- * \param [in]  release_ver            libgeda release version number.
- * \param [in]  fileformat_ver         file format version number.
+ * \param [in]  toplevel        The GedaToplevel object.
+ * \param [in]  parent          GedaObject which gets these attribs.
+ * \param [in]  tb              The text buffer to read from.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  file format version number.
  *
  * \param [out] err                    A GError object
  *
@@ -621,12 +621,12 @@ geda_attrib_object_read (GedaToplevel *toplevel,
   char        objtype;
   int         ATTACH=FALSE;
 
-  while (1) {
+  line = s_textbuffer_next_line (tb);
 
-    line = s_textbuffer_next_line (tb);
-    if (line == NULL) break;
+  while (line) {
 
     sscanf(line, "%c", &objtype);
+
     switch (objtype) {
 
       case(OBJ_LINE):
@@ -715,6 +715,8 @@ geda_attrib_object_read (GedaToplevel *toplevel,
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("tried to attach a non-text object as an attribute"));
       goto error;
     }
+
+    line = s_textbuffer_next_line (tb);
   }
 
   /* The attribute list wasn't terminated, so it's a parse error! */
@@ -767,7 +769,7 @@ geda_attrib_object_remove(GList **list, GedaObject *remove)
  *
  * \param [in] object       GedaObject whos attributes to return.
  *
- * \return A GList of attributes belinging to the passed object.
+ * \return A GList of attributes belonging to the passed object.
  */
 GList*
 geda_attrib_object_return_attribs (const GedaObject *object)
@@ -827,7 +829,7 @@ geda_attrib_object_return_attribs (const GedaObject *object)
  *
  * \return Character string with attribute value, NULL otherwise.
  *
- * \todo remove from module?
+ * \called by
  */
 static char*
 geda_attrib_object_search_attrib_list_by_name (const GList *list,
@@ -1051,8 +1053,6 @@ geda_attrib_object_set_value (const GedaObject *attrib,
  * \param [out] value_ptr  The return location for the value, or NULL.
  *
  * \return TRUE on success, FALSE otherwise.
- *
- * \todo remove from module
  */
 bool
 geda_attrib_object_string_get_name_value (const char  *string,
