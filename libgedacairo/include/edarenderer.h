@@ -155,7 +155,9 @@ enum _EdaRendererFlags
 
 typedef enum _EdaRendererFlags EdaRendererFlags;
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType     eda_renderer_get_type       (void) GEDA_CONST;
 GedaType     eda_renderer_flags_get_type (void) GEDA_CONST;
@@ -203,15 +205,15 @@ double   eda_renderer_get_grips_size          (EdaRenderer *renderer);
 void     eda_renderer_set_grips_size          (EdaRenderer *renderer,
                                                double       new_size);
 const
-GdkColor* eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
+GdkColor *eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
 void      eda_renderer_set_grips_stroke_color (EdaRenderer *renderer,
                                                GdkColor    *color);
 const
-GdkColor* eda_renderer_get_grips_fill_color   (EdaRenderer *renderer);
+GdkColor *eda_renderer_get_grips_fill_color   (EdaRenderer *renderer);
 void      eda_renderer_set_grips_fill_color   (EdaRenderer *renderer,
                                                GdkColor    *color);
 const
-GdkColor* eda_renderer_get_junction_color     (EdaRenderer *renderer);
+GdkColor *eda_renderer_get_junction_color     (EdaRenderer *renderer);
 void      eda_renderer_set_junction_color     (EdaRenderer *renderer,
                                                GdkColor*    color);
 int       eda_renderer_get_junction_size      (EdaRenderer *renderer);
@@ -221,16 +223,18 @@ double    eda_renderer_get_marker_threshold   (EdaRenderer *renderer);
 void      eda_renderer_set_marker_threshold   (EdaRenderer *renderer,
                                                double       threshold);
 const
-GdkColor* eda_renderer_get_net_endpoint_color (EdaRenderer *renderer);
+GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer);
 void      eda_renderer_set_net_endpoint_color (EdaRenderer *renderer,
                                                GdkColor    *color);
 const
-GdkColor* eda_renderer_get_text_marker_color  (EdaRenderer *renderer);
+GdkColor *eda_renderer_get_text_marker_color  (EdaRenderer *renderer);
 void      eda_renderer_set_text_marker_color  (EdaRenderer *renderer,
                                                GdkColor    *color);
 int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
 void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
                                                int          new_size);
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !__EDA_RENDERER_H__ */

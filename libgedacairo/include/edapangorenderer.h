@@ -50,7 +50,9 @@ struct _EdaPangoRenderer
   EdaPangoRendererData *priv;
 };
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {        /* c++ do not mangle function names */
+#endif
 
 GedaType eda_pango_renderer_get_type   (void) GEDA_CONST;
 PangoRenderer *eda_pango_renderer_new  (cairo_t *cr) WARN_UNUSED;
@@ -78,6 +80,8 @@ bool            eda_pango_parse_overbars         (const char *overbar_text,
                                                   PangoAttrList **attr_list,
                                                   char **text);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !__EDA_PANGO_RENDERER_H__ */
