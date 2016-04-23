@@ -1,5 +1,13 @@
 2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/switchreg/TPS43060-1.sym: add symbol low Quiescent Current Synchronous
+      Boost controller.
+
+    * ti/switchreg/TPS43061-1.sym: add symbol low Quiescent Current Synchronous
+      Boost controller.
+
+2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/ADC0832-1.sym: Add symbol; 2-Channel MUX,8-Bit Serial I/O A/D
       Converters, DIP8.
 
