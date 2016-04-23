@@ -1,3 +1,9 @@
+2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_color.c: Check environment for "srcdir" and change to that
+      directory of found, not sure why distcheck out-of-source worked before
+      this but hack appears to fix, seems appropriate - a hack to fix a hack.
+
 2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/color_struct.c: Add table entry for 008B00, which is index 3

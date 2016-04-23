@@ -60,6 +60,8 @@
 #define geda_draw_picture    geda_x11_draw_picture
 #define geda_draw_text       geda_x11_draw_text
 
+#define geda_draw_rubber_box geda_x11_draw_rubber_box
+
 /* Drawable implementation for X11 */
 
 typedef enum
@@ -134,6 +136,8 @@ public:
   Display      *display;
   Drawable      drawable;
 
+  int           event_x;
+  int           event_y;
   int           screen;
   GedaObject   *object;
 
@@ -162,4 +166,6 @@ public:
   void geda_x11_draw_path         (int num_sections, PATH_SECTION *sections);
   void geda_x11_draw_picture      (int x, int y, int width, int height);
   void geda_x11_draw_text         (int x, int y);
+
+  void geda_x11_draw_rubber_box   (int x, int y, int width, int height);
 };
