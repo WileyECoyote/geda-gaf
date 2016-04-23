@@ -2,6 +2,11 @@
 
     * geda/geda_complex.c: Add method geda_complex_append.
 
+   ** object/o_object.c: Revise function o_read_buffer in case END_EMBEDDED to
+      collect a list of pin objects while looping to set the parent fields and
+      then save the list to pin_objs. The pin_objs list was not being populated
+      for embedded complexes.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_print,

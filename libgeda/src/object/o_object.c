@@ -67,9 +67,9 @@
  *
  *  \return GList of objects if successful read, or NULL on error.
  */
-GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
-                       const char   *buffer,   const int size,
-                       const char   *name,     GError  **err)
+GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
+                      const char   *buffer,   const int size,
+                      const char   *name,     GError  **err)
 {
   const char *line             = NULL;
   TextBuffer *tb               = NULL;
@@ -283,22 +283,27 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
       case(END_EMBEDDED):
         if (embedded_level>0) {
-          /* don't do this since objects are already
-           * stored/read translated
-           * o_complex_translate(new_object_list->x,
-           *                     new_object_list->y, new_object_list->complex);
-           */
+
+          GList *pins = NULL;
+
           new_object_list = g_list_reverse (new_object_list);
 
           new_obj = object_list_save->data;
           new_obj->complex->prim_objs = new_object_list;
           new_object_list = object_list_save;
 
-          /* set the parent field now */
-          for (iter = new_obj->complex->prim_objs;
-               iter != NULL; iter = g_list_next (iter)) {
+          /* set the parent fields now and check for pin objects */
+          for (iter = new_obj->complex->prim_objs; iter != NULL; iter = iter->next) {
             GedaObject *tmp = iter->data;
             tmp->parent_object = new_obj;
+            if (GEDA_IS_PIN(tmp)) {
+              pins = g_list_prepend(pins, tmp);
+            }
+          }
+
+          /* Set the pin_objs list */
+          if (pins) {
+            new_obj->complex->pin_objs = g_list_reverse (pins);
           }
 
           new_obj->w_bounds_valid_for = NULL;
