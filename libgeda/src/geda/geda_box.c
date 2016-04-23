@@ -84,7 +84,8 @@ geda_box_bounds(GedaObject *object)
  *  \param [in] instance The GedaBox structure being initialized,
  *  \param [in] g_class  The GedaBox class we are initializing.
  */
-static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
+static void
+geda_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaBox    *box    = (GedaBox*)instance;
   GedaObject *object = &box->parent_instance;
@@ -124,7 +125,8 @@ geda_box_dispose(GObject *object)
  *   the parent's finalize handler. Once invalidated, GEDA_IS_BOX will
  *   fail.
  */
-static void geda_box_finalize(GObject *object)
+static void
+geda_box_finalize(GObject *object)
 {
   GedaObject *obj = GEDA_OBJECT(object);
 
@@ -144,7 +146,8 @@ static void geda_box_finalize(GObject *object)
  *  \param [in]  g_class      The Box class we are initializing
  *  \param [in]  class_data   The Box structure associated with the class
  */
-static void geda_box_class_init(void *g_class, void *class_data)
+static void
+geda_box_class_init(void *g_class, void *class_data)
 {
   GedaBoxClass    *class         = (GedaBoxClass*)g_class;
   GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
@@ -169,7 +172,8 @@ static void geda_box_class_init(void *g_class, void *class_data)
  *
  *  \return GedaObjectType identifier associated with GedaBox.
  */
-GedaObjectType geda_box_get_type (void)
+GedaObjectType
+geda_box_get_type (void)
 {
   static volatile GedaObjectType geda_box_type = 0;
 
@@ -206,7 +210,8 @@ GedaObjectType geda_box_get_type (void)
  *
  *  \return pointer to the new Box object.
  */
-GedaObject *geda_box_new (void)
+GedaObject *
+geda_box_new (void)
 {
   GedaObject *box = g_object_new( GEDA_TYPE_BOX,
                              "type", OBJ_BOX,
@@ -222,7 +227,8 @@ GedaObject *geda_box_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_box_object (GedaBox *box)
+bool
+is_a_geda_box_object (GedaBox *box)
 {
   return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }
