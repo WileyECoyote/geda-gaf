@@ -1,3 +1,11 @@
+2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX12557-1.sym: Fix duplicate device, update footprint.
+
+    * maxim/MAX12558-1.sym: Fix duplicate device, update footprint.
+
+    * maxim/MAX12559-1.sym: Fix duplicate device, update footprint.
+
 2016-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS43060-1.sym: add symbol low Quiescent Current Synchronous
