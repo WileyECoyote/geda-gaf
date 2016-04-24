@@ -77,8 +77,8 @@
  *      O0318   geda_attrib_object_search_floating_by_name
  *      O0319   geda_attrib_object_search_inherited_by_name
  *      O0320   geda_attrib_object_search_object_by_name
- *              geda_attrib_object_set_integer_value
- *              geda_attrib_object_set_value
+ *      O0321   geda_attrib_object_set_integer_value
+ *      O0322   geda_attrib_object_set_value
  *              geda_attrib_object_string_get_name_value
  *              geda_attrib_object_thaw_hooks
  */
@@ -1202,8 +1202,9 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   notify_attribute = 0;
 
   /* === Function 18: geda_attrib_object_search_floating_by_name  === */
+  char *value = geda_attrib_search_floating_by_name (NULL, "A", 0);
 
-  char *value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "A", 0);
+  value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "A", 0);
 
   if (!value) {
     fprintf(stderr, "FAILED: (O031801A) geda_attrib_object_search_floating_by_name\n");
@@ -1299,8 +1300,9 @@ check_search_inherited_by_name (GedaToplevel *toplevel)
   notify_attribute = 0;
 
   /* === Function 19: geda_attrib_object_search_inherited_by_name  === */
+  char *value = geda_attrib_search_inherited_by_name (NULL, "A", 0);
 
-  char *value = geda_attrib_search_inherited_by_name (object, "A", 0);
+  value = geda_attrib_search_inherited_by_name (object, "A", 0);
 
   if (!value) {
     fprintf(stderr, "FAILED: (O031901A) geda_attrib_object_search_inherited_by_name\n");
@@ -1396,9 +1398,10 @@ check_search_object_by_name (GedaToplevel *toplevel)
   notify_attribute = 0;
 
   /* === Function 20: geda_attrib_object_search_object_by_name  === */
+  char *value = geda_attrib_search_object_by_name (NULL, "A", 0);
 
   /* Note the attached are search first! */
-  char *value = geda_attrib_search_object_by_name (object, "A", 0);
+  value = geda_attrib_search_object_by_name (object, "A", 0);
 
   if (!value) {
     fprintf(stderr, "FAILED: (O032001A) geda_attrib_object_search_object_by_name\n");
@@ -1469,8 +1472,129 @@ check_search_object_by_name (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
-  /* === Function 22: geda_attrib_set_value                  geda_attrib_object_set_value  === */
+int
+check_attrib_set_integer_value(GedaToplevel *toplevel)
+
+{
+  int result = 0;
+  int count;
+
+  Page       *page   = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  s_page_append_object(page, object);
+  s_page_append_object(page, attrib);
+
+  /* Note FALSE = do not modify color */
+  geda_attrib_attach(object, attrib, FALSE);
+
+  notify_attribute = 0;
+
+  /* === Function 21: geda_attrib_object_set_integer_value  === */
+
+  geda_attrib_set_integer_value(NULL, "B", 3);
+
+  for (count = 0; count < 10; count++) {
+
+    int i = m_random_number (0, 9000000);
+
+    geda_attrib_set_integer_value(attrib, "B", i);
+
+    if (notify_attribute != 2) {
+      fprintf(stderr, "FAILED: (O032101A) geda_attrib_object_set_integer_value %d\n",notify_attribute);
+      result++;
+    }
+
+    notify_attribute = 0;
+
+    char *name;
+    char *value;
+
+    if (!geda_attrib_get_name_value(attrib, &name, &value)) {
+      fprintf(stderr, "FAILED: (O032101B) geda_attrib_object_set_integer_value\n");
+      result++;
+    }
+    else {
+
+      char *val = geda_sprintf("%d", i); /* get what the answer should be */
+      int   len = strlen(val);
+
+      if (strncmp(name, "B", 1) || strncmp(value, val, len)) {
+        fprintf(stderr, "FAILED: (O032101C) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
+        result++;
+      }
+      g_free(val);
+    }
+
+    GEDA_FREE(name);
+    GEDA_FREE(value);
+  }
+
+  notify_attribute = 0;
+
+  s_page_remove_object (page, attrib);
+  s_page_remove_object (page, object);
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_attrib_set_value(GedaToplevel *toplevel)
+
+{
+  int result = 0;
+
+  Page       *page   = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+
+  s_page_append_object(page, object);
+  s_page_append_object(page, attrib);
+
+  /* Note FALSE = do not modify color */
+  geda_attrib_attach(object, attrib, FALSE);
+
+  notify_attribute = 0;
+
+  /* === Function 22: geda_attrib_object_set_value  === */
+
+  geda_attrib_set_value(NULL, "B", "");
+
+  geda_attrib_set_value(attrib, "B", "2");
+
+  if (notify_attribute != 2) {
+    fprintf(stderr, "FAILED: (O032101A) geda_attrib_object_set_value %d\n",notify_attribute);
+    result++;
+  }
+
+  char *name;
+  char *value;
+
+  if (!geda_attrib_get_name_value(attrib, &name, &value)) {
+    fprintf(stderr, "FAILED: (O032101B) geda_attrib_object_set_value\n");
+    result++;
+  }
+  else if (strncmp(name, "B", 1) || strncmp(value, "2", 1)) {
+    fprintf(stderr, "FAILED: (O032101C) geda_attrib_object_set_value <%s=%s>\n", name, value);
+    result++;
+  }
+
+  GEDA_FREE(name);
+  GEDA_FREE(value);
+
+  s_page_remove_object (page, attrib);
+  s_page_remove_object (page, object);
+  g_object_unref (object);
+
+  return result;
+}
+
   /* === Function 23: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
   /* === Function 24: geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks  === */
 
@@ -1658,6 +1782,22 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_search_object_by_name\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_set_integer_value(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_set_integer_value\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_attrib_set_value(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_set_value\n\n");
       result++;
     }
   }

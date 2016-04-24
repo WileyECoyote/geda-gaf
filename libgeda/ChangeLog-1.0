@@ -12,6 +12,8 @@
 
             * geda_attrib_object_search_inherited_by_name,
             * geda_attrib_object_search_object_by_name,
+            * geda_attrib_object_set_integer_value
+            * geda_attrib_object_set_value
 
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
