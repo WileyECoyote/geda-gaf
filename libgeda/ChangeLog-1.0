@@ -1,8 +1,18 @@
+2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Replace sscanf used to get the first char from the
+      text buffer, rearrange order of cases, put GedaText first, ENDATTACH_ATTR
+      second since these are the only two that are actually used and reduce scope
+      of variables in function geda_attrib_object_read.
+
+    * object/o_object.c: Replace sscanf used to get the first char from the
+      text buffer  and reduce scope of variables in function o_read_buffer.
+
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda/geda_complex.c: Add method geda_complex_append.
 
-    * src/object/o_attrib.c. Eliminate infinite while in geda_attrib_object_read,
+    * src/object/o_attrib.c: Eliminate infinite while in geda_attrib_object_read,
       prime line before loop instead and then get the next line at end of loop.
 
    ** object/o_object.c: Revise function o_read_buffer in case END_EMBEDDED to

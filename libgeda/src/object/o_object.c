@@ -43,10 +43,14 @@
  *  \image latex o_object_relations.pdf "object relations" width=14cm
  */
 
+//#define PERFORMANCE 1
+
 #include <config.h>
 #include <stdio.h>
 
 #include <libgeda_priv.h>
+
+#include <geda_diagnostics.h>
 
 /*! \brief Read a memory buffer
  *  \par Function Description
@@ -71,25 +75,24 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                       const char   *buffer,   const int size,
                       const char   *name,     GError  **err)
 {
-  const char *line             = NULL;
-  TextBuffer *tb               = NULL;
 
-  char    objtype;
   GList  *object_list_save     = NULL;
   GList  *new_attrs_list       = NULL;
   GList  *new_object_list      = NULL;
-  GList  *iter;
+
   unsigned int release_ver     = 0;
   unsigned int fileformat_ver  = 0;
 
-  int found_pin                = 0;
+  int pin_count                = 0;
   int itemsread                = 0;
   int embedded_level           = 0;
   int line_count               = 0;
   GedaObject *last_complex     = NULL;
   GedaObject *new_obj          = NULL;
-  bool is_ask                  = TRUE;
-  char* ptr;
+
+  TextBuffer *tb;
+  const char *line;
+  bool        is_ask;
 
   if (buffer == NULL) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
@@ -104,20 +107,27 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     return NULL;
   }
 
-  tb = s_textbuffer_new (buffer, size);
+  tb   = s_textbuffer_new (buffer, size);
 
   line = s_textbuffer_next_line(tb);
 
   while (line) {
 
+    char objtype;
+
+    const char *ptr = line;
+
     ++line_count;
 
-    sscanf(line, "%c", &objtype);
+    /* Skip over leading spaces */
+    while ((*ptr == SPACE) && (*ptr != ASCII_CR) && (*ptr != ASCII_NUL)) { ++ptr; }
 
-    /* Do we need to check the symbol version?  Yes, but only if */
-    /* 0) Is symbol checking enabled */
+    objtype = *ptr;
+
+    /* Check the symbol version if */
+    /* 0) symbol checking is enabled */
     /* 1) the last object read was a complex and */
-    /* 2) the next object isn't the start of attributes.  */
+    /* 2) the next object is not the start of attributes. */
     /* If the next object is the start of attributes, then check the */
     /* symbol version after the attributes have been read in, see the */
     /* STARTATTACH_ATTR case */
@@ -131,43 +141,6 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     }
     switch (objtype) {
 
-      case(OBJ_LINE):
-        if ((new_obj = o_line_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
-      case(OBJ_NET):
-        if ((new_obj = o_net_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
-      case(OBJ_BUS):
-        if ((new_obj = geda_bus_object_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
-      case(OBJ_BOX):
-        if ((new_obj = geda_box_object_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
-      case(OBJ_PICTURE):
-        new_obj = o_picture_read (line, tb, release_ver, fileformat_ver, err);
-        if (new_obj == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
-      case(OBJ_CIRCLE):
-        if ((new_obj = geda_circle_object_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        break;
-
       case(OBJ_COMPLEX):
       case(OBJ_PLACEHOLDER): /* Really? */
         new_obj = o_complex_read (toplevel, line, release_ver, fileformat_ver, err);
@@ -178,7 +151,34 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
         /* last_complex is used for verifying symversion attribute */
         last_complex = new_obj;
+        break;
 
+      case(OBJ_NET):
+        new_obj = o_net_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        break;
+
+      case(OBJ_BOX):
+        new_obj = geda_box_object_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        break;
+
+      case(OBJ_CIRCLE):
+        new_obj = geda_circle_object_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        break;
+
+      case(OBJ_LINE):
+        new_obj = o_line_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
 
       case(OBJ_TEXT):
@@ -192,6 +192,28 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
 
+      case(OBJ_PIN):
+        new_obj = o_pin_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        pin_count++;
+        break;
+
+      case(OBJ_ARC):
+        new_obj = geda_arc_object_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        break;
+
+      case(OBJ_BUS):
+        new_obj = geda_bus_object_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
+          goto error;
+        new_object_list = g_list_prepend (new_object_list, new_obj);
+        break;
+
       case(OBJ_PATH):
         new_obj = o_path_read (line, tb, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
@@ -199,15 +221,9 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
 
-      case(OBJ_PIN):
-        if ((new_obj = o_pin_read (line, release_ver, fileformat_ver, err)) == NULL)
-          goto error;
-        new_object_list = g_list_prepend (new_object_list, new_obj);
-        found_pin++;
-        break;
-
-      case(OBJ_ARC):
-        if ((new_obj = geda_arc_object_read (line, release_ver, fileformat_ver, err)) == NULL)
+      case(OBJ_PICTURE):
+        new_obj = o_picture_read (line, tb, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
@@ -285,6 +301,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         if (embedded_level>0) {
 
           GList *pins = NULL;
+          GList *iter;
 
           new_object_list = g_list_reverse (new_object_list);
 
@@ -331,6 +348,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
       case(COMMENT):
         /* do nothing */
         break;
+
       case(VERSION_CHAR):
 
         itemsread = sscanf(line, "v %u %u\n", &release_ver, &fileformat_ver);
@@ -358,9 +376,9 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
         /* some upstream message handlers don't want non-ASCII message data,
          * so check line before returning and conditionally leave off line */
-        ptr = (char*)line;
-        while ( *ptr != ASCII_NUL) {
-          if (( *ptr < SPACE) && (*ptr != ASCII_CR || *ptr != ASCII_LF)) is_ask = FALSE;
+        is_ask = TRUE;
+        while (*ptr != ASCII_NUL) {
+          if ((*ptr < SPACE) && (*ptr != ASCII_CR || *ptr != ASCII_LF)) is_ask = FALSE;
           if ( *ptr > ASCII_TILDE) is_ask = FALSE;
           if (!is_ask) break;
           ++ptr;
@@ -388,24 +406,25 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     last_complex = NULL;  /* no longer need to check */
   }
 
-  if (found_pin) {
+  if (pin_count > 0) {
     if (release_ver <= VERSION_20020825) {
-      o_pin_update_whichend (new_object_list, found_pin);
+      o_pin_update_whichend (new_object_list, pin_count);
     }
   }
 
-  tb = s_textbuffer_free(tb);
+  tb              = s_textbuffer_free(tb);
 
   new_object_list = g_list_reverse(new_object_list);
 
-  object_list = g_list_concat (object_list, new_object_list);
+  object_list     = g_list_concat (object_list, new_object_list);
 
   return(object_list);
 
- error:
+error:
+
    g_prefix_error(err, _(" On or about line %d, "), line_count);
 
- error2:
+error2:
 
   s_object_release_objects(new_object_list);
 
@@ -438,8 +457,16 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
     return (NULL);
   }
 
+#if PERFORMANCE
+  printf("%s processing <%s>\n",__func__, filename);
+  START_GEDA_PERFORMANCE
+#endif
+
   /* Parse file contents */
   result = o_read_buffer (toplevel, object_list, buffer, size, filename, err);
+
+  STOP_GEDA_PERFORMANCE;
+
   GEDA_FREE (buffer);
 
   return result;

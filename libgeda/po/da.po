@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-04-13 01:39-0500\n"
+"POT-Creation-Date: 2016-04-23 14:29-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -297,75 +297,75 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:400
+#: libgeda/src/geda/geda_object.c:418
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:401
+#: libgeda/src/geda/geda_object.c:419
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:410
+#: libgeda/src/geda/geda_object.c:428
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:411
+#: libgeda/src/geda/geda_object.c:429
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:418
+#: libgeda/src/geda/geda_object.c:436
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:419
+#: libgeda/src/geda/geda_object.c:437
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:425
+#: libgeda/src/geda/geda_object.c:443
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:426
+#: libgeda/src/geda/geda_object.c:444
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:431
+#: libgeda/src/geda/geda_object.c:449
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:432
+#: libgeda/src/geda/geda_object.c:450
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:438
+#: libgeda/src/geda/geda_object.c:456
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:439
+#: libgeda/src/geda/geda_object.c:457
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:445
+#: libgeda/src/geda/geda_object.c:463
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:446
+#: libgeda/src/geda/geda_object.c:464
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:471
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:454
+#: libgeda/src/geda/geda_object.c:472
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:462
+#: libgeda/src/geda/geda_object.c:480
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:463
+#: libgeda/src/geda/geda_object.c:481
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -617,7 +617,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:309
+#: libgeda/src/object/o_object.c:314
 #, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -625,7 +625,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:346
+#: libgeda/src/object/o_object.c:351
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -633,7 +633,7 @@ msgid ""
 "[%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:365
+#: libgeda/src/object/o_object.c:370
 #, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -641,12 +641,12 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:369
+#: libgeda/src/object/o_object.c:374
 #, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:399
+#: libgeda/src/object/o_object.c:404
 #, c-format
 msgid " On or about line %d, "
 msgstr ""
@@ -682,26 +682,26 @@ msgstr ""
 msgid "Setting color to default color\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:145
+#: libgeda/src/object/o_attrib.c:166
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:150
+#: libgeda/src/object/o_attrib.c:171
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:155
+#: libgeda/src/object/o_attrib.c:176
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:762
+#: libgeda/src/object/o_attrib.c:715
 msgid "tried to attach a non-text object as an attribute"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:769
+#: libgeda/src/object/o_attrib.c:722
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
