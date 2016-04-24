@@ -99,7 +99,7 @@ struct _GedaObject {
                                   /* to and from this object */
 
   /* Pointer to parent object is used for floating sibling */
-  GedaObject *parent_object;          /* Parent object pointer */
+  GedaObject *parent_object;      /* Parent object pointer */
 
   int     color;                  /* Which color */
   int     dont_redraw;            /* Flag to skip redrawing */

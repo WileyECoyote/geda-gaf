@@ -8,6 +8,11 @@
     * object/o_object.c: Replace sscanf used to get the first char from the
       text buffer  and reduce scope of variables in function o_read_buffer.
 
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_search_inherited_by_name,
+            * geda_attrib_object_search_object_by_name,
+
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda/geda_complex.c: Add method geda_complex_append.

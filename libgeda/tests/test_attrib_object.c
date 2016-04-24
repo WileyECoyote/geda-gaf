@@ -73,10 +73,10 @@
  *      O0314   geda_attrib_object_read
  *      O0315   geda_attrib_object_remove
  *      O0316   geda_attrib_object_return_attribs
- *              geda_attrib_object_search_attached_by_name
- *              geda_attrib_object_search_floating_by_name
- *              geda_attrib_object_search_inherited_by_name
- *              geda_attrib_object_search_object_by_name
+ *      O0317   geda_attrib_object_search_attached_by_name
+ *      O0318   geda_attrib_object_search_floating_by_name
+ *      O0319   geda_attrib_object_search_inherited_by_name
+ *      O0320   geda_attrib_object_search_object_by_name
  *              geda_attrib_object_set_integer_value
  *              geda_attrib_object_set_value
  *              geda_attrib_object_string_get_name_value
@@ -1180,6 +1180,7 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
   GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
   GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
   s_page_append_object(page, object);
 
@@ -1192,6 +1193,7 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   list = g_list_append(NULL, attrib4);
   list = g_list_append(list, attrib5);
   list = g_list_append(list, attrib6);
+  list = g_list_append(list, attrib7);
 
   geda_attrib_attach_list(object, list, FALSE);
 
@@ -1210,10 +1212,10 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   else if (strcmp(value, "a")) {
     fprintf(stderr, "FAILED: (O031801B) geda_attrib_object_search_floating_by_name");
     fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
     result++;
   }
-  g_free(value);
-  value = NULL;
 
   value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "B", 0);
 
@@ -1224,12 +1226,12 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   else if (strcmp(value, "b")) {
     fprintf(stderr, "FAILED: (O031802B) geda_attrib_object_search_floating_by_name");
     fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
     result++;
   }
-  g_free(value);
-  value = NULL;
 
-    value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "C", 0);
+  value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "C", 0);
 
   if (!value) {
     fprintf(stderr, "FAILED: (O031803A) geda_attrib_object_search_floating_by_name\n");
@@ -1238,10 +1240,20 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   else if (strcmp(value, "c")) {
     fprintf(stderr, "FAILED: (O031803B) geda_attrib_object_search_floating_by_name");
     fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
     result++;
   }
-  g_free(value);
-  value = NULL;
+
+    /* Should not return and attribute since is not floating */
+  value = geda_attrib_search_floating_by_name (object->complex->prim_objs, "D", 0);
+
+  if (value) {
+    fprintf(stderr, "FAILED: (O031804) geda_attrib_object_search_floating_by_name\n");
+    g_free(value);
+    value = NULL;
+    result++;
+  }
 
   s_page_remove_object (page, object);
 
@@ -1250,8 +1262,213 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   return result;
 }
 
-  /* === Function 19: geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name  === */
-  /* === Function 20: geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name  === */
+int
+check_search_inherited_by_name (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+
+  s_page_append_object(page, object);
+
+  geda_complex_append (object->complex, attrib1);
+  geda_complex_append (object->complex, attrib2);
+  geda_complex_append (object->complex, attrib3);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib4);
+  list = g_list_append(list, attrib5);
+  list = g_list_append(list, attrib6);
+  list = g_list_append(list, attrib7);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  notify_attribute = 0;
+
+  /* === Function 19: geda_attrib_object_search_inherited_by_name  === */
+
+  char *value = geda_attrib_search_inherited_by_name (object, "A", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031901A) geda_attrib_object_search_inherited_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "a")) {
+    fprintf(stderr, "FAILED: (O031901B) geda_attrib_object_search_inherited_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  value = geda_attrib_object_search_inherited_by_name (object, "B", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031902A) geda_attrib_object_search_inherited_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "b")) {
+    fprintf(stderr, "FAILED: (O031902B) geda_attrib_object_search_inherited_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  value = geda_attrib_object_search_inherited_by_name (object, "C", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O031903A) geda_attrib_object_search_inherited_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "c")) {
+    fprintf(stderr, "FAILED: (O031903B) geda_attrib_object_search_inherited_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  /* Should not return and attribute since is not inherited */
+  value = geda_attrib_object_search_inherited_by_name (object, "D", 0);
+
+  if (value) {
+    fprintf(stderr, "FAILED: (O031904A) geda_attrib_object_search_inherited_by_name\n");
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
+int
+check_search_object_by_name (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+
+  s_page_append_object(page, object);
+
+  geda_complex_append (object->complex, attrib1);
+  geda_complex_append (object->complex, attrib2);
+  geda_complex_append (object->complex, attrib3);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib4);
+  list = g_list_append(list, attrib5);
+  list = g_list_append(list, attrib6);
+  list = g_list_append(list, attrib7);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+
+  notify_attribute = 0;
+
+  /* === Function 20: geda_attrib_object_search_object_by_name  === */
+
+  /* Note the attached are search first! */
+  char *value = geda_attrib_search_object_by_name (object, "A", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O032001A) geda_attrib_object_search_object_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "1")) {
+    fprintf(stderr, "FAILED: (O032001B) geda_attrib_object_search_object_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  value = geda_attrib_search_object_by_name (object, "A", 1);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O032002A) geda_attrib_object_search_object_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "a")) {
+    fprintf(stderr, "FAILED: (O032002B) geda_attrib_object_search_object_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  value = geda_attrib_search_object_by_name (object, "C", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O032003A) geda_attrib_object_search_object_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "3")) {
+    fprintf(stderr, "FAILED: (O032003B) geda_attrib_object_search_object_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  value = geda_attrib_search_object_by_name (object, "D", 0);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: (O032004A) geda_attrib_object_search_object_by_name\n");
+    result++;
+  }
+  else if (strcmp(value, "4")) {
+    fprintf(stderr, "FAILED: (O032004B) geda_attrib_object_search_object_by_name");
+    fprintf(stderr, " returned <%s>\n", value);
+    g_free(value);
+    value = NULL;
+    result++;
+  }
+
+  /* No such attribute exist */
+  value = geda_attrib_search_object_by_name (object, "E", 0);
+
+  if (value) {
+    fprintf(stderr, "FAILED: (O032005) geda_attrib_object_search_object_by_name\n");
+    result++;
+  }
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
   /* === Function 21: geda_attrib_set_integer_value          geda_attrib_object_set_integer_value  === */
   /* === Function 22: geda_attrib_set_value                  geda_attrib_object_set_value  === */
   /* === Function 23: geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value  === */
@@ -1425,6 +1642,22 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_search_floating_by_name\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_search_inherited_by_name(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_search_inherited_by_name\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_search_object_by_name(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_search_object_by_name\n\n");
       result++;
     }
   }
