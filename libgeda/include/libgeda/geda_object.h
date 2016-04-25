@@ -144,11 +144,11 @@ void          geda_object_weak_unref         (GedaObject *object, WeakNotifyFunc
 void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_pointer_loc);
 void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
 
-int           geda_object_bounds             (GedaObject *object);
+int           geda_object_bounds             (const GedaObject *object);
 GList        *geda_object_get_attached       (const GedaObject *object);
-int           geda_object_get_color          (GedaObject *object);
-Page         *geda_object_get_page           (GedaObject *object);
-int           geda_object_get_filltype       (GedaObject *object);
+int           geda_object_get_color          (const GedaObject *object);
+Page         *geda_object_get_page           (const GedaObject *object);
+int           geda_object_get_filltype       (const GedaObject *object);
 
 void          geda_object_set_color          (GedaObject *object, int color);
 

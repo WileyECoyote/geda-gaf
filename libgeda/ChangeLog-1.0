@@ -2,6 +2,10 @@
 
     * geda_arc.c: Add gobject property handlers; get_property and set_property.
 
+    * src/geda/geda_object.c: Change argument GedaObject to const GedaObject for
+      functions; geda_object_bounds, geda_object_get_color, geda_object_get_page
+      and geda_object_get_filltype.
+
     * src/object/o_attrib.c: Replace sscanf used to get the first char from the
       text buffer, rearrange order of cases, put GedaText first, ENDATTACH_ATTR
       second since these are the only two that are actually used and reduce scope

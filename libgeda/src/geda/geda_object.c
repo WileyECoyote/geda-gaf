@@ -114,11 +114,11 @@ int geda_object_no_bounds (GedaObject *o)
   return FALSE;
 }
 
-int geda_object_bounds(GedaObject *object)
+int geda_object_bounds(const GedaObject *object)
 {
   GedaObjectClass *object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(object);
 
-  return object_class ? object_class->bounds(object) : 0;
+  return object_class ? object_class->bounds((GedaObject*)object) : 0;
 }
 
 /*!
@@ -139,7 +139,7 @@ geda_object_get_attached (const GedaObject *object)
   return NULL;
 }
 
-int geda_object_get_color (GedaObject *object) {
+int geda_object_get_color (const GedaObject *object) {
   if (is_a_geda_object(object)) {
     return object->color;
   }
@@ -274,7 +274,8 @@ int geda_object_get_next_sid(void)
  *  \param [in]  instance  The GedaObject being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
  */
-static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
+static void
+geda_object_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaObject *object             = (GedaObject *)instance;
 
@@ -719,9 +720,9 @@ void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
  *
  * \sa s_page_append_object() s_page_append() s_page_remove()
  */
-Page *geda_object_get_page (GedaObject *object)
+Page *geda_object_get_page (const GedaObject *object)
 {
-  if(GEDA_IS_OBJECT(object)) {
+  if (GEDA_IS_OBJECT(object)) {
 
     if (GEDA_IS_PAGE(object->page)) {
       return object->page;
