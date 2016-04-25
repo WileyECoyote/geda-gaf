@@ -1451,9 +1451,9 @@ static void geda_font_dialog_finalize (GObject *object)
 */
 }
 
-/*! \brief GedaFontDialog Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaFontDialog Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
@@ -1548,14 +1548,14 @@ geda_font_dialog_class_init(void *class, void *class_data)
 
 }
 
-/*! \brief Type instance initializer for GedaFontDialog
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaFontDialog
+ * \par Function Description
  *  Type instance initializer for GedaFontDialog, initializes a new empty
  *  GedaFontDialog object.
  *
- *  \param [in] instance The GedaFontDialog structure being initialized,
- *  \param [in] g_class  The GedaFontDialog class we are initializing.
+ * \param [in] instance The GedaFontDialog structure being initialized,
+ * \param [in] g_class  The GedaFontDialog class we are initializing.
  */
 static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -1662,16 +1662,16 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   gtk_widget_show                (GTK_WIDGET(Dialog));
 }
 
-/*! \brief Function to retrieve GedaFontDialog's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaFontDialog's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaFontDialog Type identifier. When
  *  first called, the function registers a #GedaFontDialog in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaFontDialog and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaFontDialog.
+ * \return GedaType identifier associated with GedaFontDialog.
  */
 GedaType geda_font_dialog_get_type (void)
 {
@@ -1703,10 +1703,12 @@ GedaType geda_font_dialog_get_type (void)
   return geda_font_dialog_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaFontDialog
+ * \par Function Description
+ *  Ensures font_dialog is a valid G_Object and compares signature
+ *  to geda font dialog type.
+ * \return TRUE if \a font_dialog is a valid GedaFontDialog
  */
 bool
 is_a_geda_font_dialog (GedaFontDialog *font_dialog)
@@ -1850,8 +1852,9 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
   return result;
 }
 
-/*! \brief Get Font Size property from Font Dialog
- *  \par Function Description
+/*!
+ * \brief Get Font Size property from Font Dialog
+ * \par Function Description
  *  This function retrieves the font size property.
  *
  * \retval interger value of the current font size setting.
@@ -1864,13 +1867,13 @@ int geda_font_dialog_get_font_size (GedaFontDialog *dialog)
   return (dialog->font_size);
 }
 
-/*! \brief Set Font Size property on the Font Dialog
- *  \par Function Description
+/*!
+ * \brief Set Font Size property on the Font Dialog
+ * \par Function Description
  *  This function sets the font size property.
  *
  * \param dialog:   Pointer to the dialog object.
  * \param new_size: The integer value of the new font size.
- *
  */
 void
 geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
@@ -1884,17 +1887,15 @@ geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
   geda_font_dialog_select_best_size (dialog);
 }
 
-/*! \brief geda_font_dialog_get_preview_text
- *
- *  \par Function Description
- *
- * Gets the text displayed in the preview area.
+/*!
+ * \brief geda_font_dialog_get_preview_text
+ * \par Function Description
+ *  Gets the text displayed in the preview area.
  *
  * \param [in] dialog: The GedaFontDialog object
  *
- * Return value: the text displayed in the preview area.
- *     This string is owned by the widget and should not be
- *     modified or freed
+ * \return text displayed in the preview area. The string is owned
+ *         by the widget and should not be modified or freed.
  */
 const char*
 geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
@@ -1904,16 +1905,14 @@ geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
   return gtk_entry_get_text (GTK_ENTRY (dialog->preview_entry));
 }
 
-/*! \brief geda_font_dialog_set_preview_text
+/*!
+ * \brief geda_font_dialog_set_preview_text
+ * \par Function Description
+ *  Sets the text displayed in the preview area.
+ *  The text is used to show how the selected font looks.
  *
- *  \par Function Description
- *
- * Sets the text displayed in the preview area.
- * The text is used to show how the selected font looks.
- *
- * \param [in] dialog: The GedaFontDialog object
- * \param [in] text:   Pointer to text to display in the preview area
- *
+ * \param [in] dialog The GedaFontDialog object
+ * \param [in] text   Pointer to text to display in the preview area
  */
 bool
 geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
@@ -1934,11 +1933,10 @@ geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
   return dialog->show_preview;
 }
 
-/*! \brief geda_font_dialog_set_show_preview_entry
- *
- *  \par Function Description
- *
- * Shows or hides the editable preview entry.
+/*!
+ * \brief geda_font_dialog_set_show_preview_entry
+ * \par Function Description
+ *  Shows or hides the editable preview entry.
  *
  * \param [in] dialog        The GedaFontDialog object
  * \param [in] show_preview  whether to show the editable preview entry or not
