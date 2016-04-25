@@ -311,7 +311,7 @@ check_query()
   int  count;
   int result = 0;
 
-  for (count = 0; count < 1; count++) {
+  for (count = 0; count < 3; count++) {
 
     int c   = m_random_number ( 0, MAX_COLORS - 1);
     int x1  = m_random_number ( 0,       119800);

@@ -492,7 +492,7 @@ test_arc_properties (void)
 
     fail = 0;
 
-    for (count = 0; count < 100; count++) {
+    for (count = 0; count < 10; count++) {
 
       int a = m_random_number (0, 359);
       int r = m_random_number (5, 20000);
@@ -571,13 +571,13 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_arc();
+  result  = test_arc();
+
+  result += test_arc_properties();
 
   if (result) {
     fprintf(stderr, "Check module geda_arc.c");
   }
-
-  result += test_arc_properties();
 
   return (result > 0);
 }
