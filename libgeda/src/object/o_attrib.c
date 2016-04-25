@@ -895,7 +895,7 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
  * \par Function Description
  *  Search for attribute by name.
  *
- *  Counter is the n'th occurance of the attribute, and starts searching
+ *  Count is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
  * \param [in] list     GList of Objects to search for floating attributes.
@@ -905,19 +905,19 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
  * \return Character string with attribute value, NULL otherwise.
  *
  * \note Caller should release the returned character string.
- *
- * \todo remove from module?
  */
 char*
 geda_attrib_object_search_floating_by_name (const GList *list,
                                             const char  *name,
-                                                  int    counter)
+                                                  int    count)
 {
   char  *result;
   GList *attributes;
 
   attributes = geda_object_list_find_floating (list);
-  result = geda_attrib_object_search_attrib_list_by_name (attributes, name, counter);
+  result     = geda_attrib_object_search_attrib_list_by_name (attributes,
+                                                              name,
+                                                              count);
   g_list_free (attributes);
 
   return result;
@@ -1000,17 +1000,17 @@ geda_attrib_object_search_object_by_name (const GedaObject *object,
  * \param [in] value    Integer value to be set.
  *
  * \sa geda_attrib_object_set_value
- *
- * \todo why is geda_attrib_object_emit_changed not called?
  */
 void
-geda_attrib_object_set_integer_value (const GedaObject *attrib,
-                                      const char       *name_ptr,
-                                            int         value)
+geda_attrib_object_set_integer_value (GedaObject *attrib,
+                                      const char *name_ptr,
+                                            int   value)
 {
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
+    s_object_set_page_changed (attrib);
+    geda_attrib_object_emit_changed (attrib);
   }
   else {
     geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
@@ -1027,17 +1027,17 @@ geda_attrib_object_set_integer_value (const GedaObject *attrib,
  * \param [in] value_ptr Pointer the new value.
  *
  * \sa geda_attrib_object_set_integer_value
- *
- * \todo why is geda_attrib_object_emit_changed not called?
  */
 void
-geda_attrib_object_set_value (const GedaObject *attrib,
-                              const char       *name_ptr,
-                              const char       *value_ptr)
+geda_attrib_object_set_value (GedaObject *attrib,
+                              const char *name_ptr,
+                              const char *value_ptr)
 {
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
+    s_object_set_page_changed (attrib);
+    geda_attrib_object_emit_changed (attrib);
   }
   else {
     geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);

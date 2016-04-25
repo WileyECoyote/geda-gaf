@@ -1,5 +1,10 @@
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Revise geda_attrib_object_set_integer_value and
+      geda_attrib_object_set_value: remove const from 1st argument, attrib,
+      and call s_object_set_page_changed and geda_attrib_object_emit_changed
+      in both functions.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_string_get_name_value,
