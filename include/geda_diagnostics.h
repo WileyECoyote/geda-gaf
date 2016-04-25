@@ -87,6 +87,9 @@ inline static void geda_begin_performance(struct rusage *before)
 inline static void geda_end_performance(struct rusage *after)
 {
   getrusage(RUSAGE_SELF, after);
+
+  /* Uncomment the following line to check the size of time_t */
+ //printf ("sizeof time_t is: %d\n", sizeof(time_t));
 }
 
 static void geda_show_performance(struct rusage *before, struct rusage *after)
@@ -94,10 +97,10 @@ static void geda_show_performance(struct rusage *before, struct rusage *after)
   float a_cputime, b_cputime, e_cputime;
   float a_systime, b_systime, e_systime;
 
-  a_cputime = after->ru_utime.tv_sec + after->ru_utime.tv_usec / 1000000.0;
+  a_cputime = after->ru_utime.tv_sec  + after->ru_utime.tv_usec  / 1000000.0;
   b_cputime = before->ru_utime.tv_sec + before->ru_utime.tv_usec / 1000000.0;
   e_cputime = a_cputime - b_cputime;
-  a_systime = after->ru_stime.tv_sec + after->ru_stime.tv_usec / 1000000.0;
+  a_systime = after->ru_stime.tv_sec  + after->ru_stime.tv_usec  / 1000000.0;
   b_systime = before->ru_stime.tv_sec + before->ru_stime.tv_usec / 1000000.0;
   e_systime = a_systime - b_systime;
 
