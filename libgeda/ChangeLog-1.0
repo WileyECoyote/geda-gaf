@@ -15,6 +15,8 @@
             * geda_attrib_object_string_get_name_value,
             * geda_attrib_object_freeze_hooks.
 
+    * tests/test_box_object.c: Add tests for geda_box_object_get_nearest_point.
+
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda_arc.c: Add gobject property handlers; get_property and set_property.

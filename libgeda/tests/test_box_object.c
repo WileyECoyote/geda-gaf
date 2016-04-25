@@ -308,9 +308,203 @@ check_serialization ()
 int
 check_query()
 {
+  int  count;
   int result = 0;
-  /* O0402 geda_box_object_get_nearest_point */
+
+  for (count = 0; count < 1; count++) {
+
+    int c   = m_random_number ( 0, MAX_COLORS - 1);
+    int x1  = m_random_number ( 0,       119800);
+    int y2  = m_random_number ( 0,        79800);
+    int x2  = m_random_number (x1 + 100, 120000);
+    int y1  = m_random_number (y2 + 100,  80000);
+    int off = m_random_number (     100,   1000);
+
+    GedaObject *object = geda_box_object_new(c, x1, y1, x2, y2);
+    GedaBox    *box    = object->box;
+
+    /* Quad 1 = Outside North East */
+    int qx = x2 + off;
+    int qy = y1 + off;
+
+    int  nx, ny;
+    int  fail;
+
+    fail = 0;
+
+    /* O0402 geda_box_object_get_nearest_point */
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040201A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x2 - nx || y1 - ny) {
+      fprintf(stderr, "FAILED: (O040201B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 12 = North */
+    qx = (x2 + x1) / 2;
+    qy = y1 + off;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040202A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (qx - nx || y1 - ny) {
+      fprintf(stderr, "FAILED: (O040202B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 2 = North West*/
+    qx = x1 - off;
+    qy = y1 + off;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040203A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x1 - nx || y1 - ny) {
+      fprintf(stderr, "FAILED: (O040203B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 23 = West side */
+    qx = x1 - off;
+    qy = (y1 + y2) / 2;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040204A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x1 - nx || qy - ny) {
+      fprintf(stderr, "FAILED: (O040204B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 3 = South West*/
+    qx = x1 - off;
+    qy = y2 - off;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040205A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x1 - nx || y2 - ny) {
+      fprintf(stderr, "FAILED: (O040205B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 34 = South */
+    qx = (x2 + x1) / 2;
+    qy = y2 - off;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040206A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (qx - nx || y2 - ny) {
+      fprintf(stderr, "FAILED: (O040206B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 4 = South East */
+    qx = x2 + off;
+    qy = y2 - off;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040207A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x2 - nx || y2 - ny) {
+      fprintf(stderr, "FAILED: (O040207B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Quad 4 = East */
+    qx = x2 + off;
+    qy = (y1 + y2) / 2;
+    nx = 0;
+    ny = 0;
+
+    if (!geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040208A) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+    else if (x2 - nx || qy - ny) {
+      fprintf(stderr, "FAILED: (O040208B) box qx=%d, qy=%d, nx=%d, ny=%d\n", qx, qy, nx, ny);
+      fail++;
+    }
+
+    /* Check inside on diagonals, these should not report valid results */
+
+    /* Quad 1 = Inside North East */
+    qx = x2 - 100;
+    qy = y1 - 100;
+    nx = 0;
+    ny = 0;
+    if (geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040209) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+
+    /* Quad 2 = Inside North West */
+    qx = x1 + 100;
+    qy = y1 - 100;
+    nx = 0;
+    ny = 0;
+    if (geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040210) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+
+    /* Quad 3 = Inside South West */
+    qx = x1 + 100;
+    qy = y2 + 100;
+    nx = 0;
+    ny = 0;
+    if (geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040211) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+
+    /* Quad 4 = Inside South East */
+    qx = x2 - 100;
+    qy = y2 + 100;
+    nx = 0;
+    ny = 0;
+    if (geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O040212) box qx=%d, qy=%d\n", qx, qy);
+      fail++;
+    }
+
+    if (fail) {
+      fprintf(stderr, "Conditions:\n");
+      fprintf(stderr, "\tOffset %d\n", off);
+      fprintf(stderr, "box upper_x=%d, x1=%d\n", box->upper_x, x1);
+      fprintf(stderr, "box upper_y=%d, y1=%d\n", box->upper_y, y1);
+      fprintf(stderr, "box lower_x=%d, x2=%d\n", box->lower_x, x2);
+      fprintf(stderr, "box lower_y=%d, y2=%d\n", box->lower_y, y2);
+      result++;
+    }
+
+    g_object_unref (object);
+  }
+
   /* O0420 geda_box_object_shortest_distance */
+
   return result;
 }
 
