@@ -1,5 +1,8 @@
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_box.c: Add gobject property handlers; get_property and
+      set_property.
+
     * src/object/o_box_object.c: Revise geda_box_object_get_nearest_point to
       not report valid result when the point is on diagonal inside the box,
       which would be equidistant to two sides and reduce scope of segments
@@ -19,7 +22,8 @@
 
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda_arc.c: Add gobject property handlers; get_property and set_property.
+    * src/geda/geda_arc.c: Add gobject property handlers; get_property and
+      set_property.
 
     * src/geda/geda_object.c: Change argument GedaObject to const GedaObject for
       functions; geda_object_bounds, geda_object_get_color, geda_object_get_page

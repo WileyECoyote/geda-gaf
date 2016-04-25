@@ -46,6 +46,14 @@
 
 #include <libgeda_priv.h>
 
+enum {
+  PROP_0,
+  PROP_UPPER_X,
+  PROP_UPPER_Y,
+  PROP_LOWER_X,
+  PROP_LOWER_Y
+};
+
 static GObjectClass *geda_box_parent_class = NULL;
 
 /*! \brief Get Box bounding rectangle.
@@ -82,10 +90,10 @@ geda_box_bounds(GedaObject *object)
  *  GedaBox object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The GedaBox structure being initialized,
- *  \param [in] g_class  The GedaBox class we are initializing.
+ *  \param [in] class    The GedaBox class we are initializing.
  */
 static void
-geda_box_instance_init(GTypeInstance *instance, void *g_class)
+geda_box_instance_init(GTypeInstance *instance, void *class)
 {
   GedaBox    *box    = (GedaBox*)instance;
   GedaObject *object = &box->parent_instance;
@@ -137,28 +145,135 @@ geda_box_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_box_parent_class)->finalize(object);
 }
 
+static void
+get_property (GObject *object, unsigned int  prop_id,
+                               GValue       *value,
+                               GParamSpec   *pspec)
+
+{
+  GedaBox *box = GEDA_BOX(object);
+
+  switch (prop_id)
+  {
+    case PROP_UPPER_X:
+      g_value_set_int (value, box->upper_x);
+      break;
+
+    case PROP_UPPER_Y:
+      g_value_set_int (value, box->upper_y);
+      break;
+
+    case PROP_LOWER_X:
+      g_value_set_int (value, box->lower_x);
+      break;
+
+    case PROP_LOWER_Y:
+      g_value_set_int (value, box->lower_y);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+set_property (GObject *object, unsigned int  prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+  GedaBox *box = GEDA_BOX(object);
+
+  switch (prop_id)
+  {
+    case PROP_UPPER_X:
+      box->upper_x = g_value_get_int (value);
+      break;
+
+    case PROP_UPPER_Y:
+      box->upper_y = g_value_get_int (value);
+      break;
+
+    case PROP_LOWER_X:
+      box->lower_x = g_value_get_int (value);
+      break;
+
+    case PROP_LOWER_Y:
+      box->lower_y = g_value_get_int (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
 /*! \brief Type class initializer for Box
  *
  *  \par Function Description
- *  Type class initializer for Box. We override our parents
- *  virtual class methods as needed and register our GObject signals.
+ *  Class type initializer for Box. We override parent virtual
+ *  class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Box class we are initializing
- *  \param [in]  class_data   The Box structure associated with the class
+ *  \param [in]  klass      The Box class we are initializing
+ *  \param [in]  class_data The Box structure associated with the class
  */
 static void
-geda_box_class_init(void *g_class, void *class_data)
+geda_box_class_init(void *klass, void *class_data)
 {
-  GedaBoxClass    *class         = (GedaBoxClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaBoxClass    *class        = (GedaBoxClass*)klass;
+  GObjectClass    *object_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GParamSpec      *params;
 
-  geda_box_parent_class          = g_type_class_peek_parent(class);
+  geda_box_parent_class         = g_type_class_peek_parent(class);
 
-  gobject_class->dispose         = geda_box_dispose;
-  gobject_class->finalize        = geda_box_finalize;
+  object_class->dispose         = geda_box_dispose;
+  object_class->finalize        = geda_box_finalize;
 
-  geda_class->bounds             = geda_box_bounds;
+  object_class->get_property    = get_property;
+  object_class->set_property    = set_property;
+
+  geda_class->bounds            = geda_box_bounds;
+
+  params = g_param_spec_int ("upper-x",
+                           _("Upper X"),
+                           _("Upper X bounds"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_UPPER_X, params);
+
+   params = g_param_spec_int ("upper-y",
+                            _("Upper Y"),
+                            _("Upper Y bounds"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_UPPER_Y, params);
+
+  params = g_param_spec_int ("lower-x",
+                           _("Lower X"),
+                           _("Lower X bounds"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LOWER_X, params);
+
+   params = g_param_spec_int ("lower-y",
+                            _("Lower Y"),
+                            _("Lower Y bounds"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LOWER_Y, params);
 }
 
 /*! \brief Function to retrieve GedaBox's Type identifier.
