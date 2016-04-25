@@ -110,7 +110,6 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   if (GEDA_IS_BOX(object)) {
 
     GedaLine *closest;
-    GedaLine  segments[4];
 
     box    = object->box;
     result = FALSE;
@@ -133,6 +132,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       else {
         *ny = y;
       }
+      result = TRUE;
     }
     else if (x >= right) {
 
@@ -147,17 +147,21 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       else {
         *ny = y;
       }
+      result = TRUE;
     }
     else if (y >= top) {
       *ny = top;
       *nx = x;
+       result = TRUE;
     }
     else if (bottom >= y) {
       *ny = bottom;
       *nx = x;
+       result = TRUE;
     }
     else { /* point is inside the box */
 
+      GedaLine  segments[4];
       double dl, dr, dt, db;
 
       /* Left Side */
@@ -192,8 +196,9 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 
       db = m_line_shortest_distance (&segments[3], x, y);
 
-      /* Check for corners */
-
+      /* Check for diagonals, if the point is on a diagonal then the
+       * point is equidistant to two sides, the return point is set
+       * to the corner but the result is not set TRUE */
       if (db == dl) {                       /* bottom left */
         *ny = bottom;
         *nx = left;
@@ -202,8 +207,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
         *ny = top;
         *nx = left;
       }
-
-      if (db == dr) {                       /* bottom right */
+      else if (db == dr) {                  /* bottom right */
         *ny = bottom;
         *nx = right;
       }
@@ -212,6 +216,8 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
         *nx = right;
       }
       else {
+
+        /* Inside not on a diagonal */
 
         if (dl < db && dl < dt) {           /* left */
           closest = &segments[0];
@@ -251,9 +257,9 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
         *nx = iy + 0.5;
 
 #endif
+        result = TRUE;
       }
     }
-    result = TRUE;
   }
   else { /* was not an Box */
     geda_box_object_error(__func__, object);

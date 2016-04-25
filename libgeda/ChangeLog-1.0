@@ -1,5 +1,10 @@
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_box_object.c: Revise geda_box_object_get_nearest_point to
+      not report valid result when the point is on diagonal inside the box,
+      which would be equidistant to two sides and reduce scope of segments
+      used to check points inside that are not on a diagonal.
+
     * src/object/o_attrib.c: Revise geda_attrib_object_set_integer_value and
       geda_attrib_object_set_value: remove const from 1st argument, attrib,
       and call s_object_set_page_changed and geda_attrib_object_emit_changed
