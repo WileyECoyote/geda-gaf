@@ -10,6 +10,8 @@
     * object/o_object.c: Replace sscanf used to get the first char from the
       text buffer  and reduce scope of variables in function o_read_buffer.
 
+    * tests/test_arc.c: Add tests for gobject properties.
+
     * tests/test_attrib_object.c: Add more tests, include test for functions:
 
             * geda_attrib_object_search_inherited_by_name,

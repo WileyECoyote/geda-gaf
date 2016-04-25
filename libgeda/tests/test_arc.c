@@ -304,7 +304,7 @@ int test_arc (void)
   GedaObject *object = geda_arc_new();
 
   if (!GEDA_IS_OBJECT(object)) {
-    fprintf(stderr, "%s: is a GedaObject Failed\n", TOBJECT);
+    fprintf(stderr, "%s: is a GedaObject Failed <%d>\n", TOBJECT, __LINE__);
     result++;
   }
 
@@ -473,6 +473,95 @@ int test_arc (void)
 }
 
 int
+test_arc_properties (void)
+{
+  int result = 0;
+
+  GedaObject *object = geda_arc_new();
+
+  if (!GEDA_IS_ARC(object->arc)) {
+    fprintf(stderr, "is a %s Failed line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaArc *arc = object->arc;
+
+    int count;
+    int fail;
+
+    fail = 0;
+
+    for (count = 0; count < 100; count++) {
+
+      int a = m_random_number (0, 359);
+      int r = m_random_number (5, 20000);
+      int s = m_random_number (1, 359);
+      int x = m_random_number (0, 120000);
+      int y = m_random_number (0, 80000);
+
+      g_object_set(arc, "center-x",    x,
+                        "center-y",    y,
+                        "radius",      r,
+                        "start-angle", a,
+                        "arc-sweep",   s,
+                        NULL);
+
+      int ra, rr, rs, rx, ry;
+
+      g_object_get(arc, "center-x",    &rx,
+                        "center-y",    &ry,
+                        "radius",      &rr,
+                        "start-angle", &ra,
+                        "arc-sweep",   &rs,
+                        NULL);
+
+      if (a - ra) {
+        fprintf(stderr, "FAILED: %s get/set start angle property <%d>\n", TOBJECT, ra);
+        fail++;
+      }
+
+      if (x - rx) {
+        fprintf(stderr, "FAILED: %s get/set center x property <%d>\n", TOBJECT, rx);
+        fail++;
+      }
+
+      if (y - ry) {
+        fprintf(stderr, "FAILED: %s get/set center y property <%d>\n", TOBJECT, ry);
+        fail++;
+      }
+
+      if (r - rr) {
+        fprintf(stderr, "FAILED: %s get/set radius property <%d>\n", TOBJECT, rr);
+        fail++;
+      }
+
+      if ( s - rs) {
+        fprintf(stderr, "FAILED: %s get/set arc sweep property <%d>\n", TOBJECT, rs);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\tstart angle: %d\n", a);
+        fprintf(stderr, "\t     radius: %d\n", r);
+        fprintf(stderr, "\t  arc sweep: %d\n", s);
+        fprintf(stderr, "\t   center x: %d\n", x);
+        fprintf(stderr, "\t   center y: %d\n", y);
+
+        result = fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -483,9 +572,12 @@ main (int argc, char *argv[])
 #endif
 
   result = test_arc();
+
   if (result) {
     fprintf(stderr, "Check module geda_arc.c");
   }
+
+  result += test_arc_properties();
 
   return (result > 0);
 }
