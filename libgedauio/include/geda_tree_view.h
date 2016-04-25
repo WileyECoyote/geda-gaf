@@ -38,7 +38,7 @@
 #define GEDA_TYPE_TREE_VIEW            (geda_tree_view_get_type ())
 #define GEDA_TREE_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TREE_VIEW, GedaTreeView))
 #define GEDA_TREE_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_TREE_VIEW, GedaTreeViewClass))
-#define GEDA_IS_TREE_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_TREE_VIEW))
+#define GEDA_IS_TREE_VIEW(obj)         (is_a_geda_tree_view((GedaTreeView*)obj))
 #define GEDA_IS_TREE_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_TREE_VIEW))
 #define GEDA_TREE_VIEW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),   GEDA_TYPE_TREE_VIEW, GedaTreeViewClass))
 
@@ -48,7 +48,7 @@ typedef struct _GedaTreeViewClass   GedaTreeViewClass;
 struct _GedaTreeView
 {
   GtkTreeView parent_instance;
-
+  GedaType    instance_type;
 };
 
 struct _GedaTreeViewClass
@@ -61,6 +61,7 @@ extern "C" {
 #endif
 
 GedaType      geda_tree_view_get_type            (void) GEDA_CONST;
+bool          is_a_geda_tree_view                (GedaTreeView *tree_view);
 
 GtkWidget    *geda_tree_view_new                 (void);
 GtkWidget    *geda_tree_view_new_with_model      (GtkTreeModel *model);

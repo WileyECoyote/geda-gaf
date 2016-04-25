@@ -1436,7 +1436,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    NULL, NULL,
                    g_cclosure_marshal_VOID__POINTER,
                    G_TYPE_NONE, 1,
-                  G_TYPE_POINTER);
+                   G_TYPE_POINTER);
 }
 
 /*! \brief Type instance initializer for GedaHandleBox
@@ -1452,6 +1452,7 @@ static void
 geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
+  handle_box->instance_type = geda_handle_box_get_type();
 
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
 
@@ -1513,6 +1514,20 @@ GedaType geda_handle_box_get_type (void)
   }
 
   return geda_handle_box_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_handle_box (GedaHandleBox *handlebox)
+{
+  if (G_IS_OBJECT(handlebox)) {
+    return (geda_handle_box_get_type() == handlebox->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Get a New GedaHandleBox Object

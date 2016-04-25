@@ -46,7 +46,7 @@
 #define GEDA_TYPE_FONT_BUTTON             (geda_font_button_get_type ())
 #define GEDA_FONT_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FONT_BUTTON, GedaFontButton))
 #define GEDA_FONT_BUTTON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_FONT_BUTTON, GedaFontButtonClass))
-#define GEDA_IS_FONT_BUTTON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_FONT_BUTTON))
+#define GEDA_IS_FONT_BUTTON(obj)          (is_a_geda_font_button((GedaFontButton*)obj))
 #define GEDA_IS_FONT_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_FONT_BUTTON))
 #define GEDA_FONT_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_FONT_BUTTON, GedaFontButtonClass))
 
@@ -57,6 +57,7 @@ typedef struct _GedaFontButtonData  GedaFontButtonData;
 struct _GedaFontButton {
 
   GtkButton button;
+  GedaType  instance_type;
 
   /*< private >*/
   GedaFontButtonData    *priv;
@@ -81,6 +82,8 @@ extern "C" {
 #endif
 
 GedaType      geda_font_button_get_type       (void) GEDA_CONST;
+bool          is_a_geda_font_button           (GedaFontButton *font_button);
+
 GtkWidget    *geda_font_button_new            (void);
 GtkWidget    *geda_font_button_new_with_font  (const char       *fontname);
 

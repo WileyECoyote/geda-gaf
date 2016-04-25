@@ -40,7 +40,7 @@
 #define GEDA_TYPE_IMAGE_MENU_ITEM            (geda_image_menu_item_get_type ())
 #define GEDA_IMAGE_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItem))
 #define GEDA_IMAGE_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
-#define GEDA_IS_IMAGE_MENU_ITEM(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_IMAGE_MENU_ITEM))
+#define GEDA_IS_IMAGE_MENU_ITEM(obj)         (is_a_geda_menu_item((GedaImageMenuItem*)obj))
 #define GEDA_IS_IMAGE_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_IMAGE_MENU_ITEM))
 #define GEDA_IMAGE_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
 
@@ -51,6 +51,7 @@ typedef struct _GedaImageMenuItemData  GedaImageMenuItemData;
 struct _GedaImageMenuItem
 {
   GtkMenuItem   menu_item;
+  GedaType      instance_type;
   GtkWidget    *image;
 
   char         *label;
@@ -70,8 +71,9 @@ extern "C" {
 #endif
 
 GedaType   geda_image_menu_item_get_type              (void) GEDA_CONST;
-GtkWidget *geda_image_menu_item_new                   (void);
+bool       is_a_geda_menu_item                        (GedaImageMenuItem *image_menu_item);
 
+GtkWidget *geda_image_menu_item_new                   (void);
 GtkWidget *geda_image_menu_item_new_with_label        (const char        *label);
 GtkWidget *geda_image_menu_item_new_with_mnemonic     (const char        *label);
 GtkWidget *geda_image_menu_item_new_from_stock        (const char        *stock_id,

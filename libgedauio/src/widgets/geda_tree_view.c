@@ -81,7 +81,8 @@ geda_tree_view_class_init (void *class, void *data)
 static void
 geda_tree_view_instance_init (GTypeInstance *instance, void *class)
 {
-  // GedaTreeView *tree_view = (GedaTreeView*)instance;
+  GedaTreeView *tree_view  = (GedaTreeView*)instance;
+  tree_view->instance_type = geda_tree_view_get_type();
 }
 
 /*! \brief Function to retrieve GedaTreeView's Type identifier.
@@ -124,6 +125,20 @@ GedaType geda_tree_view_get_type (void)
   }
 
   return geda_tree_view_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_tree_view (GedaTreeView *tree_view)
+{
+  if (G_IS_OBJECT(tree_view)) {
+    return (geda_tree_view_get_type() == tree_view->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Create a New GedaTreeView

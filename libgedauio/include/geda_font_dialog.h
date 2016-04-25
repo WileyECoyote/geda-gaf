@@ -51,7 +51,7 @@
 #define GEDA_TYPE_FONT_DIALOG            (geda_font_dialog_get_type ())
 #define GEDA_FONT_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FONT_DIALOG, GedaFontDialog))
 #define GEDA_FONT_DIALOG_CLASS(class)    (G_TYPE_CHECK_CLASS_CAST ((class),  GEDA_TYPE_FONT_DIALOG, GedaFontDialogClass))
-#define GEDA_IS_FONT_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_FONT_DIALOG))
+#define GEDA_IS_FONT_DIALOG(obj)         (is_a_geda_font_dialog((GedaFontDialog*)obj))
 #define GEDA_IS_FONT_DIALOG_CLASS(class) (G_TYPE_CHECK_CLASS_TYPE ((class),  GEDA_TYPE_FONT_DIALOG))
 #define GEDA_FONT_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_FONT_DIALOG, GedaFontDialogClass))
 
@@ -61,6 +61,7 @@ typedef struct _GedaFontDialogClass  GedaFontDialogClass;
 struct _GedaFontDialog
 {
   GtkDialog parent_instance;
+  GedaType  instance_type;
 
   GtkWidget *font_entry;
   GtkWidget *family_list;
@@ -113,10 +114,11 @@ extern "C" {
 #endif
 
 GedaType   geda_font_dialog_get_type           (void) GEDA_CONST;
+bool       is_a_geda_font_dialog               (GedaFontDialog *font_dialog);
 
 GtkWidget* geda_font_dialog_new                (void);
-GtkWidget* geda_font_dialog_new_with_title     (const char *title);
 GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name);
+GtkWidget* geda_font_dialog_new_with_title     (const char *title);
 GtkWidget* geda_font_dialog_new_with_window    (const char *title, GtkWindow *parent);
 
 GdkFont* geda_font_dialog_get_font (GedaFontDialog *dialog);

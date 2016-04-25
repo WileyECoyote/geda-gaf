@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-04-11 22:56-0500\n"
+"POT-Creation-Date: 2016-04-24 21:10-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -344,71 +344,71 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:683
+#: libgedauio/src/widgets/geda_entry.c:878
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:684
+#: libgedauio/src/widgets/geda_entry.c:879
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:691
+#: libgedauio/src/widgets/geda_entry.c:886
 #: libgedauio/src/widgets/geda_label.c:1076
 msgid "Attributes"
 msgstr "アトリビュート"
 
-#: libgedauio/src/widgets/geda_entry.c:692
+#: libgedauio/src/widgets/geda_entry.c:887
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:699
+#: libgedauio/src/widgets/geda_entry.c:894
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:700
+#: libgedauio/src/widgets/geda_entry.c:895
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:707
+#: libgedauio/src/widgets/geda_entry.c:902
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:708
+#: libgedauio/src/widgets/geda_entry.c:903
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:715
+#: libgedauio/src/widgets/geda_entry.c:910
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:716
-#: libgedauio/src/widgets/geda_entry.c:726
+#: libgedauio/src/widgets/geda_entry.c:911
+#: libgedauio/src/widgets/geda_entry.c:921
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:725
+#: libgedauio/src/widgets/geda_entry.c:920
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:735
+#: libgedauio/src/widgets/geda_entry.c:930
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:736
+#: libgedauio/src/widgets/geda_entry.c:931
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1234
+#: libgedauio/src/widgets/geda_entry.c:1483
 #, fuzzy
 msgid "Auto Complete"
 msgstr "部品"
 
-#: libgedauio/src/widgets/geda_entry.c:1241
+#: libgedauio/src/widgets/geda_entry.c:1490
 #, fuzzy
 msgid "On"
 msgstr "開く"
 
-#: libgedauio/src/widgets/geda_entry.c:1245
+#: libgedauio/src/widgets/geda_entry.c:1494
 msgid "Off"
 msgstr ""
 
@@ -489,15 +489,15 @@ msgstr ""
 msgid "size-set"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:888
+#: libgedauio/src/widgets/geda_font_button.c:889
 msgid "Open font selection dialog"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:926
+#: libgedauio/src/widgets/geda_font_button.c:927
 msgid "Font button"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:1492
+#: libgedauio/src/widgets/geda_font_button.c:1507
 #: libgedauio/src/widgets/geda_font_dialog.c:1496
 msgid "Font"
 msgstr ""
@@ -597,7 +597,7 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1645
+#: libgedauio/src/widgets/geda_font_dialog.c:1647
 #, fuzzy
 msgid "_Select"
 msgstr "選択"
@@ -677,7 +677,7 @@ msgid "populate-popup"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1069
-#: libgedauio/src/widgets/geda_label.c:1441
+#: libgedauio/src/widgets/geda_label.c:1442
 #: libgedauio/src/widgets/geda_menu_button.c:1078
 msgid "Label"
 msgstr ""
@@ -839,20 +839,20 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:2026
+#: libgedauio/src/widgets/geda_label.c:2036
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5916
+#: libgedauio/src/widgets/geda_label.c:5926
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6041
+#: libgedauio/src/widgets/geda_label.c:6051
 #, fuzzy
 msgid "_Open Link"
 msgstr "ファイルを開く..."
 
-#: libgedauio/src/widgets/geda_label.c:6053
+#: libgedauio/src/widgets/geda_label.c:6063
 msgid "Copy _Link Address"
 msgstr ""
 

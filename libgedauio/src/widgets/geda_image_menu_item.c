@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_image_menu_item.h
+ * File: geda_image_menu_item.c
  *
  * GTK - The GIMP Toolkit
  * Copyright (C) 2001 Red Hat, Inc.
@@ -454,6 +454,8 @@ geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)instance;
 
+  image_menu_item->instance_type     = geda_image_menu_item_get_type();
+
   /* Note data->initialization not required because memset 0 */
   image_menu_item->priv      = GEDA_MEM_ALLOC0(sizeof(GedaImageMenuItemData));
   image_menu_item->use_stock = FALSE;
@@ -509,6 +511,20 @@ geda_image_menu_item_get_type (void)
   }
 
   return geda_image_menu_item_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_menu_item (GedaImageMenuItem *image_menu_item)
+{
+  if (G_IS_OBJECT(image_menu_item)) {
+    return (geda_image_menu_item_get_type() == image_menu_item->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief return internal show image property

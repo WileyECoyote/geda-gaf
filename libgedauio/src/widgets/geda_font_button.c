@@ -880,7 +880,8 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
 {
   GedaFontButton *font_button = (GedaFontButton*)instance;
 
-  font_button->priv = GEDA_MEM_ALLOC0 (sizeof(GedaFontButtonData));
+  font_button->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaFontButtonData));
+  font_button->instance_type  = geda_font_button_get_type();
 
   GtkSettings *settings;
   const char  *fontbutton_tip;
@@ -968,6 +969,20 @@ GedaType geda_font_button_get_type (void)
   }
 
   return geda_font_button_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_font_button (GedaFontButton *font_button)
+{
+  if (G_IS_OBJECT(font_button)) {
+    return (geda_font_button_get_type() == font_button->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Create a New GedaFontButton

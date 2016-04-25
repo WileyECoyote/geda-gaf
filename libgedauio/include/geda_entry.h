@@ -147,6 +147,7 @@ extern "C" {
 
 GedaType   geda_entry_get_type               (void) GEDA_CONST;
 bool       is_a_geda_entry                   (GedaEntry      *entry);
+
 GtkWidget *geda_entry_new                    (GList** history, GList** complete);
 GtkWidget *geda_entry_new_visible            (GList** history, GList** complete);
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);

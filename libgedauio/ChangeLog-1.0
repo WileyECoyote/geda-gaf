@@ -1,5 +1,14 @@
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Replace G_TYPE_CHECK_INSTANCE_TYPE macro in:
+
+            * include/geda_handlebox.h
+            * include/geda_image_menu_item.h
+            * include/geda_separator.h
+            * include/geda_tree_view.h
+            * include/geda_font_button.h
+            * include/geda_font_dialog.h
+
     * tests/test_image_menu_item.c: Add tests for constructing GedaImageMenuItem
       widgets.
 

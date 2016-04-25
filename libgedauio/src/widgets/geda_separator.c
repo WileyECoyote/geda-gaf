@@ -358,6 +358,7 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   GedaSeparator *separator = (GedaSeparator*)instance;
   GtkWidget     *widget    = GTK_WIDGET (instance);
 
+  separator->instance_type = geda_separator_get_type();
 
   gtk_widget_set_has_window (GTK_WIDGET (instance), FALSE);
 
@@ -406,6 +407,20 @@ GedaType geda_separator_get_type (void)
   }
 
   return geda_separator_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_separator (GedaSeparator *separator)
+{
+  if (G_IS_OBJECT(separator)) {
+    return (geda_separator_get_type() == separator->instance_type);
+  }
+  return FALSE;
 }
 
 /*!

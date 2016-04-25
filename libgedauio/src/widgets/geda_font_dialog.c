@@ -1563,13 +1563,15 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   GtkDialog      *Dialog     = GTK_DIALOG (dialog);
   GtkSettings    *settings;
 
-  dialog->face         = NULL; /* Current face */
-  dialog->family       = NULL; /* Current family */
-  dialog->font         = NULL; /* Cache for gdk_font_selection_get_font */
-  dialog->font_desc    = NULL;
+  dialog->instance_type = geda_font_dialog_get_type();
 
-  dialog->default_font = NULL;
-  dialog->show_preview = TRUE;
+  dialog->face          = NULL; /* Current face */
+  dialog->family        = NULL; /* Current family */
+  dialog->font          = NULL; /* Cache for gdk_font_selection_get_font */
+  dialog->font_desc     = NULL;
+
+  dialog->default_font  = NULL;
+  dialog->show_preview  = TRUE;
 
   /* Initialize the font */
   if ((settings = gtk_settings_get_default ()) != NULL ) {
@@ -1699,6 +1701,20 @@ GedaType geda_font_dialog_get_type (void)
   }
 
   return geda_font_dialog_type;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+is_a_geda_font_dialog (GedaFontDialog *font_dialog)
+{
+  if (G_IS_OBJECT(font_dialog)) {
+    return (geda_font_dialog_get_type() == font_dialog->instance_type);
+  }
+  return FALSE;
 }
 
 GtkWidget* geda_font_dialog_new (void)
