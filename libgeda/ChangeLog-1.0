@@ -1,5 +1,7 @@
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda_arc.c: Add gobject property handlers; get_property and set_property.
+
     * src/object/o_attrib.c: Replace sscanf used to get the first char from the
       text buffer, rearrange order of cases, put GedaText first, ENDATTACH_ATTR
       second since these are the only two that are actually used and reduce scope

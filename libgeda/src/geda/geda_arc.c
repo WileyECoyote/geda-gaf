@@ -47,6 +47,15 @@
 #include <libgeda_priv.h>
 #include <math.h>
 
+enum {
+  PROP_0,
+  PROP_CENTER_X,
+  PROP_CENTER_Y,
+  PROP_RADIUS,
+  PROP_START_ANGLE,
+  PROP_ARC_SWEEP
+};
+
 static GObjectClass *geda_arc_parent_class = NULL;
 
 /*! \brief Geda Arc Bounds
@@ -191,6 +200,77 @@ static void geda_arc_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_arc_parent_class)->finalize(object);
 }
 
+static void
+get_property (GObject *object, unsigned int  prop_id,
+                               GValue       *value,
+                               GParamSpec   *pspec)
+
+{
+  GedaArc *arc = GEDA_ARC(object);
+
+  switch (prop_id)
+  {
+    case PROP_CENTER_X:
+      g_value_set_int (value, arc->x);
+      break;
+
+    case PROP_CENTER_Y:
+      g_value_set_int (value, arc->y);
+      break;
+
+    case PROP_RADIUS:
+      g_value_set_int (value, arc->radius);
+      break;
+
+    case PROP_START_ANGLE:
+      g_value_set_int (value, arc->start_angle);
+      break;
+
+    case PROP_ARC_SWEEP:
+      g_value_set_int (value, arc->arc_sweep);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+set_property (GObject *object, unsigned int  prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+  GedaArc *arc = GEDA_ARC(object);
+
+  switch (prop_id)
+  {
+    case PROP_CENTER_X:
+      arc->x = g_value_get_int (value);
+      break;
+
+    case PROP_CENTER_Y:
+      arc->y = g_value_get_int (value);
+      break;
+
+    case PROP_RADIUS:
+      arc->radius = g_value_get_int (value);
+      break;
+
+    case PROP_START_ANGLE:
+      arc->start_angle = g_value_get_int (value);
+      break;
+
+    case PROP_ARC_SWEEP:
+      arc->arc_sweep = g_value_get_int (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
 /*! \brief Type class initializer for Arc
  *
  *  \par Function Description
@@ -202,16 +282,70 @@ static void geda_arc_finalize(GObject *object)
  */
 static void geda_arc_class_init(void *g_class, void *class_data)
 {
-  GedaArcClass    *class         = (GedaArcClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaArcClass    *class        = (GedaArcClass*)g_class;
+  GObjectClass    *object_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GParamSpec      *params;
 
-  geda_arc_parent_class          = g_type_class_peek_parent(class);
+  geda_arc_parent_class         = g_type_class_peek_parent(class);
 
-  gobject_class->dispose         = geda_arc_dispose;
-  gobject_class->finalize        = geda_arc_finalize;
+  object_class->dispose         = geda_arc_dispose;
+  object_class->finalize        = geda_arc_finalize;
 
-  geda_class->bounds             = geda_arc_bounds;
+  object_class->get_property    = get_property;
+  object_class->set_property    = set_property;
+
+  geda_class->bounds            = geda_arc_bounds;
+
+  params = g_param_spec_int ("center-x",
+                           _("Center X"),
+                           _("Abscissa of the arc center point"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_CENTER_X, params);
+
+  params = g_param_spec_int ("center-y",
+                           _("Center Y"),
+                           _("Ordinate of the arc center point"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_CENTER_Y, params);
+
+  params = g_param_spec_int ("radius",
+                           _("Radius"),
+                           _("Radius of the arc center"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_RADIUS, params);
+
+  params = g_param_spec_int ("start-angle",
+                           _("Start Angle"),
+                           _("The arc starting angle"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_START_ANGLE, params);
+
+  params = g_param_spec_int ("arc-sweep",
+                           _("Arc Sweep"),
+                           _("The arc sweep angle"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_ARC_SWEEP, params);
 }
 
 /*! \brief Function to retrieve GedaArc's Type identifier.
