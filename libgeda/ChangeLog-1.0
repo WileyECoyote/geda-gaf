@@ -1,3 +1,10 @@
+2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_attrib_object.c: Add more tests, include test for functions:
+
+            * geda_attrib_object_string_get_name_value,
+            * geda_attrib_object_freeze_hooks.
+
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda_arc.c: Add gobject property handlers; get_property and set_property.
@@ -20,8 +27,8 @@
 
             * geda_attrib_object_search_inherited_by_name,
             * geda_attrib_object_search_object_by_name,
-            * geda_attrib_object_set_integer_value
-            * geda_attrib_object_set_value
+            * geda_attrib_object_set_integer_value,
+            * geda_attrib_object_set_value.
 
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
