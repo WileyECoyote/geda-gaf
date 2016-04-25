@@ -1,3 +1,16 @@
+2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX12527-1.sym: Fix duplicate device, update footprint.
+
+    * maxim/MAX12528-1.sym: Fix duplicate device, update footprint.
+
+    * maxim/MAX12529-1.sym: Fix duplicate device, update footprint.
+
+    * ti/switchreg/TPS43060-1.sym: Revise color of value and footprint
+      attributes.
+
+    * ti/switchreg/TPS43061-1.sym: Revise visibility and position of attributes.
+
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX12557-1.sym: Fix duplicate device, update footprint.

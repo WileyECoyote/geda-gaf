@@ -182,7 +182,7 @@ pintype=pwr
 }
 T 400 5200 5 10 0 0 0 0 1
 numslots=0
-T 400 4400 5 10 0 1 0 0 1
+T 400 4400 9 10 0 1 0 0 1
 footprint=SOIC16
 T 400 4600 5 10 0 1 0 0 1
 description=Low Quiescent Current Synchronous Boost
@@ -196,7 +196,7 @@ T 400 5600 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 5800 5 10 0 0 0 0 1
 author=AutoTron
-T 400 4000 9 10 1 1 0 0 1
+T 400 4000 5 10 1 1 0 0 1
 value=TPS43060
 P 2400 400 2700 400 1 0 1
 {

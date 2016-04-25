@@ -1,4 +1,10 @@
-v 20050313 1
+v 20160401 2
+T 5300 12300 8 10 1 1 0 6 1
+refdes=U?
+T 5100 13700 5 10 0 0 0 0 1
+device=MAX12529
+T 5100 13100 5 10 0 1 0 0 1
+description=Dual, 96 Msps, 12-Bit, IF/Baseband ADC
 P 100 11300 400 11300 1 0 0
 {
 T 325 11350 5 10 1 1 0 6 1
@@ -845,25 +851,19 @@ pintype=pwr
 T 3800 500 5 10 1 1 90 1 1
 pinlabel=EP_GND
 }
-T 1500 11500 8 10 1 1 0 0 1
-refdes=U?
-T 1500 11200 8 10 1 1 0 0 1
-device=MAX12529
+T 5100 12500 5 10 1 1 0 0 1
+value=MAX12529
 T 1700 10200 9 10 1 0 0 0 1
 ADC - CH. A
 B 400 400 4900 11800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 1700 5800 9 10 1 0 0 0 1
 ADC - CH. B
-T 1500 10900 8 10 1 1 0 0 1
-footprint=TQFN68_10_EP
+T 5100 12700 9 10 1 1 0 0 1
+footprint=TQFN-68-10-EP
 B 400 400 4900 11800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 6400 5600 5 10 0 0 0 0 1
+T 5100 13500 5 10 0 0 0 0 1
 numslots=0
-T 6400 5400 5 10 0 0 0 0 1
+T 5100 13300 5 10 0 0 0 0 1
 symversion=1.0
-T 6400 5200 5 10 0 0 0 0 1
-description=Dual, 96 Msps, 12-Bit, IF/Baseband ADC 
-T 6400 5000 5 10 0 0 0 0 1
+T 5100 12900 5 10 0 1 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX12529.pdf
-T 6400 5800 5 10 0 0 0 0 1
-device=MAX12529
