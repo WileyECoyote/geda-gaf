@@ -21,7 +21,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, 22nd, 2016
+ *  Date Contributed: April, 26th, 2016
  */
 
 #include <libgeda.h>
@@ -311,6 +311,12 @@ check_query()
   int  count;
   int result = 0;
 
+  int dum = 1;
+  if (geda_box_object_get_nearest_point(NULL, dum, dum, &dum, &dum)) {
+    fprintf(stderr, "FAILED: (O040200) box_get_nearest_point NULL\n");
+    result++;
+  }
+
   for (count = 0; count < 3; count++) {
 
     int c   = m_random_number ( 0, MAX_COLORS - 1);
@@ -504,6 +510,12 @@ check_query()
   }
 
   /* O0420 geda_box_object_shortest_distance */
+
+  double nodist = geda_box_object_shortest_distance(NULL, 10, 10, FALSE);
+  if (nodist != G_MAXDOUBLE) {
+    fprintf(stderr, "FAILED: (O042000) box_shortest_distance NULL\n");
+    result++;
+  }
 
   for (count = 0; count < 3; count++) {
 
@@ -723,11 +735,131 @@ int
 check_transformer()
 {
   int result = 0;
-  /* O0404 geda_box_object_modify */
-  /* O0405 geda_box_object_modify_all */
-  /* O0406 geda_box_object_mirror */
-  /* O0419 geda_box_object_rotate */
-  /* O0421 geda_box_object_translate */
+  int count;
+
+  geda_box_object_modify(NULL, 0, 0, BOX_UPPER_LEFT);
+
+  geda_box_object_modify_all(NULL, 0, 0, 0, 0);
+
+  geda_box_object_mirror(NULL, 0, 0);
+
+  geda_box_object_rotate(NULL, 0, 0, 0);
+
+  geda_box_object_translate(NULL, 0, 0);
+
+  for (count = 0; count < 10; count++) {
+
+    int fail = 0;
+
+    int x1  = m_random_number ( 0, 119800);
+    int y2  = m_random_number ( 0, 79800);
+    int x2  = x1 + 1000;
+    int y1  = y2 + 1000;
+    int off = m_random_number (10, 100);
+
+    GedaObject *object = geda_box_object_new(3, x1, y1, x2, y2);
+    GedaBox    *box    = object->box;
+
+    int nx = x1 + off;
+    int ny = y1 + off;
+
+    /* O0404 geda_box_object_modify */
+
+    geda_box_object_modify(object, nx, ny, BOX_UPPER_LEFT);
+
+    if (box->upper_x - nx || box->upper_y - ny) {
+      fprintf(stderr, "FAILED: (O040401) box nx=%d, ny=%d\n", nx, ny);
+      fail++;
+    }
+
+    nx = x1 + off;
+    ny = y2 + off;
+
+    geda_box_object_modify(object, nx, ny, BOX_LOWER_LEFT);
+
+    if (box->upper_x - nx || box->lower_y - ny) {
+      fprintf(stderr, "FAILED: (O040402) box nx=%d, ny=%d\n", nx, ny);
+      fail++;
+    }
+
+    nx = x2 + off;
+    ny = y1 + off;
+
+    geda_box_object_modify(object, nx, ny, BOX_UPPER_RIGHT);
+
+    if (box->lower_x - nx || box->upper_y - ny) {
+      fprintf(stderr, "FAILED: (O040403) box nx=%d, ny=%d\n", nx, ny);
+      fail++;
+    }
+
+    nx = x2 + off;
+    ny = y2 + off;
+
+    geda_box_object_modify(object, nx, ny, BOX_LOWER_RIGHT);
+
+    if (box->lower_x - nx || box->lower_y - ny) {
+      fprintf(stderr, "FAILED: (O040404) box nx=%d, ny=%d\n", nx, ny);
+      fail++;
+    }
+
+    /* O0405 geda_box_object_modify_all */
+
+    geda_box_object_modify_all(object, x1, y1, x2, y2);
+
+    if (box->upper_x - x1 || box->upper_y - y1 ||
+        box->lower_x - x2 || box->lower_y - y2)
+    {
+      fprintf(stderr, "FAILED: (O040501) geda_box_object_modify_all\n");
+      fail++;
+    }
+
+    /* O0406 geda_box_object_mirror */
+    geda_box_object_mirror(object, x2, (y1 + y2) /2);
+
+    if (box->upper_x - x2 || box->upper_y - y1) {
+      fprintf(stderr, "FAILED: (O040601) geda_box_object_mirror\n");
+      fail++;
+    }
+
+    /* O0405 geda_box_object_modify_all */
+
+    geda_box_object_modify_all(object, x1, y1, x2, y2);
+
+    if (box->upper_x - x1 || box->upper_y - y1 ||
+        box->lower_x - x2 || box->lower_y - y2)
+    {
+      fprintf(stderr, "FAILED: (O040502) geda_box_object_modify_all\n");
+      fail++;
+    }
+
+    /* O0419 geda_box_object_rotate */
+    geda_box_object_rotate(object, x1, y1, 90);
+
+    if (box->lower_x - x2 || box->lower_y - y1) {
+      fprintf(stderr, "FAILED: (O041901) geda_box_object_mirror\n");
+      fail++;
+    }
+
+    /* O0421 geda_box_object_translate */
+    geda_box_object_translate(object, -1000, off);
+    if (box->lower_x - x1 || box->lower_y - y1 - off) {
+      fprintf(stderr, "FAILED: (O042101) geda_box_object_mirror\n");
+      fail++;
+    }
+
+    if (fail) {
+      fprintf(stderr, "Conditions:\n");
+      fprintf(stderr, "Offset %d\n", off);
+      fprintf(stderr, "box upper_x=%d, x1=%d\n", box->upper_x, x1);
+      fprintf(stderr, "box upper_y=%d, y1=%d\n", box->upper_y, y1);
+      fprintf(stderr, "box lower_x=%d, x2=%d\n", box->lower_x, x2);
+      fprintf(stderr, "box lower_y=%d, y2=%d\n", box->lower_y, y2);
+      result++;
+      break;
+    }
+    g_object_unref (object);
+  }
+
   return result;
 }
 

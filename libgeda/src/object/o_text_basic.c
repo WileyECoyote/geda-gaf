@@ -325,7 +325,7 @@ char *o_text_save(GedaObject *object)
   y = object->text->y;
 
   string = object->text->string;
-  size = object->text->size;
+  size   = object->text->size;
 
   /* string can have multiple lines (seperated by \n's) */
   num_lines = o_get_num_text_lines(string);

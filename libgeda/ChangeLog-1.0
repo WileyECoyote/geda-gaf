@@ -5,6 +5,7 @@
       for a NULL pointer to page and setting directly.
 
     * tests/test_box_object.c: Add tests for geda_box_object_shortest_distance.
+      Add tests for transformer group.
 
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
