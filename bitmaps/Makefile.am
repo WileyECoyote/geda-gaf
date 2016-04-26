@@ -99,7 +99,7 @@ bitmapdata_DATA   = \
 			geda-promote.png                   \
 			geda-prompt.png                    \
 			geda-redo.png                      \
-			geda-rotate.png                    \
+			geda-rotate-left.png               \
 			geda-save-image.png                \
 			geda-schem.png                     \
 			geda-schem2.png                    \
@@ -230,7 +230,7 @@ bitmapdata_22_DATA = \
 					 geda_probe2_22x22.png              \
 					 geda_promote_22x22.png             \
 					 geda_redcross_22x22.xpm            \
-					 geda_rotate_22x22.png              \
+					 geda_rotate_left_22x22.png         \
 					 geda_schem2_22x22.png              \
 					 geda_schem_22x22.png               \
 					 geda_scope2_22x22.png              \
@@ -314,7 +314,7 @@ bitmapdata_24_DATA = \
 					 geda_probe2_24x24.png              \
 					 geda_promote_24x24.png             \
 					 geda_redcross_24x24.xpm            \
-					 geda_rotate_24x24.png              \
+					 geda_rotate_left_24x24.png         \
 					 geda_schem2_24x24.png              \
 					 geda_schem_24x24.png               \
 					 geda_scope2_24x24.png              \
@@ -381,7 +381,7 @@ bitmapdata_26_DATA = \
 					 geda_pin_26x26.png                 \
 					 geda_promote_26x26.png             \
 					 geda_redcross_26x26.xpm            \
-					 geda_rotate_26x26.png              \
+					 geda_rotate_left_26x26.png         \
 					 geda_sheets_26x26.xpm              \
 					 geda_select_26x26.png              \
 					 geda_snap_off_26x26.png            \
@@ -456,7 +456,7 @@ bitmapdata_28_DATA = \
 					 geda_probe2_28x28.png              \
 					 geda_promote_28x28.png             \
 					 geda_redcross_28x28.xpm            \
-					 geda_rotate_28x28.png              \
+					 geda_rotate_left_28x28.png         \
 					 geda_schem2_28x28.png              \
 					 geda_schem_28x28.png               \
 					 geda_scope2_28x28.png              \
@@ -543,7 +543,7 @@ bitmapdata_32_DATA = \
 					 geda_probe2_32x32.png              \
 					 geda_promote_32x32.png             \
 					 geda_redcross_32x32.xpm            \
-					 geda_rotate_32x32.png              \
+					 geda_rotate_left_32x32.png         \
 					 geda_schem2_32x32.png              \
 					 geda_schem_32x32.png               \
 					 geda_scope2_32x32.png              \

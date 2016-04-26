@@ -90,7 +90,7 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-schem",         "geda-scope2",        "geda-scopehairs",    "geda-scope",
   "geda-show-nets",     "geda-simulate",      "geda-sinx",          "geda-slot",
   "geda-snap-off",      "geda-verilog-blue",  "geda-verilog-grn",   "geda-wave",
-  "geda-waves",         "geda-redo",          "geda-rotate",        "geda-snap-on",
+  "geda-waves",         "geda-redo",          "geda-rotate-left",   "geda-snap-on",
   "geda-spectrum",      "geda-text-editor",   "geda-tools",         "geda-translate",
   "geda-value",         "geda-undo",          "geda-unlock",        "geda-unselect-all",
   "geda-zoom-box",      "geda-zoom-extents",  "geda-zoom-in",       "geda-zoom-limits",

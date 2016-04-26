@@ -367,11 +367,12 @@ geda_promote_32x32.png             Created by wileyhill@gmail.com, GPL2
 geda-promote.png                   Created by wileyhill@gmail.com, GPL2
 geda-prompt.png                    Created by wileyhill@gmail.com, GPL2
 
-geda_rotate_22x22.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_24x24.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_26x26.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_28x28.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_32x32.png              Created by wileyhill@gmail.com, GPL2
+geda_rotate_left_22x22.png         Created by wileyhill@gmail.com, GPL2
+geda_rotate_left_24x24.png         Created by wileyhill@gmail.com, GPL2
+geda_rotate_left_26x26.png         Created by wileyhill@gmail.com, GPL2
+geda_rotate_left_28x28.png         Created by wileyhill@gmail.com, GPL2
+geda_rotate_left_32x32.png         Created by wileyhill@gmail.com, GPL2
+geda-rotate-left.png               Created by wileyhill@gmail.com, GPL2
 
 geda-redo.png                      Created by Jakub Steiner, http://jimmac.musichall.cz, GPL2
 
