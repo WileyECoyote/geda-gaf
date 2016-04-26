@@ -134,11 +134,8 @@ s_object_release_objects(GList *list)
  *  Updates the CHANGED flag of the page associated with \a object
  *  if the object is attached to a page.
  */
-void s_object_set_page_changed (GedaObject *object)
+void s_object_set_page_changed (const GedaObject *object)
 {
   Page *page = geda_object_get_page (object);
-
-  if (page != NULL) {
-    page->CHANGED = TRUE;
-  }
+  geda_page_set_changed (page, TRUE);        /* possibly set CHANGED flag */
 }

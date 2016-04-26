@@ -1,5 +1,9 @@
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_object.c: Revise s_object_set_page_changed; declare object
+      argument as const and call geda_page_set_changed instead of checking
+      for a NULL pointer to page and setting directly.
+
     * tests/test_box_object.c: Add tests for geda_box_object_shortest_distance.
 
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>

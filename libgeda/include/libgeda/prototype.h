@@ -499,7 +499,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_object_add_child              (GedaObject *parent, GedaObject *child);
          void    s_object_release                (GedaObject *object);
          void    s_object_release_objects        (GList *list);
-         void    s_object_set_page_changed       (GedaObject *obj);
+         void    s_object_set_page_changed       (const GedaObject *object);
 
 /* s_page.c */
          Page   *s_page_new                      (GedaToplevel *toplevel, const char *filename);
