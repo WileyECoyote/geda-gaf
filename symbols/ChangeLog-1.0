@@ -1,3 +1,7 @@
+2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LTC4359-1.sym: Add symbol: High Side OR-ing FET Controller.
+
 2016-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX12527-1.sym: Fix duplicate device, update footprint.
