@@ -1077,33 +1077,36 @@ geda_attrib_object_string_get_name_value (const char  *string,
 
   if (name_ptr != NULL)
     *name_ptr = NULL;
+
   if (value_ptr != NULL)
     *value_ptr = NULL;
 
-  g_return_val_if_fail (string != NULL, FALSE);
+  if (string != NULL) {
 
-  ptr = g_utf8_strchr (string, -1, g_utf8_get_char ("="));
-  if (ptr == NULL) {
-    return FALSE;
+    ptr = g_utf8_strchr (string, -1, g_utf8_get_char ("="));
+
+    if (ptr != NULL) {
+
+      prev_char = g_utf8_find_prev_char (string, ptr);
+      next_char = g_utf8_find_next_char (ptr, NULL);
+
+      if (prev_char != NULL && *prev_char != ' ' &&
+          next_char != NULL && *next_char != ' ' && *next_char != '\0')
+      {
+
+        if (name_ptr != NULL) {
+          *name_ptr = g_strndup (string, (ptr - string));
+        }
+
+        if (value_ptr != NULL) {
+          *value_ptr = geda_utility_string_strdup (next_char);
+        }
+
+        return TRUE;
+      }
+    }
   }
-
-  prev_char = g_utf8_find_prev_char (string, ptr);
-  next_char = g_utf8_find_next_char (ptr, NULL);
-
-  if (prev_char == NULL || *prev_char == ' ' ||
-      next_char == NULL || *next_char == ' ' || *next_char == '\0' ) {
-    return FALSE;
-  }
-
-  if (name_ptr != NULL) {
-    *name_ptr = g_strndup (string, (ptr - string));
-  }
-
-  if (value_ptr != NULL) {
-    *value_ptr = geda_utility_string_strdup (next_char);
-  }
-
-  return TRUE;
+  return FALSE;
 }
 
 /*!

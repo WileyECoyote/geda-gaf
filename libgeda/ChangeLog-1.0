@@ -1,5 +1,8 @@
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Redo geda_attrib_object_string_get_name_value
+      eliminating early returns and use negative logic for main conditional.
+
     * src/struct/s_object.c: Revise s_object_set_page_changed; declare object
       argument as const and call geda_page_set_changed instead of checking
       for a NULL pointer to page and setting directly.
