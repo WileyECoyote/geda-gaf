@@ -47,7 +47,7 @@
 #define GEDA_TYPE_ACCEL_LABEL            (geda_accel_label_get_type ())
 #define GEDA_ACCEL_LABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACCEL_LABEL, GedaAccelLabel))
 #define GEDA_ACCEL_LABEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
-#define GEDA_IS_ACCEL_LABEL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_ACCEL_LABEL))
+#define GEDA_IS_ACCEL_LABEL(obj)         (is_a_geda_accel_label((GedaAccelLabel*)obj))
 #define GEDA_IS_ACCEL_LABEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ACCEL_LABEL))
 #define GEDA_ACCEL_LABEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
 
@@ -57,10 +57,10 @@ typedef struct _GedaAccelLabelClass  GedaAccelLabelClass;
 struct _GedaAccelLabel
 {
   GtkAccelLabel label;
-
+  GedaType      instance_type;
   unsigned int  accel_padding;
   char         *accel_string;
-  guint16       accel_string_width;
+  uint16        accel_string_width;
 };
 
 struct _GedaAccelLabelClass
@@ -74,6 +74,8 @@ extern "C" {
 #endif
 
 GedaType      geda_accel_label_get_type          (void) GEDA_CONST;
+bool          is_a_geda_accel_label              (GedaAccelLabel *accel_label);
+
 GtkWidget*    geda_accel_label_new               (const char     *string);
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
 void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,

@@ -31,7 +31,7 @@
 #define GEDA_TYPE_ACTION           (geda_action_get_type())
 #define GEDA_ACTION(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACTION, GedaAction))
 #define GEDA_ACTION_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ACTION, GedaActionClass))
-#define GEDA_IS_ACTION(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_ACTION))
+#define GEDA_IS_ACTION(obj)        (is_a_geda_action((GedaAction*)obj))
 #define GEDA_ACTION_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACTION, GedaActionClass))
 
 typedef struct _GedaAction      GedaAction;
@@ -40,8 +40,9 @@ typedef struct _GedaActionClass GedaActionClass;
 struct _GedaAction
 {
   GtkAction parent_instance;
-  char *multikey_accel;
-  char *icon_name;
+  GedaType  instance_type;
+  char     *multikey_accel;
+  char     *icon_name;
 };
 
 struct _GedaActionClass
@@ -49,7 +50,12 @@ struct _GedaActionClass
   GtkActionClass parent_class;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType    geda_action_get_type                 (void) GEDA_CONST;
+bool        is_a_geda_action                     (GedaAction   *action);
 
 GedaAction *geda_action_new                      (const char   *name,
                                                   const char   *label,
@@ -69,5 +75,9 @@ void        geda_action_disconnect_accelerator   (GedaAction   *action);
 void        geda_action_sync_menu_visible        (GedaAction   *action,
                                                   GtkWidget    *proxy,
                                                   bool          empty);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_ACTION_H__ */

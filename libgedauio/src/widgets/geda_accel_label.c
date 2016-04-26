@@ -517,6 +517,7 @@ static void
 geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
 {
   GedaAccelLabel *accel_label = (GedaAccelLabel*)instance;
+  accel_label->instance_type  = geda_accel_label_get_type();
 
   accel_label->accel_padding = 3;
   accel_label->accel_string  = NULL;
@@ -560,6 +561,22 @@ GedaType geda_accel_label_get_type (void)
   }
 
   return geda_accel_label_type;
+}
+
+/*!
+ * \brief Check if an object is a GedaAccelLabel
+ * \par Function Description
+ *  Ensures accel_label is a valid G_Object and compares signature
+ *  to geda accel label type.
+ * \return TRUE if \a accel_label is a valid GedaAccelLabel
+ */
+bool
+is_a_geda_accel_label (GedaAccelLabel *accel_label)
+{
+  if (G_IS_OBJECT(accel_label)) {
+    return (geda_accel_label_get_type() == accel_label->instance_type);
+  }
+  return FALSE;
 }
 
 /*!

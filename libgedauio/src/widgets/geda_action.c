@@ -254,7 +254,8 @@ geda_action_class_init(void *class, void *class_data)
 static void
 geda_action_instance_init (GTypeInstance *instance, void *class)
 {
-  GedaAction *action = (GedaAction*)instance;
+  GedaAction *action     = (GedaAction*)instance;
+  action->instance_type  = geda_action_get_type();
 
   action->multikey_accel = NULL;
   action->icon_name      = NULL;
@@ -299,6 +300,22 @@ GedaType geda_action_get_type (void)
   }
 
   return geda_action_type;
+}
+
+/*!
+ * \brief Check if an object is a GedaAction
+ * \par Function Description
+ *  Ensures action is a valid G_Object and compares signature
+ *  to geda action type.
+ * \return TRUE if \a action is a valid GedaAction
+ */
+bool
+is_a_geda_action (GedaAction *action)
+{
+  if (G_IS_OBJECT(action)) {
+    return (geda_action_get_type() == action->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Creates a new Menu Item with an Action Object

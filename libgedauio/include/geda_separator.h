@@ -1,5 +1,4 @@
 
-
 #ifndef __GEDA_SEPARATOR_H__
 #define __GEDA_SEPARATOR_H__
 
