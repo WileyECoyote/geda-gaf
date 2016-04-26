@@ -27,7 +27,7 @@
 #include <libgeda.h>
 #include <prototype_priv.h>
 #include <version.h>
-
+#include <math.h>
 #include "test-suite.h"
 
 /*! \file test_box_object.c
@@ -343,7 +343,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 12 = North */
+    /* Quad 12 = Outside North */
     qx = (x2 + x1) / 2;
     qy = y1 + off;
     nx = 0;
@@ -358,7 +358,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 2 = North West*/
+    /* Quad 2 = Outside North West*/
     qx = x1 - off;
     qy = y1 + off;
     nx = 0;
@@ -373,7 +373,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 23 = West side */
+    /* Quad 23 = Outside West side */
     qx = x1 - off;
     qy = (y1 + y2) / 2;
     nx = 0;
@@ -388,7 +388,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 3 = South West*/
+    /* Quad 3 = Outside South West */
     qx = x1 - off;
     qy = y2 - off;
     nx = 0;
@@ -403,7 +403,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 34 = South */
+    /* Quad 34 = Outside South */
     qx = (x2 + x1) / 2;
     qy = y2 - off;
     nx = 0;
@@ -418,7 +418,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 4 = South East */
+    /* Quad 4 = Outside South East */
     qx = x2 + off;
     qy = y2 - off;
     nx = 0;
@@ -433,7 +433,7 @@ check_query()
       fail++;
     }
 
-    /* Quad 4 = East */
+    /* Quad 4 = Outside East */
     qx = x2 + off;
     qy = (y1 + y2) / 2;
     nx = 0;
@@ -492,7 +492,7 @@ check_query()
 
     if (fail) {
       fprintf(stderr, "Conditions:\n");
-      fprintf(stderr, "\tOffset %d\n", off);
+      fprintf(stderr, "Offset %d\n", off);
       fprintf(stderr, "box upper_x=%d, x1=%d\n", box->upper_x, x1);
       fprintf(stderr, "box upper_y=%d, y1=%d\n", box->upper_y, y1);
       fprintf(stderr, "box lower_x=%d, x2=%d\n", box->lower_x, x2);
@@ -505,6 +505,217 @@ check_query()
 
   /* O0420 geda_box_object_shortest_distance */
 
+  for (count = 0; count < 3; count++) {
+
+    int c   = m_random_number ( 0, MAX_COLORS - 1);
+    int x1  = m_random_number ( 0,       119800);
+    int y2  = m_random_number ( 0,        79800);
+    int x2  = m_random_number (x1 + 100, 120000);
+    int y1  = m_random_number (y2 + 100,  80000);
+    int off = m_random_number (     100,   1000);
+
+    GedaObject *object = geda_box_object_new(c, x1, y1, x2, y2);
+    GedaBox    *box    = object->box;
+
+    /* Quad 1 = Outside North East */
+    int qx = x2 + off;
+    int qy = y1;
+
+    double distance;
+    double hypotenuse = hypot(off, off);
+    int  fail;
+
+    fail = 0;
+
+    /* O0420 geda_box_object_shortest_distance */
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042001) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    qx = x2;
+    qy = y1 + off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042002) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    qx = x2 + off;
+    qy = y1 + off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != hypotenuse) {
+      fprintf(stderr, "FAILED: (O042003) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 12 = North */
+    qx = (x2 + x1) / 2;
+    qy = y1 + off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042004) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 2 = Outside North West straight up from top left corner */
+    qx = x1;
+    qy = y1 + off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042005) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 2 = Outside North West diagonal from top left corner */
+    qx = x1 - off;
+    qy = y1 + off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != hypotenuse) {
+      fprintf(stderr, "FAILED: (O042006) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 2 = Outside North West straight left from top left corner */
+    qx = x1 - off;
+    qy = y1;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042007) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 23 = Outside West side */
+    qx = x1 - off;
+    qy = (y1 + y2) / 2;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042008) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 3 = Outside South West, straight left from lower left corner */
+    qx = x1 - off;
+    qy = y2;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042009) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    /* Quad 3 = Outside South West, diagonal from from lower left corner */
+    qx = x1 - off;
+    qy = y2 - off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != hypotenuse) {
+      fprintf(stderr, "FAILED: (O042010) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 3 = Outside South West, straight down from lower left corner */
+    qx = x1;
+    qy = y2 - off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042011) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 34 = Outside South straight down from middle of bottom side */
+    qx = (x2 + x1) / 2;
+    qy = y2 - off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042012) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 4 = Outside South East, straight down from lower right corner */
+    qx = x2;
+    qy = y2 - off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042013) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 4 = Outside South East, diagonal from from lower right corner */
+    qx = x2 + off;
+    qy = y2 - off;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != hypotenuse) {
+      fprintf(stderr, "FAILED: (O042014) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    /* Quad 4 = Outside South East, straight right from lower right corner */
+    qx = x2 + off;
+    qy = y2;
+
+    distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
+
+    if (distance != off) {
+      fprintf(stderr, "FAILED: (O042015) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, " distance=%f\n", distance);
+      fail++;
+    }
+
+    if (fail) {
+      fprintf(stderr, "Conditions:\n");
+      fprintf(stderr, "Offset %d\n", off);
+      fprintf(stderr, "box upper_x=%d, x1=%d\n", box->upper_x, x1);
+      fprintf(stderr, "box upper_y=%d, y1=%d\n", box->upper_y, y1);
+      fprintf(stderr, "box lower_x=%d, x2=%d\n", box->lower_x, x2);
+      fprintf(stderr, "box lower_y=%d, y2=%d\n", box->lower_y, y2);
+      result++;
+    }
+
+    g_object_unref (object);
+  }
   return result;
 }
 

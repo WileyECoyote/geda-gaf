@@ -39,9 +39,9 @@
  *  \param [in] y      The y coordinate of the given point.
  *  \param [in] solid  TRUE if the box should be treated as solid, FALSE if
  *  the box should be treated as hollow.
- *  \return The shortest distance from the box to the point.  With a solid
- *  shape, this function returns a distance of zero for interior points.  With
- *  an invalid parameter, this function returns G_MAXDOUBLE.
+ *  \return The shortest distance from the box to the point. With a solid
+ *          shape, this function returns a distance of zero for interior points.
+ *          With an invalid parameter, this function returns G_MAXDOUBLE.
  */
 double m_box_shortest_distance (GedaBox *box, int x, int y, int solid)
 {
@@ -83,8 +83,10 @@ double m_box_shortest_distance (GedaBox *box, int x, int y, int solid)
     }
   }
   else {
+
     if (dy < 0) {
       shortest_distance = fabs (dy);
+
     }
     else {
       shortest_distance = min (dx, dy);
