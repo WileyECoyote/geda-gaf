@@ -971,10 +971,12 @@ GedaType geda_font_button_get_type (void)
   return geda_font_button_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaFontButton
+ * \par Function Description
+ *  Ensures \a font_button is a valid G_Object and compares signature
+ *  to geda font button type.
+ * \return TRUE if \a font_button is a valid GedaFontButton
  */
 bool
 is_a_geda_font_button (GedaFontButton *font_button)

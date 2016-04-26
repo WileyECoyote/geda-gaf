@@ -409,10 +409,12 @@ GedaType geda_separator_get_type (void)
   return geda_separator_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaSeparator
+ * \par Function Description
+ *  Ensures \a separator is a valid G_Object and compares signature
+ *  to geda separator type.
+ * \return TRUE if \a separator is a valid GedaSeparator
  */
 bool
 is_a_geda_separator (GedaSeparator *separator)

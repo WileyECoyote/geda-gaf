@@ -1516,10 +1516,12 @@ GedaType geda_handle_box_get_type (void)
   return geda_handle_box_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaHandleBox
+ * \par Function Description
+ *  Ensures \a handlebox is a valid G_Object and compares signature
+ *  to geda handlebox type.
+ * \return TRUE if \a handlebox is a valid GedaHandleBox
  */
 bool
 is_a_geda_handle_box (GedaHandleBox *handlebox)

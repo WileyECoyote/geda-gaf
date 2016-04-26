@@ -2412,6 +2412,13 @@ geda_combo_box_get_type (void)
   return geda_combo_box_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaComboBox
+ * \par Function Description
+ *  Ensures \a combo_box is a valid G_Object and compares signature
+ *  to geda combo box type.
+ * \return TRUE if \a combo_box is a valid GedaComboBox
+ */
 bool
 is_a_geda_combo_box (GedaComboBox *combo_box)
 {

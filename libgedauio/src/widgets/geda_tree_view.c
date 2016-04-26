@@ -127,10 +127,12 @@ GedaType geda_tree_view_get_type (void)
   return geda_tree_view_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaTreeView
+ * \par Function Description
+ *  Ensures \a tree_view is a valid G_Object and compares signature
+ *  to geda tree view type.
+ * \return TRUE if \a tree_view is a valid GedaTreeView
  */
 bool
 is_a_geda_tree_view (GedaTreeView *tree_view)

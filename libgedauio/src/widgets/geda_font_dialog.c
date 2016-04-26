@@ -1706,7 +1706,7 @@ GedaType geda_font_dialog_get_type (void)
 /*!
  * \brief Check if an object is a GedaFontDialog
  * \par Function Description
- *  Ensures font_dialog is a valid G_Object and compares signature
+ *  Ensures \a font_dialog is a valid G_Object and compares signature
  *  to geda font dialog type.
  * \return TRUE if \a font_dialog is a valid GedaFontDialog
  */

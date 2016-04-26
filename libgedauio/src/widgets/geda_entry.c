@@ -1098,10 +1098,12 @@ geda_entry_get_type (void)
   return geda_entry_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if an object is a GedaEntry
+ * \par Function Description
+ *  Ensures \a entry is a valid G_Object and compares signature
+ *  to geda entry type.
+ * \return TRUE if \a entry is a valid GedaEntry
  */
 bool
 is_a_geda_entry (GedaEntry *entry)

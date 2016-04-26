@@ -859,6 +859,13 @@ GedaType geda_bulb_get_type (void)
   return geda_bulb_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaBulb
+ * \par Function Description
+ *  Ensures \a bulb is a valid G_Object and compares signature
+ *  to geda bulb type.
+ * \return TRUE if \a bulb is a valid GedaBulb
+ */
 bool
 is_a_geda_bulb (GedaBulb *bulb)
 {
