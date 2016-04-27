@@ -1,6 +1,10 @@
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_text_basic.c: Reorganize module.
+    * src/object/o_text_basic.c: Reorganize module, add getter and setters:
+      o_text_get_alignment, o_text_get_angle, o_text_get_size, o_text_get_x,
+      o_text_get_y, o_text_set_alignment, o_text_set_angle, o_text_set_size,
+      o_text_set_x, and o_text_set_y. Rename o_text_get_font_size_in_points
+      o_text_get_size_in_points.
 
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 

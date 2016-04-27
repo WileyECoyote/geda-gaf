@@ -419,16 +419,25 @@ unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_
 
 /* o_text_object.c */
    GedaObject   *o_text_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-       double    o_text_get_font_size_in_points  (GedaObject *object);
+          int    o_text_get_alignment            (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    o_text_get_angle                (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+          int    o_text_get_size                 (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+       double    o_text_get_size_in_points       (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
    const char   *o_text_get_string               (GedaObject *object);
+         int     o_text_get_x                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+         int     o_text_get_y                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
    GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
                                                   int size, int visibility, int show_name_value, const char *string);
          void    o_text_recreate                 (GedaObject *o_current);
          void    o_text_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    o_text_set_alignment            (GedaObject *object, int alignment);
+         void    o_text_set_angle                (GedaObject *object, int angle);
          void    o_text_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
+         void    o_text_set_size                 (GedaObject *object, int size);
          void    o_text_set_string               (GedaObject *object, const char *new_string);
+         void    o_text_set_x                    (GedaObject *object, int x);
          void    o_text_translate                (GedaObject *object, int dx, int dy);
 
 /* s_attrib.c */

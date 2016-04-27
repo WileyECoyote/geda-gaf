@@ -90,6 +90,7 @@
  *  This function creates a copy of the text object \a o_current.
  *
  *  \param [in] o_current    The object that is copied
+ *
  *  \return a new text object
  */
 GedaObject *
@@ -121,40 +122,56 @@ o_text_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Return font size of a text object in postscript points.
+/*!
+ * \brief Get the text alignment
+ * \par Function Description
+ *  Returns the test alignment.
  *
- *  \par Description
- *  gEDA fonts are specified in a non-standard unit. This
- *  function applies an appopriate scaling to return the
- *  font size in postscript points.
+ * \param [in] object The text object
  *
- *  \param [in] object    The text Object whos font size to return
- *  \return The font size converted to postscript points.
+ * \return The text alignmemt
  */
-double
-o_text_get_font_size_in_points (GedaObject *object)
+int
+o_text_get_alignment (const GedaObject *object)
 {
-  g_return_val_if_fail (object->type == OBJ_TEXT, 0.);
+  g_return_val_if_fail (GEDA_IS_TEXT(object), LOWER_LEFT);
 
-  return object->text->size * GEDA_FONT_FACTOR;
+  return object->text->alignment;
 }
 
-/*! \brief Get Point on the bounds of a GedaText object Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get the text angle
+ * \par Function Description
+ *  Returns the angle of the text.
+ *
+ * \param [in] object The text object
+ * \return The text angle
+ */
+int
+o_text_get_angle (const GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_TEXT(object), 0.0);
+
+  return object->text->angle;
+}
+
+/*!
+ * \brief Get Point on the bounds of a GedaText object Nearest a Given Point
+ * \par Function Description
  *  This function locate a point on the boundary of the Text object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set to a point on the boundary
  *  that is the closest point on the boundary to the point given by
  *  \a x, \a y.
  *
- *  \param [in]  object  Pointer to a GedaText object
- *  \param [in]  x       Integer x of point near or on the text
- *  \param [in]  y       Integer y of point near or on the text
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to a GedaText object
+ * \param [in]  x       Integer x of point near or on the text
+ * \param [in]  y       Integer y of point near or on the text
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a
- *           GedaText object or if the bounds is not set on the Text.
+ * \returns TRUE is the results are valid, FALSE if \a object was not a
+ *          GedaText object or if the bounds is not set on the Text.
  */
 bool
 o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -212,33 +229,98 @@ o_text_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief Get the string displayed by a text object
+/*!
+ * \brief Get the text size
+ * \par Function Description
+ *  Get the test size.
  *
- *  \par Function Description
+ * \param [in] object The text object
+ *
+ * \return The text size
+ */
+int
+o_text_get_size (const GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_TEXT(object), DEFAULT_TEXT_SIZE);
+
+  return object->text->size;
+}
+
+/*!
+ * \brief Return font size of a text object in postscript points.
+ * \par Function Description
+ *  gEDA fonts are specified in a non-standard unit. This
+ *  function applies an appopriate scaling to return the
+ *  font size in postscript points.
+ *
+ * \param [in] object    The text Object whos font size to return
+ *
+ * \return The font size converted to postscript points.
+ */
+double
+o_text_get_size_in_points (const GedaObject *object)
+{
+  g_return_val_if_fail (object->type == OBJ_TEXT, 0.0);
+
+  return object->text->size * GEDA_FONT_FACTOR;
+}
+
+/*!
+ * \brief Get the string displayed by a text object
+ * \par Function Description
  *  Retrieve the text string from a text object. The returned string
  *  should be treated as constant.
  *
- *  \param [in]  obj  The text object
+ * \param [in]  object  The text object
  *
- *  \return The text object's string, or NULL on failure.
+ * \return The text object's string, or NULL on failure.
  */
 const char*
-o_text_get_string (GedaObject *obj)
+o_text_get_string (GedaObject *object)
 {
-
-  g_return_val_if_fail (GEDA_IS_TEXT(obj), NULL);
-  return obj->text->string;
+  g_return_val_if_fail (GEDA_IS_TEXT(object), NULL);
+  return object->text->string;
 }
 
-/*! \brief mirror a text object horizontaly at a centerpoint
- *
- *  \par Function Description
+/*!
+ * \brief Get the x coordinate of the text insertion point
+ * \par Function Description
+ *  The x coordinate of the insertion point.
+ * \param [in] object The text object
+ * \return x coordinate of the insertion point
+ */
+int
+o_text_get_x (const GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_TEXT(object), 0);
+
+  return object->text->x;
+}
+
+/*!
+ * \brief Get the y coordinate of the text insertion point
+ * \par Function Description
+ *  The x coordinate of the insertion point
+ * \param [in] object The text object
+ * \return y coodinate of the insertion point
+ */
+int
+o_text_get_y (const GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_TEXT(object), 0);
+
+  return object->text->y;
+}
+
+/*!
+ * \brief mirror a text object horizontaly at a centerpoint
+ * \par Function Description
  *  This function mirrors a text \a object horizontaly at the point
  *  (\a center_x, \a center_y).
  *
- *  \param [in,out] object    The text object
- *  \param [in]     center_x  x-coord of the mirror position
- *  \param [in]     center_y  y-coord of the mirror position
+ * \param [in,out] object    The text object
+ * \param [in]     center_x  x-coord of the mirror position
+ * \param [in]     center_y  y-coord of the mirror position
  */
 void
 o_text_mirror(GedaObject *object, int center_x, int center_y)
@@ -504,7 +586,7 @@ o_text_print(GedaToplevel *toplevel, FILE *fp,
     break;
   }
 
-  font_size = o_text_get_font_size_in_points (o_current) / 72.0 * 1000.0;
+  font_size = o_text_get_size_in_points (o_current) / 72.0 * 1000.0;
 
   fprintf(fp,"%s %f [",centering_control, font_size * PRINT_LINE_SPACING);
 
@@ -848,6 +930,45 @@ o_text_save(GedaObject *object)
   return(buf);
 }
 
+/*!
+ * \brief Set the text alignment
+ * \par Function Description
+ *  In case of an invalid text alignment, the property remains unchanged.
+ *
+ * \param [in,out] object    The text object
+ * \param [in]     alignment The text alignmemt
+ */
+void
+o_text_set_alignment (GedaObject *object, int alignment)
+{
+  g_return_if_fail (object != NULL);
+  g_return_if_fail (object->text != NULL);
+  g_return_if_fail (object->type == OBJ_TEXT);
+  g_return_if_fail (alignment >= LOWER_LEFT);
+  g_return_if_fail (alignment <= UPPER_RIGHT);
+
+  object->text->alignment = alignment;
+}
+
+/*!
+ * \brief Set the text angle
+ * \par Function Description
+ *  Set the text angle.
+ *
+ * \param [in,out] object The text object
+ * \param [in]     angle  The text angle in degrees.
+ */
+void
+o_text_set_angle (GedaObject *object, int angle)
+{
+  if (GEDA_IS_TEXT(object)) {
+    object->text->angle = angle;
+  }
+  else {
+    BUG_MSG("GEDA_IS TEXT failed");
+  }
+}
+
 /*! \brief Set the font-renderer-specific bounds function.
  *  \par Function Description
  *  Set the function to be used to calculate text bounds for a given
@@ -870,6 +991,30 @@ o_text_set_rendered_bounds_func (GedaObject *object,
   text->rendered_text_bounds_data = user_data;
 }
 
+/*! \brief Set the text size
+ *  \par Function Description
+ *  The text size must be greater than or equal to the MINUMUM_TEXT_SIZE. In
+ *  the case of an invalid text size, the property remains unchanged.
+ *
+ *  \param [in,out] object The text object
+ *  \param [in]     size   The text size
+ */
+void
+o_text_set_size (GedaObject *object, int size)
+{
+  if (GEDA_IS_TEXT(object)) {
+    if (size < MINIMUM_TEXT_SIZE) {
+      object->text->size = size;
+    }
+    else {
+      object->text->size = size;
+    }
+  }
+  else {
+    BUG_MSG("GEDA_IS TEXT failed");
+  }
+}
+
 /*! \brief Set the string displayed by a text object.
  *  \par Function Description
  *  Updates the text object with a new text string.
@@ -888,6 +1033,38 @@ o_text_set_string (GedaObject *object, const char *new_string)
 
   o_text_recreate (object);
 
+}
+
+/*! \brief Set the x coordinate of the text insertion point
+ *
+ *  \param [in,out] object The text object
+ *  \param [in]     x      New x coordinate of the text insertion point
+ */
+void
+o_text_set_x (GedaObject *object, gint x)
+{
+  if (GEDA_IS_TEXT(object)) {
+    object->text->x = x;
+  }
+  else {
+    BUG_MSG("GEDA_IS TEXT failed");
+  }
+}
+
+/*! \brief Set the y coordinate of the text insertion point
+ *
+ *  \param [in,out] object The text object
+ *  \param [in]     y      New y coordinate of the text insertion point
+ */
+void
+o_text_set_y (GedaObject *object, gint y)
+{
+  if (GEDA_IS_TEXT(object)) {
+    object->text->y = y;
+  }
+  else {
+    BUG_MSG("GEDA_IS TEXT failed");
+  }
 }
 
 /*! \brief Calculates the distance between the given point and the closest
