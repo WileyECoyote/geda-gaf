@@ -1,3 +1,7 @@
+2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_text_basic.c: Reorganize module.
+
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Redo geda_attrib_object_string_get_name_value
