@@ -1,0 +1,145 @@
+v 20160401 2
+T 400 3100 8 10 1 1 0 0 1
+refdes=U?
+T 400 3700 5 10 0 1 0 0 1
+device=TPS61025
+B 400 100 1600 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1700 100 1700 1 0 1
+{
+T 250 1750 5 8 1 1 0 6 1
+pinnumber=1
+T 450 1650 9 10 1 1 0 0 1
+pinlabel=EN
+T 250 1750 5 8 0 1 0 6 1
+pinseq=1
+T 450 1550 5 8 0 1 0 0 1
+pintype=in
+}
+P 2000 2500 2300 2500 1 0 1
+{
+T 2150 2550 5 8 1 1 0 0 1
+pinnumber=2
+T 1950 2450 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 2150 2550 5 8 0 1 0 0 1
+pinseq=2
+T 1950 2350 5 8 0 1 0 6 1
+pintype=out
+}
+P 2000 1300 2300 1300 1 0 1
+{
+T 2150 1350 5 8 1 1 0 0 1
+pinnumber=3
+T 1950 1250 9 10 1 1 0 6 1
+pinlabel=FB
+T 2150 1150 5 8 0 1 0 0 1
+pinseq=3
+T 1950 1150 5 8 0 1 0 6 1
+pintype=pas
+}
+P 2000 1700 2300 1700 1 0 1
+{
+T 2150 1750 5 8 1 1 0 0 1
+pinnumber=4
+T 1950 1650 9 10 1 1 0 6 1
+pinlabel=LBO
+T 2150 1750 5 8 0 1 0 0 1
+pinseq=4
+T 1950 1550 5 8 0 1 0 6 1
+pintype=in
+}
+P 400 400 100 400 1 0 1
+{
+T 250 450 5 8 1 1 0 6 1
+pinnumber=5
+T 450 350 9 10 1 1 0 0 1
+pinlabel=GND
+T 250 450 5 8 0 1 0 6 1
+pinseq=5
+T 450 250 5 8 0 1 0 0 1
+pintype=in
+}
+P 400 2100 100 2100 1 0 1
+{
+T 250 2150 5 8 1 1 0 6 1
+pinnumber=6
+T 450 2050 9 10 1 1 0 0 1
+pinlabel=VBAT
+T 250 2150 5 8 0 1 0 6 1
+pinseq=6
+T 450 1950 5 8 0 1 0 0 1
+pintype=in
+}
+P 400 1300 100 1300 1 0 1
+{
+T 250 1350 5 8 1 1 0 6 1
+pinnumber=7
+T 450 1250 9 10 1 1 0 0 1
+pinlabel=LBI
+T 250 1350 5 8 0 1 0 6 1
+pinseq=7
+T 450 1150 5 8 0 1 0 0 1
+pintype=in
+}
+P 400 900 100 900 1 0 1
+{
+T 450 850 9 10 1 1 0 0 1
+pinlabel=PS
+T 250 950 5 8 1 1 0 6 1
+pinnumber=8
+T 250 950 5 8 0 1 0 6 1
+pinseq=8
+T 450 750 5 8 0 1 0 0 1
+pintype=in
+}
+P 400 2500 100 2500 1 0 1
+{
+T 250 2550 5 8 1 1 0 6 1
+pinnumber=9
+T 450 2450 9 10 1 1 0 0 1
+pinlabel=SW
+T 250 2550 5 8 0 1 0 6 1
+pinseq=9
+T 450 2350 5 8 0 1 0 0 1
+pintype=in
+}
+P 2000 900 2300 900 1 0 1
+{
+T 2150 950 5 8 1 1 0 0 1
+pinnumber=10
+T 1950 850 9 10 1 1 0 6 1
+pinlabel=PGND
+T 2150 950 5 8 0 1 0 0 1
+pinseq=10
+T 1950 750 5 8 0 1 0 6 1
+pintype=in
+}
+P 2000 300 2300 300 1 0 1
+{
+T 2150 350 5 8 1 1 0 0 1
+pinnumber=11
+T 1950 250 9 10 1 1 0 6 1
+pinlabel=PAD
+T 2150 350 5 8 0 1 0 0 1
+pinseq=11
+T 1950 150 5 8 0 1 0 6 1
+pintype=in
+}
+T 400 4100 5 10 0 0 0 0 1
+numslots=0
+T 400 3300 5 10 0 1 0 0 1
+footprint=S-PVSON-N10-EP
+T 400 3500 5 10 0 1 0 0 1
+description=IC,Synchronous Boost,Fixed 3.3V,VSON10
+T 400 3900 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/TPS61025-Q1
+T 1400 3700 5 10 0 0 0 0 1
+symversion=1.0
+T 400 4300 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 4500 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 4700 5 10 0 0 0 0 1
+author=AutoTron
+T 400 2900 9 10 1 1 0 0 1
+value=TPS61025DRCR
