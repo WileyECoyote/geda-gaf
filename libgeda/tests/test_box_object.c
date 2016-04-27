@@ -58,18 +58,18 @@
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
  *      O0401    geda_box_object_copy
- *               geda_box_object_get_nearest_point
+ *      O0402    geda_box_object_get_nearest_point
  *      O0403    geda_box_object_get_position
- *               geda_box_object_modify
- *               geda_box_object_modify_all
- *               geda_box_object_mirror
+ *      O0404    geda_box_object_mirror
+ *      O0405    geda_box_object_modify
+ *      O0406    geda_box_object_modify_all
  *      O0407    geda_box_object_new
  *
- *      O0418    geda_box_object_read
- *               geda_box_object_rotate
- *               geda_box_object_shortest_distance
- *      O0421    geda_box_object_to_buffer
- *               geda_box_object_translate
+ *      O0417    geda_box_object_read
+ *      O0418    geda_box_object_rotate
+ *      O0419    geda_box_object_shortest_distance
+ *      O0420    geda_box_object_to_buffer
+ *      O0421    geda_box_object_translate
  */
 
 int
@@ -130,10 +130,50 @@ check_construction ()
         fprintf(stderr, "FAILED: (O040701Y2) box lower_y %d != %d\n", box->lower_y, y2);
         fail++;
       }
+
+      GedaObject *object1 = geda_box_object_copy(object0);
+
+      if (!GEDA_IS_OBJECT(object1)) {
+        fprintf(stderr, "FAILED: (O040101A) geda_box_object_copy\n");
+        result++;
+      }
+      else {
+
+        GedaBox *box2  = object1->box;
+
+        value = geda_object_get_color (object1);
+        if (value - c) {
+          fprintf(stderr, "FAILED: _get_color (%s-A) %d != %d\n", TOBJECT, value, c);
+          fail++;
+        }
+
+        if (box2->upper_x - x1) {
+          fprintf(stderr, "FAILED: (O040101X1) box upper_x %d != %d\n", box->upper_x, x1);
+          fail++;
+        }
+
+        if (box2->upper_y - y1) {
+          fprintf(stderr, "FAILED: (O040101Y1) box upper_y %d != %d\n", box->upper_y, y1);
+          fail++;
+        }
+
+        if (box2->lower_x - x2) {
+          fprintf(stderr, "FAILED: (O040101X2) box lower_x %d != %d\n", box->lower_x, x2);
+          fail++;
+        }
+
+        if (box2->lower_y - y2) {
+          fprintf(stderr, "FAILED: (O040101Y2) box lower_y %d != %d\n", box->lower_y, y2);
+          fail++;
+        }
+      }
+
       if (fail) {
         result++;
         break;
       }
+
+      g_object_unref (object1);
     }
     g_object_unref (object0);
   }
@@ -220,7 +260,7 @@ check_serialization ()
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O042101A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O042001A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -231,13 +271,13 @@ check_serialization ()
                                                 NULL);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O041801A) Read GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O041701A) Read GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_BOX(object1->box)) {
-      fprintf(stderr, "FAILED: (O041801B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O041701B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -254,22 +294,22 @@ check_serialization ()
       }
 
       if (box->upper_x - x1) {
-        fprintf(stderr, "FAILED: (O0421/O0418X1) box upper_x %d != %d\n", box->upper_x, x1);
+        fprintf(stderr, "FAILED: (O0420/O0417X1) box upper_x %d != %d\n", box->upper_x, x1);
         fail++;
       }
 
       if (box->upper_y - y1) {
-        fprintf(stderr, "FAILED: (O0421/O0418Y1) box upper_y %d != %d\n", box->upper_y, y1);
+        fprintf(stderr, "FAILED: (O0420/O0417Y1) box upper_y %d != %d\n", box->upper_y, y1);
         fail++;
       }
 
       if (box->lower_x - x2) {
-        fprintf(stderr, "FAILED: (O0421/O0418X2) box lower_x %d != %d\n", box->lower_x, x2);
+        fprintf(stderr, "FAILED: (O0420/O0417X2) box lower_x %d != %d\n", box->lower_x, x2);
         fail++;
       }
 
       if (box->lower_y - y2) {
-        fprintf(stderr, "FAILED: (O0421/O0418Y2) box lower_y %d != %d\n", box->lower_y, y2);
+        fprintf(stderr, "FAILED: (O0420/O0417Y2) box lower_y %d != %d\n", box->lower_y, y2);
         fail++;
       }
 
@@ -509,11 +549,11 @@ check_query()
     g_object_unref (object);
   }
 
-  /* O0420 geda_box_object_shortest_distance */
+  /* O0419 geda_box_object_shortest_distance */
 
   double nodist = geda_box_object_shortest_distance(NULL, 10, 10, FALSE);
   if (nodist != G_MAXDOUBLE) {
-    fprintf(stderr, "FAILED: (O042000) box_shortest_distance NULL\n");
+    fprintf(stderr, "FAILED: (O041900) box_shortest_distance NULL\n");
     result++;
   }
 
@@ -539,11 +579,11 @@ check_query()
 
     fail = 0;
 
-    /* O0420 geda_box_object_shortest_distance */
+    /* O0419 geda_box_object_shortest_distance */
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042001) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041901) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -554,7 +594,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042002) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041902) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -565,7 +605,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O042003) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041903) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -577,7 +617,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042004) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041904) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -589,7 +629,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042005) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041905) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -601,7 +641,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O042006) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041906) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -613,7 +653,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042007) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041907) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -625,7 +665,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042008) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041908) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -637,7 +677,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042009) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041909) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -651,7 +691,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O042010) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041910) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -663,7 +703,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042011) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041911) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -675,7 +715,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042012) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041912) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -687,7 +727,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042013) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041913) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -699,7 +739,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O042014) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041914) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -711,7 +751,7 @@ check_query()
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O042015) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O041915) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -763,12 +803,12 @@ check_transformer()
     int nx = x1 + off;
     int ny = y1 + off;
 
-    /* O0404 geda_box_object_modify */
+    /* O0405 geda_box_object_modify */
 
     geda_box_object_modify(object, nx, ny, BOX_UPPER_LEFT);
 
     if (box->upper_x - nx || box->upper_y - ny) {
-      fprintf(stderr, "FAILED: (O040401) box nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O040501) box nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
@@ -778,7 +818,7 @@ check_transformer()
     geda_box_object_modify(object, nx, ny, BOX_LOWER_LEFT);
 
     if (box->upper_x - nx || box->lower_y - ny) {
-      fprintf(stderr, "FAILED: (O040402) box nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O040502) box nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
@@ -788,7 +828,7 @@ check_transformer()
     geda_box_object_modify(object, nx, ny, BOX_UPPER_RIGHT);
 
     if (box->lower_x - nx || box->upper_y - ny) {
-      fprintf(stderr, "FAILED: (O040403) box nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O040503) box nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
@@ -798,52 +838,52 @@ check_transformer()
     geda_box_object_modify(object, nx, ny, BOX_LOWER_RIGHT);
 
     if (box->lower_x - nx || box->lower_y - ny) {
-      fprintf(stderr, "FAILED: (O040404) box nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O040504) box nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
-    /* O0405 geda_box_object_modify_all */
+    /* O0406 geda_box_object_modify_all */
 
     geda_box_object_modify_all(object, x1, y1, x2, y2);
 
     if (box->upper_x - x1 || box->upper_y - y1 ||
         box->lower_x - x2 || box->lower_y - y2)
     {
-      fprintf(stderr, "FAILED: (O040501) geda_box_object_modify_all\n");
+      fprintf(stderr, "FAILED: (O040601) geda_box_object_modify_all\n");
       fail++;
     }
 
-    /* O0406 geda_box_object_mirror */
+    /* O0404 geda_box_object_mirror */
     geda_box_object_mirror(object, x2, (y1 + y2) /2);
 
     if (box->upper_x - x2 || box->upper_y - y1) {
-      fprintf(stderr, "FAILED: (O040601) geda_box_object_mirror\n");
+      fprintf(stderr, "FAILED: (O040401) geda_box_object_mirror\n");
       fail++;
     }
 
-    /* O0405 geda_box_object_modify_all */
+    /* O0406 geda_box_object_modify_all */
 
     geda_box_object_modify_all(object, x1, y1, x2, y2);
 
     if (box->upper_x - x1 || box->upper_y - y1 ||
         box->lower_x - x2 || box->lower_y - y2)
     {
-      fprintf(stderr, "FAILED: (O040502) geda_box_object_modify_all\n");
+      fprintf(stderr, "FAILED: (O040602) geda_box_object_modify_all\n");
       fail++;
     }
 
-    /* O0419 geda_box_object_rotate */
+    /* O0418 geda_box_object_rotate */
     geda_box_object_rotate(object, x1, y1, 90);
 
     if (box->lower_x - x2 || box->lower_y - y1) {
-      fprintf(stderr, "FAILED: (O041901) geda_box_object_mirror\n");
+      fprintf(stderr, "FAILED: (O041801) geda_box_object_rotate\n");
       fail++;
     }
 
     /* O0421 geda_box_object_translate */
     geda_box_object_translate(object, -1000, off);
     if (box->lower_x - x1 || box->lower_y - y1 - off) {
-      fprintf(stderr, "FAILED: (O042101) geda_box_object_mirror\n");
+      fprintf(stderr, "FAILED: (O042101) geda_box_object_translate\n");
       fail++;
     }
 

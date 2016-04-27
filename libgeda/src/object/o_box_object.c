@@ -42,7 +42,7 @@ geda_box_object_error(const char *func, const void *object)
   }
 }
 
-/*!
+/*! O0402
  * \brief Copy a box to a list.
  * \par Function Description
  *  The function #geda_box_object_copy() creates a verbatim copy of the object
@@ -85,7 +85,7 @@ geda_box_object_copy(GedaObject *o_source)
   return NULL;
 }
 
-/*!
+/*! O0402
  * \brief Get Point on a Box Nearest a Given Point
  * \par Function Description
  *  This function is intended to locate a point on a Box object given
@@ -273,7 +273,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   return result;
 }
 
-/*!
+/*! O0403
  * \brief get the position of the left bottom point
  * \par Function Description
  *  This function gets the position of the bottom left point of a box object.
@@ -297,7 +297,7 @@ geda_box_object_get_position (GedaObject *object, int *x, int *y)
   return 0;
 }
 
-/*!
+/*! O0404
  * \brief Mirror a Box.
  * \par Function Description
  *  This function mirrors the box from the point
@@ -350,7 +350,7 @@ geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*!
+/*! O0405
  * \brief Modify a Box Object's coordinates.
  * \par Function Description
  *  This function modifies the coordinates of one of the four corner of
@@ -428,7 +428,7 @@ geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*!
+/*! O0406
  * \brief Modify a Box Object's coordinates.
  * \par Function Description
  *  Modifies the coordinates of all four corners of \a box, by setting
@@ -460,7 +460,7 @@ geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
   }
 }
 
-/*!
+/*! O0407
  * \brief Create a Box Object
  * \par Function Description
  *  This function creates a new object representing a box.
@@ -1210,7 +1210,7 @@ geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
-/*!
+/*! O0417
  * \brief Create a box from a character string.
  * \par Function Description
  *  This function gets the description of a box from the <B>*buf</B> character
@@ -1344,7 +1344,7 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*!
+/*! O0418
  * \brief Rotate GedaBox Object
  * \par Function Description
  *  The function #geda_box_object_rotate() rotate the box described by <B>*object</B>
@@ -1415,7 +1415,7 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
   }
 }
 
-/*!
+/*! O0419
  * \brief Calculates the distance between the given point and the closest
  *  point on the perimeter of the box.
  *
@@ -1444,7 +1444,7 @@ geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   return (G_MAXDOUBLE);
 }
 
-/*!
+/*! O0420
  * \brief Create a character string representation of a GedaBox.
  * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
@@ -1519,7 +1519,7 @@ geda_box_object_to_buffer(GedaObject *object)
   return(buf);
 }
 
-/*!
+/*! O0421
  * \brief Translate a Box position by a delta.
  * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box

@@ -175,8 +175,8 @@ extern "C" {
          char   *geda_attrib_object_search_floating_by_name  (const GList      *list,   const char *name, int counter);
          char   *geda_attrib_object_search_inherited_by_name (const GedaObject *object, const char *name, int counter);
          char   *geda_attrib_object_search_object_by_name    (const GedaObject *object, const char *name, int counter);
-         void    geda_attrib_object_set_integer_value        (const GedaObject *attrib, const char *name_ptr, int value);
-         void    geda_attrib_object_set_value                (const GedaObject *attrib, const char *name_ptr, const char *value_ptr);
+         void    geda_attrib_object_set_integer_value        (GedaObject *attrib, const char *name_ptr, int value);
+         void    geda_attrib_object_set_value                (GedaObject *attrib, const char *name_ptr, const char *value_ptr);
          bool    geda_attrib_object_string_get_name_value    (const char *string, char **name_ptr,  char **value_ptr);
          void    geda_attrib_object_thaw_hooks               (GedaObject *object);
 
