@@ -4,7 +4,12 @@
 
     * include/i_actions.h: Rename EDIT_ROTATE -> EDIT_ROTATE_LEFT.
 
+    * include/gschem_page_view.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE,
+      add member instance_type and declarations for is_a_gschem_page_view.
+
     * include/x_toolbars.h: Rename TBTS_EDIT_ROTATE -> TBTS_EDIT_ROTATE_LEFT.
+
+    * src/base/gschem_page_view.c: Add function is_a_gschem_page_view.
 
 2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
 

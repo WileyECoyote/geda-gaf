@@ -440,6 +440,21 @@ gschem_page_view_get_type ()
   return type;
 }
 
+/*!
+ * \brief Check if an object is a GschemPageView
+ * \par Function Description
+ *  Ensures view is a valid G_Object and compares signature
+ *  to gschem page view type.
+ * \return TRUE if \a view is a valid GschemPageView
+ */
+bool
+is_a_gschem_page_view (GschemPageView *view)
+{
+  if (G_IS_OBJECT(view)) {
+    return (gschem_page_view_get_type() == view->instance_type);
+  }
+  return FALSE;
+}
 
 /*! \brief Get the vertical adjustment for this view
  *
@@ -602,6 +617,7 @@ static void
 gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
 {
   GschemPageView *view = (GschemPageView*)instance;
+  view->instance_type  = gschem_page_view_get_type();
 
   view->hadjustment = NULL;
   view->vadjustment = NULL;
