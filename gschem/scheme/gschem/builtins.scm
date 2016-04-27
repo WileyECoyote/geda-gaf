@@ -119,8 +119,8 @@
 (define-action-public (&edit-offset #:label (_ "Offest selection") #:icon "geda-offset")
   (%edit-offset))
 
-(define-action-public (&edit-rotate-90 #:label (_ "Rotate Mode") #:icon "geda-rotate")
-  (%edit-rotate-90))
+(define-action-public (&edit-rotate-left #:label (_ "Rotate Mode") #:icon "geda-rotate")
+  (%edit-rotate-left))
 
 (define-action-public (&edit-snap #:label (_ "Snap to Grid") #:icon "geda-snap")
   (%edit-snap))

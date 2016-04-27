@@ -1623,7 +1623,7 @@
 (map-keys "E M"        "edit-move")
 (map-keys "E N"        "edit-snap")
 (map-keys "E P"        "edit-extend")
-(map-keys "E R"        "edit-rotate")
+(map-keys "E L"        "edit-rotate-left")
 (map-keys "E O"        "edit-offset")
 (map-keys "E I"        "edit-mirror")
 (map-keys "E <Shift>C" "edit-color")
@@ -1837,7 +1837,7 @@
 (map-icon "geda-mirror"                "edit-mirror")
 (map-icon "geda-move"                  "edit-move")
 (map-icon "geda-offset"                "edit-offset")
-(map-icon "geda-rotate-left"           "edit-rotate")
+(map-icon "geda-rotate-left"           "edit-rotate-left")
 (map-icon "geda-snap"                  "edit-snap")
 
 ;(map-icon #f                           "edit-array")
@@ -2091,7 +2091,7 @@
         (,(N_ "Mirror")             edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
         (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move selection"))
         (,(N_ "Offset")             edit-offset            #f                 ,(N_ "Offset the selected objects"))
-        (,(N_ "Rotate 90")          edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
+        (,(N_ "Rotate 90")          edit-rotate-left       #f                 ,(N_ "Rotate the current selection about a point"))
         (,(N_ "Snap to grid")       edit-snap              "geda-snap"        ,(N_ "Snap selection to grid to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)

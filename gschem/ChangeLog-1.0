@@ -1,3 +1,11 @@
+2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Rename action edit-rotate->edit-rotate-left.
+
+    * include/i_actions.h: Rename EDIT_ROTATE -> EDIT_ROTATE_LEFT.
+
+    * include/x_toolbars.h: Rename TBTS_EDIT_ROTATE -> TBTS_EDIT_ROTATE_LEFT.
+
 2016-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_coord.c: pass screen and world coordinates to x_dialog_coord_

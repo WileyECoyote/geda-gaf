@@ -1605,15 +1605,15 @@ COMMAND (do_offset)
 
 /*! \brief Action Rotate  in i_command_Edit_Actions
  *
- *  @brief i_cmd_do_rotate
+ *  @brief i_cmd_do_rotate_left
  *
  *  \par Function Description
  *  This function rotate all objects in the selection list by 90 degrees.
  *
  */
-COMMAND (do_rotate)
+COMMAND (do_rotate_left)
 {
-  BEGIN_W_COMMAND(do_rotate);
+  BEGIN_W_COMMAND(do_rotate_left);
 
   if (w_current->inside_action) {
 
@@ -1626,7 +1626,7 @@ COMMAND (do_rotate)
 
     o_redraw_cleanstates(w_current);
 
-    if HOT_ACTION (do_rotate) {
+    if HOT_ACTION (do_rotate_left) {
 
       GList *object_list;
 
@@ -1634,8 +1634,8 @@ COMMAND (do_rotate)
 
       if (object_list) {
         /* Allow o_edit_rotate_world to redraw the objects */
-        o_edit_rotate_world(w_current, CMD_X(do_rotate),
-                                       CMD_Y(do_rotate), 90, object_list);
+        o_edit_rotate_world(w_current, CMD_X(do_rotate_left),
+                                       CMD_Y(do_rotate_left), 90, object_list);
       }
 
       state = SELECT;
@@ -1648,7 +1648,7 @@ COMMAND (do_rotate)
     i_status_set_state(w_current, state);
   }
 
-  EXIT_COMMAND(do_rotate);
+  EXIT_COMMAND(do_rotate_left);
 }
 
 /*! \brief Snap Selecion Editing Action

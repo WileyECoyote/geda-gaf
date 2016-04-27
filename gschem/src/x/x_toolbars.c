@@ -209,7 +209,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "geda-move",      TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_ROTATE),        "Rotate",     TBTS_EDIT_ROTATE,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ROTATE_LEFT),   "Rotate Left",TBTS_EDIT_ROTATE_LEFT,   "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MIRROR),        "Mirror",     TBTS_EDIT_MIRROR,        "Private",        TB_ICON_BITMAP, NULL},
 
   { ACTION(EDIT_ATTRIB),        "Attributes", TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
