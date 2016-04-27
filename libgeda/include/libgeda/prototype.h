@@ -418,13 +418,13 @@ unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_
          void    o_style_set_object              (GedaToplevel *toplevel, GedaObject *o_current);
 
 /* o_text_object.c */
-   GedaObject   *o_text_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *o_text_copy                     (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
           int    o_text_get_alignment            (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
           int    o_text_get_angle                (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
           int    o_text_get_size                 (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
        double    o_text_get_size_in_points       (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-   const char   *o_text_get_string               (GedaObject *object);
+   const char   *o_text_get_string               (const GedaObject *object);
          int     o_text_get_x                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          int     o_text_get_y                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);

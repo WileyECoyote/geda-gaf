@@ -93,8 +93,8 @@
  *
  *  \return a new text object
  */
-GedaObject *
-o_text_copy(GedaObject *o_current)
+GedaObject*
+o_text_copy(const GedaObject *o_current)
 {
   if (GEDA_IS_TEXT(o_current)) {
 
@@ -276,7 +276,7 @@ o_text_get_size_in_points (const GedaObject *object)
  * \return The text object's string, or NULL on failure.
  */
 const char*
-o_text_get_string (GedaObject *object)
+o_text_get_string (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), NULL);
   return object->text->string;
