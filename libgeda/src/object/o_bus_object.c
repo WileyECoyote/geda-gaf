@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_bus_basic.c
+/*! \file o_bus_object.c
  *  \brief functions for the bus object
  */
 
@@ -190,7 +190,7 @@ geda_bus_object_copy(GedaObject *o_current)
  * \brief Get the direction of a bus
  * \par Function Description
  *  1 for right, -1 for left (horizontal bus) or
- *  1 for up, -1 for down (vertial bus).
+ *  1 for up, -1 for down (vertical bus).
  */
 
 int

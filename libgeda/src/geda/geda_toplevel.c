@@ -662,11 +662,12 @@ void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 
 
 /*! \brief Set Toplevel Auto Save Interval
-*   \par Function Description
-*   Stores \a interval to \a toplevel.
-*
-*   \param [in] toplevel This toplevel
-*/
+ *   \par Function Description
+ *   Stores \a interval to \a toplevel.
+ *
+ *   \param [in] toplevel This toplevel
+ *   \param [in] interval New auto-save interval in seconds
+ */
 bool
 geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
 {

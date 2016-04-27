@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_box_basic.c
+/*! \file o_box_object.c
  *  \brief functions for the box object
  */
 

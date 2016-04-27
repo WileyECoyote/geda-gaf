@@ -66,11 +66,11 @@ struct _GedaToplevel {
 
   GedaTopType head_marker;       /* structure type signature */
 
-  int    open_flags;              /* Control flags for the f_open function. Indexed by FOpenFlags */
-  char  *untitled_name;           /* untitled sch basename */
-  int    num_untitled;            /* keep track of untitled pages */
+  int    open_flags;             /* Control flags for the f_open function. Indexed by FOpenFlags */
+  char  *untitled_name;          /* untitled sch basename */
+  int    num_untitled;           /* keep track of untitled pages */
 
-  char  *bitmap_directory;        /* path of the bitmaps */
+  char  *bitmap_directory;       /* path of the bitmaps */
 
   /* page system */
   Page     *page_current;
