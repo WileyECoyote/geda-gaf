@@ -1,3 +1,13 @@
+2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61027-1.sym: Add symbol; Synchronous Boost, Fixed 5.0V,
+      VSON10.
+
+2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61025-1.sym: Add symbol; Synchronous Boost, Fixed 3.3V,
+      VSON10.
+
 2016-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC4359-1.sym: Add symbol: High Side OR-ing FET Controller.

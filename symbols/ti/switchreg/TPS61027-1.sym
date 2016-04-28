@@ -2,7 +2,7 @@ v 20160401 2
 T 400 3100 8 10 1 1 0 0 1
 refdes=U?
 T 400 3700 5 10 0 1 0 0 1
-device=TPS61025
+device=TPS61027
 B 400 100 1600 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 400 2500 100 2500 1 0 1
 {
@@ -130,9 +130,9 @@ numslots=0
 T 400 3300 5 10 0 1 0 0 1
 footprint=S-PVSON-N10-EP
 T 400 3500 5 10 0 1 0 0 1
-description=IC,Synchronous Boost,Fixed 3.3V,1500 mA,VSON10
+description=IC,Synchronous Boost,Fixed 5V,1500 mA,VSON10
 T 400 3900 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/TPS61025-Q1
+documentation=http://www.ti.com/product/TPS61027-Q1
 T 1400 3700 5 10 0 0 0 0 1
 symversion=1.0
 T 400 4300 5 10 0 0 0 0 1
@@ -142,4 +142,4 @@ use-license=unlimited
 T 400 4700 5 10 0 0 0 0 1
 author=AutoTron
 T 400 2900 9 10 1 1 0 0 1
-value=TPS61025DRCR
+value=TPS61027DRCR
