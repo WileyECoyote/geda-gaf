@@ -133,7 +133,7 @@ bool gschem_threads_init (void)
  *  \par Function Description
  *  Adds a function to be called whenever there are no higher priority
  *  events pending to the default main loop. The function is given the
- *  default idle priority, #G_PRIORITY_DEFAULT_IDLE. If the function
+ *  default idle priority, G_PRIORITY_DEFAULT_IDLE. If the function
  *  returns %FALSE it is automatically removed from the list of event
  *  sources and will not be called again.
  *
