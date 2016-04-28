@@ -1,7 +1,9 @@
 2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_object.c: Add static geda_object_error and implement
-      common object argument error message handler.
+      common object argument error message handler. Add getter and setter for
+      geda_bus_object_set_x0, geda_bus_object_set_x1, geda_bus_object_set_y0,
+      and geda_bus_object_set_y1.
 
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
