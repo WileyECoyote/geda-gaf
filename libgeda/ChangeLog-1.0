@@ -5,6 +5,8 @@
       geda_bus_object_set_x0, geda_bus_object_set_x1, geda_bus_object_set_y0,
       and geda_bus_object_set_y1.
 
+    * tests/test_bus_object.c: Add some tests for o_bus_object module.
+
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_object.c: Add getter and setter for bus_ripper_direction.
