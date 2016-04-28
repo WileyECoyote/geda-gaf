@@ -38,7 +38,7 @@
 #define GSCHEM_TYPE_PREVIEW         (gschem_preview_get_type())
 #define GSCHEM_PREVIEW(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_PREVIEW, GschemPreview))
 #define GSCHEM_PREVIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass),  GSCHEM_TYPE_PREVIEW, GschemPreviewClass))
-#define IS_PREVIEW(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_PREVIEW))
+#define IS_PREVIEW(obj)             (is_a_gschem_preview((GschemPreview*)obj))
 
 typedef struct _GschemPreviewClass GschemPreviewClass;
 typedef struct _GschemPreview      GschemPreview;
@@ -48,7 +48,8 @@ struct _GschemPreviewClass {
 };
 
 struct _GschemPreview {
-  GtkDrawingArea parent_instance;
+  GtkDrawingArea  parent_instance;
+  GedaType        instance_type;
 
   GschemToplevel *preview_window;
   char *filename;
@@ -59,6 +60,7 @@ struct _GschemPreview {
 };
 
 GedaType   gschem_preview_get_type (void) GEDA_CONST;
+bool       is_a_gschem_preview     (GschemPreview *preview);
 
 GtkWidget *gschem_preview_new (void) GEDA_WARN_UNUSED_RESULT;
 

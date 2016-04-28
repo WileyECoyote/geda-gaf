@@ -578,6 +578,7 @@ static void preview_class_init (void *g_class, void *class_data)
 static void preview_instance_init(GTypeInstance *instance, void *class)
 {
   GschemPreview *preview = (GschemPreview*)instance;
+  preview->instance_type = gschem_preview_get_type();
 
   struct event_reg_t {
     char *detailed_signal;
@@ -678,6 +679,22 @@ gschem_preview_get_type (void)
   }
 
   return preview_type;
+}
+
+/*!
+ * \brief Check if an object is a GschemPreview
+ * \par Function Description
+ *  Ensures preview is a valid G_Object and compares signature
+ *  to gschem preview type.
+ * \return TRUE if \a preview is a valid GschemPreview
+ */
+bool
+is_a_gschem_preview (GschemPreview *preview)
+{
+  if (G_IS_OBJECT(preview)) {
+    return (gschem_preview_get_type() == preview->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief create a new preview widget

@@ -1,3 +1,10 @@
+2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_preview.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE,
+      add member instance_type and declarations for is_a_gschem_preview.
+
+    * src/base/gschem_preview.c: Add function is_a_gschem_preview.
+
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Rename action edit-rotate->edit-rotate-left.
