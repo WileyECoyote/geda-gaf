@@ -1,3 +1,8 @@
+2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_bus_object.c: Add static geda_object_error and implement
+      common object argument error message handler.
+
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_object.c: Add getter and setter for bus_ripper_direction.
