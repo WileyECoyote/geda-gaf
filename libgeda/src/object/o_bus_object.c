@@ -166,7 +166,7 @@ geda_bus_object_consolidate(GedaToplevel *toplevel, Page *page)
  * \return a new bus object
  */
 GedaObject*
-geda_bus_object_copy(GedaObject *o_current)
+geda_bus_object_copy(const GedaObject *o_current)
 {
   GedaObject *new_obj;
 
@@ -194,7 +194,7 @@ geda_bus_object_copy(GedaObject *o_current)
  */
 
 int
-geda_bus_object_get_direction(GedaObject *object)
+geda_bus_object_get_direction(const GedaObject *object)
 {
   int direction = 0;
 

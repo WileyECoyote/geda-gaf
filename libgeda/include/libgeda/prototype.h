@@ -202,8 +202,8 @@ extern "C" {
 
 /* o_bus_object.c */
          void    geda_bus_object_consolidate          (GedaToplevel *toplevel, Page *page);
-   GedaObject   *geda_bus_object_copy                 (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_direction        (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_bus_object_copy                 (const GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_direction        (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
           int    geda_bus_object_get_ripper_direction (const GedaObject *object)GEDA_WARN_UNUSED_RESULT;
          void    geda_bus_object_mirror               (GedaObject *object, int center_x, int center_y);
          void    geda_bus_object_modify               (GedaObject *object, int x, int y, int whichone);

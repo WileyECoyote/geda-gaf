@@ -1,6 +1,8 @@
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_object.c: Add getter and setter for bus_ripper_direction.
+      Make first argument, the object, a const for geda_bus_object_copy and
+      geda_bus_object_get_direction.
 
     * src/object/o_text_basic.c: Reorganize module, add getter and setters:
       o_text_get_alignment, o_text_get_angle, o_text_get_size, o_text_get_x,
