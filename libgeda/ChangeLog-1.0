@@ -1,5 +1,7 @@
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_bus_object.c: Add getter and setter for bus_ripper_direction.
+
     * src/object/o_text_basic.c: Reorganize module, add getter and setters:
       o_text_get_alignment, o_text_get_angle, o_text_get_size, o_text_get_x,
       o_text_get_y, o_text_set_alignment, o_text_set_angle, o_text_set_size,

@@ -221,6 +221,23 @@ geda_bus_object_get_direction(GedaObject *object)
   return direction;
 }
 
+
+/*!
+ * \brief Get the Bus ripper direction
+ * \par Function Description
+ *  This function gets returns the Bus ripper direction
+ * \param [in] object The bus object
+ * \return The ripper direction
+ */
+int
+geda_bus_object_get_ripper_direction (const GedaObject *object)
+{
+  if (GEDA_IS_BUS(object)) {
+    return object->bus->bus_ripper_direction;
+  }
+  return 0;
+}
+
 /*!
  * \brief get the position of the first bus point
  * \par Function Description
@@ -494,6 +511,19 @@ geda_bus_object_rotate(GedaObject *object, int center_x, int center_y, int angle
   object->line->y[1] = newy;
 
   geda_bus_object_translate(object, center_x, center_y);
+}
+
+/*! \brief Set the Bus ripper direction
+ *
+ *  \param [in,out] object The bus object
+ *  \param [in] direction The ripper direction
+ */
+void
+geda_bus_object_set_ripper_direction (GedaObject *object, gint direction)
+{
+  if (GEDA_IS_BUS(object)) {
+    object->bus->bus_ripper_direction = direction;
+  }
 }
 
 /*!
