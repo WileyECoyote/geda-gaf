@@ -1,8 +1,8 @@
-v 20130414 2
+v 20160401 2
 B 300 0 1550 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 200 2725 5 10 0 0 0 0 1
-device=MSP430x44x
-T 1950 1650 8 10 1 1 0 0 1
+T 300 2500 5 10 0 0 0 0 1
+device=MAX13021
+T 2050 1850 8 10 1 1 0 0 1
 refdes=U?
 P 1800 200 2100 200 1 0 1
 {
@@ -92,13 +92,13 @@ pinseq=5
 T 1750 1000 5 8 0 1 0 8 1
 pintype=out
 }
-T 200 2300 5 10 0 0 0 0 1
+T 300 1900 5 10 0 0 0 0 1
 footprint=none
-T 200 2500 5 10 0 0 0 0 1
+T 300 2300 5 10 0 1 0 0 1
 description=16-bit mixed signal microcontroller
-T 200 2100 5 10 0 0 0 0 1
+T 300 2100 5 10 0 0 0 0 1
 numslots=0
 T 300 1700 3 10 1 0 0 0 1
 MAX13021-SO8
-T 200 1900 5 10 0 0 0 0 1
+T 300 2700 5 10 0 1 0 0 1
 documentation=http://www-s.ti.com/sc/ds/msp430f447.pdf

@@ -125,7 +125,7 @@ refdes=U?
 T 2000 2050 5 10 0 0 0 0 1
 footprint=SO8
 T 2000 1850 5 10 0 0 0 0 1
-footprint2=DIP8
+footprints=DIP8
 T 2000 1250 5 10 0 0 0 0 1
 description=low-power, slew-rat-limited RS-485/RS422 transceiver
 T 2000 1650 5 10 0 0 0 0 1
