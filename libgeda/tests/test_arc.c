@@ -499,6 +499,11 @@ test_arc_properties (void)
       int s = m_random_number (1, 359);
       int x = m_random_number (0, 120000);
       int y = m_random_number (0, 80000);
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int l = m_random_number (0, 500);
 
       g_object_set(arc, "center-x",    x,
                         "center-y",    y,
@@ -538,6 +543,48 @@ test_arc_properties (void)
 
       if ( s - rs) {
         fprintf(stderr, "FAILED: %s get/set arc sweep property <%d>\n", TOBJECT, rs);
+        fail++;
+      }
+
+      /* line type properties */
+      g_object_set(arc, "end-cap",     e,
+                        "line-type",   t,
+                        "line-width",  w,
+                        "line-space",  p,
+                        "line-length", l,
+                        NULL);
+
+      int re, rt, rw, rp, rl;
+
+      g_object_get(arc, "end-cap",     &re,
+                        "line-type",   &rt,
+                        "line-width",  &rw,
+                        "line-space",  &rp,
+                        "line-length", &rl,
+                        NULL);
+
+      if (e - re) {
+        fprintf(stderr, "FAILED: %s get/set end-cap property <%d>\n", TOBJECT, re);
+        fail++;
+      }
+
+      if (t - rt) {
+        fprintf(stderr, "FAILED: %s get/set line-type property <%d>\n", TOBJECT, rt);
+        fail++;
+      }
+
+      if (w - rw) {
+        fprintf(stderr, "FAILED: %s get/set line-width property <%d>\n", TOBJECT, rw);
+        fail++;
+      }
+
+      if (p - rp) {
+        fprintf(stderr, "FAILED: %s get/set line-space property <%d>\n", TOBJECT, rp);
+        fail++;
+      }
+
+      if (l - rl) {
+        fprintf(stderr, "FAILED: %s get/set line-length property <%d>\n", TOBJECT, rl);
         fail++;
       }
 

@@ -394,6 +394,9 @@ static void geda_arc_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (object_class, PROP_ARC_SWEEP, params);
 
+  /* GedaArcs have line-type properties but are not derived from GedaLine
+   * therefore these properties must be defined for the GedaArc... */
+
   params = g_param_spec_int ("end-cap",
                            _("End Cap"),
                            _("Line end cap"),
