@@ -47,6 +47,11 @@
 
 #include <libgeda_priv.h>
 
+enum {
+  PROP_0,
+  PROP_RIPPER_DIR,
+};
+
 static GObjectClass *geda_bus_parent_class = NULL;
 
 /*! \brief Type instance initializer for GedaBus
@@ -101,6 +106,45 @@ static void geda_bus_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
 }
 
+static void
+get_property (GObject *object, unsigned int  prop_id,
+                               GValue       *value,
+                               GParamSpec   *pspec)
+
+{
+  GedaBus *bus = GEDA_BUS(object);
+
+  switch (prop_id)
+  {
+    case PROP_RIPPER_DIR:
+      g_value_set_int (value, bus->bus_ripper_direction);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+set_property (GObject *object, unsigned int  prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+  GedaBus *bus = GEDA_BUS(object);
+
+  switch (prop_id)
+  {
+    case PROP_RIPPER_DIR:
+      bus->bus_ripper_direction = g_value_get_int (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
 /*! \brief Type class initializer for a GedaBus
  *
  *  \par Function Description
@@ -112,13 +156,27 @@ static void geda_bus_finalize(GObject *object)
  */
 static void geda_bus_class_init(void *g_class, void *class_data)
 {
-  GedaBusClass *class          = (GedaBusClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
+  GedaBusClass *class         = (GedaBusClass*)g_class;
+  GObjectClass *object_class  = G_OBJECT_CLASS( class );
+  GParamSpec   *params;
 
-  geda_bus_parent_class        = g_type_class_peek_parent( class );
+  geda_bus_parent_class       = g_type_class_peek_parent( class );
 
-  gobject_class->dispose       = geda_bus_dispose;
-  gobject_class->finalize      = geda_bus_finalize;
+  object_class->dispose       = geda_bus_dispose;
+  object_class->finalize      = geda_bus_finalize;
+
+  object_class->get_property  = get_property;
+  object_class->set_property  = set_property;
+
+  params = g_param_spec_int ("bus-ripper-direction",
+                           _("Bus Ripper Direction"),
+                           _("The bus ripper direction"),
+                             0,
+                             1,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_RIPPER_DIR, params);
 }
 
 /*! \brief Function to retrieve GedaBus's Type identifier.

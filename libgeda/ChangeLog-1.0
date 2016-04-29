@@ -1,5 +1,7 @@
 2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_bus.c: Add gobject property for bus_ripper_direction.
+
     * src/object/o_bus_object.c: Add static geda_object_error and implement
       common object argument error message handler. Add getter and setter for
       geda_bus_object_set_x0, geda_bus_object_set_x1, geda_bus_object_set_y0,
