@@ -53,7 +53,12 @@ enum {
   PROP_CENTER_Y,
   PROP_RADIUS,
   PROP_START_ANGLE,
-  PROP_ARC_SWEEP
+  PROP_ARC_SWEEP,
+  PROP_END_CAP,
+  PROP_TYPE,
+  PROP_WIDTH,
+  PROP_SPACE,
+  PROP_LENGTH
 };
 
 static GObjectClass *geda_arc_parent_class = NULL;
@@ -206,7 +211,8 @@ get_property (GObject *object, unsigned int  prop_id,
                                GParamSpec   *pspec)
 
 {
-  GedaArc *arc = GEDA_ARC(object);
+  GedaArc      *arc          = GEDA_ARC(object);
+  LINE_OPTIONS *line_options = &arc->line_options;
 
   switch (prop_id)
   {
@@ -230,6 +236,26 @@ get_property (GObject *object, unsigned int  prop_id,
       g_value_set_int (value, arc->arc_sweep);
       break;
 
+    case PROP_END_CAP:
+      g_value_set_int (value, line_options->line_end);
+      break;
+
+    case PROP_TYPE:
+      g_value_set_int (value, line_options->line_type);
+      break;
+
+    case PROP_WIDTH:
+      g_value_set_int (value, line_options->line_width);
+      break;
+
+    case PROP_SPACE:
+      g_value_set_int (value, line_options->line_space);
+      break;
+
+    case PROP_LENGTH:
+      g_value_set_int (value, line_options->line_length);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -241,7 +267,8 @@ set_property (GObject *object, unsigned int  prop_id,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-  GedaArc *arc = GEDA_ARC(object);
+  GedaArc      *arc          = GEDA_ARC(object);
+  LINE_OPTIONS *line_options = &arc->line_options;
 
   switch (prop_id)
   {
@@ -263,6 +290,26 @@ set_property (GObject *object, unsigned int  prop_id,
 
     case PROP_ARC_SWEEP:
       arc->arc_sweep = g_value_get_int (value);
+      break;
+
+    case PROP_END_CAP:
+      line_options->line_end = g_value_get_int (value);
+      break;
+
+    case PROP_TYPE:
+      line_options->line_type = g_value_get_int (value);
+      break;
+
+    case PROP_WIDTH:
+      line_options->line_width = g_value_get_int (value);
+      break;
+
+    case PROP_SPACE:
+      line_options->line_space = g_value_get_int (value);
+      break;
+
+    case PROP_LENGTH:
+      line_options->line_length = g_value_get_int (value);
       break;
 
     default:
@@ -346,6 +393,56 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              (G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, PROP_ARC_SWEEP, params);
+
+  params = g_param_spec_int ("end-cap",
+                           _("End Cap"),
+                           _("Line end cap"),
+                             END_NONE,
+                             END_ROUND,
+                             END_NONE,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_END_CAP, params);
+
+  params = g_param_spec_int ("line-type",
+                           _("Line Type"),
+                           _("The line type"),
+                             TYPE_SOLID,
+                             TYPE_PHANTOM,
+                             TYPE_SOLID,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_TYPE, params);
+
+  params = g_param_spec_int ("line-width",
+                           _("Line Width"),
+                           _("The line width"),
+                             0,
+                             500,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_WIDTH, params);
+
+  params = g_param_spec_int ("line-space",
+                           _("Line Space"),
+                           _("The line space"),
+                             0,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_SPACE, params);
+
+  params = g_param_spec_int ("line-length",
+                           _("Line Length"),
+                           _("The line length"),
+                             0,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LENGTH, params);
 }
 
 /*! \brief Function to retrieve GedaArc's Type identifier.
