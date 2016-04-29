@@ -1,5 +1,12 @@
 2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/DS1135*: Replace DS1135 with DS1135Z (5V) and DS1135L (3.3V).
+
+    * maxim/MAX7651-1.sym: Add symbol; ADC, 12-bit integrated data-acquisition
+      system.
+
+2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/ADC0834N-1.sym: Add symbol; 4-Channel MUX,8-Bit Serial I/O A/D Converter
 
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
