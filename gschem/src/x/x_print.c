@@ -264,147 +264,6 @@ print_dialog_action_radio_toggled (GtkWidget * w, PrintDialog * dialog)
   }
 }
 
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
- */
-static void print_dialog_instance_init (PrintDialog * dialog)
-{
-  GtkWidget *box;
-  GtkWidget *frame;
-  GtkWidget *settingstable, *desttable;
-  GtkWidget *label;
-  GtkWidget *print_button;
-
-  /* Initialize properties */
-  g_object_set (G_OBJECT (dialog),
-                /* GtkWindow */
-                "title", _("Print..."),
-                "modal", TRUE, "destroy-with-parent", TRUE, NULL);
-
-  /* Setup hbox for two main panes */
-  box = gtk_vbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), box);
-
-  /* Upper frame */
-  frame = gtk_frame_new (_("Settings"));
-  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-  gtk_container_add (GTK_CONTAINER (box), frame);
-
-  /* Upper table with drop-down menus & labels
-   * Left-hand column contains labels, right-hand contains comboboxes*/
-  settingstable = gtk_table_new (2, 3, FALSE);
-  gtk_table_set_col_spacings (GTK_TABLE (settingstable), 5);
-  gtk_table_set_row_spacings (GTK_TABLE (settingstable), 5);
-  gtk_container_set_border_width (GTK_CONTAINER (settingstable), 5);
-  gtk_container_add (GTK_CONTAINER (frame), settingstable);
-
-  label = geda_aligned_label_new (_("Output paper size:"), 0, 0);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    label,
-                    0, 1, 0, 1, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
-
-  print_dialog_instance_init_paper_combobox (dialog);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    GTK_WIDGET (dialog->papercbox),
-                    1, 2, 0, 1, GTK_FILL, 0, 0, 0);
-
-  label = geda_aligned_label_new (_("Type:"), 0, 0);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    label,
-                    0, 1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
-
-  print_dialog_instance_init_type_combobox (dialog);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    GTK_WIDGET (dialog->typecbox),
-                    1, 2, 1, 2, GTK_FILL, 0, 0, 0);
-
-  label = geda_aligned_label_new (_("Orientation:"), 0, 0);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    label,
-                    0, 1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
-
-  print_dialog_instance_init_orient_combobox (dialog);
-  gtk_table_attach (GTK_TABLE (settingstable),
-                    GTK_WIDGET (dialog->orientcbox),
-                    1, 2, 2, 3, GTK_FILL, 0, 0, 0);
-
-  /* Lower frame */
-  frame = gtk_frame_new (_("Destination"));
-  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-  gtk_container_add (GTK_CONTAINER (box), frame);
-
-  /* Table with destination selectors */
-  desttable = gtk_table_new (3, 2, FALSE);
-  gtk_table_set_col_spacings (GTK_TABLE (desttable), 5);
-  gtk_table_set_row_spacings (GTK_TABLE (desttable), 5);
-  gtk_container_set_border_width (GTK_CONTAINER (desttable), 5);
-  gtk_container_add (GTK_CONTAINER (frame), desttable);
-
-  /* Widgets for printing to file */
-  dialog->fileradio =
-  GTK_RADIO_BUTTON (gtk_radio_button_new_with_label (NULL, _("File:")));
-  gtk_table_attach (GTK_TABLE (desttable),
-                    GTK_WIDGET (dialog->fileradio),
-                    0, 1, 0, 1, GTK_FILL, GTK_EXPAND, 0, 0);
-  g_signal_connect (dialog->fileradio,
-                    "toggled",
-                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
-                    dialog);
-
-  dialog->fnfield = GTK_ENTRY (gtk_entry_new ());
-  gtk_table_attach (GTK_TABLE (desttable),
-                    GTK_WIDGET (dialog->fnfield),
-                    1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
-
-  dialog->saveasbutton = GTK_BUTTON(gtk_button_new());
-  gtk_container_add(GTK_CONTAINER(dialog->saveasbutton),
-                    gtk_image_new_from_stock(GTK_STOCK_OPEN,
-                                             GTK_ICON_SIZE_SMALL_TOOLBAR));
-  gtk_button_set_relief(GTK_BUTTON(dialog->saveasbutton), GTK_RELIEF_NONE);
-
-  gtk_table_attach (GTK_TABLE (desttable),
-                    GTK_WIDGET (dialog->saveasbutton), 2, 3, 0, 1,
-                    GTK_FILL, 0, 0, 0);
-  g_signal_connect (dialog->saveasbutton,
-                    "clicked",
-                    GTK_SIGNAL_FUNC (print_dialog_action_choosefile), dialog);
-
-  /* Widgets for printing to command */
-  dialog->cmdradio =
-  GTK_RADIO_BUTTON (gtk_radio_button_new_with_label_from_widget
-  (dialog->fileradio, _("Command:")));
-  gtk_table_attach (GTK_TABLE (desttable),
-                    GTK_WIDGET (dialog->cmdradio),
-                    0, 1, 1, 2,  GTK_FILL, GTK_EXPAND, 0, 0);
-  g_signal_connect (dialog->cmdradio,
-                    "toggled",
-                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
-                    dialog);
-
-  dialog->cmdfield = GTK_ENTRY (gtk_entry_new ());
-  gtk_table_attach (GTK_TABLE (desttable), GTK_WIDGET (dialog->cmdfield),
-                    1, 3, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
-
-  /* Add "Cancel" and "Print" buttons */
-  gtk_dialog_add_button (GTK_DIALOG (dialog),
-                         GTK_STOCK_CANCEL, GEDA_RESPONSE_REJECT);
-  print_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                        GTK_STOCK_PRINT, GEDA_RESPONSE_ACCEPT);
-  gtk_widget_grab_focus(print_button);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GEDA_RESPONSE_ACCEPT,
-                                          GEDA_RESPONSE_REJECT,
-                                          -1);
-
-  /* Set initial radiobutton selection */
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->cmdradio), TRUE);
-}
-
 /*! \todo Finish function documentation
  *  \brief
  *  \par Function Description
@@ -604,6 +463,148 @@ print_dialog_class_init (PrintDialogClass * class)
                                                          G_PARAM_READWRITE));
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void print_dialog_instance_init (PrintDialog * dialog)
+{
+  GtkWidget *box;
+  GtkWidget *frame;
+  GtkWidget *settingstable, *desttable;
+  GtkWidget *label;
+  GtkWidget *print_button;
+
+  dialog->instance_type = print_dialog_get_type();
+
+  /* Initialize properties */
+  g_object_set (G_OBJECT (dialog),
+                /* GtkWindow */
+                "title", _("Print..."),
+                "modal", TRUE, "destroy-with-parent", TRUE, NULL);
+
+  /* Setup hbox for two main panes */
+  box = gtk_vbox_new (FALSE, 2);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), box);
+
+  /* Upper frame */
+  frame = gtk_frame_new (_("Settings"));
+  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
+  gtk_container_add (GTK_CONTAINER (box), frame);
+
+  /* Upper table with drop-down menus & labels
+   * Left-hand column contains labels, right-hand contains comboboxes*/
+  settingstable = gtk_table_new (2, 3, FALSE);
+  gtk_table_set_col_spacings (GTK_TABLE (settingstable), 5);
+  gtk_table_set_row_spacings (GTK_TABLE (settingstable), 5);
+  gtk_container_set_border_width (GTK_CONTAINER (settingstable), 5);
+  gtk_container_add (GTK_CONTAINER (frame), settingstable);
+
+  label = geda_aligned_label_new (_("Output paper size:"), 0, 0);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    label,
+                    0, 1, 0, 1, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
+
+  print_dialog_instance_init_paper_combobox (dialog);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    GTK_WIDGET (dialog->papercbox),
+                    1, 2, 0, 1, GTK_FILL, 0, 0, 0);
+
+  label = geda_aligned_label_new (_("Type:"), 0, 0);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    label,
+                    0, 1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
+
+  print_dialog_instance_init_type_combobox (dialog);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    GTK_WIDGET (dialog->typecbox),
+                    1, 2, 1, 2, GTK_FILL, 0, 0, 0);
+
+  label = geda_aligned_label_new (_("Orientation:"), 0, 0);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    label,
+                    0, 1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
+
+  print_dialog_instance_init_orient_combobox (dialog);
+  gtk_table_attach (GTK_TABLE (settingstable),
+                    GTK_WIDGET (dialog->orientcbox),
+                    1, 2, 2, 3, GTK_FILL, 0, 0, 0);
+
+  /* Lower frame */
+  frame = gtk_frame_new (_("Destination"));
+  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
+  gtk_container_add (GTK_CONTAINER (box), frame);
+
+  /* Table with destination selectors */
+  desttable = gtk_table_new (3, 2, FALSE);
+  gtk_table_set_col_spacings (GTK_TABLE (desttable), 5);
+  gtk_table_set_row_spacings (GTK_TABLE (desttable), 5);
+  gtk_container_set_border_width (GTK_CONTAINER (desttable), 5);
+  gtk_container_add (GTK_CONTAINER (frame), desttable);
+
+  /* Widgets for printing to file */
+  dialog->fileradio =
+  GTK_RADIO_BUTTON (gtk_radio_button_new_with_label (NULL, _("File:")));
+  gtk_table_attach (GTK_TABLE (desttable),
+                    GTK_WIDGET (dialog->fileradio),
+                    0, 1, 0, 1, GTK_FILL, GTK_EXPAND, 0, 0);
+  g_signal_connect (dialog->fileradio,
+                    "toggled",
+                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
+                    dialog);
+
+  dialog->fnfield = GTK_ENTRY (gtk_entry_new ());
+  gtk_table_attach (GTK_TABLE (desttable),
+                    GTK_WIDGET (dialog->fnfield),
+                    1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+
+  dialog->saveasbutton = GTK_BUTTON(gtk_button_new());
+  gtk_container_add(GTK_CONTAINER(dialog->saveasbutton),
+                    gtk_image_new_from_stock(GTK_STOCK_OPEN,
+                                             GTK_ICON_SIZE_SMALL_TOOLBAR));
+  gtk_button_set_relief(GTK_BUTTON(dialog->saveasbutton), GTK_RELIEF_NONE);
+
+  gtk_table_attach (GTK_TABLE (desttable),
+                    GTK_WIDGET (dialog->saveasbutton), 2, 3, 0, 1,
+                    GTK_FILL, 0, 0, 0);
+  g_signal_connect (dialog->saveasbutton,
+                    "clicked",
+                    GTK_SIGNAL_FUNC (print_dialog_action_choosefile), dialog);
+
+  /* Widgets for printing to command */
+  dialog->cmdradio =
+  GTK_RADIO_BUTTON (gtk_radio_button_new_with_label_from_widget
+  (dialog->fileradio, _("Command:")));
+  gtk_table_attach (GTK_TABLE (desttable),
+                    GTK_WIDGET (dialog->cmdradio),
+                    0, 1, 1, 2,  GTK_FILL, GTK_EXPAND, 0, 0);
+  g_signal_connect (dialog->cmdradio,
+                    "toggled",
+                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
+                    dialog);
+
+  dialog->cmdfield = GTK_ENTRY (gtk_entry_new ());
+  gtk_table_attach (GTK_TABLE (desttable), GTK_WIDGET (dialog->cmdfield),
+                    1, 3, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+
+  /* Add "Cancel" and "Print" buttons */
+  gtk_dialog_add_button (GTK_DIALOG (dialog),
+                         GTK_STOCK_CANCEL, GEDA_RESPONSE_REJECT);
+  print_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
+                                        GTK_STOCK_PRINT, GEDA_RESPONSE_ACCEPT);
+  gtk_widget_grab_focus(print_button);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
+                                          -1);
+
+  /* Set initial radiobutton selection */
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->cmdradio), TRUE);
+}
+
 /*! \brief Function to retrieve PrintDialog's Type identifier.
  *
  *  \par Function Description
@@ -636,6 +637,22 @@ GedaType print_dialog_get_type (void)
   }
 
   return print_dialog_type;
+}
+
+/*!
+ * \brief Check if an object is a PrintDialog
+ * \par Function Description
+ *  Ensures dialog is a valid G_Object and compares signature
+ *  to print dialog type.
+ * \return TRUE if \a dialog is a valid PrintDialog
+ */
+bool
+is_a_print_dialog (PrintDialog *dialog)
+{
+  if (G_IS_OBJECT(dialog)) {
+    return (print_dialog_get_type() == dialog->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \todo Finish function documentation

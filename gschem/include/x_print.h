@@ -38,7 +38,7 @@
 #define TYPE_PRINT_DIALOG         (print_dialog_get_type())
 #define PRINT_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PRINT_DIALOG, PrintDialog))
 #define PRINT_DIALOG_CLASS(class) (G_TYPE_CHECK_CLASS_CAST ((class),  TYPE_PRINT_DIALOG))
-#define IS_PRINT_DIALOG(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PRINT_DIALOG))
+#define IS_PRINT_DIALOG(obj)      (is_a_print_dialog((PrintDialog*)obj))
 
 typedef struct _PrintDialogClass PrintDialogClass;
 typedef struct _PrintDialog PrintDialog;
@@ -50,8 +50,8 @@ struct _PrintDialogClass
 
 struct _PrintDialog
 {
-  GschemDialog parent_instance;
-
+  GschemDialog    parent_instance;
+  GedaType        instance_type;
   GtkEntry       *fnfield,   *cmdfield;
   GtkRadioButton *fileradio, *cmdradio;
   GtkButton      *saveasbutton;
@@ -59,5 +59,6 @@ struct _PrintDialog
 };
 
 GedaType print_dialog_get_type (void) GEDA_CONST;
+bool     is_a_print_dialog     (PrintDialog *dialog);
 
 #endif /* !__X_PRINT_H__ */
