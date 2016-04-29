@@ -245,13 +245,13 @@ geda_box_class_init(void *klass, void *class_data)
 
   g_object_class_install_property (object_class, PROP_UPPER_X, params);
 
-   params = g_param_spec_int ("upper-y",
-                            _("Upper Y"),
-                            _("Upper Y bounds"),
+  params = g_param_spec_int ("upper-y",
+                           _("Upper Y"),
+                           _("Upper Y bounds"),
                              0,
                              G_MAXINT,
                              0,
-                             (G_PARAM_READWRITE));
+                            (G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, PROP_UPPER_Y, params);
 
@@ -265,13 +265,13 @@ geda_box_class_init(void *klass, void *class_data)
 
   g_object_class_install_property (object_class, PROP_LOWER_X, params);
 
-   params = g_param_spec_int ("lower-y",
-                            _("Lower Y"),
-                            _("Lower Y bounds"),
+  params = g_param_spec_int ("lower-y",
+                           _("Lower Y"),
+                           _("Lower Y bounds"),
                              0,
                              G_MAXINT,
                              0,
-                             (G_PARAM_READWRITE));
+                            (G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, PROP_LOWER_Y, params);
 }

@@ -291,7 +291,7 @@ static void geda_line_class_init(void *class, void *class_data)
                              0,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_SECOND_X, params);
+  g_object_class_install_property (object_class, PROP_FIRST_Y, params);
 
   params = g_param_spec_int ("second-x",
                            _("Second X"),
@@ -301,7 +301,7 @@ static void geda_line_class_init(void *class, void *class_data)
                              0,
                              (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_SECOND_Y, params);
+  g_object_class_install_property (object_class, PROP_SECOND_X, params);
 
   params = g_param_spec_int ("second-y",
                            _("Second Y"),
