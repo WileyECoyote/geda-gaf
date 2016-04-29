@@ -1,3 +1,7 @@
+2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ADC0834N-1.sym: Add symbol; 4-Channel MUX,8-Bit Serial I/O A/D Converter
+
 2016-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61027-1.sym: Add symbol; Synchronous Boost, Fixed 5.0V,
