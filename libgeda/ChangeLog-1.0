@@ -4,6 +4,8 @@
 
     * tests/test_arc.c: Add tests for line type properties.
 
+    * tests/test_bus.c: Add tests for gobject properties.
+
 2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_bus.c: Add gobject property for bus_ripper_direction.

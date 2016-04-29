@@ -204,13 +204,21 @@ extern "C" {
          void    geda_bus_object_consolidate          (GedaToplevel *toplevel, Page *page);
    GedaObject   *geda_bus_object_copy                 (const GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
           int    geda_bus_object_get_direction        (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_ripper_direction (const GedaObject *object)GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_ripper_direction (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_x0               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_x1               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_y0               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    geda_bus_object_get_y1               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
          void    geda_bus_object_mirror               (GedaObject *object, int center_x, int center_y);
          void    geda_bus_object_modify               (GedaObject *object, int x, int y, int whichone);
    GedaObject   *geda_bus_object_new                  (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
-          int    geda_bus_object_orientation          (GedaObject *object);
+          int    geda_bus_object_orientation          (const GedaObject *object);
          void    geda_bus_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_bus_object_set_ripper_direction (GedaObject *object, int direction);
+         void    geda_bus_object_set_x0               (GedaObject *object, int x);
+         void    geda_bus_object_set_x1               (GedaObject *object, int x);
+         void    geda_bus_object_set_y0               (GedaObject *object, int y);
+         void    geda_bus_object_set_y1               (GedaObject *object, int y);
          void    geda_bus_object_translate            (GedaObject *object, int dx, int dy);
 
 /* o_circle_object.c */

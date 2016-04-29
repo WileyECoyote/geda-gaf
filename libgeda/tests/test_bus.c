@@ -114,6 +114,95 @@ int test_bus (void)
 }
 
 int
+test_bus_properties (void)
+{
+  int result = 0;
+
+  GedaObject *object = geda_bus_new();
+
+  if (!GEDA_IS_BUS(object->bus)) {
+    fprintf(stderr, "is a %s Failed line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaBus *bus = object->bus;
+
+    int count;
+    int fail;
+
+    fail = 0;
+
+    for (count = 0; count < 10; count++) {
+
+      int x1 = m_random_number ( 0,       119800);
+      int y2 = m_random_number ( 0,        79800);
+      int x2 = m_random_number (x1 + 100, 120000);
+      int y1 = m_random_number (y2 + 100,  80000);
+      int d  = m_random_number (0, 1);
+
+      g_object_set(bus, "bus-ripper-direction", d,
+                        "first-x",  x1,
+                        "first-y",  y1,
+                        "second-x", x2,
+                        "second-y", y2,
+                        NULL);
+
+      int rd, rx1, ry1, rx2, ry2;
+
+      g_object_get(bus, "bus-ripper-direction", &rd,
+                        "first-x",  &rx1,
+                        "first-y",  &ry1,
+                        "second-x", &rx2,
+                        "second-y", &ry2,
+                        NULL);
+
+      if (d - rd) {
+        fprintf(stderr, "FAILED: %s get/set bus-ripper-direction property <%d>\n", TOBJECT, rd);
+        fail++;
+      }
+
+      if (x1 - rx1) {
+        fprintf(stderr, "FAILED: %s get/set first x property <%d>\n", TOBJECT, rx1);
+        fail++;
+      }
+
+      if (y1 - ry1) {
+        fprintf(stderr, "FAILED: %s get/set first y property <%d>\n", TOBJECT, ry1);
+        fail++;
+      }
+
+      if (x2 - rx2) {
+        fprintf(stderr, "FAILED: %s get/set second x property <%d>\n", TOBJECT, rx2);
+        fail++;
+      }
+
+      if (y2 - ry2) {
+        fprintf(stderr, "FAILED: %s get/set second y property <%d>\n", TOBJECT, ry2);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\tdirection: %d\n", d);
+        fprintf(stderr, "\tfirst-x: %d\n",  x1);
+        fprintf(stderr, "\tfirst-y: %d\n",  y1);
+        fprintf(stderr, "\tsecond-x: %d\n", x2);
+        fprintf(stderr, "\tsecond-y: %d\n", y2);
+
+        result = fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -123,7 +212,12 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_bus();
+  result  = test_bus();
+  result += test_bus_properties();
+
+  if (result) {
+    fprintf(stderr, "Check module geda_bus.c");
+  }
 
   return result;
 }
