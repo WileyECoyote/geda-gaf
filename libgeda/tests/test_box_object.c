@@ -39,7 +39,7 @@
 
 #define TOBJECT "GedaBox"
 
-/** \defgroup test-object-geda-arc Test GEDA Box object Module
+/** \defgroup test-object-geda-box Test GEDA Box object Module
  * @{
  * \brief Group 4 src/object/o_box_object.c geda_box_object_
  *  Group 4 == Module/File No.

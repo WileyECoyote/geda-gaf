@@ -57,29 +57,29 @@
  *
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
- *      O0501    geda_bus_object_consolidate
- *               geda_bus_object_copy
- *      O0502    geda_bus_object_get_direction
- *      O0503    geda_bus_object_get_ripper_direction
- *      O0504    geda_bus_object_get_position
- *      O0505    geda_bus_object_get_x0
- *      O0506    geda_bus_object_get_x1
- *      O0507    geda_bus_object_get_y0
- *      O0508    geda_bus_object_get_y1
- *      O0509    geda_bus_object_mirror
- *      O0510    geda_bus_object_modify
- *      O0511    geda_bus_object_new
- *      O0512    geda_bus_object_orientation
+ *               geda_bus_object_consolidate
+ *      O0502    geda_bus_object_copy
+ *      O0503    geda_bus_object_get_direction
+ *      O0504    geda_bus_object_get_ripper_direction
+ *      O0505    geda_bus_object_get_position
+ *      O0506    geda_bus_object_get_x0
+ *      O0507    geda_bus_object_get_x1
+ *      O0508    geda_bus_object_get_y0
+ *      O0509    geda_bus_object_get_y1
+ *      O0510    geda_bus_object_mirror
+ *      O0511    geda_bus_object_modify
+ *      O0512    geda_bus_object_new
+ *      O0513    geda_bus_object_orientation
  *               geda_bus_object_print
- *      O0514    geda_bus_object_read
- *      O0515    geda_bus_object_rotate
- *      O0516    geda_bus_object_set_ripper_direction
- *      O0517    geda_bus_object_set_x0
- *      O0518    geda_bus_object_set_x1
- *      O0519    geda_bus_object_set_y0
- *      O0520    geda_bus_object_set_y1
- *      O0521    geda_bus_object_to_buffer
- *      O0522    geda_bus_object_translate
+ *      O0515    geda_bus_object_read
+ *      O0516    geda_bus_object_rotate
+ *      O0517    geda_bus_object_set_ripper_direction
+ *      O0518    geda_bus_object_set_x0
+ *      O0519    geda_bus_object_set_x1
+ *      O0520    geda_bus_object_set_y0
+ *      O0521    geda_bus_object_set_y1
+ *      O0522    geda_bus_object_to_buffer
+ *      O0523    geda_bus_object_translate
  */
 
 int
@@ -97,21 +97,23 @@ check_construction ()
     int y2 = m_random_number (y1 + 100,  80000);
     int d  = m_random_number (0, 1);
 
+    /* === Function 12: geda_bus_object_new  === */
+
     GedaObject *object0 = geda_bus_object_new(c, x1, y1, x2, y2, d);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O051101A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O051201A) New GedaObject Failed\n");
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_BUS(object0->bus)) {
-      fprintf(stderr, "FAILED: (O051101B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O051201B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
     else if (!GEDA_IS_LINE(object0->line)) {
-      fprintf(stderr, "FAILED: (O051101C) sub-pointer not a GedaLine\n");
+      fprintf(stderr, "FAILED: (O051201C) sub-pointer not a GedaLine\n");
       result++;
       break;   /* terminate loop if fail */
     }
@@ -128,23 +130,56 @@ check_construction ()
       }
 
       if (line->x[0] - x1) {
-        fprintf(stderr, "FAILED: (O051101X1) bus x1 %d != %d\n", line->x[0], x1);
+        fprintf(stderr, "FAILED: (O051201X1) bus x1 %d != %d\n", line->x[0], x1);
         fail++;
       }
 
       if (line->y[0] - y1) {
-        fprintf(stderr, "FAILED: (O051101Y1) bus y1 %d != %d\n", line->y[0], y1);
+        fprintf(stderr, "FAILED: (O051201Y1) bus y1 %d != %d\n", line->y[0], y1);
         fail++;
       }
 
       if (line->x[1] - x2) {
-        fprintf(stderr, "FAILED: (O051101X2) bus x2 %d != %d\n", line->x[1], x2);
+        fprintf(stderr, "FAILED: (O051201X2) bus x2 %d != %d\n", line->x[1], x2);
         fail++;
       }
 
       if (line->y[1] - y2) {
-        fprintf(stderr, "FAILED: (O051101Y2) bus y2 %d != %d\n", line->y[1], y2);
+        fprintf(stderr, "FAILED: (O051201Y2) bus y2 %d != %d\n", line->y[1], y2);
         fail++;
+      }
+
+      if (!fail) {
+
+        /* === Function 02: geda_bus_object_copy  === */
+        GedaObject *object1 = geda_bus_object_copy (object0);
+        GedaLine   *line    = object1->line;
+
+        value = geda_object_get_color (object0);
+        if (value - c) {
+          fprintf(stderr, "FAILED: _get_color (%s-B) %d != %d\n", TOBJECT, value, c);
+          fail++;
+        }
+
+        if (line->x[0] - x1) {
+          fprintf(stderr, "FAILED: (O051202X1) bus x1 %d != %d\n", line->x[0], x1);
+          fail++;
+        }
+
+        if (line->y[0] - y1) {
+          fprintf(stderr, "FAILED: (O051202Y1) bus y1 %d != %d\n", line->y[0], y1);
+          fail++;
+        }
+
+        if (line->x[1] - x2) {
+          fprintf(stderr, "FAILED: (O051202X2) bus x2 %d != %d\n", line->x[1], x2);
+          fail++;
+        }
+
+        if (line->y[1] - y2) {
+          fprintf(stderr, "FAILED: (O051202Y2) bus y2 %d != %d\n", line->y[1], y2);
+          fail++;
+        }
       }
 
       if (fail) {
@@ -172,10 +207,10 @@ check_accessors ()
   count = geda_bus_object_get_ripper_direction(NULL);
 
   geda_bus_object_set_ripper_direction(NULL, 1);
-  geda_bus_object_set_x0(NULL, 17);
-  geda_bus_object_set_x1(NULL, 18);
-  geda_bus_object_set_y0(NULL, 19);
-  geda_bus_object_set_y1(NULL, 20);
+  geda_bus_object_set_x0(NULL, 18);
+  geda_bus_object_set_x1(NULL, 19);
+  geda_bus_object_set_y0(NULL, 20);
+  geda_bus_object_set_y1(NULL, 21);
 
   for (count = 0; count < 3; count++) {
 
@@ -194,7 +229,7 @@ check_accessors ()
 
     fail = 0;
 
-    /* === Function 02: geda_bus_object_get_direction  === */
+    /* === Function 03: geda_bus_object_get_direction  === */
 
     int direction = 0;
 
@@ -214,113 +249,113 @@ check_accessors ()
     value = geda_bus_object_get_direction(object0);
 
     if (value != direction) {
-      fprintf(stderr, "FAILED: (O050201) geda_bus_object_get_direction <%d>\n", value);
+      fprintf(stderr, "FAILED: (O050301) geda_bus_object_get_direction <%d>\n", value);
       fail++;
     }
 
-    /* === Function 03: geda_bus_object_get_ripper_direction  === */
+    /* === Function 04: geda_bus_object_get_ripper_direction  === */
 
     value = geda_bus_object_get_ripper_direction(object0);
 
     if (value - d) {
-      fprintf(stderr, "FAILED: (O050301) geda_bus_object_get_ripper_direction <%d>\n", value);
+      fprintf(stderr, "FAILED: (O050401) geda_bus_object_get_ripper_direction <%d>\n", value);
       fail++;
     }
 
     geda_bus_object_set_ripper_direction(object0, !value);
 
     if (object0->bus->bus_ripper_direction == value) {
-      fprintf(stderr, "FAILED: (O051601) geda_bus_object_set_ripper_direction\n");
+      fprintf(stderr, "FAILED: (O051701) geda_bus_object_set_ripper_direction\n");
       fail++;
     }
 
-    /* === Function 04: geda_bus_object_get_position  === */
+    /* === Function 05: geda_bus_object_get_position  === */
 
     if (geda_bus_object_get_position (NULL, &px, &py)) {
-      fprintf(stderr, "FAILED: (O050400) object NULL\n");
+      fprintf(stderr, "FAILED: (O050500) object NULL\n");
       fail++;
     }
 
     if (!geda_bus_object_get_position (object0, &px, &py)) {
-      fprintf(stderr, "FAILED: (O050401A) geda_bus_object_get_position\n");
+      fprintf(stderr, "FAILED: (O050501A) geda_bus_object_get_position\n");
       fail++;
     }
 
     if (px - x1) {
-      fprintf(stderr, "FAILED: (O050401B) bus %d != %d\n", px, x1);
+      fprintf(stderr, "FAILED: (O050501B) bus %d != %d\n", px, x1);
       fail++;
     }
 
     if (py - y1) {
-      fprintf(stderr, "FAILED: (O050401C) bus %d != %d\n", py, y1);
+      fprintf(stderr, "FAILED: (O050501C) bus %d != %d\n", py, y1);
       fail++;
     }
 
-    /* === Function 05: geda_bus_object_get_x0  === */
+    /* === Function 06: geda_bus_object_get_x0  === */
 
     value = geda_bus_object_get_x0(object0);
     if (value - x1) {
-      fprintf(stderr, "FAILED: (O050501) bus %d != %d\n", value, x1);
+      fprintf(stderr, "FAILED: (O050601) bus %d != %d\n", value, x1);
       fail++;
     }
 
-    /* === Function 06: geda_bus_object_get_x1  === */
+    /* === Function 07: geda_bus_object_get_x1  === */
 
     value = geda_bus_object_get_x1(object0);
 
     if (value - x2) {
-      fprintf(stderr, "FAILED: (O050601) bus %d != %d\n", value, x2);
+      fprintf(stderr, "FAILED: (O050701) bus %d != %d\n", value, x2);
       fail++;
     }
 
-    /* === Function 07: geda_bus_object_get_y0  === */
+    /* === Function 08: geda_bus_object_get_y0  === */
 
     value = geda_bus_object_get_y0(object0);
     if (value - y1) {
-      fprintf(stderr, "FAILED: (O050701) bus %d != %d\n", value, y1);
+      fprintf(stderr, "FAILED: (O050801) bus %d != %d\n", value, y1);
       fail++;
     }
 
-    /* === Function 08: geda_bus_object_get_y1  === */
+    /* === Function 09: geda_bus_object_get_y1  === */
 
     value = geda_bus_object_get_y1(object0);
 
     if (value - y2) {
-      fprintf(stderr, "FAILED: (O050801) bus %d != %d\n", value, y2);
+      fprintf(stderr, "FAILED: (O050901) bus %d != %d\n", value, y2);
       fail++;
     }
 
     /* Reverse the coordinates */
 
-    /* === Function 17: geda_bus_object_set_x0  === */
+    /* === Function 18: geda_bus_object_set_x0  === */
     geda_bus_object_set_x0(object0, x2);
 
     if (object0->line->x[0] - x2) {
-      fprintf(stderr, "FAILED: (O051701) geda_bus_object_set_x0\n");
+      fprintf(stderr, "FAILED: (O051801) geda_bus_object_set_x0\n");
       fail++;
     }
 
-    /* === Function 18: geda_bus_object_set_x1  === */
+    /* === Function 19: geda_bus_object_set_x1  === */
     geda_bus_object_set_x1(object0, x1);
 
     if (object0->line->x[1] - x1) {
-      fprintf(stderr, "FAILED: (O051801) geda_bus_object_set_x1\n");
+      fprintf(stderr, "FAILED: (O051901) geda_bus_object_set_x1\n");
       fail++;
     }
 
-    /* === Function 19: geda_bus_object_set_y0  === */
+    /* === Function 20: geda_bus_object_set_y0  === */
     geda_bus_object_set_y0(object0, y2);
 
     if (object0->line->y[0] - y2) {
-      fprintf(stderr, "FAILED: (O051901) geda_bus_object_set_y0\n");
+      fprintf(stderr, "FAILED: (O052001) geda_bus_object_set_y0\n");
       fail++;
     }
 
-    /* === Function 20: geda_bus_object_set_y1  === */
+    /* === Function 21: geda_bus_object_set_y1  === */
     geda_bus_object_set_y1(object0, y1);
 
     if (object0->line->y[1] - y1) {
-      fprintf(stderr, "FAILED: (O052001) geda_bus_object_set_y1\n");
+      fprintf(stderr, "FAILED: (O052101) geda_bus_object_set_y1\n");
       fail++;
     }
 
@@ -366,7 +401,7 @@ check_serialization ()
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O052101A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O052201A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -377,18 +412,18 @@ check_serialization ()
                                                 NULL);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O051401A) Read GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O051501A) Read GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_BUS(object1->bus)) {
-      fprintf(stderr, "FAILED: (O051401B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O051501B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
     else if (!GEDA_IS_LINE(object1->line)) {
-      fprintf(stderr, "FAILED: (O051401C) sub-pointer not a GedaLine\n");
+      fprintf(stderr, "FAILED: (O051501C) sub-pointer not a GedaLine\n");
       result++;
       break;   /* terminate loop if fail */
     }
@@ -400,27 +435,27 @@ check_serialization ()
 
       value = geda_object_get_color (object1);
       if (value - c) {
-        fprintf(stderr, "FAILED: _get_color (%s-B) %d != %d\n", TOBJECT, value, c);
+        fprintf(stderr, "FAILED: _get_color (%s-C) %d != %d\n", TOBJECT, value, c);
         fail++;
       }
 
       if (line->x[0] - x1) {
-        fprintf(stderr, "FAILED: (O0521/O0514X1) bus x1 %d != %d\n", line->x[0], x1);
+        fprintf(stderr, "FAILED: (O0522/O0515X1) bus x1 %d != %d\n", line->x[0], x1);
         fail++;
       }
 
       if (line->y[0] - y1) {
-        fprintf(stderr, "FAILED: (O0521/O0514Y1) bus y1 %d != %d\n", line->y[0], y1);
+        fprintf(stderr, "FAILED: (O0522/O0515Y1) bus y1 %d != %d\n", line->y[0], y1);
         fail++;
       }
 
       if (line->x[1] - x2) {
-        fprintf(stderr, "FAILED: (O0521/O0514X2) bus x2 %d != %d\n", line->x[1], x2);
+        fprintf(stderr, "FAILED: (O0522/O0515X2) bus x2 %d != %d\n", line->x[1], x2);
         fail++;
       }
 
       if (line->y[1] - y2) {
-        fprintf(stderr, "FAILED: (O0521/O0514Y2) bus y2 %d != %d\n", line->y[1], y2);
+        fprintf(stderr, "FAILED: (O0522/O0515Y2) bus y2 %d != %d\n", line->y[1], y2);
         fail++;
       }
 
@@ -444,7 +479,7 @@ check_serialization ()
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O052101B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O052201B) %s buffer mismatch\n", TOBJECT);
         result++;
         break;
       }
@@ -470,10 +505,12 @@ check_query()
 
   GedaObject *object = geda_bus_object_new(c, x1, y1, x2, y2, d);
 
+  /* === Function 13: geda_bus_object_orientation  === */
+
   int value = geda_bus_object_orientation(NULL);
 
   if (value != NEITHER) {
-    fprintf(stderr, "FAILED: (O051200) geda_bus_object_orientation NULL\n");
+    fprintf(stderr, "FAILED: (O051300) geda_bus_object_orientation NULL\n");
     result++;
   }
 
@@ -482,7 +519,7 @@ check_query()
   value = geda_bus_object_orientation(object);
 
   if (value != HORIZONTAL) {
-    fprintf(stderr, "FAILED: (O051202) geda_bus_object_orientation\n");
+    fprintf(stderr, "FAILED: (O051302) geda_bus_object_orientation\n");
     result++;
   }
 
@@ -492,7 +529,7 @@ check_query()
   value = geda_bus_object_orientation(object);
 
   if (value != VERTICAL) {
-    fprintf(stderr, "FAILED: (O051203) geda_bus_object_orientation\n");
+    fprintf(stderr, "FAILED: (O051303) geda_bus_object_orientation\n");
     result++;
   }
 
@@ -531,12 +568,12 @@ check_transformer()
     int nx = x1 + off;
     int ny = y1 + off;
 
-    /* O0510 geda_bus_object_modify */
+    /* O0511 geda_bus_object_modify */
 
     geda_bus_object_modify(object, nx, ny, 0);
 
     if (line->x[0] - nx || line->y[0] - ny) {
-      fprintf(stderr, "FAILED: (O051001) bus nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O051101) bus nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
@@ -546,36 +583,36 @@ check_transformer()
     geda_bus_object_modify(object, nx, ny, 1);
 
     if (line->x[1] - nx || line->y[1] - ny) {
-      fprintf(stderr, "FAILED: (O051002) bus nx=%d, ny=%d\n", nx, ny);
+      fprintf(stderr, "FAILED: (O051102) bus nx=%d, ny=%d\n", nx, ny);
       fail++;
     }
 
     geda_bus_object_modify(object, x1, y1, 0);
     geda_bus_object_modify(object, x2, y1, 1);
 
-    /* O0509 geda_bus_object_mirror */
+    /* O0510 geda_bus_object_mirror */
     geda_bus_object_mirror(object, x2, y2);
 
     if (line->x[1] - x2 || line->y[0] - y1) {
-      fprintf(stderr, "FAILED: (O050901) bus x[0]=%d, y[0]=%d\n", line->x[1], line->y[0]);
+      fprintf(stderr, "FAILED: (O051001) bus x[0]=%d, y[0]=%d\n", line->x[1], line->y[0]);
       fail++;
     }
 
-    /* O0515 geda_bus_object_rotate */
+    /* O0516 geda_bus_object_rotate */
 
     geda_bus_object_rotate(object, line->x[1], line->y[1], 180);
 
     if (line->x[0] - x1 || line->y[0] - y1) {
-      fprintf(stderr, "FAILED: (O051501) bus x[0]=%d, y[0]=%d\n", line->x[0], line->y[0]);
+      fprintf(stderr, "FAILED: (O051601) bus x[0]=%d, y[0]=%d\n", line->x[0], line->y[0]);
       fail++;
     }
 
-    /* O0522 geda_bus_object_translate */
+    /* O0523 geda_bus_object_translate */
 
     geda_bus_object_translate(object, -1000, off);
 
     if (line->x[0] - x1 + 1000 || line->y[0] - y1 - off) {
-      fprintf(stderr, "FAILED: (O052201) bus x[0]=%d, y[0]=%d\n", line->x[0], line->y[0]);
+      fprintf(stderr, "FAILED: (O052301) bus x[0]=%d, y[0]=%d\n", line->x[0], line->y[0]);
       fail++;
     }
 

@@ -11,6 +11,7 @@ test_attrib_object
 test_box
 test_box_object
 test_bus
+test_bus_object
 test_circle
 test_complex
 test_file
