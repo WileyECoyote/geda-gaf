@@ -1,3 +1,10 @@
+2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add mapping GtkStateFlags to GtkStateType.
+
+    * include/geda_image_menu_item.h: Rename is_a_geda_menu_item->
+      is_a_geda_image_menu_item.
+
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_accel_label.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE,

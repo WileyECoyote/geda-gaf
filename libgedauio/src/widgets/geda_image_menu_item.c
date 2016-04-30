@@ -519,7 +519,7 @@ geda_image_menu_item_get_type (void)
  *
  */
 bool
-is_a_geda_menu_item (GedaImageMenuItem *image_menu_item)
+is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
 {
   if (G_IS_OBJECT(image_menu_item)) {
     return (geda_image_menu_item_get_type() == image_menu_item->instance_type);
