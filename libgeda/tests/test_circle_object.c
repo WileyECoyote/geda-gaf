@@ -64,14 +64,14 @@
  *               geda_circle_object_new
  *               geda_circle_object_get_position
  *               geda_circle_object_print
- *               geda_circle_object_print_solid
- *               geda_circle_object_print_dotted
- *               geda_circle_object_print_dashed
  *               geda_circle_object_print_center
- *               geda_circle_object_print_phantom
+ *               geda_circle_object_print_dashed
+ *               geda_circle_object_print_dotted
  *               geda_circle_object_print_filled
- *               geda_circle_object_print_mesh
  *               geda_circle_object_print_hatch
+ *               geda_circle_object_print_mesh
+ *               geda_circle_object_print_phantom
+ *               geda_circle_object_print_solid
  *               geda_circle_object_read
  *               geda_circle_object_rotate
  *               geda_circle_object_save

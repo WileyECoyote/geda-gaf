@@ -645,249 +645,6 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
 }
 
 /*! O0213
- * \brief Print a Solid Arc
- * \par Function Description
- *  This function prints an arc when a solid line type is required.
- *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
- *  in <B>radius</B> and the start and end angles of the arc on the circle.
- *  The postscript file is defined by the file pointer <B>fp</B>.
- *
- *  The parameters <B>length</B> and <B>space</B> are ignored
- *  whereas <B>arc_width</B> specifies the width of the printed line.
- *
- *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
- *
- * \param [in] toplevel  The GedaToplevel object.
- * \param [in] fp         FILE pointer to postscript document.
- * \param [in] x
- * \param [in] y
- * \param [in] radius
- * \param [in] angle1
- * \param [in] angle2
- * \param [in] color
- * \param [in] arc_width
- * \param [in] capstyle
- * \param [in] length
- * \param [in] space
- * \param [in] origin_x
- * \param [in] origin_y
- */
-void
-geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
-                            int x, int y, int radius,
-                            int angle1, int angle2,
-                            int color,
-                            int arc_width,
-                            int capstyle, int length, int space,
-                            int origin_x, int origin_y)
-{
-  f_print_set_color(toplevel, fp, color);
-
-  /* inverting angle2 if < 0 and changing angle1 accordingly */
-  if (angle2 < 0) {
-    angle1 = angle1 + angle2;
-    angle2 = -angle2;
-  }
-
-  fprintf(fp, "%d %d %d %d %d %d %d darc\n",
-          x,y, radius, angle1, angle1 + angle2, arc_width, capstyle);
-
-}
-
-/*! O0214
- * \brief
- *  \par Function Description
- *  This function prints an arc when a dotted line type is required.
- *  The arc is defined by its center in <B>x</B> and <B>y</B>, its
- *  radius in <B>radius</B> and the start and end angles of the arc on the circle.
- *  The postscript file is defined by the file pointer <B>fp</B>.
- *  The parameter <B>length</B> is ignored whereas <B>arc_width</B> specifies
- *  the diameter of the dots of the printed line and <B>space</B> the distance
- *  between two dots.
- *
- *  A negative value for <B>space</B> leads to an endless loop.
- *
- *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
- *
- *  The function sets the color the line will be printed with.
- *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to postscript document.
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] angle1
- *  \param [in] angle2
- *  \param [in] color
- *  \param [in] arc_width
- *  \param [in] capstyle
- *  \param [in] length
- *  \param [in] space
- *  \param [in] origin_x
- *  \param [in] origin_y
- */
-void
-geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                             int x, int y, int radius,
-                             int angle1, int angle2,
-                             int color,
-                             int arc_width,
-                             int capstyle, int length, int space,
-                             int origin_x, int origin_y)
-{
-  int da, d;
-
-  f_print_set_color(toplevel, fp, color);
-
-  /*! \note
-   *  Depending on the radius of the arc, the <B>space</B> parameter is
-   *  changed into a small angle <B>da</B>.
-   *  Starting from <B>angle1</B> - the start angle - the dots are printed
-   *  along the arc by increments of this new angle.
-   *
-   *  As <B>da</B> is rounded as an integer, it can take a null value which
-   *  will make the function enter an endless loop. In such a case, the arc
-   *  is printed solid. The <B>da</B> variable should never be negative
-   *  except if <B>space</B> is negative.
-   */
-
-  /* Inverting angle2 if < 0 and changing angle1 accordingly */
-  /* the loop test assume that da > 0 */
-  if (angle2 < 0) {
-    angle1 = angle1 + angle2;
-    angle2 = -angle2;
-  }
-  da = (int) ((space * 180) / (M_PI * ((double) radius)));
-
-  /* If da is too small to display arc as dotted, draw a solid arc */
-  if (da <= 0) {
-    geda_arc_object_print_solid(toplevel, fp,
-                      x, y, radius,
-                      angle1, angle2,
-                      color,
-                      arc_width, capstyle, length, space, origin_x, origin_y);
-    return;
-  }
-
-  fprintf(fp,"[");
-  d = angle1;
-  while (d < (angle2 + angle1)) {
-    /*  xa = ((double) x) + ((double) radius) * cos(d * M_PI / 180);
-     *  ya = ((double) y) + ((double) radius) * sin(d * M_PI / 180);
-     */
-    fprintf(fp,"[%d] ",d);
-
-    d = d + da;
-  }
-  fprintf(fp,"] %d %d %d %d %d dashedarc %% dotted\n",
-          x,y, radius, arc_width, capstyle);
-}
-
-/*! O0215
- * \brief
- *  \par Function Description
- *  This function prints an arc when a dashed line type is required. The arc
- *  is defined by its center in <B>x</B> and <B>y</B>, its radius in <B>radius</B>
- *  and the start and end angles of the arc on the circle. The postscript file
- *  is defined by the file pointer <B>fp</B>. The parameter <B>arc_width</B> specifies
- *  the diameter of the dots of the printed line.
- *
- *  A negative value for <B>space</B> or <B>length</B> leads to an endless loop.
- *
- *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
- *
- *  The function sets the color the line will be printed with.
- *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to postscript document.
- *  \param [in] x
- *  \param [in] y
- *  \param [in] radius
- *  \param [in] angle1
- *  \param [in] angle2
- *  \param [in] color
- *  \param [in] arc_width
- *  \param [in] capstyle
- *  \param [in] length
- *  \param [in] space
- *  \param [in] origin_x
- *  \param [in] origin_y
- */
-void
-geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                             int x, int y, int radius,
-                             int angle1, int angle2,
-                             int color,
-                             int arc_width,
-                             int capstyle, int length, int space,
-                             int origin_x, int origin_y)
-{
-  int da, db, a1, d;
-
-  f_print_set_color(toplevel, fp, color);
-
-  /*! \note
-   *  Depending on the radius of the arc, the <B>space</B> (resp. <B>length</B>)
-   *  parameter is changed into a small angle <B>da</B> (resp. <B>db</B>).
-   *  Starting from <B>angle1</B> - the start angle - the dashes are printed
-   *  along the arc by increments of these new angles.
-   *
-   *  As <B>da</B> (resp. <B>db</B>) is rounded as an integer, it can take a
-   *  null value which will make the function enter an endless loop. In such a case,
-   *  the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable should never
-   *  be negative except if <B>space</B> (resp. <B>length</B>) is negative.
-   *
-   *  It prints as many dashes of length <B>length</B> as possible.
-   */
-
-  /* Inverting angle2 if < 0 and changing angle1 accordingly */
-  /* the loop test assume that da > 0 */
-  if (angle2 < 0) {
-    angle1 = angle1 + angle2;
-    angle2 = -angle2;
-  }
-
-  da = (int) ((length * 180) / (M_PI * ((double) radius)));
-  db = (int) ((space  * 180) / (M_PI * ((double) radius)));
-
-  /* If da or db too small for arc to be displayed as dotted, draw a solid arc */
-  if ((da <= 0) || (db <= 0)) {
-    geda_arc_object_print_solid(toplevel, fp,
-                      x, y, radius,
-                      angle1, angle2,
-                      color,
-                      arc_width, capstyle, length, space, origin_x, origin_y);
-    return;
-  }
-
-  fprintf(fp,"[");
-  d = angle1;
-  while ((d + da + db) < (angle1 + angle2)) {
-    a1 = d;
-    d = d + da;
-
-    fprintf(fp,"[%d %d] ",
-            a1, a1+da);
-
-    d = d + db;
-  }
-  /*! \note
-   *  When the above condition is no more satisfied, then it is not possible
-   *  to print a dash of length <B>length</B> and the following <B>space</B>.
-   *  However it may be possible to print the complete dash or a shorter one.
-   */
-
-  a1 = d;
-
-  fprintf(fp,"[%d %d] ", a1, a1 + da);
-
-
-  fprintf(fp,"] %d %d %d %d %d dashedarc %% dashed\n",
-          x,y, radius, arc_width, capstyle);
-
-}
-
-/*! O0216
  * \brief
  *  \par Function Description
  *  This function prints an arc when a centered line type is required. The
@@ -1009,12 +766,205 @@ geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
+/*! O0214
+ * \brief
+ *  \par Function Description
+ *  This function prints an arc when a dashed line type is required. The arc
+ *  is defined by its center in <B>x</B> and <B>y</B>, its radius in <B>radius</B>
+ *  and the start and end angles of the arc on the circle. The postscript file
+ *  is defined by the file pointer <B>fp</B>. The parameter <B>arc_width</B> specifies
+ *  the diameter of the dots of the printed line.
+ *
+ *  A negative value for <B>space</B> or <B>length</B> leads to an endless loop.
+ *
+ *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
+ *
+ *  The function sets the color the line will be printed with.
+ *
+ *  \param [in] toplevel  The GedaToplevel object.
+ *  \param [in] fp         FILE pointer to postscript document.
+ *  \param [in] x
+ *  \param [in] y
+ *  \param [in] radius
+ *  \param [in] angle1
+ *  \param [in] angle2
+ *  \param [in] color
+ *  \param [in] arc_width
+ *  \param [in] capstyle
+ *  \param [in] length
+ *  \param [in] space
+ *  \param [in] origin_x
+ *  \param [in] origin_y
+ */
+void
+geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y, int radius,
+                             int angle1, int angle2,
+                             int color,
+                             int arc_width,
+                             int capstyle, int length, int space,
+                             int origin_x, int origin_y)
+{
+  int da, db, a1, d;
+
+  f_print_set_color(toplevel, fp, color);
+
+  /*! \note
+   *  Depending on the radius of the arc, the <B>space</B> (resp. <B>length</B>)
+   *  parameter is changed into a small angle <B>da</B> (resp. <B>db</B>).
+   *  Starting from <B>angle1</B> - the start angle - the dashes are printed
+   *  along the arc by increments of these new angles.
+   *
+   *  As <B>da</B> (resp. <B>db</B>) is rounded as an integer, it can take a
+   *  null value which will make the function enter an endless loop. In such a case,
+   *  the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable should never
+   *  be negative except if <B>space</B> (resp. <B>length</B>) is negative.
+   *
+   *  It prints as many dashes of length <B>length</B> as possible.
+   */
+
+  /* Inverting angle2 if < 0 and changing angle1 accordingly */
+  /* the loop test assume that da > 0 */
+  if (angle2 < 0) {
+    angle1 = angle1 + angle2;
+    angle2 = -angle2;
+  }
+
+  da = (int) ((length * 180) / (M_PI * ((double) radius)));
+  db = (int) ((space  * 180) / (M_PI * ((double) radius)));
+
+  /* If da or db too small for arc to be displayed as dotted, draw a solid arc */
+  if ((da <= 0) || (db <= 0)) {
+    geda_arc_object_print_solid(toplevel, fp,
+                      x, y, radius,
+                      angle1, angle2,
+                      color,
+                      arc_width, capstyle, length, space, origin_x, origin_y);
+    return;
+  }
+
+  fprintf(fp,"[");
+  d = angle1;
+  while ((d + da + db) < (angle1 + angle2)) {
+    a1 = d;
+    d = d + da;
+
+    fprintf(fp,"[%d %d] ",
+            a1, a1+da);
+
+    d = d + db;
+  }
+  /*! \note
+   *  When the above condition is no more satisfied, then it is not possible
+   *  to print a dash of length <B>length</B> and the following <B>space</B>.
+   *  However it may be possible to print the complete dash or a shorter one.
+   */
+
+  a1 = d;
+
+  fprintf(fp,"[%d %d] ", a1, a1 + da);
+
+
+  fprintf(fp,"] %d %d %d %d %d dashedarc %% dashed\n",
+          x,y, radius, arc_width, capstyle);
+
+}
+
+/*! O0215
+ * \brief
+ *  \par Function Description
+ *  This function prints an arc when a dotted line type is required.
+ *  The arc is defined by its center in <B>x</B> and <B>y</B>, its
+ *  radius in <B>radius</B> and the start and end angles of the arc on the circle.
+ *  The postscript file is defined by the file pointer <B>fp</B>.
+ *  The parameter <B>length</B> is ignored whereas <B>arc_width</B> specifies
+ *  the diameter of the dots of the printed line and <B>space</B> the distance
+ *  between two dots.
+ *
+ *  A negative value for <B>space</B> leads to an endless loop.
+ *
+ *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
+ *
+ *  The function sets the color the line will be printed with.
+ *
+ *  \param [in] toplevel  The GedaToplevel object.
+ *  \param [in] fp         FILE pointer to postscript document.
+ *  \param [in] x
+ *  \param [in] y
+ *  \param [in] radius
+ *  \param [in] angle1
+ *  \param [in] angle2
+ *  \param [in] color
+ *  \param [in] arc_width
+ *  \param [in] capstyle
+ *  \param [in] length
+ *  \param [in] space
+ *  \param [in] origin_x
+ *  \param [in] origin_y
+ */
+void
+geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                             int x, int y, int radius,
+                             int angle1, int angle2,
+                             int color,
+                             int arc_width,
+                             int capstyle, int length, int space,
+                             int origin_x, int origin_y)
+{
+  int da, d;
+
+  f_print_set_color(toplevel, fp, color);
+
+  /*! \note
+   *  Depending on the radius of the arc, the <B>space</B> parameter is
+   *  changed into a small angle <B>da</B>.
+   *  Starting from <B>angle1</B> - the start angle - the dots are printed
+   *  along the arc by increments of this new angle.
+   *
+   *  As <B>da</B> is rounded as an integer, it can take a null value which
+   *  will make the function enter an endless loop. In such a case, the arc
+   *  is printed solid. The <B>da</B> variable should never be negative
+   *  except if <B>space</B> is negative.
+   */
+
+  /* Inverting angle2 if < 0 and changing angle1 accordingly */
+  /* the loop test assume that da > 0 */
+  if (angle2 < 0) {
+    angle1 = angle1 + angle2;
+    angle2 = -angle2;
+  }
+  da = (int) ((space * 180) / (M_PI * ((double) radius)));
+
+  /* If da is too small to display arc as dotted, draw a solid arc */
+  if (da <= 0) {
+    geda_arc_object_print_solid(toplevel, fp,
+                      x, y, radius,
+                      angle1, angle2,
+                      color,
+                      arc_width, capstyle, length, space, origin_x, origin_y);
+    return;
+  }
+
+  fprintf(fp,"[");
+  d = angle1;
+  while (d < (angle2 + angle1)) {
+    /*  xa = ((double) x) + ((double) radius) * cos(d * M_PI / 180);
+     *  ya = ((double) y) + ((double) radius) * sin(d * M_PI / 180);
+     */
+    fprintf(fp,"[%d] ",d);
+
+    d = d + da;
+  }
+  fprintf(fp,"] %d %d %d %d %d dashedarc %% dotted\n",
+          x,y, radius, arc_width, capstyle);
+}
+
 /*! \note
  *  A dot is represented by a filled circle. Position of the circle is (<B>xa</B>,
  *  <B>ya</B>) and its radius is the <B>arc_width</B> parameter.
  */
 
-/*! O0217
+/*! O0216
  * \brief
  * \par Function Description
  *  This function prints an arc when a phantom line type is required.
@@ -1161,6 +1111,56 @@ geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
+/*! O0217
+ * \brief Print a Solid Arc
+ * \par Function Description
+ *  This function prints an arc when a solid line type is required.
+ *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
+ *  in <B>radius</B> and the start and end angles of the arc on the circle.
+ *  The postscript file is defined by the file pointer <B>fp</B>.
+ *
+ *  The parameters <B>length</B> and <B>space</B> are ignored
+ *  whereas <B>arc_width</B> specifies the width of the printed line.
+ *
+ *  All dimensions are in mils, except <B>angle1</B> and <B>angle2</B> in degrees.
+ *
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp         FILE pointer to postscript document.
+ * \param [in] x
+ * \param [in] y
+ * \param [in] radius
+ * \param [in] angle1
+ * \param [in] angle2
+ * \param [in] color
+ * \param [in] arc_width
+ * \param [in] capstyle
+ * \param [in] length
+ * \param [in] space
+ * \param [in] origin_x
+ * \param [in] origin_y
+ */
+void
+geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                            int x, int y, int radius,
+                            int angle1, int angle2,
+                            int color,
+                            int arc_width,
+                            int capstyle, int length, int space,
+                            int origin_x, int origin_y)
+{
+  f_print_set_color(toplevel, fp, color);
+
+  /* inverting angle2 if < 0 and changing angle1 accordingly */
+  if (angle2 < 0) {
+    angle1 = angle1 + angle2;
+    angle2 = -angle2;
+  }
+
+  fprintf(fp, "%d %d %d %d %d %d %d darc\n",
+          x,y, radius, angle1, angle1 + angle2, arc_width, capstyle);
+
+}
+
 /*! O0218
  * \brief
  * \par Function Description
@@ -1193,17 +1193,18 @@ geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  */
 GedaObject*
 geda_arc_object_read (const char buf[], unsigned int release_ver,
-                      unsigned int fileformat_ver, GError **err)
+                                        unsigned int fileformat_ver,
+                                        GError **err)
 {
   GedaObject *new_obj;
   char type;
-  int x1, y1;
-  int radius;
-  int start_angle, arc_sweep;
-  int color;
-  int arc_width, arc_length, arc_space;
-  int arc_type;
-  int arc_end;
+  int  x1, y1;
+  int  radius;
+  int  start_angle, arc_sweep;
+  int  color;
+  int  arc_width, arc_length, arc_space;
+  int  arc_type;
+  int  arc_end;
 
   /*! \note
    *  Depending on the version of the file format used to describe this arc,

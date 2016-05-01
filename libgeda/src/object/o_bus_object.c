@@ -545,7 +545,7 @@ geda_bus_object_print(GedaToplevel *toplevel,  FILE *fp,
  *
  * \return The object list, or NULL on error.
  */
-GedaObject *
+GedaObject*
 geda_bus_object_read(const char     buf[],
                      unsigned int   release_ver,
                      unsigned int   fileformat_ver,

@@ -553,236 +553,6 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 }
 
 /*!
- * \brief Print a solid line to Postscript document.
- * \par Function Description
- *  This function prints a line when a solid line type is required.
- *  The line is defined by the coordinates of its two ends in
- *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
- *  The Postscript document is defined by the file pointer <B>fp</B>.
- *  The parameters <B>length</B> and <B>space</B> are ignored whereas
- *  <B>line_width</B> specifies the width of the printed line.
- *
- * \param [in] toplevel     The GedaToplevel object.
- * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
- * \param [in] color         Line color.
- * \param [in] line_width    Width of line.
- * \param [in] capstyle      Capstyle of line.
- * \param [in] length        (unused).
- * \param [in] space         (unused).
- * \param [in] origin_x      Page x coordinate to place line Object.
- * \param [in] origin_y      Page y coordinate to place line Object.
- */
-void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
-                        int x1, int y1, int x2, int y2,
-                        int color,
-                        int line_width, int capstyle, int length, int space,
-                        int origin_x, int origin_y)
-{
-  f_print_set_color(toplevel, fp, color);
-
-  fprintf(fp,"%d %d %d %d %d %d line\n", x1,y1,x2,y2, line_width, capstyle);
-}
-
-/*!
- * \brief Print a dotted line to Postscript document.
- * \par Function Description
- *  This function prints a line when a dotted line type is required.
- *  The line is defined by the coordinates of its two ends in
- *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
- *  The Postscript document is defined by the file pointer <B>fp</B>.
- *  The parameter <B>length</B> is ignored whereas <B>line_width</B>
- *  specifies the diameter of the dots and <B>space</B> the distance
- *  between two dots.
- *
- *  A negative value for <B>space</B> leads to an endless loop.
- *
- *  All dimensions are in mils.
- *
- *  The function sets the color in which the line will be printed with.
- *
- * \param [in] toplevel     The GedaToplevel object.
- * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
- * \param [in] color         Line color.
- * \param [in] line_width    Width of line.
- * \param [in] capstyle      Capstyle of circle lines.
- * \param [in] length        (unused).
- * \param [in] space         Space between dots.
- * \param [in] origin_x      Page x coordinate to place line Object.
- * \param [in] origin_y      Page y coordinate to place line Object.
- */
-void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2,
-                         int color,
-                         int line_width, int capstyle, int length, int space,
-                         int origin_x, int origin_y)
-{
-  double dx, dy, l, d;
-  double dx1, dy1;
-  double xa, ya;
-
-  f_print_set_color(toplevel, fp, color);
-
-  /* The dotted line command takes an array of dots so print out the
-   * beginnings of the array
-   */
-  fprintf(fp,"[");
-  /* is the width relevant for a dot (circle) ? */
-  /* f_print_set_line_width(fp, line_width); */
-
-  /*
-   * Depending on the slope of the line the space parameter is
-   * projected on each of the two directions x and y resulting
-   * in <B>dx1</B> and <B>dy1</B>. Starting from one end by increments
-   * of space the dots are printed.
-   *
-   * A dot is represented by a filled circle. Position of the
-   * circle is (<B>xa</B>, <B>ya</B>) and its radius is the <B>line_width</B>
-   * parameter.
-   */
-
-  dx = (double) (x2 - x1);
-  dy = (double) (y2 - y1);
-
-#if HAVE_HYPOT
-  l = hypot (dx, dy);
-#else
-  l = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-  dx1 = (dx * space) / l;
-  dy1 = (dy * space) / l;
-
-  d = 0;
-  xa = x1; ya = y1;
-
-  while(d < l) {
-
-    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
-    d = d + space;
-    xa = xa + dx1;
-    ya = ya + dy1;
-  }
-
-  fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
-}
-
-/*!
- * \brief Print a dashed line to Postscript document.
- * \par Function Description
- *  This function prints a line when a dashed line type is required.
- *  The line is defined by the coordinates of its two ends in
- *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
- *  The postscript file is defined by the file pointer <B>fp</B>.
- *
- *  A negative value for <B>space</B> or <B>length</B> leads to an
- *  endless loop.
- *
- *  All dimensions are in mils.
- *
- *  The function sets the color in which the line will be printed and
- *  the width of the line - that is the width of the dashes.
- *
- * \param [in] toplevel      The GedaToplevel object.
- * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
- * \param [in] color         Line color.
- * \param [in] line_width    Width of line.
- * \param [in] capstyle      Capstyle of line.
- * \param [in] length        Length of a dash.
- * \param [in] space         Space between dashes.
- * \param [in] origin_x      Page x coordinate to place line Object.
- * \param [in] origin_y      Page y coordinate to place line Object.
- */
-void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2,
-                         int color,
-                         int line_width, int capstyle, int length, int space,
-                         int origin_x, int origin_y)
-{
-  double dx, dy, l, d;
-  double dx1, dy1, dx2, dy2;
-  double xa, ya, xb, yb;
-
-  f_print_set_color(toplevel, fp, color);
-
-  /* the dashed line function takes an array of start-finish pairs
-   * output the beginnings of the array now
-   */
-  fprintf(fp,"[");
-
-  /*
-   * Depending on the slope of the line the <B>length</B> (resp. <B>space</B>)
-   * parameter is projected on each of the two directions x and y
-   * resulting in <B>dx1</B> and <B>dy1</B> (resp. <B>dx2</B> and <B>dy2</B>).
-   * Starting from one end and incrementing alternatively by <B>space</B>
-   * and <B>length</B> the dashes are printed.
-   *
-   * It prints as many dashes of length <B>length</B> as possible.
-   */
-  dx = (double) (x2 - x1);
-  dy = (double) (y2 - y1);
-
-#if HAVE_HYPOT
-  l = hypot (dx, dy);
-#else
-  l = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-  dx1 = (dx * length) / l;
-  dy1 = (dy * length) / l;
-
-  dx2 = (dx * space) / l;
-  dy2 = (dy * space) / l;
-
-  d  = 0;
-  xa = x1; ya = y1;
-
-  while((d + length + space) < l) {
-
-    d  = d + length;
-    xb = xa + dx1;
-    yb = ya + dy1;
-
-    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
-
-    d  = d + space;
-    xa = xb + dx2;
-    ya = yb + dy2;
-  }
-
-  /*
-   * When the above condition is no more satisfied, then it is not possible
-   * to print a dash of length <B>length</B>. However it may be possible to
-   * print the complete dash or a shorter one.
-   */
-
-  if ((d + length) < l) {
-    xb = xa + dx1;
-    yb = ya + dy1;
-  }
-  else {
-    xb = x2;
-    yb = y2;
-  }
-
-  fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
-
-  fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
-}
-
-
-/*!
  * \brief Print a centered line type line to Postscript document.
  * \par Function Description
  *  This function prints a line when a centered line type is required.
@@ -814,10 +584,10 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2,
-                         int color,
-                         int line_width, int capstyle, int length, int space,
-                         int origin_x, int origin_y)
+                         int x1, int y1, int x2, int y2, int color,
+                         int line_width, int capstyle,
+                         int length,     int space,
+                         int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -922,6 +692,200 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
 }
 
 /*!
+ * \brief Print a dashed line to Postscript document.
+ * \par Function Description
+ *  This function prints a line when a dashed line type is required.
+ *  The line is defined by the coordinates of its two ends in
+ *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
+ *  The postscript file is defined by the file pointer <B>fp</B>.
+ *
+ *  A negative value for <B>space</B> or <B>length</B> leads to an
+ *  endless loop.
+ *
+ *  All dimensions are in mils.
+ *
+ *  The function sets the color in which the line will be printed and
+ *  the width of the line - that is the width of the dashes.
+ *
+ * \param [in] toplevel      The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        Length of a dash.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
+ */
+void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                         int x1, int y1, int x2, int y2, int color,
+                         int line_width, int capstyle,
+                         int length,     int space,
+                         int origin_x,   int origin_y)
+{
+  double dx, dy, l, d;
+  double dx1, dy1, dx2, dy2;
+  double xa, ya, xb, yb;
+
+  f_print_set_color(toplevel, fp, color);
+
+  /* the dashed line function takes an array of start-finish pairs
+   * output the beginnings of the array now
+   */
+  fprintf(fp,"[");
+
+  /*
+   * Depending on the slope of the line the <B>length</B> (resp. <B>space</B>)
+   * parameter is projected on each of the two directions x and y
+   * resulting in <B>dx1</B> and <B>dy1</B> (resp. <B>dx2</B> and <B>dy2</B>).
+   * Starting from one end and incrementing alternatively by <B>space</B>
+   * and <B>length</B> the dashes are printed.
+   *
+   * It prints as many dashes of length <B>length</B> as possible.
+   */
+  dx = (double) (x2 - x1);
+  dy = (double) (y2 - y1);
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
+  l = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+  dx1 = (dx * length) / l;
+  dy1 = (dy * length) / l;
+
+  dx2 = (dx * space) / l;
+  dy2 = (dy * space) / l;
+
+  d  = 0;
+  xa = x1; ya = y1;
+
+  while((d + length + space) < l) {
+
+    d  = d + length;
+    xb = xa + dx1;
+    yb = ya + dy1;
+
+    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
+
+    d  = d + space;
+    xa = xb + dx2;
+    ya = yb + dy2;
+  }
+
+  /*
+   * When the above condition is no more satisfied, then it is not possible
+   * to print a dash of length <B>length</B>. However it may be possible to
+   * print the complete dash or a shorter one.
+   */
+
+  if ((d + length) < l) {
+    xb = xa + dx1;
+    yb = ya + dy1;
+  }
+  else {
+    xb = x2;
+    yb = y2;
+  }
+
+  fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
+
+  fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
+}
+
+/*!
+ * \brief Print a dotted line to Postscript document.
+ * \par Function Description
+ *  This function prints a line when a dotted line type is required.
+ *  The line is defined by the coordinates of its two ends in
+ *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
+ *  The Postscript document is defined by the file pointer <B>fp</B>.
+ *  The parameter <B>length</B> is ignored whereas <B>line_width</B>
+ *  specifies the diameter of the dots and <B>space</B> the distance
+ *  between two dots.
+ *
+ *  A negative value for <B>space</B> leads to an endless loop.
+ *
+ *  All dimensions are in mils.
+ *
+ *  The function sets the color in which the line will be printed with.
+ *
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        (unused).
+ * \param [in] space         Space between dots.
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
+ */
+void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                         int x1, int y1, int x2, int y2, int color,
+                         int line_width, int capstyle,
+                         int length,     int space,
+                         int origin_x,   int origin_y)
+{
+  double dx, dy, l, d;
+  double dx1, dy1;
+  double xa, ya;
+
+  f_print_set_color(toplevel, fp, color);
+
+  /* The dotted line command takes an array of dots so print out the
+   * beginnings of the array
+   */
+  fprintf(fp,"[");
+  /* is the width relevant for a dot (circle) ? */
+  /* f_print_set_line_width(fp, line_width); */
+
+  /*
+   * Depending on the slope of the line the space parameter is
+   * projected on each of the two directions x and y resulting
+   * in <B>dx1</B> and <B>dy1</B>. Starting from one end by increments
+   * of space the dots are printed.
+   *
+   * A dot is represented by a filled circle. Position of the
+   * circle is (<B>xa</B>, <B>ya</B>) and its radius is the <B>line_width</B>
+   * parameter.
+   */
+
+  dx = (double) (x2 - x1);
+  dy = (double) (y2 - y1);
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
+  l = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+  dx1 = (dx * space) / l;
+  dy1 = (dy * space) / l;
+
+  d = 0;
+  xa = x1; ya = y1;
+
+  while(d < l) {
+
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
+    d = d + space;
+    xa = xa + dx1;
+    ya = ya + dy1;
+  }
+
+  fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
+}
+
+/*!
  * \brief Print a phantom line type line to Postscript document.
  * \par Function Description
  *  This function prints a line when a phantom line type is required.
@@ -953,10 +917,10 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
 void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                          int x1, int y1, int x2, int y2,
-                          int color,
-                          int line_width, int capstyle, int length, int space,
-                          int origin_x, int origin_y)
+                          int x1, int y1, int x2, int y2, int color,
+                          int line_width, int capstyle,
+                          int length,     int space,
+                          int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -1087,6 +1051,41 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
   }
 
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
+}
+
+/*!
+ * \brief Print a solid line to Postscript document.
+ * \par Function Description
+ *  This function prints a line when a solid line type is required.
+ *  The line is defined by the coordinates of its two ends in
+ *  (<B>x1</B>,<B>y1</B>) and (<B>x2</B>,<B>y2</B>).
+ *  The Postscript document is defined by the file pointer <B>fp</B>.
+ *  The parameters <B>length</B> and <B>space</B> are ignored whereas
+ *  <B>line_width</B> specifies the width of the printed line.
+ *
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] color         Line color.
+ * \param [in] line_width    Width of line.
+ * \param [in] capstyle      Capstyle of line.
+ * \param [in] length        (unused).
+ * \param [in] space         (unused).
+ * \param [in] origin_x      Page x coordinate to place line Object.
+ * \param [in] origin_y      Page y coordinate to place line Object.
+ */
+void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
+                        int x1, int y1, int x2, int y2, int color,
+                        int line_width, int capstyle,
+                        int length,     int space,
+                        int origin_x,   int origin_y)
+{
+  f_print_set_color(toplevel, fp, color);
+
+  fprintf(fp,"%d %d %d %d %d %d line\n", x1,y1,x2,y2, line_width, capstyle);
 }
 
 /*!
