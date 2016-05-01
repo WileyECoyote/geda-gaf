@@ -1080,17 +1080,20 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       }
       else {
 
+        char *name = w_current->bus_ripper_symname;
+
         if (rippersym != NULL) {
-          new_obj = o_complex_new (toplevel, rippers[i].x[0], rippers[i].y[0],
-                                   complex_angle, 0, rippersym,
-                                   w_current->bus_ripper_symname, 1);
+          new_obj = geda_complex_object_new (toplevel, rippers[i].x[0],
+                                                       rippers[i].y[0],
+                                                       complex_angle, 0,
+                                                       rippersym, name, 1);
           s_page_append_list (toplevel->page_current,
-                              o_complex_promote_attribs (toplevel, new_obj));
+                              geda_complex_object_promote_attribs (toplevel, new_obj));
           s_page_append_object (toplevel->page_current, new_obj);
         }
         else {
           u_log_message(_("Bus ripper symbol [%s] was not found in any component library\n"),
-                        w_current->bus_ripper_symname);
+                           name);
         }
       }
     }

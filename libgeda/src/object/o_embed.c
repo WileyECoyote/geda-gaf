@@ -44,7 +44,7 @@ bool o_embed(GedaToplevel *toplevel, GedaObject *o_current)
   int page_modified = 0;
 
   /* check o_current is a complex and is not already embedded */
-  if (GEDA_IS_COMPLEX(o_current) && !o_complex_is_embedded (o_current))
+  if (GEDA_IS_COMPLEX(o_current) && !geda_complex_object_is_embedded (o_current))
   {
     /* set the embedded flag */
     o_current->complex->is_embedded = 1;
@@ -81,7 +81,7 @@ void o_unembed(GedaToplevel *toplevel, GedaObject *o_current)
   int   page_modified = 0;
 
   /* check o_current is an embedded complex */
-  if (GEDA_IS_COMPLEX(o_current) && o_complex_is_embedded (o_current))
+  if (GEDA_IS_COMPLEX(o_current) && geda_complex_object_is_embedded (o_current))
   {
     const CLibSymbol *sym;
 

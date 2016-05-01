@@ -232,19 +232,19 @@ extern "C" {
          void    geda_circle_object_translate         (GedaObject *object, int dx, int dy);
 
 /* o_complex_object.c */
-   GedaObject   *o_complex_copy                  (GedaObject *o_current);
-         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
-         bool    o_complex_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
-   GedaObject   *o_complex_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
-          int    o_complex_is_embedded           (GedaObject *o_current);
-         void    o_complex_mirror                (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
-                                                  const CLibSymbol *clib_sym, const char *basename, int selectable);
-   GedaObject   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
-        GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, GedaObject *object);
-         void    o_complex_reset_refdes          (GedaObject *object);
-         void    o_complex_rotate                (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_complex_translate             (GedaObject *object, int dx, int dy);
+   GedaObject   *geda_complex_object_copy                  (GedaObject *o_current);
+         void    geda_complex_object_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
+         bool    geda_complex_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+   GedaObject   *geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
+          int    geda_complex_object_is_embedded           (GedaObject *o_current);
+         void    geda_complex_object_mirror                (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_complex_object_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
+                                                            const CLibSymbol *clib_sym, const char *basename, int selectable);
+   GedaObject   *geda_complex_object_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
+        GList   *geda_complex_object_promote_attribs       (GedaToplevel *toplevel, GedaObject *object);
+         void    geda_complex_object_reset_refdes          (GedaObject *object);
+         void    geda_complex_object_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_complex_object_translate             (GedaObject *object, int dx, int dy);
 
 /* o_color.c */
           int    o_color_get_object_default      (char type);

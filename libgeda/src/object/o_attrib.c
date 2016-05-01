@@ -693,7 +693,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
 
       case(OBJ_COMPLEX):
       case(OBJ_PLACEHOLDER):
-        new_obj = o_complex_read (toplevel, line, release_ver, fileformat_ver, err);
+        new_obj = geda_complex_object_read (toplevel, line, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);
@@ -843,7 +843,7 @@ geda_attrib_object_return_attribs (const GedaObject *object)
  *
  * \return Character string with attribute value, NULL otherwise.
  *
- * \called by
+ * called by:
  */
 static char*
 geda_attrib_object_search_attrib_list_by_name (const GList *list,
@@ -891,16 +891,16 @@ geda_attrib_object_search_attached_by_name (const GedaObject *object,
 }
 
 /*!
- * \brief Search floating attribute by name.
+ * \brief Search floating attribute by name
  * \par Function Description
  *  Search for attribute by name.
  *
  *  Count is the n'th occurance of the attribute, and starts searching
  *  from zero.  Zero is the first occurance of an attribute.
  *
- * \param [in] list     GList of Objects to search for floating attributes.
- * \param [in] name     Character string with attribute name to search for.
- * \param [in] counter  Which occurance to return.
+ * \param [in] list   GList of Objects to search for floating attributes.
+ * \param [in] name   Character string with attribute name to search for.
+ * \param [in] count  Which occurance to return.
  *
  * \return Character string with attribute value, NULL otherwise.
  *

@@ -129,7 +129,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
 
    GedaObject *new_object;
 
-    new_object = o_complex_new (toplevel, 0, 0, 0, 0, sym, sym_name, 1);
+    new_object = geda_complex_object_new (toplevel, 0, 0, 0, 0, sym, sym_name, 1);
 
     if (new_object->type == OBJ_PLACEHOLDER) {
 
@@ -141,7 +141,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
 
       GedaObject *o_current;
 
-      GList *promoted   = o_complex_promote_attribs (toplevel, new_object);
+      GList *promoted   = geda_complex_object_promote_attribs (toplevel, new_object);
 
       Current_PlaceList = g_list_concat (Current_PlaceList, promoted);
 

@@ -135,7 +135,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
       if (last_complex && objtype != STARTATTACH_ATTR) {
         /* yes */
         /* verify symbol version (not file format but rather contents) */
-        o_complex_check_symbol_version(toplevel, last_complex);
+        geda_complex_object_check_symbol_version(toplevel, last_complex);
         last_complex = NULL;  /* no longer need to check */
       }
     }
@@ -143,7 +143,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
       case(OBJ_COMPLEX):
       case(OBJ_PLACEHOLDER): /* Really? */
-        new_obj = o_complex_read (toplevel, line, release_ver, fileformat_ver, err);
+        new_obj = geda_complex_object_read (toplevel, line, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
 
@@ -245,7 +245,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           if (toplevel->check_symbol_version && last_complex) {
             /* yes */
             /* verify symbol version (not file format but rather contents) */
-            o_complex_check_symbol_version(toplevel, last_complex);
+            geda_complex_object_check_symbol_version(toplevel, last_complex);
             last_complex = NULL;
           }
 
@@ -402,7 +402,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   /* yet?  This would happen if the complex is at the very end of the file  */
   /* and had no attached attributes */
   if (toplevel->check_symbol_version && last_complex) {
-    o_complex_check_symbol_version(toplevel, last_complex);
+    geda_complex_object_check_symbol_version(toplevel, last_complex);
     last_complex = NULL;  /* no longer need to check */
   }
 
@@ -515,7 +515,7 @@ GedaObject *o_copy_object (GedaObject *o_current)
 
     case(OBJ_COMPLEX):
     case(OBJ_PLACEHOLDER):
-      new_obj = o_complex_copy (o_current);
+      new_obj = geda_complex_object_copy (o_current);
       break;
 
     case(OBJ_TEXT):
@@ -576,7 +576,7 @@ void o_mirror_object (GedaObject *object, int center_x, int center_y)
       case OBJ_PICTURE: topless = o_picture_mirror;    break;
       case OBJ_CIRCLE:  topless = geda_circle_object_mirror;     break;
       case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: topless = o_complex_mirror;    break;
+      case OBJ_COMPLEX: topless = geda_complex_object_mirror;    break;
       case OBJ_TEXT:    topless = o_text_mirror;       break;
       case OBJ_PATH:    topless = o_path_mirror;       break;
       case OBJ_PIN:     topless = o_pin_mirror;        break;
@@ -625,7 +625,7 @@ void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
     case OBJ_PICTURE: topless = o_picture_rotate;    break;
     case OBJ_CIRCLE:  topless = geda_circle_object_rotate;     break;
     case OBJ_PLACEHOLDER:
-    case OBJ_COMPLEX: topless = o_complex_rotate;    break;
+    case OBJ_COMPLEX: topless = geda_complex_object_rotate;    break;
     case OBJ_TEXT:    topless = o_text_rotate;       break;
     case OBJ_PATH:    topless = o_path_rotate;       break;
     case OBJ_PIN:     topless = o_pin_rotate;        break;
@@ -673,7 +673,7 @@ void o_translate_object (GedaObject *object, int dx, int dy)
       case OBJ_PICTURE: topless = o_picture_translate; break;
       case OBJ_CIRCLE:  topless = geda_circle_object_translate;  break;
       case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: topless = o_complex_translate; break;
+      case OBJ_COMPLEX: topless = geda_complex_object_translate; break;
       case OBJ_TEXT:    topless = o_text_translate;    break;
       case OBJ_PATH:    topless = o_path_translate;    break;
       case OBJ_PIN:     topless = o_pin_translate;     break;

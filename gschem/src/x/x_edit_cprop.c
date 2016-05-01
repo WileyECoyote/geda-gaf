@@ -380,20 +380,20 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           Current_Selection->glist = g_list_remove (Current_Selection->glist, o_current);
 
           /* Create new object and set embedded */
-          o_new = o_complex_new (w_current->toplevel,
+          o_new = geda_complex_object_new (w_current->toplevel,
                                  o_complex->x,
                                  o_complex->y,
                                  o_complex->angle,
                                  o_complex->mirror,
                                  clib, filename, 1);
 
-          if (o_complex_is_embedded (o_current)) {
+          if (geda_complex_object_is_embedded (o_current)) {
             o_embed (w_current->toplevel, o_new);
           }
 
           geda_attrib_object_freeze_hooks (o_new);
 
-          new_butes = o_complex_promote_attribs (w_current->toplevel, o_new);
+          new_butes = geda_complex_object_promote_attribs (w_current->toplevel, o_new);
 
           /* If new and old object have a "slot" then set new to match old */
           /* Don't care what the value new is, just if it has one */

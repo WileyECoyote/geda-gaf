@@ -667,8 +667,9 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
-        o_pin_object = o_complex_find_pin_by_attribute (nl_current->object_ptr,
-                                                        "pinseq", pinseq);
+        o_pin_object =
+          geda_complex_object_find_pin_by_attribute (nl_current->object_ptr,
+                                                     "pinseq", pinseq);
 
         if (o_pin_object) {
           return_value =
@@ -762,8 +763,9 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
-        pin_object = o_complex_find_pin_by_attribute (nl_current->object_ptr,
-                                                      "pinnumber", pin);
+        pin_object =
+          geda_complex_object_find_pin_by_attribute (nl_current->object_ptr,
+                                                     "pinnumber", pin);
 
         if (pin_object) {
 
@@ -854,7 +856,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
     /* only look for first occurrance of the attribute on each page */
     attrib_value =
     geda_attrib_search_floating_by_name (s_page_get_objects (p_current),
-                                                            wanted_attrib, 0);
+                                         wanted_attrib, 0);
 
     /* Stop when we find the first one */
     if (attrib_value != NULL)

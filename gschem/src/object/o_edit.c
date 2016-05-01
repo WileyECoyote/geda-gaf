@@ -71,7 +71,8 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
 
     GedaObject *object;
 
-    object = o_complex_new (w_current->toplevel, 0, 0, 0, FALSE, clib, sym_file, FALSE);
+    object = geda_complex_object_new (w_current->toplevel, 0, 0, 0,
+                                      FALSE, clib, sym_file, FALSE);
 
     s_page_append_object (page, object);
 
@@ -1127,18 +1128,18 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   o_selection_remove (page->selection_list, o_current);
 
   /* Create new object and set embedded */
-  o_new = o_complex_new (toplevel,
-                         o_current->complex->x,
-                         o_current->complex->y,
-                         o_current->complex->angle,
-                         o_current->complex->mirror,
-                         clib, o_current->complex->filename,
-                         1);
-  if (o_complex_is_embedded (o_current)) {
+  o_new = geda_complex_object_new (toplevel,
+                                   o_current->complex->x,
+                                   o_current->complex->y,
+                                   o_current->complex->angle,
+                                   o_current->complex->mirror,
+                                   clib, o_current->complex->filename,
+                                   1);
+  if (geda_complex_object_is_embedded (o_current)) {
     o_embed (toplevel, o_new);
   }
 
-  new_attribs = o_complex_promote_attribs (toplevel, o_new);
+  new_attribs = geda_complex_object_promote_attribs (toplevel, o_new);
 
   /* Cull any attributes from new COMPLEX that are already attached to
    * old COMPLEX. Note that the new_attribs list is kept consistent by

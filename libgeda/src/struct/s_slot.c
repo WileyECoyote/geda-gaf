@@ -211,7 +211,7 @@ void s_slot_update_object (GedaObject *object)
 
     /* Get pin on this component with pinseq == pin_counter */
     pinstr       = geda_utility_string_int2str(pin_counter, tmp_str, 10);
-    o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinstr);
+    o_pin_object = geda_complex_object_find_pin_by_attribute (object, "pinseq", pinstr);
 
     if (o_pin_object != NULL) {
 

@@ -237,13 +237,13 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_COMPLEX):
-          out = o_complex_save(o_current);
+          out = geda_complex_object_to_buffer(o_current);
           string_append(out);
           string_append("\n");
           already_wrote = TRUE;
           GEDA_FREE(out); /* need to free here because of the above flag */
 
-          if (o_complex_is_embedded(o_current)) {
+          if (geda_complex_object_is_embedded(o_current)) {
 
             string_append("[\n");
             out = o_save_objects(o_current->complex->prim_objs, FALSE);
@@ -286,7 +286,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_PLACEHOLDER):  /* new type by SDB 1.20.2005 */
-          out = o_complex_save(o_current);
+          out = geda_complex_object_to_buffer(o_current);
           break;
 
         default:

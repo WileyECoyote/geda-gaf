@@ -45,7 +45,7 @@ EDA_SCM_DEFINE (complex_make, "%make-complex", 1, 0, 0,
   SCM_ASSERT (scm_is_string (basename_s), basename_s, SCM_ARG1, scheme_complex_make);
 
   char *tmp = scm_to_utf8_string (basename_s);
-  GedaObject *obj = o_complex_new_embedded (0, 0, 0, FALSE, tmp, TRUE);
+  GedaObject *obj = geda_complex_object_new_embedded (0, 0, 0, FALSE, tmp, TRUE);
   free (tmp);
 
   SCM result = edascm_from_object (obj);
@@ -98,7 +98,7 @@ EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
     GedaObject   *obj;
 
     toplevel = edascm_c_current_toplevel();
-    obj      = o_complex_new (toplevel, 0, 0, 0, FALSE, clib, basename, TRUE);
+    obj      = geda_complex_object_new (toplevel, 0, 0, 0, FALSE, clib, basename, TRUE);
     result   = edascm_from_object (obj);
 
     /* At the moment, the only pointer to the object is owned by the smob. */

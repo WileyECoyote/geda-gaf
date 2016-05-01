@@ -13,6 +13,7 @@ test_box_object
 test_bus
 test_bus_object
 test_circle
+test_circle_object
 test_complex
 test_file
 test_line

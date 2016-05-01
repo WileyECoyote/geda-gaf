@@ -266,7 +266,7 @@ EDA_SCM_DEFINE (attrib_promotable, "%promotable-attribs", 1, 0, 0,
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
   GedaObject *obj = edascm_to_object (complex_s);
 
-  GList *lst = o_complex_get_promotable (toplevel, obj, FALSE);
+  GList *lst = geda_complex_object_get_promotable (toplevel, obj, FALSE);
 
   return edascm_from_object_glist (lst);
 }

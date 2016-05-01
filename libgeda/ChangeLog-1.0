@@ -1,3 +1,8 @@
+2016-05-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex_basic.c: : Rename functions using prefix
+      geda_complex_object_.
+
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_circle_object.c: Add tests for circle object constructors.

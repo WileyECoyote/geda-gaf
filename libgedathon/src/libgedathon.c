@@ -2410,7 +2410,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
   clib     = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
-    object = o_complex_new (toplevel, x, y, ang, mirr, clib, sym_file, TRUE);
+    object = geda_complex_object_new (toplevel, x, y, ang, mirr, clib, sym_file, TRUE);
   }
   else {
     object = NULL;
@@ -2420,7 +2420,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
 
   if (GEDA_IS_COMPLEX(object)) {
 
-    object->attribs =  o_complex_promote_attribs (toplevel, object);
+    object->attribs =  geda_complex_object_promote_attribs (toplevel, object);
 
     object->complex->is_embedded = emb;
 

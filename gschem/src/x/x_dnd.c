@@ -408,8 +408,8 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
         w_current->second_wx = x;
         w_current->second_wy = y;
 
-        object = o_complex_new (w_current->toplevel, x, y, 0,
-                                FALSE, symbol, symbolfile, TRUE);
+        object = geda_complex_object_new (w_current->toplevel, x, y, 0,
+                                          FALSE, symbol, symbolfile, TRUE);
 
         s_page_append_object(page, object);
         o_place_end(w_current, 0, 0, PASTE_OBJECTS_HOOK);

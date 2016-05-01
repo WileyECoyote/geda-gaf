@@ -61,8 +61,8 @@ static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
  *
  *  This function calls selection_to_buffer to copy the current
  *  selection data to a buffer and then iterator over the objects
- *  in the buffer, calling o_complex_reset_refdes for each complex
- *  in the copied buffer.
+ *  in the buffer, calling geda_complex_object_reset_refdes for each
+ *  complex in the copied buffer.
  *
  *  \param w_current A pointer to a GSCHEM top level object
  *  \param buf_num   integer value of the buffer to use.
@@ -86,7 +86,7 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
     GedaObject *object = (GedaObject*) iter->data;
 
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-      o_complex_reset_refdes(object);
+      geda_complex_object_reset_refdes(object);
     }
 
     iter = g_list_next(iter);

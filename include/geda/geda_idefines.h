@@ -53,6 +53,9 @@
 /*! \def DEFAULT_TEXT_SIZE  Default text size */
 #define DEFAULT_TEXT_SIZE   10
 
+/*! \def MINIMUM_TEXT_SIZE  Minimum text size */
+#define MINIMUM_TEXT_SIZE 1
+
 /*! \def DEFAULT_ATTRIBUTE_OFFSET Distance from objects to new attributes */
 #define DEFAULT_ATTRIBUTE_OFFSET 50
 

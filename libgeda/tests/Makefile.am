@@ -19,9 +19,10 @@ check_geda = \
 
 check_object = \
 	test_arc_object \
+	test_attrib_object \
 	test_box_object \
 	test_bus_object \
-	test_attrib_object
+	test_circle_object
 
 check_utility = \
 	test_utility

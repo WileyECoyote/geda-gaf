@@ -165,13 +165,13 @@ double      geda_circle_object_shortest_distance (GedaObject *object, int x, int
 
 
 /* o_complex_object.c */
-bool        o_complex_get_position         (GedaObject *object, int *x, int *y);
-GList      *o_complex_get_promotable       (GedaToplevel *toplevel, GedaObject *object, int detach);
-int         o_complex_get_world_bounds     (GedaObject *complex);
-GedaObject *o_complex_read                 (GedaToplevel *toplevel, const char buf[], unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_complex_save                 (GedaObject *object);
-double      o_complex_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
+int         geda_complex_object_get_bounds       (GedaObject *complex);
+bool        geda_complex_object_get_position     (GedaObject *object, int *x, int *y);
+GList      *geda_complex_object_get_promotable   (GedaToplevel *toplevel, GedaObject *object, int detach);
+GedaObject *geda_complex_object_read             (GedaToplevel *toplevel, const char buf[], unsigned int release_ver,
+                                                  unsigned int fileformat_ver, GError **err);
+char       *geda_complex_object_to_buffer        (GedaObject *object);
+double      geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
 
 /* o_get.c */
 int         o_get_capstyle                 (LINE_END end);
