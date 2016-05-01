@@ -54,11 +54,17 @@ enum {
   PROP_RADIUS,
   PROP_START_ANGLE,
   PROP_ARC_SWEEP,
-  PROP_END_CAP,
-  PROP_TYPE,
-  PROP_WIDTH,
-  PROP_SPACE,
-  PROP_LENGTH
+  PROP_LINE_CAP,
+  PROP_LINE_TYPE,
+  PROP_LINE_WIDTH,
+  PROP_LINE_SPACE,
+  PROP_LINE_LENGTH,
+  PROP_FILL_TYPE,
+  PROP_FILL_WIDTH,
+  PROP_FILL_ANGLE1,
+  PROP_FILL_PITCH1,
+  PROP_FILL_ANGLE2,
+  PROP_FILL_PITCH2
 };
 
 static GObjectClass *geda_arc_parent_class = NULL;
@@ -213,6 +219,7 @@ get_property (GObject *object, unsigned int  prop_id,
 {
   GedaArc      *arc          = GEDA_ARC(object);
   LINE_OPTIONS *line_options = &arc->line_options;
+  FILL_OPTIONS *fill_options = &arc->fill_options;
 
   switch (prop_id)
   {
@@ -236,24 +243,48 @@ get_property (GObject *object, unsigned int  prop_id,
       g_value_set_int (value, arc->arc_sweep);
       break;
 
-    case PROP_END_CAP:
+    case PROP_LINE_CAP:
       g_value_set_int (value, line_options->line_end);
       break;
 
-    case PROP_TYPE:
+    case PROP_LINE_TYPE:
       g_value_set_int (value, line_options->line_type);
       break;
 
-    case PROP_WIDTH:
+    case PROP_LINE_WIDTH:
       g_value_set_int (value, line_options->line_width);
       break;
 
-    case PROP_SPACE:
+    case PROP_LINE_SPACE:
       g_value_set_int (value, line_options->line_space);
       break;
 
-    case PROP_LENGTH:
+    case PROP_LINE_LENGTH:
       g_value_set_int (value, line_options->line_length);
+      break;
+
+    case PROP_FILL_TYPE:
+      g_value_set_int (value, fill_options->fill_type);
+      break;
+
+    case PROP_FILL_WIDTH:
+      g_value_set_int (value, fill_options->fill_width);
+      break;
+
+    case PROP_FILL_ANGLE1:
+      g_value_set_int (value, fill_options->fill_angle1);
+      break;
+
+    case PROP_FILL_PITCH1:
+      g_value_set_int (value, fill_options->fill_pitch1);
+      break;
+
+    case PROP_FILL_ANGLE2:
+      g_value_set_int (value, fill_options->fill_angle2);
+      break;
+
+    case PROP_FILL_PITCH2:
+      g_value_set_int (value, fill_options->fill_pitch2);
       break;
 
     default:
@@ -269,6 +300,7 @@ set_property (GObject *object, unsigned int  prop_id,
 {
   GedaArc      *arc          = GEDA_ARC(object);
   LINE_OPTIONS *line_options = &arc->line_options;
+  FILL_OPTIONS *fill_options = &arc->fill_options;
 
   switch (prop_id)
   {
@@ -292,24 +324,48 @@ set_property (GObject *object, unsigned int  prop_id,
       arc->arc_sweep = g_value_get_int (value);
       break;
 
-    case PROP_END_CAP:
+    case PROP_LINE_CAP:
       line_options->line_end = g_value_get_int (value);
       break;
 
-    case PROP_TYPE:
+    case PROP_LINE_TYPE:
       line_options->line_type = g_value_get_int (value);
       break;
 
-    case PROP_WIDTH:
+    case PROP_LINE_WIDTH:
       line_options->line_width = g_value_get_int (value);
       break;
 
-    case PROP_SPACE:
+    case PROP_LINE_SPACE:
       line_options->line_space = g_value_get_int (value);
       break;
 
-    case PROP_LENGTH:
+    case PROP_LINE_LENGTH:
       line_options->line_length = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_TYPE:
+      fill_options->fill_type = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_WIDTH:
+      fill_options->fill_width = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_ANGLE1:
+      fill_options->fill_angle1 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_PITCH1:
+      fill_options->fill_pitch1 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_ANGLE2:
+      fill_options->fill_angle2 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_PITCH2:
+      fill_options->fill_pitch2 = g_value_get_int (value);
       break;
 
     default:
@@ -366,7 +422,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
 
   params = g_param_spec_int ("radius",
                            _("Radius"),
-                           _("Radius of the arc center"),
+                           _("Radius of the arc"),
                              0,
                              G_MAXINT,
                              0,
@@ -405,7 +461,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              END_NONE,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_END_CAP, params);
+  g_object_class_install_property (object_class, PROP_LINE_CAP, params);
 
   params = g_param_spec_int ("line-type",
                            _("Line Type"),
@@ -415,7 +471,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              TYPE_SOLID,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_TYPE, params);
+  g_object_class_install_property (object_class, PROP_LINE_TYPE, params);
 
   params = g_param_spec_int ("line-width",
                            _("Line Width"),
@@ -425,7 +481,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              0,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_WIDTH, params);
+  g_object_class_install_property (object_class, PROP_LINE_WIDTH, params);
 
   params = g_param_spec_int ("line-space",
                            _("Line Space"),
@@ -435,7 +491,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              0,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_SPACE, params);
+  g_object_class_install_property (object_class, PROP_LINE_SPACE, params);
 
   params = g_param_spec_int ("line-length",
                            _("Line Length"),
@@ -445,7 +501,69 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                              0,
                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (object_class, PROP_LENGTH, params);
+  g_object_class_install_property (object_class, PROP_LINE_LENGTH, params);
+
+  /* TODO: object filling is not fully implemented for GedaArc's */
+
+  params = g_param_spec_int ("fill-type",
+                           _("Fill Type"),
+                           _("The Object fill type; hatch mesh, solid, etc..."),
+                             FILLING_HOLLOW,
+                             FILLING_HATCH,
+                             FILLING_HOLLOW,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_TYPE, params);
+
+  params = g_param_spec_int ("fill-width",
+                           _("Fill Width"),
+                           _("The Object fill width applies to fill hatch and mesh"),
+                             0,
+                             500,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_WIDTH, params);
+
+  params = g_param_spec_int ("fill-angle1",
+                           _("Fill Angle 1"),
+                           _("The Object fill angle1 applies to fill hatch and mesh"),
+                             0,
+                             360, /* Does not really make sense to be more than 180 */
+                             45,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_ANGLE1, params);
+
+  params = g_param_spec_int ("fill-pitch1",
+                           _("Fill Pitch 1"),
+                           _("The Object fill angle1 applies to fill hatch and mesh"),
+                             0,
+                             G_MAXINT,
+                             100,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_PITCH1, params);
+
+  params = g_param_spec_int ("fill-angle2",
+                           _("Fill Angle 2"),
+                           _("The Object fill angle1 applies to fill mesh"),
+                             0,
+                             360, /* Does not really make sense to be more than 180 */
+                             135,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_ANGLE2, params);
+
+  params = g_param_spec_int ("fill-pitch2",
+                           _("Fill Pitch 2"),
+                           _("The Object fill angle1 applies to fill mesh"),
+                             0,
+                             G_MAXINT,
+                             100,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_PITCH2, params);
 }
 
 /*! \brief Function to retrieve GedaArc's Type identifier.

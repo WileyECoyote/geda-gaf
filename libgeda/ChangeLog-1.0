@@ -1,6 +1,12 @@
 2016-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_complex_basic.c: : Rename functions using prefix
+    * src/geda/geda_box.c: Add gobject properties for line type options
+      and object filling.
+
+    * src/object/o_circle_object.c: Reoganize module, adjust line wrap and
+      indentation for comment blocks.
+
+    * src/object/o_complex_basic.c: Rename functions using prefix
       geda_complex_object_.
 
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
@@ -9,7 +15,7 @@
 
 2016-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_arc.c: Add gobject property for line type options.
+    * src/geda/geda_arc.c: Add gobject properties for line type options.
 
     * tests/test_arc.c: Add tests for line type properties.
 
