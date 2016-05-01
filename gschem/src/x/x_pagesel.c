@@ -114,7 +114,7 @@ x_pagesel_close (GschemToplevel *w_current)
  *   dialog that was added in x_pagesel_update to insure dialog was not
  *   destroyed whilst waiting for an idle state.
  *
- *  \param [in] dialog  The Pagesel dialog
+ *  \param [in] w_current  A GschemToplevel object.
  */
 static int
 x_pagesel_idle_update (GschemToplevel *w_current)
@@ -265,10 +265,14 @@ pagesel_callback_button_pressed (GtkWidget      *widget,
   return ret_val;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Callback for keyboard initiated Pop-up Menu
+ * \par Function Description
+ * Called when "pop-up-menu" is emitted on the tree-view, which
+ * occurs when users initiated the pop-up menu using a keyboard
+ * short-cut such as Shift-F10, this callback is not associated
+ * with mouse button events.
+ * Calls pagesel_popup_menu to create the pop-up menu.
  */
 static bool
 pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
