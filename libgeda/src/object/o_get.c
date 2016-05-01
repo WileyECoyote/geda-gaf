@@ -383,7 +383,7 @@ o_get_is_valid_attribute (GedaObject *object)
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
 bool
-o_get_is_visible (GedaObject *object)
+o_get_is_visible (const GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }

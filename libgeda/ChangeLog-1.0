@@ -11,6 +11,8 @@
     * src/object/o_complex_basic.c: Rename functions using prefix
       geda_complex_object_.
 
+    * src/object/o_get.c: Change argument to o_get_is_visible to const object.
+
     * tests/test_box.c: Add checks for line-type and fill options.
 
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>

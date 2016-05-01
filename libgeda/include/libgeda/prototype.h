@@ -267,7 +267,7 @@ extern "C" {
          bool    o_get_is_selectable             (GedaObject *object);
          bool    o_get_is_selected               (GedaObject *object);
          bool    o_get_is_valid_attribute        (GedaObject *object);
-         bool    o_get_is_visible                (GedaObject *object);
+         bool    o_get_is_visible                (const GedaObject *object);
      LINE_END    o_get_line_end                  (int capstyle);
          bool    o_get_line_options              (GedaObject *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
          bool    o_get_nearest_point             (GedaObject *object, int x, int y, int *nx, int *ny);
