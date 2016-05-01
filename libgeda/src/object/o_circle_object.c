@@ -28,16 +28,18 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Create a copy of a circle.
- *
- *  \par Function Description
+/*!
+ * \brief Create a copy of a circle.
+ * \par Function Description
  *  The function #geda_circle_object_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a circle.
  *
- *  \param [in]  o_current  Circle GedaObject to copy.
- *  \return The new GedaObject
+ * \param [in]  o_current  Circle GedaObject to copy.
+ *
+ * \return The new GedaObject
  */
-GedaObject *geda_circle_object_copy(GedaObject *o_current)
+GedaObject *
+geda_circle_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_CIRCLE(o_current)) {
 
@@ -66,25 +68,27 @@ GedaObject *geda_circle_object_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Get Point on a Circle Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a Circle Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on an Circle object given
  *  a point \a x, \a y, that is on or about the vicinity of the \a object.
  *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
  *  point on the circle that is the closest point on \a object to the point
  *  given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to an Circle object
- *  \param [in]  x       Integer x of point near or on the circle
- *  \param [in]  y       Integer y of point near or on the circle
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to an Circle object
+ * \param [in]  x       Integer x of point near or on the circle
+ * \param [in]  y       Integer y of point near or on the circle
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not an
+ * \returns TRUE is the results are valid, FALSE if \a object was not an
  *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
  *           the circle.
  */
-bool geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool
+geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
 
@@ -133,8 +137,8 @@ bool geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int
 
         /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
 
-        m  = dy / dx;
-        b  = (-1 * m * x2) + y2;
+        m = dy / dx;
+        b = (-1 * m * x2) + y2;
 
         A = m * m + 1;
         B = 2 * ((m * b) - (m * cy) - cx);
@@ -228,18 +232,19 @@ bool geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int
   return result;
 }
 
-/*! \brief get the position of the center point
- *
- *  \par Function Description
+/*!
+ * \brief get the position of the center point
+ * \par Function Description
  *  This function gets the position of the center point of a circle object.
  *
- *  \param [in]  object  Pointer to a #GedaCircle object
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
+ * \param [in]  object  Pointer to a #GedaCircle object
+ * \param [out] x       pointer to the x-position
+ * \param [out] y       pointer to the y-position
 
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
+bool
+geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
   *x = object->circle->center_x;
@@ -247,8 +252,9 @@ bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief Modify the description of a circle Object.
- *  \par Function Description
+/*!
+ * \brief Modify the description of a circle Object.
+ * \par Function Description
  *  This function modifies the description of the circle object <B>*object</B>
  *  depending on <B>whichone</B> that give the meaning of the <B>x</B> and <B>y</B>
  *  parameters.
@@ -262,11 +268,11 @@ bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
  *  The bounding box of the circle object is updated after the modification of its
  *  parameters.
  *
- *  \param [in,out] object     Circle GedaObject to modify.
- *  \param [in]     x          New center x coordinate, or radius value.
- *  \param [in]     y          New center y coordinate.
- *                             Unused if radius is being modified.
- *  \param [in]     whichone   Which circle parameter to modify.
+ * \param [in,out] object     Circle GedaObject to modify.
+ * \param [in]     x          New center x coordinate, or radius value.
+ * \param [in]     y          New center y coordinate.
+ *                            Unused if radius is being modified.
+ * \param [in]     whichone   Which circle parameter to modify.
  *
  *  <B>whichone</B> can have the following values:
  *  <DL>
@@ -274,7 +280,8 @@ bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
  *    <DT>*</DT><DD>CIRCLE_RADIUS
  *  </DL>
  */
-void geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
+void
+geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case CIRCLE_CENTER:
@@ -298,21 +305,21 @@ void geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Mirror a Circle.
- *
- *  \par Function Description
+/*!
+ * \brief Mirror a Circle.
+ * \par Function Description
  *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
  *  circle object from its world coords.
  *
  *  The circle coordinates and its bounding are recalculated as well as the
  *  GedaObject specific (line width, filling ...).
  *
- *  \param [in,out] object    Circle GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate.
- *  \param [in]     center_y  Origin y coordinate.
-
+ * \param [in,out] object    Circle GedaObject to mirror
+ * \param [in]     center_x  Origin x coordinate
+ * \param [in]     center_y  Origin y coordinate
  */
-void geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
+void
+geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
   object->circle->center_x -= center_x;
@@ -330,8 +337,9 @@ void geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
 
 }
 
-/*! \brief Create and add circle Object to list.
- *  \par Function Description
+/*!
+ * \brief Create and add circle Object to list.
+ * \par Function Description
  *  This function creates a new object representing a circle.
  *
  *  The circle is described by its center (<B>x</B>,<B>y</B>) and its radius
@@ -346,13 +354,15 @@ void geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
  *  line type with a width of 0, and no filling. It can be changed after
  *  with#o_set_line_options() and#o_set_fill_options().
  *
- *  \param [in]     color        Circle line color.
- *  \param [in]     x            Center x coordinate.
- *  \param [in]     y            Center y coordinate.
- *  \param [in]     radius       Radius of new circle.
- *  \return A pointer to the new end of the object list.
+ * \param [in]     color        Circle line color
+ * \param [in]     x            Center x coordinate
+ * \param [in]     y            Center y coordinate
+ * \param [in]     radius       Radius of new circle
+ *
+ * \return A pointer to the new end of the object list.
  */
-GedaObject *geda_circle_object_new(int color, int x, int y, int radius)
+GedaObject*
+geda_circle_object_new(int color, int x, int y, int radius)
 {
   GedaObject *new_obj;
   GedaCircle *circle;
@@ -370,8 +380,9 @@ GedaObject *geda_circle_object_new(int color, int x, int y, int radius)
   return new_obj;
 }
 
-/*! \brief Print circle to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print circle to Postscript document.
+ * \par Function Description
  *  This function prints the circle described by the <B>\a o_current</B>
  *  parameter to a Postscript document. It takes into account its line type
  *  and fill type.
@@ -387,19 +398,21 @@ GedaObject *geda_circle_object_new(int color, int x, int y, int radius)
  *  The outline and the inside of the circle are successively handled by
  *  two differend sets of functions.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Circle GedaObject to write to document.
- *  \param [in] origin_x   Page x coordinate to place circle Object.
- *  \param [in] origin_y   Page y coordinate to place circle Object.
+ * \param [in] toplevel  The GedaToplevel object.
+ * \param [in] fp         FILE pointer to Postscript document.
+ * \param [in] o_current  Circle GedaObject to write to document.
+ * \param [in] origin_x   Page x coordinate to place circle Object.
+ * \param [in] origin_y   Page y coordinate to place circle Object.
  */
-void geda_circle_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                    int origin_x, int origin_y)
+void
+geda_circle_object_print(GedaToplevel *toplevel, FILE *fp,
+                         GedaObject   *o_current, int origin_x, int origin_y)
 {
   int x, y, radius;
   int color;
   int circle_width, capstyle, length, space;
-  void (*outl_func)() = NULL;
+
+  void (*outl_func)();
 
   g_return_if_fail(GEDA_IS_CIRCLE(o_current));
 
@@ -407,8 +420,9 @@ void geda_circle_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_cu
   y      = o_current->circle->center_y;
   radius = o_current->circle->radius;
 
-  color  = o_current->color;
-  capstyle = o_get_capstyle (o_current->line_options->line_end);
+  color     = o_current->color;
+  capstyle  = o_get_capstyle (o_current->line_options->line_end);
+  outl_func = NULL;
 
   /*
    * Depending on the type of the line for this particular circle, the
@@ -430,39 +444,41 @@ void geda_circle_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_cu
 
   circle_width = o_current->line_options->line_width;
 
-  if(circle_width < MIN_LINE_WIDTH_THRESHOLD)
+  if (circle_width < MIN_LINE_WIDTH_THRESHOLD) {
      circle_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+  }
 
-  if(circle_width < MIN_LINE_WIDTH_THRESHOLD)
+  if (circle_width < MIN_LINE_WIDTH_THRESHOLD) {
      circle_width = MIN_LINE_WIDTH_THRESHOLD;         /* if STYLE_NONE  */
+  }
 
   length       = o_current->line_options->line_length;
   space        = o_current->line_options->line_space;
 
-  switch(o_current->line_options->line_type) {
-    case(TYPE_SOLID):
+  switch (o_current->line_options->line_type) {
+    case (TYPE_SOLID):
       length = -1; space  = -1;
       outl_func = geda_circle_object_print_solid;
       break;
 
-    case(TYPE_DOTTED):
+    case (TYPE_DOTTED):
       length = -1;
       outl_func = geda_circle_object_print_dotted;
       break;
 
-    case(TYPE_DASHED):
+    case (TYPE_DASHED):
       outl_func = geda_circle_object_print_dashed;
       break;
 
-    case(TYPE_CENTER):
+    case (TYPE_CENTER):
       outl_func = geda_circle_object_print_center;
       break;
 
-    case(TYPE_PHANTOM):
+    case (TYPE_PHANTOM):
       outl_func = geda_circle_object_print_phantom;
       break;
 
-    case(TYPE_ERASE):
+    case (TYPE_ERASE):
       /* Unused for now print it solid */
       length = -1; space  = -1;
       outl_func = geda_circle_object_print_solid;
@@ -541,60 +557,110 @@ void geda_circle_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_cu
       fill_func = geda_circle_object_print_filled;
     }
 
-    if (fill_func)
+    if (fill_func) {
       (*fill_func)(toplevel, fp,
                    x, y, radius,
                    color,
                    fill_width,
                    angle1, pitch1, angle2, pitch2,
                    origin_x, origin_y);
+    }
   }
 }
 
-/*! \brief Print a solid circle to Postscript document.
- *  \par Function Description
- *  This function prints the outline of a circle when a solid line type
- *  is required. The circle is defined by its center in (<B>x</B>, <B>y</B>)
- *  and its radius in <B>radius</B>. It is printed with the color given
- *  in <B>color</B>.
- *  The parameters <B>length</B> and <B>space</B> are ignored.
+/*!
+ * \brief Print a centered line type circle to Postscript document.
+ * \par Function Description
+ *  This function prints the outline of a circle when a centered line
+ *  type is required. The circle is defined by its center in
+ *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
+ *  color given in <B>color</B>.
  *
- *  It uses the function #geda_arc_object_print_solid() to print the outline.
- *  Therefore it acts as an interface between the way a circle is defined
- *  and the way an arc is defined.
+ *  It uses the function #geda_arc_object_print_center() to print the outline.
+ *  Therefore it acts as an interface between the way a circle is
+ *  defined and the way an arc is defined.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x             Center x coordinate of circle.
- *  \param [in] y             Center y coordinate of circle.
- *  \param [in] radius        Circle radius.
- *  \param [in] color         Circle color.
- *  \param [in] circle_width  Width of circle.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        (unused).
- *  \param [in] space         (unused).
- *  \param [in] origin_x      Page x coordinate to place circle Object.
- *  \param [in] origin_y      Page y coordinate to place circle Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x             Center x coordinate of circle.
+ * \param [in] y             Center y coordinate of circle.
+ * \param [in] radius        Circle radius.
+ * \param [in] color         Circle color.
+ * \param [in] circle_width  Width of circle.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        Length of dashed lines.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place circle Object.
+ * \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void geda_circle_object_print_solid(GedaToplevel *toplevel, FILE *fp,
-                          int x, int y, int radius,
-                          int color,
-                          int circle_width, int capstyle, int length, int space,
-                          int origin_x, int origin_y)
+void
+geda_circle_object_print_center(GedaToplevel *toplevel, FILE *fp,
+                                int x,            int y,
+                                int radius,       int color,
+                                int circle_width, int capstyle,
+                                int length,       int space,
+                                int origin_x,     int origin_y)
 {
-  geda_arc_object_print_solid(toplevel, fp,
-                              x, y, radius,
-                              0, FULL_CIRCLE / 64,
-                              color,
-                              circle_width, BUTT_CAP, -1, -1,
-                              origin_x, origin_y);
+
+  geda_arc_object_print_center(toplevel, fp,
+                               x, y, radius,
+                               0, FULL_CIRCLE / 64,
+                               color,
+                               circle_width, capstyle, length, space,
+                               origin_x, origin_y);
 
 }
 
-/*! \brief Print a dotted circle to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dashed circle to Postscript document.
+ * \par Function Description
+ *  This function prints the outline of a circle when a dashed line type
+ *  is required. The circle is defined by its center in
+ *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
+ *  color given in <B>color</B>.
+ *
+ *  It uses the function #geda_arc_object_print_dashed() to print the outline.
+ *  Therefore it acts as an interface between the way a circle is
+ *  defined and the way an arc is defined.
+ *
+ *  All dimensions are in mils.
+ *
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x             Center x coordinate of circle.
+ * \param [in] y             Center y coordinate of circle.
+ * \param [in] radius        Circle radius.
+ * \param [in] color         Circle color.
+ * \param [in] circle_width  Width of circle.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        Length of dashed lines.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place circle Object.
+ * \param [in] origin_y      Page y coordinate to place circle Object.
+ */
+void
+geda_circle_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                                int x,            int y,
+                                int radius,       int color,
+                                int circle_width, int capstyle,
+                                int length,       int space,
+                                int origin_x,     int origin_y)
+{
+
+  geda_arc_object_print_dashed(toplevel, fp,
+                               x, y, radius,
+                               0, FULL_CIRCLE / 64,
+                               color,
+                               circle_width, capstyle, length, space,
+                               origin_x, origin_y);
+
+}
+
+/*!
+ * \brief Print a dotted circle to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a circle when a dotted line
  *  type is required. The circle is defined by its center
  *  in (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed
@@ -607,24 +673,26 @@ void geda_circle_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x             Center x coordinate of circle.
- *  \param [in] y             Center y coordinate of circle.
- *  \param [in] radius        Circle radius.
- *  \param [in] color         Circle color.
- *  \param [in] circle_width  Width of circle.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        (unused).
- *  \param [in] space         Space between dots.
- *  \param [in] origin_x      Page x coordinate to place circle Object.
- *  \param [in] origin_y      Page y coordinate to place circle Object.
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x             Center x coordinate of circle.
+ * \param [in] y             Center y coordinate of circle.
+ * \param [in] radius        Circle radius.
+ * \param [in] color         Circle color.
+ * \param [in] circle_width  Width of circle.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        (unused).
+ * \param [in] space         Space between dots.
+ * \param [in] origin_x      Page x coordinate to place circle Object.
+ * \param [in] origin_y      Page y coordinate to place circle Object.
  */
-void geda_circle_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                           int x, int y, int radius,
-                           int color,
-                           int circle_width, int capstyle, int length, int space,
-                           int origin_x, int origin_y)
+void
+geda_circle_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                                int x,            int y,
+                                int radius,       int color,
+                                int circle_width, int capstyle,
+                                int length,       int space,
+                                int origin_x,     int origin_y)
 {
 
   geda_arc_object_print_dotted(toplevel, fp,
@@ -636,137 +704,9 @@ void geda_circle_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! \brief Print a dashed circle to Postscript document.
- *  \par Function Description
- *  This function prints the outline of a circle when a dashed line type
- *  is required. The circle is defined by its center in
- *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
- *  color given in <B>color</B>.
- *
- *  It uses the function #geda_arc_object_print_dashed() to print the outline.
- *  Therefore it acts as an interface between the way a circle is
- *  defined and the way an arc is defined.
- *
- *  All dimensions are in mils.
- *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x             Center x coordinate of circle.
- *  \param [in] y             Center y coordinate of circle.
- *  \param [in] radius        Circle radius.
- *  \param [in] color         Circle color.
- *  \param [in] circle_width  Width of circle.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        Length of dashed lines.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place circle Object.
- *  \param [in] origin_y      Page y coordinate to place circle Object.
- */
-void geda_circle_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                           int x, int y,
-                           int radius,
-                           int color,
-                           int circle_width, int capstyle, int length, int space,
-                           int origin_x, int origin_y)
-{
-
-  geda_arc_object_print_dashed(toplevel, fp,
-                               x, y, radius,
-                               0, FULL_CIRCLE / 64,
-                               color,
-                               circle_width, capstyle, length, space,
-                               origin_x, origin_y);
-
-}
-
-/*! \brief Print a centered line type circle to Postscript document.
- *  \par Function Description
- *  This function prints the outline of a circle when a centered line
- *  type is required. The circle is defined by its center in
- *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
- *  color given in <B>color</B>.
- *
- *  It uses the function #geda_arc_object_print_center() to print the outline.
- *  Therefore it acts as an interface between the way a circle is
- *  defined and the way an arc is defined.
- *
- *  All dimensions are in mils.
- *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x             Center x coordinate of circle.
- *  \param [in] y             Center y coordinate of circle.
- *  \param [in] radius        Circle radius.
- *  \param [in] color         Circle color.
- *  \param [in] circle_width  Width of circle.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        Length of dashed lines.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place circle Object.
- *  \param [in] origin_y      Page y coordinate to place circle Object.
- */
-void geda_circle_object_print_center(GedaToplevel *toplevel, FILE *fp,
-                           int x, int y,
-                           int radius,
-                           int color,
-                           int circle_width, int capstyle, int length, int space,
-                           int origin_x, int origin_y)
-{
-
-  geda_arc_object_print_center(toplevel, fp,
-                               x, y, radius,
-                               0, FULL_CIRCLE / 64,
-                               color,
-                               circle_width, capstyle, length, space,
-                               origin_x, origin_y);
-
-}
-
-/*! \brief Print a phantom line type circle to Postscript document.
- *
- *  \par Function Description
- *  This function prints the outline of a circle when a phantom line type
- *  is required. The circle is defined by its center in
- *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
- *  color given in <B>color</B>.
- *
- *  It uses the function #geda_arc_object_print_phantom() to print the outline.
- *  Therefore it acts as an interface between the way a circle is defined
- *  and the way an arc is defined.
- *
- *  All dimensions are in mils.
- *
- *  \param [in] toplevel     The GedaToplevel object.
- *  \param [in] fp            FILE pointer to Postscript document.
- *  \param [in] x             Center x coordinate of circle.
- *  \param [in] y             Center y coordinate of circle.
- *  \param [in] radius        Circle radius.
- *  \param [in] color         Circle color.
- *  \param [in] circle_width  Width of circle.
- *  \param [in] capstyle      Capstyle of circle lines.
- *  \param [in] length        Length of dashed lines.
- *  \param [in] space         Space between dashes.
- *  \param [in] origin_x      Page x coordinate to place circle Object.
- *  \param [in] origin_y      Page y coordinate to place circle Object.
- */
-void geda_circle_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                            int x, int y, int radius, int color,
-                            int circle_width, int capstyle, int length, int space,
-                            int origin_x, int origin_y)
-{
-
-  geda_arc_object_print_phantom(toplevel, fp,
-                                x, y, radius,
-                                0, FULL_CIRCLE / 64,
-                                color,
-                                circle_width, capstyle, length, space,
-                                origin_x, origin_y);
-
-}
-
-/*! \brief Print a solid pattern circle to Postscript document
- *
- *  \par Function Description
+/*!
+ * \brief Print a solid pattern circle to Postscript document
+ * \par Function Description
  *  The function prints a filled circle with a solid pattern.
  *  No outline is printed.
  *  The circle is defined by the coordinates of its center in
@@ -778,94 +718,39 @@ void geda_circle_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils (except <B>angle1</B> and <B>angle2</B> in degree).
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Center x coordinate of circle.
- *  \param [in] y           Center y coordinate of circle.
- *  \param [in] radius      Radius of circle.
- *  \param [in] color       Circle color.
- *  \param [in] fill_width  Circle fill width. (unused).
- *  \param [in] angle1      (unused).
- *  \param [in] pitch1      (unused).
- *  \param [in] angle2      (unused).
- *  \param [in] pitch2      (unused).
- *  \param [in] origin_x    Page x coordinate to place circle Object.
- *  \param [in] origin_y    Page y coordinate to place circle Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Center x coordinate of circle.
+ * \param [in] y           Center y coordinate of circle.
+ * \param [in] radius      Radius of circle.
+ * \param [in] color       Circle color.
+ * \param [in] fill_width  Circle fill width. (unused).
+ * \param [in] angle1      (unused).
+ * \param [in] pitch1      (unused).
+ * \param [in] angle2      (unused).
+ * \param [in] pitch2      (unused).
+ * \param [in] origin_x    Page x coordinate to place circle Object.
+ * \param [in] origin_y    Page y coordinate to place circle Object.
  */
-void geda_circle_object_print_filled(GedaToplevel *toplevel, FILE *fp,
-              int x, int y, int radius,
-              int color,
-              int fill_width,
-              int angle1, int pitch1,
-              int angle2, int pitch2,
-              int origin_x, int origin_y)
+void
+geda_circle_object_print_filled(GedaToplevel *toplevel, FILE *fp,
+                                int x, int y, int radius,
+                                int color,
+                                int fill_width,
+                                int angle1, int pitch1,
+                                int angle2, int pitch2,
+                                int origin_x, int origin_y)
 {
   f_print_set_color(toplevel, fp, color);
 
   fprintf(fp, "%d %d %d dot\n",
           x-origin_x, y-origin_y,
           radius);
-
 }
 
-/*! \brief Print a mesh pattern circle to Postscript document
- *
- *  \par Function Description
- *  This function prints a meshed circle. No outline is printed.
- *  The circle is defined by the coordinates of its center in
- *  (<B>x</B>,<B>y</B>) and its radius by the <B>radius</B> parameter.
- *  The Postscript document is defined by the file pointer <B>fp</B>.
- *
- *  The inside mesh is achieved by two successive call to the
- *  #geda_circle_object_print_hatch() function, given <B>angle1</B> and <B>pitch1</B>
- *  the first time and <B>angle2</B> and <B>pitch2</B> the second time.
- *
- *  Negative or null values for <B>pitch1</B> and/or <B>pitch2</B> are
- *  not allowed as it leads to an endless loop in #geda_circle_object_print_hatch().
- *
- *  All dimensions are in mils (except <B>angle1</B> and <B>angle2</B> in degree).
- *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Center x coordinate of circle.
- *  \param [in] y           Center y coordinate of circle.
- *  \param [in] radius      Radius of circle.
- *  \param [in] color       Circle color.
- *  \param [in] fill_width  Circle fill width.
- *  \param [in] angle1      1st angle for mesh pattern.
- *  \param [in] pitch1      1st pitch for mesh pattern.
- *  \param [in] angle2      2nd angle for mesh pattern.
- *  \param [in] pitch2      2nd pitch for mesh pattern.
- *  \param [in] origin_x    Page x coordinate to place circle Object.
- *  \param [in] origin_y    Page y coordinate to place circle Object.
- */
-void geda_circle_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
-                         int x, int y, int radius,
-                         int color,
-                         int fill_width,
-                         int angle1, int pitch1,
-                         int angle2, int pitch2,
-                         int origin_x, int origin_y)
-{
-  geda_circle_object_print_hatch(toplevel, fp,
-                       x, y, radius,
-                       color,
-                       fill_width,
-                       angle1, pitch1,
-                       -1, -1,
-                       origin_x, origin_y);
-  geda_circle_object_print_hatch(toplevel, fp,
-                       x, y, radius,
-                       color,
-                       fill_width,
-                       angle2, pitch2,
-                       -1, -1,
-                       origin_x, origin_y);
-
-}
-
-/*! \brief Print a hatch pattern circle to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a hatch pattern circle to Postscript document.
+ * \par Function Description
  *  The function prints a hatched circle. No outline is printed.
  *  The circle is defined by the coordinates of its center in
  *  (<B>x</B>,<B>y</B>) and its radius by the <B>radius</B> parameter.
@@ -880,27 +765,28 @@ void geda_circle_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *
  *  All dimensions are in mils (except <B>angle1</B> is in degrees).
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] x           Center x coordinate of circle.
- *  \param [in] y           Center y coordinate of circle.
- *  \param [in] radius      Radius of circle.
- *  \param [in] color       Circle color.
- *  \param [in] fill_width  Circle fill width.
- *  \param [in] angle1      Angle for hatch pattern.
- *  \param [in] pitch1      Pitch for hatch pattern.
- *  \param [in] angle2      (unused).
- *  \param [in] pitch2      (unused).
- *  \param [in] origin_x    Page x coordinate to place circle Object.
- *  \param [in] origin_y    Page y coordinate to place circle Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Center x coordinate of circle.
+ * \param [in] y           Center y coordinate of circle.
+ * \param [in] radius      Radius of circle.
+ * \param [in] color       Circle color.
+ * \param [in] fill_width  Circle fill width.
+ * \param [in] angle1      Angle for hatch pattern.
+ * \param [in] pitch1      Pitch for hatch pattern.
+ * \param [in] angle2      (unused).
+ * \param [in] pitch2      (unused).
+ * \param [in] origin_x    Page x coordinate to place circle Object.
+ * \param [in] origin_y    Page y coordinate to place circle Object.
  */
-void geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
-                          int x, int y, int radius,
-                          int color,
-                          int fill_width,
-                          int angle1, int pitch1,
-                          int angle2, int pitch2,
-                          int origin_x, int origin_y)
+void
+geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
+                               int x, int y, int radius,
+                               int color,
+                               int fill_width,
+                               int angle1, int pitch1,
+                               int angle2, int pitch2,
+                               int origin_x, int origin_y)
 {
   GArray    *lines;
   GedaCircle circle;
@@ -934,9 +820,156 @@ void geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
-/*! \brief Create circle Object from character string.
+/*!
+ * \brief Print a mesh pattern circle to Postscript document
+ * \par Function Description
+ *  This function prints a meshed circle. No outline is printed.
+ *  The circle is defined by the coordinates of its center in
+ *  (<B>x</B>,<B>y</B>) and its radius by the <B>radius</B> parameter.
+ *  The Postscript document is defined by the file pointer <B>fp</B>.
  *
- *  \par Function Description
+ *  The inside mesh is achieved by two successive call to the
+ *  #geda_circle_object_print_hatch() function, given <B>angle1</B> and <B>pitch1</B>
+ *  the first time and <B>angle2</B> and <B>pitch2</B> the second time.
+ *
+ *  Negative or null values for <B>pitch1</B> and/or <B>pitch2</B> are
+ *  not allowed as it leads to an endless loop in #geda_circle_object_print_hatch().
+ *
+ *  All dimensions are in mils (except <B>angle1</B> and <B>angle2</B> in degree).
+ *
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp          FILE pointer to Postscript document.
+ * \param [in] x           Center x coordinate of circle.
+ * \param [in] y           Center y coordinate of circle.
+ * \param [in] radius      Radius of circle.
+ * \param [in] color       Circle color.
+ * \param [in] fill_width  Circle fill width.
+ * \param [in] angle1      1st angle for mesh pattern.
+ * \param [in] pitch1      1st pitch for mesh pattern.
+ * \param [in] angle2      2nd angle for mesh pattern.
+ * \param [in] pitch2      2nd pitch for mesh pattern.
+ * \param [in] origin_x    Page x coordinate to place circle Object.
+ * \param [in] origin_y    Page y coordinate to place circle Object.
+ */
+void
+geda_circle_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
+                              int x, int y, int radius,
+                              int color,
+                              int fill_width,
+                              int angle1, int pitch1,
+                              int angle2, int pitch2,
+                              int origin_x, int origin_y)
+{
+  geda_circle_object_print_hatch(toplevel, fp,
+                       x, y, radius,
+                       color,
+                       fill_width,
+                       angle1, pitch1,
+                       -1, -1,
+                       origin_x, origin_y);
+  geda_circle_object_print_hatch(toplevel, fp,
+                       x, y, radius,
+                       color,
+                       fill_width,
+                       angle2, pitch2,
+                       -1, -1,
+                       origin_x, origin_y);
+
+}
+
+/*!
+ * \brief Print a phantom line type circle to Postscript document.
+ * \par Function Description
+ *  This function prints the outline of a circle when a phantom line type
+ *  is required. The circle is defined by its center in
+ *  (<B>x</B>, <B>y</B>) and its radius in <B>radius</B>. It is printed with the
+ *  color given in <B>color</B>.
+ *
+ *  It uses the function #geda_arc_object_print_phantom() to print the outline.
+ *  Therefore it acts as an interface between the way a circle is defined
+ *  and the way an arc is defined.
+ *
+ *  All dimensions are in mils.
+ *
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x             Center x coordinate of circle.
+ * \param [in] y             Center y coordinate of circle.
+ * \param [in] radius        Circle radius.
+ * \param [in] color         Circle color.
+ * \param [in] circle_width  Width of circle.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        Length of dashed lines.
+ * \param [in] space         Space between dashes.
+ * \param [in] origin_x      Page x coordinate to place circle Object.
+ * \param [in] origin_y      Page y coordinate to place circle Object.
+ */
+void
+geda_circle_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
+                                 int x,            int y,
+                                 int radius,       int color,
+                                 int circle_width, int capstyle,
+                                 int length,       int space,
+                                 int origin_x,     int origin_y)
+{
+
+  geda_arc_object_print_phantom(toplevel, fp,
+                                x, y, radius,
+                                0, FULL_CIRCLE / 64,
+                                color,
+                                circle_width, capstyle, length, space,
+                                origin_x, origin_y);
+
+}
+
+/*!
+ * \brief Print a solid circle to Postscript document.
+ * \par Function Description
+ *  This function prints the outline of a circle when a solid line type
+ *  is required. The circle is defined by its center in (<B>x</B>, <B>y</B>)
+ *  and its radius in <B>radius</B>. It is printed with the color given
+ *  in <B>color</B>.
+ *  The parameters <B>length</B> and <B>space</B> are ignored.
+ *
+ *  It uses the function #geda_arc_object_print_solid() to print the outline.
+ *  Therefore it acts as an interface between the way a circle is defined
+ *  and the way an arc is defined.
+ *
+ *  All dimensions are in mils.
+ *
+ * \param [in] toplevel     The GedaToplevel object.
+ * \param [in] fp            FILE pointer to Postscript document.
+ * \param [in] x             Center x coordinate of circle.
+ * \param [in] y             Center y coordinate of circle.
+ * \param [in] radius        Circle radius.
+ * \param [in] color         Circle color.
+ * \param [in] circle_width  Width of circle.
+ * \param [in] capstyle      Capstyle of circle lines.
+ * \param [in] length        (unused).
+ * \param [in] space         (unused).
+ * \param [in] origin_x      Page x coordinate to place circle Object.
+ * \param [in] origin_y      Page y coordinate to place circle Object.
+ */
+void
+geda_circle_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                               int x,            int y,
+                               int radius,       int color,
+                               int circle_width, int capstyle,
+                               int length,       int space,
+                               int origin_x,     int origin_y)
+{
+  geda_arc_object_print_solid(toplevel, fp,
+                              x, y, radius,
+                              0, FULL_CIRCLE / 64,
+                              color,
+                              circle_width, BUTT_CAP, -1, -1,
+                              origin_x, origin_y);
+
+}
+
+/*!
+ * \brief Create circle Object from character string.
+ * \par Function Description
  *  The #geda_circle_object_read() function gets from the character string
  *  <B>*buff</B> the description of a circle.
  *
@@ -947,30 +980,31 @@ void geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *    <DT>*</DT><DD>the file format used for the releases after 20000704.
  *  </DL>
  *
- *  \param [in]  buf             Character string with circle description.
- *  \param [in]  release_ver     libgeda release version number.
- *  \param [in]  fileformat_ver  libgeda file format version number.
+ * \param [in]  buf             Character string with circle description.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  libgeda file format version number.
  *
- *  \param [out] err             A GError object
+ * \param [out] err             A GError object
  *
- *  \return A pointer to the new circle object, or NULL on error.
+ * \return A pointer to the new circle object, or NULL on error.
  */
-GedaObject *geda_circle_object_read (const char buf[], unsigned int release_ver,
-                                         unsigned int fileformat_ver,
-                                         GError **err)
+GedaObject*
+geda_circle_object_read (const char buf[], unsigned int release_ver,
+                                           unsigned int fileformat_ver,
+                                           GError **err)
 {
   GedaObject *new_obj;
   char type;
-  int x1, y1;
-  int radius;
-  int color;
-  int circle_width, circle_space, circle_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  int circle_end;
-  int circle_type;
-  int circle_fill;
+  int  x1, y1;
+  int  radius;
+  int  color;
+  int  circle_width, circle_space, circle_length;
+  int  fill_width, angle1, pitch1, angle2, pitch2;
+  int  circle_end;
+  int  circle_type;
+  int  circle_fill;
 
-  if(release_ver <= VERSION_20000704) {
+  if (release_ver <= VERSION_20000704) {
     /*
      * The old geda file format, i.e. releases 20000704 and older, does not
      * handle the line type and the filling of the box object. They are set
@@ -994,7 +1028,8 @@ GedaObject *geda_circle_object_read (const char buf[], unsigned int release_ver,
     angle2        = -1;
     pitch2        = -1;
 
-  } else {
+  }
+  else {
 
     /*
      * The current line format to describe a circle is a space separated
@@ -1002,15 +1037,14 @@ GedaObject *geda_circle_object_read (const char buf[], unsigned int release_ver,
      * meaning of each item is described in the file format documentation.
      */
     if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-      &type, &x1, &y1, &radius, &color,
-      &circle_width, &circle_end, &circle_type,
-      &circle_length, &circle_space, &circle_fill,
-      &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
+       &type, &x1, &y1, &radius, &color,
+       &circle_width, &circle_end, &circle_type,
+       &circle_length, &circle_space, &circle_fill,
+       &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
+       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
     return NULL;
-      }
+    }
   }
-
 
   if (radius <= 0) {
     u_log_message(_("Found a zero or negative radius circle [ %c %d %d %d %d ]\n"),
@@ -1050,20 +1084,20 @@ GedaObject *geda_circle_object_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! \brief Rotate Circle GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Rotate Circle GedaObject
+ * \par Function Description
  *  The function #geda_circle_object_rotate() rotate the circle described
  *  by <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point
  *  by angle <B>angle</B> degrees
  *
- *  \param [in,out]  object    Circle GedaObject to rotate.
- *  \param [in]      center_x  Rotation center x coordinate.
- *  \param [in]      center_y  Rotation center y coordinate.
- *  \param [in]      angle     Rotation angle in degrees (See note below).
-
+ * \param [in,out]  object    Circle GedaObject to rotate.
+ * \param [in]      center_x  Rotation center x coordinate.
+ * \param [in]      center_y  Rotation center y coordinate.
+ * \param [in]      angle     Rotation angle in degrees (See note below).
  */
-void geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   int x, y;
@@ -1100,9 +1134,9 @@ void geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, i
 
 }
 
-/*! \brief Create a character string representation of a circle Object
- *
- *  \par Function Description
+/*!
+ * \brief Create a character string representation of a circle Object
+ * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
  *  circle <B>*object</B> following the post-20000704 release file format that
  *  handles the line type and fill options.
@@ -1116,15 +1150,17 @@ void geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, i
  * \remarks The string should be freed at some point.
  *
  */
-char *geda_circle_object_save(GedaObject *object)
+char*
+geda_circle_object_save(GedaObject *object)
 {
-  int x,y;
-  int radius;
-  int circle_width, circle_space, circle_length;
-  int fill_width, angle1, pitch1, angle2, pitch2;
   char *buf;
-  LINE_END circle_end;
-  LINE_TYPE  circle_type;
+  int   x,y;
+  int   radius;
+  int   circle_width, circle_space, circle_length;
+  int   fill_width, angle1, pitch1, angle2, pitch2;
+
+  LINE_END       circle_end;
+  LINE_TYPE      circle_type;
   OBJECT_FILLING circle_fill;
 
   /* circle center and radius */
@@ -1155,20 +1191,22 @@ char *geda_circle_object_save(GedaObject *object)
   return(buf);
 }
 
-/*! \brief Calculates shortest distance to a Circle
- *  \par Function Description
+/*!
+ * \brief Calculates shortest distance to a Circle
+ * \par Function Description
  *   Calculates the distance between the given point and the closest
  *   point on the perimeter of the circle.
  *
- *  \param [in] object       A circle Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
+ * \param [in] object       A circle Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
  *
- *  \return The shortest distance from point to \a object to the point or
- *          G_MAXDOUBLE if the parameters are invalid parameter.
+ * \return The shortest distance from point to \a object to the point or
+ *         G_MAXDOUBLE if the parameters are invalid parameter.
  */
-double geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double
+geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 
@@ -1179,17 +1217,18 @@ double geda_circle_object_shortest_distance (GedaObject *object, int x, int y, i
   return m_circle_shortest_distance (object->circle, x, y, solid);
 }
 
-/*! \brief Translate a circle position by a delta
- *
- *  \par Function Description
+/*!
+ * \brief Translate a circle position by a delta
+ * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in]     dx         x distance to move.
- *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Circle GedaObject to translate.
+ * \param [in]     dx         x distance to move.
+ * \param [in]     dy         y distance to move.
+ * \param [in,out] object     Circle GedaObject to translate.
  */
-void geda_circle_object_translate(GedaObject *object, int dx, int dy)
+void
+geda_circle_object_translate(GedaObject *object, int dx, int dy)
 {
   /* Do world coords */
   object->circle->center_x = object->circle->center_x + dx;
