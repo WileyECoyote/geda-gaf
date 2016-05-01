@@ -1,3 +1,10 @@
+2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_compselect.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE, add
+      member instance_type and declarations for is_a_compselect.
+
+    * src/x/x_compselect.c: Add function is_a_compselect.
+
 2016-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_print.h: Remove macro G_TYPE_CHECK_INSTANCE_TYPE, add

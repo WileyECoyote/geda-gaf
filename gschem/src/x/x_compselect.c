@@ -2793,47 +2793,6 @@ static GtkWidget *create_behaviors_menu (void)
   return(menu);
 }
 
-/*! \brief Function to retrieve Compselect's Type identifier.
- *
- *  \par Function Description
- *  Function to retrieve a #Compselect Type identifier. When
- *  first called, the function registers a #Compselect in the
- *  GedaType system to obtain an identifier that uniquely itentifies
- *  a Compselect and returns the unsigned integer value.
- *  The retained value is returned on all Subsequent calls.
- *
- *  \return GedaType identifier associated with Compselect.
- */
-GedaType compselect_get_type (void)
-{
-  static GedaType compselect_type = 0;
-
-  if (g_once_init_enter (&compselect_type)) {
-
-    static const GTypeInfo info = {
-      sizeof(CompselectClass),
-      NULL,                            /* base_init           */
-      NULL,                            /* base_finalize       */
-      compselect_class_init,           /* (GClassInitFunc)    */
-      NULL,                            /* class_finalize      */
-      NULL,                            /* class_data          */
-      sizeof(Compselect),
-      0,                               /* n_preallocs         */
-      NULL   /* compselect_instance_init  (GInstanceInitFunc) */
-    };
-
-    const char *string;
-    GedaType    type;
-
-    string = g_intern_static_string ("Compselect");
-    type   = g_type_register_static (GSCHEM_TYPE_DIALOG, string, &info, 0);
-
-    g_once_init_leave (&compselect_type, type);
-  }
-
-  return compselect_type;
-}
-
 /*! \brief GschemDialog "geometry_save" class method over-ride
  *
  *  \par Function Description
@@ -3207,6 +3166,81 @@ compselect_class_init (void *class, void *class_data)
                                     G_TYPE_NONE, 0);
 }
 
+/*! \brief Initialize new Compselect data structure instance.
+ *  \par Function Description
+ *  This function is call after the CompselectClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A Compselect data structure
+ * \param [in] class     A CompselectClass Object
+ */
+static void
+compselect_instance_init(GTypeInstance *instance, void *class)
+{
+  Compselect *dialog;
+
+  dialog = (Compselect*)instance;
+
+  dialog->instance_type = compselect_get_type();
+}
+
+/*! \brief Function to retrieve Compselect's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #Compselect Type identifier. When
+ *  first called, the function registers a #Compselect in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a Compselect and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with Compselect.
+ */
+GedaType compselect_get_type (void)
+{
+  static GedaType compselect_type = 0;
+
+  if (g_once_init_enter (&compselect_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(CompselectClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      compselect_class_init,           /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(Compselect),
+      0,                               /* n_preallocs         */
+      compselect_instance_init         /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Compselect");
+    type   = g_type_register_static (GSCHEM_TYPE_DIALOG, string, &info, 0);
+
+    g_once_init_leave (&compselect_type, type);
+  }
+
+  return compselect_type;
+}
+
+/*!
+ * \brief Check if an object is a Compselect
+ * \par Function Description
+ *  Ensures dialog is a valid G_Object and compares signature
+ *  to compselect dialog type.
+ * \return TRUE if \a view is a valid Compselect
+ */
+bool
+is_a_compselect (Compselect *dialog)
+{
+  if (G_IS_OBJECT(dialog)) {
+    return (compselect_get_type() == dialog->instance_type);
+  }
+  return FALSE;
+}
+
 /*! \brief Creates the Action Area on the Component Select Dialog */
 static GtkWidget*
 create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
@@ -3346,9 +3380,8 @@ compselect_constructor (GType                  type,
   object = G_OBJECT_CLASS (compselect_parent_class)->
   constructor (type, n_construct_properties, construct_params);
 
-  ThisDialog = COMPSELECT (object);
-
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+  ThisDialog = (Compselect*) (object);
+  w_current  = GSCHEM_DIALOG (ThisDialog)->w_current;
 
   /* Initialize the hidden property */
   ThisDialog->hidden      = FALSE;

@@ -78,47 +78,48 @@ GedaType compselect_behavior_get_type (void);
  * Compselect
  */
 
-#define TYPE_COMPSELECT         (compselect_get_type())
-#define COMPSELECT(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMPSELECT, Compselect))
-#define COMPSELECT_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMPSELECT, CompselectClass))
-#define IS_COMPSELECT(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_COMPSELECT))
+#define TYPE_COMPSELECT           (compselect_get_type())
+#define COMPSELECT(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMPSELECT, Compselect))
+#define COMPSELECT_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMPSELECT, CompselectClass))
+#define IS_COMPSELECT(obj)        (is_a_compselect((Compselect*)obj))
 #define COMPSELECT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMPSELECT, CompselectClass))
 
 typedef struct _CompselectClass CompselectClass;
 typedef struct _Compselect      Compselect;
 
 struct _CompselectClass {
+
   GschemDialogClass parent_class;
 
   unsigned int behavior_changed_signal_id;
 
   void (* refresh)   (Compselect *compselect);
-
 };
 
 struct _Compselect {
 
-  GschemDialog parent_instance;
+  GschemDialog    parent_instance;
+  GedaType        instance_type;
 
-  GtkWidget     *hpaned, *vpaned;
-  GtkWidget     *filter_hbox;
+  GtkWidget      *hpaned, *vpaned;
+  GtkWidget      *filter_hbox;
 
-  GtkTreeView   *attrtreeview;
-  GtkTreeView   *inusetreeview;
-  GtkTreeView   *stdtreeview;
-  GtkTreeView   *mantreeview;
-  GtkTreeView   *simtreeview;
-  GtkTreeView   *localtreeview;
+  GtkTreeView    *attrtreeview;
+  GtkTreeView    *inusetreeview;
+  GtkTreeView    *stdtreeview;
+  GtkTreeView    *mantreeview;
+  GtkTreeView    *simtreeview;
+  GtkTreeView    *localtreeview;
 
-  GtkNotebook   *notebook;
-  GschemPreview *preview;
-  GtkEntry      *entry_filter;
-  GtkButton     *button_clear;
-  unsigned int   filter_timeout;
-  bool           applying_filter;
+  GtkNotebook    *notebook;
+  GschemPreview  *preview;
+  GtkEntry       *entry_filter;
+  GtkButton      *button_clear;
+  unsigned int    filter_timeout;
+  bool            applying_filter;
 
-  GtkTooltips   *tooltips;
-  bool           show_tips;
+  GtkTooltips    *tooltips;
+  bool            show_tips;
 
   GtkOptionMenu  *behavior_menu;
 
@@ -134,10 +135,10 @@ struct _Compselect {
   bool subgroups;
   bool rescan_lib;
   int  active_tab;
-
 };
 
 GedaType compselect_get_type (void) GEDA_CONST;
+bool     is_a_compselect     (Compselect *dialog);
 
 /* Response IDs for special dialog buttons */
 typedef enum {
