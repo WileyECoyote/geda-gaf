@@ -3,6 +3,8 @@
     * src/geda/geda_box.c: Add gobject properties for line type options
       and object filling.
 
+    * src/geda/geda_circle.c: Add gobject properties.
+
     * src/object/o_circle_object.c: Reoganize module, adjust line wrap and
       indentation for comment blocks.
 

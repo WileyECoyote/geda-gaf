@@ -46,6 +46,24 @@
 
 #include <libgeda_priv.h>
 
+enum {
+  PROP_0,
+  PROP_CENTER_X,
+  PROP_CENTER_Y,
+  PROP_RADIUS,
+  PROP_LINE_CAP,
+  PROP_LINE_TYPE,
+  PROP_LINE_WIDTH,
+  PROP_LINE_SPACE,
+  PROP_LINE_LENGTH,
+  PROP_FILL_TYPE,
+  PROP_FILL_WIDTH,
+  PROP_FILL_ANGLE1,
+  PROP_FILL_PITCH1,
+  PROP_FILL_ANGLE2,
+  PROP_FILL_PITCH2
+};
+
 static GObjectClass *geda_circle_parent_class = NULL;
 
 /*! \brief Get circle bounding rectangle
@@ -72,6 +90,175 @@ geda_circle_bounds(GedaObject *object)
   object->bottom = object->circle->center_y + object->circle->radius + halfwidth;
 
   return TRUE;
+}
+
+static void
+geda_circle_dispose(GObject *object)
+{
+  G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
+}
+
+/*! \brief Geda Circle GedaObject Finalization Function
+ *  \par Function Description
+ *   Invalidates the Circle and then chains up to the parent's
+ *   finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
+ */
+static void geda_circle_finalize(GObject *object)
+{
+  GedaObject *obj = GEDA_OBJECT(object);
+
+  /* The object is no longer a GedaCircle */
+  obj->circle = NULL;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_circle_parent_class)->finalize(object);
+}
+
+static void
+get_property (GObject *object, unsigned int  prop_id,
+                               GValue       *value,
+                               GParamSpec   *pspec)
+
+{
+  GedaCircle   *circle       = GEDA_CIRCLE(object);
+  LINE_OPTIONS *line_options = &circle->line_options;
+  FILL_OPTIONS *fill_options = &circle->fill_options;
+
+  switch (prop_id)
+  {
+    case PROP_CENTER_X:
+      g_value_set_int (value, circle->center_x);
+      break;
+
+    case PROP_CENTER_Y:
+      g_value_set_int (value, circle->center_y);
+      break;
+
+    case PROP_RADIUS:
+      g_value_set_int (value, circle->radius);
+      break;
+
+    case PROP_LINE_CAP:
+      g_value_set_int (value, line_options->line_end);
+      break;
+
+    case PROP_LINE_TYPE:
+      g_value_set_int (value, line_options->line_type);
+      break;
+
+    case PROP_LINE_WIDTH:
+      g_value_set_int (value, line_options->line_width);
+      break;
+
+    case PROP_LINE_SPACE:
+      g_value_set_int (value, line_options->line_space);
+      break;
+
+    case PROP_LINE_LENGTH:
+      g_value_set_int (value, line_options->line_length);
+      break;
+
+    case PROP_FILL_TYPE:
+      g_value_set_int (value, fill_options->fill_type);
+      break;
+
+    case PROP_FILL_WIDTH:
+      g_value_set_int (value, fill_options->fill_width);
+      break;
+
+    case PROP_FILL_ANGLE1:
+      g_value_set_int (value, fill_options->fill_angle1);
+      break;
+
+    case PROP_FILL_PITCH1:
+      g_value_set_int (value, fill_options->fill_pitch1);
+      break;
+
+    case PROP_FILL_ANGLE2:
+      g_value_set_int (value, fill_options->fill_angle2);
+      break;
+
+    case PROP_FILL_PITCH2:
+      g_value_set_int (value, fill_options->fill_pitch2);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+set_property (GObject *object, unsigned int  prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+  GedaCircle   *circle       = GEDA_CIRCLE(object);
+  LINE_OPTIONS *line_options = &circle->line_options;
+  FILL_OPTIONS *fill_options = &circle->fill_options;
+
+  switch (prop_id)
+  {
+    case PROP_CENTER_X:
+      circle->center_x = g_value_get_int (value);
+      break;
+
+    case PROP_CENTER_Y:
+      circle->center_y = g_value_get_int (value);
+      break;
+
+    case PROP_RADIUS:
+      circle->radius = g_value_get_int (value);
+      break;
+
+    case PROP_LINE_CAP:
+      line_options->line_end = g_value_get_int (value);
+      break;
+
+    case PROP_LINE_TYPE:
+      line_options->line_type = g_value_get_int (value);
+      break;
+
+    case PROP_LINE_WIDTH:
+      line_options->line_width = g_value_get_int (value);
+      break;
+
+    case PROP_LINE_SPACE:
+      line_options->line_space = g_value_get_int (value);
+      break;
+
+    case PROP_LINE_LENGTH:
+      line_options->line_length = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_TYPE:
+      fill_options->fill_type = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_WIDTH:
+      fill_options->fill_width = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_ANGLE1:
+      fill_options->fill_angle1 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_PITCH1:
+      fill_options->fill_pitch1 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_ANGLE2:
+      fill_options->fill_angle2 = g_value_get_int (value);
+      break;
+
+    case PROP_FILL_PITCH2:
+      fill_options->fill_pitch2 = g_value_get_int (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
 }
 
 /*! \brief Type instance initializer for GedaCircle
@@ -110,28 +297,6 @@ static void geda_circle_instance_init(GTypeInstance *instance, void *class)
   object->line_options              = &circle->line_options;
 }
 
-static void
-geda_circle_dispose(GObject *object)
-{
-  G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
-}
-
-/*! \brief Geda Circle GedaObject Finalization Function
- *  \par Function Description
- *   Invalidates the Circle and then chains up to the parent's
- *   finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
- */
-static void geda_circle_finalize(GObject *object)
-{
-  GedaObject *obj = GEDA_OBJECT(object);
-
-  /* The object is no longer a GedaCircle */
-  obj->circle = NULL;
-
-  /* Finialize the parent GedaObject Class */
-  GEDA_OBJECT_CLASS(geda_circle_parent_class)->finalize(object);
-}
-
 /*! \brief Type class initializer for GedaCircle
  *
  *  \par Function Description
@@ -143,16 +308,161 @@ static void geda_circle_finalize(GObject *object)
  */
 static void geda_circle_class_init(void *g_class, void *class_data)
 {
-  GedaCircleClass *class         = (GedaCircleClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaCircleClass *class        = (GedaCircleClass*)g_class;
+  GObjectClass    *object_class = G_OBJECT_CLASS(class);
+  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GParamSpec      *params;
 
-  geda_circle_parent_class       = g_type_class_peek_parent(class);
+  geda_circle_parent_class      = g_type_class_peek_parent(class);
 
-  gobject_class->dispose         = geda_circle_dispose;
-  gobject_class->finalize        = geda_circle_finalize;
+  object_class->dispose         = geda_circle_dispose;
+  object_class->finalize        = geda_circle_finalize;
 
-  geda_class->bounds             = geda_circle_bounds;
+  object_class->get_property    = get_property;
+  object_class->set_property    = set_property;
+
+  geda_class->bounds            = geda_circle_bounds;
+
+  params = g_param_spec_int ("center-x",
+                           _("Center X"),
+                           _("Abscissa of the circle center point"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_CENTER_X, params);
+
+  params = g_param_spec_int ("center-y",
+                           _("Center Y"),
+                           _("Ordinate of the circle center point"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_CENTER_Y, params);
+
+  params = g_param_spec_int ("radius",
+                           _("Radius"),
+                           _("Radius of the circle"),
+                             0,
+                             G_MAXINT,
+                             0,
+                             (G_PARAM_READWRITE));
+
+  /* Gedacircles have some line-type properties but are not derived from
+   * GedaLine therefore these properties must be defined for the GedaCircle... */
+
+  params = g_param_spec_int ("end-cap",
+                           _("End Cap"),
+                           _("Line end cap is not used by circles"),
+                             END_NONE,
+                             END_ROUND,
+                             END_NONE,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LINE_CAP, params);
+
+  params = g_param_spec_int ("line-type",
+                           _("Line Type"),
+                           _("The line type"),
+                             TYPE_SOLID,
+                             TYPE_PHANTOM,
+                             TYPE_SOLID,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LINE_TYPE, params);
+
+  params = g_param_spec_int ("line-width",
+                           _("Line Width"),
+                           _("The line width"),
+                             0,
+                             500,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LINE_WIDTH, params);
+
+  params = g_param_spec_int ("line-space",
+                           _("Line Space"),
+                           _("The line space"),
+                             0,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LINE_SPACE, params);
+
+  params = g_param_spec_int ("line-length",
+                           _("Line Length"),
+                           _("The line length"),
+                             0,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_LINE_LENGTH, params);
+
+  params = g_param_spec_int ("fill-type",
+                           _("Fill Type"),
+                           _("The Object fill type; hatch mesh, solid, etc..."),
+                             FILLING_HOLLOW,
+                             FILLING_HATCH,
+                             FILLING_HOLLOW,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_TYPE, params);
+
+  params = g_param_spec_int ("fill-width",
+                           _("Fill Width"),
+                           _("The Object fill width applies to fill hatch and mesh"),
+                             0,
+                             500,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_WIDTH, params);
+
+  params = g_param_spec_int ("fill-angle1",
+                           _("Fill Angle 1"),
+                           _("The Object fill angle1 applies to fill hatch and mesh"),
+                             0,
+                             360, /* Does not really make sense to be more than 180 */
+                             45,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_ANGLE1, params);
+
+  params = g_param_spec_int ("fill-pitch1",
+                           _("Fill Pitch 1"),
+                           _("The Object fill angle1 applies to fill hatch and mesh"),
+                             0,
+                             G_MAXINT,
+                             100,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_PITCH1, params);
+
+  params = g_param_spec_int ("fill-angle2",
+                           _("Fill Angle 2"),
+                           _("The Object fill angle1 applies to fill mesh"),
+                             0,
+                             360, /* Does not really make sense to be more than 180 */
+                             135,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_ANGLE2, params);
+
+  params = g_param_spec_int ("fill-pitch2",
+                           _("Fill Pitch 2"),
+                           _("The Object fill angle1 applies to fill mesh"),
+                             0,
+                             G_MAXINT,
+                             100,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, PROP_FILL_PITCH2, params);
 }
 
 /*! \brief Function to retrieve GedaCircle's Type identifier.
