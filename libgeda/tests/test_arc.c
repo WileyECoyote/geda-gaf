@@ -499,6 +499,8 @@ test_arc_properties (void)
       int s = m_random_number (1, 359);
       int x = m_random_number (0, 120000);
       int y = m_random_number (0, 80000);
+
+      /* Line type options */
       int e = m_random_number (END_NONE, END_ROUND);
       int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
       int w = m_random_number (0, 500);
@@ -546,7 +548,7 @@ test_arc_properties (void)
         fail++;
       }
 
-      /* line type properties */
+      /* Check line type properties */
       g_object_set(arc, "end-cap",     e,
                         "line-type",   t,
                         "line-width",  w,
