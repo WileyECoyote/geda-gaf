@@ -1,3 +1,7 @@
+2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_circle_object.c: Add tests for circle object constructors.
+
 2016-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Add gobject property for line type options.
