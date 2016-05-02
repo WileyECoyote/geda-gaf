@@ -4,6 +4,10 @@
 
     * src/widgets/geda_image_menu_item.c: Use local enumerators.
 
+    * tests/test_handlebox.c: Remove test destruction of handlebox; is not
+      a test of glib, and glib is too slow for this to work reliably without
+      adding delays.
+
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add mapping GtkStateFlags to GtkStateType.

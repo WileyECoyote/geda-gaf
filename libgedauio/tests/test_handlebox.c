@@ -71,11 +71,6 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to the widget */
   g_object_unref(widget);    /* Destroy the widget */
 
-  if (GEDA_IS_HANDLE_BOX(widget)) {
-    fprintf(stderr, "FAILED %s destruction\n", TWIDGET);
-    result++;
-  }
-
   return result;
 }
 
