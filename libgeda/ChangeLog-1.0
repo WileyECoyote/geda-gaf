@@ -1,5 +1,8 @@
 2016-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_object.c: Add geda_object_error and use scheme like
+      circle and complexes for error message handling.
+
     * object/o_circle_object.c: Add static functions geda_object_error
       and geda_circle_object_error, implement common object argument error
       message handlers.

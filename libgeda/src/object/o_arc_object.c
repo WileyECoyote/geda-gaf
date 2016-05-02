@@ -30,16 +30,15 @@
 #include <libgeda_priv.h>
 
 static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
+static void
 geda_arc_object_error(const char *func, const void *object)
 {
-  fprintf(stderr, "File %s, <%s>: ", __FILE__, func);
-
-  if (!object) {
-    fprintf(stderr, "GedaArc object argument is NULL\n");
-  }
-  else {
-    fprintf(stderr, "Not a valid GedaArc object <%p>\n", object);
-  }
+  geda_object_error(func, object, GEDA_OBJECT_ARC);
 }
 
 /*! O0201
