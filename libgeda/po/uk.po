@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-04-23 14:29-0500\n"
+"POT-Creation-Date: 2016-05-01 15:44-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -272,6 +272,204 @@ msgstr ""
 msgid "%s: %s"
 msgstr "%s: %s"
 
+#: libgeda/src/geda/geda_arc.c:404 libgeda/src/geda/geda_circle.c:327
+msgid "Center X"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:405
+msgid "Abscissa of the arc center point"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:414 libgeda/src/geda/geda_circle.c:337
+msgid "Center Y"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:415
+msgid "Ordinate of the arc center point"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:424 libgeda/src/geda/geda_circle.c:347
+msgid "Radius"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:425
+msgid "Radius of the arc"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:434
+msgid "Start Angle"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:435
+msgid "The arc starting angle"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:444
+msgid "Arc Sweep"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:445
+msgid "The arc sweep angle"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:457 libgeda/src/geda/geda_box.c:384
+#: libgeda/src/geda/geda_circle.c:358 libgeda/src/geda/geda_line.c:317
+msgid "End Cap"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:458 libgeda/src/geda/geda_box.c:385
+#: libgeda/src/geda/geda_line.c:318
+msgid "Line end cap"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:467 libgeda/src/geda/geda_box.c:394
+#: libgeda/src/geda/geda_circle.c:368 libgeda/src/geda/geda_line.c:327
+msgid "Line Type"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:468 libgeda/src/geda/geda_box.c:395
+#: libgeda/src/geda/geda_circle.c:369 libgeda/src/geda/geda_line.c:328
+msgid "The line type"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:477 libgeda/src/geda/geda_box.c:404
+#: libgeda/src/geda/geda_circle.c:378 libgeda/src/geda/geda_line.c:337
+msgid "Line Width"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:478 libgeda/src/geda/geda_box.c:405
+#: libgeda/src/geda/geda_circle.c:379 libgeda/src/geda/geda_line.c:338
+msgid "The line width"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:487 libgeda/src/geda/geda_box.c:414
+#: libgeda/src/geda/geda_circle.c:388 libgeda/src/geda/geda_line.c:347
+msgid "Line Space"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:488 libgeda/src/geda/geda_box.c:415
+#: libgeda/src/geda/geda_circle.c:389 libgeda/src/geda/geda_line.c:348
+msgid "The line space"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:497 libgeda/src/geda/geda_box.c:424
+#: libgeda/src/geda/geda_circle.c:398 libgeda/src/geda/geda_line.c:357
+msgid "Line Length"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:498 libgeda/src/geda/geda_box.c:425
+#: libgeda/src/geda/geda_circle.c:399 libgeda/src/geda/geda_line.c:358
+msgid "The line length"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:509 libgeda/src/geda/geda_box.c:434
+#: libgeda/src/geda/geda_circle.c:408
+msgid "Fill Type"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:510 libgeda/src/geda/geda_box.c:435
+#: libgeda/src/geda/geda_circle.c:409
+msgid "The Object fill type; hatch mesh, solid, etc..."
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:519 libgeda/src/geda/geda_box.c:444
+#: libgeda/src/geda/geda_circle.c:418
+msgid "Fill Width"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:520 libgeda/src/geda/geda_box.c:445
+#: libgeda/src/geda/geda_circle.c:419
+msgid "The Object fill width applies to fill hatch and mesh"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:529 libgeda/src/geda/geda_box.c:454
+#: libgeda/src/geda/geda_circle.c:428
+msgid "Fill Angle 1"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:530 libgeda/src/geda/geda_arc.c:540
+#: libgeda/src/geda/geda_box.c:455 libgeda/src/geda/geda_box.c:465
+#: libgeda/src/geda/geda_circle.c:429 libgeda/src/geda/geda_circle.c:439
+msgid "The Object fill angle1 applies to fill hatch and mesh"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:539 libgeda/src/geda/geda_box.c:464
+#: libgeda/src/geda/geda_circle.c:438
+msgid "Fill Pitch 1"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:549 libgeda/src/geda/geda_box.c:474
+#: libgeda/src/geda/geda_circle.c:448
+msgid "Fill Angle 2"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:550 libgeda/src/geda/geda_arc.c:560
+#: libgeda/src/geda/geda_box.c:475 libgeda/src/geda/geda_box.c:485
+#: libgeda/src/geda/geda_circle.c:449 libgeda/src/geda/geda_circle.c:459
+msgid "The Object fill angle1 applies to fill mesh"
+msgstr ""
+
+#: libgeda/src/geda/geda_arc.c:559 libgeda/src/geda/geda_box.c:484
+#: libgeda/src/geda/geda_circle.c:458
+msgid "Fill Pitch 2"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:341
+msgid "Upper X"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:342
+msgid "Upper X bounds"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:351
+msgid "Upper Y"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:352
+msgid "Upper Y bounds"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:361
+msgid "Lower X"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:362
+msgid "Lower X bounds"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:371
+msgid "Lower Y"
+msgstr ""
+
+#: libgeda/src/geda/geda_box.c:372
+msgid "Lower Y bounds"
+msgstr ""
+
+#: libgeda/src/geda/geda_bus.c:172
+msgid "Bus Ripper Direction"
+msgstr ""
+
+#: libgeda/src/geda/geda_bus.c:173
+msgid "The bus ripper direction"
+msgstr ""
+
+#: libgeda/src/geda/geda_circle.c:328
+msgid "Abscissa of the circle center point"
+msgstr ""
+
+#: libgeda/src/geda/geda_circle.c:338
+msgid "Ordinate of the circle center point"
+msgstr ""
+
+#: libgeda/src/geda/geda_circle.c:348
+msgid "Radius of the circle"
+msgstr ""
+
+#: libgeda/src/geda/geda_circle.c:359
+msgid "Line end cap is not used by circles"
+msgstr ""
+
 #: libgeda/src/geda/geda_config.c:233
 msgid "Configuration file"
 msgstr ""
@@ -309,75 +507,107 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:418
-msgid "object-type"
+#: libgeda/src/geda/geda_line.c:277
+msgid "First X"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:278
+msgid "X coordinate of the first point"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:287
+msgid "First Y"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:288
+msgid "Y coordinate of the first point"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:297
+msgid "Second X"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:298
+msgid "X coordinate of the second point"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:307
+msgid "Second Y"
+msgstr ""
+
+#: libgeda/src/geda/geda_line.c:308
+msgid "Y coordinate of the second point"
 msgstr ""
 
 #: libgeda/src/geda/geda_object.c:419
+msgid "object-type"
+msgstr ""
+
+#: libgeda/src/geda/geda_object.c:420
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:428
+#: libgeda/src/geda/geda_object.c:429
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:429
+#: libgeda/src/geda/geda_object.c:430
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:436
+#: libgeda/src/geda/geda_object.c:437
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:437
+#: libgeda/src/geda/geda_object.c:438
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:443
+#: libgeda/src/geda/geda_object.c:444
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:444
+#: libgeda/src/geda/geda_object.c:445
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:449
+#: libgeda/src/geda/geda_object.c:450
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:450
+#: libgeda/src/geda/geda_object.c:451
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:456
+#: libgeda/src/geda/geda_object.c:457
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:457
+#: libgeda/src/geda/geda_object.c:458
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:463
+#: libgeda/src/geda/geda_object.c:464
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:464
+#: libgeda/src/geda/geda_object.c:465
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:471
+#: libgeda/src/geda/geda_object.c:472
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:472
+#: libgeda/src/geda/geda_object.c:473
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:480
+#: libgeda/src/geda/geda_object.c:481
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:481
+#: libgeda/src/geda/geda_object.c:482
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -605,15 +835,15 @@ msgstr ""
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:96
+#: libgeda/src/object/o_object.c:99
 msgid "<o_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
-#: libgeda/src/object/o_object.c:103
+#: libgeda/src/object/o_object.c:106
 msgid "Schematic data was not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:245
+#: libgeda/src/object/o_object.c:261
 #, c-format
 msgid ""
 "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
@@ -621,7 +851,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:269 libgeda/src/object/o_object.c:277
+#: libgeda/src/object/o_object.c:285 libgeda/src/object/o_object.c:293
 #, c-format
 msgid ""
 "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
@@ -629,7 +859,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:314
+#: libgeda/src/object/o_object.c:331
 #, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -637,7 +867,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:351
+#: libgeda/src/object/o_object.c:369
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -645,7 +875,7 @@ msgid ""
 "[%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:370
+#: libgeda/src/object/o_object.c:388
 #, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -653,12 +883,12 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:374
+#: libgeda/src/object/o_object.c:392
 #, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:404
+#: libgeda/src/object/o_object.c:425
 #, c-format
 msgid " On or about line %d, "
 msgstr ""
@@ -674,23 +904,23 @@ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга з нульовим радіусом [ %c %d, %d, %d, %d, %d, %d ]\n"
 
 #: libgeda/src/object/o_arc_object.c:1244
-#: libgeda/src/object/o_box_object.c:1297
-#: libgeda/src/object/o_bus_object.c:444
-#: libgeda/src/object/o_circle_object.c:1023
+#: libgeda/src/object/o_box_object.c:1303
+#: libgeda/src/object/o_bus_object.c:591
+#: libgeda/src/object/o_circle_object.c:1090
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
 #: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
-#: libgeda/src/object/o_text_basic.c:255
+#: libgeda/src/object/o_text_basic.c:777
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимий колір [ %s ]\n"
 
 #: libgeda/src/object/o_arc_object.c:1245
-#: libgeda/src/object/o_box_object.c:1298
-#: libgeda/src/object/o_bus_object.c:445
-#: libgeda/src/object/o_circle_object.c:1024
+#: libgeda/src/object/o_box_object.c:1304
+#: libgeda/src/object/o_bus_object.c:592
+#: libgeda/src/object/o_circle_object.c:1091
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
 #: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
-#: libgeda/src/object/o_text_basic.c:256
+#: libgeda/src/object/o_text_basic.c:778
 msgid "Setting color to default color\n"
 msgstr "Колір виставлено за замовчуванням\n"
 
@@ -709,128 +939,128 @@ msgstr "Спроба встановити не текстовий елемент
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Спроба додати трибут [%s] більш ніж до одного об'єкту\n"
 
-#: libgeda/src/object/o_attrib.c:715
+#: libgeda/src/object/o_attrib.c:729
 #, fuzzy
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Спроба встановити не текстовий елемент як атрибут\n"
 
-#: libgeda/src/object/o_attrib.c:722
+#: libgeda/src/object/o_attrib.c:738
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
-#: libgeda/src/object/o_box_object.c:1255
-#: libgeda/src/object/o_box_object.c:1286
+#: libgeda/src/object/o_box_object.c:1261
+#: libgeda/src/object/o_box_object.c:1292
 msgid "Failed to parse box object"
 msgstr ""
 
-#: libgeda/src/object/o_box_object.c:1292
+#: libgeda/src/object/o_box_object.c:1298
 #, c-format
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr ""
 "Знайдено прямокутник з нульовою довжиною/шириною [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_bus_object.c:373
+#: libgeda/src/object/o_bus_object.c:516
 #, c-format
 msgid "null in geda_bus_object_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:422 libgeda/src/object/o_bus_object.c:429
+#: libgeda/src/object/o_bus_object.c:569 libgeda/src/object/o_bus_object.c:576
 msgid "Failed to parse bus object"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:435
+#: libgeda/src/object/o_bus_object.c:582
 #, c-format
 msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
 msgstr "Знайдено шину нульової довжини [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_bus_object.c:450
+#: libgeda/src/object/o_bus_object.c:597
 #, c-format
 msgid "Found an invalid bus ripper direction [ %s ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:451
+#: libgeda/src/object/o_bus_object.c:598
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr ""
 
-#: libgeda/src/object/o_circle_object.c:288
+#: libgeda/src/object/o_circle_object.c:313
 msgid "Null radius circles are not allowed\n"
 msgstr "Кола нульового радіусу заборонені\n"
 
-#: libgeda/src/object/o_circle_object.c:980
-#: libgeda/src/object/o_circle_object.c:1009
+#: libgeda/src/object/o_circle_object.c:1047
+#: libgeda/src/object/o_circle_object.c:1077
 msgid "Failed to parse circle object"
 msgstr ""
 
-#: libgeda/src/object/o_circle_object.c:1016
+#: libgeda/src/object/o_circle_object.c:1083
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_circle_object.c:1018
+#: libgeda/src/object/o_circle_object.c:1085
 msgid "Setting radius to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:135
+#: libgeda/src/object/o_complex_basic.c:149
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:136
+#: libgeda/src/object/o_complex_basic.c:150
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:137
+#: libgeda/src/object/o_complex_basic.c:151
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:138
+#: libgeda/src/object/o_complex_basic.c:152
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:139
+#: libgeda/src/object/o_complex_basic.c:153
 msgid "parse error"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:141
+#: libgeda/src/object/o_complex_basic.c:155
 #, c-format
 msgid "\t<%s> Instantiated symbol <%s> is %s than the version in library\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:142
+#: libgeda/src/object/o_complex_basic.c:156
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:143
+#: libgeda/src/object/o_complex_basic.c:157
 #, c-format
 msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:144
+#: libgeda/src/object/o_complex_basic.c:158
 msgid "\tCould not parse symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:145
+#: libgeda/src/object/o_complex_basic.c:159
 #, c-format
 msgid "WARNING: Symbol version %s on refdes %s:\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:169
+#: libgeda/src/object/o_complex_basic.c:186
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:222
+#: libgeda/src/object/o_complex_basic.c:239
 #, c-format
 msgid "\tCould not parse attached symversion=%s\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:244
+#: libgeda/src/object/o_complex_basic.c:261
 #, c-format
 msgid ""
 "\tsymversion=%s attached to instantiated symbol, but version not found "
 "inside symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:356
+#: libgeda/src/object/o_complex_basic.c:373
 #, c-format
 msgid ""
 "Component not found:\n"
@@ -839,29 +1069,29 @@ msgstr ""
 "Компонент не знайдено:\n"
 " %s"
 
-#: libgeda/src/object/o_complex_basic.c:1030
+#: libgeda/src/object/o_complex_basic.c:1073
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1043
+#: libgeda/src/object/o_complex_basic.c:1086
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Знайдено не правильно зорієнтований компонент [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:1044
+#: libgeda/src/object/o_complex_basic.c:1087
 #: libgeda/src/object/o_picture.c:384
 msgid "Setting angle to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1056
+#: libgeda/src/object/o_complex_basic.c:1099
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Знайдено компонент з не правильним віддзеркаленням [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:1057
+#: libgeda/src/object/o_complex_basic.c:1100
 msgid "Setting mirror to 0\n"
 msgstr ""
 
@@ -1090,26 +1320,26 @@ msgstr "Колір виставлено за замовчуванням\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Колір виставлено за замовчуванням\n"
 
-#: libgeda/src/object/o_text_basic.c:198 libgeda/src/object/o_text_basic.c:209
-#: libgeda/src/object/o_text_basic.c:221
+#: libgeda/src/object/o_text_basic.c:720 libgeda/src/object/o_text_basic.c:731
+#: libgeda/src/object/o_text_basic.c:743
 msgid "Failed to parse text object"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:228
+#: libgeda/src/object/o_text_basic.c:750
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:247
+#: libgeda/src/object/o_text_basic.c:769
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:249
+#: libgeda/src/object/o_text_basic.c:771
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:271
+#: libgeda/src/object/o_text_basic.c:793
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""

@@ -28,6 +28,18 @@
 
 #include <libgeda_priv.h>
 
+static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
+static void
+geda_circle_object_error(const char *func, const void *object)
+{
+  geda_object_error(func, object, GEDA_OBJECT_CIRCLE);
+}
+
 /*!
  * \brief Create a copy of a circle.
  * \par Function Description
@@ -65,6 +77,7 @@ geda_circle_object_copy(GedaObject *o_current)
 
     return new_obj;
   }
+  geda_circle_object_error(__func__, o_current);
   return NULL;
 }
 
@@ -91,7 +104,6 @@ bool
 geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
-
 
   if (GEDA_IS_CIRCLE(object)) {
 
@@ -222,6 +234,7 @@ geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx,
     }
   }
   else { /* was not an Circle */
+    geda_circle_object_error(__func__, object);
     result = FALSE;
   }
 
@@ -246,10 +259,13 @@ geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx,
 bool
 geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 {
-  g_return_val_if_fail(GEDA_IS_CIRCLE(object), FALSE);
-  *x = object->circle->center_x;
-  *y = object->circle->center_y;
-  return TRUE;
+  if (GEDA_IS_CIRCLE(object)) {
+    *x = object->circle->center_x;
+    *y = object->circle->center_y;
+    return TRUE;
+  }
+  geda_circle_object_error(__func__, object);
+  return FALSE;
 }
 
 /*!
@@ -283,26 +299,32 @@ geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 void
 geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
 {
-  switch(whichone) {
-    case CIRCLE_CENTER:
-      /* modify the center of the circle */
-      object->circle->center_x = x;
-      object->circle->center_y = y;
-      break;
-    case CIRCLE_RADIUS:
-      /* modify the radius of the circle */
-      if (x == 0) {
-        u_log_message(_("Null radius circles are not allowed\n"));
-        return;
-      }
-      object->circle->radius = x;
-      break;
-    default:
-      break;
-  }
+  if (GEDA_IS_CIRCLE(object)) {
 
-  /* recalculate the boundings */
-  object->w_bounds_valid_for = NULL;
+    switch(whichone) {
+      case CIRCLE_CENTER:
+        /* modify the center of the circle */
+        object->circle->center_x = x;
+        object->circle->center_y = y;
+        break;
+      case CIRCLE_RADIUS:
+        /* modify the radius of the circle */
+        if (x == 0) {
+          u_log_message(_("Null radius circles are not allowed\n"));
+          return;
+        }
+        object->circle->radius = x;
+        break;
+      default:
+        break;
+    }
+
+    /* recalculate the boundings */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -321,20 +343,28 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
 void
 geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
 {
-  /* translate object to origin */
-  object->circle->center_x -= center_x;
-  object->circle->center_y -= center_y;
+  if (GEDA_IS_CIRCLE(object)) {
 
-  /* mirror the center of the circle */
-  object->circle->center_x = -object->circle->center_x;
+    /* translate object to origin */
+    object->circle->center_x -= center_x;
+    object->circle->center_y -= center_y;
 
-  /* translate back in position */
-  object->circle->center_x += center_x;
-  object->circle->center_y += center_y;
+    /* mirror the center of the circle */
+    object->circle->center_x = -object->circle->center_x;
 
-  /* recalc boundings and screen coords */
-  object->w_bounds_valid_for = NULL;
+    /* translate back in position */
+    object->circle->center_x += center_x;
+    object->circle->center_y += center_y;
 
+    /* recalc boundings and screen coords */
+    object->w_bounds_valid_for = NULL;
+
+    /* recalculate the boundings */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -414,7 +444,10 @@ geda_circle_object_print(GedaToplevel *toplevel, FILE *fp,
 
   void (*outl_func)();
 
-  g_return_if_fail(GEDA_IS_CIRCLE(o_current));
+  if (!GEDA_IS_CIRCLE(o_current)) {
+    geda_circle_object_error(__func__, o_current);
+    return;
+  }
 
   x      = o_current->circle->center_x;
   y      = o_current->circle->center_y;
@@ -1089,7 +1122,7 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
  * \par Function Description
  *  The function #geda_circle_object_rotate() rotate the circle described
  *  by <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point
- *  by angle <B>angle</B> degrees
+ *  by angle <B>angle</B> degrees.
  *
  * \param [in,out]  object    Circle GedaObject to rotate.
  * \param [in]      center_x  Rotation center x coordinate.
@@ -1099,39 +1132,49 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
 void
 geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
-  int newx, newy;
-  int x, y;
+  if (GEDA_IS_CIRCLE(object)) {
 
-  /* Only 90 degree multiple and positive angles are allowed. */
-  /* angle must be positive */
-  if(angle < 0) angle = -angle;
-  /* angle must be a 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
+    int newx, newy;
+    int x, y;
 
-  /*
-   * The center of rotation (<B>center_x</B>,<B>center_y</B>) is
-   * translated to the origin. The rotation of the center around the origin
-   * is then performed. Finally, the rotated circle is translated back to
-   * its previous location.
-   */
+    /* Only 90 degree multiple and positive angles are allowed. */
+    /* angle must be positive */
+    if(angle < 0) {
+      angle = -angle;
+    }
 
-  /* translate object to origin */
-  object->circle->center_x -= center_x;
-  object->circle->center_y -= center_y;
+    /* angle must be a 90 multiple or no rotation performed */
+    if((angle % 90) != 0) {
+      return;
+    }
 
-  /* rotate the center of the circle around the origin */
-  x = object->circle->center_x;
-  y = object->circle->center_y;
-  m_rotate_point_90(x, y, angle, &newx, &newy);
-  object->circle->center_x = newx;
-  object->circle->center_y = newy;
+    /*
+     * The center of rotation (<B>center_x</B>,<B>center_y</B>) is
+     * translated to the origin. The rotation of the center around the origin
+     * is then performed. Finally, the rotated circle is translated back to
+     * its previous location.
+     */
 
-  /* translate back in position */
-  object->circle->center_x += center_x;
-  object->circle->center_y += center_y;
+    /* translate object to origin */
+    object->circle->center_x -= center_x;
+    object->circle->center_y -= center_y;
 
-  object->w_bounds_valid_for = NULL;
+    /* rotate the center of the circle around the origin */
+    x = object->circle->center_x;
+    y = object->circle->center_y;
+    m_rotate_point_90(x, y, angle, &newx, &newy);
+    object->circle->center_x = newx;
+    object->circle->center_y = newy;
 
+    /* translate back in position */
+    object->circle->center_x += center_x;
+    object->circle->center_y += center_y;
+
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -1208,13 +1251,15 @@ geda_circle_object_save(GedaObject *object)
 double
 geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
-  int solid;
+  if (GEDA_IS_CIRCLE(object)) {
+    int solid;
 
-  g_return_val_if_fail (GEDA_IS_CIRCLE(object), G_MAXDOUBLE);
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
 
-  solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
-
-  return m_circle_shortest_distance (object->circle, x, y, solid);
+    return m_circle_shortest_distance (object->circle, x, y, solid);
+  }
+  geda_circle_object_error(__func__, object);
+  return (G_MAXDOUBLE);
 }
 
 /*!
@@ -1230,11 +1275,15 @@ geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int forc
 void
 geda_circle_object_translate(GedaObject *object, int dx, int dy)
 {
-  /* Do world coords */
-  object->circle->center_x = object->circle->center_x + dx;
-  object->circle->center_y = object->circle->center_y + dy;
+  if (GEDA_IS_CIRCLE(object)) {
+    /* Do world coords */
+    object->circle->center_x = object->circle->center_x + dx;
+    object->circle->center_y = object->circle->center_y + dy;
 
-  /* recalc the screen coords and the bounding box */
-  object->w_bounds_valid_for = NULL;
-
+    /* recalc the screen coords and the bounding box */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
