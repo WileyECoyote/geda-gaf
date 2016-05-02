@@ -579,12 +579,12 @@ geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
                                           int        *requisition)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (menu_item);
-  GtkPackDirection pack_dir;
+  PackDirection pack_dir;
 
   if (GTK_IS_MENU_BAR (GTK_WIDGET (menu_item)->parent))
     pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (GTK_WIDGET (menu_item)->parent));
   else
-    pack_dir = GTK_PACK_DIRECTION_LTR;
+    pack_dir = PACK_DIRECTION_LTR;
 
   *requisition = 0;
 
@@ -599,7 +599,7 @@ geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
                           "toggle-spacing", &toggle_spacing,
                           NULL);
 
-    if (pack_dir == GTK_PACK_DIRECTION_LTR || pack_dir == GTK_PACK_DIRECTION_RTL)
+    if (pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL)
     {
       if (image_requisition.width > 0) {
         *requisition = image_requisition.width + toggle_spacing;
@@ -673,7 +673,7 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
                                    GtkRequisition *requisition)
 {
   GedaImageMenuItem *image_menu_item;
-  GtkPackDirection   pack_dir;
+  PackDirection   pack_dir;
   int child_width;
   int child_height;
 
@@ -681,7 +681,7 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
     pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
   }
   else {
-    pack_dir = GTK_PACK_DIRECTION_LTR;
+    pack_dir = PACK_DIRECTION_LTR;
   }
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (widget);
@@ -705,7 +705,7 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
   /* not done with height since that happens via the
    * toggle_size_request
    */
-  if (pack_dir == GTK_PACK_DIRECTION_LTR || pack_dir == GTK_PACK_DIRECTION_RTL) {
+  if (pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) {
     requisition->height = MAX (requisition->height, child_height);
   }
   else {
@@ -723,13 +723,13 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
                                     GtkAllocation *allocated)
 {
   GedaImageMenuItem *image_menu_item;
-  GtkPackDirection   pack_dir;
+  PackDirection   pack_dir;
 
   if (GTK_IS_MENU_BAR (widget->parent)) {
     pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
   }
   else {
-    pack_dir = GTK_PACK_DIRECTION_LTR;
+    pack_dir = PACK_DIRECTION_LTR;
   }
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (widget);
@@ -758,14 +758,14 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
     gtk_widget_get_child_requisition (image_menu_item->image,
                                       &child_requisition);
 
-    if (pack_dir == GTK_PACK_DIRECTION_LTR ||
-        pack_dir == GTK_PACK_DIRECTION_RTL)
+    if (pack_dir == PACK_DIRECTION_LTR ||
+        pack_dir == PACK_DIRECTION_RTL)
     {
       offset = GTK_CONTAINER (image_menu_item)->border_width +
                                                 widget->style->xthickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
-          (pack_dir == GTK_PACK_DIRECTION_LTR))
+          (pack_dir == PACK_DIRECTION_LTR))
       {
         x = offset + horizontal_padding + (GTK_MENU_ITEM (image_menu_item)->
             toggle_size - toggle_spacing - child_requisition.width) / 2;
@@ -785,7 +785,7 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
                widget->style->ythickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
-          (pack_dir == GTK_PACK_DIRECTION_TTB))
+          (pack_dir == PACK_DIRECTION_TTB))
       {
         y = offset + horizontal_padding +
             (GTK_MENU_ITEM (image_menu_item)->toggle_size -
