@@ -457,7 +457,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                            _("End Cap"),
                            _("Line end cap"),
                              END_NONE,
-                             END_ROUND,
+                             END_VOID,
                              END_NONE,
                             (G_PARAM_READWRITE));
 
@@ -467,7 +467,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                            _("Line Type"),
                            _("The line type"),
                              TYPE_SOLID,
-                             TYPE_PHANTOM,
+                             TYPE_ERASE,
                              TYPE_SOLID,
                             (G_PARAM_READWRITE));
 
@@ -509,7 +509,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
                            _("Fill Type"),
                            _("The Object fill type; hatch mesh, solid, etc..."),
                              FILLING_HOLLOW,
-                             FILLING_HATCH,
+                             FILLING_VOID,
                              FILLING_HOLLOW,
                             (G_PARAM_READWRITE));
 
@@ -607,7 +607,7 @@ GedaObjectType geda_arc_get_type (void)
   return geda_arc_type;
 }
 
-/*! \brief Returns a pointer to a new Arc object.
+/*! \brief Returns a pointer to a new Arc object
  *
  *  \par Function Description
  *  Returns a pointer to a new Arc object.
@@ -624,7 +624,6 @@ GedaObject *geda_arc_new (void)
 }
 
 /*!
- * \brief Determine if an object is a Geda Arc Object.
  * \par Function Description
  *  Returns true if the argument is a Geda Arc object.
  *
@@ -636,7 +635,7 @@ bool is_a_geda_arc_object (GedaArc *arc)
 }
 
 /*!
- * \brief Retrieve arc_sweep value from a Geda Arc Object.
+ * \brief Retrieve arc_sweep value from a Geda Arc Object
  * \par Function Description
  *  Returns the current arc_sweep value of \a arc if and only if
  *  \a arc is a valid Geda Arc object.
@@ -653,7 +652,7 @@ int geda_arc_get_arc_sweep (GedaArc *arc) {
 }
 
 /*!
- * \brief Retrieve ordinate value of the an Arc center coordinate.
+ * \brief Retrieve ordinate value of the an Arc center coordinate
  * \par Function Description
  *  Returns the current X value of \a arc if and only if \a arc is
  *  a valid Geda Arc object.
@@ -670,18 +669,113 @@ int geda_arc_get_center_x (GedaArc *arc)  {
 }
 
 /*!
- * \brief Retrieve abscisa of an Arc center coordinate.
+ * \brief Retrieve abscisa of an Arc center coordinate
  * \par Function Description
  *  Returns the current Y value of \a arc if and only if \a arc is
  *  a valid Geda Arc object.
  *
- * \return integer value of center Y or 0 if \a arc is invalid.
+ * \return integer value of center Y or -0 if \a arc is invalid.
  *
  * \sa geda_arc_object_get_center_y
  */
 int geda_arc_get_center_y (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->y;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Cap type Property of an Arc
+ * \par Function Description
+ *  Returns the value of \a arc end-cap type if and only if \a arc is
+ *  a valid Geda Arc object.
+ *
+ * \return integer value of end-cap type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_end_cap
+ */
+int geda_arc_get_end_cap (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->line_options.line_end;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Type Property of an Arc
+ * \par Function Description
+ *  Returns the value of \a arc line type if and only if \a arc is
+ *  a valid Geda Arc object.
+ *
+ * \return integer value of line type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_line_type
+ */
+int geda_arc_get_line_type (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->line_options.line_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Length Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a arc line length property if and only if
+ *  \a arc is a valid Geda Arc object. The is not the length of the arc
+ *  the line-length property controls the length of line segments for
+ *  line types dashed, center and phantom, to get the "length" of
+ *  a line see m_line_length.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \return integer value of line length or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_line_length
+ */
+int geda_arc_get_line_length (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->line_options.line_length;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Space Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a arc line space property if and only if \a arc
+ *  is a valid Geda Arc object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \return integer value of line space or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_line_space
+ */
+int geda_arc_get_line_space (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->line_options.line_space;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Width Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a arc line width property if and only if \a arc
+ *  is a valid Geda Arc object.
+ *
+ * \return integer value of line width or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_line_width
+ */
+int geda_arc_get_line_width (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->line_options.line_width;
   }
   return -0;
 }
@@ -764,7 +858,8 @@ void geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
  *
  * \sa geda_arc_object_set_center_x
  */
-void geda_arc_set_center_x (GedaArc *arc, int x) {
+void
+geda_arc_set_center_x (GedaArc *arc, int x) {
   if (is_a_geda_arc_object(arc)) {
     arc->x = x;
   }
@@ -778,9 +873,97 @@ void geda_arc_set_center_x (GedaArc *arc, int x) {
  *
  * \sa geda_arc_object_set_center_y
  */
-void geda_arc_set_center_y (GedaArc *arc, int y) {
+void
+geda_arc_set_center_y (GedaArc *arc, int y) {
   if (is_a_geda_arc_object(arc)) {
     arc->y = y;
+  }
+}
+
+/*!
+ * \brief Set the End Cap type Property of an Arc
+ * \par Function Description
+ *  Sets the value of \a arc end-cap type if and only if \a arc is
+ *  a valid Geda Arc object.
+ *
+ * \sa geda_arc_get_end_cap
+ */
+void
+geda_arc_set_end_cap (GedaArc *arc, int line_end) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->line_options.line_end = line_end < END_NONE ? END_NONE :
+                                 line_end > END_VOID ? END_VOID :
+                                 line_end;
+  }
+}
+
+/*!
+ * \brief Set the End Type Property of an Arc
+ * \par Function Description
+ *  Sets the value of \a arc line type if and only if \a arc is a
+ *  valid Geda Arc object.
+ *
+ * \sa geda_arc_get_line_type
+ */
+void
+geda_arc_set_line_type (GedaArc *arc, int line_type) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
+                                  line_type > TYPE_ERASE ? TYPE_ERASE :
+                                  line_type;
+  }
+}
+
+/*!
+ * \brief Set the Line Length Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a arc line length property if and only if
+ *  \a arc is a valid Geda Arc object. The line-length property controls
+ *  the length of line segments for line types dashed, center and phantom.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \sa geda_arc_get_line_length
+ */
+void
+geda_arc_set_line_length (GedaArc *arc, int line_length) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->line_options.line_length = line_length > 0 ? line_length : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Space Property of an Arc
+ * \par Function Description
+ *  Sets the value of the \a arc line space property if and only if \a arc
+ *  is a valid Geda Arc object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \sa geda_arc_get_line_space
+ */
+void
+geda_arc_set_line_space (GedaArc *arc, int space) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->line_options.line_space = space > 0 ? space : 0;
+  }
+}
+
+/*!
+ * \brief Set the End Width Property of an Arc
+ * \par Function Description
+ *  Sets the value of the \a arc line width property if and only if \a arc
+ *  is a valid Geda Arc object.
+ *
+ * \sa geda_arc_get_line_width
+ */
+void
+geda_arc_set_line_width (GedaArc *arc, int width) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->line_options.line_width = width > 0 ? width : 0;
   }
 }
 

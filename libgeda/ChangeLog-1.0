@@ -1,5 +1,7 @@
 2016-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_arc.c: Add getter and setter for line type options.
+
     * src/geda/geda_box.c: Add gobject properties for line type options
       and object filling.
 
