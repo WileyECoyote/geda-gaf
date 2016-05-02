@@ -1,3 +1,7 @@
+2016-005-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_enum.h: Add some enumerations for widgets.
+
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add mapping GtkStateFlags to GtkStateType.
