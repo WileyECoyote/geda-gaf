@@ -1,3 +1,8 @@
+2016-05-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61020-1.sym: Add symbol; IC, Synchronous Boost, Adjustable,
+      1500 mA, VSON10.
+
 2016-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/MIC2185-1.sym: Add symbol: Synchronous Boost PWM Control,

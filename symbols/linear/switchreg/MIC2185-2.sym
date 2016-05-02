@@ -185,7 +185,7 @@ numslots=0
 T 400 4300 5 10 0 1 0 0 1
 footprint=SOIC16
 T 400 4500 5 10 0 1 0 0 1
-description=Low Voltage Synchronous Boost PWM Control IC
+description=IC,Synchronous Boost PWM Control,Low Voltage
 T 400 4900 5 10 0 1 0 0 1
 documentation=http://www.micrel.com/_PDF/mic2185.pdf
 T 1300 4700 5 10 0 0 0 0 1
