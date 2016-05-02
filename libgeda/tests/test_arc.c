@@ -297,7 +297,7 @@ int test_geda_arc_within_sweep(GedaArc *arc)
   return result;
 }
 
-int test_arc (void)
+int check_arc (void)
 {
   int result = 0;
 
@@ -396,10 +396,44 @@ int test_arc (void)
       int cx, cy, value;
 
       geda_arc_set_arc_sweep (arc, s);
+
+      value = arc->arc_sweep;
+      if (value - s) {
+        fprintf(stderr, "FAILED: %s geda_arc_set_arc_sweep %d != %d\n", TOBJECT, value, s);
+        fail++;
+      }
+
       geda_arc_set_center_x (arc, x);
+
+      value = arc->x;
+      if (value - x) {
+        fprintf(stderr, "FAILED: %s geda_arc_set_center_x %d != %d\n", TOBJECT, value, x);
+        fail++;
+      }
+
       geda_arc_set_center_y (arc, y);
+
+      value = arc->y;
+      if (value - y) {
+        fprintf(stderr, "FAILED: %s geda_arc_set_center_y %d != %d\n", TOBJECT, value, y);
+        fail++;
+      }
+
       geda_arc_set_radius (arc, r);
+
+      value = arc->radius;
+      if (value - r) {
+        fprintf(stderr, "FAILED: %s geda_arc_set_radius %d != %d\n", TOBJECT, value, r);
+        fail++;
+      }
+
       geda_arc_set_start_angle (arc, a);
+
+      value = arc->start_angle;
+      if (value - a) {
+        fprintf(stderr, "FAILED: %s geda_arc_set_start_angle %d != %d\n", TOBJECT, value, a);
+        fail++;
+      }
 
       geda_arc_get_position (arc, &cx, &cy);
       geda_arc_set_position (arc, cx - dx, cy - dy);
@@ -473,7 +507,126 @@ int test_arc (void)
 }
 
 int
-test_arc_properties (void)
+check_line_type_accessors ()
+{
+  int result = 0;
+  GedaObject *object = geda_arc_new();
+
+  if (!GEDA_IS_ARC(object->arc)) {
+    fprintf(stderr, "is a %s Failed line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaArc *arc = object->arc;
+
+    int count;
+    int fail;
+    int value;
+
+    fail = 0;
+
+    for (count = 0; count < 10; count++) {
+
+      /* Line type options */
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int w = m_random_number (0, 500);
+
+      /* Check Line End Type */
+
+      geda_arc_set_end_cap (arc, e);
+
+      value = arc->line_options.line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: geda_arc_set_end_cap %d != %d\n", value, e);
+        fail++;
+      }
+
+      value = geda_arc_get_end_cap (arc);
+      if (value - e) {
+        fprintf(stderr, "FAILED: geda_arc_get_end_cap %d != %d\n", value, e);
+        fail++;
+      }
+
+      /* Check Line Type */
+
+      geda_arc_set_line_type (arc, t);
+
+      value = arc->line_options.line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_arc_set_line_type %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_arc_get_line_type (arc);
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_arc_get_line_type %d != %d\n", value, t);
+        fail++;
+      }
+
+      /* Check Line Length */
+
+      geda_arc_set_line_length (arc, l);
+
+      value = arc->line_options.line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: geda_arc_set_line_length %d != %d\n", value, l);
+        fail++;
+      }
+
+      value = geda_arc_get_line_length (arc);
+      if (value - l) {
+        fprintf(stderr, "FAILED: geda_arc_get_line_length %d != %d\n", value, l);
+        fail++;
+      }
+
+      /* Check Line Space */
+
+      geda_arc_set_line_space (arc, p);
+
+      value = arc->line_options.line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: geda_arc_set_line_space %d != %d\n", value, p);
+        fail++;
+      }
+
+      value = geda_arc_get_line_space (arc);
+      if (value - p) {
+        fprintf(stderr, "FAILED: geda_arc_get_line_space %d != %d\n", value, p);
+        fail++;
+      }
+
+      /* Check Line Width */
+
+      geda_arc_set_line_width (arc, w);
+
+      value = arc->line_options.line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: geda_arc_set_line_width %d != %d\n", value, w);
+        fail++;
+      }
+
+      value = geda_arc_get_line_width (arc);
+      if (value - w) {
+        fprintf(stderr, "FAILED: geda_arc_get_line_width %d != %d\n", value, w);
+        fail++;
+      }
+
+      if (fail) {
+        result = fail;
+        break;
+      }
+    }
+  }
+  g_object_unref(object);
+  return result;
+}
+
+int
+check_arc_properties (void)
 {
   int result = 0;
 
@@ -620,9 +773,11 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result  = test_arc();
+  result  = check_arc();
 
-  result += test_arc_properties();
+  result += check_arc_properties();
+
+  result += check_line_type_accessors();
 
   if (result) {
     fprintf(stderr, "Check module geda_arc.c");

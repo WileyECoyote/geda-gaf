@@ -11,6 +11,9 @@
       and geda_complex_object_error, implement common object argument error
       message handlers.
 
+    * tests/test_arc.c: Add separate checks for setters and checks for new
+      line type accessors.
+
 2016-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Add getter and setter for line type options.
