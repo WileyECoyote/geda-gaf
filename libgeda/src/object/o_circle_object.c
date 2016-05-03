@@ -1339,7 +1339,7 @@ geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int forc
  *
  */
 char*
-geda_circle_object_save(GedaObject *object)
+geda_circle_object_to_buffer(GedaObject *object)
 {
   char *buf;
   int   x,y;

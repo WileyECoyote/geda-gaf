@@ -6,6 +6,7 @@
     * object/o_circle_object.c: Add static functions geda_object_error
       and geda_circle_object_error, implement common object argument error
       message handlers. Add getters and setters for coordinates and radius.
+      Rename geda_circle_object_save -> geda_circle_object_to_buffer.
 
     * src/object/o_complex_basic.c: Add static functions geda_object_error
       and geda_complex_object_error, implement common object argument error
