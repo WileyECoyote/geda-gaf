@@ -72,6 +72,12 @@ bool           is_a_geda_box_object  (GedaBox *object);
 GedaObject    *geda_box_new          (void);
 
 int            geda_box_get_end_cap         (GedaBox *box);
+int            geda_box_get_fill_angle1     (GedaBox *box);
+int            geda_box_get_fill_angle2     (GedaBox *box);
+int            geda_box_get_fill_pitch1     (GedaBox *box);
+int            geda_box_get_fill_pitch2     (GedaBox *box);
+int            geda_box_get_fill_type       (GedaBox *box);
+int            geda_box_get_fill_width      (GedaBox *box);
 int            geda_box_get_line_type       (GedaBox *box);
 int            geda_box_get_line_length     (GedaBox *box);
 int            geda_box_get_line_space      (GedaBox *box);
@@ -82,6 +88,12 @@ int            geda_box_get_upper_x         (GedaBox *box);
 int            geda_box_get_upper_y         (GedaBox *box);
 
 void           geda_box_set_end_cap         (GedaBox *box, int cap);
+void           geda_box_set_fill_angle1     (GedaBox *box, int angle);
+void           geda_box_set_fill_angle2     (GedaBox *box, int angle);
+void           geda_box_set_fill_pitch1     (GedaBox *box, int pitch);
+void           geda_box_set_fill_pitch2     (GedaBox *box, int pitch);
+void           geda_box_set_fill_type       (GedaBox *box, int type);
+void           geda_box_set_fill_width      (GedaBox *box, int width);
 void           geda_box_set_line_type       (GedaBox *box, int type);
 void           geda_box_set_line_length     (GedaBox *box, int length);
 void           geda_box_set_line_space      (GedaBox *box, int space);

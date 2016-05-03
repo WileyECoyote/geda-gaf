@@ -582,6 +582,115 @@ geda_box_get_end_cap (GedaBox *box) {
 }
 
 /*!
+ * \brief Retrieve Fill Angle 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a box fill angle 1 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of fill angle 1 or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_angle1
+ */
+int
+geda_box_get_fill_angle1 (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_angle1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a box fill angle 2 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of fill angle 2 or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_angle2
+ */
+int
+geda_box_get_fill_angle2 (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_angle2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a box fill pitch 1 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of fill pitch 1 or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_pitch1
+ */
+
+int
+geda_box_get_fill_pitch1 (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_pitch1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a box fill pitch 2 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of fill pitch 2 or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_pitch2
+ */
+int
+geda_box_get_fill_pitch2 (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_pitch2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Type Property of a box
+ * \par Function Description
+ *  Returns the value of \a box fill type if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of fill type or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_type
+ */
+int
+geda_box_get_fill_type (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Width Property of a box
+ * \par Function Description
+ *  Returns the value of the \a box fill width property if and only
+ *  if \a box is a valid GedaBox object.
+ *
+ * \return integer value of fill width or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_fill_width
+ */
+int
+geda_box_get_fill_width (GedaBox *box) {
+  if (is_a_geda_box_object(box)) {
+    return box->fill_options.fill_width;
+  }
+  return -0;
+}
+
+/*!
  * \brief Retrieve End Type Property of a box
  * \par Function Description
  *  Returns the value of \a box line type if and only if \a box is
@@ -646,7 +755,7 @@ geda_box_get_line_space (GedaBox *box) {
 }
 
 /*!
- * \brief Retrieve End Width Property of a box
+ * \brief Retrieve Line Width Property of a box
  * \par Function Description
  *  Returns the value of the \a box line width property if and only
  *  if \a box is a valid GedaBox object.
@@ -753,10 +862,94 @@ geda_box_set_end_cap (GedaBox *box, int line_end) {
 }
 
 /*!
+ * \brief Set the Fill Angle 1 Property of a box
+ * \par Function Description
+ *  Sets the value of \a box fill angle 1 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_angle1
+ */
+void geda_box_set_fill_angle1 (GedaBox *box, int angle) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_angle1 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 2 Property of a box
+ * \par Function Description
+ *  Sets the value of \a box fill angle 2 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_angle2
+ */
+void geda_box_set_fill_angle2 (GedaBox *box, int angle) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_angle2 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 1 Property of a box
+ * \par Function Description
+ *  Sets the value of \a box fill pitch 1 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_pitch1
+ */
+void geda_box_set_fill_pitch1 (GedaBox *box, int pitch) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_pitch1 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 2 Property of a box
+ * \par Function Description
+ *  Sets the value of \a box fill pitch 2 if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_pitch2
+ */
+void geda_box_set_fill_pitch2 (GedaBox *box, int pitch) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_pitch2 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Type Property of a box
+ * \par Function Description
+ *  Sets the value of \a box fill type if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_type
+ */
+void geda_box_set_fill_type (GedaBox *box, int type) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_type = type;
+  }
+}
+
+/*!
+ * \brief Set the Fill Width Property of a box
+ * \par Function Description
+ *  Sets the value of \a box width of the fill if and only
+ *  if \a box is a valid GedaBox object.
+ *
+ * \sa geda_box_get_fill_width
+ */
+void geda_box_set_fill_width (GedaBox *box, int width) {
+  if (is_a_geda_box_object(box)) {
+    box->fill_options.fill_width = width;
+  }
+}
+
+/*!
  * \brief Set the Line Type Property of a box
  * \par Function Description
- *  Sets the value of \a box line type if and only if \a box is a
- *  valid GedaBox object.
+ *  Sets the value of \a box line type if and only if \a box is
+ *  a valid GedaBox object.
  *
  * \sa geda_box_get_line_type
  */
