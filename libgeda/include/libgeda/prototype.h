@@ -224,11 +224,17 @@ extern "C" {
 /* o_circle_object.c */
 
    GedaObject   *geda_circle_object_copy              (GedaObject *o_current);
+          int    geda_circle_object_get_center_x      (const GedaObject *object);
+          int    geda_circle_object_get_center_y      (const GedaObject *object);
          bool    geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny);
+          int    geda_circle_object_get_radius        (const GedaObject *object);
          void    geda_circle_object_modify            (GedaObject *object, int x, int y, int whichone);
          void    geda_circle_object_mirror            (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_circle_object_new               (int color, int x, int y, int radius);
          void    geda_circle_object_rotate            (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_circle_object_set_center_x      (GedaObject *object, int x);
+         void    geda_circle_object_set_center_y      (GedaObject *object, int y);
+         void    geda_circle_object_set_radius        (GedaObject *object, int y);
          void    geda_circle_object_translate         (GedaObject *object, int dx, int dy);
 
 /* o_complex_object.c */

@@ -81,6 +81,48 @@ geda_circle_object_copy(GedaObject *o_current)
   return NULL;
 }
 
+/*! O060?
+ * \brief Get the center X coordinate of a GedaArc object
+ * \par Function Description
+ *  Retrieves the arc center X property.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \return The center X coordinate of the arc
+ *
+ * \sa geda_circle_object_set_center_x
+ */
+int
+geda_circle_object_get_center_x (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->circle->center_x;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*! O060?
+ * \brief Get the center Y coordinate of a GedaArc object
+ * \par Function Description
+ *  Retrieves the arc center Y property.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \return The center Y coordinate of the arc
+ *
+ * \sa geda_circle_object_set_center_y
+ */
+int
+geda_circle_object_get_center_y (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->circle->center_y;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
 /*!
  * \brief Get Point on a Circle Nearest a Given Point
  * \par Function Description
@@ -266,6 +308,27 @@ geda_circle_object_get_position (GedaObject *object, int *x, int *y)
   }
   geda_circle_object_error(__func__, object);
   return FALSE;
+}
+
+/*! O060?
+ * \brief Get the Radius of a GedaArc object
+ * \par Function Description
+ *  Retrieves the arc radius property.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \return The radius of the arc
+ *
+ * \sa geda_circle_object_set_radius
+ */
+int
+geda_circle_object_get_radius (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->circle->radius;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
 }
 
 /*!
@@ -1177,6 +1240,88 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
   }
 }
 
+/*! O060?
+ * \brief Set the center X coordinate of a GedaArc object
+ * \par Function Description
+ *  Set the arc center X property to the given value.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \sa geda_circle_object_get_center_x
+ */
+void
+geda_circle_object_set_center_x (GedaObject *object, int x)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->circle->center_x = x;
+  }
+  geda_circle_object_error(__func__, object);
+}
+
+/*! O060?
+ * \brief Set the center Y coordinate of a GedaArc object
+ * \par Function Description
+ *  Set the arc center Y property to the given value.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \sa geda_circle_object_get_center_y
+ */
+void
+geda_circle_object_set_center_y (GedaObject *object, int y)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->circle->center_y = y;
+  }
+  geda_circle_object_error(__func__, object);
+}
+
+/*! O060?
+ * \brief Set the Radius coordinate of a GedaArc object
+ * \par Function Description
+ *  Set the arc radius property to the given value.
+ *
+ * \param [in] object  Pointer to an GedaArc Object
+ *
+ * \sa geda_circle_object_get_radius
+ */
+void
+geda_circle_object_set_radius (GedaObject *object, int radius)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->circle->radius = radius;
+  }
+  geda_circle_object_error(__func__, object);
+}
+
+/*!
+ * \brief Calculates shortest distance to a Circle
+ * \par Function Description
+ *   Calculates the distance between the given point and the closest
+ *   point on the perimeter of the circle.
+ *
+ * \param [in] object       A circle Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
+ *
+ * \return The shortest distance from point to \a object to the point or
+ *         G_MAXDOUBLE if the parameters are invalid parameter.
+ */
+double
+geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    int solid;
+
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+
+    return m_circle_shortest_distance (object->circle, x, y, solid);
+  }
+  geda_circle_object_error(__func__, object);
+  return (G_MAXDOUBLE);
+}
+
 /*!
  * \brief Create a character string representation of a circle Object
  * \par Function Description
@@ -1232,34 +1377,6 @@ geda_circle_object_save(GedaObject *object)
                      circle_space, circle_fill,
                      fill_width, angle1, pitch1, angle2, pitch2);
   return(buf);
-}
-
-/*!
- * \brief Calculates shortest distance to a Circle
- * \par Function Description
- *   Calculates the distance between the given point and the closest
- *   point on the perimeter of the circle.
- *
- * \param [in] object       A circle Object.
- * \param [in] x            The x coordinate of the given point.
- * \param [in] y            The y coordinate of the given point.
- * \param [in] force_solid  If true, force treating the object as solid.
- *
- * \return The shortest distance from point to \a object to the point or
- *         G_MAXDOUBLE if the parameters are invalid parameter.
- */
-double
-geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
-{
-  if (GEDA_IS_CIRCLE(object)) {
-    int solid;
-
-    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
-
-    return m_circle_shortest_distance (object->circle, x, y, solid);
-  }
-  geda_circle_object_error(__func__, object);
-  return (G_MAXDOUBLE);
 }
 
 /*!
