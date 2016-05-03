@@ -324,12 +324,12 @@ test_box_accessors (void)
       int w = m_random_number (0, 500);
 
       /* Filling options */
-      //int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      //int fw  = m_random_number (0, 100);
-      //int fa1 = m_random_number (0, 180);
-      //int fp1 = m_random_number (0, 500);
-      //int fa2 = m_random_number (0, 180);
-      //int fp2 = m_random_number (0, 500);
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500);
 
       geda_box_set_lower_x(box, x1);
 
@@ -358,7 +358,6 @@ test_box_accessors (void)
         fprintf(stderr, "FAILED: geda_box_get_lower_y %d != %d\n", value, x1);
         fail++;
       }
-
 
       geda_box_set_upper_x(box, x2);
 
@@ -467,7 +466,96 @@ test_box_accessors (void)
 
       /* Check Filling properties */
 
-      // ft, fw, fa1, fp1, fa2, fp2;
+      geda_box_set_fill_type (box, ft);
+
+      value = box->fill_options.fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      value = geda_box_get_fill_type(box);
+
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      geda_box_set_fill_angle1 (box, fa1);
+
+      value = box->fill_options.fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      value = geda_box_get_fill_angle1(box);
+
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      geda_box_set_fill_angle2 (box, fa2);
+
+
+      value = box->fill_options.fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      value = geda_box_get_fill_angle2(box);
+
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      geda_box_set_fill_pitch1 (box, fp1);
+
+      value = box->fill_options.fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      value = geda_box_get_fill_pitch1(box);
+
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      geda_box_set_fill_pitch2 (box, fp2);
+
+      value = box->fill_options.fill_pitch2;
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      value = geda_box_get_fill_pitch2(box);
+
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      geda_box_set_fill_width (box, fw);
+
+      value = box->fill_options.fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_box_set_fill_width %d != %d\n", value, fw);
+        fail++;
+      }
+
+      value = geda_box_get_fill_width(box);
+
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_box_get_fill_width %d != %d\n", value, fw);
+        fail++;
+      }
 
       if (fail) {
 
