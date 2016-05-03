@@ -53,7 +53,7 @@ libgeda/src/object/o_box_object.c
 libgeda/src/object/o_bus_object.c
 libgeda/src/object/o_circle_object.c
 libgeda/src/object/o_color.c
-libgeda/src/object/o_complex_basic.c
+libgeda/src/object/o_complex_object.c
 libgeda/src/object/o_embed.c
 libgeda/src/object/o_get.c
 libgeda/src/object/o_line_basic.c

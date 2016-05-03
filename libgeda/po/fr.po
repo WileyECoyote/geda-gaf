@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-01 15:44-0500\n"
+"POT-Creation-Date: 2016-05-03 01:38-0500\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -931,7 +931,7 @@ msgstr "Trouvé un arc avec rayon nul [ %c %d, %d, %d, %d, %d, %d ]\n"
 #: libgeda/src/object/o_arc_object.c:1244
 #: libgeda/src/object/o_box_object.c:1303
 #: libgeda/src/object/o_bus_object.c:591
-#: libgeda/src/object/o_circle_object.c:1090
+#: libgeda/src/object/o_circle_object.c:1153
 #: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
 #: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
 #: libgeda/src/object/o_text_basic.c:777
@@ -942,7 +942,7 @@ msgstr "Trouvé une couleur invalide [ %s ]\n"
 #: libgeda/src/object/o_arc_object.c:1245
 #: libgeda/src/object/o_box_object.c:1304
 #: libgeda/src/object/o_bus_object.c:592
-#: libgeda/src/object/o_circle_object.c:1091
+#: libgeda/src/object/o_circle_object.c:1154
 #: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
 #: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
 #: libgeda/src/object/o_text_basic.c:778
@@ -1008,90 +1008,90 @@ msgstr ""
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Initialisation de la direction à neutre (pas de direction)\n"
 
-#: libgeda/src/object/o_circle_object.c:313
+#: libgeda/src/object/o_circle_object.c:376
 msgid "Null radius circles are not allowed\n"
 msgstr "Les cercles de rayons nuls ne sont pas permis\n"
 
-#: libgeda/src/object/o_circle_object.c:1047
-#: libgeda/src/object/o_circle_object.c:1077
+#: libgeda/src/object/o_circle_object.c:1110
+#: libgeda/src/object/o_circle_object.c:1140
 msgid "Failed to parse circle object"
 msgstr "Erreur lors de l'interprétation d'un objet cercle"
 
-#: libgeda/src/object/o_circle_object.c:1083
+#: libgeda/src/object/o_circle_object.c:1146
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr "Trouvé  un cercle de rayon à zéro ou négatif [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_object.c:1085
+#: libgeda/src/object/o_circle_object.c:1148
 msgid "Setting radius to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:149
+#: libgeda/src/object/o_complex_object.c:149
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:150
+#: libgeda/src/object/o_complex_object.c:150
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:151
+#: libgeda/src/object/o_complex_object.c:151
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:152
+#: libgeda/src/object/o_complex_object.c:152
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:153
+#: libgeda/src/object/o_complex_object.c:153
 msgid "parse error"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:155
+#: libgeda/src/object/o_complex_object.c:155
 #, c-format
 msgid "\t<%s> Instantiated symbol <%s> is %s than the version in library\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:156
+#: libgeda/src/object/o_complex_object.c:156
 #, fuzzy, c-format
 msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
 msgstr ""
 "\tCHANGEMENT MAJEUR DE VERSION (fichier %.3f, instantiation %.3f, %s)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:157
+#: libgeda/src/object/o_complex_object.c:157
 #, fuzzy, c-format
 msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
 msgstr "\tChangement de version mineur (fichier %.3f, instantiation %.3f)\n"
 
-#: libgeda/src/object/o_complex_basic.c:158
+#: libgeda/src/object/o_complex_object.c:158
 msgid "\tCould not parse symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:159
+#: libgeda/src/object/o_complex_object.c:159
 #, fuzzy, c-format
 msgid "WARNING: Symbol version %s on refdes %s:\n"
 msgstr ""
 "ATTENTION: erreur du traitement de la version du Symbole sur refdes %s:\n"
 "\tImpossible de traiter symversion=%s attaché\n"
 
-#: libgeda/src/object/o_complex_basic.c:186
+#: libgeda/src/object/o_complex_object.c:186
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:239
+#: libgeda/src/object/o_complex_object.c:239
 #, fuzzy, c-format
 msgid "\tCould not parse attached symversion=%s\n"
 msgstr ""
 "ATTENTION: erreur du traitement de la version du Symbole sur refdes %s:\n"
 "\tImpossible de traiter symversion=%s attaché\n"
 
-#: libgeda/src/object/o_complex_basic.c:261
+#: libgeda/src/object/o_complex_object.c:261
 #, c-format
 msgid ""
 "\tsymversion=%s attached to instantiated symbol, but version not found "
 "inside symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:373
+#: libgeda/src/object/o_complex_object.c:373
 #, c-format
 msgid ""
 "Component not found:\n"
@@ -1100,22 +1100,22 @@ msgstr ""
 "Composant non trouvé :\n"
 " %s"
 
-#: libgeda/src/object/o_complex_basic.c:1073
+#: libgeda/src/object/o_complex_object.c:1073
 msgid "Failed to parse complex object"
 msgstr "Erreur lors de l'interprétation d'un objet complexe"
 
-#: libgeda/src/object/o_complex_basic.c:1086
+#: libgeda/src/object/o_complex_object.c:1086
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Trouvé un composant avec une mauvaise rotation [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:1087
+#: libgeda/src/object/o_complex_object.c:1087
 #: libgeda/src/object/o_picture.c:384
 msgid "Setting angle to 0\n"
 msgstr "Initialisé l'angle à 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:1099
+#: libgeda/src/object/o_complex_object.c:1099
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
@@ -1123,7 +1123,7 @@ msgstr ""
 "Trouvé un composant avec un marqueur de miroir invalide [ %c %d %d %d %d %d "
 "%s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:1100
+#: libgeda/src/object/o_complex_object.c:1100
 msgid "Setting mirror to 0\n"
 msgstr ""
 
