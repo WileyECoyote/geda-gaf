@@ -37,6 +37,12 @@ geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
   geda_error_object_argument(__FILE__, func, object, type);
 }
 
+static void
+geda_bus_object_error(const char *func, const void *object)
+{
+  geda_object_error(func, object, GEDA_OBJECT_BUS);
+}
+
 /* \brief
  * \par Function Description
  * This function does the actual work of making one bus segment out of two
@@ -191,7 +197,7 @@ geda_bus_object_copy(const GedaObject *o_current)
 
     return new_obj;
   }
-  geda_object_error(__func__, o_current, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, o_current);
   return NULL;
 }
 
@@ -250,7 +256,7 @@ geda_bus_object_get_ripper_direction (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->bus->bus_ripper_direction;
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return 0;
 }
 
@@ -274,7 +280,7 @@ geda_bus_object_get_position(GedaObject *object, int *x, int *y)
 
     return TRUE;
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return FALSE;
 }
 
@@ -294,7 +300,7 @@ geda_bus_object_get_x0 (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->line->x[0];
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return 0;
 }
 
@@ -315,7 +321,7 @@ geda_bus_object_get_x1 (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->line->x[1];
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return 0;
 }
 
@@ -336,7 +342,7 @@ geda_bus_object_get_y0 (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->line->y[0];
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return 0;
 }
 
@@ -357,7 +363,7 @@ geda_bus_object_get_y1 (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->line->y[1];
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return 0;
 }
 
@@ -387,7 +393,7 @@ geda_bus_object_mirror(GedaObject *object, int center_x, int center_y)
     geda_bus_object_translate(object, center_x, center_y);
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -416,7 +422,7 @@ geda_bus_object_modify(GedaObject *object, int x, int y, int whichone)
     object->w_bounds_valid_for = NULL;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -478,7 +484,7 @@ geda_bus_object_orientation(const GedaObject *object)
     }
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
   return(NEITHER);
 }
@@ -527,7 +533,7 @@ geda_bus_object_print(GedaToplevel *toplevel,  FILE *fp,
     fprintf(fp, "%d %d %d %d %d %d bus\n", x1,y1,x2,y2,bus_width,SQUARE_CAP);
   }
   else {
-    geda_object_error(__func__, o_current, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, o_current);
   }
 }
 
@@ -639,7 +645,7 @@ geda_bus_object_rotate(GedaObject *object, int center_x, int center_y, int angle
     geda_bus_object_translate(object, center_x, center_y);
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -657,7 +663,7 @@ geda_bus_object_set_ripper_direction (GedaObject *object, int direction)
     object->bus->bus_ripper_direction = direction;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -678,7 +684,7 @@ geda_bus_object_set_x0 (GedaObject *object, int x)
     object->line->x[0] = x;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -699,7 +705,7 @@ geda_bus_object_set_x1 (GedaObject *object, int x)
     object->line->x[1] = x;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -720,7 +726,7 @@ geda_bus_object_set_y0 (GedaObject *object, int y)
     object->line->y[0] = y;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -741,7 +747,7 @@ geda_bus_object_set_y1 (GedaObject *object, int y)
     object->line->y[1] = y;
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
 
@@ -775,7 +781,7 @@ geda_bus_object_to_buffer(GedaObject *object)
     object->bus->bus_ripper_direction);
     return(buf);
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+  geda_bus_object_error(__func__, object);
   return NULL;
 }
 
@@ -805,6 +811,6 @@ geda_bus_object_translate(GedaObject *object, int dx, int dy)
     s_tile_update_object(object);
   }
   else {
-    geda_object_error(__func__, object, GEDA_OBJECT_BUS);
+    geda_bus_object_error(__func__, object);
   }
 }
