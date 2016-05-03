@@ -6,9 +6,12 @@
     * src/object/o_box_object.c: Add geda_object_error and use scheme like
       arcs, circles and complexes for error message handling.
 
-    * tests/test_circle_object.c: Add basic tests for circle accessors.
-
     * src/object/o_complex_object.c: Rename file; _basic->_object.
+
+    * tests/test_box.c: Add tests for GedaBox coordinates and line-type
+      options.
+
+    * tests/test_circle_object.c: Add basic tests for circle accessors.
 
 2016-05-02 Wiley E. Hill <wileyhill@gmail.com>
 

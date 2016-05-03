@@ -633,7 +633,7 @@ check_arc_properties (void)
   GedaObject *object = geda_arc_new();
 
   if (!GEDA_IS_ARC(object->arc)) {
-    fprintf(stderr, "is a %s Failed line <%d>\n", TOBJECT, __LINE__);
+    fprintf(stderr, "is a %s Failed at line <%d>\n", TOBJECT, __LINE__);
     result++;
   }
   else {
