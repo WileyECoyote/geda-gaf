@@ -30,16 +30,15 @@
 #include <libgeda_priv.h>
 
 static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
+static void
 geda_box_object_error(const char *func, const void *object)
 {
-  fprintf(stderr, "File %s, <%s>: ", __FILE__, func);
-
-  if (!object) {
-    fprintf(stderr, "GedaBox object argument is NULL\n");
-  }
-  else {
-    fprintf(stderr, "Not a valid GedaBox object <%p>\n", object);
-  }
+  geda_object_error(func, object, GEDA_OBJECT_BOX);
 }
 
 /*! O0402
@@ -1439,9 +1438,7 @@ geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_s
 
     return m_box_shortest_distance (object->box, x, y, solid);
   }
-  else {
-    geda_box_object_error(__func__, object);
-  }
+  geda_box_object_error(__func__, object);
   return (G_MAXDOUBLE);
 }
 
