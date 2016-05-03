@@ -1,5 +1,8 @@
 2016-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_box.c: Add accessors for coordinates and line type
+      options.
+
     * src/object/o_box_object.c: Add geda_object_error and use scheme like
       arcs, circles and complexes for error message handling.
 

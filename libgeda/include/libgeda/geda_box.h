@@ -71,6 +71,26 @@ GedaObjectType geda_box_get_type     (void);
 bool           is_a_geda_box_object  (GedaBox *object);
 GedaObject    *geda_box_new          (void);
 
+int            geda_box_get_end_cap         (GedaBox *box);
+int            geda_box_get_line_type       (GedaBox *box);
+int            geda_box_get_line_length     (GedaBox *box);
+int            geda_box_get_line_space      (GedaBox *box);
+int            geda_box_get_line_width      (GedaBox *box);
+int            geda_box_get_lower_x         (GedaBox *box);
+int            geda_box_get_lower_y         (GedaBox *box);
+int            geda_box_get_upper_x         (GedaBox *box);
+int            geda_box_get_upper_y         (GedaBox *box);
+
+void           geda_box_set_end_cap         (GedaBox *box, int cap);
+void           geda_box_set_line_type       (GedaBox *box, int type);
+void           geda_box_set_line_length     (GedaBox *box, int length);
+void           geda_box_set_line_space      (GedaBox *box, int space);
+void           geda_box_set_line_width      (GedaBox *box, int width);
+void           geda_box_set_lower_x         (GedaBox *box, int x);
+void           geda_box_set_lower_y         (GedaBox *box, int y);
+void           geda_box_set_upper_x         (GedaBox *box, int x);
+void           geda_box_set_upper_y         (GedaBox *box, int y);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
