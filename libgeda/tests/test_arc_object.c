@@ -59,25 +59,52 @@
  *      O0202    geda_arc_object_get_arc_sweep
  *      O0203    geda_arc_object_get_center_x
  *      O0204    geda_arc_object_get_center_y
- *      O0205    geda_arc_object_get_nearest_point
- *      O0206    geda_arc_object_get_position
- *      O0207    geda_arc_object_get_radius
- *      O0208    geda_arc_object_get_start_angle
- *      O0209    geda_arc_object_mirror
- *      O0210    geda_arc_object_modify
- *      O0211    geda_arc_object_new
- *
- *      O0218    geda_arc_object_read
- *      O0219    geda_arc_object_rotate
- *      O0220    geda_arc_object_set_arc_sweep
- *      O0221    geda_arc_object_set_center_x
- *      O0222    geda_arc_object_set_center_y
- *      O0223    geda_arc_object_set_radius
- *      O0224    geda_arc_object_set_start_angle
- *      O0225    geda_arc_object_shortest_distance
- *      O0226    geda_arc_object_to_buffer
- *      O0227    geda_arc_object_translate
- *      O0228    geda_arc_object_within_sweep
+ *      O0205    geda_arc_object_get_end_cap
+ *      O0206    geda_arc_object_get_fill_angle1
+ *      O0207    geda_arc_object_get_fill_angle2
+ *      O0208    geda_arc_object_get_fill_pitch1
+ *      O0209    geda_arc_object_get_fill_pitch2
+ *      O0210    geda_arc_object_get_fill_type
+ *      O0211    geda_arc_object_get_fill_width
+ *      O0212    geda_arc_object_get_line_type
+ *      O0213    geda_arc_object_get_line_length
+ *      O0214    geda_arc_object_get_line_space
+ *      O0215    geda_arc_object_get_line_width
+ *      O0216    geda_arc_object_get_nearest_point
+ *      O0217    geda_arc_object_get_position
+ *      O0218    geda_arc_object_get_radius
+ *      O0219    geda_arc_object_get_start_angle
+ *      O0220    geda_arc_object_mirror
+ *      O0221    geda_arc_object_modify
+ *      O0222    geda_arc_object_new
+ *      O0223    geda_arc_object_print
+ *      O0224    geda_arc_object_print_center
+ *      O0225    geda_arc_object_print_dashed
+ *      O0226    geda_arc_object_print_dotted
+ *      O0227    geda_arc_object_print_phantom
+ *      O0228    geda_arc_object_print_solid
+ *      O0229    geda_arc_object_read
+ *      O0230    geda_arc_object_rotate
+ *      O0231    geda_arc_object_set_arc_sweep
+ *      O0232    geda_arc_object_set_center_x
+ *      O0233    geda_arc_object_set_center_y
+ *      O0234    geda_arc_object_set_end_cap
+ *      O0235    geda_arc_object_set_fill_angle1
+ *      O0236    geda_arc_object_set_fill_angle2
+ *      O0237    geda_arc_object_set_fill_pitch1
+ *      O0238    geda_arc_object_set_fill_pitch2
+ *      O0239    geda_arc_object_set_fill_type
+ *      O0240    geda_arc_object_set_fill_width
+ *      O0241    geda_arc_object_set_line_type
+ *      O0242    geda_arc_object_set_line_length
+ *      O0243    geda_arc_object_set_line_space
+ *      O0244    geda_arc_object_set_line_width
+ *      O0245    geda_arc_object_set_radius
+ *      O0246    geda_arc_object_set_start_angle
+ *      O0247    geda_arc_object_shortest_distance
+ *      O0248    geda_arc_object_to_buffer
+ *      O0249    geda_arc_object_translate
+ *      O0250    geda_arc_object_within_sweep
  */
 
 int
@@ -98,13 +125,13 @@ check_construction ()
     GedaObject *object0 = geda_arc_object_new (c, x, y, r, a, s);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O021101A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O022201A) New GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_ARC(object0->arc)) {
-      fprintf(stderr, "FAILED: (O021101B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O022201B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -119,7 +146,7 @@ check_construction ()
 
       value = geda_arc_object_get_start_angle (object0);
       if (value - a) {
-        fprintf(stderr, "FAILED: (O021101C) start angle %d != %d\n", value, a);
+        fprintf(stderr, "FAILED: (O022201C) start angle %d != %d\n", value, a);
         fail++;
       }
 
@@ -131,25 +158,25 @@ check_construction ()
 
       value = geda_arc_object_get_radius (object0);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O021101D) radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O022201D) radius %d != %d\n", value, r);
         fail++;
       }
 
       value = geda_arc_object_get_arc_sweep (object0);
       if (value - s) {
-        fprintf(stderr, "FAILED: (O021101E) arc sweep %d != %d\n", value, s);
+        fprintf(stderr, "FAILED: (O022201E) arc sweep %d != %d\n", value, s);
         fail++;
       }
 
       value = geda_arc_object_get_center_x(object0);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O021101F) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O022201F) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_arc_object_get_center_y(object0);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O021101G) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O022201G) center y %d != %d\n", value, y);
         fail++;
       }
 
@@ -259,12 +286,12 @@ check_accessors ()
   }
 
   if (geda_arc_object_get_radius(NULL)) {
-    fprintf(stderr, "FAILED: (O020700) %s radius not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O021800) %s radius not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_arc_object_get_start_angle(NULL)) {
-    fprintf(stderr, "FAILED: (O020800) %s start_angle not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O021900) %s start_angle not zero\n", TOBJECT);
     result++;
   }
 
@@ -273,13 +300,13 @@ check_accessors ()
     GedaObject *object0 = geda_arc_object_new (11, 21, 31, 41, 51, 61);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O021101H) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O022201H) New GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_ARC(object0->arc)) {
-      fprintf(stderr, "FAILED: (O021101J) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O022201J) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -297,6 +324,21 @@ check_accessors ()
       int x = m_random_number (0, 120000);
       int y = m_random_number (0, 80000);
 
+      /* Line type options */
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int w = m_random_number (0, 500);
+
+      /* Filling options */
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500);
+
       geda_arc_object_set_start_angle (object0, a);
       o_set_color (object0, c);
       geda_arc_object_set_radius (object0, r);
@@ -306,7 +348,7 @@ check_accessors ()
 
       value = geda_arc_object_get_start_angle (object0);
       if (value - a) {
-        fprintf(stderr, "FAILED: (O022401) start angle %d != %d\n", value, a);
+        fprintf(stderr, "FAILED: (O024601) start angle %d != %d\n", value, a);
         fail++;
       }
 
@@ -318,25 +360,195 @@ check_accessors ()
 
       value = geda_arc_object_get_radius (object0);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O022301) radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O024501) radius %d != %d\n", value, r);
         fail++;
       }
 
       value = geda_arc_object_get_arc_sweep (object0);
       if (value - s) {
-        fprintf(stderr, "FAILED: (O022001) arc sweep %d != %d\n", value, s);
+        fprintf(stderr, "FAILED: (O023101) arc sweep %d != %d\n", value, s);
         fail++;
       }
 
       value = geda_arc_object_get_center_x(object0);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O022101) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O023201) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_arc_object_get_center_y(object0);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O022201) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O023301) center y %d != %d\n", value, y);
+        fail++;
+      }
+
+      /* Check line type properties */
+
+      geda_arc_object_set_end_cap (object0, e);
+
+      value = object0->line_options->line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: (O023401) %d != %d\n", value, e);
+        fail++;
+      }
+
+      value = geda_arc_object_get_end_cap(object0);
+
+      if (value - e) {
+        fprintf(stderr, "FAILED: (O020501) %d != %d\n", value, e);
+        fail++;
+      }
+
+      geda_arc_object_set_line_type (object0, t);
+
+      value = object0->line_options->line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O024101) %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_arc_object_get_line_type(object0);
+
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O021201) %d != %d\n", value, t);
+        fail++;
+      }
+
+      geda_arc_object_set_line_length (object0, l);
+
+      value = object0->line_options->line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: (O024201) %d != %d\n", value, l);
+        fail++;
+      }
+
+      value = geda_arc_object_get_line_length(object0);
+
+      if (value - l) {
+        fprintf(stderr, "FAILED: (O021301) %d != %d\n", value, l);
+        fail++;
+      }
+
+      geda_arc_object_set_line_space (object0, p);
+
+      value = object0->line_options->line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: (O024301) %d != %d\n", value, p);
+        fail++;
+      }
+
+      value = geda_arc_object_get_line_space(object0);
+
+      if (value - p) {
+        fprintf(stderr, "FAILED: (O021401) %d != %d\n", value, p);
+        fail++;
+      }
+
+      geda_arc_object_set_line_width (object0, w);
+
+      value = object0->line_options->line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: (O024401) %d != %d\n", value, w);
+        fail++;
+      }
+
+      value = geda_arc_object_get_line_width(object0);
+
+      if (value - w) {
+        fprintf(stderr, "FAILED: (O021501) %d != %d\n", value, w);
+        fail++;
+      }
+
+      /* Check Filling properties */
+
+      geda_arc_object_set_fill_type (object0, ft);
+
+      value = object0->fill_options->fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: (O023901) %d != %d\n", value, ft);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_type(object0);
+
+      if (value - ft) {
+        fprintf(stderr, "FAILED: (O021001) %d != %d\n", value, ft);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_angle1 (object0, fa1);
+
+      value = object0->fill_options->fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: (O023501) %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_angle1(object0);
+
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: (O020601) %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_angle2 (object0, fa2);
+
+
+      value = object0->fill_options->fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: (O023601) %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_angle2(object0);
+
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: (O020701) %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_pitch1 (object0, fp1);
+
+      value = object0->fill_options->fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: (O023701) %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_pitch1(object0);
+
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: (O020801) %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_pitch2 (object0, fp2);
+
+      value = object0->fill_options->fill_pitch2;
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: (O023801) %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_pitch2(object0);
+
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: (O020901) %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_width (object0, fw);
+
+      value = object0->fill_options->fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: (O024001) %d != %d\n", value, fw);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_width(object0);
+
+      if (value - fw) {
+        fprintf(stderr, "FAILED: (O021101) %d != %d\n", value, fw);
         fail++;
       }
 
@@ -394,7 +606,7 @@ check_serialization ()
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O022601A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O024801A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -405,13 +617,13 @@ check_serialization ()
                                                 NULL);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O021801A) Read GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O022901A) Read GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_ARC(object1->arc)) {
-      fprintf(stderr, "FAILED: (O021801B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O022901B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -424,7 +636,7 @@ check_serialization ()
 
       value = geda_arc_object_get_start_angle (object1);
       if (value - a) {
-        fprintf(stderr, "FAILED: (O0226/O0218A) start angle %d != %d\n", value, a);
+        fprintf(stderr, "FAILED: (O0248/O0229A) start angle %d != %d\n", value, a);
         fail++;
       }
 
@@ -436,25 +648,25 @@ check_serialization ()
 
       value = geda_arc_object_get_radius (object1);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O0226/O0218B) radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O0248/O0229B) radius %d != %d\n", value, r);
         fail++;
       }
 
       value = geda_arc_object_get_arc_sweep (object1);
       if (value - s) {
-        fprintf(stderr, "FAILED: (O0226/O0218C) arc sweep %d != %d\n", value, s);
+        fprintf(stderr, "FAILED: (O0248/O0229C) arc sweep %d != %d\n", value, s);
         fail++;
       }
 
       value = geda_arc_object_get_center_x(object1);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O0226/O0218D) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O0248/O0229D) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_arc_object_get_center_y(object1);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O0226/O0218E) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O0248/O0229E) center y %d != %d\n", value, y);
         fail++;
       }
 
@@ -478,7 +690,7 @@ check_serialization ()
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O022601B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O024801B) %s buffer mismatch\n", TOBJECT);
         result++;
         break;
       }
@@ -533,7 +745,7 @@ query_nearest_Q13_90 (GedaObject *object)
 
   /* Try nearest the center point */
   if (geda_arc_object_get_nearest_point (object, x, y, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020501-Q13-90) nearest arc center point\n");
+    fprintf(stderr, "FAILED: (O021601-Q13-90) nearest arc center point\n");
     result++;
   }
 
@@ -555,13 +767,13 @@ query_nearest_Q13_90 (GedaObject *object)
   /* Sweep X about, the starting Y should return the starting point */
   for (qx = spx - 5; qx < spx + 10; qx = qx + 5) {
     if (!geda_arc_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
-      fprintf(stderr, "FAILED: (O020502-Q13-90SA) nearest arc object point\n");
+      fprintf(stderr, "FAILED: (O021602-Q13-90SA) nearest arc object point\n");
       result++;
       break;
     }
     else {
       if ((nx - spx > 1) || (ny - spy > 1)) {
-        fprintf(stderr, "\nFAILED: (O020502-Q13-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
+        fprintf(stderr, "\nFAILED: (O021602-Q13-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions     (  x=%d,\t  y=%d,\t  r=%d,\t  a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated starting point (spx=%d,\tspy=%d,\tepx=%d,\tepy=%d)\n", spx, spy, epx, epy);
         fprintf(stderr, "query point               ( qx=%d,\t qy=%d)\n\n", qx, qy);
@@ -586,13 +798,13 @@ query_nearest_Q13_90 (GedaObject *object)
   /* Sweep Y about the ending X should return the ending point */
   for (qy = epy - 5; qy < epy + 10; qy = qy + 5) {
     if (!geda_arc_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
-      fprintf(stderr, "FAILED: (O020503-Q13-90EA) nearest arc object point\n");
+      fprintf(stderr, "FAILED: (O021603-Q13-90EA) nearest arc object point\n");
       result++;
       break;
     }
     else {
       if ((nx - epx > 1) || (ny - epy > 1)) {
-        fprintf(stderr, "\nFAILED: (O020503-Q13-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
+        fprintf(stderr, "\nFAILED: (O021603-Q13-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions  (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated end-point   (epx=%d,\tepy=%d)\n", epx, epy);
         fprintf(stderr, "query point            ( qx=%d,\t qy=%d)\n\n", qx, qy);
@@ -620,12 +832,12 @@ query_nearest_Q13_90 (GedaObject *object)
   /* Which will be the point on the arc nearest the 1st point of the sagitta  */
 
   if (!geda_arc_object_get_nearest_point (object, sag_px, sag_py, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020504-Q13-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021604-Q13-90A) nearest arc object point\n");
     result++;
   }
   else {
     if  ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020504-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021604-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (   mpx=%d,\t    mpy=%d)\n", mpx, mpy);
       fprintf(stderr, "calculated end-point  (   spx=%d,\t    spy=%d)\n", spx, spy);
@@ -640,12 +852,12 @@ query_nearest_Q13_90 (GedaObject *object)
 
   /* And if we just use the mid-point then ...*/
   if (!geda_arc_object_get_nearest_point (object, mpx, mpy, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020505-Q13-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021605-Q13-90A) nearest arc object point\n");
     result++;
   }
   else {
     if ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020505-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021605-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
       fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx, mpy);
@@ -658,7 +870,7 @@ query_nearest_Q13_90 (GedaObject *object)
 
   /* Finally check on the exterior/far-side of the bulge */
   if (!geda_arc_object_get_nearest_point (object, mpx + 10, mpy + 10, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020506-Q13-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021606-Q13-90A) nearest arc object point\n");
     fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
     fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
     fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
@@ -667,7 +879,7 @@ query_nearest_Q13_90 (GedaObject *object)
   }
   else {
     if ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020506-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021606-Q13-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n\n", mpx, mpy);
       result++;
@@ -720,7 +932,7 @@ query_nearest_Q24_90 (GedaObject *object)
 
   /* Try nearest the center point */
   if (geda_arc_object_get_nearest_point (object, x, y, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020501-Q24-90) nearest arc center point\n");
+    fprintf(stderr, "FAILED: (O021601-Q24-90) nearest arc center point\n");
     result++;
   }
 
@@ -742,13 +954,13 @@ query_nearest_Q24_90 (GedaObject *object)
   /* Sweep X below the ending Y should return the end point */
   for (qx = epx - 5; qx < epx + 10; qx = qx + 5) {
     if (!geda_arc_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
-      fprintf(stderr, "FAILED: (O020502-Q24-90EA) nearest arc object point\n");
+      fprintf(stderr, "FAILED: (O021602-Q24-90EA) nearest arc object point\n");
       result++;
       break;
     }
     else {
       if ((nx - epx > 1) || (ny - epy > 1)) {
-        fprintf(stderr, "\nFAILED: (O020502-Q24-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
+        fprintf(stderr, "\nFAILED: (O021602-Q24-90EB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated end point  (epx=%d,\tepy=%d)\n", epx, epy);
         fprintf(stderr, "query point           ( qx=%d,\t qy=%d)\n\n", qx, qy);
@@ -773,13 +985,13 @@ query_nearest_Q24_90 (GedaObject *object)
   /* Sweep Y about the starting X should return the starting point */
   for (qy = spy - 5; qy < spy + 10; qy = qy + 5) {
     if (!geda_arc_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
-      fprintf(stderr, "FAILED: (O020503-Q24-90SA) nearest arc object point\n");
+      fprintf(stderr, "FAILED: (O021603-Q24-90SA) nearest arc object point\n");
       result++;
       break;
     }
     else {
       if ((nx - spx > 1) || (ny - spy > 1)) {
-        fprintf(stderr, "\nFAILED: (O020503-Q24-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
+        fprintf(stderr, "\nFAILED: (O021603-Q24-90SB) nearest arc object point ((%d,%d)\n", nx, ny);
         fprintf(stderr, "with input conditions  (  x=%d,\t  y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
         fprintf(stderr, "calculated start-point (spx=%d,\tspy=%d)\n", spx, spy);
         fprintf(stderr, "query point            ( qx=%d,\t qy=%d)\n\n", qx, qy);
@@ -807,12 +1019,12 @@ query_nearest_Q24_90 (GedaObject *object)
   /* Which will be the point on the arc nearest the 1st point of the sagitta  */
 
   if (!geda_arc_object_get_nearest_point (object, sag_px, sag_py, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020504-Q24-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021604-Q24-90A) nearest arc object point\n");
     result++;
   }
   else {
     if ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020504-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021604-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated end-point (   spx=%d,\t    spy=%d)\n", spx, spy);
       fprintf(stderr, " calculated end-point (   epx=%d,\t    epy=%d)\n", epx, epy);
@@ -827,12 +1039,12 @@ query_nearest_Q24_90 (GedaObject *object)
 
   /* And if we just use the mid-point then ... */
   if (!geda_arc_object_get_nearest_point (object, mpx, mpy, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020505-Q24-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021605-Q24-90A) nearest arc object point\n");
     result++;
   }
   else {
     if ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020505-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021605-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
       fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx, mpy);
@@ -845,7 +1057,7 @@ query_nearest_Q24_90 (GedaObject *object)
 
   /* Finally check on the exterior/far-side of the bulge */
   if (!geda_arc_object_get_nearest_point (object, mpx - 10, mpy + 10, &nx, &ny)) {
-    fprintf(stderr, "FAILED: (O020506-Q24-90A) nearest arc object point\n");
+    fprintf(stderr, "FAILED: (O021606-Q24-90A) nearest arc object point\n");
     fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
     fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
     fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
@@ -854,7 +1066,7 @@ query_nearest_Q24_90 (GedaObject *object)
   }
   else {
     if ((nx - mpx > 1) || (ny - mpy > 1)) {
-      fprintf(stderr, "\nFAILED: (O020506-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
+      fprintf(stderr, "\nFAILED: (O021606-Q24-90B) nearest arc object point ((%d,%d)\n", nx, ny);
       fprintf(stderr, "with input conditions (     x=%d,\t      y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
       fprintf(stderr, " calculated midpoint  (   mpx=%d,\t    mpy=%d)\n\n", mpx, mpy);
       result++;
@@ -901,7 +1113,7 @@ query_nearest_shortest_distance (GedaObject *object)
       int id2 = rint(nearest);
 
       if ( (id1 - id2) > 1) {
-        fprintf(stderr, "FAILED: (O022501) (%d,%d) %f incorrect\n", px, py, shortest);
+        fprintf(stderr, "FAILED: (O024701) (%d,%d) %f incorrect\n", px, py, shortest);
         result++;
       }
     }
@@ -922,27 +1134,27 @@ check_query ()
   /* === Function 05: geda_arc_object_get_nearest_point NULL === */
 
   if (geda_arc_object_get_nearest_point (NULL, 0, 0, &dx, &dy)) {
-    fprintf(stderr, "FAILED: (O020500) arc_object_get_nearest_point NULL\n");
+    fprintf(stderr, "FAILED: (O021600) arc_object_get_nearest_point NULL\n");
     result++;
   }
 
   /* === Function 06: geda_arc_object_get_position NULL === */
 
   if (geda_arc_object_get_position(NULL, &dx, &dx)) {
-    fprintf(stderr, "FAILED: (O020600) %s answer not FALSE\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O021700) %s answer not FALSE\n", TOBJECT);
     result++;
   }
 
   /* === Function 25: geda_arc_object_shortest_distance NULL === */
   if (G_MAXDOUBLE != geda_arc_object_shortest_distance(NULL, dx, dx, 0)) {
-    fprintf(stderr, "FAILED: (O022500) %s answer not G_MAXDOUBLE\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O024700) %s answer not G_MAXDOUBLE\n", TOBJECT);
     result++;
   }
 
   /* === Function 28: geda_arc_object_within_sweep NULL === */
 
   if (geda_arc_object_within_sweep(NULL, dx, dx)) {
-    fprintf(stderr, "FAILED: (O022800) %s answer not FALSE\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O025000) %s answer not FALSE\n", TOBJECT);
     result++;
   }
 
@@ -991,7 +1203,7 @@ check_query ()
     geda_arc_object_get_position(object, &dx, &dy);
 
     if ((dx != x) || (dy != y)) {
-      fprintf(stderr, "FAILED: (O020601) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
+      fprintf(stderr, "FAILED: (O021701) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
       result++;
     }
 
@@ -1024,7 +1236,7 @@ check_transformer ()
     geda_arc_object_mirror (NULL, 0, 0);
   }
   else {
-    fprintf(stderr, "FAILED: (O020900) geda_arc_object_mirror NULL\n");
+    fprintf(stderr, "FAILED: (O022000) geda_arc_object_mirror NULL\n");
     result++;
   }
 
@@ -1033,7 +1245,7 @@ check_transformer ()
     geda_arc_object_modify (NULL, 0, 0, 2);
   }
   else {
-    fprintf(stderr, "FAILED: (O021000) geda_arc_object_modify NULL\n");
+    fprintf(stderr, "FAILED: (O022100) geda_arc_object_modify NULL\n");
     result++;
   }
 
@@ -1043,7 +1255,7 @@ check_transformer ()
     geda_arc_object_rotate (NULL, 0, 0, 180);
   }
   else {
-    fprintf(stderr, "FAILED: (O021900) geda_arc_object_rotate NULL\n");
+    fprintf(stderr, "FAILED: (O023000) geda_arc_object_rotate NULL\n");
     result++;
   }
 
@@ -1053,7 +1265,7 @@ check_transformer ()
     geda_arc_object_translate (NULL, 0, 0);
   }
   else {
-    fprintf(stderr, "FAILED: (O022700) geda_arc_object_translate NULL\n");
+    fprintf(stderr, "FAILED: (O024900) geda_arc_object_translate NULL\n");
     result++;
   }
 
@@ -1090,13 +1302,13 @@ check_transformer ()
 
     geda_arc_object_get_position(object, &dx, &dy);
     if ((dx - x - 2 * r) || (dy - y)) {
-      fprintf(stderr, "FAILED: (O020901) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
+      fprintf(stderr, "FAILED: (O022001) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
       result++;
     }
 
     int ang = geda_arc_object_get_start_angle(object);
     if (ang != 180) {
-      fprintf(stderr, "FAILED: (O020902) %d != 180\n", ang);
+      fprintf(stderr, "FAILED: (O022002) %d != 180\n", ang);
       result++;
     }
 
@@ -1106,7 +1318,7 @@ check_transformer ()
 
     geda_arc_object_get_position(object, &dx, &dy);
     if ((dx - x) || (dy - y)) {
-      fprintf(stderr, "FAILED: (O021001) ARC_CENTER (%d,%d) != (%d,%d)\n", x, y, dx, dy);
+      fprintf(stderr, "FAILED: (O022101) ARC_CENTER (%d,%d) != (%d,%d)\n", x, y, dx, dy);
       result++;
     }
 
@@ -1114,7 +1326,7 @@ check_transformer ()
 
     int rad = geda_arc_object_get_radius(object);
     if (rad - r - 100) {
-      fprintf(stderr, "FAILED: (O021002) ARC_RADIUS <%d>\n", rad);
+      fprintf(stderr, "FAILED: (O022102) ARC_RADIUS <%d>\n", rad);
       result++;
     }
 
@@ -1122,7 +1334,7 @@ check_transformer ()
 
     ang = geda_arc_object_get_start_angle(object);
     if (ang != 90) {
-      fprintf(stderr, "FAILED: (O021003) ARC_START_ANGLE %d != 90\n", ang);
+      fprintf(stderr, "FAILED: (O022103) ARC_START_ANGLE %d != 90\n", ang);
       result++;
     }
 
@@ -1130,7 +1342,7 @@ check_transformer ()
 
     ang = geda_arc_object_get_arc_sweep(object);
     if (ang != 180) {
-      fprintf(stderr, "FAILED: (O021004) ARC_END_ANGLE %d != 180\n", ang);
+      fprintf(stderr, "FAILED: (O022104) ARC_END_ANGLE %d != 180\n", ang);
       result++;
     }
 
@@ -1140,7 +1352,7 @@ check_transformer ()
 
     ang = geda_arc_object_get_start_angle(object);
     if (ang != 0) {
-      fprintf(stderr, "FAILED: (O021901) start angle %d != 0\n", ang);
+      fprintf(stderr, "FAILED: (O023001) start angle %d != 0\n", ang);
       result++;
     }
 
@@ -1153,7 +1365,7 @@ check_transformer ()
 
     geda_arc_object_get_position(object, &dx, &dy);
     if ((dx - 100) || (dy - 100)) {
-      fprintf(stderr, "FAILED: (O022701) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
+      fprintf(stderr, "FAILED: (O024901) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
       result++;
     }
 

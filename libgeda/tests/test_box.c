@@ -498,7 +498,6 @@ test_box_accessors (void)
 
       geda_box_set_fill_angle2 (box, fa2);
 
-
       value = box->fill_options.fill_angle2;
       if (value - fa2) {
         fprintf(stderr, "FAILED: geda_box_set_fill_angle2 %d != %d\n", value, fa2);
