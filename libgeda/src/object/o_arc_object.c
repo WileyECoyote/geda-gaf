@@ -127,14 +127,245 @@ geda_arc_object_get_center_x (const GedaObject *object)
 int
 geda_arc_object_get_center_y (const GedaObject *object)
 {
-  if (GEDA_IS_ARC(object))
+  if (GEDA_IS_ARC(object)) {
     return object->arc->y;
-
+  }
   geda_arc_object_error(__func__, object);
   return -0;
 }
 
 /*! O0205
+ * \brief Get End Cap type Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of arc \a object end-cap type property.
+ *
+ * \param [in] object Pointer to an Arc GedaObject
+ *
+ * \return integer value of end-cap type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_end_cap
+ */
+int
+geda_arc_object_get_end_cap (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->line_options->line_end;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0206
+ * \brief Get Fill Angle 1 of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill angle1 property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill angle1 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_angle1
+ */
+int
+geda_arc_object_get_fill_angle1 (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_angle1;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0207
+ * \brief Get Fill Angle 2 of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill angle2 property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill angle2 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_angle2
+ */
+int
+geda_arc_object_get_fill_angle2 (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_angle2;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0208
+ * \brief Get Fill Pitch 1 of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill pitch1 property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill pitch1 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_pitch1
+ */
+int
+geda_arc_object_get_fill_pitch1 (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_pitch1;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0209
+ * \brief Get Fill Pitch 2 of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill pitch2 property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill pitch2 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_pitch2
+ */
+int
+geda_arc_object_get_fill_pitch2 (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_pitch2;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0210
+ * \brief Get Fill Type Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill type property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_type
+ */
+int
+geda_arc_object_get_fill_type (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_type;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0211
+ * \brief Get Fill Width Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object fill width property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of fill width or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_fill_width
+ */
+int
+geda_arc_object_get_fill_width (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->fill_options->fill_width;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0212
+ * \brief Get Line Type Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object line type property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of line type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_line_type
+ */
+int
+geda_arc_object_get_line_type (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->line_options->line_type;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0213
+ * \brief Get Line Length Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object line length property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of line length or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_line_length
+ */
+int
+geda_arc_object_get_line_length (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->line_options->line_length;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0214
+ * \brief Get Line Space Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object line space property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of line space or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_line_space
+ */
+int
+geda_arc_object_get_line_space (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->line_options->line_space;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0215
+ * \brief Get Line Width Property of an Arc Object
+ * \par Function Description
+ *  Returns the value of the arc \a object line width property.
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ *
+ * \return integer value of line width or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_object_set_line_width
+ */
+int
+geda_arc_object_get_line_width (const GedaObject *object)
+{
+  if (GEDA_IS_ARC(object)) {
+    return object->line_options->line_width;
+  }
+  geda_arc_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0216
  * \brief Get Point on an GedaArc Nearest a Given Point
  * \par Function Description
  *  This function is intended to locate a point on an GedaArc object given
@@ -305,7 +536,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   return result;
 }
 
-/*! O0206
+/*! O0217
  * \brief get the position of the center point
  * \par Function Description
  *  This function gets the position of the center point of an arc object.
@@ -329,7 +560,7 @@ geda_arc_object_get_position (GedaObject *object, int *x, int *y)
   return 0;
 }
 
-/*! O0207
+/*! O0218
  * \brief Get the radius of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -348,7 +579,7 @@ geda_arc_object_get_radius (const GedaObject *object)
   return -0;
 }
 
-/*! O0208
+/*! O0219
  * \brief Get the starting angle of the arc
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -367,7 +598,7 @@ geda_arc_object_get_start_angle (const GedaObject *object)
   return -0;
 }
 
-/*! O0209
+/*! O0220
  * \brief Mirror the coordinates of an ARC.
  * \par Function Description
  *  This function mirrors the world coordinates of an arc.
@@ -413,7 +644,7 @@ geda_arc_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! O0210
+/*! O0221
  * \brief
  * \par Function Description
  *  This function modifies the internal values of the arc object
@@ -476,8 +707,8 @@ geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*! O0211
- * \brief
+/*! O0222
+ * \brief Create a New GedaArc Object
  * \par Function Description
  *  The function creates a new GedaObject of type GedaArc.
  *
@@ -541,7 +772,7 @@ geda_arc_object_new (int color, int x, int y, int radius, int start_angle, int a
   return new_obj;
 }
 
-/*! O0212
+/*! O0223
  * \brief
  * \par Function Description
  *  This function writes in a postscript file pointed to by <B>\a fp</B>
@@ -643,7 +874,7 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
                color, arc_width, capstyle, length, space, origin_x, origin_y);
 }
 
-/*! O0213
+/*! O0224
  * \brief
  *  \par Function Description
  *  This function prints an arc when a centered line type is required. The
@@ -765,7 +996,7 @@ geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
-/*! O0214
+/*! O0225
  * \brief
  *  \par Function Description
  *  This function prints an arc when a dashed line type is required. The arc
@@ -869,7 +1100,7 @@ geda_arc_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! O0215
+/*! O0226
  * \brief
  *  \par Function Description
  *  This function prints an arc when a dotted line type is required.
@@ -963,7 +1194,7 @@ geda_arc_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  <B>ya</B>) and its radius is the <B>arc_width</B> parameter.
  */
 
-/*! O0216
+/*! O0227
  * \brief
  * \par Function Description
  *  This function prints an arc when a phantom line type is required.
@@ -1110,7 +1341,7 @@ geda_arc_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
           x,y, radius, arc_width, capstyle);
 }
 
-/*! O0217
+/*! O0228
  * \brief Print a Solid Arc
  * \par Function Description
  *  This function prints an arc when a solid line type is required.
@@ -1160,7 +1391,7 @@ geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
 
 }
 
-/*! O0218
+/*! O0229
  * \brief
  * \par Function Description
  *  This function reads a formatted text buffer describing an arc
@@ -1265,7 +1496,7 @@ geda_arc_object_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! O0219
+/*! O0230
  * \brief
  * \par Function Description
  *  This function rotates the world coordinates of an arc of an angle
@@ -1325,7 +1556,7 @@ geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle
   }
 }
 
-/*! O0220
+/*! O0231
  * \brief Set sweep angle of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1344,7 +1575,7 @@ geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
   }
 }
 
-/*! O0221
+/*! O0232
  * \brief Set center X coordinate of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1363,8 +1594,8 @@ geda_arc_object_set_center_x (GedaObject *object, int x)
   }
 }
 
-/*! O0222
- * \brief Set center Y coordinate of an Arc GedaObject
+/*! O0233
+ * \brief Set center Y coordinate of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] y       New value for the arc Y coordinate
@@ -1382,7 +1613,216 @@ geda_arc_object_set_center_y (GedaObject *object, int y)
   }
 }
 
-/*! O0223
+/*! O0234
+ * \brief Set Line End Cap Type of an Arc Object
+ *
+ * \param [in] object   Pointer to an Arc GedaObject
+ * \param [in] line_end New value for the arc line end type
+ *
+ * \sa geda_arc_object_get_end_cap
+ */
+void
+geda_arc_object_set_end_cap (GedaObject *object, int line_end)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->line_options->line_end = line_end;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0235
+ * \brief Set Fill Angle 1 property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] angle   New value for the arc fill angle 1
+ *
+ * \sa geda_arc_object_get_fill_angle1
+ */
+void
+geda_arc_object_set_fill_angle1 (GedaObject *object, int angle)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_angle1 = angle;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0236
+ * \brief Set Fill Angle 2 property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] angle   New value for the arc fill angle 2
+ *
+ * \sa geda_arc_object_get_fill_angle2
+ */
+void
+geda_arc_object_set_fill_angle2 (GedaObject *object, int angle)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_angle2 = angle;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0237
+ * \brief Set Fill Pitch 1 property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc fill pitch 1
+ *
+ * \sa geda_arc_object_get_fill_pitch1
+ */
+void
+geda_arc_object_set_fill_pitch1 (GedaObject *object, int pitch)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_pitch1 = pitch;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0238
+ * \brief Set Fill Pitch 2 property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc fill pitch 2
+ *
+ * \sa geda_arc_object_get_fill_pitch2
+ */
+void
+geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_pitch2 = pitch;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0239
+ * \brief Set Fill Type property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc fill type
+ *
+ * \sa geda_arc_object_get_fill_type
+ */
+void
+geda_arc_object_set_fill_type (GedaObject *object, int type)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_type = type;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0240
+ * \brief Set Fill Width property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc fill width
+ *
+ * \sa geda_arc_object_get_fill_width
+ */
+void
+geda_arc_object_set_fill_width (GedaObject *object, int width)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->fill_options->fill_width = width;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0241
+ * \brief Set Line Type property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc line type
+ *
+ * \sa geda_arc_object_get_line_type
+ */
+void
+geda_arc_object_set_line_type (GedaObject *object, int type)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->line_options->line_type = type;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0242
+ * \brief Set Line Length property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc line length
+ *
+ * \sa geda_arc_object_get_line_length
+ */
+void
+geda_arc_object_set_line_length (GedaObject *object, int length)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->line_options->line_length = length;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0243
+ * \brief Set Line Space property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc line space
+ *
+ * \sa geda_arc_object_get_line_length
+ */
+void
+geda_arc_object_set_line_space (GedaObject *object, int space)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->line_options->line_space = space;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0244
+ * \brief Set Line Width property of an Arc Object
+ *
+ * \param [in] object  Pointer to an Arc GedaObject
+ * \param [in] pitch   New value for the arc line width
+ *
+ * \sa geda_arc_object_get_line_length
+ */
+void
+geda_arc_object_set_line_width (GedaObject *object, int width)
+{
+  if (GEDA_IS_ARC(object)) {
+    object->line_options->line_width = width;
+  }
+  else {
+    geda_arc_object_error(__func__, object);
+  }
+}
+
+/*! O0245
  * \brief Set radius of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1401,7 +1841,7 @@ geda_arc_object_set_radius (GedaObject *object, int radius)
   }
 }
 
-/*! O0224
+/*! O0246
  * \brief Set the starting angle of an Arc GedaObject
  *
  * \param [in] object  Pointer to an Arc GedaObject
@@ -1420,7 +1860,7 @@ geda_arc_object_set_start_angle (GedaObject *object, int angle)
   }
 }
 
-/*! O0225
+/*! O0247
  * \brief Calculates the distance between the given point and the closest
  *  point on the perimeter of the arc.
  *
@@ -1498,7 +1938,7 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   return shortest_distance;
 }
 
-/*! O0226
+/*! O0248
  * \brief Create String Representation of an Arc object
  * \par Function Description
  *  This function formats a string in the <B>buffer</B> to describe
@@ -1544,7 +1984,7 @@ geda_arc_object_to_buffer(GedaObject *object)
   return(buf);
 }
 
-/*! O0227
+/*! O0249
  * \brief Apply Translation to an Arc Object
  * \par Function Description
  *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
@@ -1570,7 +2010,7 @@ geda_arc_object_translate(GedaObject *object, int dx, int dy)
   }
 }
 
-/*! O0228
+/*! O0250
  * \brief Determines if a point lies within the sweep of the arc.
  *
  * \param [in] object GedaObject object of type GedaArc
