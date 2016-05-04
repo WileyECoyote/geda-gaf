@@ -398,6 +398,61 @@ check_accessors ()
     result++;
   }
 
+  if (geda_arc_object_get_end_cap(NULL)) {
+    fprintf(stderr, "FAILED: (O020500) %s end_cap not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_line_type(NULL)) {
+    fprintf(stderr, "FAILED: (O021200) %s line_type not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_line_length(NULL)) {
+    fprintf(stderr, "FAILED: (O021300) %s line_length not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_line_space(NULL)) {
+    fprintf(stderr, "FAILED: (O021400) %s line_space not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_line_width(NULL)) {
+    fprintf(stderr, "FAILED: (O021500) %s line_width not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_type(NULL)) {
+    fprintf(stderr, "FAILED: (O021000) %s fill_type not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_angle1(NULL)) {
+    fprintf(stderr, "FAILED: (O020600) %s fill_angle1 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_angle2(NULL)) {
+    fprintf(stderr, "FAILED: (O020700) %s fill_angle2 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_pitch1(NULL)) {
+    fprintf(stderr, "FAILED: (O020800) %s fill_pitch1 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_pitch2(NULL)) {
+    fprintf(stderr, "FAILED: (O020900) %s fill_pitch2 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_width(NULL)) {
+    fprintf(stderr, "FAILED: (O021100) %s fill_width not zero\n", TOBJECT);
+    result++;
+  }
+
   for (count = 0; count < 10; count++) {
 
     GedaObject *object0 = geda_arc_object_new (11, 21, 31, 41, 51, 61);

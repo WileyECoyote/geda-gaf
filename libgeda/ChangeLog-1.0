@@ -5,7 +5,8 @@
 
     * src/object/o_arc_object.c: Add accessors for line-type and fill options,
       add checks for line-type and fill options properties of copied arcs and
-      revised to not use getters for checking copied arcs.
+      revised to not use getters for checking copied arcs. Add checks for
+      NULL arguments to line-type and filling getters.
 
     * tests/test_arc.c: Add tests for checking filling options accessors.
 
