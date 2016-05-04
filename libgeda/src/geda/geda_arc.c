@@ -158,7 +158,8 @@ geda_arc_bounds(GedaObject *object)
  *  \param [in] instance The Arc structure being initialized,
  *  \param [in] class    The Arc class we are initializing.
  */
-static void geda_arc_instance_init(GTypeInstance *instance, void *class)
+static void
+geda_arc_instance_init(GTypeInstance *instance, void *class)
 {
   GedaArc    *arc    = (GedaArc*)instance;
   GedaObject *object = &arc->parent_instance;
@@ -383,7 +384,8 @@ set_property (GObject *object, unsigned int  prop_id,
  *  \param [in]  g_class      The Arc class we are initialising
  *  \param [in]  class_data   The Arc structure associated with the class
  */
-static void geda_arc_class_init(void *g_class, void *class_data)
+static void
+geda_arc_class_init(void *g_class, void *class_data)
 {
   GedaArcClass    *class        = (GedaArcClass*)g_class;
   GObjectClass    *object_class = G_OBJECT_CLASS(class);
@@ -577,7 +579,8 @@ static void geda_arc_class_init(void *g_class, void *class_data)
  *
  *  \return GedaObjectType identifier associated with GedaArc.
  */
-GedaObjectType geda_arc_get_type (void)
+GedaObjectType
+geda_arc_get_type (void)
 {
   static volatile GedaObjectType geda_arc_type = 0;
 
@@ -614,7 +617,8 @@ GedaObjectType geda_arc_get_type (void)
  *
  *  \return pointer to the new Arc object.
  */
-GedaObject *geda_arc_new (void)
+GedaObject*
+geda_arc_new (void)
 {
   GedaObject *arc = g_object_new(GEDA_TYPE_ARC,
                                  "type", OBJ_ARC,
@@ -629,7 +633,8 @@ GedaObject *geda_arc_new (void)
  *
  * \return boolean.
  */
-bool is_a_geda_arc_object (GedaArc *arc)
+bool
+is_a_geda_arc_object (GedaArc *arc)
 {
   return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }
@@ -644,7 +649,8 @@ bool is_a_geda_arc_object (GedaArc *arc)
  *
  * \sa geda_arc_object_get_arc_sweep
  */
-int geda_arc_get_arc_sweep (GedaArc *arc) {
+int
+geda_arc_get_arc_sweep (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->arc_sweep;
   }
@@ -661,7 +667,8 @@ int geda_arc_get_arc_sweep (GedaArc *arc) {
  *
  * \sa geda_arc_object_get_center_x
  */
-int geda_arc_get_center_x (GedaArc *arc)  {
+int
+geda_arc_get_center_x (GedaArc *arc)  {
   if (is_a_geda_arc_object(arc)) {
     return arc->x;
   }
@@ -678,7 +685,8 @@ int geda_arc_get_center_x (GedaArc *arc)  {
  *
  * \sa geda_arc_object_get_center_y
  */
-int geda_arc_get_center_y (GedaArc *arc) {
+int
+geda_arc_get_center_y (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->y;
   }
@@ -695,9 +703,119 @@ int geda_arc_get_center_y (GedaArc *arc) {
  *
  * \sa geda_arc_set_end_cap
  */
-int geda_arc_get_end_cap (GedaArc *arc) {
+int
+geda_arc_get_end_cap (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->line_options.line_end;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a arc fill angle 1 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of fill angle 1 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_angle1
+ */
+int
+geda_arc_get_fill_angle1 (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_angle1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a arc fill angle 2 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of fill angle 2 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_angle2
+ */
+int
+geda_arc_get_fill_angle2 (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_angle2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a arc fill pitch 1 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of fill pitch 1 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_pitch1
+ */
+
+int
+geda_arc_get_fill_pitch1 (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_pitch1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a arc fill pitch 2 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of fill pitch 2 or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_pitch2
+ */
+int
+geda_arc_get_fill_pitch2 (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_pitch2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Type Property of a arc
+ * \par Function Description
+ *  Returns the value of \a arc fill type if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of fill type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_type
+ */
+int
+geda_arc_get_fill_type (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Width Property of a arc
+ * \par Function Description
+ *  Returns the value of the \a arc fill width property if and only
+ *  if \a arc is a valid GedaArc object.
+ *
+ * \return integer value of fill width or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_fill_width
+ */
+int
+geda_arc_get_fill_width (GedaArc *arc) {
+  if (is_a_geda_arc_object(arc)) {
+    return arc->fill_options.fill_width;
   }
   return -0;
 }
@@ -712,7 +830,8 @@ int geda_arc_get_end_cap (GedaArc *arc) {
  *
  * \sa geda_arc_set_line_type
  */
-int geda_arc_get_line_type (GedaArc *arc) {
+int
+geda_arc_get_line_type (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->line_options.line_type;
   }
@@ -735,7 +854,8 @@ int geda_arc_get_line_type (GedaArc *arc) {
  *
  * \sa geda_arc_set_line_length
  */
-int geda_arc_get_line_length (GedaArc *arc) {
+int
+geda_arc_get_line_length (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->line_options.line_length;
   }
@@ -756,7 +876,8 @@ int geda_arc_get_line_length (GedaArc *arc) {
  *
  * \sa geda_arc_set_line_space
  */
-int geda_arc_get_line_space (GedaArc *arc) {
+int
+geda_arc_get_line_space (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->line_options.line_space;
   }
@@ -773,7 +894,8 @@ int geda_arc_get_line_space (GedaArc *arc) {
  *
  * \sa geda_arc_set_line_width
  */
-int geda_arc_get_line_width (GedaArc *arc) {
+int
+geda_arc_get_line_width (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->line_options.line_width;
   }
@@ -812,7 +934,8 @@ geda_arc_get_position (GedaArc *arc, int *x, int *y)
  *
  * \sa geda_arc_object_get_radius
  */
-int geda_arc_get_radius (GedaArc *arc) {
+int
+geda_arc_get_radius (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->radius;
   }
@@ -829,7 +952,8 @@ int geda_arc_get_radius (GedaArc *arc) {
  *
  * \sa geda_arc_object_get_start_angle
  */
-int geda_arc_get_start_angle (GedaArc *arc) {
+int
+geda_arc_get_start_angle (GedaArc *arc) {
   if (is_a_geda_arc_object(arc)) {
     return arc->start_angle;
   }
@@ -844,7 +968,8 @@ int geda_arc_get_start_angle (GedaArc *arc) {
  *
  * \sa geda_arc_object_set_arc_sweep
  */
-void geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
+void
+geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
   if (is_a_geda_arc_object(arc)) {
     arc->arc_sweep = sweep;
   }
@@ -894,6 +1019,96 @@ geda_arc_set_end_cap (GedaArc *arc, int line_end) {
     arc->line_options.line_end = line_end < END_NONE ? END_NONE :
                                  line_end > END_VOID ? END_VOID :
                                  line_end;
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 1 Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc fill angle 1 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_angle1
+ */
+void
+geda_arc_set_fill_angle1 (GedaArc *arc, int angle) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_angle1 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 2 Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc fill angle 2 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_angle2
+ */
+void
+geda_arc_set_fill_angle2 (GedaArc *arc, int angle) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_angle2 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 1 Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc fill pitch 1 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_pitch1
+ */
+void
+geda_arc_set_fill_pitch1 (GedaArc *arc, int pitch) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_pitch1 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 2 Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc fill pitch 2 if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_pitch2
+ */
+void
+geda_arc_set_fill_pitch2 (GedaArc *arc, int pitch) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_pitch2 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Type Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc fill type if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_type
+ */
+void
+geda_arc_set_fill_type (GedaArc *arc, int type) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_type = type;
+  }
+}
+
+/*!
+ * \brief Set the Fill Width Property of a arc
+ * \par Function Description
+ *  Sets the value of \a arc width of the fill if and only
+ *  if \a arc is a valid GedaArc object.
+ *
+ * \sa geda_arc_get_fill_width
+ */
+void
+geda_arc_set_fill_width (GedaArc *arc, int width) {
+  if (is_a_geda_arc_object(arc)) {
+    arc->fill_options.fill_width = width;
   }
 }
 
@@ -975,7 +1190,8 @@ geda_arc_set_line_width (GedaArc *arc, int width) {
  *
  * \sa geda_arc_set_center_x geda_arc_set_center_y
  */
-void geda_arc_set_position (GedaArc *arc, int x, int y) {
+void
+geda_arc_set_position (GedaArc *arc, int x, int y) {
   if (is_a_geda_arc_object(arc)) {
     arc->x = x;
     arc->y = y;
@@ -990,7 +1206,8 @@ void geda_arc_set_position (GedaArc *arc, int x, int y) {
  *
  * \sa geda_arc_object_set_radius
  */
-void geda_arc_set_radius (GedaArc *arc, int radius) {
+void
+geda_arc_set_radius (GedaArc *arc, int radius) {
   if (is_a_geda_arc_object(arc)) {
     arc->radius = radius;
   }
@@ -1004,7 +1221,8 @@ void geda_arc_set_radius (GedaArc *arc, int radius) {
  *
  * \sa geda_arc_object_set_start_angle
  */
-void geda_arc_set_start_angle (GedaArc *arc, int angle) {
+void
+geda_arc_set_start_angle (GedaArc *arc, int angle) {
   if (is_a_geda_arc_object(arc)) {
     arc->start_angle = angle;
   }
