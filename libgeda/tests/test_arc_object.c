@@ -182,6 +182,40 @@ check_construction ()
 
       if (!fail) {
 
+        /* Line type options */
+        int e = m_random_number (END_NONE, END_ROUND);
+        int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+        int l = m_random_number (0, 500);
+        int p = m_random_number (0, 500);
+        int w = m_random_number (0, 500);
+
+        /* Filling options */
+        int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+        int fw  = m_random_number (0, 100);
+        int fa1 = m_random_number (0, 180);
+        int fp1 = m_random_number (0, 500);
+        int fa2 = m_random_number (0, 180);
+        int fp2 = m_random_number (0, 500);
+
+        /* Set line type properties */
+
+        object0->line_options->line_end    = e;
+        object0->line_options->line_type   = t;
+        object0->line_options->line_length = l;
+        object0->line_options->line_space  = p;
+        object0->line_options->line_width  = w;
+
+        /* Set Filling properties */
+
+        object0->fill_options->fill_type   = ft;
+        object0->fill_options->fill_angle1 = fa1;
+        object0->fill_options->fill_angle2 = fa2;
+        object0->fill_options->fill_pitch1 = fp1;
+        object0->fill_options->fill_pitch2 = fp2;
+        object0->fill_options->fill_width  = fw;
+
+        geda_arc_object_set_fill_width (object0, fw);
+
         GedaObject *object1 = geda_arc_object_copy (object0);
 
         g_object_unref (object0);
@@ -199,7 +233,7 @@ check_construction ()
         }
         else {
 
-          value = geda_arc_object_get_start_angle (object1);
+          value = object1->arc->start_angle;
           if (value - a) {
             fprintf(stderr, "FAILED: (O020101C) start angle %d != %d\n", value, a);
             fail++;
@@ -211,27 +245,97 @@ check_construction ()
             fail++;
           }
 
-          value = geda_arc_object_get_radius (object1);
+          value = object1->arc->radius;
           if (value - r) {
             fprintf(stderr, "FAILED: (O020101D) radius %d != %d\n", value, r);
             fail++;
           }
 
-          value = geda_arc_object_get_arc_sweep (object1);
+          value = object1->arc->arc_sweep;
           if (value - s) {
             fprintf(stderr, "FAILED: (O020101E) arc sweep %d != %d\n", value, s);
             fail++;
           }
 
-          value = geda_arc_object_get_center_x(object1);
+          value = object1->arc->x;
           if (value - x) {
             fprintf(stderr, "FAILED: (O020101F) center x %d != %d\n", value, x);
             fail++;
           }
 
-          value = geda_arc_object_get_center_y(object1);
+          value = object1->arc->y;
           if (value - y) {
             fprintf(stderr, "FAILED: (O020101G) center y %d != %d\n", value, y);
+            fail++;
+          }
+
+          /* Check line type properties */
+
+          value = object1->line_options->line_end;
+          if (value - e) {
+            fprintf(stderr, "FAILED: (O020101H) %d != %d\n", value, e);
+            fail++;
+          }
+
+          value = object1->line_options->line_type;
+          if (value - t) {
+            fprintf(stderr, "FAILED: (O020101J) %d != %d\n", value, t);
+            fail++;
+          }
+
+          value = object1->line_options->line_length;
+          if (value - l) {
+            fprintf(stderr, "FAILED: (O020101K) %d != %d\n", value, l);
+            fail++;
+          }
+
+          value = object1->line_options->line_space;
+          if (value - p) {
+            fprintf(stderr, "FAILED: (O020101L) %d != %d\n", value, p);
+            fail++;
+          }
+
+          value = object1->line_options->line_width;
+          if (value - w) {
+            fprintf(stderr, "FAILED: (O020101M) %d != %d\n", value, w);
+            fail++;
+          }
+
+          /* Check Filling properties */
+
+          value = object1->fill_options->fill_type;
+          if (value - ft) {
+            fprintf(stderr, "FAILED: (O020101N) %d != %d\n", value, ft);
+            fail++;
+          }
+
+          value = object1->fill_options->fill_angle1;
+          if (value - fa1) {
+            fprintf(stderr, "FAILED: (O020101P) %d != %d\n", value, fa1);
+            fail++;
+          }
+
+          value = object1->fill_options->fill_angle2;
+          if (value - fa2) {
+            fprintf(stderr, "FAILED: (O020101Q) %d != %d\n", value, fa2);
+            fail++;
+          }
+
+          value = object1->fill_options->fill_pitch1;
+          if (value - fp1) {
+            fprintf(stderr, "FAILED: (O020101R) %d != %d\n", value, fp1);
+            fail++;
+          }
+
+          value = object1->fill_options->fill_pitch2;
+          if (value - fp2) {
+            fprintf(stderr, "FAILED: (O020101S) %d != %d\n", value, fp2);
+            fail++;
+          }
+
+          value = object1->fill_options->fill_width;
+          if (value - fw) {
+            fprintf(stderr, "FAILED: (O020101T) %d != %d\n", value, fw);
             fail++;
           }
         }
@@ -247,8 +351,7 @@ check_construction ()
       if (fail) {
 
         fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
-        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,
-                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,                fail > 1 ? "ies" : "y");
         fprintf(stderr, "Conditions:\n");
         fprintf(stderr, "\tstart angle: %d\n", a);
         fprintf(stderr, "\t     radius: %d\n", r);
