@@ -507,7 +507,7 @@ int check_arc (void)
 }
 
 int
-check_line_type_accessors ()
+check_accessors ()
 {
   int result = 0;
   GedaObject *object = geda_arc_new();
@@ -535,8 +535,17 @@ check_line_type_accessors ()
       int p = m_random_number (0, 500);
       int w = m_random_number (0, 500);
 
-      /* Check Line End Type */
+      /* Filling options */
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500);
 
+      /* Check line type properties */
+
+      /* Check End Cap Type */
       geda_arc_set_end_cap (arc, e);
 
       value = arc->line_options.line_end;
@@ -612,6 +621,99 @@ check_line_type_accessors ()
       value = geda_arc_get_line_width (arc);
       if (value - w) {
         fprintf(stderr, "FAILED: geda_arc_get_line_width %d != %d\n", value, w);
+        fail++;
+      }
+
+      /* Check Filling properties */
+
+      geda_arc_set_fill_type (arc, ft);
+
+      value = arc->fill_options.fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_type(arc);
+
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      geda_arc_set_fill_angle1 (arc, fa1);
+
+      value = arc->fill_options.fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_angle1(arc);
+
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      geda_arc_set_fill_angle2 (arc, fa2);
+
+
+      value = arc->fill_options.fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_angle2(arc);
+
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      geda_arc_set_fill_pitch1 (arc, fp1);
+
+      value = arc->fill_options.fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_pitch1(arc);
+
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      geda_arc_set_fill_pitch2 (arc, fp2);
+
+      value = arc->fill_options.fill_pitch2;
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_pitch2(arc);
+
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      geda_arc_set_fill_width (arc, fw);
+
+      value = arc->fill_options.fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_arc_set_fill_width %d != %d\n", value, fw);
+        fail++;
+      }
+
+      value = geda_arc_get_fill_width(arc);
+
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_arc_get_fill_width %d != %d\n", value, fw);
         fail++;
       }
 
@@ -777,7 +879,7 @@ main (int argc, char *argv[])
 
   result += check_arc_properties();
 
-  result += check_line_type_accessors();
+  result += check_accessors();
 
   if (result) {
     fprintf(stderr, "Check module geda_arc.c");

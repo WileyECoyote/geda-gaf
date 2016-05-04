@@ -3,6 +3,8 @@
     * src/geda/geda_arc.c: Add accessors for filling options, adjust function
       wrap.
 
+    * tests/test_arc.c: Add tests for checking filling options accessors.
+
 2016-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_box.c: Add accessors for coordinates, line-type and
