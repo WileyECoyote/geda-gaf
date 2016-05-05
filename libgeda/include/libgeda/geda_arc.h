@@ -39,7 +39,7 @@
 #define GEDA_TYPE_ARC            (geda_arc_get_type())
 #define GEDA_ARC(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_ARC, GedaArc))
 #define GEDA_ARC_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_ARC, ArcClass))
-#define GEDA_IS_ARC(obj)         (is_a_geda_arc_object((GedaArc*)obj))
+#define GEDA_IS_ARC(obj)         (is_a_geda_arc((GedaArc*)obj))
 #define GEDA_IS_ARC_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_ARC))
 #define GEDA_ARC_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_ARC, ArcClass))
 
@@ -69,7 +69,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_arc_get_type            (void);
-bool           is_a_geda_arc_object         (GedaArc *arc);
+bool           is_a_geda_arc                (GedaArc *arc);
 
 GedaObject    *geda_arc_new                 (void);
 

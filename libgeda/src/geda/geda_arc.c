@@ -634,7 +634,7 @@ geda_arc_new (void)
  * \return boolean.
  */
 bool
-is_a_geda_arc_object (GedaArc *arc)
+is_a_geda_arc (GedaArc *arc)
 {
   return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }
@@ -651,7 +651,7 @@ is_a_geda_arc_object (GedaArc *arc)
  */
 int
 geda_arc_get_arc_sweep (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->arc_sweep;
   }
   return -0;
@@ -669,7 +669,7 @@ geda_arc_get_arc_sweep (GedaArc *arc) {
  */
 int
 geda_arc_get_center_x (GedaArc *arc)  {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->x;
   }
   return -0;
@@ -687,7 +687,7 @@ geda_arc_get_center_x (GedaArc *arc)  {
  */
 int
 geda_arc_get_center_y (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->y;
   }
   return -0;
@@ -705,7 +705,7 @@ geda_arc_get_center_y (GedaArc *arc) {
  */
 int
 geda_arc_get_end_cap (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->line_options.line_end;
   }
   return -0;
@@ -723,7 +723,7 @@ geda_arc_get_end_cap (GedaArc *arc) {
  */
 int
 geda_arc_get_fill_angle1 (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_angle1;
   }
   return -0;
@@ -741,7 +741,7 @@ geda_arc_get_fill_angle1 (GedaArc *arc) {
  */
 int
 geda_arc_get_fill_angle2 (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_angle2;
   }
   return -0;
@@ -760,7 +760,7 @@ geda_arc_get_fill_angle2 (GedaArc *arc) {
 
 int
 geda_arc_get_fill_pitch1 (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_pitch1;
   }
   return -0;
@@ -778,7 +778,7 @@ geda_arc_get_fill_pitch1 (GedaArc *arc) {
  */
 int
 geda_arc_get_fill_pitch2 (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_pitch2;
   }
   return -0;
@@ -796,7 +796,7 @@ geda_arc_get_fill_pitch2 (GedaArc *arc) {
  */
 int
 geda_arc_get_fill_type (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_type;
   }
   return -0;
@@ -814,7 +814,7 @@ geda_arc_get_fill_type (GedaArc *arc) {
  */
 int
 geda_arc_get_fill_width (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->fill_options.fill_width;
   }
   return -0;
@@ -832,7 +832,7 @@ geda_arc_get_fill_width (GedaArc *arc) {
  */
 int
 geda_arc_get_line_type (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->line_options.line_type;
   }
   return -0;
@@ -856,7 +856,7 @@ geda_arc_get_line_type (GedaArc *arc) {
  */
 int
 geda_arc_get_line_length (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->line_options.line_length;
   }
   return -0;
@@ -878,7 +878,7 @@ geda_arc_get_line_length (GedaArc *arc) {
  */
 int
 geda_arc_get_line_space (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->line_options.line_space;
   }
   return -0;
@@ -896,7 +896,7 @@ geda_arc_get_line_space (GedaArc *arc) {
  */
 int
 geda_arc_get_line_width (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->line_options.line_width;
   }
   return -0;
@@ -916,7 +916,7 @@ geda_arc_get_line_width (GedaArc *arc) {
 bool
 geda_arc_get_position (GedaArc *arc, int *x, int *y)
 {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     *x = arc->x;
     *y = arc->y;
     return TRUE;
@@ -936,7 +936,7 @@ geda_arc_get_position (GedaArc *arc, int *x, int *y)
  */
 int
 geda_arc_get_radius (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->radius;
   }
   return -0;
@@ -954,7 +954,7 @@ geda_arc_get_radius (GedaArc *arc) {
  */
 int
 geda_arc_get_start_angle (GedaArc *arc) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     return arc->start_angle;
   }
   return -0;
@@ -970,7 +970,7 @@ geda_arc_get_start_angle (GedaArc *arc) {
  */
 void
 geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->arc_sweep = sweep;
   }
 }
@@ -985,7 +985,7 @@ geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
  */
 void
 geda_arc_set_center_x (GedaArc *arc, int x) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->x = x;
   }
 }
@@ -1000,7 +1000,7 @@ geda_arc_set_center_x (GedaArc *arc, int x) {
  */
 void
 geda_arc_set_center_y (GedaArc *arc, int y) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->y = y;
   }
 }
@@ -1015,7 +1015,7 @@ geda_arc_set_center_y (GedaArc *arc, int y) {
  */
 void
 geda_arc_set_end_cap (GedaArc *arc, int line_end) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->line_options.line_end = line_end < END_NONE ? END_NONE :
                                  line_end > END_VOID ? END_VOID :
                                  line_end;
@@ -1032,7 +1032,7 @@ geda_arc_set_end_cap (GedaArc *arc, int line_end) {
  */
 void
 geda_arc_set_fill_angle1 (GedaArc *arc, int angle) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_angle1 = angle;
   }
 }
@@ -1047,7 +1047,7 @@ geda_arc_set_fill_angle1 (GedaArc *arc, int angle) {
  */
 void
 geda_arc_set_fill_angle2 (GedaArc *arc, int angle) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_angle2 = angle;
   }
 }
@@ -1062,7 +1062,7 @@ geda_arc_set_fill_angle2 (GedaArc *arc, int angle) {
  */
 void
 geda_arc_set_fill_pitch1 (GedaArc *arc, int pitch) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_pitch1 = pitch;
   }
 }
@@ -1077,7 +1077,7 @@ geda_arc_set_fill_pitch1 (GedaArc *arc, int pitch) {
  */
 void
 geda_arc_set_fill_pitch2 (GedaArc *arc, int pitch) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_pitch2 = pitch;
   }
 }
@@ -1092,7 +1092,7 @@ geda_arc_set_fill_pitch2 (GedaArc *arc, int pitch) {
  */
 void
 geda_arc_set_fill_type (GedaArc *arc, int type) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_type = type;
   }
 }
@@ -1107,7 +1107,7 @@ geda_arc_set_fill_type (GedaArc *arc, int type) {
  */
 void
 geda_arc_set_fill_width (GedaArc *arc, int width) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->fill_options.fill_width = width;
   }
 }
@@ -1122,7 +1122,7 @@ geda_arc_set_fill_width (GedaArc *arc, int width) {
  */
 void
 geda_arc_set_line_type (GedaArc *arc, int line_type) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
                                   line_type > TYPE_ERASE ? TYPE_ERASE :
                                   line_type;
@@ -1143,7 +1143,7 @@ geda_arc_set_line_type (GedaArc *arc, int line_type) {
  */
 void
 geda_arc_set_line_length (GedaArc *arc, int line_length) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->line_options.line_length = line_length > 0 ? line_length : 0;
   }
 }
@@ -1162,7 +1162,7 @@ geda_arc_set_line_length (GedaArc *arc, int line_length) {
  */
 void
 geda_arc_set_line_space (GedaArc *arc, int space) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->line_options.line_space = space > 0 ? space : 0;
   }
 }
@@ -1177,7 +1177,7 @@ geda_arc_set_line_space (GedaArc *arc, int space) {
  */
 void
 geda_arc_set_line_width (GedaArc *arc, int width) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->line_options.line_width = width > 0 ? width : 0;
   }
 }
@@ -1192,7 +1192,7 @@ geda_arc_set_line_width (GedaArc *arc, int width) {
  */
 void
 geda_arc_set_position (GedaArc *arc, int x, int y) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->x = x;
     arc->y = y;
   }
@@ -1208,7 +1208,7 @@ geda_arc_set_position (GedaArc *arc, int x, int y) {
  */
 void
 geda_arc_set_radius (GedaArc *arc, int radius) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->radius = radius;
   }
 }
@@ -1223,7 +1223,7 @@ geda_arc_set_radius (GedaArc *arc, int radius) {
  */
 void
 geda_arc_set_start_angle (GedaArc *arc, int angle) {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
     arc->start_angle = angle;
   }
 }
@@ -1245,7 +1245,7 @@ geda_arc_set_start_angle (GedaArc *arc, int angle) {
 bool
 geda_arc_within_sweep(GedaArc *arc, int x, int y)
 {
-  if (is_a_geda_arc_object(arc)) {
+  if (is_a_geda_arc(arc)) {
 
     double a0;
     double a1;

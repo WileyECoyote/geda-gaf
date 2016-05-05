@@ -200,7 +200,7 @@ GedaObject *geda_net_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_net_object (GedaNet *net)
+bool is_a_geda_net (GedaNet *net)
 {
   return GEDA_IS_OBJECT(net) && (((GedaObject*)net)->type == OBJ_NET);
 }

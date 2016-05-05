@@ -48,7 +48,7 @@
 #define GEDA_TYPE_TEXT            (geda_text_get_type())
 #define GEDA_TEXT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_TEXT, GedaText))
 #define GEDA_TEXT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_TEXT, GedaTextClass))
-#define GEDA_IS_TEXT(obj)         (is_a_geda_text_object((GedaText*)obj))
+#define GEDA_IS_TEXT(obj)         (is_a_geda_text((GedaText*)obj))
 #define GEDA_IS_TEXT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_TEXT))
 #define GEDA_TEXT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_TEXT, GedaTextClass))
 
@@ -85,7 +85,7 @@ extern "C" {
 #endif
 
 GedaTextType geda_text_get_type        (void) GEDA_CONST;
-bool         is_a_geda_text_object     (GedaText *object);
+bool         is_a_geda_text            (GedaText *text);
 
 GedaObject  *geda_text_new             (void);
 

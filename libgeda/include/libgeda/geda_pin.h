@@ -44,7 +44,7 @@
 #define GEDA_TYPE_PIN            (geda_pin_get_type())
 #define GEDA_PIN(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PIN, GedaPin))
 #define GEDA_PIN_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PIN, GedaPinClass))
-#define GEDA_IS_PIN(obj)         (is_a_geda_pin_object((GedaPin*)obj))
+#define GEDA_IS_PIN(obj)         (is_a_geda_pin((GedaPin*)obj))
 #define GEDA_IS_PIN_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PIN))
 #define GEDA_PIN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PIN, GedaPinClass))
 
@@ -78,7 +78,7 @@ struct _GedaPin {
 };
 
 GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
-bool         is_a_geda_pin_object        (GedaPin *object);
+bool         is_a_geda_pin               (GedaPin *pin);
 
 GedaObject *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (GedaPin *pin);

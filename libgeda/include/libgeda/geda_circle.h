@@ -39,7 +39,7 @@
 #define GEDA_TYPE_CIRCLE            (geda_circle_get_type())
 #define GEDA_CIRCLE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_CIRCLE, GedaCircle))
 #define GEDA_CIRCLE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_CIRCLE, GedaCircleClass))
-#define GEDA_IS_CIRCLE(obj)         (is_a_geda_circle_object((GedaCircle*)obj))
+#define GEDA_IS_CIRCLE(obj)         (is_a_geda_circle((GedaCircle*)obj))
 #define GEDA_IS_CIRCLE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_CIRCLE))
 #define GEDA_CIRCLE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_CIRCLE, GedaCircleClass))
 
@@ -65,9 +65,9 @@ struct _GedaCircle {
 extern "C" {
 #endif
 
-GedaObjectType geda_circle_get_type     (void);
-bool           is_a_geda_circle_object  (GedaCircle *object);
-GedaObject    *geda_circle_new          (void);
+GedaObjectType geda_circle_get_type         (void);
+bool           is_a_geda_circle             (GedaCircle *circle);
+GedaObject    *geda_circle_new              (void);
 
 #ifdef __cplusplus
 }

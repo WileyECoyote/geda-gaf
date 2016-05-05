@@ -40,7 +40,7 @@
 #define GEDA_TYPE_COMPLEX            (geda_complex_get_type())
 #define GEDA_COMPLEX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_COMPLEX, GedaComplex))
 #define GEDA_COMPLEX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_COMPLEX, GedaComplexClass))
-#define GEDA_IS_COMPLEX(obj)         (is_a_geda_complex_object((GedaComplex*)obj))
+#define GEDA_IS_COMPLEX(obj)         (is_a_geda_complex((GedaComplex*)obj))
 #define GEDA_IS_COMPLEX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_COMPLEX))
 #define GEDA_COMPLEX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_COMPLEX, GedaComplexClass))
 
@@ -73,7 +73,7 @@ struct _GedaComplex {
 };
 
 GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
-bool           is_a_geda_complex_object (GedaComplex *complex);
+bool           is_a_geda_complex        (GedaComplex *complex);
 
 GedaObject    *geda_complex_new         (void);
 bool           geda_complex_append      (GedaComplex *complex, GedaObject *object);

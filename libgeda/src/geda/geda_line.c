@@ -428,7 +428,7 @@ GedaObject *geda_line_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_line_object (GedaLine *lin)
+bool is_a_geda_line (GedaLine *lin)
 {
  if (GEDA_IS_OBJECT (lin)) {
    GedaObject *obj = (GedaObject*)lin;
