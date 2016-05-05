@@ -1,7 +1,10 @@
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Move call to i_status_update_action_state in
-      i_event_start_adder_handler after i_event_end_action_handler.
+      i_event_start_adder_handler after i_event_end_action_handler. Add
+      call i_event_end_action_handler in i_event_adder_pressed, i_event_
+      adder_released, i_event_paster_pressed and i_event_paster_released
+      if the event_state  was not equal to the action->state. Add comments.
 
 2016-04-30 Wiley E. Hill <wileyhill@gmail.com>
 

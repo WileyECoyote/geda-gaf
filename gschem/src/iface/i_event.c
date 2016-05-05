@@ -278,7 +278,7 @@ static void i_event_action_enable_events(GschemToplevel *w_current)
  *
  *  \sa i_event_stop_action_handler, i_event_cancel_action_handler,
  *      i_event_start_adder_handler, i_event_start_paster_handler,
- *      i_event_adder_pressed, i_event_adder_pressed, x_dnd_source_leave
+ *      i_event_adder_pressed, i_event_adder_released, x_dnd_source_leave
  */
 static void i_event_end_action_handler(GschemToplevel *w_current)
 {
@@ -304,6 +304,7 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
 
   if (w_current->event_state == action->state) {
 
+    /* Note that these keys are also updated in x_event_motion */
     w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
     w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
     w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
@@ -387,6 +388,7 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
+    i_event_end_action_handler (w_current);
   }
   return(0);
 }
@@ -426,6 +428,7 @@ static int i_event_adder_released(GtkWidget      *widget,
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
+    i_event_end_action_handler (w_current);
   }
   return(0);
 }
@@ -489,6 +492,7 @@ int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemTople
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
+    i_event_end_action_handler (w_current);
   }
   return(0);
 }
@@ -582,6 +586,7 @@ static int i_event_paster_released(GtkWidget      *widget,
   }
   else {
     BUG_IMSG("action->state != w_current->event_state",w_current->event_state);
+    i_event_end_action_handler (w_current);
   }
   return(0);
 }
