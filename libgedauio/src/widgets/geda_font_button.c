@@ -1280,7 +1280,6 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
  * \param  font_button Pointer to a GedaFontButton object.
  *
  * \retval int         size of the selected font.
- *
  */
 int
 geda_font_button_get_size (GedaFontButton *font_button)
@@ -1353,11 +1352,11 @@ bool geda_font_button_get_show_style (GedaFontButton *font_button)
   return font_button->priv->show_style;
 }
 
-/*! \brief geda_font_button_set_show_style
- *
- *  \par Function Description
- * If show_style is %TRUE, the font style will be displayed along
- * with name of the selected font.
+/*!
+ * \brief geda_font_button_set_show_style
+ * \par Function Description
+ *  If show_style is %TRUE, the font style will be displayed along
+ *  with name of the selected font.
  *
  * \param font_button Pointer to a #GedaFontButton object
  * \param show_style  %TRUE if font style should be displayed in label.
@@ -1383,12 +1382,30 @@ geda_font_button_set_show_style (GedaFontButton *font_button,
   }
 }
 
+/*!
+ * \brief Get whether the font dialog preview text is displayed
+ * \par Function Description
+ *  Returns the current show_preview property.
+ *
+ * \param font_button Pointer to a #GedaFontButton object
+ *
+ * \returns the current value of show_preview.
+ */
 bool geda_font_button_get_show_preview (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), FALSE);
   return font_button->priv->show_preview;
 }
 
+/*!
+ * \brief Set whether the font dialog preview text is displayed
+ * \par Function Description
+ *  Enables or disable displaying previewing fonts in the font
+ *  dialog widget.
+ *
+ * \param font_button Pointer to a #GedaFontButton object
+ * \param enable      True to enable previewing, False to disable.
+ */
 void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable)
 {
   GedaFontButtonData *priv;
@@ -1411,6 +1428,16 @@ void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable
   }
 }
 
+/*!
+ * \brief Get the font dialog preview text
+ * \par Function Description
+ *  Retrieves the text displayed in the font dialog preview widget,
+ *  the returned string should be freed when no longer needed.
+ *
+ * \param font_button Pointer to a #GedaFontButton object
+ *
+ * \returns the current preview_text string
+ */
 const char*
 geda_font_button_get_preview_text (GedaFontButton *font_button)
 {
@@ -1427,9 +1454,17 @@ geda_font_button_get_preview_text (GedaFontButton *font_button)
   return geda_utility_string_strdup (priv->preview_text);
 }
 
+/*!
+ * \brief Set the font dialog preview text
+ * \par Function Description
+ *  Sets the text to be displayed in the font dialog preview widget.
+ *
+ * \param font_button  Pointer to a #GedaFontButton object
+ * \param preview_text string to used for previewing fonts
+ */
 void
 geda_font_button_set_preview_text (GedaFontButton *font_button,
-                                     const char       *preview_text)
+                                   const char     *preview_text)
 {
   GedaFontButtonData *priv;
 
@@ -1463,17 +1498,18 @@ geda_font_button_get_font_desc (GedaFontButton *font_button)
   return font_button->font_desc;
 }
 
-/*! \brief Font Button Set Pango Font Description
- *  \par Function Description
- *   This function set pango font description (structure)
+/*!
+ * \brief Font Button Set Pango Font Description
+ * \par Function Description
+ *  This function set pango font description (structure)
  *  associated with the font button.
  *
  * \param font_button Pointer to a #GedaFontButton object
  * \param pfd         Pointer to Pango Font Description
  */
 void
-geda_font_button_set_font_desc (GedaFontButton *font_button,
-                                PangoFontDescription * pfd)
+geda_font_button_set_font_desc (GedaFontButton       *font_button,
+                                PangoFontDescription *pfd)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
