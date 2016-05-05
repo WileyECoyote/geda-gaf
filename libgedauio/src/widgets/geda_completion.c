@@ -34,14 +34,16 @@
  * MT safe
  */
 
-#include "config.h"
-
-#include <geda/geda.h>
-#include <geda_completion.h>
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
 
 #include <string.h>
 
-#include "gettext.h"
+#include <geda/geda.h>
+
+#include "../../include/geda_completion.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

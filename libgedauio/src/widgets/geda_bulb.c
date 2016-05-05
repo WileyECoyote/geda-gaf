@@ -28,7 +28,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 
 #include <geda/geda.h>
@@ -36,18 +36,17 @@
 
 #include <gtk/gtk.h>
 
-#include "geda_gtk_compat.h"
-#include "geda_bulb.h"
-#include "geda_marshal.h"
-
-#include "gettext.h"
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_bulb.h"
+#include "../../include/geda_marshal.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 
 #define INDICATOR_SIZE     26
 #define INDICATOR_SPACING  2
 
-#include <geda_bulb.xpm>
+#include "../../include/geda_bulb.xpm"
 
 /** \defgroup GedaBulb GedaBulb Objects
  * @{

@@ -37,6 +37,8 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_menu_private.h"
+#include "../../include/geda_menu_item_private.h"
 #include "../../include/geda_tearoff_menu_item.h"
 
 /**

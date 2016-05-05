@@ -36,7 +36,10 @@
  * on the Gtk version.
  */
 
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
 #include <geda/geda.h>
 
 #include <stdlib.h>
@@ -45,10 +48,9 @@
 
 #include <string.h>
 
-#include <geda_combobox.h>
-#include <geda_comboboxtext.h>
-
-#include "gettext.h"
+#include "../../include/geda_combobox.h"
+#include "../../include/geda_comboboxtext.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

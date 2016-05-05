@@ -33,18 +33,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 
 #include <geda/geda.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkprivate.h>
 
-#include "geda_toggle_action.h"
-#include "geda_accel_label.h"
-#include "gettext.h"
+#include "../../include/geda_toggle_action.h"
+#include "../../include/geda_accel_label.h"
+#include "../../include/gettext.h"
 #include <geda_debug.h>
 
 /**

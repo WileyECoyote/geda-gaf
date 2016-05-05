@@ -33,11 +33,10 @@
 #include <atk/atk.h>
 #include <gtk/gtk.h>
 
-#include "geda_label.h"
-#include "geda_font_dialog.h"
-#include "geda_entry.h"
-
-#include "gettext.h"
+#include "../../include/geda_label.h"
+#include "../../include/geda_font_dialog.h"
+#include "../../include/geda_entry.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

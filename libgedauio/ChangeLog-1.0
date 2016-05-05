@@ -2,6 +2,20 @@
 
     * tests/Makefile.am: Clean the tests directory.
 
+    * src/widgets/: Use relative path to local includes in:
+
+          * src/widgets/geda_accel_label.c
+          * src/widgets/geda_bulb.c
+          * src/widgets/geda_combobox.c
+          * src/widgets/geda_comboboxtext.c
+          * src/widgets/geda_font_dialog.c
+          * src/widgets/geda_handlebox.c
+          * src/widgets/geda_image_menu_item.c
+          * src/widgets/geda_label.c
+          * src/widgets/geda_tearoff_menu_item.c
+          * src/widgets/geda_toggle_action.c
+          * src/widgets/geda_tree_view.c
+
     * tests/test_completion.c: add some checks for GedaCompletion.
 
 2016-05-02 Wiley E. Hill <wileyhill@gmail.com>

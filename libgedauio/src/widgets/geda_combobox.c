@@ -24,7 +24,10 @@
  * many modifications, August 16th, 2014.
  */
 
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
 #include <geda/geda.h>
 
 #include <stdlib.h>
