@@ -103,6 +103,8 @@ T 400 3100 5 10 0 0 0 0 1
 symversion=0.1
 T 400 2500 9 10 0 1 0 0 1
 footprint=DIP8
+T 1900 2900 5 10 0 0 0 0 1
+numslots=0
 T 400 3900 5 10 0 0 0 0 1
 author=AutoTron
 T 400 3700 5 10 0 0 0 0 1

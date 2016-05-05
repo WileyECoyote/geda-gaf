@@ -1,3 +1,10 @@
+2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ADC0838-1.sym: Add symbol 8-Channel MUX, 8-Bit Serial I/O A/D Converter,
+      SOIC20.
+
+    * ti/ADC*: resequenced pins, add numslots=0.
+
 2016-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS54231-1.sym: Add symbol; Non-Synchronous Buck,2A,Adj.

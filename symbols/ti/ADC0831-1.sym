@@ -3,6 +3,8 @@ T 2000 2300 8 10 1 1 0 6 1
 refdes=U?
 T 400 2900 5 10 0 0 0 0 1
 device=ADC0831
+T 400 2700 5 10 0 1 0 0 1
+description=8-Bit Serial I/O A/D Converter,Differential,DIP8
 B 400 400 1600 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 350 700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 300 700 100 700 1 0 1
@@ -95,14 +97,14 @@ pintype=pwr
 }
 T 400 2300 5 10 1 1 0 0 1
 value=ADC0831
-T 400 2700 5 10 0 1 0 0 1
-description=8-Bit Serial I/O A/D Converter,Differential,DIP8
 T 400 3300 5 10 0 1 0 0 1
 documentation=http://www.ti.com/lit/ds/symlink/adc0831-n.pdf
 T 400 3100 5 10 0 0 0 0 1
 symversion=0.1
 T 400 2500 9 10 0 1 0 0 1
 footprint=DIP8
+T 1900 2900 5 10 0 0 0 0 1
+numslots=0
 T 400 3900 5 10 0 0 0 0 1
 author=AutoTron
 T 400 3700 5 10 0 0 0 0 1
