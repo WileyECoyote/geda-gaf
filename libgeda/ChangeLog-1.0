@@ -4,6 +4,8 @@
 
     * Declare argument to "is_a_geda_xxxx" functions a const.
 
+    * src/geda/geda_bus.c: Add accessors for GedaBus properties.
+
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Add accessors for filling options, adjust function

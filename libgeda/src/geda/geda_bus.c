@@ -247,4 +247,154 @@ bool is_a_geda_bus (const GedaBus *bus)
 {
   return GEDA_IS_OBJECT(bus) && (((GedaObject*)bus)->type == OBJ_BUS);
 }
+
+/*!
+ * \brief Retrieve Bus Ripper Direction Property of a bus
+ * \par Function Description
+ *  Returns the value of the \a bus ripper_direction property
+ *  if and only if \a bus is a valid GedaBus object.
+ *
+ * \return value of ripper_direction or -0 if \a bus is invalid.
+ *
+ * \sa geda_bus_set_ripper_direction
+ */
+int
+geda_bus_get_ripper_direction (const GedaBus *bus) {
+  if (is_a_geda_bus(bus)) {
+    return bus->bus_ripper_direction;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the First ordinate value of the Bus coordinates
+ * \par Function Description
+ *  Returns the first X value of \a bus if and only if \a bus is
+ *  a valid GedaBus object.
+ *
+ * \return integer value of X0 if \a bus is invalid.
+ */
+int
+geda_bus_get_x0 (const GedaBus *bus) {
+  if (is_a_geda_bus(bus)) {
+    return GEDA_LINE(bus)->x[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the Second ordinate value of the Bus coordinates
+ * \par Function Description
+ *  Returns the second X value of \a bus if and only if \a bus is
+ *  a valid GedaBus object.
+ *
+ * \return integer value of X1 if \a bus is invalid.
+ */
+int
+geda_bus_get_x1 (const GedaBus *bus) {
+  if (is_a_geda_bus(bus)) {
+    return GEDA_LINE(bus)->x[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the First Abscissa of the Bus coordinates
+ * \par Function Description
+ *  Returns the first Y value of \a bus if and only if \a bus is
+ *  a valid GedaBus object.
+ *
+ * \return integer value of Y0 if \a bus is invalid.
+ */
+int
+geda_bus_get_y0 (const GedaBus *bus) {
+  if (is_a_geda_bus(bus)) {
+    return GEDA_LINE(bus)->y[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the Second Abscissa of the Bus coordinates
+ * \par Function Description
+ *  Returns the second Y value of \a bus if and only if \a bus is
+ *  a valid GedaBus object.
+ *
+ * \return integer value of Y1 if \a bus is invalid.
+ */
+int
+geda_bus_get_y1 (const GedaBus *bus) {
+  if (is_a_geda_bus(bus)) {
+    return GEDA_LINE(bus)->y[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Set the End Width Property of a bus
+ * \par Function Description
+ *  Sets the value of the \a bus ripper_direction property
+ *  if and only if \a bus is a valid GedaBus object.
+ *
+ * \sa geda_bus_get_ripper_direction
+ */
+void
+geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
+  if (is_a_geda_bus(bus)) {
+    bus->bus_ripper_direction = dir;
+  }
+}
+
+/*!
+ * \brief Set the First X coordinate of a GedaBus Object
+ * \par Function Description
+ *  Sets the first X of coordinate \a bus if \a bus is a valid
+ *  GedaBus object, if \a bus is invalid then nothing is done.
+ */
+void
+geda_bus_set_x0 (GedaBus *bus, int x) {
+  if (is_a_geda_bus(bus)) {
+    GEDA_LINE(bus)->x[0] = x;
+  }
+}
+
+/*!
+ * \brief Set the Second X coordinate of a GedaBus Object
+ * \par Function Description
+ *  Sets the second X of coordinate \a bus if \a bus is a valid
+ *  GedaBus object, if \a bus is invalid then nothing is done.
+ */
+void
+geda_bus_set_x1 (GedaBus *bus, int x) {
+  if (is_a_geda_bus(bus)) {
+    GEDA_LINE(bus)->x[1] = x;
+  }
+}
+
+/*!
+ * \brief Set the First Y coordinate of a GedaBus Object
+ * \par Function Description
+ *  Sets the first Y of coordinate \a bus if \a bus is a valid
+ *  GedaBus object, if \a bus is invalid then nothing is done.
+ */
+void
+geda_bus_set_y0 (GedaBus *bus, int y) {
+  if (is_a_geda_bus(bus)) {
+    GEDA_LINE(bus)->y[0] = y;
+  }
+}
+
+/*!
+ * \brief Set the Second Y coordinate of a GedaBus Object
+ * \par Function Description
+ *  Sets the second Y of coordinate \a bus if \a bus is a valid
+ *  GedaBus object, if \a bus is invalid then nothing is done.
+ */
+void
+geda_bus_set_y1 (GedaBus *bus, int y) {
+  if (is_a_geda_bus(bus)) {
+    GEDA_LINE(bus)->y[1] = y;
+  }
+}
+
 /** @} endgroup geda-bus-object */
