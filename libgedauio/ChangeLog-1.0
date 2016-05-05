@@ -1,5 +1,7 @@
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/Makefile.am: Clean the tests directory.
+
     * tests/test_completion.c: add some checks for GedaCompletion.
 
 2016-05-02 Wiley E. Hill <wileyhill@gmail.com>
