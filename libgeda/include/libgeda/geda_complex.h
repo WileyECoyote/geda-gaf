@@ -73,7 +73,7 @@ struct _GedaComplex {
 };
 
 GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
-bool           is_a_geda_complex        (GedaComplex *complex);
+bool           is_a_geda_complex        (const GedaComplex *complex);
 
 GedaObject    *geda_complex_new         (void);
 bool           geda_complex_append      (GedaComplex *complex, GedaObject *object);

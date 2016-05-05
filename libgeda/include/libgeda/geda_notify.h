@@ -79,7 +79,7 @@ extern "C" {
 #endif
 
 GedaNotifyType  geda_notify_list_get_type          (void) GEDA_CONST;
-bool            is_a_geda_notify_list              (GedaNotifyList *list);
+bool            is_a_geda_notify_list              (const GedaNotifyList *list);
 
 GedaNotifyList *geda_notify_list_new               (void);
 

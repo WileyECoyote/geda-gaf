@@ -65,7 +65,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_line_get_type       (void) GEDA_CONST;
-bool           is_a_geda_line           (GedaLine *line);
+bool           is_a_geda_line           (const GedaLine *line);
 
 GedaObject    *geda_line_new            (void);
 

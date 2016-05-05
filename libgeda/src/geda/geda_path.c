@@ -267,7 +267,7 @@ GedaObject *geda_path_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_path (GedaPath *path)
+bool is_a_geda_path (const GedaPath *path)
 {
   return GEDA_IS_OBJECT(path) && (((GedaObject*)path)->type == OBJ_PATH);
 }

@@ -395,7 +395,7 @@ Page *geda_page_new_with_notify (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_page (Page *page)
+bool is_a_geda_page (const Page *page)
 {
   return ((unsigned long)page > 0x7FFFE) &&
   (GEDA_TYPE_PAGE == (page->head_marker & page->tail_marker));

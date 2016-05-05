@@ -227,7 +227,7 @@ GedaObject *geda_picture_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_picture (GedaPicture *pic)
+bool is_a_geda_picture (const GedaPicture *pic)
 {
   return GEDA_IS_OBJECT(pic) && (((GedaObject*)pic)->type == OBJ_PICTURE);
 }

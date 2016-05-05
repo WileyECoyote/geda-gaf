@@ -68,7 +68,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_box_get_type            (void);
-bool           is_a_geda_box                (GedaBox *box);
+bool           is_a_geda_box                (const GedaBox *box);
 GedaObject    *geda_box_new                 (void);
 
 int            geda_box_get_end_cap         (GedaBox *box);

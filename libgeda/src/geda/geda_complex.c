@@ -259,7 +259,7 @@ GedaObjectType geda_complex_get_type (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_complex (GedaComplex *cpx)
+bool is_a_geda_complex (const GedaComplex *cpx)
 {
  if (GEDA_IS_OBJECT (cpx)) {
    GedaObject *obj = (GedaObject*)cpx;

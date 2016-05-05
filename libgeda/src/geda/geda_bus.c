@@ -243,7 +243,7 @@ GedaObject *geda_bus_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_bus (GedaBus *bus)
+bool is_a_geda_bus (const GedaBus *bus)
 {
   return GEDA_IS_OBJECT(bus) && (((GedaObject*)bus)->type == OBJ_BUS);
 }

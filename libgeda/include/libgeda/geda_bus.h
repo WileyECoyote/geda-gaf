@@ -67,7 +67,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_bus_get_type             (void) GEDA_CONST;
-bool           is_a_geda_bus                 (GedaBus *bus);
+bool           is_a_geda_bus                 (const GedaBus *bus);
 
 GedaObject    *geda_bus_new                  (void);
 

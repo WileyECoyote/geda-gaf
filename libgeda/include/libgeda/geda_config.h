@@ -169,7 +169,7 @@ extern "C" {
 #endif
 
 GedaConfigType eda_config_get_type (void) GEDA_CONST;
-bool           is_a_eda_config     (EdaConfig *cfg);
+bool           is_a_eda_config     (const EdaConfig *cfg);
 /* ---------------------------------------------------------------- */
 
 char       *eda_config_find_project_root     (const char *path, const char *filename) GEDA_WARN_UNUSED_RESULT;

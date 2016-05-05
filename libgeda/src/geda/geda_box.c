@@ -558,7 +558,7 @@ geda_box_new (void)
  *  \return boolean.
  */
 bool
-is_a_geda_box (GedaBox *box)
+is_a_geda_box (const GedaBox *box)
 {
   return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }

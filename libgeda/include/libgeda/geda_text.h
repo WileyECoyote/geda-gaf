@@ -85,7 +85,7 @@ extern "C" {
 #endif
 
 GedaTextType geda_text_get_type        (void) GEDA_CONST;
-bool         is_a_geda_text            (GedaText *text);
+bool         is_a_geda_text            (const GedaText *text);
 
 GedaObject  *geda_text_new             (void);
 

@@ -529,7 +529,7 @@ GedaObject *geda_circle_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_circle (GedaCircle *cir)
+bool is_a_geda_circle (const GedaCircle *cir)
 {
   return GEDA_IS_OBJECT(cir) && (((GedaObject*)cir)->type == OBJ_CIRCLE);
 }

@@ -634,7 +634,7 @@ geda_arc_new (void)
  * \return boolean.
  */
 bool
-is_a_geda_arc (GedaArc *arc)
+is_a_geda_arc (const GedaArc *arc)
 {
   return GEDA_IS_OBJECT(arc) && (((GedaObject*)arc)->type == OBJ_ARC);
 }

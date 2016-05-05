@@ -328,7 +328,7 @@ GedaConfigType eda_config_get_type (void)
   return eda_config_type;
 }
 
-bool is_a_eda_config (EdaConfig *cfg)
+bool is_a_eda_config (const EdaConfig *cfg)
 {
   if (G_IS_OBJECT(cfg)) {
     return (eda_config_get_type() == cfg->instance_type);

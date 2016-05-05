@@ -69,7 +69,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_arc_get_type            (void);
-bool           is_a_geda_arc                (GedaArc *arc);
+bool           is_a_geda_arc                (const GedaArc *arc);
 
 GedaObject    *geda_arc_new                 (void);
 

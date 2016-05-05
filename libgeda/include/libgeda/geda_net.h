@@ -77,7 +77,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_net_get_type      (void) GEDA_CONST;
-bool           is_a_geda_net          (GedaNet *net);
+bool           is_a_geda_net          (const GedaNet *net);
 
 GedaObject    *geda_net_new           (void);
 

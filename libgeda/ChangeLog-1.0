@@ -2,6 +2,8 @@
 
     * remove the suffix "_object" from is a "is_a_geda_xxxx".
 
+    * Declare argument to "is_a_geda_xxxx" functions a const.
+
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Add accessors for filling options, adjust function

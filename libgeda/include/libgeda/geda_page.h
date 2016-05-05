@@ -140,7 +140,7 @@ extern "C" {
 #endif
 
 GedaPageType geda_page_get_type          (void) GEDA_CONST;
-bool         is_a_geda_page              (Page *page);
+bool         is_a_geda_page              (const Page *page);
 void         geda_page_debug_print       (Page *page);
 
 Page        *geda_page_new               (void);

@@ -70,7 +70,7 @@ extern "C" {
 #endif
 
 GedaListType  geda_list_get_type (void) GEDA_CONST;
-bool          is_a_geda_list     (GedaList *list);
+bool          is_a_geda_list     (const GedaList *list);
 
 /* It would be nice to add const qualifiers to some of these, but GLib
  * is buggy in this respect, and doesn't have const where necessary. */

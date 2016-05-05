@@ -78,7 +78,7 @@ struct _GedaPin {
 };
 
 GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
-bool         is_a_geda_pin               (GedaPin *pin);
+bool         is_a_geda_pin               (const GedaPin *pin);
 
 GedaObject *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (GedaPin *pin);

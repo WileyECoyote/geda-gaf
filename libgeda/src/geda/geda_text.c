@@ -286,7 +286,7 @@ GedaObject *geda_text_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_text (GedaText *txt)
+bool is_a_geda_text (const GedaText *txt)
 {
   return GEDA_IS_OBJECT(txt) && (((GedaObject*)txt)->type == OBJ_TEXT);
 }

@@ -162,7 +162,7 @@ GedaListType geda_list_get_type (void)
   return geda_list_type;
 }
 
-bool is_a_geda_list (GedaList *list)
+bool is_a_geda_list (const GedaList *list)
 {
   if (G_IS_OBJECT(list)) {
     return (geda_list_get_type() == list->instance_type);

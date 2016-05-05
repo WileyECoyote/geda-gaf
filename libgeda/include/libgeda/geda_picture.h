@@ -85,7 +85,7 @@ extern "C" {
 #endif
 
 GedaPicType  geda_picture_get_type     (void) GEDA_CONST;
-bool         is_a_geda_picture         (GedaPicture *picture);
+bool         is_a_geda_picture         (const GedaPicture *picture);
 
 GedaObject  *geda_picture_new          (void);
 

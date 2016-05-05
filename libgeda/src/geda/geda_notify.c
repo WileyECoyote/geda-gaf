@@ -149,7 +149,7 @@ GedaNotifyType geda_notify_list_get_type (void)
   return geda_notify_list_type;
 }
 
-bool is_a_geda_notify_list (GedaNotifyList *list)
+bool is_a_geda_notify_list (const GedaNotifyList *list)
 {
   if (G_IS_OBJECT(list)) {
     return (geda_notify_list_get_type() == list->instance_type);

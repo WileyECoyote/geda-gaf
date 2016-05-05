@@ -417,7 +417,7 @@ GedaObject *geda_pin_new (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_pin (GedaPin *pin)
+bool is_a_geda_pin (const GedaPin *pin)
 {
   return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
 }

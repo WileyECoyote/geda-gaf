@@ -66,7 +66,7 @@ extern "C" {
 #endif
 
 GedaObjectType geda_circle_get_type         (void);
-bool           is_a_geda_circle             (GedaCircle *circle);
+bool           is_a_geda_circle             (const GedaCircle *circle);
 GedaObject    *geda_circle_new              (void);
 
 #ifdef __cplusplus

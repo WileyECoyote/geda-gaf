@@ -73,7 +73,7 @@ extern "C" {
 #endif
 
 GedaPathType geda_path_get_type        (void) GEDA_CONST;
-bool         is_a_geda_path            (GedaPath *path);
+bool         is_a_geda_path            (const GedaPath *path);
 
 GedaObject  *geda_path_new             (void);
 
