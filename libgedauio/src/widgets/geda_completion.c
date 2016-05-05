@@ -113,8 +113,8 @@
  *          bytes of s2.
  */
 
-static void completion_check_cache (GedaCompletion* comp,
-                                    char**          new_prefix);
+static void completion_check_cache (GedaCompletion  *comp,
+                                    char           **new_prefix);
 
 /*!
  * \brief Create a New Geda Completion Object

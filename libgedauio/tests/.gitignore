@@ -10,6 +10,7 @@ test_accumulate
 test_bulb
 test_combobox
 test_combobox_text
+test_completion
 test_file_chooser
 test_entry
 test_font_button

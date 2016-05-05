@@ -13,6 +13,7 @@ check_widgets = \
 	test_bulb \
 	test_combobox \
 	test_combobox_text \
+	test_completion \
 	test_entry \
 	test_font_button \
 	test_font_dialog \
