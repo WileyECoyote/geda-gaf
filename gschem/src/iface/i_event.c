@@ -629,11 +629,11 @@ void i_event_start_adder_handler (GschemToplevel *w_current,
 {
   GschemEvent *event;
 
-  i_status_action_start(w_current);
-
   if (w_current->action_event->state) {
     i_event_end_action_handler(w_current);
   }
+
+  i_status_action_start(w_current);
 
   event                = w_current->action_event;
   event->state         = w_current->event_state;
