@@ -73,23 +73,23 @@ bool           is_a_geda_arc                (const GedaArc *arc);
 
 GedaObject    *geda_arc_new                 (void);
 
-int            geda_arc_get_arc_sweep       (GedaArc *arc);
-int            geda_arc_get_center_x        (GedaArc *arc);
-int            geda_arc_get_center_y        (GedaArc *arc);
-int            geda_arc_get_end_cap         (GedaArc *arc);
-int            geda_arc_get_fill_angle1     (GedaArc *arc);
-int            geda_arc_get_fill_angle2     (GedaArc *arc);
-int            geda_arc_get_fill_pitch1     (GedaArc *arc);
-int            geda_arc_get_fill_pitch2     (GedaArc *arc);
-int            geda_arc_get_fill_type       (GedaArc *arc);
-int            geda_arc_get_fill_width      (GedaArc *arc);
-int            geda_arc_get_line_type       (GedaArc *arc);
-int            geda_arc_get_line_length     (GedaArc *arc);
-int            geda_arc_get_line_space      (GedaArc *arc);
-int            geda_arc_get_line_width      (GedaArc *arc);
-bool           geda_arc_get_position        (GedaArc *arc, int *x, int *y);
-int            geda_arc_get_radius          (GedaArc *arc);
-int            geda_arc_get_start_angle     (GedaArc *arc);
+int            geda_arc_get_arc_sweep       (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_center_x        (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_center_y        (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_end_cap         (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_angle1     (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_angle2     (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_pitch1     (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_pitch2     (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_type       (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_fill_width      (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_line_type       (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_line_length     (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_line_space      (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_line_width      (const GedaArc *arc) WARN_UNUSED;
+bool           geda_arc_get_position        (const GedaArc *arc, int *x, int *y);
+int            geda_arc_get_radius          (const GedaArc *arc) WARN_UNUSED;
+int            geda_arc_get_start_angle     (const GedaArc *arc) WARN_UNUSED;
 
 void           geda_arc_set_arc_sweep       (GedaArc *arc, int sweep);
 void           geda_arc_set_center_x        (GedaArc *arc, int x);
@@ -108,7 +108,7 @@ void           geda_arc_set_line_width      (GedaArc *arc, int width);
 void           geda_arc_set_position        (GedaArc *arc, int x, int y);
 void           geda_arc_set_radius          (GedaArc *arc, int radius);
 void           geda_arc_set_start_angle     (GedaArc *arc, int angle);
-bool           geda_arc_within_sweep        (GedaArc *arc, int x, int y);
+bool           geda_arc_within_sweep        (const GedaArc *arc, int x, int y) WARN_UNUSED;
 
 #ifdef __cplusplus
 }
