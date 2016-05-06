@@ -435,8 +435,12 @@ int check_arc (void)
         fail++;
       }
 
-      geda_arc_get_position (arc, &cx, &cy);
-      geda_arc_set_position (arc, cx - dx, cy - dy);
+      if (!geda_arc_get_position (arc, &cx, &cy)) {
+        fprintf(stderr, "FAILED: %s geda_arc_get_position at line %d\n", TOBJECT, __LINE__);
+      }
+      else {
+        geda_arc_set_position (arc, cx - dx, cy - dy);
+      }
 
       value = geda_arc_get_start_angle(arc);
       if (value - a) {
@@ -728,7 +732,7 @@ check_accessors ()
 }
 
 int
-check_arc_properties (void)
+check_properties (void)
 {
   int result = 0;
 
@@ -877,7 +881,7 @@ main (int argc, char *argv[])
 
   result  = check_arc();
 
-  result += check_arc_properties();
+  result += check_properties();
 
   result += check_accessors();
 

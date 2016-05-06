@@ -4,6 +4,9 @@
 
     * include/libgeda/geda_box.h: Declare arc argument to getters const.
 
+    * tests/test_arc.c: Check return value from geda_arc_get_position when
+      checking geda_arc_set_position, rename test functions.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * remove the suffix "_object" from is a "is_a_geda_xxxx".
