@@ -262,6 +262,7 @@ check_accessors ()
       fail++;
     }
 
+    /* Toggle the direction */
     geda_bus_object_set_ripper_direction(object0, !value);
 
     if (object0->bus->bus_ripper_direction == value) {

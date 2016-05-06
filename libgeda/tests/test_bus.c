@@ -7,7 +7,7 @@
  *  \brief Tests for geda_bus.c module
  */
 
-int test_bus (void)
+int check_bus (void)
 {
   int result = 0;
 
@@ -114,7 +114,7 @@ int test_bus (void)
 }
 
 int
-test_bus_properties (void)
+check_properties (void)
 {
   int result = 0;
 
@@ -203,6 +203,135 @@ test_bus_properties (void)
 }
 
 int
+check_accessors ()
+{
+  int count;
+  int result = 0;
+
+  count = geda_bus_get_ripper_direction(NULL);
+  count = geda_bus_get_x0(NULL);
+  count = geda_bus_get_x1(NULL);
+  count = geda_bus_get_y0(NULL);
+  count = geda_bus_get_y1(NULL);
+
+  geda_bus_set_ripper_direction(NULL, 1);
+  geda_bus_set_x0(NULL, 18);
+  geda_bus_set_x1(NULL, 19);
+  geda_bus_set_y0(NULL, 20);
+  geda_bus_set_y1(NULL, 21);
+
+  for (count = 0; count < 3; count++) {
+
+    int c  = m_random_number ( 0, MAX_COLORS - 1);
+    int x1 = m_random_number ( 0,       119800);
+    int y2 = m_random_number ( 0,        79800);
+    int x2 = m_random_number (x1 + 100, 120000);
+    int y1 = m_random_number (y2 + 100,  80000);
+    int d  = m_random_number (0, 1);
+
+    GedaObject *object0 = geda_bus_object_new(c, x1, y1, x2, y2, d);
+    GedaBus    *bus     = object0->bus;
+
+    int value;
+    int fail;
+
+    fail = 0;
+
+    /* === Function: geda_bus_get_ripper_direction  === */
+
+    value = geda_bus_get_ripper_direction(bus);
+
+    if (value - d) {
+      fprintf(stderr, "FAILED: geda_bus_get_ripper_direction <%d>\n", value);
+      fail++;
+    }
+
+    /* Toggle the direction */
+    geda_bus_set_ripper_direction(bus, !value);
+
+    if (bus->bus_ripper_direction == value) {
+      fprintf(stderr, "FAILED: geda_bus_set_ripper_direction\n");
+      fail++;
+    }
+
+    /* === Function: geda_bus_get_x0  === */
+
+    value = geda_bus_get_x0(bus);
+    if (value - x1) {
+      fprintf(stderr, "FAILED: (O050601) bus %d != %d\n", value, x1);
+      fail++;
+    }
+
+    /* === Function: geda_bus_get_x1  === */
+
+    value = geda_bus_get_x1(bus);
+
+    if (value - x2) {
+      fprintf(stderr, "FAILED: geda_bus_get_x1 %d != %d\n", value, x2);
+      fail++;
+    }
+
+    /* === Function: geda_bus_get_y0  === */
+
+    value = geda_bus_get_y0(bus);
+    if (value - y1) {
+      fprintf(stderr, "FAILED: geda_bus_get_y0 %d != %d\n", value, y1);
+      fail++;
+    }
+
+    /* === Function: geda_bus_get_y1  === */
+
+    value = geda_bus_get_y1(bus);
+
+    if (value - y2) {
+      fprintf(stderr, "FAILED: geda_bus_get_y1 %d != %d\n", value, y2);
+      fail++;
+    }
+
+    /* Reverse the coordinates */
+
+    /* === Function: geda_bus_set_x0  === */
+    geda_bus_set_x0(bus, x2);
+
+    if (GEDA_LINE(bus)->x[0] - x2) {
+      fprintf(stderr, "FAILED: geda_bus_set_x0\n");
+      fail++;
+    }
+
+    /* === Function: geda_bus_set_x1  === */
+    geda_bus_set_x1(bus, x1);
+
+    if (GEDA_LINE(bus)->x[1] - x1) {
+      fprintf(stderr, "FAILED: geda_bus_set_x1\n");
+      fail++;
+    }
+
+    /* === Function: geda_bus_set_y0  === */
+    geda_bus_set_y0(bus, y2);
+
+    if (GEDA_LINE(bus)->y[0] - y2) {
+      fprintf(stderr, "FAILED: geda_bus_set_y0\n");
+      fail++;
+    }
+
+    /* === Function: geda_bus_set_y1  === */
+    geda_bus_set_y1(bus, y1);
+
+    if (GEDA_LINE(bus)->y[1] - y1) {
+      fprintf(stderr, "FAILED: geda_bus_set_y1\n");
+      fail++;
+    }
+
+    if (fail) {
+      result++;
+      break;
+    }
+    g_object_unref (object0);
+  }
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -212,8 +341,9 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result  = test_bus();
-  result += test_bus_properties();
+  result  = check_bus();
+  result += check_properties();
+  result += check_accessors();
 
   if (result) {
     fprintf(stderr, "Check module geda_bus.c");

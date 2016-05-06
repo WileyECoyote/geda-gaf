@@ -7,7 +7,7 @@
  *  \brief Tests for geda_box.c module
  */
 
-int test_box (void)
+int check_box (void)
 {
   int result = 0;
 
@@ -103,7 +103,7 @@ int test_box (void)
 }
 
 int
-test_box_properties (void)
+check_properties (void)
 {
   int result = 0;
 
@@ -289,7 +289,7 @@ test_box_properties (void)
 }
 
 int
-test_box_accessors (void)
+check_accessors (void)
 {
   int result = 0;
 
@@ -585,9 +585,9 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result  = test_box();
-  result += test_box_properties();
-  result += test_box_accessors();
+  result  = check_box();
+  result += check_properties();
+  result += check_accessors();
 
   if (result) {
     fprintf(stderr, "Check module geda_box.c");

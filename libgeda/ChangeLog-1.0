@@ -7,6 +7,8 @@
     * tests/test_arc.c: Check return value from geda_arc_get_position when
       checking geda_arc_set_position, rename test functions.
 
+    * tests/test_bus.c: Add checks for GedaBus accessors, rename functions.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * remove the suffix "_object" from is a "is_a_geda_xxxx".
