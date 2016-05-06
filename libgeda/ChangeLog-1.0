@@ -2,6 +2,8 @@
 
     * include/libgeda/geda_arc.h: Declare arc argument to getters const.
 
+    * include/libgeda/geda_box.h: Declare arc argument to getters const.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * remove the suffix "_object" from is a "is_a_geda_xxxx".
