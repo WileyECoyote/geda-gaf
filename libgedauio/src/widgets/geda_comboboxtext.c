@@ -111,7 +111,7 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
     /* And also unlike Gtk, we provide access to the internal button */
     (GEDA_COMBO_BOX_TEXT(combo))->button = widget;
   }
-  else if (GTK_IS_ENTRY(widget)) {
+  else if (GEDA_IS_ENTRY(widget)) {
     (GEDA_COMBO_BOX_TEXT(combo))->entry = widget;
   }
 }
@@ -780,7 +780,7 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
       GtkWidget *entry;
 
       entry = gtk_bin_get_child (GTK_BIN (combo_box));
-      text = g_strdup (gtk_entry_get_text (GTK_ENTRY (entry)));
+      text = g_strdup (geda_entry_get_text (GEDA_ENTRY (entry)));
     }
     else if (geda_combo_box_get_active_iter (GEDA_COMBO_BOX (combo_box), &iter))
     {
@@ -812,8 +812,8 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
     if (!combo_box->count) { /* Is Empty? */
 
-      if (GTK_IS_ENTRY(combo_box->entry)) {
-        gtk_entry_set_text((GtkEntry*)combo_box->entry,text);
+      if (GEDA_IS_ENTRY(combo_box->entry)) {
+        geda_entry_set_text((GedaEntry*)combo_box->entry,text);
       }
       else {
         geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
@@ -847,8 +847,8 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
         geda_combo_box_text_set_active (combo_box, found);
       }
       else {
-        if (GTK_IS_ENTRY(combo_box->entry)) {
-          gtk_entry_set_text((GtkEntry*)combo_box->entry,text);
+        if (GEDA_IS_ENTRY(combo_box->entry)) {
+          geda_entry_set_text((GedaEntry*)combo_box->entry,text);
         }
         else {
           geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
@@ -866,18 +866,18 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
 {
   if (GEDA_COMBO_BOX_TEXT (combo_box)) {
 
-    if (GTK_IS_ENTRY(combo_box->entry)) {
-      gtk_entry_set_activates_default (GTK_ENTRY(combo_box->entry), setting);
+    if (GEDA_IS_ENTRY(combo_box->entry)) {
+      geda_entry_set_activates_default (GEDA_ENTRY(combo_box->entry), setting);
     }
   }
 }
 
-GtkEntry*
+GedaEntry*
 geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 {
   if (GEDA_COMBO_BOX_TEXT (combo_box)) {
-    if (GTK_IS_ENTRY(combo_box->entry)) {
-      return GTK_ENTRY(combo_box->entry);
+    if (GEDA_IS_ENTRY(combo_box->entry)) {
+      return GEDA_ENTRY(combo_box->entry);
     }
   }
   return NULL;
@@ -889,7 +889,7 @@ geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
   GtkWidget *entry = NULL;
 
   if (GEDA_COMBO_BOX_TEXT (combo_box)) {
-    if (GTK_IS_ENTRY(combo_box->entry)) {
+    if (GEDA_IS_ENTRY(combo_box->entry)) {
       entry = combo_box->entry;
     }
   }

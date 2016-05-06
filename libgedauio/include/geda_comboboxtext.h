@@ -28,7 +28,7 @@
  */
 
 #include <gtk/gtk.h>
-
+#include "geda_entry.h"
 #include "geda_combobox.h"
 
 #ifndef __GEDA_COMBO_BOX_TEXT_H__
@@ -116,7 +116,7 @@ bool         geda_combo_box_text_set_active_text       (GedaComboBoxText   *comb
                                                         const char         *text);
 void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *combo_box,
                                                         bool setting);
-GtkEntry    *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
+GedaEntry   *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
 
 GtkWidget   *geda_combo_box_text_get_entry_widget      (GedaComboBoxText   *combo_box);
 

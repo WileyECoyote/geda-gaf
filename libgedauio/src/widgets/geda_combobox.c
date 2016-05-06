@@ -29,13 +29,9 @@
 #endif
 
 #include <geda/geda.h>
+#include <geda/geda_standard.h>
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-
-#include <gobject/gvaluecollector.h>
-
+#include "../../include/geda_entry.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_combobox.h"
 #include "../../include/geda_separator.h"
@@ -65,7 +61,7 @@
  * reflect the tree structure.
  * \par
  * To allow the user to enter values not in the model, the 'has-entry'
- * property allows the GedaComboBox to contain a GtkEntry. This entry
+ * property allows the GedaComboBox to contain a GedaEntry. This entry
  * can be accessed by calling gtk_bin_get_child() on the combo box.
  * \par
  * For a simple list of textual choices, the model-view API of GedaComboBox
@@ -208,7 +204,6 @@ enum {
 
 static unsigned int combo_box_signals[LAST_SIGNAL] = {0,};
 
-//#define BONUS_PADDING 20
 #define SCROLL_TIME  100
 
 /* common */
@@ -440,7 +435,7 @@ static void     geda_combo_box_child_hide                     (GtkWidget       *
                                                                GedaComboBox    *combo_box);
 
 /* GedaComboBox:has-entry callbacks */
-static void     geda_combo_box_entry_contents_changed         (GtkEntry        *entry,
+static void     geda_combo_box_entry_contents_changed         (GedaEntry       *entry,
                                                                void            *user_data);
 
 static void     geda_combo_box_entry_active_changed           (GedaComboBox    *combo_box,
@@ -485,7 +480,7 @@ geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
     GtkWidget *child = gtk_bin_get_child (combo);
 
     if (child) {
-      text = g_strdup (gtk_entry_get_text (GTK_ENTRY (child)));
+      text = g_strdup (geda_entry_get_text (GEDA_ENTRY (child)));
     }
   }
   else {
@@ -532,7 +527,7 @@ geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
   GedaComboBoxData *priv  = combo_box->priv;
 
-  if (priv->has_entry && !GTK_IS_ENTRY (widget)) {
+  if (priv->has_entry && !GEDA_IS_ENTRY (widget)) {
     fprintf(stderr, "Attempting to add a %s widget", G_OBJECT_TYPE_NAME (widget));
     fprintf(stderr, " to a GedaComboBox that does not have an instance of");
     fprintf(stderr, " GedaEntry or derivative subclass");
@@ -1422,7 +1417,7 @@ geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
     gtk_cell_view_set_background_color (GTK_CELL_VIEW (priv->cell_view),
                                         &widget->style->base[gtk_widget_get_state (widget)]);
 
-    if (GTK_IS_ENTRY (GTK_BIN (combo_box)->child))
+    if (GEDA_IS_ENTRY (GTK_BIN (combo_box)->child))
       g_object_set (GTK_BIN (combo_box)->child, "shadow-type",
                     GTK_SHADOW_NONE == priv->shadow_type ?
                     GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
@@ -1474,8 +1469,8 @@ geda_combo_box_constructor (GType                  type,
 
     GtkWidget *entry;
 
-    entry = gtk_entry_new ();
-    gtk_widget_show (entry);
+    entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+
     gtk_container_add (GTK_CONTAINER (combo_box), entry);
 
     priv->text_renderer = gtk_cell_renderer_text_new ();
@@ -6131,8 +6126,8 @@ geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
  * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
  * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
  * instead. Or if you used this with a #GedaEntry then you should now use
- * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use gtk_entry_get_text
- * (GTK_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
+ * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
+ * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
  */
 char *
 geda_combo_box_get_active_text (GedaComboBox *combo_box)
@@ -6234,7 +6229,7 @@ geda_combo_box_real_move_active (GedaComboBox  *combo_box,
 }
 
 static void
-geda_combo_box_entry_contents_changed (GtkEntry *entry,
+geda_combo_box_entry_contents_changed (GedaEntry *entry,
                                        void     *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
@@ -6253,7 +6248,7 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
 
   if (geda_combo_box_get_active_iter (combo_box, &iter)) {
 
-    GtkEntry *entry = GTK_ENTRY (gtk_bin_get_child (GTK_BIN (combo_box)));
+    GedaEntry *entry = GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combo_box)));
 
     if (entry) {
 
@@ -6273,7 +6268,7 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
       g_signal_emit (combo_box, combo_box_signals[FORMAT_ENTRY_TEXT], 0,
                      path_str, &text);
 
-      gtk_entry_set_text (entry, text);
+      geda_entry_set_text (entry, text);
 
       g_signal_handlers_unblock_by_func (entry,
                                          geda_combo_box_entry_contents_changed,

@@ -1,6 +1,15 @@
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_comboboxtext.h: include geda_entry.h and revise declaration
+      for geda_combo_box_text_get_entry to return pointer to GedaEntry instead
+      of a GtkEntry.
+
     * include/geda_entry.h: Include "gtk.h" instead of "gtkentrybuffer.h"
+
+    * src/widgets/geda_combobox.c: Replace GtkEntry with GedaEntry, except for
+      setting has_frame.
+
+    * src/widgets/geda_comboboxtext.c: Replace GtkEntry with GedaEntry.
 
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
