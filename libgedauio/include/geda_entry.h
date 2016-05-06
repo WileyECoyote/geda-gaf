@@ -43,7 +43,8 @@
   #define max_command_length 256
 #endif
 
-#include <gtk/gtkentrybuffer.h>
+#include <gtk/gtk.h>
+//#include <gtk/gtkentrybuffer.h>
 
 #include "geda_completion.h"
 

@@ -82,6 +82,7 @@ extern "C" {
 /* construction */
 GedaType      geda_combo_box_get_type                 (void) GEDA_CONST;
 bool          is_a_geda_combo_box                     (GedaComboBox  *combo_box);
+
 GtkWidget    *geda_combo_box_new                      (void);
 GtkWidget    *geda_combo_box_new_with_entry           (void);
 GtkWidget    *geda_combo_box_new_with_model           (GtkTreeModel *model);

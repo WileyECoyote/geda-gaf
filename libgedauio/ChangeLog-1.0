@@ -1,3 +1,7 @@
+2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_entry.h: Include "gtk.h" instead of "gtkentrybuffer.h"
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Clean the tests directory.
