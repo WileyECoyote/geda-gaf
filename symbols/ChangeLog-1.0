@@ -1,3 +1,9 @@
+2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61024-1.sym: IC,Synchronous Boost,Fix 3.0V,1500 mA,VSON10.
+
+    * ti/switchreg/TPS61026-1.sym: IC,Synchronous Boost,Fix 5.0V,1800 mA,VSON10.
+
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ADC0838-1.sym: Add symbol 8-Channel MUX, 8-Bit Serial I/O A/D Converter,
