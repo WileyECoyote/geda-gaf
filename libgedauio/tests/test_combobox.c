@@ -38,6 +38,7 @@
 
 #include <../include/geda_combobox.h>
 #include <../include/geda_bulb.h>
+#include <../include/geda_entry.h>
 
 #define TWIDGET "GedaComboBoxText"
 
@@ -82,6 +83,18 @@ int check_construction (void)
   if (!GEDA_IS_COMBO_BOX(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
+  }
+  else {
+
+    GtkWidget *entry;
+
+    /* geda_combo_box_text_get_entry_widget */
+    entry = geda_combo_widget_get_entry(widget);
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
   }
 
   g_object_unref(widget);    /* Destroy the widget */

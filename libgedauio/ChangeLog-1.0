@@ -11,6 +11,8 @@
 
     * src/widgets/geda_comboboxtext.c: Replace GtkEntry with GedaEntry.
 
+    * tests/test_combobox.c: add check for geda_combo_widget_get_entry.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Clean the tests directory.
