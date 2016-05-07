@@ -1,3 +1,8 @@
+2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93LC56C-E-ST-1.sym: Add symbol 2K EEPROM, 8/16 Bit Serial,
+      2.5-5.5Volt, +85C, MSOP8.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61024-1.sym: IC,Synchronous Boost,Fix 3.0V,1500 mA,VSON10.
