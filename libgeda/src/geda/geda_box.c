@@ -775,7 +775,7 @@ geda_box_get_line_width (const GedaBox *box) {
 /*!
  * \brief Retrieve lower ordinate value of the a Box coordinate
  * \par Function Description
- *  Returns the current X value of \a box if and only if \a box is
+ *  Returns the lower X value of \a box if and only if \a box is
  *  a valid GedaBox object.
  *
  * \return integer value of lower X or 0 if \a box is invalid.
@@ -793,7 +793,7 @@ geda_box_get_lower_x (const GedaBox *box) {
 /*!
  * \brief Retrieve Lower Y coordinate of a box
  * \par Function Description
- *  Returns the current Y value of \a box if and only if \a box is
+ *  Returns the lower Y value of \a box if and only if \a box is
  *  a valid GedaBox object.
  *
  * \return integer value of lower Y or -0 if \a box is invalid.

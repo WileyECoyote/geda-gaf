@@ -1,8 +1,12 @@
+2016-05-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_box_object.c: Add accessors for box object coordinates.
+
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Declare arc argument to getters const.
 
-    * include/libgeda/geda_box.h: Declare arc argument to getters const.
+    * include/libgeda/geda_box.h: Declare box argument to getters const.
 
     * tests/test_arc.c: Check return value from geda_arc_get_position when
       checking geda_arc_set_position, rename test functions.

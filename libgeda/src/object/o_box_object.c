@@ -41,7 +41,7 @@ geda_box_object_error(const char *func, const void *object)
   geda_object_error(func, object, GEDA_OBJECT_BOX);
 }
 
-/*! O0402
+/*! O0401
  * \brief Copy a box to a list.
  * \par Function Description
  *  The function #geda_box_object_copy() creates a verbatim copy of the object
@@ -52,7 +52,7 @@ geda_box_object_error(const char *func, const void *object)
  * \return The new GedaObject
  */
 GedaObject*
-geda_box_object_copy(GedaObject *o_source)
+geda_box_object_copy(const GedaObject *o_source)
 {
   if (GEDA_IS_BOX(o_source)) {
 
@@ -84,7 +84,45 @@ geda_box_object_copy(GedaObject *o_source)
   return NULL;
 }
 
-/*! O0402
+/*! O0413
+ * \brief Retrieve lower X coordinate of the a Box object
+ * \par Function Description
+ *  Returns the lower X value of the box \a object or zero if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \return integer value of lower X or 0 if \a box is invalid.
+ *
+ * \sa geda_box_set_lower_x
+ */
+int
+geda_box_object_get_lower_x (const GedaObject *object) {
+  if (GEDA_IS_BOX(object)) {
+    return object->box->lower_x;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0414
+ * \brief Retrieve lower Y coordinate of the a Box object
+ * \par Function Description
+ *  Returns the lower y value of the box \a object or zero if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \return integer value of lower X or 0 if \a object is invalid.
+ *
+ * \sa geda_box_set_lower_x
+ */
+int
+geda_box_object_get_lower_y (const GedaObject *object) {
+  if (GEDA_IS_BOX(object)) {
+    return object->box->lower_y;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0415
  * \brief Get Point on a Box Nearest a Given Point
  * \par Function Description
  *  This function is intended to locate a point on a Box object given
@@ -272,7 +310,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
   return result;
 }
 
-/*! O0403
+/*! O0416
  * \brief get the position of the left bottom point
  * \par Function Description
  *  This function gets the position of the bottom left point of a box object.
@@ -296,7 +334,45 @@ geda_box_object_get_position (GedaObject *object, int *x, int *y)
   return 0;
 }
 
-/*! O0404
+/*! O0417
+ * \brief Retrieve Upper X coordinate of the a Box object
+ * \par Function Description
+ *  Returns the upper X value of the box \a object or zero if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \return integer value of upper X or 0 if \a box is invalid.
+ *
+ * \sa geda_box_set_lower_x
+ */
+int
+geda_box_object_get_upper_x (const GedaObject *object) {
+  if (GEDA_IS_BOX(object)) {
+    return object->box->upper_x;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0418
+ * \brief Retrieve Upper Y coordinate of the a Box object
+ * \par Function Description
+ *  Returns the upper y value of the box \a object or zero if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \return integer value of upper X or 0 if \a object is invalid.
+ *
+ * \sa geda_box_set_upper_x
+ */
+int
+geda_box_object_get_upper_y (const GedaObject *object) {
+  if (GEDA_IS_BOX(object)) {
+    return object->box->upper_y;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*! O0419
  * \brief Mirror a Box.
  * \par Function Description
  *  This function mirrors the box from the point
@@ -349,7 +425,7 @@ geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! O0405
+/*! O0420
  * \brief Modify a Box Object's coordinates.
  * \par Function Description
  *  This function modifies the coordinates of one of the four corner of
@@ -427,7 +503,7 @@ geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*! O0406
+/*! O0421
  * \brief Modify a Box Object's coordinates.
  * \par Function Description
  *  Modifies the coordinates of all four corners of \a box, by setting
@@ -459,7 +535,7 @@ geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
   }
 }
 
-/*! O0407
+/*! O0422
  * \brief Create a Box Object
  * \par Function Description
  *  This function creates a new object representing a box.
@@ -1209,7 +1285,7 @@ geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
                      origin_x, origin_y);
 }
 
-/*! O0417
+/*! O0432
  * \brief Create a box from a character string.
  * \par Function Description
  *  This function gets the description of a box from the <B>*buf</B> character
@@ -1344,7 +1420,7 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
   return new_obj;
 }
 
-/*! O0418
+/*! O0433
  * \brief Rotate GedaBox Object
  * \par Function Description
  *  The function #geda_box_object_rotate() rotate the box described by <B>*object</B>
@@ -1415,7 +1491,91 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
   }
 }
 
-/*! O0419
+/*! O0445
+ * \brief Set Lower X coordinate of a Box object
+ * \par Function Description
+ *  Sets the lower x value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] x       New value for the lower x coordinate
+ *
+ * \sa geda_box_object_get_lower_x
+ */
+void
+geda_box_object_set_lower_x (GedaObject *object, int x) {
+  if (GEDA_IS_BOX(object)) {
+    object->box->lower_x = x;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*! O0446
+ * \brief Set Lower Y coordinate of a Box object
+ * \par Function Description
+ *  Sets the lower y value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] y       New value for the lower y coordinate
+ *
+ * \sa geda_box_object_get_lower_y
+ */
+void
+geda_box_object_set_lower_y (GedaObject *object, int y) {
+  if (GEDA_IS_BOX(object)) {
+    object->box->lower_y = y;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*! O0447
+ * \brief Set Upper X coordinate of a Box obje
+ * \par Function Description
+ *  Sets the upper x value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] x       New value for the upper x coordinate
+ *
+ * \sa geda_box_object_get_upper_x
+ */
+void
+geda_box_object_set_upper_x (GedaObject *object, int x) {
+  if (GEDA_IS_BOX(object)) {
+    object->box->upper_x = x;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*! O0448
+ * \brief Set Upper Y coordinate of a Box obje
+ * \par Function Description
+ *  Sets the upper y value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] y       New value for the upper y coordinate
+ *
+ * \sa geda_box_object_get_upper_y
+ */
+void
+geda_box_object_set_upper_y (GedaObject *object, int y) {
+  if (GEDA_IS_BOX(object)) {
+    object->box->upper_y = y;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*! O0449
  * \brief Calculates the distance between the given point and the closest
  *  point on the perimeter of the box.
  *
@@ -1442,7 +1602,7 @@ geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_s
   return (G_MAXDOUBLE);
 }
 
-/*! O0420
+/*! O0450
  * \brief Create a character string representation of a GedaBox.
  * \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe the
@@ -1517,7 +1677,7 @@ geda_box_object_to_buffer(GedaObject *object)
   return(buf);
 }
 
-/*! O0421
+/*! O0451
  * \brief Translate a Box position by a delta.
  * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
