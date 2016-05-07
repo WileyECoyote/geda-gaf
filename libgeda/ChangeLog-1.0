@@ -2,6 +2,8 @@
 
     * src/object/o_box_object.c: Add accessors for box object coordinates.
 
+    * tests/test_box_object.c: Add checks for coordinate getters and setters.
+
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Declare arc argument to getters const.
