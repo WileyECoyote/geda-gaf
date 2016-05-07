@@ -13,6 +13,8 @@
 
     * tests/test_combobox.c: add check for geda_combo_widget_get_entry.
 
+    * tests/test_combobox_text.c: add check for geda_combo_box_text_get_entry.
+
 2016-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Clean the tests directory.

@@ -88,6 +88,19 @@ int check_construction (void)
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
+
+    GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
+    GedaEntry *entry;
+
+    /* geda_combo_box_text_get_entry_widget */
+    entry = geda_combo_box_text_get_entry(combo_text);
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
+  }
 
   g_object_unref(widget);    /* Destroy the widget */
 
