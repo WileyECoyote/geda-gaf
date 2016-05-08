@@ -2959,7 +2959,8 @@ cell_view_is_sensitive (GtkCellView *cell_view)
   return sensitive;
 }
 
-static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
+static void
+update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
 {
   GedaComboBoxData *priv = combo_box->priv;
   GList *children, *child;
@@ -3502,9 +3503,9 @@ geda_combo_box_menu_fill (GedaComboBox *combo_box)
 }
 
 static GtkWidget *
-gtk_cell_view_menu_item_new (GedaComboBox  *combo_box,
-                             GtkTreeModel  *model,
-                             GtkTreeIter   *iter)
+_cell_view_menu_item_new (GedaComboBox  *combo_box,
+                          GtkTreeModel  *model,
+                          GtkTreeIter   *iter)
 {
   GtkWidget *cell_view;
   GtkWidget *item;
@@ -3570,7 +3571,7 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
     }
     else {
 
-      item = gtk_cell_view_menu_item_new (combo_box, model, &iter);
+      item = _cell_view_menu_item_new (combo_box, model, &iter);
 
       if (gtk_tree_model_iter_has_child (model, &iter)) {
 
@@ -3582,7 +3583,7 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
         /* Ugly - since menus can only activate leafs, we have to
          * duplicate the item inside the submenu.
          */
-        subitem = gtk_cell_view_menu_item_new (combo_box, model, &iter);
+        subitem = _cell_view_menu_item_new (combo_box, model, &iter);
         separator = gtk_separator_menu_item_new ();
         gtk_widget_show (subitem);
         gtk_widget_show (separator);
@@ -6658,7 +6659,8 @@ geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
  *
  * \return Value: whether there is an entry in \a combo_box.
  **/
-bool geda_combo_box_get_has_entry (GedaComboBox *combo_box)
+bool
+geda_combo_box_get_has_entry (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), FALSE);
 
@@ -6776,7 +6778,8 @@ geda_combo_box_get_focus_on_click (GedaComboBox *combo)
   return combo->priv->focus_on_click;
 }
 
-void geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
+void
+geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo));
 
@@ -6789,37 +6792,43 @@ void geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
  *  @{
  */
 
-int geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
+int
+geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->wrap_width;
   BUG_MSG ("Operative is not a GedaComboBox");
   return -1;
 }
 
-void geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
+void
+geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
   return geda_combo_box_set_wrap_width((GedaComboBox*)combo_box, width);
 }
 
-int geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
+int
+geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->row_column;
   BUG_MSG ("Operative is not a GedaComboBox");
   return -1;
 }
 
-void geda_combo_widget_set_row_span_column (GtkWidget *cb, int row_span)
+void
+geda_combo_widget_set_row_span_column (GtkWidget *cb, int row_span)
 {
   return geda_combo_box_set_row_span_column((GedaComboBox*)cb, row_span);
 }
 
-int geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
+int
+geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->col_column;
   BUG_MSG ("Operative is not a GedaComboBox");
   return -1;
 }
 
-void geda_combo_widget_set_column_span_column (GtkWidget *cb, int column_span)
+void
+geda_combo_widget_set_column_span_column (GtkWidget *cb, int column_span)
 {
   return geda_combo_box_set_column_span_column((GedaComboBox*)cb, column_span);
 }
@@ -6836,29 +6845,35 @@ void geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
   return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
 
-const char *geda_combo_widget_get_title (GtkWidget *combo_box) {
+const char*
+geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->tearoff_title;
   BUG_MSG ("Operative is not a GedaComboBox");
   return NULL;
 }
-void geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
+
+void
+geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
   return geda_combo_box_set_title((GedaComboBox*)combo_box, title);
 }
 
-bool geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
+bool
+geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->focus_on_click;
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
 }
 
-void geda_combo_widget_set_focus_on_click (GtkWidget *cb, bool focus_on_click)
+void
+geda_combo_widget_set_focus_on_click (GtkWidget *cb, bool focus_on_click)
 {
   return geda_combo_box_set_focus_on_click((GedaComboBox*)cb, focus_on_click);
 }
 
-void geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
+void
+geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     ((GedaComboBox*)combo_box)->tip_column = column;
   else
@@ -6869,19 +6884,23 @@ void geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
  *  @{
  */
 
-int geda_combo_widget_get_active (GtkWidget *combo_box) {
+int
+geda_combo_widget_get_active (GtkWidget *combo_box) {
   return geda_combo_box_get_active((GedaComboBox*)combo_box);
 }
 
-void geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
+void
+geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
   return geda_combo_box_set_active((GedaComboBox*)combo_box, index);
 }
 
-bool geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
+bool
+geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
   return geda_combo_box_get_active_iter((GedaComboBox*)combo, iter);
 }
 
-void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
+void
+geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
   return geda_combo_box_set_active_iter((GedaComboBox*)combo, iter);
 }
 
@@ -6891,25 +6910,29 @@ void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
  *  @{
  */
 
-GtkTreeModel *geda_combo_widget_get_model (GtkWidget *combo_box) {
+GtkTreeModel*
+geda_combo_widget_get_model (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->model;
   BUG_MSG ("Operative is not a GedaComboBox");
   return NULL;
 }
 
-void geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model) {
+void
+geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model) {
   return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
 }
 
-bool geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
+bool
+geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->has_entry;
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
 }
 
-GtkWidget *geda_combo_widget_get_entry (GtkWidget *combo_box) {
+GtkWidget*
+geda_combo_widget_get_entry (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     if (((GedaComboBox*)combo_box)->priv->has_entry)
       return gtk_bin_get_child(GTK_BIN(combo_box));
@@ -6920,14 +6943,16 @@ GtkWidget *geda_combo_widget_get_entry (GtkWidget *combo_box) {
   return NULL;
 }
 
-int geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
+int
+geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->text_column;
   BUG_MSG ("Operative is not a GedaComboBox");
   return 0;
 }
 
-void geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
+void
+geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  return geda_combo_box_set_entry_text_column((GedaComboBox*)cb, text_column);
 }
 
@@ -6937,7 +6962,8 @@ void geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  *  @{
  */
 
-void geda_combo_widget_popup (GtkWidget *combo_box) {
+void
+geda_combo_widget_popup (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     g_signal_emit (combo_box, combo_box_signals[POPUP], 0);
 }
@@ -6950,7 +6976,8 @@ void geda_combo_widget_popdown (GtkWidget *combo_box) {
 /** \defgroup GedaComboBox-widget-atk GedaComboBox Widget Accessibility
  *  @{
  */
-AtkObject *geda_combo_widget_get_popup_accessible (GtkWidget *combo_box) {
+AtkObject *
+geda_combo_widget_get_popup_accessible (GtkWidget *combo_box) {
   return geda_combo_box_get_popup_accessible((GedaComboBox*)combo_box);
 }
 
