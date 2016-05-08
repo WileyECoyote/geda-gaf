@@ -5,6 +5,9 @@
       geda_combo_widget_get_entry_widget and add new geda_combo_widget_get_entry
       that returning an actual GedaEntry.
 
+    * tests/test_combobox.c: Update geda_combo_widget_get_entry, setup check
+      accessor and add setjmp/longjmp, define MUT, and revise flow in main.
+
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_comboboxtext.h: include geda_entry.h and revise declaration
