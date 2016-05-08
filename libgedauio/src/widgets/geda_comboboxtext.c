@@ -875,10 +875,10 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
 GedaEntry*
 geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 {
-  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
-    if (GEDA_IS_ENTRY(combo_box->entry)) {
-      return GEDA_ENTRY(combo_box->entry);
-    }
+  GtkWidget *widget = geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
+
+  if (widget) {
+    return GEDA_ENTRY(widget);
   }
   return NULL;
 }
@@ -886,14 +886,7 @@ geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 GtkWidget*
 geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
 {
-  GtkWidget *entry = NULL;
-
-  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
-    if (GEDA_IS_ENTRY(combo_box->entry)) {
-      entry = combo_box->entry;
-    }
-  }
-  return entry;
+  return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));;
 }
 
 /* These are probably more practical, but have longer names */

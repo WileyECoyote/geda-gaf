@@ -4,6 +4,10 @@
       geda_combo_box_get_has_entry_widget. Revise geda_combo_widget_get_entry to
       utilize geda_combo_widget_get_entry_widget.
 
+    * src/widgets/geda_comboboxtext.c: Revise geda_combo_box_text_get_entry and
+      geda_combo_box_text_get_entry_widget to use base class getters to retrieve
+      the GedaEntry.
+
 2016-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Adjust function line wrap, remove gtk
