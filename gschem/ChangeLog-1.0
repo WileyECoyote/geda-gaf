@@ -1,3 +1,14 @@
+2016-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/deprecated.scm: Use copy-objects-hook instead of paste
+      -objects-hook in copy-component-hook, this fixes "(add-hook! copy-
+      component-hook auto-uref)" in  system-gschemrc.scm so components
+      reference designators are automatically updated if this feature is
+      enabled. This module should probably not be named "deprecated" since
+      this would also imply that all hooks are deprecated.
+
+    * src/guile/g_hook.c: Add debug output in g_hook_idle_run_object.
+
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Move call to i_status_update_action_state in

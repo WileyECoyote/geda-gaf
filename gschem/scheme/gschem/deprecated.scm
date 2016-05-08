@@ -1,7 +1,7 @@
 ;; gEDA - GPL Electronic Design Automation
 ;; gschem - gEDA Schematic Capture - Scheme API
 ;;
-;; Copyright (C) 2010-2015 Peter Brett
+;; Copyright (C) 2010-2016 Peter Brett
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
 ;; <http://www.gnu.org/licenses/>
 ;;
 
-;; This file contains deprecated Scheme API features, which should not
-;; be used in new code.
+;; This file contains Scheme API features, and should be renamed!
 
 (define-module (gschem deprecated)
 
@@ -363,7 +362,7 @@
 ;; pasting from buffers and the clipboard, in addition to "Edit->Copy
 ;; Mode" and "Edit->Multiple Copy Mode".
 (define-public copy-component-hook (make-hook 1))
-(add-hook!/full-attribs paste-objects-hook copy-component-hook component?)
+(add-hook!/full-attribs copy-objects-hook copy-component-hook component?)
 
 ;; move-component-hook:
 ;;

@@ -24,7 +24,7 @@
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
 
-#include <gschem.h>
+#include "../../include/gschem.h"
 #include <geda_debug.h>
 
 SCM_SYMBOL (at_sym,       "@");
@@ -111,6 +111,10 @@ g_hook_idle_run_object(GschemToplevel *w_current, const char *name, GedaObject *
   SCM expr = scm_list_3 (run_hook_sym,
                          g_get_hook_by_name (name),
                          scm_list_2 (list_sym, edascm_from_object (obj)));
+
+#if DEBUG || DEBUG_HOOKS
+  fprintf(stderr,"%s running hook <%s>\n",__func__, name);
+#endif
 
   g_scm_eval_protected (expr, scm_interaction_environment ());
   scm_dynwind_end ();
