@@ -392,7 +392,7 @@ static bool     geda_combo_box_menu_key_press       (GtkWidget        *widget,
 static void     geda_combo_box_menu_popup           (GedaComboBox     *combo_box,
                                                      unsigned int      button,
                                                      unsigned int      activate_time);
-static GtkWidget *gtk_cell_view_menu_item_new       (GedaComboBox     *combo_box,
+static GtkWidget *_cell_view_menu_item_new          (GedaComboBox     *combo_box,
                                                      GtkTreeModel     *model,
                                                      GtkTreeIter      *iter);
 
@@ -4283,7 +4283,7 @@ geda_combo_box_menu_row_inserted (GtkTreeModel *model,
          */
         gtk_tree_model_iter_parent (model, &piter, iter);
 
-        item      = gtk_cell_view_menu_item_new (combo_box, model, &piter);
+        item      = _cell_view_menu_item_new (combo_box, model, &piter);
         separator = gtk_separator_menu_item_new ();
 
         g_signal_connect (item, "activate",
@@ -4323,7 +4323,7 @@ geda_combo_box_menu_row_inserted (GtkTreeModel *model,
     }
     else {
 
-      item = gtk_cell_view_menu_item_new (combo_box, model, iter);
+      item = _cell_view_menu_item_new (combo_box, model, iter);
 
       g_signal_connect (item, "activate",
                         G_CALLBACK (geda_combo_box_menu_item_activate),
@@ -6845,6 +6845,18 @@ void geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
   return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
 
+GedaEntry*
+geda_combo_widget_get_entry (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
+    if (((GedaComboBox*)combo_box)->priv->has_entry)
+      return GEDA_ENTRY(gtk_bin_get_child(GTK_BIN(combo_box)));
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
+  }
+  return NULL;
+}
+
 const char*
 geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -6932,7 +6944,7 @@ geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
 }
 
 GtkWidget*
-geda_combo_widget_get_entry (GtkWidget *combo_box) {
+geda_combo_widget_get_entry_widget (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     if (((GedaComboBox*)combo_box)->priv->has_entry)
       return gtk_bin_get_child(GTK_BIN(combo_box));

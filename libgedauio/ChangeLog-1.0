@@ -1,7 +1,9 @@
 2016-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Adjust function line wrap, remove gtk
-      prefix from _cell_view_menu_item_new.
+      prefix from _cell_view_menu_item_new. Rename geda_combo_widget_get_entry
+      geda_combo_widget_get_entry_widget and add new geda_combo_widget_get_entry
+      that returning an actual GedaEntry.
 
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
