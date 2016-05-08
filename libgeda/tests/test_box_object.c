@@ -58,17 +58,17 @@
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
  *      O0401    geda_box_object_copy
- *               geda_box_object_get_end_cap
+ *      O0402    geda_box_object_get_end_cap
  *               geda_box_object_get_fill_angle1
  *               geda_box_object_get_fill_angle2
  *               geda_box_object_get_fill_pitch1
  *               geda_box_object_get_fill_pitch2
  *               geda_box_object_get_fill_type
  *               geda_box_object_get_fill_width
- *               geda_box_object_get_line_type
- *               geda_box_object_get_line_length
- *               geda_box_object_get_line_space
- *               geda_box_object_get_line_width
+ *      O0409    geda_box_object_get_line_length
+ *      O0410    geda_box_object_get_line_space
+ *      O0411    geda_box_object_get_line_type
+ *      O0412    geda_box_object_get_line_width
  *      O0413    geda_box_object_get_lower_x
  *      O0414    geda_box_object_get_lower_y
  *      O0415    geda_box_object_get_nearest_point
@@ -91,17 +91,17 @@
  *               geda_box_object_print_solid
  *      O0432    geda_box_object_read
  *      O0433    geda_box_object_rotate
- *               geda_box_object_set_end_cap
+ *      O0434    geda_box_object_set_end_cap
  *               geda_box_object_set_fill_angle1
  *               geda_box_object_set_fill_angle2
  *               geda_box_object_set_fill_pitch1
  *               geda_box_object_set_fill_pitch2
  *               geda_box_object_set_fill_type
  *               geda_box_object_set_fill_width
- *               geda_box_object_set_line_type
- *               geda_box_object_set_line_length
- *               geda_box_object_set_line_space
- *               geda_box_object_set_line_width
+ *      O0441    geda_box_object_set_line_length
+ *      O0442    geda_box_object_set_line_space
+ *      O0443    geda_box_object_set_line_type
+ *      O0444    geda_box_object_set_line_width
  *      O0445    geda_box_object_set_lower_x
  *      O0446    geda_box_object_set_lower_y
  *      O0447    geda_box_object_set_upper_x
@@ -225,6 +225,31 @@ check_accessors ()
   int count;
   int result = 0;
 
+  if (geda_box_object_get_end_cap(NULL)) {
+    fprintf(stderr, "FAILED: (O040200) %s line end not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_line_length(NULL)) {
+    fprintf(stderr, "FAILED: (O040900) %s line length not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_line_space(NULL)) {
+    fprintf(stderr, "FAILED: (O041000) %s line space not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_line_type(NULL)) {
+    fprintf(stderr, "FAILED: (O041100) %s line x type zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_line_width(NULL)) {
+    fprintf(stderr, "FAILED: (O041200) %s line width not zero\n", TOBJECT);
+    result++;
+  }
+
   if (geda_box_object_get_lower_x(NULL)) {
     fprintf(stderr, "FAILED: (O041300) %s lower x not zero\n", TOBJECT);
     result++;
@@ -236,12 +261,12 @@ check_accessors ()
   }
 
   if (geda_box_object_get_upper_x(NULL)) {
-    fprintf(stderr, "FAILED: (O041700) %s lower x not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O041700) %s upper x not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_box_object_get_upper_y(NULL)) {
-    fprintf(stderr, "FAILED: (O041800) %s lower y not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O041800) %s upper y not zero\n", TOBJECT);
     result++;
   }
 
@@ -253,6 +278,13 @@ check_accessors ()
     int x2 = m_random_number (x1 + 100, 120000);
     int y1 = m_random_number (y2 + 100,  80000);
 
+    /* Line type options */
+    int e = m_random_number (END_NONE, END_ROUND);
+    int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+    int l = m_random_number (0, 500);
+    int p = m_random_number (0, 500);
+    int w = m_random_number (0, 500);
+
     GedaObject *object0 = geda_box_object_new(c, 21, 31, 41, 51);
 
     int px, py;
@@ -260,6 +292,83 @@ check_accessors ()
     int value;
 
     fail = 0;
+
+    /* Check line type properties */
+
+    geda_box_object_set_end_cap (object0, e);
+
+    value = object0->line_options->line_end;
+    if (value - e) {
+      fprintf(stderr, "FAILED: (O043401) %d != %d\n", value, e);
+      fail++;
+    }
+
+    value = geda_box_object_get_end_cap(object0);
+
+    if (value - e) {
+      fprintf(stderr, "FAILED: (O040201) %d != %d\n", value, e);
+      fail++;
+    }
+
+    geda_box_object_set_line_length (object0, l);
+
+    value = object0->line_options->line_length;
+    if (value - l) {
+      fprintf(stderr, "FAILED: (O044101) %d != %d\n", value, l);
+      fail++;
+    }
+
+    value = geda_box_object_get_line_length(object0);
+
+    if (value - l) {
+      fprintf(stderr, "FAILED: (O040901) %d != %d\n", value, l);
+      fail++;
+    }
+
+    geda_box_object_set_line_space (object0, p);
+
+    value = object0->line_options->line_space;
+    if (value - p) {
+      fprintf(stderr, "FAILED: (O044201) %d != %d\n", value, p);
+      fail++;
+    }
+
+    value = geda_box_object_get_line_space(object0);
+
+    if (value - p) {
+      fprintf(stderr, "FAILED: (O041001) %d != %d\n", value, p);
+      fail++;
+    }
+
+    geda_box_object_set_line_type (object0, t);
+
+    value = object0->line_options->line_type;
+    if (value - t) {
+      fprintf(stderr, "FAILED: (O044301) %d != %d\n", value, t);
+      fail++;
+    }
+
+    value = geda_box_object_get_line_type(object0);
+
+    if (value - t) {
+      fprintf(stderr, "FAILED: (O041101) %d != %d\n", value, t);
+      fail++;
+    }
+
+    geda_box_object_set_line_width (object0, w);
+
+    value = object0->line_options->line_width;
+    if (value - w) {
+      fprintf(stderr, "FAILED: (O044401) %d != %d\n", value, w);
+      fail++;
+    }
+
+    value = geda_box_object_get_line_width(object0);
+
+    if (value - w) {
+      fprintf(stderr, "FAILED: (O041201) %d != %d\n", value, w);
+      fail++;
+    }
 
     geda_box_object_set_lower_x (object0, x1);
 
