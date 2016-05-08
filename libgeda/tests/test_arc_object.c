@@ -66,9 +66,9 @@
  *      O0209    geda_arc_object_get_fill_pitch2
  *      O0210    geda_arc_object_get_fill_type
  *      O0211    geda_arc_object_get_fill_width
- *      O0212    geda_arc_object_get_line_type
- *      O0213    geda_arc_object_get_line_length
- *      O0214    geda_arc_object_get_line_space
+ *      O0212    geda_arc_object_get_line_length
+ *      O0213    geda_arc_object_get_line_space
+ *      O0214    geda_arc_object_get_line_type
  *      O0215    geda_arc_object_get_line_width
  *      O0216    geda_arc_object_get_nearest_point
  *      O0217    geda_arc_object_get_position
@@ -95,9 +95,9 @@
  *      O0238    geda_arc_object_set_fill_pitch2
  *      O0239    geda_arc_object_set_fill_type
  *      O0240    geda_arc_object_set_fill_width
- *      O0241    geda_arc_object_set_line_type
- *      O0242    geda_arc_object_set_line_length
- *      O0243    geda_arc_object_set_line_space
+ *      O0241    geda_arc_object_set_line_length
+ *      O0242    geda_arc_object_set_line_space
+ *      O0243    geda_arc_object_set_line_type
  *      O0244    geda_arc_object_set_line_width
  *      O0245    geda_arc_object_set_radius
  *      O0246    geda_arc_object_set_start_angle
@@ -403,18 +403,18 @@ check_accessors ()
     result++;
   }
 
-  if (geda_arc_object_get_line_type(NULL)) {
-    fprintf(stderr, "FAILED: (O021200) %s line_type not zero\n", TOBJECT);
-    result++;
-  }
-
   if (geda_arc_object_get_line_length(NULL)) {
-    fprintf(stderr, "FAILED: (O021300) %s line_length not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O021200) %s line_length not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_arc_object_get_line_space(NULL)) {
-    fprintf(stderr, "FAILED: (O021400) %s line_space not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O021300) %s line_space not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_line_type(NULL)) {
+    fprintf(stderr, "FAILED: (O021400) %s line_type not zero\n", TOBJECT);
     result++;
   }
 
@@ -557,33 +557,18 @@ check_accessors ()
         fail++;
       }
 
-      geda_arc_object_set_line_type (object0, t);
-
-      value = object0->line_options->line_type;
-      if (value - t) {
-        fprintf(stderr, "FAILED: (O024101) %d != %d\n", value, t);
-        fail++;
-      }
-
-      value = geda_arc_object_get_line_type(object0);
-
-      if (value - t) {
-        fprintf(stderr, "FAILED: (O021201) %d != %d\n", value, t);
-        fail++;
-      }
-
       geda_arc_object_set_line_length (object0, l);
 
       value = object0->line_options->line_length;
       if (value - l) {
-        fprintf(stderr, "FAILED: (O024201) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O024101) %d != %d\n", value, l);
         fail++;
       }
 
       value = geda_arc_object_get_line_length(object0);
 
       if (value - l) {
-        fprintf(stderr, "FAILED: (O021301) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O021201) %d != %d\n", value, l);
         fail++;
       }
 
@@ -591,14 +576,29 @@ check_accessors ()
 
       value = object0->line_options->line_space;
       if (value - p) {
-        fprintf(stderr, "FAILED: (O024301) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O024201) %d != %d\n", value, p);
         fail++;
       }
 
       value = geda_arc_object_get_line_space(object0);
 
       if (value - p) {
-        fprintf(stderr, "FAILED: (O021401) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O021301) %d != %d\n", value, p);
+        fail++;
+      }
+
+      geda_arc_object_set_line_type (object0, t);
+
+      value = object0->line_options->line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O024301) %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_arc_object_get_line_type(object0);
+
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O021401) %d != %d\n", value, t);
         fail++;
       }
 

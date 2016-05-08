@@ -404,21 +404,6 @@ check_accessors (void)
         fail++;
       }
 
-      geda_box_set_line_type (box, t);
-
-      value = box->line_options.line_type;
-      if (value - t) {
-        fprintf(stderr, "FAILED: geda_box_set_line_type %d != %d\n", value, t);
-        fail++;
-      }
-
-      value = geda_box_get_line_type(box);
-
-      if (value - t) {
-        fprintf(stderr, "FAILED: geda_box_get_line_type %d != %d\n", value, t);
-        fail++;
-      }
-
       geda_box_set_line_length (box, l);
 
       value = box->line_options.line_length;
@@ -446,6 +431,21 @@ check_accessors (void)
 
       if (value - p) {
         fprintf(stderr, "FAILED: geda_box_get_line_space %d != %d\n", value, p);
+        fail++;
+      }
+
+      geda_box_set_line_type (box, t);
+
+      value = box->line_options.line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_box_set_line_type %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_box_get_line_type(box);
+
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_box_get_line_type %d != %d\n", value, t);
         fail++;
       }
 

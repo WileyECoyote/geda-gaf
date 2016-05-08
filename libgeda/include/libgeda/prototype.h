@@ -145,9 +145,9 @@ extern "C" {
           int    geda_arc_object_get_fill_pitch2      (const GedaObject *object);
           int    geda_arc_object_get_fill_type        (const GedaObject *object);
           int    geda_arc_object_get_fill_width       (const GedaObject *object);
-          int    geda_arc_object_get_line_type        (const GedaObject *object);
           int    geda_arc_object_get_line_length      (const GedaObject *object);
           int    geda_arc_object_get_line_space       (const GedaObject *object);
+          int    geda_arc_object_get_line_type        (const GedaObject *object);
           int    geda_arc_object_get_line_width       (const GedaObject *object);
          bool    geda_arc_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
 
@@ -168,9 +168,9 @@ extern "C" {
          void    geda_arc_object_set_fill_pitch2      (GedaObject *object, int pitch);
          void    geda_arc_object_set_fill_type        (GedaObject *object, int type);
          void    geda_arc_object_set_fill_width       (GedaObject *object, int width);
-         void    geda_arc_object_set_line_type        (GedaObject *object, int type);
          void    geda_arc_object_set_line_length      (GedaObject *object, int length);
          void    geda_arc_object_set_line_space       (GedaObject *object, int space);
+         void    geda_arc_object_set_line_type        (GedaObject *object, int type);
          void    geda_arc_object_set_line_width       (GedaObject *object, int width);
          void    geda_arc_object_set_radius           (GedaObject *object, int radius);
          void    geda_arc_object_set_start_angle      (GedaObject *object, int angle);

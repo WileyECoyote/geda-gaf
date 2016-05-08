@@ -569,7 +569,7 @@ is_a_geda_box (const GedaBox *box)
  *  Returns the value of \a box end-cap type if and only if \a box is
  *  a valid GedaBox object.
  *
- * \return integer value of end-cap type or -0 if \a box is invalid.
+ * \return integer value of line_end type or -0 if \a box is invalid.
  *
  * \sa geda_box_set_end_cap
  */
@@ -691,24 +691,6 @@ geda_box_get_fill_width (const GedaBox *box) {
 }
 
 /*!
- * \brief Retrieve End Type Property of a box
- * \par Function Description
- *  Returns the value of \a box line type if and only if \a box is
- *  a valid GedaBox object.
- *
- * \return integer value of line type or -0 if \a box is invalid.
- *
- * \sa geda_box_set_line_type
- */
-int
-geda_box_get_line_type (const GedaBox *box) {
-  if (is_a_geda_box(box)) {
-    return box->line_options.line_type;
-  }
-  return -0;
-}
-
-/*!
  * \brief Retrieve Line Length Property of a box
  * \par Function Description
  *  Returns the value of the \a box line length property if and only if
@@ -750,6 +732,24 @@ int
 geda_box_get_line_space (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_space;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Type Property of a box
+ * \par Function Description
+ *  Returns the value of \a box line type if and only if \a box is
+ *  a valid GedaBox object.
+ *
+ * \return integer value of line type or -0 if \a box is invalid.
+ *
+ * \sa geda_box_set_line_type
+ */
+int
+geda_box_get_line_type (const GedaBox *box) {
+  if (is_a_geda_box(box)) {
+    return box->line_options.line_type;
   }
   return -0;
 }
@@ -847,7 +847,7 @@ geda_box_get_upper_y (const GedaBox *box) {
 /*!
  * \brief Set the End Cap type Property of a box
  * \par Function Description
- *  Sets the value of \a box end-cap type if and only if \a box is
+ *  Sets the value of \a box line_end type if and only if \a box is
  *  a valid GedaBox object.
  *
  * \sa geda_box_get_end_cap
@@ -892,8 +892,8 @@ void geda_box_set_fill_angle2 (GedaBox *box, int angle) {
 /*!
  * \brief Set the Fill Pitch 1 Property of a box
  * \par Function Description
- *  Sets the value of \a box fill pitch 1 if and only if \a box is
- *  a valid GedaBox object.
+ *  Sets the value of \a box fill pitch 1 if and only if \a box
+ *  is a valid GedaBox object.
  *
  * \sa geda_box_get_fill_pitch1
  */
@@ -906,8 +906,8 @@ void geda_box_set_fill_pitch1 (GedaBox *box, int pitch) {
 /*!
  * \brief Set the Fill Pitch 2 Property of a box
  * \par Function Description
- *  Sets the value of \a box fill pitch 2 if and only if \a box is
- *  a valid GedaBox object.
+ *  Sets the value of \a box fill pitch 2 if and only if \a box
+ *  is  valid GedaBox object.
  *
  * \sa geda_box_get_fill_pitch2
  */
@@ -920,8 +920,8 @@ void geda_box_set_fill_pitch2 (GedaBox *box, int pitch) {
 /*!
  * \brief Set the Fill Type Property of a box
  * \par Function Description
- *  Sets the value of \a box fill type if and only if \a box is
- *  a valid GedaBox object.
+ *  Sets the value of \a box fill type if and only if \a box
+ *  is a valid GedaBox object.
  *
  * \sa geda_box_get_fill_type
  */
@@ -942,23 +942,6 @@ void geda_box_set_fill_type (GedaBox *box, int type) {
 void geda_box_set_fill_width (GedaBox *box, int width) {
   if (is_a_geda_box(box)) {
     box->fill_options.fill_width = width;
-  }
-}
-
-/*!
- * \brief Set the Line Type Property of a box
- * \par Function Description
- *  Sets the value of \a box line type if and only if \a box is
- *  a valid GedaBox object.
- *
- * \sa geda_box_get_line_type
- */
-void
-geda_box_set_line_type (GedaBox *box, int line_type) {
-  if (is_a_geda_box(box)) {
-    box->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
-                                  line_type > TYPE_ERASE ? TYPE_ERASE :
-                                  line_type;
   }
 }
 
@@ -997,6 +980,23 @@ void
 geda_box_set_line_space (GedaBox *box, int space) {
   if (is_a_geda_box(box)) {
     box->line_options.line_space = space > 0 ? space : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Type Property of a box
+ * \par Function Description
+ *  Sets the value of \a box line type if and only if \a box
+ *  is a valid GedaBox object.
+ *
+ * \sa geda_box_get_line_type
+ */
+void
+geda_box_set_line_type (GedaBox *box, int line_type) {
+  if (is_a_geda_box(box)) {
+    box->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
+                                  line_type > TYPE_ERASE ? TYPE_ERASE :
+                                  line_type;
   }
 }
 
