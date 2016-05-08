@@ -6667,6 +6667,29 @@ geda_combo_box_get_has_entry (GedaComboBox *combo_box)
   return combo_box->priv->has_entry;
 }
 
+GedaEntry*
+geda_combo_get_entry (GedaComboBox *combo_box) {
+
+  GtkWidget *widget = geda_combo_get_entry_widget(combo_box);
+
+  if (widget) {
+    return GEDA_ENTRY(widget);
+  }
+  return NULL;
+}
+
+GtkWidget*
+geda_combo_get_entry_widget (GedaComboBox *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
+    if (((GedaComboBox*)combo_box)->priv->has_entry)
+      return gtk_bin_get_child(GTK_BIN(combo_box));
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
+  }
+  return NULL;
+}
+
 /*! \brief Get GedaComboTextBox Entry Text Column
  *
  *  \par Function Description
@@ -6845,18 +6868,6 @@ void geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
   return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
 
-GedaEntry*
-geda_combo_widget_get_entry (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box)) {
-    if (((GedaComboBox*)combo_box)->priv->has_entry)
-      return GEDA_ENTRY(gtk_bin_get_child(GTK_BIN(combo_box)));
-  }
-  else {
-    BUG_MSG ("Operative is not a GedaComboBox");
-  }
-  return NULL;
-}
-
 const char*
 geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -6941,6 +6952,17 @@ geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
     return ((GedaComboBox*)combo_box)->priv->has_entry;
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
+}
+
+GedaEntry*
+geda_combo_widget_get_entry (GtkWidget *combo_box) {
+
+  GtkWidget *widget = geda_combo_widget_get_entry_widget(combo_box);
+
+  if (widget) {
+    return GEDA_ENTRY(widget);
+  }
+  return NULL;
 }
 
 GtkWidget*
