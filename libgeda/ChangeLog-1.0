@@ -1,6 +1,7 @@
 2016-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_box_object.c: Add accessors for box object coordinates.
+    * src/object/o_box_object.c: Add accessors for box object coordinates and
+      line type options.
 
     * tests/test_box_object.c: Add checks for coordinate getters and setters.
 

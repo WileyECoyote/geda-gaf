@@ -214,6 +214,11 @@ extern "C" {
 
 /* o_box_object.c */
    GedaObject   *geda_box_object_copy                 (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_end_cap          (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_line_length      (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_line_space       (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_line_type        (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_line_width       (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_lower_x          (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_lower_y          (const GedaObject *object) WARN_UNUSED;
          bool    geda_box_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
@@ -224,6 +229,11 @@ extern "C" {
          void    geda_box_object_mirror               (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_box_object_new                  (int color, int x1, int y1, int x2, int y2);
          void    geda_box_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_box_object_set_end_cap          (GedaObject *object, int cap);
+         void    geda_box_object_set_line_length      (GedaObject *object, int length);
+         void    geda_box_object_set_line_space       (GedaObject *object, int space);
+         void    geda_box_object_set_line_type        (GedaObject *object, int type);
+         void    geda_box_object_set_line_width       (GedaObject *object, int width);
          void    geda_box_object_set_lower_x          (GedaObject *object, int x);
          void    geda_box_object_set_lower_y          (GedaObject *object, int y);
          void    geda_box_object_set_upper_x          (GedaObject *object, int x);

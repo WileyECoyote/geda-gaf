@@ -84,6 +84,115 @@ geda_box_object_copy(const GedaObject *o_source)
   return NULL;
 }
 
+/*!
+ * \brief Retrieve End Cap Property of a Box Object
+ * \par Function Description
+ *  Returns the value of \a box end-cap type if and only if \a box
+ *  is a valid GedaBox object.
+ *
+ * \return integer value of line_end type or -0 if \a box is invalid.
+ *
+ * \sa geda_box_get_end_cap
+ */
+int
+geda_box_object_get_end_cap (const GedaObject *object)
+{
+  if (GEDA_IS_BOX(object)) {
+    return object->line_options->line_end;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Length Property of a Box Object
+ * \par Function Description
+ *  Returns the value of \a object line length if \a object is a
+ *  valid GedaBox object. The line-length property controls the
+ *  length of line segments for line types dashed, center and
+ *  phantom.
+ *
+ * \note Line length is only applicable when line-type is not
+ *       TYPE_SOLID or TYPE_DOTTED.
+ *
+ * \return integer value of line_length or -0 if \a object is invalid.
+ *
+ * \sa geda_box_get_line_length
+ */
+int
+geda_box_object_get_line_length (const GedaObject *object)
+{
+  if (GEDA_IS_BOX(object)) {
+    return object->line_options->line_length;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Space Property of a Box Object
+ * \par Function Description
+ *  Returns the value of \a object line space if \a object is a
+ *  valid GedaBox object. The line-space property controls the
+ *  distance between line-length for line types dashed, center,
+ *  phantom and between dots for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \return integer value of line_length or -0 if \a object is invalid.
+ *
+ * \sa geda_box_get_line_space
+ */
+int
+geda_box_object_get_line_space (const GedaObject *object)
+{
+  if (GEDA_IS_BOX(object)) {
+    return object->line_options->line_space;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Type Property of a Box Object
+ * \par Function Description
+ *  Returns the value of \a object line type if \a object is a
+ *  valid GedaBox object.
+ *
+ * \return integer value of line_type or -0 if \a object is invalid.
+ *
+ * \sa geda_box_get_line_type
+ */
+int
+geda_box_object_get_line_type (const GedaObject *object)
+{
+  if (GEDA_IS_BOX(object)) {
+    return object->line_options->line_type;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Width Property of a Box Object
+ * \par Function Description
+ *  Returns the value of \a object line width if \a object is a
+ *  valid GedaBox object.
+ *
+ * \return integer value of line_width or -0 if \a object is invalid.
+ *
+ * \sa geda_box_get_line_width
+ */
+int
+geda_box_object_get_line_width (const GedaObject *object)
+{
+  if (GEDA_IS_BOX(object)) {
+    return object->line_options->line_width;
+  }
+  geda_box_object_error(__func__, object);
+  return -0;
+}
+
 /*! O0413
  * \brief Retrieve lower X coordinate of the a Box object
  * \par Function Description
@@ -1485,6 +1594,120 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
 
     /* recalc boundings and world coords */
     object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Line Length of a Box object
+ * \par Function Description
+ *  Sets the line length value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] length  New value for the line-length property
+ *
+ * \sa geda_box_set_line_type
+ */
+void
+geda_box_object_set_end_cap (GedaObject *object, int end_cap)
+{
+  if (GEDA_IS_BOX(object)) {
+    object->line_options->line_end = end_cap < END_NONE ? END_NONE :
+                                     end_cap > END_VOID ? END_VOID :
+                                     end_cap;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Line Length of a Box object
+ * \par Function Description
+ *  Sets the line length value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] length  New value for the line-length property
+ *
+ * \sa geda_box_set_line_type
+ */
+void
+geda_box_object_set_line_length (GedaObject *object, int length)
+{
+  if (GEDA_IS_BOX(object)) {
+    object->line_options->line_length = length > 0 ? length : 0;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Line Space of a Box object
+ * \par Function Description
+ *  Sets the line space value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] space   New value for the line-space property
+ *
+ * \sa geda_box_set_line_type
+ */
+void
+geda_box_object_set_line_space (GedaObject *object, int space)
+{
+  if (GEDA_IS_BOX(object)) {
+    object->line_options->line_space = space > 0 ? space : 0;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Line Type of a Box object
+ * \par Function Description
+ *  Sets the line type value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] type    New value for the type property
+ *
+ * \sa geda_box_set_line_type
+ */
+void
+geda_box_object_set_line_type (GedaObject *object, int type)
+{
+  if (GEDA_IS_BOX(object)) {
+    object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                      type > TYPE_ERASE ? TYPE_ERASE :
+                                      type;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Line Width of a Box object
+ * \par Function Description
+ *  Sets the line width value of the box \a object. Does nothing if
+ *  \a object is not a valid GedaBox object.
+ *
+ * \param [in] object  Pointer to an Box GedaObject
+ * \param [in] width   New value for the width property
+ *
+ * \sa geda_box_set_line_width
+ */
+void
+geda_box_object_set_line_width (GedaObject *object, int width)
+{
+  if (GEDA_IS_BOX(object)) {
+    object->line_options->line_width = width > 0 ? width : 0;
   }
   else {
     geda_box_object_error(__func__, object);
