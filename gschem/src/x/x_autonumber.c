@@ -1409,6 +1409,39 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
       autotext->slotting  = GET_SWITCH_STATE (DoSlottingSwitch);
 }
 
+/*! \brief Select the Scope Text Value in the Autonumber text dialog
+ *  \internal Helper Function Description
+ *  This function selects the "value" portion of the scope text in
+ *  the scope text combo entry. The entire text is selected in the
+ *  entry be default, including the name portion and equal sign,
+ *  normally "refdes=", this function moves the left cursor past
+ *  the equal sign.
+ *
+ *  \param [in] autotext  Pointer to data structure
+ */
+static void select_scope_text_value(AUTONUMBER_TEXT *autotext)
+{
+  char *text;
+  int   pos;
+
+  /* Get the search text from the widget */
+  text = GetGedaComboActiveText(ScopeText);
+
+  pos  = geda_utility_string_stristr (text, "=");
+
+  if (pos) {
+
+    GtkEntry *entry;
+
+    pos++;  /* skip over the equal sign */
+
+    entry = GTK_ENTRY(geda_combo_widget_get_entry(ScopeTextCombo));
+
+    gtk_entry_select_region (entry, pos, strlen(text));
+
+  }
+}
+
 /* ***** CALLBACKS (functions that get called from GTK) ******* */
 
 /*! \brief response callback for the Autonumber text dialog
@@ -1756,7 +1789,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
   /* set the GschemToplevel always. Can it be changed between the calls??? */
   autotext->w_current = w_current;
 
-  if(autotext->dialog == NULL) {
+  if (autotext->dialog == NULL) {
 
     /* Dialog is not currently displayed - create it */
     autotext->dialog = autonumber_create_dialog(w_current, autotext);
@@ -1774,6 +1807,8 @@ void autonumber_text_dialog(GschemToplevel *w_current)
 
     gtk_widget_show_all(autotext->dialog);
   }
+
+  select_scope_text_value(autotext);
 
   /* if the dialog is in the background or minimized: show it */
   gtk_window_present(GTK_WINDOW(autotext->dialog));
