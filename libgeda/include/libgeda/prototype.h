@@ -215,6 +215,12 @@ extern "C" {
 /* o_box_object.c */
    GedaObject   *geda_box_object_copy                 (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_end_cap          (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_angle1      (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_angle2      (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_pitch1      (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_pitch2      (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_type        (const GedaObject *object) WARN_UNUSED;
+          int    geda_box_object_get_fill_width       (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_line_length      (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_line_space       (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_line_type        (const GedaObject *object) WARN_UNUSED;
@@ -230,6 +236,12 @@ extern "C" {
    GedaObject   *geda_box_object_new                  (int color, int x1, int y1, int x2, int y2);
          void    geda_box_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_box_object_set_end_cap          (GedaObject *object, int cap);
+         void    geda_box_object_set_fill_angle1      (GedaObject *object, int angle);
+         void    geda_box_object_set_fill_angle2      (GedaObject *object, int angle);
+         void    geda_box_object_set_fill_pitch1      (GedaObject *object, int pitch);
+         void    geda_box_object_set_fill_pitch2      (GedaObject *object, int pitch);
+         void    geda_box_object_set_fill_type        (GedaObject *object, int type);
+         void    geda_box_object_set_fill_width       (GedaObject *object, int width);
          void    geda_box_object_set_line_length      (GedaObject *object, int length);
          void    geda_box_object_set_line_space       (GedaObject *object, int space);
          void    geda_box_object_set_line_type        (GedaObject *object, int type);
@@ -239,7 +251,6 @@ extern "C" {
          void    geda_box_object_set_upper_x          (GedaObject *object, int x);
          void    geda_box_object_set_upper_y          (GedaObject *object, int y);
          void    geda_box_object_translate            (GedaObject *object, int dx, int dy);
-
 
 /* o_bus_object.c */
          void    geda_bus_object_consolidate          (GedaToplevel *toplevel, Page *page);
