@@ -1,3 +1,11 @@
+2016-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61028-1.sym: Add symbol TPS61028, adjustable synchronous
+      boost, 800 mA, VSON10.
+
+    * ti/switchreg/TPS61029-1.sym: Add symbol TPS61029, adjustable synchronous
+      boost, 1800 mA, VSON10.
+
 2016-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/motor/DRV10970-1.sym: Add symbol DRV10970 Three-Phase Brushless DC
