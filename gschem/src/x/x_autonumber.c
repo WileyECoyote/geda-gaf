@@ -249,9 +249,9 @@ static GtkWidget *ScopeOverwriteSwitch=NULL;
  *  \return -1 if a<b, 1 if a>b, 0 if a==b
  */
 static int autonumber_sort_numbers(const void *a, const void *b) {
-  if (GPOINTER_TO_INT(a) < GPOINTER_TO_INT(b))
+  if (POINTER_TO_INT(a) < POINTER_TO_INT(b))
     return -1;
-  if (GPOINTER_TO_INT(a) > GPOINTER_TO_INT(b))
+  if (POINTER_TO_INT(a) > POINTER_TO_INT(b))
     return 1;
   return 0;
 }
@@ -677,10 +677,10 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   while (1) {
 
-    while (item != NULL && GPOINTER_TO_INT(item->data) < new_number)
+    while (item != NULL && POINTER_TO_INT(item->data) < new_number)
       item = g_list_next(item);
 
-    if (item == NULL || GPOINTER_TO_INT(item->data) > new_number)
+    if (item == NULL || POINTER_TO_INT(item->data) > new_number)
       break;
     else  /* new_number == item->data */
       new_number++;
@@ -1385,14 +1385,14 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
   autotext->scope_history = autonumber_add_history(autotext->scope_history, text);
 
   /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
-  autotext->scope_number = GPOINTER_TO_INT(
+  autotext->scope_number = POINTER_TO_INT(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (ScopeNumberMenu)))), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
-    autotext->scope_skip = GPOINTER_TO_INT(
+    autotext->scope_skip = POINTER_TO_INT(
       GEDA_OBJECT_GET_DATA (
           gtk_menu_get_active (
             GTK_MENU (gtk_option_menu_get_menu (

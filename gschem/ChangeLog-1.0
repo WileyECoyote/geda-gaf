@@ -9,7 +9,8 @@
 
     * src/guile/g_hook.c: Add debug output in g_hook_idle_run_object.
 
-    * x/x_autonumber.c: Add static function select_scope_text_value.
+    * x/x_autonumber.c: Add static function select_scope_text_value. Replace
+      GPOINTER_TO_INT with POINTER_TO_INT.
 
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
