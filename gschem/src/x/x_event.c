@@ -32,6 +32,11 @@
 #include <geda_keysyms.h>
 #include <geda_debug.h>
 
+#ifdef PERFORMANCE
+#include <geda_diagnostics.h>
+#include <valgrind/callgrind.h>
+#endif
+
 /* used by mouse pan */
 int start_pan_x, start_pan_y;
 int throttle = 0;
@@ -769,6 +774,9 @@ bool x_event_key (GtkWidget      *widget,
  *  \par Function Description
  *  This function is call by the underling window context event
  *  dispatcher when ever the mouse pointer position changes.
+ *
+ *  \remarks Motion events are not swapped like buttons, i.e. this
+ *           is the only motion event handler!
  */
 bool x_event_motion (GtkWidget      *widget,
                      GdkEventMotion *event,
@@ -777,7 +785,8 @@ bool x_event_motion (GtkWidget      *widget,
   int unsnapped_wx, unsnapped_wy;
   int w_x, w_y;
 
-  GdkEvent *test_event;
+  GdkDisplay *display;
+  GdkEvent   *test_event;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
@@ -796,19 +805,24 @@ bool x_event_motion (GtkWidget      *widget,
   }
 #endif /* HAVE_LIBSTROKE */
 
-  /* skip the moving event if there are other moving events in the
-   * gdk event queue (Werner) but only skip the event if is the same
+  /* Werner: Skip the motion event if there are other motion events
+   * in the gdk event queue but only skip the event if is the same
    * event and no buttons or modifier keys changed*/
-  if ((test_event = gdk_event_get()) != NULL) {
+  display = gdk_drawable_get_display (event->window);
+
+  if ((test_event = gdk_display_get_event(display)) != NULL) {
 
     int skip_event = 0;
 
     if (test_event->type == GDK_MOTION_NOTIFY &&
-      ((GdkEventMotion *) test_event)->state == event->state) {
+       ((GdkEventMotion*)test_event)->state == event->state)
+    {
         skip_event++;
-      }
-      gdk_event_put(test_event); /* put it back in front of the queue */
-      gdk_event_free(test_event);
+    }
+
+    gdk_event_put(test_event); /* put it back in front of the queue */
+    gdk_event_free(test_event);
+
     if (skip_event) {
       return 0;
     }
@@ -834,6 +848,7 @@ bool x_event_motion (GtkWidget      *widget,
     int pdiff_y = (event->y - start_pan_y) * w_current->mousepan_gain;
 
     if (!(throttle % 5)) {
+
       i_pan_world_mouse(w_current, pdiff_x, pdiff_y);
 
       start_pan_x = (int) event->x;

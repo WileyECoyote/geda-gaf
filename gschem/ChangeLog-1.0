@@ -14,6 +14,9 @@
       Current_Page with gschem_toplevel_get_current_page in autonumber_get_used.
       Replace g_strndup with geda_strndup.
 
+    * gschem/src/x/x_event.c: Try gdk_display_get_event instead of gdk_get_event
+      in function x_event_motion.
+
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Move call to i_status_update_action_state in
