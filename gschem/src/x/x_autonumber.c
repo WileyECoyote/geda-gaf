@@ -889,18 +889,19 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
    *  in the searchtext list */
 
   scope_len = strlen(scope_text);
+
   if (scope_len == 0) {
     u_log_message(_("No search string given in autonumber text.\n"));
     return; /* error */
   }
   else if (g_str_has_suffix(scope_text,"?") == TRUE) {
     /* single searchtext, strip of the "?" */
-    searchtext = g_strndup(scope_text, scope_len - 1);
+    searchtext = geda_strndup(scope_text, scope_len - 1);
     searchtext_list=g_list_append (searchtext_list, searchtext);
   }
   else if (g_str_has_suffix(scope_text,"*") == TRUE) {
     /* strip of the "*" */
-    searchtext = g_strndup(scope_text, scope_len - 1);
+    searchtext = geda_strndup(scope_text, scope_len - 1);
     /* collect all the possible searchtexts in all pages of the hierarchy */
     for (page_item = pages; page_item != NULL; page_item = g_list_next(page_item)) {
       s_page_goto(page_item->data);
@@ -931,7 +932,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
               while ((i >= search_len + 1) && isalpha((str[i]))) i--;
               while ((i >= search_len) && (str[i] == '?' || isdigit( (int) (str[i]) ))) i--;
 
-              new_searchtext = g_strndup (str, i + 1);
+              new_searchtext = geda_strndup (str, i + 1);
 
               if (g_list_find_custom(searchtext_list, new_searchtext, (GCompareFunc) strcmp) == NULL )
               {

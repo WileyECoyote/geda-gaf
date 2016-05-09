@@ -12,6 +12,7 @@
     * x/x_autonumber.c: Add static function select_scope_text_value. Replace
       GPOINTER_TO_INT with POINTER_TO_INT. Add Page pointer and Replace macro
       Current_Page with gschem_toplevel_get_current_page in autonumber_get_used.
+      Replace g_strndup with geda_strndup.
 
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
