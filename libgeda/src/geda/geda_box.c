@@ -927,7 +927,9 @@ void geda_box_set_fill_pitch2 (GedaBox *box, int pitch) {
  */
 void geda_box_set_fill_type (GedaBox *box, int type) {
   if (is_a_geda_box(box)) {
-    box->fill_options.fill_type = type;
+    box->fill_options.fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                  type > TYPE_ERASE ? TYPE_ERASE :
+                                  type;
   }
 }
 

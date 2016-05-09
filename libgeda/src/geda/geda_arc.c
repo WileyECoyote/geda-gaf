@@ -1093,7 +1093,9 @@ geda_arc_set_fill_pitch2 (GedaArc *arc, int pitch) {
 void
 geda_arc_set_fill_type (GedaArc *arc, int type) {
   if (is_a_geda_arc(arc)) {
-    arc->fill_options.fill_type = type;
+    arc->fill_options.fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                  type > TYPE_ERASE ? TYPE_ERASE :
+                                  type;
   }
 }
 

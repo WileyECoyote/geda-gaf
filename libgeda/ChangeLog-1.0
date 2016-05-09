@@ -1,5 +1,9 @@
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_arc.c: Restrict setting of fill_type to valid range.
+
+    * src/geda/geda_box.c: Restrict setting of fill_type to valid range.
+
     * src/object/o_box_object.c: Add getters and setters for box object fill
       type options.
 
