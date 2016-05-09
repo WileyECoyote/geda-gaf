@@ -1,3 +1,8 @@
+2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_combobox.c: Add checks for geda_combo_get_entry, which also
+      covers geda_combo_get_entry_widget.
+
 2016-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add getters geda_combo_box_get_has_entry and

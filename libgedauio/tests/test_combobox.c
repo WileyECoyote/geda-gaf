@@ -93,7 +93,7 @@ int check_construction (void)
 
     GedaEntry *entry;
 
-    /* geda_combo_box_text_get_entry_widget */
+    /* Uses geda_combo_widget_get_entry_widget */
     entry = geda_combo_widget_get_entry(widget);
 
     if (!GEDA_IS_ENTRY(entry)) {
@@ -141,6 +141,26 @@ check_accessors ()
 {
   int result = 0;
 
+  GtkWidget *widget = geda_combo_box_new_with_entry();
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaEntry *entry;
+
+    /* Uses geda_combo_get_entry_widget */
+    entry = geda_combo_get_entry(GEDA_COMBO_BOX(widget));
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
+  }
+
+  g_object_unref(widget);    /* Destroy the widget */
   return result;
 }
 
