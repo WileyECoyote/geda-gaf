@@ -1375,7 +1375,7 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
-  gtk_widget_set_sensitive(ScopeOverwriteSwitch, autotext->removenum);
+  //gtk_widget_set_sensitive(ScopeOverwriteSwitch, autotext->removenum);
 
   /* Options */
   SetSpin (StartNumber, autotext->startnum);
@@ -1530,7 +1530,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 
   switch ( WhichOne ) {
     case DoRemoveNumber:
-      gtk_widget_set_sensitive(ScopeOverwriteSwitch, state);
+      //gtk_widget_set_sensitive(ScopeOverwriteSwitch, state);
       break;
     case DoSlotting:
     case ScopeOverwrite:
