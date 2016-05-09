@@ -1,6 +1,12 @@
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * x/x_autonumber.c: Remove setting of sensitivity on ScopeOverwrite.
+    * x/x_autonumber.c: Remove setting of sensitivity on ScopeOverwrite. Add
+      new feature: add state member scope_exact for case when scope_text does
+      not contain a wild-card and distinish between plain test and text with
+      digits. The new feature allows auto re-numbering of duplicated reference
+      designators, miraculously leaving the first of the duplicates and resumes
+      numbering using the next available number skipping those already assigned
+      within the scope and makes it easier to auto-number plain text.
 
 2016-05-08 Wiley E. Hill <wileyhill@gmail.com>
 

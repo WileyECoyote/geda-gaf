@@ -181,6 +181,9 @@ struct autonumber_text_t {
   /*! \brief Scope for searching existing numbers */
   AutoNumberScope scope_skip;
 
+  /*! \brief Overwrite text in scope matching exact */
+  char *scope_exact;
+
   /*! \brief Overwrite existing numbers in scope */
   bool scope_overwrite;
 
@@ -471,6 +474,7 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
 static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, int *number)
 {
   const char *str;
+  const char *searchtext;
   int  len;
   bool isnumbered = TRUE;
 
@@ -478,15 +482,17 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
   if (o_current->type != OBJ_TEXT)
     return AUTONUMBER_IGNORE;          /* ignore if not a text object */
 
-  len = strlen(autotext->current_searchtext);
-  str = o_text_get_string (o_current);
+  /* autotext->current_searchtext looks like "refdes=R" */
+  searchtext = autotext->current_searchtext;
+  len        = strlen(searchtext);
+  str        = o_text_get_string (o_current);
 
   /* Check if the search text length is greater than the string length */
   if (len > strlen(str))
     return AUTONUMBER_IGNORE;         /* ignore if looking for longer string */
 
   /* Check if the string contains the search text */
-  if (!g_str_has_prefix(str, autotext->current_searchtext))
+  if (!g_str_has_prefix(str, searchtext))
     return AUTONUMBER_IGNORE;         /* ignore if search text not in string */
 
   /* the string object matches with its leading characters to the searchtext */
@@ -502,14 +508,21 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
   }
   else {
 
-    if (!isdigit((str[len]) )) /* has at least one digit */
-      return AUTONUMBER_IGNORE;
-/*
-    for (i = len + 1; str[i]; i++) // and only digits
-      if (!isdigit((str[i]) )) {
+    /* Check if the SEARCH has digits */
+    if (!isdigit(searchtext[len - 1]))  {
+      if (!isdigit(str[len])) { /* has at least one digit */
         return AUTONUMBER_IGNORE;
       }
-*/
+    }
+    else {
+
+      /* str has matching prefix but searchtext does not have a digit,
+       * respect if strings are not an exact match */
+      if (strcmp(str, searchtext)) {
+        /* The two strings do not exactly match */
+        return AUTONUMBER_RESPECT;
+      }
+    }
   }
 
   /* we have six cases, 3 from focus multiplied by 2 selection cases */
@@ -518,7 +531,14 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
        autotext->scope_number == SCOPE_PAGE) &&
       (!isnumbered || (autotext->scope_overwrite)))
   {
-    return AUTONUMBER_RENUMBER;
+
+    if (!autotext->scope_exact) {
+      return AUTONUMBER_RENUMBER;
+    }
+
+    if (!strcmp(str, autotext->scope_exact)) {
+      return AUTONUMBER_RENUMBER;
+    }
   }
 
   if (isnumbered &&
@@ -535,11 +555,11 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
 /*! \brief Creates a list of already numbered objects and slots
  *  \par Function Description
  *  This function collects the used numbers of a single schematic page.
- *  The used element numbers are stored in a GList container
- *  inside the <B>AUTONUMBER_TEXT</B> struct.
- *  The slotting container is a little bit different. The container stores
- *  free slots of multislotted symbols, that were only partially used.
- *  The criterias are derivated from the autonumber dialog entries.
+ *  The used element numbers are stored in a GList container inside the
+ *  <B>AUTONUMBER_TEXT</B> struct. The slotting container is a little bit
+ *  different. The container stores free slots of multislotted symbols,
+ *  that were only partially used. The criterias are derivated from the
+ *  autonumber dialog entries.
  *
  *  \param [in] w_current Pointer to GschemToplevel data structure
  *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> data structure
@@ -863,6 +883,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   w_current                    = autotext->w_current;
   autotext->current_searchtext = NULL;
   autotext->root_page          = 1;
+  autotext->scope_exact        = NULL;
 
   autotext->used_numbers       = NULL;
   autotext->free_slots         = NULL;
@@ -945,14 +966,36 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
           }
         }
       }
-      if (autotext->scope_number == SCOPE_SELECTED || autotext->scope_number == SCOPE_PAGE)
+      if (autotext->scope_number == SCOPE_SELECTED ||
+          autotext->scope_number == SCOPE_PAGE)
         break; /* search only in the first page */
     }
     GEDA_FREE(searchtext);
   }
   else {
-    u_log_message(_("No '*' or '?' given at the end of the autonumber text.\n"));
-    return;
+
+    /* Searching for specified text, which may or may not contain digits */
+
+    int pos = scope_len - 1;
+
+    /* Look for trailing digits */
+    while (pos && isdigit(scope_text[pos])) {
+      pos--;
+    }
+
+    /* Check if found digits */
+    if (pos && !(pos == scope_len - 1)) {
+      pos++;           /* Increment to first digit */
+      searchtext      = geda_strndup(scope_text, pos);
+      searchtext_list = g_list_append (searchtext_list, searchtext);
+      autotext->scope_exact = scope_text;
+    }
+    else {
+
+      /* Numbering plain text, just make a copy of the string */
+      searchtext      = geda_strdup(scope_text);
+      searchtext_list = g_list_append (searchtext_list, searchtext);
+    }
   }
 
   /* Step 4: iterate over the search items in the list */
@@ -983,8 +1026,10 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 
       autotext->root_page = (pages->data == page_item->data);
 
-      /* build a page database if we're numbering pagebypage or selection only */
-      if (autotext->scope_skip == SCOPE_PAGE || autotext->scope_skip == SCOPE_SELECTED) {
+      /* build a page database if we're numbering page by page or selection only */
+      if (autotext->scope_skip == SCOPE_PAGE ||
+          autotext->scope_skip == SCOPE_SELECTED)
+      {
         autonumber_get_used(w_current, autotext);
       }
 
@@ -994,7 +1039,8 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
       {
         o_current = iter->data;
 
-        if (autonumber_match(autotext, o_current, &number) == AUTONUMBER_RENUMBER) {
+        if (autonumber_match(autotext, o_current, &number) == AUTONUMBER_RENUMBER)
+        {
           /* put number into the used list */
           o_list = g_list_append(o_list, o_current);
         }
@@ -1030,6 +1076,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
           autonumber_remove_number(autotext, o_current);
         }
         else {
+
           /* get valid numbers from the database */
           autonumber_get_new_numbers(autotext, o_current, &number, &slot);
           autonumber_apply_new_text(autotext, o_current, number, slot);
