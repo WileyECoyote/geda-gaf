@@ -470,26 +470,35 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
  */
 static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, int *number)
 {
-  int len, isnumbered=1;
-  const char *str = NULL;
+  const char *str;
+  int  len;
+  bool isnumbered = TRUE;
+
+  /* Check if object is a Text object */
+  if (o_current->type != OBJ_TEXT)
+    return AUTONUMBER_IGNORE;          /* ignore if not a text object */
 
   len = strlen(autotext->current_searchtext);
-  /* first find out whether we can ignore that object */
-  if (o_current->type != OBJ_TEXT)  /* text object */
-    return AUTONUMBER_IGNORE;
-
   str = o_text_get_string (o_current);
 
-  if (!(strlen(str) - len > 0) || !g_str_has_prefix(str, autotext->current_searchtext))
-    return AUTONUMBER_IGNORE;
+  /* Check if the search text length is greater than the string length */
+  if (len > strlen(str))
+    return AUTONUMBER_IGNORE;         /* ignore if looking for longer string */
+
+  /* Check if the string contains the search text */
+  if (!g_str_has_prefix(str, autotext->current_searchtext))
+    return AUTONUMBER_IGNORE;         /* ignore if search text not in string */
 
   /* the string object matches with its leading characters to the searchtext */
   /* now look for the extension, either a number or the "?" */
   if (g_str_has_suffix (str,"?")) {
+
     isnumbered = 0;
+
     /* There must not be any characters between the "?" and the searchtext */
-    if (strlen(str) != len+1)
+    if (strlen(str) != len + 1) {
       return AUTONUMBER_IGNORE;
+    }
   }
   else {
 
@@ -505,19 +514,22 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
 
   /* we have six cases, 3 from focus multiplied by 2 selection cases */
   if ((autotext->root_page || autotext->scope_number == SCOPE_HIERARCHY) &&
-      (o_current->selected || autotext->scope_number == SCOPE_HIERARCHY || autotext->scope_number == SCOPE_PAGE) &&
+      (o_current->selected || autotext->scope_number == SCOPE_HIERARCHY ||
+       autotext->scope_number == SCOPE_PAGE) &&
       (!isnumbered || (autotext->scope_overwrite)))
+  {
     return AUTONUMBER_RENUMBER;
+  }
 
   if (isnumbered &&
     !(autotext->scope_skip == SCOPE_SELECTED &&
-    !(o_current->selected)  && autotext->root_page))
+    !(o_current->selected) && autotext->root_page))
   {
     sscanf(&(str[len])," %d", number);
     return AUTONUMBER_RESPECT; /* numbered objects which we don't renumber */
   }
 
-  return AUTONUMBER_IGNORE;  /* unnumbered objects outside the focus */
+  return AUTONUMBER_IGNORE;    /* unnumbered objects outside the focus */
 }
 
 /*! \brief Creates a list of already numbered objects and slots
@@ -534,32 +546,41 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
  */
 static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
 {
-  int number, numslots, slotnr, i;
-  GedaObject *o_current, *o_parent;
   AUTONUMBER_SLOT *slot;
-  GList *slot_item;
-  char *numslot_str, *slot_str;
-  const GList *iter;
+  const GList     *iter;
+  GList           *slot_item;
+  Page            *page;
+  char            *numslot_str, *slot_str;
+  int              number, numslots, slotnr, i;
 
-  for (iter = s_page_get_objects (Current_Page); iter != NULL; NEXT(iter)) {
-    o_current = iter->data;
+  page = gschem_toplevel_get_current_page(w_current);
+
+  for (iter = s_page_get_objects (page); iter != NULL; NEXT(iter)) {
+
+    GedaObject *o_current = iter->data;
+
     if (autonumber_match(autotext, o_current, &number) == AUTONUMBER_RESPECT) {
+
       /* check slot and maybe add it to the lists */
-      o_parent = o_current->attached_to;
+      GedaObject *o_parent = o_current->attached_to;
+
       if (autotext->slotting && o_parent != NULL) {
+
         /* check for slotted symbol */
-        numslot_str =
-        geda_attrib_search_object_by_name (o_parent, "numslots", 0);
+        numslot_str = geda_attrib_search_object_by_name (o_parent, "numslots", 0);
+
         if (numslot_str != NULL) {
+
           sscanf(numslot_str," %d",&numslots);
           GEDA_FREE(numslot_str);
 
           if (numslots > 0) {
 
             slot_str = geda_attrib_search_object_by_name (o_parent, "slot", 0);
+
             if (slot_str == NULL) {
               u_log_message(_("slotted object without slot attribute may cause "
-              "problems when autonumbering slots\n"));
+                              "problems when autonumbering slots\n"));
             }
             else {
 
@@ -608,6 +629,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
           }
         }
       }
+
       /* put number into the used list */
       autotext->used_numbers = g_list_insert_sorted(autotext->used_numbers,
                                                     INT_TO_POINTER(number),
@@ -732,20 +754,21 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
  *  \par Function Description
  *  This function updates the text content of the \a o_current object.
  *
- *  \param [in] autotext Pointer to the state structure
+ *  \param [in] autotext  Pointer to the state structure
  *  \param [in] o_current Pointer to the object from which to remove the number
  *
  */
-static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, GedaObject *o_current)
+static void autonumber_remove_number(AUTONUMBER_TEXT *autotext, GedaObject *o_current)
 {
   GedaObject *o_slot;
-  char   *str;
+  char       *str;
 
   /* allocate memory for the search string*/
   str = malloc(strlen(autotext->current_searchtext) + 2); /* allocate space */
 
   /* make copy of the search string and append "?" */
   strcpy(str, autotext->current_searchtext);
+
   strcat(str, "?");
 
   /* replace old text */
@@ -837,13 +860,13 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   int i, number;
   int slot, scope_len;
 
-  w_current = autotext->w_current;
+  w_current                    = autotext->w_current;
   autotext->current_searchtext = NULL;
-  autotext->root_page = 1;
+  autotext->root_page          = 1;
 
-  autotext->used_numbers = NULL;
-  autotext->free_slots = NULL;
-  autotext->used_slots = NULL;
+  autotext->used_numbers       = NULL;
+  autotext->free_slots         = NULL;
+  autotext->used_slots         = NULL;
 
   /* Step 1: Retrieve the Scope Search text */
   scope_text = g_list_first(autotext->scope_history)->data;
@@ -908,7 +931,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
               while ((i >= search_len + 1) && isalpha((str[i]))) i--;
               while ((i >= search_len) && (str[i] == '?' || isdigit( (int) (str[i]) ))) i--;
 
-              new_searchtext = g_strndup (str, i+1);
+              new_searchtext = g_strndup (str, i + 1);
 
               if (g_list_find_custom(searchtext_list, new_searchtext, (GCompareFunc) strcmp) == NULL )
               {
@@ -932,7 +955,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   }
 
   /* Step 4: iterate over the search items in the list */
-  for (text_item=searchtext_list; text_item !=NULL; NEXT(text_item)) {
+  for (text_item = searchtext_list; text_item != NULL; NEXT(text_item)) {
 
     autotext->current_searchtext = text_item->data;
 
@@ -998,9 +1021,11 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
       }
 
       /* 3. renumber/reslot the objects */
-      for(obj_item=o_list; obj_item != NULL; NEXT(obj_item)) {
+      for (obj_item = o_list; obj_item != NULL; NEXT(obj_item)) {
+
         o_current= obj_item->data;
-        if(autotext->removenum) {
+
+        if (autotext->removenum) {
           autonumber_remove_number(autotext, o_current);
         }
         else {
@@ -1497,7 +1522,7 @@ static void autonumber_text_response(GtkWidget       *widget,
 static void switch_responder(GtkWidget *widget, ControlID *Control)
 {
   bool state = GET_SWITCH_STATE (widget);
-  GtkWidget* SwitchImage = get_geda_switch_image( state);
+  GtkWidget *SwitchImage = get_geda_switch_image (state);
   gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
   int WhichOne = (int)(long)Control;
