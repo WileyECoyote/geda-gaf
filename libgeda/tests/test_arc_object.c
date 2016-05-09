@@ -77,6 +77,7 @@
  *      O0220    geda_arc_object_mirror
  *      O0221    geda_arc_object_modify
  *      O0222    geda_arc_object_new
+ *
  *      O0223    geda_arc_object_print
  *      O0224    geda_arc_object_print_center
  *      O0225    geda_arc_object_print_dashed
@@ -84,6 +85,7 @@
  *      O0227    geda_arc_object_print_phantom
  *      O0228    geda_arc_object_print_solid
  *      O0229    geda_arc_object_read
+ *
  *      O0230    geda_arc_object_rotate
  *      O0231    geda_arc_object_set_arc_sweep
  *      O0232    geda_arc_object_set_center_x
@@ -102,8 +104,10 @@
  *      O0245    geda_arc_object_set_radius
  *      O0246    geda_arc_object_set_start_angle
  *      O0247    geda_arc_object_shortest_distance
+ *
  *      O0248    geda_arc_object_to_buffer
  *      O0249    geda_arc_object_translate
+ *
  *      O0250    geda_arc_object_within_sweep
  */
 
@@ -423,11 +427,6 @@ check_accessors ()
     result++;
   }
 
-  if (geda_arc_object_get_fill_type(NULL)) {
-    fprintf(stderr, "FAILED: (O021000) %s fill_type not zero\n", TOBJECT);
-    result++;
-  }
-
   if (geda_arc_object_get_fill_angle1(NULL)) {
     fprintf(stderr, "FAILED: (O020600) %s fill_angle1 not zero\n", TOBJECT);
     result++;
@@ -445,6 +444,11 @@ check_accessors ()
 
   if (geda_arc_object_get_fill_pitch2(NULL)) {
     fprintf(stderr, "FAILED: (O020900) %s fill_pitch2 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_arc_object_get_fill_type(NULL)) {
+    fprintf(stderr, "FAILED: (O021000) %s fill_type not zero\n", TOBJECT);
     result++;
   }
 
@@ -619,21 +623,6 @@ check_accessors ()
 
       /* Check Filling properties */
 
-      geda_arc_object_set_fill_type (object0, ft);
-
-      value = object0->fill_options->fill_type;
-      if (value - ft) {
-        fprintf(stderr, "FAILED: (O023901) %d != %d\n", value, ft);
-        fail++;
-      }
-
-      value = geda_arc_object_get_fill_type(object0);
-
-      if (value - ft) {
-        fprintf(stderr, "FAILED: (O021001) %d != %d\n", value, ft);
-        fail++;
-      }
-
       geda_arc_object_set_fill_angle1 (object0, fa1);
 
       value = object0->fill_options->fill_angle1;
@@ -692,6 +681,21 @@ check_accessors ()
 
       if (value - fp2) {
         fprintf(stderr, "FAILED: (O020901) %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      geda_arc_object_set_fill_type (object0, ft);
+
+      value = object0->fill_options->fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: (O023901) %d != %d\n", value, ft);
+        fail++;
+      }
+
+      value = geda_arc_object_get_fill_type(object0);
+
+      if (value - ft) {
+        fprintf(stderr, "FAILED: (O021001) %d != %d\n", value, ft);
         fail++;
       }
 
