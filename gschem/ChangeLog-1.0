@@ -3,6 +3,12 @@
     * src/guile/g_builtins.c: Remove redundant inclusion of config.h, which is
       included by gschem.h.
 
+    * src/iface/i_command.c: Replace g_strndup with geda_utility_string_strndup.
+
+    * src/x/x_console.c: Replace g_strndup with geda_utility_string_strndup.
+
+    * src/x/x_rc.c: Replace g_strndup with geda_utility_string_strndup.
+
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Remove setting of sensitivity on ScopeOverwrite. Add

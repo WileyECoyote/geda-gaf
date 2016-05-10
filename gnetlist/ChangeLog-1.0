@@ -1,3 +1,7 @@
+2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_hierarchy.c: Replace g_strndup with geda_utility_string_strndup.
+
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/i_vars.c: rename function i_vars_finalize->i_vars_free_strings

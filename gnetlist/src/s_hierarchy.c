@@ -786,7 +786,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
       return (geda_utility_string_strdup (uref));
     }
 
-    return_value = g_strndup(uref, end_of_base - uref);
+    return_value = geda_utility_string_strndup(uref, end_of_base - uref);
   }
 
 #if DEBUG

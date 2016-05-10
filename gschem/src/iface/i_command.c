@@ -991,12 +991,12 @@ COMMAND (do_print) {
     if (strncmp(extension, SCHEMATIC_FILE_DOT_SUFFIX, 4)) {
 
       /* the filename ends with ".sch", remove it */
-      base = g_strndup(filename, strlen(filename) - 4);
+      base = geda_strndup(filename, strlen(filename) - 4);
     }
     else if (strncmp(extension, SYMBOL_FILE_DOT_SUFFIX, 4)) {
 
       /* the filename ends with ".sch", remove it */
-      base = g_strndup(filename, strlen(filename) - 4);
+      base = geda_strndup(filename, strlen(filename) - 4);
     }
     else {
 

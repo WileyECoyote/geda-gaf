@@ -125,7 +125,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
 
       /* Guild added a carriage return character to the end of the
        * message, so get rid of it! */
-      unbound_sym = g_strndup (unbound_msg, strlen(unbound_msg) -1);
+      unbound_sym = geda_strndup (unbound_msg, strlen(unbound_msg) -1);
 
       /* Define a dummy routine using this name */
       scm_c_define_gsubr (unbound_sym, 0, 1, 1, g_rc_unbound_handler);
