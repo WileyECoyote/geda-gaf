@@ -329,6 +329,41 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (entry));
 }
 
+/*!
+ * \brief Select All Text in a GedaEntry
+ * \par Function Description
+ *  Selects all characters in \a entry text.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ */
+void
+geda_entry_select_all (GedaEntry *entry)
+{
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+}
+
+/*!
+ * \brief Select Specifiy Text in a GedaEntry
+ * \par Function Description
+ *  Selects a region of text. The characters that are selected are
+ *  those characters at positions from \a start_pos up to, but not
+ *  including \a end_pos. If \a end_pos is negative, all characters
+ *  will be selected from \a start_pos to the end of the text.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] start Starting Position
+ * \param [in] end   End Position or -1 to select remain text
+ */
+void
+geda_entry_select_region (GedaEntry *entry, int start, int end)
+{
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  gtk_editable_select_region (GTK_EDITABLE (entry), start, end);
+}
+
 /*! \brief Get Entry attribute List
  *  \par Function Description
  * Gets the attribute list that was set on the entry using

@@ -37,8 +37,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
-#include "../../include/geda_menu_private.h"
-#include "../../include/geda_menu_item_private.h"
+#include "../../include/geda_menu_enum.h"
 #include "../../include/geda_tearoff_menu_item.h"
 
 /**
@@ -510,3 +509,4 @@ bool geda_tearoff_menu_is_torn (GtkWidget *menu)
 }
 
 /** @} endgroup GedaTearoffMenuItem */
+

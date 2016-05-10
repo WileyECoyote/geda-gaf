@@ -154,6 +154,10 @@ GtkWidget *geda_entry_new_visible            (GList** history, GList** complete)
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
 GtkWidget *geda_entry_new_with_max_length    (int length);
 
+void       geda_entry_select_all             (GedaEntry      *entry);
+void       geda_entry_select_region          (GedaEntry      *entry,
+                                              int             start,
+                                              int             end);
 PangoAttrList*
      geda_entry_get_attributes               (GedaEntry      *entry);
 

@@ -1,5 +1,8 @@
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Add functions geda_entry_select_all and
+      geda_entry_select_region.
+
     * tests/test_combobox.c: Add checks for geda_combo_get_entry, which also
       covers geda_combo_get_entry_widget.
 

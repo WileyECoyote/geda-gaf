@@ -32,6 +32,7 @@ noinst_PROGRAMS = \
 		test_file_chooser
 
 EXTRA_DIST = \
+    test-suite.h \
 	prop-editor.h \
 	file-chooser-test-dir/empty \
 	file-chooser-test-dir/text.txt
