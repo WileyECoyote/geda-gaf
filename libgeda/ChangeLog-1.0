@@ -9,6 +9,9 @@
     * src/object/o_box_object.c: Add getters and setters for box object fill
       type options.
 
+    * src/object/o_complex_object.c: Fix geda_complex_object_find_pin_by_
+      attribute outputting error message incorrectly.
+
 2016-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Add accessors for box object coordinates and

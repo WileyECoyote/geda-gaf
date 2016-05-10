@@ -606,7 +606,9 @@ geda_complex_object_get_promotable (GedaToplevel *toplevel, GedaObject *object, 
 
     return g_list_reverse (promoted);
   }
-  geda_complex_object_error(__func__, object);
+  else {
+    geda_complex_object_error(__func__, object);
+  }
   return FALSE;
 }
 
@@ -649,7 +651,9 @@ geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char 
         return o_current;
     }
   }
-  geda_complex_object_error(__func__, object);
+  else {
+    geda_complex_object_error(__func__, object);
+  }
   return NULL;
 }
 
