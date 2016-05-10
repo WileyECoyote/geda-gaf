@@ -21,8 +21,6 @@
  * \brief gschem built-in actions
  */
 
-#include <config.h>
-
 #include <gschem.h>
 
 struct BuiltinInfo {

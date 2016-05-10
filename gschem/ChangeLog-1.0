@@ -1,3 +1,8 @@
+2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_builtins.c: Remove redundant inclusion of config.h, which is
+      included by gschem.h.
+
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Remove setting of sensitivity on ScopeOverwrite. Add
