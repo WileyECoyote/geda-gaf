@@ -4,6 +4,17 @@ author=AutoTron
 T 400 1900 5 10 0 0 0 0 1
 device=DS2450
 B 400 0 1400 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1400 100 1400 1 0 1
+{
+T 300 1450 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1350 5 8 0 1 0 8 1
+pinseq=1
+T 450 1375 5 8 0 1 0 2 1
+pintype=pwr
+T 450 1400 9 8 1 1 0 0 1
+pinlabel=Vcc
+}
 P 400 1000 100 1000 1 0 1
 {
 T 300 1050 5 8 1 1 0 6 1
@@ -25,6 +36,17 @@ T 450 575 5 8 0 1 0 2 1
 pintype=io
 T 450 600 9 8 1 1 0 0 1
 pinlabel=DATA
+}
+P 400 200 100 200 1 0 1
+{
+T 300 250 5 8 1 1 0 6 1
+pinnumber=4
+T 300 150 5 8 0 1 0 8 1
+pinseq=4
+T 450 175 5 8 0 1 0 2 1
+pintype=pwr
+T 450 200 9 8 1 1 0 0 1
+pinlabel=GND
 }
 P 2100 200 1800 200 1 0 0
 {
@@ -78,10 +100,6 @@ T 400 2100 5 10 0 0 0 0 1
 numslots=0
 T 400 2500 5 10 0 1 0 0 1
 description=Dallas Semiconductor 1-Wire A/D Converter (Travis Sawyer)
-T 400 2700 5 10 0 0 0 0 1
-net=GND:4
-T 400 2900 5 10 0 0 0 0 1
-net=VCC:1
 T 400 3100 5 10 0 1 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/DS2450.pdf
 T 400 1700 9 10 1 0 0 0 1

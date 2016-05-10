@@ -4,6 +4,17 @@ author=AutoTron
 T 300 2100 5 10 0 0 0 0 1
 device=DS2480B
 B 300 0 1400 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 300 1400 0 1400 1 0 1
+{
+T 200 1450 5 8 1 1 0 6 1
+pinnumber=1
+T 200 1350 5 8 0 1 0 8 1
+pinseq=1
+T 350 1375 5 8 0 1 0 2 1
+pintype=pwr
+T 350 1400 9 8 1 1 0 0 1
+pinlabel=GND
+}
 P 300 1000 0 1000 1 0 1
 {
 T 200 1050 5 8 1 1 0 6 1
@@ -25,6 +36,28 @@ T 350 575 5 8 0 1 0 2 1
 pintype=pas
 T 350 600 9 8 1 1 0 0 1
 pinlabel=NC
+}
+P 300 200 0 200 1 0 1
+{
+T 200 250 5 8 1 1 0 6 1
+pinnumber=4
+T 200 150 5 8 0 1 0 8 1
+pinseq=4
+T 350 175 5 8 0 1 0 2 1
+pintype=pwr
+T 350 200 9 8 1 1 0 0 1
+pinlabel=Vdd
+}
+P 2000 200 1700 200 1 0 0
+{
+T 1800 250 5 8 1 1 0 0 1
+pinnumber=5
+T 1800 150 5 8 0 1 0 2 1
+pinseq=5
+T 1650 175 5 8 0 1 0 8 1
+pintype=pwr
+T 1650 200 9 8 1 1 0 6 1
+pinlabel=Vpp
 }
 P 2000 600 1700 600 1 0 0
 {
@@ -67,12 +100,6 @@ T 300 2300 5 10 0 0 0 0 1
 numslots=0
 T 300 2500 5 10 0 1 0 0 1
 description=Dallas Semiconductor 1-Wire Serial Line Driver w/Load Sensor (Travis Sawyer)
-T 300 2700 5 10 0 0 0 0 1
-net=GND:1
-T 300 3100 5 10 0 0 0 0 1
-net=VDD:4
-T 300 2900 5 10 0 0 0 0 1
-net=VPP:5
 T 300 3300 5 10 0 1 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/DS2480B.pdf
 T 300 1700 9 10 1 0 0 0 1

@@ -1,3 +1,23 @@
+2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * memory/AT45DB021B-1.sym: Remove package footprint from file name, update
+      symbol.
+
+    * memory/HM628511HC-1.sym:: Remove package footprint from file name, update
+      symbol.
+
+    * micro/DS80C310-1.sym: Remove the undersore _DIP from the device attribute.
+
+    * micro/DS80C320-1.sym: Remove the undersore _DIP from the device attribute.
+
+    * micro/DS2450-1.sym: Remove pins defined by NET attributes, update symbol.
+
+    * micro/DS2450-2.sym: Alternate DS2450 using pins instead of NET attributes.
+
+    * micro/DS2480B-1.sym: Remove pins defined by NET attributes, update symbol.
+
+    * micro/DS2480B-2.sym: Alternate DS2480B using pins instead of NET attributes.
+
 2016-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61028-1.sym: Add symbol TPS61028, adjustable synchronous
