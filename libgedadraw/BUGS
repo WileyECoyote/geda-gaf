@@ -1,0 +1,18 @@
+Dist Check
+------------
+make distcheck can configure with the current config.h, but the
+subsquent VPATH build will not link to the free-type library, so
+if the in-source config.h defines HAVE_XFT libgedadraw will be
+built expecting linkage to functions in the free-type library but
+gschem linkage will fail during the distcheck. If this happens,
+reconfigure the source tree without "--enable-Xft" and then the
+make distcheck will pass. This is not a BUG, at least not a BUG
+in libgedadraw.
+
+Bugs (no particular order):
+----------------------
+
+Does not report duplicate descriptions
+
+Finished stuff:
+

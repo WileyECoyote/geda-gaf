@@ -7,7 +7,7 @@
 
 SUBDIRS = docs include src
 
-EXTRA_DIST = README ChangeLog ChangeLog-1.0
+EXTRA_DIST = BUGS README ChangeLog ChangeLog-1.0
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libgedadraw.pc
