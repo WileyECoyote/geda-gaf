@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-06 01:20-0500\n"
+"POT-Creation-Date: 2016-05-09 23:59-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -331,88 +331,88 @@ msgstr ""
 msgid "Which kind of shadow to draw around the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3566
-#: libgedauio/src/widgets/geda_combobox.c:4319
+#: libgedauio/src/widgets/geda_combobox.c:3567
+#: libgedauio/src/widgets/geda_combobox.c:4320
 msgid "gtk-combo-box-item-path"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3879
+#: libgedauio/src/widgets/geda_combobox.c:3880
 msgid "Auto view"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3886
+#: libgedauio/src/widgets/geda_combobox.c:3887
 msgid "view as Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3893
+#: libgedauio/src/widgets/geda_combobox.c:3894
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:878
+#: libgedauio/src/widgets/geda_entry.c:913
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:879
+#: libgedauio/src/widgets/geda_entry.c:914
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:886
+#: libgedauio/src/widgets/geda_entry.c:921
 #: libgedauio/src/widgets/geda_label.c:1076
 msgid "Attributes"
 msgstr "Attribútumok"
 
-#: libgedauio/src/widgets/geda_entry.c:887
+#: libgedauio/src/widgets/geda_entry.c:922
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:894
+#: libgedauio/src/widgets/geda_entry.c:929
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:895
+#: libgedauio/src/widgets/geda_entry.c:930
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:902
+#: libgedauio/src/widgets/geda_entry.c:937
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:903
+#: libgedauio/src/widgets/geda_entry.c:938
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:910
+#: libgedauio/src/widgets/geda_entry.c:945
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:911
-#: libgedauio/src/widgets/geda_entry.c:921
+#: libgedauio/src/widgets/geda_entry.c:946
+#: libgedauio/src/widgets/geda_entry.c:956
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:920
+#: libgedauio/src/widgets/geda_entry.c:955
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:930
+#: libgedauio/src/widgets/geda_entry.c:965
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:931
+#: libgedauio/src/widgets/geda_entry.c:966
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1485
+#: libgedauio/src/widgets/geda_entry.c:1520
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Alkatrész hozzáadása"
 
-#: libgedauio/src/widgets/geda_entry.c:1492
+#: libgedauio/src/widgets/geda_entry.c:1527
 #, fuzzy
 msgid "On"
 msgstr "Megnyitás"
 
-#: libgedauio/src/widgets/geda_entry.c:1496
+#: libgedauio/src/widgets/geda_entry.c:1531
 msgid "Off"
 msgstr ""
 

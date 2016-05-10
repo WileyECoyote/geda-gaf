@@ -1,3 +1,9 @@
+2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Bump mutation to 2.1.0.21, 20160507.
+
+    * m4/geda-x11.m4: Fix HAVE_X11 message; Xft->X11.
+
 2016-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/: Rename geda-rotate->geda-rotate-left and geda_rotate

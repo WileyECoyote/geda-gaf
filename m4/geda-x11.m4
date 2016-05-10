@@ -33,7 +33,7 @@ AC_DEFUN([AX_CHECK_X11],
 
     if test x$have_x11 = xyes ; then
       X11_LIBS="-lX11"
-      AC_DEFINE([HAVE_X11], [1], [Define to 1 if have Xft])
+      AC_DEFINE([HAVE_X11], [1], [Define to 1 if have X11])
     else
       with_x=no
       AC_MSG_ERROR(X11 support explicitly requested but X11 was detected, pkg-config --modversion x11)
