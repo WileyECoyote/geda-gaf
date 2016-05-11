@@ -72,6 +72,7 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   if (GEDA_IS_COMBO_BOX(widget)) {
@@ -102,9 +103,8 @@ int check_construction (void)
     }
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
-
-  widget = NULL;
 
   GtkListStore *model = gtk_list_store_new (2, G_TYPE_INT, G_TYPE_INT);
 
@@ -117,9 +117,8 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
-
-  widget = NULL;
 
   /* geda_combo_box_new_with_model_and_entry */
 
@@ -129,9 +128,54 @@ int check_construction (void)
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
 
+    GedaEntry *entry;
+
+    /* Uses geda_combo_get_entry_widget */
+    entry = geda_combo_get_entry(GEDA_COMBO_BOX(widget));
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: %s line <%d> _get_entry\n", TWIDGET, __LINE__);
+      result++;
+    }
+
+    GtkTreeModel *tree_model;
+
+    tree_model = geda_combo_widget_get_model (widget);
+
+    if (!GTK_IS_TREE_MODEL(tree_model)) {
+      fprintf(stderr, "FAILED: %s line <%d> _get_model\n", TWIDGET, __LINE__);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
   g_object_unref(model);     /* Destroy the model */
+
+  /* geda_combo_box_new_with_model */
+
+  widget = geda_combo_box_new_text();
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GtkTreeModel *tree_model;
+
+    tree_model = geda_combo_widget_get_model (widget);
+
+    if (!GTK_IS_TREE_MODEL(tree_model)) {
+      fprintf(stderr, "FAILED: %s line <%d> _get_model\n", TWIDGET, __LINE__);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
 
   return result;
 }
@@ -160,7 +204,95 @@ check_accessors ()
     }
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
+
+  widget = geda_combo_box_new_text();
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaComboBox *combo_box;
+    GtkTreeModel *tree_model;
+    GtkTreeIter iter;
+
+    tree_model = geda_combo_widget_get_model (widget);
+
+    if (!GTK_IS_TREE_MODEL(tree_model)) {
+      fprintf(stderr, "FAILED: %s line <%d> _get_model\n", TWIDGET, __LINE__);
+      result++;
+    }
+
+    combo_box = GEDA_COMBO_BOX(widget);
+
+    geda_combo_box_append_text (combo_box, "4");
+
+    geda_combo_box_prepend_text (combo_box, "1");
+
+    geda_combo_box_insert_text (combo_box, 1, "2");
+
+    geda_combo_box_append_text (combo_box, "3");
+
+    geda_combo_box_remove_index (combo_box, 2);
+
+    /* The model should contain "1", "2", "3" */
+
+    if (!gtk_tree_model_get_iter_first (tree_model, &iter)) {
+      fprintf(stderr, "FAILED: %s line <%d> _iter_first\n", TWIDGET, __LINE__);
+      result++;
+    }
+    else {
+
+      char *str;
+
+      gtk_tree_model_get (tree_model, &iter, 0, &str, -1);
+
+      if (*str != '1') {
+        fprintf(stderr, "FAILED: %s line <%d> check prepend_text\n", TWIDGET, __LINE__);
+        result++;
+      }
+
+      if (!gtk_tree_model_iter_next (tree_model, &iter)) {
+        fprintf(stderr, "FAILED: %s line <%d> _iter_next\n", TWIDGET, __LINE__);
+        result++;
+      }
+      else {
+
+        gtk_tree_model_get (tree_model, &iter, 0, &str, -1);
+
+        if (*str != '2') {
+          fprintf(stderr, "FAILED: %s line <%d> check insert_text\n", TWIDGET, __LINE__);
+          result++;
+        }
+
+        if (!gtk_tree_model_iter_next (tree_model, &iter)) {
+          fprintf(stderr, "FAILED: %s line <%d> _iter_next\n", TWIDGET, __LINE__);
+          result++;
+        }
+        else {
+
+          gtk_tree_model_get (tree_model, &iter, 0, &str, -1);
+
+          if (*str != '3') {
+            fprintf(stderr, "FAILED: %s line <%d> check append_text\n", TWIDGET, __LINE__);
+            result++;
+          }
+
+          if (gtk_tree_model_iter_next (tree_model, &iter)) {
+            fprintf(stderr, "FAILED: %s line <%d> check remove_index\n", TWIDGET, __LINE__);
+            result++;
+          }
+        }
+      }
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
   return result;
 }
 
