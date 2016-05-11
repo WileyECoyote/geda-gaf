@@ -116,6 +116,17 @@ int check_construction (void)
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
+
+    GtkTreeModel *tree_model;
+
+    tree_model = geda_combo_widget_get_model (widget);
+
+    if (!GTK_IS_TREE_MODEL(tree_model)) {
+      fprintf(stderr, "FAILED: %s line <%d> _get_model\n", TWIDGET, __LINE__);
+      result++;
+    }
+  }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
@@ -154,7 +165,7 @@ int check_construction (void)
   g_object_unref(widget);    /* Destroy the widget */
   g_object_unref(model);     /* Destroy the model */
 
-  /* geda_combo_box_new_with_model */
+  /* geda_combo_box_new_text */
 
   widget = geda_combo_box_new_text();
 
@@ -177,6 +188,18 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
+  /* geda_combo_box_new_text_with_entry */
+
+  widget = geda_combo_box_new_text_with_entry();
+
+  if (!GEDA_IS_COMBO_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
   return result;
 }
 
@@ -193,14 +216,21 @@ check_accessors ()
   }
   else {
 
-    GedaEntry *entry;
-
-    /* Uses geda_combo_get_entry_widget */
-    entry = geda_combo_get_entry(GEDA_COMBO_BOX(widget));
-
-    if (!GEDA_IS_ENTRY(entry)) {
-      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+    if (!geda_combo_widget_get_has_entry(widget)) {
+      fprintf(stderr, "FAILED: line <%d> _has_entry\n", __LINE__);
       result++;
+    }
+    else {
+
+      GedaEntry *entry;
+
+      /* Uses geda_combo_get_entry_widget */
+      entry = geda_combo_get_entry(GEDA_COMBO_BOX(widget));
+
+      if (!GEDA_IS_ENTRY(entry)) {
+        fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+        result++;
+      }
     }
   }
 
