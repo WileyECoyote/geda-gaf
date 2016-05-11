@@ -151,17 +151,19 @@ int                geda_combo_box_get_entry_text_column  (GedaComboBox        *c
 void               geda_combo_box_set_entry_text_column  (GedaComboBox        *combo_box,
                                                           int                  text_column);
 /* convenience -- text */
-GtkWidget    *geda_combo_box_new_text         (void);
-void          geda_combo_box_append_text      (GedaComboBox   *combo_box,
-                                               const char     *text);
-void          geda_combo_box_insert_text      (GedaComboBox   *combo_box,
-                                               int             position,
-                                               const char     *text);
-void          geda_combo_box_prepend_text     (GedaComboBox   *combo_box,
-                                               const char     *text);
-void          geda_combo_box_remove_index     (GedaComboBox   *combo_box,
-                                               int             position);
-char         *geda_combo_box_get_active_text  (GedaComboBox   *combo_box);
+GtkWidget    *geda_combo_box_new_text            (void);
+GtkWidget    *geda_combo_box_new_text_with_entry (void);
+
+void          geda_combo_box_append_text         (GedaComboBox   *combo_box,
+                                                  const char     *text);
+void          geda_combo_box_insert_text         (GedaComboBox   *combo_box,
+                                                  int             position,
+                                                  const char     *text);
+void          geda_combo_box_prepend_text        (GedaComboBox   *combo_box,
+                                                  const char     *text);
+void          geda_combo_box_remove_index        (GedaComboBox   *combo_box,
+                                                  int             position);
+char         *geda_combo_box_get_active_text     (GedaComboBox   *combo_box);
 
 /* programmatic control */
 void          geda_combo_box_popup                (GedaComboBox *combo_box);

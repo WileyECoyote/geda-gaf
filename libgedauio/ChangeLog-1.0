@@ -3,7 +3,21 @@
     * src/widgets/geda_combobox.c: Fix comments, seem these were pasted from
       GedaComboBoxText, changed GedaComboBoxText to GedaComboBox. Add vapor
       function geda_combo_box_remove_index (was declared in header but did
-      not exist in source, must have felt the need at some point.)
+      not exist in source, must have felt the need at some point.) Add new
+      function geda_combo_box_new_text_with_entry, revise Doxygen comments
+      for geda_combo_box_new_text.
+
+    * tests/test_combobox.c: Add g_object_ref_sink to suppress obstrusive
+      gnoise in logs, add basic checks for:
+
+            * geda_combo_get_entry_widget
+            * geda_combo_widget_get_model
+            * geda_combo_box_new_text
+            * geda_combo_box_append_text
+            * geda_combo_box_prepend_text
+            * geda_combo_box_insert_text
+            * geda_combo_box_append_text
+            * geda_combo_box_remove_index
 
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -5941,15 +5941,21 @@ geda_combo_box_set_model (GedaComboBox *combo_box,
 
 /* convenience API for simple text combos */
 
-/*! \brief Get a New #GedaComboBox with Text column
- *  \par Function Description
+/*!
+ * \brief Get a New #GedaComboBox with Text column
+ * \par Function Description
  * Convenience function which constructs a new text combo box, which is a
  * #GedaComboBox displaying only strings. Only manipulate the data source
- * with the following convenience functions: geda_combo_box_append_text(),
- * geda_combo_box_insert_text(), geda_combo_box_prepend_text() and
- * geda_combo_box_remove_text().
+ * with the following convenience functions:
  *
- * \return A new text combo box.
+ *  <DL>
+ *    <DT>geda_combo_box_append_text()</DT>
+ *    <DT>geda_combo_box_insert_text()</DT>
+ *    <DT>geda_combo_box_prepend_text()</DT>
+ *    <DT>geda_combo_box_remove_text()</DT>
+ *  </DL>
+ *
+ * \returns A new text combo box.
  *
  * \sa #GedaComboBoxText
  */
@@ -5972,8 +5978,44 @@ GtkWidget *geda_combo_box_new_text (void)
   return combo_box;
 }
 
-/*! \brief Append Text to a GedaComboBox
+/*!
+ * \brief Get a New #GedaComboBox with Text column and Entry
+ * \par Function Description
+ *  Constructs a new editable text combo box, which is a #GedaComboBox
+ *  displaying only strings. If you use this function to create a text
+ *  combo box, you should only manipulate its data source with the
+ *  following convenience functions:
  *
+ *  <DL>
+ *    <DT>geda_combo_box_append_text()</DT>
+ *    <DT>geda_combo_box_insert_text()</DT>
+ *    <DT>geda_combo_box_prepend_text()</DT>
+ *    <DT>geda_combo_box_remove_text()</DT>
+ *  </DL>
+ *
+ *  This is a convenience function utilizing geda_combo_box_new_with_
+ *  model_and_entry to create simple editable combo text box by
+ *  adding a GtkListStore with a single single column. For a more
+ *  advanced editable text combo use a #GedaComboBoxText widget.
+ *
+ * \returns A new text #GedaComboBox.
+ *
+ * \sa geda_combo_box_text_new_with_entry
+ */
+GtkWidget*
+geda_combo_box_new_text_with_entry (void)
+{
+  GtkWidget    *entry_box;
+  GtkTreeModel *model;
+
+  model     = GTK_TREE_MODEL(gtk_list_store_new (1, G_TYPE_STRING));
+  entry_box = geda_combo_box_new_with_model_and_entry (model);
+  g_object_unref (model);
+
+  return entry_box;
+}
+
+/*! \brief Append Text to a GedaComboBox
  *  \par Function Description
  *   Appends \a string to the list of strings stored in \a combo_box. Note
  *   that this can only use this function with combo boxes constructed with
