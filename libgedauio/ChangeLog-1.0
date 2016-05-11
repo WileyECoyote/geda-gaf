@@ -1,3 +1,8 @@
+2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Fix comments, seem these were pasted from
+      GedaComboBoxText, changed GedaComboBoxText to GedaComboBox.
+
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: add typedef SeparatorFunc, mainly because

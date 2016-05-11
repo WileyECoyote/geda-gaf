@@ -5972,7 +5972,7 @@ GtkWidget *geda_combo_box_new_text (void)
   return combo_box;
 }
 
-/*! \brief Append Text to a GedaComboTextBox
+/*! \brief Append Text to a GedaComboBox
  *
  *  \par Function Description
  *   Appends \a string to the list of strings stored in \a combo_box. Note
@@ -6002,7 +6002,7 @@ geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
   gtk_list_store_set (store, &iter, 0, text, -1);
 }
 
-/*! \brief Insert Text into a GedaComboTextBox
+/*! \brief Insert Text into a GedaComboBox
  *
  *  \par Function Description
  *  Inserts \a text at \a position in the list of strings stored in \a combo_box.
@@ -6075,7 +6075,7 @@ geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
   }
 }
 
-/*! \brief Remove Text from a GedaComboTextBox
+/*! \brief Remove Text from a GedaComboBox
  *  \par Function Description
  *  Removes the string at \a position from \a combo_box. Note that you can only use
  *  this function with combo boxes constructed with geda_combo_box_new_text().
@@ -6111,7 +6111,7 @@ geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
  *  @{
  */
 
-/*! \brief Get Active GedaComboTextBox Text
+/*! \brief Get Active GedaComboBox Text
  *
  *  \par Function Description
  * Returns the currently active string in \a combo_box or %NULL if none
@@ -6408,7 +6408,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
  *  @{
  */
 
-/*! \brief Get Add Tearoff GedaComboTextBox Property
+/*! \brief Get Add Tearoff GedaComboBox Property
  *
  *  \par Function Description
  *  Gets the current value of the :add-tearoffs property.
@@ -6425,7 +6425,7 @@ geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
   return combo_box->priv->add_tearoffs;
 }
 
-/*! \brief Set Add Tearoff GedaComboTextBox Property
+/*! \brief Set Add Tearoff GedaComboBox Property
  *
  *  \par Function Description
  *  Sets whether the popup menu should have a tearoff
@@ -6449,7 +6449,7 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
   }
 }
 
-/*! \brief Get use Title GedaComboTextBox Property
+/*! \brief Get use Title GedaComboBox Property
  *
  *  \par Function Description
  *  Gets the current title of the menu in tearoff mode. See
@@ -6482,7 +6482,7 @@ geda_combo_box_update_title (GedaComboBox *combo_box)
   }
 }
 
-/*! \brief Set GedaComboTextBox Title Property
+/*! \brief Set GedaComboBox Title Property
  *
  *  \par Function Description
  *
@@ -6516,7 +6516,7 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
   }
 }
 
-/*! \brief Get GedaComboTextBox Popup Accessible object
+/*! \brief Get GedaComboBox Popup Accessible object
  *
  *  \par Function Description
  * Gets the accessible object corresponding to the combo box's popup.
@@ -6545,7 +6545,7 @@ geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
   return atk_obj;
 }
 
-/*! \brief Get GedaComboTextBox Row Seperator function
+/*! \brief Get GedaComboBox Row Seperator function
  *
  *  \par Function Description
  *  Returns the current row separator function.
@@ -6563,7 +6563,7 @@ geda_combo_box_get_row_separator_func (GedaComboBox *combo_box)
   return combo_box->priv->row_separator_func;
 }
 
-/*! \brief Set GedaComboTextBox Row Seperator function
+/*! \brief Set GedaComboBox Row Seperator function
  *
  *  \par Function Description
  *  Sets the row separator function, which is used to determine whether
@@ -6601,7 +6601,7 @@ geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
   gtk_widget_queue_draw (GTK_WIDGET (combo_box));
 }
 
-/*! \brief Set GedaComboTextBox Button Sensitivity
+/*! \brief Set GedaComboBox Button Sensitivity
  *
  *  \par Function Description
  *  Sets whether the dropdown button of the combo box should be
@@ -6627,7 +6627,7 @@ geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
   }
 }
 
-/*! \brief Get GedaComboTextBox Button Sensitivity
+/*! \brief Get GedaComboBox Button Sensitivity
  *
  *  \par Function Description
  *  Returns whether the combo box sets the dropdown button
@@ -6650,7 +6650,7 @@ geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
   return combo_box->priv->button_sensitivity;
 }
 
-/*! \brief Get GedaComboTextBox has Entry
+/*! \brief Get GedaComboBox has Entry
  *
  *  \par Function Description
  *  Returns whether the combo box has an entry.
@@ -6658,7 +6658,7 @@ geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
  *  \param [in] combo_box a #GedaComboBox
  *
  * \return Value: whether there is an entry in \a combo_box.
- **/
+ */
 bool
 geda_combo_box_get_has_entry (GedaComboBox *combo_box)
 {
@@ -6667,6 +6667,19 @@ geda_combo_box_get_has_entry (GedaComboBox *combo_box)
   return combo_box->priv->has_entry;
 }
 
+/*!
+ * \brief Retrieve GedaEntry from a GedaComboBox
+ * \par Function Description
+ *  Returns the combo box entry as a GedaEntry.
+ *
+ * \param [in] combo_box a #GedaComboBox
+ *
+ * \return GedaEntry entry or NULL if the combo has no entry.
+ *
+ * \sa geda_combo_get_entry_widget
+ *     geda_combo_widget_get_entry
+ *     geda_combo_widget_get_entry_widget
+ */
 GedaEntry*
 geda_combo_get_entry (GedaComboBox *combo_box) {
 
@@ -6678,6 +6691,19 @@ geda_combo_get_entry (GedaComboBox *combo_box) {
   return NULL;
 }
 
+/*!
+ * \brief Retrieve Entry Widget from a GedaComboBox
+ * \par Function Description
+ *  Returns the combo box entry as a GtkWidget.
+ *
+ * \param [in] combo_box a #GedaComboBox
+ *
+ * \return entry widget or NULL if the combo has no entry.
+ *
+ * \sa geda_combo_get_entry
+ *     geda_combo_widget_get_entry
+ *     geda_combo_widget_get_entry_widget
+ */
 GtkWidget*
 geda_combo_get_entry_widget (GedaComboBox *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
@@ -6690,7 +6716,7 @@ geda_combo_get_entry_widget (GedaComboBox *combo_box) {
   return NULL;
 }
 
-/*! \brief Get GedaComboTextBox Entry Text Column
+/*! \brief Get GedaComboBox Entry Text Column
  *
  *  \par Function Description
  *  Returns the column which \a combo_box is using to get the strings
@@ -6709,7 +6735,7 @@ geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
   return combo_box->priv->text_column;
 }
 
-/*! \brief Set GedaComboTextBox Entry Text Column
+/*! \brief Set GedaComboBox Entry Text Column
  *
  *  \par Function Description
  *  Sets the model column which \a combo_box should use to get strings from
@@ -6751,7 +6777,7 @@ geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
   }
 }
 
-/*! \brief Set GedaComboTextBox Focus on Click
+/*! \brief Set GedaComboBox Focus on Click
  *
  *  \par Function Description
  *  Sets whether the combo box will grab focus when it is clicked with
@@ -6782,7 +6808,7 @@ geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
   }
 }
 
-/*! \brief Get GedaComboTextBox Focus on Click
+/*! \brief Get GedaComboBox Focus on Click
  *
  *  \par Function Description
  *  Returns whether the combo box grabs focus when it is clicked
