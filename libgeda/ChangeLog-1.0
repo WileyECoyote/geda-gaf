@@ -1,3 +1,7 @@
+2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_box_object.c: Add checks for box object filling options
+
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Restrict setting of fill_type to valid range.

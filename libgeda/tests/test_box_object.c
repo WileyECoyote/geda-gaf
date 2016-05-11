@@ -59,12 +59,12 @@
  *
  *      O0401    geda_box_object_copy
  *      O0402    geda_box_object_get_end_cap
- *               geda_box_object_get_fill_angle1
- *               geda_box_object_get_fill_angle2
- *               geda_box_object_get_fill_pitch1
- *               geda_box_object_get_fill_pitch2
- *               geda_box_object_get_fill_type
- *               geda_box_object_get_fill_width
+ *      O0403    geda_box_object_get_fill_angle1
+ *      O0404    geda_box_object_get_fill_angle2
+ *      O0405    geda_box_object_get_fill_pitch1
+ *      O0406    geda_box_object_get_fill_pitch2
+ *      O0407    geda_box_object_get_fill_type
+ *      O0408    geda_box_object_get_fill_width
  *      O0409    geda_box_object_get_line_length
  *      O0410    geda_box_object_get_line_space
  *      O0411    geda_box_object_get_line_type
@@ -73,8 +73,8 @@
  *      O0414    geda_box_object_get_lower_y
  *      O0415    geda_box_object_get_nearest_point
  *      O0416    geda_box_object_get_position
- *               geda_box_object_get_upper_x
- *               geda_box_object_get_upper_y
+ *      O0417    geda_box_object_get_upper_x
+ *      O0418    geda_box_object_get_upper_y
  *      O0419    geda_box_object_mirror
  *      O0420    geda_box_object_modify
  *      O0421    geda_box_object_modify_all
@@ -91,13 +91,14 @@
  *               geda_box_object_print_solid
  *      O0432    geda_box_object_read
  *      O0433    geda_box_object_rotate
+ *
  *      O0434    geda_box_object_set_end_cap
- *               geda_box_object_set_fill_angle1
- *               geda_box_object_set_fill_angle2
- *               geda_box_object_set_fill_pitch1
- *               geda_box_object_set_fill_pitch2
- *               geda_box_object_set_fill_type
- *               geda_box_object_set_fill_width
+ *      O0435    geda_box_object_set_fill_angle1
+ *      O0436    geda_box_object_set_fill_angle2
+ *      O0437    geda_box_object_set_fill_pitch1
+ *      O0438    geda_box_object_set_fill_pitch2
+ *      O0439    geda_box_object_set_fill_type
+ *      O0440    geda_box_object_set_fill_width
  *      O0441    geda_box_object_set_line_length
  *      O0442    geda_box_object_set_line_space
  *      O0443    geda_box_object_set_line_type
@@ -230,6 +231,36 @@ check_accessors ()
     result++;
   }
 
+  if (geda_box_object_get_fill_angle1(NULL)) {
+    fprintf(stderr, "FAILED: (O040300) %s fill_angle1 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_fill_angle2(NULL)) {
+    fprintf(stderr, "FAILED: (O040400) %s fill_angle2 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_fill_pitch1(NULL)) {
+    fprintf(stderr, "FAILED: (O040500) %s fill_pitch1 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_fill_pitch2(NULL)) {
+    fprintf(stderr, "FAILED: (O040600) %s fill_pitch2 not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_fill_type(NULL)) {
+    fprintf(stderr, "FAILED: (O040700) %s fill_type not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_box_object_get_fill_width(NULL)) {
+    fprintf(stderr, "FAILED: (O040800) %s fill_width not zero\n", TOBJECT);
+    result++;
+  }
+
   if (geda_box_object_get_line_length(NULL)) {
     fprintf(stderr, "FAILED: (O040900) %s line length not zero\n", TOBJECT);
     result++;
@@ -284,6 +315,14 @@ check_accessors ()
     int l = m_random_number (0, 500);
     int p = m_random_number (0, 500);
     int w = m_random_number (0, 500);
+
+    /* Filling options */
+    int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+    int fw  = m_random_number (0, 100);
+    int fa1 = m_random_number (0, 180);
+    int fp1 = m_random_number (0, 500);
+    int fa2 = m_random_number (0, 180);
+    int fp2 = m_random_number (0, 500);
 
     GedaObject *object0 = geda_box_object_new(c, 21, 31, 41, 51);
 
@@ -369,6 +408,101 @@ check_accessors ()
       fprintf(stderr, "FAILED: (O041201) %d != %d\n", value, w);
       fail++;
     }
+
+    /* Check Filling properties */
+
+    geda_box_object_set_fill_angle1 (object0, fa1);
+
+    value = object0->fill_options->fill_angle1;
+    if (value - fa1) {
+      fprintf(stderr, "FAILED: (O043501) %d != %d\n", value, fa1);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_angle1(object0);
+
+    if (value - fa1) {
+      fprintf(stderr, "FAILED: (O040301) %d != %d\n", value, fa1);
+      fail++;
+    }
+
+    geda_box_object_set_fill_angle2 (object0, fa2);
+
+
+    value = object0->fill_options->fill_angle2;
+    if (value - fa2) {
+      fprintf(stderr, "FAILED: (O043601) %d != %d\n", value, fa2);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_angle2(object0);
+
+    if (value - fa2) {
+      fprintf(stderr, "FAILED: (O040401) %d != %d\n", value, fa2);
+      fail++;
+    }
+
+    geda_box_object_set_fill_pitch1 (object0, fp1);
+
+    value = object0->fill_options->fill_pitch1;
+    if (value - fp1) {
+      fprintf(stderr, "FAILED: (O043701) %d != %d\n", value, fp1);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_pitch1(object0);
+
+    if (value - fp1) {
+      fprintf(stderr, "FAILED: (O040501) %d != %d\n", value, fp1);
+      fail++;
+    }
+
+    geda_box_object_set_fill_pitch2 (object0, fp2);
+
+    value = object0->fill_options->fill_pitch2;
+    if (value - fp2) {
+      fprintf(stderr, "FAILED: (O043801) %d != %d\n", value, fp2);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_pitch2(object0);
+
+    if (value - fp2) {
+      fprintf(stderr, "FAILED: (O040601) %d != %d\n", value, fp2);
+      fail++;
+    }
+
+    geda_box_object_set_fill_type (object0, ft);
+
+    value = object0->fill_options->fill_type;
+    if (value - ft) {
+      fprintf(stderr, "FAILED: (O043901) %d != %d\n", value, ft);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_type(object0);
+
+    if (value - ft) {
+      fprintf(stderr, "FAILED: (O040701) %d != %d\n", value, ft);
+      fail++;
+    }
+
+    geda_box_object_set_fill_width (object0, fw);
+
+    value = object0->fill_options->fill_width;
+    if (value - fw) {
+      fprintf(stderr, "FAILED: (O044001) %d != %d\n", value, fw);
+      fail++;
+    }
+
+    value = geda_box_object_get_fill_width(object0);
+
+    if (value - fw) {
+      fprintf(stderr, "FAILED: (O040801) %d != %d\n", value, fw);
+      fail++;
+    }
+
+    /* Check Coordinate properties */
 
     geda_box_object_set_lower_x (object0, x1);
 
