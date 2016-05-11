@@ -1,7 +1,9 @@
 2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Fix comments, seem these were pasted from
-      GedaComboBoxText, changed GedaComboBoxText to GedaComboBox.
+      GedaComboBoxText, changed GedaComboBoxText to GedaComboBox. Add vapor
+      function geda_combo_box_remove_index (was declared in header but did
+      not exist in source, must have felt the need at some point.)
 
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 

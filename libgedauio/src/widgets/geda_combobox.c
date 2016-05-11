@@ -6043,7 +6043,37 @@ geda_combo_box_insert_text (GedaComboBox *combo_box,
   }
 }
 
-/*! \brief Prepend Text to a GedaComboTextBox
+void
+geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
+{
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+  g_return_if_fail (GTK_IS_LIST_STORE (combo_box->priv->model));
+
+  if (position >= 0) {
+
+    GtkTreeIter   iter;
+    GtkTreeModel *model;
+    int index = 0;
+    int next  = 0;
+
+    model = combo_box->priv->model;
+
+    next = gtk_tree_model_get_iter_first (model, &iter);
+
+    while (next) {
+
+      if (index == position) {
+        gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+        break;
+      }
+
+      next = gtk_tree_model_iter_next (model, &iter);
+      index ++;
+    }
+  }
+}
+
+/*! \brief Prepend Text to a GedaComboBox
  *
  *  \par Function Description
  *  Prepends \a string to the list of strings stored in \a combo_box. Note that
