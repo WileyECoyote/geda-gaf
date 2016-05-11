@@ -1,3 +1,11 @@
+2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_combobox.h: add typedef SeparatorFunc, mainly because
+      GtkTreeViewRowSeparatorFunc is ridiculously long, remove reference to
+      GEDA_DISABLE_DEPRECATED.
+
+    * tests/test_combobox.c: Add additional checks for
+
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add functions geda_entry_select_all and

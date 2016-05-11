@@ -40,6 +40,8 @@ typedef enum
   GEDA_VIEW_MENU,
 } IDE_COMBO_VIEW_STYLE;
 
+typedef GtkTreeViewRowSeparatorFunc SeparatorFunc;
+
 #define GEDA_TYPE_COMBO_BOX             (geda_combo_box_get_type ())
 #define GEDA_COMBO_BOX(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX, GedaComboBox))
 #define GEDA_COMBO_BOX_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
@@ -130,11 +132,11 @@ GtkTreeModel *geda_combo_box_get_model              (GedaComboBox    *combo_box)
 void          geda_combo_box_set_model              (GedaComboBox    *combo_box,
                                                      GtkTreeModel    *model);
 
-GtkTreeViewRowSeparatorFunc geda_combo_box_get_row_separator_func (GedaComboBox               *combo_box);
-void                        geda_combo_box_set_row_separator_func (GedaComboBox               *combo_box,
-                                                                   GtkTreeViewRowSeparatorFunc func,
-                                                                   void                       *data,
-                                                                   GDestroyNotify              destroy);
+SeparatorFunc geda_combo_box_get_row_separator_func (GedaComboBox    *combo_box);
+void          geda_combo_box_set_row_separator_func (GedaComboBox    *combo_box,
+                                                     SeparatorFunc    func,
+                                                     void            *data,
+                                                     GDestroyNotify   destroy);
 
 void               geda_combo_box_set_button_sensitivity (GedaComboBox        *combo_box,
                                                           GtkSensitivityType   sensitivity);
@@ -148,9 +150,6 @@ GtkWidget         *geda_combo_get_entry_widget           (GedaComboBox        *c
 int                geda_combo_box_get_entry_text_column  (GedaComboBox        *combo_box);
 void               geda_combo_box_set_entry_text_column  (GedaComboBox        *combo_box,
                                                           int                  text_column);
-
-#if !defined (GEDA_DISABLE_DEPRECATED) || defined (GEDA_COMPILATION)
-
 /* convenience -- text */
 GtkWidget    *geda_combo_box_new_text         (void);
 void          geda_combo_box_append_text      (GedaComboBox   *combo_box,
@@ -163,8 +162,6 @@ void          geda_combo_box_prepend_text     (GedaComboBox   *combo_box,
 void          geda_combo_box_remove_index     (GedaComboBox   *combo_box,
                                                int             position);
 char         *geda_combo_box_get_active_text  (GedaComboBox   *combo_box);
-
-#endif
 
 /* programmatic control */
 void          geda_combo_box_popup                (GedaComboBox *combo_box);
