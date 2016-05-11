@@ -286,7 +286,7 @@ extern "C" {
          void    geda_circle_object_rotate            (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_circle_object_set_center_x      (GedaObject *object, int x);
          void    geda_circle_object_set_center_y      (GedaObject *object, int y);
-         void    geda_circle_object_set_radius        (GedaObject *object, int y);
+         void    geda_circle_object_set_radius        (GedaObject *object, int r);
          void    geda_circle_object_translate         (GedaObject *object, int dx, int dy);
 
 /* o_complex_object.c */

@@ -533,4 +533,104 @@ bool is_a_geda_circle (const GedaCircle *cir)
 {
   return GEDA_IS_OBJECT(cir) && (((GedaObject*)cir)->type == OBJ_CIRCLE);
 }
+
+/*!
+ * \brief Retrieve Ordinate of an GedaCircle center coordinate
+ * \par Function Description
+ *  Returns the current center X value of \a circle if and only
+ *  if \a circle is a valid GedaCircle object.
+ *
+ * \return integer value of center X or 0 if \a circle is invalid.
+ *
+ * \sa geda_circle_object_get_center_x
+ */
+int
+geda_circle_get_center_x (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->center_x;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve abscisa of an GedaCircle center coordinate
+ * \par Function Description
+ *  Returns the current center Y value of \a circle if and only
+ *  if \a circle is a valid GedaCircle object.
+ *
+ * \return integer value of center Y or 0 if \a circle is invalid.
+ *
+ * \sa geda_circle_object_get_center_x
+ */
+int
+geda_circle_get_center_y (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->center_y;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the radius of a GedaCircle
+ * \par Function Description
+ *  Returns the current radius value of \a circle if and only if
+ * \a circle is a valid GedaCircle object.
+ *
+ * \return integer value of radius or 0 if \a circle is invalid.
+ *
+ * \sa geda_circle_object_get_radius
+ */
+int
+geda_circle_get_radius (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->radius;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Set the center X of a GedaCircle
+ * \par Function Description
+ *  Sets the abscissa of \a circle center if \a circle is a valid
+ *  Gedacircle, if \a circle is invalid then nothing is done.
+ *
+ * \sa geda_circle_object_set_center_x
+ */
+void
+geda_circle_set_center_x (GedaCircle *circle, int x) {
+  if (is_a_geda_circle(circle)) {
+    circle->center_x = x;
+  }
+}
+
+/*!
+ * \brief Set the Y center value of a GedaCircle
+ * \par Function Description
+ *  Sets the ordinate of \a circle if \a circle is a valid
+ *  GedaCircle, if \a circle is invalid then nothing is done.
+ *
+ * \sa geda_circle_object_set_center_y
+ */
+void
+geda_circle_set_center_y (GedaCircle *circle, int y) {
+  if (is_a_geda_circle(circle)) {
+    circle->center_y = y;
+  }
+}
+
+/*!
+ * \brief Set the radius of a GedaCircle
+ * \par Function Description
+ *  Sets the radius of \a circle if \a circle is a valid
+ *  GedaCircle, if \a circle is invalid then nothing is done.
+ *
+ * \sa geda_circle_object_set_radius
+ */
+void
+geda_circle_set_radius (GedaCircle *circle, int radius) {
+  if (is_a_geda_circle(circle)) {
+    circle->radius = radius;
+  }
+}
+
 /** @} endgroup geda-circle-object */

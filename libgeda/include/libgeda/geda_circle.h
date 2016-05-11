@@ -69,6 +69,14 @@ GedaObjectType geda_circle_get_type         (void);
 bool           is_a_geda_circle             (const GedaCircle *circle);
 GedaObject    *geda_circle_new              (void);
 
+int            geda_circle_get_center_x     (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_center_y     (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_radius       (const GedaCircle *circle) WARN_UNUSED;
+
+void           geda_circle_set_center_x     (GedaCircle *circle, int x);
+void           geda_circle_set_center_y     (GedaCircle *circle, int y);
+void           geda_circle_set_radius       (GedaCircle *circle, int r);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
