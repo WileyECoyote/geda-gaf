@@ -2938,7 +2938,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     break;
   case GEDA_RESPONSE_ACCEPT:
     textentry = GEDA_OBJECT_GET_DATA(Dialog,IDS_TRANSLATE);
-    string = GetEntryText( textentry );
+    string = geda_entry_widget_get_text(textentry);
     if (strlen(string) != 0) {
       o_complex_translate_all(w_current, atoi(string));
     }
@@ -2989,11 +2989,10 @@ void x_dialog_translate (GschemToplevel *w_current)
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
-    textentry = gtk_entry_new_with_max_length (TRANSLATE_DIALOG_MAX_ENTRY);
-    SetEntryText( textentry, "0" );
+    textentry = geda_entry_new_with_max_length (TRANSLATE_DIALOG_MAX_ENTRY);
+    geda_entry_widget_set_text( textentry, "0" );
     EntrySelectAll(textentry);
-
-    gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
+    geda_entry_widget_set_activates_default(textentry, TRUE);
     gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);

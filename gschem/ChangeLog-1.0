@@ -7,6 +7,8 @@
 
     * src/x/x_console.c: Replace g_strndup with geda_utility_string_strndup.
 
+    * src/x/x_dialog.c: Replace GtkEntry with GedaEntry in x_dialog_translate.
+
     * src/x/x_rc.c: Replace g_strndup with geda_utility_string_strndup.
 
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
