@@ -13,6 +13,30 @@
             * geda_combo_widget_get_has_entry
             * geda_combo_get_entry_widget
             * geda_combo_widget_get_model
+            * geda_combo_box_set_wrap_width
+            * geda_combo_box_get_wrap_width
+            * geda_combo_box_set_wrap_width
+            * geda_combo_box_get_wrap_width
+            * geda_combo_box_set_row_span_column
+            * geda_combo_box_get_row_span_column
+            * geda_combo_widget_set_row_span_column
+            * geda_combo_widget_get_row_span_column
+            * geda_combo_box_set_column_span_column
+            * geda_combo_box_get_column_span_column
+            * geda_combo_widget_set_column_span_column
+            * geda_combo_widget_get_column_span_column
+            * geda_combo_box_set_add_tearoffs
+            * geda_combo_box_get_add_tearoffs
+            * geda_combo_widget_set_add_tearoffs
+            * geda_combo_widget_get_add_tearoffs
+            * geda_combo_box_set_title
+            * geda_combo_box_get_title
+            * geda_combo_widget_set_title
+            * geda_combo_widget_get_title
+            * geda_combo_box_set_focus_on_click
+            * geda_combo_box_get_focus_on_click
+            * geda_combo_widget_set_focus_on_click
+            * geda_combo_widget_get_focus_on_click
             * geda_combo_box_new_text
             * geda_combo_box_new_text_with_entry
             * geda_combo_box_append_text
