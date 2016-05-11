@@ -7,7 +7,7 @@
  *  \brief Tests for geda_circle.c module
  */
 
-int test_circle (void)
+int check_circle (void)
 {
   int result = 0;
 
@@ -102,6 +102,108 @@ int test_circle (void)
 }
 
 int
+check_accessors (void)
+{
+  int result = 0;
+
+  GedaObject *object = geda_circle_new();
+
+  if (!GEDA_IS_CIRCLE(object->circle)) {
+    fprintf(stderr, "is a %s Failed at line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaCircle *circle = object->circle;
+
+    int count;
+    int fail;
+    int value;
+
+    fail = 0;
+
+    for (count = 0; count < 10; count++) {
+
+      int x  = m_random_number ( 0,   105000);
+      int y  = m_random_number ( 0,    65000);
+      int r  = m_random_number ( 100,  15000);
+
+      /* Line type options
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int w = m_random_number (0, 500); */
+
+      /* Filling options
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500); */
+
+      geda_circle_set_center_x(circle, x);
+
+      value = circle->center_x;
+      if (value - x) {
+        fprintf(stderr, "FAILED: geda_circle_set_center_x %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = geda_circle_get_center_x(circle);
+      if (value - x) {
+        fprintf(stderr, "FAILED: geda_circle_get_center_x %d != %d\n", value, x);
+        fail++;
+      }
+
+      geda_circle_set_center_y(circle, y);
+
+      value = circle->center_y;
+      if (value - y) {
+        fprintf(stderr, "FAILED: geda_circle_set_center_y %d != %d\n", value, y);
+        fail++;
+      }
+
+      value = geda_circle_get_center_y(circle);
+      if (value - y) {
+        fprintf(stderr, "FAILED: geda_circle_get_center_y %d != %d\n", value, y);
+        fail++;
+      }
+
+      geda_circle_set_radius(circle, r);
+
+      value = circle->radius;
+      if (value - r) {
+        fprintf(stderr, "FAILED: geda_circle_set_radius %d != %d\n", value, r);
+        fail++;
+      }
+
+      value = geda_circle_get_radius(circle);
+      if (value - r) {
+        fprintf(stderr, "FAILED: geda_circle_get_radius %d != %d\n", value, r);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\tcenter-x: %d\n", x);
+        fprintf(stderr, "\tcenter-y: %d\n", y);
+        fprintf(stderr, "\t  radius: %d\n", r);
+
+        result = fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -111,7 +213,9 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_circle();
+  result = check_circle();
+
+  result += check_accessors();
 
   return result > 0;
 }
