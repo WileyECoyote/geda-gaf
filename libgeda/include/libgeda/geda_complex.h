@@ -66,17 +66,35 @@ struct _GedaComplex {
 
   int    angle;                /* orientation in degrees */
 
-  int    mirror;
+  bool   mirror;
 
   GList *pin_objs;             /* A list of pins belonging to this complex */
   GList *prim_objs;            /* Primitive objects which make up the complex */
 };
 
-GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
-bool           is_a_geda_complex        (const GedaComplex *complex);
+GedaObjectType geda_complex_get_type        (void) GEDA_CONST;
+bool           is_a_geda_complex            (const GedaComplex *complex);
 
-GedaObject    *geda_complex_new         (void);
-bool           geda_complex_append      (GedaComplex *complex, GedaObject *object);
+GedaObject    *geda_complex_new             (void);
+bool           geda_complex_append          (GedaComplex *complex, GedaObject *object);
+
+int            geda_complex_get_angle       (const GedaComplex *complex) WARN_UNUSED;
+char          *geda_complex_get_filename    (const GedaComplex *complex) WARN_UNUSED;
+bool           geda_complex_get_is_embedded (const GedaComplex *complex) WARN_UNUSED;
+bool           geda_complex_get_is_mirror   (const GedaComplex *complex) WARN_UNUSED;
+GList         *geda_complex_get_pin_objs    (const GedaComplex *complex) WARN_UNUSED;
+GList         *geda_complex_get_prim_objs   (const GedaComplex *complex) WARN_UNUSED;
+int            geda_complex_get_x           (const GedaComplex *complex) WARN_UNUSED;
+int            geda_complex_get_y           (const GedaComplex *complex) WARN_UNUSED;
+
+void           geda_complex_set_angle       (GedaComplex *complex, int angle);
+void           geda_complex_set_filename    (GedaComplex *complex, const char *filename);
+void           geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded);
+void           geda_complex_set_is_mirror   (GedaComplex *complex, bool is_mirror);
+void           geda_complex_set_pin_objs    (GedaComplex *complex, GList *pin_objs);
+void           geda_complex_set_prim_objs   (GedaComplex *complex, GList *prim_objs);
+void           geda_complex_set_x           (GedaComplex *complex, int x);
+void           geda_complex_set_y           (GedaComplex *complex, int y);
 
 #ifdef __cplusplus
 }

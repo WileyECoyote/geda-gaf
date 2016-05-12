@@ -168,8 +168,9 @@ static void geda_complex_finalize(GObject *object)
   GedaComplex *complex = GEDA_COMPLEX(object);
   GedaObject  *obj     = GEDA_OBJECT(object);
 
-  if (complex->filename)
+  if (complex->filename) {
     GEDA_FREE(complex->filename);
+  }
 
   if (complex->pin_objs) {
     g_list_free (complex->pin_objs);
@@ -259,7 +260,8 @@ GedaObjectType geda_complex_get_type (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_complex (const GedaComplex *cpx)
+bool
+is_a_geda_complex (const GedaComplex *cpx)
 {
  if (GEDA_IS_OBJECT (cpx)) {
    GedaObject *obj = (GedaObject*)cpx;
@@ -268,40 +270,6 @@ bool is_a_geda_complex (const GedaComplex *cpx)
 
  return FALSE;
 
-}
-
-/*! \brief Appends an Object to a Complex object
- *
- *  \par Function Description
- *  Appends \a object to the complex's list of prim_objs and sets the
- *  parent_object member of \a object to that of the complex's parent
- *  object. If \a object is a pin object then the pin is also appended
- *  to the complex's list of pin_objs.
- *
- *  \note This method is for special purposes and proably not what you
- *        want! Object appended using this method are not saved with the
- *        schematic! To attach attributes to a complex, see function
- *        geda_attrib_object_attach!
- *
- *  \return pointer to the new Complex object.
- */
-bool geda_complex_append (GedaComplex *complex, GedaObject *object)
-{
- if (GEDA_IS_COMPLEX (complex)) {
-
-   if (GEDA_IS_OBJECT (object) && !GEDA_IS_COMPLEX (object)) {
-
-     if (GEDA_IS_PIN(object)) {
-       complex->pin_objs = g_list_append(complex->pin_objs, object);
-     }
-
-     complex->prim_objs = g_list_append (complex->prim_objs, object);
-     object->parent_object = &complex->parent_instance;
-     return TRUE;
-   }
- }
-
- return FALSE;
 }
 
 /*! \brief Returns a pointer to a new Complex object.
@@ -321,6 +289,183 @@ geda_complex_new (void)
   return GEDA_OBJECT(complex);
 }
 
+/*! \brief Appends an Object to a Complex object
+ *
+ *  \par Function Description
+ *  Appends \a object to the complex's list of prim_objs and sets the
+ *  parent_object member of \a object to that of the complex's parent
+ *  object. If \a object is a pin object then the pin is also appended
+ *  to the complex's list of pin_objs.
+ *
+ *  \note This method is for special purposes and probably not what you
+ *        want! Object appended using this method are not saved with the
+ *        schematic! To attach attributes to a complex, see function
+ *        geda_attrib_object_attach!
+ *
+ *  \return pointer to the new Complex object.
+ */
+bool geda_complex_append (GedaComplex *complex, GedaObject *object)
+{
+ if (is_a_geda_complex (complex)) {
 
+   if (GEDA_IS_OBJECT (object) && !GEDA_IS_COMPLEX (object)) {
+
+     if (GEDA_IS_PIN(object)) {
+       complex->pin_objs = g_list_append(complex->pin_objs, object);
+     }
+
+     complex->prim_objs = g_list_append (complex->prim_objs, object);
+     object->parent_object = &complex->parent_instance;
+     return TRUE;
+   }
+ }
+
+ return FALSE;
+}
+
+int
+geda_complex_get_angle (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->angle;
+  }
+  return -0;
+}
+
+char*
+geda_complex_get_filename (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->filename;
+  }
+  return NULL;
+}
+
+bool
+geda_complex_get_is_embedded (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->is_embedded;
+  }
+  return FALSE;
+}
+
+bool
+geda_complex_get_is_mirror (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->mirror;
+  }
+  return FALSE;
+}
+
+GList*
+geda_complex_get_pin_objs (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->pin_objs;
+  }
+  return NULL;
+}
+
+GList*
+geda_complex_get_prim_objs (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->prim_objs;
+  }
+  return NULL;
+}
+
+int
+geda_complex_get_x (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->x;
+  }
+  return -0;
+}
+
+int
+geda_complex_get_y (const GedaComplex *complex)
+{
+  if (is_a_geda_complex(complex)) {
+    return complex->y;
+  }
+  return -0;
+}
+
+void
+geda_complex_set_angle (GedaComplex *complex, int angle)
+{
+  if (is_a_geda_complex(complex)) {
+    complex->angle = angle;
+  }
+}
+
+void
+geda_complex_set_filename (GedaComplex *complex, const char *filename)
+{
+  if (is_a_geda_complex(complex)) {
+    if (complex->filename) {
+      GEDA_FREE(complex->filename);
+    }
+    complex->filename = geda_strdup(filename);
+  }
+}
+
+void
+geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
+{
+  if (is_a_geda_complex(complex)) {
+    complex->is_embedded = is_embedded;
+  }
+}
+
+void
+geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
+{
+  if (is_a_geda_complex(complex)) {
+    complex->mirror = is_mirror;
+  }
+}
+
+void
+geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
+{
+  if (is_a_geda_complex(complex)) {
+    if (complex->pin_objs) {
+      g_list_free (complex->pin_objs);
+    }
+    complex->pin_objs = pin_objs;
+  }
+}
+
+void
+geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
+{
+  if (is_a_geda_complex(complex)) {
+    if (complex->prim_objs) {
+      g_list_free (complex->prim_objs);
+    }
+    complex->prim_objs = prim_objs;
+  }
+}
+
+void
+geda_complex_set_x (GedaComplex *complex, int x)
+{
+  if (is_a_geda_complex(complex)) {
+    complex->x = x;
+  }
+}
+
+void
+geda_complex_set_y (GedaComplex *complex, int y)
+{
+  if (is_a_geda_complex(complex)) {
+    complex->y = y;
+  }
+}
 
 /** @} endgroup geda-complex-object */
