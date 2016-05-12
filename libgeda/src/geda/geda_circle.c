@@ -573,6 +573,106 @@ geda_circle_get_center_y (const GedaCircle *circle) {
 }
 
 /*!
+ * \brief Retrieve End Cap type Property of an GedaCircle
+ * \par Function Description
+ *  Returns the value of \a circle end-cap type if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of end-cap type or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_end_cap
+ */
+int
+geda_circle_get_end_cap (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->line_options.line_end;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Length Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a circle line length property if and only if
+ *  \a circle is a valid GedaCircle object. The is not the length of the circle
+ *  the line-length property controls the length of line segments for
+ *  line types dashed, center and phantom, to get the "length" of
+ *  a line see m_line_length.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \return integer value of line length or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_line_length
+ */
+int
+geda_circle_get_line_length (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->line_options.line_length;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Space Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a circle line space property if and only if \a circle
+ *  is a valid GedaCircle object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \return integer value of line space or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_line_space
+ */
+int
+geda_circle_get_line_space (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->line_options.line_space;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Type Property of an Arc
+ * \par Function Description
+ *  Returns the value of \a circle line type if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of line type or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_line_type
+ */
+int
+geda_circle_get_line_type (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->line_options.line_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Width Property of an Arc
+ * \par Function Description
+ *  Returns the value of the \a circle line width property if and only if \a circle
+ *  is a valid GedaCircle object.
+ *
+ * \return integer value of line width or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_line_width
+ */
+int
+geda_circle_get_line_width (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->line_options.line_width;
+  }
+  return -0;
+}
+
+/*!
  * \brief Retrieve the radius of a GedaCircle
  * \par Function Description
  *  Returns the current radius value of \a circle if and only if
@@ -617,6 +717,94 @@ void
 geda_circle_set_center_y (GedaCircle *circle, int y) {
   if (is_a_geda_circle(circle)) {
     circle->center_y = y;
+  }
+}
+
+/*!
+ * \brief Set the End Cap type Property of a GedaCircle
+ * \par Function Description
+ *  Sets the value of \a circle end-cap type if and only if \a circle is
+ *  a valid GedaCircle object. The line-end properties is only applicable
+ *  for fill types FILLING_MESH and FILLING_HATCH.
+ *
+ * \sa geda_circle_get_end_cap
+ */
+void
+geda_circle_set_end_cap (GedaCircle *circle, int line_end) {
+  if (is_a_geda_circle(circle)) {
+    circle->line_options.line_end = line_end < END_NONE ? END_NONE :
+                                    line_end > END_VOID ? END_VOID :
+                                    line_end;
+  }
+}
+
+/*!
+ * \brief Set the Line Length Property of an GedaCircle
+ * \par Function Description
+ *  Returns the value of the \a circle line length property if and only if
+ *  \a circle is a valid GedaCircle object. The line-length property controls
+ *  the length of line segments for line types dashed, center and phantom.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \sa geda_circle_get_line_length
+ */
+void
+geda_circle_set_line_length (GedaCircle *circle, int line_length) {
+  if (is_a_geda_circle(circle)) {
+    circle->line_options.line_length = line_length > 0 ? line_length : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Space Property of an Arc
+ * \par Function Description
+ *  Sets the value of the \a circle line space property if and only if \a circle
+ *  is a valid GedaCircle object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \sa geda_circle_get_line_space
+ */
+void
+geda_circle_set_line_space (GedaCircle *circle, int space) {
+  if (is_a_geda_circle(circle)) {
+    circle->line_options.line_space = space > 0 ? space : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Type Property of an Arc
+ * \par Function Description
+ *  Sets the value of \a circle line type if and only if \a circle is a
+ *  valid GedaCircle object.
+ *
+ * \sa geda_circle_get_line_type
+ */
+void
+geda_circle_set_line_type (GedaCircle *circle, int line_type) {
+  if (is_a_geda_circle(circle)) {
+    circle->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
+                                  line_type > TYPE_ERASE ? TYPE_ERASE :
+                                  line_type;
+  }
+}
+
+/*!
+ * \brief Set the End Width Property of an Arc
+ * \par Function Description
+ *  Sets the value of the \a circle line width property if and only if \a circle
+ *  is a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_line_width
+ */
+void
+geda_circle_set_line_width (GedaCircle *circle, int width) {
+  if (is_a_geda_circle(circle)) {
+    circle->line_options.line_width = width > 0 ? width : 0;
   }
 }
 
