@@ -351,6 +351,8 @@ static void geda_circle_class_init(void *g_class, void *class_data)
                              0,
                              (G_PARAM_READWRITE));
 
+  g_object_class_install_property (object_class, PROP_RADIUS, params);
+
   /* Gedacircles have some line-type properties but are not derived from
    * GedaLine therefore these properties must be defined for the GedaCircle... */
 
