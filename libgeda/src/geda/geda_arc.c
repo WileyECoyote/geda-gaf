@@ -27,10 +27,10 @@
  */
 
 /*! \file geda_arc.c
- *  \brief Geda Arc Object Class Module
+ *  \brief GedaArc Class Module
  */
 
-/** \defgroup geda-arc-object Geda Arc Object
+/** \defgroup geda-arc-object GedaArc Object
  * @{
  * \brief Implmentation of #GedaArc Class
  * \par
@@ -195,7 +195,7 @@ geda_arc_dispose(GObject *object)
   G_OBJECT_CLASS(geda_arc_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Arc Object Finalization Function
+/*! \brief GedaArc Finalization Function
  *  \par Function Description
  *   This function invalidates the Arc's markers and then chains up to
  *   the parent's finalize handler. Once invalidated, GEDA_IS_ARC will
@@ -640,7 +640,7 @@ is_a_geda_arc (const GedaArc *arc)
 }
 
 /*!
- * \brief Retrieve arc_sweep value from a Geda Arc Object
+ * \brief Retrieve arc_sweep value from a GedaArc
  * \par Function Description
  *  Returns the current arc_sweep value of \a arc if and only if
  *  \a arc is a valid GedaArc object.
@@ -925,7 +925,7 @@ geda_arc_get_position (const GedaArc *arc, int *x, int *y)
 }
 
 /*!
- * \brief Retrieve the radius of a Geda Arc Object
+ * \brief Retrieve the radius of a GedaArc
  * \par Function Description
  *  Returns the current radius value of \a arc if and only if
  * \a arc is a valid GedaArc object.
@@ -943,7 +943,7 @@ geda_arc_get_radius (const GedaArc *arc) {
 }
 
 /*!
- * \brief Retrieve start_angle of a Geda Arc Object
+ * \brief Retrieve start_angle of a GedaArc
  * \par Function Description
  *  Returns the current start_angle of \a arc if and only if
  * \a arc is a valid GedaArc object.
@@ -961,7 +961,7 @@ geda_arc_get_start_angle (const GedaArc *arc) {
 }
 
 /*!
- * \brief Set the sweep of a Geda Arc Object
+ * \brief Set the sweep of a GedaArc
  * \par Function Description
  *  Sets the current arc_sweep of \a arc if \a arc is a valid Geda
  *  Arc object, if \a arc is invalid then nothing is done.
@@ -976,7 +976,7 @@ geda_arc_set_arc_sweep (GedaArc *arc, int sweep) {
 }
 
 /*!
- * \brief Set the center X of a Geda Arc Object
+ * \brief Set the center X of a GedaArc
  * \par Function Description
  *  Sets the abscissa of \a arc center if \a arc is a valid Geda
  *  Arc object, if \a arc is invalid then nothing is done.
@@ -991,7 +991,7 @@ geda_arc_set_center_x (GedaArc *arc, int x) {
 }
 
 /*!
- * \brief Set the Y center value of a Geda Arc Object
+ * \brief Set the Y center value of a GedaArc
  * \par Function Description
  *  Sets the ordinate of \a arc if \a arc is a valid Geda Arc
  *  object, if \a arc is invalid then nothing is done.
@@ -1185,7 +1185,7 @@ geda_arc_set_line_width (GedaArc *arc, int width) {
 }
 
 /*!
- * \brief Set the position of a Geda Arc Object
+ * \brief Set the position of a GedaArc
  * \par Function Description
  *  Sets the radius of \a arc if \a arc is a valid Geda Arc
  *  object, if \a arc is invalid then nothing is done.
@@ -1201,7 +1201,7 @@ geda_arc_set_position (GedaArc *arc, int x, int y) {
 }
 
 /*!
- * \brief Set the radius of a Geda Arc Object
+ * \brief Set the radius of a GedaArc
  * \par Function Description
  *  Sets the radius of \a arc if \a arc is a valid Geda Arc
  *  object, if \a arc is invalid then nothing is done.
@@ -1216,7 +1216,7 @@ geda_arc_set_radius (GedaArc *arc, int radius) {
 }
 
 /*!
- * \brief Set the start_angle of a Geda Arc Object
+ * \brief Set the start_angle of a GedaArc
  * \par Function Description
  *  Sets the starting angle of \a arc if \a arc is a valid Geda
  *  Arc object, if \a arc is invalid then nothing is done.

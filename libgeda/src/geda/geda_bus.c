@@ -27,7 +27,7 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_bus.c
- *  \brief GedaBus Object Class Module
+ *  \brief GedaBus Class Module
  */
 
 /** \defgroup geda-bus-object GedaBus Object
@@ -346,7 +346,7 @@ geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
 }
 
 /*!
- * \brief Set the First X coordinate of a GedaBus Object
+ * \brief Set the First X coordinate of a GedaBus
  * \par Function Description
  *  Sets the first X of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
@@ -359,7 +359,7 @@ geda_bus_set_x0 (GedaBus *bus, int x) {
 }
 
 /*!
- * \brief Set the Second X coordinate of a GedaBus Object
+ * \brief Set the Second X coordinate of a GedaBus
  * \par Function Description
  *  Sets the second X of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
@@ -372,7 +372,7 @@ geda_bus_set_x1 (GedaBus *bus, int x) {
 }
 
 /*!
- * \brief Set the First Y coordinate of a GedaBus Object
+ * \brief Set the First Y coordinate of a GedaBus
  * \par Function Description
  *  Sets the first Y of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
@@ -385,7 +385,7 @@ geda_bus_set_y0 (GedaBus *bus, int y) {
 }
 
 /*!
- * \brief Set the Second Y coordinate of a GedaBus Object
+ * \brief Set the Second Y coordinate of a GedaBus
  * \par Function Description
  *  Sets the second Y of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.

@@ -255,7 +255,7 @@ GedaObjectType geda_complex_get_type (void)
 /*! \brief Determine if object is a Geda Complex GedaObject.
  *
  *  \par Function Description
- *  Returns true if the argument is a Geda Complex object.
+ *  Returns true if the argument is a GedaComplex.
  *
  *  \return boolean.
  */

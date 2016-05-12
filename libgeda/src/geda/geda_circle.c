@@ -27,16 +27,16 @@
  *  Date Contributed: November, 18, 2013
  */
 /*! \file geda_circle.c
- *  \brief Geda Circle Object Class Module
+ *  \brief GedaCircle Class Module
  */
 
-/** \defgroup geda-circle-object Geda Circle Object
+/** \defgroup geda-circle-object GedaCircle Object
  * @{
  * \brief Implmentation of #GedaCircle Class
  * \par
- *  A Geda Circle Object is a graphical object that does not involve
- *  electrical interconnections. Circles have line-type and fill-type
- *  properties and are derived from the GedaObject base class.
+ *  A GedaCircle is a graphical object that does not involve electrical
+ *  interconnections. Circles have line-type and fill-type properties
+ *  and are derived from the GedaObject base class.
  *
  * \class GedaCircle geda_circle.h "include/libgeda/geda_circle.h"
  * \implements geda-object
@@ -524,7 +524,7 @@ GedaObject *geda_circle_new (void)
   return GEDA_OBJECT(circle);
 }
 
-/*! \brief Determine if object is a Geda Circle Object.
+/*! \brief Determine if object is a GedaCircle.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Circle object.

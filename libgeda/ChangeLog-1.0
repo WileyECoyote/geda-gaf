@@ -1,3 +1,14 @@
+2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_arc.c: Revise comments to eliminate the word "Object"
+      to  avoid confusion with the Arc object module.
+
+    * src/geda/geda_box.c: Revise comments to eliminate the word Object.
+
+    * src/geda/geda_bus.c: Revise comments to eliminate the word Object.
+
+    * src/geda/geda_circle.c: Add missing radius property.
+
 2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_circle.c: Add getters and setters for GedaCircle properties.

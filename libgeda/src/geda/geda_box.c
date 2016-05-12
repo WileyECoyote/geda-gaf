@@ -1018,7 +1018,7 @@ geda_box_set_line_width (GedaBox *box, int width) {
 }
 
 /*!
- * \brief Set the Lower X value of a GedaBox Object
+ * \brief Set the Lower X value of a GedaBox
  * \par Function Description
  *  Sets the lower X of \a box if \a box is a valid GedaBox
  *  object, if \a box is invalid then nothing is done.
@@ -1033,7 +1033,7 @@ geda_box_set_lower_x (GedaBox *box, int x) {
 }
 
 /*!
- * \brief Set the Lower Y value of a GedaBox Object
+ * \brief Set the Lower Y value of a GedaBox
  * \par Function Description
  *  Sets the lower Y value of \a box if \a box is a valid
  *  GedaBox object, if \a box is invalid then nothing is done.
@@ -1048,7 +1048,7 @@ geda_box_set_lower_y (GedaBox *box, int y) {
 }
 
 /*!
- * \brief Set the Upper X value of a GedaBox Object
+ * \brief Set the Upper X value of a GedaBox
  * \par Function Description
  *  Sets the upper x of \a box if \a box is a valid GedaBox
  *  object, if \a box is invalid then nothing is done.
@@ -1063,7 +1063,7 @@ geda_box_set_upper_x (GedaBox *box, int x) {
 }
 
 /*!
- * \brief Set the Upper Y value of a GedaBox Object
+ * \brief Set the Upper Y value of a GedaBox
  * \par Function Description
  *  Sets the upper Y value of \a box if \a box is a valid
  *  GedaBox object, if \a box is invalid then nothing is done.
