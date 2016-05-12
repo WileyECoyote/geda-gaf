@@ -70,6 +70,7 @@ print_current_folder (GtkFileChooser *chooser)
   char *uri;
 
   uri = gtk_file_chooser_get_current_folder_uri (chooser);
+
   g_print ("Current folder changed :\n  %s\n", uri ? uri : "(null)");
   g_free (uri);
 }
@@ -81,34 +82,34 @@ print_selected (GtkFileChooser *chooser)
   GSList *tmp_list;
 
   g_print ("Selection changed :\n");
-  for (tmp_list = uris; tmp_list; tmp_list = tmp_list->next)
-    {
+
+  for (tmp_list = uris; tmp_list; tmp_list = tmp_list->next) {
       char *uri = tmp_list->data;
       g_print ("  %s\n", uri);
       g_free (uri);
-    }
+  }
+
   g_print ("\n");
   g_slist_free (uris);
 }
 
 static void
-response_cb (GtkDialog *dialog,
-         gint       response_id)
+response_cb (GtkDialog *dialog, int response_id)
 {
-  if (response_id == GEDA_RESPONSE_OK)
-    {
+  if (response_id == GEDA_RESPONSE_OK) {
+
       GSList *list;
 
       list = gtk_file_chooser_get_uris (GTK_FILE_CHOOSER (dialog));
 
-      if (list)
-    {
+      if (list) {
+
       GSList *l;
 
       g_print ("Selected files:\n");
 
-      for (l = list; l; l = l->next)
-        {
+      for (l = list; l; l = l->next) {
+
           g_print ("%s\n", (char *) l->data);
           g_free (l->data);
         }
@@ -133,34 +134,42 @@ filter_changed (GtkFileChooserDialog *dialog, void *data)
 static char *
 format_time (time_t t)
 {
-  char buf[128];
+  char   buf[128];
   struct tm tm_buf;
   time_t now = time (NULL);
   const char *format;
 
-  if (abs (now - t) < 24*60*60)
+  if (abs (now - t) < 24*60*60) {
     format = "%X";
-  else
+  }
+  else {
     format = "%x";
+  }
 
   localtime_r (&t, &tm_buf);
-  if (strftime (buf, sizeof (buf), format, &tm_buf) == 0)
+
+  if (strftime (buf, sizeof (buf), format, &tm_buf) == 0) {
     return g_strdup ("<unknown>");
-  else
+  }
+  else {
     return g_strdup (buf);
+  }
 }
 
 static char *
 format_size (gint64 size)
 {
-  if (size < (gint64)1024)
+  if (size < (gint64)1024) {
     return g_strdup_printf ("%d bytes", (gint)size);
-  else if (size < (gint64)1024*1024)
+  }
+  else if (size < (gint64)1024*1024) {
     return g_strdup_printf ("%.1f K", size / (1024.));
-  else if (size < (gint64)1024*1024*1024)
+  }
+  else if (size < (gint64)1024*1024*1024) {
     return g_strdup_printf ("%.1f M", size / (1024.*1024.));
-  else
-    return g_strdup_printf ("%.1f G", size / (1024.*1024.*1024.));
+  }
+
+  return g_strdup_printf ("%.1f G", size / (1024.*1024.*1024.));
 }
 
 #include <stdio.h>
@@ -178,10 +187,12 @@ size_prepared_cb (GdkPixbufLoader *loader,
 
     if (des_height >= height && des_width >= width) {
         /* Nothing */
-    } else if ((double)height * des_width > (double)width * des_height) {
+    }
+    else if ((double)height * des_width > (double)width * des_height) {
         width = 0.5 + (double)width * des_height / (double)height;
         height = des_height;
-    } else {
+    }
+    else {
         height = 0.5 + (double)height * des_width / (double)width;
         width = des_width;
     }
@@ -191,9 +202,9 @@ size_prepared_cb (GdkPixbufLoader *loader,
 
 GdkPixbuf *
 my_new_from_file_at_size (const char *filename,
-              int         width,
-              int         height,
-              GError    **error)
+                          int         width,
+                          int         height,
+                          GError    **error)
 {
     GdkPixbufLoader *loader;
     GdkPixbuf       *pixbuf;
@@ -218,20 +229,22 @@ my_new_from_file_at_size (const char *filename,
         return NULL;
     }
 
-    if (!S_ISREG (st.st_mode))
+    if (!S_ISREG (st.st_mode)) {
         return NULL;
+    }
 
     f = fopen (filename, "rb");
     if (!f) {
-                int errsv = errno;
 
-                g_set_error (error,
-                             G_FILE_ERROR,
-                             g_file_error_from_errno (errsv),
-                             _("Failed to open file '%s': %s"),
-                             filename, g_strerror (errsv));
-        return NULL;
-        }
+      int errsv = errno;
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   g_file_error_from_errno (errsv),
+                   _("Failed to open file '%s': %s"),
+                     filename, g_strerror (errsv));
+                   return NULL;
+    }
 
     loader = gdk_pixbuf_loader_new ();
 #ifdef DONT_PRESERVE_ASPECT
@@ -243,19 +256,22 @@ my_new_from_file_at_size (const char *filename,
 #endif
 
     while (!feof (f)) {
-        length = fread (buffer, 1, sizeof (buffer), f);
-        if (length > 0)
-            if (!gdk_pixbuf_loader_write (loader, buffer, length, error)) {
-                    gdk_pixbuf_loader_close (loader, NULL);
-                fclose (f);
-                g_object_unref (loader);
-                return NULL;
-            }
+
+      length = fread (buffer, 1, sizeof (buffer), f);
+
+      if (length > 0)
+        if (!gdk_pixbuf_loader_write (loader, buffer, length, error)) {
+          gdk_pixbuf_loader_close (loader, NULL);
+          fclose (f);
+          g_object_unref (loader);
+          return NULL;
+        }
     }
 
     fclose (f);
 
     g_assert (*error == NULL);
+
     if (!gdk_pixbuf_loader_close (loader, error)) {
         g_object_unref (loader);
         return NULL;
@@ -291,85 +307,83 @@ update_preview_cb (GtkFileChooser *chooser)
   char *filename = gtk_file_chooser_get_preview_filename (chooser);
   int have_preview = FALSE;
 
-  if (filename)
-    {
-      GdkPixbuf *pixbuf;
-      GError *error = NULL;
+  if (filename) {
 
-      pixbuf = my_new_from_file_at_size (filename, 128, 128, &error);
-      if (pixbuf)
-    {
+    GdkPixbuf *pixbuf;
+    GError *error = NULL;
+
+    pixbuf = my_new_from_file_at_size (filename, 128, 128, &error);
+
+    if (pixbuf) {
+
       gtk_image_set_from_pixbuf (GTK_IMAGE (preview_image), pixbuf);
       g_object_unref (pixbuf);
       gtk_widget_show (preview_image);
       gtk_widget_hide (preview_label);
       have_preview = TRUE;
     }
-      else
-    {
+    else {
+
       struct stat buf;
-      if (stat (filename, &buf) == 0)
-        {
-          char *preview_text;
-          char *size_str;
-          char *modified_time;
+      if (stat (filename, &buf) == 0) {
 
-          size_str = format_size (buf.st_size);
-          modified_time = format_time (buf.st_mtime);
+        char *preview_text;
+        char *size_str;
+        char *modified_time;
 
-          preview_text = g_strdup_printf ("<i>Modified:</i>\t%s\n"
-                          "<i>Size:</i>\t%s\n",
-                          modified_time,
-                          size_str);
-          gtk_label_set_markup (GTK_LABEL (preview_label), preview_text);
-          g_free (modified_time);
-          g_free (size_str);
-          g_free (preview_text);
+        size_str = format_size (buf.st_size);
+        modified_time = format_time (buf.st_mtime);
 
-          gtk_widget_hide (preview_image);
-          gtk_widget_show (preview_label);
-          have_preview = TRUE;
-        }
+        preview_text = g_strdup_printf ("<i>Modified:</i>\t%s\n"
+        "<i>Size:</i>\t%s\n",
+        modified_time,
+        size_str);
+        gtk_label_set_markup (GTK_LABEL (preview_label), preview_text);
+        g_free (modified_time);
+        g_free (size_str);
+        g_free (preview_text);
+
+        gtk_widget_hide (preview_image);
+        gtk_widget_show (preview_label);
+        have_preview = TRUE;
+      }
     }
 
-      g_free (filename);
+    g_free (filename);
 
-      if (error)
-    g_error_free (error);
-    }
+    if (error)
+      g_error_free (error);
+  }
 
   gtk_file_chooser_set_preview_widget_active (chooser, have_preview);
 }
 
 static void
-set_current_folder (GtkFileChooser *chooser,
-            const char     *name)
+set_current_folder (GtkFileChooser *chooser, const char *name)
 {
-  if (!gtk_file_chooser_set_current_folder (chooser, name))
-    {
-      GtkWidget *dialog;
+  if (!gtk_file_chooser_set_current_folder (chooser, name)) {
 
-      dialog = gtk_message_dialog_new (GTK_WINDOW (chooser),
-                       GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                       GTK_MESSAGE_ERROR,
-                       GTK_BUTTONS_CLOSE,
-                       "Could not set the folder to %s",
-                       name);
-      gtk_dialog_run (GTK_DIALOG (dialog));
-      gtk_widget_destroy (dialog);
-    }
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new (GTK_WINDOW (chooser),
+                                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     "Could not set the folder to %s",
+                                     name);
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+  }
 }
 
 static void
-set_folder_nonexistent_cb (GtkButton      *button,
-               GtkFileChooser *chooser)
+set_folder_nonexistent_cb (GtkButton *button, GtkFileChooser *chooser)
 {
   set_current_folder (chooser, "/nonexistent");
 }
 
 static void
-set_folder_existing_nonexistent_cb (GtkButton      *button,
-                    GtkFileChooser *chooser)
+set_folder_existing_nonexistent_cb (GtkButton *button, GtkFileChooser *chooser)
 {
   set_current_folder (chooser, "/usr/nonexistent");
 }
@@ -393,15 +407,13 @@ set_filename (GtkWidget *chooser, const char *name)
 }
 
 static void
-set_filename_nonexistent_cb (GtkButton       *button,
-                             GedaFileChooser *chooser)
+set_filename_nonexistent_cb (GtkButton *button, GedaFileChooser *chooser)
 {
   set_filename (GTK_WIDGET(chooser), "/nonexistent");
 }
 
 static void
-set_filename_existing_nonexistent_cb (GtkButton       *button,
-                                      GedaFileChooser *chooser)
+set_filename_existing_nonexistent_cb (GtkButton *button, GedaFileChooser *chooser)
 {
   set_filename (GTK_WIDGET(chooser), "/usr/nonexistent");
 }
@@ -421,9 +433,7 @@ kill_dependent (GtkWindow *win, GtkObject *dep)
 }
 
 static void
-notify_multiple_cb (GtkWidget  *dialog,
-                    GParamSpec *pspec,
-                    GtkWidget  *button)
+notify_multiple_cb (GtkWidget *dialog, GParamSpec *pspec, GtkWidget *button)
 {
   int multiple;
 
@@ -659,4 +669,3 @@ main (int argc, char **argv)
 
   return 0;
 }
-
