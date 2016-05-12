@@ -208,7 +208,10 @@ check_accessors ()
 {
   int result = 0;
 
-  GtkWidget *widget = geda_combo_box_new_with_entry();
+  GtkWidget    *widget;
+  GtkTreeModel *model = GTK_TREE_MODEL(gtk_list_store_new (2, G_TYPE_INT, G_TYPE_INT));
+
+  widget = geda_combo_box_new_with_model_and_entry (model);
 
   if (!GEDA_IS_COMBO_BOX(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -232,10 +235,150 @@ check_accessors ()
         result++;
       }
     }
+
+    /* wrap width */
+    int width = g_random_int_range (0, 4 * GEDA_COMBO_DEFAULT_WRAP);
+
+    geda_combo_box_set_wrap_width (GEDA_COMBO_BOX(widget), width);
+
+    if (geda_combo_box_get_wrap_width (GEDA_COMBO_BOX(widget)) != width) {
+      fprintf(stderr, "FAILED: line <%d> wrap width\n", __LINE__);
+      result++;
+    }
+
+    width = g_random_int_range (0, 4 * GEDA_COMBO_DEFAULT_WRAP);
+
+    geda_combo_widget_set_wrap_width (widget, width);
+
+    if (geda_combo_widget_get_wrap_width (widget) != width) {
+      fprintf(stderr, "FAILED: line <%d> widget wrap_width\n", __LINE__);
+      result++;
+    }
+
+    /* row span */
+
+    int rs = 1;
+
+    geda_combo_box_set_row_span_column (GEDA_COMBO_BOX(widget), rs);
+
+    if (geda_combo_box_get_row_span_column (GEDA_COMBO_BOX(widget)) != rs) {
+      fprintf(stderr, "FAILED: line <%d> row span\n", __LINE__);
+      result++;
+    }
+
+    rs = 0;
+
+    geda_combo_widget_set_row_span_column (widget, rs);
+
+    if (geda_combo_widget_get_row_span_column (widget) != rs) {
+      fprintf(stderr, "FAILED: line <%d> widget row span\n", __LINE__);
+      result++;
+    }
+
+    /* column span */
+
+    int cs = 1;
+
+    geda_combo_box_set_column_span_column (GEDA_COMBO_BOX(widget), cs);
+
+    if (geda_combo_box_get_column_span_column (GEDA_COMBO_BOX(widget)) != cs) {
+      fprintf(stderr, "FAILED: line <%d> column span\n", __LINE__);
+      result++;
+    }
+
+    cs = 2;
+
+    geda_combo_widget_set_column_span_column (widget, cs);
+
+    if (geda_combo_widget_get_column_span_column (widget) != cs) {
+      fprintf(stderr, "FAILED: line <%d> widget column span\n", __LINE__);
+      result++;
+    }
+
+    /* add tearoffs */
+
+    geda_combo_box_set_add_tearoffs (GEDA_COMBO_BOX(widget), TRUE);
+
+    if (!geda_combo_box_get_add_tearoffs (GEDA_COMBO_BOX(widget))) {
+      fprintf(stderr, "FAILED: line <%d> add tearoffs\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_box_set_add_tearoffs (GEDA_COMBO_BOX(widget), FALSE);
+
+    if (geda_combo_box_get_add_tearoffs (GEDA_COMBO_BOX(widget))) {
+      fprintf(stderr, "FAILED: line <%d> add tearoffs\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_widget_set_add_tearoffs (widget, TRUE);
+
+    if (!geda_combo_widget_get_add_tearoffs (widget)) {
+      fprintf(stderr, "FAILED: line <%d> widget add tearoffs\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_widget_set_add_tearoffs (widget, FALSE);
+
+    if (geda_combo_widget_get_add_tearoffs (widget)) {
+      fprintf(stderr, "FAILED: line <%d> widget add tearoffs\n", __LINE__);
+      result++;
+    }
+
+    /* Title */
+
+    geda_combo_box_set_title (GEDA_COMBO_BOX(widget), TWIDGET);
+
+    const char *title = geda_combo_box_get_title(GEDA_COMBO_BOX(widget));
+
+    if (strcmp(title, TWIDGET)) {
+      fprintf(stderr, "FAILED: line <%d> title\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_widget_set_title (widget, NULL);
+
+    title = geda_combo_widget_get_title(widget);
+
+    if (!strcmp(title, TWIDGET)) {
+      fprintf(stderr, "FAILED: line <%d> widget title\n", __LINE__);
+      result++;
+    }
+
+    /* focus-on-click */
+
+    geda_combo_box_set_focus_on_click (GEDA_COMBO_BOX(widget), TRUE);
+
+    if (!geda_combo_box_get_focus_on_click (GEDA_COMBO_BOX(widget))) {
+      fprintf(stderr, "FAILED: line <%d> focus-on-click\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_box_set_focus_on_click (GEDA_COMBO_BOX(widget), FALSE);
+
+    if (geda_combo_box_get_focus_on_click (GEDA_COMBO_BOX(widget))) {
+      fprintf(stderr, "FAILED: line <%d> focus-on-click\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_widget_set_focus_on_click (widget, TRUE);
+
+    if (!geda_combo_widget_get_focus_on_click (widget)) {
+      fprintf(stderr, "FAILED: line <%d> focus-on-click\n", __LINE__);
+      result++;
+    }
+
+    geda_combo_widget_set_focus_on_click (widget, FALSE);
+
+    if (geda_combo_widget_get_focus_on_click (widget)) {
+      fprintf(stderr, "FAILED: line <%d> focus-on-click\n", __LINE__);
+      result++;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
+  g_object_unref(model);     /* Destroy the model */
 
   widget = geda_combo_box_new_text();
 
@@ -326,6 +469,75 @@ check_accessors ()
   return result;
 }
 
+static int changed = 0;
+
+static void combo_changed (GedaComboBox *combo)
+{
+  changed++;
+}
+
+int
+check_overides ()
+{
+  int result = 0;
+
+  GedaComboBoxClass *combo_class;
+
+  GtkWidget *widget = geda_combo_box_new_text_with_entry();
+
+  combo_class = GEDA_COMBO_BOX_GET_CLASS(widget);
+
+  combo_class->changed = combo_changed;
+
+  geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
+
+  /* This should trigger the "changed" */
+  geda_combo_widget_set_active(widget, 1);
+
+  if (!changed) {
+    fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+static void
+on_changed (GedaComboBox *combo, void *nothing)
+{
+  changed++;
+}
+
+int
+check_signals ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_combo_box_new_text_with_entry();
+
+  g_signal_connect (widget, "changed", G_CALLBACK (on_changed), NULL);
+
+  geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
+
+  changed = 0;
+
+  /* This should trigger the "changed" signal */
+  geda_combo_widget_set_active(widget, 1);
+
+  if (!changed) {
+    fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -355,6 +567,22 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result += check_overides();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking overides in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result += check_signals();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking signals in %s\n\n", MUT);
         return 1;
       }
     }

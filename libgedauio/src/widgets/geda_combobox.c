@@ -5486,6 +5486,8 @@ geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
  * \param [in] combo_box
  *
  * \returns: the wrap width.
+ *
+  * \sa geda_combo_widget_get_wrap_width
  */
 int
 geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
@@ -5495,15 +5497,17 @@ geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
   return combo_box->priv->wrap_width;
 }
 
-/*! \brief Set #GedaComboBox Wrap Width
- *
- *  \par Function Description
+/*!
+ * \brief Set #GedaComboBox Wrap Width
+ * \par Function Description
  *  Sets the wrap width of \a combo_box to be \a width. The wrap width is
  *  basically the preferred number of columns when you want the popup to
  *  be layed out in a table.
  *
- *  \param [in] combo_box A #GedaComboBox
- *  \param [in] width     Preferred number of columns
+ * \param [in] combo_box A #GedaComboBox
+ * \param [in] width     Preferred number of columns
+ *
+ * \sa geda_combo_widget_set_wrap_width
  */
 void
 geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
@@ -5530,15 +5534,16 @@ geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
   }
 }
 
-/*! \brief Get #GedaComboBox Row Span
- *
- *  \par Function Description
- * Returns the column with row span information for \a combo_box.
+/*!
+ * \brief Get #GedaComboBox Row Span
+ * \par Function Description
+ *  Returns the column with row span information for \a combo_box.
  *
  *  \param [in] combo_box A #GedaComboBox
  *
  * \returns: the row span column.
  *
+ * \sa geda_combo_widget_get_row_span_column
  */
 int geda_combo_box_get_row_span_column (GedaComboBox *combo_box)
 {
@@ -5550,12 +5555,14 @@ int geda_combo_box_get_row_span_column (GedaComboBox *combo_box)
 /*! \brief Set #GedaComboBox Row Span
  *
  *  \par Function Description
- *  Sets the column with row span information for \a combo_box to be \a row_span.
- *  The row span column contains integers which indicate how many rows
- *  an item should span.
+ *  Sets the column with row span information for \a combo_box to
+ *  be \a row_span. The row span column contains integers which
+ *  indicate how many rows an item should span.
  *
  *  \param [in] combo_box A #GedaComboBox.
  *  \param [in] row_span  A column in the model passed during construction.
+ *
+ * \sa geda_combo_widget_set_row_span_column
  */
 void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
                                          int           row_span)
@@ -5581,15 +5588,16 @@ void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
   }
 }
 
-/*! \brief Get #GedaComboBox Column Span
- *
- *  \par Function Description
+/*!
+ * \brief Get #GedaComboBox Column Span
+ * \par Function Description
  * Returns the column with column span information for \a combo_box.
  *
- *  \param [in] combo_box  A #GedaComboBox.
+ * \param [in] combo_box  A #GedaComboBox.
  *
- *  \returns: the column span column.
+ * \returns the column span column.
  *
+ * \sa geda_combo_widget_get_column_span_column
  */
 int
 geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
@@ -5608,10 +5616,12 @@ geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
  *
  *  \param [in] combo_box   A #GedaComboBox
  *  \param [in] column_span A column in the model passed during construction
+ *
+ * \sa geda_combo_widget_set_column_span_column
  */
 void
 geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
-                                      int         column_span)
+                                       int           column_span)
 {
   GedaComboBoxData *priv;
   int col;
@@ -5622,7 +5632,7 @@ geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
 
   col = gtk_tree_model_get_n_columns (priv->model);
 
-  g_return_if_fail (column_span >= -1 && column_span < col);
+  g_return_if_fail (column_span >= -1 && column_span <= col);
 
   if (column_span != priv->col_column) {
 
@@ -6480,14 +6490,16 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
  *  @{
  */
 
-/*! \brief Get Add Tearoff GedaComboBox Property
- *
- *  \par Function Description
+/*!
+ * \brief Get Add Tearoff GedaComboBox Property
+ * \par Function Description
  *  Gets the current value of the :add-tearoffs property.
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  *
- * \return value: the current value of the :add-tearoffs property.
+ * \returns current value of the add-tearoffs property.
+ *
+ * \sa geda_combo_widget_get_add_tearoffs
  */
 bool
 geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
@@ -6497,14 +6509,15 @@ geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
   return combo_box->priv->add_tearoffs;
 }
 
-/*! \brief Set Add Tearoff GedaComboBox Property
+/*!
+ * \brief Set Add Tearoff GedaComboBox Property
+ * \par Function Description
+ *  Sets whether the popup menu should have a tearoff menu item.
  *
- *  \par Function Description
- *  Sets whether the popup menu should have a tearoff
- *  menu item.
+ * \param [in] combo_box    a #GedaComboBox
+ * \param [in] add_tearoffs %TRUE to add tearoff menu items
  *
- *  \param [in] combo_box    a #GedaComboBox
- *  \param [in] add_tearoffs %TRUE to add tearoff menu items
+ * \sa geda_combo_widget_set_add_tearoffs
  */
 void
 geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
@@ -6521,17 +6534,19 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
   }
 }
 
-/*! \brief Get use Title GedaComboBox Property
- *
- *  \par Function Description
+/*!
+ * \brief Get use Title GedaComboBox Property
+ * \par Function Description
  *  Gets the current title of the menu in tearoff mode. See
  *  geda_combo_box_set_add_tearoffs().
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  *
- *  \returns Internal copy of menu's title string in tearoff mode
+ * \returns Internal copy of menu's title string in tearoff mode
  *
- *  \warning The returned string s NOT be freed.
+ * \warning The returned string should NOT be freed.
+ *
+ * \sa geda_combo_widget_get_title
  */
 const char*
 geda_combo_box_get_title (GedaComboBox *combo_box)
@@ -6554,14 +6569,15 @@ geda_combo_box_update_title (GedaComboBox *combo_box)
   }
 }
 
-/*! \brief Set GedaComboBox Title Property
+/*!
+ * \brief Set GedaComboBox Title Property
+ * \par Function Description
+ *  Sets the menu's title in tearoff mode.
  *
- *  \par Function Description
- *
- * Sets the menu's title in tearoff mode.
- *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  * \param [in] title: a title for the menu in tearoff mode
+ *
+ * \sa geda_combo_widget_set_title
  */
 void
 geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
@@ -7052,6 +7068,19 @@ geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
   return FALSE;
 }
 
+/*!
+ * \brief Retrieve GedaEntry from a GedaComboBox Widget
+ * \par Function Description
+ *  Returns the combo box entry as a GedaEntry.
+ *
+ * \param [in] combo_box a #GedaComboBox widget
+ *
+ * \return GedaEntry entry or NULL if the combo has no entry.
+ *
+ * \sa geda_combo_get_entry
+ *     geda_combo_get_entry_widget
+ *     geda_combo_widget_get_entry_widget
+ */
 GedaEntry*
 geda_combo_widget_get_entry (GtkWidget *combo_box) {
 
@@ -7063,6 +7092,19 @@ geda_combo_widget_get_entry (GtkWidget *combo_box) {
   return NULL;
 }
 
+/*!
+ * \brief Retrieve Entry Widget from a GedaComboBox Widget
+ * \par Function Description
+ *  Returns the combo box entry as a GtkWidget.
+ *
+ * \param [in] combo_box a #GedaComboBox widget
+ *
+ * \return entry widget or NULL if the combo has no entry.
+ *
+ * \sa geda_combo_get_entry
+ *     geda_combo_get_entry_widget
+ *     geda_combo_widget_get_entry
+ */
 GtkWidget*
 geda_combo_widget_get_entry_widget (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
