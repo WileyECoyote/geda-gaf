@@ -9,6 +9,8 @@
 
     * src/geda/geda_circle.c: Add missing radius property.
 
+    * tests/test_circle.c: Add checks for gobject properties.
+
 2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_circle.c: Add getters and setters for GedaCircle properties.

@@ -102,6 +102,246 @@ int check_circle (void)
 }
 
 int
+check_properties (void)
+{
+  int result = 0;
+
+  GedaObject *object = geda_circle_new();
+
+  if (!GEDA_IS_CIRCLE(object->circle)) {
+    fprintf(stderr, "is a %s Failed at line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaCircle *circle = object->circle;
+
+    int count;
+    int fail;
+    int value;
+
+    fail = 0;
+
+    for (count = 0; count < 10; count++) {
+
+      int x  = m_random_number ( 0,   105000);
+      int y  = m_random_number ( 0,    65000);
+      int r  = m_random_number ( 100,  15000);
+
+      /* Line type options */
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int l = m_random_number (0, 500);
+
+      /* Filling options */
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500);
+
+      g_object_set(circle, "center-x",    x,
+                           "center-y",    y,
+                           "radius",      r,
+                            NULL);
+
+      int rr, rx, ry;
+
+      g_object_get(circle, "center-x",    &rx,
+                           "center-y",    &ry,
+                           "radius",      &rr,
+                            NULL);
+
+      value = circle->center_x;
+      if (value - x) {
+        fprintf(stderr, "FAILED: %s set center x property %d != %d\n", TOBJECT, value, x);
+        fail++;
+      }
+      else if (rx - x) {
+        fprintf(stderr, "FAILED: %s get center x property %d != %d\n", TOBJECT, rx, x);
+        fail++;
+      }
+
+      value = circle->center_y;
+      if (value - y) {
+        fprintf(stderr, "FAILED: %s set center y property %d != %d\n", TOBJECT, value, y);
+        fail++;
+      }
+      else if (ry - y) {
+        fprintf(stderr, "FAILED: %s get center y property %d != %d\n", TOBJECT, rx, y);
+        fail++;
+      }
+
+      value = circle->radius;
+      if (value - r) {
+        fprintf(stderr, "FAILED: %s set radius property %d != %d\n", TOBJECT, value, r);
+        fail++;
+      }
+      else if (rr - r) {
+        fprintf(stderr, "FAILED: %s get radius property %d != %d\n", TOBJECT, rx, r);
+        fail++;
+      }
+
+      /* Check line type properties */
+
+      g_object_set(circle, "end-cap",     e,
+                           "line-type",   t,
+                           "line-width",  w,
+                           "line-space",  p,
+                           "line-length", l,
+                            NULL);
+
+      int re, rt, rw, rp, rl;
+
+      g_object_get(circle, "end-cap",     &re,
+                           "line-type",   &rt,
+                           "line-width",  &rw,
+                           "line-space",  &rp,
+                           "line-length", &rl,
+                            NULL);
+
+      value = circle->line_options.line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: %s set end-cap property %d != %d\n", TOBJECT, value, e);
+        fail++;
+      }
+      else if (re - e) {
+        fprintf(stderr, "FAILED: %s get end-cap property %d != %d\n", TOBJECT, rx, e);
+        fail++;
+      }
+
+      value = circle->line_options.line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: %s set line-type property %d != %d\n", TOBJECT, value, t);
+        fail++;
+      }
+      else if (rt - t) {
+        fprintf(stderr, "FAILED: %s get line-type property %d != %d\n", TOBJECT, rt, t);
+        fail++;
+      }
+
+      value = circle->line_options.line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: %s set line-width property %d != %d\n", TOBJECT, value, w);
+        fail++;
+      }
+      else if (rw - w) {
+        fprintf(stderr, "FAILED: %s get line-width property %d != %d\n", TOBJECT, rw, w);
+        fail++;
+      }
+
+      value = circle->line_options.line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: %s set line-space property %d != %d\n", TOBJECT, value, p);
+        fail++;
+      }
+      else if (rp - p) {
+        fprintf(stderr, "FAILED: %s get line-space property %d != %d\n", TOBJECT, rp, p);
+        fail++;
+      }
+
+      value = circle->line_options.line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: %s set line-length property %d != %d\n", TOBJECT, value, l);
+        fail++;
+      }
+      else if (rl - l) {
+        fprintf(stderr, "FAILED: %s get line-length property %d != %d\n", TOBJECT, rl, l);
+        fail++;
+      }
+
+      /* Check Filling properties */
+
+      g_object_set(circle, "fill-type",   ft,
+                           "fill-width",  fw,
+                           "fill-angle1", fa1,
+                           "fill-pitch1", fp1,
+                           "fill-angle2", fa2,
+                           "fill-pitch2", fp2,
+                            NULL);
+
+      int rft, rfw, rfa1, rfp1, rfa2, rfp2;
+
+      g_object_get(circle, "fill-type",   &rft,
+                           "fill-width",  &rfw,
+                           "fill-angle1", &rfa1,
+                           "fill-pitch1", &rfp1,
+                           "fill-angle2", &rfa2,
+                           "fill-pitch2", &rfp2,
+                            NULL);
+
+      value = circle->fill_options.fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: %s set fill-type property %d != %d\n", TOBJECT, value, ft);
+        fail++;
+      }
+      else if (rft - ft) {
+        fprintf(stderr, "FAILED: %s get fill-type property %d != %d\n", TOBJECT, rft, ft);
+        fail++;
+      }
+
+      value = circle->fill_options.fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: %s set fill-width property %d != %d\n", TOBJECT, value, fw);
+        fail++;
+      }
+      else if (rfw - fw) {
+        fprintf(stderr, "FAILED: %s get fill-width property %d != %d\n", TOBJECT, rfw, fw);
+        fail++;
+      }
+
+      value = circle->fill_options.fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: %s set fill-angle1 property %d != %d\n", TOBJECT, value, fa1);
+        fail++;
+      }
+      else if (rfa1 - fa1) {
+        fprintf(stderr, "FAILED: %s get fill-angle1 property %d != %d\n", TOBJECT, rfa1, fa1);
+        fail++;
+      }
+
+      value = circle->fill_options.fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: %s set fill-angle2 property %d != %d\n", TOBJECT, value, fa2);
+        fail++;
+      }
+      else if (rfa2 - fa2) {
+        fprintf(stderr, "FAILED: %s get fill-angle2 property %d != %d\n", TOBJECT, rfa1, fa2);
+        fail++;
+      }
+
+      value = circle->fill_options.fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: %s set fill-pitch1 property %d != %d\n", TOBJECT, value, fp1);
+        fail++;
+      }
+      else if (rfp1 - fp1) {
+        fprintf(stderr, "FAILED: %s get fill-pitch1 property %d != %d\n", TOBJECT, rfp1, fp1);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t   center x: %d\n", x);
+        fprintf(stderr, "\t   center y: %d\n", y);
+        fprintf(stderr, "\t     radius: %d\n", r);
+
+        result = fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+int
 check_accessors (void)
 {
   int result = 0;
@@ -214,6 +454,8 @@ main (int argc, char *argv[])
 #endif
 
   result = check_circle();
+
+  result += check_properties();
 
   result += check_accessors();
 
