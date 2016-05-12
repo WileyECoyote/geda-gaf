@@ -10,7 +10,8 @@
     * src/geda/geda_circle.c: Add missing radius property and getters and
       setters for filling options.
 
-    * tests/test_circle.c: Add checks for gobject properties.
+    * tests/test_circle.c: Add checks for gobject properties and filling
+      options accessors.
 
 2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -368,12 +368,12 @@ check_accessors (void)
       int y  = m_random_number ( 0,    65000);
       int r  = m_random_number ( 100,  15000);
 
-      /* Line type options
+      /* Line type options */
       int e = m_random_number (END_NONE, END_ROUND);
       int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
       int l = m_random_number (0, 500);
       int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500); */
+      int w = m_random_number (0, 500);
 
       /* Filling options
       int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
@@ -422,6 +422,83 @@ check_accessors (void)
       value = geda_circle_get_radius(circle);
       if (value - r) {
         fprintf(stderr, "FAILED: geda_circle_get_radius %d != %d\n", value, r);
+        fail++;
+      }
+
+      /* Check line type properties */
+
+      geda_circle_set_end_cap (circle, e);
+
+      value = circle->line_options.line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: geda_circle_set_end_cap %d != %d\n", value, e);
+        fail++;
+      }
+
+      value = geda_circle_get_end_cap(circle);
+
+      if (value - e) {
+        fprintf(stderr, "FAILED: geda_circle_get_end_cap %d != %d\n", value, e);
+        fail++;
+      }
+
+      geda_circle_set_line_length (circle, l);
+
+      value = circle->line_options.line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: geda_circle_set_line_length %d != %d\n", value, l);
+        fail++;
+      }
+
+      value = geda_circle_get_line_length(circle);
+
+      if (value - l) {
+        fprintf(stderr, "FAILED: geda_circle_get_line_length %d != %d\n", value, l);
+        fail++;
+      }
+
+      geda_circle_set_line_space (circle, p);
+
+      value = circle->line_options.line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: geda_circle_set_line_space %d != %d\n", value, p);
+        fail++;
+      }
+
+      value = geda_circle_get_line_space(circle);
+
+      if (value - p) {
+        fprintf(stderr, "FAILED: geda_circle_get_line_space %d != %d\n", value, p);
+        fail++;
+      }
+
+      geda_circle_set_line_type (circle, t);
+
+      value = circle->line_options.line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_circle_set_line_type %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_circle_get_line_type(circle);
+
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_circle_get_line_type %d != %d\n", value, t);
+        fail++;
+      }
+
+      geda_circle_set_line_width (circle, w);
+
+      value = circle->line_options.line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: geda_circle_set_line_width %d != %d\n", value, w);
+        fail++;
+      }
+
+      value = geda_circle_get_line_width(circle);
+
+      if (value - w) {
+        fprintf(stderr, "FAILED: geda_circle_get_line_width %d != %d\n", value, w);
         fail++;
       }
 
