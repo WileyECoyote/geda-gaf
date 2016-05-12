@@ -1,3 +1,11 @@
+2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62061-1.sym: Add symbol TPS62061, Synchronous Step-down
+      Converter,1.6A,3MHz,Fixed 1.8Volts.
+
+    * ti/switchreg/TPS62063-1.sym: Add symbol TPS62063, Synchronous Step-down
+      Converter,1.6A,3MHz,Fixed 3.3Volts.
+
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/AT45DB021B-1.sym: Remove package footprint from file name, update
