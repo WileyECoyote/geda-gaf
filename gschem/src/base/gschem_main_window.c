@@ -108,7 +108,7 @@ gschem_main_window_unmap (GtkWidget *widget)
 static void
 gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  if GTK_IS_WINDOW (widget) {
+  if (GTK_IS_WINDOW (widget)) {
 
     GtkBin      *bin;
     GtkWindow   *window;
