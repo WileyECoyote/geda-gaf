@@ -1,3 +1,10 @@
+2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: remove extra semi-colon in geda_attrib_object_read
+      for case OBJ_LINE, not that the code is ever executed. Revise function
+      geda_attrib_object_string_get_name_value reducing scope of ptr, prev_char
+      and next_char.
+
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise comments to eliminate the word "Object"

@@ -658,7 +658,8 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         break;
 
       case(OBJ_LINE):
-        if ((new_obj = o_line_read (line, release_ver, fileformat_ver, err)) == NULL);
+        new_obj = o_line_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);
         break;
@@ -714,7 +715,8 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         break;
 
       case(OBJ_ARC):
-        if ((new_obj = geda_arc_object_read (line, release_ver, fileformat_ver, err)) == NULL)
+        new_obj = geda_arc_object_read (line, release_ver, fileformat_ver, err);
+        if (new_obj == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);
         break;
@@ -1073,22 +1075,25 @@ geda_attrib_object_string_get_name_value (const char  *string,
                                                 char **name_ptr,
                                                 char **value_ptr)
 {
-  char *ptr, *prev_char, *next_char;
-
-  if (name_ptr != NULL)
+  if (name_ptr != NULL) {
     *name_ptr = NULL;
+  }
 
-  if (value_ptr != NULL)
+  if (value_ptr != NULL) {
     *value_ptr = NULL;
+  }
 
   if (string != NULL) {
 
-    ptr = g_utf8_strchr (string, -1, g_utf8_get_char ("="));
+    char *ptr = g_utf8_strchr (string, -1, g_utf8_get_char ("="));
 
     if (ptr != NULL) {
 
-      prev_char = g_utf8_find_prev_char (string, ptr);
+      char *next_char;
+      char *prev_char;
+
       next_char = g_utf8_find_next_char (ptr, NULL);
+      prev_char = g_utf8_find_prev_char (string, ptr);
 
       if (prev_char != NULL && *prev_char != ' ' &&
           next_char != NULL && *next_char != ' ' && *next_char != '\0')
