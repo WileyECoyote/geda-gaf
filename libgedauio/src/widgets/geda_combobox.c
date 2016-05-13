@@ -1820,26 +1820,26 @@ geda_combo_box_class_init(void *class, void *class_data)
    * It will NOT be emitted while typing into a GedaComboBoxEntry.
    */
   combo_box_signals[CHANGED] =
-  g_signal_new (_("changed"),
-                  G_OBJECT_CLASS_TYPE (class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (GedaComboBoxClass, changed),
-                  NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
+      g_signal_new ("changed",
+                    G_OBJECT_CLASS_TYPE (class),
+                    G_SIGNAL_RUN_LAST,
+                    G_STRUCT_OFFSET (GedaComboBoxClass, changed),
+                    NULL, NULL,
+                    g_cclosure_marshal_VOID__VOID,
+                    G_TYPE_NONE, 0);
 
   /*! property "move-active": GedaComboBox::move-active
    *  \brief emitted to move the active selection.
    */
   combo_box_signals[MOVE_ACTIVE] =
-  g_signal_new_class_handler (_("move-active"),
-                                G_OBJECT_CLASS_TYPE (class),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (geda_combo_box_real_move_active),
-                                NULL, NULL,
-                                g_cclosure_marshal_VOID__ENUM,
-                                G_TYPE_NONE, 1,
-                                GTK_TYPE_SCROLL_TYPE);
+      g_signal_new_class_handler ("move-active",
+                                  G_OBJECT_CLASS_TYPE (class),
+                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                  G_CALLBACK (geda_combo_box_real_move_active),
+                                  NULL, NULL,
+                                  g_cclosure_marshal_VOID__ENUM,
+                                  G_TYPE_NONE, 1,
+                                  GTK_TYPE_SCROLL_TYPE);
 
   /**
    * GedaComboBox::popup:
@@ -1850,13 +1850,13 @@ geda_combo_box_class_init(void *class, void *class_data)
    *
    */
   combo_box_signals[POPUP] =
-  g_signal_new_class_handler (_("popup"),
-                                G_OBJECT_CLASS_TYPE (class),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (geda_combo_box_real_popup),
-                                NULL, NULL,
-                                g_cclosure_marshal_VOID__VOID,
-                                G_TYPE_NONE, 0);
+      g_signal_new_class_handler ("popup",
+                                  G_OBJECT_CLASS_TYPE (class),
+                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                  G_CALLBACK (geda_combo_box_real_popup),
+                                  NULL, NULL,
+                                  g_cclosure_marshal_VOID__VOID,
+                                  G_TYPE_NONE, 0);
   /**
    * GedaComboBox::popdown:
    *
@@ -1865,13 +1865,13 @@ geda_combo_box_class_init(void *class, void *class_data)
    * The default bindings for this signal are Alt+Up and Escape.
    */
   combo_box_signals[POPDOWN] =
-  g_signal_new_class_handler (_("popdown"),
-                                G_OBJECT_CLASS_TYPE (class),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (geda_combo_box_real_popdown),
-                                NULL, NULL,
-                                NULL,
-                                G_TYPE_BOOLEAN, 0);
+      g_signal_new_class_handler ("popdown",
+                                  G_OBJECT_CLASS_TYPE (class),
+                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                  G_CALLBACK (geda_combo_box_real_popdown),
+                                  NULL, NULL,
+                                  NULL,
+                                  G_TYPE_BOOLEAN, 0);
 
   /**
    * GtkComboBox::format-entry-text:
@@ -1915,22 +1915,22 @@ geda_combo_box_class_init(void *class, void *class_data)
    * for the current GtkComboBox model.
    */
   combo_box_signals[FORMAT_ENTRY_TEXT] =
-    g_signal_new (_("format-entry-text"),
-                  G_TYPE_FROM_CLASS (class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (GedaComboBoxClass, format_entry_text),
-                  geda_single_string_accumulator, NULL,
-                  geda_marshal_STRING__STRING,
-                  G_TYPE_STRING, 1, G_TYPE_STRING);
+      g_signal_new ("format-entry-text",
+                    G_TYPE_FROM_CLASS (class),
+                    G_SIGNAL_RUN_LAST,
+                    G_STRUCT_OFFSET (GedaComboBoxClass, format_entry_text),
+                    geda_single_string_accumulator, NULL,
+                    geda_marshal_STRING__STRING,
+                    G_TYPE_STRING, 1, G_TYPE_STRING);
 
   combo_box_signals[VIEW_CHANGED] =
-    g_signal_new (_("view-changed"),
-                  G_OBJECT_CLASS_TYPE (class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (GedaComboBoxClass, view_changed),
-                  NULL, NULL,
-                  g_cclosure_marshal_VOID__UINT,
-                  G_TYPE_NONE, 1, G_TYPE_UINT);
+      g_signal_new ("view-changed",
+                    G_OBJECT_CLASS_TYPE (class),
+                    G_SIGNAL_RUN_LAST,
+                    G_STRUCT_OFFSET (GedaComboBoxClass, view_changed),
+                    NULL, NULL,
+                    g_cclosure_marshal_VOID__UINT,
+                    G_TYPE_NONE, 1, G_TYPE_UINT);
 
   /* key bindings */
   binding_set = gtk_binding_set_by_class (widget_class);
