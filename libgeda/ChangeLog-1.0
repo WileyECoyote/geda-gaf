@@ -5,6 +5,10 @@
       geda_attrib_object_string_get_name_value reducing scope of ptr, prev_char
       and next_char.
 
+    * rc/object/o_box_object.c: Reduce scope of fill_func, revise case FILLING_
+      HOLLOW and fall through to new default case setting fill_func to NULL in
+      function geda_box_object_print.
+
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise comments to eliminate the word "Object"

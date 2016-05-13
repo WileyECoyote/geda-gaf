@@ -846,7 +846,6 @@ geda_box_object_print(GedaToplevel *toplevel,
   int color;
   int line_width, capstyle, length, space;
   void (*outl_func)() = NULL;
-  void (*fill_func)() = NULL;
   GedaBox *box;
 
   g_return_if_fail(GEDA_IS_BOX(o_current));
@@ -944,6 +943,8 @@ geda_box_object_print(GedaToplevel *toplevel,
    */
   if (box->fill_options.fill_type != FILLING_HOLLOW) {
 
+    void (*fill_func)();
+
     int fill_width, angle1, pitch1, angle2, pitch2;
 
     fill_width = box->fill_options.fill_width;
@@ -976,9 +977,11 @@ geda_box_object_print(GedaToplevel *toplevel,
         fill_width = -1;
         fill_func = geda_box_object_print_filled;
         break;
+
       case(FILLING_HOLLOW):
         /* nop */
-        break;
+      default:
+        fill_func = NULL;
 
     }
 
@@ -988,12 +991,14 @@ geda_box_object_print(GedaToplevel *toplevel,
       fill_func = geda_box_object_print_filled;
     }
 
-    (*fill_func)(toplevel, fp,
-                 x, y, width, height,
-                 color,
-                 fill_width,
-                 angle1, pitch1, angle2, pitch2,
-                 origin_x, origin_y);
+    if (fill_func) {
+      (*fill_func)(toplevel, fp,
+                   x, y, width, height,
+                   color,
+                   fill_width,
+                   angle1, pitch1, angle2, pitch2,
+                   origin_x, origin_y);
+    }
   }
 }
 
