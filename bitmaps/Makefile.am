@@ -127,6 +127,7 @@ bitmapdata_DATA   = \
 			geda-value.png                     \
 			geda-verilog-blue.png              \
 			geda-verilog-grn.png               \
+			geda-view-redraw.png               \
 			geda_warning.png                   \
 			geda-wave.png                      \
 			geda-waves.png                     \

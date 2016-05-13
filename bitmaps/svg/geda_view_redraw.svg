@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:export-ydpi="90.000000"
    inkscape:export-xdpi="90.000000"
-   inkscape:export-filename="../geda_view_redraw_48x48.png"
+   inkscape:export-filename="../geda-view-redraw.png"
    width="48px"
    height="48px"
    id="svg11300"
@@ -14,6 +18,18 @@
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="geda_view_redraw.svg"
    version="1.1">
+  <metadata
+     id="metadata53">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <defs
      id="defs3">
     <linearGradient
@@ -226,9 +242,9 @@
      borderopacity="0.25490196"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16.499679"
-     inkscape:cx="24.20789"
-     inkscape:cy="23.171795"
+     inkscape:zoom="11.667035"
+     inkscape:cx="15.226833"
+     inkscape:cy="26.092112"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:grid-bbox="true"
@@ -237,7 +253,7 @@
      inkscape:window-width="1490"
      inkscape:window-height="939"
      inkscape:window-x="193"
-     inkscape:window-y="28"
+     inkscape:window-y="31"
      inkscape:window-maximized="0" />
   <g
      id="layer1"

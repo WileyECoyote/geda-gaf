@@ -1,3 +1,7 @@
+2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/geda-view-redraw.png: add bitmap for redraw/refresh, revise svg.
+
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 2.1.0.21, 20160507.
