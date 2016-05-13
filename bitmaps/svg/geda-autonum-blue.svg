@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="64px"
    height="64px"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="geda-autonum-blue.svg"
    inkscape:export-filename="../geda-autonum-blue.png"
    inkscape:export-xdpi="90"
@@ -24,15 +18,15 @@
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:source>wileyhill@gmail.com</dc:source>
         <dc:creator>
           <cc:Agent>
             <dc:title>Wiley Edward Hill</dc:title>
           </cc:Agent>
         </dc:creator>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -46,9 +40,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="9.4016776"
-     inkscape:cx="45.569917"
+     inkscape:cx="46.208101"
      inkscape:cy="34.231792"
-     inkscape:current-layer="g3844"
+     inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
@@ -61,44 +55,35 @@
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
-    <g
-       id="g3844">
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot3070"
-         style="font-size:48px;font-style:normal;font-weight:normal;line-height:100%;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;font-family:Sans"
-         transform="matrix(1.265619,0,0,1.1080523,-4.9870108,9.4906896)"><flowRegion
-           id="flowRegion3072"><rect
-             id="rect3074"
-             width="43.822029"
-             height="48.395664"
-             x="17.869152"
-             y="10.711637"
-             style="font-size:48px;line-height:100%;fill:#0000ff" /></flowRegion><flowPara
-           id="flowPara3076">#</flowPara></flowRoot>      <flowRoot
-         xml:space="preserve"
-         id="flowRoot3062"
-         style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;letter-spacing:0px;word-spacing:0px;fill:#000080;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-         transform="matrix(1.2886144,0,0,1.2301397,-7.8034309,-13.011333)"><flowRegion
-           id="flowRegion3064"><rect
-             id="rect3066"
-             width="40.311954"
-             height="39.673771"
-             x="4.5736518"
-             y="7.0952621"
-             style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;fill:#000080;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-             ry="1.1240447"
-             rx="1.0730379" /></flowRegion><flowPara
-           id="flowPara3068">A</flowPara></flowRoot>      <flowRoot
-         xml:space="preserve"
-         id="flowRoot3078"
-         style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:12px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-           id="flowRegion3080"><rect
-             id="rect3082"
-             width="7.6582079"
-             height="26.484634"
-             x="25.740088"
-             y="21.348038" /></flowRegion><flowPara
-           id="flowPara3084" /></flowRoot>    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:60.43380737px;line-height:100%;fill:#000080;fill-opacity:1;font-family:FreeSerif"
+       x="0"
+       y="41"
+       id="text2991"
+       transform="scale(1.0234916,0.9770476)"><tspan
+         sodipodi:role="line"
+         x="0"
+         y="41"
+         id="tspan2993"><tspan
+           x="0"
+           y="41"
+           id="tspan2995"
+           style="fill:#000080">A</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:64.0px;line-height:100%;fill:#0000ff;font-family:FreeSerif;"
+       x="28.213955"
+       y="68.409477"
+       id="text2997"
+       transform="scale(1.068898,0.93554295)"><tspan
+         sodipodi:role="line"
+         x="28.213955"
+         y="68.409477"
+         id="tspan2999"><tspan
+           x="28.213955"
+           y="68.409477"
+           id="tspan3001"
+           style="fill:#0000ff;">#</tspan></tspan></text>
   </g>
 </svg>

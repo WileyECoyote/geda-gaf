@@ -522,14 +522,20 @@
          sodipodi:nodetypes="cc" />
       <path
          style="fill:none;stroke:url(#linearGradient3109);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 10,37 9,0"
+         d="m 10,37 10.5,0"
+         id="path3030-1-0-6-07"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:url(#linearGradient3109);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 10,43 9,0"
          id="path3030-1-0-6-07"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
     </g>
     <path
        inkscape:connector-curvature="0"
-       d="m 22.600503,37.39943 21.798995,0 L 33.5,16.60057 22.600503,37.39943 z"
+       d="m 22.600000,43.00000 21.800000,0 L 33.5,16.60000 22.60000,43.00000 z"
        style="fill:url(#linearGradient3052);fill-opacity:1;stroke:url(#linearGradient3054);stroke-width:1.20100546;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        inkscape:label="Triangle"
        id="path6230" />

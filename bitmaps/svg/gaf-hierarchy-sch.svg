@@ -526,32 +526,38 @@
          sodipodi:nodetypes="cc" />
       <path
          style="fill:none;stroke:url(#linearGradient3041);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 10,19 12,0"
+         d="m 10,19 10.5,0"
          id="path3030-1-0-6-5"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <path
          style="fill:none;stroke:url(#linearGradient3043);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 10,25 15,0"
+         d="m 10,25 12,0"
          id="path3030-1-0-6-0"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <path
          style="fill:none;stroke:url(#linearGradient3045);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 10,31 18,0"
+         d="m 10,31 15,0"
          id="path3030-1-0-6-8"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <path
          style="fill:none;stroke:url(#linearGradient3047);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 10,37 32,0"
+         d="m 10,37 18,0"
+         id="path3030-1-0-6-07"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:url(#linearGradient3047);stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 10,43 32,0"
          id="path3030-1-0-6-07"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
     </g>
     <path
        inkscape:connector-curvature="0"
-       d="m 22.614304,12.614378 21.771393,0 L 33.499999,33.38577 22.614304,12.614378 z"
+       d="m 22.600000,12.600000 21.800000,0 L 33.5,39.00000 22.600000,12.600000 z"
        style="fill:url(#linearGradient4222);fill-opacity:1;stroke:url(#linearGradient4224);stroke-width:1.22860706;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        inkscape:label="Triangle"
        id="path6230" />

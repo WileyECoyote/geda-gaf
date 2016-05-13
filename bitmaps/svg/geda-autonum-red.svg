@@ -7,11 +7,29 @@
    height="64px"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="geda-autonum-red.svg"
    inkscape:export-filename="../geda-autonum-red.png"
-   inkscape:export-xdpi="42.1875"
-   inkscape:export-ydpi="42.1875">
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata19">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:title />
+        <dc:source>wileyhill@gmail.com</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Wiley Edward Hill</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <defs
      id="defs2987" />
   <sodipodi:namedview
@@ -22,7 +40,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="9.4016776"
-     inkscape:cx="45.359062"
+     inkscape:cx="45.57179"
      inkscape:cy="33.14537"
      inkscape:current-layer="g3844"
      showgrid="true"
@@ -39,45 +57,36 @@
      inkscape:groupmode="layer">
     <g
        id="g3844">
-      <g
-         id="g3057">
-        <flowRoot
-           transform="matrix(1.2709718,0,0,1.1154422,-5.0087373,9.128628)"
-           style="font-size:48px;font-style:normal;font-weight:normal;line-height:100%;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Sans"
-           id="flowRoot3070"
-           xml:space="preserve"><flowRegion
-             id="flowRegion3072"><rect
-               style="font-size:48px;line-height:100%;fill:#ff0000"
-               y="10.711637"
-               x="17.869152"
-               height="48.395664"
-               width="43.822029"
-               id="rect3074" /></flowRegion><flowPara
-             id="flowPara3076">#</flowPara></flowRoot>        <flowRoot
-           transform="matrix(1.2940645,0,0,1.2383439,-7.8370691,-13.523467)"
-           style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-           id="flowRoot3062"
-           xml:space="preserve"><flowRegion
-             id="flowRegion3064"><rect
-               rx="1.0685188"
-               ry="1.1165978"
-               style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;fill:#800000;font-family:FreeSerif;-inkscape-font-specification:FreeSerif"
-               y="7.0952621"
-               x="4.5736518"
-               height="39.673771"
-               width="40.311954"
-               id="rect3066" /></flowRegion><flowPara
-             id="flowPara3068">A</flowPara></flowRoot>      </g>
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot3078"
-         style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:12px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-           id="flowRegion3080"><rect
-             id="rect3082"
-             width="7.6582079"
-             height="26.484634"
-             x="25.740088"
-             y="21.348038" /></flowRegion><flowPara
-           id="flowPara3084" /></flowRoot>    </g>
+        <text
+           transform="scale(1.0235274,0.97701337)"
+           sodipodi:linespacing="100%"
+           id="text3064"
+           y="40.5"
+           x="0.0"
+           style="font-size:60px;fill:#800000;font-family:FreeSerif"
+           xml:space="preserve"><tspan
+             id="tspan3066"
+             y="40.5"
+             x="0.0"
+             sodipodi:role="line"><tspan
+               id="tspan3068"
+               y="40.5"
+               x="0.0">A</tspan></tspan></text>
+        <text
+           transform="scale(1.0674423,0.93681876)"
+           sodipodi:linespacing="100%"
+           id="text3070"
+           y="68.3"
+           x="28.0"
+           style="font-size:64px;fill:#ff0000;font-family:FreeSerif"
+           xml:space="preserve"><tspan
+             id="tspan3072"
+             y="68.3"
+             x="28.0"
+             sodipodi:role="line"><tspan
+               id="tspan3074"
+               y="68.3"
+               x="28.0">#</tspan></tspan></text>
+    </g>
   </g>
 </svg>
