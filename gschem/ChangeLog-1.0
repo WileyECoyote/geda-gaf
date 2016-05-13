@@ -1,6 +1,10 @@
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Tweak icon assignments.
+
     * src/base/gschem_main_window.c: Add missing parenthesis.
+
+    * src/x/x_icons.c: Add "geda-view-redraw".
 
 2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 

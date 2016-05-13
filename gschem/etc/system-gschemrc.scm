@@ -1228,7 +1228,7 @@
 ;; placing new component and copying components.
 ;
 (load-from-path "auto-uref.scm")
-(add-hook! add-component-hook auto-uref)
+;(add-hook! add-component-hook auto-uref)
 ;(add-hook! copy-component-hook auto-uref)
 
 ;; Define value of page-offset for auto number on insert.
@@ -1881,8 +1881,9 @@
 (map-icon "geda-lock"                  "edit-lock")
 (map-icon "geda-unlock"                "edit-unlock")
 
-(map-icon "gtk-refresh"                "view-redraw")
 (map-icon "geda-zoom-pan"              "view-pan")
+(map-icon "geda-view-redraw"           "view-redraw")
+;(map-icon "gtk-refresh"                "view-redraw")
 
 ;(map-icon "gtk-fullscreen"             "view-zoom-all")
 (map-icon "geda-zoom-limits"           "view-zoom-all")
@@ -1893,7 +1894,7 @@
 (map-icon "geda-zoom-mag"              "view-zoom-to-mag")
 (map-icon "geda-zoom-selection"        "view-zoom-selected")
 
-(map-icon "zoom-limits"               "view-zoom-all")
+;(map-icon "zoom-limits"               "view-zoom-all")
 ;(map-icon "zoom-fit"                  "view-zoom-box")
 ;(map-icon "zoom-extents"              "view-zoom-extents")
 ;(map-icon "zoom-in"                   "view-zoom-in")
@@ -2287,9 +2288,9 @@
 ;;
 ;;      menu item name                    menu action            menu icon name            Menu Item Tooltip
 ;;
-     `( (,(N_ "A_utonumber Text...")      tools-autonumber       "geda-autonum-blue"  ,(N_ "Open Auto Number dialog"))
-        (,(N_ "Show _Console Window...")  tools-show-console     #f                   ,(N_ "Display the console"))
-        (,(N_ "Show Coord _Window...")    tools-show-coordinates #f                   ,(N_ "Display coordinates"))
+     `( (,(N_ "A_utonumber Text...")      tools-autonumber       #f                 ,(N_ "Open Auto Number dialog"))
+        (,(N_ "Show _Console Window...")  tools-show-console     #f                 ,(N_ "Display the console"))
+        (,(N_ "Show Coord _Window...")    tools-show-coordinates #f                 ,(N_ "Display coordinates"))
 
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Invoke Macro")             tools-invoke-macro     "gtk-execute"      ,(N_ "Invoke a macro"))
@@ -2299,7 +2300,7 @@
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))
         (,(N_ "Unembed Component/Picture") tools-unembed         "geda-bed"         ,(N_ "Unembed a component or image object"))
-        (,(N_ "Update Component")          tools-update          "gtk-refresh"      ,(N_ "Reload definition of selected component"))
+        (,(N_ "Update Component")          tools-update          #f                 ,(N_ "Reload definition of selected component"))
       )
 )
 
