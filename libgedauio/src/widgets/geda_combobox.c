@@ -1620,6 +1620,14 @@ geda_combo_box_get_property (GObject      *object,
       break;
   }
 }
+static void
+geda_combo_box_set_list_view(GedaComboBox *combo_box, int mode)
+{
+  if (mode != combo_box->priv->list_view) {
+    combo_box->priv->list_view = mode;
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, mode);
+  }
+}
 
 static void
 geda_combo_box_set_property (GObject      *object,
@@ -1667,7 +1675,6 @@ geda_combo_box_set_property (GObject      *object,
         gtk_entry_set_has_frame (GTK_ENTRY (child),
                                  combo_box->priv->has_frame);
       }
-
       break;
 
     case PROP_FOCUS_ON_CLICK:
@@ -1700,7 +1707,7 @@ geda_combo_box_set_property (GObject      *object,
       break;
 
     case PROP_LIST_VIEW:
-      combo_box->priv->list_view = g_value_get_int (value);
+      geda_combo_box_set_list_view(combo_box, g_value_get_int (value));
       break;
 
     case PROP_ENTRY_TEXT_COLUMN:
@@ -3762,8 +3769,8 @@ geda_combo_box_relayout (GedaComboBox *combo_box)
 /*! \brief Popup Menu Callback; User Clicked View Auto
  *
  *  \par Function Description
- *  This functions call when the user selects View Auto option on
- *  the popup menu. The current system style setting is used for
+ *  This functions is called when the user selects View Auto option
+ *  on the popup menu. The current system style setting is used for
  *  auto mode.
  */
 static void

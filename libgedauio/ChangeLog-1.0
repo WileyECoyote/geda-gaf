@@ -1,6 +1,8 @@
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_combobox.c: Remove translating signal names.
+    * src/widgets/geda_combobox.c: Remove translating signal names, added
+      function geda_combo_box_set_list_view to emit "view-changed" when the
+      "list_view" property is set.
 
 2016-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
