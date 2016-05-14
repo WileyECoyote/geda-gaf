@@ -1,3 +1,7 @@
+2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_arc.c: Reorganize function; move line_type after line_space.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: remove extra semi-colon in geda_attrib_object_read

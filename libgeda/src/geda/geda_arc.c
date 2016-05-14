@@ -821,24 +821,6 @@ geda_arc_get_fill_width (const GedaArc *arc) {
 }
 
 /*!
- * \brief Retrieve End Type Property of an Arc
- * \par Function Description
- *  Returns the value of \a arc line type if and only if \a arc is
- *  a valid GedaArc object.
- *
- * \return integer value of line type or -0 if \a arc is invalid.
- *
- * \sa geda_arc_set_line_type
- */
-int
-geda_arc_get_line_type (const GedaArc *arc) {
-  if (is_a_geda_arc(arc)) {
-    return arc->line_options.line_type;
-  }
-  return -0;
-}
-
-/*!
  * \brief Retrieve Line Length Property of an Arc
  * \par Function Description
  *  Returns the value of the \a arc line length property if and only if
@@ -880,6 +862,24 @@ int
 geda_arc_get_line_space (const GedaArc *arc) {
   if (is_a_geda_arc(arc)) {
     return arc->line_options.line_space;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Type Property of an Arc
+ * \par Function Description
+ *  Returns the value of \a arc line type if and only if \a arc is
+ *  a valid GedaArc object.
+ *
+ * \return integer value of line type or -0 if \a arc is invalid.
+ *
+ * \sa geda_arc_set_line_type
+ */
+int
+geda_arc_get_line_type (const GedaArc *arc) {
+  if (is_a_geda_arc(arc)) {
+    return arc->line_options.line_type;
   }
   return -0;
 }
@@ -1115,23 +1115,6 @@ geda_arc_set_fill_width (GedaArc *arc, int width) {
 }
 
 /*!
- * \brief Set the Line Type Property of an Arc
- * \par Function Description
- *  Sets the value of \a arc line type if and only if \a arc is a
- *  valid GedaArc object.
- *
- * \sa geda_arc_get_line_type
- */
-void
-geda_arc_set_line_type (GedaArc *arc, int line_type) {
-  if (is_a_geda_arc(arc)) {
-    arc->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
-                                  line_type > TYPE_ERASE ? TYPE_ERASE :
-                                  line_type;
-  }
-}
-
-/*!
  * \brief Set the Line Length Property of an Arc
  * \par Function Description
  *  Returns the value of the \a arc line length property if and only if
@@ -1166,6 +1149,23 @@ void
 geda_arc_set_line_space (GedaArc *arc, int space) {
   if (is_a_geda_arc(arc)) {
     arc->line_options.line_space = space > 0 ? space : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Type Property of an Arc
+ * \par Function Description
+ *  Sets the value of \a arc line type if and only if \a arc is a
+ *  valid GedaArc object.
+ *
+ * \sa geda_arc_get_line_type
+ */
+void
+geda_arc_set_line_type (GedaArc *arc, int line_type) {
+  if (is_a_geda_arc(arc)) {
+    arc->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
+                                  line_type > TYPE_ERASE ? TYPE_ERASE :
+                                  line_type;
   }
 }
 
