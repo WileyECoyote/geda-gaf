@@ -1,5 +1,10 @@
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/CSD86330Q3D-1.sym: Add symbol CSD86330Q3D, Dual NMOS optimized for
+      Synchronous Buck Converters.
+
+2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/switchreg/TPS62061-1.sym: Add symbol TPS62061, Synchronous Step-down
       Converter,1.6A,3MHz,Fixed 1.8Volts.
 

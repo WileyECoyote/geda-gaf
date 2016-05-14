@@ -1,0 +1,113 @@
+v 20160507 2
+T 400 2100 8 10 1 1 0 0 1
+refdes=U?
+T 400 2700 5 10 0 1 0 0 1
+device=CSD86330Q3D
+B 400 100 2000 1700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1500 100 1500 1 0 1
+{
+T 250 1550 5 8 1 1 0 6 1
+pinnumber=1
+T 450 1450 9 10 1 1 0 0 1
+pinlabel=VIN
+T 250 1550 5 8 0 1 0 6 1
+pinseq=1
+T 450 1425 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 1100 100 1100 1 0 1
+{
+T 450 1050 9 10 1 1 0 0 1
+pinlabel=VIN
+T 250 1150 5 8 1 1 0 6 1
+pinnumber=2
+T 250 1150 5 8 0 1 0 6 1
+pinseq=2
+T 450 1025 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 700 100 700 1 0 1
+{
+T 250 750 5 8 1 1 0 6 1
+pinnumber=3
+T 450 650 9 10 1 1 0 0 1
+pinlabel=TG
+T 250 750 5 8 0 1 0 6 1
+pinseq=3
+T 450 625 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 300 100 300 1 0 1
+{
+T 250 350 5 8 1 1 0 6 1
+pinnumber=4
+T 450 250 9 10 1 1 0 0 1
+pinlabel=TGR
+T 250 350 5 8 0 1 0 6 1
+pinseq=4
+T 450 225 5 8 0 1 0 2 1
+pintype=in
+}
+P 2400 300 2700 300 1 0 1
+{
+T 2550 350 5 8 1 1 0 0 1
+pinnumber=5
+T 2350 250 9 10 1 1 0 6 1
+pinlabel=BG
+T 2550 350 5 8 0 1 0 0 1
+pinseq=5
+T 2350 225 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2400 700 2700 700 1 0 1
+{
+T 2550 750 5 8 1 1 0 0 1
+pinnumber=6
+T 2350 650 9 10 1 1 0 6 1
+pinlabel=VSW
+T 2550 750 5 8 0 1 0 0 1
+pinseq=6
+T 2350 625 5 8 0 1 0 8 1
+pintype=out
+}
+P 2400 1100 2700 1100 1 0 1
+{
+T 2550 1150 5 8 1 1 0 0 1
+pinnumber=7
+T 2350 1050 9 10 1 1 0 6 1
+pinlabel=VSW
+T 2550 1150 5 8 0 1 0 0 1
+pinseq=7
+T 2350 1050 5 8 0 1 0 8 1
+pintype=out
+}
+P 2400 1500 2700 1500 1 0 1
+{
+T 2550 1550 5 8 1 1 0 0 1
+pinnumber=8
+T 2350 1450 9 10 1 1 0 6 1
+pinlabel=VSW
+T 2550 1550 5 8 0 1 0 0 1
+pinseq=8
+T 2350 1425 5 8 0 1 0 8 1
+pintype=out
+}
+T 400 3100 5 10 0 0 0 0 1
+numslots=0
+T 400 1900 9 10 1 1 0 0 1
+value=CSD86330Q3D
+T 400 2300 5 10 0 1 0 0 1
+footprint=TSSOP24
+T 400 2500 5 10 0 1 0 0 1
+description=Dual NMOSFET,Synchronous Buck NexFET
+T 400 2900 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/CSD86330Q3D
+T 1900 2700 5 10 0 0 0 0 1
+symversion=0.1
+T 400 3300 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 3500 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 3700 5 10 0 0 0 0 1
+author=AutoTron
+
