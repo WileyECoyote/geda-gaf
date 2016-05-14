@@ -375,13 +375,13 @@ check_accessors (void)
       int p = m_random_number (0, 500);
       int w = m_random_number (0, 500);
 
-      /* Filling options
+      /* Filling options */
       int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
       int fw  = m_random_number (0, 100);
       int fa1 = m_random_number (0, 180);
       int fp1 = m_random_number (0, 500);
       int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500); */
+      int fp2 = m_random_number (0, 500);
 
       geda_circle_set_center_x(circle, x);
 
@@ -499,6 +499,98 @@ check_accessors (void)
 
       if (value - w) {
         fprintf(stderr, "FAILED: geda_circle_get_line_width %d != %d\n", value, w);
+        fail++;
+      }
+
+      /* Check Filling properties */
+
+      geda_circle_set_fill_type (circle, ft);
+
+      value = circle->fill_options.fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_type(circle);
+
+      if (value - ft) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_type %d != %d\n", value, ft);
+        fail++;
+      }
+
+      geda_circle_set_fill_angle1 (circle, fa1);
+
+      value = circle->fill_options.fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_angle1(circle);
+
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_angle1 %d != %d\n", value, fa1);
+        fail++;
+      }
+
+      geda_circle_set_fill_angle2 (circle, fa2);
+
+      value = circle->fill_options.fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_angle2(circle);
+
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_angle2 %d != %d\n", value, fa2);
+        fail++;
+      }
+
+      geda_circle_set_fill_pitch1 (circle, fp1);
+
+      value = circle->fill_options.fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_pitch1(circle);
+
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_pitch1 %d != %d\n", value, fp1);
+        fail++;
+      }
+
+      geda_circle_set_fill_pitch2 (circle, fp2);
+
+      value = circle->fill_options.fill_pitch2;
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_pitch2(circle);
+
+      if (value - fp2) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_pitch2 %d != %d\n", value, fp2);
+        fail++;
+      }
+
+      geda_circle_set_fill_width (circle, fw);
+
+      value = circle->fill_options.fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_circle_set_fill_width %d != %d\n", value, fw);
+        fail++;
+      }
+
+      value = geda_circle_get_fill_width(circle);
+
+      if (value - fw) {
+        fprintf(stderr, "FAILED: geda_circle_get_fill_width %d != %d\n", value, fw);
         fail++;
       }
 
