@@ -470,10 +470,15 @@ check_accessors ()
 }
 
 static int changed = 0;
+static int view_changed = 0;
 
 static void combo_changed (GedaComboBox *combo)
 {
   changed++;
+}
+static void combo_view_changed (GedaComboBox *combo, unsigned int mode)
+{
+  view_changed++;
 }
 
 int
@@ -487,7 +492,8 @@ check_overides ()
 
   combo_class = GEDA_COMBO_BOX_GET_CLASS(widget);
 
-  combo_class->changed = combo_changed;
+  combo_class->changed      = combo_changed;
+  combo_class->view_changed = combo_view_changed;
 
   geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
 
@@ -495,6 +501,15 @@ check_overides ()
   geda_combo_widget_set_active(widget, 1);
 
   if (!changed) {
+    fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* Trigger a view changed */
+  g_object_set (widget, "list-view", 0, NULL); /* GEDA_VIEW_AUTO */
+  g_object_set (widget, "list-view", 1, NULL); /* GEDA_VIEW_TREE */
+
+  if (!view_changed) {
     fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
     result++;
   }
@@ -511,6 +526,12 @@ on_changed (GedaComboBox *combo, void *nothing)
   changed++;
 }
 
+static void
+on_view_changed (GedaComboBox *combo, void *nothing)
+{
+  view_changed++;
+}
+
 int
 check_signals ()
 {
@@ -519,6 +540,7 @@ check_signals ()
   GtkWidget *widget = geda_combo_box_new_text_with_entry();
 
   g_signal_connect (widget, "changed", G_CALLBACK (on_changed), NULL);
+  g_signal_connect (widget, "view-changed", G_CALLBACK (on_view_changed), NULL);
 
   geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
 
@@ -529,6 +551,17 @@ check_signals ()
 
   if (!changed) {
     fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  view_changed = 0;
+
+  /* Trigger a view change */
+  g_object_set (widget, "list-view", 2, NULL); /* GEDA_VIEW_MENU */
+
+  /* Is 2 , once for on_view_changed() and once for combo_view_changed() */
+  if (view_changed != 2) {
+    fprintf(stderr, "FAILED: %s line <%d> view not changed\n", TWIDGET, __LINE__);
     result++;
   }
 

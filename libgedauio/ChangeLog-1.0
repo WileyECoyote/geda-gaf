@@ -1,3 +1,7 @@
+2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_combobox.c: Add checks for view-changed overides and signal.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Remove translating signal names, added
