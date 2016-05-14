@@ -141,6 +141,11 @@ void s_slot_update_object (GedaObject *object)
   int slot_string;
   int pin_counter;    /* Internal pin counter private to this fcn. */
 
+  /* Only GedaComplex object have slots */
+  if (!GEDA_IS_COMPLEX(object)) {
+    BUG_MSG("Object is not a GedaComplex");
+    return;
+  }
 
   /* For this particular graphic object (component instantiation) */
   /* get the slot number as a string */

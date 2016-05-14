@@ -7,6 +7,9 @@
 
     * src/geda/geda_circle.c: Add accessors for filling options.
 
+    * src/struct/s_slot.c: Validate the argument to s_slot_update_object is
+      a Complex before looking for a slot.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: remove extra semi-colon in geda_attrib_object_read
