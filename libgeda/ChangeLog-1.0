@@ -17,6 +17,8 @@
 
     * tests/test_complex.c: Add checks for accessors in GedaComplex.
 
+    * tests/test_utility.c: Add tests for geda_utility_refdes_reset.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: remove extra semi-colon in geda_attrib_object_read

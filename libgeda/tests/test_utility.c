@@ -262,10 +262,56 @@ int test_refdes (void)
   int index;
   int result = 0;
 
-  /* === Function 01: geda_refdes_get_ieee        geda_utility_refdes_get_ieee === */
-  /* === Function 02: geda_refdes_get_standard    geda_utility_refdes_get_standard  === */
-  /* === Function 03: geda_refdes_get_spice   geda_utility_refdes_get_spice === */
-  /* === Function 04: geda_refdes_reset       geda_utility_refdes_reset === */
+  /* === Function 01: geda_refdes_get_ieee      geda_utility_refdes_get_ieee === */
+  /* === Function 02: geda_refdes_get_standard  geda_utility_refdes_get_standard  === */
+  /* === Function 03: geda_refdes_get_spice     geda_utility_refdes_get_spice === */
+
+  /* === Function 04: geda_utility_refdes_reset === */
+
+  static const struct _TestData U04_str[] =
+  {
+    { "refdes=L",     "refdes=L"  },
+    { "refdes=U?",    "refdes=U?" },
+    { "refdes=U1",    "refdes=U?" },
+    { "refdes=U2A",   "refdes=U?" },
+    { "refdes=C188",  "refdes=C?" },
+    { "refdes=R1904", "refdes=R?" },
+    { "refdes=99",    "refdes=99" },
+    { "refdes=8A",    "refdes=8A" }
+  };
+
+  count = sizeof (U04_str) / sizeof (struct _TestData);
+
+  for (index = 0; index < count; index++) {
+
+    char *expected = U04_str[index].expected;
+    char *input    = U04_str[index].input;
+
+    GedaObject *object04 =  o_text_new(3,                       /* color */
+                                       10,                      /* X */
+                                       20,                      /* Y */
+                                       0,                       /* align */
+                                       0,                       /* zero is angle */
+                                       DEFAULT_ATTRIBUTE_SIZE,  /* default text size */
+                                       1,                       /* visibility */
+                                       1,                       /* show_name_value*/
+                                       input);
+
+    geda_reset_refdes(object04);
+
+    ref = object04->text->string;
+
+    if (!ref) {
+      fprintf(stderr, "FAILED: (U050401A-%d) geda_utility_refdes_reset NULL\n", index);
+      result++;
+    }
+    else {
+      if (strcmp(ref, expected)) {      /* See structure U06_str */
+        fprintf(stderr, "FAILED: (U050401B-%d) geda_utility_refdes_reset <%s>\n",index, ref);
+        result++;
+      }
+    }
+  }
 
   /* === Function 05: geda_utility_refdes_return_numeric === */
 
