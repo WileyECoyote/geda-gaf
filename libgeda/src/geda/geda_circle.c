@@ -591,6 +591,115 @@ geda_circle_get_end_cap (const GedaCircle *circle) {
 }
 
 /*!
+ * \brief Retrieve Fill Angle 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a circle fill angle 1 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of fill angle 1 or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_angle1
+ */
+int
+geda_circle_get_fill_angle1 (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_angle1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a circle fill angle 2 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of fill angle 2 or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_angle2
+ */
+int
+geda_circle_get_fill_angle2 (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_angle2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 1 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a circle fill pitch 1 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of fill pitch 1 or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_pitch1
+ */
+
+int
+geda_circle_get_fill_pitch1 (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_pitch1;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 2 Property of a Box
+ * \par Function Description
+ *  Returns the value of \a circle fill pitch 2 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of fill pitch 2 or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_pitch2
+ */
+int
+geda_circle_get_fill_pitch2 (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_pitch2;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Type Property of a circle
+ * \par Function Description
+ *  Returns the value of \a circle fill type if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \return integer value of fill type or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_type
+ */
+int
+geda_circle_get_fill_type (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Width Property of a circle
+ * \par Function Description
+ *  Returns the value of the \a circle fill width property if and only
+ *  if \a circle is a valid GedaCircle object.
+ *
+ * \return integer value of fill width or -0 if \a circle is invalid.
+ *
+ * \sa geda_circle_set_fill_width
+ */
+int
+geda_circle_get_fill_width (const GedaCircle *circle) {
+  if (is_a_geda_circle(circle)) {
+    return circle->fill_options.fill_width;
+  }
+  return -0;
+}
+
+/*!
  * \brief Retrieve Line Length Property of an Arc
  * \par Function Description
  *  Returns the value of the \a circle line length property if and only if
@@ -735,6 +844,98 @@ geda_circle_set_end_cap (GedaCircle *circle, int line_end) {
     circle->line_options.line_end = line_end < END_NONE ? END_NONE :
                                     line_end > END_VOID ? END_VOID :
                                     line_end;
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 1 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle fill angle 1 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_angle1
+ */
+void
+geda_circle_set_fill_angle1 (GedaCircle *circle, int angle) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_angle1 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 2 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle fill angle 2 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_angle2
+ */
+void
+geda_circle_set_fill_angle2 (GedaCircle *circle, int angle) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_angle2 = angle;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 1 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle fill pitch 1 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_pitch1
+ */
+void
+geda_circle_set_fill_pitch1 (GedaCircle *circle, int pitch) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_pitch1 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 2 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle fill pitch 2 if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_pitch2
+ */
+void
+geda_circle_set_fill_pitch2 (GedaCircle *circle, int pitch) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_pitch2 = pitch;
+  }
+}
+
+/*!
+ * \brief Set the Fill Type Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle fill type if and only if \a circle is
+ *  a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_type
+ */
+void
+geda_circle_set_fill_type (GedaCircle *circle, int type) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                     type > TYPE_ERASE ? TYPE_ERASE :
+                                     type;
+  }
+}
+
+/*!
+ * \brief Set the Fill Width Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle width of the fill if and only
+ *  if \a circle is a valid GedaCircle object.
+ *
+ * \sa geda_circle_get_fill_width
+ */
+void
+geda_circle_set_fill_width (GedaCircle *circle, int width) {
+  if (is_a_geda_circle(circle)) {
+    circle->fill_options.fill_width = width;
   }
 }
 
