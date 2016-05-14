@@ -203,17 +203,20 @@ void geda_utility_refdes_reset(GedaObject *object)
 
   ptr   = object->text->string;
 
-  if ( strncmp ( ptr, &buffer[0], index) == 0 ) {
+  if (strncmp (ptr, &buffer[0], index) == 0) {
 
     len = strlen (object->text->string);
 
     if (len < sizeof (buffer) - 1) {
       for ( ; index < len; index++) {
-        if ( isdigit(ptr[index]) ) {
+        if (isdigit(ptr[index]) ) {
+          if (index == 7) { /* first char after "=" can not be a digit */
+            break;
+          }
           GEDA_FREE (object->text->string);
           buffer[index] = '?';
           buffer[++index] = '\0';
-          object->text->string= strdup(&buffer[0]);
+          object->text->string = strdup(&buffer[0]);
           o_text_update_disp_string(object);
           break;
         }

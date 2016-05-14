@@ -73,6 +73,12 @@ int            geda_circle_get_center_x     (const GedaCircle *circle) WARN_UNUS
 int            geda_circle_get_center_y     (const GedaCircle *circle) WARN_UNUSED;
 
 int            geda_circle_get_end_cap      (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_angle1  (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_angle2  (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_pitch1  (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_pitch2  (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_type    (const GedaCircle *circle) WARN_UNUSED;
+int            geda_circle_get_fill_width   (const GedaCircle *circle) WARN_UNUSED;
 int            geda_circle_get_line_length  (const GedaCircle *circle) WARN_UNUSED;
 int            geda_circle_get_line_space   (const GedaCircle *circle) WARN_UNUSED;
 int            geda_circle_get_line_type    (const GedaCircle *circle) WARN_UNUSED;
@@ -83,6 +89,12 @@ void           geda_circle_set_center_x     (GedaCircle *circle, int x);
 void           geda_circle_set_center_y     (GedaCircle *circle, int y);
 
 void           geda_circle_set_end_cap      (GedaCircle *circle, int cap);
+void           geda_circle_set_fill_angle1  (GedaCircle *circle, int angle);
+void           geda_circle_set_fill_angle2  (GedaCircle *circle, int angle);
+void           geda_circle_set_fill_pitch1  (GedaCircle *circle, int pitch);
+void           geda_circle_set_fill_pitch2  (GedaCircle *circle, int pitch);
+void           geda_circle_set_fill_type    (GedaCircle *circle, int type);
+void           geda_circle_set_fill_width   (GedaCircle *circle, int width);
 void           geda_circle_set_line_length  (GedaCircle *circle, int length);
 void           geda_circle_set_line_space   (GedaCircle *circle, int space);
 void           geda_circle_set_line_type    (GedaCircle *circle, int type);

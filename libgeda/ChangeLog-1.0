@@ -10,6 +10,9 @@
     * src/struct/s_slot.c: Validate the argument to s_slot_update_object is
       a Complex before looking for a slot.
 
+    * utility/u_refdes.c Revise geda_utility_refdes_reset to not reset the
+      reference designator if the first char following the "=" is a digit.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: remove extra semi-colon in geda_attrib_object_read
