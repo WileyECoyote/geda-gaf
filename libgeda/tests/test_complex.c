@@ -1,5 +1,7 @@
+
 #include <glib.h>
 #include <libgeda.h>
+#include "test-suite.h"
 
 #define TOBJECT "GedaComplex"
 
@@ -102,16 +104,286 @@ int test_complex (void)
 }
 
 int
+check_append_object (GedaComplex *complex)
+{
+  int result = 0;
+
+  if (geda_complex_append(NULL, NULL)) {
+    fprintf(stderr, "FAILED: geda_complex_append NULLx2\n");
+    return 1;
+  }
+
+  if (geda_complex_append(complex, NULL)) {
+    fprintf(stderr, "FAILED: geda_complex_append NULL\n");
+    return 1;
+  }
+
+  GedaObject *text_object = geda_text_new();
+  GedaObject *pin_object  = geda_pin_new();
+
+  if (!geda_complex_append(complex, text_object)) {
+    fprintf(stderr, "FAILED: geda_complex_append text 1\n");
+    result++;
+  }
+  else{
+
+    GList *list = complex->prim_objs;
+
+    if (!geda_complex_get_prim_objs(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_prim_objs 1\n");
+      result++;
+    }
+    else if (geda_complex_get_prim_objs(complex) != list) {
+      fprintf(stderr, "FAILED: geda_complex_get_prim_objs 2\n");
+      result++;
+    }
+
+    if (list->data != text_object) {
+      fprintf(stderr, "FAILED: geda_complex_append text 2\n");
+      result++;
+    }
+  }
+
+  if (!geda_complex_append(complex, pin_object)) {
+    fprintf(stderr, "FAILED: geda_complex_append pin\n");
+    result++;
+  }
+  else{
+
+    GList *list = complex->prim_objs;
+
+    if (g_list_length(list) != 2) {
+      fprintf(stderr, "FAILED: geda_complex_append pin 1\n");
+      result++;
+    }
+    else {
+
+      list = list->next;
+
+      if (list->data != pin_object) {
+        fprintf(stderr, "FAILED: geda_complex_append pin 2\n");
+        result++;
+      }
+    }
+
+    list = complex->pin_objs;
+
+    if (!geda_complex_get_pin_objs(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_pin_objs 1\n");
+      result++;
+    }
+    else if (geda_complex_get_pin_objs(complex) != list) {
+      fprintf(stderr, "FAILED: geda_complex_get_pin_objs 2\n");
+      result++;
+    }
+
+    if (list->data != pin_object) {
+      fprintf(stderr, "FAILED:: geda_complex_append pin 3\n");
+      result++;
+    }
+  }
+
+  return result;
+}
+
+int
+check_accessors ()
+{
+  int result = 0;
+  int value;
+
+  GedaComplex *complex;
+  GedaObject  *object = geda_complex_new();
+
+  if (!GEDA_IS_OBJECT(object)) {
+    fprintf(stderr, "%s: is a GedaObject Failed in %s\n", TOBJECT, __func__);
+    return 1;
+  }
+
+  complex = object->complex;
+
+  result  = check_append_object(complex);
+
+  int a = m_random_number (0, 359);
+  int x = m_random_number (0, 115000);
+  int y = m_random_number (0, 75000);
+
+  geda_complex_set_angle(complex, a);
+
+  value = complex->angle;
+  if (value - a) {
+    fprintf(stderr, "FAILED: geda_complex_set_angle %d != %d\n", value, a);
+    result++;
+  }
+  else {
+
+    value = geda_complex_get_angle(complex);
+
+    if (value - a) {
+      fprintf(stderr, "FAILED: geda_complex_get_angle %d != %d\n", value, a);
+      result++;
+    }
+  }
+
+  geda_complex_set_filename(complex, TOBJECT);
+
+  char *name = complex->filename;
+  if (!name && !strcmp(name,TOBJECT)) {
+    fprintf(stderr, "FAILED: geda_complex_set_filename %s != %s\n", name, TOBJECT);
+    result++;
+  }
+  else {
+
+    name = geda_complex_get_filename(complex);
+
+    if (!name && !strcmp(name,TOBJECT)) {
+      fprintf(stderr, "FAILED: geda_complex_get_filename %s != %s\n", name, TOBJECT);
+      result++;
+    }
+
+    geda_complex_set_filename(complex, NULL);
+
+    name = complex->filename;
+    if (name) {
+      fprintf(stderr, "FAILED: geda_complex_set_filename NULL <%p>\n", name);
+      result++;
+    }
+
+    name = geda_complex_get_filename(complex);
+    if (name) {
+      fprintf(stderr, "FAILED: geda_complex_get_filename NULL <%p>\n", name);
+      result++;
+    }
+  }
+
+  geda_complex_set_is_embedded(complex, TRUE);
+
+  if (!complex->is_embedded) {
+    fprintf(stderr, "FAILED: geda_complex_set_is_embedded != TRUE\n");
+    result++;
+  }
+  else {
+
+    if (!geda_complex_get_is_embedded(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_angle != TRUE\n");
+      result++;
+    }
+  }
+
+  geda_complex_set_is_embedded(complex, FALSE);
+
+  if (complex->is_embedded) {
+    fprintf(stderr, "FAILED: geda_complex_set_is_embedded != FALSE\n");
+    result++;
+  }
+  else {
+
+    if (geda_complex_get_is_embedded(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_angle != FALSE\n");
+      result++;
+    }
+  }
+
+  geda_complex_set_is_mirror(complex, TRUE);
+
+  if (!complex->mirror) {
+    fprintf(stderr, "FAILED: geda_complex_set_is_mirror != TRUE\n");
+    result++;
+  }
+  else {
+
+    if (!geda_complex_get_is_mirror(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_is_mirror != TRUE\n");
+      result++;
+    }
+  }
+
+  geda_complex_set_is_mirror(complex, FALSE);
+
+  if (complex->mirror) {
+    fprintf(stderr, "FAILED: geda_complex_set_is_mirror != FALSE\n");
+    result++;
+  }
+  else {
+
+    if (geda_complex_get_is_mirror(complex)) {
+      fprintf(stderr, "FAILED: geda_complex_get_is_mirror != FALSE\n");
+      result++;
+    }
+  }
+
+  geda_complex_set_x(complex, x);
+
+  value = complex->x;
+  if (value - x) {
+    fprintf(stderr, "FAILED: geda_complex_set_x %d != %d\n", value, x);
+    result++;
+  }
+  else {
+
+    value = geda_complex_get_x(complex);
+
+    if (value - x) {
+      fprintf(stderr, "FAILED: geda_complex_get_x %d != %d\n", value, x);
+      result++;
+    }
+  }
+
+  geda_complex_set_y(complex, y);
+
+  value = complex->y;
+  if (value - y) {
+    fprintf(stderr, "FAILED: geda_complex_set_y %d != %d\n", value, y);
+    result++;
+  }
+  else {
+
+    value = geda_complex_get_y(complex);
+
+    if (value - y) {
+      fprintf(stderr, "FAILED: geda_complex_get_y %d != %d\n", value, y);
+      result++;
+    }
+  }
+
+  g_object_unref(object);
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
 
-  result = test_complex();
+  if (setjmp(point) == 0) {
+    result = test_complex();
+  }
+  else {
+    fprintf(stderr, "Caught signal in constructors %s\n\n", __FILE__);
+    return 1;
+  }
+
+  if (!result) {
+
+    if (setjmp(point) == 0) {
+      result = check_accessors();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking accessors for %s\n\n", TOBJECT);
+      return 1;
+    }
+  }
+  else {
+    fprintf(stderr, "discontinuing checks for %s\n\n", TOBJECT);
+  }
 
   return result > 0;
 }
