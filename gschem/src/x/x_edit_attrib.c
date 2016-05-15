@@ -100,7 +100,7 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
       EntrySelectAll (widget);
     }
 
-    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_combo_entry");
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
     SetEntryText (widget, name);
 
     GEDA_FREE (name);
@@ -161,7 +161,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   ThisDialog = w_current->aewindow;
 
   value_entry  = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
-  name_entry   = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_combo_entry");
+  name_entry   = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
   visbutton    = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
   show_options = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
 
@@ -345,14 +345,15 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     GtkWidget  *vbox, *label, *table, *alignment;
     GtkWidget  *name_label, *value_label;
     GtkWidget  *show_options;
-    GtkWidget  *attrib_combo_box_entry;
-    GtkWidget  *attrib_combo_entry;
+    GtkWidget  *attrib_name_combo_box;
+    GtkWidget  *attrib_name_entry;
     GtkWidget  *value_entry;
     GtkWidget  *visbutton;
 
     GList      *focus_chain; /* Aka Tab Order */
 
-    GtkEntryCompletion *attrib_combo_entry_completion;
+    GtkEntryCompletion *completion;
+    GtkTreeModel       *tree_model;
     GtkResponseType     response;
     GschemDialogFlags   dialog_flags;
 
@@ -433,16 +434,16 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (GTK_FILL), 0, 0);
 
-    attrib_combo_box_entry = geda_combo_box_text_new_with_entry ();
+    attrib_name_combo_box = geda_combo_box_text_new_with_entry ();
 
-    attrib_combo_entry = gtk_bin_get_child(GTK_BIN(attrib_combo_box_entry));
-    gtk_table_attach (GTK_TABLE (table), attrib_combo_box_entry, 1, 2, 0, 1,
+    gtk_table_attach (GTK_TABLE (table), attrib_name_combo_box, 1, 2, 0, 1,
                       (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
+    geda_combo_box_set_focus_on_click (GEDA_COMBO_BOX(attrib_name_combo_box), FALSE);
+    gtk_widget_set_tooltip_text (attrib_name_combo_box, name_list_tip);
 
-    geda_combo_box_set_focus_on_click (GEDA_COMBO_BOX(attrib_combo_box_entry), FALSE);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(attrib_combo_box_entry), name_list_tip);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(attrib_combo_entry), name_entry_tip);
+    attrib_name_entry = geda_combo_widget_get_entry_widget(attrib_name_combo_box);
+    gtk_widget_set_tooltip_text (attrib_name_entry, name_entry_tip);
 
     /* Value entry */
     value_label = geda_aligned_label_new (_("Value:"), 0, 0.5);
@@ -473,7 +474,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
                       (GtkAttachOptions) (0), 0, 0);
 
     focus_chain = NULL;
-    focus_chain = g_list_append (focus_chain, attrib_combo_box_entry);
+    focus_chain = g_list_append (focus_chain, attrib_name_combo_box);
     focus_chain = g_list_append (focus_chain, value_entry);
     focus_chain = g_list_append (focus_chain, visbutton);
     focus_chain = g_list_append (focus_chain, show_options);
@@ -481,10 +482,10 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     g_list_free (focus_chain);
 
     /** Set the relationships between the label and their Widgets **/
-    geda_label_set_mnemonic_widget (GEDA_LABEL (name_label),  attrib_combo_entry);
+    geda_label_set_mnemonic_widget (GEDA_LABEL (name_label),  attrib_name_entry);
     geda_label_set_mnemonic_widget (GEDA_LABEL (value_label), value_entry);
 
-    atk_name_obj  = atk_widget_linked_label_new (name_label,  attrib_combo_entry );
+    atk_name_obj  = atk_widget_linked_label_new (name_label,  attrib_name_entry );
     atk_value_obj = atk_widget_linked_label_new (value_label, value_entry );
 
     if ( atk_name_obj ) {
@@ -508,28 +509,30 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     i = 0;
     string = (char*) s_attrib_get(i);
     while (string != NULL) {
-      geda_combo_box_append_text(GEDA_COMBO_BOX(attrib_combo_box_entry), string);
+      geda_combo_box_append_text(GEDA_COMBO_BOX(attrib_name_combo_box), string);
       i++;
       string = (char*) s_attrib_get(i);
     }
 
     /* Add completion to attribute combo box entry */
-    attrib_combo_entry_completion = gtk_entry_completion_new();
-    gtk_entry_completion_set_model(attrib_combo_entry_completion,
-                                   geda_combo_box_get_model(GEDA_COMBO_BOX(attrib_combo_box_entry)));
-    gtk_entry_completion_set_text_column(attrib_combo_entry_completion, 0);
-    gtk_entry_completion_set_inline_completion(attrib_combo_entry_completion, TRUE);
-    gtk_entry_completion_set_popup_single_match(attrib_combo_entry_completion, FALSE);
-    gtk_entry_set_completion(GTK_ENTRY(attrib_combo_entry), attrib_combo_entry_completion);
+    completion = gtk_entry_completion_new();
+    tree_model = geda_combo_widget_get_model (attrib_name_combo_box);
 
-    GEDA_HOOKUP_OBJECT(ThisDialog, attrib_combo_entry, "attrib_combo_entry");
+    gtk_entry_completion_set_model(completion, tree_model);
+    gtk_entry_completion_set_text_column(completion, 0);
+    gtk_entry_completion_set_inline_completion(completion, TRUE);
+    gtk_entry_completion_set_inline_selection (completion, TRUE);
+    gtk_entry_completion_set_popup_single_match(completion, TRUE);
+    gtk_entry_set_completion(GTK_ENTRY(attrib_name_entry), completion);
+
+    GEDA_HOOKUP_OBJECT(ThisDialog, attrib_name_entry,  "attrib_name_entry");
     GEDA_HOOKUP_OBJECT(ThisDialog, value_entry,        "value_entry");
     GEDA_HOOKUP_OBJECT(ThisDialog, visbutton,          "visbutton");
     GEDA_HOOKUP_OBJECT(ThisDialog, show_options,       "show_options");
 
     /* Connect Attribute Name Combo Entry widget in order to move focus
      * to the Value entry after changing the Attribute Name */
-    g_signal_connect (attrib_combo_entry, "activate",
+    g_signal_connect (attrib_name_entry, "activate",
                       G_CALLBACK (callback_attrib_entry_activate),
                       value_entry);
 
@@ -542,7 +545,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     gtk_widget_show_all(ThisDialog);
 
     if (SAE_ADD_MODE == flag) {
-      gtk_widget_grab_focus(attrib_combo_entry);
+      gtk_widget_grab_focus(attrib_name_entry);
       gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                       GEDA_RESPONSE_ACCEPT);
     }

@@ -1,3 +1,11 @@
+2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Rename attrib_combo_box_entry->attrib_name_combo_box
+      attrib_combo_entry->attrib_name_entry, and attrib_combo_entry_completion->
+      completion, add tree_model. Replace gtk_bin_get_child with geda_combo_
+      widget_get_entry_widget. Enable completion inline_selection and single match
+      popup.
+
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_dialog.c: Replace gtk_file_chooser_dialog_new with
