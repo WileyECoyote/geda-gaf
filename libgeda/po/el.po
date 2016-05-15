@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-10 01:17-0500\n"
+"POT-Creation-Date: 2016-05-15 00:07-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -313,7 +313,7 @@ msgid "The arc sweep angle"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:459 libgeda/src/geda/geda_box.c:384
-#: libgeda/src/geda/geda_circle.c:358 libgeda/src/geda/geda_line.c:317
+#: libgeda/src/geda/geda_circle.c:360 libgeda/src/geda/geda_line.c:317
 msgid "End Cap"
 msgstr ""
 
@@ -323,94 +323,94 @@ msgid "Line end cap"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:469 libgeda/src/geda/geda_box.c:394
-#: libgeda/src/geda/geda_circle.c:368 libgeda/src/geda/geda_line.c:327
+#: libgeda/src/geda/geda_circle.c:370 libgeda/src/geda/geda_line.c:327
 msgid "Line Type"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:470 libgeda/src/geda/geda_box.c:395
-#: libgeda/src/geda/geda_circle.c:369 libgeda/src/geda/geda_line.c:328
+#: libgeda/src/geda/geda_circle.c:371 libgeda/src/geda/geda_line.c:328
 msgid "The line type"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:479 libgeda/src/geda/geda_box.c:404
-#: libgeda/src/geda/geda_circle.c:378 libgeda/src/geda/geda_line.c:337
+#: libgeda/src/geda/geda_circle.c:380 libgeda/src/geda/geda_line.c:337
 msgid "Line Width"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:480 libgeda/src/geda/geda_box.c:405
-#: libgeda/src/geda/geda_circle.c:379 libgeda/src/geda/geda_line.c:338
+#: libgeda/src/geda/geda_circle.c:381 libgeda/src/geda/geda_line.c:338
 msgid "The line width"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:489 libgeda/src/geda/geda_box.c:414
-#: libgeda/src/geda/geda_circle.c:388 libgeda/src/geda/geda_line.c:347
+#: libgeda/src/geda/geda_circle.c:390 libgeda/src/geda/geda_line.c:347
 msgid "Line Space"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:490 libgeda/src/geda/geda_box.c:415
-#: libgeda/src/geda/geda_circle.c:389 libgeda/src/geda/geda_line.c:348
+#: libgeda/src/geda/geda_circle.c:391 libgeda/src/geda/geda_line.c:348
 msgid "The line space"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:499 libgeda/src/geda/geda_box.c:424
-#: libgeda/src/geda/geda_circle.c:398 libgeda/src/geda/geda_line.c:357
+#: libgeda/src/geda/geda_circle.c:400 libgeda/src/geda/geda_line.c:357
 msgid "Line Length"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:500 libgeda/src/geda/geda_box.c:425
-#: libgeda/src/geda/geda_circle.c:399 libgeda/src/geda/geda_line.c:358
+#: libgeda/src/geda/geda_circle.c:401 libgeda/src/geda/geda_line.c:358
 msgid "The line length"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:511 libgeda/src/geda/geda_box.c:434
-#: libgeda/src/geda/geda_circle.c:408
+#: libgeda/src/geda/geda_circle.c:410
 msgid "Fill Type"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:512 libgeda/src/geda/geda_box.c:435
-#: libgeda/src/geda/geda_circle.c:409
+#: libgeda/src/geda/geda_circle.c:411
 msgid "The Object fill type; hatch mesh, solid, etc..."
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:521 libgeda/src/geda/geda_box.c:444
-#: libgeda/src/geda/geda_circle.c:418
+#: libgeda/src/geda/geda_circle.c:420
 msgid "Fill Width"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:522 libgeda/src/geda/geda_box.c:445
-#: libgeda/src/geda/geda_circle.c:419
+#: libgeda/src/geda/geda_circle.c:421
 msgid "The Object fill width applies to fill hatch and mesh"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:531 libgeda/src/geda/geda_box.c:454
-#: libgeda/src/geda/geda_circle.c:428
+#: libgeda/src/geda/geda_circle.c:430
 msgid "Fill Angle 1"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:532 libgeda/src/geda/geda_arc.c:542
 #: libgeda/src/geda/geda_box.c:455 libgeda/src/geda/geda_box.c:465
-#: libgeda/src/geda/geda_circle.c:429 libgeda/src/geda/geda_circle.c:439
+#: libgeda/src/geda/geda_circle.c:431 libgeda/src/geda/geda_circle.c:441
 msgid "The Object fill angle1 applies to fill hatch and mesh"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:541 libgeda/src/geda/geda_box.c:464
-#: libgeda/src/geda/geda_circle.c:438
+#: libgeda/src/geda/geda_circle.c:440
 msgid "Fill Pitch 1"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:551 libgeda/src/geda/geda_box.c:474
-#: libgeda/src/geda/geda_circle.c:448
+#: libgeda/src/geda/geda_circle.c:450
 msgid "Fill Angle 2"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:552 libgeda/src/geda/geda_arc.c:562
 #: libgeda/src/geda/geda_box.c:475 libgeda/src/geda/geda_box.c:485
-#: libgeda/src/geda/geda_circle.c:449 libgeda/src/geda/geda_circle.c:459
+#: libgeda/src/geda/geda_circle.c:451 libgeda/src/geda/geda_circle.c:461
 msgid "The Object fill angle1 applies to fill mesh"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:561 libgeda/src/geda/geda_box.c:484
-#: libgeda/src/geda/geda_circle.c:458
+#: libgeda/src/geda/geda_circle.c:460
 msgid "Fill Pitch 2"
 msgstr ""
 
@@ -466,7 +466,7 @@ msgstr ""
 msgid "Radius of the circle"
 msgstr ""
 
-#: libgeda/src/geda/geda_circle.c:359
+#: libgeda/src/geda/geda_circle.c:361
 msgid "Line end cap is not used by circles"
 msgstr ""
 
@@ -914,23 +914,23 @@ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 
 #: libgeda/src/object/o_arc_object.c:1476
-#: libgeda/src/object/o_box_object.c:1608
+#: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:591
 #: libgeda/src/object/o_circle_object.c:1153
-#: libgeda/src/object/o_line_basic.c:268 libgeda/src/object/o_net_basic.c:154
+#: libgeda/src/object/o_line_object.c:268 libgeda/src/object/o_net_basic.c:154
 #: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
-#: libgeda/src/object/o_text_basic.c:777
+#: libgeda/src/object/o_text_basic.c:778
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Βρέθηκε ένα μη έγκυρο χρώμα [ %s ]\n"
 
 #: libgeda/src/object/o_arc_object.c:1477
-#: libgeda/src/object/o_box_object.c:1609
+#: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1154
-#: libgeda/src/object/o_line_basic.c:269 libgeda/src/object/o_net_basic.c:155
+#: libgeda/src/object/o_line_object.c:269 libgeda/src/object/o_net_basic.c:155
 #: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
-#: libgeda/src/object/o_text_basic.c:778
+#: libgeda/src/object/o_text_basic.c:779
 msgid "Setting color to default color\n"
 msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
 
@@ -950,22 +950,22 @@ msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr ""
 "Προσπάθεια προσθήκης γνωρίσματος [%s] σε περισσότερα από ένα αντικείμενα\n"
 
-#: libgeda/src/object/o_attrib.c:729
+#: libgeda/src/object/o_attrib.c:731
 #, fuzzy
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
 
-#: libgeda/src/object/o_attrib.c:738
+#: libgeda/src/object/o_attrib.c:740
 #, fuzzy
 msgid "unexpected end-of-file in attribute list"
 msgstr "Απροσδόκητο τέλος αρχείου στη λίστα γνωρισμάτων"
 
-#: libgeda/src/object/o_box_object.c:1566
-#: libgeda/src/object/o_box_object.c:1597
+#: libgeda/src/object/o_box_object.c:1571
+#: libgeda/src/object/o_box_object.c:1602
 msgid "Failed to parse box object"
 msgstr ""
 
-#: libgeda/src/object/o_box_object.c:1603
+#: libgeda/src/object/o_box_object.c:1608
 #, c-format
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr ""
@@ -1124,11 +1124,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Το στοιχείο [%s] αποενσωματώθηκε επιτυχώς\n"
 
-#: libgeda/src/object/o_line_basic.c:231 libgeda/src/object/o_line_basic.c:251
+#: libgeda/src/object/o_line_object.c:231
+#: libgeda/src/object/o_line_object.c:251
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_basic.c:263
+#: libgeda/src/object/o_line_object.c:263
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr ""
@@ -1330,28 +1331,28 @@ msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Ρύθμιση χρώματος στο προκαθορισμένο\n"
 
-#: libgeda/src/object/o_text_basic.c:720 libgeda/src/object/o_text_basic.c:731
-#: libgeda/src/object/o_text_basic.c:743
+#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:732
+#: libgeda/src/object/o_text_basic.c:744
 msgid "Failed to parse text object"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:750
+#: libgeda/src/object/o_text_basic.c:751
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:769
+#: libgeda/src/object/o_text_basic.c:770
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Βρέθηκε μία μη υποστηριζόμενη στοίχιση κειμένου [ %c %d %d %d %d %d %d %d "
 "%d ]\n"
 
-#: libgeda/src/object/o_text_basic.c:771
+#: libgeda/src/object/o_text_basic.c:772
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Ρύθμιση στοίχισης σε LOWER_LEFT\n"
 
-#: libgeda/src/object/o_text_basic.c:793
+#: libgeda/src/object/o_text_basic.c:794
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""

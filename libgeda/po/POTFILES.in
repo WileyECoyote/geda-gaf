@@ -56,7 +56,7 @@ libgeda/src/object/o_color.c
 libgeda/src/object/o_complex_object.c
 libgeda/src/object/o_embed.c
 libgeda/src/object/o_get.c
-libgeda/src/object/o_line_basic.c
+libgeda/src/object/o_line_object.c
 libgeda/src/object/o_list.c
 libgeda/src/object/o_net_basic.c
 libgeda/src/object/o_notify.c
