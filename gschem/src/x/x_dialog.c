@@ -31,6 +31,7 @@
 #include <gschem.h>
 #include <version.h>
 #include <x_dialog.h>
+#include <geda_dialogs.h>
 #include <geda_widgets.h>
 #include <geda_debug.h>
 
@@ -3825,9 +3826,9 @@ char *x_dialog_select_file (GschemToplevel *w_current,
 
   if (flags & FSB_LOAD) {
     title = geda_sprintf("%s: Open", msg);
-    dialog = gtk_file_chooser_dialog_new (_(title),
+    dialog = geda_file_chooser_dialog_new_full (_(title),
                                           NULL,
-                                          GTK_FILE_CHOOSER_ACTION_OPEN,
+                                          FILE_CHOOSER_ACTION_OPEN,
                                           GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
                                           GTK_STOCK_OPEN, GEDA_RESPONSE_OK,
                                           NULL);
@@ -3837,9 +3838,9 @@ char *x_dialog_select_file (GschemToplevel *w_current,
   }
   else {
     title = geda_sprintf("%s: Save", msg);
-    dialog = gtk_file_chooser_dialog_new (_(title),
+    dialog = geda_file_chooser_dialog_new_full (_(title),
                                           NULL,
-                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          FILE_CHOOSER_ACTION_SAVE,
                                           GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
                                           GTK_STOCK_OPEN, GEDA_RESPONSE_OK,
                                           NULL);
@@ -3857,18 +3858,18 @@ char *x_dialog_select_file (GschemToplevel *w_current,
 
   /* Pick the current default folder to look for files in */
   if (path && *path) {
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), path);
+    geda_file_chooser_set_current_folder (dialog, path);
   }
   else {
     char *cwd = g_get_current_dir();
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    geda_file_chooser_set_current_folder (dialog, cwd);
     GEDA_FREE (cwd);
   }
 
   /* Pick the current template (*.rc) or default file name */
   if (templ && *templ) {
     if (flags & FSB_SAVE)  {
-      gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), templ);
+      geda_file_chooser_set_current_name (dialog, templ);
     }
     else {
       gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), templ);
@@ -3877,7 +3878,7 @@ char *x_dialog_select_file (GschemToplevel *w_current,
 
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GEDA_RESPONSE_OK) {
 
-    result = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    result = geda_file_chooser_get_filename (dialog);
 
     if (result !=NULL) {
       char *file_path = f_path_get_dirname(result);
