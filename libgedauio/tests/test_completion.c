@@ -37,6 +37,11 @@
 #include <geda/geda.h>
 #include <geda_completion.h>
 
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_completion.c"
+
 #define TWIDGET "GedaCompletion"
 
 /*! \file test_completion.c
@@ -247,7 +252,8 @@ int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -256,11 +262,12 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_completion();
-    if (subtotal) {
-      fprintf(stderr, "Check src/widgets/geda_completion.c");
-      result   = subtotal;
-      subtotal = 0;
+    if (setjmp(point) == 0) {
+      result = check_completion();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking %s\n\n", MUT);
+      return 1;
     }
   }
   return result;

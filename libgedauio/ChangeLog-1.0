@@ -1,3 +1,15 @@
+2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests: include "test-suite.h" and setup setjmp and longjmp, define MUT,
+      and revise flow in main in test files:
+
+            * tests/test_bulb.c
+            * tests/test_completion.c
+            * tests/test_entry.c
+            * tests/test_font_button.c
+            * tests/test_font_dialog.c
+            * tests/test_handlebox.c
+
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Simplify geda_combo_box_size_allocate.
