@@ -183,6 +183,12 @@ void s_traverse_process(GedaToplevel *pr_current)
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 {
+
+#if PERFORMANCE
+  printf("%s processing <%s>\n",__func__, pr_current->page_current->filename);
+  START_GEDA_PERFORMANCE
+#endif
+
   EdaConfig   *cfg;
   GError      *err;
   const GList *iter;
@@ -190,11 +196,6 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   char        *value;
   char        *temp_uref;
   bool         is_hierarchy;
-
-#if PERFORMANCE
-  printf("%s processing <%s>\n",__func__, pr_current->page_current->filename);
-  START_GEDA_PERFORMANCE
-#endif
 
   err          = NULL;
   cfg          = eda_config_get_context_for_file (NULL);
