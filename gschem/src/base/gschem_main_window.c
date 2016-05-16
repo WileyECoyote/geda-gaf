@@ -249,8 +249,6 @@ gschem_main_window_new ()
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
 {
-  //GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
-
   switch (param_id) {
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -283,9 +281,8 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
  * \brief Set the size of the GschemMainWindow widget
  * \par Function Description
  *  Provides functionality similar to gtk_window_resize except that
- *  gdk_window_process_updates is called to immediately process the
- *  request so that the configure_event signal is propagated in a
- *  timely manner.
+ *  gdk_display_sync is called to immediately process the request
+ *  so that event signals are propagated in a timely manner.
  *
  * \param [in] main_window GschemMainWindow widget,
  * \param [in] width       New widget width.
@@ -295,8 +292,8 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 void
 gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
 {
-  GdkWindow *window;
-  bool lame;
+  GdkDisplay *display;
+  GdkWindow  *window;
 
   window = geda_get_widget_window(main_window);
 
@@ -304,9 +301,9 @@ gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
 
   gtk_window_resize(GTK_WINDOW(main_window), width, height);
 
-  gdk_window_process_updates (window, TRUE);
+  display = gdk_drawable_get_display (window);
 
-  g_signal_emit_by_name(main_window, "configure_event", window, &lame);
+  gdk_display_sync (display);
 }
 
 /** @} endgroup Gschem-Main-Window */

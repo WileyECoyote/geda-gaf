@@ -1,5 +1,8 @@
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_main_window.c: Revise gschem_main_window_set_size to use
+      gdk_display_sync instead of manually forcing a configure event.
+
     * src/x/x_edit_attrib.c: Rename attrib_combo_box_entry->attrib_name_combo_box
       attrib_combo_entry->attrib_name_entry, and attrib_combo_entry_completion->
       completion, add tree_model. Replace gtk_bin_get_child with geda_combo_
