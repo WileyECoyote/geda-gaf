@@ -4,6 +4,11 @@
       instead of referencing toplevel->page_current->coord_aspectratio
       multiple times.
 
+    * src/x/x_event.c: Revised scrollbar callback functions x_event_hschanged
+      and x_event_vschanged to not respond unless the slider changed value
+      because the user moved the slider, otherwise the geometry of the page
+      is already up-to-date. Updated Doxygen comments for both functions.
+
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_main_window_set_size to use

@@ -1026,10 +1026,15 @@ bool x_event_scroll (GtkWidget      *widget,
   return 1;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Horizontal Scrollbar Value Changed Event Handler
+ * \par Function Description
+ *  This function is called when the value of the horizontal scrollbar
+ *  widget has been changed. If the value changed because the user moved
+ *  the slider then the page geometry is updated. If the value was changed
+ *  by some other means, such as the mouse wheel or keyboard, then the page
+ *  geometry has already been updated, so as long as the slider value matches
+ *  the page geometry this function does nothing.
  */
 void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
@@ -1045,18 +1050,29 @@ void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
     current_left = toplevel->page_current->left;
     new_left     = (int) adjust->value;
 
-    toplevel->page_current->left  = new_left;
-    toplevel->page_current->right =
-    toplevel->page_current->right - (current_left - new_left);
+    if (new_left - current_left) {
 
-    o_invalidate_all (w_current);
+      int new_right;
+
+      new_right  = toplevel->page_current->right - (current_left - new_left);
+
+      toplevel->page_current->right = new_right;
+      toplevel->page_current->left  = new_left;
+
+      o_invalidate_all (w_current);
+    }
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Vertical Scrollbar Value Changed Event Handler
+ * \par Function Description
+ *  This function is called when the value of the vertical scrollbar
+ *  widget has been changed. If the value changed because the user moved
+ *  the slider then the page geometry is updated. If the value was changed
+ *  by some other means, such as the mouse wheel or keyboard, then the page
+ *  geometry has already been updated, so as long as the slider value matches
+ *  the page geometry this function does nothing.
  */
 void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
@@ -1073,17 +1089,23 @@ void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
     current_bottom = toplevel->page_current->bottom;
     new_bottom     = w_current->world_bottom - (int) adjust->value;
 
-    toplevel->page_current->bottom = new_bottom;
-    toplevel->page_current->top    =
-    toplevel->page_current->top - (current_bottom - new_bottom);
+    if (new_bottom - current_bottom) {
+
+      int new_top;
+
+      new_top  = toplevel->page_current->top - (current_bottom - new_bottom);
+
+      toplevel->page_current->top    = new_top;
+      toplevel->page_current->bottom = new_bottom;
+
+      o_invalidate_all (w_current);
 
 #if DEBUG_EVENTS
-    printf("vrange %f %f\n",  adjust->lower, adjust->upper);
-    printf("vvalue %f\n",     adjust->value);
-    printf("actual: %d %d\n", toplevel->page_current->top,
-                              toplevel->page_current->bottom);
+      printf("vrange %f %f\n",  adjust->lower, adjust->upper);
+      printf("vvalue %f\n",     adjust->value);
+      printf("actual: %d %d\n", toplevel->page_current->top,
+      toplevel->page_current->bottom);
 #endif
-
-    o_invalidate_all (w_current);
+    }
   }
 }
