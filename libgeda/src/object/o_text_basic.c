@@ -700,6 +700,9 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
              unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
+  char       *string;
+  unsigned    allocated;
+
   char type;
   int x, y;
   int color;
@@ -710,8 +713,6 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
   int alignment;
   int num_lines = 0;
   int i;
-  char* string = NULL;
-  GString *textstr;
 
   if (fileformat_ver >= 1) {
     if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d %d\n", &type, &x, &y,
@@ -778,9 +779,9 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
     u_log_message(_("Setting color to default color\n"));
     color = DEFAULT_TEXT_COLOR_INDEX;
   }
-  /* g_assert(num_lines && num_lines > 0) */
 
-  textstr = g_string_new ("");
+  allocated = 0;
+  string    = NULL;
 
   for (i = 0; i < num_lines; i++) {
 
@@ -789,15 +790,34 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
     line = s_textbuffer_next_line (tb);
 
     if (line == NULL) {
-      g_string_free (textstr, TRUE);
+      GEDA_FREE(string);
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Unexpected end-of-file after %d lines"), i);
       return NULL;
     }
 
-    textstr = g_string_append (textstr, line);
+    size_t len = strlen(line);
+
+    if (!allocated) {
+      string = (char*)malloc(len + 1);
+      strncpy(string, line, len);
+      allocated = ++len;
+      string[allocated - 1] = '\0';
+    }
+    else {
+
+      char *buffer;
+
+      allocated = allocated + len;
+
+      buffer = (char*)realloc(string, allocated);
+
+      if (!buffer)
+        break;
+
+      string = buffer;
+      strncat(string, line, len);
+    }
   }
-  /* retrieve the character string from the GString */
-  string = g_string_free (textstr, FALSE);
 
   string = geda_utility_string_remove_last_nl(string);
 
@@ -808,16 +828,16 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
                            "UTF-8", "ISO_8859-15",
                            NULL, NULL, NULL);
     if (tmp == NULL) {
-      fprintf (stderr, "Failed to convert text string to UTF-8: %s.\n",
-               string);
-    } else {
+      fprintf (stderr, "Failed to convert text to UTF-8: %s.\n", string);
+    }
+    else {
       /* successfully converted string, now use tmp as string */
       GEDA_FREE (string);
       string = tmp;
     }
   }
 
-  new_obj = o_text_new(color, x, y,  alignment, angle, size,
+  new_obj = o_text_new(color, x, y, alignment, angle, size,
                        visibility, show_name_value, string);
   GEDA_FREE(string);
 

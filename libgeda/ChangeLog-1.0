@@ -4,6 +4,10 @@
 
     * src/object/o_net_object.c: Rename file net basic->object.
 
+    * src/object/o_text_basic.c: Revise o_text_read to use simple allocation
+      rather than GString, which seems a bit over-kill since 99 percent of the
+      reads are single line text.
+
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Reorganize function; move line_type after line_space.
