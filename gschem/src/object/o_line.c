@@ -81,7 +81,7 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject   *new_obj;
 
     /* create the line object and draw it */
-    new_obj = o_line_new (GRAPHIC_COLOR,
+    new_obj = geda_line_object_new (GRAPHIC_COLOR,
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
     new_obj->line_options->line_width = o_style_get_line_width(toplevel);

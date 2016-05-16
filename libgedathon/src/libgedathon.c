@@ -2458,7 +2458,7 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
-  object = o_line_new(color, x1, y1, x2, y2);
+  object = geda_line_object_new(color, x1, y1, x2, y2);
 
   add_floating_object(object);
 

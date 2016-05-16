@@ -674,8 +674,8 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
     s_conn_update_object (obj);
     break;
   case OBJ_LINE:
-    o_line_modify (obj, x1, y1, LINE_END1);
-    o_line_modify (obj, x2, y2, LINE_END2);
+    geda_line_object_modify (obj, x1, y1, LINE_END1);
+    geda_line_object_modify (obj, x2, y2, LINE_END2);
     break;
   case OBJ_BUS:
     s_conn_remove_object (obj);

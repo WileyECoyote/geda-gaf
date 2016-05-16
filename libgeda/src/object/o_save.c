@@ -262,7 +262,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_LINE):
-          out = o_line_save(o_current);
+          out = geda_line_object_save(o_current);
           break;
 
         case(OBJ_NET):

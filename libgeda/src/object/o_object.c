@@ -175,7 +175,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(OBJ_LINE):
-        new_obj = o_line_read (line, release_ver, fileformat_ver, err);
+        new_obj = geda_line_object_read (line, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
@@ -490,7 +490,7 @@ GedaObject *o_copy_object (GedaObject *o_current)
   switch(o_current->type) {
 
     case(OBJ_LINE):
-      new_obj = o_line_copy (o_current);
+      new_obj = geda_line_object_copy (o_current);
       break;
 
     case(OBJ_NET):
@@ -569,7 +569,7 @@ void o_mirror_object (GedaObject *object, int center_x, int center_y)
   void (*topless) (GedaObject*, int, int) = NULL;
 
   switch (object->type) {
-      case OBJ_LINE:    topless = o_line_mirror;       break;
+      case OBJ_LINE:    topless = geda_line_object_mirror;       break;
       case OBJ_NET:     topless = o_net_mirror;        break;
       case OBJ_BUS:     topless = geda_bus_object_mirror;        break;
       case OBJ_BOX:     topless = geda_box_object_mirror;        break;
@@ -618,7 +618,7 @@ void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
 
   switch (object->type)
   {
-    case OBJ_LINE:    topless = o_line_rotate;       break;
+    case OBJ_LINE:    topless = geda_line_object_rotate;       break;
     case OBJ_NET:     topless = o_net_rotate;        break;
     case OBJ_BUS:     topless = geda_bus_object_rotate;        break;
     case OBJ_BOX:     topless = geda_box_object_rotate;        break;
@@ -666,7 +666,7 @@ void o_translate_object (GedaObject *object, int dx, int dy)
   void (*topless) (GedaObject *, int, int) = NULL;
 
   switch (object->type) {
-      case OBJ_LINE:    topless = o_line_translate;    break;
+      case OBJ_LINE:    topless = geda_line_object_translate;    break;
       case OBJ_NET:     topless = o_net_translate;     break;
       case OBJ_BUS:     topless = geda_bus_object_translate;     break;
       case OBJ_BOX:     topless = geda_box_object_translate;     break;
@@ -725,7 +725,7 @@ void o_scale (GList *list, int x_scale, int y_scale)
 
       switch(o_current->type) {
         case(OBJ_LINE):
-          o_line_scale(o_current, x_scale, y_scale);
+          geda_line_object_scale(o_current, x_scale, y_scale);
           break;
       }
       iter = iter->next;

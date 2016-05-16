@@ -469,7 +469,7 @@ o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
     case OBJ_NET:
     case OBJ_BUS:
     case OBJ_PIN:
-    case OBJ_LINE:    getter = o_line_get_nearest_point;      break;
+    case OBJ_LINE:    getter = geda_line_object_get_nearest_point;      break;
     case OBJ_BOX:     getter = geda_box_object_get_nearest_point;       break;
     case OBJ_PICTURE: getter = o_picture_get_nearest_point;   break;
     case OBJ_CIRCLE:  getter = geda_circle_object_get_nearest_point;    break;
@@ -689,7 +689,7 @@ o_get_position (GedaObject *object, int *x, int *y )
   bool (*func) (GedaObject*, int*, int*) = NULL;
 
   switch (object->type) {
-      case OBJ_LINE:    func = o_line_get_position;    break;
+      case OBJ_LINE:    func = geda_line_object_get_position;    break;
       case OBJ_NET:     func = o_net_get_position;     break;
       case OBJ_BUS:     func = geda_bus_object_get_position;     break;
       case OBJ_BOX:     func = geda_box_object_get_position;     break;
@@ -737,7 +737,7 @@ o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
       case OBJ_BUS:
       case OBJ_NET:
       case OBJ_PIN:
-      case OBJ_LINE:        func = o_line_shortest_distance;     break;
+      case OBJ_LINE:        func = geda_line_object_shortest_distance;     break;
       case OBJ_BOX:         func = geda_box_object_shortest_distance;      break;
       case OBJ_PICTURE:     func = o_picture_shortest_distance;  break;
       case OBJ_CIRCLE:      func = geda_circle_object_shortest_distance;   break;

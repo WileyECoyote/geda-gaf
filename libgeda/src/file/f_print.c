@@ -341,7 +341,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
 
     switch (o_current->type) {
       case(OBJ_LINE):
-        o_line_print(toplevel, fp, o_current, origin_x, origin_y);
+        geda_line_object_print(toplevel, fp, o_current, origin_x, origin_y);
         break;
 
       case(OBJ_NET):

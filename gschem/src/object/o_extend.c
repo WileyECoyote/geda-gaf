@@ -265,7 +265,7 @@ static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
   POINT       point;
 
 
-  if (o_line_get_intersection(object1, object2, &point)) {
+  if (geda_line_object_get_intersection(object1, object2, &point)) {
 
     bool has_slope1;
     bool has_slope2;
@@ -823,8 +823,8 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
 
   answer = FALSE;
 
-  /* If o_line_get_slope returns true, the slope is valid */
-  if (o_line_get_slope(projectile, &slope)) {
+  /* If geda_line_object_get_slope returns true, the slope is valid */
+  if (geda_line_object_get_slope(projectile, &slope)) {
 
     /* Within this conditional we use y1, but is arbitrary y's are equal */
 
@@ -1201,7 +1201,7 @@ static bool o_extend_can_linear_bound(GedaObject *boundary,
   bool  answer;
   POINT pt;
 
-  answer = o_line_get_intersection(boundary, projectile, &pt);
+  answer = geda_line_object_get_intersection(boundary, projectile, &pt);
 
   has_slope1 = o_get_has_slope(projectile);
   has_slope2 = o_get_has_slope(boundary);
@@ -1988,7 +1988,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
     x = w_current->second_wx;
     y = w_current->second_wy;
 
-    which_end = o_line_get_closest_endpoint(projectile, x, y);
+    which_end = geda_line_object_get_closest_endpoint(projectile, x, y);
 
     direction = o_extend_get_direction(projectile, which_end);
     iter      = s_page_get_objects(Current_Page);

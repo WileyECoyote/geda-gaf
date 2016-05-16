@@ -871,7 +871,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
   }
 
   if (m_line_includes_point(object->line, &point1) &&
-     !o_line_is_endpoint(object, &point1))
+     !geda_line_object_is_endpoint(object, &point1))
   {
 
     if (do_snap) {
@@ -884,12 +884,12 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
     }
 
     if (m_line_includes_point(object->line, &point2) &&
-       !o_line_is_endpoint(object, &point2))
+       !geda_line_object_is_endpoint(object, &point2))
     {
-      int end1 = o_line_get_closest_endpoint(object, point1.x, point1.y);
+      int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);
       int end2 = !end1;
 
-      GedaObject *new_line = o_line_copy(object);
+      GedaObject *new_line = geda_line_object_copy(object);
 
       /* Temporarily remove the object from the screen */
       object->dont_redraw = TRUE;
@@ -942,7 +942,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
   }
 
   if (m_line_includes_point(object->line, &point1) &&
-     !o_line_is_endpoint(object, &point1))
+     !geda_line_object_is_endpoint(object, &point1))
   {
     if (do_snap) {
       point2.x = snap_grid (w_current, w_current->second_wx);
@@ -954,9 +954,9 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
     }
 
     if (m_line_includes_point(object->line, &point2) &&
-       !o_line_is_endpoint(object, &point2))
+       !geda_line_object_is_endpoint(object, &point2))
     {
-      int end1 = o_line_get_closest_endpoint(object, point1.x, point1.y);
+      int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);
       int end2 = !end1;
 
       GedaObject *new_obj;

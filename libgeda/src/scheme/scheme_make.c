@@ -48,7 +48,7 @@
 EDA_SCM_DEFINE (object_make_line, "%make-line", 0, 0, 0,
                (), "Create a new line object.")
 {
-  GedaObject *obj = o_line_new (DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
+  GedaObject *obj = geda_line_object_new (DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 

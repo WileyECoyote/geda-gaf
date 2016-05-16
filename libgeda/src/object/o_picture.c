@@ -1535,9 +1535,9 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
     //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
     geda_box_object_print_solid (toplevel, fp, x1, y1, width, height,
                        DEFAULT_COLOR_INDEX, line_width, SQUARE_CAP, -1, -1, -1, -1);
-    o_line_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
+    geda_line_object_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
                         DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
-    o_line_print_solid (toplevel, fp, x1+width, y1, x1, y1-height,
+    geda_line_object_print_solid (toplevel, fp, x1+width, y1, x1, y1-height,
                         DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
     return;
   }

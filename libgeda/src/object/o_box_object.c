@@ -1011,7 +1011,7 @@ geda_box_object_print(GedaToplevel *toplevel,
  *  <B>height</B> parameters.
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *
- *  It uses the function #o_line_print_center() to print the outline.
+ *  It uses the function #geda_line_object_print_center() to print the outline.
  *  It performs four calls to this function, one for each of its side.
  *
  *  All dimensions are in mils.
@@ -1045,22 +1045,22 @@ geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
   x1 = x;
   y1 = y - height; /* move the origin to 0, 0*/
 
-  o_line_print_center(toplevel, fp,
+  geda_line_object_print_center(toplevel, fp,
                       x1, y1, x1 + width, y1,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_center(toplevel, fp,
+  geda_line_object_print_center(toplevel, fp,
                       x1 + width, y1, x1 + width, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_center(toplevel, fp,
+  geda_line_object_print_center(toplevel, fp,
                       x1 + width, y1 + height, x1, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_center(toplevel, fp,
+  geda_line_object_print_center(toplevel, fp,
                       x1, y1 + height, x1, y1,
                       color,
                       line_width, capstyle, length, space,
@@ -1076,7 +1076,7 @@ geda_box_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *  <B>height</B> parameters.
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *
- *  It uses the function #o_line_print_dashed() to print the outline.
+ *  It uses the function #geda_line_object_print_dashed() to print the outline.
  *  It performs four calls to this function, one for each of its side.
  *
  *  All dimensions are in mils.
@@ -1111,22 +1111,22 @@ geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
   x1 = x;
   y1 = y - height; /* move the origin to 0, 0*/
 
-  o_line_print_dashed(toplevel, fp,
+  geda_line_object_print_dashed(toplevel, fp,
                       x1, y1, x1 + width, y1,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dashed(toplevel, fp,
+  geda_line_object_print_dashed(toplevel, fp,
                       x1 + width, y1, x1 + width, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dashed(toplevel, fp,
+  geda_line_object_print_dashed(toplevel, fp,
                       x1 + width, y1 + height, x1, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dashed(toplevel, fp,
+  geda_line_object_print_dashed(toplevel, fp,
                       x1, y1 + height, x1, y1,
                       color,
                       line_width, capstyle, length, space,
@@ -1143,7 +1143,7 @@ geda_box_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *  The parameters <B>length</B> is ignored.
  *
- *  It uses the function #o_line_print_dotted() to print the outline.
+ *  It uses the function #geda_line_object_print_dotted() to print the outline.
  *  It performs four calls to this function, one for each of its side.
  *
  *  All dimensions are in mils.
@@ -1178,22 +1178,22 @@ geda_box_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
   x1 = x;
   y1 = y - height; /* move the origin to 0, 0*/
 
-  o_line_print_dotted(toplevel, fp,
+  geda_line_object_print_dotted(toplevel, fp,
                       x1, y1, x1 + width, y1,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dotted(toplevel, fp,
+  geda_line_object_print_dotted(toplevel, fp,
                       x1 + width, y1, x1 + width, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dotted(toplevel, fp,
+  geda_line_object_print_dotted(toplevel, fp,
                       x1 + width, y1 + height, x1, y1 + height,
                       color,
                       line_width, capstyle, length, space,
                       origin_x, origin_y);
-  o_line_print_dotted(toplevel, fp,
+  geda_line_object_print_dotted(toplevel, fp,
                       x1, y1 + height, x1, y1,
                       color,
                       line_width, capstyle, length, space,
@@ -1397,7 +1397,7 @@ geda_box_object_print_mesh(GedaToplevel *toplevel, FILE *fp,
  *  <B>height</B> parameters.
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *
- *  It uses the function #o_line_print_phantom() to print the outline.
+ *  It uses the function #geda_line_object_print_phantom() to print the outline.
  *  It performs four calls to this function, one for each of its side.
  *
  *  All dimensions are in mils.
@@ -1431,22 +1431,22 @@ geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
   x1 = x;
   y1 = y - height; /* move the origin to 0, 0*/
 
-  o_line_print_phantom(toplevel, fp,
+  geda_line_object_print_phantom(toplevel, fp,
                        x1, y1, x1 + width, y1,
                        color,
                        line_width, capstyle, length, space,
                        origin_x, origin_y);
-  o_line_print_phantom(toplevel, fp,
+  geda_line_object_print_phantom(toplevel, fp,
                        x1 + width, y1, x1 + width, y1 + height,
                        color,
                        line_width, capstyle, length, space,
                        origin_x, origin_y);
-  o_line_print_phantom(toplevel, fp,
+  geda_line_object_print_phantom(toplevel, fp,
                        x1 + width, y1 + height, x1, y1 + height,
                        color,
                        line_width, capstyle, length, space,
                        origin_x, origin_y);
-  o_line_print_phantom(toplevel, fp,
+  geda_line_object_print_phantom(toplevel, fp,
                        x1, y1 + height, x1, y1,
                        color,
                        line_width, capstyle, length, space,
@@ -1463,7 +1463,7 @@ geda_box_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *  The parameters <B>length</B> and <B>space</B> are ignored.
  *
- *  It uses the function #o_line_print_solid() to print the outline.
+ *  It uses the function #geda_line_object_print_solid() to print the outline.
  *  It performs four calls to this function, one for each of its side.
  *
  *  All dimensions are in mils.
@@ -1497,22 +1497,22 @@ geda_box_object_print_solid(GedaToplevel *toplevel, FILE *fp,
   x1 = x;
   y1 = y - height; /* move the origin to 0, 0*/
 
-  o_line_print_solid(toplevel, fp,
+  geda_line_object_print_solid(toplevel, fp,
                      x1, y1, x1 + width, y1,
                      color,
                      line_width, capstyle, length, space,
                      origin_x, origin_y);
-  o_line_print_solid(toplevel, fp,
+  geda_line_object_print_solid(toplevel, fp,
                      x1 + width, y1, x1 + width, y1 + height,
                      color,
                      line_width, capstyle, length, space,
                      origin_x, origin_y);
-  o_line_print_solid(toplevel, fp,
+  geda_line_object_print_solid(toplevel, fp,
                      x1 + width, y1 + height, x1, y1 + height,
                      color,
                      line_width, capstyle, length, space,
                      origin_x, origin_y);
-  o_line_print_solid(toplevel, fp,
+  geda_line_object_print_solid(toplevel, fp,
                      x1, y1 + height, x1, y1,
                      color,
                      line_width, capstyle, length, space,

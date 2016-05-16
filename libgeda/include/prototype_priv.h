@@ -174,25 +174,25 @@ char       *geda_complex_object_to_buffer        (GedaObject *object);
 double      geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
 
 /* o_get.c */
-int         o_get_capstyle                 (LINE_END end);
+int         o_get_capstyle                       (LINE_END end);
 
 /* o_line_object.c */
-bool        o_line_get_position            (GedaObject *object, int *x, int *y);
-void        o_line_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-void        o_line_print_center            (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
-                                            int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_line_print_dashed            (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
-                                            int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_line_print_dotted            (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
-                                            int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_line_print_phantom           (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
-                                            int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void        o_line_print_solid             (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
-                                            int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-double      o_line_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-GedaObject *o_line_read                    (const const char buf[], unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_line_save                    (GedaObject *object);
+bool        geda_line_object_get_position        (GedaObject *object, int *x, int *y);
+void        geda_line_object_print               (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+void        geda_line_object_print_center        (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_line_object_print_dashed        (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_line_object_print_dotted        (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_line_object_print_phantom       (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void        geda_line_object_print_solid         (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
+                                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+double      geda_line_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
+GedaObject *geda_line_object_read                (const const char buf[], unsigned int release_ver,
+                                                  unsigned int fileformat_ver, GError **err);
+char       *geda_line_object_save           (GedaObject *object);
 
 /* o_net_object.c */
 bool        o_net_get_position             (GedaObject *object, int *x, int *y);

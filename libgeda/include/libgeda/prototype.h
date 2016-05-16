@@ -340,20 +340,20 @@ extern "C" {
        double    o_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
 
 /* o_line_object.c */
-   GedaObject   *o_line_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-         bool    o_line_is_endpoint              (GedaObject *object, POINT *point);
-         int     o_line_get_closest_endpoint     (GedaObject *object, int x, int y);
-         bool    o_line_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
-         bool    o_line_get_midpoint             (GedaObject *object, POINT *point);
-         bool    o_line_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
-         bool    o_line_get_slope                (GedaObject *object, double *anwser);
-       double    o_line_length                   (GedaObject *object);
-         void    o_line_modify                   (GedaObject *object, int x, int y, int whichone);
-         void    o_line_mirror                   (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
-         void    o_line_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_line_scale                    (GedaObject *object, int x_scale, int y_scale);
-         void    o_line_translate                (GedaObject *object, int dx, int dy);
+   GedaObject   *geda_line_object_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+         bool    geda_line_object_is_endpoint              (GedaObject *object, POINT *point);
+         int     geda_line_object_get_closest_endpoint     (GedaObject *object, int x, int y);
+         bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
+         bool    geda_line_object_get_midpoint             (GedaObject *object, POINT *point);
+         bool    geda_line_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_line_object_get_slope                (GedaObject *object, double *anwser);
+       double    geda_line_object_length                   (GedaObject *object);
+         void    geda_line_object_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    geda_line_object_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_line_object_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+         void    geda_line_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_line_object_scale                    (GedaObject *object, int x_scale, int y_scale);
+         void    geda_line_object_translate                (GedaObject *object, int dx, int dy);
 
 /* o_list.c */
         GList   *geda_object_list_copy_all                 (const GList *src_list, GList *dest_list);
