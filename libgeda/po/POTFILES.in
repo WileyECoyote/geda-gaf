@@ -58,7 +58,7 @@ libgeda/src/object/o_embed.c
 libgeda/src/object/o_get.c
 libgeda/src/object/o_line_object.c
 libgeda/src/object/o_list.c
-libgeda/src/object/o_net_basic.c
+libgeda/src/object/o_net_object.c
 libgeda/src/object/o_notify.c
 libgeda/src/object/o_path_basic.c
 libgeda/src/object/o_picture.c

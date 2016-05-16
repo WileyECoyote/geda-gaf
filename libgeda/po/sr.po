@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-15 00:07-0500\n"
+"POT-Creation-Date: 2016-05-15 01:04-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -926,9 +926,9 @@ msgstr "Пронашао сам лук нултог полупречника ( %
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:591
 #: libgeda/src/object/o_circle_object.c:1153
-#: libgeda/src/object/o_line_object.c:268 libgeda/src/object/o_net_basic.c:154
-#: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
-#: libgeda/src/object/o_text_basic.c:778
+#: libgeda/src/object/o_line_object.c:268
+#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:542
+#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:778
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Пронашао сам неисправну боју ( %s )\n"
@@ -937,9 +937,9 @@ msgstr "Пронашао сам неисправну боју ( %s )\n"
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1154
-#: libgeda/src/object/o_line_object.c:269 libgeda/src/object/o_net_basic.c:155
-#: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
-#: libgeda/src/object/o_text_basic.c:779
+#: libgeda/src/object/o_line_object.c:269
+#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:543
+#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:779
 msgid "Setting color to default color\n"
 msgstr "Подешавам боју на основну боју\n"
 
@@ -1150,11 +1150,11 @@ msgstr ""
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам линију нулте дужине ( %c %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_net_basic.c:139
+#: libgeda/src/object/o_net_object.c:139
 msgid "Failed to parse net object"
 msgstr ""
 
-#: libgeda/src/object/o_net_basic.c:144
+#: libgeda/src/object/o_net_object.c:144
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам мрежу нулте дужине ( %c %d %d %d %d %d )\n"

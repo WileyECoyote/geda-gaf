@@ -17,7 +17,7 @@ libgeda_la_SOURCES += \
 			object/o_get.c \
 			object/o_line_object.c \
 			object/o_list.c \
-			object/o_net_basic.c \
+			object/o_net_object.c \
 			object/o_notify.c \
 			object/o_path_basic.c \
 			object/o_picture.c \

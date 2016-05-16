@@ -2,6 +2,8 @@
 
     * src/object/o_line_object.c: Rename file line basic->object.
 
+    * src/object/o_net_object.c: Rename file net basic->object.
+
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Reorganize function; move line_type after line_space.

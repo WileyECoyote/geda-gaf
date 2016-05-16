@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-15 00:07-0500\n"
+"POT-Creation-Date: 2016-05-15 01:04-0500\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -925,9 +925,9 @@ msgstr "عثر على قوس صفر الشعاع [ %c %d, %d, %d, %d, %d, %d ]\n
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:591
 #: libgeda/src/object/o_circle_object.c:1153
-#: libgeda/src/object/o_line_object.c:268 libgeda/src/object/o_net_basic.c:154
-#: libgeda/src/object/o_path_basic.c:542 libgeda/src/object/o_pin_basic.c:180
-#: libgeda/src/object/o_text_basic.c:778
+#: libgeda/src/object/o_line_object.c:268
+#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:542
+#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:778
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "عثر على لون غير صالح [ %s ]\n"
@@ -936,9 +936,9 @@ msgstr "عثر على لون غير صالح [ %s ]\n"
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1154
-#: libgeda/src/object/o_line_object.c:269 libgeda/src/object/o_net_basic.c:155
-#: libgeda/src/object/o_path_basic.c:543 libgeda/src/object/o_pin_basic.c:181
-#: libgeda/src/object/o_text_basic.c:779
+#: libgeda/src/object/o_line_object.c:269
+#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:543
+#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:779
 msgid "Setting color to default color\n"
 msgstr "تغيير لون إلى اللون الإفتراضي\n"
 
@@ -1144,11 +1144,11 @@ msgstr ""
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "عثر على خط صفر الطول [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_net_basic.c:139
+#: libgeda/src/object/o_net_object.c:139
 msgid "Failed to parse net object"
 msgstr ""
 
-#: libgeda/src/object/o_net_basic.c:144
+#: libgeda/src/object/o_net_object.c:144
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "عثر على شبكة صفر الطول [ %c %d %d %d %d %d ]\n"
