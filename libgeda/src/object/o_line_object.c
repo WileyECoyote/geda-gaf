@@ -303,7 +303,7 @@ GedaObject* geda_line_object_read (const char buf[], unsigned int release_ver,
  *
  * \note Caller must GEDA_FREE returned character string.
  */
-char *geda_line_object_save(GedaObject *object)
+char *geda_line_object_to_buffer(GedaObject *object)
 {
   char     *buf;
   GedaLine *line;

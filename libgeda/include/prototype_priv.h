@@ -192,7 +192,7 @@ void        geda_line_object_print_solid         (GedaToplevel *toplevel, FILE *
 double      geda_line_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
 GedaObject *geda_line_object_read                (const const char buf[], unsigned int release_ver,
                                                   unsigned int fileformat_ver, GError **err);
-char       *geda_line_object_save           (GedaObject *object);
+char       *geda_line_object_to_buffer           (GedaObject *object);
 
 /* o_net_object.c */
 bool        o_net_get_position             (GedaObject *object, int *x, int *y);

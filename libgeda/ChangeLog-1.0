@@ -1,6 +1,7 @@
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_object.c: Rename functions using prefix geda_line_object_.
+      Rename geda_line_object_save->geda_line_object_to_buffer.
 
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
