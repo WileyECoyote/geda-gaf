@@ -1,3 +1,9 @@
+2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_zoom_world.c: Revise correct_aspect to use local double
+      instead of referencing toplevel->page_current->coord_aspectratio
+      multiple times.
+
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_main_window_set_size to use

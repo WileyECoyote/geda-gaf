@@ -404,14 +404,16 @@ void correct_aspect(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   double new_aspect;
+  double old_aspect;
 
   new_aspect = GET_PAGE_ASPECT_RATIO(toplevel);
+  old_aspect = toplevel->page_current->coord_aspectratio;
 
   /* Make sure aspect ratio is correct */
-  if (fabs(new_aspect - toplevel->page_current->coord_aspectratio)) {
+  if (fabs(new_aspect - old_aspect)) {
 
     /* sign was > */
-    if (new_aspect > toplevel->page_current->coord_aspectratio) {
+    if (new_aspect > old_aspect) {
 
 #if DEBUG
       printf("%s: new larger then coord\n", __func_);
@@ -419,10 +421,8 @@ void correct_aspect(GschemToplevel *w_current)
 #endif
 
       /* calculate neccesary padding on Y */
-      toplevel->page_current->bottom =
-        toplevel->page_current->top +
-        GET_PAGE_WIDTH(toplevel) /
-        toplevel->page_current->coord_aspectratio;
+      toplevel->page_current->bottom = toplevel->page_current->top +
+                                       GET_PAGE_WIDTH(toplevel) / old_aspect;
 
     }
     else {
@@ -433,10 +433,8 @@ void correct_aspect(GschemToplevel *w_current)
 #endif
 
       /* calculate necessary padding on X */
-      toplevel->page_current->right =
-        toplevel->page_current->left +
-        GET_PAGE_HEIGHT(toplevel) *
-        toplevel->page_current->coord_aspectratio;
+      toplevel->page_current->right = toplevel->page_current->left +
+                                      GET_PAGE_HEIGHT(toplevel) * old_aspect;
     }
 
 #if DEBUG
