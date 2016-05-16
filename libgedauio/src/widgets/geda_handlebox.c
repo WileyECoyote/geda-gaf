@@ -415,8 +415,9 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     }
     else {
 
-      int width;
-      int height;
+      int            width;
+      int            height;
+      unsigned int   border_2x;
       GtkRequisition child_requisition;
 
       handlebox->child_detached = TRUE;
@@ -429,8 +430,10 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
         child_requisition.height = 0;
       }
 
-      width = child_requisition.width + 2 * GTK_CONTAINER (handlebox)->border_width;
-      height = child_requisition.height + 2 * GTK_CONTAINER (handlebox)->border_width;
+      border_2x = GTK_CONTAINER (widget)->border_width << 1; /* Multipy by 2 */
+
+      width  = child_requisition.width  + border_2x;
+      height = child_requisition.height + border_2x;
 
       if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
         width += DRAG_HANDLE_SIZE;
@@ -443,7 +446,7 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       gdk_window_show (handlebox->float_window);
       handlebox->float_window_mapped = TRUE;
 
-#if     0
+#if 0
       /* this extra move is necessary if we use decorations, or our
        * window manager insists on decorations.
        */
@@ -451,6 +454,7 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       gdk_window_move (handlebox->float_window, new_x, new_y);
       gdk_display_sync (gtk_widget_get_display (widget));
 #endif  /* 0 */
+
       g_signal_emit (handlebox,
                      handle_box_signals[SIGNAL_CHILD_DETACHED],
                      0,
@@ -1158,10 +1162,10 @@ static void
 geda_handle_box_size_request (GtkWidget      *widget,
                               GtkRequisition *requisition)
 {
-  GtkBin *bin;
+  GtkBin        *bin;
   GedaHandleBox *handlebox;
   GtkRequisition child_requisition;
-  int handle_position;
+  int            handle_position;
 
   bin = GTK_BIN (widget);
   handlebox = GEDA_HANDLE_BOX (widget);
@@ -1218,8 +1222,12 @@ geda_handle_box_size_request (GtkWidget      *widget,
   }
   else {
 
-    requisition->width  += GTK_CONTAINER (widget)->border_width * 2;
-    requisition->height += GTK_CONTAINER (widget)->border_width * 2;
+    unsigned int border_2x;
+
+    border_2x = GTK_CONTAINER (widget)->border_width << 1;
+
+    requisition->width  += border_2x;
+    requisition->height += border_2x;
 
     if (bin->child) {
       requisition->width  += child_requisition.width;
