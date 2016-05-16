@@ -1,3 +1,10 @@
+2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * micro/M41T00-2.sym: add symbol: alternate pin arrangment for M41T00.
+
+    * micro/SAB80C517-1.sym: add symbol SAB80C517 8-Bit CMOS Microcontroller,
+      8k ROM.
+
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * Clean symbols, add missing attributes:
