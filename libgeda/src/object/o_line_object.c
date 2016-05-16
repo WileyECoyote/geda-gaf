@@ -58,7 +58,8 @@
  *
  * \return A pointer to the new end of the object list.
  */
-GedaObject *geda_line_object_new( int color, int x1, int y1, int x2, int y2)
+GedaObject*
+geda_line_object_new( int color, int x1, int y1, int x2, int y2)
 {
   GedaObject *new_obj;
   GedaLine   *line;
@@ -91,7 +92,8 @@ GedaObject *geda_line_object_new( int color, int x1, int y1, int x2, int y2)
  *
  * \return The new GedaObject
  */
-GedaObject *geda_line_object_copy(GedaObject *o_current)
+GedaObject*
+geda_line_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_LINE(o_current)) {
 
@@ -137,7 +139,8 @@ GedaObject *geda_line_object_copy(GedaObject *o_current)
  *    <DT>*</DT><DD>#LINE_END2
  *  </DL>
  */
-void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
+void
+geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -172,7 +175,8 @@ void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool geda_line_object_get_position (GedaObject *object, int *x, int *y)
+bool
+geda_line_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
@@ -207,9 +211,10 @@ bool geda_line_object_get_position (GedaObject *object, int *x, int *y)
  *
  * \return A pointer to the new line object, or NULL on error.
  */
-GedaObject* geda_line_object_read (const char buf[], unsigned int release_ver,
-                                       unsigned int fileformat_ver,
-                                       GError ** err)
+GedaObject*
+geda_line_object_read (const char buf[], unsigned int release_ver,
+                                         unsigned int fileformat_ver,
+                                         GError ** err)
 {
   GedaObject *new_obj;
   char type;
@@ -303,7 +308,8 @@ GedaObject* geda_line_object_read (const char buf[], unsigned int release_ver,
  *
  * \note Caller must GEDA_FREE returned character string.
  */
-char *geda_line_object_to_buffer(GedaObject *object)
+char*
+geda_line_object_to_buffer(GedaObject *object)
 {
   char     *buf;
   GedaLine *line;
@@ -345,7 +351,8 @@ char *geda_line_object_to_buffer(GedaObject *object)
  * \param [in]     dx         x distance to move
  * \param [in]     dy         y distance to move.
  */
-void geda_line_object_translate( GedaObject *object, int dx, int dy)
+void
+geda_line_object_translate( GedaObject *object, int dx, int dy)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -374,7 +381,8 @@ void geda_line_object_translate( GedaObject *object, int dx, int dy)
  * \param [in]      center_y  Rotation center y coordinate
  * \param [in]      angle     Rotation angle in degrees (See note below).
  */
-void geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   GedaLine *line;
   int newx, newy;
@@ -430,7 +438,8 @@ void geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int
  * \param [in]     center_x  Origin x coordinate
  * \param [in]     center_y  Origin y coordinate.
  */
-void geda_line_object_mirror(GedaObject *object, int center_x, int center_y)
+void
+geda_line_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -461,8 +470,11 @@ void geda_line_object_mirror(GedaObject *object, int center_x, int center_y)
  * \param [in] origin_x   Page x coordinate to place line Object.
  * \param [in] origin_y   Page y coordinate to place line Object.
  */
-void geda_line_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                  int origin_x, int origin_y)
+void
+geda_line_object_print(GedaToplevel *toplevel, FILE *fp,
+                       GedaObject   *o_current,
+                       int           origin_x,
+                       int           origin_y)
 {
   int x1, y1, x2, y2;
   int color;
@@ -583,11 +595,12 @@ void geda_line_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curr
  * \param [in] origin_x      Page x coordinate to place line Object.
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
-void geda_line_object_print_center(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2, int color,
-                         int line_width, int capstyle,
-                         int length,     int space,
-                         int origin_x,   int origin_y)
+void
+geda_line_object_print_center(GedaToplevel *toplevel, FILE *fp,
+                              int x1, int y1, int x2, int y2, int color,
+                              int line_width, int capstyle,
+                              int length,     int space,
+                              int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -721,11 +734,12 @@ void geda_line_object_print_center(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_x      Page x coordinate to place line Object.
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
-void geda_line_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2, int color,
-                         int line_width, int capstyle,
-                         int length,     int space,
-                         int origin_x,   int origin_y)
+void
+geda_line_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
+                              int x1, int y1, int x2, int y2, int color,
+                              int line_width, int capstyle,
+                              int length,     int space,
+                              int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -829,11 +843,12 @@ void geda_line_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_x      Page x coordinate to place line Object.
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
-void geda_line_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
-                         int x1, int y1, int x2, int y2, int color,
-                         int line_width, int capstyle,
-                         int length,     int space,
-                         int origin_x,   int origin_y)
+void
+geda_line_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
+                              int x1, int y1, int x2, int y2, int color,
+                              int line_width, int capstyle,
+                              int length,     int space,
+                              int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1;
@@ -916,11 +931,12 @@ void geda_line_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_x      Page x coordinate to place line Object.
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
-void geda_line_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
-                          int x1, int y1, int x2, int y2, int color,
-                          int line_width, int capstyle,
-                          int length,     int space,
-                          int origin_x,   int origin_y)
+void
+geda_line_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
+                               int x1, int y1, int x2, int y2, int color,
+                               int line_width, int capstyle,
+                               int length,     int space,
+                               int origin_x,   int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -1077,11 +1093,12 @@ void geda_line_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  * \param [in] origin_x      Page x coordinate to place line Object.
  * \param [in] origin_y      Page y coordinate to place line Object.
  */
-void geda_line_object_print_solid(GedaToplevel *toplevel, FILE *fp,
-                        int x1, int y1, int x2, int y2, int color,
-                        int line_width, int capstyle,
-                        int length,     int space,
-                        int origin_x,   int origin_y)
+void
+geda_line_object_print_solid(GedaToplevel *toplevel, FILE *fp,
+                             int x1, int y1, int x2, int y2, int color,
+                             int line_width, int capstyle,
+                             int length,     int space,
+                             int origin_x,   int origin_y)
 {
   f_print_set_color(toplevel, fp, color);
 
@@ -1096,7 +1113,8 @@ void geda_line_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  * \param [in] x_scale
  * \param [in] y_scale
  */
-void geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
+void
+geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -1120,7 +1138,8 @@ void geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
  *
  * \return TRUE if point is an end-point of the line
  */
-bool geda_line_object_is_endpoint (GedaObject *object, POINT *point)
+bool
+geda_line_object_is_endpoint (GedaObject *object, POINT *point)
 {
   bool anwser;
 
@@ -1148,7 +1167,8 @@ bool geda_line_object_is_endpoint (GedaObject *object, POINT *point)
  *
  * \returns 0 or 1 or -1 if object is not a line
  */
-int geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
+int
+geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
 {
   int anwser;
 
@@ -1178,7 +1198,8 @@ int geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
  *
  * \return TRUE if both are lines and intersect
  */
-bool geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POINT *point)
+bool
+geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POINT *point)
 {
   bool   has_slope1;
   bool   has_slope2;
@@ -1274,7 +1295,8 @@ bool geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2,
  *
  * \return TRUE if \a object is linear
  */
-bool geda_line_object_get_midpoint(GedaObject *object, POINT *point)
+bool
+geda_line_object_get_midpoint(GedaObject *object, POINT *point)
 {
   bool status;
 
@@ -1305,7 +1327,8 @@ bool geda_line_object_get_midpoint(GedaObject *object, POINT *point)
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not a Line.
  */
-bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool
+geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaLine *line;
   bool      result;
@@ -1409,7 +1432,8 @@ bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *
  *
  * \return True if the slope was set, otherwise false
  */
-bool geda_line_object_get_slope (GedaObject *object, double *slope)
+bool
+geda_line_object_get_slope (GedaObject *object, double *slope)
 {
   bool has_slope;
 
@@ -1439,7 +1463,8 @@ bool geda_line_object_get_slope (GedaObject *object, double *slope)
  *
  * \return The length of the line
  */
-double geda_line_object_length(GedaObject *object)
+double
+geda_line_object_length(GedaObject *object)
 {
   double length;
 
@@ -1483,7 +1508,8 @@ double geda_line_object_length(GedaObject *object)
  * \return The shortest distance from the object to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double
+geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   return m_line_shortest_distance (object->line, x, y);
 }
