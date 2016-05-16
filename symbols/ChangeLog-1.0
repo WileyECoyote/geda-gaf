@@ -1,3 +1,20 @@
+2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Clean symbols, add missing attributes:
+
+            * linear/regulator/LM78L05-1.sym
+            * linear/regulator/LM78L06-1.sym
+            * linear/regulator/LM78L08-1.sym
+            * linear/regulator/LM78L09-1.sym
+            * linear/regulator/LM78L12-1.sym
+            * linear/regulator/LM78L15-1.sym
+            * micro/SAB80C537-1.sym
+            * minicircuits/ADT1-1WT-1.sym
+            * minicircuits/ADT1-1WT-2.sym
+            * minicircuits/T1-1T-W38-1.sym
+            * minicircuits/T1-1T-X65-1.sym
+            * minicircuits/T2-1T-KK81-1.sym
+
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/CSD86330Q3D-1.sym: Add symbol CSD86330Q3D, Dual NMOS optimized for
