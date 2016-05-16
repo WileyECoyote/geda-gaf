@@ -1,3 +1,8 @@
+2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * build-tools/icon-theme-installer: Run gtk-update-icon-cache as background
+      task.
+
 2016-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/geda-view-redraw.png: add bitmap for redraw/refresh, revise svg.
