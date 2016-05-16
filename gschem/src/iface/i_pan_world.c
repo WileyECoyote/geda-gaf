@@ -255,8 +255,8 @@ void i_pan_world_general (GschemToplevel *w_current,
     diff = (page->right - page->left) - (w_current->world_right - w_current->world_left);
 
     if (diff > 0) {
-        page->left  -= diff / 2;
-        page->right -= diff / 2;
+        page->left  -= diff >> 1;  /* Divide by 2 */
+        page->right -= diff >> 1;
     }
 
     /* check bottom border */
@@ -274,8 +274,8 @@ void i_pan_world_general (GschemToplevel *w_current,
       /* If there is any slack, center the view */
     diff = (page->bottom - page->top) - (w_current->world_bottom - w_current->world_top);
     if (diff > 0) {
-        page->top -= diff / 2;
-        page->bottom -= diff / 2;
+        page->top    -= diff >> 1;  /* Divide by 2 */
+        page->bottom -= diff >> 1;
     }
   }
 
