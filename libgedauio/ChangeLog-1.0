@@ -1,3 +1,7 @@
+2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Simplify geda_combo_box_size_allocate.
+
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox.c: Add checks for view-changed overides and signal.

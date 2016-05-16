@@ -1084,8 +1084,8 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       /* menu mode */
       allocation->x      += shadow_width;
       allocation->y      += shadow_height;
-      allocation->width  -= 2 * shadow_width;
-      allocation->height -= 2 * shadow_height;
+      allocation->width  -= shadow_width << 1; /* Multipy by 2 */
+      allocation->height -= shadow_height << 1;
 
       gtk_widget_size_allocate (priv->button, allocation);
 
@@ -1103,8 +1103,8 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
 
         child_alloc.x      += border_width + xthickness + focus_width + focus_pad;
         child_alloc.y      += border_width + ythickness + focus_width + focus_pad;
-        width              -= 2 * (child_alloc.x - allocation->x);
-        child_alloc.height -= 2 * (child_alloc.y - allocation->y);
+        width              -= (child_alloc.x - allocation->x) << 1;
+        child_alloc.height -= (child_alloc.y - allocation->y) << 1;
       }
 
 
@@ -1229,16 +1229,16 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
 
         child_alloc.x      += delta_x;
         child_alloc.y      += delta_y;
-        child_alloc.width  -= delta_x * 2;
-        child_alloc.height -= delta_y * 2;
+        child_alloc.width  -= delta_x << 1;
+        child_alloc.height -= delta_y << 1;
       }
     }
     else {
 
       child_alloc.x      += delta_x;
       child_alloc.y      += delta_y;
-      child_alloc.width  -= delta_x * 2;
-      child_alloc.height -= delta_y * 2;
+      child_alloc.width  -= delta_x << 1;
+      child_alloc.height -= delta_y << 1;
     }
 
     if (gtk_widget_get_visible (priv->popup_window)) {
@@ -1264,6 +1264,8 @@ static void
 geda_combo_box_size_request (GtkWidget      *widget,
                              GtkRequisition *requisition)
 {
+  GedaComboBox         *combo_box;
+  GedaComboBoxData     *priv;
   PangoContext         *context;
   PangoFontMetrics     *metrics;
   PangoFontDescription *font_desc;
@@ -1274,10 +1276,9 @@ geda_combo_box_size_request (GtkWidget      *widget,
   int font_size;
   int arrow_size;
 
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxData *priv  = combo_box->priv;
-
-  child = geda_get_child_widget(widget);
+  combo_box = GEDA_COMBO_BOX (widget);
+  priv      = combo_box->priv;
+  child     = geda_get_child_widget(widget);
 
   /* common */
   gtk_widget_size_request (child, &bin_req);
@@ -1307,8 +1308,7 @@ geda_combo_box_size_request (GtkWidget      *widget,
 
   gtk_widget_set_size_request (priv->arrow, arrow_size, arrow_size);
 
-  if (!priv->tree_view) {
-    /* menu mode */
+  if (!priv->tree_view) {    /* if menu mode */
 
     if (priv->cell_view) {
 
@@ -1334,8 +1334,8 @@ geda_combo_box_size_request (GtkWidget      *widget,
 
       width   = bin_req.width + sep_req.width + arrow_req.width;
 
-      height += 2*(border_width + ythickness + focus_width + focus_pad);
-      width  += 2*(border_width + xthickness + focus_width + focus_pad);
+      height += (border_width + ythickness + focus_width + focus_pad) << 1;
+      width  += (border_width + xthickness + focus_width + focus_pad) << 1;
 
       requisition->width = width;
       requisition->height = height;
@@ -1349,14 +1349,14 @@ geda_combo_box_size_request (GtkWidget      *widget,
       requisition->height = MAX (bin_req.height, but_req.height);
     }
   }
-  else {
-    /* list mode */
+  else {  /* else list mode */
+
     GtkRequisition button_req, frame_req;
 
     /* widget + frame */
     *requisition = bin_req;
 
-    requisition->width += 2 * focus_width;
+    requisition->width += focus_width << 1;
 
     if (priv->cell_view_frame) {
 
@@ -1364,16 +1364,16 @@ geda_combo_box_size_request (GtkWidget      *widget,
 
       if (priv->has_frame){
 
-        requisition->width += 2 *
-          (GTK_CONTAINER (priv->cell_view_frame)->border_width +
-           GTK_WIDGET (priv->cell_view_frame)->style->xthickness);
-        requisition->height += 2 *
-          (GTK_CONTAINER (priv->cell_view_frame)->border_width +
-           GTK_WIDGET (priv->cell_view_frame)->style->ythickness);
+        GtkWidget    *cell  = GTK_WIDGET (priv->cell_view_frame);
+        GtkContainer *frame = GTK_CONTAINER (priv->cell_view_frame);
+        int           fbw   = frame->border_width;
+
+        requisition->width  += (fbw + cell->style->xthickness) << 1;
+        requisition->height += (fbw + cell->style->ythickness) << 1;
       }
     }
 
-    /* the button */
+    /* The button */
     gtk_widget_size_request (priv->button, &button_req);
 
     requisition->height = MAX (requisition->height, button_req.height);
@@ -1381,8 +1381,8 @@ geda_combo_box_size_request (GtkWidget      *widget,
   }
 
   if (GTK_SHADOW_NONE != priv->shadow_type) {
-    requisition->height += 2 * widget->style->ythickness;
-    requisition->width += 2 * widget->style->xthickness;
+    requisition->height += widget->style->ythickness << 1;
+    requisition->width  += widget->style->xthickness << 1;
   }
 }
 
@@ -1881,25 +1881,25 @@ geda_combo_box_class_init(void *class, void *class_data)
                                   G_TYPE_BOOLEAN, 0);
 
   /**
-   * GtkComboBox::format-entry-text:
+   * GedaComboBox::format-entry-text:
    * combo: the object which received the signal
    * path: the GtkTreePath string from the combo box's current model to format text
    *
-   * For combo boxes that are created with an entry (See GtkComboBox:has-entry).
+   * For combo boxes that are created with an entry (See GedaComboBox:has-entry).
    *
    * A signal which allows you to change how the text displayed in a combo box's
    * entry is displayed.
    *
    * Connect a signal handler which returns an allocated string representing path.
    * That string will then be used to set the text in the combo box's entry. The
-   * default signal handler uses the text from the GtkComboBox::entry-text-column
+   * default signal handler uses the text from the GedaComboBox::entry-text-column
    * model column.
    *
    * Here's an example signal handler which fetches data from the model and
    * displays it in the entry.
    * |[
    * static char*
-   * format_entry_text_callback (GtkComboBox *combo,
+   * format_entry_text_callback (GedaComboBox *combo,
    *                             const char  *path,
    *                             void        *user_data)
    * {
@@ -1919,7 +1919,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    * ]|
    *
    * \return value: (transfer full): a newly allocated string representing path
-   * for the current GtkComboBox model.
+   * for the current GedaComboBox model.
    */
   combo_box_signals[FORMAT_ENTRY_TEXT] =
       g_signal_new ("format-entry-text",
@@ -6320,7 +6320,7 @@ geda_combo_box_real_move_active (GedaComboBox  *combo_box,
 
 static void
 geda_combo_box_entry_contents_changed (GedaEntry *entry,
-                                       void     *user_data)
+                                       void      *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
 
