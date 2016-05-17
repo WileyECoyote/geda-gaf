@@ -12,7 +12,16 @@
       _has_focus in change_entry and show_sheet_entry. Get text from the
       entry in the "entry bar" and put the string in sheet_entry instead
       of getting the text from the sheet_entry, fixes editing the text in
-      the entry bar.
+      the entry bar. Revise activate_sheet_entry, aka on_entry_activated
+      to just move the active cell to the next cell down, i.e. row + 1
+      instead of whatever the function did before, which was actually
+      nothing because the entry cannot "activate default", there is no
+      default widget to activate and therefore gtk does not emit a signal.
+      Revised x_gtksheet_init to set activate_sheet_entry as the over-ride
+      for virtual activate in the entry class and now activate_sheet_entry
+      is called when the "enter" button is pressed. Note that when editing
+      in the cell and the enter button is press the column is advanced
+      not the row.
 
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 

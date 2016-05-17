@@ -489,26 +489,17 @@ static void show_sheet_entry(GtkWidget *widget, void *nothing)
  }
 }
 
-/*! \brief Call back for Entry Combo activate*/
-static void activate_sheet_entry(GtkWidget *widget, void * data)
+/*! \brief Call back for Entry Combo activate */
+static void activate_sheet_entry(GedaEntry *global_entry)
 {
   GtkSheet *sheet;
-  GtkEntry *sheet_entry;
   int row, col;
-  int justification = GTK_JUSTIFY_LEFT;
 
   sheet = x_gtksheet_get_current_sheet();
   row   = sheet->active_cell.row;
   col   = sheet->active_cell.col;
 
-  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
-
-  if (GTK_IS_ITEM_ENTRY(sheet_entry)) {
-    justification = GTK_ITEM_ENTRY(sheet_entry)->justification;
-  }
-
-  gtk_sheet_set_cell(sheet, row, col, justification, GetEntryText(sheet_entry));
-
+  gtk_sheet_set_active_cell(sheet, ++row, col);
 }
 
 /*! \brief Call back for "change" signal from embeded Entry widget */
@@ -704,10 +695,14 @@ void x_gtksheet_init(PageDataSet *PageData)
    * status bar */
   g_signal_connect(GTK_OBJECT(entry),
                    "changed", (GtkSignalFunc)show_sheet_entry, NULL);
-
+/*
   g_signal_connect(GTK_OBJECT(entry),
                    "activate", (GtkSignalFunc)activate_sheet_entry,
                    NULL);
+*/
+  GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
+
+  entry_class->activate = activate_sheet_entry;
 
   SetupCSheetHandlers(sheets[Components], PageData);
 
