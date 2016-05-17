@@ -5,6 +5,9 @@
     * src/x_find.c: Replace macro GTK_WIDGET_HAS_FOCUS with direct call to
       function gtk_widget_has_focus in x_find_attribute_value.
 
+    * src/x_dialog.c: Replace gtk_combo_box_get_active_text with geda_combo
+      _box_get_active_text.
+
     * src/x_gtksheet.c Replace macro GTK_WIDGET_HAS_FOCUS with gtk_widget
       _has_focus in change_entry and show_sheet_entry.
 

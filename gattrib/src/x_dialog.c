@@ -563,8 +563,8 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
                                            int           response,
                                            SearchRecord *Search)
 {
-  char* search_text;
-  char* replacement_text;
+  char *search_text;
+  char *replacement_text;
 
   /*!@brief Add new text to Search History List */
   void add_search_history(char *new_text) {
@@ -596,11 +596,11 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
   case GEDA_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
-    replacement_text = geda_utility_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
+    replacement_text = geda_combo_box_get_active_text (GEDA_COMBO_BOX (ReplaceTextCombo));
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
-    if(search_text) GEDA_FREE(search_text);
-    if(replacement_text) GEDA_FREE(replacement_text);
+    GEDA_FREE(search_text);
+    GEDA_FREE(replacement_text);
     break;
 
   case GEDA_RESPONSE_DELETE_EVENT:
@@ -648,8 +648,8 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
   case ReplaceText:
     /* We are not going to enable Replace buttons unless there is text in the
      * Search Combo, the pointer in text is to the text in the Replace Combo */
-    if ((strlen(GetGedaComboActiveText (SearchText)) >0) &&
-        (strlen(GetGedaComboActiveText (ReplaceText)) >0))
+    if ((strlen(GetGedaComboActiveText (SearchText)) > 0) &&
+        (strlen(GetGedaComboActiveText (ReplaceText)) > 0))
     {
        gtk_widget_set_sensitive (ReplaceButt, TRUE);
        gtk_widget_set_sensitive (ReplaceAllButt, TRUE);
@@ -676,10 +676,10 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
  *       The functions enables or disables other widgets based on
  *       the state of the switch.
  */
-static void search_replace_switch_responder(GtkWidget *widget, int response,  ControlID *Control)
+static void search_replace_switch_responder(GtkWidget *widget, int response, ControlID *Control)
 {
    int state = GET_SWITCH_STATE (widget);
-   GtkWidget* SwitchImage = get_geda_switch_image( state);
+   GtkWidget *SwitchImage = get_geda_switch_image( state);
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
    /* We don't have a pointer to the Search structure but this does not
