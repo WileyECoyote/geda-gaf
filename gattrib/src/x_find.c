@@ -232,7 +232,7 @@ void x_find_attribute_value(void)
   entry = GTK_ENTRY(gtk_sheet_get_entry(Search.sheet));
   text  = NULL;
 
-  if(GTK_WIDGET_HAS_FOCUS(entry)) {
+  if (gtk_widget_has_focus (GTK_WIDGET(entry))) {
 
     int start, end;
 

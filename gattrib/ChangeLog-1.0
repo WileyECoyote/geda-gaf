@@ -2,6 +2,12 @@
 
     * src/gtksheet/gtkitementry.c: Redo _item_entry_get_buffer.
 
+    * src/x_find.c: Replace macro GTK_WIDGET_HAS_FOCUS with direct call to
+      function gtk_widget_has_focus in x_find_attribute_value.
+
+    * src/x_gtksheet.c Replace macro GTK_WIDGET_HAS_FOCUS with gtk_widget
+      _has_focus in change_entry and show_sheet_entry.
+
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Replace gtk_entry with geda_entry in x_window_init.

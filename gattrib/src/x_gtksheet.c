@@ -313,8 +313,8 @@ static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
  *  This function is not used.
  */
 bool change_entry(GtkWidget *widget,
-		  int row, int col, int *new_row, int *new_col,
-                  void * data)
+                  int row, int col, int *new_row, int *new_col,
+                  void *data)
 {
   GtkSheet *sheet;
 
@@ -467,13 +467,14 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 }
 
 /* Call back for Entry Combo "change" signal*/
-static void show_sheet_entry(GtkWidget *widget, void * data)
+static void show_sheet_entry(GtkWidget *widget, void *nothing)
 {
  const char *text;
- GtkSheet *sheet;
- GtkEntry *sheet_entry;
+ GtkSheet   *sheet;
+ GtkEntry   *sheet_entry;
 
- if(!GTK_WIDGET_HAS_FOCUS(widget)) return;
+ if (!gtk_widget_has_focus (widget))
+   return;
 
  sheet       = x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
@@ -509,7 +510,7 @@ static void activate_sheet_entry(GtkWidget *widget, void * data)
 /*! \brief Call back for "change" signal from embeded Entry widget */
 static void show_entry(GtkWidget *widget, void *data)
 {
-  if (GTK_WIDGET_HAS_FOCUS(widget)) {
+  if (gtk_widget_has_focus (widget)) {
 
     GtkSheet   *sheet;
     GtkWidget  *sheet_entry;
@@ -696,7 +697,7 @@ void x_gtksheet_init(PageDataSet *PageData)
     }
   }
   /* The next 2 functions setup callbacks for the Entry widget in the would be
-   * status bar*/
+   * status bar */
   g_signal_connect(GTK_OBJECT(entry),
                    "changed", (GtkSignalFunc)show_sheet_entry, NULL);
 
