@@ -9,7 +9,10 @@
       _box_get_active_text.
 
     * src/x_gtksheet.c Replace macro GTK_WIDGET_HAS_FOCUS with gtk_widget
-      _has_focus in change_entry and show_sheet_entry.
+      _has_focus in change_entry and show_sheet_entry. Get text from the
+      entry in the "entry bar" and put the string in sheet_entry instead
+      of getting the text from the sheet_entry, fixes editing the text in
+      the entry bar.
 
 2016-03-29 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -466,7 +466,11 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
   GEDA_SIGNAL_CONNECT(SheetObj, "traverse", (GtkSignalFunc) on_traverse, NULL);
 }
 
-/* Call back for Entry Combo "change" signal*/
+/*!
+ *  \brief Callback for Entry Combo "change" signal
+ *  \param [in] widget     Pointer to global entry
+ *  \param [in] nothing    is nothing, NULL
+ */
 static void show_sheet_entry(GtkWidget *widget, void *nothing)
 {
  const char *text;
@@ -479,7 +483,7 @@ static void show_sheet_entry(GtkWidget *widget, void *nothing)
  sheet       = x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
- text = GetEntryText(sheet_entry);
+ text = GetEntryText(entry);
  if (text != NULL){
    SetEntryText(sheet_entry, text);
  }
