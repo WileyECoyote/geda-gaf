@@ -458,6 +458,55 @@ check_accessors ()
             fprintf(stderr, "FAILED: %s line <%d> check remove_index\n", TWIDGET, __LINE__);
             result++;
           }
+
+          /* geda_combo_box_get_active_text */
+
+          str = geda_combo_box_get_active_text(combo_box);
+
+          if (str) {
+            fprintf(stderr, "FAILED: %s line <%d> get_active_text\n", TWIDGET, __LINE__);
+            result++;
+          }
+
+          /* geda_combo_box_set_active */
+
+          geda_combo_box_set_active(combo_box, 0);
+
+          str = geda_combo_box_get_active_text(combo_box);
+
+          if (!str && *str != '1') {
+            fprintf(stderr, "FAILED: %s line <%d> get_active_text\n", TWIDGET, __LINE__);
+            result++;
+          }
+
+          /* geda_combo_widget_set_active */
+
+          geda_combo_widget_set_active(widget, 2);
+
+          /* geda_combo_box_get_active */
+
+          if (geda_combo_box_get_active(combo_box) != 2) {
+            fprintf(stderr, "FAILED: %s line <%d> get_active\n", TWIDGET, __LINE__);
+            result++;
+          }
+
+          geda_combo_box_set_active(combo_box, 1);
+
+          /* geda_combo_widget_get_active */
+
+          if (geda_combo_widget_get_active(widget) != 1) {
+            fprintf(stderr, "FAILED: %s line <%d> get_active\n", TWIDGET, __LINE__);
+            result++;
+          }
+          else {
+
+            str = geda_combo_box_get_active_text(combo_box);
+
+            if (!str && *str != '2') {
+              fprintf(stderr, "FAILED: %s line <%d> get_active_text\n", TWIDGET, __LINE__);
+              result++;
+            }
+          }
         }
       }
     }

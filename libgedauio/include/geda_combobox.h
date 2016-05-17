@@ -151,24 +151,24 @@ int                geda_combo_box_get_entry_text_column  (GedaComboBox        *c
 void               geda_combo_box_set_entry_text_column  (GedaComboBox        *combo_box,
                                                           int                  text_column);
 /* convenience -- text */
-GtkWidget    *geda_combo_box_new_text            (void);
-GtkWidget    *geda_combo_box_new_text_with_entry (void);
+GtkWidget    *geda_combo_box_new_text                 (void);
+GtkWidget    *geda_combo_box_new_text_with_entry      (void);
 
-void          geda_combo_box_append_text         (GedaComboBox   *combo_box,
-                                                  const char     *text);
-void          geda_combo_box_insert_text         (GedaComboBox   *combo_box,
-                                                  int             position,
-                                                  const char     *text);
-void          geda_combo_box_prepend_text        (GedaComboBox   *combo_box,
-                                                  const char     *text);
-void          geda_combo_box_remove_index        (GedaComboBox   *combo_box,
-                                                  int             position);
-char         *geda_combo_box_get_active_text     (GedaComboBox   *combo_box);
+void          geda_combo_box_append_text              (GedaComboBox   *combo_box,
+                                                       const char     *text);
+void          geda_combo_box_insert_text              (GedaComboBox   *combo_box,
+                                                       int             position,
+                                                       const char     *text);
+void          geda_combo_box_prepend_text             (GedaComboBox   *combo_box,
+                                                       const char     *text);
+void          geda_combo_box_remove_index             (GedaComboBox   *combo_box,
+                                                       int             position);
+char         *geda_combo_box_get_active_text          (GedaComboBox   *combo_box);
 
 /* programmatic control */
-void          geda_combo_box_popup                (GedaComboBox *combo_box);
-void          geda_combo_box_popdown              (GedaComboBox *combo_box);
-AtkObject    *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box);
+void          geda_combo_box_popup                    (GedaComboBox   *combo_box);
+void          geda_combo_box_popdown                  (GedaComboBox   *combo_box);
+AtkObject    *geda_combo_box_get_popup_accessible     (GedaComboBox   *combo_box);
 
 /* ------------------------ Widget Versions ------------------------ */
 
@@ -200,7 +200,7 @@ void          geda_combo_widget_set_tooltip_column     (GtkWidget   *combo,
 /* get/set active item */
 int           geda_combo_widget_get_active             (GtkWidget   *combo_box);
 void          geda_combo_widget_set_active             (GtkWidget   *combo_box,
-                                                        int          index_);
+                                                        int          index);
 bool          geda_combo_widget_get_active_iter        (GtkWidget   *combo_box,
                                                         GtkTreeIter *iter);
 void          geda_combo_widget_set_active_iter        (GtkWidget   *combo_box,
