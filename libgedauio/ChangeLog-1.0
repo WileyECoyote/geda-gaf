@@ -2,6 +2,14 @@
 
     * include/geda_combobox.h: Adjust column alignment.
 
+    * src/widgets/geda_handlebox.c: Replace division by 2 with right shifts
+      in geda_handle_box_motion, add border_widthx2 to reduce the number of
+      multiplications in geda_handle_box_button_press, and x1-y2 in function
+      geda_handle_box_draw_ghost to reduce the number of conditionals. Clean
+      up geda_handle_box_realize, add border_widthx2 in geda_handle_box_size
+      _allocate and rename border_2x->border_widthx2 in geda_handle_box_size
+      _request.
+
     * tests/test_combobox.c: Add basic checks for:
 
             * geda_combo_box_get_active_text

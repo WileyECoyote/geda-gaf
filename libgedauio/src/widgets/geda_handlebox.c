@@ -322,16 +322,21 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     case GTK_POS_TOP:
       is_snapped = abs (handlebox->attach_allocation.y - new_y) < TOLERANCE;
       break;
+
     case GTK_POS_BOTTOM:
-      is_snapped = abs (handlebox->attach_allocation.y + (int)handlebox->attach_allocation.height -
-      new_y - (int)handlebox->float_allocation.height) < TOLERANCE;
+      is_snapped = abs (handlebox->attach_allocation.y +
+                   (int)handlebox->attach_allocation.height -
+                   new_y - (int)handlebox->float_allocation.height) < TOLERANCE;
       break;
+
     case GTK_POS_LEFT:
       is_snapped = abs (handlebox->attach_allocation.x - new_x) < TOLERANCE;
       break;
+
     case GTK_POS_RIGHT:
-      is_snapped = abs (handlebox->attach_allocation.x + (int)handlebox->attach_allocation.width -
-      new_x - (int)handlebox->float_allocation.width) < TOLERANCE;
+      is_snapped = abs (handlebox->attach_allocation.x +
+                   (int)handlebox->attach_allocation.width -
+                   new_x - (int)handlebox->float_allocation.width) < TOLERANCE;
       break;
   }
 
@@ -394,17 +399,17 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     switch (handle_position) {
 
       case GTK_POS_LEFT:
-        new_y += ((int)handlebox->float_allocation.height - height) / 2;
+        new_y += ((int)handlebox->float_allocation.height - height) >> 1;  /* Divide by 2 */
         break;
       case GTK_POS_RIGHT:
         new_x += (int)handlebox->float_allocation.width - width;
-        new_y += ((int)handlebox->float_allocation.height - height) / 2;
+        new_y += ((int)handlebox->float_allocation.height - height) >> 1;
         break;
       case GTK_POS_TOP:
-        new_x += ((int)handlebox->float_allocation.width - width) / 2;
+        new_x += ((int)handlebox->float_allocation.width - width) >> 1;
         break;
       case GTK_POS_BOTTOM:
-        new_x += ((int)handlebox->float_allocation.width - width) / 2;
+        new_x += ((int)handlebox->float_allocation.width - width) >> 1;
         new_y += (int)handlebox->float_allocation.height - height;
         break;
     }
@@ -586,6 +591,12 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 
     if (child) {
 
+      GtkAllocation child_allocation;
+      unsigned int  border_widthx2;
+
+      gtk_widget_get_allocation (child, &child_allocation);
+      border_widthx2 = gtk_container_get_border_width(GTK_CONTAINER (handlebox)) << 1;
+
       switch (handle_position) {
 
         case GTK_POS_LEFT:
@@ -595,12 +606,10 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
           in_handle = event->y < DRAG_HANDLE_SIZE;
           break;
         case GTK_POS_RIGHT:
-          in_handle = event->x > 2 * GTK_CONTAINER(handlebox)->border_width +
-          child->allocation.width;
+          in_handle = event->x > border_widthx2 + child_allocation.width;
           break;
         case GTK_POS_BOTTOM:
-          in_handle = event->y > 2 * GTK_CONTAINER(handlebox)->border_width +
-          child->allocation.height;
+          in_handle = event->y > border_widthx2 + child_allocation.height;
           break;
         default:
           in_handle = FALSE;
@@ -756,22 +765,47 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
                     width,
                     height);
   if (handle_position == GTK_POS_LEFT ||
-    handle_position == GTK_POS_RIGHT)
+      handle_position == GTK_POS_RIGHT)
+  {
+
+    int x1;
+    int x2;
+
+    if (handle_position == GTK_POS_LEFT) {
+      x1 = DRAG_HANDLE_SIZE;
+      x2 = widget->allocation.width;
+    }
+    else {
+      x1 = 0;
+      x2 = widget->allocation.width - DRAG_HANDLE_SIZE;
+    }
+
     gtk_paint_hline (widget->style,
                      widget->window,
                      gtk_widget_get_state (widget),
-                     NULL, widget, "handlebox",
-                     handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
-                     handle_position == GTK_POS_LEFT ? widget->allocation.width : widget->allocation.width - DRAG_HANDLE_SIZE,
-                     widget->allocation.height / 2);
-    else
-      gtk_paint_vline (widget->style,
-                       widget->window,
-                       gtk_widget_get_state (widget),
-                       NULL, widget, "handlebox",
-                       handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
-                       handle_position == GTK_POS_TOP ? widget->allocation.height : widget->allocation.height - DRAG_HANDLE_SIZE,
-                       widget->allocation.width / 2);
+                     NULL, widget, "handlebox", x1, x2,
+                     widget->allocation.height >> 1);
+  }
+  else {
+
+    int y1;
+    int y2;
+
+    if (handle_position == GTK_POS_TOP) {
+      y1 = DRAG_HANDLE_SIZE;
+      y2 = widget->allocation.height;
+    }
+    else {
+      y1 = 0;
+      y2 = widget->allocation.height - DRAG_HANDLE_SIZE;
+    }
+
+    gtk_paint_vline (widget->style,
+                     widget->window,
+                     gtk_widget_get_state (widget),
+                     NULL, widget, "handlebox", y1, y2,
+                     widget->allocation.width >> 1);
+  }
 }
 
 /*! \internal helper for geda_handle_box_expose */
@@ -944,7 +978,7 @@ geda_handle_box_unmap (GtkWidget *widget)
   if (handlebox->float_window_mapped) {
       gdk_window_hide (handlebox->float_window);
       handlebox->float_window_mapped = FALSE;
-    }
+  }
 }
 
 /* widget_class->realize */
@@ -962,57 +996,58 @@ geda_handle_box_realize (GtkWidget *widget)
 
   allocation = geda_get_widget_allocation (widget);
 
-  attributes.x = allocation->x;
-  attributes.y = allocation->y;
-  attributes.width = allocation->width;
-  attributes.height = allocation->height;
+  attributes.x           = allocation->x;
+  attributes.y           = allocation->y;
+  attributes.width       = allocation->width;
+  attributes.height      = allocation->height;
   attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.colormap = gtk_widget_get_colormap (widget);
-  attributes.event_mask = (gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK);
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  attributes.wclass      = GDK_INPUT_OUTPUT;
+  attributes.visual      = gtk_widget_get_visual (widget);
+  attributes.colormap    = gtk_widget_get_colormap (widget);
+  attributes.event_mask  = (gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK);
+  attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
+  widget->window         = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
 
   gdk_window_set_user_data (widget->window, widget);
 
-  attributes.x = 0;
-  attributes.y = 0;
-  attributes.width = allocation->width;
-  attributes.height = allocation->height;
+  attributes.x           = 0;
+  attributes.y           = 0;
+  attributes.width       = allocation->width;
+  attributes.height      = allocation->height;
   attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.event_mask = (gtk_widget_get_events (widget) |
-                           GDK_EXPOSURE_MASK |
-                           GDK_BUTTON1_MOTION_MASK |
-                           GDK_POINTER_MOTION_HINT_MASK |
-                           GDK_BUTTON_PRESS_MASK |
+  attributes.event_mask  = (gtk_widget_get_events (widget) |
+                            GDK_EXPOSURE_MASK |
+                            GDK_BUTTON1_MOTION_MASK |
+                            GDK_POINTER_MOTION_HINT_MASK |
+                            GDK_BUTTON_PRESS_MASK |
                             GDK_BUTTON_RELEASE_MASK);
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  handlebox->bin_window = gdk_window_new (widget->window, &attributes, attributes_mask);
+  attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
+  handlebox->bin_window  = gdk_window_new (widget->window, &attributes, attributes_mask);
 
   gdk_window_set_user_data (handlebox->bin_window, widget);
 
-  if (GTK_BIN (handlebox)->child)
+  if (GTK_BIN (handlebox)->child) {
     gtk_widget_set_parent_window (GTK_BIN (handlebox)->child, handlebox->bin_window);
+  }
 
-  attributes.x = 0;
-  attributes.y = 0;
-  attributes.width = widget->requisition.width;
-  attributes.height = widget->requisition.height;
+  attributes.x           = 0;
+  attributes.y           = 0;
+  attributes.width       = widget->requisition.width;
+  attributes.height      = widget->requisition.height;
   attributes.window_type = GDK_WINDOW_TOPLEVEL;
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.colormap = gtk_widget_get_colormap (widget);
-  attributes.event_mask = (gtk_widget_get_events (widget) |
-                           GDK_KEY_PRESS_MASK |
-                           GDK_ENTER_NOTIFY_MASK |
-                           GDK_LEAVE_NOTIFY_MASK |
-                           GDK_FOCUS_CHANGE_MASK |
-                           GDK_STRUCTURE_MASK);
-  attributes.type_hint = GDK_WINDOW_TYPE_HINT_TOOLBAR;
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_TYPE_HINT;
+  attributes.wclass      = GDK_INPUT_OUTPUT;
+  attributes.visual      = gtk_widget_get_visual (widget);
+  attributes.colormap    = gtk_widget_get_colormap (widget);
+  attributes.event_mask  = (gtk_widget_get_events (widget) |
+                            GDK_KEY_PRESS_MASK |
+                            GDK_ENTER_NOTIFY_MASK |
+                            GDK_LEAVE_NOTIFY_MASK |
+                            GDK_FOCUS_CHANGE_MASK |
+                            GDK_STRUCTURE_MASK);
+  attributes.type_hint    = GDK_WINDOW_TYPE_HINT_TOOLBAR;
+  attributes_mask         = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_TYPE_HINT;
   handlebox->float_window = gdk_window_new (gtk_widget_get_root_window (widget),
-                                     &attributes, attributes_mask);
+                                            &attributes, attributes_mask);
   gdk_window_set_user_data (handlebox->float_window, widget);
   gdk_window_set_decorations (handlebox->float_window, 0);
   gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_TOOLBAR |
@@ -1083,10 +1118,12 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
     GtkAllocation *child_allocation;
     unsigned int border_width;
+    unsigned int border_widthx2;
 
     child_allocation = geda_get_widget_allocation (child);
 
-    border_width = GTK_CONTAINER (widget)->border_width;
+    border_width        = GTK_CONTAINER (widget)->border_width;
+    border_widthx2      = border_width << 1;
 
     child_allocation->x = border_width;
     child_allocation->y = border_width;
@@ -1106,14 +1143,17 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
       child_allocation->width  = child_requisition.width;
       child_allocation->height = child_requisition.height;
 
-      float_width = child_allocation->width + 2 * border_width;
-      float_height = child_allocation->height + 2 * border_width;
+      float_width  = child_allocation->width + border_widthx2;
+      float_height = child_allocation->height + border_widthx2;
 
       if (handle_position == GTK_POS_LEFT ||
-        handle_position == GTK_POS_RIGHT)
+          handle_position == GTK_POS_RIGHT)
+      {
         float_width += DRAG_HANDLE_SIZE;
-      else
+      }
+      else {
         float_height += DRAG_HANDLE_SIZE;
+      }
 
       if (gtk_widget_get_realized (widget)) {
         gdk_window_resize (handlebox->float_window,
@@ -1136,8 +1176,8 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
       width     = allocated->width;
       height    = allocated->height;
 
-      child_allocation->width  = MAX (1, (int)width - 2 * border_width);
-      child_allocation->height = MAX (1, (int)height - 2 * border_width);
+      child_allocation->width  = MAX (1, (int)width - border_widthx2);
+      child_allocation->height = MAX (1, (int)height - border_widthx2);
 
       if (handle_position == GTK_POS_LEFT ||
         handle_position == GTK_POS_RIGHT)
@@ -1222,12 +1262,12 @@ geda_handle_box_size_request (GtkWidget      *widget,
   }
   else {
 
-    unsigned int border_2x;
+    unsigned int border_widthx2;
 
-    border_2x = GTK_CONTAINER (widget)->border_width << 1;
+    border_widthx2 = GTK_CONTAINER (widget)->border_width << 1;
 
-    requisition->width  += border_2x;
-    requisition->height += border_2x;
+    requisition->width  += border_widthx2;
+    requisition->height += border_widthx2;
 
     if (bin->child) {
       requisition->width  += child_requisition.width;
