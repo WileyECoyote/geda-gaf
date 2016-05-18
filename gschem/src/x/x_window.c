@@ -1331,35 +1331,31 @@ x_window_update_title(GschemToplevel *w_current)
 
   if (current_page && w_current->main_window) {
 
+    GtkWindow  *window;
     const char *filename;
-    char *print_string;
+    const char *curr_title;
+    char       *print_string;
 
-    if (w_current->toplevel) {
+    if (current_page->filename) {
 
-      if (current_page->filename) {
-
-        if (w_current->toplevel->show_full_path) {
-          filename = current_page->filename;
-        }
-        else {
-          filename = f_get_basename(current_page->filename);
-        }
-
+      if (w_current->toplevel->show_full_path) {
+        filename = current_page->filename;
       }
       else {
-        filename = "undefined"; /* aka BUG */
+        filename = f_get_basename(current_page->filename);
       }
+
     }
     else {
-      filename = "loading"; /* Should never happen */
+      filename = "undefined"; /* aka BUG */
     }
 
     if (geda_page_get_changed(current_page) > 0) {
 
       if (w_current->session_name != NULL) {
         print_string = geda_sprintf ("*%s: %s - gschem",
-                                         w_current->session_name,
-                                         filename);
+                                     w_current->session_name,
+                                     filename);
       }
       else {
         print_string = geda_sprintf("*%s - gschem", filename);
@@ -1370,15 +1366,28 @@ x_window_update_title(GschemToplevel *w_current)
 
       if (w_current->session_name != NULL) {
         print_string = geda_sprintf("%s: %s - gschem",
-        w_current->session_name,
-        filename);
+                                    w_current->session_name,
+                                    filename);
       }
       else {
         print_string = geda_sprintf("%s - gschem", filename);
       }
     }
 
-    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
+    window = GTK_WINDOW(w_current->main_window);
+
+    curr_title = gtk_window_get_title (window);
+
+    if (curr_title) {
+
+      /* Check if changed because Gtk does not */
+      if (strcmp(print_string,curr_title )) {
+        gtk_window_set_title(window, print_string);
+      }
+    }
+    else {
+      gtk_window_set_title(window, print_string);
+    }
 
     GEDA_FREE(print_string);
 

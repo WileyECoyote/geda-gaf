@@ -3,6 +3,10 @@
     * src/iface/i_status.c: Remove extra TAB from status text in function
       i_status_update_status.
 
+    * src/x/x_window.c: Revise function x_window_update_title to not call
+      gtk_window_set_title unless the new title string is different than the
+      old string, one would think gtk would do this but it does not.
+
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_zoom_world.c: Revise correct_aspect to use local double
