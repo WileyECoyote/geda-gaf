@@ -82,13 +82,13 @@ geda_circle_object_copy(GedaObject *o_current)
 }
 
 /*! O060?
- * \brief Get the center X coordinate of a GedaArc object
+ * \brief Get the center X coordinate of a GedaCircle object
  * \par Function Description
- *  Retrieves the arc center X property.
+ *  Retrieves the circle center X property.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
  *
- * \return The center X coordinate of the arc
+ * \return The center X coordinate of the circle
  *
  * \sa geda_circle_object_set_center_x
  */
@@ -103,13 +103,13 @@ geda_circle_object_get_center_x (const GedaObject *object)
 }
 
 /*! O060?
- * \brief Get the center Y coordinate of a GedaArc object
+ * \brief Get the center Y coordinate of a GedaCircle object
  * \par Function Description
- *  Retrieves the arc center Y property.
+ *  Retrieves the circle center Y property.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
  *
- * \return The center Y coordinate of the arc
+ * \return The center Y coordinate of the circle
  *
  * \sa geda_circle_object_set_center_y
  */
@@ -118,6 +118,236 @@ geda_circle_object_get_center_y (const GedaObject *object)
 {
   if (GEDA_IS_CIRCLE(object)) {
     return object->circle->center_y;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Cap type Property of an GedaObject
+ * \par Function Description
+ *  Returns the value of \a object end-cap type if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of end-cap type or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_end_cap
+ */
+int
+geda_circle_object_get_end_cap (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->line_options->line_end;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 1 Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object fill angle 1 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of fill angle 1 or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_angle1
+ */
+int
+geda_circle_object_get_fill_angle1 (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_angle1;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Angle 2 Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object fill angle 2 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of fill angle 2 or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_angle2
+ */
+int
+geda_circle_object_get_fill_angle2 (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_angle2;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 1 Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object fill pitch 1 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of fill pitch 1 or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_pitch1
+ */
+
+int
+geda_circle_object_get_fill_pitch1 (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_pitch1;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Pitch 2 Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object fill pitch 2 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of fill pitch 2 or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_pitch2
+ */
+int
+geda_circle_object_get_fill_pitch2 (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_pitch2;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Type Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object fill type if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of fill type or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_type
+ */
+int
+geda_circle_object_get_fill_type (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_type;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Fill Width Property of a Circle object
+ * \par Function Description
+ *  Returns the value of the \a object fill width property if and only
+ *  if \a object is a valid GedaObject object.
+ *
+ * \return integer value of fill width or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_fill_width
+ */
+int
+geda_circle_object_get_fill_width (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->fill_options->fill_width;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Length Property of a Circle object
+ * \par Function Description
+ *  Returns the value of the \a object line length property if \a object
+ *  is a valid GedaCircle object. The line-length property controls the
+ *  length of line segments for line types dashed, center and phantom,
+ *  to get the "length" of a line see m_line_length.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \return integer value of line length or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_line_length
+ */
+int
+geda_circle_object_get_line_length (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->line_options->line_length;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Space Property of a Circle object
+ * \par Function Description
+ *  Returns the value of the \a object line space property if and only if \a object
+ *  is a valid GedaObject object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \return integer value of line space or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_line_space
+ */
+int
+geda_circle_object_get_line_space (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->line_options->line_space;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Type Property of a Circle object
+ * \par Function Description
+ *  Returns the value of \a object line type if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \return integer value of line type or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_line_type
+ */
+int
+geda_circle_object_get_line_type (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->line_options->line_type;
+  }
+  geda_circle_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Width Property of a Circle object
+ * \par Function Description
+ *  Returns the value of the \a object line width property if and only if
+ *  \a object is a valid GedaObject object.
+ *
+ * \return integer value of line width or -0 if \a object is invalid.
+ *
+ * \sa geda_circle_object_set_line_width
+ */
+int
+geda_circle_object_get_line_width (const GedaObject *object)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    return object->line_options->line_width;
   }
   geda_circle_object_error(__func__, object);
   return -0;
@@ -292,7 +522,7 @@ geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx,
  * \par Function Description
  *  This function gets the position of the center point of a circle object.
  *
- * \param [in]  object  Pointer to a #GedaCircle object
+ * \param [in]  object  Pointer to a #GedaObject object
  * \param [out] x       pointer to the x-position
  * \param [out] y       pointer to the y-position
 
@@ -311,13 +541,13 @@ geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 }
 
 /*! O060?
- * \brief Get the Radius of a GedaArc object
+ * \brief Get the Radius of a GedaCircle object
  * \par Function Description
- *  Retrieves the arc radius property.
+ *  Retrieves the circle radius property.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
  *
- * \return The radius of the arc
+ * \return The radius of the circle
  *
  * \sa geda_circle_object_set_radius
  */
@@ -1241,11 +1471,12 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
 }
 
 /*! O060?
- * \brief Set the center X coordinate of a GedaArc object
+ * \brief Set the center X coordinate of a GedaCircle object
  * \par Function Description
  *  Set the arc center X property to the given value.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] x       New value for the circle X coordinate
  *
  * \sa geda_circle_object_get_center_x
  */
@@ -1255,15 +1486,18 @@ geda_circle_object_set_center_x (GedaObject *object, int x)
   if (GEDA_IS_CIRCLE(object)) {
     object->circle->center_x = x;
   }
-  geda_circle_object_error(__func__, object);
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*! O060?
- * \brief Set the center Y coordinate of a GedaArc object
+ * \brief Set the center Y coordinate of a GedaCircle object
  * \par Function Description
  *  Set the arc center Y property to the given value.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] y       New value for the circle Y coordinate
  *
  * \sa geda_circle_object_get_center_y
  */
@@ -1273,15 +1507,272 @@ geda_circle_object_set_center_y (GedaObject *object, int y)
   if (GEDA_IS_CIRCLE(object)) {
     object->circle->center_y = y;
   }
-  geda_circle_object_error(__func__, object);
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the End Cap type Property of a GedaObject
+ * \par Function Description
+ *  Sets the value of \a object end-cap type if and only if \a object is
+ *  a valid GedaObject object. The line-end properties is only applicable
+ *  for fill types FILLING_MESH and FILLING_HATCH.
+ *
+ * \sa geda_circle_object_get_end_cap
+ */
+void
+geda_circle_object_set_end_cap (GedaObject *object, int line_end)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->line_options->line_end = line_end < END_NONE ? END_NONE :
+                                     line_end > END_VOID ? END_VOID :
+                                     line_end;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 1 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a object fill angle 1 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] angle   new value for the fill-angle1 property
+ *
+ * \sa geda_circle_object_get_fill_angle1
+ */
+void
+geda_circle_object_set_fill_angle1 (GedaObject *object, int angle)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_angle1 = angle;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Angle 2 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a object fill angle 2 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] angle   new value for the fill-angle2 property
+ *
+ * \sa geda_circle_object_get_fill_angle2
+ */
+void
+geda_circle_object_set_fill_angle2 (GedaObject *object, int angle)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_angle2 = angle;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 1 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a object fill pitch 1 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] pitch   new value for the fill-pitch1 property
+ *
+ * \sa geda_circle_object_get_fill_pitch1
+ */
+void
+geda_circle_object_set_fill_pitch1 (GedaObject *object, int pitch)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_pitch1 = pitch < 0 ? 0 : pitch;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Pitch 2 Property of a circle
+ * \par Function Description
+ *  Sets the value of \a object fill pitch 2 if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] pitch   new value for the fill-pitch2 property
+ *
+ * \sa geda_circle_object_get_fill_pitch2
+ */
+void
+geda_circle_object_set_fill_pitch2 (GedaObject *object, int pitch)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_pitch2 = pitch < 0 ? 0 : pitch;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Type Property of a object
+ * \par Function Description
+ *  Sets the value of \a object fill type if and only if \a object is
+ *  a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] type    new #OBJECT_FILLING for the fill-type property
+ *
+ * \sa geda_circle_object_get_fill_type
+ */
+void
+geda_circle_object_set_fill_type (GedaObject *object, int type)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                      type > TYPE_ERASE ? TYPE_ERASE :
+                                      type;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Fill Width Property of a circle
+ * \par Function Description
+ *  Sets the value of \a circle width of the fill if and only
+ *  if \a circle is a valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] width   new value for the fill-width property
+ *
+ * \sa geda_circle_object_get_fill_width
+ */
+void
+geda_circle_object_set_fill_width (GedaObject *object, int width)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->fill_options->fill_width = width < 0 ? 0 : width;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Line Length Property of an GedaObject
+ * \par Function Description
+ *  Returns the value of the \a object line length property if and only if
+ *  \a object is a valid GedaObject object. The line-length property controls
+ *  the length of line segments for line types dashed, center and phantom.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] length  new value for the line-length property
+ *
+ * \sa geda_circle_object_get_line_length
+ */
+void
+geda_circle_object_set_line_length (GedaObject *object, int length)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->line_options->line_length = length > 0 ? length : 0;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Line Space Property of a GedaCircle
+ * \par Function Description
+ *  Sets the value of the \a object line space property if and only if \a object
+ *  is a valid GedaObject object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] space   new LINE_TYPE value for the line type
+ *
+ * \sa geda_circle_object_get_line_space
+ */
+void
+geda_circle_object_set_line_space (GedaObject *object, int space)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->line_options->line_space = space > 0 ? space : 0;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the Line Type Property of an Arc
+ * \par Function Description
+ *  Sets the value of \a object line type if and only if \a object is a
+ *  valid GedaObject object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] type    new LINE_TYPE value for the line type
+ *
+ * \sa geda_circle_object_get_line_type
+ */
+void
+geda_circle_object_set_line_type (GedaObject *object, int type)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                      type > TYPE_ERASE ? TYPE_ERASE :
+                                      type;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set the End Width Property of an Arc
+ * \par Function Description
+ *  Sets the value of the \a object line width property if and only if
+ *  \a object is a valid GedaCircle object.
+ *
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] width   new value for the line width
+ *
+ * \sa geda_circle_object_get_line_width
+ */
+void
+geda_circle_object_set_line_width (GedaObject *object, int width)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    object->line_options->line_width = width > 0 ? width : 0;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*! O060?
- * \brief Set the Radius coordinate of a GedaArc object
+ * \brief Set the Radius coordinate of a GedaCircle object
  * \par Function Description
  *  Set the arc radius property to the given value.
  *
- * \param [in] object  Pointer to an GedaArc Object
+ * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] radius  new radius value
  *
  * \sa geda_circle_object_get_radius
  */
@@ -1291,7 +1782,9 @@ geda_circle_object_set_radius (GedaObject *object, int radius)
   if (GEDA_IS_CIRCLE(object)) {
     object->circle->radius = radius;
   }
-  geda_circle_object_error(__func__, object);
+  else {
+    geda_circle_object_error(__func__, object);
+  }
 }
 
 /*!

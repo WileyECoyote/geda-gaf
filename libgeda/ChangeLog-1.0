@@ -1,3 +1,7 @@
+2016-05-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_circle_object.c: Add accessors for line and filling options.
+
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_object.c: Rename functions using prefix geda_line_object_.
