@@ -1732,7 +1732,7 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
  *  \a object is not a valid GedaBox object.
  *
  * \param [in] object  Pointer to an Box GedaObject
- * \param [in] length  New value for the line-length property
+ * \param [in] end_cap New value for the end-cap property
  *
  * \sa geda_box_set_line_type geda_box_object_get_end_cap
  */
@@ -1844,7 +1844,7 @@ geda_box_object_set_fill_pitch2 (GedaObject *object, int pitch)
  *  \a object is not a valid GedaBox object.
  *
  * \param [in] object  Pointer to an Box GedaObject
- * \param [in] pitch   New value for the fill-type property
+ * \param [in] type    New value for the fill-type property
  *
  * \sa geda_box_set_fill_type geda_box_object_get_fill_type
  */
@@ -1876,7 +1876,7 @@ void
 geda_box_object_set_fill_width (GedaObject *object, int width)
 {
   if (GEDA_IS_BOX(object)) {
-    object->fill_options->fill_width = width;
+    object->fill_options->fill_width = width < 0 ? 0 : width;
   }
   else {
     geda_box_object_error(__func__, object);

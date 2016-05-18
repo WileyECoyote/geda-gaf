@@ -1715,7 +1715,7 @@ geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
  * \brief Set Fill Type property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc fill type
+ * \param [in] type    New value for the arc fill type
  *
  * \sa geda_arc_set_fill_type geda_arc_object_get_fill_type
  */
@@ -1736,7 +1736,7 @@ geda_arc_object_set_fill_type (GedaObject *object, int type)
  * \brief Set Fill Width property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc fill width
+ * \param [in] width   New value for the arc fill width
  *
  * \sa geda_arc_set_fill_width geda_arc_object_get_fill_width
  */
@@ -1744,7 +1744,7 @@ void
 geda_arc_object_set_fill_width (GedaObject *object, int width)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_width = width;
+    object->fill_options->fill_width = width < 0 ? 0 : width;
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1755,7 +1755,7 @@ geda_arc_object_set_fill_width (GedaObject *object, int width)
  * \brief Set Line Length property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc line length
+ * \param [in] length  New value for the arc line length
  *
  * \sa geda_arc_set_line_length geda_arc_object_get_line_length
  */
@@ -1774,7 +1774,7 @@ geda_arc_object_set_line_length (GedaObject *object, int length)
  * \brief Set Line Space property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc line space
+ * \param [in] space   New value for the arc line space
  *
  * \sa geda_arc_set_line_space geda_arc_object_get_line_space
  */
@@ -1793,7 +1793,7 @@ geda_arc_object_set_line_space (GedaObject *object, int space)
  * \brief Set Line Type property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc line type
+ * \param [in] type    New value for the arc line type
  *
  * \sa geda_arc_set_line_type geda_arc_object_get_line_type
  */
@@ -1814,7 +1814,7 @@ geda_arc_object_set_line_type (GedaObject *object, int type)
  * \brief Set Line Width property of an Arc Object
  *
  * \param [in] object  Pointer to an Arc GedaObject
- * \param [in] pitch   New value for the arc line width
+ * \param [in] width   New value for the arc line width
  *
  * \sa geda_arc_set_line_length geda_arc_object_get_line_width
  */
