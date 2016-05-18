@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-/*! \file o_complex_basic.c
+/*! \file o_complex_object.c
  *  \brief Functions for complex objects
  *
  *  GedaComplex objects are collections of primary objects.

@@ -25,7 +25,7 @@
 
 #include <geda_debug.h>
 
-/*! \file o_net_basic.c
+/*! \file o_net_object.c
  *  \brief functions for the net object
  */
 

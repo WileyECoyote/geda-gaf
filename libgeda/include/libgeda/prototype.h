@@ -278,6 +278,17 @@ extern "C" {
    GedaObject   *geda_circle_object_copy              (GedaObject *o_current);
           int    geda_circle_object_get_center_x      (const GedaObject *object);
           int    geda_circle_object_get_center_y      (const GedaObject *object);
+          int    geda_circle_object_get_end_cap       (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_angle1   (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_angle2   (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_pitch1   (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_pitch2   (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_type     (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_fill_width    (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_line_length   (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_line_space    (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_line_type     (const GedaObject *object) WARN_UNUSED;
+          int    geda_circle_object_get_line_width    (const GedaObject *object) WARN_UNUSED;
          bool    geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny);
           int    geda_circle_object_get_radius        (const GedaObject *object);
          void    geda_circle_object_modify            (GedaObject *object, int x, int y, int whichone);
@@ -286,6 +297,17 @@ extern "C" {
          void    geda_circle_object_rotate            (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_circle_object_set_center_x      (GedaObject *object, int x);
          void    geda_circle_object_set_center_y      (GedaObject *object, int y);
+         void    geda_circle_object_set_end_cap       (GedaObject *object, int cap);
+         void    geda_circle_object_set_fill_angle1   (GedaObject *object, int angle);
+         void    geda_circle_object_set_fill_angle2   (GedaObject *object, int angle);
+         void    geda_circle_object_set_fill_pitch1   (GedaObject *object, int pitch);
+         void    geda_circle_object_set_fill_pitch2   (GedaObject *object, int pitch);
+         void    geda_circle_object_set_fill_type     (GedaObject *object, int type);
+         void    geda_circle_object_set_fill_width    (GedaObject *object, int width);
+         void    geda_circle_object_set_line_length   (GedaObject *object, int length);
+         void    geda_circle_object_set_line_space    (GedaObject *object, int space);
+         void    geda_circle_object_set_line_type     (GedaObject *object, int type);
+         void    geda_circle_object_set_line_width    (GedaObject *object, int width);
          void    geda_circle_object_set_radius        (GedaObject *object, int r);
          void    geda_circle_object_translate         (GedaObject *object, int dx, int dy);
 

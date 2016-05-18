@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_line_basic.c
+/*! \file o_line_object.c
  *  \brief functions for the line object
  */
 
