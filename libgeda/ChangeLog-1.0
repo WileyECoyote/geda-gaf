@@ -1,5 +1,7 @@
 2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_line_object.c: Reorganize module.
+
     * tests/test_line_object.c: Add basic test for line objects.
 
 2016-05-17 Wiley E. Hill <wileyhill@gmail.com>
