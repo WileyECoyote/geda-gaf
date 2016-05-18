@@ -1,3 +1,8 @@
+2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Remove extra TAB from status text in function
+      i_status_update_status.
+
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_zoom_world.c: Revise correct_aspect to use local double

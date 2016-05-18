@@ -106,9 +106,10 @@ static void i_status_update_status(GschemToplevel *w_current,
   if (!StatusBar->status_label)
     return;
 
-  if (string)
+  if (string) {
     if (strcmp(geda_label_widget_get_text(StatusBar->status_label), string) != 0) {
-      geda_label_widget_set_text(StatusBar->status_label, (char*) string);
+      geda_label_widget_set_text(StatusBar->status_label, string);
+    }
   }
 }
 
@@ -256,12 +257,13 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 
   what_to_say = g_strjoinv(" - ", (char **) array + i);
 
-  if(w_current->keyaccel_string) {
+  if (w_current->keyaccel_string) {
 
      char *ptr = what_to_say;
 
-     what_to_say = geda_sprintf("%s\t\t %s", w_current->keyaccel_string,
-                                                 what_to_say);
+     what_to_say =
+       geda_sprintf("%s\t%s", w_current->keyaccel_string, what_to_say);
+
      GEDA_FREE(ptr);
   }
 
