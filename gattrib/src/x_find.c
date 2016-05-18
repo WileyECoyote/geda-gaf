@@ -248,7 +248,11 @@ void x_find_attribute_value(void)
   x_dialog_search_replace(&Search, text);
 }
 
-
+/*! \brief Start Search and Replace
+ *  \par Function Description
+ *  This is a callback for the menu and tool-bar to launch the bi-modal
+ *  Search and Replace dialog in the search and replace mode.
+ */
 void x_find_replace_attrib_value()
 {
   x_find_set_search_parameters();

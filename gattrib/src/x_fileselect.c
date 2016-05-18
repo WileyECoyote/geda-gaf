@@ -23,8 +23,8 @@
 /*! \file
  * \brief Functions to display file open/save dialog box.
  *
- * This file holds fcns used to display the file open/save dialog box.
- * It was cloned from x_fileselect.c in gschem/src, and then hacked
+ * This file contains functions used to display the file open/save dialog
+ * box. It was cloned from x_fileselect.c in gschem/src, and then hacked
  * by SDB for use in gattrib.
  */
 
@@ -34,16 +34,16 @@
 
 /* ----- x_fileselect stuff begins here ----- */
 
-/*! \brief Generic File Dialog
- *
+/*!
+ * \brief Generic File Dialog
+ * \par Function Description
  *  This function opens a file chooser dialog and waits for the user to
  *  select a folder and enter a filename. The user can also select an
  *  existing filename or cancel.
  *
- *  \param filename  char pointer to a buffer to receive the string.
+ * \param filename  char pointer to a buffer to receive the string.
  *
- *  \returns boolean True of dialog accepted input. returns false if
- *           the user cancels.
+ * \returns True of dialog accepted input, false if the user cancels.
  */
 bool x_fileselect ( char* filename )
 {
@@ -51,8 +51,7 @@ bool x_fileselect ( char* filename )
   char      *cwd;
   bool       result;
 
-  dialog = geda_file_chooser_new (main_window,
-                                  FILE_CHOOSER_ACTION_SAVE);
+  dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_SAVE);
 
   g_object_set (dialog,                     /* GtkFileChooser */
                 "select-multiple", FALSE,   /* only in GTK 2.8 */
@@ -115,7 +114,7 @@ bool x_fileselect_load_file (char *filename) {
 
   s_page_goto (s_page_new (pr_current, filename));
 
-  if(s_toplevel_read_page(pr_current, filename) == 0) {
+  if (s_toplevel_read_page(pr_current, filename) == 0) {
      fprintf(stderr, _("Could not load schematic [%s]\n"), filename);
      return FALSE;
   }
@@ -138,16 +137,17 @@ bool x_fileselect_load_file (char *filename) {
   return TRUE;
 }
 
-/*! \brief Open all files specified in the list.
- *
- * Open all files specified in the list. The caller is responsible for
- * freeing the strings and the list itself.
+/*!
+ * \brief Open all files specified in the list.
+ * \par Function Description
+ *  Open all files specified in the list. The caller is responsible for
+ *  freeing the strings and the list itself.
  *
  *  The function updates the user interface. At the end of the function,
  *  the toplevel's current page is set to the page of the last loaded page.
  *
- *  \param [in] filenames list of files to be opened
- *  \retval FALSE if any of the files could not be opened, TRUE otherwise
+ * \param [in] filenames list of files to be opened
+ * \retval FALSE if any of the files could not be opened, TRUE otherwise
  */
 bool x_fileselect_load_files (GSList *filenames)
 {
@@ -177,12 +177,12 @@ bool x_fileselect_load_files (GSList *filenames)
 GSList *x_fileselect_open (void)
 {
   GtkWidget *dialog;
-  GSList *filenames = NULL;
-  char  *cwd    = NULL;
-  GSList *ptrname;
+  char      *cwd;
+  GSList    *ptrname;
+  GSList    *filenames = NULL;
 
-  dialog = geda_file_chooser_new (main_window,
-                                  FILE_CHOOSER_ACTION_OPEN);
+  dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_OPEN);
+
   g_object_set (dialog,
                 /* GtkFileChooser */
                 "select-multiple", TRUE,
@@ -199,11 +199,11 @@ GSList *x_fileselect_open (void)
 
   geda_file_chooser_set_filter(dialog, FILTER_SCHEMATIC);
 
-  if(gtk_dialog_run (GTK_DIALOG(dialog)) == GEDA_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run (GTK_DIALOG(dialog)) == GEDA_RESPONSE_ACCEPT) {
 
     filenames = geda_file_chooser_get_filenames (dialog);
 
-    for (ptrname = filenames;  ptrname != NULL; ptrname = ptrname->next)
+    for (ptrname = filenames; ptrname != NULL; ptrname = ptrname->next)
     {
       char *filename = (char*)ptrname->data;
 
