@@ -1,0 +1,79 @@
+v 20110115 2
+T 400 2300 5 10 0 0 0 0 1
+device=REF43
+P 1100 100 1100 400 1 0 0
+{
+T 1150 250 5 8 1 1 0 0 1
+pinnumber=4
+T 1150 200 5 8 0 1 0 2 1
+pinseq=3
+T 1100 450 9 8 1 1 0 3 1
+pinlabel=GND
+T 1100 600 5 8 0 1 0 3 1
+pintype=pwr
+}
+P 2100 1400 1800 1400 1 0 0
+{
+T 1900 1450 5 8 1 1 0 0 1
+pinnumber=6
+T 1900 1350 5 8 0 1 0 2 1
+pinseq=4
+T 1750 1400 9 8 1 1 0 7 1
+pinlabel=VOUT
+T 1750 1325 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 1000 1800 1000 1 0 0
+{
+T 1900 1050 5 8 1 1 0 0 1
+pinnumber=3
+T 1900 950 5 8 0 1 0 2 1
+pinseq=5
+T 1750 1000 9 8 1 1 0 7 1
+pinlabel=TEMP
+T 1750 925 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 600 1800 600 1 0 0
+{
+T 1900 650 5 8 1 1 0 0 1
+pinnumber=5
+T 1900 550 5 8 0 1 0 2 1
+pinseq=6
+T 1750 600 9 8 1 1 0 7 1
+pinlabel=TRIM
+T 1750 525 5 8 0 1 0 8 1
+pintype=pas
+}
+B 400 400 1400 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 600 1700 8 10 1 1 0 6 1
+refdes=U?
+T 800 950 9 10 1 0 0 0 1
+REF43
+T 400 1900 9 10 1 1 0 0 1
+value=REF43GS
+T 400 2100 9 10 0 1 0 0 1
+footprint=SOIC8
+T 400 2900 5 10 0 1 0 0 1
+documentation=www.analog.com/UploadedFiles/Data_Sheets/ref43.pdf
+T 400 2700 5 10 0 0 0 0 1
+description=2.5V Reference
+T 400 2500 5 10 0 0 0 0 1
+numslots=0
+T 400 3300 5 10 0 0 0 0 1
+use-license=GPL
+T 400 3500 5 10 0 0 0 0 1
+author=jpd@noqsi.com
+T 400 3100 8 10 0 1 0 0 1
+comment=spice-prototype=X? #2 #4 #5 #6 REF43
+P 100 1200 400 1200 1 0 0
+{
+T 300 1250 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1150 5 8 0 1 0 8 1
+pinseq=1
+T 450 1200 9 8 1 1 0 1 1
+pinlabel=VIN
+T 450 1125 5 8 0 1 0 2 1
+pintype=pwr
+}

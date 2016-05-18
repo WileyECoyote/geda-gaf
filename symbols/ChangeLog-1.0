@@ -1,3 +1,9 @@
+2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/REF43-1.sym: Add symbol 2.5V Reference.
+
+    * analogdevices/REF43-2.sym: Alternate pin arrangement for REF43.
+
 2016-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD811-1.sym: Revise sequence pin (and other) attributes.
