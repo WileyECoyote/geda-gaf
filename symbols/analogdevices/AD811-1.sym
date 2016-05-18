@@ -1,8 +1,12 @@
 v 20150101 2
+T 1000 1250 8 10 1 1 0 0 1
+refdes=U?
+T 1000 1075 5 10 1 1 0 0 1
+device=AD811
+T 100 1600 5 10 0 0 0 0 1
+description=OpAmp, High Performance, Wide Band
 L 300 1100 300 300 3 0 0 0 -1 -1
 L 300 1100 1000 700 3 0 0 0 -1 -1
-T 1000 1075 5 10 1 1 0 0 1
-device=A811
 L 1000 700 300 300 3 0 0 0 -1 -1
 L 400 950 400 850 3 0 0 0 -1 -1
 L 350 900 450 900 3 0 0 0 -1 -1
@@ -11,10 +15,10 @@ P 100 900 300 900 1 0 0
 {
 T 125 950 5 8 1 1 0 0 1
 pinnumber=3
-T 200 950 5 8 0 1 0 0 1
-pinseq=1
 T 325 750 9 8 0 1 0 0 1
 pinlabel=in+
+T 200 950 5 8 0 1 0 0 1
+pinseq=1
 T 325 750 5 8 0 1 0 0 1
 pintype=in
 }
@@ -22,10 +26,10 @@ P 100 500 300 500 1 0 0
 {
 T 125 550 5 8 1 1 0 0 1
 pinnumber=2
-T 200 550 5 8 0 1 0 0 1
-pinseq=2
 T 325 575 9 8 0 1 0 0 1
 pinlabel=in-
+T 200 550 5 8 0 1 0 0 1
+pinseq=2
 T 325 575 5 8 0 1 0 0 1
 pintype=in
 }
@@ -33,10 +37,10 @@ P 1000 700 1200 700 1 0 1
 {
 T 1050 550 5 8 1 1 0 0 1
 pinnumber=6
-T 1125 550 5 8 0 1 0 0 1
-pinseq=5
 T 1000 750 9 8 0 1 0 0 1
 pinlabel=out
+T 1125 550 5 8 0 1 0 0 1
+pinseq=5
 T 1000 750 9 8 0 1 0 0 1
 pintype=out
 }
@@ -44,10 +48,10 @@ P 700 900 700 1100 1 0 1
 {
 T 750 1025 5 8 1 1 0 0 1
 pinnumber=7
-T 825 1025 5 8 0 1 0 0 1
-pinseq=3
 T 750 900 9 8 0 1 0 0 1
 pinlabel=V+
+T 825 1025 5 8 0 1 0 0 1
+pinseq=3
 T 650 1000 5 6 0 1 90 0 1
 pintype=pwr
 }
@@ -55,17 +59,15 @@ P 700 500 700 300 1 0 1
 {
 T 550 275 5 8 1 1 0 0 1
 pinnumber=4
-T 475 275 5 8 0 1 0 0 1
-pinseq=4
 T 575 500 9 6 0 1 0 0 1
 pinlabel=V-
+T 475 275 5 8 0 1 0 0 1
+pinseq=4
 T 800 375 5 6 0 1 90 6 1
 pintype=pwr
 }
-T 1000 1250 8 10 1 1 0 0 1
-refdes=U?
-T 100 1600 5 10 0 0 0 0 1
-description=OpAmp, High Performance, Wide Band
+T 1000 900 9 10 1 1 0 0 1
+footprint=DIP8
 T 100 1400 5 10 0 0 0 0 1
 numslots=0
 T 100 1800 5 10 0 0 0 0 1
@@ -76,5 +78,4 @@ T 100 1995 5 10 0 0 0 0 1
 dist-license=GPLv3
 T 100 2395 5 10 0 0 0 0 1
 author=AutoTron
-T 1000 900 9 10 1 1 0 0 1
-footprint=DIP8
+

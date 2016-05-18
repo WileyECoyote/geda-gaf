@@ -1,3 +1,13 @@
+2016-05-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD811-1.sym: Revise sequence pin (and other) attributes.
+
+    * analogdevices/AD842-1.sym: Revise sequence pin (and other) attributes.
+
+    * logic/74H/74HCT573-1.sym: Revise order of attribute appearance in file.
+
+    * micro/M41T00-1.sym: Rename symbol file M41T00-SO8-1->M41T00-1.
+
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/M41T00-2.sym: add symbol: alternate pin arrangment for M41T00.
