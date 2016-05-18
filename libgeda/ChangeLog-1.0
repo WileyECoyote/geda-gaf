@@ -1,3 +1,7 @@
+2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_line_object.c: Add basic test for line objects.
+
 2016-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_circle_object.c: Add accessors for line and filling options.

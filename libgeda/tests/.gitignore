@@ -15,8 +15,10 @@ test_bus_object
 test_circle
 test_circle_object
 test_complex
+test_complex_object
 test_file
 test_line
+test_line_object
 test_list
 test_net
 test_path
