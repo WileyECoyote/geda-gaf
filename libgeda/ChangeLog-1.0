@@ -2,6 +2,8 @@
 
     * src/object/o_line_object.c: Reorganize module.
 
+    * tests/test_line.c: Add checks for gobject properties.
+
     * tests/test_line_object.c: Add basic test for line objects.
 
 2016-05-17 Wiley E. Hill <wileyhill@gmail.com>

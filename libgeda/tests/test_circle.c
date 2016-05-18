@@ -209,7 +209,7 @@ check_properties (void)
         fail++;
       }
       else if (re - e) {
-        fprintf(stderr, "FAILED: %s get end-cap property %d != %d\n", TOBJECT, rx, e);
+        fprintf(stderr, "FAILED: %s get end-cap property %d != %d\n", TOBJECT, re, e);
         fail++;
       }
 
