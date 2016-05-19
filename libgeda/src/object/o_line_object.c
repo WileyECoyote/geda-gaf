@@ -31,7 +31,17 @@
 
 #include <geda_debug.h>
 
+static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
 
+static void
+geda_line_object_error(const char *func, const void *object)
+{
+  geda_object_error(func, object, GEDA_OBJECT_LINE);
+}
 
 /*!
  * \brief Create a copy of a line.
@@ -68,6 +78,7 @@ geda_line_object_copy(GedaObject *o_current)
     /* return the new tail of the object list */
     return new_obj;
   }
+  geda_line_object_error(__func__, o_current);
   return NULL;
 }
 
@@ -90,7 +101,7 @@ geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
     anwser = first < second ? 0 : 1;
   }
   else {
-    BUG_MSG("GedaObject is not derived from GedaLine");
+    geda_line_object_error(__func__, object);
     anwser = -1;
   }
   return anwser;
@@ -164,6 +175,7 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
       intersect = TRUE;
     }
     else { /* GedaObject 2 is not a derived from a line */
+      geda_line_object_error(__func__, object2);
       intersect = FALSE;
     }
   }
@@ -187,6 +199,7 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
       intersect = TRUE;
     }
     else { /* GedaObject 1 is not a derived from a line */
+      geda_line_object_error(__func__, object1);
       intersect = FALSE;
     }
   }
@@ -218,6 +231,7 @@ geda_line_object_get_midpoint(GedaObject *object, POINT *point)
     status = TRUE;
   }
   else {
+    geda_line_object_error(__func__, object);
     status = FALSE;
   }
   return status;
@@ -324,6 +338,7 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
     result = TRUE;
   }
   else { /* was not an Line */
+    geda_line_object_error(__func__, object);
     result = FALSE;
   }
 
@@ -348,12 +363,15 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 bool
 geda_line_object_get_position (GedaObject *object, int *x, int *y)
 {
-  g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
+  if (GEDA_IS_LINE(object)) {
 
-  *x = object->line->x[0];
-  *y = object->line->y[0];
+    *x = object->line->x[0];
+    *y = object->line->y[0];
 
-  return TRUE;
+    return TRUE;
+  }
+  geda_line_object_error(__func__, object);
+  return FALSE;
 }
 
 /*!
@@ -371,20 +389,25 @@ geda_line_object_get_slope (GedaObject *object, double *slope)
 {
   bool has_slope;
 
-  g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
+  if (GEDA_IS_LINE(object)) {
 
-  has_slope = object->line->x[0] == object->line->x[1] ? FALSE : TRUE;
+    has_slope = object->line->x[0] == object->line->x[1] ? FALSE : TRUE;
 
-  if (has_slope) {
+    if (has_slope) {
 
-    double dx, dy;
+      double dx, dy;
 
-    dy    = object->line->y[1] - object->line->y[0];
-    dx    = object->line->x[1] - object->line->x[0];
-   *slope = dy / dx;
+      dy    = object->line->y[1] - object->line->y[0];
+      dx    = object->line->x[1] - object->line->x[0];
+      *slope = dy / dx;
+    }
+  }
+  else {
+    geda_line_object_error(__func__, object);
+    has_slope = FALSE;
   }
 
-  return has_slope;
+  return FALSE;
 }
 
 /*!
@@ -413,6 +436,7 @@ geda_line_object_is_endpoint (GedaObject *object, POINT *point)
     }
   }
   else {
+    geda_line_object_error(__func__, object);
     anwser = FALSE;
   }
   return anwser;
@@ -447,7 +471,7 @@ geda_line_object_length(GedaObject *object)
 
   }
   else {
-    BUG_MSG("Invalid GedaLine Object");
+    geda_line_object_error(__func__, object);
     length = 0.0;
   }
   return (length);
@@ -525,7 +549,7 @@ geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
       return;
   }
 
-  /* recalculate the bounding box */
+  /* recalculate the bounding line */
   object->w_bounds_valid_for = NULL;
 }
 
@@ -536,7 +560,7 @@ geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
  *
  *  The line is described by its two ends - <B>x1</B>,<B>y1</B> and
  *  <B>x2</B>,<B>y2</B>.
- *  The <B>color</B> parameter corresponds to the color the box
+ *  The <B>color</B> parameter corresponds to the color the line
  *  will be drawn with.
  *
  *  The #GedaObject structure is allocated with the #geda_object_new()
@@ -549,10 +573,10 @@ geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
  *  #o_set_fill_options().
  *
  * \param [in]     color        Circle line color.
- * \param [in]     x1           Upper x coordinate.
- * \param [in]     y1           Upper y coordinate.
- * \param [in]     x2           Lower x coordinate.
- * \param [in]     y2           Lower y coordinate.
+ * \param [in]     x1           First x coordinate.
+ * \param [in]     y1           First y coordinate.
+ * \param [in]     x2           Second x coordinate.
+ * \param [in]     y2           Second y coordinate.
  *
  * \return A pointer to the new end of the object list.
  */
@@ -706,10 +730,10 @@ geda_line_object_print(GedaToplevel *toplevel, FILE *fp,
  *
  * \param [in] toplevel     The GedaToplevel object.
  * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
+ * \param [in] x1            First x coordinate.
+ * \param [in] y1            First y coordinate.
+ * \param [in] x2            Second x coordinate.
+ * \param [in] y2            Second y coordinate.
  * \param [in] color         Line color.
  * \param [in] line_width    Width of line.
  * \param [in] capstyle      Capstyle of line.
@@ -845,10 +869,10 @@ geda_line_object_print_center(GedaToplevel *toplevel, FILE *fp,
  *
  * \param [in] toplevel      The GedaToplevel object.
  * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
+ * \param [in] x1            First x coordinate.
+ * \param [in] y1            First y coordinate.
+ * \param [in] x2            Second x coordinate.
+ * \param [in] y2            Second y coordinate.
  * \param [in] color         Line color.
  * \param [in] line_width    Width of line.
  * \param [in] capstyle      Capstyle of line.
@@ -954,10 +978,10 @@ geda_line_object_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *
  * \param [in] toplevel     The GedaToplevel object.
  * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
+ * \param [in] x1            First x coordinate.
+ * \param [in] y1            First y coordinate.
+ * \param [in] x2            Second x coordinate.
+ * \param [in] y2            Second y coordinate.
  * \param [in] color         Line color.
  * \param [in] line_width    Width of line.
  * \param [in] capstyle      Capstyle of circle lines.
@@ -1042,10 +1066,10 @@ geda_line_object_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *
  * \param [in] toplevel     The GedaToplevel object.
  * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
+ * \param [in] x1            First x coordinate.
+ * \param [in] y1            First y coordinate.
+ * \param [in] x2            Second x coordinate.
+ * \param [in] y2            Second y coordinate.
  * \param [in] color         Line color.
  * \param [in] line_width    Width of line.
  * \param [in] capstyle      Capstyle of line.
@@ -1204,10 +1228,10 @@ geda_line_object_print_phantom(GedaToplevel *toplevel, FILE *fp,
  *
  * \param [in] toplevel     The GedaToplevel object.
  * \param [in] fp            FILE pointer to Postscript document.
- * \param [in] x1            Upper x coordinate.
- * \param [in] y1            Upper y coordinate.
- * \param [in] x2            Lower x coordinate.
- * \param [in] y2            Lower y coordinate.
+ * \param [in] x1            First x coordinate.
+ * \param [in] y1            First y coordinate.
+ * \param [in] x2            Second x coordinate.
+ * \param [in] y2            Second y coordinate.
  * \param [in] color         Line color.
  * \param [in] line_width    Width of line.
  * \param [in] capstyle      Capstyle of line.
@@ -1233,7 +1257,7 @@ geda_line_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *
  * \par Function Description
  *  This function creates a line Object from the character string
- *  <B>*buf</B> the description of a box.
+ *  <B>*buf</B> the description of a line.
  *
  *  The function returns a pointer on the new last element, that is
  *  the added line object.
@@ -1354,42 +1378,45 @@ geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angl
   GedaLine *line;
   int newx, newy;
 
-  g_return_if_fail(GEDA_IS_LINE(object));
+  if (GEDA_IS_LINE(object)) {
 
-  line = GEDA_LINE(object);
+    line = GEDA_LINE(object);
 
-  if (angle == 0)
-    return;
+    if (angle == 0)
+      return;
 
-  /* angle must be positive */
-  if (angle < 0) angle = -angle;
-  /* angle must be 90 multiple or no rotation performed */
-  if ((angle % 90) != 0) return;
+    /* angle must be positive */
+    if (angle < 0) angle = -angle;
+    /* angle must be 90 multiple or no rotation performed */
+    if ((angle % 90) != 0) return;
 
-  /*
-   * The center of rotation (<B>center_x</B>,<B>center_y</B>)
-   * is translated to the origin. The rotation of the two ends of
-   * the line is performed. FInally, the rotated line is translated
-   * back to its previous location.
-   */
-  /* translate object to origin */
-  geda_line_object_translate(object, -center_x, -center_y);
+    /*
+     * The center of rotation (<B>center_x</B>,<B>center_y</B>)
+     * is translated to the origin. The rotation of the two ends of
+     * the line is performed. FInally, the rotated line is translated
+     * back to its previous location.
+     */
+    /* translate object to origin */
+    geda_line_object_translate(object, -center_x, -center_y);
 
-  /* rotate line end 1 */
-  m_rotate_point_90(line->x[0], line->y[0], angle, &newx, &newy);
+    /* rotate line end 1 */
+    m_rotate_point_90(line->x[0], line->y[0], angle, &newx, &newy);
 
-  line->x[0] = newx;
-  line->y[0] = newy;
+    line->x[0] = newx;
+    line->y[0] = newy;
 
-  /* rotate line end 2 */
-  m_rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
+    /* rotate line end 2 */
+    m_rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
 
-  line->x[1] = newx;
-  line->y[1] = newy;
+    line->x[1] = newx;
+    line->y[1] = newy;
 
-  /* translate object back to normal position */
-  geda_line_object_translate(object, center_x, center_y);
-
+    /* translate object back to normal position */
+    geda_line_object_translate(object, center_x, center_y);
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -1403,16 +1430,20 @@ geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angl
 void
 geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
 {
-  g_return_if_fail(GEDA_IS_LINE(object));
+  if (GEDA_IS_LINE(object)) {
 
-  /* scale the line world coords */
-  object->line->x[0] = object->line->x[0] * x_scale;
-  object->line->y[0] = object->line->y[0] * y_scale;
-  object->line->x[1] = object->line->x[1] * x_scale;
-  object->line->y[1] = object->line->y[1] * y_scale;
+    /* scale the line world coords */
+    object->line->x[0] = object->line->x[0] * x_scale;
+    object->line->y[0] = object->line->y[0] * y_scale;
+    object->line->x[1] = object->line->x[1] * x_scale;
+    object->line->y[1] = object->line->y[1] * y_scale;
 
-  /* update boundingbox */
-  object->w_bounds_valid_for = NULL;
+    /* update boundingline */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -1444,7 +1475,7 @@ geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_
  * \brief Create a character string representation of a line Object.
  * \par Function Description
  *  The function formats a string in the buffer <B>*buff</B> to describe
- *  the box <B>*object</B> following the post-20000704 release file format
+ *  the line <B>*object</B> following the post-20000704 release file format
  *  that handle the line type and fill options - filling is irrelevant here.
  *
  * \note object was validated by o_save_objects
@@ -1511,6 +1542,6 @@ geda_line_object_translate( GedaObject *object, int dx, int dy)
   line->x[1] = line->x[1] + dx;
   line->y[1] = line->y[1] + dy;
 
-  /* Update bounding box */
+  /* Update bounding line */
   object->w_bounds_valid_for = NULL;
 }
