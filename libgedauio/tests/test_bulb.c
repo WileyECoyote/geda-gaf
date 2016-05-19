@@ -74,12 +74,8 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
-
-  if (GEDA_IS_BULB(widget)) {
-    fprintf(stderr, "FAILED %s destruction\n", TWIDGET);
-    result++;
-  }
 
   widget = NULL;
 
@@ -100,6 +96,7 @@ int check_construction (void)
     value = 0;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
@@ -113,6 +110,7 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
@@ -134,6 +132,7 @@ int check_construction (void)
     value = 0;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
@@ -147,6 +146,7 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
@@ -204,10 +204,85 @@ int check_construction (void)
     }
   }
 
+  g_object_ref_sink(widget1); /* Sink reference to entry widget */
+  g_object_ref_sink(widget2); /* Sink reference to entry widget */
+  g_object_ref_sink(widget3); /* Sink reference to entry widget */
+
   g_object_unref(widget1);    /* Destroy widget1 */
   g_object_unref(widget2);    /* Destroy widget2 */
   g_object_unref(widget3);    /* Destroy widget3 */
 
+  return result;
+}
+
+int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget1;
+  GtkWidget *widget2;
+  GtkWidget *widget3;
+  GtkWidget *widget4;
+
+  /* geda_bulb_new_visible_with_mnemonic */
+
+  widget1 = geda_bulb_new_visible_with_mnemonic (NULL, "</b>b1</b>");
+
+  if (!GEDA_IS_BULB(widget1)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GSList *group;
+    int     count;
+
+    /* geda_bulb_new_with_label_from_widget */
+
+    widget2 = geda_bulb_new_with_label_from_widget (widget1, "b2", TRUE);
+
+    widget3 = geda_bulb_new_visible (NULL);
+
+    group   = geda_bulb_get_group(widget1);
+
+    /* check geda_bulb_set_group */
+    geda_bulb_set_group(widget3, group);
+
+    /* Update pointer to the list */
+    group = geda_bulb_get_group(widget1);
+
+    count = g_slist_length(group);
+
+    if (count != 3) {
+      fprintf(stderr, "FAILED: line <%d> %s set_group <%d>\n", __LINE__, TWIDGET, count);
+      result++;
+    }
+
+    widget4 = geda_bulb_new (NULL);
+
+    /* check geda_bulb_join_group */
+    geda_bulb_join_group (widget4, widget3);
+
+    group = geda_bulb_get_group(widget1);
+
+    count = g_slist_length(group);
+
+    if (count != 4) {
+      fprintf(stderr, "FAILED: line <%d> %s join_group <%d>\n", __LINE__, TWIDGET, count);
+      result++;
+    }
+
+    g_object_ref_sink(widget1); /* Sink reference to entry widget */
+    g_object_ref_sink(widget2); /* Sink reference to entry widget */
+    g_object_ref_sink(widget3); /* Sink reference to entry widget */
+    g_object_ref_sink(widget4); /* Sink reference to entry widget */
+
+    g_object_unref(widget1);    /* Destroy widget1 */
+    g_object_unref(widget2);    /* Destroy widget2 */
+    g_object_unref(widget3);    /* Destroy widget3 */
+    g_object_unref(widget4);    /* Destroy widget3 */
+  }
   return result;
 }
 
@@ -230,9 +305,19 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
-      return 1;
     }
 
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+    }
   }
   return result;
 }

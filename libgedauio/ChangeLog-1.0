@@ -1,6 +1,11 @@
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_bulb.c: Add check to ensure visibility set.
+    * tests/test_bulb.c: Add check to ensure visibility set, add g_object_ref
+      _stinks to suppress obtrusive gnoise in logs, remove test destruction of
+      GedaBulb; is not a test of glib, (which fails), add checks for:
+
+            * geda_bulb_set_group
+            * geda_bulb_join_group
 
     * tests/test_entry.c: Add check to ensure visibility set.
 
@@ -106,7 +111,7 @@
       GtkTreeViewRowSeparatorFunc is ridiculously long, remove reference to
       GEDA_DISABLE_DEPRECATED.
 
-    * tests/test_combobox.c: Add additional checks for
+    * tests/test_combobox.c: Add additional checks for GedaComboBox.
 
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
