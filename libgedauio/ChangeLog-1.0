@@ -10,6 +10,9 @@
             * geda_bulb_set_group
             * geda_bulb_join_group
 
+    * tests/test_combobox.c: Add basic check for format_entry_text and fix
+      TWIDGET = GedaComboBox, not GedaComboBoxText.
+
     * tests/test_entry.c: Add check to ensure visibility set.
 
 2016-05-17 Wiley E. Hill <wileyhill@gmail.com>

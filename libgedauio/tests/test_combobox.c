@@ -45,7 +45,7 @@
 /*! \def MUT Module Under Tests */
 #define MUT "src/widgets/geda_combobox.c"
 
-#define TWIDGET "GedaComboBoxText"
+#define TWIDGET "GedaComboBox"
 
 /*! \file test_combobox.c
  *  \brief Tests for accel_label.c module
@@ -525,9 +525,15 @@ static void combo_changed (GedaComboBox *combo)
 {
   changed++;
 }
+
 static void combo_view_changed (GedaComboBox *combo, unsigned int mode)
 {
   view_changed++;
+}
+
+static char *do_format_entry_text (GedaComboBox *combo_box, const char *path)
+{
+  return g_strdup("3");
 }
 
 int
@@ -541,8 +547,8 @@ check_overides ()
 
   combo_class = GEDA_COMBO_BOX_GET_CLASS(widget);
 
-  combo_class->changed      = combo_changed;
-  combo_class->view_changed = combo_view_changed;
+  combo_class->changed           = combo_changed;
+  combo_class->view_changed      = combo_view_changed;
 
   geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
 
@@ -560,6 +566,24 @@ check_overides ()
 
   if (!view_changed) {
     fprintf(stderr, "FAILED: %s line <%d> not changed\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "2");
+
+  combo_class->format_entry_text = do_format_entry_text;
+
+  geda_combo_widget_set_active(widget, 1);
+
+  GedaEntry  *entry = geda_combo_widget_get_entry (widget);
+  const char *text = geda_entry_get_text(entry);
+
+  if (!text) {
+    fprintf(stderr, "FAILED: %s line <%d> format_entry_text\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strcmp(text, "3")) {
+    fprintf(stderr, "FAILED: %s line <%d> format_entry_text <%s>\n", TWIDGET,  __LINE__, text);
     result++;
   }
 
