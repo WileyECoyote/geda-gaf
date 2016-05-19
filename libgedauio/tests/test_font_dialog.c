@@ -117,7 +117,6 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
-      return 1;
     }
   }
   return result;
