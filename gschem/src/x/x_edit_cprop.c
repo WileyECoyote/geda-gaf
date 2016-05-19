@@ -538,7 +538,6 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
  *
  *  \param [in] check_butt Pointer to the CheckBox widget
  *  \param [in] data       Pointer to a Component Dialog data structure
- *
  */
 static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
 {

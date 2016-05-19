@@ -51,12 +51,15 @@ typedef enum
   SAE_ADD_MODE
 } AttributeEditMode;
 
-/*! \brief Callback for Editing Text Properties
- *  \par Function Description
- *   This function updates widgets on the attrib_edit dialog with the text
- *   properties of the passed object. If multible objects are selected the
- *   text editing field is set to NULL.
+/*!
+ * \brief Callback for Editing Text Properties
+ * \par Function Description
+ *  This function updates widgets on the attrib_edit dialog with the text
+ *  properties of the passed object. If multible objects are selected the
+ *  text editing field is set to NULL.
  *
+ * \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] object    Pointer to a selected object or NULL
  */
 static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
                                                    GedaObject     *object)
@@ -111,10 +114,17 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
   GEDA_OBJECT_SET_DATA (ThisDialog, object, "attrib");
 
 }
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Documentation
+
+/*!
+ * \brief Get Show Name Value on Single Attribute Editor Dialog
+ * \par Function Documentation
+ *  Helper for attrib_edit_dialog_ok to retrieve the index of the
+ *  active widget in the \a option_menu widget list of children.
+ *  The choices are show value, show name or show name and value.
  *
+ * \param [in] option_menu Pointer the show_options widget
+ *
+ * \returns active index or -1 in the unlikely event there is no active widget.
  */
 int option_menu_get_history (GtkOptionMenu *option_menu)
 {
@@ -124,11 +134,13 @@ int option_menu_get_history (GtkOptionMenu *option_menu)
 
   active_widget = gtk_menu_get_active (GTK_MENU (option_menu->menu));
 
-  if (active_widget)
+  if (active_widget) {
     return g_list_index (GTK_MENU_SHELL (option_menu->menu)->children,
                          active_widget);
-    else
-      return -1;
+  }
+  else {
+    return -1;
+  }
 }
 
 /*! \brief Single Attribute Editor Dialog Response Handler
@@ -137,7 +149,7 @@ int option_menu_get_history (GtkOptionMenu *option_menu)
  *  in the dialog's action area. There are only two signal, one for
  *  "apply" and one to "close" the dialog.
  *
- * \param mode flag to indicate create mode or edit an existing
+ * \param mode      flag to indicate create mode or edit an existing
  * \param w_current is pointer to a GschemToplevel structure
  */
 static void
@@ -181,6 +193,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     vis = INVISIBLE;
 
   option_index = option_menu_get_history(GTK_OPTION_MENU (show_options));
+
   switch(option_index) {
     case(0):
       show = SHOW_VALUE;
@@ -239,10 +252,15 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   GEDA_FREE(newtext);
 }
 
-/*! \brief Response function for the attribute add/edit dialog
- *  \par Function Description
+/*!
+ * \brief Response function for the attribute add/edit dialog
+ * \par Function Description
  *  This function catches the user response for the add and edit
  *  attribute dialog.
+ *
+ * \param [in] w         Either the Close or the Apply Button widget
+ * \param [in] response  integer response associated with widget
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void attribute_edit_dialog_response(GtkWidget *w, int response,
                                     GschemToplevel *w_current)
@@ -256,7 +274,7 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
       break;
 
     case GEDA_RESPONSE_ACCEPT:
-      attrib_edit_dialog_ok ( SAE_ADD_MODE, w_current);
+      attrib_edit_dialog_ok (SAE_ADD_MODE, w_current);
       gtk_grab_remove(ThisDialog);
       break;
 
@@ -270,16 +288,20 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
   }
 }
 
-/*! \brief Move Focus when Enter pressed in Name Entry
- *  \par Function Description
+/*!
+ * \brief Move Focus when Enter pressed in Name Entry
+ * \par Function Description
  *  This function is call when the ENTER button is press
  *  in Attribute Name entry, the function sets focus to the
  *  Value Entry.
+ *
+ * \param [in] w           Pointer to the Name GedaEntry widget
+ * \param [in] value_entry Pointer to the Value GtkEntry widget
  */
 static void
 callback_attrib_entry_activate (GtkWidget *w, GtkWidget *value_entry)
 {
-  if ( GTK_IS_ENTRY(value_entry)) {
+  if (GTK_IS_ENTRY(value_entry)) {
     gtk_widget_grab_focus(value_entry);
   }
 }
@@ -324,13 +346,17 @@ GtkWidget *x_attrib_option_menu_new()
   return options_menu;
 }
 
-/*! \brief Create the attribute add/edit dialog
- *  \par Function Description
+/*!
+ * \brief Create the attribute add/edit dialog
+ * \par Function Description
  *  This function creates the single attribute edit dialog. This dialog
  *  is special in that it can be either an "add" new attribute or an
  *  "Edit" (existing) attribute dialog depending on the value of the
- *   flag argument.
+ *  flag argument.
  *
+ * \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] object    Currently select object or NULL
+ * \param [in] flag      Enumerated AttributeEditMode mode flag
  */
 static
 void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
@@ -523,12 +549,13 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     gtk_entry_completion_set_inline_completion(completion, TRUE);
     gtk_entry_completion_set_inline_selection (completion, TRUE);
     gtk_entry_completion_set_popup_single_match(completion, TRUE);
+
     gtk_entry_set_completion(GTK_ENTRY(attrib_name_entry), completion);
 
-    GEDA_HOOKUP_OBJECT(ThisDialog, attrib_name_entry,  "attrib_name_entry");
-    GEDA_HOOKUP_OBJECT(ThisDialog, value_entry,        "value_entry");
-    GEDA_HOOKUP_OBJECT(ThisDialog, visbutton,          "visbutton");
-    GEDA_HOOKUP_OBJECT(ThisDialog, show_options,       "show_options");
+    GEDA_HOOKUP_OBJECT(ThisDialog, attrib_name_entry, "attrib_name_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, value_entry,       "value_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, visbutton,         "visbutton");
+    GEDA_HOOKUP_OBJECT(ThisDialog, show_options,      "show_options");
 
     /* Connect Attribute Name Combo Entry widget in order to move focus
      * to the Value entry after changing the Attribute Name */
@@ -569,33 +596,40 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
   else { /* dialog already there */
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }
-  x_dialog_attrib_edit_update_selection (w_current, object);
 
+  x_dialog_attrib_edit_update_selection (w_current, object);
 }
 
-/*! \brief Launch the Single Attribute Dialog in Add mode
- *  \par Function Description
+/*!
+ * \brief Launch the Single Attribute Dialog in Add mode
+ * \par Function Description
  *  This function calls the main dialog routine to construct and
  *  display the single attribute editor in #SAE_ADD_MODE mode,
  *  this mode is used to add new attributes to objects.
  *
+ * \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] object    Pointer to a selected object or NULL
  */
 void x_attrib_add_dialog (GschemToplevel *w_current, GedaObject *object)
 {
   attrib_edit_dialog (w_current, object, SAE_ADD_MODE);
 }
 
-/*! \brief Launch the Single Attribute Dialog in Edit mode
- *  \par Function Description
+/*!
+ * \brief Launch the Single Attribute Dialog in Edit mode
+ * \par Function Description
  *  This function calls the main dialog routine to construct and
  *  display the single attribute editor in #SAE_EDIT_MODE mode,
  *  this mode is used to edit existing attributes of objects.
  *
+ * \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] object    Pointer to a selected object or NULL
  */
 void x_attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object)
 {
   attrib_edit_dialog (w_current, object, SAE_EDIT_MODE);
 }
+
 #undef ThisDialog
 /***************** End of Attrib Edit dialog box **********************/
 /** @} endgroup Single-Attrib-Edit-Dialog  */
