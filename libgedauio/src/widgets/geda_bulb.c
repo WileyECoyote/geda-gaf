@@ -1169,7 +1169,9 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
   GedaBulb  *bulb;
 
   g_return_if_fail (GEDA_IS_BULB (widget));
-  g_return_if_fail (!g_slist_find (group, widget));
+
+  if (g_slist_find (group, widget))
+    return;
 
   bulb = (GedaBulb*)widget;
 

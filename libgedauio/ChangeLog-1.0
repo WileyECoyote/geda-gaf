@@ -1,5 +1,8 @@
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_bulb.c: Revise geda_bulb_set_group to ignore settting
+      the group if the widget is already a member without the gnoise.
+
     * tests/test_bulb.c: Add check to ensure visibility set, add g_object_ref
       _stinks to suppress obtrusive gnoise in logs, remove test destruction of
       GedaBulb; is not a test of glib, (which fails), add checks for:
