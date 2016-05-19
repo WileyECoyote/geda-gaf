@@ -53,6 +53,7 @@
 int check_construction (void)
 {
   int result = 0;
+  int value;
 
   /* geda_entry_new */
 
@@ -90,6 +91,14 @@ int check_construction (void)
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
+  }
+
+  g_object_get (widget, "visible", &value, NULL);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: line <%d> is visible %s\n", __LINE__, TWIDGET);
+    result++;
+    value = 0;
   }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
