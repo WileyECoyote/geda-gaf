@@ -138,6 +138,7 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GtkWindow    *window;
   GtkAllocation child_allocation;
   unsigned int  border_2x;
+  unsigned int  need_resize;
 
   window             = GTK_WINDOW (widget);
   widget->allocation = *allocation;
@@ -146,25 +147,28 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (window->bin.child && gtk_widget_get_visible (window->bin.child))
   {
-    child_allocation.x      = border_2x;
-    child_allocation.y      = border_2x;
-    child_allocation.width  = MAX (1, (int)allocation->width - child_allocation.x);
-    child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y);
+    int border_width        = GTK_CONTAINER (window)->border_width;
+    child_allocation.x      = border_width;
+    child_allocation.y      = border_width;
+    child_allocation.width  = MAX (1, (int)allocation->width - border_2x);
+    child_allocation.height = MAX (1, (int)allocation->height - border_2x);
 
     gtk_widget_size_allocate (window->bin.child, &child_allocation);
   }
 
-  if (gtk_widget_get_realized (widget)) {
+  need_resize = GTK_CONTAINER (window)->need_resize;
+
+  if (need_resize && gtk_widget_get_realized (widget)) {
 
     GdkWindow *frame;
     int width;
-    int heigth;
+    int height;
 
     frame  = geda_get_widget_window(widget);
-    width  = allocation->width + border_2x;
-    heigth = allocation->height + border_2x;
+    width  = allocation->width  = child_allocation.width + border_2x;
+    height = allocation->height = child_allocation.height + border_2x;
 
-    gdk_window_resize (frame, width, heigth);
+    gdk_window_resize (frame, width, height);
   }
 }
 

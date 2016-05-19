@@ -1,3 +1,8 @@
+2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Revise gschem_window_size_allocate, add
+      need_resize and call gdk_window_resize only if need_resize is set.
+
 2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Remove extra TAB from status text in function
