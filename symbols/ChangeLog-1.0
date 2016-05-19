@@ -1,3 +1,7 @@
+2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * irf/IRS2092-1.sym: Add symbol; protected digital audio amplifier.
+
 2016-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/REF43-1.sym: Add symbol 2.5V Reference.
