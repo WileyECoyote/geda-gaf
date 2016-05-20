@@ -39,7 +39,7 @@
 
 #define TOBJECT "GedaLine"
 
-/** \defgroup test-object-geda-circle Test GEDA Circle object Module
+/** \defgroup test-object-geda-line Test GEDA Line object Module
  * @{
  * \brief Group 10 src/object/o_line_object.c geda_line_object_
  *  Group 10 == Module/File No.
@@ -69,10 +69,10 @@
  *               geda_line_object_get_nearest_point
  *               geda_line_object_get_position
  *               geda_line_object_get_slope
- *               geda_line_object_get_x1
- *               geda_line_object_get_x2
- *               geda_line_object_get_y1
- *               geda_line_object_get_y2
+ *      O1013    geda_line_object_get_x1
+ *      O1014    geda_line_object_get_x2
+ *      O1015    geda_line_object_get_y1
+ *      O1016    geda_line_object_get_y2
  *               geda_line_object_is_endpoint
  *               geda_line_object_length
  *               geda_line_object_mirror
@@ -91,10 +91,10 @@
  *               geda_line_object_set_line_space
  *               geda_line_object_set_line_type
  *               geda_line_object_set_line_width
- *               geda_line_object_set_x1
- *               geda_line_object_set_x2
- *               geda_line_object_set_y1
- *               geda_line_object_set_y2
+ *      O1035    geda_line_object_set_x1
+ *      O1036    geda_line_object_set_x2
+ *      O1037    geda_line_object_set_y1
+ *      O1038    geda_line_object_set_y2
  *               geda_line_object_scale
  *               geda_line_object_shortest_distance
  *               geda_line_object_to_buffer
@@ -115,7 +115,7 @@ check_construction ()
     int x1 = m_random_number (x0, 120000);
     int y1 = m_random_number (y0, 80000);
 
-    /* === Function 21: geda_circle_object_new  === */
+    /* === Function 21: geda_line_object_new  === */
 
     GedaObject *object0 = geda_line_object_new(c, x0, y0, x1, y1);
 
@@ -220,6 +220,140 @@ check_accessors ()
 {
   int count;
   int result = 0;
+
+  if (geda_line_object_get_x1(NULL)) {
+    fprintf(stderr, "FAILED: (O101300) %s first x not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_line_object_get_x2(NULL)) {
+    fprintf(stderr, "FAILED: (O101400) %s second x not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_line_object_get_y1(NULL)) {
+    fprintf(stderr, "FAILED: (O101500) %s first x not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_line_object_get_y2(NULL)) {
+    fprintf(stderr, "FAILED: (O101600) %s second x not zero\n", TOBJECT);
+    result++;
+  }
+
+  for (count = 0; count < 3; count++) {
+
+    GedaObject *object0 = geda_line_object_new (3, 11, 21, 31, 41);
+
+    if (!GEDA_IS_OBJECT(object0)) {
+      fprintf(stderr, "FAILED: (O102101C) New GedaObject Failed\n");
+      result++;
+      break;
+    }
+    else if (!GEDA_IS_LINE(object0->line)) {
+      fprintf(stderr, "FAILED: (O102101D) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;
+    }
+    else {
+
+      int fail;
+      int value;
+
+      fail = 0;
+
+      int c  = m_random_number (0,  MAX_COLORS - 1);
+      int x0 = m_random_number (0,  115000);
+      int y0 = m_random_number (0,  75000);
+      int x1 = m_random_number (x0, 120000);
+      int y1 = m_random_number (y0, 80000);
+
+      /* Line type options
+       * int e = m_random_number (END_NONE, END_ROUND);
+       * int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+       * int l = m_random_number (0, 500);
+       * int p = m_random_number (0, 500);
+       * int w = m_random_number (0, 500); */
+
+      o_set_color (object0, c);
+
+      geda_line_object_set_x1 (object0, x0);
+      geda_line_object_set_y1 (object0, y0);
+      geda_line_object_set_x2 (object0, x1);
+      geda_line_object_set_y2 (object0, y1);
+
+      value = geda_object_get_color (object0);
+      if (value - c) {
+        fprintf(stderr, "FAILED: _get_color (%s-C) %d != %d\n", TOBJECT, value, c);
+        fail++;
+      }
+
+      value = object0->line->x[0];
+      if (value - x0) {
+        fprintf(stderr, "FAILED: (O103501) set_x1 %d != %d\n", value, x0);
+        fail++;
+      }
+
+      value = object0->line->x[1];
+      if (value - x1) {
+        fprintf(stderr, "FAILED: (O103601) set_x2 %d != %d\n", value, x1);
+        fail++;
+      }
+
+      value = object0->line->y[0];
+      if (value - y0) {
+        fprintf(stderr, "FAILED: (O103701) set_y1 %d != %d\n", value, y0);
+        fail++;
+      }
+
+      value = object0->line->y[1];
+      if (value - y1) {
+        fprintf(stderr, "FAILED: (O103801) set_y2 %d != %d\n", value, y1);
+        fail++;
+      }
+
+      value = geda_line_object_get_x1(object0);
+      if (value - x0) {
+        fprintf(stderr, "FAILED: (O101301) get x1 %d != %d\n", value, x0);
+        fail++;
+      }
+
+      value = geda_line_object_get_x2(object0);
+      if (value - x1) {
+        fprintf(stderr, "FAILED: (O101401) get x2 %d != %d\n", value, x1);
+        fail++;
+      }
+
+      value = geda_line_object_get_y1(object0);
+      if (value - y0) {
+        fprintf(stderr, "FAILED: (O101501) get y1 %d != %d\n", value, y0);
+        fail++;
+      }
+
+      value = geda_line_object_get_y2(object0);
+      if (value - y1) {
+        fprintf(stderr, "FAILED: (O101601) get y2 %d != %d\n", value, y1);
+        fail++;
+      }
+
+      g_object_unref (object0);
+
+      if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t      x0: %d\n", x0);
+        fprintf(stderr, "\t      y0: %d\n", y0);
+        fprintf(stderr, "\t      x1: %d\n", x1);
+        fprintf(stderr, "\t      y1: %d\n", y1);
+
+        result = result + fail;
+        break;
+      }
+    }
+  }
 
   return result;
 }

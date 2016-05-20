@@ -4,6 +4,7 @@
 
     * tests/test_arc.c: Add checks for arc gobject filling properties.
 
+    * tests/test_line_object.c: add basic checks for line accessors.
 
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
