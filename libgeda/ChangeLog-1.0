@@ -4,7 +4,7 @@
 
     * tests/test_arc.c: Add checks for arc gobject filling properties.
 
-    * tests/test_circle_object.c: Add checks for line type options.
+    * tests/test_circle_object.c: Add checks for line type and filling options.
 
     * tests/test_line_object.c: add basic checks for line accessors.
 
