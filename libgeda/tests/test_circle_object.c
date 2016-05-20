@@ -60,17 +60,22 @@
  *      O0601    geda_circle_object_copy
  *      O0602    geda_circle_object_get_center_x
  *      O0603    geda_circle_object_get_center_y
- *               geda_circle_object_get_fill_angle1;
- *               geda_circle_object_get_fill_angle2;
- *               geda_circle_object_get_fill_pitch1;
- *               geda_circle_object_get_fill_pitch2;
- *               geda_circle_object_get_fill_type;
- *               geda_circle_object_get_fill_width;
+ *      O0604    geda_circle_object_get_end_cap
+ *               geda_circle_object_get_fill_angle1
+ *               geda_circle_object_get_fill_angle2
+ *               geda_circle_object_get_fill_pitch1
+ *               geda_circle_object_get_fill_pitch2
+ *               geda_circle_object_get_fill_type
+ *               geda_circle_object_get_fill_width
+ *      O0611    geda_circle_object_get_line_length
+ *      O0612    geda_circle_object_get_line_space
+ *      O0613    geda_circle_object_get_line_type
+ *      O0614    geda_circle_object_get_line_width
  *               geda_circle_object_get_nearest_point
- *      O0611    geda_circle_object_get_radius
+ *      O0616    geda_circle_object_get_radius
  *               geda_circle_object_modify
  *               geda_circle_object_mirror
- *      O0614    geda_circle_object_new
+ *      O0619    geda_circle_object_new
  *               geda_circle_object_get_position
  *               geda_circle_object_print
  *               geda_circle_object_print_center
@@ -83,20 +88,26 @@
  *               geda_circle_object_print_solid
  *               geda_circle_object_read
  *               geda_circle_object_rotate
- *      O0627    geda_circle_object_set_center_x
- *      O0628    geda_circle_object_set_center_y
- *               geda_circle_object_set_fill_angle1;
- *               geda_circle_object_set_fill_angle2;
- *               geda_circle_object_set_fill_pitch1;
- *               geda_circle_object_set_fill_pitch2;
- *               geda_circle_object_set_fill_type;
- *               geda_circle_object_set_fill_width;
- *      O0635    geda_circle_object_set_radius
+ *      O0632    geda_circle_object_set_center_x
+ *      O0633    geda_circle_object_set_center_y
+ *      O0634    geda_circle_object_set_end_cap
+ *               geda_circle_object_set_fill_angle1
+ *               geda_circle_object_set_fill_angle2
+ *               geda_circle_object_set_fill_pitch1
+ *               geda_circle_object_set_fill_pitch2
+ *               geda_circle_object_set_fill_type
+ *               geda_circle_object_set_fill_width
+ *      O0641    geda_circle_object_set_line_length
+ *      O0642    geda_circle_object_set_line_space
+ *      O0643    geda_circle_object_set_line_type
+ *      O0644    geda_circle_object_set_line_width
+ *      O0645    geda_circle_object_set_radius
  *               geda_circle_object_shortest_distance
  *               geda_circle_object_to_buffer
  *               geda_circle_object_translate
-
+ *
  */
+
 int
 check_construction ()
 {
@@ -115,13 +126,13 @@ check_construction ()
     GedaObject *object0 = geda_circle_object_new(c, x1, y1, r);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O061401A) New GedaObject Failed: %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O061901A) New GedaObject Failed: %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061401B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O061901B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -140,19 +151,19 @@ check_construction ()
 
       value = circle->center_x;
       if (value - x1) {
-        fprintf(stderr, "FAILED: (O061401CX) circle center_x %d != %d\n", value, x1);
+        fprintf(stderr, "FAILED: (O061901CX) circle center_x %d != %d\n", value, x1);
         fail++;
       }
 
       value = circle->center_y;
       if (value - y1) {
-        fprintf(stderr, "FAILED: (O061401CY) circle center_y %d != %d\n", value, y1);
+        fprintf(stderr, "FAILED: (O061901CY) circle center_y %d != %d\n", value, y1);
         fail++;
       }
 
       value = circle->radius;
       if (value - r) {
-        fprintf(stderr, "FAILED: (O061401CR) circle radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O061901CR) circle radius %d != %d\n", value, r);
         fail++;
       }
 
@@ -213,6 +224,31 @@ check_accessors ()
     result++;
   }
 
+  if (geda_circle_object_get_end_cap(NULL)) {
+    fprintf(stderr, "FAILED: (O060400) %s end_cap not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_circle_object_get_line_length(NULL)) {
+    fprintf(stderr, "FAILED: (O061100) %s line_length not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_circle_object_get_line_space(NULL)) {
+    fprintf(stderr, "FAILED: (O061200) %s line_space not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_circle_object_get_line_type(NULL)) {
+    fprintf(stderr, "FAILED: (O061300) %s line_type not zero\n", TOBJECT);
+    result++;
+  }
+
+  if (geda_circle_object_get_line_width(NULL)) {
+    fprintf(stderr, "FAILED: (O061400) %s line_type not zero\n", TOBJECT);
+    result++;
+  }
+
 /*
   if (geda_circle_object_get_fill_angle1(NULL)) {
     fprintf(stderr, "FAILED: (O060400) %s center y not zero\n", TOBJECT);
@@ -247,7 +283,7 @@ check_accessors ()
  */
 
   if (geda_circle_object_get_radius(NULL)) {
-    fprintf(stderr, "FAILED: (O061100) %s radius not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O061600) %s radius not zero\n", TOBJECT);
     result++;
   }
 
@@ -257,13 +293,13 @@ check_accessors ()
     GedaObject *object0 = geda_circle_object_new (11, 21, 31, 41);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O061401?) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O061901?) New GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061401?) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -279,6 +315,13 @@ check_accessors ()
       int x = m_random_number (0, 120000);
       int y = m_random_number (0, 80000);
 
+      /* Line type options */
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int w = m_random_number (0, 500);
+
       o_set_color (object0, c);
 
       geda_circle_object_set_center_x (object0, x);
@@ -293,19 +336,19 @@ check_accessors ()
 
       value = object0->circle->center_x;
       if (value - x) {
-        fprintf(stderr, "FAILED: (O062701) set_center_x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O063201) set_center_x %d != %d\n", value, x);
         fail++;
       }
 
       value = object0->circle->center_y;
       if (value - y) {
-        fprintf(stderr, "FAILED: (O062801) set_center_y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O063301) set_center_y %d != %d\n", value, y);
         fail++;
       }
 
       value = object0->circle->radius;
       if (value - r) {
-        fprintf(stderr, "FAILED: (O063501) set_radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O064501) set_radius %d != %d\n", value, r);
         fail++;
       }
 
@@ -323,9 +366,88 @@ check_accessors ()
 
       value = geda_circle_object_get_radius (object0);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O061101) get_radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O061601) get_radius %d != %d\n", value, r);
         fail++;
       }
+
+      /* Check line type properties */
+
+      geda_circle_object_set_end_cap (object0, e);
+
+      value = object0->line_options->line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: (O063401) %d != %d\n", value, e);
+        fail++;
+      }
+
+      geda_circle_object_set_line_length (object0, l);
+
+      value = object0->line_options->line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: (O064101) %d != %d\n", value, l);
+        fail++;
+      }
+
+      geda_circle_object_set_line_space (object0, p);
+
+      value = object0->line_options->line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: (O064201) %d != %d\n", value, p);
+        fail++;
+      }
+
+      geda_circle_object_set_line_type (object0, t);
+
+      value = object0->line_options->line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O064301) %d != %d\n", value, t);
+        fail++;
+      }
+
+      geda_circle_object_set_line_width (object0, w);
+
+      value = object0->line_options->line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: (O064401) %d != %d\n", value, w);
+        fail++;
+      }
+
+      value = geda_circle_object_get_end_cap(object0);
+
+      if (value - e) {
+        fprintf(stderr, "FAILED: (O060401) %d != %d\n", value, e);
+        fail++;
+      }
+
+      value = geda_circle_object_get_line_length(object0);
+
+      if (value - l) {
+        fprintf(stderr, "FAILED: (O061101) %d != %d\n", value, l);
+        fail++;
+      }
+
+      value = geda_circle_object_get_line_space(object0);
+
+      if (value - p) {
+        fprintf(stderr, "FAILED: (O061201) %d != %d\n", value, p);
+        fail++;
+      }
+
+      value = geda_circle_object_get_line_type(object0);
+
+      if (value - t) {
+        fprintf(stderr, "FAILED: (O061301) %d != %d\n", value, t);
+        fail++;
+      }
+
+      value = geda_circle_object_get_line_width(object0);
+
+      if (value - w) {
+        fprintf(stderr, "FAILED: (O061401) %d != %d\n", value, w);
+        fail++;
+      }
+
+      /* Filling options */
 
       g_object_unref (object0);
 
