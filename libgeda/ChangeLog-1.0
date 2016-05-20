@@ -1,6 +1,7 @@
 2016-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_line_object.c: Add accessors for end points.
+    * src/object/o_line_object.c: Add accessors for end points and line-type
+      options.
 
     * tests/test_arc.c: Add checks for arc gobject filling properties.
 
