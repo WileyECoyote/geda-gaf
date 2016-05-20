@@ -1,5 +1,7 @@
 2016-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_circle_object.c: Revise/update Doxygen comments.
+
     * src/object/o_line_object.c: Add accessors for end points and line-type
       options.
 

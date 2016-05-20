@@ -86,7 +86,7 @@ geda_circle_object_copy(GedaObject *o_current)
  * \par Function Description
  *  Retrieves the circle center X property.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  *
  * \return The center X coordinate of the circle
  *
@@ -107,7 +107,7 @@ geda_circle_object_get_center_x (const GedaObject *object)
  * \par Function Description
  *  Retrieves the circle center Y property.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  *
  * \return The center Y coordinate of the circle
  *
@@ -127,7 +127,7 @@ geda_circle_object_get_center_y (const GedaObject *object)
  * \brief Retrieve End Cap type Property of an GedaObject
  * \par Function Description
  *  Returns the value of \a object end-cap type if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of end-cap type or -0 if \a object is invalid.
  *
@@ -147,7 +147,7 @@ geda_circle_object_get_end_cap (const GedaObject *object)
  * \brief Retrieve Fill Angle 1 Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object fill angle 1 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of fill angle 1 or -0 if \a object is invalid.
  *
@@ -167,7 +167,7 @@ geda_circle_object_get_fill_angle1 (const GedaObject *object)
  * \brief Retrieve Fill Angle 2 Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object fill angle 2 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of fill angle 2 or -0 if \a object is invalid.
  *
@@ -187,7 +187,7 @@ geda_circle_object_get_fill_angle2 (const GedaObject *object)
  * \brief Retrieve Fill Pitch 1 Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object fill pitch 1 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of fill pitch 1 or -0 if \a object is invalid.
  *
@@ -208,7 +208,7 @@ geda_circle_object_get_fill_pitch1 (const GedaObject *object)
  * \brief Retrieve Fill Pitch 2 Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object fill pitch 2 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of fill pitch 2 or -0 if \a object is invalid.
  *
@@ -228,7 +228,7 @@ geda_circle_object_get_fill_pitch2 (const GedaObject *object)
  * \brief Retrieve Fill Type Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object fill type if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of fill type or -0 if \a object is invalid.
  *
@@ -248,7 +248,7 @@ geda_circle_object_get_fill_type (const GedaObject *object)
  * \brief Retrieve Fill Width Property of a Circle object
  * \par Function Description
  *  Returns the value of the \a object fill width property if and only
- *  if \a object is a valid GedaObject object.
+ *  if \a object is a valid GedaCircle object.
  *
  * \return integer value of fill width or -0 if \a object is invalid.
  *
@@ -293,7 +293,7 @@ geda_circle_object_get_line_length (const GedaObject *object)
  * \brief Retrieve Line Space Property of a Circle object
  * \par Function Description
  *  Returns the value of the \a object line space property if and only if \a object
- *  is a valid GedaObject object. The line-space property controls the distance
+ *  is a valid GedaCircle object. The line-space property controls the distance
  *  between line-length for line types dashed, center, phantom and between dots
  *  for line type dotted.
  *
@@ -317,7 +317,7 @@ geda_circle_object_get_line_space (const GedaObject *object)
  * \brief Retrieve End Type Property of a Circle object
  * \par Function Description
  *  Returns the value of \a object line type if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
  * \return integer value of line type or -0 if \a object is invalid.
  *
@@ -337,7 +337,7 @@ geda_circle_object_get_line_type (const GedaObject *object)
  * \brief Retrieve End Width Property of a Circle object
  * \par Function Description
  *  Returns the value of the \a object line width property if and only if
- *  \a object is a valid GedaObject object.
+ *  \a object is a valid GedaCircle object.
  *
  * \return integer value of line width or -0 if \a object is invalid.
  *
@@ -545,7 +545,7 @@ geda_circle_object_get_position (GedaObject *object, int *x, int *y)
  * \par Function Description
  *  Retrieves the circle radius property.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  *
  * \return The radius of the circle
  *
@@ -1475,7 +1475,7 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
  * \par Function Description
  *  Set the arc center X property to the given value.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] x       New value for the circle X coordinate
  *
  * \sa geda_circle_object_get_center_x
@@ -1496,7 +1496,7 @@ geda_circle_object_set_center_x (GedaObject *object, int x)
  * \par Function Description
  *  Set the arc center Y property to the given value.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] y       New value for the circle Y coordinate
  *
  * \sa geda_circle_object_get_center_y
@@ -1516,7 +1516,7 @@ geda_circle_object_set_center_y (GedaObject *object, int y)
  * \brief Set the End Cap type Property of a GedaObject
  * \par Function Description
  *  Sets the value of \a object end-cap type if and only if \a object is
- *  a valid GedaObject object. The line-end properties is only applicable
+ *  a valid GedaCircle object. The line-end properties is only applicable
  *  for fill types FILLING_MESH and FILLING_HATCH.
  *
  * \sa geda_circle_object_get_end_cap
@@ -1538,9 +1538,9 @@ geda_circle_object_set_end_cap (GedaObject *object, int line_end)
  * \brief Set the Fill Angle 1 Property of a circle
  * \par Function Description
  *  Sets the value of \a object fill angle 1 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] angle   new value for the fill-angle1 property
  *
  * \sa geda_circle_object_get_fill_angle1
@@ -1560,9 +1560,9 @@ geda_circle_object_set_fill_angle1 (GedaObject *object, int angle)
  * \brief Set the Fill Angle 2 Property of a circle
  * \par Function Description
  *  Sets the value of \a object fill angle 2 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] angle   new value for the fill-angle2 property
  *
  * \sa geda_circle_object_get_fill_angle2
@@ -1582,9 +1582,9 @@ geda_circle_object_set_fill_angle2 (GedaObject *object, int angle)
  * \brief Set the Fill Pitch 1 Property of a circle
  * \par Function Description
  *  Sets the value of \a object fill pitch 1 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] pitch   new value for the fill-pitch1 property
  *
  * \sa geda_circle_object_get_fill_pitch1
@@ -1604,9 +1604,9 @@ geda_circle_object_set_fill_pitch1 (GedaObject *object, int pitch)
  * \brief Set the Fill Pitch 2 Property of a circle
  * \par Function Description
  *  Sets the value of \a object fill pitch 2 if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] pitch   new value for the fill-pitch2 property
  *
  * \sa geda_circle_object_get_fill_pitch2
@@ -1626,9 +1626,9 @@ geda_circle_object_set_fill_pitch2 (GedaObject *object, int pitch)
  * \brief Set the Fill Type Property of a object
  * \par Function Description
  *  Sets the value of \a object fill type if and only if \a object is
- *  a valid GedaObject object.
+ *  a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] type    new #OBJECT_FILLING for the fill-type property
  *
  * \sa geda_circle_object_get_fill_type
@@ -1650,9 +1650,9 @@ geda_circle_object_set_fill_type (GedaObject *object, int type)
  * \brief Set the Fill Width Property of a circle
  * \par Function Description
  *  Sets the value of \a circle width of the fill if and only
- *  if \a circle is a valid GedaObject object.
+ *  if \a circle is a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] width   new value for the fill-width property
  *
  * \sa geda_circle_object_get_fill_width
@@ -1669,16 +1669,16 @@ geda_circle_object_set_fill_width (GedaObject *object, int width)
 }
 
 /*!
- * \brief Set the Line Length Property of an GedaObject
+ * \brief Set the Line Length Property of an GedaCircle
  * \par Function Description
  *  Returns the value of the \a object line length property if and only if
- *  \a object is a valid GedaObject object. The line-length property controls
+ *  \a object is a valid GedaCircle object. The line-length property controls
  *  the length of line segments for line types dashed, center and phantom.
  *
  * \note Line length is only applicable when line-type is not TYPE_SOLID
  *       or TYPE_DOTTED.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] length  new value for the line-length property
  *
  * \sa geda_circle_object_get_line_length
@@ -1698,13 +1698,13 @@ geda_circle_object_set_line_length (GedaObject *object, int length)
  * \brief Set the Line Space Property of a GedaCircle
  * \par Function Description
  *  Sets the value of the \a object line space property if and only if \a object
- *  is a valid GedaObject object. The line-space property controls the distance
+ *  is a valid GedaCircle object. The line-space property controls the distance
  *  between line-length for line types dashed, center, phantom and between dots
  *  for line type dotted.
  *
  * \note Line space is only applicable when line-type is not TYPE_SOLID.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] space   new LINE_TYPE value for the line type
  *
  * \sa geda_circle_object_get_line_space
@@ -1721,12 +1721,12 @@ geda_circle_object_set_line_space (GedaObject *object, int space)
 }
 
 /*!
- * \brief Set the Line Type Property of an Arc
+ * \brief Set the Line Type Property of a GedaCircle
  * \par Function Description
  *  Sets the value of \a object line type if and only if \a object is a
- *  valid GedaObject object.
+ *  valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] type    new LINE_TYPE value for the line type
  *
  * \sa geda_circle_object_get_line_type
@@ -1745,12 +1745,12 @@ geda_circle_object_set_line_type (GedaObject *object, int type)
 }
 
 /*!
- * \brief Set the End Width Property of an Arc
+ * \brief Set the End Width Property of a GedaCircle
  * \par Function Description
  *  Sets the value of the \a object line width property if and only if
  *  \a object is a valid GedaCircle object.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] width   new value for the line width
  *
  * \sa geda_circle_object_get_line_width
@@ -1771,7 +1771,7 @@ geda_circle_object_set_line_width (GedaObject *object, int width)
  * \par Function Description
  *  Set the arc radius property to the given value.
  *
- * \param [in] object  Pointer to an GedaCircle Object
+ * \param [in] object  Pointer to a GedaCircle Object
  * \param [in] radius  new radius value
  *
  * \sa geda_circle_object_get_radius
