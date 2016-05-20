@@ -366,6 +366,11 @@ extern "C" {
          bool    geda_line_object_is_endpoint              (GedaObject *object, POINT *point);
          int     geda_line_object_get_closest_endpoint     (GedaObject *object, int x, int y);
          bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
+          int    geda_line_object_get_end_cap              (const GedaObject *object) WARN_UNUSED;
+          int    geda_line_object_get_line_length          (const GedaObject *object) WARN_UNUSED;
+          int    geda_line_object_get_line_space           (const GedaObject *object) WARN_UNUSED;
+          int    geda_line_object_get_line_type            (const GedaObject *object) WARN_UNUSED;
+          int    geda_line_object_get_line_width           (const GedaObject *object) WARN_UNUSED;
          bool    geda_line_object_get_midpoint             (GedaObject *object, POINT *point);
          bool    geda_line_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
          bool    geda_line_object_get_slope                (GedaObject *object, double *anwser);
@@ -378,6 +383,11 @@ extern "C" {
          void    geda_line_object_mirror                   (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_line_object_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
          void    geda_line_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_line_object_set_end_cap              (GedaObject *object, int cap);
+         void    geda_line_object_set_line_length          (GedaObject *object, int length);
+         void    geda_line_object_set_line_space           (GedaObject *object, int space);
+         void    geda_line_object_set_line_type            (GedaObject *object, int type);
+         void    geda_line_object_set_line_width           (GedaObject *object, int width);
          void    geda_line_object_set_x1                   (GedaObject *object, int x);
          void    geda_line_object_set_x2                   (GedaObject *object, int x);
          void    geda_line_object_set_y1                   (GedaObject *object, int y);
