@@ -411,6 +411,82 @@ geda_line_object_get_slope (GedaObject *object, double *slope)
 }
 
 /*!
+ * \brief Get the First X coordinate of a Line object
+ *
+ * \param [in] object  Pointer to a Line GedaObject
+ *
+ * \return The x coordinate of the first point of a Line
+ *
+ * \sa geda_line_get_x1
+ */
+int
+geda_line_object_get_x1 (const GedaObject *object)
+{
+  if (GEDA_IS_LINE(object)) {
+    return object->line->x[0];
+  }
+  geda_line_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Get the Second X coordinate of a Line object
+ *
+ * \param [in] object  Pointer to a Line GedaObject
+ *
+ * \return The x coordinate of the second point of a Line
+ *
+ * \sa geda_line_get_x2
+ */
+int
+geda_line_object_get_x2 (const GedaObject *object)
+{
+  if (GEDA_IS_LINE(object)) {
+    return object->line->x[1];
+  }
+  geda_line_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Get the First Y coordinate of a Line object
+ *
+ * \param [in] object  Pointer to a Line GedaObject
+ *
+ * \return The Y coordinate of the first point of a Line
+ *
+ * \sa geda_line_get_y1
+ */
+int
+geda_line_object_get_y1 (const GedaObject *object)
+{
+  if (GEDA_IS_LINE(object)) {
+    return object->line->y[0];
+  }
+  geda_line_object_error(__func__, object);
+  return -0;
+}
+
+/*!
+ * \brief Get the Second Y coordinate of a Line object
+ *
+ * \param [in] object  Pointer to a Line GedaObject
+ *
+ * \return The y coordinate of the second point of a Line
+ *
+ * \sa geda_line_get_y2
+ */
+int
+geda_line_object_get_y2 (const GedaObject *object)
+{
+  if (GEDA_IS_LINE(object)) {
+    return object->line->y[1];
+  }
+  geda_line_object_error(__func__, object);
+  return -0;
+}
+
+/*!
  * \brief Is point an End Point of the given GedaLine
  * \par Function Description
  *  This function check if \a point is an end-point of \a object
@@ -1440,6 +1516,90 @@ geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
 
     /* update boundingline */
     object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set First X coordinate of a Line object
+ * \par Function Description
+ *  Sets the first x value of the line \a object. Does nothing if
+ *  \a object is not a valid GedaLine object.
+ *
+ * \param [in] object  Pointer to an Line GedaObject
+ * \param [in] x       New value for the first x coordinate
+ *
+ * \sa geda_line_set_x1 geda_line_object_get_x1
+ */
+void
+geda_line_object_set_x1 (GedaObject *object, int x) {
+  if (GEDA_IS_LINE(object)) {
+    object->line->x[0] = x;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Second X coordinate of a Line obje
+ * \par Function Description
+ *  Sets the second x value of the line \a object. Does nothing if
+ *  \a object is not a valid GedaLine object.
+ *
+ * \param [in] object  Pointer to an Line GedaObject
+ * \param [in] x       New value for the second x coordinate
+ *
+ * \sa geda_line_set_x2 geda_line_object_get_x2
+ */
+void
+geda_line_object_set_x2 (GedaObject *object, int x) {
+  if (GEDA_IS_LINE(object)) {
+    object->line->x[1] = x;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set First Y coordinate of a Line obje
+ * \par Function Description
+ *  Sets the second y value of the line \a object. Does nothing if
+ *  \a object is not a valid GedaLine object.
+ *
+ * \param [in] object  Pointer to an Line GedaObject
+ * \param [in] y       New value for the second y coordinate
+ *
+ * \sa geda_line_set_y1 geda_line_object_get_y1
+ */
+void
+geda_line_object_set_y1 (GedaObject *object, int y) {
+  if (GEDA_IS_LINE(object)) {
+    object->line->y[0] = y;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
+}
+
+/*!
+ * \brief Set Second Y coordinate of a Line object
+ * \par Function Description
+ *  Sets the lower y value of the line \a object. Does nothing if
+ *  \a object is not a valid GedaLine object.
+ *
+ * \param [in] object  Pointer to an Line GedaObject
+ * \param [in] y       New value for the lower y coordinate
+ *
+ * \sa geda_line_set_y2
+ */
+void
+geda_line_object_set_y2 (GedaObject *object, int y) {
+  if (GEDA_IS_LINE(object)) {
+    object->line->y[1] = y;
   }
   else {
     geda_line_object_error(__func__, object);
