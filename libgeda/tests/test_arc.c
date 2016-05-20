@@ -748,6 +748,7 @@ check_properties (void)
 
     int count;
     int fail;
+    int value;
 
     fail = 0;
 
@@ -765,6 +766,14 @@ check_properties (void)
       int w = m_random_number (0, 500);
       int p = m_random_number (0, 500);
       int l = m_random_number (0, 500);
+
+      /* Filling options */
+      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = m_random_number (0, 100);
+      int fa1 = m_random_number (0, 180);
+      int fp1 = m_random_number (0, 500);
+      int fa2 = m_random_number (0, 180);
+      int fp2 = m_random_number (0, 500);
 
       g_object_set(arc, "center-x",    x,
                         "center-y",    y,
@@ -846,6 +855,76 @@ check_properties (void)
 
       if (l - rl) {
         fprintf(stderr, "FAILED: %s get/set line-length property <%d>\n", TOBJECT, rl);
+        fail++;
+      }
+
+      /* Check Filling properties */
+
+      g_object_set(arc, "fill-type",   ft,
+                           "fill-width",  fw,
+                           "fill-angle1", fa1,
+                           "fill-pitch1", fp1,
+                           "fill-angle2", fa2,
+                           "fill-pitch2", fp2,
+                            NULL);
+
+      int rft, rfw, rfa1, rfp1, rfa2, rfp2;
+
+      g_object_get(arc, "fill-type",   &rft,
+                           "fill-width",  &rfw,
+                           "fill-angle1", &rfa1,
+                           "fill-pitch1", &rfp1,
+                           "fill-angle2", &rfa2,
+                           "fill-pitch2", &rfp2,
+                            NULL);
+
+      value = arc->fill_options.fill_type;
+      if (value - ft) {
+        fprintf(stderr, "FAILED: %s set fill-type property %d != %d\n", TOBJECT, value, ft);
+        fail++;
+      }
+      else if (rft - ft) {
+        fprintf(stderr, "FAILED: %s get fill-type property %d != %d\n", TOBJECT, rft, ft);
+        fail++;
+      }
+
+      value = arc->fill_options.fill_width;
+      if (value - fw) {
+        fprintf(stderr, "FAILED: %s set fill-width property %d != %d\n", TOBJECT, value, fw);
+        fail++;
+      }
+      else if (rfw - fw) {
+        fprintf(stderr, "FAILED: %s get fill-width property %d != %d\n", TOBJECT, rfw, fw);
+        fail++;
+      }
+
+      value = arc->fill_options.fill_angle1;
+      if (value - fa1) {
+        fprintf(stderr, "FAILED: %s set fill-angle1 property %d != %d\n", TOBJECT, value, fa1);
+        fail++;
+      }
+      else if (rfa1 - fa1) {
+        fprintf(stderr, "FAILED: %s get fill-angle1 property %d != %d\n", TOBJECT, rfa1, fa1);
+        fail++;
+      }
+
+      value = arc->fill_options.fill_angle2;
+      if (value - fa2) {
+        fprintf(stderr, "FAILED: %s set fill-angle2 property %d != %d\n", TOBJECT, value, fa2);
+        fail++;
+      }
+      else if (rfa2 - fa2) {
+        fprintf(stderr, "FAILED: %s get fill-angle2 property %d != %d\n", TOBJECT, rfa1, fa2);
+        fail++;
+      }
+
+      value = arc->fill_options.fill_pitch1;
+      if (value - fp1) {
+        fprintf(stderr, "FAILED: %s set fill-pitch1 property %d != %d\n", TOBJECT, value, fp1);
+        fail++;
+      }
+      else if (rfp1 - fp1) {
+        fprintf(stderr, "FAILED: %s get fill-pitch1 property %d != %d\n", TOBJECT, rfp1, fp1);
         fail++;
       }
 

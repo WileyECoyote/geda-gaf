@@ -2,6 +2,9 @@
 
     * src/object/o_line_object.c: Add accessors for end points.
 
+    * tests/test_arc.c: Add checks for arc gobject filling properties.
+
+
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_object.c: Add static functions geda_object_error
