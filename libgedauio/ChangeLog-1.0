@@ -2,6 +2,15 @@
 
     * tests/test_bulb.c: Check virtual group_changed.
 
+    * tests/test_handlebox.c: Add basic checks for:
+
+            * geda_handle_box_set_shadow_type
+            * geda_handle_box_get_shadow_type
+            * geda_handle_box_set_handle_position
+            * geda_handle_box_get_handle_position
+            * geda_handle_box_set_snap_edge
+            * geda_handle_box_get_snap_edge
+
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Revise geda_bulb_set_group to ignore settting

@@ -80,6 +80,84 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_handle_box_new ();
+
+  if (!GEDA_IS_HANDLE_BOX(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    int value;
+
+    GedaHandleBox *handlebox = (GedaHandleBox*)widget;
+
+    geda_handle_box_set_shadow_type(handlebox, 0); // GTK_SHADOW_NONE
+
+    value = geda_handle_box_get_shadow_type(handlebox);
+
+    if (value) {
+      fprintf(stderr, "FAILED: line <%d> %s shadow_type <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+
+    geda_handle_box_set_shadow_type(handlebox, 1); // GTK_SHADOW_IN
+
+    value = geda_handle_box_get_shadow_type(handlebox);
+
+    if (!value) {
+      fprintf(stderr, "FAILED: line <%d> %s shadow_type <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+
+    geda_handle_box_set_handle_position(handlebox, 0); // GTK_POS_LEFT
+
+    value = geda_handle_box_get_handle_position(handlebox);
+
+    if (value) {
+      fprintf(stderr, "FAILED: line <%d> %s handle_position <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+
+    geda_handle_box_set_handle_position(handlebox, 2); // GTK_POS_TOP
+
+    value = geda_handle_box_get_handle_position(handlebox);
+
+    if (value - 2) {
+      fprintf(stderr, "FAILED: line <%d> %s handle_position <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+
+    geda_handle_box_set_snap_edge(handlebox, 0); // GTK_POS_LEFT
+
+    value = geda_handle_box_get_snap_edge(handlebox);
+
+    if (value) {
+      fprintf(stderr, "FAILED: line <%d> %s handle_position <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+
+    geda_handle_box_set_snap_edge(handlebox, 1); // GTK_POS_RIGHT
+
+    value = geda_handle_box_get_snap_edge(handlebox);
+
+    if (value - 1) {
+      fprintf(stderr, "FAILED: line <%d> %s handle_position <%d>\n", __LINE__, TWIDGET, value);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to the widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -99,7 +177,16 @@ main (int argc, char *argv[])
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
     }
+    if (!result) {
 
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+    }
   }
   return result;
 }
