@@ -1,3 +1,14 @@
+2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_dialog.h: Use brackets to include geda_widgets.h instead of
+      quotes.
+
+    * src/object/o_complex.c: Revise o_complex_translate_all with new third
+      argument, zoom_extents, and only zoom extents if zoom_extents is set.
+
+    * src/x/x_dialog.c: Add check button to translate dialog to allows users
+      the option to not zoom afterwards.
+
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_allocate, add

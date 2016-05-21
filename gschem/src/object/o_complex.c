@@ -213,7 +213,8 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
  *  \par Function Description
  *
  */
-void o_complex_translate_all(GschemToplevel *w_current, int offset)
+void
+o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   const GList  *object_list;
@@ -224,7 +225,9 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   object_list = s_page_get_objects (toplevel->page_current);
 
   /* first zoom extents */
-  i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+  if (zoom_extents) {
+    i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+  }
   o_invalidate_all (w_current);
 
   o_get_bounds_list (object_list, &left,  &top, &right, &bottom);
@@ -242,8 +245,9 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
     geda_translate_list (object_list, offset, offset);
   }
 
-  /* Experimental mod, to be able to translate to all places */
-  i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+  if (zoom_extents) {
+    i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+  }
 
   if (!w_current->SHIFTKEY) {
     o_select_unselect_all(w_current);

@@ -2926,24 +2926,31 @@ void x_dialog_text_input (GschemToplevel *w_current)
  *  This function takes the user action and applies it.
  *  \todo improve error detection / use a spin button?
  */
-void x_dialog_translate_response(GtkWidget *Dialog, int response,
+void x_dialog_translate_response(GtkWidget      *Dialog,
+                                 int             response,
                                  GschemToplevel *w_current)
 {
-  GtkWidget  *textentry;
-  const char *string;
+  GtkWidget       *textentry;
+  GtkToggleButton *zoom_check_butt;
+  const char      *string;
+  bool             zoom_extents;
 
   switch (response) {
   case GEDA_RESPONSE_REJECT:
   case GEDA_RESPONSE_DELETE_EVENT:
     /* void */
     break;
+
   case GEDA_RESPONSE_ACCEPT:
-    textentry = GEDA_OBJECT_GET_DATA(Dialog,IDS_TRANSLATE);
-    string = geda_entry_widget_get_text(textentry);
+    textentry = GEDA_OBJECT_GET_DATA(Dialog, IDS_TRANSLATE);
+    string    = geda_entry_widget_get_text(textentry);
     if (strlen(string) != 0) {
-      o_complex_translate_all(w_current, atoi(string));
+      zoom_check_butt = GEDA_OBJECT_GET_DATA(Dialog, "zoom-check-butt");
+      zoom_extents    = gtk_toggle_button_get_active(zoom_check_butt);
+      o_complex_translate_all(w_current, atoi(string), zoom_extents);
     }
     break;
+
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
   }
@@ -2965,6 +2972,11 @@ void x_dialog_translate (GschemToplevel *w_current)
     GtkWidget *label;
     GtkWidget *textentry;
     GtkWidget *vbox;
+    GtkWidget *zoom_check_butt;
+
+    const char *zoom_tip;
+
+    zoom_tip  = _("Automatically zoom to the new extents after translation");
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Translate"),
                             GTK_WINDOW(w_current->main_window),
@@ -2996,6 +3008,13 @@ void x_dialog_translate (GschemToplevel *w_current)
     geda_entry_widget_set_activates_default(textentry, TRUE);
     gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
 
+    zoom_check_butt = gtk_check_button_new_with_mnemonic (_("Auto Zoom Extents"));
+    g_object_set (zoom_check_butt, "visible", TRUE, NULL);
+    gtk_box_pack_start (GTK_BOX (GTK_BOX(vbox)), zoom_check_butt, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text(zoom_check_butt, zoom_tip);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(zoom_check_butt), TRUE);
+
+    GEDA_HOOKUP_OBJECT(ThisDialog, zoom_check_butt, "zoom-check-butt");
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
