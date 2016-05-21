@@ -208,10 +208,18 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Translate All objects
+ * \par Function Description
+ *  Helper for the Translate Dialog to translate all objects on the
+ *  current page, whether selected or not \a offset distance in both
+ *  the x and y direction.
  *
+ * \param [in] w_current    GschemToplevel structure
+ * \param [in] offset       Integer distance to translate all objects
+ * \param [in] zoom_extents Zoom to the extents if True
+ *
+ * \todo has nothing to do with complex objects
  */
 void
 o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents)

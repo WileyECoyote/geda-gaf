@@ -7,13 +7,14 @@
       remove validate GTK_IS_WINDOW, can only be.
 
     * src/object/o_complex.c: Revise o_complex_translate_all with new third
-      argument, zoom_extents, and only zoom extents if zoom_extents is set.
+      argument, zoom_extents, and only zoom extents if zoom_extents is set,
+      add/update comments.
 
     * src/x/x_dialog.c: Add check button to translate dialog to allows users
       the option to not zoom afterwards.
 
     * src/x/x_pagesel.c: Revise arguments to pagesel_class_init and pagesel_
-      instance_init, remove cast in pagesel_get_type.
+      instance_init, remove cast in pagesel_get_type, add/update comments.
 
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 

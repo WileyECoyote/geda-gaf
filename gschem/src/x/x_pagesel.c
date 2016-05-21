@@ -511,10 +511,15 @@ is_a_pagesel (Pagesel *pagesel)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Pagesel Type Class Initializer
  *
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  class       Pagesel class we are initializing
+ *  \param [in]  class_data  Pagesel structure associated with the class
  */
 static void
 pagesel_class_init (void *class, void *class_data)
@@ -526,10 +531,14 @@ pagesel_class_init (void *class, void *class_data)
   gobject_class->finalize      = pagesel_finalize;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Initialize new GedaAction data structure instance.
  *
+ *  \par Function Description
+ *  This function is call after the GedaActionClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaAction data structure
+ * \param [in] class     A GedaActionClass Object
  */
 static void
 pagesel_instance_init (GTypeInstance *instance, void *class)
@@ -807,8 +816,8 @@ add_page(GtkTreeModel *model, GtkTreeIter *parent, PageList *pages, Page *page)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \internal
+ *  \brief Select the current page in the Pagesel Dialog treeview
  *  \par Function Description
  *  Recursive function to select the current page in the treeview
  *
@@ -838,13 +847,29 @@ select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
     select_page (treeview, &iter, page);
 
   } while (gtk_tree_model_iter_next (treemodel, &iter));
-
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Updates the TreeView on the Pagesel Dialog
+ * \par Function Description
+ *  This function completely rebuilds the model for the TreeView
+ *  each time the function is called, thus updating the list of
+ *  pages displayed in the Dialog and the status pages.
  *
+ *  This function is declared in the header x_pagesel.h and is called
+ *  from i_window_idle_notify_dialogs directly because i_window_idle_
+ *  notify_dialogs is ran in an idle thread. Other modules call
+ *  x_pagesel_update, which calls x_pagesel_idle_update to create a
+ *  new thread to call this function.
+ *
+ *  Three functions call this procedure directly and they are all
+ *  callback routines, i.e. members of Pagesel:
+ *  \par
+ *  <DL>
+ *    <DT>notify_gschem_toplevel_cb</DT>
+ *    <DT>pagesel_show_fullnames_toggled</DT>
+ *    <DT>x_pagesel_callback_response</DT>
+ *  </DL>
  */
 void
 pagesel_update (Pagesel *pagesel)
