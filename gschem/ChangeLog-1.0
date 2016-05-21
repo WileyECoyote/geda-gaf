@@ -12,6 +12,9 @@
     * src/x/x_dialog.c: Add check button to translate dialog to allows users
       the option to not zoom afterwards.
 
+    * src/x/x_pagesel.c: Revise arguments to pagesel_class_init and pagesel_
+      instance_init, remove cast in pagesel_get_type.
+
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_allocate, add
@@ -24,7 +27,7 @@
 
     * src/x/x_window.c: Revise function x_window_update_title to not call
       gtk_window_set_title unless the new title string is different than the
-      old string, one would think gtk would do this but it does not.
+      old string, one would think gtk would do this but gtk does not.
 
 2016-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -39,8 +42,8 @@
 
 2016-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/base/gschem_main_window.c: Revise gschem_main_window_set_size to use
-      gdk_display_sync instead of manually forcing a configure event.
+    * src/base/gschem_main_window.c: Revise gschem_main_window_set_size to
+      use gdk_display_sync instead of manually forcing a configure event.
 
     * src/iface/i_pan_world.c: Change division by 2 to shift right once in
       function i_pan_world_general.
@@ -48,8 +51,8 @@
     * src/x/x_edit_attrib.c: Rename attrib_combo_box_entry->attrib_name_combo_box
       attrib_combo_entry->attrib_name_entry, and attrib_combo_entry_completion->
       completion, add tree_model. Replace gtk_bin_get_child with geda_combo_
-      widget_get_entry_widget. Enable completion inline_selection and single match
-      popup.
+      widget_get_entry_widget. Enable completion inline_selection and single
+      match popup.
 
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -194,8 +194,8 @@ enum {
   NUM_COLUMNS
 };
 
-static void pagesel_class_init    (PageselClass *class);
-static void pagesel_instance_init (Pagesel *pagesel);
+static void pagesel_class_init (void *class, void *class_data);
+static void pagesel_instance_init (GTypeInstance *instance, void *class);
 static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
 
 /*! \brief Page Manager Dialog Tree View Page Selected
@@ -484,14 +484,14 @@ pagesel_get_type (void)
   if (!pagesel_type) {
     static const GTypeInfo pagesel_info = {
       sizeof(PageselClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) pagesel_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                  /* base_init */
+      NULL,                  /* base_finalize */
+      pagesel_class_init,    /* (GClassInitFunc)  */
+      NULL,                  /* class_finalize */
+      NULL,                  /* class_data */
       sizeof(Pagesel),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) pagesel_instance_init
+      0,                     /* n_preallocs */
+      pagesel_instance_init  /* (GInstanceInitFunc) */
     };
 
     pagesel_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
@@ -517,7 +517,7 @@ is_a_pagesel (Pagesel *pagesel)
  *
  */
 static void
-pagesel_class_init (PageselClass *class)
+pagesel_class_init (void *class, void *class_data)
 {
   GObjectClass *gobject_class  = G_OBJECT_CLASS (class);
 
@@ -532,19 +532,22 @@ pagesel_class_init (PageselClass *class)
  *
  */
 static void
-pagesel_instance_init (Pagesel *pagesel)
+pagesel_instance_init (GTypeInstance *instance, void *class)
 {
-  GtkWidget *scrolled_win, *treeview, *label;
-  GtkTreeModel *store;
-  GtkCellRenderer *renderer;
+  GtkWidget         *scrolled_win, *treeview, *label;
+  GtkTreeModel      *store;
+  GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
   GtkTreeSelection  *selection;
+  Pagesel           *pagesel;
 
   EdaConfig  *cfg   = eda_config_get_user_context ();
   const char *group = IDS_PAGE_MANAGER;
   const char *key   = "full-names";
 
   int full_names;
+
+  pagesel = (Pagesel*)instance;
 
   pagesel->instance_type = pagesel_get_type();
 
@@ -813,9 +816,11 @@ add_page(GtkTreeModel *model, GtkTreeIter *parent, PageList *pages, Page *page)
 static void
 select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
 {
-  GtkTreeModel *treemodel = gtk_tree_view_get_model (treeview);
-  GtkTreeIter iter;
-  Page *p_current;
+  Page         *p_current;
+  GtkTreeModel *treemodel;
+  GtkTreeIter   iter;
+
+  treemodel = gtk_tree_view_get_model (treeview);
 
   if (!gtk_tree_model_iter_children (treemodel, &iter, parent)) {
     return;
@@ -862,7 +867,7 @@ pagesel_update (Pagesel *pagesel)
   pages = geda_list_get_glist(toplevel->pages);
 
   /* now rebuild */
-  for ( iter = pages; iter != NULL; iter = iter->next) {
+  for (iter = pages; iter != NULL; iter = iter->next) {
 
     int pid;
 
