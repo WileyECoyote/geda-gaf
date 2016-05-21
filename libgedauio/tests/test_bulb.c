@@ -281,8 +281,78 @@ check_accessors ()
     g_object_unref(widget1);    /* Destroy widget1 */
     g_object_unref(widget2);    /* Destroy widget2 */
     g_object_unref(widget3);    /* Destroy widget3 */
-    g_object_unref(widget4);    /* Destroy widget3 */
+    g_object_unref(widget4);    /* Destroy widget4 */
   }
+  return result;
+}
+
+static int group_changed = 0;
+
+static void on_group_changed (GedaBulb *bulb)
+{
+  group_changed++;
+}
+
+int
+check_overides ()
+{
+  int result = 0;
+  int value;
+
+  GedaBulbClass *bulb_class;
+
+  GtkWidget *widget1;
+  GtkWidget *widget2;
+  GtkWidget *widget3;
+
+  widget1 = geda_bulb_new_visible (NULL);
+
+  widget2 = geda_bulb_new_from_widget(widget1, TRUE);
+
+  g_object_get (widget2, "visible", &value, NULL);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: line <%d> is visible %s\n", __LINE__, TWIDGET);
+    result++;
+    value = 0;
+  }
+
+  widget3 = geda_bulb_new_visible (NULL);
+
+  bulb_class = GEDA_BULB_GET_CLASS(widget3);
+
+  bulb_class->group_changed = on_group_changed;
+
+  geda_bulb_join_group (widget2, widget3);
+
+  if (!group_changed) {
+    fprintf(stderr, "FAILED: %s line <%d> group_changed not overridden\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  if (!GEDA_IS_BULB(widget1)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  if (!GEDA_IS_BULB(widget2)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  if (!GEDA_IS_BULB(widget3)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget1); /* Sink reference to entry widget */
+  //g_object_ref_sink(widget2); /* Sink reference to entry widget */
+  //g_object_ref_sink(widget3); /* Sink reference to entry widget */
+
+  g_object_unref(widget1);    /* Destroy widget1 */
+  //g_object_unref(widget2);    /* Destroy widget2 */
+ // g_object_unref(widget3);    /* Destroy widget3 */
+
   return result;
 }
 
@@ -317,6 +387,13 @@ main (int argc, char *argv[])
         return 1;
       }
 
+      if (setjmp(point) == 0) {
+        result += check_overides();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking overides in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;
