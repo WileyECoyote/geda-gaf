@@ -3,6 +3,9 @@
     * include/x_dialog.h: Use brackets to include geda_widgets.h instead of
       quotes.
 
+    * src/base/gschem_main_window.c: Revise gschem_window_size_request to
+      remove validate GTK_IS_WINDOW, can only be.
+
     * src/object/o_complex.c: Revise o_complex_translate_all with new third
       argument, zoom_extents, and only zoom extents if zoom_extents is set.
 
