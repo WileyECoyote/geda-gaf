@@ -471,7 +471,7 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
  *  \param [in] widget     Pointer to global entry
  *  \param [in] nothing    is nothing, NULL
  */
-static void show_sheet_entry(GtkWidget *widget, void *nothing)
+static void on_entry_changed(GtkWidget *widget, void *nothing)
 {
  const char *text;
  GtkSheet   *sheet;
@@ -490,7 +490,7 @@ static void show_sheet_entry(GtkWidget *widget, void *nothing)
 }
 
 /*! \brief Call back for Entry Combo activate */
-static void activate_sheet_entry(GedaEntry *global_entry)
+static void on_entry_activate(GedaEntry *global_entry)
 {
   GtkSheet *sheet;
   int row, col;
@@ -694,15 +694,15 @@ void x_gtksheet_init(PageDataSet *PageData)
   /* The next 2 functions setup callbacks for the Entry widget in the would be
    * status bar */
   g_signal_connect(GTK_OBJECT(entry),
-                   "changed", (GtkSignalFunc)show_sheet_entry, NULL);
+                   "changed", (GtkSignalFunc)on_entry_changed, NULL);
 /*
   g_signal_connect(GTK_OBJECT(entry),
-                   "activate", (GtkSignalFunc)activate_sheet_entry,
+                   "activate", (GtkSignalFunc)on_entry_activate,
                    NULL);
 */
   GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
 
-  entry_class->activate = activate_sheet_entry;
+  entry_class->activate = on_entry_activate;
 
   SetupCSheetHandlers(sheets[Components], PageData);
 
