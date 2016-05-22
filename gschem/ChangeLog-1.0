@@ -4,6 +4,9 @@
 
     * include/x_menus.h: Enumerate pop_edit_color in pop_MenuItem.
 
+    * src/base/gschem_status_bar.c: Set min and max parameter specifications to
+      more realistic values.
+
     * src/x/x_dnd.c: Handle case DROPPED_ON_PAGESEL in x_dnd_receive_string_sym,
       just return true for now so if dropped on pagsel is always opened as a
       separate page.

@@ -506,8 +506,8 @@ gschem_status_bar_class_init (void *class, void *class_data)
   pspec = g_param_spec_int ("grid-mode",
                           _("Grid Mode"),
                           _("Sets the Gride Mode to display on the status bar"),
-                              G_MININT,
-                              G_MAXINT,
+                              GRID_NONE,
+                              GRID_MESH,
                               GRID_NONE,
                              (G_PARAM_READWRITE));
 
@@ -516,8 +516,8 @@ gschem_status_bar_class_init (void *class, void *class_data)
   pspec = g_param_spec_int ("grid-size",
                           _("Grid Size"),
                           _("Sets the Grid Size to display on the status bar"),
-                              G_MININT,
-                              G_MAXINT,
+                             -51200,
+                              51200,
                               0,
                              (G_PARAM_READWRITE));
 
@@ -557,9 +557,9 @@ gschem_status_bar_class_init (void *class, void *class_data)
   pspec = g_param_spec_int ("snap-mode",
                           _("Snap Mode"),
                           _("Sets the Snap Mode to display on the status bar"),
-                             G_MININT,
-                             G_MAXINT,
-                             0,
+                             SNAP_OFF,
+                             SNAP_RESNAP,
+                             SNAP_OFF,
                             (G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_SNAP_MODE, pspec);
@@ -567,9 +567,9 @@ gschem_status_bar_class_init (void *class, void *class_data)
   pspec = g_param_spec_int ("snap-size",
                           _("Snap Size"),
                           _("Sets the Size Mode to display on the status bar"),
-                             G_MININT,
-                             G_MAXINT,
-                             0,
+                            -MAX_SNAP_SIZE,
+                             MAX_SNAP_SIZE,
+                             MIN_SNAP_SIZE,
                             (G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_SNAP_SIZE, pspec);
