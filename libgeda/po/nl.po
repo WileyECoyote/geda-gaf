@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-15 01:04-0500\n"
+"POT-Creation-Date: 2016-05-22 00:02-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -933,8 +933,8 @@ msgstr "Boog met een straal van nul gevonden [ %c %d, %d, %d, %d, %d, %d ]\n"
 #: libgeda/src/object/o_arc_object.c:1476
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:591
-#: libgeda/src/object/o_circle_object.c:1153
-#: libgeda/src/object/o_line_object.c:268
+#: libgeda/src/object/o_circle_object.c:1383
+#: libgeda/src/object/o_line_object.c:1524
 #: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:542
 #: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:778
 #, c-format
@@ -944,8 +944,8 @@ msgstr "Ongeldige kleur [ %s ] gevonden\n"
 #: libgeda/src/object/o_arc_object.c:1477
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:592
-#: libgeda/src/object/o_circle_object.c:1154
-#: libgeda/src/object/o_line_object.c:269
+#: libgeda/src/object/o_circle_object.c:1384
+#: libgeda/src/object/o_line_object.c:1525
 #: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:543
 #: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:779
 msgid "Setting color to default color\n"
@@ -1010,21 +1010,21 @@ msgstr "Ongeldige bus ripper richting gevonden [ %s ]\n"
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Neutrale richting ingesteld (geen richting)\n"
 
-#: libgeda/src/object/o_circle_object.c:376
+#: libgeda/src/object/o_circle_object.c:606
 msgid "Null radius circles are not allowed\n"
 msgstr "Cirkels met een radius van nul zijn niet toegestaan\n"
 
-#: libgeda/src/object/o_circle_object.c:1110
-#: libgeda/src/object/o_circle_object.c:1140
+#: libgeda/src/object/o_circle_object.c:1340
+#: libgeda/src/object/o_circle_object.c:1370
 msgid "Failed to parse circle object"
 msgstr "Faalde bij het ontleden van een cirkel object"
 
-#: libgeda/src/object/o_circle_object.c:1146
+#: libgeda/src/object/o_circle_object.c:1376
 #, c-format
 msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
 msgstr "Een cirkel met een radius van nul gevonden [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_object.c:1148
+#: libgeda/src/object/o_circle_object.c:1378
 msgid "Setting radius to 0\n"
 msgstr "Radius op 0 ingesteld\n"
 
@@ -1151,12 +1151,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Komponent [%s] is succesvol uitgevoegd\n"
 
-#: libgeda/src/object/o_line_object.c:231
-#: libgeda/src/object/o_line_object.c:251
+#: libgeda/src/object/o_line_object.c:1487
+#: libgeda/src/object/o_line_object.c:1507
 msgid "Failed to parse line object"
 msgstr "Faalde bij het ontleden van een lijn object"
 
-#: libgeda/src/object/o_line_object.c:263
+#: libgeda/src/object/o_line_object.c:1519
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Lijn met een lengte van nul gevonden [ %c %d %d %d %d %d ]\n"
