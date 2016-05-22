@@ -974,7 +974,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
       case 1:
       default:
         str      = strstr(name, DIR_SEPARATOR_S);
-        category = g_strndup(name, str - name);
+        category = geda_utility_string_strndup (name, str - name);
         tmpstr   = geda_utility_string_strdup (str + 1);
         break;
     }

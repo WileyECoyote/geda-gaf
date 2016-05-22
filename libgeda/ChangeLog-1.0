@@ -1,3 +1,9 @@
+2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Replace g_strndup with geda_utility_string_strndup.
+
+    * src/struct/s_clib.c: Replace g_strndup with geda_utility_string_strndup.
+
 2016-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_circle_object.c: Revise/update Doxygen comments.
@@ -9,7 +15,7 @@
 
     * tests/test_circle_object.c: Add checks for line type and filling options.
 
-    * tests/test_line_object.c: add basic checks for line endpoint accessors
+    * tests/test_line_object.c: Add basic checks for line endpoint accessors
       and line type options.
 
 2016-05-19 Wiley E. Hill <wileyhill@gmail.com>

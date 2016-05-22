@@ -1100,7 +1100,7 @@ geda_attrib_object_string_get_name_value (const char  *string,
       {
 
         if (name_ptr != NULL) {
-          *name_ptr = g_strndup (string, (ptr - string));
+          *name_ptr = geda_utility_string_strndup (string, (ptr - string));
         }
 
         if (value_ptr != NULL) {
