@@ -2,9 +2,13 @@
 
     * include/x_dnd.h: Add DROPPED_ON_PAGESEL as a DropLocation.
 
+    * include/x_menus.h: Enumerate pop_edit_color in pop_MenuItem.
+
     * src/x/x_dnd.c: Handle case DROPPED_ON_PAGESEL in x_dnd_receive_string_sym,
       just return true for now so if dropped on pagsel is always opened as a
       separate page.
+
+    * src/x/x_menus.c: Add action edit-color to the fly-out on the popup menu.
 
     * src/x/x_pagesel.c: Add basic support for drag&drop on the tree view, add
       function pagesel_dnd_drag_receive.

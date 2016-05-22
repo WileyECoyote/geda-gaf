@@ -70,6 +70,7 @@ typedef enum {
   pop_zoom_to_mag,
   pop_zoom_to_select,
   pop_edit_objects,
+  pop_edit_color,
   pop_edit_component,
   pop_edit_pintype,
   pop_edit_array,

@@ -51,13 +51,16 @@
 
 static void x_menu_popup_execute(GtkObject *widget,int action_id);
 
-/* Note: These are referenced using pop_MenuItem defined in our header */
+/* Note: These are referenced using pop_MenuItem defined in x_menus.h
+ *       Actions are defined in i_actions.h
+ */
 const char* IDS_Popup_Actions[] = {
   ACTION(EDIT_SELECT),    ACTION(ADD_NET),        ACTION(ADD_ATTRIB),
   ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),        ACTION(ADD_TEXT),
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),
   ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG),  ACTION(VIEW_SELECTED),
-  ACTION(EDIT_ATTRIB),    ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),
+  ACTION(EDIT_ATTRIB),    ACTION(EDIT_COLOR),     ACTION(EDIT_COMPONENT),
+  ACTION(EDIT_PIN),
   ACTION(EDIT_ARRAY),     ACTION(EDIT_BREAK),     ACTION(EDIT_EXTEND),
   ACTION(EDIT_DELETE),    ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),
   ACTION(EDIT_MOVE),      ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE_LEFT),
@@ -110,10 +113,11 @@ static PopupEntry popup_items[] = {
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Edit"),              NULL,                 1,                  0,  NULL,            N_("Edit modes") },
-  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     N_("Edit Object Attributes") },
-  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component", N_("Open the Component Editor Dialog") },
-  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  N_("Open the Pin Type Dialog") },
+  { N_("Edit"),              NULL,                 1,                  0,  NULL,                N_("Edit modes") },
+  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",         N_("Edit Object Attributes") },
+  { N_("Color..."),          x_menu_popup_execute, pop_edit_color,     1, "geda-display-color", N_("Open the Color Editor Dialog") },
+  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component",     N_("Open the Component Editor Dialog") },
+  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",      N_("Open the Pin Type Dialog") },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
