@@ -1,3 +1,16 @@
+2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/ADG707-1.sym: 16-Channel multiplexer, CMOS. Is a
+      switch with (up to) 2.5 Ohm contact resistance.
+
+    * analogdevices/ADG708-1.sym: 8 Channel CMOS analog multiplexer.
+
+    * analogdevices/ADG708-2.sym: Alternate pin arrangement for ADG708.
+
+    * analogdevices/ADG709-1.sym: 8 Channel CMOS analog multiplexer.
+
+    * analogdevices/ADG709-2.sym: Alternate pin arrangement for ADG709.
+
 2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62060-1.sym: Synchronous Step-down Converter, 1.6A,
