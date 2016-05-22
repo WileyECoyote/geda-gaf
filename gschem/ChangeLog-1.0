@@ -14,7 +14,9 @@
     * src/x/x_menus.c: Add action edit-color to the fly-out on the popup menu.
 
     * src/x/x_pagesel.c: Add basic support for drag&drop on the tree view, add
-      function pagesel_dnd_drag_receive.
+      function pagesel_dnd_drag_receive. Enhance the new drag&drop support to
+      allow users to insert symbols into schematics by dropping the symbols on
+      specific pages in the PageSel tree-view.
 
 2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -415,7 +415,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
         o_place_end(w_current, 0, 0, PASTE_OBJECTS_HOOK);
         o_undo_savestate (w_current, UNDO_ALL);
       }
-      else if (where == DROPPED_ON_PAGESEL) {
+      else if (where == DROPPED_ON_PAGESEL && !x) {
         result = TRUE;
       }
       else {

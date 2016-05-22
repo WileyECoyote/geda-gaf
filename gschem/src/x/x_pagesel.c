@@ -69,6 +69,7 @@ static GtkTargetEntry dnd_target_list[] =
 
 static unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
+static void select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page);
 static void x_pagesel_callback_response (GtkDialog *d, int r, void *log);
 
 /*! \brief Open the page manager dialog.
@@ -323,8 +324,8 @@ DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
  *  \param [in] pagesel  The Pagesel object.
  *  \param [in] event    Mouse click event info.
  */
-static void pagesel_popup_menu (Pagesel        *pagesel,
-                                GdkEventButton *event)
+static void
+pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
 {
   GtkTreePath *path;
   GtkWidget   *menu;
@@ -386,15 +387,14 @@ static void pagesel_popup_menu (Pagesel        *pagesel,
  *  When the gschem-toplevel property is set on the parent GschemDialog,
  *  we should update the pagesel dialog.
  *
- *  \param [in] gobject    Object which received the signal.
- *  \param [in] arg1       GParamSpec of the property which changed
- *  \param [in] user_data  user data set when the signal handler was connected.
+ *  \param [in] gobject  Object which received the signal.
+ *  \param [in] arg1     GParamSpec of the property which changed
+ *  \param [in] nothing  user data not set.
  */
-static void notify_gschem_toplevel_cb (GObject    *gobject,
-                                       GParamSpec *arg1,
-                                       void       *user_data)
+static void
+notify_gschem_toplevel_cb (GObject *gobject, GParamSpec *arg1, void *nothing)
 {
-  Pagesel *pagesel = PAGESEL( gobject );
+  Pagesel *pagesel = PAGESEL(gobject);
   pagesel_update( pagesel );
 }
 
@@ -467,7 +467,17 @@ pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
  * \par Function Description
  *  Provides basis support for Drag&Drop on the Page Select Dialog. The
  *  received string is extracted and passed to x_dnd_receive_string for
- *  evaluation and processing.
+ *  evaluation and processing. If the received string ends with "sym"
+ *  and was dropped on a row that is a schematic then the page is first
+ *  selected and the x argument passed to x_dnd_receive_string is set
+ *  TRUE and this allows users to drag symbols onto the PageSel Dialog
+ *  and into a specific schematic (if the symbol is known). If the
+ *  symbol is dropped on a blank area, or on another open symbol page
+ *  then the symbol file is opened for editing as a separate page.
+ *
+ * \note Re-allocation of the string would not be required if someone
+ *       did not errantly add line feeds and carriage returns to the
+ *       string that is received.
  */
 static void
 pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
@@ -485,8 +495,15 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
   if ((selection_data != NULL) &&
      (gtk_selection_data_get_length(selection_data) >= 0))
   {
+    GtkTreePath         *path;
     const unsigned char *buffer;
-    const char          *string;
+    const char          *ptr;
+    const char          *ext;
+          char          *string;
+
+    int tail;
+    int len;
+    int xf = 0;
 
     /* Get pointer to the data */
 #if GTK_CHECK_VERSION(2,14,0)
@@ -495,10 +512,59 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
     buffer = selection_data->data;
 #endif
 
-    string = (const char*)buffer;
+    ptr    = (const char*)buffer;
+    string = geda_utility_string_strdup(ptr);
+    len    = strlen(string);
 
-    /* Not very sophisticated, yet, just open as file */
-    x_dnd_receive_string(w_current, x, y, string, DROPPED_ON_PAGESEL);
+    /* Some lame file managers append line feeds and carriage
+     * returns characters so replace these with nulls */
+    for(tail = 0; tail < len; tail++) {
+      if (string[tail] == '\n')
+        string[tail] = '\0';
+      if (string[tail] == '\r')
+        string[tail] = '\0';
+    }
+
+    /* check if string could be a symbol file */
+    ext = f_get_filename_ext(string);
+
+    if (ext && strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
+
+      /* Check is symbol was dropped on a schmatic */
+      if (gtk_tree_view_get_path_at_pos (pagesel->treeview, x, y,
+                                        &path, NULL, NULL, NULL))
+      {
+        GtkTreeModel *treemodel;
+        GtkTreeIter   iter;
+        Page         *page;
+
+        treemodel = gtk_tree_view_get_model (pagesel->treeview);
+        page      = NULL;
+
+        /* path_at_pos seems to be always off by one +1 row */
+        gtk_tree_path_prev(path);
+
+        if (gtk_tree_model_get_iter (treemodel, &iter, path)) {
+          gtk_tree_model_get (treemodel, &iter, COLUMN_PAGE, &page, -1);
+        }
+
+        /* Got iter, do not need path anymore */
+        gtk_tree_path_free (path);
+
+        if (page && !s_page_is_symbol_file(page)) {
+
+          /* Dropped a symbol on a schmatic */
+          select_page (pagesel->treeview, NULL, page);
+
+          /* set flag indicating add symbol to page */
+          xf = 1;
+        }
+      }
+    }
+
+    x_dnd_receive_string(w_current, xf, 0, string, DROPPED_ON_PAGESEL);
+
+    GEDA_FREE(string);
   }
 }
 
@@ -813,7 +879,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 
   g_signal_connect( ThisDialog, "notify::gschem-toplevel",
-                    G_CALLBACK( notify_gschem_toplevel_cb ), NULL );
+                    G_CALLBACK( notify_gschem_toplevel_cb ), NULL);
 
   g_signal_connect (fresh_butt,
                     "clicked",
@@ -899,7 +965,9 @@ select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
   }
 
   do {
+
     gtk_tree_model_get (treemodel, &iter, COLUMN_PAGE, &p_current, -1);
+
     if (p_current == page) {
       gtk_tree_view_expand_all (treeview);
       gtk_tree_selection_select_iter (gtk_tree_view_get_selection (treeview),
