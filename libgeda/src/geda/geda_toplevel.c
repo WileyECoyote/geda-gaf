@@ -650,6 +650,54 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
   return page;
 }
 
+bool geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  if (page && geda_list_is_in_list(toplevel->pages, page)) {
+
+    GList *iter;
+    GList *pages;
+
+    pages = geda_list_get_glist(toplevel->pages);
+
+    for (iter = pages; iter; iter = iter->next) {
+      if (iter->data == page) {
+        if (iter->next) {
+          iter->data = iter->next->data;
+          iter->next->data = page;
+          return TRUE;
+        }
+      }
+    }
+  }
+  return FALSE;
+}
+
+bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  if (page && geda_list_is_in_list(toplevel->pages, page)) {
+
+    GList *iter;
+    GList *pages;
+
+    pages = geda_list_get_glist(toplevel->pages);
+
+    for (iter = pages; iter; iter = iter->next) {
+      if (iter->data == page) {
+        if (iter->prev) {
+          iter->data = iter->prev->data;
+          iter->prev->data = page;
+          return TRUE;
+        }
+      }
+    }
+  }
+  return FALSE;
+}
+
 void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
