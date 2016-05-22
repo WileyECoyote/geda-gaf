@@ -29,6 +29,7 @@
 #include "../../include/gschem.h"
 #include "../../include/i_actions.h"
 #include "../../include/x_dialog.h"
+#include "../../include/x_dnd.h"
 
 #include <geda_debug.h>
 
@@ -44,15 +45,29 @@
 /* Enumerate Control IDs */
 typedef enum {
        ShowFullName,
-
 } ControlID;
 
 static GschemDialogClass *pagesel_parent_class = NULL;
 
 static WidgetStringData DialogStrings[] = {
   { "ShowFullNameSwitch",  "Show full names", "Enable or disable displaying of paths in file names"},
-        { NULL, NULL, NULL},
+  { NULL, NULL, NULL},
 };
+
+enum
+{
+  TARGET_STRING,
+  TARGET_URL
+};
+
+static GtkTargetEntry dnd_target_list[] =
+{
+  { "STRING",        0, TARGET_STRING },
+  { "text/plain",    0, TARGET_STRING },
+  { "text/uri-list", 0, TARGET_URL },
+};
+
+static unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
 static void x_pagesel_callback_response (GtkDialog *d, int r, void *log);
 
@@ -447,6 +462,46 @@ pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
   gtk_dialog_response (GTK_DIALOG (user_data), GEDA_RESPONSE_CLOSE);
 }
 
+/*!
+ * \brief Callback Drag Received on the Tree View widget
+ * \par Function Description
+ *  Provides basis support for Drag&Drop on the Page Select Dialog. The
+ *  received string is extracted and passed to x_dnd_receive_string for
+ *  evaluation and processing.
+ */
+static void
+pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
+                                            GtkSelectionData *selection_data,
+                                            unsigned int      target_type,
+                                            unsigned int      time,
+                                            void             *userdata)
+{
+  GschemToplevel *w_current;
+
+  Pagesel *pagesel = PAGESEL(userdata);
+  w_current = GSCHEM_DIALOG (pagesel)->w_current;
+
+  /* Deal with what we are given from source */
+  if ((selection_data != NULL) &&
+     (gtk_selection_data_get_length(selection_data) >= 0))
+  {
+    const unsigned char *buffer;
+    const char          *string;
+
+    /* Get pointer to the data */
+#if GTK_CHECK_VERSION(2,14,0)
+    buffer = gtk_selection_data_get_data (selection_data);
+#else
+    buffer = selection_data->data;
+#endif
+
+    string = (const char*)buffer;
+
+    /* Not very sophisticated, yet, just open as file */
+    x_dnd_receive_string(w_current, x, y, string, DROPPED_ON_PAGESEL);
+  }
+}
+
 /*! \brief Geda Box Object Finalization Function
  *  \par Function Description
  *   Save the user preference to configuration system.
@@ -689,6 +744,14 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), label, FALSE, FALSE, 5);
   gtk_widget_show (label);
+
+  /* -------------------- Setup the Drag & Drop Support ------------------- */
+
+  gtk_drag_dest_set(treeview, GTK_DEST_DEFAULT_ALL, dnd_target_list, dnd_ntargets,
+                    GDK_ACTION_COPY|GDK_ACTION_MOVE|GDK_ACTION_LINK);
+
+  g_signal_connect(treeview, "drag_data_received",
+                   G_CALLBACK(pagesel_dnd_drag_receive), pagesel);
 
   /* -------------------- Setup the Action/Button Area ------------------- */
   GtkWidget *action_hbox;

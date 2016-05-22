@@ -50,7 +50,11 @@ enum {
       DND_TARGET_OBJECTS,
 };
 
-typedef enum { DROPPED_ON_CANVAS, DROPPED_ON_COORD} DropLocation;
+typedef enum {
+      DROPPED_ON_CANVAS,
+      DROPPED_ON_COORD,
+      DROPPED_ON_PAGESEL
+} DropLocation;
 
 #define GSCHEM_TARGET_NONE \
         { "", 0,  DND_TARGET_NONE }

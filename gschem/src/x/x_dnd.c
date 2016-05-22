@@ -401,7 +401,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
     result = FALSE;
     if (symbol) {
 
-      if(where == DROPPED_ON_COORD) {
+      if (where == DROPPED_ON_COORD) {
 
         GedaObject *object;
 
@@ -414,6 +414,9 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
         s_page_append_object(page, object);
         o_place_end(w_current, 0, 0, PASTE_OBJECTS_HOOK);
         o_undo_savestate (w_current, UNDO_ALL);
+      }
+      else if (where == DROPPED_ON_PAGESEL) {
+        result = TRUE;
       }
       else {
         /* If the current page is not a sym, then insert symbol*/

@@ -1,3 +1,14 @@
+2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_dnd.h: Add DROPPED_ON_PAGESEL as a DropLocation.
+
+    * src/x/x_dnd.c: Handle case DROPPED_ON_PAGESEL in x_dnd_receive_string_sym,
+      just return true for now so if dropped on pagsel is always opened as a
+      separate page.
+
+    * src/x/x_pagesel.c: Add basic support for drag&drop on the tree view, add
+      function pagesel_dnd_drag_receive.
+
 2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_dialog.h: Use brackets to include geda_widgets.h instead of
