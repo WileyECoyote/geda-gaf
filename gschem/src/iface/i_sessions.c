@@ -70,12 +70,13 @@ static GArray *sessions;
  *  @{ \par This Group contains core Routine for Sessions.
 */
 
-/*! \brief Get Session Record
- *  \par Function Documentation
+/*!
+ * \brief Get Session Record
+ * \par Function Documentation
  *   Returns a pointer to Session record entry whose name matches
  *   the specified name or NULL if the record was not found.
  *
- *  \param name is the name of the session whose record is to be retieved
+ * \param name is the name of the session whose record is to be retieved
  */
 static Session *i_session_get_record(const char *name)
 {
@@ -95,14 +96,15 @@ static Session *i_session_get_record(const char *name)
   return record;
 }
 
-/*! \brief Remove Session Record
- *  \par Function Documentation
+/*!
+ * \brief Remove Session Record
+ * \par Function Documentation
  *  The function removes the specified session from the GArray and
  *  returns TRUE  or FASLE if the record was not found.
  *
- *  \sa i_sessions_remove, i_sessions_delete
+ * \sa i_sessions_remove, i_sessions_delete
  *
- *  \param record Pointer to the session record to be removed
+ * \param record Pointer to the session record to be removed
  */
 static int i_sessions_remove_session (Session *record)
 {
@@ -131,17 +133,18 @@ static int i_sessions_remove_session (Session *record)
   return found;
 }
 
-/*! \brief Close All Open Documents
- *  \par Function Description
+/*!
+ * \brief Close All Open Documents
+ * \par Function Description
  *  Attempts to cause all documents to be closed.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  *
- *  \retval TRUE unless user cancels during request to save
+ * \retval TRUE unless user cancels during request to save
  *
- *  \note x_window_close_page will cause a new blank page to be
- *        created which must be deleted after the session is
- *        restored.
+ * \note x_window_close_page will cause a new blank page to be
+ *       created which must be deleted after the session is
+ *       restored.
  */
 static bool i_session_close_all (GschemToplevel *w_current)
 {
@@ -205,15 +208,16 @@ static bool i_session_close_all (GschemToplevel *w_current)
   return close_all;
 }
 
-/*! \brief Get List of Files from Session File.
- *  \par Function Description
+/*!
+ * \brief Get List of Files from Session File.
+ * \par Function Description
  *  This functions reads the session file and collects lists of
  *  accessible files and non-accessible files. The non-accessible
  *  file names are reported, the list of accessible file is returned.
  *
- *  \param record of session whose file list is to be returned
+ * \param record of session whose file list is to be returned
  *
- *  \retval List of file names in the session file.
+ * \retval List of file names in the session file.
 */
 static GSList *i_sessions_get_file_list(Session *record)
 {
@@ -272,16 +276,17 @@ static GSList *i_sessions_get_file_list(Session *record)
   return files;
 }
 
-/*! \brief Load a Session
- *  \par Function Description
+/*!
+ * \brief Load a Session
+ * \par Function Description
  *   Calls i_session_close_all to close all open documents and if
  *   successfull, calls x_window_open_page to open each document
  *   listed in the session file.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param record    Pointer to the session record to be opened
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param record    Pointer to the session record to be opened
  *
- *  \return count of the number of pages opened
+ * \return count of the number of pages opened
  *
  * TODO: See cmd_do_open in i_command.c
  */
@@ -362,18 +367,19 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
   return load_count;
 }
 
-/*! \brief Create a New Session
- *  \par Function Description
+/*!
+ * \brief Create a New Session
+ * \par Function Description
  *  Creates a new session file using the specified name and
  *  saves all of the file names of open document in the current
  *  context to the session file. A new record is added to the
  *  Session Garray.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param name      Pointer to a name for the session record
- *  \param err        Pointer to GError structure
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param name      Pointer to a name for the session record
+ * \param err        Pointer to GError structure
  *
- *  \retval int count of document files saved for the session
+ * \retval int count of document files saved for the session
  */
 static int
 i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
@@ -443,16 +449,17 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
   return count;
 }
 
-/*! \brief Save the Current Session
- *  \par Function Description
+/*!
+ * \brief Save the Current Session
+ * \par Function Description
  *  Saves the file names of open document in the current context
  *  to the session file assocated with the current session. The
  *  Session Garray is updated with the file count.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param err        Pointer to GError structure
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param err        Pointer to GError structure
  *
- *  \return count of document files saved for the session
+ * \return count of document files saved for the session
  */
 static int i_sessions_save(GschemToplevel *w_current, GError *err)
 {
@@ -509,8 +516,9 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
  *  @{ \remark
  */
 
-/*! \brief GNoitfier Menu Item Callback
- *  \par Function Description
+/*!
+ * \brief GNoitfier Menu Item Callback
+ * \par Function Description
  *  This function is called with a menu item is destroyed in order
  *  to free the data record attached to the menu items that was
  *  allocated in i_sessions_attach_submenu().
@@ -520,13 +528,14 @@ session_free_menu_data (void *data, GClosure *closure) {
   GEDA_FREE (data);
 }
 
-/*! \brief Session Menu Item Callback
- *  \par Function Description
+/*!
+ * \brief Session Menu Item Callback
+ * \par Function Description
  *   This function is called when a menu item under the Sessions/
  *   Restore submenu is activated.
  *
- *  \param menuitem  Pointer to Session menu item (with embed data)
- *  \param user_data Pointer to embed SessionMenuData structure
+ * \param menuitem  Pointer to Session menu item (with embed data)
+ * \param user_data Pointer to embed SessionMenuData structure
  */
 static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
 {
@@ -538,14 +547,15 @@ static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
 
 }
 
-/*! \brief Attach Submenu with Session names to Sessions/Restore Menu
- *  \par Function Description
+/*!
+ * \brief Attach Submenu with Session names to Sessions/Restore Menu
+ * \par Function Description
  *   This function add a menu item foreach session under the Sessions/
  *   Restore menu. Each menu item is allocated a data record containing
  *   a pointer to the toplevel object, and the session recorder associated
  *   with the item.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  */
 static void i_sessions_attach_submenu(GschemToplevel *w_current)
 {
@@ -612,14 +622,15 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Update Session Restore Submenu
- *  \par Function Description
+/*!
+ * \brief Update Session Restore Submenu
+ * \par Function Description
  *   This function attempts to destory the current submenu items under
  *   Menu/Session/Restore and then calls i_sessions_attach_submenu
  *   to rebuilt new menu items for each session. If the Restore
  *   submenu is not found the operation is aborted.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  */
 static void update_sessions_menus(GschemToplevel *w_current)
 {
@@ -656,16 +667,17 @@ static void update_sessions_menus(GschemToplevel *w_current)
 
 /** @} endgroup sessions-menu */
 
-/*! \brief Get Count of Documents for Session
- *  \par Function Description
+/*!
+ * \brief Get Count of Documents for Session
+ * \par Function Description
  *  This function attemps to open a session file and read each line,
  *  and each line not beginning with "#" longer and than 3 char is
  *  The resulting count of the lines is returned. The function does
  *  not check whether the files are accessible.
  *
- *  \param session_file Pointer to the name of the session file name
+ * \param session_file Pointer to the name of the session file name
  *
- *  \note This function does load a session
+ * \note This function does load a session
  */
 static int i_sessions_get_count(const char *session_file)
 {
@@ -697,14 +709,15 @@ static int i_sessions_get_count(const char *session_file)
   return lc;
 }
 
-/*! \brief Load Session Data
- *  \par Function Description
+/*!
+ * \brief Load Session Data
+ * \par Function Description
  *  This function collects the names of files in the sesssion
  *  directory and create a new record for each session definition.
  *  Each record is stored in the Sessions Garray. If the sessions
  *  directory does not exist then a new empty directory is created.
  *
- *  \note This function does not load a session
+ * \note This function does not load a session
  */
 static void i_sessions_load_data(void)
 {
@@ -769,12 +782,13 @@ static void i_sessions_load_data(void)
   GEDA_FREE(path);
 }
 
-/*! \brief Release All Memory Associated with Session Data
- *  \par Function Description
+/*!
+ * \brief Release All Memory Associated with Session Data
+ * \par Function Description
  *   This function frees the strings in the Sessions GArray
  *   and the array itself.
  *
- *  \note Does not free memory assocated with the menu items
+ * \note Does not free memory assocated with the menu items
  */
 static void i_sessions_destroy_sessions(void)
 {
@@ -805,16 +819,17 @@ static void i_sessions_destroy_sessions(void)
  *  @{ \par This Group contains global routines for Sessions System
  */
 
-/*! \brief Delete an Existing Session
- *  \par Function Description
+/*!
+ * \brief Delete an Existing Session
+ * \par Function Description
  *  The remove the session file, calls i_sessions_remove_session to
  *  remove the session record and then i_sessions_update_menus to
  *  regenerate the restore submenu.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param name      Pointer to the name of session to be deleted
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param name      Pointer to the name of session to be deleted
  *
- *  \retval TRUE on success, otherwise FALSE
+ * \retval TRUE on success, otherwise FALSE
  */
 int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 {
@@ -859,16 +874,17 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
   return result;
 }
 
-/*! \brief Export an Existing Session
- *  \par Function Description
+/*!
+ * \brief Export an Existing Session
+ * \par Function Description
  *  The Session system stores files in the configuration subdirectory.
  *  This function copies a stored file to a specified location. This
  *  is useful for creating project files.
  *
- *  \param name      Pointer to the name of the session to be export
- *  \param filename  Pointer to file name session is to be export to.
+ * \param name      Pointer to the name of the session to be export
+ * \param filename  Pointer to file name session is to be export to.
  *
- *  \retval result of fcopy function
+ * \retval result of fcopy function
  */
 int i_sessions_export_session(const char *name, const char *filename)
 {
@@ -876,17 +892,18 @@ int i_sessions_export_session(const char *name, const char *filename)
   return f_sys_copy (record->session_file, filename);
 }
 
-/*! \brief Create a New Session
- *  \par Function Description
+/*!
+ * \brief Create a New Session
+ * \par Function Description
  *  Creates a new session file using the specified name and saves all of
  *  the filename of open document in the current context to the session
  *  file. A new record is added to the Session Garray and the menus are
  *  updated.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param name      Pointer to the name for the new session
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param name      Pointer to the name for the new session
  *
- *  \retval count of the files associated with the new session
+ * \retval count of the files associated with the new session
  */
 int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 {
@@ -921,15 +938,16 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
   return count;
 }
 
-/*! \brief Open a Session
- *  \par Function Description
+/*!
+ * \brief Open a Session
+ * \par Function Description
  *   Calls i_session_load_session to open all document files
  *   associated with the given session.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param name      Pointer to session name to be saved
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param name      Pointer to session name to be saved
  *
- *  \return TRUE on success otherwise FALSE
+ * \return TRUE on success otherwise FALSE
  */
 bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
 {
@@ -967,18 +985,19 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
   return result;
 }
 
-/*! \brief Rename an Existing Session
- *  \par Function Description
+/*!
+ * \brief Rename an Existing Session
+ * \par Function Description
  *   This function changes the name of an existing session. The session name
  *   is the basename of the session file. After renaming the file the Garray
  *   record is update and i_sessions_update_menus() is called to update the
  *   Session Restore submenu.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param old_name  Pointer to session name
- *  \param new_name  Pointer to the new session name
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param old_name  Pointer to session name
+ * \param new_name  Pointer to the new session name
  *
- *  \return TRUE on success otherwise FALSE
+ * \return TRUE on success otherwise FALSE
  */
 int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
                                                          const char *new_name)
@@ -1038,17 +1057,18 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
   return result;
 }
 
-/*! \brief Save Session in the Current Context
- *  \par Function Description
+/*!
+ * \brief Save Session in the Current Context
+ * \par Function Description
  *   This function either calls i_sessions_create() to create a new
  *   session or i_sessions_save() to update an existing session depending
  *   on whether name is NULL. When name is non-Null a new session record
  *   is created, in essence, a save-as operation.
  *
- *  \param w_current Pointer to #GschemToplevel Object
- *  \param name      Optional pointer to string name for the session
+ * \param w_current Pointer to #GschemToplevel Object
+ * \param name      Optional pointer to string name for the session
  *
- *  \retval count of the files associated with the saved session
+ * \retval count of the files associated with the saved session
  */
 int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 {
@@ -1099,36 +1119,39 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
  *  @{ \par Contains system-level utilities for Sessions.
 */
 
-/*! \brief Get Sessions Data
- *  \par Function Documentation
+/*!
+ * \brief Get Sessions Data
+ * \par Function Documentation
  *   Returns a pointer to Session Garray. This is used by dialog routines
  *   to manage or access the session data.
  *
- *  \retval pointer to sessions GArray
+ * \retval pointer to sessions GArray
  */
 GArray *i_sessions_get_sessions(void)
 {
   return sessions;
 }
 
-/*! \brief Get is Sessions Data Available
- *  \par Function Documentation
+/*!
+ * \brief Get is Sessions Data Available
+ * \par Function Documentation
  *   Returns TRUE if the Session Garray references data.
  *
- *  \retval TRUE if the Session Garray references data, otherwise FALSE
+ * \retval TRUE if the Session Garray references data, otherwise FALSE
  */
 bool i_sessions_is_enabled(void)
 {
   return (sessions != NULL && sessions->len > 0) ? 1 : 0;
 }
 
-/*! \brief Get Show Open Session at Starup Setting
- *  \par Function Documentation
+/*!
+ * \brief Get Show Open Session at Starup Setting
+ * \par Function Documentation
  *   Returns the value of the "sessions-at-startup" configuration variable.
  *
- *  \sa i_sessions_show_at_startup
+ * \sa i_sessions_show_at_startup
  *
- *  \retval value of configuration setting
+ * \retval value of configuration setting
  */
 bool i_sessions_get_show_at_startup(void)
 {
@@ -1151,13 +1174,14 @@ bool i_sessions_get_show_at_startup(void)
   return answer;
 }
 
-/*! \brief Set Show Open Session at Starup Setting
- *  \par Function Documentation
+/*!
+ * \brief Set Show Open Session at Starup Setting
+ * \par Function Documentation
  *   Sets the value of the "sessions-at-startup" configuration variable.
  *
- *  \sa i_sessions_show_at_startup
+ * \sa i_sessions_show_at_startup
  *
- *  \param show new boolean value of the configuration setting
+ * \param show new boolean value of the configuration setting
  */
 void i_sessions_set_show_at_startup(bool show)
 {
@@ -1175,29 +1199,31 @@ void i_sessions_set_show_at_startup(bool show)
   }
 }
 
-/*! \brief Get Should Show Open Session at Starup
- *  \par Function Documentation
+/*!
+ * \brief Get Should Show Open Session at Starup
+ * \par Function Documentation
  *   Returns TRUE if the Open Session should be displayed based
  *   on the availability or existence of session data and the
  *   "sessions-at-startup" configuration setting.
  *
- *  \retval value TRUE is the Open Session Dialog should be presented
+ * \retval value TRUE is the Open Session Dialog should be presented
  *
- *  \note Other factors such as arguments on the command-line should
- *        also be considered before lauching the sessions dialog.
+ * \note Other factors such as arguments on the command-line should
+ *       also be considered before lauching the sessions dialog.
  */
 bool i_sessions_present_at_startup(void)
 {
   return i_sessions_is_enabled() && i_sessions_get_show_at_startup();
 }
 
-/*! \brief Update the Session Submenu
- *  \par Function Description
+/*!
+ * \brief Update the Session Submenu
+ * \par Function Description
  *   This function is calls i_sessions_attach_submenu if any sessions
  *   records exist, indicated by a non-null array. The i_sessions_init()
  *   should be call before calling this function.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  */
 void i_sessions_update_menus(GschemToplevel *w_current)
 {
@@ -1206,16 +1232,17 @@ void i_sessions_update_menus(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Initialize Session system
- *  \par Function Description
+/*!
+ * \brief Initialize Session system
+ * \par Function Description
  *   This function is called to initialized the Session system. The
  *   function to calls i_sessions_load_data() to load the Session
  *   array. This function also restores the auto_sessions variable
  *   preserved by x_sessions_save_settings.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  *
- *  \sa x_sessions_save_settings
+ * \sa x_sessions_save_settings
  */
 void i_sessions_init(GschemToplevel *w_current)
 {

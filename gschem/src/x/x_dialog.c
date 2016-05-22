@@ -337,10 +337,17 @@ void select_all_text_in_textview(GtkTextView *textview)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Calculate the width of a TABs in pixels
+ * \par Function Description
+ *  This function actually allocates a pango layout containing a
+ *  \a tab_size TAB characters in order to determine the width of
+ *  in pixels.
  *
+ * \param textview  Pointer to a text view widget
+ * \param tab_size  Number of TAB characters to measure.
+ *
+ *  \returns the width of a TAB
  */
 int
 text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)

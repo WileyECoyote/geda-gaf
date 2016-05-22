@@ -306,9 +306,13 @@ void i_pan_world_general (GschemToplevel *w_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Pan and zoom the Drawing Area
  *  \par Function Description
+ *   Pan the view by the given amount.
+ *
+ *  \param [in] w_current  Pointer to #GschemToplevel Object
+ *  \param [in] w_x        X distance to pan in world units
+ *  \param [in] w_y        Y distance to pan in world units
  */
 void i_pan_world(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -328,6 +332,10 @@ void i_pan_world(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Pan to Mouse
  *  \par Function Description
  *  Calculates coordinate to pan the view by the given amount.
+ *
+ *  \param [in] w_current  Pointer to #GschemToplevel Object
+ *  \param [in] diff_x     X pan displacment in world units
+ *  \param [in] diff_y     Y pan displacment in world units
  */
 void i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y)
 {

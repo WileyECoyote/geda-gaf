@@ -801,7 +801,7 @@ GedaObject *last_o = NULL;
 int skiplast;
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Find Text
  *  \par Function Description
  *
  *  \todo Only descends into the first source schematic
