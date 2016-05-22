@@ -382,8 +382,15 @@ Page           *gschem_toplevel_get_current_page      (GschemToplevel *w_current
 GedaToplevel   *gschem_toplevel_get_geda_toplevel     (GschemToplevel *w_current);
 char           *gschem_toplevel_get_last_image_path   (GschemToplevel *w_current);
 
-bool            gschem_toplevel_set_current_page      (GschemToplevel *w_current, Page *page);
-void            gschem_toplevel_set_last_image_path   (GschemToplevel *w_current, char *path);
+bool            gschem_toplevel_move_page_down        (GschemToplevel *w_current,
+                                                       Page           *page);
+bool            gschem_toplevel_move_page_up          (GschemToplevel *w_current,
+                                                       Page           *page);
+
+bool            gschem_toplevel_set_current_page      (GschemToplevel *w_current,
+                                                       Page           *page);
+void            gschem_toplevel_set_last_image_path   (GschemToplevel *w_current,
+                                                       char           *path);
 
 #ifdef __cplusplus
 }

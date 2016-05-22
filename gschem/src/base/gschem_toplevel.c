@@ -495,6 +495,39 @@ gschem_toplevel_get_last_image_path (GschemToplevel *w_current)
 }
 
 bool
+gschem_toplevel_move_page_down (GschemToplevel *w_current, Page *page)
+{
+  GedaToplevel *toplevel;
+
+  toplevel = gschem_toplevel_get_geda_toplevel (w_current);
+
+  if (toplevel) {
+
+    if (geda_toplevel_move_page_down(toplevel, page)) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+bool
+gschem_toplevel_move_page_up (GschemToplevel *w_current, Page *page)
+{
+  GedaToplevel *toplevel;
+
+  toplevel = gschem_toplevel_get_geda_toplevel (w_current);
+
+  if (toplevel) {
+
+    if (geda_toplevel_move_page_up(toplevel, page)) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
 gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel;
