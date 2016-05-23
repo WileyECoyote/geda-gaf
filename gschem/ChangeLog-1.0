@@ -1,8 +1,10 @@
-2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_pagesel.c: Add popup menu options "Move Up" and "Move Down" to
       allow user to reorder the pages, albeit sequentially, from the PageSel
-      Dialog.
+      Dialog. Declare tree_view as a GtkTreeView instead of treeview widget.
+      Revise pagesel_dnd_drag_receive to convert from widget to tree-view
+      coordinates, which accounts for the header row.
 
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
 

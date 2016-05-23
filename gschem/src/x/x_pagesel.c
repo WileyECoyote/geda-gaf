@@ -617,31 +617,34 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
 
     if (ext && strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
 
+      GtkTreeView *tree_view;
+      int tx, ty;
+
+      tree_view = pagesel->treeview;
+
+      gtk_tree_view_convert_widget_to_tree_coords (tree_view, x, y, &tx, &ty);
+
       /* Check is symbol was dropped on a schmatic */
-      if (gtk_tree_view_get_path_at_pos (pagesel->treeview, x, y,
-                                        &path, NULL, NULL, NULL))
+      if (gtk_tree_view_get_path_at_pos (tree_view, tx, ty, &path, NULL, NULL, NULL))
       {
         GtkTreeModel *treemodel;
         GtkTreeIter   iter;
         Page         *page;
 
-        treemodel = gtk_tree_view_get_model (pagesel->treeview);
+        treemodel = gtk_tree_view_get_model (tree_view);
         page      = NULL;
-
-        /* path_at_pos seems to be always off by one +1 row */
-        gtk_tree_path_prev(path);
 
         if (gtk_tree_model_get_iter (treemodel, &iter, path)) {
           gtk_tree_model_get (treemodel, &iter, COLUMN_PAGE, &page, -1);
         }
 
-        /* Got iter, do not need path anymore */
+        /* do not need path anymore */
         gtk_tree_path_free (path);
 
         if (page && !s_page_is_symbol_file(page)) {
 
           /* Dropped a symbol on a schmatic */
-          select_page (pagesel->treeview, NULL, page);
+          select_page (tree_view, NULL, page);
 
           /* set flag indicating add symbol to page */
           xf = 1;
