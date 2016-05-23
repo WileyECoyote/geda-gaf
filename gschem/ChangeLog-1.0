@@ -10,6 +10,8 @@
       coordinates, which accounts for the header row. Add pagesel_callback_
       query_tooltip and set query_tooltip function to display full file names
       as tooltips when not displaying the full name in the tree.
+      Added call to geda_tree_view_row_make_visible in pagesel_callback_
+      selection_changed to ensure the current page is visible in the tree.
 
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
 

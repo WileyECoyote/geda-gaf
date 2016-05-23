@@ -244,6 +244,8 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
   if (page != w_current->toplevel->page_current) {
     x_window_set_current_page (w_current, page);
   }
+
+  geda_tree_view_row_make_visible (pagesel->treeview, &iter, TRUE);
 }
 
 /*! \brief Page Manager Dialog Treeview button Press Event
