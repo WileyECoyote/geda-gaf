@@ -732,11 +732,11 @@ is_a_pagesel (Pagesel *pagesel)
 static void
 pagesel_class_init (void *class, void *class_data)
 {
-  GObjectClass *gobject_class  = G_OBJECT_CLASS (class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
-  pagesel_parent_class         = g_type_class_peek_parent (class);
+  pagesel_parent_class        = g_type_class_peek_parent (class);
 
-  gobject_class->finalize      = pagesel_finalize;
+  gobject_class->finalize     = pagesel_finalize;
 }
 
 /*! \brief Initialize new GedaAction data structure instance.
@@ -751,11 +751,12 @@ pagesel_class_init (void *class, void *class_data)
 static void
 pagesel_instance_init (GTypeInstance *instance, void *class)
 {
-  GtkWidget         *scrolled_win, *treeview, *label;
+  GtkWidget         *scrolled_win, *label;
   GtkTreeModel      *store;
   GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
   GtkTreeSelection  *selection;
+  GtkTreeView       *tree_view;
   Pagesel           *pagesel;
 
   EdaConfig  *cfg   = eda_config_get_user_context ();
@@ -785,14 +786,14 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                 "has-separator",   TRUE,
                 NULL);
 
-  /* create the model for the treeview */
+  /* create the model for the TreeView */
   store = (GtkTreeModel*)gtk_tree_store_new (NUM_COLUMNS,
-                                             G_TYPE_POINTER,  /* page */
-                                             G_TYPE_STRING,   /* name */
+                                             G_TYPE_POINTER,  /* page object */
+                                             G_TYPE_STRING,   /* file name */
                                              G_TYPE_BOOLEAN,  /* changed */
                                              G_TYPE_POINTER);
 
-  /* create a scrolled window for the treeview */
+  /* create a scrolled window for the TreeView */
   scrolled_win = GTK_WIDGET (
     g_object_new (GTK_TYPE_SCROLLED_WINDOW,
                   /* GtkContainer */
@@ -803,22 +804,22 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                   "shadow-type",       GTK_SHADOW_ETCHED_IN,
                   NULL));
 
-  /* create the treeview */
-  treeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                       /* GtkTreeView */
-                                       "model",      store,
-                                       "rules-hint", TRUE,
-                                       NULL));
+  /* create the TreeView */
+  tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
+                            /* GtkTreeView */
+                            "model",             store,
+                            "rules-hint",        TRUE,
+                            NULL);
 
-  g_signal_connect (treeview, "button-press-event",
+  g_signal_connect (tree_view, "button-press-event",
                     G_CALLBACK (pagesel_callback_button_pressed),
                     pagesel);
 
-  g_signal_connect (treeview, "popup-menu",
+  g_signal_connect (tree_view, "popup-menu",
                     G_CALLBACK (pagesel_callback_popup_menu),
                     pagesel);
 
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+  selection = gtk_tree_view_get_selection (tree_view);
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   g_signal_connect (selection, "changed",
@@ -836,9 +837,9 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   column = GTK_TREE_VIEW_COLUMN (
     g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
                   /* GtkTreeViewColumn */
-                  "title", _("Filename"),
+                  "title",    _("Filename"),
                   "min-width", COLUMN_NAME_MIN_WIDTH,
-                  "sizing",GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                  "sizing",    GTK_TREE_VIEW_COLUMN_AUTOSIZE,
                   "resizable", TRUE,
                   NULL));
 
@@ -847,7 +848,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   gtk_tree_view_column_set_cell_data_func (column, renderer,
                                            pagesel_treeview_set_cell_filename,
                                            pagesel, NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (tree_view, column);
 
   /* --------------------- second column: changed  ---------------------- */
   renderer = GTK_CELL_RENDERER (
@@ -865,7 +866,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   gtk_tree_view_column_pack_start (column, renderer, FALSE);
   gtk_tree_view_column_add_attribute (column, renderer, "active", COLUMN_CHANGED);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (tree_view, column);
 
   /* --------------------- third column is a spacer ---------------------- */
   column = GTK_TREE_VIEW_COLUMN (
@@ -876,13 +877,10 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                   "sizing",GTK_TREE_VIEW_COLUMN_FIXED,
                   NULL));
 
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (tree_view, column);
 
-  /* add the treeview to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), treeview);
-
-  /* set treeview of pagesel */
-  pagesel->treeview = GTK_TREE_VIEW (treeview);
+  /* add the tree view to the scrolled window */
+  gtk_container_add (GTK_CONTAINER (scrolled_win), GTK_WIDGET(tree_view));
 
   /* add the scrolled window to the dialog vbox */
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pagesel)->vbox), scrolled_win, TRUE, TRUE, 0);
@@ -898,12 +896,16 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), label, FALSE, FALSE, 5);
   gtk_widget_show (label);
 
+  /* Save pointer to the TreeView in pagesel structure */
+  pagesel->treeview = tree_view;
+
   /* -------------------- Setup the Drag & Drop Support ------------------- */
 
-  gtk_drag_dest_set(treeview, GTK_DEST_DEFAULT_ALL, dnd_target_list, dnd_ntargets,
+  gtk_drag_dest_set(GTK_WIDGET(tree_view), GTK_DEST_DEFAULT_ALL,
+                    dnd_target_list, dnd_ntargets,
                     GDK_ACTION_COPY|GDK_ACTION_MOVE|GDK_ACTION_LINK);
 
-  g_signal_connect(treeview, "drag_data_received",
+  g_signal_connect(tree_view, "drag_data_received",
                    G_CALLBACK(pagesel_dnd_drag_receive), pagesel);
 
   /* -------------------- Setup the Action/Button Area ------------------- */
