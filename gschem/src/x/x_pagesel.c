@@ -658,6 +658,51 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
   }
 }
 
+static bool
+pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
+                               bool        keyboard_mode,
+                               GtkTooltip *tooltip,
+                               void       *user_data)
+{
+  Pagesel   *pagesel = user_data;
+  GtkWidget *toggle  = GET_EDA_OBJECT(ShowFullName);
+  int        state   = GET_SWITCH_STATE(toggle);
+
+  if (!state) {
+
+    GtkTreePath  *path;
+    GtkTreeView  *tree_view = pagesel->treeview; /* is also widget */
+
+    int tx, ty;
+
+    tree_view = pagesel->treeview;
+
+    gtk_tree_view_convert_widget_to_tree_coords (tree_view, x, y, &tx, &ty);
+
+    if (gtk_tree_view_get_path_at_pos (tree_view, tx, ty,
+                                      &path, NULL, NULL, NULL))
+    {
+      GtkTreeModel *tree_model;
+      GtkTreeIter   iter;
+      Page         *page;
+
+      tree_model = gtk_tree_view_get_model (tree_view);
+
+      if (gtk_tree_model_get_iter (tree_model, &iter, path)) {
+        gtk_tree_model_get (tree_model, &iter, COLUMN_PAGE, &page, -1);
+      }
+
+      gtk_tree_path_free (path);
+
+      if (page) {
+        gtk_tooltip_set_text(tooltip, page->filename);
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+
 /*! \brief Geda Box Object Finalization Function
  *  \par Function Description
  *   Save the user preference to configuration system.
@@ -901,6 +946,13 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   /* Save pointer to the TreeView in pagesel structure */
   pagesel->treeview = tree_view;
+
+  /* ------------------ setup tooltips for the tree View ----------------- */
+
+  gtk_widget_set_has_tooltip (GTK_WIDGET (tree_view), TRUE);
+
+  g_signal_connect (tree_view, "query-tooltip",
+                    G_CALLBACK (pagesel_callback_query_tooltip), pagesel);
 
   /* -------------------- Setup the Drag & Drop Support ------------------- */
 
