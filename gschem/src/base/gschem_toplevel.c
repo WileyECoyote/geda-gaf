@@ -494,6 +494,15 @@ gschem_toplevel_get_last_image_path (GschemToplevel *w_current)
   return NULL;
 }
 
+/*!
+ * \brief Move specified Page Down
+ * \par Function Description
+ *  Calls geda_toplevel_move_page_down to move \a page down in the
+ *  list of pages after validating \a w_current.
+ *
+ *  \param [in] w_current This GschemToplevel
+ *  \param [in] page      The page that is to be moved.
+ */
 bool
 gschem_toplevel_move_page_down (GschemToplevel *w_current, Page *page)
 {
@@ -511,6 +520,15 @@ gschem_toplevel_move_page_down (GschemToplevel *w_current, Page *page)
   return FALSE;
 }
 
+/*!
+ * \brief Move specified Page up
+ * \par Function Description
+ *  Calls geda_toplevel_move_page_up to move \a page up in the list
+ *  of pages after validating \a w_current.
+ *
+ *  \param [in] w_current This GschemToplevel
+ *  \param [in] page      The page that is to be moved.
+ */
 bool
 gschem_toplevel_move_page_up (GschemToplevel *w_current, Page *page)
 {
@@ -528,6 +546,15 @@ gschem_toplevel_move_page_up (GschemToplevel *w_current, Page *page)
   return FALSE;
 }
 
+/*!
+ * \brief Set Page to the Current Page
+ * \par Function Description
+ *  Sets \a page to be the current page and updates history.
+ *
+ *  \param [in] w_current This GschemToplevel
+ *  \param [in] page      The page that is to be the current page.
+ */
+bool
 gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel;
@@ -551,6 +578,7 @@ gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 
 /*!
  * \brief Set the last_image_path in the GschemToplevel
+ * \par Function Description
  *  Set the last_image_path in \a w_current, which can be NULL. If \a w_current
  *  is not NULL then last_image_path will be set to \a path if \a path is also
  *  no NULL. The previous last_image_path is released if the pointer is retained

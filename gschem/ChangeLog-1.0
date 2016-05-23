@@ -1,5 +1,8 @@
 2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_toplevel.c: Add Doxygen comments for gschem_toplevel_
+      move_page_down and gschem_toplevel_move_page_up.
+
     * src/x/x_pagesel.c: Add popup menu options "Move Up" and "Move Down" to
       allow user to reorder the pages, albeit sequentially, from the PageSel
       Dialog. Declare tree_view as a GtkTreeView instead of treeview widget.
@@ -15,7 +18,7 @@
     * src/base/gschem_status_bar.c: Set min and max parameter specifications to
       more realistic values.
 
-    * src/base/gschem_toplevel.c: add methods gschem_toplevel_move_page_up and
+    * src/base/gschem_toplevel.c: Add methods gschem_toplevel_move_page_up and
       gschem_toplevel_move_page_down.
 
     * src/x/x_dnd.c: Handle case DROPPED_ON_PAGESEL in x_dnd_receive_string_sym,
