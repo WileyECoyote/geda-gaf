@@ -218,7 +218,8 @@ static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
  *  \par Function Description
  *  This function is called whenever a row is selected in the
  *  treeview. The page associated with the selected row is set
- *  to be the Current page.
+ *  to be the Current page. geda_tree_view_row_make_visible is
+ *  called to ensure the current page is visible in the tree.
  */
 static void
 pagesel_callback_selection_changed (GtkTreeSelection *selection,
@@ -250,9 +251,10 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
 
 /*! \brief Page Manager Dialog Treeview button Press Event
  *  \par Function Description
- *  This function is called when the user clicks a mouse button while
- *  over a treeview row. If the event was a "right-click" then a
- *  a the pagesel_popup_menu () function is called to present a menu.
+ *  This function is called when the user clicks a mouse button when
+ *  the pointer is over a treeview row. If the event was a "right-
+ *  click" then the pagesel_popup_menu function is called to present
+ *  a menu of options.
  */
 static bool
 pagesel_callback_button_pressed (GtkWidget      *widget,
@@ -290,7 +292,7 @@ pagesel_callback_button_pressed (GtkWidget      *widget,
  * occurs when users initiated the pop-up menu using a keyboard
  * short-cut such as Shift-F10, this callback is not associated
  * with mouse button events.
- * Calls pagesel_popup_menu to create the pop-up menu.
+ * Calls pagesel_popup_menu to create the context pop-up menu.
  */
 static bool
 pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
@@ -523,12 +525,10 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
   }
 }
 
-/*! \brief Regenerate attribute list when the visibility
- *         setting  changes and toggle switch image
- *  \par Function Description: This function changes images for
- *       show_inherited switch to the opposite state, i.e. if ON
- *       use OFF image and if OFF use ON image. The function then
- *       calls multiattrib_update to update the attribute list.
+/*!
+ * \brief Show full file name toggle switch responder
+ * \par Function Description
+ *  Toggles the switch state and updates the tree view.
  */
 static void
 pagesel_show_fullnames_toggled (GtkWidget *widget, Pagesel *pagesel)
@@ -539,12 +539,22 @@ pagesel_show_fullnames_toggled (GtkWidget *widget, Pagesel *pagesel)
   return;
 }
 
+/*!
+ * \brief Callback Refresh button clicked on Page Select Dialog
+ * \par Function Description
+ *  Causes Gtk to issue a GEDA_RESPONSE_REFRESH "response" on the dialog.
+ */
 static void
 pagesel_callback_refresh_clicked (GtkButton *RefreshButt, void *user_data)
 {
   gtk_dialog_response (GTK_DIALOG (user_data), GEDA_RESPONSE_REFRESH);
 }
 
+/*!
+ * \brief Callback Close button clicked on Page Select Dialog
+ * \par Function Description
+ *  Causes Gtk to issue a GEDA_RESPONSE_CLOSE "response" on the dialog.
+ */
 static void
 pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
 {
@@ -660,6 +670,14 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
   }
 }
 
+/*!
+ * \brief Callback Query Tooltip in the Page Select Dialog TreeView
+ * \par Function Description
+ *  Sets the tool-tip text to the page file name if the pointer is
+ *  over a valid row when not displaying the file names with paths.
+ *
+ * \returns TRUE if the tip was set, otherwise FALSE;
+ */
 static bool
 pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
                                bool        keyboard_mode,
