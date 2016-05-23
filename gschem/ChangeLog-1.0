@@ -1,5 +1,11 @@
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_pagesel.c: Add popup menu options "Move Up" and "Move Down" to
+      allow user to reorder the pages, albeit sequentially, from the PageSel
+      Dialog.
+
+2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_dnd.h: Add DROPPED_ON_PAGESEL as a DropLocation.
 
     * include/x_menus.h: Enumerate pop_edit_color in pop_MenuItem.

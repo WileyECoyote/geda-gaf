@@ -300,6 +300,90 @@ pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
   return TRUE;
 }
 
+/*!
+ * \brief Callback Page Select Dialog context Popup Page Down
+ * \par Function Description
+ *  This function calls gschem_toplevel_move_page_down with the page
+ *  of the current selection in the PageSel tree view, if the page
+ *  is moved, then pagesel_update is called to refresh the tree-view.
+ *  Rather than using the current page, this routine retrieves the
+ *  page from the selection to avoid a potential race condition with
+ *  pagesel_callback_selection_changed having called x_window_set_
+ *  current_page.
+ *
+ *  \param [in] menuitem   The Popup Menu Item selected (not used).
+ *  \param [in] user_data  The Pagesel object.
+ */
+static void
+pagesel_callback_popup_down  (GtkMenuItem *menuitem, void *user_data)
+{
+  GschemToplevel   *w_current;
+  Pagesel          *pagesel;
+  Page             *page;
+
+  GtkTreeSelection *selection;
+  GtkTreeModel     *model;
+  GtkTreeIter       iter;
+
+  pagesel   = (Pagesel*)user_data;
+
+  selection = gtk_tree_view_get_selection (pagesel->treeview);
+
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
+    return;
+  }
+
+  w_current = GSCHEM_DIALOG (pagesel)->w_current;
+
+  gtk_tree_model_get (model, &iter, COLUMN_PAGE, &page, -1);
+
+  if (gschem_toplevel_move_page_down(w_current, page)) {
+    pagesel_update (pagesel);
+  }
+}
+
+/*!
+ * \brief Callback Page Select Dialog context Popup Page Up
+ * \par Function Description
+ *  This function calls gschem_toplevel_move_page_up with the page
+ *  of the current selection in the PageSel tree view, if the page
+ *  is moved up, then pagesel_update is called to refresh the tree
+ *  view. Rather than using the current page, this routine retrieves
+ *  the page from the selection to avoid a potential race condition
+ *  with pagesel_callback_selection_changed having called x_window_
+ *  set_current_page.
+ *
+ *  \param [in] menuitem   The Popup Menu Item selected (not used).
+ *  \param [in] user_data  The Pagesel object.
+ */
+static void
+pagesel_callback_popup_up (GtkMenuItem *menuitem, void *user_data)
+{
+  GschemToplevel   *w_current;
+  Pagesel          *pagesel;
+  Page             *page;
+
+  GtkTreeSelection *selection;
+  GtkTreeModel     *model;
+  GtkTreeIter       iter;
+
+  pagesel   = (Pagesel*)user_data;
+
+  selection = gtk_tree_view_get_selection (pagesel->treeview);
+
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
+    return;
+  }
+
+  w_current = GSCHEM_DIALOG (pagesel)->w_current;
+
+  gtk_tree_model_get (model, &iter, COLUMN_PAGE, &page, -1);
+
+  if (gschem_toplevel_move_page_up(w_current, page)) {
+    pagesel_update (pagesel);
+  }
+}
+
 #define DEFINE_POPUP_CALLBACK(name, action) \
 static void \
 pagesel_callback_popup_##name (GtkMenuItem *menuitem, void *pagesel) { \
@@ -336,6 +420,9 @@ pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
   };
 
   struct menuitem_t menuitems[] = {
+    { N_("Move Up"),      G_CALLBACK (pagesel_callback_popup_up)           },
+    { N_("Move Down"),    G_CALLBACK (pagesel_callback_popup_down)         },
+    { "-",                NULL                                             },
     { N_("New Blank"),    G_CALLBACK (pagesel_callback_popup_new_blank)    },
     { N_("New Page"),     G_CALLBACK (pagesel_callback_popup_new_page)     },
     { N_("Open Page..."), G_CALLBACK (pagesel_callback_popup_open_page)    },
