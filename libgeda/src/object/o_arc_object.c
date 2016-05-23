@@ -79,7 +79,7 @@ geda_arc_object_copy(GedaObject *o_source)
 
 /*! O0202
  * \brief Get the sweep angle of the arc
- *
+ * \par Function Description
  * \param [in] object  Pointer to an Arc GedaObject
  *
  * \return The sweep angle of the arc
@@ -98,7 +98,7 @@ geda_arc_object_get_arc_sweep (const GedaObject *object)
 
 /*! O0203
  * \brief Get the x coordinate of the center of the arc
- *
+ * \par Function Description
  * \param [in] object  Pointer to an Arc GedaObject
  *
  * \return The x coordinate of the center of the arc
@@ -117,7 +117,7 @@ geda_arc_object_get_center_x (const GedaObject *object)
 
 /*! O0204
  * \brief Get the y coordinate of the center of the arc
- *
+ * \par Function Description
  * \param [in] object  Pointer to an Arc GedaObject
  *
  * \return The y coordinate of the center of the arc

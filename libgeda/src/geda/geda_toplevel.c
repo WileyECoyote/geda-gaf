@@ -650,11 +650,25 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
   return page;
 }
 
-bool geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
+/*!
+ * \brief Geda Toplevel Move Page Down
+ * \par Function Description
+ *  Exchanges \a page with the next page in the list of pages in
+ *  \a toplevel if a next page exist. Silently ignores if \a page
+ *  is not a valid Page object or if \a page is not in the list
+ *  of pages.
+ *
+ * \param [in] toplevel This toplevel
+ * \param [in] page     The page to be moved
+ *
+ * \returns TRUE if \a page was moved
+ */
+bool
+geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
-  if (page && geda_list_is_in_list(toplevel->pages, page)) {
+  if (GEDA_IS_PAGE(page)) {
 
     GList *iter;
     GList *pages;
@@ -674,11 +688,25 @@ bool geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
   return FALSE;
 }
 
-bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
+/*!
+ * \brief Geda Toplevel Move Page Up
+ * \par Function Description
+ *  Exchanges \a page with the previous page in the list of pages
+ *  in \a toplevel if a previous page exist. Silently ignores if
+ *  \a page is not a valid Page object or if \a page is not in the
+ *  list of pages.
+ *
+ * \param [in] toplevel This toplevel
+ * \param [in] page     The page to be moved
+ *
+ * \returns TRUE if \a page was moved
+ */
+bool
+geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
-  if (page && geda_list_is_in_list(toplevel->pages, page)) {
+  if (GEDA_IS_PAGE(page)) {
 
     GList *iter;
     GList *pages;
@@ -698,16 +726,28 @@ bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
   return FALSE;
 }
 
-void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
+/*!
+ * \brief Geda Toplevel Remove Page
+ * \par Function Description
+ *  Removes \a page from the list of pages in \a toplevel.
+ *  Silently ignores if \a page is not a valid Page object
+ *  or if \a page is not in the list.
+ *
+ * \param [in] toplevel This toplevel
+ * \param [in] page     New auto-save interval in seconds
+ */
+void
+geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
-  if (page && geda_list_is_in_list(toplevel->pages, page)) {
-    geda_page_unref (page);
-    geda_list_remove (toplevel->pages, page);
+  if (GEDA_IS_PAGE(page)) {
+    if (geda_list_is_in_list(toplevel->pages, page)) {
+      geda_page_unref (page);
+      geda_list_remove (toplevel->pages, page);
+    }
   }
 }
-
 
 /*! \brief Set Toplevel Auto Save Interval
  *   \par Function Description

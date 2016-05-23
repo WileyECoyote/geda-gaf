@@ -1,3 +1,14 @@
+2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Validate page objects and add/revise Doxygen
+      comments:
+
+            * geda_toplevel_move_page_down
+            * geda_toplevel_move_page_up
+            * geda_toplevel_remove_page
+
+    * src/object/o_arc_object.c: Revise Doxygen comments.
+
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Add methods geda_toplevel_move_page_down and
