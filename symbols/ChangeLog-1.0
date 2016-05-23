@@ -1,3 +1,8 @@
+2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD621-1.sym: add symbol; Op Amp,Instrumentation, Low
+      Drift and Low Power.
+
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADG707-1.sym: 16-Channel multiplexer, CMOS. Is a

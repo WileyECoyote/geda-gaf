@@ -1,0 +1,117 @@
+v 20160507 2
+T 1000 1200 8 10 1 1 0 0 1
+refdes=U?
+T 1000 1400 5 10 0 1 0 0 1
+device=AD621
+T 1000 1800 5 10 0 1 0 0 1
+description=OpAmp,Instrumentation,Low Drift,Low Power
+L 300 1000 300 200 3 0 0 0 -1 -1
+L 300 1000 1000 600 3 0 0 0 -1 -1
+L 1000 600 300 200 3 0 0 0 -1 -1
+L 400 850 400 750 3 0 0 0 -1 -1
+L 350 800 450 800 3 0 0 0 -1 -1
+L 350 400 450 400 3 0 0 0 -1 -1
+P 100 800 300 800 1 0 0
+{
+T 125 850 5 8 1 1 0 0 1
+pinnumber=3
+T 325 650 9 8 0 1 0 0 1
+pinlabel=in+
+T 200 850 5 8 0 1 0 0 1
+pinseq=1
+T 325 650 5 8 0 1 0 0 1
+pintype=in
+}
+P 100 400 300 400 1 0 0
+{
+T 125 450 5 8 1 1 0 0 1
+pinnumber=2
+T 325 475 9 8 0 1 0 0 1
+pinlabel=in-
+T 200 450 5 8 0 1 0 0 1
+pinseq=2
+T 325 475 5 8 0 1 0 0 1
+pintype=in
+}
+P 700 800 700 1000 1 0 1
+{
+T 750 925 5 8 1 1 0 0 1
+pinnumber=7
+T 750 800 9 8 0 1 0 0 1
+pinlabel=V+
+T 825 925 5 8 0 1 0 0 1
+pinseq=3
+T 650 850 5 6 0 1 90 0 1
+pintype=pwr
+}
+P 500 300 500 100 1 0 1
+{
+T 350 75 5 8 1 1 0 0 1
+pinnumber=4
+T 375 300 9 6 0 1 0 0 1
+pinlabel=V-
+T 275 75 5 8 0 1 0 0 1
+pinseq=4
+T 600 175 5 6 0 1 90 6 1
+pintype=pwr
+}
+P 1000 600 1200 600 1 0 1
+{
+T 1050 450 5 8 1 1 0 0 1
+pinnumber=6
+T 1000 650 9 8 0 1 0 0 1
+pinlabel=out
+T 1125 450 5 8 0 1 0 0 1
+pinseq=5
+T 1000 650 9 8 0 1 0 0 1
+pintype=out
+}
+P 700 400 700 200 1 0 1
+{
+T 575 225 5 8 1 1 0 0 1
+pinnumber=1
+T 575 425 9 6 0 1 0 0 1
+pinlabel=G1
+T 750 50 5 8 0 1 0 0 1
+pinseq=6
+T 800 300 5 6 0 1 90 6 1
+pintype=pas
+}
+P 900 500 900 300 1 0 1
+{
+T 775 350 5 8 1 1 0 0 1
+pinnumber=8
+T 750 525 9 6 0 1 0 0 1
+pinlabel=G2
+T 950 100 5 8 0 1 0 0 1
+pinseq=7
+T 1000 350 5 6 0 1 90 6 1
+pintype=pas
+}
+T 1000 1000 5 10 1 1 0 0 1
+value=AD621BR
+T 1000 800 9 10 1 1 0 0 1
+footprint=SOIC8
+T 1000 2200 5 10 0 1 0 0 1
+documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD621.pdf
+T 1000 1600 5 10 0 0 0 0 1
+numslots=0
+T 1000 2000 5 10 0 0 0 0 1
+symversion=0.2
+T 1000 2600 5 10 0 0 0 0 1
+use-license=unlimited
+T 1000 2400 5 10 0 0 0 0 1
+dist-license=GPLv3
+T 1000 2800 5 10 0 0 0 0 1
+author=AutoTron
+P 500 900 500 1100 1 0 1
+{
+T 550 1075 5 8 1 1 0 0 1
+pinnumber=5
+T 150 1100 9 8 0 1 0 0 1
+pinlabel=REF
+T 625 1075 5 8 0 1 0 0 1
+pinseq=8
+T 450 1000 5 6 0 1 90 0 1
+pintype=pas
+}
