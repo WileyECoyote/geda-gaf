@@ -1,3 +1,11 @@
+2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revise i_command_process to reposition the
+      pointer to the source coordinates for actions initiated from the
+      context menu.
+
+    * src/x/x_pagesel.c: Remove redundant setting of tree_view variable.
+
 2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_toplevel.c: Add Doxygen comments for gschem_toplevel_

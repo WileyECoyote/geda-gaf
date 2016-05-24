@@ -403,6 +403,9 @@ void i_command_process(GschemToplevel *w_current, const char* command,
           command_struc[i].point.x = wx;
           command_struc[i].point.y = wy;
           check_magnet = TRUE;
+          i_pan_warp_cursor (w_current->drawing_area,
+                             w_current->pointer_sx,
+                             w_current->pointer_sy);
         }
         /* could check action but all current actions that also
          * use "hot" seem magnetic-able candidates */
