@@ -41,6 +41,38 @@
 #include <gtk/gtk.h>
 
 #if !GTK_CHECK_VERSION(3, 0, 0)
+
+/* Map GtkStateFlags to GtkStateType */
+#ifndef GTK_STATE_FLAG_NORMAL
+#define GTK_STATE_FLAG_NORMAL GTK_STATE_NORMAL
+#endif
+#ifndef GTK_STATE_FLAG_ACTIVE
+#define GTK_STATE_FLAG_ACTIVE GTK_STATE_ACTIVE
+#endif
+#ifndef GTK_STATE_FLAG_PRELIGHT
+#define GTK_STATE_FLAG_PRELIGHT GTK_STATE_PRELIGHT
+#endif
+
+#ifndef GTK_STATE_FLAG_SELECTED
+#define GTK_STATE_FLAG_SELECTED GTK_STATE_SELECTED
+#endif
+
+#ifndef GTK_STATE_FLAG_INSENSITIVE
+#define GTK_STATE_FLAG_INSENSITIVE GTK_STATE_INSENSITIVE
+#endif
+
+/* The remaining GtkStateFlags:
+ *
+ *      GTK_STATE_FLAG_INCONSISTENT = 1 << 4,
+ *      GTK_STATE_FLAG_FOCUSED      = 1 << 5,
+ *      GTK_STATE_FLAG_BACKDROP     = 1 << 6,
+ *      GTK_STATE_FLAG_DIR_LTR      = 1 << 7,
+ *      GTK_STATE_FLAG_DIR_RTL      = 1 << 8
+ *
+ * do not have a Gtk2 equivalent and should not be passed
+ * to Gtk2 functions.
+ */
+
 #define gtk_box_new(orientation, spacing) (orientation == GTK_ORIENTATION_HORIZONTAL \
         ? gtk_hbox_new (FALSE, spacing)\
         : gtk_vbox_new (FALSE, spacing))

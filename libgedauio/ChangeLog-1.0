@@ -1,3 +1,7 @@
+2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add translations for some GtkStateFlags.
+
 2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_bulb.c: Check virtual group_changed.
