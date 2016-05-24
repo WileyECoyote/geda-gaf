@@ -1498,9 +1498,13 @@ COMMAND (do_break)
 
   object_list = geda_list_get_glist (Current_Selection);
 
-  if HOT_ACTION (do_break) {
+  if (HOT_ACTION (do_break)) {
+
     if (object_list) {
       o_break_hot(w_current, object_list, CMD_X(do_break), CMD_Y(do_break));
+    }
+    if (w_current->event_state == ENDBREAK) {
+      i_status_set_state(w_current, ENDBREAK);
     }
   }
   else {
