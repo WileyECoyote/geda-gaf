@@ -643,8 +643,8 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
         GtkTreeIter   iter;
         Page         *page;
 
-        treemodel = gtk_tree_view_get_model (tree_view);
         page      = NULL;
+        treemodel = gtk_tree_view_get_model (tree_view);
 
         if (gtk_tree_model_get_iter (treemodel, &iter, path)) {
           gtk_tree_model_get (treemodel, &iter, COLUMN_PAGE, &page, -1);
@@ -691,7 +691,7 @@ pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
   if (!state) {
 
     GtkTreePath  *path;
-    GtkTreeView  *tree_view = pagesel->treeview; /* is also widget */
+    GtkTreeView  *tree_view; /* is also widget */
 
     int tx, ty;
 
@@ -706,6 +706,7 @@ pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
       GtkTreeIter   iter;
       Page         *page;
 
+      page       = NULL;
       tree_model = gtk_tree_view_get_model (tree_view);
 
       if (gtk_tree_model_get_iter (tree_model, &iter, path)) {
