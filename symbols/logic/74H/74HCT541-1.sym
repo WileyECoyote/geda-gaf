@@ -207,7 +207,7 @@ device=74HCT541
 T 300 3350 5 10 0 0 0 0 1
 footprint=DIP20
 T 300 3550 5 10 0 0 0 0 1
-description=8 bit bus transceiver
+description=8 bit bus transceiver,CMOS Level,non-inverting
 T 300 3750 5 10 0 0 0 0 1
 net=VCC:20
 T 300 3950 5 10 0 0 0 0 1
