@@ -57,12 +57,14 @@
 #define geda_close_log            geda_utility_log_close
 #define geda_get_log_time         geda_utility_log_get_log_time
 #define geda_init_log             geda_utility_log_init
-#define geda_quite_log            geda_utility_log_quite
+#define geda_log_q                geda_utility_log_quite
 #define geda_read_log             geda_utility_log_read
 #define geda_set_log_time         geda_utility_log_set_log_time
 #define geda_set_log_update_func  geda_utility_log_set_update_func
-#define geda_system_log           geda_utility_log_system
-#define geda_verbose_log          geda_utility_log_verbose
+#define geda_log_s                geda_utility_log_system
+#define geda_log_v                geda_utility_log_verbose
+
+/* Seems out of place, but maybe appropriate */
 
 /* u_string.c */
 #define geda_strconcat            geda_utility_string_concat

@@ -2,6 +2,9 @@
 
     * src/Makefile.am: Add LOG_DOMAIN = G_LOG_DOMAIN.
 
+    * include/libgeda/geda_utility.h: Rename common log macros; geda_log_q
+      geda_log_s and geda_log_v.
+
 2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Validate page objects and add/revise Doxygen
