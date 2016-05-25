@@ -1,3 +1,13 @@
+2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Revise case default to utilize __func__, 2 PLCS.
+
+    * src/x_gtksheet.c: Revise case default to utilize __func__.
+
+    * src/x_toolbars.c: Revise case default to utilize __func__, 3 PLCS.
+
+    * src/x_window.c: Revise case default to utilize __func__.
+
 2016-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Renamed functions; show_sheet_entry->on_entry_changed,

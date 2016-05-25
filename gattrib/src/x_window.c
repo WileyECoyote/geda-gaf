@@ -120,7 +120,7 @@ void x_window_clipboard_handler(int do_what)
       break;
 
     default:
-      u_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
+      u_log_message ("%s: unknown Id [%d]\n", __func__, do_what);
   }
 }
 

@@ -139,7 +139,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
         gtk_sheet_range_clear(sheet, &sheet->range);
         break;
       default:
-          u_log_message("button_responder(): UKNOWN BUTTON ID: %d\n", WhichItem);
+          u_log_message ("%s: unknown button ID: %d\n", __func__, WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup);
