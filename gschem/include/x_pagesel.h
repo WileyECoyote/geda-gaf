@@ -37,11 +37,13 @@
 #define COLUMN_NAME_MIN_WIDTH     235 /* Minimum width for filename column */
 #define COLUMN_CHANGED_MIN_WIDTH   35 /* Minimum width for Changed column */
 
+#define PAGESEL_MIN_HEIGHT        250
+#define PAGESEL_ROWS_THRESHOLD      4
+
 #define TYPE_PAGESEL         (pagesel_get_type())
 #define PAGESEL(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PAGESEL, Pagesel))
 #define PAGESEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PAGESEL, PageselClass))
 #define IS_PAGESEL(obj)      (is_a_pagesel((Pagesel*)obj))
-
 
 typedef struct _PageselClass PageselClass;
 typedef struct _Pagesel      Pagesel;
@@ -52,11 +54,11 @@ struct _PageselClass {
 };
 
 struct _Pagesel {
-
-  GschemDialog parent_instance;
-  GedaType     instance_type;
-  GtkTreeView *treeview;
-
+  GschemDialog     parent_instance;
+  GedaType         instance_type;
+  GtkCellRenderer *renderer;        /* For Name Column */
+  GtkTreeView     *treeview;
+  int              row_height;
 };
 
 GedaType pagesel_get_type (void) GEDA_CONST;

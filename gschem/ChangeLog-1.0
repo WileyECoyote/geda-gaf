@@ -1,3 +1,19 @@
+2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Program Enhancement: New feature - Auto adjust Page Select Height
+      Begin implementation of new feature to add an option to automatically
+      adjust the height of the Page Select Dialog. This is a deviation from
+      other dialogs which always retain and restore geometry. The PageSelect
+      dialog can be launched with a single file opened, or many files so
+      automatically adjusting the height for users would be a "nice" feature.
+      This implementation only shrinks the dialog.
+
+    * include/x_pagesel.h: Add define constants for PAGESEL_MIN_HEIGHT and
+      PAGESEL_ROWS_THRESHOLD, add members renderer and row_height.
+
+    * src/x/x_pagesel.c: Add switch AutoHeight, function x_pagesel_auto_height,
+      pagesel_get_row_height and pagesel_auto_height_toggled.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_command_process to reposition the
@@ -24,6 +40,8 @@
       Add and revise Doxygen comments.
 
 2016-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Program Enhancement: New feature - Drag & Drop on the Page Select Dialog
 
     * include/x_dnd.h: Add DROPPED_ON_PAGESEL as a DropLocation.
 

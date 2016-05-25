@@ -44,13 +44,15 @@
 
 /* Enumerate Control IDs */
 typedef enum {
-       ShowFullName,
+       AutoHeight,
+       ShowFullName
 } ControlID;
 
 static GschemDialogClass *pagesel_parent_class = NULL;
 
 static WidgetStringData DialogStrings[] = {
-  { "ShowFullNameSwitch",  "Show full names", "Enable or disable displaying of paths in file names"},
+  { "AutoHeightSwitch",    "AutoHeight", "Enable or disable Page Select dialog auto height"},
+  { "ShowFullNameSwitch",  "full names", "Enable or disable displaying of paths in file names"},
   { NULL, NULL, NULL},
 };
 
@@ -69,8 +71,13 @@ static GtkTargetEntry dnd_target_list[] =
 
 static unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
-static void select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page);
-static void x_pagesel_callback_response (GtkDialog *d, int r, void *log);
+static void select_page                 (GtkTreeView *treeview,
+                                         GtkTreeIter *parent,
+                                         Page        *page);
+static void x_pagesel_callback_response (GtkDialog   *dialog,
+                                         int          response,
+                                         void        *log);
+static void x_pagesel_auto_height       (Pagesel     *pagesel);
 
 /*! \brief Open the page manager dialog.
  *  \par Function Description
@@ -96,6 +103,8 @@ x_pagesel_open (GschemToplevel *w_current)
                       w_current);
 
     gtk_widget_show (w_current->pswindow);
+
+    x_pagesel_auto_height((Pagesel*)w_current->pswindow);
   }
   else {
     gtk_window_present(GTK_WINDOW(w_current->pswindow));
@@ -213,6 +222,60 @@ enum {
 static void pagesel_class_init (void *class, void *class_data);
 static void pagesel_instance_init (GTypeInstance *instance, void *class);
 static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
+
+static void
+pagesel_get_row_height (Pagesel *pagesel)
+{
+  GdkRectangle cell_area;
+  int          x_offset;
+  int          y_offset;
+  int          width;
+  int          height;
+
+  gtk_cell_renderer_get_size (pagesel->renderer,
+                              GTK_WIDGET (pagesel->treeview),
+                              &cell_area,
+                              &x_offset,
+                              &y_offset,
+                              &width,
+                              &height);
+
+  pagesel->row_height = height + 2;
+}
+
+static void
+x_pagesel_auto_height(Pagesel *pagesel)
+{
+  GschemToplevel *w_current;
+  GtkWidget      *toggle;
+  bool            auto_height;
+  int width, height;
+  int pcount;
+
+  toggle      = GET_EDA_OBJECT(AutoHeight);
+  auto_height = GET_SWITCH_STATE(toggle);
+
+  if (!auto_height) {
+    return;
+  }
+
+  if (!pagesel->row_height ) {
+    pagesel_get_row_height (pagesel);
+  }
+
+  gtk_window_get_size (GTK_WINDOW (pagesel), &width, &height);
+
+  w_current = GSCHEM_DIALOG (pagesel)->w_current;
+
+  pcount = geda_toplevel_get_page_count(w_current->toplevel);
+
+  if (pcount < PAGESEL_ROWS_THRESHOLD) {
+    if (height > PAGESEL_MIN_HEIGHT) {
+      gtk_window_resize(GTK_WINDOW(pagesel), width, PAGESEL_MIN_HEIGHT);
+    }
+  }
+
+}
 
 /*! \brief Page Manager Dialog Tree View Page Selected
  *  \par Function Description
@@ -525,6 +588,20 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
   }
 }
 
+
+/*!
+ * \brief Show full file name toggle switch responder
+ * \par Function Description
+ *  Toggles the switch state and updates the tree view.
+ */
+static void
+pagesel_auto_height_toggled (GtkWidget *widget, Pagesel *pagesel)
+{
+  TOGGLE_SWITCH(widget);
+  x_pagesel_auto_height(pagesel);
+  return;
+}
+
 /*!
  * \brief Show full file name toggle switch responder
  * \par Function Description
@@ -732,11 +809,21 @@ static void
 pagesel_finalize(GObject *object)
 {
   Pagesel    *pagesel = PAGESEL(object);
-  GtkWidget  *widget  = GET_EDA_OBJECT(ShowFullName);
   EdaConfig  *cfg     = eda_config_get_user_context();
+  GtkWidget  *widget;
   const char *group   = IDS_PAGE_MANAGER;
-  const char *key     = "full-names";
-        int   value   = GET_SWITCH_STATE(widget);
+  const char *key;
+        int   value;
+
+  key    = "full-names";
+  widget = GET_EDA_OBJECT(ShowFullName);
+  value  = GET_SWITCH_STATE(widget);
+
+  eda_config_set_boolean (cfg, group, key, value);
+
+  key    = "auto-height";
+  widget = GET_EDA_OBJECT(AutoHeight);
+  value  = GET_SWITCH_STATE(widget);
 
   eda_config_set_boolean (cfg, group, key, value);
 
@@ -833,12 +920,17 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   const char *key   = "full-names";
 
   int full_names;
+  int auto_height;
 
   pagesel = (Pagesel*)instance;
 
   pagesel->instance_type = pagesel_get_type();
 
   i_var_restore_group_boolean(cfg, group, key, &full_names, TRUE);
+
+  key = "auto-height";
+
+  i_var_restore_group_boolean(cfg, group, key, &auto_height, TRUE);
 
   /* dialog initialization */
   g_object_set (G_OBJECT (pagesel),
@@ -919,6 +1011,12 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                                            pagesel, NULL);
   gtk_tree_view_append_column (tree_view, column);
 
+  /* Save pointer to the Name cell renderer in pagesel structure */
+  pagesel->renderer = renderer;
+
+  /* Which is used to determine the row height later */
+  pagesel->row_height = 0;
+
   /* --------------------- second column: changed  ---------------------- */
   renderer = GTK_CELL_RENDERER (
     g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
@@ -988,6 +1086,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   GtkWidget *action_hbox;
   GtkWidget *switch_vbox;
   GtkWidget *butt_hbox;
+  GtkWidget *AutoHeightSwitch;
   GtkWidget *ShowFullNameSwitch;
   GtkWidget *fresh_butt;
   GtkWidget *close_butt;
@@ -1011,15 +1110,22 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   switch_vbox = gtk_vbox_new(FALSE, 0);
   gtk_box_pack_start (GTK_BOX (action_hbox), switch_vbox, FALSE, FALSE, 0);
 
-  /* Setup the full-name option toggle switch */
+  /* Setup the option toggle switches */
+  AutoHeightSwitch   = NULL;
   ShowFullNameSwitch = NULL;
 
-  /* Create a new Toggle Switch widget */
+  /* Create a new Toggle Switch widget for ShowFullNames */
   EDA_SWITCH((GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, full_names);
-  gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
   /* Setup callback for Toggle Switch widget */
   GEDA_CALLBACK_SWITCH (ShowFullName, pagesel_show_fullnames_toggled, ThisDialog)
+
+    /* Create a new Toggle Switch widget for AutoHeight */
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), switch_vbox, AutoHeight, 0, auto_height);
+  gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
+
+  /* Setup callback for Toggle Switch widget */
+  GEDA_CALLBACK_SWITCH (AutoHeight, pagesel_auto_height_toggled, ThisDialog)
 
   /* Create and add alignment container to hold the button container */
   alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
