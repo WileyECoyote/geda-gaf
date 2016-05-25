@@ -258,7 +258,7 @@ check_accessors ()
 
     value = geda_bus_get_x0(bus);
     if (value - x1) {
-      fprintf(stderr, "FAILED: (O050601) bus %d != %d\n", value, x1);
+      fprintf(stderr, "FAILED: geda_bus_get_x0 %d != %d\n", value, x1);
       fail++;
     }
 
