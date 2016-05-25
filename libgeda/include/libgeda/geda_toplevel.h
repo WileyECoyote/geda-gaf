@@ -223,10 +223,12 @@ void          geda_toplevel_add_page                (GedaToplevel *toplevel, Pag
 int           geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_current_page        (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int page_id);
+int           geda_toplevel_get_page_count          (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_up             (GedaToplevel *toplevel);
 bool          geda_toplevel_move_page_down          (GedaToplevel *toplevel, Page *page);
 bool          geda_toplevel_move_page_up            (GedaToplevel *toplevel, Page *page);
+
 void          geda_toplevel_remove_page             (GedaToplevel *toplevel, Page *page);
 
 bool          geda_toplevel_set_auto_save_interval  (GedaToplevel *toplevel, int interval);

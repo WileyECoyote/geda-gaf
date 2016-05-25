@@ -500,7 +500,8 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
  *  \param toplevel  The GedaToplevel object.
  *  \param new_page  A GedaPage object.
  */
-void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
+void
+geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
@@ -535,22 +536,25 @@ geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
 *
 *   \param [in,out] toplevel This toplevel
 */
-Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
+Page*
+geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   return toplevel->page_current;
 }
 
-/*! \brief Get Page given the Page Id
-*   \par Function Description
-*   This function returns a pointer the Page object with the given
-*   page ID or NULL is no such Page exist in \a toplevel.
-*
-*   \param [in] toplevel This toplevel
-*   \param [in] page_id  The pid
-*/
-Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
+/*!
+ * \brief Get Page given the Page Id
+ * \par Function Description
+ *  This function returns a pointer the Page object with the given
+ *  page ID or NULL is no such Page exist in \a toplevel.
+ *
+ * \param [in] toplevel This toplevel
+ * \param [in] page_id  The pid
+ */
+Page*
+geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 {
   const GList *pages, *iter;
   Page *found_page;
@@ -574,14 +578,32 @@ Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
   return found_page;
 }
 
-/*! \brief Get the Next page in GedaToplevel
-*   \par Function Description
-*   This function returns a pointer to the next page in the \a toplevel
-*   list of pages, toplevel->pages, or NULL if the current page in the
-*   toplevel is the last page in the list or the current page is not set.
-*
-*   \param [in,out] toplevel This toplevel
-*/
+/*!
+ * \brief Get the number of page in Toplevel Page list
+ * \par Function Description
+ *  Returns the numberr pages in \a toplevel page list.
+ *
+ * \param [in] toplevel This toplevel
+ */
+int
+geda_toplevel_get_page_count (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
+
+  GList *pages = geda_list_get_glist(toplevel->pages);
+
+  return pages ? g_list_length(pages) : 0;
+}
+
+/*!
+ * \brief Get the Next page in GedaToplevel
+ * \par Function Description
+ *  This function returns a pointer to the next page in the \a toplevel
+ *  list of pages, toplevel->pages, or NULL if the current page in the
+ *  toplevel is the last page in the list or the current page is not set.
+ *
+ *  \param [in] toplevel This toplevel
+ */
 Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 {
   GList *iter;
@@ -612,14 +634,15 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
   return page;
 }
 
-/*! \brief Get the Page Up in GedaToplevel
-*   \par Function Description
-*   This function returns a pointer to the previous page in the \a toplevel
-*   list of pages, toplevel->pages, or NULL if the current page in the
-*   toplevel is the first page in the list or the current page is not set.
-*
-*   \param [in,out] toplevel This toplevel
-*/
+/*!
+ * \brief Get the Page Up in GedaToplevel
+ * \par Function Description
+ *   This function returns a pointer to the previous page in the \a toplevel
+ *   list of pages, toplevel->pages, or NULL if the current page in the
+ *   toplevel is the first page in the list or the current page is not set.
+ *
+ * \param [in] toplevel This toplevel
+ */
 Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 {
   GList *iter;
