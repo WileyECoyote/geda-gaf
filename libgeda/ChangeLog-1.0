@@ -3,6 +3,9 @@
     * src/object/o_bus_object.c: Rename coordinate accessors using base-1,
       i.e. geda_bus_object_get_x0->geda_bus_object_get_x1.
 
+    * tests/test_circle_object.c: Enable NULL test, i.e. remove comments,
+      for circle filling options.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Add LOG_DOMAIN = G_LOG_DOMAIN.

@@ -249,7 +249,6 @@ check_accessors ()
     result++;
   }
 
-/*
   if (geda_circle_object_get_fill_angle1(NULL)) {
     fprintf(stderr, "FAILED: (O060500) %s center y not zero\n", TOBJECT);
     result++;
@@ -279,8 +278,6 @@ check_accessors ()
     fprintf(stderr, "FAILED: (O061000) %s center y not zero\n", TOBJECT);
     result++;
   }
-
- */
 
   if (geda_circle_object_get_radius(NULL)) {
     fprintf(stderr, "FAILED: (O061600) %s radius not zero\n", TOBJECT);
