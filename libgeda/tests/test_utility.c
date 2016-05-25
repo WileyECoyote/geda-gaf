@@ -228,12 +228,12 @@ int test_log (void)
   /* === Function 01: geda_close_log          geda_utility_log_close === */
   /* === Function 02: geda_get_log_time       geda_utility_log_get_log_time === */
   /* === Function 03: geda_init_log           geda_utility_log_init === */
-  /* === Function 04: geda_quite_log          geda_utility_log_quite === */
+  /* === Function 04: geda_log_q              geda_utility_log_quite === */
   /* === Function 05: geda_read_log           geda_utility_log_read === */
   /* === Function 06: geda_set_log_time       geda_utility_log_set_log_time === */
-  /* === Function 07: geda_set_log_update_func    geda_utility_log_set_update_func === */
-  /* === Function 08: geda_system_log            geda_utility_log_system === */
-  /* === Function 09: geda_verbose_log            geda_utility_log_verbose === */
+  /* === Function 07: geda_set_log_update_func  geda_utility_log_set_update_func === */
+  /* === Function 08: geda_log_s                geda_utility_log_system === */
+  /* === Function 09: geda_log_v                geda_utility_log_verbose === */
 
   return 0;
 }

@@ -295,7 +295,7 @@ geda_bus_object_get_position(GedaObject *object, int *x, int *y)
  * \return The x coordinate for the first endpoint
  */
 int
-geda_bus_object_get_x0 (const GedaObject *object)
+geda_bus_object_get_x1 (const GedaObject *object)
 {
   if (GEDA_IS_BUS(object)) {
     return object->line->x[0];
@@ -316,7 +316,7 @@ geda_bus_object_get_x0 (const GedaObject *object)
  * \return The x coordinate for the second endpoint
  */
 int
-geda_bus_object_get_x1 (const GedaObject *object)
+geda_bus_object_get_x2 (const GedaObject *object)
 {
   if (GEDA_IS_BUS(object)) {
     return object->line->x[1];
@@ -337,7 +337,7 @@ geda_bus_object_get_x1 (const GedaObject *object)
  * \return The y coordinate for the first endpoint
  */
 int
-geda_bus_object_get_y0 (const GedaObject *object)
+geda_bus_object_get_y1 (const GedaObject *object)
 {
   if (GEDA_IS_BUS(object)) {
     return object->line->y[0];
@@ -358,7 +358,7 @@ geda_bus_object_get_y0 (const GedaObject *object)
  * \return The y coordinate for the second endpoint
  */
 int
-geda_bus_object_get_y1 (const GedaObject *object)
+geda_bus_object_get_y2 (const GedaObject *object)
 {
   if (GEDA_IS_BUS(object)) {
     return object->line->y[1];
@@ -678,7 +678,7 @@ geda_bus_object_set_ripper_direction (GedaObject *object, int direction)
  * \param [in] x The new x coordinate for the first endpoint
  */
 void
-geda_bus_object_set_x0 (GedaObject *object, int x)
+geda_bus_object_set_x1 (GedaObject *object, int x)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->x[0] = x;
@@ -699,7 +699,7 @@ geda_bus_object_set_x0 (GedaObject *object, int x)
  * \param [in] x The new x coordinate for the second endpoint
  */
 void
-geda_bus_object_set_x1 (GedaObject *object, int x)
+geda_bus_object_set_x2 (GedaObject *object, int x)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->x[1] = x;
@@ -720,7 +720,7 @@ geda_bus_object_set_x1 (GedaObject *object, int x)
  * \param [in] y The new y coordinate for the first endpoint
  */
 void
-geda_bus_object_set_y0 (GedaObject *object, int y)
+geda_bus_object_set_y1 (GedaObject *object, int y)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->y[0] = y;
@@ -741,7 +741,7 @@ geda_bus_object_set_y0 (GedaObject *object, int y)
  * \param [in] y The new y coordinate for the second endpoint
  */
 void
-geda_bus_object_set_y1 (GedaObject *object, int y)
+geda_bus_object_set_y2 (GedaObject *object, int y)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->y[1] = y;

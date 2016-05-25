@@ -62,10 +62,10 @@
  *      O0503    geda_bus_object_get_direction
  *      O0504    geda_bus_object_get_ripper_direction
  *      O0505    geda_bus_object_get_position
- *      O0506    geda_bus_object_get_x0
- *      O0507    geda_bus_object_get_x1
- *      O0508    geda_bus_object_get_y0
- *      O0509    geda_bus_object_get_y1
+ *      O0506    geda_bus_object_get_x1
+ *      O0507    geda_bus_object_get_x2
+ *      O0508    geda_bus_object_get_y1
+ *      O0509    geda_bus_object_get_y2
  *      O0510    geda_bus_object_mirror
  *      O0511    geda_bus_object_modify
  *      O0512    geda_bus_object_new
@@ -74,10 +74,10 @@
  *      O0515    geda_bus_object_read
  *      O0516    geda_bus_object_rotate
  *      O0517    geda_bus_object_set_ripper_direction
- *      O0518    geda_bus_object_set_x0
- *      O0519    geda_bus_object_set_x1
- *      O0520    geda_bus_object_set_y0
- *      O0521    geda_bus_object_set_y1
+ *      O0518    geda_bus_object_set_x1
+ *      O0519    geda_bus_object_set_x2
+ *      O0520    geda_bus_object_set_y1
+ *      O0521    geda_bus_object_set_y2
  *      O0522    geda_bus_object_to_buffer
  *      O0523    geda_bus_object_translate
  */
@@ -200,17 +200,17 @@ check_accessors ()
   int result = 0;
 
   count = geda_bus_object_get_direction(NULL);
-  count = geda_bus_object_get_x0(NULL);
   count = geda_bus_object_get_x1(NULL);
-  count = geda_bus_object_get_y0(NULL);
+  count = geda_bus_object_get_x2(NULL);
   count = geda_bus_object_get_y1(NULL);
+  count = geda_bus_object_get_y2(NULL);
   count = geda_bus_object_get_ripper_direction(NULL);
 
   geda_bus_object_set_ripper_direction(NULL, 1);
-  geda_bus_object_set_x0(NULL, 18);
-  geda_bus_object_set_x1(NULL, 19);
-  geda_bus_object_set_y0(NULL, 20);
-  geda_bus_object_set_y1(NULL, 21);
+  geda_bus_object_set_x1(NULL, 18);
+  geda_bus_object_set_x2(NULL, 19);
+  geda_bus_object_set_y1(NULL, 20);
+  geda_bus_object_set_y2(NULL, 21);
 
   for (count = 0; count < 3; count++) {
 
@@ -292,34 +292,34 @@ check_accessors ()
       fail++;
     }
 
-    /* === Function 06: geda_bus_object_get_x0  === */
+    /* === Function 06: geda_bus_object_get_x1  === */
 
-    value = geda_bus_object_get_x0(object0);
+    value = geda_bus_object_get_x1(object0);
     if (value - x1) {
       fprintf(stderr, "FAILED: (O050601) bus %d != %d\n", value, x1);
       fail++;
     }
 
-    /* === Function 07: geda_bus_object_get_x1  === */
+    /* === Function 07: geda_bus_object_get_x2  === */
 
-    value = geda_bus_object_get_x1(object0);
+    value = geda_bus_object_get_x2(object0);
 
     if (value - x2) {
       fprintf(stderr, "FAILED: (O050701) bus %d != %d\n", value, x2);
       fail++;
     }
 
-    /* === Function 08: geda_bus_object_get_y0  === */
+    /* === Function 08: geda_bus_object_get_y1  === */
 
-    value = geda_bus_object_get_y0(object0);
+    value = geda_bus_object_get_y1(object0);
     if (value - y1) {
       fprintf(stderr, "FAILED: (O050801) bus %d != %d\n", value, y1);
       fail++;
     }
 
-    /* === Function 09: geda_bus_object_get_y1  === */
+    /* === Function 09: geda_bus_object_get_y2  === */
 
-    value = geda_bus_object_get_y1(object0);
+    value = geda_bus_object_get_y2(object0);
 
     if (value - y2) {
       fprintf(stderr, "FAILED: (O050901) bus %d != %d\n", value, y2);
@@ -328,35 +328,35 @@ check_accessors ()
 
     /* Reverse the coordinates */
 
-    /* === Function 18: geda_bus_object_set_x0  === */
-    geda_bus_object_set_x0(object0, x2);
+    /* === Function 18: geda_bus_object_set_x1  === */
+    geda_bus_object_set_x1(object0, x2);
 
     if (object0->line->x[0] - x2) {
-      fprintf(stderr, "FAILED: (O051801) geda_bus_object_set_x0\n");
+      fprintf(stderr, "FAILED: (O051801) geda_bus_object_set_x1\n");
       fail++;
     }
 
-    /* === Function 19: geda_bus_object_set_x1  === */
-    geda_bus_object_set_x1(object0, x1);
+    /* === Function 19: geda_bus_object_set_x2  === */
+    geda_bus_object_set_x2(object0, x1);
 
     if (object0->line->x[1] - x1) {
-      fprintf(stderr, "FAILED: (O051901) geda_bus_object_set_x1\n");
+      fprintf(stderr, "FAILED: (O051901) geda_bus_object_set_x2\n");
       fail++;
     }
 
-    /* === Function 20: geda_bus_object_set_y0  === */
-    geda_bus_object_set_y0(object0, y2);
+    /* === Function 20: geda_bus_object_set_y1  === */
+    geda_bus_object_set_y1(object0, y2);
 
     if (object0->line->y[0] - y2) {
-      fprintf(stderr, "FAILED: (O052001) geda_bus_object_set_y0\n");
+      fprintf(stderr, "FAILED: (O052001) geda_bus_object_set_y1\n");
       fail++;
     }
 
-    /* === Function 21: geda_bus_object_set_y1  === */
-    geda_bus_object_set_y1(object0, y1);
+    /* === Function 21: geda_bus_object_set_y2  === */
+    geda_bus_object_set_y2(object0, y1);
 
     if (object0->line->y[1] - y1) {
-      fprintf(stderr, "FAILED: (O052101) geda_bus_object_set_y1\n");
+      fprintf(stderr, "FAILED: (O052101) geda_bus_object_set_y2\n");
       fail++;
     }
 
@@ -515,7 +515,7 @@ check_query()
     result++;
   }
 
-  geda_bus_object_set_y1(object, y1); /* set y point 2 == point 1 */
+  geda_bus_object_set_y2(object, y1); /* set y point 2 == point 1 */
 
   value = geda_bus_object_orientation(object);
 
@@ -524,8 +524,8 @@ check_query()
     result++;
   }
 
-  geda_bus_object_set_y1(object, y2); /* set y point 2 back */
-  geda_bus_object_set_x1(object, x1); /* set x point 2 == point 1 */
+  geda_bus_object_set_y2(object, y2); /* set y point 2 back */
+  geda_bus_object_set_x2(object, x1); /* set x point 2 == point 1 */
 
   value = geda_bus_object_orientation(object);
 

@@ -1,3 +1,8 @@
+2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_bus_object.c: Rename coordinate accessors using base-1,
+      i.e. geda_bus_object_get_x0->geda_bus_object_get_x1.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Add LOG_DOMAIN = G_LOG_DOMAIN.
