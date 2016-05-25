@@ -10,6 +10,8 @@ INC_LIBCOLOR = -I$(top_srcdir)/libgedacolor/include
 
 GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
+LOG_DOMAIN      = -DG_LOG_DOMAIN=\"libgeda\"
+
 lib_LTLIBRARIES = libgeda.la
 
 BUILT_SOURCES   = \
@@ -42,7 +44,7 @@ include Makefile_insert
 # Probably not the correct way but all's fair in Love, War and Distchecks
 EXTRA_DIST = $(BUILT_SOURCES)
 
-AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
+AM_CFLAGS            = $(LOG_DOMAIN) $(GEDA_INCLUDES) -I$(includedir)
 
 libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
 

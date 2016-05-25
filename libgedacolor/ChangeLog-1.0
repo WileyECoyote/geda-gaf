@@ -1,3 +1,7 @@
+2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Add include LOG_DOMAIN.
+
 2016-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_color.c: Check environment for "srcdir" and change to that

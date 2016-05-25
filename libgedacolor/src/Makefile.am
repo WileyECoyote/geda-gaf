@@ -8,6 +8,8 @@ INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
 GEDA_INCLUDES    = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
+LOG_DOMAIN      = -DG_LOG_DOMAIN=\"libgedacolor\"
+
 lib_LTLIBRARIES  = libgedacolor.la
 
 libgedacolor_la_SOURCES =
@@ -24,7 +26,7 @@ include Makefile_insert
 
 AM_CFLAGS                 = $(GEDA_INCLUDES) -I$(includedir)
 
-libgedacolor_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
+libgedacolor_la_CPPFLAGS  = $(LOG_DOMAIN) -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
 
 libgedacolor_la_CFLAGS    = $(AM_CFLAGS)    $(GCC_CFLAGS) $(GUILE_CFLAGS) \
 			   $(GLIB_CFLAGS)  $(GTK_CFLAGS) $(GDK_PIXBUF_CFLAGS) \

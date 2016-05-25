@@ -1,3 +1,7 @@
+2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Include LOG_DOMAIN with CPP flags.
+
 2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Move calling cairo_font_options_set_antialias and

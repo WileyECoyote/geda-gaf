@@ -17,7 +17,7 @@ libgedacairo_la_SOURCES = edacairo.c \
 			 edapangorenderer.c \
 			 edarenderer.c
 
-AM_CPPFLAGS = $(GEDA_INCLUDES) -I$(includedir)
+AM_CPPFLAGS = $(LOG_DOMAIN) $(GEDA_INCLUDES) -I$(includedir)
 
 AM_CFLAGS   = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
 	      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
