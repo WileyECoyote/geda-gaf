@@ -3,7 +3,7 @@
     * src/Makefile.am: Add LOG_DOMAIN = G_LOG_DOMAIN.
 
     * include/libgeda/geda_utility.h: Rename common log macros; geda_log_q
-      geda_log_s and geda_log_v.
+      geda_log_s and geda_log_v. Add macros geda_log and geda_log_w.
 
 2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
 

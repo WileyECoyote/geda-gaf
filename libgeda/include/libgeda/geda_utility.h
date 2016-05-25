@@ -65,6 +65,8 @@
 #define geda_log_v                geda_utility_log_verbose
 
 /* Seems out of place, but maybe appropriate */
+#define geda_log(format...)   g_log (G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, format)
+#define geda_log_w(format...) g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, format)
 
 /* u_string.c */
 #define geda_strconcat            geda_utility_string_concat
