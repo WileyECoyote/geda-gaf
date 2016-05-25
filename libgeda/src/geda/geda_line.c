@@ -439,4 +439,145 @@ bool is_a_geda_line (const GedaLine *lin)
  return FALSE;
 
 }
+
+/*!
+ * \brief Retrieve First X coordinate of the a GedaLine
+ * \par Function Description
+ *  Returns the current X value of \a line if and only if \a line is
+ *  a valid GedaLine object.
+ *
+ * \return integer value of first X or 0 if \a line is invalid.
+ *
+ * \sa geda_line_object_get_x1
+ */
+int
+geda_line_get_x1 (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->x[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Second X coordinate of the a GedaLine
+ * \par Function Description
+ *  Returns the second X value of \a line if and only if \a line
+ *  is a valid GedaLine object.
+ *
+ * \return integer value of second X or 0 if \a line is invalid.
+ *
+ * \sa geda_line_object_get_x2
+ */
+int
+geda_line_get_x2 (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->x[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve First Y coordinate of the a GedaLine
+ * \par Function Description
+ *  Returns the first Y value of \a line if and only if \a line is
+ *  a valid GedaLine object.
+ *
+ * \return integer value of first Y or 0 if \a line is invalid.
+ *
+ * \sa geda_line_object_get_y1
+ */
+int
+geda_line_get_y1 (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->y[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Second Y coordinate of the a GedaLine
+ * \par Function Description
+ *  Returns the second Y value of \a line if and only if \a line
+ *  is a valid GedaLine object.
+ *
+ * \return integer value of second Y or 0 if \a line is invalid.
+ *
+ * \sa geda_line_object_get_y2
+ */
+int
+geda_line_get_y2 (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->y[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Set the coordinate value of first X of a GedaLine
+ * \par Function Description
+ *  Sets the first abscissa of \a line if \a line is a valid
+ *  GedaLine, if \a line is invalid then nothing is done.
+ *
+ * \sa geda_line_object_set_x1
+ */
+void
+geda_line_set_x1 (GedaLine *line, int x)
+{
+  if (is_a_geda_line(line)) {
+    line->x[0] = x;
+  }
+}
+
+/*!
+ * \brief Set the coordinate value of Second X of a GedaLine
+ * \par Function Description
+ *  Sets the second abscissa of \a line if \a line is a valid
+ *  GedaLine, if \a line is invalid then nothing is done.
+ *
+ * \sa geda_line_object_set_x2
+ */
+void
+geda_line_set_x2 (GedaLine *line, int x)
+{
+  if (is_a_geda_line(line)) {
+    line->x[1] = x;
+  }
+}
+
+/*!
+ * \brief Set the coordinate value of first Y of a GedaLine
+ * \par Function Description
+ *  Sets the first ordinate of \a line if \a line is a valid
+ *  GedaLine, if \a line is invalid then nothing is done.
+ *
+ * \sa geda_line_object_set_y1
+ */
+void
+geda_line_set_y1 (GedaLine *line, int y)
+{
+  if (is_a_geda_line(line)) {
+    line->y[0] = y;
+  }
+}
+
+/*!
+ * \brief Set the coordinate value of Second Y of a GedaLine
+ * \par Function Description
+ *  Sets the second ordinate of \a line if \a line is a valid
+ *  GedaLine, if \a line is invalid then nothing is done.
+ *
+ * \sa geda_line_object_set_y2
+ */
+void
+geda_line_set_y2 (GedaLine *line, int y)
+{
+  if (is_a_geda_line(line)) {
+    line->y[1] = y;
+  }
+}
+
 /** @} endgroup geda-line-object */

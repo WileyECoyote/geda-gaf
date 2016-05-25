@@ -1,5 +1,7 @@
 2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_line.c:: Add accessors for line end points.
+
     * src/object/o_bus_object.c: Rename coordinate accessors using base-1,
       i.e. geda_bus_object_get_x0->geda_bus_object_get_x1.
 

@@ -69,6 +69,16 @@ bool           is_a_geda_line           (const GedaLine *line);
 
 GedaObject    *geda_line_new            (void);
 
+int            geda_line_get_x1         (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_x2         (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_y1         (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_y2         (const GedaLine *line) WARN_UNUSED;
+
+void           geda_line_set_x1         (GedaLine *line, int x);
+void           geda_line_set_x2         (GedaLine *line, int x);
+void           geda_line_set_y1         (GedaLine *line, int y);
+void           geda_line_set_y2         (GedaLine *line, int y);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
