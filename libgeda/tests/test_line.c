@@ -125,9 +125,9 @@ check_properties (void)
 
     for (count = 0; count < 10; count++) {
 
-      int x0 = m_random_number (0,  115000);
+      int x1 = m_random_number (0,  115000);
       int y0 = m_random_number (0,  75000);
-      int x1 = m_random_number (x0, 120000);
+      int x2 = m_random_number (x1, 120000);
       int y1 = m_random_number (y0, 80000);
 
       /* Line type options */
@@ -137,27 +137,27 @@ check_properties (void)
       int p = m_random_number (0, 500);
       int l = m_random_number (0, 500);
 
-      g_object_set(line, "first-x",    x0,
+      g_object_set(line, "first-x",    x1,
                          "first-y",    y0,
-                         "second-x",   x1,
+                         "second-x",   x2,
                          "second-y",   y1,
                           NULL);
 
-      int rx0, ry0, rx1, ry1;
+      int rx1, ry0, rx2, ry1;
 
-      g_object_get(line, "first-x",    &rx0,
+      g_object_get(line, "first-x",    &rx1,
                          "first-y",    &ry0,
-                         "second-x",   &rx1,
+                         "second-x",   &rx2,
                          "second-y",   &ry1,
                           NULL);
 
       value = line->x[0];
-      if (value - x0) {
-        fprintf(stderr, "FAILED: %s set first x property %d != %d\n", TOBJECT, value, x0);
+      if (value - x1) {
+        fprintf(stderr, "FAILED: %s set first x property %d != %d\n", TOBJECT, value, x1);
         fail++;
       }
-      else if (rx0 - x0) {
-        fprintf(stderr, "FAILED: %s get first x property %d != %d\n", TOBJECT, rx0, x0);
+      else if (rx1 - x1) {
+        fprintf(stderr, "FAILED: %s get first x property %d != %d\n", TOBJECT, rx1, x1);
         fail++;
       }
 
@@ -167,17 +167,17 @@ check_properties (void)
         fail++;
       }
       else if (ry0 - y0) {
-        fprintf(stderr, "FAILED: %s get first y property %d != %d\n", TOBJECT, rx0, y0);
+        fprintf(stderr, "FAILED: %s get first y property %d != %d\n", TOBJECT, rx1, y0);
         fail++;
       }
 
       value = line->x[1];
-      if (value - x1) {
-        fprintf(stderr, "FAILED: %s set second x property %d != %d\n", TOBJECT, value, x1);
+      if (value - x2) {
+        fprintf(stderr, "FAILED: %s set second x property %d != %d\n", TOBJECT, value, x2);
         fail++;
       }
-      else if (rx1 - x1) {
-        fprintf(stderr, "FAILED: %s get second x property %d != %d\n", TOBJECT, rx0, x1);
+      else if (rx2 - x2) {
+        fprintf(stderr, "FAILED: %s get second x property %d != %d\n", TOBJECT, rx1, x2);
         fail++;
       }
 
@@ -187,7 +187,7 @@ check_properties (void)
         fail++;
       }
       else if (ry1 - y1) {
-        fprintf(stderr, "FAILED: %s get second y property %d != %d\n", TOBJECT, rx1, y1);
+        fprintf(stderr, "FAILED: %s get second y property %d != %d\n", TOBJECT, rx2, y1);
         fail++;
       }
 
@@ -264,9 +264,9 @@ check_properties (void)
         fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
                 fail > 1 ? "ies" : "y");
         fprintf(stderr, "Conditions:\n");
-        fprintf(stderr, "\t      x0: %d\n", x0);
-        fprintf(stderr, "\t      y0: %d\n", y0);
         fprintf(stderr, "\t      x1: %d\n", x1);
+        fprintf(stderr, "\t      y0: %d\n", y0);
+        fprintf(stderr, "\t      x2: %d\n", x2);
         fprintf(stderr, "\t      y1: %d\n", y1);
 
         result = fail;
@@ -275,6 +275,141 @@ check_properties (void)
     }
   }
 
+  return result;
+}
+
+int
+check_accessors ()
+{
+  int count;
+  int result = 0;
+
+  count = geda_line_get_x1(NULL);
+  count = geda_line_get_x2(NULL);
+  count = geda_line_get_y1(NULL);
+  count = geda_line_get_y2(NULL);
+
+  geda_line_set_x1(NULL, 18);
+  geda_line_set_x2(NULL, 19);
+  geda_line_set_y1(NULL, 20);
+  geda_line_set_y2(NULL, 21);
+
+  GedaObject *object = geda_line_new();
+
+  if (!GEDA_IS_LINE(object->line)) {
+    fprintf(stderr, "is a %s Failed at line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaLine *line = object->line;
+
+    int fail;
+    int value;
+
+    fail = 0;
+
+    for (count = 0; count < 10; count++) {
+
+      int x1 = m_random_number (0,   115000);
+      int y1 = m_random_number (0,   75000);
+      int x2 = m_random_number (x1 + 100, 120000);
+      int y2 = m_random_number (y1 + 100, 80000);
+
+      /* Line type options
+      int e = m_random_number (END_NONE, END_ROUND);
+      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = m_random_number (0, 500);
+      int p = m_random_number (0, 500);
+      int l = m_random_number (0, 500); */
+
+      /* === Function: geda_line_set_x1  === */
+      geda_line_set_x1(line, x1);
+
+      value = line->x[0];
+      if (value - x1) {
+        fprintf(stderr, "FAILED: geda_line_set_x1 %d != %d\n", value, x1);
+        fail++;
+      }
+      else {
+
+        /* === Function: geda_line_get_x1  === */
+
+        value = geda_line_get_x1(line);
+        if (value - x1) {
+          fprintf(stderr, "FAILED: geda_line_get_x1 %d != %d\n", value, x2);
+          fail++;
+        }
+      }
+
+      /* === Function: geda_line_set_x2  === */
+      geda_line_set_x2(line, x2);
+
+      value = line->x[1];
+      if (value - x2) {
+        fprintf(stderr, "FAILED: geda_line_set_x2 %d != %d\n", value, x2);
+        fail++;
+      }
+      else {
+        /* === Function: geda_line_get_x2  === */
+
+        value = geda_line_get_x2(line);
+
+        if (value - x2) {
+          fprintf(stderr, "FAILED: geda_line_get_x2 %d != %d\n", value, x2);
+          fail++;
+        }
+      }
+
+      /* === Function: geda_line_set_y1  === */
+      geda_line_set_y1(line, y1);
+
+      value = line->y[0];
+      if (value - y1) {
+        fprintf(stderr, "FAILED: geda_line_set_y1 %d != %d\n", value, y1);
+        fail++;
+      }
+      else {
+
+        /* === Function: geda_line_get_y1  === */
+
+        value = geda_line_get_y1(line);
+
+        if (value - y1) {
+          fprintf(stderr, "FAILED: geda_line_get_y1 %d != %d\n", value, y1);
+          fail++;
+        }
+      }
+
+      /* === Function: geda_line_set_y2  === */
+      geda_line_set_y2(line, y2);
+
+      value = line->y[1];
+      if (value - y2) {
+        fprintf(stderr, "FAILED: geda_line_set_y2 %d != %d\n", value, y2);
+        fail++;
+      }
+      else {
+
+        /* === Function: geda_line_get_y2  === */
+
+        value = geda_line_get_y2(line);
+
+        if (value - y2) {
+          fprintf(stderr, "FAILED: geda_line_get_y2 %d != %d\n", value, y2);
+          fail++;
+        }
+      }
+
+      if (fail) {
+        result++;
+        break;
+      }
+    }
+
+    g_object_unref (object);
+
+  }
   return result;
 }
 
@@ -291,6 +426,8 @@ main (int argc, char *argv[])
   result = test_line();
 
   result += check_properties();
+
+  result += check_accessors();
 
   return result;
 }
