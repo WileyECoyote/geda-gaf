@@ -1,4 +1,14 @@
-2016-05-23 Wiley E. Hill <wileyhill@gmail.com>
+2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 3 symbols; 12 BIT A/D Converters:
+
+            * analogdevices/AD9220-1.sym: 10 MSPS
+
+            * analogdevices/AD9221-1.sym: 1.5 MSPS
+
+            * analogdevices/AD9223-1.sym: 3.0 MSPS
+
+2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74H/74HC540-1.sym: Add symbol; 8 bit bus transceiver, CMOS Level,
       inverting.

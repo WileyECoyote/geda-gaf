@@ -1,0 +1,334 @@
+v 20151031 2
+T 300 4900 2 10 1 1 0 0 1
+refdes=U?
+T 300 5300 8 10 0 0 0 0 1
+device=AD9221
+T 300 5500 5 10 0 1 0 0 1
+description=A/D Converter,12 BIT,1.5 MSPS,
+B 300 300 2400 4300 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
+L 300 1400 400 1500 3 0 0 0 -1 -1
+L 300 1600 400 1500 3 0 0 0 -1 -1
+P 300 1500 0 1500 1 0 1
+{
+T 150 1550 5 8 1 1 0 6 1
+pinnumber=1
+T 150 1550 5 8 0 1 0 6 1
+pinseq=1
+T 450 1450 3 8 1 1 0 0 1
+pinlabel=CLK
+T 450 1425 5 8 0 1 0 2 1
+pintype=in
+}
+P 2700 900 3000 900 1 0 1
+{
+T 2800 950 5 8 1 1 0 0 1
+pinnumber=2
+T 2800 950 5 8 0 1 0 0 1
+pinseq=2
+T 2650 900 3 8 1 1 0 6 1
+pinlabel=BIT 12 (LSB)
+T 2650 875 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 1200 3000 1200 1 0 1
+{
+T 2800 1250 5 8 1 1 0 0 1
+pinnumber=3
+T 2800 1250 5 8 0 1 0 0 1
+pinseq=3
+T 2650 1200 3 8 1 1 0 6 1
+pinlabel=BIT 11
+T 2650 1175 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 1500 3000 1500 1 0 1
+{
+T 2800 1550 5 8 1 1 0 0 1
+pinnumber=4
+T 2800 1550 5 8 0 1 0 0 1
+pinseq=4
+T 2650 1500 3 8 1 1 0 6 1
+pinlabel=BIT 10
+T 2650 1475 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 1800 3000 1800 1 0 1
+{
+T 2800 1850 5 8 1 1 0 0 1
+pinnumber=5
+T 2800 1850 5 8 0 1 0 0 1
+pinseq=5
+T 2650 1800 3 8 1 1 0 6 1
+pinlabel=BIT 9
+T 2650 1775 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 2100 3000 2100 1 0 1
+{
+T 2800 2150 5 8 1 1 0 0 1
+pinnumber=6
+T 2800 2150 5 8 0 1 0 0 1
+pinseq=6
+T 2650 2100 3 8 1 1 0 6 1
+pinlabel=BIT 8
+T 2650 2075 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 2400 3000 2400 1 0 1
+{
+T 2800 2450 5 8 1 1 0 0 1
+pinnumber=7
+T 2800 2450 5 8 0 1 0 0 1
+pinseq=7
+T 2650 2400 3 8 1 1 0 6 1
+pinlabel=BIT 7
+T 2650 2375 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 2700 3000 2700 1 0 1
+{
+T 2800 2750 5 8 1 1 0 0 1
+pinnumber=8
+T 2800 2750 5 8 0 1 0 0 1
+pinseq=8
+T 2650 2700 3 8 1 1 0 6 1
+pinlabel=BIT 6
+T 2650 2675 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3000 3000 3000 1 0 1
+{
+T 2800 3050 5 8 1 1 0 0 1
+pinnumber=9
+T 2800 3050 5 8 0 1 0 0 1
+pinseq=9
+T 2650 3000 3 8 1 1 0 6 1
+pinlabel=BIT 5
+T 2650 2975 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3300 3000 3300 1 0 1
+{
+T 2800 3350 5 8 1 1 0 0 1
+pinnumber=10
+T 2800 3350 5 8 0 1 0 0 1
+pinseq=10
+T 2650 3300 3 8 1 1 0 6 1
+pinlabel=BIT 4
+T 2650 3275 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3600 3000 3600 1 0 1
+{
+T 2800 3650 5 8 1 1 0 0 1
+pinnumber=11
+T 2800 3650 5 8 0 1 0 0 1
+pinseq=11
+T 2650 3600 3 8 1 1 0 6 1
+pinlabel=BIT 3
+T 2650 3575 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3900 3000 3900 1 0 1
+{
+T 2800 3950 5 8 1 1 0 0 1
+pinnumber=12
+T 2800 3950 5 8 0 1 0 0 1
+pinseq=12
+T 2650 3900 3 8 1 1 0 6 1
+pinlabel=BIT 2
+T 2650 3875 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 4200 3000 4200 1 0 1
+{
+T 2800 4250 5 8 1 1 0 0 1
+pinnumber=13
+T 2800 4250 5 8 0 1 0 0 1
+pinseq=13
+T 2650 4200 3 8 1 1 0 6 1
+pinlabel=BIT 1 (MSB)
+T 2650 4175 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 600 3000 600 1 0 1
+{
+T 2800 650 5 8 1 1 0 0 1
+pinnumber=14
+T 2800 650 5 8 0 1 0 0 1
+pinseq=14
+T 2634 600 3 8 1 1 0 6 1
+pinlabel=OTR
+T 2650 575 5 8 0 1 0 8 1
+pintype=out
+}
+P 2200 4600 2200 4900 1 0 1
+{
+T 2275 4775 5 8 1 1 0 0 1
+pinnumber=15
+T 2275 4775 5 8 0 1 0 0 1
+pinseq=15
+T 2050 4450 3 8 1 1 0 0 1
+pinlabel=AVDD
+T 2250 4675 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1600 300 1600 0 1 0 1
+{
+T 1550 50 5 8 1 1 0 6 1
+pinnumber=16
+T 1550 50 5 8 0 1 0 6 1
+pinseq=16
+T 1450 355 3 8 1 1 0 0 1
+pinlabel=AVSS
+T 1650 205 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 300 3600 0 3600 1 0 1
+{
+T 200 3650 5 8 1 1 0 6 1
+pinnumber=17
+T 200 3650 5 8 0 1 0 6 1
+pinseq=17
+T 350 3600 3 8 1 1 0 0 1
+pinlabel=SENSE
+T 350 3575 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 3300 0 3300 1 0 1
+{
+T 200 3350 5 8 1 1 0 6 1
+pinnumber=18
+T 200 3350 5 8 0 1 0 6 1
+pinseq=18
+T 350 3300 3 8 1 1 0 0 1
+pinlabel=Vref
+T 350 3275 5 8 0 1 0 2 1
+pintype=out
+}
+P 300 3000 0 3000 1 0 1
+{
+T 200 3050 5 8 1 1 0 6 1
+pinnumber=19
+T 200 3050 5 8 0 1 0 6 1
+pinseq=19
+T 350 3000 9 8 1 1 0 0 1
+pinlabel=refcom
+T 350 2975 5 8 0 1 0 2 1
+pintype=pas
+}
+P 300 900 0 900 1 0 1
+{
+T 200 950 5 8 1 1 0 6 1
+pinnumber=20
+T 200 950 5 8 0 1 0 6 1
+pinseq=20
+T 350 875 3 8 1 1 0 0 1
+pinlabel=CAPB
+T 350 850 5 8 0 1 0 2 1
+pintype=pas
+}
+P 300 1200 0 1200 1 0 1
+{
+T 200 1250 5 8 1 1 0 6 1
+pinnumber=21
+T 200 1250 5 8 0 1 0 6 1
+pinseq=21
+T 350 1175 3 8 1 1 0 0 1
+pinlabel=CAPT
+T 350 1150 5 8 0 1 0 2 1
+pintype=pas
+}
+P 300 600 0 600 1 0 1
+{
+T 200 650 5 8 1 1 0 6 1
+pinnumber=22
+T 200 650 5 8 0 1 0 6 1
+pinseq=22
+T 350 575 3 8 1 1 0 0 1
+pinlabel=CML
+T 350 550 5 8 0 1 0 2 1
+pintype=pas
+}
+P 300 2400 0 2400 1 0 1
+{
+T 200 2450 5 8 1 1 0 6 1
+pinnumber=23
+T 200 2450 5 8 0 1 0 6 1
+pinseq=23
+T 350 2400 3 8 1 1 0 0 1
+pinlabel=VinA
+T 350 2375 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 2100 0 2100 1 0 1
+{
+T 200 2150 5 8 1 1 0 6 1
+pinnumber=24
+T 200 2150 5 8 0 1 0 6 1
+pinseq=24
+T 350 2050 3 8 1 1 0 0 1
+pinlabel=VinB
+T 350 2025 5 8 0 1 0 2 1
+pintype=in
+}
+P 1200 300 1200 0 1 0 1
+{
+T 1150 50 5 8 1 1 0 6 1
+pinnumber=25
+T 1150 50 5 8 0 1 0 6 1
+pinseq=25
+T 1050 355 3 8 1 1 0 0 1
+pinlabel=AVSS
+T 1250 205 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1800 4600 1800 4900 1 0 1
+{
+T 1875 4775 5 8 1 1 0 0 1
+pinnumber=26
+T 1875 4775 5 8 0 1 0 0 1
+pinseq=26
+T 1625 4450 3 8 1 1 0 0 1
+pinlabel=AVDD
+T 1875 4675 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 2000 300 2000 0 1 0 1
+{
+T 1950 50 5 8 1 1 0 6 1
+pinnumber=27
+T 1950 50 5 8 0 1 0 6 1
+pinseq=27
+T 1832 350 3 8 1 1 0 0 1
+pinlabel=DVSS
+T 2050 200 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1300 4600 1300 4900 1 0 1
+{
+T 1375 4775 5 8 1 1 0 0 1
+pinnumber=28
+T 1375 4775 5 8 0 1 0 0 1
+pinseq=28
+T 1150 4450 3 8 1 1 0 0 1
+pinlabel=DVDD
+T 1350 4675 5 8 0 1 0 0 1
+pintype=pwr
+}
+T 1000 1800 9 8 0 0 0 0 1
+symversion=0.2
+T 1000 2000 9 8 0 0 0 0 1
+numslots=0
+T 300 4700 3 10 1 1 0 0 1
+value=AD9221
+T 300 5100 9 10 0 1 0 0 1
+footprint=SOIC28W
+T 300 6300 5 10 0 0 0 0 1
+author=AutoTron
+T 300 6100 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 5900 5 10 0 0 0 0 1
+use-license=unlimited
+T 300 5700 5 10 0 1 0 0 1
+documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD9221_9223_9220.pdf
