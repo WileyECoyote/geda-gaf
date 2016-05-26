@@ -1,3 +1,9 @@
+2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/ * : Replace u_log_message with geda_log
+
+    * src/gattrib_dialog.c: Replace u_log_message with geda_log_w.
+
 2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise case default to utilize __func__, 2 PLCS.

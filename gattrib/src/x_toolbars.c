@@ -80,7 +80,7 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
       x_menu_file_save_as();
       break;
     default:
-      u_log_message ("%s: unknown button Id %d\n", __func__, button);
+      geda_log ("%s: unknown button Id %d\n", __func__, button);
   }
 
   return;
@@ -112,7 +112,7 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
       x_find_refdes();
       break;
     default:
-      u_log_message ("%s: unknown button Id %d\n", __func__, button);
+      geda_log ("%s: unknown button Id %d\n", __func__, button);
   }
 
   return;
@@ -156,7 +156,7 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
       s_properties_set_name_and_value();
       break;
     default:
-      u_log_message ("%s: unknown button Id %d\n", __func__, button);
+      geda_log ("%s: unknown button Id %d\n", __func__, button);
   }
 
   return;

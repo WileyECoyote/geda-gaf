@@ -661,7 +661,7 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
     }
     break;
   default:
-    u_log_message ("%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
+    geda_log ("%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
   }
 
  return;
@@ -691,7 +691,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
    case WrapAround:
      break;
    default:
-    u_log_message ("%s: UKNOWN SWITCH ID: %d\n", __func__,response);
+    geda_log ("%s: UKNOWN SWITCH ID: %d\n", __func__,response);
    }
 
    return;

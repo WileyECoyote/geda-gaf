@@ -120,7 +120,7 @@ void x_window_clipboard_handler(int do_what)
       break;
 
     default:
-      u_log_message ("%s: unknown Id [%d]\n", __func__, do_what);
+      geda_log ("%s: unknown Id [%d]\n", __func__, do_what);
   }
 }
 
@@ -147,7 +147,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
     x_toolbar_set_sensitivities(ComponentToolbarButtons, FALSE);
     break;
   default:
-    u_log_message("notebook_switch_page(): BAD_TAB ID %d\n", page_num);
+    geda_log ("notebook_switch_page(): BAD_TAB ID %d\n", page_num);
   }
 
   return;
@@ -165,7 +165,7 @@ static void x_window_save_settings(void *data)
 
     window = GTK_WINDOW(data);
 
-    u_log_message(_("Saving main window geometry and settings.\n"));
+    geda_log (_("Saving main window geometry and settings.\n"));
 
     /* Get the Window Geometry - Restored by x_window_restore_settings */
 
@@ -202,7 +202,7 @@ void x_window_restore_settings(GtkWidget *MainWindow)
 
   int x, y, width, height;
 
-  u_log_message(_("Retrieving main Window geometry and settings.\n"));
+  geda_log (_("Retrieving main Window geometry and settings.\n"));
 
   window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();

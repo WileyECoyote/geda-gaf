@@ -324,9 +324,9 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* ----------  create log file right away ---------- */
   geda_utility_log_init ("gattrib");
-  u_log_message("gEDA/gattrib version %s%s.%s\n", PREPEND_VERSION_STRING,
-                                                  PACKAGE_DOTTED_VERSION,
-                                                  PACKAGE_DATE_VERSION);
+  geda_log ("gEDA/gattrib version %s%s.%s\n", PREPEND_VERSION_STRING,
+                                              PACKAGE_DOTTED_VERSION,
+                                              PACKAGE_DATE_VERSION);
 
   /* Start creation of new project: (GedaToplevel *pr_current) */
   pr_current = geda_toplevel_new(); /* geda_toplevel_new is in Libgeda */

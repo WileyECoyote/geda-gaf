@@ -109,7 +109,7 @@ bool x_fileselect_load_file (char *filename) {
   const GList *Objects;
 
   if (!quiet_mode) {
-    u_log_message(_("Loading file [%s]\n"), filename);
+    geda_log (_("Loading file [%s]\n"), filename);
   }
 
   s_page_goto (s_page_new (pr_current, filename));

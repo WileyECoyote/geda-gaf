@@ -153,7 +153,7 @@ static bool i_basic_show_uri (const char *uri)
   result = g_app_info_launch_default_for_uri(uri, NULL, &error);
   if (!result) {
     if (verbose_mode) {
-      u_log_message("glib Failed to open <%s>, %s\n", uri, error->message);
+      geda_log ("glib Failed to open <%s>, %s\n", uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -162,7 +162,7 @@ static bool i_basic_show_uri (const char *uri)
     return result;
 
   if (verbose_mode) {
-    u_log_message("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
+    geda_log ("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
   }
 
 #endif
@@ -207,7 +207,7 @@ void i_show_wiki_help(const char *html_file)
   if (pathname) {
 
     if (!i_basic_show_uri (pathname)) {
-      u_log_message(_("Check: path \"%s\"\n"), pathname);
+      geda_log (_("Check: path \"%s\"\n"), pathname);
     }
 
     GEDA_FREE(pathname);

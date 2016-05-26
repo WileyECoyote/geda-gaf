@@ -64,7 +64,7 @@ void f_export_components(char *filename)
 #endif
   fp = fopen(filename, "wb");
   if (fp == NULL) {
-    u_log_message(_("%s: Could not open [%s]\n"), __func__, filename);
+    geda_log (_("%s: Could not open [%s]\n"), __func__, filename);
     /* XXXXX Throw up error message  in window */
     return;
   }

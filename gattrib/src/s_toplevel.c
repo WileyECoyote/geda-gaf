@@ -74,7 +74,7 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
 
   /* Read in and fill out toplevel using f_open and its callees */
   if(!f_open (toplevel, toplevel->page_current, filename, &err)) {
-    u_log_message ("%s\n", err->message);
+    geda_log ("%s\n", err->message);
     result = 0;
     g_error_free (err);
   }
@@ -98,8 +98,8 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
  */
 void s_toplevel_verify_design (GedaToplevel *toplevel)
 {
-  GList *p_iter;
   const GList *o_iter;
+  GList       *p_iter;
 
   int missing_sym_flag = 0;
 
@@ -109,9 +109,9 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 
     Page *p_current = p_iter->data;
 
-    for (o_iter = s_page_get_objects (p_current);
+    for (o_iter  = s_page_get_objects (p_current);
          o_iter != NULL;
-         o_iter = g_list_next (o_iter))
+         o_iter  = o_iter->next)
     {
       GedaObject *o_current = o_iter->data;
 
