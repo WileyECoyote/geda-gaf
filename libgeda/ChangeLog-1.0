@@ -2,6 +2,8 @@
 
     * src/geda/geda_line.c: Add accessors for line type properties.
 
+    * tests/test_line.c: Add basic checks for line options accessors.
+
 2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_line.c: Add accessors for line end points.

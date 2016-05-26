@@ -316,12 +316,12 @@ check_accessors ()
       int x2 = m_random_number (x1 + 100, 120000);
       int y2 = m_random_number (y1 + 100, 80000);
 
-      /* Line type options
+      /* Line type options */
       int e = m_random_number (END_NONE, END_ROUND);
       int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
       int w = m_random_number (0, 500);
       int p = m_random_number (0, 500);
-      int l = m_random_number (0, 500); */
+      int l = m_random_number (0, 500);
 
       /* === Function: geda_line_set_x1  === */
       geda_line_set_x1(line, x1);
@@ -397,6 +397,92 @@ check_accessors ()
 
         if (value - y2) {
           fprintf(stderr, "FAILED: geda_line_get_y2 %d != %d\n", value, y2);
+          fail++;
+        }
+      }
+
+      /* Check line type properties */
+
+      geda_line_set_end_cap (line, e);
+
+      value = line->line_options.line_end;
+      if (value - e) {
+        fprintf(stderr, "FAILED: geda_line_set_end_cap %d != %d\n", value, e);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_end_cap(line);
+
+        if (value - e) {
+          fprintf(stderr, "FAILED: geda_line_get_end_cap %d != %d\n", value, e);
+          fail++;
+        }
+      }
+
+      geda_line_set_line_length (line, l);
+
+      value = line->line_options.line_length;
+      if (value - l) {
+        fprintf(stderr, "FAILED: geda_line_set_line_length %d != %d\n", value, l);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_line_length(line);
+
+        if (value - l) {
+          fprintf(stderr, "FAILED: geda_line_get_line_length %d != %d\n", value, l);
+          fail++;
+        }
+      }
+
+      geda_line_set_line_space (line, p);
+
+      value = line->line_options.line_space;
+      if (value - p) {
+        fprintf(stderr, "FAILED: geda_line_set_line_space %d != %d\n", value, p);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_line_space(line);
+
+        if (value - p) {
+          fprintf(stderr, "FAILED: geda_line_get_line_space %d != %d\n", value, p);
+          fail++;
+        }
+      }
+
+      geda_line_set_line_type (line, t);
+
+      value = line->line_options.line_type;
+      if (value - t) {
+        fprintf(stderr, "FAILED: geda_line_set_line_type %d != %d\n", value, t);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_line_type(line);
+
+        if (value - t) {
+          fprintf(stderr, "FAILED: geda_line_get_line_type %d != %d\n", value, t);
+          fail++;
+        }
+      }
+
+      geda_line_set_line_width (line, w);
+
+      value = line->line_options.line_width;
+      if (value - w) {
+        fprintf(stderr, "FAILED: geda_line_set_line_width %d != %d\n", value, w);
+        fail++;
+      }
+      else {
+        value = geda_line_get_line_width(line);
+
+        if (value - w) {
+          fprintf(stderr, "FAILED: geda_line_get_line_width %d != %d\n", value, w);
           fail++;
         }
       }
