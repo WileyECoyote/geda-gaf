@@ -64,20 +64,32 @@ struct _GedaLine {
 extern "C" {
 #endif
 
-GedaObjectType geda_line_get_type       (void) GEDA_CONST;
-bool           is_a_geda_line           (const GedaLine *line);
+GedaObjectType geda_line_get_type           (void) GEDA_CONST;
+bool           is_a_geda_line               (const GedaLine *line);
 
-GedaObject    *geda_line_new            (void);
+GedaObject    *geda_line_new                (void);
 
-int            geda_line_get_x1         (const GedaLine *line) WARN_UNUSED;
-int            geda_line_get_x2         (const GedaLine *line) WARN_UNUSED;
-int            geda_line_get_y1         (const GedaLine *line) WARN_UNUSED;
-int            geda_line_get_y2         (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_end_cap        (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_line_length    (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_line_space     (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_line_type      (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_line_width     (const GedaLine *line) WARN_UNUSED;
 
-void           geda_line_set_x1         (GedaLine *line, int x);
-void           geda_line_set_x2         (GedaLine *line, int x);
-void           geda_line_set_y1         (GedaLine *line, int y);
-void           geda_line_set_y2         (GedaLine *line, int y);
+int            geda_line_get_x1             (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_x2             (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_y1             (const GedaLine *line) WARN_UNUSED;
+int            geda_line_get_y2             (const GedaLine *line) WARN_UNUSED;
+
+void           geda_line_set_end_cap        (GedaLine *line, int cap);
+void           geda_line_set_line_length    (GedaLine *line, int length);
+void           geda_line_set_line_space     (GedaLine *line, int space);
+void           geda_line_set_line_type      (GedaLine *line, int type);
+void           geda_line_set_line_width     (GedaLine *line, int width);
+
+void           geda_line_set_x1             (GedaLine *line, int x);
+void           geda_line_set_x2             (GedaLine *line, int x);
+void           geda_line_set_y1             (GedaLine *line, int y);
+void           geda_line_set_y2             (GedaLine *line, int y);
 
 #ifdef __cplusplus
 }

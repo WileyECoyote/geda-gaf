@@ -1,6 +1,10 @@
+2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_line.c: Add accessors for line type properties.
+
 2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_line.c:: Add accessors for line end points.
+    * src/geda/geda_line.c: Add accessors for line end points.
 
     * src/geda/geda_toplevel.c: Add function geda_toplevel_get_page_count.
 

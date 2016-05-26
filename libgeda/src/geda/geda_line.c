@@ -441,6 +441,110 @@ bool is_a_geda_line (const GedaLine *lin)
 }
 
 /*!
+ * \brief Retrieve End Cap type Property of an GedaLine
+ * \par Function Description
+ *  Returns the value of \a line end-cap type if and only if \a line
+ *  is a valid GedaLine object.
+ *
+ * \return integer value of end-cap type or -0 if \a line is invalid.
+ *
+ * \sa geda_line_object_set_end_cap
+ */
+int
+geda_line_get_end_cap (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->line_options.line_end;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Length Property of a GedaLine
+ * \par Function Description
+ *  Returns the value of the \a line line-length property if \a line
+ *  is a valid GedaLine object. The line-length property controls the
+ *  length of line segments for line types dashed, center and phantom,
+ *  to get the "length" of a line see m_line_length.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \return integer value of line length or -0 if \a line is invalid.
+ *
+ * \sa geda_line_object_set_line_length
+ */
+int
+geda_line_get_line_length (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->line_options.line_length;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve Line Space Property of a GedaLine
+ * \par Function Description
+ *  Returns the value of the \a line line space property if and only if \a line
+ *  is a valid GedaLine object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \return integer value of line space or -0 if \a line is invalid.
+ *
+ * \sa geda_line_object_set_line_space
+ */
+int
+geda_line_get_line_space (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->line_options.line_space;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Type Property of a GedaLine
+ * \par Function Description
+ *  Returns the value of \a line line type if and only if \a line is
+ *  a valid GedaLine object.
+ *
+ * \return integer value of line type or -0 if \a line is invalid.
+ *
+ * \sa geda_line_object_set_line_type
+ */
+int
+geda_line_get_line_type (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->line_options.line_type;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve End Width Property of a GedaLine
+ * \par Function Description
+ *  Returns the value of the \a line line width property if and only
+ *  if \a line is a valid GedaLine object.
+ *
+ * \return integer value of line-width or -0 if \a line is invalid.
+ *
+ * \sa geda_line_object_set_line_width
+ */
+int
+geda_line_get_line_width (const GedaLine *line)
+{
+  if (is_a_geda_line(line)) {
+    return line->line_options.line_width;
+  }
+  return -0;
+}
+
+/*!
  * \brief Retrieve First X coordinate of the a GedaLine
  * \par Function Description
  *  Returns the current X value of \a line if and only if \a line is
@@ -514,6 +618,111 @@ geda_line_get_y2 (const GedaLine *line)
     return line->y[1];
   }
   return -0;
+}
+
+/*!
+ * \brief Set the End Cap type Property of a GedaLine
+ * \par Function Description
+ *  Sets the value of \a line end-cap type if and only if \a line is
+ *  a valid GedaLine object. The line-end properties is only applicable
+ *  for fill types FILLING_MESH and FILLING_HATCH.
+ *
+ * \sa geda_line_object_get_end_cap
+ */
+void
+geda_line_set_end_cap (GedaLine *line, int line_end)
+{
+  if (is_a_geda_line(line)) {
+    line->line_options.line_end = line_end < END_NONE ? END_NONE :
+                                  line_end > END_VOID ? END_VOID :
+                                  line_end;
+  }
+}
+
+/*!
+ * \brief Set the Line Length Property of an GedaLine
+ * \par Function Description
+ *  Returns the value of the \a line line-length property if and only if
+ *  \a line is a valid GedaLine. The line-length property controls the
+ *  length of line segments for line types dashed, center and phantom.
+ *
+ * \note Line length is only applicable when line-type is not TYPE_SOLID
+ *       or TYPE_DOTTED.
+ *
+ * \param [in] line    Pointer to an GedaLine Object
+ * \param [in] length  new value for the line-length property
+ *
+ * \sa geda_line_object_get_line_length
+ */
+void
+geda_line_set_line_length (GedaLine *line, int length)
+{
+  if (is_a_geda_line(line)) {
+    line->line_options.line_length = length > 0 ? length : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Space Property of a GedaLine
+ * \par Function Description
+ *  Sets the value of the \a line line space property if and only if \a line
+ *  is a valid GedaObject object. The line-space property controls the distance
+ *  between line-length for line types dashed, center, phantom and between dots
+ *  for line type dotted.
+ *
+ * \note Line space is only applicable when line-type is not TYPE_SOLID.
+ *
+ * \param [in] line    Pointer to an GedaLine Object
+ * \param [in] space   new LINE_TYPE value for the line type
+ *
+ * \sa geda_line_object_get_line_space
+ */
+void
+geda_line_set_line_space (GedaLine *line, int space)
+{
+  if (is_a_geda_line(line)) {
+    line->line_options.line_space = space > 0 ? space : 0;
+  }
+}
+
+/*!
+ * \brief Set the Line Type Property of an GedaLine
+ * \par Function Description
+ *  Sets the value of \a line line type if and only if \a line is a
+ *  valid GedaObject object.
+ *
+ * \param [in] line   Pointer to an GedaLine Object
+ * \param [in] type   new LINE_TYPE value for the line type
+ *
+ * \sa geda_line_object_get_line_type
+ */
+void
+geda_line_set_line_type (GedaLine *line, int type)
+{
+  if (is_a_geda_line(line)) {
+    line->line_options.line_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                    type > TYPE_ERASE ? TYPE_ERASE :
+                                    type;
+  }
+}
+
+/*!
+ * \brief Set the End Width Property of a GedaLine
+ * \par Function Description
+ *  Sets the value of the \a line line width property if and only if
+ *  \a line is a valid GedaLine object.
+ *
+ * \param [in] line   Pointer to an GedaLine Object
+ * \param [in] width  new value for the line width
+ *
+ * \sa geda_line_object_get_line_width
+ */
+void
+geda_line_set_line_width (GedaLine *line, int width)
+{
+  if (is_a_geda_line(line)) {
+    line->line_options.line_width = width > 0 ? width : 0;
+  }
 }
 
 /*!
