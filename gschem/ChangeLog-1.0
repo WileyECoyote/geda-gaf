@@ -3,6 +3,9 @@
     * src/base/gschem.c: Replace u_log_message with geda_log and v_log_message
       with geda_log_v
 
+    * src/x/x_pagesel.c: Extend functionality of x_pagesel_auto_height, add
+      comments.
+
 2016-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * Program Enhancement: New feature - Auto adjust Page Select Height

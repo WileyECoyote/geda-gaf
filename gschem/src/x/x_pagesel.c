@@ -224,6 +224,22 @@ static void pagesel_instance_init (GTypeInstance *instance, void *class);
 static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
 
 static void
+pagesel_get_action_height (Pagesel *pagesel)
+{
+  GtkWidget    *action_hbox;
+  GtkAllocation allocation;
+  unsigned int  border;
+
+  action_hbox = GTK_DIALOG(pagesel)->action_area;
+
+  gtk_widget_get_allocation(action_hbox, &allocation);
+
+  border = gtk_container_get_border_width (GTK_CONTAINER (action_hbox));
+
+  pagesel->action_height = allocation.height + (border << 1);
+}
+
+static void
 pagesel_get_row_height (Pagesel *pagesel)
 {
   GdkRectangle cell_area;
@@ -243,6 +259,18 @@ pagesel_get_row_height (Pagesel *pagesel)
   pagesel->row_height = height + 2;
 }
 
+/*! \brief Page Manager Dialog Tree View Page Selected
+ *  \par Function Description
+ *  This function adjust the height of the Page Select Dialog based
+ *  on the number of pages if auto_height is TRUE. When the dialog
+ *  is manually sized to the miniumnm height the tree-view shows 3
+ *  rows with the header displayed so the value of the constant
+ *  #PAGESEL_ROWS_THRESHOLD was choosen to be 4. The height of dialog
+ *  components such as the tree row height could not be determine
+ *  during initialization, so these are resolved the first time the
+ *  function executes with auto_height enabled. Note this function
+ *  called by the callback for the AutoHeight toggle switch.
+ */
 static void
 x_pagesel_auto_height(Pagesel *pagesel)
 {
@@ -259,8 +287,14 @@ x_pagesel_auto_height(Pagesel *pagesel)
     return;
   }
 
+  /* Determine the mysterious tree-row row_height */
   if (!pagesel->row_height ) {
     pagesel_get_row_height (pagesel);
+  }
+
+  /* Get height of action area if have not already done so */
+  if (!pagesel->action_height ) {
+    pagesel_get_action_height (pagesel);
   }
 
   gtk_window_get_size (GTK_WINDOW (pagesel), &width, &height);
@@ -269,12 +303,66 @@ x_pagesel_auto_height(Pagesel *pagesel)
 
   pcount = geda_toplevel_get_page_count(w_current->toplevel);
 
+  /* Check number of pages less than min threshold */
   if (pcount < PAGESEL_ROWS_THRESHOLD) {
+
+    /* Pages less than min threshold, check if dialog needs to shrink */
     if (height > PAGESEL_MIN_HEIGHT) {
       gtk_window_resize(GTK_WINDOW(pagesel), width, PAGESEL_MIN_HEIGHT);
     }
   }
+  else {
 
+    int action_height;
+    int row_height;
+    int preferred;
+
+    action_height = pagesel->action_height;
+    row_height    = pagesel->row_height;
+
+    /* Calculate the height to display all pages, note PAGESEL_ROWS_THRESHOLD
+     * is subtracted from the page count because these rows are already
+     * accounted for in PAGESEL_MIN_HEIGHT */
+    preferred = PAGESEL_MIN_HEIGHT + action_height +
+                ((pcount - PAGESEL_ROWS_THRESHOLD) * row_height);
+
+    if (height < preferred) {
+
+      GdkScreen    *screen;
+      int screen_height, window_x, window_y;
+      int below, bottom;
+
+      screen  = gtk_widget_get_screen (GTK_WIDGET (pagesel));
+
+      screen_height = gdk_screen_get_height(screen);
+
+      gtk_window_get_position (GTK_WINDOW (pagesel), &window_x, &window_y);
+
+      bottom = window_y + height;
+
+      below  = screen_height - bottom;
+
+      if (below > preferred - height) {
+        /* definitely shrink */
+        gtk_window_resize(GTK_WINDOW(pagesel), width, preferred);
+      }
+      else {
+
+        /* Adjust the height to use all of the usable y below the dialog */
+        int new_bottom = bottom + below - height;
+        gtk_window_resize(GTK_WINDOW(pagesel), width, new_bottom);
+      }
+    }
+    else {
+
+      /* The dialog is taller than it needs to be to display the list of
+       * opened pages, if the "extra" height is more than one row then
+       * shrink the dialog */
+      if (height - preferred > pagesel->row_height) {
+        gtk_window_resize(GTK_WINDOW(pagesel), width, preferred);
+      }
+    }
+  }
 }
 
 /*! \brief Page Manager Dialog Tree View Page Selected
@@ -743,6 +831,9 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
 
     x_dnd_receive_string(w_current, xf, 0, string, DROPPED_ON_PAGESEL);
 
+    /* Check if dialog should grow */
+    x_pagesel_auto_height((Pagesel*)w_current->pswindow);
+
     GEDA_FREE(string);
   }
 }
@@ -1173,6 +1264,8 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_REFRESH);
   gtk_widget_grab_default (fresh_butt);
+
+  pagesel->action_height = 0;
 }
 
 /*! \brief Update tree model of <B>pagesel</B>'s treeview.

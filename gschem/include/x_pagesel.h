@@ -58,6 +58,7 @@ struct _Pagesel {
   GedaType         instance_type;
   GtkCellRenderer *renderer;        /* For Name Column */
   GtkTreeView     *treeview;
+  int              action_height;
   int              row_height;
 };
 
