@@ -159,8 +159,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
       /* Check for non-expanded wild-card, if not match then no expansion */
       if (strstr(argv[i], "*") != NULL) {
-        u_log_message(_("Warning: <%s> did not expand\n"), argv[i]);
-        v_log_message(_("Command-line error: disabling auto load last\n"));
+        geda_log(_("Warning: <%s> did not expand\n"), argv[i]);
+        geda_log_v (_("Command-line error: disabling auto load last\n"));
         override_autoload = TRUE;
         continue;
       }
@@ -189,8 +189,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
           if (access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
-            if(verbose_mode) {
-              v_log_message(_("Assumming schematic file suffix for [%s]\n"), basename (filename));
+            if (verbose_mode) {
+              geda_log (_("Assumming schematic file suffix for [%s]\n"), basename (filename));
             }
           }
           else {
@@ -200,7 +200,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
             if ( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
               filename = tmpfilename;
               if (verbose_mode) {
-                v_log_message(_("Assumming symbol file suffix for [%s]\n"), basename (filename));
+                geda_log (_("Assumming symbol file suffix for [%s]\n"), basename (filename));
               }
             }
           }
@@ -340,15 +340,17 @@ static void gschem( int argc, char *argv[])
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
 
   if (scm_is_false (scm_tmp)) {
-    u_log_message (_("Unable to locate scheme initialization file \"gschem.scm\"\n"));
+    geda_log (_("Unable to locate scheme initialization file \"gschem.scm\"\n"));
   }
   else {
+
     input_str = scm_to_utf8_string (scm_tmp);
+
     if (g_read_scheme_file(input_str, NULL)) {
-      geda_utility_log_verbose(_("Read scheme initialization file [%s]\n"), input_str);
+      geda_log_v (_("Read scheme initialization file [%s]\n"), input_str);
     }
     else {
-      u_log_message(_("Failed to read initialization scheme file [%s]\n"), input_str);
+      geda_log (_("Failed to read initialization scheme file [%s]\n"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
@@ -374,11 +376,12 @@ static void gschem( int argc, char *argv[])
     }
 
     /* now we can spam the log */
-    u_log_message(_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
-                     PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
+    geda_log (_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
+                                                  PACKAGE_DOTTED_VERSION,
+                                                  PACKAGE_DATE_VERSION);
   }
   else {
-    v_log_message(_("Logging system is disabled\n"));
+    geda_log_v(_("Logging system is disabled\n"));
   }
 
   /*! \internal End Setup Log & Console Systems > */
@@ -503,7 +506,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     g_main_loop_unref(main_loop);
 
     gschem_quit();
-    v_log_message(_("Exiting normal\n"));
+    geda_log_v (_("Exiting normal\n"));
   }
   else {
     fprintf (stderr, "FAILED: gtk_init_check\n");
