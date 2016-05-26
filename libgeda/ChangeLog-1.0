@@ -4,6 +4,8 @@
 
     * src/object/o_embed.c: Rename functions with geda_object prefix.
 
+    * src/object/o_color.c: Rename function with geda_object prefix.
+
     * src/object/o_object.c: Rename functions with geda_object prefix.
 
     * tests/test_line.c: Add basic checks for line options accessors.

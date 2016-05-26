@@ -34,7 +34,8 @@
  *  \par Function Description
  *
  */
-int o_color_get_object_default (char type)
+int
+geda_object_color_get_default (char type)
 {
   struct default_color_index_t {
     char type;

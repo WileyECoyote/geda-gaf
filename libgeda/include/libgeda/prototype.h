@@ -327,7 +327,7 @@ extern "C" {
          void    geda_complex_object_translate             (GedaObject *object, int dx, int dy);
 
 /* o_color.c */
-          int    o_color_get_object_default      (char type);
+          int    geda_object_color_get_default   (char type);
 
 /* geda_object_embed.c */
          bool    geda_object_embed               (GedaToplevel *toplevel, GedaObject *object);

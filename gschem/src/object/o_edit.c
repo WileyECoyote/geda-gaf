@@ -217,7 +217,7 @@ void o_edit_lock (GschemToplevel *w_current)
  *   Sets each object in the "selection" selectable, if the object
  *   selectable is set, then restores the objects color from the
  *   locked color property otherwise the color is restored to the
- *   value returned from o_color_get_object_default().
+ *   value returned from geda_object_color_get_default().
  *
  * \note this cannot be called recursively
  */
@@ -234,7 +234,7 @@ void o_edit_unlock(GschemToplevel *w_current)
       object->selectable        = TRUE;
       if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
         object->color           = object->locked_color;
-      else object->color        = o_color_get_object_default(object->type);
+      else object->color        = geda_object_color_get_default(object->type);
       page->CHANGED             = TRUE;
     }
     NEXT(s_current);
