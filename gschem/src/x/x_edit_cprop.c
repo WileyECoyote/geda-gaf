@@ -388,7 +388,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
                                  clib, filename, 1);
 
           if (geda_complex_object_is_embedded (o_current)) {
-            o_embed (w_current->toplevel, o_new);
+            geda_object_embed (w_current->toplevel, o_new);
           }
 
           geda_attrib_object_freeze_hooks (o_new);

@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_embed.c
+/*! \file geda_object_embed.c
  *  \brief functions to embed and unembed symbols
  */
 
@@ -38,7 +38,7 @@
  *  \param toplevel  The GedaToplevel object
  *  \param o_current The GedaObject to embed
  */
-bool o_embed(GedaToplevel *toplevel, GedaObject *o_current)
+bool geda_object_embed(GedaToplevel *toplevel, GedaObject *o_current)
 {
   Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;
@@ -75,7 +75,7 @@ bool o_embed(GedaToplevel *toplevel, GedaObject *o_current)
  *  \param toplevel  The GedaToplevel object
  *  \param o_current The GedaObject to unembed
  */
-void o_unembed(GedaToplevel *toplevel, GedaObject *o_current)
+void geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
 {
   Page *page          = geda_object_get_page (o_current);
   int   page_modified = 0;

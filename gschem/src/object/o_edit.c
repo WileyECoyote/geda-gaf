@@ -1136,7 +1136,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
                                    clib, o_current->complex->filename,
                                    1);
   if (geda_complex_object_is_embedded (o_current)) {
-    o_embed (toplevel, o_new);
+    geda_object_embed (toplevel, o_new);
   }
 
   new_attribs = geda_complex_object_promote_attribs (toplevel, o_new);

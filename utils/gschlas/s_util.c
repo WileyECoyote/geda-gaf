@@ -44,9 +44,9 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
       if (o_current->type == OBJ_COMPLEX ||
                 o_current->type == OBJ_PICTURE) {
         if (embed_mode == TRUE) {
-          o_embed(pr_current, o_current);
+          geda_object_embed(pr_current, o_current);
         } else {
-          o_unembed(pr_current, o_current);
+          geda_object_unembed(pr_current, o_current);
         }
       }
 

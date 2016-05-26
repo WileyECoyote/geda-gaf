@@ -3993,7 +3993,7 @@ COMMAND (do_embed)
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
-          o_embed (w_current->toplevel, o_current);
+          geda_object_embed (w_current->toplevel, o_current);
         }
       }
       NEXT(s_current);
@@ -4026,7 +4026,7 @@ COMMAND (do_unembed)
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
-          o_unembed (w_current->toplevel, o_current);
+          geda_object_unembed (w_current->toplevel, o_current);
         }
       }
       NEXT(s_current);
