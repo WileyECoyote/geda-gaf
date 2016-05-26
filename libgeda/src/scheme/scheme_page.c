@@ -156,16 +156,18 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
               SCM_ARG2, scheme_page_from_string);
 
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
-  char *filename = scm_to_utf8_string (filename_s);
-  Page *page = s_page_new (toplevel, filename);
+  char         *filename = scm_to_utf8_string (filename_s);
+  Page         *page     = s_page_new (toplevel, filename);
   free (filename);
 
   size_t  len;
   GError *err = NULL;
   char   *str = scm_to_utf8_stringn (str_s, &len);
 
-  GList  *objects = o_read_buffer (toplevel, NULL, str, len,
-                                   page->filename, &err);
+  GList  *objects;
+
+  objects = geda_object_read_buffer (toplevel, NULL, str, len, page->filename, &err);
+
   free (str);
 
   if (err) {

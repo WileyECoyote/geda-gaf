@@ -36,7 +36,7 @@
  *  \note
  *  Be sure in o_copy o_move o_delete you maintain the attributes
  *  delete is a bare, because you will have to unattach the other end
- *  and in o_save o_read as well
+ *  and in o_save geda_object_read as well
  *  and in o_select when selecting objects, select the attributes
  */
 

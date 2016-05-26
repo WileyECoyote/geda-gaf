@@ -1632,6 +1632,28 @@ geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
 }
 
 /*!
+ * \brief Set the End Cap type Property of a GedaLine
+ * \par Function Description
+ *  Sets the value of \a object end-cap type if and only if \a object is
+ *  a valid GedaLine object. The line-end properties is only applicable
+ *  for fill types FILLING_MESH and FILLING_HATCH.
+ *
+ * \sa geda_line_object_get_end_cap
+ */
+void
+geda_line_object_set_end_cap (GedaObject *object, int line_end)
+{
+  if (GEDA_IS_LINE(object)) {
+    object->line_options->line_end = line_end < END_NONE ? END_NONE :
+                                     line_end > END_VOID ? END_VOID :
+                                     line_end;
+  }
+  else {
+    geda_line_object_error(__func__, object);
+  }
+}
+
+/*!
  * \brief Set the Line Length Property of an GedaObject
  * \par Function Description
  *  Returns the value of the \a object line length property if and only if
@@ -1684,7 +1706,7 @@ geda_line_object_set_line_space (GedaObject *object, int space)
 }
 
 /*!
- * \brief Set the Line Type Property of an Arc
+ * \brief Set the Line Type Property of a GedaObject
  * \par Function Description
  *  Sets the value of \a object line type if and only if \a object is a
  *  valid GedaObject object.
@@ -1723,28 +1745,6 @@ geda_line_object_set_line_width (GedaObject *object, int width)
 {
   if (GEDA_IS_LINE(object)) {
     object->line_options->line_width = width > 0 ? width : 0;
-  }
-  else {
-    geda_line_object_error(__func__, object);
-  }
-}
-
-/*!
- * \brief Set the End Cap type Property of a GedaLine
- * \par Function Description
- *  Sets the value of \a object end-cap type if and only if \a object is
- *  a valid GedaLine object. The line-end properties is only applicable
- *  for fill types FILLING_MESH and FILLING_HATCH.
- *
- * \sa geda_line_object_get_end_cap
- */
-void
-geda_line_object_set_end_cap (GedaObject *object, int line_end)
-{
-  if (GEDA_IS_LINE(object)) {
-    object->line_options->line_end = line_end < END_NONE ? END_NONE :
-                                     line_end > END_VOID ? END_VOID :
-                                     line_end;
   }
   else {
     geda_line_object_error(__func__, object);
@@ -1817,11 +1817,11 @@ geda_line_object_set_y1 (GedaObject *object, int y) {
 /*!
  * \brief Set Second Y coordinate of a Line object
  * \par Function Description
- *  Sets the lower y value of the line \a object. Does nothing if
+ *  Sets the second y value of the line \a object. Does nothing if
  *  \a object is not a valid GedaLine object.
  *
  * \param [in] object  Pointer to an Line GedaObject
- * \param [in] y       New value for the lower y coordinate
+ * \param [in] y       New value for the second y coordinate
  *
  * \sa geda_line_set_y2
  */

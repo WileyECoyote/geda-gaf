@@ -149,7 +149,7 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 
   /* Mirroring */
   if (obj->complex->mirror != scm_is_true (mirror_s)) {
-    o_mirror_object (obj, x, y);
+    geda_object_mirror (obj, x, y);
   }
 
   /* Angle */
@@ -174,11 +174,11 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
   if (angle < 0) {
     angle += 360;
   }
-  o_rotate_object (obj, x, y, angle);
+  geda_object_rotate (obj, x, y, angle);
 
-  o_translate_object (obj, x - obj->complex->x, y - obj->complex->y);
+  geda_object_translate (obj, x - obj->complex->x, y - obj->complex->y);
 
-  o_translate_object (obj, x - obj->complex->x, y - obj->complex->y);
+  geda_object_translate (obj, x - obj->complex->x, y - obj->complex->y);
 
   obj->selectable = scm_is_false (locked_s);
 

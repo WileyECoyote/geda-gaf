@@ -71,9 +71,9 @@
  *
  *  \return GList of objects if successful read, or NULL on error.
  */
-GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
-                      const char   *buffer,   const int size,
-                      const char   *name,     GError  **err)
+GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
+                                const char   *buffer,   const int size,
+                                const char   *name,     GError  **err)
 {
 
   GList  *object_list_save     = NULL;
@@ -96,7 +96,7 @@ GList *o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   if (buffer == NULL) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
-                 _("<o_read_buffer> detected NULL pointer to buffer "));
+                 _("<geda_object_read_buffer> detected NULL pointer to buffer "));
     return NULL;
   }
 
@@ -442,7 +442,7 @@ error2:
  *                               NULL to disable error reporting
  *  \return object_list if successful read, or NULL on error.
  */
-GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
+GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
                GError **err)
 {
   char  *buffer = (NULL);
@@ -463,7 +463,7 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
 #endif
 
   /* Parse file contents */
-  result = o_read_buffer (toplevel, object_list, buffer, size, filename, err);
+  result = geda_object_read_buffer (toplevel, object_list, buffer, size, filename, err);
 
   STOP_GEDA_PERFORMANCE;
 
@@ -481,7 +481,7 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
  *  \param [in]  o_current
  *  \return GedaObject pointer.
  */
-GedaObject *o_copy_object (GedaObject *o_current)
+GedaObject *geda_object_copy (GedaObject *o_current)
 {
   GedaObject *new_obj;
 
@@ -564,7 +564,7 @@ GedaObject *o_copy_object (GedaObject *o_current)
  *  \param [in]     center_y  Origin y coordinate.
  *  \param [in,out] object    The GedaObject to mirror.
  */
-void o_mirror_object (GedaObject *object, int center_x, int center_y)
+void geda_object_mirror (GedaObject *object, int center_x, int center_y)
 {
   void (*topless) (GedaObject*, int, int) = NULL;
 
@@ -612,7 +612,7 @@ void o_mirror_object (GedaObject *object, int center_x, int center_y)
  *  \param [in] center_y  Y coordinate of rotation center (world coords)
  *  \param [in] angle     Angle of rotation (degrees)
  */
-void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
+void geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   void (*topless) (GedaObject *, int, int, int) = NULL;
 
@@ -661,7 +661,7 @@ void o_rotate_object (GedaObject *object, int center_x, int center_y, int angle)
  *  \param [in] dx       Amount to horizontally translate object
  *  \param [in] dy       Amount to vertically translate object
  */
-void o_translate_object (GedaObject *object, int dx, int dy)
+void geda_object_translate (GedaObject *object, int dx, int dy)
 {
   void (*topless) (GedaObject *, int, int) = NULL;
 
@@ -710,7 +710,8 @@ void o_translate_object (GedaObject *object, int dx, int dy)
  *  \param [in]     y_scale  The y scale value for the lines.
  *
  */
-void o_scale (GList *list, int x_scale, int y_scale)
+void
+geda_object_scale (GList *list, int x_scale, int y_scale)
 {
   GList *iter;
 

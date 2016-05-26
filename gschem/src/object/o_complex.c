@@ -107,7 +107,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
     char  *buffer;
 
     buffer    = s_clib_symbol_get_data (sym);
-    temp_list = o_read_buffer(toplevel, NULL, buffer, -1, sym_name, &err);
+    temp_list = geda_object_read_buffer(toplevel, NULL, buffer, -1, sym_name, &err);
 
     GEDA_FREE (buffer);
 

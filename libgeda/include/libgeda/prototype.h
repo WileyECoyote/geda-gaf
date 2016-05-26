@@ -203,14 +203,14 @@ extern "C" {
          void    geda_attrib_object_thaw_hooks               (GedaObject *object);
 
 /* o_object.c */
-        GList   *o_read_buffer                   (GedaToplevel *toplevel, GList *object_list, const char *buffer,
-                                                  const int size, const char *name, GError **err);
-        GList   *o_read                          (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
-         void    o_scale                         (GList *list, int x_scale, int y_scale);
-   GedaObject   *o_copy_object                   (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-         void    o_mirror_object                 (GedaObject *object, int center_x, int center_y);
-         void    o_rotate_object                 (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_translate_object              (GedaObject *object, int dx, int dy);
+        GList   *geda_object_read_buffer              (GedaToplevel *toplevel, GList *object_list, const char *buffer,
+                                                       const int size, const char *name, GError **err);
+        GList   *geda_object_read                     (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
+         void    geda_object_scale                    (GList *list, int x_scale, int y_scale);
+   GedaObject   *geda_object_copy                     (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+         void    geda_object_mirror                   (GedaObject *object, int center_x, int center_y);
+         void    geda_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_object_translate                (GedaObject *object, int dx, int dy);
 
 /* o_box_object.c */
    GedaObject   *geda_box_object_copy                 (const GedaObject *object) WARN_UNUSED;

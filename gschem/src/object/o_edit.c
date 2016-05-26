@@ -1051,7 +1051,7 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
       dy = snap_grid (w_current, cur_y) - cur_y;
 
       if (dx || dy) {
-        o_translate_object(object, dx, dy);
+        geda_object_translate(object, dx, dy);
         modified = TRUE;
       }
     }

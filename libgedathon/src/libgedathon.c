@@ -1999,12 +1999,12 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   if (page && (GEDA_IS_PAGE(page))) {
     src_object = s_page_get_object(page, sid);
     if (src_object) {
-      new_object = o_copy_object(src_object);
+      new_object = geda_object_copy(src_object);
       s_page_append_object(page, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           GedaObject *a_current = iter->data;
-          GedaObject *a_new = o_copy_object(a_current);
+          GedaObject *a_new = geda_object_copy(a_current);
           s_page_append_object (page, a_new);
           dest_list = g_list_append(dest_list, a_new);
           geda_attrib_object_add(new_object, a_new);
@@ -2018,12 +2018,12 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     src_object = get_floating_object(sid);
 
     if (GEDA_IS_OBJECT(src_object)) {
-      new_object = o_copy_object(src_object);
+      new_object = geda_object_copy(src_object);
       add_floating_object(new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           GedaObject *a_current = iter->data;
-          GedaObject *a_new = o_copy_object(a_current);
+          GedaObject *a_new = geda_object_copy(a_current);
           dest_list = g_list_append(dest_list, a_new);
           add_floating_object(a_new);
           geda_attrib_object_add(new_object, a_new);

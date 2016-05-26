@@ -275,27 +275,30 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   if (load_backup_file == 1) {
 
     /* Load the backup file */
-    objects = o_read (toplevel, NULL, backup_filename, &tmp_err);
+    objects = geda_object_read (toplevel, NULL, backup_filename, &tmp_err);
   }
   else {
 
     /* Load the original file */
-    objects = o_read (toplevel, NULL, full_filename, &tmp_err);
+    objects = geda_object_read (toplevel, NULL, full_filename, &tmp_err);
+
     if (load_backup_file == 2) {
       remove(backup_filename);
     }
   }
 
   if (tmp_err == NULL) {
+
     s_page_append_list (page, objects);
+
     if (load_backup_file == 0) {
       /* If it's not the backup file */
-      page->CHANGED=0; /* added 4/7/98 */
+      page->CHANGED = 0; /* added 4/7/98 */
     }
     else {
       /* We are loading the backup file, so gschem should ask the
        * user whether to save the page or not when closing the page. */
-      page->CHANGED=1;
+      page->CHANGED = 1;
     }
     opened = TRUE;
   }

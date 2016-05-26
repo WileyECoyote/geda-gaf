@@ -69,7 +69,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
         o_selection_unselect (src_object);
 
       if (src_object->type != OBJ_TEXT) {
-        dst_object = o_copy_object (src_object);
+        dst_object = geda_object_copy (src_object);
         dest = g_list_prepend (dest, dst_object);
       }
 
@@ -98,7 +98,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
         o_selection_unselect (src_object);
 
       if (src_object->type == OBJ_TEXT) {
-        dst_object = o_copy_object (src_object);
+        dst_object = geda_object_copy (src_object);
         dest = g_list_prepend (dest, dst_object);
 
         if (src_object->attached_to != NULL &&
@@ -220,7 +220,7 @@ geda_object_list_find_attrib_by_name (const GList *list,
 
 /*! \brief Translates a glist of Objects
  *  \par Function Description
- *  Calls o_translate_object for each glist data member
+ *  Calls geda_object_translate for each glist data member
  */
 void geda_object_list_translate(const GList *list, int dx, int dy)
 {
@@ -236,7 +236,7 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    o_translate_object(o_current, dx, dy);
+    geda_object_translate(o_current, dx, dy);
     o_iter = o_iter->next;
   }
 
@@ -250,7 +250,7 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
 
 /*! \brief Rotate a glist of Objects
  *  \par Function Description
- *  Calls o_rotate_object for each glist data member
+ *  Calls geda_object_rotate for each glist data member
  */
 void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 {
@@ -270,7 +270,7 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = (GedaObject *)o_iter->data;
-    o_rotate_object (o_current, x, y, angle);
+    geda_object_rotate (o_current, x, y, angle);
     o_iter = o_iter->next;
   }
 
@@ -288,7 +288,7 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 
 /*! \brief Mirror a glist of Objects
  *  \par Function Description
- *   Calls o_mirror_object for each glist data member
+ *   Calls geda_object_mirror for each glist data member
  */
 void geda_object_list_mirror (const GList *list, int x, int y)
 {
@@ -308,7 +308,7 @@ void geda_object_list_mirror (const GList *list, int x, int y)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = (GedaObject *)o_iter->data;
-    o_mirror_object (o_current, x, y);
+    geda_object_mirror (o_current, x, y);
     o_iter = o_iter->next;
   }
 

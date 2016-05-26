@@ -839,10 +839,10 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel, int x, int y, int an
   }
   else {
 
-    GError * err = NULL;
+    GError *err = NULL;
 
     /* add connections till translated */
-    complex->prim_objs = o_read_buffer (toplevel, NULL, buffer, -1, complex->filename, &err);
+    complex->prim_objs = geda_object_read_buffer (toplevel, NULL, buffer, -1, complex->filename, &err);
 
     if (err) {
 
@@ -857,16 +857,16 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel, int x, int y, int an
       if (mirror) { /* children if required */
         for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
           GedaObject *sub_object = iter->data;
-          o_mirror_object (sub_object, 0, 0);
-          o_rotate_object(sub_object, 0, 0, angle);
-          o_translate_object(sub_object, x, y);
+          geda_object_mirror (sub_object, 0, 0);
+          geda_object_rotate(sub_object, 0, 0, angle);
+          geda_object_translate(sub_object, x, y);
         }
       }
       else {
         for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
           GedaObject *sub_object = iter->data;
-          o_rotate_object(sub_object, 0, 0, angle);
-          o_translate_object(sub_object, x, y);
+          geda_object_rotate(sub_object, 0, 0, angle);
+          geda_object_translate(sub_object, x, y);
         }
       }
     }
@@ -965,7 +965,7 @@ GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel, GedaObject *
 
     for (iter = promotable; iter != NULL; iter = iter->next) {
       GedaObject *o_kept = (GedaObject *) iter->data;
-      GedaObject *o_copy = o_copy_object (o_kept);
+      GedaObject *o_copy = geda_object_copy (o_kept);
       o_set_visibility (o_kept, INVISIBLE);
       o_copy->parent_object = NULL;
       promoted = g_list_prepend (promoted, o_copy);

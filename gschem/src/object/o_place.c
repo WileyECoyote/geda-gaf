@@ -141,7 +141,7 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
       GedaObject *o_current = iter->data;              /* Get pointer to object */
 
-      o_translate_object(o_current, w_diff_x, w_diff_y);
+      geda_object_translate(o_current, w_diff_x, w_diff_y);
 
       o_current->page = NULL;                      /* Remove old references */
 

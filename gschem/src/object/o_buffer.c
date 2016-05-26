@@ -182,7 +182,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
 
         for (iter = Current_PlaceList; iter != NULL; iter = iter->next) {
          GedaObject *o_current = iter->data;
-          o_translate_object(o_current, w_x - x, w_y - y);
+          geda_object_translate(o_current, w_x - x, w_y - y);
         }
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE

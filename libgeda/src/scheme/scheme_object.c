@@ -191,7 +191,7 @@ EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
 
   GedaObject *obj = edascm_to_object (obj_s);
 
-  result = edascm_from_object (o_copy_object (obj));
+  result = edascm_from_object (geda_object_copy (obj));
 
   /* At the moment, the only pointer to the object is owned by the
    * smob. */
@@ -225,7 +225,7 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
   int x = scm_to_int (x_s);
 
   o_notify_emit_pre_change (obj);
-  o_mirror_object (obj, x, 0);
+  geda_object_mirror (obj, x, 0);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -1917,7 +1917,7 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
   int dy = scm_to_int (dy_s);
 
   o_notify_emit_pre_change (obj);
-  o_translate_object (obj, dx, dy);
+  geda_object_translate (obj, dx, dy);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -1965,7 +1965,7 @@ EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
   SCM_ASSERT (angle % 90 == 0, angle_s, SCM_ARG4, scheme_object_rotate_x);
 
   o_notify_emit_pre_change (obj);
-  o_rotate_object (obj, x, y, angle);
+  geda_object_rotate (obj, x, y, angle);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);

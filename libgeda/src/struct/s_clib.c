@@ -66,7 +66,7 @@
  *
  *  The component database may be queried using s_clib_search().  A
  *  null-terminated buffer containing symbol data (suitable for
- *  loading using o_read_buffer()) may be obtained using
+ *  loading using geda_object_read_buffer()) may be obtained using
  *  s_clib_symbol_get_data().  If an exact symbol name is known, the
  *  symbol data may be requested directly using
  *  s_clib_symbol_get_data_by_name().

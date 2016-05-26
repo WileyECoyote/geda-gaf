@@ -144,7 +144,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         buffer =  (char *)gtk_selection_data_get_data(selection_data);
 
         /* Copy received objects to the Drag&Drop buffer */
-        object_buffer[DND_BUFFER] = o_read_buffer (toplevel,
+        object_buffer[DND_BUFFER] = geda_object_read_buffer (toplevel,
                                                    object_buffer[DND_BUFFER],
                                                    buffer,
                                                    -1, _("Drag & Drop"), &err);

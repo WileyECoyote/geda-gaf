@@ -310,7 +310,7 @@ x_clipboard_get (GschemToplevel *w_current)
   buf = selection_data->data;
 #endif
 
-  object_list = o_read_buffer (toplevel, object_list,
+  object_list = geda_object_read_buffer (toplevel, object_list,
                                (char *) buf, -1, "Clipboard", &err);
 
   if (err) {

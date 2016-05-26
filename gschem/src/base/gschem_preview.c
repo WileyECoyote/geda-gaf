@@ -294,7 +294,7 @@ preview_update (GschemPreview *preview)
       err = NULL;
 
       /* Load the data buffer */
-      object_list = o_read_buffer (preview_toplevel, NULL, preview->buffer,
+      object_list = geda_object_read_buffer (preview_toplevel, NULL, preview->buffer,
                                    -1, _("Preview Buffer"), &err);
 
       if (err == NULL) {

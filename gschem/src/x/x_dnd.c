@@ -571,10 +571,10 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
     err = NULL;
 
     /* Copy the objects to the Drag&Drop buffer */
-    object_buffer[DND_BUFFER] = o_read_buffer (w_current->toplevel,
-                                               object_buffer[DND_BUFFER],
-                                               buffer,
-                                               -1, "Drag & Drop", &err);
+    object_buffer[DND_BUFFER] = geda_object_read_buffer (w_current->toplevel,
+                                                         object_buffer[DND_BUFFER],
+                                                         buffer,
+                                                         -1, "Drag & Drop", &err);
     if (err) {
       char *errmsg = geda_sprintf ( _("An error occurred while dropping data: %s."), err->message);
       titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed") );
