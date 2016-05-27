@@ -77,7 +77,7 @@ static void select_page                 (GtkTreeView *treeview,
 static void x_pagesel_callback_response (GtkDialog   *dialog,
                                          int          response,
                                          void        *log);
-static void x_pagesel_auto_height       (Pagesel     *pagesel);
+static void pagesel_auto_height       (Pagesel     *pagesel);
 
 /*! \brief Open the page manager dialog.
  *  \par Function Description
@@ -104,7 +104,7 @@ x_pagesel_open (GschemToplevel *w_current)
 
     gtk_widget_show (w_current->pswindow);
 
-    x_pagesel_auto_height((Pagesel*)w_current->pswindow);
+    pagesel_auto_height((Pagesel*)w_current->pswindow);
   }
   else {
     gtk_window_present(GTK_WINDOW(w_current->pswindow));
@@ -223,6 +223,12 @@ static void pagesel_class_init (void *class, void *class_data);
 static void pagesel_instance_init (GTypeInstance *instance, void *class);
 static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
 
+/*!
+ * \brief Get the Heigth of the Page Manager dialog Action Area
+ * \par Function Description
+ *  Helper for pagesel_auto_height to retrieve the heigth of the
+ *  acion area, which is an hbox widget.
+ */
 static void
 pagesel_get_action_height (Pagesel *pagesel)
 {
@@ -239,6 +245,16 @@ pagesel_get_action_height (Pagesel *pagesel)
   pagesel->action_height = allocation.height + (border << 1);
 }
 
+/*!
+ * \brief Get Tree-View Row Heigth in Page Manager dialog
+ * \par Function Description
+ *  Helper for pagesel_auto_height to retrieve the heigth of the
+ *  rows in the tree-view in the PageSel dialog. A pointer to the
+ *  file name cell renderer was retained during initialization so
+ *  that the cell heigth could be determine, cell heigth as reported
+ *  by gtk_cell_renderer_get_size does not include the spacing
+ *  between rows but is included in the row_height.
+ */
 static void
 pagesel_get_row_height (Pagesel *pagesel)
 {
@@ -259,7 +275,7 @@ pagesel_get_row_height (Pagesel *pagesel)
   pagesel->row_height = height + 2;
 }
 
-/*! \brief Page Manager Dialog Tree View Page Selected
+/*! \brief Page Manager Auto Resize Dialog Heigth
  *  \par Function Description
  *  This function adjust the height of the Page Select Dialog based
  *  on the number of pages if auto_height is TRUE. When the dialog
@@ -272,7 +288,7 @@ pagesel_get_row_height (Pagesel *pagesel)
  *  called by the callback for the AutoHeight toggle switch.
  */
 static void
-x_pagesel_auto_height(Pagesel *pagesel)
+pagesel_auto_height(Pagesel *pagesel)
 {
   GschemToplevel *w_current;
   GtkWidget      *toggle;
@@ -623,15 +639,15 @@ pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
                   gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \brief Handler for the notify::gschem-toplevel signal of GschemDialog
- *
- *  \par Function Description
+/*!
+ * \brief Handler for the notify::gschem-toplevel signal of GschemDialog
+ * \par Function Description
  *  When the gschem-toplevel property is set on the parent GschemDialog,
  *  we should update the pagesel dialog.
  *
- *  \param [in] gobject  Object which received the signal.
- *  \param [in] arg1     GParamSpec of the property which changed
- *  \param [in] nothing  user data not set.
+ * \param [in] gobject  Object which received the signal.
+ * \param [in] arg1     GParamSpec of the property which changed
+ * \param [in] nothing  user data not set.
  */
 static void
 notify_gschem_toplevel_cb (GObject *gobject, GParamSpec *arg1, void *nothing)
@@ -640,8 +656,9 @@ notify_gschem_toplevel_cb (GObject *gobject, GParamSpec *arg1, void *nothing)
   pagesel_update( pagesel );
 }
 
-/*! \brief Sets data for a particular cell of the In Use treeview.
- *  \par Function Description
+/*!
+ * \brief Sets data for a particular cell of the In Use treeview.
+ * \par Function Description
  *  This function determines what data is to be displayed in the cells
  *  in the filename column, dynamically, so the pointer to the string
  *  can be advanced past the path portion based on user preference.
@@ -686,7 +703,7 @@ static void
 pagesel_auto_height_toggled (GtkWidget *widget, Pagesel *pagesel)
 {
   TOGGLE_SWITCH(widget);
-  x_pagesel_auto_height(pagesel);
+  pagesel_auto_height(pagesel);
   return;
 }
 
@@ -832,7 +849,7 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
     x_dnd_receive_string(w_current, xf, 0, string, DROPPED_ON_PAGESEL);
 
     /* Check if dialog should grow */
-    x_pagesel_auto_height((Pagesel*)w_current->pswindow);
+    pagesel_auto_height((Pagesel*)w_current->pswindow);
 
     GEDA_FREE(string);
   }

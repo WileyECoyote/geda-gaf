@@ -3,6 +3,9 @@
     * src/x/x_dialog.c: Reduce scope of zoom_check_butt and zoom_extents in
       x_dialog_translate_response.
 
+    * src/x/x_pagesel.c: Rename x_pagesel_auto_height pagesel_auto_height, add
+      edit Doxygen comments.
+
 2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Replace u_log_message with geda_log and v_log_message
