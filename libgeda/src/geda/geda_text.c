@@ -65,7 +65,7 @@ static GObjectClass *geda_text_parent_class = NULL;
  *
  *  \param [in]  o_current a text object
  */
-int
+static int
 geda_text_bounds(GedaObject *o_current)
 {
   g_return_val_if_fail(GEDA_IS_TEXT(o_current), FALSE);

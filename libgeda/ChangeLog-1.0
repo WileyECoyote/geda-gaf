@@ -1,7 +1,17 @@
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_line_object.c: Reduce sopce of line, newx, and newy in
+    * src/object/o_line_object.c: Reduce scope of line, newx, and newy in
       geda_line_object_rotate.
+
+    * src/geda/geda_xxx_bounds: Make Bounds functions static in:
+
+            * geda_arc.c
+            * geda_box.c
+            * geda_complex.c
+            * geda_line.c
+            * geda_path.c
+            * geda_picture.c
+            * geda_text.c
 
 2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
 

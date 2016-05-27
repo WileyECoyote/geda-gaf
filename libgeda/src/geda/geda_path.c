@@ -59,7 +59,7 @@ static GObjectClass *geda_path_parent_class = NULL;
  *
  *  \param [in]  object     Path GedaObject to read coordinates from.
  */
-int
+static int
 geda_path_bounds (GedaObject *object)
 {
   int i;

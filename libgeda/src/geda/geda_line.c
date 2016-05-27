@@ -68,7 +68,7 @@ static GObjectClass *geda_line_parent_class = NULL;
  *
  *  \param [in]  object Pointer to Line object
  */
-int
+static int
 geda_line_bounds(GedaObject *object)
 {
   int expand;

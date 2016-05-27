@@ -76,7 +76,7 @@ static GObjectClass *geda_box_parent_class = NULL;
  *
  *  \param [in]  object  Box GedaObject to read coordinates from.
  */
-int
+static int
 geda_box_bounds(GedaObject *object)
 {
   int halfwidth;

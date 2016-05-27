@@ -60,7 +60,8 @@ static GObjectClass *geda_complex_parent_class = NULL;
  *  \retval 0 No bounds were found
  *  \retval 1 Bound was found
  */
-int geda_complex_bounds(GedaObject *object)
+static int
+geda_complex_bounds(GedaObject *object)
 {
   const GList     *iter;
   GedaObject      *sub_object;

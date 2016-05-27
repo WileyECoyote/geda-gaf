@@ -57,7 +57,7 @@ static GObjectClass *geda_picture_parent_class = NULL;
  *
  *  \param [in]  object     Picture GedaObject to read coordinates from.
  */
-int
+static int
 geda_picture_bounds(GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);

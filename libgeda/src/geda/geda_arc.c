@@ -82,7 +82,7 @@ static GObjectClass *geda_arc_parent_class = NULL;
  *
  *  \param [in]  object
  */
-int
+static int
 geda_arc_bounds(GedaObject *object)
 {
   int x1, y1, x2, y2, x3, y3;
