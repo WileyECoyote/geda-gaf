@@ -2400,9 +2400,10 @@ void geda_label_set_text (GedaLabel *label, const char *str)
 
   g_object_thaw_notify (G_OBJECT (label));
 }
+
 void geda_label_widget_set_text (GtkWidget *widget, const char *str)
 {
-  geda_label_set_text((GedaLabel *)widget,str);
+  geda_label_set_text((GedaLabel*)widget,str);
 }
 
 /*! \brief geda_label_set_attributes
@@ -3209,6 +3210,7 @@ int geda_label_get_width_chars (GedaLabel *label)
 
   return label->width_chars;
 }
+
 int geda_label_widget_get_width_chars (GtkWidget *widget)
 {
   return geda_label_get_width_chars ( (GedaLabel*) widget);
@@ -4580,6 +4582,7 @@ static void limit_layout_lines (PangoLayout *layout)
   n_lines = pango_layout_get_line_count (layout);
 
   if (n_lines >= DRAG_ICON_MAX_LINES) {
+
     text  = pango_layout_get_text (layout);
     str   = g_string_new (NULL);
     lines = pango_layout_get_lines_readonly (layout);
@@ -4634,7 +4637,7 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 
   limit_layout_lines (layout);
 
-  /* get again layout extents, they may have changed */
+  /* get layout extents again, which may have changed */
   pango_layout_get_size (layout, &layout_width, &layout_height);
 
   pixmap_width  = layout_width  / PANGO_SCALE + DRAG_ICON_LAYOUT_BORDER * 2;
@@ -4663,6 +4666,7 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 
   return drawable;
 }
+
 static void
 drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 {

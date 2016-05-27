@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:02-0500\n"
+"POT-Creation-Date: 2016-05-27 00:39-0500\n"
 "PO-Revision-Date: 2012-10-28 15:46+0000\n"
 "Last-Translator: Penegal <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -830,16 +830,16 @@ msgstr ""
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5928
+#: libgedauio/src/widgets/geda_label.c:5930
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6053
+#: libgedauio/src/widgets/geda_label.c:6055
 #, fuzzy
 msgid "_Open Link"
 msgstr "Ouvrir fichier..."
 
-#: libgedauio/src/widgets/geda_label.c:6065
+#: libgedauio/src/widgets/geda_label.c:6067
 msgid "Copy _Link Address"
 msgstr ""
 

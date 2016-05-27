@@ -416,6 +416,32 @@ geda_entry_get_completion (GedaEntry *entry)
   return entry->priv->command_completion;
 }
 
+/*!
+ * \todo Finish function documentation!!!
+ * \brief
+ * \par Function Description
+ * \sa gtk_entry_set_completion
+ */
+void
+geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
+{
+  GedaEntryPriv *priv;
+
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  priv = entry->priv;
+
+  if (priv->command_completion) {
+    geda_completion_free (entry->priv->command_completion);
+  }
+
+  priv->command_completion = completion;
+
+  if (completion && !have_auto_complete) {
+    have_auto_complete = TRUE;
+  }
+}
+
 /*! \brief Get sensitivity of internal completion algorithms */
 bool
 geda_entry_completion_get_case (GedaEntry *entry) {

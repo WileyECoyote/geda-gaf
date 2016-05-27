@@ -2,6 +2,8 @@
 
     * include/geda_toolbar.h: New file, header for GedaToolBarClass
 
+    * src/widgets/geda_entry.c: Add geda_entry_set_completion.
+
     * src/widgets/geda_toolbar.c: New file, implementation of GedaToolBarClass.
 
     * tests/test_toolbar.c: Add checks for constructing GedaToolBar widgets.

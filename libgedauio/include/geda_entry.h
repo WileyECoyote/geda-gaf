@@ -164,11 +164,10 @@ PangoAttrList*
 int  geda_entry_get_max_history              (GedaEntry      *entry);
 void geda_entry_set_max_history              (GedaEntry      *entry,
                                               int             value);
-void geda_entry_set_completion               (GedaEntry      *entry,
-                                              GedaCompletion *completion);
 GedaCompletion*
      geda_entry_get_completion               (GedaEntry      *entry);
-
+void geda_entry_set_completion               (GedaEntry      *entry,
+                                              GedaCompletion *completion);
 bool geda_entry_completion_get_case          (GedaEntry      *entry);
 void geda_entry_completion_set_case          (GedaEntry      *entry,
                                               bool            sensitive);
