@@ -2937,10 +2937,8 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
                                  int             response,
                                  GschemToplevel *w_current)
 {
-  GtkWidget       *textentry;
-  GtkToggleButton *zoom_check_butt;
-  const char      *string;
-  bool             zoom_extents;
+  GtkWidget  *textentry;
+  const char *string;
 
   switch (response) {
   case GEDA_RESPONSE_REJECT:
@@ -2949,9 +2947,15 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
     break;
 
   case GEDA_RESPONSE_ACCEPT:
+
     textentry = GEDA_OBJECT_GET_DATA(Dialog, IDS_TRANSLATE);
     string    = geda_entry_widget_get_text(textentry);
+
     if (strlen(string) != 0) {
+
+      GtkToggleButton *zoom_check_butt;
+      bool             zoom_extents;
+
       zoom_check_butt = GEDA_OBJECT_GET_DATA(Dialog, "zoom-check-butt");
       zoom_extents    = gtk_toggle_button_get_active(zoom_check_butt);
       o_complex_translate_all(w_current, atoi(string), zoom_extents);
