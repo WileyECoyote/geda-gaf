@@ -18,7 +18,8 @@ check_widgets = \
 	test_font_button \
 	test_font_dialog \
 	test_handlebox \
-	test_image_menu_item
+	test_image_menu_item \
+	test_toolbar
 
 check_PROGRAMS = \
 	$(check_functions) \

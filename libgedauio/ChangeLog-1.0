@@ -4,6 +4,8 @@
 
     * src/widgets/geda_toolbar.c: New file, implementation of GedaToolBarClass.
 
+    * tests/test_toolbar.c: Add checks for constructing GedaToolBar widgets.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add translations for some GtkStateFlags.
