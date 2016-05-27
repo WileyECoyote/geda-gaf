@@ -1560,12 +1560,10 @@ geda_line_object_read (const char buf[], unsigned int release_ver,
 void
 geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
-  GedaLine *line;
-  int newx, newy;
-
   if (GEDA_IS_LINE(object)) {
 
-    line = GEDA_LINE(object);
+    GedaLine *line = GEDA_LINE(object);
+    int newx, newy;
 
     if (angle == 0)
       return;

@@ -1,3 +1,8 @@
+2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_line_object.c: Reduce sopce of line, newx, and newy in
+      geda_line_object_rotate.
+
 2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_line.c: Add accessors for line type properties.
