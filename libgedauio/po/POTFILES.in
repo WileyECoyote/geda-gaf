@@ -20,5 +20,6 @@ libgedauio/src/widgets/geda_separator.c
 libgedauio/src/widgets/geda_swatch_renderer.c
 libgedauio/src/widgets/geda_tearoff_menu_item.c
 libgedauio/src/widgets/geda_toggle_action.c
+libgedauio/src/widgets/geda_toolbar.c
 libgedauio/src/widgets/geda_tree_view.c
 

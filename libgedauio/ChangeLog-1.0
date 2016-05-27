@@ -1,3 +1,9 @@
+2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_toolbar.h: New file, header for GedaToolBarClass
+
+    * src/widgets/geda_toolbar.c: New file, implementation of GedaToolBarClass.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add translations for some GtkStateFlags.

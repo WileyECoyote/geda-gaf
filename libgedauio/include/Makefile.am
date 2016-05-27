@@ -37,6 +37,7 @@ libgedauio_HEADERS = \
 			geda_tearoff_menu_item.h  \
 			geda_threads.h            \
 			geda_toggle_action.h      \
+			geda_toolbar.h            \
 			geda_tree_view.h          \
 			geda_tree.h               \
 			geda_dialogs.h            \
