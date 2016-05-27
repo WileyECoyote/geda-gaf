@@ -34,7 +34,7 @@
 #include <geda_py_struct.h>
 #include <geda_capsule.h>
 
-int
+static int
 PyGeda_update_arc(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaArcObject *py_arc    = (PyGedaArcObject*)py_object;
@@ -60,7 +60,7 @@ PyGeda_update_arc(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_box(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaBoxObject *py_box          = (PyGedaBoxObject*)py_object;
@@ -83,7 +83,8 @@ PyGeda_update_box(GedaObject *object, PyGedaObject *py_object )
   object->line_options->line_space  = py_box->line_space;
   return 1;
 }
-int
+
+static int
 PyGeda_update_bus(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaBusObject *py_bus          = (PyGedaBusObject*)py_object;
@@ -96,7 +97,8 @@ PyGeda_update_bus(GedaObject *object, PyGedaObject *py_object )
   object->line_options->line_width = py_bus->line_width;
   return 1;
 }
-int
+
+static int
 PyGeda_update_circle(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaCircleObject *py_circle     = (PyGedaCircleObject*)py_object;
@@ -120,7 +122,7 @@ PyGeda_update_circle(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_complex(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaComplexObject *py_complex = (PyGedaComplexObject*)py_object;
@@ -134,7 +136,7 @@ PyGeda_update_complex(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_line(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaLineObject *py_line  = (PyGedaLineObject*)py_object;
@@ -151,7 +153,8 @@ PyGeda_update_line(GedaObject *object, PyGedaObject *py_object )
   object->line_options->line_space = py_line->line_space;
   return 1;
 }
-int
+
+static int
 PyGeda_update_net(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaNetObject *py_net    = (PyGedaNetObject*)py_object;
@@ -165,7 +168,7 @@ PyGeda_update_net(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaPathObject *py_path = (PyGedaPathObject*)py_object;
@@ -191,7 +194,7 @@ PyGeda_update_path(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_picture(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaPictureObject *py_picture  = (PyGedaPictureObject*)py_object;
@@ -204,7 +207,7 @@ PyGeda_update_picture(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
 {
   PyGedaPinObject *py_pin = (PyGedaPinObject*)py_object;
@@ -248,7 +251,7 @@ PyGeda_update_pin(GedaObject *object, PyGedaObject *py_object )
   return 1;
 }
 
-int
+static int
 PyGeda_update_text(GedaObject *object, PyGedaObject *py_object)
 {
   PyGedaTextObject *py_text        = (PyGedaTextObject*)py_object;

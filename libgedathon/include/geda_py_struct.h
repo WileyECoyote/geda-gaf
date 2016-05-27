@@ -389,4 +389,5 @@ struct st_py_text {
     COLOR color;
     COLOR locked_color;  /* Locked color (used to save) */
 };
+
 #endif

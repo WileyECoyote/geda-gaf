@@ -1399,7 +1399,7 @@ FUNCTION(AddLine)
 
 /*! \brief Create and Add a Net Object Python API Function
  *  \par Function Description
- *    This function calls Geda API Library routines to create a new <b>PyGedaNetObject</b>
+ *  This function calls Geda API Library routines to create a new <b>PyGedaNetObject</b>
  *  and attaches the object to the given Page object. If the optional netname
  *  argument is given then a seperate text attribute object will be created
  *  and attached to the Net object with the value given by the string and the

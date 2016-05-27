@@ -1,3 +1,19 @@
+2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/update_objects.c: Made functions static:
+
+            * PyGeda_update_arc
+            * PyGeda_box
+            * PyGeda_bus
+            * PyGeda_circle
+            * PyGeda_complex
+            * PyGeda_line
+            * PyGeda_net
+            * PyGeda_path
+            * PyGeda_picture
+            * PyGeda_pin
+            * PyGeda_text
+
 2016-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/update_objects.c: Fix update incorrect attribute "pinlabel" should
