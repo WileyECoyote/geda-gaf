@@ -31,17 +31,20 @@
 #define NUM_BEZIER_SEGMENTS 100
 #define NUM_BEZIER_SEGMENTS 100
 
+/*! Default capacity of newly created path objects, in path sections. */
+#define TEMP_PATH_DEFAULT_SIZE 8
+
 typedef void (*FILL_FUNC) (GschemToplevel *w_current,
-                           COLOR *color, GedaPath *path,
-                           int fill_width,
+                           COLOR *color, GedaPath *path, int fill_width,
                            int angle1, int pitch1, int angle2, int pitch2);
 
-/*! \brief Calculate path bounding box for rubber purposes
- *  \par Function Description
- * Calculate the bounding box of \a path, returning its bounds in \a
- * min_x, \a max_y, \a max_x and \a min_y.  If \a path is NULL, the
- * Path object currently being edited is used, with any required
- * control point changes applied.
+/*!
+ * \brief Calculate path bounding box for rubber purposes
+ * \par Function Description
+ *  Calculate the bounding box of \a path, returning its bounds in
+ *  \a min_x, \a max_y, \a max_x and \a min_y.  If \a path is NULL,
+ *  the Path object currently being edited is used, with any required
+ *  control point changes applied.
  */
 static void
 path_rubber_bbox (GschemToplevel *w_current, GedaPath *path,
@@ -105,18 +108,17 @@ path_rubber_bbox (GschemToplevel *w_current, GedaPath *path,
   }
 }
 
-/*! Default capacity of newly created path objects, in path sections. */
-#define TEMP_PATH_DEFAULT_SIZE 8
-
-/*! \brief Add elements to the temporary Path.
+/*!
+ * \brief Add elements to the temporary Path.
  * \par Function Description
- * Check if the temporary Path object used when interactively
- * creating paths has room for additional sections.  If not, doubles
- * its capacity.
+ *  Check if the temporary Path object used when interactively
+ *  creating paths has room for additional sections.  If not, doubles
+ *  its capacity.
  *
- *  \param [in] w_current   The GschemToplevel object.
+ * \param [in] w_current   The GschemToplevel object.
  */
-static void path_expand (GschemToplevel *w_current)
+static void
+path_expand (GschemToplevel *w_current)
 {
 
   GedaPath *p = w_current->temp_path;
@@ -127,11 +129,12 @@ static void path_expand (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Add new sections to the temporary path while drawing.
+/*!
+ * \brief Add new sections to the temporary path while drawing.
  * \par Function Description
- * Calculates the next section to be added to a path while drawing.
- * The temporary slots in the GschemToplevel structure are used as
- * follows:
+ *  Calculates the next section to be added to a path while drawing.
+ *  The temporary slots in the GschemToplevel structure are used as
+ *  follows:
  *   - first_wx and first_wy contain the location of the next point
  *     that will lie on the path
  *   - second_wx and second_wy contain the location of the next
@@ -141,12 +144,12 @@ static void path_expand (GschemToplevel *w_current)
  *   - temp_path is the new Path object (i.e. sequence of path
  *     sections that comprise the path drawn so far).
  *
- * path_next_sections() adds up to two additional sections to the
- * temporary path, and returns the number of sections added, on the
- * basis that: a path starts with a MOVETO the first point; two cusp
- * nodes (control points coincident with the node position) generate a
- * LINETO section; and a path ends either whenever the user clicks on
- * either the first or the current node.
+ *  path_next_sections() adds up to two additional sections to the
+ *  temporary path, and returns the number of sections added, on the
+ *  basis that: a path starts with a MOVETO the first point; two cusp
+ *  nodes (control points coincident with the node position) generate a
+ *  LINETO section; and a path ends either whenever the user clicks on
+ *  either the first or the current node.
  *
  * \param [in] w_current   The GschemToplevel object.
  *
@@ -166,6 +169,7 @@ path_next_sections (GschemToplevel *w_current)
     BUG_MSG ("w_current = NULL");
     return 0;
   }
+
   if (w_current->temp_path == NULL || w_current->temp_path->sections == NULL) {
     BUG_MSG ("invalid temp_path or section");
     return 0;
@@ -263,10 +267,11 @@ path_next_sections (GschemToplevel *w_current)
   return p->num_sections - save_num_sections;
 }
 
-/* \brief Begin inputting a new path node.
+/*!
+ * \brief Begin input for a new path node.
  * \par Function Description
- * Re-enters path creation mode, saving the current pointer location
- * as the location of the next path control point.
+ *  Re-enters path creation mode, saving the current pointer location
+ *  as the location of the next path control point.
  */
 void
 o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
@@ -282,10 +287,95 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
   i_status_action_start(w_current);
 }
 
+/*!
+ * \brief Draw path creation preview.
+ * \par Function Description
+ *  Draw a preview of the path currently being drawn, including a
+ *  helper line showing the control point of the node being drawn
+ *  (if applicable).
+ */
+void
+o_path_draw_rubber (GschemToplevel *w_current)
+{
+  EdaRenderer *renderer;
+  GedaObject  *object;
+  int added_sections = 0;
 
+  renderer = CairoRenderer;
 
-/*! \brief End the input of a path.
- *  \par Function Description
+  /* Draw a helper for when we're dragging a control point */
+  if (w_current->first_wx != w_current->second_wx
+      || w_current->first_wy != w_current->second_wy) {
+    double wwidth = 0;
+    cairo_t *cr = eda_renderer_get_cairo_context (renderer);
+    GArray *color_map = eda_renderer_get_color_map (renderer);
+    int flags = eda_renderer_get_cairo_flags (renderer);
+
+    eda_cairo_line (cr, flags, END_NONE, wwidth,
+                    w_current->first_wx, w_current->first_wy,
+                    w_current->second_wx, w_current->second_wy);
+
+    eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
+    eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
+  }
+  /* Now draw the rest of the path */
+
+  /* Calculate any new sections */
+  added_sections = path_next_sections (w_current);
+
+  /* Setup a tmp object to pass the drawing routine */
+   object = geda_path_new();
+
+  object->type  = OBJ_PATH;
+  object->color = SELECT_COLOR;
+  object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
+  object->path  = w_current->temp_path;
+
+  eda_renderer_draw (renderer, object);
+
+  /* Get rid of temp object */
+  GEDA_UNREF (object);
+
+  /* Throw away the added sections again */
+  w_current->temp_path->num_sections -= added_sections;
+}
+
+/*!
+ * \brief Draw path from GschemToplevel object.
+ * \par Function Description
+ *  This function draws a path with an exclusive or function over the sheet.
+ *  The color of the box is <B>SELECT_COLOR</B>. The path is
+ *  described by the two points (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *
+ * \param [in] w_current  The GschemToplevel object.
+ */
+void
+o_path_draw_rubber_grips (GschemToplevel *w_current)
+{
+  GedaObject *object;
+
+  /* Setup a tmp object to pass the drawing routine */
+  object = geda_path_new();
+
+  object->type  = OBJ_PATH;
+  object->color = SELECT_COLOR;
+  object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
+  object->path  = w_current->temp_path;
+
+  object->path = s_path_copy_modify (w_current->which_object->path, 0, 0,
+                                   w_current->second_wx,
+                                   w_current->second_wy, w_current->which_grip);
+
+  eda_renderer_draw (CairoRenderer, object);
+
+  /* Get rid of temp object */
+  GEDA_UNREF(object);
+}
+
+/*!
+ * \brief End the input of a path.
+ * \par Function Description
  *  This function ends the process of interactively adding a path to the
  *  current sheet.
  *
@@ -294,11 +384,12 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
  *  adds a new initialized path object to the list of object of the current
  *  sheet.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        (unused)
- *  \param [in] w_y        (unused)
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        (unused)
+ * \param [in] w_y        (unused)
  */
-void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
+void
+o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel;
   GedaPath     *path;
@@ -392,8 +483,9 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
   i_status_update_action_state(w_current, result);
 }
 
-/*! \brief Initialize Variables to input a new path object.
- *  \par Function Description
+/*!
+ * \brief Initialize Variables to input a new path object.
+ * \par Function Description
  *  This function initialize variables to input a new path to
  *  the current sheet by resetting the path creation state and
  *  enabling preview ("rubber") drawing.
@@ -401,11 +493,12 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
  *  For details of how #GschemToplevel fields are used during the
  *  path creation process, see path_next_sections().
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
-static void o_path_init(GschemToplevel *w_current, int w_x, int w_y)
+static void
+o_path_init(GschemToplevel *w_current, int w_x, int w_y)
 {
   i_status_action_start(w_current);
 
@@ -436,11 +529,11 @@ static void o_path_init(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-
-/*! \brief Invalidate current path creation screen region.
+/*!
+ * \brief Invalidate current path creation screen region.
  * \par Function Description
- * Invalidates the screen region occupied by the current path creation
- * preview and control handle helpers.
+ *  Invalidates the screen region occupied by the current path
+ *  creation preview and control handle helpers.
  */
 void
 o_path_invalidate_rubber (GschemToplevel *w_current)
@@ -469,6 +562,12 @@ o_path_invalidate_rubber (GschemToplevel *w_current)
   w_current->temp_path->num_sections -= added_sections;
 }
 
+/*!
+ * \brief Invalidate Temporary Path Grips
+ * \par Function Description
+ *  Retrieves bounds from path_rubber_bbox and invalidate
+ *  the bounding region of a Path object.
+ */
 void
 o_path_invalidate_rubber_grips (GschemToplevel *w_current)
 {
@@ -483,15 +582,17 @@ o_path_invalidate_rubber_grips (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y1, x2, y2);
 }
 
-/* \brief Give feedback on path creation during mouse movement.
+/*!
+ * \brief Give feedback on path creation during mouse movement.
  * \par Function Description
- * If the user is currently in the process of creating a path node
- * (i.e. has mouse button pressed), moves the next node's control
- * point.  If the user has not yet pressed the mouse button to start
- * defining a path node, moves the next node's location and control
- * point together.
+ *  If the user is currently in the process of creating a path node
+ *  (i.e. has mouse button pressed), moves the next node's control
+ *  point.  If the user has not yet pressed the mouse button to start
+ *  defining a path node, moves the next node's location and control
+ *  point together.
  */
-void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
+void
+o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   o_path_invalidate_rubber (w_current);
 
@@ -515,8 +616,9 @@ void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
   o_path_invalidate_rubber (w_current);
 }
 
-/*! \brief Draw temporary path while dragging end.
- *  \par Function Description
+/*!
+ * \brief Draw temporary path while dragging end.
+ * \par Function Description
  *  This function manages the erase/update/draw process of temporary path
  *  when modifying one end of the path.
  *  The path is described by four <B>*w_current</B> variables : the first end
@@ -524,11 +626,12 @@ void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  (<B>second_wx</B>,<B>second_wy</B>).
  *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
+void
+o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->rubber_visible)
     o_path_invalidate_rubber_grips (w_current);
@@ -539,92 +642,10 @@ void o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
   o_path_invalidate_rubber_grips (w_current);
   w_current->rubber_visible = 1;
 }
-/*! \brief Draw path creation preview.
+
+/*!
+ * \brief Start process to input a new path.
  * \par Function Description
- * Draw a preview of the path currently being drawn, including a
- * helper line showing the control point of the node being drawn (if
- * applicable).
- */
-void
-o_path_draw_rubber (GschemToplevel *w_current)
-{
-  EdaRenderer *renderer;
-  GedaObject  *object;
-  int added_sections = 0;
-
-  renderer = CairoRenderer;
-
-  /* Draw a helper for when we're dragging a control point */
-  if (w_current->first_wx != w_current->second_wx
-      || w_current->first_wy != w_current->second_wy) {
-    double wwidth = 0;
-    cairo_t *cr = eda_renderer_get_cairo_context (renderer);
-    GArray *color_map = eda_renderer_get_color_map (renderer);
-    int flags = eda_renderer_get_cairo_flags (renderer);
-
-    eda_cairo_line (cr, flags, END_NONE, wwidth,
-                    w_current->first_wx, w_current->first_wy,
-                    w_current->second_wx, w_current->second_wy);
-
-    eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-    eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
-  }
-  /* Now draw the rest of the path */
-
-  /* Calculate any new sections */
-  added_sections = path_next_sections (w_current);
-
-  /* Setup a tmp object to pass the drawing routine */
-   object = geda_path_new();
-
-  object->type  = OBJ_PATH;
-  object->color = SELECT_COLOR;
-  object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
-  object->path  = w_current->temp_path;
-
-  eda_renderer_draw (renderer, object);
-
-  /* Get rid of temp object */
-  GEDA_UNREF (object);
-
-  /* Throw away the added sections again */
-  w_current->temp_path->num_sections -= added_sections;
-}
-
-/*! \brief Draw path from GschemToplevel object.
- *  \par Function Description
- *  This function draws a path with an exclusive or function over the sheet.
- *  The color of the box is <B>SELECT_COLOR</B>. The path is
- *  described by the two points (<B>w_current->first_wx</B>,
- *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
- *
- *  \param [in] w_current  The GschemToplevel object.
- */
-void
-o_path_draw_rubber_grips (GschemToplevel *w_current)
-{
-  GedaObject *object;
-
-  /* Setup a tmp object to pass the drawing routine */
-  object = geda_path_new();
-
-  object->type  = OBJ_PATH;
-  object->color = SELECT_COLOR;
-  object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
-  object->path  = w_current->temp_path;
-
-  object->path = s_path_copy_modify (w_current->which_object->path, 0, 0,
-                                   w_current->second_wx,
-                                   w_current->second_wy, w_current->which_grip);
-
-  eda_renderer_draw (CairoRenderer, object);
-
-  /* Get rid of temp object */
-  GEDA_UNREF(object);
-}
-
-/*! \brief Start process to input a new path.
- *  \par Function Description
  *  This function starts the process of interactively adding a path to
  *  the current sheet by resetting the path creation state and
  *  enabling preview ("rubber") drawing.
@@ -632,11 +653,12 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
  *  For details of how #GschemToplevel fields are used during the
  *  path creation process, see path_next_sections().
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
+void
+o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_path_init(w_current, w_x, w_y);
 

@@ -1,3 +1,7 @@
+2016-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path.c: Reorganize module.
+
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Reduce scope of zoom_check_butt and zoom_extents in
