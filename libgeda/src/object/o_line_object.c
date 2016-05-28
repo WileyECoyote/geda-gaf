@@ -131,8 +131,8 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
   double slope1;
   double slope2;
 
-  has_slope1 = o_get_has_slope(object1);
-  has_slope2 = o_get_has_slope(object2);
+  has_slope1 = geda_object_get_has_slope(object1);
+  has_slope2 = geda_object_get_has_slope(object2);
 
   if (has_slope1 && has_slope2) { /* Both are lines and are on an angle */
 

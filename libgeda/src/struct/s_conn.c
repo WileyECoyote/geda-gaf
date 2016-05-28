@@ -324,7 +324,7 @@ void s_conn_update_glist (GList *obj_list)
  */
 static int check_direct_compat (GedaObject *object1, GedaObject *object2)
 {
-  return (o_get_is_bus_related (object1) == o_get_is_bus_related (object2));
+  return (geda_object_get_bus_related (object1) == geda_object_get_bus_related (object2));
 }
 
 static void add_connection (GedaObject *object, GedaObject *other_object,
@@ -368,7 +368,7 @@ void s_conn_update_linear_object (GedaObject *object)
     GedaObject *other_object;
     GedaObject *other_complex;
 
-    complex = o_get_parent (object);
+    complex = geda_object_get_parent (object);
 
     s_conn_freeze_hooks (object);
 
@@ -387,7 +387,7 @@ void s_conn_update_linear_object (GedaObject *object)
         if (object == other_object)
           continue;
 
-        other_complex = o_get_parent (other_object);
+        other_complex = geda_object_get_parent (other_object);
 
         /* An object inside a symbol can only be connected up to another
          * object if they are (a) both inside the same object, or (b)

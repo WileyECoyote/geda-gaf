@@ -310,7 +310,7 @@ preview_update (GschemPreview *preview)
 
     object_list = (GList*)s_page_get_objects (p_current);
 
-    if (o_get_bounds_list (object_list, &left, &top, &right, &bottom)) {
+    if (geda_object_get_bounds_list (object_list, &left, &top, &right, &bottom)) {
 
       int width, height;
 

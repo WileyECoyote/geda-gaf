@@ -263,7 +263,7 @@ x_draw_text_object (GschemToplevel *w_current)
   GedaObject *o_current = RenderAdaptor->object;
 
   /* First check if this is visible */
-  if ( o_get_is_visible(o_current)) {
+  if ( geda_object_get_is_visible(o_current)) {
 
     if (GEDA_IS_TEXT(o_current)) {
 

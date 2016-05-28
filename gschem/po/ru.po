@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:24-0500\n"
+"POT-Creation-Date: 2016-05-27 00:39-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -63,26 +63,26 @@ msgstr ""
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:350
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Чтение scm-файла инициализации «%s»\n"
 
-#: gschem/src/base/gschem.c:351
+#: gschem/src/base/gschem.c:353
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Не удалось прочесть scm-файл инициализации «%s»\n"
 
-#: gschem/src/base/gschem.c:377
+#: gschem/src/base/gschem.c:379
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem версии %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:381
+#: gschem/src/base/gschem.c:384
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:416
+#: gschem/src/base/gschem.c:419
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -90,7 +90,7 @@ msgstr ""
 "\n"
 "В журнале gschem может быть больше информации.\n"
 
-#: gschem/src/base/gschem.c:506
+#: gschem/src/base/gschem.c:509
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr "Буфер предпросмотра"
 
-#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:686
+#: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:1109
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -567,139 +567,139 @@ msgstr "Обнаружена недопустимая структура дан�
 msgid "Processing Action <%s>, at index %d\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:465
+#: gschem/src/iface/i_command.c:468
 #, c-format
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:703 gschem/src/iface/i_command.c:2621
+#: gschem/src/iface/i_command.c:706 gschem/src/iface/i_command.c:2628
 #, c-format
 msgid "New page created [%s]\n"
 msgstr "Создана новая страница «%s»\n"
 
-#: gschem/src/iface/i_command.c:742
+#: gschem/src/iface/i_command.c:745
 #, c-format
 msgid "New Window created [%s]\n"
 msgstr "Создано новое окно «%s»\n"
 
-#: gschem/src/iface/i_command.c:938
+#: gschem/src/iface/i_command.c:941
 msgid "Failed to Save All"
 msgstr "Не удалось сохранить все файлы"
 
-#: gschem/src/iface/i_command.c:941 gschem/src/iface/i_command.c:958
+#: gschem/src/iface/i_command.c:944 gschem/src/iface/i_command.c:961
 msgid "Saved All"
 msgstr "Все файлы сохранены"
 
-#: gschem/src/iface/i_command.c:955
+#: gschem/src/iface/i_command.c:958
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1025 gschem/src/x/x_image.c:480
+#: gschem/src/iface/i_command.c:1028 gschem/src/x/x_image.c:480
 #, fuzzy
 msgid "Write Image"
 msgstr "Введите имя файла для изображения"
 
-#: gschem/src/iface/i_command.c:1044
+#: gschem/src/iface/i_command.c:1047
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1116
+#: gschem/src/iface/i_command.c:1119
 msgid "Close all canceled\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1125 gschem/src/iface/i_sessions.c:191
+#: gschem/src/iface/i_command.c:1128 gschem/src/iface/i_sessions.c:191
 msgid "Closing all documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1148
+#: gschem/src/iface/i_command.c:1151
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1162
+#: gschem/src/iface/i_command.c:1165
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1186
+#: gschem/src/iface/i_command.c:1189
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
 # Здесь на самом деле не действие, а состояние. Поэтому не "Очистить буфер", а
 # "Буфер пуст".
-#: gschem/src/iface/i_command.c:1318
+#: gschem/src/iface/i_command.c:1321
 msgid "Empty buffer"
 msgstr "Буфер пуст"
 
-#: gschem/src/iface/i_command.c:1581
+#: gschem/src/iface/i_command.c:1588
 #, fuzzy
 msgid "Offset Mode"
 msgstr "Ввод соединений"
 
-#: gschem/src/iface/i_command.c:1582
+#: gschem/src/iface/i_command.c:1589
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2116
+#: gschem/src/iface/i_command.c:2123
 msgid "Zoom Magnification"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2116
+#: gschem/src/iface/i_command.c:2123
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2167
+#: gschem/src/iface/i_command.c:2174
 #, fuzzy
 msgid "No component selected\n"
 msgstr "Выбрана сетка из точек\n"
 
-#: gschem/src/iface/i_command.c:2707
+#: gschem/src/iface/i_command.c:2714
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2888
+#: gschem/src/iface/i_command.c:2895
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr "Поиск источника данных «%s»\n"
 
-#: gschem/src/iface/i_command.c:2922
+#: gschem/src/iface/i_command.c:2929
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
 
-#: gschem/src/iface/i_command.c:2931
+#: gschem/src/iface/i_command.c:2938
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "_Иерархия"
 
-#: gschem/src/iface/i_command.c:3006
+#: gschem/src/iface/i_command.c:3013
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr "Поиск символа «%s»\n"
 
-#: gschem/src/iface/i_command.c:3013
+#: gschem/src/iface/i_command.c:3020
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Нет реального файла для символа. Символ не может быть загружен.\n"
 
-#: gschem/src/iface/i_command.c:3060
+#: gschem/src/iface/i_command.c:3067
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Для текущей схемы не удалось найти схему, вышестоящую по иерархии!\n"
 
-#: gschem/src/iface/i_command.c:3566
+#: gschem/src/iface/i_command.c:3573
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3956
+#: gschem/src/iface/i_command.c:3963
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ВНИМАНИЕ: Не производите смещение с отключенной привязкой!\n"
 
-#: gschem/src/iface/i_command.c:3957
+#: gschem/src/iface/i_command.c:3964
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "ВНИМАНИЕ: Включите привязку и повторите смещение.\n"
 
-#: gschem/src/iface/i_command.c:3963
+#: gschem/src/iface/i_command.c:3970
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ВНИМАНИЕ: Размер сетки привязки не равен 100!\n"
 
-#: gschem/src/iface/i_command.c:3964
+#: gschem/src/iface/i_command.c:3971
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -707,86 +707,86 @@ msgstr ""
 "ВНИМАНИЕ: Если символ смещается в начало координат, размер сетки привязки "
 "должен быть установлен в 100\n"
 
-#: gschem/src/iface/i_command.c:4129
+#: gschem/src/iface/i_command.c:4136
 msgid "Grid OFF\n"
 msgstr "Сетка отключена\n"
 
-#: gschem/src/iface/i_command.c:4130
+#: gschem/src/iface/i_command.c:4137
 #, fuzzy
 msgid "Dot grid activated\n"
 msgstr "Выбрана сетка из точек\n"
 
-#: gschem/src/iface/i_command.c:4131
+#: gschem/src/iface/i_command.c:4138
 #, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Выбрана сетка из линий\n"
 
-#: gschem/src/iface/i_command.c:4210
+#: gschem/src/iface/i_command.c:4217
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Привязка отключена!\n"
 
-#: gschem/src/iface/i_command.c:4215
+#: gschem/src/iface/i_command.c:4222
 msgid "Snap ON\n"
 msgstr "Привязка включена\n"
 
-#: gschem/src/iface/i_command.c:4219
+#: gschem/src/iface/i_command.c:4226
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
 
-#: gschem/src/iface/i_command.c:4243
+#: gschem/src/iface/i_command.c:4250
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "Режим «резиновых» соединений отключён\n"
 
-#: gschem/src/iface/i_command.c:4246
+#: gschem/src/iface/i_command.c:4253
 #, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Режим «резиновых» соединений включён\n"
 
-#: gschem/src/iface/i_command.c:4257
+#: gschem/src/iface/i_command.c:4264
 #, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "Режим «магнитных» соединений включён\n"
 
-#: gschem/src/iface/i_command.c:4260
+#: gschem/src/iface/i_command.c:4267
 #, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "Режим «магнитных» соединений отключён\n"
 
-#: gschem/src/iface/i_command.c:4277 gschem/src/iface/i_command.c:4319
+#: gschem/src/iface/i_command.c:4284 gschem/src/iface/i_command.c:4326
 msgid "Off"
 msgstr "Откл."
 
-#: gschem/src/iface/i_command.c:4280 gschem/src/iface/i_command.c:4322
+#: gschem/src/iface/i_command.c:4287 gschem/src/iface/i_command.c:4329
 #, fuzzy
 msgid "On"
 msgstr "Открыть"
 
-#: gschem/src/iface/i_command.c:4282
+#: gschem/src/iface/i_command.c:4289
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4294
+#: gschem/src/iface/i_command.c:4301
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "При выполнении действий объекты будут отрисовываться полностью\n"
 
-#: gschem/src/iface/i_command.c:4298
+#: gschem/src/iface/i_command.c:4305
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "При выполнении действий вместо объектов будет отрисовываться рамка\n"
 
-#: gschem/src/iface/i_command.c:4324
+#: gschem/src/iface/i_command.c:4331
 #, c-format
 msgid "Auto-Pan is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4376 gschem/src/iface/i_command.c:4405
-#: gschem/src/iface/i_command.c:4425 gschem/src/iface/i_command.c:4445
+#: gschem/src/iface/i_command.c:4383 gschem/src/iface/i_command.c:4412
+#: gschem/src/iface/i_command.c:4432 gschem/src/iface/i_command.c:4452
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4539
+#: gschem/src/iface/i_command.c:4546
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1997,50 +1997,50 @@ msgid ""
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2986
+#: gschem/src/x/x_dialog.c:2990
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2988
+#: gschem/src/x/x_dialog.c:2992
 msgid "Translate"
 msgstr "Сместить"
 
-#: gschem/src/x/x_dialog.c:3009
+#: gschem/src/x/x_dialog.c:3013
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3018
+#: gschem/src/x/x_dialog.c:3022
 #, fuzzy
 msgid "Auto Zoom Extents"
 msgstr "Уместить в окне"
 
-#: gschem/src/x/x_dialog.c:3188
+#: gschem/src/x/x_dialog.c:3192
 msgid "Hotkeys"
 msgstr "Горячие клавиши"
 
-#: gschem/src/x/x_dialog.c:3275
+#: gschem/src/x/x_dialog.c:3279
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3289
+#: gschem/src/x/x_dialog.c:3293
 msgid "Action"
 msgstr "Действие"
 
-#: gschem/src/x/x_dialog.c:3299
+#: gschem/src/x/x_dialog.c:3303
 msgid "Keystroke(s)"
 msgstr "Сочетание клавиш"
 
-#: gschem/src/x/x_dialog.c:3309
+#: gschem/src/x/x_dialog.c:3313
 msgid "Command"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3544
+#: gschem/src/x/x_dialog.c:3548
 msgid "Major symbol changes detected."
 msgstr "Обнаружено значительное изменение символа."
 
-#: gschem/src/x/x_dialog.c:3571
+#: gschem/src/x/x_dialog.c:3575
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2050,15 +2050,15 @@ msgstr ""
 "\n"
 "Удостоверьтесь, что проверили каждый из них."
 
-#: gschem/src/x/x_dialog.c:3612
+#: gschem/src/x/x_dialog.c:3616
 msgid "Symbol"
 msgstr "Символ"
 
-#: gschem/src/x/x_dialog.c:3659
+#: gschem/src/x/x_dialog.c:3663
 msgid "Dismiss this dialog"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3704
+#: gschem/src/x/x_dialog.c:3708
 #, c-format
 msgid ""
 "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\n"
@@ -2076,7 +2076,7 @@ msgstr ""
 "Имя не должно заканчиваться пробелом.\n"
 "Значение не должно начинаться с пробела."
 
-#: gschem/src/x/x_dialog.c:3706
+#: gschem/src/x/x_dialog.c:3710
 msgid "Invalid Attribute"
 msgstr "Недопустимый атрибут"
 
@@ -3330,42 +3330,53 @@ msgstr "Атрибуты"
 msgid "attribute"
 msgstr "Атрибут"
 
-#: gschem/src/x/x_pagesel.c:338
+# См. примечание выше для "Copy"
+#: gschem/src/x/x_pagesel.c:594
+#, fuzzy
+msgid "Move Up"
+msgstr "Перемещение"
+
+#: gschem/src/x/x_pagesel.c:595
+#, fuzzy
+msgid "Move Down"
+msgstr "Прокрутка вниз"
+
+#: gschem/src/x/x_pagesel.c:597
 msgid "New Blank"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:339 gschem/scheme/gschem/builtins.scm:305
+#: gschem/src/x/x_pagesel.c:598 gschem/scheme/gschem/builtins.scm:305
 msgid "New Page"
 msgstr "Новая страница"
 
 # Заголовок окна выбора файла при открывании существующего файла
-#: gschem/src/x/x_pagesel.c:340
+#: gschem/src/x/x_pagesel.c:599
 #, fuzzy
 msgid "Open Page..."
 msgstr "Выберите файл"
 
-#: gschem/src/x/x_pagesel.c:342
+#: gschem/src/x/x_pagesel.c:601
 msgid "Save Page"
 msgstr "Сохранить страницу"
 
-#: gschem/src/x/x_pagesel.c:343 gschem/scheme/gschem/builtins.scm:317
+#: gschem/src/x/x_pagesel.c:602 gschem/scheme/gschem/builtins.scm:317
 msgid "Close Page"
 msgstr "Закрыть страницу"
 
-#: gschem/src/x/x_pagesel.c:344 gschem/scheme/gschem/builtins.scm:320
+#: gschem/src/x/x_pagesel.c:603 gschem/scheme/gschem/builtins.scm:320
 #, fuzzy
 msgid "Discard Page"
 msgstr "Закрытие «%s» без сохранения изменений\n"
 
-#: gschem/src/x/x_pagesel.c:625 gschem/scheme/gschem/builtins.scm:284
+#: gschem/src/x/x_pagesel.c:1048 gschem/scheme/gschem/builtins.scm:284
 msgid "Page Manager"
 msgstr "Менеджер страниц"
 
-#: gschem/src/x/x_pagesel.c:709
+#: gschem/src/x/x_pagesel.c:1138
 msgid "Changed"
 msgstr "Изменён"
 
-#: gschem/src/x/x_pagesel.c:742
+#: gschem/src/x/x_pagesel.c:1168
 #, fuzzy
 msgid "Right click on rows for more options..."
 msgstr ""

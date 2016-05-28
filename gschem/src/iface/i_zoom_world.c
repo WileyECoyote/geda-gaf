@@ -186,7 +186,7 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
     return i_zoom_world_box(w_current, I_PAN_REDRAW);
   }
 
-  if (!o_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
+  if (!geda_object_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
     return;
   }
 

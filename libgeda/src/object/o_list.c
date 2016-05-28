@@ -162,7 +162,7 @@ geda_object_list_find_floating (const GList *list)
      */
     if (o_current->type == OBJ_TEXT &&
         o_current->attached_to == NULL &&
-        o_get_is_valid_attribute (o_current)) {
+        geda_object_get_is_valid_attribute (o_current)) {
 
       floating_attributes = g_list_prepend (floating_attributes, o_current);
     }

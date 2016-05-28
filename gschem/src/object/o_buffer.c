@@ -167,7 +167,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
       printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-      if (o_get_bounds_list(Current_PlaceList, &left, &top, &right, &bottom)) {
+      if (geda_object_get_bounds_list(Current_PlaceList, &left, &top, &right, &bottom)) {
 
         const GList *iter;
         int x, y;

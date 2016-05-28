@@ -517,7 +517,7 @@ gschem_page_view_invalidate_object (GschemToplevel *w_current, GedaObject *objec
     int world_left;
     int world_top;
 
-    success = o_get_bounds (object,
+    success = geda_object_get_bounds (object,
                             &world_left,
                             &world_top,
                             &world_right,
@@ -1325,7 +1325,7 @@ gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object)
   g_return_if_fail (object->page->toplevel != NULL);
   g_return_if_fail (object->text != NULL);
 
-  if (o_get_bounds (object, &x[0], &y[0], &x[1], &y[1])) {
+  if (geda_object_get_bounds (object, &x[0], &y[0], &x[1], &y[1])) {
 
     int viewport_center_x, viewport_center_y, viewport_width, viewport_height;
     double k;

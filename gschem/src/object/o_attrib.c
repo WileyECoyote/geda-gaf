@@ -101,7 +101,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
 
     if (object != NULL && object->attached_to == NULL && object != target) {
 
-      if (o_get_is_valid_attribute(object)) {
+      if (geda_object_get_is_valid_attribute(object)) {
         geda_attrib_object_attach (target, object, TRUE);
         attached_objects = g_list_prepend (attached_objects, object);
       }
@@ -151,7 +151,7 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
 
     GedaObject *a_current = a_iter->data;
 
-    if (a_current->selected && !o_get_is_visible(a_current)) {
+    if (a_current->selected && !geda_object_get_is_visible(a_current)) {
       o_selection_remove (selection, a_current);
     }
   }
@@ -187,7 +187,7 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
 
    GedaObject *a_current = a_iter->data;
 
-    if (!a_current->selected && !o_get_is_visible(a_current)) {
+    if (!a_current->selected && !geda_object_get_is_visible(a_current)) {
       o_selection_add (selection, a_current);
     }
   }
@@ -366,7 +366,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
 
     color = DETACHED_ATTRIBUTE_COLOR;
 
-    o_get_bounds_list (s_page_get_objects (page),
+    geda_object_get_bounds_list (s_page_get_objects (page),
                              &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */

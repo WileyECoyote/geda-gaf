@@ -677,7 +677,7 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
     return;
   }
 
-  if (!o_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
+  if (!geda_object_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
     return;
   }
 

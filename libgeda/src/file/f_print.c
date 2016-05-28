@@ -374,7 +374,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       case(OBJ_TEXT):
-        if (o_get_is_visible (o_current)) {
+        if (geda_object_get_is_visible (o_current)) {
           /* Output text */
           save_last_ps_color = last_ps_color;
           fprintf(fp, "gsave\n");
@@ -528,7 +528,7 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
-  o_get_bounds_list (s_page_get_objects (page), &origin_x, &origin_y,
+  geda_object_get_bounds_list (s_page_get_objects (page), &origin_x, &origin_y,
                                                 &right,    &bottom);
 
   /* Calculate scale factor that will make the image fit on the page */
@@ -745,7 +745,7 @@ static int f_print_get_unicode_chars (GedaToplevel *toplevel,
         break;
 
       case (OBJ_TEXT):
-        if (o_get_is_visible (o_current)) {
+        if (geda_object_get_is_visible (o_current)) {
 
           char *aux = o_current->text->string;
 

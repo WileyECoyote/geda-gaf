@@ -52,12 +52,12 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
   /* Do a coarse test first to avoid computing distances for objects ouside
    * of the hit range.
    */
-  if (!o_get_bounds(object, &left, &top, &right, &bottom) ||
-      !o_get_is_inside_region(left  - w_slack, top    - w_slack,
+  if (!geda_object_get_bounds(object, &left, &top, &right, &bottom) ||
+      !geda_object_get_is_inside_region(left  - w_slack, top    - w_slack,
                               right + w_slack, bottom + w_slack,
                               wx, wy))
     return FALSE;
-  return (o_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
+  return (geda_object_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
 }
 
 /*! \brief Disposition objects found by o_find_object

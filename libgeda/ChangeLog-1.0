@@ -1,5 +1,7 @@
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Rename functions with geda_object prefix.
+
     * src/object/o_line_object.c: Reduce scope of line, newx, and newy in
       geda_line_object_rotate.
 

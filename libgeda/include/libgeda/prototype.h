@@ -327,39 +327,38 @@ extern "C" {
          void    geda_complex_object_translate             (GedaObject *object, int dx, int dy);
 
 /* o_color.c */
-          int    geda_object_color_get_default   (char type);
+          int    geda_object_color_get_default             (char type);
 
-/* geda_object_embed.c */
-         bool    geda_object_embed               (GedaToplevel *toplevel, GedaObject *object);
-         void    geda_object_unembed             (GedaToplevel *toplevel, GedaObject *object);
+/* o_embed.c */
+         bool    geda_object_embed                         (GedaToplevel *toplevel, GedaObject *object);
+         void    geda_object_unembed                       (GedaToplevel *toplevel, GedaObject *object);
 
 /* o_get.c */
-          int    o_get_attached_parent_id        (GedaObject *object);
-          int    o_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
-          int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
-         bool    o_get_fill_options              (GedaObject *object, OBJECT_FILLING *type, int *width, int *pitch1,
-                                                  int *angle1, int *pitch2, int *angle2);
-         bool    o_get_has_slope                 (GedaObject *object);
-         bool    o_get_is_attached               (GedaObject *object);
-         bool    o_get_is_bus_related            (GedaObject *object);
-         bool    o_get_is_embedded               (GedaObject *object);
-         bool    o_get_is_inside_region          (int xmin, int ymin, int xmax, int ymax, int x, int y);
-         bool    o_get_is_selectable             (GedaObject *object);
-         bool    o_get_is_selected               (GedaObject *object);
-         bool    o_get_is_valid_attribute        (GedaObject *object);
-         bool    o_get_is_visible                (const GedaObject *object);
-     LINE_END    o_get_line_end                  (int capstyle);
-         bool    o_get_line_options              (GedaObject *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-         bool    o_get_nearest_point             (GedaObject *object, int x, int y, int *nx, int *ny);
-          int    o_get_num_text_lines            (const char *string);
-   const char   *o_get_object_attrib_value       (GedaObject *object, const char *name);
-        GList   *o_get_objects_by_type           (GList  *object_list, int type);
-         Page   *o_get_page                      (GedaObject *object);
-   GedaObject   *o_get_parent                    (GedaObject *object);
-          int    o_get_parent_id                 (GedaObject *object);
-         bool    o_get_position                  (GedaObject *object, int *x, int *y);
-       double    o_get_shortest_distance         (GedaObject *object, int x, int y);
-       double    o_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
+          int    geda_object_get_attached_parent_id        (GedaObject *object);
+          int    geda_object_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
+          int    geda_object_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
+         bool    geda_object_get_fill_options              (GedaObject *object, OBJECT_FILLING *type, int *width, int *pitch1,
+                                                            int *angle1, int *pitch2, int *angle2);
+         bool    geda_object_get_has_slope                 (GedaObject *object);
+         bool    geda_object_get_is_attached               (GedaObject *object);
+         bool    geda_object_get_bus_related               (GedaObject *object);
+         bool    geda_object_get_is_embedded               (GedaObject *object);
+         bool    geda_object_get_is_inside_region          (int xmin, int ymin, int xmax, int ymax, int x, int y);
+         bool    geda_object_get_is_selectable             (GedaObject *object);
+         bool    geda_object_get_is_selected               (GedaObject *object);
+         bool    geda_object_get_is_valid_attribute        (GedaObject *object);
+         bool    geda_object_get_is_visible                (const GedaObject *object);
+     LINE_END    geda_object_get_line_cap_style            (int capstyle);
+         bool    geda_object_get_line_options              (GedaObject *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+         bool    geda_object_get_nearest_point             (GedaObject *object, int x, int y, int *nx, int *ny);
+          int    geda_object_get_num_text_lines            (const char *string);
+   const char   *geda_object_get_attrib_value              (GedaObject *object, const char *name);
+        GList   *geda_object_get_objects_by_type           (GList  *object_list, int type);
+   GedaObject   *geda_object_get_parent                    (GedaObject *object);
+          int    geda_object_get_parent_id                 (GedaObject *object);
+         bool    geda_object_get_position                  (GedaObject *object, int *x, int *y);
+       double    geda_object_get_shortest_distance         (GedaObject *object, int x, int y);
+       double    geda_object_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
 
 /* o_line_object.c */
    GedaObject   *geda_line_object_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;

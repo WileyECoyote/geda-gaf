@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:02-0500\n"
+"POT-Creation-Date: 2016-05-27 00:39-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -109,44 +109,44 @@ msgstr ""
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:313
+#: libgeda/src/file/f_file.c:316
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:366
+#: libgeda/src/file/f_file.c:369
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "No se puede obtener el nombre de fichero real de %s: %s"
 
-#: libgeda/src/file/f_file.c:367
+#: libgeda/src/file/f_file.c:370
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "No se pudo guardar el fichero: %s"
 
-#: libgeda/src/file/f_file.c:368
+#: libgeda/src/file/f_file.c:371
 #, c-format
 msgid "File %s is read-only"
 msgstr "Fichero %s es de solo lectura"
 
-#: libgeda/src/file/f_file.c:370
+#: libgeda/src/file/f_file.c:373
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "No se ha podido poner el archivo de copia de seguridad anterior [%s] en modo "
 "de lectura-escritura\n"
 
-#: libgeda/src/file/f_file.c:371
+#: libgeda/src/file/f_file.c:374
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "No se puede guardar la copia de seguridad: %s"
 
-#: libgeda/src/file/f_file.c:602
+#: libgeda/src/file/f_file.c:605
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "No se puede obtener el nombre de fichero real de %s: %s"
 
-#: libgeda/src/file/f_file.c:614
+#: libgeda/src/file/f_file.c:617
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr ""
@@ -851,7 +851,7 @@ msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ERROR: El log %s puede contener más información.\n"
 
 #: libgeda/src/object/o_object.c:99
-msgid "<o_read_buffer> detected NULL pointer to buffer "
+msgid "<geda_object_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
 #: libgeda/src/object/o_object.c:106
@@ -1459,12 +1459,12 @@ msgid "Object ~A is attached to a page"
 msgstr "Objeto ~A está ajunto a la página"
 
 #: libgeda/src/scheme/scheme_complex.c:365
-#: libgeda/src/scheme/scheme_page.c:348
+#: libgeda/src/scheme/scheme_page.c:350
 msgid "Object ~A is attached as an attribute"
 msgstr "Objeto ~A est'a adjunto como un atributo"
 
 #: libgeda/src/scheme/scheme_complex.c:372
-#: libgeda/src/scheme/scheme_page.c:355
+#: libgeda/src/scheme/scheme_page.c:357
 msgid "Object ~A has attributes"
 msgstr "Objeto ~A tiene atributos"
 
@@ -1587,11 +1587,11 @@ msgstr "Tipo de elemento de trazado ~A no válido."
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ángulo de imagen ~A no válido. Debe ser 0, 90, 180 o 270 grados"
 
-#: libgeda/src/scheme/scheme_page.c:177
+#: libgeda/src/scheme/scheme_page.c:179
 msgid "Parse error: ~s"
 msgstr "Error de procesado: %s"
 
-#: libgeda/src/scheme/scheme_page.c:341
+#: libgeda/src/scheme/scheme_page.c:343
 msgid "Object ~A is attached to a complex or different page"
 msgstr "El objeto ~A está asociado a un objeto complejo o página diferente"
 

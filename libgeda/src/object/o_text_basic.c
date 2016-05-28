@@ -106,7 +106,7 @@ o_text_copy(const GedaObject *o_current)
                           o_current->text->alignment,
                           o_current->text->angle,
                           o_current->text->size,
-                          o_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
+                          geda_object_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
                           o_current->show_name_value,
                           o_current->text->string);
 
@@ -182,7 +182,7 @@ o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 
     int left, top, right, bottom;
 
-    if (o_get_bounds(object, &left, &top, &right, &bottom)) {
+    if (geda_object_get_bounds(object, &left, &top, &right, &bottom)) {
 
       GedaObject *tmp = geda_box_new();
 
@@ -937,7 +937,7 @@ o_text_save(GedaObject *object)
   size   = object->text->size;
 
   /* string can have multiple lines (seperated by \n's) */
-  num_lines = o_get_num_text_lines(string);
+  num_lines = geda_object_get_num_text_lines(string);
 
   /* Don't save invisible == 2 as visible */
   visibility = (object->visibility == VISIBLE) ? VISIBLE : INVISIBLE;
@@ -1111,7 +1111,7 @@ o_text_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 
   g_return_val_if_fail (object->text != NULL, G_MAXDOUBLE);
 
-  if (!o_get_bounds(object, &left, &top, &right, &bottom))
+  if (!geda_object_get_bounds(object, &left, &top, &right, &bottom))
     return G_MAXDOUBLE;
 
   dx = min (x - left, right - x);

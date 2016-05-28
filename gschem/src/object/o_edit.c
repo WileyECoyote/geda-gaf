@@ -169,7 +169,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
       str = o_text_get_string (o_current);
       if (geda_attrib_object_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
-        o_get_num_text_lines (str) == 1)
+        geda_object_get_num_text_lines (str) == 1)
       {
         x_attrib_edit_dialog(w_current, o_current);
       }
@@ -305,7 +305,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     int left, right, top, bottom;
 
-    if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+    if (geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
       /* Save the bottom left corner to data structure */
       w_current->first_wx = left;
       w_current->first_wy = bottom > top ? top : bottom;
@@ -348,7 +348,7 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
   int valid;
   int left, right, top, bottom;
 
-  if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+  if (geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
 
     int ymin, ymax;  /* Blame it on ass-backwards X11 */
 
@@ -361,7 +361,7 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
       ymax = top;
     }
 
-    if (!o_get_is_inside_region (left, ymin, right, ymax, x, y)) {
+    if (!geda_object_get_is_inside_region (left, ymin, right, ymax, x, y)) {
 
       int nx, ny;                /* Point of bound to Nearest Target */
 
@@ -525,7 +525,7 @@ static void log_visibility (int set_hidden, int set_visible)
  *  \par Function Description
  *   This function causes hidden text for inherited attributes to be redrawn,
  *   This is accomplished by setting the object visibility to 2, which results
- *   in o_get_is_visible returning true to the renderer, but is not saved when
+ *   in geda_object_get_is_visible returning true to the renderer, but is not saved when
  *   the schematic is saved. The function returns a list object that were set
  *   to be displayed, which does not include objects set to invisible, since
  *   these would not be redrawn. Instead, when text.object.visibility is set to
@@ -589,7 +589,7 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
  *  \par Function Description
  *   This function causes hidden text for invisible attributes to be redrawn,
  *   This is accomplished by setting the object visibility to 2, which results
- *   in o_get_is_visible returning true to the renderer, but is not saved when
+ *   in geda_object_get_is_visible returning true to the renderer, but is not saved when
  *   the schematic is saved. The function returns a list of objects that were
  *   set to be displayed, which does not include objects set to invisible, since
  *   these would not be redrawn. Instead, when text.object.visibility is set to
@@ -827,7 +827,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
     if (o_current->type == OBJ_TEXT) {
 
-      int visible = o_get_is_visible (o_current);
+      int visible = geda_object_get_is_visible (o_current);
 
       if (visible || flags & SEARCH_HIDDEN) {
 
@@ -846,7 +846,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
               o_current->visibility = VISIBLE;
             }
 
-            if (!o_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
+            if (!geda_object_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
                 BUG_MSG("world object bounds returned FALSE");
                 return 0;
             }
@@ -975,7 +975,7 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
       const char *str = o_text_get_string (o_current);
 
       if (!strncmp (stext, str, strlen (stext))) {
-        if (o_get_is_visible (o_current)) {
+        if (geda_object_get_is_visible (o_current)) {
           o_set_visibility (o_current, INVISIBLE);
           o_text_recreate(o_current);
         }
@@ -1009,7 +1009,7 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
       const char *str = o_text_get_string (o_current);
 
       if (!strncmp (stext, str, strlen (stext))) {
-        if (!o_get_is_visible (o_current)) {
+        if (!geda_object_get_is_visible (o_current)) {
           o_set_visibility (o_current, VISIBLE);
           o_text_recreate(o_current);
         }
@@ -1043,7 +1043,7 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
 
     GedaObject *object = (GedaObject*)iter->data;
 
-    if (o_get_position(object, &cur_x, &cur_y)) {
+    if (geda_object_get_position(object, &cur_x, &cur_y)) {
 
       int dx, dy;
 
@@ -1110,7 +1110,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
 
   toplevel = gschem_toplevel_get_geda_toplevel(w_current);
-  page     = o_get_page (o_current);
+  page     = geda_object_get_page (o_current);
 
   /* Force symbol data to be reloaded from source */
   clib = s_clib_get_symbol_by_name (o_current->complex->filename);

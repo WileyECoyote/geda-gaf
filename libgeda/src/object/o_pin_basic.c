@@ -411,7 +411,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
   if (object_list && num_pins) {
 
     if (num_pins == 1) {
-      o_get_bounds_list (object_list, &left, &top, &right, &bottom);
+      geda_object_get_bounds_list (object_list, &left, &top, &right, &bottom);
     }
     else {
 
@@ -423,7 +423,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
       while (iter != NULL) {
         o_current = (GedaObject *)iter->data;
         if (o_current->type == OBJ_PIN) {
-          o_get_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
+          geda_object_get_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
 
           if (found) {
             left   = min (left, rleft);

@@ -776,7 +776,7 @@ x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
   const GList *list = s_page_get_objects(page);
   int left, right, top, bottom;
 
-  if (!o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+  if (!geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
     return;
   }
 

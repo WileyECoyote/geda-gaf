@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:02-0500\n"
+"POT-Creation-Date: 2016-05-27 00:39-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -109,42 +109,42 @@ msgstr ""
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:313
+#: libgeda/src/file/f_file.c:316
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:366
+#: libgeda/src/file/f_file.c:369
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Kan de werkelijke bestandsnaam van %s: %s niet krijgen"
 
-#: libgeda/src/file/f_file.c:367
+#: libgeda/src/file/f_file.c:370
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Kan bestand: %s NIET opslaan"
 
-#: libgeda/src/file/f_file.c:368
+#: libgeda/src/file/f_file.c:371
 #, c-format
 msgid "File %s is read-only"
 msgstr "Bestand %s is alleen-lezen"
 
-#: libgeda/src/file/f_file.c:370
+#: libgeda/src/file/f_file.c:373
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "Kan vorige reservekopie [%s] NIET op lezen-schrijven instellen\n"
 
-#: libgeda/src/file/f_file.c:371
+#: libgeda/src/file/f_file.c:374
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Kan reservekopie niet opslaan: %s."
 
-#: libgeda/src/file/f_file.c:602
+#: libgeda/src/file/f_file.c:605
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Kan de werkelijke bestandsnaam van %s: %s niet krijgen"
 
-#: libgeda/src/file/f_file.c:614
+#: libgeda/src/file/f_file.c:617
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Niet mogelijk om reservekopie %s te verwijderen."
@@ -845,7 +845,7 @@ msgid "ERROR: The %s log may contain more information.\n"
 msgstr "FOUT: De %s log kan meer informatie bevatten.\n"
 
 #: libgeda/src/object/o_object.c:99
-msgid "<o_read_buffer> detected NULL pointer to buffer "
+msgid "<geda_object_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
 #: libgeda/src/object/o_object.c:106
@@ -1438,12 +1438,12 @@ msgid "Object ~A is attached to a page"
 msgstr "Object ~A is bevestigd aan een pagina"
 
 #: libgeda/src/scheme/scheme_complex.c:365
-#: libgeda/src/scheme/scheme_page.c:348
+#: libgeda/src/scheme/scheme_page.c:350
 msgid "Object ~A is attached as an attribute"
 msgstr "Object ~A is bevestigd als een attribuut"
 
 #: libgeda/src/scheme/scheme_complex.c:372
-#: libgeda/src/scheme/scheme_page.c:355
+#: libgeda/src/scheme/scheme_page.c:357
 msgid "Object ~A has attributes"
 msgstr "Object ~A heeft attributen"
 
@@ -1551,11 +1551,11 @@ msgstr "Ongeldig pad element type ~A."
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ongeldige afbeelding hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
 
-#: libgeda/src/scheme/scheme_page.c:177
+#: libgeda/src/scheme/scheme_page.c:179
 msgid "Parse error: ~s"
 msgstr "Ontleedfout: ~s"
 
-#: libgeda/src/scheme/scheme_page.c:341
+#: libgeda/src/scheme/scheme_page.c:343
 msgid "Object ~A is attached to a complex or different page"
 msgstr "Object ~A is bevestigd aan een complex of een andere pagina"
 

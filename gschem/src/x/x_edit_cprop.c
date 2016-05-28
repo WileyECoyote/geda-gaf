@@ -148,7 +148,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
         all_butes = geda_attrib_return_attribs(object);
       }
       else {
-        all_butes = o_get_objects_by_type (attribs, OBJ_TEXT);
+        all_butes = geda_object_get_objects_by_type (attribs, OBJ_TEXT);
       }
 
       a_current = geda_find_attrib_by_name (all_butes, key, 0);
@@ -682,7 +682,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
       /* symbol mode, get all objects on the page */
       attribs   = s_page_get_objects(page);
-      all_butes = o_get_objects_by_type (attribs, OBJ_TEXT);
+      all_butes = geda_object_get_objects_by_type (attribs, OBJ_TEXT);
     }
     else {
       all_butes = NULL;

@@ -238,7 +238,7 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   }
   o_invalidate_all (w_current);
 
-  o_get_bounds_list (object_list, &left,  &top, &right, &bottom);
+  geda_object_get_bounds_list (object_list, &left,  &top, &right, &bottom);
 
   /*! \todo do we want snap grid here? */
   x = snap_grid (w_current, left);

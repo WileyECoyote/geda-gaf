@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:02-0500\n"
+"POT-Creation-Date: 2016-05-27 00:39-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -123,48 +123,48 @@ msgstr ""
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:313
+#: libgeda/src/file/f_file.c:316
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:366
+#: libgeda/src/file/f_file.c:369
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:367
+#: libgeda/src/file/f_file.c:370
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Не удалось сохранить файл: %s"
 
-#: libgeda/src/file/f_file.c:368
+#: libgeda/src/file/f_file.c:371
 #, c-format
 msgid "File %s is read-only"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_file.c:370
+#: libgeda/src/file/f_file.c:373
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
 "копии «%s»\n"
 
-#: libgeda/src/file/f_file.c:371
+#: libgeda/src/file/f_file.c:374
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:602
+#: libgeda/src/file/f_file.c:605
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:614
+#: libgeda/src/file/f_file.c:617
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
@@ -864,7 +864,7 @@ msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"
 
 #: libgeda/src/object/o_object.c:99
-msgid "<o_read_buffer> detected NULL pointer to buffer "
+msgid "<geda_object_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
 #: libgeda/src/object/o_object.c:106
@@ -1472,12 +1472,12 @@ msgid "Object ~A is attached to a page"
 msgstr "Объект ~A прикреплён к странице"
 
 #: libgeda/src/scheme/scheme_complex.c:365
-#: libgeda/src/scheme/scheme_page.c:348
+#: libgeda/src/scheme/scheme_page.c:350
 msgid "Object ~A is attached as an attribute"
 msgstr "Объект ~A прикреплён как атрибут"
 
 #: libgeda/src/scheme/scheme_complex.c:372
-#: libgeda/src/scheme/scheme_page.c:355
+#: libgeda/src/scheme/scheme_page.c:357
 msgid "Object ~A has attributes"
 msgstr "К объекту ~A прикреплены атрибуты"
 
@@ -1590,11 +1590,11 @@ msgstr ""
 "Недопустимое значение угла поворота изображения ~A. Угол должен быть равен  "
 "0, 90, 180 или 270 градусов"
 
-#: libgeda/src/scheme/scheme_page.c:177
+#: libgeda/src/scheme/scheme_page.c:179
 msgid "Parse error: ~s"
 msgstr "Ошибка обработки: ~s"
 
-#: libgeda/src/scheme/scheme_page.c:341
+#: libgeda/src/scheme/scheme_page.c:343
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 "Объект ~A прикреплён к составному объекту или находится на другой странице"

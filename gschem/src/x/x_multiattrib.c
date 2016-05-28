@@ -621,7 +621,7 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
     /* create a new attribute and link it */
     o_attrib_add_attrib (w_current,
                          o_text_get_string (o_attrib),
-                         o_get_is_visible (o_attrib),
+                         geda_object_get_is_visible (o_attrib),
                          o_attrib->show_name_value,
                          o_attrib->attached_to);
   }
@@ -651,7 +651,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
 
    GedaObject *o_attrib = (GedaObject*)iter->data;
 
-    if (o_get_is_visible (o_attrib)) {
+    if (geda_object_get_is_visible (o_attrib)) {
 
       /* If the attribute we're promoting is visible, don't clone its location */
       o_attrib_add_attrib (w_current,
@@ -726,7 +726,7 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
       /* Pick the first instance to copy from */
       GedaObject *attrib_to_copy = attr_list->data;
 
-      visibility = o_get_is_visible (attrib_to_copy)
+      visibility = geda_object_get_is_visible (attrib_to_copy)
                  ? VISIBLE : INVISIBLE;
 
       /* create a new attribute and link it */
@@ -945,7 +945,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
 
     GedaObject *o_attrib = a_iter->data;
 
-    int visibility = o_get_is_visible (o_attrib) ? VISIBLE : INVISIBLE;
+    int visibility = geda_object_get_is_visible (o_attrib) ? VISIBLE : INVISIBLE;
 
     /* actually modifies the attribute */
     o_text_change (w_current, o_attrib, newtext, visibility,
@@ -2414,7 +2414,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
     geda_attrib_object_get_name_value (a_current, &m_row->name, &m_row->value);
 
     m_row->inherited       = geda_attrib_is_inherited (a_current);
-    m_row->visibility      = o_get_is_visible (a_current);
+    m_row->visibility      = geda_object_get_is_visible (a_current);
     m_row->show_name_value = a_current->show_name_value;
     m_row->nth_with_name   = 0; /* Provisional value until we check below */
 
@@ -2486,7 +2486,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
     m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
     m_row->inherited = geda_attrib_is_inherited (object);
     geda_attrib_object_get_name_value (object, &m_row->name, &m_row->value);
-    m_row->visibility = o_get_is_visible (object);
+    m_row->visibility = geda_object_get_is_visible (object);
     m_row->show_name_value = object->show_name_value;
     m_row->nth_with_name = 0; /* All selected attributes are treated individually */
 

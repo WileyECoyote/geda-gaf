@@ -118,7 +118,7 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
     str = geda_utility_string_int2str(count, s_val, 10);
     gtk_entry_set_text ((GtkEntry*)dialog_data->cnt_sel_entry, str);
 
-    if (o_get_bounds_list (Current_Selection->glist, &left, &top, &right, &bottom))
+    if (geda_object_get_bounds_list (Current_Selection->glist, &left, &top, &right, &bottom))
     {
       int dx, dy;
 

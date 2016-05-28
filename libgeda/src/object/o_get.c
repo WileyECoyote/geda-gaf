@@ -47,11 +47,11 @@
  * \return sid of the parent \a object is attached or -1 if none.
  */
 int
-o_get_attached_parent_id (GedaObject *object)
+geda_object_get_attached_parent_id (GedaObject *object)
 {
   int sid;
 
-  if (o_get_is_attached(object)) {
+  if (geda_object_get_is_attached(object)) {
     sid = object->attached_to->sid;
   }
   else {
@@ -74,7 +74,7 @@ o_get_attached_parent_id (GedaObject *object)
  *  \retval 1 Bound was found
  */
 int
-o_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
+geda_object_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
                                     int *rright, int *rbottom)
 {
   int result = 0;
@@ -111,7 +111,7 @@ o_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
  *  \retval 1 Bound was found
  */
 int
-o_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
+geda_object_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
 {
   const GList *s_current;
 
@@ -126,7 +126,7 @@ o_get_bounds_list(const GList *list, int *left, int *top, int *right, int *botto
   /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
   while ( s_current != NULL ) {
 
-    if (o_get_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
+    if (geda_object_get_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
     {
       if ( found ) {
         *left   = min( *left, rleft );
@@ -186,7 +186,7 @@ o_get_capstyle (LINE_END end)
  *  \return TRUE on succes, FALSE otherwise
  */
 bool
-o_get_fill_options(GedaObject *object,
+geda_object_get_fill_options(GedaObject *object,
                    OBJECT_FILLING   *type, int *width,
                    int *pitch1, int *angle1,
                    int *pitch2, int *angle2)
@@ -213,7 +213,7 @@ o_get_fill_options(GedaObject *object,
 }
 
 bool
-o_get_has_slope (GedaObject *object)
+geda_object_get_has_slope (GedaObject *object)
 {
   bool answer;
 
@@ -243,7 +243,7 @@ o_get_has_slope (GedaObject *object)
  *  \return TRUE if attached to another object, other wise FALSE.
  */
 bool
-o_get_is_attached (GedaObject *object)
+geda_object_get_is_attached (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
 }
@@ -258,7 +258,7 @@ o_get_is_attached (GedaObject *object)
  *  \return TRUE if the object is a bus, or bus pin
  */
 bool
-o_get_is_bus_related (GedaObject *object)
+geda_object_get_bus_related (GedaObject *object)
 {
   return (GEDA_IS_BUS(object) || (GEDA_IS_PIN(object)
           && object->pin->node_type == PIN_BUS_NODE));
@@ -276,7 +276,7 @@ o_get_is_bus_related (GedaObject *object)
  *  \return TRUE if the object is embedded
  */
 bool
-o_get_is_embedded (GedaObject *object)
+geda_object_get_is_embedded (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_OBJECT (object), FALSE);
 
@@ -298,7 +298,7 @@ o_get_is_embedded (GedaObject *object)
  *  \return 1 if the point is inside the region, 0 otherwise.
  */
 int
-o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
+geda_object_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
 {
   return ((x >= xmin && x <= xmax && y >= ymin && y <= ymax) ? 1 : 0);
 }
@@ -313,7 +313,7 @@ o_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
 bool
-o_get_is_selectable (GedaObject *object)
+geda_object_get_is_selectable (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selectable);
 }
@@ -328,7 +328,7 @@ o_get_is_selectable (GedaObject *object)
  *  \return TRUE when the object is selected, FALSE otherwise
  */
 bool
-o_get_is_selected (GedaObject *object)
+geda_object_get_is_selected (GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selected);
 }
@@ -344,7 +344,7 @@ o_get_is_selected (GedaObject *object)
  *  \return TRUE if valid, otherwise FALSE.
  */
 bool
-o_get_is_valid_attribute (GedaObject *object)
+geda_object_get_is_valid_attribute (GedaObject *object)
 {
   bool result = FALSE;
 
@@ -383,7 +383,7 @@ o_get_is_valid_attribute (GedaObject *object)
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
 bool
-o_get_is_visible (const GedaObject *object)
+geda_object_get_is_visible (const GedaObject *object)
 {
   return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }
@@ -398,7 +398,7 @@ o_get_is_visible (const GedaObject *object)
  *  \param [in]     capstyle
  */
 LINE_END
-o_get_line_end (int capstyle)
+geda_object_get_line_cap_style (int capstyle)
 {
   switch(capstyle) {
     case(BUTT_CAP): return END_NONE; break;
@@ -425,7 +425,7 @@ o_get_line_end (int capstyle)
  *  \return TRUE on succes, FALSE otherwise
  */
 bool
-o_get_line_options(GedaObject *object,
+geda_object_get_line_options(GedaObject *object,
                    LINE_END *end, LINE_TYPE *type,
                    int *width, int *length, int *space)
 {
@@ -460,7 +460,7 @@ o_get_line_options(GedaObject *object,
  *  \param [out] ny      Integer pointer to resulting y value
  */
 bool
-o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
+geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool (*getter) (GedaObject *, int, int, int *, int *) = NULL;
 
@@ -499,7 +499,7 @@ o_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
  *  \return the number of lines
  */
 int
-o_get_num_text_lines(const char *string)
+geda_object_get_num_text_lines(const char *string)
 {
   const char *aux;
         int   line_count = 0;
@@ -543,7 +543,7 @@ o_get_num_text_lines(const char *string)
  *          then the value of the attribute is returned , otherwise NULL.
  */
 const char*
-o_get_object_attrib_value (GedaObject *object, const char *name)
+geda_object_get_attrib_value (GedaObject *object, const char *name)
 {
   GedaObject *attrib;
   const char *value;
@@ -554,7 +554,7 @@ o_get_object_attrib_value (GedaObject *object, const char *name)
 
       attrib = geda_find_attrib_by_name (object->attribs, name, 0);
 
-      if (o_get_is_valid_attribute(attrib)) {
+      if (geda_object_get_is_valid_attribute(attrib)) {
 
          value  = attrib->text->string + 2;
          while (value && *(value - 1) != ASCII_EQUAL_SIGN) value++;
@@ -588,7 +588,7 @@ o_get_object_attrib_value (GedaObject *object, const char *name)
  *          type or the input list was empty.
  */
 GList*
-o_get_objects_by_type (GList *olist, int type)
+geda_object_get_objects_by_type (GList *olist, int type)
 {
   GList  *objects = NULL;
 
@@ -604,22 +604,6 @@ o_get_objects_by_type (GList *olist, int type)
   return objects;
 }
 
-/*! \brief Get the Page associated with an GedaObject.
- *
- *  \par Function Description
- *  If \a object is on a page, the page is return, otherwise %NULL
- *  is returned.
- *
- *  \param [in] object    The GedaObject for which to get the Page Object.
- *
- *  \return page GedaObject which owns \a object, or %NULL.
- */
-Page *
-o_get_page (GedaObject *object)
-{
-  return geda_object_get_page(object);
-}
-
 /*! \brief Get an object's containing complex object.
  *
  *  \par Function Description
@@ -631,7 +615,7 @@ o_get_page (GedaObject *object)
  *  \return The complex Object which owns \a object, or %NULL.
  */
 GedaObject*
-o_get_parent (GedaObject *object)
+geda_object_get_parent (GedaObject *object)
 {
   GedaObject *parent;
 
@@ -657,7 +641,7 @@ o_get_parent (GedaObject *object)
  *  \return The complex Object which owns \a object, or %NULL.
  */
 int
-o_get_parent_id (GedaObject *object)
+geda_object_get_parent_id (GedaObject *object)
 {
   int cid;
 
@@ -684,7 +668,7 @@ o_get_parent_id (GedaObject *object)
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
-o_get_position (GedaObject *object, int *x, int *y )
+geda_object_get_position (GedaObject *object, int *x, int *y )
 {
   bool (*func) (GedaObject*, int*, int*) = NULL;
 
@@ -725,7 +709,7 @@ o_get_position (GedaObject *object, int *x, int *y )
  *  G_MAXDOUBLE.
  */
 double
-o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
+geda_object_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
 {
   double shortest_distance;
 
@@ -775,7 +759,7 @@ o_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
  *  \return The shortest distance from the object to the point.
  */
 double
-o_get_shortest_distance (GedaObject *object, int x, int y)
+geda_object_get_shortest_distance (GedaObject *object, int x, int y)
 {
-  return o_get_shortest_distance_full (object, x, y, FALSE);
+  return geda_object_get_shortest_distance_full (object, x, y, FALSE);
 }

@@ -690,7 +690,7 @@ get_pin_object_data(GedaObject *object)
   int   sid        = object->sid;
   int   lock       = !object->selectable;
 
-  int   cid        = o_get_parent_id(object);
+  int   cid        = geda_object_get_parent_id(object);
   int   nid        = sid;
 
   char *elect_type = object->pin->electrical;
@@ -764,7 +764,7 @@ get_text_object_data(GedaObject *object)
   char      *str = object->text->string;
   char     *dstr = object->text->disp_string;
   int       lock = !object->selectable;
-  int        cid = o_get_parent_id(object);
+  int        cid = geda_object_get_parent_id(object);
   int          x = object->text->x;
   int          y = object->text->y;
   int       size = object->text->size;
@@ -774,7 +774,7 @@ get_text_object_data(GedaObject *object)
   int      angle = object->text->angle;
 
   /* if text was not integral with complex check if attached */
-  if (cid < 0) cid = o_get_attached_parent_id(object);
+  if (cid < 0) cid = geda_object_get_attached_parent_id(object);
 
   data = Py_BuildValue("siiiiissiiiiiii", name, type, pid, sid, lock, cid,
                        str, dstr, x, y, size, align, angle, vis, show);
@@ -1656,7 +1656,7 @@ PyGeda_get_bounds( int pid, int sid )
 
     GList *list = s_page_get_objects(page);
 
-    if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+    if (geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
     else {
@@ -1672,7 +1672,7 @@ PyGeda_get_bounds( int pid, int sid )
     }
 
     if (object) {
-      if (o_get_bounds (object, &left, &top, &right, &bottom)) {
+      if (geda_object_get_bounds (object, &left, &top, &right, &bottom)) {
         py_list = Py_BuildValue("iiii",  left, top, right, bottom);
       }
       else {
@@ -3116,32 +3116,32 @@ PyGeda_get_network( int pid, int sid, int filter )
         break;
 
       case GEDA_FILTER_BUS:
-        list = o_get_objects_by_type (list, OBJ_BUS);
+        list = geda_object_get_objects_by_type (list, OBJ_BUS);
         break;
 
       case GEDA_FILTER_NET:
-        list = o_get_objects_by_type (list, OBJ_NET);
+        list = geda_object_get_objects_by_type (list, OBJ_NET);
         break;
 
       case GEDA_FILTER_PIN:
-        list = o_get_objects_by_type (list, OBJ_PIN);
+        list = geda_object_get_objects_by_type (list, OBJ_PIN);
         break;
 
       case GEDA_FILTER_NET | GEDA_FILTER_BUS:
-        list = o_get_objects_by_type (list, OBJ_NET);
-        tmp  = o_get_objects_by_type (list, OBJ_BUS);
+        list = geda_object_get_objects_by_type (list, OBJ_NET);
+        tmp  = geda_object_get_objects_by_type (list, OBJ_BUS);
         list = g_list_concat(list, tmp);
         break;
 
       case GEDA_FILTER_NET | GEDA_FILTER_PIN:
-        list = o_get_objects_by_type (list, OBJ_NET);
-        tmp  = o_get_objects_by_type (list, OBJ_PIN);
+        list = geda_object_get_objects_by_type (list, OBJ_NET);
+        tmp  = geda_object_get_objects_by_type (list, OBJ_PIN);
         list = g_list_concat(list, tmp);
         break;
 
       case GEDA_FILTER_BUS | GEDA_FILTER_PIN:
-        list = o_get_objects_by_type (list, OBJ_BUS);
-        tmp  = o_get_objects_by_type (list, OBJ_PIN);
+        list = geda_object_get_objects_by_type (list, OBJ_BUS);
+        tmp  = geda_object_get_objects_by_type (list, OBJ_PIN);
         list = g_list_concat(list, tmp);
         break;
 

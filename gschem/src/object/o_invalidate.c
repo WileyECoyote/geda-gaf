@@ -191,13 +191,13 @@ o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
 
-  if (o_get_bounds(object, &left,  &top, &right, &bottom)) {
+  if (geda_object_get_bounds(object, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left, top, &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
   }
   else {
-    if (o_get_is_visible(object)) {
+    if (geda_object_get_is_visible(object)) {
       fprintf(stderr, "o_invalidate_object could not get bounds <%s>\n", object->name);
     }
   }
@@ -237,7 +237,7 @@ o_invalidate_list (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
-  if (o_get_bounds_list (list, &left,  &top, &right, &bottom)) {
+  if (geda_object_get_bounds_list (list, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left,  top,    &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);

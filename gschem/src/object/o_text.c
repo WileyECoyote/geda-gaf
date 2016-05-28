@@ -49,7 +49,7 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
   g_return_val_if_fail ((w_current != NULL), FALSE);
 
   /* First check if this is hidden text. */
-  if (o_get_is_visible(o_current)) {
+  if (geda_object_get_is_visible(o_current)) {
 
     if (w_current->render_adaptor == CAIRO_ADAPTOR) {
 

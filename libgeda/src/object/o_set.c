@@ -39,7 +39,7 @@
  *  Recursively marks the cached bounds of the given GedaObject and its
  *  parents as having been invalidated and in need of an update. They
  *  will be recalculated next time the GedaObject's bounds are requested
- *  (e.g. via o_get_bounds() ).
+ *  (e.g. via geda_object_get_bounds() ).
  *
  *  \param [in] obj
  *

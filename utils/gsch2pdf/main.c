@@ -621,7 +621,7 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
 static void print_object(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    if (o_get_is_visible(object))
+    if (geda_object_get_is_visible(object))
     {
         switch (object->type)
         {
@@ -698,7 +698,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
     list = s_page_get_objects(page);
 
     /* Now calculate extents of objects within page */
-    o_get_bounds_list (list, &wx_min, &wy_min, &wx_max, &wy_max);
+    geda_object_get_bounds_list (list, &wx_min, &wy_min, &wx_max, &wy_max);
 
     rectangle.x = wx_min;
     rectangle.y = wy_min;

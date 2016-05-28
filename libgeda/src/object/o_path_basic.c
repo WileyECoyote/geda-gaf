@@ -624,7 +624,7 @@ char *o_path_save (GedaObject *object)
 
   path_string = s_path_string_from_path (object->path);
 
-  num_lines = o_get_num_text_lines (path_string);
+  num_lines = geda_object_get_num_text_lines (path_string);
   buf = geda_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
                       object->type, object->color, line_width, line_end,
                       line_type, line_length, line_space, fill_type,

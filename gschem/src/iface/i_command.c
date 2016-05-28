@@ -1161,7 +1161,7 @@ COMMAND (do_export_symbol) {
   o_current = o_select_return_first_object(w_current);
 
   if (o_current && (o_current->type == OBJ_COMPLEX)) {
-    if (!o_get_is_embedded(o_current)) {
+    if (!geda_object_get_is_embedded(o_current)) {
       const char *question = _("Symbol is not embeded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
       if (response == GEDA_RESPONSE_YES) {
@@ -1185,7 +1185,7 @@ COMMAND (do_export_picture) {
   o_current = o_select_return_first_object(w_current);
 
   if (o_current && (o_current->type == OBJ_PICTURE)) {
-    if (!o_get_is_embedded(o_current)) {
+    if (!geda_object_get_is_embedded(o_current)) {
       const char *question = _("Picture is not embeded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
       if (response == GEDA_RESPONSE_YES) {
@@ -3549,19 +3549,19 @@ COMMAND (do_attach)
       second_object = (GedaObject*) next->data;
 
       w_current->which_object = NULL;
-      first_is_an_attribute   = o_get_is_valid_attribute(first_object);
-      second_is_an_attribute  = o_get_is_valid_attribute(second_object);
+      first_is_an_attribute   = geda_object_get_is_valid_attribute(first_object);
+      second_is_an_attribute  = geda_object_get_is_valid_attribute(second_object);
 
       /* Ensure 1 and only 1 is a valid attribute */
       if (1 == first_is_an_attribute + second_is_an_attribute) {
 
         if (first_is_an_attribute) {
-          if (!o_get_is_attached(first_object)) {
+          if (!geda_object_get_is_attached(first_object)) {
             w_current->which_object = second_object;
           }
         }
         else {
-          if (!o_get_is_attached(second_object)) {
+          if (!geda_object_get_is_attached(second_object)) {
             w_current->which_object = first_object;
           }
         }
@@ -3581,7 +3581,7 @@ COMMAND (do_attach)
       do {
 
         /* Find first object that is NOT an attribute */
-        if (!o_get_is_valid_attribute(iter->data)) {
+        if (!geda_object_get_is_valid_attribute(iter->data)) {
           w_current->which_object = iter->data;
         }
 
@@ -3677,7 +3677,7 @@ COMMAND (do_home_attributes)
           modified = TRUE;
         }
       }
-      else if ((object->type == OBJ_TEXT && o_get_is_attached(object))) {
+      else if ((object->type == OBJ_TEXT && geda_object_get_is_attached(object))) {
         if (o_attrib_reset_position(w_current, object->attached_to, object)) {
           modified = TRUE;
         }

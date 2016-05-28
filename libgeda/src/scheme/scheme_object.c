@@ -278,11 +278,11 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
     if (page == NULL) {
 
-      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
+      success = geda_object_get_bounds_list (obj_list, &left, &top, &right, &bottom);
     }
     else if (page->show_hidden_text) {
 
-      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
+      success = geda_object_get_bounds_list (obj_list, &left, &top, &right, &bottom);
     }
     else {
 
@@ -295,7 +295,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
         o_current->w_bounds_valid_for = NULL;
       }
 
-      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
+      success = geda_object_get_bounds_list (obj_list, &left, &top, &right, &bottom);
 
       page->show_hidden_text = FALSE;
     }
@@ -348,7 +348,7 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
 
   int end, type, width, length, space;
-  o_get_line_options (obj, (LINE_END *) &end, (LINE_TYPE *) &type, &width,
+  geda_object_get_line_options (obj, (LINE_END *) &end, (LINE_TYPE *) &type, &width,
                       &length, &space);
 
   SCM width_s = scm_from_int (width);
@@ -421,7 +421,7 @@ EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
 
   int type, width, pitch1, angle1, pitch2, angle2;
-  o_get_fill_options (obj, (OBJECT_FILLING *) &type, &width, &pitch1, &angle1,
+  geda_object_get_fill_options (obj, (OBJECT_FILLING *) &type, &width, &pitch1, &angle1,
                       &pitch2, &angle2);
 
   SCM width_s  = scm_from_int (width);
@@ -1272,7 +1272,7 @@ EDA_SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
               SCM_ARG1, scheme_object_complex);
 
   GedaObject *obj = edascm_to_object (obj_s);
-  GedaObject *parent = o_get_parent (obj);
+  GedaObject *parent = geda_object_get_parent (obj);
 
   if (parent == NULL) return SCM_BOOL_F;
 

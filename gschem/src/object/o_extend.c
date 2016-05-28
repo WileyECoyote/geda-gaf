@@ -48,7 +48,7 @@ typedef struct st_path_record path_record;
 struct st_hit_record {
   GedaObject *object;    /* Pointer to object for this record   */
   int         hits;      /* Number of times object was hit (by projectiles) */
-  double      distance;  /* o_get_shortest_distance */
+  double      distance;  /* geda_object_get_shortest_distance */
 };
 
 /* ----------------------------- Qualifiers --------------------------- */
@@ -272,8 +272,8 @@ static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
     bool included1;
     bool included2;
 
-    has_slope1 = o_get_has_slope(object1);
-    has_slope2 = o_get_has_slope(object2);
+    has_slope1 = geda_object_get_has_slope(object1);
+    has_slope2 = geda_object_get_has_slope(object2);
 
     included1 = FALSE;
     included2 = FALSE;
@@ -371,9 +371,9 @@ o_extend_get_closest_end(GedaObject *projectile, GedaObject *boundary)
   double dist1;
   double dist2;
 
-  dist1     = o_get_shortest_distance(boundary, projectile->line->x[0],
+  dist1     = geda_object_get_shortest_distance(boundary, projectile->line->x[0],
                                       projectile->line->y[0]);
-  dist2     = o_get_shortest_distance(boundary, projectile->line->x[1],
+  dist2     = geda_object_get_shortest_distance(boundary, projectile->line->x[1],
                                       projectile->line->y[1]);
   return dist1 < dist2 ? 0 : 1;
 }
@@ -867,7 +867,7 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
       if (m_line_get_intersection(proj, &diagonal, &tmp)) {
 
         /* and the intersection must be within the bounds of the box */
-        if (o_get_is_inside_region(left, bottom, right, top, tmp.x, tmp.y)) {
+        if (geda_object_get_is_inside_region(left, bottom, right, top, tmp.x, tmp.y)) {
 
           /* but not on the far side, aka not touching opposite side */
           switch (direction) {
@@ -899,7 +899,7 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
 
         /* If the projectile's "hot" point is outside of the box then
          * the intersection will be the near-side of the box */
-        outside = !o_get_is_inside_region(left, bottom, right, top, x1, y1);
+        outside = !geda_object_get_is_inside_region(left, bottom, right, top, x1, y1);
 
         b = (-1 * slope * x1) + y1;
 
@@ -1203,8 +1203,8 @@ static bool o_extend_can_linear_bound(GedaObject *boundary,
 
   answer = geda_line_object_get_intersection(boundary, projectile, &pt);
 
-  has_slope1 = o_get_has_slope(projectile);
-  has_slope2 = o_get_has_slope(boundary);
+  has_slope1 = geda_object_get_has_slope(projectile);
+  has_slope2 = geda_object_get_has_slope(boundary);
 
   included1 = FALSE;
   included2 = FALSE;
@@ -1782,7 +1782,7 @@ GedaObject *o_extend_get_bounder (GList *list, const POINT *point)
           hit_records[index].hits   = hits;
 
           if (point) {
-            hit_records[index].distance = o_get_shortest_distance(record,
+            hit_records[index].distance = geda_object_get_shortest_distance(record,
                                                                   point->x,
                                                                   point->y);
           }
@@ -1830,7 +1830,7 @@ GedaObject *o_extend_get_bounder (GList *list, const POINT *point)
         hit_records[index].hits   = hits;
 
         if (point) {
-          hit_records[index].distance = o_get_shortest_distance(projectile,
+          hit_records[index].distance = geda_object_get_shortest_distance(projectile,
                                                                 point->x,
                                                                 point->y);
         }

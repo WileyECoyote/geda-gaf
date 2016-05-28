@@ -264,7 +264,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
 
     /* Get bounds of the drawing to be done */
-    if (o_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom))
+    if (geda_object_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom))
     {
       WORLDtoSCREEN (w_current, left  + diff_x, top    + diff_y, &s_left, &s_top);
       WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
@@ -378,7 +378,7 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
     int left, top, bottom, right;
 
     /* Find the bounds of the drawing to be done */
-    o_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom);
+    geda_object_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom);
 
     /* Draw box outline */
     eda_cairo_box (cr, flags, 0, left, top, right, bottom);

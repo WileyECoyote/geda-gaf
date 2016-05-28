@@ -199,7 +199,7 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
   inside = geda_attrib_search_inherited_by_name (object, "symversion", 0);
 
   /* get the uref for future use */
-  refdes = o_get_object_attrib_value(object, "refdes");
+  refdes = geda_object_get_attrib_value(object, "refdes");
 
   if (!refdes) {
     refdes = "unknown";
@@ -446,7 +446,7 @@ int
 geda_complex_object_get_bounds(GedaObject *object)
 {
   if (GEDA_IS_COMPLEX(object)) {
-    return o_get_bounds_list (object->complex->prim_objs,
+    return geda_object_get_bounds_list (object->complex->prim_objs,
                               &object->left, &object->top,
                               &object->right, &object->bottom);
   }
@@ -456,7 +456,7 @@ geda_complex_object_get_bounds(GedaObject *object)
 
 /*! \brief Get Point on a GedaComplex Nearest a Given Point
  *  \par Function Description
- *  Recursively calls o_get_nearest_point on the closest sub-object of
+ *  Recursively calls geda_object_get_nearest_point on the closest sub-object of
  *  the complex and returns the results of the function corresponding
  *  to the appropriate type of object for the selected sub-object.
  *
@@ -494,7 +494,7 @@ geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx
 
         double distance;
 
-        distance = o_get_shortest_distance_full (obj, x, y, TRUE);
+        distance = geda_object_get_shortest_distance_full (obj, x, y, TRUE);
 
         if (distance < shortest) {
           shortest = distance;
@@ -515,7 +515,7 @@ geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx
   }
 
   if (closest) {
-    result = o_get_nearest_point(closest, x, y, nx, ny);
+    result = geda_object_get_nearest_point(closest, x, y, nx, ny);
   }
   else { /* was not an Complex */
     result = FALSE;
@@ -712,7 +712,7 @@ o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
         if (!answer) {
 
           /* object is invisible and we do not want to promote invisible text */
-          if ((!o_get_is_visible (object)) &&
+          if ((!geda_object_get_is_visible (object)) &&
               (toplevel->promote_invisible == FALSE)) {
             answer = FALSE; /* attribute not eligible for promotion */
           }
@@ -1286,7 +1286,7 @@ geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int forc
 
     /* Collect the bounds of any lines and arcs in the symbol */
     if ((obj->type == OBJ_LINE || obj->type == OBJ_ARC) &&
-         o_get_bounds(obj, &left, &top, &right, &bottom))
+         geda_object_get_bounds(obj, &left, &top, &right, &bottom))
     {
       if (found_line_bounds) {
         line_bounds.lower_x = min (line_bounds.lower_x, left);
@@ -1303,7 +1303,7 @@ geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int forc
       }
     }
     else {
-      distance = o_get_shortest_distance_full (obj, x, y, TRUE);
+      distance = geda_object_get_shortest_distance_full (obj, x, y, TRUE);
       shortest_distance = min (shortest_distance, distance);
     }
 

@@ -600,7 +600,7 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
 
     GedaObject *o_current = iter->data;
 
-    if (o_get_is_valid_attribute(o_current)) {
+    if (geda_object_get_is_valid_attribute(o_current)) {
 
       /* Check is attribute has directive */
       const char *string = o_current->text->string;

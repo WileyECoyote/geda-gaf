@@ -412,7 +412,7 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
   }
 
   /* Now calculate extents of objects within page */
-  o_get_bounds_list (s_page_get_objects (page), &x_min, &y_min, &x_max, &y_max);
+  geda_object_get_bounds_list (s_page_get_objects (page), &x_min, &y_min, &x_max, &y_max);
   w_width = x_max - x_min;
   w_height = y_max - y_min;
 

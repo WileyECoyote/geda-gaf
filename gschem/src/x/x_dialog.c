@@ -1238,7 +1238,8 @@ static bool selection_get_fill_type(GList *selection,
 
     GedaObject *object = (GedaObject*) iter->data;
 
-    if (o_get_fill_options(object, &otype, &owidth, &opitch1, &oangle1, &opitch2, &oangle2))
+    if (geda_object_get_fill_options(object, &otype, &owidth, &opitch1,
+                                             &oangle1, &opitch2, &oangle2))
     {
 
       if (found == FALSE) {  /* first object with filltype */
@@ -1460,7 +1461,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 
     GedaObject *object = (GedaObject*) iter->data;
 
-    if (!o_get_fill_options(object, &otype, &owidth,
+    if (!geda_object_get_fill_options(object, &otype, &owidth,
                             &opitch1, &oangle1, &opitch2, &oangle2))
       continue;
 
@@ -1843,7 +1844,7 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
 
     GedaObject *object = iter->data;
 
-    if (! o_get_line_options(object,  &oend,    &otype,
+    if (! geda_object_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
       continue;
 
@@ -2048,7 +2049,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
      GedaObject *object = (GedaObject*) iter->data;
 
-    if (! o_get_line_options(object,  &oend,    &otype,
+    if (! geda_object_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
       continue;
 

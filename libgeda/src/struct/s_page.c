@@ -1020,7 +1020,7 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
       GedaObject *object = iter->data;
       int left, top, right, bottom;
 
-      if (o_get_bounds (object, &left, &top, &right, &bottom)) {
+      if (geda_object_get_bounds (object, &left, &top, &right, &bottom)) {
 
         int i;
 
