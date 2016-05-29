@@ -25,7 +25,6 @@
  */
 
 #include <gschem.h>
-#include <x_menus.h>
 
 #include <geda_label.h>
 #include <geda_debug.h>
