@@ -1,6 +1,13 @@
 2016-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_menus.h: Relocate macro to reference st_menu_data members,
+      rename popup_menu->popup_main and the cooresponding macro POPUP_MENU
+      -> POPUP_MAIN, rename POPUP_HASH_TABLE -> POPUP_MAIN_HASH.
+
     * src/object/o_path.c: Reorganize module.
+
+    * src/x/x_menus.c: Update POPUP_MAIN and remove unecessary initialization
+      of cfg in x_menu_setup_popup.
 
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 

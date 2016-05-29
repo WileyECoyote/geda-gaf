@@ -42,14 +42,7 @@
  *    \ingroup (main-window)
  */
 
-#define MENU_BAR         menu_data->menu_bar
-#define POPUP_MENU       menu_data->popup_menu
-#define MENU_ITEMS_LIST  menu_data->menu_items
-#define POPUP_ITEMS_LIST menu_data->popup_items
-#define TOGGLERS_LIST    menu_data->menu_togglers
-#define POPUP_HASH_TABLE menu_data->popup_hash
-
-static void x_menu_popup_execute(GtkObject *widget,int action_id);
+static void x_menu_popup_execute(GtkObject *widget, int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in x_menus.h
  *       Actions are defined in i_actions.h
@@ -87,7 +80,6 @@ const char* IDS_Popup_Actions[] = {
  *  is passed to create_pixmap().
  *
  */
-
 static PopupEntry popup_items[] = {
 
   { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  N_("Activate Select mode") },
@@ -260,9 +252,9 @@ void x_menu_free_all(void)
     g_slist_free (MENU_ITEMS_LIST);
 
     g_slist_free (POPUP_ITEMS_LIST);
-    g_hash_table_unref (POPUP_HASH_TABLE);
-    g_object_ref_sink(POPUP_MENU);
-    g_object_unref(POPUP_MENU);
+    g_hash_table_unref (POPUP_MAIN_HASH);
+    g_object_ref_sink(POPUP_MAIN);
+    g_object_unref(POPUP_MAIN);
 
     g_free(menu_data);
     return FALSE;
@@ -959,34 +951,35 @@ static bool strhashcmp (const void *a, const void *b)
  *  to each menu-item widget is saved in the single-linked list menu_data->
  *  popup_items using the macro POPUP_ITEMS_LIST. The POPUP_ITEMS_LIST list
  *  is used to toggle visibility of icon images and tool-tip on all of the
- *  pop-up menu items.
+ *  pop-up menu items. The name of each item in popup_items is add to a hash
+ *  table with a pointer to the widget. The hash table is referenced later
+ *  when enabling/disabling sensitivities.
  *  A pointer to the menu is saved in menu_data->popup_menu using the macro
- *  POPUP_MENU.
+ *  POPUP_MAIN.
  */
 int x_menu_setup_popup (GschemToplevel *w_current)
 {
-  EdaConfig  *cfg   = NULL;
+  EdaConfig  *cfg;
   const char *group = MENU_CONFIG_GROUP;
   GtkWidget  *menu;
   GtkWidget  *menu_item;
   GtkWidget  *submenu;
   GtkWidget  *save_nest;
   GtkWidget  *image;
+  MenuData   *menu_data;
 
   bool show_pop_icons;
   bool show_pop_tips;
 
   int i;
 
-  MenuData     *menu_data;
-
-  /* We will assume the main menu has already alocated a structure */
+  /* We will assume the main menu has already allocated a structure */
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   menu             = gtk_menu_new ();
   POPUP_ITEMS_LIST = NULL;
   save_nest        = NULL;
-  POPUP_HASH_TABLE = g_hash_table_new_full (g_str_hash, (GEqualFunc) strhashcmp,
+  POPUP_MAIN_HASH = g_hash_table_new_full (g_str_hash, (GEqualFunc) strhashcmp,
                                             NULL, NULL);
 
   /* Retrieve preference settings */
@@ -1016,7 +1009,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
         gtk_menu_item_set_submenu (GTK_MENU_ITEM( submenu ), menu) ;
         g_object_set (menu, "visible", TRUE, NULL);
 
-        g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, submenu);
+        g_hash_table_insert (POPUP_MAIN_HASH, (char*)item.name, submenu);
 
 #if DEBUG
         fprintf(stderr, "%s: submenu <%s> <%p>\n", __func__, item.name, submenu);
@@ -1062,7 +1055,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
       GEDA_OBJECT_SET_DATA(menu_item, w_current, "top-level");
       POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);
-      g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, menu_item);
+      g_hash_table_insert (POPUP_MAIN_HASH, (char*)item.name, menu_item);
 
 #if DEBUG
       fprintf(stderr, "%s: appending <%s> <%p>\n", __func__, item.name, menu_item);
@@ -1075,7 +1068,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   }
 
   /* Save the menu to the active menu data structure */
-  POPUP_MENU = menu;
+  POPUP_MAIN = menu;
 
   menu = MENU_BAR; /* Get pointer to the main menu */
 
@@ -1100,10 +1093,9 @@ int x_menu_setup_popup (GschemToplevel *w_current)
                         G_CALLBACK(x_menu_toggle_tips),
                         POPUP_ITEMS_LIST);
     }
-
   }
 
-  return GTK_IS_WIDGET(POPUP_MENU);
+  return GTK_IS_WIDGET(POPUP_MAIN);
 }
 
 /*! \brief Show the Popup Menu
@@ -1119,7 +1111,7 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  menu = POPUP_MENU;
+  menu = POPUP_MAIN;
 
   if (menu == NULL) {
     BUG_MSG ("popup menu is NULL");
@@ -1196,14 +1188,14 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  if (!POPUP_MENU) {
+  if (!POPUP_MAIN) {
     fprintf(stderr, _("Popup menu widget doesn't exist!\n"));
   }
   else {
 
     GtkWidget *menu_item;
 
-    menu_item = (GtkWidget*) g_hash_table_lookup (POPUP_HASH_TABLE, name);
+    menu_item = (GtkWidget*)g_hash_table_lookup (POPUP_MAIN_HASH, name);
 
     if (menu_item) {
       gtk_widget_set_sensitive(GTK_WIDGET(menu_item), flag);
@@ -1224,8 +1216,8 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
 void x_menu_save_state(GschemToplevel *w_current)
 {
 
-  GtkWidget        *menubar;
-  EdaConfig        *cfg;
+  GtkWidget *menubar;
+  EdaConfig *cfg;
 
   bool  state;
   int   errors = 0;
@@ -1281,6 +1273,7 @@ char *x_menu_get_buffer_menu (GschemToplevel *w_current)
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
   return menu_data->buffer_menu_name;
 }
+
 /*! \brief Set Menu Icon Visibility
  *  \par Function Description
  *   This function turns menu icons on or off for a given list of menu items
