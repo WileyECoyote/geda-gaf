@@ -117,17 +117,18 @@ const char* IDS_GSCHEM_XCONS[] = {
 
 const char* IDS_THEME_ICONS_22[] = {
   "attribute-attach",        "attribute-detach",         "attribute-reset",
-  "attribute-visibility",    "clone",
-  "symbol-datasheet",        "deselect",                 "insert-arc",
+  "attribute-visibility",    "clone",                    "close-path",
+  "deselect",                "extend",                   "insert-arc",
   "insert-attribute",        "insert-box",               "insert-bus",
   "insert-circle",           "insert-line",              "insert-net",
   "insert-path",             "insert-pin",               "insert-symbol",
-  "insert-text",             "extend",                   "multi-clone",
-  "show-both",               "show-hidden",              "show-inherited",
-  "show-name",               "show-netnames",            "show-value",
-  "unselect-all",            "zoom-extents",             "zoom-fit",
-  "zoom-in",                 "zoom-mag",                 "zoom-out",
-  "zoom-limits",             "zoom-selection",
+  "insert-text",             "multi-clone",              "process-stop",
+  "select",                  "show-both",                "show-hidden",
+  "show-inherited",          "show-name",                "show-netnames",
+  "show-value",              "symbol-datasheet",         "unselect-all",
+  "zoom-extents",            "zoom-fit",                 "zoom-in",
+  "zoom-limits",              "zoom-mag",                "zoom-out",
+  "zoom-selection",
   NULL
 };
 

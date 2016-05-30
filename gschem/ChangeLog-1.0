@@ -10,6 +10,11 @@
 
     * data/process-stop-22.png: Generated image for icon from gschem-icons.svg.
 
+    * src/x/x_icons.c: Include close-path, process-stop and select in the IDS_
+      THEME_ICONS_22 group. The select-22 image file previously existed but had
+      not been included and appears to have been stranded, whether intentional
+      or not.
+
 2016-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Relocate macro to reference st_menu_data members,
