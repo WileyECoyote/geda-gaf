@@ -302,6 +302,13 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
 {
   GschemEvent *action = w_current->action_event;
 
+  void erase_rubber (void) {
+    if (w_current->rubber_visible) {
+      w_current->rubber_visible = FALSE;
+      o_invalidate_rubber (w_current);
+    }
+  }
+
   if (w_current->event_state == action->state) {
 
     /* Note that these keys are also updated in x_event_motion */
@@ -357,15 +364,10 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
     }
     else if (event->button == 3) {
 
-      if (w_current->rubber_visible) {
-        w_current->rubber_visible = FALSE;
-        o_invalidate_rubber (w_current);
-      }
-
       switch (w_current->event_state) {
-
         case(NETMODE):
-          if (o_net_reset (w_current)) {
+           if (o_net_reset (w_current)) {
+            erase_rubber();
             break;
           }
         case(PINMODE):
@@ -374,11 +376,14 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
         case(CIRCLEMODE):
         case(ARCMODE):
         case(BUSMODE):
-        case(PATHMODE):
         case(PICTUREMODE):
+          erase_rubber();
           i_event_end_action_handler(w_current);
           i_status_set_state(w_current, SELECT);
           break;
+
+        case(PATHMODE):
+          x_menu_display_path_popup(w_current, event);
 
         default:
           /* Not an Adder event; do nothing */

@@ -1,5 +1,7 @@
 2016-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Program Enhancement: New feature - Context Popup Menu for Path Mode.
+
     * data/gschem-icons.svg: Add icons for close-path and process-stop.
 
     * data/close-path-16.png: Generated image for icon from gschem-icons.svg.
@@ -10,7 +12,23 @@
 
     * data/process-stop-22.png: Generated image for icon from gschem-icons.svg.
 
+    * include/x_menus.h: Add enumerated pop_PathItem with "short-cut" macro
+      POPUP_PATH to new member popup_path in structure st_menu_data.
+
+    * src/x/x_menus.c: Rename x_menu_display_popup -> x_menu_display_main_popup,
+      rename structure popup_items -> main_popup_items and add new structure
+      path_popup_items, eliminate unused static int npopup_items, add functions
+      x_menu_path_popup_execute, x_menu_build_path_popup and x_menu_display_path
+      _popup, revise x_menu_setup_popup to call x_menu_build_path_popup, update
+      Doxygen comments.
+
+    * src/iface/i_event.c: Revise i_event_adder_pressed, adding subfunction
+      erase_rubber and call x_menu_display_path_popup for case PATHMODE for
+      third button events.
+
     * src/object/o_path.c: Add function o_path_close.
+
+    * src/x/x_event.c: Update function name x_menu_display_main_popup.
 
     * src/x/x_icons.c: Include close-path, process-stop and select in the IDS_
       THEME_ICONS_22 group. The select-22 image file previously existed but had

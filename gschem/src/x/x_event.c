@@ -272,7 +272,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       if (w_current->third_button == POPUP_ENABLED) {
         i_status_update_sensitivities(w_current);  /* update menus before popup  */
-        x_menu_display_popup(w_current, event);
+        x_menu_display_main_popup(w_current, event);
       }
       else {
 

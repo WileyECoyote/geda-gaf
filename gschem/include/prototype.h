@@ -837,12 +837,12 @@ GdkPixbuf *x_image_get_pixbuf               (GschemToplevel *w_current, ImageExt
 bool       x_show_uri                       (const char *str);
 
 /* x_menus.c */
-void       x_menu_free_all(void);
-
+void        x_menu_free_all(void);
 GtkWidget  *x_menu_get_main_menu            (GschemToplevel *w_current);
 GtkWidget  *x_menu_setup_ui                 (GschemToplevel *w_current);
 int         x_menu_setup_popup              (GschemToplevel *w_current);
-int         x_menu_display_popup            (GschemToplevel *w_current, GdkEventButton *event);
+int         x_menu_display_main_popup       (GschemToplevel *w_current, GdkEventButton *event);
+int         x_menu_display_path_popup       (GschemToplevel *w_current, GdkEventButton *event);
 void        x_menus_sensitivity             (GschemToplevel *w_current, const char *buf, int flag);
 void        x_menus_popup_sensitivity       (GschemToplevel *w_current, const char *name, int flag);
 void        x_menu_save_state               (GschemToplevel *w_current);

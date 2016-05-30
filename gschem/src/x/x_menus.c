@@ -42,7 +42,8 @@
  *    \ingroup (main-window)
  */
 
-static void x_menu_popup_execute(GtkObject *widget, int action_id);
+static void x_menu_main_popup_execute(GtkObject *widget, int action_id);
+static void x_menu_path_popup_execute(GtkObject *widget, int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in x_menus.h
  *       Actions are defined in i_actions.h
@@ -80,75 +81,90 @@ const char* IDS_Popup_Actions[] = {
  *  is passed to create_pixmap().
  *
  */
-static PopupEntry popup_items[] = {
+static PopupEntry main_popup_items[] = {
 
-  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  N_("Activate Select mode") },
+  { N_("Select"),            x_menu_main_popup_execute, pop_edit_select,    1, "gschem-select",  N_("Activate Select mode") },
 
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
 
-  { N_("Add"),               NULL,                 1,                  0,  NULL,            N_("Add modes") },
-  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     N_("Add net") },
-  { N_("Attribute..."),      x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), N_("Add attribute")},
-  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", N_("Insert a symbol from the component library") },
-  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     N_("Add bus") },
-  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       N_("Add text") },
+  { N_("Add"),               NULL,                      1,                  0,  NULL,            N_("Add modes") },
+  { N_("Net"),               x_menu_main_popup_execute, pop_add_net,        1, "gschem-net",     N_("Add net") },
+  { N_("Attribute..."),      x_menu_main_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), N_("Add attribute")},
+  { N_("Component..."),      x_menu_main_popup_execute, pop_add_component,  1, "geda-component", N_("Insert a symbol from the component library") },
+  { N_("Bus"),               x_menu_main_popup_execute, pop_add_bus,        1, "gschem-bus",     N_("Add bus") },
+  { N_("Text"),              x_menu_main_popup_execute, pop_add_text,       1, "gtk-bold",       N_("Add text") },
 
-  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
 
-  { N_("Zoom"),              NULL,                 1,                  0,  NULL,            N_("Add operations") },
-  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    N_("Increase the Zoom magnification") },
-  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   N_("Decrease the Zoom magnification") },
-  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  N_("Zoom to a Windowed region") },
-  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   N_("Zoom to the extents of the drawing") },
-  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       N_("Zoom to a specified level")},
-  { N_("Selection"),         x_menu_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", N_("Zoom to selected objects")},
+  { N_("Zoom"),              NULL,                      1,                  0,  NULL,            N_("Add operations") },
+  { N_("In"),                x_menu_main_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    N_("Increase the Zoom magnification") },
+  { N_("Out"),               x_menu_main_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   N_("Decrease the Zoom magnification") },
+  { N_("Box"),               x_menu_main_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  N_("Zoom to a Windowed region") },
+  { N_("Extents"),           x_menu_main_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   N_("Zoom to the extents of the drawing") },
+  { N_("Mag"),               x_menu_main_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       N_("Zoom to a specified level")},
+  { N_("Selection"),         x_menu_main_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", N_("Zoom to selected objects")},
 
-  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
 
-  { N_("Edit"),              NULL,                 1,                  0,  NULL,                N_("Edit modes") },
-  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",         N_("Edit Object Attributes") },
-  { N_("Color..."),          x_menu_popup_execute, pop_edit_color,     1, "geda-display-color", N_("Open the Color Editor Dialog") },
-  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component",     N_("Open the Component Editor Dialog") },
-  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",      N_("Open the Pin Type Dialog") },
+  { N_("Edit"),              NULL,                      1,                  0,  NULL,                N_("Edit modes") },
+  { N_("Object..."),         x_menu_main_popup_execute, pop_edit_objects,   1, "gtk-indent",         N_("Edit Object Attributes") },
+  { N_("Color..."),          x_menu_main_popup_execute, pop_edit_color,     1, "geda-display-color", N_("Open the Color Editor Dialog") },
+  { N_("Component..."),      x_menu_main_popup_execute, pop_edit_component, 1, "geda-component",     N_("Open the Component Editor Dialog") },
+  { N_("Pin type..."),       x_menu_main_popup_execute, pop_edit_pintype,   1, "geda-pin-type",      N_("Open the Pin Type Dialog") },
 
-  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
 
-  { N_("Array"),             x_menu_popup_execute, pop_edit_array,     1, "array",          N_("Create and array of objects") },
-  { N_("Break"),             x_menu_popup_execute, pop_edit_break,     1, "gschem-break",   N_("Break an object into seperate objects") },
-  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         N_("Project a linear objects to other objects") },
-  { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete",     N_("Delete the current selection" )},
-  { N_("Copy"),              x_menu_popup_execute, pop_edit_copy,      1, "geda-copy",      N_("Copy selection") },
-  { N_("MCopy"),             x_menu_popup_execute, pop_edit_mcopy,     1, "geda-multi",     N_("Make multible copies of selection") },
-  { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      N_("Move selection") },
-  { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    N_("Rotate the current selection about a point") },
-  { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    N_("Mirror an object about a point") },
-  { N_("Snap"),              x_menu_popup_execute, pop_edit_snap,      1, "snap",           N_("Snap objects to the current grid") },
+  { N_("Array"),             x_menu_main_popup_execute, pop_edit_array,     1, "array",          N_("Create and array of objects") },
+  { N_("Break"),             x_menu_main_popup_execute, pop_edit_break,     1, "gschem-break",   N_("Break an object into seperate objects") },
+  { N_("Extend"),            x_menu_main_popup_execute, pop_edit_extend,    1, "extend",         N_("Project a linear objects to other objects") },
+  { N_("Delete"),            x_menu_main_popup_execute, pop_edit_delete,    1, "gtk-delete",     N_("Delete the current selection" )},
+  { N_("Copy"),              x_menu_main_popup_execute, pop_edit_copy,      1, "geda-copy",      N_("Copy selection") },
+  { N_("MCopy"),             x_menu_main_popup_execute, pop_edit_mcopy,     1, "geda-multi",     N_("Make multible copies of selection") },
+  { N_("Move"),              x_menu_main_popup_execute, pop_edit_move,      1, "geda-move",      N_("Move selection") },
+  { N_("Mirror"),            x_menu_main_popup_execute, pop_edit_mirror,    1, "geda-rotate",    N_("Rotate the current selection about a point") },
+  { N_("Rotate"),            x_menu_main_popup_execute, pop_edit_rotate,    1, "geda-mirror",    N_("Mirror an object about a point") },
+  { N_("Snap"),              x_menu_main_popup_execute, pop_edit_snap,      1, "snap",           N_("Snap objects to the current grid") },
 
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
 
-  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             N_("Edit operations")},
-  { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     N_("Descend down in the schematic hierarchy")},
-  { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", N_("Descend down in the symbol hierarchy")},
-  { N_("Up"),                x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       N_("ascend up in the schematic hierarchy")},
+  { N_("Hierarchy"),         NULL,                      1,                  0,  NULL,             N_("Edit operations")},
+  { N_("Down Schematic"),    x_menu_main_popup_execute, pop_down_schemat,   1, "gtk-go-down",     N_("Descend down in the schematic hierarchy")},
+  { N_("Down Symbol"),       x_menu_main_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", N_("Descend down in the symbol hierarchy")},
+  { N_("Up"),                x_menu_main_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       N_("ascend up in the schematic hierarchy")},
 
   /* Menu items for clip-board added by WEH 07.20.2013 */
-  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-  { N_("Cut to Clipboard"),  x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        N_("Cut the current selection to the system clipboard") },
-  { N_("Copy to Clipboard"), x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       N_("Copy the current selection to the system clipboard") },
-  { N_("Paste Clipboard"),   x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      N_("Paste the contents of the system clipboard") },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
+  { N_("Cut to Clipboard"),  x_menu_main_popup_execute, pop_cb_cut,         1, "gtk-cut",        N_("Cut the current selection to the system clipboard") },
+  { N_("Copy to Clipboard"), x_menu_main_popup_execute, pop_cb_copy,        1, "gtk-copy",       N_("Copy the current selection to the system clipboard") },
+  { N_("Paste Clipboard"),   x_menu_main_popup_execute, pop_cb_paste,       1, "gtk-paste",      N_("Paste the contents of the system clipboard") },
+  {NULL} /* sentinel */
+};
+
+static PopupEntry path_popup_items[] = {
+
+  { N_("Close"),    x_menu_path_popup_execute,  pop_path_close,    1, "close-path",   N_("Close the current path") },
+  { N_("Done"),     x_menu_path_popup_execute,  pop_path_done,     1, "process-stop", N_("Terminate the current path") },
+  { N_("End"),      x_menu_path_popup_execute,  pop_path_end,      1, "gtk-quit",     N_("End this path and exit path mode") },
+
+  { N_("In"),       x_menu_main_popup_execute,  pop_zoom_in,       1, "gtk-zoom-in",  N_("Increase the Zoom magnification") },
+  { N_("Out"),      x_menu_main_popup_execute,  pop_zoom_out,      1, "gtk-zoom-out", N_("Decrease the Zoom magnification") },
+  { N_("Extents"),  x_menu_main_popup_execute,  pop_zoom_extents,  1, "gtk-zoom-fit", N_("Zoom to the extents of the drawing") },
+
+  { N_("Continue"), x_menu_path_popup_execute,  pop_path_continue, 1, "geda-path",    N_("Resume input of the current path") },
+  { N_("Cancel"),   x_menu_path_popup_execute,  pop_path_cancel,   1, "gtk-cancel",   N_("Cancel path mode") },
   {NULL} /* sentinel */
 };
 
 /* These must be in the same order as ID_GSCHEM_Toolbar in x_toolbars.c */
-const char* IDS_Menu_Toolbar_Toggles[] = {
+const char *IDS_Menu_Toolbar_Toggles[] = {
   "_Add", "A_ttribute", "_Edit", "_Grid Snap", "_Page", "Se_lect", "_Standard", "_Zoom", /* ToolBar Menu Strings */
   NULL
 };
 
-const char* IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
+const char *IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
   "Snap On-Off", "Outline-Box", "Rubberband", "Magnetic",
    NULL
 };
@@ -156,8 +172,6 @@ const char* IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
 static int     show_recent_path;
 static GList  *recent_files = NULL;
 static GSList *ui_list      = NULL;
-
-int npopup_items = sizeof(popup_items) / sizeof(popup_items[0]);
 
 static void x_menu_toggle_icons        (GtkWidget *widget, GSList* list);
 static void x_menu_toggle_tips         (GtkWidget  *widget, GSList* list);
@@ -210,7 +224,7 @@ static void x_menu_execute(GtkAction *action, void *user_data)
  * action string referenced in the static string structure IDS_Popup_
  * Actions using the enumerated integer from pop_MenuItem.
  */
-static void x_menu_popup_execute(GtkObject *widget, int action_id)
+static void x_menu_main_popup_execute(GtkObject *widget, int action_id)
 {
   GschemToplevel *w_current;
   const char     *action;
@@ -219,10 +233,39 @@ static void x_menu_popup_execute(GtkObject *widget, int action_id)
   action     = IDS_Popup_Actions[action_id];
 
 #if DEBUG
-    fprintf(stderr, "<x_menu_popup_execute> procssing popup menu action %s\n",action);
+    fprintf(stderr, "<x_menu_main_popup_execute> procssing popup menu action %s\n",action);
 #endif
 
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_MOUSE);
+}
+
+static void x_menu_path_popup_execute(GtkObject *widget, int action_id)
+{
+  GschemToplevel *w_current;
+
+  w_current  = GEDA_OBJECT_GET_DATA(widget, "top-level");
+
+  switch (action_id) {
+    case pop_path_close:
+      o_path_close(w_current);
+      /* Fall through */
+    case pop_path_continue:
+      break;
+
+    case pop_path_done:
+    case pop_path_end:
+      if (w_current->temp_path != NULL) {
+        o_path_end(w_current, w_current->second_wx, w_current->second_wy);
+      }
+      if (action_id == pop_path_done) {
+        break;
+      }
+      /* Fall through */
+    case pop_path_cancel:
+    default:
+      i_event_stop_action_handler(w_current);
+      break;
+  }
 }
 
 static void x_menu_free_toggler (void *data_record, void *nothing)
@@ -264,9 +307,10 @@ void x_menu_free_all(void)
   i_menu_free();
 }
 
-/*! \brief Get Pointer to Main Menu Bar
- *  \par Function Description
- * This function retrieves a pointer to the main menu bar
+/*!
+ * \brief Get Pointer to Main Menu Bar
+ * \par Function Description
+ * This function retrieves a pointer to the main menu bar.
  *
  * \retval GtkMenu pointer disguised as a GtkWidget
  */
@@ -276,15 +320,15 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
-/*! \brief Create Main Menu
- *  \par Function Description
+/*!
+ * \brief Create Main Menu
+ * \par Function Description
  * This function creates the main menu based on data in a Scheme list that
  * was create during startup when an RC file executed. Presummably the
  * orginal intend was to allow for menu customization and this is possible.
  * A side-effects is that if there is a single error in the rc/scheme file,
- * the menu data does not get defined!
- * TODO: May should create a Pre-defined menu function that checks for
- * existence of menu data and substitutes a "fall-back" menu if needed, WEH.
+ * the menu data does not get defined! If such an error is detected, a pre-
+ * defined menu is constructed as a "fall-back" menu.
  */
 GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 {
@@ -932,6 +976,90 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
+/** \defgroup Path-Context-Menu Path Context Menu Functions */
+
+/*!
+ * \brief Create and Setup Popup Mouse Menu for Path mode
+ * \par Function Description
+ *  This function is called when the user right clicks on a handlebox.
+ *  The function sets senitivty on menu choices based on the handlebox
+ *  position and the state of the containing toolbar.
+ *
+ *  \param [in,out] w_current Pointer to GschemToplevel object
+ */
+static GtkWidget*
+x_menu_build_path_popup(GschemToplevel *w_current, bool show_pop_icons,
+                                                   bool show_pop_tips)
+{
+  GtkWidget *menu;
+  int i;
+
+  menu = gtk_menu_new();
+
+  for (i = 0; path_popup_items[i].name != NULL; i++) {
+
+    GtkWidget *menu_item;
+    GtkWidget *image;
+
+    PopupEntry item = path_popup_items[i];
+
+    menu_item = geda_image_menu_item_new_with_label(_(item.name));
+
+    gtk_widget_set_tooltip_text (menu_item, _(item.tip));
+    g_object_set (menu_item, "has-tooltip", show_pop_tips, NULL);
+
+    if (item.use_stock) {
+      image = gtk_image_new_from_stock(item.icon, GTK_ICON_SIZE_MENU);
+    }
+    else {
+      image = create_pixmap (item.icon);
+    }
+
+    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM(menu_item), image);
+
+    /* Enable icon visibility based on the current setting */
+    g_object_set (image, "visible", show_pop_icons, NULL);
+    g_object_set (menu_item, "show-image", show_pop_icons, NULL);
+
+    GEDA_OBJECT_SET_DATA(menu_item, w_current, "top-level");
+
+    /* Connect things up so that the actions get run */
+    g_signal_connect (G_OBJECT (menu_item), "activate",
+                      (void*) item.func,
+                      (void*)(long)item.action_id);
+
+
+    g_object_set (menu_item, "visible", TRUE, NULL);
+    gtk_container_add (GTK_CONTAINER (menu), menu_item);
+  }
+
+  return (menu);
+}
+
+int
+x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
+{
+  GtkWidget *menu;
+  MenuData  *menu_data;
+
+  menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
+  menu = POPUP_PATH;
+
+  if (menu == NULL) {
+    BUG_MSG ("path popup menu is NULL");
+  }
+  else {
+    w_current->pointer_sx = event->x;
+    w_current->pointer_sy = event->y;
+    gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                    event->button, event->time);
+  }
+  return FALSE;
+}
+
+/** @} END Group Path-Context-Menu */
+
 /** \defgroup Main-Context-Menu Mouse Menu Functions */
 
 static bool strhashcmp (const void *a, const void *b)
@@ -943,19 +1071,22 @@ static bool strhashcmp (const void *a, const void *b)
   return answer;
 }
 
-/*! \brief Setup Main Popup Context Menu
- *  \par Function Description
+/*!
+ * \brief Setup Popup Context Menus
+ * \par Function Description
  *  Creates the main context pop-up menu and connects callback to options in
  *  the main menu to control icons and tool-tip visibility. The pop-up menu
- *  is created using the data in the popup_items data structure. A pointer
+ *  is created using the data in the main_popup_items data structure. A pointer
  *  to each menu-item widget is saved in the single-linked list menu_data->
- *  popup_items using the macro POPUP_ITEMS_LIST. The POPUP_ITEMS_LIST list
+ *  main_popup_items using the macro POPUP_ITEMS_LIST. The POPUP_ITEMS_LIST list
  *  is used to toggle visibility of icon images and tool-tip on all of the
- *  pop-up menu items. The name of each item in popup_items is add to a hash
+ *  pop-up menu items. The name of each item in main_popup_items is add to a hash
  *  table with a pointer to the widget. The hash table is referenced later
  *  when enabling/disabling sensitivities.
  *  A pointer to the menu is saved in menu_data->popup_menu using the macro
  *  POPUP_MAIN.
+ *
+ * \returns TRUE on success, other FALSE;.
  */
 int x_menu_setup_popup (GschemToplevel *w_current)
 {
@@ -987,9 +1118,9 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   show_pop_icons   = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
   show_pop_tips    = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
 
-  for (i = 0; popup_items[i].name != NULL; i++) {
+  for (i = 0; main_popup_items[i].name != NULL; i++) {
 
-    PopupEntry item = popup_items[i];
+    PopupEntry item = main_popup_items[i];
 
     if (item.func == NULL) { /* if sub-menu or seperator */
 
@@ -1070,6 +1201,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   /* Save the menu to the active menu data structure */
   POPUP_MAIN = menu;
 
+  POPUP_PATH = x_menu_build_path_popup(w_current, show_pop_icons, show_pop_tips);
+
   menu = MENU_BAR; /* Get pointer to the main menu */
 
   if (GTK_IS_MENU_BAR(menu)) {
@@ -1104,7 +1237,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
  *  \note
  *  need to look at this... here and the setup
  */
-int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
+int
+x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
 {
   GtkWidget *menu;
   MenuData  *menu_data;

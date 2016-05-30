@@ -61,6 +61,7 @@
 #define POPUP_ITEMS_LIST menu_data->popup_items
 #define POPUP_MAIN_HASH  menu_data->popup_hash
 #define POPUP_MAIN       menu_data->popup_main
+#define POPUP_PATH       menu_data->popup_path
 #define TOGGLERS_LIST    menu_data->menu_togglers
 
 /* Used to reference IDS_Popup_Actions in x_menus.c */
@@ -99,6 +100,14 @@ typedef enum {
   pop_cb_paste
 } pop_MenuItem;
 
+typedef enum {
+  pop_path_close,
+  pop_path_continue,
+  pop_path_done,
+  pop_path_end,
+  pop_path_cancel
+} pop_PathItem;
+
 /* Order of items is not important */
 typedef enum { RESET_TOGGLERS=-1, SNAP_TOGGLE, RUBBER_TOGGLE, MAGNETIC_TOGGLE,
                DRAG_CAN_MOVE, OUTLINE_TOGGLE, AUTO_PAN_TOGGLE
@@ -118,6 +127,7 @@ struct st_menu_data {
   GtkWidget  *popup_main;         /* The main "on-canvas" popup context menu widget */
   GSList     *popup_items;        /* Single Linked list of all non-toggle popup-menu items */
   GHashTable *popup_hash;         /* String table of Popup menu item names, used for sensitivity */
+  GtkWidget  *popup_path;
 };
 
 struct st_recent_file_menu_data {
@@ -132,7 +142,7 @@ struct st_toggle_menu_data {
   char           *menu_item_name; /* String for the label in the menu */
   char           *menu_path;      /* String path used to locate widget programmatically setting */
   int             toggle_id;      /* Index in st_menu_data.menu_togglers list */
-  char            *toggle_name;   /* Menu string DOES NOT APPEAR TO BE SET */
+  char           *toggle_name;   /* Menu string DOES NOT APPEAR TO BE SET */
 };
 
 struct st_menu_radio_data {
