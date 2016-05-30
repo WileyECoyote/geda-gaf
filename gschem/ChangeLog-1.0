@@ -10,6 +10,8 @@
 
     * data/process-stop-22.png: Generated image for icon from gschem-icons.svg.
 
+    * src/object/o_path.c: Add function o_path_close.
+
     * src/x/x_icons.c: Include close-path, process-stop and select in the IDS_
       THEME_ICONS_22 group. The select-22 image file previously existed but had
       not been included and appears to have been stranded, whether intentional

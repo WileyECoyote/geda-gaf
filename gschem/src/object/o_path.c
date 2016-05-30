@@ -288,6 +288,34 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
 }
 
 /*!
+ * \brief Close Path in Progress.
+ * \par Function Description
+ *  Sets first and second coordinates in the top-level to be the
+ *  third coordinates of the first section of the temp path in
+ *  the top-level and then calls o_path_end passing the same
+ *  coordinate so as to have the path closed by o_path_end,
+ *  provided the path in progress has at least two sides.
+ */
+void
+o_path_close (GschemToplevel *w_current)
+{
+  if (w_current->temp_path) {
+
+    GedaPath *path = w_current->temp_path;
+
+    if (path && path->num_sections > 2) {
+
+      PATH_SECTION *section = &path->sections[0];
+
+      w_current->first_wx = w_current->second_wx = section->x3;
+      w_current->first_wy = w_current->second_wy = section->y3;
+
+      o_path_end(w_current, section->x3, section->y3);
+    }
+  }
+}
+
+/*!
  * \brief Draw path creation preview.
  * \par Function Description
  *  Draw a preview of the path currently being drawn, including a

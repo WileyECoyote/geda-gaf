@@ -563,6 +563,7 @@ void       o_page_draw_last                  (GschemToplevel *w_current, GList *
 
 /* o_path.c */
 void       o_path_continue                   (GschemToplevel *w_current, int w_x, int w_y);
+void       o_path_close                      (GschemToplevel *w_current);
 void       o_path_draw_rubber                (GschemToplevel *w_current);
 void       o_path_draw_rubber_grips          (GschemToplevel *w_current);
 void       o_path_end                        (GschemToplevel *w_current, int x, int y);
