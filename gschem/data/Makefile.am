@@ -11,6 +11,7 @@ action_icons = \
 	attribute-detach \
 	attribute-reset \
 	clone \
+	close-path \
 	symbol-datasheet \
 	deselect \
 	extend \
@@ -27,6 +28,7 @@ action_icons = \
 	insert-text \
 	insert-net \
 	multi-clone \
+	process-stop \
 	select \
 	show-both \
 	show-hidden \

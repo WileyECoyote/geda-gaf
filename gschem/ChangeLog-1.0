@@ -1,3 +1,15 @@
+2016-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/gschem-icons.svg: Add icons for close-path and process-stop.
+
+    * data/close-path-16.png: Generated image for icon from gschem-icons.svg.
+
+    * data/close-path-22.png: Generated image for icon from gschem-icons.svg.
+
+    * data/process-stop-16.png: Generated image for icon from gschem-icons.svg.
+
+    * data/process-stop-22.png: Generated image for icon from gschem-icons.svg.
+
 2016-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Relocate macro to reference st_menu_data members,
