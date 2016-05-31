@@ -128,7 +128,7 @@
 (define-action-public (&edit-array #:label (_ "Snap to Grid") #:icon "geda-array")
   (%edit-array))
 
-(define-action-public (&edit-break #:label (_ "Edit...") #:icon "gschem-break")
+(define-action-public (&edit-break #:label (_ "Edit...") #:icon "break")
   (%edit-break))
 
 (define-action-public (&edit-extend #:label (_ "Edit...") #:icon "extend")

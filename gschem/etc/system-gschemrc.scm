@@ -1841,7 +1841,7 @@
 (map-icon "geda-snap"                  "edit-snap")
 
 ;(map-icon #f                           "edit-array")
-(map-icon "gschem-break"               "edit-break")
+(map-icon "break"                      "edit-break")
 (map-icon "extend"                     "edit-extend")
 
 (map-icon "gtk-indent"                 "edit-attributes")
@@ -1930,12 +1930,12 @@
 (map-icon "gtk-sort-ascending"         "page-draw-last")
 (map-icon "gtk-sort-descending"        "page-draw-first")
 
-(map-icon "gaf-hierarchy-sch"          "hierarchy-down-schematic")
-(map-icon "gaf-hierarchy-sym"          "hierarchy-down-symbol")
-(map-icon "gaf-hierarchy-up"           "hierarchy-up")
-;(map-icon "gtk-go-down"                "hierarchy-down-schematic")
-;(map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
-;(map-icon "gtk-go-up"                  "hierarchy-up")
+;(map-icon "gaf-hierarchy-sch"          "hierarchy-down-schematic")
+;(map-icon "gaf-hierarchy-sym"          "hierarchy-down-symbol")
+;(map-icon "gaf-hierarchy-up"           "hierarchy-up")
+(map-icon "gtk-go-down"                "hierarchy-down-schematic")
+(map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
+(map-icon "gtk-go-up"                  "hierarchy-up")
 
 ;(map-icon "gtk-info"                   "hierarchy-documentation")
 ;(map-icon "gtk-indent"                 "hierarchy-documentation")
@@ -2097,8 +2097,8 @@
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Array")              edit-array            #f                  ,(N_ "Create and array of objects"))
-        (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break a linear object into seperate objects"))
-        (,(N_ "Extend")             edit-extend            "extend"           ,(N_ "Project a linear objects to other objects"))
+        (,(N_ "Break")              edit-break            #f                  ,(N_ "Break a linear object into seperate objects"))
+        (,(N_ "Extend")             edit-extend           #f                  ,(N_ "Project a linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Edit...")            edit-attributes       #f                  ,(N_ "Edit Object Attributes"))

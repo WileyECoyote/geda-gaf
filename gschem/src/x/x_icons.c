@@ -117,18 +117,19 @@ const char *IDS_GSCHEM_XCONS[] = { /* These have xpm file extension */
 
 const char *IDS_THEME_ICONS_22[] = {
   "attribute-attach",        "attribute-detach",         "attribute-reset",
-  "attribute-visibility",    "clone",                    "close-path",
-  "deselect",                "extend",                   "insert-arc",
-  "insert-attribute",        "insert-box",               "insert-bus",
-  "insert-circle",           "insert-line",              "insert-net",
-  "insert-path",             "insert-pin",               "insert-symbol",
-  "insert-text",             "multi-clone",              "process-stop",
-  "select",                  "show-both",                "show-hidden",
-  "show-inherited",          "show-name",                "show-netnames",
-  "show-value",              "symbol-datasheet",         "unselect-all",
-  "zoom-extents",            "zoom-fit",                 "zoom-in",
-  "zoom-limits",              "zoom-mag",                "zoom-out",
-  "zoom-selection",
+  "attribute-visibility",    "break",
+  "clone",                   "close-path",               "deselect",
+  "extend",
+  "insert-arc",              "insert-attribute",         "insert-box",
+  "insert-bus",              "insert-circle",            "insert-line",
+  "insert-net",              "insert-path",              "insert-pin",
+  "insert-symbol",           "insert-text",              "multi-clone",
+  "process-stop",            "select",                   "show-both",
+  "show-hidden",             "show-inherited",           "show-name",
+  "show-netnames",           "show-value",               "symbol-datasheet",
+  "unselect-all",            "zoom-extents",             "zoom-fit",
+  "zoom-in",                 "zoom-limits",              "zoom-mag",
+  "zoom-out",                "zoom-selection",
   NULL
 };
 

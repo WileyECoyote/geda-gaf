@@ -1,6 +1,17 @@
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c:: Release resources associated with path popup widgets.
+    * data/gschem-icons.svg: Add icons for break.
+
+    * data/break-16.png: Generated image for icon from gschem-icons.svg.
+
+    * data/break-22.png: Generated image for icon from gschem-icons.svg.
+
+    * etc/system-gschemrc.scm: Update icon name; gschem-break -> break.
+
+    * src/x/x_icons.c: Include new "break" icon in group IDS_THEME_ICONS_22.
+
+    * src/x/x_menus.c:: Release resources associated with path popup widgets,
+      update image name for "break" icon.
 
 2016-05-30 Wiley E. Hill <wileyhill@gmail.com>
 

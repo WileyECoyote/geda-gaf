@@ -10,6 +10,7 @@ action_icons = \
 	attribute-attach \
 	attribute-detach \
 	attribute-reset \
+	break \
 	clone \
 	close-path \
 	symbol-datasheet \
