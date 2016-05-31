@@ -8,7 +8,8 @@
 
     * data/break-22.png: Generated image for icon from gschem-icons.svg.
 
-    * etc/system-gschemrc.scm: Update icon name; gschem-break -> break.
+    * etc/system-gschemrc.scm: Update icon name; gschem-break -> break, assign
+      icon gschem-array -> edit-array.
 
     * src/x/x_icons.c: Include new "break" icon in group IDS_THEME_ICONS_22,
       add gschem-array in IDS_GSCHEM_ICONS.

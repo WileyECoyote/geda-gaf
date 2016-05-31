@@ -1840,7 +1840,7 @@
 (map-icon "geda-rotate-left"           "edit-rotate-left")
 (map-icon "geda-snap"                  "edit-snap")
 
-;(map-icon #f                           "edit-array")
+(map-icon "gschem-array"               "edit-array")
 (map-icon "break"                      "edit-break")
 (map-icon "extend"                     "edit-extend")
 
