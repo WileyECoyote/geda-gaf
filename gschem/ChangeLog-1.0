@@ -1,5 +1,8 @@
 2016-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_event.c: Revise i_event_adder_pressed to cancel path mode
+      like other add modes if there is no w_current->temp_path.
+
     * src/x/x_icons.c: Add geda-snap in IDS_GEDA_ICONS group.
 
     * src/x/x_menus.c: Update snap image name, fix reversed rotation and mirror

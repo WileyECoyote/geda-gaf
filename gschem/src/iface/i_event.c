@@ -383,8 +383,16 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
           break;
 
         case(PATHMODE):
-          x_menu_display_path_popup(w_current, event);
-
+          /* If path as been started, display context menu */
+          if (w_current->temp_path) {
+            x_menu_display_path_popup(w_current, event);
+          }
+          else {
+            /* cancel path mode like other add modes */
+            erase_rubber();
+            i_event_end_action_handler(w_current);
+            i_status_set_state(w_current, SELECT);
+          }
         default:
           /* Not an Adder event; do nothing */
           break;
