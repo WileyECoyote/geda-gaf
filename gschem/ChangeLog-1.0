@@ -3,7 +3,8 @@
     * src/x/x_icons.c: Add geda-snap in IDS_GEDA_ICONS group.
 
     * src/x/x_menus.c: Update snap image name, fix reversed rotation and mirror
-      in table main_popup_items.
+      in table main_popup_items. Pass MenuData to x_menu_build_path_popup and
+      add path popup items to popup_items list so the icon and tips toggle.
 
 2016-05-29 Wiley E. Hill <wileyhill@gmail.com>
 

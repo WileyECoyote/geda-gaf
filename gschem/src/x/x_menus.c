@@ -988,7 +988,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
  *  \param [in,out] w_current Pointer to GschemToplevel object
  */
 static GtkWidget*
-x_menu_build_path_popup(GschemToplevel *w_current, bool show_pop_icons,
+x_menu_build_path_popup(GschemToplevel *w_current, MenuData *menu_data,
+                                                   bool show_pop_icons,
                                                    bool show_pop_tips)
 {
   GtkWidget *menu;
@@ -1022,6 +1023,8 @@ x_menu_build_path_popup(GschemToplevel *w_current, bool show_pop_icons,
     g_object_set (menu_item, "show-image", show_pop_icons, NULL);
 
     GEDA_OBJECT_SET_DATA(menu_item, w_current, "top-level");
+
+    POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);
 
     /* Connect things up so that the actions get run */
     g_signal_connect (G_OBJECT (menu_item), "activate",
@@ -1201,7 +1204,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   /* Save the menu to the active menu data structure */
   POPUP_MAIN = menu;
 
-  POPUP_PATH = x_menu_build_path_popup(w_current, show_pop_icons, show_pop_tips);
+  POPUP_PATH = x_menu_build_path_popup(w_current, menu_data, show_pop_icons,
+                                                             show_pop_tips);
 
   menu = MENU_BAR; /* Get pointer to the main menu */
 
