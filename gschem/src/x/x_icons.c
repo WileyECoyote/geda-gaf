@@ -66,7 +66,7 @@
 
 static GtkIconFactory *gschem_factory;
 
-const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
+const char *IDS_GEDA_ICONS[] = {  /* Menu Icons Strings */
   "gaf-add-attribute",  "gaf-bom",            "gaf-demote",         "gaf-hierarchy-sch",
   "gaf-hierarchy-sym",  "gaf-hierarchy-up",   "gaf-pdf",            "gaf-promote",
   "gaf-see-notes",      "gaf-tools",
@@ -89,17 +89,17 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-promote",       "geda-prompt",        "geda-redo",          "geda-rotate-left",
   "geda-save-image",    "geda-schem2",        "geda-schem",         "geda-scope2",
   "geda-scopehairs",    "geda-scope",         "geda-show-nets",     "geda-simulate",
-  "geda-sinx",          "geda-slot",          "geda-snap-on",       "geda-spectrum",
-  "geda-text-editor",   "geda-tools",         "geda-translate",
-  "geda-undo",          "geda-unlock",        "geda-unselect-all",  "geda-value",
-  "geda-verilog-blue",  "geda-verilog-grn",   "geda-view-redraw",
+  "geda-sinx",          "geda-slot",          "geda-snap",          "geda-snap-off",
+  "geda-snap-on",       "geda-spectrum",      "geda-text-editor",   "geda-tools",
+  "geda-translate",     "geda-undo",          "geda-unlock",        "geda-unselect-all",
+  "geda-value",         "geda-verilog-blue",  "geda-verilog-grn",   "geda-view-redraw",
   "geda-wave",          "geda-waves",         "geda-zoom-box",      "geda-zoom-extents",
   "geda-zoom-in",       "geda-zoom-limits",   "geda-zoom-out",      "geda-zoom-pan",
   "geda-zoom-selection","git-logo",           "guile-logo",
   NULL
 };
 
-const char* IDS_GSCHEM_ICONS[] = {
+const char *IDS_GSCHEM_ICONS[] = {
   "gschem-bus",              "gschem-comp",              "gschem-invert",
   "gschem-net",              "gschem-print-document",
   "gschem-select",           "gschem-select-all",        "gschem-text",
@@ -107,7 +107,7 @@ const char* IDS_GSCHEM_ICONS[] = {
   NULL
 };
 
-const char* IDS_GSCHEM_XCONS[] = {
+const char *IDS_GSCHEM_XCONS[] = { /* These have xpm file extension */
   "gschem_copy",             "gschem_delete",         "gschem_edit",
   "gschem_mirror",           "gschem_move",           "gschem_new",
   "gschem_open",             "gschem_redo",           "gschem_rotate",
@@ -115,7 +115,7 @@ const char* IDS_GSCHEM_XCONS[] = {
   NULL
 };
 
-const char* IDS_THEME_ICONS_22[] = {
+const char *IDS_THEME_ICONS_22[] = {
   "attribute-attach",        "attribute-detach",         "attribute-reset",
   "attribute-visibility",    "clone",                    "close-path",
   "deselect",                "extend",                   "insert-arc",

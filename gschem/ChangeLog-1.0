@@ -1,3 +1,10 @@
+2016-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_icons.c: Add geda-snap in IDS_GEDA_ICONS group.
+
+    * src/x/x_menus.c: Update snap image name, fix reversed rotation and mirror
+      in table main_popup_items.
+
 2016-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * Program Enhancement: New feature - Context Popup Menu for Path Mode.
