@@ -108,6 +108,7 @@ bitmapdata_DATA   = \
 			geda-scopehairs.png                \
 			geda-select.png                    \
 			geda-slot.png                      \
+			geda-snap.png                      \
 			geda-snap-off.png                  \
 			geda-snap-on.png                   \
 			geda-show-nets.png                 \
