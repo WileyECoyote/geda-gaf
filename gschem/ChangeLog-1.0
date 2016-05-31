@@ -1,5 +1,7 @@
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmap/gschem-array.png: Add new image for gschem-array icon.
+
     * data/gschem-icons.svg: Add icons for break.
 
     * data/break-16.png: Generated image for icon from gschem-icons.svg.
@@ -8,7 +10,8 @@
 
     * etc/system-gschemrc.scm: Update icon name; gschem-break -> break.
 
-    * src/x/x_icons.c: Include new "break" icon in group IDS_THEME_ICONS_22.
+    * src/x/x_icons.c: Include new "break" icon in group IDS_THEME_ICONS_22,
+      add gschem-array in IDS_GSCHEM_ICONS.
 
     * src/x/x_menus.c:: Release resources associated with path popup widgets,
       update image name for "break" icon.

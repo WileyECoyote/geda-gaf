@@ -12,6 +12,7 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem_alignment_topcenter.png                         \
 		  gschem_alignment_middlecenter.png                      \
 		  gschem_alignment_topleft.png                           \
+		  gschem-array.png                                       \
 		  gschem_bottom2top.png gschem_left2right.png            \
 		  gschem-bus.png                                         \
 		  gschem_bus.xpm                                         \

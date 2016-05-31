@@ -114,7 +114,7 @@ static PopupEntry main_popup_items[] = {
 
   { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
 
-  { N_("Array"),             x_menu_main_popup_execute, pop_edit_array,     1, "array",              N_("Create and array of objects") },
+  { N_("Array"),             x_menu_main_popup_execute, pop_edit_array,     1, "gschem-array",       N_("Create and array of objects") },
   { N_("Break"),             x_menu_main_popup_execute, pop_edit_break,     1, "break",              N_("Break an object into seperate objects") },
   { N_("Extend"),            x_menu_main_popup_execute, pop_edit_extend,    1, "extend",             N_("Project a linear objects to other objects") },
   { N_("Delete"),            x_menu_main_popup_execute, pop_edit_delete,    1, "gtk-delete",         N_("Delete the current selection" )},

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="gschem-array.svg"
+   inkscape:export-filename="./gschem-array.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3327-7">
+      <stop
+         style="stop-color:#20b137;stop-opacity:1;"
+         offset="0"
+         id="stop3330-6" />
+      <stop
+         style="stop-color:#008700;stop-opacity:0;"
+         offset="1"
+         id="stop3333-8" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3327-7"
+       id="linearGradient19854"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1053.3622,-2)"
+       x1="1"
+       y1="9"
+       x2="16.955648"
+       y2="9" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="35.708892"
+     inkscape:cx="6.4126143"
+     inkscape:cy="9.2042378"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="985"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:snap-nodes="false"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="4"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1036.3622)">
+    <g
+       id="gschem-array"
+       inkscape:label="gschem-array">
+      <rect
+         transform="matrix(0,-1,1,0,0,0)"
+         style="fill:url(#linearGradient19854);fill-opacity:1;fill-rule:nonzero;stroke:#008000;display:inline;stroke-opacity:1"
+         id="rect3196"
+         width="16"
+         height="16"
+         x="-1052.3622"
+         y="1.5018463e-08"
+         rx="2"
+         ry="2" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text19471"
+         y="1049.8622"
+         x="7.8253932"
+         style="font-size:16px;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4400aa;fill-opacity:1;stroke:none;font-family:DejaVu Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#4400aa;font-family:DejaVu Sans"
+           y="1049.8622"
+           x="7.8253932"
+           id="tspan19473"
+           sodipodi:role="line">A</tspan></text>
+    </g>
+  </g>
+</svg>
