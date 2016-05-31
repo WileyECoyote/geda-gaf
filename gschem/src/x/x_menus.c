@@ -294,7 +294,12 @@ void x_menu_free_all(void)
 
     g_slist_free (MENU_ITEMS_LIST);
 
+    /* List of both main and path popups */
     g_slist_free (POPUP_ITEMS_LIST);
+
+    g_object_ref_sink(POPUP_PATH);
+    g_object_unref(POPUP_PATH);
+
     g_hash_table_unref (POPUP_MAIN_HASH);
     g_object_ref_sink(POPUP_MAIN);
     g_object_unref(POPUP_MAIN);

@@ -1,3 +1,7 @@
+2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c:: Release resources associated with path popup widgets.
+
 2016-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Revise i_event_adder_pressed to cancel path mode
