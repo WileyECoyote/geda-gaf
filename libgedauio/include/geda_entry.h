@@ -182,6 +182,11 @@ void geda_entry_set_input_case               (GedaEntry      *entry,
 int  geda_entry_get_max_history              (GedaEntry      *entry);
 void geda_entry_set_max_history              (GedaEntry      *entry,
                                               int             value);
+
+void geda_entry_set_max_length               (GedaEntry     *entry,
+                                              int            max);
+int  geda_entry_get_max_length               (GedaEntry     *entry);
+
 const char*
      geda_entry_get_text                     (GedaEntry      *entry);
 void geda_entry_set_text                     (GedaEntry      *entry,
@@ -227,6 +232,11 @@ void geda_entry_widget_set_input_case        (GtkWidget      *entry,
 int  geda_entry_widget_get_max_history       (GtkWidget      *entry);
 void geda_entry_widget_set_max_history       (GtkWidget      *entry,
                                               int value);
+
+void geda_entry_widget_set_max_length        (GtkWidget      *entry,
+                                              int             max);
+int  geda_entry_widget_get_max_length        (GtkWidget      *entry);
+
 const char*
      geda_entry_widget_get_text              (GtkWidget      *entry);
 void geda_entry_widget_set_text              (GtkWidget      *entry,

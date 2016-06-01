@@ -1,8 +1,10 @@
-2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
+2016-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_entry.h: Reorganize declarations.
+    * include/geda_entry.h: Reorganize declarations, declare accessors for max
+      length property.
 
-    * src/widgets/geda_entry.c: Reorganize module.
+    * src/widgets/geda_entry.c: Reorganize add, declare accessors for max
+      length property.
 
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 

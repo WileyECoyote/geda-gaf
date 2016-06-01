@@ -409,6 +409,32 @@ geda_entry_get_max_history (GedaEntry *entry)
  *  \par Function Description
  *
  */
+int
+geda_entry_get_max_length (GedaEntry *entry)
+{
+  volatile int max;
+
+  g_object_get (entry, "max-length", &max, NULL);
+
+  return (int)max;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_set_max_length (GedaEntry *entry, int max)
+{
+   g_object_set (entry, "max-length", max, NULL);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaCompletion*
 geda_entry_get_completion (GedaEntry *entry)
 {
@@ -1812,6 +1838,28 @@ void
 geda_entry_widget_set_max_history (GtkWidget *entry, int value)
 {
   geda_entry_set_max_history (GEDA_ENTRY(entry), value);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+int
+geda_entry_widget_get_max_length (GtkWidget *entry)
+{
+  return geda_entry_get_max_length (GEDA_ENTRY(entry));
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_widget_set_max_length (GtkWidget *entry, int max)
+{
+  geda_entry_set_max_length (GEDA_ENTRY(entry), max);
 }
 
 /*! \todo Finish function documentation!!!
