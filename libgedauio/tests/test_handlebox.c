@@ -37,7 +37,7 @@
 #include <geda/geda.h>
 
 #include <../include/geda_handlebox.h>
-#include <../include/geda_bulb.h>
+#include <../include/geda_toolbar.h>
 
 #include "test-suite.h"
 
@@ -68,7 +68,8 @@ int check_construction (void)
     result++;
   }
 
-  if (GEDA_IS_BULB(widget)) {
+  /* Is not a toolbar */
+  if (GEDA_IS_TOOLBAR(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
@@ -158,6 +159,38 @@ check_accessors ()
 }
 
 int
+check_integration ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_handle_box_new ();
+
+  GtkWidget *bar_widget = geda_toolbar_new(0);
+
+  gtk_container_add (GTK_CONTAINER  (widget), bar_widget);
+
+  GtkToolbar *toolbar = geda_handle_box_get_toolbar (GEDA_HANDLE_BOX(widget));
+
+  if (!toolbar) {
+    fprintf(stderr, "FAILED: line <%d> %s handle_box_get_toolbar\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GtkToolbar *bin_child = (GtkToolbar*)gtk_bin_get_child(GTK_BIN(widget));
+
+    if (toolbar != bin_child) {
+      fprintf(stderr, "FAILED: line <%d> %s handle_box_get_toolbar\n", __LINE__, TWIDGET);
+    result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to the widget */
+  g_object_unref(widget);    /* Destroy the widget */
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -181,6 +214,14 @@ main (int argc, char *argv[])
 
       if (setjmp(point) == 0) {
         result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_integration();
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);

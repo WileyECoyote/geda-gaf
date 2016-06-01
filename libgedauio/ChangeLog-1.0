@@ -6,6 +6,8 @@
     * src/widgets/geda_entry.c: Reorganize add, declare accessors for max
       length property.
 
+    * tests/test_handlebox.c: Check integration with GedaToolbar.
+
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toolbar.h: New file, header for GedaToolBarClass

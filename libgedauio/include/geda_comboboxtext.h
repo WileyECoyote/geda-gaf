@@ -67,6 +67,7 @@ extern "C" {
 
 GType        geda_combo_box_text_get_type              (void) GEDA_CONST;
 bool         is_a_geda_combo_box_text                  (GedaComboBoxText  *combo_box);
+
 GtkWidget   *geda_combo_box_text_new                   (void);
 GtkWidget   *geda_combo_box_text_new_with_entry        (void);
 GtkWidget   *geda_combo_box_text_list_new              (void);
