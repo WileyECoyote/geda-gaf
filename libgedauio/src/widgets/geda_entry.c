@@ -1698,21 +1698,15 @@ geda_entry_widget_modify_color (GtkWidget      *widget,
  *  @{
  */
 
-PangoAttrList*
-geda_entry_widget_get_attributes (GtkWidget *entry)
-{
-  return geda_entry_get_attributes (GEDA_ENTRY(entry));
-}
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-int
-geda_entry_widget_get_max_history (GtkWidget *entry)
+bool
+geda_entry_widget_get_activates_default (GtkWidget *entry)
 {
-  return geda_entry_get_max_history (GEDA_ENTRY(entry));
+  return geda_entry_get_activates_default (GEDA_ENTRY(entry));
 }
 
 /*! \todo Finish function documentation!!!
@@ -1721,9 +1715,26 @@ geda_entry_widget_get_max_history (GtkWidget *entry)
  *
  */
 void
-geda_entry_widget_set_max_history (GtkWidget *entry, int value)
+geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
 {
-  geda_entry_set_max_history (GEDA_ENTRY(entry), value);
+  geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
+{
+  geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
+}
+
+PangoAttrList*
+geda_entry_widget_get_attributes (GtkWidget *entry)
+{
+  return geda_entry_get_attributes (GEDA_ENTRY(entry));
 }
 
 /*! \todo Finish function documentation!!!
@@ -1786,43 +1797,32 @@ geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
  *  \par Function Description
  *
  */
+int
+geda_entry_widget_get_max_history (GtkWidget *entry)
+{
+  return geda_entry_get_max_history (GEDA_ENTRY(entry));
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_widget_set_max_history (GtkWidget *entry, int value)
+{
+  geda_entry_set_max_history (GEDA_ENTRY(entry), value);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char*
 geda_entry_widget_get_text (GtkWidget *entry)
 {
   return geda_entry_get_text (GEDA_ENTRY(entry));
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-bool
-geda_entry_widget_get_activates_default (GtkWidget *entry)
-{
-  return geda_entry_get_activates_default (GEDA_ENTRY(entry));
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
-{
-  geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
-{
-  geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
 }
 
 /*! \todo Finish function documentation!!!
