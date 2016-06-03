@@ -6,6 +6,8 @@
 
     * src/object/o_attrib.c: Add geda_attrib_object_search_object_string.
 
+    * tests/test_utility.c: Add check U061504 for geda_stristr, 0 position.
+
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Rename functions with geda_object prefix.
