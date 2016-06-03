@@ -77,10 +77,11 @@
  *      O0318   geda_attrib_object_search_floating_by_name
  *      O0319   geda_attrib_object_search_inherited_by_name
  *      O0320   geda_attrib_object_search_object_by_name
- *      O0321   geda_attrib_object_set_integer_value
- *      O0322   geda_attrib_object_set_value
- *      O0323   geda_attrib_object_string_get_name_value
- *      O0324   geda_attrib_object_thaw_hooks
+ *      O0321   geda_attrib_object_search_object_string
+ *      O0322   geda_attrib_object_set_integer_value
+ *      O0323   geda_attrib_object_set_value
+ *      O0324   geda_attrib_object_string_get_name_value
+ *      O0325   geda_attrib_object_thaw_hooks
  */
 
 int notify_attribute;
@@ -1473,6 +1474,100 @@ check_search_object_by_name (GedaToplevel *toplevel)
 }
 
 int
+check_search_object_for_string  (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  Page       *page    = geda_toplevel_get_current_page(toplevel);
+
+  GedaObject *object  = geda_complex_new();
+
+  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+
+  s_page_append_object(page, object);
+
+  geda_complex_append (object->complex, attrib1);
+  geda_complex_append (object->complex, attrib2);
+  geda_complex_append (object->complex, attrib3);
+
+  GList *list;
+
+  list = g_list_append(NULL, attrib4);
+  list = g_list_append(list, attrib5);
+  list = g_list_append(list, attrib6);
+  list = g_list_append(list, attrib7);
+
+  geda_attrib_attach_list(object, list, FALSE);
+
+  g_list_free(list);
+  list = NULL;
+
+  s_page_append_object(page, object);
+  s_page_append_object(page, attrib1);
+
+  notify_attribute = 0;
+
+  /* === Function 21: geda_attrib_object_search_object_string  === */
+
+  list = geda_attrib_search_for_string(object, "A=", 0);
+
+  if (!list) {
+    fprintf(stderr, "FAILED: (O032101A) geda_attrib_object_search_object_string\n");
+    result++;
+  }
+  else {
+
+    int value = g_list_length (list);
+
+    if (value - 2) {
+      fprintf(stderr, "FAILED: (O032101B) geda_attrib_object_search_object_string\n");
+      result++;
+    }
+    g_list_free(list);
+  }
+
+  list = NULL;
+
+  list = geda_attrib_search_for_string(object, "A=a", 1);
+
+  if (!list) {
+    fprintf(stderr, "FAILED: (O032102A) geda_attrib_object_search_object_string\n");
+    result++;
+  }
+  else {
+
+    int value = g_list_length (list);
+
+    if (value - 1) {
+      fprintf(stderr, "FAILED: (O032102B) geda_attrib_object_search_object_string\n");
+      result++;
+    }
+    g_list_free(list);
+  }
+
+  list = NULL;
+
+  list = geda_attrib_search_for_string(object, "F=", 0);
+
+  if (list) {
+    fprintf(stderr, "FAILED: (O032103) geda_attrib_object_search_object_string\n");
+    result++;
+  }
+
+  s_page_remove_object (page, object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
+int
 check_attrib_set_integer_value(GedaToplevel *toplevel)
 
 {
@@ -1493,7 +1588,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  /* === Function 21: geda_attrib_object_set_integer_value  === */
+  /* === Function 22: geda_attrib_object_set_integer_value  === */
 
   geda_attrib_set_integer_value(NULL, "B", 3);
 
@@ -1504,7 +1599,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
     geda_attrib_set_integer_value(attrib, "B", i);
 
     if (notify_attribute != 2) {
-      fprintf(stderr, "FAILED: (O032101A) geda_attrib_object_set_integer_value %d\n",notify_attribute);
+      fprintf(stderr, "FAILED: (O032201A) geda_attrib_object_set_integer_value %d\n",notify_attribute);
       result++;
     }
 
@@ -1514,7 +1609,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
     char *value;
 
     if (!geda_attrib_get_name_value(attrib, &name, &value)) {
-      fprintf(stderr, "FAILED: (O032101B) geda_attrib_object_set_integer_value\n");
+      fprintf(stderr, "FAILED: (O032201B) geda_attrib_object_set_integer_value\n");
       result++;
     }
     else {
@@ -1523,7 +1618,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
       int   len = strlen(val);
 
       if (strncmp(name, "B", 1) || strncmp(value, val, len)) {
-        fprintf(stderr, "FAILED: (O032101C) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
+        fprintf(stderr, "FAILED: (O032201C) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
         result++;
       }
       g_free(val);
@@ -1562,14 +1657,14 @@ check_attrib_set_value(GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  /* === Function 22: geda_attrib_object_set_value  === */
+  /* === Function 23: geda_attrib_object_set_value  === */
 
   geda_attrib_set_value(NULL, "B", "");
 
   geda_attrib_set_value(attrib, "B", "2");
 
   if (notify_attribute != 2) {
-    fprintf(stderr, "FAILED: (O032101A) geda_attrib_object_set_value %d\n",notify_attribute);
+    fprintf(stderr, "FAILED: (O032301A) geda_attrib_object_set_value %d\n",notify_attribute);
     result++;
   }
 
@@ -1577,11 +1672,11 @@ check_attrib_set_value(GedaToplevel *toplevel)
   char *value;
 
   if (!geda_attrib_get_name_value(attrib, &name, &value)) {
-    fprintf(stderr, "FAILED: (O032101B) geda_attrib_object_set_value\n");
+    fprintf(stderr, "FAILED: (O032301B) geda_attrib_object_set_value\n");
     result++;
   }
   else if (strncmp(name, "B", 1) || strncmp(value, "2", 1)) {
-    fprintf(stderr, "FAILED: (O032101C) geda_attrib_object_set_value <%s=%s>\n", name, value);
+    fprintf(stderr, "FAILED: (O032301C) geda_attrib_object_set_value <%s=%s>\n", name, value);
     result++;
   }
 
@@ -1604,84 +1699,84 @@ check_string_get_name_value(GedaToplevel *toplevel)
   char *name;
   char *value;
 
-  /* === Function 23: geda_attrib_object_string_get_name_value  === */
+  /* === Function 24: geda_attrib_object_string_get_name_value  === */
 
   if (geda_attrib_string_get_name_value (NULL, NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032300) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032400) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032301) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032401) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("=", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032302) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032402) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("A=", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032303) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032403) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("=B", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032304) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032404) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("A= B", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032305) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032405) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("A =B", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032306) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032406) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (geda_attrib_string_get_name_value ("A B", NULL, NULL)) {
-    fprintf(stderr, "FAILED: (O032307) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032407) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (!geda_attrib_string_get_name_value ("A=B", &name, &value)) {
-    fprintf(stderr, "FAILED: (O032308A) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032408A) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(name, "A")) {
-    fprintf(stderr, "FAILED: (O032308B) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032408B) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(value, "B")) {
-    fprintf(stderr, "FAILED: (O032308C) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032408C) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (!geda_attrib_string_get_name_value ("ABABABABAB=BABABABABA", &name, &value)) {
-    fprintf(stderr, "FAILED: (O032309A) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032409A) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(name, "ABABABABAB")) {
-    fprintf(stderr, "FAILED: (O032309B) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032409B) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(value, "BABABABABA")) {
-    fprintf(stderr, "FAILED: (O032309C) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032409C) geda_utility_string_get_name_value\n");
     result++;
   }
 
   if (!geda_attrib_string_get_name_value ("A B=B A", &name, &value)) {
-    fprintf(stderr, "FAILED: (O032310A) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032410A) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(name, "A B")) {
-    fprintf(stderr, "FAILED: (O032310B) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032410B) geda_utility_string_get_name_value\n");
     result++;
   }
   else if (strcmp(value, "B A")) {
-    fprintf(stderr, "FAILED: (O032310C) geda_utility_string_get_name_value\n");
+    fprintf(stderr, "FAILED: (O032410C) geda_utility_string_get_name_value\n");
     result++;
   }
 
@@ -1714,14 +1809,14 @@ check_attrib_thaw_hooks (GedaToplevel *toplevel)
   geda_attrib_attach(object, attrib1, FALSE);
   geda_attrib_attach(object, attrib2, FALSE);
 
-  /* === Function 24: geda_attrib_object_thaw_hooks  === */
+  /* === Function 25: geda_attrib_object_thaw_hooks  === */
 
   notify_attribute = 0;
 
   geda_attrib_thaw_hooks(object);
 
   if (notify_attribute != 2) {
-    fprintf(stderr, "FAILED: (O032401) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
+    fprintf(stderr, "FAILED: (O032501) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
     result++;
   }
 
@@ -1740,21 +1835,21 @@ check_attrib_thaw_hooks (GedaToplevel *toplevel)
   geda_attrib_thaw_hooks(object);
 
   if (notify_attribute != 0) {
-    fprintf(stderr, "FAILED: (O032402) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
+    fprintf(stderr, "FAILED: (O032502) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
     result++;
   }
 
   geda_attrib_thaw_hooks(object);
 
   if (notify_attribute != 0) {
-    fprintf(stderr, "FAILED: (O032403) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
+    fprintf(stderr, "FAILED: (O032503) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
     result++;
   }
 
   geda_attrib_thaw_hooks(object);
 
   if (notify_attribute != 2) {
-    fprintf(stderr, "FAILED: (O032404) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
+    fprintf(stderr, "FAILED: (O032504) geda_attrib_object_freeze_hooks <%d>\n", notify_attribute);
     result++;
   }
 
@@ -1949,6 +2044,14 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking geda_attrib_object_search_object_by_name\n\n");
+      result++;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_search_object_for_string(toplevel);
+    }
+    else {
+      fprintf(stderr, "Caught signal checking geda_attrib_object_search_object_string\n\n");
       result++;
     }
 

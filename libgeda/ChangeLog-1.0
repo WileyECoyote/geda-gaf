@@ -3,6 +3,9 @@
     * src/object/o_attrib.c: Declare name argument to geda_attrib_object_
       first_attrib_by_name a const.
 
+    * tests/test_attrib_object.c: Add Checks for geda_attrib_object_search
+      _object_string.
+
 2016-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_arc.h: Declare geda_arc_get_type GEDA_CONST.
