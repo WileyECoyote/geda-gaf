@@ -992,6 +992,66 @@ geda_attrib_object_search_object_by_name (const GedaObject *object,
 }
 
 /*!
+ * \brief Search attributes of object for string return list matching
+ * \par Function Description
+ *  Search attribute strings. The search includes attributes directly
+ *  attached and inherited attributes. If the search mode flag is False,
+ *  partial matches and case insentitive searches are performed. When
+ *  mode flag is True the returned list only includes attributes with
+ *  strings having an exact match.
+ *
+ * \param [in] object GedaObject who's attributes to search,
+ * \param [in] text   String to search for,
+ * \param [in] exact  Search mode flag,
+ *
+ * \return List of attributes with match string, or NULL if no matches.
+ *
+ * \note Caller should free the returned list of objects
+ */
+GList *
+geda_attrib_object_search_object_string (const GedaObject *object,
+                                         const char       *text,
+                                         int               exact)
+{
+  g_return_val_if_fail (text != (NULL) || *text != 0, (NULL));
+
+  if (GEDA_IS_OBJECT(object)) {
+
+    GList *butes;
+    GList *list;
+    GList *iter;
+
+    butes = NULL;
+    list  = geda_attrib_return_attribs (object);
+
+    for (iter = list; iter != NULL; iter = iter->next) {
+
+      GedaObject *attrib = iter->data;
+
+      const char *string = o_text_get_string(attrib);
+
+      if (string) {
+        if (exact) {
+          if (strcmp (string, text) == 0) {
+            butes = g_list_prepend(butes, attrib);
+          }
+        }
+        else {
+          if (geda_utility_string_stristr (string, text) >= 0) {
+            butes = g_list_prepend(butes, attrib);
+          }
+        }
+      }
+    }
+    g_list_free (list);
+
+    return g_list_reverse(butes);
+  }
+  geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+  return NULL;
+}
+
+/*!
  * \brief Set Attribute to Interger Value
  * \par Function Description
  *  Sets the value of \a attrib using the string representation

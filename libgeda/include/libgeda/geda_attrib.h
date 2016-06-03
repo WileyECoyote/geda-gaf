@@ -53,6 +53,7 @@
 #define geda_attrib_search_floating_by_name    geda_attrib_object_search_floating_by_name
 #define geda_attrib_search_inherited_by_name   geda_attrib_object_search_inherited_by_name
 #define geda_attrib_search_object_by_name      geda_attrib_object_search_object_by_name
+#define geda_attrib_search_for_string          geda_attrib_object_search_object_string
 #define geda_attrib_set_integer_value          geda_attrib_object_set_integer_value
 #define geda_attrib_set_value                  geda_attrib_object_set_value
 #define geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value
