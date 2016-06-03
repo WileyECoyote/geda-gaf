@@ -1,3 +1,9 @@
+2016-06-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_arc.h: Declare geda_arc_get_type GEDA_CONST.
+
+    * include/libgeda/geda_box.h: Declare geda_box_get_type GEDA_CONST.
+
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Rename functions with geda_object prefix.

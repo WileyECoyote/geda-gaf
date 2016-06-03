@@ -67,7 +67,7 @@ struct _GedaBox {
 extern "C" {
 #endif
 
-GedaObjectType geda_box_get_type            (void);
+GedaObjectType geda_box_get_type            (void) GEDA_CONST;
 bool           is_a_geda_box                (const GedaBox *box);
 GedaObject    *geda_box_new                 (void);
 

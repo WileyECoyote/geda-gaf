@@ -68,7 +68,7 @@ struct _GedaArc {
 extern "C" {
 #endif
 
-GedaObjectType geda_arc_get_type            (void);
+GedaObjectType geda_arc_get_type            (void) GEDA_CONST;
 bool           is_a_geda_arc                (const GedaArc *arc);
 
 GedaObject    *geda_arc_new                 (void);
