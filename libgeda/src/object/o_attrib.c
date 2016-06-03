@@ -306,7 +306,7 @@ geda_attrib_object_detach_all(GedaObject *object)
  * \return The n'th attribute object in the given list with the given name.
  */
 GedaObject*
-geda_attrib_object_first_attrib_by_name (const GedaObject *object, char *name)
+geda_attrib_object_first_attrib_by_name (const GedaObject *object, const char *name)
 {
   if (GEDA_IS_OBJECT(object)) {
     return geda_find_attrib_by_name (object->attribs, name, 0);
@@ -802,6 +802,7 @@ geda_attrib_object_return_attribs (const GedaObject *object)
       GedaObject *attribute;
 
       if ((attribute = a_iter->data) != NULL) {
+
         if (attribute->type != OBJ_TEXT)
           continue;
 
