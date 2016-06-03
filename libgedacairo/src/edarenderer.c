@@ -829,7 +829,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
   }
 
   /* First check if this is hidden text. */
-  if (!o_get_is_visible(object) &&
+  if (!geda_object_get_is_visible(object) &&
       !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
     return;
   }
@@ -1429,7 +1429,7 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
   int y = object->text->y;
 
   /* First check if this is hidden text. */
-  if (!o_get_is_visible(object) &&
+  if (!geda_object_get_is_visible(object) &&
       !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
     return;
   }
