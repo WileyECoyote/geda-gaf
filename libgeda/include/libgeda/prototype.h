@@ -742,15 +742,16 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    geda_utility_gslist_stri_inlist (GSList *list, char *string);
 
 /* u_log.c */
-         void    geda_utility_log_close          (void);
-          int    geda_utility_log_get_log_time   (void);
-         void    geda_utility_log_init           (const char *app_prefix);
-         void    geda_utility_log_quite          (const char *format, ...);
-         char   *geda_utility_log_read           (void);
-         void    geda_utility_log_set_log_time   (int mode);
-         void    geda_utility_log_set_update_func(LogUpdateFunc func);
-         void    geda_utility_log_system         (const char *format, ...);
-         void    geda_utility_log_verbose        (const char *format, ...);
+         void    geda_utility_log_close               (void);
+          int    geda_utility_log_get_log_time        (void);
+         void    geda_utility_log_init                (const char *app_prefix);
+         void    geda_utility_log_quite               (const char *format, ...);
+         char   *geda_utility_log_read                (void);
+      LogFunc    geda_utility_log_set_default_handler (LogFunc log_func, void *user_data);
+         void    geda_utility_log_set_log_time        (int mode);
+         void    geda_utility_log_set_update_func     (LogUpdateFunc func);
+         void    geda_utility_log_system              (const char *format, ...);
+         void    geda_utility_log_verbose             (const char *format, ...);
 
 /* u_string.c */
          char   *geda_utility_string_concat           (const char *string1, ...) GEDA_WARN_UNUSED_RESULT;

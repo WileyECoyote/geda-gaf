@@ -1,3 +1,7 @@
+/*! \typedef LogFunc
+ *  \brief Type of log handler function used by libgeda logging utilities */
+typedef void (*LogFunc) (const char *, GLogLevelFlags, const char *, void *);
+
 /*! \typedef LogUpdateFunc
  *  \brief Type of callback function  used by geda_utility_log_set_update_func */
 typedef void (*LogUpdateFunc)(const char *, GLogLevelFlags,  const char *);

@@ -84,7 +84,10 @@ static void u_log_handler (const char    *log_domain,
 {
   int status;
 
-  g_return_if_fail (logfile_fd != -1);
+  if (logfile_fd == -1) {
+    printf ("%s\n", message);
+    return;
+  }
 
   if (log_time) {
 
@@ -177,7 +180,6 @@ int geda_utility_log_get_log_time(void)
  */
 void geda_utility_log_init (const char *prefix)
 {
-  /* FIXME we assume that the prefix is in the filesystem encoding. */
   GSList *files           = NULL;
   char   *dir_path        = NULL;
   char   *full_prefix     = NULL;
@@ -375,6 +377,35 @@ char *geda_utility_log_read (void)
   is_logging = tmp;
 
   return contents;
+}
+
+/*!
+ * \brief Set the default log handler
+ * \par Function Description
+ *  Installs a default log handler which is used if no log handler has been
+ *  set for the particular log domain and log level combination. By default,
+ *  Libgeda uses u_log_handler() as the default log handler but this can be
+ *  over-ridden by calling this function and specifying \a log_func as the
+ *  default handler with an optional pointer to \a user_data. Either argument
+ *  can be NULL, when both are NULL u_log_handler is set the default handler.
+ *
+ *  \param [in] log_func The default log handler function to use or NULL
+ *  \param [in] user_data Pointer to date to be passed to the log handler
+ *
+ * \returns the previous log handler function.
+ */
+LogFunc
+geda_utility_log_set_default_handler (LogFunc log_func, void *user_data)
+{
+  GLogFunc old_func;
+
+  if (log_func) {
+    old_func = g_log_set_default_handler (log_func, user_data);
+  }
+  else {
+    old_func = g_log_set_default_handler (u_log_handler, user_data);
+  }
+  return (LogFunc)old_func;
 }
 
 /*! \brief Set whether log entries are prefixed with the Time Of Day

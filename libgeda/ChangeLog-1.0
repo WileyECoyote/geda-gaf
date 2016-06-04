@@ -1,7 +1,14 @@
 2016-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/f_types.h: Add type LogFunc.
+
+    * include/libgeda/geda_utility.h: Add geda_set_default_logger.
+
     * src/object/o_attrib.c: Declare name argument to geda_attrib_object_
       first_attrib_by_name a const.
+
+    * src/utility/u_log.c: Add function geda_log_set_default_handler, revise
+      u_log_handler to output message argument to stdout, if fd is not set.
 
     * tests/test_attrib_object.c: Add Checks for geda_attrib_object_search
       _object_string.

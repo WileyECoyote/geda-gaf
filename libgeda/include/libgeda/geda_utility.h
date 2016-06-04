@@ -59,6 +59,7 @@
 #define geda_init_log             geda_utility_log_init
 #define geda_log_q                geda_utility_log_quite
 #define geda_read_log             geda_utility_log_read
+#define geda_set_default_logger   geda_utility_log_set_default_handler
 #define geda_set_log_time         geda_utility_log_set_log_time
 #define geda_set_log_update_func  geda_utility_log_set_update_func
 #define geda_log_s                geda_utility_log_system
