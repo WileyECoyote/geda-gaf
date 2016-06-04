@@ -1,3 +1,14 @@
+2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Revised geda_utility_log_close to conditionally
+      call g_log_remove_handler only if log_handler_id is non-zero and
+      initial log_handler_id to zero in geda_utility_log_init. Logging
+      system is still a bit hokey but is more systemic; if libgeda is to
+      set a domain using G_LOG_DOMAIN in the build system then libgeda
+      must also set a default handler before client apps have had a chance
+      to call geda_utility_log_init or else messages from libgeda end up
+      on the console instead of the log.
+
 2016-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/f_types.h: Add type LogFunc.

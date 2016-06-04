@@ -140,7 +140,8 @@ static void u_log_handler (const char    *log_domain,
  *  file and then close the log file. Subsequent messages are lost after
  *  the close.
  */
-void geda_utility_log_close (void)
+void
+geda_utility_log_close (void)
 {
   is_logging = FALSE;
 
@@ -149,14 +150,15 @@ void geda_utility_log_close (void)
   }
 
   /* remove the handler */
-  g_log_remove_handler (NULL, log_handler_id);
+  if (log_handler_id) {
+    g_log_remove_handler (NULL, log_handler_id);
+  }
 
   /* close the file */
   if (logfile_fd != -1) {
     close (logfile_fd);
     logfile_fd = -1;
   }
-
 }
 
 /*! \brief Get whether log entries are prefixed with the Time Of Day
@@ -188,12 +190,14 @@ void geda_utility_log_init (const char *prefix)
   time_t  nowt;
 
   /* Somebody called for initialization, therefore */
-  is_logging = TRUE;
+  is_logging     = TRUE;
 
   if (logfile_fd != -1) {
     BUG_MSG ("Log already initialized.");
     return;
   }
+
+  log_handler_id = 0;
 
   time (&nowt);
   nowtm = gmtime (&nowt);
