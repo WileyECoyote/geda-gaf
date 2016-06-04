@@ -532,7 +532,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   outputfile = geda_utility_string_concat (f_path_user_config (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
-  if (( input = fopen (inputfile, "r" )) == NULL) {
+  if ((input = fopen (inputfile, "r" )) == NULL) {
     u_log_message(_("File open for read-only error: \"%s\", %s\n"), inputfile, strerror( errno ));
     result = errno;
   }
@@ -569,7 +569,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
           }
         }     /* next j */
 
-        if(khandle) {
+        if (khandle) {
 
           if ((khandle != last) || (kw_integer(khandle) != 0)) {
             /* if was not the same as the last one read  */
@@ -686,8 +686,8 @@ KEYWORD (load_in_rc) {
 KEYWORD (define_in_rc) {
 
   char *ptr;
-  ptr = KEY_BUFFER(load_in_rc);     /* get our pointer to the input buffer */
-  strcpy (output_buffer, ptr );     /* Assume that were are not changing   */
+  ptr = KEY_BUFFER(define_in_rc);   /* get our pointer to the input buffer */
+  strcpy (output_buffer, ptr);      /* Assume that were are not changing   */
 
   if (rc_options.titleblock_index == -1) {
 

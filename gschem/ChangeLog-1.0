@@ -1,3 +1,8 @@
+2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_settings.c: fix incorrect enumerator in do_kw_define_in_rc;
+      load_in_rc -> define_in_rc.
+
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap/gschem-array.png: Add new image for gschem-array icon.
