@@ -138,6 +138,8 @@ void libgeda_init(int argc, char **argv)
   g_type_init();
 #endif
 
+  geda_set_default_logger(NULL, NULL);
+
   f_path_sys_data ();
   f_path_sys_config ();
 

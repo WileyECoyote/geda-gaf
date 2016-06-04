@@ -1,5 +1,8 @@
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-gaf/libgeda/src/libgeda.c: Call function geda_set_default_logger
+      in libgeda_init to set u_log_handler as the default handler.
+
     * src/utility/u_log.c: Revised geda_utility_log_close to conditionally
       call g_log_remove_handler only if log_handler_id is non-zero and
       initial log_handler_id to zero in geda_utility_log_init. Logging
