@@ -1,4 +1,8 @@
-fi2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
+2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x11/geda_x11.cpp: Update libgeda functions names.
+
+2016-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * BUGS: Add file with note regarding distchecks.
 
