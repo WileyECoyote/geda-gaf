@@ -1,6 +1,18 @@
 2016-06-05 Peter Brett <peter@peter-b.co.uk>
 
     * build-tools/desktop-i18n: WEH: Modified per peter-b/geda-gaf commit
+      02771d42686761da21c8a5b631b5203850ca317f:
+
+      build: Teach desktop-i18n to cope with xgettext --version:
+
+      Newer versions of the build infrastructure insinuated by
+      `AM_GNU_GETTEXT` call `xgettext --version`.  This caused predictably
+      hilarious results when `desktop-i18n` got confused and assumed xgettext
+      was being called to do something useful.
+
+      Modify `desktop-i18n` to handle xgettext version requests correctly.
+
+    * build-tools/desktop-i18n: WEH: Modified per peter-b/geda-gaf commit
       57f43adb9cc0d54f0cecbd5d9a258d3bbc3868a7:
 
       build: Generate an empty ChangeLog when git history unavailable
