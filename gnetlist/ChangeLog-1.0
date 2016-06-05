@@ -1,10 +1,24 @@
+2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    Make gnetlist respect the quite option:
+
+    * src/s_hierarchy.c: Revise s_hierarchy_post_process to refrain from
+      blurting "Missing I/O symbol" if quiet_mode is set.
+
+    * src/s_net.c: Revise s_net_name_search to suppress yelping upon finding
+      a duplicate net name if quiet_mode is set.
+
+    * src/s_rename.c: Revise function s_rename_add, eliminating int flag and
+      pass quiet_mode for the third argument to s_rename_search instead of
+      FALSE.
+
 2016-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy.c: Replace g_strndup with geda_utility_string_strndup.
 
 2016-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/i_vars.c: rename function i_vars_finalize->i_vars_free_strings
+    * src/i_vars.c: rename function i_vars_finalize->i_vars_free_strings
       and add doxygen comments.
 
 2016-04-01 Wiley E. Hill <wileyhill@gmail.com>
@@ -56,7 +70,7 @@
 
 2016-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/gnetlist.c: Reduce scope of dentry in gnetlist_backends.
+    * src/gnetlist.c: Reduce scope of dentry in gnetlist_backends.
 
     * src/g_netlist.c: Reduce scope of p_current in g_get_toplevel_attribute,
       reduce scope and both initializations of pairlist in g_get_nets.
@@ -283,7 +297,7 @@
 
 2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
-   ** gnetlist/src/gnetlist.c: Check output_filename for an included path and
+   ** src/gnetlist.c: Check output_filename for an included path and
       if found, check for existence of the path, attempt to create if the path
       does not exist and abort if output_filename can not be written. Also
       make sure errno is re-initialized to 0 before checks for path and after
@@ -442,7 +456,7 @@
 
     * Eliminate toplevel hierarchy recursive loop, fix potential memory leaks
 
-    * gnetlist/src/s_traverse.c: Include <geda_diagnostics.h> and add start and
+    * src/s_traverse.c: Include <geda_diagnostics.h> and add start and
       stop macros in function s_traverse_sheet, rename variable "temp" to "value".
       Add function s_traverse_hierarchy_sheet and call from s_hierarchy_traverse,
       which is called from s_traverse_sheet instead of s_hierarchy_traverse->
@@ -619,7 +633,7 @@
 
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/gnetlist.c: Call libgeda_release instead of just
+    * src/gnetlist.c: Call libgeda_release instead of just
       s_clib_free and s_slib_free, oops!
 
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>

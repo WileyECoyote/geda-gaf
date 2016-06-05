@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -340,7 +340,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
  *  \param [in]  uref       To look for in the NET list
  *  \param [in]  label      pinlabel= needed by s_hierarchy_create_uref
  *  \param [in]  new_name   The net_name to store in the PIN list
- *  \param [out] removed    A list to be append with any pointer removed.
+ *  \param [out] removed    A list to be appended with any pointer removed.
  */
 static int
 s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
@@ -481,7 +481,7 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 
               GEDA_FREE(source_net_name); /* s_rename_add made a copy */
 
-              if (!result) {
+              if (!result && !quiet_mode) {
                 fprintf(stderr,
                        "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
                         pl_current->pin_label,
@@ -503,7 +503,6 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
   geda_list_free_full(removed);
 
   geda_list_unref(removed);
-
 }
 
 /*! \todo Finish function documentation!!!
@@ -583,7 +582,6 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
                              hierarchy_tag, NULL);
 
             break;
-
         }
       }
       else {
@@ -634,7 +632,6 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
     else {
       return (NULL);
     }
-
   }
 
   if (hierarchy_tag) {

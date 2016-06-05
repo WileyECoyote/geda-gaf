@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -346,14 +346,15 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
              n_current->net_name);
 #endif
 
-            /* do the rename anyways, this might cause problems */
+            /* Do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
             if (!s_rename_search (name, n_current->net_name, TRUE)) {
 
-              fprintf(stderr,
-                      _("Found duplicate net name, renaming [%s] to [%s]\n"),
-                      name, n_current->net_name);
-                      s_rename_add(name, n_current->net_name);
+              if (!quiet_mode) {
+                const char *msg = _("Found duplicate net name, renaming [%s] to [%s]\n");
+                fprintf(stderr, msg, name, n_current->net_name);
+              }
+              s_rename_add(name, n_current->net_name);
               GEDA_FREE(name);
               name = geda_utility_string_strdup (n_current->net_name); /* See note above */
             }
@@ -388,10 +389,11 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
             /* do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
             if (!s_rename_search (name, n_current->net_name, TRUE)) {
-              fprintf(stderr,
+              if (!quiet_mode) {
+                fprintf(stderr,
                       _("Found duplicate net name, renaming [%s] to [%s]\n"),
-                      name, n_current->net_name);
-
+                        name, n_current->net_name);
+              }
               s_rename_add(name, n_current->net_name);
               GEDA_FREE(name);
               name = geda_utility_string_strdup (n_current->net_name); /* See note above */

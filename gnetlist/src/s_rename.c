@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -203,7 +203,6 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
  */
 void s_rename_add(char *src, char *dest)
 {
-  int     flag;
   RENAME *temp;
   RENAME *new_rename;
   SET    *new_set;
@@ -212,9 +211,7 @@ void s_rename_add(char *src, char *dest)
     return;
   }
 
-  flag = s_rename_search(src, dest, FALSE);
-
-  if (flag) {
+  if (s_rename_search(src, dest, quiet_mode)) {
 
     /* If found follow the original behavior, limiting the operation
      * to the current end-of-list */
