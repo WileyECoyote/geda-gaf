@@ -1,3 +1,20 @@
+2016-06-05 Peter Brett <peter@peter-b.co.uk>
+
+    * build-tools/desktop-i18n: WEH: Modified per peter-b/geda-gaf commit
+      57f43adb9cc0d54f0cecbd5d9a258d3bbc3868a7:
+
+      build: Generate an empty ChangeLog when git history unavailable
+
+      When no git history is available -- for example, when the git
+      repository was cloned using the `--depth` option to limit the amount
+      of git history downloaded -- the changelog-generation rule can fail
+      because the changelog's base git commit (i.e. the 1.0 release tag)
+      isn't available in the repository.
+
+      This patch makes generation of `ChangeLog` succeed in that situation,
+      by creating an empty log and printing a warning to stderr.  It allows
+      `make dist` and `make distcheck` to pass on shallow clones.
+
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/gschem-array.svg: Add graphics for gschem-array icon.
