@@ -141,8 +141,8 @@ static void eda_renderer_draw_circle  (EdaRenderer *renderer, GedaObject *object
 static void eda_renderer_draw_path    (EdaRenderer *renderer, GedaObject *object);
 static void eda_renderer_draw_text    (EdaRenderer *renderer, GedaObject *object);
 
-static int  eda_renderer_prepare_text       (EdaRenderer *renderer, GedaObject *object);
-static void eda_renderer_calc_text_position (EdaRenderer *renderer, GedaObject *object,
+static int  eda_renderer_prepare_text       (EdaRenderer *renderer, const GedaObject *object);
+static void eda_renderer_calc_text_position (EdaRenderer *renderer, const GedaObject *object,
                                              int descent, double *x, double *y);
 static void eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object);
 static void eda_renderer_draw_complex (EdaRenderer *renderer, GedaObject *object);
@@ -161,7 +161,8 @@ static void eda_renderer_draw_end_cues      (EdaRenderer *renderer, GedaObject *
 static void eda_renderer_default_draw_cues  (EdaRenderer *renderer, GedaObject *object);
 static void eda_renderer_draw_cues_list     (EdaRenderer *renderer, GList      *objects);
 
-static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
+static int eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
+                                                 const GedaObject *object,
                                                  int *left,   int *top,
                                                  int *right,  int *bottom);
 
@@ -935,8 +936,8 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
 /* Calculate position to draw text relative to text origin marker, in
  * world coordinates. */
 static void
-eda_renderer_calc_text_position (EdaRenderer *renderer,
-                                 GedaObject  *object,
+eda_renderer_calc_text_position (EdaRenderer         *renderer,
+                                 const GedaObject    *object,
                                  int descent, double *x, double *y)
 {
   PangoRectangle inked_rect, logical_rect;
@@ -990,7 +991,7 @@ eda_renderer_calc_text_position (EdaRenderer *renderer,
 }
 
 static int
-eda_renderer_prepare_text (EdaRenderer *renderer, GedaObject *object)
+eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
 {
   int    pango_size;
   int    points_size;
@@ -1633,19 +1634,21 @@ eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)
  * ================================================================ */
 
 int
-eda_renderer_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
-                              int *left,     int *top,
-                              int *right,    int *bottom)
+eda_renderer_get_user_bounds (EdaRenderer      *renderer,
+                              const GedaObject *object,
+                              int *left,   int *top,
+                              int *right,  int *bottom)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
 
   return EDA_RENDERER_GET_CLASS (renderer)->user_bounds (renderer, object,
-                                                         left, top,
-                                                         right, bottom);
+                                                         left,     top,
+                                                         right,    bottom);
 }
 
 int
-eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
+eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
+                                      const GedaObject *object,
                                       int *left,   int *top,
                                       int *right,  int *bottom)
 {
@@ -1677,9 +1680,10 @@ eda_renderer_default_get_user_bounds (EdaRenderer *renderer, GedaObject *object,
 }
 
 int
-eda_renderer_get_text_user_bounds (EdaRenderer *renderer, GedaObject *object,
-                                   int         *left,     int *top,
-                                   int         *right,    int *bottom)
+eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
+                                   const GedaObject *object,
+                                   int *left,   int *top,
+                                   int *right,  int *bottom)
 
 {
   int ret_val = FALSE;

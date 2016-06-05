@@ -1,3 +1,17 @@
+2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Declare GedaObject argument read-only for virtual
+      EdaRendererClass::user_bounds and methods:
+
+            * eda_renderer_get_user_bounds
+            * eda_renderer_get_text_user_bounds
+
+      and static:
+
+            * eda_renderer_prepare_text
+            * eda_renderer_calc_text_position
+            * eda_renderer_default_get_user_bounds
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Include LOG_DOMAIN with CPP flags.
