@@ -1928,47 +1928,58 @@ radio_responder(GtkWidget *widget,  int response, ControlID *Control)
 static void switch_responder(GtkWidget *widget, int response,  ControlID *Control)
 {
    bool state = GET_SWITCH_STATE (widget);
-   GtkWidget* SwitchImage = get_geda_switch_image( state);
+   GtkWidget *SwitchImage = get_geda_switch_image( state);
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
    switch ( response ) {
    case AutoLoad:
      break;
+
    case AutoSave:
      gtk_widget_set_sensitive (AutoSaveIntervalSpin, state);
      break;
+
    case ClassicWheel:
    case ConsolidateNets:
    case ContinuePlace:
    case DelayScrolling:
    case DragMove:
+     break;
+
    case DrawGrips:
      gtk_widget_set_sensitive (GripPixelSizeSpin,   state);
      gtk_widget_set_sensitive (GripStrokeColorButt, state);
      gtk_widget_set_sensitive (GripFillColorButt,   state);
      break;
+
    case EmbedComponents:
    case EnableColorImaging:
      gtk_widget_set_sensitive (InvertImagesSwitch, state);
      break;
+
    case EnableLog:
      enable_log_controls (state );
      break;
+
    case EnableUndo:
      enable_undo_controls (state);
      break;
+
    case EnforceHierarchy:
    case FastMousePan:
    case FeedbackMode:
    case ForceBoundingBox:
    case FilePreview:
      break;
+
    case FriendlyColorMap:
      enable_color_map_controls (state);
      break;
+
    case FriendlyOutlineMap:
      enable_color_map_scheme(state);
      break;
+
    case InitConsoleWindow:
    case InvertImages:
    case MagneticNets:
@@ -1978,25 +1989,31 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
    case PointerHScroll:
    case RipperRotation:
      break;
+
    case RipperType:
      gtk_widget_set_sensitive (RipperSymbolCombo, state);
      break;
+
    case RubberNets:
      break;
+
    case ScrollBars:
      gtk_widget_set_sensitive (ScrollBarsVisibleSwitch, state);
      gtk_widget_set_sensitive (DelayScrollingSwitch,    state);
-     break;
+   case ScrollBarsVisible:
    case SortLibrary:
      break;
+
    case TextOriginMarker:
      gtk_widget_set_sensitive (TextMarkerSizeSpin,  state);
      gtk_widget_set_sensitive (TextMarkerColorButt, state);
      break;
+
    case UndoViews:
    case WarpCursor:
    case ZoomPan:
     break;
+
    default:
     BUG_IMSG( "Unknown switch Id", response);
    }

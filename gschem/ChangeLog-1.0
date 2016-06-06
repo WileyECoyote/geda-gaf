@@ -8,6 +8,9 @@
 
     * rc/x/x_settings.c: Add function do_kw_scrollbars_visible.
 
+    * src/x/x_settings_dialog.c: Add missng break after case DragMove, add
+      case missing for ScrollBarsVisible.
+
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_settings.c: fix incorrect enumerator in do_kw_define_in_rc;
