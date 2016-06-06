@@ -1,3 +1,9 @@
+2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/keywords.h: Add scrollbars-visible->scrollbars_visible to lists.
+
+    * rc/x/x_settings.c: Add function do_kw_scrollbars_visible.
+
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_settings.c: fix incorrect enumerator in do_kw_define_in_rc;

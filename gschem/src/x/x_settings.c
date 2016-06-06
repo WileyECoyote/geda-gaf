@@ -806,6 +806,11 @@ KEYWORD (scrollbar_update) {
   RC_STRING_TABLE_W2OUT (scrollbar_update)
 }
 
+/** @brief function do_kw_scrollbars_visible in Settings-Keyword-Handlers */
+KEYWORD (scrollbars_visible) {
+  RC_INTEGER_WOUT (scrollbars_visible)
+}
+
 /** @brief function do_kw_scrollpan_steps in Settings-Keyword-Handlers */
 KEYWORD (scrollpan_steps) {
   RC_INTEGER_WOUT (scrollpan_steps);
