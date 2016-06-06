@@ -943,10 +943,11 @@ void       x_window_close_all_dialogs       (GschemToplevel *w_current);
 void       x_window_close                   (GschemToplevel *w_current);
 void       x_window_close_all               (GschemToplevel *w_current);
 Page      *x_window_open_page               (GschemToplevel *w_current, const char *filename);
-void       x_window_set_current_page        (GschemToplevel *w_current, Page *page);
-void       x_window_setup_page              (GschemToplevel *w_current, Page *page, int xmin, int xmax, int ymin, int ymax);
-int        x_window_save_page               (GschemToplevel *w_current, Page *page, const char *filename);
 void       x_window_close_page              (GschemToplevel *w_current, Page *page);
+int        x_window_save_page               (GschemToplevel *w_current, Page *page, const char *filename);
+void       x_window_set_current_page        (GschemToplevel *w_current, Page *page);
+void       x_window_set_scroll_visibility   (GschemToplevel *w_current);
+void       x_window_setup_page              (GschemToplevel *w_current, Page *page, int xmin, int xmax, int ymin, int ymax);
 void       x_window_update_title            (GschemToplevel *w_current);
 
 void       x_window_add_toolbar_toggle       (GtkWidget *widget, GschemToplevel *w_current);

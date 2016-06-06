@@ -490,8 +490,8 @@ x_window_create_main(GschemToplevel *w_current)
    */
   {
     GtkScrolledWindow *scroll_window;
-    GtkAdjustment *h_adjustment;
-    GtkAdjustment *v_adjustment;
+    GtkAdjustment     *h_adjustment;
+    GtkAdjustment     *v_adjustment;
 
     h_adjustment = GTK_ADJUSTMENT( gtk_adjustment_new (0.0, 0.0,
                                                        w_current->world_right,
@@ -581,17 +581,8 @@ x_window_create_main(GschemToplevel *w_current)
   /* Hide the little red x's in the toolbars */
   x_toolbars_finialize(w_current);
 
-  /*! Set visibility of the scroll-bars based on user settings, noting that
-   *  the bars could be enabled so that the mouse wheel work but visibility
-   *  turned off, presumably so the user can maximize the drawing area.
-   */
-  if (w_current->scrollbars == TRUE ) {
-    g_object_set (VerticalScroll, "visible",
-                 (w_current->scrollbars_visible != FALSE), NULL);
-    g_object_set (HorizontalScroll, "visible",
-                 (w_current->scrollbars_visible != FALSE), NULL);
-
-  }
+  /*! Set visibility of the scroll-bars based on user settings */
+  x_window_set_scroll_visibility(w_current);
 
   /* Not sure why we need two pointer to GdkWindow */
   w_current->window = DrawingArea->window;
@@ -1054,157 +1045,6 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   return page;
 }
 
-/*! \brief Changes the current page.
- *  \par Function Description
- *  This function displays the specified page <B>page</B> in the
- *  window attached to <B>toplevel</B>.
- *
- *  It changes the <B>toplevel</B>'s current page to <B>page</B>,
- *  draws it and updates the user interface.
- *
- *  <B>page</B> has to be in the list of Pages attached to <B>toplevel</B>.
- *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to become current page.
- */
-void
-x_window_set_current_page (GschemToplevel *w_current, Page *page)
-{
-  if (gschem_toplevel_set_current_page (w_current, page)) {
-    o_redraw_cleanstates (w_current);
-    s_page_goto (page);
-    i_window_on_page_changed(w_current);
-    x_hscrollbar_update (w_current);
-    x_vscrollbar_update (w_current);
-    o_invalidate_all (w_current);
-  }
-}
-
-/*! \brief Set the contraints for the current page.
- *  \par Function Description
- *  This function will set the current page constraints.
- *
- *  \param [in]     w_current  The toplevel environment.
- *  \param [in,out] page       The Page object to set constraints on.
- *  \param [in]     xmin       The minimum x coordinate for the page.
- *  \param [in]     xmax       The maximum x coordinate for the page.
- *  \param [in]     ymin       The minimum y coordinate for the page.
- *  \param [in]     ymax       The maximum y coordinate for the page.
- */
-void
-x_window_setup_page(GschemToplevel *w_current, Page *page,
-                    int xmin, int xmax, int ymin, int ymax)
-{
-  double fs,f0,f1;
-  double fw0,fw1,fw;
-
-  page->left   = xmin;
-  page->right  = xmax;
-  page->top    = ymin;
-  page->bottom = ymax;
-
-  /* now do the constant setups */
-
-  /* pix_x */
-  f0 = page->left;
-  f1 = page->right;
-  fs = w_current->screen_width;
-  page->to_screen_x_constant = fs / (f1 - f0);
-
-  /* pix_y */
-  f0 = page->top;
-  f1 = page->bottom;
-  fs = w_current->screen_height;
-  page->to_screen_y_constant = fs / (f1 - f0);
-
-  /* mil_x */
-  fw1 = page->right;
-  fw0 = page->left;
-  fw  = w_current->screen_width;
-  page->to_world_x_constant = (fw1 - fw0) / fw;
-
-  /* mil_y */
-  fw1 = page->bottom;
-  fw0 = page->top;
-  fw  = w_current->screen_height;
-  page->to_world_y_constant = (fw1 - fw0) / fw;
-}
-
-/*! \brief Saves a page to a file.
- *  \par Function Description
- *  This function saves the page <B>page</B> to a file named
- *  <B>filename</B>.
- *
- *  It returns the value returned by function <B>f_save()</B> trying
- *  to save page <B>page</B> to file <B>filename</B> (1 on success, 0
- *  on failure).
- *
- *  <B>page</B> may not be the current page of <B>toplevel</B>. The
- *  current page of <B>toplevel</B> is not affected by this function.
- *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to save.
- *  \param [in] filename  The name of the file in which to save page.
- *  \returns 1 on success, 0 otherwise.
- */
-int
-x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  const char   *log_msg;
-  const char   *state_msg;
-  int           result;
-
-  GError *err = NULL;
-
-  g_return_val_if_fail (toplevel != NULL, 0);
-  g_return_val_if_fail (page     != NULL, 0);
-  g_return_val_if_fail (filename != NULL, 0);
-
-
-  /* and try saving current page to filename */
-  result = f_save (toplevel, toplevel->page_current, filename, &err);
-
-  if (result != 1) {
-
-    log_msg    = _("Could NOT save page [%s]:\n");
-
-    state_msg  = _("Error while trying to save");
-
-    pango_error_dialog("Failed to save file", err->message);
-
-    g_clear_error (&err);
-  }
-  else {
-    /* successful save of page to file, update page... */
-    /* change page name if necessary and prepare log message */
-    if (g_ascii_strcasecmp (page->filename, filename) != 0) {
-      GEDA_FREE (page->filename);
-      page->filename = geda_utility_string_strdup (filename);
-
-      log_msg = _("Saved as [%s] Okay\n");
-    }
-    else {
-      log_msg = _("Saved [%s] Okay\n");
-    }
-
-    state_msg  = _("Saved");
-
-    /* Update recent file list */
-    x_menu_recent_files_add(filename);
-  }
-
-  /* log status of operation */
-  u_log_message (log_msg, filename);
-
-  /* update display and page manager */
-  x_pagesel_update (w_current);
-  i_status_update_title (w_current);
-  i_status_set_state_msg  (w_current, SELECT, state_msg);
-
-  return result;
-}
-
 /*! \brief Closes a page.
  *  \par Function Description
  *  This function closes the page <B>page</B> of toplevel
@@ -1313,6 +1153,188 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
   else {
     BUG_MSG("page should not be NULL");
   }
+}
+
+/*! \brief Saves a page to a file.
+ *  \par Function Description
+ *  This function saves the page <B>page</B> to a file named
+ *  <B>filename</B>.
+ *
+ *  It returns the value returned by function <B>f_save()</B> trying
+ *  to save page <B>page</B> to file <B>filename</B> (1 on success, 0
+ *  on failure).
+ *
+ *  <B>page</B> may not be the current page of <B>toplevel</B>. The
+ *  current page of <B>toplevel</B> is not affected by this function.
+ *
+ *  \param [in] w_current The toplevel environment.
+ *  \param [in] page      The page to save.
+ *  \param [in] filename  The name of the file in which to save page.
+ *  \returns 1 on success, 0 otherwise.
+ */
+int
+x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  const char   *log_msg;
+  const char   *state_msg;
+  int           result;
+
+  GError *err = NULL;
+
+  g_return_val_if_fail (toplevel != NULL, 0);
+  g_return_val_if_fail (page     != NULL, 0);
+  g_return_val_if_fail (filename != NULL, 0);
+
+
+  /* and try saving current page to filename */
+  result = f_save (toplevel, toplevel->page_current, filename, &err);
+
+  if (result != 1) {
+
+    log_msg    = _("Could NOT save page [%s]:\n");
+
+    state_msg  = _("Error while trying to save");
+
+    pango_error_dialog("Failed to save file", err->message);
+
+    g_clear_error (&err);
+  }
+  else {
+    /* successful save of page to file, update page... */
+    /* change page name if necessary and prepare log message */
+    if (g_ascii_strcasecmp (page->filename, filename) != 0) {
+      GEDA_FREE (page->filename);
+      page->filename = geda_utility_string_strdup (filename);
+
+      log_msg = _("Saved as [%s] Okay\n");
+    }
+    else {
+      log_msg = _("Saved [%s] Okay\n");
+    }
+
+    state_msg  = _("Saved");
+
+    /* Update recent file list */
+    x_menu_recent_files_add(filename);
+  }
+
+  /* log status of operation */
+  u_log_message (log_msg, filename);
+
+  /* update display and page manager */
+  x_pagesel_update (w_current);
+  i_status_update_title (w_current);
+  i_status_set_state_msg  (w_current, SELECT, state_msg);
+
+  return result;
+}
+
+/*! \brief Changes the current page.
+ *  \par Function Description
+ *  This function displays the specified page <B>page</B> in the
+ *  window attached to <B>toplevel</B>.
+ *
+ *  It changes the <B>toplevel</B>'s current page to <B>page</B>,
+ *  draws it and updates the user interface.
+ *
+ *  <B>page</B> has to be in the list of Pages attached to <B>toplevel</B>.
+ *
+ *  \param [in] w_current The toplevel environment.
+ *  \param [in] page      The page to become current page.
+ */
+void
+x_window_set_current_page (GschemToplevel *w_current, Page *page)
+{
+  if (gschem_toplevel_set_current_page (w_current, page)) {
+    o_redraw_cleanstates (w_current);
+    s_page_goto (page);
+    i_window_on_page_changed(w_current);
+    x_hscrollbar_update (w_current);
+    x_vscrollbar_update (w_current);
+    o_invalidate_all (w_current);
+  }
+}
+
+/*!
+ * \brief Set the Visibility of scrollbars
+ * \par Function Description
+ *  This function updates visibility of the scroll-bars for the drawing
+ *  window based on the current settings. Visibility of the bars is user
+ *  configurable and users may prefer to turn off the visibility of the
+ *  scroll-bars, particularly on newer Ubuntu machines, doing so also
+ *  increases the area of the drawing canvas, which might be desired for
+ *  laptops with limited display area. The scroll-bars can be hidden but
+ *  remain active so that the mouse wheel remains functional.
+ */
+void
+x_window_set_scroll_visibility(GschemToplevel *w_current)
+{
+  if (w_current->scrollbars == TRUE ) {
+
+    GtkScrolledWindow *scroll_window;
+
+    int visible;
+    int policy;
+
+    scroll_window = GTK_SCROLLED_WINDOW (DrawingArea->parent);
+
+    visible = w_current->scrollbars_visible != FALSE;
+
+    policy = visible ? GTK_POLICY_ALWAYS : GTK_POLICY_NEVER;
+
+    gtk_scrolled_window_set_policy (scroll_window, policy, policy);
+  }
+}
+
+/*! \brief Set the contraints for the current page.
+ *  \par Function Description
+ *  This function will set the current page constraints.
+ *
+ *  \param [in]     w_current  The toplevel environment.
+ *  \param [in,out] page       The Page object to set constraints on.
+ *  \param [in]     xmin       The minimum x coordinate for the page.
+ *  \param [in]     xmax       The maximum x coordinate for the page.
+ *  \param [in]     ymin       The minimum y coordinate for the page.
+ *  \param [in]     ymax       The maximum y coordinate for the page.
+ */
+void
+x_window_setup_page(GschemToplevel *w_current, Page *page,
+                    int xmin, int xmax, int ymin, int ymax)
+{
+  double fs,f0,f1;
+  double fw0,fw1,fw;
+
+  page->left   = xmin;
+  page->right  = xmax;
+  page->top    = ymin;
+  page->bottom = ymax;
+
+  /* now do the constant setups */
+
+  /* pix_x */
+  f0 = page->left;
+  f1 = page->right;
+  fs = w_current->screen_width;
+  page->to_screen_x_constant = fs / (f1 - f0);
+
+  /* pix_y */
+  f0 = page->top;
+  f1 = page->bottom;
+  fs = w_current->screen_height;
+  page->to_screen_y_constant = fs / (f1 - f0);
+
+  /* mil_x */
+  fw1 = page->right;
+  fw0 = page->left;
+  fw  = w_current->screen_width;
+  page->to_world_x_constant = (fw1 - fw0) / fw;
+
+  /* mil_y */
+  fw1 = page->bottom;
+  fw0 = page->top;
+  fw  = w_current->screen_height;
+  page->to_world_y_constant = (fw1 - fw0) / fw;
 }
 
 /*! \brief Set filename as gschem window title

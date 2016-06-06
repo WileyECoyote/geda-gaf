@@ -2835,11 +2835,12 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->raise_dialog_boxes         = GET_SWITCH_STATE (NotifyEventsSwitch);
   w_current->scrollbars                 = GET_SWITCH_STATE (ScrollBarsSwitch);
              tmp_int                    = GET_SWITCH_STATE (ScrollBarsVisibleSwitch);
-  if (tmp_int != w_current->scrollbars_visible) {
+
+  if (tmp_int != w_current->scrollbars_visible ) {
     w_current->scrollbars_visible       =  tmp_int;
-    g_object_set (w_current->v_scrollbar, "visible", tmp_int, NULL);
-    g_object_set (w_current->h_scrollbar, "visible", tmp_int, NULL);
+    x_window_set_scroll_visibility(w_current);
   }
+
   w_current->scrollbar_update           = GET_SWITCH_STATE (DelayScrollingSwitch);
   w_current->scroll_wheel               = GET_SWITCH_STATE (ClassicWheelSwitch);
   w_current->sort_component_library     = GET_SWITCH_STATE (SortLibrarySwitch);

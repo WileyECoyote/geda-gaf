@@ -8,8 +8,13 @@
 
     * rc/x/x_settings.c: Add function do_kw_scrollbars_visible.
 
-    * src/x/x_settings_dialog.c: Add missng break after case DragMove, add
-      case missing for ScrollBarsVisible.
+    * src/x/x_settings_dialog.c: Add missing break after case DragMove, add
+      missing case for ScrollBarsVisible. Call x_window_create_main instead
+      of setting the properties of scrollbars, which does not work for bars
+      belonging to scrolled windows, in function GatherSettings.
+
+    * src/x/x_window.c: Minor reorg, add function x_window_set_scroll_visibility
+      and call from x_window_create_main.
 
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
