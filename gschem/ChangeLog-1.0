@@ -1,6 +1,10 @@
-2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
+2016-06-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/i_command.h: Add member scrollbars_visible.
 
     * include/keywords.h: Add scrollbars-visible->scrollbars_visible to lists.
+
+    * src/iface/i_command.c: Add function i_cmd_scrollbars_visible.
 
     * rc/x/x_settings.c: Add function do_kw_scrollbars_visible.
 

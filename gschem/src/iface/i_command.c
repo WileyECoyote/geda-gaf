@@ -4526,6 +4526,12 @@ COMMAND (scrollbar_update) {
   SHOW_VARIABLE(scrollbar_update, W);
 }
 
+/** @brief i_cmd_scrollbars_visible in i_command_Variable_Handlers */
+COMMAND (scrollbars_visible) {
+
+  SHOW_VARIABLE(scrollbars_visible, W);
+}
+
 /** @brief i_cmd_scrollpan_steps in i_command_Variable_Handlers */
 COMMAND (scrollpan_steps) {
 
