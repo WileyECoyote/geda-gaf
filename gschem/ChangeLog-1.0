@@ -1,3 +1,21 @@
+2016-06-07 Peter Brett <peter@peter-b.co.uk>
+
+    * src/object/o_move.c: WEH: Modified per peter-b/geda-gaf commit
+      7ceee94d143dd7da33a23633d61020de93a4b392:
+
+      gschem: Refactor resnap logic to ensure correctness.
+
+      Previously, there were code paths in the resnap logic which could lead
+      to accessing uninitialised memory (reported on IRC by Gareth Edwards).
+      The algorithm that chose whether to resnap or not also iterated over
+      the selection twice, when once is actually enough.
+
+      This patch changes the resnap logic to decide on snappability in one
+      pass over the selection, ensuring that resnap only occurs if (1) there
+      is at most one object selected that is not an attribute, and (2) all
+      attribute objects are attached to the same object (whether it is
+      selected or not).
+
 2016-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Add member scrollbars_visible.

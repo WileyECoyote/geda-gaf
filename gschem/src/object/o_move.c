@@ -361,55 +361,88 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Handle motion during a move operation, resnapping if necessary
+ * \par Function Description
+ * Handle movement during a move operation, by updating the global
+ * candidate transformation parameters.  The \a w_x and \b w_y
+ * parameters are the incremental translation to be handled.
  *
+ * This function mostly exists to implement the "resnapping" logic,
+ * which destructively puts objects back onto the grid during a move
+ * operation, when specific criteria are met.
+ *
+ * \param w_current  Global gschem state structure.
+ * \param w_x        X-axis translation
+ * \param w_y        Y-axis translation
  */
 void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  GList *selection = geda_list_get_glist(Current_Selection);
+  Page  *page      = gschem_toplevel_get_current_page(w_current);
+  GList *selection = geda_list_get_glist(page->selection_list);
 
   /* realign the object if we are in resnap mode */
   if (selection != NULL && w_current->snap == SNAP_RESNAP) {
 
     GedaObject *object;
 
-    int object_x, object_y;
-    bool resnap = FALSE;
-
     if (g_list_length(selection) > 1) {
 
-      GList  *s_current;
+      GList  *s_current = selection;
 
-      /* find an object that is not attached to any other object */
-      for (s_current = selection; s_current != NULL; NEXT(s_current)) {
-        if (((GedaObject*) s_current->data)->attached_to == NULL) {
-          object = (GedaObject*) s_current->data;
-          resnap = TRUE;
-          break;
+      /* The object that objects are supposed to be attached to */
+      GedaObject *attached = NULL;
+      object = NULL;
+
+      /* Search selection for an object that is not attached
+       * to any other object and also check whether everything in the list
+       * that *is* attached as an attribute is attached to the same object. */
+      while (s_current) {
+
+        GedaObject *candidate = (GedaObject*)s_current->data;
+
+        if (candidate->attached_to == NULL) {
+
+          /* If the object is *not* attached as an attribute, then check
+           * whether we previously found an independent object. If we did
+           * do not perform snapping, so give up. */
+          if (object == NULL) {
+            object = candidate;
+          }
+          else if (candidate != object) {
+            object = NULL;
+            break; /* Give up */
+          }
         }
+        else {
+
+          /* If the object is attached as an attribute, then check if the
+           * object is attached as an attribute of the same object as
+           * everything else is. If not, do not snapping, so give up. */
+          if (!attached) {
+            attached = candidate->attached_to;
+          }
+          else if (attached != candidate->attached_to) {
+            break; /* Give up */
+          }
+        }
+        NEXT(s_current);
       }
 
-      /* Only resnap single elements. This is also the case if
-         the selection contains one object and all other object
-         elements are attributes of the object element.*/
-      for (s_current = selection; s_current != NULL && resnap == TRUE; NEXT(s_current))
-      {
-        if (!(object == (GedaObject*) s_current->data)
-            && !geda_attrib_object_is_attached_to((GedaObject*) s_current->data, object)) {
-          resnap = FALSE;
-        }
+      if (attached != NULL && attached != object) {
+        object = NULL;
       }
     }
     else { /* single object */
-      resnap = TRUE;
       object = (GedaObject*) selection->data;
     }
 
     /* manipulate w_x and w_y in a way that will lead to a position
        of the object that is aligned with the grid */
-    if (resnap) {
+    if (object) {
+
+      int object_x, object_y;
+
       if (geda_object_get_position(object, &object_x, &object_y)) {
         w_x += snap_grid (w_current, object_x) - object_x;
         w_y += snap_grid (w_current, object_y) - object_y;
@@ -422,7 +455,6 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
   w_current->second_wy = w_y;
   o_move_invalidate_rubber (w_current, TRUE);
 }
-
 
 /*! \todo Finish function documentation!!!
  *  \brief
