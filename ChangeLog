@@ -1,3 +1,10 @@
+2016-06-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * build-tools/icon-theme-installer: Redirect both stderr and stdout
+      from gtk-update-icon-cache to NULL so the background task detaches
+      from the console (and the prompts returns to the console without
+      having to hit the enter key).
+
 2016-06-05 Peter Brett <peter@peter-b.co.uk>
 
     * build-tools/desktop-i18n: WEH: Modified per peter-b/geda-gaf commit
