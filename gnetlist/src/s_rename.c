@@ -47,6 +47,8 @@ typedef struct {
     RENAME *last_rename;
 } SET;
 
+static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest);
+
 static SET *first_set = NULL;
 static SET *last_set = NULL;
 
@@ -294,7 +296,7 @@ void s_rename_add(char *src, char *dest)
  *      pointer were lost after the routine so the memory could not be
  *      freed later, WEH.
  */
-void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
+static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest)
 {
   NETLIST  *nl_current = NULL;
   CPINLIST *pl_current;

@@ -111,19 +111,17 @@ NETLIST *s_netlist_return_tail(NETLIST *head);
 void s_rename_init(void);
 void s_rename_destroy_all(void);
 void s_rename_next_set(void);
-void s_rename_print(void);
 int  s_rename_search(char *src, char *dest, int quiet_flag);
 void s_rename_add(char *src, char *dest);
-void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest);
 void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head);
 SCM  g_get_renamed_nets(SCM scm_level);
 
 /* s_traverse.c */
-void s_traverse_process(GedaToplevel *pr_current);
-void s_traverse_sheet(GedaToplevel *pr_current, const GList *obj_list);
-void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist);
+void      s_traverse_process(GedaToplevel *pr_current);
+void      s_traverse_sheet(GedaToplevel *pr_current, const GList *obj_list);
+void      s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist);
 CPINLIST *s_traverse_component(GedaToplevel *pr_current,GedaObject *component, char *hierarchy_tag);
-NET *s_traverse_net(GedaToplevel *pr_current, NET *nets, int starting, GedaObject *object, char *hierarchy_tag, int type);
+NET      *s_traverse_net(GedaToplevel *pr_current, NET *nets, int starting, GedaObject *object, char *hierarchy_tag, int type);
 
 /* vams_misc.c */
 SCM vams_get_attribs_list(GedaObject *object);

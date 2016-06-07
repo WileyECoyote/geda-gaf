@@ -1,3 +1,7 @@
+2016-06-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_rename.c: Make s_rename_all_lowlevel static.
+
 2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
     Make gnetlist respect the quite option:
