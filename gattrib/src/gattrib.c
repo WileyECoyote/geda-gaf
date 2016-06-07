@@ -212,7 +212,8 @@ int gattrib_quit(int return_code)
 
   g_list_free(exit_functions);
 
-  if (search_history) g_list_free(search_history);
+  if (search_history)
+    g_list_free(search_history);
 
   /* Shutdown libgeda */
   libgeda_release();

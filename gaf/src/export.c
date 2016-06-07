@@ -45,14 +45,16 @@
 #include <cairo-pdf.h>
 #include <cairo-ps.h>
 
-static int export_text_rendered_bounds (void       *user_data,
-                                        GedaObject *object,
-                                        int *left, int *top,
-                                        int *right, int *bottom);
-static void export_layout_page         (Page *page,
+static int export_text_rendered_bounds (void              *user_data,
+                                        GedaObject        *object,
+                                        int               *left,
+                                        int               *top,
+                                        int               *right,
+                                        int               *bottom);
+static void export_layout_page         (Page              *page,
                                         cairo_rectangle_t *extents,
-                                        cairo_matrix_t *mtx);
-static void export_draw_page           (Page *page);
+                                        cairo_matrix_t    *mtx);
+static void export_draw_page           (Page              *page);
 
 static void export_png           (void);
 static void export_postscript    (bool is_eps);

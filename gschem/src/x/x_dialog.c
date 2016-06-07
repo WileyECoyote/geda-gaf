@@ -3695,12 +3695,12 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
  *  \param attribute The attribute to be validated.
  *  \returns TRUE if the attribute is valid, FALSE otherwise.
  */
-int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
+int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 {
   /* validate the new attribute */
   if (!geda_attrib_string_get_name_value (attribute, NULL, NULL)) {
 
-    GtkWidget* message_box;
+    GtkWidget *message_box;
 
     message_box = gtk_message_dialog_new_with_markup (parent,
                                   GTK_DIALOG_DESTROY_WITH_PARENT,

@@ -215,7 +215,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
   if (mode == SAE_ADD_MODE) {
 
-   GedaObject *new = NULL;
+    GedaObject *new = NULL;
 
     object = o_select_return_first_object(w_current);
 
@@ -233,6 +233,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     }
     o_text_recreate(new);
     o_undo_savestate(w_current, UNDO_ALL);
+
   }
   else { /* Editing an existing Attribute */
 
