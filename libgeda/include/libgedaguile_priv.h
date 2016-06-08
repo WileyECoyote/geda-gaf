@@ -100,6 +100,7 @@ void edascm_init_closure    (void);
 void edascm_init_complex    (void);
 void edascm_init_config     (void);
 void edascm_init_deprecated (void);
+void edascm_init_log        (void);
 void edascm_init_object     (void);
 void edascm_init_os         (void);
 void edascm_init_page       (void);

@@ -1,15 +1,19 @@
+2016-06-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme-api/geda-scheme.texi: Add documentation of new log API.
+
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
-        * wiki/Makefile.am: Removed #echo " line:
-          ( cd $(srcdir)/$$lib && $(INSTALL_DATA)" $$list "'$$d' )"; \
-          which preceeded line
-          (cd $(srcdir)/$$lib && $(INSTALL_DATA) $$list "$$d") || exit $$?; \
-          to cut-back on Make noise
+    * wiki/Makefile.am: Removed #echo " line:
+      ( cd $(srcdir)/$$lib && $(INSTALL_DATA)" $$list "'$$d' )"; \
+      which preceeded line
+      (cd $(srcdir)/$$lib && $(INSTALL_DATA) $$list "$$d") || exit $$?; \
+      to cut-back on Make noise
 
 2012-11-17 Peter TB Brett <peter@peter-b.co.uk>
 
-        * scripts: Remove wiki-related scripts that are no longer needed.
-        eliminated docs/scripts directory
+    * scripts: Remove wiki-related scripts that are no longer needed.
+      eliminated docs/scripts directory
 
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
