@@ -33,8 +33,9 @@
 
 #include <geda_debug.h>
 
-extern int libgeda_quiet_mode;
-extern int libgeda_verbose_mode;
+/* These are initialized by parse_args() */
+static int quiet_mode;
+static int verbose_mode;
 
 /** \defgroup Libgeda-Logging-Utilities Libgeda Logging Utilities
  *    @{
@@ -140,8 +141,7 @@ static void u_log_handler (const char    *log_domain,
  *  file and then close the log file. Subsequent messages are lost after
  *  the close.
  */
-void
-geda_utility_log_close (void)
+void geda_utility_log_close (void)
 {
   is_logging = FALSE;
 
@@ -171,6 +171,30 @@ geda_utility_log_close (void)
 int geda_utility_log_get_log_time(void)
 {
   return log_time;
+}
+
+/*! \brief Get active Quiet mode setting
+ *  \par Function Description
+ *  Getter function for the static module integer quiet_mode.
+ *
+ *  \returns the current quiet_mode setting.
+ *  \todo Add Scheme API
+ */
+int geda_utility_log_get_quiet_mode(void)
+{
+  return quiet_mode;
+}
+
+/*! \brief Get active Verbose mode setting
+ *  \par Function Description
+ *  Getter function for the static module integer verbose_mode.
+ *
+ *  \returns the current verbose_mode setting.
+ *  \todo Add Scheme API
+ */
+int geda_utility_log_get_verbose_mode(void)
+{
+  return verbose_mode;
 }
 
 /*! \brief Initialize libgeda logging feature.
@@ -314,7 +338,7 @@ void geda_utility_log_init (const char *prefix)
  */
 void geda_utility_log_quite(const char *format, ...)
 {
-  if (!libgeda_quiet_mode) {
+  if (!quiet_mode) {
 
     va_list args;
     char   *buffer;
@@ -423,6 +447,17 @@ void geda_utility_log_set_log_time(int mode)
   log_time = mode;
 }
 
+/*! \brief Set Quite mode
+ *  \par Function Description
+ *  Setter function for the static module integer quiet_mode.
+ *
+ *  \param [in] mode new quite mode value
+ */
+void geda_utility_log_set_quiet_mode (int mode)
+{
+  quiet_mode = mode;
+}
+
 /*! \brief  Set Log callback function.
  *  \par Function Description
  *  Call to set the a handler function to be called for each log
@@ -433,6 +468,17 @@ void geda_utility_log_set_log_time(int mode)
 void geda_utility_log_set_update_func (LogUpdateFunc func)
 {
     x_log_update_func = func;
+}
+
+/*! \brief Set Verbose mode
+ *  \par Function Description
+ *  Setter function for the static module integer verbose_mode.
+ *
+ *  \param [in] mode new verbose mode value
+ */
+void geda_utility_log_set_verbose_mode (int mode)
+{
+  verbose_mode = mode;
 }
 
 void
@@ -472,7 +518,7 @@ geda_utility_log_system(const char *format, ...)
  */
 void geda_utility_log_verbose(const char *format, ...)
 {
-  if (libgeda_verbose_mode) {
+  if (verbose_mode) {
 
     va_list args;
     char   *buffer;

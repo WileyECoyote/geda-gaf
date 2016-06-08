@@ -33,9 +33,6 @@
 #include <libgeda_priv.h>
 #include <libgedaguile.h>
 
-int libgeda_quiet_mode;
-int libgeda_verbose_mode;
-
 /*! \brief libgeda Parse command-line options.
  * \par Function Description
  * Parse command line options
@@ -47,8 +44,8 @@ static void parse_args (int argc, char **argv)
 {
   int i;
 
-  libgeda_quiet_mode   = FALSE;
-  libgeda_verbose_mode = FALSE;
+  int quiet_mode   = FALSE;
+  int verbose_mode = FALSE;
 
   for (i = 1; i < argc; ++i) {
 
@@ -63,15 +60,18 @@ static void parse_args (int argc, char **argv)
       }
 
       if (!strcmp (opt, "quiet") || !strcmp (opt, "q")) {
-        libgeda_quiet_mode=TRUE;
+        quiet_mode=TRUE;
         continue;
       }
       else if (!strcmp (opt, "verbose") || !strcmp (opt, "v")) {
-        libgeda_verbose_mode++;
+        verbose_mode++;
         continue;
       }
     }
   }
+
+  geda_utility_log_set_quiet_mode(quiet_mode);
+  geda_utility_log_set_verbose_mode(verbose_mode);
 }
 
 /*! \brief Perform Guile runtime initialization of libgeda library.

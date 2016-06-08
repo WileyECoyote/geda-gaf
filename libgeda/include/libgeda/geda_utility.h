@@ -56,12 +56,16 @@
 /* u_log.c */
 #define geda_close_log            geda_utility_log_close
 #define geda_get_log_time         geda_utility_log_get_log_time
+#define geda_get_quiet_mode       geda_utility_log_get_quiet_mode
+#define geda_get_verbose_mode     geda_utility_log_get_verbose_mode
 #define geda_init_log             geda_utility_log_init
 #define geda_log_q                geda_utility_log_quite
 #define geda_read_log             geda_utility_log_read
 #define geda_set_default_logger   geda_utility_log_set_default_handler
 #define geda_set_log_time         geda_utility_log_set_log_time
+#define geda_set_quiet_mode       geda_utility_log_set_quiet_mode
 #define geda_set_log_update_func  geda_utility_log_set_update_func
+#define geda_set_verbose_mode     geda_utility_log_set_verbose_mode
 #define geda_log_s                geda_utility_log_system
 #define geda_log_v                geda_utility_log_verbose
 

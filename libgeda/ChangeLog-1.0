@@ -5,6 +5,25 @@
    ** src/object/o_path_basic.c: Invalidate bounds of the new object not the
       old object in o_path_copy.
 
+    * include/libgeda/geda_utility.h: Define shorter versions:
+
+            * geda_get_quiet_mode
+            * geda_get_verbose_mode
+            * geda_set_quiet_mode
+            * geda_set_verbose_mode
+
+    * src/libgeda.c: Eliminate libgeda_quiet_mode and libgeda_verbose_mode,
+      revise function parse_args to initialize quiet_mode and verbose_mode
+      appropriately.
+
+    * src/utility/u_log.c: Declare module static integers quiet_mode and
+      verbose_mode and add getters and setter functions:
+
+            * geda_utility_log_get_quiet_mode
+            * geda_utility_log_get_verbose_mode
+            * geda_utility_log_set_quiet_mode
+            * geda_utility_log_set_verbose_mode
+
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/libgeda/src/libgeda.c: Call function geda_set_default_logger
