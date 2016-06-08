@@ -2,6 +2,9 @@
 
     * src/object/o_path_basic.c: Declare o_path_copy object a constant.
 
+   ** src/object/o_path_basic.c: Invalidate bounds of the new object not the
+      old object in o_path_copy.
+
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/libgeda/src/libgeda.c: Call function geda_set_default_logger

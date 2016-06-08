@@ -478,7 +478,7 @@ GedaObject *o_path_copy (const GedaObject *o_current)
     o_set_fill_options (new_obj, &old_path->fill_options);
 
     /* calc the bounding box */
-    o_current->w_bounds_valid_for = NULL;
+    new_obj->w_bounds_valid_for = NULL;
 
     /* return the new tail of the object list */
     return new_obj;
