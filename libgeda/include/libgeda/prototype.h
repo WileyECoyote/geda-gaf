@@ -424,7 +424,7 @@ extern "C" {
          void    o_notify_change_remove_all      (Page *page);
 
 /* o_path_object.c */
-   GedaObject   *o_path_copy                     (GedaObject *o_current);
+   GedaObject   *o_path_copy                     (const GedaObject *o_current);
          bool    o_path_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
          void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
          void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);

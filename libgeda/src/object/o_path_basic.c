@@ -459,7 +459,7 @@ o_path_new_take_path (int color, GedaPath *path_data)
  *
  *  \return A new pointer to the end of the object list.
  */
-GedaObject *o_path_copy (GedaObject *o_current)
+GedaObject *o_path_copy (const GedaObject *o_current)
 {
   if (GEDA_IS_PATH(o_current)) {
 
