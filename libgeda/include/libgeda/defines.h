@@ -205,10 +205,6 @@
 #define HIERARCHY_NORMAL_LOAD   0
 #define HIERARCHY_FORCE_LOAD    1
 
-/* for scrollbar-update type */
-#define DISPLAY_CONTINUOUS      0
-#define DISPLAY_DELAYED         1
-
 /* hierarchy traversing flags */
 #define HIERARCHY_NODUPS    (1<<0)
 #define HIERARCHY_POSTORDER (1<<1)

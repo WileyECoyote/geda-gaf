@@ -250,6 +250,10 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* for mousepan_gain */
 #define DEFAULT_MOUSEPAN_GAIN   5
 
+/* for scrollbar-update type */
+#define DISPLAY_CONTINUOUS      0
+#define DISPLAY_DELAYED         1
+
 /* for scroll-wheel */
 #define SCROLL_WHEEL_GTK        0
 #define SCROLL_WHEEL_CLASSIC    1
