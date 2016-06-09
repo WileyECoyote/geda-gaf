@@ -24,6 +24,7 @@
  */
 
 #include "../../include/gschem.h"
+#include <libguile.h>             /* for doxygen */
 
 SCM_SYMBOL (object_state_sym, "object-state");
 

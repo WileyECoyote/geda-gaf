@@ -25,7 +25,7 @@
  */
 
 #include <gschem.h>
-
+#include <libguile.h>             /* for doxygen */
 #include <i_actions.h>
 
 #include <geda_debug.h>

@@ -24,6 +24,7 @@
  */
 
 #include <gschem.h>
+#include <libguile.h>             /* for doxygen */
 #include <geda_debug.h>
 
 SCM scheme_window_fluid = SCM_UNDEFINED;

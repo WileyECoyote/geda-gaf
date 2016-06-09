@@ -6,6 +6,14 @@
     * include/gschem_idefines.h: Relocate defines for scrollbar-update type
       from libgeda.
 
+    * src/guile: Include guile header for Doxygen`s sake:
+
+            * src/guile/g_attrib.c
+            * src/guile/g_keys.c
+            * src/guile/g_select.c
+            * src/guile/g_util.c
+            * src/guile/g_window.c
+
 2016-06-07 Peter Brett <peter@peter-b.co.uk>
 
     * src/object/o_move.c: WEH: Modified per peter-b/geda-gaf commit

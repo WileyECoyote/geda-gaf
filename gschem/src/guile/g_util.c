@@ -40,6 +40,7 @@
 */
 
 #include "../../include/gschem.h"
+#include <libguile.h>             /* for doxygen */
 
 /*! \brief SCM API Launch default application for a URI.
  * \par Function Description

@@ -29,6 +29,7 @@
  */
 
 #include "../../include/gschem.h"
+#include <libguile.h>             /* for doxygen */
 
 SCM_SYMBOL (name_sym ,  "name");
 SCM_SYMBOL (value_sym , "value");
