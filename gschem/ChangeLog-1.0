@@ -1,5 +1,8 @@
 2016-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * data/gschem-icons.svg: Remove superflorous information, round some
+      numbers like 0.999999998 to 1.0 (reduced file size 10k).
+
     * include/gschem_idefines.h: Relocate defines for scrollbar-update type
       from libgeda.
 
