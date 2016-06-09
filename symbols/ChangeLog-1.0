@@ -1,3 +1,7 @@
+2016-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT1763-1.sym: Add symbol low noise 500mA ldo linear reg.
+
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74L/74LS247-1.sym: Clean symbol/revise attribute positions.
