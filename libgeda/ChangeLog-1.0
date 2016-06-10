@@ -1,7 +1,9 @@
 2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_log.c: Rename virtual static x_log_update_func ->
-      log_update_func.
+      log_update_func. Replace u_log_message with g_log in geda_utility_log
+      _quite and geda_utility_log_verbose so that the domain argument can be
+      set to 0.
 
 2016-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -28,6 +30,16 @@
             * geda_utility_log_get_verbose_mode
             * geda_utility_log_set_quiet_mode
             * geda_utility_log_set_verbose_mode
+
+    * scheme/geda/log.scm: Add scheme file for log API.
+
+    * include/libgedaguile_priv.h: Declare edascm_init_log
+
+    * src/scheme/scheme_init.c: Include edascm_init_log in list of init
+      function to call.
+
+    * src/scheme/scheme_log.c: New file to implment c interface to scheme
+      log API.
 
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -354,9 +354,10 @@ void geda_utility_log_quite(const char *format, ...)
     vsnprintf (buffer, size, format, args);
     va_end (args);
 
-    u_log_message("%s", buffer);
+    g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
 
-    if (buffer) free(buffer);
+    if (buffer)
+      free(buffer);
   }
 }
 
@@ -534,9 +535,10 @@ void geda_utility_log_verbose(const char *format, ...)
     vsnprintf (buffer, size, format, args);
     va_end (args);
 
-    u_log_message("%s", buffer);
+    g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
 
-    if (buffer) free(buffer);
+    if (buffer)
+      free(buffer);
   }
 }
 
