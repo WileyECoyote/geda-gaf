@@ -1,3 +1,8 @@
+2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Rename virtual static x_log_update_func ->
+      log_update_func.
+
 2016-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_path_basic.c: Declare o_path_copy object a constant.

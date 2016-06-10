@@ -42,7 +42,7 @@ static int verbose_mode;
  */
 
 /*! Default setting for log update callback function. */
-static void (*x_log_update_func)() = NULL;
+static void (*log_update_func)() = NULL;
 
 static int is_logging = FALSE; /* Variable to controls whether logging is enable or not */
 
@@ -130,8 +130,8 @@ static void u_log_handler (const char    *log_domain,
     g_log_default_handler (log_domain, log_level, message, NULL);
   }
 
-  if (x_log_update_func) {
-    (*x_log_update_func) (log_domain, log_level, message);
+  if (log_update_func) {
+    (*log_update_func) (log_domain, log_level, message);
   }
 }
 
@@ -467,7 +467,7 @@ void geda_utility_log_set_quiet_mode (int mode)
  */
 void geda_utility_log_set_update_func (LogUpdateFunc func)
 {
-    x_log_update_func = func;
+    log_update_func = func;
 }
 
 /*! \brief Set Verbose mode
