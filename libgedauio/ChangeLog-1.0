@@ -1,3 +1,7 @@
+2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_entry.c: Add check for get/set entry max_length.
+
 2016-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Reorganize declarations, declare accessors for max

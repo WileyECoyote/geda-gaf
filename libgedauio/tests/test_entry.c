@@ -147,6 +147,36 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+  int value;
+
+  GtkWidget *widget =  geda_entry_new_with_max_length (10);
+
+  value = geda_entry_widget_get_max_length(widget);
+
+  if (value != 10) {
+    fprintf(stderr, "FAILED: %s line <%d> max_length %d != 10\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_max_length(widget, 9);
+
+  value = geda_entry_widget_get_max_length(widget);
+
+  if (value != 9) {
+    fprintf(stderr, "FAILED: %s line <%d> max_length %d != 9\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -166,7 +196,16 @@ main (int argc, char *argv[])
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
     }
+    if (!result) {
 
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+    }
   }
   return result;
 }
