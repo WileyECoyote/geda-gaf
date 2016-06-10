@@ -742,11 +742,13 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 
 static void main2(void *closure, int argc, char *argv[])
 {
-    GedaToplevel *current;
-    int i;
+    GedaToplevel    *current;
     cairo_surface_t *surface = NULL;
-    cairo_t *cairo = NULL;
-    bool need_cairo_init = TRUE;
+    cairo_t         *cairo = NULL;
+    bool             need_cairo_init = TRUE;
+    int              argv_index, i;
+
+    argv_index = parse_commandline(argc, argv);
 
     print_settings = print_settings_new();
 
@@ -762,7 +764,7 @@ static void main2(void *closure, int argc, char *argv[])
     current = geda_toplevel_new();
     i_vars_libgeda_set(current);
 
-    for (i = 1; i < argc; i++) {
+    for (i = argv_index; i < argc; i++) {
 
         Page *page = s_page_new(current, argv[i]);
 

@@ -23,6 +23,7 @@ EXTRA_DIST       = $(rcdata_DATA) $(local_HEADERs)
 gsch2pdf_SOURCES = main.c \
 				   junction.c \
 				   rc-config.c \
+				   parsecmd.c \
 				   print-settings.c
 
 AM_CFLAGS	     = $(GEDA_INCLUDES) -I$(includedir)

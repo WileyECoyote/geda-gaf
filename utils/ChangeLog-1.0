@@ -1,3 +1,8 @@
+2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pdf/parsecmd.c: Add basic command-line parser, mainly so gsch2pdf
+      --help or --version does not result in a seg fault.
+
 2016-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/gxyrs/run_tests.sh: Exit testing if error when DEBUG is defined.
