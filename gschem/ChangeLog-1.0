@@ -4,6 +4,9 @@
       geda_page_set_changed instead of setting page-CHANGED directlt as
       neither validate the page object.
 
+    * src/x/x_dialog.c: Simplfy color_menu_swatch_layout_data, get value
+      directly instead creating an integer value.
+
 2016-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/gschem-icons.svg: Remove superflorous information, round some

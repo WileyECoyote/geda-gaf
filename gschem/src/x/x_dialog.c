@@ -1052,20 +1052,18 @@ x_dialog_get_color_name (int index)
  *  \param data the current GschemToplevel pointer.
  */
 static void
-color_menu_swatch_layout_data (GtkCellLayout *layout,
+color_menu_swatch_layout_data (GtkCellLayout   *layout,
                                GtkCellRenderer *cell,
-                               GtkTreeModel *model,
-                               GtkTreeIter *iter,
-                               void* data)
+                               GtkTreeModel    *model,
+                               GtkTreeIter     *iter,
+                               void            *data)
 {
   GdkColor *color;
-  GValue v = {0, };
   int index;
 
   /* Get the index of the color on this row */
-  gtk_tree_model_get_value (model, iter, 1, &v);
+  gtk_tree_model_get (model, iter, 1, &index, -1);
 
-  index = g_value_get_int (&v);
   color = geda_color_x11_color_from_index (index);
 
   /* Set the cell's background color */
