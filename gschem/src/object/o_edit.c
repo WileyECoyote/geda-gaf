@@ -198,10 +198,11 @@ void o_edit_lock (GschemToplevel *w_current)
 
     if (object) {
       object->selectable   = FALSE;
-      if (object->color   != LOCK_COLOR)
-      object->locked_color = object->color;
+      if (object->color   != LOCK_COLOR) {
+        object->locked_color = object->color;
+      }
       object->color        = LOCK_COLOR;
-      page->CHANGED        = TRUE;
+      geda_page_set_changed(page, TRUE);
     }
 
     NEXT(s_current);
@@ -226,7 +227,7 @@ void o_edit_unlock(GschemToplevel *w_current)
   Page  *page      = gschem_toplevel_get_current_page(w_current);
   GList *s_current = geda_list_get_glist(Current_Selection);
 
-  while(s_current != NULL) {
+  while (s_current != NULL) {
 
     GedaObject *object = (GedaObject*) s_current->data;
 
@@ -235,7 +236,7 @@ void o_edit_unlock(GschemToplevel *w_current)
       if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
         object->color           = object->locked_color;
       else object->color        = geda_object_color_get_default(object->type);
-      page->CHANGED             = TRUE;
+      geda_page_set_changed(page, TRUE);
     }
     NEXT(s_current);
   }
