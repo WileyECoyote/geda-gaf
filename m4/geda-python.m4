@@ -105,6 +105,7 @@ dnl copied and modified from gnome-python
 dnl
 dnl AM_CHECK_PYMOD(MODNAME [,VERSION, VERSION_MATCHER [,ACTION-IF-FOUND [,ACTION-IF-NOT-FOUND]]])
 dnl Check if a module of a particular version is visible to python.
+
 AC_DEFUN([AM_CHECK_PYMOD],
   [AC_REQUIRE([AM_PATH_PYTHON])
   py_mod_var=`echo $1`

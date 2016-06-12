@@ -950,7 +950,7 @@ eda_renderer_calc_text_position (EdaRenderer         *renderer,
   x_middle = -logical_rect.width / 2.0;
   x_right  = -logical_rect.width;
 
-  /*! \note Ideally, we would be using just font / logical metrics for vertical
+  /*! \note Ideally, we would just be using font / logical metrics for vertical
    *        alignment, however this way seems to be more backward compatible
    *        with the old gschem rendering.
    *

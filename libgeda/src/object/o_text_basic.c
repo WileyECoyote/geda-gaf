@@ -253,7 +253,7 @@ o_text_get_size (const GedaObject *object)
  *  function applies an appopriate scaling to return the
  *  font size in postscript points.
  *
- * \param [in] object    The text Object whos font size to return
+ * \param [in] object  The text Object whos font size to return
  *
  * \return The font size converted to postscript points.
  */
@@ -728,12 +728,13 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
     if (sscanf(first_line, "%c %d %d %d %d %d %d %d\n", &type, &x, &y,
       &color, &size,
       &visibility, &show_name_value,
-      &angle) != 8) {
+      &angle) != 8)
+    {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
-    return NULL;
-      }
-      alignment = LOWER_LEFT; /* older versions didn't have this */
-      num_lines = 1; /* only support a single line */
+      return NULL;
+    }
+    alignment = LOWER_LEFT; /* older versions didn't have this */
+    num_lines = 1; /* only support a single line */
   }
   else {
     if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d\n", &type, &x, &y,
@@ -823,6 +824,7 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
 
   /* convert the character string to UTF-8 if necessary */
   if (!g_utf8_validate (string, -1, NULL)) {
+
     /* if it is not utf-8, it is ISO_8859-15 */
     char *tmp = g_convert (string, strlen (string),
                            "UTF-8", "ISO_8859-15",
@@ -1001,9 +1003,9 @@ o_text_set_angle (GedaObject *object, int angle)
  *  \param [in] user_data User data to be passed to the function.
  */
 void
-o_text_set_rendered_bounds_func (GedaObject *object,
-                                 RenderedBoundsFunc func,
-                                 void *user_data)
+o_text_set_rendered_bounds_func (GedaObject         *object,
+                                 RenderedBoundsFunc  func,
+                                 void               *user_data)
 {
   g_return_if_fail (GEDA_IS_TEXT(object));
   GedaText *text = GEDA_TEXT(object);

@@ -64,14 +64,14 @@ enum
 };
 
 static void
-get_property (GObject    *object,
-              unsigned int      param_id,
-              GValue     *value,
-              GParamSpec *pspec);
+get_property (GObject      *object,
+              unsigned int  param_id,
+              GValue       *value,
+              GParamSpec   *pspec);
 
 static void
 set_property (GObject      *object,
-              unsigned int        param_id,
+              unsigned int  param_id,
               const GValue *value,
               GParamSpec   *pspec);
 
@@ -94,20 +94,21 @@ render (GtkCellRenderer      *cell,
  *  \brief [in]  pspec    The property param spec
  */
 static void
-get_property (GObject    *object,
-              unsigned int      param_id,
-              GValue     *value,
-              GParamSpec *pspec)
+get_property (GObject      *object,
+              unsigned int  param_id,
+              GValue       *value,
+              GParamSpec   *pspec)
 {
   GedaSwatchRenderer *swatch = GEDA_SWATCH_RENDERER (object);
 
   switch (param_id) {
     case PROP_COLOR: {
+
         GdkColor color;
 
-        color.red = swatch->color.red;
+        color.red   = swatch->color.red;
         color.green = swatch->color.green;
-        color.blue = swatch->color.blue;
+        color.blue  = swatch->color.blue;
 
         g_value_set_boxed (value, &color);
       }

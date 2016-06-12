@@ -1536,16 +1536,16 @@ static void multiattrib_callback_value_grab_focus (GtkWidget *widget,
 static void
 multiattrib_callback_button_add(GtkButton *button, void *user_data)
 {
-  Multiattrib     *ThisDialog = (Multiattrib*)user_data;
+  Multiattrib   *ThisDialog = (Multiattrib*)user_data;
 
-  GtkTextBuffer   *buffer;
-  GtkTextIter      start;
-  GtkTextIter      end;
+  GtkTextBuffer *buffer;
+  GtkTextIter    start;
+  GtkTextIter    end;
 
-  bool             visible;
-  const char      *name;
-  char            *value;
-  int              shownv;
+  bool           visible;
+  const char    *name;
+  char          *value;
+  int            shownv;
 
   buffer = gtk_text_view_get_buffer (ThisDialog->textview_value);
 
@@ -1561,7 +1561,7 @@ multiattrib_callback_button_add(GtkButton *button, void *user_data)
   visible = GetToggleState ( ThisDialog->button_visible );
 
   /*   - visibility type */
-  shownv = (int)gtk_option_menu_get_history (ThisDialog->optionmenu_shownv);
+  shownv = gtk_option_menu_get_history (ThisDialog->optionmenu_shownv);
 
   if (name[0] == '\0' || name[0] == ' ') {
     /* name not allowed for an attribute */

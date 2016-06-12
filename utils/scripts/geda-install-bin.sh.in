@@ -4,7 +4,7 @@ VER=1.0
 
 # Author: Wiley Edward Hill
 # Date: 04/16/13
-# 
+#
 
 BIN_DIR=@prefix@/bin
 LOCAL_BIN=/usr/local/bin
@@ -28,7 +28,7 @@ vecho()
    fi
 }
 
-do_show_usage() 
+do_show_usage()
 {
    echo Usage: `basename $0` '[OPTIONS] [-d folder_with_programs ] [-l folder_in_path ]'
 }

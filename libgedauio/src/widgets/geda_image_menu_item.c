@@ -1093,8 +1093,10 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
 
   image_menu_item->image = image;
 
-  if (image == NULL)
+  if (image == NULL) {
+    image_menu_item->show_image = FALSE;
     return;
+  }
 
   gtk_widget_set_parent (image, GTK_WIDGET (image_menu_item));
 
