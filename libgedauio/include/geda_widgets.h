@@ -42,6 +42,7 @@
 #include "geda_image_menu_item.h"
 #include "geda_label.h"
 #include "geda_menu_button.h"
+#include "geda_option_menu.h"
 #include "geda_separator.h"
 #include "geda_swatch_renderer.h"
 #include "geda_tearoff_menu_item.h"

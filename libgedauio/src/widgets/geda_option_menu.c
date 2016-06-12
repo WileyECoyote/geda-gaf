@@ -107,20 +107,37 @@ enum
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (GedaOptionMenu, geda_option_menu, GTK_TYPE_BUTTON)
+static void *geda_option_menu_parent_class = NULL;
 
+static GType
+geda_option_menu_child_type (GtkContainer *container)
+{
+  return G_TYPE_NONE;
+}
+
+/*! \brief GedaMenuShell Type Class Initializer
+ *
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  class      GedaMenuShell class we are initializing
+ *  \param [in]  class_data GedaMenuShell structure associated with the class
+ */
 static void
-geda_option_menu_class_init (GedaOptionMenuClass *class)
+geda_option_menu_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
   GtkObjectClass    *object_class;
   GtkWidgetClass    *widget_class;
   GtkContainerClass *container_class;
 
-  gobject_class = (GObjectClass*)class;
-  object_class = (GtkObjectClass*)class;
-  widget_class = (GtkWidgetClass*)class;
-  container_class = (GtkContainerClass*)class;
+  //(GedaOptionMenuClass *class)
+  gobject_class    = (GObjectClass*)class;
+  object_class     = (GtkObjectClass*)class;
+  widget_class     = (GtkWidgetClass*)class;
+  container_class  = (GtkContainerClass*)class;
 
   signals[CHANGED] =
     g_signal_new ("changed",
@@ -145,7 +162,9 @@ geda_option_menu_class_init (GedaOptionMenuClass *class)
   widget_class->hide_all           = geda_option_menu_hide_all;
   widget_class->mnemonic_activate  = geda_option_menu_mnemonic_activate;
 
-  container_class->child_type = geda_option_menu_child_type;
+  container_class->child_type      = geda_option_menu_child_type;
+
+  geda_option_menu_parent_class    = g_type_class_peek_parent (class);
 
   g_object_class_install_property (gobject_class,
                                    PROP_MENU,
@@ -169,31 +188,90 @@ geda_option_menu_class_init (GedaOptionMenuClass *class)
                                    G_PARAM_READABLE));
 }
 
-static GType
-geda_option_menu_child_type (GtkContainer *container)
-{
-  return G_TYPE_NONE;
-}
-
+/*! \brief Type instance initializer for GedaMenuShell
+ *
+ *  \par Function Description
+ *  Type instance initializer for GedaMenuShell, initializes a new empty
+ *  GedaMenuShell object.
+ *
+ *  \param [in] instance The GedaMenuShell structure being initialized,
+ *  \param [in] class    The GedaMenuShell class being initializing.
+ */
 static void
-geda_option_menu_init (GedaOptionMenu *option_menu)
+geda_option_menu_instance_init(GTypeInstance *instance, void *class)
 {
-  GtkWidget *widget = GTK_WIDGET (option_menu);
+  GedaOptionMenu *option_menu;
+  GtkWidget      *widget;
+
+  option_menu = (GedaOptionMenu*)instance;
+  widget      = GTK_WIDGET (instance);
 
   gtk_widget_set_can_focus (widget, TRUE);
   gtk_widget_set_can_default (widget, FALSE);
   gtk_widget_set_receives_default (widget, FALSE);
 
-  option_menu->menu = NULL;
+  option_menu->instance_type = geda_option_menu_get_type();
+
+  option_menu->menu      = NULL;
   option_menu->menu_item = NULL;
-  option_menu->width = 0;
-  option_menu->height = 0;
+  option_menu->width     = 0;
+  option_menu->height    = 0;
+}
+
+/*! \brief Retrieve GedaOptionMenu's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaOptionMenu Type identifier. When
+ *  first called, the function registers a #GedaOptionMenu in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaOptionMenu and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaOptionMenu.
+ */
+GedaType geda_option_menu_get_type (void)
+{
+  static GedaType geda_option_menu_type = 0;
+
+  if (g_once_init_enter (&geda_option_menu_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaOptionMenuClass),
+      NULL,                           /* base_init           */
+      NULL,                           /* base_finalize       */
+      geda_option_menu_class_init,    /* (GClassInitFunc)    */
+      NULL,                           /* class_finalize      */
+      NULL,                           /* class_data          */
+      sizeof(GedaOptionMenu),
+      0,                              /* n_preallocs         */
+      geda_option_menu_instance_init  /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaOptionMenu");
+    type   = g_type_register_static (GTK_TYPE_BUTTON, string, &info, 0);
+
+    g_once_init_leave (&geda_option_menu_type, type);
+  }
+
+  return geda_option_menu_type;
+}
+
+
+bool is_a_geda_option_menu (GedaOptionMenu *option_menu)
+{
+  if (G_IS_OBJECT(option_menu)) {
+    return (geda_option_menu_get_type() == option_menu->instance_type);
+  }
+  return FALSE;
 }
 
 GtkWidget*
 geda_option_menu_new (void)
 {
-  return g_object_new (GTK_TYPE_OPTION_MENU, NULL);
+  return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
 }
 
 GtkWidget*

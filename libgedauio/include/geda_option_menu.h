@@ -23,7 +23,7 @@
 #define GEDA_TYPE_OPTION_MENU            (geda_option_menu_get_type ())
 #define GEDA_OPTION_MENU(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_OPTION_MENU, GedaOptionMenu))
 #define GEDA_OPTION_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_OPTION_MENU, GedaOptionMenuClass))
-#define GEDA_IS_OPTION_MENU(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_OPTION_MENU))
+#define GEDA_IS_OPTION_MENU(obj)         (is_a_geda_option_menu((GedaOptionMenu*)obj))
 #define GEDA_IS_OPTION_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_OPTION_MENU))
 #define GEDA_OPTION_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_OPTION_MENU, GedaOptionMenuClass))
 
@@ -33,6 +33,7 @@ typedef struct _GedaOptionMenuClass  GedaOptionMenuClass;
 struct _GedaOptionMenu
 {
   GtkButton button;
+  GedaType  instance_type;
 
   GtkWidget *menu;
   GtkWidget *menu_item;
@@ -53,14 +54,16 @@ extern "C" {
 #endif
 
 GedaType   geda_option_menu_get_type    (void) GEDA_CONST;
-GtkWidget* geda_option_menu_new         (void);
-GtkWidget* geda_option_menu_get_menu    (GedaOptionMenu *option_menu);
+bool       is_a_geda_option_menu        (GedaOptionMenu *option_menu);
+
+GtkWidget *geda_option_menu_new         (void);
+GtkWidget *geda_option_menu_get_menu    (GedaOptionMenu *option_menu);
 void       geda_option_menu_set_menu    (GedaOptionMenu *option_menu,
                                          GtkWidget      *menu);
 void       geda_option_menu_remove_menu (GedaOptionMenu *option_menu);
 int        geda_option_menu_get_history (GedaOptionMenu *option_menu);
 void       geda_option_menu_set_history (GedaOptionMenu *option_menu,
-                                         unsigned int    index_);
+                                         unsigned int    index);
 
 #ifdef __cplusplus
 }
