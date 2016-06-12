@@ -547,8 +547,8 @@ check_overides ()
 
   combo_class = GEDA_COMBO_BOX_GET_CLASS(widget);
 
-  combo_class->changed           = combo_changed;
-  combo_class->view_changed      = combo_view_changed;
+  combo_class->changed      = combo_changed;
+  combo_class->view_changed = combo_view_changed;
 
   geda_combo_box_append_text (GEDA_COMBO_BOX(widget), "1");
 

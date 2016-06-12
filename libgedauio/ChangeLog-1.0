@@ -4,6 +4,9 @@
       and define with code, redo type identifier system, add function is_a
       _geda_option_menu.
 
+    * tests/test_option_menu.c: Add checks for constructing GedaOptionMenu
+      widgets.
+
 2016-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_option_menu.h: Add class for GedaOptionMenu.
