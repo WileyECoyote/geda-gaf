@@ -517,6 +517,9 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
                      unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
+  char       *string;
+  unsigned    allocated;
+
   char type;
   int color;
   int line_width, line_space, line_length;
@@ -525,8 +528,6 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
   int fill_type, fill_width, angle1, pitch1, angle2, pitch2;
   int num_lines = 0;
   int i;
-  char *string;
-  GString *pathstr;
 
   /* Allocate enough space */
   if (sscanf (first_line, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
@@ -544,23 +545,46 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
     color = DEFAULT_PATH_COLOR_INDEX;
   }
 
-  pathstr = g_string_new ("");
+  allocated = 0;
+  string    = NULL;
+
   for (i = 0; i < num_lines; i++) {
+
     const char *line;
 
     line = s_textbuffer_next_line (tb);
 
     if (line == NULL) {
-      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Unexpected end-of-file when reading path"));
+      GEDA_FREE(string);
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Unexpected end-of-file after %d lines"), i);
       return NULL;
     }
 
-    pathstr = g_string_append (pathstr, line);
+    size_t len = strlen(line);
+
+    if (!allocated) {
+      string = (char*)malloc(len + 1);
+      strncpy(string, line, len);
+      allocated = ++len;
+      string[allocated - 1] = '\0';
+    }
+    else {
+
+      char *buffer;
+
+      allocated = allocated + len;
+
+      buffer = (char*)realloc(string, allocated);
+
+      if (!buffer)
+        break;
+
+      string = buffer;
+      strncat(string, line, len);
+    }
   }
 
-  /* retrieve the character string from the GString */
-  string = g_string_free (pathstr, FALSE);
-  string = geda_utility_string_remove_last_nl (string);
+  string = geda_utility_string_remove_last_nl(string);
 
   /* create a new path */
   new_obj = o_path_new (color, string);

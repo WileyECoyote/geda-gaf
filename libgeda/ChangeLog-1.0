@@ -1,5 +1,10 @@
 2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_path_basic.c: Revise o_path_read to use simple allocation
+      rather than GString.
+
+2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_log.c: Rename virtual static x_log_update_func ->
       log_update_func. Replace u_log_message with g_log in geda_utility_log
       _quite and geda_utility_log_verbose so that the domain argument can be
