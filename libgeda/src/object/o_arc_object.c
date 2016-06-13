@@ -806,7 +806,7 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
   start_angle = object->arc->start_angle;
   arc_sweep   = object->arc->arc_sweep;
   color       = object->color;
-  capstyle    = o_get_capstyle (object->line_options->line_end);
+  capstyle    = geda_object_get_capstyle (object->line_options->line_end);
 
   /*! \note
    *  Depending on the type of the line for this particular arc, the

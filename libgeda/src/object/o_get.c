@@ -149,17 +149,19 @@ geda_object_get_bounds_list(const GList *list, int *left, int *top, int *right, 
   return found;
 }
 
-/*! \brief Get capstyle for printing of an object.
- *  \par Function Description
- *  This function gets the object's capstyle for printing from its line end.
- *  See #LINE_END for information on valid line end values.
+/*!
+ * \brief Get capstyle for printing of an object.
+ * \par Function Description
+ *  This function gets the object's capstyle for printing from
+ *  its line end. See #LINE_END for information on valid line
+ *  end values.
  *
  *  \param [in]     end        Line end value of the object
  *
  *  TODO: Change this function to use it also in gschem_cairo.c
  */
 int
-o_get_capstyle (LINE_END end)
+geda_object_get_capstyle (LINE_END end)
 {
   switch(end) {
     case(END_NONE):   return BUTT_CAP; break;

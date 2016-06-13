@@ -174,7 +174,7 @@ char       *geda_complex_object_to_buffer        (GedaObject *object);
 double      geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
 
 /* o_get.c */
-int         o_get_capstyle                       (LINE_END end);
+int         geda_object_get_capstyle             (LINE_END end);
 
 /* o_line_object.c */
 bool        geda_line_object_get_position        (GedaObject *object, int *x, int *y);

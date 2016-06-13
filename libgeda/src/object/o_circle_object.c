@@ -747,7 +747,7 @@ geda_circle_object_print(GedaToplevel *toplevel, FILE *fp,
   radius = o_current->circle->radius;
 
   color     = o_current->color;
-  capstyle  = o_get_capstyle (o_current->line_options->line_end);
+  capstyle  = geda_object_get_capstyle (o_current->line_options->line_end);
   outl_func = NULL;
 
   /*

@@ -1,5 +1,7 @@
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Rename o_get_capstyle with geda_object prefix.
+
     * src/object/o_net_object.c: Rename functions with geda_object prefix.
 
 2016-06-11 Wiley E. Hill <wileyhill@gmail.com>

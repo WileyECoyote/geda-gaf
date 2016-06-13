@@ -825,7 +825,7 @@ geda_line_object_print(GedaToplevel *toplevel, FILE *fp,
   x2    = o_current->line->x[1];
   y2    = o_current->line->y[1];
   color = o_current->color;
-  capstyle = o_get_capstyle (o_current->line_options->line_end);
+  capstyle = geda_object_get_capstyle (o_current->line_options->line_end);
 
   /*
    * Depending on the type of the line for this particular line, the
