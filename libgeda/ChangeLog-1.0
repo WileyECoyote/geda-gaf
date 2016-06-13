@@ -2,7 +2,8 @@
 
     * src/object/o_get.c: Rename o_get_capstyle with geda_object prefix.
 
-    * src/object/o_net_object.c: Rename functions with geda_object prefix.
+    * src/object/o_net_object.c: Rename functions with geda_object prefix,
+      rename geda_net_object_save -> geda_net_object_to_buffer.
 
 2016-06-11 Wiley E. Hill <wileyhill@gmail.com>
 

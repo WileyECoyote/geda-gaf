@@ -173,7 +173,7 @@ GedaObject *geda_net_object_read (const char buf[], unsigned int release_ver, un
  *
  * \return the string representation of the net Object
  */
-char *geda_net_object_save(GedaObject *object)
+char *geda_net_object_to_buffer(GedaObject *object)
 {
   int x1, x2, y1, y2;
 

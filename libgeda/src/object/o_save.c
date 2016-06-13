@@ -266,7 +266,7 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_NET):
-          out = geda_net_object_save(o_current);
+          out = geda_net_object_to_buffer(o_current);
           break;
 
         case(OBJ_PIN):

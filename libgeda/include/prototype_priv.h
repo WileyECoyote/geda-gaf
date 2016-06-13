@@ -199,7 +199,7 @@ bool        geda_net_object_get_position         (GedaObject *object, int *x, in
 void        geda_net_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *geda_net_object_read                 (const char buf[], unsigned int release_ver,
                                                   unsigned int fileformat_ver, GError **err);
-char       *geda_net_object_save                 (GedaObject *object);
+char       *geda_net_object_to_buffer            (GedaObject *object);
 
 /* o_notify.c */
 void        o_notify_emit_pre_change       (GedaObject *object);
