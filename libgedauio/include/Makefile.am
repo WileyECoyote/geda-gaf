@@ -45,6 +45,7 @@ libgedauio_HEADERS = \
 			geda_uio.h                \
 			geda_uio_functions.h      \
 			geda_uio_macros.h         \
+			geda_widget.h             \
 			geda_widgets.h
 
 EXTRA_DIST = geda_bulb.xpm

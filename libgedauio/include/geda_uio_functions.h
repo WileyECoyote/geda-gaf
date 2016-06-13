@@ -36,5 +36,6 @@
 #include "geda_mnemonic_hash.h"
 #include "geda_threads.h"
 #include "geda_tree.h"
+#include "geda_widget.h"
 
 #endif /* __GEDA_FUNCTIONS_H__ */

@@ -1,8 +1,13 @@
 2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_widget.h: A declarations general widget functions that gtk
+      forgot to include as public.
+
     * src/widgets/geda_option_menu.c: : Eliminate G_DEFINE_TYPE_WITH_MACRO
       and define with code, redo type identifier system, add function is_a
       _geda_option_menu.
+
+    * src/functions/geda_widget.c Add new module for general widget functions.
 
     * tests/test_option_menu.c: Add checks for constructing GedaOptionMenu
       widgets.
