@@ -566,9 +566,9 @@ void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 
      GedaObject *new_net;
       /* other object is a pin, insert a net */
-      new_net = o_net_new (NET_COLOR,
-                           c_current->x, c_current->y,
-                           c_current->x, c_current->y);
+      new_net = geda_net_object_new (NET_COLOR,
+                                     c_current->x, c_current->y,
+                                     c_current->x, c_current->y);
       s_page_append_object (toplevel->page_current, new_net);
 
       /* FIXME:This new net object is only picked up for stretching later,

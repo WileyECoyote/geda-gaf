@@ -674,7 +674,7 @@ geda_object_get_position (GedaObject *object, int *x, int *y )
 
   switch (object->type) {
       case OBJ_LINE:    func = geda_line_object_get_position;    break;
-      case OBJ_NET:     func = o_net_get_position;     break;
+      case OBJ_NET:     func = geda_net_object_get_position;     break;
       case OBJ_BUS:     func = geda_bus_object_get_position;     break;
       case OBJ_BOX:     func = geda_box_object_get_position;     break;
       case OBJ_PICTURE: func = o_picture_get_position; break;

@@ -962,7 +962,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
       GedaObject *new_obj;
 
       if (object->type == OBJ_NET) {
-        new_obj = o_net_copy(object);
+        new_obj = geda_net_object_copy(object);
       }
       else {
         new_obj = geda_bus_object_copy(object);

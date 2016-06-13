@@ -75,7 +75,7 @@ EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0, (),
   GedaObject *obj;
   SCM result;
 
-  obj = o_net_new (NET_COLOR, 0, 0, 0, 0);
+  obj = geda_net_object_new (NET_COLOR, 0, 0, 0, 0);
 
   result = edascm_from_object (obj);
 

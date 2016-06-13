@@ -405,16 +405,16 @@ extern "C" {
          void    geda_object_list_set_color                (const GList *list, int color);
 
 /* o_net_object.c */
-         void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
-   GedaObject   *o_net_copy                      (GedaObject *o_current);
-         bool    o_net_is_fully_connected        (GedaObject *object);
-         void    o_net_modify                    (GedaObject *object, int x, int y, int whichone);
-         void    o_net_mirror                    (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
-          int    o_net_orientation               (GedaObject *object);
-         void    o_net_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_net_refresh_conn_cache        (GedaObject *object);
-         void    o_net_translate                 (GedaObject *object, int dx, int dy);
+         void    geda_net_object_consolidate               (GedaToplevel *toplevel, Page *page);
+   GedaObject   *geda_net_object_copy                      (GedaObject *o_current);
+         bool    geda_net_object_is_fully_connected        (GedaObject *object);
+         void    geda_net_object_modify                    (GedaObject *object, int x, int y, int whichone);
+         void    geda_net_object_mirror                    (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_net_object_new                       (int color, int x1, int y1, int x2, int y2);
+          int    geda_net_object_orientation               (GedaObject *object);
+         void    geda_net_object_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_net_object_refresh_conn_cache        (GedaObject *object);
+         void    geda_net_object_translate                 (GedaObject *object, int dx, int dy);
 
 /* o_notify.c */
          void    o_notify_change_add             (Page *page, ChangeNotifyFunc pre_change_func,

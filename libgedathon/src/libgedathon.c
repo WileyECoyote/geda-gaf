@@ -2493,7 +2493,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
 
   int color = translate_color(py_color, NET_COLOR);
 
-  object = o_net_new(color, x1, y1, x2, y2);
+  object = geda_net_object_new(color, x1, y1, x2, y2);
 
   /* Set in the gobject so the memory will be freed later */
   if (netname) { /* then create a text attribute for netname */

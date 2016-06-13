@@ -292,7 +292,7 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
   if (type == CONN_ENDPOINT) {
     if (object->type == OBJ_NET || object->type == OBJ_PIN) {
       if (count < 1) {        /* Didn't find anything connected there */
-        if ((object->type == OBJ_NET) && o_net_is_fully_connected (object))
+        if ((object->type == OBJ_NET) && geda_net_object_is_fully_connected (object))
         {
           /* Probably connected, so draw friendly arrowhead. The
            * additional parameters are needed to allow the arrowhead

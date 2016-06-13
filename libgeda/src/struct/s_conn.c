@@ -804,7 +804,7 @@ static void refresh_connectivity_cache (GedaToplevel *toplevel, GedaObject *obje
         /* FIXME: suboptimal to refresh cache every time */
         /* better approach would invalidate cache without refresh */
         /* refresh would be done on redraw of pin cues */
-        o_net_refresh_conn_cache (object);
+        geda_net_object_refresh_conn_cache (object);
     }
 }
 

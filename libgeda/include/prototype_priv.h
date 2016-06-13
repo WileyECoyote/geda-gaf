@@ -195,11 +195,11 @@ GedaObject *geda_line_object_read                (const const char buf[], unsign
 char       *geda_line_object_to_buffer           (GedaObject *object);
 
 /* o_net_object.c */
-bool        o_net_get_position             (GedaObject *object, int *x, int *y);
-void        o_net_print                    (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-GedaObject *o_net_read                     (const char buf[], unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_net_save                     (GedaObject *object);
+bool        geda_net_object_get_position         (GedaObject *object, int *x, int *y);
+void        geda_net_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+GedaObject *geda_net_object_read                 (const char buf[], unsigned int release_ver,
+                                                  unsigned int fileformat_ver, GError **err);
+char       *geda_net_object_save                 (GedaObject *object);
 
 /* o_notify.c */
 void        o_notify_emit_pre_change       (GedaObject *object);

@@ -662,8 +662,8 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   switch (obj->type) {
   case OBJ_NET:
     s_conn_remove_object (obj); /* We may need to update connectivity. */
-    o_net_modify (obj, x1, y1, 0);
-    o_net_modify (obj, x2, y2, 1);
+    geda_net_object_modify (obj, x1, y1, 0);
+    geda_net_object_modify (obj, x2, y2, 1);
     s_conn_update_object (obj);
     break;
   case OBJ_PIN:

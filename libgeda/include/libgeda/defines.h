@@ -236,7 +236,7 @@
 #define POSTSCRIPT      0
 #define PNG             1
 
-/* for o_net_orientation */
+/* for geda_net_object_orientation */
 #define NEITHER         0
 #define HORIZONTAL      1
 #define VERTICAL        2

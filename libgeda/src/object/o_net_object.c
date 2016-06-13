@@ -40,7 +40,7 @@
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_net_get_position (GedaObject *object, int *x, int *y)
+bool geda_net_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_NET(object), FALSE);
 
@@ -63,7 +63,7 @@ bool o_net_get_position (GedaObject *object, int *x, int *y)
  *  \return A new net Object
  */
 GedaObject *
-o_net_new(int color, int x1, int y1, int x2, int y2)
+geda_net_object_new(int color, int x1, int y1, int x2, int y2)
 {
   GedaObject *new_obj;
 
@@ -90,7 +90,7 @@ o_net_new(int color, int x1, int y1, int x2, int y2)
  *
  *  \return a new net object
  */
-GedaObject *o_net_copy( GedaObject *o_current)
+GedaObject *geda_net_object_copy( GedaObject *o_current)
 {
   if (GEDA_IS_NET(o_current)) {
 
@@ -100,7 +100,7 @@ GedaObject *o_net_copy( GedaObject *o_current)
     /* still doesn't work... you need to pass in the new values */
     /* or don't update and update later */
     /* I think for now I'll disable the update and manually update */
-    new_obj = o_net_new (o_current->color,
+    new_obj = geda_net_object_new (o_current->color,
                          o_current->line->x[0], o_current->line->y[0],
                          o_current->line->x[1], o_current->line->y[1]);
 
@@ -127,7 +127,7 @@ GedaObject *o_net_copy( GedaObject *o_current)
  *  \return The object list, or NULL on error.
  *
  */
-GedaObject *o_net_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+GedaObject *geda_net_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
   char    type;
@@ -156,7 +156,7 @@ GedaObject *o_net_read (const char buf[], unsigned int release_ver, unsigned int
     color = NET_COLOR;
   }
 
-  new_obj = o_net_new (color, x1, y1, x2, y2);
+  new_obj = geda_net_object_new (color, x1, y1, x2, y2);
 
   return new_obj;
 }
@@ -173,7 +173,7 @@ GedaObject *o_net_read (const char buf[], unsigned int release_ver, unsigned int
  *
  * \return the string representation of the net Object
  */
-char *o_net_save(GedaObject *object)
+char *geda_net_object_save(GedaObject *object)
 {
   int x1, x2, y1, y2;
 
@@ -198,18 +198,18 @@ char *o_net_save(GedaObject *object)
  *  \param [in]     center_x  x-coord of the mirror position
  *  \param [in]     center_y  y-coord of the mirror position.
  */
-void o_net_mirror(GedaObject *object, int center_x, int center_y)
+void geda_net_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   g_return_if_fail(GEDA_IS_NET(object));
 
   /* translate object to origin */
-  o_net_translate(object, -center_x, -center_y);
+  geda_net_object_translate(object, -center_x, -center_y);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_net_translate(object, center_x, center_y);
+  geda_net_object_translate(object, center_x, center_y);
 }
 
 /*! \brief postscript print command for a net object
@@ -223,7 +223,7 @@ void o_net_mirror(GedaObject *object, int center_x, int center_y)
  *  \param [in] origin_x     x-coord of the postscript origin
  *  \param [in] origin_y     y-coord of the postscript origin
  */
-void o_net_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+void geda_net_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                  int origin_x, int origin_y)
 {
   int cap_style;
@@ -265,7 +265,7 @@ void o_net_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_net_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void geda_net_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -275,7 +275,7 @@ void o_net_rotate(GedaObject *object, int center_x, int center_y, int angle)
     return;
 
   /* translate object to origin */
-  o_net_translate(object, -center_x, -center_y);
+  geda_net_object_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -287,7 +287,7 @@ void o_net_rotate(GedaObject *object, int center_x, int center_y, int angle)
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_net_translate(object, center_x, center_y);
+  geda_net_object_translate(object, center_x, center_y);
 }
 
 /*! \brief move a net object
@@ -299,7 +299,7 @@ void o_net_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *  \param [in] dy           The y-distance to move the object.
  */
 void
-o_net_translate(GedaObject *object, int dx, int dy)
+geda_net_object_translate(GedaObject *object, int dx, int dy)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -320,7 +320,7 @@ o_net_translate(GedaObject *object, int dx, int dy)
  *  \param [in] object   The net object
  *  \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
-int o_net_orientation(GedaObject *object)
+int geda_net_object_orientation(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_LINE(object), -1);
 
@@ -350,7 +350,7 @@ int o_net_orientation(GedaObject *object)
  *  \note The first net \a object gets the attributes of the second net
  *  \a del_object if the two nets are merged together.
  */
-static void o_net_consolidate_lowlevel (GedaObject *object,
+static void geda_net_object_consolidate_lowlevel (GedaObject *object,
                                         GedaObject *del_object, int orient)
 {
   int     temp1, temp2;
@@ -436,7 +436,7 @@ static void o_net_consolidate_lowlevel (GedaObject *object,
  * \return TRUE if there's no midpoint connection, else return FALSE
  */
 static int
-o_net_consolidate_nomidpoint (GedaObject *object, int x, int y)
+geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
 {
   GList *c_current = object->conn_list;
 
@@ -473,7 +473,7 @@ o_net_consolidate_nomidpoint (GedaObject *object, int x, int y)
  *  \return 0 if no consolidation was possible, -1 otherwise
  */
 static int
-o_net_consolidate_segments (GedaObject *object)
+geda_net_object_consolidate_segments (GedaObject *object)
 {
   GList      *c_current;
   GedaObject *other_object;
@@ -494,7 +494,7 @@ o_net_consolidate_segments (GedaObject *object)
     return 0;
   };
 
-  object_orient = o_net_orientation(object);
+  object_orient = geda_net_object_orientation(object);
 
   c_current = object->conn_list;
 
@@ -508,11 +508,11 @@ o_net_consolidate_segments (GedaObject *object)
         conn->type == CONN_ENDPOINT &&
         conn->other_whichone != -1 &&
         conn->whichone != -1 &&
-        o_net_consolidate_nomidpoint(object, conn->x, conn->y) )
+        geda_net_object_consolidate_nomidpoint(object, conn->x, conn->y) )
     {
 
       if (other_object->type == OBJ_NET) {
-        other_orient = o_net_orientation(other_object);
+        other_orient = geda_net_object_orientation(other_object);
 
         /* - both objects have the same orientation (either vert or horiz) */
         /* - it's not the same object */
@@ -524,7 +524,7 @@ o_net_consolidate_segments (GedaObject *object)
           printf("consolidating %s to %s\n", object->name, other_object->name);
 #endif
 
-          o_net_consolidate_lowlevel(object, other_object, other_orient);
+          geda_net_object_consolidate_lowlevel(object, other_object, other_orient);
 
           changed++;
           if (other_object->selected == TRUE ) {
@@ -562,7 +562,7 @@ o_net_consolidate_segments (GedaObject *object)
  *  \param toplevel  The GedaToplevel object.
  *  \param page      The Page to consolidate nets in.
  */
-void o_net_consolidate(GedaToplevel *toplevel, Page *page)
+void geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
 {
   const GList *iter;
   int status = 0;
@@ -577,7 +577,7 @@ void o_net_consolidate(GedaToplevel *toplevel, Page *page)
     GedaObject *o_current = (GedaObject *)iter->data;
 
     if (o_current->type == OBJ_NET) {
-      status = o_net_consolidate_segments(o_current);
+      status = geda_net_object_consolidate_segments(o_current);
     }
 
     if (status == -1) {
@@ -603,7 +603,7 @@ void o_net_consolidate(GedaToplevel *toplevel, Page *page)
  *
  */
 void
-o_net_modify(GedaObject *object, int x, int y, int whichone)
+geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
@@ -632,7 +632,7 @@ o_net_modify(GedaObject *object, int x, int y, int whichone)
  *
  *  \param [in] o_current   The NET GedaObject to check connectivity of
  */
-void o_net_refresh_conn_cache(GedaObject *o_current)
+void geda_net_object_refresh_conn_cache(GedaObject *o_current)
 {
   int             num_conns = 0;
   GHashTable     *visited;
@@ -745,17 +745,17 @@ void o_net_refresh_conn_cache(GedaObject *o_current)
  *  Net is fully connected when it connects at least
  *  two separate entities.
  *
- *  \sa o_net_refresh_conn_cache
+ *  \sa geda_net_object_refresh_conn_cache
  *
  *  \param [in] o_current   The GedaObject to check connectivity of
  *  \return TRUE if net is fully connected, FALSE otherwise
  */
-bool o_net_is_fully_connected (GedaObject   *o_current)
+bool geda_net_object_is_fully_connected (GedaObject *o_current)
 {
   g_return_val_if_fail (GEDA_IS_NET(o_current), FALSE);
 
   if (!o_current->net->valid_num_connected)
-    o_net_refresh_conn_cache (o_current);
+    geda_net_object_refresh_conn_cache (o_current);
 
   g_return_val_if_fail (o_current->net->valid_num_connected, FALSE);
 

@@ -665,7 +665,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         break;
 
       case(OBJ_NET):
-        new_obj = o_net_read (line, release_ver, fileformat_ver, err);
+        new_obj = geda_net_object_read (line, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);
