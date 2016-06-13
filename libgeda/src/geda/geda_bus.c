@@ -85,7 +85,7 @@ geda_bus_dispose(GObject *object)
 
 }
 
-/*! \brief GedaBus GedaObject Finalization Function
+/*! \brief GedaBus Object Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references and
  *   releases the memory allocated to the given GedaBus data structure,
@@ -236,7 +236,7 @@ GedaObject *geda_bus_new (void)
   return GEDA_OBJECT(bus);
 }
 
-/*! \brief Determine if object is a Geda Bus Object.
+/*! \brief Determine if object is a GedaBus Object.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Bus object.
@@ -331,7 +331,7 @@ geda_bus_get_y1 (const GedaBus *bus) {
 }
 
 /*!
- * \brief Set the End Width Property of a bus
+ * \brief Set the ripper-direction Property of a bus
  * \par Function Description
  *  Sets the value of the \a bus ripper_direction property
  *  if and only if \a bus is a valid GedaBus object.
