@@ -1,5 +1,9 @@
 2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_compselect.c: Replace GtkOptionMenu with GedaOptionMenu.
+
+2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_autonumber.c: Replace deprecated GtkOptionMenu with
       GedaOptionMenu.
 

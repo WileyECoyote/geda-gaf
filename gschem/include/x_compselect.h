@@ -121,7 +121,7 @@ struct _Compselect {
   GtkTooltips    *tooltips;
   bool            show_tips;
 
-  GtkOptionMenu  *behavior_menu;
+  GedaOptionMenu *behavior_menu;
 
   GedaMenuButton *style_menu;
   GtkMenu        *menu;

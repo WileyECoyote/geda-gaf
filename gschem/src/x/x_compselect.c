@@ -1228,15 +1228,14 @@ compselect_popup_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
  *  \param [in] user_data  The component selection dialog.
  */
 static void
-compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
-                                      void *user_data)
+compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
+                                      void          *user_data)
 {
   Compselect *compselect = (Compselect*)user_data;
   GtkWidget *menuitem;
   int menu_choice;
 
-  menuitem = gtk_menu_get_active (GTK_MENU
-            (gtk_option_menu_get_menu (GTK_OPTION_MENU (optionmenu))));
+  menuitem = gtk_menu_get_active(GTK_MENU(geda_option_menu_get_menu(optionmenu)));
 
   menu_choice = (int)(long)GEDA_OBJECT_GET_DATA(menuitem, "behaviors");
 
@@ -2993,7 +2992,7 @@ static void compselect_set_property (GObject      *object,
 
   switch (epid) {
     case PROP_BEHAVIOR:
-      gtk_option_menu_set_history(compselect->behavior_menu,
+      geda_option_menu_set_history(compselect->behavior_menu,
                                   g_value_get_enum (value));
       break;
     case PROP_HIDDEN:
@@ -3081,7 +3080,7 @@ static void compselect_get_property (GObject     *object,
           break;
         }
       case PROP_BEHAVIOR:
-        menuitem = gtk_menu_get_active (GTK_MENU (gtk_option_menu_get_menu(compselect->behavior_menu)));
+        menuitem = gtk_menu_get_active (GTK_MENU (geda_option_menu_get_menu(compselect->behavior_menu)));
         g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
         break;
       case PROP_HIDDEN:
@@ -3286,11 +3285,12 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 
   /* ---- behavior Menu ---- */
   /* Create and Save a pointer to the behavior menu widget */
-  optionmenu = gtk_option_menu_new ();
+  optionmenu = geda_option_menu_new ();
 
-  if (GTK_IS_OPTION_MENU (optionmenu)) {
-     gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
-                              create_behaviors_menu ());
+  if (GEDA_IS_OPTION_MENU (optionmenu)) {
+
+    geda_option_menu_set_menu((GedaOptionMenu*)optionmenu,
+                               create_behaviors_menu());
 
      g_signal_connect (optionmenu, "changed",
                        G_CALLBACK (compselect_callback_behavior_changed),
@@ -3300,7 +3300,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 
      SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
 
-     ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
+     ThisDialog->behavior_menu = ((GedaOptionMenu*)optionmenu);
 
      /* Add the combobox to the horizontal action box */
     PACK_BOX(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
