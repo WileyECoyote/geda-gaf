@@ -573,7 +573,7 @@ COMMAND (do_debug)
 */
   int test = gschem_diagnostics_dialog(w_current);
 
-  old_page_state = p_current->CHANGED;
+  old_page_state = geda_page_get_changed(p_current);
 
   switch (test) {
 

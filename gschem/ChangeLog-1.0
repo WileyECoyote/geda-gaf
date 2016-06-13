@@ -1,5 +1,8 @@
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Utilize geda_page_get_changed to get the
+      page status in function i_cmd_do_debug.
+
     * src/x/x_compselect.c: Replace GtkOptionMenu with GedaOptionMenu.
 
     * src/x/x_dialog.c: Removed gtk_window_set_transient_for in function
@@ -13,7 +16,7 @@
 2016-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Revise o_edit_lock and o_edit_unlock to call
-      geda_page_set_changed instead of setting page-CHANGED directlt as
+      geda_page_set_changed instead of setting page-CHANGED directly as
       neither validate the page object.
 
     * src/x/x_dialog.c: Simplfy color_menu_swatch_layout_data, get value
