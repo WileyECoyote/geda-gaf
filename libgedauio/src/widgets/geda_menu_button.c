@@ -73,7 +73,7 @@ struct _GedaMenuButtonData
   GtkWidget *menu;
 
   unsigned int has_grab;
-  guint32      grab_time;
+  uint32       grab_time;
 
   GtkAction   *action;
 };
@@ -753,7 +753,7 @@ geda_menu_button_activate (GedaMenuButton *button)
   GedaMenuButtonData *priv   = button->priv;
   GtkWidget          *widget = GTK_WIDGET (button);
 
-  guint32 time;
+  uint32 time;
 
   if (gtk_widget_get_realized (widget) && !button->activate_timeout) {
 

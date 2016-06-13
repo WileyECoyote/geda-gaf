@@ -3,11 +3,15 @@
     * include/geda_widget.h: A declarations general widget functions that gtk
       forgot to include as public.
 
+    * src/functions/geda_widget.c Add new module for general widget functions.
+
+    * src/widgets/geda_menu_button.c: Replace guint32 with uint32.
+
     * src/widgets/geda_option_menu.c: : Eliminate G_DEFINE_TYPE_WITH_MACRO
       and define with code, redo type identifier system, add function is_a
       _geda_option_menu.
 
-    * src/functions/geda_widget.c Add new module for general widget functions.
+
 
     * tests/test_option_menu.c: Add checks for constructing GedaOptionMenu
       widgets.
