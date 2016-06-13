@@ -969,9 +969,6 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     GEDA_HOOKUP_OBJECT(Dialog, spin_start,"spin_start");
     GEDA_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");
 
-    gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
-
     g_signal_connect (G_OBJECT (Dialog), "response",
                       G_CALLBACK ( x_dialog_edit_arc_angle_response),
                       NULL);

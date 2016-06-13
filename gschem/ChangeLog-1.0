@@ -1,6 +1,9 @@
-2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
+2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Replace GtkOptionMenu with GedaOptionMenu.
+
+    * src/x/x_dialog.c: Removed gtk_window_set_transient_for in function
+      x_dialog_edit_arc_angle, this done in the base class.
 
 2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
