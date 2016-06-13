@@ -1,3 +1,8 @@
+2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Validate mode in geda_entry_widget_get_input
+      _case.
+
 2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_widget.h: A declarations general widget functions that gtk
@@ -10,8 +15,6 @@
     * src/widgets/geda_option_menu.c: : Eliminate G_DEFINE_TYPE_WITH_MACRO
       and define with code, redo type identifier system, add function is_a
       _geda_option_menu.
-
-
 
     * tests/test_option_menu.c: Add checks for constructing GedaOptionMenu
       widgets.
@@ -1279,7 +1282,7 @@
 
 2014-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
-      * src/widgets/*.c: Revise and update Doxygen documentation
+      * src/widgets/ .c: Revise and update Doxygen documentation
 
 2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1416,17 +1419,17 @@
 
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
-        * include/geda_comboboxtext.h: Add GtkWidget *button variable to
-        _GedaComboBoxText structure, eliminate variable 'priv" because this
+      * include/geda_comboboxtext.h: Add GtkWidget *button variable to
+        _GedaComboBoxText structure, eliminate variable 'priv' because this
         was not being used.
 
-        * src/widgets/geda_comboboxtext.c: Add callback function to save
+      * src/widgets/geda_comboboxtext.c: Add callback function to save
         a pointer to the internal button object. Set the button to not be
         focusable by default, this was annoying.
 
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/widgets/geda_handlebox.c: Floating tool-bars were not staying on
+      * src/widgets/geda_handlebox.c: Floating tool-bars were not staying on
         top, used to work fine, Gtk must have "fixed". Added HINT GDK_WINDOW_
         TYPE_HINT_DOCK in function geda_handle_box_realize, also added gdk_
         window_set_transient_for in attempt to by-pass Gtk and work with Gdk
@@ -1434,40 +1437,35 @@
 
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/widgets/geda_entry.c: Fix history, again. Added have_history to
+      * src/widgets/geda_entry.c: Fix history, again. Added have_history to
           to entry struc (but kept the old history for construction purposes).
 
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c: Redo inclusion of header files
+      * src/*/*.c: Redo inclusion of header files
 
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * *: More work on Doxygen documentation; Changed group delimiters to
-          use a different style than function documentation, add and end group
-          use the double asterisk, as oppose to the asterisk exclamation pair
-          so as to allow independent indexing and while searching documentation
-          comments. Fixed doxygen warnings.
+      * More work on Doxygen documentation; Changed group delimiters to use
+        a different style than function documentation; use double asterisks
+        for end of group, as oppose to the asterisk exclamation pair so as
+        to allow independent indexing and while searching documentation
+        comments. Fixed doxygen warnings.
 
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
-	*: Redo .gitignore files
+      * : Redo .gitignore files
 
-	*dialog/*: Add new directory and file geda_input_dialog.c for generic input
-         dialogs.
+      * dialog/*: Add new directory and file geda_input_dialog.c for generic
+        input dialogs.
 
 2014-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
-	*: New library Libgedawidgets created for widgets previously built in
-	the gschem subtres. Some of these widgets are custom widget directly
-        derived from the cooresponding gtk version. Some widgets are replacements
-        forked from the gtk sources in	order to eliminate depreciation warnings,
-        even though gtk continues to maintain. Some of these widgets provide GTK3
-        functionality where none exist in GTK2. Libgedawidgets is linked against
-        GTK2 and is intended to provide "gtk" like resources to geda-gaf any
-        application without depreciating the entire free world.
-
-
-
-
-
+      * New library Libgedauio created for widgets previously built in the gschem
+        subtres. Some of these widgets are custom widget directly  derived from
+        the cooresponding gtk version. Some widgets are replacements forked from
+        the gtk sources in order to eliminate depreciation warnings, even though
+        gtk continues to maintain. Some of these widgets provide GTK3 functionality
+        where none exist in GTK2. Libgedauio is linked against GTK2 and is intended
+        to provide "gtk" like resources to geda-gaf any application without
+        depreciating the entire free world.
