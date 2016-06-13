@@ -1,3 +1,8 @@
+2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LT3494-1.sym: Add symbol boost converter, low noise,
+      180/350mA.
+
 2016-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT1763-1.sym: Add symbol low noise 500mA ldo linear reg.
