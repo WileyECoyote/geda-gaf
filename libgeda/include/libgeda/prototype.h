@@ -134,7 +134,7 @@ extern "C" {
          void    m_polygon_append_point          (GArray *points, int x, int y);
 
 /* o_arc_object.c */
-   GedaObject   *geda_arc_object_copy                 (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_arc_object_copy                 (GedaObject *o_current) WARN_UNUSED;
           int    geda_arc_object_get_arc_sweep        (const GedaObject *object);
           int    geda_arc_object_get_center_x         (const GedaObject *object);
           int    geda_arc_object_get_center_y         (const GedaObject *object);
@@ -208,7 +208,7 @@ extern "C" {
                                                        const int size, const char *name, GError **err);
         GList   *geda_object_read                     (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
          void    geda_object_scale                    (GList *list, int x_scale, int y_scale);
-   GedaObject   *geda_object_copy                     (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_object_copy                     (GedaObject *o_current) WARN_UNUSED;
          void    geda_object_mirror                   (GedaObject *object, int center_x, int center_y);
          void    geda_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_object_translate                (GedaObject *object, int dx, int dy);
@@ -255,13 +255,13 @@ extern "C" {
 
 /* o_bus_object.c */
          void    geda_bus_object_consolidate          (GedaToplevel *toplevel, Page *page);
-   GedaObject   *geda_bus_object_copy                 (const GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_direction        (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_ripper_direction (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_x1               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_x2               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_y1               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    geda_bus_object_get_y2               (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_bus_object_copy                 (const GedaObject *o_current) WARN_UNUSED;
+          int    geda_bus_object_get_direction        (const GedaObject *object) WARN_UNUSED;
+          int    geda_bus_object_get_ripper_direction (const GedaObject *object) WARN_UNUSED;
+          int    geda_bus_object_get_x1               (const GedaObject *object) WARN_UNUSED;
+          int    geda_bus_object_get_x2               (const GedaObject *object) WARN_UNUSED;
+          int    geda_bus_object_get_y1               (const GedaObject *object) WARN_UNUSED;
+          int    geda_bus_object_get_y2               (const GedaObject *object) WARN_UNUSED;
          void    geda_bus_object_mirror               (GedaObject *object, int center_x, int center_y);
          void    geda_bus_object_modify               (GedaObject *object, int x, int y, int whichone);
    GedaObject   *geda_bus_object_new                  (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
@@ -362,7 +362,7 @@ extern "C" {
        double    geda_object_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
 
 /* o_line_object.c */
-   GedaObject   *geda_line_object_copy                     (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_line_object_copy                     (GedaObject *object) WARN_UNUSED;
          bool    geda_line_object_is_endpoint              (GedaObject *object, POINT *point);
          int     geda_line_object_get_closest_endpoint     (GedaObject *object, int x, int y);
          bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
@@ -381,7 +381,7 @@ extern "C" {
        double    geda_line_object_length                   (GedaObject *object);
          void    geda_line_object_modify                   (GedaObject *object, int x, int y, int whichone);
          void    geda_line_object_mirror                   (GedaObject *object, int center_x, int center_y);
-   GedaObject   *geda_line_object_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *geda_line_object_new                      (int color, int x1, int y1, int x2, int y2) WARN_UNUSED;
          void    geda_line_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_line_object_set_end_cap              (GedaObject *object, int cap);
          void    geda_line_object_set_line_length          (GedaObject *object, int length);
@@ -436,7 +436,7 @@ extern "C" {
 
 /* o_picture.c */
 
-   GedaObject   *o_picture_copy                  (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *o_picture_copy                  (GedaObject *o_current) WARN_UNUSED;
          bool    o_picture_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
          bool    o_picture_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
          bool    o_picture_is_embedded           (GedaObject *object);
@@ -451,7 +451,7 @@ extern "C" {
          void    o_picture_mirror                (GedaObject *object, int center_x, int center_y);
    GedaObject   *o_picture_new                   (const char *file_content, unsigned int file_length,
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
-                                                  int embedded)      GEDA_WARN_UNUSED_RESULT;
+                                                  int embedded)      WARN_UNUSED;
          void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
          bool    o_picture_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
          bool    o_picture_set_from_file         (GedaObject *object, const char *filename, GError **error);
@@ -460,16 +460,16 @@ extern "C" {
 
 #ifdef GDK_PIXBUF_H
          bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
-    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void) GEDA_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf            (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf_fit        (GedaObject *object, int interpolate) GEDA_WARN_UNUSED_RESULT;
-unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-        uint8   *o_picture_get_mask_data         (GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void) WARN_UNUSED;
+    GdkPixbuf   *o_picture_get_pixbuf            (GedaObject *object) WARN_UNUSED;
+    GdkPixbuf   *o_picture_get_pixbuf_fit        (GedaObject *object, int interpolate) WARN_UNUSED;
+unsigned char   *o_picture_get_rgb_data          (GedaObject *object) WARN_UNUSED;
+        uint8   *o_picture_get_mask_data         (GedaObject *object) WARN_UNUSED;
 #endif
 
 /* o_pin_object.c */
 
-   GedaObject   *o_pin_copy                      (GedaObject *o_current) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *o_pin_copy                      (GedaObject *o_current) WARN_UNUSED;
    GedaObject   *o_pin_create_elect_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
    GedaObject   *o_pin_create_label_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *label, int x, int y);
    GedaObject   *o_pin_create_mech_attrib        (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
@@ -526,15 +526,15 @@ unsigned char   *o_picture_get_rgb_data          (GedaObject *object) GEDA_WARN_
          void    o_style_set_object              (GedaToplevel *toplevel, GedaObject *o_current);
 
 /* o_text_object.c */
-   GedaObject   *o_text_copy                     (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    o_text_get_alignment            (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-          int    o_text_get_angle                (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+   GedaObject   *o_text_copy                     (const GedaObject *object) WARN_UNUSED;
+          int    o_text_get_alignment            (const GedaObject *object) WARN_UNUSED;
+          int    o_text_get_angle                (const GedaObject *object) WARN_UNUSED;
          bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
-          int    o_text_get_size                 (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-       double    o_text_get_size_in_points       (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+          int    o_text_get_size                 (const GedaObject *object) WARN_UNUSED;
+       double    o_text_get_size_in_points       (const GedaObject *object) WARN_UNUSED;
    const char   *o_text_get_string               (const GedaObject *object);
-         int     o_text_get_x                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
-         int     o_text_get_y                    (const GedaObject *object) GEDA_WARN_UNUSED_RESULT;
+         int     o_text_get_x                    (const GedaObject *object) WARN_UNUSED;
+         int     o_text_get_y                    (const GedaObject *object) WARN_UNUSED;
          void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
    GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
                                                   int size, int visibility, int show_name_value, const char *string);
@@ -681,8 +681,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *s_slib_get_dir                  (int index);
          void    s_slib_init                     (void);
           int    s_slib_search_for_dirname       (const char *dir_name);
-         char   *s_slib_search_for_file          (const char *filename)GEDA_WARN_UNUSED_RESULT;
-         char   *s_slib_search_dirs              (const char *basename)GEDA_WARN_UNUSED_RESULT;
+         char   *s_slib_search_for_file          (const char *filename)WARN_UNUSED;
+         char   *s_slib_search_dirs              (const char *basename)WARN_UNUSED;
          void    s_slib_print                    (void);
          void    s_slib_print_dirs               (void);
           int    s_slib_unique_dir_exist         (const char *path);
@@ -758,24 +758,24 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    geda_utility_log_verbose             (const char *format, ...);
 
 /* u_string.c */
-         char   *geda_utility_string_concat           (const char *string1, ...) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_concat           (const char *string1, ...) WARN_UNUSED;
          char   *geda_utility_string_int2str          (int value, char *str, int radix);
          bool    geda_utility_string_isalnum          (const char *string);
    const char   *geda_utility_string_istr             (const char *str1, const char *str2);
-         bool    geda_utility_string_parse_xy         (const char *string, int *x, int *y) GEDA_WARN_UNUSED_RESULT;
+         bool    geda_utility_string_parse_xy         (const char *string, int *x, int *y) WARN_UNUSED;
          char   *geda_utility_string_remove_last_nl   (char *string);
          char   *geda_utility_string_remove_nl        (char *string);
-         char   *geda_utility_string_scm2c            (char *scm_str_name) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_scm2c            (char *scm_str_name) WARN_UNUSED;
          void    geda_utility_string_sort_array       (char *strings[], size_t strings_size);
-         char   *geda_utility_string_split            (char *string, char delimiter, int count) GEDA_WARN_UNUSED_RESULT;
-         char   *geda_utility_string_sprintf          (const char *format, ...) GEDA_WARN_UNUSED_RESULT;
-         char   *geda_utility_string_strdup           (const char *str) GEDA_WARN_UNUSED_RESULT;
-         bool    geda_utility_string_strequal         (const char *str1, const char *str2) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_split            (char *string, char delimiter, int count) WARN_UNUSED;
+         char   *geda_utility_string_sprintf          (const char *format, ...) WARN_UNUSED;
+         char   *geda_utility_string_strdup           (const char *str) WARN_UNUSED;
+         bool    geda_utility_string_strequal         (const char *str1, const char *str2) WARN_UNUSED;
          int     geda_utility_string_stricmp          (const char *str1, const char *str2);
          int     geda_utility_string_stristr          (const char *haystack, const char *needle);
          char   *geda_utility_string_strisubst        (char *source, char *old_str, char *new_str);
          int     geda_utility_string_strncmpi         (const char *str1, const char *str2, int n);
-         char   *geda_utility_string_strndup          (const char *str, int n) GEDA_WARN_UNUSED_RESULT;
+         char   *geda_utility_string_strndup          (const char *str, int n) WARN_UNUSED;
          int     geda_utility_string_strsize          (const char *format, va_list args);
          char   *geda_utility_string_strstr_rep       (char *original,   const char *old_str, const char *new_str);
          char   *geda_utility_string_strsubst         (char *source, char *old_str, char *new_str);

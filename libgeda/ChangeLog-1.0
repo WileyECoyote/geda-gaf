@@ -1,5 +1,11 @@
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_bus.h: Replace GEDA_WARN_UNUSED_RESULT with
+      shorter WARN_UNUSED.
+
+    * include/libgeda/prototype.h: Replace GEDA_WARN_UNUSED_RESULT with
+      shorter WARN_UNUSED.
+
     * src/object/o_get.c: Rename o_get_capstyle with geda_object prefix.
 
     * src/object/o_net_object.c: Rename functions with geda_object prefix,

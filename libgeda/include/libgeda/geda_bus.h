@@ -71,11 +71,11 @@ bool           is_a_geda_bus                 (const GedaBus *bus);
 
 GedaObject    *geda_bus_new                  (void);
 
-int            geda_bus_get_ripper_direction (const GedaBus *bus) GEDA_WARN_UNUSED_RESULT;
-int            geda_bus_get_x0               (const GedaBus *bus) GEDA_WARN_UNUSED_RESULT;
-int            geda_bus_get_x1               (const GedaBus *bus) GEDA_WARN_UNUSED_RESULT;
-int            geda_bus_get_y0               (const GedaBus *bus) GEDA_WARN_UNUSED_RESULT;
-int            geda_bus_get_y1               (const GedaBus *bus) GEDA_WARN_UNUSED_RESULT;
+int            geda_bus_get_ripper_direction (const GedaBus *bus) WARN_UNUSED;
+int            geda_bus_get_x0               (const GedaBus *bus) WARN_UNUSED;
+int            geda_bus_get_x1               (const GedaBus *bus) WARN_UNUSED;
+int            geda_bus_get_y0               (const GedaBus *bus) WARN_UNUSED;
+int            geda_bus_get_y1               (const GedaBus *bus) WARN_UNUSED;
 
 void           geda_bus_set_ripper_direction (GedaBus *bus, int direction);
 void           geda_bus_set_x0               (GedaBus *bus, int x);
