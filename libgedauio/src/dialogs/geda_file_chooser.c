@@ -453,12 +453,13 @@ geda_file_chooser_class_init (void *class, void *data)
 
   type = geda_file_chooser_get_type();
 
-  /**
-   * GedaFileChooser::filter-changed:
-   * Chooser: The chooser on which the signal is emitted
-   *
-   * The  GedaFileChooser::filter-changed signal is emitted when the user
+  /*!
+   * \brief GedaFileChooser::filter-changed:
+   * \par
+   * The GedaFileChooser::filter-changed signal is emitted when the user
    * changes the selection of the filter combo text box.
+   *
+   * param [in] chooser the object which received the signal.
    */
 
   chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed", type,
@@ -470,6 +471,14 @@ geda_file_chooser_class_init (void *class, void *data)
                                                       g_cclosure_marshal_VOID__VOID,
                                                       G_TYPE_NONE, 0);
 
+  /*!
+   * \brief GedaFileChooser::geometry-restore:
+   * \par
+   *  The GedaFileChooser::geometry-restore signal cause the dialog to restore
+   *  the dialog size and position with the signal is emitted on the dialog.
+   *
+   * param [in] chooser the object which received the signal.
+   */
   chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaFileChooserClass,
@@ -481,6 +490,14 @@ geda_file_chooser_class_init (void *class, void *data)
                                                       1,    /* n_params */
                                                       G_TYPE_STRING);
 
+  /*!
+   * \brief GedaFileChooser::geometry-save:
+   * \par
+   *  The GedaFileChooser::geometry-save signal cause the dialog to save
+   *  the dialog size and position with the signal is emitted on the dialog.
+   *
+   * param [in] chooser the object which received the signal.
+   */
   chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaFileChooserClass,
