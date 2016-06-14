@@ -439,7 +439,7 @@ static char *fix_spaces (char *str)
    *   are 100x the other formats.
    */
 PcbElement *
-pcb_element_line_parse (char * line)
+pcb_element_line_parse (char *line)
 {
   PcbElement *el;
   char *t;
@@ -691,7 +691,7 @@ insert_element (FILE *f_out,     char *element_file,
 }
 
 char *
-find_element (char * dir_path, char * element)
+find_element (char *dir_path, char *element)
 {
   GDir *dir;
   char *name;
@@ -723,33 +723,44 @@ find_element (char * dir_path, char * element)
       found = find_element (path, element);
     }
     else {
+
       /* assume it is a file and see if it is the one we want */
-      if (verbose > 1)
+      if (verbose > 1) {
         printf ("\t           : %s\t", name);
+      }
+
       if (!strcmp (name, element)) {
         found = geda_utility_string_strdup (path);
       }
       else {
+
         char *tmps;
+
         tmps = geda_utility_string_concat (element, ".fp", NULL);
+
         if (!strcmp (name, tmps)) {
           found = geda_utility_string_strdup (path);
         }
         GEDA_FREE (tmps);
       }
-      if (verbose > 1)
+
+      if (verbose > 1) {
         printf ("%s\n", found ? "Yes" : "No");
+      }
     }
+
     GEDA_FREE (path);
-    if (found)
+
+    if (found) {
       break;
+    }
   }
   g_dir_close (dir);
   return found;
 }
 
 char *
-search_element_directories (PcbElement * el)
+search_element_directories (PcbElement *el)
 {
   GList *list;
   char  *elname = NULL;
@@ -808,7 +819,9 @@ search_element_directories (PcbElement * el)
       break;
     }
   }
+
   GEDA_FREE (elname);
+
   return path;
 }
 
@@ -837,9 +850,9 @@ search_element_directories (PcbElement * el)
  *      100-Pin-jack -> 100 Pin jack
  */
 static PcbElement *
-pkg_to_element (FILE * f, char * pkg_line)
+pkg_to_element (FILE *f, char *pkg_line)
 {
-  PcbElement *el;
+  PcbElement   *el;
   char **args, *s;
   int n, n_extra_args, n_dashes;
 
@@ -948,17 +961,19 @@ pkg_to_element (FILE * f, char * pkg_line)
  * pcb file will only have new elements.
  */
 static int
-add_elements (char * pcb_file)
+add_elements (char *pcb_file)
 {
-  FILE *f_in, *f_out;
+  FILE       *f_in, *f_out;
   PcbElement *el = NULL;
-  char *p, *tmp_file, *s, buf[1024];
-  int total, paren_level = 0;
-  _Bool is_m4, skipping = FALSE;
+  char       *p, *tmp_file, *s, buf[1024];
+  int         total, paren_level = 0;
+  _Bool       is_m4, skipping = FALSE;
 
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return 0;
+
   tmp_file = geda_utility_string_concat (pcb_file, ".tmp", NULL);
+
   if ((f_out = fopen (tmp_file, "wb")) == NULL) {
     fclose (f_in);
     GEDA_FREE (tmp_file);
@@ -1081,7 +1096,7 @@ add_elements (char * pcb_file)
 }
 
 static void
-update_element_descriptions (char * pcb_file, char * bak)
+update_element_descriptions (char *pcb_file, char *bak)
 {
   FILE       *f_in;
   FILE       *f_out;
@@ -1150,14 +1165,14 @@ update_element_descriptions (char * pcb_file, char * bak)
 }
 
 static void
-prune_elements (char * pcb_file, char * bak)
+prune_elements (char *pcb_file, char *bak)
 {
-  FILE *f_in, *f_out;
-  GList *list;
+  FILE       *f_in, *f_out;
+  GList      *list;
   PcbElement *el, *el_exists;
-  char *fmt, *tmp, *s, buf[1024];
-  int paren_level = 0;
-  _Bool skipping = FALSE;
+  char       *fmt, *tmp, *s, buf[1024];
+  int         paren_level = 0;
+  _Bool       skipping = FALSE;
 
   for (list = pcb_element_list; list; list = g_list_next (list)) {
     el = (PcbElement *) list->data;
@@ -1172,19 +1187,25 @@ prune_elements (char * pcb_file, char * bak)
     } else if (el->changed_value)
       ++n_changed_value;
   }
-  if (!pcb_element_list
-      || (n_deleted == 0 && !need_PKG_purge && n_changed_value == 0)
-    )
+
+  if (!pcb_element_list ||
+      (n_deleted == 0 && !need_PKG_purge && n_changed_value == 0))
     return;
+
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
+
   tmp = geda_utility_string_concat (pcb_file, ".tmp", NULL);
+
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
     return;
   }
+
   while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
+
     if (skipping) {
       if (*s == '(')
         ++paren_level;
@@ -1192,7 +1213,9 @@ prune_elements (char * pcb_file, char * bak)
         skipping = FALSE;
       continue;
     }
+
     el_exists = NULL;
+
     if ((el = pcb_element_line_parse (s)) != NULL
         && (el_exists = pcb_element_exists (el, FALSE)) != NULL
         && !el_exists->still_exists && !preserve) {
@@ -1203,6 +1226,7 @@ prune_elements (char * pcb_file, char * bak)
       pcb_element_free (el);
       continue;
     }
+
     if (el_exists && el_exists->changed_value) {
       fmt = el->quoted_flags ?
         "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
@@ -1214,12 +1238,16 @@ prune_elements (char * pcb_file, char * bak)
         printf ("%s: changed element %s value: %s -> %s\n",
                 el->refdes, el->description,
                 el->value, el_exists->changed_value);
-    } else if (!strncmp (s, "PKG_", 4))
+    }
+    else if (!strncmp (s, "PKG_", 4)) {
       ++n_PKG_removed_old;
-    else
+    }
+    else {
       fputs (buf, f_out);
+    }
     pcb_element_free (el);
   }
+
   fclose (f_in);
   fclose (f_out);
 
@@ -1472,7 +1500,7 @@ load_extra_project_files (void)
 {
   const char *config_dir;
   const char *home_dir;
-  char *path;
+  char       *path;
   static _Bool  done = FALSE;
 
   if (done)
@@ -1661,10 +1689,11 @@ int main (int argc, char **argv)
 {
   char *pcb_file_name,  *pcb_new_file_name, *bak_file_name,
        *pins_file_name, *net_file_name, *tmp;
-  int i, exit_code;
+  char *path, *p;
+  int   i, exit_code;
   _Bool initial_pcb = TRUE;
   _Bool created_pcb_file = TRUE;
-  char *path, *p;
+
   const char *pcbdata_path;
 
   sch_basename = NULL;
