@@ -1,3 +1,14 @@
+2016-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_entry.c: Add basic checks for:
+
+            * geda_entry_get_activates_default
+            * geda_entry_set_activates_default
+            * geda_entry_widget_get_input_case
+            * geda_entry_widget_set_input_case
+            * geda_entry_widget_get_max_history
+            * geda_entry_widget_get_max_history
+
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Validate mode in geda_entry_widget_get_input

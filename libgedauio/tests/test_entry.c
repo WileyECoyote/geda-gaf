@@ -154,6 +154,82 @@ check_accessors ()
 
   GtkWidget *widget =  geda_entry_new_with_max_length (10);
 
+  /* Check activates-default */
+
+  value = geda_entry_widget_get_activates_default(widget);
+
+  if (value) { /* default is FALSE */
+    fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_activates_default(widget, TRUE);
+
+  value = geda_entry_widget_get_activates_default(widget);
+
+  if (!value) {
+    fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  /* Check input-case */
+
+  value = geda_entry_widget_get_input_case(widget);
+
+  if (value != BOTH_CASES) { /* default setting */
+    fprintf(stderr, "FAILED: %s line <%d> input-case %d\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_input_case(widget, 3);  /* Invalid value */
+
+  value = geda_entry_widget_get_input_case(widget);
+
+  if (value != BOTH_CASES) {
+    fprintf(stderr, "FAILED: %s line <%d> input-case %d != VALID\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_input_case(widget, LOWER_CASE);
+
+  value = geda_entry_widget_get_input_case(widget);
+
+  if (value != 0) {
+    fprintf(stderr, "FAILED: %s line <%d> input-case %d != LOWER\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_input_case(widget, UPPER_CASE);
+
+  value = geda_entry_widget_get_input_case(widget);
+
+  if (value != UPPER_CASE) {
+    fprintf(stderr, "FAILED: %s line <%d> input-case %d != UPPER\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  geda_entry_widget_set_input_case(widget, BOTH_CASES);
+
+  value = geda_entry_widget_get_input_case(widget);
+
+  if (value != BOTH_CASES) {
+    fprintf(stderr, "FAILED: %s line <%d> input-case %d != BOTH\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  /* Check max-history */
+
+  geda_entry_widget_set_max_history(widget, 8);
+
+  value = geda_entry_widget_get_max_history(widget);
+
+  if (value != 8) {
+    fprintf(stderr, "FAILED: %s line <%d> max-history %d != 10\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+  /* Check max-length */
+
   value = geda_entry_widget_get_max_length(widget);
 
   if (value != 10) {
