@@ -123,15 +123,16 @@ gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
  *
  * Since: 3.0.6
  */
-void gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
-    const char *description)
+void
+gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
+                                   const char *description)
 {
-    g_return_if_fail(data_text_view != NULL);
-    g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
+  g_return_if_fail(data_text_view != NULL);
+  g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
 
-    if (data_text_view->description)
-	g_free(data_text_view->description);
-    data_text_view->description = g_strdup(description);
+  if (data_text_view->description)
+    g_free(data_text_view->description);
+  data_text_view->description = g_strdup(description);
 }
 
 /**
@@ -145,7 +146,7 @@ void gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
  *
  * Since: 3.0.6
  **/
-gint
+int
 gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
@@ -162,19 +163,21 @@ gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
  *
  * Since: 3.0.6
  */
-void gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
-    gint max_length)
+void
+gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
+                                  int max_length)
 {
-    g_return_if_fail(data_text_view != NULL);
-    g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
+  g_return_if_fail(data_text_view != NULL);
+  g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
 
-    if (max_length < 0)
-	max_length = 0;
+  if (max_length < 0) {
+    max_length = 0;
+  }
 
-    if (max_length > GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE)
-	max_length = GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE;
-
-    data_text_view->max_length = max_length;
+  if (max_length > GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE) {
+    max_length = GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE;
+  }
+  data_text_view->max_length = max_length;
 }
 
 /**
@@ -188,11 +191,11 @@ void gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
  *
  * Since: 3.0.6
  **/
-gint
+int
 gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
 {
-    g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
-    return data_text_view->max_length_bytes;
+  g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
+  return data_text_view->max_length_bytes;
 }
 
 /**
@@ -206,22 +209,21 @@ gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
  * Since: 3.0.6
  */
 void gtk_data_text_view_set_max_length_bytes(GtkDataTextView *data_text_view,
-    gint max_length_bytes)
+                                             int max_length_bytes)
 {
-    g_return_if_fail(data_text_view != NULL);
-    g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
+  g_return_if_fail(data_text_view != NULL);
+  g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
 
-    if (max_length_bytes < 0)
-	max_length_bytes = 0;
+  if (max_length_bytes < 0) {
+    max_length_bytes = 0;
+  }
 
-    if (max_length_bytes > GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE)
-	max_length_bytes = GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE;
+  if (max_length_bytes > GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE) {
+    max_length_bytes = GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE;
+  }
 
-    data_text_view->max_length_bytes = max_length_bytes;
+  data_text_view->max_length_bytes = max_length_bytes;
 }
-
-
-
 
 
 GType
@@ -229,8 +231,8 @@ gtk_data_text_view_get_type(void)
 {
     static GType data_text_view_type = 0;
 
-    if (!data_text_view_type)
-    {
+    if (!data_text_view_type) {
+
 	static const GInterfaceInfo interface_info = {
 	    (GInterfaceInitFunc)NULL,
 	    (GInterfaceFinalizeFunc)NULL,
@@ -255,72 +257,72 @@ gtk_data_text_view_get_type(void)
 
 
 static void
-gtk_data_text_view_set_property(GObject *object,
-    unsigned int prop_id,
-    const GValue *value,
-    GParamSpec *pspec)
+gtk_data_text_view_set_property(GObject      *object,
+                                unsigned int  prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
-    GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
+  GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
 
-    switch(prop_id)
+  switch(prop_id)
+  {
+    case PROP_DATA_TEXT_VIEW_DESCRIPTION:
     {
-	case PROP_DATA_TEXT_VIEW_DESCRIPTION:
-	    {
-		const char *description = g_value_get_string(value);
+      const char *description = g_value_get_string(value);
 
-		if (!gtk_widget_get_realized(GTK_WIDGET(data_text_view)))
-		{
-		    if (data_text_view->description)
-			g_free(data_text_view->description);
-		    data_text_view->description = g_strdup(description);
-		}
-		else
-		{
-		    gtk_data_text_view_set_description(data_text_view, description);
-		}
-	    }
-	    break;
+      if (!gtk_widget_get_realized(GTK_WIDGET(data_text_view))) {
 
-	case PROP_DATA_TEXT_VIEW_MAX_LENGTH:
-	    gtk_data_text_view_set_max_length(data_text_view, g_value_get_int(value));
-	    break;
-
-	case PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES:
-	    gtk_data_text_view_set_max_length_bytes(data_text_view, g_value_get_int(value));
-	    break;
-
-	default:
-	    G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
-	    break;
+        if (data_text_view->description)
+          g_free(data_text_view->description);
+        data_text_view->description = g_strdup(description);
+      }
+      else
+      {
+        gtk_data_text_view_set_description(data_text_view, description);
+      }
     }
+    break;
+
+    case PROP_DATA_TEXT_VIEW_MAX_LENGTH:
+      gtk_data_text_view_set_max_length(data_text_view, g_value_get_int(value));
+      break;
+
+    case PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES:
+      gtk_data_text_view_set_max_length_bytes(data_text_view, g_value_get_int(value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+      break;
+  }
 }
 
 static void
-gtk_data_text_view_get_property(GObject *object,
-    guint prop_id,
-    GValue *value,
-    GParamSpec *pspec)
+gtk_data_text_view_get_property(GObject      *object,
+                                unsigned int  prop_id,
+                                GValue       *value,
+                                GParamSpec   *pspec)
 {
-    GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
+  GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
 
-    switch(prop_id)
-    {
-	case PROP_DATA_TEXT_VIEW_DESCRIPTION:
-	    g_value_set_string(value, data_text_view->description);
-	    break;
+  switch(prop_id)
+  {
+    case PROP_DATA_TEXT_VIEW_DESCRIPTION:
+      g_value_set_string(value, data_text_view->description);
+      break;
 
-	case PROP_DATA_TEXT_VIEW_MAX_LENGTH:
-	    g_value_set_int(value, gtk_data_text_view_get_max_length(data_text_view));
-	    break;
+    case PROP_DATA_TEXT_VIEW_MAX_LENGTH:
+      g_value_set_int(value, gtk_data_text_view_get_max_length(data_text_view));
+      break;
 
-	case PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES:
-	    g_value_set_int(value, gtk_data_text_view_get_max_length_bytes(data_text_view));
-	    break;
+    case PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES:
+      g_value_set_int(value, gtk_data_text_view_get_max_length_bytes(data_text_view));
+      break;
 
-	default:
-	    G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
-	    break;
-    }
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+      break;
+  }
 }
 
 static void
@@ -404,7 +406,7 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
 /* Signal interception */
 
 static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
-    GtkTextIter *location, char *new_text, gint new_text_len_bytes,
+    GtkTextIter *location, char *new_text, int new_text_len_bytes,
     gpointer user_data)
 {
     GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(user_data);
@@ -413,12 +415,12 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 
     if (new_text_len_bytes < 0) new_text_len_bytes = strlen(new_text);
 
-    gint max_len_chars = data_text_view->max_length;
+    int max_len_chars = data_text_view->max_length;
 
     if (max_len_chars)
     {
-	gint old_length_chars = gtk_text_buffer_get_char_count(buffer);
-	gint new_text_length_chars = g_utf8_strlen(new_text, new_text_len_bytes);
+	int old_length_chars = gtk_text_buffer_get_char_count(buffer);
+	int new_text_length_chars = g_utf8_strlen(new_text, new_text_len_bytes);
 
 #if GTK_DATA_TEXT_VIEW_DEBUG_SIGNAL > 0
 	g_debug("_gtk_data_text_view_insert_text_handler(chars): cl %d max %d new %d",
@@ -428,7 +430,7 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 	if (old_length_chars + new_text_length_chars > max_len_chars)
 	{
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
-	    gint remaining_chars = max_len_chars - old_length_chars;
+	    int remaining_chars = max_len_chars - old_length_chars;
 	    if (remaining_chars > 0)
 	    {
 		char *cp = g_malloc0(new_text_len_bytes);
@@ -442,7 +444,7 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 	}
     }
 
-    gint max_len_bytes = data_text_view->max_length_bytes;
+    int max_len_bytes = data_text_view->max_length_bytes;
 
     if (max_len_bytes)
     {
@@ -453,7 +455,7 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 
 	char *old_text = gtk_text_buffer_get_text(buffer,
 	    &start, &end, GTK_DATA_TEXT_VIEW_COUNT_HIDDEN_BYTES);
-	gint old_length_bytes = old_text ? strlen(old_text) : 0;
+	int old_length_bytes = old_text ? strlen(old_text) : 0;
 	g_free(old_text);
 
 #if GTK_DATA_TEXT_VIEW_DEBUG_SIGNAL > 0
@@ -464,7 +466,7 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 	if (old_length_bytes + new_text_len_bytes > max_len_bytes)
 	{
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
-	    gint remaining_bytes = max_len_bytes - old_length_bytes;
+	    int remaining_bytes = max_len_bytes - old_length_bytes;
 	    if (remaining_bytes > 0)
 	    {
 		char *bpxx = &new_text[remaining_bytes];  /* byte position, may be invalid */
