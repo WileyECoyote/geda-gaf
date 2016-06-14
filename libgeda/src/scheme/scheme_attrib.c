@@ -92,9 +92,9 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   }
 
   /* Carry out the attachment */
-  o_notify_emit_pre_change (attrib);
+  geda_object_notify_emit_pre_change (attrib);
   geda_attrib_object_attach (obj, attrib, TRUE);
-  o_notify_emit_change (attrib);
+  geda_object_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);
 
@@ -140,10 +140,10 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   }
 
   /* Detach object */
-  o_notify_emit_pre_change (attrib);
+  geda_object_notify_emit_pre_change (attrib);
   geda_attrib_object_remove (&obj->attribs, attrib);
   o_set_color (attrib, DETACHED_ATTRIBUTE_COLOR);
-  o_notify_emit_change (attrib);
+  geda_object_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);
 

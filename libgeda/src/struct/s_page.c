@@ -62,7 +62,7 @@ static void object_added (Page *page, GedaObject *object)
 
   object->page = page;
 
-  o_notify_emit_pre_change (object);
+  geda_object_notify_emit_pre_change (object);
 
   /* Add object to tile system. */
   s_tile_add_object        (object);
@@ -72,7 +72,7 @@ static void object_added (Page *page, GedaObject *object)
 
   page->CHANGED = 1;
 
-  o_notify_emit_change     (object);
+  geda_object_notify_emit_change     (object);
 
 }
 
@@ -82,7 +82,7 @@ pre_object_removed (Page *page, GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    o_notify_emit_pre_change (object);
+    geda_object_notify_emit_pre_change (object);
 
     /* Clear object parent pointer */
 #ifdef DEBUG
@@ -426,7 +426,7 @@ void s_page_delete_list (GedaToplevel *toplevel)
 
     if (GEDA_IS_PAGE (page)) {
 
-      o_notify_change_remove_all(page);
+      geda_object_notify_change_remove_all(page);
 
       s_page_delete (toplevel, page, FALSE);
 
@@ -876,7 +876,7 @@ void s_page_remove_object (Page *page, GedaObject *object)
 
       page->_object_list = g_list_remove (page->_object_list, object);
 
-      o_notify_emit_change (object);
+      geda_object_notify_emit_change (object);
 
       page->CHANGED = 1;
     }

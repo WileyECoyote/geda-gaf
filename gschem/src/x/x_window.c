@@ -1027,9 +1027,9 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   }
 
   /* Damage notifications should invalidate the object on screen */
-  o_notify_change_add (page,
-                      (ChangeNotifyFunc) o_invalidate_object,
-                      (ChangeNotifyFunc) o_invalidate_object, w_current);
+  geda_object_notify_change_add (page,
+                                (ChangeNotifyFunc) o_invalidate_object,
+                                (ChangeNotifyFunc) o_invalidate_object, w_current);
 
   x_window_reset_page_geometry(w_current, page);
 

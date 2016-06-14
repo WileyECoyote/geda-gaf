@@ -163,9 +163,9 @@ int o_selection_select(GedaObject *object)
     result = !object->selected;
 
     if (result) { /* if was not selected */
-      o_notify_emit_pre_change (object);
+      geda_object_notify_emit_pre_change (object);
       object->selected = TRUE;
-      o_notify_emit_change (object);
+      geda_object_notify_emit_change (object);
     }
   }
   else {
@@ -194,9 +194,9 @@ int o_selection_unselect (GedaObject *object)
   if (GEDA_IS_OBJECT(object)) {
 
     if ((result = object->selected)) { /* if was selected */
-      o_notify_emit_pre_change (object);
+      geda_object_notify_emit_pre_change (object);
       object->selected = FALSE;
-      o_notify_emit_change (object);
+      geda_object_notify_emit_change (object);
     }
   }
   else {
@@ -234,9 +234,9 @@ int o_selection_unselect_all (SELECTION *selection)
       GedaObject *object = iter->data;
 
       if ((result += object->selected)) { /* if was selected */
-        o_notify_emit_pre_change (object);
+        geda_object_notify_emit_pre_change (object);
         object->selected = FALSE;
-        o_notify_emit_change (object);
+        geda_object_notify_emit_change (object);
       }
       iter = iter->next;
     }

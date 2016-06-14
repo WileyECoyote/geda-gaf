@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-27 00:39-0500\n"
+"POT-Creation-Date: 2016-06-14 01:33-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -943,8 +943,8 @@ msgstr ""
 #: libgeda/src/object/o_bus_object.c:591
 #: libgeda/src/object/o_circle_object.c:1383
 #: libgeda/src/object/o_line_object.c:1524
-#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:542
-#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:778
+#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:543
+#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:779
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Se ha encontrado un color no válido [%s]\n"
@@ -954,8 +954,8 @@ msgstr "Se ha encontrado un color no válido [%s]\n"
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1384
 #: libgeda/src/object/o_line_object.c:1525
-#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:543
-#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:779
+#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:544
+#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:780
 msgid "Setting color to default color\n"
 msgstr "Asignando el color por defecto al color\n"
 
@@ -1185,13 +1185,14 @@ msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado una conexión con longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_basic.c:536
+#: libgeda/src/object/o_path_basic.c:537
 msgid "Failed to parse path object"
 msgstr "Falló el procesamiento de objeto ruta"
 
-#: libgeda/src/object/o_path_basic.c:554
-msgid "Unexpected end-of-file when reading path"
-msgstr "Fin de fichero inesperado mientras se leía la ruta"
+#: libgeda/src/object/o_path_basic.c:559 libgeda/src/object/o_text_basic.c:795
+#, c-format
+msgid "Unexpected end-of-file after %d lines"
+msgstr "Fin de fichero inesperado luego de %d líneas"
 
 #: libgeda/src/object/o_picture.c:97
 msgid "Invalid picture has no height, set aspect to 1.0\n"
@@ -1385,32 +1386,27 @@ msgstr "Asignando el color por defecto al color\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Asignando el color por defecto al color\n"
 
-#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:732
-#: libgeda/src/object/o_text_basic.c:744
+#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:733
+#: libgeda/src/object/o_text_basic.c:745
 msgid "Failed to parse text object"
 msgstr "Falló el procesamiento de objeto texto"
 
-#: libgeda/src/object/o_text_basic.c:751
+#: libgeda/src/object/o_text_basic.c:752
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado un texto con tamaño cero [ %c %d %d %d %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_text_basic.c:770
+#: libgeda/src/object/o_text_basic.c:771
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado un texto con alineamiento no válido [ %c %d %d %d %d %d %d "
 "%d %d ]\n"
 
-#: libgeda/src/object/o_text_basic.c:772
+#: libgeda/src/object/o_text_basic.c:773
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Cambiando el alineamiento a 'Abajo a la izquierda'\n"
-
-#: libgeda/src/object/o_text_basic.c:794
-#, c-format
-msgid "Unexpected end-of-file after %d lines"
-msgstr "Fin de fichero inesperado luego de %d líneas"
 
 #: libgeda/src/scheme/edascmhookproxy.c:141
 msgid "Scheme hook"
@@ -1736,7 +1732,7 @@ msgstr "No se ha encontrado un atributo válido slotdef=#:#,#,#...\n"
 msgid "component missing pinseq= attribute\n"
 msgstr "El componente no tiene el atributo pinseq\n"
 
-#: libgeda/src/utility/u_log.c:225
+#: libgeda/src/utility/u_log.c:255
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "No se puede guardar la copia de seguridad: %s"
@@ -1745,6 +1741,9 @@ msgstr "No se puede guardar la copia de seguridad: %s"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "El objeto ~A no es parte de una página"
+
+#~ msgid "Unexpected end-of-file when reading path"
+#~ msgstr "Fin de fichero inesperado mientras se leía la ruta"
 
 #~ msgid "Color map entry must be a two-element list"
 #~ msgstr "La entrada del mapa de colores debe ser una lista de dos elementos"

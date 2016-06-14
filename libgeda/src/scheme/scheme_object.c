@@ -224,9 +224,9 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
   int x = scm_to_int (x_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   geda_object_mirror (obj, x, 0);
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -552,10 +552,10 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
     break;
   }
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   o_set_fill_options (obj, &fill_options);
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed (obj);
 
@@ -607,9 +607,9 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
 
   GedaObject *obj = edascm_to_object (obj_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   o_set_color (obj, scm_to_int (color_s));
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -658,7 +658,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   int x2 = scm_to_int (x2_s);
   int y2 = scm_to_int (y2_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   switch (obj->type) {
   case OBJ_NET:
     s_conn_remove_object (obj); /* We may need to update connectivity. */
@@ -688,7 +688,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   }
 
   o_set_color (obj, scm_to_int (color_s));
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -946,7 +946,7 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
 
   GedaObject *obj = edascm_to_object (arc_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   geda_arc_object_modify (obj, scm_to_int(x_s), scm_to_int(y_s), ARC_CENTER);
   geda_arc_object_modify (obj, scm_to_int(r_s), 0, ARC_RADIUS);
@@ -955,7 +955,7 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
 
   o_set_color (obj, scm_to_int (color_s));
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1114,7 +1114,7 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
                     scm_list_1 (show_s));
   }
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   /* Actually make changes */
   obj->text->x = scm_to_int (x_s);
@@ -1135,7 +1135,7 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
 
   free (tmp);
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   return text_s;
 }
@@ -1368,9 +1368,9 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
      break;
   }
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   o_set_line_options (obj, &line_options);
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1550,7 +1550,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
 
   }
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   if (idx + 1 == obj->path->num_sections) {
 
@@ -1567,7 +1567,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
     obj->path->num_sections--;
   }
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1676,7 +1676,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   }
 
   /* Start making changes */
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   /* Make sure there's enough space for the new element */
   if (path->num_sections == path->num_sections_max) {
@@ -1698,7 +1698,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   path->num_sections++;
   path->sections[idx] = section;
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1796,7 +1796,7 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
                     scm_list_1 (angle_s));
   }
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   obj->picture->angle = scm_to_int (angle_s);
   obj->picture->mirrored = scm_is_true (mirror_s);
@@ -1804,7 +1804,7 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
                         scm_to_int (x1_s), scm_to_int (y1_s),
                         scm_to_int (x2_s), scm_to_int (y2_s));
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1866,7 +1866,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
   char *filename = scm_to_utf8_string (filename_s);
   scm_dynwind_unwind_handler (g_free, filename, SCM_F_WIND_EXPLICITLY);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   status = o_picture_set_from_buffer (obj, filename, buf, len, &error);
 
@@ -1880,7 +1880,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
 
   s_object_set_page_changed ( obj);
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   scm_dynwind_end ();
   return obj_s;
@@ -1916,9 +1916,9 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
   int dx = scm_to_int (dx_s);
   int dy = scm_to_int (dy_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   geda_object_translate (obj, dx, dy);
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 
@@ -1964,9 +1964,9 @@ EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
 
   SCM_ASSERT (angle % 90 == 0, angle_s, SCM_ARG4, scheme_object_rotate_x);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
   geda_object_rotate (obj, x, y, angle);
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
 

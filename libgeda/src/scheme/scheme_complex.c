@@ -142,7 +142,7 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 
   GedaObject *obj = edascm_to_object (complex_s);
 
-  o_notify_emit_pre_change (obj);
+  geda_object_notify_emit_pre_change (obj);
 
   int x = scm_to_int (x_s);
   int y = scm_to_int (y_s);
@@ -184,7 +184,7 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 
   obj->w_bounds_valid_for = NULL; /* We need to do this explicitly... */
 
-  o_notify_emit_change (obj);
+  geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed (obj);
 
@@ -299,7 +299,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
 
   /* Don't need to emit change notifications for the child because
   * it's guaranteed not to be present in a page at this point. */
-  o_notify_emit_pre_change (parent);
+  geda_object_notify_emit_pre_change (parent);
 
   parent->complex->prim_objs =
     g_list_append (parent->complex->prim_objs, child);
@@ -311,7 +311,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
   s_tile_update_object (child);
   s_conn_update_object (child);
 
-  o_notify_emit_change (parent);
+  geda_object_notify_emit_change (parent);
 
   s_object_set_page_changed (parent);
   }
@@ -377,7 +377,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
 
   /* Don't need to emit change notifications for the child because
    * only the parent will remain in the page. */
-  o_notify_emit_pre_change (parent);
+  geda_object_notify_emit_pre_change (parent);
 
   parent->complex->prim_objs =
     g_list_remove_all (parent->complex->prim_objs, child);
@@ -387,7 +387,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
   s_tile_remove_object (child);
   s_conn_remove_object (child);
 
-  o_notify_emit_change (parent);
+  geda_object_notify_emit_change (parent);
 
   s_object_set_page_changed (parent);
 

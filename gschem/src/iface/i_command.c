@@ -2913,7 +2913,7 @@ COMMAND (do_down_schematic)
                              I_PAN_DONT_REDRAW);
         o_undo_savestate(w_current, UNDO_ALL);
         s_page_goto (parent);
-        o_notify_change_add (child,
+        geda_object_notify_change_add (child,
                             (ChangeNotifyFunc) o_invalidate_object,
                             (ChangeNotifyFunc) o_invalidate_object, w_current);
       }
@@ -3036,7 +3036,7 @@ COMMAND (do_down_symbol)
                            s_page_get_objects (child),
                            I_PAN_DONT_REDRAW);
 
-      o_notify_change_add (child,
+      geda_object_notify_change_add (child,
                           (ChangeNotifyFunc) o_invalidate_object,
                           (ChangeNotifyFunc) o_invalidate_object, w_current);
 

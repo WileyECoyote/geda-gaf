@@ -417,11 +417,11 @@ extern "C" {
          void    geda_net_object_translate                 (GedaObject *object, int dx, int dy);
 
 /* o_notify.c */
-         void    o_notify_change_add             (Page *page, ChangeNotifyFunc pre_change_func,
-                                                  ChangeNotifyFunc change_func, void *user_data);
-         void    o_notify_change_remove          (Page *page, ChangeNotifyFunc pre_change_func,
-                                                  ChangeNotifyFunc change_func, void *user_data);
-         void    o_notify_change_remove_all      (Page *page);
+         void    geda_object_notify_change_add             (Page *page, ChangeNotifyFunc pre_change_func,
+                                                            ChangeNotifyFunc change_func, void *user_data);
+         void    geda_object_notify_change_remove          (Page *page, ChangeNotifyFunc pre_change_func,
+                                                            ChangeNotifyFunc change_func, void *user_data);
+         void    geda_object_notify_change_remove_all      (Page *page);
 
 /* o_path_object.c */
    GedaObject   *o_path_copy                     (const GedaObject *o_current);

@@ -118,7 +118,7 @@ int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
 {
   GList *c_current;
 
-  o_notify_emit_pre_change (other_object);
+  geda_object_notify_emit_pre_change (other_object);
 
   c_current = other_object->conn_list;
 
@@ -157,7 +157,7 @@ int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
     c_current = g_list_next(c_current);
   }
 
-  o_notify_emit_change (other_object);
+  geda_object_notify_emit_change (other_object);
 
   return (FALSE);
 }
@@ -437,7 +437,7 @@ void s_conn_update_linear_object (GedaObject *object)
                 object->line->y[j] == other_object->line->y[k] &&
                 check_direct_compat (object, other_object))
             {
-              o_notify_emit_pre_change (other_object);
+              geda_object_notify_emit_pre_change (other_object);
 
               add_connection (object, other_object, CONN_ENDPOINT,
                               other_object->line->x[k],
@@ -447,7 +447,7 @@ void s_conn_update_linear_object (GedaObject *object)
                               object->line->x[j],
                               object->line->y[j], k, j);
 
-              o_notify_emit_change (other_object);
+              geda_object_notify_emit_change (other_object);
             }
           }
         }

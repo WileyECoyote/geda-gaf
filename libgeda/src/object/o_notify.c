@@ -89,9 +89,9 @@ change_notify *o_notify_lookup (Page *page, ChangeNotifyFunc pre_change_func,
  * \param user_data       User data to be passed to callback functions.
  */
 void
-o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
-                                 ChangeNotifyFunc change_func,
-                                 void *user_data)
+geda_object_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
+                               ChangeNotifyFunc change_func,
+                               void *user_data)
 {
   if (!o_notify_lookup(page, pre_change_func, change_func, user_data)) {
 
@@ -113,7 +113,7 @@ o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
  * matches the given \a pre_change_func, \a change_func and \a
  * user_data, does nothing.
  *
- * \see o_notify_change_add()
+ * \see geda_object_notify_change_add()
  *
  * \param page #Page structure to remove handlers from.
  * \param pre_change_func Function called just before changes.
@@ -121,10 +121,10 @@ o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
  * \param user_data User data passed to callback functions.
  */
 void
-o_notify_change_remove (Page *page,
-                        ChangeNotifyFunc pre_change_func,
-                        ChangeNotifyFunc change_func,
-                        void *user_data)
+geda_object_notify_change_remove (Page *page,
+                                  ChangeNotifyFunc pre_change_func,
+                                  ChangeNotifyFunc change_func,
+                                  void *user_data)
 {
   GList *iter;
 
@@ -152,15 +152,16 @@ o_notify_change_remove (Page *page,
 
 /*! \brief Remove all change notification handlers from a Page
  * \par Function Description
- * Wrapper for o_notify_change_remove, o_notify_change_remove for each
- * member of the change notify list in \a Page
+ * Wrapper for geda_object_notify_change_remove, and
+ * geda_object_notify_change_remove for each member of
+ * the change notify list in \a Page
  *
- * \see o_notify_change_add
+ * \see geda_object_notify_change_add
  *
  * \param page #Page structure to remove handlers from.
  */
 void
-o_notify_change_remove_all (Page *page)
+geda_object_notify_change_remove_all (Page *page)
 {
   if (page->change_notify_funcs) {
     geda_notify_list_remove_all(page->change_notify_funcs);
@@ -177,7 +178,7 @@ o_notify_change_remove_all (Page *page)
  * \param object   #GedaObject structure to emit notifications for.
  */
 void
-o_notify_emit_pre_change (GedaObject *object)
+geda_object_notify_emit_pre_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
@@ -213,7 +214,7 @@ o_notify_emit_pre_change (GedaObject *object)
  * \param object   #GedaObject structure to emit notifications for.
  */
 void
-o_notify_emit_change (GedaObject *object)
+geda_object_notify_emit_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 

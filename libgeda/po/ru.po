@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-27 00:39-0500\n"
+"POT-Creation-Date: 2016-06-14 01:33-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -954,8 +954,8 @@ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d�
 #: libgeda/src/object/o_bus_object.c:591
 #: libgeda/src/object/o_circle_object.c:1383
 #: libgeda/src/object/o_line_object.c:1524
-#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:542
-#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:778
+#: libgeda/src/object/o_net_object.c:154 libgeda/src/object/o_path_basic.c:543
+#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:779
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
@@ -965,8 +965,8 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1384
 #: libgeda/src/object/o_line_object.c:1525
-#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:543
-#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:779
+#: libgeda/src/object/o_net_object.c:155 libgeda/src/object/o_path_basic.c:544
+#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:780
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
@@ -1197,13 +1197,14 @@ msgstr "Ошибка в определении соединения"
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Соединение нулевой длины «%c %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_path_basic.c:536
+#: libgeda/src/object/o_path_basic.c:537
 msgid "Failed to parse path object"
 msgstr "Ошибка в определении контура"
 
-#: libgeda/src/object/o_path_basic.c:554
-msgid "Unexpected end-of-file when reading path"
-msgstr "Неожиданный конец файла при обработке контура"
+#: libgeda/src/object/o_path_basic.c:559 libgeda/src/object/o_text_basic.c:795
+#, c-format
+msgid "Unexpected end-of-file after %d lines"
+msgstr "Неожиданный конец файла после %d строк"
 
 #: libgeda/src/object/o_picture.c:97
 msgid "Invalid picture has no height, set aspect to 1.0\n"
@@ -1396,31 +1397,26 @@ msgstr "Установка цвета по умолчанию\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:732
-#: libgeda/src/object/o_text_basic.c:744
+#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:733
+#: libgeda/src/object/o_text_basic.c:745
 msgid "Failed to parse text object"
 msgstr "Ошибка в определении текстового объекта"
 
-#: libgeda/src/object/o_text_basic.c:751
+#: libgeda/src/object/o_text_basic.c:752
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr "Текстовая строка нулевого размера «%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_basic.c:770
+#: libgeda/src/object/o_text_basic.c:771
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Неподдерживаемое значение поля «alignment» в определении текстового объекта  "
 "«%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_basic.c:772
+#: libgeda/src/object/o_text_basic.c:773
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Установка выравнивания по левому нижнему углу\n"
-
-#: libgeda/src/object/o_text_basic.c:794
-#, c-format
-msgid "Unexpected end-of-file after %d lines"
-msgstr "Неожиданный конец файла после %d строк"
 
 #: libgeda/src/scheme/edascmhookproxy.c:141
 msgid "Scheme hook"
@@ -1738,7 +1734,7 @@ msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...» в 
 msgid "component missing pinseq= attribute\n"
 msgstr "Отсутствует атрибут «pinseq» у вывода компонента\n"
 
-#: libgeda/src/utility/u_log.c:225
+#: libgeda/src/utility/u_log.c:255
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
@@ -1747,6 +1743,9 @@ msgstr "Не удалось сохранить файл резервной ко�
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Объект ~A не является частью схемы"
+
+#~ msgid "Unexpected end-of-file when reading path"
+#~ msgstr "Неожиданный конец файла при обработке контура"
 
 #~ msgid "Color map entry must be a two-element list"
 #~ msgstr "Запись в таблице цветов должна быть двухэлементным списком"

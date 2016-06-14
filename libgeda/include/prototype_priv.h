@@ -202,8 +202,8 @@ GedaObject *geda_net_object_read                 (const char buf[], unsigned int
 char       *geda_net_object_to_buffer            (GedaObject *object);
 
 /* o_notify.c */
-void        o_notify_emit_pre_change       (GedaObject *object);
-void        o_notify_emit_change           (GedaObject *object);
+void        geda_object_notify_emit_pre_change   (GedaObject *object);
+void        geda_object_notify_emit_change       (GedaObject *object);
 
 /* o_path_object.c */
 bool        o_path_get_position            (GedaObject *object, int *x, int *y);

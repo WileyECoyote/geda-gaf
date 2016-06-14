@@ -918,7 +918,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
             s_page_goto (child_page);
 
-            o_notify_change_add (child_page,
+            geda_object_notify_change_add (child_page,
                                 (ChangeNotifyFunc) o_invalidate_object,
                                 (ChangeNotifyFunc) o_invalidate_object, w_current);
 

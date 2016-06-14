@@ -59,16 +59,16 @@ o_diagnostics_notifier_two(void *wc, GedaObject *object)
 static void
 add_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
 {
-  o_notify_change_add (Current_Page,
+  geda_object_notify_change_add (Current_Page,
                        o_diagnostics_notifier_one,
                        o_diagnostics_notifier_two, w_current);
 }
 static void
 remove_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
 {
-  o_notify_change_remove (Current_Page,
-                          o_diagnostics_notifier_one,
-                          o_diagnostics_notifier_two, w_current);
+  geda_object_notify_change_remove (Current_Page,
+                                    o_diagnostics_notifier_one,
+                                    o_diagnostics_notifier_two, w_current);
 }
 
 /*

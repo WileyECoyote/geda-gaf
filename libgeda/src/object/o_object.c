@@ -585,14 +585,14 @@ void geda_object_mirror (GedaObject *object, int center_x, int center_y)
 
   if (topless != NULL) {
 
-    o_notify_emit_pre_change (object);
+    geda_object_notify_emit_pre_change (object);
 
     (*topless) (object, center_x, center_y);
 
     /* Update object to tile system. */
     s_tile_update_object(object);
 
-    o_notify_emit_change(object);
+    geda_object_notify_emit_change(object);
 
     s_object_set_page_changed (object);
 
@@ -636,14 +636,14 @@ void geda_object_rotate (GedaObject *object, int center_x, int center_y, int ang
 
   if (topless != NULL) {
 
-    o_notify_emit_pre_change (object);
+    geda_object_notify_emit_pre_change (object);
 
     (*topless) (object, center_x, center_y, angle);
 
     /* Update object to tile system. */
     s_tile_update_object(object);
 
-    o_notify_emit_change(object);
+    geda_object_notify_emit_change(object);
 
     s_object_set_page_changed (object);
   }
@@ -684,14 +684,14 @@ void geda_object_translate (GedaObject *object, int dx, int dy)
 
   if (topless != NULL) {
 
-    o_notify_emit_pre_change (object);
+    geda_object_notify_emit_pre_change (object);
 
     (*topless) (object, dx, dy);
 
     /* Update object to tile system. */
     s_tile_update_object(object);
 
-    o_notify_emit_change(object);
+    geda_object_notify_emit_change(object);
 
     s_object_set_page_changed (object);
   }

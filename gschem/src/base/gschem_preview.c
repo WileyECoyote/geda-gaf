@@ -144,7 +144,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
                        preview_window->world_right,
                        preview_window->world_top,
                        preview_window->world_bottom);
-  o_notify_change_add (preview_page,
+  geda_object_notify_change_add (preview_page,
                       (ChangeNotifyFunc) preview_invalidate,
                       (ChangeNotifyFunc) preview_invalidate,
                        preview_window);
@@ -478,10 +478,10 @@ preview_dispose  (GObject *self)
     GedaToplevel *toplevel = preview_window->toplevel;
 
     if (GEDA_IS_PAGE(toplevel->page_current)) {
-      o_notify_change_remove (toplevel->page_current,
-                             (ChangeNotifyFunc) preview_invalidate,
-                             (ChangeNotifyFunc) preview_invalidate,
-                              preview_window);
+      geda_object_notify_change_remove (toplevel->page_current,
+                                        (ChangeNotifyFunc) preview_invalidate,
+                                        (ChangeNotifyFunc) preview_invalidate,
+                                        preview_window);
     }
   }
 }
