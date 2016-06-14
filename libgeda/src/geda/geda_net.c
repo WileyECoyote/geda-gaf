@@ -193,7 +193,7 @@ GedaObject *geda_net_new (void)
   return GEDA_OBJECT(net);
 }
 
-/*! \brief Determine if object is a GedaNet GedaObject.
+/*! \brief Determine if an object is a GedaNet object.
  *
  *  \par Function Description
  *  Returns true if the argument is a GedaNet object.
@@ -203,5 +203,121 @@ GedaObject *geda_net_new (void)
 bool is_a_geda_net (const GedaNet *net)
 {
   return GEDA_IS_OBJECT(net) && (((GedaObject*)net)->type == OBJ_NET);
+}
+
+/*!
+ * \brief Retrieve the First ordinate value of the Net coordinates
+ * \par Function Description
+ *  Returns the first X value of \a net if and only if \a net is
+ *  a valid GedaNet object.
+ *
+ * \return integer value of X0 if \a net is invalid.
+ */
+int
+geda_net_get_x0 (const GedaNet *net) {
+  if (is_a_geda_net(net)) {
+    return GEDA_LINE(net)->x[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the Second ordinate value of the Net coordinates
+ * \par Function Description
+ *  Returns the second X value of \a net if and only if \a net is
+ *  a valid GedaNet object.
+ *
+ * \return integer value of X1 if \a net is invalid.
+ */
+int
+geda_net_get_x1 (const GedaNet *net) {
+  if (is_a_geda_net(net)) {
+    return GEDA_LINE(net)->x[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the First Abscissa of the Net coordinates
+ * \par Function Description
+ *  Returns the first Y value of \a net if and only if \a net is
+ *  a valid GedaNet object.
+ *
+ * \return integer value of Y0 if \a net is invalid.
+ */
+int
+geda_net_get_y0 (const GedaNet *net) {
+  if (is_a_geda_net(net)) {
+    return GEDA_LINE(net)->y[0];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the Second Abscissa of the Net coordinates
+ * \par Function Description
+ *  Returns the second Y value of \a net if and only if \a net is
+ *  a valid GedaNet object.
+ *
+ * \return integer value of Y1 if \a net is invalid.
+ */
+int
+geda_net_get_y1 (const GedaNet *net) {
+  if (is_a_geda_net(net)) {
+    return GEDA_LINE(net)->y[1];
+  }
+  return -0;
+}
+
+/*!
+ * \brief Set the First X coordinate of a GedaNet
+ * \par Function Description
+ *  Sets the first X of coordinate \a net if \a net is a valid
+ *  GedaNet object, if \a net is invalid then nothing is done.
+ */
+void
+geda_net_set_x0 (GedaNet *net, int x) {
+  if (is_a_geda_net(net)) {
+    GEDA_LINE(net)->x[0] = x;
+  }
+}
+
+/*!
+ * \brief Set the Second X coordinate of a GedaNet
+ * \par Function Description
+ *  Sets the second X of coordinate \a net if \a net is a valid
+ *  GedaNet object, if \a net is invalid then nothing is done.
+ */
+void
+geda_net_set_x1 (GedaNet *net, int x) {
+  if (is_a_geda_net(net)) {
+    GEDA_LINE(net)->x[1] = x;
+  }
+}
+
+/*!
+ * \brief Set the First Y coordinate of a GedaNet
+ * \par Function Description
+ *  Sets the first Y of coordinate \a net if \a net is a valid
+ *  GedaNet object, if \a net is invalid then nothing is done.
+ */
+void
+geda_net_set_y0 (GedaNet *net, int y) {
+  if (is_a_geda_net(net)) {
+    GEDA_LINE(net)->y[0] = y;
+  }
+}
+
+/*!
+ * \brief Set the Second Y coordinate of a GedaNet
+ * \par Function Description
+ *  Sets the second Y of coordinate \a net if \a net is a valid
+ *  GedaNet object, if \a net is invalid then nothing is done.
+ */
+void
+geda_net_set_y1 (GedaNet *net, int y) {
+  if (is_a_geda_net(net)) {
+    GEDA_LINE(net)->y[1] = y;
+  }
 }
 /** @} endgroup geda-net-object */

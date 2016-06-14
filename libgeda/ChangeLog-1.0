@@ -1,3 +1,7 @@
+2016-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_net.c: : Add accessors for GedaNet coordinates.
+
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_bus.h: Replace GEDA_WARN_UNUSED_RESULT with
