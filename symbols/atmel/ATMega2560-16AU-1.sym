@@ -1,4 +1,4 @@
-v 20100214 2
+v 20160507 2
 P 1600 11300 1600 11000 1 0 0
 {
 T 1550 11100 5 8 1 1 90 0 1
@@ -1108,20 +1108,20 @@ T 3500 11050 8 10 1 1 0 6 1
 refdes=U?
 T 1400 8800 9 10 1 0 0 0 1
 ATmega2560
-T 300 13300 5 10 0 0 0 0 1
+T 3300 11300 5 10 0 1 0 0 1
 device=ATmega2560-16AU
-T 300 12500 5 10 0 0 0 0 1
+T 3300 11500 5 10 0 1 0 0 1
 footprint=TQFP_100
-T 300 11900 5 10 0 0 0 0 1
+T 300 12600 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 300 12900 5 10 0 0 0 0 1
+T 300 11800 5 10 0 1 0 0 1
 documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2549.pdf
-T 300 13100 5 10 0 0 0 0 1
+T 300 12000 5 10 0 1 0 0 1
 description=AVR 8-bit Microcontroller with 256K Flash
-T 300 12300 5 10 0 0 0 0 1
+T 300 11600 5 10 0 0 0 0 1
 numslots=0
-T 300 11700 5 10 0 0 0 0 1
+T 300 12400 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 11500 5 10 0 0 0 0 1
+T 300 12200 5 10 0 0 0 0 1
 use-license=unlimited
 B 300 300 3200 10700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

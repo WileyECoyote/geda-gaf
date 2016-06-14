@@ -108,7 +108,7 @@ footprint=DFN-2-3-8
 T 400 2200 5 10 1 0 0 0 1
 device=LT3494
 T 400 2400 5 10 0 0 0 0 1
-description=180/350mA boost converter with low noise characteristics
+description=boost converter,low noise,180/350mA
 T 400 2600 5 10 0 0 0 0 1
 documentation=http://cds.linear.com/docs/en/datasheet/3494fb.pdf
 T 400 2800 5 10 0 0 0 0 1
