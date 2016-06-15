@@ -1,3 +1,24 @@
+2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    Variation of modifications by Peter Brett <peter@peter-b.co.uk>,
+    see https://github.com/peter-b/geda-gaf/
+    commit/a1947a4eebb27826ccba571f3f313a316fa695bc:
+
+    gnetlist: Workaround some poor behaviour in rename tracking
+
+    A memory exhaustion bug was reported in gnetlist, where netlisting a
+    set of similar schematics was causing excess allocation by the rename
+    tracking code.  Testing suggested that `s_rename_add_lowlevel()` was
+    being called repeatedly with identical `src` and `dest` arguments.
+
+    * src/s_rename.c: Add GHashTable *rename_table, functions s_rename_
+      compare_strings and s_rename_have_rename_record,, Revise s_rename_init
+      to create the hash table and s_rename_destroy_all to destroy the
+      table. Revise to s_rename_add_lowlevel to first check if rename is
+      the same as last and if not then check hash table and only add unique
+      rename records. Probably should just use the hash table alone and
+      eliminate the list if pointer to RENAME structures.
+
 2016-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Make s_rename_all_lowlevel static.

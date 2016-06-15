@@ -28,6 +28,9 @@
   * 2005/05/02  Almost totally reimplemented to support dynamic allocation.
   *
   * Changes are Copyright (C) 2005 Carlos A. R. Azevedo
+  *
+  * 2016/06/02 WEH: Add s_rename_compare_strings, s_rename_have_rename_record
+  *            and hash to eliminate creation of redundant rename records.
   */
 
 #include <config.h>
@@ -52,6 +55,8 @@ static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest);
 static SET *first_set = NULL;
 static SET *last_set = NULL;
 
+static GHashTable *rename_table;
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -62,6 +67,8 @@ void s_rename_init(void)
   if (first_set) {
     fprintf(stderr,_("ERROR: Overwriting a valid rename list.\n"));
   }
+
+  rename_table = g_hash_table_new(g_direct_hash, g_str_equal);
 }
 
 /*! \todo Finish function documentation!!!
@@ -89,6 +96,9 @@ void s_rename_destroy_all(void)
     GEDA_FREE(to_free);
   }
   last_set = NULL;
+
+  g_hash_table_destroy(rename_table);
+  rename_table = NULL;
 }
 
 /*!
@@ -172,6 +182,40 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
   return (FALSE);
 }
 
+/*!
+ * \brief Compares target strings to previous targets
+ * \par Function Description
+ *  Checks if the src and dest string targets are equivilent to the strings
+ *  of the from the previous rename. This function is used to avoid adding
+ *  duplicate renames.
+ *
+ * \returns TRUE if strings are the same as the last rename or
+ *          FALSE if either of the strings are different.
+ */
+static int s_rename_compare_strings (const RENAME *rename,
+                                     const char   *src,
+                                     const char   *dest)
+{
+  return (!strcmp(rename->src, src) && !strcmp(rename->dest, dest));
+}
+
+/*!
+ * \brief Compares target strings to previous targets
+ * \par Function Description
+ *  Checks if src and dest string targets are in the rename_table.
+ *
+ * \returns TRUE if rename record exist, FALSE if the record does not exist.
+ */
+static int s_rename_have_rename_record (const char *src, const char *dest)
+{
+  char *ptr = g_hash_table_lookup (rename_table, src);
+
+  if (ptr) {
+    return (!strcmp(dest, ptr));
+  }
+  return FALSE;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -183,20 +227,28 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
 
   g_return_if_fail(last_set != NULL);
 
-  new_rename = GEDA_MEM_ALLOC(sizeof (RENAME));
+  /* Skip adding if strings are the same as previous strings */
+  if (!s_rename_compare_strings(last_set->last_rename, src, dest)) {
 
-  g_return_if_fail(new_rename != NULL);
+    if (!s_rename_have_rename_record(src, dest)) {
 
-  new_rename->next = NULL;
-  new_rename->src  = geda_utility_string_strdup(src);
-  new_rename->dest = geda_utility_string_strdup(dest);
+      new_rename = GEDA_MEM_ALLOC(sizeof (RENAME));
 
-  if (last_set->first_rename == NULL) {
-    last_set->first_rename = last_set->last_rename = new_rename;
-  }
-  else {
-    last_set->last_rename->next = new_rename;
-    last_set->last_rename = new_rename;
+      g_return_if_fail(new_rename != NULL);
+
+      new_rename->next = NULL;
+      new_rename->src  = geda_utility_string_strdup(src);
+      new_rename->dest = geda_utility_string_strdup(dest);
+
+      if (last_set->first_rename == NULL) {
+        last_set->first_rename = last_set->last_rename = new_rename;
+      }
+      else {
+        last_set->last_rename->next = new_rename;
+        last_set->last_rename = new_rename;
+      }
+      g_hash_table_insert (rename_table, (char*)src, (char*)dest);
+    }
   }
 }
 
