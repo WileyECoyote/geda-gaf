@@ -4,6 +4,9 @@
       with each string and remove the final LF instead call gstring
       twice inside the loop. Rename functions with geda_object prefix.
 
+    * src/struct/s_path.c: Revise s_path_copy_modify to utilize accessor
+      geda_object_get_color();
+
     * tests/test_net.c: Add basic checks for net coordinate accessors.
 
 2016-06-14 Wiley E. Hill <wileyhill@gmail.com>
