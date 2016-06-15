@@ -134,13 +134,15 @@ s_page_new_common(Page *page)
   return page;
 }
 
-/*! \brief create a new page object
- *  \par Function Description
+/*!
+ * \brief create a new page object
+ * \par Function Description
  *  Creates a new page and adds the page to <B>toplevel</B>'s list of pages.
  *  Initializes the <B>filename</B> to given value \a <B>filename</B>. The
  *  <B>toplevel</B>'s current page is not changed by this function.
  */
-Page *s_page_new (GedaToplevel *toplevel, const char *filename)
+Page *
+s_page_new (GedaToplevel *toplevel, const char *filename)
 {
   Page *page;
 
@@ -211,13 +213,15 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   return s_page_new_common(page);
 }
 
-/*! \brief Autosave initialization function.
- *  \par Function Description
+/*!
+ * \brief Autosave initialization function.
+ * \par Function Description
  *  This function sets up the autosave callback function.
  *
- *  \param [in] toplevel  The GedaToplevel object.
+ * \param [in] toplevel  The GedaToplevel object.
  */
-void s_page_autosave_init(GedaToplevel *toplevel)
+void
+s_page_autosave_init(GedaToplevel *toplevel)
 {
   if (toplevel->auto_save_interval != 0) {
 
@@ -229,8 +233,9 @@ void s_page_autosave_init(GedaToplevel *toplevel)
   }
 }
 
-/*! \brief Autosave callback function.
- *  \par Function Description
+/*!
+ * \brief Autosave callback function.
+ * \par Function Description
  *  This function is a g_timeout callback functions that is called
  *  every "interval" milliseconds and check and sets a flag to save
  *  a backup copy of the opened pages.
@@ -250,7 +255,8 @@ void s_page_autosave_init(GedaToplevel *toplevel)
  *
  *  \return The auto_save_interval setting.
  */
-int s_page_autosave (GedaToplevel *toplevel)
+int
+s_page_autosave (GedaToplevel *toplevel)
 {
   if (toplevel == NULL) {
     u_log_message (_("Disabling auto save timer, no toplevel"));
@@ -281,16 +287,18 @@ int s_page_autosave (GedaToplevel *toplevel)
   return toplevel->auto_save_interval;
 }
 
-/*! \brief Check if CHANGED flag is set for any page in list.
- *  \par Function Description
+/*!
+ * \brief Check if CHANGED flag is set for any page in list.
+ * \par Function Description
  *  This function checks the CHANGED flag for all pages in the <B>list</B>
  *  object.
  *
- *  \param [in] list  PageList to check CHANGED flag in.
+ * \param [in] list  PageList to check CHANGED flag in.
  *
- *  \return 1 if any page has the CHANGED flag set, 0 otherwise.
+ * \return 1 if any page has the CHANGED flag set, 0 otherwise.
  */
-bool s_page_check_changed (PageList *list)
+bool
+s_page_check_changed (PageList *list)
 {
   const GList *iter;
 
@@ -306,13 +314,15 @@ bool s_page_check_changed (PageList *list)
   return FALSE;
 }
 
-/*! \brief Reset the CHANGED flag of all pages.
- *  \par Function Description
+/*!
+ * \brief Reset the CHANGED flag of all pages.
+ * \par Function Description
  *  This function resets the CHANGED flag of each page following \a head.
  *
- *  \param [in,out] list  Page list to set CHANGED flags in.
+ * \param [in,out] list  Page list to set CHANGED flags in.
  */
-void s_page_clear_changed (PageList *list)
+void
+s_page_clear_changed (PageList *list)
 {
   const GList *iter;
 
@@ -323,9 +333,9 @@ void s_page_clear_changed (PageList *list)
   }
 }
 
-/*! \brief delete a page and it's contents
- *
- *  \par Function Description
+/*!
+ * \brief delete a page and it's contents
+ * \par Function Description
  *  Deletes a single page <B>page</B> from the <B>toplevel</B> list of
  *  pages. If the page being deleted is the current <B>page</B>, this
  *  function sets the field <B>page_current</B> of the GedaToplevel
@@ -337,9 +347,9 @@ void s_page_clear_changed (PageList *list)
  * \param [in] page       Page to be removed.
  * \param [in] previous   If True the previous page will be set current
  *                        if the page being deleted is the current page.
- *
  */
-void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
+void
+s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   Page *tmp;
 
@@ -406,14 +416,16 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   }
 }
 
-/*! \brief Deletes the list of pages in <B>toplevel</B>.
- *  \par Function Description
+/*!
+ * \brief Deletes the list of pages in <B>toplevel</B>.
+ * \par Function Description
  *  Deletes the list of pages of <B>toplevel</B>.
  *  This function should only be called when you are finishing up.
  *
- *  \param toplevel  The GedaToplevel object.
+ * \param toplevel  The GedaToplevel object.
  */
-void s_page_delete_list (GedaToplevel *toplevel)
+void
+s_page_delete_list (GedaToplevel *toplevel)
 {
   GList *list_copy, *iter;
 
@@ -437,21 +449,24 @@ void s_page_delete_list (GedaToplevel *toplevel)
 
 }
 
-/*! \brief Get the current page
+/*!
+  \brief Get the current page
 * \par Function Description
-* This function returns the current Page object.
+*  This function returns the current Page object.
 *
 * \sa s_page_set_current, s_page_goto
 *
 * \param [in,out] toplevel This toplevel
 */
-Page *s_page_get_current (GedaToplevel *toplevel)
+Page *
+s_page_get_current (GedaToplevel *toplevel)
 {
   return geda_toplevel_get_current_page(toplevel);
 }
 
-/*! \brief Set the current page
- *  \par Function Description
+/*!
+ * \brief Set the current page
+ * \par Function Description
  *  Changes the current page in \a toplevel to the page \a page.
  *
  * \sa s_page_get_current, s_page_goto
@@ -461,13 +476,14 @@ Page *s_page_get_current (GedaToplevel *toplevel)
  *
  * \returns TRUE if \a page was set as the current page
  */
-bool s_page_set_current (GedaToplevel *toplevel, Page *page)
+bool
+s_page_set_current (GedaToplevel *toplevel, Page *page)
 {
    return geda_toplevel_set_current_page(toplevel, page);
 }
 
-/*! \brief Get File Extension of the File Assocatiacted with Page.
- *
+/*!
+ * \brief Get File Extension of the File Assocatiacted with Page.
  * \par Function Description
  * Returns a pointer to extension of the filename associated with Page.
  * The string is owned by the Page and must not be changed!
@@ -477,10 +493,10 @@ bool s_page_set_current (GedaToplevel *toplevel, Page *page)
  * \return point to the page file name extension or NULL if there
  *         either no file name or no DOT suffix used in the name.
  *
- *
  * \sa s_page_is_symbol_file
  */
-const char *s_page_get_file_extension (Page *page)
+const char *
+s_page_get_file_extension (Page *page)
 {
   if (page != NULL && page->filename != NULL) {
     return f_get_filename_ext(page->filename);
@@ -488,16 +504,18 @@ const char *s_page_get_file_extension (Page *page)
   return NULL;
 }
 
-/*! \brief Get the Current Selection for a given Page
- *  \par Function Description
+/*!
+ * \brief Get the Current Selection for a given Page
+ * \par Function Description
  *  Returns the selection GedaList member given the Page
  *  object or NULL if \a page is not a GedaPage object.
  *
- *  \param page Pointer to a Geda Page object
+ * \param page Pointer to a Geda Page object
  *
- *  \returns Pointer to selection GedaList of the page
+ * \returns Pointer to selection GedaList of the page
  */
-SELECTION *s_page_get_selection (Page *page)
+SELECTION *
+s_page_get_selection (Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     return page->selection_list;
@@ -505,20 +523,21 @@ SELECTION *s_page_get_selection (Page *page)
   return NULL;
 }
 
-/*! \brief Changes set current page in toplevel and change directory
- *  \par Function Description
- *
+/*!
+ * \brief Changes set current page in toplevel and change directory
+ * \par Function Description
  *  Calls geda_toplevel_set_current_page to set the current page
- * referenced by \a toplevel if and only if \a toplevel is valid
- * GedaToplevel. Page must be in the toplevels list of pages.
- * If \a page is valid, the current working directory is set to
- * the directory associated with the file.
+ *  referenced by \a toplevel if and only if \a toplevel is valid
+ *  GedaToplevel. Page must be in the toplevels list of pages.
+ *  If \a page is valid, the current working directory is set to
+ *  the directory associated with the file.
  *
- *  \param page      The Page to go to
+ * \param page      The Page to go to
  *
- *  \returns True on success, otherwise FALSE
+ * \returns True on success, otherwise FALSE
  */
-bool s_page_goto (Page *page)
+bool
+s_page_goto (Page *page)
 {
   bool  success;
 
@@ -565,17 +584,18 @@ bool s_page_goto (Page *page)
   return success;
 }
 
-/*! \brief Get is Page a Symbol file.
- *
+/*!
+ * \brief Get is Page a Symbol file.
  * \par Function Description
- * Returns true if the filename associated with page ends in ".sym"!
+ *  Returns true if the filename associated with page ends in ".sym"!
  *
  * \param [in] page Pointer to a Page data structure.
  *
  * \return bool TRUE if Page is data from a Symbol file
  *
  */
-bool s_page_is_symbol_file (Page *page) {
+bool
+s_page_is_symbol_file (Page *page) {
 
   if (page != NULL) {
 
@@ -591,14 +611,16 @@ bool s_page_is_symbol_file (Page *page) {
   return FALSE;
 }
 
-/*! \brief Print full GedaToplevel structure.
- *  \par Function Description
+/*!
+ * \brief Print full GedaToplevel structure.
+ * \par Function Description
  *  This function prints the internal structure of <B>toplevel</B>'s
  *  list of pages.
  *
- *  \param [in] toplevel  The GedaToplevel object to print.
+ * \param [in] toplevel  The GedaToplevel object to print.
  */
-void s_page_print_all (GedaToplevel *toplevel)
+void
+s_page_print_all (GedaToplevel *toplevel)
 {
   const GList *iter;
 
@@ -611,7 +633,7 @@ void s_page_print_all (GedaToplevel *toplevel)
 }
 
 static int
-page_comparator(const void *pg1, const void *pg2)
+s_page_comparator(const void *pg1, const void *pg2)
 {
    const Page *page1 = pg1;
    const Page *page2 = pg2;
@@ -619,31 +641,35 @@ page_comparator(const void *pg1, const void *pg2)
    return page1->pid - page2->pid;
 }
 
-/*! \brief Resequence the Page List by Page Id.
- *  \par Function Description
+/*!
+ * \brief Resequence the Page List by Page Id.
+ * \par Function Description
  *  Sorts the page list in <B>toplevel</B> by page Id, which is
  *  equivalent to the order the pages were loaded.
  *
- *  \param [in] toplevel  The GedaToplevel.
+ * \param [in] toplevel  The GedaToplevel.
  */
-void s_page_resequence_by_ids (GedaToplevel *toplevel)
+void
+s_page_resequence_by_ids (GedaToplevel *toplevel)
 {
   if (g_list_length(geda_toplevel_get_pages(toplevel)) > 1) {
 
     toplevel->pages->glist = g_list_sort (toplevel->pages->glist,
-                                          page_comparator);
+                                          s_page_comparator);
   }
 }
 
-/*! \brief Saves all the pages of a GedaToplevel object.
- *  \par Function Description
+/*!
+ * \brief Saves all the pages of a GedaToplevel object.
+ * \par Function Description
  *  Saves all the pages in the <B>toplevel</B> parameter.
  *
- *  \param [in] toplevel  The GedaToplevel to save pages from.
+ * \param [in] toplevel  The GedaToplevel to save pages from.
  *
- *  \return The number of failed tries to save a page.
+ * \return The number of failed tries to save a page.
  */
-int s_page_save_all (GedaToplevel *toplevel)
+int
+s_page_save_all (GedaToplevel *toplevel)
 {
   const GList *iter;
   const GList *list;
@@ -674,16 +700,18 @@ int s_page_save_all (GedaToplevel *toplevel)
   return status;
 }
 
-/*! \brief Saves all unsaved pages of a GedaToplevel object.
- *  \par Function Description
+/*!
+ * \brief Saves all unsaved pages of a GedaToplevel object.
+ * \par Function Description
  *  Saves all pages in given <B>toplevel</B> for which the CHANGED flag
  *  is set.
  *
- *  \param [in] toplevel  The GedaToplevel to save pages from.
+ * \param [in] toplevel  The GedaToplevel to save pages from.
  *
- *  \return The number of failed tries to save a page.
+ * \return The number of failed tries to save a page.
  */
-int s_page_save_all_changed (GedaToplevel *toplevel)
+int
+s_page_save_all_changed (GedaToplevel *toplevel)
 {
   const GList *iter;
   const GList *list;
@@ -718,17 +746,19 @@ int s_page_save_all_changed (GedaToplevel *toplevel)
   return status;
 }
 
-/*! \brief Search for pages by filename.
- *  \par Function Description
+/*!
+ * \brief Search for pages by filename.
+ * \par Function Description
  *  Searches in \a toplevel's list of pages for a page with a filename
  *  equal to \a filename.
  *
- *  \param toplevel  The GedaToplevel object
- *  \param filename  The filename string to search for
+ * \param toplevel  The GedaToplevel object
+ * \param filename  The filename string to search for
  *
- *  \return Page pointer to a matching page, NULL otherwise.
+ * \return Page pointer to a matching page, NULL otherwise.
  */
-Page *s_page_search (GedaToplevel *toplevel, const char *filename)
+Page *
+s_page_search (GedaToplevel *toplevel, const char *filename)
 {
   if (filename) {
 
@@ -748,18 +778,20 @@ Page *s_page_search (GedaToplevel *toplevel, const char *filename)
   return NULL;
 }
 
-/*! \brief Search for a page given its page id in a page list.
- *  \par Function Description
+/*!
+ * \brief Search for a page given its page id in a page list.
+ * \par Function Description
  *  This functions returns the page that have the page id \a pid in
  *  the list of pages starting at \a page_list, or NULL if there is no
  *  such page.
  *
- *  \param [in] list      The list of page to search the page in.
- *  \param [in] pid       The ID of the page to find.
+ * \param [in] list      The list of page to search the page in.
+ * \param [in] pid       The ID of the page to find.
  *
- *  \returns A pointer on the page found or NULL if not found.
+ * \returns A pointer on the page found or NULL if not found.
  */
-Page *s_page_search_by_page_id (PageList *list, int pid)
+Page *
+s_page_search_by_page_id (PageList *list, int pid)
 {
   const GList *iter;
 
@@ -775,16 +807,17 @@ Page *s_page_search_by_page_id (PageList *list, int pid)
   return NULL;
 }
 
-/*! \brief Set the font-renderer-specific bounds function.
- *  \par Function Description
+/*!
+ * \brief Set the font-renderer-specific bounds function.
+ * \par Function Description
  *  Set the function to be used to calculate text bounds for #Text
  *  GedaObject associated with the page. This allow a per page object renderer
  *  function to be defined. If the function is not defined the renderer for
  *  the Toplevel will be used instead, if a Toplevel renderer is defined.
  *
- *  \param [in] page      Page to associate the render text function.
- *  \param [in] func      Function to use.
- *  \param [in] user_data User data to be passed to the function.
+ * \param [in] page      Page to associate the render text function.
+ * \param [in] func      Function to use.
+ * \param [in] user_data User data to be passed to the function.
  */
 void
 s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
@@ -798,17 +831,18 @@ s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
   }
 }
 
-/*! \brief Append an GedaObject to the Page
- *
- *  \par Function Description
+/*!
+ * \brief Append an GedaObject to the Page
+ * \par Function Description
  *  Links the passed GedaObject to the end of the Page's linked list
  *  of objects and then calls object_added. Notice that only the
  *  given object is added, descendents of \a object are not added.
  *
- *  \param [in] page      The Page the object is being added to.
- *  \param [in] object    The GedaObject being added to the page.
+ * \param [in] page      The Page the object is being added to.
+ * \param [in] object    The GedaObject being added to the page.
  */
-void s_page_append_object (Page *page, GedaObject *object)
+void
+s_page_append_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -827,18 +861,19 @@ void s_page_append_object (Page *page, GedaObject *object)
   }
 }
 
-/*! \brief Append a GList of Objects to the Page
- *
- *  \par Function Description
+/*!
+ * \brief Append a GList of Objects to the Page
+ * \par Function Description
  *  Links the passed GedaObject GList to the end of the Page's
  *  object_list.
  *
- *  \param [in] page      The Page the objects are being added to.
- *  \param [in] obj_list  The Object list being added to the page.
+ * \param [in] page      The Page the objects are being added to.
+ * \param [in] obj_list  The Object list being added to the page.
  *
- *  \todo The list of objects is not checked
+ * \todo The list of objects is not checked
  */
-void s_page_append_list (Page *page, GList *obj_list)
+void
+s_page_append_list (Page *page, GList *obj_list)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -858,15 +893,17 @@ void s_page_append_list (Page *page, GList *obj_list)
   }
 }
 
-/*! \brief Remove an GedaObject from the Page
- *  \par Function Description
+/*!
+ * \brief Remove an GedaObject from the Page
+ * \par Function Description
  *  Removes the passed GedaObject from the Page's
  *  linked list of objects.
  *
- *  \param [in] page      The Page the object is being removed from.
- *  \param [in] object    The GedaObject being removed from the page.
+ * \param [in] page      The Page the object is being removed from.
+ * \param [in] object    The GedaObject being removed from the page.
  */
-void s_page_remove_object (Page *page, GedaObject *object)
+void
+s_page_remove_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -886,8 +923,8 @@ void s_page_remove_object (Page *page, GedaObject *object)
   }
 }
 
-/*! \brief Replace an GedaObject in a Page, in the same list position.
- *
+/*!
+ * \brief Replace an GedaObject in a Page, in the same list position.
  * \par Function Description
  * Removes \a object1 from \a page's linked list of objects, and puts
  * \a object2 in the position thus vacated. If \a object1 is not in \a
@@ -926,14 +963,15 @@ s_page_replace_object (Page *page, GedaObject *object1, GedaObject *object2)
   }
 }
 
-/*! \brief Remove and free all GedaObjects from the Page
- *
- *  \par Function Description
+/*!
+ * \brief Remove and free all GedaObjects from the Page
+ * \par Function Description
  *  Removes and releases all GedaObjects from the Page.
  *
- *  \param [in] page      The Page being cleared.
+ * \param [in] page      The Page being cleared.
  */
-void s_page_delete_objects (Page *page)
+void
+s_page_delete_objects (Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -952,41 +990,43 @@ void s_page_delete_objects (Page *page)
   }
 }
 
-/*! \brief Return an GedaObject on the Page by ID
- *
- *  \par Function Description
+/*!
+ * \brief Return an GedaObject on the Page by ID
+ * \par Function Description
  *  An accessor for the Page's GList of objects.
  *
- *  \note The GedaObject is owned by the Page, and must not be
- *        free'd or modified by the caller.
+ * \note The GedaObject is owned by the Page, and must not be
+ *       free'd or modified by the caller.
  *
- *  \sa s_page_get_objects
+ * \sa s_page_get_objects
  *
- *  \param [in] page      The Page to get objects on.
- *  \param [in] sid       The Page Id.
+ * \param [in] page      The Page to get objects on.
+ * \param [in] sid       The Page Id.
  *
- *  \returns a pointer to the Page's GList of objects
+ * \returns a pointer to the Page's GList of objects
  */
-GedaObject *s_page_get_object (Page *page, int sid)
+GedaObject *
+s_page_get_object (Page *page, int sid)
 {
   return geda_page_get_object(page, sid);
 }
 
-/*! \brief Return a GList of Objects on the Page
- *
- *  \par Function Description
+/*!
+ * \brief Return a GList of Objects on the Page
+ * \par Function Description
  *  An accessor for the Page's GList of objects.
  *
- *  \note This GList is owned by the Page, and must not be
- *        free'd or modified by the caller.
+ * \note This GList is owned by the Page, and must not be
+ *       free'd or modified by the caller.
  *
- *  \sa s_page_get_object
+ * \sa s_page_get_object
  *
- *  \param [in] page      The Page to get objects on.
+ * \param [in] page      The Page to get objects on.
  *
- *  \returns a pointer to the Page's GList of objects
+ * \returns a pointer to the Page's GList of objects
  */
-GList *s_page_get_objects (Page *page)
+GList *
+s_page_get_objects (Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     return page->_object_list;
@@ -994,17 +1034,17 @@ GList *s_page_get_objects (Page *page)
   return NULL;
 }
 
-/*! \brief Find the objects in a given region
- *
- *  \par Function Description
+/*!
+ * \brief Find the objects in a given region
+ * \par Function Description
  *  Finds the objects which are inside, or intersect
  *  the passed box shaped region.
  *
- *  \param [in] page      The Page to find objects on
- *  \param [in] rects     The RECTANGLE regions to check
- *  \param [in] n_rects   The number of regions
+ * \param [in] page      The Page to find objects on
+ * \param [in] rects     The RECTANGLE regions to check
+ * \param [in] n_rects   The number of regions
  *
- *  \return The GList of Objects in the region
+ * \return The GList of Objects in the region
  */
 GList*
 s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
@@ -1046,19 +1086,19 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
   return list;
 }
 
-/*! \brief Find the objects in a given region
- *
- *  \par Function Description
+/*!
+ * \brief Find the objects in a given region
+ * \par Function Description
  *  Finds the objects which are inside, or intersect
  *  the passed box shaped region.
  *
- *  \param [in] page      The Page to find objects on.
- *  \param [in] min_x     The smaller X coordinate of the region.
- *  \param [in] min_y     The smaller Y coordinate of the region.
- *  \param [in] max_x     The larger  X coordinate of the region.
- *  \param [in] max_y     The larger  Y coordinate of the region.
+ * \param [in] page      The Page to find objects on.
+ * \param [in] min_x     The smaller X coordinate of the region.
+ * \param [in] min_y     The smaller Y coordinate of the region.
+ * \param [in] max_x     The larger  X coordinate of the region.
+ * \param [in] max_y     The larger  Y coordinate of the region.
  *
- *  \return The GList of Objects in the region.
+ * \return The GList of Objects in the region.
  */
 GList*
 s_page_objects_in_region (Page *page, int min_x, int min_y, int max_x, int max_y)
