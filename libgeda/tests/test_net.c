@@ -114,6 +114,135 @@ int test_net (void)
 }
 
 int
+check_accessors ()
+{
+  int count;
+  int result = 0;
+
+  count = geda_net_get_ripper_direction(NULL);
+  count = geda_net_get_x0(NULL);
+  count = geda_net_get_x1(NULL);
+  count = geda_net_get_y0(NULL);
+  count = geda_net_get_y1(NULL);
+
+  geda_net_set_ripper_direction(NULL, 1);
+  geda_net_set_x0(NULL, 18);
+  geda_net_set_x1(NULL, 19);
+  geda_net_set_y0(NULL, 20);
+  geda_net_set_y1(NULL, 21);
+
+  for (count = 0; count < 3; count++) {
+
+    int c  = m_random_number ( 0, MAX_COLORS - 1);
+    int x1 = m_random_number ( 0,       119800);
+    int y2 = m_random_number ( 0,        79800);
+    int x2 = m_random_number (x1 + 100, 120000);
+    int y1 = m_random_number (y2 + 100,  80000);
+    int d  = m_random_number (0, 1);
+
+    GedaObject *object0 = geda_net_object_new(c, x1, y1, x2, y2, d);
+    GedaBus    *net     = object0->net;
+
+    int value;
+    int fail;
+
+    fail = 0;
+
+    /* === Function: geda_net_get_ripper_direction  === */
+
+    value = geda_net_get_ripper_direction(net);
+
+    if (value - d) {
+      fprintf(stderr, "FAILED: geda_net_get_ripper_direction <%d>\n", value);
+      fail++;
+    }
+
+    /* Toggle the direction */
+    geda_net_set_ripper_direction(net, !value);
+
+    if (net->net_ripper_direction == value) {
+      fprintf(stderr, "FAILED: geda_net_set_ripper_direction\n");
+      fail++;
+    }
+
+    /* === Function: geda_net_get_x0  === */
+
+    value = geda_net_get_x0(net);
+    if (value - x1) {
+      fprintf(stderr, "FAILED: geda_net_get_x0 %d != %d\n", value, x1);
+      fail++;
+    }
+
+    /* === Function: geda_net_get_x1  === */
+
+    value = geda_net_get_x1(net);
+
+    if (value - x2) {
+      fprintf(stderr, "FAILED: geda_net_get_x1 %d != %d\n", value, x2);
+      fail++;
+    }
+
+    /* === Function: geda_net_get_y0  === */
+
+    value = geda_net_get_y0(net);
+    if (value - y1) {
+      fprintf(stderr, "FAILED: geda_net_get_y0 %d != %d\n", value, y1);
+      fail++;
+    }
+
+    /* === Function: geda_net_get_y1  === */
+
+    value = geda_net_get_y1(net);
+
+    if (value - y2) {
+      fprintf(stderr, "FAILED: geda_net_get_y1 %d != %d\n", value, y2);
+      fail++;
+    }
+
+    /* Reverse the coordinates */
+
+    /* === Function: geda_net_set_x0  === */
+    geda_net_set_x0(net, x2);
+
+    if (GEDA_LINE(net)->x[0] - x2) {
+      fprintf(stderr, "FAILED: geda_net_set_x0\n");
+      fail++;
+    }
+
+    /* === Function: geda_net_set_x1  === */
+    geda_net_set_x1(net, x1);
+
+    if (GEDA_LINE(net)->x[1] - x1) {
+      fprintf(stderr, "FAILED: geda_net_set_x1\n");
+      fail++;
+    }
+
+    /* === Function: geda_net_set_y0  === */
+    geda_net_set_y0(net, y2);
+
+    if (GEDA_LINE(net)->y[0] - y2) {
+      fprintf(stderr, "FAILED: geda_net_set_y0\n");
+      fail++;
+    }
+
+    /* === Function: geda_net_set_y1  === */
+    geda_net_set_y1(net, y1);
+
+    if (GEDA_LINE(net)->y[1] - y1) {
+      fprintf(stderr, "FAILED: geda_net_set_y1\n");
+      fail++;
+    }
+
+    if (fail) {
+      result++;
+      break;
+    }
+    g_object_unref (object0);
+  }
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -123,7 +252,8 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
-  result = test_net();
+  result  = test_net();
+  result += check_accessors();
 
   return result;
 }
