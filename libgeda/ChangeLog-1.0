@@ -1,5 +1,9 @@
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_path.c: Revise s_path_string_from_path to include LF
+      with each string and remove the final LF instead call gstring
+      twice inside the loop.
+
     * tests/test_net.c: Add basic checks for net coordinate accessors.
 
 2016-06-14 Wiley E. Hill <wileyhill@gmail.com>

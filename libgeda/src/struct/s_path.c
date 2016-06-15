@@ -750,39 +750,36 @@ char *s_path_string_from_path (const GedaPath *path)
 
     PATH_SECTION *section = &path->sections[i];
 
-    if (i > 0)
-      g_string_append_c (path_string, '\n');
-
     switch (section->code) {
       case PATH_MOVETO:
-        g_string_append_printf (path_string, "M %i,%i",
+        g_string_append_printf (path_string, "M %i,%i\n",
                                 section->x3, section->y3);
         break;
 
       case PATH_MOVETO_OPEN:
-        g_string_append_printf (path_string, "M %i,%i",
+        g_string_append_printf (path_string, "M %i,%i\n",
                                 section->x3, section->y3);
         break;
 
       case PATH_CURVETO:
-        g_string_append_printf (path_string, "C %i,%i %i,%i %i,%i",
+        g_string_append_printf (path_string, "C %i,%i %i,%i %i,%i\n",
                                 section->x1, section->y1,
                                 section->x2, section->y2,
                                 section->x3, section->y3);
         break;
 
       case PATH_LINETO:
-        g_string_append_printf (path_string, "L %i,%i",
+        g_string_append_printf (path_string, "L %i,%i\n",
                                 section->x3, section->y3);
         break;
 
       case PATH_END:
-        g_string_append_printf (path_string, "z");
+        g_string_append_printf (path_string, "z\n");
         break;
     }
   }
 
-  return g_string_free (path_string, FALSE);
+  return geda_utility_string_remove_last_nl(g_string_free (path_string, FALSE));
 }
 
 /*! \brief Converts a path to a polygon
