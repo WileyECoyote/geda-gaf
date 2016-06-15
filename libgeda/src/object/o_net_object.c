@@ -40,7 +40,8 @@
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool geda_net_object_get_position (GedaObject *object, int *x, int *y)
+bool
+geda_net_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_NET(object), FALSE);
 
@@ -50,17 +51,17 @@ bool geda_net_object_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief create a new net object
- *
- *  \par Function Description
+/*!
+ * \brief create a new net object
+ * \par Function Description
  *  This function creates and returns a new net object.
  *
- *  \param [in]     color       The color of the net
- *  \param [in]     x1          x-coord of the first point
- *  \param [in]     y1          y-coord of the first point
- *  \param [in]     x2          x-coord of the second point
- *  \param [in]     y2          y-coord of the second point
- *  \return A new net Object
+ * \param [in]     color       The color of the net
+ * \param [in]     x1          x-coord of the first point
+ * \param [in]     y1          y-coord of the first point
+ * \param [in]     x2          x-coord of the second point
+ * \param [in]     y2          y-coord of the second point
+ * \return A new net Object
  */
 GedaObject *
 geda_net_object_new(int color, int x1, int y1, int x2, int y2)
@@ -81,16 +82,17 @@ geda_net_object_new(int color, int x1, int y1, int x2, int y2)
   return new_obj;
 }
 
-/*! \brief create a copy of a net object
- *
- *  \par Function Description
+/*!
+ * \brief create a copy of a net object
+ * \par Function Description
  *  This function creates a copy of the net object \a o_current.
  *
- *  \param [in] o_current    The object that is copied
+ * \param [in] o_current    The object that is copied
  *
- *  \return a new net object
+ * \return a new net object
  */
-GedaObject *geda_net_object_copy( GedaObject *o_current)
+GedaObject *
+geda_net_object_copy( GedaObject *o_current)
 {
   if (GEDA_IS_NET(o_current)) {
 
@@ -111,23 +113,25 @@ GedaObject *geda_net_object_copy( GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief read a net object from a char buffer
- *
- *  \par Function Description
+/*!
+ * \brief Read a GedaNet object from a char buffer
+ * \par Function Description
  *  This function reads a net object from the buffer \a buf.
  *  If the netobject was read successfully, a new net object is
  *  allocated and appended to the \a object_list.
  *
- *  \param [in] buf          a text buffer (usually a line of a schematic file)
- *  \param [in] release_ver  The release number gEDA
- *  \param [in] fileformat_ver a integer value of the file format
+ * \param [in] buf            Pointer to text buffer (usually a line of a schematic file)
+ * \param [in] release_ver    The release number gEDA
+ * \param [in] fileformat_ver An integer value of the file format
+ * \param [out] err           A GError object
  *
- *  \param [out] err           A GError object
- *
- *  \return The object list, or NULL on error.
- *
+ * \return The object list, or NULL on error.
  */
-GedaObject *geda_net_object_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+GedaObject *
+geda_net_object_read (const char buf[],
+                      unsigned int release_ver,
+                      unsigned int fileformat_ver,
+                      GError **err)
 {
   GedaObject *new_obj;
   char    type;
@@ -173,7 +177,8 @@ GedaObject *geda_net_object_read (const char buf[], unsigned int release_ver, un
  *
  * \return the string representation of the net Object
  */
-char *geda_net_object_to_buffer(GedaObject *object)
+char *
+geda_net_object_to_buffer(GedaObject *object)
 {
   int x1, x2, y1, y2;
 
@@ -189,42 +194,45 @@ char *geda_net_object_to_buffer(GedaObject *object)
   return (buf);
 }
 
-/*! \brief mirror a net object horizontaly at a centerpoint
- *  \par Function Description
- *  This function mirrors a net \a object horizontaly at the point
- *  (\a center_x, \a center_y).
+/*!
+ * \brief Mirror a GedaNet object horizontaly at a centerpoint
+ * \par Function Description
+ *  Mirrors a net \a object horizontaly at the point (\a cx, \a cy).
  *
- *  \param [in,out] object    The net object
- *  \param [in]     center_x  x-coord of the mirror position
- *  \param [in]     center_y  y-coord of the mirror position.
+ * \param [in,out] object  The net object
+ * \param [in]     cx      x-coord of the mirror position
+ * \param [in]     cy      y-coord of the mirror position.
  */
-void geda_net_object_mirror(GedaObject *object, int center_x, int center_y)
+void
+geda_net_object_mirror(GedaObject *object, int cx, int cy)
 {
   g_return_if_fail(GEDA_IS_NET(object));
 
   /* translate object to origin */
-  geda_net_object_translate(object, -center_x, -center_y);
+  geda_net_object_translate(object, -cx, -cy);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  geda_net_object_translate(object, center_x, center_y);
+  geda_net_object_translate(object, cx, cy);
 }
 
-/*! \brief postscript print command for a net object
- *  \par Function Description
+/*!
+ * \brief postscript print command for a net object
+ * \par Function Description
  *  This function writes the postscript command of the net object \a o_current
  *  into the FILE \a fp points to.
  *
- *  \param [in] toplevel     The GedaToplevel object
- *  \param [in] fp           pointer to a FILE structure
- *  \param [in] o_current    The GedaObject to print
- *  \param [in] origin_x     x-coord of the postscript origin
- *  \param [in] origin_y     y-coord of the postscript origin
+ * \param [in] toplevel     The GedaToplevel object
+ * \param [in] fp           pointer to a FILE structure
+ * \param [in] o_current    The GedaObject to print
+ * \param [in] origin_x     x-coord of the postscript origin
+ * \param [in] origin_y     y-coord of the postscript origin
  */
-void geda_net_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                 int origin_x, int origin_y)
+void
+geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
+                      GedaObject *o_current, int origin_x, int origin_y)
 {
   int cap_style;
   int net_width;
@@ -251,21 +259,20 @@ void geda_net_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curre
   fprintf(fp, "%d %d %d %d %d %d line\n", x1,y1,x2,y2,net_width,cap_style);
 }
 
-/*! \brief rotate a net object around a centerpoint
+/*!
+ * \brief Rotate a GedaNet object around a centerpoint
+ * \par Function Description
+ *  This function rotates a net \a object around the point (\a cx, \a cy).
  *
- *  \par Function Description
- *  This function rotates a net \a object around the point
- *  (\a center_x, \a center_y).
+ * \param [in,out] object  The net object
+ * \param [in]     cx      x-coord of the rotation center
+ * \param [in]     cy      y-coord of the rotation center
+ * \param [in]     angle   The angle to rotate the net object
  *
- *  \param [in,out] object    The net object
- *  \param [in]     center_x  x-coord of the rotation center
- *  \param [in]     center_y  y-coord of the rotation center
- *  \param [in]     angle     The angle to rotate the net object
-
- *
- *  \note only steps of 90 degrees are allowed for the \a angle
+ * \note only steps of 90 degrees are allowed for the \a angle
  */
-void geda_net_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
 {
   int newx, newy;
 
@@ -275,7 +282,7 @@ void geda_net_object_rotate(GedaObject *object, int center_x, int center_y, int 
     return;
 
   /* translate object to origin */
-  geda_net_object_translate(object, -center_x, -center_y);
+  geda_net_object_translate(object, -cx, -cy);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -287,16 +294,17 @@ void geda_net_object_rotate(GedaObject *object, int center_x, int center_y, int 
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  geda_net_object_translate(object, center_x, center_y);
+  geda_net_object_translate(object, cx, cy);
 }
 
-/*! \brief move a net object
- *  \par Function Description
+/*!
+ * \brief move a net object
+ * \par Function Description
  *  This function changes the position of a net \a object.
  *
- *  \param [in] object       The net Object to be moved
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object.
+ * \param [in] object       The net Object to be moved
+ * \param [in] dx           The x-distance to move the object
+ * \param [in] dy           The y-distance to move the object.
  */
 void
 geda_net_object_translate(GedaObject *object, int dx, int dy)
@@ -313,14 +321,17 @@ geda_net_object_translate(GedaObject *object, int dx, int dy)
   s_tile_update_object(object);
 }
 
-/*! \brief calculate orientation of a net object
- *  \par Function Description
+/*!
+ * \brief calculate orientation of a net object
+ * \par Function Description
  *  This function calculates the orientation of a net object.
  *
- *  \param [in] object   The net object
- *  \return The orientation: HORIZONTAL, VERTICAL or NEITHER
+ * \param [in] object   The net object
+ *
+ * \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
-int geda_net_object_orientation(GedaObject *object)
+int
+geda_net_object_orientation(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_LINE(object), -1);
 
@@ -335,23 +346,25 @@ int geda_net_object_orientation(GedaObject *object)
   return (NEITHER);
 }
 
-
-/*! \brief merge two net object
- *  \par Function Description
+/*!
+ * \brief merge two net object
+ * \par Function Description
  *  This function does the actual work of making one net segment out of two
  *  connected segments. The first net segment is extended to the length of
  *  both objects.
  *  The second object (\a del_object) is the object that should be deleted.
  *
- *  \param [in] object     A net object to extend
- *  \param [in] del_object A net object to be merged into \a object
- *  \param [in] orient     The orientation of both net objects
+ * \param [in] object     A net object to extend
+ * \param [in] del_object A net object to be merged into \a object
+ * \param [in] orient     The orientation of both net objects
  *
- *  \note The first net \a object gets the attributes of the second net
- *  \a del_object if the two nets are merged together.
+ * \note The first net \a object gets the attributes of the second net
+ *       \a del_object if the two nets are merged together.
  */
-static void geda_net_object_consolidate_lowlevel (GedaObject *object,
-                                        GedaObject *del_object, int orient)
+static void
+geda_net_object_consolidate_lowlevel (GedaObject *object,
+                                      GedaObject *del_object,
+                                      int         orient)
 {
   int     temp1, temp2;
   int     final1, final2;
@@ -463,14 +476,15 @@ geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
   return(TRUE);
 }
 
-/*! \brief try to consolidate a net object
- *  \par Function Description
+/*!
+ * \brief try to consolidate a net object
+ * \par Function Description
  *  This function tries to consolidate a net with any other object
  *  that is connected to the current \a object.
  *
- *  \param object  The Net object to consolidate
+ * \param object  The Net object to consolidate
  *
- *  \return 0 if no consolidation was possible, -1 otherwise
+ * \return 0 if no consolidation was possible, -1 otherwise
  */
 static int
 geda_net_object_consolidate_segments (GedaObject *object)
@@ -562,7 +576,8 @@ geda_net_object_consolidate_segments (GedaObject *object)
  *  \param toplevel  The GedaToplevel object.
  *  \param page      The Page to consolidate nets in.
  */
-void geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
+void
+geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
 {
   const GList *iter;
   int status = 0;
@@ -590,17 +605,17 @@ void geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
   }
 }
 
-/*! \brief modify one point of a net object
- *  \par Function Description
+/*!
+ * \brief modify one point of a net object
+ * \par Function Description
  *  This function modifies one point of a net \a object. The point
  *  is specified by the \a whichone variable and the new coordinate
  *  is (\a x, \a y).
  *
- *  \param object     The net Object to modify
- *  \param x          new x-coord of the net point
- *  \param y          new y-coord of the net point
- *  \param whichone   net point to modify
- *
+ * \param object     The net Object to modify
+ * \param x          new x-coord of the net point
+ * \param y          new y-coord of the net point
+ * \param whichone   net point to modify
  */
 void
 geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
@@ -613,9 +628,9 @@ geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
   s_tile_update_object(object);
 }
 
-/*! \brief Refresh & cache number of connected entities.
- *
- *  \par Function Description
+/*!
+ * \brief Refresh & cache number of connected entities.
+ * \par Function Description
  *  Traverse all network segments reachable from this net and count
  *  total number of unique entities connected to all net segments.
  *
@@ -630,9 +645,10 @@ geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
  *  The algorithm does not handle corner cases, ie two bus segments
  *  belonging to the same bus will be counted twice.
  *
- *  \param [in] o_current   The NET GedaObject to check connectivity of
+ * \param [in] o_current   The NET GedaObject to check connectivity of
  */
-void geda_net_object_refresh_conn_cache(GedaObject *o_current)
+void
+geda_net_object_refresh_conn_cache(GedaObject *o_current)
 {
   int             num_conns = 0;
   GHashTable     *visited;
@@ -674,6 +690,7 @@ void geda_net_object_refresh_conn_cache(GedaObject *o_current)
   stack = g_list_prepend (stack, o_current->conn_list);
 
   while (stack != NULL) {
+
     /* At start of the loop, take a new connection from the stack. */
     GList *conn_list = (GList*) stack->data;
     CONN  *conn;
@@ -688,12 +705,11 @@ void geda_net_object_refresh_conn_cache(GedaObject *o_current)
     conn = (CONN*) conn_list->data;
     stack->data = (void *) g_list_next (conn_list);
 
-    if (conn == NULL)
-        /* should not happen */
+    if (conn == NULL) /* should not happen! */
         continue;
+
     obj = conn->other_object;
-    if (obj == NULL)
-        /* should not happen */
+    if (obj == NULL) /* should not happen! */
         continue;
 
     /* Act upon the object that is connected to the segment. */
@@ -739,23 +755,25 @@ void geda_net_object_refresh_conn_cache(GedaObject *o_current)
   g_list_free (stack);
 }
 
-/*! \brief Check if net is fully connected.
- *
- *  \par Function Description
+/*!
+ * \brief Check if net is fully connected.
+ * \par Function Description
  *  Net is fully connected when it connects at least
  *  two separate entities.
  *
- *  \sa geda_net_object_refresh_conn_cache
+ * \sa geda_net_object_refresh_conn_cache
  *
- *  \param [in] o_current   The GedaObject to check connectivity of
- *  \return TRUE if net is fully connected, FALSE otherwise
+ * \param [in] o_current   The GedaObject to check connectivity of
+ * \return TRUE if net is fully connected, FALSE otherwise
  */
-bool geda_net_object_is_fully_connected (GedaObject *o_current)
+bool
+geda_net_object_is_fully_connected (GedaObject *o_current)
 {
   g_return_val_if_fail (GEDA_IS_NET(o_current), FALSE);
 
-  if (!o_current->net->valid_num_connected)
+  if (!o_current->net->valid_num_connected) {
     geda_net_object_refresh_conn_cache (o_current);
+  }
 
   g_return_val_if_fail (o_current->net->valid_num_connected, FALSE);
 

@@ -1,5 +1,8 @@
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_net_object.c: Adjust function wrap and Doxygen block
+      formats, rename center_x and center_y arguments to cx and cy.
+
     * src/struct/s_path.c: Revise s_path_string_from_path to include LF
       with each string and remove the final LF instead call gstring
       twice inside the loop. Rename functions with geda_object prefix.
