@@ -17,7 +17,8 @@
       table. Revise to s_rename_add_lowlevel to first check if rename is
       the same as last and if not then check hash table and only add unique
       rename records. Probably should just use the hash table alone and
-      eliminate the list if pointer to RENAME structures.
+      eliminate the list if pointer to RENAME structures. Add/revise Doxygen
+      comments.
 
 2016-06-07 Wiley E. Hill <wileyhill@gmail.com>
 

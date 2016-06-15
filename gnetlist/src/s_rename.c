@@ -57,10 +57,11 @@ static SET *last_set = NULL;
 
 static GHashTable *rename_table;
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Initialize Rename module
+ * \par Function Description
+ *  Checks the first_set has not been set and creates a new
+ *  empty hash table for use later by the rename module.
  */
 void s_rename_init(void)
 {
@@ -71,9 +72,9 @@ void s_rename_init(void)
   rename_table = g_hash_table_new(g_direct_hash, g_str_equal);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Destroy all Rename Records and release resources
+ * \par Function Description
  *
  */
 void s_rename_destroy_all(void)
@@ -146,10 +147,9 @@ void s_rename_print(void)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Search Rename Records
+ * \par Function Description
  * if the src is found, return true
  * if the dest is found, also return true, but warn user
  * If quiet_flag is true than don't print anything
@@ -216,10 +216,14 @@ static int s_rename_have_rename_record (const char *src, const char *dest)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add Rename Record Low Level
+ * \par Function Description
+ *  Checks for the existence the \a src and \a dest pair, first in the
+ *  previous record and then in the hash table using helper functions
+ *  above, if a record of the pair does not currently exist then a new
+ *  record is allocated and the pair added to the record and the list
+ *  pointers updated.
  */
 static void s_rename_add_lowlevel (const char *src, const char *dest)
 {
