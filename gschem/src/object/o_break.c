@@ -408,7 +408,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 
       g_array_append_val (vertices, *end);  /* there is one more vertex */
 
-      new_path = o_path_new_from_polygon(vertices, object->color);
+      new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
       /* Set line options of the path to the values used by the box */
       o_set_line_options(new_path, object->line_options);
@@ -781,7 +781,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         g_array_append_val (vertices, *end);  /* there is one more vertex */
       }
 
-      new_path = o_path_new_from_polygon(vertices, object->color);
+      new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
       /* Set line options of the path to the values used by the old path */
       o_set_line_options(new_path, object->line_options);
@@ -816,7 +816,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
         g_array_append_val (vertices, *end);  /* there is one more vertex */
 
-        new_path = o_path_new_from_polygon(vertices, object->color);
+        new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
         /* Set line options of the path to the values used by the old path */
         o_set_line_options(new_path, object->line_options);

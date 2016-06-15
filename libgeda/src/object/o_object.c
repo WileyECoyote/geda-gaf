@@ -215,7 +215,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(OBJ_PATH):
-        new_obj = o_path_read (line, tb, release_ver, fileformat_ver, err);
+        new_obj = geda_path_object_read (line, tb, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
@@ -523,7 +523,7 @@ GedaObject *geda_object_copy (GedaObject *o_current)
       break;
 
     case(OBJ_PATH):
-      new_obj = o_path_copy (o_current);
+      new_obj = geda_path_object_copy (o_current);
       break;
 
     case(OBJ_PIN):
@@ -578,7 +578,7 @@ void geda_object_mirror (GedaObject *object, int center_x, int center_y)
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: topless = geda_complex_object_mirror;    break;
       case OBJ_TEXT:    topless = o_text_mirror;       break;
-      case OBJ_PATH:    topless = o_path_mirror;       break;
+      case OBJ_PATH:    topless = geda_path_object_mirror;       break;
       case OBJ_PIN:     topless = o_pin_mirror;        break;
       case OBJ_ARC:     topless = geda_arc_object_mirror;        break;
   }
@@ -627,7 +627,7 @@ void geda_object_rotate (GedaObject *object, int center_x, int center_y, int ang
     case OBJ_PLACEHOLDER:
     case OBJ_COMPLEX: topless = geda_complex_object_rotate;    break;
     case OBJ_TEXT:    topless = o_text_rotate;       break;
-    case OBJ_PATH:    topless = o_path_rotate;       break;
+    case OBJ_PATH:    topless = geda_path_object_rotate;       break;
     case OBJ_PIN:     topless = o_pin_rotate;        break;
     case OBJ_ARC:     topless = geda_arc_object_rotate;        break;
     default:
@@ -675,7 +675,7 @@ void geda_object_translate (GedaObject *object, int dx, int dy)
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: topless = geda_complex_object_translate; break;
       case OBJ_TEXT:    topless = o_text_translate;    break;
-      case OBJ_PATH:    topless = o_path_translate;    break;
+      case OBJ_PATH:    topless = geda_path_object_translate;    break;
       case OBJ_PIN:     topless = o_pin_translate;     break;
       case OBJ_ARC:     topless = geda_arc_object_translate;     break;
       default:

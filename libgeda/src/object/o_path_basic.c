@@ -54,7 +54,7 @@ typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
-bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   POINT   target;
   bool    result;
@@ -305,7 +305,7 @@ bool o_path_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *n
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_path_get_position (GedaObject *object, int *x, int *y)
+bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (object->path->num_sections == 0)
     return FALSE;
@@ -341,7 +341,7 @@ bool o_path_get_position (GedaObject *object, int *x, int *y)
  *  \return A pointer to the new end of the object list.
  */
 GedaObject *
-o_path_new (int color, const char *path_string)
+geda_path_object_new (int color, const char *path_string)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -364,7 +364,7 @@ o_path_new (int color, const char *path_string)
  *
  *  \return A pointer to the new GedaPath object.
  */
-GedaObject *o_path_new_from_polygon (GArray *points, int color)
+GedaObject *geda_path_object_new_from_polygon (GArray *points, int color)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -414,7 +414,7 @@ GedaObject *o_path_new_from_polygon (GArray *points, int color)
  *  a path using the path shape data stored in \a path_data. The
  *  \a path_data is subsequently owned by the returned GedaObject.
  *
- *  \sa o_path_new
+ *  \sa geda_path_object_new
  *
  *  \param [in]     color        The path color
  *  \param [in]     path_data    The #GedaPath data structure to use
@@ -422,7 +422,7 @@ GedaObject *o_path_new_from_polygon (GArray *points, int color)
  *  \return A pointer to the new end of the object list.
  */
 GedaObject*
-o_path_new_take_path (int color, GedaPath *path_data)
+geda_path_object_new_take_path (int color, GedaPath *path_data)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -459,7 +459,7 @@ o_path_new_take_path (int color, GedaPath *path_data)
  *
  *  \return A new pointer to the end of the object list.
  */
-GedaObject *o_path_copy (const GedaObject *o_current)
+GedaObject *geda_path_object_copy (const GedaObject *o_current)
 {
   if (GEDA_IS_PATH(o_current)) {
 
@@ -469,7 +469,7 @@ GedaObject *o_path_copy (const GedaObject *o_current)
 
     old_path    = GEDA_PATH(o_current);
     path_string = s_path_string_from_path (old_path);
-    new_obj     = o_path_new (o_current->color, path_string);
+    new_obj     = geda_path_object_new (o_current->color, path_string);
 
     GEDA_FREE (path_string);
 
@@ -513,7 +513,7 @@ GedaObject *o_path_copy (const GedaObject *o_current)
  *
  *  \return A pointer to the new path object, or NULL on error;
  */
-GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
+GedaObject *geda_path_object_read (const char *first_line, TextBuffer *tb,
                      unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
@@ -587,7 +587,7 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
   string = geda_utility_string_remove_last_nl(string);
 
   /* create a new path */
-  new_obj = o_path_new (color, string);
+  new_obj = geda_path_object_new (color, string);
   GEDA_FREE (string);
 
   /* set its line options */
@@ -620,7 +620,7 @@ GedaObject *o_path_read (const char *first_line, TextBuffer *tb,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *o_path_save (GedaObject *object)
+char *geda_path_object_save (GedaObject *object)
 {
   int line_width, line_space, line_length;
   char *buf;
@@ -673,7 +673,7 @@ char *o_path_save (GedaObject *object)
  *  \param [in]     y         New y coordinate for the control point
  *  \param [in]     whichone  Which control point is being modified
  */
-void o_path_modify (GedaObject *object, int x, int y, int whichone)
+void geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
 {
   int i;
   int grip_no = 0;
@@ -721,7 +721,7 @@ void o_path_modify (GedaObject *object, int x, int y, int whichone)
  *  \param [in]     center_x  Origin x coordinate.
  *  \param [in]     center_y  Origin y coordinate.
  */
-void o_path_mirror (GedaObject *object, int center_x, int center_y)
+void geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
 {
   int i;
 
@@ -760,7 +760,7 @@ void o_path_mirror (GedaObject *object, int center_x, int center_y)
  *  \param [in]     center_y  Rotation center y coordinate
  *  \param [in]     angle     Rotation angle in degrees (See note below).
  */
-void o_path_rotate (GedaObject *object, int center_x, int center_y, int angle)
+void geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   PATH_SECTION *section;
   int i;
@@ -802,7 +802,7 @@ void o_path_rotate (GedaObject *object, int center_x, int center_y, int angle)
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
  */
-void o_path_translate (GedaObject *object, int dx, int dy)
+void geda_path_object_translate (GedaObject *object, int dx, int dy)
 {
   PATH_SECTION *section;
   int i;
@@ -849,7 +849,7 @@ void o_path_translate (GedaObject *object, int dx, int dy)
  *  \param [in] origin_x    Page x coordinate to place PATH GedaObject
  *  \param [in] origin_y    Page y coordinate to place PATH GedaObject
  */
-static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+static void geda_path_object_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                                 int line_width, int length, int space,
                                 int origin_x, int origin_y)
 {
@@ -908,11 +908,11 @@ static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                      int line_width, int length, int space,
                      int origin_x, int origin_y)
 {
-  o_path_print_solid (toplevel, fp, path, line_width,
+  geda_path_object_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
 }
 
@@ -934,11 +934,11 @@ o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                      int line_width, int length, int space,
                      int origin_x, int origin_y)
 {
-  o_path_print_solid (toplevel, fp, path, line_width,
+  geda_path_object_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
 }
 
@@ -960,11 +960,11 @@ o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                      int line_width, int length,
                      int space, int origin_x, int origin_y)
 {
-  o_path_print_solid (toplevel, fp, path, line_width,
+  geda_path_object_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
 }
 
@@ -986,11 +986,11 @@ o_path_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                       int line_width, int length,
                       int space, int origin_x, int origin_y)
 {
-  o_path_print_solid (toplevel, fp, path, line_width,
+  geda_path_object_print_solid (toplevel, fp, path, line_width,
                       length, space, origin_x, origin_y);
 }
 
@@ -1017,7 +1017,7 @@ o_path_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                      int fill_width, int angle1, int pitch1, int angle2,
                      int pitch2, int origin_x, int origin_y)
 {
@@ -1082,7 +1082,7 @@ o_path_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                     int fill_width, int angle1, int pitch1, int angle2,
                     int pitch2, int origin_x, int origin_y)
 {
@@ -1096,7 +1096,7 @@ o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   if (fill_width <= 1) fill_width = 2;
 
   lines = g_array_new (FALSE, FALSE, sizeof(LINE));
-  fprintf(stderr, "o_path_print_hatch: Calling m_hatch_path with pitch=[%d]", pitch1);
+  fprintf(stderr, "geda_path_object_print_hatch: Calling m_hatch_path with pitch=[%d]", pitch1);
   m_hatch_path (path, angle1, pitch1, lines);
 
   for (i=0; i < lines->len; i++) {
@@ -1132,14 +1132,14 @@ o_path_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
-o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                    int fill_width, int angle1, int pitch1, int angle2,
                    int pitch2, int origin_x, int origin_y)
 {
-  o_path_print_hatch (toplevel, fp, path, fill_width,
+  geda_path_object_print_hatch (toplevel, fp, path, fill_width,
                       angle1, pitch1, -1, -1, origin_x, origin_y);
 
-  o_path_print_hatch (toplevel, fp, path, fill_width,
+  geda_path_object_print_hatch (toplevel, fp, path, fill_width,
                       angle2, pitch2, -1, -1, origin_x, origin_y);
 }
 
@@ -1156,7 +1156,7 @@ o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_x   Page x coordinate to place Path GedaObject
  *  \param [in] origin_y   Page y coordinate to place Path GedaObject
  */
-void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+void geda_path_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
                   int origin_x, int origin_y)
 {
   int line_width, length, space;
@@ -1166,9 +1166,9 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*! \note
    *  Depending on the type of the line for this particular path, the
-   *  appropriate function is chosen among #o_path_print_solid(),
-   *  #o_path_print_dotted(), #o_path_print_dashed(),
-   *  #o_path_print_center() and #o_path_print_phantom().
+   *  appropriate function is chosen among #geda_path_object_print_solid(),
+   *  #geda_path_object_print_dotted(), #geda_path_object_print_dashed(),
+   *  #geda_path_object_print_center() and #geda_path_object_print_phantom().
    *
    *  The needed parameters for each of these type is extracted from the
    *  <B>\a o_current</B> object. Depending on the type, unused parameters are
@@ -1193,36 +1193,36 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   switch(o_current->line_options->line_type) {
     case TYPE_SOLID:
       length = -1; space  = -1;
-      outl_func = o_path_print_solid;
+      outl_func = geda_path_object_print_solid;
       break;
 
     case TYPE_DOTTED:
       length = -1;
-      outl_func = o_path_print_dotted;
+      outl_func = geda_path_object_print_dotted;
       break;
 
     case TYPE_DASHED:
-      outl_func = o_path_print_dashed;
+      outl_func = geda_path_object_print_dashed;
       break;
 
     case TYPE_CENTER:
-      outl_func = o_path_print_center;
+      outl_func = geda_path_object_print_center;
       break;
 
     case TYPE_PHANTOM:
-      outl_func = o_path_print_phantom;
+      outl_func = geda_path_object_print_phantom;
       break;
 
     case TYPE_ERASE:
       /* Unused for now, print it solid */
       length = -1; space  = -1;
-      outl_func = o_path_print_solid;
+      outl_func = geda_path_object_print_solid;
       break;
   }
 
   if((length == 0) || (space == 0)) {
     length = -1; space  = -1;
-    outl_func = o_path_print_solid;
+    outl_func = geda_path_object_print_solid;
   }
 
   f_print_set_color (toplevel, fp, o_current->color);
@@ -1234,8 +1234,8 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   /*! \note
    *  If the filling type of the path is not <B>HOLLOW</B>, the appropriate
-   *  function is chosen among #o_path_print_filled(), #o_path_print_mesh()
-   *  and #o_path_print_hatch(). The corresponding parameters are extracted
+   *  function is chosen among #geda_path_object_print_filled(), #geda_path_object_print_mesh()
+   *  and #geda_path_object_print_hatch(). The corresponding parameters are extracted
    *  from the <B>\a o_current</B> object and corrected afterward.
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
@@ -1260,16 +1260,16 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func  = o_path_print_filled;
+        fill_func  = geda_path_object_print_filled;
         break;
 
       case FILLING_MESH:
-        fill_func = o_path_print_mesh;
+        fill_func = geda_path_object_print_mesh;
         break;
 
       case FILLING_HATCH:
         angle2 = -1; pitch2 = 1;
-        fill_func = o_path_print_hatch;
+        fill_func = geda_path_object_print_hatch;
         break;
 
       case FILLING_VOID:
@@ -1277,7 +1277,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;
-        fill_func  = o_path_print_filled;
+        fill_func  = geda_path_object_print_filled;
         break;
 
       case FILLING_HOLLOW:
@@ -1289,7 +1289,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
     if((pitch1 <= 0) || (pitch2 <= 0)) {
       angle1 = -1; pitch1 = 1;
       angle2 = -1; pitch2 = 1;
-      fill_func = o_path_print_filled;
+      fill_func = geda_path_object_print_filled;
     }
 
     if (fill_func) {
@@ -1311,7 +1311,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  \return The shortest distance from the object to the point. With an
  *          invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_path_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int solid;
 

@@ -478,7 +478,7 @@ geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny
     case OBJ_PLACEHOLDER:
     case OBJ_COMPLEX: getter = geda_complex_object_get_nearest_point;   break;
     case OBJ_TEXT:    getter = o_text_get_nearest_point;      break;
-    case OBJ_PATH:    getter = o_path_get_nearest_point;      break;
+    case OBJ_PATH:    getter = geda_path_object_get_nearest_point;      break;
     case OBJ_ARC:     getter = geda_arc_object_get_nearest_point;       break;
     default:
       break;
@@ -684,7 +684,7 @@ geda_object_get_position (GedaObject *object, int *x, int *y )
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: func = geda_complex_object_get_position; break;
       case OBJ_TEXT:    func = o_text_get_position;    break;
-      case OBJ_PATH:    func = o_path_get_position;    break;
+      case OBJ_PATH:    func = geda_path_object_get_position;    break;
       case OBJ_PIN:     func = o_pin_get_position;     break;
       case OBJ_ARC:     func = geda_arc_object_get_position;     break;
       default:
@@ -730,7 +730,7 @@ geda_object_get_shortest_distance_full (GedaObject *object, int x, int y, int fo
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX:     func = geda_complex_object_shortest_distance;  break;
       case OBJ_TEXT:        func = o_text_shortest_distance;     break;
-      case OBJ_PATH:        func = o_path_shortest_distance;     break;
+      case OBJ_PATH:        func = geda_path_object_shortest_distance;     break;
       case OBJ_ARC:         func = geda_arc_object_shortest_distance;      break;
     }
 

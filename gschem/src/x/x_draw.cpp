@@ -201,7 +201,7 @@ x_draw_path_object (GschemToplevel *w_current)
     int         nsections;
     int         i;
 
-    tmp_obj   = o_path_copy (o_current);
+    tmp_obj   = geda_path_object_copy (o_current);
     s_path    = tmp_obj->path;
     nsections = s_path->num_sections;
 

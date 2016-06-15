@@ -2,7 +2,7 @@
 
     * src/struct/s_path.c: Revise s_path_string_from_path to include LF
       with each string and remove the final LF instead call gstring
-      twice inside the loop.
+      twice inside the loop. Rename functions with geda_object prefix.
 
     * tests/test_net.c: Add basic checks for net coordinate accessors.
 

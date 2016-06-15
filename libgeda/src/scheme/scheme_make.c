@@ -264,7 +264,7 @@ EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
 EDA_SCM_DEFINE (object_make_path, "%make-path", 0, 0, 0,
            (), "Create a new path object")
 {
-  GedaObject *obj = o_path_new (DEFAULT_PATH_COLOR_INDEX, "");
+  GedaObject *obj = geda_path_object_new (DEFAULT_PATH_COLOR_INDEX, "");
 
   SCM result = edascm_from_object (obj);
 

@@ -388,7 +388,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       case(OBJ_PATH):
-        o_path_print(toplevel, fp, o_current, origin_x, origin_y);
+        geda_path_object_print(toplevel, fp, o_current, origin_x, origin_y);
         break;
 
       case(OBJ_PIN):

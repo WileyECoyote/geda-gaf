@@ -206,12 +206,12 @@ void        geda_object_notify_emit_pre_change   (GedaObject *object);
 void        geda_object_notify_emit_change       (GedaObject *object);
 
 /* o_path_object.c */
-bool        o_path_get_position            (GedaObject *object, int *x, int *y);
-void        o_path_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-GedaObject *o_path_read                    (const char *first_line, TextBuffer *tb,
-                                            unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_path_save                    (GedaObject *object);
-double      o_path_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
+bool        geda_path_object_get_position        (GedaObject *object, int *x, int *y);
+void        geda_path_object_print               (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+GedaObject *geda_path_object_read                (const char *first_line, TextBuffer *tb,
+                                                  unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_path_object_save                (GedaObject *object);
+double      geda_path_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
 
 
 /* o_picture.c */

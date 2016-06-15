@@ -182,7 +182,7 @@ GedaPath *s_path_copy_modify (GedaPath *path, int dx, int dy,
   object = GEDA_OBJECT(path);
 
   path_string                = s_path_string_from_path (path);
-  new_path                   = (GedaPath*)o_path_new (object->color, path_string);
+  new_path                   = (GedaPath*)geda_path_object_new (object->color, path_string);
   new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
   new_path->num_sections     = path->num_sections;
   new_path->num_sections_max = path->num_sections;

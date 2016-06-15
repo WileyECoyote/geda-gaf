@@ -424,15 +424,15 @@ extern "C" {
          void    geda_object_notify_change_remove_all      (Page *page);
 
 /* o_path_object.c */
-   GedaObject   *o_path_copy                     (const GedaObject *o_current);
-         bool    o_path_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
-         void    o_path_modify                   (GedaObject *object, int x, int y, int whichone);
-         void    o_path_mirror                   (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_path_new                      (int color, const char *path_string);
-   GedaObject   *o_path_new_from_polygon         (GArray *points,  int color);
-   GedaObject   *o_path_new_take_path            (int color, GedaPath *path_data);
-         void    o_path_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_path_translate                (GedaObject *object, int x, int y);
+   GedaObject   *geda_path_object_copy                     (const GedaObject *o_current);
+         bool    geda_path_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         void    geda_path_object_modify                   (GedaObject *object, int x, int y, int whichone);
+         void    geda_path_object_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_path_object_new                      (int color, const char *path_string);
+   GedaObject   *geda_path_object_new_from_polygon         (GArray *points,  int color);
+   GedaObject   *geda_path_object_new_take_path            (int color, GedaPath *path_data);
+         void    geda_path_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_path_object_translate                (GedaObject *object, int x, int y);
 
 /* o_picture.c */
 
