@@ -1,3 +1,8 @@
+2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Revise geda_handle_box_class_init; add
+      variable for GParamSpec.
+
 2016-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Add new module for GtkContainer utility

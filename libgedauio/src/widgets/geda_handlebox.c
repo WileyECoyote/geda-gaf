@@ -1064,7 +1064,8 @@ geda_handle_box_realize (GtkWidget *widget)
 }
 
 /* widget_class->unrealize */
-static void geda_handle_box_unrealize (GtkWidget *widget)
+static void
+geda_handle_box_unrealize (GtkWidget *widget)
 {
   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
 
@@ -1385,6 +1386,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
   GtkWidgetClass     *widget_class;
   GtkContainerClass  *container_class;
   GedaHandleBoxClass *class;
+  GParamSpec         *params;
 
   class           = (GedaHandleBoxClass*)g_class;
   object_class    = (GObjectClass*)class;
@@ -1397,57 +1399,57 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   geda_handle_box_parent_class = g_type_class_peek_parent(class);
 
-  g_object_class_install_property (object_class,
-                                   PROP_SHADOW,
-                                   g_param_spec_enum ("shadow",
-                                                      NULL,
-                                                      _("Appearance of the shadow that surrounds the container"),
-                                                      GTK_TYPE_SHADOW_TYPE,
-                                                      GTK_SHADOW_OUT,
-                                                      G_PARAM_READWRITE));
+  params = g_param_spec_enum ("shadow",
+                              NULL,
+                            _("Appearance of the shadow that surrounds the container"),
+                              GTK_TYPE_SHADOW_TYPE,
+                              GTK_SHADOW_OUT,
+                              G_PARAM_READWRITE);
 
-  g_object_class_install_property (object_class,
-                                   PROP_SHADOW_TYPE,
-                                   g_param_spec_enum ("shadow-type",
-                                                      NULL,
-                                                      _("Appearance of the shadow that surrounds the container"),
-                                                      GTK_TYPE_SHADOW_TYPE,
-                                                      GTK_SHADOW_OUT,
-                                                      G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_SHADOW, params);
 
-  g_object_class_install_property (object_class,
-                                   PROP_HANDLE_POSITION,
-                                   g_param_spec_enum ("handle-position",
-                                                      NULL,
-                                                      _("Position of the handle relative to the child widget"),
-                                                      GTK_TYPE_POSITION_TYPE,
-                                                      GTK_POS_LEFT,
-                                                      G_PARAM_READWRITE));
+  params = g_param_spec_enum ("shadow-type",
+                              NULL,
+                            _("Appearance of the shadow that surrounds the container"),
+                              GTK_TYPE_SHADOW_TYPE,
+                              GTK_SHADOW_OUT,
+                              G_PARAM_READWRITE);
 
-  g_object_class_install_property (object_class,
-                                   PROP_SNAP_EDGE,
-                                   g_param_spec_enum ("snap-edge",
-                                                      NULL,
-                                                      _("Side of the handlebox that's lined up with the docking point to dock the handlebox"),
-                                                      GTK_TYPE_POSITION_TYPE,
-                                                      GTK_POS_TOP,
-                                                      G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_SHADOW_TYPE, params);
 
-  g_object_class_install_property (object_class,
-                                   PROP_SNAP_EDGE_SET,
-                                   g_param_spec_boolean ("snap-edge-set",
-                                                         NULL,
-                                                         _("Whether to use the value from the snap_edge property or a value derived from handle_position"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
+  params =g_param_spec_enum ("handle-position",
+                             NULL,
+                           _("Position of the handle relative to the child widget"),
+                             GTK_TYPE_POSITION_TYPE,
+                             GTK_POS_LEFT,
+                             G_PARAM_READWRITE);
 
-  g_object_class_install_property (object_class,
-                                   PROP_CHILD_DETACHED,
-                                   g_param_spec_boolean ("child-detached",
-                                                         NULL,
-                                                         _("A boolean value indicating whether the handlebox's child is attached or detached."),
-                                                         FALSE,
-                                                         G_PARAM_READABLE));
+  g_object_class_install_property (object_class, PROP_HANDLE_POSITION, params);
+
+  params =g_param_spec_enum ("snap-edge",
+                             NULL,
+                           _("Side of the handlebox that's lined up with the docking point to dock the handlebox"),
+                             GTK_TYPE_POSITION_TYPE,
+                             GTK_POS_TOP,
+                             G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_SNAP_EDGE, params);
+
+  params = g_param_spec_boolean ("snap-edge-set",
+                                 NULL,
+                               _("Whether to use the value from the snap_edge property or a value derived from handle_position"),
+                                 FALSE,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_SNAP_EDGE_SET, params);
+
+  params = g_param_spec_boolean ("child-detached",
+                                 NULL,
+                               _("A boolean value indicating whether the handlebox's child is attached or detached."),
+                                 FALSE,
+                                 G_PARAM_READABLE);
+
+  g_object_class_install_property (object_class, PROP_CHILD_DETACHED, params);
 
   widget_class->button_press_event = geda_handle_box_button_press;
   widget_class->delete_event       = geda_handle_box_delete_event;
