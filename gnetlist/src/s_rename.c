@@ -91,10 +91,12 @@ void s_rename_destroy_all(void)
   last_set = NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Pre-allocate a RENAME record
+ * \par Function Description
+ *  Called by s_hierarchy_post_process to create a new RENAME
+ *  record in anticipation of s_hierarchy_setup_rename calling
+ *  s_rename_add. This function is only called once.
  */
 void s_rename_next_set(void)
 {
@@ -112,10 +114,10 @@ void s_rename_next_set(void)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Debug routine to print a Rename records
+ * \par Function Description
+ * \todo consider adding cl option to print remapped net names.
  */
 void s_rename_print(void)
 {
@@ -198,10 +200,10 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add a Pair to the Rename stack
+ * \par Function Description
+ *  Wrapper for s_rename_add_lowlevel.
  */
 void s_rename_add(char *src, char *dest)
 {
@@ -225,7 +227,7 @@ void s_rename_add(char *src, char *dest)
       {
         /* we found a -> b, while adding c -> a.
          * hence we would have c -> a -> b, so add c -> b.
-         * avoid renaming if b is same as c!
+         * avoid renaming if b is the same as c!
          */
 #if DEBUG
         printf( "Found destination [%s] in source [%s] with destination as: [%s]\n"
@@ -240,7 +242,7 @@ void s_rename_add(char *src, char *dest)
       {
         /* we found a -> b, while adding a -> c.
          * hence b <==> c, so add c -> b.
-         * avoid renaming if b is same as c!
+         * avoid renaming if b is the same as c!
          */
 #if DEBUG
         printf("Found source [%s] with destination as: [%s]\n"
@@ -282,9 +284,19 @@ void s_rename_add(char *src, char *dest)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Rename Netnames Low Level
+ * \par Function Description
+ *  Searches each pin list in the netlist for \a src and when found,
+ *  replaces the string with \a dest.
+ *
+ *  Example 1 of renamed netname:
+ *
+ *     src "GPIO_28" renamed to dest "GPIO-28"
+ *
+ *  Example 2 with (hierarchy-netname-mangle "enabled")
+ *
+ *     src "Sheets_18/DIM_SCLKA" renamed to dest "DIM_SCLKA"
  *
  * TODO consider revising to a two pass appoarch, with the first pass
  *      only detecting and collecting the pins and then renaming after
@@ -293,7 +305,7 @@ void s_rename_add(char *src, char *dest)
  *      are not freed everywhere on the first encounter in the single
  *      pass approach. Previously the strings were not freed in this
  *      routine prior to re-assignment and the last reference to the
- *      pointer were lost after the routine so the memory could not be
+ *      pointers were lost after the routine so the memory could not be
  *      freed later, WEH.
  */
 static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest)
@@ -327,10 +339,14 @@ static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Rename Nets
+ * \par Function Description
+ *  Wrapper for s_rename_all_lowlevel, iterates over the collection
+ *  of netname pairs, passing each pair to the low level function to
+ *  search the pin lists and perform the actual renaming.
  *
+ * \note Called before and before exiting of s_hierarchy_post_process.
  */
 void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head)
 {
