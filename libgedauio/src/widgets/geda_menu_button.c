@@ -1281,16 +1281,16 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                          G_TYPE_NONE, 0);
 }
 
-/*! \brief Retrieve GedaMenuButton's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaMenuButton's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaMenuButton Type identifier. When
  *  first called, the function registers a #GedaMenuButton in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuButton and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaMenuButton.
+ * \return GedaType identifier associated with GedaMenuButton.
  */
 GedaType
 geda_menu_button_get_type (void)
@@ -1433,15 +1433,14 @@ geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
   iface->add_child       = geda_menu_button_buildable_add_child;
 }
 
-/*! \brief Set the Menu Widget for GedaMenuButton object
- *
- *  \par Function Description
+/*!
+ * \brief Set the Menu Widget for GedaMenuButton object
+ * \par Function Description
  * Sets the GtkMenu that is popped up when the user clicks on the arrow.
  * If menu is NULL, the arrow button becomes insensitive.
  *
- *  \param [in] button: a #GedaMenuButton
- *  \param [in] menu:   the GtkMenu associated with #GedaMenuButton
- *
+ * \param [in] button: a #GedaMenuButton
+ * \param [in] menu:   the GtkMenu associated with #GedaMenuButton
  */
 void
 geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)

@@ -1,8 +1,8 @@
 #ifndef __GEDA_MENU_ENUM_H__
 #define __GEDA_MENU_ENUM_H__
 
-/**
- * PackDirection:
+/*!
+ * \typedef PackDirection
  * @PACK_DIRECTION_LTR: Widgets are packed left-to-right
  * @PACK_DIRECTION_RTL: Widgets are packed right-to-left
  * @PACK_DIRECTION_TTB: Widgets are packed top-to-bottom
@@ -19,7 +19,9 @@ typedef enum
   PACK_DIRECTION_BTT
 } PackDirection;
 
-/* Menu keyboard movement types */
+/*!
+ * \typedef MenuDirection
+ * Menu keyboard movement types */
 typedef enum
 {
   MENU_DIR_PARENT,
@@ -28,7 +30,9 @@ typedef enum
   MENU_DIR_PREV
 } MenuDirection;
 
-/* Placement of submenus */
+/*!
+ * \typedef SubmenuPlacement
+ * Placement of submenus */
 typedef enum
 {
   MENU_TOP_BOTTOM,

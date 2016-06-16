@@ -30,8 +30,8 @@ libgedauio_HEADERS = \
 			geda_keysyms.h            \
 			geda_label.h              \
 			geda_marshal.h            \
+			geda_menu_enum.h          \
 			geda_menu_button.h        \
-			geda_menu_item_private.h  \
 			geda_mnemonic_hash.h      \
 			geda_option_menu.h        \
 			geda_separator.h          \

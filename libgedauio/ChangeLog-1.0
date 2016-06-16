@@ -1,3 +1,7 @@
+2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_enum.h: Add Doxygen typedef tags/comment
+
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revise geda_handle_box_class_init; add
