@@ -19,6 +19,20 @@
     * include/geda_radio_menu_item.h: New header to define GedaRadioMenuItem
       class.
 
+    * src/widgets/geda_check_menu_item.c: Add implementation file for GedaCheckMenuItem.
+
+    * src/widgets/geda_menu.c: Add implementation file for GedaMenu.
+
+    * src/widgets/geda_menu_bar.c: Add implementation file for GedaMenuBar.
+
+    * src/widgets/geda_menu_item.c: Add implementation file for GedaMenuItem.
+
+    * src/widgets/geda_menu_separator.c: Add implementation file for GedaMenuSeparator.
+
+    * src/widgets/geda_menu_shell.c: Add implementation file for GedaMenuShell.
+
+    * src/widgets/geda_radio_menu_item.c: Add implementation file for GedaRadioMenuItem.
+
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revise geda_handle_box_class_init; add

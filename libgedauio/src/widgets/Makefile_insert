@@ -4,6 +4,7 @@ libgedauio_la_SOURCES += \
 			widgets/geda_accel_label.c       \
 			widgets/geda_action.c            \
 			widgets/geda_bulb.c              \
+			widgets/geda_check_menu_item.c   \
 			widgets/geda_combobox.c          \
 			widgets/geda_comboboxtext.c      \
 			widgets/geda_completion.c        \
@@ -13,8 +14,14 @@ libgedauio_la_SOURCES += \
 			widgets/geda_handlebox.c         \
 			widgets/geda_image_menu_item.c   \
 			widgets/geda_label.c             \
+			widgets/geda_menu.c              \
+			widgets/geda_menu_bar.c          \
 			widgets/geda_menu_button.c       \
+			widgets/geda_menu_item.c         \
+			widgets/geda_menu_separator.c    \
+			widgets/geda_menu_shell.c        \
 			widgets/geda_option_menu.c       \
+			widgets/geda_radio_menu_item.c   \
 			widgets/geda_separator.c         \
 			widgets/geda_swatch_renderer.c   \
 			widgets/geda_tearoff_menu_item.c \
