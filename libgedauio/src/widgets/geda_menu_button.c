@@ -26,6 +26,25 @@
  * Date: March 31, 2013
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
+/*! \file geda_menu_button.c
+ *  \brief GedaMenuButton Class Module
+ */
+
+/** \defgroup geda-menu-button GedaMenuButton Object
+ * @{
+ * \brief GedaMenuButton - A Button Widget for Menus
+ * \par
+ *  A GedaMenuButton is a button object used on toolbars or menus.
+ *  GedaMenuButton is a replacement for the GtkMenuButton because the
+ *  GtkMenuButton has a display issue related to the "themeing" and
+ *  pre-light, forgot the details. And GtkMenuButton uses a GtkLabel,
+ *  which valgrind reports as a memory leak after GTK over-rides the
+ *  font to LibFontConfig's best match of the default "theme" font but
+ *  neither Pango nor LibFontConfig free the (I think) description.
+ *
+ * \class GedaMenuButton geda_menu_button.h "include/geda_menu_button.h"
+ * \implements GtkEventBox
+ */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -45,22 +64,8 @@
 
 #include <geda_debug.h>
 
-/**
- * \brief GedaMenuButton - A Button Widget for Menus
- * \par
- * A GedaMenuButton is a Button objects are used on toolbars or menus. The
- * GedaMenuButton is a replacement for the GtkMenuButton because the GtkMenu
- * Button has a display issue related to the "themeing" and pre-light, forgot
- * the details. And GtkMenuButton uses a GtkLabel, which valgrind reports as
- * a memory leak after GTK over-rides the font to LibFontConfig's best match
- * of the default "theme" font but neither Pango nor LibFontConfig free the
- * (I think) description.
- *
- * \defgroup GedaMenuButton Menu Button
- * @{
- */
-
-/* Time out before giving up on getting a key release when animating the close button.
+/* Time out before giving up on getting a key release when animating the
+ * close button.
  */
 #define ACTIVATE_TIMEOUT 250
 
@@ -1576,4 +1581,4 @@ GedaMenuButton *geda_menu_button_new_with_mnemonic(const char *label)
                        "menu-relief", GTK_RELIEF_NONE,
                        "use-underline", TRUE,  NULL);;
 }
-/** @} end group GedaMenuButton */
+/** @} end group geda-menu-button */

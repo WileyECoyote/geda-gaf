@@ -27,6 +27,11 @@
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
  */
+/*! \class GedaMenuButton geda_menu_button.h "libgedauio/geda_menu_button.h"
+ *  \brief Class for GedaMenuButton Objects.
+ *
+ *  GedaMenuButton is a derivative of the GtkEventBox class.
+ */
 
 #ifndef __GEDA_MENU_BUTTON_H__
 #define __GEDA_MENU_BUTTON_H__

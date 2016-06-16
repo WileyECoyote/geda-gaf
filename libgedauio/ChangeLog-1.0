@@ -7,6 +7,8 @@
 
     * include/geda_menu_bar.h: New header to define GedaMenuBar class.
 
+    * include/geda_menu_button.h: Add Doxygen class tag/block.
+
     * include/geda_menu_enum.h: Add Doxygen typedef tags/comment
 
     * include/geda_menu_item.h: New header to define GedaMenuItem class.
@@ -27,6 +29,8 @@
     * src/widgets/geda_menu.c: Add implementation file for GedaMenu.
 
     * src/widgets/geda_menu_bar.c: Add implementation file for GedaMenuBar.
+
+    * src/widgets/geda_menu_button.c Add Doxygen class tag, revise group tag block.
 
     * src/widgets/geda_menu_item.c: Add implementation file for GedaMenuItem.
 
