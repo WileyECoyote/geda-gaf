@@ -40,7 +40,8 @@
 
     * src/widgets/geda_radio_menu_item.c: Add implementation file for GedaRadioMenuItem.
 
-    * src/widgets/geda_tearoff_menu_item.c: Update class for GedaMenuItem.
+    * src/widgets/geda_tearoff_menu_item.c: Update class for GedaMenuItem, add method
+      geda_tearoff_menu_is_active.
 
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
