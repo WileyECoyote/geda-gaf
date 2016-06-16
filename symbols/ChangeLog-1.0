@@ -1,3 +1,11 @@
+2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/MIC2551ABML-1.sym: Rename file with dash-one suffix.
+
+    * serial/MIC2551ABTS-1.sym: Rename file with dash-one suffix.
+
+    * serial/MMUSB245-1.sym: Rename file with dash-one suffix.
+
 2016-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg/LT3494-1.sym: Add symbol boost converter, low noise,
