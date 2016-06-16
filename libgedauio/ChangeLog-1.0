@@ -19,6 +19,9 @@
     * include/geda_radio_menu_item.h: New header to define GedaRadioMenuItem
       class.
 
+    * include/geda_tearoff_menu_item.h: Derive GedaTearoffMenuItem from GedaMenuItem
+      instead of GtkMenuItem.
+
     * src/widgets/geda_check_menu_item.c: Add implementation file for GedaCheckMenuItem.
 
     * src/widgets/geda_menu.c: Add implementation file for GedaMenu.
@@ -32,6 +35,8 @@
     * src/widgets/geda_menu_shell.c: Add implementation file for GedaMenuShell.
 
     * src/widgets/geda_radio_menu_item.c: Add implementation file for GedaRadioMenuItem.
+
+    * src/widgets/geda_tearoff_menu_item.c: Update class for GedaMenuItem.
 
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 

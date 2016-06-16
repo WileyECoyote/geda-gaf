@@ -31,6 +31,8 @@
 #ifndef __GEDA_TEAROFF_MENU_ITEM_H__
 #define __GEDA_TEAROFF_MENU_ITEM_H__
 
+#include "geda_menu_item.h"
+
 #define GEDA_TYPE_TEAROFF_MENU_ITEM	          (geda_tearoff_menu_item_get_type ())
 #define GEDA_TEAROFF_MENU_ITEM(obj)	          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TEAROFF_MENU_ITEM, GedaTearoffMenuItem))
 #define GEDA_TEAROFF_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_TEAROFF_MENU_ITEM, GedaTearoffMenuItemClass))
@@ -45,7 +47,7 @@ typedef struct _GedaTearoffMenuItemClass GedaTearoffMenuItemClass;
 
 struct _GedaTearoffMenuItem
 {
-  GtkMenuItem menu_item;
+  GedaMenuItem menu_item;
 
   /*< private >*/
   GedaTearoffMenuItemData *priv;
@@ -53,7 +55,7 @@ struct _GedaTearoffMenuItem
 
 struct _GedaTearoffMenuItemClass
 {
-  GtkMenuItemClass parent_class;
+  GedaMenuItemClass parent_class;
 
 };
 
@@ -62,7 +64,7 @@ extern "C" {
 #endif
 
 GedaType   geda_tearoff_menu_item_get_type (void) GEDA_CONST;
-GtkWidget *geda_tearoff_menu_item_new	      (void);
+GtkWidget *geda_tearoff_menu_item_new      (void);
 bool       geda_tearoff_menu_is_torn       (GtkWidget *menu_item);
 
 #ifdef __cplusplus
