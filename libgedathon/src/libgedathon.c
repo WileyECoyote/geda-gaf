@@ -2533,7 +2533,7 @@ PyObject *PyGeda_new_path (const char *path_string)
 {
   GedaObject *object;
 
-  object = o_path_new(GRAPHIC_COLOR, path_string);
+  object = geda_path_object_new(GRAPHIC_COLOR, path_string);
 
   if (GEDA_IS_PATH(object)) {
       add_floating_object(object);
