@@ -12,6 +12,7 @@ libgedauio_HEADERS = \
 			geda_action.h             \
 			geda_accumulate.h         \
 			geda_bulb.h               \
+			geda_check_menu_item.h    \
 			geda_combobox.h           \
 			geda_comboboxtext.h       \
 			geda_completion.h         \
@@ -30,10 +31,16 @@ libgedauio_HEADERS = \
 			geda_keysyms.h            \
 			geda_label.h              \
 			geda_marshal.h            \
+			geda_menu.h               \
+			geda_menu_bar.h           \
 			geda_menu_enum.h          \
 			geda_menu_button.h        \
+			geda_menu_item.h          \
+			geda_menu_separator.h     \
+			geda_menu_shell.h         \
 			geda_mnemonic_hash.h      \
 			geda_option_menu.h        \
+			geda_radio_menu_item.h    \
 			geda_separator.h          \
 			geda_swatch_renderer.h    \
 			geda_tearoff_menu_item.h  \

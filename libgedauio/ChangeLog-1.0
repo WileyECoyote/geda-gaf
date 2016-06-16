@@ -1,6 +1,23 @@
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_check_menu_item.h: New header to define GedaCheckMenuItem
+      class.
+
+    * include/geda_menu.h: New header to define GedaMenu class.
+
+    * include/geda_menu_bar.h: New header to define GedaMenuBar class.
+
     * include/geda_menu_enum.h: Add Doxygen typedef tags/comment
+
+    * include/geda_menu_item.h: New header to define GedaMenuItem class.
+
+    * include/geda_menu_separator.h: New header to define GedaMenuSeparator
+      class.
+
+    * include/geda_menu_shell.h: New header to define GedaMenuShell class.
+
+    * include/geda_radio_menu_item.h: New header to define GedaRadioMenuItem
+      class.
 
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
