@@ -124,7 +124,7 @@ struct _Compselect {
   GedaOptionMenu *behavior_menu;
 
   GedaMenuButton *style_menu;
-  GtkMenu        *menu;
+  GedaMenu       *menu;
 
   GSList         *style_menu_widgets;
   unsigned int    style_flag;

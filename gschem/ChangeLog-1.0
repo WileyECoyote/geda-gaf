@@ -3,6 +3,10 @@
     * src/x/x_autonumber.c: Replace GtkMenu with GedaMenu for options
       menu popup and take new GedaMenu widget for a tests drive.
 
+    * src/x/x_compselect.c: Replace GtkMenu with GedaMenu for options
+      menu popup, these are the only two GedaOptionMenu`s and must be
+      replaced since GedaOptionMenu now work with GedaMenu not GtkMenu.
+
 2016-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Utilize geda_page_get_changed to get the
