@@ -12,6 +12,9 @@
 
     * src/widgets/geda_option_menu.c: Convert to work with GedaMenu widgets.
 
+    * tests/test_menu.c: Add tests framework and check basic construction of
+      GedaMenu objects.
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: New header to define GedaCheckMenuItem
