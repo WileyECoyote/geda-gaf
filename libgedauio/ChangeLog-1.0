@@ -8,6 +8,10 @@
 
     * include/geda_widgets.h: include menu headers in widgets.h.
 
+    * src/widgets/geda_menu_button.c: Update; replace GtkMenu->GedaMenu.
+
+    * src/widgets/geda_option_menu.c: Convert to work with GedaMenu widgets.
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: New header to define GedaCheckMenuItem

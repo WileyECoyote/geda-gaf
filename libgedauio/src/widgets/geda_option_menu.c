@@ -26,7 +26,11 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_item.h"
+#include "../../include/geda_menu_shell.h"
 #include "../../include/geda_option_menu.h"
+
 #include "../../include/geda_keysyms.h"
 #include "../../include/gettext.h"
 
@@ -75,12 +79,12 @@ static int geda_option_menu_button_press     (GtkWidget          *widget,
                                               GdkEventButton     *event);
 static int geda_option_menu_key_press        (GtkWidget          *widget,
                                               GdkEventKey        *event);
-static void geda_option_menu_selection_done  (GtkMenuShell       *menu_shell,
+static void geda_option_menu_selection_done  (GedaMenuShell      *menu_shell,
                                               GedaOptionMenu     *option_menu);
 static void geda_option_menu_update_contents (GedaOptionMenu     *option_menu);
 static void geda_option_menu_remove_contents (GedaOptionMenu     *option_menu);
 static void geda_option_menu_calc_size       (GedaOptionMenu     *option_menu);
-static void geda_option_menu_position        (GtkMenu            *menu,
+static void geda_option_menu_position        (GedaMenu            *menu,
                                               int                *x,
                                               int                *y,
                                               int                *scroll_offet,
@@ -115,15 +119,15 @@ geda_option_menu_child_type (GtkContainer *container)
   return G_TYPE_NONE;
 }
 
-/*! \brief GedaMenuShell Type Class Initializer
+/*! \brief GedaOptionMenu Type Class Initializer
  *
  *  \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class      GedaMenuShell class we are initializing
- *  \param [in]  class_data GedaMenuShell structure associated with the class
+ *  \param [in]  class      GedaOptionMenu class we are initializing
+ *  \param [in]  class_data GedaOptionMenu structure associated with the class
  */
 static void
 geda_option_menu_class_init(void *class, void *class_data)
@@ -171,7 +175,7 @@ geda_option_menu_class_init(void *class, void *class_data)
                                    g_param_spec_object ("menu",
                                                       _("Menu"),
                                                       _("The menu of options"),
-                                                        GTK_TYPE_MENU,
+                                                        GEDA_TYPE_MENU,
                                                         G_PARAM_READWRITE));
 
   gtk_widget_class_install_style_property (widget_class,
@@ -180,6 +184,7 @@ geda_option_menu_class_init(void *class, void *class_data)
                                    _("Size of dropdown indicator"),
                                    GTK_TYPE_REQUISITION,
                                    G_PARAM_READABLE));
+
   gtk_widget_class_install_style_property (widget_class,
                        g_param_spec_boxed ("indicator-spacing",
                                    _("Indicator Spacing"),
@@ -188,14 +193,14 @@ geda_option_menu_class_init(void *class, void *class_data)
                                    G_PARAM_READABLE));
 }
 
-/*! \brief Type instance initializer for GedaMenuShell
+/*! \brief Type instance initializer for GedaOptionMenu
  *
  *  \par Function Description
- *  Type instance initializer for GedaMenuShell, initializes a new empty
- *  GedaMenuShell object.
+ *  Type instance initializer for GedaOptionMenu, initializes a new empty
+ *  GedaOptionMenu object.
  *
- *  \param [in] instance The GedaMenuShell structure being initialized,
- *  \param [in] class    The GedaMenuShell class being initializing.
+ *  \param [in] instance The GedaOptionMenu structure being initialized,
+ *  \param [in] class    The GedaOptionMenu class being initializing.
  */
 static void
 geda_option_menu_instance_init(GTypeInstance *instance, void *class)
@@ -283,7 +288,7 @@ geda_option_menu_get_menu (GedaOptionMenu *option_menu)
 }
 
 static void
-geda_option_menu_detacher (GtkWidget *widget, GtkMenu *menu)
+geda_option_menu_detacher (GtkWidget *widget, GedaMenu *menu)
 {
   GedaOptionMenu *option_menu;
 
@@ -308,33 +313,34 @@ void
 geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
-  g_return_if_fail (GTK_IS_MENU (menu));
+  g_return_if_fail (GEDA_IS_MENU (menu));
 
-  if (option_menu->menu != menu)
-    {
-      geda_option_menu_remove_menu (option_menu);
+  if (option_menu->menu != menu) {
 
-      option_menu->menu = menu;
-      gtk_menu_attach_to_widget (GTK_MENU (menu),
-                 GTK_WIDGET (option_menu),
-                 geda_option_menu_detacher);
+    geda_option_menu_remove_menu (option_menu);
 
-      geda_option_menu_calc_size (option_menu);
+    option_menu->menu = menu;
+    geda_menu_attach_to_widget (GEDA_MENU (menu),
+                               GTK_WIDGET (option_menu),
+                               geda_option_menu_detacher);
 
-      g_signal_connect_after (option_menu->menu, "selection-done",
-                  G_CALLBACK (geda_option_menu_selection_done),
-                  option_menu);
-      g_signal_connect_swapped (option_menu->menu, "size-request",
-                G_CALLBACK (geda_option_menu_calc_size),
-                option_menu);
+    geda_option_menu_calc_size (option_menu);
 
-      if (GTK_WIDGET (option_menu)->parent)
-    gtk_widget_queue_resize (GTK_WIDGET (option_menu));
+    g_signal_connect_after (option_menu->menu, "selection-done",
+                            G_CALLBACK (geda_option_menu_selection_done),
+                            option_menu);
 
-      geda_option_menu_update_contents (option_menu);
+    g_signal_connect_swapped (option_menu->menu, "size-request",
+                              G_CALLBACK (geda_option_menu_calc_size),
+                              option_menu);
 
-      g_object_notify (G_OBJECT (option_menu), "menu");
+    if (GTK_WIDGET (option_menu)->parent) {
+      gtk_widget_queue_resize (GTK_WIDGET (option_menu));
     }
+    geda_option_menu_update_contents (option_menu);
+
+    g_object_notify (G_OBJECT (option_menu), "menu");
+  }
 }
 
 void
@@ -342,13 +348,13 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
-  if (option_menu->menu)
-    {
-      if (GTK_MENU_SHELL (option_menu->menu)->active)
-    gtk_menu_shell_cancel (GTK_MENU_SHELL (option_menu->menu));
+  if (option_menu->menu) {
 
-      gtk_menu_detach (GTK_MENU (option_menu->menu));
-    }
+    if (GEDA_MENU_SHELL (option_menu->menu)->active)
+      geda_menu_shell_cancel (GEDA_MENU_SHELL (option_menu->menu));
+
+    geda_menu_detach (GEDA_MENU (option_menu->menu));
+  }
 }
 
 void
@@ -358,14 +364,14 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
-  if (option_menu->menu)
-    {
-      gtk_menu_set_active (GTK_MENU (option_menu->menu), index);
-      menu_item = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+  if (option_menu->menu) {
 
-      if (menu_item != option_menu->menu_item)
-        geda_option_menu_update_contents (option_menu);
-    }
+    geda_menu_set_active (GEDA_MENU (option_menu->menu), index);
+    menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+
+    if (menu_item != option_menu->menu_item)
+      geda_option_menu_update_contents (option_menu);
+  }
 }
 
 /**
@@ -375,9 +381,8 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
  * Retrieves the index of the currently selected menu item. The menu
  * items are numbered from top to bottom, starting with 0.
  *
- * Return value: index of the selected menu item, or -1 if there are no menu items
- * Deprecated: 2.4: Use #GtkComboBox instead.
- **/
+ * \return index of the selected menu item, or -1 if there are no menu items
+ */
 int
 geda_option_menu_get_history (GedaOptionMenu *option_menu)
 {
@@ -385,16 +390,16 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
 
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
-  if (option_menu->menu)
-    {
-      active_widget = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+  if (option_menu->menu) {
 
-      if (active_widget)
-    return g_list_index (GTK_MENU_SHELL (option_menu->menu)->children,
-                             active_widget);
+    active_widget = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+
+    if (active_widget)
+      return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
+                           active_widget);
       else
-    return -1;
-    }
+        return -1;
+  }
   else
     return -1;
 }
@@ -442,8 +447,9 @@ geda_option_menu_destroy (GtkObject *object)
 {
   GedaOptionMenu *option_menu = GEDA_OPTION_MENU (object);
 
-  if (option_menu->menu)
+  if (option_menu->menu) {
     gtk_widget_destroy (option_menu->menu);
+  }
 
   GTK_OBJECT_CLASS (geda_option_menu_parent_class)->destroy (object);
 }
@@ -491,7 +497,8 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   geda_option_menu_get_props (option_menu, &props);
 
-  if (GTK_BIN (option_menu)->child && gtk_widget_get_visible (GTK_BIN (option_menu)->child))
+  if (GTK_BIN(option_menu)->child &&
+      gtk_widget_get_visible (GTK_BIN(option_menu)->child))
   {
     gtk_widget_size_request (GTK_BIN (option_menu)->child, &child_requisition);
 
@@ -682,12 +689,12 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
       (event->button == 1))
   {
     geda_option_menu_remove_contents (option_menu);
-    gtk_menu_popup (GTK_MENU (option_menu->menu), NULL, NULL,
+    geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
                     geda_option_menu_position, option_menu,
                     event->button, event->time);
-    menu_item = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+    menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
     if (menu_item)
-      gtk_menu_shell_select_item (GTK_MENU_SHELL (option_menu->menu), menu_item);
+      geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
     return TRUE;
   }
 
@@ -710,12 +717,12 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
     case GDK_KP_Space:
     case GDK_space:
       geda_option_menu_remove_contents (option_menu);
-      gtk_menu_popup (GTK_MENU (option_menu->menu), NULL, NULL,
+      geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
               geda_option_menu_position, option_menu,
               0, event->time);
-      menu_item = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+      menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
       if (menu_item)
-    gtk_menu_shell_select_item (GTK_MENU_SHELL (option_menu->menu), menu_item);
+    geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
       return TRUE;
     }
 
@@ -723,7 +730,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 }
 
 static void
-geda_option_menu_selection_done (GtkMenuShell   *menu_shell,
+geda_option_menu_selection_done (GedaMenuShell  *menu_shell,
                                  GedaOptionMenu *option_menu)
 {
   g_return_if_fail (menu_shell != NULL);
@@ -745,7 +752,7 @@ geda_option_menu_select_first_sensitive (GedaOptionMenu *option_menu)
 {
   if (option_menu->menu) {
 
-    GList *children = GTK_MENU_SHELL (option_menu->menu)->children;
+    GList *children = GEDA_MENU_SHELL (option_menu->menu)->children;
     int index = 0;
 
     while (children) {
@@ -804,7 +811,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 
     geda_option_menu_remove_contents (option_menu);
 
-    option_menu->menu_item = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+    option_menu->menu_item = geda_menu_get_active (GEDA_MENU(option_menu->menu));
 
     if (option_menu->menu_item) {
 
@@ -884,7 +891,7 @@ geda_option_menu_calc_size (GedaOptionMenu *option_menu)
 
   if (option_menu->menu) {
 
-    children = GTK_MENU_SHELL (option_menu->menu)->children;
+    children = GEDA_MENU_SHELL (option_menu->menu)->children;
 
     while (children) {
 
@@ -911,11 +918,11 @@ geda_option_menu_calc_size (GedaOptionMenu *option_menu)
 }
 
 static void
-geda_option_menu_position (GtkMenu  *menu,
-                           int      *x,
-                           int      *y,
-                           bool     *push_in,
-                           void     *user_data)
+geda_option_menu_position (GedaMenu  *menu,
+                           int       *x,
+                           int       *y,
+                           bool      *push_in,
+                           void      *user_data)
 {
   GedaOptionMenu *option_menu;
   GtkWidget      *active;
@@ -937,11 +944,11 @@ geda_option_menu_position (GtkMenu  *menu,
   gtk_widget_get_child_requisition (GTK_WIDGET (menu), &requisition);
   menu_width = requisition.width;
 
-  active = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+  active = geda_menu_get_active (GEDA_MENU (option_menu->menu));
   gdk_window_get_origin (widget->window, &menu_xpos, &menu_ypos);
 
   /* set combo box type hint for menu popup */
-  gtk_window_set_type_hint (GTK_WINDOW (GTK_MENU (option_menu->menu)->toplevel),
+  gtk_window_set_type_hint (GTK_WINDOW (GEDA_MENU (option_menu->menu)->toplevel),
                             GDK_WINDOW_TYPE_HINT_COMBO);
 
   menu_xpos += widget->allocation.x;
@@ -953,7 +960,7 @@ geda_option_menu_position (GtkMenu  *menu,
     menu_ypos -= requisition.height / 2;
   }
 
-  children = GTK_MENU_SHELL (option_menu->menu)->children;
+  children = GEDA_MENU_SHELL (option_menu->menu)->children;
   while (children) {
 
     child = children->data;
@@ -1012,7 +1019,6 @@ geda_option_menu_show_all (GtkWidget *widget)
   }
 }
 
-
 static void
 geda_option_menu_hide_all (GtkWidget *widget)
 {
@@ -1040,13 +1046,13 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
   int n_children;
   int index_dir;
   GList *l;
-  GtkMenuItem *item;
+  GedaMenuItem *item;
 
   index = geda_option_menu_get_history (option_menu);
 
   if (index != -1) {
 
-    n_children = g_list_length (GTK_MENU_SHELL (option_menu->menu)->children);
+    n_children = g_list_length (GEDA_MENU_SHELL(option_menu->menu)->children);
 
     if (event->direction == GDK_SCROLL_UP)
       index_dir = -1;
@@ -1064,14 +1070,14 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
       if (index >= n_children)
         break;
 
-      l    = g_list_nth (GTK_MENU_SHELL (option_menu->menu)->children, index);
-      item = GTK_MENU_ITEM (l->data);
+      l    = g_list_nth (GEDA_MENU_SHELL(option_menu->menu)->children, index);
+      item = GEDA_MENU_ITEM (l->data);
 
       if (gtk_widget_get_visible (GTK_WIDGET (item)) &&
         gtk_widget_is_sensitive (GTK_WIDGET (item)))
       {
         geda_option_menu_set_history (option_menu, index);
-        gtk_menu_item_activate (GTK_MENU_ITEM (item));
+        geda_menu_item_activate (GEDA_MENU_ITEM (item));
         break;
       }
 
