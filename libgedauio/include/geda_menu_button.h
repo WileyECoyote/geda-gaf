@@ -139,12 +139,12 @@ void            geda_menu_button_set_menu              (GedaMenuButton *button,
                                                         GtkWidget      *menu);
 GtkWidget      *geda_menu_button_get_menu              (GedaMenuButton *button);
 
-void            geda_menu_button_set_tooltip_text  (GedaMenuButton *button,
-                                                    const char     *tip_text);
-void            geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
-                                                    GtkTooltips    *tooltips,
-                                                    const char     *tip_text,
-                                                    const char     *tip_private);
+void            geda_menu_button_set_tooltip_text      (GedaMenuButton *button,
+                                                        const char     *tip_text);
+void            geda_menu_button_set_arrow_tooltip     (GedaMenuButton *button,
+                                                        GtkTooltips    *tooltips,
+                                                        const char     *tip_text,
+                                                        const char     *tip_private);
 
 void            geda_menu_button_set_arrow_tooltip_text   (GedaMenuButton *button,
                                                            const char     *text);

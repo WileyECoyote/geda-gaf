@@ -282,6 +282,10 @@ void        geda_menu_reorder_child              (GedaMenu         *menu,
                                                   int               position);
 GtkWidget  *geda_menu_get_toplevel               (GedaMenu         *menu);
 
+#define geda_menu_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell *)(menu),(child))
+#define geda_menu_prepend(menu,child)    geda_menu_shell_prepend ((GedaMenuShell *)(menu),(child))
+#define geda_menu_insert(menu,child,pos) geda_menu_shell_insert ((GedaMenuShell *)(menu),(child),(pos))
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

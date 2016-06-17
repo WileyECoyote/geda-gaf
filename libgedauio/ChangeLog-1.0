@@ -1,3 +1,11 @@
+2016-06-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu.h: Add macros:
+
+            * geda_menu_append
+            * geda_menu_prepend
+            * geda_menu_insert
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: New header to define GedaCheckMenuItem
