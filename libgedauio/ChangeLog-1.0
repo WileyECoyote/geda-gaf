@@ -6,6 +6,8 @@
             * geda_menu_prepend
             * geda_menu_insert
 
+    * include/geda_widgets.h: include menu headers in widgets.h.
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: New header to define GedaCheckMenuItem
