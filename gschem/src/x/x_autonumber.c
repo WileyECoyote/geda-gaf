@@ -32,6 +32,7 @@
 #include "../../include/x_dialog.h"
 
 #include <geda_keysyms.h>
+#include <geda_widgets.h>
 
 #include <geda_debug.h>
 
@@ -1413,14 +1414,14 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   /* Set the ScopeNumber ComboMenu with the value in autotext->scope_number */
   geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeNumberMenu), autotext->scope_number);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeNumberMenu));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   /* Set the ScopeSkip ComboMenu with the value in autotext->scope_skip */
   geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeSkipMenu), autotext->scope_skip);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeSkipMenu));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
 
@@ -1460,15 +1461,15 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
   /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
   autotext->scope_number = POINTER_TO_INT(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (geda_option_menu_get_menu (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
             GEDA_OPTION_MENU (ScopeNumberMenu)))), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
     autotext->scope_skip = POINTER_TO_INT(
       GEDA_OBJECT_GET_DATA (
-          gtk_menu_get_active (
-            GTK_MENU (geda_option_menu_get_menu (
+          geda_menu_get_active (
+            GEDA_MENU (geda_option_menu_get_menu (
               GEDA_OPTION_MENU (ScopeSkipMenu)))), "scope_menu"));
 
       autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
@@ -1653,15 +1654,16 @@ GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
 
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct scope_options); i++) {
+
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem, INT_TO_POINTER (types[i].scope), "scope_menu");
     gtk_widget_show (menuitem);
   }
