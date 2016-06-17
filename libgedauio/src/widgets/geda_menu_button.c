@@ -35,9 +35,9 @@
  * \brief GedaMenuButton - A Button Widget for Menus
  * \par
  *  A GedaMenuButton is a button object used on toolbars or menus.
- *  GedaMenuButton is a replacement for the GtkMenuButton because the
- *  GtkMenuButton has a display issue related to the "themeing" and
- *  pre-light, forgot the details. And GtkMenuButton uses a GtkLabel,
+ *  GedaMenuButton is a replacement for the GedaMenuButton because the
+ *  GedaMenuButton has a display issue related to the "themeing" and
+ *  pre-light, forgot the details. And GedaMenuButton uses a GtkLabel,
  *  which valgrind reports as a memory leak after GTK over-rides the
  *  font to LibFontConfig's best match of the default "theme" font but
  *  neither Pango nor LibFontConfig free the (I think) description.
@@ -58,6 +58,8 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkprivate.h>
 
+#include "geda_menu.h"
+#include "geda_menu_shell.h"
 #include "geda_menu_button.h"
 
 #include "gettext.h"
@@ -90,7 +92,7 @@ static const GtkBorder default_inner_border           = { 1, 1, 1, 1 };
 static void geda_menu_button_dispose (GObject *object);
 static void geda_menu_button_destroy (GtkObject *object);
 
-static int  geda_menu_deactivate_cb(GtkMenuShell *menu_shell, GedaMenuButton *button);
+static int  geda_menu_deactivate_cb(GedaMenuShell *menu_shell, GedaMenuButton *button);
 
 static bool arrow_button_press_event_cb               (GtkWidget         *widget,
                                                        GdkEventButton    *event,
@@ -885,7 +887,7 @@ geda_menu_button_state_changed (GtkWidget *widget, GtkStateType  previous_state)
   GedaMenuButtonData *priv   = button->priv;
 
   if (!gtk_widget_is_sensitive (widget) && priv->menu) {
-      gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
+      geda_menu_shell_deactivate (GEDA_MENU_SHELL (priv->menu));
   }
 }
 
@@ -926,14 +928,14 @@ static void
 geda_menu_button_destroy (GtkObject *object)
 {
   GedaMenuButton *button = GEDA_MENU_BUTTON (object);
-  GtkMenu        *menu   = (GtkMenu*)button->priv->menu;
+  GedaMenu       *menu   = (GedaMenu*)button->priv->menu;
 
   if (menu) {
 
       g_signal_handlers_disconnect_by_func (menu,
                                             geda_menu_deactivate_cb,
                                             button);
-      gtk_menu_detach (menu);
+      geda_menu_detach (menu);
 
       g_signal_handlers_disconnect_by_func (button->priv->arrow_button,
                                             arrow_button_toggled_cb,
@@ -1172,8 +1174,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_boxed ("inner-border",
-                                                              _("Inner Border"),
-                                                              _("Border between button edges and child."),
+                                                             _("Inner Border"),
+                                                             _("Border between button edges and child."),
                                                                GTK_TYPE_BORDER,
                                                                GTK_PARAM_READABLE));
 
@@ -1345,7 +1347,7 @@ geda_menu_button_get_type (void)
  * when the pop-up menu disappears.
  */
 static int
-geda_menu_deactivate_cb (GtkMenuShell *menu_shell, GedaMenuButton *button)
+geda_menu_deactivate_cb (GedaMenuShell *menu_shell, GedaMenuButton *button)
 {
   GedaMenuButtonData *priv = button->priv;
 
@@ -1355,7 +1357,7 @@ geda_menu_deactivate_cb (GtkMenuShell *menu_shell, GedaMenuButton *button)
 }
 
 static void
-menu_detacher (GtkWidget *widget, GtkMenu *menu)
+menu_detacher (GtkWidget *widget, GedaMenu *menu)
 {
   GedaMenuButtonData *priv = GEDA_MENU_BUTTON (widget)->priv;
 
@@ -1374,16 +1376,16 @@ popup_menu_under_arrow (GedaMenuButton *button, GdkEventButton *event)
   if (!priv->menu)
     return;
 
-  gtk_menu_popup (GTK_MENU(priv->menu), NULL, NULL,
-                  NULL,
-                  button,
-                  event ? event->button : 0,
-                  event ? event->time : gtk_get_current_event_time ());
+  geda_menu_popup (GEDA_MENU(priv->menu), NULL, NULL,
+                   NULL,
+                   button,
+                   event ? event->button : 0,
+                   event ? event->time : gtk_get_current_event_time ());
 }
 
 static void
-arrow_button_toggled_cb (GtkToggleButton   *togglebutton,
-                         GedaMenuButton *button)
+arrow_button_toggled_cb (GtkToggleButton *togglebutton,
+                         GedaMenuButton  *button)
 {
   GedaMenuButtonData *priv = button->priv;
 
@@ -1391,19 +1393,19 @@ arrow_button_toggled_cb (GtkToggleButton   *togglebutton,
     return;
 
   if (gtk_toggle_button_get_active (togglebutton) &&
-      !gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
+     !gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
   {
       /* we get here only when the menu is activated by a key
        * press, so that we can select the first menu item */
       popup_menu_under_arrow (button, NULL);
-      gtk_menu_shell_select_first (GTK_MENU_SHELL (priv->menu), FALSE);
+      geda_menu_shell_select_first (GEDA_MENU_SHELL (priv->menu), FALSE);
   }
 }
 
 static bool
-arrow_button_press_event_cb (GtkWidget         *widget,
-                                    GdkEventButton    *event,
-                                    GedaMenuButton *button)
+arrow_button_press_event_cb (GtkWidget      *widget,
+                             GdkEventButton *event,
+                             GedaMenuButton *button)
 {
   if (event->button == 1) {
 
@@ -1441,11 +1443,11 @@ geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
 /*!
  * \brief Set the Menu Widget for GedaMenuButton object
  * \par Function Description
- * Sets the GtkMenu that is popped up when the user clicks on the arrow.
+ * Sets the GedaMenu that is popped up when the user clicks on the arrow.
  * If menu is NULL, the arrow button becomes insensitive.
  *
  * \param [in] button: a #GedaMenuButton
- * \param [in] menu:   the GtkMenu associated with #GedaMenuButton
+ * \param [in] menu:   the GedaMenu associated with #GedaMenuButton
  */
 void
 geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
@@ -1453,28 +1455,28 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
   GedaMenuButtonData *priv;
 
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
-  g_return_if_fail (GTK_IS_MENU (menu) || menu == NULL);
+  g_return_if_fail (GEDA_IS_MENU (menu) || menu == NULL);
 
   priv = button->priv;
 
   if (priv->menu != menu) {
 
     if (priv->menu && gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
-      gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
+      geda_menu_shell_deactivate (GEDA_MENU_SHELL (priv->menu));
 
     if (priv->menu) {
 
       g_signal_handlers_disconnect_by_func (priv->menu,
                                             geda_menu_deactivate_cb,
                                             button);
-      gtk_menu_detach ((GtkMenu*)priv->menu);
+      geda_menu_detach ((GedaMenu*)priv->menu);
     }
 
     priv->menu = menu;
 
     if (priv->menu) {
 
-      gtk_menu_attach_to_widget ((GtkMenu*)priv->menu, GTK_WIDGET (button),
+      geda_menu_attach_to_widget ((GedaMenu*)priv->menu, GTK_WIDGET (button),
                                  menu_detacher);
 
       gtk_widget_set_sensitive (priv->arrow_button, TRUE);
@@ -1494,11 +1496,11 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
  *
  *  \par Function Description
  *
- * Gets the GtkMenu associated with #GedaMenuButton.
+ * Gets the GedaMenu associated with #GedaMenuButton.
  *
  *  \param [in] button: a #GedaMenuButton
  *
- * Return value: the GtkMenu associated with #GedaMenuButton
+ * Return value: the GedaMenu associated with #GedaMenuButton
  *
  **/
 GtkWidget *geda_menu_button_get_menu (GedaMenuButton *button)
