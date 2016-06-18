@@ -65,4 +65,16 @@ typedef DWORD GedaType;
 typedef unsigned int GedaType;
 #endif
 
+#ifdef IS64BIT
+# define INT_TO_POINTER(u) ((void*)(long)(u))
+# define POINTER_TO_INT(u) ((long)(void*)(u))
+# define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))
+# define POINTER_TO_UINT(u) ((unsigned long)(void*)(u))
+#else
+# define INT_TO_POINTER(u) ((void*)(int)(u))
+# define POINTER_TO_INT(u) ((int)(void*)(u))
+# define UINT_TO_POINTER(u) ((void*)(unsigned int)(u))
+# define POINTER_TO_UINT(u) ((unsigned int)(void*)(u))
+#endif
+
 /** @} endgroup geda-global-types */

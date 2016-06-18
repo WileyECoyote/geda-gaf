@@ -1,3 +1,7 @@
+2016-06-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_types.h: Add macros for glib debacle.
+
 2016-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * build-tools/icon-theme-installer: Redirect both stderr and stdout
