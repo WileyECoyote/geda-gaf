@@ -2,6 +2,8 @@
 
     * src/x/x_autonumber.c: Remove local pointer/int cast macros.
 
+    * src/x/x_pagesel.c: Replace GtkMenu with GedaMenu for tree popup.
+
 2016-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Replace GtkMenu with GedaMenu for options

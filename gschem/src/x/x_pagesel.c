@@ -486,7 +486,7 @@ pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
  *  \param [in] user_data  The Pagesel object.
  */
 static void
-pagesel_callback_popup_down  (GtkMenuItem *menuitem, void *user_data)
+pagesel_callback_popup_down  (GedaMenuItem *menuitem, void *user_data)
 {
   GschemToplevel   *w_current;
   Pagesel          *pagesel;
@@ -528,7 +528,7 @@ pagesel_callback_popup_down  (GtkMenuItem *menuitem, void *user_data)
  *  \param [in] user_data  The Pagesel object.
  */
 static void
-pagesel_callback_popup_up (GtkMenuItem *menuitem, void *user_data)
+pagesel_callback_popup_up (GedaMenuItem *menuitem, void *user_data)
 {
   GschemToplevel   *w_current;
   Pagesel          *pagesel;
@@ -557,7 +557,7 @@ pagesel_callback_popup_up (GtkMenuItem *menuitem, void *user_data)
 
 #define DEFINE_POPUP_CALLBACK(name, action) \
 static void \
-pagesel_callback_popup_##name (GtkMenuItem *menuitem, void *pagesel) { \
+pagesel_callback_popup_##name (GedaMenuItem *menuitem, void *pagesel) { \
   i_command_process(GSCHEM_DIALOG (pagesel)->w_current, \
                     action, 0, NULL, ID_ORIGIN_MENU); \
 }
@@ -617,24 +617,24 @@ pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
   }
 
   /* create the context menu */
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
   for (tmp = menuitems; tmp->label != NULL; tmp++) {
     GtkWidget *menuitem;
     if (g_ascii_strcasecmp (tmp->label, "-") == 0) {
-      menuitem = gtk_separator_menu_item_new ();
+      menuitem = geda_menu_separator_new ();
     }
     else {
-      menuitem = gtk_menu_item_new_with_label (_(tmp->label));
+      menuitem = geda_menu_item_new_with_label (_(tmp->label));
       g_signal_connect (menuitem,
                         "activate",
                         tmp->callback,
                         pagesel);
     }
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
   }
   gtk_widget_show_all (menu);
   /* make menu a popup menu */
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
 }
