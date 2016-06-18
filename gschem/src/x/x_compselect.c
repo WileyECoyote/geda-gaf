@@ -1122,7 +1122,7 @@ static void gtk_set_item_active(GtkWidget *widget, bool state) {
  *  \param [in] compselect  The component selection dialog.
  */
 static void
-compselect_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
+compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
 {
   GSList *iter;
   int state;
@@ -1203,15 +1203,15 @@ compselect_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
  *  \param [in] compselect  The component selection dialog.
  */
 static void
-compselect_popup_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
+compselect_popup_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
 {
   int  i;
-  GtkCheckMenuItem *real_butt;
+  GedaCheckMenuItem *real_butt;
 
   i = (int)(long)GEDA_OBJECT_GET_DATA(button, "index");
   real_butt = g_slist_nth_data(compselect->style_menu_widgets, i);
 
-  gtk_check_menu_item_set_active(real_butt, gtk_check_menu_item_get_active(button));
+  geda_check_menu_item_set_active(real_butt, geda_check_menu_item_get_active(button));
 
 }
 
@@ -1235,7 +1235,7 @@ compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
   GtkWidget *menuitem;
   int menu_choice;
 
-  menuitem = gtk_menu_get_active(GTK_MENU(geda_option_menu_get_menu(optionmenu)));
+  menuitem = geda_menu_get_active(GEDA_MENU(geda_option_menu_get_menu(optionmenu)));
 
   menu_choice = (int)(long)GEDA_OBJECT_GET_DATA(menuitem, "behaviors");
 
@@ -2124,7 +2124,7 @@ static GtkWidget *create_inuse_treeview (Compselect *compselect)
  *  \param [in] compselect Pointer Compselect dialog structure
  */
 static void
-compselect_menu_tooltips_on(GtkMenuItem *menu_item, Compselect *compselect)
+compselect_menu_tooltips_on(GedaMenuItem *menu_item, Compselect *compselect)
 {
   gtk_tree_view_set_tooltip_column (compselect->stdtreeview,   LVC_TOOLTIP_TEXT);
   gtk_tree_view_set_tooltip_column (compselect->mantreeview,   LVC_TOOLTIP_TEXT);
@@ -2142,7 +2142,7 @@ compselect_menu_tooltips_on(GtkMenuItem *menu_item, Compselect *compselect)
  *  \param [in] compselect Pointer Compselect dialog structure
  */
 static void
-compselect_menu_tooltips_off(GtkMenuItem *menu_item, Compselect *compselect)
+compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
 {
   gtk_tree_view_set_tooltip_column (compselect->stdtreeview,   -1);
   gtk_tree_view_set_tooltip_column (compselect->mantreeview,   -1);
@@ -2180,9 +2180,9 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
     is_symbol = FALSE;
   }
 
-  menu=gtk_menu_new();
+  menu=geda_menu_new();
 
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandFolder]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[ExpandFolder]));
   if (!is_symbol) {
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandFolder]));
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
@@ -2195,9 +2195,9 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
   }
-  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+  geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandAll]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[ExpandAll]));
   if (!is_symbol) {
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandAll]));
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
@@ -2210,35 +2210,35 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
   }
-  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+  geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Close Menu Option */
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[CloseFolder]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[CloseFolder]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[CloseFolder]));
   gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
   gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
   g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     (void *) close_tree_row,
                     (void *) treeview);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+  geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Refresh Menu Option */
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[RefreshView]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[RefreshView]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RefreshView]));
   g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     G_CALLBACK (compselect_callback_refresh_views),
                     compselect);
 
-  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+  geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Rescan Menu Option */
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[RescanLibs]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[RescanLibs]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RescanLibs]));
   g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     G_CALLBACK (compselect_callback_rescan_libraries),
                     compselect);
 
-  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+  geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Styles submenu */
 
@@ -2246,30 +2246,30 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
   int     index;             /* Use by callback to index "main" widget */
 
   /* Note: the handler is not used for the popup menu widgets */
-  menuitem = gtk_menu_item_new_with_label(_(popup_items[StylesMenu]));
+  menuitem = geda_menu_item_new_with_label(_(popup_items[StylesMenu]));
 
-  submenu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+  submenu = geda_menu_new ();
+  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
   index = 0;
 
   for (iter2 = compselect->style_menu_widgets; iter2 != NULL; iter2 = g_slist_next (iter2)) {
 
-    GtkCheckMenuItem *check_item;  /* Ptr to "main" style widget */
+    GedaCheckMenuItem *check_item;  /* Ptr to "main" style widget */
 
     bool           active;   /* state of the "main" style widget */
     unsigned long  handler;  /* Signal handler of this submenu item */
     const char    *label;    /* Ptr to label of the "main" style widget */
 
     check_item = iter2->data;
-    label      = gtk_menu_item_get_label (GTK_MENU_ITEM(check_item));
-    active     = gtk_check_menu_item_get_active (check_item);
-    menuitem   = gtk_check_menu_item_new_with_mnemonic (label);
+    label      = geda_menu_item_get_label (GEDA_MENU_ITEM(check_item));
+    active     = geda_check_menu_item_get_active (check_item);
+    menuitem   = geda_check_menu_item_new_with_mnemonic (label);
 
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(menuitem), active);
-    gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem*) menuitem, FALSE);
-    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+    geda_check_menu_item_set_active (GEDA_CHECK_MENU_ITEM(menuitem), active);
+    geda_check_menu_item_set_draw_as_radio((GedaCheckMenuItem*) menuitem, FALSE);
+    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
 
     handler = g_signal_connect (menuitem, "toggled",
                                 G_CALLBACK (compselect_popup_toggle_style),
@@ -2281,25 +2281,25 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
   }
 
   /* tooltip submenu */
-  menuitem = gtk_menu_item_new_with_mnemonic (_(popup_items[ShowToolTips]));
+  menuitem = geda_menu_item_new_with_mnemonic (_(popup_items[ShowToolTips]));
 
-  submenu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+  submenu = geda_menu_new ();
+  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
   menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOn]));
   g_signal_connect (G_OBJECT (menuitem), "activate",
                     G_CALLBACK (compselect_menu_tooltips_on),
                     compselect);
-  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+  geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
 
   menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOff]));
   g_signal_connect (G_OBJECT (menuitem), "activate",
                     G_CALLBACK (compselect_menu_tooltips_off),
                     compselect);
-  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+  geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
 
   gtk_widget_show_all (menu);
 
@@ -2331,7 +2331,7 @@ void compselect_view_popup_menu (GtkWidget      *treeview,
   /* Tell GTK to do the menu we just created, Note: event can be NULL here
    * when called from compselect_view_onPopupMenu;
    * gdk_event_get_time() accepts a NULL argument */
-  gtk_menu_popup(GTK_MENU(tree_view_popup_menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup(GEDA_MENU(tree_view_popup_menu), NULL, NULL, NULL, NULL,
                  (event != NULL) ? event->button : 0,
                  gdk_event_get_time((GdkEvent*)event));
 }
@@ -2687,9 +2687,9 @@ static GtkWidget *create_filter_area (Compselect *compselect)
 }
 
 /*! \brief Create the style menu for the menu button in the Action Area */
-static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog)
+static GedaMenu *compselect_create_styles_menu (Compselect *ThisDialog)
 {
-  GtkMenu   *menu;
+  GedaMenu   *menu;
   GtkWidget *menuitem;
   GSList    *widget_list;
   int        i;
@@ -2711,15 +2711,15 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog)
 
   widget_list = NULL;
 
-  menu  = GTK_MENU (gtk_menu_new ());
+  menu  = GEDA_MENU (geda_menu_new ());
 
   for (i = 0; i < sizeof (types) / sizeof (struct styles); i++) {
 
     unsigned long handler;
     bool state;
 
-    menuitem = gtk_check_menu_item_new_with_mnemonic (_(types[i].str));
-    gtk_menu_append (menu, menuitem);
+    menuitem = geda_check_menu_item_new_with_mnemonic (_(types[i].str));
+    geda_menu_append (menu, menuitem);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)types[i].style, "style");
 
@@ -2773,17 +2773,18 @@ static GtkWidget *create_behaviors_menu (void)
 
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct behaviors); i++) {
+
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
 
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+    group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    geda_menu_append (GEDA_MENU (menu), menuitem);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)types[i].behavior, "behaviors");
     gtk_widget_show (menuitem);
@@ -3080,7 +3081,7 @@ static void compselect_get_property (GObject     *object,
           break;
         }
       case PROP_BEHAVIOR:
-        menuitem = gtk_menu_get_active (GTK_MENU (geda_option_menu_get_menu(compselect->behavior_menu)));
+        menuitem = geda_menu_get_active (GEDA_MENU (geda_option_menu_get_menu(compselect->behavior_menu)));
         g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
         break;
       case PROP_HIDDEN:
@@ -3259,7 +3260,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 
     compselect->menu = compselect_create_styles_menu (ThisDialog);
 
-    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu);
+    geda_menu_button_set_menu(stylemenu, (GtkWidget*)compselect->menu);
 
     geda_menu_button_set_tooltip_text(stylemenu, _("Rescan component libraries"));
 

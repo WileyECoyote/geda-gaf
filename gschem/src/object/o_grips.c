@@ -42,7 +42,8 @@
  *
  *  \param [in,out] w_current  The GschemToplevel object.
  */
-void o_grips_cancel(GschemToplevel *w_current)
+void
+o_grips_cancel(GschemToplevel *w_current)
 {
   /* If object set then switch drawing of the object back on */
   if (w_current->which_object != NULL) {
@@ -1072,7 +1073,8 @@ o_grips_start_line(GschemToplevel *w_current, GedaObject *o_current, int x, int 
  *  \param [in]  w_y        Current y coordinate of pointer in world units.
  *  \return FALSE if an error occurred or no grip was found, TRUE otherwise.
  */
-bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
+bool
+o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   bool result;
 
@@ -1251,7 +1253,7 @@ o_grips_end_box(GschemToplevel *w_current, GedaObject *o_current)
 static void
 o_grips_end_path(GschemToplevel *w_current, GedaObject *o_current)
 {
-  o_path_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
+  geda_path_object_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
 /*! \brief End process of modifying picture object with grip.
@@ -1392,7 +1394,6 @@ o_grips_end_line(GschemToplevel *w_current, GedaObject *o_current)
                                      w_current->second_wy,
                                      w_current->which_grip);
 }
-
 
 /*! \brief End process of modifying net object with grip.
  *  \par Function Description
