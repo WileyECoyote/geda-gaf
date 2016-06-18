@@ -39,14 +39,6 @@
 #define ThisDialog autonumber_text
 #define Switch_Responder switch_responder
 
-#if defined(__LP64__) || defined(_LP64)
-# define INT_TO_POINTER(u) ((void*)(long)(u))
-# define POINTER_TO_INT(u) ((int)(void*)(u))
-#else
-# define INT_TO_POINTER(u) ((void*)(int)(u))
-# define POINTER_TO_INT(u) ((int)(void*)(u))
-#endif
-
 /** \defgroup Auto-Number-Dialog Auto Number Dialog
  *  @{
  *  \ingroup (Standard-Dialogs Editing-Dialogs)
