@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-22 00:03-0500\n"
+"POT-Creation-Date: 2016-06-17 01:42-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -252,27 +252,27 @@ msgstr ""
 msgid "Missing Attributes (refdes and pin number)\n"
 msgstr "Ontbrekende Attributen (refdes en pennummer)\n"
 
-#: gnetlist/src/s_net.c:354 gnetlist/src/s_net.c:392
+#: gnetlist/src/s_net.c:354 gnetlist/src/s_net.c:394
 #, c-format
 msgid "Found duplicate net name, renaming [%s] to [%s]\n"
 msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
 
-#: gnetlist/src/s_net.c:514
+#: gnetlist/src/s_net.c:516
 #, fuzzy, c-format
 msgid "s_net_name: incorrect node type %i\n"
 msgstr "s_net_name: incorrect verbinding type %i\n"
 
-#: gnetlist/src/s_net.c:538
+#: gnetlist/src/s_net.c:540
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
 
-#: gnetlist/src/s_rename.c:61
+#: gnetlist/src/s_rename.c:69
 #, c-format
 msgid "ERROR: Overwriting a valid rename list.\n"
 msgstr "FOUT: Overschrijf een geldige hernoem-lijst.\n"
 
-#: gnetlist/src/s_rename.c:159
+#: gnetlist/src/s_rename.c:173
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -283,7 +283,7 @@ msgstr ""
 "\t%s en %s\n"
 "zijn beide een bron- en bestemmingnaam\n"
 
-#: gnetlist/src/s_rename.c:162
+#: gnetlist/src/s_rename.c:176
 #, fuzzy, c-format
 msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""

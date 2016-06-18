@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-05-27 00:39-0500\n"
+"POT-Creation-Date: 2016-06-17 01:42-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -28,46 +28,46 @@ msgstr ""
 msgid "IDE_FILTER"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:593
+#: libgedauio/src/dialogs/geda_file_chooser.c:609
 #: libgedauio/src/dialogs/geda_image_chooser.c:1153
 #, fuzzy
 msgid "_Open"
 msgstr "_Άνοιγμα..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:594
+#: libgedauio/src/dialogs/geda_file_chooser.c:610
 #: libgedauio/src/dialogs/geda_image_chooser.c:1154
 msgid "Open..."
 msgstr "Άνοιγμα..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:598
+#: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1158
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:599
+#: libgedauio/src/dialogs/geda_file_chooser.c:615
 #: libgedauio/src/dialogs/geda_image_chooser.c:1159
 #, fuzzy
 msgid "Save As.."
 msgstr "Αποθήκευση _ως..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:603
+#: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1163
 #, fuzzy
 msgid "_Select Folder..."
 msgstr "Λειτουργία Επιλογής"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:604
+#: libgedauio/src/dialogs/geda_file_chooser.c:620
 #: libgedauio/src/dialogs/geda_image_chooser.c:1164
 #, fuzzy
 msgid "Select Folder"
 msgstr "Λειτουργία Επιλογής"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:608
+#: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1168
 msgid "OOPS"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:613
+#: libgedauio/src/dialogs/geda_file_chooser.c:629
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 #, fuzzy
 msgid "_Cancel"
@@ -220,7 +220,7 @@ msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2126
-#: libgedauio/src/widgets/geda_menu_button.c:1094
+#: libgedauio/src/widgets/geda_menu_button.c:1101
 msgid "Focus on click"
 msgstr ""
 
@@ -322,71 +322,74 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:933
+#: libgedauio/src/widgets/geda_entry.c:966
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:934
+#: libgedauio/src/widgets/geda_entry.c:967
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:941
+#: libgedauio/src/widgets/geda_entry.c:974
 #: libgedauio/src/widgets/geda_label.c:1076
 msgid "Attributes"
 msgstr "Γνωρίσματα"
 
-#: libgedauio/src/widgets/geda_entry.c:942
+#: libgedauio/src/widgets/geda_entry.c:975
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:949
+#: libgedauio/src/widgets/geda_entry.c:982
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:950
+#: libgedauio/src/widgets/geda_entry.c:983
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:957
+#: libgedauio/src/widgets/geda_entry.c:990
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:958
+#: libgedauio/src/widgets/geda_entry.c:991
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:965
+#: libgedauio/src/widgets/geda_entry.c:998
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:966
-#: libgedauio/src/widgets/geda_entry.c:976
+#: libgedauio/src/widgets/geda_entry.c:999
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:975
+#: libgedauio/src/widgets/geda_entry.c:1008
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:985
+#: libgedauio/src/widgets/geda_entry.c:1009
+msgid "maximum length of history"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:1018
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:986
+#: libgedauio/src/widgets/geda_entry.c:1019
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1540
+#: libgedauio/src/widgets/geda_entry.c:1573
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Προσθήκη στοιχείου..."
 
-#: libgedauio/src/widgets/geda_entry.c:1547
+#: libgedauio/src/widgets/geda_entry.c:1580
 #, fuzzy
 msgid "On"
 msgstr "Άνοιγμα"
 
-#: libgedauio/src/widgets/geda_entry.c:1551
+#: libgedauio/src/widgets/geda_entry.c:1584
 msgid "Off"
 msgstr ""
 
@@ -609,7 +612,7 @@ msgid ""
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:392
-#: libgedauio/src/widgets/geda_menu_button.c:1121
+#: libgedauio/src/widgets/geda_menu_button.c:1128
 #, fuzzy
 msgid "Image widget"
 msgstr "Τύπος εικόνας"
@@ -619,7 +622,7 @@ msgid "Child widget to appear next to the menu text"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:406
-#: libgedauio/src/widgets/geda_menu_button.c:1086
+#: libgedauio/src/widgets/geda_menu_button.c:1093
 msgid "Use stock"
 msgstr ""
 
@@ -659,7 +662,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1069
 #: libgedauio/src/widgets/geda_label.c:1442
-#: libgedauio/src/widgets/geda_menu_button.c:1078
+#: libgedauio/src/widgets/geda_menu_button.c:1085
 msgid "Label"
 msgstr ""
 
@@ -839,92 +842,92 @@ msgstr "Άνοιγμα αρχείου..."
 msgid "Copy _Link Address"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1071
+#: libgedauio/src/widgets/geda_menu_button.c:1078
 msgid "Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1072
+#: libgedauio/src/widgets/geda_menu_button.c:1079
 msgid "The dropdown menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1079
+#: libgedauio/src/widgets/geda_menu_button.c:1086
 msgid ""
 "Text of the label widget inside the button, if the button contains a label "
 "widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1087
+#: libgedauio/src/widgets/geda_menu_button.c:1094
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1095
+#: libgedauio/src/widgets/geda_menu_button.c:1102
 msgid "Whether the button grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1102
+#: libgedauio/src/widgets/geda_menu_button.c:1109
 msgid "Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1103
+#: libgedauio/src/widgets/geda_menu_button.c:1110
 msgid "The border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1111
+#: libgedauio/src/widgets/geda_menu_button.c:1118
 msgid "Arrow Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1112
+#: libgedauio/src/widgets/geda_menu_button.c:1119
 msgid "The arrow border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1122
+#: libgedauio/src/widgets/geda_menu_button.c:1129
 msgid "Child widget to appear next to the button text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1130
+#: libgedauio/src/widgets/geda_menu_button.c:1137
 msgid "Image position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1131
+#: libgedauio/src/widgets/geda_menu_button.c:1138
 msgid "The position of the image relative to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1145
+#: libgedauio/src/widgets/geda_menu_button.c:1152
 msgid "Default Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1146
+#: libgedauio/src/widgets/geda_menu_button.c:1153
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1159
+#: libgedauio/src/widgets/geda_menu_button.c:1166
 msgid "Default Outside Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1160
+#: libgedauio/src/widgets/geda_menu_button.c:1167
 msgid ""
 "Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
 "the border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1170
+#: libgedauio/src/widgets/geda_menu_button.c:1177
 #, fuzzy
 msgid "Inner Border"
 msgstr "Σειρά αρχείων"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1171
+#: libgedauio/src/widgets/geda_menu_button.c:1178
 msgid "Border between button edges and child."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_swatch_renderer.c:262
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
+#: libgedauio/src/widgets/geda_swatch_renderer.c:264
 #, fuzzy
 msgid "Swatch Color"
 msgstr "Χρώμα"
 
-#: libgedauio/src/widgets/geda_swatch_renderer.c:270
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
+#: libgedauio/src/widgets/geda_swatch_renderer.c:272
 msgid "Swatch Enabled"
 msgstr ""
 

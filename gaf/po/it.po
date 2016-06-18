@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-02-26 00:46-0600\n"
+"POT-Creation-Date: 2016-06-04 04:53-0500\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -164,17 +164,17 @@ msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr ""
 "ERRORE: si deve specificare sia il gruppo di configurazione che la chiave.\n"
 
-#: gaf/src/config.c:192 gaf/src/config.c:209 gaf/src/export.c:369
+#: gaf/src/config.c:192 gaf/src/config.c:209 gaf/src/export.c:371
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr "ERRORE: %s.\n"
 
-#: gaf/src/export.c:151
+#: gaf/src/export.c:153
 #, c-format
 msgid "ERROR: Bad argument '%s' to %s option.\n"
 msgstr "ERRORE: argomento errato \"%s\" all'opzione %s.\n"
 
-#: gaf/src/export.c:152
+#: gaf/src/export.c:154
 msgid ""
 "\n"
 "Run `gaf export --help' for more information.\n"
@@ -182,41 +182,41 @@ msgstr ""
 "\n"
 "Eseguire `gaf export --help' per ulteriori informazioni.\n"
 
-#: gaf/src/export.c:210
+#: gaf/src/export.c:212
 #, c-format
 msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile ricavare il formato di uscita dal nome del file \"%s\".\n"
 
-#: gaf/src/export.c:231
+#: gaf/src/export.c:233
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile trovare il formato supportato per il file di nome \"%s"
 "\".\n"
 
-#: gaf/src/export.c:237
+#: gaf/src/export.c:239
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr "ERRORE: formato di uscita \"%s\" non supportato.\n"
 
-#: gaf/src/export.c:249
+#: gaf/src/export.c:251
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 "ERRORE: il formato di uscita selezionato non supporta le pagine multiple\n"
 
-#: gaf/src/export.c:264
+#: gaf/src/export.c:266
 #, c-format
 msgid "ERROR: Failed to load '%s': %s\n"
 msgstr "ERRORE: fallito il caricamento di \"%s\": %s\n"
 
-#: gaf/src/export.c:271
+#: gaf/src/export.c:273
 #, c-format
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ERRORE: fallito il cambiamento di cartella a \"%s\": %s\n"
 
-#: gaf/src/export.c:1088
+#: gaf/src/export.c:1090
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -263,12 +263,12 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1275
+#: gaf/src/export.c:1277
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1284
+#: gaf/src/export.c:1286
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
