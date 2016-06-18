@@ -711,7 +711,7 @@ geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *event)
 
   if (menu_shell->have_xgrab && event->grab_window == NULL)
     {
-      /* Unset the active menu item so gtk_menu_popdown() doesn't see it.
+      /* Unset the active menu item so geda_menu_popdown() doesn't see it.
        */
 
       geda_menu_shell_deselect (menu_shell);
@@ -893,7 +893,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
      * the keyboard to navigate the menus, we show mnemonics
      * until the menu navigation is over. To that end, we spread
      * the keyboard mode upwards in the menu hierarchy here.
-     * Also see gtk_menu_popup, where we inherit it downwards.
+     * Also see geda_menu_popup, where we inherit it downwards.
      */
     if (menu_shell->keyboard_mode) {
       target->keyboard_mode = TRUE;
@@ -1699,7 +1699,7 @@ geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
 static void
 geda_real_menu_shell_cancel (GedaMenuShell *menu_shell)
 {
-  /* Unset the active menu item so gtk_menu_popdown() doesn't see it.
+  /* Unset the active menu item so geda_menu_popdown() doesn't see it.
    */
   geda_menu_shell_deselect (menu_shell);
 
@@ -1810,7 +1810,7 @@ menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *dat
 {
   GedaKeyHash *key_hash = data;
 
-  geda_key_hash_add_entry (key_hash, keyval, 0, (void*)(unsigned int)keyval);
+  geda_key_hash_add_entry (key_hash, keyval, 0, UINT_TO_POINTER(keyval));
 }
 
 static GedaKeyHash *
