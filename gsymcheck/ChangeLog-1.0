@@ -1,3 +1,8 @@
+2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck/src/s_check.c: Replace geda_utility_string_strdup to reduce
+      line length and improve readability.
+
 2016-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/output/duplicate_device.output: Update test output file, change

@@ -1,3 +1,8 @@
+2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_hook.c: Replace geda_utility_string_strdup in
+      g_hook_run_idle_callback to fix line length.
+
 2016-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Remove local pointer/int cast macros.

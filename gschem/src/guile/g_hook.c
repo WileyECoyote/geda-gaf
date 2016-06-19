@@ -291,7 +291,7 @@ static bool g_hook_run_idle_callback (void *data)
     GschemToplevel *w_current = capsule->w_current;
     const char     *hooker;
 
-    hooker = capsule->name = geda_utility_string_strdup (record[capsule->hook].name);
+    hooker = capsule->name = geda_strdup (record[capsule->hook].name);
 
     switch (capsule->type) {
       case LIST_HOOK:
