@@ -19,12 +19,11 @@ libgeda_la_SOURCES += \
 			object/o_list.c \
 			object/o_net_object.c \
 			object/o_notify.c \
-			object/o_path_basic.c \
+			object/o_path_object.c \
 			object/o_picture.c \
-			object/o_pin_basic.c \
+			object/o_pin_object.c \
 			object/o_save.c \
 			object/o_selection.c \
 			object/o_set.c \
 			object/o_style.c \
-			object/o_text_basic.c
-
+			object/o_text_object.c

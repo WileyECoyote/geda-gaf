@@ -2,6 +2,12 @@
 
     * src/object/o_net_object.c: Reorganize module; alphabetize functions.
 
+    * src/object: rename _basic.c -> object.c:
+
+            * src/object/o_path_object.c
+            * src/object/o_pin_object.c
+            * src/object/o_text_object.c
+
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Adjust function wrap and Doxygen block

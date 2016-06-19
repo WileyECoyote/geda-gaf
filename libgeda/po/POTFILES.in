@@ -60,14 +60,14 @@ libgeda/src/object/o_line_object.c
 libgeda/src/object/o_list.c
 libgeda/src/object/o_net_object.c
 libgeda/src/object/o_notify.c
-libgeda/src/object/o_path_basic.c
+libgeda/src/object/o_path_object.c
 libgeda/src/object/o_picture.c
-libgeda/src/object/o_pin_basic.c
+libgeda/src/object/o_pin_object.c
 libgeda/src/object/o_save.c
 libgeda/src/object/o_selection.c
 libgeda/src/object/o_set.c
 libgeda/src/object/o_style.c
-libgeda/src/object/o_text_basic.c
+libgeda/src/object/o_text_object.c
 
 libgeda/src/scheme/edascmhookproxy.c
 libgeda/src/scheme/edascmvaluetypes.c
@@ -78,6 +78,7 @@ libgeda/src/scheme/scheme_complex.c
 libgeda/src/scheme/scheme_config.c
 libgeda/src/scheme/scheme_deprecated.c
 libgeda/src/scheme/scheme_init.c
+libgeda/src/scheme/scheme_log.c
 libgeda/src/scheme/scheme_make.c
 libgeda/src/scheme/scheme_object.c
 libgeda/src/scheme/scheme_os.c
