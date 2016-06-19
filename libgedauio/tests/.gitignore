@@ -19,4 +19,5 @@ test_handlebox
 test_image_menu_item
 test_toolbar
 test_menu
+test_menu_item
 test_option_menu

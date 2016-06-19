@@ -20,6 +20,7 @@ check_widgets = \
 	test_handlebox \
 	test_image_menu_item \
 	test_menu \
+	test_menu_item \
 	test_option_menu \
 	test_toolbar
 
