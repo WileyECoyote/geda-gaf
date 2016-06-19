@@ -1,5 +1,14 @@
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_object.c: Revise geda_arc_object_read to distinguish
+      between negative radius errors and zero radius errors, recover from
+      negative radius using abs value, change log message to warnings.
+
+    * src/object/o_circle_object.c: Revise geda_circle_object_read to
+      distinguish between negative radius errors and zero radius errors,
+      recover from negative radius using abs value, change log message
+      to warnings.
+
     * src/object/o_net_object.c: Reorganize module; alphabetize functions.
 
     * src/object: rename _basic.c -> object.c:

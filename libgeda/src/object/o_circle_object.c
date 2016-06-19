@@ -603,7 +603,7 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
       case CIRCLE_RADIUS:
         /* modify the radius of the circle */
         if (x == 0) {
-          u_log_message(_("Null radius circles are not allowed\n"));
+          geda_log(_("Null radius circles are not allowed\n"));
           return;
         }
         object->circle->radius = x;
@@ -1372,16 +1372,24 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
     }
   }
 
-  if (radius <= 0) {
-    u_log_message(_("Found a zero or negative radius circle [ %c %d %d %d %d ]\n"),
+  /* Error check */
+  if (radius < 0) {
+
+    geda_log_w (_("Found circle with negative radius [ %c %d %d %d %d ]\n"),
+                   type, x1, y1, radius, color);
+    radius = abs(radius);
+    geda_log_w (_("Setting radius to %d\n"), radius);
+  }
+  else if (radius == 0) {
+    geda_log_w (_("Found circle with radius zero [ %c %d %d %d %d ]\n"),
                   type, x1, y1, radius, color);
-    u_log_message (_("Setting radius to 0\n"));
-    radius = 0;
+    geda_log_w(_("Setting zero radius to 1000\n"));
+    radius = 1000;
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    u_log_message(_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message(_("Setting color to default color\n"));
+    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
+    geda_log_v (_("Setting color to default color\n"));
     color = DEFAULT_CIRCLE_COLOR_INDEX;
   }
 
