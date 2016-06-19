@@ -3,6 +3,9 @@
     * tests/test_check_menu_item.c: Add tests framework and check construction
       of GedaMenuItem widgets.
 
+    * tests/test_menu_shell.c: Add tests framework and check construction
+      of GedaMenuShell widgets.
+
 2016-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Replace void unsigned int cast with
