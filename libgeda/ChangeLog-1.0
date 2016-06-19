@@ -1,3 +1,7 @@
+2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_net_object.c: Reorganize module; alphabetize functions.
+
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Adjust function wrap and Doxygen block
