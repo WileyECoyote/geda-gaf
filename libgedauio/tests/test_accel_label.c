@@ -38,6 +38,11 @@
 #include <geda_accel_label.h>
 #include <geda_image_menu_item.h>
 
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_accel_label.c"
+
 #define TWIDGET "GedaAccelLabel"
 
 /*! \file test_accel_label.c
@@ -71,6 +76,11 @@ int check_construction (void)
     result++;
   }
 
+  if (!GEDA_IS_LABEL(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
   g_object_ref_sink(widget); /* Sink reference to menu_item */
   g_object_unref(widget);    /* Does not destroy widget */
 
@@ -96,7 +106,7 @@ int check_construction (void)
         result++;
       }
 
-      label = gtk_label_get_label(GTK_LABEL(widget));
+      label = geda_label_get_label(GEDA_LABEL(widget));
 
       if (strcmp(label, label_string)) {
         fprintf(stderr, "FAILED: accel_string <%s>\n", label);
@@ -120,7 +130,8 @@ int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -129,12 +140,13 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_construction();
-    if (subtotal) {
-      fprintf(stderr, "Check constructors in src/widgets/accel_label.c");
-      result   = subtotal;
-      subtotal = 0;
+    if (setjmp(point) == 0) {
+      result = check_construction();
     }
+    else {
+      fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
+
   }
   return result;
 }
