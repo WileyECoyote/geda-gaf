@@ -29,16 +29,16 @@
 /*!
  * \brief GedaLabel A Widget to display Text
  * \par
- *  This is a temporary replacement for the stock GtkLabel widget. The
- *  "bulk" of this code is from Gtk+3.7.4, but has been modified to
- *  run under the gtk+2.24.17 library. According to Valgrind: this
- *  version has fewer errors and does not have the memory leaks common
- *  to both the aforementioned versions. The direct leaks are not really
- *  in the Gtklabel widget. The leaks are related to Pango, FontConfig
- *  and somewhere else in GTK, possibly after tweeks by Debi. (note:
- *  After upgrading Cairo, from libcairo2_1.12.2-3 to libcairo2-dbg_1.
- *  12.14-5, and associated dependencies, under Debian, Wheezy->Sid, the
- *  amount of memory reported as "definitely lost" doubled.) This version
+ *  This is a replacement for the stock GtkLabel widget. The "bulk"
+ *  of this code is from Gtk+3.7.4, but has been modified to run under
+ *  the gtk+2.24.17 library. According to Valgrind: this version has
+ *  fewer errors and does not have the memory leaks common to both the
+ *  aforementioned versions. The direct leaks are not really in the
+ *  Gtklabel widget. The leaks are related to Pango, FontConfig and
+ *  somewhere else in GTK, possibly after tweeks by Debi. (note: After
+ *  upgrading Cairo, from libcairo2_1.12.2-3 to libcairo2-dbg_1.12.14-5,
+ *  and associated dependencies, under Debian, Wheezy->Sid, the amount
+ *  of memory reported as "definitely lost" doubled.) This version
  *  implements a work around.
  * \par
  *  See geda_label_ensure_layout. Another suppression was not acceptable,
@@ -51,8 +51,6 @@
 #ifdef HAVE_CONFIG_H
 #include "../../../config.h"
 #endif
-
-#define GTK_COMPILATION 1
 
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
@@ -611,7 +609,8 @@ static void geda_label_ensure_layout (GedaLabel *label)
     PangoAttrList *attrs;
     PangoContext  *context;
 
-    context = g_object_new (PANGO_TYPE_CONTEXT, NULL);
+    //context = g_object_new (PANGO_TYPE_CONTEXT, NULL);
+    context = gtk_widget_get_pango_context (widget);
 
     /* We Specify our own map to avoid memory leak in FontConfig */
     pango_context_set_font_map (context, label->priv->font_map);
