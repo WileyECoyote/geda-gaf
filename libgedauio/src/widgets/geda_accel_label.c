@@ -396,8 +396,8 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       gtk_widget_set_allocation (widget, &allocation);
 
-      if (GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw) {
-        GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw (widget, cr);
+      if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw) {
+        GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw (widget, cr);
       }
 
       allocation->width += ac_width;
@@ -421,7 +421,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       geda_label_get_layout_offsets (GEDA_LABEL (accel_label), NULL, &y);
 
-      const char *gtk_accel_label_get_string (accel_label);
+      const char *geda_accel_label_get_string (accel_label);
 
       accel_layout = gtk_widget_create_pango_layout (widget, string);
 
@@ -435,8 +435,8 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       g_object_unref (accel_layout);
   }
-  else if (GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw) {
-      GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw (widget, cr);
+  else if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw) {
+      GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw (widget, cr);
   }
 
   return FALSE;

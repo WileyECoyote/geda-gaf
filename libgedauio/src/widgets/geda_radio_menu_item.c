@@ -208,11 +208,11 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
   GtkWidget *accel_label;
 
   radio_menu_item = geda_radio_menu_item_new (group);
-  accel_label     = gtk_accel_label_new (label);
+  accel_label     = geda_accel_label_new (label);
 
   gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
   gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
-  gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (accel_label), radio_menu_item);
+  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
   gtk_widget_show (accel_label);
 
   return radio_menu_item;
@@ -223,7 +223,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
  * \brief geda_radio_menu_item_new_with_mnemonic
  * \par Function Description
  * Creates a new #GedaRadioMenuItem containing a label. The label
- * will be created using gtk_label_new_with_mnemonic(), so underscores
+ * will be created using geda_label_new_with_mnemonic(), so underscores
  * in @label indicate the mnemonic for the menu item.
  *
  * \param[in] group group the radio menu item is to be a member of
@@ -239,13 +239,13 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
   GtkWidget *accel_label;
 
   radio_menu_item = geda_radio_menu_item_new (group);
-  accel_label     = g_object_new (GTK_TYPE_ACCEL_LABEL, NULL);
+  accel_label     = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
 
-  gtk_label_set_text_with_mnemonic (GTK_LABEL (accel_label), label);
+  geda_label_set_text_with_mnemonic (GEDA_LABEL (accel_label), label);
   gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
 
   gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
-  gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (accel_label), radio_menu_item);
+  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
   gtk_widget_show (accel_label);
 
   return radio_menu_item;
@@ -276,7 +276,7 @@ geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
  * \brief geda_radio_menu_item_new_with_mnemonic_from_widget
  * \par Function Description
  * Creates a new GedaRadioMenuItem containing a label. The label will be
- * created using gtk_label_new_with_mnemonic(), so underscores in label
+ * created using geda_label_new_with_mnemonic(), so underscores in label
  * indicate the mnemonic for the menu item.
  *
  * The new #GedaRadioMenuItem is added to the same group as \a group.

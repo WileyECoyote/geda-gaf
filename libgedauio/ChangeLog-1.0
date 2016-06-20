@@ -6,6 +6,12 @@
     * src/widgets/geda_label.c: Replace GtkMenu with GedaMenu and GtkLabel
       with GedaLabel in menu related widgets.
 
+    * src/widgets/geda_menu_item.c: Replace gtk_accel_label with geda_accel_
+      label, include geda_menu_separator.h.
+
+    * src/widgets/geda_radio_menu_item.c: Replace gtk_accel_label with geda_accel_
+      label.
+
     * tests/test_accel_label.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT, revise flow in main, change gtk_label to geda_label,
       add check for GEDA_IS_LABEL.
