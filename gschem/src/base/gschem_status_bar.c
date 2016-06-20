@@ -185,13 +185,13 @@ static void coord_display_options_popup (GtkWidget      *event_box,
   int i;
 
   /* create the context menu */
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
 
   for (i = 0; coord_popup_items[i].text != NULL; i++) {
 
     StatusPopupEntry entry = coord_popup_items[i];
 
-    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
     g_signal_connect (GTK_OBJECT(popup_item), "activate",
                      (GCallback)coord_options_popup_clicked,
@@ -199,13 +199,13 @@ static void coord_display_options_popup (GtkWidget      *event_box,
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
   }
 
   gtk_widget_show_all (menu);
 
   /* make menu a popup menu */
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
 }
@@ -254,13 +254,13 @@ static void middle_button_options_popup (GtkWidget      *event_box,
   int i;
 
   /* create the context menu */
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
 
   for (i = 0; middle_popup_items[i].text != NULL; i++) {
 
     StatusPopupEntry entry = middle_popup_items[i];
 
-    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
     g_signal_connect (popup_item, "activate",
                       (GCallback)status_options_popup_clicked,
@@ -268,13 +268,13 @@ static void middle_button_options_popup (GtkWidget      *event_box,
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
   }
 
   gtk_widget_show_all (menu);
 
   /* make menu a popup menu */
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
 }
@@ -323,13 +323,13 @@ static void third_button_options_popup (GtkWidget      *event_box,
   int i;
 
   /* create the context menu */
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
 
   for (i = 0; third_popup_items[i].text != NULL; i++) {
 
     StatusPopupEntry entry = third_popup_items[i];
 
-    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
     g_signal_connect(popup_item, "activate",
                      (GCallback)status_options_popup_clicked,
@@ -337,13 +337,13 @@ static void third_button_options_popup (GtkWidget      *event_box,
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
   }
 
   gtk_widget_show_all (menu);
 
   /* make menu a popup menu */
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
 }
