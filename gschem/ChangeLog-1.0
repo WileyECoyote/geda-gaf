@@ -1,5 +1,8 @@
 2016-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/gschem-gtkrc: Increase GtkFrame font-size 8->10, reduce
+      general "gschem" font-size 13->12.
+
     * src/base/gschem_status_bar.c: Replace GtkMenu with GedaMenu for
       popup menus.
 

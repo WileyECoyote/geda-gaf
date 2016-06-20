@@ -26,7 +26,7 @@
 
 style "small"
 {
-   GtkFrame::font-name = "DejaVu Sans 8"
+   GtkFrame::font-name = "DejaVu Sans 10"
 }
 
 style "wide" {
@@ -38,7 +38,7 @@ style "gschem"
 {
    #font_name = "FreeMono Bold 12"
    #font_name = "DejaVu Sans 12"
-   font_name  = "Liberation Mono Bold 13"
+   font_name  = "Liberation Mono Bold 12"
 
    GedaBulb::indicator-size     = 26
    GedaBulb::indicator-spacing  = 2
@@ -92,7 +92,7 @@ style "scrollbar" {
   xthickness = 2
   ythickness = 2
 
-  GtkScrollbar::fixed-slider-length 	       = 0
+  GtkScrollbar::fixed-slider-length            = 0
   GtkScrollbar::has-backward-stepper           = 1
   GtkScrollbar::has-forward-stepper            = 1
   GtkScrollbar::has-secondary-backward-stepper = 1
