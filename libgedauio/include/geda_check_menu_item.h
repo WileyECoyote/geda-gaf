@@ -79,20 +79,24 @@ GType	   geda_check_menu_item_get_type	         (void) GEDA_CONST;
 GtkWidget* geda_check_menu_item_new               (void);
 GtkWidget* geda_check_menu_item_new_with_label    (const char        *label);
 GtkWidget* geda_check_menu_item_new_with_mnemonic (const char        *label);
-void       geda_check_menu_item_set_active        (GedaCheckMenuItem *check_menu_item,
-                                                   bool              is_active);
-bool       geda_check_menu_item_get_active        (GedaCheckMenuItem *check_menu_item);
-void       geda_check_menu_item_toggled           (GedaCheckMenuItem *check_menu_item);
-void       geda_check_menu_item_set_inconsistent  (GedaCheckMenuItem *check_menu_item,
-                                                   bool              setting);
-bool       geda_check_menu_item_get_inconsistent  (GedaCheckMenuItem *check_menu_item);
-void       geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
-                                                   bool              draw_as_radio);
-bool       geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item);
 
+bool       geda_check_menu_item_get_active        (GedaCheckMenuItem *check_menu_item);
+void       geda_check_menu_item_set_active        (GedaCheckMenuItem *check_menu_item,
+                                                   bool               is_active);
+
+bool       geda_check_menu_item_get_inconsistent  (GedaCheckMenuItem *check_menu_item);
+void       geda_check_menu_item_set_inconsistent  (GedaCheckMenuItem *check_menu_item,
+                                                   bool               setting);
+
+bool       geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item);
+void       geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
+                                                   bool               draw_as_radio);
 
 void	       geda_check_menu_item_set_show_toggle   (GedaCheckMenuItem *menu_item,
-                                                   bool    	  always);
+                                                   bool               always);
+
+void       geda_check_menu_item_toggled           (GedaCheckMenuItem *check_menu_item);
+
 #define    geda_check_menu_item_set_state          geda_check_menu_item_set_active
 
 #ifdef __cplusplus

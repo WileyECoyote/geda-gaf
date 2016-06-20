@@ -82,200 +82,49 @@ static void geda_check_menu_item_sync_action_properties     (GtkActivatable     
                                                              GtkAction            *action);
 
 static GtkActivatableIface *parent_activatable_iface;
-static unsigned int                check_menu_item_signals[LAST_SIGNAL] = { 0 };
+static unsigned int check_menu_item_signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE_WITH_CODE (GedaCheckMenuItem, geda_check_menu_item, GEDA_TYPE_MENU_ITEM,
 			 G_IMPLEMENT_INTERFACE (GTK_TYPE_ACTIVATABLE,
 						geda_check_menu_item_activatable_interface_init))
 
 static void
-geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
+geda_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
+                                     GdkRectangle      *area)
 {
-  GObjectClass *gobject_class;
-  GtkWidgetClass *widget_class;
-  GedaMenuItemClass *menu_item_class;
-
-  gobject_class   = G_OBJECT_CLASS (klass);
-  widget_class    = (GtkWidgetClass*) klass;
-  menu_item_class = (GedaMenuItemClass*) klass;
-
-  gobject_class->set_property = geda_check_menu_item_set_property;
-  gobject_class->get_property = geda_check_menu_item_get_property;
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACTIVE,
-                                   g_param_spec_boolean ("active",
-                                                       _("Active"),
-                                                       _("Whether the menu item is checked"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_INCONSISTENT,
-                                   g_param_spec_boolean ("inconsistent",
-                                                       _("Inconsistent"),
-                                                       _("Whether to display an \"inconsistent\" state"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_DRAW_AS_RADIO,
-                                   g_param_spec_boolean ("draw-as-radio",
-                                                       _("Draw as radio menu item"),
-                                                       _("Whether the menu item looks like a radio menu item"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
-
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_int ("indicator-size",
-                                                           _("Indicator Size"),
-                                                           _("Size of check or radio indicator"),
-                                                             0,
-                                                             G_MAXINT,
-                                                             13,
-                                                             G_PARAM_READABLE));
-
-  widget_class->expose_event = geda_check_menu_item_expose;
-
-  menu_item_class->activate            = geda_check_menu_item_activate;
-  menu_item_class->hide_on_activate    = FALSE;
-  menu_item_class->toggle_size_request = geda_check_menu_item_toggle_size_request;
-
-  klass->toggled = NULL;
-  klass->draw_indicator = geda_real_check_menu_item_draw_indicator;
-
-  check_menu_item_signals[TOGGLED] =
-  g_signal_new (_("toggled"),
-                   G_OBJECT_CLASS_TYPE (gobject_class),
-                   G_SIGNAL_RUN_FIRST,
-                   G_STRUCT_OFFSET (GedaCheckMenuItemClass, toggled),
-                   NULL, NULL,
-                   geda_marshal_VOID__VOID,
-                   G_TYPE_NONE, 0);
+  if (GEDA_CHECK_MENU_ITEM_GET_CLASS (check_menu_item)->draw_indicator)
+    GEDA_CHECK_MENU_ITEM_GET_CLASS (check_menu_item)->draw_indicator (check_menu_item, area);
 }
 
-static void
-geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
+/* widget_class->expose_event */
+static int
+geda_check_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  parent_activatable_iface = g_type_interface_peek_parent (iface);
-  iface->update = geda_check_menu_item_update;
-  iface->sync_action_properties = geda_check_menu_item_sync_action_properties;
-}
-
-static void
-geda_check_menu_item_update (GtkActivatable *activatable,
-                             GtkAction      *action,
-                             const char     *property_name)
-{
-  GedaCheckMenuItem *check_menu_item;
-
-  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
-
-  parent_activatable_iface->update (activatable, action, property_name);
-
-  if (strcmp (property_name, "active") == 0) {
-
-    gtk_action_block_activate (action);
-    geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
-    gtk_action_unblock_activate (action);
+  if (GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event) {
+    GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event (widget, event);
   }
 
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
+  geda_check_menu_item_draw_indicator (GEDA_CHECK_MENU_ITEM (widget), &event->area);
 
-  if (strcmp (property_name, "draw-as-radio") == 0)
-    geda_check_menu_item_set_draw_as_radio (check_menu_item,
-                                            gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+  return FALSE;
 }
 
+/* menu_item_class->activate */
 static void
-geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
-                                             GtkAction      *action)
+geda_check_menu_item_activate (GedaMenuItem *menu_item)
 {
-  GedaCheckMenuItem *check_menu_item;
+  GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (menu_item);
+  check_menu_item->active            = !check_menu_item->active;
 
-  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
+  geda_check_menu_item_toggled (check_menu_item);
+  gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
 
-  parent_activatable_iface->sync_action_properties (activatable, action);
+  GEDA_MENU_ITEM_CLASS (geda_check_menu_item_parent_class)->activate (menu_item);
 
-  if (!GTK_IS_TOGGLE_ACTION (action))
-    return;
-
-  gtk_action_block_activate (action);
-  geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
-  gtk_action_unblock_activate (action);
-
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
-
-  geda_check_menu_item_set_draw_as_radio (check_menu_item,
-                                          gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+  g_object_notify (G_OBJECT (check_menu_item), "active");
 }
 
-GtkWidget*
-geda_check_menu_item_new (void)
-{
-  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM, NULL);
-}
-
-GtkWidget*
-geda_check_menu_item_new_with_label (const char  *label)
-{
-  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
-                       "label", label,
-                       NULL);
-}
-
-
-/**
- * geda_check_menu_item_new_with_mnemonic:
- * @label: The text of the button, with an underscore in front of the
- *         mnemonic character
- * @returns: a new #GedaCheckMenuItem
- *
- * Creates a new #GedaCheckMenuItem containing a label. The label
- * will be created using gtk_label_new_with_mnemonic(), so underscores
- * in @label indicate the mnemonic for the menu item.
- **/
-GtkWidget*
-geda_check_menu_item_new_with_mnemonic (const char  *label)
-{
-  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
-                       "label", label,
-                       "use-underline", TRUE,
-                       NULL);
-}
-
-void
-geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
-                                 bool               is_active)
-{
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
-
-  is_active = is_active != 0;
-
-  if (check_menu_item->active != is_active) {
-    geda_menu_item_activate (GEDA_MENU_ITEM (check_menu_item));
-  }
-}
-
-/**
- * geda_check_menu_item_get_active:
- * @check_menu_item: a #GedaCheckMenuItem
- *
- * Returns whether the check menu item is active. See
- * geda_check_menu_item_set_active ().
- *
- * Return value: %TRUE if the menu item is checked.
- */
-bool
-geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
-
-  return check_menu_item->active;
-}
-
+/* menu_item_class->toggle_size_request */
 static void
 geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
                                           int         *requisition)
@@ -293,150 +142,7 @@ geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
   *requisition = indicator_size + toggle_spacing;
 }
 
-void
-geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
-                                      bool               always)
-{
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (menu_item));
-}
-
-void
-geda_check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
-{
-  g_signal_emit (check_menu_item, check_menu_item_signals[TOGGLED], 0);
-}
-
-/**
- * geda_check_menu_item_set_inconsistent:
- * @check_menu_item: a #GedaCheckMenuItem
- * @setting: %TRUE to display an "inconsistent" third state check
- *
- * If the user has selected a range of elements (such as some text or
- * spreadsheet cells) that are affected by a boolean setting, and the
- * current values in that range are inconsistent, you may want to
- * display the check in an "in between" state. This function turns on
- * "in between" display.  Normally you would turn off the inconsistent
- * state again if the user explicitly selects a setting. This has to be
- * done manually, geda_check_menu_item_set_inconsistent() only affects
- * visual appearance, it doesn't affect the semantics of the widget.
- *
- **/
-void
-geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
-                                       bool               setting)
-{
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
-
-  setting = setting != FALSE;
-
-  if (setting != check_menu_item->inconsistent) {
-
-    check_menu_item->inconsistent = setting;
-    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
-    g_object_notify (G_OBJECT (check_menu_item), "inconsistent");
-  }
-}
-
-/*!
- * \brief Get GedaCheckMenuItem inconsistent setting
- * \par Function Description
- *  Retrieves the value set by geda_check_menu_item_set_inconsistent().
- *
- * \param [in] check_menu_item: a #GedaCheckMenuItem
- *
- * \returns %TRUE if inconsistent
- */
-bool
-geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
-
-  return check_menu_item->inconsistent;
-}
-
-/*!
- * \brief Set GedaCheckMenuItem draw-as-radio property
- * \par Function Description
- *  Set whether \a check_menu_item is drawn like a #GedaRadioMenuItem
- *
- * \param [in] check_menu_item: a #GedaCheckMenuItem
- */
-void
-geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
-                                        bool               draw_as_radio)
-{
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
-
-  draw_as_radio = draw_as_radio != FALSE;
-
-  if (draw_as_radio != check_menu_item->draw_as_radio) {
-
-    check_menu_item->draw_as_radio = draw_as_radio;
-
-    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
-
-    g_object_notify (G_OBJECT (check_menu_item), "draw-as-radio");
-  }
-}
-
-/*!
- * \brief Get GedaCheckMenuItem draw-as-radio property
- * \par Function Description
- *  Returns whether @check_menu_item looks like a #GedaRadioMenuItem
- *
- * \param [in] check_menu_item: a #GedaCheckMenuItem
- *
- * \returns Whether @check_menu_item looks like a #GedaRadioMenuItem
- */
-bool
-geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
-
-  return check_menu_item->draw_as_radio;
-}
-
-static void
-geda_check_menu_item_init (GedaCheckMenuItem *check_menu_item)
-{
-  check_menu_item->active             = FALSE;
-  check_menu_item->always_show_toggle = TRUE;
-}
-
-static int
-geda_check_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
-{
-  if (GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event) {
-    GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event (widget, event);
-  }
-
-  geda_check_menu_item_draw_indicator (GEDA_CHECK_MENU_ITEM (widget), &event->area);
-
-  return FALSE;
-}
-
-static void
-geda_check_menu_item_activate (GedaMenuItem *menu_item)
-{
-  GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (menu_item);
-  check_menu_item->active            = !check_menu_item->active;
-
-  geda_check_menu_item_toggled (check_menu_item);
-  gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
-
-  GEDA_MENU_ITEM_CLASS (geda_check_menu_item_parent_class)->activate (menu_item);
-
-  g_object_notify (G_OBJECT (check_menu_item), "active");
-}
-
-static void
-geda_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
-                                     GdkRectangle      *area)
-{
-  if (GEDA_CHECK_MENU_ITEM_GET_CLASS (check_menu_item)->draw_indicator)
-    GEDA_CHECK_MENU_ITEM_GET_CLASS (check_menu_item)->draw_indicator (check_menu_item, area);
-}
-
+/* class->draw_indicator */
 static void
 geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                                           GdkRectangle      *area)
@@ -511,7 +217,6 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
   }
 }
 
-
 static void
 geda_check_menu_item_get_property (GObject      *object,
                                    unsigned int  prop_id,
@@ -560,6 +265,309 @@ geda_check_menu_item_set_property (GObject      *object,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
     }
+}
+
+static void
+geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
+{
+  GObjectClass *gobject_class;
+  GtkWidgetClass *widget_class;
+  GedaMenuItemClass *menu_item_class;
+
+  gobject_class   = G_OBJECT_CLASS (klass);
+  widget_class    = (GtkWidgetClass*) klass;
+  menu_item_class = (GedaMenuItemClass*) klass;
+
+  gobject_class->set_property = geda_check_menu_item_set_property;
+  gobject_class->get_property = geda_check_menu_item_get_property;
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_ACTIVE,
+                                   g_param_spec_boolean ("active",
+                                                       _("Active"),
+                                                       _("Whether the menu item is checked"),
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_INCONSISTENT,
+                                   g_param_spec_boolean ("inconsistent",
+                                                       _("Inconsistent"),
+                                                       _("Whether to display an \"inconsistent\" state"),
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_DRAW_AS_RADIO,
+                                   g_param_spec_boolean ("draw-as-radio",
+                                                       _("Draw as radio menu item"),
+                                                       _("Whether the menu item looks like a radio menu item"),
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
+
+  gtk_widget_class_install_style_property (widget_class,
+                                           g_param_spec_int ("indicator-size",
+                                                           _("Indicator Size"),
+                                                           _("Size of check or radio indicator"),
+                                                             0,
+                                                             G_MAXINT,
+                                                             13,
+                                                             G_PARAM_READABLE));
+
+  widget_class->expose_event = geda_check_menu_item_expose;
+
+  menu_item_class->activate            = geda_check_menu_item_activate;
+  menu_item_class->hide_on_activate    = FALSE;
+  menu_item_class->toggle_size_request = geda_check_menu_item_toggle_size_request;
+
+  klass->toggled        = NULL;
+  klass->draw_indicator = geda_real_check_menu_item_draw_indicator;
+
+  check_menu_item_signals[TOGGLED] =
+  g_signal_new (_("toggled"),
+                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   G_SIGNAL_RUN_FIRST,
+                   G_STRUCT_OFFSET (GedaCheckMenuItemClass, toggled),
+                   NULL, NULL,
+                   geda_marshal_VOID__VOID,
+                   G_TYPE_NONE, 0);
+}
+
+static void
+geda_check_menu_item_init (GedaCheckMenuItem *check_menu_item)
+{
+  check_menu_item->active             = FALSE;
+  check_menu_item->always_show_toggle = TRUE;
+}
+
+static void
+geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
+{
+  parent_activatable_iface = g_type_interface_peek_parent (iface);
+  iface->update = geda_check_menu_item_update;
+  iface->sync_action_properties = geda_check_menu_item_sync_action_properties;
+}
+
+static void
+geda_check_menu_item_update (GtkActivatable *activatable,
+                             GtkAction      *action,
+                             const char     *property_name)
+{
+  GedaCheckMenuItem *check_menu_item;
+
+  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
+
+  parent_activatable_iface->update (activatable, action, property_name);
+
+  if (strcmp (property_name, "active") == 0) {
+
+    gtk_action_block_activate (action);
+    geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+    gtk_action_unblock_activate (action);
+  }
+
+  if (!gtk_activatable_get_use_action_appearance (activatable))
+    return;
+
+  if (strcmp (property_name, "draw-as-radio") == 0)
+    geda_check_menu_item_set_draw_as_radio (check_menu_item,
+                                            gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+}
+
+/* TODO GtkAction->GedaAction*/
+static void
+geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
+                                             GtkAction      *action)
+{
+  GedaCheckMenuItem *check_menu_item;
+
+  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
+
+  parent_activatable_iface->sync_action_properties (activatable, action);
+
+  if (!GTK_IS_TOGGLE_ACTION (action))
+    return;
+
+  gtk_action_block_activate (action);
+  geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+  gtk_action_unblock_activate (action);
+
+  if (!gtk_activatable_get_use_action_appearance (activatable))
+    return;
+
+  geda_check_menu_item_set_draw_as_radio (check_menu_item,
+                                          gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+}
+
+GtkWidget*
+geda_check_menu_item_new (void)
+{
+  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM, NULL);
+}
+
+GtkWidget*
+geda_check_menu_item_new_with_label (const char  *label)
+{
+  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
+                       "label", label,
+                       NULL);
+}
+
+/*!
+ * \brief Create new CheckMenuItem with a mnemonic label
+ * \ingroup CheckMenuItem
+ * \par Function Description
+ * Creates a new #GedaCheckMenuItem containing a label. The label
+ * will be created using gtk_label_new_with_mnemonic(), so underscores
+ * in \a label indicate the mnemonic for the menu item.
+ *
+ * \param [in] label Text with mnemonic for display as the label
+ *
+ * @returns a new #GedaCheckMenuItem
+ */
+GtkWidget*
+geda_check_menu_item_new_with_mnemonic (const char  *label)
+{
+  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
+                       "label", label,
+                       "use-underline", TRUE,
+                       NULL);
+}
+
+/*!
+ * \brief Get CheckMenuItem Active
+ * \ingroup CheckMenuItem
+ * \par Function Description
+ * Returns whether the check menu item is active.
+ *
+ * \param [in] check_menu_item a #GedaCheckMenuItem
+ *
+ * \returns %TRUE if the menu item is checked.
+ *
+ * \sa geda_check_menu_item_set_active
+ */
+bool
+geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
+{
+  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
+
+  return check_menu_item->active;
+}
+
+void
+geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
+                                 bool               is_active)
+{
+  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
+
+  is_active = is_active != 0;
+
+  if (check_menu_item->active != is_active) {
+    geda_menu_item_activate (GEDA_MENU_ITEM (check_menu_item));
+  }
+}
+
+/*!
+ * \brief Get GedaCheckMenuItem draw-as-radio property
+ * \par Function Description
+ *  Returns whether @check_menu_item looks like a #GedaRadioMenuItem
+ *
+ * \param [in] check_menu_item: a #GedaCheckMenuItem
+ *
+ * \returns Whether the menu item looks like a #GedaRadioMenuItem
+ */
+bool
+geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
+{
+  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
+
+  return check_menu_item->draw_as_radio;
+}
+
+/*!
+ * \brief Set GedaCheckMenuItem draw-as-radio property
+ * \par Function Description
+ *  Set whether \a check_menu_item is drawn like a #GedaRadioMenuItem
+ *
+ * \param [in] check_menu_item: a #GedaCheckMenuItem
+ */
+void
+geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
+                                        bool               draw_as_radio)
+{
+  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
+
+  draw_as_radio = draw_as_radio != FALSE;
+
+  if (draw_as_radio != check_menu_item->draw_as_radio) {
+
+    check_menu_item->draw_as_radio = draw_as_radio;
+
+    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
+
+    g_object_notify (G_OBJECT (check_menu_item), "draw-as-radio");
+  }
+}
+
+/*!
+ * \brief Get GedaCheckMenuItem inconsistent setting
+ * \par Function Description
+ *  Retrieves the value set by geda_check_menu_item_set_inconsistent().
+ *
+ * \param [in] check_menu_item: a #GedaCheckMenuItem
+ *
+ * \returns %TRUE if inconsistent
+ */
+bool
+geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
+{
+  g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
+
+  return check_menu_item->inconsistent;
+}
+
+/*! \brief Set CheckMenuItem Inconsistent
+ *  \ingroup GedaCheckMenuItem
+ *  \par Function Description
+ * If the user has selected a range of elements (such as some text or
+ * spreadsheet cells) that are affected by a boolean setting, and the
+ * current values in that range are inconsistent, you may want to
+ * display the check in an "in between" state. This function turns on
+ * "in between" display.  Normally you would turn off the inconsistent
+ * state again if the user explicitly selects a setting. This has to be
+ * done manually, geda_check_menu_item_set_inconsistent() only affects
+ * visual appearance, it doesn't affect the semantics of the widget.
+ *
+ * \param [in] check_menu_item: Pointer to #GedaCheckMenuItem
+ * \param [in] setting: %TRUE to display an "inconsistent" third state check
+ */
+void
+geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
+                                       bool               setting)
+{
+  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
+
+  setting = setting != FALSE;
+
+  if (setting != check_menu_item->inconsistent) {
+
+    check_menu_item->inconsistent = setting;
+    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
+    g_object_notify (G_OBJECT (check_menu_item), "inconsistent");
+  }
+}
+
+void
+geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
+                                      bool               always)
+{
+  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (menu_item));
+}
+
+void
+geda_check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
+{
+  g_signal_emit (check_menu_item, check_menu_item_signals[TOGGLED], 0);
 }
 
 /** @} geda-check-menu-item */

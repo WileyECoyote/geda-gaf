@@ -1,5 +1,7 @@
 2016-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_check_menu_item.c: Reorganize module.
+
     * tests/test_menu_bar.c: Add tests framework and check construction
       of GedaMenuBar widgets.
 
