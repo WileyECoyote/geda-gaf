@@ -39,7 +39,9 @@
 #include <geda/geda_standard.h>
 
 #include "../../include/geda_uio_functions.h"
+#include "../../include/geda_accel_label.h"
 #include "../../include/geda_menu_enum.h"
+#include "../../include/geda_label.h"
 #include "../../include/geda_radio_menu_item.h"
 #include "../../include/gettext.h"
 
@@ -241,7 +243,7 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
   radio_menu_item = geda_radio_menu_item_new (group);
   accel_label     = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
 
-  geda_label_set_text_with_mnemonic (GEDA_LABEL (accel_label), label);
+  geda_label_set_mnemonic_text (GEDA_LABEL(accel_label), label);
   gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
 
   gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);

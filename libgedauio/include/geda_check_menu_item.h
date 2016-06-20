@@ -84,13 +84,13 @@ bool       geda_check_menu_item_get_active        (GedaCheckMenuItem *check_menu
 void       geda_check_menu_item_set_active        (GedaCheckMenuItem *check_menu_item,
                                                    bool               is_active);
 
-bool       geda_check_menu_item_get_inconsistent  (GedaCheckMenuItem *check_menu_item);
-void       geda_check_menu_item_set_inconsistent  (GedaCheckMenuItem *check_menu_item,
-                                                   bool               setting);
-
 bool       geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item);
 void       geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
                                                    bool               draw_as_radio);
+
+bool       geda_check_menu_item_get_inconsistent  (GedaCheckMenuItem *check_menu_item);
+void       geda_check_menu_item_set_inconsistent  (GedaCheckMenuItem *check_menu_item,
+                                                   bool               setting);
 
 void	       geda_check_menu_item_set_show_toggle   (GedaCheckMenuItem *menu_item,
                                                    bool               always);

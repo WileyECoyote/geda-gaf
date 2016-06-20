@@ -2,6 +2,9 @@
 
     * src/widgets/geda_check_menu_item.c: Reorganize module.
 
+    * src/widgets/geda_radio_menu_item.c: Replace geda_label_set_text_with
+      _mnemonic with geda_label_set_mnemonic_text.
+
     * tests/test_menu_bar.c: Add tests framework and check construction
       of GedaMenuBar widgets.
 
