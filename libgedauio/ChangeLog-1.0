@@ -2,6 +2,9 @@
 
     * src/widgets/geda_check_menu_item.c: Reorganize module.
 
+    * src/widgets/geda_image_menu_item.c: Remove local macro definition of
+      UINT_TO_POINTER.
+
     * src/widgets/geda_label.c: Remove "temporary" from comments, remove
       GTK_COMPILATION, get the pango context from the widget in function
       geda_label_ensure_layout, adjust indentation.

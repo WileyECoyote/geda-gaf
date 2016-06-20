@@ -1201,12 +1201,6 @@ geda_image_menu_item_setting_changed (GtkSettings *settings)
   g_list_free (list);
 }
 
-#if defined(__LP64__) || defined(_LP64)
-# define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))
-#else
-# define UINT_TO_POINTER(u) ((void*)(unsigned int)(u))
-#endif
-
 static void
 geda_image_menu_item_screen_changed (GtkWidget *widget,
                                      GdkScreen *previous_screen)
