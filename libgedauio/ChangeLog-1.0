@@ -4,7 +4,7 @@
 
     * src/widgets/geda_label.c: Remove "temporary" from comments, remove
       GTK_COMPILATION, get the pango context from the widget in function
-      geda_label_ensure_layout.
+      geda_label_ensure_layout, adjust indentation.
 
     * src/widgets/geda_radio_menu_item.c: Replace geda_label_set_text_with
       _mnemonic with geda_label_set_mnemonic_text.

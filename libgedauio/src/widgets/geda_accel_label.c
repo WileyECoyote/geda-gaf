@@ -347,7 +347,7 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
 
 static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 {
-  GedaAccelLabel  *accel_label;
+  GedaAccelLabel *accel_label;
   unsigned int    ac_width;
   GtkAllocation  *allocation;
   GtkRequisition  requisition;
