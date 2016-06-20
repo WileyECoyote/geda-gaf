@@ -3,6 +3,9 @@
     * src/widgets/geda_accel_label.c: Retrofit GedaAccelLabel to be derive
       from GedaLabel instead of GtkAccelLabel.
 
+    * src/widgets/geda_label.c: Replace GtkMenu with GedaMenu and GtkLabel
+      with GedaLabel in menu related widgets.
+
     * tests/test_accel_label.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT, revise flow in main, change gtk_label to geda_label,
       add check for GEDA_IS_LABEL.

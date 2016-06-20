@@ -69,6 +69,9 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_label.h"
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_item.h"
+#include "../../include/geda_menu_shell.h"
 #include "../../include/geda_image_menu_item.h"
 #include "../../include/gettext.h"
 
@@ -1011,7 +1014,7 @@ geda_label_class_init  (void *class, void *class_data)
                    NULL, NULL,
                    gtk_marshal_VOID__OBJECT,
                    G_TYPE_NONE, 1,
-                   GTK_TYPE_MENU);
+                   GEDA_TYPE_MENU);
 
   /**
    * GedaLabel::activate-current-link:
@@ -1973,7 +1976,7 @@ geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
     if (gtk_widget_get_can_focus (parent) ||
       (!group_cycling && GTK_WIDGET_GET_CLASS (parent)->activate_signal) ||
       GTK_IS_NOTEBOOK (gtk_widget_get_parent (parent)) ||
-      GTK_IS_MENU_ITEM (parent))
+      GEDA_IS_MENU_ITEM (parent))
       return gtk_widget_mnemonic_activate (parent, group_cycling);
     parent = gtk_widget_get_parent (parent);
   }
@@ -2021,13 +2024,13 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
     GtkWidget *menu_shell;
 
-    menu_shell = gtk_widget_get_ancestor (widget, GTK_TYPE_MENU_SHELL);
+    menu_shell = gtk_widget_get_ancestor (widget, GEDA_TYPE_MENU_SHELL);
 
     if (menu_shell) {
       mnemonic_menu = menu_shell;
     }
 
-    if (!GTK_IS_MENU (menu_shell)) {
+    if (!GEDA_IS_MENU (menu_shell)) {
       priv->mnemonic_window = GTK_WINDOW (toplevel);
     }
   }
@@ -2110,12 +2113,14 @@ void
 geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
                                                  bool mnemonics_visible)
 {
-  if (GEDA_IS_LABEL (widget))
+  if (GEDA_IS_LABEL (widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
-  else if (GTK_IS_CONTAINER (widget))
+  }
+  else if (GTK_IS_CONTAINER (widget)) {
     gtk_container_forall (GTK_CONTAINER (widget),
                           label_mnemonics_visible_traverse_container,
                           (void*)(long) (mnemonics_visible));
+  }
 }
 
 static void
@@ -5935,11 +5940,11 @@ append_action_signal (GedaLabel   *label,
 
   gtk_widget_show (menuitem);
 
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 }
 
 static void
-popup_menu_detach (GtkWidget *attach_widget, GtkMenu *menu)
+popup_menu_detach (GtkWidget *attach_widget, GedaMenu *menu)
 {
   GedaLabel        *label = GEDA_LABEL (attach_widget);
   GedaLabelData *priv  = label->priv;
@@ -5950,7 +5955,7 @@ popup_menu_detach (GtkWidget *attach_widget, GtkMenu *menu)
 }
 
 static void
-popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
+popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
 {
   GtkAllocation *allocation;
   GtkWidget     *widget;
@@ -5981,7 +5986,7 @@ popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
 }
 
 static void
-open_link_activate_cb (GtkMenuItem *menu_item, GedaLabel *label)
+open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
   GedaLabelLink *link;
 
@@ -5993,7 +5998,7 @@ open_link_activate_cb (GtkMenuItem *menu_item, GedaLabel *label)
 }
 
 static void
-copy_link_activate_cb (GtkMenuItem *menu_item, GedaLabel *label)
+copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
   GtkClipboard *clipboard;
   const char *uri;
@@ -6032,9 +6037,9 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     gtk_widget_destroy (info->popup_menu);
   }
 
-  info->popup_menu = menu = gtk_menu_new ();
+  info->popup_menu = menu = geda_menu_new ();
 
-  gtk_menu_attach_to_widget (GTK_MENU(menu), GTK_WIDGET(label), popup_menu_detach);
+  geda_menu_attach_to_widget (GEDA_MENU(menu), GTK_WIDGET(label), popup_menu_detach);
 
   have_selection = info->selection_anchor != info->selection_end;
 
@@ -6054,7 +6059,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
       /* Open Link */
       menuitem = geda_image_menu_item_new_with_mnemonic (_("_Open Link"));
       gtk_widget_show (menuitem);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+      geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
       g_signal_connect (G_OBJECT (menuitem), "activate",
                         G_CALLBACK (open_link_activate_cb), label);
@@ -6066,7 +6071,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
       /* Copy Link Address */
       menuitem = geda_image_menu_item_new_with_mnemonic (_("Copy _Link Address"));
       gtk_widget_show (menuitem);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+      geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
       g_signal_connect (G_OBJECT (menuitem), "activate",
                         G_CALLBACK (copy_link_activate_cb), label);
@@ -6084,30 +6089,30 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
       menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
       gtk_widget_set_sensitive (menuitem, FALSE);
       gtk_widget_show (menuitem);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+      geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
       menuitem = gtk_separator_menu_item_new ();
       gtk_widget_show (menuitem);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+      geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
       menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_SELECT_ALL, NULL);
       g_signal_connect_swapped (menuitem, "activate",  G_CALLBACK (geda_label_select_all), label);
       gtk_widget_show (menuitem);
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+      geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
     }
 
   g_signal_emit (label, signals[POPULATE_POPUP], 0, menu);
 
   if (event) {
-    gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
+    geda_menu_popup (GEDA_MENU (menu), NULL, NULL,
                     NULL, NULL,
                     event->button, event->time);
   }
   else {
-    gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
+    geda_menu_popup (GEDA_MENU (menu), NULL, NULL,
                     popup_position_func, label,
                     0, gtk_get_current_event_time ());
-    gtk_menu_shell_select_first (GTK_MENU_SHELL (menu), FALSE);
+    geda_menu_shell_select_first (GEDA_MENU_SHELL (menu), FALSE);
   }
 }
 
