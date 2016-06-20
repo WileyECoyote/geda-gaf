@@ -6,20 +6,15 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
- * Code based on GTK 2.14.5 gtk/gtkaccellabel.h (LGPL)
+ * Code originally based on GTK 2.14.5 gtk/gtkaccellabel.h (LGPL)
  *
  * GTK - The GIMP Toolkit
  * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
  *
  * GedaAccelLabel: GtkLabel with accelerator monitoring facilities.
  * Copyright (C) 1998 Tim Janik
- *
- * Modified by the GTK+ Team and others 1997-2001.  See the AUTHORS
- * file for a list of people on the GTK+ Team.  See the ChangeLog
- * files for a list of changes.  These files are distributed with
- * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
  *
  * Adapted for gEDA by Peter Clifton <peter@clifton-electronics.co.uk>
  *
@@ -39,10 +34,14 @@
  * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
-/* 03/13/2014 WEH Renamed Gschem->Geda through-out */
+/* 03/13/2014 WEH Renamed Gschem->Geda through-out
+ * 06/19/2016 WEH Derive from GedaLabel
+ */
 
 #ifndef __GEDA_ACCEL_LABEL_H__
 #define __GEDA_ACCEL_LABEL_H__
+
+#include "geda_label.h"
 
 #define GEDA_TYPE_ACCEL_LABEL            (geda_accel_label_get_type ())
 #define GEDA_ACCEL_LABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACCEL_LABEL, GedaAccelLabel))
@@ -56,16 +55,21 @@ typedef struct _GedaAccelLabelClass  GedaAccelLabelClass;
 
 struct _GedaAccelLabel
 {
-  GtkAccelLabel label;
-  GedaType      instance_type;
-  unsigned int  accel_padding;
-  char         *accel_string;
-  uint16        accel_string_width;
+  GedaLabel      label;
+  GedaType       instance_type;
+
+  GClosure      *accel_closure;
+  GtkAccelGroup *accel_group;        /* set by set_accel_closure() */
+  GtkWidget     *accel_widget;
+
+  unsigned int   accel_padding;
+  char          *accel_string;
+  uint16         accel_string_width;
 };
 
 struct _GedaAccelLabelClass
 {
-  GtkAccelLabelClass  parent_class;
+  GedaLabelClass parent_class;
 };
 
 
@@ -76,12 +80,23 @@ extern "C" {
 GedaType      geda_accel_label_get_type          (void) GEDA_CONST;
 bool          is_a_geda_accel_label              (GedaAccelLabel *accel_label);
 
-GtkWidget*    geda_accel_label_new               (const char     *string);
+GtkWidget    *geda_accel_label_new               (const char     *string);
+
+GtkWidget    *geda_accel_label_get_accel_widget  (GedaAccelLabel *accel_label);
+void          geda_accel_label_set_accel_widget  (GedaAccelLabel *accel_label,
+                                                  GtkWidget      *accel_widget);
+
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
+
+const char   *geda_accel_label_get_accel_string  (GedaAccelLabel *accel_label);
 void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,
                                                   const char     *accel_string);
 
 bool          geda_accel_label_refetch           (GedaAccelLabel *accel_label);
+
+
+void          geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,
+                                                  GClosure       *accel_closure);
 
 #ifdef __cplusplus
 }

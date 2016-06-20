@@ -1,5 +1,8 @@
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_accel_label.c: Retrofit GedaAccelLabel to be derive
+      from GedaLabel instead of GtkAccelLabel.
+
     * tests/test_check_menu_item.c: Add tests framework and check construction
       of GedaMenuItem widgets.
 
