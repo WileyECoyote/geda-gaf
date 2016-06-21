@@ -29,6 +29,18 @@
  *  \brief functions for the net object
  */
 
+static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
+static void
+geda_net_object_error(const char *func, const void *object)
+{
+  geda_object_error(func, object, GEDA_OBJECT_NET);
+}
+
 /*!
  * \brief merge two net object
  * \par Function Description
@@ -309,13 +321,14 @@ geda_net_object_copy( GedaObject *o_current)
     /* or don't update and update later */
     /* I think for now I'll disable the update and manually update */
     new_obj = geda_net_object_new (o_current->color,
-                         o_current->line->x[0], o_current->line->y[0],
-                         o_current->line->x[1], o_current->line->y[1]);
+                                   o_current->line->x[0], o_current->line->y[0],
+                                   o_current->line->x[1], o_current->line->y[1]);
 
     new_obj->line_options->line_width = *o_current->net->line_width;
 
     return new_obj;
   }
+  geda_net_object_error(__func__, o_current);
   return NULL;
 }
 
@@ -333,12 +346,15 @@ geda_net_object_copy( GedaObject *o_current)
 bool
 geda_net_object_get_position (GedaObject *object, int *x, int *y)
 {
-  g_return_val_if_fail(GEDA_IS_NET(object), FALSE);
+  if (GEDA_IS_NET(object)) {
 
-  *x = object->line->x[0];
-  *y = object->line->y[0];
+    *x = object->line->x[0];
+    *y = object->line->y[0];
 
-  return TRUE;
+    return TRUE;
+  }
+  geda_net_object_error(__func__, object);
+  return FALSE;
 }
 
 /*!
@@ -355,15 +371,18 @@ geda_net_object_get_position (GedaObject *object, int *x, int *y)
 bool
 geda_net_object_is_fully_connected (GedaObject *o_current)
 {
-  g_return_val_if_fail (GEDA_IS_NET(o_current), FALSE);
+  if (GEDA_IS_NET(o_current)) {
 
-  if (!o_current->net->valid_num_connected) {
-    geda_net_object_refresh_conn_cache (o_current);
+    if (!o_current->net->valid_num_connected) {
+      geda_net_object_refresh_conn_cache (o_current);
+    }
+
+    //g_return_val_if_fail (o_current->net->valid_num_connected, FALSE);
+
+    return o_current->net->net_num_connected > 1 ? TRUE : FALSE;
   }
-
-  g_return_val_if_fail (o_current->net->valid_num_connected, FALSE);
-
-  return o_current->net->net_num_connected > 1 ? TRUE : FALSE;
+  geda_net_object_error(__func__, o_current);
+  return FALSE;
 }
 
 /*!
@@ -378,16 +397,21 @@ geda_net_object_is_fully_connected (GedaObject *o_current)
 void
 geda_net_object_mirror(GedaObject *object, int cx, int cy)
 {
-  g_return_if_fail(GEDA_IS_NET(object));
+  if (GEDA_IS_NET(object)) {
 
-  /* translate object to origin */
-  geda_net_object_translate(object, -cx, -cy);
+    /* translate object to origin */
+    geda_net_object_translate(object, -cx, -cy);
 
-  object->line->x[0] = -object->line->x[0];
+    object->line->x[0] = -object->line->x[0];
 
-  object->line->x[1] = -object->line->x[1];
+    object->line->x[1] = -object->line->x[1];
 
-  geda_net_object_translate(object, cx, cy);
+    geda_net_object_translate(object, cx, cy);
+
+  }
+  else {
+    geda_net_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -405,12 +429,19 @@ geda_net_object_mirror(GedaObject *object, int cx, int cy)
 void
 geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
 {
-  object->line->x[whichone] = x;
-  object->line->y[whichone] = y;
+  if (GEDA_IS_NET(object)) {
 
-  object->w_bounds_valid_for = NULL;
+    object->line->x[whichone] = x;
+    object->line->y[whichone] = y;
 
-  s_tile_update_object(object);
+    object->w_bounds_valid_for = NULL;
+
+    s_tile_update_object(object);
+
+  }
+  else {
+    geda_net_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -456,17 +487,20 @@ geda_net_object_new(int color, int x1, int y1, int x2, int y2)
 int
 geda_net_object_orientation(GedaObject *object)
 {
-  g_return_val_if_fail(GEDA_IS_LINE(object), -1);
+  if (GEDA_IS_LINE(object)) {
 
-  if (object->line->y[0] == object->line->y[1]) {
-    return (HORIZONTAL);
+    if (object->line->y[0] == object->line->y[1]) {
+      return (HORIZONTAL);
+    }
+
+    if (object->line->x[0] == object->line->x[1]) {
+      return (VERTICAL);
+    }
+
+    return (NEITHER);
   }
-
-  if (object->line->x[0] == object->line->x[1]) {
-    return (VERTICAL);
-  }
-
-  return (NEITHER);
+  geda_object_error(__func__, object, GEDA_OBJECT_LINE);
+  return -1;
 }
 
 /*!
@@ -489,8 +523,6 @@ geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
   int net_width;
   int x1, y1;
   int x2, y2;
-
-  g_return_if_fail(GEDA_IS_NET(o_current));
 
   f_print_set_color(toplevel, fp, o_current->color);
 
@@ -525,27 +557,33 @@ geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
 void
 geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
 {
-  int newx, newy;
+  if (GEDA_IS_NET(object)) {
 
-  g_return_if_fail(GEDA_IS_NET(object));
+    int newx, newy;
 
-  if (angle == 0)
-    return;
+    g_return_if_fail(GEDA_IS_NET(object));
 
-  /* translate object to origin */
-  geda_net_object_translate(object, -cx, -cy);
+    if (angle == 0)
+      return;
 
-  m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
+    /* translate object to origin */
+    geda_net_object_translate(object, -cx, -cy);
 
-  object->line->x[0] = newx;
-  object->line->y[0] = newy;
+    m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
-  m_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
+    object->line->x[0] = newx;
+    object->line->y[0] = newy;
 
-  object->line->x[1] = newx;
-  object->line->y[1] = newy;
+    m_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
 
-  geda_net_object_translate(object, cx, cy);
+    object->line->x[1] = newx;
+    object->line->y[1] = newy;
+
+    geda_net_object_translate(object, cx, cy);
+  }
+  else {
+    geda_net_object_error(__func__, object);
+  }
 }
 
 /*!
@@ -626,12 +664,14 @@ geda_net_object_refresh_conn_cache(GedaObject *o_current)
   GHashTable     *visited;
   GHashTableIter  iter;
   GList          *stack = NULL;
-  GedaObject         *obj;
+  GedaObject     *obj;
   void           *key;
   char           *result;
 
-  g_return_if_fail (o_current);
-  g_return_if_fail (o_current->type == OBJ_NET);
+  if (!GEDA_IS_NET(o_current)) {
+    geda_net_object_error(__func__, o_current);
+    return;
+  }
 
   /* Keep track of visited nets, pins and buses in the hash table.
    * This way we short-circuit the search and avoid loops.
@@ -742,18 +782,23 @@ geda_net_object_refresh_conn_cache(GedaObject *o_current)
 char *
 geda_net_object_to_buffer(GedaObject *object)
 {
-  int x1, x2, y1, y2;
+  if (GEDA_IS_NET(object)) {
 
-  char *buf;
+    int x1, x2, y1, y2;
 
-  x1 = object->line->x[0];
-  y1 = object->line->y[0];
-  x2 = object->line->x[1];
-  y2 = object->line->y[1];
+    char *buf;
 
-  buf = geda_sprintf("%c %d %d %d %d %d", object->type,
-                         x1, y1, x2, y2, object->color);
-  return (buf);
+    x1 = object->line->x[0];
+    y1 = object->line->y[0];
+    x2 = object->line->x[1];
+    y2 = object->line->y[1];
+
+    buf = geda_sprintf("%c %d %d %d %d %d", object->type,
+    x1, y1, x2, y2, object->color);
+    return (buf);
+  }
+  geda_net_object_error(__func__, object);
+  return NULL;
 }
 
 /*!
@@ -768,14 +813,19 @@ geda_net_object_to_buffer(GedaObject *object)
 void
 geda_net_object_translate(GedaObject *object, int dx, int dy)
 {
-  /* Update world coords */
-  object->line->x[0] = object->line->x[0] + dx;
-  object->line->y[0] = object->line->y[0] + dy;
-  object->line->x[1] = object->line->x[1] + dx;
-  object->line->y[1] = object->line->y[1] + dy;
+  if (GEDA_IS_NET(object)) {
+    /* Update world coords */
+    object->line->x[0] = object->line->x[0] + dx;
+    object->line->y[0] = object->line->y[0] + dy;
+    object->line->x[1] = object->line->x[1] + dx;
+    object->line->y[1] = object->line->y[1] + dy;
 
-  /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+    /* Update bounding box */
+    object->w_bounds_valid_for = NULL;
 
-  s_tile_update_object(object);
+    s_tile_update_object(object);
+  }
+  else {
+    geda_net_object_error(__func__, object);
+  }
 }
