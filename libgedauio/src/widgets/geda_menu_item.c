@@ -1530,24 +1530,16 @@ get_arrow_size (GtkWidget *widget, GtkWidget *child, int *size, int *spacing)
 static int
 get_minimum_width (GtkWidget *widget)
 {
-  PangoContext *context;
+  PangoContext     *context;
   PangoFontMetrics *metrics;
   int width;
   int width_chars;
 
   context = gtk_widget_get_pango_context (widget);
 
-//#if GTK_MAJOR_VERSION < 3
   metrics = pango_context_get_metrics (context,
                                        pango_context_get_font_description (context),
                                        pango_context_get_language (context));
-/*
-#else
-  metrics = pango_context_get_metrics (context,
-                                       widget->style->font_desc,
-                                       pango_context_get_language (context));
-#endif
-*/
 
   width = pango_font_metrics_get_approximate_char_width (metrics);
 
@@ -1563,7 +1555,7 @@ get_minimum_width (GtkWidget *widget)
 static void
 geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 {
-  GedaMenuItem  *menu_item;
+  GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
 
   GtkStateType  state_type;
@@ -1808,8 +1800,8 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GtkBin              *bin;
   GtkAllocation        child_allocation;
   GtkTextDirection     direction;
-  PackDirection     pack_dir;
-  PackDirection     child_pack_dir;
+  PackDirection        pack_dir;
+  PackDirection        child_pack_dir;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM (widget));
   g_return_if_fail (allocation != NULL);
@@ -1820,11 +1812,11 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   direction = gtk_widget_get_direction (widget);
 
   if (GEDA_IS_MENU_BAR (widget->parent)) {
-    pack_dir = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR (widget->parent));
+    pack_dir       = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR (widget->parent));
     child_pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (widget->parent));
   }
   else {
-    pack_dir = PACK_DIRECTION_LTR;
+    pack_dir       = PACK_DIRECTION_LTR;
     child_pack_dir = PACK_DIRECTION_LTR;
   }
 
@@ -1855,7 +1847,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y * 2);
 
     if (child_pack_dir == PACK_DIRECTION_LTR ||
-      child_pack_dir == PACK_DIRECTION_RTL)
+        child_pack_dir == PACK_DIRECTION_RTL)
     {
       if ((direction == GTK_TEXT_DIR_LTR) == (child_pack_dir != PACK_DIRECTION_RTL))
       {
