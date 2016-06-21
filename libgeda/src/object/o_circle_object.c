@@ -562,6 +562,46 @@ geda_circle_object_get_radius (const GedaObject *object)
 }
 
 /*!
+ * \brief Mirror a Circle.
+ * \par Function Description
+ *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
+ *  circle object from its world coords.
+ *
+ *  The circle coordinates and its bounding are recalculated as well as the
+ *  GedaObject specific (line width, filling ...).
+ *
+ * \param [in,out] object    Circle GedaObject to mirror
+ * \param [in]     center_x  Origin x coordinate
+ * \param [in]     center_y  Origin y coordinate
+ */
+void
+geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+
+    /* translate object to origin */
+    object->circle->center_x -= center_x;
+    object->circle->center_y -= center_y;
+
+    /* mirror the center of the circle */
+    object->circle->center_x = -object->circle->center_x;
+
+    /* translate back in position */
+    object->circle->center_x += center_x;
+    object->circle->center_y += center_y;
+
+    /* recalc boundings and screen coords */
+    object->w_bounds_valid_for = NULL;
+
+    /* recalculate the boundings */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*!
  * \brief Modify the description of a circle Object.
  * \par Function Description
  *  This function modifies the description of the circle object <B>*object</B>
@@ -611,46 +651,6 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
       default:
         break;
     }
-
-    /* recalculate the boundings */
-    object->w_bounds_valid_for = NULL;
-  }
-  else {
-    geda_circle_object_error(__func__, object);
-  }
-}
-
-/*!
- * \brief Mirror a Circle.
- * \par Function Description
- *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
- *  circle object from its world coords.
- *
- *  The circle coordinates and its bounding are recalculated as well as the
- *  GedaObject specific (line width, filling ...).
- *
- * \param [in,out] object    Circle GedaObject to mirror
- * \param [in]     center_x  Origin x coordinate
- * \param [in]     center_y  Origin y coordinate
- */
-void
-geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
-{
-  if (GEDA_IS_CIRCLE(object)) {
-
-    /* translate object to origin */
-    object->circle->center_x -= center_x;
-    object->circle->center_y -= center_y;
-
-    /* mirror the center of the circle */
-    object->circle->center_x = -object->circle->center_x;
-
-    /* translate back in position */
-    object->circle->center_x += center_x;
-    object->circle->center_y += center_y;
-
-    /* recalc boundings and screen coords */
-    object->w_bounds_valid_for = NULL;
 
     /* recalculate the boundings */
     object->w_bounds_valid_for = NULL;
