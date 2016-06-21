@@ -749,8 +749,9 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
   }
 
   if (size == 0) {
-    u_log_message(_("Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"),
+    geda_log_w (_("Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"),
                   type, x, y, color, size, visibility, show_name_value, angle, alignment);
+    geda_log_v (_("Setting text to default size\n"));
     size = DEFAULT_TEXT_SIZE;
   }
 
@@ -768,16 +769,16 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
       break;
 
     default:
-      u_log_message(_("Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"),
+      geda_log_w(_("Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"),
                     type, x, y, color, size, visibility, show_name_value, angle, alignment);
-      u_log_message(_("Setting alignment to LOWER_LEFT\n"));
+      geda_log_v(_("Setting alignment to LOWER_LEFT\n"));
       alignment = LOWER_LEFT;
       break;
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    u_log_message(_("Found an invalid color [ %s ]\n"), first_line);
-    u_log_message(_("Setting color to default color\n"));
+    geda_log_w(_("Found an invalid color [ %s ]\n"), first_line);
+    geda_log_v(_("Setting color to default color\n"));
     color = DEFAULT_TEXT_COLOR_INDEX;
   }
 

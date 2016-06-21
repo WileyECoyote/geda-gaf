@@ -1,3 +1,22 @@
+2016-06-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Replace u_log_message with approprieate version of geda_log in
+      modules:
+
+            * src/object/o_box_object.c
+            * src/object/o_bus_object.c
+            * src/object/o_object.c
+            * src/object/o_complex_object.c
+            * src/object/o_embed.c
+            * src/object/o_line_object.c
+            * src/object/o_net_object.c
+            * src/object/o_path_object.c
+            * src/object/o_picture.c
+            * src/object/o_pin_object.c
+            * src/object/o_save.c
+            * src/object/o_set.c
+            * src/object/o_text_object.c
+
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_read to distinguish

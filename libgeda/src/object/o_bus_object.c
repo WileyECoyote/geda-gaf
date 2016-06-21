@@ -579,23 +579,19 @@ geda_bus_object_read(const char     buf[],
   }
 
   if (x1 == x2 && y1 == y2) {
-    u_log_message (_("Found a zero length bus [ %c %d %d %d %d %d ]\n"),
+    geda_log_w (_("Found a zero length bus [ %c %d %d %d %d %d ]\n"),
                    type, x1, y1, x2, y2, color);
   }
-/*
-  if (toplevel->override_bus_color != -1) {
-    color = toplevel->override_bus_color;
-  }
-*/
+
   if (color < 0 || color > MAX_COLORS) {
-    u_log_message (_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message (_("Setting color to default color\n"));
+    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
+    geda_log_v (_("Setting color to default color\n"));
     color = DEFAULT_BUS_COLOR_INDEX;
   }
 
   if (ripper_dir < -1 || ripper_dir > 1) {
-    u_log_message (_("Found an invalid bus ripper direction [ %s ]\n"), buf);
-    u_log_message (_("Resetting direction to neutral (no direction)\n"));
+    geda_log_w (_("Found an invalid bus ripper direction [ %s ]\n"), buf);
+    geda_log_v (_("Resetting direction to neutral (no direction)\n"));
     ripper_dir = 0;
   }
 

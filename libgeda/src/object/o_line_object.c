@@ -1516,13 +1516,13 @@ geda_line_object_read (const char buf[], unsigned int release_ver,
    * It also checks is the required color is valid.
    */
   if (x1 == x2 && y1 == y2) {
-    u_log_message (_("Found a zero length line [ %c %d %d %d %d %d ]\n"),
+    geda_log_w (_("Found a zero length line [ %c %d %d %d %d %d ]\n"),
                    type, x1, y1, x2, y2, color);
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    u_log_message (_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message (_("Setting color to default color\n"));
+    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
+    geda_log_v (_("Setting color to default color\n"));
     color = DEFAULT_LINE_COLOR_INDEX;
   }
 

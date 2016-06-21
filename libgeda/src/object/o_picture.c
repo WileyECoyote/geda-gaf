@@ -94,7 +94,8 @@ o_picture_new (const char *file_content, unsigned int file_length,
                               (picture->lower_y - picture->upper_y);
   }
   else {
-    u_log_message(_("Invalid picture has no height, set aspect to 1.0\n"));
+    geda_log_w(_("Invalid; picture has no height\n"));
+    geda_log_v (_("Setting aspect to 1.0\n"));
     picture->ratio = 1.0;
   }
 
@@ -109,7 +110,7 @@ o_picture_new (const char *file_content, unsigned int file_length,
     if (!o_picture_set_from_buffer (new_obj, filename, file_content,
                                              file_length, &error))
     {
-      u_log_message (_("Failed to load buffer image [%s]: %s\n"),
+      geda_log_w (_("Failed to load buffer image [%s]: %s\n"),
                      filename, error->message);
       g_error_free (error);
 
@@ -126,8 +127,8 @@ o_picture_new (const char *file_content, unsigned int file_length,
 
     if (!o_picture_set_from_file (new_obj, filename, &error)) {
 
-      u_log_message (_("Failed to load image from [%s]: %s\n"),
-                        filename, error->message);
+      geda_log_w (_("Failed to load image from [%s]: %s\n"),
+                     filename, error->message);
 
       picture->pixbuf  = o_picture_get_fallback_pixbuf();
       picture->missing = TRUE;
@@ -353,21 +354,21 @@ o_picture_read (const char  *first_line,
   }
 
   if (width == 0 || height == 0) {
-    u_log_message(_("Found a zero width/height picture [ %c %d %d %d %d ]\n"),
+    geda_log_w(_("Found a zero width/height picture [ %c %d %d %d %d ]\n"),
                   type, x1, y1, width, height);
   }
 
   if ( (mirrored > 1) || (mirrored < 0)) {
-    u_log_message(_("Found a picture with a wrong 'mirrored' parameter: %d.\n"),
+    geda_log_w(_("Found a picture with a wrong 'mirrored' parameter: %d.\n"),
                   mirrored);
-    u_log_message(_("Setting mirrored to 0\n"));
+    geda_log_v(_("Setting mirrored to 0\n"));
     mirrored = 0;
   }
 
   if ( (embedded > 1) || (embedded < 0)) {
-    u_log_message(_("Found a picture with a wrong 'embedded' parameter: %d.\n"),
+    geda_log_w(_("Found a picture with a wrong 'embedded' parameter: %d.\n"),
                   embedded);
-    u_log_message(_("Setting embedded to 0\n"));
+    geda_log_v(_("Setting embedded to 0\n"));
     embedded = 0;
   }
 
@@ -380,8 +381,8 @@ o_picture_read (const char  *first_line,
       break;
 
     default:
-      u_log_message(_("Found an unsupported picture angle [ %d ]\n"), angle);
-      u_log_message(_("Setting angle to 0\n"));
+      geda_log_w(_("Found an unsupported picture angle [ %d ]\n"), angle);
+      geda_log_v(_("Setting angle to 0\n"));
       angle=0;
       break;
 
@@ -406,7 +407,7 @@ o_picture_read (const char  *first_line,
 
     if (err) {
       if (!embedded) {
-        u_log_message (_("Error: %s %s\n"), tmpstr, err->message);
+        geda_log_w (_("Error: %s %s\n"), tmpstr, err->message);
       }
       g_error_free (err);
       filename = tmpstr;
@@ -418,7 +419,7 @@ o_picture_read (const char  *first_line,
 
   /* Handle empty filenames */
   if (filename && strlen (filename) == 0) {
-    u_log_message (_("Image filename is missing."));
+    geda_log_w (_("Image filename is missing."));
     GEDA_FREE (filename);
   }
 
@@ -475,9 +476,9 @@ o_picture_read (const char  *first_line,
     }
 
     if (file_content == NULL) {
-      u_log_message (_("Failed to load image from embedded data [%s]: %s\n"),
+      geda_log_w (_("Failed to load image from embedded data [%s]: %s\n"),
                      filename, _("Base64 decoding failed."));
-      u_log_message (_("Falling back to file loading. Picture unembedded.\n"));
+      geda_log_w (_("Falling back to file loading. Picture unembedded.\n"));
       embedded = 0;
     }
   }
@@ -537,7 +538,7 @@ o_picture_save(GedaObject *object)
                               &encoded_picture_length,
                               TRUE);
     if (encoded_picture == NULL) {
-      u_log_message(_("ERROR: o_picture_save: unable to encode the picture.\n"));
+      geda_log_w (_("ERROR: o_picture_save: unable to encode the picture.\n"));
     }
   }
 
@@ -921,7 +922,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
       }
 
       if (!is_writable) {
-        u_log_message (_("Can not export to type %s\n"), real_type);
+        geda_log (_("Can not export to type %s\n"), real_type);
         result = FALSE;
       }
       else {
@@ -933,7 +934,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
           gdk_pixbuf_save (pixbuf, filename, real_type, &err, NULL);
         }
         if (err != NULL) {
-          u_log_message (_("Failed to export [%s]: %s\n"), filename, err->message);
+          geda_log_w (_("Failed to export [%s]: %s\n"), filename, err->message);
           ecode = errno;
           g_error_free(err);
           result = FALSE;
@@ -1167,8 +1168,8 @@ o_picture_embed (GedaObject *object)
 
     if (object->picture->file_content == NULL) {
 
-      u_log_message (_("Picture [%s] has no image data.\n"), filename);
-      u_log_message (_("Falling back to file loading. Picture is still unembedded.\n"));
+      geda_log_w (_("Picture [%s] has no image data.\n"), filename);
+      geda_log_v (_("Falling back to file loading. Picture is still unembedded.\n"));
       object->picture->is_embedded = 0;
       result = FALSE;
 
@@ -1176,7 +1177,7 @@ o_picture_embed (GedaObject *object)
     else {
 
       char *basename = f_get_basename (filename);
-      u_log_message (_("Picture [%s] has been embedded\n"), basename);
+      geda_log (_("Picture [%s] has been embedded\n"), basename);
 
       object->picture->is_embedded = 1;
       result = TRUE;
@@ -1212,9 +1213,9 @@ o_picture_unembed (GedaObject *object)
 
       if (err != NULL) {
 
-        u_log_message (_("Failed to load image from file [%s]: %s\n"),
+        geda_log_w (_("Failed to load image from file [%s]: %s\n"),
                        filename, err->message);
-        u_log_message (_("Picture is still embedded.\n"));
+        geda_log_v (_("Picture is still embedded.\n"));
         g_error_free (err);
         result = FALSE;
 
@@ -1222,7 +1223,7 @@ o_picture_unembed (GedaObject *object)
       else {
 
         char *basename = f_get_basename(filename);
-        u_log_message (_("Picture [%s] has been unembedded\n"), basename);
+        geda_log (_("Picture [%s] has been unembedded\n"), basename);
 
         object->picture->is_embedded = 0;
         result = TRUE;

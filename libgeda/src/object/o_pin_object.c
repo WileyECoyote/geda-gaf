@@ -167,18 +167,18 @@ GedaObject *o_pin_read (const char buf[], unsigned int release_ver,
   }
 
   if (whichend == -1) {
-    u_log_message (_("Found a pin which did not have the whichend field set.\n"
-    "Verify and correct manually.\n"));
+    geda_log_w (_("Found a pin which did not have the whichend field set.\n"
+                  "Verify and correct manually.\n"));
   }
   else if (whichend < -1 || whichend > 1) {
-    u_log_message (_("Found an invalid whichend on a pin (reseting to zero): %d\n"),
+    geda_log_w (_("Found an invalid whichend on a pin (reseting to zero): %d\n"),
                    whichend);
     whichend = 0;
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    u_log_message (_("Found an invalid color [ %s ]\n"), buf);
-    u_log_message (_("Setting color to default color\n"));
+    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
+    geda_log_v (_("Setting color to default color\n"));
     color = PIN_COLOR;
   }
 

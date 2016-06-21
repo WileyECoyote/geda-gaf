@@ -66,7 +66,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
       count++;
 
       if (real_filename == NULL) {
-        u_log_message (_("%s: Can't get real filename of %s."),
+        geda_log_s (_("%s: Can't get real filename of %s."),
                        __func__, p_current->filename);
       }
       else {
@@ -125,7 +125,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           saved_umask = umask(0);
           if (chmod(backup_filename, (S_IWRITE|S_IWGRP|S_IWOTH) &
                     ((~saved_umask) & 0777)) != 0) {
-            u_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
+            geda_log_w (_("Could NOT set previous backup file [%s] read-write\n"),
                            backup_filename);
           }
           umask(saved_umask);
@@ -133,7 +133,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
         if (o_save (s_page_get_objects (p_current), backup_filename, &err)) {
 
-          u_log_message (_("Automatic backup file saved [%s]\n"), backup_filename);
+          geda_log_v (_("Automatic backup file saved [%s]\n"), backup_filename);
 
           p_current->ops_since_last_backup = 0;
           p_current->do_autosave_backup = 0;
@@ -145,13 +145,13 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           mask  = (~mask)&0777;
           mask &= ((~saved_umask) & 0777);
           if (chmod(backup_filename,mask) != 0) {
-            u_log_message (_("Could NOT set backup file [%s] readonly\n"),
+            geda_log_w (_("Could NOT set backup file [%s] readonly\n"),
                            backup_filename);
           }
           umask(saved_umask);
         }
         else {
-          u_log_message (_("Could NOT save backup file [%s]: %s\n"),
+          geda_log_w (_("Could NOT save backup file [%s]: %s\n"),
                             backup_filename, err->message);
           g_clear_error (&err);
         }
@@ -349,7 +349,7 @@ char *o_save_buffer (const GList *object_list)
   acc    = GEDA_MEM_ALLOC(size + 1);
 
   if (!acc) {
-    u_log_message (_("%s: Memory allocation error."), __func__);
+    geda_log_s (_("%s: Memory allocation error."), __func__);
     acc = NULL;
   }
   else {

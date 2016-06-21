@@ -211,14 +211,14 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
     if (inside_value == 0 && inside == err_check) {
 
-      u_log_message(warn_msg, parse, refdes);
+      geda_log_w(warn_msg, parse, refdes);
 
       if (g_utf8_validate(inside, -1, NULL)) {
 
-        u_log_message("\t%s symversion=%s\n", parse_msg, inside);
+        geda_log_w ("\t%s symversion=%s\n", parse_msg, inside);
       }
       else {
-        u_log_message("\t%s\n",parse_msg);
+        geda_log_w ("\t%s\n",parse_msg);
       }
 
       goto done;
@@ -235,8 +235,8 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
     if (outside_value == 0 && outside == err_check) {
 
-      u_log_message(warn_msg, parse, refdes);
-      u_log_message(_("\tCould not parse attached symversion=%s\n"), outside);
+      geda_log_w (warn_msg, parse, refdes);
+      geda_log_w (_("\tCould not parse attached symversion=%s\n"), outside);
       goto done;
 
     }
@@ -257,8 +257,8 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
     /* No symversion inside, but a version is outside, is a weird case */
     if (!inside_present && outside_present) {
 
-      u_log_message(warn_msg, oddity, refdes);
-      u_log_message(_("\tsymversion=%s attached to instantiated symbol,"
+      geda_log_w (warn_msg, oddity, refdes);
+      geda_log_w (_("\tsymversion=%s attached to instantiated symbol,"
       " but version not found inside symbol file\n"), outside);
 
     }
@@ -275,8 +275,8 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
         double inside_major, inside_minor;
         double outside_major, outside_minor;
 
-        u_log_message(warn_msg, match, refdes);
-        u_log_message(clash_msg, schematic, object->complex->filename, older);
+        geda_log_w (warn_msg, match, refdes);
+        geda_log_w (clash_msg, schematic, object->complex->filename, older);
 
         /* break up the version values into major.minor numbers */
         inside_major = floor(inside_value);
@@ -300,7 +300,7 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
         if (inside_major > outside_major) {
 
-          u_log_message (major_msg, outside_value, inside_value, refdes);
+          geda_log_w (major_msg, outside_value, inside_value, refdes);
 
           if (page) {
 
@@ -318,15 +318,15 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
           /* don't bother checking minor changes if there are major ones*/
         }
         else if (inside_minor > outside_minor) {
-          u_log_message (minor_msg,  outside_value, inside_value);
+          geda_log (minor_msg,  outside_value, inside_value);
         }
       }
       else {
         /* outside value is greater than inside value, this is weird case */
         if ((inside_present && outside_present) && (outside_value > inside_value))
         {
-          u_log_message(warn_msg, oddity, refdes);
-          u_log_message(clash_msg, schematic, object->complex->filename, newer);
+          geda_log_w (warn_msg, oddity, refdes);
+          geda_log_w (clash_msg, schematic, object->complex->filename, newer);
         }
       }
     }
@@ -1087,8 +1087,8 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
       break;
 
     default:
-      u_log_message(_("Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
-      u_log_message (_("Setting angle to 0\n"));
+      geda_log_w (_("Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
+      geda_log_v (_("Setting angle to 0\n"));
       angle = 0;
   }
 
@@ -1100,8 +1100,8 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
       break;
 
     default:
-      u_log_message(_("Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
-      u_log_message (_("Setting mirror to 0\n"));
+      geda_log_w (_("Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
+      geda_log_v (_("Setting mirror to 0\n"));
       mirror = 0;
   }
 

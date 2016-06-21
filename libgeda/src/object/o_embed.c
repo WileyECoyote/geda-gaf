@@ -49,8 +49,8 @@ bool geda_object_embed(GedaToplevel *toplevel, GedaObject *o_current)
     /* set the embedded flag */
     o_current->complex->is_embedded = 1;
 
-    u_log_message (_("Component [%s] has been embedded\n"),
-                     o_current->complex->filename);
+    geda_log (_("Component [%s] has been embedded\n"),
+                 o_current->complex->filename);
     page_modified = 1;
   }
 
@@ -90,8 +90,8 @@ void geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
 
     if (sym == NULL) {
       /* symbol not found in the symbol library: signal an error */
-      u_log_message (_("Could not find component [%s], while trying to "
-                       "unembed. Component is still embedded\n"),
+      geda_log_w (_("Could not find component [%s], while trying to "
+                    "unembed. Component is still embedded\n"),
                      o_current->complex->filename);
 
     }
@@ -99,8 +99,8 @@ void geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
       /* clear the embedded flag */
       o_current->complex->is_embedded = FALSE;
 
-      u_log_message (_("Component [%s] has been successfully unembedded\n"),
-                     o_current->complex->filename);
+      geda_log (_("Component [%s] has been successfully unembedded\n"),
+                   o_current->complex->filename);
 
       page_modified = 1;
     }

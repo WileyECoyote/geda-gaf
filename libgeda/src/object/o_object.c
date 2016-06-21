@@ -366,8 +366,8 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         }
 
         if (fileformat_ver == 0) {
-          u_log_message(_("Read an old format sym/sch file!\n"
-                          "Please run g[sym|sch]update on:\n[%s]\n"), name);
+          geda_log (_("Read an old format sym/sch file!\n"
+                      "Please run g[sym|sch]update on:\n[%s]\n"), name);
         }
 
         break;
