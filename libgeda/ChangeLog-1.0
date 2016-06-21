@@ -24,6 +24,9 @@
       and geda_net_object_error, implement common object argument error
       message handlers.
 
+    * src/scheme/scheme_complex.c: Remove redundent scheme_complex_contents
+      entry.
+
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_read to distinguish

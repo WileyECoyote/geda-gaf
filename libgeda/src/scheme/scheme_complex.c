@@ -416,7 +416,6 @@ init_module_geda_core_complex (void *nothing)
                 scheme_complex_set_x,
                 scheme_complex_info,
                 scheme_complex_contents,
-                scheme_complex_contents,
                 scheme_complex_remove_x,
                 NULL);
 }
