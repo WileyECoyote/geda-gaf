@@ -59,11 +59,11 @@ decode_level (SCM level_s)
 
 /*! \brief Log a message.
  * \par Function Description
- * Add a message to the message log.  The \a domain_s should normally
+ * Add a message to the message log. The \a domain_s should normally
  * be SCM_BOOL_F, and the \a message_s should almost always be
- * translated for all log levels other than "debug".  The \a level_s
+ * translated for all log levels other than "debug". The \a level_s
  * should be one of the symbols "error", "critical", "message", "info"
- * or "debug".
+ * "warning" or "debug".
  *
  * \note Scheme API: Implements the \%log! procedure in the (geda core
  * log) module.
@@ -74,16 +74,16 @@ decode_level (SCM level_s)
  *
  * \return undefined.
  */
-SCM_DEFINE (log_x, "%log!", 3, 0, 0,
+EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
             (SCM domain_s, SCM level_s, SCM message_s),
             "Emit a log message.")
 {
     SCM_ASSERT (scm_is_false(domain_s) || scm_is_string(domain_s), domain_s,
-                SCM_ARG1, s_log_x);
+                SCM_ARG1, scheme_log_x);
     SCM_ASSERT (scm_is_symbol(level_s), level_s,
-                SCM_ARG2, s_log_x);
+                SCM_ARG2, scheme_log_x);
     SCM_ASSERT (scm_is_string(message_s), message_s,
-                SCM_ARG3, s_log_x);
+                SCM_ARG3, scheme_log_x);
 
     char *domain = NULL;
     char *message;
@@ -125,7 +125,8 @@ init_module_geda_core_log ()
     #include "scheme_log.x"
 
     /* Add them to the module's public definitions */
-    scm_c_export (s_log_x, NULL);
+    scm_c_export (scheme_log_x,
+                  NULL);
 }
 
 /*!

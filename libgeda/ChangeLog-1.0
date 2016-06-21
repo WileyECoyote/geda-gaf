@@ -27,6 +27,9 @@
     * src/scheme/scheme_complex.c: Remove redundent scheme_complex_contents
       entry.
 
+    * src/scheme/scheme_log.c: Add missing level to comment for s_log_x,
+      replace SCM_DEFINE with EDA_SCM_DEFINE; renaming s_log_x->scheme_log_x.
+
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise geda_arc_object_read to distinguish
