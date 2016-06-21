@@ -261,8 +261,12 @@ static int autonumber_sort_numbers(const void *a, const void *b) {
  *  The Function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_xy(const void *a, const void *b) {
+
   GedaObject *aa, *bb;
-  aa=(GedaObject*) a;  bb=(GedaObject*) b;
+
+  aa = (GedaObject*) a;
+  bb = (GedaObject*) b;
+
   if (aa->text->x < bb->text->x)
     return -1;
   if (aa->text->x > bb->text->x)
