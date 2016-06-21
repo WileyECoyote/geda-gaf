@@ -516,7 +516,7 @@ geda_line_object_get_slope (GedaObject *object, double *slope)
     has_slope = FALSE;
   }
 
-  return FALSE;
+  return has_slope;
 }
 
 /*!
