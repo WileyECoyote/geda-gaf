@@ -1,5 +1,7 @@
 2016-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/libgeda.1.in: Fix typo GEDADATARD->GEDADATARC
+
     * Replace u_log_message with approprieate version of geda_log in
       modules:
 

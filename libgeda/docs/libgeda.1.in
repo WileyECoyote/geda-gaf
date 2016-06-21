@@ -106,7 +106,7 @@ The GEDADATA environment setting over-rides the default location.
 Specifies the search directory for rc files. The default is compilation
 dependent based on the location of the data directory and can be set using
 --with-rcdir configuration option. The default is the same as GEDADATA.
-Specifying a GEDADATARD environment setting over-rides the default location.
+Specifying a GEDADATARC environment setting over-rides the default location.
 .LP
 .TP 8
 .SS GEDALOGS
