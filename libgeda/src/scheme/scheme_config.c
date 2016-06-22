@@ -82,7 +82,7 @@ error_from_gerror (const char *subr, GError **error)
 
   SCM rest;
 
-  if (err->domain == G_IO_ERROR) {
+  if (err->domain == G_IO_ERROR || err->domain == G_FILE_ERROR) {
     /* File-related errors */
     scm_error (system_error_sym, subr, err->message, SCM_EOL,
                scm_list_1 (scm_from_int (err->code)));
