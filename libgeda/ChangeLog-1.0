@@ -4,7 +4,8 @@
       eda_config_get_default_context.
 
     * src/scheme/scheme_config.c: Revise error_from_gerror to consider
-      G_FILE_ERROR the same as G_IO_ERROR; system-errors.
+      G_FILE_ERROR the same as G_IO_ERROR; system-errors. Rearrange
+      variables; try to improve readability.
 
 2016-06-21 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -187,18 +187,23 @@ EDA_SCM_DEFINE (config_user_context, "%user-config-context", 0, 0, 0,
 EDA_SCM_DEFINE (config_path_context, "%path-config-context", 1, 0, 0,
             (SCM path_s), "Get configuration context for a path.")
 {
+  EdaConfig *cfg;
+  char      *path;
+  SCM        result;
+
   SCM_ASSERT (scm_is_string (path_s), path_s, SCM_ARG1,
               scheme_config_path_context);
 
   scm_dynwind_begin (0);
-  char *path = scm_to_utf8_string (path_s);
+  path = scm_to_utf8_string (path_s);
   scm_dynwind_free (path);
 
-  EdaConfig *cfg = eda_config_get_context_for_file (path);
-  SCM result = edascm_from_config (cfg);
+  cfg    = eda_config_get_context_for_file (path);
+  result = edascm_from_config (cfg);
 
   scm_dynwind_end ();
   scm_remember_upto_here_1 (path_s);
+
   return result;
 }
 
@@ -218,15 +223,20 @@ EDA_SCM_DEFINE (config_path_context, "%path-config-context", 1, 0, 0,
 EDA_SCM_DEFINE (config_filename, "%config-filename", 1, 0, 0,
             (SCM cfg_s), "Get configuration filename.")
 {
+  EdaConfig  *cfg;
+  const char *path;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_filename);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
 
-  const char *path = eda_config_get_filename (cfg);
+  cfg  = edascm_to_config (cfg_s);
+
+  path = eda_config_get_filename (cfg);
 
   SCM result = (path == NULL) ? SCM_BOOL_F : scm_from_utf8_string (path);
+
   scm_dynwind_end ();
   return result;
 }
@@ -247,11 +257,15 @@ EDA_SCM_DEFINE (config_filename, "%config-filename", 1, 0, 0,
 EDA_SCM_DEFINE (config_load_x, "%config-load!", 1, 0, 0,
             (SCM cfg_s), "Load configuration parameters from file.")
 {
+  EdaConfig *cfg;
+  GError    *error;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_load_x);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  GError *error = NULL;
+  cfg   = edascm_to_config (cfg_s);
+  error = NULL;
+
   if (!eda_config_load (cfg, &error)) {
     error_from_gerror (scheme_config_load_x, &error);
   }
@@ -274,10 +288,13 @@ EDA_SCM_DEFINE (config_load_x, "%config-load!", 1, 0, 0,
 EDA_SCM_DEFINE (config_loaded_p, "%config-loaded?", 1, 0, 0,
             (SCM cfg_s), "Test if configuration context has been loaded")
 {
+  EdaConfig *cfg;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_loaded_p);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
+  cfg = edascm_to_config (cfg_s);
+
   return eda_config_is_loaded (cfg) ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
@@ -297,14 +314,19 @@ EDA_SCM_DEFINE (config_loaded_p, "%config-loaded?", 1, 0, 0,
 EDA_SCM_DEFINE (config_save_x, "%config-save!", 1, 0, 0,
             (SCM cfg_s), "Save changes to a configuration context")
 {
+  EdaConfig *cfg;
+  GError    *error;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_save_x);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  GError *error = NULL;
+  cfg   = edascm_to_config (cfg_s);
+  error = NULL;
+
   if (!eda_config_save (cfg, &error)) {
     error_from_gerror (scheme_config_save_x, &error);
   }
+
   return cfg_s;
 }
 
@@ -326,10 +348,13 @@ EDA_SCM_DEFINE (config_changed_p, "%config-changed?", 1, 0, 0,
             (SCM cfg_s),
             "Test whether a configuration context was changed since last save/load.")
 {
+  EdaConfig *cfg;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_changed_p);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
+  cfg = edascm_to_config (cfg_s);
+
   return eda_config_is_changed (cfg) ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
@@ -349,11 +374,14 @@ EDA_SCM_DEFINE (config_changed_p, "%config-changed?", 1, 0, 0,
 EDA_SCM_DEFINE (config_parent, "%config-parent", 1, 0, 0,
                (SCM cfg_s), "Get a configuration context's parent context.")
 {
+  EdaConfig *cfg;
+  EdaConfig *parent;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_parent);
 
-  EdaConfig *cfg    = edascm_to_config (cfg_s);
-  EdaConfig *parent = eda_config_get_parent (cfg);
+  cfg    = edascm_to_config (cfg_s);
+  parent = eda_config_get_parent (cfg);
 
   return (parent == NULL) ? SCM_BOOL_F : edascm_from_config (parent);
 }
@@ -377,14 +405,19 @@ EDA_SCM_DEFINE (config_set_parent_x, "%set-config-parent!", 2, 0, 0,
                (SCM cfg_s, SCM parent_s),
               "Set a configuration context's parent context.")
 {
+  EdaConfig *cfg;
+  EdaConfig *parent;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_set_parent_x);
   SCM_ASSERT (scm_is_false (parent_s) || EDASCM_CONFIGP (parent_s), cfg_s,
               SCM_ARG2, scheme_config_set_parent_x);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  EdaConfig *parent = EDASCM_CONFIGP (parent_s) ? edascm_to_config (parent_s) : NULL;
+  cfg    = edascm_to_config (cfg_s);
+  parent = EDASCM_CONFIGP (parent_s) ? edascm_to_config (parent_s) : NULL;
+
   eda_config_set_parent (cfg, parent);
+
   return cfg_s;
 }
 
@@ -405,9 +438,12 @@ EDA_SCM_DEFINE (config_set_parent_x, "%set-config-parent!", 2, 0, 0,
 EDA_SCM_DEFINE (config_trusted_p, "%config-trusted?", 1, 0, 0,
             (SCM cfg_s), "Test if a configuration context is trusted.")
 {
+  EdaConfig *cfg;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_trusted_p);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
+
+  cfg = edascm_to_config (cfg_s);
 
   return eda_config_is_trusted (cfg) ? SCM_BOOL_T : SCM_BOOL_F;
 }
@@ -431,11 +467,15 @@ EDA_SCM_DEFINE (config_set_trusted_x, "%set-config-trusted!", 2, 0, 0,
                (SCM cfg_s, SCM trusted_s),
                "Set whether configuration context is trusted.")
 {
+  EdaConfig *cfg;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_set_trusted_x);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
+  cfg = edascm_to_config (cfg_s);
+
   eda_config_set_trusted (cfg, scm_is_true (trusted_s));
+
   return cfg_s;
 }
 
@@ -456,14 +496,17 @@ EDA_SCM_DEFINE (config_groups, "%config-groups", 1, 0, 0,
             (SCM cfg_s),
             "Get a list of available configuration groups.")
 {
+  EdaConfig  *cfg;
+  SCM         lst_s;
+  char      **groups;
+  unsigned    len;
+  unsigned    i;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, scheme_config_groups);
 
-  unsigned len;
-  unsigned i;
-
-  EdaConfig  *cfg     = edascm_to_config (cfg_s);
-  char      **groups  = eda_config_get_groups (cfg, &len);
-  SCM         lst_s   = SCM_EOL;
+  cfg    = edascm_to_config (cfg_s);
+  groups = eda_config_get_groups (cfg, &len);
+  lst_s  = SCM_EOL;
 
   scm_dynwind_begin (0);
   scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev,
@@ -497,15 +540,21 @@ EDA_SCM_DEFINE (config_has_group_p, "%config-has-group?", 2, 0, 0,
                (SCM cfg_s, SCM group_s),
                "Test whether a configuration context has a particular group.")
 {
+  EdaConfig *cfg;
+  char      *group;
+  bool       result;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               scheme_config_has_group_p);
   SCM_ASSERT (scm_is_string (group_s), group_s, SCM_ARG2,
               scheme_config_has_group_p);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
-  bool result = eda_config_has_group (cfg, group);
+  cfg    = edascm_to_config (cfg_s);
+  group  = scm_to_utf8_string (group_s);
+  result = eda_config_has_group (cfg, group);
+
   free (group);
+
   return result ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
@@ -528,16 +577,21 @@ EDA_SCM_DEFINE (config_keys, "%config-keys", 2, 0, 0,
                (SCM cfg_s, SCM group_s),
                "Get a list of available configuration keys.")
 {
-  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, scheme_config_keys);
-  SCM_ASSERT (scm_is_string (group_s), group_s, SCM_ARG2, scheme_config_keys);
-
-  EdaConfig *cfg   = edascm_to_config (cfg_s);
-  char      *group = scm_to_utf8_string (group_s);
-  GError    *error = NULL;
-  SCM        lst_s = SCM_EOL;
+  EdaConfig *cfg;
+  char      *group;
+  GError    *error;
+  SCM        lst_s;
   char     **keys;
   unsigned   len;
   unsigned   i;
+
+  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, scheme_config_keys);
+  SCM_ASSERT (scm_is_string (group_s), group_s, SCM_ARG2, scheme_config_keys);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  error = NULL;
+  lst_s = SCM_EOL;
 
   keys = eda_config_get_keys (cfg, group, &len, &error);
 
@@ -581,18 +635,32 @@ EDA_SCM_DEFINE (config_boolean, "%config-boolean", 3, 0, 0,
                (SCM  cfg_s, SCM group_s, SCM key_s),
                "Get a configuration parameter's value as a boolean.")
 {
+  EdaConfig *cfg;
+  GError    *error;
+  char      *group;
+  char      *key;
+  bool       value;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_boolean);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
-  GError *error = NULL;
-  bool value = eda_config_get_boolean (cfg, group, key, &error);
-  if (error != NULL) error_from_gerror  (scheme_config_boolean, &error);
+
+  error = NULL;
+  value = eda_config_get_boolean (cfg, group, key, &error);
+
+  if (error != NULL) {
+    error_from_gerror  (scheme_config_boolean, &error);
+  }
+
   scm_dynwind_end ();
+
   return value ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
@@ -677,18 +745,32 @@ EDA_SCM_DEFINE (config_int, "%config-int", 3, 0, 0,
                (SCM  cfg_s, SCM group_s, SCM key_s),
                "Get a configuration parameter's value as an integer.")
 {
+  EdaConfig *cfg;
+  GError    *error;
+  char      *group;
+  char      *key;
+  int        value;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_int);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
-  GError *error = NULL;
-  int value = eda_config_get_integer (cfg, group, key, &error);
-  if (error != NULL) error_from_gerror  (scheme_config_int, &error);
+
+  error = NULL;
+  value = eda_config_get_integer (cfg, group, key, &error);
+
+  if (error != NULL) {
+    error_from_gerror  (scheme_config_int, &error);
+  }
+
   scm_dynwind_end ();
+
   return scm_from_int (value);
 }
 
@@ -712,19 +794,30 @@ EDA_SCM_DEFINE (config_real, "%config-real", 3, 0, 0,
            (SCM  cfg_s, SCM group_s, SCM key_s),
             "Get a configuration parameter's value as a real.")
 {
+  EdaConfig *cfg;
+  GError    *error;
+  char      *group;
+  char      *key;
+  double     value;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_real);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group    = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-
-  char *key      = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
-  GError *error  = NULL;
-  double value   = eda_config_get_double (cfg, group, key, &error);
 
-  if (error != NULL) error_from_gerror (scheme_config_real, &error);
+  error = NULL;
+  value = eda_config_get_double (cfg, group, key, &error);
+
+  if (error != NULL) {
+    error_from_gerror (scheme_config_real, &error);
+  }
+
   scm_dynwind_end ();
 
   return scm_from_double (value);
@@ -751,18 +844,32 @@ EDA_SCM_DEFINE (config_source, "%config-source", 3, 0, 0,
             (SCM  cfg_s, SCM group_s, SCM key_s),
             "Get the originating context for a configuration parameter")
 {
+  EdaConfig *cfg;
+  EdaConfig *src;
+  GError    *error;
+  char      *group;
+  char      *key;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_source);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
-  GError *error = NULL;
-  EdaConfig *src = eda_config_get_source (cfg, group, key, &error);
-  if (src == NULL) error_from_gerror (scheme_config_source, &error);
+
+  error = NULL;
+  src   = eda_config_get_source (cfg, group, key, &error);
+
+  if (src == NULL) {
+    error_from_gerror (scheme_config_source, &error);
+  }
+
   scm_dynwind_end ();
+
   return edascm_from_config (src);
 }
 
@@ -786,21 +893,36 @@ EDA_SCM_DEFINE (config_string, "%config-string", 3, 0, 0,
             (SCM  cfg_s, SCM group_s, SCM key_s),
             "Get a configuration parameter's value as a string.")
 {
+  EdaConfig *cfg;
+  GError    *error;
+  char      *group;
+  char      *key;
+  char      *value;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_string);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
-  GError *error = NULL;
-  char *value = eda_config_get_string (cfg, group, key, &error);
-  if (value == NULL) error_from_gerror  (scheme_config_string, &error);
+
+  error = NULL;
+  value = eda_config_get_string (cfg, group, key, &error);
+
+  if (value == NULL) {
+    error_from_gerror  (scheme_config_string, &error);
+  }
+
   scm_dynwind_unwind_handler ((void (*)(void *)) g_free, value,
                               SCM_F_WIND_EXPLICITLY);
   SCM value_s = scm_from_utf8_string (value);
+
   scm_dynwind_end ();
+
   return value_s;
 }
 
@@ -844,7 +966,7 @@ EDA_SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
   scm_dynwind_free (key);
 
   error = NULL;
-  value  = eda_config_get_string_list (cfg, group, key, &length, &error);
+  value = eda_config_get_string_list (cfg, group, key, &length, &error);
 
   if (value == NULL) {
     error_from_gerror  (scheme_config_string_list, &error);
@@ -894,11 +1016,9 @@ EDA_SCM_DEFINE (config_int_list, "%config-int-list", 3, 0, 0,
 
   cfg   = edascm_to_config(cfg_s);
   group = scm_to_utf8_string(group_s);
-
-  scm_dynwind_free(group);
-
   key   = scm_to_utf8_string(key_s);
 
+  scm_dynwind_free(group);
   scm_dynwind_free(key);
 
   error = NULL;
@@ -954,11 +1074,9 @@ EDA_SCM_DEFINE (config_real_list, "%config-real-list", 3, 0, 0,
 
   cfg   = edascm_to_config(cfg_s);
   group = scm_to_utf8_string(group_s);
-
-  scm_dynwind_free(group);
-
   key   = scm_to_utf8_string(key_s);
 
+  scm_dynwind_free(group);
   scm_dynwind_free(key);
 
   error = NULL;
@@ -1001,13 +1119,19 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
                (SCM cfg_s, SCM group_s, SCM key_s, SCM value_s),
                "Set a configuration parameter's value.")
 {
+  EdaConfig *cfg;
+  char      *group;
+  char      *key;
+
   ASSERT_CFG_GROUP_KEY (scheme_config_set_x);
 
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
 
   /* Figure out what value is */
@@ -1030,6 +1154,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
   }
   else if (scm_is_true (scm_list_p (value_s))) {
+
     /* Find out what sort of list it is, then process it accordingly. */
     SCM first_s = scm_car (value_s);
     int len = scm_to_int (scm_length (value_s));
@@ -1047,35 +1172,48 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
         value [i++] = geda_utility_string_strdup (tmp);
         free (tmp);
       }
+
       eda_config_set_string_list (cfg, group, key,
                                   (const char * const *) value, len);
 
     }
     else if (scm_is_bool (first_s)) {
+
       bool *value = GEDA_MEM_ALLOC0 (sizeof(bool) * len);
+
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
+
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_is_true (scm_car (curr_s));
       }
+
       eda_config_set_boolean_list (cfg, group, key, value, len);
 
     }
-    else if (scm_is_integer (first_s)
-               && scm_is_true (scm_exact_p (first_s))) {
+    else if (scm_is_integer (first_s) &&
+             scm_is_true (scm_exact_p (first_s)))
+    {
       int *value = GEDA_MEM_ALLOC0 (sizeof(int) * len);
+
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
+
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_int (scm_car (curr_s));
       }
+
       eda_config_set_int_list (cfg, group, key, value, len);
 
     }
     else if (scm_is_real (first_s)) {
+
       double *value = GEDA_MEM_ALLOC0 (sizeof(double) * len);
+
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
+
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_double (scm_car (curr_s));
       }
+
       eda_config_set_double_list (cfg, group, key, value, len);
 
     }
@@ -1136,6 +1274,9 @@ EDA_SCM_DEFINE (config_add_event_x, "%add-config-event!", 2, 0, 0,
             (SCM cfg_s, SCM proc_s),
             "Add a configuration change event handler.")
 {
+  unsigned int  signal_id;
+  unsigned long handler_id;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, scheme_config_add_event_x);
   SCM_ASSERT (scm_is_true (scm_procedure_p (proc_s)),
               proc_s, SCM_ARG2, scheme_config_add_event_x);
@@ -1143,16 +1284,17 @@ EDA_SCM_DEFINE (config_add_event_x, "%add-config-event!", 2, 0, 0,
   EdaConfig *cfg = edascm_to_config (cfg_s);
 
   /* Test if proc_s was already connected. */
-  guint signal_id = g_signal_lookup ("config-changed", EDA_TYPE_CONFIG);
-  gulong handler_id =
-    g_signal_handler_find (cfg,
-                           G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA
-                           | G_SIGNAL_MATCH_ID,
-                           signal_id,
-                           0,
-                           NULL,
-                           scheme_config_event_dispatcher,
-                           (void *) proc_s);
+  signal_id = g_signal_lookup ("config-changed", EDA_TYPE_CONFIG);
+
+  handler_id = g_signal_handler_find (cfg,
+                                      G_SIGNAL_MATCH_FUNC |
+                                      G_SIGNAL_MATCH_DATA |
+                                      G_SIGNAL_MATCH_ID,
+                                      signal_id,
+                                      0,
+                                      NULL,
+                                      scheme_config_event_dispatcher,
+                                      (void*)proc_s);
   if (handler_id) {
     return cfg_s;
   }
@@ -1160,7 +1302,7 @@ EDA_SCM_DEFINE (config_add_event_x, "%add-config-event!", 2, 0, 0,
   /* Protect proc_s against garbage collection */
   g_signal_connect (cfg, "config-changed",
                     G_CALLBACK (scheme_config_event_dispatcher),
-                    (void *) scm_gc_protect_object (proc_s));
+                    (void*)scm_gc_protect_object (proc_s));
   return cfg_s;
 }
 
@@ -1180,22 +1322,25 @@ EDA_SCM_DEFINE (config_remove_event_x, "%remove-config-event!", 2, 0, 0,
             (SCM cfg_s, SCM proc_s),
             "Remove a configuration change event handler.")
 {
+  EdaConfig    *cfg;
+  unsigned int  signal_id;
+  unsigned int  found;
+
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, scheme_config_remove_event_x);
   SCM_ASSERT (scm_is_true (scm_procedure_p (proc_s)),
               proc_s, SCM_ARG2, scheme_config_remove_event_x);
 
-  EdaConfig         *cfg = edascm_to_config (cfg_s);
-  unsigned int signal_id = g_signal_lookup ("config-changed", EDA_TYPE_CONFIG);
-  unsigned int     found =
-    g_signal_handlers_disconnect_matched (cfg,
-                                          G_SIGNAL_MATCH_FUNC
-                                          | G_SIGNAL_MATCH_DATA
-                                          | G_SIGNAL_MATCH_ID,
-                                          signal_id,
-                                          0,
-                                          NULL,
-                                          scheme_config_event_dispatcher,
-                                          (void *) proc_s);
+  cfg       = edascm_to_config (cfg_s);
+  signal_id = g_signal_lookup ("config-changed", EDA_TYPE_CONFIG);
+  found     = g_signal_handlers_disconnect_matched (cfg,
+                                                    G_SIGNAL_MATCH_FUNC |
+                                                    G_SIGNAL_MATCH_DATA |
+                                                    G_SIGNAL_MATCH_ID,
+                                                    signal_id,
+                                                    0,
+                                                    NULL,
+                                                    scheme_config_event_dispatcher,
+                                                    (void *) proc_s);
   g_warn_if_fail (found < 2);
 
   if (found) {
