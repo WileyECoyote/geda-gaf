@@ -444,9 +444,9 @@ eda_config_find_project_root (const char *path, const char *filename)
  * \brief Return the default configuration context.
  *
  * The default context is not associated with any physical path or
- * on-disk configuration file, and has no parent context.  It contains
- * the default configuration used when no configuration file can be
- * loaded.
+ * on-disk configuration file, and has no parent context. The default
+ * context contains the default configuration used when no configuration
+ * file can be loaded.
  *
  * Applications should normally populate the default context with
  * their built-in default configuration settings on start-up, before
@@ -458,11 +458,13 @@ EdaConfig *
 eda_config_get_default_context ()
 {
   static volatile GedaType initialized = 0;
-  static EdaConfig *config      = NULL;
+  static EdaConfig *config = NULL;
 
   if (g_once_init_enter (&initialized)) {
 
     config = g_object_new (EDA_TYPE_CONFIG, "trusted", TRUE, NULL);
+
+    config->priv->filename = NULL;
 
     config->priv->loaded = TRUE;
 
