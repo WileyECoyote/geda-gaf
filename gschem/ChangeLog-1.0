@@ -1,3 +1,8 @@
+2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Replace GtkMenu with GedaMenu for options menus
+      for line-type, fill-type and end-type.
+
 2016-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Increase GtkFrame font-size 8->10, reduce

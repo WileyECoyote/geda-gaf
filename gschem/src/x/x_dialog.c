@@ -1187,15 +1187,16 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct fill_type); i++) {
+
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].type), "filltype");
     gtk_widget_show (menuitem);
@@ -1285,10 +1286,10 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (type == LEAVE_ALONE)
     type = FILLING_VOID;
 
-  gtk_option_menu_set_history(GTK_OPTION_MENU(fill_data->fill_type), type);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(fill_data->fill_type));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_option_menu_set_history(GEDA_OPTION_MENU(fill_data->fill_type), type);
+  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(fill_data->fill_type));
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
@@ -1354,9 +1355,9 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
   activate_anglepitch1_entries = FALSE;
   activate_anglepitch2_entries = FALSE;
 
-  menuitem = gtk_menu_get_active (
-    GTK_MENU (gtk_option_menu_get_menu (
-                GTK_OPTION_MENU (fill_data->fill_type))));
+  menuitem = geda_menu_get_active (
+    GEDA_MENU (geda_option_menu_get_menu (
+                GEDA_OPTION_MENU (fill_data->fill_type))));
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (menuitem, "filltype"));
@@ -1429,9 +1430,9 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
+                      GEDA_OPTION_MENU (
                         fill_data->fill_type)))), "filltype"));
 
   if (type == FILLING_VOID)
@@ -1630,8 +1631,8 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   label = geda_aligned_label_new (_("Pitch 2:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,5,6, GTK_FILL,0,0,0);
 
-  optionmenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
+  optionmenu = geda_option_menu_new ();
+  geda_option_menu_set_menu(GEDA_OPTION_MENU(optionmenu),
                            create_menu_filltype (w_current));
   gtk_table_attach_defaults(GTK_TABLE(table), optionmenu,  1,2,0,1);
   SetWidgetTip(optionmenu, _("Select fill pattern"));
@@ -1750,17 +1751,17 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
               };
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct end_type); i++) {
 
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].end), "endtype");
     gtk_widget_show (menuitem);
@@ -1791,17 +1792,17 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
                 { N_("*unchanged*"), TYPE_ERASE } };
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct line_type); i++) {
 
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].type), "linetype");
     gtk_widget_show (menuitem);
@@ -1887,18 +1888,18 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (type == LEAVE_ALONE)
     type = TYPE_ERASE;
 
-  gtk_option_menu_set_history(GTK_OPTION_MENU(line_data->line_type), type);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_data->line_type));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_option_menu_set_history(GEDA_OPTION_MENU(line_data->line_type), type);
+  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(line_data->line_type));
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (end == LEAVE_ALONE)
     end = END_VOID;
 
-  gtk_option_menu_set_history(GTK_OPTION_MENU(line_data->end_type), end);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_data->end_type));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_option_menu_set_history(GEDA_OPTION_MENU(line_data->end_type), end);
+  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(line_data->end_type));
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
     text = geda_utility_string_strdup(_("*unchanged*"));
@@ -1940,9 +1941,9 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
   bool activate_length_entry, activate_space_entry;
   int type;
 
-  menuitem = gtk_menu_get_active (
-    GTK_MENU (gtk_option_menu_get_menu (
-                GTK_OPTION_MENU (line_data->line_type))));
+  menuitem = geda_menu_get_active (
+    GEDA_MENU (geda_option_menu_get_menu (
+                GEDA_OPTION_MENU (line_data->line_type))));
 
   type = (int)(long)(GEDA_OBJECT_GET_DATA(menuitem, "linetype"));
 
@@ -2009,9 +2010,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
+                      GEDA_OPTION_MENU (
                         line_data->line_type)))), "linetype"));
 
   if (type == TYPE_ERASE) {
@@ -2020,9 +2021,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   end = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
+                      GEDA_OPTION_MENU (
                         line_data->end_type)))), "endtype"));
 
   if (end == END_VOID) {
@@ -2210,13 +2211,13 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   label = geda_aligned_label_new (_("Dash Space:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,4,5, GTK_FILL,0,0,0);
 
-  line_type = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(line_type),
+  line_type = geda_option_menu_new ();
+  geda_option_menu_set_menu(GEDA_OPTION_MENU(line_type),
                            create_linetype_menu (w_current));
   gtk_table_attach_defaults(GTK_TABLE(table), line_type, 1,2,0,1);
 
-  end_type = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(end_type),
+  end_type = geda_option_menu_new ();
+  geda_option_menu_set_menu(GEDA_OPTION_MENU(end_type),
                            create_endtype_menu (w_current));
   gtk_table_attach_defaults(GTK_TABLE(table), end_type, 1,2,1,2);
 
