@@ -1,6 +1,12 @@
 2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit   80b59c4175f0254e7d894f41128bad7cf33aeb9f:
+      gnetlist: Refactor (bom).
+
+2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 85c98262daacdf5fd9ea199ccaa644e5a0a2a068:
       gnetlist: Removed superfluous (begin).
 

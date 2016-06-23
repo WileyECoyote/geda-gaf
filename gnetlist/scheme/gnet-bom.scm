@@ -57,11 +57,12 @@ filename)
     (let* ((options (backend-getopt (get-backend-arguments)
                      '((attrib_file (value #t)) (attribs (value #t)))))
            (attriblist (bom:parseconfig (bom:open-input-file options) options)))
-      (set-current-output-port (output-port output-filename))
       (and attriblist
-           (bom:printlist (cons "refdes" attriblist))
-           (bom:components netlist:packages attriblist))
-      (close-output-port (current-output-port)))))
+           (with-output-to-port (output-port output-filename)
+             (lambda ()
+               (bom:printlist (cons "refdes" attriblist))
+               (bom:components netlist:packages attriblist)))))))
+
 
 (define (bom:printlist ls)
   (format #t "~A\n" (string-join ls "\t")))
