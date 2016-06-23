@@ -1,3 +1,9 @@
+2016-106-23 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 294d39a3383c10c22c9660b1dac93c2c1ee7e94e:
+      gnetlist: Simplified bom:printlist and its using.
+
 2016-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     Variation of modifications by Peter Brett <peter@peter-b.co.uk>,

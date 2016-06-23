@@ -59,19 +59,13 @@ filename)
            (attriblist (bom:parseconfig (bom:open-input-file options) options)))
       (set-current-output-port (output-port output-filename))
       (and attriblist
-           (begin (bom:printlist (cons 'refdes attriblist))
+           (begin (bom:printlist (cons "refdes" attriblist))
                   (bom:components netlist:packages attriblist)
                   ))
       (close-output-port (current-output-port)))))
 
-(define bom:printlist
-  (lambda (ls)
-    (if (null? ls)
-        (newline)
-        (begin
-          (display (car ls))
-          (write-char #\tab)
-          (bom:printlist (cdr ls))))))
+(define (bom:printlist ls)
+  (format #t "~A\n" (string-join ls "\t")))
 
 ; Parses attrib file or argument. Returns a list of read attributes.
 (define bom:parseconfig
@@ -92,10 +86,9 @@ filename)
     (if (not (null? ls))
         (let ((package (car ls)))
           (if (not (string=? "1" (get-package-attribute package "nobom")))
-              (begin
-                (display package)
-                (write-char #\tab)
-                (bom:printlist (bom:find-attribs package attriblist))))
+              (bom:printlist
+               (cons package
+                     (bom:find-attribs package attriblist))))
           (bom:components (cdr ls) attriblist)))))
 
 (define bom:find-attribs
