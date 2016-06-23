@@ -207,22 +207,22 @@ g_hook_new_proxy_by_name (const char *name)
 }
 
 /* Anonymous Static Mutex */
-static GedaMutex (i_lock_is_busy);
+static GedaMutex (g_lock_is_busy);
 
 static int is_busy = 0;
 
 static void set_is_busy(int value)
 {
-  g_mutex_lock((GMutex*)&i_lock_is_busy);
+  g_mutex_lock((GMutex*)&g_lock_is_busy);
     is_busy = value;
-  g_mutex_unlock((GMutex*)&i_lock_is_busy);
+  g_mutex_unlock((GMutex*)&g_lock_is_busy);
 }
 static int get_is_busy()
 {
   int ret_val;
-  g_mutex_lock((GMutex*)&i_lock_is_busy);
+  g_mutex_lock((GMutex*)&g_lock_is_busy);
     ret_val = is_busy;
-  g_mutex_unlock((GMutex*)&i_lock_is_busy);
+  g_mutex_unlock((GMutex*)&g_lock_is_busy);
   return ret_val;
 }
 
@@ -329,8 +329,9 @@ g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
 
 /*! \brief Schedule Run Hook for Object List
  *  \par Function Description
- *  Spawns idle thread to run object hooks. This done, not because Guile
- *  is slow, but because these task need to be ran in the main loop.
+ *  Spawns idle thread to run object hooks. This is done, not because
+ *  Guile is slow, but because these task need to be ran in the main
+ *  loop and the callers could running as worker threads.
  *
  * \param [in] wc        Gschem Toplevel object,
  * \param [in] hook      Enumerated hook to run,
@@ -352,6 +353,7 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
         hook_list = g_list_append(hook_list, g_object_ref (G_OBJECT(object)));
       }
     }
+
     IdleHookData *capsule;
 
     capsule             = g_hook_get_new_capsule(wc, hook);

@@ -1,3 +1,7 @@
+2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_hook.c: Rename i_lock_is_busy->g_lock_is_busy.
+
 2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Replace GtkMenu with GedaMenu for options menus
