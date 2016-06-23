@@ -1,6 +1,12 @@
 2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 4f52248a2889a0828938f1bac33d922053c2eac8:
+      gnetlist: Refactor bom:components().
+
+2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 874f8d3c99a1a47f98c2a5323a23345a69a75229:
       gnetlist: Remove bom:find-attribs.
 
