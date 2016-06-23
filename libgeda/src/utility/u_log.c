@@ -226,6 +226,10 @@ void geda_utility_log_init (const char *prefix)
   time (&nowt);
   nowtm = gmtime (&nowt);
 
+  if (!prefix) {
+    prefix = g_get_application_name ();
+  }
+
   /* create "real" prefix -- this has the form "<prefix>-<date>-" */
   full_prefix = geda_sprintf ("%s-%04i%02i%02i-", prefix,
                                   nowtm->tm_year + 1900, nowtm->tm_mon + 1,
@@ -376,6 +380,7 @@ char *geda_utility_log_read (void)
   char  buf[LOG_READ_BUFFER_SIZE];
 
   if (logfile_fd == -1) {
+    fprintf(stderr, "%s returning NULL\n", __func__);
     return NULL;
   }
 

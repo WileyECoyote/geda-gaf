@@ -10,6 +10,10 @@
       G_FILE_ERROR the same as G_IO_ERROR; system-errors. Rearrange
       variables; try to improve readability.
 
+    * src/utility/u_log.c: Revise geda_utility_log_init to validate
+      prefix, substitute string returned from g_get_application_name
+      if passed a NULL prefix.
+
 2016-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgeda.1.in: Fix typo GEDADATARD->GEDADATARC
