@@ -3,6 +3,10 @@
     * analogdevices/AD817-1.sym: Add symbol; OpAmp, Wide Supply,High Speed,
       Low Power.
 
+    * ti/battery/BQ24030-1.sym: Revise attribute positions and visibility.
+
+    * ti/battery/BQ24210-1.sym: Revise attribute positions and visibility.
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/MIC2551ABML-1.sym: Rename file with dash-one suffix.
