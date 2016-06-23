@@ -1,4 +1,10 @@
-2016-106-23 Vladimir Zhbanov <vzhbanov@gmail.com>
+2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 85c98262daacdf5fd9ea199ccaa644e5a0a2a068:
+      gnetlist: Removed superfluous (begin).
+
+2016-06-23 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 294d39a3383c10c22c9660b1dac93c2c1ee7e94e:
