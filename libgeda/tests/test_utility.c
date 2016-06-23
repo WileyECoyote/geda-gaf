@@ -212,7 +212,7 @@ int test_glist (void)
     fprintf(stderr, "FAILED: (U021200) geda_gslist_stri_inlist NULL\n");
     result++;
   }
-  fprintf(stderr, "test-utility-geda-log are incomplete!!!\n");
+
   return result;
 }
 /** @} endgroup test-utility-geda-log */
@@ -221,21 +221,227 @@ int test_glist (void)
  * @{
  * \brief Group 3 src/utility/u_log.c geda_utility_log_
  */
+
+static void default_log_handler (const char    *log_domain,
+                                 GLogLevelFlags log_level,
+                                 const char    *message,
+                                 void          *user_data)
+{
+  int *len = (int*)user_data;
+
+  if (message)
+    *len = strlen(message);
+  else
+    *len = 0;
+}
+
+const char *log_mess;
+
+void test_log_message (const char     *log_domain,
+                       GLogLevelFlags  log_level,
+                       const char     *message)
+{
+  log_mess = message;
+}
+
 int test_log (void)
 {
-  //setenv ("GEDALOGS=someplace")
+  int result = 0;
+  int default_handler;
 
-  /* === Function 01: geda_close_log          geda_utility_log_close === */
-  /* === Function 02: geda_get_log_time       geda_utility_log_get_log_time === */
-  /* === Function 03: geda_init_log           geda_utility_log_init === */
-  /* === Function 04: geda_log_q              geda_utility_log_quite === */
-  /* === Function 05: geda_read_log           geda_utility_log_read === */
-  /* === Function 06: geda_set_log_time       geda_utility_log_set_log_time === */
-  /* === Function 07: geda_set_log_update_func  geda_utility_log_set_update_func === */
-  /* === Function 08: geda_log_s                geda_utility_log_system === */
-  /* === Function 09: geda_log_v                geda_utility_log_verbose === */
+  /*
+   * Function 01: geda_utility_log_close
+   * Function 02: geda_utility_log_get_log_time
+   * Function 03  geda_utility_log_get_quiet_mode
+   * Function 04  geda_utility_log_get_verbose_mode
+   * Function 05: geda_utility_log_init
+   * Function 06: geda_utility_log_quite
+   * Function 07: geda_utility_log_read
+   * Function 08: geda_utility_log_set_default_handler
+   * Function 09: geda_utility_log_set_log_time
+   * Function 10  geda_utility_log_set_quiet_mode
+   * Function 11: geda_utility_log_set_update_func
+   * Function 12: geda_utility_log_set_verbose_mode
+   * Function 13: geda_utility_log_system
+   * Function 14: geda_utility_log_verbose
+   */
 
-  return 0;
+  /* === Function 08: geda_utility_log_set_default_handler === */
+
+  geda_set_default_logger(default_log_handler, &default_handler);
+
+  default_handler = 0;
+
+  geda_log ("Testing");
+
+  if (default_handler - 7) {
+    fprintf(stderr, "FAILED: (U030801) geda_set_default_logger\n");
+    result++;
+  }
+
+  char *cwd = g_get_current_dir();
+  setenv ("GEDALOGS", cwd, 0);
+  GEDA_FREE (cwd);
+
+  geda_set_log_time(TRUE);
+
+  /* === Function 02: geda_utility_log_get_log_time === */
+
+  if (!geda_get_log_time()) {
+    fprintf(stderr, "FAILED: (U0302/0701A) get/set log-time\n");
+    result++;
+  }
+  else {
+
+    /* === Function 09: geda_utility_log_set_log_time === */
+
+    geda_set_log_time(FALSE);
+
+    if (geda_get_log_time()) {
+      fprintf(stderr, "FAILED: (U0302/0901B) get set log-time\n");
+      result++;
+    }
+  }
+
+  geda_set_quiet_mode(TRUE);
+
+  /* === Function 03 geda_utility_log_get_quiet_mode === */
+
+  if (!geda_get_quiet_mode()) {
+    fprintf(stderr, "FAILED: (U0303/1001A) get/set quiet mode\n");
+    result++;
+  }
+  else {
+
+    /* === Function 10 geda_utility_log_set_quiet_mode === */
+
+    geda_set_quiet_mode(FALSE);
+
+    if (geda_get_quiet_mode()) {
+      fprintf(stderr, "FAILED: (U0303/1001B) get/set quiet mode\n");
+      result++;
+    }
+  }
+
+  geda_set_verbose_mode(TRUE);
+
+  /* === Function 04 geda_utility_log_get_verbose_mode === */
+
+  if (!geda_get_verbose_mode()) {
+    fprintf(stderr, "FAILED: (U0304/1201A) get/set verbose mode\n");
+    result++;
+  }
+  else {
+
+  /* === Function 12 geda_utility_log_set_verbose_mode === */
+
+    geda_set_verbose_mode(FALSE);
+
+    if (geda_get_verbose_mode()) {
+      fprintf(stderr, "FAILED: (U0304/1201B) get/set verbose mode\n");
+      result++;
+    }
+  }
+
+  /* === Function 05: geda_utility_log_init === */
+
+  geda_init_log("testing");
+
+  /* === Function 11 geda_utility_log_set_update_func === */
+
+  geda_set_log_update_func (test_log_message);
+
+  log_mess = NULL;
+
+  geda_log ("message 1");
+
+  if (!log_mess) {
+    fprintf(stderr, "FAILED: (U031101A) log_set_update_func\n");
+    result++;
+  }
+  else {
+    if (!strcmp(log_mess, "message 1")) {
+      fprintf(stderr, "FAILED: (U031101B) log_set_update_func\n");
+      result++;
+    }
+  }
+
+  log_mess = NULL;
+  geda_set_quiet_mode(TRUE);
+
+  /* === Function 06 geda_utility_log_quite === */
+
+  geda_log_q ("message q1");
+
+  if (log_mess) {
+    fprintf(stderr, "FAILED: (U030601) log_quite\n");
+    result++;
+    log_mess = NULL;
+  }
+
+  /* === Function 10 geda_utility_log_set_quiet_mode === */
+
+  geda_set_quiet_mode(FALSE);
+
+  geda_log_q ("message q2");
+
+  if (!log_mess) {
+    fprintf(stderr, "FAILED: (U0306/1001A) set log quiet\n");
+    result++;
+  }
+  else {
+    if (!strcmp(log_mess, "message q2")) {
+      fprintf(stderr, "FAILED: (U0306/1001B) set log quiet\n");
+      result++;
+    }
+  }
+
+  log_mess = NULL;
+  geda_set_verbose_mode(FALSE); /* Is already unset */
+
+  /* === Function 14 geda_utility_log_verbose === */
+
+  geda_log_v ("message v1");
+
+  if (log_mess) {
+    fprintf(stderr, "FAILED: (U031401) log_verbose\n");
+    result++;
+    log_mess = NULL;
+  }
+
+  /* === Function 10 geda_utility_log_set_verbose_mode === */
+
+  geda_set_verbose_mode(TRUE);
+
+  geda_log_v ("message v2");
+
+  if (!log_mess) {
+    fprintf(stderr, "FAILED: (U0312/1401A) set log verbose\n");
+    result++;
+  }
+  else {
+    if (!strcmp(log_mess, "message v2")) {
+      fprintf(stderr, "FAILED: (U0312/1401B) set log verbose\n");
+      result++;
+    }
+  }
+
+  /* === Function 07: geda_read_log geda_utility_log_read === */
+  /* === Function 13: geda_log_s geda_utility_log_system === */
+
+  /* === Function 01 geda_utility_log_close === */
+  geda_close_log();
+
+  log_mess = NULL;
+
+  geda_log ("message 2");
+
+  if (log_mess) {
+    fprintf(stderr, "FAILED: (U030101) log close\n");
+    result++;
+  }
+
+  return result;
 }
 /** @} endgroup test-utility-geda-program */
 
@@ -991,6 +1197,12 @@ int test_strings (void)
   value = geda_stristr(str_111, "Dog");
   if (value != 14) {                      /* dog @ position 14 */
     fprintf(stderr, "FAILED: (U061503) geda_stristr <%d>\n", value);
+    result++;
+  }
+
+  value = geda_stristr(str_110, "The");
+  if (value != 0) {                       /* The @ position 0 */
+    fprintf(stderr, "FAILED: (U061504) geda_stristr <%d>\n", value);
     result++;
   }
 

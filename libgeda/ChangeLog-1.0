@@ -1,3 +1,7 @@
+2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgeda/tests/test_utility.c: Add checks for log utility module.
+
 2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/unit-tests/t0402-config.scm: Reinstate tests for scheme
