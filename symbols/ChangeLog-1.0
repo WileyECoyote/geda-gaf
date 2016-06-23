@@ -1,3 +1,8 @@
+2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD817-1.sym: Add symbol; OpAmp, Wide Supply,High Speed,
+      Low Power.
+
 2016-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/MIC2551ABML-1.sym: Rename file with dash-one suffix.
