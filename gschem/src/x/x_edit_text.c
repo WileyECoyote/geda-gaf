@@ -540,8 +540,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     geda_font_button_set_title((GedaFontButton*)font_button,
                                "Select font and size");
     gtk_widget_set_tooltip_text (GTK_WIDGET(font_button), font_button_tip);
-    g_object_set (font_button, "use-font",   TRUE,
-                  "show-style", FALSE, NULL);
+    g_object_set (font_button, "use-font", TRUE, "show-style", FALSE, NULL);
 
     gtk_table_attach (GTK_TABLE (table), font_button, 1, 2, 2, 3,
                       (GtkAttachOptions) ( GTK_FILL),

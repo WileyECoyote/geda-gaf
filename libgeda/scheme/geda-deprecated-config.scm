@@ -146,13 +146,3 @@ release.  Please use configuration files instead.
 ;(define-rc-deprecated-config
 ; untitled-name "gschem" "default-filename"
 ; rc-deprecated-string-transformer)
-
-;(define-rc-dead-config scrollbar-update)
-
-;(define-rc-deprecated-config
-; sort-component-library "gschem.library" "sort"
-; rc-deprecated-string-boolean-transformer)
-
-;;(define-rc-deprecated-config
-;; component-dialog-attributes "gschem.library" "component-attributes"
-;; (lambda (x) x))

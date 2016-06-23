@@ -664,7 +664,8 @@ static bool strhashcmp (const void *a, const void *b) {
  *
  * \see eda_config_get_context_for_path().
  *
- * \param [in] path    Path to search for configuration from.
+ * \param [in] path Path to search for configuration from.
+ *
  * \return a local #EdaConfig configuration context for \a path.
  */
 EdaConfig *
@@ -676,7 +677,7 @@ eda_config_get_context_for_file (const char *path)
   char *ptr;
   char  dir[PATH_MAX];
 
-  EdaConfig  *config = NULL;
+  EdaConfig *config = NULL;
 
   /* Initialise global state */
   if (g_once_init_enter (&initialized)) {
@@ -903,6 +904,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
     else {
 
       if (errno == ENOENT) {
+
         /* Substitute in new key file object, and reset loaded and changed flags. */
         if(cfg->priv->keyfile) {
           g_key_file_free(cfg->priv->keyfile);
@@ -913,7 +915,9 @@ eda_config_load (EdaConfig *cfg, GError **error)
 
       }
       else {
+
         if(error != NULL) {
+
           g_set_error(error, G_FILE_ERROR,
                       g_file_error_from_errno (errno),
                      "accessing file %s", filename);

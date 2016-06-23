@@ -294,26 +294,26 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
 
   if (child->parent_object != parent) {
 
-  /* GedaObject cleanup now managed by C code. */
-  edascm_c_set_gc (obj_s, 0);
+    /* GedaObject cleanup now managed by C code. */
+    edascm_c_set_gc (obj_s, 0);
 
-  /* Don't need to emit change notifications for the child because
-  * it's guaranteed not to be present in a page at this point. */
-  geda_object_notify_emit_pre_change (parent);
+    /* Don't need to emit change notifications for the child because
+     * it's guaranteed not to be present in a page at this point. */
+    geda_object_notify_emit_pre_change (parent);
 
-  parent->complex->prim_objs =
-    g_list_append (parent->complex->prim_objs, child);
-  child->parent_object = parent;
+    parent->complex->prim_objs = g_list_append (parent->complex->prim_objs,
+                                                child);
+    child->parent_object = parent;
 
-  parent->w_bounds_valid_for = NULL;
+    parent->w_bounds_valid_for = NULL;
 
-  /* We may need to update connections */
-  s_tile_update_object (child);
-  s_conn_update_object (child);
+    /* We may need to update connections */
+    s_tile_update_object (child);
+    s_conn_update_object (child);
 
-  geda_object_notify_emit_change (parent);
+    geda_object_notify_emit_change (parent);
 
-  s_object_set_page_changed (parent);
+    s_object_set_page_changed (parent);
   }
 
   return complex_s;
@@ -373,14 +373,16 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
                scm_list_1 (obj_s), SCM_EOL);
   }
 
-  if (child->parent_object == NULL) return obj_s;
+  if (child->parent_object == NULL) {
+    return obj_s;
+  }
 
   /* Don't need to emit change notifications for the child because
    * only the parent will remain in the page. */
   geda_object_notify_emit_pre_change (parent);
 
-  parent->complex->prim_objs =
-    g_list_remove_all (parent->complex->prim_objs, child);
+  parent->complex->prim_objs = g_list_remove_all (parent->complex->prim_objs,
+                                                  child);
   child->parent_object = NULL;
 
   /* We may need to update connections */

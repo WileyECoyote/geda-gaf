@@ -794,15 +794,16 @@
 ; This function gets some info of the object and calls autoplace-text.
 (define (autoplace-object-attributes object)
   (let* ((pin-list (get-object-pins object))
-     (pin-directions (get-pin-directions pin-list))
-     (connection-sides (if (or (char=? (get-object-type object)
-                       OBJ_NET)
-                   (char=? (get-object-type object)
-                       OBJ_BUS))
-                   (get-net-connection-sides object)
-                   (get-connection-sides pin-directions)))
-     (attribute-list (get-object-attributes object)))
-    (autoplace-text object connection-sides attribute-list)))
+         (pin-directions (get-pin-directions pin-list))
+         (connection-sides (if (or (char=? (get-object-type object)
+                                    OBJ_NET)
+                                  (char=? (get-object-type object)
+                                    OBJ_BUS))
+                             (get-net-connection-sides object)
+                             (get-connection-sides pin-directions)))
+         (attribute-list (get-object-attributes object)))
+    (autoplace-text object connection-sides attribute-list))
+)
 
 
 ;;
