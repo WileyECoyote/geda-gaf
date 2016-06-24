@@ -1,5 +1,11 @@
 2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit a928e020c3526681483a52cc8eac8fd20e7ec945:
+      gnetlist: Introduce a new variable for better readability.
+
+2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * scheme/gnet-bom.scm: WEH: Modified similar to commit to Master branch
       by Vladimir Zhbanov, commit 78ef07064000a47b8a9db4d9de89f7a2e92eed6a:
       gnetlist: Factor out bom:error-no-attribs().
