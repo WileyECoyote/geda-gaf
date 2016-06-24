@@ -1,3 +1,9 @@
+2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified similar to commit to Master branch
+      by Vladimir Zhbanov, commit b52745013e4d54d445584e993745aa92eebfb23f:
+      gnetlist: Add help to all functions in the backend bom.
+
 2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-bom.scm: Pass filename to error-no-attribs.
