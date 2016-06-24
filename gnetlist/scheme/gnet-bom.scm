@@ -45,11 +45,11 @@
           (if (backend-option-ref options 'attribs) #f
               (begin
                 (format (current-error-port)
-"ERROR: Attribute file '~A' not found. You must do one of the following: ~%
+                "ERROR: Attribute file '~A' not found. You must do one of the following: ~%
          - Create an 'attribs' file ~%
-         - Specify an attribute file using -Oattrib_file=<filename> ~%
-         - Specify which attributes to include using -Oattribs=attrib1,attrib2,... (no spaces) ~%"
-filename)
+         - Specify an attribute file using -O attrib_file=<filename> ~%
+         - Specify which attributes to include using -O attribs=attrib1,attrib2,... (no spaces) ~%"
+                 filename)
                 (primitive-exit 1)))))))
 
 (define bom
