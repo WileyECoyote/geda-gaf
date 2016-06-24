@@ -58,18 +58,6 @@
 (define (bom:printlist ls)
   (format #t "~A\n" (string-join ls "\t")))
 
-(define bom
-  (lambda (output-filename)
-    (let* ((options (backend-getopt (get-backend-arguments)
-                     '((attrib_file (value #t)) (attribs (value #t)))))
-           (port (bom:open-input-file options))
-           (attriblist (bom:parseconfig port options)))
-      (and attriblist
-           (with-output-to-port (output-port output-filename)
-             (lambda ()
-               (bom:printlist (cons "refdes" attriblist))
-               (bom:components netlist:packages attriblist)))))))
-
 (define (bom:read-attrib-list)
   (let ((read-from-file (read-delimited " \n\t")))
     (cond ((eof-object? read-from-file)
@@ -103,6 +91,18 @@
           (cons package (component-attrib-values package attriblist)))))
 
   (for-each output-component-attrib-values ls))
+
+(define bom
+  (lambda (output-filename)
+    (let* ((options (backend-getopt (get-backend-arguments)
+                     '((attrib_file (value #t)) (attribs (value #t)))))
+           (port (bom:open-input-file options))
+           (attriblist (bom:parseconfig port options)))
+      (and attriblist
+           (with-output-to-port (output-port output-filename)
+             (lambda ()
+               (bom:printlist (cons "refdes" attriblist))
+               (bom:components netlist:packages attriblist)))))))
 
 ;;
 ;; Bill of Material backend written by Matt Ettus ends here
