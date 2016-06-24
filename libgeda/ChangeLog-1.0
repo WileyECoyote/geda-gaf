@@ -1,6 +1,11 @@
+2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/geda/log.scm: Append the new-line that is "automatically"
+      added.
+
 2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/utility/u_log.c: Remove BUG_MSG if log file already opened,
+    * src/utility/u_log.c: Remove BUG_MSG if log file is already opened,
       and silently ignore.
 
     * libgeda/tests/test_utility.c: Add checks for log utility module.

@@ -40,11 +40,9 @@
 
 ;The LEVEL should describe the log level -- for example, one of the
 ;symbols "message", "warning", "critical", "error", "info" or
-;"debug".  "error"-level messages are fatal.
-
-;A newline character is automatically appended to the message.
-
+;"debug".  "error"-level messages are fatal. A newline character is
+;automatically appended to the message.
 (define-public (log! level message . format-args)
   (let ((formatted (apply format #f message format-args)))
-    (%log! #f level (string-append formatted))))
+    (%log! #f level (string-append formatted "\n"))))
 
