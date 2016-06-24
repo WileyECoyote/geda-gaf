@@ -1,3 +1,9 @@
+2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnet-bom.scm: WEH: Modified similar to commit to Master branch
+      by Vladimir Zhbanov, commit 78ef07064000a47b8a9db4d9de89f7a2e92eed6a:
+      gnetlist: Factor out bom:error-no-attribs().
+
 2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-bom.scm: Add space in attrib file message after -O switch.
