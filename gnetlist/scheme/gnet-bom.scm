@@ -37,7 +37,7 @@
 (use-modules (ice-9 rdelim) ;; guile-1.8 fix
              (gnetlist backend-getopt))
 
-(define (bom:error-no-attribs)
+(define (bom:error-no-attribs filename)
   (format
    (current-error-port)
    "ERROR: Attribute file '~A' not found. You must do one of the following: ~%
@@ -53,7 +53,7 @@
       (if (file-exists? filename)
           (open-input-file filename)
           (if (not (backend-option-ref options 'attribs))
-              (bom:error-no-attribs))))))
+              (bom:error-no-attribs filename))))))
 
 (define (bom:printlist ls)
   (format #t "~A\n" (string-join ls "\t")))

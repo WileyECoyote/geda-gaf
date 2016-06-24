@@ -1,8 +1,12 @@
+2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-bom.scm: Pass filename to error-no-attribs.
+
 2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 8cdbbd9eabb12d04b5b1545981870aeb5881a37f:
-      gnetlist: Move main function down.
+      gnetlist: bom:Move main function down.
 
 2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
