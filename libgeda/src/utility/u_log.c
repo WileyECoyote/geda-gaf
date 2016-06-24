@@ -217,7 +217,6 @@ void geda_utility_log_init (const char *prefix)
   is_logging     = TRUE;
 
   if (logfile_fd != -1) {
-    BUG_MSG ("Log already initialized.");
     return;
   }
 

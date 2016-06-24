@@ -1,5 +1,8 @@
 2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_log.c: Remove BUG_MSG if log file already opened,
+      and silently ignore.
+
     * libgeda/tests/test_utility.c: Add checks for log utility module.
 
 2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
