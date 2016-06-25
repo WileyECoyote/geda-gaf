@@ -97,7 +97,8 @@
     (assert-equal a (config-load! a))
     (assert-true (config-loaded? a))
     (chmod *testdirAconf* #o000) ;; Make conf unreadable
-    (assert-thrown 'system-error (config-load! a))
+    (if (not (access? *testdirAconf* R_OK))
+       (assert-thrown 'system-error (config-load! a)))
 
     (assert-thrown 'system-error (config-load! (default-config-context)))
   )

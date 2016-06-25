@@ -1,5 +1,9 @@
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/unit-tests/t0402-config.scm: Revise config-load checks to
+      skip assertion if file permissions to not get changed, i.e. during
+      distcheck.
+
     * src/file/f_file.c: Revise function f_sys_normalize_name to set
       the gerror when non-windows file does not exist.
 
@@ -24,7 +28,7 @@
 2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/unit-tests/t0402-config.scm: Reinstate tests for scheme
-       config API.
+      config API.
 
     * src/geda/geda_config.c: Set filename member to NULL in function
       eda_config_get_default_context.
