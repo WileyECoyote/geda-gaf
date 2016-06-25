@@ -336,6 +336,97 @@ char *f_sys_follow_symlinks (const char *filename, GError **err)
 
 }
 
+/*! \brief Builds an absolute pathname.
+ *  \par Function Description
+ *  This function derives an absolute pathname for the pathname
+ *  pointed to by \a name with '.' and '..' resolved. It does not
+ *  resolve symbolic links.
+ *
+ *  It returns NULL and sets the \a error (if not NULL) if it failed
+ *  to build the pathname or the pathname does not exists.
+ *
+ *  \note
+ *  The code for this function is derived from the realpath() of
+ *  the GNU C Library (Copyright (C) 1996-2002, 2004, 2005, 2006 Free
+ *  Software Foundation, Inc. / LGPL 2.1 or later).
+ *
+ *  The part for the resolution of symbolic links has been discarded
+ *  and it has been adapted for glib and for use on Windows.
+ *
+ *  \param [in]     name  A character string containing the pathname
+ *                        to resolve.
+ *  \param [in,out] error Return location for a GError, or NULL.
+ *
+ *  \return A newly-allocated string with the resolved absolute
+ *          pathname on success, NULL otherwise.
+ */
+char *f_sys_normalize_name (const char *name, GError **error)
+{
+  char *result;
+
+  if (name == NULL) {
+    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_INVAL,
+                 "%s", strerror (EINVAL));
+    return NULL;
+  }
+
+  if (*name == '\0') {
+    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
+                 "%s", strerror (ENOENT));
+    return NULL;
+  }
+
+#if defined (OS_WIN32_NATIVE)
+
+  /* Windows method (modified) from libiberty's lrealpath.c, GPL V2+
+   *
+   * We assume we don't have symlinks and just canonicalize to a
+   * Windows absolute path.  GetFullPathName converts ../ and ./ in
+   * relative paths to absolute paths, filling in current drive if
+   * one is not given or using the current directory of a specified
+   * drive (eg, "E:foo"). It also converts all forward slashes to
+   * back slashes.
+   */
+
+  char buf[MAX_PATH];
+
+  DWORD len = GetFullPathName (name, MAX_PATH, buf, NULL);
+
+  if (len == 0 || len > MAX_PATH - 1) {
+    result = g_strdup (name);
+  }
+  else {
+    /* The file system is case-preserving but case-insensitive,
+     * canonicalize to lowercase, using the codepage associated
+     * with the process locale.  */
+    CharLowerBuff (buf, len);
+    result = g_strdup (buf);
+  }
+
+  /* Test that the file actually exists, and fail if it does not.
+   * This is consistent with behaviour on POSIX platforms. */
+  if (!g_file_test (result, G_FILE_TEST_EXISTS)) {
+    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
+                 "%s", strerror (ENOENT));
+    GEDA_FREE (result);
+    return NULL;
+  }
+
+#else
+
+  if (!g_file_test(name, G_FILE_TEST_EXISTS)) {
+    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
+                 "%s", strerror (ENOENT));
+    return NULL;
+  }
+
+  result = realpath(name, NULL);
+
+#endif
+
+  return result;
+}
+
 /*! \brief Remove File
  *  \par Function Description
  *  This function calls the standard remove function after setting
