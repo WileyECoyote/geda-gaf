@@ -1,3 +1,7 @@
+2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/scheme/gnetlist.scm: Add write-log.
+
 2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch

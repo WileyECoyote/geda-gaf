@@ -3,8 +3,8 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
 ;
-;;; Copyright (C) 1998-2015 Ales Hvezda
-;;; Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2010 Ales Hvezda
+;;; Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
 ;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -21,8 +21,9 @@
 ;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 ;;; 02110-1301 USA, <http://www.gnu.org/licenses/>.
 
-(use-modules (srfi srfi-1))
-(use-modules (geda deprecated))
+(use-modules (srfi srfi-1)
+             (geda deprecated)
+             (geda log))
 
 ;; The real problem is that this module has the same name as gnetlist.c
 ;; so I do not know how to modularize, so here is my feeble attempt to
@@ -410,5 +411,8 @@ of REFDES. As a result, slots may be repeated in the returned list."
 
 ;; Procedure to output messages to message-port
 (define-public (message output-string)
-  (display output-string message-port)
-  )
+  (display output-string message-port))
+
+;; Procedure to output messages to geda log
+(define-public (write-log message-string)
+  (log! 'message message-string))
