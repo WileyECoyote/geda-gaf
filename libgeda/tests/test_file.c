@@ -191,6 +191,18 @@ int test_sys (void)
     result++;
   }
 
+  GError *F504_err = NULL;
+
+  string = geda_normalize_name("../noexist", &F504_err);
+
+  if (!F504_err) {
+    fprintf(stderr, "FAILED: (F5044) geda_normalize_name <%s>\n", string);
+    result++;
+  }
+  else {
+    g_error_free(F504_err);
+  }
+
   /* === Function 05: geda_remove_file		f_sys_remove === */
 
   /* === Function 06: geda_remove_extension	f_sys_remove_extension === */

@@ -6,6 +6,9 @@
     * src/file/f_sys.c: Relocate function f_sys_normalize_name from
       module f_file.c.
 
+    * tests/test_file.c: Add test F5044 to check f_sys_normalize_name
+      sets the gerror argument.
+
 2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Append the new-line that is "automatically"
