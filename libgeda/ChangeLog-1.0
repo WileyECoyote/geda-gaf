@@ -1,3 +1,8 @@
+2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Revise function f_sys_normalize_name to set
+      the gerror when non-windows file does not exist.
+
 2016-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Append the new-line that is "automatically"

@@ -573,8 +573,11 @@ char *f_sys_normalize_name (const char *name, GError **error)
 
 #else
 
-  if (!g_file_test(name, G_FILE_TEST_EXISTS))
+  if (!g_file_test(name, G_FILE_TEST_EXISTS)) {
+    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
+                 "%s", strerror (ENOENT));
     return NULL;
+  }
 
   result = realpath(name, NULL);
 
