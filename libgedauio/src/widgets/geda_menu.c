@@ -1527,8 +1527,21 @@ popup_grab_on_window (GdkWindow *window,
     }
     else
     {
+
+#if GTK_CHECK_VERSION (2,24,0)
+
       gdk_display_pointer_ungrab (gdk_window_get_display (window),
                                   activate_time);
+
+#else
+
+      GdkDisplay *display;
+
+      display = gdk_drawable_get_display (GDK_DRAWABLE (window));
+      gdk_display_pointer_ungrab (display, activate_time);
+
+#endif
+
       return FALSE;
     }
   }

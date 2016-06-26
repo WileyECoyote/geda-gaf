@@ -4,7 +4,8 @@
       gtk_window_group_get_current_grab.
 
     * src/widgets/geda_menu.c: Use gdk_drawable_get_size when gdk_window_
-      get_width is not available.
+      get_width is not available and gdk_drawable_get_display instead of
+      gdk_window_get_display when compiling with gtk < 2,24,0.
 
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
  
