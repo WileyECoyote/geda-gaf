@@ -10,6 +10,9 @@
     * src/file/f_sys.c: Relocate function f_sys_normalize_name from
       module f_file.c.
 
+    * src/utility/u_log.c: Use "geda" for log prefix when no prefix is
+      available in geda_utility_log_init.
+
     * tests/test_file.c: Add test F5044 to check f_sys_normalize_name
       sets the gerror argument.
 
