@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-06-17 01:42-0500\n"
+"POT-Creation-Date: 2016-06-25 03:22-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1230,73 +1230,73 @@ msgstr "<b>Bestek</b>"
 msgid "Undo failed"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:608
+#: gschem/src/x/x_autonumber.c:600
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:623
+#: gschem/src/x/x_autonumber.c:615
 #, fuzzy, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 "duplikaatgleuf mag probleme veroorsaak: [symbolname=%s, number=%d, slot=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:921
+#: gschem/src/x/x_autonumber.c:913
 msgid "No search string given in autonumber text.\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1136
+#: gschem/src/x/x_autonumber.c:1128
 msgid "Diagonal"
 msgstr "Diagonaal"
 
-#: gschem/src/x/x_autonumber.c:1137
+#: gschem/src/x/x_autonumber.c:1129
 msgid "Top to bottom"
 msgstr "Bo to onder"
 
-#: gschem/src/x/x_autonumber.c:1138
+#: gschem/src/x/x_autonumber.c:1130
 msgid "Bottom to top"
 msgstr "Onder tot bo"
 
-#: gschem/src/x/x_autonumber.c:1139
+#: gschem/src/x/x_autonumber.c:1131
 msgid "Left to right"
 msgstr "Links tot regs"
 
-#: gschem/src/x/x_autonumber.c:1140
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Right to left"
 msgstr "Regs tot links"
 
-#: gschem/src/x/x_autonumber.c:1141
+#: gschem/src/x/x_autonumber.c:1133
 msgid "File order"
 msgstr "Lêerorde"
 
-#: gschem/src/x/x_autonumber.c:1613
+#: gschem/src/x/x_autonumber.c:1605
 #, fuzzy
 msgid "<b>Filter:</b>"
 msgstr "Deursyfer:"
 
-#: gschem/src/x/x_autonumber.c:1654
+#: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1655
+#: gschem/src/x/x_autonumber.c:1647
 msgid "Current page"
 msgstr "Lopende bladsy"
 
-#: gschem/src/x/x_autonumber.c:1656
+#: gschem/src/x/x_autonumber.c:1648
 msgid "Whole hierarchy"
 msgstr "Hele hierargie"
 
-#: gschem/src/x/x_autonumber.c:1702
+#: gschem/src/x/x_autonumber.c:1694
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1725
+#: gschem/src/x/x_autonumber.c:1717
 msgid "<b>Scope</b>"
 msgstr "<b>Bestek</b>"
 
-#: gschem/src/x/x_autonumber.c:1798
+#: gschem/src/x/x_autonumber.c:1790
 msgid "<b>Options</b>"
 msgstr "<b>Opsies</b>"
 
@@ -1345,7 +1345,7 @@ msgstr "Naam"
 msgid "Value"
 msgstr "Waarde"
 
-#: gschem/src/x/x_compselect.c:2700 gschem/src/x/x_dialog.c:1746
+#: gschem/src/x/x_compselect.c:2700 gschem/src/x/x_dialog.c:1747
 msgid "None"
 msgstr ""
 
@@ -1724,197 +1724,197 @@ msgstr "Rooster"
 msgid "Hatch"
 msgstr "Arseer"
 
-#: gschem/src/x/x_dialog.c:1186 gschem/src/x/x_dialog.c:1294
-#: gschem/src/x/x_dialog.c:1303 gschem/src/x/x_dialog.c:1312
-#: gschem/src/x/x_dialog.c:1321 gschem/src/x/x_dialog.c:1330
-#: gschem/src/x/x_dialog.c:1445 gschem/src/x/x_dialog.c:1447
-#: gschem/src/x/x_dialog.c:1449 gschem/src/x/x_dialog.c:1451
-#: gschem/src/x/x_dialog.c:1453 gschem/src/x/x_dialog.c:1749
-#: gschem/src/x/x_dialog.c:1791 gschem/src/x/x_dialog.c:1904
-#: gschem/src/x/x_dialog.c:1913 gschem/src/x/x_dialog.c:1923
-#: gschem/src/x/x_dialog.c:2037 gschem/src/x/x_dialog.c:2039
-#: gschem/src/x/x_dialog.c:2041
+#: gschem/src/x/x_dialog.c:1186 gschem/src/x/x_dialog.c:1295
+#: gschem/src/x/x_dialog.c:1304 gschem/src/x/x_dialog.c:1313
+#: gschem/src/x/x_dialog.c:1322 gschem/src/x/x_dialog.c:1331
+#: gschem/src/x/x_dialog.c:1446 gschem/src/x/x_dialog.c:1448
+#: gschem/src/x/x_dialog.c:1450 gschem/src/x/x_dialog.c:1452
+#: gschem/src/x/x_dialog.c:1454 gschem/src/x/x_dialog.c:1750
+#: gschem/src/x/x_dialog.c:1792 gschem/src/x/x_dialog.c:1905
+#: gschem/src/x/x_dialog.c:1914 gschem/src/x/x_dialog.c:1924
+#: gschem/src/x/x_dialog.c:2038 gschem/src/x/x_dialog.c:2040
+#: gschem/src/x/x_dialog.c:2042
 msgid "*unchanged*"
 msgstr "*onveranderd*"
 
-#: gschem/src/x/x_dialog.c:1593 gschem/scheme/gschem/builtins.scm:155
+#: gschem/src/x/x_dialog.c:1594 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Fill Type"
 msgstr "Bewerk Vultipe"
 
-#: gschem/src/x/x_dialog.c:1615
+#: gschem/src/x/x_dialog.c:1616
 msgid "Fill Type:"
 msgstr "Vultipe:"
 
-#: gschem/src/x/x_dialog.c:1618
+#: gschem/src/x/x_dialog.c:1619
 msgid "Line Width:"
 msgstr "Lynwydte:"
 
-#: gschem/src/x/x_dialog.c:1621
+#: gschem/src/x/x_dialog.c:1622
 msgid "Angle 1:"
 msgstr "Hoek 1:"
 
-#: gschem/src/x/x_dialog.c:1624
+#: gschem/src/x/x_dialog.c:1625
 msgid "Pitch 1:"
 msgstr "Steek 1:"
 
-#: gschem/src/x/x_dialog.c:1627
+#: gschem/src/x/x_dialog.c:1628
 msgid "Angle 2:"
 msgstr "Hoek 2:"
 
-#: gschem/src/x/x_dialog.c:1630
+#: gschem/src/x/x_dialog.c:1631
 msgid "Pitch 2:"
 msgstr "Steek 2:"
 
-#: gschem/src/x/x_dialog.c:1637
+#: gschem/src/x/x_dialog.c:1638
 #, fuzzy
 msgid "Select fill pattern"
 msgstr "Kies"
 
-#: gschem/src/x/x_dialog.c:1642
+#: gschem/src/x/x_dialog.c:1643
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1647
+#: gschem/src/x/x_dialog.c:1648
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1652
+#: gschem/src/x/x_dialog.c:1653
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1657
+#: gschem/src/x/x_dialog.c:1658
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1662
+#: gschem/src/x/x_dialog.c:1663
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1747
+#: gschem/src/x/x_dialog.c:1748
 msgid "Square"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1748
+#: gschem/src/x/x_dialog.c:1749
 msgid "Round"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1786
+#: gschem/src/x/x_dialog.c:1787
 msgid "Solid"
 msgstr "Solied"
 
-#: gschem/src/x/x_dialog.c:1787
+#: gschem/src/x/x_dialog.c:1788
 msgid "Dotted"
 msgstr "Gestippeld"
 
-#: gschem/src/x/x_dialog.c:1788
+#: gschem/src/x/x_dialog.c:1789
 msgid "Dashed"
 msgstr "Gebroke"
 
-#: gschem/src/x/x_dialog.c:1789
+#: gschem/src/x/x_dialog.c:1790
 msgid "Center"
 msgstr "Sentreer"
 
-#: gschem/src/x/x_dialog.c:1790
+#: gschem/src/x/x_dialog.c:1791
 msgid "Phantom"
 msgstr "Spook"
 
-#: gschem/src/x/x_dialog.c:2175 gschem/scheme/gschem/builtins.scm:152
+#: gschem/src/x/x_dialog.c:2176 gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Line Width & Type"
 msgstr "Bewerk Lynwyddte & -styl"
 
-#: gschem/src/x/x_dialog.c:2198
+#: gschem/src/x/x_dialog.c:2199
 #, fuzzy
 msgid "Line Type:"
 msgstr "Vultipe:"
 
-#: gschem/src/x/x_dialog.c:2201
+#: gschem/src/x/x_dialog.c:2202
 #, fuzzy
 msgid "End Type:"
 msgstr "Styl:"
 
-#: gschem/src/x/x_dialog.c:2204
+#: gschem/src/x/x_dialog.c:2205
 msgid "Width:"
 msgstr "Wydte:"
 
-#: gschem/src/x/x_dialog.c:2207
+#: gschem/src/x/x_dialog.c:2208
 msgid "Dash Length:"
 msgstr "Streeplengte"
 
-#: gschem/src/x/x_dialog.c:2210
+#: gschem/src/x/x_dialog.c:2211
 msgid "Dash Space:"
 msgstr "Streepspasie"
 
-#: gschem/src/x/x_dialog.c:2227
+#: gschem/src/x/x_dialog.c:2228
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2233
+#: gschem/src/x/x_dialog.c:2234
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2239
+#: gschem/src/x/x_dialog.c:2240
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2461
+#: gschem/src/x/x_dialog.c:2462
 msgid "Find Text"
 msgstr "Vind Teks"
 
-#: gschem/src/x/x_dialog.c:2480
+#: gschem/src/x/x_dialog.c:2481
 msgid "Text to find:"
 msgstr "Teks om te vind:"
 
-#: gschem/src/x/x_dialog.c:2489
+#: gschem/src/x/x_dialog.c:2490
 #, fuzzy
 msgid "Search hidden attributes"
 msgstr "Vervang bestaande eienskappe"
 
-#: gschem/src/x/x_dialog.c:2492
+#: gschem/src/x/x_dialog.c:2493
 #, fuzzy
 msgid "Descend into hierarchy"
 msgstr "daal in hierargie af"
 
-#: gschem/src/x/x_dialog.c:2500
+#: gschem/src/x/x_dialog.c:2501
 #, fuzzy
 msgid "Close on ascent"
 msgstr "Sluit Bladsy"
 
-#: gschem/src/x/x_dialog.c:2588
+#: gschem/src/x/x_dialog.c:2589
 msgid "Hide Text"
 msgstr "Verskuil Teks"
 
-#: gschem/src/x/x_dialog.c:2607
+#: gschem/src/x/x_dialog.c:2608
 msgid "Hide text starting with:"
 msgstr "Verskuil teks beginnende met:"
 
-#: gschem/src/x/x_dialog.c:2697
+#: gschem/src/x/x_dialog.c:2698
 msgid "Show Text"
 msgstr "Toon Teks"
 
-#: gschem/src/x/x_dialog.c:2716
+#: gschem/src/x/x_dialog.c:2717
 msgid "Show text starting with:"
 msgstr "Toon Teks beginnende met:"
 
-#: gschem/src/x/x_dialog.c:2841
+#: gschem/src/x/x_dialog.c:2842
 msgid "Text Entry..."
 msgstr "Teksaantekening..."
 
-#: gschem/src/x/x_dialog.c:2866
+#: gschem/src/x/x_dialog.c:2867
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2986
+#: gschem/src/x/x_dialog.c:2987
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2988
+#: gschem/src/x/x_dialog.c:2989
 msgid "Translate"
 msgstr "Verskuif"
 
-#: gschem/src/x/x_dialog.c:3009
+#: gschem/src/x/x_dialog.c:3010
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -1922,53 +1922,53 @@ msgstr ""
 "Afwyking om te verskuif?\n"
 "(0 vir oorsprong)"
 
-#: gschem/src/x/x_dialog.c:3018
+#: gschem/src/x/x_dialog.c:3019
 #, fuzzy
 msgid "Auto Zoom Extents"
 msgstr "/Zoem Uitmate"
 
-#: gschem/src/x/x_dialog.c:3188
+#: gschem/src/x/x_dialog.c:3189
 msgid "Hotkeys"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3275
+#: gschem/src/x/x_dialog.c:3276
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3289
+#: gschem/src/x/x_dialog.c:3290
 msgid "Action"
 msgstr "Handeling"
 
-#: gschem/src/x/x_dialog.c:3299
+#: gschem/src/x/x_dialog.c:3300
 msgid "Keystroke(s)"
 msgstr "Sleutelslae"
 
-#: gschem/src/x/x_dialog.c:3309
+#: gschem/src/x/x_dialog.c:3310
 #, fuzzy
 msgid "Command"
 msgstr "Opdrag:"
 
-#: gschem/src/x/x_dialog.c:3544
+#: gschem/src/x/x_dialog.c:3545
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3571
+#: gschem/src/x/x_dialog.c:3572
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3612
+#: gschem/src/x/x_dialog.c:3613
 #, fuzzy
 msgid "Symbol"
 msgstr "Simbole"
 
-#: gschem/src/x/x_dialog.c:3659
+#: gschem/src/x/x_dialog.c:3660
 msgid "Dismiss this dialog"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3704
+#: gschem/src/x/x_dialog.c:3705
 #, c-format
 msgid ""
 "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\n"
@@ -1986,7 +1986,7 @@ msgstr ""
 "Die naam mag nie met 'n spasie eindig nie.\n"
 "Die waarde mag nie met 'n spasie begin nie."
 
-#: gschem/src/x/x_dialog.c:3706
+#: gschem/src/x/x_dialog.c:3707
 msgid "Invalid Attribute"
 msgstr "Ongeldige Eienskap"
 
@@ -2406,52 +2406,52 @@ msgstr ""
 msgid "Edit slot number:"
 msgstr "Bewerk gleufnommer:"
 
-#: gschem/src/x/x_edit_text.c:233
+#: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
 msgstr "Links Bo"
 
-#: gschem/src/x/x_edit_text.c:236
+#: gschem/src/x/x_edit_text.c:237
 msgid "Upper Middle"
 msgstr "Middel Bo"
 
-#: gschem/src/x/x_edit_text.c:239
+#: gschem/src/x/x_edit_text.c:240
 #, fuzzy
 msgid "Upper Right"
 msgstr "Regs Onder"
 
-#: gschem/src/x/x_edit_text.c:243
+#: gschem/src/x/x_edit_text.c:244
 msgid "Middle Left"
 msgstr "Middel Links"
 
-#: gschem/src/x/x_edit_text.c:246
+#: gschem/src/x/x_edit_text.c:247
 msgid "Middle Middle"
 msgstr "Middel Middel"
 
-#: gschem/src/x/x_edit_text.c:249
+#: gschem/src/x/x_edit_text.c:250
 msgid "Middle Right"
 msgstr "Middel Regs"
 
-#: gschem/src/x/x_edit_text.c:253
+#: gschem/src/x/x_edit_text.c:254
 msgid "Lower Left"
 msgstr "Links Onder"
 
-#: gschem/src/x/x_edit_text.c:256
+#: gschem/src/x/x_edit_text.c:257
 msgid "Lower Middle"
 msgstr "Middel Onder"
 
-#: gschem/src/x/x_edit_text.c:259
+#: gschem/src/x/x_edit_text.c:260
 msgid "Lower Right"
 msgstr "Regs Onder"
 
-#: gschem/src/x/x_edit_text.c:447
+#: gschem/src/x/x_edit_text.c:448
 msgid "Edit Text Properties"
 msgstr "Bewerk Tekseienskappe"
 
-#: gschem/src/x/x_edit_text.c:464
+#: gschem/src/x/x_edit_text.c:465
 msgid "<b>Text Content</b>"
 msgstr "<b>Teksinhoud</b>"
 
-#: gschem/src/x/x_edit_text.c:494
+#: gschem/src/x/x_edit_text.c:495
 msgid "<b>Text Properties</b>"
 msgstr "<b>Tekseienskappe</b>"
 

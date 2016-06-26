@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-06-17 01:42-0500\n"
+"POT-Creation-Date: 2016-06-25 03:21-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -141,12 +141,12 @@ msgstr ""
 msgid "Can not create backup file: %s: %s\n"
 msgstr "No se puede guardar la copia de seguridad: %s"
 
-#: libgeda/src/file/f_file.c:605
+#: libgeda/src/file/f_file.c:517
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "No se puede obtener el nombre de fichero real de %s: %s"
 
-#: libgeda/src/file/f_file.c:617
+#: libgeda/src/file/f_file.c:529
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr ""
@@ -488,31 +488,31 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:859 libgeda/src/geda/geda_config.c:973
+#: libgeda/src/geda/geda_config.c:862 libgeda/src/geda/geda_config.c:979
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1000
+#: libgeda/src/geda/geda_config.c:1006
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1044
+#: libgeda/src/geda/geda_config.c:1050
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "No se puede encontrar el archivo %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1361
+#: libgeda/src/geda/geda_config.c:1367
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1425
+#: libgeda/src/geda/geda_config.c:1431
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1439
+#: libgeda/src/geda/geda_config.c:1445
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -932,30 +932,52 @@ msgstr ""
 msgid "Failed to parse arc object"
 msgstr "Falló el procesamiento de objeto arco"
 
-#: libgeda/src/object/o_arc_object.c:1470
-#, c-format
-msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
+#: libgeda/src/object/o_arc_object.c:1471
+#, fuzzy, c-format
+msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 "Se ha encontrado un arco con radio cero [ %c %d, %d, %d, %d, %d, %d ]\n"
 
-#: libgeda/src/object/o_arc_object.c:1476
+#: libgeda/src/object/o_arc_object.c:1474
+#: libgeda/src/object/o_circle_object.c:1381
+#, fuzzy, c-format
+msgid "Setting radius to %d\n"
+msgstr "Asignando radio nulo.\n"
+
+#: libgeda/src/object/o_arc_object.c:1478
+#, fuzzy, c-format
+msgid "Found an arc with radius zero [ %c %d, %d, %d, %d, %d, %d ]\n"
+msgstr ""
+"Se ha encontrado un arco con radio cero [ %c %d, %d, %d, %d, %d, %d ]\n"
+
+#: libgeda/src/object/o_arc_object.c:1480
+#: libgeda/src/object/o_circle_object.c:1386
+#, fuzzy
+msgid "Setting zero radius to 1000\n"
+msgstr "Asignando radio nulo.\n"
+
+#: libgeda/src/object/o_arc_object.c:1485
 #: libgeda/src/object/o_box_object.c:1613
-#: libgeda/src/object/o_bus_object.c:591
-#: libgeda/src/object/o_circle_object.c:1383
+#: libgeda/src/object/o_bus_object.c:587
+#: libgeda/src/object/o_circle_object.c:1391
 #: libgeda/src/object/o_line_object.c:1524
-#: libgeda/src/object/o_net_object.c:158 libgeda/src/object/o_path_basic.c:543
-#: libgeda/src/object/o_pin_basic.c:180 libgeda/src/object/o_text_basic.c:779
+#: libgeda/src/object/o_net_object.c:631
+#: libgeda/src/object/o_path_object.c:543
+#: libgeda/src/object/o_pin_object.c:180
+#: libgeda/src/object/o_text_object.c:780
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Se ha encontrado un color no válido [%s]\n"
 
-#: libgeda/src/object/o_arc_object.c:1477
+#: libgeda/src/object/o_arc_object.c:1486
 #: libgeda/src/object/o_box_object.c:1614
-#: libgeda/src/object/o_bus_object.c:592
-#: libgeda/src/object/o_circle_object.c:1384
+#: libgeda/src/object/o_bus_object.c:588
+#: libgeda/src/object/o_circle_object.c:1392
 #: libgeda/src/object/o_line_object.c:1525
-#: libgeda/src/object/o_net_object.c:159 libgeda/src/object/o_path_basic.c:544
-#: libgeda/src/object/o_pin_basic.c:181 libgeda/src/object/o_text_basic.c:780
+#: libgeda/src/object/o_net_object.c:632
+#: libgeda/src/object/o_path_object.c:544
+#: libgeda/src/object/o_pin_object.c:181
+#: libgeda/src/object/o_text_object.c:781
 msgid "Setting color to default color\n"
 msgstr "Asignando el color por defecto al color\n"
 
@@ -1010,18 +1032,18 @@ msgstr "Falló el procesamiento de objeto bus"
 msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
 msgstr "Se ha encontrado un bus de longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_bus_object.c:597
+#: libgeda/src/object/o_bus_object.c:593
 #, c-format
 msgid "Found an invalid bus ripper direction [ %s ]\n"
 msgstr ""
 "Se ha encontrado una dirección del símbolo de extracción de bus no válida "
 "[ %s ]\n"
 
-#: libgeda/src/object/o_bus_object.c:598
+#: libgeda/src/object/o_bus_object.c:594
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Cambiando la dirección al valor por defecto neutro (sin dirección)\n"
 
-#: libgeda/src/object/o_circle_object.c:606
+#: libgeda/src/object/o_circle_object.c:646
 msgid "Null radius circles are not allowed\n"
 msgstr "No se permiten círculos con radio cero\n"
 
@@ -1030,14 +1052,15 @@ msgstr "No se permiten círculos con radio cero\n"
 msgid "Failed to parse circle object"
 msgstr "Falló el procesamiento de objeto círculo"
 
-#: libgeda/src/object/o_circle_object.c:1376
-#, c-format
-msgid "Found a zero or negative radius circle [ %c %d %d %d %d ]\n"
+#: libgeda/src/object/o_circle_object.c:1378
+#, fuzzy, c-format
+msgid "Found circle with negative radius [ %c %d %d %d %d ]\n"
 msgstr "Se encontró radio menor o igual a cero en círculo [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_object.c:1378
-msgid "Setting radius to 0\n"
-msgstr "Asignando radio nulo.\n"
+#: libgeda/src/object/o_circle_object.c:1384
+#, fuzzy, c-format
+msgid "Found circle with radius zero [ %c %d %d %d %d ]\n"
+msgstr "Se ha encontrado un bus de longitud cero [ %c %d %d %d %d %d ]\n"
 
 #: libgeda/src/object/o_complex_object.c:149
 msgid "mismatch"
@@ -1130,7 +1153,7 @@ msgstr ""
 "%d %d %d %d %s ]\n"
 
 #: libgeda/src/object/o_complex_object.c:1091
-#: libgeda/src/object/o_picture.c:384
+#: libgeda/src/object/o_picture.c:385
 msgid "Setting angle to 0\n"
 msgstr "Cambiando el parámetro 'ángulo' a 0\n"
 
@@ -1175,149 +1198,155 @@ msgstr "Falló el procesamiento de objeto línea"
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Se ha encontrado una línea con longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_net_object.c:143
+#: libgeda/src/object/o_net_object.c:616
 msgid "Failed to parse net object"
 msgstr "Falló el procesamiento de objeto red"
 
-#: libgeda/src/object/o_net_object.c:148
+#: libgeda/src/object/o_net_object.c:621
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado una conexión con longitud cero [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_basic.c:537
+#: libgeda/src/object/o_path_object.c:537
 msgid "Failed to parse path object"
 msgstr "Falló el procesamiento de objeto ruta"
 
-#: libgeda/src/object/o_path_basic.c:559 libgeda/src/object/o_text_basic.c:795
+#: libgeda/src/object/o_path_object.c:559
+#: libgeda/src/object/o_text_object.c:796
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr "Fin de fichero inesperado luego de %d líneas"
 
 #: libgeda/src/object/o_picture.c:97
-msgid "Invalid picture has no height, set aspect to 1.0\n"
+msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:112
+#: libgeda/src/object/o_picture.c:98
+#, fuzzy
+msgid "Setting aspect to 1.0\n"
+msgstr "Cambiando el parámetro 'ángulo' a 0\n"
+
+#: libgeda/src/object/o_picture.c:113
 #, c-format
 msgid "Failed to load buffer image [%s]: %s\n"
 msgstr "Falló la carga de imagen de buffer [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:129
+#: libgeda/src/object/o_picture.c:130
 #, c-format
 msgid "Failed to load image from [%s]: %s\n"
 msgstr "Falló la carga de imagen desde [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:351
+#: libgeda/src/object/o_picture.c:352
 msgid "Failed to parse picture definition"
 msgstr "Falló el procesamiento de la definición de imagen"
 
-#: libgeda/src/object/o_picture.c:356
+#: libgeda/src/object/o_picture.c:357
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado una imagen con altura ó anchura cero [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_picture.c:361
+#: libgeda/src/object/o_picture.c:362
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr ""
 "Se encontró una imagen con un valor erróneo en el parámetro 'mirrored': %d\n"
 
-#: libgeda/src/object/o_picture.c:363
+#: libgeda/src/object/o_picture.c:364
 msgid "Setting mirrored to 0\n"
 msgstr "Cambiando el parámetro 'volteado' a 0\n"
 
-#: libgeda/src/object/o_picture.c:368
+#: libgeda/src/object/o_picture.c:369
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr ""
 "Se encontró una imagen con un valor erróneo en el parámetro 'embedded': %d\n"
 
-#: libgeda/src/object/o_picture.c:370
+#: libgeda/src/object/o_picture.c:371
 msgid "Setting embedded to 0\n"
 msgstr "Cambiando el parámetro 'incrustado' a 0\n"
 
-#: libgeda/src/object/o_picture.c:383
+#: libgeda/src/object/o_picture.c:384
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr ""
 "Se ha encontrado una imagen con un ángulo de rotación no válido [ %d ]\n"
 
-#: libgeda/src/object/o_picture.c:409
+#: libgeda/src/object/o_picture.c:410
 #, fuzzy, c-format
 msgid "Error: %s %s\n"
 msgstr "No se puede encontrar el archivo %s: %s"
 
-#: libgeda/src/object/o_picture.c:421
+#: libgeda/src/object/o_picture.c:422
 msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:478
+#: libgeda/src/object/o_picture.c:479
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "Error al cargar imagen desde los datos embebidos [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:479
+#: libgeda/src/object/o_picture.c:480
 msgid "Base64 decoding failed."
 msgstr "Ha fallado la decodificación Base64"
 
-#: libgeda/src/object/o_picture.c:480
+#: libgeda/src/object/o_picture.c:481
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Volviendo al modo de carga de archivo. Imagen desincrustada.\n"
 
-#: libgeda/src/object/o_picture.c:540
+#: libgeda/src/object/o_picture.c:541
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "ERROR: o_picture_save: imposible codificar la imagen.\n"
 
-#: libgeda/src/object/o_picture.c:924
+#: libgeda/src/object/o_picture.c:925
 #, c-format
 msgid "Can not export to type %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:936
+#: libgeda/src/object/o_picture.c:937
 #, fuzzy, c-format
 msgid "Failed to export [%s]: %s\n"
 msgstr "Error al abrir la carpeta [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:1170
+#: libgeda/src/object/o_picture.c:1171
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr "Imagen [%s] no tiene información de imagen.\n"
 
-#: libgeda/src/object/o_picture.c:1171
+#: libgeda/src/object/o_picture.c:1172
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr "Volviendo a la carga de fichero. Imagen aún no está empotrada.\n"
 
-#: libgeda/src/object/o_picture.c:1179
+#: libgeda/src/object/o_picture.c:1180
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "Se ha incrustado la imagen [%s]\n"
 
-#: libgeda/src/object/o_picture.c:1215
+#: libgeda/src/object/o_picture.c:1216
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:1217
+#: libgeda/src/object/o_picture.c:1218
 msgid "Picture is still embedded.\n"
 msgstr "Imagen aún está empotrada.\n"
 
-#: libgeda/src/object/o_picture.c:1225
+#: libgeda/src/object/o_picture.c:1226
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Se ha desincrustado la imagen [%s]\n"
 
-#: libgeda/src/object/o_picture.c:1763
+#: libgeda/src/object/o_picture.c:1764
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Falló la carga de imagen de respaldo %s: %s.\n"
 
-#: libgeda/src/object/o_pin_basic.c:154 libgeda/src/object/o_pin_basic.c:164
+#: libgeda/src/object/o_pin_object.c:154 libgeda/src/object/o_pin_object.c:164
 msgid "Failed to parse pin object"
 msgstr "Falló el procesamiento de objeto pin"
 
-#: libgeda/src/object/o_pin_basic.c:170
+#: libgeda/src/object/o_pin_object.c:170
 #, fuzzy
 msgid ""
 "Found a pin which did not have the whichend field set.\n"
@@ -1326,7 +1355,7 @@ msgstr ""
 "Se ha encontrado una pata que no tiene el campo 'whichone'.\n"
 "Por favor, compruébelo y corríjalo manualmente.\n"
 
-#: libgeda/src/object/o_pin_basic.c:174
+#: libgeda/src/object/o_pin_object.c:174
 #, c-format
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""
@@ -1386,25 +1415,31 @@ msgstr "Asignando el color por defecto al color\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Asignando el color por defecto al color\n"
 
-#: libgeda/src/object/o_text_basic.c:721 libgeda/src/object/o_text_basic.c:733
-#: libgeda/src/object/o_text_basic.c:745
+#: libgeda/src/object/o_text_object.c:721
+#: libgeda/src/object/o_text_object.c:733
+#: libgeda/src/object/o_text_object.c:745
 msgid "Failed to parse text object"
 msgstr "Falló el procesamiento de objeto texto"
 
-#: libgeda/src/object/o_text_basic.c:752
+#: libgeda/src/object/o_text_object.c:752
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado un texto con tamaño cero [ %c %d %d %d %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_text_basic.c:771
+#: libgeda/src/object/o_text_object.c:754
+#, fuzzy
+msgid "Setting text to default size\n"
+msgstr "Asignando el color por defecto al color\n"
+
+#: libgeda/src/object/o_text_object.c:772
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Se ha encontrado un texto con alineamiento no válido [ %c %d %d %d %d %d %d "
 "%d %d ]\n"
 
-#: libgeda/src/object/o_text_basic.c:773
+#: libgeda/src/object/o_text_object.c:774
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Cambiando el alineamiento a 'Abajo a la izquierda'\n"
 
@@ -1732,7 +1767,7 @@ msgstr "No se ha encontrado un atributo válido slotdef=#:#,#,#...\n"
 msgid "component missing pinseq= attribute\n"
 msgstr "El componente no tiene el atributo pinseq\n"
 
-#: libgeda/src/utility/u_log.c:255
+#: libgeda/src/utility/u_log.c:266
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "No se puede guardar la copia de seguridad: %s"
