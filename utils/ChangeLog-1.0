@@ -1,3 +1,8 @@
+2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pdf/parsecmd.c: Define WITHOUT_GDK_PIX_BUFFER before including
+      libgeda.h.
+
 2016-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/parsecmd.c: Add basic command-line parser, mainly so gsch2pdf
