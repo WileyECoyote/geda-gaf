@@ -970,8 +970,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
                               0,
                               G_MAXINT,
                               0,
-                              G_PARAM_READABLE |
-                              G_PARAM_DEPRECATED);
+                              G_PARAM_READABLE);
 
   gtk_widget_class_install_style_property (widget_class, params);
 }
