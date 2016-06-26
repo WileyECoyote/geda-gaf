@@ -165,8 +165,6 @@ bool       is_a_geda_menu                  (GedaMenu         *menu);
 
 GtkWidget *geda_menu_new                   (void);
 
-GtkWidget *geda_menu_new_from_model        (GMenuModel *model);
-
 /* A reference count is kept for a widget when it is attached to
  * a particular widget. This is typically a menu item; it may also
  * be a widget with a popup menu - for instance, the Notebook widget.
