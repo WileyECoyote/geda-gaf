@@ -1,3 +1,8 @@
+2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * teststests/test_radio_menu_item.c: Add tests framework and check
+      construction of GedaRadioMenuItem widgets.
+
 2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_check_menu_item.c: Add tests framework and check construction
