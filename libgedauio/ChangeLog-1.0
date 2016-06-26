@@ -1,5 +1,10 @@
-2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
+2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Conditionally define inline function
+      gtk_window_group_get_current_grab.
+
+2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
+ 
     * teststests/test_radio_menu_item.c: Add tests framework and check
       construction of GedaRadioMenuItem widgets.
 

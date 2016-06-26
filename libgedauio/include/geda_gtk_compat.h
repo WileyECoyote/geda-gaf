@@ -88,6 +88,18 @@
 
 #if GTK_MAJOR_VERSION < 3
 
+#ifndef HAVE_GTK_WINDOW_GROUP_GET_CURRENT_GRAB
+
+static inline GtkWidget *
+gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
+{
+  if (!window_group->grabs)
+    return NULL;
+  return GTK_WIDGET(window_group->grabs->data);
+}
+
+#endif
+
 #if !GTK_CHECK_VERSION(2,20,0)
 
     /* before V2.20 */
