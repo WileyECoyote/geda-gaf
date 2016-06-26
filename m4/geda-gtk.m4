@@ -67,6 +67,7 @@ AC_DEFUN([AX_CHECK_GTK],
 
   AC_CHECK_HEADERS([gdk/gdkkeysyms-compat.h])
 
+  AC_CHECK_FUNCS([gtk_window_group_get_current_grab])
   AC_CHECK_FUNCS([gtk_show_uri gdk_window_get_width])
 
   CFLAGS="$save_CFLAGS"

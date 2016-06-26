@@ -1,11 +1,15 @@
+2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gtk.m4: Add check for gtk_window_group_get_current_grab function.
+
 2016-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * m4/geda-x11.m4: Mostly revamp, must have been worn down by AutoMake
+    * geda-x11.m4: Mostly revamp, must have been worn down by AutoMake
       or AutoConf.
 
 2016-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * m4/geda-libgedacolor.m4: Add file, forgot to commit 02-12.
+    * mgeda-libgedacolor.m4: Add file, forgot to commit 02-12.
 
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
