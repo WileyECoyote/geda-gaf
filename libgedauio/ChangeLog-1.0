@@ -3,6 +3,9 @@
     * include/geda_gtk_compat.h: Conditionally define inline function
       gtk_window_group_get_current_grab.
 
+    * src/widgets/geda_menu.c: Use gdk_drawable_get_size when gdk_window_
+      get_width is not available.
+
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
  
     * teststests/test_radio_menu_item.c: Add tests framework and check

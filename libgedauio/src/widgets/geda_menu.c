@@ -1468,13 +1468,24 @@ geda_menu_tearoff_bg_copy (GedaMenu *menu)
   if (menu->torn_off) {
 
     GdkPixmap *pixmap;
-    cairo_t *cr;
+    GdkWindow *window;
+    cairo_t   *cr;
 
     menu->tearoff_active = FALSE;
     menu->saved_scroll_offset = menu->scroll_offset;
 
-    width  = gdk_window_get_width (menu->tearoff_window->window);
-    height = gdk_window_get_height (menu->tearoff_window->window);
+    window = geda_get_widget_window(menu->tearoff_window);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+    width  = gdk_window_get_width (window);
+    height = gdk_window_get_height (window);
+
+#else
+
+    gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
     pixmap = gdk_pixmap_new (menu->tearoff_window->window,
                              width,
@@ -2207,6 +2218,8 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
     if (menu->torn_off) {
 
+      GdkWindow *window;
+
       if (gtk_widget_get_visible (GTK_WIDGET (menu)))
         geda_menu_popdown (menu);
 
@@ -2241,8 +2254,18 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         menu->tearoff_hbox = gtk_hbox_new (FALSE, FALSE);
         gtk_container_add (GTK_CONTAINER (menu->tearoff_window), menu->tearoff_hbox);
 
-        width = gdk_window_get_width (GTK_WIDGET (menu)->window);
-        height = gdk_window_get_height (GTK_WIDGET (menu)->window);
+        window = geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+        width  = gdk_window_get_width (window);
+        height = gdk_window_get_height (window);
+
+#else
+
+        gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
         menu->tearoff_adjustment =
         GTK_ADJUSTMENT (gtk_adjustment_new (0,
@@ -2251,6 +2274,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
                                             MENU_SCROLL_STEP2,
                                             height/2,
                                             height));
+
         g_object_connect (menu->tearoff_adjustment,
                           "signal::value-changed", geda_menu_scrollbar_changed, menu,
                           NULL);
@@ -2268,7 +2292,18 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       geda_menu_reparent (menu, menu->tearoff_hbox, FALSE);
 
-      width = gdk_window_get_width (GTK_WIDGET (menu)->window);
+      window = geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+        width  = gdk_window_get_width (window);
+        height = gdk_window_get_height (window);
+
+#else
+
+        gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
       /* Update menu->requisition */
       gtk_widget_size_request (GTK_WIDGET (menu), NULL);
@@ -2886,10 +2921,11 @@ get_arrows_visible_area (GedaMenu     *menu,
                          GdkRectangle *lower,
                          int          *arrow_space)
 {
-  GtkWidget *widget = GTK_WIDGET (menu);
-  guint vertical_padding;
-  guint horizontal_padding;
-  int  scroll_arrow_height;
+  GtkWidget        *widget = GTK_WIDGET (menu);
+  GdkWindow        *window;
+  unsigned int      vertical_padding;
+  unsigned int      horizontal_padding;
+  int               scroll_arrow_height;
   GtkArrowPlacement arrow_placement;
 
   gtk_widget_style_get (widget,
@@ -2901,8 +2937,19 @@ get_arrows_visible_area (GedaMenu     *menu,
 
   border->x = GTK_CONTAINER (widget)->border_width + widget->style->xthickness + horizontal_padding;
   border->y = GTK_CONTAINER (widget)->border_width + widget->style->ythickness + vertical_padding;
-  border->width = gdk_window_get_width (widget->window);
-  border->height = gdk_window_get_height (widget->window);
+
+  window = geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+  border->width  = gdk_window_get_width (window);
+  border->height = gdk_window_get_height (window);
+
+#else
+
+  gdk_drawable_get_size(window, &border->width, &border->height);
+
+#endif
 
   int borderx2 = border->x << 1;
 
@@ -3272,8 +3319,18 @@ definitely_within_item (GtkWidget *widget, int x, int y)
   GdkWindow *window = geda_menu_item_get_event_window(GEDA_MENU_ITEM (widget));
   int w, h;
 
+  //window = geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
   w = gdk_window_get_width (window);
   h = gdk_window_get_height (window);
+
+#else
+
+  gdk_drawable_get_size(window, &w, &h);
+
+#endif
 
   return
     check_threshold (widget, 0, 0, x, y) &&
@@ -3364,22 +3421,31 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
 
     menu_shell->ignore_enter = FALSE;
 
-    width = gdk_window_get_width (event->window);
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+    width  = gdk_window_get_width (event->window);
     height = gdk_window_get_height (event->window);
+
+#else
+
+    gdk_drawable_get_size(event->window, &width, &height);
+
+#endif
+
     if (event->x >= 0 && event->x < width &&
       event->y >= 0 && event->y < height)
     {
       GdkEvent *send_event = gdk_event_new (GDK_ENTER_NOTIFY);
-      bool  result;
+      bool      result;
 
-      send_event->crossing.window = g_object_ref (event->window);
-      send_event->crossing.time = event->time;
+      send_event->crossing.window     = g_object_ref (event->window);
+      send_event->crossing.time       = event->time;
       send_event->crossing.send_event = TRUE;
-      send_event->crossing.x_root = event->x_root;
-      send_event->crossing.y_root = event->y_root;
-      send_event->crossing.x = event->x;
-      send_event->crossing.y = event->y;
-      send_event->crossing.state = event->state;
+      send_event->crossing.x_root     = event->x_root;
+      send_event->crossing.y_root     = event->y_root;
+      send_event->crossing.x          = event->x;
+      send_event->crossing.y          = event->y;
+      send_event->crossing.state      = event->state;
 
       /* We send the event to 'widget', the currently active menu,
        * instead of 'menu', the menu that the pointer is in. This
@@ -3446,8 +3512,17 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
   if ((menu->scroll_offset >= 0) && (offset < 0))
     offset = 0;
 
-  //view_width = gdk_window_get_width (widget->window);
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
   view_height = gdk_window_get_height (widget->window);
+
+#else
+ 
+  int width;
+  gdk_drawable_get_size(widget->window, &width, &view_height);
+
+#endif
+
 
   if (menu->scroll_offset == 0 &&
       view_height >= widget->requisition.height)
@@ -3578,19 +3653,32 @@ geda_menu_scroll (GtkWidget  *widget,
 }
 
 static void
-get_arrows_sensitive_area (GedaMenu      *menu,
+get_arrows_sensitive_area (GedaMenu     *menu,
                            GdkRectangle *upper,
                            GdkRectangle *lower)
 {
+  GdkWindow   *window;
+  unsigned int vertical_padding;
+
   int  width, height;
   int  border;
-  guint vertical_padding;
   int  win_x, win_y;
   int  scroll_arrow_height;
+  
   GtkArrowPlacement arrow_placement;
 
-  width = gdk_window_get_width (GTK_WIDGET (menu)->window);
-  height = gdk_window_get_height (GTK_WIDGET (menu)->window);
+  window =  geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+  width  = gdk_window_get_width (window);
+  height = gdk_window_get_height (window);
+
+#else
+
+  gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
   gtk_widget_style_get (GTK_WIDGET (menu),
                         "vertical-padding", &vertical_padding,
@@ -4150,6 +4238,7 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
   int  submenu_bottom = 0;
   int  width          = 0;
   int  height         = 0;
+  GdkWindow    *window;
   GtkWidget    *event_widget;
   GtkWidget    *submenu;
   GedaMenuPriv *priv;
@@ -4167,14 +4256,34 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
   gdk_window_get_origin (submenu->window, &submenu_left, &submenu_top);
 
-  width  = gdk_window_get_width (submenu->window);
-  height = gdk_window_get_height (submenu->window);
+  window =  geda_get_widget_window(submenu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+  width  = gdk_window_get_width (window);
+  height = gdk_window_get_height (window);
+
+#else
+
+  gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
   submenu_right  = submenu_left + width;
   submenu_bottom = submenu_top + height;
 
-  width  = gdk_window_get_width (event_widget->window);
-  height = gdk_window_get_height (event_widget->window);
+  window =  geda_get_widget_window(event_widget);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+  width  = gdk_window_get_width (window);
+  height = gdk_window_get_height (window);
+
+#else
+
+  gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
   if (event->x >= 0 && event->x < width) {
 
@@ -4749,7 +4858,6 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
   GedaMenu *menu;
   int  child_offset, child_height;
-  //int  width;
   int  height;
   int  y;
   int  arrow_height;
@@ -4765,12 +4873,23 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
   if (compute_child_offset (menu, menu_item,
      &child_offset, &child_height, &last_child))
   {
-    guint vertical_padding;
-    bool  double_arrows;
+    GdkWindow    *window;
+    unsigned int  vertical_padding;
+    bool          double_arrows;
 
     y = menu->scroll_offset;
-    //width = gdk_window_get_width (GTK_WIDGET (menu)->window);
-    height = gdk_window_get_height (GTK_WIDGET (menu)->window);
+
+    window =  geda_get_widget_window(menu);
+
+#ifdef HAVE_GDK_WINDOW_GET_WIDTH
+
+    height = gdk_window_get_height (window);
+
+#else
+    int width;
+    gdk_drawable_get_size(window, &width, &height);
+
+#endif
 
     gtk_widget_style_get (GTK_WIDGET (menu),
                           "vertical-padding", &vertical_padding,
@@ -5400,7 +5519,8 @@ geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
   GtkWidget      *grab;
 
   toplevel = gtk_widget_get_toplevel (widget);
-  group = gtk_window_get_group (GTK_WINDOW (toplevel));
+  group    = gtk_window_get_group (GTK_WINDOW (toplevel));
+  
   grab = gtk_window_group_get_current_grab (group);
 
   if (!was_grabbed) {
