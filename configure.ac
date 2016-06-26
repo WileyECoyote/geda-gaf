@@ -353,6 +353,7 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/scheme/Makefile
                  gnetlist/examples/Makefile
                  gnetlist/tests/Makefile
+                 gnetlist/tests/bom/Makefile
                  gnetlist/tests/common/Makefile
                  gnetlist/tests/hierarchy/Makefile
                  gnetlist/tests/hierarchy2/Makefile

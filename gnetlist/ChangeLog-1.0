@@ -2,6 +2,14 @@
 
     * gnetlist/scheme/gnetlist.scm: Add write-log.
 
+    * tests/bom/Makefile.am: New file for bom unit tests.
+
+    * tests/bom/attribs2: New file for bom unit tests.
+
+    * tests/bom/powersupply.bom: New file for bom unit tests.
+
+    * tests/bom/runtest.sh: New file for bom unit tests.
+
 2016-06-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnet-bom.scm: WEH: Modified per commit to Master branch

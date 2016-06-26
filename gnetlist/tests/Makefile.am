@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = hierarchy hierarchy2 drc2 scripts common
+SUBDIRS = bom hierarchy hierarchy2 drc2 scripts common
 
 EXTRA_DIST = runtest.sh gafrc \
 	     7447.vhdl README amp.spice cascade.sch cascade.cascade \
