@@ -35,7 +35,11 @@
  * -lX11 -lXft `pkg-config --cflags freetype2
  */
 
-/* Not optional! See include/geda_x11.hpp (included by geda_draw.h) */
+/* Not optional! See include/geda_x11.hpp (included by geda_draw.h),
+ * except for distcheck, using ../../config.h is quicker work around
+ * for issue with automake using the in-src configuration for the
+ * distcheck rather than having to reconfigure, see libgedadraw/BUGS
+ */
 #include "../../../config.h"
 
 #include <string>
