@@ -41,7 +41,8 @@
  *
  *  \param [in] toplevel  GedaToplevel object to search for autosave's.
  */
-void o_save_auto_backup(GedaToplevel *toplevel)
+void
+o_save_auto_backup(GedaToplevel *toplevel)
 {
   GList *iter;
   int    count;
@@ -178,13 +179,14 @@ void o_save_auto_backup(GedaToplevel *toplevel)
  *
  * \returns a buffer containing schematic data or NULL on failure.
  */
-char *o_save_objects (const GList *object_list, bool save_attribs)
+char *
+o_save_objects (const GList *object_list, bool save_attribs)
 {
   const  GList *iter;
   char  *out;
-  char  *acc;
-  int    acc_size;
-  int    allocated;
+  int    allocated     = IO_BUFFER_SLICE_SIZE;
+  char  *acc           = GEDA_MEM_ALLOC(allocated);
+  int    acc_size      = 0;
   bool   already_wrote = FALSE;
 
   void string_append (char *str) {
@@ -211,11 +213,8 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
     return;
   }
 
-  allocated      = IO_BUFFER_SLICE_SIZE;
-  acc            = GEDA_MEM_ALLOC(allocated);
-  acc[0]         = '\0';
-  acc_size       = 0;
-  iter           = object_list;
+  acc[0] = '\0';
+  iter   = object_list;
 
   while ( iter != NULL ) {
 
@@ -336,7 +335,8 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
  *
  *  \returns a buffer containing schematic data or NULL on failure.
  */
-char *o_save_buffer (const GList *object_list)
+char *
+o_save_buffer (const GList *object_list)
 {
   const char *header;
         char *acc;
