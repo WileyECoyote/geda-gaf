@@ -1,3 +1,7 @@
+2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-bom.scm: Add write to log at onset.
+
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/scheme/gnetlist.scm: Add write-log.

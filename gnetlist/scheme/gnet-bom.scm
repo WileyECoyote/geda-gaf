@@ -52,7 +52,6 @@
 (use-modules (ice-9 rdelim) ;; guile-1.8 fix
              (gnetlist backend-getopt))
 
-
 ;;--------------------------------------------------------------------
 ;;  Display attribute input error.
 ;;--------------------------------------------------------------------
@@ -142,6 +141,7 @@ in ATTRIBLIST for components in LS not having an attribute \"nobom=1\""
 ;;--------------------------------------------------------------------
 (define (bom output-filename)
   "Outputs BOM (Bill of Materials) to OUTPUT-FILENAME."
+  (write-log "running gnet-bom backend")
   (let* ((options (backend-getopt (get-backend-arguments)
                     '((attrib_file (value #t)) (attribs (value #t)))))
          (port (bom:open-input-file options))
