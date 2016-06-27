@@ -61,11 +61,10 @@ geda_net_object_consolidate_lowlevel (GedaObject *object,
                                       GedaObject *del_object,
                                       int         orient)
 {
-  int     temp1, temp2;
-  int     final1, final2;
-  int     changed = 0;
-  GList  *a_iter;
-  GedaObject *a_current;
+  int    temp1, temp2;
+  int    final1, final2;
+  int    changed = 0;
+  GList *a_iter;
 
 #if DEBUG
   printf("o %d %d %d %d\n", object->line->x[0], object->line->y[0],
@@ -117,10 +116,14 @@ geda_net_object_consolidate_lowlevel (GedaObject *object,
 
     /* Reassign the attached_to pointer on attributes from the del object */
     a_iter = del_object->attribs;
+
     while (a_iter != NULL) {
-      a_current = a_iter->data;
+
+      GedaObject *a_current;
+
+      a_current              = a_iter->data;
       a_current->attached_to = object;
-      a_iter = g_list_next (a_iter);
+      a_iter                 = g_list_next (a_iter);
     }
 
     object->attribs = g_list_concat (object->attribs, del_object->attribs);
@@ -184,13 +187,11 @@ geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
 static int
 geda_net_object_consolidate_segments (GedaObject *object)
 {
-  GList      *c_current;
-  GedaObject *other_object;
-  Page       *page;
-
-  int     object_orient;
-  int     other_orient;
-  int     changed = 0;
+  GList *c_current;
+  Page  *page;
+  int    object_orient;
+  int    other_orient;
+  int    changed = 0;
 
   g_return_val_if_fail ((object != NULL), 0);
   g_return_val_if_fail ((object->type == OBJ_NET), 0);
@@ -208,6 +209,8 @@ geda_net_object_consolidate_segments (GedaObject *object)
   c_current = object->conn_list;
 
   while(c_current != NULL) {
+
+    GedaObject *other_object;
 
     CONN *conn   = c_current->data;
     other_object = conn->other_object;

@@ -6,6 +6,9 @@
     * src/object/o_bus_object.c: Reduce scope of new_obj in geda_bus_
       object_copy.
 
+    * src/object/o_net_object.c: Reduce scope of a_current in geda_net_
+      object_consolidate_lowlevel.
+
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/unit-tests/t0402-config.scm: Revise config-load checks to
