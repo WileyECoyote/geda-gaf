@@ -71,9 +71,10 @@
  *
  *  \return GList of objects if successful read, or NULL on error.
  */
-GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
-                                const char   *buffer,   const int size,
-                                const char   *name,     GError  **err)
+GList *
+geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
+                         const char   *buffer,   const int size,
+                         const char   *name,     GError  **err)
 {
 
   GList  *object_list_save     = NULL;
@@ -442,8 +443,9 @@ error2:
  *                               NULL to disable error reporting
  *  \return object_list if successful read, or NULL on error.
  */
-GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
-               GError **err)
+GList *
+geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
+                  GError      **err)
 {
   char  *buffer = (NULL);
   size_t size   = 0;
@@ -481,7 +483,8 @@ GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filen
  *  \param [in]  o_current
  *  \return GedaObject pointer.
  */
-GedaObject *geda_object_copy (GedaObject *o_current)
+GedaObject *
+geda_object_copy (GedaObject *o_current)
 {
   GedaObject *new_obj;
 
@@ -564,7 +567,8 @@ GedaObject *geda_object_copy (GedaObject *o_current)
  *  \param [in]     center_y  Origin y coordinate.
  *  \param [in,out] object    The GedaObject to mirror.
  */
-void geda_object_mirror (GedaObject *object, int center_x, int center_y)
+void
+geda_object_mirror (GedaObject *object, int center_x, int center_y)
 {
   void (*topless) (GedaObject*, int, int) = NULL;
 
@@ -612,7 +616,8 @@ void geda_object_mirror (GedaObject *object, int center_x, int center_y)
  *  \param [in] center_y  Y coordinate of rotation center (world coords)
  *  \param [in] angle     Angle of rotation (degrees)
  */
-void geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   void (*topless) (GedaObject *, int, int, int) = NULL;
 
@@ -661,7 +666,8 @@ void geda_object_rotate (GedaObject *object, int center_x, int center_y, int ang
  *  \param [in] dx       Amount to horizontally translate object
  *  \param [in] dy       Amount to vertically translate object
  */
-void geda_object_translate (GedaObject *object, int dx, int dy)
+void
+geda_object_translate (GedaObject *object, int dx, int dy)
 {
   void (*topless) (GedaObject *, int, int) = NULL;
 
