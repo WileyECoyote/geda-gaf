@@ -1,7 +1,9 @@
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_real_move_scroll so shift
-      instead of divide.
+      instead of divide, reduce scope of width and height in module, eliminate
+      setting of width/height, i.e. call to gdk_window_get_width/height
+      not used.
 
 2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
 

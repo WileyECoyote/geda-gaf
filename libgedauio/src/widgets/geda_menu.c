@@ -1463,13 +1463,12 @@ geda_menu_real_insert (GedaMenuShell *menu_shell,
 static void
 geda_menu_tearoff_bg_copy (GedaMenu *menu)
 {
-  int  width, height;
-
   if (menu->torn_off) {
 
     GdkPixmap *pixmap;
     GdkWindow *window;
     cairo_t   *cr;
+    int        width, height;
 
     menu->tearoff_active = FALSE;
     menu->saved_scroll_offset = menu->scroll_offset;
@@ -2220,8 +2219,6 @@ tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
 void
 geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 {
-  int  width, height;
-
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   if (menu->torn_off != torn_off) {
@@ -2232,6 +2229,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
     if (menu->torn_off) {
 
       GdkWindow *window;
+      int        width;
 
       if (gtk_widget_get_visible (GTK_WIDGET (menu)))
         geda_menu_popdown (menu);
@@ -2239,6 +2237,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       if (!menu->tearoff_window) {
 
         GtkWidget *toplevel;
+        int        height;
 
         menu->tearoff_window = g_object_new (GTK_TYPE_WINDOW,
                                              "type", GTK_WINDOW_TOPLEVEL,
@@ -2271,7 +2270,6 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
-        width  = gdk_window_get_width (window);
         height = gdk_window_get_height (window);
 
 #else
@@ -2309,12 +2307,11 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
-        width  = gdk_window_get_width (window);
-        height = gdk_window_get_height (window);
+      width  = gdk_window_get_width (window);
 
 #else
 
-        gdk_drawable_get_size(window, &width, &height);
+      gdk_drawable_get_size(window, &width, &height);
 
 #endif
 
@@ -2336,13 +2333,14 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       gtk_widget_hide (GTK_WIDGET (menu));
       gtk_widget_hide (menu->tearoff_window);
-      if (GTK_IS_CONTAINER (menu->toplevel))
+      if (GTK_IS_CONTAINER (menu->toplevel)) {
         geda_menu_reparent (menu, menu->toplevel, FALSE);
+      }
       gtk_widget_destroy (menu->tearoff_window);
 
-      menu->tearoff_window = NULL;
-      menu->tearoff_hbox = NULL;
-      menu->tearoff_scrollbar = NULL;
+      menu->tearoff_window     = NULL;
+      menu->tearoff_hbox       = NULL;
+      menu->tearoff_scrollbar  = NULL;
       menu->tearoff_adjustment = NULL;
     }
 
@@ -4290,7 +4288,6 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
   width  = gdk_window_get_width (window);
-  height = gdk_window_get_height (window);
 
 #else
 
@@ -4374,21 +4371,23 @@ geda_menu_deactivate (GedaMenuShell *menu_shell)
 static void
 geda_menu_position (GedaMenu *menu)
 {
-  GtkWidget *widget;
-  GtkRequisition requisition;
+  GtkWidget    *widget;
   GedaMenuPriv *private;
-  int  x, y;
-  int  scroll_offset;
-  int  menu_height;
-  GdkScreen *screen;
-  GdkScreen *pointer_screen;
-  GdkRectangle monitor;
+  GdkScreen    *screen;
+  GdkScreen    *pointer_screen;
+  int           x, y;
+  int           scroll_offset;
+  int           menu_height;
+
+  GdkRectangle    monitor;
+  GtkRequisition  requisition;
 
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   widget = GTK_WIDGET (menu);
 
   screen = gtk_widget_get_screen (widget);
+
   gdk_display_get_pointer (gdk_screen_get_display (screen),
                            &pointer_screen, &x, &y, NULL);
 
@@ -4871,7 +4870,6 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
   GedaMenu *menu;
   int  child_offset, child_height;
-  int  height;
   int  y;
   int  arrow_height;
   bool  last_child = 0;
@@ -4889,6 +4887,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
     GdkWindow    *window;
     unsigned int  vertical_padding;
     bool          double_arrows;
+    int           height;
 
     y = menu->scroll_offset;
 
