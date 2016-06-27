@@ -3,6 +3,9 @@
     * src/object/o_attrib.c: Reduce scope of new_hook in geda_attrib_object_
       append_changed_hook.
 
+    * src/object/o_bus_object.c: Reduce scope of new_obj in geda_bus_
+      object_copy.
+
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/unit-tests/t0402-config.scm: Revise config-load checks to

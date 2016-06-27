@@ -180,9 +180,9 @@ geda_bus_object_consolidate(GedaToplevel *toplevel, Page *page)
 GedaObject*
 geda_bus_object_copy(const GedaObject *o_current)
 {
-  GedaObject *new_obj;
-
   if (GEDA_IS_BUS(o_current)) {
+
+    GedaObject *new_obj;
 
     /* make sure you fix this in pin and bus as well */
     /* still doesn't work... you need to pass in the new values */
