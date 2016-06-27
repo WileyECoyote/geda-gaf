@@ -1,3 +1,8 @@
+2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Revise geda_menu_real_move_scroll so shift
+      instead of divide.
+
 2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Conditionally define inline function
@@ -7,12 +12,12 @@
       get_width is not available and gdk_drawable_get_display instead of
       gdk_window_get_display when compiling with gtk < 2,24,0.
 
-    * src/widgets/geda_menu_bar.c: Remove flag G_PARAM_DEPRECATED. 
+    * src/widgets/geda_menu_bar.c: Remove flag G_PARAM_DEPRECATED.
 
     * src/widgets/geda_menu_item.c: Remove flags G_PARAM_DEPRECATED.
 
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
- 
+
     * teststests/test_radio_menu_item.c: Add tests framework and check
       construction of GedaRadioMenuItem widgets.
 
