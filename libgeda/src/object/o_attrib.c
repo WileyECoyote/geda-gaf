@@ -129,9 +129,10 @@ geda_attrib_object_append_changed_hook (Page              *page,
                                         AttribsChangedFunc func,
                                         void              *data)
 {
-  AttribsChangedHook *new_hook;
-
   if (func != NULL) {
+
+    AttribsChangedHook *new_hook;
+
     new_hook = GEDA_MEM_ALLOC0(sizeof(AttribsChangedHook));
     new_hook->func = func;
     new_hook->data = data;
