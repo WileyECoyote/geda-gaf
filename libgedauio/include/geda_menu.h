@@ -93,8 +93,8 @@ typedef void (*MenuDetachFunc) (GtkWidget *attach_widget, GedaMenu *menu);
 
 struct _GedaMenu
 {
-  GedaMenuShell menu_shell;
-  GedaType      instance_type;
+  GedaMenuShell  menu_shell;
+  GedaType       instance_type;
 
   GtkAccelGroup *accel_group;
   char          *accel_path;
@@ -174,16 +174,14 @@ void       geda_menu_attach_to_widget            (GedaMenu         *menu,
                                                   GtkWidget        *attach_widget,
                                                   MenuDetachFunc    detacher);
 
-void        geda_menu_attach                     (GedaMenu       *menu,
-                                                  GtkWidget      *child,
-                                                  unsigned int    left_attach,
-                                                  unsigned int    right_attach,
-                                                  unsigned int    top_attach,
-                                                  unsigned int    bottom_attach);
+void        geda_menu_attach                     (GedaMenu         *menu,
+                                                  GtkWidget        *child,
+                                                  unsigned int      left_attach,
+                                                  unsigned int      right_attach,
+                                                  unsigned int      top_attach,
+                                                  unsigned int      bottom_attach);
 
 void       geda_menu_detach                      (GedaMenu         *menu);
-
-/* Display the menu onscreen */
 
 void       geda_menu_popup                       (GedaMenu         *menu,
                                                   GtkWidget        *parent_menu_shell,
@@ -205,79 +203,50 @@ void       geda_menu_popup_for_device            (GedaMenu         *menu,
 
 void       geda_menu_popdown                     (GedaMenu         *menu);
 
-/* Position the menu according to its position function. Called
- * from gtkmenuitem.c when a menu-item changes its allocation
- */
-
 void       geda_menu_reposition                  (GedaMenu         *menu);
 
-/* Keep track of the last menu item selected. (For the purposes
- * of the option menu
- */
-
 GtkWidget *geda_menu_get_active                  (GedaMenu         *menu);
-
 void       geda_menu_set_active                  (GedaMenu         *menu,
                                                   unsigned int      index);
 
-/* set/get the accelerator group that holds global accelerators (should
- * be added to the corresponding toplevel with gtk_window_add_accel_group().
- */
-
+GtkAccelGroup
+           *geda_menu_get_accel_group            (GedaMenu         *menu);
 void        geda_menu_set_accel_group            (GedaMenu         *menu,
                                                   GtkAccelGroup    *accel_group);
 
-GtkAccelGroup
-           *geda_menu_get_accel_group            (GedaMenu         *menu);
-
+const char *geda_menu_get_accel_path             (GedaMenu         *menu);
 void        geda_menu_set_accel_path             (GedaMenu         *menu,
                                                   const char       *accel_path);
 
-const char *geda_menu_get_accel_path             (GedaMenu         *menu);
-
-
-
-/* This should be dumped in favor of data set when the menu is popped
- * up - that is currently in the ItemFactory code, but should be
- * in the Menu code.
- */
 GtkWidget  *geda_menu_get_attach_widget          (GedaMenu         *menu);
 
+bool        geda_menu_get_tearoff_state          (GedaMenu         *menu);
 void        geda_menu_set_tearoff_state          (GedaMenu         *menu,
                                                   bool              torn_off);
-bool        geda_menu_get_tearoff_state          (GedaMenu         *menu);
 
-/* This sets the window manager title for the window that
- * appears when a menu is torn off
- */
-
+const char *geda_menu_get_title                  (GedaMenu         *menu);
 void        geda_menu_set_title                  (GedaMenu         *menu,
                                                   const char       *title);
-const char *geda_menu_get_title                  (GedaMenu         *menu);
-
-
 
 void        geda_menu_set_screen                 (GedaMenu         *menu,
                                                   GdkScreen        *screen);
 
-
-
-
+int         geda_menu_get_monitor                (GedaMenu        *menu);
 void        geda_menu_set_monitor                (GedaMenu        *menu,
                                                   int              monitor_num);
-int         geda_menu_get_monitor                (GedaMenu        *menu);
 
 GList      *geda_menu_get_for_attach_widget      (GtkWidget       *widget);
 
+bool        geda_menu_get_reserve_toggle_size    (GedaMenu        *menu);
 void        geda_menu_set_reserve_toggle_size    (GedaMenu        *menu,
                                                   bool             size);
-bool        geda_menu_get_reserve_toggle_size    (GedaMenu        *menu);
 
 GtkWidget  *geda_menu_get_parent                 (GedaMenu         *menu);
 
 void        geda_menu_reorder_child              (GedaMenu         *menu,
                                                   GtkWidget        *child,
                                                   int               position);
+
 GtkWidget  *geda_menu_get_toplevel               (GedaMenu         *menu);
 
 #define geda_menu_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell *)(menu),(child))

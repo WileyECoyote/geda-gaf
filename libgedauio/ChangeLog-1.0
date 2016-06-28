@@ -1,3 +1,7 @@
+2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu.h: Remove stray comments, clean-up file.
+
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_real_move_scroll so shift
