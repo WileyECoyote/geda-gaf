@@ -557,12 +557,15 @@ geda_menu_set_property (GObject      *object,
     case PROP_ACTIVE:
       geda_menu_set_active (menu, g_value_get_int (value));
       break;
+
     case PROP_ACCEL_GROUP:
       geda_menu_set_accel_group (menu, g_value_get_object (value));
       break;
+
     case PROP_ACCEL_PATH:
       geda_menu_set_accel_path (menu, g_value_get_string (value));
       break;
+
     case PROP_ATTACH_WIDGET:
     {
       GtkWidget *widget;
@@ -576,18 +579,23 @@ geda_menu_set_property (GObject      *object,
         geda_menu_attach_to_widget (menu, widget, NULL);
     }
     break;
+
     case PROP_TEAROFF_STATE:
       geda_menu_set_tearoff_state (menu, g_value_get_boolean (value));
       break;
+
     case PROP_TEAROFF_TITLE:
       geda_menu_set_title (menu, g_value_get_string (value));
       break;
+
     case PROP_MONITOR:
       geda_menu_set_monitor (menu, g_value_get_int (value));
       break;
+
     case PROP_RESERVE_TOGGLE_SIZE:
       geda_menu_set_reserve_toggle_size (menu, g_value_get_boolean (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1873,8 +1881,8 @@ geda_menu_popdown (GedaMenu *menu)
  *
  * \param[in] menu: a #GedaMenu
  *
- * \returns GedaMenuItem that was last selected in the menu. If a
- *          selection has not yet been made, the first menu item is selected.
+ * \returns GedaMenuItem that was last selected in the menu. If a selection
+ *          has not yet been made, the first menu item is selected.
  */
 GtkWidget*
 geda_menu_get_active (GedaMenu *menu)
@@ -1930,34 +1938,10 @@ geda_menu_set_active (GedaMenu *menu, unsigned int index)
   }
 }
 
-
-/*!
- * \brief Sets an accelerator Group
- * \par Function Description
- *
- * \param[in] menu          a GedaMenu
- * \param[in] accel_group  The accelerate group
- */
-void
-geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
-{
-  g_return_if_fail (GEDA_IS_MENU (menu));
-
-  if (menu->accel_group != accel_group)
-    {
-      if (menu->accel_group)
-    g_object_unref (menu->accel_group);
-      menu->accel_group = accel_group;
-      if (menu->accel_group)
-    g_object_ref (menu->accel_group);
-      geda_menu_refresh_accel_paths (menu, TRUE);
-    }
-}
-
 /*!
  * \brief Gets an accelerator Group
  * \par Function Description
- * Gets the #GtkAccelGroup which holds global accelerators for the
+ * Gets the GtkAccelGroup which holds global accelerators for the
  * menu.
  *
  * \param[in] menu a #GedaMenu
@@ -1972,6 +1956,38 @@ geda_menu_get_accel_group (GedaMenu *menu)
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
   return menu->accel_group;
+}
+
+/*!
+ * \brief Sets an accelerator Group
+ * \par Function Description
+ *  Set the accelerator group that holds global accelerators (should be
+ *  added to the corresponding toplevel with gtk_window_add_accel_group().
+ *
+ * \param[in] menu         A GedaMenu
+ * \param[in] accel_group  The accelerate group
+ */
+void
+geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
+{
+  g_return_if_fail (GEDA_IS_MENU (menu));
+
+  if (menu->accel_group != accel_group) {
+
+    /* Unreference the old group */
+    if (menu->accel_group) {
+      g_object_unref (menu->accel_group);
+    }
+
+    menu->accel_group = accel_group;
+
+    /* Add a reference to the new group */
+    if (menu->accel_group) {
+      g_object_ref (menu->accel_group);
+    }
+
+    geda_menu_refresh_accel_paths (menu, TRUE);
+  }
 }
 
 static bool
@@ -1990,6 +2006,23 @@ geda_menu_real_can_activate_accel (GtkWidget *widget,
     return gtk_widget_can_activate_accel (awidget, signal_id);
   else
     return gtk_widget_is_sensitive (widget);
+}
+
+/*!
+ * \brief get the Tear-Off state
+ * \par Function Description
+ *  Retrieves the accelerator path set on the menu.
+ *
+ * \param[in] menu: a valid #GedaMenu
+ *
+ * \returns: the accelerator path set on the menu.
+ */
+const char *
+geda_menu_get_accel_path (GedaMenu *menu)
+{
+  g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
+
+  return menu->accel_path;
 }
 
 /*!
@@ -2032,23 +2065,6 @@ geda_menu_set_accel_path (GedaMenu     *menu,
     geda_menu_refresh_accel_paths (menu, FALSE);
 }
 
-/*!
- * \brief get the Tear-Off state
- * \par Function Description
- * Retrieves the accelerator path set on the menu.
- *
- * \param[in] menu: a valid #GedaMenu
- *
- * \returns: the accelerator path set on the menu.
- */
-const char *
-geda_menu_get_accel_path (GedaMenu *menu)
-{
-  g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
-
-  return menu->accel_path;
-}
-
 typedef struct {
   GedaMenu *menu;
   bool  group_changed;
@@ -2086,6 +2102,9 @@ geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
   }
 }
 
+/* Position the menu according to its position function. Called
+ * from geda_menu_item.c when a menu-item changes its allocation
+ */
 void
 geda_menu_reposition (GedaMenu *menu)
 {
@@ -2182,32 +2201,6 @@ geda_menu_update_title (GedaMenu *menu)
       gtk_window_set_title (GTK_WINDOW (menu->tearoff_window), title);
     }
   }
-}
-
-GtkWidget*
-geda_menu_get_toplevel (GedaMenu *menu)
-{
-  GtkWidget *attach;
-  GtkWidget *toplevel;
-
-  attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
-
-  if (GEDA_IS_MENU_ITEM (attach)) {
-    attach = attach->parent;
-  }
-
-  if (GEDA_IS_MENU (attach)) {
-    return geda_menu_get_toplevel (GEDA_MENU (attach));
-  }
-  else if (GTK_IS_WIDGET (attach)) {
-
-    toplevel = gtk_widget_get_toplevel (attach);
-    if (gtk_widget_is_toplevel (toplevel)) {
-      return toplevel;
-    }
-  }
-
-  return NULL;
 }
 
 static void
@@ -2434,6 +2427,33 @@ geda_menu_reorder_child (GedaMenu  *menu,
     }
 }
 
+
+GtkWidget*
+geda_menu_get_toplevel (GedaMenu *menu)
+{
+  GtkWidget *attach;
+  GtkWidget *toplevel;
+
+  attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
+
+  if (GEDA_IS_MENU_ITEM (attach)) {
+    attach = attach->parent;
+  }
+
+  if (GEDA_IS_MENU (attach)) {
+    return geda_menu_get_toplevel (GEDA_MENU (attach));
+  }
+  else if (GTK_IS_WIDGET (attach)) {
+
+    toplevel = gtk_widget_get_toplevel (attach);
+    if (gtk_widget_is_toplevel (toplevel)) {
+      return toplevel;
+    }
+  }
+
+  return NULL;
+}
+
 static void
 geda_menu_style_set (GtkWidget *widget,
             GtkStyle  *previous_style)
@@ -2452,7 +2472,7 @@ static void
 get_arrows_border (GedaMenu   *menu,
                    GtkBorder *border)
 {
-  guint scroll_arrow_height;
+  unsigned int scroll_arrow_height;
   GtkArrowPlacement arrow_placement;
 
   gtk_widget_style_get (GTK_WIDGET (menu),
@@ -2549,13 +2569,14 @@ geda_menu_realize (GtkWidget *widget)
   gdk_window_set_user_data (menu->bin_window, menu);
 
   children = GEDA_MENU_SHELL (menu)->children;
-  while (children)
-    {
+
+  while (children) {
+
       child = children->data;
       children = children->next;
 
       gtk_widget_set_parent_window (child, menu->bin_window);
-    }
+  }
 
   widget->style = gtk_style_attach (widget->style, widget->window);
   gtk_style_set_background (widget->style, menu->bin_window, GTK_STATE_NORMAL);

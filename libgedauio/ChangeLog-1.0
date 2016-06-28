@@ -3,7 +3,7 @@
     * include/geda_menu.h: Remove stray comments, clean-up file.
 
     * src/widgets/geda_menu.c: Reduce scope of i and match in function
-      geda_menu_move_current.
+      geda_menu_move_current, minor reorganization.
 
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
