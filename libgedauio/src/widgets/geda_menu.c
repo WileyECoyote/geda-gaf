@@ -5174,9 +5174,8 @@ static void
 geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
 {
   GedaMenu *menu = GEDA_MENU (menu_shell);
-  int  i;
-  int  l, r, t, b;
-  GtkWidget *match = NULL;
+
+  int l, r, t, b;
 
   if (gtk_widget_get_direction (GTK_WIDGET (menu_shell)) == GTK_TEXT_DIR_RTL)
   {
@@ -5194,6 +5193,9 @@ geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
 
   /* use special table menu key bindings */
   if (menu_shell->active_menu_item && geda_menu_get_n_columns (menu) > 1) {
+
+    GtkWidget *match = NULL;
+    int i;
 
     get_effective_child_attach (menu_shell->active_menu_item, &l, &r, &t, &b);
 
