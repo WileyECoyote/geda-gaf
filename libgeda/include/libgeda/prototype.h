@@ -272,6 +272,7 @@ extern "C" {
          void    geda_bus_object_set_x2               (GedaObject *object, int x);
          void    geda_bus_object_set_y1               (GedaObject *object, int y);
          void    geda_bus_object_set_y2               (GedaObject *object, int y);
+
          void    geda_bus_object_translate            (GedaObject *object, int dx, int dy);
 
 /* o_circle_object.c */
@@ -407,13 +408,24 @@ extern "C" {
 /* o_net_object.c */
          void    geda_net_object_consolidate               (GedaToplevel *toplevel, Page *page);
    GedaObject   *geda_net_object_copy                      (GedaObject *o_current);
+
+          int    geda_net_object_get_x1                    (const GedaObject *object) WARN_UNUSED;
+          int    geda_net_object_get_x2                    (const GedaObject *object) WARN_UNUSED;
+          int    geda_net_object_get_y1                    (const GedaObject *object) WARN_UNUSED;
+          int    geda_net_object_get_y2                    (const GedaObject *object) WARN_UNUSED;
          bool    geda_net_object_is_fully_connected        (GedaObject *object);
          void    geda_net_object_modify                    (GedaObject *object, int x, int y, int whichone);
          void    geda_net_object_mirror                    (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_net_object_new                       (int color, int x1, int y1, int x2, int y2);
           int    geda_net_object_orientation               (GedaObject *object);
+
          void    geda_net_object_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_net_object_refresh_conn_cache        (GedaObject *object);
+         void    geda_net_object_set_x1                    (GedaObject *object, int x);
+         void    geda_net_object_set_x2                    (GedaObject *object, int x);
+         void    geda_net_object_set_y1                    (GedaObject *object, int y);
+         void    geda_net_object_set_y2                    (GedaObject *object, int y);
+
          void    geda_net_object_translate                 (GedaObject *object, int dx, int dy);
 
 /* o_notify.c */
