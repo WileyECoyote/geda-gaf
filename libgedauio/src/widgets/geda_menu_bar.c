@@ -451,20 +451,14 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GedaMenuBar        *menu_bar;
   GedaMenuShell      *menu_shell;
   GedaMenuBarPrivate *priv;
-  GtkWidget          *child;
-  GList              *children;
-  GtkAllocation       remaining_space;
-  GArray             *requested_sizes;
-  unsigned int        border_width;
   int                 toggle_size;
-  unsigned int        i;
 
   g_return_if_fail (GEDA_IS_MENU_BAR (widget));
   g_return_if_fail (allocation != NULL);
 
-  menu_bar = GEDA_MENU_BAR (widget);
+  menu_bar   = GEDA_MENU_BAR (widget);
   menu_shell = GEDA_MENU_SHELL (widget);
-  priv = menu_bar->priv;
+  priv       = menu_bar->priv;
 
   gtk_widget_set_allocation (widget, allocation);
 
@@ -476,21 +470,29 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (menu_shell->children) {
 
+    Glist           *children;
+    GList           *iter;
+    GtkWidget       *child;
     GtkStyleContext *context;
-    GtkStateFlags flags;
-    GtkBorder border;
+    GArray          *requested_sizes;
+    GtkBorder        border;
+    GtkStateFlags    flags;
+    GtkAllocation    remaining_space;
+    unsigned int     border_width;
+    unsigned int     border_widthx2;
 
     context = gtk_widget_get_style_context (widget);
     flags   = gtk_widget_get_state_flags (widget);
 
     gtk_style_context_get_padding (context, flags, &border);
 
-    border_width = gtk_container_get_border_width (GTK_CONTAINER (menu_bar));
+    border_width   = gtk_container_get_border_width (GTK_CONTAINER (menu_bar));
+    border_widthx2 = border_width << 1;
 
-    remaining_space.x = (border_width + border.left);
-    remaining_space.y = (border_width + border.top);
-    remaining_space.width = allocation->width - 2 * border_width - border.left - border.right;
-    remaining_space.height = allocation->height - 2 * border_width - border.top - border.bottom;
+    remaining_space.x      = (border_width + border.left);
+    remaining_space.y      = (border_width + border.top);
+    remaining_space.width  = allocation->width - border_widthx2 - border.left - border.right;
+    remaining_space.height = allocation->height - border_widthx2 - border.top - border.bottom;
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
 
@@ -503,17 +505,22 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     }
 
     requested_sizes = g_array_new (FALSE, FALSE, sizeof (GtkRequestedSize));
+    children        = menu_shell->priv->children;
 
     if (priv->pack_direction == PACK_DIRECTION_LTR ||
-      priv->pack_direction == PACK_DIRECTION_RTL)
+        priv->pack_direction == PACK_DIRECTION_RTL)
     {
-      int size = remaining_space.width;
-      bool ltr = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) == (priv->pack_direction == PACK_DIRECTION_LTR);
+      unsigned int i;
+      int          size;
+      bool         ltr;
 
-      for (children = menu_shell->priv->children; children; children = children->next)
-      {
+      size = remaining_space.width;
+      ltr  = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) == (priv->pack_direction == PACK_DIRECTION_LTR);
+
+      for (iter = list; children; children = children->next) {
+
         GtkRequestedSize request;
-        child = children->data;
+        child = iter->data;
 
         if (!gtk_widget_get_visible (child))
           continue;
@@ -524,7 +531,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
                                                    &request.minimum_size,
                                                    &request.natural_size);
         geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child),
-                                           &toggle_size);
+                                            &toggle_size);
         request.minimum_size += toggle_size;
         request.natural_size += toggle_size;
 
@@ -561,13 +568,16 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     }
     else {
 
-      int size = remaining_space.height;
-      bool ttb = (priv->pack_direction == PACK_DIRECTION_TTB);
+      int    size;
+      bool   ttb;
 
-      for (children = menu_shell->priv->children; children; children = children->next)
-      {
+      size = remaining_space.height;
+      ttb  = (priv->pack_direction == PACK_DIRECTION_TTB);
+
+      for (iter = children; children; children = children->next) {
+
         GtkRequestedSize request;
-        child = children->data;
+        child = iter->data;
 
         if (!gtk_widget_get_visible (child))
           continue;
