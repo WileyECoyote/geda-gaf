@@ -8,6 +8,7 @@ Makefile.in
 test_accel_label
 test_accumulate
 test_bulb
+test_check_menu_item
 test_combobox
 test_combobox_text
 test_completion
@@ -23,3 +24,4 @@ test_menu_bar
 test_menu_item
 test_menu_shell
 test_option_menu
+test_radio_menu_item
