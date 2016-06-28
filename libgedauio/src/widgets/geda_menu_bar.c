@@ -634,20 +634,19 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
 static void
 geda_menu_bar_size_request (GtkWidget      *widget,
-                            GtkOrientation orientation,
-                            int            size,
-                            int           *minimum,
-                            int           *natural)
+                            GtkOrientation  orientation,
+                            int             size,
+                            int            *minimum,
+                            int            *natural)
 {
   GedaMenuBar        *menu_bar;
   GedaMenuBarPrivate *priv;
   GedaMenuShell      *menu_shell;
-  GtkWidget          *child;
   GList              *children;
   GtkStyleContext    *context;
   GtkBorder           border;
   GtkStateFlags       flags;
-  unsigned int        border_width;
+  unsigned int        border_widthx2;
   bool                use_toggle_size;
   bool                use_maximize;
   int                 child_minimum;
@@ -684,7 +683,9 @@ geda_menu_bar_size_request (GtkWidget      *widget,
 
   while (children) {
 
-    child = children->data;
+    GtkWidget *child;
+
+    child    = children->data;
     children = children->next;
 
     if (gtk_widget_get_visible (child)) {
@@ -730,9 +731,10 @@ geda_menu_bar_size_request (GtkWidget      *widget,
     *natural += border.top + border.bottom;
   }
 
-  border_width = gtk_container_get_border_width (GTK_CONTAINER (menu_bar));
-  *minimum += border_width * 2;
-  *natural += border_width * 2;
+  border_widthx2 = gtk_container_get_border_width (GTK_CONTAINER (menu_bar)) << 1;
+
+  *minimum += border_widthx2;
+  *natural += border_widthx2;
 
   if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
 
@@ -743,8 +745,8 @@ geda_menu_bar_size_request (GtkWidget      *widget,
       *minimum += border.left + border.right;
       *natural += border.left + border.right;
     }
-    else
-    {
+    else {
+
       *minimum += border.top + border.bottom;
       *natural += border.top + border.bottom;
     }
@@ -1158,28 +1160,28 @@ geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
 void
 geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 {
-  GtkWidget   *toplevel    = gtk_widget_get_toplevel (GTK_WIDGET (menubar));
+  GtkWidget    *toplevel    = gtk_widget_get_toplevel (GTK_WIDGET (menubar));
   GedaMenuItem *to_activate = NULL;
 
   if (gtk_widget_is_toplevel (toplevel)) {
 
-    GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW (toplevel));
+    GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW(toplevel));
     GList *menubars;
-    GList *current;
 
-    menubars = geda_container_focus_sort (GTK_CONTAINER (toplevel), tmp_menubars,
-                                          dir, GTK_WIDGET (menubar));
+    menubars = geda_container_focus_sort (GTK_CONTAINER(toplevel), tmp_menubars,
+                                          dir, GTK_WIDGET(menubar));
     g_list_free (tmp_menubars);
 
     if (menubars) {
 
-      current = g_list_find (menubars, menubar);
+      GList *current = g_list_find (menubars, menubar);
 
       if (current && current->next) {
 
         GedaMenuShell *new_menushell = GEDA_MENU_SHELL (current->next->data);
-        if (new_menushell->children)
+        if (new_menushell->children) {
           to_activate = new_menushell->children->data;
+        }
       }
     }
 

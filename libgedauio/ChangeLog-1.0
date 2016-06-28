@@ -6,7 +6,9 @@
       geda_menu_move_current, minor reorganization.
 
     * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_size_allocate
-      adding border_widthx2 and reducing scope of variables.
+      adding border_widthx2 and reducing scope of variables. Rename
+      border_width->border_widthx2 and shift left once instead of
+      multiplying twice by in function geda_menu_bar_size_request.
 
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
