@@ -1,3 +1,9 @@
+2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_net.c: Replace geda_net_object_orientation with
+      geda_bus_object_orientation and remove comment, is not okay to
+      interchanges as these accessors validates the input objects.
+
 2016-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_hook.c: Rename i_lock_is_busy->g_lock_is_busy.

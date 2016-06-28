@@ -752,15 +752,15 @@ int o_net_add_busrippers(GschemToplevel *w_current,
   GList  *cl_current;
   double  distance1, distance2;
   double  length;
-  int color;
-  int done;
-  int otherone;
-  int ripper_count = 0;
-  int sign;
-  int first, second;
-  int made_changes = FALSE;
+  int     color;
+  int     done;
+  int     otherone;
+  int     ripper_count = 0;
+  int     sign;
+  int     first, second;
+  int     made_changes  = FALSE;
   const int ripper_size = w_current->bus_ripper_size;
-  int complex_angle = 0;
+  int complex_angle     = 0;
   BUS_RIPPER rippers[2];
 
   if (!GEDA_IS_LINE(net_obj)) {
@@ -796,8 +796,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       GedaBus  *bus_object  = (GedaBus*)ukn_object;
       GedaLine *line_object = (GedaLine*)bus_object;
 
-      /* yes, using the net routine is okay */
-      int bus_orientation = geda_net_object_orientation(ukn_object);
+      int bus_orientation = geda_bus_object_orientation(ukn_object);
       int net_orientation = geda_net_object_orientation(net_obj);
 
       /* find the CONN structure which is associated with this object */
@@ -852,6 +851,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           }
           bus_object->bus_ripper_direction = sign;
         }
+
         /* printf("hor sign: %d\n", sign); */
 
         if (net_obj->line->y[otherone] < line_object->y[0]) {
@@ -886,7 +886,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           rippers[ripper_count].y[0] =
             net_obj->line->y[found_conn->whichone];
           rippers[ripper_count].x[1] =
-            net_obj->line->x[found_conn->whichone] + sign*ripper_size;
+            net_obj->line->x[found_conn->whichone] + sign * ripper_size;
           rippers[ripper_count].y[1] =
             net_obj->line->y[found_conn->whichone] + ripper_size;
           ripper_count++;
@@ -926,7 +926,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           rippers[ripper_count].y[0] =
             net_obj->line->y[found_conn->whichone];
           rippers[ripper_count].x[1] =
-            net_obj->line->x[found_conn->whichone] + sign*ripper_size;
+            net_obj->line->x[found_conn->whichone] + sign * ripper_size;
           rippers[ripper_count].y[1] =
             net_obj->line->y[found_conn->whichone] - ripper_size;
             ripper_count++;
@@ -998,7 +998,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           rippers[ripper_count].x[1] =
             net_obj->line->x[found_conn->whichone] + ripper_size;
           rippers[ripper_count].y[1] =
-            net_obj->line->y[found_conn->whichone] + sign*ripper_size;
+            net_obj->line->y[found_conn->whichone] + sign * ripper_size;
           ripper_count++;
 
           made_changes++;
@@ -1037,7 +1037,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           rippers[ripper_count].x[1] =
             net_obj->line->x[found_conn->whichone] - ripper_size;
           rippers[ripper_count].y[1] =
-            net_obj->line->y[found_conn->whichone] + sign*ripper_size;
+            net_obj->line->y[found_conn->whichone] + sign * ripper_size;
           ripper_count++;
 
           made_changes++;
