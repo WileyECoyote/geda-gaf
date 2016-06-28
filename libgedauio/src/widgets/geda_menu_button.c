@@ -809,20 +809,22 @@ static bool
 geda_menu_button_grab_broken_event (GtkWidget *widget, GdkEventGrabBroken *event)
 {
   GedaMenuButton *button = GEDA_MENU_BUTTON (widget);
-  bool save_in;
 
   /* Simulate a button release without the pointer in the button */
   if (button->button_down) {
 
-      save_in = button->in_button;
-      button->in_button = FALSE;
-      geda_menu_button_released (button);
-      if (save_in != button->in_button) {
+    bool save_in = button->in_button;
 
-          button->in_button = save_in;
-          geda_menu_button_update_state (button);
-      }
+    button->in_button = FALSE;
+
+    geda_menu_button_released (button);
+
+    if (save_in != button->in_button) {
+
+      button->in_button = save_in;
+      geda_menu_button_update_state (button);
     }
+  }
 
   return TRUE;
 }

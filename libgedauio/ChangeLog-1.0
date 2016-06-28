@@ -10,6 +10,9 @@
       border_width->border_widthx2 and shift left once instead of
       multiplying twice by in function geda_menu_bar_size_request.
 
+    * src/widgets/geda_menu_button.c: Reduce scope of save_in in function
+      geda_menu_button_grab_broken_event.
+
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_real_move_scroll so shift
