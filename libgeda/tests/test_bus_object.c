@@ -41,8 +41,8 @@
 
 /** \defgroup test-object-geda-bus Test GEDA Bus object Module
  * @{
- * \brief Group 4 src/object/o_bus_object.c geda_bus_object_
- *  Group 4 == Module/File No.
+ * \brief Group 5 src/object/o_bus_object.c geda_bus_object_
+ *  Group 5 == Module/File No.
  * \par
  *
  *  Test Identifiers:  O  05  88, 88
@@ -397,8 +397,8 @@ check_serialization ()
 
     GedaObject *object0 = geda_bus_object_new(c, x1, y1, x2, y2, d);
 
-
     char *buffer0 = geda_bus_object_to_buffer (object0);
+
     g_object_unref (object0);
 
     if (!buffer0) {
@@ -497,12 +497,12 @@ check_query()
 {
   int result = 0;
 
-  int c   = m_random_number ( 0, MAX_COLORS - 1);
+  int c  = m_random_number ( 0, MAX_COLORS - 1);
   int x1 = m_random_number ( 0,       119800);
   int y2 = m_random_number ( 0,        79800);
   int x2 = m_random_number (x1 + 100, 120000);
   int y1 = m_random_number (y2 + 100,  80000);
-  int d   = m_random_number (0, 1);
+  int d  = m_random_number (0, 1);
 
   GedaObject *object = geda_bus_object_new(c, x1, y1, x2, y2, d);
 
@@ -564,7 +564,7 @@ check_transformer()
     int off = m_random_number (10, 100);
 
     GedaObject *object = geda_bus_object_new(3, x1, y1, x2, y2, 1);
-    GedaLine   *line    = object->line;
+    GedaLine   *line   = object->line;
 
     int nx = x1 + off;
     int ny = y1 + off;

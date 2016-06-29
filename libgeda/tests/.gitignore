@@ -21,6 +21,7 @@ test_line
 test_line_object
 test_list
 test_net
+test_net_object
 test_path
 test_picture
 test_pin
