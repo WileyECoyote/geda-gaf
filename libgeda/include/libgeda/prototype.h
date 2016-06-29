@@ -438,6 +438,7 @@ extern "C" {
 /* o_path_object.c */
    GedaObject   *geda_path_object_copy                     (const GedaObject *o_current);
          bool    geda_path_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+
          void    geda_path_object_modify                   (GedaObject *object, int x, int y, int whichone);
          void    geda_path_object_mirror                   (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_path_object_new                      (int color, const char *path_string);
@@ -448,25 +449,35 @@ extern "C" {
 
 /* o_picture.c */
    GedaObject   *geda_picture_object_copy                  (GedaObject *o_current) WARN_UNUSED;
+
          bool    geda_picture_object_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
          bool    geda_picture_object_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
-         bool    geda_picture_object_is_embedded           (GedaObject *object);
+
    const char   *geda_picture_object_get_data              (GedaObject *object, size_t *length);
+       double    geda_picture_object_get_effective_ratio   (GedaObject *object);
+
    const char   *geda_picture_object_get_filename          (GedaObject *object);
           int    geda_picture_object_get_height            (GedaObject *object);
-          int    geda_picture_object_get_width             (GedaObject *object);
-       double    geda_picture_object_get_effective_ratio   (GedaObject *object);
+        uint8   *geda_picture_object_get_mask_data         (GedaObject *object) WARN_UNUSED;
          bool    geda_picture_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+
+
+unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) WARN_UNUSED;
+          int    geda_picture_object_get_width             (GedaObject *object);
+         bool    geda_picture_object_is_embedded           (GedaObject *object);
+         void    geda_picture_object_mirror                (GedaObject *object, int center_x, int center_y);
          void    geda_picture_object_modify                (GedaObject *object, int x, int y, int whichone);
          void    geda_picture_object_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
-         void    geda_picture_object_mirror                (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_picture_object_new                   (const char *file_content, unsigned int file_length,
                                                             const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
                                                             int embedded) WARN_UNUSED;
          void    geda_picture_object_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+
+         void    geda_picture_object_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+
          bool    geda_picture_object_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
          bool    geda_picture_object_set_from_file         (GedaObject *object, const char *filename, GError **error);
-         void    geda_picture_object_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+
          void    geda_picture_object_translate             (GedaObject *object, int dx, int dy);
 
 #ifdef GDK_PIXBUF_H
@@ -474,8 +485,6 @@ extern "C" {
     GdkPixbuf   *geda_picture_object_get_fallback_pixbuf   (void) WARN_UNUSED;
     GdkPixbuf   *geda_picture_object_get_pixbuf            (GedaObject *object) WARN_UNUSED;
     GdkPixbuf   *geda_picture_object_get_pixbuf_fit        (GedaObject *object, int interpolate) WARN_UNUSED;
-unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) WARN_UNUSED;
-        uint8   *geda_picture_object_get_mask_data         (GedaObject *object) WARN_UNUSED;
 #endif
 
 /* o_pin_object.c */

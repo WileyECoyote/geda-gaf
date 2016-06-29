@@ -214,8 +214,8 @@ char       *geda_path_object_save                (GedaObject *object);
 double      geda_path_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
 
 /* o_picture.c */
-bool        geda_picture_object_get_position     (GedaObject *object, int *x, int *y);
 bool        geda_picture_object_embed            (GedaObject *object);
+bool        geda_picture_object_get_position     (GedaObject *object, int *x, int *y);
 GedaObject *geda_picture_object_read             (const char *first_line, TextBuffer *tb,
                                                   unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *geda_picture_object_save             (GedaObject *object);
