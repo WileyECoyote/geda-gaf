@@ -55,9 +55,9 @@ bool geda_object_embed(GedaToplevel *toplevel, GedaObject *o_current)
   }
 
   /* If o_current is a picture and is not already embedded */
-  if (GEDA_IS_PICTURE(o_current) && !o_picture_is_embedded (o_current) )
+  if (GEDA_IS_PICTURE(o_current) && !geda_picture_object_is_embedded(o_current))
   {
-    page_modified = o_picture_embed (o_current);
+    page_modified = geda_picture_object_embed (o_current);
   }
 
   if (page_modified) {
@@ -108,9 +108,9 @@ void geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
 
   /* If it's a picture and it's embedded */
   if ( GEDA_IS_PICTURE(o_current) &&
-       o_picture_is_embedded (o_current))
+       geda_picture_object_is_embedded (o_current))
   {
-    o_picture_unembed (o_current);
+    geda_picture_object_unembed (o_current);
     page_modified = 1;
   }
 

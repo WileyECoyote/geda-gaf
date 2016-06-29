@@ -292,7 +292,7 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
   GedaObject *obj;
   SCM     result;
 
-  obj   = o_picture_new (NULL, 0, NULL, 0, 0, 0, 0, 0, FALSE, TRUE);
+  obj   = geda_picture_object_new (NULL, 0, NULL, 0, 0, 0, 0, 0, FALSE, TRUE);
   result= edascm_from_object (obj);
 
   /* At the moment, the only pointer to the object is owned by the

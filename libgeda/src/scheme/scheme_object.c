@@ -1732,7 +1732,7 @@ EDA_SCM_DEFINE (object_picture_info, "%picture-info", 1, 0, 0,
               SCM_ARG1, scheme_object_picture_info);
 
   GedaObject *obj = edascm_to_object (obj_s);
-  const char *filename = o_picture_get_filename (obj);
+  const char *filename = geda_picture_object_get_filename (obj);
 
   SCM filename_s = SCM_BOOL_F;
 
@@ -1800,7 +1800,7 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
 
   obj->picture->angle = scm_to_int (angle_s);
   obj->picture->mirrored = scm_is_true (mirror_s);
-  o_picture_modify_all (obj,
+  geda_picture_object_modify_all (obj,
                         scm_to_int (x1_s), scm_to_int (y1_s),
                         scm_to_int (x2_s), scm_to_int (y2_s));
 
@@ -1868,7 +1868,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
 
   geda_object_notify_emit_pre_change (obj);
 
-  status = o_picture_set_from_buffer (obj, filename, buf, len, &error);
+  status = geda_picture_object_set_from_buffer (obj, filename, buf, len, &error);
 
   if (!status) {
     scm_dynwind_unwind_handler ((void (*)(void *)) g_error_free, error,

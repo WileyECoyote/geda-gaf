@@ -934,10 +934,10 @@ static void
 o_grips_start_picture(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
-  w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
-  w_current->pixbuf_filename = geda_utility_string_strdup (o_picture_get_filename (o_current));
+  w_current->current_pixbuf  = geda_picture_object_get_pixbuf (o_current);
+  w_current->pixbuf_filename = geda_strdup (geda_picture_object_get_filename (o_current));
 
-  w_current->pixbuf_wh_ratio = o_picture_get_effective_ratio (o_current);
+  w_current->pixbuf_wh_ratio = geda_picture_object_get_effective_ratio (o_current);
 
   /* (second_wx,second_wy) is the selected corner */
   /* (first_wx, first_wy) is the opposite corner */
@@ -1304,14 +1304,15 @@ fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_
 
       if (w_current->CONTROLKEY) {
         o_picture_invalidate_rubber (w_current);
-        o_picture_modify (o_current, w_current->second_wx,
-                                     w_current->second_wy, w_current->which_grip);
+        geda_picture_object_modify (o_current, w_current->second_wx,
+                                               w_current->second_wy,
+                                               w_current->which_grip);
       }
       else {
-        o_picture_modify_all (o_current, w_current->first_wx,
-                                         w_current->first_wy,
-                                         w_current->second_wx,
-                                         w_current->second_wy);
+        geda_picture_object_modify_all (o_current, w_current->first_wx,
+                                                   w_current->first_wy,
+                                                   w_current->second_wx,
+                                                   w_current->second_wy);
       }
       modified = TRUE;
     }

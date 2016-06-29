@@ -253,7 +253,7 @@ o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_PICTURE):
-          out = o_picture_save(o_current);
+          out = geda_picture_object_save(o_current);
           break;
 
         case(OBJ_PATH):

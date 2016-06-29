@@ -1098,7 +1098,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
       pixbuf_error--;
     }
 
-    pixbuf  = o_picture_get_fallback_pixbuf ();
+    pixbuf  = geda_picture_object_get_fallback_pixbuf ();
     missing = TRUE;
 
     if (pixbuf) {

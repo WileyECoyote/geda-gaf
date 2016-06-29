@@ -447,36 +447,35 @@ extern "C" {
          void    geda_path_object_translate                (GedaObject *object, int x, int y);
 
 /* o_picture.c */
-
-   GedaObject   *o_picture_copy                  (GedaObject *o_current) WARN_UNUSED;
-         bool    o_picture_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_is_embedded           (GedaObject *object);
-   const char   *o_picture_get_data              (GedaObject *object, size_t *length);
-   const char   *o_picture_get_filename          (GedaObject *object);
-          int    o_picture_get_height            (GedaObject *object);
-          int    o_picture_get_width             (GedaObject *object);
-       double    o_picture_get_effective_ratio   (GedaObject *object);
-         bool    o_picture_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
-         void    o_picture_modify                (GedaObject *object, int x, int y, int whichone);
-         void    o_picture_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
-         void    o_picture_mirror                (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_picture_new                   (const char *file_content, unsigned int file_length,
-                                                  const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
-                                                  int embedded)      WARN_UNUSED;
-         void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-         bool    o_picture_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
-         bool    o_picture_set_from_file         (GedaObject *object, const char *filename, GError **error);
-         void    o_picture_rotate                (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_picture_translate             (GedaObject *object, int dx, int dy);
+   GedaObject   *geda_picture_object_copy                  (GedaObject *o_current) WARN_UNUSED;
+         bool    geda_picture_object_export_object         (GedaObject *o_current, const char *filename, const char *type, ...);
+         bool    geda_picture_object_export_orginal        (GedaObject *o_current, const char *filename, const char *type, ...);
+         bool    geda_picture_object_is_embedded           (GedaObject *object);
+   const char   *geda_picture_object_get_data              (GedaObject *object, size_t *length);
+   const char   *geda_picture_object_get_filename          (GedaObject *object);
+          int    geda_picture_object_get_height            (GedaObject *object);
+          int    geda_picture_object_get_width             (GedaObject *object);
+       double    geda_picture_object_get_effective_ratio   (GedaObject *object);
+         bool    geda_picture_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+         void    geda_picture_object_modify                (GedaObject *object, int x, int y, int whichone);
+         void    geda_picture_object_modify_all            (GedaObject *object, int x1, int y1, int x2, int y2);
+         void    geda_picture_object_mirror                (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_picture_object_new                   (const char *file_content, unsigned int file_length,
+                                                            const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
+                                                            int embedded) WARN_UNUSED;
+         void    geda_picture_object_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+         bool    geda_picture_object_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
+         bool    geda_picture_object_set_from_file         (GedaObject *object, const char *filename, GError **error);
+         void    geda_picture_object_rotate                (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_picture_object_translate             (GedaObject *object, int dx, int dy);
 
 #ifdef GDK_PIXBUF_H
-         bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
-    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void) WARN_UNUSED;
-    GdkPixbuf   *o_picture_get_pixbuf            (GedaObject *object) WARN_UNUSED;
-    GdkPixbuf   *o_picture_get_pixbuf_fit        (GedaObject *object, int interpolate) WARN_UNUSED;
-unsigned char   *o_picture_get_rgb_data          (GedaObject *object) WARN_UNUSED;
-        uint8   *o_picture_get_mask_data         (GedaObject *object) WARN_UNUSED;
+         bool    geda_picture_object_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
+    GdkPixbuf   *geda_picture_object_get_fallback_pixbuf   (void) WARN_UNUSED;
+    GdkPixbuf   *geda_picture_object_get_pixbuf            (GedaObject *object) WARN_UNUSED;
+    GdkPixbuf   *geda_picture_object_get_pixbuf_fit        (GedaObject *object, int interpolate) WARN_UNUSED;
+unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) WARN_UNUSED;
+        uint8   *geda_picture_object_get_mask_data         (GedaObject *object) WARN_UNUSED;
 #endif
 
 /* o_pin_object.c */

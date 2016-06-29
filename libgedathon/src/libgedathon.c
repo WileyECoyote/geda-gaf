@@ -2581,7 +2581,7 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
   int mirr = mirror < 0 ? 0 : mirror;
   int emb  = embed  < 0 ? 0 : embed;
 
-  object = o_picture_new (NULL, 0, filepath, x1, y1, x2, y2, ang, mirr, emb);
+  object = geda_picture_object_new (NULL, 0, filepath, x1, y1, x2, y2, ang, mirr, emb);
 
   if (GEDA_IS_PICTURE(object)) {
     add_floating_object(object);

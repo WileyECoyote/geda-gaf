@@ -1244,7 +1244,7 @@ geda_x11_draw_picture (int x, int y, int width, int height)
       mirror = o_pic->mirrored;
     }
     else {
-      pixbuf = o_picture_get_fallback_pixbuf ();
+      pixbuf = geda_picture_object_get_fallback_pixbuf ();
       angle  = 0;
       mirror = False;
     }

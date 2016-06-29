@@ -400,7 +400,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       case(OBJ_PICTURE):
-        o_picture_print(toplevel, fp, o_current, origin_x, origin_y);
+        geda_picture_object_print(toplevel, fp, o_current, origin_x, origin_y);
         break;
 
       default:

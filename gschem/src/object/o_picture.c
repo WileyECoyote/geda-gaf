@@ -93,11 +93,11 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
     GedaObject *new_obj;
 
     /* Create a new picture object */
-    new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
-                            picture_left, picture_top,
-                            picture_left + picture_width,
-                            picture_top - picture_height,
-                            0, FALSE, FALSE);
+    new_obj = geda_picture_object_new(NULL, 0, w_current->pixbuf_filename,
+                                      picture_left, picture_top,
+                                      picture_left + picture_width,
+                                      picture_top - picture_height,
+                                      0, FALSE, FALSE);
 
     s_page_append_object (toplevel->page_current, new_obj);
 
@@ -225,7 +225,7 @@ o_picture_exchange (GschemToplevel *w_current,
 
     if (o_current->type == OBJ_PICTURE) {
 
-      if (o_picture_set_from_file (o_current, filename, error)) {
+      if (geda_picture_object_set_from_file (o_current, filename, error)) {
         o_invalidate_object (w_current, o_current); /* Draw new picture */
       }
       else {
@@ -245,7 +245,7 @@ o_picture_exchange (GschemToplevel *w_current,
 
       GedaObject *object = (GedaObject*) iter->data;
 
-      if (o_picture_set_from_file (object, filename, error)) {
+      if (geda_picture_object_set_from_file (object, filename, error)) {
         o_invalidate_object (w_current, object); /* Draw new picture */
       }
       else {
@@ -287,7 +287,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
   int           count;
 
   if (o_current && o_current->type == OBJ_PICTURE) {
-    oldfilename = o_picture_get_filename(o_current);
+    oldfilename = geda_picture_object_get_filename(o_current);
   }
   else {
     oldfilename = NULL;
@@ -446,10 +446,10 @@ o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
     orgin_size = gtk_toggle_button_get_active ((GtkToggleButton*)cb_aspect);
 
     if (orgin_size) {
-      result = o_picture_export_orginal(o_current, filename, file_ext, NULL);
+      result = geda_picture_object_export_orginal(o_current, filename, file_ext, NULL);
     }
     else {
-      result = o_picture_export_object(o_current, filename, file_ext, NULL);
+      result = geda_picture_object_export_object(o_current, filename, file_ext, NULL);
     }
 
     if (!result) {

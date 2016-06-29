@@ -213,15 +213,14 @@ GedaObject *geda_path_object_read                (const char *first_line, TextBu
 char       *geda_path_object_save                (GedaObject *object);
 double      geda_path_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
 
-
 /* o_picture.c */
-bool        o_picture_get_position         (GedaObject *object, int *x, int *y);
-bool        o_picture_embed                (GedaObject *object);
-GedaObject *o_picture_read                 (const char *first_line, TextBuffer *tb,
-                                            unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_picture_save                 (GedaObject *object);
-double      o_picture_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
-bool        o_picture_unembed              (GedaObject *object);
+bool        geda_picture_object_get_position     (GedaObject *object, int *x, int *y);
+bool        geda_picture_object_embed            (GedaObject *object);
+GedaObject *geda_picture_object_read             (const char *first_line, TextBuffer *tb,
+                                                  unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_picture_object_save             (GedaObject *object);
+double      geda_picture_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
+bool        geda_picture_object_unembed          (GedaObject *object);
 
 /* o_pin_object.c */
 bool        o_pin_get_position             (GedaObject *object, int *x, int *y);
