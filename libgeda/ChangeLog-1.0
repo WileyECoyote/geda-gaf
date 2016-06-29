@@ -2,6 +2,9 @@
 
     * src/object/o_picture.c: Rename functions with geda_object prefix.
 
+    * src/object/o_net_object.c: Revise geda_net_object_orientation to
+      return NEITHER if object is not a GedaLine.
+
 2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Add coordinate getters and setters.

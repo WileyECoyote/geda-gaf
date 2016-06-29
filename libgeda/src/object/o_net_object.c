@@ -582,11 +582,11 @@ geda_net_object_orientation(GedaObject *object)
     if (object->line->x[0] == object->line->x[1]) {
       return (VERTICAL);
     }
-
-    return (NEITHER);
   }
-  geda_object_error(__func__, object, GEDA_OBJECT_LINE);
-  return -1;
+  else {
+    geda_object_error(__func__, object, GEDA_OBJECT_LINE);
+  }
+  return(NEITHER);
 }
 
 /*!
