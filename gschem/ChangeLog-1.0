@@ -1,3 +1,8 @@
+2016-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_place.c: Revise o_place_rotate to "unrotate" text
+      object if the ALT key is down.
+
 2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net.c: Replace geda_net_object_orientation with

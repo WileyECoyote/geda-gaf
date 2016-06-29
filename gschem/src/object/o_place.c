@@ -442,13 +442,27 @@ void o_place_rotate (GschemToplevel *w_current)
     int wy = w_current->first_wy;
 
     o_place_invalidate_rubber (w_current, FALSE);
+
     geda_rotate_list (list, wx, wy, 90);
+
+    if (w_current->ALTKEY) {
+
+      GList *alist;
+
+      alist = geda_object_get_objects_by_type(list, OBJ_TEXT);
+
+      if (alist) {
+
+        geda_rotate_list (alist, 0, 0, -90);
+
+        g_list_free(alist);
+      }
+    }
 
     /* Run rotate-objects-hook */
     g_hook_run_object_list (w_current, ROTATE_OBJECTS_HOOK, list);
 
     o_place_invalidate_rubber (w_current, TRUE);
-
   }
 }
 
