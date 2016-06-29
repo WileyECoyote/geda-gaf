@@ -461,7 +461,7 @@ extern "C" {
         uint8   *geda_picture_object_get_mask_data         (GedaObject *object) WARN_UNUSED;
          bool    geda_picture_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
 
-
+       double    geda_picture_object_get_ratio             (GedaObject *object);
 unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) WARN_UNUSED;
           int    geda_picture_object_get_width             (GedaObject *object);
          bool    geda_picture_object_is_embedded           (GedaObject *object);
