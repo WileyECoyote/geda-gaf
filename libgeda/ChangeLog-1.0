@@ -5,6 +5,8 @@
     * src/object/o_net_object.c: Revise geda_net_object_orientation to
       return NEITHER if object is not a GedaLine.
 
+    * tests/test_net_object.c: Add new test module for geda_net_object.
+
 2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Add coordinate getters and setters.
