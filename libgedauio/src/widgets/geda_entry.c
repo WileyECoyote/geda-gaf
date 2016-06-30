@@ -997,9 +997,9 @@ geda_entry_class_init(void *g_class, void *class_data)
   params = g_param_spec_int ("input-case",
                            _("Set case of input"), /* nick name */
                            _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
-                              0, /* Min value */
-                              2, /* Max value */
-                              2, /* default_value */
+                              LOWER_CASE, /* Min value */
+                              BOTH_CASES, /* Max value */
+                              BOTH_CASES, /* default_value */
                               G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_INPUT_CASE, params);

@@ -1,3 +1,8 @@
+2016-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Revise input-case param spec to use
+      defines for text cap (case) style instead of hard-coded integers.
+
 2016-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu.h: Remove stray comments, clean-up file.
