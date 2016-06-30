@@ -1084,14 +1084,14 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       /* menu mode */
       allocation->x      += shadow_width;
       allocation->y      += shadow_height;
-      allocation->width  -= shadow_width << 1; /* Multipy by 2 */
+      allocation->width  -= shadow_width << 1; /* Multiply by 2 */
       allocation->height -= shadow_height << 1;
 
       gtk_widget_size_allocate (priv->button, allocation);
 
       /* set some things ready */
-      border_width = GTK_CONTAINER (priv->button)->border_width;
-      xthickness   = priv->button->style->xthickness;
+      border_width       = GTK_CONTAINER (priv->button)->border_width;
+      xthickness         = priv->button->style->xthickness;
       ythickness   = priv->button->style->ythickness;
 
       child_alloc.x      = allocation->x;
