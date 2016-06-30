@@ -37,9 +37,9 @@
  *  module.
  */
 
-#define TOBJECT "GedaBus"
+#define TOBJECT "GedaNet"
 
-/** \defgroup test-object-geda-net Test GEDA Bus object Module
+/** \defgroup test-object-geda-net Test GEDA Net object Module
  * @{
  * \brief Group 13 src/object/o_net_object.c geda_net_object_
  *  Group 13 == Module/File No.
