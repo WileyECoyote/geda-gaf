@@ -20,7 +20,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_picture.c
+/*! \file o_picture_object.c
  *  \brief Functions for the Picture GedaObjects
  */
 

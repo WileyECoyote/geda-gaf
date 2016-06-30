@@ -2,6 +2,8 @@
 
     * src/geda/geda_arc.c: Revise/edit DOxygen comments.
 
+    * src/object/o_picture_object.c: Rename file o_picture->o_picture_object.
+
     * tests/test_circle_object.c: Add check_query, check circle_get_position.
 
     * tests/test_picture_object.c: Add test module for GedaPicture using
