@@ -1,3 +1,7 @@
+2016-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise comments for signals and properties.
+
 2016-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Revise input-case param spec to use

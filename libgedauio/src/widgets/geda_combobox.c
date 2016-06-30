@@ -1817,14 +1817,14 @@ geda_combo_box_class_init(void *class, void *class_data)
   geda_combo_box_parent_class = g_type_class_peek_parent (class);
 
   /* signals */
-  /**
-   * GedaComboBox::changed:
-   *
-   * The changed signal is emitted when the active
-   * item is changed. This can be due to the user selecting
-   * a different item from the list, or due to a
-   * call to geda_combo_box_set_active_iter().
-   * It will NOT be emitted while typing into a GedaComboBoxEntry.
+  /*!
+   * signal "changed": GedaComboBox::changed:
+   * \brief emitted when active item is changed.
+   * The changed signal is emitted  when the active item is changed.
+   * This can be due to the user selecting a different item from the
+   * list, or due to a call to geda_combo_box_set_active_iter().
+   * The signal is NOT emitted when the user is typing into a
+   * GedaComboBoxEntry entry field.
    */
   combo_box_signals[CHANGED] =
       g_signal_new ("changed",
@@ -1835,7 +1835,7 @@ geda_combo_box_class_init(void *class, void *class_data)
                     g_cclosure_marshal_VOID__VOID,
                     G_TYPE_NONE, 0);
 
-  /*! property "move-active": GedaComboBox::move-active
+  /*! signal "move-active": GedaComboBox::move-active
    *  \brief emitted to move the active selection.
    */
   combo_box_signals[MOVE_ACTIVE] =
@@ -1848,13 +1848,11 @@ geda_combo_box_class_init(void *class, void *class_data)
                                   G_TYPE_NONE, 1,
                                   GTK_TYPE_SCROLL_TYPE);
 
-  /**
-   * GedaComboBox::popup:
-   *
+  /*!
+   * signal "popup": GedaComboBox::popup:
+   * \brief emitted to popup the combo box list
    * The GedaComboBox::popup signal is emitted to popup the combo box list.
-   *
    * The default binding for this signal is Alt+Down.
-   *
    */
   combo_box_signals[POPUP] =
       g_signal_new_class_handler ("popup",
@@ -1864,9 +1862,9 @@ geda_combo_box_class_init(void *class, void *class_data)
                                   NULL, NULL,
                                   g_cclosure_marshal_VOID__VOID,
                                   G_TYPE_NONE, 0);
-  /**
-   * GedaComboBox::popdown:
-   *
+  /*!
+   * signal "popdown": GedaComboBox::popdown:
+   * \brief emitted to popdown the combo box list
    * The GedaComboBox::popdown signal is emitted to popdown the combo box list.
    *
    * The default bindings for this signal are Alt+Up and Escape.
@@ -1880,28 +1878,25 @@ geda_combo_box_class_init(void *class, void *class_data)
                                   NULL,
                                   G_TYPE_BOOLEAN, 0);
 
-  /**
-   * GedaComboBox::format-entry-text:
-   * combo: the object which received the signal
-   * path: the GtkTreePath string from the combo box's current model to format text
+  /*!
+   * signal "format-entry-text":  GedaComboBox::format-entry-text:
+   * \brief Allows display of formated entry
+   * A signal to change how the text in a combo box's entry is displayed. The
+   * signal is only allplicable to combo boxes that are created with an entry
+   * (See GedaComboBox:has-entry).
    *
-   * For combo boxes that are created with an entry (See GedaComboBox:has-entry).
+   * Connect a signal handler which returns an allocated string representing
+   * path.  That string will then be used to set the text in the combo box's
+   * entry. The default signal handler uses the text from the GedaComboBox::
+   * entry-text-column model column.
    *
-   * A signal which allows you to change how the text displayed in a combo box's
-   * entry is displayed.
-   *
-   * Connect a signal handler which returns an allocated string representing path.
-   * That string will then be used to set the text in the combo box's entry. The
-   * default signal handler uses the text from the GedaComboBox::entry-text-column
-   * model column.
-   *
-   * Here's an example signal handler which fetches data from the model and
+   * Here is an example signal handler which fetches data from the model and
    * displays it in the entry.
    * |[
    * static char*
    * format_entry_text_callback (GedaComboBox *combo,
-   *                             const char  *path,
-   *                             void        *user_data)
+   *                             const char   *path,
+   *                             void         *user_data)
    * {
    *   GtkTreeIter  iter;
    *   GtkTreeModel model;
@@ -1918,8 +1913,12 @@ geda_combo_box_class_init(void *class, void *class_data)
    * }
    * ]|
    *
-   * \return value: (transfer full): a newly allocated string representing path
-   * for the current GedaComboBox model.
+   * param combo: the object which received the signal
+   * param path:  the GtkTreePath string from the combo box's current model
+   *              to format text
+   *
+   * \returns a newly allocated string representing path for the current
+   *          GedaComboBox model.
    */
   combo_box_signals[FORMAT_ENTRY_TEXT] =
       g_signal_new ("format-entry-text",
