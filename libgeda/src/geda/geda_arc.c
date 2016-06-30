@@ -69,8 +69,9 @@ enum {
 
 static GObjectClass *geda_arc_parent_class = NULL;
 
-/*! \brief Geda Arc Bounds
- *  \par Function Description
+/*!
+ * \brief Geda Arc Bounds
+ * \par Function Description
  *  This function calculates the smallest rectangle the arc can be drawn
  *  into. The <B>Object</B> pointed by \a object is assumed to be an arc.
  *  The <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B> pointed
@@ -80,7 +81,7 @@ static GObjectClass *geda_arc_parent_class = NULL;
  *  and the coordinates of the center. They forms a first rectangle but
  * (depending on the start angle and the sweep of the arc) not the right.
  *
- *  \param [in]  object
+ * \param [in]  object
  */
 static int
 geda_arc_bounds(GedaObject *object)
@@ -149,14 +150,14 @@ geda_arc_bounds(GedaObject *object)
   return TRUE;
 }
 
-/*! \brief Type instance initializer for Arc
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for Arc
+ * \par Function Description
  *  Type instance initializer for Arc, initializes a new empty
  *  Arc object by setting pointers to NULL and numbers to zero,
  *
- *  \param [in] instance The Arc structure being initialized,
- *  \param [in] class    The Arc class we are initializing.
+ * \param [in] instance The Arc structure being initialized,
+ * \param [in] class    The Arc class being initialized.
  */
 static void
 geda_arc_instance_init(GTypeInstance *instance, void *class)
@@ -195,8 +196,9 @@ geda_arc_dispose(GObject *object)
   G_OBJECT_CLASS(geda_arc_parent_class)->dispose(object);
 }
 
-/*! \brief GedaArc Finalization Function
- *  \par Function Description
+/*!
+ * \brief GedaArc Finalization Function
+ * \par Function Description
  *   This function invalidates the Arc's markers and then chains up to
  *   the parent's finalize handler. Once invalidated, GEDA_IS_ARC will
  *   fail.
@@ -375,14 +377,14 @@ set_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-/*! \brief Type class initializer for Arc
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for Arc
+ * \par Function Description
  *  Type class initializer for Arc. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Arc class we are initialising
- *  \param [in]  class_data   The Arc structure associated with the class
+ * \param [in]  g_class      The Arc class being initialising
+ * \param [in]  class_data   The Arc structure associated with the class
  */
 static void
 geda_arc_class_init(void *g_class, void *class_data)
@@ -568,16 +570,16 @@ geda_arc_class_init(void *g_class, void *class_data)
   g_object_class_install_property (object_class, PROP_FILL_PITCH2, params);
 }
 
-/*! \brief Function to retrieve GedaArc's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaArc's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaArc Type identifier. When first called,
  *  the function registers a #GedaArc in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a GedaArc and returns
  *  the unsigned integer value. The retained value is returned on
  *  all Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with GedaArc.
+ * \return GedaObjectType identifier associated with GedaArc.
  */
 GedaObjectType
 geda_arc_get_type (void)
@@ -610,12 +612,12 @@ geda_arc_get_type (void)
   return geda_arc_type;
 }
 
-/*! \brief Returns a pointer to a new Arc object
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Arc object
+ * \par Function Description
  *  Returns a pointer to a new Arc object.
  *
- *  \return pointer to the new Arc object.
+ * \return pointer to the new Arc object.
  */
 GedaObject*
 geda_arc_new (void)
@@ -946,7 +948,7 @@ geda_arc_get_radius (const GedaArc *arc) {
  * \brief Retrieve start_angle of a GedaArc
  * \par Function Description
  *  Returns the current start_angle of \a arc if and only if
- * \a arc is a valid GedaArc object.
+ *  \a arc is a valid GedaArc object.
  *
  * \return integer value of start_angle or 0 if \a arc is invalid.
  *
