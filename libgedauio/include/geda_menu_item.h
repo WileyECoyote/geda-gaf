@@ -67,16 +67,16 @@ struct _GedaMenuItem
  * \class GedaMenuItemClass include/geda_menu_item.h "geda_menu_item.h"
  * \brief GedaMenuItem for Menu Objects.
  * parent_class: The parent class.
- * hide_on_activate: If %TRUE, then we should always
- *    hide the menu when the %GedaMenuItem is activated. Otherwise,
- *    it is up to the caller.
+ * hide_on_activate: If %TRUE, then we should always hide the menu when
+ *                   the %GedaMenuItem is activated. Otherwise, it is up
+ *                   to the caller.
  * activate: Signal emitted when the item is activated.
  * activate_item: Signal emitted when the item is activated, but also
- *    if the menu item has a submenu.
+ *                if the menu item has a submenu.
  * toggle_size_request:
  * toggle_size_allocate:
- * set_label: Sets @text on the #GedaMenuItem label
- * get_label: Gets @text from the #GedaMenuItem label
+ * set_label: Sets text on the #GedaMenuItem label
+ * get_label: Gets text from the #GedaMenuItem label
  * select: Signal emitted when the item is selected.
  * deselect: Signal emitted when the item is deselected.
  */
@@ -102,7 +102,7 @@ struct _GedaMenuItemClass
                                  int           allocation);
   void (* set_label)            (GedaMenuItem *menu_item,
                                  const char   *label);
-  const char  * (* get_label)   (GedaMenuItem *menu_item);
+  const char * (* get_label)    (GedaMenuItem *menu_item);
 
   void (* select)               (GedaMenuItem *menu_item);
   void (* deselect)             (GedaMenuItem *menu_item);

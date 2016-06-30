@@ -187,15 +187,16 @@ geda_key_hash_free (GedaKeyHash *key_hash)
   g_free (key_hash);
 }
 
-/**
- * geda_key_hash_add_entry:
- * @key_hash: a #GedaKeyHash
- * @keyval: key symbol for this binding
- * @modifiers: modifiers for this binding
- * @value: value to insert in the key hash
- *
+/*!
+ * \brief Add Hash Entry
+ * \par Function Description
  * Inserts a pair of key symbol and modifier mask into the key hash.
- **/
+ *
+ * \param[in] key_hash   a #GedaKeyHash
+ * \param[in] keyval     key symbol for this binding
+ * \param[in] modifiers  modifiers for this binding
+ * \param[in] value      value to insert in the key hash
+ */
 void
 geda_key_hash_add_entry (GedaKeyHash     *key_hash,
                          unsigned int     keyval,
@@ -217,14 +218,14 @@ geda_key_hash_add_entry (GedaKeyHash     *key_hash,
   }
 }
 
-/**
- * geda_key_hash_remove_entry:
- * @key_hash: a #GedaKeyHash
- * @value: value previously added with geda_key_hash_add_entry()
+/*!
+ * \brief Remove Hash Entry
+ * \par Function Description
+ *  Removes a value previously added to the key hash.
  *
- * Removes a value previously added to the key hash with
- * geda_key_hash_add_entry().
- **/
+ * \param[in] key_hash  a #GedaKeyHash
+ * \param[in] value     value to be removed from hash
+ */
 void
 geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
 {
@@ -351,15 +352,9 @@ keyval_in_group (GdkKeymap  *keymap, unsigned int keyval, int group)
   return FALSE;
 }
 
-/**
- * geda_key_hash_lookup:
- * @key_hash: a #GedaKeyHash
- * @hardware_keycode: hardware keycode field from a #GdkEventKey
- * @state: state field from a #GdkEventKey
- * @mask: mask of modifiers to consider when matching against the
- *        modifiers in entries.
- * @group: group field from a #GdkEventKey
- *
+/*!
+ * \brief Search for Event in Hash
+ * \par Function Description
  * Looks up the best matching entry or entries in the hash table for
  * a given event. The results are sorted so that entries with less
  * modifiers come before entries with more modifiers.
@@ -369,11 +364,18 @@ keyval_in_group (GdkKeymap  *keymap, unsigned int keyval, int group)
  * does not). As long there are any exact matches, only exact matches
  * are returned. If there are no exact matches, fuzzy matches will be
  * returned, as long as they are not shadowing a possible exact match.
- * This means that fuzzy matches won't be considered if their keyval is
- * present in the current group.
+ * This means that fuzzy matches will not be considered if their keyval
+ * is present in the current group.
  *
- * Return value: A #GSList of matching entries.
- **/
+ * \param[in] key_hash          a #GedaKeyHash
+ * \param[in] hardware_keycode  hardware keycode field from a GdkEventKey
+ * \param[in] state             state field from a GdkEventKey
+ * \param[in] mask              mask of modifiers to consider when matching
+ *                              against the modifiers in entries.
+ * \param[in] group             group field from a GdkEventKey
+ *
+ * \returns A GSList of matching entries.
+ */
 GSList *
 geda_key_hash_lookup (GedaKeyHash     *key_hash,
                       uint16           hardware_keycode,
@@ -520,19 +522,20 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
   return results;
 }
 
-/**
- * geda_key_hash_lookup_keyval:
- * @key_hash: a #GedaKeyHash
- * @event: a #GtkEvent
- *
+/*!
+ * \brief Search for Key in Hash
+ * \par Function Description
  * Looks up the best matching entry or entries in the hash table for a
  * given keyval/modifiers pair. It's better to use
- * geda_key_hash_lookup() if you have the original #GdkEventKey
+ * geda_key_hash_lookup() if you have the original GdkEventKey
  * available.  The results are sorted so that entries with less
  * modifiers come before entries with more modifiers.
  *
- * Return value: A #GSList of all matching entries.
- **/
+ * \param[in] key_hash a #GedaKeyHash
+ * \param[in] event    a GtkEvent
+ *
+ * \returns A GSList of all matching entries.
+ */
 GSList *
 geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
                              unsigned int    keyval,

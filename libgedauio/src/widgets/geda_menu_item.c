@@ -448,9 +448,9 @@ geda_menu_item_destroy (GtkWidget *widget)
 }
 #endif
 
-/*! \brief GedaMenuSeparator Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaMenuSeparator Class Initializer
+ * \par Function Description
  *  Function is called to initialize the class instance.
  *
  * \param [in] class      A GedaMenuSeparatorClass Object
@@ -1009,7 +1009,7 @@ activatable_update_label (GedaMenuItem *menu_item, GtkAction *action)
  *
  * This function is used by #GtkAction.
  *
- * Returns: whether @menu is empty.
+ * \returns whether @menu is empty.
  */
 static bool
 geda_menu_is_empty (GtkWidget *menu)
@@ -1192,12 +1192,13 @@ geda_menu_item_new (void)
 }
 
 /*!
- * \brief geda_menu_item_new_with_label:
- * @label: the text for the label
+ * \brief geda_menu_item_new_with_label
+ * \par Function Description
+ *  Creates a new #GedaMenuItem whose child is a #GedaLabel.
  *
- * Creates a new #GedaMenuItem whose child is a #GtkLabel.
+ * \param [in] label the text for the label
  *
- * Returns: the newly created #GedaMenuItem
+ * \returns the newly created #GedaMenuItem
  */
 GtkWidget*
 geda_menu_item_new_with_label (const char *label)
@@ -1208,15 +1209,16 @@ geda_menu_item_new_with_label (const char *label)
 
 /*!
  * \brief geda_menu_item_new_with_mnemonic:
- * @label: The text of the button, with an underscore in front of the
- *     mnemonic character
+ * \par Function Description
+ *  Creates a new #GedaMenuItem containing a label.
  *
- * Creates a new #GedaMenuItem containing a label.
+ *  The label will be created using gtk_label_new_with_mnemonic(),
+ *  so underscores in \a label indicate the mnemonic for the menu item.
  *
- * The label will be created using gtk_label_new_with_mnemonic(),
- * so underscores in @label indicate the mnemonic for the menu item.
+ * \param label The text of the button, with an underscore in front of the
+ *              mnemonic character
  *
- * Returns: a new #GedaMenuItem
+ * \returns a new #GedaMenuItem
  */
 GtkWidget*
 geda_menu_item_new_with_mnemonic (const char *label)
@@ -1234,12 +1236,13 @@ geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_set_submenu:
- * @menu_item: a #GedaMenuItem
- * @submenu: (allow-none): the submenu, or %NULL
+ * \brief geda_menu_item_set_submenu
+ * \par Function Description
+ *  Sets or replaces the menu item’s submenu, or removes it when a %NULL
+ *  submenu is passed.
  *
- * Sets or replaces the menu item’s submenu, or removes it when a %NULL
- * submenu is passed.
+ * \param [in] menu_item a #GedaMenuItem
+ * \param [in] submenu   the submenu, or %NULL
  */
 void
 geda_menu_item_set_submenu (GedaMenuItem *menu_item,
@@ -1271,13 +1274,14 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_submenu:
- * @menu_item: a #GedaMenuItem
+ * \brief geda_menu_item_get_submenu
+ * \par Function Description
+ *  Gets the submenu underneath this menu item, if any.
+ *  See geda_menu_item_set_submenu().
  *
- * Gets the submenu underneath this menu item, if any.
- * See geda_menu_item_set_submenu().
+ * \param [in] menu_item: a #GedaMenuItem
  *
- * Returns: (transfer none): submenu for this menu item, or %NULL if none
+ * \returns submenu for this menu item, or %NULL if none
  */
 GtkWidget *
 geda_menu_item_get_submenu (GedaMenuItem *menu_item)
@@ -1311,9 +1315,10 @@ geda_menu_item_set_submenu_placement (GedaMenuItem     *menu_item,
 
 /*!
  * \brief geda_menu_item_select:
- * @menu_item: the menu item
+ * \par Function Description
+ *  Emits the #GedaMenuItem::select signal on the given item.
  *
- * Emits the #GedaMenuItem::select signal on the given item.
+ * \param [in] menu_item the menu item
  */
 void
 geda_menu_item_select (GedaMenuItem *menu_item)
@@ -1325,9 +1330,10 @@ geda_menu_item_select (GedaMenuItem *menu_item)
 
 /*!
  * \brief geda_menu_item_deselect:
- * @menu_item: the menu item
+ * \par Function Description
+ *  Emits the #GedaMenuItem::deselect signal on the given item.
  *
- * Emits the #GedaMenuItem::deselect signal on the given item.
+ * \param [in] menu_item: the menu item
  */
 void
 geda_menu_item_deselect (GedaMenuItem *menu_item)
@@ -1339,9 +1345,10 @@ geda_menu_item_deselect (GedaMenuItem *menu_item)
 
 /*!
  * \brief geda_menu_item_activate:
- * @menu_item: the menu item
+ * \par Function Description
+ *  Emits the #GedaMenuItem::activate signal on the given item
  *
- * Emits the #GedaMenuItem::activate signal on the given item
+ * \param [in] menu_item: the menu item
  */
 void
 geda_menu_item_activate (GedaMenuItem *menu_item)
@@ -1353,10 +1360,11 @@ geda_menu_item_activate (GedaMenuItem *menu_item)
 
 /*!
  * \brief geda_menu_item_toggle_size_request:
- * @menu_item: the menu item
- * @requisition: (inout): the requisition to use as signal data.
+ * \par Function Description
+ *  Emits the #GedaMenuItem::toggle-size-request signal on the given item.
  *
- * Emits the #GedaMenuItem::toggle-size-request signal on the given item.
+ * \param [in] menu_item   the menu item
+ * \param [in] requisition the requisition to use as signal data.
  */
 void
 geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
@@ -1368,15 +1376,16 @@ geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_toggle_size_allocate:
- * @menu_item: the menu item.
- * @allocation: the allocation to use as signal data.
+ * \brief geda_menu_item_toggle_size_allocate
+ * \par Function Description
+ *  Emits the #GedaMenuItem::toggle-size-allocate signal on the given item.
  *
- * Emits the #GedaMenuItem::toggle-size-allocate signal on the given item.
+ * \param [in] menu_item        the menu item.
+ * \param [in] allocation  the allocation to use as signal data.
  */
 void
 geda_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
-                                     int         allocation)
+                                     int           allocation)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
 
@@ -3244,11 +3253,11 @@ geda_menu_item_refresh_accel_path (GedaMenuItem   *menu_item,
 
 /*!
  * \brief geda_menu_item_set_accel_path:
- * Set the accelerator path on @menu_item, through which runtime
+ * Set the accelerator path on \a menu_item, through which runtime
  * changes of the menu item’s accelerator caused by the user can be
  * identified and saved to persistent storage (see gtk_accel_map_save()
  * on this). To set up a default accelerator for this menu item, call
- * gtk_accel_map_add_entry() with the same @accel_path. See also
+ * gtk_accel_map_add_entry() with the same \a accel_path. See also
  * gtk_accel_map_add_entry() on the specifics of accelerator paths,
  * and geda_menu_set_accel_path() for a more convenient variant of
  * this function.
@@ -3260,7 +3269,7 @@ geda_menu_item_refresh_accel_path (GedaMenuItem   *menu_item,
  * Note that you do need to set an accelerator on the parent menu with
  * geda_menu_set_accel_group() for this to work.
  *
- * Note that @accel_path string will be stored in a #GQuark.
+ * Note that \a accel_path string will be stored in a GQuark.
  * Therefore, if you pass a static string, you can save some memory
  * by interning it first with g_intern_static_string().
  *
@@ -3331,7 +3340,7 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
 
 /*!
  * \brief geda_menu_item_get_accel_path:
- *  Retrieve the accelerator path that was previously set on @menu_item.
+ *  Retrieve the accelerator path that was previously set on \a menu_item.
  *  See geda_menu_item_set_accel_path() for details.
  *
  * \param [in] menu_item a GedaMenuItem
@@ -3435,11 +3444,11 @@ geda_menu_item_set_label (GedaMenuItem *menu_item,
 
 /*!
  * \brief geda_menu_item_get_label:
- *  Sets @text on the @menu_item label
+ *  Gets text on the \a menu_item label
  *
  * \param [in] menu_item a GedaMenuItem
  *
- * \returns The text in the @menu_item label. This is the internal
+ * \returns The text in the \a menu_item label. This is the internal
  *          string used by the label, and must not be modified.
  */
 const char *
@@ -3506,11 +3515,11 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 
 /*!
  * \brief geda_menu_item_set_reserve_indicator:
- * Sets whether the @menu_item should reserve space for the submenu
- * indicator, regardless if it actually has a submenu or not.
+ *  Sets whether the \a menu_item should reserve space for the submenu
+ *  indicator, regardless if it actually has a submenu or not.
  *
- * There should be little need for applications to call
- * this functions.
+ *  There should be little need for applications to call
+ *  this functions.
  *
  * \param [in] menu_item a GedaMenuItem
  * \param [in] reserve   a the new value
@@ -3534,13 +3543,12 @@ geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item,
 
 /*!
  * \brief geda_menu_item_get_reserve_indicator:
- * Returns whether the @menu_item reserves space for
- * the submenu indicator, regardless if it has a submenu
- * or not.
+ *  Returns whether the \a menu_item reserves space for the
+ *  submenu indicator, regardless if it has a submenu or not.
  *
  * \param [in] menu_item a GedaMenuItem
  *
- * \returns %TRUE if @menu_item always reserves space for the
+ * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
  */
 bool

@@ -364,7 +364,7 @@ geda_radio_menu_item_class_init (GedaRadioMenuItemClass *klass)
   gobject_class->get_property = geda_radio_menu_item_get_property;
 
   /*!
-   * \property GedaRadioMenuItem::group
+   * property GedaRadioMenuItem::group
    * The radio menu item whose group this widget belongs to.
    */
   g_object_class_install_property (gobject_class,
@@ -380,7 +380,7 @@ geda_radio_menu_item_class_init (GedaRadioMenuItemClass *klass)
   menu_item_class->activate = geda_radio_menu_item_activate;
 
   /*!
-   * GedaRadioMenuItem::group-changed:
+   * property GedaRadioMenuItem::group-changed:
    * Emitted when the group of radio menu items that a radio menu item belongs
    * to changes. This is emitted when a radio menu item switches from
    * being alone to being part of a group of 2 or more menu items, or

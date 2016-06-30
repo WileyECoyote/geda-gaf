@@ -50,7 +50,7 @@ typedef struct _GedaMenuClass   GedaMenuClass;
 typedef struct _GedaMenuPriv    GedaMenuPriv;
 
 /*!
- * \typedef GedaMenuPositionFunc
+ * \typedef MenuPositionFunc
  * A user function supplied when calling geda_menu_popup() which
  * controls the positioning of the menu when it is displayed. The
  * function sets the \a x and \a y parameters to the coordinates where

@@ -399,7 +399,7 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * If %TRUE, the label set in the menuitem is used as a
    * stock id to select the stock item for the item.
    *
-   **/
+   */
   g_object_class_install_property (gobject_class,
                                    PROP_USE_STOCK,
                                    g_param_spec_boolean ("use-stock",
@@ -417,7 +417,7 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * Use this property if the menuitem would be useless or hard to use
    * without the image.
    *
-   **/
+   */
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_IMAGE,
                                    g_param_spec_boolean ("show-image",
@@ -431,7 +431,7 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    *
    * The Accel Group to use for stock accelerator keys
    *
-   **/
+   */
   g_object_class_install_property (gobject_class,
                                    PROP_ACCEL_GROUP,
                                    g_param_spec_object ("accel-group",
@@ -838,7 +838,7 @@ geda_image_menu_item_forall (GtkContainer   *container,
  * \returns: a new #GedaImageMenuItem.
  *
  * \sa geda_image_menu_item_new_with_label geda_image_menu_item_new_with_mnemonic
- **/
+ */
 GtkWidget*
 geda_image_menu_item_new (void)
 {
@@ -856,7 +856,7 @@ geda_image_menu_item_new (void)
  *
  * \sa geda_image_menu_item_new_with_mnemonic
  *
- **/
+ */
 GtkWidget*
 geda_image_menu_item_new_with_label (const char *label)
 {
@@ -879,7 +879,7 @@ geda_image_menu_item_new_with_label (const char *label)
  * \returns: a new #GedaImageMenuItem
  *
  * \sa geda_image_menu_item_new_with_label
- **/
+ */
 GtkWidget*
 geda_image_menu_item_new_with_mnemonic (const char *label)
 {
@@ -909,7 +909,7 @@ geda_image_menu_item_new_with_mnemonic (const char *label)
  *
  * \returns: a new #GedaImageMenuItem.
  *
- **/
+ */
 GtkWidget*
 geda_image_menu_item_new_from_stock (const char      *stock_id,
                                      GtkAccelGroup   *accel_group)
@@ -1066,17 +1066,18 @@ geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
   }
 }
 
-/*! \brief Set/Attach an image object to the menu item
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
+/*!
+ * \brief Set/Attach an image object to the menu item
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem.
- * \param [in] image          : a widget to set as the image for the menu item.
+ * \param [in] image_menu_item a #GedaImageMenuItem.
+ * \param [in] image           a widget to set as the image for the menu item.
  *
  * Sets the image of image_menu_item to the given widget.
  * Note that it depends on the show-menu-images setting whether
  * the image will be displayed or not.
- **/
+ */
 void
 geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
                                GtkWidget          *image)
@@ -1120,7 +1121,7 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
  * \sa geda_image_menu_item_set_image().
  *
  * \return:the widget set as image of the GedaImageMenuItem
- **/
+ */
 GtkWidget*
 geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 {

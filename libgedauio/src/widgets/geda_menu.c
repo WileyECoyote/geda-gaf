@@ -716,7 +716,7 @@ geda_menu_class_init   (void *class, void *class_data)
                                 GTK_TYPE_SCROLL_TYPE);
 
   /*!
-   * \property GedaMenu::active
+   * property "active": GedaMenu::active
    * The index of the currently selected menu item, or -1 if no
    * menu item is selected.
    */
@@ -729,7 +729,7 @@ geda_menu_class_init   (void *class, void *class_data)
                                    G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::accel-group
+   * property "accel-group": GedaMenu::accel-group
    * The accel group holding accelerators for the menu.
    */
   g_object_class_install_property (gobject_class,
@@ -741,22 +741,24 @@ geda_menu_class_init   (void *class, void *class_data)
                                    G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::accel-path
-   * An accel path used to conveniently construct accel paths of child items.
+   * property "accel-path": GedaMenu::accel-path
+   * An accel path used to construct accel paths of child items.
    */
   g_object_class_install_property (gobject_class,
                                    PROP_ACCEL_PATH,
                                    g_param_spec_string ("accel-path",
-                                   _("Accel Path"),
-                                   _("An accel path used to conveniently construct accel paths of child items"),
+                                 _("Accel Path"),
+                                 _("An accel path used to construct accel paths of child items"),
                                    NULL,
                                    G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::attach-widget
-   * The widget the menu is attached to. Setting this property attaches
-   * the menu without a #MenuDetachFunc. If you need to use a detacher,
-   * use geda_menu_attach_to_widget() directly.
+   * property "attach-widget": GedaMenu::attach-widget
+   * \brief Parent widget to which the menu is attached.
+   * \par
+   *  The widget the menu is attached to. Setting this property attaches
+   *  the menu without a #MenuDetachFunc. If you need to use a detacher,
+   *  use geda_menu_attach_to_widget() directly.
    */
   g_object_class_install_property (gobject_class,
                                    PROP_ATTACH_WIDGET,
@@ -766,56 +768,65 @@ geda_menu_class_init   (void *class, void *class_data)
                                    GTK_TYPE_WIDGET,
                                    G_PARAM_READWRITE));
 
+  /*!
+   * property "tearoff-title": GedaMenu::tearoff-title
+   * \brief Title displayed if torn-off
+   */
   g_object_class_install_property (gobject_class,
                                    PROP_TEAROFF_TITLE,
                                    g_param_spec_string ("tearoff-title",
-                                                        _("Tearoff Title"),
-                                                        _("A title that may be displayed by the window manager when this menu is torn-off"),
-                                                           NULL,
-                                                           G_PARAM_READWRITE));
+                                                      _("Tearoff Title"),
+                                                      _("A title that may be displayed by the window manager when this menu is torn-off"),
+                                                         NULL,
+                                                         G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::tearoff-state
-   *  Boolean that indicates whether the menu is torn-off.
+   * property "tearoff-state": GedaMenu::tearoff-state
+   * \brief Boolean that indicates whether the menu is torn-off.
    */
   g_object_class_install_property (gobject_class,
                                    PROP_TEAROFF_STATE,
                                    g_param_spec_boolean ("tearoff-state",
-                             _("Tearoff State"),
-                             _("A boolean that indicates whether the menu is torn-off"),
-                             FALSE,
-                             G_PARAM_READWRITE));
+                                                       _("Tearoff State"),
+                                                       _("A boolean that indicates whether the menu is torn-off"),
+                                   FALSE,
+                                   G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::monitor
-   * The monitor the menu will be popped up on.
+   * property "monitor": GedaMenu::monitor
+   * \brief The monitor the menu will be popped up on.
    */
   g_object_class_install_property (gobject_class,
                                    PROP_MONITOR,
                                    g_param_spec_int ("monitor",
-                                     _("Monitor"),
-                             _("The monitor the menu will be popped up on"),
-                             -1, G_MAXINT, -1,
-                             G_PARAM_READWRITE));
-
+                                                   _("Monitor"),
+                                                   _("The monitor the menu will be popped up on"),
+                                   -1, G_MAXINT, -1,
+                                   G_PARAM_READWRITE));
+  /*!
+   * property "vertical-padding": GedaMenu::vertical_padding
+   * \brief Controls the spacing between menu items.
+   */
   gtk_widget_class_install_style_property (widget_class,
                        g_param_spec_int ("vertical-padding",
-                                 _("Vertical Padding"),
-                                 _("Extra space at the top and bottom of the menu"),
-                                 0,
-                                 G_MAXINT,
-                                 1,
-                                 G_PARAM_READABLE));
+                                       _("Vertical Padding"),
+                                       _("Extra space at the top and bottom of the menu"),
+                                          0,
+                                          G_MAXINT,
+                                          1,
+                                          G_PARAM_READABLE));
 
   /*!
-   * \property GedaMenu::reserve-toggle-size
-   * Boolean that indicates whether the menu reserves space for
-   * toggles and icons, regardless of their actual presence.
+   * property "reserve-toggle-size" GedaMenu::reserve-toggle-size
+   * \brief Determines whether to researve space for images.
+   * \par
+   *  Boolean that indicates whether the menu reserves space for
+   *  toggles and icons, regardless of their actual presence.
    *
-   * This property should only be changed from its default value
-   * for special-purposes such as tabular menus. Regular menus that
-   * are connected to a menu bar or context menus should reserve
-   * toggle space for consistency.
+   *  This property should only be changed from its default value
+   *  for special-purposes such as tabular menus. Regular menus that
+   *  are connected to a menu bar or context menus should reserve
+   *  toggle space for consistency.
    */
   g_object_class_install_property (gobject_class,
                                    PROP_RESERVE_TOGGLE_SIZE,
@@ -860,9 +871,10 @@ geda_menu_class_init   (void *class, void *class_data)
                                                                  G_PARAM_READABLE));
 
   /*!
-   * \property GedaMenu:arrow-placement:
-   *
-   * Indicates where scroll arrows should be placed.
+   * property "arrow-placement" GedaMenu:arrow-placement:
+   * \brief determines placement of scroll arrow.
+   * \par
+   *  Indicates where scroll arrows should be placed.
    */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_enum ("arrow-placement",
@@ -905,9 +917,10 @@ geda_menu_class_init   (void *class, void *class_data)
                                                 G_PARAM_READWRITE));
 
   /*!
-   * \property GedaMenu::arrow-scaling
-   *
-   * Arbitrary constant to scale down the size of the scroll arrow.
+   * property "arrow-scaling": GedaMenu::arrow-scaling
+   * \brief scroll arrow size scaling constant.
+   * \par
+   *  Arbitrary constant to scale down the size of the scroll arrow.
    */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_float ("arrow-scaling",
@@ -1204,8 +1217,6 @@ geda_menu_get_child_property (GtkContainer *container,
       return;
     }
 }
-
-
 
 static void
 geda_menu_destroy (GtkObject *object)
