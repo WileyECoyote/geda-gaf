@@ -25,7 +25,7 @@
 #include <libgeda_priv.h>
 #include <geda_debug.h>
 
-/*! \file o_pin_basic.c
+/*! \file o_pin_object.c
  *  \brief functions for the pin object
  */
 

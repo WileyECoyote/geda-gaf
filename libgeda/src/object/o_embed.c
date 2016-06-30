@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file geda_object_embed.c
+/*! \file o_embed.c
  *  \brief functions to embed and unembed symbols
  */
 

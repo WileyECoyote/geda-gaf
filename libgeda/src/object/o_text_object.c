@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 
-/*! \file o_text_basic.c
+/*! \file o_text_object.c
  *  \brief functions for the text and fonts
  *
  *  \par The font definitions

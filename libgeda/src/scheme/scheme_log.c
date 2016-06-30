@@ -37,7 +37,7 @@ SCM_SYMBOL(debug_sym,    "debug");
 
 /*! \brief Convert a Scheme symbol to log level flags.
  * \par Function Description
- * Helper function to construct a #GLogLevelFlags value from a Scheme
+ * Helper function to construct a GLogLevelFlags value from a Scheme
  * symbol.
  */
 static GLogLevelFlags
