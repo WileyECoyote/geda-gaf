@@ -564,6 +564,94 @@ check_accessors ()
 }
 
 int
+check_query()
+{
+  int  count;
+  int result = 0;
+
+  int dum = 1;
+  if (geda_circle_object_get_nearest_point(NULL, dum, dum, &dum, &dum)) {
+    fprintf(stderr, "FAILED: (O061500) circle_get_nearest_point NULL\n");
+    result++;
+  }
+
+  if (geda_circle_object_get_position(NULL, &dum, &dum)) {
+    fprintf(stderr, "FAILED: (O062000) circle_get_position NULL\n");
+    result++;
+  }
+
+  if (geda_circle_object_shortest_distance(NULL, 0, 0, 0) != G_MAXDOUBLE ) {
+    fprintf(stderr, "FAILED: (O064600) circle_shortest_distance NULL\n");
+    result++;
+  }
+
+  for (count = 0; count < 10; count++) {
+
+    int c = m_random_number (0, MAX_COLORS - 1);
+    int r = m_random_number (5, 20000);
+    int x = m_random_number (0, 120000);
+    int y = m_random_number (0, 80000);
+
+    GedaObject *object0 = geda_circle_object_new (c, x, y, r);
+
+    if (!GEDA_IS_OBJECT(object0)) {
+      fprintf(stderr, "FAILED: (O061901?) New GedaObject Failed\n");
+      result++;
+      break;
+    }
+
+    if (!GEDA_IS_CIRCLE(object0->circle)) {
+      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;
+    }
+    else {
+
+      int fail;
+      int px, py;
+
+      fail = 0;
+
+      /* === Function 15: geda_circle_object_get_nearest_point  === */
+
+      /* === Function 20: geda_circle_object_get_position  === */
+
+      geda_circle_object_get_position(object0, &px, &py);
+
+      if (px - x) {
+        fprintf(stderr, "FAILED: (O062001X) get_position x %d != %d\n", px, x);
+        fail++;
+      }
+
+      if (py - y) {
+        fprintf(stderr, "FAILED: (O062001Y) get_position x %d != %d\n", py, y);
+        fail++;
+      }
+
+      /* === Function 46: geda_circle_object_shortest_distance  === */
+
+      g_object_unref (object0);
+
+      if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t     radius: %d\n", r);
+        fprintf(stderr, "\t   center x: %d\n", x);
+        fprintf(stderr, "\t   center y: %d\n", y);
+
+        result = result + fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -590,6 +678,14 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking accessors in object/o_circle_object.c\n\n");
+      return 1;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_query();
+    }
+    else {
+      fprintf(stderr, "Caught signal during query in src/object/o_circle_object.c\n\n");
       return 1;
     }
   }
