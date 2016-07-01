@@ -1014,7 +1014,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_MAX_HISTORY, params );
 
-  params = g_param_spec_int ("accept-input-type",
+  params = g_param_spec_int ("accept-type",
                            _("Set valid input type"), /* nick name */
                            _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
                               ACCEPT_ALL_ASCII, /* Min value */
