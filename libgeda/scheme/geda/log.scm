@@ -31,8 +31,12 @@
 ;; Logging messages
 ;; ================================================================
 
+(define-public log-open %log-open)
+
+(define-public log-close %log-close)
+
 ;
-;Function::
+;Function:
 ;
 ;  log! level message [format-args]
 ;
@@ -46,3 +50,4 @@
   (let ((formatted (apply format #f message format-args)))
     (%log! #f level (string-append formatted "\n"))))
 
+(define-public log-read %log-read)

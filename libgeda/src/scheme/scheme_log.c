@@ -57,7 +57,47 @@ decode_level (SCM level_s)
  * Functions for use from Scheme
  * ================================================================ */
 
-/*! \brief Log a message.
+/*!
+ * \brief Open Log file Scheme API provider
+ * \par Function Description
+ *  Initializes libgeda logging to a file. Silently ignore request to
+ *  re-initialize. Log messages are not saved to a log file unless
+ *  log-open has been called prior to writing the maseage to the log.
+ *
+ * \note Scheme API: Implements the \%log-open! procedure in the (geda
+ *       core log) module.
+ *
+ * param prefix_s Optional log entry prefix.
+ *
+ * \return undefined.
+ */
+EDA_SCM_DEFINE (log_open_x, "%log-open", 0, 1, 0,
+               (SCM prefix_s),
+               "Shuts down the libgeda logging system")
+{
+  char *prefix;
+
+  if (scm_is_string(prefix_s)) {
+    prefix = scm_to_utf8_string(prefix_s);
+  }
+  else {
+    prefix = NULL;
+  }
+
+  geda_utility_log_init(prefix);
+
+  return SCM_UNSPECIFIED;
+}
+
+EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
+               (),
+               "Initialize libgeda logging system")
+{
+   geda_utility_log_close();
+   return SCM_UNSPECIFIED;
+}
+
+/*! \brief Log a message Scheme API provider
  * \par Function Description
  * Add a message to the message log. The \a domain_s should normally
  * be SCM_BOOL_F, and the \a message_s should almost always be
@@ -68,15 +108,15 @@ decode_level (SCM level_s)
  * \note Scheme API: Implements the \%log! procedure in the (geda core
  * log) module.
  *
- * \param domain_s  The log domain, as a string, or SCM_BOOL_F.
- * \param level_s   The log level, as a symbol.
- * \param message_s The log message, as a string.
+ * param domain_s  The log domain, as a string, or SCM_BOOL_F.
+ * param level_s   The log level, as a symbol.
+ * param message_s The log message, as a string.
  *
  * \return undefined.
  */
 EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
-            (SCM domain_s, SCM level_s, SCM message_s),
-            "Emit a log message.")
+               (SCM domain_s, SCM level_s, SCM message_s),
+               "Emit a log message.")
 {
     SCM_ASSERT (scm_is_false(domain_s) || scm_is_string(domain_s), domain_s,
                 SCM_ARG1, scheme_log_x);
@@ -108,6 +148,29 @@ EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
     return SCM_UNSPECIFIED;
 }
 
+EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
+            (),
+            "Get log contents as string.")
+{
+  SCM value_s;
+
+  scm_dynwind_begin (0);
+
+  char *string = geda_utility_log_read (); //geda_strdup("lucky");
+
+  scm_dynwind_unwind_handler ((void (*)(void *)) g_free, string,
+                              SCM_F_WIND_EXPLICITLY);
+
+  if (string) {
+    value_s = scm_from_utf8_string (string);
+  }
+  else {
+    value_s = SCM_BOOL_F;
+  }
+
+  scm_dynwind_end ();
+  return value_s;
+}
 /* ================================================================
  * Initialization
  * ================================================================ */
@@ -126,6 +189,9 @@ init_module_geda_core_log ()
 
     /* Add them to the module's public definitions */
     scm_c_export (scheme_log_x,
+                  scheme_log_close_x,
+                  scheme_log_open_x,
+                  scheme_log_read_x,
                   NULL);
 }
 

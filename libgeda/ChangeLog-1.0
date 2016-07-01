@@ -1,6 +1,11 @@
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/geda/log.scm: Define log-open and log-close.
+
     * src/guile/g_rc.c: Reduce scope in g_rc_always_promote_attributes.
+
+    * src/scheme/scheme_log.c: Add log_open and log_close to allow logging
+      from scheme not running under a C app.
 
 2016-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
