@@ -141,6 +141,7 @@ extern int quiet_mode;
 
 /* rc variables */
 extern int sort_components;
+extern int tearoff_menus;
 
 typedef enum { Black, Red, Blue,
                Green, Orange, Purple,

@@ -32,3 +32,4 @@ extern int   default_init_right;
 extern int   default_init_bottom;
 
 extern int   default_sort_components;
+extern int   default_tearoff_menus;

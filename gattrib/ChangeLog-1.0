@@ -1,5 +1,15 @@
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Program Enhancement: New feature - Configurable Tear-Off Menus
+
+    * etc/system-gattribrc.in: Add keyword tearoff-menus.
+
+    * src/g_rc.c: Add keyword handler g_rc_tearoff_menus.
+
+    * src/g_register.c: Register tearoff-menus subroutine with guile.
+
+    * src/i_vars.c: Initialize default_tearoff_menus and set tearoff_menus.
+
     * src/x_menus.c: Use tear-off menus like gschem.
 
 2016-06-30 Wiley E. Hill <wileyhill@gmail.com>

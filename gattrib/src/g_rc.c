@@ -73,3 +73,19 @@ SCM g_rc_sort_components(SCM mode)
   RETURN_G_RC_MODE("sort-components",
             default_sort_components, mode_table);
 }
+
+/*! \brief This function processes the tearoff-menus RC entry.
+ *  \par Function Description
+ *  C function processes configuration data for the tearoff-menus
+ *  RC entry.
+ */
+SCM g_rc_tearoff_menus(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("tearoff-menus",
+            default_tearoff_menus, mode_table);
+}

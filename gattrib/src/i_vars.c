@@ -42,6 +42,7 @@ int   default_paper_height = 85000;/*!< height for letter paper (landscape)
 * \todo Can this be const? */
 
 int  default_sort_components = 0;
+int  default_tearoff_menus   = 1;
 
 /*------------------------------------------------------------------*/
 /*! \brief Initialise variables in the GedaToplevel
@@ -58,4 +59,6 @@ void i_vars_set (GedaToplevel *toplevel)
   toplevel->paper_height = default_paper_height;
 
   sort_components = default_sort_components;
+
+  tearoff_menus   = default_tearoff_menus;
 }

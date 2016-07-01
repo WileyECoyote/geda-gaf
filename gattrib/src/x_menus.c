@@ -606,7 +606,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 
   x_menu_get_collections(menu_manager);
 
-  gtk_ui_manager_set_add_tearoffs (menu_manager, TRUE);
+  gtk_ui_manager_set_add_tearoffs (menu_manager, tearoff_menus);
 
   if (menubar == NULL)
     fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
