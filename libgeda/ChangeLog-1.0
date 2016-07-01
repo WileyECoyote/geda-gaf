@@ -1,3 +1,7 @@
+2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Reduce scope in g_rc_always_promote_attributes.
+
 2016-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c: Revise/edit DOxygen comments.

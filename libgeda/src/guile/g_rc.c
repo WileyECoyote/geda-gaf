@@ -862,19 +862,19 @@ SCM g_rc_thin_pin_width (SCM width)
  */
 SCM g_rc_always_promote_attributes(SCM attrlist)
 {
-  GList *list=NULL;
-  char  *attr;
-  char **attr2;
+  GList *list = NULL;
   int i;
 
   g_list_foreach(default_always_promote_attributes, (GFunc)g_free, NULL);
   g_list_free(default_always_promote_attributes);
 
   if (scm_is_string (attrlist)) {
-    char *temp;
+
+    char **attr2;
+    char  *temp;
 
     /* convert the space separated strings into a GList */
-    temp = scm_to_utf8_string (attrlist);
+    temp  = scm_to_utf8_string (attrlist);
     attr2 = g_strsplit(temp," ", 0);
     free (temp);
 
@@ -896,6 +896,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
     /* convert the scm list into a GList */
     for (i=0; i < length; i++) {
 
+      char *attr;
       char *temp;
 
       SCM_ASSERT(scm_is_string(scm_list_ref(attrlist, scm_from_int(i))),
@@ -903,8 +904,8 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
                _("always-promote-attribute: list element is not a string"));
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
       attr = geda_utility_string_strdup(temp);
-      free (temp);
       list = g_list_prepend(list, attr);
+      free (temp);
     }
   }
 
