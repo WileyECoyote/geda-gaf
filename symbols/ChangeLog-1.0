@@ -1,3 +1,8 @@
+2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/motor/DRV8305-1.sym: Add symbol: Three Phase Gate Driver With
+      Current Shunt Amplifiers.
+
 2016-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD817-1.sym: Add symbol; OpAmp, Wide Supply,High Speed,
