@@ -87,8 +87,8 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
   GtkSheetRange range = sheet->range;
   int i;
 
-  for (i = range.col0; i <= range.coli; i++)
-  {
+  for (i = range.col0; i <= range.coli; i++) {
+
     if (!gtk_sheet_column_visible(sheet, i)) {
       gtk_sheet_column_set_visibility(sheet, i, TRUE);
     }
@@ -150,8 +150,8 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
  *
  *  \par Function Description
  * This function is called when the user right clicks on the gtksheet
- * and the sheet is not in editing mode. The function sets senitivty
- * on meu choices based on the sheet state.
+ * and the sheet is not in editing mode. The function sets sensitivities
+ * on menu choices based on the sheet state.
  *
  *  \param [in] sheet is the active sheet widget
  */
