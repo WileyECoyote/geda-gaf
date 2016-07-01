@@ -20,6 +20,7 @@ test_handlebox
 test_image_menu_item
 test_toolbar
 test_menu
+test_menus
 test_menu_bar
 test_menu_item
 test_menu_shell

@@ -1,9 +1,15 @@
-test_file_chooser_SOURCES = 	\
+test_file_chooser_SOURCES = \
 	prop-editor.c		\
 	test_file_chooser.c
 
+test_menus_SOURCES = 	\
+	test_menus.c
+
 check_dialogs = \
 	test_file_chooser
+
+check_menus = \
+	test_menus
 
 check_functions = \
 	test_accumulate
@@ -11,6 +17,7 @@ check_functions = \
 check_widgets = \
 	test_accel_label \
 	test_bulb \
+	test_check_menu_item \
 	test_combobox \
 	test_combobox_text \
 	test_completion \
@@ -24,6 +31,7 @@ check_widgets = \
 	test_menu_item \
 	test_menu_shell \
 	test_option_menu \
+	test_radio_menu_item \
 	test_toolbar
 
 check_PROGRAMS = \
@@ -35,7 +43,12 @@ TESTS = $(check_PROGRAMS)
 tests: $(check_PROGRAMS)
 
 noinst_PROGRAMS = \
-		test_file_chooser
+		test_file_chooser \
+		test_menus
+
+#bin_PROGRAMS=test_menus
+
+#test_menus_LDADD = $(AM_LDFLAGS)
 
 EXTRA_DIST = \
     test-suite.h \

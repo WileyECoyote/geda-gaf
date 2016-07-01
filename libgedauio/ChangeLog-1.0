@@ -3,6 +3,8 @@
     * src/widgets/geda_entry.c: Shorten property "accept-input-type" to
       simply "accept-type".
 
+    * tests/test_menus.c: Borrow manual test_menus from gtk.
+
 2016-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise comments for signals and properties.
