@@ -986,11 +986,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 /*!
  * \brief Create and Setup Popup Mouse Menu for Path mode
  * \par Function Description
- *  This function is called when the user right clicks on a handlebox.
- *  The function sets senitivty on menu choices based on the handlebox
- *  position and the state of the containing toolbar.
+ *  This function is create the a context menu that is displayed when
+ *  the user right-clicks while inputing a new path object.
  *
- *  \param [in,out] w_current Pointer to GschemToplevel object
+ *  \param [in] w_current      Pointer to GschemToplevel object
+ *  \param [in] menu_data      accessed using POPUP_ITEMS_LIST
+ *  \param [in] show_pop_icons determines visibility of menu icons
+ *  \param [in] show_pop_tips  determines visibility of menu tooltips
  */
 static GtkWidget*
 x_menu_build_path_popup(GschemToplevel *w_current, MenuData *menu_data,

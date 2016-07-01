@@ -1,3 +1,7 @@
+2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Update Doxygen comments for path popup.
+
 2016-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_place.c: Revise o_place_rotate to "unrotate" text
