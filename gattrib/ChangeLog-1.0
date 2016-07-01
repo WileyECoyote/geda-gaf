@@ -1,3 +1,8 @@
+2016-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/x_gtksheet.c: Replace GtkMenu with GedaMenu for on
+      sheet context popup menu.
+
 2016-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/ * : Replace u_log_message with geda_log

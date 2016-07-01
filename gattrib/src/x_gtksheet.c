@@ -160,11 +160,11 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
   GtkWidget *menu;
   int i;
 
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
 
   for (i = 0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
-    GtkWidget *item = gtk_menu_item_new_with_label(popup_items[i]);
+    GtkWidget *item = geda_menu_item_new_with_label(popup_items[i]);
 
     GEDA_SIGNAL_CONNECT(item,"activate", popup_activated, (void*)(long) i);
 
@@ -217,7 +217,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
       }
 
       gtk_widget_show(item);
-      gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+      geda_menu_shell_append(GEDA_MENU_SHELL(menu), item);
     }
     return (menu);
 }
@@ -248,9 +248,9 @@ static int on_mouse_button_press(GtkWidget *widget,
         }
 
         popup = build_popup_menu(sheet);
-        /* Tell GTK to do the menu we just created */
-        gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL, NULL,
-                       event->button, event->time);
+        /* Display the menu we just created */
+        geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
+                        event->button, event->time);
     }
     return (FALSE);
 }
