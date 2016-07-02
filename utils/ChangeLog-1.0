@@ -1,3 +1,8 @@
+2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pdf/main.c: Add int fill_width and line_width, remove unnecessary
+      line breaks.
+
 2016-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/parsecmd.c: Define WITHOUT_GDK_PIX_BUFFER before including

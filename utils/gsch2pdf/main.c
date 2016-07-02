@@ -277,346 +277,299 @@ static void print_line(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
 static void print_net(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    cairo_set_line_width(cairo, 10.0);
+  cairo_set_line_width(cairo, 10.0);
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+  cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
-    cairo_move_to(
-        cairo,
-        object->line->x[0],
-        object->line->y[0]
-        );
+  cairo_move_to(cairo, object->line->x[0], object->line->y[0]);
 
-    cairo_line_to(
-        cairo,
-        object->line->x[1],
-        object->line->y[1]
-        );
+  cairo_line_to(cairo, object->line->x[1], object->line->y[1]);
 
-    cairo_stroke(cairo);
+  cairo_stroke(cairo);
 }
 
 static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
+  int index;
+  int line_width;
+
+  cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
+
+  if ((object->fill_options->fill_type == FILLING_HATCH) ||
+    (object->fill_options->fill_type == FILLING_MESH))
+  {
     int index;
+    int fill_width;
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
+    GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
+
+    m_hatch_path(object->path, object->fill_options->fill_angle1,
+                 object->fill_options->fill_pitch1, lines);
+
+    if (object->fill_options->fill_type == FILLING_MESH) {
+      m_hatch_path(object->path, object->fill_options->fill_angle2,
+                   object->fill_options->fill_pitch2, lines);
+    }
+
+    fill_width = object->fill_options->fill_width > 5.0 ?
+    object->fill_options->fill_width : 5.0;
+
+    cairo_set_line_width(cairo, fill_width);
+
+    for (index=0; index<lines->len; index++) {
+
+      LINE *line = &g_array_index(lines, LINE, index);
+
+      cairo_move_to(cairo, line->x[0], line->y[0]);
+
+      cairo_line_to(cairo, line->x[1], line->y[1]);
+    }
+  }
+
+  for (index=0; index<object->path->num_sections; index++) {
+
+    PATH_SECTION *section = object->path->sections + index;
+
+    switch (section->code){
+
+      case PATH_MOVETO:
+        cairo_close_path(cairo);
+
+      case PATH_MOVETO_OPEN:
+        cairo_move_to(
+          cairo,
+          section->x3,
+          section->y3
         );
+        break;
 
-    if ((object->fill_options->fill_type == FILLING_HATCH) ||
-        (object->fill_options->fill_type == FILLING_MESH))
-    {
-        int index;
-        GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
+      case PATH_CURVETO:
+        cairo_curve_to(cairo, section->x1,
+                       section->y1,
+                       section->x2,
+                       section->y2,
+                       section->x3,
+                       section->y3);
+        break;
 
-        m_hatch_path(object->path, object->fill_options->fill_angle1,
-                     object->fill_options->fill_pitch1, lines);
+      case PATH_LINETO:
+        cairo_line_to(cairo, section->x3, section->y3);
+        break;
 
-        if (object->fill_options->fill_type == FILLING_MESH)
-        {
-            m_hatch_path(object->path, object->fill_options->fill_angle2,
-                         object->fill_options->fill_pitch2, lines);
-        }
-
-        cairo_set_line_width(
-            cairo,
-            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
-            );
-
-        for (index=0; index<lines->len; index++)
-        {
-            LINE *line = &g_array_index(lines, LINE, index);
-
-            cairo_move_to(
-                cairo,
-                line->x[0],
-                line->y[0]
-                );
-
-            cairo_line_to(
-                cairo,
-                line->x[1],
-                line->y[1]
-                );
-        }
+      case PATH_END:
+        cairo_close_path(cairo);
+        break;
     }
+  }
 
-    for (index=0; index<object->path->num_sections; index++)
-    {
-        PATH_SECTION *section = object->path->sections + index;
+  line_width = object->line_options->line_width > 10.0 ?
+               object->line_options->line_width : 10.0;
 
-        switch (section->code)
-        {
-            case PATH_MOVETO:
-                cairo_close_path(cairo);
+  cairo_set_line_width(cairo, line_width);
 
-            case PATH_MOVETO_OPEN:
-                cairo_move_to(
-                    cairo,
-                    section->x3,
-                    section->y3
-                    );
-                break;
+  if (object->fill_options->fill_type == FILL_SOLID) {
+    cairo_fill_preserve(cairo);
+  }
 
-            case PATH_CURVETO:
-                cairo_curve_to(
-                    cairo,
-                    section->x1,
-                    section->y1,
-                    section->x2,
-                    section->y2,
-                    section->x3,
-                    section->y3
-                    );
-                break;
-
-            case PATH_LINETO:
-                cairo_line_to(
-                    cairo,
-                    section->x3,
-                    section->y3
-                    );
-                break;
-
-            case PATH_END:
-                cairo_close_path(cairo);
-                break;
-        }
-    }
-
-    cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
-        );
-
-    if (object->fill_options->fill_type == FILL_SOLID)
-    {
-        cairo_fill_preserve(cairo);
-    }
-
-    cairo_stroke(cairo);
+  cairo_stroke(cairo);
 }
 
 static void print_pin(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
-        );
+  int line_width;
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+  line_width = object->line_options->line_width > 10.0 ?
+               object->line_options->line_width : 10.0;
 
-    cairo_move_to(
-        cairo,
-        object->line->x[0],
-        object->line->y[0]
-        );
+  cairo_set_line_width (cairo, line_width);
 
-    cairo_line_to(
-        cairo,
-        object->line->x[1],
-        object->line->y[1]
-        );
+  cairo_set_source_rgb (cairo, 0.0, 0.0, 0.0);
 
-    cairo_stroke(cairo);
+  cairo_move_to (cairo, object->line->x[0], object->line->y[0]);
+
+  cairo_line_to (cairo, object->line->x[1], object->line->y[1]);
+
+  cairo_stroke(cairo);
 }
 
 static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    if (object->text->disp_string != NULL)
+  if (object->text->disp_string != NULL) {
+
+    cairo_save(cairo);
+
+    cairo_move_to(
+      cairo,
+      object->text->x,
+      object->text->y
+    );
+
+    cairo_scale(
+      cairo,
+      1.0,
+      -1.0
+    );
+
+    int flip = (object->text->angle == 180);
+
+    if (!flip)
     {
-        cairo_save(cairo);
-
-        cairo_move_to(
-            cairo,
-            object->text->x,
-            object->text->y
-            );
-
-        cairo_scale(
-            cairo,
-            1.0,
-            -1.0
-            );
-
-        int flip = (object->text->angle == 180);
-
-        if (!flip)
-        {
-            cairo_rotate(
-                cairo,
-                M_PI * object->text->angle / -180.0
-                );
-        }
-
-        PangoContext *context = pango_cairo_create_context(cairo);
-
-        pango_cairo_context_set_resolution(
-            context,
-            1600.0
-            );
-
-        PangoLayout *layout = pango_layout_new(context);
-
-        PangoAlignment halign = PANGO_ALIGN_LEFT;
-
-        switch (object->text->alignment)
-        {
-            case LOWER_LEFT:
-            case MIDDLE_LEFT:
-            case UPPER_LEFT:
-                halign = flip ? PANGO_ALIGN_RIGHT : PANGO_ALIGN_LEFT;
-               break;
-
-            case LOWER_MIDDLE:
-            case MIDDLE_MIDDLE:
-            case UPPER_MIDDLE:
-                halign = PANGO_ALIGN_CENTER;
-                break;
-
-            case LOWER_RIGHT:
-            case MIDDLE_RIGHT:
-            case UPPER_RIGHT:
-                halign = flip ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT;
-                break;
-        }
-
-        pango_layout_set_alignment(layout, halign);
-
-        PangoFontDescription *desc;
-        desc = pango_font_description_from_string(print_settings_get_font(print_settings));
-
-        pango_font_description_set_size(desc, PANGO_SCALE * object->text->size);
-
-        pango_layout_set_font_description(layout, desc);
-        pango_font_description_free(desc);
-
-        /* Begin cap height computation */
-
-        pango_layout_set_text(layout, "I", -1);
-        pango_cairo_update_layout(cairo, layout);
-
-        PangoRectangle extents_ink;
-        PangoRectangle extents_logical;
-
-        pango_layout_get_extents(
-            layout,
-            &extents_ink,
-            &extents_logical
-            );
-
-        int coffset = extents_ink.y;
-
-        /* End cap height computation */
-
-        pango_layout_set_text(layout, object->text->disp_string, -1);
-        pango_cairo_update_layout(cairo, layout);
-
-        int baseline = pango_layout_get_baseline(layout);
-
-        PangoLayoutIter *iter = pango_layout_get_iter(layout);
-
-        while (pango_layout_iter_next_line(iter))
-        {
-            baseline = pango_layout_iter_get_baseline(iter);
-        }
-
-        pango_layout_iter_free(iter);
-
-        pango_layout_get_extents(
-            layout,
-            &extents_ink,
-            &extents_logical
-            );
-
-        double xalign = 0.0;
-        double xoffset;
-        double yalign = 0.0;
-        double yoffset;
-
-        switch (object->text->alignment)
-        {
-            case LOWER_LEFT:
-            case MIDDLE_LEFT:
-            case UPPER_LEFT:
-                xalign = 0.0;
-                break;
-
-            case LOWER_MIDDLE:
-            case MIDDLE_MIDDLE:
-            case UPPER_MIDDLE:
-                xalign = 0.5;
-                break;
-
-            case LOWER_RIGHT:
-            case MIDDLE_RIGHT:
-            case UPPER_RIGHT:
-                xalign = 1.0;
-                break;
-        }
-
-        if (flip)
-        {
-            xalign = 1.0 - xalign;
-        }
-
-        xoffset = extents_ink.x + xalign * extents_ink.width;
-
-        switch (object->text->alignment)
-        {
-            case LOWER_LEFT:
-            case LOWER_MIDDLE:
-            case LOWER_RIGHT:
-                yalign = 0.0;
-                break;
-
-            case MIDDLE_LEFT:
-            case MIDDLE_MIDDLE:
-            case MIDDLE_RIGHT:
-                yalign = 0.5;
-                break;
-
-            case UPPER_LEFT:
-            case UPPER_MIDDLE:
-            case UPPER_RIGHT:
-                yalign = 1.0;
-                break;
-        }
-
-        if (flip)
-        {
-            yalign = 1.0 - yalign;
-        }
-
-        yoffset = baseline + yalign * (coffset - baseline);
-
-        cairo_rel_move_to(
-            cairo,
-            xoffset / -1024.0,
-            yoffset / -1024.0
-            );
-
-        pango_cairo_show_layout(cairo, layout);
-
-        GEDA_UNREF (layout);
-        GEDA_UNREF (context);
-
-        cairo_restore(cairo);
+      cairo_rotate(
+        cairo,
+        M_PI * object->text->angle / -180.0
+      );
     }
+
+    PangoContext *context = pango_cairo_create_context(cairo);
+
+    pango_cairo_context_set_resolution(
+      context,
+      1600.0
+    );
+
+    PangoLayout *layout = pango_layout_new(context);
+
+    PangoAlignment halign = PANGO_ALIGN_LEFT;
+
+    switch (object->text->alignment)
+    {
+      case LOWER_LEFT:
+      case MIDDLE_LEFT:
+      case UPPER_LEFT:
+        halign = flip ? PANGO_ALIGN_RIGHT : PANGO_ALIGN_LEFT;
+        break;
+
+      case LOWER_MIDDLE:
+      case MIDDLE_MIDDLE:
+      case UPPER_MIDDLE:
+        halign = PANGO_ALIGN_CENTER;
+        break;
+
+      case LOWER_RIGHT:
+      case MIDDLE_RIGHT:
+      case UPPER_RIGHT:
+        halign = flip ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT;
+        break;
+    }
+
+    pango_layout_set_alignment(layout, halign);
+
+    PangoFontDescription *desc;
+    desc = pango_font_description_from_string(print_settings_get_font(print_settings));
+
+    pango_font_description_set_size(desc, PANGO_SCALE * object->text->size);
+
+    pango_layout_set_font_description(layout, desc);
+    pango_font_description_free(desc);
+
+    /* Begin cap height computation */
+
+    pango_layout_set_text(layout, "I", -1);
+    pango_cairo_update_layout(cairo, layout);
+
+    PangoRectangle extents_ink;
+    PangoRectangle extents_logical;
+
+    pango_layout_get_extents(
+      layout,
+      &extents_ink,
+      &extents_logical
+    );
+
+    int coffset = extents_ink.y;
+
+    /* End cap height computation */
+
+    pango_layout_set_text(layout, object->text->disp_string, -1);
+    pango_cairo_update_layout(cairo, layout);
+
+    int baseline = pango_layout_get_baseline(layout);
+
+    PangoLayoutIter *iter = pango_layout_get_iter(layout);
+
+    while (pango_layout_iter_next_line(iter))
+    {
+      baseline = pango_layout_iter_get_baseline(iter);
+    }
+
+    pango_layout_iter_free(iter);
+
+    pango_layout_get_extents(
+      layout,
+      &extents_ink,
+      &extents_logical
+    );
+
+    double xalign = 0.0;
+    double xoffset;
+    double yalign = 0.0;
+    double yoffset;
+
+    switch (object->text->alignment)
+    {
+      case LOWER_LEFT:
+      case MIDDLE_LEFT:
+      case UPPER_LEFT:
+        xalign = 0.0;
+        break;
+
+      case LOWER_MIDDLE:
+      case MIDDLE_MIDDLE:
+      case UPPER_MIDDLE:
+        xalign = 0.5;
+        break;
+
+      case LOWER_RIGHT:
+      case MIDDLE_RIGHT:
+      case UPPER_RIGHT:
+        xalign = 1.0;
+        break;
+    }
+
+    if (flip)
+    {
+      xalign = 1.0 - xalign;
+    }
+
+    xoffset = extents_ink.x + xalign * extents_ink.width;
+
+    switch (object->text->alignment)
+    {
+      case LOWER_LEFT:
+      case LOWER_MIDDLE:
+      case LOWER_RIGHT:
+        yalign = 0.0;
+        break;
+
+      case MIDDLE_LEFT:
+      case MIDDLE_MIDDLE:
+      case MIDDLE_RIGHT:
+        yalign = 0.5;
+        break;
+
+      case UPPER_LEFT:
+      case UPPER_MIDDLE:
+      case UPPER_RIGHT:
+        yalign = 1.0;
+        break;
+    }
+
+    if (flip)
+    {
+      yalign = 1.0 - yalign;
+    }
+
+    yoffset = baseline + yalign * (coffset - baseline);
+
+    cairo_rel_move_to (cairo, xoffset / -1024.0, yoffset / -1024.0);
+
+    pango_cairo_show_layout(cairo, layout);
+
+    GEDA_UNREF (layout);
+    GEDA_UNREF (context);
+
+    cairo_restore(cairo);
+  }
 }
 
 static void print_object(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
