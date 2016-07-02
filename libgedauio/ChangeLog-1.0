@@ -3,6 +3,15 @@
     * include/geda_gtk_compat.h: Define gtk_widget_reset_style is
       gtk_widget_reset_rc_styles for Gtk < 3.
 
+    * include/geda_marshal.h: Delare new marshal functions.
+
+    * src/functions/geda_marshal.c: Add functions:
+
+            * geda_marshal_INT__INT
+            * geda_marshal_VOID__OBJECT_POINTER_INT
+            * geda_marshal_VOID__OBJECT_OBJECT_OBJECT
+            * geda_marshal_VOID__STRING_STRING
+
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Shorten property "accept-input-type" to
