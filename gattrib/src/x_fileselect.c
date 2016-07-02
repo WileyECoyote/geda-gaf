@@ -184,7 +184,7 @@ GSList *x_fileselect_open (void)
   dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_OPEN);
 
   g_object_set (dialog,
-                /* GtkFileChooser */
+                /* GedaFileChooser */
                 "select-multiple", TRUE,
                 NULL);
 

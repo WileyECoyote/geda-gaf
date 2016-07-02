@@ -772,7 +772,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   geda_image_chooser_prepend_extra (ThisDialog, hbox);
   g_object_set (hbox, "visible", TRUE, NULL);
 
-  /* Setup the GtkFileChooser options */
+  /* Setup the GedaFileChooser options */
   g_object_set (ThisDialog, "select-multiple", FALSE,
 
 #if ((GTK_MAJOR_VERSION > 2) || ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION >=8)))
