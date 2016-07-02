@@ -53,8 +53,8 @@ bool x_fileselect ( char* filename )
 
   dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_SAVE);
 
-  g_object_set (dialog,                     /* GtkFileChooser */
-                "select-multiple", FALSE,   /* only in GTK 2.8 */
+  g_object_set (dialog,                             /* GedaFileChooser */
+                "select-multiple", FALSE,
                 "do-overwrite-confirmation", TRUE,  /* version?*/
                 NULL);                              /* end options */
 
