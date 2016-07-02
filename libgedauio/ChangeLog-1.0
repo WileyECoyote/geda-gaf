@@ -1,3 +1,8 @@
+2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define gtk_widget_reset_style is
+      gtk_widget_reset_rc_styles for Gtk < 3.
+
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Shorten property "accept-input-type" to

@@ -1,4 +1,4 @@
-2016-06-18 Wiley E. Hill <wileyhill@gmail.com>
+2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_types.h: Add miscellaneous int_t and unint_t types.
 

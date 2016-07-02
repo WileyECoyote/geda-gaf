@@ -142,6 +142,9 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def gtk_widget_get_allocated_width Not in Gtk < 3 */
 #define gtk_widget_get_allocated_width(widget)  (((GtkWidget *) (widget))->allocation.width)
 
+/*! \def gtk_widget_reset_style Not in Gtk < 3 */
+#define gtk_widget_reset_style gtk_widget_reset_rc_styles
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) GTK_BIN(w)->child
 
