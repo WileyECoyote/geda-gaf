@@ -1107,7 +1107,7 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
   int y1 = projectile->line->y[which_end];
 
   answer = FALSE;
-  points = g_array_new (FALSE, FALSE, sizeof (POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(POINT));
   closed = s_path_to_polygon (boundary->path, points);
 
   if (points->len > 0) {

@@ -281,7 +281,7 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
     list = list->next;
   }
 
- *new_prefix = g_malloc0 (sizeof (char) * len + plen + 1);
+ *new_prefix = g_malloc0 (sizeof(char) * len + plen + 1);
   strncpy (*new_prefix, comp->prefix, len);
   strncpy (*new_prefix + len, postfix, plen);
 }

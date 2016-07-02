@@ -316,7 +316,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
 
     int save_errno;
 
-    bytes = fread (buf, 1, sizeof (buf), f);
+    bytes = fread (buf, 1, sizeof(buf), f);
     save_errno = errno;
 
     while ((total_bytes + bytes + 1) > total_allocated) {
@@ -324,7 +324,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
       if (str)
         total_allocated *= 2;
       else
-        total_allocated = MIN (bytes + 1, sizeof (buf));
+        total_allocated = MIN (bytes + 1, sizeof(buf));
 
       tmp = g_try_realloc (str, total_allocated);
 

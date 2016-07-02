@@ -89,7 +89,7 @@ bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *
     GedaLine  segment;
     int       closed;
 
-    points = g_array_new (FALSE, FALSE, sizeof (POINT));
+    points = g_array_new (FALSE, FALSE, sizeof(POINT));
     closed = s_path_to_polygon (object->path, points);
     result = FALSE;
 

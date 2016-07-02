@@ -389,7 +389,7 @@ geda_widget_get_aux_info (GtkWidget *widget, bool create)
 {
   GtkWidgetAuxInfo *aux_info;
 
-  aux_info = g_object_get_qdata (G_OBJECT (widget), quark_aux_info);
+  aux_info = g_object_get_qdata (G_OBJECT(widget), quark_aux_info);
 
   if (!aux_info && create) {
 
@@ -409,22 +409,25 @@ geda_widget_get_aux_info (GtkWidget *widget, bool create)
 }
 
 static void
-geda_label_style_set (GtkWidget *widget,  GtkStyle  *previous_style)
+geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
   GedaLabel *label = GEDA_LABEL (widget);
 
   /* We have to clear the layout, fonts etc. may have changed */
   geda_label_clear_layout (label);
   label->INVALIDATE_WRAP_WIDTH;
+
+  //GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
 }
 
 static void
-geda_label_direction_changed (GtkWidget  *widget, GtkTextDirection direction)
+geda_label_direction_changed (GtkWidget *widget, GtkTextDirection direction)
 {
   GedaLabel *label = GEDA_LABEL (widget);
 
-  if (label->layout)
+  if (label->layout) {
     pango_layout_context_changed (label->layout);
+  }
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->direction_changed (widget, direction);
 }

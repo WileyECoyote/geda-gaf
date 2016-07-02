@@ -1563,7 +1563,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
     /* Remove section at index by moving all sections above index one
      * location down. */
     memmove (&obj->path->sections[idx], &obj->path->sections[idx+1],
-             sizeof (PATH_SECTION) * (obj->path->num_sections - idx - 1));
+             sizeof(PATH_SECTION) * (obj->path->num_sections - idx - 1));
     obj->path->num_sections--;
   }
 
@@ -1681,7 +1681,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   /* Make sure there's enough space for the new element */
   if (path->num_sections == path->num_sections_max) {
     path->sections = g_realloc (path->sections,
-                                (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+                                (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
   }
 
   /* Move path contents to make a gap in the right place. */
@@ -1692,7 +1692,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   }
   else {
     memmove (&path->sections[idx+1], &path->sections[idx],
-             sizeof (PATH_SECTION) * (path->num_sections - idx));
+             sizeof(PATH_SECTION) * (path->num_sections - idx));
   }
 
   path->num_sections++;

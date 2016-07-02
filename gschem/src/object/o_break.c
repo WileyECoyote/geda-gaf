@@ -387,7 +387,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
       points[4].x = left;
       points[4].y = top;
 
-      vertices = g_array_new (FALSE, FALSE, sizeof (POINT));
+      vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
 
       /* Add the starting point */
       g_array_append_val (vertices, *start);
@@ -545,7 +545,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
   int      segment1;
   int      segment2;
 
-  points = g_array_new (FALSE, FALSE, sizeof (POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(POINT));
   closed = s_path_to_polygon (object->path, points);
 
   if (closed) {
@@ -741,7 +741,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         stop = points->len; /* Will break at end of table */
       }
 
-      vertices = g_array_new (FALSE, FALSE, sizeof (POINT));
+      vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
 
       /* Add the starting point */
       g_array_append_val (vertices, *start);
@@ -793,7 +793,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
         g_array_free (vertices, TRUE);
 
-        vertices = g_array_new (FALSE, FALSE, sizeof (POINT));
+        vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
 
         index = 0;
         if (segment1 == segment2) {

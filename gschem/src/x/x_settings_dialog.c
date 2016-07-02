@@ -1487,7 +1487,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
     context = gtk_widget_get_pango_context ( GTK_WIDGET (w_current->drawing_area));
     pango_context_list_families (context, &families, &n_families);
-    qsort (families, n_families, sizeof (PangoFontFamily *), cmp_families);
+    qsort (families, n_families, sizeof(PangoFontFamily*), cmp_families);
 
     /* Load the output list with data from Pango */
     for (index = 0; index < n_families; index++) {

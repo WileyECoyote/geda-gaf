@@ -276,6 +276,7 @@ static char *popup_items[]={ "Dock",
                              "show Both",
                              "show Horizontal"
 };
+
 static char *popup_tips[]={  "Dock",
                              "Hide",
                              "Horizontal",
@@ -843,12 +844,13 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
     gtk_widget_destroy(popup_menu);
     return (TRUE);
 }
-/*! \brief Create and Setup Popup Mouse Menu for Toolbar
- *
- *  \par Function Description
- * This function is called when the user right clicks on a handlebox.
- * The function sets senitivty on menu choices based on the handlebox
- * position and the state of the containing toolbar.
+
+/*!
+ * \brief Create and Setup Popup Mouse Menu for Toolbar
+ * \par Function Description
+ *  This function is called when the user right clicks on a handlebox.
+ *  The function sets senitivty on menu choices based on the handlebox
+ *  position and the state of the containing toolbar.
  *
  *  \param [in] widget is the active widget
  */

@@ -216,7 +216,7 @@ void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
   g_return_if_fail (path != NULL);
   g_return_if_fail (lines != NULL);
 
-  points = g_array_new (FALSE, FALSE, sizeof (POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(POINT));
 
   s_path_to_polygon (path, points);
   m_hatch_polygon (points, angle, pitch, lines);
@@ -353,7 +353,7 @@ GArray *m_hatch_object  (GedaObject *object)
   int fill_angle2;
   int fill_pitch2;
 
-  fill_lines = g_array_new (FALSE, FALSE, sizeof (LINE));
+  fill_lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
   g_return_val_if_fail((GEDA_IS_ARC(object)    ||
                         GEDA_IS_BOX(object)    ||

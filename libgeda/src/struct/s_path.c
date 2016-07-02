@@ -70,7 +70,7 @@ GedaPath *s_path_new_from (PATH_SECTION *sections)
   path->num_sections_max = i;
   path->sections = g_new (PATH_SECTION, i);
 
-  memcpy (path->sections, sections, i * sizeof (PATH_SECTION));
+  memcpy (path->sections, sections, i * sizeof(PATH_SECTION));
   return path;
 }
 
@@ -105,7 +105,7 @@ void s_path_moveto (GedaPath *path, double x, double y)
   num_sections = path->num_sections++;
 
   if (num_sections == path->num_sections_max) {
-    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
   }
 
   sections = path->sections;
@@ -124,7 +124,7 @@ void s_path_lineto (GedaPath *path, double x, double y)
   num_sections = path->num_sections++;
 
   if (num_sections == path->num_sections_max) {
-    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
   }
 
   sections = path->sections;
@@ -144,7 +144,7 @@ void s_path_curveto (GedaPath *path, double x1, double y1,
   num_sections = path->num_sections++;
 
   if (num_sections == path->num_sections_max)
-    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
   sections = path->sections;
   sections[num_sections].code = PATH_CURVETO;
   sections[num_sections].x1 = x1;
@@ -164,7 +164,7 @@ void s_path_art_finish (GedaPath * path)
   num_sections = path->num_sections++;
 
   if (num_sections == path->num_sections_max)
-    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
   path->sections[num_sections].code = PATH_END;
 }
 
@@ -184,7 +184,7 @@ s_path_copy_modify (GedaPath *path, int dx, int dy,
   color                      = geda_object_get_color(GEDA_OBJECT(path));
   path_string                = s_path_string_from_path (path);
   new_path                   = (GedaPath*)geda_path_object_new (color, path_string);
-  new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
+  new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof(PATH_SECTION));
   new_path->num_sections     = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 
@@ -858,7 +858,7 @@ double s_path_shortest_distance (GedaPath *path, int x, int y, int solid)
   int closed;
   GArray *points;
 
-  points = g_array_new (FALSE, FALSE, sizeof (POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(POINT));
   closed = s_path_to_polygon (path, points);
 
   if (!solid) {

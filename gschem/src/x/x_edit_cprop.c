@@ -1153,7 +1153,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_PROP_EDIT, w_current);
 
-  properties = (property_data*) GEDA_MEM_ALLOC (sizeof (struct st_property_data));
+  properties = (property_data*) GEDA_MEM_ALLOC (sizeof(struct st_property_data));
 
   vbox = GTK_DIALOG(dialog)->vbox;
 

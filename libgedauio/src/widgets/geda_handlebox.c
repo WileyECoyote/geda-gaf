@@ -1506,7 +1506,7 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
 
-  handle_box->priv = g_malloc0 (sizeof (GedaHandleBoxData));
+  handle_box->priv = g_malloc0 (sizeof(GedaHandleBoxData));
 
   handle_box->bin_window          = NULL;
   handle_box->float_window        = NULL;

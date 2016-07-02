@@ -148,7 +148,7 @@ format_time (time_t t)
 
   localtime_r (&t, &tm_buf);
 
-  if (strftime (buf, sizeof (buf), format, &tm_buf) == 0) {
+  if (strftime (buf, sizeof(buf), format, &tm_buf) == 0) {
     return g_strdup ("<unknown>");
   }
   else {
@@ -257,7 +257,7 @@ my_new_from_file_at_size (const char *filename,
 
     while (!feof (f)) {
 
-      length = fread (buffer, 1, sizeof (buffer), f);
+      length = fread (buffer, 1, sizeof(buffer), f);
 
       if (length > 0)
         if (!gdk_pixbuf_loader_write (loader, buffer, length, error)) {

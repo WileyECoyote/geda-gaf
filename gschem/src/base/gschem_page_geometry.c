@@ -52,7 +52,7 @@ update_constants (GschemPageGeometry *geometry);
 GschemPageGeometry*
 gschem_page_geometry_copy (GschemPageGeometry *geometry)
 {
-  return (GschemPageGeometry*) g_memdup (geometry, sizeof (GschemPageGeometry));
+  return (GschemPageGeometry*) g_memdup (geometry, sizeof(GschemPageGeometry));
 }
 
 /*! \brief Free a page geometry

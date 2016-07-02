@@ -93,7 +93,7 @@ void m_polygon_append_point (GArray *points, int x, int y)
 
   if (points->len == 0 ||
       memcmp (&g_array_index (points, POINT, points->len - 1),
-              &point, sizeof (POINT)) != 0) {
+              &point, sizeof(POINT)) != 0) {
     g_array_append_val (points, point);
   }
 }

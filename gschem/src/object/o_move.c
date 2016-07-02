@@ -61,7 +61,7 @@ GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
     }
   }
 
-  s_new = GEDA_MEM_ALLOC (sizeof (STRETCH));
+  s_new = GEDA_MEM_ALLOC (sizeof(STRETCH));
   s_new->object = object;
   s_new->whichone = whichone;
 

@@ -553,7 +553,7 @@ get_pcb_element_list (char *pcb_file)
   if ((f = fopen (pcb_file, "r")) == NULL)
     return;
 
-  while ((fgets (buf, sizeof (buf), f)) != NULL) {
+  while ((fgets (buf, sizeof(buf), f)) != NULL) {
 
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
 
@@ -643,7 +643,7 @@ insert_element (FILE *f_out,     char *element_file,
 
     /* Scan the file to detect whether it is actually a PCB
      * layout. Assumes that a PCB layout will have a "PCB" line. */
-    while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+    while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
       for (str = buf; *str == ' ' || *str == '\t'; ++str);
 
@@ -661,7 +661,7 @@ insert_element (FILE *f_out,     char *element_file,
     /* Copy the file element lines.  Substitute new parameters into the
      * Element() or Element[] line and strip comments.
      */
-    while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+    while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
       for (str = buf; *str == ' ' || *str == '\t'; ++str);
 
@@ -980,7 +980,7 @@ add_elements (char *pcb_file)
     return 0;
   }
 
-  while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+  while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
 
@@ -1125,7 +1125,7 @@ update_element_descriptions (char *pcb_file, char *bak)
     return;
   }
 
-  while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+  while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
     for (s = buf; *s == ' ' || *s == '\t'; ++s); {
 
@@ -1202,7 +1202,7 @@ prune_elements (char *pcb_file, char *bak)
     return;
   }
 
-  while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+  while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
 
@@ -1473,7 +1473,7 @@ load_project (char *filename)
   if (verbose)
     printf ("Reading project file: %s\n", filename);
 
-  while (fgets (buf, sizeof (buf), f)) {
+  while (fgets (buf, sizeof(buf), f)) {
 
     for (s = buf; *s == ' ' || *s == '\t' || *s == '\n'; ++s);
 

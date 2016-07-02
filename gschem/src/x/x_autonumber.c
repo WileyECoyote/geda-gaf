@@ -1653,7 +1653,7 @@ GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
   menu  = geda_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct scope_options); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct scope_options); i++) {
 
     GtkWidget *menuitem;
 

@@ -486,7 +486,7 @@ int test_refdes (void)
     { "refdes=8A",    "refdes=8A" }
   };
 
-  count = sizeof (U04_str) / sizeof (struct _TestData);
+  count = sizeof(U04_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 
@@ -540,7 +540,7 @@ int test_refdes (void)
     result++;
   }
 
-  count = sizeof (U05_str) / sizeof (struct _TestData);
+  count = sizeof(U05_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 
@@ -878,7 +878,7 @@ int test_strings (void)
     result++;
   }
 
-  count = sizeof (U06_str) / sizeof (struct _TestData);
+  count = sizeof(U06_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 
@@ -922,7 +922,7 @@ int test_strings (void)
     result++;
   }
 
-  count = sizeof (U07_str) / sizeof (struct _TestData);
+  count = sizeof(U07_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 

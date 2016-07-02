@@ -283,7 +283,7 @@ param_scm_values_cmp (GParamSpec *pspec,
   SCM b = edascm_value_get_scm (value2);
 
   if (scm_is_true (scm_equal_p (a, b))) return 0;
-  return memcmp (value1, value2, sizeof (GValue));
+  return memcmp (value1, value2, sizeof(GValue));
 }
 
 /* ---------------------------------------------------------------- */
@@ -310,7 +310,7 @@ edascm_param_spec_scm_get_type (void)
     GedaType    type;
 
     const GParamSpecTypeInfo pspec_info = {
-      sizeof (EdascmParamSpecSCM),          /* instance_size */
+      sizeof(EdascmParamSpecSCM),           /* instance_size */
       0,                                    /* n_preallocs */
       NULL,                                 /* instance_init */
       EDASCM_TYPE_SCM,                      /* value_type */

@@ -504,7 +504,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
       remaining_space.height -= border.top + border.bottom;
     }
 
-    requested_sizes = g_array_new (FALSE, FALSE, sizeof (GtkRequestedSize));
+    requested_sizes = g_array_new (FALSE, FALSE, sizeof(GtkRequestedSize));
     children        = menu_shell->priv->children;
 
     if (priv->pack_direction == PACK_DIRECTION_LTR ||

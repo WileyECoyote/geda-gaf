@@ -236,7 +236,7 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
 
     if (!s_rename_have_rename_record(src, dest)) {
 
-      new_rename = GEDA_MEM_ALLOC(sizeof (RENAME));
+      new_rename = GEDA_MEM_ALLOC(sizeof(RENAME));
 
       g_return_if_fail(new_rename != NULL);
 

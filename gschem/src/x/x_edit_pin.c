@@ -110,7 +110,7 @@ static GtkWidget *create_menu_pin_electricals ( void )
   menu  = gtk_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct pin_electrical); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct pin_electrical); i++) {
     GtkWidget *menuitem;
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
@@ -142,7 +142,7 @@ static GtkWidget *create_menu_pin_type ( void )
   menu  = gtk_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct pin_type); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct pin_type); i++) {
 
     GtkWidget *menuitem;
 
@@ -925,7 +925,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   }
 
   /* Allocate memory for a structure to hold pointers to our Widgets */
-  pin_data = (pin_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_pin_type_data));
+  pin_data = (pin_type_data*) GEDA_MEM_ALLOC (sizeof(struct st_pin_type_data));
 
   /* populate the data structure */
   pin_data->node_type      = optionmenu;

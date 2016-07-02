@@ -72,7 +72,7 @@ static void *libgeda_module_handle ()
                                 GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
                                 address, &hmodule)) {
     MEMORY_BASIC_INFORMATION mbi;
-    VirtualQuery (address, &mbi, sizeof (mbi));
+    VirtualQuery (address, &mbi, sizeof(mbi));
     hmodule = (HMODULE) mbi.AllocationBase;
   }
 

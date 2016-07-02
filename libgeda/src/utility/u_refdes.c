@@ -207,7 +207,7 @@ void geda_utility_refdes_reset(GedaObject *object)
 
     len = strlen (object->text->string);
 
-    if (len < sizeof (buffer) - 1) {
+    if (len < sizeof(buffer) - 1) {
       for ( ; index < len; index++) {
         if (isdigit(ptr[index]) ) {
           if (index == 7) { /* first char after "=" can not be a digit */

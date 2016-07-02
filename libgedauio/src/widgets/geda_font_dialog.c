@@ -604,16 +604,17 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
   gtk_list_store_clear (store);
 
   if (dialog->family) {
+
     if (dialog->face)
       old_desc = pango_font_face_describe (dialog->face);
     else
       old_desc= NULL;
 
     pango_font_family_list_faces (dialog->family, &faces, &n_faces);
-    qsort (faces, n_faces, sizeof (PangoFontFace *), faces_sort_func);
+    qsort (faces, n_faces, sizeof(PangoFontFace*), faces_sort_func);
 
-    for (i=0; i < n_faces; i++)
-    {
+    for (i=0; i < n_faces; i++) {
+
       GtkTreeIter iter;
       const char *str;
 
@@ -821,14 +822,16 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
 
   pango_context_list_families (context, &families, &n_families);
 
-  qsort (families, n_families, sizeof (PangoFontFamily *), cmp_families);
+  qsort (families, n_families, sizeof(PangoFontFamily *), cmp_families);
 
   model = GTK_LIST_STORE (gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->family_list)));
   gtk_list_store_clear (model);
 
   match_family = NULL;
+
   /* Load the list of fonts names into the view tree model */
   for (i=0; i<n_families; i++) {
+
     name = pango_font_family_get_name (families[i]);
     GtkTreeIter iter;
 

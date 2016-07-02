@@ -2313,7 +2313,7 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
 
   combo_box->instance_type = geda_combo_box_get_type();
 
-  priv = g_malloc0 (sizeof (GedaComboBoxData));
+  priv = g_malloc0 (sizeof(GedaComboBoxData));
 
   priv->cell_view = gtk_cell_view_new ();
 

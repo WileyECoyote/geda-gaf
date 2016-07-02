@@ -784,7 +784,7 @@ array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
 {
   array_data *dialog_data;
 
-  dialog_data = (array_data*) GEDA_MEM_ALLOC (sizeof (struct st_array_data));
+  dialog_data = (array_data*) GEDA_MEM_ALLOC (sizeof(struct st_array_data));
 
   dialog_data->press_hid   = 0;
   dialog_data->release_hid = 0;

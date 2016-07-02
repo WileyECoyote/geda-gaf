@@ -57,7 +57,7 @@ char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
  */
 const char *s_netattrib_connected_string_get_pinnum (const char *str)
 {
-  int prefix_len = (sizeof PIN_NET_PREFIX) - 1;
+  int prefix_len = (sizeof(PIN_NET_PREFIX)) - 1;
 
   if (strncmp (str, PIN_NET_PREFIX, prefix_len) != 0) {
     return NULL;

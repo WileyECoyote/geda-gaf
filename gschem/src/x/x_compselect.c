@@ -2713,7 +2713,7 @@ static GedaMenu *compselect_create_styles_menu (Compselect *ThisDialog)
 
   menu  = GEDA_MENU (geda_menu_new ());
 
-  for (i = 0; i < sizeof (types) / sizeof (struct styles); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct styles); i++) {
 
     unsigned long handler;
     bool state;
@@ -2776,7 +2776,7 @@ static GtkWidget *create_behaviors_menu (void)
   menu  = geda_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct behaviors); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct behaviors); i++) {
 
     GtkWidget *menuitem;
 

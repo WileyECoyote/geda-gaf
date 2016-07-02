@@ -131,13 +131,13 @@ GedaType gschem_event_get_type (void)
 
   if (type == 0) {
     static const GTypeInfo info = {
-      sizeof (GschemEventClass),
+      sizeof(GschemEventClass),
       NULL,                            /* base_init */
       NULL,                            /* base_finalize */
       gschem_event_class_init,         /* class_init */
       NULL,                            /* class_finalize */
       NULL,                            /* class_data */
-      sizeof (GschemEvent),
+      sizeof(GschemEvent),
       0,                               /* n_preallocs */
       gschem_event_instance_init       /* instance_init */
     };

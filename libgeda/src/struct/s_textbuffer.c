@@ -56,7 +56,7 @@ TextBuffer *s_textbuffer_new (const char *data, const int size)
   else
     realsize = size;
 
-  result = GEDA_MEM_ALLOC0 (sizeof (TextBuffer));
+  result = GEDA_MEM_ALLOC0 (sizeof(TextBuffer));
 
   result->buffer = data;
   result->size = realsize;

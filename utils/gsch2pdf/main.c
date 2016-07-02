@@ -81,7 +81,7 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
         (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
-        GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
+        GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
         m_hatch_box(object->box, object->fill_options->fill_angle1,
                                  object->fill_options->fill_pitch1, lines);
@@ -159,7 +159,7 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
          (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
-        GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
+        GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
         m_hatch_circle(object->circle, object->fill_options->fill_angle1,
                        object->fill_options->fill_pitch1, lines);
@@ -316,7 +316,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object
         (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
-        GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
+        GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
         m_hatch_path(object->path, object->fill_options->fill_angle1,
                      object->fill_options->fill_pitch1, lines);

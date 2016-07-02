@@ -65,9 +65,7 @@ x_stroke_init (void)
 
   stroke_init ();
 
-  stroke_points = g_array_new (FALSE,
-                               FALSE,
-                               sizeof (StrokePoint));
+  stroke_points = g_array_new (FALSE, FALSE, sizeof(StrokePoint));
 }
 
 /*! \brief Frees memory of the stroke interface.

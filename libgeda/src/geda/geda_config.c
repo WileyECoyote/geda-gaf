@@ -278,7 +278,7 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
 
   config->instance_type = eda_config_get_type();
 
-  config->priv          = GEDA_MEM_ALLOC0 (sizeof (EdaConfigData));
+  config->priv          = GEDA_MEM_ALLOC0(sizeof(EdaConfigData));
 
   config->priv->parent            = NULL;
   config->priv->keyfile           = g_key_file_new ();

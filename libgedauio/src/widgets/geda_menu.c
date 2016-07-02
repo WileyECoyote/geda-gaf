@@ -1050,7 +1050,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   GedaMenuPriv *priv;
 
   menu                 = (GedaMenu *)instance;
-  menu->priv           = g_malloc0 (sizeof (GedaMenuPriv));
+  menu->priv           = g_malloc0 (sizeof(GedaMenuPriv));
   priv                 = menu->priv;
   menu->instance_type  = geda_menu_get_type();
 
@@ -2707,7 +2707,7 @@ geda_menu_size_request (GtkWidget      *widget,
   max_accel_width = 0;
 
   g_free (priv->heights);
-  priv->heights = g_malloc0 (sizeof (unsigned int) * geda_menu_get_n_rows (menu));
+  priv->heights = g_malloc0 (sizeof(unsigned int) * geda_menu_get_n_rows (menu));
   priv->heights_length = geda_menu_get_n_rows (menu);
 
   children = menu_shell->children;

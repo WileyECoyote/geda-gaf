@@ -402,13 +402,13 @@ GedaType gschem_toplevel_get_type(void)
 
   if (type == 0) {
     static const GTypeInfo info = {
-      sizeof (GschemToplevelClass),
+      sizeof(GschemToplevelClass),
       NULL,                            /* base_init */
       NULL,                            /* base_finalize */
       gschem_toplevel_class_init,      /* class_init */
       NULL,                            /* class_finalize */
       NULL,                            /* class_data */
-      sizeof (GschemToplevel),
+      sizeof(GschemToplevel),
       0,                               /* n_preallocs */
       gschem_toplevel_instance_init    /* instance_init */
     };

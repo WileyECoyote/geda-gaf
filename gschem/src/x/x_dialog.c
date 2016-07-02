@@ -1190,7 +1190,7 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
   menu  = geda_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct fill_type); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct fill_type); i++) {
 
     GtkWidget *menuitem;
 
@@ -1662,7 +1662,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), pitch2_entry, 1,2,5,6);
   SetWidgetTip(pitch2_entry, _("Spacing for the secondary filler lines"));
 
-  fill_data = (fill_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_fill_type_data));
+  fill_data = (fill_type_data*) GEDA_MEM_ALLOC (sizeof(struct st_fill_type_data));
 
   /* populate the data structure */
   fill_data->fill_type    = optionmenu;
@@ -1754,7 +1754,7 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
   menu  = geda_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct end_type); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct end_type); i++) {
 
     GtkWidget *menuitem;
 
@@ -1795,7 +1795,7 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
   menu  = geda_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof (struct line_type); i++) {
+  for (i = 0; i < sizeof(types) / sizeof(struct line_type); i++) {
 
     GtkWidget *menuitem;
 
@@ -2239,7 +2239,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), space_entry, 1,2,4,5);
   SetWidgetTip(space_entry, _("Set spacing between dashes in the line"));
 
-  line_data = (line_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_line_type_data));
+  line_data = (line_type_data*) GEDA_MEM_ALLOC (sizeof(struct st_line_type_data));
 
   /* populate the data structure */
   line_data->width_entry  = width_entry;

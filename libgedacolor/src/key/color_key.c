@@ -90,7 +90,7 @@ int geda_color_key_get_index(const char *name)
     static int last = -1;
     int trip = 0;
 
-    index = last < sizeof (color_keys) / sizeof (color_keys[0]) - 2 ? ++last : 0;
+    index = last < sizeof(color_keys) / sizeof(color_keys[0]) - 2 ? ++last : 0;
 
     while (color_keys[index]) {
 

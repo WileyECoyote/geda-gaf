@@ -406,7 +406,7 @@ GArray *g_keys_dump_keymap (void)
 
   ret = g_array_sized_new (FALSE,
                            FALSE,
-                           sizeof (struct keyseq_action_t),
+                           sizeof(struct keyseq_action_t),
                            (unsigned int)scm_ilength (scm_ret));
   for (; scm_ret != SCM_EOL; scm_ret = SCM_CDR (scm_ret)) {
 

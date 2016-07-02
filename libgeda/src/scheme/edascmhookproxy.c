@@ -161,7 +161,7 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {
   SCM proc;
 
-  proxy->priv = GEDA_MEM_ALLOC (sizeof (EdascmHookProxyData));
+  proxy->priv = GEDA_MEM_ALLOC (sizeof(EdascmHookProxyData));
   proxy->priv->hook = SCM_UNDEFINED;
   proxy->priv->closure = SCM_UNDEFINED;
 

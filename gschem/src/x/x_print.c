@@ -621,13 +621,13 @@ GedaType print_dialog_get_type (void)
   if (!print_dialog_type) {
 
     static const GTypeInfo print_dialog_info = {
-      sizeof (PrintDialogClass),
+      sizeof(PrintDialogClass),
       NULL,                      /* base_init */
       NULL,                      /* base_finalize */
       (GClassInitFunc) print_dialog_class_init,
       NULL,                      /* class_finalize */
       NULL,                      /* class_data */
-      sizeof (PrintDialog),
+      sizeof(PrintDialog),
       0,                      /* n_preallocs */
       (GInstanceInitFunc) print_dialog_instance_init,
     };

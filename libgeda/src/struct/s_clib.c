@@ -655,7 +655,7 @@ static void refresh_directory (CLibSource *source)
 
             CLibSymbol *symbol;
           /* Create and add new symbol record */
-          symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
+          symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
           symbol->source = source;
           symbol->name   = geda_utility_string_strdup(entry->d_name);
 
@@ -731,7 +731,7 @@ static void refresh_command (CLibSource *source)
       continue;
     }
 
-    symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
+    symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
     symbol->source = source;
     symbol->name   = name;
 
@@ -789,7 +789,7 @@ static void refresh_scm (CLibSource *source)
       CLibSymbol *symbol;
       char       *tmp;
 
-      symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
+      symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
       symbol->source = source;
 
       /* Use free function on strings allocated by Guile. */
@@ -996,7 +996,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   unique_name = get_unique_source_name (tmpstr);
 */
 
-  source            = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
+  source            = GEDA_MEM_ALLOC0 (sizeof(CLibSource));
 
   source->type      = CLIB_DIR;
   source->directory = geda_utility_string_strdup (directory);
@@ -1054,7 +1054,7 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
                    unique_name);
   }
 
-  source           = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
+  source           = GEDA_MEM_ALLOC0 (sizeof(CLibSource));
   source->type     = CLIB_CMD;
   source->name     = unique_name;
 
@@ -1103,7 +1103,7 @@ const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
     return NULL;
   }
 
-  source           = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
+  source           = GEDA_MEM_ALLOC0 (sizeof(CLibSource));
   source->type     = CLIB_SCM;
   source->name     = unique_name;
   source->list_fn  = scm_gc_protect_object (listfunc);

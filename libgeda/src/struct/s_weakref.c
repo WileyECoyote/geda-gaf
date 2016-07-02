@@ -78,7 +78,7 @@ GList *
 s_weakref_add (GList *weak_refs, void (*notify_func)(void *, void *),
                void *user_data)
 {
-  struct WeakRef *entry = GEDA_MEM_ALLOC0 (sizeof (struct WeakRef));
+  struct WeakRef *entry = GEDA_MEM_ALLOC0 (sizeof(struct WeakRef));
   entry->notify_func = notify_func;
   entry->user_data = user_data;
   return g_list_prepend (weak_refs, entry);
