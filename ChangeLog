@@ -1,5 +1,9 @@
 2016-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda/geda_types.h: Add miscellaneous int_t and unint_t types.
+
+2016-06-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * configure.ac: Bump mutation to 2.1.0.22, 20160616, bump AX_LIBGEDAUIO
       to 0.10.
 
