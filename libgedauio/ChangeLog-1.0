@@ -8,6 +8,8 @@
       Allocate AttachInfo and MenuAttachData struct using g_malloc0 instead of
       g_slice_new0. Eliminate translation of data keys.
 
+    * src/widgets/geda_menu_item.c: Replace GtkLabel with GedaLabel.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define gtk_widget_reset_style is

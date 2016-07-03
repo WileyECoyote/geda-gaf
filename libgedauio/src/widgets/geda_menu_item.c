@@ -38,7 +38,7 @@
  * An example for setting markup and accelerator on a MenuItem:
  * |[<!-- language="C" -->
  * GtkWidget *child = gtk_bin_get_child (GTK_BIN (menu_item));
- * gtk_label_set_markup (GTK_LABEL (child), "<i>new label</i> with <b>markup</b>");
+ * geda_label_set_markup (GEDA_LABEL (child), "<i>new label</i> with <b>markup</b>");
  * geda_accel_label_set_accel (GEDA_ACCEL_LABEL (child), GDK_KEY_1, 0);
  * ]|
  *
@@ -652,10 +652,10 @@ geda_menu_item_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class,
                                    PROP_USE_UNDERLINE,
                                    g_param_spec_boolean ("use-underline",
-                                                         _("Use underline"),
-                                                         _("If set, an underline in the text indicates "
-                                                            "the next character should be used for the "
-                                                            "mnemonic accelerator key"),
+                                                       _("Use underline"),
+                                                       _("If set, an underline in the text indicates "
+                                                         "the next character should be used for the "
+                                                         "mnemonic accelerator key"),
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
@@ -1209,7 +1209,7 @@ geda_menu_item_new_with_label (const char *label)
  * \par Function Description
  *  Creates a new #GedaMenuItem containing a label.
  *
- *  The label will be created using gtk_label_new_with_mnemonic(),
+ *  The label will be created using geda_label_new_with_mnemonic(),
  *  so underscores in \a label indicate the mnemonic for the menu item.
  *
  * \param label The text of the button, with an underscore in front of the
@@ -3202,7 +3202,7 @@ geda_menu_item_accel_name_foreach (GtkWidget *widget,
 
     if (GEDA_IS_LABEL (widget)) {
 
-      *path_p = gtk_label_get_text (GTK_LABEL (widget));
+      *path_p = geda_label_get_text (GEDA_LABEL (widget));
       if (*path_p && (*path_p)[0] == 0) {
         *path_p = NULL;
       }
@@ -3433,7 +3433,7 @@ geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
 }
 
 bool
-geda_menu_item_get_from_menubar (GedaMenuItem  *menu_item)
+geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM (menu_item), FALSE);
 
@@ -3495,7 +3495,7 @@ geda_menu_item_set_use_underline (GedaMenuItem *menu_item,
 
   if (GEDA_IS_LABEL (child)) {
 
-    gtk_label_set_use_underline (GTK_LABEL (child), setting);
+    geda_label_set_use_underline (GEDA_LABEL (child), setting);
 
     g_object_notify (G_OBJECT (menu_item), "use-underline");
   }
@@ -3522,7 +3522,7 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 
   child = gtk_bin_get_child (GTK_BIN (menu_item));
   if (GEDA_IS_LABEL (child)) {
-    return gtk_label_get_use_underline (GTK_LABEL (child));
+    return geda_label_get_use_underline (GEDA_LABEL (child));
   }
   return FALSE;
 }
