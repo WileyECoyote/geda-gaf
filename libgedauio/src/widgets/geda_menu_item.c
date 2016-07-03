@@ -753,9 +753,9 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
 
   menu_item->instance_type = geda_menu_item_get_type();
 
-  gtk_widget_set_has_window (GTK_WIDGET (menu_item), FALSE);
-
   priv->use_action_appearance = TRUE;
+
+  gtk_widget_set_has_window (GTK_WIDGET (menu_item), FALSE);
 
   if (gtk_widget_get_direction (GTK_WIDGET(menu_item)) == GTK_TEXT_DIR_RTL)
   {
@@ -992,7 +992,6 @@ activatable_update_label (GedaMenuItem *menu_item, GtkAction *action)
 
     const char *label;
 
-
     label = gtk_action_get_label (action);
 
     geda_menu_item_set_label (menu_item, label);
@@ -1025,6 +1024,7 @@ geda_menu_is_empty (GtkWidget *menu)
   children = gtk_container_get_children (GTK_CONTAINER (menu));
 
   cur = children;
+
   while (cur) {
 
     if (gtk_widget_get_visible (cur->data)) {
@@ -1158,14 +1158,12 @@ geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
 
   gtk_activatable_do_set_related_action (GTK_ACTIVATABLE (menu_item), action);
 
-  //;
-
-  priv->action = (GedaAction *)action;
+  priv->action = (GedaAction*)action;
 }
 
 static void
 geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
-                                          bool     use_appearance)
+                                          bool          use_appearance)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -1175,7 +1173,6 @@ geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
 
     gtk_activatable_sync_action_properties (GTK_ACTIVATABLE (menu_item),
                                             GTK_ACTION(priv->action));
-    //;
   }
 }
 
@@ -1246,7 +1243,7 @@ geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
  */
 void
 geda_menu_item_set_submenu (GedaMenuItem *menu_item,
-                            GtkWidget   *submenu)
+                            GtkWidget    *submenu)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -1255,8 +1252,9 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item,
 
   if (priv->submenu != submenu) {
 
-    if (priv->submenu)
+    if (priv->submenu) {
       geda_menu_detach (GEDA_MENU (priv->submenu));
+    }
 
     if (submenu) {
 
@@ -1429,10 +1427,14 @@ geda_menu_item_realize (GtkWidget *widget)
   priv->event_window = gdk_window_new (window, &attributes, attributes_mask);
 
 #if GTK_MAJOR_VERSION < 3
+
   gdk_window_set_user_data (priv->event_window, widget);
   widget->style = gtk_style_attach (widget->style, widget->window);
+
 #else
+
   gtk_widget_register_window (widget, priv->event_window);
+
 #endif
 
 }
@@ -1443,11 +1445,14 @@ geda_menu_item_unrealize (GtkWidget *widget)
   GedaMenuItem *menu_item   = GEDA_MENU_ITEM (widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
 
-
 #if GTK_MAJOR_VERSION < 3
+
   gdk_window_set_user_data (priv->event_window, NULL);
+
 #else
+
   gtk_widget_unregister_window (widget, priv->event_window);
+
 #endif
 
   gdk_window_destroy (priv->event_window);
@@ -1628,8 +1633,9 @@ geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     arrow_extent = arrow_size * arrow_scaling;
 
     shadow_type = GTK_SHADOW_OUT;
-    if (state_type == GTK_STATE_PRELIGHT)
+    if (state_type == GTK_STATE_PRELIGHT) {
       shadow_type = GTK_SHADOW_IN;
+    }
 
     if (direction == GTK_TEXT_DIR_LTR) {
 
@@ -1708,8 +1714,8 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
   GtkBin              *bin;
-  PackDirection     pack_dir;
-  PackDirection     child_pack_dir;
+  PackDirection        pack_dir;
+  PackDirection        child_pack_dir;
   unsigned int         accel_width;
   unsigned int         horizontal_padding;
 
@@ -1770,7 +1776,6 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
       get_arrow_size (widget, bin->child, &arrow_size, &arrow_spacing);
 
       requisition->width += child_requisition.height;
-      //requisition->width += arrow_spacing;
       requisition->width += arrow_spacing + arrow_size;
 
       /* WEH: Max or SUM? */
@@ -1787,10 +1792,12 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
                           "separator-height", &separator_height,
                           NULL);
 
-    if (wide_separators)
+    if (wide_separators) {
       requisition->height += separator_height + widget->style->ythickness;
-    else
+    }
+    else {
       requisition->height += widget->style->ythickness * 2;
+    }
   }
 
   accel_width = 0;
@@ -1851,7 +1858,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
       child_allocation.y += horizontal_padding;
     }
 
-    child_allocation.width = MAX (1, (int)allocation->width - child_allocation.x * 2);
+    child_allocation.width  = MAX (1, (int)allocation->width - child_allocation.x * 2);
     child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y * 2);
 
     if (child_pack_dir == PACK_DIRECTION_LTR ||
@@ -2000,8 +2007,8 @@ geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
     gtk_style_context_add_class (context, GTK_STYLE_CLASS_SEPARATOR);
 
     gtk_widget_style_get (widget,
-                          "wide-separators",    &wide_separators,
-                          "separator-height",   &separator_height,
+                          "wide-separators",  &wide_separators,
+                          "separator-height", &separator_height,
                           NULL);
     if (wide_separators) {
       gtk_render_frame (context, cr,
@@ -2031,9 +2038,9 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
                                     int       *minimum_size,
                                     int       *natural_size)
 {
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM (widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-  GtkBin *bin;
+  GedaMenuItem        *menu_item = GEDA_MENU_ITEM (widget);
+  GedaMenuItemPrivate *priv      = menu_item->priv;
+  GtkBin    *bin;
   GtkWidget *child;
   GtkWidget *parent;
   unsigned intaccel_width;
@@ -2053,7 +2060,7 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
 
   gtk_style_context_get_padding (context, state, &padding);
 
-  min_width  = (border_width * 2) + padding.left + padding.right;
+  min_width  = (border_width << 1) + padding.left + padding.right;
   nat_width  = min_width;
 
   child      = gtk_bin_get_child (bin);
@@ -2103,14 +2110,16 @@ geda_menu_item_real_get_height (GtkWidget *widget,
                                 int       *minimum_size,
                                 int       *natural_size)
 {
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM (widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-  GtkBin *bin;
+  GedaMenuItem        *menu_item = GEDA_MENU_ITEM (widget);
+  GedaMenuItemPrivate *priv      = menu_item->priv;
+
+  GtkBin          *bin;
   GtkStyleContext *context;
-  GtkStateFlags state;
-  GtkBorder padding;
-  GtkWidget *child;
-  GtkWidget *parent;
+  GtkWidget       *child;
+  GtkWidget       *parent;
+  GtkBorder        padding;
+  GtkStateFlags    state;
+
   unsigned intaccel_width;
   unsigned intborder_width;
   int min_height, nat_height;
@@ -2140,7 +2149,8 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   if (child != NULL && gtk_widget_get_visible (child)) {
 
     int child_min, child_nat;
-    int arrow_size = 0, arrow_spacing = 0;
+    int arrow_size = 0;
+    int arrow_spacing = 0;
 
     if ((priv->submenu && !GEDA_IS_MENU_BAR (parent)) || priv->reserve_indicator)
       get_arrow_size (widget, child, &arrow_size, &arrow_spacing);
@@ -2197,9 +2207,11 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   }
 
   accel_width = 0;
+
   gtk_container_foreach (GTK_CONTAINER (menu_item),
                          geda_menu_item_accel_width_foreach,
                          &accel_width);
+
   priv->accelerator_width = accel_width;
 
   if (minimum_size)
@@ -2211,33 +2223,33 @@ geda_menu_item_real_get_height (GtkWidget *widget,
 
 static void
 geda_menu_item_get_preferred_height (GtkWidget *widget,
-                                     int      *minimum_size,
-                                     int      *natural_size)
+                                     int       *minimum_size,
+                                     int       *natural_size)
 {
   geda_menu_item_real_get_height (widget, -1, minimum_size, natural_size);
 }
 
 static void
 geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
-                                               int       for_size,
-                                               int      *minimum_size,
-                                               int      *natural_size)
+                                               int        for_size,
+                                               int       *minimum_size,
+                                               int       *natural_size)
 {
   geda_menu_item_real_get_height (widget, for_size, minimum_size, natural_size);
 }
 
 static void
 geda_menu_item_size_allocate (GtkWidget     *widget,
-                             GtkAllocation *allocation)
+                              GtkAllocation *allocation)
 {
-  GedaMenuItem *menu_item   = GEDA_MENU_ITEM (widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-  GtkBin *bin;
-  GtkAllocation child_allocation;
-  GtkTextDirection direction;
-  PackDirection child_pack_dir;
-  GtkWidget *child;
-  GtkWidget *parent;
+  GedaMenuItem        *menu_item = GEDA_MENU_ITEM (widget);
+  GedaMenuItemPrivate *priv      = menu_item->priv;
+  GtkBin              *bin;
+  GtkWidget           *child;
+  GtkWidget           *parent;
+  GtkAllocation        child_allocation;
+  GtkTextDirection     direction;
+  PackDirection        child_pack_dir;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM (widget));
   g_return_if_fail (allocation != NULL);
@@ -2264,9 +2276,9 @@ geda_menu_item_size_allocate (GtkWidget     *widget,
   if (child) {
 
     GtkStyleContext *context;
-    GtkStateFlags state;
-    GtkBorder padding;
-    guint border_width;
+    GtkStateFlags    state;
+    GtkBorder        padding;
+    unsigned int     border_width;
 
     context = gtk_widget_get_style_context (widget);
     state   = gtk_widget_get_state_flags (widget);
@@ -2395,6 +2407,7 @@ geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   else {
     g_signal_emit (widget, menu_item_signals[ACTIVATE_ITEM], 0);
   }
+
   return TRUE;
 }
 
@@ -2477,7 +2490,7 @@ geda_real_menu_item_set_label (GedaMenuItem *menu_item,
   }
 }
 
-static const char *
+static const char*
 geda_real_menu_item_get_label (GedaMenuItem *menu_item)
 {
   GedaLabel *child;
@@ -2537,10 +2550,12 @@ geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
      * positioning function instead which places the submenu at the
      * mouse cursor.
      */
-    if (gtk_widget_get_window (widget))
+    if (gtk_widget_get_window (widget)) {
       menu_position_func = geda_menu_item_position_menu;
-    else
+    }
+    else {
       menu_position_func = NULL;
+    }
 
     geda_menu_popup (GEDA_MENU (priv->submenu),
                      parent,
@@ -2597,7 +2612,6 @@ get_popup_delay (GedaMenuItem *menu_item)
 void
 geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
-  //GedaMenuItem *menu_item = GEDA_MENU_ITEM (widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
 
   if (priv->timer) {

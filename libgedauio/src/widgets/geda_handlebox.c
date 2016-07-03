@@ -1311,9 +1311,11 @@ geda_handle_box_get_property (GObject        *object,
     case PROP_SHADOW_TYPE:
       g_value_set_enum (value, handle_box->shadow_type);
       break;
+
     case PROP_HANDLE_POSITION:
       g_value_set_enum (value, handle_box->handle_position);
       break;
+
     case PROP_SNAP_EDGE:
       g_value_set_enum (value,
                         (handle_box->snap_edge == -1 ?
@@ -1322,9 +1324,11 @@ geda_handle_box_get_property (GObject        *object,
     case PROP_SNAP_EDGE_SET:
       g_value_set_boolean (value, handle_box->snap_edge != -1);
       break;
+
     case PROP_CHILD_DETACHED:
       g_value_set_boolean (value, handle_box->child_detached);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1343,16 +1347,20 @@ geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
     case PROP_SHADOW_TYPE:
       geda_handle_box_set_shadow_type (handle_box, g_value_get_enum (value));
       break;
+
     case PROP_HANDLE_POSITION:
       geda_handle_box_set_handle_position (handle_box, g_value_get_enum (value));
       break;
+
     case PROP_SNAP_EDGE:
       geda_handle_box_set_snap_edge (handle_box, g_value_get_enum (value));
       break;
+
     case PROP_SNAP_EDGE_SET:
       if (!g_value_get_boolean (value))
         geda_handle_box_set_snap_edge (handle_box, (GtkPositionType)-1);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;

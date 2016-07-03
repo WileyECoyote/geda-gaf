@@ -830,7 +830,7 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
   match_family = NULL;
 
   /* Load the list of fonts names into the view tree model */
-  for (i=0; i<n_families; i++) {
+  for (i = 0; i < n_families; i++) {
 
     name = pango_font_family_get_name (families[i]);
     GtkTreeIter iter;
@@ -846,12 +846,10 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
         match_row = iter;
       }
     }
-    else {
-     if ( i == 0 ) {
-        match_family = families[i];
-        match_row = iter;
-        geda_font_dialog_ref_family (dialog, match_family);
-      }
+    else if (i == 0) {
+      match_family = families[i];
+      match_row = iter;
+      geda_font_dialog_ref_family (dialog, match_family);
     }
   }
 
@@ -882,7 +880,7 @@ callback_select_family (GtkTreeSelection *selection, void * data)
 
     if ( family != dialog->family ) {
 
-      const char  *family_name;
+      const char *family_name;
 
       if (dialog->family) {
         g_object_unref (dialog->family);
@@ -891,8 +889,9 @@ callback_select_family (GtkTreeSelection *selection, void * data)
       dialog->family = g_object_ref (family);
       g_object_unref (family);
 
-      if (dialog->font_desc)
+      if (dialog->font_desc) {
         pango_font_description_free(dialog->font_desc);
+      }
 
       family_name       = pango_font_family_get_name(dialog->family);
       font_name         = geda_sprintf("%s %d",family_name, dialog->font_size);
@@ -952,24 +951,31 @@ geda_font_dialog_get_property (GObject *object, unsigned int prop_id,
   switch (prop_id) {
     case PROP_TITLE:
       break;
+
     case PROP_FONT:
       g_value_set_boxed (value, geda_font_dialog_get_font (dialog));
       break;
+
     case PROP_FONT_DESC:
       g_value_set_boxed (value, geda_font_dialog_get_font_desc (dialog));
       break;
+
     case PROP_FONT_NAME:
       g_value_set_string (value, geda_font_dialog_get_font_name_internal (dialog));
       break;
+
     case PROP_FONT_SIZE:
       g_value_set_int (value, geda_font_dialog_get_font_size (dialog));
       break;
+
     case PROP_PREVIEW_TEXT:
       g_value_set_string (value, geda_font_dialog_get_preview_text (dialog));
       break;
+
     case PROP_SHOW_PREVIEW:
       g_value_set_boolean (value, dialog->show_preview);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -988,21 +994,27 @@ geda_font_dialog_set_property (GObject *object, unsigned int prop_id,
     case PROP_TITLE:
       gtk_window_set_title (GTK_WINDOW (dialog), g_value_get_string (value));
       break;
+
     case PROP_FONT_DESC:
       geda_font_dialog_take_font_desc (dialog, g_value_dup_boxed (value));
       break;
+
     case PROP_FONT_NAME:
       geda_font_dialog_set_font_name (dialog, g_value_get_string (value));
       break;
+
     case PROP_FONT_SIZE:
       geda_font_dialog_set_font_size (dialog, g_value_get_int(value));
       break;
+
     case PROP_PREVIEW_TEXT:
       geda_font_dialog_set_preview_text (dialog, g_value_get_string (value));
       break;
+
     case PROP_SHOW_PREVIEW:
       geda_font_dialog_set_show_preview(dialog, g_value_get_boolean (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1020,9 +1032,9 @@ static bool list_row_activated (GtkWidget *widget)
   if (!gtk_widget_is_toplevel (GTK_WIDGET (window)))
     window = NULL;
 
-  if (window
-      && widget != window->default_widget
-      && !(widget == window->focus_widget &&
+  if (window &&
+      widget != window->default_widget &&
+    !(widget == window->focus_widget &&
     (!window->default_widget || !gtk_widget_get_sensitive (window->default_widget))))
     {
       gtk_window_activate_default (window);
@@ -1052,16 +1064,17 @@ callback_size_entry_activate (GtkWidget *w, void * data)
     if (dialog->font_size != new_size) {
       geda_font_dialog_set_font_size (dialog, new_size);
     }
-    else
+    else {
       list_row_activated (w);
+    }
 
     geda_font_dialog_update_preview (dialog);
   }
 }
 
 static bool callback_size_entry_focus_out (GtkWidget     *w,
-                                             GdkEventFocus *event,
-                                             void *       data)
+                                           GdkEventFocus *event,
+                                           void          *data)
 {
   callback_size_entry_activate (w, data);
 
@@ -1112,8 +1125,9 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
     }
     g_object_unref (relation_set);
   }
-  else
+  else {
     atk_obj = NULL;
+  }
 
   return atk_obj;
 }
@@ -1387,11 +1401,6 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
                           G_CALLBACK (callback_size_entry_focus_out),
                           dialog);
 
-/*
-  g_signal_connect_after (dialog->size_entry, "changed",
-                          G_CALLBACK (geda_font_dialog_font_changed),
-                          dialog);
-*/
   g_signal_connect_after (dialog->font_entry, "changed",
                           G_CALLBACK (geda_font_dialog_font_changed),
                           dialog);
@@ -1416,7 +1425,6 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   dialog->preview_handler =
           g_signal_connect (dialog->preview_entry, "changed",
                             G_CALLBACK (callback_update_preview), dialog);
-
 }
 
 static void geda_font_dialog_finalize (GObject *object)
@@ -1429,10 +1437,10 @@ static void geda_font_dialog_finalize (GObject *object)
 
   dialog = GEDA_FONT_DIALOG (object);
 
-  if ( dialog->font && G_IS_OBJECT(dialog->font) )
+  if (dialog->font && G_IS_OBJECT(dialog->font))
     gdk_font_unref (dialog->font);
 
-  if ( dialog->family && G_IS_OBJECT(dialog->family) )
+  if (dialog->family && G_IS_OBJECT(dialog->family))
     g_object_unref (dialog->family);
 
   if ( dialog->face && G_IS_OBJECT(dialog->face))
@@ -1445,12 +1453,6 @@ static void geda_font_dialog_finalize (GObject *object)
     pango_font_description_free (dialog->font_desc);
 
   dialog->font_desc = NULL;
-/*
-  if ( dialog->font_map && G_IS_OBJECT(dialog->font_map) ) {
-    g_object_unref (dialog->font_map);
-    dialog->font_map = NULL;
-  }
-*/
 }
 
 /*!
@@ -1656,12 +1658,12 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
 
   gtk_widget_pop_composite_child ();
 
-  gtk_window_set_resizable       (GTK_WINDOW (Dialog), TRUE);
-  gtk_dialog_set_has_separator   (Dialog, FALSE);
-  gtk_widget_grab_default        (dialog->ok_button); /* does not work correct with entry */
-  geda_font_dialog_prime_list    (dialog);
+  gtk_window_set_resizable     (GTK_WINDOW (Dialog), TRUE);
+  gtk_dialog_set_has_separator (Dialog, FALSE);
+  gtk_widget_grab_default      (dialog->ok_button); /* does not work correct with entry */
+  geda_font_dialog_prime_list  (dialog);
 
-  gtk_widget_show                (GTK_WIDGET(Dialog));
+  gtk_widget_show (GTK_WIDGET(Dialog));
 }
 
 /*!

@@ -1178,7 +1178,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_SEL_BOUND, params);
 
-  /**
+  /*!
    * GedaLabel:ellipsize:
    *
    * The preferred place to ellipsize the string, if the label does
@@ -1202,7 +1202,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_ELLIPSIZE, params);
 
-  /**
+  /*!
    * GedaLabel:width-chars:
    *
    * The desired width of the label, in characters. If this property is set to
@@ -1222,7 +1222,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_WIDTH_CHARS, params);
 
-  /**
+  /*!
    * GedaLabel:single-line-mode:
    *
    * Whether the label is in single line mode. In single line mode,
@@ -1239,7 +1239,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_SINGLE_LINE_MODE, params);
 
-  /**
+  /*!
    * GedaLabel:angle:
    *
    * The angle that the baseline of the label makes with the horizontal,
@@ -1257,7 +1257,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_ANGLE, params);
 
-  /**
+  /*!
    * GedaLabel:max-width-chars:
    *
    * The desired maximum width of the label, in characters. If this property
@@ -1277,7 +1277,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_MAX_WIDTH, params);
 
-  /**
+  /*!
    * GedaLabel:track-visited-links:
    *
    * Set this property to %TRUE to make the label track which links
@@ -5060,16 +5060,15 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
     priv->select_info->selectable = TRUE;
     geda_label_update_cursor (label);
   }
-  else {
-    if (old_setting) {
-      /* unselect, to give up the selection */
-      geda_label_select_region (label, 0, 0);
+  else if (old_setting) {
+    /* unselect, to give up the selection */
+    geda_label_select_region (label, 0, 0);
 
-      priv->select_info->selectable = FALSE;
-      geda_label_clear_select_info (label);
-      geda_label_update_cursor (label);
-    }
+    priv->select_info->selectable = FALSE;
+    geda_label_clear_select_info (label);
+    geda_label_update_cursor (label);
   }
+
   if (setting != old_setting) {
     g_object_freeze_notify (G_OBJECT (label));
     g_object_notify (G_OBJECT (label), "selectable");
@@ -5092,7 +5091,7 @@ void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
  * Gets the angle of rotation for the label. See
  * geda_label_set_angle().
  *
- * \param [in] label:   The GedaLabel object
+ * \param [in] label: The GedaLabel object
  *
  * Return value: the angle of rotation for the label
  *
@@ -5131,18 +5130,19 @@ geda_label_set_angle (GedaLabel *label, double angle)
    * double property ranges are inclusive, and changing 360 to 0 would
    * make a property editor behave strangely.
    */
-  if (angle < 0 || angle > 360.0)
+  if (angle < 0 || angle > 360.0) {
     angle = angle - 360. * floor (angle / 360.);
+  }
 
-  if (label->angle != angle)
-    {
-      label->angle = angle;
+  if (label->angle != angle) {
 
-      geda_label_clear_layout (label);
-      gtk_widget_queue_resize (GTK_WIDGET (label));
+    label->angle = angle;
 
-      g_object_notify (G_OBJECT (label), "angle");
-    }
+    geda_label_clear_layout (label);
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "angle");
+  }
 }
 
 void geda_label_widget_set_angle (GtkWidget *widget, double angle)
@@ -5192,14 +5192,14 @@ geda_label_drag_data_get (GtkWidget        *widget,
 static void
 get_text_callback (GtkClipboard     *clipboard,
                    GtkSelectionData *selection_data,
-                   unsigned int    info,
-                   void *          user_data_or_owner)
+                   unsigned int      info,
+                   void             *user_data_or_owner)
 {
-  geda_label_set_selection_text (GEDA_LABEL (user_data_or_owner), selection_data);
+  geda_label_set_selection_text (GEDA_LABEL(user_data_or_owner), selection_data);
 }
 
 static void
-clear_text_callback (GtkClipboard *clipboard, void * user_data_or_owner)
+clear_text_callback (GtkClipboard *clipboard, void *user_data_or_owner)
 {
   GedaLabel     *label;
   SelectionInfo *info;
@@ -5240,40 +5240,42 @@ static void geda_label_select_region_index (GedaLabel *label,
     priv->select_info->selection_anchor = anchor_index;
     priv->select_info->selection_end    = end_index;
 
-    if (gtk_widget_has_screen (GTK_WIDGET (label)))
+    if (gtk_widget_has_screen (GTK_WIDGET (label))) {
       clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label),
                                             GDK_SELECTION_PRIMARY);
-      else
-        clipboard = NULL;
+    }
+    else {
+      clipboard = NULL;
+    }
 
-      if (anchor_index != end_index) {
-        GtkTargetList *list;
-        GtkTargetEntry *targets;
-        int n_targets;
+    if (anchor_index != end_index) {
 
-        list = gtk_target_list_new (NULL, 0);
-        gtk_target_list_add_text_targets (list, 0);
-        targets = gtk_target_table_new_from_list (list, &n_targets);
+      GtkTargetList  *list;
+      GtkTargetEntry *targets;
+      int             n_targets;
 
-        if (clipboard)
-          gtk_clipboard_set_with_owner (clipboard,
-                                        targets, n_targets,
-                                        get_text_callback,
-                                        clear_text_callback,
-                                        G_OBJECT (label));
+      list = gtk_target_list_new (NULL, 0);
+      gtk_target_list_add_text_targets (list, 0);
+      targets = gtk_target_table_new_from_list (list, &n_targets);
 
-          gtk_target_table_free (targets, n_targets);
-        gtk_target_list_unref (list);
+      if (clipboard) {
+        gtk_clipboard_set_with_owner (clipboard,
+                                      targets, n_targets,
+                                      get_text_callback,
+                                      clear_text_callback,
+                                      G_OBJECT (label));
       }
-      else {
-        if (clipboard &&
-          gtk_clipboard_get_owner (clipboard) == G_OBJECT (label))
-          gtk_clipboard_clear (clipboard);
-      }
+      gtk_target_table_free (targets, n_targets);
+      gtk_target_list_unref (list);
+    }
+    else if (clipboard && gtk_clipboard_get_owner (clipboard) == G_OBJECT (label))
+    {
+      gtk_clipboard_clear (clipboard);
+    }
 
-      gtk_widget_queue_draw (GTK_WIDGET (label));
+    gtk_widget_queue_draw (GTK_WIDGET (label));
 
-      g_object_thaw_notify (G_OBJECT (label));
+    g_object_thaw_notify (G_OBJECT (label));
   }
 }
 
@@ -5297,6 +5299,7 @@ geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
   g_return_if_fail (GEDA_IS_LABEL (label));
 
   if (label->text && label->priv->select_info) {
+
     if (start_offset < 0)
       start_offset = g_utf8_strlen (label->text, -1);
 
@@ -5333,9 +5336,11 @@ geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
   info = label->priv->select_info;
 
   if ( info == NULL) {
+
     /* not a selectable label */
     if (start)
       *start = 0;
+
     if (end)
       *end = 0;
 
@@ -5974,7 +5979,7 @@ append_action_signal (GedaLabel   *label,
 static void
 popup_menu_detach (GtkWidget *attach_widget, GedaMenu *menu)
 {
-  GedaLabel        *label = GEDA_LABEL (attach_widget);
+  GedaLabel     *label = GEDA_LABEL (attach_widget);
   GedaLabelData *priv  = label->priv;
 
   if (priv->select_info) {
@@ -5986,10 +5991,10 @@ static void
 popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
 {
   GtkAllocation *allocation;
-  GtkWidget     *widget;
-  GtkRequisition req;
   GdkScreen     *screen;
+  GtkWidget     *widget;
   GdkWindow     *window;
+  GtkRequisition req;
 
   widget = GTK_WIDGET (data); /* = GEDA_LABEL (data) */
 
@@ -6029,7 +6034,7 @@ static void
 copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
   GtkClipboard *clipboard;
-  const char *uri;
+  const char   *uri;
 
   uri = geda_label_get_current_uri (label);
 
@@ -6127,7 +6132,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
       g_signal_connect_swapped (menuitem, "activate",  G_CALLBACK (geda_label_select_all), label);
       gtk_widget_show (menuitem);
       geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
-    }
+  }
 
   g_signal_emit (label, signals[POPULATE_POPUP], 0, menu);
 
@@ -6162,7 +6167,7 @@ static bool
 geda_label_activate_link (GedaLabel *label, const char *uri)
 {
   GtkWidget *widget = GTK_WIDGET (label);
-  GError    *error = NULL;
+  GError    *error  = NULL;
   bool       result;
 
 #if HAVE_GTK_SHOW_URI
@@ -6201,7 +6206,6 @@ emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 
     link->visited = TRUE;
 
-    /* FIXME: shouldn't have to redo everything here */
     geda_label_clear_layout (label);
   }
 }
@@ -6316,13 +6320,13 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 
   if (priv->track_links != track_links) {
 
-      priv->track_links = track_links;
+    priv->track_links = track_links;
 
-      /* FIXME: shouldn't have to redo everything here */
-      geda_label_recalculate (label);
+    /* FIXME: shouldn't have to redo everything here */
+    geda_label_recalculate (label);
 
-      g_object_notify (G_OBJECT (label), "track-visited-links");
-    }
+    g_object_notify (G_OBJECT (label), "track-visited-links");
+  }
 }
 
 /*! \brief geda_label_get_track_visited_links

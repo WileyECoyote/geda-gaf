@@ -999,7 +999,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
 static void
 geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
 {
-  GedaMenuBar     *menu_bar = (GedaMenuBar*)instance;
+  GedaMenuBar *menu_bar = (GedaMenuBar*)instance;
 
   menu_bar->priv          = g_malloc0 (sizeof(GedaMenuBarPrivate));
   menu_bar->instance_type = geda_menu_bar_get_type();
@@ -1091,26 +1091,26 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 
   for (menu_bars = get_menu_bars (window); menu_bars; menu_bars = menu_bars->next)
   {
-      GtkWidget *widget = menu_bars->data;
-      bool viewable = TRUE;
+    GtkWidget *widget = menu_bars->data;
+    bool viewable = TRUE;
 
-      while (widget) {
+    while (widget) {
 
-	  if (!gtk_widget_get_mapped (widget))
-	    viewable = FALSE;
+      if (!gtk_widget_get_mapped (widget))
+        viewable = FALSE;
 
-          widget = gtk_widget_get_parent (widget);
-	}
-
-      if (viewable)
-	viewable_menu_bars = g_list_prepend (viewable_menu_bars, menu_bars->data);
+      widget = gtk_widget_get_parent (widget);
     }
+
+    if (viewable)
+      viewable_menu_bars = g_list_prepend (viewable_menu_bars, menu_bars->data);
+  }
 
   return g_list_reverse (viewable_menu_bars);
 }
 
 static void
-set_menu_bars (GtkWindow *window, GList     *menubars)
+set_menu_bars (GtkWindow *window, GList *menubars)
 {
   g_object_set_data (G_OBJECT (window), _("gtk-menu-bar-list"), menubars);
 }
