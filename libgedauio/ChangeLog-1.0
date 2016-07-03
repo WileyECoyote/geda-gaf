@@ -12,6 +12,9 @@
             * geda_marshal_VOID__OBJECT_OBJECT_OBJECT
             * geda_marshal_VOID__STRING_STRING
 
+    * src/widgets/geda_menu_bar.c: Change data key gtk-menu-bar-list->
+      menu-bar-list.
+
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Shorten property "accept-input-type" to

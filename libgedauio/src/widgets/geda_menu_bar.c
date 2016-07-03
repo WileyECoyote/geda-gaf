@@ -1080,7 +1080,7 @@ geda_menu_bar_new (void)
 static GList*
 get_menu_bars (GtkWindow *window)
 {
-  return g_object_get_data (G_OBJECT (window), "gtk-menu-bar-list");
+  return g_object_get_data (G_OBJECT (window), "menu-bar-list");
 }
 
 GList*
@@ -1112,7 +1112,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 static void
 set_menu_bars (GtkWindow *window, GList *menubars)
 {
-  g_object_set_data (G_OBJECT (window), _("gtk-menu-bar-list"), menubars);
+  g_object_set_data (G_OBJECT (window), "menu-bar-list", menubars);
 }
 
 static void
