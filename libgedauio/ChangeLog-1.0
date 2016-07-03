@@ -3,6 +3,11 @@
     * include/geda_menu_bar.h: Define geda_menu_shell_append, geda_menu_bar_prepend,
       and geda_menu_bar_insertin terms of GedaMenuShell counterparts.
 
+    * src/widgets/geda_menu.c: Replace ATTACH_INFO_KEY and ATTACHED_MENUS with
+      static constants attached_info_key and attached_menus_key respectively.
+      Allocate AttachInfo and MenuAttachData struct using g_malloc0 instead of
+      g_slice_new0. Eliminate translation of data keys.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define gtk_widget_reset_style is

@@ -119,9 +119,6 @@
 #define MENU_SCROLL_TIMEOUT1  50
 #define MENU_SCROLL_TIMEOUT2  20
 
-#define ATTACH_INFO_KEY "menu-child-attach-info-key"
-#define ATTACHED_MENUS  "attached-menus"
-
 typedef struct _MenuAttachData MenuAttachData;
 
 struct _MenuAttachData
@@ -265,12 +262,12 @@ static void     geda_menu_real_insert            (GedaMenuShell    *menu_shell,
                                                   GtkWidget        *child,
                                                   int               position);
 static void     geda_menu_scrollbar_changed      (GtkAdjustment    *adjustment,
-                                                   GedaMenu        *menu);
+                                                  GedaMenu         *menu);
 static void     geda_menu_handle_scrolling       (GedaMenu         *menu,
-                                                   int              event_x,
-                                                   int              event_y,
-                                                   bool             enter,
-                                                   bool             motion);
+                                                  int               event_x,
+                                                  int               event_y,
+                                                  bool              enter,
+                                                  bool              motion);
 static void     geda_menu_set_tearoff_hints      (GedaMenu         *menu,
                                                   int               width);
 static void     geda_menu_style_set              (GtkWidget        *widget,
@@ -312,7 +309,9 @@ static bool  geda_menu_real_can_activate_accel      (GtkWidget     *widget,
 static void geda_menu_refresh_accel_paths           (GedaMenu      *menu,
                                                      bool           group_changed);
 
-static const char  attach_data_key[] = "gtk-menu-attach-data";
+static const char  attached_menus_key[] = "attached-menus";
+static const char  attached_info_key[]  = "menu-child-attach-info-key";
+static const char  attached_data_key[]  = "menu-attach-data";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
@@ -330,23 +329,23 @@ menu_queue_resize (GedaMenu *menu)
 static void
 attach_info_free (AttachInfo *info)
 {
-  g_slice_free (AttachInfo, info);
+  g_free (info);
 }
 
 static AttachInfo *
 get_attach_info (GtkWidget *child)
 {
   GObject    *object = G_OBJECT (child);
-  AttachInfo *ai     = g_object_get_data (object, ATTACH_INFO_KEY);
+  AttachInfo *info   = g_object_get_data (object, attached_info_key);
 
-  if (!ai) {
+  if (!info) {
 
-    ai = g_slice_new0 (AttachInfo);
-    g_object_set_data_full (object, ATTACH_INFO_KEY, ai,
-                            (GDestroyNotify) attach_info_free);
+    info = g_malloc0 (sizeof(AttachInfo));
+    g_object_set_data_full (object, attached_info_key, info,
+                           (GDestroyNotify) attach_info_free);
   }
 
-  return ai;
+  return info;
 }
 
 static bool
@@ -381,11 +380,11 @@ menu_ensure_layout (GedaMenu *menu)
     for (iter = menu_shell->children; iter; iter = iter->next)
     {
       GtkWidget  *child = iter->data;
-      AttachInfo *info = get_attach_info (child);
+      AttachInfo *info  = get_attach_info (child);
 
       if (is_grid_attached (info)) {
         max_bottom_attach = MAX (max_bottom_attach, info->bottom_attach);
-        max_right_attach = MAX (max_right_attach, info->right_attach);
+        max_right_attach  = MAX (max_right_attach, info->right_attach);
       }
     }
 
@@ -414,7 +413,7 @@ menu_ensure_layout (GedaMenu *menu)
     for (iter = menu_shell->children; iter; iter = iter->next) {
 
       GtkWidget  *child = iter->data;
-      AttachInfo *info = get_attach_info (child);
+      AttachInfo *info  = get_attach_info (child);
 
       if (!is_grid_attached (info)) {
 
@@ -1228,7 +1227,7 @@ geda_menu_destroy (GtkObject *object)
   geda_menu_remove_scroll_timeout (menu);
 
   /* If has MenuAttachData data, release the data */
-  if (g_object_get_data (G_OBJECT (object), attach_data_key)) {
+  if (g_object_get_data (G_OBJECT (object), attached_data_key)) {
     geda_menu_detach (menu);
   }
 
@@ -1307,9 +1306,9 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
 }
 
 void
-geda_menu_attach_to_widget (GedaMenu         *menu,
-               GtkWidget           *attach_widget,
-               MenuDetachFunc    detacher)
+geda_menu_attach_to_widget (GedaMenu       *menu,
+                            GtkWidget      *attach_widget,
+                            MenuDetachFunc  detacher)
 {
   MenuAttachData *data;
   GList *list;
@@ -1320,7 +1319,7 @@ geda_menu_attach_to_widget (GedaMenu         *menu,
   /* keep this function in sync with gtk_widget_set_parent()
    */
 
-  data = g_object_get_data (G_OBJECT (menu), attach_data_key);
+  data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (data) {
       g_warning ("geda_menu_attach_to_widget(): menu already attached to %s",
@@ -1330,7 +1329,7 @@ geda_menu_attach_to_widget (GedaMenu         *menu,
 
   g_object_ref_sink (menu);
 
-  data = g_slice_new (MenuAttachData);
+  data = malloc (sizeof(MenuAttachData));
   data->attach_widget = attach_widget;
 
   g_signal_connect (attach_widget, "screen-changed",
@@ -1340,15 +1339,15 @@ geda_menu_attach_to_widget (GedaMenu         *menu,
 
   data->detacher = detacher;
 
-  g_object_set_data (G_OBJECT (menu), _(attach_data_key), data);
+  g_object_set_data (G_OBJECT (menu), attached_data_key, data);
 
-  list = g_object_steal_data (G_OBJECT (attach_widget), ATTACHED_MENUS);
+  list = g_object_steal_data (G_OBJECT (attach_widget), attached_menus_key);
 
   if (!g_list_find (list, menu)) {
     list = g_list_prepend (list, menu);
   }
 
-  g_object_set_data_full (G_OBJECT (attach_widget), _(ATTACHED_MENUS), list,
+  g_object_set_data_full (G_OBJECT (attach_widget), attached_menus_key, list,
                           (GDestroyNotify) g_list_free);
 
   if (gtk_widget_get_state (GTK_WIDGET (menu)) != GTK_STATE_NORMAL) {
@@ -1379,7 +1378,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
 
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
-  data = g_object_get_data (G_OBJECT (menu), attach_data_key);
+  data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (data) {
     return data->attach_widget;
@@ -1397,39 +1396,39 @@ geda_menu_detach (GedaMenu *menu)
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   /* keep this function in sync with gtk_widget_unparent() */
-  data = g_object_get_data (G_OBJECT (menu), attach_data_key);
+  data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (!data) {
     g_warning ("geda_menu_detach(): menu is not attached");
     return;
   }
 
-  g_object_set_data (G_OBJECT (menu), _(attach_data_key), NULL);
+  g_object_set_data (G_OBJECT (menu), attached_data_key, NULL);
 
   g_signal_handlers_disconnect_by_func (data->attach_widget,
-                                        (void *) attach_widget_screen_changed,
+                                       (void*)attach_widget_screen_changed,
                                         menu);
 
   if (data->detacher) {
     data->detacher (data->attach_widget, menu);
   }
 
-  list = g_object_steal_data (G_OBJECT (data->attach_widget), ATTACHED_MENUS);
+  list = g_object_steal_data (G_OBJECT (data->attach_widget), attached_menus_key);
   list = g_list_remove (list, menu);
 
   if (list) {
-    g_object_set_data_full (G_OBJECT (data->attach_widget), _(ATTACHED_MENUS), list,
+    g_object_set_data_full (G_OBJECT (data->attach_widget), attached_menus_key, list,
                             (GDestroyNotify) g_list_free);
   }
   else {
-    g_object_set_data (G_OBJECT (data->attach_widget), _(ATTACHED_MENUS), NULL);
+    g_object_set_data (G_OBJECT (data->attach_widget), attached_menus_key, NULL);
   }
 
   if (gtk_widget_get_realized (GTK_WIDGET (menu))) {
     gtk_widget_unrealize (GTK_WIDGET (menu));
   }
 
-  g_slice_free (MenuAttachData, data);
+  free (data);
 
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
@@ -1453,7 +1452,7 @@ geda_menu_remove (GtkContainer *container, GtkWidget *widget)
   }
 
   GTK_CONTAINER_CLASS (geda_menu_parent_class)->remove (container, widget);
-  g_object_set_data (G_OBJECT (widget), _(ATTACH_INFO_KEY), NULL);
+  g_object_set_data (G_OBJECT (widget), attached_info_key, NULL);
 
   menu_queue_resize (menu);
 }
@@ -2768,8 +2767,9 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
       max_toggle_size = indicator_size + toggle_spacing;
     }
 
-  for (i = 0; i < geda_menu_get_n_rows (menu); i++)
+  for (i = 0; i < geda_menu_get_n_rows (menu); i++) {
     requisition->height += priv->heights[i];
+  }
 
   requisition->width += 2 * max_toggle_size + max_accel_width;
   requisition->width *= geda_menu_get_n_columns (menu);
@@ -5565,7 +5565,7 @@ geda_menu_get_for_attach_widget (GtkWidget *widget)
 
   g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
 
-  list = g_object_get_data (G_OBJECT (widget), ATTACHED_MENUS);
+  list = g_object_get_data (G_OBJECT (widget), attached_menus_key);
 
   return list;
 }
