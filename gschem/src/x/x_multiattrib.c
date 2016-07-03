@@ -1345,7 +1345,7 @@ multiattrib_callback_popup_menu(GtkWidget *widget, void *user_data)
  *
  */
 static void
-multiattrib_callback_popup_duplicate(GtkMenuItem *menuitem, void *user_data)
+multiattrib_callback_popup_duplicate(GedaMenuItem *menuitem, void *user_data)
 {
   Multiattrib   *ThisDialog = (Multiattrib*)user_data;
   GtkTreeModel  *model;
@@ -1375,7 +1375,7 @@ multiattrib_callback_popup_duplicate(GtkMenuItem *menuitem, void *user_data)
  *
  */
 static void
-multiattrib_callback_popup_promote (GtkMenuItem *menuitem, void *user_data)
+multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
 {
   Multiattrib    *ThisDialog = user_data;
 
@@ -1412,7 +1412,7 @@ multiattrib_callback_popup_promote (GtkMenuItem *menuitem, void *user_data)
  *
  */
 static void
-multiattrib_callback_popup_delete(GtkMenuItem *menuitem, void *user_data)
+multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
 {
   Multiattrib     *ThisDialog = (Multiattrib*)user_data;
   GtkTreeModel    *model;
@@ -1445,7 +1445,7 @@ multiattrib_callback_popup_delete(GtkMenuItem *menuitem, void *user_data)
  *
  */
 static void
-multiattrib_callback_popup_copy_to_all (GtkMenuItem *menuitem,
+multiattrib_callback_popup_copy_to_all (GedaMenuItem *menuitem,
                                         void *user_data)
 {
   Multiattrib  *ThisDialog = user_data;
@@ -1561,7 +1561,7 @@ multiattrib_callback_button_add(GtkButton *button, void *user_data)
   visible = GetToggleState ( ThisDialog->button_visible );
 
   /*   - visibility type */
-  shownv = gtk_option_menu_get_history (ThisDialog->optionmenu_shownv);
+  shownv = geda_option_menu_get_history (ThisDialog->optionmenu_shownv);
 
   if (name[0] == '\0' || name[0] == ' ') {
     /* name not allowed for an attribute */
@@ -1627,19 +1627,19 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
  *  optionmenu during construction of the dialog.
  *
  */
-static void multiattrib_init_visible_types(GtkOptionMenu *optionmenu)
+static void multiattrib_init_visible_types(GedaOptionMenu *optionmenu)
 {
   GtkWidget *menu, *item;
 
-  menu = gtk_menu_new ();
-  item = gtk_menu_item_new_with_label (_("Show Name & Value"));
-  gtk_menu_append (menu, item);
-  item = gtk_menu_item_new_with_label (_("Show Value only"));
-  gtk_menu_append (menu, item);
-  item = gtk_menu_item_new_with_label (_("Show Name only"));
-  gtk_menu_append (menu, item);
+  menu = geda_menu_new ();
+  item = geda_menu_item_new_with_label (_("Show Name & Value"));
+  geda_menu_append (menu, item);
+  item = geda_menu_item_new_with_label (_("Show Value only"));
+  geda_menu_append (menu, item);
+  item = geda_menu_item_new_with_label (_("Show Name only"));
+  geda_menu_append (menu, item);
 
-  gtk_option_menu_set_menu (optionmenu, menu);
+  geda_option_menu_set_menu (optionmenu, menu);
   SetWidgetTip (optionmenu, _("Select an attribute visibility option"));
 }
 
@@ -1707,21 +1707,24 @@ multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
   item_list = inherited ? menuitems_inherited : menuitems_noninherited;
 
   /* create the context menu */
-  menu = gtk_menu_new();
+  menu = geda_menu_new();
+
   for (tmp = item_list; tmp->label != NULL; tmp++) {
+
     GtkWidget *menuitem;
     if (strcmp (tmp->label, "-") == 0) {
-      menuitem = gtk_separator_menu_item_new ();
-    } else {
-      menuitem = gtk_menu_item_new_with_label (_(tmp->label));
+      menuitem = geda_menu_separator_new ();
+    }
+    else {
+      menuitem = geda_menu_item_new_with_label (_(tmp->label));
       g_signal_connect (menuitem, "activate", tmp->callback, ThisDialog);
     }
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
   }
   gtk_widget_show_all (menu);
 
   /* make menu a popup menu */
-  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+  geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
 
@@ -2279,9 +2282,9 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     0, 1, 2, 3, GTK_FILL, 0, 3, 0);
 
   /*   - the visibility type */
-  optionm = GTK_WIDGET (g_object_new (GTK_TYPE_OPTION_MENU, NULL));
-  multiattrib_init_visible_types (GTK_OPTION_MENU (optionm));
-  ThisDialog->optionmenu_shownv = GTK_OPTION_MENU (optionm);
+  optionm = GTK_WIDGET (g_object_new (GEDA_TYPE_OPTION_MENU, NULL));
+  multiattrib_init_visible_types (GEDA_OPTION_MENU (optionm));
+  ThisDialog->optionmenu_shownv = GEDA_OPTION_MENU (optionm);
 
   gtk_table_attach (GTK_TABLE (table), optionm,
                     1, 2, 2, 3, GTK_EXPAND | GTK_FILL, 0, 6, 3);

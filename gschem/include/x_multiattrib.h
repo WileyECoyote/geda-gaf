@@ -67,7 +67,7 @@ struct _Multiattrib {
   GtkWidget      *combo_entry;
   GtkTextView    *textview_value;
   GtkCheckButton *button_visible;
-  GtkOptionMenu  *optionmenu_shownv;
+  GedaOptionMenu  *optionmenu_shownv;
   GtkWidget      *frame_attributes;
   GtkWidget      *frame_add;
 
