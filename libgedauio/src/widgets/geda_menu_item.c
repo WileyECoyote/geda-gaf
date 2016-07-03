@@ -853,16 +853,22 @@ bool is_a_geda_menu_item (GedaMenuItem  *menu_item)
 }
 
 static void
+geda_menu_item_disconnect_accelerator(GedaAction *action)
+{
+  if (GTK_ACTION (action)) {
+    gtk_action_disconnect_accelerator (GTK_ACTION(action));
+  }
+}
+
+static void
 geda_menu_item_dispose (GObject *object)
 {
   GedaMenuItem        *menu_item = GEDA_MENU_ITEM (object);
   GedaMenuItemPrivate *priv      = menu_item->priv;
 
   if (priv->action) {
-
-    geda_action_disconnect_accelerator (priv->action);
+    geda_menu_item_disconnect_accelerator(priv->action);
     gtk_activatable_do_set_related_action (GTK_ACTIVATABLE (menu_item), NULL);
-
     priv->action = NULL;
   }
   G_OBJECT_CLASS (geda_menu_item_parent_class)->dispose (object);
@@ -1136,29 +1142,28 @@ geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
-  if (priv->action == (GedaAction *)action)
-    return;
+  if (priv->action != (GedaAction*)action) {
 
-  if (priv->action) {
-
-    geda_action_disconnect_accelerator (priv->action);
-  }
-
-  if (action) {
-
-    const char *accel_path;
-
-    accel_path = gtk_action_get_accel_path (action);
-    if (accel_path) {
-
-      gtk_action_connect_accelerator (action);
-      geda_menu_item_set_accel_path (menu_item, accel_path);
+    if (priv->action) {
+      geda_menu_item_disconnect_accelerator(priv->action);
     }
+
+    if (action) {
+
+      const char *accel_path;
+
+      accel_path = gtk_action_get_accel_path (action);
+
+      if (accel_path) {
+        gtk_action_connect_accelerator (action);
+        geda_menu_item_set_accel_path (menu_item, accel_path);
+      }
+    }
+
+    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE (menu_item), action);
+
+    priv->action = (GedaAction*)action;
   }
-
-  gtk_activatable_do_set_related_action (GTK_ACTIVATABLE (menu_item), action);
-
-  priv->action = (GedaAction*)action;
 }
 
 static void
