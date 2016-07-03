@@ -2287,14 +2287,14 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
   geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
 
-  menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
+  menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOn]));
   g_signal_connect (G_OBJECT (menuitem), "activate",
                     G_CALLBACK (compselect_menu_tooltips_on),
                     compselect);
   geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
 
-  menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
+  menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOff]));
   g_signal_connect (G_OBJECT (menuitem), "activate",
                     G_CALLBACK (compselect_menu_tooltips_off),

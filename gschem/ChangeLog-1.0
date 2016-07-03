@@ -1,3 +1,8 @@
+2016-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Replace gtk_image_menu_item with
+      geda_image_menu_item_new_with_label.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Remove GTK 2.8 requirement for property
