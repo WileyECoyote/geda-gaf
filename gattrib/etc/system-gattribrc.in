@@ -30,3 +30,11 @@
 ;
 ;(sort-components "enabled")
 (sort-components "disabled")
+
+; tearoff-menus string
+;
+; If this is enabled, then main menu can be torn from the main menu bar.
+;
+;
+(tearoff-menus "enabled")
+;(tearoff-menus "disabled")

@@ -1,3 +1,8 @@
+2016-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_bar.h: Define geda_menu_shell_append, geda_menu_bar_prepend,
+      and geda_menu_bar_insertin terms of GedaMenuShell counterparts.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define gtk_widget_reset_style is

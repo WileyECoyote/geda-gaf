@@ -37,10 +37,10 @@
 #include "geda_menu_shell.h"
 #include "geda_menu_enum.h"
 
-#define	GEDA_TYPE_MENU_BAR            (geda_menu_bar_get_type ())
+#define GEDA_TYPE_MENU_BAR            (geda_menu_bar_get_type ())
 #define GEDA_MENU_BAR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BAR, GedaMenuBar))
 #define GEDA_MENU_BAR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_MENU_BAR, GedaMenuBarClass))
-#define GEDA_IS_MENU_BAR(obj)         (is_a_geda_menu_bar((GedaMenuBar*)obj))
+#define GEDA_IS_MENU_BAR(obj)         (is_a_geda_menu_bar((GedaMenuBar*)(obj)))
 #define GEDA_IS_MENU_BAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_BAR))
 #define GEDA_MENU_BAR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_BAR, GedaMenuBarClass))
 
@@ -87,6 +87,10 @@ void             geda_menu_bar_set_child_pack_direction (GedaMenuBar       *menu
 void             geda_menu_bar_cycle_focus              (GedaMenuBar       *menubar,
                                                          GtkDirectionType   dir);
 GList           *geda_menu_bar_get_viewable_menu_bars   (GtkWindow         *window);
+
+#define geda_menu_bar_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell*)(menu),(child))
+#define geda_menu_bar_prepend(menu,child)    geda_menu_shell_prepend ((GedaMenuShell*)(menu),(child))
+#define geda_menu_bar_insert(menu,child,pos) geda_menu_shell_insert ((GedaMenuShell*)(menu),(child),(pos))
 
 #ifdef __cplusplus
 }
