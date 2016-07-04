@@ -1,5 +1,8 @@
 2016-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/gschem-gtkrc: Add GedaMenu and GedaMenuItem properties using
+      (mostly) Gtk default values.
+
     * src/x/x_compselect.c: Replace gtk_image_menu_item with
       geda_image_menu_item_new_with_label.
 

@@ -51,6 +51,21 @@ style "gschem"
    # system, only recommended if remote images are to be embeded
    GedaImageChooser::local-only = 1
 
+   GedaMenu::arrow-placement              = GTK_ARROWS_BOTH
+   GedaMenu::arrow-scaling                = 0.7    # Valid range 0.0 to 1.0
+   GedaMenu::double-arrows                = true
+   GedaMenu::horizontal-offset            = -1
+   GedaMenu::horizontal-padding           = 5      # Controls spacing inside menus
+   GedaMenu::vertical-offset              = 0
+   GedaMenu::vertical-padding             = 0
+
+   GedaMenuItem::arrow-scaling            = 0.8
+   GedaMenuItem::arrow-spacing            = 10
+   GedaMenuItem::horizontal-padding       = 5      # Controls spacing on menu bar
+   GedaMenuItem::selected-shadow-type     = GTK_SHADOW_NONE
+   GedaMenuItem::toggle-spacing           = 5
+   GedaMenuItem::width-chars              = 12
+
    GedaMenuButton::default-border         = "GtkBorder"
    GedaMenuButton::default-outside-border = "GtkBorder"
    GedaMenuButton::inner-border           = "GtkBorder"
