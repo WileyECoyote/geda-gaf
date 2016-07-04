@@ -7,7 +7,8 @@
 
     * src/widgets/geda_menu.c: Convert menu-pop-delays to widget properties
       instead of gsettings. Eliminate extra conditional if shell is active in
-      geda_menu_position.
+      geda_menu_position and add set_scroll_offset argument to conditionally
+      set the scroll offset at exit.
 
     * src/widgets/geda_menu_bar.c: Replace preprocessor define with static
       constant for menu bar list key, clean comments.

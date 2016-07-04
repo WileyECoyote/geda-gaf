@@ -292,7 +292,8 @@ static void     geda_menu_set_submenu_navigation_region (GedaMenu          *menu
 static void     geda_menu_deactivate     (GedaMenuShell     *menu_shell);
 static void     geda_menu_show_all       (GtkWidget         *widget);
 static void     geda_menu_hide_all       (GtkWidget         *widget);
-static void     geda_menu_position       (GedaMenu          *menu);
+static void     geda_menu_position       (GedaMenu          *menu,
+                                          bool               set_scroll_offset);
 static void     geda_menu_reparent       (GedaMenu          *menu,
                                           GtkWidget         *new_parent,
                                           bool               unrealize);
@@ -1329,7 +1330,7 @@ menu_change_screen (GedaMenu *menu, GdkScreen *new_screen)
 
   if (menu->torn_off) {
     gtk_window_set_screen (GTK_WINDOW (menu->tearoff_window), new_screen);
-    geda_menu_position (menu);
+    geda_menu_position (menu, TRUE);
   }
 
   gtk_window_set_screen (GTK_WINDOW (menu->toplevel), new_screen);
@@ -1789,7 +1790,7 @@ geda_menu_popup (GedaMenu         *menu,
 
   /* Position the menu, possibly changing the size request
    */
-  geda_menu_position (menu);
+  geda_menu_position (menu, TRUE);
 
   /* Compute the size of the toplevel and realize it so we
    * can scroll correctly.
@@ -2164,7 +2165,7 @@ geda_menu_reposition (GedaMenu *menu)
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   if (!menu->torn_off && gtk_widget_is_drawable (GTK_WIDGET (menu))) {
-    geda_menu_position (menu);
+    geda_menu_position (menu, FALSE);
   }
 }
 
@@ -2367,7 +2368,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       geda_menu_set_tearoff_hints (menu, width);
 
       gtk_widget_realize (menu->tearoff_window);
-      geda_menu_position (menu);
+      geda_menu_position (menu, TRUE);
 
       gtk_widget_show (GTK_WIDGET (menu));
       gtk_widget_show (menu->tearoff_window);
@@ -4444,8 +4445,9 @@ geda_menu_deactivate (GedaMenuShell *menu_shell)
   }
 }
 
+
 static void
-geda_menu_position (GedaMenu *menu)
+geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
 {
   GtkWidget    *widget;
   GedaMenuPriv *private;
@@ -4643,7 +4645,6 @@ geda_menu_position (GedaMenu *menu)
     }
   }
 
-  /* FIXME: should this be done in the various position_funcs ? */
   x = CLAMP (x, monitor.x, MAX (monitor.x, monitor.x + monitor.width - requisition.width));
 
   if (GEDA_MENU_SHELL (menu)->active) {
@@ -4676,14 +4677,16 @@ geda_menu_position (GedaMenu *menu)
   }
   else {
 
-    GdkWindow *window = GTK_WINDOW (menu->tearoff_window);
+    GtkWindow *window = GTK_WINDOW (menu->tearoff_window);
 
     gtk_window_move (window, x, y);
 
     gtk_window_resize (window, requisition.width, requisition.height);
   }
 
-  menu->scroll_offset = scroll_offset;
+  if (set_scroll_offset) {
+    menu->scroll_offset = scroll_offset;
+  }
 }
 
 static void
@@ -4897,11 +4900,11 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
 }
 
 static bool
-compute_child_offset (GedaMenu   *menu,
-              GtkWidget *menu_item,
-              int       *offset,
-              int       *height,
-              bool   *is_last_child)
+compute_child_offset (GedaMenu  *menu,
+                      GtkWidget *menu_item,
+                      int       *offset,
+                      int       *height,
+                      bool      *is_last_child)
 {
   GedaMenuPriv *priv = menu->priv;
   int  item_top_attach;
