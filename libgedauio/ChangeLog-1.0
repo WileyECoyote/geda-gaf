@@ -6,6 +6,10 @@
     * src/widgets/geda_menu_bar.c: Replace preprocessor define with static
       constant for menu bar list key, clean comments.
 
+    * src/widgets/geda_menu_item.c: Remove space after cast macro, add double
+      colons in property comments, revise geda_menu_item_position_menu to skip
+      setting the window hint if geda_menu_get_toplevel returned NULL.
+
     * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_button_release to
       skip activating if button-press originated in the parent menu bar and
       get popdown_delay from the submenu menu.
