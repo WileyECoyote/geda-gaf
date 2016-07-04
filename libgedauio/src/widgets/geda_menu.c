@@ -918,6 +918,25 @@ geda_menu_class_init   (void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
+  params = g_param_spec_int ("menu-popup-delay",
+                           _("Delay before submenus appear"),
+                           _("Minimum time the pointer must stay over a menu item before the submenu appear"),
+                              0,
+                              G_MAXINT,
+                              DEFAULT_POPUP_DELAY,
+                              G_PARAM_READWRITE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  params = g_param_spec_int ("menu-popdown-delay",
+                           _("Delay before hiding a submenu"),
+                           _("The time before hiding a submenu when the pointer is moving towards the submenu"),
+                              0,
+                              G_MAXINT,
+                              DEFAULT_POPDOWN_DELAY,
+                              G_PARAM_READWRITE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 
   /* Container Properties */
 
@@ -1050,27 +1069,13 @@ geda_menu_class_init   (void *class, void *class_data)
                                 GTK_TYPE_SCROLL_TYPE,
                                 GTK_SCROLL_PAGE_DOWN);
 
-  gtk_settings_install_property (g_param_spec_boolean ("gtk-can-change-accels",
+/*
+  gtk_settings_install_property (g_param_spec_boolean ("can-change-accels",
                                _("Can change accelerators"),
                                _("Whether menu accelerators can be changed by pressing a key over the menu item"),
                                FALSE,
                                G_PARAM_READWRITE));
-
-  gtk_settings_install_property (g_param_spec_int ("gtk-menu-popup-delay",
-                           _("Delay before submenus appear"),
-                           _("Minimum time the pointer must stay over a menu item before the submenu appear"),
-                           0,
-                           G_MAXINT,
-                           DEFAULT_POPUP_DELAY,
-                           G_PARAM_READWRITE));
-
-  gtk_settings_install_property (g_param_spec_int ("menu-popdown-delay",
-                           _("Delay before hiding a submenu"),
-                           _("The time before hiding a submenu when the pointer is moving towards the submenu"),
-                           0,
-                           G_MAXINT,
-                           DEFAULT_POPDOWN_DELAY,
-                           G_PARAM_READWRITE));
+*/
 }
 
 /*!
@@ -4157,17 +4162,17 @@ static bool
 geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
   GedaMenuShell *menu_shell;
-  GedaMenu *menu;
-  GedaMenuItem *menu_item;
-  GtkWidget *event_widget;
+  GedaMenu      *menu;
+  GedaMenuItem  *menu_item;
+  GtkWidget     *event_widget;
 
   if (event->mode == GDK_CROSSING_GTK_GRAB ||
     event->mode == GDK_CROSSING_GTK_UNGRAB ||
     event->mode == GDK_CROSSING_STATE_CHANGED) {
     return TRUE;
-    }
+  }
 
-    menu       = GEDA_MENU (widget);
+  menu       = GEDA_MENU (widget);
   menu_shell = GEDA_MENU_SHELL (widget);
 
   if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root)) {
@@ -4328,7 +4333,6 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
   GtkWidget    *submenu;
   GedaMenuPriv *priv;
 
-  //g_return_if_fail (menu_item->priv->submenu != NULL);
   g_return_if_fail (event != NULL);
 
   submenu = geda_menu_item_get_submenu(menu_item);
@@ -4416,9 +4420,8 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
       }
     }
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-                  "menu-popdown-delay", &popdown_delay,
-                  NULL);
+    gtk_widget_style_get (GTK_WIDGET(menu),
+                         "menu-popdown-delay", &popdown_delay, NULL);
 
     menu->navigation_timeout = gdk_threads_add_timeout (popdown_delay,
                                                         geda_menu_stop_navigating_submenu_cb,
@@ -5205,11 +5208,12 @@ geda_menu_attach (GedaMenu    *menu,
 static int
 geda_menu_get_popup_delay (GedaMenuShell *menu_shell)
 {
-  int  popup_delay;
+  int popup_delay = 0;
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
-        "gtk-menu-popup-delay", &popup_delay,
-        NULL);
+  if (GEDA_IS_MENU(menu_shell)) {
+    gtk_widget_style_get (GTK_WIDGET(menu_shell),
+                          "menu-popup-delay", &popup_delay, NULL);
+  }
 
   return popup_delay;
 }
