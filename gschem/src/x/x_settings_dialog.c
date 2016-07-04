@@ -1191,7 +1191,7 @@ static GtkWidget *popup_menu; /* Seems safer to use a global for this */
  *  \remarks to add a color button \sa color_butt_responder
 */
 static void
-color_button_popup_menu_callback (GtkMenuItem *item, void * data)
+color_button_popup_menu_callback (GedaMenuItem *item, void * data)
 {
   bool restore_default_color;
 
@@ -1232,9 +1232,9 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
     gtk_object_destroy(GTK_OBJECT(popup_menu));
     popup_menu = NULL;
   }
-  popup_menu = gtk_menu_new ();
+  popup_menu = geda_menu_new ();
 
-  item = gtk_image_menu_item_new_with_label (_("Restore default"));
+  item = geda_image_menu_item_new_with_label (_("Restore default"));
 
   GEDA_OBJECT_SET_DATA(item, (void*)(long)(index), "color-index");
 
@@ -1243,18 +1243,18 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
   g_signal_connect (G_OBJECT (item), "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (1));
 
-  gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
+  geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
 
-  item = gtk_image_menu_item_new_with_label (_("Cancel"));
+  item = geda_image_menu_item_new_with_label (_("Cancel"));
 
   g_signal_connect (G_OBJECT (item), "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (0));
 
-  gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
+  geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
 
   gtk_widget_show_all (popup_menu);
 
-  gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL, event->button, event->time);
+  geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL, event->button, event->time);
 
 }
 

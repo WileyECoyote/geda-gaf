@@ -9,6 +9,8 @@
     * src/x/x_multiattrib.c: Replace gtk_menu and gtk_option_menu with
       geda_menu and geda_option_menu.
 
+    * src/x/x_settings_dialog.c: Replace gtk_menu with geda_menu.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Remove GTK 2.8 requirement for property
