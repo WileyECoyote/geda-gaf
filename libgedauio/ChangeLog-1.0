@@ -1,3 +1,9 @@
+2016-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_button_release to
+      skip activating if button-press originated in the parent menu bar and
+      get popdown_delay from the submenu menu.
+
 2016-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_bar.h: Define geda_menu_shell_append, geda_menu_bar_prepend,
@@ -1190,7 +1196,6 @@
        to suppress complier warnings.
 
      * src/widgets/geda_toggle_action.c: Add params in class initializer.
-
 
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 

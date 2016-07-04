@@ -54,6 +54,7 @@
 
 #include <geda_debug.h>
 
+#define MENU_POPDOWN_DELAY   1000
 #define MENU_POPUP_DELAY     225
 #define MENU_SHELL_TIMEOUT   500
 
@@ -730,6 +731,23 @@ geda_menu_shell_button_release (GtkWidget      *widget,
   GedaMenuShell     *menu_shell = GEDA_MENU_SHELL (widget);
   GedaMenuShellPriv *priv       = menu_shell->priv;
 
+  if (menu_shell->parent_menu_shell) {
+
+    GedaMenuShell *parent_shell;
+
+    parent_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
+
+    if (event->time - parent_shell->activate_time < MENU_SHELL_TIMEOUT)
+    {
+      /* The button-press originated in the parent menu bar and we are
+       * a pop-up menu, was a quick press-and-release so we don't want
+       * to activate an item but we leave the popup in place instead.
+       */
+      parent_shell->activate_time = 0;
+      return TRUE;
+    }
+  }
+
   if (menu_shell->active) {
 
     GtkWidget *menu_item;
@@ -762,32 +780,36 @@ geda_menu_shell_button_release (GtkWidget      *widget,
           deactivate = FALSE;
         }
         else if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM ||
-          priv->activated_submenu)
+                 priv->activated_submenu)
         {
-          int popdown_delay;
           GTimeVal *popup_time;
-          int64_t usec_since_popup = 0;
-
-          g_object_get (gtk_widget_get_settings (widget),
-                        "menu-popdown-delay", &popdown_delay,
-                        NULL);
+          int64_t   usec_since_popup = 0;
+          int       popdown_delay;
 
           popup_time = g_object_get_data (G_OBJECT (submenu),
                                           "menu-exact-popup-time");
 
-          if (popup_time) {
-
+          if (popup_time)
+          {
             GTimeVal current_time;
 
             g_get_current_time (&current_time);
 
-            usec_since_popup = ((int64_t) current_time.tv_sec * 1000 * 1000 +
-            (int64_t) current_time.tv_usec -
-            (int64_t) popup_time->tv_sec * 1000 * 1000 -
-            (int64_t) popup_time->tv_usec);
+            usec_since_popup = ((int64) current_time.tv_sec * 1000 * 1000 +
+            (int64) current_time.tv_usec -
+            (int64) popup_time->tv_sec * 1000 * 1000 -
+            (int64) popup_time->tv_usec);
 
             g_object_set_data (G_OBJECT (submenu),
                                "menu-exact-popup-time", NULL);
+          }
+
+          if (GEDA_IS_MENU(submenu)) {
+            gtk_widget_style_get (GTK_WIDGET(submenu),
+                                  "menu-popdown-delay", &popdown_delay, NULL);
+          }
+          else {
+            popdown_delay = MENU_POPDOWN_DELAY;
           }
 
           /*  only close the submenu on click if we opened the
@@ -796,13 +818,12 @@ geda_menu_shell_button_release (GtkWidget      *widget,
            *  GedaMenuItem's timeout (usec_since_popup > delay).
            */
           if (!priv->activated_submenu &&
-            (usec_since_popup == 0 ||
-            usec_since_popup > popdown_delay * 1000))
+             (usec_since_popup == 0 ||
+              usec_since_popup > popdown_delay * 1000))
           {
             geda_menu_item_popdown_submenu (GEDA_MENU_ITEM (menu_item));
           }
-          else
-          {
+          else {
             geda_menu_item_select (GEDA_MENU_ITEM (menu_item));
           }
 
@@ -1771,10 +1792,8 @@ geda_menu_shell_get_popup_delay (GedaMenuShell *menu_shell)
   if (class->get_popup_delay) {
     return class->get_popup_delay (menu_shell);
   }
-  else {
 
-    return MENU_POPUP_DELAY;
-  }
+  return MENU_POPUP_DELAY;
 }
 
 /*!
