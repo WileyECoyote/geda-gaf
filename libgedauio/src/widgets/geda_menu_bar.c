@@ -116,6 +116,8 @@ static void geda_menu_bar_move_current                (GedaMenuShell  *menu_shel
 
 static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
 
+static const char menu_bar_key[] = "menu-bar-list";
+
 static void *geda_menu_bar_parent_class = NULL;
 
 static void
@@ -930,8 +932,6 @@ geda_menu_bar_class_init (void *class, void *class_data)
    *
    * The pack direction of the menubar. It determines how
    * menuitems are arranged in the menubar.
-   *
-   * Since: 2.8
    */
   params = g_param_spec_enum ("pack-direction",
                             _("Pack direction"),
@@ -946,8 +946,6 @@ geda_menu_bar_class_init (void *class, void *class_data)
    *
    * The child pack direction of the menubar. It determines how
    * the widgets contained in child menuitems are arranged.
-   *
-   * Since: 2.8
    */
   params = g_param_spec_enum ("child-pack-direction",
                             _("Child Pack direction"),
@@ -970,10 +968,6 @@ geda_menu_bar_class_init (void *class, void *class_data)
   * GedaMenuBar:internal-padding:
   *
   * Amount of border space between the menubar shadow and the menu items
-  *
-  * Recommened to use the standard padding CSS property (through objects
-  * like #GtkStyleContext and #GtkCssProvider); the value of this style
-  * property is ignored in 3.8.
   */
 
   params = g_param_spec_int ("internal-padding",
@@ -1080,7 +1074,7 @@ geda_menu_bar_new (void)
 static GList*
 get_menu_bars (GtkWindow *window)
 {
-  return g_object_get_data (G_OBJECT (window), "menu-bar-list");
+  return g_object_get_data (G_OBJECT (window), menu_bar_key);
 }
 
 GList*
@@ -1112,7 +1106,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 static void
 set_menu_bars (GtkWindow *window, GList *menubars)
 {
-  g_object_set_data (G_OBJECT (window), "menu-bar-list", menubars);
+  g_object_set_data (G_OBJECT (window), menu_bar_key, menubars);
 }
 
 static void
