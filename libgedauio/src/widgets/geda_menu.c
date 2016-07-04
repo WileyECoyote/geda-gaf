@@ -666,6 +666,7 @@ geda_menu_class_init   (void *class, void *class_data)
   GtkContainerClass  *container_class  = GTK_CONTAINER_CLASS (class);
   GedaMenuShellClass *shell_class      = GEDA_MENU_SHELL_CLASS (class);
   GtkBindingSet      *binding_set;
+  GParamSpec         *params;
 
   gobject_class->set_property = geda_menu_set_property;
   gobject_class->get_property = geda_menu_get_property;
@@ -720,37 +721,39 @@ geda_menu_class_init   (void *class, void *class_data)
    * The index of the currently selected menu item, or -1 if no
    * menu item is selected.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACTIVE,
-                                   g_param_spec_int ("active",
-                                                   _("Active"),
-                                                   _("The currently selected menu item"),
-                                   -1, G_MAXINT, -1,
-                                   G_PARAM_READWRITE));
+  params = g_param_spec_int ("active",
+                           _("Active"),
+                           _("The currently selected menu item"),
+                             -1,
+                             G_MAXINT,
+                             -1,
+                             G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ACTIVE, params);
 
   /*!
    * property "accel-group": GedaMenu::accel-group
    * The accel group holding accelerators for the menu.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACCEL_GROUP,
-                                   g_param_spec_object ("accel-group",
-                                   _("Accel Group"),
-                                   _("The accel group holding accelerators for the menu"),
-                                   GTK_TYPE_ACCEL_GROUP,
-                                   G_PARAM_READWRITE));
+  params = g_param_spec_object ("accel-group",
+                              _("Accel Group"),
+                              _("The accel group holding accelerators for the menu"),
+                                 GTK_TYPE_ACCEL_GROUP,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ACCEL_GROUP, params);
 
   /*!
    * property "accel-path": GedaMenu::accel-path
    * An accel path used to construct accel paths of child items.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACCEL_PATH,
-                                   g_param_spec_string ("accel-path",
-                                 _("Accel Path"),
-                                 _("An accel path used to construct accel paths of child items"),
-                                   NULL,
-                                   G_PARAM_READWRITE));
+  params = g_param_spec_string ("accel-path",
+                              _("Accel Path"),
+                              _("An accel path used to construct accel paths of child items"),
+                                 NULL,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ACCEL_PATH, params);
 
   /*!
    * property "attach-widget": GedaMenu::attach-widget
@@ -760,62 +763,51 @@ geda_menu_class_init   (void *class, void *class_data)
    *  the menu without a #MenuDetachFunc. If you need to use a detacher,
    *  use geda_menu_attach_to_widget() directly.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_ATTACH_WIDGET,
-                                   g_param_spec_object ("attach-widget",
-                                                        _("Attach Widget"),
-                                                        _("The widget the menu is attached to"),
-                                   GTK_TYPE_WIDGET,
-                                   G_PARAM_READWRITE));
+  params = g_param_spec_object ("attach-widget",
+                              _("Attach Widget"),
+                              _("The widget the menu is attached to"),
+                                 GTK_TYPE_WIDGET,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ATTACH_WIDGET, params);
 
   /*!
    * property "tearoff-title": GedaMenu::tearoff-title
    * \brief Title displayed if torn-off
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_TEAROFF_TITLE,
-                                   g_param_spec_string ("tearoff-title",
-                                                      _("Tearoff Title"),
-                                                      _("A title that may be displayed by the window manager when this menu is torn-off"),
-                                                         NULL,
-                                                         G_PARAM_READWRITE));
+  params = g_param_spec_string ("tearoff-title",
+                              _("Tearoff Title"),
+                              _("A title that may be displayed by the window manager when this menu is torn-off"),
+                                 NULL,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_TEAROFF_TITLE, params);
 
   /*!
    * property "tearoff-state": GedaMenu::tearoff-state
    * \brief Boolean that indicates whether the menu is torn-off.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_TEAROFF_STATE,
-                                   g_param_spec_boolean ("tearoff-state",
-                                                       _("Tearoff State"),
-                                                       _("A boolean that indicates whether the menu is torn-off"),
-                                   FALSE,
-                                   G_PARAM_READWRITE));
+  params = g_param_spec_boolean ("tearoff-state",
+                               _("Tearoff State"),
+                               _("A boolean that indicates whether the menu is torn-off"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_TEAROFF_STATE, params);
 
   /*!
    * property "monitor": GedaMenu::monitor
    * \brief The monitor the menu will be popped up on.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_MONITOR,
-                                   g_param_spec_int ("monitor",
-                                                   _("Monitor"),
-                                                   _("The monitor the menu will be popped up on"),
-                                   -1, G_MAXINT, -1,
-                                   G_PARAM_READWRITE));
-  /*!
-   * property "vertical-padding": GedaMenu::vertical_padding
-   * \brief Controls the spacing between menu items.
-   */
-  gtk_widget_class_install_style_property (widget_class,
-                       g_param_spec_int ("vertical-padding",
-                                       _("Vertical Padding"),
-                                       _("Extra space at the top and bottom of the menu"),
-                                          0,
-                                          G_MAXINT,
-                                          1,
-                                          G_PARAM_READABLE));
+  params = g_param_spec_int ("monitor",
+                           _("Monitor"),
+                           _("The monitor the menu will be popped up on"),
+                             -1,
+                             G_MAXINT,
+                             -1,
+                             G_PARAM_READWRITE);
 
+  g_object_class_install_property (gobject_class, PROP_MONITOR, params);
   /*!
    * property "reserve-toggle-size" GedaMenu::reserve-toggle-size
    * \brief Determines whether to researve space for images.
@@ -828,93 +820,31 @@ geda_menu_class_init   (void *class, void *class_data)
    *  are connected to a menu bar or context menus should reserve
    *  toggle space for consistency.
    */
+  params = g_param_spec_boolean ("reserve-toggle-size",
+                               _("Reserve Toggle Size"),
+                               _("A boolean that indicates whether the menu reserves space for toggles and icons"),
+                                  TRUE,
+                                  G_PARAM_READWRITE);
+
   g_object_class_install_property (gobject_class,
-                                   PROP_RESERVE_TOGGLE_SIZE,
-                                   g_param_spec_boolean ("reserve-toggle-size",
-                                 _("Reserve Toggle Size"),
-                                 _("A boolean that indicates whether the menu reserves space for toggles and icons"),
-                                    TRUE,
-                                    G_PARAM_READWRITE));
+                                   PROP_RESERVE_TOGGLE_SIZE, params);
 
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_int ("horizontal-padding",
-                                                             _("Horizontal Padding"),
-                                                             _("Extra space at the left and right edges of the menu"),
-                                                             0,
-                                                             G_MAXINT,
-                                                             0,
-                                                             G_PARAM_READABLE));
-
-  gtk_widget_class_install_style_property (widget_class,
-                       g_param_spec_int ("vertical-offset",
-                                 _("Vertical Offset"),
-                                 _("When the menu is a submenu, position it this number of pixels offset vertically"),
-                                 G_MININT,
-                                 G_MAXINT,
-                                 0,
-                                 G_PARAM_READABLE));
-
-  gtk_widget_class_install_style_property (widget_class,
-                       g_param_spec_int ("horizontal-offset",
-                                 _("Horizontal Offset"),
-                                 _("When the menu is a submenu, position it this number of pixels offset horizontally"),
-                                 G_MININT,
-                                 G_MAXINT,
-                                 -2,
-                                 G_PARAM_READABLE));
-
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_boolean ("double-arrows",
-                                                                 _("Double Arrows"),
-                                                                 _("When scrolling, always show both arrows."),
-                                                                 TRUE,
-                                                                 G_PARAM_READABLE));
+  /* Widget Properties */
 
   /*!
-   * property "arrow-placement" GedaMenu:arrow-placement:
+   * property "arrow-placement" GedaMenu::arrow-placement
    * \brief determines placement of scroll arrow.
    * \par
    *  Indicates where scroll arrows should be placed.
    */
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_enum ("arrow-placement",
-                                                              _("Arrow Placement"),
-                                                              _("Indicates where scroll arrows should be placed"),
-                                                              GTK_TYPE_ARROW_PLACEMENT,
-                                                              GTK_ARROWS_BOTH,
-                                                              G_PARAM_READABLE));
+  params = g_param_spec_enum ("arrow-placement",
+                            _("Arrow Placement"),
+                            _("Indicates where scroll arrows should be placed"),
+                               GTK_TYPE_ARROW_PLACEMENT,
+                               GTK_ARROWS_BOTH,
+                               G_PARAM_READABLE);
 
- gtk_container_class_install_child_property (container_class,
-                                             CHILD_PROP_LEFT_ATTACH,
-                          g_param_spec_int ("left-attach",
-                                                               _("Left Attach"),
-                                                               _("The column number to attach the left side of the child to"),
-                                -1, INT_MAX, -1,
-                                                               G_PARAM_READWRITE));
-
-  gtk_container_class_install_child_property (container_class,
-                                              CHILD_PROP_RIGHT_ATTACH,
-                                               g_param_spec_int ("right-attach",
-                                                               _("Right Attach"),
-                                              _("The column number to attach the right side of the child to"),
-                                                -1, INT_MAX, -1,
-                                                G_PARAM_READWRITE));
-
-  gtk_container_class_install_child_property (container_class,
-                                              CHILD_PROP_TOP_ATTACH,
-                                              g_param_spec_int ("top-attach",
-                                                              _("Top Attach"),
-                                              _("The row number to attach the top of the child to"),
-                                                -1, INT_MAX, -1,
-                                                G_PARAM_READWRITE));
-
-  gtk_container_class_install_child_property (container_class,
-                                              CHILD_PROP_BOTTOM_ATTACH,
-                                              g_param_spec_int ("bottom-attach",
-                                                              _("Bottom Attach"),
-                                              _("The row number to attach the bottom of the child to"),
-                                                -1, INT_MAX, -1,
-                                                G_PARAM_READWRITE));
+  gtk_widget_class_install_style_property (widget_class, params);
 
   /*!
    * property "arrow-scaling": GedaMenu::arrow-scaling
@@ -922,14 +852,123 @@ geda_menu_class_init   (void *class, void *class_data)
    * \par
    *  Arbitrary constant to scale down the size of the scroll arrow.
    */
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_float ("arrow-scaling",
-                                                               _("Arrow Scaling"),
-                                                               _("Arbitrary constant to scale down the size of the scroll arrow"),
-                                                               0.0, 1.0, 0.7,
-                                                               G_PARAM_READABLE));
+  params = g_param_spec_float ("arrow-scaling",
+                             _("Arrow Scaling"),
+                             _("Arbitrary constant to scale down the size of the scroll arrow"),
+                                0.0,
+                                1.0,
+                                0.7,
+                                G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  params = g_param_spec_boolean ("double-arrows",
+                               _("Double Arrows"),
+                               _("When scrolling, always show both arrows."),
+                                  TRUE,
+                                  G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  params = g_param_spec_int ("horizontal-offset",
+                           _("Horizontal Offset"),
+                           _("When the menu is a submenu, position it this number of pixels offset horizontally"),
+                              G_MININT,
+                              G_MAXINT,
+                              -2,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  /*!
+   * property "horizontal-padding": GedaMenu::horizontal-padding
+   * \brief Controls the horizontal spacing between menu items.
+   */
+  params = g_param_spec_int ("horizontal-padding",
+                           _("Horizontal Padding"),
+                           _("Extra space at the left and right edges of the menu"),
+                              0,
+                              G_MAXINT,
+                              0,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  params = g_param_spec_int ("vertical-offset",
+                           _("Vertical Offset"),
+                           _("When the menu is a submenu, position it this number of pixels offset vertically"),
+                              G_MININT,
+                              G_MAXINT,
+                              0,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  /*!
+   * property "vertical-padding": GedaMenu::vertical-padding
+   * \brief Controls the vertical spacing between menu items.
+   */
+  params = g_param_spec_int ("vertical-padding",
+                           _("Vertical Padding"),
+                           _("Extra space at the top and bottom of the menu"),
+                              0,
+                              G_MAXINT,
+                              1,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+
+  /* Container Properties */
+
+  params = g_param_spec_int ("left-attach",
+                           _("Left Attach"),
+                           _("The column number to attach the left side of the child to"),
+                             -1,
+                             INT_MAX,
+                             -1,
+                             G_PARAM_READWRITE);
+
+  gtk_container_class_install_child_property (container_class,
+                                              CHILD_PROP_LEFT_ATTACH, params);
+
+  params = g_param_spec_int ("right-attach",
+                           _("Right Attach"),
+                           _("The column number to attach the right side of the child to"),
+                             -1,
+                              INT_MAX,
+                             -1,
+                              G_PARAM_READWRITE);
+
+  gtk_container_class_install_child_property (container_class,
+                                              CHILD_PROP_RIGHT_ATTACH, params);
+
+  params = g_param_spec_int ("top-attach",
+                           _("Top Attach"),
+                           _("The row number to attach the top of the child to"),
+                             -1,
+                             INT_MAX,
+                             -1,
+                              G_PARAM_READWRITE);
+
+  gtk_container_class_install_child_property (container_class,
+                                              CHILD_PROP_TOP_ATTACH, params);
+
+  params = g_param_spec_int ("bottom-attach",
+                           _("Bottom Attach"),
+                           _("The row number to attach the bottom of the child to"),
+                              -1,
+                              INT_MAX,
+                              -1,
+                              G_PARAM_READWRITE);
+
+  gtk_container_class_install_child_property (container_class,
+                                              CHILD_PROP_BOTTOM_ATTACH, params);
+
+  /* Bindings */
 
   binding_set = gtk_binding_set_by_class (class);
+
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Up, 0,
                                 _("move-current"), 1,
@@ -2201,7 +2240,7 @@ geda_menu_update_title (GedaMenu *menu)
         if (GTK_IS_LABEL (child)) {
           title = gtk_label_get_text (GTK_LABEL (child));
         }
-        if (GEDA_IS_LABEL (child)) {
+        else if (GEDA_IS_LABEL (child)) {
           title = geda_label_get_text (GEDA_LABEL (child));
         }
       }
@@ -2553,9 +2592,9 @@ geda_menu_realize (GtkWidget *widget)
   border_width = GTK_CONTAINER (widget)->border_width;
 
   gtk_widget_style_get (GTK_WIDGET (menu),
-            "vertical-padding", &vertical_padding,
+                        "vertical-padding", &vertical_padding,
                         "horizontal-padding", &horizontal_padding,
-            NULL);
+                        NULL);
 
   attributes.x = border_width + widget->style->xthickness + horizontal_padding;
   attributes.y = border_width + widget->style->ythickness + vertical_padding;
@@ -2975,10 +3014,10 @@ get_arrows_visible_area (GedaMenu     *menu,
   GtkArrowPlacement arrow_placement;
 
   gtk_widget_style_get (widget,
-                        "vertical-padding", &vertical_padding,
-                        "horizontal-padding", &horizontal_padding,
+                        "vertical-padding",     &vertical_padding,
+                        "horizontal-padding",   &horizontal_padding,
                         "scroll-arrow-vlength", &scroll_arrow_height,
-                        "arrow-placement", &arrow_placement,
+                        "arrow-placement",      &arrow_placement,
                         NULL);
 
   border->x = GTK_CONTAINER (widget)->border_width + widget->style->xthickness + horizontal_padding;
@@ -3049,12 +3088,12 @@ get_arrows_visible_area (GedaMenu     *menu,
 static void
 geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 {
-  GedaMenu *menu;
+  GedaMenu     *menu;
   GedaMenuPriv *priv;
-  GdkRectangle border;
-  GdkRectangle upper;
-  GdkRectangle lower;
-  int  arrow_space;
+  GdkRectangle  border;
+  GdkRectangle  upper;
+  GdkRectangle  lower;
+  int           arrow_space;
 
   g_return_if_fail (GEDA_IS_MENU (widget));
 
@@ -3065,20 +3104,20 @@ geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 
   if (event->window == widget->window) {
 
-      float arrow_scaling;
-      int   arrow_size;
+    float arrow_scaling;
+    int   arrow_size;
 
-      gtk_widget_style_get (widget, "arrow-scaling", &arrow_scaling, NULL);
-      arrow_size = arrow_scaling * arrow_space;
+    gtk_widget_style_get (widget, "arrow-scaling", &arrow_scaling, NULL);
+    arrow_size = arrow_scaling * arrow_space;
 
-      gtk_paint_box (widget->style,
-             widget->window,
-             GTK_STATE_NORMAL,
-             GTK_SHADOW_OUT,
-             &event->area, widget, "menu",
-             0, 0, -1, -1);
+    gtk_paint_box (widget->style,
+                   widget->window,
+                   GTK_STATE_NORMAL,
+                   GTK_SHADOW_OUT,
+                   &event->area, widget, "menu",
+                   0, 0, -1, -1);
 
-      if (menu->upper_arrow_visible && !menu->tearoff_active) {
+    if (menu->upper_arrow_visible && !menu->tearoff_active) {
 
       gtk_paint_box (widget->style,
                      widget->window,

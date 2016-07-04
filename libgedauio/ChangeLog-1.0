@@ -6,7 +6,8 @@
     * src/widgets/geda_menu.c: Replace ATTACH_INFO_KEY and ATTACHED_MENUS with
       static constants attached_info_key and attached_menus_key respectively.
       Allocate AttachInfo and MenuAttachData struct using g_malloc0 instead of
-      g_slice_new0. Eliminate translation of data keys.
+      g_slice_new0. Eliminate translation of data keys. Add GParamSpec params
+      geda_menu_class_init.
 
     * src/widgets/geda_menu_item.c: Replace GtkLabel with GedaLabel, add function
       geda_menu_item_disconnect_accelerator to distinghish between GedaActions and
