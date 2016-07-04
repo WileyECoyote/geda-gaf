@@ -6,7 +6,8 @@
       GedaToggleActions actions to be passed to gtk_action_disconnect_accelerator.
 
     * src/widgets/geda_menu.c: Convert menu-pop-delays to widget properties
-      instead of gsettings.
+      instead of gsettings. Eliminate extra conditional if shell is active in
+      geda_menu_position.
 
     * src/widgets/geda_menu_bar.c: Replace preprocessor define with static
       constant for menu bar list key, clean comments.
