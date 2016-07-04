@@ -54,6 +54,7 @@
 #include "../../include/geda_toggle_action.h"
 #include "../../include/geda_accel_label.h"
 #include "../../include/geda_image_menu_item.h"
+#include "../../include/geda_check_menu_item.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
@@ -343,7 +344,10 @@ geda_action_create_menu_item (GedaAction *action)
     gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
   }
   else if (GEDA_IS_TOGGLE_ACTION(action)) {
-    menu_item = gtk_action_create_menu_item (GTK_ACTION (action));
+
+    menu_item = geda_check_menu_item_new ();
+
+    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
     gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
   }
   else {
@@ -486,7 +490,7 @@ void geda_action_set_icon_name (GedaAction *action,
  */
 void geda_action_disconnect_accelerator (GedaAction  *action)
 {
-  g_return_if_fail (GEDA_IS_ACTION (action));
+  g_return_if_fail (GTK_IS_ACTION (action));
   gtk_action_disconnect_accelerator(GTK_ACTION (action));
 }
 
@@ -524,7 +528,7 @@ void geda_action_sync_menu_visible (GedaAction *action,
     }
   }
   else {
-    object = GTK_WIDGET (action);
+    object = NULL;
   }
 
   if (object) {

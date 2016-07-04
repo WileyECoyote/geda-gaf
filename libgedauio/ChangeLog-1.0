@@ -1,5 +1,10 @@
 2016-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_action.c: Revise geda_action_create_menu_item to use
+      geda_check_menu_item_new instead of gtk_action_create_menu_item. Use
+      GTK_IS_ACTION in geda_action_disconnect_accelerator, which allows
+      GedaToggleActions actions to be passed to gtk_action_disconnect_accelerator.
+
     * src/widgets/geda_menu.c: Convert menu-pop-delays to widget properties
       instead of gsettings.
 
