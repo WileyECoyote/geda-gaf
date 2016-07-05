@@ -10,6 +10,9 @@
 
     * src/x/x_edit_attrib.c: Convert gtk_menu -> geda_menu.
 
+    * src/x/x_edit_pin.c: Convert all menu relate stuff to GedaMenu or
+      derivatives, aka geda_options_menu.
+
     * src/x/x_window.c: Update gtk_check_menu -> geda_check_menu.
 
 2016-07-04 Wiley E. Hill <wileyhill@gmail.com>

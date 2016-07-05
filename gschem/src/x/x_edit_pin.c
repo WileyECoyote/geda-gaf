@@ -107,14 +107,16 @@ static GtkWidget *create_menu_pin_electricals ( void )
               };
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof(types) / sizeof(struct pin_electrical); i++) {
+
     GtkWidget *menuitem;
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].electrical),
                          WIDGET(PinElectrical));
@@ -139,16 +141,16 @@ static GtkWidget *create_menu_pin_type ( void )
               };
   int i;
 
-  menu  = gtk_menu_new ();
+  menu  = geda_menu_new ();
   group = NULL;
 
   for (i = 0; i < sizeof(types) / sizeof(struct pin_type); i++) {
 
     GtkWidget *menuitem;
 
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
+    menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
+    group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+    geda_menu_append (GEDA_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].type),
                          WIDGET(PinNodeType));
@@ -177,10 +179,10 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
 {
   GtkWidget *menu, *menuitem;
 
-  gtk_option_menu_set_history(GTK_OPTION_MENU(pin_data->node_type), node_type);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(pin_data->node_type));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->node_type), node_type);
+  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->node_type));
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (number == NULL) {
     SetEntryText( pin_data->number_entry, _("*missing*") );
@@ -203,10 +205,10 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
     SetEntryText( pin_data->label_entry, label );
   }
 
-  gtk_option_menu_set_history(GTK_OPTION_MENU(pin_data->pin_electrical), elect_type);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(pin_data->pin_electrical));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->pin_electrical), elect_type);
+  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->pin_electrical));
+  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
 }
 
@@ -268,9 +270,9 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   ntype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-            GTK_OPTION_MENU (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (
               pin_data->node_type)))), WIDGET(PinNodeType)));
 
   if (ntype != PIN_NET_NODE && ntype != PIN_BUS_NODE) {
@@ -280,9 +282,9 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   etype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-            GTK_OPTION_MENU (
+        geda_menu_get_active (
+          GEDA_MENU (geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (
               pin_data->pin_electrical)))), WIDGET(PinElectrical)));
 
   if (etype == PIN_ELECT_VOID)
@@ -821,15 +823,15 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   pin_label = GEDA_AVM_LABEL_NEW (_LABEL(PinLabel), 0, 0);
   gtk_table_attach(GTK_TABLE(table), pin_label, 0,1,4,5, GTK_FILL,0,0,0);
 
-  optionmenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
+  optionmenu = geda_option_menu_new ();
+  geda_option_menu_set_menu(GEDA_OPTION_MENU(optionmenu),
                            create_menu_pin_type ());
   gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
   gtk_widget_set_tooltip_text(optionmenu, type_combo_tip);
   g_object_set (optionmenu, "visible", TRUE, NULL);
 
-  attributemenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(attributemenu),
+  attributemenu = geda_option_menu_new ();
+  geda_option_menu_set_menu(GEDA_OPTION_MENU(attributemenu),
                            create_menu_pin_electricals ());
 
   gtk_table_attach_defaults(GTK_TABLE(table), attributemenu, 1,2,1,2);
