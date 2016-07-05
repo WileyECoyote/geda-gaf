@@ -438,7 +438,7 @@ x_window_create_main(GschemToplevel *w_current)
   g_object_set (main_box, "visible", TRUE, NULL);
 
   /* Main Menu */
-  if (GTK_IS_MENU_BAR(menubar = x_menu_setup_ui (w_current))) {
+  if (GEDA_IS_MENU_BAR(menubar = x_menu_setup_ui (w_current))) {
 
     if (w_current->handleboxes) {
 
@@ -1427,7 +1427,7 @@ x_window_update_title(GschemToplevel *w_current)
 void
 x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->add_handlebox);
   else
     gtk_widget_hide(w_current->add_handlebox);
@@ -1443,7 +1443,7 @@ x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->attribute_handlebox);
   else
     gtk_widget_hide(w_current->attribute_handlebox);
@@ -1459,7 +1459,7 @@ x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->grid_snap_handlebox);
   else
     gtk_widget_hide(w_current->grid_snap_handlebox);
@@ -1475,7 +1475,7 @@ x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->edit_handlebox);
   else
     gtk_widget_hide(w_current->edit_handlebox);
@@ -1491,7 +1491,7 @@ x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->page_handlebox);
   else
     gtk_widget_hide(w_current->page_handlebox);
@@ -1507,7 +1507,7 @@ x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->standard_handlebox);
   else
     gtk_widget_hide(w_current->standard_handlebox);
@@ -1523,7 +1523,7 @@ x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->select_handlebox);
   else
     gtk_widget_hide(w_current->select_handlebox);
@@ -1539,7 +1539,7 @@ x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->zoom_handlebox);
   else
     gtk_widget_hide(w_current->zoom_handlebox);
