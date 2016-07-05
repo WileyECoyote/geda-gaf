@@ -52,14 +52,16 @@ style "gschem"
    GedaImageChooser::local-only = 1
 
    GedaMenu::arrow-placement              = GTK_ARROWS_BOTH
-   GedaMenu::arrow-scaling                = 0.7    # Valid range 0.0 to 1.0
-   GedaMenu::double-arrows                = true
+   GedaMenu::arrow-scaling                = 0.6    # Valid range 0.0 to 1.0
+   GedaMenu::double-arrows                = 1
    GedaMenu::horizontal-offset            = -1
    GedaMenu::horizontal-padding           = 5      # Controls spacing inside menus
+   GedaMenu::menu-popdown-delay           = 1000
+   GedaMenu::menu-popup-delay             = 200
    GedaMenu::vertical-offset              = 0
    GedaMenu::vertical-padding             = 0
 
-   GedaMenuItem::arrow-scaling            = 0.8
+   GedaMenuItem::arrow-scaling            = 0.6
    GedaMenuItem::arrow-spacing            = 10
    GedaMenuItem::horizontal-padding       = 5      # Controls spacing on menu bar
    GedaMenuItem::selected-shadow-type     = GTK_SHADOW_NONE

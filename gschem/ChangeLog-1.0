@@ -1,5 +1,8 @@
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/gschem-gtkrc: Tweak GedaMenu and GedaMenuItem properties,
+      GedaMenu::menu-popdown-delay and GedaMenu::menu-popup-delay.
+
     * src/iface/i_sessions.c: Convert gtk_menu -> geda_menu.
 
     * src/x/x_window.c: Update gtk_check_menu -> geda_check_menu.
