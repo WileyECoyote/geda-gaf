@@ -1,3 +1,9 @@
+2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_picture_object.c: Add pre and post test routines to copy
+      the image file from the source directory to the build directory for
+      distchecks.
+
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Define log-open and log-close.

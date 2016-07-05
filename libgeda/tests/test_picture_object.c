@@ -29,6 +29,9 @@
 #include <version.h>
 #include "test-suite.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 /*! \file test_picture_object.c
  *  \brief Tests for o_picture_object.c module
  *  \par
@@ -92,6 +95,49 @@
  *      O1631     geda_picture_object_translate
  *      O1632     geda_picture_object_unembed
  */
+
+static int remove_file = 0;
+
+/* Copies the test image file from the source directory to the
+ * build during checks from VPATH builds, aka distchecks */
+int pretest()
+{
+  int result = 0;
+
+  if(access(IMAGE_FILE, R_OK) != 0) {
+
+    char *src_dir = getenv ("srcdir");
+
+    if (src_dir) {
+      char *source;
+      source = g_build_filename(src_dir, IMAGE_FILE, NULL);
+      result = f_sys_copy(source, IMAGE_FILE);
+      g_free (source);
+      remove_file = 1;
+    }
+  }
+
+  return result;
+}
+
+/* Removes image file copied for VPATH build */
+void posttest()
+{
+  /* The remove_file was set only if the file was copied during
+   * a make check in a VPATH build, so remove the file if set */
+  if (remove_file) {
+    if(access(IMAGE_FILE, R_OK) == 0) {
+      if (remove(IMAGE_FILE)) {
+        fprintf(stderr,"Error removing file <%s>: %s\n", IMAGE_FILE, strerror(errno));
+        exit (1);
+      }
+    }
+    else {
+      fprintf(stderr,"Error accessing file <%s>: %s\n", IMAGE_FILE, strerror(errno));
+      exit (1);
+    }
+  }
+}
 
 int
 check_construction ()
@@ -201,6 +247,11 @@ main (int argc, char *argv[])
   g_type_init();
 #endif
 
+  if (pretest()) {
+    fprintf(stderr, "Now wtf?\n\n");
+    return 1;
+  }
+
   if (setjmp(point) == 0) {
     result = check_construction();
   }
@@ -208,6 +259,6 @@ main (int argc, char *argv[])
     fprintf(stderr, "Caught signal in constructors %s\n\n", __FILE__);
     return 1;
   }
-
+  posttest();
   return result;
 }
