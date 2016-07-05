@@ -7,24 +7,19 @@
  * Copyright (C) 2001 Red Hat, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
- * the License, or (at your option) any later version.
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- * This Library is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA <http://www.gnu.org/licenses/>.
- *
- * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
- * file for a list of people on the GTK+ Team.  See the ChangeLog
- * files for a list of changes.  These files are distributed with
- * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ * along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -37,8 +32,9 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include "geda_gtk_compat.h"
-#include "geda_image_menu_item.h"
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_menu_bar.h"
+#include "../../include/geda_image_menu_item.h"
 
 #include <gtk/gtk.h>
 
@@ -50,14 +46,14 @@
  * \brief GedaImageMenuItem - A Menu Item with and Image Widget
  * \par
  * A GedaImageMenuItem is a replacement for the GtkMenuItem because the
- * GedaImageMenuItem is listed as depreciated. There is one major differences
+ * GtkImageMenuItem is listed as depreciated. There is one major differences
  * between a GedaImageMenuItem and a GtkMenuItem, the GedaImageMenuItem does
  * NOT have a "gtk-show-image" property and does NOT enable the menu icons
  * based on system settings. The GtkMenuItem version displays images (after
  * being initialized not to do so) if the systems settings are set to display
- * images because GTK/Gnome apply their setting after programs show their
- * main window *and have already applied any program settings. This is
- * unacceptable behavior, and hence this widget exist as a replacement.
+ * images because GTK/Gnome applies settings after programs show their main
+ * window and have already applied any user settings. This is unacceptable
+ * behavior, and hence this widget exist as a replacement.
  * \par
  * The visibility is determined by the program alone. If desired, routines
  * can check the system settings and enable the icons as appropriate.
@@ -74,11 +70,11 @@ static void geda_image_menu_item_size_allocate        (GtkWidget        *widget,
 static void geda_image_menu_item_map                  (GtkWidget        *widget);
 static void geda_image_menu_item_remove               (GtkContainer     *container,
                                                        GtkWidget        *child);
-static void geda_image_menu_item_toggle_size_request  (GtkMenuItem      *menu_item,
+static void geda_image_menu_item_toggle_size_request  (GedaMenuItem      *menu_item,
                                                        int              *requisition);
-static void geda_image_menu_item_set_label            (GtkMenuItem      *menu_item,
+static void geda_image_menu_item_set_label            (GedaMenuItem      *menu_item,
                                                        const char       *label);
-static const char *geda_image_menu_item_get_label     (GtkMenuItem      *menu_item);
+static const char *geda_image_menu_item_get_label     (GedaMenuItem      *menu_item);
 
 static void geda_image_menu_item_forall               (GtkContainer     *container,
                                                        bool	         include_internals,
@@ -178,7 +174,7 @@ activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *act
 
 static void
 geda_image_menu_item_sync_action (GtkActivatable *activatable,
-                                             GtkAction      *action)
+                                  GtkAction      *action)
 {
   GedaImageMenuItem     *image_menu_item;
   GedaImageMenuItemData *priv;
@@ -204,6 +200,7 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
     return;
 
   image = geda_image_menu_item_get_image (image_menu_item);
+
   if (image && !GTK_IS_IMAGE (image)) {
     geda_image_menu_item_set_image (image_menu_item, NULL);
     image = NULL;
@@ -364,7 +361,7 @@ geda_image_menu_item_class_init (void *class, void *class_data)
   GObjectClass      *gobject_class     = (GObjectClass*) class;
   GtkObjectClass    *object_class      = (GtkObjectClass*) class;
   GtkWidgetClass    *widget_class      = (GtkWidgetClass*) class;
-  GtkMenuItemClass  *menu_item_class   = (GtkMenuItemClass*) class;
+  GedaMenuItemClass  *menu_item_class   = (GedaMenuItemClass*) class;
   GtkContainerClass *container_class   = (GtkContainerClass*) class;
 
   object_class->destroy                = geda_image_menu_item_destroy;
@@ -497,7 +494,7 @@ geda_image_menu_item_get_type (void)
     GedaType    type;
 
     string = g_intern_static_string ("GedaImageMenuItem");
-    type   = g_type_register_static (GTK_TYPE_MENU_ITEM, string, &info, 0);
+    type   = g_type_register_static (GEDA_TYPE_MENU_ITEM, string, &info, 0);
 
     const GInterfaceInfo interface_info = {
       (GInterfaceInitFunc) geda_image_menu_item_activatable_init,
@@ -575,14 +572,14 @@ geda_image_menu_item_destroy (GtkObject *object)
 }
 
 static void
-geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
-                                          int        *requisition)
+geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
+                                          int          *requisition)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (menu_item);
   PackDirection pack_dir;
 
-  if (GTK_IS_MENU_BAR (GTK_WIDGET (menu_item)->parent))
-    pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (GTK_WIDGET (menu_item)->parent));
+  if (GEDA_IS_MENU_BAR (GTK_WIDGET (menu_item)->parent))
+    pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (GTK_WIDGET (menu_item)->parent));
   else
     pack_dir = PACK_DIRECTION_LTR;
 
@@ -635,18 +632,18 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
       resolved_label = stock_item.label;
     }
 
-    gtk_menu_item_set_use_underline (GTK_MENU_ITEM (image_menu_item), TRUE);
+    geda_menu_item_set_use_underline (GEDA_MENU_ITEM (image_menu_item), TRUE);
   }
 
-  gtk_menu_item_set_label(GTK_MENU_ITEM (image_menu_item), resolved_label);
+  geda_menu_item_set_label(GEDA_MENU_ITEM (image_menu_item), resolved_label);
 
-  GTK_MENU_ITEM_CLASS(geda_image_menu_item_parent_class)->
-    set_label (GTK_MENU_ITEM (image_menu_item), resolved_label);
+  GEDA_MENU_ITEM_CLASS(geda_image_menu_item_parent_class)->
+    set_label (GEDA_MENU_ITEM (image_menu_item), resolved_label);
 }
 
 static void
-geda_image_menu_item_set_label (GtkMenuItem *menu_item,
-                                const char  *label)
+geda_image_menu_item_set_label (GedaMenuItem *menu_item,
+                                const char   *label)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (menu_item);
 
@@ -663,7 +660,7 @@ geda_image_menu_item_set_label (GtkMenuItem *menu_item,
 }
 
 static const char *
-geda_image_menu_item_get_label (GtkMenuItem *menu_item)
+geda_image_menu_item_get_label (GedaMenuItem *menu_item)
 {
   return GEDA_IMAGE_MENU_ITEM (menu_item)->label;
 }
@@ -673,12 +670,12 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
                                    GtkRequisition *requisition)
 {
   GedaImageMenuItem *image_menu_item;
-  PackDirection   pack_dir;
+  PackDirection pack_dir;
   int child_width;
   int child_height;
 
-  if (GTK_IS_MENU_BAR (widget->parent)) {
-    pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
+  if (GEDA_IS_MENU_BAR (widget->parent)) {
+    pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (widget->parent));
   }
   else {
     pack_dir = PACK_DIRECTION_LTR;
@@ -702,9 +699,7 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
 
   GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->size_request (widget, requisition);
 
-  /* not done with height since that happens via the
-   * toggle_size_request
-   */
+  /* not done with height since that happens via the toggle_size_reques */
   if (pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) {
     requisition->height = MAX (requisition->height, child_height);
   }
@@ -712,7 +707,7 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
     requisition->width = MAX (requisition->width, child_width);
   }
 
-  /* Note that GtkMenuShell always size requests before
+  /* Note that GedaMenuShell always size requests before
    * toggle_size_request, so toggle_size_request will be able to use
    * image_menu_item->image->requisition
    */
@@ -725,8 +720,8 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
   GedaImageMenuItem *image_menu_item;
   PackDirection   pack_dir;
 
-  if (GTK_IS_MENU_BAR (widget->parent)) {
-    pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
+  if (GEDA_IS_MENU_BAR (widget->parent)) {
+    pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (widget->parent));
   }
   else {
     pack_dir = PACK_DIRECTION_LTR;
@@ -743,6 +738,7 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
     GtkAllocation   child_allocation;
     unsigned int    horizontal_padding;
     unsigned int    toggle_spacing;
+    unsigned short  toggle_size;
     int x, y, offset;
 
     gtk_widget_style_get (widget,
@@ -758,6 +754,8 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
     gtk_widget_get_child_requisition (image_menu_item->image,
                                       &child_requisition);
 
+    toggle_size = geda_menu_item_get_toggle_size((GedaMenuItem*)image_menu_item);
+
     if (pack_dir == PACK_DIRECTION_LTR ||
         pack_dir == PACK_DIRECTION_RTL)
     {
@@ -767,15 +765,14 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
           (pack_dir == PACK_DIRECTION_LTR))
       {
-        x = offset + horizontal_padding + (GTK_MENU_ITEM (image_menu_item)->
-            toggle_size - toggle_spacing - child_requisition.width) / 2;
+        x = offset + horizontal_padding +
+            (toggle_size - toggle_spacing - child_requisition.width) / 2;
       }
       else
       {
         x = allocation->width - offset - horizontal_padding -
-            GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
-           (GTK_MENU_ITEM (image_menu_item)->toggle_size - toggle_spacing -
-            child_requisition.width) / 2;
+            toggle_size + toggle_spacing +
+           (toggle_size - toggle_spacing - child_requisition.width) / 2;
       }
       y = (allocation->height - child_requisition.height) / 2;
     }
@@ -788,17 +785,13 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
           (pack_dir == PACK_DIRECTION_TTB))
       {
         y = offset + horizontal_padding +
-            (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-                                              toggle_spacing -
-                                              child_requisition.height) / 2;
+            (toggle_size - toggle_spacing - child_requisition.height) / 2;
       }
       else
       {
         y = allocation->height - offset - horizontal_padding -
-            GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
-           (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-                                             toggle_spacing -
-                                             child_requisition.height) / 2;
+            toggle_size + toggle_spacing +
+           (toggle_size - toggle_spacing - child_requisition.height) / 2;
       }
       x = (allocation->width - child_requisition.width) / 2;
     }
@@ -898,7 +891,7 @@ geda_image_menu_item_new_with_mnemonic (const char *label)
  * and GTK_STOCK_APPLY.
  *
  * If you want this menu item to have changeable accelerators, then pass in
- * %NULL for accel_group. Next call gtk_menu_item_set_accel_path() with an
+ * %NULL for accel_group. Next call geda_menu_item_set_accel_path() with an
  * appropriate path for the menu item, use gtk_stock_lookup() to look up the
  * standard accelerator for the stock item, and if one is found, call
  * gtk_accel_map_add_entry() to register it.
@@ -1027,7 +1020,7 @@ geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  * Specifies an accel_group to add the menu items accelerator to
  * (this only applies to stock items so a stock item must already
  * be set, make sure to call geda_image_menu_item_set_use_stock()
- * and gtk_menu_item_set_label() with a valid stock item first).
+ * and geda_menu_item_set_label() with a valid stock item first).
  *
  * If you want this menu item to have changeable accelerators then
  * you shouldnt need this (see geda_image_menu_item_new_from_stock()).

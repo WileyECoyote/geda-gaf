@@ -3,45 +3,39 @@
 /*
  * File: geda_image_menu_item.h
  *
- * GTK - The GIMP Toolkit
- * Copyright (C) Red Hat, Inc.
+ * gEDA - GPL Electronic Design Automation
+ * libgedauio - gEDA's library for User Interface Objects
+ *
+ * Copyright (C) 2016 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
- * the License, or (at your option) any later version.
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- * This Library is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA <http://www.gnu.org/licenses/>.
+ * along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  *
- * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
- * file for a list of people on the GLib Team.  See the ChangeLog
- * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
- *
- * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
- * file for a list of people on the GTK+ Team.  See the ChangeLog
- * files for a list of changes.  These files are distributed with
- * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 
 #ifndef __GEDA_IMAGE_MENU_ITEM_H__
 #define __GEDA_IMAGE_MENU_ITEM_H__
 
 #include "geda_menu_enum.h"
-#include <gtk/gtkmenuitem.h>
+#include "geda_menu_item.h"
 
 #define GEDA_TYPE_IMAGE_MENU_ITEM            (geda_image_menu_item_get_type ())
 #define GEDA_IMAGE_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItem))
 #define GEDA_IMAGE_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
-#define GEDA_IS_IMAGE_MENU_ITEM(obj)         (is_a_geda_image_menu_item((GedaImageMenuItem*)obj))
+#define GEDA_IS_IMAGE_MENU_ITEM(obj)         (is_a_geda_image_menu_item((GedaImageMenuItem*)(obj)))
 #define GEDA_IS_IMAGE_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_IMAGE_MENU_ITEM))
 #define GEDA_IMAGE_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItemClass))
 
@@ -51,7 +45,7 @@ typedef struct _GedaImageMenuItemData  GedaImageMenuItemData;
 
 struct _GedaImageMenuItem
 {
-  GtkMenuItem   menu_item;
+  GedaMenuItem  menu_item;
   GedaType      instance_type;
   GtkWidget    *image;
 
@@ -64,7 +58,7 @@ struct _GedaImageMenuItem
 
 struct _GedaImageMenuItemClass
 {
-  GtkMenuItemClass parent_class;
+  GedaMenuItemClass parent_class;
 };
 
 #ifdef __cplusplus
