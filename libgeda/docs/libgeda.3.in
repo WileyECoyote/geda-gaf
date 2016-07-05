@@ -1,0 +1,86 @@
+'\" t
+.\"     Title: Libgeda
+.\"    Author: Wiley Edward Hill, Jr
+.\"    Manual: Linkage and Environment
+.\"    Source: Libgeda
+.\"  Language: English
+.\"
+.TH Libgeda 3 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+Libgeda \- The GPL Electronic Design Automation core library
+
+.SH SYNOPSIS
+
+libgeda.h
+.B Libgeda
+is a set of library routines used in the gEDA suite of applications to
+manipulate data for electronic schematics and symbols used in schematics.
+.B Linkage
+Using pkg-config
+LDFLAGS = pkg-config --libs libgeda
+Base library (if installed from a package)
+-lgeda
+if built from source
+-L/${prefix}=installed directory/gEDA/lib -lgeda
+typically
+/usr/local/gEDA/lib
+.B Headers
+Using pkg-config
+pkg-config --cflags libgeda
+Base headers (if installed from a package)
+#include <gEDA/libgeda.h>
+if built from source
+-I/${prefix}/gEDA/include/libgeda
+.br
+
+.SH DESCRIPTION
+This manual page explains the
+.B Libgeda
+program. This program...
+.PP
+\fBLibgeda\fP is for...
+
+.SH ENVIRONMENT
+.TP 8
+.B GEDADATA
+specifies the search directory for Scheme and bitmap files. The default is
+compilation dependent based on the location of the data directory and can
+be set using --datarootdir configuration option. Normally the location is
+`${prefix}/share/gEDA'. The GEDADATA environment setting over-rides the
+default location.
+
+.TP 8
+.B GEDADATARC
+specifies the search directory for  files.
+specifies the search directory for rc files. The default is compilation
+dependent based on the location of the data directory and can be set using
+--with-rcdir configuration option. The default is `$GEDADATA'. Specifying
+a GEDADATARD environment setting over-rides the default location.
+
+.TP 8
+.B GEDALOGS
+specifies the directory for log files. The default is compilation dependent
+based on the location of the user configuration files and can be controlled
+using --with-logdir configuration option. The GEDALOGS environment setting
+over-rides the default location.
+
+.SH AUTHORS
+See the `AUTHORS' file included with this program.
+
+.SH COPYRIGHT
+.nf
+Copyright \(co @YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
+version 2 or later. Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+\fBgnetlist\fR(1), \fBgschem\fR(1), \fBgsymcheck\fR(1)
+.PP
+API documentation for
+.B libgeda
+can be generated using Doxygen using 'Make doxygen' in the libgeda source
+directory.

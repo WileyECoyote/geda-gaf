@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-06-25 03:22-0500\n"
+"POT-Creation-Date: 2016-07-05 00:37-0500\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1394,13 +1394,13 @@ msgstr "Invoegen component als individuele objecten"
 msgid "Components"
 msgstr "Componenten"
 
-#: gschem/src/x/x_compselect.c:2508 gschem/src/x/x_multiattrib.c:1986
-#: gschem/src/x/x_multiattrib.c:1992
+#: gschem/src/x/x_compselect.c:2508 gschem/src/x/x_multiattrib.c:1989
+#: gschem/src/x/x_multiattrib.c:1995
 msgid "Name"
 msgstr "Naam"
 
-#: gschem/src/x/x_compselect.c:2520 gschem/src/x/x_multiattrib.c:1988
-#: gschem/src/x/x_multiattrib.c:1994
+#: gschem/src/x/x_compselect.c:2520 gschem/src/x/x_multiattrib.c:1991
+#: gschem/src/x/x_multiattrib.c:1997
 msgid "Value"
 msgstr "Waarde"
 
@@ -1653,7 +1653,7 @@ msgstr "Draad pen"
 msgid "Graphic"
 msgstr "Grafisch"
 
-#: gschem/src/x/x_dialog.c:1008 gschem/src/x/x_edit_pin.c:137
+#: gschem/src/x/x_dialog.c:1008 gschem/src/x/x_edit_pin.c:139
 #: gschem/src/x/x_menus.c:91
 msgid "Net"
 msgstr "Draad"
@@ -1680,7 +1680,7 @@ msgstr "Maak Attributen Los"
 msgid "Text"
 msgstr "Tekst"
 
-#: gschem/src/x/x_dialog.c:1014 gschem/src/x/x_edit_pin.c:138
+#: gschem/src/x/x_dialog.c:1014 gschem/src/x/x_edit_pin.c:140
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
 msgstr "Bus"
@@ -2090,99 +2090,99 @@ msgstr ""
 msgid "Done, renderer is down\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:211
+#: gschem/src/x/x_edit_attrib.c:208
 #, c-format
 msgid "Got invalid show option; defaulting to show both\n"
 msgstr "Kreeg ongeldige toon optie; standaardwaarde is toon beide\n"
 
-#: gschem/src/x/x_edit_attrib.c:321
+#: gschem/src/x/x_edit_attrib.c:318
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:322
+#: gschem/src/x/x_edit_attrib.c:319
 #, fuzzy
 msgid "Show only the name of the attribute"
 msgstr "Toon geërfde attributen"
 
-#: gschem/src/x/x_edit_attrib.c:323
+#: gschem/src/x/x_edit_attrib.c:320
 #, fuzzy
 msgid "Show only the value of the attribute"
 msgstr "Toon geërfde attributen"
 
-#: gschem/src/x/x_edit_attrib.c:324
+#: gschem/src/x/x_edit_attrib.c:321
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:332
+#: gschem/src/x/x_edit_attrib.c:329
 msgid "Show Value Only"
 msgstr "Toon Alleen Waarde"
 
-#: gschem/src/x/x_edit_attrib.c:336
+#: gschem/src/x/x_edit_attrib.c:333
 msgid "Show Name Only"
 msgstr "Toon Alleen Naam"
 
-#: gschem/src/x/x_edit_attrib.c:340 gschem/src/x/x_multiattrib.c:1635
+#: gschem/src/x/x_edit_attrib.c:337 gschem/src/x/x_multiattrib.c:1635
 #: gschem/scheme/gschem/builtins.scm:410
 msgid "Show Name & Value"
 msgstr "Toon Naam & Waarde"
 
-#: gschem/src/x/x_edit_attrib.c:404
+#: gschem/src/x/x_edit_attrib.c:401
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:405
+#: gschem/src/x/x_edit_attrib.c:402
 msgid "<b>Add Attribute</b>"
 msgstr "<b>Plaats Attribuut</b>"
 
-#: gschem/src/x/x_edit_attrib.c:406
+#: gschem/src/x/x_edit_attrib.c:403
 msgid "<b>Edit Attribute</b>"
 msgstr "<b>Bewerk Attribuut</b>"
 
-#: gschem/src/x/x_edit_attrib.c:408
+#: gschem/src/x/x_edit_attrib.c:405
 #, fuzzy
 msgid "Select the attribute name to add"
 msgstr "Slot attribuut misvormd\n"
 
-#: gschem/src/x/x_edit_attrib.c:409
+#: gschem/src/x/x_edit_attrib.c:406
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411
+#: gschem/src/x/x_edit_attrib.c:408
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:409
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:414
+#: gschem/src/x/x_edit_attrib.c:411
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:431
+#: gschem/src/x/x_edit_attrib.c:428
 msgid "Single Attribute Editor"
 msgstr "Enkelvoudige Attribuut Bewerking"
 
-#: gschem/src/x/x_edit_attrib.c:459 gschem/src/x/x_multiattrib.c:2192
+#: gschem/src/x/x_edit_attrib.c:456 gschem/src/x/x_multiattrib.c:2195
 msgid "Name:"
 msgstr "Naam:"
 
-#: gschem/src/x/x_edit_attrib.c:476 gschem/src/x/x_multiattrib.c:2211
+#: gschem/src/x/x_edit_attrib.c:473 gschem/src/x/x_multiattrib.c:2214
 msgid "Value:"
 msgstr "Waarde:"
 
-#: gschem/src/x/x_edit_attrib.c:490 gschem/src/x/x_multiattrib.c:1990
-#: gschem/src/x/x_multiattrib.c:2272
+#: gschem/src/x/x_edit_attrib.c:487 gschem/src/x/x_multiattrib.c:1993
+#: gschem/src/x/x_multiattrib.c:2275
 msgid "Visible"
 msgstr "Zichtbaar"
 
-#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:586
+#: gschem/src/x/x_edit_attrib.c:516 gschem/src/x/x_edit_text.c:586
 #: gschem/src/x/x_edit_text.c:598
 #, fuzzy
 msgid "Atrribute Name List"
 msgstr "Toon Attribuut Naam"
 
-#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:594
+#: gschem/src/x/x_edit_attrib.c:520 gschem/src/x/x_edit_text.c:594
 #, fuzzy
 msgid "Attribute Value Entry"
 msgstr "Toon Attribuut Waarde"
@@ -2406,59 +2406,59 @@ msgstr ""
 msgid "pwr"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:186
-#: gschem/src/x/x_edit_pin.c:200
+#: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:188
+#: gschem/src/x/x_edit_pin.c:202
 msgid "*missing*"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:277 gschem/src/x/x_edit_pin.c:289
+#: gschem/src/x/x_edit_pin.c:279 gschem/src/x/x_edit_pin.c:291
 #, fuzzy
 msgid "Pin Properties"
 msgstr "Bewerk Tekst Eigenschappen"
 
-#: gschem/src/x/x_edit_pin.c:277
+#: gschem/src/x/x_edit_pin.c:279
 #, fuzzy
 msgid "Invalid Pin Node Type"
 msgstr "Ongeldige raster modus\n"
 
-#: gschem/src/x/x_edit_pin.c:289
+#: gschem/src/x/x_edit_pin.c:291
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:795
+#: gschem/src/x/x_edit_pin.c:797
 #, fuzzy
 msgid "Pin Properties Editor"
 msgstr "Enkelvoudige Attribuut Bewerking"
 
-#: gschem/src/x/x_edit_pin.c:873
+#: gschem/src/x/x_edit_pin.c:875
 #, fuzzy
 msgid "Set"
 msgstr "Draad"
 
-#: gschem/src/x/x_edit_pin.c:876
+#: gschem/src/x/x_edit_pin.c:878
 #, fuzzy
 msgid "Auto"
 msgstr "Automatisch"
 
-#: gschem/src/x/x_edit_pin.c:907
+#: gschem/src/x/x_edit_pin.c:909
 #, fuzzy
 msgid "Attribute Type List"
 msgstr "Attributen"
 
-#: gschem/src/x/x_edit_pin.c:911
+#: gschem/src/x/x_edit_pin.c:913
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:915
+#: gschem/src/x/x_edit_pin.c:917
 #, fuzzy
 msgid "Pin Number"
 msgstr "Start nummer:"
 
-#: gschem/src/x/x_edit_pin.c:919
+#: gschem/src/x/x_edit_pin.c:921
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:923
+#: gschem/src/x/x_edit_pin.c:925
 msgid "Pin Label"
 msgstr ""
 
@@ -3021,189 +3021,189 @@ msgstr "Afbreken"
 msgid "Cancel path mode"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:412 gschem/etc/system-gschemrc.scm:2048
+#: gschem/src/x/x_menus.c:413 gschem/etc/system-gschemrc.scm:2048
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:423 gschem/etc/system-gschemrc.scm:2053
+#: gschem/src/x/x_menus.c:424 gschem/etc/system-gschemrc.scm:2053
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:433 gschem/etc/system-gschemrc.scm:2072
+#: gschem/src/x/x_menus.c:434 gschem/etc/system-gschemrc.scm:2072
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:466 gschem/etc/system-gschemrc.scm:2176
+#: gschem/src/x/x_menus.c:467 gschem/etc/system-gschemrc.scm:2176
 #, fuzzy
 msgid "redraw the current window"
 msgstr "Huidige Venster"
 
-#: gschem/src/x/x_menus.c:505 gschem/src/x/x_menus.c:508
+#: gschem/src/x/x_menus.c:507 gschem/src/x/x_menus.c:510
 #, c-format
 msgid "Error reading menu item <%d>, Bad string\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:712
+#: gschem/src/x/x_menus.c:714
 #, c-format
 msgid "Oops.. got a NULL menu name in %s()\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:829
+#: gschem/src/x/x_menus.c:831
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:830
+#: gschem/src/x/x_menus.c:832
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:831
+#: gschem/src/x/x_menus.c:833
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:832
+#: gschem/src/x/x_menus.c:834
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:833
+#: gschem/src/x/x_menus.c:835
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:834
+#: gschem/src/x/x_menus.c:836
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:835
+#: gschem/src/x/x_menus.c:837
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:836
+#: gschem/src/x/x_menus.c:838
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:891
+#: gschem/src/x/x_menus.c:893
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:892
+#: gschem/src/x/x_menus.c:894
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:893
+#: gschem/src/x/x_menus.c:895
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:894
+#: gschem/src/x/x_menus.c:896
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:958
+#: gschem/src/x/x_menus.c:960
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:959
+#: gschem/src/x/x_menus.c:961
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:960
+#: gschem/src/x/x_menus.c:962
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:961
+#: gschem/src/x/x_menus.c:963
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1306
+#: gschem/src/x/x_menus.c:1311
 #, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
 msgstr ""
 "Probeerde de gevoeligheid in te stellen op een niet bestaand menu_item '%s'\n"
 
-#: gschem/src/x/x_menus.c:1310
+#: gschem/src/x/x_menus.c:1315
 #, fuzzy, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
 msgstr ""
 "Probeerde de gevoeligheid in te stellen op een niet bestaand menu_item '%s'\n"
 
-#: gschem/src/x/x_menus.c:1314
+#: gschem/src/x/x_menus.c:1319
 #, c-format
 msgid "Excessive errors <%d>, disabling sensitivity warnings\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1335
+#: gschem/src/x/x_menus.c:1340
 #, fuzzy, c-format
 msgid "Popup menu widget doesn't exist!\n"
 msgstr "Popup_menu_item_factory bestaat niet!\n"
 
-#: gschem/src/x/x_menus.c:1390
+#: gschem/src/x/x_menus.c:1395
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1400
+#: gschem/src/x/x_menus.c:1405
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1403
+#: gschem/src/x/x_menus.c:1408
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1448
+#: gschem/src/x/x_menus.c:1453
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1451
+#: gschem/src/x/x_menus.c:1456
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1514
+#: gschem/src/x/x_menus.c:1519
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1517
+#: gschem/src/x/x_menus.c:1522
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1558
+#: gschem/src/x/x_menus.c:1563
 #, c-format
 msgid "%s: Action not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1561
+#: gschem/src/x/x_menus.c:1566
 #, c-format
 msgid "%s: Menu path not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1564
+#: gschem/src/x/x_menus.c:1569
 #, c-format
 msgid "%s: invalid pointer [menubar]\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1640
+#: gschem/src/x/x_menus.c:1645
 #, c-format
 msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1738
+#: gschem/src/x/x_menus.c:1743
 #, fuzzy, c-format
 msgid "Could not open file %s\n"
 msgstr "Kan de kleur %s niet toewijzen!\n"
 
-#: gschem/src/x/x_menus.c:1833
+#: gschem/src/x/x_menus.c:1838
 #, fuzzy
 msgid "Open"
 msgstr "Open..."
 
-#: gschem/src/x/x_menus.c:1842
+#: gschem/src/x/x_menus.c:1847
 #, fuzzy
 msgid "Remove"
 msgstr "Verwijder nummers"
 
-#: gschem/src/x/x_menus.c:1851
+#: gschem/src/x/x_menus.c:1856
 #, fuzzy
 msgid "_Show path"
 msgstr "Toon _Beide"
 
-#: gschem/src/x/x_menus.c:1976
+#: gschem/src/x/x_menus.c:1981
 msgid "Clear"
 msgstr ""
 
@@ -3211,7 +3211,7 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr "Het besturingssysteem heeft niet meer geheugen of bronnen."
 
-#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2740
+#: gschem/src/x/x_multiattrib.c:798 gschem/src/x/x_multiattrib.c:2743
 msgid "<various>"
 msgstr "<gevarieerde>"
 
@@ -3254,73 +3254,73 @@ msgstr "Dupliceer"
 msgid "Copy to all"
 msgstr "Kopieer naar alles"
 
-#: gschem/src/x/x_multiattrib.c:2036 gschem/src/x/x_multiattrib.c:2563
+#: gschem/src/x/x_multiattrib.c:2039 gschem/src/x/x_multiattrib.c:2566
 msgid "Edit Attributes"
 msgstr "Bewerk Attribuut"
 
-#: gschem/src/x/x_multiattrib.c:2175 gschem/scheme/gschem/builtins.scm:347
+#: gschem/src/x/x_multiattrib.c:2178 gschem/scheme/gschem/builtins.scm:347
 msgid "Add Attribute"
 msgstr "Plaats Attribuut"
 
-#: gschem/src/x/x_multiattrib.c:2231
+#: gschem/src/x/x_multiattrib.c:2234
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2262
+#: gschem/src/x/x_multiattrib.c:2265
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_multiattrib.c:2280
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2292
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2582
+#: gschem/src/x/x_multiattrib.c:2585
 #, fuzzy
 msgid "symbols"
 msgstr "Symbolen"
 
-#: gschem/src/x/x_multiattrib.c:2586
+#: gschem/src/x/x_multiattrib.c:2589
 #, fuzzy
 msgid "symbol"
 msgstr "Symbool"
 
-#: gschem/src/x/x_multiattrib.c:2597
+#: gschem/src/x/x_multiattrib.c:2600
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2601
+#: gschem/src/x/x_multiattrib.c:2604
 #, fuzzy
 msgid "pin"
 msgstr "Pen"
 
-#: gschem/src/x/x_multiattrib.c:2612
+#: gschem/src/x/x_multiattrib.c:2615
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2616
+#: gschem/src/x/x_multiattrib.c:2619
 #, fuzzy
 msgid "net"
 msgstr "Draad"
 
-#: gschem/src/x/x_multiattrib.c:2627
+#: gschem/src/x/x_multiattrib.c:2630
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2631
+#: gschem/src/x/x_multiattrib.c:2634
 #, fuzzy
 msgid "bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_multiattrib.c:2642
+#: gschem/src/x/x_multiattrib.c:2645
 #, fuzzy
 msgid "attributes"
 msgstr "Attributen"
 
-#: gschem/src/x/x_multiattrib.c:2646
+#: gschem/src/x/x_multiattrib.c:2649
 #, fuzzy
 msgid "attribute"
 msgstr "Attribuut"
