@@ -745,6 +745,7 @@ bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, i
 void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);
 
 /* x_draw.c */
+void          x_draw_box                    (GschemToplevel *w_current);
 void          x_draw_object                 (GschemToplevel *w_current, GedaObject *object);
 void          x_draw_set_surface            (GschemToplevel *w_current);
 char         *x_draw_get_font               (void);
@@ -756,7 +757,7 @@ void          x_draw_initialize             (GschemToplevel *w_current);
 void          x_draw_shutdown               (void *user_data);
 
 /* x_edit_attrib.c */
-int           option_menu_get_history       (GtkOptionMenu *option_menu);
+//int         option_menu_get_history       (GedaOptionMenu *option_menu);
 /*    attrib_edit_dialog_ok                 (GtkWidget *w, GschemToplevel *w_current);*/
 /*    attrib_edit_dialog                    (GschemToplevel *w_current, GedaObject *attr_obj, int flag); */
 void          x_attrib_add_dialog           (GschemToplevel *w_current, GedaObject *object);

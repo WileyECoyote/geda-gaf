@@ -84,13 +84,13 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
     /* Update Show Options */
     widget = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
     if (object->show_name_value == SHOW_VALUE) {
-      gtk_option_menu_set_history (GTK_OPTION_MENU (widget), 0);
+      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 0);
     }
     else if (object->show_name_value == SHOW_NAME) {
-      gtk_option_menu_set_history (GTK_OPTION_MENU (widget), 1);
+      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 1);
     }
     else {
-      gtk_option_menu_set_history (GTK_OPTION_MENU (widget), 2);
+      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 2);
     }
 
     /* Get the attribute name and value string components */
@@ -126,16 +126,16 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
  *
  * \returns active index or -1 in the unlikely event there is no active widget.
  */
-int option_menu_get_history (GtkOptionMenu *option_menu)
+int option_menu_get_history (GedaOptionMenu *option_menu)
 {
   GtkWidget *active_widget;
 
-  g_return_val_if_fail (GTK_IS_OPTION_MENU (option_menu), -1);
+  g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
-  active_widget = gtk_menu_get_active (GTK_MENU (option_menu->menu));
+  active_widget = geda_menu_get_active (GEDA_MENU (option_menu->menu));
 
   if (active_widget) {
-    return g_list_index (GTK_MENU_SHELL (option_menu->menu)->children,
+    return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
                          active_widget);
   }
   else {
@@ -156,14 +156,11 @@ static void
 attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
-
   GtkEntry   *value_entry;
   GtkEntry   *name_entry;
   GtkWidget  *visbutton;
   GtkWidget  *show_options;
-
   GedaObject *object;
-
   const char *value, *label;
   char       *newtext;
   int vis, show;
@@ -192,7 +189,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   else
     vis = INVISIBLE;
 
-  option_index = option_menu_get_history(GTK_OPTION_MENU (show_options));
+  option_index = option_menu_get_history(GEDA_OPTION_MENU (show_options));
 
   switch(option_index) {
     case(0):
@@ -323,26 +320,26 @@ GtkWidget *x_attrib_option_menu_new()
   options_value_tip = _("Show only the value of the attribute");
   options_both_tip  = _("Show both the name and the value of the attribute");
 
-  options_menu = gtk_option_menu_new ();
+  options_menu = geda_option_menu_new ();
   g_object_set (options_menu, "visible", TRUE, NULL);
 
-  show_options_menu = gtk_menu_new ();
+  show_options_menu = geda_menu_new ();
   gtk_widget_set_tooltip_text (GTK_WIDGET(options_menu), options_menu_tip);
 
-  menuitem = gtk_menu_item_new_with_label (_("Show Value Only"));
-  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  menuitem = geda_menu_item_new_with_label (_("Show Value Only"));
+  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
   gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_name_tip);
 
-  menuitem = gtk_menu_item_new_with_label (_("Show Name Only"));
-  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  menuitem = geda_menu_item_new_with_label (_("Show Name Only"));
+  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
   gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_value_tip);
 
-  menuitem = gtk_menu_item_new_with_label (_("Show Name & Value"));
-  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  menuitem = geda_menu_item_new_with_label (_("Show Name & Value"));
+  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
   gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_both_tip);
 
-  gtk_option_menu_set_menu (GTK_OPTION_MENU (options_menu), show_options_menu);
-  gtk_option_menu_set_history (GTK_OPTION_MENU (options_menu), 0);
+  geda_option_menu_set_menu (GEDA_OPTION_MENU (options_menu), show_options_menu);
+  geda_option_menu_set_history (GEDA_OPTION_MENU (options_menu), 0);
 
   return options_menu;
 }
@@ -527,7 +524,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     if (!object) {
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(visbutton), TRUE);
       /* show value only */
-      gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
+      geda_option_menu_set_history (GEDA_OPTION_MENU (show_options), 0);
     }
 
     GEDA_OBJECT_SET_DATA(ThisDialog, (void*)(long)(flag), "mode_flag");
