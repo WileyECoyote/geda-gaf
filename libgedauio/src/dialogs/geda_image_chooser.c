@@ -38,9 +38,12 @@
 
 #include <geda_image_chooser.h>
 #include <geda_file_filter.h>
-#include <geda_debug.h>
 
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_shell.h"
 #include "../../include/gettext.h"
+
+#include <geda_debug.h>
 
 #define ChooseClass GedaImageChooserClass
 
@@ -346,7 +349,7 @@ static char *popup_tips[]={  "Set silder to zoom mode",
  * from the mouse menu. This function receives a pointer to enumerated
  * integer value for the menu item that was selected.
  *
- *  \param [in] widget    is button widget
+ *  \param [in] widget    is menu item widget
  *  \param [in] selection pointer to enumerated menu selection
  */
 static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
@@ -356,11 +359,13 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
     int WhichItem = (int)(long) selection;
 
     switch ( WhichItem ) {
+
       case ZoomMode:
         chooser->zoom_save = chooser->preview_size;
         chooser->zoom_mode = TRUE;
         gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
         break;
+
       case SizeMode:
         chooser->preview_size = chooser->zoom_save;
         chooser->zoom_mode    = FALSE;
@@ -368,19 +373,24 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
         gtk_window_set_resizable (GTK_WINDOW(chooser), TRUE);
         gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_DISCONTINUOUS);
         break;
+
       case MidSize:
         gtk_adjustment_set_value(chooser->adjustment, chooser->default_preview_size);
         break;
+
       case MinSize:
         gtk_adjustment_set_value(chooser->adjustment, chooser->min_preview_size);
         break;
+
       case MaxSize:
         gtk_adjustment_set_value(chooser->adjustment, chooser->max_preview_size);
         break;
+
       case PreviewOff:
         chooser->preview_enabled = FALSE;
         g_object_set (chooser, "preview-widget-active", FALSE, NULL);
         break;
+
       default:
         BUG_IMSG("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
     } /* End Switch WhichItem */
@@ -406,11 +416,11 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
   int i;
 
   tooltips = gtk_tooltips_new ();
-  menu     = gtk_menu_new();
+  menu     = geda_menu_new();
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++) {
 
-    GtkWidget *item = gtk_menu_item_new_with_label(_(popup_items[i]));
+    GtkWidget *item = geda_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
     g_object_set_data(G_OBJECT(item), "chooser", chooser);
@@ -457,7 +467,7 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
         break;
       }
       g_object_set (item, "visible", TRUE, NULL);
-      gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+      geda_menu_shell_append(GEDA_MENU_SHELL(menu), item);
     }
     return (menu);
 }
@@ -490,9 +500,9 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *user_data)
     }
 
     popup_menu = build_menu(chooser);
-    /* Tell GTK to do the menu we just created */
-    gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
-                   event->button, event->time);
+    /* Display the menu we just created */
+    geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL,
+                    event->button, event->time);
   }
   return (FALSE);
 }

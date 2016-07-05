@@ -1,5 +1,7 @@
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_image_chooser.c: Change from gtk_menu to geda_menu.
+
     * tests/test_image_menu_item.c: Update test of construction, widget is
       derived from GedaMenuItem.
 
