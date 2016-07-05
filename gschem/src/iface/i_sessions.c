@@ -537,7 +537,7 @@ session_free_menu_data (void *data, GClosure *closure) {
  * \param menuitem  Pointer to Session menu item (with embed data)
  * \param user_data Pointer to embed SessionMenuData structure
  */
-static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
+static void session_menu_item_clicked(GedaMenuItem *menuitem, void *user_data)
 {
   SessionMenuData *data      = (SessionMenuData*) user_data;
   GschemToplevel  *w_current = data->w_current;
@@ -563,7 +563,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
   menubar = x_menu_get_main_menu(w_current);
 
-  if (GTK_IS_MENU_BAR(menubar)) {
+  if (GEDA_IS_MENU_BAR(menubar)) {
 
     GtkWidget *sessions_menu_item;
 
@@ -587,7 +587,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
         g_signal_handler_disconnect(sessions_menu_item, id);
       }
 
-      sessions_submenu = gtk_menu_new();
+      sessions_submenu = geda_menu_new();
 
       for (index=0; index < sessions->len; index++) {
 
@@ -602,7 +602,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
         menu_data->session   = record;
         menu_data->w_current = w_current;
 
-        tmp = gtk_menu_item_new_with_label((char *)record->session_name);
+        tmp = geda_menu_item_new_with_label((char *)record->session_name);
 
         g_object_set (tmp, "visible", TRUE, NULL);
 
@@ -611,12 +611,12 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
                                menu_data,
                                (GClosureNotify) session_free_menu_data,
                                0);
-        gtk_menu_append(GTK_MENU(sessions_submenu), tmp);
+        geda_menu_append(GEDA_MENU(sessions_submenu), tmp);
       }
 
       gtk_widget_show_all(sessions_submenu);
 
-      gtk_menu_item_set_submenu(GTK_MENU_ITEM(sessions_menu_item),
+      geda_menu_item_set_submenu(GEDA_MENU_ITEM(sessions_menu_item),
                                 sessions_submenu);
     }
   }
@@ -655,7 +655,7 @@ static void update_sessions_menus(GschemToplevel *w_current)
          break;
       }
 
-      submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM(menu_item));
+      submenu = geda_menu_item_get_submenu (GEDA_MENU_ITEM(menu_item));
 
       if (submenu != NULL) {
         gtk_widget_destroy(submenu);
