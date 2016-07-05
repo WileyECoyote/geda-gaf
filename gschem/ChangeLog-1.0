@@ -1,3 +1,8 @@
+2016-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Replace gtk_menu with geda_menu; converting both
+      the main and popups menus to libgedauio widgets.
+
 2016-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Add GedaMenu and GedaMenuItem properties using

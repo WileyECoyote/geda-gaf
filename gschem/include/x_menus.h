@@ -146,9 +146,9 @@ struct st_toggle_menu_data {
 };
 
 struct st_menu_radio_data {
-  GschemToplevel   *w_current;
-  GtkCheckMenuItem *widget;
-  unsigned long     handler;
+  GschemToplevel    *w_current;
+  GedaCheckMenuItem *widget;
+  unsigned long      handler;
 };
 
 struct st_popup_menu_entry {

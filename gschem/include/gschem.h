@@ -13,6 +13,7 @@
 
 #include <geda_gtk_compat.h>
 #include <geda_uio_functions.h>
+#include <geda_widgets.h>
 
 /* gschem headers */
 #include "gschem_event.h"
