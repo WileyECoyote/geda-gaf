@@ -58,7 +58,7 @@ int check_construction (void)
     result++;
   }
 
-  if (!GTK_IS_MENU_ITEM(widget)) {
+  if (!GEDA_IS_MENU_ITEM(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
