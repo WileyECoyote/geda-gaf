@@ -2,6 +2,8 @@
 
     * src/dialogs/geda_image_chooser.c: Include "geda_menu_item.h".
 
+    * src/widgets/geda_entry.c: Convert popup menu from gtk_menu to geda_menu.
+
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Change from gtk_menu to geda_menu.

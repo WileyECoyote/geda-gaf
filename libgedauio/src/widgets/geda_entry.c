@@ -39,10 +39,10 @@
 
 #include <gtk/gtk.h>
 
-#include "geda_entry.h"
-#include "geda_image_menu_item.h"
-
-#include "gettext.h"
+#include "../../include/geda_entry.h"
+#include "../../include/geda_menu.h"
+#include "../../include/geda_image_menu_item.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 
@@ -116,9 +116,9 @@ static void    geda_entry_history_down       (GedaEntry        *entry);
 static bool    geda_entry_tab_complete       (GedaEntry        *entry);
 
 static void    geda_entry_populate_popup     (GedaEntry        *entry,
-                                              GtkMenu          *menu,
+                                              GedaMenu         *menu,
                                               void             *data);
-static void    popup_menu_callback           (GtkMenuItem      *item,
+static void    popup_menu_callback           (GedaMenuItem     *item,
                                               void             *data);
 static void    geda_entry_get_property       (GObject          *object,
                                               unsigned int      property_id,
@@ -1564,26 +1564,26 @@ geda_entry_tab_complete (GedaEntry *entry)
  * This functions add the text strings to the popup menu.
  */
 static void
-geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
+geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
 {
   GtkWidget *item;
   GtkWidget *submenu;
 
   if (have_auto_complete) {
-    item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
+    item = geda_menu_item_new_with_mnemonic (_("Auto Complete"));
     gtk_widget_show (item);
 
-    submenu = gtk_menu_new ();
-    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
-    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    submenu = geda_menu_new ();
+    geda_menu_item_set_submenu (GEDA_MENU_ITEM (item), submenu);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), item);
 
     item = geda_image_menu_item_new_with_label (_("On"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
-    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
 
     item = geda_image_menu_item_new_with_label (_("Off"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
-    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
 
     gtk_widget_show_all (submenu);
   }
@@ -1597,7 +1597,7 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
  * is selected.
  */
 static void
-popup_menu_callback (GtkMenuItem *item, void    *data)
+popup_menu_callback (GedaMenuItem *item, void    *data)
 {
   int menu_option = (int)(long) (data);
   switch(menu_option) {
