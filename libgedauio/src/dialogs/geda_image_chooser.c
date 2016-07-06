@@ -40,6 +40,7 @@
 #include <geda_file_filter.h>
 
 #include "../../include/geda_menu.h"
+#include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/gettext.h"
 
