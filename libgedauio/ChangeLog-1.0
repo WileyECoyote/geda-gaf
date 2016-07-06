@@ -4,6 +4,9 @@
 
     * src/widgets/geda_entry.c: Convert popup menu from gtk_menu to geda_menu.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_real_get_height to
+      border_widthx2 instead of multiply border_width twice.
+
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Change from gtk_menu to geda_menu.

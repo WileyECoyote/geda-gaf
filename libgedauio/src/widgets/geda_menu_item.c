@@ -2127,26 +2127,26 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   GtkBorder        padding;
   GtkStateFlags    state;
 
-  unsigned intaccel_width;
-  unsigned intborder_width;
+  unsigned int accel_width;
+  unsigned int border_widthx2;
   int min_height, nat_height;
   int avail_size = 0;
 
   min_height = nat_height = 0;
 
   context = gtk_widget_get_style_context (widget);
-  state = gtk_widget_get_state_flags (widget);
+  state   = gtk_widget_get_state_flags (widget);
   gtk_style_context_get_padding (context, state, &padding);
 
   bin = GTK_BIN(widget);
   parent = gtk_widget_get_parent (widget);
 
-  border_width = gtk_container_get_border_width (GTK_CONTAINER(widget));
-  min_height   = (border_width * 2) + padding.top + padding.bottom;
+  border_widthx2 = gtk_container_get_border_width (GTK_CONTAINER(widget)) << 1;
+  min_height     = border_widthx2 + padding.top + padding.bottom;
 
   if (for_size != -1) {
     avail_size = for_size;
-    avail_size -= (border_width * 2) + padding.left + padding.right;
+    avail_size -= border_widthx2 + padding.left + padding.right;
   }
 
   nat_height = min_height;
