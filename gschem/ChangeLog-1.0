@@ -1,3 +1,7 @@
+2016-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Replace gtk_menu -> geda_menu.
+
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Tweak GedaMenu and GedaMenuItem properties,

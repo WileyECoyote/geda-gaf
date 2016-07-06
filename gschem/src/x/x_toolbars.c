@@ -871,13 +871,13 @@ static GtkWidget *build_menu(GtkWidget *widget)
   orientation =  gtk_toolbar_get_orientation(ActiveToolBar.toolbar);
   style       =  gtk_toolbar_get_style(ActiveToolBar.toolbar);
   tooltips    =  gtk_tooltips_new ();
-  menu        =  gtk_menu_new();
+  menu        =  geda_menu_new();
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
     GtkWidget  *item;
 
-    item      = gtk_menu_item_new_with_label(_(popup_items[i]));
+    item      = geda_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
@@ -929,7 +929,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
         break;
       }
       g_object_set (item, "visible", TRUE, NULL);
-      gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+      geda_menu_shell_append(GEDA_MENU_SHELL(menu), item);
     }
     return (menu);
 }
@@ -964,7 +964,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *
     popup_menu = build_menu(handlebox);
 
     /* Tell GTK to do the menu we just created */
-    gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+    geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL,
                    event->button, event->time);
   }
   return (FALSE);
