@@ -284,7 +284,6 @@ AC_CONFIG_FILES([Makefile
                  libgedathon/info/Makefile
                  libgedathon/module/objects/Makefile
                  libgedathon/module/Makefile
-                 libgedathon/pymodules/Makefile
                  libgedathon/scripts/Makefile
                  libgedathon/src/Makefile
                  libgedathon/tests/Makefile
@@ -295,9 +294,7 @@ AC_CONFIG_FILES([Makefile
                  libgedauio/docs/Makefile
                  libgedauio/docs/images/Makefile
                  libgedauio/include/Makefile
-                 libgedauio/include/fileselector/Makefile
                  libgedauio/src/dialogs/Makefile
-                 libgedauio/src/dialogs/fileselector/Makefile
                  libgedauio/src/Makefile
                  libgedauio/tests/Makefile
 
