@@ -614,6 +614,21 @@ check_query()
 
       /* === Function 15: geda_circle_object_get_nearest_point  === */
 
+      int qx, qy;
+      int expect;
+
+      qx = object0->circle->center_x - (r << 1);
+      qy = object0->circle->center_y;
+
+      geda_circle_object_get_nearest_point(object0, qx, qy, &px, &py);
+
+      expect = object0->circle->center_x - r;
+
+      if (px - expect) {
+        fprintf(stderr, "FAILED: (O061501XL) get_nearest_point x %d != %d\n", px, expect);
+        fail++;
+      }
+
       /* === Function 20: geda_circle_object_get_position  === */
 
       geda_circle_object_get_position(object0, &px, &py);
