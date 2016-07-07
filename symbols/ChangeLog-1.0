@@ -1,4 +1,9 @@
-2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
+2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * mcontrol/SLA7024M-1.sym: Clean symbol; revise attribute position and
+      set pin types.
+
+2016-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/SN75240-1.sym: Relocate symbol, is not a SN75 logic series device.
 
