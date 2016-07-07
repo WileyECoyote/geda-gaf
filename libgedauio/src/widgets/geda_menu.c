@@ -2648,7 +2648,7 @@ geda_menu_realize (GtkWidget *widget)
 static bool
 geda_menu_focus (GtkWidget *widget, GtkDirectionType direction)
 {
-  /* A menu or its menu items cannot have focus */
+  /* A menu and menu items cannot have focus */
   return FALSE;
 }
 
@@ -4120,9 +4120,8 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
       if (priv->seen_item_enter) {
 
-        /* This is the second enter we see for an item
-         * on this menu. This means a release should always
-         * mean activate.
+        /* This is the second enter we see for an item on this
+         * menu. This means a release should always activate.
          */
         menu_shell->activate_time = 0;
       }
@@ -4131,11 +4130,10 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
       {
         if (definitely_within_item (menu_item, event->x, event->y)) {
 
-          /* This is an actual user-enter (ie. not a pop-under)
-           * In this case, the user must either have entered
-           * sufficiently far enough into the item, or he must move
-           * far enough away from the enter point. (see
-           * geda_menu_motion_notify())
+          /* This is an actual user-enter,  not a pop-under. In this
+           * case, the user must either have entered sufficiently far
+           * enough into the item, or have move far enough away from
+           * the enter point, see geda_menu_motion_notify.
            */
           menu_shell->activate_time = 0;
         }
@@ -4956,9 +4954,8 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 
   menu = GEDA_MENU (menu_shell);
 
-  /* We need to check if the selected item fully visible.
-   * If not we need to scroll the menu so that it becomes fully
-   * visible.
+  /* We need to check if the selected item fully visible. If not
+   * we need to scroll the menu so that it becomes fully visible.
    */
 
   if (compute_child_offset (menu, menu_item,
@@ -4995,8 +4992,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 
     if (child_offset < y) {
 
-      /* Ignore the enter event we might get if the pointer is on the menu
-       */
+      /* Ignore the enter event we might get if the pointer is on the menu */
       menu_shell->ignore_enter = TRUE;
       geda_menu_scroll_to (menu, child_offset);
     }

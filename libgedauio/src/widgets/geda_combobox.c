@@ -6702,8 +6702,8 @@ geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
  *  always sensitive (%GTK_SENSITIVITY_ON), never sensitive (%GTK_SENSITIVITY_OFF)
  *  or only if there is at least one item to display (%GTK_SENSITIVITY_AUTO).
  *
- *  \param [in] combo_box a #GedaComboBox
- * \param [in] sensitivity: specify the sensitivity of the dropdown button
+ *  \param [in] combo_box  a #GedaComboBox
+ * \param [in] sensitivity specify the sensitivity of the dropdown button
  *
  */
 void

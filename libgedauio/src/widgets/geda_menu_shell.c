@@ -611,9 +611,9 @@ geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
   if (!menu_shell->active) {
 
-      gtk_grab_add (GTK_WIDGET (menu_shell));
-      menu_shell->have_grab = TRUE;
-      menu_shell->active = TRUE;
+    gtk_grab_add (GTK_WIDGET (menu_shell));
+    menu_shell->have_grab = TRUE;
+    menu_shell->active = TRUE;
   }
 }
 
@@ -710,8 +710,8 @@ geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *event)
 {
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
 
-  if (menu_shell->have_xgrab && event->grab_window == NULL)
-    {
+  if (menu_shell->have_xgrab && event->grab_window == NULL) {
+
       /* Unset the active menu item so geda_menu_popdown() doesn't see it.
        */
 

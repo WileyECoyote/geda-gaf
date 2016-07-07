@@ -67,7 +67,7 @@
  * second argument. The #GedaAccelLabel will now display 'Ctl+S' after its label.
  *
  * Note that creating a #GedaMenuItem with geda_menu_item_new_with_label() (or
- * one of the similar functions for #GtkCheckMenuItem and #GtkRadioMenuItem)
+ * one of the similar functions for #GedaCheckMenuItem and #GedaRadioMenuItem)
  * automatically adds a #GedaAccelLabel to the #GedaMenuItem and calls
  * geda_accel_label_set_accel_widget() to set it up for you.
  *

@@ -127,7 +127,7 @@ geda_check_menu_item_activate (GedaMenuItem *menu_item)
 /* menu_item_class->toggle_size_request */
 static void
 geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                          int         *requisition)
+                                          int          *requisition)
 {
   unsigned int toggle_spacing;
   unsigned int indicator_size;
@@ -230,16 +230,19 @@ geda_check_menu_item_get_property (GObject      *object,
     case PROP_ACTIVE:
       g_value_set_boolean (value, checkitem->active);
       break;
+
     case PROP_INCONSISTENT:
       g_value_set_boolean (value, checkitem->inconsistent);
       break;
+
     case PROP_DRAW_AS_RADIO:
       g_value_set_boolean (value, checkitem->draw_as_radio);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-    }
+  }
 }
 
 static void
@@ -255,23 +258,26 @@ geda_check_menu_item_set_property (GObject      *object,
     case PROP_ACTIVE:
       geda_check_menu_item_set_active (checkitem, g_value_get_boolean (value));
       break;
+
     case PROP_INCONSISTENT:
       geda_check_menu_item_set_inconsistent (checkitem, g_value_get_boolean (value));
       break;
+
     case PROP_DRAW_AS_RADIO:
       geda_check_menu_item_set_draw_as_radio (checkitem, g_value_get_boolean (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-    }
+  }
 }
 
 static void
 geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
 {
-  GObjectClass *gobject_class;
-  GtkWidgetClass *widget_class;
+  GObjectClass      *gobject_class;
+  GtkWidgetClass    *widget_class;
   GedaMenuItemClass *menu_item_class;
 
   gobject_class   = G_OBJECT_CLASS (klass);
@@ -374,7 +380,7 @@ geda_check_menu_item_update (GtkActivatable *activatable,
                                             gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
 }
 
-/* TODO GtkAction->GedaAction*/
+/* TODO GtkAction->GedaAction (maybe) */
 static void
 geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
                                              GtkAction      *action)
@@ -418,12 +424,12 @@ geda_check_menu_item_new_with_label (const char  *label)
  * \ingroup CheckMenuItem
  * \par Function Description
  * Creates a new #GedaCheckMenuItem containing a label. The label
- * will be created using gtk_label_new_with_mnemonic(), so underscores
+ * will be created using geda_label_new_with_mnemonic(), so underscores
  * in \a label indicate the mnemonic for the menu item.
  *
  * \param [in] label Text with mnemonic for display as the label
  *
- * @returns a new #GedaCheckMenuItem
+ * \returns a new #GedaCheckMenuItem
  */
 GtkWidget*
 geda_check_menu_item_new_with_mnemonic (const char  *label)
