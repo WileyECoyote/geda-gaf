@@ -143,7 +143,7 @@ static StatusPopupEntry third_popup_items[] = {
   {NULL} /* sentinel */
 };
 
-static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
+static void coord_options_popup_clicked (GedaMenuItem *menuitem, void *user_data)
 {
   GschemStatusBar *bar;
   GtkWidget       *widget;
@@ -157,7 +157,7 @@ static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
   gschem_status_bar_set_coordinates (widget, bar->x0, bar->y0, bar->x1, bar->y1);
 }
 
-static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
+static void status_options_popup_clicked (GedaMenuItem *menuitem, void *user_data)
 {
   GtkWidget *widget;
   unsigned   signal = (unsigned)(long)user_data;
