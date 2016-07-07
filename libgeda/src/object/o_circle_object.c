@@ -369,8 +369,8 @@ geda_circle_object_get_line_width (const GedaObject *object)
  * \param [out] ny      Integer pointer to resulting y value
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not an
- *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
- *           the circle.
+ *          Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint
+ *          of the circle.
  */
 bool
 geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -391,117 +391,81 @@ geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx,
     }
     else {
 
-      int     x1, y1, x2, y2;
-      double  dx, dy, r;
-      double  A, B, C, D;
+      if (x == cx) {      /* On vertical line through center point */
 
-      volatile double  b;
-      volatile double  m;
+        *nx = x;
 
-      r  = object->circle->radius;
-
-      x1 = x;
-      y1 = y;
-      x2 = cx;
-      y2 = cy;
-
-      dx = x2 - x1;
-      dy = y2 - y1;
-
-      /* Get coefficients of quadratic */
-      if (dx == 0) {                   /* In terms of Y, because X1 = X2 */
-
-        /* Special vertical case: (x-cx)^2 + (y-cy)^2 = r^2, solve for y */
-
-        A = 1;
-        B = -2 * cy;
-        C = (x1 * x1) - (2 * cx * x1) + (cx * cx) + (cy * cy) - (r * r);
-      }
-      else {                           /* In terms of X */
-
-        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
-
-        m = dy / dx;
-        b = (-1 * m * x2) + y2;
-
-        A = m * m + 1;
-        B = 2 * ((m * b) - (m * cy) - cx);
-        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
-      }
-
-      D = B * B - 4 * A * C;           /* The discriminant */
-
-      /* The discriminant can not be negative */
-
-#if HAVE_LRINT
-
-      if (dx == 0) {      /* Vertical = special, find y first*/
-
-       *nx = x1;          /* Line vertical so x is known */
-
-        if (x > cx) {
-         *ny = lrint((-1 * B + sqrt(D)) / (2 * A));
+        if (y > cy) {
+          *ny = cy + object->circle->radius;
         }
         else {
-         *ny = lrint((-1 * B - sqrt(D)) / (2 * A));
+          *ny = cy - object->circle->radius;
         }
       }
-      else {              /* For all non-vertical line */
+      else if (y == cy) { /* On horizontal line through center point */
 
-        double tmp_x;
+        *ny = y;
 
-        if (x > cx) {     /* Use positive root */
-
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
-
+        if (x > cx) {
+          *nx = cx + object->circle->radius;
         }
-        else {            /* Use negative root */
-
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
-
+        else {
+          *nx = cx - object->circle->radius;
         }
-
-       *nx = lrint(tmp_x);
-       *ny = lrint(m * tmp_x + b); /* Must use non rounded x here */
       }
+      else {
+
+        double  dx, dy, r;
+        double  A, /*B*/ C, D;
+        double  tmp_x, tmp_y;
+
+        dx = cx - x;
+        dy = cy - y;
+
+        r  = object->circle->radius;
+
+        volatile double  b;
+        volatile double  m;
+
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x
+         * note: calculating as if the circle is at the origin, cx = cy = 0,
+         * to prevent over-flow errors for circles > ~32k from origin */
+
+        /* get slope of line connecting the point to the center of the circle */
+        m = dy / dx;
+
+        A = m * m + 1;
+        C = -1 * r * r;
+
+        /* The D = (B * B) - (4 * A * C) reduces to */
+        D = 0 - (4 * A * C);                         /* The discriminant */
+
+        if (cx > x) {                                /* Easterly */
+          tmp_x = (0 - sqrt(D)) / (2 * A);
+        }
+        else {                                       /* Westward */
+          tmp_x = sqrt(D) / (2 * A);
+        }
+
+        tmp_x = tmp_x + cx;                          /* Add offset to true cx */
+
+        /* Using original x, y to get original intercept */
+        b = y - m * x;
+
+        tmp_y = m * tmp_x + b;
+
+#ifdef HAVE_LRINT
+
+        *nx = lrint(tmp_x);
+        *ny = lrint(tmp_y);
 
 #else
 
-      if (dx == 0) {      /* Vertical special, find y first*/
-
-        *nx = x1;         /* Line vertical so x is known */
-
-        if (x > cx) {     /* Use positive root */
-
-          *ny = ((-1 * B + sqrt(D)) / (2 * A)) + 0.5;
-
-        }
-        else {
-
-          *ny = ((-1 * B - sqrt(D)) / (2 * A)) + 0.5;
-
-        }
-      }
-      else {             /* For all non-vertical line */
-
-        double tmp_x;
-
-        if (x > cx) {     /* Use positive root */
-
-          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
-
-        }
-        else {
-
-          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
-
-        }
         *nx = tmp_x + 0.5;
-        *ny = (m * tmp_x + b) + 0.5;  /* Must use non rounded x here */
-      }
+        *ny = tmp_y + 0.5;
 
 #endif
-
+      }
       result = TRUE;
     }
   }

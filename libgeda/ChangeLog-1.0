@@ -1,3 +1,8 @@
+2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_circle_object.c: Redue geda_circle_object_get_nearest_point
+      to fix over-flow errors for circles > ~32k from origin.
+
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_picture_object.c: Add pre and post test routines to copy
