@@ -37,7 +37,7 @@ typedef enum
 {
   GEDA_VIEW_AUTO,
   GEDA_VIEW_TREE,
-  GEDA_VIEW_MENUs,
+  GEDA_VIEW_MENU,
 } IDE_COMBO_VIEW_STYLE;
 
 typedef GtkTreeViewRowSeparatorFunc SeparatorFunc;
