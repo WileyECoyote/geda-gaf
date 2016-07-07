@@ -1,7 +1,13 @@
 2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/unit-tests/t0403-log.scm: Add new scheme API test module to check
+      API routines in scheme/geda/log.scm.
+
     * src/object/o_circle_object.c: Redue geda_circle_object_get_nearest_point
       to fix over-flow errors for circles > ~32k from origin.
+
+    * tests/test_circle_object.c: Add check for geda_circle_object_get_nearest
+      _point.
 
 2016-07-05 Wiley E. Hill <wileyhill@gmail.com>
 

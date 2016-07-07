@@ -54,6 +54,7 @@ TESTS = unit-tests/t0001-geda-conf-lib.scm \
 		unit-tests/t0400-os.scm \
 		unit-tests/t0401-os-expand-env-variables.scm \
 		unit-tests/t0402-config.scm \
+		unit-tests/t0403-log.scm \
 		unit-tests/t1000-deprecated.scm
 
 XFAIL_TESTS = \
