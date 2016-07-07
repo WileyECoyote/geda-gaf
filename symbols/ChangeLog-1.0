@@ -1,5 +1,11 @@
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/SN75240-1.sym: Relocate symbol, is not a SN75 logic series device.
+
+    * ti/SN75240-2.sym: Add symbol TSOP6 version of SN75240.
+
+2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/motor/DRV8305-1.sym: Add symbol: Three Phase Gate Driver With
       Current Shunt Amplifiers.
 
