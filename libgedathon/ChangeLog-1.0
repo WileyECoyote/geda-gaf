@@ -1,3 +1,8 @@
+2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * pymodules/GedaPyxie.py: Add Pyxie Open Source XML processing library
+      for Python.
+
 2016-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/update_objects.c: Made functions static:

@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = docs include info scripts src module tests
+SUBDIRS = docs include info scripts src module pymodules tests
 
 pkgconfigdir    = $(libdir)/pkgconfig
 pkgconfig_DATA  = libgedathon.pc
