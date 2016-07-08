@@ -1,3 +1,8 @@
+2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-pcbfwd-bus.scm: Add back-end script that provides an
+      alternative method for PCB forward annotations.
+
 2016-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-bom.scm: Add write to log at onset.
