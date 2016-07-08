@@ -1,3 +1,8 @@
+2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/geda2xml.py: Add script to convert sch and sym files to xml
+      format.
+
 2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * pymodules/GedaPyxie.py: Add Pyxie Open Source XML processing library
