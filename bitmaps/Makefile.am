@@ -132,6 +132,7 @@ bitmapdata_DATA   = \
 			geda_warning.png                   \
 			geda-wave.png                      \
 			geda-waves.png                     \
+			geda-xml.png                       \
 			geda-zoom-box.png                  \
 			geda-zoom-extents.png              \
 			geda-zoom-in.png                   \
