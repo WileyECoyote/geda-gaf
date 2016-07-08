@@ -1,5 +1,10 @@
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Program Enhancement: New feature - Export to XML format.
+
+    * gschem/gschem-export-menu.scm: Add routines and menu option to
+      run geda2xml from the file/export submenu.
+
     * src/x/x_icons.c: Add "geda-xml" to IDS_GEDA_ICONS table.
 
 2016-07-06 Wiley E. Hill <wileyhill@gmail.com>

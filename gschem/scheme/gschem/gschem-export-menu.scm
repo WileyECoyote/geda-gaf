@@ -17,16 +17,46 @@
              (gschem action))
 
 ;; =================================================================
+(define export:geda2xml "geda2xml")
 
+;; =================================================================
+;; -----------------------------------------------------------------
+;; This allows checking if document has been modified.
+(define (export:check-saved)
+  (if (page-dirty? (active-page))
+      (let* ((response (gschem-confirm-cancel (string-append
+                        "Save " (get-selected-filename) " first?\n"))))
+        (if (= response 1)
+            (gschem-save-file)
+            (if (= response 0)
+              #t
+              #f
+            )
+        )
+      )
+      #t
+  )
+)
+
+;; ------------------------- export:xml ------------------------------
+(define (export:xml)
+  (if (export:check-saved)
+    (let  ((fout (get-selected-filename)))
+      (system (string-append export:geda2xml " " fout " "))
+    )
+  )
+)
 
 ;; ==================================================================
 (define export:menu-items
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("_Symbol"            export-symbol          "geda-inbed"                 ,(N_ "Export embed symbol"))
-    ("_Picture"           export-picture         "gtk-orientation-portrait"   ,(N_ "Export embed picture"))
+  '(("XML"                export:xml             "geda-xml"                    "Export document to XML file")
     ("SEPARATOR"                #f                     #f)
+    ("_Symbol"            export-symbol          "geda-inbed"                 ,(N_ "Export embed symbol"))
+    ("_Picture"           export-picture         "gtk-orientation-portrait"   ,(N_ "Export embed picture"))
+
   )
 )
 ;(add-menu (N_ "_File")       file-menu-items)
