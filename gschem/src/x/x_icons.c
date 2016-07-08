@@ -93,9 +93,9 @@ const char *IDS_GEDA_ICONS[] = {  /* Menu Icons Strings */
   "geda-snap-on",       "geda-spectrum",      "geda-text-editor",   "geda-tools",
   "geda-translate",     "geda-undo",          "geda-unlock",        "geda-unselect-all",
   "geda-value",         "geda-verilog-blue",  "geda-verilog-grn",   "geda-view-redraw",
-  "geda-wave",          "geda-waves",         "geda-zoom-box",      "geda-zoom-extents",
-  "geda-zoom-in",       "geda-zoom-limits",   "geda-zoom-out",      "geda-zoom-pan",
-  "geda-zoom-selection","git-logo",           "guile-logo",
+  "geda-wave",          "geda-waves",         "geda-xml",           "geda-zoom-box",
+  "geda-zoom-extents",  "geda-zoom-in",       "geda-zoom-limits",   "geda-zoom-out",
+  "geda-zoom-pan",      "geda-zoom-selection","git-logo",           "guile-logo",
   NULL
 };
 

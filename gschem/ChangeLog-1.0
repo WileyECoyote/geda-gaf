@@ -1,3 +1,7 @@
+2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_icons.c: Add "geda-xml" to IDS_GEDA_ICONS table.
+
 2016-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Replace gtk_menu -> geda_menu.
