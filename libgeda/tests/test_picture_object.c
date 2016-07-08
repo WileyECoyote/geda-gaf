@@ -29,6 +29,7 @@
 #include <version.h>
 #include "test-suite.h"
 
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
