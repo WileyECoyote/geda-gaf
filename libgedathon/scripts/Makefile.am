@@ -15,7 +15,8 @@ PY_SCRIPTS = \
 			geda-snap-grid.py \
 			geda2xml.py \
 			lpbf.py \
-			resistor.py
+			resistor.py \
+			xml2geda.py
 
 EXTRA_DIST = $(PY_SCRIPTS)
 

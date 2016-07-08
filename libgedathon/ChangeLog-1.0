@@ -3,6 +3,9 @@
     * scripts/geda2xml.py: Add script to convert sch and sym files to xml
       format.
 
+    * scripts/xml2geda.py: Add script to convert the xml files create by
+      geda2xml back to geda files but does not support embedded symbols.
+
 2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * pymodules/GedaPyxie.py: Add Pyxie Open Source XML processing library
