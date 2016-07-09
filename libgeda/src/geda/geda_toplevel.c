@@ -545,6 +545,21 @@ geda_toplevel_get_current_page (GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get the make backups setting
+ * \par Function Description
+ *  This function returns the current value of make_backup_files
+ *  in \a toplevel.
+ *
+ *   \param [in] toplevel GedaToplevel object
+ */
+int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  return toplevel->make_backup_files;
+}
+
+/*!
  * \brief Get Page given the Page Id
  * \par Function Description
  *  This function returns a pointer the Page object with the given
@@ -795,6 +810,24 @@ geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
   toplevel->page_current = page;
+
+  return TRUE;
+}
+
+/*!
+ * \brief Set whether to make backup files
+ * \par Function Description
+ *  Set the current value of make_backup_files in \a toplevel to
+ *  \a make_backups.
+ *
+ *   \param [in] toplevel GedaToplevel object
+ */
+bool
+geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  toplevel->make_backup_files = make_backups;
 
   return TRUE;
 }

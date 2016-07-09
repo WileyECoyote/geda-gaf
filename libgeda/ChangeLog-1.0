@@ -1,5 +1,7 @@
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_toplevel.c: Add get and set make_backup_files.
+
     * tests/test_picture_object.c: Include errno.h.
 
 2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
