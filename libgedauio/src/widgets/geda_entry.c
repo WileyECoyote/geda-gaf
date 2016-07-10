@@ -1006,7 +1006,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 
   params = g_param_spec_int ("max-history",
                            _("Set maxium history"), /* nick name */
-                           _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
+                           _("maximum length of history"), /* hint / blurb */
                               0,        /* Min value */
                               G_MAXINT, /* Max value */
                               MAX_ENTRY_HISTORY,      /* default_value */
