@@ -644,6 +644,15 @@ check_query()
       }
 
       /* === Function 46: geda_circle_object_shortest_distance  === */
+      int dist;
+
+      dist = (int)geda_circle_object_shortest_distance(object0, qx, qy, 1);
+
+
+      if (dist != r) {
+        fprintf(stderr, "FAILED: (O062001Y) shortest_distance x %d != %d\n", dist, r);
+        fail++;
+      }
 
       g_object_unref (object0);
 
