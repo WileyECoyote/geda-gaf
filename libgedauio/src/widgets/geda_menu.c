@@ -109,9 +109,9 @@
 #define DEFAULT_POPUP_DELAY     225
 #define DEFAULT_POPDOWN_DELAY  1000
 
-#define NAVIGATION_REGION_OVERSHOOT 50  /* How much the navigation region
-                     * extends below the submenu
-                     */
+/*! \def NAVIGATION_REGION_OVERSHOOT
+ *   How much the navigation region extends below the submenu */
+#define NAVIGATION_REGION_OVERSHOOT 50
 
 #define MENU_SCROLL_STEP1      8
 #define MENU_SCROLL_STEP2     15
