@@ -2,6 +2,8 @@
 
     * analogdevices/AD8047-1.sym: Add smybol OpAmp, Voltage Feedback, 250 MHz.
 
+    * analogdevices/AD8048-1.sym: Add smybol OpAmp, Voltage Feedback, 250 MHz.
+
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADXL335.sym: Add ADXL335 symbol 3-Axis +/-3g Accelerometer.
