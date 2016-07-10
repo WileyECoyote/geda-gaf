@@ -1930,6 +1930,15 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  *  @{
  */
 
+/*! \brief Create a New GedaEntry with optional History and Completion
+ *  \par Function Description
+ *
+ * Creates a new entry with the specified text buffer.
+ *
+ * \param [in] buffer:  The buffer to use for the new #GedaEntry.
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new (GList** history, GList** complete)
 {
