@@ -1,5 +1,10 @@
 2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Revise geda_check_menu_item_sync_action_properties
+      and geda_check_menu_item_update; add bool draw_as_radio.
+
+2016-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/geda_gtk_compat.h: Define gdk_screen_get_monitor_workarea in
       terms of gdk_screen_get_monitor_geometry for Gtk < 3.0.
 

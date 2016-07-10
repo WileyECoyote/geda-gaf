@@ -367,17 +367,26 @@ geda_check_menu_item_update (GtkActivatable *activatable,
 
   if (strcmp (property_name, "active") == 0) {
 
+    bool active;
+
+    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
     gtk_action_block_activate (action);
-    geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
+    geda_check_menu_item_set_active (check_menu_item, active);
     gtk_action_unblock_activate (action);
   }
 
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
+  if (gtk_activatable_get_use_action_appearance (activatable)) {
 
-  if (strcmp (property_name, "draw-as-radio") == 0)
-    geda_check_menu_item_set_draw_as_radio (check_menu_item,
-                                            gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+    if (strcmp (property_name, "draw-as-radio") == 0) {
+
+      bool draw_as_radio;
+
+      draw_as_radio =  gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION(action));
+
+      geda_check_menu_item_set_draw_as_radio (check_menu_item, draw_as_radio);
+    }
+  }
 }
 
 /* TODO GtkAction->GedaAction (maybe) */
@@ -391,18 +400,27 @@ geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
 
   parent_activatable_iface->sync_action_properties (activatable, action);
 
-  if (!GTK_IS_TOGGLE_ACTION (action))
-    return;
+  if (GTK_IS_TOGGLE_ACTION (action)) {
 
-  gtk_action_block_activate (action);
-  geda_check_menu_item_set_active (check_menu_item, gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)));
-  gtk_action_unblock_activate (action);
+    bool active;
 
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
+    active = gtk_toggle_action_get_active ((GtkToggleAction*)action);
 
-  geda_check_menu_item_set_draw_as_radio (check_menu_item,
-                                          gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION (action)));
+    gtk_action_block_activate (action);
+
+    geda_check_menu_item_set_active (check_menu_item, active);
+
+    gtk_action_unblock_activate (action);
+
+    if (gtk_activatable_get_use_action_appearance (activatable)) {
+
+      bool draw_as_radio;
+
+      draw_as_radio = gtk_toggle_action_get_draw_as_radio ((GtkToggleAction*)action);
+
+      geda_check_menu_item_set_draw_as_radio (check_menu_item,  draw_as_radio);
+    }
+  }
 }
 
 GtkWidget*
