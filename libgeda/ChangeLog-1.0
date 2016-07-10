@@ -1,6 +1,7 @@
 2016-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_circle_object.c: Add basic check for shortest_distance.
+    * tests/test_circle_object.c: Add basic check for shortest_distance, add checks
+      for serialization.
 
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 

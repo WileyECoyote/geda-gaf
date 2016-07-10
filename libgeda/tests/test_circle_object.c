@@ -564,6 +564,118 @@ check_accessors ()
 }
 
 int
+check_serialization ()
+{
+  int  count;
+  int  converted;
+  int  result;
+  unsigned version;
+
+  result    = 0;
+  converted = sscanf (PACKAGE_DATE_VERSION, "%u", &version);
+
+  if (!converted) {
+    fprintf(stderr, "File %s, <%s>: could not scan version", __FILE__, __func__);
+    version=19700101;
+    result++;
+  }
+
+  for (count = 0; count < 10; count++) {
+
+    int c = m_random_number (0, MAX_COLORS - 1);
+    int r = m_random_number (5, 20000);
+    int x = m_random_number (0, 120000);
+    int y = m_random_number (0, 80000);
+
+    GedaObject *object0 = geda_circle_object_new (c, x, y, r);
+
+    char *buffer0 = geda_circle_object_to_buffer (object0);
+
+    g_object_unref (object0);
+
+    if (!buffer0) {
+      fprintf(stderr, "FAILED: (O064701A) circle to buffer\n");
+      result++;
+      break;
+    }
+
+    GedaObject *object1 = geda_circle_object_read (buffer0,
+                                                   version,
+                                                   FILEFORMAT_VERSION,
+                                                   NULL);
+
+    if (!GEDA_IS_OBJECT(object1)) {
+      fprintf(stderr, "FAILED: (O063001A) Read GedaObject Failed\n");
+      result++;
+      break;
+    }
+
+    if (!GEDA_IS_CIRCLE(object1->circle)) {
+      fprintf(stderr, "FAILED: (O063001B) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;
+    }
+    else {
+
+      //GedaCircle *circle = object1->circle;
+      int       fail = 0;
+      int       value;
+
+      value = geda_object_get_color (object1);
+      if (value - c) {
+        fprintf(stderr, "FAILED: _get_color (%s-C) %d != %d\n", TOBJECT, value, c);
+        fail++;
+      }
+
+      value = geda_circle_object_get_center_x(object1);
+      if (value - x) {
+        fprintf(stderr, "FAILED: (O0647/O0630X) center x %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = geda_circle_object_get_center_y(object1);
+      if (value - y) {
+        fprintf(stderr, "FAILED: (O0647/O0630Y) center y %d != %d\n", value, y);
+        fail++;
+      }
+
+      value = geda_circle_object_get_radius (object1);
+      if (value - r) {
+        fprintf(stderr, "FAILED: (O0647/O0630R) get_radius %d != %d\n", value, r);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t     radius: %d\n", r);
+        fprintf(stderr, "\t   center x: %d\n", x);
+        fprintf(stderr, "\t   center y: %d\n", y);
+
+        result = result + fail;
+        break;
+      }
+
+      char *buffer1 = geda_circle_object_to_buffer (object1);
+      g_object_unref (object1);
+
+      if (strcmp (buffer0, buffer1)) {
+        fprintf(stderr, "FAILED: (O052201B) %s buffer mismatch\n", TOBJECT);
+        result++;
+        break;
+      }
+
+      g_free (buffer0);
+      g_free (buffer1);
+    }
+  }
+  return result;
+}
+
+int
 check_query()
 {
   int  count;
@@ -706,6 +818,13 @@ main (int argc, char *argv[])
     }
 
     if (setjmp(point) == 0) {
+      result += check_serialization();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking serialization in src/object/o_circle_object.c\n\n");
+      return 1;
+    }
+
       result += check_query();
     }
     else {
