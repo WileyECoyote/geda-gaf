@@ -401,7 +401,7 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
-    i_event_end_action_handler (w_current);
+    i_event_cancel_action_handler (w_current);
   }
   return(0);
 }
@@ -441,7 +441,7 @@ static int i_event_adder_released(GtkWidget      *widget,
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
-    i_event_end_action_handler (w_current);
+    i_event_cancel_action_handler (w_current);
   }
   return(0);
 }
@@ -505,7 +505,7 @@ int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemTople
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
-    i_event_end_action_handler (w_current);
+    i_event_cancel_action_handler (w_current);
   }
   return(0);
 }
@@ -599,7 +599,7 @@ static int i_event_paster_released(GtkWidget      *widget,
   }
   else {
     BUG_IMSG("action->state != w_current->event_state",w_current->event_state);
-    i_event_end_action_handler (w_current);
+    i_event_cancel_action_handler (w_current);
   }
   return(0);
 }
