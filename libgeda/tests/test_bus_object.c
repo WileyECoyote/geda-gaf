@@ -402,7 +402,7 @@ check_serialization ()
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O052201A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O052201A) bus object to buffer\n");
       result++;
       break;
     }
