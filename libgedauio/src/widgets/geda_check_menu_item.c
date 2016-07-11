@@ -279,6 +279,7 @@ geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
   GObjectClass      *gobject_class;
   GtkWidgetClass    *widget_class;
   GedaMenuItemClass *menu_item_class;
+  GParamSpec        *params;
 
   gobject_class   = G_OBJECT_CLASS (klass);
   widget_class    = (GtkWidgetClass*) klass;
@@ -287,21 +288,21 @@ geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
   gobject_class->set_property = geda_check_menu_item_set_property;
   gobject_class->get_property = geda_check_menu_item_get_property;
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACTIVE,
-                                   g_param_spec_boolean ("active",
-                                                       _("Active"),
-                                                       _("Whether the menu item is checked"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
+  params = g_param_spec_boolean ("active",
+                               _("Active"),
+                               _("Whether the menu item is checked"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_INCONSISTENT,
-                                   g_param_spec_boolean ("inconsistent",
-                                                       _("Inconsistent"),
-                                                       _("Whether to display an \"inconsistent\" state"),
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class, PROP_ACTIVE, params);
+
+  params = g_param_spec_boolean ("inconsistent",
+                               _("Inconsistent"),
+                               _("Whether to display an \"inconsistent\" state"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_INCONSISTENT, params);
 
   g_object_class_install_property (gobject_class,
                                    PROP_DRAW_AS_RADIO,
@@ -311,14 +312,15 @@ geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_int ("indicator-size",
-                                                           _("Indicator Size"),
-                                                           _("Size of check or radio indicator"),
-                                                             0,
-                                                             G_MAXINT,
-                                                             13,
-                                                             G_PARAM_READABLE));
+  params = g_param_spec_int ("indicator-size",
+                           _("Indicator Size"),
+                           _("Size of check or radio indicator"),
+                              0,
+                              G_MAXINT,
+                              13,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 
   widget_class->expose_event = geda_check_menu_item_expose;
 
