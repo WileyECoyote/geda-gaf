@@ -51,6 +51,7 @@ typedef struct _GedaRadioMenuItemClass  GedaRadioMenuItemClass;
 struct _GedaRadioMenuItem
 {
   GedaCheckMenuItem check_menu_item;
+  GedaType          instance_type;
 
   GSList           *group;
 };
@@ -69,6 +70,7 @@ extern "C" {
 #endif
 
 GedaType   geda_radio_menu_item_get_type	              (void) GEDA_CONST;
+bool       is_a_geda_radio_menu_item                          (GedaRadioMenuItem  *radio_menu_item);
 
 GtkWidget *geda_radio_menu_item_new                           (GSList             *group);
 GtkWidget *geda_radio_menu_item_new_from_widget               (GedaRadioMenuItem  *group);

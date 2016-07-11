@@ -50,7 +50,6 @@ enum {
   PROP_GROUP
 };
 
-
 static void geda_radio_menu_item_destroy        (GtkObject      *object);
 static void geda_radio_menu_item_activate       (GedaMenuItem   *menu_item);
 static void geda_radio_menu_item_set_property   (GObject        *object,
@@ -64,145 +63,7 @@ static void geda_radio_menu_item_get_property   (GObject        *object,
 
 static unsigned int group_changed_signal = 0;
 
-G_DEFINE_TYPE (GedaRadioMenuItem, geda_radio_menu_item, GEDA_TYPE_CHECK_MENU_ITEM)
-
-static void
-geda_radio_menu_item_set_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   const GValue *value,
-                                   GParamSpec   *pspec)
-{
-  GedaRadioMenuItem *radio_menu_item;
-
-  radio_menu_item = GEDA_RADIO_MENU_ITEM (object);
-
-  switch (prop_id) {
-
-      GSList *slist;
-
-    case PROP_GROUP:
-      if (G_VALUE_HOLDS_OBJECT (value))
-	slist = geda_radio_menu_item_get_group ((GedaRadioMenuItem*) g_value_get_object (value));
-      else
-	slist = NULL;
-      geda_radio_menu_item_set_group (radio_menu_item, slist);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
-
-static void
-geda_radio_menu_item_get_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   GValue       *value,
-                                   GParamSpec   *pspec)
-{
-  switch (prop_id) {
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-
-
-static void
-geda_radio_menu_item_class_init (GedaRadioMenuItemClass *klass)
-{
-  GObjectClass *gobject_class;
-  GtkObjectClass *object_class;
-  GedaMenuItemClass *menu_item_class;
-
-  gobject_class   = G_OBJECT_CLASS (klass);
-  object_class    = GTK_OBJECT_CLASS (klass);
-  menu_item_class = GEDA_MENU_ITEM_CLASS (klass);
-
-  gobject_class->set_property = geda_radio_menu_item_set_property;
-  gobject_class->get_property = geda_radio_menu_item_get_property;
-
-  /*!
-   * property GedaRadioMenuItem::group
-   * The radio menu item whose group this widget belongs to.
-   */
-  g_object_class_install_property (gobject_class,
-                                   PROP_GROUP,
-                                   g_param_spec_object ("group",
-                                                      _("Group"),
-                                                      _("The radio menu item whose group this widget belongs to."),
-                                   GEDA_TYPE_RADIO_MENU_ITEM,
-                                   G_PARAM_WRITABLE));
-
-  object_class->destroy = geda_radio_menu_item_destroy;
-
-  menu_item_class->activate = geda_radio_menu_item_activate;
-
-  /*!
-   * property GedaRadioMenuItem::group-changed:
-   * Emitted when the group of radio menu items that a radio menu item belongs
-   * to changes. This is emitted when a radio menu item switches from
-   * being alone to being part of a group of 2 or more menu items, or
-   * vice-versa, and when a button is moved from one group of 2 or
-   * more menu items ton a different one, but not when the composition
-   * of the group that a menu item belongs to changes.
-   */
-  group_changed_signal = g_signal_new ("group-changed",
-                                       G_OBJECT_CLASS_TYPE (object_class),
-                                       G_SIGNAL_RUN_FIRST,
-                                       G_STRUCT_OFFSET (GedaRadioMenuItemClass, group_changed),
-                                       NULL, NULL,
-                                       geda_marshal_VOID__VOID,
-                                       G_TYPE_NONE, 0);
-}
-
-static void
-geda_radio_menu_item_init (GedaRadioMenuItem *radio_menu_item)
-{
-  radio_menu_item->group = g_slist_prepend (NULL, radio_menu_item);
-  geda_check_menu_item_set_draw_as_radio (GEDA_CHECK_MENU_ITEM (radio_menu_item), TRUE);
-}
-
-static void
-geda_radio_menu_item_destroy (GtkObject *object)
-{
-  GedaRadioMenuItem *radio_menu_item     = GEDA_RADIO_MENU_ITEM (object);
-  GtkWidget         *old_group_singleton = NULL;
-  GedaRadioMenuItem *tmp_menu_item;
-  GSList            *tmp_list;
-  bool               was_in_group;
-
-  was_in_group = radio_menu_item->group && radio_menu_item->group->next;
-
-  radio_menu_item->group = g_slist_remove (radio_menu_item->group,
-                                           radio_menu_item);
-  if (radio_menu_item->group && !radio_menu_item->group->next)
-    old_group_singleton = radio_menu_item->group->data;
-
-  tmp_list = radio_menu_item->group;
-
-  while (tmp_list) {
-
-      tmp_menu_item = tmp_list->data;
-      tmp_list = tmp_list->next;
-
-      tmp_menu_item->group = radio_menu_item->group;
-  }
-
-  /* this radio menu item is no longer in the group */
-  radio_menu_item->group = NULL;
-
-  if (old_group_singleton) {
-    g_signal_emit (old_group_singleton, group_changed_signal, 0);
-  }
-
-  if (was_in_group) {
-    g_signal_emit (radio_menu_item, group_changed_signal, 0);
-  }
-
-  GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
-}
+static void *geda_radio_menu_item_parent_class = NULL;
 
 static void
 geda_radio_menu_item_activate (GedaMenuItem *menu_item)
@@ -269,6 +130,203 @@ geda_radio_menu_item_activate (GedaMenuItem *menu_item)
   }
 
   gtk_widget_queue_draw (GTK_WIDGET (radio_menu_item));
+}
+
+static void
+geda_radio_menu_item_set_property (GObject      *object,
+                                   unsigned int  prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
+{
+  GedaRadioMenuItem *radio_menu_item;
+
+  radio_menu_item = GEDA_RADIO_MENU_ITEM (object);
+
+  switch (prop_id) {
+
+      GSList *slist;
+
+    case PROP_GROUP:
+      if (G_VALUE_HOLDS_OBJECT (value))
+	slist = geda_radio_menu_item_get_group ((GedaRadioMenuItem*) g_value_get_object (value));
+      else
+	slist = NULL;
+      geda_radio_menu_item_set_group (radio_menu_item, slist);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+geda_radio_menu_item_get_property (GObject      *object,
+                                   unsigned int  prop_id,
+                                   GValue       *value,
+                                   GParamSpec   *pspec)
+{
+  switch (prop_id) {
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_radio_menu_item_destroy (GtkObject *object)
+{
+  GedaRadioMenuItem *radio_menu_item     = GEDA_RADIO_MENU_ITEM (object);
+  GtkWidget         *old_group_singleton = NULL;
+  GedaRadioMenuItem *tmp_menu_item;
+  GSList            *tmp_list;
+  bool               was_in_group;
+
+  was_in_group = radio_menu_item->group && radio_menu_item->group->next;
+
+  radio_menu_item->group = g_slist_remove (radio_menu_item->group,
+                                           radio_menu_item);
+  if (radio_menu_item->group && !radio_menu_item->group->next)
+    old_group_singleton = radio_menu_item->group->data;
+
+  tmp_list = radio_menu_item->group;
+
+  while (tmp_list) {
+
+      tmp_menu_item = tmp_list->data;
+      tmp_list = tmp_list->next;
+
+      tmp_menu_item->group = radio_menu_item->group;
+  }
+
+  /* this radio menu item is no longer in the group */
+  radio_menu_item->group = NULL;
+
+  if (old_group_singleton) {
+    g_signal_emit (old_group_singleton, group_changed_signal, 0);
+  }
+
+  if (was_in_group) {
+    g_signal_emit (radio_menu_item, group_changed_signal, 0);
+  }
+
+  GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
+}
+
+/*! \brief GedaRadioMenuItem Type Class Initializer
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  class       GedaRadioMenuItemClass class we are initializing
+ *  \param [in]  class_data  GedaRadioMenuItem structure associated with the class
+ */
+static void
+geda_radio_menu_item_class_init(void *class, void *class_data)
+{
+  GObjectClass      *gobject_class;
+  GtkObjectClass    *object_class;
+  GedaMenuItemClass *menu_item_class;
+
+  gobject_class   = G_OBJECT_CLASS (class);
+  object_class    = GTK_OBJECT_CLASS (class);
+  menu_item_class = GEDA_MENU_ITEM_CLASS (class);
+
+  gobject_class->set_property = geda_radio_menu_item_set_property;
+  gobject_class->get_property = geda_radio_menu_item_get_property;
+
+  /*!
+   * property GedaRadioMenuItem::group
+   * The radio menu item whose group this widget belongs to.
+   */
+  g_object_class_install_property (gobject_class,
+                                   PROP_GROUP,
+                                   g_param_spec_object ("group",
+                                                      _("Group"),
+                                                      _("The radio menu item whose group this widget belongs to."),
+                                   GEDA_TYPE_RADIO_MENU_ITEM,
+                                   G_PARAM_WRITABLE));
+
+  object_class->destroy = geda_radio_menu_item_destroy;
+
+  menu_item_class->activate = geda_radio_menu_item_activate;
+
+  /*!
+   * property GedaRadioMenuItem::group-changed:
+   * Emitted when the group of radio menu items that a radio menu item belongs
+   * to changes. This is emitted when a radio menu item switches from
+   * being alone to being part of a group of 2 or more menu items, or
+   * vice-versa, and when a button is moved from one group of 2 or
+   * more menu items ton a different one, but not when the composition
+   * of the group that a menu item belongs to changes.
+   */
+  group_changed_signal = g_signal_new ("group-changed",
+                                       G_OBJECT_CLASS_TYPE (object_class),
+                                       G_SIGNAL_RUN_FIRST,
+                                       G_STRUCT_OFFSET (GedaRadioMenuItemClass, group_changed),
+                                       NULL, NULL,
+                                       geda_marshal_VOID__VOID,
+                                       G_TYPE_NONE, 0);
+}
+
+/*! \brief Initialize new GedaRadioMenuItem data structure instance.
+ *  \par Function Description
+ *  This function is call after the GedaRadioMenuItemClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaRadioMenuItem data structure
+ * \param [in] class     A GedaRadioMenuItem Object
+ */
+static void
+geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
+{
+  GedaRadioMenuItem *radio_menu_item = (GedaRadioMenuItem*)instance;
+
+  radio_menu_item->group = g_slist_prepend (NULL, radio_menu_item);
+  geda_check_menu_item_set_draw_as_radio (GEDA_CHECK_MENU_ITEM (radio_menu_item), TRUE);
+}
+
+/*!
+ * \brief Retrieve GedaRadioMenuItem's Type identifier.
+ * \par Function Description
+ *  Function to retrieve a #GedaRadioMenuItemType identifier. When
+ *  first called, the function registers a #GedaRadioMenuItem in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaRadioMenuItem and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaRadioMenuItem.
+ */
+GedaType
+geda_radio_menu_item_get_type (void)
+{
+  static GedaType geda_radio_menu_item_type = 0;
+
+  if (g_once_init_enter (&geda_radio_menu_item_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaRadioMenuItemClass),
+      NULL,                                /* base_init           */
+      NULL,                                /* base_finalize       */
+      geda_radio_menu_item_class_init,     /* (GClassInitFunc)    */
+      NULL,                                /* class_finalize      */
+      NULL,                                /* class_data          */
+      sizeof(GedaRadioMenuItem),
+      0,                                   /* n_preallocs         */
+      geda_radio_menu_item_instance_init   /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaRadioMenuItem");
+    type   = g_type_register_static (GEDA_TYPE_CHECK_MENU_ITEM, string, &info, 0);
+
+    g_once_init_leave (&geda_radio_menu_item_type, type);
+  }
+
+  return geda_radio_menu_item_type;
 }
 
 GtkWidget*

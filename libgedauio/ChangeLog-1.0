@@ -6,6 +6,9 @@
     * src/widgets/geda_check_menu_item.c: Add is_a_geda_check_menu_item and
       initialize instance_type in geda_check_menu_item_instance_init.
 
+    * src/widgets/geda_radio_menu_item.c: Add geda_radio_menu_item_get_type and
+      remove G_DEFINE_TYPE macro.
+
 2016-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Separate params in geda_check_menu_
