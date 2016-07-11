@@ -384,6 +384,10 @@ geda_image_menu_item_class_init (void *class, void *class_data)
 
   geda_image_menu_item_parent_class    = g_type_class_peek_parent (class);
 
+  /*! property GedaImageMenuItem::image
+   *
+   * Image widget displayed next to menu item.
+   */
   params = g_param_spec_object ("image",
                               _("Image widget"),
                               _("Child widget to appear next to the menu text"),
@@ -391,12 +395,11 @@ geda_image_menu_item_class_init (void *class, void *class_data)
                                  G_PARAM_WRITABLE);
 
   g_object_class_install_property (gobject_class, PROP_IMAGE, params);
-  /**
-   * GedaImageMenuItem:use-stock:
+
+  /*! property GedaImageMenuItem::use-stock
    *
    * If %TRUE, the label set in the menuitem is used as a
    * stock id to select the stock item for the item.
-   *
    */
   params = g_param_spec_boolean ("use-stock",
                                _("Use stock"),
@@ -406,15 +409,13 @@ geda_image_menu_item_class_init (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_USE_STOCK, params);
 
-  /**
-   * GedaImageMenuItem:show-image:
+  /*! property  GedaImageMenuItem::show-image
    *
    * If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
    * setting and always show the image, if available.
    *
    * Use this property if the menuitem would be useless or hard to use
    * without the image.
-   *
    */
   params = g_param_spec_boolean ("show-image",
                                _("Show image"),
@@ -424,11 +425,9 @@ geda_image_menu_item_class_init (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_SHOW_IMAGE, params);
 
-  /**
-   * GedaImageMenuItem:accel-group:
+  /*! property GedaImageMenuItem::accel-group
    *
    * The Accel Group to use for stock accelerator keys
-   *
    */
   params = g_param_spec_object ("accel-group",
                               _("Accel Group"),
