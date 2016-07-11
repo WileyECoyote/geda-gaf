@@ -40,7 +40,7 @@
 #define GEDA_TYPE_RADIO_MENU_ITEM	       (geda_radio_menu_item_get_type ())
 #define GEDA_RADIO_MENU_ITEM(obj)	       (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItem))
 #define GEDA_RADIO_MENU_ITEM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItemClass))
-#define GEDA_IS_RADIO_MENU_ITEM(obj)	       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_RADIO_MENU_ITEM))
+#define GEDA_IS_RADIO_MENU_ITEM(obj)	       (is_a_geda_radio_menu_item((GedaRadioMenuItem*)(obj)))
 #define GEDA_IS_RADIO_MENU_ITEM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_RADIO_MENU_ITEM))
 #define GEDA_RADIO_MENU_ITEM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItemClass))
 

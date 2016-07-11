@@ -284,6 +284,8 @@ geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaRadioMenuItem *radio_menu_item = (GedaRadioMenuItem*)instance;
 
+  radio_menu_item->instance_type = geda_radio_menu_item_get_type();
+
   radio_menu_item->group = g_slist_prepend (NULL, radio_menu_item);
   geda_check_menu_item_set_draw_as_radio (GEDA_CHECK_MENU_ITEM (radio_menu_item), TRUE);
 }
@@ -328,6 +330,23 @@ geda_radio_menu_item_get_type (void)
   }
 
   return geda_radio_menu_item_type;
+}
+
+/*!
+ * \brief Check if an object is a GedaRadioMenuItem
+ * \par Function Description
+ *  Ensures \a radio_menu_item is a valid G_Object and compares signature
+ *  to geda radio_menu_item type.
+ *
+ * \return TRUE if \a radio_menu_item is a valid GedaRadioMenuItem
+ */
+bool
+is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
+{
+  if (G_IS_OBJECT(radio_menu_item)) {
+    return (geda_radio_menu_item_get_type() == radio_menu_item->instance_type);
+  }
+  return FALSE;
 }
 
 GtkWidget*

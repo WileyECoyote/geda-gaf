@@ -3,11 +3,15 @@
     * include/geda_check_menu_item.h: Replace G_TYPE_CHECK_INSTANCE_TYPE with
       is_a_geda_check_menu_item.
 
+    * include/geda_radio_menu_item.h: Replace G_TYPE_CHECK_INSTANCE_TYPE with
+      is_a_geda_radio_menu_item.
+
     * src/widgets/geda_check_menu_item.c: Add is_a_geda_check_menu_item and
       initialize instance_type in geda_check_menu_item_instance_init.
 
     * src/widgets/geda_radio_menu_item.c: Add geda_radio_menu_item_get_type and
-      remove G_DEFINE_TYPE macro.
+      remove G_DEFINE_TYPE macro. Add is_a_geda_check_menu_item and
+      initialize instance_type in geda_radio_menu_item_instance_init.
 
 2016-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
