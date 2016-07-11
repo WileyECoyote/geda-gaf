@@ -277,8 +277,8 @@ geda_check_menu_item_set_property (GObject      *object,
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaComboClass class we are initializing
- *  \param [in]  class_data  GedaCombo structure associated with the class
+ *  \param [in]  class       GedaCheckMenuItemClass class we are initializing
+ *  \param [in]  class_data  GedaCheckMenuItem structure associated with the class
  */
 static void
 geda_check_menu_item_class_init(void *class, void *class_data)

@@ -517,7 +517,7 @@ geda_image_menu_item_get_type (void)
  *  Ensures \a image_menu_item is a valid G_Object and compares signature
  *  to geda image_menu_item type.
  *
- * \return TRUE if \a image_menu_item is a valid GedaHandleBox
+ * \return TRUE if \a image_menu_item is a valid GedaImageMenuItem
  */
 bool
 is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)

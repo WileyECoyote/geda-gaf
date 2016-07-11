@@ -65,6 +65,7 @@ static unsigned int group_changed_signal = 0;
 
 static void *geda_radio_menu_item_parent_class = NULL;
 
+/* menu_item_class->activate */
 static void
 geda_radio_menu_item_activate (GedaMenuItem *menu_item)
 {
@@ -219,7 +220,7 @@ geda_radio_menu_item_destroy (GtkObject *object)
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaRadioMenuItemClass class we are initializing
+ *  \param [in]  class       GedaRadioMenuItemClass class being initializes
  *  \param [in]  class_data  GedaRadioMenuItem structure associated with the class
  */
 static void
