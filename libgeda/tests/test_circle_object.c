@@ -788,6 +788,93 @@ check_query()
 }
 
 int
+check_transformer()
+{
+  int result = 0;
+  int count;
+
+  int dum = 1;
+  geda_circle_object_modify(NULL, dum, dum, dum);
+
+  geda_circle_object_mirror(NULL, dum, dum);
+
+  geda_circle_object_rotate(NULL, 0, 0, 0);
+
+  geda_circle_object_translate(NULL, 0, 0);
+
+  for (count = 0; count < 10; count++) {
+
+    int c = m_random_number (0, MAX_COLORS - 1);
+    int r = m_random_number (5, 20000);
+    int x = m_random_number (0, 120000);
+    int y = m_random_number (0, 80000);
+
+    GedaObject *object0 = geda_circle_object_new (c, x, y, r);
+
+    if (!GEDA_IS_CIRCLE(object0->circle)) {
+      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;
+    }
+    else {
+
+      int fail;
+
+      fail = 0;
+
+      /* === Function 17: geda_circle_object_modify  === */
+
+      int nx, ny;
+      int value;
+
+      nx = x + 10;
+      ny = y + 20;
+
+      geda_circle_object_modify(object0, nx, ny, CIRCLE_CENTER);
+
+      value = object0->circle->center_x;
+      if (value - nx) {
+        fprintf(stderr, "FAILED: (O061701A) modify circle %d != %d\n", value, nx);
+        fail++;
+      }
+
+      value = object0->circle->center_y;
+      if (value - ny) {
+        fprintf(stderr, "FAILED: (O061701B) modify circle %d != %d\n", value, ny);
+        fail++;
+      }
+
+      nx = r + 30;
+
+      geda_circle_object_modify(object0, nx, 40, CIRCLE_RADIUS);
+
+      value = object0->circle->radius;
+      if (value - nx) {
+        fprintf(stderr, "FAILED: (O061701B) modify circle %d != %d\n", value, nx);
+        fail++;
+      }
+
+      g_object_unref (object0);
+
+      if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t     radius: %d\n", r);
+        fprintf(stderr, "\t   center x: %d\n", x);
+        fprintf(stderr, "\t   center y: %d\n", y);
+
+        result = result + fail;
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -825,12 +912,22 @@ main (int argc, char *argv[])
       return 1;
     }
 
+    if (setjmp(point) == 0) {
       result += check_query();
     }
     else {
       fprintf(stderr, "Caught signal during query in src/object/o_circle_object.c\n\n");
       return 1;
     }
+
+    if (setjmp(point) == 0) {
+      result += check_transformer();
+    }
+    else {
+      fprintf(stderr, "Caught signal in transformers for src/object/o_circle_object.c\n\n");
+      return 1;
+    }
+
   }
   else {
     fprintf(stderr, "discontinuing checks for object/o_circle_object.c\n\n");
