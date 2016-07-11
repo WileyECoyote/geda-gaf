@@ -361,8 +361,9 @@ geda_image_menu_item_class_init (void *class, void *class_data)
   GObjectClass      *gobject_class     = (GObjectClass*) class;
   GtkObjectClass    *object_class      = (GtkObjectClass*) class;
   GtkWidgetClass    *widget_class      = (GtkWidgetClass*) class;
-  GedaMenuItemClass  *menu_item_class   = (GedaMenuItemClass*) class;
+  GedaMenuItemClass *menu_item_class   = (GedaMenuItemClass*) class;
   GtkContainerClass *container_class   = (GtkContainerClass*) class;
+  GParamSpec        *params;
 
   object_class->destroy                = geda_image_menu_item_destroy;
 
@@ -383,13 +384,13 @@ geda_image_menu_item_class_init (void *class, void *class_data)
 
   geda_image_menu_item_parent_class    = g_type_class_peek_parent (class);
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_IMAGE,
-                                   g_param_spec_object ("image",
-                                                      _("Image widget"),
-                                                      _("Child widget to appear next to the menu text"),
-                                                        GTK_TYPE_WIDGET,
-                                                        G_PARAM_WRITABLE));
+  params = g_param_spec_object ("image",
+                              _("Image widget"),
+                              _("Child widget to appear next to the menu text"),
+                                 GTK_TYPE_WIDGET,
+                                 G_PARAM_WRITABLE);
+
+  g_object_class_install_property (gobject_class, PROP_IMAGE, params);
   /**
    * GedaImageMenuItem:use-stock:
    *
@@ -397,13 +398,13 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * stock id to select the stock item for the item.
    *
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_USE_STOCK,
-                                   g_param_spec_boolean ("use-stock",
-                                                       _("Use stock"),
-                                                       _("Whether to use the label text to create a stock menu item"),
-                                                         FALSE,
-                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  params = g_param_spec_boolean ("use-stock",
+                               _("Use stock"),
+                               _("Whether to use the label text to create a stock menu item"),
+                                  FALSE,
+                                  G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  g_object_class_install_property (gobject_class, PROP_USE_STOCK, params);
 
   /**
    * GedaImageMenuItem:show-image:
@@ -415,13 +416,13 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * without the image.
    *
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_SHOW_IMAGE,
-                                   g_param_spec_boolean ("show-image",
-                                                       _("Show image"),
-                                                       _("Whether the image will always be shown"),
-                                                         FALSE,
-                                                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  params = g_param_spec_boolean ("show-image",
+                               _("Show image"),
+                               _("Whether the image will always be shown"),
+                                  FALSE,
+                                  G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  g_object_class_install_property (gobject_class, PROP_SHOW_IMAGE, params);
 
   /**
    * GedaImageMenuItem:accel-group:
@@ -429,13 +430,14 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * The Accel Group to use for stock accelerator keys
    *
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_ACCEL_GROUP,
-                                   g_param_spec_object ("accel-group",
-                                                      _("Accel Group"),
-                                                      _("The Accel Group to use for stock accelerator keys"),
-                                                        GTK_TYPE_ACCEL_GROUP,
-                                                        G_PARAM_WRITABLE));
+  params = g_param_spec_object ("accel-group",
+                              _("Accel Group"),
+                              _("The Accel Group to use for stock accelerator keys"),
+                                 GTK_TYPE_ACCEL_GROUP,
+                                 G_PARAM_WRITABLE);
+
+  g_object_class_install_property (gobject_class,  PROP_ACCEL_GROUP, params);
+
 }
 
 /*! \brief Initialize GedaImageMenuItem data structure.
