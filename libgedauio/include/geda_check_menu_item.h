@@ -42,7 +42,7 @@
 #define GEDA_TYPE_CHECK_MENU_ITEM            (geda_check_menu_item_get_type ())
 #define GEDA_CHECK_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_CHECK_MENU_ITEM, GedaCheckMenuItem))
 #define GEDA_CHECK_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_CHECK_MENU_ITEM, GedaCheckMenuItemClass))
-#define GEDA_IS_CHECK_MENU_ITEM(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_CHECK_MENU_ITEM))
+#define GEDA_IS_CHECK_MENU_ITEM(obj)         (is_a_geda_check_menu_item((GedaCheckMenuItem*)(obj)))
 #define GEDA_IS_CHECK_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_CHECK_MENU_ITEM))
 #define GEDA_CHECK_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_CHECK_MENU_ITEM, GedaCheckMenuItemClass))
 
@@ -53,6 +53,7 @@ typedef struct _GedaCheckMenuItemClass  GedaCheckMenuItemClass;
 struct _GedaCheckMenuItem
 {
   GedaMenuItem menu_item;
+  GedaType     instance_type;
 
   unsigned int active : 1;
   unsigned int always_show_toggle : 1;
@@ -74,7 +75,8 @@ struct _GedaCheckMenuItemClass
 extern "C" {
 #endif
 
-GType	   geda_check_menu_item_get_type	         (void) GEDA_CONST;
+GedaType   geda_check_menu_item_get_type	  (void) GEDA_CONST;
+bool       is_a_geda_check_menu_item              (GedaCheckMenuItem *check_menu_item);
 
 GtkWidget* geda_check_menu_item_new               (void);
 GtkWidget* geda_check_menu_item_new_with_label    (const char        *label);

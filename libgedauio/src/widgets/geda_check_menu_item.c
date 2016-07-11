@@ -365,6 +365,8 @@ geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaCheckMenuItem *check_menu_item = (GedaCheckMenuItem*)instance;
 
+  check_menu_item->instance_type      = geda_check_menu_item_get_type();
+
   check_menu_item->active             = FALSE;
   check_menu_item->always_show_toggle = TRUE;
 }
@@ -426,6 +428,24 @@ geda_check_menu_item_get_type (void)
 
   return geda_check_menu_item_type;
 }
+
+/*!
+ * \brief Check if an object is a GedaCheckMenuItem
+ * \par Function Description
+ *  Ensures \a check_menu_item is a valid G_Object and compares signature
+ *  to geda check_menu_item type.
+ *
+ * \return TRUE if \a check_menu_item is a valid GedaCheckMenuItem
+ */
+bool
+is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
+{
+  if (G_IS_OBJECT(check_menu_item)) {
+    return (geda_check_menu_item_get_type() == check_menu_item->instance_type);
+  }
+  return FALSE;
+}
+
 static void
 geda_check_menu_item_update (GtkActivatable *activatable,
                              GtkAction      *action,
