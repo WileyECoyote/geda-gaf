@@ -71,12 +71,12 @@
  *      O0612    geda_circle_object_get_line_space
  *      O0613    geda_circle_object_get_line_type
  *      O0614    geda_circle_object_get_line_width
- *               geda_circle_object_get_nearest_point
+ *      O0615    geda_circle_object_get_nearest_point
  *      O0616    geda_circle_object_get_radius
- *               geda_circle_object_modify
+ *      O0617    geda_circle_object_modify
  *               geda_circle_object_mirror
  *      O0619    geda_circle_object_new
- *               geda_circle_object_get_position
+ *      O0620    geda_circle_object_get_position
  *               geda_circle_object_print
  *               geda_circle_object_print_center
  *               geda_circle_object_print_dashed
@@ -86,8 +86,8 @@
  *               geda_circle_object_print_mesh
  *               geda_circle_object_print_phantom
  *               geda_circle_object_print_solid
- *               geda_circle_object_read
- *               geda_circle_object_rotate
+ *      O0630    geda_circle_object_read
+ *      O0631    geda_circle_object_rotate
  *      O0632    geda_circle_object_set_center_x
  *      O0633    geda_circle_object_set_center_y
  *      O0634    geda_circle_object_set_end_cap
@@ -102,9 +102,9 @@
  *      O0643    geda_circle_object_set_line_type
  *      O0644    geda_circle_object_set_line_width
  *      O0645    geda_circle_object_set_radius
- *               geda_circle_object_shortest_distance
- *               geda_circle_object_to_buffer
- *               geda_circle_object_translate
+ *      O0646    geda_circle_object_shortest_distance
+ *      O0647    geda_circle_object_to_buffer
+ *      O0648    geda_circle_object_translate
  *
  */
 
@@ -850,7 +850,7 @@ check_transformer()
 
       value = object0->circle->radius;
       if (value - nx) {
-        fprintf(stderr, "FAILED: (O061701B) modify circle %d != %d\n", value, nx);
+        fprintf(stderr, "FAILED: (O061702) modify circle %d != %d\n", value, nx);
         fail++;
       }
 
