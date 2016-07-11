@@ -1,6 +1,7 @@
 2016-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_check_menu_item.c: Separate params in geda_check_menu_item_class_init.
+    * src/widgets/geda_check_menu_item.c: Separate params in geda_check_menu_item_class_init, add
+      geda_check_menu_item_get_type and remove G_DEFINE_TYPE_WITH_CODE.
 
     * src/widgets/geda_image_menu_item.c: : Separate params in geda_image_menu_item_class_init.
 

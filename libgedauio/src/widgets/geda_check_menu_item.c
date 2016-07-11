@@ -84,9 +84,7 @@ static void geda_check_menu_item_sync_action_properties     (GtkActivatable     
 static GtkActivatableIface *parent_activatable_iface;
 static unsigned int check_menu_item_signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE_WITH_CODE (GedaCheckMenuItem, geda_check_menu_item, GEDA_TYPE_MENU_ITEM,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_ACTIVATABLE,
-						geda_check_menu_item_activatable_interface_init))
+static void *geda_check_menu_item_parent_class = NULL;
 
 static void
 geda_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
@@ -273,20 +271,33 @@ geda_check_menu_item_set_property (GObject      *object,
   }
 }
 
+/*! \brief GedaCheckMenuItem Type Class Initializer
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  class       GedaComboClass class we are initializing
+ *  \param [in]  class_data  GedaCombo structure associated with the class
+ */
 static void
-geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
+geda_check_menu_item_class_init(void *class, void *class_data)
 {
-  GObjectClass      *gobject_class;
-  GtkWidgetClass    *widget_class;
-  GedaMenuItemClass *menu_item_class;
-  GParamSpec        *params;
+  GedaCheckMenuItemClass *check_menu_class;
+  GObjectClass           *gobject_class;
+  GtkWidgetClass         *widget_class;
+  GedaMenuItemClass      *menu_item_class;
+  GParamSpec             *params;
 
-  gobject_class   = G_OBJECT_CLASS (klass);
-  widget_class    = (GtkWidgetClass*) klass;
-  menu_item_class = (GedaMenuItemClass*) klass;
+  check_menu_class = (GedaCheckMenuItemClass*)class;
+  gobject_class    = G_OBJECT_CLASS (class);
+  widget_class     = (GtkWidgetClass*) class;
+  menu_item_class  = (GedaMenuItemClass*) class;
 
   gobject_class->set_property = geda_check_menu_item_set_property;
   gobject_class->get_property = geda_check_menu_item_get_property;
+
+  geda_check_menu_item_parent_class = g_type_class_peek_parent(class);
 
   params = g_param_spec_boolean ("active",
                                _("Active"),
@@ -328,8 +339,8 @@ geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
   menu_item_class->hide_on_activate    = FALSE;
   menu_item_class->toggle_size_request = geda_check_menu_item_toggle_size_request;
 
-  klass->toggled        = NULL;
-  klass->draw_indicator = geda_real_check_menu_item_draw_indicator;
+  check_menu_class->toggled        = NULL;
+  check_menu_class->draw_indicator = geda_real_check_menu_item_draw_indicator;
 
   check_menu_item_signals[TOGGLED] =
   g_signal_new (_("toggled"),
@@ -341,9 +352,19 @@ geda_check_menu_item_class_init (GedaCheckMenuItemClass *klass)
                    G_TYPE_NONE, 0);
 }
 
+/*! \brief Initialize new GedaCheckMenuItem data structure instance.
+ *  \par Function Description
+ *  This function is call after the GedaCheckMenuItemClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaCheckMenuItem data structure
+ * \param [in] class     A GedaCheckMenuItemClass Object
+ */
 static void
-geda_check_menu_item_init (GedaCheckMenuItem *check_menu_item)
+geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
+  GedaCheckMenuItem *check_menu_item = (GedaCheckMenuItem*)instance;
+
   check_menu_item->active             = FALSE;
   check_menu_item->always_show_toggle = TRUE;
 }
@@ -356,6 +377,55 @@ geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
   iface->sync_action_properties = geda_check_menu_item_sync_action_properties;
 }
 
+/*!
+ * \brief Retrieve GedaCheckMenuItem's Type identifier.
+ * \par Function Description
+ *  Function to retrieve a #GedaCheckMenuItemType identifier. When
+ *  first called, the function registers a #GedaCheckMenuItem in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaCheckMenuItem and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaCheckMenuItem.
+ */
+GedaType
+geda_check_menu_item_get_type (void)
+{
+  static GedaType geda_check_menu_item_type = 0;
+
+  if (g_once_init_enter (&geda_check_menu_item_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaCheckMenuItemClass),
+      NULL,                                /* base_init           */
+      NULL,                                /* base_finalize       */
+      geda_check_menu_item_class_init,     /* (GClassInitFunc)    */
+      NULL,                                /* class_finalize      */
+      NULL,                                /* class_data          */
+      sizeof(GedaCheckMenuItem),
+      0,                                   /* n_preallocs         */
+      geda_check_menu_item_instance_init   /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaCheckMenuItem");
+    type   = g_type_register_static (GEDA_TYPE_MENU_ITEM, string, &info, 0);
+
+    const GInterfaceInfo interface_info = {
+      (GInterfaceInitFunc) geda_check_menu_item_activatable_interface_init,
+      NULL,
+      NULL
+    };
+
+    g_type_add_interface_static (type, GTK_TYPE_ACTIVATABLE, &interface_info);
+
+    g_once_init_leave (&geda_check_menu_item_type, type);
+  }
+
+  return geda_check_menu_item_type;
+}
 static void
 geda_check_menu_item_update (GtkActivatable *activatable,
                              GtkAction      *action,
