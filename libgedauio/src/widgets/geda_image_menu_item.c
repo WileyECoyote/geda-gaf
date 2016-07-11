@@ -511,10 +511,13 @@ geda_image_menu_item_get_type (void)
   return geda_image_menu_item_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if an object is a GedaImageMenuItem
+ * \par Function Description
+ *  Ensures \a image_menu_item is a valid G_Object and compares signature
+ *  to geda image_menu_item type.
  *
+ * \return TRUE if \a image_menu_item is a valid GedaHandleBox
  */
 bool
 is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)

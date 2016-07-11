@@ -1,3 +1,7 @@
+2016-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/mcontrol/TMC2660-1.sym: Add symbol TMC2660 Bipolar Stepper Driver.
+
 2016-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD8047-1.sym: Add smybol OpAmp, Voltage Feedback, 250 MHz.
