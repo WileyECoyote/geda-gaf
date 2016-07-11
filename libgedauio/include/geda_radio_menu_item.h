@@ -37,10 +37,10 @@
 
 #include "geda_check_menu_item.h"
 
-#define GEDA_TYPE_RADIO_MENU_ITEM	          (geda_radio_menu_item_get_type ())
-#define GEDA_RADIO_MENU_ITEM(obj)	          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItem))
+#define GEDA_TYPE_RADIO_MENU_ITEM	       (geda_radio_menu_item_get_type ())
+#define GEDA_RADIO_MENU_ITEM(obj)	       (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItem))
 #define GEDA_RADIO_MENU_ITEM_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItemClass))
-#define GEDA_IS_RADIO_MENU_ITEM(obj)	          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_RADIO_MENU_ITEM))
+#define GEDA_IS_RADIO_MENU_ITEM(obj)	       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_RADIO_MENU_ITEM))
 #define GEDA_IS_RADIO_MENU_ITEM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_RADIO_MENU_ITEM))
 #define GEDA_RADIO_MENU_ITEM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_RADIO_MENU_ITEM, GedaRadioMenuItemClass))
 
@@ -52,7 +52,7 @@ struct _GedaRadioMenuItem
 {
   GedaCheckMenuItem check_menu_item;
 
-  GSList *group;
+  GSList           *group;
 };
 
 struct _GedaRadioMenuItemClass
@@ -68,18 +68,19 @@ struct _GedaRadioMenuItemClass
 extern "C" {
 #endif
 
-GType      geda_radio_menu_item_get_type	                     (void) GEDA_CONST;
+GedaType   geda_radio_menu_item_get_type	              (void) GEDA_CONST;
 
-GtkWidget* geda_radio_menu_item_new                           (GSList             *group);
-GtkWidget* geda_radio_menu_item_new_with_label                (GSList             *group,
-                                                               const char         *label);
-GtkWidget* geda_radio_menu_item_new_with_mnemonic             (GSList             *group,
-                                                               const char         *label);
-GtkWidget* geda_radio_menu_item_new_from_widget               (GedaRadioMenuItem  *group);
-GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem  *group,
+GtkWidget *geda_radio_menu_item_new                           (GSList             *group);
+GtkWidget *geda_radio_menu_item_new_from_widget               (GedaRadioMenuItem  *group);
+GtkWidget *geda_radio_menu_item_new_with_label                (GSList             *group,
                                                                const char         *label);
 GtkWidget *geda_radio_menu_item_new_with_label_from_widget    (GedaRadioMenuItem  *group,
                                                                const char         *label);
+GtkWidget *geda_radio_menu_item_new_with_mnemonic             (GSList             *group,
+                                                               const char         *label);
+GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem  *group,
+                                                               const char         *label);
+
 GSList*    geda_radio_menu_item_get_group                     (GedaRadioMenuItem  *radio_menu_item);
 void       geda_radio_menu_item_set_group                     (GedaRadioMenuItem  *radio_menu_item,
                                                                GSList             *group);

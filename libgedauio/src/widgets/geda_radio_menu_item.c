@@ -66,18 +66,6 @@ static unsigned int group_changed_signal = 0;
 
 G_DEFINE_TYPE (GedaRadioMenuItem, geda_radio_menu_item, GEDA_TYPE_CHECK_MENU_ITEM)
 
-GtkWidget*
-geda_radio_menu_item_new (GSList *group)
-{
-  GedaRadioMenuItem *radio_menu_item;
-
-  radio_menu_item = g_object_new (GEDA_TYPE_RADIO_MENU_ITEM, NULL);
-
-  geda_radio_menu_item_set_group (radio_menu_item, group);
-
-  return GTK_WIDGET (radio_menu_item);
-}
-
 static void
 geda_radio_menu_item_set_property (GObject      *object,
                                    unsigned int  prop_id,
@@ -119,235 +107,7 @@ geda_radio_menu_item_get_property (GObject      *object,
   }
 }
 
-void
-geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
-                                GSList            *group)
-{
-  GtkWidget *old_group_singleton = NULL;
-  GtkWidget *new_group_singleton = NULL;
 
-  g_return_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item));
-  g_return_if_fail (!g_slist_find (group, radio_menu_item));
-
-  if (radio_menu_item->group) {
-
-    GSList *slist;
-
-    radio_menu_item->group = g_slist_remove (radio_menu_item->group, radio_menu_item);
-
-    if (radio_menu_item->group && !radio_menu_item->group->next)
-      old_group_singleton = g_object_ref (radio_menu_item->group->data);
-
-    for (slist = radio_menu_item->group; slist; slist = slist->next) {
-
-      GedaRadioMenuItem *tmp_item;
-
-      tmp_item = slist->data;
-
-      tmp_item->group = radio_menu_item->group;
-    }
-  }
-
-  if (group && !group->next)
-    new_group_singleton = g_object_ref (group->data);
-
-  radio_menu_item->group = g_slist_prepend (group, radio_menu_item);
-
-  if (group) {
-
-    GSList *slist;
-
-    for (slist = group; slist; slist = slist->next) {
-
-      GedaRadioMenuItem *tmp_item;
-
-      tmp_item = slist->data;
-
-      tmp_item->group = radio_menu_item->group;
-    }
-  }
-  else {
-
-    GEDA_CHECK_MENU_ITEM (radio_menu_item)->active = TRUE;
-    /* gtk_widget_set_state (GTK_WIDGET (radio_menu_item), GTK_STATE_ACTIVE);
-     */
-  }
-
-  g_object_ref (radio_menu_item);
-
-  g_object_notify (G_OBJECT (radio_menu_item), "group");
-  g_signal_emit (radio_menu_item, group_changed_signal, 0);
-
-  if (old_group_singleton) {
-
-    g_signal_emit (old_group_singleton, group_changed_signal, 0);
-    g_object_unref (old_group_singleton);
-  }
-
-  if (new_group_singleton) {
-    g_signal_emit (new_group_singleton, group_changed_signal, 0);
-    g_object_unref (new_group_singleton);
-  }
-
-  g_object_unref (radio_menu_item);
-}
-
-
-/*!
- * \brief geda_radio_menu_item_new_with_label
- * \par Function Description
- * Creates a new #GedaRadioMenuItem whose child is a simple #GtkLabel.
- *
- * \param[in] group group the radio menu item is to be a member of
- * \param[in] label the text for the label
- *
- * \returns A new #GedaRadioMenuItem
- */
-GtkWidget*
-geda_radio_menu_item_new_with_label (GSList *group, const char *label)
-{
-  GtkWidget *radio_menu_item;
-  GtkWidget *accel_label;
-
-  radio_menu_item = geda_radio_menu_item_new (group);
-  accel_label     = geda_accel_label_new (label);
-
-  gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
-  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
-  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
-  gtk_widget_show (accel_label);
-
-  return radio_menu_item;
-}
-
-
-/*!
- * \brief geda_radio_menu_item_new_with_mnemonic
- * \par Function Description
- * Creates a new #GedaRadioMenuItem containing a label. The label
- * will be created using geda_label_new_with_mnemonic(), so underscores
- * in @label indicate the mnemonic for the menu item.
- *
- * \param[in] group group the radio menu item is to be a member of
- * \param[in] label the text of the button, with an underscore in front
- *                  of the mnemonic character
- *
- * \returns a new #GedaRadioMenuItem
- */
-GtkWidget*
-geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
-{
-  GtkWidget *radio_menu_item;
-  GtkWidget *accel_label;
-
-  radio_menu_item = geda_radio_menu_item_new (group);
-  accel_label     = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
-
-  geda_label_set_mnemonic_text (GEDA_LABEL(accel_label), label);
-  gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
-
-  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
-  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
-  gtk_widget_show (accel_label);
-
-  return radio_menu_item;
-}
-
-/*!
- * \brief geda_radio_menu_item_new_from_widget
- * \par Function Description
- *  Creates a new #GedaRadioMenuItem adding it to the same group as @group.
- *
- * \param[in] group group the radio menu item is to be a member of
- *
- * \returns The new #GedaRadioMenuItem
- */
-GtkWidget *
-geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
-{
-  GSList *list = NULL;
-
-  if (group) {
-    list = geda_radio_menu_item_get_group (group);
-  }
-
-  return geda_radio_menu_item_new (list);
-}
-
-/*!
- * \brief geda_radio_menu_item_new_with_mnemonic_from_widget
- * \par Function Description
- * Creates a new GedaRadioMenuItem containing a label. The label will be
- * created using geda_label_new_with_mnemonic(), so underscores in label
- * indicate the mnemonic for the menu item.
- *
- * The new #GedaRadioMenuItem is added to the same group as \a group.
- *
- * \param[in] group group the radio menu item is to be a member of
- * \param[in] label the text of the button, with an underscore in front
- *                  of the mnemonic character
- *
- * \returns The new #GedaRadioMenuItem
- */
-GtkWidget *
-geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem *group,
-                                                    const char        *label)
-{
-  GSList *list = NULL;
-
-  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
-
-  if (group) {
-    list = geda_radio_menu_item_get_group (group);
-  }
-
-  return geda_radio_menu_item_new_with_mnemonic (list, label);
-}
-
-/*!
- * \brief geda_radio_menu_item_new_with_label_from_widget
- * \par Function Description
- * Creates a new GedaRadioMenuItem whose child is a simple GedaLabel.
- * The new #GedaRadioMenuItem is added to the same group as \a group.
- *
- * \param[in] group group the radio menu item is to be a member of
- * \param[in] label: the text for the label
- *
- * \returns The new #GedaRadioMenuItem
- */
-GtkWidget *
-geda_radio_menu_item_new_with_label_from_widget (GedaRadioMenuItem *group,
-                                                 const char        *label)
-{
-  GSList *list = NULL;
-
-  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
-
-  if (group) {
-    list = geda_radio_menu_item_get_group (group);
-  }
-
-  return geda_radio_menu_item_new_with_label (list, label);
-}
-
-/*!
- * \brief geda_radio_menu_item_get_group
- * \par Function Description
- * Returns the group to which the radio menu item belongs, as a #GList
- * of #GedaRadioMenuItem. The list belongs to the widget and should not
- * be freed.
- *
- * \param[in] radio_menu_item  The GedaRadioMenuItem
- *
- * \returns the group of @radio_menu_item
- */
-GSList*
-geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item), NULL);
-
-  return radio_menu_item->group;
-}
 
 static void
 geda_radio_menu_item_class_init (GedaRadioMenuItemClass *klass)
@@ -509,6 +269,246 @@ geda_radio_menu_item_activate (GedaMenuItem *menu_item)
   }
 
   gtk_widget_queue_draw (GTK_WIDGET (radio_menu_item));
+}
+
+GtkWidget*
+geda_radio_menu_item_new (GSList *group)
+{
+  GedaRadioMenuItem *radio_menu_item;
+
+  radio_menu_item = g_object_new (GEDA_TYPE_RADIO_MENU_ITEM, NULL);
+
+  geda_radio_menu_item_set_group (radio_menu_item, group);
+
+  return GTK_WIDGET (radio_menu_item);
+}
+
+/*!
+ * \brief geda_radio_menu_item_new_from_widget
+ * \par Function Description
+ *  Creates a new #GedaRadioMenuItem adding it to the same group as @group.
+ *
+ * \param[in] group group the radio menu item is to be a member of
+ *
+ * \returns The new #GedaRadioMenuItem
+ */
+GtkWidget *
+geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
+{
+  GSList *list = NULL;
+
+  if (group) {
+    list = geda_radio_menu_item_get_group (group);
+  }
+
+  return geda_radio_menu_item_new (list);
+}
+
+/*!
+ * \brief geda_radio_menu_item_new_with_label
+ * \par Function Description
+ * Creates a new #GedaRadioMenuItem whose child is a simple #GtkLabel.
+ *
+ * \param[in] group group the radio menu item is to be a member of
+ * \param[in] label the text for the label
+ *
+ * \returns A new #GedaRadioMenuItem
+ */
+GtkWidget*
+geda_radio_menu_item_new_with_label (GSList *group, const char *label)
+{
+  GtkWidget *radio_menu_item;
+  GtkWidget *accel_label;
+
+  radio_menu_item = geda_radio_menu_item_new (group);
+  accel_label     = geda_accel_label_new (label);
+
+  gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
+  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
+  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
+  gtk_widget_show (accel_label);
+
+  return radio_menu_item;
+}
+
+/*!
+ * \brief geda_radio_menu_item_new_with_mnemonic
+ * \par Function Description
+ * Creates a new #GedaRadioMenuItem containing a label. The label
+ * will be created using geda_label_new_with_mnemonic(), so underscores
+ * in @label indicate the mnemonic for the menu item.
+ *
+ * \param[in] group group the radio menu item is to be a member of
+ * \param[in] label the text of the button, with an underscore in front
+ *                  of the mnemonic character
+ *
+ * \returns a new #GedaRadioMenuItem
+ */
+GtkWidget*
+geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
+{
+  GtkWidget *radio_menu_item;
+  GtkWidget *accel_label;
+
+  radio_menu_item = geda_radio_menu_item_new (group);
+  accel_label     = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
+
+  geda_label_set_mnemonic_text (GEDA_LABEL(accel_label), label);
+  gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
+
+  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
+  geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
+  gtk_widget_show (accel_label);
+
+  return radio_menu_item;
+}
+
+/*!
+ * \brief geda_radio_menu_item_new_with_mnemonic_from_widget
+ * \par Function Description
+ * Creates a new GedaRadioMenuItem containing a label. The label will be
+ * created using geda_label_new_with_mnemonic(), so underscores in label
+ * indicate the mnemonic for the menu item.
+ *
+ * The new #GedaRadioMenuItem is added to the same group as \a group.
+ *
+ * \param[in] group group the radio menu item is to be a member of
+ * \param[in] label the text of the button, with an underscore in front
+ *                  of the mnemonic character
+ *
+ * \returns The new #GedaRadioMenuItem
+ */
+GtkWidget *
+geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem *group,
+                                                    const char        *label)
+{
+  GSList *list = NULL;
+
+  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
+
+  if (group) {
+    list = geda_radio_menu_item_get_group (group);
+  }
+
+  return geda_radio_menu_item_new_with_mnemonic (list, label);
+}
+
+/*!
+ * \brief geda_radio_menu_item_new_with_label_from_widget
+ * \par Function Description
+ * Creates a new GedaRadioMenuItem whose child is a simple GedaLabel.
+ * The new #GedaRadioMenuItem is added to the same group as \a group.
+ *
+ * \param[in] group group the radio menu item is to be a member of
+ * \param[in] label: the text for the label
+ *
+ * \returns The new #GedaRadioMenuItem
+ */
+GtkWidget *
+geda_radio_menu_item_new_with_label_from_widget (GedaRadioMenuItem *group,
+                                                 const char        *label)
+{
+  GSList *list = NULL;
+
+  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
+
+  if (group) {
+    list = geda_radio_menu_item_get_group (group);
+  }
+
+  return geda_radio_menu_item_new_with_label (list, label);
+}
+
+/*!
+ * \brief geda_radio_menu_item_get_group
+ * \par Function Description
+ * Returns the group to which the radio menu item belongs, as a #GList
+ * of #GedaRadioMenuItem. The list belongs to the widget and should not
+ * be freed.
+ *
+ * \param[in] radio_menu_item  The GedaRadioMenuItem
+ *
+ * \returns the group of @radio_menu_item
+ */
+GSList*
+geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
+{
+  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item), NULL);
+
+  return radio_menu_item->group;
+}
+
+void
+geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
+                                GSList            *group)
+{
+  GtkWidget *old_group_singleton = NULL;
+  GtkWidget *new_group_singleton = NULL;
+
+  g_return_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item));
+  g_return_if_fail (!g_slist_find (group, radio_menu_item));
+
+  if (radio_menu_item->group) {
+
+    GSList *slist;
+
+    radio_menu_item->group = g_slist_remove (radio_menu_item->group, radio_menu_item);
+
+    if (radio_menu_item->group && !radio_menu_item->group->next)
+      old_group_singleton = g_object_ref (radio_menu_item->group->data);
+
+    for (slist = radio_menu_item->group; slist; slist = slist->next) {
+
+      GedaRadioMenuItem *tmp_item;
+
+      tmp_item = slist->data;
+
+      tmp_item->group = radio_menu_item->group;
+    }
+  }
+
+  if (group && !group->next)
+    new_group_singleton = g_object_ref (group->data);
+
+  radio_menu_item->group = g_slist_prepend (group, radio_menu_item);
+
+  if (group) {
+
+    GSList *slist;
+
+    for (slist = group; slist; slist = slist->next) {
+
+      GedaRadioMenuItem *tmp_item;
+
+      tmp_item = slist->data;
+
+      tmp_item->group = radio_menu_item->group;
+    }
+  }
+  else {
+
+    GEDA_CHECK_MENU_ITEM (radio_menu_item)->active = TRUE;
+    /* gtk_widget_set_state (GTK_WIDGET (radio_menu_item), GTK_STATE_ACTIVE);
+     */
+  }
+
+  g_object_ref (radio_menu_item);
+
+  g_object_notify (G_OBJECT (radio_menu_item), "group");
+  g_signal_emit (radio_menu_item, group_changed_signal, 0);
+
+  if (old_group_singleton) {
+
+    g_signal_emit (old_group_singleton, group_changed_signal, 0);
+    g_object_unref (old_group_singleton);
+  }
+
+  if (new_group_singleton) {
+    g_signal_emit (new_group_singleton, group_changed_signal, 0);
+    g_object_unref (new_group_singleton);
+  }
+
+  g_object_unref (radio_menu_item);
 }
 
 /** @} geda-radio-menu-item */
