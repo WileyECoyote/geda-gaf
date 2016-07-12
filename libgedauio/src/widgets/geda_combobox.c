@@ -2421,6 +2421,7 @@ geda_combo_box_get_type (void)
  * \par Function Description
  *  Ensures \a combo_box is a valid G_Object and compares signature
  *  to geda combo box type.
+ *
  * \return TRUE if \a combo_box is a valid GedaComboBox
  */
 bool

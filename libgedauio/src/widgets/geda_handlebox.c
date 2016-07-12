@@ -1372,15 +1372,15 @@ geda_handle_box_finalize (GObject *object)
   G_OBJECT_CLASS (geda_handle_box_parent_class)->finalize (object);
 }
 
-/*! \brief GedaHandleBoxClass Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaHandleBoxClass Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  g_class     GedaHandleBoxClass class being initializing
- *  \param [in]  class_data  Associated GedaHandleBoxClass structure
+ * \param [in]  g_class     GedaHandleBoxClass class being initializing
+ * \param [in]  class_data  Associated GedaHandleBoxClass structure
  */
 static void
 geda_handle_box_class_init(void *g_class, void *class_data)
@@ -1492,14 +1492,14 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    G_TYPE_POINTER);
 }
 
-/*! \brief Type instance initializer for GedaHandleBox
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaHandleBox
+ * \par Function Description
  *  Type instance initializer for GedaHandleBox, initializes a new empty
  *  GedaHandleBox object.
  *
- *  \param [in] instance The GedaHandleBox structure being initialized,
- *  \param [in] g_class  The GedaHandleBox class we are initializing.
+ * \param [in] instance The GedaHandleBox structure being initialized,
+ * \param [in] g_class  The GedaHandleBox class we are initializing.
  */
 static void
 geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
@@ -1528,16 +1528,16 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
  * @{
  */
 
-/*! \brief Retrieve GedaHandleBox's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaHandleBox's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaHandleBox Type identifier. When
  *  first called, the function registers a #GedaHandleBox in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaHandleBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaHandleBox.
+ * \return GedaType identifier associated with GedaHandleBox.
  */
 GedaType geda_handle_box_get_type (void)
 {
@@ -1574,6 +1574,7 @@ GedaType geda_handle_box_get_type (void)
  * \par Function Description
  *  Ensures \a handlebox is a valid G_Object and compares signature
  *  to geda handlebox type.
+ *
  * \return TRUE if \a handlebox is a valid GedaHandleBox
  */
 bool
@@ -1585,8 +1586,9 @@ is_a_geda_handle_box (GedaHandleBox *handlebox)
   return FALSE;
 }
 
-/*! \brief Get a New GedaHandleBox Object
- *  \par Function Description
+/*!
+ * \brief Get a New GedaHandleBox Object
+ * \par Function Description
  *  Creates and returns a new GedaHandleBox instance
  */
 GtkWidget*
@@ -1595,6 +1597,11 @@ geda_handle_box_new (void)
   return g_object_new (GEDA_TYPE_HANDLE_BOX, NULL);
 }
 
+/*!
+ * \brief Programmatically dock the child of a GedaHandleBox
+ * \par Function Description
+ *  Creates and returns a new GedaHandleBox instance
+ */
 void
 geda_handle_box_dock (GedaHandleBox *handlebox) {
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
@@ -1603,8 +1610,9 @@ geda_handle_box_dock (GedaHandleBox *handlebox) {
   }
 }
 
-/*! \brief Sets the Shadow Type of a GedaHandleBox
- *  \par Function Description
+/*!
+ * \brief Sets the Shadow Type of a GedaHandleBox
+ * \par Function Description
  *  Sets the type of shadow to be drawn around the border of the handle box.
  *
  * \param [in] handle_box The #GedaHandleBox object
@@ -1631,13 +1639,14 @@ geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
   }
 }
 
-/*! \brief Get the Shadow Type of a GedaHandleBox
- *  \par Function Description
+/*!
+ * \brief Get the Shadow Type of a GedaHandleBox
+ * \par Function Description
  *
  * Gets the type of shadow drawn around the handle box. See
  * geda_handle_box_set_shadow_type().
  *
- * \param [in] handle_box    The #GedaHandleBox object
+ * \param [in] handle_box   The #GedaHandleBox object
  *
  * \returns the type of shadow currently drawn around the handle box.
  */
@@ -1649,8 +1658,9 @@ geda_handle_box_get_shadow_type (GedaHandleBox *handle_box)
   return handle_box->shadow_type;
 }
 
-/*! \brief Sets the Handle Position of a GedaHandleBox
- *  \par Function Description
+/*!
+ * \brief Sets the Handle Position of a GedaHandleBox
+ * \par Function Description
  * Sets the side of the handlebox where the handle is drawn.
  *
  * \param [in] handle_box The #GedaHandleBox object
@@ -1677,8 +1687,9 @@ geda_handle_box_set_handle_position (GedaHandleBox   *handle_box,
   }
 }
 
-/*! \brief geda_handle_box_get_handle_position
- *  \par Function Description
+/*!
+ * \brief geda_handle_box_get_handle_position
+ * \par Function Description
  *
  * Gets the handle position of the handle box. See
  * geda_handle_box_set_handle_position().
@@ -1695,8 +1706,9 @@ geda_handle_box_get_handle_position (GedaHandleBox *handle_box)
   return handle_box->handle_position;
 }
 
-/*! \brief Sets the snap edge of a GedaHandleBox
- *  \par Function Description
+/*!
+ * \brief Sets the snap edge of a GedaHandleBox
+ * \par Function Description
  * The snap edge is the edge of the detached child that must be aligned with
  * the corresponding edge of the "ghost" left behind when the child was detached
  * to reattach the torn-off window. Usually, the snap edge should be chosen so
@@ -1732,10 +1744,11 @@ geda_handle_box_set_snap_edge (GedaHandleBox   *handle_box,
   }
 }
 
-/*! \brief geda_handle_box_get_snap_edge
- *  \par Function Description
- * Gets the edge used for determining reattachment of the handle box. See
- * geda_handle_box_set_snap_edge().
+/*!
+ * \brief geda_handle_box_get_snap_edge
+ * \par Function Description
+ *  Gets the edge used for determining reattachment of the handle box. See
+ *  geda_handle_box_set_snap_edge().
  *
  * \param [in] handle_box    The #GedaHandleBox object
  *
@@ -1750,9 +1763,10 @@ geda_handle_box_get_snap_edge (GedaHandleBox *handle_box)
   return handle_box->snap_edge;
 }
 
-/*! \brief Get pointer to the containing Toolbar widget
- *  \par Function Description
- * Gets the child toolbar.
+/*!
+ * \brief Get pointer to the containing Toolbar widget
+ * \par Function Description
+ *  Gets the child toolbar.
  *
  * \param [in] handle_box    The #GedaHandleBox object
  *
@@ -1770,15 +1784,15 @@ geda_handle_box_get_toolbar (GedaHandleBox *handle_box)
   return NULL;
 }
 
-/*! \brief geda_handle_box_get_child_detached
- *  \par Function Description
+/*!
+ * \brief geda_handle_box_get_child_detached
+ * \par Function Description
  *
  * Whether the handlebox's child is currently detached.
  *
  * \param [in] handle_box    The #GedaHandleBox object
  *
  * \returns %TRUE if the child is currently detached, otherwise %FALSE
- *
  */
 bool
 geda_handle_box_get_child_detached (GedaHandleBox *handle_box)

@@ -765,9 +765,9 @@ geda_bulb_class_init(void *class, void *class_data)
                                        G_TYPE_NONE, 0);
 }
 
-/*! \brief Initialize new GedaBulb data structure instance.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaBulb data structure instance.
+ * \par Function Description
  *  This function is call after the GedaBulbClass is created
  *  to initialize the data structure.
  *
@@ -880,8 +880,9 @@ is_a_geda_bulb (GedaBulb *bulb)
  *  @{
  */
 
-/*! \brief Create a New GedaBulb
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb
+ * \par Function Description
  *  Creates a new #GedaBulb object, the bulb is add to \a group if the
  *  group exist. If the group does not exist a new bulb group is created.
  *
@@ -903,8 +904,9 @@ geda_bulb_new (GSList *group)
   return bulb;
 }
 
-/*! \brief Create a New Visible GedaBulb
- *  \par Function Description
+/*!
+ * \brief Create a New Visible GedaBulb
+ * \par Function Description
  *  Creates a new #GedaBulb object, the bulb is add to \a group if the
  *  group exist. If the group does not exist a new bulb group is created.
  *
@@ -928,8 +930,9 @@ geda_bulb_new_visible (GSList *group)
   return bulb;
 }
 
-/*! \brief Create a New GedaBulb with a Label
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb with a Label
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is added to
  *  \a group if the group exist. If the group does not exist a new bulb group
  *  is created.
@@ -959,8 +962,9 @@ geda_bulb_new_with_label (GSList     *group,
   return bulb;
 }
 
-/*! \brief Create a New Visible GedaBulb with a Label
- *  \par Function Description
+/*!
+ * \brief Create a New Visible GedaBulb with a Label
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
  *  \a group if the group exist. If the group does not exist a new bulb group
  *  is created.
@@ -983,8 +987,9 @@ geda_bulb_new_visible_with_label (GSList     *group,
   return bulb;
 }
 
-/*! \brief Create a New GedaBulb with a Mnemonic Label
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb with a Mnemonic Label
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
  *  \a group if the group exist. If the group does not exist a new bulb group
  *  is created. \a label can, and should, include an underscores in indicate
@@ -1012,8 +1017,9 @@ geda_bulb_new_with_mnemonic (GSList      *group,
   return bulb;
 }
 
-/*! \brief Create a New Visible GedaBulb with a Mnemonic Label
- *  \par Function Description
+/*!
+ * \brief Create a New Visible GedaBulb with a Mnemonic Label
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
  *  \a group if the group exist. If the group does not exist a new bulb group
  *  is created. \a label can, and should, include an underscores in indicate
@@ -1043,8 +1049,9 @@ geda_bulb_new_visible_with_mnemonic (GSList     *group,
   return bulb;
 }
 
-/*! \brief Create a New GedaBulb from group Member
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb from group Member
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is added to
  *  same group as \a group_member.
  *
@@ -1068,8 +1075,9 @@ geda_bulb_new_from_widget (GtkWidget *group_member, bool visible)
   return bulb;
 }
 
-/*! \brief Create a New GedaBulb with Label from group Member
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb with Label from group Member
+ * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is added to
  *  same group as \a group_member.
  *
@@ -1096,8 +1104,9 @@ geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
   return bulb;
 }
 
-/*! \brief Create a New GedaBulb with a Mnemonic Label from group Member
- *  \par Function Description
+/*!
+ * \brief Create a New GedaBulb with a Mnemonic Label from group Member
+ * \par Function Description
  *  Creates a new #GedaBulb object with a mnemonic label, the bulb is added to
  *  same group as \a group_member. The \a label can, and should, include an
  *  underscores in indicate the mnemonic for the widget.
@@ -1131,15 +1140,16 @@ geda_bulb_new_with_mnemonic_from_widget (GtkWidget  *group_member,
  *  @{
  */
 
-/*! \brief Get the group list for a given GedaBulb member
- *  \par Function Description
+/*!
+ * \brief Get the group list for a given GedaBulb member
+ * \par Function Description
  *  Returns a single-linked list containing all the bulb in the same group
  *  as \a bulb. The returned list is owned by the bulb button and must not
  *  be modified or freed.
  *
- *  \param [in] bulb  The group whose group is to be retrieved
+ * \param [in] bulb  The group whose group is to be retrieved
  *
- *  \return single-linked list of group members containing \a bulb
+ * \return single-linked list of group members containing \a bulb
  */
 GSList*
 geda_bulb_get_group (GtkWidget *bulb)
@@ -1149,16 +1159,17 @@ geda_bulb_get_group (GtkWidget *bulb)
   return ((GedaBulb*)bulb)->group;
 }
 
-/*! \brief Set the Group a GedaBulb is to be Assocatiated
- *  \par Function Description
+/*!
+ * \brief Set the Group a GedaBulb is to be Assocatiated
+ * \par Function Description
  *  Sets the group of the #GedaBulb object.
  *
  *  \note Setting the group does not change the interface layout in any way,
  *  if groups are changed the layout may need to be rearranged to reflect the
  *  changes.
  *
- *  \param [in] widget The #GedaBulb is group is to be set
- *  \param [in] group  The bulb group \a bulb is to join
+ * \param [in] widget The #GedaBulb is group is to be set
+ * \param [in] group  The bulb group \a bulb is to join
  */
 void
 geda_bulb_set_group (GtkWidget *widget, GSList *group)
@@ -1236,15 +1247,16 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
   g_object_unref (bulb);
 }
 
-/*! \brief Add #GedaBulb to a Group given a group member
- *  \par Function Description
+/*!
+ * \brief Add #GedaBulb to a Group given a group member
+ * \par Function Description
  *  Joins a #GedaBulb object to the group of another #GedaBulb object.
  *  If \a group_source is NULL, \a bulb will removed from any group that is
  *  currently a member. This function is equivilent to using geda_bulb_get_
  *  group and geda_bulb_set_group() methods
  *
- *  \param [in] bulb         The #GedaBulb is group is to be set
- *  \param [in] group_source The bulb whose group \a bulb is to join
+ * \param [in] bulb         The #GedaBulb is group is to be set
+ * \param [in] group_source The bulb whose group \a bulb is to join
  *
  *  example:
  *
@@ -1286,17 +1298,18 @@ geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
   }
 }
 
-/*! \brief Get the Index of the Active GedaBulb in a group
- *  \par Function Description
- *   Returns the numerical index of the active bulb in a group,
- *   in other words, the bulb that is turned-on.
+/*!
+ * \brief Get the Index of the Active GedaBulb in a group
+ * \par Function Description
+ *  Returns the numerical index of the active bulb in a group,
+ *  in other words, the bulb that is turned-on.
  *
  *  \note Group list are Zero based single-linked list, so the
  *  first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group_list The bulb group to be queried
+ * \param [in] group_list The bulb group to be queried
  *
- *
+ * \returns index of active member
  */
 int geda_bulb_group_get_active_index (GSList *group_list) {
 
@@ -1326,17 +1339,17 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
   return ((length - 1) - active);
 }
 
-/*! \brief Set the Active GedaBulb in a group by Index
- *  \par Function Description
- *   Set the bulb at index active, that is turns-on the bulb, other
- *   members will be turn-off automatically.
+/*!
+ * \brief Set the Active GedaBulb in a group by Index
+ * \par Function Description
+ *  Set the bulb at index active, that is turns-on the bulb, other
+ *  members will be turn-off automatically.
  *
- *  \note Group list are Zero based single-linked list, so the
- *  first bulb is 0 and the last is group length minus 1.
+ * \note Group list are Zero based single-linked list, so the
+ *       first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group_list  The bulb group to be set
- *  \param [in] which_bulb  Index of bulb in group to set active
- *
+ * \param [in] group_list  The bulb group to be set
+ * \param [in] which_bulb  Index of bulb in group to set active
  */
 void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
 {
@@ -1367,20 +1380,20 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
   return;
 }
 
-/*! \brief Quietly Set the Active GedaBulb in a group by Index
- *  \par Function Description
- *   Set the bulb at index active, that is, turns-on the bulb, and
- *   turns-off the other members. This function is generally only
- *   used to set the initial state of a group after creation as no
- *   signals will be generated. This means callback handlers in the
- *   application will not get notified of the state change.
+/*!
+ * \brief Quietly Set the Active GedaBulb in a group by Index
+ * \par Function Description
+ *  Set the bulb at index active, that is, turns-on the bulb, and
+ *  turns-off the other members. This function is generally only
+ *  used to set the initial state of a group after creation as no
+ *  signals will be generated. This means callback handlers in the
+ *  application will not get notified of the state change.
  *
- *  \note Group list are Zero based single-linked list, so the
- *  first bulb is 0 and the last is group length minus 1.
+ * \note Group list are Zero based single-linked list, so the
+ *       first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group_list  The bulb group to be set
- *  \param [in] which_bulb  Index of bulb in group to set active
- *
+ * \param [in] group_list  The bulb group to be set
+ * \param [in] which_bulb  Index of bulb in group to set active
  */
 void
 geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
@@ -1415,16 +1428,15 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
 /** @} endgroup GedaBulb-Groups */
 
 
-/*! \brief GedaBulb Get Show Button during Mouse-Over events
- *
- *  \par Function Description
+/*!
+ * \brief GedaBulb Get Show Button during Mouse-Over events
+ * \par Function Description
  *  Returns whether the pre-light button should be display during
  *  mouse over-events
  *
  * \param widget Pointer to a #GedaBulb object.
  *
- * Returns: whether to show the button.
- *
+ * \returns whether to show the button.
  */
 bool
 geda_bulb_get_show_button (GtkWidget *widget)
@@ -1438,9 +1450,9 @@ geda_bulb_get_show_button (GtkWidget *widget)
   return bulb->show_butt;
 }
 
-/*! \brief GedaBulb Set Show Button during Mouse-Over events
- *
- *  \par Function Description
+/*!
+ * \brief GedaBulb Set Show Button during Mouse-Over events
+ * \par Function Description
  *  If \a show_button is %TRUE, the pre-light button will be drawn
  *  during mouse-over event.
  *
@@ -1460,9 +1472,9 @@ geda_bulb_set_show_button (GtkWidget *widget, bool show_button)
 }
 
 
-/*! \brief Set sensitivity of a Group of GedaBulbs
- *
- *  \par Function Description
+/*!
+ * \brief Set sensitivity of a Group of GedaBulbs
+ * \par Function Description
  *  The is a convenience function to set the sensitivity of all the
  *  widgets in the group to the given state.
  *
