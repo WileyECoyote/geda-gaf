@@ -1,7 +1,8 @@
 2016-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Revise geda_check_menu_item_set_show_toggle
-      to actually set always_show_toggle, add Doxygen comments.
+      to actually set always_show_toggle, add Doxygen comments. Add geda_check_menu_
+      item_get_show_toggle. Revise Doxygen comment blocks.
 
     * src/widgets/geda_menu_item.c: Remove translation of signal names.
 

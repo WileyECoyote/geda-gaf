@@ -271,14 +271,15 @@ geda_check_menu_item_set_property (GObject      *object,
   }
 }
 
-/*! \brief GedaCheckMenuItem Type Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaCheckMenuItem Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaCheckMenuItemClass class we are initializing
- *  \param [in]  class_data  GedaCheckMenuItem structure associated with the class
+ * \param [in]  class       GedaCheckMenuItemClass class we are initializing
+ * \param [in]  class_data  GedaCheckMenuItem structure associated with the class
  */
 static void
 geda_check_menu_item_class_init(void *class, void *class_data)
@@ -352,8 +353,9 @@ geda_check_menu_item_class_init(void *class, void *class_data)
                    G_TYPE_NONE, 0);
 }
 
-/*! \brief Initialize new GedaCheckMenuItem data structure instance.
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaCheckMenuItem data structure instance.
+ * \par Function Description
  *  This function is call after the GedaCheckMenuItemClass is created
  *  to initialize the data structure.
  *
@@ -554,7 +556,7 @@ geda_check_menu_item_new_with_mnemonic (const char  *label)
  * \brief Get CheckMenuItem Active
  * \ingroup CheckMenuItem
  * \par Function Description
- * Returns whether the check menu item is active.
+ *  Returns whether the check menu item is active.
  *
  * \param [in] check_menu_item a #GedaCheckMenuItem
  *
@@ -570,6 +572,17 @@ geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
   return check_menu_item->active;
 }
 
+/*!
+ * \brief  Set a CheckMenuItem Active
+ * \ingroup CheckMenuItem
+ * \par Function Description
+ * Programmatically sets \a check_menu_item to the given state.
+ *
+ * \param [in] check_menu_item a #GedaCheckMenuItem
+ * \param [in] is_active       boolean state to be set
+ *
+ * \sa geda_check_menu_item_get_active
+ */
 void
 geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
                                  bool               is_active)
@@ -642,20 +655,21 @@ geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
   return check_menu_item->inconsistent;
 }
 
-/*! \brief Set CheckMenuItem Inconsistent
- *  \ingroup GedaCheckMenuItem
- *  \par Function Description
- * If the user has selected a range of elements (such as some text or
- * spreadsheet cells) that are affected by a boolean setting, and the
- * current values in that range are inconsistent, you may want to
- * display the check in an "in between" state. This function turns on
- * "in between" display.  Normally you would turn off the inconsistent
- * state again if the user explicitly selects a setting. This has to be
- * done manually, geda_check_menu_item_set_inconsistent() only affects
- * visual appearance, it doesn't affect the semantics of the widget.
+/*!
+ * \brief Set CheckMenuItem Inconsistent
+ * \ingroup GedaCheckMenuItem
+ * \par Function Description
+ *  If the user has selected a range of elements (such as some text or
+ *  spreadsheet cells) that are affected by a boolean setting, and the
+ *  current values in that range are inconsistent, you may want to
+ *  display the check in an "in between" state. This function turns on
+ *  "in between" display.  Normally you would turn off the inconsistent
+ *  state again if the user explicitly selects a setting. This has to be
+ *  done manually, geda_check_menu_item_set_inconsistent() only affects
+ *  visual appearance, it doesn't affect the semantics of the widget.
  *
- * \param [in] check_menu_item: Pointer to #GedaCheckMenuItem
- * \param [in] setting: %TRUE to display an "inconsistent" third state check
+ * \param [in] check_menu_item Pointer to #GedaCheckMenuItem
+ * \param [in] setting         %TRUE to display an "inconsistent" third state check
  */
 void
 geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
