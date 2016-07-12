@@ -956,7 +956,7 @@ geda_label_class_init  (void *class, void *class_data)
    */
 /*
   signals[MOVE_CURSOR] =
-  g_signal_new ( _("move-cursor"),
+  g_signal_new ("move-cursor",
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, move_cursor),
@@ -968,7 +968,7 @@ geda_label_class_init  (void *class, void *class_data)
                    G_TYPE_BOOLEAN);
 */
   signals[MOVE_CURSOR] =
-  g_signal_new ( _("move-cursor"),
+  g_signal_new ( "move-cursor",
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, move_cursor),
@@ -988,7 +988,7 @@ geda_label_class_init  (void *class, void *class_data)
    * The default binding for this signal is Ctrl-c.
    */
   signals[COPY_CLIPBOARD] =
-  g_signal_new ( _("copy-clipboard"),
+  g_signal_new ( "copy-clipboard",
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, copy_clipboard),
@@ -1009,7 +1009,7 @@ geda_label_class_init  (void *class, void *class_data)
    * to this signal and append your menuitems to the menu.
    */
   signals[POPULATE_POPUP] =
-  g_signal_new (_("populate-popup"),
+  g_signal_new ("populate-popup",
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    G_SIGNAL_RUN_LAST,
                    G_STRUCT_OFFSET (GedaLabelClass, populate_popup),
@@ -6437,7 +6437,7 @@ geda_label_get_cursor_position (GedaLabel *label)
     }
   }
   return 0;
-}*
+}
 
 /*!
  * \brief Get selection Bounds
