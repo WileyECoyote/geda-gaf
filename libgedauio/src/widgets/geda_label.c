@@ -6257,26 +6257,9 @@ static void geda_label_activate_current_link (GedaLabel *label)
   }
 }
 
-static GedaLabelLink *
-geda_label_get_current_link (GedaLabel *label)
-{
-  SelectionInfo *info = label->priv->select_info;
-  GedaLabelLink *link;
-
-  if (!info)
-    return NULL;
-
-  if (info->link_clicked)
-    link = info->active_link;
-  else
-    link = geda_label_get_focus_link (label);
-
-  return link;
-}
-
-/*! \brief geda_label_get_current_uri
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_current_uri
+ * \par Function Description
  *
  * Returns the URI for the currently active link in the label.
  * The active link is the one under the mouse pointer or, in a
@@ -6286,69 +6269,69 @@ geda_label_get_current_link (GedaLabel *label)
  * This function is intended for use in a GedaLabel::activate-link handler
  * or for use in a GtkWidget::query-tooltip handler.
  *
- *  \param [in] label:       The GedaLabel object
+ * \param [in] label:       The GedaLabel object
  *
- * Returns: the currently active URI. The string is owned by GTK+ and must
- *   not be freed or modified.
+ * \returns the currently active URI. The string is owned by GTK+ and must
+ *          not be freed or modified.
  *
  */
 const char *
 geda_label_get_current_uri (GedaLabel *label)
 {
-  GedaLabelLink *link;
+  if (GEDA_IS_LABEL(label)) {
 
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+    GedaLabelLink *link;
 
-  link = geda_label_get_current_link (label);
+    link = geda_label_get_current_link (label);
 
-  if (link)
-    return link->uri;
-
+    if (link) {
+      return link->uri;
+    }
+  }
   return NULL;
 }
 
-/*! \brief geda_label_set_track_visited_links
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_track_visited_links
+ * \par Function Description
  *
  * Sets whether the label should keep track of clicked
  * links (and use a different color for them).
  *
- *  \param [in] label:       The GedaLabel object
- *  \param [in] track_links: %TRUE to track visited links
+ * \param [in] label:       The GedaLabel object
+ * \param [in] track_links: %TRUE to track visited links
  */
 void
 geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 {
-  GedaLabelData *priv;
+  if (GEDA_IS_LABEL(label)) {
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+    GedaLabelData *priv = label->priv;
 
-  priv = label->priv;
+    track_links = track_links != FALSE;
 
-  track_links = track_links != FALSE;
+    if (priv->track_links != track_links) {
 
-  if (priv->track_links != track_links) {
+      priv->track_links = track_links;
 
-    priv->track_links = track_links;
+      /* FIXME: shouldn't have to redo everything here */
+      geda_label_recalculate (label);
 
-    /* FIXME: shouldn't have to redo everything here */
-    geda_label_recalculate (label);
-
-    g_object_notify (G_OBJECT (label), "track-visited-links");
+      g_object_notify (G_OBJECT (label), "track-visited-links");
+    }
   }
 }
 
-/*! \brief geda_label_get_track_visited_links
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_track_visited_links
+ * \par Function Description
  *
  * Returns whether the label is currently keeping track
  * of clicked links.
  *
- *  \param [in] label The GedaLabel object
+ * \param [in] label The GedaLabel object
  *
- * Returns: %TRUE if clicked links are remembered
+ * \returns %TRUE if clicked links are remembered
  *
  */
 bool geda_label_get_track_visited_links (GedaLabel *label)
@@ -6416,13 +6399,14 @@ geda_label_query_tooltip (GtkWidget  *widget,
 int
 geda_label_get_cursor_position (GedaLabel *label)
 {
-  GedaLabelData *priv = label->priv;
+  if (GEDA_IS_LABEL(label)) {
 
-  g_return_val_if_fail (GEDA_IS_LABEL (label), 0);
+    GedaLabelData *priv = label->priv;
 
-  if (priv->select_info && priv->select_info->selectable) {
-    return g_utf8_pointer_to_offset (label->text,
-                                     label->text + priv->select_info->selection_end);
+    if (priv->select_info && priv->select_info->selectable) {
+      return g_utf8_pointer_to_offset (label->text,
+                                       label->text + priv->select_info->selection_end);
+    }
   }
   return 0;
 }
@@ -6430,14 +6414,16 @@ geda_label_get_cursor_position (GedaLabel *label)
 int
 geda_label_get_selection_bound (GedaLabel *label)
 {
-  GedaLabelData *priv = label->priv;
+  if (GEDA_IS_LABEL(label)) {
 
-  g_return_val_if_fail (GEDA_IS_LABEL (label), 0);
+    GedaLabelData *priv = label->priv;
 
-  if (priv->select_info && priv->select_info->selectable) {
-    return g_utf8_pointer_to_offset (label->text,
-                                     label->text + priv->select_info->selection_anchor);
+    if (priv->select_info && priv->select_info->selectable) {
+      return g_utf8_pointer_to_offset (label->text,
+                                       label->text + priv->select_info->selection_anchor);
+    }
   }
+
   return 0;
 }
 #undef PangoFontDescr
