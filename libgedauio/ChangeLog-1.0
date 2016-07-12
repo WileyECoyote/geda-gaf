@@ -9,12 +9,15 @@
     * src/widgets/geda_check_menu_item.c: Add is_a_geda_check_menu_item and
       initialize instance_type in geda_check_menu_item_instance_init.
 
-    * src/widgets/geda_label.c: Revise validation of GedaLabel object in:
+    * src/widgets/geda_label.c: Add and revise Doxygen comments, revise validation
+      of GedaLabel object in:
 
             * geda_label_get_current_uri
             * geda_label_get_track_visited_links
             * geda_label_get_cursor_position
             * geda_label_get_selection_bound
+
+
 
     * src/widgets/geda_radio_menu_item.c: Add geda_radio_menu_item_get_type and
       remove G_DEFINE_TYPE macro. Add is_a_geda_check_menu_item and

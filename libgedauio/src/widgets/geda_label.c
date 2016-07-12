@@ -6028,6 +6028,27 @@ popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
   *y = CLAMP (*y, 0, MAX (0, gdk_screen_get_height (screen) - req.height));
 }
 
+/* Helper use by:
+ *   1) open_link_activate_cb
+ *   2) geda_label_get_current_uri
+ */
+static GedaLabelLink *
+geda_label_get_current_link (GedaLabel *label)
+{
+  SelectionInfo *info = label->priv->select_info;
+  GedaLabelLink *link;
+
+  if (!info)
+    return NULL;
+
+  if (info->link_clicked)
+    link = info->active_link;
+  else
+    link = geda_label_get_focus_link (label);
+
+  return link;
+}
+
 static void
 open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
@@ -6269,11 +6290,10 @@ static void geda_label_activate_current_link (GedaLabel *label)
  * This function is intended for use in a GedaLabel::activate-link handler
  * or for use in a GtkWidget::query-tooltip handler.
  *
- * \param [in] label:       The GedaLabel object
+ * \param [in] label        The GedaLabel object
  *
  * \returns the currently active URI. The string is owned by GTK+ and must
  *          not be freed or modified.
- *
  */
 const char *
 geda_label_get_current_uri (GedaLabel *label)
@@ -6292,14 +6312,14 @@ geda_label_get_current_uri (GedaLabel *label)
 }
 
 /*!
- * \brief geda_label_set_track_visited_links
+ * \brief Set whether visited links are tracked
  * \par Function Description
  *
  * Sets whether the label should keep track of clicked
  * links (and use a different color for them).
  *
- * \param [in] label:       The GedaLabel object
- * \param [in] track_links: %TRUE to track visited links
+ * \param [in] label        The GedaLabel object
+ * \param [in] track_links  %TRUE to track visited links
  */
 void
 geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
@@ -6323,7 +6343,7 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 }
 
 /*!
- * \brief geda_label_get_track_visited_links
+ * \brief Get whether visited links are tracked
  * \par Function Description
  *
  * Returns whether the label is currently keeping track
@@ -6332,7 +6352,6 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
  * \param [in] label The GedaLabel object
  *
  * \returns %TRUE if clicked links are remembered
- *
  */
 bool geda_label_get_track_visited_links (GedaLabel *label)
 {
@@ -6396,6 +6415,15 @@ geda_label_query_tooltip (GtkWidget  *widget,
             query_tooltip (widget, x, y, keyboard_tip, tooltip);
 }
 
+/*!
+ * \brief Get cursor position
+ * \par Function Description
+ * Returns offset of cursor index position within the label text.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Offset of text index within the label text
+ */
 int
 geda_label_get_cursor_position (GedaLabel *label)
 {
@@ -6409,8 +6437,17 @@ geda_label_get_cursor_position (GedaLabel *label)
     }
   }
   return 0;
-}
+}*
 
+/*!
+ * \brief Get selection Bounds
+ * \par Function Description
+ *  Returns offset of the label text selection anchor.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Offset of the label text selection
+ */
 int
 geda_label_get_selection_bound (GedaLabel *label)
 {
