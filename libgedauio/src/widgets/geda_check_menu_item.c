@@ -673,11 +673,21 @@ geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
   }
 }
 
+/*!
+ * \brief Set GedaCheckMenuItem show toggle
+ * \par Function Description
+ *  Set whether \a menu_item toggle is drawn
+ *
+ * \param [in] check_menu_item a #GedaCheckMenuItem
+ * \param [in] show            %TRUE if the toggle widget is to be displayed
+ */
 void
 geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
-                                      bool               always)
+                                      bool               show)
 {
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (menu_item));
+  if (GEDA_IS_CHECK_MENU_ITEM (menu_item)) {
+    menu_item->always_show_toggle = show;
+  }
 }
 
 void
