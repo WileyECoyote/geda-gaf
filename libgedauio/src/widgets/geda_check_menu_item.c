@@ -343,7 +343,7 @@ geda_check_menu_item_class_init(void *class, void *class_data)
   check_menu_class->draw_indicator = geda_real_check_menu_item_draw_indicator;
 
   check_menu_item_signals[TOGGLED] =
-  g_signal_new (_("toggled"),
+    g_signal_new ("toggled",
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    G_SIGNAL_RUN_FIRST,
                    G_STRUCT_OFFSET (GedaCheckMenuItemClass, toggled),

@@ -756,7 +756,7 @@ geda_bulb_class_init(void *class, void *class_data)
    * of the group that a button belongs to changes.
    *
    */
-  group_changed_signal = g_signal_new (_("group-changed"),
+  group_changed_signal = g_signal_new ("group-changed",
                                        G_OBJECT_CLASS_TYPE (object_class),
                                        G_SIGNAL_RUN_FIRST,
                                        G_STRUCT_OFFSET (GedaBulbClass, group_changed),
