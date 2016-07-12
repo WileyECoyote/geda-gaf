@@ -526,7 +526,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
    * Emitted when the item is activated.
    */
   menu_item_signals[ACTIVATE] =
-    g_signal_new (_("activate"),
+    g_signal_new ("activate",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuItemClass, activate),
@@ -544,7 +544,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
    * #GedaMenuItem::activate.
    */
   menu_item_signals[ACTIVATE_ITEM] =
-    g_signal_new (_("activate-item"),
+    g_signal_new ("activate-item",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuItemClass, activate_item),
@@ -553,7 +553,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                   G_TYPE_NONE, 0);
 
   menu_item_signals[TOGGLE_SIZE_REQUEST] =
-    g_signal_new (_("toggle-size-request"),
+    g_signal_new ("toggle-size-request",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_request),
@@ -563,7 +563,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                   G_TYPE_POINTER);
 
   menu_item_signals[TOGGLE_SIZE_ALLOCATE] =
-    g_signal_new (_("toggle-size-allocate"),
+    g_signal_new ("toggle-size-allocate",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_allocate),
@@ -573,7 +573,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                   G_TYPE_INT);
 
   menu_item_signals[SELECT] =
-    g_signal_new (_("select"),
+    g_signal_new ("select",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuItemClass, select),
@@ -582,7 +582,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                   G_TYPE_NONE, 0);
 
   menu_item_signals[DESELECT] =
-    g_signal_new (_("deselect"),
+    g_signal_new ("deselect",
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuItemClass, deselect),
