@@ -1510,6 +1510,14 @@ geda_label_get_type (void)
   return geda_label_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaLabel
+ * \par Function Description
+ *  Ensures \a label is a valid G_Object and compares signature
+ *  to geda geda_label_type type.
+ *
+ * \return TRUE if \a label is a valid GedaLabel object
+ */
 bool
 is_a_geda_label (GedaLabel *label)
 {
@@ -2287,15 +2295,15 @@ geda_label_get_mnemonic_widget (GedaLabel *label)
   return label->priv->mnemonic_widget;
 }
 
-/*! \brief geda_label_get_mnemonic_keyval
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_mnemonic_keyval
+ * \par Function Description
  *
  * If the label has been set so that it has an mnemonic key this function
  * returns the keyval used for the mnemonic accelerator. If there is no
  * mnemonic set up it returns .
  *
- *  \param [in] label:    The GedaLabel object
+ * \param [in] label:    The GedaLabel object
  *
  * Returns: GDK keyval usable for accelerators, or
  */
@@ -2407,17 +2415,17 @@ static void geda_label_recalculate (GedaLabel *label)
   gtk_widget_queue_resize (GTK_WIDGET (label));
 }
 
-/*! \brief geda_label_set_text
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_text
+ * \par Function Description
  *
  * Sets the text within the #GedaLabel widget. It overwrites any text that
  * was there before.
  *
  * This will also clear any previously set mnemonic accelerators.
  *
- *  \param [in] label:  The GedaLabel object
- *  \param [in] str:    The text to be set
+ * \param [in] label:  The GedaLabel object
+ * \param [in] str:    The text to be set
  */
 void geda_label_set_text (GedaLabel *label, const char *str)
 {
@@ -2439,9 +2447,9 @@ void geda_label_widget_set_text (GtkWidget *widget, const char *str)
   geda_label_set_text((GedaLabel*)widget,str);
 }
 
-/*! \brief geda_label_set_attributes
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_attributes
+ * \par Function Description
  *
  * Sets a PangoAttrList; the attributes in the list are applied to the
  * label text.
@@ -2453,8 +2461,8 @@ void geda_label_widget_set_text (GtkWidget *widget, const char *str)
  * attributes, if you must; know that the attributes will be applied
  * to the label after the markup string is parsed.
  *
- *  \param [in] label:  The GedaLabel object
- *  \param [in] attrs:  PangoAttrList structure
+ * \param [in] label:  The GedaLabel object
+ * \param [in] attrs:  PangoAttrList structure
  */
 void
 geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
@@ -2477,9 +2485,9 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (label));
 }
 
-/*! \brief geda_label_get_attributes
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_attributes
+ * \par Function Description
  *
  * Gets the attribute list that was set on the label using
  * geda_label_set_attributes(), if any. This function does
@@ -2488,7 +2496,7 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  * effective attributes for the label, use
  * pango_layout_get_attribute (geda_label_get_layout (label)).
  *
- *  \param [in] label:  The GedaLabel object
+ * \param [in] label  The GedaLabel object
  *
  * Return value: (transfer none): the attribute list, or %NULL
  *     if none was set.
@@ -2500,18 +2508,17 @@ PangoAttrList *geda_label_get_attributes (GedaLabel *label)
   return label->attrs;
 }
 
-/*! \brief geda_label_set_label
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_label
+ * \par Function Description
  *
  * Sets the text of the label. The label is interpreted as
  * including embedded underlines and/or Pango markup depending
- * on the values of the #GedaLabel:use-underline" and
- * #GedaLabel:use-markup properties.
+ * on the values of the #GedaLabel::use-underline" and
+ * #GedaLabel::use-markup properties.
  *
- *  \param [in] label:  The GedaLabel object
- *  \param [in] str:    New text to set for the label
- *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    New text to set for the label
  */
 void geda_label_set_label (GedaLabel *label, const char *str)
 {
@@ -2526,17 +2533,17 @@ void geda_label_set_label (GedaLabel *label, const char *str)
   g_object_thaw_notify (G_OBJECT (label));
 }
 
-/*! \brief geda_label_get_label
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_label
+ * \par Function Description
  *
  * Fetches the text from a label widget including any embedded
  * underlines indicating mnemonics and Pango markup. (See
  * geda_label_get_text()).
  *
- *  \param [in] label:  The GedaLabel object
+ * \param [in] label:  The GedaLabel object
  *
- * Return value: the text of the label widget. This string is
+ * Return value the text of the label widget. This string is
  *   owned by the widget and must not be modified or freed.
  */
 const char *
@@ -2556,7 +2563,7 @@ typedef struct
 } UriParserData;
 
 static void
-start_element_handler (GMarkupParseContext  *context,
+start_element_handler (GMarkupParseContext *context,
                        const char          *element_name,
                        const char         **attribute_names,
                        const char         **attribute_values,
@@ -2882,8 +2889,9 @@ geda_label_set_markup_internal (GedaLabel  *label,
   }
 
   if (attrs) {
-    if (label->markup_attrs)
+    if (label->markup_attrs) {
       pango_attr_list_unref (label->markup_attrs);
+    }
     label->markup_attrs = attrs;
   }
 
@@ -2966,18 +2974,18 @@ geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
   g_object_thaw_notify (G_OBJECT (label));
 }
 
-/*! \brief geda_label_get_text
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_text
+ * \par Function Description
  *
  * Fetches the text from a label widget, as displayed on the
  * screen. This does not include any embedded underlines
  * indicating mnemonics or Pango markup. (See geda_label_get_label())
  *
- * Return value: the text in the label widget. This is the internal
- *   string used by the label, and must not be modified.
+ * \return value the text in the label widget. This is the internal
+ *         string used by the label, and must not be modified.
  *
- *  \param [in] label:  The GedaLabel object
+ * \param [in] label The GedaLabel object
  *
  */
 const char *geda_label_get_text (GedaLabel *label)
@@ -2986,7 +2994,7 @@ const char *geda_label_get_text (GedaLabel *label)
 
   return label->text;
 }
-const char*geda_label_widget_get_text (GtkWidget *widget)
+const char *geda_label_widget_get_text (GtkWidget *widget)
 {
   return geda_label_get_text((GedaLabel*) widget);
 }
@@ -3076,17 +3084,17 @@ geda_label_set_pattern_internal (GedaLabel *label,
   label->markup_attrs = attrs;
 }
 
-/*! \brief geda_label_set_pattern
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_pattern
+ * \par Function Description
  *
  * The pattern of underlines you want under the existing text within the
  * #GedaLabel widget.  For example if the current text of the label says
  * "FooBarBaz" passing a pattern of "___   ___" will underline
  * "Foo" and "Baz" but not "Bar".
  *
- *  \param [in] label:   The GedaLabel object
- *  \param [in] pattern: The pattern as described above
+ * \param [in] label   The GedaLabel object
+ * \param [in] pattern The pattern as described above
  */
 void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 {
@@ -3110,13 +3118,13 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 }
 
 /********************* Justification Property *********************/
-/*! \brief geda_label_get_justify
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_justify
+ * \par Function Description
  *
  * Returns the justification of the label. See geda_label_set_justify().
  *
- *  \param [in] label:   The GedaLabel object
+ * \param [in] label The GedaLabel object
  *
  * Return value: GtkJustification
  */
@@ -3130,9 +3138,9 @@ GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
   return geda_label_get_justify ( (GedaLabel*) widget);
 }
 
-/*! \brief geda_label_set_justify
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_justify
+ * \par Function Description
  *
  * Sets the alignment of the lines in the text of the label relative to
  * each other. %GTK_JUSTIFY_LEFT is the default value when the
@@ -3141,8 +3149,8 @@ GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
  * gtk_misc_set_alignment() instead. geda_label_set_justify() has no
  * effect on labels containing only a single line.
  *
- *  \param [in] label:   The GedaLabel object
- *  \param [in] jtype:   The GedaLabel object
+ * \param [in] label  The GedaLabel object
+ * \param [in] jtype  The GedaLabel object
  */
 void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
 {
@@ -3169,13 +3177,13 @@ void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 }
 
 /************************ Ellipsize Property **********************/
-/*! \brief geda_label_get_ellipsize
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_ellipsize
+ * \par Function Description
  *
  * Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
  *
- *  \param [in] label:   The GedaLabel object
+ * \param [in] label  The GedaLabel object
  *
  * Return value: PangoEllipsizeMode
  *
@@ -3191,15 +3199,15 @@ PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
   return geda_label_get_ellipsize ( (GedaLabel*) widget);
 }
 
-/*! \brief geda_label_set_ellipsize
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_ellipsize
+ * \par Function Description
  *
  * Sets the mode used to ellipsize (add an ellipsis: "...") to the text
  * if there is not enough space to render the entire string.
  *
- *  \param [in] label:  The GedaLabel object
- *  \param [in] mode:   a PangoEllipsizeMode
+ * \param [in] label  The GedaLabel object
+ * \param [in] mode   a PangoEllipsizeMode
  */
 void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
 {
@@ -3226,14 +3234,14 @@ geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
 
 /********************** Width Chars Property **********************/
 
-/*! \brief geda_label_get_width_chars
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_width_chars
+ * \par Function Description
  *
  * Retrieves the desired width of label, in characters. See
  * geda_label_set_width_chars().
  *
- *  \param [in] label:  The GedaLabel object
+ * \param [in] label  The GedaLabel object
  *
  * Return value: the width of the label in characters.
  */
@@ -3249,13 +3257,13 @@ int geda_label_widget_get_width_chars (GtkWidget *widget)
   return geda_label_get_width_chars ( (GedaLabel*) widget);
 }
 
-/*! \brief geda_label_set_width_chars
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_width_chars
+ * \par Function Description
  * Sets the desired width in characters of label to n_chars.
  *
- *  \param [in] label:   The GedaLabel object
- *  \param [in] n_chars: New desired width, in characters.
+ *  \param [in] label   The GedaLabel object
+ *  \param [in] n_chars New desired width, in characters.
  */
 void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 {
@@ -3276,14 +3284,14 @@ void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 }
 
 /********************* Max Width Chars Property *******************/
-/*! \brief geda_label_get_max_width_chars
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_max_width_chars
+ * \par Function Description
  *
  * Retrieves the desired maximum width of label, in characters. See
  * geda_label_set_width_chars().
  *
- *  \param [in] label:   The GedaLabel object
+ * \param [in] label  The GedaLabel object
  *
  * Return value: the maximum width of the label in characters.
  *
@@ -3299,14 +3307,14 @@ int geda_label_widget_get_max_width_chars (GtkWidget *widget)
   return geda_label_get_max_width_chars ( (GedaLabel*) widget);
 }
 
-/*! \brief geda_label_set_max_width_chars
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_max_width_chars
+ * \par Function Description
  *
  * Sets the desired maximum width in characters of label to n_chars.
  *
- *  \param [in] label:   The GedaLabel object
- *  \param [in] n_chars: New desired maximum width, in characters.
+ * \param [in] label    The GedaLabel object
+ * \param [in] n_chars  New desired maximum width, in characters.
  */
 void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
 {
@@ -3363,14 +3371,14 @@ geda_label_set_line_wrap (GedaLabel *label, bool  wrap)
   }
 }
 
-/*! \brief geda_label_get_line_wrap
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_line_wrap
+ * \par Function Description
  *
  * Returns whether lines in the label are automatically wrapped.
  * See geda_label_set_line_wrap().
  *
- *  \param [in] label:  The GedaLabel object
+ * \param [in] label:  The GedaLabel object
  *
  * Return value: %TRUE if the lines of the label are automatically wrapped.
  */
@@ -3381,16 +3389,16 @@ bool geda_label_get_line_wrap (GedaLabel *label)
   return label->priv->wrap;
 }
 
-/*! \brief geda_label_set_line_wrap_mode
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_line_wrap_mode
+ * \par Function Description
  *
  * If line wrapping is on (see geda_label_set_line_wrap()) this controls how
  * the line wrapping is done. The default is %PANGO_WRAP_WORD which means
  * wrap on word boundaries.
  *
- *  \param [in] label:     The GedaLabel object
- *  \param [in] wrap_mode: The line wrap_mode setting
+ * \param [in] label:     The GedaLabel object
+ * \param [in] wrap_mode: The line wrap_mode setting
  */
 void
 geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
@@ -3407,9 +3415,9 @@ geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
   }
 }
 
-/*! \brief geda_label_get_line_wrap_mode
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_get_line_wrap_mode
+ * \par Function Description
  *
  * Returns line wrap mode used by the label. See geda_label_set_line_wrap_mode().
  *
@@ -3775,6 +3783,7 @@ static PangoDirection get_cursor_direction (GedaLabel *label)
   }
   return result;
 }
+
 static void
 draw_insertion_cursor (GedaLabel      *label,
                        GdkRectangle   *cursor_location,
@@ -3871,6 +3880,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
     }
   }
 }
+
 static GedaLabelLink *
 geda_label_get_focus_link (GedaLabel *label)
 {
@@ -4119,9 +4129,9 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
   g_free (pattern);
 }
 
-/*! \brief geda_label_set_mnemonic_text
- *
- *  \par Function Description
+/*!
+ * \brief geda_label_set_mnemonic_text
+ * \par Function Description
  *
  * Sets the label's text from the string str. If characters in str is
  * preceded by an underscore, they are underlined indicating that they
@@ -4870,7 +4880,7 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
 }
 
 static bool
-geda_label_leave_notify (GtkWidget        *widget,
+geda_label_leave_notify (GtkWidget       *widget,
                         GdkEventCrossing *event)
 {
   GedaLabel *label = GEDA_LABEL (widget);
