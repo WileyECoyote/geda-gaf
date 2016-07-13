@@ -850,7 +850,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
    * as well, use the notify::font-name signal.
    *
    */
-  font_button_signals[FONT_SET] = g_signal_new (_("font-set"),
+  font_button_signals[FONT_SET] = g_signal_new ("font-set",
                                                 G_TYPE_FROM_CLASS (gobject_class),
                                                 G_SIGNAL_RUN_FIRST,
                                                 G_STRUCT_OFFSET (GedaFontButtonClass, font_set),
@@ -858,7 +858,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
                                                 g_cclosure_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 
-  font_button_signals[SIZE_SET] = g_signal_new (_("size-set"),
+  font_button_signals[SIZE_SET] = g_signal_new ("size-set",
                                                 G_TYPE_FROM_CLASS (gobject_class),
                                                 G_SIGNAL_RUN_FIRST,
                                                 G_STRUCT_OFFSET (GedaFontButtonClass, size_set),

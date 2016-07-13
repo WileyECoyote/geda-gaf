@@ -1,3 +1,7 @@
+2016-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Remove translation of signal names.
+
 2016-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_button.h: Replace G_TYPE_CHECK_INSTANCE_TYPE with
