@@ -42,7 +42,7 @@
 #define GEDA_MENU_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton))
 #define GEDA_MENU_BUTTON_CONST(obj)       (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton const))
 #define GEDA_MENU_BUTTON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
-#define GEDA_IS_MENU_BUTTON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_MENU_BUTTON))
+#define GEDA_IS_MENU_BUTTON(obj)          (is_a_geda_menu_button((GedaMenuButton*)(obj)))
 #define GEDA_IS_MENU_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_MENU_BUTTON))
 #define GEDA_MENU_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
 
@@ -52,12 +52,12 @@ typedef struct _GedaMenuButtonData  GedaMenuButtonData;
 
 struct _GedaMenuButton
 {
-  GtkEventBox parent;
+  GtkEventBox  parent;
+  GedaType     instance_type;
 
-  GedaMenuButtonData *priv;
-  GdkWindow *event_window;
+  GdkWindow   *event_window;
 
-  char *label_text;
+  char        *label_text;
 
   unsigned int activate_timeout;;
   unsigned int constructed;
@@ -70,6 +70,8 @@ struct _GedaMenuButton
   unsigned int depressed;
   unsigned int depress_on_activate;
   unsigned int focus_on_click;
+
+  GedaMenuButtonData *priv;
 };
 
 struct _GedaMenuButtonClass
@@ -83,18 +85,19 @@ struct _GedaMenuButtonClass
   void (* leave)     (GedaMenuButton *button);
   void (* activate)  (GedaMenuButton *button);
   void (* show_menu) (GedaMenuButton *button);
-
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GType           geda_menu_button_get_type (void) GEDA_CONST;
+GedaType        geda_menu_button_get_type       (void) GEDA_CONST;
+bool            is_a_geda_menu_button           (GedaMenuButton *menu_button);
 
-GedaMenuButton *geda_menu_button_new            (GtkWidget     *icon_widget,  const char *label);
-GedaMenuButton *geda_menu_button_new_from_stock (const char    *stock_id);
-GedaMenuButton *geda_menu_button_new_with_mnemonic (const char *label);
+GedaMenuButton *geda_menu_button_new            (GtkWidget      *icon_widget,
+                                                 const char     *label);
+GedaMenuButton *geda_menu_button_new_from_stock (const char     *stock_id);
+GedaMenuButton *geda_menu_button_new_with_mnemonic (const char  *label);
 
 void            geda_menu_button_set_style      (GedaMenuButton *button,
                                                  GtkStyle       *new_style);

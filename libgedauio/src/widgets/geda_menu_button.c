@@ -991,6 +991,8 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
   button       = (GedaMenuButton*)instance;
   button->priv = GEDA_MEM_ALLOC0 (sizeof(GedaMenuButtonData));
 
+  button->instance_type = geda_menu_button_get_type();
+
   box          = gtk_hbox_new (FALSE, 0);
   main_button  = gtk_button_new ();
 
@@ -1338,6 +1340,23 @@ geda_menu_button_get_type (void)
   }
 
   return geda_menu_button_type;
+}
+
+/*!
+ * \brief Check if an object is a GedaMenuButton
+ * \par Function Description
+ *  Ensures \a menu_button is a valid G_Object and compares signature
+ *  to geda combo box type.
+ *
+ * \return TRUE if \a menu_button is a valid GedaMenuButton
+ */
+bool
+is_a_geda_menu_button (GedaMenuButton *menu_button)
+{
+  if (G_IS_OBJECT(menu_button)) {
+    return (geda_menu_button_get_type() == menu_button->instance_type);
+  }
+  return FALSE;
 }
 
 /* END ------------------------- Initialization ---------------------------- */
