@@ -456,34 +456,43 @@ geda_menu_button_set_property (GObject      *object,
     case PROP_FOCUS_ON_CLICK:
       gtk_button_set_focus_on_click (butt, g_value_get_boolean (value));
       break;
+
     case PROP_IMAGE:
       gtk_button_set_image (butt, (GtkWidget *) g_value_get_object (value));
       break;
+
     case PROP_IMAGE_POSITION:
       gtk_button_set_image_position (butt, g_value_get_enum (value));
       break;
+
     case PROP_LABEL:
       geda_menu_button_set_label (button, g_value_get_string (value));
       break;
+
     case PROP_MENU:
       geda_menu_button_set_menu (button, g_value_get_object (value));
       break;
+
     case PROP_RELIEF:
       button->relief = g_value_get_enum (value);
       geda_menu_button_set_relief (button, button->relief);
       break;
+
     case PROP_MENU_RELIEF:
       button->menu_relief = g_value_get_enum (value);
       geda_menu_arrow_set_relief (button, button->menu_relief);
       break;
+
     case PROP_USE_STOCK:
       button->use_stock = g_value_get_boolean (value);
       gtk_button_set_use_stock (butt, button->use_stock);
       break;
+
     case PROP_USE_UNDERLINE:
       button->use_underline = g_value_get_boolean (value);
       gtk_button_set_use_underline (butt, button->use_underline);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -508,35 +517,43 @@ geda_menu_button_get_property (GObject     *object,
   GedaMenuButtonData *priv   = button->priv;
   GtkButton          *butt   = GTK_BUTTON(priv->button);
 
-  switch (prop_id)
-    {
+  switch (prop_id) {
+
     case PROP_FOCUS_ON_CLICK:
       g_value_set_boolean (value, butt->focus_on_click);
       break;
+
     case PROP_IMAGE:
       g_value_set_object (value, (GObject*) gtk_button_get_image(butt));
       break;
+
     case PROP_IMAGE_POSITION:
       g_value_set_enum (value, gtk_button_get_image_position(butt));
       break;
+
     case PROP_LABEL:
       g_value_set_string (value, butt->label_text);
       break;
+
     case PROP_MENU:
       g_value_set_object (value, button->priv->menu);
       break;
+
     case PROP_RELIEF:
       g_value_set_enum (value, button->relief);
       break;
+
     case PROP_MENU_RELIEF:
       g_value_set_enum (value, button->menu_relief);
       break;
     case PROP_USE_UNDERLINE:
       g_value_set_boolean (value, butt->use_underline);
       break;
+
     case PROP_USE_STOCK:
       g_value_set_boolean (value, butt->use_stock);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
