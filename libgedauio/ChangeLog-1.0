@@ -10,7 +10,8 @@
       geda_font_button_get_size.
 
     * src/widgets/geda_radio_menu_item.c: Add Doxygen comments for geda_radio_menu_
-      item_new and geda_radio_menu_item_set_group.
+      item_new and geda_radio_menu_item_set_group. Validate group argument is a check
+      menu item for geda_radio_menu_item_new_from_widget.
 
 2016-07-12 Wiley E. Hill <wileyhill@gmail.com>
 

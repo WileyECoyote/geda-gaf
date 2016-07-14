@@ -352,7 +352,7 @@ is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
 /*!
  * \brief Create a New GedaRadioMenuItem Object
  * \par Function Description
- *  Creates a new GedaRadioMenuItem adding it to \a group, which could
+ *  Creates a new GedaRadioMenuItem adding it to @group, which could
  *  be NULL.
  *
  * \param[in] group optional group the radio menu item is to be a member of
@@ -372,7 +372,7 @@ geda_radio_menu_item_new (GSList *group)
 }
 
 /*!
- * \brief geda_radio_menu_item_new_from_widget
+ * \brief Create a New GedaRadioMenuItem Object in the same group as widget
  * \par Function Description
  *  Creates a new #GedaRadioMenuItem adding it to the same group as @group.
  *
@@ -385,7 +385,7 @@ geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
 {
   GSList *list = NULL;
 
-  if (group) {
+  if (GEDA_IS_CHECK_MENU_ITEM(group)) {
     list = geda_radio_menu_item_get_group (group);
   }
 
