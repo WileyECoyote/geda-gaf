@@ -722,6 +722,13 @@ geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
   }
 }
 
+/*!
+ * \brief Toggle a GedaCheckMenuItem
+ * \par Function Description
+ *  Emits a "toggled" signal on \a check_menu_item.
+ *
+ * \param [in] check_menu_item a #GedaCheckMenuItem
+ */
 void
 geda_check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
 {
