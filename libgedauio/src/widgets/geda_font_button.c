@@ -1266,12 +1266,22 @@ geda_font_button_set_show_size (GedaFontButton *font_button, bool show_size)
   }
 }
 
+/*!
+ * \brief Font Button Get ASCII Font Size
+ * \par Function Description
+ *  Returns the ASCII font size
+ *
+ * \param  font_button Pointer to a GedaFontButton object.
+ *
+ * \returns integer size of the selected font.
+ */
 char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
   return geda_sprintf ("%d", font_button->priv->font_size);
 }
+
 /*! \brief Font Button Get Font Size
  *  \par Function Description
  *  Returns the selected size. Note that the value returned by the
@@ -1279,7 +1289,7 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
  *
  * \param  font_button Pointer to a GedaFontButton object.
  *
- * \retval int         size of the selected font.
+ * \returns integer size of the selected font.
  */
 int
 geda_font_button_get_size (GedaFontButton *font_button)
