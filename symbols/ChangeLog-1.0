@@ -1,5 +1,9 @@
 2016-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * logic/74H/74HC541-1.sym: Add symbol 8-bit line driver,CMOS Level,non-inverting.
+
+2016-07-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * logic/74H/74HC32-1.sym: Add symbol 74HC32 4 OR gates with 2 inputs
 
 2016-07-10 Wiley E. Hill <wileyhill@gmail.com>
