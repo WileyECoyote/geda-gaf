@@ -3,6 +3,9 @@
     * src/widgets/geda_menu_item.c: Add Doxygen comments for geda_menu_item_get_
       show_submenu_indicator and geda_menu_item_set_show_submenu_indicator.
 
+    * src/widgets/geda_radio_menu_item.c: set value of geda_radio_menu_item_
+      parent_class.
+
 2016-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Remove translation of signal names.

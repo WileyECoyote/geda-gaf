@@ -254,6 +254,8 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
 
   menu_item_class->activate = geda_radio_menu_item_activate;
 
+  geda_radio_menu_item_parent_class    = g_type_class_peek_parent(class);
+
   /*!
    * property GedaRadioMenuItem::group-changed:
    * Emitted when the group of radio menu items that a radio menu item belongs
