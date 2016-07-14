@@ -393,7 +393,7 @@ geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
 }
 
 /*!
- * \brief geda_radio_menu_item_new_with_label
+ * \brief Create a New GedaRadioMenuItem Object with a given Label
  * \par Function Description
  * Creates a new #GedaRadioMenuItem whose child is a simple #GtkLabel.
  *
@@ -420,7 +420,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
 }
 
 /*!
- * \brief geda_radio_menu_item_new_with_mnemonic
+ * \brief Create a New GedaRadioMenuItem Object with a given Mnemonic Label
  * \par Function Description
  * Creates a new #GedaRadioMenuItem containing a label. The label
  * will be created using geda_label_new_with_mnemonic(), so underscores
@@ -452,7 +452,7 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
 }
 
 /*!
- * \brief geda_radio_menu_item_new_with_mnemonic_from_widget
+ * \brief Create a New GedaRadioMenuItem Object with a given Mnemonic Label from widget
  * \par Function Description
  * Creates a new GedaRadioMenuItem containing a label. The label will be
  * created using geda_label_new_with_mnemonic(), so underscores in label
@@ -482,7 +482,7 @@ geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem *group,
 }
 
 /*!
- * \brief geda_radio_menu_item_new_with_label_from_widget
+ * \brief Create a New GedaRadioMenuItem Object with a given Label from widget
  * \par Function Description
  * Creates a new GedaRadioMenuItem whose child is a simple GedaLabel.
  * The new #GedaRadioMenuItem is added to the same group as \a group.
@@ -508,7 +508,7 @@ geda_radio_menu_item_new_with_label_from_widget (GedaRadioMenuItem *group,
 }
 
 /*!
- * \brief geda_radio_menu_item_get_group
+ * \brief Get the Group associated with a GedaRadioMenuItem
  * \par Function Description
  * Returns the group to which the radio menu item belongs, as a #GList
  * of #GedaRadioMenuItem. The list belongs to the widget and should not
@@ -562,8 +562,9 @@ geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
     }
   }
 
-  if (group && !group->next)
+  if (group && !group->next) {
     new_group_singleton = g_object_ref (group->data);
+  }
 
   radio_menu_item->group = g_slist_prepend (group, radio_menu_item);
 
