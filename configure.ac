@@ -418,6 +418,7 @@ AC_CONFIG_FILES([Makefile
                  docs/wiki/Makefile
 
                  examples/Makefile
+                 examples/CascodeAmp/Makefile
                  examples/gTAG/Makefile
                  examples/lightning_detector/Makefile
                  examples/MSA-2643/Makefile

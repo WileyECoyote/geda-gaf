@@ -1,0 +1,2 @@
+.OP
+*.AC DEC 20 100Hz 100KHz

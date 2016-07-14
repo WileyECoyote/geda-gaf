@@ -1,0 +1,61 @@
+START header
+
+gEDA's netlist format
+Created specifically for testing of gnetlist
+
+END header
+
+START components
+
+R1 device=RESISTOR
+R2 device=RESISTOR
+Q5 device=PNP_TRANSISTOR
+A1 device=model
+Q4 device=NPN_TRANSISTOR
+R13 device=RESISTOR
+C5 device=CAPACITOR
+R12 device=RESISTOR
+C1 device=POLARIZED_CAPACITOR
+C4 device=CAPACITOR
+C2 device=CAPACITOR
+R11 device=RESISTOR
+R10 device=RESISTOR
+R9 device=RESISTOR
+R8 device=RESISTOR
+Q3 device=PNP_TRANSISTOR
+A3 device=directive
+Vsignal device=vsin
+Vpwr device=VOLTAGE_SOURCE
+A2 device=include
+R4 device=RESISTOR
+R5 device=RESISTOR
+Q2 device=NFET_TRANSISTOR
+R3 device=RESISTOR
+Q1 device=NFET_TRANSISTOR
+
+END components
+
+START renamed-nets
+
+
+END renamed-nets
+
+START nets
+
+Q4CQ5B : Q5 2, Q4 3
+Vout : R13 2, C5 2
+Q4E : Q4 1, Q5 3, C5 1, R12 2
+FBI : R11 2, R10 1
+Q3SWAMP : C4 2, R9 2, R8 1
+Q3CQ4B : Q4 2, R10 2, Q3 3
+Q3E : R9 1, Q3 1
++24V : Q5 1, C4 1, R8 2, C1 1, R1 2, Vpwr 1, R4 2
+Q2G : R1 1, R2 2, C2 1, Q2 1
+Q2D : Q3 2, R4 1, Q2 3
+GND : R2 1, R13 1, R12 1, C1 2, R11 1, Vsignal 2, Vpwr 2, R5 1, R3 1
+Vin : Vsignal 1, R3 2, Q1 1
+Q1S : R5 2, Q1 2
+Q1DQ2S : C2 2, Q2 2, Q1 3
+
+END nets
+

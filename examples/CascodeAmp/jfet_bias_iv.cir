@@ -1,0 +1,11 @@
+* Jfet DC nest sweep
+V1  Ngate  0       DC 0
+V2  Ndrain 0       DC 0
+J1  Ndrain Ngate 0 J2N5245
+*
+.model J2N5245	NJF(Beta=1.38m Rd=1 Rs=1 Lambda=8m Vto=-2.442 Is=101.9f
++		            Cgd=3p Pb=1 Fc=.5 Cgs=3.383p Kf=21.68E-18 Af=1)
+*
+* Nest DC sweep
+.DC V2 0 30 .1 V1 -1.6 0 0.2
+.END
