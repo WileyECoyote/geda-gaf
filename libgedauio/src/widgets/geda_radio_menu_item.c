@@ -526,6 +526,13 @@ geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
   return radio_menu_item->group;
 }
 
+/*!
+ * \brief Set the Group associated with a GedaRadioMenuItem
+ * \par Function Description
+ * Sets the group to which the radio menu item belongs.
+ *
+ * \param[in] radio_menu_item  The GedaRadioMenuItem
+ */
 void
 geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
                                 GSList            *group)

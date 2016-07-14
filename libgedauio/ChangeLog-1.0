@@ -9,6 +9,9 @@
       ascii_size, not exactly sure how geda_font_button_get_ascii_size differs from
       geda_font_button_get_size.
 
+    * src/widgets/geda_radio_menu_item.c: Add Doxygen comments for geda_radio_menu_
+      item_new and geda_radio_menu_item_set_group.
+
 2016-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_button.h: Replace G_TYPE_CHECK_INSTANCE_TYPE with
