@@ -3567,7 +3567,7 @@ geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_reserve_indicator:
+ * \brief geda_menu_item_get_reserve_indicator
  *  Returns whether the \a menu_item reserves space for the
  *  submenu indicator, regardless if it has a submenu or not.
  *
@@ -3584,6 +3584,15 @@ geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
   return menu_item->priv->reserve_indicator;
 }
 
+/*!
+ * \brief Get the GedaMenuItem show_submenu_indicator property
+ *  Returns whether the \a menu_item submenu indicator should displayed or not.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ *
+ * \returns %TRUE if \a menu_item always reserves space for the
+ *          submenu indicator
+ */
 bool
 geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
 {
@@ -3592,6 +3601,12 @@ geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
   return menu_item->priv->show_submenu_indicator;
 }
 
+/*!
+ * \brief Set the GedaMenuItem show_submenu_indicator property
+ *  Sets whether the \a menu_item submenu indicator should displayed or not.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ */
 void
 geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item,
                                            bool           show)
