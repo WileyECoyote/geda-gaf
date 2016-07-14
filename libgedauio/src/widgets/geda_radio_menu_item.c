@@ -149,9 +149,9 @@ geda_radio_menu_item_set_property (GObject      *object,
 
     case PROP_GROUP:
       if (G_VALUE_HOLDS_OBJECT (value))
-	slist = geda_radio_menu_item_get_group ((GedaRadioMenuItem*) g_value_get_object (value));
+        slist = geda_radio_menu_item_get_group ((GedaRadioMenuItem*) g_value_get_object (value));
       else
-	slist = NULL;
+        slist = NULL;
       geda_radio_menu_item_set_group (radio_menu_item, slist);
       break;
     default:
@@ -214,14 +214,15 @@ geda_radio_menu_item_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
 }
 
-/*! \brief GedaRadioMenuItem Type Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaRadioMenuItem Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaRadioMenuItemClass class being initializes
- *  \param [in]  class_data  GedaRadioMenuItem structure associated with the class
+ * \param [in]  class       GedaRadioMenuItemClass class being initializes
+ * \param [in]  class_data  GedaRadioMenuItem structure associated with the class
  */
 static void
 geda_radio_menu_item_class_init(void *class, void *class_data)
@@ -271,8 +272,9 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
                                        G_TYPE_NONE, 0);
 }
 
-/*! \brief Initialize new GedaRadioMenuItem data structure instance.
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaRadioMenuItem data structure instance.
+ * \par Function Description
  *  This function is call after the GedaRadioMenuItemClass is created
  *  to initialize the data structure.
  *
