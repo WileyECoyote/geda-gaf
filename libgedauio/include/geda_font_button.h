@@ -81,38 +81,38 @@ struct _GedaFontButtonClass {
 extern "C" {
 #endif
 
-GedaType      geda_font_button_get_type       (void) GEDA_CONST;
-bool          is_a_geda_font_button           (GedaFontButton *font_button);
+GedaType    geda_font_button_get_type         (void) GEDA_CONST;
+bool        is_a_geda_font_button             (GedaFontButton *font_button);
 
-GtkWidget    *geda_font_button_new            (void);
-GtkWidget    *geda_font_button_new_with_font  (const char     *fontname);
+GtkWidget  *geda_font_button_new              (void);
+GtkWidget  *geda_font_button_new_with_font    (const char     *fontname);
 
-const char   *geda_font_button_get_title      (GedaFontButton *font_button);
-void          geda_font_button_set_title      (GedaFontButton *font_button,
+const char *geda_font_button_get_title        (GedaFontButton *font_button);
+void        geda_font_button_set_title        (GedaFontButton *font_button,
                                                const char     *title);
-bool          geda_font_button_get_use_font   (GedaFontButton *font_button);
-void          geda_font_button_set_use_font   (GedaFontButton *font_button,
+bool        geda_font_button_get_use_font     (GedaFontButton *font_button);
+void        geda_font_button_set_use_font     (GedaFontButton *font_button,
                                                bool            use_font);
-const char   *geda_font_button_get_font_name  (GedaFontButton *font_button);
-bool          geda_font_button_set_font_name  (GedaFontButton *font_button,
+const char *geda_font_button_get_font_name    (GedaFontButton *font_button);
+bool        geda_font_button_set_font_name    (GedaFontButton *font_button,
                                                const char     *fontname);
-bool          geda_font_button_get_use_size   (GedaFontButton *font_button);
-void          geda_font_button_set_use_size   (GedaFontButton *font_button,
+bool        geda_font_button_get_use_size     (GedaFontButton *font_button);
+void        geda_font_button_set_use_size     (GedaFontButton *font_button,
                                                bool            use_size);
-bool          geda_font_button_get_show_size  (GedaFontButton *font_button);
-void          geda_font_button_set_show_size  (GedaFontButton *font_button,
+bool        geda_font_button_get_show_size    (GedaFontButton *font_button);
+void        geda_font_button_set_show_size    (GedaFontButton *font_button,
                                                bool            show_size);
-char         *geda_font_button_get_ascii_size (GedaFontButton *font_button);
-int           geda_font_button_get_size       (GedaFontButton *font_button);
-void          geda_font_button_set_size       (GedaFontButton *font_button,
+char       *geda_font_button_get_ascii_size   (GedaFontButton *font_button);
+int         geda_font_button_get_size         (GedaFontButton *font_button);
+void        geda_font_button_set_size         (GedaFontButton *font_button,
                                                int             font_size);
-bool          geda_font_button_get_show_style (GedaFontButton *font_button);
-void          geda_font_button_set_show_style (GedaFontButton *font_button,
+bool        geda_font_button_get_show_style   (GedaFontButton *font_button);
+void        geda_font_button_set_show_style   (GedaFontButton *font_button,
                                                bool            show_style);
 bool        geda_font_button_get_show_preview (GedaFontButton *font_button);
 void        geda_font_button_set_show_preview (GedaFontButton *font_button,
                                                bool            enable);
-const char* geda_font_button_get_preview_text (GedaFontButton *font_button);
+const char *geda_font_button_get_preview_text (GedaFontButton *font_button);
 void        geda_font_button_set_preview_text (GedaFontButton *font_button,
                                                const char     *text);
 
