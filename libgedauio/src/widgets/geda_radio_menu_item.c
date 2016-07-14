@@ -349,6 +349,16 @@ is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
   return FALSE;
 }
 
+/*!
+ * \brief Create a New GedaRadioMenuItem Object
+ * \par Function Description
+ *  Creates a new GedaRadioMenuItem adding it to \a group, which could
+ *  be NULL.
+ *
+ * \param[in] group optional group the radio menu item is to be a member of
+ *
+ * \returns The new #GedaRadioMenuItem
+ */
 GtkWidget*
 geda_radio_menu_item_new (GSList *group)
 {
