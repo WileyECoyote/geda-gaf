@@ -53,13 +53,13 @@ enum {
 };
 
 static void geda_toolbar_set_property (GObject        *object,
-                                         unsigned int    prop_id,
-                                         const GValue   *value,
-                                         GParamSpec     *pspec);
+                                       unsigned int    prop_id,
+                                       const GValue   *value,
+                                       GParamSpec     *pspec);
 static void geda_toolbar_get_property (GObject        *object,
-                                         unsigned int    prop_id,
-                                         GValue         *value,
-                                         GParamSpec     *pspec);
+                                       unsigned int    prop_id,
+                                       GValue         *value,
+                                       GParamSpec     *pspec);
 
 static void *geda_toolbar_parent_class = NULL;
 
@@ -179,6 +179,7 @@ GedaType geda_toolbar_get_type (void)
  * \par Function Description
  *  Ensures \a toolbar is a valid G_Object and compares signature
  *  to geda toolbar type.
+ *
  * \return TRUE if \a toolbar is a valid GedaToolbar
  */
 bool
@@ -197,7 +198,7 @@ is_a_geda_toolbar (GedaToolbar *toolbar)
  *
  * \param [in] orientation the toolbar's orientation
  *
- * Return value: a new #GedaToolbar.
+ * \return a new #GedaToolbar.
  */
 GtkWidget *geda_toolbar_new (int orientation)
 {

@@ -6,6 +6,8 @@
     * src/widgets/geda_radio_menu_item.c: set value of geda_radio_menu_item_
       parent_class.
 
+    * src/widgets/geda_tearoff_menu_item.c: Add Doxygen comments.
+
     * tests/test_radio_menu_item.c: Add checks for creating GedaRadioMenuItem using
       alternation constructors.
 

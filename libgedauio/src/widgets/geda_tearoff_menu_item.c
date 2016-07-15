@@ -490,6 +490,13 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
   }
 }
 
+/*!
+ * \brief Get the active state of a GedaTearoffMenuItem
+ * \par Function Description
+ *  Returns the value of menu->tearoff_active.
+ *
+ * \return value of menu->tearoff_active
+ */
 bool geda_tearoff_menu_is_active (GtkWidget *menu)
 {
   if (GEDA_IS_TEAROFF_MENU_ITEM (menu)) {
@@ -498,6 +505,13 @@ bool geda_tearoff_menu_is_active (GtkWidget *menu)
   return FALSE;
 }
 
+/*!
+ * \brief Get the tear-off state of a GedaTearoffMenuItem
+ * \par Function Description
+ *  Returns the value of torn_off property.
+ *
+ * \return value of priv->torn_off
+ */
 bool geda_tearoff_menu_is_torn (GtkWidget *menu)
 {
   if (GEDA_IS_TEAROFF_MENU_ITEM (menu)) {
