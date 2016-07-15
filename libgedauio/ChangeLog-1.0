@@ -3,7 +3,7 @@
     * src/widgets/geda_label.c: Revise Doxygen comments.
 
     * src/widgets/geda_option_menu.c: Separate params in geda_check_menu_item_class
-      _init.
+      _init, add Doxygen comments.
 
 2016-07-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -995,6 +995,14 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
   return TRUE;
 }
 
+/*!
+ * \brief Attach a menu to a GedaOptionMenu object
+ * \par Function Description
+ *  Attaches \a menu to \a option_menu.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ * \param [in] menu        The menu to be attached
+ */
 void
 geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
 {
@@ -1029,6 +1037,15 @@ geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
   }
 }
 
+/*!
+ * \brief Remove GedaOptionMenu menu
+ * \par Function Description
+ *  Detaches the menu associated with \a option_menu.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ *
+ * \returns Offset of text index within the label text
+ */
 void
 geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
 {
@@ -1036,13 +1053,22 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
 
   if (option_menu->menu) {
 
-    if (GEDA_MENU_SHELL (option_menu->menu)->active)
+    if (GEDA_MENU_SHELL (option_menu->menu)->active) {
       geda_menu_shell_cancel (GEDA_MENU_SHELL (option_menu->menu));
-
+    }
     geda_menu_detach (GEDA_MENU (option_menu->menu));
   }
 }
 
+/*!
+ * \brief Set GedaOptionMenu Histroy
+ * \par Function Description
+ *  Sets the index of the currently selected menu item. The menu
+ *  items are numbered from top to bottom, starting with 0.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ * \param [in] index       index of active menu item
+ */
 void
 geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 {
@@ -1055,19 +1081,21 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
     geda_menu_set_active (GEDA_MENU (option_menu->menu), index);
     menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
 
-    if (menu_item != option_menu->menu_item)
+    if (menu_item != option_menu->menu_item) {
       geda_option_menu_update_contents (option_menu);
+    }
   }
 }
 
 /*!
- * geda_option_menu_get_history:
- * @option_menu: a #GedaOptionMenu
+ * \brief Get GedaOptionMenu Histroy
+ * \par Function Description
+ *  Retrieves the index of the currently selected menu item. The menu
+ *  items are numbered from top to bottom, starting with 0.
  *
- * Retrieves the index of the currently selected menu item. The menu
- * items are numbered from top to bottom, starting with 0.
+ * \param [in] @option_menu Pointer to GedaOptionMenu object
  *
- * \return index of the selected menu item, or -1 if there are no menu items
+ * \returns index of the selected menu item, or -1 if there are no menu items
  */
 int
 geda_option_menu_get_history (GedaOptionMenu *option_menu)
@@ -1080,12 +1108,15 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
 
     active_widget = geda_menu_get_active (GEDA_MENU (option_menu->menu));
 
-    if (active_widget)
+    if (active_widget) {
       return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
                            active_widget);
-      else
+    }
+    else {
         return -1;
+    }
   }
-  else
+  else {
     return -1;
+  }
 }
