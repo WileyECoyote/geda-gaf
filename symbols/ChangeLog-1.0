@@ -1,3 +1,7 @@
+2016-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74H/74HCT1G125-1.sym: Add symbol 3-state bus buffer/line driver.
+
 2016-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74H/74HC541-1.sym: Add symbol 8-bit line driver,CMOS Level,non-inverting.
