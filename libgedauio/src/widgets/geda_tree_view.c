@@ -54,9 +54,9 @@
 
 static GObjectClass *geda_tree_view_parent_class = NULL;
 
-/*! \brief GedaTreeView Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaTreeView Class Initializer
+ * \par Function Description
  *  Function is called to initialize the class instance.
  *
  * \param [in] class A GedaTreeViewClass Object
@@ -70,9 +70,9 @@ geda_tree_view_class_init (void *class, void *data)
   geda_tree_view_parent_class = g_type_class_peek_parent (class);
 }
 
-/*! \brief Initialize new GedaTreeView data structure instance.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaTreeView data structure instance.
+ * \par Function Description
  *  This function is call after the GedaTreeViewClass is created
  *  to initialize the data structure.
  *
@@ -86,16 +86,16 @@ geda_tree_view_instance_init (GTypeInstance *instance, void *class)
   tree_view->instance_type = geda_tree_view_get_type();
 }
 
-/*! \brief Function to retrieve GedaTreeView's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaTreeView's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaTreeView Type identifier. When first
  *  called this function registers a #GedaTreeView in the GedaType
  *  system to obtain an unique itentifier for a GedaTreeView and
  *  returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \returns GedaType identifier associated with a GedaTreeView.
+ * \returns GedaType identifier associated with a GedaTreeView.
  */
 GedaType geda_tree_view_get_type (void)
 {
@@ -133,7 +133,8 @@ GedaType geda_tree_view_get_type (void)
  * \par Function Description
  *  Ensures \a tree_view is a valid G_Object and compares signature
  *  to geda tree view type.
- * \return TRUE if \a tree_view is a valid GedaTreeView
+ *
+ * \returns TRUE if \a tree_view is a valid GedaTreeView
  */
 bool
 is_a_geda_tree_view (GedaTreeView *tree_view)
@@ -144,11 +145,12 @@ is_a_geda_tree_view (GedaTreeView *tree_view)
   return FALSE;
 }
 
-/*! \brief Create a New GedaTreeView
- *  \par Function Description
+/*!
+ * \brief Create a New GedaTreeView
+ * \par Function Description
  *  This function creates and returns a new GedaTreeView
  *
- *  \returns a new GedaTreeView
+ * \returns a new GedaTreeView
  */
 GtkWidget *
 geda_tree_view_new (void)
@@ -156,13 +158,13 @@ geda_tree_view_new (void)
   return g_object_new (GTK_TYPE_TREE_VIEW, NULL);
 }
 
-/*! \brief Create a New GedaTreeView with a given Model
- *
- *  \par Function Description
+/*!
+ * \brief Create a New GedaTreeView with a given Model
+ * \par Function Description
  * Creates a new #GedaTreeView widget with the model initialized to
  * the given \a model.
  *
- * Returns: A newly created #GedaTreeView widget.
+ * \returns a newly created #GedaTreeView widget.
  */
 GtkWidget *
 geda_tree_view_new_with_model (GtkTreeModel *model)
@@ -183,7 +185,8 @@ geda_tree_view_new_with_model (GtkTreeModel *model)
  * Please read the included file COPYING for more information.
  * This software comes with no warranty of any kind, use at your own risk!
  */
-/*! \brief Get visibility of Row in GtkTreeView
+/*!
+ * \brief Get visibility of Row in GtkTreeView
  *  \par Function Description
  *  This function is primarily used by the next function to determine if
  *  a row in a scrollable view is centered.
@@ -238,8 +241,9 @@ geda_tree_view_row_get_visibility (GtkTreeView *tree_view,
   return visible;
 }
 
-/*! \brief Make Tree Row Visible in GtkTreeView
- *  \par Function Description
+/*!
+ * \brief Make Tree Row Visible in GtkTreeView
+ * \par Function Description
  *  This function provides a reliable method to adjust tree views to
  *  positions. GTK lacks comparable functionality. Don't bother with
  *  gtk_tree_view_set_cursor.
