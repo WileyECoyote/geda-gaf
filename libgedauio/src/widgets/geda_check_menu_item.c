@@ -298,7 +298,16 @@ geda_check_menu_item_class_init(void *class, void *class_data)
   gobject_class->set_property = geda_check_menu_item_set_property;
   gobject_class->get_property = geda_check_menu_item_get_property;
 
-  geda_check_menu_item_parent_class = g_type_class_peek_parent(class);
+  widget_class->expose_event = geda_check_menu_item_expose;
+
+  menu_item_class->activate            = geda_check_menu_item_activate;
+  menu_item_class->hide_on_activate    = FALSE;
+  menu_item_class->toggle_size_request = geda_check_menu_item_toggle_size_request;
+
+  check_menu_class->toggled            = NULL;
+  check_menu_class->draw_indicator     = geda_real_check_menu_item_draw_indicator;
+
+  geda_check_menu_item_parent_class    = g_type_class_peek_parent(class);
 
   params = g_param_spec_boolean ("active",
                                _("Active"),
@@ -333,15 +342,6 @@ geda_check_menu_item_class_init(void *class, void *class_data)
                               G_PARAM_READABLE);
 
   gtk_widget_class_install_style_property (widget_class, params);
-
-  widget_class->expose_event = geda_check_menu_item_expose;
-
-  menu_item_class->activate            = geda_check_menu_item_activate;
-  menu_item_class->hide_on_activate    = FALSE;
-  menu_item_class->toggle_size_request = geda_check_menu_item_toggle_size_request;
-
-  check_menu_class->toggled        = NULL;
-  check_menu_class->draw_indicator = geda_real_check_menu_item_draw_indicator;
 
   check_menu_item_signals[TOGGLED] =
     g_signal_new ("toggled",

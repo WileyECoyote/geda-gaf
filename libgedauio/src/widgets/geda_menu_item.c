@@ -432,6 +432,7 @@ geda_menu_item_destroy (GtkObject *object)
   if (priv->submenu) {
     gtk_widget_destroy (priv->submenu);
   }
+
   GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
 }
 #else
