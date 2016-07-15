@@ -72,6 +72,10 @@ style "gschem"
    GedaMenuButton::default-outside-border = "GtkBorder"
    GedaMenuButton::inner-border           = "GtkBorder"
 
+#  GedaCheckMenuItem::indicator-size      = 13
+#  GedaOptionMenu::indicator-size         = 7
+#  GedaOptionMenu::indicator-spacing      = 13
+
    Compselect::focus-filter     = 1
 
    GschemStatusBar::height      = 4

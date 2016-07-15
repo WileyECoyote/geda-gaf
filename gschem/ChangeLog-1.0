@@ -1,3 +1,8 @@
+2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/gschem-gtkrc: Add configurable GedaCheckMenuItem and GedaOptionMenu
+      properties.
+
 2016-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Just cancel the action event if there is a problem.
