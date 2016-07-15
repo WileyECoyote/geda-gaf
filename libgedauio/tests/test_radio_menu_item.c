@@ -37,6 +37,11 @@
 #include <geda/geda.h>
 #include <geda_radio_menu_item.h>
 
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_radio_menu_item.c"
+
 #define TWIDGET "GedaRadioMenuItem"
 
 /*! \file test_radio_menu_item.c
@@ -225,10 +230,18 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -237,12 +250,22 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_construction();
+    if (setjmp(point) == 0) {
+      result = check_construction();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
 
-    if (subtotal) {
-      fprintf(stderr, "Check constructors in src/widgets/geda_radio_menu_item.c");
-      result   = subtotal;
-      subtotal = 0;
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;
