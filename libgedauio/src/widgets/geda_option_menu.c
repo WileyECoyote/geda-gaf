@@ -136,8 +136,8 @@ geda_option_menu_class_init(void *class, void *class_data)
   GtkObjectClass    *object_class;
   GtkWidgetClass    *widget_class;
   GtkContainerClass *container_class;
+  GParamSpec        *params;
 
-  //(GedaOptionMenuClass *class)
   gobject_class    = (GObjectClass*)class;
   object_class     = (GtkObjectClass*)class;
   widget_class     = (GtkWidgetClass*)class;
@@ -170,27 +170,30 @@ geda_option_menu_class_init(void *class, void *class_data)
 
   geda_option_menu_parent_class    = g_type_class_peek_parent (class);
 
+  params = g_param_spec_object ("menu",
+                              _("Menu"),
+                              _("The menu of options"),
+                                 GEDA_TYPE_MENU,
+                                 G_PARAM_READWRITE);
+
   g_object_class_install_property (gobject_class,
-                                   PROP_MENU,
-                                   g_param_spec_object ("menu",
-                                                      _("Menu"),
-                                                      _("The menu of options"),
-                                                        GEDA_TYPE_MENU,
-                                                        G_PARAM_READWRITE));
+                                   PROP_MENU, params);
 
-  gtk_widget_class_install_style_property (widget_class,
-                       g_param_spec_boxed ("indicator-size",
-                                   _("Indicator Size"),
-                                   _("Size of dropdown indicator"),
-                                   GTK_TYPE_REQUISITION,
-                                   G_PARAM_READABLE));
+  params = g_param_spec_boxed ("indicator-size",
+                             _("Indicator Size"),
+                             _("Size of dropdown indicator"),
+                                GTK_TYPE_REQUISITION,
+                                G_PARAM_READABLE);
 
-  gtk_widget_class_install_style_property (widget_class,
-                       g_param_spec_boxed ("indicator-spacing",
-                                   _("Indicator Spacing"),
-                                   _("Spacing around indicator"),
-                                   GTK_TYPE_BORDER,
-                                   G_PARAM_READABLE));
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  params = g_param_spec_boxed ("indicator-spacing",
+                             _("Indicator Spacing"),
+                             _("Spacing around indicator"),
+                                GTK_TYPE_BORDER,
+                                G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 }
 
 /*! \brief Type instance initializer for GedaOptionMenu
@@ -459,7 +462,7 @@ geda_option_menu_get_props (GedaOptionMenu      *option_menu,
                             GedaOptionMenuProps *props)
 {
   GtkRequisition *indicator_size;
-  GtkBorder *indicator_spacing;
+  GtkBorder      *indicator_spacing;
 
   gtk_widget_style_get (GTK_WIDGET (option_menu),
                         "indicator-size", &indicator_size,
