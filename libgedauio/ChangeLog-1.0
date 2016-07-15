@@ -1,3 +1,7 @@
+2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Revise Doxygen comments.
+
 2016-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add Doxygen comments for geda_menu_item_get_

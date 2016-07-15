@@ -1120,8 +1120,8 @@ geda_label_class_init  (void *class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_WRAP, params);
 
-  /**
-   * GedaLabel:wrap-mode:
+  /*!
+   * GedaLabel::wrap-mode
    *
    * If line wrapping is on (see the #GedaLabel:wrap property) this controls
    * how the line wrapping is done. The default is %PANGO_WRAP_WORD, which
@@ -1179,7 +1179,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_SEL_BOUND, params);
 
   /*!
-   * GedaLabel:ellipsize:
+   * GedaLabel::ellipsize
    *
    * The preferred place to ellipsize the string, if the label does
    * not have enough room to display the entire string, specified as a
@@ -1203,7 +1203,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_ELLIPSIZE, params);
 
   /*!
-   * GedaLabel:width-chars:
+   * GedaLabel::width-chars
    *
    * The desired width of the label, in characters. If this property is set to
    * -1, the width will be calculated automatically.
@@ -1223,7 +1223,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_WIDTH_CHARS, params);
 
   /*!
-   * GedaLabel:single-line-mode:
+   * GedaLabel::single-line-mode
    *
    * Whether the label is in single line mode. In single line mode,
    * the height of the label does not depend on the actual text, it
@@ -1240,7 +1240,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_SINGLE_LINE_MODE, params);
 
   /*!
-   * GedaLabel:angle:
+   * GedaLabel::angle
    *
    * The angle that the baseline of the label makes with the horizontal,
    * in degrees, measured counterclockwise. An angle of 90 reads from
@@ -1258,7 +1258,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_ANGLE, params);
 
   /*!
-   * GedaLabel:max-width-chars:
+   * GedaLabel::max-width-chars
    *
    * The desired maximum width of the label, in characters. If this property
    * is set to -1, the width will be calculated automatically.
@@ -1278,7 +1278,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_MAX_WIDTH, params);
 
   /*!
-   * GedaLabel:track-visited-links:
+   * GedaLabel::track-visited-links
    *
    * Set this property to %TRUE to make the label track which links
    * have been clicked. It will then apply the visited-link-color
@@ -1460,16 +1460,16 @@ geda_label_buildable_interface_init (GtkBuildableIface *iface)
   iface->custom_finished  = geda_label_buildable_custom_finished;
 }
 
-/*! \brief Retrieve GedaLabel's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaLabel's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaLabel Type identifier. When
  *  first called, the function registers a #GedaLabel in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaLabel and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaLabel.
+ * \return GedaType identifier associated with GedaLabel.
  */
 GedaType
 geda_label_get_type (void)
@@ -1713,7 +1713,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
   return attribute;
 }
 
-
 static void
 pango_start_element (GMarkupParseContext *context,
                      const char          *element_name,
@@ -1878,16 +1877,15 @@ geda_label_buildable_custom_finished (GtkBuildable *buildable,
   }
 }
 
-/*! \brief Create a New Geda Label Object
- *
- *  \par Function Description
- *
- * Creates a new label with the given text inside it. You can
- * pass %NULL to get an empty label widget.
+/*!
+ * \brief Create a New Geda Label Object
+ * \par Function Description
+ *  Creates a new label with the given text inside it. You can
+ *  pass %NULL to get an empty label widget.
  *
  * \param [in] str The text of the label
  *
- * Return value: the new #GedaLabel
+ * \return the new #GedaLabel
  */
 GtkWidget* geda_label_new (const char *str)
 {
@@ -1902,9 +1900,9 @@ GtkWidget* geda_label_new (const char *str)
   return GTK_WIDGET (label);
 }
 
-/*! \brief geda_mnemonic_label_new
- *
- *  \par Function Description
+/*!
+ * \brief geda_mnemonic_label_new
+ * \par Function Description
  *
  * Creates a new #GedaLabel, containing the text in str.
  *
@@ -1926,7 +1924,7 @@ GtkWidget* geda_label_new (const char *str)
  *
  * \param [in] str Mnemonic for new label
  *
- * Return value: the new #GedaLabel
+ * \return the new #GedaLabel
  */
 GtkWidget* geda_mnemonic_label_new (const char *str)
 {
@@ -1947,6 +1945,7 @@ GtkWidget *geda_visible_label_new (const char *str)
   g_object_set (label, "visible", TRUE, NULL);
   return label;
 }
+
 GtkWidget *geda_visible_mnemonic_label_new (const char *str)
 {
   GtkWidget *label;
@@ -1988,6 +1987,7 @@ GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char *str,
   g_object_set (label, "visible", TRUE, NULL);
   return label;
 }
+
 static bool
 geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
@@ -2108,14 +2108,15 @@ label_shortcut_setting_changed (GtkSettings *settings)
 
   list = gtk_window_list_toplevels ();
 
-  for (l = list; l ; l = l->next)
-    {
-      GtkWidget *widget = l->data;
+  for (l = list; l ; l = l->next) {
 
-      if (gtk_widget_get_settings (widget) == settings)
+    GtkWidget *widget = l->data;
+
+    if (gtk_widget_get_settings (widget) == settings) {
         gtk_container_forall (GTK_CONTAINER (widget),
                               label_shortcut_setting_traverse_container, NULL);
     }
+  }
 
   g_list_free (list);
 }
@@ -2133,21 +2134,21 @@ mnemonics_visible_apply (GtkWidget *widget, bool mnemonics_visible)
       priv->mnemonics_visible = mnemonics_visible;
 
       geda_label_recalculate (label);
-    }
+  }
 }
 
 static void
 label_mnemonics_visible_traverse_container (GtkWidget *widget,
                                             void      *data)
 {
-  bool mnemonics_visible = (int)(long) (data);
+  bool mnemonics_visible = (int)(long)data;
 
   geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
 }
 
 void
 geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
-                                                 bool mnemonics_visible)
+                                                 bool      mnemonics_visible)
 {
   if (GEDA_IS_LABEL (widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
@@ -2177,7 +2178,7 @@ static void
 geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
 {
   GtkSettings *settings;
-  bool shortcuts_connected;
+  bool         shortcuts_connected;
 
   /* The PangoContext is replaced when the screen changes, so clear the layouts */
   geda_label_clear_layout (GEDA_LABEL (widget));
