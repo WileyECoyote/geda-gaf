@@ -93,6 +93,26 @@ int check_construction (void)
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
     }
+    else {
+
+      GSList *list = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget2));
+
+      if (!list) {
+        fprintf(stderr, "FAILED: line <%d> get_group in %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      else {
+
+        int len = g_slist_length(list);
+
+        if (len != 2) {
+          fprintf(stderr, "FAILED: line <%d> list length=%d\n", __LINE__, len);
+          result++;
+        }
+      }
+    }
+
+    group = geda_radio_menu_item_get_group(radio_menu_item);
 
     /* geda_radio_menu_item_new_with_label */
     widget3 = geda_radio_menu_item_new_with_label (group, "3");
@@ -100,6 +120,24 @@ int check_construction (void)
     if (!GEDA_IS_RADIO_MENU_ITEM(widget3)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
+    }
+    else {
+
+      GSList *list = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget3));
+
+      if (!list) {
+        fprintf(stderr, "FAILED: line <%d> get_group in %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      else {
+
+        int len = g_slist_length(list);
+
+        if (g_slist_length(list) != 3) {
+          fprintf(stderr, "FAILED: line <%d> list length=%d\n", __LINE__, len);
+          result++;
+        }
+      }
     }
 
     /* geda_radio_menu_item_new_with_label_from_widget */
@@ -109,6 +147,26 @@ int check_construction (void)
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
     }
+    else {
+
+      GSList *list = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget4));
+
+      if (!list) {
+        fprintf(stderr, "FAILED: line <%d> get_group in %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      else {
+
+        int len = g_slist_length(list);
+
+        if (g_slist_length(list) != 4) {
+          fprintf(stderr, "FAILED: line <%d> list length=%d\n", __LINE__, len);
+          result++;
+        }
+      }
+    }
+
+    group = geda_radio_menu_item_get_group(radio_menu_item);
 
     /* geda_radio_menu_item_new_with_mnemonic */
     widget5 = geda_radio_menu_item_new_with_mnemonic (group, "5");
@@ -117,6 +175,24 @@ int check_construction (void)
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
     }
+    else {
+
+      GSList *list = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget5));
+
+      if (!list) {
+        fprintf(stderr, "FAILED: line <%d> get_group in %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      else {
+
+        int len = g_slist_length(list);
+
+        if (g_slist_length(list) != 5) {
+          fprintf(stderr, "FAILED: line <%d> list length=%d\n", __LINE__, len);
+          result++;
+        }
+      }
+    }
 
     /* geda_radio_menu_item_new_with_mnemonic_from_widget */
     widget6 = geda_radio_menu_item_new_with_mnemonic_from_widget(radio_menu_item, "6");
@@ -124,6 +200,24 @@ int check_construction (void)
     if (!GEDA_IS_RADIO_MENU_ITEM(widget6)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
+    }
+    else {
+
+      GSList *list = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget6));
+
+      if (!list) {
+        fprintf(stderr, "FAILED: line <%d> get_group in %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      else {
+
+        int len = g_slist_length(list);
+
+        if (g_slist_length(list) != 6) {
+          fprintf(stderr, "FAILED: line <%d> list length=%d\n", __LINE__, len);
+          result++;
+        }
+      }
     }
   }
 

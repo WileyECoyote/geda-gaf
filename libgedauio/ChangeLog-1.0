@@ -1,9 +1,11 @@
 2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_label.c: Revise Doxygen comments.
+    * src/widgets/geda_label.c: Revise Doxygen comments, reorganize module.
 
     * src/widgets/geda_option_menu.c: Separate params in geda_check_menu_item_class
       _init, add Doxygen comments.
+
+    * tests/test_radio_menu_item.c: Add checks for grouping in constructors.
 
 2016-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
