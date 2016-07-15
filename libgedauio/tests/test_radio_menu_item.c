@@ -233,6 +233,30 @@ int
 check_accessors ()
 {
   int result = 0;
+  int len;
+
+  GSList *group = NULL;
+
+  GtkWidget *widget1 = geda_radio_menu_item_new(NULL);
+  GtkWidget *widget2 = geda_radio_menu_item_new(NULL);
+
+  group = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget1));
+
+  /* geda_radio_menu_item_set_group */
+
+  geda_radio_menu_item_set_group(GEDA_RADIO_MENU_ITEM(widget2), group);
+
+  group = NULL;
+
+  group = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget1));
+
+  len = g_slist_length(group);
+
+  if (g_slist_length(group) != 2) {
+    fprintf(stderr, "FAILED: line <%d> group length=%d\n", __LINE__, len);
+    result++;
+  }
+
   return result;
 }
 

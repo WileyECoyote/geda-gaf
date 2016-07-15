@@ -5,8 +5,9 @@
     * src/widgets/geda_option_menu.c: Separate params in geda_check_menu_item_class
       _init, add Doxygen comments.
 
-    * tests/test_radio_menu_item.c: : Include "test-suite.h" and setup setjmp and
-      longjmp, define MUT, revise flow in main, add checks for grouping in constructors.
+    * tests/test_radio_menu_item.c: Include "test-suite.h" and setup setjmp and
+      longjmp, define MUT, revise flow in main, add checks for grouping in
+      constructors. Add check in check_accessors.
 
 2016-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -68,8 +69,6 @@
             * geda_label_get_track_visited_links
             * geda_label_get_cursor_position
             * geda_label_get_selection_bound
-
-
 
     * src/widgets/geda_radio_menu_item.c: Add geda_radio_menu_item_get_type and
       remove G_DEFINE_TYPE macro. Add is_a_geda_check_menu_item and
