@@ -408,6 +408,7 @@ geda_widget_get_aux_info (GtkWidget *widget, bool create)
   return aux_info;
 }
 
+/* widget_class->style_set */
 static void
 geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
@@ -418,6 +419,63 @@ geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
   label->INVALIDATE_WRAP_WIDTH;
 
   //GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
+}
+
+/* widget_class->query_tooltip */
+static bool
+geda_label_query_tooltip (GtkWidget  *widget,
+                          int         x,
+                          int         y,
+                          bool        keyboard_tip,
+                          GtkTooltip *tooltip)
+{
+  GedaLabel     *label;
+  SelectionInfo *info;
+
+  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
+
+  label = (GedaLabel*)widget;
+  info  = label->priv->select_info;
+
+  if (info && info->links) {
+
+    GList *iter;
+    int    index = -1;
+
+    if (keyboard_tip) {
+
+      if (info->selection_anchor == info->selection_end) {
+        index = info->selection_anchor;
+      }
+    }
+    else {
+
+      if (!get_layout_index (label, x, y, &index)) {
+        index = -1;
+      }
+    }
+
+    if (index != -1)  {
+
+      for (iter = info->links; iter != NULL; iter = iter->next) {
+
+        GedaLabelLink *link = iter->data;
+
+        if (index >= link->start && index <= link->end)  {
+
+          if (link->title)  {
+
+            gtk_tooltip_set_markup (tooltip, link->title);
+            return TRUE;
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  return GTK_WIDGET_CLASS (geda_label_parent_class)->
+            query_tooltip (widget, x, y, keyboard_tip, tooltip);
 }
 
 static void
@@ -6358,62 +6416,6 @@ bool geda_label_get_track_visited_links (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
   return label->priv->track_links;
-}
-
-static bool
-geda_label_query_tooltip (GtkWidget  *widget,
-                          int         x,
-                          int         y,
-                          bool        keyboard_tip,
-                          GtkTooltip *tooltip)
-{
-  GedaLabel     *label;
-  SelectionInfo *info;
-
-  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
-
-  label = (GedaLabel*)widget;
-  info  = label->priv->select_info;
-
-  if (info && info->links) {
-
-    GList *iter;
-    int    index = -1;
-
-    if (keyboard_tip) {
-
-      if (info->selection_anchor == info->selection_end) {
-        index = info->selection_anchor;
-      }
-    }
-    else {
-
-      if (!get_layout_index (label, x, y, &index)) {
-        index = -1;
-      }
-    }
-
-    if (index != -1)  {
-
-      for (iter = info->links; iter != NULL; iter = iter->next) {
-
-        GedaLabelLink *link = iter->data;
-
-        if (index >= link->start && index <= link->end)  {
-
-          if (link->title)  {
-
-            gtk_tooltip_set_markup (tooltip, link->title);
-            return TRUE;
-          }
-          break;
-        }
-      }
-    }
-  }
-
-  return GTK_WIDGET_CLASS (geda_label_parent_class)->
-            query_tooltip (widget, x, y, keyboard_tip, tooltip);
 }
 
 /*!
