@@ -1017,7 +1017,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
  *  a GedaMenuBar and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- * \return GedaType identifier associated with GedaMenuBar.
+ * \returns GedaType identifier associated with GedaMenuBar.
  */
 GedaType
 geda_menu_bar_get_type (void)
@@ -1050,6 +1050,14 @@ geda_menu_bar_get_type (void)
   return geda_menu_bar_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaMenuBar
+ * \par Function Description
+ *  Ensures \a menu_bar is a valid G_Object and compares signature
+ *  to geda geda_menu_bar type.
+ *
+ * \returns TRUE if \a menu_bar is a valid GedaMenuBar object
+ */
 bool is_a_geda_menu_bar (GedaMenuBar *menu_bar)
 {
   if (G_IS_OBJECT(menu_bar)) {
@@ -1077,6 +1085,15 @@ get_menu_bars (GtkWindow *window)
   return g_object_get_data (G_OBJECT (window), menu_bar_key);
 }
 
+/*!
+ * \brief Retrieve Viewable Menu Bars
+ * \par Function Description
+ *  Returns a list of mapped menu bar widgets.
+ *
+ * \param[in] window Pointer #GedaMenuBar object
+ *
+ * \returns list of mapped GedaMenuBar objects
+ */
 GList*
 geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 {
