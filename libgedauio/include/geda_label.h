@@ -123,7 +123,6 @@ GtkWidget  *geda_visible_mnemonic_label_new         (const char     *str) __attr
 GtkWidget  *geda_aligned_label_new                  (const char     *str, int x, int y) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_visible_label_new          (const char     *str, int x, int y) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, int x, int y) __attribute__((warn_unused_result));
-
 GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, int x, int y) __attribute__((warn_unused_result));
 
 /* Properties */

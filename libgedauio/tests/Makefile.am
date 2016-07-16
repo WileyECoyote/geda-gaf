@@ -26,6 +26,7 @@ check_widgets = \
 	test_font_dialog \
 	test_handlebox \
 	test_image_menu_item \
+	test_label \
 	test_menu \
 	test_menu_bar \
 	test_menu_item \

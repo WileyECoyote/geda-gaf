@@ -2,6 +2,8 @@
 
     * tests/test_check_menu_item.c: Add checks for alternate constructors.
 
+    * tests/test_label.c: Add basic checks for GedaLabel constructors.
+
 2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Revise Doxygen comments, reorganize module.
