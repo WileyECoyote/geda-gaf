@@ -2615,8 +2615,8 @@ get_popup_delay (GedaMenuItem *menu_item)
     return MENU_POPUP_DELAY;
 }
 
-
 #if GTK_MAJOR_VERSION < 3
+
 void
 geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
@@ -3130,7 +3130,8 @@ geda_menu_item_position_menu (GedaMenu  *menu,
 #endif /* else !GTK_MAJOR_VERSION < 3*/
 
 /*!
- * \brief geda_menu_item_set_right_justified:
+ * \brief geda_menu_item_set_right_justified
+ * \par Function Description
  * Sets whether the menu item appears justified at the right
  * side of a menu bar. This was traditionally done for “Help”
  * menu items, but is now considered a bad idea. (If the widget
@@ -3154,7 +3155,8 @@ geda_menu_item_set_right_justified (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_right_justified:
+ * \brief geda_menu_item_get_right_justified
+ * \par Function Description
  * Gets whether the menu item appears justified at the right
  * side of the menu bar.
  *
@@ -3276,7 +3278,8 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_set_accel_path:
+ * \brief geda_menu_item_set_accel_path
+ * \par Function Description
  * Set the accelerator path on \a menu_item, through which runtime
  * changes of the menu item’s accelerator caused by the user can be
  * identified and saved to persistent storage (see gtk_accel_map_save()
@@ -3363,7 +3366,8 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
 
 
 /*!
- * \brief geda_menu_item_get_accel_path:
+ * \brief geda_menu_item_get_accel_path
+ * \par Function Description
  *  Retrieve the accelerator path that was previously set on \a menu_item.
  *  See geda_menu_item_set_accel_path() for details.
  *
@@ -3452,6 +3456,7 @@ geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
 
 /*!
  * \brief Set the Menu Item Label
+ * \par Function Description
  *  Sets \a text on the \a menu_item label
  *
  * \param [in] menu_item a GedaMenuItem
@@ -3467,7 +3472,8 @@ geda_menu_item_set_label (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_label:
+ * \brief Retrieve menu item label
+ * \par Function Description
  *  Gets text on the \a menu_item label
  *
  * \param [in] menu_item a GedaMenuItem
@@ -3484,7 +3490,8 @@ geda_menu_item_get_label (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_set_use_underline:
+ * \brief Set whether menu item should use underline
+ * \par Function Description
  * If true, an underline in the text indicates the next character
  * should be used for the mnemonic accelerator key.
  *
@@ -3512,7 +3519,8 @@ geda_menu_item_set_use_underline (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_use_underline:
+ * \brief Get if menu item should use underline
+ * \par Function Description
  * Checks if an underline in the text indicates the next character
  * should be used for the mnemonic accelerator key.
  *
@@ -3540,7 +3548,8 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_set_reserve_indicator:
+ * \brief Set whether to Reserve space for an Indicator
+ * \par Function Description
  *  Sets whether the \a menu_item should reserve space for the submenu
  *  indicator, regardless if it actually has a submenu or not.
  *
@@ -3568,7 +3577,8 @@ geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_get_reserve_indicator
+ * \brief Get if Reserving space for an Indicator
+ * \par Function Description
  *  Returns whether the \a menu_item reserves space for the
  *  submenu indicator, regardless if it has a submenu or not.
  *
@@ -3587,6 +3597,7 @@ geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
 
 /*!
  * \brief Get the GedaMenuItem show_submenu_indicator property
+ * \par Function Description
  *  Returns whether the \a menu_item submenu indicator should displayed or not.
  *
  * \param [in] menu_item a GedaMenuItem
@@ -3604,6 +3615,7 @@ geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
 
 /*!
  * \brief Set the GedaMenuItem show_submenu_indicator property
+ * \par Function Description
  *  Sets whether the \a menu_item submenu indicator should displayed or not.
  *
  * \param [in] menu_item a GedaMenuItem
