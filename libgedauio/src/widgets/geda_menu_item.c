@@ -641,8 +641,8 @@ geda_menu_item_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class,
                                    PROP_LABEL,
                                    g_param_spec_string ("label",
-                                                        _("Label"),
-                                                        _("The text for the child label"),
+                                                      _("Label"),
+                                                      _("The text for the child label"),
                                                         "",
                                                         G_PARAM_READWRITE));
 
@@ -673,15 +673,15 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_float ("arrow-scaling",
-                                                               _("Arrow Scaling"),
-                                                               _("Amount of space used up by arrow, relative to the menu item's font size"),
+                                                             _("Arrow Scaling"),
+                                                             _("Amount of space used up by arrow, relative to the menu item's font size"),
                                                                0.0, 2.0, 0.8,
                                                                G_PARAM_READABLE));
 
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_int ("arrow-spacing",
-                                                             "Arrow Spacing",
-                                                             "Space between label and arrow",
+                                                           _("Arrow Spacing"),
+                                                           _("Space between label and arrow"),
                                                              0,
                                                              G_MAXINT,
                                                              10,
@@ -694,8 +694,8 @@ geda_menu_item_class_init  (void *class, void *class_data)
    */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_int ("horizontal-padding",
-                                                             "Horizontal Padding",
-                                                             "Padding to left and right of the menu item",
+                                                           _("Horizontal Padding"),
+                                                           _("Padding to left and right of the menu item"),
                                                              0,
                                                              G_MAXINT,
                                                              3,
@@ -703,8 +703,8 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   gtk_widget_class_install_style_property_parser (widget_class,
                                                   g_param_spec_enum ("selected-shadow-type",
-                                                                     "Selected Shadow Type",
-                                                                     "Shadow type when item is selected",
+                                                                   _("Selected Shadow Type"),
+                                                                   _("Shadow type when item is selected"),
                                                                      GTK_TYPE_SHADOW_TYPE,
                                                                      GTK_SHADOW_NONE,
                                                                      G_PARAM_READABLE),
@@ -712,8 +712,8 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_int ("toggle-spacing",
-                                                             "Icon Spacing",
-                                                             "Space between icon and label",
+                                                           _("Icon Spacing"),
+                                                           _("Space between icon and label"),
                                                              0,
                                                              G_MAXINT,
                                                              5,
@@ -726,8 +726,8 @@ geda_menu_item_class_init  (void *class, void *class_data)
    */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_int ("width-chars",
-                                                             _("Width in Characters"),
-                                                             _("The minimum desired width of the menu item in characters"),
+                                                           _("Width in Characters"),
+                                                           _("The minimum desired width of the menu item in characters"),
                                                              0, G_MAXINT, 12,
                                                              G_PARAM_READABLE));
 }

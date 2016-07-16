@@ -1,6 +1,7 @@
 2016-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_check_menu_item.c: Add checks for alternate constructors.
+    * tests/test_check_menu_item.c: Add checks for alternate constructors. Use
+      get_text property blurb.
 
     * tests/test_label.c: Add basic checks for GedaLabel constructors.
 
