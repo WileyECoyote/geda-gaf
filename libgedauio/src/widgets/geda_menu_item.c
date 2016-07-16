@@ -3440,12 +3440,31 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
   }
 }
 
+/*!
+ * \brief Retrieve menu item Toggle Size
+ * \par Function Description
+ *  Returns the toggle size associated with \a menu_item in pixels.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ *
+ * \returns The toggle size of the \a menu_item
+ */
 unsigned short
 geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
 {
   return menu_item->priv->toggle_size;
 }
 
+/*!
+ * \brief Get menu item from menubar property
+ * \par Function Description
+ *  Gets text on the \a menu_item from-menubar property.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ *
+ * \returns The text in the \a menu_item label. This is the internal
+ *          string used by the label, and must not be modified.
+ */
 bool
 geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
 {
