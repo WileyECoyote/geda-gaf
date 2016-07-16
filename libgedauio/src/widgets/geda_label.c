@@ -421,6 +421,150 @@ geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
   //GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
 }
 
+/* called by: geda_label_expose
+ *            window_to_layout_coords
+ *            layout_to_window_coords
+ *            geda_label_get_layout_offsets
+ */
+static void
+get_layout_location (GedaLabel *label, int *xp, int *yp)
+{
+  GtkAllocation *allocation;
+  GtkMisc       *misc;
+  GtkWidget     *widget;
+
+  float xalign;
+  int req_width, x, y;
+  PangoRectangle logical;
+
+  misc   = GTK_MISC (label);
+  widget = GTK_WIDGET (label);
+
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
+    xalign = misc->xalign;
+  }
+  else {
+    xalign = 1.0 - misc->xalign;
+  }
+
+  pango_layout_get_pixel_extents (label->layout, NULL, &logical);
+
+  if (label->priv->ellipsize || label->width_chars > 0) {
+
+    int width = pango_layout_get_width (label->layout);
+
+    req_width = logical.width;
+
+    if (width != -1) {
+      req_width = MIN(PANGO_PIXELS (width), req_width);
+    }
+
+    req_width += 2 * misc->xpad;
+  }
+  else {
+    req_width = widget->requisition.width;
+  }
+
+  allocation = geda_get_widget_allocation (widget);
+
+  x = floor (allocation->x + (int)misc->xpad + xalign * (allocation->width - req_width));
+
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
+    x = MAX (x, allocation->x + misc->xpad);
+  }
+  else {
+    x = MIN (x, allocation->x + allocation->width - misc->xpad);
+  }
+
+  x -= logical.x;
+
+  /* bgo#315462 - For single-line labels, *do* align the requisition with
+   * respect to the allocation, even if we are under-allocated.  For multi-line
+   * labels, always show the top of the text when they are under-allocated.  The
+   * rationale is this:
+   *
+   * - Single-line labels appear in GtkButtons, and it is very easy to get them
+   *   to be smaller than their requisition.  The button may clip the label, but
+   *   the label will still be able to show most of itself and the focus
+   *   rectangle.  Also, it is fairly easy to read a single line of clipped text.
+   *
+   * - Multi-line labels should not be clipped to showing "something in the
+   *   middle".  You want to read the first line, at least, to get some context.
+   */
+  if (pango_layout_get_line_count (label->layout) == 1) {
+    y = floor (allocation->y + (int)misc->ypad
+    + (allocation->height - widget->requisition.height) * misc->yalign);
+  }
+  else {
+    y = floor (allocation->y + (int)misc->ypad
+    + MAX (((allocation->height - widget->requisition.height) * misc->yalign),
+           0));
+  }
+
+  if (xp)
+    *xp = x;
+
+  if (yp)
+    *yp = y;
+}
+
+static void window_to_layout_coords (GedaLabel *label, int *x, int *y)
+{
+  GtkAllocation *allocation;
+  int lx, ly;
+
+  /* get layout location in widget->window coords */
+  get_layout_location (label, &lx, &ly);
+
+  allocation = geda_get_widget_allocation (label);
+
+  if (x) {
+     *x += allocation->x; /* go to widget->window */
+     *x -= lx;                   /* go to layout */
+  }
+
+  if (y) {
+     *y += allocation->y; /* go to widget->window */
+     *y -= ly;                   /* go to layout */
+  }
+}
+
+/*! \retval TRUE if the position was within the layout
+ *               otherwise FALSE */
+static bool
+get_layout_index (GedaLabel *label, int x, int y, int *index)
+{
+  int trailing = 0;
+  const char *cluster;
+  const char *cluster_end;
+  bool inside;
+
+  *index = 0;
+
+  geda_label_ensure_layout (label);
+
+  window_to_layout_coords (label, &x, &y);
+
+  x *= PANGO_SCALE;
+  y *= PANGO_SCALE;
+
+  inside = pango_layout_xy_to_index (label->layout,
+                                     x, y,
+                                     index, &trailing);
+
+  cluster = label->text + *index;
+  cluster_end = cluster;
+  while (trailing)
+    {
+      cluster_end = g_utf8_next_char (cluster_end);
+      --trailing;
+    }
+
+  *index += (cluster_end - cluster);
+
+  return inside;
+}
+
 /* widget_class->query_tooltip */
 static bool
 geda_label_query_tooltip (GtkWidget  *widget,
@@ -3716,93 +3860,6 @@ geda_label_state_changed (GtkWidget   *widget, GtkStateType prev_state)
     GTK_WIDGET_CLASS (geda_label_parent_class)->state_changed (widget, prev_state);
 }
 
-/* called by: geda_label_expose
- *            window_to_layout_coords
- *            layout_to_window_coords
- *            geda_label_get_layout_offsets
- */
-static void
-get_layout_location (GedaLabel *label, int *xp, int *yp)
-{
-  GtkAllocation *allocation;
-  GtkMisc       *misc;
-  GtkWidget     *widget;
-
-  float xalign;
-  int req_width, x, y;
-  PangoRectangle logical;
-
-  misc   = GTK_MISC (label);
-  widget = GTK_WIDGET (label);
-
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
-    xalign = misc->xalign;
-  }
-  else {
-    xalign = 1.0 - misc->xalign;
-  }
-
-  pango_layout_get_pixel_extents (label->layout, NULL, &logical);
-
-  if (label->priv->ellipsize || label->width_chars > 0) {
-
-    int width = pango_layout_get_width (label->layout);
-
-    req_width = logical.width;
-
-    if (width != -1) {
-      req_width = MIN(PANGO_PIXELS (width), req_width);
-    }
-
-    req_width += 2 * misc->xpad;
-  }
-  else {
-    req_width = widget->requisition.width;
-  }
-
-  allocation = geda_get_widget_allocation (widget);
-
-  x = floor (allocation->x + (int)misc->xpad + xalign * (allocation->width - req_width));
-
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
-    x = MAX (x, allocation->x + misc->xpad);
-  }
-  else {
-    x = MIN (x, allocation->x + allocation->width - misc->xpad);
-  }
-
-  x -= logical.x;
-
-  /* bgo#315462 - For single-line labels, *do* align the requisition with
-   * respect to the allocation, even if we are under-allocated.  For multi-line
-   * labels, always show the top of the text when they are under-allocated.  The
-   * rationale is this:
-   *
-   * - Single-line labels appear in GtkButtons, and it is very easy to get them
-   *   to be smaller than their requisition.  The button may clip the label, but
-   *   the label will still be able to show most of itself and the focus
-   *   rectangle.  Also, it is fairly easy to read a single line of clipped text.
-   *
-   * - Multi-line labels should not be clipped to showing "something in the
-   *   middle".  You want to read the first line, at least, to get some context.
-   */
-  if (pango_layout_get_line_count (label->layout) == 1) {
-    y = floor (allocation->y + (int)misc->ypad
-    + (allocation->height - widget->requisition.height) * misc->yalign);
-  }
-  else {
-    y = floor (allocation->y + (int)misc->ypad
-    + MAX (((allocation->height - widget->requisition.height) * misc->yalign),
-           0));
-  }
-
-  if (xp)
-    *xp = x;
-
-  if (yp)
-    *yp = y;
-}
-
 static PangoDirection get_cursor_direction (GedaLabel *label)
 {
   SelectionInfo *select_info;
@@ -4258,64 +4315,6 @@ static void geda_label_unmap (GtkWidget *widget)
     gdk_window_hide (label->priv->select_info->window);
   }
   GTK_WIDGET_CLASS (geda_label_parent_class)->unmap (widget);
-}
-
-static void window_to_layout_coords (GedaLabel *label, int *x, int *y)
-{
-  GtkAllocation *allocation;
-  int lx, ly;
-
-  /* get layout location in widget->window coords */
-  get_layout_location (label, &lx, &ly);
-
-  allocation = geda_get_widget_allocation (label);
-
-  if (x) {
-     *x += allocation->x; /* go to widget->window */
-     *x -= lx;                   /* go to layout */
-  }
-
-  if (y) {
-     *y += allocation->y; /* go to widget->window */
-     *y -= ly;                   /* go to layout */
-  }
-}
-
-/*! \retval TRUE if the position was within the layout
- *               otherwise FALSE */
-
-static bool
-get_layout_index (GedaLabel *label, int x, int y, int *index)
-{
-  int trailing = 0;
-  const char *cluster;
-  const char *cluster_end;
-  bool inside;
-
-  *index = 0;
-
-  geda_label_ensure_layout (label);
-
-  window_to_layout_coords (label, &x, &y);
-
-  x *= PANGO_SCALE;
-  y *= PANGO_SCALE;
-
-  inside = pango_layout_xy_to_index (label->layout,
-                                     x, y,
-                                     index, &trailing);
-
-  cluster = label->text + *index;
-  cluster_end = cluster;
-  while (trailing)
-    {
-      cluster_end = g_utf8_next_char (cluster_end);
-      --trailing;
-    }
-
-  *index += (cluster_end - cluster);
-
-  return inside;
 }
 
 /*         Selection   this is out of place       */
