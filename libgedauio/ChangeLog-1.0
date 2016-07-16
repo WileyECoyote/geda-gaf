@@ -1,5 +1,9 @@
 2016-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_label.c: Revise geda_label_update_layout_width; add int
+      halve_height and simply division by 2 to right shift, combine conditional
+      in geda_label_focus and eliminate 2 goto's.
+
     * tests/test_check_menu_item.c: Add checks for alternate constructors. Use
       get_text property blurb.
 

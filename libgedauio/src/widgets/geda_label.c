@@ -668,7 +668,7 @@ static void
 geda_label_update_layout_width (GedaLabel *label)
 {
   GedaLabelData *priv;
-  GtkWidget        *widget;
+  GtkWidget     *widget;
 
   widget = GTK_WIDGET (label);
   priv   = label->priv;
@@ -688,7 +688,7 @@ geda_label_update_layout_width (GedaLabel *label)
     GtkAllocation *allocation;
     GtkBorder      border;
     PangoRectangle logical;
-    int width, height;
+    int            width, height;
 
     geda_misc_get_padding_and_border (GTK_MISC (label), &border);
 
@@ -716,17 +716,20 @@ geda_label_update_layout_width (GedaLabel *label)
           pango_layout_set_width (label->layout, height * PANGO_SCALE);
       }
       else {
+
         double x0, y0, x1, y1, length;
-        bool vertical;
-        int cy;
+        bool   is_vertical;
+        int    cy, halve_height;
 
-        x0 = width / 2;
+        x0 = width >> 1;
         y0 = dx ? x0 * dy / dx : G_MAXDOUBLE;
-        vertical = fabs (y0) > height / 2;
 
-        if (vertical)
-        {
-          y0 = height/2;
+        halve_height = height >> 1;  /* Divide by 2 */
+
+        is_vertical = fabs (y0) > halve_height;
+
+        if (is_vertical) {
+          y0 = halve_height;
           x0 = dy ? y0 * dx / dy : G_MAXDOUBLE;
         }
 
@@ -739,15 +742,15 @@ geda_label_update_layout_width (GedaLabel *label)
         pango_layout_set_width (label->layout, rint (length * PANGO_SCALE));
         pango_layout_get_pixel_size (label->layout, NULL, &cy);
 
-        x1 = +dy * cy/2;
-        y1 = -dx * cy/2;
+        x1 = +dy * cy / 2;
+        y1 = -dx * cy / 2;
 
-        if (vertical) {
-          y0 = height/2 + y1 - y0;
+        if (is_vertical) {
+          y0 = halve_height + y1 - y0;
           x0 = -y0 * dx/dy;
         }
         else {
-          x0 = width/2 + x1 - x0;
+          x0 = width / 2 + x1 - x0;
           y0 = -x0 * dy/dx;
         }
 
@@ -4317,7 +4320,7 @@ static void geda_label_unmap (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_label_parent_class)->unmap (widget);
 }
 
-/*         Selection   this is out of place       */
+/* Selection this is out of place */
 static void geda_label_select_word (GedaLabel *label)
 {
   SelectionInfo *info;
@@ -4375,8 +4378,11 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   if (!gtk_widget_is_focus (widget)) {
 
     gtk_widget_grab_focus (widget);
+
     if (info) {
+
       focus_link = geda_label_get_focus_link (label);
+
       if (focus_link && direction == GTK_DIR_TAB_BACKWARD) {
 
         l = g_list_last (info->links);
@@ -4393,16 +4399,14 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   if (!info)
     return FALSE;
 
-  if (info->selectable) {
-    int index;
+  if (info->selectable && info->selection_anchor == info->selection_end) {
 
-    if (info->selection_anchor != info->selection_end)
-      goto out;
+    int index = info->selection_anchor;
 
-    index = info->selection_anchor;
+    if (direction == GTK_DIR_TAB_FORWARD) {
 
-    if (direction == GTK_DIR_TAB_FORWARD)
       for (l = info->links; l; l = l->next) {
+
         GedaLabelLink *link = l->data;
 
         if (link->start > index) {
@@ -4411,22 +4415,25 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
           return TRUE;
         }
       }
-      else if (direction == GTK_DIR_TAB_BACKWARD)
-        for (l = g_list_last (info->links); l; l = l->prev) {
-          GedaLabelLink *link = l->data;
+    }
+    else if (direction == GTK_DIR_TAB_BACKWARD) {
 
-          if (link->end < index) {
+       for (l = g_list_last (info->links); l; l = l->prev) {
 
-            geda_label_select_region_index (label, link->start, link->start);
-            return TRUE;
-          }
+        GedaLabelLink *link = l->data;
+
+        if (link->end < index) {
+
+          geda_label_select_region_index (label, link->start, link->start);
+          return TRUE;
         }
-
-        goto out;
+      }
+    }
   }
-  else
-  {
+  else {
+
     focus_link = geda_label_get_focus_link (label);
+
     switch (direction) {
 
       case GTK_DIR_TAB_FORWARD:
@@ -4462,7 +4469,7 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
 
   }
 
-  out:
+out:
 
   return FALSE;
 }
@@ -4825,18 +4832,21 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
     return FALSE;
 
   if (info->links && !info->in_drag) {
-    GList *l;
+
     GedaLabelLink *link;
     bool found = FALSE;
 
     if (info->selection_anchor == info->selection_end)  {
-      if (get_layout_index (label, event->x, event->y, &index))
-      {
-        for (l = info->links; l != NULL; l = l->next)
-        {
-          link = l->data;
-          if (index >= link->start && index <= link->end)
-          {
+
+      if (get_layout_index (label, event->x, event->y, &index)) {
+
+        GList *iter;
+
+        for (iter = info->links; iter != NULL; iter = iter->next) {
+
+          link = iter->data;
+
+          if (index >= link->start && index <= link->end) {
             found = TRUE;
             break;
           }
@@ -4845,19 +4855,23 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
     }
 
     if (found)  {
-      if (info->active_link != link)
-      {
+
+      if (info->active_link != link) {
+
         info->link_clicked = 0;
-        info->active_link = link;
+        info->active_link  = link;
+
         geda_label_update_cursor (label);
         gtk_widget_queue_draw (widget);
       }
     }
     else {
-      if (info->active_link != NULL)
-      {
+
+      if (info->active_link != NULL) {
+
         info->link_clicked = 0;
-        info->active_link = NULL;
+        info->active_link  = NULL;
+
         geda_label_update_cursor (label);
         gtk_widget_queue_draw (widget);
       }
@@ -4898,6 +4912,7 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
     get_layout_index (label, event->x, event->y, &index);
 
     if (info->select_words) {
+
       int min, max;
       int old_min, old_max;
       int anchor, end;
@@ -4957,15 +4972,44 @@ geda_label_leave_notify (GtkWidget       *widget,
 }
 
 static void
+geda_label_destroy_window (GedaLabel *label)
+{
+  SelectionInfo *info;
+
+  if (label->priv->select_info == NULL) {
+    BUG_MSG ("select_info = NULL");
+  }
+  else {
+
+    GdkWindow *window;
+
+    info = label->priv->select_info;
+
+    window = geda_get_widget_window(info);
+
+    if (window == NULL)
+      return;
+
+    gdk_window_set_user_data (window, NULL);
+    gdk_window_destroy (window);
+    info->window = NULL;
+  }
+}
+
+/* Helper for:
+ *             geda_label_ensure_select_info
+               geda_label_realize
+ */
+static void
 geda_label_create_window (GedaLabel *label)
 {
   GedaLabelData *priv;
-  GtkAllocation    *allocation;
-  GtkWidget        *widget;
-  GdkWindowAttr     attributes;
-  int               attributes_mask;
+  GtkAllocation *allocation;
+  GtkWidget     *widget;
+  GdkWindowAttr  attributes;
+  int            attributes_mask;
 
-  priv   = label->priv;
+  priv = label->priv;
 
   if (priv->select_info == NULL) {
     BUG_MSG ("select_info = NULL");
@@ -5009,31 +5053,6 @@ geda_label_create_window (GedaLabel *label)
   }
 }
 
-static void
-geda_label_destroy_window (GedaLabel *label)
-{
-  SelectionInfo *info;
-
-  if (label->priv->select_info == NULL) {
-    BUG_MSG ("select_info = NULL");
-  }
-  else {
-
-    GdkWindow *window;
-
-    info = label->priv->select_info;
-
-    window = geda_get_widget_window(info);
-
-    if (window == NULL)
-      return;
-
-    gdk_window_set_user_data (window, NULL);
-    gdk_window_destroy (window);
-    info->window = NULL;
-  }
-}
-
 static bool
 geda_label_ensure_select_info (GedaLabel *label)
 {
@@ -5045,8 +5064,9 @@ geda_label_ensure_select_info (GedaLabel *label)
 
     gtk_widget_set_can_focus (GTK_WIDGET (label), TRUE);
 
-    if (gtk_widget_get_realized (GTK_WIDGET (label)))
+    if (gtk_widget_get_realized (GTK_WIDGET (label))) {
       geda_label_create_window (label);
+    }
 
     if (gtk_widget_get_mapped (GTK_WIDGET (label))) {
 
