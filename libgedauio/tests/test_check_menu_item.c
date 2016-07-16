@@ -47,6 +47,8 @@ int check_construction (void)
 {
   int result = 0;
 
+  /* geda_check_menu_item_new */
+
   GtkWidget *widget = geda_check_menu_item_new();
 
   if (!GEDA_IS_CHECK_MENU_ITEM(widget)) {
@@ -62,7 +64,21 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to menu_item */
   g_object_unref(widget);    /* Does not destroy widget */
 
+  /* geda_check_menu_item_new_with_label */
+
   widget = geda_check_menu_item_new_with_label(NULL);
+
+  if (!GEDA_IS_CHECK_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to menu_item */
+  g_object_unref(widget);    /* Does not destroy widget */
+
+  /* geda_check_menu_item_new_with_mnemonic */
+
+  widget = geda_check_menu_item_new_with_mnemonic("<b>Tortoise</b>");
 
   if (!GEDA_IS_CHECK_MENU_ITEM(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
