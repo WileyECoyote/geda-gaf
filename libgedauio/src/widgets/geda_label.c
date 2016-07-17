@@ -3443,15 +3443,15 @@ geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
 /********************** Width Chars Property **********************/
 
 /*!
- * \brief geda_label_get_width_chars
+ * \brief Get the Width of GedaLabel Characters
  * \par Function Description
- *
- * Retrieves the desired width of label, in characters. See
- * geda_label_set_width_chars().
+ *  Retrieves the desired width of label, in characters.
  *
  * \param [in] label  The GedaLabel object
  *
- * Return value: the width of the label in characters.
+ * \returns the width of the label in characters.
+ *
+ * \sa geda_label_set_width_chars
  */
 int geda_label_get_width_chars (GedaLabel *label)
 {
@@ -3460,13 +3460,22 @@ int geda_label_get_width_chars (GedaLabel *label)
   return label->width_chars;
 }
 
+/*!
+ * \brief Get the Width of Characters from a GedaLabel widget
+ * \par Function Description
+ *  Wrapper for geda_label_get_width_chars that accepts a pointer to a
+ *  GtkWidget for the GeddaLabel object.
+ *
+ *  \param [in] label   The GedaLabel object
+ *  \param [in] n_chars New desired width, in characters.
+ */
 int geda_label_widget_get_width_chars (GtkWidget *widget)
 {
   return geda_label_get_width_chars ( (GedaLabel*) widget);
 }
 
 /*!
- * \brief geda_label_set_width_chars
+ * \brief Set the Width of Characters for a GedaLabel object
  * \par Function Description
  * Sets the desired width in characters of label to n_chars.
  *
@@ -3486,6 +3495,15 @@ void geda_label_set_width_chars (GedaLabel *label, int n_chars)
     gtk_widget_queue_resize (GTK_WIDGET (label));
   }
 }
+
+/*!
+ * \brief Set the Width of Characters for a GedaLabel widget
+ * \par Function Description
+ *  Sets the desired width in characters of label to n_chars.
+ *
+ *  \param [in] label   The GedaLabel object
+ *  \param [in] n_chars New desired width, in characters.
+ */
 void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 {
   geda_label_set_width_chars ( (GedaLabel*) widget, n_chars);
@@ -3631,7 +3649,7 @@ geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
  *
  * \param [in] label:  The GedaLabel object
  *
- * Return value: %TRUE if the lines of the label are automatically wrapped.
+ * \ret_val %TRUE if the lines of the label are automatically wrapped.
  *
  */
 PangoWrapMode
@@ -3704,7 +3722,6 @@ geda_label_clear_layout (GedaLabel *label)
  * are wrapping, we just rewrap for each size request. Since size
  * requisitions are cached by the GTK+ core, this is not expensive.
  */
-
 static void
 geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
@@ -3846,7 +3863,6 @@ geda_label_update_cursor (GedaLabel *label)
     gdk_window_set_cursor (priv->select_info->window, cursor);
 
   }
-
 }
 
 static void
@@ -4021,7 +4037,7 @@ geda_label_get_focus_link (GedaLabel *label)
       if (link->start <= info->selection_anchor &&
           info->selection_anchor <= link->end)
         return link;
-    }
+  }
 
   return NULL;
 }
@@ -4162,22 +4178,23 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
                         char       **new_str,
                         char       **pattern)
 {
-  bool underscore;
   const char *src;
-  char *dest;
-  char *pattern_dest;
+  char       *dest;
+  char       *pattern_dest;
+  bool        underscore;
 
   *accel_key = GDK_KEY_VoidSymbol;
-  *new_str = g_new (char, strlen (str) + 1);
-  *pattern = g_new (char, g_utf8_strlen (str, -1) + 1);
+  *new_str   = g_new (char, strlen (str) + 1);
+  *pattern   = g_new (char, g_utf8_strlen (str, -1) + 1);
 
   underscore = FALSE;
 
-  src = str;
-  dest = *new_str;
+  src          = str;
+  dest         = *new_str;
   pattern_dest = *pattern;
 
   while (*src) {
+
     gunichar c;
     const char *next_src;
 
@@ -4192,29 +4209,34 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
     next_src = g_utf8_next_char (src);
 
     if (underscore) {
-      if (c == '_')
+
+      if (c == '_') {
         *pattern_dest++ = ' ';
-      else
-      {
+      }
+      else {
+
         *pattern_dest++ = '_';
         if (*accel_key == GDK_KEY_VoidSymbol)
           *accel_key = gdk_keyval_to_lower (gdk_unicode_to_keyval (c));
       }
 
-      while (src < next_src)
+      while (src < next_src) {
         *dest++ = *src++;
+      }
 
       underscore = FALSE;
     }
-    else
-    {
+    else {
+
       if (c == '_') {
         underscore = TRUE;
         src = next_src;
       }
       else {
-        while (src < next_src)
+
+        while (src < next_src) {
           *dest++ = *src++;
+        }
 
         *pattern_dest++ = ' ';
       }
@@ -4514,16 +4536,16 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
 
     triggers_menu = geda_event_triggers_context_menu (event);
 
-    if (info->active_link)
-    {
-      if (triggers_menu)
-      {
+    if (info->active_link) {
+
+      if (triggers_menu) {
+
         info->link_clicked = 1;
         geda_label_do_popup (label, event);
         return TRUE;
       }
-      else if (event->button == GDK_BUTTON_PRIMARY)
-      {
+      else if (event->button == GDK_BUTTON_PRIMARY) {
+
         info->link_clicked = 1;
         gtk_widget_queue_draw (widget);
       }
@@ -4540,8 +4562,8 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
 
       return TRUE;
     }
-    else if (event->button == GDK_BUTTON_PRIMARY)
-    {
+    else if (event->button == GDK_BUTTON_PRIMARY) {
+
       if (!gtk_widget_has_focus (widget)) {
         label->priv->in_click = TRUE;
         gtk_widget_grab_focus (widget);
@@ -4554,7 +4576,7 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
       max = MAX (info->selection_anchor, info->selection_end);
 
       if ((info->selection_anchor != info->selection_end) &&
-        (event->state & GDK_SHIFT_MASK))
+          (event->state & GDK_SHIFT_MASK))
       {
         if (index > min && index < max) {
           /* truncate selection based on wipe direction */
@@ -4579,12 +4601,13 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
         geda_label_select_region_index (label, min, max);
       }
       else {
-        if (event->type == GDK_3BUTTON_PRESS)
+        if (event->type == GDK_3BUTTON_PRESS) {
           geda_label_select_region_index (label, 0, strlen (label->text));
-        else if (event->type == GDK_2BUTTON_PRESS)
+        }
+        else if (event->type == GDK_2BUTTON_PRESS) {
           geda_label_select_word (label);
-        else if (min < max && min <= index && index <= max)
-        {
+        }
+        else if (min < max && min <= index && index <= max) {
           info->in_drag = TRUE;
           info->drag_start_x = event->x;
           info->drag_start_y = event->y;
@@ -4621,7 +4644,7 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
       geda_label_select_region_index (label, index, index);
 
       return FALSE;
-    }
+  }
 
   if (event->button != GDK_BUTTON_PRIMARY)
     return FALSE;
@@ -4629,12 +4652,12 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
   if (info->active_link &&
       info->selection_anchor == info->selection_end &&
       info->link_clicked)
-    {
+  {
       emit_activate_link (label, info->active_link);
       info->link_clicked = 0;
 
       return TRUE;
-    }
+  }
 
   /* The goal here is to return TRUE if we ate the
    * button press to start selecting. */
@@ -4688,14 +4711,13 @@ append_n_lines (GString *str, const char *text, GSList *lines, int n_lines)
 
 static void limit_layout_lines (PangoLayout *layout)
 {
-  const char  *text;
-  GString     *str;
-  GSList      *lines, *elem;
-  int          n_lines;
-
-  n_lines = pango_layout_get_line_count (layout);
+  int n_lines  = pango_layout_get_line_count (layout);
 
   if (n_lines >= DRAG_ICON_MAX_LINES) {
+
+    const char *text;
+    GString    *str;
+    GSList     *lines, *elem;
 
     text  = pango_layout_get_text (layout);
     str   = g_string_new (NULL);
@@ -4733,8 +4755,8 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
   PangoContext *context;
   PangoLayout  *layout;
   cairo_t      *cr;
-  int          pixmap_height, pixmap_width;
-  int          layout_width, layout_height;
+  int           pixmap_height, pixmap_width;
+  int           layout_width, layout_height;
 
   g_return_val_if_fail (widget != NULL, NULL);
   g_return_val_if_fail (text != NULL, NULL);
@@ -4784,9 +4806,9 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 static void
 drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 {
-  GedaLabel *label         = GEDA_LABEL (widget);
-  GedaLabelData *priv   = label->priv;
-  GdkPixmap *pixmap        = NULL;
+  GedaLabel *label    = GEDA_LABEL (widget);
+  GedaLabelData *priv = label->priv;
+  GdkPixmap *pixmap   = NULL;
 
   g_signal_handlers_disconnect_by_func (widget, drag_begin_cb, NULL);
 
