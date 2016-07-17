@@ -39,6 +39,11 @@
 #include <../include/geda_image_menu_item.h>
 #include <../include/geda_bulb.h>
 
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_image_menu_item.c"
+
 #define TWIDGET "GedaImageMenuItem"
 
 /*! \file test_image_menu_item.c
@@ -125,7 +130,8 @@ int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -134,11 +140,11 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_construction();
-    if (subtotal) {
-      fprintf(stderr, "Check %s constructors", TWIDGET);
-      result   = subtotal;
-      subtotal = 0;
+    if (setjmp(point) == 0) {
+      result = check_construction();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
     }
   }
   return result;
