@@ -1,10 +1,11 @@
-2016-07-16 Wiley E. Hill <wileyhill@gmail.com>
+2016-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Declare xml_isspace inline, rename glist iter
       variable in various routines. Eliminate goto in geda_label_focus.
 
     * tests/test_check_menu_item.c: Include "test-suite.h" and setup setjmp and
-      longjmp, define MUT, revise flow in main.
+      longjmp, define MUT, revise flow in main, add checks for property getters
+      and setters.
 
     * tests/test_image_menu_item.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT, revise flow in main.

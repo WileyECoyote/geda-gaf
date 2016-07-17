@@ -97,6 +97,95 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+
+  GedaCheckMenuItem *check_menu_item;
+
+  GtkWidget *widget = geda_check_menu_item_new();
+
+  check_menu_item = GEDA_CHECK_MENU_ITEM(widget);
+
+  /* active property */
+
+  geda_check_menu_item_set_active(check_menu_item, FALSE);
+
+  /* geda_check_menu_item_get_active */
+  if (geda_check_menu_item_get_active (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set active %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_check_menu_item_set_active */
+  geda_check_menu_item_set_active(check_menu_item, TRUE);
+
+  if (!geda_check_menu_item_get_active (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set active %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* draw_as_radio property */
+
+  geda_check_menu_item_set_draw_as_radio(check_menu_item, FALSE);
+
+  /* geda_check_menu_item_get_draw_as_radio */
+  if (geda_check_menu_item_get_draw_as_radio (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set draw_as_radio %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_check_menu_item_set_draw_as_radio */
+  geda_check_menu_item_set_draw_as_radio(check_menu_item, TRUE);
+
+  if (!geda_check_menu_item_get_draw_as_radio (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set draw_as_radio %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* inconsistent property */
+
+  geda_check_menu_item_set_inconsistent(check_menu_item, FALSE);
+
+  /* geda_check_menu_item_get_inconsistent */
+  if (geda_check_menu_item_get_inconsistent (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set inconsistent %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_check_menu_item_set_inconsistent */
+  geda_check_menu_item_set_inconsistent(check_menu_item, TRUE);
+
+  if (!geda_check_menu_item_get_inconsistent (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set inconsistent %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* show_toggle property */
+
+  geda_check_menu_item_set_show_toggle(check_menu_item, FALSE);
+
+  /* geda_check_menu_item_get_show_toggle */
+  if (geda_check_menu_item_get_show_toggle (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set show_toggle %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_check_menu_item_set_show_toggle */
+  geda_check_menu_item_set_show_toggle(check_menu_item, TRUE);
+
+  if (!geda_check_menu_item_get_show_toggle (check_menu_item)) {
+    fprintf(stderr, "FAILED: line <%d> get/set show_toggle %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -115,6 +204,17 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;
