@@ -2309,13 +2309,13 @@ label_shortcut_setting_traverse_container (GtkWidget *widget,
 static void
 label_shortcut_setting_changed (GtkSettings *settings)
 {
-  GList *list, *l;
+  GList *list, *iter;
 
   list = gtk_window_list_toplevels ();
 
-  for (l = list; l ; l = l->next) {
+  for (iter = list; iter ; iter = iter->next) {
 
-    GtkWidget *widget = l->data;
+    GtkWidget *widget = iter->data;
 
     if (gtk_widget_get_settings (widget) == settings) {
         gtk_container_forall (GTK_CONTAINER (widget),
@@ -3010,11 +3010,13 @@ failed:
 
 static void geda_label_ensure_has_tooltip (GedaLabel *label)
 {
-  GList *l;
-  bool has_tooltip = FALSE;
+  GList *iter;
+  bool   has_tooltip = FALSE;
 
-  for (l = label->priv->select_info->links; l; l = l->next) {
-    GedaLabelLink *link = l->data;
+  for (iter = label->priv->select_info->links; iter; iter = iter->next) {
+
+    GedaLabelLink *link = iter->data;
+
     if (link->title) {
       has_tooltip = TRUE;
       break;
@@ -4370,10 +4372,10 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   GedaLabel     *label;
   SelectionInfo *info;
   GedaLabelLink *focus_link;
-  GList *l;
+  GList         *iter;
 
   label = GEDA_LABEL (widget);
-  info = label->priv->select_info;
+  info  = label->priv->select_info;
 
   if (!gtk_widget_is_focus (widget)) {
 
@@ -4385,10 +4387,10 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
 
       if (focus_link && direction == GTK_DIR_TAB_BACKWARD) {
 
-        l = g_list_last (info->links);
-        focus_link = l->data;
+        iter                   = g_list_last (info->links);
+        focus_link             = iter->data;
         info->selection_anchor = focus_link->start;
-        info->selection_end = focus_link->start;
+        info->selection_end    = focus_link->start;
 
       }
     }
@@ -4405,9 +4407,9 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
 
     if (direction == GTK_DIR_TAB_FORWARD) {
 
-      for (l = info->links; l; l = l->next) {
+      for (iter = info->links; iter; iter = iter->next) {
 
-        GedaLabelLink *link = l->data;
+        GedaLabelLink *link = iter->data;
 
         if (link->start > index) {
 
@@ -4418,9 +4420,9 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
     }
     else if (direction == GTK_DIR_TAB_BACKWARD) {
 
-       for (l = g_list_last (info->links); l; l = l->prev) {
+       for (iter = g_list_last (info->links); iter; iter = iter->prev) {
 
-        GedaLabelLink *link = l->data;
+        GedaLabelLink *link = iter->data;
 
         if (link->end < index) {
 
@@ -4439,21 +4441,21 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
       case GTK_DIR_TAB_FORWARD:
         if (focus_link) {
 
-          l = g_list_find (info->links, focus_link);
-          l = l->next;
+          iter = g_list_find (info->links, focus_link);
+          iter = iter->next;
 
         }
         else
-          l = info->links;
+          iter = info->links;
         break;
 
       case GTK_DIR_TAB_BACKWARD:
         if (focus_link) {
-          l = g_list_find (info->links, focus_link);
-          l = l->prev;
+          iter = g_list_find (info->links, focus_link);
+          iter = iter->prev;
         }
         else
-          l = g_list_last (info->links);
+          iter = g_list_last (info->links);
         break;
 
       default:
@@ -4477,16 +4479,18 @@ out:
 bool geda_event_triggers_context_menu (GdkEventButton *event)
 {
   if (event->type == GDK_BUTTON_PRESS) {
+
     if (event->button == 3 &&
       ! (event->state & (GDK_BUTTON1_MASK | GDK_BUTTON2_MASK)))
       return TRUE;
 
-    #ifdef GDK_WINDOWING_QUARTZ
+#ifdef GDK_WINDOWING_QUARTZ
       if (event->button == 1 &&
         ! (event->state & (GDK_BUTTON2_MASK | GDK_BUTTON3_MASK)) &&
         (event->state & GDK_CONTROL_MASK))
         return TRUE;
-      #endif
+#endif
+
   }
 
   return FALSE;
