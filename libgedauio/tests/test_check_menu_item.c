@@ -186,6 +186,53 @@ check_accessors ()
 }
 
 static int toggled = 0;
+static int draw_indicator = 0;
+
+static void check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
+{
+  toggled++;
+}
+
+static void check_menu_draw_indicator (GedaCheckMenuItem *check_menu_item,
+                                       GdkRectangle      *area)
+{
+  draw_indicator++;
+}
+
+
+int
+check_overides ()
+{
+  int result = 0;
+
+  GedaCheckMenuItemClass *check_menu_item_class;
+
+  GtkWidget *widget = geda_check_menu_item_new();
+
+  check_menu_item_class = GEDA_CHECK_MENU_ITEM_GET_CLASS(widget);
+
+  check_menu_item_class->toggled        = check_menu_item_toggled;
+  check_menu_item_class->draw_indicator = check_menu_draw_indicator;
+
+  toggled = 0;
+
+  geda_check_menu_item_toggled(GEDA_CHECK_MENU_ITEM(widget));
+
+  if (!toggled) {
+    fprintf(stderr, "FAILED: line <%d> overide toggled %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  if (!draw_indicator) {
+    fprintf(stderr, "FAILED: line <%d> overide draw_indicator %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
 
 static void
 on_toggled (GedaCheckMenuItem *check_menu_item, void *nothing)
@@ -199,6 +246,8 @@ check_signals ()
   int result = 0;
 
   GtkWidget *widget = geda_check_menu_item_new();
+
+  toggled = 0;
 
   g_signal_connect (widget, "toggled", G_CALLBACK (on_toggled), NULL);
 
