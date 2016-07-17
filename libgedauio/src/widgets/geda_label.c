@@ -4434,6 +4434,7 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   }
   else {
 
+    bool queue = TRUE;
     focus_link = geda_label_get_focus_link (label);
 
     switch (direction) {
@@ -4459,19 +4460,20 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
         break;
 
       default:
-        goto out;
+        queue = FALSE;
     }
 
-    focus_link = l->data;
-    info->selection_anchor = focus_link->start;
-    info->selection_end = focus_link->start;
-    gtk_widget_queue_draw (widget);
+    if (queue) {
 
-    return TRUE;
+      focus_link             = iter->data;
+      info->selection_anchor = focus_link->start;
+      info->selection_end    = focus_link->start;
 
+      gtk_widget_queue_draw (widget);
+
+      return TRUE;
+    }
   }
-
-out:
 
   return FALSE;
 }
