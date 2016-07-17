@@ -2919,7 +2919,7 @@ static const GMarkupParser markup_parser =
   NULL
 };
 
-static bool xml_isspace (char c)
+static inline bool xml_isspace (char c)
 {
   return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
 }
