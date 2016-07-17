@@ -5,7 +5,7 @@
 
     * tests/test_check_menu_item.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT, revise flow in main, add checks for property getters
-      and setters.
+      and setters and check "toggled" signal.
 
     * tests/test_image_menu_item.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT, revise flow in main.

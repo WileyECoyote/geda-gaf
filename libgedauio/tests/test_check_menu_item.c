@@ -185,6 +185,38 @@ check_accessors ()
   return result;
 }
 
+static int toggled = 0;
+
+static void
+on_toggled (GedaCheckMenuItem *check_menu_item, void *nothing)
+{
+  toggled++;
+}
+
+int
+check_signals ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_check_menu_item_new();
+
+  g_signal_connect (widget, "toggled", G_CALLBACK (on_toggled), NULL);
+
+  /* geda_check_menu_item_toggled */
+  geda_check_menu_item_toggled(GEDA_CHECK_MENU_ITEM(widget));
+
+  if (!toggled) {
+    fprintf(stderr, "FAILED: line <%d> toggled %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+
 int
 main (int argc, char *argv[])
 {
@@ -213,6 +245,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result += check_signals();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking signals in %s\n\n", MUT);
         return 1;
       }
     }
