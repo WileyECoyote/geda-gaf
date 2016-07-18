@@ -42,7 +42,7 @@
 /*! \def MUT Module Under Tests */
 #define MUT "src/widgets/geda_label.c"
 
-#define TWIDGET "GedaToolbar"
+#define TWIDGET "GedaLabel"
 
 /*! \file test_label.c
  *  \brief Tests for geda_label.c module
@@ -164,7 +164,7 @@ check_accessors ()
   GedaLabel *label  = GEDA_LABEL(widget);
 
   /* geda_label_widget_set_text */
-  geda_label_widget_set_text(widget, "hippopotamus");
+  geda_label_widget_set_text(widget, "Hippopotamus");
 
   /* geda_label_widget_get_text */
   text = geda_label_widget_get_text(widget);
@@ -173,13 +173,13 @@ check_accessors ()
     fprintf(stderr, "FAILED: line <%d> set_text %s\n", __LINE__, TWIDGET);
     result++;
   }
-  else if (strcmp(text, "hippopotamus")) {
+  else if (strcmp(text, "Hippopotamus")) {
     fprintf(stderr, "FAILED: line <%d> set/get text <%s>\n", __LINE__, text);
     result++;
   }
 
   /* geda_label_set_label */
-  geda_label_set_label(label, "rhinoceros");
+  geda_label_set_label(label, "Rhinoceros");
 
   /* geda_label_get_label */
   text = geda_label_get_label(label);
@@ -188,7 +188,7 @@ check_accessors ()
     fprintf(stderr, "FAILED: line <%d> set label %s\n", __LINE__, TWIDGET);
     result++;
   }
-  else if (strcmp(text, "rhinoceros")) {
+  else if (strcmp(text, "Rhinoceros")) {
     fprintf(stderr, "FAILED: line <%d> set/get label <%s>\n", __LINE__, text);
     result++;
   }
@@ -237,6 +237,27 @@ check_accessors ()
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
+
+  widget = geda_aligned_visible_mnemonic_label_new("<b>_Elephant</b>", 12, 24);
+  label  = GEDA_LABEL(widget);
+
+  unsigned int mnemonic_keyval;
+
+  mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
+
+  if (mnemonic_keyval != 101) {
+    fprintf(stderr, "FAILED: get_mnemonic_keyval <%d> %s\n", mnemonic_keyval, TWIDGET);
+    result++;
+  }
+
+  geda_label_set_markup_with_mnemonic(label, "_Gnu");
+
+  mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
+
+  if (mnemonic_keyval != 103) {
+    fprintf(stderr, "FAILED: get_mnemonic_keyval <%d> %s\n", mnemonic_keyval, TWIDGET);
+    result++;
+  }
 
   return result;
 }
