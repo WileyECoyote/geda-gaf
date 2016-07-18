@@ -437,7 +437,7 @@ geda_check_menu_item_get_type (void)
  *  Ensures \a check_menu_item is a valid G_Object and compares signature
  *  to geda check_menu_item type.
  *
- * \return TRUE if \a check_menu_item is a valid GedaCheckMenuItem
+ * \ret_val TRUE if \a check_menu_item is a valid GedaCheckMenuItem
  */
 bool
 is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
@@ -517,17 +517,35 @@ geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
   }
 }
 
+/*!
+ * \brief Create new CheckMenuItem
+ * \ingroup CheckMenuItem
+ * \par Function Description
+ * Creates a new #GedaCheckMenuItem containing a label.
+ *
+ * \returns a new #GedaCheckMenuItem
+ */
 GtkWidget*
 geda_check_menu_item_new (void)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM, NULL);
 }
 
+/*!
+ * \brief Create new CheckMenuItem with a label
+ * \ingroup CheckMenuItem
+ * \par Function Description
+ *  Creates a new #GedaCheckMenuItem containing a label.
+ *
+ * \param [in] label Text for display as the label
+ *
+ * \returns a new #GedaCheckMenuItem
+ */
 GtkWidget*
 geda_check_menu_item_new_with_label (const char  *label)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
-                       "label", label,
+                      "label", label,
                        NULL);
 }
 
@@ -535,9 +553,9 @@ geda_check_menu_item_new_with_label (const char  *label)
  * \brief Create new CheckMenuItem with a mnemonic label
  * \ingroup CheckMenuItem
  * \par Function Description
- * Creates a new #GedaCheckMenuItem containing a label. The label
- * will be created using geda_label_new_with_mnemonic(), so underscores
- * in \a label indicate the mnemonic for the menu item.
+ *  Creates a new #GedaCheckMenuItem containing a label. The label
+ *  will be created using geda_label_new_with_mnemonic(), so under
+ *  scores in \a label indicate the mnemonic for the menu item.
  *
  * \param [in] label Text with mnemonic for display as the label
  *
@@ -547,8 +565,8 @@ GtkWidget*
 geda_check_menu_item_new_with_mnemonic (const char  *label)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
-                       "label", label,
-                       "use-underline", TRUE,
+                      "label", label,
+                      "use-underline", TRUE,
                        NULL);
 }
 
@@ -576,7 +594,7 @@ geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
  * \brief  Set a CheckMenuItem Active
  * \ingroup CheckMenuItem
  * \par Function Description
- * Programmatically sets \a check_menu_item to the given state.
+ *  Programmatically sets \a check_menu_item to the given state.
  *
  * \param [in] check_menu_item a #GedaCheckMenuItem
  * \param [in] is_active       boolean state to be set

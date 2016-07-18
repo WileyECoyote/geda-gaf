@@ -2660,12 +2660,12 @@ void geda_label_widget_set_text (GtkWidget *widget, const char *str)
  * Sets a PangoAttrList; the attributes in the list are applied to the
  * label text.
  *
- * \note The attributes set with this function will be applied
- * and merged with any other attributes previously effected by way
- * of the #GedaLabel:use-underline or #GedaLabel:use-markup properties.
- * While it is not recommended to mix markup strings with manually set
- * attributes, if you must; know that the attributes will be applied
- * to the label after the markup string is parsed.
+ * \note The attributes set with this function will be applied and merged
+ * with any other attributes previously effected by way of the #GedaLabel:
+ * use-underline or #GedaLabel:use-markup properties. While it is not
+ * recommended to mix markup strings with manually set attributes, if you
+ * must; know that the attributes will be applied to the label after the
+ * markup string is parsed.
  *
  * \param [in] label:  The GedaLabel object
  * \param [in] attrs:  PangoAttrList structure
@@ -2692,9 +2692,8 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 }
 
 /*!
- * \brief geda_label_get_attributes
+ * \brief Retrieve PangoAttrList for GedaLabel
  * \par Function Description
- *
  * Gets the attribute list that was set on the label using
  * geda_label_set_attributes(), if any. This function does
  * not reflect attributes that come from the labels markup
@@ -2704,8 +2703,7 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  *
  * \param [in] label  The GedaLabel object
  *
- * Return value: (transfer none): the attribute list, or %NULL
- *     if none was set.
+ * \returns the attribute list, or %NULL if none was set.
  */
 PangoAttrList *geda_label_get_attributes (GedaLabel *label)
 {

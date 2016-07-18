@@ -199,7 +199,6 @@ static void check_menu_draw_indicator (GedaCheckMenuItem *check_menu_item,
   draw_indicator++;
 }
 
-
 int
 check_overides ()
 {
@@ -264,7 +263,6 @@ check_signals ()
 
   return result;
 }
-
 
 int
 main (int argc, char *argv[])

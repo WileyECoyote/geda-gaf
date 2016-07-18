@@ -1,3 +1,8 @@
+2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_check_menu_item.c: A dd Doxygen comments for functions
+      geda_check_menu_item_new and geda_check_menu_item_new_with_label.
+
 2016-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Declare xml_isspace inline, rename glist iter
