@@ -115,16 +115,17 @@ key_hash_keys_changed (GdkKeymap *keymap, GedaKeyHash *key_hash)
   }
 }
 
-/**
- * geda_key_hash_new:
- * @keymap: a #GdkKeymap
- * @item_destroy_notify: function to be called when items are removed
- *   from the hash or %NULL.
+/*!
+ * \brief Create a New GedaKeyHash
+ * \par Function Description
+ *  Create a new key hash object for doing binding resolution.
  *
- * Create a new key hash object for doing binding resolution.
+ *  \param [in] keymap a #GdkKeymap
+ *  \param [in] widget item_destroy_notify: function to be called when items
+ *                     are removed from the hash or %NULL.
  *
- * Return value: the newly created object. Free with geda_key_hash_free().
- **/
+ * \return newly created object. Free with geda_key_hash_free().
+ */
 GedaKeyHash *
 geda_key_hash_new (GdkKeymap *keymap, GDestroyNotify  item_destroy_notify)
 {
@@ -161,12 +162,13 @@ key_hash_free_entry_foreach (void *value, void *data)
   key_hash_free_entry (key_hash, entry);
 }
 
-/**
- * gtk_key_hash_free:
- * @key_hash: a #GedaKeyHash
+/*!
+ * \brief Release a GedaKeyHash
+ * \par Function Description
+ *  Destroys a key hash created with gtk_key_hash_new()
  *
- * Destroys a key hash created with gtk_key_hash_new()
- **/
+ * \param [in] key_hash a #GedaKeyHash
+ */
 void
 geda_key_hash_free (GedaKeyHash *key_hash)
 {
@@ -190,7 +192,7 @@ geda_key_hash_free (GedaKeyHash *key_hash)
 /*!
  * \brief Add Hash Entry
  * \par Function Description
- * Inserts a pair of key symbol and modifier mask into the key hash.
+ *  Inserts a pair of key symbol and modifier mask into the key hash.
  *
  * \param[in] key_hash   a #GedaKeyHash
  * \param[in] keyval     key symbol for this binding
