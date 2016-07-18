@@ -2446,7 +2446,7 @@ label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
  *  \param [in] widget   Target GtkWidget
  */
 void
-geda_label_set_mnemonic_widget (GedaLabel  *label, GtkWidget *widget)
+geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 {
   GedaLabelData *priv;
 
@@ -2650,6 +2650,43 @@ void geda_label_widget_set_text (GtkWidget *widget, const char *str)
   geda_label_set_text((GedaLabel*)widget,str);
 }
 
+void
+geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  gtk_misc_get_alignment (GTK_MISC(label), xalign, yalign);
+}
+
+void
+geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
+}
+
+/*!
+ * \brief Retrieve PangoAttrList for GedaLabel
+ * \par Function Description
+ * Gets the attribute list that was set on the label using
+ * geda_label_set_attributes(), if any. This function does
+ * not reflect attributes that come from the labels markup
+ * (see geda_label_set_markup()). If you want to get the
+ * effective attributes for the label, use
+ * pango_layout_get_attribute (geda_label_get_layout (label)).
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the attribute list, or %NULL if none was set.
+ */
+PangoAttrList *geda_label_get_attributes (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+
+  return label->attrs;
+}
+
 /*!
  * \brief geda_label_set_attributes
  * \par Function Description
@@ -2686,27 +2723,6 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 
   geda_label_clear_layout (label);
   gtk_widget_queue_resize (GTK_WIDGET (label));
-}
-
-/*!
- * \brief Retrieve PangoAttrList for GedaLabel
- * \par Function Description
- * Gets the attribute list that was set on the label using
- * geda_label_set_attributes(), if any. This function does
- * not reflect attributes that come from the labels markup
- * (see geda_label_set_markup()). If you want to get the
- * effective attributes for the label, use
- * pango_layout_get_attribute (geda_label_get_layout (label)).
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the attribute list, or %NULL if none was set.
- */
-PangoAttrList *geda_label_get_attributes (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
-
-  return label->attrs;
 }
 
 /*!

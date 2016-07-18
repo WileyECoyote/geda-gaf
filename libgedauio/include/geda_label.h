@@ -134,9 +134,17 @@ void           geda_label_widget_set_text           (GtkWidget      *widget,
                                                      const char     *str);
 const char*    geda_label_widget_get_text           (GtkWidget      *widget);
 
+void           geda_label_get_alignment             (GedaLabel      *label,
+                                                     float          *xalign,
+                                                     float          *yalign);
+void           geda_label_set_alignment             (GedaLabel      *label,
+                                                     float           xalign,
+                                                     float           yalign);
+
+PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
 void           geda_label_set_attributes            (GedaLabel      *label,
                                                      PangoAttrList  *attrs);
-PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
+
 void           geda_label_set_label                 (GedaLabel      *label,
                                                      const char     *str);
 const char*    geda_label_get_label                 (GedaLabel      *label);
