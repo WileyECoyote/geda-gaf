@@ -5605,47 +5605,80 @@ bool geda_label_widget_get_use_markup (GtkWidget *widget)
   return geda_label_get_use_markup ((GedaLabel*)widget);
 }
 
-/*! \brief geda_label_set_use_underline
+/*!
+ * \brief geda_label_get_use_underline
+ * \par Function Description
+ *  Returns whether an embedded underline in the label indicates a
+ *  mnemonic. See geda_label_set_use_underline().
  *
- *  \par Function Description
+ * \param [in] label:   The GedaLabel object
  *
- * If true, an underline in the text indicates the next character should be
- * used for the mnemonic accelerator key.
+ * \ret_val %TRUE whether an embedded underline in the label indicates
+ *          the mnemonic accelerator keys.
+ */
+bool geda_label_get_use_underline (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->use_underline;
+}
+
+/*!
+ * \brief geda_label_set_use_underline
+ * \par Function Description
+ *  If true, an underline in the text indicates the next character should
+ *  be used for the mnemonic accelerator key.
  *
  * \param [in] label:   The GedaLabel object
  * \param [in] setting: %TRUE if underlines in the text indicate mnemonics.
  */
 void geda_label_set_use_underline (GedaLabel *label, bool setting)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify (G_OBJECT(label));
 
-  geda_label_set_use_underline_internal (label, setting);
+  geda_label_set_use_underline_internal(label, setting);
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify (G_OBJECT(label));
 
 }
 
-/*! \brief geda_label_get_use_underline
+/*!
+ * \brief Widget Wrapper for geda_label_get_use_underline
+ * \par Function Description
+ *  Returns whether an embedded underline in the label indicates a
+ *  mnemonic. See geda_label_set_use_underline().
  *
- *  \par Function Description
- *
- * Returns whether an embedded underline in the label indicates a
- * mnemonic. See geda_label_set_use_underline().
- *
- * \param [in] label:   The GedaLabel object
+ * \param [in] label:   The GtkWidget object
  *
  * Return value: %TRUE whether an embedded underline in the label indicates
  *               the mnemonic accelerator keys.
  */
-bool geda_label_get_use_underline (GedaLabel *label)
+bool geda_label_widget_get_use_underline (GtkWidget *widget)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
 
-  return label->priv->use_underline;
+  return geda_label_get_use_underline ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Widget Wrapper for geda_label_set_use_underline
+ * \par Function Description
+ *  If true, an underline in the text indicates the next character should
+ *  be used for the mnemonic accelerator key.
+ *
+ * \param [in] label:   The GtkWidget object
+ * \param [in] setting: %TRUE if underlines in the text indicate mnemonics.
+ */
+void geda_label_widget_set_use_underline (GtkWidget *widget, bool setting)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  geda_label_set_use_underline ((GedaLabel*)widget, setting);
+
 }
 
 /*! \brief geda_label_set_single_line_mode

@@ -153,6 +153,10 @@ void           geda_label_widget_set_use_markup     (GtkWidget      *widget,
 bool           geda_label_get_use_underline         (GedaLabel      *label);
 void           geda_label_set_use_underline         (GedaLabel      *label,
                                                      bool            setting);
+bool           geda_label_widget_get_use_underline  (GtkWidget      *widget);
+void           geda_label_widget_set_use_underline  (GtkWidget      *widget,
+                                                     bool            setting);
+
 void           geda_label_set_markup_with_mnemonic  (GedaLabel      *label,
                                                      const char     *str);
 unsigned int   geda_label_get_mnemonic_keyval       (GedaLabel      *label);
