@@ -155,6 +155,93 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+  const char *text;
+
+  GtkWidget *widget = geda_label_new(0);
+  GedaLabel *label  = GEDA_LABEL(widget);
+
+  /* geda_label_widget_set_text */
+  geda_label_widget_set_text(widget, "hippopotamus");
+
+  /* geda_label_widget_get_text */
+  text = geda_label_widget_get_text(widget);
+
+  if (!text) {
+    fprintf(stderr, "FAILED: line <%d> set_text %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else if (strcmp(text, "hippopotamus")) {
+    fprintf(stderr, "FAILED: line <%d> set/get text <%s>\n", __LINE__, text);
+    result++;
+  }
+
+  /* geda_label_set_label */
+  geda_label_set_label(label, "rhinoceros");
+
+  /* geda_label_get_label */
+  text = geda_label_get_label(label);
+
+  if (!text) {
+    fprintf(stderr, "FAILED: line <%d> set label %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else if (strcmp(text, "rhinoceros")) {
+    fprintf(stderr, "FAILED: line <%d> set/get label <%s>\n", __LINE__, text);
+    result++;
+  }
+
+  PangoAttrList *attrs;
+
+  attrs = geda_label_get_attributes (label);
+
+  geda_label_set_attributes (label, attrs);
+
+  /* use_markup property */
+
+  geda_label_widget_set_use_markup (widget, FALSE);
+
+  /* geda_label_get_use_markup */
+  if (geda_label_widget_get_use_markup (widget)) {
+    fprintf(stderr, "FAILED: line <%d> get/set use_markup %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_label_widget_set_use_markup */
+  geda_label_widget_set_use_markup (widget, TRUE);
+
+  if (!geda_label_widget_get_use_markup (widget)) {
+    fprintf(stderr, "FAILED: line <%d> get/set use_markup %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* use_underline property */
+
+  geda_label_widget_set_use_underline (widget, FALSE);
+
+  /* geda_label_widget_get_use_underline */
+  if (geda_label_widget_get_use_underline (widget)) {
+    fprintf(stderr, "FAILED: line <%d> get/set use_underline %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* geda_label_widget_set_use_underline */
+  geda_label_widget_set_use_underline (widget, TRUE);
+
+  if (!geda_label_widget_get_use_underline (widget)) {
+    fprintf(stderr, "FAILED: line <%d> get/set use_underline %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -173,6 +260,17 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
+
+   if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
 

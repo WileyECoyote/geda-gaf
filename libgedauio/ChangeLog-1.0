@@ -8,6 +8,19 @@
             * geda_label_widget_get_use_underline
             * geda_label_widget_set_use_underline
 
+    * tests/test_label.c: Add basic checks for:
+
+            * geda_label_widget_get_text
+            * geda_label_widget_set_text
+            * geda_label_get_label
+            * geda_label_set_label
+            * geda_label_get_attributes
+            * geda_label_set_attributes
+            * geda_label_widget_get_use_markup
+            * geda_label_widget_set_use_markup
+            * geda_label_widget_get_use_underline
+            * geda_label_widget_set_use_underline
+
 2016-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Declare xml_isspace inline, rename glist iter
