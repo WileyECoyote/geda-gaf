@@ -406,6 +406,72 @@ check_accessors ()
     result++;
   }
 
+  /* -------------------- line_wrap -------------------- */
+
+  PangoWrapMode wrap_mode;
+
+  if (geda_label_get_line_wrap (label)) { /* Default value is FALSE */
+    fprintf(stderr, "FAILED: line <%d> default line_wrap %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  geda_label_set_line_wrap (label, TRUE);
+
+  if (!geda_label_get_line_wrap (label)) { /* Default value is FALSE */
+    fprintf(stderr, "FAILED: line <%d> set_line_wrap %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  wrap_mode = geda_label_get_line_wrap_mode (label);
+
+  if (wrap_mode != PANGO_WRAP_WORD) { /* Default value is PANGO_WRAP_WORD */
+    fprintf(stderr, "FAILED:  %s line <%d> default wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
+    result++;
+  }
+
+  geda_label_set_line_wrap_mode (label, PANGO_WRAP_CHAR);
+
+  wrap_mode = geda_label_get_line_wrap_mode (label);
+
+  if (wrap_mode != PANGO_WRAP_CHAR) {
+    fprintf(stderr, "FAILED:  %s line <%d> set wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
+    result++;
+  }
+
+  /* -------------------- selectable -------------------- */
+
+  if (geda_label_widget_get_selectable (widget)) { /* Default value is FALSE */
+    fprintf(stderr, "FAILED:  %s line <%d> default selectable\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_label_widget_set_selectable (widget, TRUE);
+
+  if (!geda_label_widget_get_selectable (widget)) {
+    fprintf(stderr, "FAILED:  %s line <%d> set selectable\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* -------------------- angle -------------------- */
+
+  double angle;
+
+  angle = geda_label_widget_get_angle (widget);
+
+  if (angle != 0.0) {
+    fprintf(stderr, "FAILED: %s line <%d> default angle=<%f>\n", TWIDGET, __LINE__, angle);
+    result++;
+  }
+
+  geda_label_widget_set_angle (widget, 45.0);
+
+  angle = geda_label_widget_get_angle (widget);
+
+  if (angle != 45.0) {
+    fprintf(stderr, "FAILED: %s line <%d> default angle=<%f>\n", TWIDGET, __LINE__, angle);
+    result++;
+  }
+
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 

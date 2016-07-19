@@ -14,6 +14,14 @@
             * geda_label_widget_get_width_chars
             * geda_label_widget_get_max_width_chars
             * geda_label_widget_set_max_width_chars
+            * geda_label_get_line_wrap
+            * geda_label_set_line_wrap
+            * geda_label_get_line_wrap_mode
+            * geda_label_set_line_wrap_mode
+            * geda_label_widget_get_selectable
+            * geda_label_widget_set_selectable
+            * geda_label_widget_get_angle
+            * geda_label_widget_set_angle
 
 2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
