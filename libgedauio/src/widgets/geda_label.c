@@ -2640,13 +2640,12 @@ static void geda_label_recalculate (GedaLabel *label)
 }
 
 /*!
- * \brief geda_label_set_text
+ * \brief Set the GedaLabel Text
  * \par Function Description
+ *  Sets the text within the #GedaLabel widget. It overwrites any text that
+ *  was there before.
  *
- * Sets the text within the #GedaLabel widget. It overwrites any text that
- * was there before.
- *
- * This will also clear any previously set mnemonic accelerators.
+ * \note This will also clear any previously set mnemonic accelerators.
  *
  * \param [in] label  The GedaLabel object
  * \param [in] str    The text to be set
@@ -2666,6 +2665,16 @@ void geda_label_set_text (GedaLabel *label, const char *str)
   g_object_thaw_notify (G_OBJECT (label));
 }
 
+/*!
+ * \brief Get the GedaLabel Text cast to a Widget
+ * \par Function Description
+ *  Sets the text within the #GedaLabel widget.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    The text to be set
+
+ * \sa geda_label_set_text
+ */
 void geda_label_widget_set_text (GtkWidget *widget, const char *str)
 {
   geda_label_set_text((GedaLabel*)widget,str);
@@ -3419,10 +3428,42 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
     g_object_notify (G_OBJECT (label), "justify");
 
     gtk_widget_queue_resize (GTK_WIDGET (label));
-
   }
 }
 
+/*!
+ * \brief get justification
+ * \par Function Description
+ *  Returns the justification of the label.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns GtkJustification
+ *
+ * \sa geda_label_set_justify
+ */
+GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
+{
+  return geda_label_get_justify ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief geda_label_set_justify
+ * \par Function Description
+ *  Sets the alignment of the lines in the text of the label relative to
+ *  each other. %GTK_JUSTIFY_LEFT is the default value when the widget
+ *  is first created with geda_label_new(). If you instead want to set
+ *  the alignment of the label as a whole, use gtk_misc_set_alignment
+ *  instead.
+ *
+ * \note geda_label_set_justify has no effect on labels containing
+ *       only a single line.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] jtype  The GedaLabel object
+ *
+ * \sa geda_label_set_justify
+ */
 void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 {
   geda_label_set_justify ((GedaLabel*) widget, jtype);
@@ -3430,29 +3471,22 @@ void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 
 /************************ Ellipsize Property **********************/
 /*!
- * \brief geda_label_get_ellipsize
+ * \brief Get the ellipsize property of a GedaLabel
  * \par Function Description
- *
- * Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
+ *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
  *
  * \param [in] label  The GedaLabel object
  *
  * \returns PangoEllipsizeMode
- *
  */
 PangoEllipsizeMode geda_label_get_ellipsize (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), PANGO_ELLIPSIZE_NONE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), PANGO_ELLIPSIZE_NONE);
   return label->priv->ellipsize;
 }
 
-PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
-{
-  return geda_label_get_ellipsize ( (GedaLabel*) widget);
-}
-
 /*!
- * \brief geda_label_set_ellipsize
+ * \brief Set the ellipsize property of a GedaLabel
  * \par Function Description
  *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
  *  text if there is not enough space to render the entire string.
@@ -3462,7 +3496,7 @@ PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
  */
 void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (mode >= PANGO_ELLIPSIZE_NONE && mode <= PANGO_ELLIPSIZE_END);
 
   if ((PangoEllipsizeMode) label->priv->ellipsize != mode) {
@@ -3478,6 +3512,33 @@ void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
   }
 }
 
+/*!
+ * \brief Get the ellipsize property of a GedaLabel Widget
+ * \par Function Description
+ *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
+ *
+ * \param [in] widget The GedaLabel object
+ *
+ * \returns PangoEllipsizeMode
+ *
+ * \sa geda_label_get_ellipsize
+ */
+PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
+{
+  return geda_label_get_ellipsize ( (GedaLabel*) widget);
+}
+
+/*!
+ * \brief Set the ellipsize property of a GedaLabel Widget
+ * \par Function Description
+ *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
+ *  text if there is not enough space to render the entire string.
+ *
+ * \param [in] widget The GedaLabel object
+ * \param [in] mode   a PangoEllipsizeMode
+ *
+ * \sa geda_label_set_ellipsize
+ */
 void
 geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
 {
@@ -3499,23 +3560,9 @@ geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
  */
 int geda_label_get_width_chars (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), -1);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
 
   return label->width_chars;
-}
-
-/*!
- * \brief Get the Width of Characters from a GedaLabel widget
- * \par Function Description
- *  Wrapper for geda_label_get_width_chars that accepts a pointer to a
- *  GtkWidget for the GeddaLabel object.
- *
- *  \param [in] label   The GedaLabel object
- *  \param [in] n_chars New desired width, in characters.
- */
-int geda_label_widget_get_width_chars (GtkWidget *widget)
-{
-  return geda_label_get_width_chars ( (GedaLabel*) widget);
 }
 
 /*!
@@ -3528,7 +3575,7 @@ int geda_label_widget_get_width_chars (GtkWidget *widget)
  */
 void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   if (label->width_chars != n_chars) {
 
@@ -3541,11 +3588,25 @@ void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 }
 
 /*!
+ * \brief Get the Width of Characters from a GedaLabel widget
+ * \par Function Description
+ *  Wrapper for geda_label_get_width_chars that accepts a pointer to a
+ *  GtkWidget for the GeddaLabel object.
+ *
+ *  \param [in] widget  The GedaLabel object
+ *  \param [in] n_chars New desired width, in characters.
+ */
+int geda_label_widget_get_width_chars (GtkWidget *widget)
+{
+  return geda_label_get_width_chars ( (GedaLabel*) widget);
+}
+
+/*!
  * \brief Set the Width of Characters for a GedaLabel widget
  * \par Function Description
  *  Sets the desired width in characters of label to n_chars.
  *
- *  \param [in] label   The GedaLabel object
+ *  \param [in] widget  The GedaLabel object
  *  \param [in] n_chars New desired width, in characters.
  */
 void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
@@ -3555,11 +3616,10 @@ void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 
 /********************* Max Width Chars Property *******************/
 /*!
- * \brief geda_label_get_max_width_chars
+ * \brief Retrieves the Maximum Width of Characters for a GedaLabel
  * \par Function Description
- *
- * Retrieves the desired maximum width of label, in characters. See
- * geda_label_set_width_chars().
+ *  Retrieves the desired maximum width of label, in characters. See
+ *  geda_label_set_width_chars().
  *
  * \param [in] label  The GedaLabel object
  *
@@ -3568,27 +3628,22 @@ void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
  */
 int geda_label_get_max_width_chars (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), -1);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
 
   return label->max_width_chars;
 }
-int geda_label_widget_get_max_width_chars (GtkWidget *widget)
-{
-  return geda_label_get_max_width_chars ( (GedaLabel*) widget);
-}
 
 /*!
- * \brief geda_label_set_max_width_chars
+ * \brief Set the Maximum Width of Characters of a GedaLabel
  * \par Function Description
- *
- * Sets the desired maximum width in characters of label to n_chars.
+ *  Sets the desired maximum width in characters of label to n_chars.
  *
  * \param [in] label    The GedaLabel object
  * \param [in] n_chars  New desired maximum width, in characters.
  */
 void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   if (label->max_width_chars != n_chars) {
 
@@ -3599,9 +3654,37 @@ void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
     gtk_widget_queue_resize (GTK_WIDGET (label));
   }
 }
+
+/*!
+ * \brief Retrieves the Maximum Width of Characters for a GedaLabel Widget
+ * \par Function Description
+ *  Wrapper to retrieves the desired maximum width of label, in characters
+ *  casting the GedaLabel to Widget.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the maximum width of the label in characters.
+ *
+ * \sa geda_label_get_max_width_chars
+ */
+int geda_label_widget_get_max_width_chars (GtkWidget *widget)
+{
+  return geda_label_get_max_width_chars ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Set the Maximum Width of Characters of a GedaLabel Widget
+ * \par Function Description
+ *  Wrapper for geda_label_set_max_width_chars.
+ *
+ * \param [in] label    The GedaLabel object
+ * \param [in] n_chars  New desired maximum width, in characters.
+ *
+ * \sa geda_label_set_max_width_chars
+ */
 void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
 {
-  geda_label_set_max_width_chars ( (GedaLabel*) widget, n_chars);
+  geda_label_set_max_width_chars ((GedaLabel*)widget, n_chars);
 }
 
 /************************ Line Wrap Property **********************/
