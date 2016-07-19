@@ -2666,7 +2666,7 @@ void geda_label_set_text (GedaLabel *label, const char *str)
 }
 
 /*!
- * \brief Get the GedaLabel Text cast to a Widget
+ * \brief Set the GedaLabel Text cast to a Widget
  * \par Function Description
  *  Sets the text within the #GedaLabel widget.
  *
@@ -2680,6 +2680,17 @@ void geda_label_widget_set_text (GtkWidget *widget, const char *str)
   geda_label_set_text((GedaLabel*)widget,str);
 }
 
+/*!
+ * \brief Get the GedaLabel Text Alignment
+ * \par Function Description
+ *  Retrieves the text within the #GedaLabel widget.
+ *
+ * \param [in]  label  The GedaLabel object
+ * \param [out] xalign Pointer to float to store the horizontal alignment
+ * \param [out] yalign Pointer to float to store the vertical alignment
+ *
+ * \sa geda_label_set_alignment
+ */
 void
 geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
 {
@@ -2688,6 +2699,17 @@ geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
   gtk_misc_get_alignment (GTK_MISC(label), xalign, yalign);
 }
 
+/*!
+ * \brief Set the GedaLabel Text Alignment
+ * \par Function Description
+ *  Set the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
+ * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
+ *
+ * \sa geda_label_get_alignment
+ */
 void
 geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
 {
@@ -2696,6 +2718,17 @@ geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
   gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
 }
 
+/*!
+ * \brief Get the Text Alignment of a GedaLabel Widget
+ * \par Function Description
+ *  Retrieves the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in]  label  The GedaLabel object
+ * \param [out] xalign Pointer to float to store the horizontal alignment
+ * \param [out] yalign Pointer to float to store the vertical alignment
+ *
+ * \sa geda_label_get_alignment
+ */
 void
 geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
 {
@@ -2704,6 +2737,17 @@ geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign
   gtk_misc_get_alignment (GTK_MISC(widget), xalign, yalign);
 }
 
+/*!
+ * \brief Set the Text Alignment of a GedaLabel Widget
+ * \par Function Description
+ *  Set the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
+ * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
+ *
+ * \sa geda_label_set_alignment
+ */
 void
 geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
 {
@@ -3348,7 +3392,6 @@ geda_label_set_pattern_internal (GedaLabel  *label,
 /*!
  * \brief geda_label_set_pattern
  * \par Function Description
- *
  * The pattern of underlines you want under the existing text within the
  * #GedaLabel widget.  For example if the current text of the label says
  * "FooBarBaz" passing a pattern of "___   ___" will underline
