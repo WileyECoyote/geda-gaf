@@ -33,6 +33,9 @@
             * geda_label_get_cursor_position
             * geda_label_get_selection_bound
 
+    * tests/test_menu_item.c: Include "test-suite.h" and setup setjmp and
+      longjmp, define MUT, add functions main_window and check_accessors.
+
 2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Add Doxygen comments for functions

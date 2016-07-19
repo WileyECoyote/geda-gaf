@@ -35,7 +35,15 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
+#include <geda_menu.h>
+#include <geda_menu_bar.h>
+#include <geda_menu_shell.h>
 #include <geda_menu_item.h>
+
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_menu_item.c"
 
 #define TWIDGET "GedaMenuItem"
 
@@ -72,6 +80,78 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to menu_item */
   g_object_unref(widget);    /* Does not destroy widget */
 
+  widget = geda_menu_item_new_with_mnemonic("_Cherry");
+
+  if (!GEDA_IS_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to menu_item */
+  g_object_unref(widget);    /* Does not destroy widget */
+
+  return result;
+}
+
+GtkWidget *main_window()
+{
+  GtkWidget *vbox;
+  GtkWidget *window;
+  GtkWidget *menubar;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  menubar = geda_menu_bar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
+
+  gtk_widget_show (menubar);
+  gtk_widget_show (window);
+
+  return menubar;
+}
+
+int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_menu_item_new_with_mnemonic("_Cherry");
+
+  if (!GEDA_IS_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GtkWidget    *menu;
+    GtkWidget    *menu_bar;
+    GedaMenuItem *menu_item;
+    GdkWindow    *event_window;
+
+    menu      = geda_menu_new ();
+    menu_bar  = main_window();
+    menu_item = GEDA_MENU_ITEM(widget);
+
+    geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget);
+
+    gtk_widget_show (widget);
+    gtk_widget_show (menu);
+
+    event_window = geda_menu_item_get_event_window (menu_item);
+
+    if (!GDK_IS_WINDOW(event_window)) {
+      fprintf(stderr, "FAILED: line <%d> event event_window %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+  }
+
   return result;
 }
 
@@ -79,7 +159,8 @@ int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -88,12 +169,22 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_construction();
+    if (setjmp(point) == 0) {
+      result = check_construction();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
 
-    if (subtotal) {
-      fprintf(stderr, "Check constructors in src/widgets/geda_menu_item.c");
-      result   = subtotal;
-      subtotal = 0;
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;
