@@ -105,7 +105,7 @@ int check_construction (void)
 
   /* geda_aligned_label_new */
 
-  widget = geda_aligned_label_new("<b>Harmonic</b>", 10, 20);
+  widget = geda_aligned_label_new("<b>Harmonic</b>", 0.4, 0.5);
 
   if (!GEDA_IS_LABEL(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -117,7 +117,7 @@ int check_construction (void)
 
   /* geda_aligned_visible_label_new */
 
-  widget = geda_aligned_visible_label_new("<b>Harmonic</b>", 5, 15);
+  widget = geda_aligned_visible_label_new("<b>Harmonic</b>", 0.4, 0.5);
 
   if (!GEDA_IS_LABEL(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -129,7 +129,7 @@ int check_construction (void)
 
   /* geda_aligned_mnemonic_label_new */
 
-  widget = geda_aligned_mnemonic_label_new("<b>Harmonic</b>", 11, 22);
+  widget = geda_aligned_mnemonic_label_new("<b>Harmonic</b>", 0.4, 0.5);
 
   if (!GEDA_IS_LABEL(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -141,7 +141,7 @@ int check_construction (void)
 
   /* geda_aligned_visible_mnemonic_label_new */
 
-  widget = geda_aligned_visible_mnemonic_label_new("<b>Harmonic</b>", 12, 24);
+  widget = geda_aligned_visible_mnemonic_label_new("<b>Harmonic</b>", 0.4, 0.5);
 
   if (!GEDA_IS_LABEL(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -193,13 +193,15 @@ check_accessors ()
     result++;
   }
 
+  /* -------------------- attributes -------------------- */
+
   PangoAttrList *attrs;
 
   attrs = geda_label_get_attributes (label);
 
   geda_label_set_attributes (label, attrs);
 
-  /* use_markup property */
+  /* -------------------- use_markup property -------------------- */
 
   geda_label_widget_set_use_markup (widget, FALSE);
 
@@ -217,17 +219,17 @@ check_accessors ()
     result++;
   }
 
-  /* use_underline property */
-
-  geda_label_widget_set_use_underline (widget, FALSE);
+  /* -------------------- use_underline property -------------------- */
 
   /* geda_label_widget_get_use_underline */
-  if (geda_label_widget_get_use_underline (widget)) {
+
+  if (geda_label_widget_get_use_underline (widget)) { /* Default value is FALSE */
     fprintf(stderr, "FAILED: line <%d> get/set use_underline %s\n", __LINE__, TWIDGET);
     result++;
   }
 
   /* geda_label_widget_set_use_underline */
+
   geda_label_widget_set_use_underline (widget, TRUE);
 
   if (!geda_label_widget_get_use_underline (widget)) {
@@ -238,7 +240,7 @@ check_accessors ()
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
-  widget = geda_aligned_visible_mnemonic_label_new("<b>_Elephant</b>", 12, 24);
+  widget = geda_aligned_visible_mnemonic_label_new("<b>_Elephant</b>", 0.4, 0.5);
   label  = GEDA_LABEL(widget);
 
   unsigned int mnemonic_keyval;
@@ -250,6 +252,8 @@ check_accessors ()
     result++;
   }
 
+  /* geda_label_set_markup_with_mnemonic */
+
   geda_label_set_markup_with_mnemonic(label, "_Gnu");
 
   mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
@@ -258,6 +262,152 @@ check_accessors ()
     fprintf(stderr, "FAILED: get_mnemonic_keyval <%d> %s\n", mnemonic_keyval, TWIDGET);
     result++;
   }
+
+  /* -------------------- alignment -------------------- */
+
+  float x_align;
+  float y_align;
+
+  geda_label_get_alignment (label, &x_align, &y_align);
+
+  if (x_align != (float)0.4) {
+    fprintf(stderr, "FAILED: %s get_alignment x=<%f>\n", TWIDGET, x_align);
+    result++;
+  }
+
+  if (y_align != (float)0.5) {
+    fprintf(stderr, "FAILED: %s get_alignment y=<%f>\n", TWIDGET, y_align);
+    result++;
+  }
+
+  /* geda_label_set_alignment */
+
+  geda_label_set_alignment (label, 0.3, 0.7);
+
+  /* geda_label_widget_get_alignment */
+
+  geda_label_widget_get_alignment (widget, &x_align, &y_align);
+
+  if (x_align != (float)0.3) {
+    fprintf(stderr, "FAILED: %s get_alignment x=<%f>\n", TWIDGET, x_align);
+    result++;
+  }
+
+  if (y_align != (float)0.7) {
+    fprintf(stderr, "FAILED: %s get_alignment y=<%f>\n", TWIDGET, y_align);
+    result++;
+  }
+
+  /* geda_label_widget_set_alignment */
+
+  geda_label_widget_set_alignment (widget, 0.5, 0.4);
+
+  geda_label_get_alignment (label, &x_align, &y_align);
+
+  if (x_align != (float)0.5) {
+    fprintf(stderr, "FAILED: %s line <%d> get_alignment x=<%f>\n", TWIDGET, __LINE__, x_align);
+    result++;
+  }
+
+  if (y_align != (float)0.4) {
+    fprintf(stderr, "FAILED: %s line <%d> get_alignment y=<%f>\n", TWIDGET, __LINE__, y_align);
+    result++;
+  }
+
+  /* -------------------- justify -------------------- */
+
+  GtkJustification jtype;
+
+  /* geda_label_widget_get_justify */
+
+  jtype = geda_label_widget_get_justify (widget);
+
+  if (jtype != GTK_JUSTIFY_LEFT) { /* Default value */
+    fprintf(stderr, "FAILED: %s line <%d> justify=<%d>\n", TWIDGET, __LINE__, jtype);
+    result++;
+  }
+
+  /* geda_label_widget_set_justify */
+
+  geda_label_widget_set_justify(widget, GTK_JUSTIFY_RIGHT);
+
+  jtype = geda_label_widget_get_justify (widget);
+
+  if (jtype != GTK_JUSTIFY_RIGHT) {
+    fprintf(stderr, "FAILED: %s line <%d> justify=<%d>\n", TWIDGET, __LINE__, jtype);
+    result++;
+  }
+
+  /* -------------------- ellipsize -------------------- */
+
+  PangoEllipsizeMode esmode;
+
+  /* geda_label_widget_get_ellipsize */
+
+  esmode = geda_label_widget_get_ellipsize (widget);
+
+  if (esmode != PANGO_ELLIPSIZE_NONE) { /* Default value */
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, esmode);
+    result++;
+  }
+
+  /* geda_label_widget_set_ellipsize */
+
+  geda_label_widget_set_ellipsize (widget, PANGO_ELLIPSIZE_START);
+
+  esmode = geda_label_widget_get_ellipsize (widget);
+
+  if (esmode != PANGO_ELLIPSIZE_START) {
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, esmode);
+    result++;
+  }
+
+  /* -------------------- width_chars -------------------- */
+
+  int n_chars;
+
+  /* geda_label_widget_get_width_chars */
+
+  n_chars = geda_label_widget_get_width_chars (widget);
+
+  if (n_chars != -1) { /* Default value */
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, n_chars);
+    result++;
+  }
+
+  /* geda_label_widget_set_width_chars */
+
+  geda_label_widget_set_width_chars (widget, 12);
+
+  n_chars = geda_label_widget_get_width_chars (widget);
+
+  if (n_chars != 12) {
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, n_chars);
+    result++;
+  }
+
+  /* geda_label_widget_get_max_width_chars */
+
+  n_chars = geda_label_widget_get_max_width_chars (widget);
+
+  if (n_chars != -1) { /* Default value */
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, n_chars);
+    result++;
+  }
+
+  /* geda_label_widget_set_max_width_chars */
+
+  geda_label_widget_set_max_width_chars (widget, 15);
+
+  n_chars = geda_label_widget_get_max_width_chars (widget);
+
+  if (n_chars != 15) {
+    fprintf(stderr, "FAILED: %s line <%d> ellipsize=<%d>\n", TWIDGET, __LINE__, n_chars);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
 
   return result;
 }

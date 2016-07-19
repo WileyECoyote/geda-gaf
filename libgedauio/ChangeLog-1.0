@@ -1,3 +1,20 @@
+2016-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_label.c: Add basic checks for:
+
+            * geda_label_get_alignment
+            * geda_label_set_alignment
+            * geda_label_widget_get_alignment
+            * geda_label_widget_set_alignment
+            * geda_label_widget_get_justify
+            * geda_label_widget_set_justify
+            * geda_label_widget_get_ellipsize
+            * geda_label_widget_set_ellipsize
+            * geda_label_widget_get_width_chars
+            * geda_label_widget_get_width_chars
+            * geda_label_widget_get_max_width_chars
+            * geda_label_widget_set_max_width_chars
+
 2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Add Doxygen comments for functions
