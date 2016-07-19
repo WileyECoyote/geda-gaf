@@ -2146,50 +2146,71 @@ GtkWidget* geda_mnemonic_label_new (const char *str)
 GtkWidget *geda_visible_label_new (const char *str)
 {
   GtkWidget *label;
+
   label = geda_label_new (str);
+
   g_object_set (label, "visible", TRUE, NULL);
+
   return label;
 }
 
 GtkWidget *geda_visible_mnemonic_label_new (const char *str)
 {
   GtkWidget *label;
+
   label = geda_mnemonic_label_new (str);
+
   g_object_set (label, "visible", TRUE, NULL);
+
   return label;
 }
 
-GtkWidget *geda_aligned_label_new (const char *str, int x, int y)
+GtkWidget *geda_aligned_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
+
   label = geda_label_new (str);
+
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
   return label;
 }
 
-GtkWidget *geda_aligned_visible_label_new (const char *str, int x, int y)
+GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
+
   label = geda_label_new (str);
+
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
   g_object_set (label, "visible", TRUE, NULL);
-  return label;
-}
-GtkWidget *geda_aligned_mnemonic_label_new (const char *str, int x, int y)
-{
-  GtkWidget *label;
-  label = geda_mnemonic_label_new (str);
-  gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
   return label;
 }
 
-GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char *str,
-                                                     int x, int y)
+GtkWidget *geda_aligned_mnemonic_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
+
   label = geda_mnemonic_label_new (str);
+
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
+  return label;
+}
+
+GtkWidget *geda_aligned_visible_mnemonic_label_new (const char *str,
+                                                    float x, float y)
+{
+  GtkWidget *label;
+
+  label = geda_mnemonic_label_new (str);
+
+  gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
   g_object_set (label, "visible", TRUE, NULL);
+
   return label;
 }
 

@@ -120,10 +120,10 @@ GtkWidget  *geda_mnemonic_label_new                 (const char     *str) __attr
 
 GtkWidget  *geda_visible_label_new                  (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_visible_mnemonic_label_new         (const char     *str) __attribute__((warn_unused_result));
-GtkWidget  *geda_aligned_label_new                  (const char     *str, int x, int y) __attribute__((warn_unused_result));
-GtkWidget  *geda_aligned_visible_label_new          (const char     *str, int x, int y) __attribute__((warn_unused_result));
-GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, int x, int y) __attribute__((warn_unused_result));
-GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, int x, int y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_label_new                  (const char     *str, float x, float y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_visible_label_new          (const char     *str, float x, float y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, float x, float y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, float x, float y) __attribute__((warn_unused_result));
 
 /* Properties */
 void           geda_label_set_text                  (GedaLabel      *label,

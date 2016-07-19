@@ -3,7 +3,8 @@
     * src/widgets/geda_check_menu_item.c: Add Doxygen comments for functions
       geda_check_menu_item_new and geda_check_menu_item_new_with_label.
 
-    * src/widgets/geda_label.c: Add functions
+    * src/widgets/geda_label.c: Change alignment arguments from integers to
+      type float, add functions:
 
             * geda_label_widget_get_use_underline
             * geda_label_widget_set_use_underline
