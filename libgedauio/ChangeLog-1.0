@@ -28,6 +28,10 @@
             * geda_label_get_layout_offsets
             * geda_label_get_single_line_mode
             * geda_label_set_single_line_mode
+            * geda_label_get_track_visited_links
+            * geda_label_set_track_visited_links
+            * geda_label_get_cursor_position
+            * geda_label_get_selection_bound
 
 2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
 

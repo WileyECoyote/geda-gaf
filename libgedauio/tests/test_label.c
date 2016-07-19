@@ -506,7 +506,7 @@ check_accessors ()
 
   geda_label_get_layout_offsets (label,  &lx, &ly);
 
-  if (lx != -1) {
+  if (!lx) {
     fprintf(stderr, "FAILED: %s line <%d> layout x %d\n", TWIDGET, __LINE__, lx);
     result++;
   }
@@ -531,6 +531,38 @@ check_accessors ()
 
   if (!geda_label_get_single_line_mode (label)) {
     fprintf(stderr, "FAILED: %s line <%d> single_line_mode\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* -------------------- track_links -------------------- */
+
+  geda_label_set_track_visited_links (label, FALSE);
+
+  if (geda_label_get_track_visited_links(label)) {
+    fprintf(stderr, "FAILED: %s line <%d> default track_links\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_label_set_track_visited_links (label, TRUE);
+
+  if (!geda_label_get_track_visited_links(label)) {
+    fprintf(stderr, "FAILED: %s line <%d> track_links\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* -------------------- cursor_position -------------------- */
+
+  start = geda_label_get_cursor_position (label);
+
+  if (start - 4) {
+    fprintf(stderr, "FAILED: %s line <%d> cursor_position %d\n", TWIDGET, __LINE__, start);
+    result++;
+  }
+
+  end = geda_label_get_selection_bound (label);
+
+  if (end - 1) {
+    fprintf(stderr, "FAILED: %s line <%d> selection_bound %d\n", TWIDGET, __LINE__, end);
     result++;
   }
 
