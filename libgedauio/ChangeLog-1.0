@@ -10,6 +10,8 @@
             * geda_label_widget_set_use_underline
             * geda_label_get_alignment
             * geda_label_set_alignment
+            * geda_label_widget_get_alignment
+            * geda_label_widget_set_alignment
 
     * tests/test_label.c: Add basic checks for:
 

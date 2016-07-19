@@ -140,6 +140,12 @@ void           geda_label_get_alignment             (GedaLabel      *label,
 void           geda_label_set_alignment             (GedaLabel      *label,
                                                      float           xalign,
                                                      float           yalign);
+void           geda_label_widget_get_alignment      (GtkWidget      *widget,
+                                                     float          *xalign,
+                                                     float          *yalign);
+void           geda_label_widget_set_alignment      (GtkWidget      *widget,
+                                                     float           xalign,
+                                                     float           yalign);
 
 PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
 void           geda_label_set_attributes            (GedaLabel      *label,

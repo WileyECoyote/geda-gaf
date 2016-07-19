@@ -2687,6 +2687,22 @@ geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
   gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
 }
 
+void
+geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  gtk_misc_get_alignment (GTK_MISC(widget), xalign, yalign);
+}
+
+void
+geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  gtk_misc_set_alignment (GTK_MISC(widget), xalign, yalign);
+}
+
 /*!
  * \brief Retrieve PangoAttrList for GedaLabel
  * \par Function Description
