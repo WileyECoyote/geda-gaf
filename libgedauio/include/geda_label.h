@@ -182,10 +182,10 @@ void           geda_label_set_mnemonic_text         (GedaLabel      *label,
 
 GtkJustification geda_label_get_justify             (GedaLabel      *label);
 void             geda_label_set_justify             (GedaLabel      *label,
-                                                     GtkJustification   jtype);
+                                                     GtkJustification jtype);
 GtkJustification geda_label_widget_get_justify      (GtkWidget      *widget);
 void             geda_label_widget_set_justify      (GtkWidget      *widget,
-                                                     GtkJustification   jtype);
+                                                     GtkJustification jtype);
 
 PangoEllipsizeMode geda_label_get_ellipsize         (GedaLabel      *label);
 void               geda_label_set_ellipsize         (GedaLabel      *label,

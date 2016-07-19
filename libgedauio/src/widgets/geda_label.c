@@ -576,7 +576,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
   GedaLabel     *label;
   SelectionInfo *info;
 
-  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
 
   label = (GedaLabel*)widget;
   info  = label->priv->select_info;
@@ -2318,7 +2318,7 @@ static void
 label_shortcut_setting_traverse_container (GtkWidget *widget,
                                            void *   data)
 {
-  if (GEDA_IS_LABEL (widget)) {
+  if (GEDA_IS_LABEL(widget)) {
     label_shortcut_setting_apply (GEDA_LABEL (widget));
   }
   else if (GTK_IS_CONTAINER (widget)) {
@@ -2376,7 +2376,7 @@ void
 geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
                                                  bool      mnemonics_visible)
 {
-  if (GEDA_IS_LABEL (widget)) {
+  if (GEDA_IS_LABEL(widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
   }
   else if (GTK_IS_CONTAINER (widget)) {
@@ -2471,7 +2471,7 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 {
   GedaLabelData *priv;
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   priv = label->priv;
 
@@ -2515,7 +2515,7 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 GtkWidget *
 geda_label_get_mnemonic_widget (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   return label->priv->mnemonic_widget;
 }
@@ -2534,7 +2534,7 @@ geda_label_get_mnemonic_widget (GedaLabel *label)
 unsigned int
 geda_label_get_mnemonic_keyval (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), GDK_KEY_VoidSymbol);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
 
   return label->priv->mnemonic_keyval;
 }
@@ -2653,7 +2653,7 @@ static void geda_label_recalculate (GedaLabel *label)
  */
 void geda_label_set_text (GedaLabel *label, const char *str)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   g_object_freeze_notify (G_OBJECT (label));
 
@@ -2719,7 +2719,7 @@ geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
  */
 PangoAttrList *geda_label_get_attributes (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   return label->attrs;
 }
@@ -2744,7 +2744,7 @@ PangoAttrList *geda_label_get_attributes (GedaLabel *label)
 void
 geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   if (attrs) {
     pango_attr_list_ref (attrs);
@@ -2776,7 +2776,7 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  */
 void geda_label_set_label (GedaLabel *label, const char *str)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   g_object_freeze_notify (G_OBJECT (label));
 
@@ -2802,7 +2802,7 @@ void geda_label_set_label (GedaLabel *label, const char *str)
 const char *
 geda_label_get_label (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   return label->label;
 }
@@ -3180,7 +3180,7 @@ geda_label_set_markup_internal (GedaLabel  *label,
  */
 void geda_label_set_markup (GedaLabel *label, const char *str)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   g_object_freeze_notify (G_OBJECT (label));
 
@@ -3212,7 +3212,7 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
 void
 geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   g_object_freeze_notify (G_OBJECT (label));
 
@@ -3241,10 +3241,11 @@ geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
  */
 const char *geda_label_get_text (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   return label->text;
 }
+
 const char *geda_label_widget_get_text (GtkWidget *widget)
 {
   return geda_label_get_text((GedaLabel*) widget);
@@ -3350,7 +3351,7 @@ geda_label_set_pattern_internal (GedaLabel  *label,
 void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 {
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   label->priv->pattern_set = FALSE;
 
@@ -3378,16 +3379,12 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
  *
  * \returns GtkJustification
  *
- * \sa geda_label_set_justify
+ * \sa geda_label_set_alignment
  */
 GtkJustification geda_label_get_justify (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), 0);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
   return label->priv->jtype;
-}
-GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
-{
-  return geda_label_get_justify ( (GedaLabel*) widget);
 }
 
 /*!
@@ -3404,10 +3401,12 @@ GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
  *
  * \param [in] label  The GedaLabel object
  * \param [in] jtype  The GedaLabel object
+ *
+ * \sa geda_label_set_justify
  */
 void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (jtype >= GTK_JUSTIFY_LEFT && jtype <= GTK_JUSTIFY_FILL);
 
   if ((GtkJustification) label->priv->jtype != jtype) {
@@ -3626,7 +3625,7 @@ void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
 void
 geda_label_set_line_wrap (GedaLabel *label, bool  wrap)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   wrap = wrap != FALSE;
 
@@ -3636,7 +3635,7 @@ geda_label_set_line_wrap (GedaLabel *label, bool  wrap)
 
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize (GTK_WIDGET(label));
 
     g_object_notify (G_OBJECT (label), "wrap");
   }
@@ -3655,7 +3654,7 @@ geda_label_set_line_wrap (GedaLabel *label, bool  wrap)
  */
 bool geda_label_get_line_wrap (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
   return label->priv->wrap;
 }
@@ -3674,7 +3673,7 @@ bool geda_label_get_line_wrap (GedaLabel *label)
 void
 geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   if (label->priv->wrap_mode != wrap_mode) {
 
@@ -3700,7 +3699,7 @@ geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
 PangoWrapMode
 geda_label_get_line_wrap_mode (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
   return label->priv->wrap_mode;
 }
@@ -4301,7 +4300,7 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
   char *new_str;
   char *pattern;
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (str != NULL);
 
   /* Split text into the base text and a separate pattern
@@ -4333,7 +4332,7 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 void
 geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (str != NULL);
 
   g_object_freeze_notify (G_OBJECT (label));
@@ -5184,7 +5183,7 @@ geda_label_clear_select_info (GedaLabel *label)
 bool geda_label_get_selectable (GedaLabel *label)
 {
   SelectionInfo *info;
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
   info = label->priv->select_info;
   return info && info->selectable;
 }
@@ -5208,7 +5207,7 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
   GedaLabelData *priv;
   bool old_setting;
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   priv = label->priv;
 
@@ -5258,7 +5257,7 @@ void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
  */
 double geda_label_get_angle  (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), 0.0);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0.0);
   return label->angle;
 }
 double geda_label_widget_get_angle (GtkWidget *widget)
@@ -5283,7 +5282,7 @@ double geda_label_widget_get_angle (GtkWidget *widget)
 void
 geda_label_set_angle (GedaLabel *label, double angle)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   /* Canonicalize to [0,360]. We don't canonicalize 360 to 0, because
    * double property ranges are inclusive, and changing 360 to 0 would
@@ -5378,7 +5377,7 @@ static void geda_label_select_region_index (GedaLabel *label,
 {
   GedaLabelData *priv;
 
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   priv = label->priv;
 
@@ -5455,7 +5454,7 @@ static void geda_label_select_region_index (GedaLabel *label,
 void
 geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   if (label->text && label->priv->select_info) {
 
@@ -5489,7 +5488,7 @@ geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
 {
   SelectionInfo *info;
 
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
   info = label->priv->select_info;
 
@@ -5558,7 +5557,7 @@ geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
  */
 PangoLayout* geda_label_get_layout (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   geda_label_ensure_layout (label);
 
@@ -5584,7 +5583,7 @@ PangoLayout* geda_label_get_layout (GedaLabel *label)
 void
 geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   geda_label_ensure_layout (label);
 
@@ -5603,7 +5602,7 @@ geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
  */
 void geda_label_set_use_markup (GedaLabel *label, bool setting)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   g_object_freeze_notify (G_OBJECT (label));
 
@@ -5627,7 +5626,7 @@ void geda_label_set_use_markup (GedaLabel *label, bool setting)
  */
 bool geda_label_get_use_markup (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
   return label->priv->use_markup;
 }
@@ -5641,7 +5640,7 @@ void geda_label_widget_set_use_markup (GtkWidget *widget, bool setting)
 /*! \brief Widget Convenience Versions of label get_use_markup */
 bool geda_label_widget_get_use_markup (GtkWidget *widget)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
 
   return geda_label_get_use_markup ((GedaLabel*)widget);
 }
@@ -5734,7 +5733,7 @@ void
 geda_label_set_single_line_mode (GedaLabel *label,
                                  bool single_line_mode)
 {
-  g_return_if_fail (GEDA_IS_LABEL (label));
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
   single_line_mode = single_line_mode != FALSE;
 
@@ -5763,7 +5762,7 @@ geda_label_set_single_line_mode (GedaLabel *label,
  */
 bool geda_label_get_single_line_mode  (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
   return label->priv->single_line_mode;
 }
@@ -6529,7 +6528,7 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
  */
 bool geda_label_get_track_visited_links (GedaLabel *label)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
   return label->priv->track_links;
 }
 
