@@ -22,6 +22,12 @@
             * geda_label_widget_set_selectable
             * geda_label_widget_get_angle
             * geda_label_widget_set_angle
+            * geda_label_select_region
+            * geda_label_get_selection_bounds
+            * geda_label_get_layout
+            * geda_label_get_layout_offsets
+            * geda_label_get_single_line_mode
+            * geda_label_set_single_line_mode
 
 2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
 

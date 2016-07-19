@@ -249,8 +249,6 @@ bool           geda_label_get_track_visited_links   (GedaLabel      *label);
 void           geda_label_set_track_visited_links   (GedaLabel      *label,
                                                      bool            track_links);
 
-/* private */
-
 void geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
                                                      bool       mnemonics_visible);
 int            geda_label_get_cursor_position       (GedaLabel *label);

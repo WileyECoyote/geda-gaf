@@ -417,7 +417,7 @@ check_accessors ()
 
   geda_label_set_line_wrap (label, TRUE);
 
-  if (!geda_label_get_line_wrap (label)) { /* Default value is FALSE */
+  if (!geda_label_get_line_wrap (label)) {
     fprintf(stderr, "FAILED: line <%d> set_line_wrap %s\n", __LINE__, TWIDGET);
     result++;
   }
@@ -469,6 +469,68 @@ check_accessors ()
 
   if (angle != 45.0) {
     fprintf(stderr, "FAILED: %s line <%d> default angle=<%f>\n", TWIDGET, __LINE__, angle);
+    result++;
+  }
+
+  /* -------------------- region -------------------- */
+
+  int start;
+  int end;
+
+  geda_label_select_region (label, 1, 4);
+
+  if (!geda_label_get_selection_bounds(label, &start, &end)) {
+    fprintf(stderr, "FAILED: %s line <%d> select_region\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (start - 1) {
+    fprintf(stderr, "FAILED: %s line <%d> select start %d\n", TWIDGET, __LINE__, start);
+    result++;
+  }
+  else if (end - 3) {
+    fprintf(stderr, "FAILED: %s line <%d> select end %d\n", TWIDGET, __LINE__, end);
+    result++;
+  }
+
+  /* -------------------- layout -------------------- */
+
+  PangoLayout *layout;
+  int lx, ly;
+
+  layout = geda_label_get_layout (label);
+
+  if (!PANGO_IS_LAYOUT(layout)) {
+    fprintf(stderr, "FAILED: line <%d> is a PangoLayout\n", __LINE__);
+    result++;
+  }
+
+  geda_label_get_layout_offsets (label,  &lx, &ly);
+
+  if (lx != -1) {
+    fprintf(stderr, "FAILED: %s line <%d> layout x %d\n", TWIDGET, __LINE__, lx);
+    result++;
+  }
+
+  if (ly != -1) {
+    fprintf(stderr, "FAILED: %s line <%d> layout y %d\n", TWIDGET, __LINE__, ly);
+    result++;
+  }
+
+  /* -------------------- single_line_mode -------------------- */
+
+  /* geda_label_get_single_line_mode */
+
+  if (geda_label_get_single_line_mode (label)) { /* Default value is FALSE */
+    fprintf(stderr, "FAILED: %s line <%d> default single_line_mode\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* geda_label_set_single_line_mode */
+
+  geda_label_set_single_line_mode(label, TRUE);
+
+  if (!geda_label_get_single_line_mode (label)) {
+    fprintf(stderr, "FAILED: %s line <%d> single_line_mode\n", TWIDGET, __LINE__);
     result++;
   }
 
