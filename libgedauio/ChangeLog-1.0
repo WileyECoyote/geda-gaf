@@ -1,6 +1,7 @@
 2016-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_label.c: Initialize default track-links to FALSE.
+    * src/widgets/geda_label.c: Initialize default track-links to FALSE,
+      eliminate unnecessary goto statement in geda_label_setup_mnemonic.
 
     * src/widgets/geda_option_menu.c: Remove g_return_val_if_fail for event
       in geda_option_menu_expose. Remove redundant g_return_if_fail and

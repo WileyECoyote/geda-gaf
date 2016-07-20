@@ -2275,29 +2275,28 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
     }
   }
 
-  if (priv->mnemonic_keyval == GDK_KEY_VoidSymbol)
-    goto done;
+  if (priv->mnemonic_keyval != GDK_KEY_VoidSymbol) {
 
-  connect_mnemonics_visible_notify (GEDA_LABEL (widget));
+    connect_mnemonics_visible_notify (GEDA_LABEL (widget));
 
-  toplevel = gtk_widget_get_toplevel (widget);
+    toplevel = gtk_widget_get_toplevel (widget);
 
-  if (gtk_widget_is_toplevel (toplevel)) {
+    if (gtk_widget_is_toplevel (toplevel)) {
 
-    GtkWidget *menu_shell;
+      GtkWidget *menu_shell;
 
-    menu_shell = gtk_widget_get_ancestor (widget, GEDA_TYPE_MENU_SHELL);
+      menu_shell = gtk_widget_get_ancestor (widget, GEDA_TYPE_MENU_SHELL);
 
-    if (menu_shell) {
-      mnemonic_menu = menu_shell;
-    }
+      if (menu_shell) {
+        mnemonic_menu = menu_shell;
+      }
 
-    if (!GEDA_IS_MENU (menu_shell)) {
-      priv->mnemonic_window = GTK_WINDOW (toplevel);
+      if (!GEDA_IS_MENU (menu_shell)) {
+        priv->mnemonic_window = GTK_WINDOW (toplevel);
+      }
     }
   }
 
-  done:
   g_object_set_data (G_OBJECT (label), _("gtk-mnemonic-menu"), mnemonic_menu);
 }
 
