@@ -38,6 +38,11 @@
 #include <geda_menu_bar.h>
 #include <geda_menu_shell.h>
 
+#include "test-suite.h"
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/widgets/geda_menu_bar.c"
+
 #define TWIDGET "GedaMenuBar"
 
 /*! \file test_menu_bar.c
@@ -67,10 +72,69 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_menu_bar_new();
+
+  if (!GEDA_IS_MENU_BAR(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+  /* -------------------- pack_direction -------------------- */
+
+    PackDirection pack_dir;
+
+    GedaMenuBar *menubar = GEDA_MENU_BAR(widget);
+
+    pack_dir = geda_menu_bar_get_pack_direction (menubar);
+
+    if (pack_dir != PACK_DIRECTION_LTR) { /* Default value */
+      fprintf(stderr, "FAILED: %s default pack_direction <%d>\n", TWIDGET, pack_dir);
+      result++;
+    }
+
+    geda_menu_bar_set_pack_direction (menubar, PACK_DIRECTION_RTL);
+
+    pack_dir = geda_menu_bar_get_pack_direction (menubar);
+
+    if (pack_dir != PACK_DIRECTION_RTL) { /* Default value */
+      fprintf(stderr, "FAILED: %s pack direction <%d>\n", TWIDGET, pack_dir);
+      result++;
+    }
+
+    pack_dir = geda_menu_bar_get_child_pack_direction (menubar);
+
+    if (pack_dir != PACK_DIRECTION_LTR) { /* Default value */
+      fprintf(stderr, "FAILED: %s default child pack_direction <%d>\n", TWIDGET, pack_dir);
+      result++;
+    }
+
+    geda_menu_bar_set_child_pack_direction (menubar, PACK_DIRECTION_RTL);
+
+    pack_dir = geda_menu_bar_get_child_pack_direction (menubar);
+
+    if (pack_dir != PACK_DIRECTION_RTL) { /* Default value */
+      fprintf(stderr, "FAILED: %s child pack direction <%d>\n", TWIDGET, pack_dir);
+      result++;
+    }
+
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
-  int subtotal = 0;
+
+  SETUP_SIGSEGV_HANDLER;
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
@@ -79,12 +143,22 @@ main (int argc, char *argv[])
 
   if (gtk_init_check(&argc, &argv)) {
 
-    subtotal = check_construction();
+    if (setjmp(point) == 0) {
+      result = check_construction();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
 
-    if (subtotal) {
-      fprintf(stderr, "Check constructors in src/widgets/geda_menu_bar.c");
-      result   = subtotal;
-      subtotal = 0;
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;

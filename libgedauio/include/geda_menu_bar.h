@@ -83,7 +83,6 @@ PackDirection    geda_menu_bar_get_child_pack_direction (GedaMenuBar       *menu
 void             geda_menu_bar_set_child_pack_direction (GedaMenuBar       *menubar,
                                                          PackDirection      child_pack_dir);
 
-/* Private functions */
 void             geda_menu_bar_cycle_focus              (GedaMenuBar       *menubar,
                                                          GtkDirectionType   dir);
 GList           *geda_menu_bar_get_viewable_menu_bars   (GtkWindow         *window);
