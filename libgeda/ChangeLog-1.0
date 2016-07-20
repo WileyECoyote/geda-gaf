@@ -1,3 +1,8 @@
+2016-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Adjust Doxygen comment blocks, add comments
+      for geda_toplevel_set_current_page.
+
 2016-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_circle_object.c: Add checks for geda_circle_object_modify.

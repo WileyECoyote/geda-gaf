@@ -93,14 +93,14 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
   new_toplevel_hooks = g_list_append (new_toplevel_hooks, new_hook);
 }
 
-/*! \brief GedaType instance initializer for GedaToplevel
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for GedaToplevel
+ * \par Function Description
  *  GedaType instance initializer for GedaToplevel,  initializes a
  *  new GedaToplevel object with sensible default properties.
  *
- *  \param [in]  instance  The GedaToplevel being initialising.
- *  \param [in]  g_class   The class of the type the instance is created for.
+ * \param [in]  instance The GedaToplevel being initialising.
+ * \param [in]  g_class  The class of the type the instance is created for.
  */
 static void
 geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
@@ -201,8 +201,9 @@ geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 
 }
 
-/*! \brief Geda Toplevel Object Finalization Function
- *  \par Function Description
+/*!
+ * \brief Geda Toplevel Object Finalization Function
+ * \par Function Description
  *   This function removes or releases all internal references
  *   and releases the memory allocated to the given GedaToplevel
  *   data structure and then chain up to the parent's finalize
@@ -259,14 +260,14 @@ static void geda_toplevel_finalize(GObject *object)
   G_OBJECT_CLASS(geda_toplevel_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for GedaToplevel
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaToplevel
+ * \par Function Description
  *  GedaType class initializer for GedaToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The GedaToplevel we are initializing
- *  \param [in]  class_data  (unused)
+ * \param [in]  class       The GedaToplevel we are initializing
+ * \param [in]  class_data  (unused)
  */
 static void
 geda_toplevel_class_init (void *class, void *class_data)
@@ -278,16 +279,16 @@ geda_toplevel_class_init (void *class, void *class_data)
 
 }
 
-/*! \brief Function to retrieve GedaToplevel's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaToplevel's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaToplevel Type identifier. When first called,
  *  the function registers a #GedaToplevel in the GedaTopType system to
  *  obtain an identifier that uniquely itentifies a GedaToplevel and returns
  *  the unsigned integer value. The retained value is returned on all
  *  subsequent calls.
  *
- *  \return GedaTopType identifier associated with GedaToplevel.
+ * \returns GedaTopType identifier associated with GedaToplevel.
  */
 GedaTopType geda_toplevel_get_type (void)
 {
@@ -319,20 +320,21 @@ GedaTopType geda_toplevel_get_type (void)
   return geda_toplevel_type;
 }
 
-/*! \brief Returns a pointer to a new GedaToplevel object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new GedaToplevel object.
+ * \par Function Description
  *  Create and return an empty TOPLEVEL object with sensible
  *  default properties.
  *
- *  \returns pointer to the new GedaToplevel object.
+ * \returns pointer to the new GedaToplevel object.
  */
 GedaToplevel *geda_toplevel_new (void) {
   return g_object_new(GEDA_TYPE_TOPLEVEL, NULL);
 }
 
-/*! \brief Determine if object is Geda Toplevel Object.
- *  \par Function Description
+/*!
+ * \brief Determine if object is Geda Toplevel Object.
+ * \par Function Description
  *  Returns true if the argument is a GedaToplevel object.
  *  This function use signatures embed in the structure
  *  to verify the object type as the gobject system appears
@@ -340,7 +342,7 @@ GedaToplevel *geda_toplevel_new (void) {
  *
  * \param [in] toplevel  Pointer to GedaToplevel Object
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_toplevel (GedaToplevel *toplevel)
 {
@@ -380,8 +382,9 @@ geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
   return result;
 }
 
-/*! \brief Decrement Reference Count of Toplevel Object
- *  \par Function Description
+/*!
+ * \brief Decrement Reference Count of Toplevel Object
+ * \par Function Description
  *  Calls g_object_unref for the given top-level object, generally
  *  this destroys the object.
  *
@@ -394,12 +397,13 @@ geda_toplevel_unref(GedaToplevel *toplevel)
   g_object_unref (toplevel);
 }
 
-/*! \brief Notify weak reference watchers that a toplevel is dead.
+/*!
+ * \brief Notify weak reference watchers that a toplevel is dead.
  * \par Function Description
- * For each entry in \a weak_refs, call notify function with the dead
- * pointer \a dead_ptr and the entry's specified user data, and free
- * \a weak_refs. Should be called during destruction of an structure
- * that allows weak references.
+ *  For each entry in \a weak_refs, call notify function with the dead
+ *  pointer \a dead_ptr and the entry's specified user data, and free
+ *  \a weak_refs. Should be called during destruction of an structure
+ *  that allows weak references.
  *
  * \param [in] toplevel  Pointer to GedaObject being destroyed.
  *
@@ -413,13 +417,12 @@ geda_toplevel_weakref_notify (GedaToplevel *toplevel)
   }
 }
 
-/*! \brief Add a weak reference watcher to a GedaToplevel Object
- *
- *  \par Function Description
- *
- *   Adds the weak reference callback \a func to \a toplevel.
- * When \a toplevel is destroyed, the \a func will be called
- * with two arguments: the \a toplevel, and the \a data.
+/*!
+ * \brief Add a weak reference watcher to a GedaToplevel Object
+ * \par Function Description
+ *  Adds the weak reference callback \a func to \a toplevel.
+ *  When \a toplevel is destroyed, the \a func will be called
+ *  with two arguments: the \a toplevel, and the \a data.
  *
  * \sa geda_toplevel_weak_unref
  *
@@ -436,9 +439,10 @@ geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
   toplevel->weak_refs = s_weakref_add (toplevel->weak_refs, func, data);
 }
 
-/*! \brief Remove a weak reference watcher from a GedaToplevel.
+/*!
+ * \brief Remove a weak reference watcher from a GedaToplevel.
  * \par Function Description
- * Removes the weak reference callback \a func from \a toplevel.
+ *  Removes the weak reference callback \a func from \a toplevel.
  *
  * \sa geda_toplevel_weak_ref()
  *
@@ -455,11 +459,12 @@ geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *dat
   toplevel->weak_refs = s_weakref_remove (toplevel->weak_refs, func, data);
 }
 
-/*! \brief Add a weak pointer to a GedaToplevel.
+/*!
+ * \brief Add a weak pointer to a GedaToplevel.
  * \par Function Description
- * Adds the weak pointer at \a weak_pointer_loc to \a toplevel. The
- * value of \a weak_pointer_loc will be set to NULL when \a toplevel is
- * destroyed.
+ *  Adds the weak pointer at \a weak_pointer_loc to \a toplevel. The
+ *  value of \a weak_pointer_loc will be set to NULL when \a toplevel is
+ *  destroyed.
  *
  * \sa geda_toplevel_remove_weak_ptr
  *
@@ -473,9 +478,10 @@ geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
   g_object_add_weak_pointer ((GObject*)toplevel,  weak_pointer_loc);
 }
 
-/*! \brief Remove a weak pointer from an GedaToplevel Object.
+/*!
+ * \brief Remove a weak pointer from an GedaToplevel Object.
  * \par Function Description
- * Removes the weak pointer at \a weak_pointer_loc from \a toplevel.
+ *  Removes the weak pointer at \a weak_pointer_loc from \a toplevel.
  *
  * \sa geda_toplevel_add_weak_ptr()
  *
@@ -492,13 +498,14 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 /* -------------------------------------------------------------- */
 
 
-/*! \brief Add Page list of pages of <B>toplevel</B>.
- *  \par Function Description
+/*!
+ * \brief Add Page list of pages of <B>toplevel</B>.
+ * \par Function Description
  *  Increases reference count on the GedaPage object by one and
  *  adds \a new_page to the page list referenced by \a toplevel
  *
- *  \param toplevel  The GedaToplevel object.
- *  \param new_page  A GedaPage object.
+ * \param toplevel  The GedaToplevel object.
+ * \param new_page  A GedaPage object.
  */
 void
 geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
@@ -516,12 +523,13 @@ geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
   }
 }
 
-/*! \brief Get the Auto Save Interval
-*   \par Function Description
-*   Returns the current auto save interval.
-*
-*   \param [in] toplevel This toplevel
-*/
+/*!
+ * \brief Get the Auto Save Interval
+ * \par Function Description
+ *  Returns the current auto save interval.
+ *
+ * \param [in] toplevel This toplevel
+ */
 int
 geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
 {
@@ -530,12 +538,13 @@ geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
   return toplevel->auto_save_interval;
 }
 
-/*! \brief Get the current page
-*   \par Function Description
-*   This function returns a pointer the current Page object.
-*
-*   \param [in,out] toplevel This toplevel
-*/
+/*!
+ * \brief Get the current page
+ * \par Function Description
+ *  This function returns a pointer the current Page object.
+ *
+ * \param [in,out] toplevel This toplevel
+ */
 Page*
 geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
@@ -550,7 +559,7 @@ geda_toplevel_get_current_page (GedaToplevel *toplevel)
  *  This function returns the current value of make_backup_files
  *  in \a toplevel.
  *
- *   \param [in] toplevel GedaToplevel object
+ * \param [in] toplevel GedaToplevel object
  */
 int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
 {
@@ -652,9 +661,9 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 /*!
  * \brief Get the Page Up in GedaToplevel
  * \par Function Description
- *   This function returns a pointer to the previous page in the \a toplevel
- *   list of pages, toplevel->pages, or NULL if the current page in the
- *   toplevel is the first page in the list or the current page is not set.
+ *  This function returns a pointer to the previous page in the \a toplevel
+ *  list of pages, toplevel->pages, or NULL if the current page in the
+ *  toplevel is the first page in the list or the current page is not set.
  *
  * \param [in] toplevel This toplevel
  */
@@ -787,12 +796,13 @@ geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
   }
 }
 
-/*! \brief Set Toplevel Auto Save Interval
- *   \par Function Description
- *   Stores \a interval to \a toplevel.
+/*!
+ * \brief Set Toplevel Auto Save Interval
+ * \par Function Description
+ *  Stores \a interval to \a toplevel.
  *
- *   \param [in] toplevel This toplevel
- *   \param [in] interval New auto-save interval in seconds
+ * \param [in] toplevel This toplevel
+ * \param [in] interval New auto-save interval in seconds
  */
 bool
 geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
@@ -804,6 +814,14 @@ geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
   return TRUE;
 }
 
+/*!
+ * \brief Set the current page
+ * \par Function Description
+ *  Set the currentpage in \a toplevel to \a page.
+ *
+ * \param [in] toplevel GedaToplevel object
+ * \param [in] page     Page object
+ */
 bool
 geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
 {
@@ -820,7 +838,7 @@ geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
  *  Set the current value of make_backup_files in \a toplevel to
  *  \a make_backups.
  *
- *   \param [in] toplevel GedaToplevel object
+ * \param [in] toplevel GedaToplevel object
  */
 bool
 geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
