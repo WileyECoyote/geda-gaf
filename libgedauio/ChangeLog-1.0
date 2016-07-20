@@ -1,6 +1,9 @@
-2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
+2016-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Initialize default track-links to FALSE.
+
+    * tests/test_menu.c: Include "test-suite.h" and setup setjmp and
+      longjmp, define MUT.
 
 2016-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
