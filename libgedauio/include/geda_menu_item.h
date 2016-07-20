@@ -162,7 +162,7 @@ bool        geda_menu_item_get_from_menubar      (GedaMenuItem  *menu_item);
 void        geda_menu_item_set_label             (GedaMenuItem  *menu_item,
                                                   const char    *label);
 
-const char   *geda_menu_item_get_label                (GedaMenuItem  *menu_item);
+const char   *geda_menu_item_get_label                (GedaMenuItem     *menu_item);
 
 unsigned int  geda_menu_item_get_submenu_direction    (GedaMenuItem     *menu_item);
 
@@ -172,30 +172,30 @@ SubmenuPlacement
 void          geda_menu_item_set_submenu_placement    (GedaMenuItem     *menu_item,
                                                        SubmenuPlacement  placement);
 
-void        geda_menu_item_set_use_underline          (GedaMenuItem  *menu_item,
-                                                       bool           setting);
+void        geda_menu_item_set_use_underline          (GedaMenuItem     *menu_item,
+                                                       bool              setting);
 
-bool        geda_menu_item_get_use_underline          (GedaMenuItem  *menu_item);
+bool        geda_menu_item_get_use_underline          (GedaMenuItem     *menu_item);
 
 
-void        geda_menu_item_set_reserve_indicator      (GedaMenuItem  *menu_item,
-                                                       bool           reserve);
+void        geda_menu_item_set_reserve_indicator      (GedaMenuItem     *menu_item,
+                                                       bool              reserve);
 
-bool        geda_menu_item_get_reserve_indicator      (GedaMenuItem  *menu_item);
+bool        geda_menu_item_get_reserve_indicator      (GedaMenuItem     *menu_item);
 
-bool        geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item);
+bool        geda_menu_item_get_show_submenu_indicator (GedaMenuItem     *menu_item);
 
-void        geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item,
-                                                       bool           show);
+void        geda_menu_item_set_show_submenu_indicator (GedaMenuItem     *menu_item,
+                                                       bool              show);
 
-void        geda_menu_item_refresh_accel_path    (GedaMenuItem  *menu_item,
-                                                  const char    *prefix,
-                                                  GtkAccelGroup *accel_group,
-                                                  int            group_changed);
+void        geda_menu_item_refresh_accel_path         (GedaMenuItem     *menu_item,
+                                                       const char       *prefix,
+                                                       GtkAccelGroup    *accel_group,
+                                                       int               group_changed);
 
-void        geda_menu_item_popup_submenu         (GedaMenuItem  *menu_item,
-                                                  bool           with_delay);
-void        geda_menu_item_popdown_submenu       (GedaMenuItem  *menu_item);
+void        geda_menu_item_popup_submenu              (GedaMenuItem     *menu_item,
+                                                       bool              with_delay);
+void        geda_menu_item_popdown_submenu            (GedaMenuItem     *menu_item);
 
 
 #ifdef __cplusplus

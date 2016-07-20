@@ -1,3 +1,7 @@
+2016-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Initialize default track-links to FALSE.
+
 2016-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_label.c: Add basic checks for:

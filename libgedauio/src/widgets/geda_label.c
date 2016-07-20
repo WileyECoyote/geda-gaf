@@ -1334,10 +1334,10 @@ geda_label_class_init  (void *class, void *class_data)
    *
    */
   params = g_param_spec_enum ("wrap-mode", _("Line wrap mode"),
-                               _("If wrap is set, controls how linewrapping is done"),
-                                                       PANGO_TYPE_WRAP_MODE,
-                                                       PANGO_WRAP_WORD,
-                                                       G_PARAM_READWRITE);
+                            _("If wrap is set, controls how linewrapping is done"),
+                               PANGO_TYPE_WRAP_MODE,
+                               PANGO_WRAP_WORD,
+                               G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_WRAP_MODE, params);
 
@@ -1492,7 +1492,7 @@ geda_label_class_init  (void *class, void *class_data)
    */
   params = g_param_spec_boolean ("track-visited-links", _("Track visited links"),
                                _("Whether visited links should be tracked"),
-                                  TRUE,
+                                  FALSE,
                                   G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_TRACK_VISITED_LINKS, params);
@@ -1631,7 +1631,7 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   priv->use_underline     = FALSE;
   priv->use_markup        = FALSE;
   priv->pattern_set       = FALSE;
-  priv->track_links       = TRUE;
+  priv->track_links       = FALSE;
 
   priv->mnemonic_keyval   = GDK_KEY_VoidSymbol;
   label->layout           = NULL;
