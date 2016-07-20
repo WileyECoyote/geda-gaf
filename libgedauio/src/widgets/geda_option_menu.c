@@ -486,79 +486,75 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   int border_width;
   int tab_x;
 
-  g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
   g_return_if_fail (area != NULL);
 
-  if (GTK_WIDGET_DRAWABLE (widget)) {
+  border_width = GTK_CONTAINER (widget)->border_width;
+  geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
 
-    border_width = GTK_CONTAINER (widget)->border_width;
-    geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
+  button_area.x      = widget->allocation.x + border_width;
+  button_area.y      = widget->allocation.y + border_width;
+  button_area.width  = widget->allocation.width - 2 * border_width;
+  button_area.height = widget->allocation.height - 2 * border_width;
 
-    button_area.x = widget->allocation.x + border_width;
-    button_area.y = widget->allocation.y + border_width;
-    button_area.width = widget->allocation.width - 2 * border_width;
-    button_area.height = widget->allocation.height - 2 * border_width;
+  if (!props.interior_focus && gtk_widget_has_focus (widget)) {
 
-    if (!props.interior_focus && gtk_widget_has_focus (widget)) {
+    button_area.x += props.focus_width + props.focus_pad;
+    button_area.y += props.focus_width + props.focus_pad;
+    button_area.width -= 2 * (props.focus_width + props.focus_pad);
+    button_area.height -= 2 * (props.focus_width + props.focus_pad);
+  }
 
-      button_area.x += props.focus_width + props.focus_pad;
-      button_area.y += props.focus_width + props.focus_pad;
-      button_area.width -= 2 * (props.focus_width + props.focus_pad);
-      button_area.height -= 2 * (props.focus_width + props.focus_pad);
+  gtk_paint_box (widget->style, widget->window,
+                 gtk_widget_get_state (widget), GTK_SHADOW_OUT,
+                 area, widget, "optionmenu",
+                 button_area.x, button_area.y,
+                 button_area.width, button_area.height);
+
+  if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
+    tab_x = button_area.x + props.indicator_spacing.right +
+            widget->style->xthickness;
+  else
+    tab_x = button_area.x + button_area.width -
+            props.indicator_size.width - props.indicator_spacing.right -
+            widget->style->xthickness;
+
+  gtk_paint_tab (widget->style, widget->window,
+                 gtk_widget_get_state (widget), GTK_SHADOW_OUT,
+                 area, widget, "optionmenutab",
+                 tab_x,
+                 button_area.y + (button_area.height - props.indicator_size.height) / 2,
+                 props.indicator_size.width, props.indicator_size.height);
+
+  if (gtk_widget_has_focus (widget)) {
+
+    if (props.interior_focus) {
+
+      button_area.x += widget->style->xthickness + props.focus_pad;
+      button_area.y += widget->style->ythickness + props.focus_pad;
+      button_area.width -= 2 * (widget->style->xthickness + props.focus_pad) +
+      props.indicator_spacing.left +
+      props.indicator_spacing.right +
+      props.indicator_size.width;
+      button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
+      if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
+        button_area.x += props.indicator_spacing.left +
+                         props.indicator_spacing.right +
+                         props.indicator_size.width;
+    }
+    else {
+
+      button_area.x -= props.focus_width + props.focus_pad;
+      button_area.y -= props.focus_width + props.focus_pad;
+      button_area.width += 2 * (props.focus_width + props.focus_pad);
+      button_area.height += 2 * (props.focus_width + props.focus_pad);
     }
 
-    gtk_paint_box (widget->style, widget->window,
-                   gtk_widget_get_state (widget), GTK_SHADOW_OUT,
-                   area, widget, "optionmenu",
-                   button_area.x, button_area.y,
-                   button_area.width, button_area.height);
-
-    if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
-      tab_x = button_area.x + props.indicator_spacing.right +
-      widget->style->xthickness;
-    else
-      tab_x = button_area.x + button_area.width -
-      props.indicator_size.width - props.indicator_spacing.right -
-      widget->style->xthickness;
-
-    gtk_paint_tab (widget->style, widget->window,
-                   gtk_widget_get_state (widget), GTK_SHADOW_OUT,
-                   area, widget, "optionmenutab",
-                   tab_x,
-                   button_area.y + (button_area.height - props.indicator_size.height) / 2,
-                   props.indicator_size.width, props.indicator_size.height);
-
-    if (gtk_widget_has_focus (widget)) {
-
-      if (props.interior_focus) {
-
-        button_area.x += widget->style->xthickness + props.focus_pad;
-        button_area.y += widget->style->ythickness + props.focus_pad;
-        button_area.width -= 2 * (widget->style->xthickness + props.focus_pad) +
-        props.indicator_spacing.left +
-        props.indicator_spacing.right +
-        props.indicator_size.width;
-        button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
-        if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
-          button_area.x += props.indicator_spacing.left +
-          props.indicator_spacing.right +
-          props.indicator_size.width;
-      }
-      else {
-
-        button_area.x -= props.focus_width + props.focus_pad;
-        button_area.y -= props.focus_width + props.focus_pad;
-        button_area.width += 2 * (props.focus_width + props.focus_pad);
-        button_area.height += 2 * (props.focus_width + props.focus_pad);
-      }
-
-      gtk_paint_focus (widget->style, widget->window, gtk_widget_get_state (widget),
-                       area, widget, "button",
-                       button_area.x,
-                       button_area.y,
-                       button_area.width,
-                       button_area.height);
-    }
+    gtk_paint_focus (widget->style, widget->window, gtk_widget_get_state (widget),
+                     area, widget, "button",
+                     button_area.x,
+                     button_area.y,
+                     button_area.width,
+                     button_area.height);
   }
 }
 
@@ -572,7 +568,6 @@ geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
     if (event != NULL) {
 
       geda_option_menu_paint (widget, &event->area);
-
 
       if (GTK_BIN (widget)->child) {
         gtk_container_propagate_expose (GTK_CONTAINER (widget),
