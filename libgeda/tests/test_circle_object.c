@@ -74,7 +74,7 @@
  *      O0615    geda_circle_object_get_nearest_point
  *      O0616    geda_circle_object_get_radius
  *      O0617    geda_circle_object_modify
- *               geda_circle_object_mirror
+ *      O0618    geda_circle_object_mirror
  *      O0619    geda_circle_object_new
  *      O0620    geda_circle_object_get_position
  *               geda_circle_object_print
@@ -617,7 +617,6 @@ check_serialization ()
     }
     else {
 
-      //GedaCircle *circle = object1->circle;
       int       fail = 0;
       int       value;
 
@@ -851,6 +850,44 @@ check_transformer()
       value = object0->circle->radius;
       if (value - nx) {
         fprintf(stderr, "FAILED: (O061702) modify circle %d != %d\n", value, nx);
+        fail++;
+      }
+
+      /* Put the circle back at (x,y) */
+
+      geda_circle_object_modify(object0, x, y, CIRCLE_CENTER);
+
+      /* === Function 18: geda_circle_object_mirror  === */
+
+      geda_circle_object_mirror(object0, x - r, y);
+
+      value = object0->circle->center_x;
+      if (value - (x - 2 * r)) {
+        fprintf(stderr, "FAILED: (O061801A) modify circle %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = object0->circle->center_y;
+      if (value - y) {
+        fprintf(stderr, "FAILED: (O061801B) modify circle %d != %d\n", value, y);
+        fail++;
+      }
+
+      /* Put the circle back at (x,y) */
+
+      geda_circle_object_modify(object0, x, y, CIRCLE_CENTER);
+
+      geda_circle_object_mirror(object0, x, y - r);
+
+      value = object0->circle->center_x;
+      if (value - x) {
+        fprintf(stderr, "FAILED: (O061802A) modify circle %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = object0->circle->center_y;
+      if (value - y) {
+        fprintf(stderr, "FAILED: (O061802B) modify circle %d != %d\n", value, y);
         fail++;
       }
 
