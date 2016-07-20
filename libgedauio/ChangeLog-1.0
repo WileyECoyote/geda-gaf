@@ -2,6 +2,9 @@
 
     * src/widgets/geda_label.c: Initialize default track-links to FALSE.
 
+    * src/widgets/geda_option_menu.c: Remove g_return_val_if_fail for event
+      in geda_option_menu_expose.
+
     * tests/test_menu.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT.
 

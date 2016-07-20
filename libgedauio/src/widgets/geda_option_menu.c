@@ -566,16 +566,19 @@ static int
 geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
 
   if (GTK_WIDGET_DRAWABLE (widget)) {
 
-    geda_option_menu_paint (widget, &event->area);
+    if (event != NULL) {
 
-    if (GTK_BIN (widget)->child) {
-      gtk_container_propagate_expose (GTK_CONTAINER (widget),
-                                      GTK_BIN (widget)->child,
-                                      event);
+      geda_option_menu_paint (widget, &event->area);
+
+
+      if (GTK_BIN (widget)->child) {
+        gtk_container_propagate_expose (GTK_CONTAINER (widget),
+                                        GTK_BIN (widget)->child,
+                                        event);
+      }
     }
   }
 
@@ -586,7 +589,7 @@ static int
 geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 {
   GedaOptionMenu *option_menu;
-  GtkWidget *menu_item;
+  GtkWidget      *menu_item;
 
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
   g_return_val_if_fail (event != NULL, FALSE);
