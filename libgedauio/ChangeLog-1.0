@@ -5,6 +5,7 @@
     * src/widgets/geda_option_menu.c: Remove g_return_val_if_fail for event
       in geda_option_menu_expose. Remove redundant g_return_if_fail and
       redundant check for GTK_WIDGET_DRAWABLE in geda_option_menu_paint.
+      Reduce scope of variables in geda_option_menu_scroll_event.
 
     * tests/test_menu.c: Include "test-suite.h" and setup setjmp and
       longjmp, define MUT.

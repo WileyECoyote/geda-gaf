@@ -948,25 +948,29 @@ static int
 geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
 {
   GedaOptionMenu *option_menu = GEDA_OPTION_MENU (widget);
+
   int index;
-  int n_children;
-  int index_dir;
-  GList *l;
-  GedaMenuItem *item;
 
   index = geda_option_menu_get_history (option_menu);
 
   if (index != -1) {
 
+    GList *list;
+    int index_dir;
+    int n_children;
+
     n_children = g_list_length (GEDA_MENU_SHELL(option_menu->menu)->children);
 
-    if (event->direction == GDK_SCROLL_UP)
+    if (event->direction == GDK_SCROLL_UP) {
       index_dir = -1;
-    else
+    }
+    else {
       index_dir = 1;
-
+    }
 
     while (TRUE) {
+
+      GedaMenuItem *item;
 
       index += index_dir;
 
@@ -976,17 +980,16 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
       if (index >= n_children)
         break;
 
-      l    = g_list_nth (GEDA_MENU_SHELL(option_menu->menu)->children, index);
-      item = GEDA_MENU_ITEM (l->data);
+      list = g_list_nth (GEDA_MENU_SHELL(option_menu->menu)->children, index);
+      item = GEDA_MENU_ITEM (list->data);
 
-      if (gtk_widget_get_visible (GTK_WIDGET (item)) &&
-        gtk_widget_is_sensitive (GTK_WIDGET (item)))
+      if (gtk_widget_get_visible (GTK_WIDGET(item)) &&
+          gtk_widget_is_sensitive (GTK_WIDGET(item)))
       {
         geda_option_menu_set_history (option_menu, index);
         geda_menu_item_activate (GEDA_MENU_ITEM (item));
         break;
       }
-
     }
   }
 
