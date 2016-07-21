@@ -174,7 +174,7 @@ void       geda_menu_attach_to_widget            (GedaMenu         *menu,
                                                   GtkWidget        *attach_widget,
                                                   MenuDetachFunc    detacher);
 
-void        geda_menu_attach                     (GedaMenu         *menu,
+void       geda_menu_attach                      (GedaMenu         *menu,
                                                   GtkWidget        *child,
                                                   unsigned int      left_attach,
                                                   unsigned int      right_attach,

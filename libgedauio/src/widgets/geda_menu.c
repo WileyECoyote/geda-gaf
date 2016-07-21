@@ -1930,8 +1930,8 @@ geda_menu_popdown (GedaMenu *menu)
 /*!
  * \brief Get if the GedaMenu is Active
  * \par Function Description
- * Returns the selected menu item from the menu. This is used by the
- * #GedaOptionMenu.
+ *  Returns the selected menu item from the menu. This is used by
+ *  the #GedaOptionMenu.
  *
  * \param[in] menu: a #GedaMenu
  *
@@ -1969,11 +1969,19 @@ geda_menu_get_active (GedaMenu *menu)
   return menu->old_active_menu_item;
 }
 
+/*!
+ * \brief Set the GedaMenu is Active menu item
+ * \par Function Description
+ *  Sets the menu item at \a index active in \a menu.
+ *
+ * \param[in] menu  Pointer to a #GedaMenu
+ * \param[in] index Zero based index of the item to be set active
+ */
 void
 geda_menu_set_active (GedaMenu *menu, unsigned int index)
 {
   GtkWidget *child;
-  GList *tmp_list;
+  GList     *tmp_list;
 
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -1982,10 +1990,12 @@ geda_menu_set_active (GedaMenu *menu, unsigned int index)
   if (tmp_list) {
 
     child = tmp_list->data;
+
     if (GTK_BIN (child)->child) {
 
-      if (menu->old_active_menu_item)
+      if (menu->old_active_menu_item) {
         g_object_unref (menu->old_active_menu_item);
+      }
       menu->old_active_menu_item = child;
       g_object_ref (menu->old_active_menu_item);
     }
