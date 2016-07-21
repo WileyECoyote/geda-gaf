@@ -329,7 +329,7 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
  * \brief Create Main Menu
  * \par Function Description
  * This function creates the main menu based on data in a Scheme list that
- * was create during startup when an RC file executed. Presummably the
+ * was create during startup when RC files were executed. Presummably the
  * orginal intend was to allow for menu customization and this is possible.
  * A side-effects is that if there is a single error in the rc/scheme file,
  * the menu data does not get defined! If such an error is detected, a pre-
@@ -1459,11 +1459,11 @@ static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
 
 /*! \brief Set Menu Icon Visibility
  *  \par Function Description
- *   This function exist so the menu icons can turn off after the main menu
- * is built. Setting "show-image", as was done in x_menu_setup_ui
+ *   This function exist so the menu icons can be turned off after the
+ * main menu is built. Setting "show-image", as was done in x_menu_setup_ui
  * works for gnome display managers but not with Mate, which seems to try
  * and enforce a global system-wide setting. Gschem's user settings takes
- * precedence, so we use this function as a work-around.
+ * precedence, so this function is used as a work-around.
  */
 void x_menu_set_icon_visibility(GschemToplevel *w_current, bool state)
 {
