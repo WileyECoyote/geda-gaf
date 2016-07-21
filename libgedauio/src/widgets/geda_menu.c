@@ -1928,7 +1928,7 @@ geda_menu_popdown (GedaMenu *menu)
 }
 
 /*!
- * \brief Get if the GedaMenu is Active
+ * \brief Get if the GedaMenu has an Active child
  * \par Function Description
  *  Returns the selected menu item from the menu. This is used by
  *  the #GedaOptionMenu.
@@ -2000,6 +2000,41 @@ geda_menu_set_active (GedaMenu *menu, unsigned int index)
       g_object_ref (menu->old_active_menu_item);
     }
   }
+}
+
+/*!
+ * \brief Get if the GedaMenu Widget has an Active child
+ * \par Function Description
+ *  Wrapper for geda_menu_get_active that cast menu to a
+ *  GedaMenu object.
+ *
+ * \param[in] menu: a #GedaMenu
+ *
+ * \returns GedaMenuItem that was last selected in the menu. If a selection
+ *          has not yet been made, the first menu item is selected.
+ *
+ * \sa geda_menu_get_active
+ */
+GtkWidget *
+geda_menu_widget_get_active (GtkWidget *menu)
+{
+  return geda_menu_get_active ((GedaMenu*)menu);
+}
+
+/*!
+ * \brief Set the GedaMenu Widget is Active menu item
+ * \par Function Description
+ *  Sets the menu item at \a index active in \a menu widget.
+ *
+ * \param[in] menu  Pointer to a #GedaMenu
+ * \param[in] index Zero based index of the item to be set active
+ *
+ * \sa geda_menu_set_active
+ */
+void
+geda_menu_widget_set_active (GtkWidget *menu, unsigned int index)
+{
+  geda_menu_set_active ((GedaMenu*)menu, index);
 }
 
 /*!
