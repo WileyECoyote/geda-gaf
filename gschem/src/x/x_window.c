@@ -578,8 +578,10 @@ x_window_create_main(GschemToplevel *w_current)
    */
   /* gtk_widget_hide(w_current->macro_box);*/
 
-  /* Hide the little red x's in the toolbars */
-  x_toolbars_finialize(w_current);
+  if (w_current->toolbars) {
+    /* Hide the little red x's in the toolbars */
+    x_toolbars_finialize(w_current);
+  }
 
   /*! Set visibility of the scroll-bars based on user settings */
   x_window_set_scroll_visibility(w_current);
@@ -686,7 +688,9 @@ x_window_close(GschemToplevel *w_current)
     /* no more windows after this one, remember to quit */
     last_window = TRUE;
     if(w_current->save_ui_settings == TRUE) {
-      x_toolbars_save_state(w_current);
+      if (w_current->toolbars) {
+        x_toolbars_save_state(w_current);
+      }
       x_menu_save_state(w_current);
       x_window_close_all_dialogs(w_current);
       x_window_save_settings(w_current);
@@ -701,7 +705,9 @@ x_window_close(GschemToplevel *w_current)
     o_buffer_free (w_current); /* w_current not used */
   }
 
-  x_toolbars_free_window(w_current);
+  if (w_current->toolbars) {
+    x_toolbars_free_window(w_current);
+  }
 
   /* Clear Guile smob weak ref */
   if (w_current->smob != SCM_UNDEFINED) {

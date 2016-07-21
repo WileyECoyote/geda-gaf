@@ -1643,18 +1643,18 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 static void
 x_toolbar_set_sensitivity(GSList *ListToolBarItems, int sensitive)
 {
-    lambda (GtkWidget *item)
-    {
-      if (GTK_IS_WIDGET(item)) {
-        gtk_widget_set_sensitive(item, sensitive != FALSE);
-        gtk_widget_set_has_tooltip (item, sensitive != FALSE);
-      }
-      else {
-        fprintf(stderr, "x_toolbar_set_sensitivity, item is not a widget\n");
-      }
-      return FALSE;
+  lambda (GtkWidget *item)
+  {
+    if (GTK_IS_WIDGET(item)) {
+      gtk_widget_set_sensitive(item, sensitive != FALSE);
+      gtk_widget_set_has_tooltip (item, sensitive != FALSE);
     }
-    mapcar(ListToolBarItems);
+    else {
+      fprintf(stderr, "x_toolbar_set_sensitivity, item is not a widget\n");
+    }
+    return FALSE;
+  }
+  mapcar(ListToolBarItems);
 }
 
 /*! \brief Set Sensitivity of Toolbar Button Groups
@@ -1676,31 +1676,34 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
                              EID_SENITIVITY_MODE mode,
                              bool state)
 {
-  ToolBarWidgets *bar_widgets;
+  if (w_current->toolbars) {
 
-  bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+    ToolBarWidgets *bar_widgets;
 
-  switch (mode) {
-    case ANY_OBJECT:     x_toolbar_set_sensitivity( ANY_OBJECT_LIST, state);
+    bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+
+    switch (mode) {
+      case ANY_OBJECT:     x_toolbar_set_sensitivity(ANY_OBJECT_LIST, state);
       break;
-    case CAN_PASTE:      x_toolbar_set_sensitivity( CAN_PASTE_LIST, state);
+      case CAN_PASTE:      x_toolbar_set_sensitivity(CAN_PASTE_LIST, state);
       break;
-    case CAN_UNDO:       x_toolbar_set_sensitivity( CAN_UNDO_LIST, state);
+      case CAN_UNDO:       x_toolbar_set_sensitivity(CAN_UNDO_LIST, state);
       break;
-    case CAN_REDO:       x_toolbar_set_sensitivity( CAN_REDO_LIST, state);
+      case CAN_REDO:       x_toolbar_set_sensitivity(CAN_REDO_LIST, state);
       break;
-    case CAN_HATCH:      x_toolbar_set_sensitivity( CAN_HATCH_LIST, state);
+      case CAN_HATCH:      x_toolbar_set_sensitivity(CAN_HATCH_LIST, state);
       break;
-    case CAN_ELINE:      x_toolbar_set_sensitivity( CAN_ELINE_LIST, state);
+      case CAN_ELINE:      x_toolbar_set_sensitivity(CAN_ELINE_LIST, state);
       break;
-    case COMPLEX_OBJECT: x_toolbar_set_sensitivity( HAVE_COMPLEX_LIST, state);
+      case COMPLEX_OBJECT: x_toolbar_set_sensitivity(HAVE_COMPLEX_LIST, state);
       break;
-    case HAVE_PAGES:     x_toolbar_set_sensitivity( HAVE_PAGES_LIST, state);
+      case HAVE_PAGES:     x_toolbar_set_sensitivity(HAVE_PAGES_LIST, state);
       break;
-    case HAVE_PIN:       x_toolbar_set_sensitivity( HAVE_PIN_LIST, state);
+      case HAVE_PIN:       x_toolbar_set_sensitivity(HAVE_PIN_LIST, state);
       break;
-    case HAVE_TEXT:      x_toolbar_set_sensitivity( TEXT_OBJECT_LIST, state);
+      case HAVE_TEXT:      x_toolbar_set_sensitivity(TEXT_OBJECT_LIST, state);
       break;
+    }
   }
 }
 

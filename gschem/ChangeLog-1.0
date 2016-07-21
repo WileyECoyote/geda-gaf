@@ -2,7 +2,13 @@
 
     * src/x/x_toolbars.c: Revise module to allow toolbars without handleboxes.
       if handle boxes are disabled, a GtkBox is substituted as a container in
-      new function x_toolbars_get_box_container.
+      new function x_toolbars_get_box_container. Add conditional in function
+      x_toolbars_set_sensitivities to skip setting sensitivities if toolbars
+      are not enabled.
+
+    * src/x/x_window.c: Revise x_window_create_main to only call x_toolbars_
+      finialize if toolbars are enabled, revise x_window_close to only call
+      x_toolbars_save_state and x_toolbars_free_window if toolbars are enabled.
 
 2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
