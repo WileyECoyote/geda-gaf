@@ -1,3 +1,10 @@
+2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_menu.c: Add basic checks for:
+
+            * geda_menu_get_active
+            * geda_menu_set_active
+
 2016-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Initialize default track-links to FALSE,

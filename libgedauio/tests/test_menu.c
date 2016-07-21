@@ -36,6 +36,8 @@
 
 #include <geda/geda.h>
 #include <geda_menu.h>
+#include <geda_menu_bar.h>
+#include <geda_menu_item.h>
 #include <geda_menu_shell.h>
 
 #include "test-suite.h"
@@ -71,6 +73,87 @@ int check_construction (void)
   return result;
 }
 
+static GtkWidget *main_window()
+{
+  GtkWidget *vbox;
+  GtkWidget *window;
+  GtkWidget *menubar;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  menubar = geda_menu_bar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
+
+  gtk_widget_show (menubar);
+  gtk_widget_show (window);
+
+  return menubar;
+}
+
+int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget    *menu;
+  GtkWidget    *menu_bar;
+  GtkWidget    *widget;
+  GtkWidget    *widget2;
+  GedaMenuItem *menu_item;
+  GtkWidget    *item;
+
+  widget = geda_menu_item_new_with_mnemonic("_Cherry");
+
+  menu      = geda_menu_new ();
+  menu_bar  = main_window();
+  menu_item = GEDA_MENU_ITEM(widget);
+
+  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget);
+
+  widget    = geda_menu_item_new_with_mnemonic("_Apple");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget);
+  gtk_widget_show (widget);
+
+  widget2    = geda_menu_item_new_with_mnemonic("_Pears");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget2);
+  gtk_widget_show (widget2);
+
+  gtk_widget_show (menu);
+
+  /* -------------------- active -------------------- */
+
+  item = geda_menu_get_active (GEDA_MENU(menu));
+  if (item != widget) {
+    fprintf(stderr, "FAILED: line <%d> get_active %p\n", __LINE__, item);
+    result++;
+  }
+
+  geda_menu_set_active(GEDA_MENU(menu), 1);
+
+  item = geda_menu_get_active (GEDA_MENU(menu));
+  if (item != widget2) {
+    fprintf(stderr, "FAILED: line <%d> set_active %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  geda_menu_set_active(GEDA_MENU(menu), 0);
+
+  item = geda_menu_get_active (GEDA_MENU(menu));
+  if (item != widget) {
+    fprintf(stderr, "FAILED: line <%d> set_active %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -102,6 +185,17 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+      }
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
       }
     }
   }
