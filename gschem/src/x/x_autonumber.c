@@ -1410,13 +1410,13 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   /* Set the ScopeNumber ComboMenu with the value in autotext->scope_number */
   geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeNumberMenu), autotext->scope_number);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeNumberMenu));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   /* Set the ScopeSkip ComboMenu with the value in autotext->scope_skip */
   geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeSkipMenu), autotext->scope_skip);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeSkipMenu));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
@@ -1457,16 +1457,16 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
   /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
   autotext->scope_number = POINTER_TO_INT(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
-            GEDA_OPTION_MENU (ScopeNumberMenu)))), "scope_menu"));
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (ScopeNumberMenu))), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
     autotext->scope_skip = POINTER_TO_INT(
       GEDA_OBJECT_GET_DATA (
-          geda_menu_get_active (
-            GEDA_MENU (geda_option_menu_get_menu (
-              GEDA_OPTION_MENU (ScopeSkipMenu)))), "scope_menu"));
+          geda_menu_widget_get_active (
+            geda_option_menu_get_menu (
+              GEDA_OPTION_MENU (ScopeSkipMenu))), "scope_menu"));
 
       autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 

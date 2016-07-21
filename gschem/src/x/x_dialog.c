@@ -1288,7 +1288,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
 
   geda_option_menu_set_history(GEDA_OPTION_MENU(fill_data->fill_type), type);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(fill_data->fill_type));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
@@ -1355,9 +1355,9 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
   activate_anglepitch1_entries = FALSE;
   activate_anglepitch2_entries = FALSE;
 
-  menuitem = geda_menu_get_active (
-    GEDA_MENU (geda_option_menu_get_menu (
-                GEDA_OPTION_MENU (fill_data->fill_type))));
+  menuitem = geda_menu_widget_get_active (
+              geda_option_menu_get_menu (
+                GEDA_OPTION_MENU (fill_data->fill_type)));
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (menuitem, "filltype"));
@@ -1430,10 +1430,9 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
-                      GEDA_OPTION_MENU (
-                        fill_data->fill_type)))), "filltype"));
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+                      GEDA_OPTION_MENU (fill_data->fill_type))), "filltype"));
 
   if (type == FILLING_VOID)
     type = LEAVE_ALONE;
@@ -1890,7 +1889,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
 
   geda_option_menu_set_history(GEDA_OPTION_MENU(line_data->line_type), type);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(line_data->line_type));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (end == LEAVE_ALONE)
@@ -1898,7 +1897,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
 
   geda_option_menu_set_history(GEDA_OPTION_MENU(line_data->end_type), end);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(line_data->end_type));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
@@ -1941,9 +1940,9 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
   bool activate_length_entry, activate_space_entry;
   int type;
 
-  menuitem = geda_menu_get_active (
-    GEDA_MENU (geda_option_menu_get_menu (
-                GEDA_OPTION_MENU (line_data->line_type))));
+  menuitem = geda_menu_widget_get_active (
+              geda_option_menu_get_menu (
+                GEDA_OPTION_MENU (line_data->line_type)));
 
   type = (int)(long)(GEDA_OBJECT_GET_DATA(menuitem, "linetype"));
 
@@ -2010,10 +2009,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
-                      GEDA_OPTION_MENU (
-                        line_data->line_type)))), "linetype"));
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (line_data->line_type))), "linetype"));
 
   if (type == TYPE_ERASE) {
     type = LEAVE_ALONE;
@@ -2021,10 +2019,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   end = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
-                      GEDA_OPTION_MENU (
-                        line_data->end_type)))), "endtype"));
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (line_data->end_type))), "endtype"));
 
   if (end == END_VOID) {
     end = LEAVE_ALONE;

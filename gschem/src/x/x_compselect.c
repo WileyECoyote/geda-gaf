@@ -1235,7 +1235,7 @@ compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
   GtkWidget *menuitem;
   int menu_choice;
 
-  menuitem = geda_menu_get_active(GEDA_MENU(geda_option_menu_get_menu(optionmenu)));
+  menuitem = geda_menu_widget_get_active(geda_option_menu_get_menu(optionmenu));
 
   menu_choice = (int)(long)GEDA_OBJECT_GET_DATA(menuitem, "behaviors");
 
@@ -3081,7 +3081,8 @@ static void compselect_get_property (GObject     *object,
           break;
         }
       case PROP_BEHAVIOR:
-        menuitem = geda_menu_get_active (GEDA_MENU (geda_option_menu_get_menu(compselect->behavior_menu)));
+        menuitem = geda_menu_widget_get_active (
+                     geda_option_menu_get_menu(compselect->behavior_menu));
         g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
         break;
       case PROP_HIDDEN:
