@@ -83,14 +83,15 @@ static GtkWidget *popup_menu;
 
 static ToolBarInfo ActiveToolBar;
 
-/*! \note #1: These numerators are used to access the structure of strings
- *            ToolbarStrings, i.e. if an item is added to one then an item
- *            must be added to the cooresponding position in the other.
+/*!
+ * \note #1: These numerators are used to access the structure of strings
+ *           ToolbarStrings, i.e. if an item is added to one then an item
+ *           must be added to the cooresponding position in the other.
  *
- *  \note #2: etb_none is a dummy member used in the add mode radio group.
- *            The group is a collection of radio button and when we don't
- *            want any of them selected then we set etb_none to be the
- *            active radio button.
+ * \note #2: etb_none is a dummy member used in the add mode radio group.
+ *           The group is a collection of radio button and when we don't
+ *           want any of them selected then we set etb_none to be the
+ *           active radio button.
  */
 typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_print, etb_write_pdf, etb_cut, etb_copy, etb_paste,
@@ -338,12 +339,12 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
   return wpixmap;
 }
 
-/*! \brief Toolbar Button Callback
- *
- *  \par Function Description
+/*!
+ * \brief Toolbar Button Callback
+ * \par Function Description
  *  This function handles callbacks for all non-toggle type toolbar
- * buttons, the function retrieves the action from the button widget
- * and pass the action to i_command_process.
+ *  buttons, the function retrieves the action from the button widget
+ *  and pass the action to i_command_process.
  */
 static void x_toolbars_execute(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -357,9 +358,9 @@ static void x_toolbars_execute(GtkWidget *widget, GschemToplevel *w_current)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
 }
 
-/*! \brief Preload Toolbar Button Icons
- *
- *  \par Function Description
+/*!
+ * \brief Preload Toolbar Button Icons
+ * \par Function Description
  *  This function iterates over the ToolbarStrings structure, calling
  *  x_icons_get_action_icon with the action field, saving the returned
  *  pointer to the icon field, failing that, either get_pixmap or a gtk
@@ -428,9 +429,9 @@ static void x_toolbars_turn_on_radio(RadioMenuData *radio_data) {
   g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
 }
 
-/*! \brief Toolbar Radio Button Callback
- *
- *  \par Function Description
+/*!
+ * \brief Toolbar Radio Button Callback
+ * \par Function Description
  *  This function handles callbacks for radio toolbar buttons,
  *  the function retrieves the action from the button widget
  *  and passes the action to i_command_process.
@@ -448,9 +449,9 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel *w
   }
 }
 
-/*! \brief Toolbar Toggler Button Callback
- *
- *  \par Function Description
+/*!
+ * \brief Toolbar Toggler Button Callback
+ * \par Function Description
  *  This function handles callbacks for radio toolbar toggle buttons and
  *  is similar to x_toolbars_execute_radio() but toggle the the state of
  *  the snap-widget before passing the action from the button widget
@@ -473,9 +474,9 @@ static void x_toolbars_snap_toggle(GtkWidget *widget, GschemToplevel *w_current)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
 }
 
-/*! \brief Save Toolbar Configuration
- *
- *  \par Function Description
+/*!
+ * \brief Save Toolbar Configuration
+ * \par Function Description
  *  This function saves the state of the Toolbar widgets so we
  *  can restore them to same states the next time we run.
  */
@@ -568,9 +569,9 @@ x_toolbars_save_state(GschemToplevel *w_current)
   GEDA_FREE(filename);
 }
 
-/*! \brief Restore Toolbar Configuration
- *
- *  \par Function Description
+/*!
+ * \brief Restore Toolbar Configuration
+ * \par Function Description
  *  This function restores the state of the Toolbar widgets.
  */
 void
@@ -704,18 +705,18 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   GEDA_FREE(filename);
 }
 
-/*! \brief Finialize Toolbar Initialization
- *
- *  \par Function Description
+/*!
+ * \brief Finialize Toolbar Initialization
+ * \par Function Description
  * This function completes the final configuration of the toolbar setup
  * based on settings establish during gschem boot-up. The function also
  * sets the visibility of the Close buttons on all the handleboxes.
  * The Main window did a Show All and that revealed all the buttons on
- *handleboxes that should be hidden if bar is docked. Rather than setting
+ * handleboxes that should be hidden if bar is docked. Rather than setting
  * each widget individually when creating the main window, it's easier to
  * "fix" this by having this routine emit a signal to each handlebox.
  *
- *  \param [in] w_current pointer to top-level data structure
+ * \param [in] w_current pointer to top-level data structure
  */
 void
 x_toolbars_finialize (GschemToplevel *w_current) {
@@ -755,8 +756,9 @@ x_toolbars_finialize (GschemToplevel *w_current) {
   x_toolbars_update(w_current);
 }
 
-/*! \brief Free Window Specific Toolbar Widgets
- *  \par Function Description
+/*!
+ * \brief Free Window Specific Toolbar Widgets
+ * \par Function Description
  *  This function releases the memory associated with a ToolBarWidgets
  *  structure that was allocated with malloc in x_toolbars_init_window.
  */
@@ -824,15 +826,15 @@ do_Hide_HandleBox(GedaHandleBox *handlebox)
   }
 }
 
-/*! \brief Callback Handler for Popup Mouse Context Menu
- *
- *  \par Function Description
+/*!
+ * \brief Callback Handler for Popup Mouse Context Menu
+ * \par Function Description
  * This function calls the appropriate functions to process request
  * from the mouse menu. This function receives a pointer to enumerated
  * integer value for the menu item that was selected.
  *
- *  \param [in] widget is button widget
- *  \param [in] selection pointer to enumerated menu selection
+ * \param [in] widget is button widget
+ * \param [in] selection pointer to enumerated menu selection
  */
 static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
 {
@@ -878,7 +880,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
  *  The function sets senitivty on menu choices based on the handlebox
  *  position and the state of the containing toolbar.
  *
- *  \param [in] widget is the active widget
+ * \param [in] widget is the active widget
  */
 static GtkWidget *build_menu(GtkWidget *widget)
 {
@@ -960,16 +962,16 @@ static GtkWidget *build_menu(GtkWidget *widget)
     return (menu);
 }
 
-/*! \brief HandleBar Mouse Button Call Back
+/*!
+ * \brief HandleBar Mouse Button Call Back
+ * \par Function Description
+ *  This function check mouse botton press and when the 3rd button
+ *  is released the build_menu function is called to create the mouse
+ *  menu.
  *
- *  \par Function Description
- * This function check mouse botton press and when the 3rd button
- * is released the build_menu function is called to create the mouse
- * menu.
- *
- *  \param [in] widget     The handlebox widget when user "right-clicked"
- *  \param [in] event      Mouse event record
- *  \param [in] w_current  Gschem toplevel object.
+ * \param [in] widget     The handlebox widget when user "right-clicked"
+ * \param [in] event      Mouse event record
+ * \param [in] w_current  Gschem toplevel object.
  */
 static int
 On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
@@ -1023,16 +1025,16 @@ On_Float_ToolBar(GedaHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseBu
   gtk_widget_show (CloseButton);
 }
 
-/*! \brief Add Close Button Toolbars - the little red X's
- *
- *  \par Function Description
+/*!
+ * \brief Add Close Button Toolbars - the little red X's
+ * \par Function Description
  * This function creates a single close buttons on the each toolbars
  * along with the necessary alignment containers. The function sets up
  * callbacks to the functions defined above.
  *
- *  \param [in] w_current  Gschem toplevel object
- *  \param [in] HandleBar  The parent containing handlebox object
- *  \param [in] ToolBar    Toolbar object
+ * \param [in] w_current  Gschem toplevel object
+ * \param [in] HandleBar  The parent containing handlebox object
+ * \param [in] ToolBar    Toolbar object
  */
 static void
 x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget *ToolBar)
@@ -1102,9 +1104,9 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
   return;
 }
 
-/*! \section Initialize-Toolbars
- *
- *  \par
+/*!
+ * \section Initialize-Toolbars
+ * \par
  *  Note that this section relies heavily on MACROS defined in
  *  geda_toolbars.h in order to reduce coding errors and to help
  *  clarify the "subject" of the algorithms, rather then obsuring
@@ -1146,9 +1148,9 @@ x_toolbars_init_window(GschemToplevel *w_current)
  *  are enabled a GedaHandleBox is created, otherwise a GtkBox widget
  *  is created. The functions returns a pointer to the new widget.
  *
- *  \param [in] w_current Gschem toplevel structure
+ * \param [in] w_current Gschem toplevel structure
  *
- *  \returns either a GedaHandleBox or a GtkBox
+ * \returns either a GedaHandleBox or a GtkBox
  */
 GtkWidget*
 x_toolbars_get_box_container(GschemToplevel *w_current)
@@ -1164,16 +1166,16 @@ x_toolbars_get_box_container(GschemToplevel *w_current)
   return widget;
 }
 
-/*! \brief Initialize Toolbars at the Top of the Main Window
- *
- *  \par Function Description
+/*!
+ * \brief Initialize Toolbars at the Top of the Main Window
+ * \par Function Description
  * This function creates handleboxes, toolbars, toolbar buttons and
  * related containers in order to create all of the Toolbars at the
  * Top of the Main Window. This function initializes the global
  * variables in the compilation unit.
  *
- *  \param [in] w_current  Gschem toplevel structure
- *  \param [in] parent_container is main vbox widget (main_box)
+ * \param [in] w_current  Gschem toplevel structure
+ * \param [in] parent_container is main vbox widget (main_box)
  */
 void
 x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
@@ -1430,15 +1432,15 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 #endif
 }
 
-/*! \brief Initialize Toolbar at the Left of the Main Window
- *
- *  \par Function Description
+/*!
+ * \brief Initialize Toolbar at the Left of the Main Window
+ * \par Function Description
  * This function creates handleboxes, toolbars, toolbar buttons and
  * related containers in order to create the Toolbar at the Left
  * of the Main Window.
  *
- *  \param [in] w_current  Gschem toplevel structure
- *  \param [in] parent_container is the center_hbox widget
+ * \param [in] w_current  Gschem toplevel structure
+ * \param [in] parent_container is the center_hbox widget
  */
 void
 x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
@@ -1516,14 +1518,15 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   TheToolBars = g_slist_append ( TheToolBars, Edit_Toolbar);
 }
 
-/*! \brief Initialize Toolbar at the Bottom of the Main Window
- *  \par Function Description
- * This function creates handleboxes, toolbars, toolbar buttons and
- * related containers in order to create the Toolbar at the Bottom
- * of the Main Window.
+/*!
+ * \brief Initialize Toolbar at the Bottom of the Main Window
+ * \par Function Description
+ *  This function creates handleboxes, toolbars, toolbar buttons and
+ *  related containers in order to create the Toolbar at the Bottom
+ *  of the Main Window.
  *
- *  \param [in] w_current        Gschem toplevel structure
- *  \param [in] parent_container is the main_box widget (same as the top bar)
+ * \param [in] w_current        Gschem toplevel structure
+ * \param [in] parent_container is the main_box widget (same as the top bar)
  */
 void
 x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
@@ -1632,13 +1635,14 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   TheToolBars = g_slist_append (TheToolBars, GripSnap_Toolbar);
 }
 
-/*! \brief Set Sensitivity of Toolbar Buttons
- *  \par Function Description
- *   This function is called by x_toolbars_set_sensitivities with a gslist
- *   of toolbar button widgets to be set to the specified sensitivity
+/*!
+ * \brief Set Sensitivity of Toolbar Buttons
+ * \par Function Description
+ *  This function is called by x_toolbars_set_sensitivities with a gslist
+ *  of toolbar button widgets to be set to the specified sensitivity
  *
- *  \param [in] ListToolBarItems SINGLE linked list of widgets
- *  \param [in] sensitive        boolean TRUE = sensitive, FALSE = gray-out
+ * \param [in] ListToolBarItems SINGLE linked list of widgets
+ * \param [in] sensitive        boolean TRUE = sensitive, FALSE = gray-out
  */
 static void
 x_toolbar_set_sensitivity(GSList *ListToolBarItems, int sensitive)
@@ -1657,9 +1661,9 @@ x_toolbar_set_sensitivity(GSList *ListToolBarItems, int sensitive)
   mapcar(ListToolBarItems);
 }
 
-/*! \brief Set Sensitivity of Toolbar Button Groups
- *
- *  \par Function Description
+/*!
+ * \brief Set Sensitivity of Toolbar Button Groups
+ * \par Function Description
  *  This functions sets the sensitivities of toolbar button as a visual
  *  aid to the user. When the sensitivity is set to FALSE widgets are
  *  grayed-out to indicate they are not applicable to the current context.
@@ -1667,9 +1671,9 @@ x_toolbar_set_sensitivity(GSList *ListToolBarItems, int sensitive)
  *  better with color and nothing bad would happen even if a button was
  *  pressed when not applicable, gschem just ignores the signals.
  *
- *  \param [in] w_current  Gschem toplevel object.
- *  \param [in] mode is an enumerated group identifier (see in globals.h)
- *  \param [in] state boolean TRUE = sensitive, FALSE = gray-out
+ * \param [in] w_current  Gschem toplevel object.
+ * \param [in] mode is an enumerated group identifier (see in globals.h)
+ * \param [in] state boolean TRUE = sensitive, FALSE = gray-out
  */
 void
 x_toolbars_set_sensitivities(GschemToplevel *w_current,
@@ -1712,8 +1716,8 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
  * \par Function Description
  *  This function set all of buttons on toolbars to display icons.
  *
- *  \param [in] widget     Menu-item widget that involked the call.
- *  \param [in] w_current  Gschem toplevel object.
+ * \param [in] widget     Menu-item widget that involked the call.
+ * \param [in] w_current  Gschem toplevel object.
  */
 /* View->Toolbar */
 void
@@ -1738,8 +1742,8 @@ x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
  * \par Function Description
  *  This function set all of buttons on toolbars to display text.
  *
- *  \param [in] widget     Menu-item widget that involked the call.
- *  \param [in] w_current  Gschem toplevel object.
+ * \param [in] widget     Menu-item widget that involked the call.
+ * \param [in] w_current  Gschem toplevel object.
  */
 void
 x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
@@ -1764,8 +1768,8 @@ x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
  *  This function set all of buttons on toolbars to display both
  *  icons and the text.
  *
- *  \param [in] widget     Menu-item widget that involked the call.
- *  \param [in] w_current  Gschem toplevel object.
+ * \param [in] widget     Menu-item widget that involked the call.
+ * \param [in] w_current  Gschem toplevel object.
  */
 void
 x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
@@ -1806,11 +1810,12 @@ x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
   x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
 }
 
-/*! \brief Set All Toolbar Radios InActive
- *  \par Function Description
- * This function completes the final configuration of the toolbar setup
-
- *  \param [in] w_current pointer to top-level data structure
+/*!
+ * \brief Set All Toolbar Radios InActive
+ * \par Function Description
+ *  This function completes the final configuration of the toolbar setup
+ *
+ * \param [in] w_current pointer to top-level data structure
  */
 void
 x_toolbars_turn_off_all_radios (GschemToplevel *w_current )
@@ -1828,13 +1833,14 @@ x_toolbars_activate_select (GschemToplevel *w_current)
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bar_widgets->toolbar_none), TRUE);
 }
 
-/*! \brief Set The Grid Radio
- *  \par Function Description
+/*!
+ * \brief Set The Grid Radio
+ * \par Function Description
  *  This function should be called after construction of the main
  *  window to insure the correct button is pressed in for the grid
  *  _mode or anytime the grid mode is changed programmatically.
  *
- *  \param [in] w_current pointer to top-level data structure
+ * \param [in] w_current pointer to top-level data structure
  */
 void
 x_toolbars_set_grid_radio (GschemToplevel *w_current)
@@ -1873,7 +1879,8 @@ x_toolbars_set_grid_radio (GschemToplevel *w_current)
 
 #define HideFromDoxygen x_toolbars_execute_radio
 
-/*! \brief Update Toolbar Radio Buttons based on the current state
+/*!
+ * \brief Update Toolbar Radio Buttons based on the current state
  *  This function sets the state of the "mode" radio buttons on the Add
  *  tool-bar. This is done to synchronize the tool-bars with the rest of
  *  the interface since the "mode" can be set by other means. For example
@@ -1882,13 +1889,13 @@ x_toolbars_set_grid_radio (GschemToplevel *w_current)
  *  menu option is selected then the invisible "none" mode button should
  *  be "activated". And so forth.
  *
- *  \note
+ * \note
  *    1.  Pointer to the Radio widgets are members of ToolBarWidgets
  *
  *    2.  This does not set the sensitivities of regular buttons, that is
  *        done by x_toolbars_set_sensitivities.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void
 x_toolbars_update(GschemToplevel *w_current)
