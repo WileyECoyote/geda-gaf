@@ -1,3 +1,7 @@
+2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_circle_object.c: Check geda_circle_object_rotate.
+
 2016-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Adjust Doxygen comment blocks, add comments

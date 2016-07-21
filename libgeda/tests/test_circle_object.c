@@ -891,6 +891,26 @@ check_transformer()
         fail++;
       }
 
+      /* Put the circle back at (x,y) is case there was an error */
+
+      geda_circle_object_modify(object0, x, y, CIRCLE_CENTER);
+
+      /* === Function 31: geda_circle_object_rotate  === */
+
+      geda_circle_object_rotate(object0, x, y + r, 90);
+
+      value = object0->circle->center_x;
+      if (value - x - r) {
+        fprintf(stderr, "FAILED: (O063101A) modify circle %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = object0->circle->center_y;
+      if (value - y - r) {
+        fprintf(stderr, "FAILED: (O063101B) modify circle %d != %d\n", value, y);
+        fail++;
+      }
+
       g_object_unref (object0);
 
       if (fail) {
