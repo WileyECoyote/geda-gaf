@@ -460,7 +460,7 @@ x_window_create_main(GschemToplevel *w_current)
   gtk_widget_realize (MainWindow);
   /* End Main Menu */
 
-  if (w_current->handleboxes && w_current->toolbars) {
+  if (w_current->toolbars) {
      x_toolbars_init_window(w_current);
      x_toolbars_init_top(w_current, main_box);
   }
@@ -474,7 +474,7 @@ x_window_create_main(GschemToplevel *w_current)
   gtk_container_add(GTK_CONTAINER(main_box), center_hbox);
   g_object_set (center_hbox, "visible", TRUE, NULL);
 
-  if (w_current->handleboxes && w_current->toolbars) {
+  if (w_current->toolbars) {
      x_toolbars_init_left(w_current, center_hbox);
   }
 
@@ -535,7 +535,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   /* ----------------- Bottom Toolbar ------------------ */
 
-  if (w_current->handleboxes && w_current->toolbars) {
+  if (w_current->toolbars) {
      x_toolbars_init_bottom(w_current, main_box);
   }
 

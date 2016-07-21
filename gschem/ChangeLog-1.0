@@ -1,3 +1,9 @@
+2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Revise module to allow toolbars without handleboxes.
+      if handle boxes are disabled, a GtkBox is substituted as a container in
+      new function x_toolbars_get_box_container.
+
 2016-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Add configurable GedaCheckMenuItem and GedaOptionMenu
