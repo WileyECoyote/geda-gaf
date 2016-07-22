@@ -69,11 +69,12 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/*! \brief Callback for Editing Text Properties
- *  \par Function Description
- *   This function updates widgets on the text_edit dialog with the text
- * properties of the passed object. If multible objects are selected
- * the text editing field is set to NULL.
+/*!
+ * \brief Callback for Editing Text Properties
+ * \par Function Description
+ *  This function updates widgets on the text_edit dialog with the text
+ *  properties of the passed object. If multible objects are selected
+ *  the text editing field is set to NULL.
  *
  */
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
@@ -216,9 +217,9 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
   return;
 }
 
-/*! \brief Create the alignment combo box list store for the text
-*   property dialog
- *  \par Function Description
+/*!
+ * \brief Create alignment combo box list store for the text property dialog
+ * \par Function Description
  *  This function creates a GtkListStore with nine different alignment
  *  entries.
  */
@@ -262,8 +263,9 @@ static GtkListStore *create_menu_alignment (GschemToplevel *w_current)
   return store;
 }
 
-/*! \brief Apply the settings from the text property dialog
- *  \par Function Description
+/*!
+ * \brief Apply the settings from the text property dialog
+ * \par Function Description
  *  This function retrieve the user settings to the selected text objects
  *  and closes the dialog
  */
@@ -354,8 +356,9 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, GedaObject *object)
   GEDA_FREE(string);
 }
 
-/*! \brief Response function for the text property dialog
- *  \par Function Description
+/*!
+ * \brief Response function for the text property dialog
+ * \par Function Description
  *  This function receives the user response of the text property dialog.
  *  The response is either <b>OK</b>, <b>Cancel</b> or delete.
  *
@@ -381,10 +384,11 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, GedaObject *object)
   }
 }
 
-/*!\brief Callback Widget Values Changed by User.
+/*!
+ * \brief Callback Widget Values Changed by User.
  * \par Function Description
- *   This function changes the wrap property to indicate that the
- *   user has enter a value.
+ *  This function changes the wrap property to indicate that the
+ *  user has enter a value.
  *
  */
 static void
@@ -393,8 +397,9 @@ widget_value_modified (GtkWidget *widget, void * user_data)
   gtk_widget_set_can_default (widget, TRUE);
 }
 
-/*! \brief Create the edit text properties dialog
- *  \par Function Description
+/*!
+ * \brief Create the edit text properties dialog
+ * \par Function Description
  *  This Function creates the dialog to edit text properties.
  */
 void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
@@ -621,10 +626,9 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
   else { /* dialog already there */
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }
-  x_dialog_text_edit_update_selection (w_current, text_object);
 
+  x_dialog_text_edit_update_selection (w_current, text_object);
 }
 
 /******************* End of Text Edit dialog box ************************/
 /** @} end group Edit-Text-Dialog */
-
