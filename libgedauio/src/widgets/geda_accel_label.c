@@ -421,7 +421,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       geda_label_get_layout_offsets (GEDA_LABEL (accel_label), NULL, &y);
 
-      const char *geda_accel_label_get_string (accel_label);
+      const char *string = geda_accel_label_get_string (accel_label);
 
       accel_layout = gtk_widget_create_pango_layout (widget, string);
 

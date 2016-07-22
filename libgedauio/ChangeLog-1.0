@@ -1,5 +1,7 @@
 2016-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_accel_label.c: add missing token for Gtk-3 builds.
+
     * src/widgets/geda_label.c: Replace data key string name and define
       with constant; MNEMONIC_MENU_DATA.
 
