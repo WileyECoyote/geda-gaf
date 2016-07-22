@@ -1,3 +1,7 @@
+2016-07-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise comments.
+
 2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/: Replace geda_menu_get_active with widget version;

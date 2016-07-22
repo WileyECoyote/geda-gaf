@@ -300,7 +300,7 @@
 ; Determines if the object clipping code is executed or not
 ; This code does speed up redraws a bit. Possible options are enabled
 ; or disabled. Clipping should not normally be turned off, since some
-; X servers don't handle clipping correctly.
+; X servers do not handle clipping correctly.
 ;
 ;(object-clipping "enabled")
 ;(object-clipping "disabled")
@@ -985,15 +985,15 @@
 ;  file-preview string
 ;
 ;  Controls if the preview area in the File Open/Save As and Component
-;  dialog boxes is enabled by default or not
+;  dialog boxes is enabled by default.
 ;
 (file-preview "enabled")
 ;(file-preview "disabled")
 
 ; handleboxes string
 ;
-; Controls if the handleboxes (which contain the menu and toolbar) are
-; visible or not.
+; Controls if the handleboxes (which contain the menu and toolbars) are
+; enabled or not.
 ;
 (handleboxes "enabled")
 ;(handleboxes "disabled")
