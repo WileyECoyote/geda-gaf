@@ -1,3 +1,8 @@
+2016-07-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Replace data key string name and define
+      with constant; MNEMONIC_MENU_DATA.
+
 2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c

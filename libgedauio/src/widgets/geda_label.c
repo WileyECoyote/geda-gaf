@@ -80,6 +80,8 @@
 #define G_VALUE_INIT  { 0, { { 0 } } }
 #endif
 
+#define MNEMONIC_MENU_DATA "mnemonic-menu"
+
 #define PangoFontDescr  PangoFontDescription
 
 typedef struct _SelectionInfo SelectionInfo;
@@ -2260,7 +2262,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
   priv          = label->priv;
   widget        = GTK_WIDGET (label);
-  mnemonic_menu = GEDA_OBJECT_GET_DATA(label, "gtk-mnemonic-menu");
+  mnemonic_menu = GEDA_OBJECT_GET_DATA(label, MNEMONIC_MENU_DATA);
 
   if (last_key != GDK_KEY_VoidSymbol) {
 
@@ -2297,7 +2299,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
     }
   }
 
-  g_object_set_data (G_OBJECT (label), _("gtk-mnemonic-menu"), mnemonic_menu);
+  g_object_set_data (G_OBJECT (label), MNEMONIC_MENU_DATA, mnemonic_menu);
 }
 
 static void
