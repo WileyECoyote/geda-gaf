@@ -584,16 +584,16 @@ static int
 geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 {
   GedaOptionMenu *option_menu;
-  GtkWidget      *menu_item;
 
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
   g_return_val_if_fail (event != NULL, FALSE);
 
   option_menu = GEDA_OPTION_MENU (widget);
 
-  if ((event->type == GDK_BUTTON_PRESS) &&
-      (event->button == 1))
+  if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1))
   {
+    GtkWidget *menu_item;
+
     geda_option_menu_remove_contents (option_menu);
 
     geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
@@ -710,9 +710,6 @@ geda_option_menu_item_destroy_cb (GtkWidget      *widget,
 static void
 geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 {
-  GtkWidget *child;
-  GtkRequisition child_requisition;
-
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
   if (option_menu->menu) {
@@ -725,13 +722,18 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 
     if (option_menu->menu_item) {
 
+      GtkWidget *child;
+      GtkRequisition child_requisition;
+
       g_object_ref (option_menu->menu_item);
       child = GTK_BIN (option_menu->menu_item)->child;
 
       if (child) {
 
-        if (!gtk_widget_is_sensitive (option_menu->menu_item))
+        if (!gtk_widget_is_sensitive (option_menu->menu_item)) {
           gtk_widget_set_sensitive (child, FALSE);
+        }
+
         gtk_widget_reparent (child, GTK_WIDGET (option_menu));
       }
 
@@ -744,8 +746,9 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
       gtk_widget_size_allocate (GTK_WIDGET (option_menu),
                                 &(GTK_WIDGET (option_menu)->allocation));
 
-      if (GTK_WIDGET_DRAWABLE (option_menu))
+      if (GTK_WIDGET_DRAWABLE (option_menu)) {
         gtk_widget_queue_draw (GTK_WIDGET (option_menu));
+      }
     }
 
     if (old_item != option_menu->menu_item)
@@ -756,13 +759,11 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 static void
 geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
 {
-  GtkWidget *child;
-
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
   if (option_menu->menu_item) {
 
-    child = GTK_BIN (option_menu)->child;
+    GtkWidget *child = GTK_BIN (option_menu)->child;
 
     if (child) {
 
@@ -786,8 +787,7 @@ geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
 static void
 geda_option_menu_calc_size (GedaOptionMenu *option_menu)
 {
-  GtkWidget *child;
-  GList     *children;
+  GList *children;
 
   GtkRequisition child_requisition;
 
@@ -804,6 +804,8 @@ geda_option_menu_calc_size (GedaOptionMenu *option_menu)
     children = GEDA_MENU_SHELL (option_menu->menu)->children;
 
     while (children) {
+
+      GtkWidget *child;
 
       child = children->data;
       children = children->next;
@@ -836,7 +838,6 @@ geda_option_menu_position (GedaMenu  *menu,
 {
   GedaOptionMenu *option_menu;
   GtkWidget      *active;
-  GtkWidget      *child;
   GtkWidget      *widget;
   GList          *children;
   GtkRequisition  requisition;
@@ -871,9 +872,10 @@ geda_option_menu_position (GedaMenu  *menu,
   }
 
   children = GEDA_MENU_SHELL (option_menu->menu)->children;
+
   while (children) {
 
-    child = children->data;
+    GtkWidget *child = children->data;
 
     if (active == child)
       break;
@@ -959,7 +961,6 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
 
   if (index != -1) {
 
-    GList *list;
     int index_dir;
     int n_children;
 
@@ -975,6 +976,7 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
     while (TRUE) {
 
       GedaMenuItem *item;
+      GList        *list;
 
       index += index_dir;
 
@@ -1077,11 +1079,11 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
 void
 geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 {
-  GtkWidget *menu_item;
-
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
   if (GEDA_IS_MENU(option_menu->menu)) {
+
+    GtkWidget *menu_item;
 
     geda_menu_widget_set_active (option_menu->menu, index);
     menu_item = geda_menu_widget_get_active (option_menu->menu);
@@ -1105,11 +1107,11 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 int
 geda_option_menu_get_history (GedaOptionMenu *option_menu)
 {
-  GtkWidget *active_widget;
-
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
   if (GEDA_IS_MENU(option_menu->menu)) {
+
+    GtkWidget *active_widget;
 
     active_widget = geda_menu_widget_get_active (option_menu->menu);
 

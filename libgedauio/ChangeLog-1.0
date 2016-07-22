@@ -5,6 +5,7 @@
 
     * src/widgets/geda_option_menu.c: Replace geda_menu_get_active with
       geda_menu_widget_get_active and add validation in conditional.
+      Reduce scope of variables in module.
 
     * tests/test_menu.c: Add checks for:
 
