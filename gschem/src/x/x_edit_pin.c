@@ -181,7 +181,7 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
 
   geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->node_type), node_type);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->node_type));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (number == NULL) {
@@ -207,7 +207,7 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
 
   geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->pin_electrical), elect_type);
   menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->pin_electrical));
-  menuitem = geda_menu_get_active(GEDA_MENU(menu));
+  menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
 }
@@ -270,10 +270,9 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   ntype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
-            GEDA_OPTION_MENU (
-              pin_data->node_type)))), WIDGET(PinNodeType)));
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+            GEDA_OPTION_MENU (pin_data->node_type))), WIDGET(PinNodeType)));
 
   if (ntype != PIN_NET_NODE && ntype != PIN_BUS_NODE) {
     titled_warning_dialog(_("Pin Properties"), "%s", _("Invalid Pin Node Type"));
@@ -282,10 +281,10 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   etype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
-        geda_menu_get_active (
-          GEDA_MENU (geda_option_menu_get_menu (
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
             GEDA_OPTION_MENU (
-              pin_data->pin_electrical)))), WIDGET(PinElectrical)));
+              pin_data->pin_electrical))), WIDGET(PinElectrical)));
 
   if (etype == PIN_ELECT_VOID)
     titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin electrical VOID"));
