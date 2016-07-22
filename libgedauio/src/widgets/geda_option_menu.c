@@ -595,12 +595,16 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
       (event->button == 1))
   {
     geda_option_menu_remove_contents (option_menu);
+
     geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
                     geda_option_menu_position, option_menu,
                     event->button, event->time);
-    menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
-    if (menu_item)
+
+    menu_item = geda_menu_widget_get_active (option_menu->menu);
+
+    if (menu_item) {
       geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
+    }
     return TRUE;
   }
 
@@ -626,7 +630,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
       geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
               geda_option_menu_position, option_menu,
               0, event->time);
-      menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+      menu_item = geda_menu_widget_get_active (option_menu->menu);
       if (menu_item)
     geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
       return TRUE;
@@ -717,7 +721,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 
     geda_option_menu_remove_contents (option_menu);
 
-    option_menu->menu_item = geda_menu_get_active (GEDA_MENU(option_menu->menu));
+    option_menu->menu_item = geda_menu_widget_get_active (option_menu->menu);
 
     if (option_menu->menu_item) {
 
@@ -850,7 +854,7 @@ geda_option_menu_position (GedaMenu  *menu,
   gtk_widget_get_child_requisition (GTK_WIDGET (menu), &requisition);
   menu_width = requisition.width;
 
-  active = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+  active = geda_menu_widget_get_active (option_menu->menu);
   gdk_window_get_origin (widget->window, &menu_xpos, &menu_ypos);
 
   /* set combo box type hint for menu popup */
@@ -1077,10 +1081,10 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
-  if (option_menu->menu) {
+  if (GEDA_IS_MENU(option_menu->menu)) {
 
-    geda_menu_set_active (GEDA_MENU (option_menu->menu), index);
-    menu_item = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+    geda_menu_widget_set_active (option_menu->menu, index);
+    menu_item = geda_menu_widget_get_active (option_menu->menu);
 
     if (menu_item != option_menu->menu_item) {
       geda_option_menu_update_contents (option_menu);
@@ -1105,9 +1109,9 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
 
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
-  if (option_menu->menu) {
+  if (GEDA_IS_MENU(option_menu->menu)) {
 
-    active_widget = geda_menu_get_active (GEDA_MENU (option_menu->menu));
+    active_widget = geda_menu_widget_get_active (option_menu->menu);
 
     if (active_widget) {
       return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
