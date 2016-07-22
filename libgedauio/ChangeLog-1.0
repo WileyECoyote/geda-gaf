@@ -6,6 +6,12 @@
     * src/widgets/geda_option_menu.c: Replace geda_menu_get_active with
       geda_menu_widget_get_active and add validation in conditional.
 
+    * tests/test_menu.c: Add checks for:
+
+            * geda_menu_get_accel_path
+            * geda_menu_set_accel_path
+            * geda_menu_item_get_accel_path (consequential)
+
 2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c

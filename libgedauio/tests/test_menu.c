@@ -101,55 +101,100 @@ check_accessors ()
 
   GtkWidget    *menu;
   GtkWidget    *menu_bar;
-  GtkWidget    *widget;
+  GtkWidget    *widget0;
+  GtkWidget    *widget1;
   GtkWidget    *widget2;
+  GtkWidget    *widget3;
   GedaMenuItem *menu_item;
   GtkWidget    *item;
 
-  widget = geda_menu_item_new_with_mnemonic("_Cherry");
+  widget0 = geda_menu_item_new_with_mnemonic("_Fruit");
 
   menu      = geda_menu_new ();
   menu_bar  = main_window();
-  menu_item = GEDA_MENU_ITEM(widget);
+  menu_item = GEDA_MENU_ITEM(widget0);
 
   geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget0);
 
-  widget    = geda_menu_item_new_with_mnemonic("_Apple");
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget);
-  gtk_widget_show (widget);
+  widget1    = geda_menu_item_new_with_mnemonic("_Cherry");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget1);
+  gtk_widget_show (widget1);
 
-  widget2    = geda_menu_item_new_with_mnemonic("_Pears");
+  widget2    = geda_menu_item_new_with_mnemonic("_Apple");
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget2);
   gtk_widget_show (widget2);
+
+  widget3    = geda_menu_item_new_with_mnemonic("_Pears");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget3);
+  gtk_widget_show (widget3);
 
   gtk_widget_show (menu);
 
   /* -------------------- active -------------------- */
 
-  item = geda_menu_get_active (GEDA_MENU(menu));
-  if (item != widget) {
+  item = geda_menu_widget_get_active (menu);
+  if (item != widget1) {
     fprintf(stderr, "FAILED: line <%d> get_active %p\n", __LINE__, item);
     result++;
   }
 
-  geda_menu_set_active(GEDA_MENU(menu), 1);
+  geda_menu_widget_set_active(menu, 1);
 
-  item = geda_menu_get_active (GEDA_MENU(menu));
+  item = geda_menu_widget_get_active (menu);
   if (item != widget2) {
     fprintf(stderr, "FAILED: line <%d> set_active %s\n", __LINE__, TWIDGET);
     result++;
   }
 
-  geda_menu_set_active(GEDA_MENU(menu), 0);
+  geda_menu_widget_set_active(menu, 0);
 
-  item = geda_menu_get_active (GEDA_MENU(menu));
-  if (item != widget) {
+  item = geda_menu_widget_get_active (menu);
+  if (item != widget1) {
     fprintf(stderr, "FAILED: line <%d> set_active %s\n", __LINE__, TWIDGET);
     result++;
   }
 
-  gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+  /* -------------------- accel_group -------------------- */
+
+  GtkAccelGroup *accel_group;
+  GtkAccelGroup *group;
+
+  accel_group = gtk_accel_group_new ();
+
+  geda_menu_set_accel_group (GEDA_MENU(menu), accel_group);
+
+  group = geda_menu_get_accel_group (GEDA_MENU(menu));
+
+  if (group != accel_group) {
+    fprintf(stderr, "FAILED: line <%d> accel_group %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* -------------------- accel_path -------------------- */
+
+  const char *accel_path;
+
+  /* Sets accelerator path on sub-menu items */
+  geda_menu_set_accel_path (GEDA_MENU(menu), "<trees>/Fruit");
+
+  /* Get the path from an item under the menu */
+  accel_path = geda_menu_item_get_accel_path (GEDA_MENU_ITEM(widget1));
+
+  if (strcmp(accel_path, "<trees>/Fruit/Cherry")) {
+    fprintf(stderr, "FAILED: line <%d> accel_path %s\n", __LINE__, accel_path);
+    result++;
+  }
+
+  /* Get the path from the menu */
+  accel_path = geda_menu_get_accel_path (GEDA_MENU(menu));
+
+  if (strcmp(accel_path, "<trees>/Fruit")) {
+    fprintf(stderr, "FAILED: line <%d> accel_path %s\n", __LINE__, accel_path);
+    result++;
+  }
+
+  gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
 
   return result;
 }
