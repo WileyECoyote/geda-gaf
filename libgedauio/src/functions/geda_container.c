@@ -148,14 +148,17 @@ gtk_container_focus_sort_left_right (GtkContainer     *container,
     while (tmp_list) {
 
       GtkWidget *child = tmp_list->data;
-      GList *next = tmp_list->next;
-      int child_y1, child_y2;
+      GList     *next  = tmp_list->next;
+
       GdkRectangle child_allocation;
 
       if (child != old_focus) {
 
         if (get_allocation_coords (container, child, &child_allocation))
         {
+
+          int child_y1, child_y2;
+
           child_y1 = child_allocation.y;
           child_y2 = child_allocation.y + child_allocation.height;
 
@@ -276,13 +279,15 @@ gtk_container_focus_sort_up_down (GtkContainer     *container,
     while (tmp_list) {
 
       GtkWidget *child = tmp_list->data;
-      GList *next = tmp_list->next;
-      int child_x1, child_x2;
+      GList     *next  = tmp_list->next;
+
       GdkRectangle child_allocation;
 
       if (child != old_focus) {
 
         if (get_allocation_coords (container, child, &child_allocation)) {
+
+          int child_x1, child_x2;
 
           child_x1 = child_allocation.x;
           child_x2 = child_allocation.x + child_allocation.width;

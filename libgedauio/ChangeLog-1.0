@@ -1,5 +1,7 @@
 2016-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/functions/geda_container.c: Reduce scope of variables in module.
+
     * src/widgets/geda_completion.c: Reduce scope of variables and removed
       unused GList *tmp in main.
 
