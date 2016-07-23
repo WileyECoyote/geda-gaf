@@ -240,7 +240,9 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
 
         gtk_image_set_from_pixbuf (preview, pixbuf);
 
-        if (old_size < 0) old_size = ((GtkWidget*)preview)->allocation.width;
+        if (old_size < 0) {
+          old_size = ((GtkWidget*)preview)->allocation.width;
+        }
 
         if (size < old_size) {
           if (!chooser->mouse_down) {
@@ -283,9 +285,6 @@ chooser_update_preview (GtkFileChooser *widget, void *user_data)
 {
   GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(widget);
 
-  GdkPixbuf        *pixbuf;
-  char             *filename;
-
   /* preview_enabled is used to by-pass updates instead of disconnecting
    * the signal handler because of flaws in gobject/gsignal.c one@2580,
    * which issues unnecessary noise claiming the handler is not connected.
@@ -294,12 +293,15 @@ chooser_update_preview (GtkFileChooser *widget, void *user_data)
    */
   if (chooser->preview_enabled) {
 
+    char *filename;
+
     filename = gtk_file_chooser_get_preview_filename (widget);
 
     if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 
-      GError *err;
-      int     size;
+      GdkPixbuf *pixbuf;
+      GError    *err;
+      int        size;
 
       err    = NULL;
       size   = chooser->preview_size;
