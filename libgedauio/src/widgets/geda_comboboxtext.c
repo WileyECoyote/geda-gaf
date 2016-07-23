@@ -185,13 +185,14 @@ item_start_element (GMarkupParseContext *context,
                     const char          *element_name,
                     const char         **names,
                     const char         **values,
-                    void *             user_data,
+                    void                *user_data,
                     GError             **error)
 {
   ItemParserData *data = (ItemParserData*)user_data;
-  unsigned int i;
 
   if (strcmp (element_name, "item") == 0) {
+
+    unsigned int i;
 
     data->is_text = TRUE;
 
@@ -203,8 +204,8 @@ item_start_element (GMarkupParseContext *context,
 
           int len = strlen(values[i]);
 
-          if (gtk_builder_add_from_string (data->builder, values[i], len, error)) {
-
+          if (gtk_builder_add_from_string (data->builder, values[i], len, error))
+          {
             if (error) {
               g_clear_error (error);
             }
@@ -334,14 +335,11 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
                                                const char   *tagname,
                                                void         *user_data)
 {
-  ItemParserData *parser_data;
-
   buildable_parent_iface->custom_finished (buildable, builder, child,
                                            tagname, user_data);
-
   if (strcmp (tagname, "items") == 0) {
 
-    parser_data = (ItemParserData*)user_data;
+    ItemParserData *parser_data = (ItemParserData*)user_data;
 
     g_object_unref (parser_data->object);
     g_object_unref (parser_data->builder);
@@ -824,9 +822,10 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
       GtkTreeModel *model;
       GtkTreeIter   iter;
+      const char   *str;
+
       int text_column;
-      int i, found;
-      const char *str;
+      int found;
 
       model       = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
       text_column = geda_combo_box_get_entry_text_column (GEDA_COMBO_BOX (combo_box));
@@ -834,8 +833,12 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
       if (gtk_tree_model_get_iter_first (model, &iter)) {
 
+        int i;
+
         for (i=0;i<combo_box->count;i++) {
+
           gtk_tree_model_get (model, &iter, text_column, &str, -1);
+
           if (str && (strcmp(text, str) == 0)) {
             found = i;
             break;

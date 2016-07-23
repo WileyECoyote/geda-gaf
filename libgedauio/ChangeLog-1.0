@@ -1,6 +1,11 @@
 2016-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_image_chooser.c: Reduce scope of variables in function
+      chooser_update_preview.
+
     * src/functions/geda_container.c: Reduce scope of variables in module.
+
+    * src/widgets/geda_comboboxtext.c: Reduce scope of variables in module.
 
     * src/widgets/geda_completion.c: Reduce scope of variables and removed
       unused GList *tmp in main.
