@@ -702,7 +702,8 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
     }
   }
 
-  return TRUE;
+  /* return false in no item, see geda_menu_bar_button_press */
+  return (menu_item != NULL);
 }
 
 static bool

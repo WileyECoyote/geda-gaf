@@ -1,3 +1,13 @@
+2016-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Reduce scope of variables in module.
+
+    * src/widgets/geda_menu_bar.c: Add button press handler to implement
+      window-dragging using the empty space on the menu bar.
+
+    * src/widgets/geda_menu_shell.c: Return false if there is no menu item
+      so that the menu-bar can handle the event.
+
 2016-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: add missing token for Gtk-3 builds.

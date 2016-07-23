@@ -108,6 +108,9 @@ static int geda_menu_bar_draw                         (GtkWidget      *widget,
                                                        cairo_t        *cr);
 #endif
 
+static bool geda_menu_bar_button_press                (GtkWidget       *widget,
+                                                       GdkEventButton  *event);
+
 static void geda_menu_bar_hierarchy_changed           (GtkWidget      *widget,
                                                        GtkWidget      *old_toplevel);
 static int  geda_menu_bar_get_popup_delay             (GedaMenuShell  *menu_shell);
@@ -870,6 +873,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
 #endif
 
   widget_class->hierarchy_changed              = geda_menu_bar_hierarchy_changed;
+  widget_class->button_press_event             = geda_menu_bar_button_press;
 
   //gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_MENU_BAR);
 
@@ -1142,6 +1146,54 @@ remove_from_window (GtkWindow  *window, GedaMenuBar *menubar)
 
   menubars = g_list_remove (menubars, menubar);
   set_menu_bars (window, menubars);
+}
+
+/* button press event handler implements window-dragging using the
+ * empty space on the menu bar if the parent shell does not handle
+ * the event.
+ */
+static bool
+geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
+{
+  bool parent_response;
+
+  g_return_val_if_fail (GEDA_IS_MENU_BAR(widget), FALSE);
+
+  if (event->type == GDK_2BUTTON_PRESS || event->type != GDK_BUTTON_PRESS)
+    return FALSE;
+
+  /* See if the GedaMenuShell handles the event */
+  parent_response = GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->
+                    button_press_event (widget, event);
+
+  if (parent_response)
+    return TRUE;
+
+  /* The shell did not handle the event */
+
+  if (event->button == 1) {
+
+    GtkWidget *toplevel_widget = gtk_widget_get_toplevel (widget);
+
+    if (GTK_WIDGET_TOPLEVEL (toplevel_widget)) {
+
+      GdkWindow *toplevel = toplevel_widget->window;
+      toplevel = gdk_window_get_toplevel(toplevel);
+
+      g_return_val_if_fail (toplevel != NULL, FALSE);
+
+      gdk_window_begin_move_drag (toplevel, event->button,
+                                  event->x_root,
+                                  event->y_root,
+                                  event->time);
+      return TRUE;
+    }
+    else {
+      g_warning ("Root window of GedaMenuBar is not a top level window");
+    }
+  }
+
+  return FALSE;
 }
 
 static void
