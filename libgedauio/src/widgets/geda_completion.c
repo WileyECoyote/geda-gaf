@@ -471,18 +471,18 @@ geda_completion_set_compare(GedaCompletion *comp,
 }
 
 #ifdef TEST_COMPLETION
+
 #include <stdio.h>
 int
 main (int argc, char *argv[])
 {
-  FILE *file;
-  char buf[1024];
-  GList *list;
-  GList *result;
-  GList *tmp;
   GedaCompletion *comp;
-  int   i;
-  char *longp = NULL;
+  FILE           *file;
+  GList          *list;
+  char           *longp = NULL;
+  int i;
+
+  char buf[1024];
 
   if (argc < 3) {
     fprintf(stderr, "Usage: %s filename prefix1 [prefix2 ...]\n", argv[0]);
@@ -510,6 +510,8 @@ main (int argc, char *argv[])
   fclose (file);
 
   for (i = 2; i < argc; ++i) {
+
+    GList *result;
 
     printf ("COMPLETING: %s\n", argv[i]);
     result = geda_completion_complete (comp, argv[i], &longp);
