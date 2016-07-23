@@ -179,7 +179,6 @@ geda_radio_menu_item_destroy (GtkObject *object)
 {
   GedaRadioMenuItem *radio_menu_item     = GEDA_RADIO_MENU_ITEM (object);
   GtkWidget         *old_group_singleton = NULL;
-  GedaRadioMenuItem *tmp_menu_item;
   GSList            *tmp_list;
   bool               was_in_group;
 
@@ -194,9 +193,10 @@ geda_radio_menu_item_destroy (GtkObject *object)
 
   while (tmp_list) {
 
-      tmp_menu_item = tmp_list->data;
-      tmp_list = tmp_list->next;
+      GedaRadioMenuItem *tmp_menu_item;
 
+      tmp_menu_item        = tmp_list->data;
+      tmp_list             = tmp_list->next;
       tmp_menu_item->group = radio_menu_item->group;
   }
 

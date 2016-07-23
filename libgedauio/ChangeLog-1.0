@@ -13,6 +13,9 @@
     * src/widgets/geda_menu_shell.c: Return false if there is no menu item
       so that the menu-bar can handle the event.
 
+    * src/widgets/geda_radio_menu_item.c: Reduce scope of variables in
+      geda_radio_menu_item_destroy.
+
     * src/widgets/geda_separator.c: Remove unused variable separator, in
       Gtk3::geda_separator_get_preferred_size.
 
