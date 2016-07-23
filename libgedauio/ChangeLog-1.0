@@ -13,6 +13,9 @@
     * src/widgets/geda_menu_shell.c: Return false if there is no menu item
       so that the menu-bar can handle the event.
 
+    * src/widgets/geda_separator.c: Remove unused variable separator, in
+      Gtk3::geda_separator_get_preferred_size.
+
 2016-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: add missing token for Gtk-3 builds.

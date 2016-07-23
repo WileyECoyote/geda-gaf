@@ -173,15 +173,12 @@ geda_separator_size_request (GtkWidget      *widget,
 
 #else /* !GTK_MAJOR_VERSION < 3 */
 
-
 static void
 geda_separator_get_preferred_size (GtkWidget *widget,
                                    int        orientation,
                                    int       *minimum,
                                    int       *natural)
 {
-  GedaSeparator *separator = GEDA_SEPARATOR (widget);
-
   bool wide_sep;
   int  sep_width;
   int  sep_height;
