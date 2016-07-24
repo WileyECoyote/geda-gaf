@@ -911,6 +911,24 @@ check_transformer()
         fail++;
       }
 
+      geda_circle_object_modify(object0, x, y, CIRCLE_CENTER);
+
+      /* === Function 48: geda_circle_object_translate  === */
+
+      geda_circle_object_translate(object0, r, r);
+
+      value = object0->circle->center_x;
+      if (value - x - r) {
+        fprintf(stderr, "FAILED: (O064801A) modify circle %d != %d\n", value, x);
+        fail++;
+      }
+
+      value = object0->circle->center_y;
+      if (value - y - r) {
+        fprintf(stderr, "FAILED: (O064801B) modify circle %d != %d\n", value, y);
+        fail++;
+      }
+
       g_object_unref (object0);
 
       if (fail) {
