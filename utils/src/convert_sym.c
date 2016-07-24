@@ -624,22 +624,21 @@ do_unattached_attribute(FILE *fp)
       break;
 
     default:
-      fprintf(stderr,"Error: Invalid visibility value %d in "
-            "viewlogic file at record #%d in function %s()\n",
-            viewvis, records_processed, __func__);
+      fprintf(stderr,"Error: Invalid visibility value %u in "
+                     "viewlogic file at record #%d in function %s()\n",
+                      viewvis, records_processed, __func__);
       return;
     }
 
   /* find name and value pair */
-  name = text;
+  name  = text;
   index = strindex(text,'=');
-  if (text[index] == '=')
-  {
+
+  if (text[index] == '=') {
     text[index] = 0;
     value = &text[index+1];
   }
-  else
-  {
+  else {
     value = NULL;
   }
 
@@ -668,7 +667,7 @@ do_attached_attribute(FILE *fp)
             &viewvis) != 6)
   {
     fprintf(stderr,"Error: Invalid attached attribute record #%d"
-            " in %s()\n", records_processed, __func__);
+                   " in %s()\n", records_processed, __func__);
     exit(1);
   }
 
@@ -707,9 +706,9 @@ do_attached_attribute(FILE *fp)
       break;
 
     default:
-      fprintf(stderr,"Error: Invalid visibility value %d in "
-            "viewlogic file at record #%d, in function %s()\n",
-            viewvis, records_processed, __func__);
+      fprintf(stderr,"Error: Invalid visibility value %u in "
+                     "viewlogic file at record #%d, in function %s()\n",
+                      viewvis, records_processed, __func__);
       return;
   }
 
@@ -909,8 +908,8 @@ do_text(FILE *fp)
 void
 do_line(FILE *fp)
 {
-  int x[MAX_POINTS],y[MAX_POINTS];
-  unsigned int pairs,color,i;
+  int i, x[MAX_POINTS],y[MAX_POINTS];
+  unsigned int pairs,color;
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
 
@@ -923,28 +922,28 @@ do_line(FILE *fp)
    *         l #PAIRS #X1 #Y1 #X2 #Y2 ...   - Line
    */
 
-  if(fscanf(fp,"%d",&pairs) != 1)
-    {
+  if (fscanf(fp,"%u",&pairs) != 1) {
+
       fprintf(stderr,"Error: Unable to read number of line pairs "
             "for record #%d, in %s()\n",
             records_processed, __func__);
       exit(1);
-    }
+  }
 
   /* scan in all the co-ordinate pairs and pop them into our array */
-  for (i=0; i < pairs; i++)
-    {
-      if(fscanf(fp,"%d %d", &x[i], &y[i]) != 2)
-      {
+  for (i=0; i < pairs; i++) {
+
+      if(fscanf(fp,"%d %d", &x[i], &y[i]) != 2) {
+
         fprintf(stderr,"Error: unable to read %dth coodinate pair "
-              "for record #%d, in %s()\n",
-              i+1, records_processed, __func__);
+                       "for record #%d, in %s()\n",
+                        i + 1, records_processed, __func__);
         exit(1);
       }
 
       x[i] *= scale;
       y[i] *= scale;
-    }
+  }
 
   /* slurp up trailing CR/NL */
   if (getc(fp) == '\r')
@@ -1072,9 +1071,9 @@ do_pin(FILE *fp)
       break;
     default:
       /* Invalid pin direction */
-      fprintf(stderr,"Error: Invalid pin direction %d in "
-            "ViewLogic file at record #%d, in function %s()\n",
-            pindir, records_processed, __func__);
+      fprintf(stderr,"Error: Invalid pin direction %u in "
+                     "ViewLogic file at record #%d, in function %s()\n",
+                      pindir, records_processed, __func__);
       exit(1);
   }
 
@@ -1299,8 +1298,8 @@ do_label(FILE *fp)
 
   /* reproduce as simple text, unless it is a label for an object */
 
-  if(fscanf(fp, "%d %d %u %d %d %d %d %d", &x, &y, &size, &angle, &origin,
-            &global, &visibility, &overbar) != 8)
+  if (fscanf(fp, "%d %d %u %d %u %d %u %d", &x, &y, &size, &angle, &origin,
+             &global, &visibility, &overbar) != 8)
   {
       fprintf(stderr,"Error: Invalid label record #%d in %s()\n",
             records_processed, __func__);
@@ -1530,7 +1529,7 @@ do_instance(FILE *fp)
 
     fprintf(stderr,"Error: Invalid instance record #%d in %s()\n"
             "lib:'%s', name:'%s'\n"
-            "extension:%d, x:%d, y:%d\n",
+            "extension:%u, x:%d, y:%d\n",
             records_processed, __func__, lib,name,extension, x, y);
     exit(1);
   }
@@ -1769,7 +1768,7 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
 
   char text[MAX_TEXTLEN], text2[MAX_TEXTLEN];
   char tmpName[MAX_TEXTLEN], tmpValue[MAX_TEXTLEN];
-  unsigned int i, j, done, length;
+  unsigned int i, done;
 
   /* make a copy of the attribute to work with */
   strncpy(tmpName, name, MAX_TEXTLEN-1);
@@ -1838,6 +1837,8 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
   /* If we are changing a ViewDraw HETERO attribute to a split attribute, */
   /* format the new value correctly */
   if (strcmp(tmpName, "split") == 0) {
+
+    unsigned int j, length;
 
     strcpy(text2, tmpValue);
     strtolower(text2);
@@ -2024,9 +2025,8 @@ reset_attributes(void)
 int
 get_continued_string(char *buf, size_t buffer_size, FILE *fp)
 {
-  int c;
-  size_t text_len;
   char *ptr;
+  int   c;
 
   /* skip leading whitespace */
   while(isspace((c=fgetc(fp))));
@@ -2036,6 +2036,9 @@ get_continued_string(char *buf, size_t buffer_size, FILE *fp)
   ptr = fgets(buf, buffer_size, fp);
 
   if (ptr != NULL) {
+
+    size_t text_len;
+
     records_processed++;
     /* nuke trailing CR/NL, if there */
     text_len=strlen(buf);

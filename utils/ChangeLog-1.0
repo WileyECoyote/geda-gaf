@@ -1,3 +1,8 @@
+2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Change format specifiers to type unsigned, reduce
+      scope, general cleaning.
+
 2016-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/main.c: Add int fill_width and line_width, remove unnecessary
