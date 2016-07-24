@@ -1,3 +1,8 @@
+2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revised geda_menu_item_size_request to
+      use left shifts instead of multiplying by 2.
+
 2016-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Reduce scope of variables in function

@@ -1754,12 +1754,12 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
     (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))
   {
-    requisition->width += 2 * horizontal_padding;
+    requisition->width += horizontal_padding << 1;
   }
   else if ((pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) &&
     (child_pack_dir == PACK_DIRECTION_TTB || child_pack_dir == PACK_DIRECTION_BTT))
   {
-    requisition->height += 2 * horizontal_padding;
+    requisition->height += horizontal_padding << 1;
   }
 
   if (bin->child && gtk_widget_get_visible (bin->child)) {
@@ -1804,7 +1804,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
       requisition->height += separator_height + widget->style->ythickness;
     }
     else {
-      requisition->height += widget->style->ythickness * 2;
+      requisition->height += widget->style->ythickness << 1;
     }
   }
 
