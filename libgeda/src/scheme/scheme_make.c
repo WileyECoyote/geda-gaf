@@ -147,7 +147,7 @@ EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s),
   }
   free(pin_type);
 
-  GedaObject *obj = o_pin_new (PIN_COLOR, 0, 0, 0, 0, type, 0);
+  GedaObject *obj = geda_pin_object_new (PIN_COLOR, 0, 0, 0, 0, type, 0);
 
   SCM result = edascm_from_object (obj);
 

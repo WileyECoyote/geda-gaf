@@ -648,7 +648,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
                                          toplevel->rendered_text_bounds_data);
 
         if (parent->type == OBJ_PIN)
-          o_pin_update_read_property(parent, new_obj);
+          geda_pin_object_update_read_property(parent, new_obj);
 
         object_list = g_list_prepend (object_list, new_obj);
         ATTACH=TRUE;
@@ -709,7 +709,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
         break;
 
       case(OBJ_PIN):
-        new_obj = o_pin_read (line, release_ver, fileformat_ver, err);
+        new_obj = geda_pin_object_read (line, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         object_list = g_list_prepend (object_list, new_obj);

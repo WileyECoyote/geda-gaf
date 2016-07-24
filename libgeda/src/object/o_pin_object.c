@@ -44,7 +44,7 @@
  *  \return A new pin Object
  */
 GedaObject*
-o_pin_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend)
+geda_pin_object_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend)
 {
   GedaObject *new_obj;
 
@@ -58,7 +58,7 @@ o_pin_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whi
   new_obj->line->x[1] = x2;
   new_obj->line->y[1] = y2;
 
-  o_pin_set_node_type (new_obj, node_type);
+  geda_pin_object_set_node_type (new_obj, node_type);
 
   new_obj->pin->whichend = whichend;
 
@@ -71,14 +71,14 @@ o_pin_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whi
  *  \param [in] o_current    The object that is copied
  *  \return a new pin object
  */
-GedaObject *o_pin_copy(GedaObject *o_current)
+GedaObject *geda_pin_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_PIN(o_current)) {
 
     GedaObject *new_obj;
     GedaPin    *new_pin;
 
-    new_obj = o_pin_new (o_current->color,
+    new_obj = geda_pin_object_new (o_current->color,
                          o_current->line->x[0], o_current->line->y[0],
                          o_current->line->x[1], o_current->line->y[1],
                          o_current->pin->node_type, o_current->pin->whichend);
@@ -112,7 +112,7 @@ GedaObject *o_pin_copy(GedaObject *o_current)
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_pin_get_position (GedaObject *object, int *x, int *y)
+bool geda_pin_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), FALSE);
 
@@ -136,7 +136,7 @@ bool o_pin_get_position (GedaObject *object, int *x, int *y)
  *
  *  \return The object list, or NULL on error.
  */
-GedaObject *o_pin_read (const char buf[], unsigned int release_ver,
+GedaObject *geda_pin_object_read (const char buf[], unsigned int release_ver,
                                       unsigned int fileformat_ver,
                                       GError **err)
 {
@@ -182,7 +182,7 @@ GedaObject *o_pin_read (const char buf[], unsigned int release_ver,
     color = PIN_COLOR;
   }
 
-  new_obj = o_pin_new (color, x1, y1, x2, y2, node_type, whichend);
+  new_obj = geda_pin_object_new (color, x1, y1, x2, y2, node_type, whichend);
 
   return new_obj;
 }
@@ -196,7 +196,7 @@ GedaObject *o_pin_read (const char buf[], unsigned int release_ver,
  * \param [in] object  a pin Object
  * \returns string representation of the pin Object
  */
-char *o_pin_save(GedaObject *object)
+char *geda_pin_object_save(GedaObject *object)
 {
   int x1, x2, y1, y2;
   int node_type, whichend;
@@ -226,16 +226,16 @@ char *o_pin_save(GedaObject *object)
  *  \param [in]     center_y  y-coord of the mirror position
 
  */
-void o_pin_mirror(GedaObject *object, int center_x, int center_y)
+void geda_pin_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   /* translate object to origin */
-  o_pin_translate(object, -center_x, -center_y);
+  geda_pin_object_translate(object, -center_x, -center_y);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_pin_translate(object, center_x, center_y);
+  geda_pin_object_translate(object, center_x, center_y);
 }
 
 /*! \brief Translate a pin object
@@ -246,7 +246,7 @@ void o_pin_mirror(GedaObject *object, int center_x, int center_y)
  *  \param [in] dx           The x-distance to move the object
  *  \param [in] dy           The y-distance to move the object
  */
-void o_pin_translate(GedaObject *object, int dx, int dy)
+void geda_pin_object_translate(GedaObject *object, int dx, int dy)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -272,7 +272,7 @@ void o_pin_translate(GedaObject *object, int dx, int dy)
  *  \param [in] origin_y     y-coord of the postscript origin
  */
 void
-o_pin_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
+geda_pin_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
             int origin_x, int origin_y)
 {
   int cap_style;
@@ -281,7 +281,7 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   int x2, y2;
 
   if (o_current == NULL) {
-    printf("got null in o_pin_print\n");
+    printf("got null in geda_pin_object_print\n");
     return;
   }
 
@@ -317,7 +317,7 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
 void
-o_pin_rotate(GedaObject *object, int center_x, int center_y, int angle)
+geda_pin_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -325,7 +325,7 @@ o_pin_rotate(GedaObject *object, int center_x, int center_y, int angle)
     return;
 
   /* translate object to origin */
-  o_pin_translate(object, -center_x, -center_y);
+  geda_pin_object_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -337,7 +337,7 @@ o_pin_rotate(GedaObject *object, int center_x, int center_y, int angle)
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_pin_translate(object, center_x, center_y);
+  geda_pin_object_translate(object, center_x, center_y);
 }
 
 /*! \brief modify one point of a pin object
@@ -352,7 +352,7 @@ o_pin_rotate(GedaObject *object, int center_x, int center_y, int angle)
  *  \param whichone   pin point to modify
  *
  */
-void o_pin_modify(GedaObject *object, int x, int y, int whichone)
+void geda_pin_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
@@ -369,7 +369,7 @@ void o_pin_modify(GedaObject *object, int x, int y, int whichone)
  *  \param object      A GedaPin GedaObject
  *
  */
-void o_pin_normalize(GedaObject *object)
+void geda_pin_object_normalize(GedaObject *object)
 {
   if (object && object->type == OBJ_PIN) {
     if (!object->pin->whichend) {
@@ -397,7 +397,7 @@ void o_pin_normalize(GedaObject *object)
  *  \param num_pins    pin count in the object list
  *
  */
-void o_pin_update_whichend (GList *object_list, int num_pins)
+void geda_pin_object_update_whichend (GList *object_list, int num_pins)
 {
   GedaObject *o_current;
   GList *iter;
@@ -542,7 +542,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
  *  \return [out] TRUE     Standard electrical code
  *                FALSE    Custom type, i.e. code = PIN_ELECT_VOID
  */
-bool o_pin_set_elect_type (GedaObject *o_current, PIN_ELECT e_type)
+bool geda_pin_object_set_elect_type (GedaObject *o_current, PIN_ELECT e_type)
 {
   const char *e_str = geda_pin_lookup_estring(e_type);
   if (e_str) {
@@ -573,7 +573,7 @@ bool o_pin_set_elect_type (GedaObject *o_current, PIN_ELECT e_type)
  *  \return [out] TRUE     Standard mechanical code
  *                FALSE    Custom type, i.e. code = PIN_MECH_VOID
  */
-bool o_pin_set_mech_type (GedaObject *o_current, PIN_MECH m_type)
+bool geda_pin_object_set_mech_type (GedaObject *o_current, PIN_MECH m_type)
 {
   const char *m_str = geda_pin_lookup_mstring(m_type);
   if (m_str) {
@@ -592,7 +592,7 @@ bool o_pin_set_mech_type (GedaObject *o_current, PIN_MECH m_type)
  *  \param [in] o_current  The pin Object being modified
  *  \param [in] node_type   The new type of this pin
  */
-void o_pin_set_node_type (GedaObject *o_current, PIN_NODE node_type)
+void geda_pin_object_set_node_type (GedaObject *o_current, PIN_NODE node_type)
 {
   switch (node_type) {
     case PIN_NET_NODE:
@@ -622,7 +622,7 @@ void o_pin_set_node_type (GedaObject *o_current, PIN_NODE node_type)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool o_pin_get_attributes(GedaObject *object, const char **label,
+bool geda_pin_object_get_attributes(GedaObject *object, const char **label,
                                               const char **number,
                                               int         *sequence,
                                               PIN_ELECT   *e_type,
@@ -721,7 +721,7 @@ bool o_pin_get_attributes(GedaObject *object, const char **label,
   return result;
 }
 
-void o_pin_set_attributes(GedaObject *object, const char *label_str,
+void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
                                               const char *number,
                                               int         sequence,
                                               PIN_ELECT   e_type,
@@ -746,7 +746,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
         o_text_recreate(bute);
       }
       else {
-        bute = o_pin_create_number_attrib (NULL, object, number, -1, -1);
+        bute = geda_pin_object_create_number_attrib (NULL, object, number, -1, -1);
         if (bute && object->page) {
           s_page_append_object(object->page, bute);
           bute->page = object->page;
@@ -764,7 +764,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
         o_text_recreate(bute);
       }
       else {
-        bute = o_pin_create_seq_attrib (NULL, object, sequence, -1, -1);
+        bute = geda_pin_object_create_seq_attrib (NULL, object, sequence, -1, -1);
         if (bute && object->page) {
           s_page_append_object(object->page, bute);
           bute->page = object->page;
@@ -785,7 +785,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
         o_text_recreate(bute);
       }
       else {
-        bute = o_pin_create_label_attrib (NULL, object, label_str, -1, -1);
+        bute = geda_pin_object_create_label_attrib (NULL, object, label_str, -1, -1);
         if (bute && object->page) {
           s_page_append_object(object->page, bute);
           bute->page = object->page;
@@ -803,7 +803,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
         o_text_recreate(bute);
       }
       else {
-        bute = o_pin_create_elect_attrib (NULL, object, electrical, -1, -1);
+        bute = geda_pin_object_create_elect_attrib (NULL, object, electrical, -1, -1);
         if (bute && object->page) {
           s_page_append_object(object->page, bute);
           bute->page = object->page;
@@ -821,7 +821,7 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
         o_text_recreate(bute);
       }
       else {
-        bute = o_pin_create_mech_attrib (NULL, object, mechanical, -1, -1);
+        bute = geda_pin_object_create_mech_attrib (NULL, object, mechanical, -1, -1);
         if (bute && object->page) {
           s_page_append_object(object->page, bute);
           bute->page = object->page;
@@ -853,12 +853,12 @@ void o_pin_set_attributes(GedaObject *object, const char *label_str,
  *
  *  \returns Pointer to new pintype attribute or NULL if label was NULL
  *
- *  example: o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
+ *  example: geda_pin_object_create_elect_attrib (NULL, object, "pas", -1, -1);
  *
- *  \sa o_pin_create_mech_attrib
+ *  \sa geda_pin_object_create_mech_attrib
  */
 GedaObject *
-o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
+geda_pin_object_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
                                                   const char *descr,
                                                          int  x,
                                                          int  y)
@@ -882,7 +882,7 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
     size   = DEFAULT_ATTRIBUTE_SIZE;
   }
 
-  o_pin_normalize(object);
+  geda_pin_object_normalize(object);
 
   if ( x < 0 && y < 0 ){
 
@@ -964,12 +964,12 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
  *
  *  \returns Pointer to new pinlabel attribute or NULL no label string is set
  *
- *  example: o_pin_create_label_attrib (toplevel, object, label_str, -1, -1);
+ *  example: geda_pin_object_create_label_attrib (toplevel, object, label_str, -1, -1);
  *
- *  \sa o_pin_create_number_attrib o_pin_create_seq_attrib
+ *  \sa geda_pin_object_create_number_attrib geda_pin_object_create_seq_attrib
  */
 GedaObject *
-o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
+geda_pin_object_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
                                                   const char *label,
                                                          int  x,
                                                          int  y)
@@ -994,7 +994,7 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
     size   = DEFAULT_ATTRIBUTE_SIZE;
   }
 
-  o_pin_normalize(object);
+  geda_pin_object_normalize(object);
 
   if ( x < 0 && y < 0 ){
 
@@ -1088,12 +1088,12 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
  *
  *  \returns Pointer to new mechtype attribute or NULL if label was NULL
  *
- *  example: o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
+ *  example: geda_pin_object_create_mech_attrib (NULL, object, "lead", -1, -1);
  *
- *  \sa o_pin_create_elect_attrib
+ *  \sa geda_pin_object_create_elect_attrib
  */
 GedaObject *
-o_pin_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
+geda_pin_object_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
                                                  const char *descr,
                                                         int  x,
                                                         int  y)
@@ -1118,7 +1118,7 @@ o_pin_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
     size   = DEFAULT_ATTRIBUTE_SIZE;
   }
 
-  o_pin_normalize(object);
+  geda_pin_object_normalize(object);
 
   if ( x < 0 && y < 0 ){
 
@@ -1197,11 +1197,11 @@ o_pin_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
  *
  *  \returns Pointer to new pinnumber attribute or NULL if label was NULL
  *
- *  example: o_pin_create_number_attrib (toplevel, object, pnum, -1, -1);
+ *  example: geda_pin_object_create_number_attrib (toplevel, object, pnum, -1, -1);
  *
- *  \sa o_pin_create_label_attrib o_pin_create_seq_attrib
+ *  \sa geda_pin_object_create_label_attrib geda_pin_object_create_seq_attrib
  */
-GedaObject* o_pin_create_number_attrib(GedaToplevel *toplevel, GedaObject *object,
+GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel, GedaObject *object,
                                                      const char   *number,
                                                            int     x,
                                                            int     y)
@@ -1226,7 +1226,7 @@ GedaObject* o_pin_create_number_attrib(GedaToplevel *toplevel, GedaObject *objec
     size   = DEFAULT_ATTRIBUTE_SIZE;
   }
 
-  o_pin_normalize(object);
+  geda_pin_object_normalize(object);
 
   if ( x < 0 && y < 0 ) {
 
@@ -1333,11 +1333,11 @@ GedaObject* o_pin_create_number_attrib(GedaToplevel *toplevel, GedaObject *objec
  *
  *  \returns Pointer to new pinseq attribute or NULL if label was NULL
  *
- *  example: o_pin_create_seq_attrib (NULL, object, seq, -1, -1);
+ *  example: geda_pin_object_create_seq_attrib (NULL, object, seq, -1, -1);
  *
- *  \sa o_pin_create_label_attrib o_pin_create_number_attrib
+ *  \sa geda_pin_object_create_label_attrib geda_pin_object_create_number_attrib
  */
-GedaObject *o_pin_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
+GedaObject *geda_pin_object_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
                                                         int     sequence,
                                                         int     x,
                                                         int     y)
@@ -1359,7 +1359,7 @@ GedaObject *o_pin_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
     size   = DEFAULT_ATTRIBUTE_SIZE;
   }
 
-  o_pin_normalize(object);
+  geda_pin_object_normalize(object);
 
   if ( x < 0 && y < 0 ) {
 
@@ -1445,7 +1445,7 @@ GedaObject *o_pin_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
   return new_bute;
 }
 
-GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
+GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
 {
   PIN_ELECT etype;
   PIN_MECH  mtype;
@@ -1455,26 +1455,26 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
   const char *number;
         int   sequence;
 
-  if (o_pin_get_attributes(object, &label_str, &number, &sequence, &etype, &mtype, &ntype)) {
+  if (geda_pin_object_get_attributes(object, &label_str, &number, &sequence, &etype, &mtype, &ntype)) {
 
     GedaObject  *attrib;
 
     if (label_str == NULL) {
-      attrib = o_pin_create_label_attrib(toplevel, object, NULL, -1, -1);
+      attrib = geda_pin_object_create_label_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if (number == NULL) {
-      attrib = o_pin_create_number_attrib(toplevel, object, NULL, -1, -1);
+      attrib = geda_pin_object_create_number_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if (sequence < 0) {
-      attrib = o_pin_create_seq_attrib(toplevel, object, -1, -1, -1);
+      attrib = geda_pin_object_create_seq_attrib(toplevel, object, -1, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
@@ -1482,14 +1482,14 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
     }
     /* Note etype & mtype are enumerated, gcc does not eval -1 < 0, so cast to int */
     if ((int)etype < 0) {
-      attrib = o_pin_create_elect_attrib(toplevel, object, NULL, -1, -1);
+      attrib = geda_pin_object_create_elect_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if ((int)mtype < 0) {
-      attrib = o_pin_create_mech_attrib(toplevel, object, NULL, -1, -1);
+      attrib = geda_pin_object_create_mech_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
@@ -1513,7 +1513,8 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, GedaObject *object)
  *  \note The pin object is not likely associated with a page or even
  *  attached to complex when this function is called by geda_attrib_object_read.
  */
-void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
+void
+geda_pin_object_update_read_property(GedaObject *o_pin, GedaObject *o_text)
 {
   char *attrib;
   char *value;
@@ -1544,7 +1545,7 @@ void o_pin_update_read_property(GedaObject *o_pin, GedaObject *o_text)
  *  \par Function Description
  *
  */
-const char *o_pin_get_electrical(GedaObject *object)
+const char *geda_pin_object_get_electrical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->electrical;
@@ -1555,7 +1556,7 @@ const char *o_pin_get_electrical(GedaObject *object)
  *  \par Function Description
  *
  */
-const char *o_pin_get_label(GedaObject *object)
+const char *geda_pin_object_get_label(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->label;
@@ -1566,7 +1567,7 @@ const char *o_pin_get_label(GedaObject *object)
  *  \par Function Description
  *
  */
-const char *o_pin_get_mechanical(GedaObject *object)
+const char *geda_pin_object_get_mechanical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->mechanical;

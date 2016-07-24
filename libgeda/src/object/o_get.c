@@ -685,7 +685,7 @@ geda_object_get_position (GedaObject *object, int *x, int *y )
       case OBJ_COMPLEX: func = geda_complex_object_get_position; break;
       case OBJ_TEXT:    func = o_text_get_position;    break;
       case OBJ_PATH:    func = geda_path_object_get_position;    break;
-      case OBJ_PIN:     func = o_pin_get_position;     break;
+      case OBJ_PIN:     func = geda_pin_object_get_position;     break;
       case OBJ_ARC:     func = geda_arc_object_get_position;     break;
       default:
         BUG_IMSG("object has bad type '%c'\n", object->type);

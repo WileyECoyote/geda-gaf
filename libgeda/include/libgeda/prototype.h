@@ -489,30 +489,30 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
 
 /* o_pin_object.c */
 
-   GedaObject   *o_pin_copy                      (GedaObject *o_current) WARN_UNUSED;
-   GedaObject   *o_pin_create_elect_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
-   GedaObject   *o_pin_create_label_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *label, int x, int y);
-   GedaObject   *o_pin_create_mech_attrib        (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
-   GedaObject   *o_pin_create_number_attrib      (GedaToplevel *toplevel, GedaObject *object, const char *number, int x, int y);
-   GedaObject   *o_pin_create_seq_attrib         (GedaToplevel *toplevel, GedaObject *object, int sequence, int x, int y);
-         bool    o_pin_get_attributes            (GedaObject *object, const char **label, const char **number, int *sequence,
-                                                  PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
-   const char   *o_pin_get_electrical            (GedaObject *object);
-   const char   *o_pin_get_label                 (GedaObject *object);
-   const char   *o_pin_get_mechanical            (GedaObject *object);
-         void    o_pin_mirror                    (GedaObject *object, int center_x, int center_y);
-         void    o_pin_modify                    (GedaObject *object, int x, int y, int whichone);
-   GedaObject   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
-         void    o_pin_normalize                 (GedaObject *object);
-        GList   *o_pin_realize_attributes        (GedaToplevel *toplevel, GedaObject *object);
-         void    o_pin_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_pin_set_attributes            (GedaObject *object, const char *label_str, const char *number, int sequence,
-                                                  PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
-         bool    o_pin_set_elect_type            (GedaObject *o_current, PIN_ELECT e_type);
-         bool    o_pin_set_mech_type             (GedaObject *o_current, PIN_MECH m_type);
-         void    o_pin_set_node_type             (GedaObject *o_current, PIN_NODE node_type);
-         void    o_pin_translate                 (GedaObject *object, int dx, int dy);
-         void    o_pin_update_whichend           (GList *object_list, int num_pins);
+   GedaObject   *geda_pin_object_copy                      (GedaObject *o_current) WARN_UNUSED;
+   GedaObject   *geda_pin_object_create_elect_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
+   GedaObject   *geda_pin_object_create_label_attrib       (GedaToplevel *toplevel, GedaObject *object, const char *label, int x, int y);
+   GedaObject   *geda_pin_object_create_mech_attrib        (GedaToplevel *toplevel, GedaObject *object, const char *descr, int x, int y);
+   GedaObject   *geda_pin_object_create_number_attrib      (GedaToplevel *toplevel, GedaObject *object, const char *number, int x, int y);
+   GedaObject   *geda_pin_object_create_seq_attrib         (GedaToplevel *toplevel, GedaObject *object, int sequence, int x, int y);
+         bool    geda_pin_object_get_attributes            (GedaObject *object, const char **label, const char **number, int *sequence,
+                                                            PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
+   const char   *geda_pin_object_get_electrical            (GedaObject *object);
+   const char   *geda_pin_object_get_label                 (GedaObject *object);
+   const char   *geda_pin_object_get_mechanical            (GedaObject *object);
+         void    geda_pin_object_mirror                    (GedaObject *object, int center_x, int center_y);
+         void    geda_pin_object_modify                    (GedaObject *object, int x, int y, int whichone);
+   GedaObject   *geda_pin_object_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
+         void    geda_pin_object_normalize                 (GedaObject *object);
+        GList   *geda_pin_object_realize_attributes        (GedaToplevel *toplevel, GedaObject *object);
+         void    geda_pin_object_rotate                    (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_pin_object_set_attributes            (GedaObject *object, const char *label_str, const char *number, int sequence,
+                                                            PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
+         bool    geda_pin_object_set_elect_type            (GedaObject *o_current, PIN_ELECT e_type);
+         bool    geda_pin_object_set_mech_type             (GedaObject *o_current, PIN_MECH m_type);
+         void    geda_pin_object_set_node_type             (GedaObject *o_current, PIN_NODE node_type);
+         void    geda_pin_object_translate                 (GedaObject *object, int dx, int dy);
+         void    geda_pin_object_update_whichend           (GList *object_list, int num_pins);
 
 
 /* o_save.c */

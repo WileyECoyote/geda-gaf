@@ -1840,7 +1840,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
 
         if (geda_pyobject->auto_attributes == TRUE) {
           if (parent->type == OBJ_PIN) {
-            o_pin_realize_attributes(toplevel, parent);
+            geda_pin_object_realize_attributes(toplevel, parent);
           }
         }
 
@@ -1884,7 +1884,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
 
               if (geda_pyobject->auto_attributes == TRUE) {
                 if (parent->type == OBJ_PIN) {
-                  o_pin_realize_attributes(toplevel, parent);
+                  geda_pin_object_realize_attributes(toplevel, parent);
                 }
               }
             }
@@ -2625,7 +2625,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
 
   int conn2 = whichend < 0 ? 0 : whichend;
 
-  object = o_pin_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
+  object = geda_pin_object_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
 
   if (label)
     object->pin->label = geda_utility_string_strdup(label);
@@ -2633,34 +2633,34 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
     object->pin->label = geda_utility_string_strdup("unknown");
 
   if (etype < 0) {
-    o_pin_set_elect_type(object, PIN_ELECT_VOID);
+    geda_pin_object_set_elect_type(object, PIN_ELECT_VOID);
   }
   else {
-    o_pin_set_elect_type(object, etype);
+    geda_pin_object_set_elect_type(object, etype);
   }
   if (object->pin->electrical == NULL) {
     geda_pin_set_electrical(object->pin, "unknown");
   }
 
   if (mtype < 0) {
-    o_pin_set_mech_type(object, PIN_MECH_VOID);
+    geda_pin_object_set_mech_type(object, PIN_MECH_VOID);
   }
   else {
-    o_pin_set_mech_type(object, mtype);
+    geda_pin_object_set_mech_type(object, mtype);
   }
   if (object->pin->mechanical == NULL) {
     geda_pin_set_mechanical(object->pin, "unknown");
   }
 
   if (ntype < 0) {
-     o_pin_set_node_type(object, PIN_NET_NODE);
+     geda_pin_object_set_node_type(object, PIN_NET_NODE);
   }
   else {
     if (ntype == PIN_NET_NODE || ntype == PIN_BUS_NODE) {
-      o_pin_set_node_type(object, ntype);
+      geda_pin_object_set_node_type(object, ntype);
     }
     else {
-      o_pin_set_node_type(object, PIN_NET_NODE);
+      geda_pin_object_set_node_type(object, PIN_NET_NODE);
     }
   }
 

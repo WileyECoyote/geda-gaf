@@ -669,8 +669,8 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   case OBJ_PIN:
     s_conn_remove_object (obj);
     /* Swap ends according to pin's whichend flag. */
-    o_pin_modify (obj, x1, y1, obj->pin->whichend ? 1 : 0);
-    o_pin_modify (obj, x2, y2, obj->pin->whichend ? 0 : 1);
+    geda_pin_object_modify (obj, x1, y1, obj->pin->whichend ? 1 : 0);
+    geda_pin_object_modify (obj, x2, y2, obj->pin->whichend ? 0 : 1);
     s_conn_update_object (obj);
     break;
   case OBJ_LINE:

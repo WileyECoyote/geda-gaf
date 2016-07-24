@@ -301,7 +301,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
     object = (GedaObject*) g_list_nth_data(pin_objects, 0);
 
-    if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
+    if (geda_pin_object_get_attributes(object, &olabel_str, &onumber_str,
+                                       &osequence, &oetype, &omtype, &ontype))
     {
       /* get the new strings from the dialog */
       label_str  = get_pin_entry_string (pin_data->label_entry);
@@ -357,7 +358,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
       }
 
       if (changed_something) {
-        o_pin_set_attributes (object, olabel_str, onumber_str, osequence, oetype, omtype, ontype);
+        geda_pin_object_set_attributes (object, olabel_str, onumber_str,
+                                        osequence, oetype, omtype, ontype);
       }
 
     }
@@ -387,7 +389,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
       object = (GedaObject*) iter->data;
 
-      if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
+      if (geda_pin_object_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
       {
         if(set_node_type) {
           if (ontype == -1 || ntype != ontype) {
@@ -423,7 +425,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
           }
           sequence++;
         }
-        o_pin_set_attributes (object, olabel_str, onumber_str, osequence, oetype, -1, ontype);
+        geda_pin_object_set_attributes (object, olabel_str, onumber_str, osequence, oetype, -1, ontype);
       }
     }
   }
@@ -628,7 +630,7 @@ xd_pin_type_update_selection (GschemToplevel *w_current, GedaObject *object)
     pin_data = GEDA_OBJECT_GET_DATA (Dialog, IDS_PIN_EDIT);
 
     /* Check this object */
-    if (o_pin_get_attributes(object, &label, &number, &sequence,  &elect_type, &mech_type, &node_type)) {
+    if (geda_pin_object_get_attributes(object, &label, &number, &sequence,  &elect_type, &mech_type, &node_type)) {
       /* fill in the fields of the dialog */
       x_dialog_edit_pin_type_set_values(pin_data, label, number, sequence, elect_type, mech_type, node_type);
       /* And set focus to the Pin-type combo menu */

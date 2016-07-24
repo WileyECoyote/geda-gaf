@@ -269,7 +269,7 @@ o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_PIN):
-          out = o_pin_save(o_current);
+          out = geda_pin_object_save(o_current);
           break;
 
         case(OBJ_TEXT):

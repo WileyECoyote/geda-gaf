@@ -1,3 +1,7 @@
+2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_pin_object.c: Rename functions with geda_object prefix.
+
 2016-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_circle_object.c: Check geda_circle_object_rotate.

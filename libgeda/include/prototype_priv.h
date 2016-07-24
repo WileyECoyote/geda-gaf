@@ -223,11 +223,11 @@ double      geda_picture_object_shortest_distance(GedaObject *object, int x, int
 bool        geda_picture_object_unembed          (GedaObject *object);
 
 /* o_pin_object.c */
-bool        o_pin_get_position             (GedaObject *object, int *x, int *y);
-void        o_pin_print                    (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
-GedaObject *o_pin_read                     (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *o_pin_save                     (GedaObject *object);
-void        o_pin_update_read_property     (GedaObject *o_pin, GedaObject *o_text);
+bool        geda_pin_object_get_position         (GedaObject *object, int *x, int *y);
+void        geda_pin_object_print                (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
+GedaObject *geda_pin_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char       *geda_pin_object_save                 (GedaObject *object);
+void        geda_pin_object_update_read_property (GedaObject *o_pin, GedaObject *o_text);
 
 /* o_text_object.c */
 bool        o_text_get_position            (GedaObject *object, int *x, int *y);
