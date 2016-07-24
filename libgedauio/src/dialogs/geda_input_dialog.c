@@ -48,7 +48,6 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
     GtkDialog *dialog;
     GtkWidget *ok_butt;
     GtkWidget *entry;
-    GtkWidget *label;
     GtkWidget *content_area;
     char      *text = NULL;
 
@@ -63,7 +62,7 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
     content_area = gtk_dialog_get_content_area(dialog);
 
     if (prompt) {
-      label = geda_visible_label_new(prompt);
+      GtkWidget *label = geda_visible_label_new(prompt);
       gtk_container_add(GTK_CONTAINER(content_area), label);
     }
 

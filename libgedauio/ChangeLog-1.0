@@ -1,5 +1,8 @@
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_input_dialog.c: Reduce scope of label in geda_dialog
+      _get_input.
+
     * src/widgets/geda_menu_item.c: Revised geda_menu_item_size_request to
       use left shifts instead of multiplying by 2.
 
