@@ -624,7 +624,6 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
   GedaMenuShell *parent;
   GtkWidget     *menu_item;
 
-
   if (event->type != GDK_BUTTON_PRESS)
     return FALSE;
 
@@ -658,26 +657,36 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
   if (!menu_shell->active || !menu_shell->button) {
 
-    geda_menu_shell_activate (menu_shell);
-
     menu_shell->button = event->button;
 
-    if (menu_item && geda_menu_item_is_selectable (menu_item) &&
-        menu_item->parent == widget &&
-        menu_item != menu_shell->active_menu_item)
-    {
-      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
+    if (menu_item) {
+
+      if (geda_menu_item_is_selectable (menu_item) &&
+          gtk_widget_get_parent (menu_item) == widget &&
+          menu_item != menu_shell->active_menu_item)
       {
-        menu_shell->activate_time = event->time;
-        geda_menu_shell_select_item (menu_shell, menu_item);
+        geda_menu_shell_activate (menu_shell);
+        menu_shell->button = event->button;
+
+        if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
+        {
+          menu_shell->activate_time = event->time;
+          geda_menu_shell_select_item (menu_shell, menu_item);
+        }
       }
     }
+    else if (!menu_shell->active) {
+
+        geda_menu_shell_deactivate (menu_shell);
+        return FALSE;
+     }
   }
   else {
 
     widget = gtk_get_event_widget ((GdkEvent*)event);
 
     if (widget == GTK_WIDGET (menu_shell)) {
+
       geda_menu_shell_deactivate (menu_shell);
       g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
     }
@@ -986,8 +995,8 @@ geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
 
   if (event->mode == GDK_CROSSING_GTK_GRAB ||
-    event->mode == GDK_CROSSING_GTK_UNGRAB ||
-    event->mode == GDK_CROSSING_STATE_CHANGED)
+      event->mode == GDK_CROSSING_GTK_UNGRAB ||
+      event->mode == GDK_CROSSING_STATE_CHANGED)
     return TRUE;
 
   if (menu_shell->active) {
@@ -1045,10 +1054,22 @@ geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
             bool touchscreen_mode;
 
+#if GTK_MAJOR_VERSION < 3
+
             g_object_get (gtk_widget_get_settings (widget),
                           "gtk-touchscreen-mode", &touchscreen_mode,
                           NULL);
 
+#else /* GTK_MAJOR_VERSION >= 3.0 */
+
+            GdkDevice *source_device;
+
+            source_device = gdk_event_get_source_device ((GdkEvent*)event);
+
+            if (gdk_device_get_source (source_device) == GDK_SOURCE_TOUCHSCREEN) {
+                touchscreen_mode;
+            }
+#endif
             if (touchscreen_mode) {
               geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), TRUE);
             }
@@ -1065,11 +1086,10 @@ geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 }
 
 static int
-geda_menu_shell_leave_notify (GtkWidget        *widget,
-                 GdkEventCrossing *event)
+geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
   if (event->mode == GDK_CROSSING_GTK_GRAB ||
-      event->mode == GDK_CROSSING_GTK_GRAB ||
+      event->mode == GDK_CROSSING_GTK_UNGRAB ||
       event->mode == GDK_CROSSING_STATE_CHANGED) {
     return TRUE;
   }
@@ -1077,7 +1097,7 @@ geda_menu_shell_leave_notify (GtkWidget        *widget,
   if (gtk_widget_get_visible (widget)) {
 
     GedaMenuShell *menu_shell   = GEDA_MENU_SHELL (widget);
-    GtkWidget     *event_widget = gtk_get_event_widget ((GdkEvent*) event);
+    GtkWidget     *event_widget = gtk_get_event_widget ((GdkEvent*)event);
     GedaMenuItem  *menu_item;
     GtkWidget     *submenu;
 
@@ -1088,20 +1108,17 @@ geda_menu_shell_leave_notify (GtkWidget        *widget,
 
     if (!geda_menu_item_is_selectable (event_widget)) {
 
-      GedaMenuShellPriv *priv;
-
-      priv = menu_shell->priv;
-      priv->in_unselectable_item = TRUE;
+      menu_shell->priv->in_unselectable_item = TRUE;
 
       return TRUE;
     }
 
-    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM(menu_item));
 
     if ((menu_shell->active_menu_item == event_widget) && (submenu == NULL))
     {
       if ((event->detail != GDK_NOTIFY_INFERIOR) &&
-        (gtk_widget_get_state (GTK_WIDGET (menu_item)) != GTK_STATE_NORMAL))
+          (gtk_widget_get_state (GTK_WIDGET (menu_item)) != GTK_STATE_NORMAL))
       {
         geda_menu_shell_deselect (menu_shell);
       }
@@ -1679,16 +1696,18 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
         geda_menu_shell_move_selected (menu_shell, -1);
         if (!had_selection &&
             !menu_shell->active_menu_item &&
-             menu_shell->children)
+             menu_shell->children) {
           geda_menu_shell_select_last (menu_shell, TRUE);
+        }
         break;
 
       case MENU_DIR_NEXT:
         geda_menu_shell_move_selected (menu_shell, 1);
         if (!had_selection &&
             !menu_shell->active_menu_item &&
-             menu_shell->children)
+             menu_shell->children) {
           geda_menu_shell_select_first (menu_shell, TRUE);
+        }
         break;
 
       default:

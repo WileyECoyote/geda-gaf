@@ -4488,7 +4488,6 @@ geda_menu_deactivate (GedaMenuShell *menu_shell)
   }
 }
 
-
 static void
 geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
 {

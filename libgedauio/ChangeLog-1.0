@@ -1,3 +1,10 @@
+2016-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_button_press to
+      only set active if menu_item, fix duplicate event->mode in geda_menu_
+      shell_leave_notify, add provisions in geda_menu_shell_enter_notify for
+      Gtk3 source device.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_input_dialog.c: Reduce scope of label in geda_dialog
