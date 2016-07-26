@@ -8,6 +8,8 @@
 
     * src/geda/geda_toplevel.c: Add accessors for open_flags.
 
+    * src/file/f_file.c: Reorganize module, add function f_open_flags.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Rename functions with geda_object prefix.

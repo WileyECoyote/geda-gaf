@@ -31,21 +31,36 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Check if a file has an active autosave file
- *  \par Function Description
+/*!
+ * \brief Closes the schematic file
+ * \par Function Description
+ *  Does nothing
+ *
+ * \param [in,out] toplevel  The GedaToplevel object with schematic to be closed.
+ */
+void
+f_close(GedaToplevel *toplevel)
+{
+
+}
+
+/*!
+ * \brief Check if a file has an active autosave file
+ * \par Function Description
  *  Checks whether an autosave file exists for the \a filename passed
  *  which has a modification time newer than the file itself.  If the
  *  check fails, sets \a err with the reason.  N.b. if the autosave
  *  file exists but it was not possible to get its modification time,
  *  returns TRUE.
  *
- *  \param [in]  filename File to check
- *  \param [out] err      GError structure for error reporting, or
- *                        NULL to disable error reporting
+ * \param [in]  filename File to check
+ * \param [out] err      GError structure for error reporting, or
+ *                       NULL to disable error reporting
  *
- *  \returns TRUE if autosave active, FALSE otherwise
+ * \returns TRUE if autosave active, FALSE otherwise
  */
-bool f_has_active_autosave (const char *filename, GError **err)
+bool
+f_has_active_autosave (const char *filename, GError **err)
 {
   bool  result         = FALSE;
   int   file_err       = 0;
@@ -107,8 +122,9 @@ bool f_has_active_autosave (const char *filename, GError **err)
   return result;
 }
 
-/*! \brief Opens the schematic file
- *  \par Function Description
+/*!
+ * \brief Opens the schematic file
+ * \par Function Description
  *  Opens the schematic file and carries out a number of actions depending
  *  on the GedaToplevel::open_flags.  If F_OPEN_RC bit is set in open_flags,
  *  executes RC files found in the target directory. If F_OPEN_CHECK_BACKUP
@@ -117,14 +133,14 @@ bool f_has_active_autosave (const char *filename, GError **err)
  *  If F_OPEN_RESTORE_CWD is set, does not change the working directory to
  *  that of the file being loaded.
  *
- *  \param [in,out] toplevel  The GedaToplevel object to load the schematic into.
- *  \param [in]     page      A Page object to be associated with the file
- *  \param [in]     filename  A character string containing the file name
- *                            to open.
- *  \param [in,out] err       GError structure for error reporting, or
+ * \param [in,out] toplevel  The GedaToplevel object to load the schematic into.
+ * \param [in]     page      A Page object to be associated with the file
+ * \param [in]     filename  A character string containing the file name
+ *                           to open.
+ * \param [in,out] err       GError structure for error reporting, or
  *                            NULL to disable error reporting
  *
- *  \return 0 on failure, 1 on success.
+ * \return 0 on failure, 1 on success.
  */
 int
 f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
@@ -321,34 +337,84 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   return f_open_exit(opened);
 }
 
-/*! \brief Closes the schematic file
- *  \par Function Description
- *  Does nothing
+/*!
+ * \brief Retreive the File Open Flags from Toplevel
+ * \par Function Description
+ *  Returns the open_flags without checking toplevel.
  *
- *  \param [in,out] toplevel  The GedaToplevel object with schematic to be closed.
+ * \param [in,out] toplevel  The GedaToplevel object.
+ *
+ * \return Returns file open_flags.
  */
-void f_close(GedaToplevel *toplevel)
+int
+f_open_flags (GedaToplevel *toplevel)
 {
-
+  return toplevel->open_flags;
 }
 
-static int f_file_Size(const char *filename)
+/*!
+ * \brief Remove backup file
+ * \par Function Description
+ *  This function deletes files created by the autosave sub-system, if
+ *  the such a file exist for \a filename.
+ *
+ * \param [in]     filename  The file name of the schematic or symbol.
+ *
+ * \todo implement err argument?
+ *  param [in,out] err       GError structure for error reporting, or
+ *                           NULL to disable error reporting
+ */
+void
+f_remove_backup_file (const char *filename)
+{
+  char *real_filename;
+
+  /* Get the real filename and file permissions */
+  real_filename = f_sys_follow_symlinks (filename, NULL);
+
+  if (real_filename == NULL) {
+    u_log_message (_("%s: Can not get the real filename of %s."),
+                      __func__, filename);
+  }
+  else {
+
+    char *backup_filename = f_get_autosave_filename (real_filename);
+
+    /* Delete the backup file */
+    if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
+       (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
+    {
+      if (unlink(backup_filename) != 0) {
+        u_log_message(_("%s: Unable to delete backup file %s."),
+                      __func__, backup_filename);
+      }
+    }
+
+    GEDA_FREE (backup_filename);
+  }
+
+  GEDA_FREE(real_filename);
+}
+
+static int
+f_file_size(const char *filename)
 {
   struct stat st;
   stat(filename, &st);
   return st.st_size;
 }
 
-/*! \brief Save Schematic or Symbol file
- *  \par Function Description
+/*!
+ * \brief Save Schematic or Symbol file
+ * \par Function Description
  *  This function saves the current file in the toplevel object.
  *
- *  \param [in,out] toplevel  The GedaToplevel object containing the file.
- *  \param [in]     page      A Page object to be associated with the file
- *  \param [in]     filename  The file name to save the schematic or symbol.
- *  \param [in,out] err       GError structure for error reporting, or
- *                            NULL to disable error reporting
- *  \return 1 on success, 0 on failure.
+ * \param [in,out] toplevel  The GedaToplevel object containing the file.
+ * \param [in]     page      A Page object to be associated with the file
+ * \param [in]     filename  The file name to save the schematic or symbol.
+ * \param [in,out] err       GError structure for error reporting, or
+ *                           NULL to disable error reporting
+ * \return 1 on success, 0 on failure.
  */
 bool
 f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
@@ -419,7 +485,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     {
       if ((g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
-           f_file_Size (real_filename))
+           f_file_size (real_filename))
       {
         char *backup_filename;
 
@@ -493,46 +559,4 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   }
 
   return result;
-}
-
-/*! \brief Remove backup file
- *  \par Function Description
- *  This function deletes files created by the autosave sub-system, if
- *  the such a file exist for \a filename.
- *
- *  \param [in]     filename  The file name of the schematic or symbol.
- *
- *  \todo implement err argument?
- *   param [in,out] err       GError structure for error reporting, or
- *                            NULL to disable error reporting
- */
-void f_remove_backup_file (const char *filename)
-{
-  char *real_filename;
-
-  /* Get the real filename and file permissions */
-  real_filename = f_sys_follow_symlinks (filename, NULL);
-
-  if (real_filename == NULL) {
-    u_log_message (_("%s: Can not get the real filename of %s."),
-                      __func__, filename);
-  }
-  else {
-
-    char *backup_filename = f_get_autosave_filename (real_filename);
-
-    /* Delete the backup file */
-    if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
-       (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
-    {
-      if (unlink(backup_filename) != 0) {
-        u_log_message(_("%s: Unable to delete backup file %s."),
-                      __func__, backup_filename);
-      }
-    }
-
-    GEDA_FREE (backup_filename);
-  }
-
-  GEDA_FREE(real_filename);
 }
