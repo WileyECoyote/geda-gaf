@@ -68,6 +68,12 @@ int test_file (void)
 {
   int result = 0;
 
+    /* === Function 01: geda_close_file           f_close === */
+    /* === Function 02: geda_file_has_autosave    f_has_active_autosave === */
+    /* === Function 03: geda_open_file            f_open === */
+    /* === Function 04: geda_open_flags           f_open_flags === */
+    /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
+    /* === Function 06: geda_save_file            f_save === */
   return result;
 }
 
@@ -131,20 +137,20 @@ int test_sys (void)
 
   string = geda_normalize_name(NULL, NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F5040) geda_normalize_name <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050400) geda_normalize_name <%s>\n", string);
     result++;
   }
 
   string = geda_normalize_name("./../src", NULL);
   if (string) {
     if (strncmp(string, "/", 1)) {
-      fprintf(stderr, "FAILED: (F5041A) geda_normalize_name <%s>\n", string);
+      fprintf(stderr, "FAILED: (F050401A) geda_normalize_name <%s>\n", string);
       result++;
       string = NULL;
     }
     else {
       if (!strstr(string, "/libgeda/src")) {
-        fprintf(stderr, "FAILED: (F5041B) geda_normalize_name <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050401B) geda_normalize_name <%s>\n", string);
         result++;
         string = NULL;
       }
@@ -152,55 +158,55 @@ int test_sys (void)
 
   }
   else {
-    fprintf(stderr, "FAILED: (F5041C) geda_normalize_name NULL\n");
+    fprintf(stderr, "FAILED: (F050401C) geda_normalize_name NULL\n");
     result++;
     string = NULL;
   }
 
-  if (string) { /* If passed last test continue testing F504 */
+  if (string) { /* If passed last test continue testing F0504 */
 
     free(string);
 
     string = geda_normalize_name("../tests/../src", NULL);
     if (string) {
       if (strncmp(string, "/", 1)) {
-        fprintf(stderr, "FAILED: (F5042A) geda_normalize_name <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050402A) geda_normalize_name <%s>\n", string);
         result++;
       }
       else {
         if (!strstr(string, "/libgeda/src")) {
-          fprintf(stderr, "FAILED: (F5042B) geda_normalize_name <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_normalize_name <%s>\n", string);
           result++;
         }
         if (strstr(string, "..")) {
-          fprintf(stderr, "FAILED: (F5042B) geda_normalize_name <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_normalize_name <%s>\n", string);
           result++;
         }
       }
       free(string);
     }
     else {
-      fprintf(stderr, "FAILED: (F5042D) geda_normalize_name NULL\n");
+      fprintf(stderr, "FAILED: (F050402D) geda_normalize_name NULL\n");
       result++;
     }
   }
 
   string = geda_normalize_name("../noexist", NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F5043) geda_normalize_name <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050403) geda_normalize_name <%s>\n", string);
     result++;
   }
 
-  GError *F504_err = NULL;
+  GError *F0504_err = NULL;
 
-  string = geda_normalize_name("../noexist", &F504_err);
+  string = geda_normalize_name("../noexist", &F0504_err);
 
-  if (!F504_err) {
-    fprintf(stderr, "FAILED: (F5044) geda_normalize_name <%s>\n", string);
+  if (!F0504_err) {
+    fprintf(stderr, "FAILED: (F050404) geda_normalize_name <%s>\n", string);
     result++;
   }
   else {
-    g_error_free(F504_err);
+    g_error_free(F0504_err);
   }
 
   /* === Function 05: geda_remove_file		f_sys_remove === */
