@@ -1355,13 +1355,12 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
                             MenuDetachFunc  detacher)
 {
   MenuAttachData *data;
-  GList *list;
+  GList          *list;
 
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (GTK_IS_WIDGET (attach_widget));
 
-  /* keep this function in sync with gtk_widget_set_parent()
-   */
+  /* keep this function in sync with gtk_widget_set_parent() */
 
   data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
@@ -2038,7 +2037,7 @@ geda_menu_widget_set_active (GtkWidget *menu, unsigned int index)
 }
 
 /*!
- * \brief Gets an accelerator Group
+ * \brief Gets a GedaMenu Accelerator Group
  * \par Function Description
  * Gets the GtkAccelGroup which holds global accelerators for the
  * menu.
@@ -2058,7 +2057,7 @@ geda_menu_get_accel_group (GedaMenu *menu)
 }
 
 /*!
- * \brief Sets an accelerator Group
+ * \brief Sets a GedaMenu Accelerator Group
  * \par Function Description
  *  Set the accelerator group that holds global accelerators (should be
  *  added to the corresponding toplevel with gtk_window_add_accel_group().
@@ -2089,9 +2088,41 @@ geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
   }
 }
 
+/*!
+ * \brief Gets a GedaMenu Widget Accelerator Group
+ * \par Function Description
+ *  Widget wrapper for geda_menu_get_accel_group.
+ *
+ * \param[in] menu a #GedaMenu
+ *
+ * \returns GtkAccelGroup associated with the menu.
+ *
+ * \sa geda_menu_widget_set_accel_group().
+ */
+GtkAccelGroup
+*geda_menu_widget_get_accel_group (GtkWidget *menu)
+{
+  return geda_menu_get_accel_group ((GedaMenu*)menu);
+}
+
+/*!
+ * \brief Sets the GedaMenu Widget Accelerator Group
+ * \par Function Description
+ *  Widget wrapper for geda_menu_set_accel_group.
+ *
+ * \param[in] menu         A GedaMenu
+ * \param[in] accel_group  The accelerate group
+ *
+ * \sa
+ */
+void
+geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_group)
+{
+  geda_menu_set_accel_group ((GedaMenu*)menu, accel_group);
+}
+
 static bool
-geda_menu_real_can_activate_accel (GtkWidget *widget,
-                                  unsigned int      signal_id)
+geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
 {
   /* Menu items chain here to figure whether they can activate their
    * accelerators.  Unlike ordinary widgets, menus allow accel
@@ -2340,8 +2371,10 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         gtk_window_set_type_hint (GTK_WINDOW (menu->tearoff_window),
                                   GDK_WINDOW_TYPE_HINT_MENU);
         gtk_window_set_mnemonic_modifier (GTK_WINDOW (menu->tearoff_window), 0);
+
         g_signal_connect (menu->tearoff_window, "destroy",
                           G_CALLBACK (tearoff_window_destroyed), menu);
+
         g_signal_connect (menu->tearoff_window, "event",
                           G_CALLBACK (geda_menu_window_event), menu);
 

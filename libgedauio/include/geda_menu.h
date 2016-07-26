@@ -160,30 +160,30 @@ struct _GedaMenuClass
 extern "C" {
 #endif
 
-GedaType   geda_menu_get_type              (void) GEDA_CONST;
-bool       is_a_geda_menu                  (GedaMenu         *menu);
+GedaType    geda_menu_get_type                   (void) GEDA_CONST;
+bool        is_a_geda_menu                       (GedaMenu         *menu);
 
-GtkWidget *geda_menu_new                   (void);
+GtkWidget  *geda_menu_new                        (void);
 
 /* A reference count is kept for a widget when it is attached to
  * a particular widget. This is typically a menu item; it may also
  * be a widget with a popup menu - for instance, the Notebook widget.
  */
 
-void       geda_menu_attach_to_widget            (GedaMenu         *menu,
+void        geda_menu_attach_to_widget           (GedaMenu         *menu,
                                                   GtkWidget        *attach_widget,
                                                   MenuDetachFunc    detacher);
 
-void       geda_menu_attach                      (GedaMenu         *menu,
+void        geda_menu_attach                     (GedaMenu         *menu,
                                                   GtkWidget        *child,
                                                   unsigned int      left_attach,
                                                   unsigned int      right_attach,
                                                   unsigned int      top_attach,
                                                   unsigned int      bottom_attach);
 
-void       geda_menu_detach                      (GedaMenu         *menu);
+void        geda_menu_detach                     (GedaMenu         *menu);
 
-void       geda_menu_popup                       (GedaMenu         *menu,
+void        geda_menu_popup                      (GedaMenu         *menu,
                                                   GtkWidget        *parent_menu_shell,
                                                   GtkWidget        *parent_menu_item,
                                                   MenuPositionFunc  func,
@@ -191,7 +191,7 @@ void       geda_menu_popup                       (GedaMenu         *menu,
                                                   unsigned int      button,
                                                   uint32            activate_time);
 
-void       geda_menu_popup_for_device            (GedaMenu         *menu,
+void        geda_menu_popup_for_device           (GedaMenu         *menu,
                                                   GdkDevice        *device,
                                                   GtkWidget        *parent_menu_shell,
                                                   GtkWidget        *parent_menu_item,
@@ -201,12 +201,12 @@ void       geda_menu_popup_for_device            (GedaMenu         *menu,
                                                   unsigned int      button,
                                                   uint32            activate_time);
 
-void       geda_menu_popdown                     (GedaMenu         *menu);
+void        geda_menu_popdown                    (GedaMenu         *menu);
 
-void       geda_menu_reposition                  (GedaMenu         *menu);
+void        geda_menu_reposition                 (GedaMenu         *menu);
 
-GtkWidget *geda_menu_get_active                  (GedaMenu         *menu);
-void       geda_menu_set_active                  (GedaMenu         *menu,
+GtkWidget  *geda_menu_get_active                 (GedaMenu         *menu);
+void        geda_menu_set_active                 (GedaMenu         *menu,
                                                   unsigned int      index);
 
 GtkAccelGroup
@@ -231,15 +231,15 @@ void        geda_menu_set_title                  (GedaMenu         *menu,
 void        geda_menu_set_screen                 (GedaMenu         *menu,
                                                   GdkScreen        *screen);
 
-int         geda_menu_get_monitor                (GedaMenu        *menu);
-void        geda_menu_set_monitor                (GedaMenu        *menu,
-                                                  int              monitor_num);
+int         geda_menu_get_monitor                (GedaMenu         *menu);
+void        geda_menu_set_monitor                (GedaMenu         *menu,
+                                                  int               monitor_num);
 
-GList      *geda_menu_get_for_attach_widget      (GtkWidget       *widget);
+GList      *geda_menu_get_for_attach_widget      (GtkWidget        *widget);
 
-bool        geda_menu_get_reserve_toggle_size    (GedaMenu        *menu);
-void        geda_menu_set_reserve_toggle_size    (GedaMenu        *menu,
-                                                  bool             size);
+bool        geda_menu_get_reserve_toggle_size    (GedaMenu         *menu);
+void        geda_menu_set_reserve_toggle_size    (GedaMenu         *menu,
+                                                  bool              size);
 
 GtkWidget  *geda_menu_get_parent                 (GedaMenu         *menu);
 
@@ -249,10 +249,15 @@ void        geda_menu_reorder_child              (GedaMenu         *menu,
 
 GtkWidget  *geda_menu_get_toplevel               (GedaMenu         *menu);
 
-/* Widget Argument */
-GtkWidget *geda_menu_widget_get_active           (GtkWidget        *widget);
-void       geda_menu_widget_set_active           (GtkWidget        *widget,
+/* Widget Versions */
+
+GtkWidget  *geda_menu_widget_get_active          (GtkWidget        *widget);
+void        geda_menu_widget_set_active          (GtkWidget        *widget,
                                                   unsigned int      index);
+GtkAccelGroup
+           *geda_menu_widget_get_accel_group     (GtkWidget        *widget);
+void        geda_menu_widget_set_accel_group     (GtkWidget        *widget,
+                                                  GtkAccelGroup    *accel_group);
 
 #define geda_menu_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell *)(menu),(child))
 #define geda_menu_prepend(menu,child)    geda_menu_shell_prepend ((GedaMenuShell *)(menu),(child))
