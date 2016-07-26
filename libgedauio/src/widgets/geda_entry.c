@@ -1215,9 +1215,6 @@ is_a_geda_entry (GedaEntry *entry)
 static void
 geda_entry_real_activate (GedaEntry *entry)
 {
-  GtkWindow *window;
-  GtkWidget *default_widget, *focus_widget;
-  GtkWidget *toplevel;
   GtkWidget *widget;
 
 #if DEBUG_GEDA_ENTRY
@@ -1228,13 +1225,16 @@ geda_entry_real_activate (GedaEntry *entry)
 
   if (entry->activates_default) {
 
-    toplevel = gtk_widget_get_toplevel (widget);
+    GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
 
     if (GTK_IS_WINDOW (toplevel)) {
 
-      window = GTK_WINDOW (toplevel);
+      GtkWindow *window = GTK_WINDOW (toplevel);
 
       if (window) {
+
+        GtkWidget *default_widget;
+        GtkWidget *focus_widget;
 
         default_widget = gtk_window_get_default_widget (window);
         focus_widget   = gtk_window_get_focus (window);
@@ -1358,17 +1358,17 @@ static void
 geda_entry_activate (GedaEntry *entry, void *data)
 {
   int list_length;
-  GList *iter;
-  GList *prev;
 
   const char *entry_text = geda_entry_get_text(entry);
 
   /* if user hit enter with no value then ignore entry */
-  if ( (entry_text) && (strlen (entry_text) == 0) ) {
+  if ((entry_text) && (strlen (entry_text) == 0) ) {
     return;
   }
 
   if (history_list) {                                         /* if not a new buffer */
+
+    GList *iter;
 
     list_length = g_list_length (history_list);   /* hit enter so end is now current */
     iter        = g_list_last(history_list);                   /* get the last entry */
@@ -1378,6 +1378,9 @@ geda_entry_activate (GedaEntry *entry, void *data)
       ++list_length;                                /* if not then increment counter */
 
       if (list_length > entry->max_history) {                  /* at history limit?  */
+
+        GList *prev;
+
         iter = g_list_first(history_list);                          /* get the start */
         g_free(iter->data);                                 /* first the oldest data */
         prev = iter;                       /* but save address that held the pointer */
@@ -1411,9 +1414,10 @@ geda_entry_activate (GedaEntry *entry, void *data)
 static void
 geda_entry_history_up (GedaEntry *entry)
 {
-  char *new_line;
-
   if (entry->history_index > 0) {
+
+    char *new_line;
+
     --entry->history_index;
       new_line = g_list_nth_data(history_list, entry->history_index);
       geda_entry_set_text (entry, new_line);
@@ -1429,18 +1433,17 @@ geda_entry_history_up (GedaEntry *entry)
 static void
 geda_entry_history_down (GedaEntry *entry)
 {
-  char *new_line;
-  int   list_length;
-
   GtkEntry *gtk_entry = GTK_ENTRY (entry);
 
   if (entry->history_index < (entry->max_history - 1)) {
 
-    list_length = g_list_length (history_list);
+    int list_length = g_list_length (history_list);
 
     if (entry->history_index < list_length) {
 
       if (g_list_nth_data(history_list, entry->history_index + 1)) {
+
+        char *new_line;
 
         ++entry->history_index;
         new_line = g_list_nth_data(history_list, entry->history_index);
@@ -1566,10 +1569,11 @@ geda_entry_tab_complete (GedaEntry *entry)
 static void
 geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
 {
-  GtkWidget *item;
-  GtkWidget *submenu;
-
   if (have_auto_complete) {
+
+    GtkWidget *item;
+    GtkWidget *submenu;
+
     item = geda_menu_item_new_with_mnemonic (_("Auto Complete"));
     gtk_widget_show (item);
 
