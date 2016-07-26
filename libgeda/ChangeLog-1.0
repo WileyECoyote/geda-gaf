@@ -12,6 +12,9 @@
 
     * src/file/f_sys.c: Adjust indentations and Doxygen blocks.
 
+    * tests/test_circle_object.c: Add define MUT, update test identifier
+      for geda_circle_object_shortest_distance.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Rename functions with geda_object prefix.

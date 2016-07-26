@@ -37,6 +37,9 @@
  *  module.
  */
 
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_circle_object.c"
+
 #define TOBJECT "GedaCircle"
 
 /** \defgroup test-object-geda-circle Test GEDA Circle object Module
@@ -761,7 +764,7 @@ check_query()
 
 
       if (dist != r) {
-        fprintf(stderr, "FAILED: (O062001Y) shortest_distance x %d != %d\n", dist, r);
+        fprintf(stderr, "FAILED: (O064601) shortest_distance %d != %d\n", dist, r);
         fail++;
       }
 
@@ -975,7 +978,7 @@ main (int argc, char *argv[])
       result = check_accessors();
     }
     else {
-      fprintf(stderr, "Caught signal checking accessors in object/o_circle_object.c\n\n");
+      fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
       return 1;
     }
 
@@ -983,7 +986,7 @@ main (int argc, char *argv[])
       result += check_serialization();
     }
     else {
-      fprintf(stderr, "Caught signal checking serialization in src/object/o_circle_object.c\n\n");
+      fprintf(stderr, "Caught signal checking serialization in %s\n\n", MUT);
       return 1;
     }
 
@@ -991,7 +994,7 @@ main (int argc, char *argv[])
       result += check_query();
     }
     else {
-      fprintf(stderr, "Caught signal during query in src/object/o_circle_object.c\n\n");
+      fprintf(stderr, "Caught signal during query in %s\n\n", MUT);
       return 1;
     }
 
@@ -999,13 +1002,13 @@ main (int argc, char *argv[])
       result += check_transformer();
     }
     else {
-      fprintf(stderr, "Caught signal in transformers for src/object/o_circle_object.c\n\n");
+      fprintf(stderr, "Caught signal in transformers for %s\n\n", MUT);
       return 1;
     }
 
   }
   else {
-    fprintf(stderr, "discontinuing checks for object/o_circle_object.c\n\n");
+    fprintf(stderr, "discontinuing checks for %s\n\n", MUT);
   }
 
   return result;
