@@ -34,8 +34,11 @@
  *  \brief Tests for o_line_object.c module
  *  \par
  *  This module provides basic unit tests for functions in the
- *  geda_line_object_module.
+ *  geda_line_object.c module.
  */
+
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_line_object.c"
 
 #define TOBJECT "GedaLine"
 
@@ -84,7 +87,7 @@
  *               geda_line_object_print_dotted
  *               geda_line_object_print_phantom
  *               geda_line_object_print_solid
- *               geda_line_object_read
+ *      O1028    geda_line_object_read
  *               geda_line_object_rotate
  *      O1030    geda_line_object_set_end_cap
  *      O1031    geda_line_object_set_line_length
@@ -97,7 +100,7 @@
  *      O1038    geda_line_object_set_y2
  *               geda_line_object_scale
  *               geda_line_object_shortest_distance
- *               geda_line_object_to_buffer
+ *      O1041    geda_line_object_to_buffer
  *               geda_line_object_translate
  */
 
@@ -232,12 +235,12 @@ check_accessors ()
   }
 
   if (geda_line_object_get_y1(NULL)) {
-    fprintf(stderr, "FAILED: (O101500) %s first x not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O101500) %s first y not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_line_object_get_y2(NULL)) {
-    fprintf(stderr, "FAILED: (O101600) %s second x not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O101600) %s second y not zero\n", TOBJECT);
     result++;
   }
 
@@ -436,6 +439,123 @@ check_accessors ()
 }
 
 int
+check_serialization ()
+{
+  int  count;
+  int  converted;
+  int  result;
+  unsigned version;
+
+  result    = 0;
+  converted = sscanf (PACKAGE_DATE_VERSION, "%u", &version);
+
+  if (!converted) {
+    fprintf(stderr, "File %s, <%s>: could not scan version", __FILE__, __func__);
+    version=19700101;
+    result++;
+  }
+
+  for (count = 0; count < 10; count++) {
+
+    int c  = m_random_number ( 0, MAX_COLORS - 1);
+    int x1 = m_random_number ( 0,       119800);
+    int y2 = m_random_number ( 0,        79800);
+    int x2 = m_random_number (x1 + 100, 120000);
+    int y1 = m_random_number (y2 + 100,  80000);
+
+    GedaObject *object0 = geda_line_object_new(c, x1, y1, x2, y2);
+
+    char *buffer0 = geda_line_object_to_buffer (object0);
+
+    g_object_unref (object0);
+
+    if (!buffer0) {
+      fprintf(stderr, "FAILED: (O104101A) line object to buffer\n");
+      result++;
+      break;
+    }
+
+    GedaObject *object1 = geda_line_object_read (buffer0,
+                                                 version,
+                                                 FILEFORMAT_VERSION,
+                                                 NULL);
+
+    if (!GEDA_IS_OBJECT(object1)) {
+      fprintf(stderr, "FAILED: (O102801A) Read GedaObject Failed\n");
+      result++;
+      break;
+    }
+
+    if (!GEDA_IS_LINE(object1->line)) {
+      fprintf(stderr, "FAILED: (O102801B) sub-pointer not a GedaLine\n");
+      result++;
+      break;   /* terminate loop if fail */
+    }
+    else {
+
+      GedaLine *line = object1->line;
+      int       fail = 0;
+      int       value;
+
+      value = geda_object_get_color (object1);
+      if (value - c) {
+        fprintf(stderr, "FAILED: _get_color (%s-C) %d != %d\n", TOBJECT, value, c);
+        fail++;
+      }
+
+      if (line->x[0] - x1) {
+        fprintf(stderr, "FAILED: (O1041/O1028X1) line x1 %d != %d\n", line->x[0], x1);
+        fail++;
+      }
+
+      if (line->y[0] - y1) {
+        fprintf(stderr, "FAILED: (O1041/O1028Y1) line y1 %d != %d\n", line->y[0], y1);
+        fail++;
+      }
+
+      if (line->x[1] - x2) {
+        fprintf(stderr, "FAILED: (O1041/O1028X2) line x2 %d != %d\n", line->x[1], x2);
+        fail++;
+      }
+
+      if (line->y[1] - y2) {
+        fprintf(stderr, "FAILED: (O1041/O1028Y2) line y2 %d != %d\n", line->y[1], y2);
+        fail++;
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to read/write %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t  color: %d\n", c);
+        fprintf(stderr, "    line->x[0]=%d, x1=%d\n", line->x[0], x1);
+        fprintf(stderr, "    line->y[0]=%d, y1=%d\n", line->y[0], y1);
+        fprintf(stderr, "    line->x[1]=%d, x2=%d\n", line->x[1], x2);
+        fprintf(stderr, "    line->y[1]=%d, y2=%d\n", line->y[1], y2);
+
+        result = result + fail;
+        break;
+      }
+
+      char *buffer1 = geda_line_object_to_buffer (object1);
+      g_object_unref (object1);
+
+      if (strcmp (buffer0, buffer1)) {
+        fprintf(stderr, "FAILED: (O104101B) %s buffer mismatch\n", TOBJECT);
+        result++;
+        break;
+      }
+
+      g_free (buffer0);
+      g_free (buffer1);
+    }
+  }
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -461,12 +581,21 @@ main (int argc, char *argv[])
       result = check_accessors();
     }
     else {
-      fprintf(stderr, "Caught signal checking accessors in object/o_line_object.c\n\n");
+      fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
       return 1;
     }
+
+    if (setjmp(point) == 0) {
+      result += check_serialization();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking serialization in %s\n\n", MUT);
+      return 1;
+    }
+
   }
   else {
-    fprintf(stderr, "discontinuing checks for object/o_line_object.c\n\n");
+    fprintf(stderr, "discontinuing checks for %s\n\n", MUT);
   }
 
   return result;

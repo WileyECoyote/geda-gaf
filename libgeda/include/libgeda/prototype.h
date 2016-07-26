@@ -7,7 +7,7 @@ extern "C" {
 /* f_file.c */
          bool    f_has_active_autosave           (const char   *filename, GError **err);
           int    f_open                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
-          int    f_open_flags                    (GedaToplevel *toplevel, Page *page, const char *filename, const int flags, GError **err);
+          int    f_open_flags                    (GedaToplevel *toplevel);
          void    f_close                         (GedaToplevel *toplevel);
          bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
          void    f_remove_backup_file            (const char *filename);

@@ -18,6 +18,9 @@
     * tests/test_file.c: Update test identifiers using 2 digit group,
       function and test numbers.
 
+    * tests/test_line_object.c: Add checks for serialization of line objects,
+      add define MUT.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Rename functions with geda_object prefix.
