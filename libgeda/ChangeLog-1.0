@@ -3,6 +3,11 @@
     * include/libgeda/geda_file.h: Rename short version of f_open_flags
       to geda_file_open_flags, the function was missing.
 
+    * include/libgeda/geda_toplevel.h: Declare geda_toplevel_get_
+      file_open_flags and geda_toplevel_set_file_open_flags.
+
+    * src/geda/geda_toplevel.c: Add accessors for open_flags.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Rename functions with geda_object prefix.

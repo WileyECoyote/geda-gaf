@@ -554,6 +554,24 @@ geda_toplevel_get_current_page (GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get the current open flags setting
+ * \par Function Description
+ *  This function returns the current value of open_flags
+ *  in \a toplevel.
+ *
+ * \param [in] toplevel GedaToplevel object
+ *
+ * \returns current value of open_flags.
+ */
+int
+geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
+
+  return toplevel->open_flags;
+}
+
+/*!
  * \brief Get the make backups setting
  * \par Function Description
  *  This function returns the current value of make_backup_files
@@ -830,6 +848,31 @@ geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
   toplevel->page_current = page;
 
   return TRUE;
+}
+
+
+/*!
+ * \brief Set the Open Flags in a Toplevel
+ * \par Function Description
+ *  Set the current value of open_flags in \a toplevel to
+ *  \a open_flags.
+ *
+ * \param [in] toplevel GedaToplevel object
+ *
+ * \returns previous value of open_flags.
+ */
+int
+geda_toplevel_set_file_open_flags (GedaToplevel *toplevel, int open_flags)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
+
+  int old_flags;
+
+  old_flags = toplevel->open_flags;
+
+  toplevel->open_flags = open_flags;
+
+  return old_flags;
 }
 
 /*!
