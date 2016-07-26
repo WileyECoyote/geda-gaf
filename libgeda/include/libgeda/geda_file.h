@@ -39,7 +39,7 @@
 #define geda_close_file           f_close
 #define geda_file_has_autosave    f_has_active_autosave
 #define geda_open_file            f_open
-#define geda_file_open_flags      f_open_flags
+#define geda_open_flags           f_open_flags
 #define geda_remove_backup_file   f_remove_backup_file
 #define geda_save_file            f_save
 
