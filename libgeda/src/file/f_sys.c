@@ -49,18 +49,20 @@
  *  specific routines.
  */
 
-/*! \brief Copy a file
- *  \par Function Description
+/*!
+ * \brief Copy a file
+ * \par Function Description
  *  This function copies the file specified by \a source to \a target
  *  if possible. If and error is encountered, a message is written to
  *  the log and -1 is returned. If successful, the function returns 0.
  *
- *  \param [in]  source   Name of source file to be copied
- *  \param [out] target   Name of target or destination file
+ * \param [in]  source   Name of source file to be copied
+ * \param [out] target   Name of target or destination file
  *
- *  \returns 0 on success, -1 on failure.
+ * \returns 0 on success, -1 on failure.
  */
-int f_sys_copy(const char *source, const char *target)
+int
+f_sys_copy(const char *source, const char *target)
 {
   int input  = -1;
   int output = -1;
@@ -187,18 +189,19 @@ int f_sys_copy(const char *source, const char *target)
   return status; /* Success! */
 }
 
-/*! \brief Compare file modification time to a given time
- *  \par Function Description
+/*!
+ * \brief Compare file modification time to a given time
+ * \par Function Description
  *  Compares the file system modification time to the given
  *  \a time and returns the difference in seconds. Note that
  *  the modification is subtracted from the reference time,
  *  so a positive return value means the file is older than
  *  the reference time by the returned number of seconds.
  *
- *  \param [in] filename File to check
- *  \param [in] ref_time Time to compare too
+ * \param [in] filename File to check
+ * \param [in] ref_time Time to compare too
  *
- *  \returns difference in seconds or -1 if an error occurred
+ * \returns difference in seconds or -1 if an error occurred
  *
  *  example:
  *
@@ -206,7 +209,8 @@ int f_sys_copy(const char *source, const char *target)
  *    int secs = f_sys_cmp_mod_time(filename, time(&now));
  *    printf( "%s is %d seconds old\n",filename, secs);
  */
-int f_sys_cmp_mod_time (const char *filename, time_t ref_time)
+int
+f_sys_cmp_mod_time (const char *filename, time_t ref_time)
 {
   int    result;
   struct stat file_stat;
@@ -232,19 +236,21 @@ int f_sys_cmp_mod_time (const char *filename, time_t ref_time)
   return result;
 }
 
-/*! \brief Follow symlinks until a real file is found
- *  \par Function Description
+/*!
+ * \brief Follow symlinks until a real file is found
+ * \par Function Description
  *  Does readlink() recursively until we find a real filename.
  *
- *  \param [in]     filename  The filename to search for.
- *  \param [in,out] err       GError structure for error reporting,
- *                            or NULL to disable error reporting.
- *  \returns The newly-allocated path to real file on success, NULL
- *           otherwise.
+ * \param [in]     filename  The filename to search for.
+ * \param [in,out] err       GError structure for error reporting,
+ *                           or NULL to disable error reporting.
+ * \returns The newly-allocated path to real file on success, NULL
+ *          otherwise.
  *
- *  \note Originally taken from gedit's source code.
+ * \note Originally taken from gedit's source code.
  */
-char *f_sys_follow_symlinks (const char *filename, GError **err)
+char*
+f_sys_follow_symlinks (const char *filename, GError **err)
 {
   char *followed_filename;
 
@@ -336,8 +342,9 @@ char *f_sys_follow_symlinks (const char *filename, GError **err)
 
 }
 
-/*! \brief Builds an absolute pathname.
- *  \par Function Description
+/*!
+ * \brief Builds an absolute pathname.
+ * \par Function Description
  *  This function derives an absolute pathname for the pathname
  *  pointed to by \a name with '.' and '..' resolved. It does not
  *  resolve symbolic links.
@@ -345,7 +352,7 @@ char *f_sys_follow_symlinks (const char *filename, GError **err)
  *  It returns NULL and sets the \a error (if not NULL) if it failed
  *  to build the pathname or the pathname does not exists.
  *
- *  \note
+ * \note
  *  The code for this function is derived from the realpath() of
  *  the GNU C Library (Copyright (C) 1996-2002, 2004, 2005, 2006 Free
  *  Software Foundation, Inc. / LGPL 2.1 or later).
@@ -353,14 +360,15 @@ char *f_sys_follow_symlinks (const char *filename, GError **err)
  *  The part for the resolution of symbolic links has been discarded
  *  and it has been adapted for glib and for use on Windows.
  *
- *  \param [in]     name  A character string containing the pathname
- *                        to resolve.
- *  \param [in,out] error Return location for a GError, or NULL.
+ * \param [in]     name  A character string containing the pathname
+ *                       to resolve.
+ * \param [in,out] error Return location for a GError, or NULL.
  *
- *  \return A newly-allocated string with the resolved absolute
- *          pathname on success, NULL otherwise.
+ * \return A newly-allocated string with the resolved absolute
+ *         pathname on success, NULL otherwise.
  */
-char *f_sys_normalize_name (const char *name, GError **error)
+char*
+f_sys_normalize_name (const char *name, GError **error)
 {
   char *result;
 
@@ -427,14 +435,16 @@ char *f_sys_normalize_name (const char *name, GError **error)
   return result;
 }
 
-/*! \brief Remove File
- *  \par Function Description
+/*!
+ * \brief Remove File
+ * \par Function Description
  *  This function calls the standard remove function after setting
  *  the system error number to 0.
  *
  * \returns result of remove = zero on success -1 if error
 */
-int f_sys_remove (const char *pathname)
+int
+f_sys_remove (const char *pathname)
 {
   int result;
 
@@ -449,8 +459,9 @@ int f_sys_remove (const char *pathname)
   return result;
 }
 
-/*! \brief Remove Extension from a file name
- *  \par Function Description
+/*!
+ * \brief Remove Extension from a file name
+ * \par Function Description
  *  This function replaces the first dot/period from the end of a string
  *  and all characters after, with a NULL.
  *
@@ -458,7 +469,8 @@ int f_sys_remove (const char *pathname)
  *
  * \warning MUST not be const char
 */
-bool f_sys_remove_extension(char *filename) {
+bool
+f_sys_remove_extension(char *filename) {
 
   int i   = 0;
   int n   = 0;

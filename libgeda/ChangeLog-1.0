@@ -10,6 +10,8 @@
 
     * src/file/f_file.c: Reorganize module, add function f_open_flags.
 
+    * src/file/f_sys.c: Adjust indentations and Doxygen blocks.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Rename functions with geda_object prefix.
