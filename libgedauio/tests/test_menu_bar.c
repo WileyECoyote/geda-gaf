@@ -71,6 +71,25 @@ int check_construction (void)
   return result;
 }
 
+static GtkWindow *main_window(GtkWidget *menubar)
+{
+  GtkWidget *vbox;
+  GtkWidget *window;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
+
+  gtk_widget_show (menubar);
+  gtk_widget_show (window);
+
+  return GTK_WINDOW(window);
+}
+
 int
 check_accessors ()
 {
@@ -120,6 +139,33 @@ check_accessors ()
     if (pack_dir != PACK_DIRECTION_RTL) { /* Default value */
       fprintf(stderr, "FAILED: %s child pack direction <%d>\n", TWIDGET, pack_dir);
       result++;
+    }
+
+    /* -------------------- viewable_menu_bars -------------------- */
+
+    GtkWindow *window;
+    GList     *bars;
+
+    window = main_window(widget);
+    bars = geda_menu_bar_get_viewable_menu_bars (window);
+
+    if (!bars) {
+      fprintf(stderr, "FAILED: %s viewable_menu_bars NULL\n", TWIDGET);
+      result++;
+    }
+    else {
+
+      int count = g_list_length(bars);
+
+      if (g_list_length(bars) != 1) {
+        fprintf(stderr, "FAILED: %s viewable_menu_bars count <%d>\n", TWIDGET, count);
+        result++;
+      }
+
+      if (bars->data != menubar) {
+        fprintf(stderr, "FAILED: %s viewable_menu_bars <%p>\n", TWIDGET, bars->data);
+        result++;
+      }
     }
 
     g_object_ref_sink(widget); /* Sink reference to the widget */

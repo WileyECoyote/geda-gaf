@@ -21,6 +21,10 @@
     * tests/test_menu.c: Test new widget version of get/set accelerator
       group.
 
+    * tests/test_menu_bar.c: Add main_window to build a temp window and
+      add menubar argument to vbox so check_accessors can check geda_menu_
+      bar_get_viewable_menu_bars.
+
 2016-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add widget accessors for get/set accelerator
