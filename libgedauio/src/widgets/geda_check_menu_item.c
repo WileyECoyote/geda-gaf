@@ -148,7 +148,6 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
   GtkWidget     *widget;
   GtkStateType   state_type;
   GtkShadowType  shadow_type;
-  int x, y;
 
   widget = GTK_WIDGET (check_menu_item);
 
@@ -159,6 +158,7 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
     unsigned int toggle_spacing;
     unsigned int horizontal_padding;
     unsigned int indicator_size;
+    int x, y;
 
     gtk_widget_style_get (widget,
                           "toggle-spacing", &toggle_spacing,
@@ -172,12 +172,12 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
       x = widget->allocation.x + offset + horizontal_padding +
-      (toggle_size - toggle_spacing - indicator_size) / 2;
+         (toggle_size - toggle_spacing - indicator_size) / 2;
     }
     else {
       x = widget->allocation.x + widget->allocation.width -
-      offset - horizontal_padding - toggle_size + toggle_spacing +
-      (toggle_size - toggle_spacing - indicator_size) / 2;
+          offset - horizontal_padding - toggle_size + toggle_spacing +
+         (toggle_size - toggle_spacing - indicator_size) / 2;
     }
 
     y = widget->allocation.y + (widget->allocation.height - indicator_size) / 2;
