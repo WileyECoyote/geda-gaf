@@ -1,3 +1,7 @@
+2016-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/sarlacc_schem.c: General cleaning, reduce scope.
+
 2016-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: Change format specifiers to type unsigned, reduce
