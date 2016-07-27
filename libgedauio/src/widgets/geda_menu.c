@@ -109,8 +109,12 @@
 #define DEFAULT_POPUP_DELAY     225
 #define DEFAULT_POPDOWN_DELAY  1000
 
+/*! \def EXPLICIT_SCREEN_DATA
+ * Key string used to store the screen when explicitly set */
+#define EXPLICIT_SCREEN_DATA "menu-explicit-screen"
+
 /*! \def NAVIGATION_REGION_OVERSHOOT
- *   How much the navigation region extends below the submenu */
+ * How much the navigation region extends below the submenu */
 #define NAVIGATION_REGION_OVERSHOOT 50
 
 #define MENU_SCROLL_STEP1      8
@@ -672,27 +676,27 @@ geda_menu_class_init   (void *class, void *class_data)
   gobject_class->set_property = geda_menu_set_property;
   gobject_class->get_property = geda_menu_get_property;
 
-  object_class->destroy = geda_menu_destroy;
+  object_class->destroy       = geda_menu_destroy;
 
-  widget_class->realize = geda_menu_realize;
-  widget_class->unrealize = geda_menu_unrealize;
-  widget_class->size_request = geda_menu_size_request;
-  widget_class->size_allocate = geda_menu_size_allocate;
-  widget_class->show = geda_menu_show;
-  widget_class->expose_event = geda_menu_expose;
-  widget_class->scroll_event = geda_menu_scroll;
-  widget_class->key_press_event = geda_menu_key_press;
-  widget_class->button_press_event = geda_menu_button_press;
-  widget_class->button_release_event = geda_menu_button_release;
-  widget_class->motion_notify_event = geda_menu_motion_notify;
-  widget_class->show_all = geda_menu_show_all;
-  widget_class->hide_all = geda_menu_hide_all;
-  widget_class->enter_notify_event = geda_menu_enter_notify;
-  widget_class->leave_notify_event = geda_menu_leave_notify;
-  widget_class->style_set = geda_menu_style_set;
-  widget_class->focus = geda_menu_focus;
-  widget_class->can_activate_accel = geda_menu_real_can_activate_accel;
-  widget_class->grab_notify = geda_menu_grab_notify;
+  widget_class->realize               = geda_menu_realize;
+  widget_class->unrealize             = geda_menu_unrealize;
+  widget_class->size_request          = geda_menu_size_request;
+  widget_class->size_allocate         = geda_menu_size_allocate;
+  widget_class->show                  = geda_menu_show;
+  widget_class->expose_event          = geda_menu_expose;
+  widget_class->scroll_event          = geda_menu_scroll;
+  widget_class->key_press_event       = geda_menu_key_press;
+  widget_class->button_press_event    = geda_menu_button_press;
+  widget_class->button_release_event  = geda_menu_button_release;
+  widget_class->motion_notify_event   = geda_menu_motion_notify;
+  widget_class->show_all              = geda_menu_show_all;
+  widget_class->hide_all              = geda_menu_hide_all;
+  widget_class->enter_notify_event    = geda_menu_enter_notify;
+  widget_class->leave_notify_event    = geda_menu_leave_notify;
+  widget_class->style_set             = geda_menu_style_set;
+  widget_class->focus                 = geda_menu_focus;
+  widget_class->can_activate_accel    = geda_menu_real_can_activate_accel;
+  widget_class->grab_notify           = geda_menu_grab_notify;
 
   container_class->remove             = geda_menu_remove;
   container_class->get_child_property = geda_menu_get_child_property;
@@ -1339,11 +1343,11 @@ menu_change_screen (GedaMenu *menu, GdkScreen *new_screen)
 
 static void
 attach_widget_screen_changed (GtkWidget *attach_widget,
-                  GdkScreen *previous_screen,
-                  GedaMenu   *menu)
+                              GdkScreen *previous_screen,
+                              GedaMenu  *menu)
 {
   if (gtk_widget_has_screen (attach_widget) &&
-      !g_object_get_data (G_OBJECT (menu), "gtk-menu-explicit-screen"))
+      !g_object_get_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA))
     {
       menu_change_screen (menu, gtk_widget_get_screen (attach_widget));
     }
@@ -1761,13 +1765,18 @@ geda_menu_popup (GedaMenu         *menu,
   }
 
   parent_toplevel = NULL;
+
   if (parent_menu_shell)
+  {
     parent_toplevel = gtk_widget_get_toplevel (parent_menu_shell);
-  else if (!g_object_get_data (G_OBJECT (menu), "gtk-menu-explicit-screen"))
+  }
+  else if (!g_object_get_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA))
   {
     GtkWidget *attach_widget = geda_menu_get_attach_widget (menu);
-    if (attach_widget)
+
+    if (attach_widget) {
       parent_toplevel = gtk_widget_get_toplevel (attach_widget);
+    }
   }
 
   /* Set transient for to get the right window group and parent relationship */
@@ -5194,7 +5203,7 @@ geda_menu_hide_all (GtkWidget *widget)
 /*!
  * \brief Set the GedaMenu screen
  * \par Function Description
- * Sets the #GdkScreen on which the menu will be displayed.
+ *  Sets the #GdkScreen on which the menu will be displayed.
  *
  * \param[in] menu   GedaMenu.
  * \param[in] screen GdkScreen, or %NULL if the screen should be
@@ -5206,7 +5215,7 @@ geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (!screen || GDK_IS_SCREEN (screen));
 
-  g_object_set_data (G_OBJECT (menu), "gtk-menu-explicit-screen", screen);
+  g_object_set_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA, screen);
 
   if (screen) {
 

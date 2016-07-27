@@ -3,6 +3,9 @@
     * src/widgets/geda_check_menu_item.c: Reduce scope of integers x and y
       in geda_real_check_menu_item_draw_indicator.
 
+    * src/widgets/geda_menu.c: Replace data key string name and define
+      with constant; EXPLICIT_SCREEN_DATA. Adjust indentations in class_init.
+
 2016-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add widget accessors for get/set accelerator
