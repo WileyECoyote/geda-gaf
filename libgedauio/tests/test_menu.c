@@ -162,9 +162,9 @@ check_accessors ()
 
   accel_group = gtk_accel_group_new ();
 
-  geda_menu_set_accel_group (GEDA_MENU(menu), accel_group);
+  geda_menu_widget_set_accel_group (menu, accel_group);
 
-  group = geda_menu_get_accel_group (GEDA_MENU(menu));
+  group = geda_menu_widget_get_accel_group (menu);
 
   if (group != accel_group) {
     fprintf(stderr, "FAILED: line <%d> accel_group %s\n", __LINE__, TWIDGET);

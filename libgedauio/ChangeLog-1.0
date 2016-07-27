@@ -18,6 +18,9 @@
       Revise geda_real_menu_item_deselect; a add widget so that menu_item
       is not checked 3 times and maybe reuse for parent to queue_draw.
 
+    * tests/test_menu.c: Test new widget version of get/set accelerator
+      group.
+
 2016-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add widget accessors for get/set accelerator
