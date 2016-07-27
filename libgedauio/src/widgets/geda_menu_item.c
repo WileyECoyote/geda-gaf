@@ -860,6 +860,14 @@ geda_menu_item_disconnect_accelerator(GedaAction *action)
 }
 
 static void
+geda_menu_item_selection_done (GedaMenu     *menu,
+                               GedaMenuItem *menu_item)
+{
+  /* A submenu was activated or torn-off, so deselect parent */
+  geda_real_menu_item_deselect(menu_item);
+}
+
+static void
 geda_menu_item_dispose (GObject *object)
 {
   GedaMenuItem        *menu_item = GEDA_MENU_ITEM(object);
@@ -870,6 +878,14 @@ geda_menu_item_dispose (GObject *object)
     gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
     priv->action = NULL;
   }
+
+  if (priv->submenu) {
+    g_signal_handlers_disconnect_by_func (priv->submenu,
+                                          geda_menu_item_selection_done,
+                                          menu_item);
+    priv->submenu = NULL;
+  }
+
   G_OBJECT_CLASS (geda_menu_item_parent_class)->dispose (object);
 }
 
@@ -889,6 +905,10 @@ geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
   GedaMenuItemPrivate *priv = menu_item->priv;
 
   g_return_if_fail (priv->submenu == (GtkWidget*) menu);
+
+  g_signal_handlers_disconnect_by_func (menu,
+                                        geda_menu_item_selection_done,
+                                        menu_item);
 
   priv->submenu = NULL;
 }
@@ -1256,6 +1276,8 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item,
 
   if (priv->submenu != submenu) {
 
+    GtkWidget *widget = GTK_WIDGET(menu_item);
+
     if (priv->submenu) {
       geda_menu_detach (GEDA_MENU(priv->submenu));
     }
@@ -1263,13 +1285,17 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item,
     if (submenu) {
 
       priv->submenu = submenu;
-      geda_menu_attach_to_widget (GEDA_MENU(submenu),
-                                 GTK_WIDGET(menu_item),
-                                 geda_menu_item_detacher);
+      geda_menu_attach_to_widget (GEDA_MENU(submenu), widget,
+                                  geda_menu_item_detacher);
+
+      /* Connect handler to be called when submenu selection is performed */
+      g_signal_connect_after (submenu, "selection-done",
+                              G_CALLBACK (geda_menu_item_selection_done),
+                              menu_item);
     }
 
-    if (gtk_widget_get_parent (GTK_WIDGET(menu_item))) {
-      gtk_widget_queue_resize (GTK_WIDGET(menu_item));
+    if (gtk_widget_get_parent (widget)) {
+      gtk_widget_queue_resize (widget);
     }
     g_object_notify (G_OBJECT (menu_item), "submenu");
   }
@@ -2360,16 +2386,15 @@ geda_real_menu_item_select (GedaMenuItem *menu_item)
   current_event = gtk_get_current_event ();
 
   if (current_event) {
-
     source_device = gdk_event_get_source_device (current_event);
     gdk_event_free (current_event);
   }
 
   if ((!source_device ||
-    gdk_device_get_source (source_device) != GDK_SOURCE_TOUCHSCREEN) &&
-    priv->submenu &&
-    (!gtk_widget_get_mapped (priv->submenu) ||
-    GEDA_MENU(priv->submenu)->priv->tearoff_active))
+        gdk_device_get_source (source_device) != GDK_SOURCE_TOUCHSCREEN) &&
+        priv->submenu &&
+      (!gtk_widget_get_mapped (priv->submenu) ||
+        GEDA_MENU(priv->submenu)->priv->tearoff_active))
   {
     geda_menu_item_popup_submenu (menu_item, TRUE);
   }

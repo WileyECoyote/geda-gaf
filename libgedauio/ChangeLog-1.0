@@ -9,6 +9,13 @@
     * src/widgets/geda_menu_bar.c: Add borderx2 and use left shift so that
        border, which is likely 0, is not multiplied times 2 four times.
 
+    * src/widgets/geda_menu_item.c: Add geda_menu_item_selection_done to
+      respond to "selection-done" signal emanated from the menu shell so
+      that menu items in the shell menu bar deselect when child items in
+      the menu are activated. Connect after signal in geda_menu_item_set_
+      submenu, and disconnet in the detacher geda_menu_item_detacher and
+      geda_menu_item_dispose.
+
 2016-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add widget accessors for get/set accelerator
