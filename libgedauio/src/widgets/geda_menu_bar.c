@@ -797,20 +797,22 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 {
   GtkStyleContext *context;
   int border;
+  int borderx2;
 
-  border  = gtk_container_get_border_width (GTK_CONTAINER (widget));
-  context = gtk_widget_get_style_context (widget);
+  border   = gtk_container_get_border_width (GTK_CONTAINER (widget));
+  borderx2 = border << 1;
+  context  = gtk_widget_get_style_context (widget);
 
   gtk_render_background (context, cr,
                          border, border,
-                         gtk_widget_get_allocated_width (widget) - border * 2,
-                         gtk_widget_get_allocated_height (widget) - border * 2);
+                         gtk_widget_get_allocated_width (widget) - borderx2,
+                         gtk_widget_get_allocated_height (widget) - borderx2);
 
   if (get_shadow_type (GEDA_MENU_BAR (widget)) != GTK_SHADOW_NONE) {
     gtk_render_frame (context, cr,
                       border, border,
-                      gtk_widget_get_allocated_width (widget) - border * 2,
-                      gtk_widget_get_allocated_height (widget) - border * 2);
+                      gtk_widget_get_allocated_width (widget) - borderx2,
+                      gtk_widget_get_allocated_height (widget) - borderx2);
   }
 
   GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->draw (widget, cr);

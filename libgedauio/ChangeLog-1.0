@@ -6,6 +6,9 @@
     * src/widgets/geda_menu.c: Replace data key string name and define
       with constant; EXPLICIT_SCREEN_DATA. Adjust indentations in class_init.
 
+    * src/widgets/geda_menu_bar.c: Add borderx2 and use left shift so that
+       border, which is likely 0, is not multiplied times 2 four times.
+
 2016-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add widget accessors for get/set accelerator
