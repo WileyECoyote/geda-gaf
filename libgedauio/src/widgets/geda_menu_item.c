@@ -2409,18 +2409,32 @@ static void
 geda_real_menu_item_deselect (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
+  GtkWidget           *widget;
 
   if (priv->submenu) {
     geda_menu_item_popdown_submenu (menu_item);
   }
 
+  widget = GTK_WIDGET(menu_item);
+
 #if GTK_MAJOR_VERSION < 3
-  gtk_widget_set_state (GTK_WIDGET(menu_item), GTK_STATE_NORMAL);
+  gtk_widget_set_state (widget, GTK_STATE_NORMAL);
 #else
-  gtk_widget_unset_state_flags (GTK_WIDGET(menu_item), GTK_STATE_FLAG_PRELIGHT);
+  gtk_widget_unset_state_flags (widget, GTK_STATE_FLAG_PRELIGHT);
 #endif
 
-  gtk_widget_queue_draw (GTK_WIDGET(menu_item));
+  gtk_widget_queue_draw (widget);
+
+  widget = gtk_widget_get_parent(widget);
+
+  if (GEDA_IS_MENU (widget)) {
+
+    GedaMenu *menu = GEDA_MENU (widget);
+
+    if (menu->parent_menu_item) {
+      gtk_widget_queue_draw (GTK_WIDGET (menu->parent_menu_item));
+    }
+  }
 }
 
 static bool
