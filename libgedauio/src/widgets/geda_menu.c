@@ -2191,17 +2191,19 @@ geda_menu_get_accel_path (GedaMenu *menu)
  * \param[in] accel_path: (allow-none): a valid accelerator path
  */
 void
-geda_menu_set_accel_path (GedaMenu     *menu,
-             const char  *accel_path)
+geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
+
   if (accel_path)
     g_return_if_fail (accel_path[0] == '<' && strchr (accel_path, '/')); /* simplistic check */
 
   /* FIXME: accel_path should be defined as const char * */
   menu->accel_path = (char *)g_intern_string (accel_path);
-  if (menu->accel_path)
+
+  if (menu->accel_path) {
     geda_menu_refresh_accel_paths (menu, FALSE);
+  }
 }
 
 typedef struct {
@@ -2210,12 +2212,12 @@ typedef struct {
 } AccelPropagation;
 
 static void
-refresh_accel_paths_foreach (GtkWidget *widget,
-                 void *   data)
+refresh_accel_paths_foreach (GtkWidget *widget, void *data)
 {
-  AccelPropagation *prop = data;
-
   if (GEDA_IS_MENU_ITEM (widget)) {  /* should always be true */
+
+    AccelPropagation *prop = data;
+
     geda_menu_item_refresh_accel_path (GEDA_MENU_ITEM (widget),
                                        prop->menu->accel_path,
                                        prop->menu->accel_group,
@@ -2417,7 +2419,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
                                             0,
                                             GTK_WIDGET (menu)->requisition.height,
                                             MENU_SCROLL_STEP2,
-                                            height/2,
+                                            height >> 1, /* divide by 2 */
                                             height));
 
         g_object_connect (menu->tearoff_adjustment,

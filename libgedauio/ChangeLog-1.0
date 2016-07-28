@@ -1,8 +1,8 @@
 2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_shell.c: Partially revert changes to function
-      geda_menu_shell_button_press to handle ungrab event-crossing, see
-      commit 8f188879bf320ac8a4567475576697566e688e9b.
+    * src/widgets/geda_menu.c: Reduce scope of AccelPropagation in refresh
+      _accel_paths_foreach, change division by 2 to shift right in geda_menu
+      _set_tearoff_state.
 
 2016-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -23,6 +23,10 @@
       geda_menu_item_dispose.
       Revise geda_real_menu_item_deselect; a add widget so that menu_item
       is not checked 3 times and maybe reuse for parent to queue_draw.
+
+    * src/widgets/geda_menu_shell.c: Partially revert changes to function
+      geda_menu_shell_button_press to handle ungrab event-crossing, see
+      commit 8f188879bf320ac8a4567475576697566e688e9b.
 
     * tests/test_menu.c: Test new widget version of get/set accelerator
       group.
