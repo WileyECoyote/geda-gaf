@@ -39,14 +39,11 @@
 
 int main(int argc, char **argv)
 {
-
-  FILE *megafile, *output;
-  char *extracted_file;
+  FILE *megafile;
   char name[127];
   char buffer[127];         /* buffer for megafile index entries */
   char output_name[127];
   int  len;
-  int  result;
 
   if (argc != 2) {
 
@@ -90,6 +87,10 @@ int main(int argc, char **argv)
 
   /* read each table entry and extract the file from the megafile */
   while (!feof(megafile)) {
+
+    FILE *output;
+    char *extracted_file;
+    int   result;
 
     if (fread(buffer, RECLEN, 1, megafile) == 0) break;  /* end of file? */
 
