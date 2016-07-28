@@ -657,36 +657,26 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
   if (!menu_shell->active || !menu_shell->button) {
 
+    geda_menu_shell_activate (menu_shell);
+
     menu_shell->button = event->button;
 
-    if (menu_item) {
-
-      if (geda_menu_item_is_selectable (menu_item) &&
-          gtk_widget_get_parent (menu_item) == widget &&
-          menu_item != menu_shell->active_menu_item)
+    if (menu_item && geda_menu_item_is_selectable (menu_item) &&
+        menu_item->parent == widget &&
+        menu_item != menu_shell->active_menu_item)
+    {
+      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
       {
-        geda_menu_shell_activate (menu_shell);
-        menu_shell->button = event->button;
-
-        if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
-        {
-          menu_shell->activate_time = event->time;
-          geda_menu_shell_select_item (menu_shell, menu_item);
-        }
+        menu_shell->activate_time = event->time;
+        geda_menu_shell_select_item (menu_shell, menu_item);
       }
     }
-    else if (!menu_shell->active) {
-
-        geda_menu_shell_deactivate (menu_shell);
-        return FALSE;
-     }
   }
   else {
 
     widget = gtk_get_event_widget ((GdkEvent*)event);
 
     if (widget == GTK_WIDGET (menu_shell)) {
-
       geda_menu_shell_deactivate (menu_shell);
       g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
     }

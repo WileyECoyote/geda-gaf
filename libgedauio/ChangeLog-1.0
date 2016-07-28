@@ -1,3 +1,9 @@
+2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Partially revert changes to function
+      geda_menu_shell_button_press to handle ungrab event-crossing, see
+      commit 8f188879bf320ac8a4567475576697566e688e9b.
+
 2016-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Reduce scope of integers x and y
