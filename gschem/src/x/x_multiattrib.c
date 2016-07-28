@@ -78,9 +78,7 @@ snv_shows_value (int snv)
  *  \param [in] user_data A pointer on the GschemToplevel environment.
  */
 static void
-multiattrib_callback_response (GtkDialog *dialog,
-                               int arg1,
-                               void *user_data)
+multiattrib_callback_response (GtkDialog *dialog, int arg1, void *user_data)
 {
 /* GschemToplevel *w_current = GSCHEM_TOPLEVEL (user_data); */
 
@@ -278,6 +276,7 @@ GedaType celltextview_get_type()
   static GedaType celltextview_type = 0;
 
   if (!celltextview_type) {
+
     static const GTypeInfo celltextview_info = {
       sizeof(CellTextViewClass),
       NULL, /* base_init */
@@ -297,8 +296,8 @@ GedaType celltextview_get_type()
     };
 
     celltextview_type = g_type_register_static(GTK_TYPE_TEXT_VIEW,
-                                	       "CellTextView",
-                                	       &celltextview_info, 0);
+                                               "CellTextView",
+                                               &celltextview_info, 0);
     g_type_add_interface_static(celltextview_type,
                                 GTK_TYPE_CELL_EDITABLE,
                                 &cell_editable_info);
@@ -365,8 +364,8 @@ static void cellrenderermultilinetext_class_init   (CellRendererMultiLineTextCla
  *  \par Function Description
  *
  */
-static void multiline_text_editing_done(GtkCellEditable *cell_editable,
-                                                   void *user_data)
+static void
+multiline_text_editing_done(GtkCellEditable *cell_editable, void *user_data)
 {
   CellRendererMultiLineText *cell = CELL_RENDERER_MULTI_LINE_TEXT (user_data);
   GtkTextBuffer *buffer;
@@ -2128,7 +2127,9 @@ static void multiattrib_init(Multiattrib *ThisDialog)
     GtkTreeViewColumn *column;
 
     renderer = GTK_CELL_RENDERER (g_object_new (ColumnRendererType, NULL));
+
     g_signal_connect (renderer, ColumnSignal, ColumnNotifier, ThisDialog);
+
     column   = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
                                     "title",     ColumnTitle,
                                     "min-width", ColumnMinWidth,
@@ -2138,6 +2139,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                                  NULL));
 
     gtk_tree_view_column_pack_start (column, renderer, ColumnResizable);
+
     gtk_tree_view_column_set_cell_data_func (column,   renderer,
                                              ColumnDataFunc,
                                              ThisDialog, NULL);
@@ -2224,11 +2226,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                            GTK_SHADOW_IN,
                                            NULL));
 
-  /*! \todo: Forcing the size request is a horrible band-aid and
-   *  should be replaced by a better heuristic. */
-  /*textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW,
-                                       "height-request", 50,
-                                       NULL));*/
   const char *textview_tip;
 
   textview_tip  = _("Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab");
