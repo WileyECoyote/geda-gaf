@@ -1,5 +1,8 @@
 2016-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Replace EXPLICIT_SCREEN_DATA with global
+      static const char explicit_screen_key.
+
     * src/widgets/geda_menu_button.c: Replace private Gtk macros, GTK_
       PARAM_READWRITE and GTK_PARAM_READABLE with glib counterparts.
 

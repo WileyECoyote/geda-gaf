@@ -109,10 +109,6 @@
 #define DEFAULT_POPUP_DELAY     225
 #define DEFAULT_POPDOWN_DELAY  1000
 
-/*! \def EXPLICIT_SCREEN_DATA
- * Key string used to store the screen when explicitly set */
-#define EXPLICIT_SCREEN_DATA "menu-explicit-screen"
-
 /*! \def NAVIGATION_REGION_OVERSHOOT
  * How much the navigation region extends below the submenu */
 #define NAVIGATION_REGION_OVERSHOOT 50
@@ -314,9 +310,10 @@ static bool  geda_menu_real_can_activate_accel      (GtkWidget     *widget,
 static void geda_menu_refresh_accel_paths           (GedaMenu      *menu,
                                                      bool           group_changed);
 
-static const char  attached_menus_key[] = "attached-menus";
-static const char  attached_info_key[]  = "menu-child-attach-info-key";
-static const char  attached_data_key[]  = "menu-attach-data";
+static const char attached_menus_key[]  = "attached-menus";
+static const char attached_info_key[]   = "menu-child-attach-info-key";
+static const char attached_data_key[]   = "menu-attach-data";
+static const char explicit_screen_key[] = "menu-explicit-screen";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
@@ -448,7 +445,6 @@ menu_ensure_layout (GedaMenu *menu)
     priv->have_layout = TRUE;
   }
 }
-
 
 static int
 geda_menu_get_n_columns (GedaMenu *menu)
@@ -1111,13 +1107,13 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   menu->toggle_size          = 0;
 
   menu->toplevel = g_object_connect (g_object_new (GTK_TYPE_WINDOW,
-                           "type", GTK_WINDOW_POPUP,
-                           "child", menu,
-                           NULL),
-                     "signal::event", geda_menu_window_event, menu,
-                     "signal::size-request", geda_menu_window_size_request, menu,
-                     "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
-                     NULL);
+                                                   "type", GTK_WINDOW_POPUP,
+                                                   "child", menu,
+                                                   NULL),
+                                     "signal::event", geda_menu_window_event, menu,
+                                     "signal::size-request", geda_menu_window_size_request, menu,
+                                     "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
+                                     NULL);
   gtk_window_set_resizable (GTK_WINDOW (menu->toplevel), FALSE);
   gtk_window_set_mnemonic_modifier (GTK_WINDOW (menu->toplevel), 0);
 
@@ -1206,16 +1202,16 @@ bool is_a_geda_menu (GedaMenu *menu)
 
 static void
 geda_menu_set_child_property (GtkContainer *container,
-                             GtkWidget    *child,
-                             unsigned int         property_id,
-                             const GValue *value,
-                             GParamSpec   *pspec)
+                              GtkWidget    *child,
+                              unsigned int  property_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
 {
   GedaMenu *menu = GEDA_MENU (container);
   AttachInfo *ai = get_attach_info (child);
 
-  switch (property_id)
-    {
+  switch (property_id) {
+
     case CHILD_PROP_LEFT_ATTACH:
       ai->left_attach = g_value_get_int (value);
       break;
@@ -1232,22 +1228,22 @@ geda_menu_set_child_property (GtkContainer *container,
     default:
       GTK_CONTAINER_WARN_INVALID_CHILD_PROPERTY_ID (container, property_id, pspec);
       return;
-    }
+  }
 
   menu_queue_resize (menu);
 }
 
 static void
 geda_menu_get_child_property (GtkContainer *container,
-                             GtkWidget    *child,
-                             unsigned int         property_id,
-                             GValue       *value,
-                             GParamSpec   *pspec)
+                              GtkWidget    *child,
+                              unsigned int  property_id,
+                              GValue       *value,
+                              GParamSpec   *pspec)
 {
   AttachInfo *ai = get_attach_info (child);
 
-  switch (property_id)
-    {
+  switch (property_id) {
+
     case CHILD_PROP_LEFT_ATTACH:
       g_value_set_int (value, ai->left_attach);
       break;
@@ -1264,7 +1260,7 @@ geda_menu_get_child_property (GtkContainer *container,
     default:
       GTK_CONTAINER_WARN_INVALID_CHILD_PROPERTY_ID (container, property_id, pspec);
       return;
-    }
+  }
 }
 
 static void
@@ -1347,7 +1343,7 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
                               GedaMenu  *menu)
 {
   if (gtk_widget_has_screen (attach_widget) &&
-      !g_object_get_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA))
+     !g_object_get_data (G_OBJECT (menu), explicit_screen_key))
     {
       menu_change_screen (menu, gtk_widget_get_screen (attach_widget));
     }
@@ -1579,10 +1575,10 @@ popup_grab_on_window (GdkWindow *window,
                       bool       grab_keyboard)
 {
   if ((gdk_pointer_grab (window, TRUE,
-    GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-    GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK |
-    GDK_POINTER_MOTION_MASK,
-    NULL, NULL, activate_time) == 0))
+                         GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
+                         GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK |
+                         GDK_POINTER_MOTION_MASK,
+                         NULL, NULL, activate_time) == 0))
   {
     if (!grab_keyboard ||
          gdk_keyboard_grab (window, TRUE, activate_time) == 0)
@@ -1672,7 +1668,7 @@ geda_menu_popup (GedaMenu         *menu,
 
   /* Find the last viewable ancestor, and make an X grab on it
    */
-  parent      = GTK_WIDGET (menu);
+  parent      = GTK_WIDGET(menu);
   xgrab_shell = NULL;
 
   while (parent) {
@@ -1709,7 +1705,7 @@ geda_menu_popup (GedaMenu         *menu,
    * owner_events = TRUE, which we override further down with a grab
    * on the menu. (We can't grab on the menu until it is mapped; we
    * probably could just leave the grab on the other window, with a
-   * little reorganization of the code in gtkmenu*).
+   * little reorganization of the code in geda_menu*).
    */
   grab_keyboard = geda_menu_shell_get_take_focus (menu_shell);
   gtk_window_set_accept_focus (GTK_WINDOW (menu->toplevel), grab_keyboard);
@@ -1770,7 +1766,7 @@ geda_menu_popup (GedaMenu         *menu,
   {
     parent_toplevel = gtk_widget_get_toplevel (parent_menu_shell);
   }
-  else if (!g_object_get_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA))
+  else if (!g_object_get_data (G_OBJECT (menu), explicit_screen_key))
   {
     GtkWidget *attach_widget = geda_menu_get_attach_widget (menu);
 
@@ -1833,8 +1829,8 @@ geda_menu_popup (GedaMenu         *menu,
     }
   }
 
-  /* Once everything is set up correctly, map the toplevel window on
-   *    the screen.
+  /* Once everything is set up correctly, map the toplevel window
+   * onto the screen.
    */
   gtk_widget_show (menu->toplevel);
 
@@ -1881,10 +1877,10 @@ geda_menu_popdown (GedaMenu *menu)
 
   if (menu_shell->active_menu_item) {
 
-      if (menu->old_active_menu_item)
-    g_object_unref (menu->old_active_menu_item);
-      menu->old_active_menu_item = menu_shell->active_menu_item;
-      g_object_ref (menu->old_active_menu_item);
+    if (menu->old_active_menu_item)
+      g_object_unref (menu->old_active_menu_item);
+    menu->old_active_menu_item = menu_shell->active_menu_item;
+    g_object_ref (menu->old_active_menu_item);
   }
 
   geda_menu_shell_deselect (menu_shell);
@@ -2751,28 +2747,28 @@ menu_grab_transfer_window_get (GedaMenu *menu)
 
   if (!window) {
 
-      GdkWindowAttr attributes;
-      int  attributes_mask;
+    GdkWindowAttr attributes;
+    int  attributes_mask;
 
-      attributes.x                 = -100;
-      attributes.y                 = -100;
-      attributes.width             = 10;
-      attributes.height            = 10;
-      attributes.window_type       = GDK_WINDOW_TEMP;
-      attributes.wclass            = GDK_INPUT_ONLY;
-      attributes.override_redirect = TRUE;
-      attributes.event_mask        = 0;
+    attributes.x                 = -100;
+    attributes.y                 = -100;
+    attributes.width             = 10;
+    attributes.height            = 10;
+    attributes.window_type       = GDK_WINDOW_TEMP;
+    attributes.wclass            = GDK_INPUT_ONLY;
+    attributes.override_redirect = TRUE;
+    attributes.event_mask        = 0;
 
-      attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
+    attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
 
-      window = gdk_window_new (gtk_widget_get_root_window (GTK_WIDGET (menu)),
-                   &attributes, attributes_mask);
-      gdk_window_set_user_data (window, menu);
+    window = gdk_window_new (gtk_widget_get_root_window (GTK_WIDGET (menu)),
+                             &attributes, attributes_mask);
+    gdk_window_set_user_data (window, menu);
 
-      gdk_window_show (window);
+    gdk_window_show (window);
 
-      g_object_set_data (G_OBJECT (menu), "gtk-menu-transfer-window", window);
-    }
+    g_object_set_data (G_OBJECT (menu), "gtk-menu-transfer-window", window);
+  }
 
   return window;
 }
@@ -5205,7 +5201,8 @@ geda_menu_hide_all (GtkWidget *widget)
 /*!
  * \brief Set the GedaMenu screen
  * \par Function Description
- *  Sets the #GdkScreen on which the menu will be displayed.
+ *  Sets the #GdkScreen on which the menu will be displayed. The screen
+ *  number is stored using the key explicit_screen_key.
  *
  * \param[in] menu   GedaMenu.
  * \param[in] screen GdkScreen, or %NULL if the screen should be
@@ -5217,7 +5214,7 @@ geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (!screen || GDK_IS_SCREEN (screen));
 
-  g_object_set_data (G_OBJECT (menu), EXPLICIT_SCREEN_DATA, screen);
+  g_object_set_data (G_OBJECT (menu), explicit_screen_key, screen);
 
   if (screen) {
 
