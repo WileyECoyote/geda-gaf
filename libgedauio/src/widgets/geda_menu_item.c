@@ -1966,7 +1966,7 @@ geda_real_menu_item_select (GedaMenuItem *menu_item)
       geda_menu_item_popup_submenu (menu_item, TRUE);
     }
     else if (GEDA_IS_TEAROFF_MENU_ITEM(submenu)) {
-      if (geda_tearoff_menu_is_active(submenu)); {
+      if (geda_tearoff_menu_is_active(submenu)) {
         geda_menu_item_popup_submenu (menu_item, TRUE);
       }
     }

@@ -3,6 +3,9 @@
     * src/widgets/geda_menu_button.c: Replace private Gtk macros, GTK_
       PARAM_READWRITE and GTK_PARAM_READABLE with glib counterparts.
 
+    * src/widgets/geda_menu_item.c: Remove stray semicolon in function
+      geda_real_menu_item_select.
+
 2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Reduce scope of AccelPropagation in refresh
