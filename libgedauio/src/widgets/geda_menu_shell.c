@@ -1162,9 +1162,9 @@ geda_menu_shell_remove (GtkContainer *container, GtkWidget *widget)
 
 static void
 geda_menu_shell_forall (GtkContainer *container,
-               bool          include_internals,
-               GtkCallback   callback,
-               gpointer      callback_data)
+                        bool          include_internals,
+                        GtkCallback   callback,
+                        void         *callback_data)
 {
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
   GtkWidget     *child;
@@ -1365,7 +1365,7 @@ geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
 
       g_object_ref (parent_menu_shell);
       shells = g_slist_prepend (shells, parent_menu_shell);
-      parent_menu_shell = (GedaMenuShell*) parent_menu_shell->parent_menu_shell;
+      parent_menu_shell = (GedaMenuShell*)parent_menu_shell->parent_menu_shell;
     }
     while (parent_menu_shell);
     shells = g_slist_reverse (shells);
@@ -1772,8 +1772,9 @@ geda_menu_shell_deactivate (GedaMenuShell *menu_shell)
 {
   g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
 
-  if (menu_shell->active)
+  if (menu_shell->active) {
     g_signal_emit (menu_shell, menu_shell_signals[DEACTIVATE], 0);
+  }
 }
 
 /*!
@@ -2008,8 +2009,7 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
  * \sa  gdk_keyboard_grab()
  */
 void
-geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell,
-                                bool           take_focus)
+geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
 {
   GedaMenuShellPriv *priv;
 

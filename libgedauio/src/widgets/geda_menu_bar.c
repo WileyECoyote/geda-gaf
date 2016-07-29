@@ -866,12 +866,14 @@ geda_menu_bar_class_init (void *class, void *class_data)
   widget_class->expose_event  = geda_menu_bar_expose;
 
 #else
+
   widget_class->get_preferred_width            = geda_menu_bar_get_preferred_width;
   widget_class->get_preferred_height           = geda_menu_bar_get_preferred_height;
   widget_class->get_preferred_width_for_height = geda_menu_bar_preferred_width_for_height;
   widget_class->get_preferred_height_for_width = geda_menu_bar_preferred_height_for_width;
 
   widget_class->draw                           = geda_menu_bar_draw;
+
 #endif
 
   widget_class->hierarchy_changed              = geda_menu_bar_hierarchy_changed;
