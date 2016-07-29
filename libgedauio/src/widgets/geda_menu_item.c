@@ -1354,6 +1354,17 @@ geda_menu_item_select (GedaMenuItem *menu_item)
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[SELECT], 0);
+
+  /* Enable themeing of the parent menu item depending on whether
+   * something is selected in its submenu */
+  if (GEDA_IS_MENU (GTK_WIDGET (menu_item)->parent)) {
+
+    GedaMenu *menu = GEDA_MENU (GTK_WIDGET (menu_item)->parent);
+
+    if (menu->parent_menu_item) {
+      gtk_widget_queue_draw (GTK_WIDGET (menu->parent_menu_item));
+    }
+  }
 }
 
 /*!
@@ -1369,6 +1380,15 @@ geda_menu_item_deselect (GedaMenuItem *menu_item)
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[DESELECT], 0);
+
+  if (GEDA_IS_MENU (GTK_WIDGET (menu_item)->parent)) {
+
+    GedaMenu *menu = GEDA_MENU (GTK_WIDGET (menu_item)->parent);
+
+    if (menu->parent_menu_item) {
+      gtk_widget_queue_draw (GTK_WIDGET (menu->parent_menu_item));
+    }
+  }
 }
 
 /*!

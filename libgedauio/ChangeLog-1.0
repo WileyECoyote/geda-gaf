@@ -12,7 +12,8 @@
 
     * src/widgets/geda_menu_item.c: Remove stray semicolon in function
       geda_real_menu_item_select. Replace "menu-exact-popup-time" with
-      preprocessor constant MENU_POPUP_TIME_KEY.
+      preprocessor constant MENU_POPUP_TIME_KEY. Revised geda_menu_item_select
+      and geda_menu_item_deselect to allow themeing of the parent menu item.
 
     * src/widgets/geda_menu_shell.c: Replace "menu-exact-popup-time" with
       preprocessor constant MENU_POPUP_TIME_KEY.
