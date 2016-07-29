@@ -1106,14 +1106,14 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                       _("Menu"),
                                                       _("The dropdown menu"),
                                                         GTK_TYPE_MENU,
-                                                        GTK_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class,
                                    PROP_LABEL,
                                    g_param_spec_string ("label",
                                                       _("Label"),
                                                       _("Text of the label widget inside the button, if the button contains a label widget"),
                                                         NULL,
-                                                        GTK_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
   g_object_class_install_property (object_class,
                                    PROP_USE_STOCK,
@@ -1121,7 +1121,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                        _("Use stock"),
                                                        _("If set, the label is used to pick a stock item instead of being displayed"),
                                                         FALSE,
-                                                        GTK_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
   /* set whether to grab focus when it is clicked with the mouse.*/
   g_object_class_install_property (object_class,
                                    PROP_FOCUS_ON_CLICK,
@@ -1129,7 +1129,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                        _("Focus on click"),
                                                        _("Whether the button grabs focus when it is clicked with the mouse"),
                                                          TRUE,
-                                                         GTK_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class,
                                    PROP_RELIEF,
@@ -1138,7 +1138,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                     _("The border relief style"),
                                                       GTK_TYPE_RELIEF_STYLE,
                                                       GTK_RELIEF_NORMAL,
-                                                      GTK_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class,
                                    PROP_MENU_RELIEF,
@@ -1147,7 +1147,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                     _("The arrow border relief style"),
                                                       GTK_TYPE_RELIEF_STYLE,
                                                       GTK_RELIEF_NONE,
-                                                      GTK_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE));
 
   /* The child widget to appear next to the button text. */
   g_object_class_install_property (object_class,
@@ -1156,7 +1156,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                       _("Image widget"),
                                                       _("Child widget to appear next to the button text"),
                                                         GTK_TYPE_WIDGET,
-                                                        GTK_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE));
 
   /* The position of the image relative to the text inside the button.*/
   g_object_class_install_property (object_class,
@@ -1166,7 +1166,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                     _("The position of the image relative to the text"),
                                                       GTK_TYPE_POSITION_TYPE,
                                                       GTK_POS_LEFT,
-                                                      GTK_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE));
 
  /*! default-border:
   *
@@ -1180,7 +1180,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                              _("Default Spacing"),
                                                              _("Extra space to add for GTK_CAN_DEFAULT buttons"),
                                                                GTK_TYPE_BORDER,
-                                                               GTK_PARAM_READABLE));
+                                                               G_PARAM_READABLE));
 
   /* default-outside-border:
    *
@@ -1194,7 +1194,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                              _("Default Outside Spacing"),
                                                              _("Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside the border"),
                                                                GTK_TYPE_BORDER,
-                                                               GTK_PARAM_READABLE));
+                                                               G_PARAM_READABLE));
 
   /* inner-border:
    *
@@ -1205,7 +1205,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                              _("Inner Border"),
                                                              _("Border between button edges and child."),
                                                                GTK_TYPE_BORDER,
-                                                               GTK_PARAM_READABLE));
+                                                               G_PARAM_READABLE));
 
   /* Button::pressed:
    * button: the object that received the signal

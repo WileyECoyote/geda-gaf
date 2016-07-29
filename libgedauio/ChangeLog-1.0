@@ -1,8 +1,15 @@
+2016-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_button.c: Replace private Gtk macros, GTK_
+      PARAM_READWRITE and GTK_PARAM_READABLE with glib counterparts.
+
 2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Reduce scope of AccelPropagation in refresh
       _accel_paths_foreach, change division by 2 to shift right in geda_menu
       _set_tearoff_state.
+
+    * src/widgets/geda_menu_button.c: Revise Doxygen comments blocks.
 
 2016-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
