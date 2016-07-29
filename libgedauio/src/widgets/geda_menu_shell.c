@@ -787,7 +787,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
           int       popdown_delay;
 
           popup_time = g_object_get_data (G_OBJECT (submenu),
-                                          "menu-exact-popup-time");
+                                          MENU_POPUP_TIME_KEY);
 
           if (popup_time)
           {
@@ -801,7 +801,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
             (int64) popup_time->tv_usec);
 
             g_object_set_data (G_OBJECT (submenu),
-                               "menu-exact-popup-time", NULL);
+                               MENU_POPUP_TIME_KEY, NULL);
           }
 
           if (GEDA_IS_MENU(submenu)) {

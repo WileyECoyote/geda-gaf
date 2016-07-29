@@ -38,9 +38,7 @@
 #include <gtk/gtkbin.h>
 #include "geda_menu_enum.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define MENU_POPUP_TIME_KEY "menu-exact-popup-time"
 
 #define GEDA_TYPE_MENU_ITEM            (geda_menu_item_get_type ())
 #define GEDA_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_ITEM, GedaMenuItem))
@@ -48,7 +46,6 @@ extern "C" {
 #define GEDA_IS_MENU_ITEM(obj)         (is_a_geda_menu_item((GedaMenuItem*)obj))
 #define GEDA_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_ITEM))
 #define GEDA_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_ITEM, GedaMenuItemClass))
-
 
 typedef struct _GedaMenuItem        GedaMenuItem;
 typedef struct _GedaMenuItemClass   GedaMenuItemClass;
@@ -109,6 +106,10 @@ struct _GedaMenuItemClass
 
   /*< private >*/
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType    geda_menu_item_get_type              (void)          GEDA_CONST;
 bool        is_a_geda_menu_item                  (GedaMenuItem  *menu_item);

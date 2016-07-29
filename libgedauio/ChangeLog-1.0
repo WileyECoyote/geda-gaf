@@ -1,5 +1,9 @@
 2016-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_menu_item.h: Define MENU_POPUP_TIME_KEY for key string
+      "menu-exact-popup-time", which is set 3 times in geda_menu_item.c
+       and once in geda_menu_shell.c, and read once in geda_menu_shell.c.
+
     * src/widgets/geda_menu.c: Replace EXPLICIT_SCREEN_DATA with global
       static const char explicit_screen_key.
 
@@ -7,7 +11,11 @@
       PARAM_READWRITE and GTK_PARAM_READABLE with glib counterparts.
 
     * src/widgets/geda_menu_item.c: Remove stray semicolon in function
-      geda_real_menu_item_select.
+      geda_real_menu_item_select. Replace "menu-exact-popup-time" with
+      preprocessor constant MENU_POPUP_TIME_KEY.
+
+    * src/widgets/geda_menu_shell.c: Replace "menu-exact-popup-time" with
+      preprocessor constant MENU_POPUP_TIME_KEY.
 
 2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
 

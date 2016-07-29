@@ -2582,13 +2582,13 @@ geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
       g_get_current_time (popup_time);
 
       g_object_set_data_full (G_OBJECT (priv->submenu),
-                              "menu-exact-popup-time", popup_time,
+                              MENU_POPUP_TIME_KEY, popup_time,
                               (GDestroyNotify) free_timeval);
     }
     else {
 
       g_object_set_data (G_OBJECT (priv->submenu),
-                         "menu-exact-popup-time", NULL);
+                         MENU_POPUP_TIME_KEY, NULL);
     }
 
     /* geda_menu_item_position_menu positions the submenu from the
@@ -2754,7 +2754,7 @@ geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
   if (priv->submenu) {
 
     g_object_set_data (G_OBJECT (priv->submenu),
-                       "menu-exact-popup-time", NULL);
+                       MENU_POPUP_TIME_KEY, NULL);
 
     if (priv->timer) {
 
