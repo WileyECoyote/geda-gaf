@@ -34,11 +34,10 @@
 #include <geda/geda_standard.h>
 
 #include <gtk/gtk.h>
-#include <gtk/gtkwindow.h>
 
-#include "geda_gtk_compat.h"
-#include "geda_handlebox.h"
-#include "gettext.h"
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_handlebox.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

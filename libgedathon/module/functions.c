@@ -69,7 +69,7 @@ static struct {
 
 } GedaFunctions[FUNCTION_COUNT + 1] = {
  [ function_unknown ] = { "unknown", do_unknown, 0, ""},
- #include "functions.h"
+ #include "../include/functions.h"
 };
 
 /* Auto Referencing Utilities */

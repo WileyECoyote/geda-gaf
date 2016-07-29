@@ -31,16 +31,16 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
 #include <gtk/gtk.h>
-#include "geda_swatch_renderer.h"
 
-#include "gettext.h"
+#include "../../include/geda_swatch_renderer.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

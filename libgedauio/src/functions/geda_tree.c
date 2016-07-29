@@ -26,8 +26,9 @@
  * Date: January 10, 2015
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
+
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 #include <geda/geda.h>
 

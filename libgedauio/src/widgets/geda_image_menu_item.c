@@ -27,6 +27,8 @@
 #include "../../../config.h"
 #endif
 
+#include <gtk/gtk.h>
+
 #include <geda/geda_standard.h>
 
 #define WITHOUT_GUILE 1
@@ -35,10 +37,7 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_menu_bar.h"
 #include "../../include/geda_image_menu_item.h"
-
-#include <gtk/gtk.h>
-
-#include "gettext.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

@@ -22,7 +22,8 @@
  * with modifications, March 2016.
  */
 
-#include "config.h"
+#include "../../../config.h"
+
 #include <glib.h>
 #include <geda/geda.h>
 #include <gtk/gtk.h>

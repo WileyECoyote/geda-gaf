@@ -56,13 +56,11 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkprivate.h>
 
-#include "geda_menu.h"
-#include "geda_menu_shell.h"
-#include "geda_menu_button.h"
-
-#include "gettext.h"
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_shell.h"
+#include "../../include/geda_menu_button.h"
+#include "../../include/gettext.h"
 
 #include <geda_debug.h>
 

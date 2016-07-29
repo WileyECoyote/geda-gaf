@@ -1,5 +1,5 @@
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "../../../config.h"
 #endif
 
 #include <geda/geda.h>
@@ -90,8 +90,9 @@ left_right_compare (const void *a, const void *b, void *data)
     else
       return (y1 < y2) ? -1 : ((y1 == y2) ? 0 : 1);
   }
-  else
+  else {
     return (x1 < x2) ? -1 : 1;
+  }
 }
 
 static bool
@@ -154,8 +155,7 @@ gtk_container_focus_sort_left_right (GtkContainer     *container,
 
       if (child != old_focus) {
 
-        if (get_allocation_coords (container, child, &child_allocation))
-        {
+        if (get_allocation_coords (container, child, &child_allocation)) {
 
           int child_y1, child_y2;
 
@@ -169,8 +169,9 @@ gtk_container_focus_sort_left_right (GtkContainer     *container,
             children = g_list_delete_link (children, tmp_list);
           }
         }
-        else
+        else {
           children = g_list_delete_link (children, tmp_list);
+        }
       }
 
       tmp_list = next;
