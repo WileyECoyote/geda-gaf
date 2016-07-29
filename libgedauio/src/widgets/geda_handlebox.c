@@ -51,6 +51,27 @@
  *
  * \defgroup GedaHandleBox Handle Box
  * @{
+ * \par
+ * The GedaHandleBox widget is a bin widget allowing a portion of a window
+ * to be "torn off". The Widget displays a child and a handle that users can
+ * drag to tear off a separate window, the float window, containing the child
+ * widget. A thin "ghost" outline is drawn in the original location of the
+ * handlebox. By dragging the separate window back to its original location,
+ * float window can be re-attached.
+ *
+ * When re-attaching the float window to the ghost, the float window must be
+ * aligned along one of the edges, the "snap edge", which can be specified
+ * by the application programmer explicitly, or the code will determine a
+ * reasonable default based on the handle position.
+ *
+ * To make detaching and reattaching the handlebox as minimally confusing
+ * as possible to the user, it is important to set the snap edge so that
+ * the snap edge does not move when the handlebox is deattached. For
+ * instance, if the handlebox is packed at the bottom of a VBox, then
+ * when the handlebox is detached, the bottom edge of the handlebox's
+ * allocation will remain fixed as the height of the handlebox shrinks,
+ * so the snap edge should be set to %GTK_POS_BOTTOM.
+ *
  */
 
 struct _GedaHandleBoxData
