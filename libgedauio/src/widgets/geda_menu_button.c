@@ -181,11 +181,12 @@ geda_menu_arrow_get_relief (GedaMenuButton *button)
 
 }
 
-/*! \brief Set the Label Text on a GedaMenuButton.
- *  \par Function Description
- * Sets the text of the label of the button to value pointed to by
- * label. This text is also used to select the stock item if
- * geda_menu_button_set_use_stock() is used.
+/*!
+ * \brief Set the Label Text on a GedaMenuButton.
+ * \par Function Description
+ *  Sets the text of the label of the button to value pointed to by
+ *  label. This text is also used to select the stock item if
+ *  geda_menu_button_set_use_stock() is used.
  *
  * This will also clear any previously set labels.
  */
@@ -195,15 +196,16 @@ void geda_menu_button_set_label (GedaMenuButton *button, const char *label)
   gtk_button_set_label( GTK_BUTTON(button->priv->button), label);
 }
 
-/*! \brief Get the Label Text on a GedaMenuButton.
- *  \par Function Description
- * This function retrieves the text from the label of the button.
- * If the label text has not been set the return value will be NULL.
- * This will could be the case if an empty menu button was created
- * with gtk_button_new() to use as a container.
+/*!
+ * \brief Get the Label Text on a GedaMenuButton.
+ * \par Function Description
+ *  This function retrieves the text from the label of the button.
+ *  If the label text has not been set the return value will be NULL.
+ *  This will could be the case if an empty menu button was created
+ *  with gtk_button_new() to use as a container.
  *
- * Return value: The text of the label widget. This string is owned
- * by the widget and must not be modified or freed.
+ *  \returns The text of the label widget. This string is owned
+ *           by the widget and must not be modified or freed.
  */
 const char *geda_menu_button_get_label (GedaMenuButton *button)
 {
@@ -211,13 +213,13 @@ const char *geda_menu_button_get_label (GedaMenuButton *button)
   return gtk_button_get_label(GTK_BUTTON(button->priv->button));
 }
 
-/*! \brief Get the Label Text on a GedaMenuButton.
+/*!
+ * \brief Get the Label Text on a GedaMenuButton.
+ * \par Function Description
+ *  If true, an underline in the text of the button label indicates
+ *  the next character should be used for the mnemonic accelerator key.
  *
- *  \par Function Description
- * If true, an underline in the text of the button label indicates
- * the next character should be used for the mnemonic accelerator key.
- *
- * \param [in] button: a GedaMenuButton
+ * \param [in] button a GedaMenuButton
  * \param [in] @use_underline: %TRUE if underlines in the text indicate mnemonics
  */
 void
@@ -227,17 +229,17 @@ geda_menu_button_set_use_underline (GedaMenuButton *button, bool use_underline)
   gtk_button_set_use_underline(GTK_BUTTON(button->priv->button), use_underline);
 }
 
-/*! \brief Get GedaMenuButton Mnemonic Interpretation Setting.
- *  \par Function Description
+/*!
+ * \brief Get GedaMenuButton Mnemonic Interpretation Setting.
+ * \par Function Description
+ *  Returns whether an embedded underline in the button label indicates
+ *  a mnemonic. See gtk_button_set_use_underline ().
  *
- * Returns whether an embedded underline in the button label indicates a
- * mnemonic. See gtk_button_set_use_underline ().
+ * \param [in] button a GedaMenuButton
  *
- * \param [in] button: a GedaMenuButton
- *
- * Return value: %TRUE if an embedded underline in the button label
- *               indicates the mnemonic accelerator keys.
- **/
+ * \retval %TRUE if an embedded underline in the button label
+ *          indicates the mnemonic accelerator keys.
+ */
 bool
 geda_menu_button_get_use_underline (GedaMenuButton *button)
 {
@@ -245,8 +247,9 @@ geda_menu_button_get_use_underline (GedaMenuButton *button)
   return gtk_button_get_use_underline( GTK_BUTTON(button->priv->button));
 }
 
-/*! \brief Set a GedaMenuButton to use stock item set by label text.
- *  \par Function Description
+/*!
+ * \brief Set a GedaMenuButton to use stock item set by label text.
+ * \par Function Description
  * If %TRUE, the label set on the button is used as a stock id to
  * select the stock item for the button.
  */
@@ -256,15 +259,15 @@ void geda_menu_button_set_use_stock (GedaMenuButton *button, bool use_stock)
   gtk_button_set_use_stock(GTK_BUTTON(button->priv->button), use_stock);
 }
 
-/*! \brief Query to determine if GedaMenuButton uses stock item.
- *  \par Function Description
+/*!
+ * \brief Query to determine if GedaMenuButton uses stock item.
+ * \par Function Description
  *   Returns whether the button label is a stock item.
  *
  * \param [in] button: a GedaMenuButton
  *
- * Return value: %TRUE if the button label is used to
- *               select a stock item instead of being
- *               used directly as the label text.
+ * \retval %TRUE if the button label is used to select a stock item
+ *         instead of being used directly as the label text.
  */
 bool geda_menu_button_get_use_stock (GedaMenuButton *button)
 {
@@ -272,8 +275,9 @@ bool geda_menu_button_get_use_stock (GedaMenuButton *button)
   return gtk_button_get_use_stock (GTK_BUTTON(button->priv->button));
 }
 
-/*! \brief Sets whether the GedaMenuButton primary  button  will grap focus.
- *  \par Function Description
+/*!
+ * \brief Sets whether the GedaMenuButton primary  button  will grap focus.
+ * \par Function Description
  * Sets whether the button will grab focus when it is clicked with the mouse.
  * Making mouse clicks not grab focus is useful in places like toolbars where
  * you don't want the keyboard focus removed from the main area of the
@@ -296,7 +300,7 @@ geda_menu_button_set_focus_on_click (GedaMenuButton *button, bool focus_on_click
  * the button is clicked with the mouse.
  * See gtk_button_set_focus_on_click().
  *
- * Return value: %TRUE if the button grabs focus when it is clicked
+ * \retval %TRUE if the button grabs focus when it is clicked
  *                with the mouse.
  */
 bool geda_menu_button_get_focus_on_click (GedaMenuButton *button)
@@ -305,8 +309,9 @@ bool geda_menu_button_get_focus_on_click (GedaMenuButton *button)
   return gtk_button_get_focus_on_click( GTK_BUTTON (button->priv->button));
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
  * Sets the alignment of the child. This property has no effect unless
  * the child is a GtkMisc or a GtkAligment.
  *
@@ -327,9 +332,10 @@ geda_menu_button_set_alignment (GedaMenuButton *button,
 
 }
 
-/*! \brief  Gets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
- *   Gets the alignment of the child in the button.
+/*!
+ * \brief  Gets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
+ *  Gets the alignment of the child in the button.
  *
  * \param [in] button:  button: a GedaMenuButton
  *
@@ -339,25 +345,24 @@ geda_menu_button_set_alignment (GedaMenuButton *button,
  */
 void
 geda_menu_button_get_alignment (GedaMenuButton *button,
-                          float    *xalign,
-                          float    *yalign)
+                                         float *xalign,
+                                         float *yalign)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   return gtk_button_get_alignment( GTK_BUTTON (button->priv->button),
                                    xalign, yalign);
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
- *
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
  * Set the image of button to the given widget. Note that
  * it depends on the GtkSettings:gtk-button-images setting whether the
  * image will be displayed or not, you don't have to call
  * gtk_widget_show() on image yourself.
  *
- * \param [in] button: The GedaMenuButton
- * \param [in] image:  a widget to set as the image for the button
-
+ * \param [in] button The GedaMenuButton
+ * \param [in] image  a widget to set as the image for the button
  */
 void
 geda_menu_button_set_image (GedaMenuButton *button, GtkWidget *image)
@@ -366,15 +371,16 @@ geda_menu_button_set_image (GedaMenuButton *button, GtkWidget *image)
   gtk_button_set_image (GTK_BUTTON (button->priv->button), image);
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
  * Gets the widget that is currenty set as the image of button.
  * This may have been explicitly set by gtk_button_set_image()
  * or constructed by gtk_button_new_from_stock().
  *
- * \param [in] button: The GedaMenuButton
+ * \param [in] button The GedaMenuButton
  *
- * Return value: a GtkWidget or %NULL in case there is no image
+ * \returns a GtkWidget or %NULL in case there is no image
  */
 GtkWidget *geda_menu_button_get_image (GedaMenuButton *button)
 {
@@ -382,8 +388,9 @@ GtkWidget *geda_menu_button_get_image (GedaMenuButton *button)
   return gtk_button_get_image (GTK_BUTTON (button->priv->button));
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
  *
  * Sets the position of the image relative to the text
  * inside the button.
@@ -395,14 +402,13 @@ geda_menu_button_set_image_position (GedaMenuButton *button, GtkPositionType pos
   gtk_button_set_image_position ( GTK_BUTTON (button->priv->button), position);
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
+ *  Gets the position of the image relative to the text
+ *  inside the button.
  *
- * Gets the position of the image relative to the text
- * inside the button.
- *
- * Return value: the position
- *
+ * \returns the position
  */
 GtkPositionType
 geda_menu_button_get_image_position (GedaMenuButton *button)
@@ -411,14 +417,13 @@ geda_menu_button_get_image_position (GedaMenuButton *button)
   return gtk_button_get_image_position (GTK_BUTTON (button->priv->button));
 }
 
-/*! \brief Sets the alignment of the child in a GedaMenuButton.
- *  \par Function Description
- *
+/*!
+ * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \par Function Description
  * Returns the button's event window if it is realized, %NULL otherwise.
  * This function should be rarely needed.
  *
- * Return value:  button's event window.
- *
+ * \returns the button's event window.
  */
 GdkWindow*
 geda_menu_button_get_event_window (GedaMenuButton *button)
@@ -433,14 +438,15 @@ geda_menu_button_get_event_window (GedaMenuButton *button)
   return window;
 }
 
-/*! \brief  Set Properties of a GedaMenuButton.
- *  \par Function Description
- *   This function handled the gobject properties setters.
+/*!
+ * \brief  Set Properties of a GedaMenuButton.
+ * \par Function Description
+ *  This function handled the gobject properties setters.
  *
- * \param [in] object:  a GedaMenuButton
- * \param [in] prop_id: The enumerated property ID
- * \param [in] value:   The value to set the property
- * \param [in] pspec:   The parameter specifications for the property
+ * \param [in] object   a GedaMenuButton
+ * \param [in] prop_id  The enumerated property ID
+ * \param [in] value    The value to set the property
+ * \param [in] pspec    The parameter specifications for the property
  */
 static void
 geda_menu_button_set_property (GObject      *object,
@@ -498,14 +504,16 @@ geda_menu_button_set_property (GObject      *object,
       break;
   }
 }
-/*! \brief  Get Properties of a GedaMenuButton.
- *  \par Function Description
- *   This function handled the gobject properties request.
+
+/*!
+ * \brief  Get Properties of a GedaMenuButton.
+ * \par Function Description
+ *  This function handled the gobject properties request.
  *
- * \param [in] object:    a GedaMenuButton
- * \param [in] prop_id:   The enumerated property ID
- * \param [out] value:    The variable that will be set to the property value
- * \param [in] pspec:     The parameter specifications for the property
+ * \param [in]  object   a GedaMenuButton
+ * \param [in]  prop_id  The enumerated property ID
+ * \param [out] value    The variable that will be set to the property value
+ * \param [in]  pspec    The parameter specifications for the property
  */
 static void
 geda_menu_button_get_property (GObject     *object,
@@ -564,11 +572,12 @@ geda_menu_button_get_property (GObject     *object,
 
 /* BEGIN ------+-------+-------^    Emitters   ^-------+-------+-------+-----*/
 
-/*! \brief  GedaMenuButton (Main) Button "pressed" Signal Emitter.
- *  \par Function Description
- *   This function requests the "pressed" signal be emitted from the Widget.
+/*!
+ * \brief  GedaMenuButton (Main) Button "pressed" Signal Emitter.
+ * \par Function Description
+ *  This function requests the "pressed" signal be emitted from the Widget.
  *
- * \param [in] button:       a GedaMenuButton
+ * \param [in] button a GedaMenuButton
  *
  */
 void geda_menu_button_pressed (GedaMenuButton *button)
@@ -578,12 +587,12 @@ void geda_menu_button_pressed (GedaMenuButton *button)
   g_signal_emit (button, signals[PRESSED], 0);
 }
 
-/*! \brief  GedaMenuButton (Main) Button "released" Signal Emitter.
- *  \par Function Description
- *   This function requests the "released" signal be emitted from the Widget.
+/*!
+ * \brief  GedaMenuButton (Main) Button "released" Signal Emitter.
+ * \par Function Description
+ *  This function requests the "released" signal be emitted from the Widget.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 void geda_menu_button_released (GedaMenuButton *button)
 {
@@ -592,12 +601,12 @@ void geda_menu_button_released (GedaMenuButton *button)
   g_signal_emit (button, signals[RELEASED], 0);
 }
 
-/*! \brief  GedaMenuButton (Main) Button "clicked" Signal Emitter.
- *  \par Function Description
- *   This function requests the "clicked" signal be emitted from the Widget.
+/*!
+ * \brief  GedaMenuButton (Main) Button "clicked" Signal Emitter.
+ * \par Function Description
+ *  This function requests the "clicked" signal be emitted from the Widget.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 void geda_menu_button_clicked (GedaMenuButton *button)
 {
@@ -606,14 +615,14 @@ void geda_menu_button_clicked (GedaMenuButton *button)
   g_signal_emit (button, signals[CLICKED], 0);
 }
 
-/*! \brief  GedaMenuButton "enter" Signal Emitter.
- *  \par Function Description
- *   This function requests the "enter" signal be emitted from
- *   the Widget, which occurs when the mouse enters the widget's
- *   boundaries.
+/*!
+ * \brief  GedaMenuButton "enter" Signal Emitter.
+ * \par Function Description
+ *  This function requests the "enter" signal be emitted from
+ *  the Widget, which occurs when the mouse enters the widget's
+ *  boundaries.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 void geda_menu_button_enter (GedaMenuButton *button)
 {
@@ -622,14 +631,14 @@ void geda_menu_button_enter (GedaMenuButton *button)
   g_signal_emit (button, signals[ENTER], 0);
 }
 
-/*! \brief  GedaMenuButton "leave" Signal Emitter.
- *  \par Function Description
+/*!
+ * \brief  GedaMenuButton "leave" Signal Emitter.
+ * \par Function Description
  *   This function requests the "leave" signal be emitted from
  *   the Widget, which occurs when the mouse leaves the widget's
  *   boundaries.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 void geda_menu_button_leave (GedaMenuButton *button)
 {
@@ -642,12 +651,12 @@ void geda_menu_button_leave (GedaMenuButton *button)
 
 /* BEGIN ------+-------+------- Signal Handlers -------+-------+-------+-----*/
 
-/*! \brief  GedaMenuButton Update State Signal Handler.
- *  \par Function Description
- *   This function updates the visual appearance of the button.
+/*!
+ * \brief  GedaMenuButton Update State Signal Handler.
+ * \par Function Description
+ *  This function updates the visual appearance of the button.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 static void
 geda_menu_button_update_state (GedaMenuButton *button)
@@ -668,16 +677,16 @@ geda_menu_button_update_state (GedaMenuButton *button)
   gtk_widget_set_state (GTK_WIDGET (button), new_state);
 }
 
-/*! \brief  GedaMenuButton Process the "clicked" Signal internally.
- *  \par Function Description
+/*!
+ * \brief  GedaMenuButton Process the "clicked" Signal internally.
+ * \par Function Description
  *   This function is called with the "clicked" is received
  *   from the button. The function check and executes the action
  *   if an action exist.
  *
  *  TODO: Add action property handler?
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 static void
 geda_menu_button_button_clicked (GedaMenuButton *button)
@@ -689,14 +698,14 @@ geda_menu_button_button_clicked (GedaMenuButton *button)
   }
 }
 
-/*! \brief  GedaMenuButton Process the "pressed" Signal internally.
- *  \par Function Description
- *   This function is called with the "pressed" signal is received
- *   from the button to update the visual appearance if the "down
- *   time" has expired.
+/*!
+ * \brief  GedaMenuButton Process the "pressed" Signal internally.
+ * \par Function Description
+ *  This function is called with the "pressed" signal is received
+ *  from the button to update the visual appearance if the "down
+ *  time" has expired.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 static void
 geda_menu_button_button_pressed (GedaMenuButton *button)
@@ -709,14 +718,14 @@ geda_menu_button_button_pressed (GedaMenuButton *button)
   geda_menu_button_update_state (button);
 }
 
-/*! \brief  GedaMenuButton Process the "released" Signal internally.
- *  \par Function Description
- *   This function is called with the "released" signal is received
- *   from the button to generate the "clicked" signal and to update
- *   the visual appearance if the "down time" has expired.
+/*!
+ * \brief  GedaMenuButton Process the "released" Signal internally.
+ * \par Function Description
+ *  This function is called with the "released" signal is received
+ *  from the button to generate the "clicked" signal and to update
+ *  the visual appearance if the "down time" has expired.
  *
- * \param [in] button:       a GedaMenuButton
- *
+ * \param [in] button a GedaMenuButton
  */
 static void
 geda_menu_button_button_released (GedaMenuButton *button)
@@ -987,14 +996,14 @@ geda_menu_button_destroy (GtkObject *object)
 
 /* BEGIN ------+-------+-------^ Constructors  ^-------+-------+-------+-----*/
 
-/*! \brief Type instance initializer for GedaMenuButton
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaMenuButton
+ * \par Function Description
  *  Type instance initializer for GedaMenuButton, initializes a new empty
  *  GedaMenuButton object.
  *
- *  \param [in] instance The GedaMenuButton structure being initialized,
- *  \param [in] class    The GedaMenuButton class we are initializing.
+ * \param [in] instance The GedaMenuButton structure being initialized,
+ * \param [in] class    The GedaMenuButton class we are initializing.
  */
 static void
 geda_menu_button_init (GTypeInstance *instance, void *class)
@@ -1049,9 +1058,9 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
 
 /* BEGIN ------+-------+-------  Initialization -------+-------+-------+-----*/
 
-/*! \brief GedaMenuButton Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaMenuButton Class Initializer
+ * \par Function Description
  *  Function is called to initialize the class instance.
  *
  * \param [in] class    A GedaMenuButtonClass Object
@@ -1481,11 +1490,11 @@ geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
 /*!
  * \brief Set the Menu Widget for GedaMenuButton object
  * \par Function Description
- * Sets the GedaMenu that is popped up when the user clicks on the arrow.
- * If menu is NULL, the arrow button becomes insensitive.
+ *  Sets the GedaMenu that is popped up when the user clicks on the arrow.
+ *  If menu is NULL, the arrow button becomes insensitive.
  *
- * \param [in] button: a #GedaMenuButton
- * \param [in] menu:   the GedaMenu associated with #GedaMenuButton
+ * \param [in] button a #GedaMenuButton
+ * \param [in] menu   the GedaMenu associated with #GedaMenuButton
  */
 void
 geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
@@ -1530,17 +1539,15 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
   g_object_notify (G_OBJECT (button), "menu");
 }
 
-/*! \brief Get the Menu Widget for GedaMenuButton object
+/*!
+ * \brief Get the Menu Widget for GedaMenuButton object
+ * \par Function Description
+ *  Gets the GedaMenu associated with #GedaMenuButton.
  *
- *  \par Function Description
+ * \param [in] button a #GedaMenuButton
  *
- * Gets the GedaMenu associated with #GedaMenuButton.
- *
- *  \param [in] button: a #GedaMenuButton
- *
- * Return value: the GedaMenu associated with #GedaMenuButton
- *
- **/
+ * \returns the GedaMenu associated with #GedaMenuButton
+ */
 GtkWidget *geda_menu_button_get_menu (GedaMenuButton *button)
 {
   g_return_val_if_fail (GEDA_IS_MENU_BUTTON (button), NULL);
