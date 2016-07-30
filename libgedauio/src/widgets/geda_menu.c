@@ -505,15 +505,27 @@ geda_menu_window_event (GtkWidget *window, GdkEvent *event, GtkWidget *menu)
   g_object_ref (window);
   g_object_ref (menu);
 
-  switch (event->type)
-    {
+  switch (event->type) {
+
     case GDK_KEY_PRESS:
     case GDK_KEY_RELEASE:
       handled = gtk_widget_event (menu, event);
       break;
+
+    case GDK_WINDOW_STATE:
+      /* Window for the menu has been closed by the display server or by GDK.
+       * Update the internal state as if the user had clicked outside the
+       * menu
+       */
+      if (event->window_state.new_window_state & GDK_WINDOW_STATE_WITHDRAWN &&
+          event->window_state.changed_mask & GDK_WINDOW_STATE_WITHDRAWN)
+      {
+        geda_menu_shell_deactivate (GEDA_MENU_SHELL(menu));
+      }
+      break;
     default:
       break;
-    }
+  }
 
   g_object_unref (window);
   g_object_unref (menu);
@@ -524,7 +536,7 @@ geda_menu_window_event (GtkWidget *window, GdkEvent *event, GtkWidget *menu)
 static void
 geda_menu_window_size_request (GtkWidget      *window,
                                GtkRequisition *requisition,
-                               GedaMenu        *menu)
+                               GedaMenu       *menu)
 {
   GedaMenuPriv *private = menu->priv;
 

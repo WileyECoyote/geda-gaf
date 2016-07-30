@@ -1,5 +1,8 @@
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Add case GDK_WINDOW_STATE in geda_menu_
+      window_event to handle Gdk window state changes.
+
     * src/widgets/geda_tearoff_menu_item.c: Add signal TORN_OFF and emit in
       tearoff_state_changed.
 
