@@ -93,32 +93,33 @@ typedef void (*MenuDetachFunc) (GtkWidget *attach_widget, GedaMenu *menu);
 
 struct _GedaMenu
 {
-  GedaMenuShell  menu_shell;
-  GedaType       instance_type;
+  GedaMenuShell     menu_shell;
+  GedaType          instance_type;
 
-  GtkAccelGroup *accel_group;
-  char          *accel_path;
+  GtkAccelGroup    *accel_group;
+  char             *accel_path;
 
   MenuPositionFunc  position_func;
   void             *position_func_data;
 
-  GtkWidget *parent_menu_item;
-  GtkWidget *old_active_menu_item;
+  GtkWidget        *parent_menu_item;
+  GtkWidget        *old_active_menu_item;
 
-  unsigned int toggle_size;
+  unsigned int      toggle_size;
+
   /* Do _not_ touch these widgets directly. We hide the reference
    * count from the toplevel to the menu, so it must be restored
    * before operating on these widgets
    */
-  GtkWidget *toplevel;
+  GtkWidget     *toplevel;
 
-  GtkWidget *tearoff_window;
-  GtkWidget *tearoff_hbox;
-  GtkWidget *tearoff_scrollbar;
+  GtkWidget     *tearoff_window;
+  GtkWidget     *tearoff_hbox;
+  GtkWidget     *tearoff_scrollbar;
   GtkAdjustment *tearoff_adjustment;
 
-  GdkWindow *view_window;
-  GdkWindow *bin_window;
+  GdkWindow     *view_window;
+  GdkWindow     *bin_window;
 
   int scroll_offset;
   int saved_scroll_offset;
@@ -129,23 +130,23 @@ struct _GedaMenu
   /* When a submenu of this menu is popped up, motion in this
    * region is ignored
    */
-  GdkRegion *navigation_region; /* unused */
-  unsigned int navigation_timeout;
+  GdkRegion    *navigation_region; /* unused */
+  unsigned int  navigation_timeout;
 
-  unsigned int needs_destruction_ref_count : 1;
-  unsigned int torn_off : 1;
+  unsigned int  needs_destruction_ref_count : 1;
+  unsigned int  torn_off : 1;
 
   /* The tearoff is active when it is torn off and the not-torn-off
    * menu is not popped up.
    */
-  unsigned int tearoff_active : 1;
+  unsigned int  tearoff_active : 1;
 
-  unsigned int scroll_fast : 1;
+  unsigned int  scroll_fast : 1;
 
-  unsigned int upper_arrow_visible  : 1;
-  unsigned int lower_arrow_visible  : 1;
-  unsigned int upper_arrow_prelight : 1;
-  unsigned int lower_arrow_prelight : 1;
+  unsigned int  upper_arrow_visible  : 1;
+  unsigned int  lower_arrow_visible  : 1;
+  unsigned int  upper_arrow_prelight : 1;
+  unsigned int  lower_arrow_prelight : 1;
 
   /*< private >*/
   GedaMenuPriv *priv;

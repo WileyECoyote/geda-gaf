@@ -69,7 +69,7 @@ struct _GedaRadioMenuItemClass
 extern "C" {
 #endif
 
-GedaType   geda_radio_menu_item_get_type	              (void) GEDA_CONST;
+GedaType   geda_radio_menu_item_get_type                      (void) GEDA_CONST;
 bool       is_a_geda_radio_menu_item                          (GedaRadioMenuItem  *radio_menu_item);
 
 GtkWidget *geda_radio_menu_item_new                           (GSList             *group);

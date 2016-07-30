@@ -91,26 +91,26 @@ struct _GedaMenuButtonClass
 extern "C" {
 #endif
 
-GedaType        geda_menu_button_get_type       (void) GEDA_CONST;
-bool            is_a_geda_menu_button           (GedaMenuButton *menu_button);
+GedaType        geda_menu_button_get_type             (void) GEDA_CONST;
+bool            is_a_geda_menu_button                 (GedaMenuButton *menu_button);
 
-GedaMenuButton *geda_menu_button_new            (GtkWidget      *icon_widget,
-                                                 const char     *label);
-GedaMenuButton *geda_menu_button_new_from_stock (const char     *stock_id);
-GedaMenuButton *geda_menu_button_new_with_mnemonic (const char  *label);
+GedaMenuButton *geda_menu_button_new                  (GtkWidget      *icon_widget,
+                                                       const char     *label);
+GedaMenuButton *geda_menu_button_new_from_stock       (const char     *stock_id);
+GedaMenuButton *geda_menu_button_new_with_mnemonic       (const char  *label);
 
-void            geda_menu_button_set_style      (GedaMenuButton *button,
-                                                 GtkStyle       *new_style);
-void            geda_menu_button_set_relief     (GedaMenuButton *button,
-                                                 GtkReliefStyle  newstyle);
-GtkReliefStyle  geda_menu_button_get_relief     (GedaMenuButton *button);
-void            geda_menu_arrow_set_relief      (GedaMenuButton *button,
-                                                 GtkReliefStyle  newstyle);
-GtkReliefStyle  geda_menu_arrow_get_relief      (GedaMenuButton *button);
+void            geda_menu_button_set_style            (GedaMenuButton *button,
+                                                       GtkStyle       *new_style);
+void            geda_menu_button_set_relief           (GedaMenuButton *button,
+                                                       GtkReliefStyle  newstyle);
+GtkReliefStyle  geda_menu_button_get_relief           (GedaMenuButton *button);
+void            geda_menu_arrow_set_relief            (GedaMenuButton *button,
+                                                       GtkReliefStyle  newstyle);
+GtkReliefStyle  geda_menu_arrow_get_relief            (GedaMenuButton *button);
 
-void            geda_menu_button_set_label      (GedaMenuButton *button,
-                                                 const char     *label);
-const char*     geda_menu_button_get_label      (GedaMenuButton *button);
+void            geda_menu_button_set_label            (GedaMenuButton *button,
+                                                       const char     *label);
+const char*     geda_menu_button_get_label            (GedaMenuButton *button);
 
 void            geda_menu_button_set_use_underline     (GedaMenuButton *button,
                                                        bool      use_underline);
