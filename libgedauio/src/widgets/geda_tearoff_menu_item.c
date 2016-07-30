@@ -69,6 +69,11 @@
 #define TEAR_LENGTH 5
 #define BORDER_SPACING  3
 
+enum {
+  TORN_OFF,
+  LAST_SIGNAL
+};
+
 struct _GedaTearoffMenuItemData
 {
   unsigned int torn_off : 1;
@@ -97,6 +102,8 @@ static void geda_tearoff_menu_item_activate             (GedaMenuItem   *menu_it
 static void geda_tearoff_menu_item_parent_set           (GtkWidget      *widget,
                                                          GtkWidget      *previous);
 
+static unsigned int  geda_tearoff_signals[ LAST_SIGNAL ] = { 0 };
+
 G_DEFINE_TYPE (GedaTearoffMenuItem, geda_tearoff_menu_item, GEDA_TYPE_MENU_ITEM)
 
 /*!
@@ -115,11 +122,11 @@ geda_tearoff_menu_item_new (void)
 static void
 geda_tearoff_menu_item_class_init (GedaTearoffMenuItemClass *klass)
 {
-  GtkWidgetClass *widget_class;
+  GtkWidgetClass    *widget_class;
   GedaMenuItemClass *menu_item_class;
 
-  widget_class    = (GtkWidgetClass*) klass;
-  menu_item_class = (GedaMenuItemClass*) klass;
+  widget_class    = (GtkWidgetClass*)klass;
+  menu_item_class = (GedaMenuItemClass*)klass;
 
 #if GTK_MAJOR_VERSION < 3
   widget_class->expose_event = geda_tearoff_menu_item_expose;
@@ -138,6 +145,16 @@ geda_tearoff_menu_item_class_init (GedaTearoffMenuItemClass *klass)
   widget_class->parent_set           = geda_tearoff_menu_item_parent_set;
 
   menu_item_class->activate = geda_tearoff_menu_item_activate;
+
+  geda_tearoff_signals[ TORN_OFF ] = g_signal_new ("torn-off",
+                                       G_OBJECT_CLASS_TYPE(klass),
+                                       0     /*signal_flags */,
+                                       0     /*class_offset */,
+                                       NULL, /* accumulator */
+                                       NULL, /* accu_data */
+                                       g_cclosure_marshal_VOID__VOID,
+                                       G_TYPE_NONE,
+                                       0);   /* n_params */
 }
 
 static void
@@ -462,6 +479,10 @@ tearoff_state_changed (GedaMenu *menu, GParamSpec *pspec, void *data)
   GedaTearoffMenuItemData *priv              = tearoff_menu_item->priv;
 
   priv->torn_off = geda_menu_get_tearoff_state (menu);
+
+  if (priv->torn_off) {
+    g_signal_emit(tearoff_menu_item, geda_tearoff_signals[ TORN_OFF ], 0);
+  }
 }
 
 static void

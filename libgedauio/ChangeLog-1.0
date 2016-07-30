@@ -1,3 +1,8 @@
+2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_tearoff_menu_item.c: Add signal TORN_OFF and emit in
+      tearoff_state_changed.
+
 2016-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_item.h: Define MENU_POPUP_TIME_KEY for key string
