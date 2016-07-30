@@ -1,5 +1,9 @@
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/src/x/x_menus.c: Connect to "torn-off" signal in x_menu_setup_ui
+      for item on the bar and add callback x_menu_torn to set focus to the
+      canvas a menu is torn off.
+
     * src/x/x_window.c: Remove gtk_widget_grab_focus from x_window_create_
       drawing_area.
 

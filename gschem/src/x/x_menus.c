@@ -239,6 +239,12 @@ static void x_menu_main_popup_execute(GtkObject *widget, int action_id)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_MOUSE);
 }
 
+static void x_menu_torn(GedaMenuItem *menu_item, void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+  gtk_widget_grab_focus (w_current->drawing_area);
+}
+
 static void x_menu_path_popup_execute(GtkObject *widget, int action_id)
 {
   GschemToplevel *w_current;
@@ -723,6 +729,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item = geda_tearoff_menu_item_new ();
     gtk_container_add (GTK_CONTAINER (menu), menu_item);
     g_object_set (menu_item, "visible", TRUE, NULL);
+
+    g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn),
+                                            w_current);
 
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);
