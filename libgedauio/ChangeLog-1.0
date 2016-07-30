@@ -7,6 +7,8 @@
             * geda_menu_attach_to_widget
             * geda_menu_detach
 
+    * src/widgets/geda_menu_item.c: Add function geda_menu_item_hide_all.
+
     * src/widgets/geda_tearoff_menu_item.c: Add signal TORN_OFF and emit in
       tearoff_state_changed.
 

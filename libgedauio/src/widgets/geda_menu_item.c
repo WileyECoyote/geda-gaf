@@ -180,6 +180,7 @@ static void geda_menu_item_position_menu             (GedaMenu          *menu,
                                                       bool             *push_in,
                                                       void             *user_data);
 static void geda_menu_item_show_all                  (GtkWidget        *widget);
+static void geda_menu_item_hide_all                  (GtkWidget        *widget);
 static void geda_menu_item_forall                    (GtkContainer     *container,
                                                       bool              include_internals,
                                                       GtkCallback       callback,
@@ -485,6 +486,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
   widget_class->enter_notify_event = geda_menu_item_enter;
   widget_class->leave_notify_event = geda_menu_item_leave;
   widget_class->show_all           = geda_menu_item_show_all;
+  widget_class->hide_all           = geda_menu_item_hide_all;
   widget_class->mnemonic_activate  = geda_menu_item_mnemonic_activate;
   widget_class->parent_set         = geda_menu_item_parent_set;
   widget_class->can_activate_accel = geda_menu_item_can_activate_accel;
@@ -3248,6 +3250,22 @@ geda_menu_item_show_all (GtkWidget *widget)
   gtk_container_foreach (GTK_CONTAINER(widget), (GtkCallback) gtk_widget_show_all, NULL);
 
   gtk_widget_show (widget);
+}
+
+static void
+geda_menu_item_hide_all (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  gtk_widget_hide (widget);
+
+  /* hide children including submenu */
+  gtk_container_foreach (GTK_CONTAINER (widget), (GtkCallback)gtk_widget_hide_all, NULL);
+
+  if (priv->submenu) {
+    gtk_widget_hide_all (priv->submenu);
+  }
 }
 
 static bool
