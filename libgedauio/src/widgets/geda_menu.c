@@ -1361,6 +1361,23 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
     }
 }
 
+ /*!
+ * \brief Attach a GedaMenu to a Widget
+ * \par Function Description
+ * Attaches the menu to the widget and provides a callback function
+ * that will be invoked when the menu calls gtk_menu_detach() during
+ * its destruction.
+ *
+ * If the menu is attached to the widget then it will be destroyed
+ * when the widget is destroyed, as if it was a child widget.
+ * An attached menu will also move between screens correctly if the
+ * widgets moves between screens.
+ *
+ * \param[in] menu          Pointer #GedaMenu object
+ * \param[in] attach_widget A #GtkWidget the menu will be attached to
+ * \param[in] detacher      User function called when the menu calls
+ *                          is detached
+ */
 void
 geda_menu_attach_to_widget (GedaMenu       *menu,
                             GtkWidget      *attach_widget,
@@ -1388,7 +1405,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
   data->attach_widget = attach_widget;
 
   g_signal_connect (attach_widget, "screen-changed",
-            G_CALLBACK (attach_widget_screen_changed), menu);
+                    G_CALLBACK (attach_widget_screen_changed), menu);
 
   attach_widget_screen_changed (attach_widget, NULL, menu);
 
@@ -1442,6 +1459,15 @@ geda_menu_get_attach_widget (GedaMenu *menu)
   return NULL;
 }
 
+/*!
+ * \brief Detach a GedaMenu from a Widget
+ * \par Function Description
+ * Detaches the menu from the widget to which it had been attached.
+ * This function will call the callback function, @detacher, provided
+ * when the gtk_menu_attach_to_widget() function was called.
+ *
+ * \param[in] menu: a #GedaMenu
+ */
 void
 geda_menu_detach (GedaMenu *menu)
 {
