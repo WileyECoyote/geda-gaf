@@ -9,6 +9,9 @@
 
     * src/widgets/geda_menu_item.c: Add function geda_menu_item_hide_all.
 
+    * src/widgets/geda_menu_shell.c: Add function geda_menu_shell_get_selected
+      _item, which was already declared in the header.
+
     * src/widgets/geda_tearoff_menu_item.c: Add signal TORN_OFF and emit in
       tearoff_state_changed.
 

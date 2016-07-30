@@ -1808,6 +1808,23 @@ geda_menu_shell_get_popup_delay (GedaMenuShell *menu_shell)
 }
 
 /*!
+ * \brief Retrieve Selected Item from a GedaMenuShell
+ * \par Function Description
+ *  Gets the currently selected item.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ *
+ * \returns the selected menu item or NULL if no item is active
+ */
+GtkWidget*
+geda_menu_shell_get_selected_item (GedaMenuShell *menu_shell)
+{
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+
+  return menu_shell->active_menu_item;
+}
+
+/*!
  * \brief Cancel GedaMenuShell selection
  * \par Function Description
  * Cancels the selection within the menu shell.
