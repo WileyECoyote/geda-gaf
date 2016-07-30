@@ -3,6 +3,13 @@
     * src/widgets/geda_tearoff_menu_item.c: Add signal TORN_OFF and emit in
       tearoff_state_changed.
 
+    * tests/test_menu_shell.c: Include "test-suite.h" and setup setjmp and
+      longjmp, define MUT., add main_window and function/group check accessors
+      and checks for functions:
+
+            * geda_menu_shell_get_take_focus
+            * geda_menu_shell_set_take_focus
+
 2016-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_item.h: Define MENU_POPUP_TIME_KEY for key string
@@ -152,7 +159,7 @@
       longjmp, define MUT.
 
     * tests/test_menu_bar.c: Include "test-suite.h" and setup setjmp and
-      longjmp, define MUT., add function/group check accessors and check
+      longjmp, define MUT., add function/group check accessors and checks
       for functions:
 
             * geda_menu_bar_get_pack_direction
