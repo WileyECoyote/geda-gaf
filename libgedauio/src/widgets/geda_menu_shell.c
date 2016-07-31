@@ -18,12 +18,39 @@
  */
 
 /*! \file geda_menu_shell.c
- *  \brief GedaMenuShell Class Module
+ *  \brief Implmentation of GedaMenuShell Class
  */
 
 /** \defgroup geda-menu-shell GedaMenuShell Object
  * @{
- * \brief Implmentation of GedaMenuShell Class
+ * \brief A base class for menu objects
+ * A #GedaMenuShell is an abstract base class used to derive the
+ * #GtkMenu and #GtkMenuBar subclasses.
+ *
+ * A GedaMenuShell is a container of #GedaMenuItem objects arranged
+ * in a list which can be navigated, selected, and activated by the
+ * user to perform application functions. A #GedaMenuItem can have a
+ * submenu associated with it, allowing for nested hierarchical menus.
+ *
+ * # Terminology
+ *
+ * A menu item can be "selected", this means that it is displayed
+ * in the prelight state, and if it has a submenu, that submenu
+ * will be popped up.
+ *
+ * A menu is "active" when it is visible onscreen and the user is
+ * selecting a menu item. A menubar is not active until the user
+ * clicks on one of its menuitems. When a menu is active, passing
+ * the mouse over a submenu will pop it up.
+ *
+ * There is also is a concept of the current menu and a current
+ * menu item. The current menu item is the selected menu item
+ * that is furthest down in the hierarchy. Every active menu shell
+ * does not necessarily contain a selected menu item, but if the
+ * menu shell does, then the parent menu shell must also contain
+ * a selected menu item. The current menu is the menu that contains
+ * the current menu item. The current menu always have a GTK grab
+ * and receives all key presses.
  *
  * \class GedaMenuShell geda_menu_shell.h "include/geda_menu_shell.h"
  * \implements GtkContainer
@@ -63,31 +90,7 @@
      ? geda_menu_bar_get_pack_direction (GEDA_MENU_BAR (m)) \
      : PACK_DIRECTION_LTR)
 
-/* Terminology:
- *
- * A menu item can be "selected", this means that it is displayed
- * in the prelight state, and if it has a submenu, that submenu
- * will be popped up.
- *
- * A menu is "active" when it is visible onscreen and the user
- * is selecting from it. A menubar is not active until the user
- * clicks on one of its menuitems. When a menu is active,
- * passing the mouse over a submenu will pop it up.
- *
- * menu_shell->active_menu_item, is however, not an "active"
- * menu item (there is no such thing) but rather, the selected
- * menu item in that MenuShell, if there is one.
- *
- * There is also is a concept of the current menu and a current
- * menu item. The current menu item is the selected menu item
- * that is furthest down in the hierarchy. (Every active menu_shell
- * does not necessarily contain a selected menu item, but if
- * it does, then menu_shell->parent_menu_shell must also contain
- * a selected menu item. The current menu is the menu that
- * contains the current menu_item. It will always have a GTK
- * grab and receive all key presses.
- *
- * Action signals:
+/* Action signals:
  *
  *  ::move_current (MenuDirection *dir)
  *     Moves the current menu item in direction 'dir':
@@ -109,13 +112,13 @@
  *
  *    Note that the above explanation of ::move_current was written
  *    before menus and menubars had support for RTL flipping and
- *    different packing directions, and therefore only applies for
- *    when text direction and packing direction are both left-to-right.
+ *    different packing directions, and therefore only applies when
+ *    text direction and packing direction are both left-to-right.
  *
  *  ::activate_current (GBoolean *force_hide)
  *     Activate the current item. If 'force_hide' is true, hide
  *     the current menu item always. Otherwise, only hide
- *     it if menu_item->class->hide_on_activate is true.
+ *     the item if menu_item->class->hide_on_activate is true.
  *
  *  ::cancel ()
  *     Cancels the current selection
@@ -710,8 +713,8 @@ geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *event)
 
   if (menu_shell->have_xgrab && event->grab_window == NULL) {
 
-      /* Unset the active menu item so geda_menu_popdown() doesn't see it.
-       */
+    /* Unset the active menu item so geda_menu_popdown() does not
+     * see the item */
 
     geda_menu_shell_deselect (menu_shell);
 

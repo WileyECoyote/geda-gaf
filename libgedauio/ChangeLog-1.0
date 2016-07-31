@@ -4,6 +4,8 @@
       to the parent before calling geda_menu_popdown so nested menus popdown
       properly.
 
+    * src/widgets/geda_menu_shell.c: Add/revise/edit Doxygen comments.
+
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add case GDK_WINDOW_STATE in geda_menu_
