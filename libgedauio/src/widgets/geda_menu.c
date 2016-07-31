@@ -1504,7 +1504,6 @@ geda_menu_detach (GedaMenu *menu)
   g_signal_handlers_disconnect_by_func (data->attach_widget,
                                        (void*)attach_widget_screen_changed,
                                         menu);
-
   if (data->detacher) {
     data->detacher (data->attach_widget, menu);
   }
@@ -1684,13 +1683,13 @@ popup_grab_on_window (GdkWindow *window,
  * Only if no such event is available, gtk_get_current_event_time() can
  * be used instead.
  *
- * \param[in] menu: a #GedaMenu.
- * \param[in] parent_menu_shell: (allow-none): the menu shell containing the triggering menu item, or %NULL
- * \param[in] parent_menu_item: (allow-none): the menu item whose activation triggered the popup, or %NULL
- * \param[in] func: (allow-none): a user supplied function used to position the menu, or %NULL
- * \param[in] data: (allow-none): user supplied data to be passed to \a func.
- * \param[in] button: the mouse button which was pressed to initiate the event.
- * \param[in] activate_time: the time at which the activation event occurred.
+ * \param[in] menu              Pointer to a #GedaMenu.
+ * \param[in] parent_menu_shell the menu shell containing the triggering menu item, or %NULL
+ * \param[in] parent_menu_item  the menu item whose activation triggered the popup, or %NULL
+ * \param[in] func              a user supplied function used to position the menu, or %NULL
+ * \param[in] data              user supplied data to be passed to \a func.
+ * \param[in] button            the mouse button which was pressed to initiate the event.
+ * \param[in] activate_time     the time at which the activation event occurred.
  */
 void
 geda_menu_popup (GedaMenu         *menu,
@@ -1754,7 +1753,7 @@ geda_menu_popup (GedaMenu         *menu,
    * If we are grabbing on a parent menu shell, no problem; just grab on
    * that menu shell first before popping up the window with owner_events = TRUE.
    *
-   * When grabbing on the menu itself, things get more convuluted - we
+   * When grabbing on the menu itself, things get more convuluted;
    * we do an explicit grab on a specially created window with
    * owner_events = TRUE, which we override further down with a grab
    * on the menu. (We can't grab on the menu until it is mapped; we

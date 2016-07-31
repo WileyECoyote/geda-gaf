@@ -31,7 +31,7 @@
  * As a GedaMenuItem derives from #GtkBin it can hold any valid child widget,
  * although only a few are really useful.
  *
- * By default, a GedaMenuItem sets a #GtkAccelLabel as its child.
+ * By default, a GedaMenuItem sets a #GedaAccelLabel as its child.
  * GedaMenuItem has direct functions to set the label and its mnemonic.
  * For more advanced label settings, you can fetch the child widget from the GtkBin.
  *
@@ -1215,7 +1215,7 @@ geda_menu_item_new (void)
 }
 
 /*!
- * \brief geda_menu_item_new_with_label
+ * \brief Creates a new GedaMenuItem with label
  * \par Function Description
  *  Creates a new #GedaMenuItem whose child is a #GedaLabel.
  *
@@ -1231,10 +1231,9 @@ geda_menu_item_new_with_label (const char *label)
 
 
 /*!
- * \brief geda_menu_item_new_with_mnemonic:
+ * \brief Creates a new GedaMenuItem with mnemonic
  * \par Function Description
- *  Creates a new #GedaMenuItem containing a label.
- *
+ *  Creates a new #GedaMenuItem containing a mnemonic label.
  *  The label will be created using geda_label_new_with_mnemonic(),
  *  so underscores in \a label indicate the mnemonic for the menu item.
  *

@@ -48,7 +48,11 @@ void geda_tree_copy_iter(GtkTreeIter *source, GtkTreeIter *target)
   return;
 }
 
-/* Why was this not already included in <gtktreemodel.c> ? */
+/*! \brief Get the Previous item in a Tree Model
+ *  \par Function Description
+ *
+ * \remark Probably should have been included in gtktreemodel.c
+ */
 bool geda_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
     GtkTreePath *path;

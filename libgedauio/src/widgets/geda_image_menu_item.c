@@ -979,9 +979,8 @@ geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
  * Use this property if the menuitem would be useless or hard to use
  * without the image.
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem
- * \param [in] always_show:     desired state
- *
+ * \param [in] image_menu_item  a #GedaImageMenuItem
+ * \param [in] always_show      desired state
  */
 void
 geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
@@ -1011,7 +1010,7 @@ geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
  *
  * \param [in] image_menu_item: a #GedaImageMenuItem
  *
- * \returns: %TRUE if the menu item will always show the image
+ * \retval %TRUE if the menu item will always show the image
  *
  */
 bool
@@ -1035,8 +1034,8 @@ geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  * If you want this menu item to have changeable accelerators then
  * you shouldnt need this (see geda_image_menu_item_new_from_stock()).
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem
- * \param [in] accel_group:     the GtkAccelGroup
+ * \param [in] image_menu_item a #GedaImageMenuItem
+ * \param [in] accel_group     the GtkAccelGroup
  *
  */
 void
@@ -1116,7 +1115,7 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
  *  \ingroup GedaImageMenuItem
  *  \par Function Description
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem
+ * \param [in] image_menu_item a #GedaImageMenuItem
  *
  * Gets the widget that is currently set as the image of
  * image_menu_item.
