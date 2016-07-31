@@ -1015,7 +1015,8 @@ geda_attrib_object_search_object_string (const GedaObject *object,
                                          const char       *text,
                                          int               exact)
 {
-  g_return_val_if_fail (text != (NULL) || *text != 0, (NULL));
+  g_return_val_if_fail (text != (NULL), (NULL));
+  g_return_val_if_fail (*text != 0, (NULL));
 
   if (GEDA_IS_OBJECT(object)) {
 
