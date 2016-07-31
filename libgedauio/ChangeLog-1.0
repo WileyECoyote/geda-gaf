@@ -4,7 +4,9 @@
       to the parent before calling geda_menu_popdown so nested menus popdown
       properly.
 
-    * src/widgets/geda_menu_shell.c: Add/revise/edit Doxygen comments.
+    * src/widgets/geda_menu_shell.c: Add function geda_menu_shell_dispose to
+      insure parent shells deactivate while in destruction. Add/revise/edit
+      Doxygen comments.
 
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 

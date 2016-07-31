@@ -162,6 +162,7 @@ static void geda_menu_shell_get_property      (GObject           *object,
                                                GValue            *value,
                                                GParamSpec        *pspec);
 static void geda_menu_shell_realize           (GtkWidget         *widget);
+static void geda_menu_shell_dispose           (GObject           *object);
 static void geda_menu_shell_finalize          (GObject           *object);
 static int  geda_menu_shell_button_press      (GtkWidget         *widget,
                                                GdkEventButton    *event);
@@ -263,6 +264,16 @@ geda_menu_shell_get_property (GObject      *object,
 }
 
 static void
+geda_menu_shell_dispose (GObject *object)
+{
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
+
+  geda_menu_shell_deactivate (menu_shell);
+
+  G_OBJECT_CLASS (geda_menu_shell_parent_class)->dispose (object);
+}
+
+static void
 geda_menu_shell_finalize (GObject *object)
 {
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
@@ -305,6 +316,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
 
   object_class->set_property = geda_menu_shell_set_property;
   object_class->get_property = geda_menu_shell_get_property;
+  object_class->dispose      = geda_menu_shell_dispose;
   object_class->finalize     = geda_menu_shell_finalize;
 
   widget_class->realize              = geda_menu_shell_realize;
