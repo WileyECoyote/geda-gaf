@@ -56,7 +56,7 @@ refdes=Q?
 T 900 500 5 10 1 1 0 0 1
 value=COMPONENT_VALUE
 T 900 300 9 10 1 1 0 0 1
-footprint=unknown
+footprint=TO-92
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 575,225
 L 500,250

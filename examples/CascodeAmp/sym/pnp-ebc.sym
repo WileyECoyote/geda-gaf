@@ -56,7 +56,7 @@ refdes=Q?
 T 900 500 9 10 1 1 0 0 1
 value=2N5087
 T 900 300 5 10 0 1 0 0 1
-footprints=TO-92
+footprint=TO-92
 T 900 100 5 10 0 0 0 0 1
 model-name=2N5087
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
