@@ -1,8 +1,12 @@
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * CascodeAmp/Makefile.am: Enable tests and regenerate outputs.
+
     * CascodeAmp/sym/npn-ebc.sym: footprint=unknown->footprint=TO-92.
 
     * CascodeAmp/sym/pnp-ebc.sym: footprints=TO-92->footprint=TO-92.
+
+    * CascodeAmp/tests/runtest.sh: Add test script; use partlist2.
 
 2016-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
