@@ -164,8 +164,8 @@ activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *act
   image = geda_image_menu_item_get_image (image_menu_item);
 
   if (GTK_IS_IMAGE (image) &&
-    (gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_EMPTY ||
-    gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_ICON_NAME))
+     (gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_EMPTY ||
+      gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_ICON_NAME))
   {
     gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, GTK_ICON_SIZE_MENU);
   }
@@ -271,20 +271,24 @@ geda_image_menu_item_set_property (GObject       *object,
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (object);
 
-  switch (property)
-    {
+  switch (property) {
+
     case PROP_IMAGE:
       geda_image_menu_item_set_image (image_menu_item, (GtkWidget*)g_value_get_object (value));
       break;
+
     case PROP_USE_STOCK:
       geda_image_menu_item_set_use_stock (image_menu_item, g_value_get_boolean (value));
       break;
+
     case PROP_SHOW_IMAGE:
       geda_image_menu_item_set_show_image (image_menu_item, g_value_get_boolean (value));
       break;
+
     case PROP_ACCEL_GROUP:
       geda_image_menu_item_set_accel_group (image_menu_item, g_value_get_object (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property, pspec);
       break;
@@ -310,21 +314,24 @@ geda_image_menu_item_get_property (GObject      *object,
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (object);
 
-  switch (property)
-    {
+  switch (property) {
+
     case PROP_IMAGE:
       g_value_set_object (value, geda_image_menu_item_get_image (image_menu_item));
       break;
+
     case PROP_USE_STOCK:
       g_value_set_boolean (value, geda_image_menu_item_get_use_stock (image_menu_item));
       break;
+
     case PROP_SHOW_IMAGE:
       g_value_set_boolean (value, geda_image_menu_item_get_show_image (image_menu_item));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property, pspec);
       break;
-    }
+  }
 }
 
 /*! \brief GedaImageMenuItem Object finalize handler

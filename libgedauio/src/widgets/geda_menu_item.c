@@ -1268,8 +1268,7 @@ geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
  * \param [in] submenu   the submenu, or %NULL
  */
 void
-geda_menu_item_set_submenu (GedaMenuItem *menu_item,
-                            GtkWidget    *submenu)
+geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 

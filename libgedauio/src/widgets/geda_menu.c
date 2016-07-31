@@ -379,8 +379,8 @@ menu_ensure_layout (GedaMenu *menu)
     max_right_attach = 1;
     max_bottom_attach = 0;
 
-    for (iter = menu_shell->children; iter; iter = iter->next)
-    {
+    for (iter = menu_shell->children; iter; iter = iter->next) {
+
       GtkWidget  *child = iter->data;
       AttachInfo *info  = get_attach_info (child);
 
@@ -584,10 +584,12 @@ geda_menu_set_property (GObject      *object,
       GtkWidget *widget;
 
       widget = geda_menu_get_attach_widget (menu);
+
       if (widget)
         geda_menu_detach (menu);
 
-      widget = (GtkWidget*) g_value_get_object (value);
+      widget = (GtkWidget*)g_value_get_object (value);
+
       if (widget)
         geda_menu_attach_to_widget (menu, widget, NULL);
     }
@@ -1126,6 +1128,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
                                      "signal::size-request", geda_menu_window_size_request, menu,
                                      "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
                                      NULL);
+
   gtk_window_set_resizable (GTK_WINDOW (menu->toplevel), FALSE);
   gtk_window_set_mnemonic_modifier (GTK_WINDOW (menu->toplevel), 0);
 
@@ -1135,31 +1138,43 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   g_object_force_floating (G_OBJECT (menu));
   menu->needs_destruction_ref_count = TRUE;
 
-  menu->view_window = NULL;
-  menu->bin_window = NULL;
+  menu->view_window          = NULL;
+  menu->bin_window           = NULL;
 
-  menu->scroll_offset = 0;
-  menu->scroll_step  = 0;
-  menu->timeout_id = 0;
-  menu->scroll_fast = FALSE;
+  menu->scroll_offset        = 0;
+  menu->scroll_step          = 0;
+  menu->timeout_id           = 0;
+  menu->scroll_fast          = FALSE;
 
-  menu->tearoff_window = NULL;
-  menu->tearoff_hbox = NULL;
-  menu->torn_off = FALSE;
-  menu->tearoff_active = FALSE;
-  menu->tearoff_adjustment = NULL;
-  menu->tearoff_scrollbar = NULL;
+  menu->tearoff_window       = NULL;
+  menu->tearoff_hbox         = NULL;
+  menu->torn_off             = FALSE;
+  menu->tearoff_active       = FALSE;
+  menu->tearoff_adjustment   = NULL;
+  menu->tearoff_scrollbar    = NULL;
 
-  menu->upper_arrow_visible = FALSE;
-  menu->lower_arrow_visible = FALSE;
+  menu->upper_arrow_visible  = FALSE;
+  menu->lower_arrow_visible  = FALSE;
   menu->upper_arrow_prelight = FALSE;
   menu->lower_arrow_prelight = FALSE;
 
-  priv->upper_arrow_state = GTK_STATE_NORMAL;
-  priv->lower_arrow_state = GTK_STATE_NORMAL;
+  priv->upper_arrow_state    = GTK_STATE_NORMAL;
+  priv->lower_arrow_state    = GTK_STATE_NORMAL;
 
-  priv->have_layout = FALSE;
-  priv->monitor_num = -1;
+  priv->have_layout          = FALSE;
+  priv->monitor_num          = -1;
+
+#if (GTK_MAJOR_VERSION == 3)
+
+  GtkStyleContext *context;
+
+  context = gtk_widget_get_style_context (GTK_WIDGET (menu));
+  gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENU);
+
+  _gtk_widget_set_captured_event_handler (GTK_WIDGET (menu), gtk_menu_captured_event);
+
+#endif
+
 }
 
 /*!
@@ -1533,6 +1548,7 @@ geda_menu_remove (GtkContainer *container, GtkWidget *widget)
   }
 
   GTK_CONTAINER_CLASS (geda_menu_parent_class)->remove (container, widget);
+
   g_object_set_data (G_OBJECT (widget), attached_info_key, NULL);
 
   menu_queue_resize (menu);
@@ -1790,8 +1806,9 @@ geda_menu_popup (GedaMenu         *menu,
 
     gdk_event_free (current_event);
   }
-  else
+  else {
     menu_shell->ignore_enter = TRUE;
+  }
 
   if (menu->torn_off) {
     geda_menu_tearoff_bg_copy (menu);
@@ -1800,12 +1817,11 @@ geda_menu_popup (GedaMenu         *menu,
 
   parent_toplevel = NULL;
 
-  if (parent_menu_shell)
-  {
+  if (parent_menu_shell) {
     parent_toplevel = gtk_widget_get_toplevel (parent_menu_shell);
   }
-  else if (!g_object_get_data (G_OBJECT (menu), explicit_screen_key))
-  {
+  else if (!g_object_get_data (G_OBJECT (menu), explicit_screen_key)) {
+
     GtkWidget *attach_widget = geda_menu_get_attach_widget (menu);
 
     if (attach_widget) {
@@ -2399,8 +2415,9 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       GdkWindow *window;
       int        width;
 
-      if (gtk_widget_get_visible (GTK_WIDGET (menu)))
+      if (gtk_widget_get_visible (GTK_WIDGET (menu))) {
         geda_menu_popdown (menu);
+      }
 
       if (!menu->tearoff_window) {
 
