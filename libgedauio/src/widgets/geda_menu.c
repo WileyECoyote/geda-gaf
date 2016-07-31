@@ -4557,9 +4557,11 @@ geda_menu_deactivate (GedaMenuShell *menu_shell)
   g_return_if_fail (GEDA_IS_MENU (menu_shell));
 
   menu_shell->activate_time = 0;
-  geda_menu_popdown (GEDA_MENU (menu_shell));
 
+  /* MUST get pointer to parent BEFORE calling geda_menu_popdown */
   parent = menu_shell->parent_menu_shell;
+
+  geda_menu_popdown (GEDA_MENU (menu_shell));
 
   if (parent) {
     geda_menu_shell_deactivate (GEDA_MENU_SHELL (parent));

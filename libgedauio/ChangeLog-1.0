@@ -1,3 +1,9 @@
+2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Revise geda_menu_deactivate to get the pointer
+      to the parent before calling geda_menu_popdown so nested menus popdown
+      properly.
+
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add case GDK_WINDOW_STATE in geda_menu_
