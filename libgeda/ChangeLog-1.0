@@ -1,5 +1,7 @@
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc.c: Reduce scope of attr in g_rc_component_groups.
+
     * src/object/o_attrib.c: Revise geda_attrib_object_search_object_string
       to use seperate g_return_val_if_fail so as not to confuse code checkers.
 
