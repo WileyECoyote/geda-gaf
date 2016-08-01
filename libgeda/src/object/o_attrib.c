@@ -185,7 +185,7 @@ geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color
     s_object_set_page_changed (object);
 
     if (set_color) {
-      o_set_color (attrib, ATTRIBUTE_COLOR);
+      geda_set_object_color (attrib, ATTRIBUTE_COLOR);
     }
   }
 }
@@ -232,7 +232,7 @@ geda_attrib_object_detach(GedaObject *attribute)
       parent = attribute->attached_to;
       attribute->attached_to = NULL;
 
-      o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
+      geda_set_object_color (attribute, DETACHED_ATTRIBUTE_COLOR);
       geda_attrib_object_emit_changed (attribute);
 
       parent->attribs = g_list_remove (parent->attribs, attribute);
@@ -272,7 +272,7 @@ geda_attrib_object_detach_all(GedaObject *object)
         GedaObject *attribute = a_iter->data;
 
         attribute->attached_to = NULL;
-        o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
+        geda_set_object_color (attribute, DETACHED_ATTRIBUTE_COLOR);
 
         geda_attrib_object_emit_changed (attribute);
 

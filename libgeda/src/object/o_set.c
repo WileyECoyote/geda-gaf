@@ -45,7 +45,7 @@
  *
  *  \todo Turn this into a macro?
  */
-void o_set_bounds_invalid(GedaObject *obj)
+void geda_set_object_bounds_invalid(GedaObject *obj)
 {
   do {
     obj->w_bounds_valid_for = NULL;
@@ -66,7 +66,7 @@ void o_set_bounds_invalid(GedaObject *obj)
  *  \param [in] object    The GedaObject to change color.
  *  \param [in] color     The new color.
  */
-void o_set_color (GedaObject *object, int color)
+void geda_set_object_color (GedaObject *object, int color)
 {
   if (GEDA_IS_OBJECT(object)) {
 
@@ -99,7 +99,7 @@ void o_set_color (GedaObject *object, int color)
  *
  */
 void
-o_set_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
+geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
 {
   g_return_if_fail(GEDA_IS_BOX    (object) ||
                    GEDA_IS_CIRCLE (object) ||
@@ -149,7 +149,7 @@ o_set_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
  *  \todo Make space an unsigned int and check for a max value instead.
  *        If a max value is not required, then it would simplify the code.
  */
-void o_set_line_options(GedaObject *object, LINE_OPTIONS *line_options)
+void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options)
 {
   g_return_if_fail( GEDA_IS_LINE(object)   ||
                     GEDA_IS_CIRCLE(object) ||
@@ -235,12 +235,12 @@ void o_set_line_options(GedaObject *object, LINE_OPTIONS *line_options)
  *  \param visibility Boolean desired state
  */
 void
-o_set_visibility (GedaObject *object, int visibility)
+geda_set_object_visibility (GedaObject *object, int visibility)
 {
   if(GEDA_IS_OBJECT(object)) {
     if (object->visibility != visibility) {
       object->visibility = visibility;
-      o_set_bounds_invalid (object);
+      geda_set_object_bounds_invalid (object);
       s_object_set_page_changed (object);
     }
   }

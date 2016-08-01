@@ -554,7 +554,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
 
   geda_object_notify_emit_pre_change (obj);
 
-  o_set_fill_options (obj, &fill_options);
+  geda_set_object_fill_options (obj, &fill_options);
   geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed (obj);
@@ -608,7 +608,7 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
 
   geda_object_notify_emit_pre_change (obj);
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -687,7 +687,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
     return line_s;
   }
 
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -807,7 +807,7 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
                               scm_to_int (x1_s), scm_to_int (y1_s),
                               scm_to_int (x2_s), scm_to_int (y2_s));
 
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
 
   s_object_set_page_changed (obj);
 
@@ -874,7 +874,7 @@ EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
   GedaObject *obj = edascm_to_object (circle_s);
   geda_circle_object_modify (obj, scm_to_int(x_s), scm_to_int(y_s), CIRCLE_CENTER);
   geda_circle_object_modify (obj, scm_to_int(r_s), 0, CIRCLE_RADIUS);
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
 
   s_object_set_page_changed ( obj);
 
@@ -953,7 +953,7 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
   geda_arc_object_modify (obj, scm_to_int(start_angle_s), 0, ARC_START_ANGLE);
   geda_arc_object_modify (obj, scm_to_int(arc_sweep_s), 0, ARC_END_ANGLE);
 
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
 
   geda_object_notify_emit_change (obj);
 
@@ -1127,7 +1127,7 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
   obj->show_name_value = show;
 
   /* Color */
-  o_set_color (obj, scm_to_int (color_s));
+  geda_set_object_color (obj, scm_to_int (color_s));
 
   char *tmp = scm_to_utf8_string (string_s);
 
@@ -1369,7 +1369,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
   }
 
   geda_object_notify_emit_pre_change (obj);
-  o_set_line_options (obj, &line_options);
+  geda_set_object_line_options (obj, &line_options);
   geda_object_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);

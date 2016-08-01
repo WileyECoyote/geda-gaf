@@ -532,11 +532,11 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
           int    geda_object_selection_unselect_all        (SELECTION *selection);
 
 /* o_set.c */
-         void    o_set_bounds_invalid            (GedaObject *object);
-         void    o_set_color                     (GedaObject *object, int color);
-         void    o_set_fill_options              (GedaObject *o_current, FILL_OPTIONS *fill_options);
-         void    o_set_line_options              (GedaObject *o_current, LINE_OPTIONS *line_options);
-         void    o_set_visibility                (GedaObject *object, int visibility);
+         void    geda_set_object_bounds_invalid            (GedaObject *object);
+         void    geda_set_object_color                     (GedaObject *object, int color);
+         void    geda_set_object_fill_options              (GedaObject *o_current, FILL_OPTIONS *fill_options);
+         void    geda_set_object_line_options              (GedaObject *o_current, LINE_OPTIONS *line_options);
+         void    geda_set_object_visibility                (GedaObject *object, int visibility);
 
 /* o_style.c */
           int    o_style_get_bus_width           (GedaToplevel *toplevel);

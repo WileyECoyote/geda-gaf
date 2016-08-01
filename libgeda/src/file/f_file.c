@@ -522,7 +522,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     GEDA_FREE (dirname);
     GEDA_FREE (only_filename);
 
-    if (o_save (s_page_get_objects (page), real_filename, &tmp_err)) {
+    if (geda_object_save (s_page_get_objects (page), real_filename, &tmp_err)) {
 
       page->saved_since_first_loaded = 1;
 

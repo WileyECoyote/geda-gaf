@@ -96,7 +96,7 @@ x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
         }
         else {
           if(object->color != color_index) {
-            o_set_color (object, color_index);
+            geda_set_object_color (object, color_index);
           }
         }
         s_current = g_list_next(s_current);

@@ -220,7 +220,6 @@ static void celltextview_get_property (GObject      *object,
 /*! \todo Finish function documentation
  *  \brief
  *  \par Function Description
- *
  */
 static bool celltextview_key_press_event (GtkWidget   *widget,
                                           GdkEventKey *key_event,
@@ -1069,7 +1068,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
 
     /* Modify the attribute */
     o_invalidate_object (w_current, o_attrib);
-    o_set_visibility (o_attrib, new_visibility ? VISIBLE : INVISIBLE);
+    geda_set_object_visibility (o_attrib, new_visibility ? VISIBLE : INVISIBLE);
     o_text_recreate (o_attrib);
 
     NEXT (a_iter);

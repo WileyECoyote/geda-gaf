@@ -314,7 +314,7 @@ o_text_change(GschemToplevel *w_current, GedaObject *object,
 
       o_text_set_string (object, string);
 
-      o_set_visibility (object, visibility);
+      geda_set_object_visibility (object, visibility);
       object->show_name_value = show;
       o_text_recreate(object);
 

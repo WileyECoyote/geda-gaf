@@ -73,8 +73,8 @@ geda_box_object_copy(const GedaObject *o_source)
     new_obj->box->lower_x = old_box->lower_x;
     new_obj->box->lower_y = old_box->lower_y;
 
-    o_set_line_options(new_obj, &old_box->line_options);
-    o_set_fill_options(new_obj, &old_box->fill_options);
+    geda_set_object_line_options(new_obj, &old_box->line_options);
+    geda_set_object_fill_options(new_obj, &old_box->fill_options);
 
     new_obj->w_bounds_valid_for = NULL;
 
@@ -779,7 +779,7 @@ geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
  *
  *  Both the line type and the filling type are set to default values : solid
  *  line type with a width of 0, and no filling. It can be changed after
- *  with the #o_set_line_options() and #o_set_fill_options().
+ *  with the #geda_set_object_line_options() and #geda_set_object_fill_options().
  *
  * \param [in]     color        Box border color.
  * \param [in]     x1           Upper x coordinate.

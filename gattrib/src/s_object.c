@@ -194,7 +194,7 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
         GEDA_FREE(a_current->text->string);   /* remove old attrib string */
         a_current->text->string = geda_utility_string_strdup(new_attrib_text);   /* insert new attrib string */
         if (visibility != LEAVE_VISIBILITY_ALONE)
-          o_set_visibility (a_current, visibility);
+          geda_set_object_visibility (a_current, visibility);
         if (show_name_value != LEAVE_NAME_VALUE_ALONE)
           a_current->show_name_value = show_name_value;
         GEDA_FREE(new_attrib_text);

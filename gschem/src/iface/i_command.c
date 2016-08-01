@@ -1210,7 +1210,7 @@ COMMAND (do_edit)
   //u_log_message("do edit command handler");
   char *msg = "Not an object";
 
-  o_set_visibility ((GedaObject*)msg, 1);
+  geda_set_object_visibility ((GedaObject*)msg, 1);
   EXIT_COMMAND(do_edit);
 }
 

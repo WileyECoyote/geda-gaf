@@ -396,7 +396,7 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
                             x + NOT_FOUND_TEXT_X + x_offset + 600,
                             y + NOT_FOUND_TEXT_Y + y_offset);
 
-  o_set_line_options(new_prim_obj, &line_options);
+  geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
@@ -406,7 +406,7 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
                             x + NOT_FOUND_TEXT_X + x_offset + 300,
                             y + NOT_FOUND_TEXT_Y + y_offset + 500);
 
-  o_set_line_options(new_prim_obj, &line_options);
+  geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
@@ -416,7 +416,7 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
                             x + NOT_FOUND_TEXT_X + x_offset + 600,
                             y + NOT_FOUND_TEXT_Y + y_offset);
 
-  o_set_line_options(new_prim_obj, &line_options);
+  geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
@@ -966,7 +966,7 @@ GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel, GedaObject *
     for (iter = promotable; iter != NULL; iter = iter->next) {
       GedaObject *o_kept = (GedaObject *) iter->data;
       GedaObject *o_copy = geda_object_copy (o_kept);
-      o_set_visibility (o_kept, INVISIBLE);
+      geda_set_object_visibility (o_kept, INVISIBLE);
       o_copy->parent_object = NULL;
       promoted = g_list_prepend (promoted, o_copy);
     }
@@ -986,7 +986,7 @@ GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel, GedaObject *
     promoted = promotable;
     /* Invalidate the object's bounds since we may have
      * stolen objects from inside it. */
-    o_set_bounds_invalid (object);
+    geda_set_object_bounds_invalid (object);
   }
 
   /* Attach promoted attributes to the original complex object */
@@ -1027,7 +1027,7 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
     GedaObject *a_object = iter->data;
 
     if (toplevel->keep_invisible == TRUE) {   /* Hide promotable attributes */
-      o_set_visibility (a_object, INVISIBLE);
+      geda_set_object_visibility (a_object, INVISIBLE);
     }
     else {                                    /* Delete promotable attributes */
       GList *from_list = object->complex->prim_objs;
@@ -1036,7 +1036,7 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
     }
   }
 
-  o_set_bounds_invalid (object);
+  geda_set_object_bounds_invalid (object);
   g_list_free (promotable);
 }
 

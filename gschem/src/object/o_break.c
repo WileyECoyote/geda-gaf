@@ -158,7 +158,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
         new_obj = geda_arc_object_new (color, cx, cy, radius, start_angle1, arc_sweep1);
 
         /* Set line options of arc to the values used by the old arc */
-        o_set_line_options(new_obj, object->line_options);
+        geda_set_object_line_options(new_obj, object->line_options);
 
         /* Add the new Arc to the page */
         s_page_append_object (Current_Page, new_obj);
@@ -169,7 +169,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
         new_obj = geda_arc_object_new (color, cx, cy, radius, start_angle2, arc_sweep2);
 
         /* Set line options of arc to the values used by the old arc */
-        o_set_line_options(new_obj, object->line_options);
+        geda_set_object_line_options(new_obj, object->line_options);
 
         /* Add the new Arc to the page */
         s_page_append_object (Current_Page, new_obj);
@@ -411,7 +411,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
       new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
       /* Set line options of the path to the values used by the box */
-      o_set_line_options(new_path, object->line_options);
+      geda_set_object_line_options(new_path, object->line_options);
 
       /* Delete the box */
       o_delete(w_current, object);
@@ -500,7 +500,7 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
       new_obj = geda_arc_object_new (color, cx, cy, radius, first_angle, arc_sweep);
 
       /* Set line options of the path to the values used by the old path */
-      o_set_line_options(new_obj, object->line_options);
+      geda_set_object_line_options(new_obj, object->line_options);
 
       /* Add the new Arc to the page */
       s_page_append_object (Current_Page, new_obj);
@@ -784,7 +784,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
       /* Set line options of the path to the values used by the old path */
-      o_set_line_options(new_path, object->line_options);
+      geda_set_object_line_options(new_path, object->line_options);
 
       /* Add the new path to the page */
       s_page_append_object (Current_Page, new_path);
@@ -819,7 +819,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         new_path = geda_path_object_new_from_polygon(vertices, object->color);
 
         /* Set line options of the path to the values used by the old path */
-        o_set_line_options(new_path, object->line_options);
+        geda_set_object_line_options(new_path, object->line_options);
 
         /* Add the new path to the page */
         s_page_append_object (Current_Page, new_path);

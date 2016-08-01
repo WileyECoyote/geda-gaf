@@ -278,7 +278,7 @@ check_accessors ()
       int p = m_random_number (0, 500);
       int w = m_random_number (0, 500);
 
-      o_set_color (object0, c);
+      geda_set_object_color (object0, c);
 
       geda_line_object_set_x1 (object0, x0);
       geda_line_object_set_y1 (object0, y0);

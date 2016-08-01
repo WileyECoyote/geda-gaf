@@ -958,7 +958,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 /*! \brief Hide Specified Text
  *  \par Function Description
  *  Searches string component of Text Objects and calls for
- *  o_set_visibility string matching the given text.
+ *  geda_set_object_visibility string matching the given text.
  */
 void o_edit_hide_specific_text (GschemToplevel *w_current,
                                 const GList    *o_list,
@@ -977,7 +977,7 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
 
       if (!strncmp (stext, str, strlen (stext))) {
         if (geda_object_get_is_visible (o_current)) {
-          o_set_visibility (o_current, INVISIBLE);
+          geda_set_object_visibility (o_current, INVISIBLE);
           o_text_recreate(o_current);
         }
       }
@@ -991,7 +991,7 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
 /*! \brief Show Specified Text
  *  \par Function Description
  *  Searches string component of Text Objects and calls for
- *  o_set_visibility string matching the given text.
+ *  geda_set_object_visibility string matching the given text.
  */
 void o_edit_show_specific_text (GschemToplevel *w_current,
                                 const GList    *o_list,
@@ -1011,7 +1011,7 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
 
       if (!strncmp (stext, str, strlen (stext))) {
         if (!geda_object_get_is_visible (o_current)) {
-          o_set_visibility (o_current, VISIBLE);
+          geda_set_object_visibility (o_current, VISIBLE);
           o_text_recreate(o_current);
         }
       }

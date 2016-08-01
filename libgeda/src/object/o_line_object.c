@@ -73,7 +73,7 @@ geda_line_object_copy(GedaObject *o_current)
                           old_line->x[1], old_line->y[1]);
 
     /* copy the line type options */
-    o_set_line_options(new_obj, &old_line->line_options);
+    geda_set_object_line_options(new_obj, &old_line->line_options);
 
     /* return the new tail of the object list */
     return new_obj;
@@ -754,8 +754,8 @@ geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
  *
  *  Both the line type and the filling type are set to default
  *  values : solid line type with a width of 0, and no filling.
- *  It can be changed after with the #o_set_line_options() and
- *  #o_set_fill_options().
+ *  It can be changed after with the #geda_set_object_line_options() and
+ *  #geda_set_object_fill_options().
  *
  * \param [in]     color        Circle line color.
  * \param [in]     x1           First x coordinate.

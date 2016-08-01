@@ -211,7 +211,7 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
     /* Must hide before changing or libgedacairo will not redraw */
     o_invalidate_object (w_current, object);
 
-    o_set_visibility (object, INVISIBLE);
+    geda_set_object_visibility (object, INVISIBLE);
 
     if (Current_Page->show_hidden_text) {
       o_invalidate_object (w_current, object);
@@ -220,7 +220,7 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
   }
   else {
 
-    o_set_visibility (object, VISIBLE);
+    geda_set_object_visibility (object, VISIBLE);
 
     o_text_recreate(object);
   }

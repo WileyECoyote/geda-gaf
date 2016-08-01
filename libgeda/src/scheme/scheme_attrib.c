@@ -142,7 +142,7 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   /* Detach object */
   geda_object_notify_emit_pre_change (attrib);
   geda_attrib_object_remove (&obj->attribs, attrib);
-  o_set_color (attrib, DETACHED_ATTRIBUTE_COLOR);
+  geda_set_object_color (attrib, DETACHED_ATTRIBUTE_COLOR);
   geda_object_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);

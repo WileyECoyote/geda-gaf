@@ -330,7 +330,7 @@ check_accessors ()
       int fa2 = m_random_number (0, 180);
       int fp2 = m_random_number (0, 500);
 
-      o_set_color (object0, c);
+      geda_set_object_color (object0, c);
 
       geda_circle_object_set_center_x (object0, x);
       geda_circle_object_set_center_y (object0, y);

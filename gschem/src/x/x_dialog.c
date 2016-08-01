@@ -1500,7 +1500,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
       BUG_IMSG ("unhandled case for value <%d>", type);
     }
 
-    o_set_fill_options (object, &fill_options);
+    geda_set_object_fill_options (object, &fill_options);
     o_invalidate_object (w_current, object);
   }
 
@@ -2076,7 +2076,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
       BUG_IMSG("unhandlered case for <%d>", type);
     }
 
-    o_set_line_options (object, &line_options);
+    geda_set_object_line_options (object, &line_options);
     o_invalidate_object (w_current, object);
   }
 

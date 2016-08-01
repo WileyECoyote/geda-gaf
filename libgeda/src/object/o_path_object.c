@@ -332,8 +332,8 @@ bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
  *
  *  Both the path type and the filling type are set to default
  *  values : solid path type with a width of 0, and no filling.
- *  It can be changed after with the #o_set_line_options() and
- *  #o_set_fill_options().
+ *  It can be changed after with the #geda_set_object_line_options() and
+ *  #geda_set_object_fill_options().
  *
  *
  *  \param [in]     color        The path color.
@@ -474,8 +474,8 @@ GedaObject *geda_path_object_copy (const GedaObject *o_current)
     GEDA_FREE (path_string);
 
     /* Copy the path line-type and filling options */
-    o_set_line_options (new_obj, &old_path->line_options);
-    o_set_fill_options (new_obj, &old_path->fill_options);
+    geda_set_object_line_options (new_obj, &old_path->line_options);
+    geda_set_object_fill_options (new_obj, &old_path->fill_options);
 
     /* calc the bounding box */
     new_obj->w_bounds_valid_for = NULL;

@@ -67,9 +67,9 @@ geda_arc_object_copy(GedaObject *o_source)
                          o_source->arc->start_angle,
                          o_source->arc->arc_sweep);
 
-    o_set_line_options(new_obj, o_source->line_options);
+    geda_set_object_line_options(new_obj, o_source->line_options);
 
-    o_set_fill_options(new_obj, o_source->fill_options);
+    geda_set_object_fill_options(new_obj, o_source->fill_options);
 
     return new_obj;
   }
@@ -1406,8 +1406,8 @@ geda_arc_object_print_solid(GedaToplevel *toplevel, FILE *fp,
  *  To get information on the various file formats have a
  *  look to the fileformats.html document.
  *
- *  The object is initialized with the functions #o_set_line_options() and
- *  #o_set_fill_options(). The second one is only used to put initialize
+ *  The object is initialized with the functions #geda_set_object_line_options() and
+ *  #geda_set_object_fill_options(). The second one is only used to put initialize
  *  unused values for an arc as an arc can not be filled.
  *
  *  The arc is allocated initialized with the function #geda_arc_object_new().

@@ -502,7 +502,7 @@ check_accessors ()
       int fp2 = m_random_number (0, 500);
 
       geda_arc_object_set_start_angle (object0, a);
-      o_set_color (object0, c);
+      geda_set_object_color (object0, c);
       geda_arc_object_set_radius (object0, r);
       geda_arc_object_set_arc_sweep (object0, s);
       geda_arc_object_set_center_x (object0, x);

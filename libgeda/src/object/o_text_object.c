@@ -445,7 +445,7 @@ o_text_new(int color, int x, int y, int alignment, int angle, int size,
 
   new_obj->color    = color;
 
-  o_set_visibility (new_obj, visibility);
+  geda_set_object_visibility (new_obj, visibility);
   new_obj->show_name_value = show_name_value;
 
   /* Call directly so no emmision */
