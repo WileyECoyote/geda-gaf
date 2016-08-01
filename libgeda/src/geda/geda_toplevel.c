@@ -579,7 +579,8 @@ geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
  *
  * \param [in] toplevel GedaToplevel object
  */
-int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
+int
+geda_toplevel_get_make_backups (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -857,7 +858,8 @@ geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
  *  Set the current value of open_flags in \a toplevel to
  *  \a open_flags.
  *
- * \param [in] toplevel GedaToplevel object
+ * \param [in,out] toplevel   GedaToplevel object
+ * \param [in]     open_flags New value for open flags
  *
  * \returns previous value of open_flags.
  */
@@ -879,9 +881,14 @@ geda_toplevel_set_file_open_flags (GedaToplevel *toplevel, int open_flags)
  * \brief Set whether to make backup files
  * \par Function Description
  *  Set the current value of make_backup_files in \a toplevel to
- *  \a make_backups.
+ *  \a make_backups. When make_backups is TRUE,
  *
- * \param [in] toplevel GedaToplevel object
+ * \param [in,out] toplevel     GedaToplevel object
+ * \param [in]     make_backups If True backups will be created.
+ *
+ * \retval TRUE if the value was set, FALSE if \a toplevel is invalid
+ *
+ * \sa geda_file_save
  */
 bool
 geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
