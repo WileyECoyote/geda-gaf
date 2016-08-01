@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-07-05 00:36-0500\n"
+"POT-Creation-Date: 2016-08-01 00:35-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -59,12 +59,12 @@ msgstr "Принципиальная схема gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Символ схемы gEDA"
 
-#: libgeda/src/file/f_file.c:75 libgeda/src/file/f_file.c:90
+#: libgeda/src/file/f_file.c:90 libgeda/src/file/f_file.c:105
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Ошибка чтения статуса «%s»: %s"
 
-#: libgeda/src/file/f_file.c:149
+#: libgeda/src/file/f_file.c:165
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -77,13 +77,13 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_file.c:150
+#: libgeda/src/file/f_file.c:166
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "Не удалось определить новее ли он, решите это сами.\n"
 
-#: libgeda/src/file/f_file.c:151
+#: libgeda/src/file/f_file.c:167
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -91,7 +91,7 @@ msgstr ""
 "Резервная копия новее схемы, поэтому, видимо, следует загрузить её вместо "
 "оригинального файла.\n"
 
-#: libgeda/src/file/f_file.c:152
+#: libgeda/src/file/f_file.c:168
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -100,7 +100,7 @@ msgstr ""
 "Обычно gschem автоматически создаёт резервные копии, и такая ситуация может "
 "быть результатом крушения или внезапного завершения программы.\n"
 
-#: libgeda/src/file/f_file.c:153
+#: libgeda/src/file/f_file.c:169
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -108,66 +108,66 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:175
+#: libgeda/src/file/f_file.c:191
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/file/f_file.c:192
+#: libgeda/src/file/f_file.c:208
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:250 libgeda/src/file/f_sys.c:107
+#: libgeda/src/file/f_file.c:266 libgeda/src/file/f_sys.c:109
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:316
+#: libgeda/src/file/f_file.c:332
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:369
+#: libgeda/src/file/f_file.c:376
+#, fuzzy, c-format
+msgid "%s: Can not get the real filename of %s."
+msgstr "Не удалось определить имя реального файла для %s: %s"
+
+#: libgeda/src/file/f_file.c:388
+#, fuzzy, c-format
+msgid "%s: Unable to delete backup file %s."
+msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
+
+# Эта функция пытается найти для указанного имени реальный файл (не являющийся
+# ссылкой).
+#: libgeda/src/file/f_file.c:435
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:370
+#: libgeda/src/file/f_file.c:436
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Не удалось сохранить файл: %s"
 
-#: libgeda/src/file/f_file.c:371
+#: libgeda/src/file/f_file.c:437
 #, c-format
 msgid "File %s is read-only"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_file.c:373
+#: libgeda/src/file/f_file.c:439
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
 "копии «%s»\n"
 
-#: libgeda/src/file/f_file.c:374
+#: libgeda/src/file/f_file.c:440
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
-
-# Эта функция пытается найти для указанного имени реальный файл (не являющийся
-# ссылкой).
-#: libgeda/src/file/f_file.c:517
-#, fuzzy, c-format
-msgid "%s: Can not get the real filename of %s."
-msgstr "Не удалось определить имя реального файла для %s: %s"
-
-#: libgeda/src/file/f_file.c:529
-#, fuzzy, c-format
-msgid "%s: Unable to delete backup file %s."
-msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
 
 #: libgeda/src/file/f_get.c:295
 #, c-format
@@ -275,21 +275,21 @@ msgstr ""
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:72
+#: libgeda/src/file/f_sys.c:74
 #, fuzzy
 msgid "File error"
 msgstr "Ошибка обработки: ~s"
 
-#: libgeda/src/file/f_sys.c:77
+#: libgeda/src/file/f_sys.c:79
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:78
+#: libgeda/src/file/f_sys.c:80
 #, c-format
 msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:331
+#: libgeda/src/file/f_sys.c:337
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -714,113 +714,113 @@ msgstr ""
 msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:313
+#: libgeda/src/guile/g_rc.c:319
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr "source-library: недопустимый путь «%s»\n"
 
-#: libgeda/src/guile/g_rc.c:363 libgeda/src/guile/g_rc.c:373
+#: libgeda/src/guile/g_rc.c:369 libgeda/src/guile/g_rc.c:379
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr "source-library-search: недопустимый путь «%s»\n"
 
-#: libgeda/src/guile/g_rc.c:479
+#: libgeda/src/guile/g_rc.c:485
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:480 libgeda/src/guile/g_rc.c:486
-#: libgeda/src/guile/g_rc.c:524 libgeda/src/guile/g_rc.c:530
-#: libgeda/src/guile/g_rc.c:568 libgeda/src/guile/g_rc.c:574
-#: libgeda/src/guile/g_rc.c:613 libgeda/src/guile/g_rc.c:619
-#: libgeda/src/guile/g_rc.c:647 libgeda/src/guile/g_rc.c:675
-#: libgeda/src/guile/g_rc.c:703 libgeda/src/guile/g_rc.c:731
-#: libgeda/src/guile/g_rc.c:759 libgeda/src/guile/g_rc.c:787
-#: libgeda/src/guile/g_rc.c:815 libgeda/src/guile/g_rc.c:843
+#: libgeda/src/guile/g_rc.c:486 libgeda/src/guile/g_rc.c:492
+#: libgeda/src/guile/g_rc.c:530 libgeda/src/guile/g_rc.c:536
+#: libgeda/src/guile/g_rc.c:574 libgeda/src/guile/g_rc.c:580
+#: libgeda/src/guile/g_rc.c:619 libgeda/src/guile/g_rc.c:625
+#: libgeda/src/guile/g_rc.c:653 libgeda/src/guile/g_rc.c:681
+#: libgeda/src/guile/g_rc.c:709 libgeda/src/guile/g_rc.c:737
+#: libgeda/src/guile/g_rc.c:765 libgeda/src/guile/g_rc.c:793
+#: libgeda/src/guile/g_rc.c:821 libgeda/src/guile/g_rc.c:849
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:485
+#: libgeda/src/guile/g_rc.c:491
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:523
+#: libgeda/src/guile/g_rc.c:529
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:529
+#: libgeda/src/guile/g_rc.c:535
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:567
+#: libgeda/src/guile/g_rc.c:573
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:573
+#: libgeda/src/guile/g_rc.c:579
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:612
+#: libgeda/src/guile/g_rc.c:618
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:618
+#: libgeda/src/guile/g_rc.c:624
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:646
+#: libgeda/src/guile/g_rc.c:652
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:674
+#: libgeda/src/guile/g_rc.c:680
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:702
+#: libgeda/src/guile/g_rc.c:708
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:730
+#: libgeda/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:758
+#: libgeda/src/guile/g_rc.c:764
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:786
+#: libgeda/src/guile/g_rc.c:792
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:814
+#: libgeda/src/guile/g_rc.c:820
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:842
+#: libgeda/src/guile/g_rc.c:848
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:904
+#: libgeda/src/guile/g_rc.c:910
 msgid "always-promote-attribute: list element is not a string"
 msgstr "always-promote-attribute: элемент списка не является строкой"
 
-#: libgeda/src/guile/g_rc.c:981 libgeda/src/guile/g_rc.c:1017
+#: libgeda/src/guile/g_rc.c:987 libgeda/src/guile/g_rc.c:1023
 #, c-format
 msgid "Path invalid[%s], %s\n"
 msgstr ""
@@ -950,7 +950,7 @@ msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
 #: libgeda/src/object/o_arc_object.c:1474
-#: libgeda/src/object/o_circle_object.c:1381
+#: libgeda/src/object/o_circle_object.c:1345
 #, fuzzy, c-format
 msgid "Setting radius to %d\n"
 msgstr "Установка радиуса в 0\n"
@@ -961,7 +961,7 @@ msgid "Found an arc with radius zero [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
 
 #: libgeda/src/object/o_arc_object.c:1480
-#: libgeda/src/object/o_circle_object.c:1386
+#: libgeda/src/object/o_circle_object.c:1350
 #, fuzzy
 msgid "Setting zero radius to 1000\n"
 msgstr "Установка радиуса в 0\n"
@@ -969,7 +969,7 @@ msgstr "Установка радиуса в 0\n"
 #: libgeda/src/object/o_arc_object.c:1485
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:587
-#: libgeda/src/object/o_circle_object.c:1391
+#: libgeda/src/object/o_circle_object.c:1355
 #: libgeda/src/object/o_line_object.c:1524
 #: libgeda/src/object/o_net_object.c:717
 #: libgeda/src/object/o_path_object.c:543
@@ -982,7 +982,7 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_arc_object.c:1486
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:588
-#: libgeda/src/object/o_circle_object.c:1392
+#: libgeda/src/object/o_circle_object.c:1356
 #: libgeda/src/object/o_line_object.c:1525
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:544
@@ -991,27 +991,27 @@ msgstr "Недопустимое значение цветового индек�
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:168
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr "Атрибут «%s» уже прикреплён\n"
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:173
 #, fuzzy, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!\n"
 
-#: libgeda/src/object/o_attrib.c:177
+#: libgeda/src/object/o_attrib.c:178
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Попытка прикрепить атрибут «%s» к более чем одному объекту\n"
 
-#: libgeda/src/object/o_attrib.c:732
+#: libgeda/src/object/o_attrib.c:733
 #, fuzzy
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!"
 
-#: libgeda/src/object/o_attrib.c:741
+#: libgeda/src/object/o_attrib.c:742
 #, fuzzy
 msgid "unexpected end-of-file in attribute list"
 msgstr "Неожиданный конец файла при обработке списка атрибутов"
@@ -1051,21 +1051,21 @@ msgstr ""
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Сброс направления в нейтральное значение (направление не задано)\n"
 
-#: libgeda/src/object/o_circle_object.c:646
+#: libgeda/src/object/o_circle_object.c:610
 msgid "Null radius circles are not allowed\n"
 msgstr "Окружности с нулевым радиусом недопустимы\n"
 
-#: libgeda/src/object/o_circle_object.c:1340
-#: libgeda/src/object/o_circle_object.c:1370
+#: libgeda/src/object/o_circle_object.c:1304
+#: libgeda/src/object/o_circle_object.c:1334
 msgid "Failed to parse circle object"
 msgstr "Ошибка в определении окружности"
 
-#: libgeda/src/object/o_circle_object.c:1378
+#: libgeda/src/object/o_circle_object.c:1342
 #, fuzzy, c-format
 msgid "Found circle with negative radius [ %c %d %d %d %d ]\n"
 msgstr "Окружность с нулевым или отрицательным радиусом «%c %d %d %d %d»\n"
 
-#: libgeda/src/object/o_circle_object.c:1384
+#: libgeda/src/object/o_circle_object.c:1348
 #, fuzzy, c-format
 msgid "Found circle with radius zero [ %c %d %d %d %d ]\n"
 msgstr "Шина нулевой длины «%c %d %d %d %d %d»\n"
@@ -1186,7 +1186,7 @@ msgstr "Установка «mirror» в 0\n"
 msgid "Component [%s] has been embedded\n"
 msgstr "Компонент «%s» внедрён\n"
 
-#: libgeda/src/object/o_embed.c:93
+#: libgeda/src/object/o_embed.c:103
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1195,7 +1195,7 @@ msgstr ""
 "Не удалось найти библиотечный символ для исключаемого компонента «%s». "
 "Компонент останется внедрённым\n"
 
-#: libgeda/src/object/o_embed.c:102
+#: libgeda/src/object/o_embed.c:112
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"

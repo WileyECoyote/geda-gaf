@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-07-05 00:36-0500\n"
+"POT-Creation-Date: 2016-08-01 00:35-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -42,12 +42,12 @@ msgstr "Schemat Obwodu gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Element Schematu gEDA"
 
-#: libgeda/src/file/f_file.c:75 libgeda/src/file/f_file.c:90
+#: libgeda/src/file/f_file.c:90 libgeda/src/file/f_file.c:105
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Błąd odczytu atrybutów [%s]: %s"
 
-#: libgeda/src/file/f_file.c:149
+#: libgeda/src/file/f_file.c:165
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -60,14 +60,14 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_file.c:150
+#: libgeda/src/file/f_file.c:166
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr ""
 "Nie można stwierdzić, czy kopia jest nowsza - musisz sprawdzić to ręcznie.\n"
 
-#: libgeda/src/file/f_file.c:151
+#: libgeda/src/file/f_file.c:167
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -75,7 +75,7 @@ msgstr ""
 "Kopia zapasowa jest nowsza niż plik schematu, a więc powinieneś otworzyć "
 "kopię zamiast oryginalnego pliku.\n"
 
-#: libgeda/src/file/f_file.c:152
+#: libgeda/src/file/f_file.c:168
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -84,7 +84,7 @@ msgstr ""
 "Gschem tworzy kopie zapasowe automatycznie, a ta sytuacja może być wynikiem "
 "niepoprawnego zamknięcia programu, np. z powodu błędu.\n"
 
-#: libgeda/src/file/f_file.c:153
+#: libgeda/src/file/f_file.c:169
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -92,60 +92,60 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:175
+#: libgeda/src/file/f_file.c:191
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Nie odnaleziono pliku %s: %s"
 
-#: libgeda/src/file/f_file.c:192
+#: libgeda/src/file/f_file.c:208
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:250 libgeda/src/file/f_sys.c:107
+#: libgeda/src/file/f_file.c:266 libgeda/src/file/f_sys.c:109
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:316
+#: libgeda/src/file/f_file.c:332
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:369
-#, fuzzy, c-format
-msgid "Can't get the real filename of %s: %s"
-msgstr "Nie można odczytać rzeczywistej nazwy %s."
-
-#: libgeda/src/file/f_file.c:370
-#, fuzzy, c-format
-msgid "Could NOT save file: %s"
-msgstr "Nie można zapisać [%s]\n"
-
-#: libgeda/src/file/f_file.c:371
-#, c-format
-msgid "File %s is read-only"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:373
-#, fuzzy, c-format
-msgid "Could not set previous backup file [%s] read-write:%s\n"
-msgstr "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
-
-#: libgeda/src/file/f_file.c:374
-#, fuzzy, c-format
-msgid "Can not create backup file: %s: %s\n"
-msgstr "Nie można zapisać kopii zapasowej: %s."
-
-#: libgeda/src/file/f_file.c:517
+#: libgeda/src/file/f_file.c:376
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Nie można odczytać rzeczywistej nazwy %s."
 
-#: libgeda/src/file/f_file.c:529
+#: libgeda/src/file/f_file.c:388
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Nie można skasować kopii zapasowej %s."
+
+#: libgeda/src/file/f_file.c:435
+#, fuzzy, c-format
+msgid "Can't get the real filename of %s: %s"
+msgstr "Nie można odczytać rzeczywistej nazwy %s."
+
+#: libgeda/src/file/f_file.c:436
+#, fuzzy, c-format
+msgid "Could NOT save file: %s"
+msgstr "Nie można zapisać [%s]\n"
+
+#: libgeda/src/file/f_file.c:437
+#, c-format
+msgid "File %s is read-only"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:439
+#, fuzzy, c-format
+msgid "Could not set previous backup file [%s] read-write:%s\n"
+msgstr "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
+
+#: libgeda/src/file/f_file.c:440
+#, fuzzy, c-format
+msgid "Can not create backup file: %s: %s\n"
+msgstr "Nie można zapisać kopii zapasowej: %s."
 
 #: libgeda/src/file/f_get.c:295
 #, c-format
@@ -253,20 +253,20 @@ msgstr "Nie można wykonać komendy [%s] do wydruku\n"
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Błąd drukowania: zbyt wiele znaków w kodowaniu UTF-8\n"
 
-#: libgeda/src/file/f_sys.c:72
+#: libgeda/src/file/f_sys.c:74
 msgid "File error"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:77
+#: libgeda/src/file/f_sys.c:79
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:78
+#: libgeda/src/file/f_sys.c:80
 #, c-format
 msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:331
+#: libgeda/src/file/f_sys.c:337
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -686,113 +686,113 @@ msgstr ""
 msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:313
+#: libgeda/src/guile/g_rc.c:319
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:363 libgeda/src/guile/g_rc.c:373
+#: libgeda/src/guile/g_rc.c:369 libgeda/src/guile/g_rc.c:379
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:479
+#: libgeda/src/guile/g_rc.c:485
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:480 libgeda/src/guile/g_rc.c:486
-#: libgeda/src/guile/g_rc.c:524 libgeda/src/guile/g_rc.c:530
-#: libgeda/src/guile/g_rc.c:568 libgeda/src/guile/g_rc.c:574
-#: libgeda/src/guile/g_rc.c:613 libgeda/src/guile/g_rc.c:619
-#: libgeda/src/guile/g_rc.c:647 libgeda/src/guile/g_rc.c:675
-#: libgeda/src/guile/g_rc.c:703 libgeda/src/guile/g_rc.c:731
-#: libgeda/src/guile/g_rc.c:759 libgeda/src/guile/g_rc.c:787
-#: libgeda/src/guile/g_rc.c:815 libgeda/src/guile/g_rc.c:843
+#: libgeda/src/guile/g_rc.c:486 libgeda/src/guile/g_rc.c:492
+#: libgeda/src/guile/g_rc.c:530 libgeda/src/guile/g_rc.c:536
+#: libgeda/src/guile/g_rc.c:574 libgeda/src/guile/g_rc.c:580
+#: libgeda/src/guile/g_rc.c:619 libgeda/src/guile/g_rc.c:625
+#: libgeda/src/guile/g_rc.c:653 libgeda/src/guile/g_rc.c:681
+#: libgeda/src/guile/g_rc.c:709 libgeda/src/guile/g_rc.c:737
+#: libgeda/src/guile/g_rc.c:765 libgeda/src/guile/g_rc.c:793
+#: libgeda/src/guile/g_rc.c:821 libgeda/src/guile/g_rc.c:849
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:485
+#: libgeda/src/guile/g_rc.c:491
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:523
+#: libgeda/src/guile/g_rc.c:529
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:529
+#: libgeda/src/guile/g_rc.c:535
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:567
+#: libgeda/src/guile/g_rc.c:573
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:573
+#: libgeda/src/guile/g_rc.c:579
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:612
+#: libgeda/src/guile/g_rc.c:618
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:618
+#: libgeda/src/guile/g_rc.c:624
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:646
+#: libgeda/src/guile/g_rc.c:652
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:674
+#: libgeda/src/guile/g_rc.c:680
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:702
+#: libgeda/src/guile/g_rc.c:708
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:730
+#: libgeda/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:758
+#: libgeda/src/guile/g_rc.c:764
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:786
+#: libgeda/src/guile/g_rc.c:792
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:814
+#: libgeda/src/guile/g_rc.c:820
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:842
+#: libgeda/src/guile/g_rc.c:848
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:904
+#: libgeda/src/guile/g_rc.c:910
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:981 libgeda/src/guile/g_rc.c:1017
+#: libgeda/src/guile/g_rc.c:987 libgeda/src/guile/g_rc.c:1023
 #, c-format
 msgid "Path invalid[%s], %s\n"
 msgstr ""
@@ -923,7 +923,7 @@ msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Napotkano łuk o zerowym promieniu [ %c %d, %d, %d, %d, %d, %d ]\n"
 
 #: libgeda/src/object/o_arc_object.c:1474
-#: libgeda/src/object/o_circle_object.c:1381
+#: libgeda/src/object/o_circle_object.c:1345
 #, fuzzy, c-format
 msgid "Setting radius to %d\n"
 msgstr "Użyję nachylenia równego 0\n"
@@ -934,7 +934,7 @@ msgid "Found an arc with radius zero [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Napotkano łuk o zerowym promieniu [ %c %d, %d, %d, %d, %d, %d ]\n"
 
 #: libgeda/src/object/o_arc_object.c:1480
-#: libgeda/src/object/o_circle_object.c:1386
+#: libgeda/src/object/o_circle_object.c:1350
 #, fuzzy
 msgid "Setting zero radius to 1000\n"
 msgstr "Użyję nachylenia równego 0\n"
@@ -942,7 +942,7 @@ msgstr "Użyję nachylenia równego 0\n"
 #: libgeda/src/object/o_arc_object.c:1485
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:587
-#: libgeda/src/object/o_circle_object.c:1391
+#: libgeda/src/object/o_circle_object.c:1355
 #: libgeda/src/object/o_line_object.c:1524
 #: libgeda/src/object/o_net_object.c:717
 #: libgeda/src/object/o_path_object.c:543
@@ -955,7 +955,7 @@ msgstr "Napotkano niepoprawny kolor [ %s ]\n"
 #: libgeda/src/object/o_arc_object.c:1486
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:588
-#: libgeda/src/object/o_circle_object.c:1392
+#: libgeda/src/object/o_circle_object.c:1356
 #: libgeda/src/object/o_line_object.c:1525
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:544
@@ -964,27 +964,27 @@ msgstr "Napotkano niepoprawny kolor [ %s ]\n"
 msgid "Setting color to default color\n"
 msgstr "Użyję domyślnego koloru\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:168
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:173
 #, fuzzy, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
 
-#: libgeda/src/object/o_attrib.c:177
+#: libgeda/src/object/o_attrib.c:178
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Próba powiązania atrybutu [%s] z więcej niż jednym obiektem\n"
 
-#: libgeda/src/object/o_attrib.c:732
+#: libgeda/src/object/o_attrib.c:733
 #, fuzzy
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
 
-#: libgeda/src/object/o_attrib.c:741
+#: libgeda/src/object/o_attrib.c:742
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
@@ -1022,21 +1022,21 @@ msgstr "Napotkano odczep magistrali z błędnym ustawieniem kierunku [ %s ]\n"
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Ustawię kierunek na neutralny (brak kierunku)\n"
 
-#: libgeda/src/object/o_circle_object.c:646
+#: libgeda/src/object/o_circle_object.c:610
 msgid "Null radius circles are not allowed\n"
 msgstr "Koła o zerowym promieniu są niedozwolone\n"
 
-#: libgeda/src/object/o_circle_object.c:1340
-#: libgeda/src/object/o_circle_object.c:1370
+#: libgeda/src/object/o_circle_object.c:1304
+#: libgeda/src/object/o_circle_object.c:1334
 msgid "Failed to parse circle object"
 msgstr ""
 
-#: libgeda/src/object/o_circle_object.c:1378
+#: libgeda/src/object/o_circle_object.c:1342
 #, fuzzy, c-format
 msgid "Found circle with negative radius [ %c %d %d %d %d ]\n"
 msgstr "Napotkano koło o zerowym promieniu [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_circle_object.c:1384
+#: libgeda/src/object/o_circle_object.c:1348
 #, fuzzy, c-format
 msgid "Found circle with radius zero [ %c %d %d %d %d ]\n"
 msgstr "Napotkano magistralę o zerowej długości [ %c %d %d %d %d %d ]\n"
@@ -1152,7 +1152,7 @@ msgstr "Przyjmuję 'odbity' równe 0\n"
 msgid "Component [%s] has been embedded\n"
 msgstr "Osadzono komponent [%s]\n"
 
-#: libgeda/src/object/o_embed.c:93
+#: libgeda/src/object/o_embed.c:103
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1161,7 +1161,7 @@ msgstr ""
 "Nie odnaleziono komponentu [%s] podczas próby usunięcia osadzenia. Komponent "
 "pozostanie osadzony\n"
 
-#: libgeda/src/object/o_embed.c:102
+#: libgeda/src/object/o_embed.c:112
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Komponent [%s] nie jest już osadzony\n"
