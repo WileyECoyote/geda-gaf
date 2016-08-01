@@ -1,6 +1,10 @@
 2016-07-22 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme-api/geda-scheme.texi: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 382d01ff21b192023fbc28e7d509b21e3a6e3e09:
+      docs: Fixed description of picture-info.
+
+    * scheme-api/geda-scheme.texi: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit bf25009f4c918e99329c894d3f0abe2ab26310df:
       docs: Fix a typo.
 
