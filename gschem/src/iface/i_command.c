@@ -833,7 +833,8 @@ COMMAND (do_open) {
     IdleTaskData *packet;
     int count = 0;
 
-    w_current->toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
+    geda_toplevel_set_file_open_flags(w_current->toplevel,
+                                      F_OPEN_RC | F_OPEN_CHECK_BACKUP);
 
     lambda (void *filename) {
 
@@ -2776,8 +2777,8 @@ COMMAND (do_page_revert_all)
       IdleTaskData *packet;
       int count = 0;
 
-      toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
-
+      geda_toplevel_set_file_open_flags(toplevel,
+                                        F_OPEN_RC | F_OPEN_CHECK_BACKUP);
       lambda (void *filename) {
 
         gschem_task  *task;

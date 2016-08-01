@@ -1,3 +1,11 @@
+2016-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Use geda_toplevel_set_file_open_flags instead
+      of directly setting open_flags in do_open and do_page_revert_all.
+
+    * src/iface/i_window.c: Use geda_toplevel_set_file_open_flags in
+      i_window_revert_page.
+
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_menus.c: Connect to "torn-off" signal in x_menu_setup_ui
