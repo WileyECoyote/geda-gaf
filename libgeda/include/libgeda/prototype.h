@@ -333,7 +333,7 @@ extern "C" {
 
 /* o_embed.c */
          bool    geda_object_embed                         (GedaToplevel *toplevel, GedaObject *object);
-         void    geda_object_unembed                       (GedaToplevel *toplevel, GedaObject *object);
+          int    geda_object_unembed                       (GedaToplevel *toplevel, GedaObject *object);
 
 /* o_get.c */
           int    geda_object_get_attached_parent_id        (GedaObject *object);

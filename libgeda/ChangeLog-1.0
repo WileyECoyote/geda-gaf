@@ -4,6 +4,9 @@
       open_flags; documment open_flags argument. Revise comments for  geda_
       toplevel_set_make_backups; documment make_backups argument.
 
+    * src/object/o_embed.c: Revise geda_object_unembed to return a value
+      based on the result of the opertion, see comments in source.
+
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Reduce scope of attr in g_rc_component_groups.
