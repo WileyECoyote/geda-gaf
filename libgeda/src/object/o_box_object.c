@@ -2091,7 +2091,7 @@ geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_s
  *  box object <B>*object</B> following the post-20000704 release file format,
  *  (which handles the line type and fill options).
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object  The GedaBox Object to create string from.
  *

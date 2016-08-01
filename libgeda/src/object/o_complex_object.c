@@ -1205,7 +1205,7 @@ geda_complex_object_rotate(GedaObject *object, int center_x, int center_y, int a
  *  This function takes a complex \a object and return a string
  *  according to the file format definition.
  *
- * \note object was validated by o_save_objects.
+ * \note object was validated by geda_object_save_objects.
  *
  * \param [in] object  a complex Object
  *

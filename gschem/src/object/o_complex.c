@@ -58,7 +58,7 @@ void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
     list     = g_list_append(NULL, o_current);
     filename = geda_file_chooser_get_filename (dialog);
 
-    if (!o_save (list, filename, &err)) {
+    if (!geda_object_save (list, filename, &err)) {
 
       pango_error_dialog("Failed to export symbol:", err->message);
       g_clear_error (&err);

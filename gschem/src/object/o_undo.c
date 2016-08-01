@@ -153,19 +153,19 @@ void o_undo_finalize(void)
  *   This is a multipurpose function with two main purposes:
  *
  *   1. o_undo_savestate is part of the automatic backup system. In this
- *      role, calls o_save_auto_backup to perform any required backups.
- *      This is done first. Note that o_auto_save_backups could perform
- *      backups on any number of files before returning.
+ *      role, calls geda_object_save_auto_backup to perform any required
+ *      backups. This is done first. Note that o_auto_save_backups could
+ *      perform backups on any number of files before returning.
  *
- *      \note WEH: o_save_auto_backup uses o_save, same as us.
+ *      \note WEH: geda_object_save_auto_backup uses o_save, same as us.
  *
- *      \remarks:o_undo_savestate does not currently check if the backup
+ *      \remarks: o_undo_savestate does not currently check if the backup
  *      system is enabled via the auto_save_interval variable, nor does
- *      o_save_auto_backup, nor should they check. o_undo_savestate
- *      blindly calls o_save_auto_backup, which backs up all files flaged
- *      by timer s_page_autosave with do_autosave_backup AND marked here
- *      with ops_since_last_backup if interval is non zero, but only after
- *      the call to o_save_auto_backup.
+ *      geda_object_save_auto_backup, nor should they check. o_undo_save
+ *      state blindly calls geda_object_save_auto_backup, which backs up
+ *      all files flaged by timer s_page_autosave with do_autosave_backup
+ *      AND marked here with ops_since_last_backup if interval is non zero,
+ *      but only after the call to geda_object_save_auto_backup.
  *      Sounds hokey huh? The scheme works because a change was just made
  *      or we wouldn't be here, the file will be flaged the next time the
  *      timer counts down, and backed-up the next time a change is made,
@@ -208,7 +208,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
 
   /* save auto save backups if necessary */
-  o_save_auto_backup(w_current->toplevel);
+  geda_object_save_auto_backup(w_current->toplevel);
 
   i_status_update_title (w_current);
 
@@ -241,7 +241,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       /* Before we save the undo state, consolidate nets as necessary */
 
       /* This is where the net consolidation call would have been
-       * triggered before it was removed from o_save_buffer().
+       * triggered before it was removed from geda_object_save_buffer().
        */
       if (toplevel->net_consolidate == TRUE)
         geda_net_object_consolidate (toplevel, p_current);
@@ -253,7 +253,8 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
                                   tmp_path, DIR_SEPARATOR,
                                   prog_pid, undo_file_index++);
 
-      if (!o_save (s_page_get_objects (p_current), filename, &err)) {
+      if (!geda_object_save (s_page_get_objects (p_current), filename, &err))
+      {
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
            * and likely can not, remove any existing undo files.*/

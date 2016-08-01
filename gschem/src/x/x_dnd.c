@@ -886,7 +886,7 @@ static void x_dnd_drag_data_get
 #if DEBUG  || DEBUG_DND_EVENTS
       printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
-      char *buf = o_save_buffer (object_buffer[DND_BUFFER]);
+      char *buf = geda_object_save_buffer (object_buffer[DND_BUFFER]);
       gtk_selection_data_set (selection_data,
                               gtk_selection_data_get_target(selection_data),
                               BITS_BYTE, /* 8-bit data (UTF-8) */

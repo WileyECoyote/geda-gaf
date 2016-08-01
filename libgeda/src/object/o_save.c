@@ -42,7 +42,7 @@
  *  \param [in] toplevel  GedaToplevel object to search for autosave's.
  */
 void
-o_save_auto_backup(GedaToplevel *toplevel)
+geda_object_save_auto_backup(GedaToplevel *toplevel)
 {
   GList *iter;
   int    count;
@@ -132,7 +132,7 @@ o_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
 
-        if (o_save (s_page_get_objects (p_current), backup_filename, &err)) {
+        if (geda_object_save (s_page_get_objects (p_current), backup_filename, &err)) {
 
           geda_log_v (_("Automatic backup file saved [%s]\n"), backup_filename);
 
@@ -166,7 +166,7 @@ o_save_auto_backup(GedaToplevel *toplevel)
  * \brief Save a series of objects into a string buffer
  * \par Function Description
  *  Recursively saves a set of objects into a buffer in libgeda format.
- *  User code should not normally call this function; use o_save_buffer()
+ *  User code should not normally call this function; use geda_object_save_buffer()
  *  instead.
  *
  *  If \a save_attribs is FALSE, attribute objects are skipped over and are
@@ -180,7 +180,7 @@ o_save_auto_backup(GedaToplevel *toplevel)
  * \returns a buffer containing schematic data or NULL on failure.
  */
 char *
-o_save_objects (const GList *object_list, bool save_attribs)
+geda_object_save_objects (const GList *object_list, bool save_attribs)
 {
   const  GList *iter;
   char  *out;
@@ -245,7 +245,7 @@ o_save_objects (const GList *object_list, bool save_attribs)
           if (geda_complex_object_is_embedded(o_current)) {
 
             string_append("[\n");
-            out = o_save_objects(o_current->complex->prim_objs, FALSE);
+            out = geda_object_save_objects(o_current->complex->prim_objs, FALSE);
             string_append (out);
             GEDA_FREE(out);
             string_append("]\n");
@@ -312,7 +312,7 @@ o_save_objects (const GList *object_list, bool save_attribs)
       if (o_current->attribs != NULL) {
 
         string_append ("{\n");
-        out = o_save_objects (o_current->attribs, TRUE);
+        out = geda_object_save_objects (o_current->attribs, TRUE);
         string_append (out);
         GEDA_FREE(out);
 
@@ -336,7 +336,7 @@ o_save_objects (const GList *object_list, bool save_attribs)
  *  \returns a buffer containing schematic data or NULL on failure.
  */
 char *
-o_save_buffer (const GList *object_list)
+geda_object_save_buffer (const GList *object_list)
 {
   const char *header;
         char *acc;
@@ -344,7 +344,7 @@ o_save_buffer (const GList *object_list)
         int   size;
 
   header = f_get_format_header();
-  buffer = o_save_objects (object_list, FALSE);
+  buffer = geda_object_save_objects (object_list, FALSE);
   size   = strlen(header) + strlen(buffer);
   acc    = GEDA_MEM_ALLOC(size + 1);
 
@@ -372,7 +372,7 @@ o_save_buffer (const GList *object_list)
  *  \return 1 on success, 0 on failure.
  */
 bool
-o_save (const GList *object_list, const char *filename, GError **err)
+geda_object_save (const GList *object_list, const char *filename, GError **err)
 {
   char *path;
   int   result;
@@ -393,7 +393,7 @@ o_save (const GList *object_list, const char *filename, GError **err)
 
     output = fopen (filename, "w" );
 
-    buffer = o_save_buffer (object_list);
+    buffer = geda_object_save_buffer (object_list);
 
     fputs(buffer, output);
 

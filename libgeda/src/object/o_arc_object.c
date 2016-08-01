@@ -1961,7 +1961,7 @@ geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_s
  *  the #GedaArc <B>\a object</B>. A pointer to the new allocated
  *  formated string is returned.
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object
  *

@@ -1794,7 +1794,7 @@ geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int forc
  *  circle <B>*object</B> following the post-20000704 release file format that
  *  handles the line type and fill options.
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object  Circle GedaObject to create string from.
  *

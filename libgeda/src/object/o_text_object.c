@@ -918,7 +918,7 @@ o_text_rotate(GedaObject *object, int center_x, int center_y, int angle)
  * \par Function Description
  *  This function takes a text \a object and return a string
  *  according to the file format definition.
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  * \param [in] object  a text Object
  * \return the string representation of the text Object
  */

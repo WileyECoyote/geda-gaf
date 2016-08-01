@@ -1865,7 +1865,7 @@ geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_
  *  the line <B>*object</B> following the post-20000704 release file format
  *  that handle the line type and fill options - filling is irrelevant here.
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object  GedaLine Object to create string from.
  *

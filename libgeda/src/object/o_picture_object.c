@@ -1668,7 +1668,7 @@ geda_picture_object_rotate(GedaObject *object, int center_x, int center_y, int a
  *  This function formats a string in the buffer <B>*buff</B> to describe
  *  the picture object <B>*object</B>.
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object  Picture GedaObject to create string from.
  *

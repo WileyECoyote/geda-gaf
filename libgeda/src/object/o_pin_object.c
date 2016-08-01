@@ -192,7 +192,7 @@ GedaObject *geda_pin_object_read (const char buf[], unsigned int release_ver,
  * \par Function Description
  *  This function takes a pin \a object and return a string
  *  according to the file format definition.
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  * \param [in] object  a pin Object
  * \returns string representation of the pin Object
  */

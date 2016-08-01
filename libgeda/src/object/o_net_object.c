@@ -943,7 +943,7 @@ geda_net_object_set_y2 (GedaObject *object, int y)
  *  This function takes a net \a object and return a string
  *  according to the file format definition.
  *
- * \note object was validated by o_save_objects
+ * \note object was validated by geda_object_save_objects
  *
  * \param [in] object Pointer to a net Object
  *
