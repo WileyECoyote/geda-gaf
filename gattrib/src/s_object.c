@@ -372,7 +372,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
     geda_attrib_object_attach (o_current, new_obj, FALSE);
   }
 
-  o_selection_add (toplevel->page_current->selection_list, new_obj);
+  geda_object_selection_add (toplevel->page_current->selection_list, new_obj);
 
   return TRUE;
 }

@@ -30,7 +30,7 @@
  *
  *  \return pointer to the new SELECTION object.
  */
-SELECTION *o_selection_new( void )
+SELECTION *geda_object_selection_new( void )
 {
   return (SELECTION*)geda_list_new();
 }
@@ -44,9 +44,9 @@ SELECTION *o_selection_new( void )
  *  \param [in] selection  Pointer to the selection list
  *  \param [in] o_selected GedaObject to select.
  */
-void o_selection_add (SELECTION *selection, GedaObject *o_selected)
+void geda_object_selection_add (SELECTION *selection, GedaObject *o_selected)
 {
-  if (o_selection_select (o_selected) == 1) {
+  if (geda_object_selection_select (o_selected) == 1) {
     geda_list_add( (GedaList *)selection, o_selected );
   }
 }
@@ -61,7 +61,7 @@ void o_selection_add (SELECTION *selection, GedaObject *o_selected)
  *
  *  \returns The first GedaObject or NULL if there is no selection
  */
-GedaObject *o_selection_get_first_object(SELECTION *selection)
+GedaObject *geda_object_selection_get_first(SELECTION *selection)
 {
   if (!geda_list_get_glist(selection))
     return NULL;
@@ -85,7 +85,7 @@ GedaObject *o_selection_get_first_object(SELECTION *selection)
  *           or -1 to indicate an error if \a object is not a valid gEDA
  *           object.
  */
-int o_selection_remove (SELECTION *selection, GedaObject *object)
+int geda_object_selection_remove (SELECTION *selection, GedaObject *object)
 {
   int result;
 
@@ -93,7 +93,7 @@ int o_selection_remove (SELECTION *selection, GedaObject *object)
 
     if (g_list_find( geda_list_get_glist(selection), object ) != NULL) {
 
-      result = o_selection_unselect (object);
+      result = geda_object_selection_unselect (object);
 
       geda_list_remove( (GedaList *)selection, object );
 
@@ -122,7 +122,7 @@ int o_selection_remove (SELECTION *selection, GedaObject *object)
  * \param [in] selection Pointer to selection list to print.
  *
  */
-void o_selection_print_all(const SELECTION *selection)
+void geda_object_selection_print_all(const SELECTION *selection)
 {
   const GList *s_current = geda_list_get_glist (selection);
 
@@ -154,7 +154,7 @@ void o_selection_print_all(const SELECTION *selection)
  *           was already selected, or -1 to indicate an error
  *           because \a object is not a valid gEDA object.
  */
-int o_selection_select(GedaObject *object)
+int geda_object_selection_select(GedaObject *object)
 {
   int result;
 
@@ -187,7 +187,7 @@ int o_selection_select(GedaObject *object)
  *           was not selected, or -1 to indicate an error
  *           because \a object is not a valid gEDA object.
  */
-int o_selection_unselect (GedaObject *object)
+int geda_object_selection_unselect (GedaObject *object)
 {
   int result;
 
@@ -217,7 +217,7 @@ int o_selection_unselect (GedaObject *object)
  *           objects were unselected, or -1 to indicate an error
  *           because \a object is not a valid #GedaList.
  */
-int o_selection_unselect_all (SELECTION *selection)
+int geda_object_selection_unselect_all (SELECTION *selection)
 {
   int result;
 

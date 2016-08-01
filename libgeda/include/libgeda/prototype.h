@@ -515,21 +515,21 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_pin_object_update_whichend           (GList *object_list, int num_pins);
 
 
-/* o_save.c */
-         void    o_save_auto_backup              (GedaToplevel *toplevel);
-         char   *o_save_objects                  (const GList *object_list, bool save_attribs);
-         char   *o_save_buffer                   (const GList *object_list);
-          int    o_save                          (const GList *object_list, const char *filename, GError **err);
+/* geda_object_save.c */
+         void    geda_object_save_auto_backup              (GedaToplevel *toplevel);
+         char   *geda_object_save_objects                  (const GList *object_list, bool save_attribs);
+         char   *geda_object_save_buffer                   (const GList *object_list);
+          int    geda_object_save                          (const GList *object_list, const char *filename, GError **err);
 
 /* o_selection.c */
-    SELECTION   *o_selection_new                 (void);
-         void    o_selection_add                 (SELECTION *selection, GedaObject *o_selected);
-   GedaObject   *o_selection_get_first_object    (SELECTION *selection);
-         void    o_selection_print_all           (const SELECTION *selection);
-          int    o_selection_remove              (SELECTION *selection, GedaObject *o_selected);
-          int    o_selection_select              (GedaObject *object);
-          int    o_selection_unselect            (GedaObject *object);
-          int    o_selection_unselect_all        (SELECTION *selection);
+    SELECTION   *geda_object_selection_new                 (void);
+         void    geda_object_selection_add                 (SELECTION *selection, GedaObject *o_selected);
+   GedaObject   *geda_object_selection_get_first           (SELECTION *selection);
+         void    geda_object_selection_print_all           (const SELECTION *selection);
+          int    geda_object_selection_remove              (SELECTION *selection, GedaObject *o_selected);
+          int    geda_object_selection_select              (GedaObject *object);
+          int    geda_object_selection_unselect            (GedaObject *object);
+          int    geda_object_selection_unselect_all        (SELECTION *selection);
 
 /* o_set.c */
          void    o_set_bounds_invalid            (GedaObject *object);

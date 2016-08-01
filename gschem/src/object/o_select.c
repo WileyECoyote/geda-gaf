@@ -122,7 +122,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
 
       /* object not selected, so add it to the selection list */
       o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
-      o_selection_add    (selection, o_current);
+      geda_object_selection_add    (selection, o_current);
       break;
 
     case(TRUE):                /* object was already selected */
@@ -133,7 +133,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
           /*     then : remove object from selection */
           if (type != MULTIPLE) {
             o_select_run_hooks (w_current, o_current, DESELECT_OBJECTS_HOOK);
-            o_selection_remove (selection, o_current);
+            geda_object_selection_remove (selection, o_current);
             removing_obj = TRUE;
           }
 
@@ -148,7 +148,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
           if (type == MULTIPLE && count == 0 && !CONTROLKEY) {
             o_select_unselect_all (w_current);
             o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
-            o_selection_add    (selection, o_current);
+            geda_object_selection_add    (selection, o_current);
           }
 
           /* condition: doing single object add */
@@ -158,12 +158,12 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
           if (type == SINGLE && !CONTROLKEY) {
             o_select_unselect_all (w_current);
             o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
-            o_selection_add    (selection, o_current);
+            geda_object_selection_add    (selection, o_current);
           }
 
           if (CONTROLKEY) {
             o_select_run_hooks (w_current, o_current, DESELECT_OBJECTS_HOOK);
-            o_selection_remove (selection, o_current);
+            geda_object_selection_remove (selection, o_current);
             removing_obj = TRUE;
           }
 
@@ -206,7 +206,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
  *  \sa o_select_move_to_place_list
  *
  *  \note see comment for o_select_visible_unlocked regarding
- *        o_selection_add
+ *        geda_object_selection_add
  */
 void
 o_select_add_list(GschemToplevel *w_current, GList *list)
@@ -218,7 +218,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
   while (iter) {
     GedaObject *object = iter->data;
     w_current->which_object = object;
-    o_selection_add (selection, object);
+    geda_object_selection_add (selection, object);
     o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
     iter = iter->next;
   }
@@ -231,7 +231,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
  *  \sa o_select_move_to_place_list
  *
  *  \note see comment for o_select_visible_unlocked regarding
- *        o_selection_add
+ *        geda_object_selection_add
  */
 void
 o_select_add_object(GschemToplevel *w_current, GedaObject *object)
@@ -241,7 +241,7 @@ o_select_add_object(GschemToplevel *w_current, GedaObject *object)
 
   if (GEDA_IS_OBJECT(object)) {
     w_current->which_object = object;
-    o_selection_add (selection, object);
+    geda_object_selection_add (selection, object);
     o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
   }
   else {
@@ -689,7 +689,7 @@ void o_select_unselect_all(GschemToplevel *w_current)
 
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
-      if (o_selection_unselect_all(selection) > 0) {
+      if (geda_object_selection_unselect_all(selection) > 0) {
 
         GList *list = geda_list_get_glist (selection);
 
@@ -702,7 +702,7 @@ void o_select_unselect_all(GschemToplevel *w_current)
 
       GedaObject *object = geda_list_get_glist (selection)->data;
 
-      if (o_selection_remove(selection, object) == 1) {
+      if (geda_object_selection_remove(selection, object) == 1) {
         o_select_run_hooks (w_current, object, DESELECT_OBJECTS_HOOK);
       }
     }
@@ -746,7 +746,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
        *  differently depending on the state of w_current->SHIFTKEY
        *  and w_current->CONTROLKEY, which may well be set if this
        *  function is called via a keystroke (e.g. Ctrl-A). */
-       o_selection_add (selection, obj);
+       geda_object_selection_add (selection, obj);
 
     /* Add any attributes of object to selection as well. */
     o_attrib_attached_2_selection (w_current, selection, obj);
@@ -837,7 +837,7 @@ GedaObject *o_select_return_first_object(GschemToplevel *w_current)
   if (!page)
     return NULL;
 
-  return o_selection_get_first_object(page->selection_list);
+  return geda_object_selection_get_first(page->selection_list);
 }
 
 static unsigned press_hid;

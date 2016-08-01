@@ -66,7 +66,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
       selected_save = src_object->selected;
 
       if (selected_save)
-        o_selection_unselect (src_object);
+        geda_object_selection_unselect (src_object);
 
       if (src_object->type != OBJ_TEXT) {
         dst_object = geda_object_copy (src_object);
@@ -75,7 +75,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 
       /* reselect it */
       if (selected_save) {
-        o_selection_select (src_object);
+        geda_object_selection_select (src_object);
       }
     }
 
@@ -95,7 +95,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
       selected_save = src_object->selected;
 
       if (selected_save)
-        o_selection_unselect (src_object);
+        geda_object_selection_unselect (src_object);
 
       if (src_object->type == OBJ_TEXT) {
         dst_object = geda_object_copy (src_object);
@@ -113,7 +113,7 @@ GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 
       /* reselect it */
       if (selected_save) {
-        o_selection_select (src_object);
+        geda_object_selection_select (src_object);
       }
     }
     src = g_list_next(src);

@@ -1126,7 +1126,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
     q_log_message (_("Updating symbol [%s]\n"), o_current->complex->filename);
 
   /* Unselect the old object. */
-  o_selection_remove (page->selection_list, o_current);
+  geda_object_selection_remove (page->selection_list, o_current);
 
   /* Create new object and set embedded */
   o_new = geda_complex_object_new (toplevel,
@@ -1214,7 +1214,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   s_object_release (o_current);
 
   /* Select newGedaObject */
-  o_selection_add (page->selection_list, o_new);
+  geda_object_selection_add (page->selection_list, o_new);
 
   /* A redraw attributes in case a property (size) was restored */
   o_invalidate_list (w_current, o_new->attribs);

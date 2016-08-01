@@ -240,13 +240,13 @@ geda_net_object_consolidate_segments (GedaObject *object)
 
           changed++;
           if (other_object->selected == TRUE ) {
-            o_selection_remove (page->selection_list, other_object);
+            geda_object_selection_remove (page->selection_list, other_object);
 
             /* If we're consolidating with a selected object,
              * ensure we select the resulting object.
              */
             if (object->selected == FALSE) {
-              o_selection_add (page->selection_list, object);
+              geda_object_selection_add (page->selection_list, object);
             }
           }
 

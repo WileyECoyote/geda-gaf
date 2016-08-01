@@ -86,7 +86,7 @@ SCM_DEFINE (select_object_x, "%select-object!", 1, 0, 0,
   }
 
   if (!obj->selected) {
-    o_selection_add (page->selection_list, obj);
+    geda_object_selection_add (page->selection_list, obj);
   }
 
   return obj_s;
@@ -122,7 +122,7 @@ SCM_DEFINE (deselect_object_x, "%deselect-object!", 1, 0, 0,
   }
 
   if (obj->selected) {
-    o_selection_remove (page->selection_list, obj);
+    geda_object_selection_remove (page->selection_list, obj);
   }
 
   return obj_s;

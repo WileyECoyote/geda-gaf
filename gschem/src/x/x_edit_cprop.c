@@ -443,7 +443,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           }
 
           /* Select newGedaObject */
-          o_selection_add (Current_Selection, o_new);
+          geda_object_selection_add (Current_Selection, o_new);
 
           changed = TRUE;
         }

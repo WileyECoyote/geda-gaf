@@ -64,7 +64,7 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
 
       /* make sure object isn't selected already */
       if (!a_current->selected) {
-        o_selection_add (selection, a_current);
+        geda_object_selection_add (selection, a_current);
         objects_added = g_list_prepend (objects_added, a_current);
       }
     }
@@ -152,7 +152,7 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
     GedaObject *a_current = a_iter->data;
 
     if (a_current->selected && !geda_object_get_is_visible(a_current)) {
-      o_selection_remove (selection, a_current);
+      geda_object_selection_remove (selection, a_current);
     }
   }
 }
@@ -188,7 +188,7 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
    GedaObject *a_current = a_iter->data;
 
     if (!a_current->selected && !geda_object_get_is_visible(a_current)) {
-      o_selection_add (selection, a_current);
+      geda_object_selection_add (selection, a_current);
     }
   }
 }
@@ -399,7 +399,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
     o_slot_end (w_current, parent, text_string);
   }
   else if (parent && parent->selected) {
-    o_selection_add (Current_Selection, new_obj);
+    geda_object_selection_add (Current_Selection, new_obj);
   }
 
   /* Call add-objects-hook. */

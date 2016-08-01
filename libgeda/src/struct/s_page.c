@@ -119,7 +119,7 @@ s_page_new_common(Page *page)
   s_tile_init (page);
 
   /* new selection mechanism */
-  page->selection_list = o_selection_new();
+  page->selection_list = geda_object_selection_new();
 
   /* init undo struct pointers */
   s_undo_init(page);

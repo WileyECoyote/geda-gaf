@@ -363,7 +363,7 @@ EDA_SCM_DEFINE (page_remove_x, "%page-remove!", 2, 0, 0,
   s_page_remove_object (page, obj);
 
   /* If the object is currently selected, unselect it. */
-  o_selection_remove (page->selection_list, obj);
+  geda_object_selection_remove (page->selection_list, obj);
 
   /* GedaObject cleanup now managed by C code */
   edascm_c_set_gc (obj_s, 1);

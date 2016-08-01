@@ -43,7 +43,7 @@ void o_delete (GschemToplevel *w_current, GedaObject *object)
 
   g_return_if_fail (object != NULL);
 
-  o_selection_remove   (toplevel->page_current->selection_list, object);
+  geda_object_selection_remove   (toplevel->page_current->selection_list, object);
   s_page_remove_object (toplevel->page_current, object);
   g_hook_run_object    (w_current, REMOVE_OBJECTS_HOOK, object);
   s_object_release     (object);
@@ -107,7 +107,7 @@ void o_delete_selected (GschemToplevel *w_current)
 
     for (iter = to_remove; iter != NULL; iter = iter->next) {
       GedaObject *object = iter->data;
-      o_selection_remove   (selection, object);
+      geda_object_selection_remove   (selection, object);
       s_page_remove_object (toplevel->page_current, object);
     }
 

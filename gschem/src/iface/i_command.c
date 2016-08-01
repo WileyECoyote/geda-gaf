@@ -1884,7 +1884,7 @@ COMMAND (do_select_invert)
   GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
   while(list != NULL) {
-    o_selection_remove (selection, (GedaObject*) list->data);
+    geda_object_selection_remove (selection, (GedaObject*) list->data);
     NEXT(list);
   }
   g_list_free (list);

@@ -9,6 +9,8 @@
 
     * src/object/o_save.c: Rename functions with geda_object prefix.
 
+    * src/object/o_selection.c: Rename functions with geda_object prefix.
+
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Reduce scope of attr in g_rc_component_groups.
