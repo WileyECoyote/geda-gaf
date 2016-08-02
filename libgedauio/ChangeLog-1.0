@@ -1,7 +1,10 @@
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_label.c: Revise/update Doxygen comment, add todo block
+    * src/widgets/geda_label.c: Revise/update Doxygen comments, add todo block
       where missing.
+
+    * src/widgets/geda_menu.c: Add static const transfer_window_key as string
+      "menu-transfer-window" and replace "gtk-menu-transfer-window".
 
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 

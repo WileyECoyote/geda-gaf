@@ -314,6 +314,7 @@ static const char attached_menus_key[]  = "attached-menus";
 static const char attached_info_key[]   = "menu-child-attach-info-key";
 static const char attached_data_key[]   = "menu-attach-data";
 static const char explicit_screen_key[] = "menu-explicit-screen";
+static const char transfer_window_key[] = "menu-transfer-window";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
@@ -2797,7 +2798,7 @@ geda_menu_focus (GtkWidget *widget, GtkDirectionType direction)
 static GdkWindow *
 menu_grab_transfer_window_get (GedaMenu *menu)
 {
-  GdkWindow *window = g_object_get_data (G_OBJECT (menu), "gtk-menu-transfer-window");
+  GdkWindow *window = g_object_get_data (G_OBJECT (menu), transfer_window_key);
 
   if (!window) {
 
@@ -2821,7 +2822,7 @@ menu_grab_transfer_window_get (GedaMenu *menu)
 
     gdk_window_show (window);
 
-    g_object_set_data (G_OBJECT (menu), "gtk-menu-transfer-window", window);
+    g_object_set_data (G_OBJECT (menu), transfer_window_key, window);
   }
 
   return window;
@@ -2830,12 +2831,12 @@ menu_grab_transfer_window_get (GedaMenu *menu)
 static void
 menu_grab_transfer_window_destroy (GedaMenu *menu)
 {
-  GdkWindow *window = g_object_get_data (G_OBJECT (menu), "gtk-menu-transfer-window");
+  GdkWindow *window = g_object_get_data (G_OBJECT (menu), transfer_window_key);
 
   if (window) {
     gdk_window_set_user_data (window, NULL);
     gdk_window_destroy (window);
-    g_object_set_data (G_OBJECT (menu), "gtk-menu-transfer-window", NULL);
+    g_object_set_data (G_OBJECT (menu), transfer_window_key, NULL);
   }
 }
 
