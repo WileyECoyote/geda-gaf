@@ -1,3 +1,9 @@
+2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Revert 57c99d77e723e11521f36acec1b37936f54383aa,
+      the main window does not appear to receive keyboard event without
+      this call to gtk_widget_grab_focus.
+
 2016-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Use geda_toplevel_set_file_open_flags instead
@@ -8,9 +14,9 @@
 
 2016-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_menus.c: Connect to "torn-off" signal in x_menu_setup_ui
-      for item on the bar and add callback x_menu_torn to set focus to the
-      canvas a menu is torn off.
+    * src/x/x_menus.c: Connect to "torn-off" signal in x_menu_setup_ui for
+      item on the bar and add callback x_menu_torn to set focus to the canvas
+      a menu is torn off.
 
     * src/x/x_window.c: Remove gtk_widget_grab_focus from x_window_create_
       drawing_area.
