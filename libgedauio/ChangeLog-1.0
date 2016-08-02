@@ -1,3 +1,8 @@
+2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Revise/update Doxygen comment, add todo block
+      where missing.
+
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_deactivate to get the pointer
@@ -274,7 +279,7 @@
 
     * src/widgets/geda_label.c: Revise geda_label_update_layout_width; add int
       halve_height and simply division by 2 to right shift, combine conditional
-      in geda_label_focus and eliminate 2 goto's.
+      in geda_label_focus and eliminate 2 goto`s.
 
     * tests/test_check_menu_item.c: Add checks for alternate constructors. Use
       get_text property blurb.
@@ -329,8 +334,8 @@
       to actually set always_show_toggle, add Doxygen comments. Add geda_check_menu_
       item_get_show_toggle. Revise Doxygen comment blocks.
 
-    * src/widgets/geda_menu_button.c: Add is_a_geda_menu_button and
-      initialize instance_type in geda_menu_button_init.
+    * src/widgets/geda_menu_button.c: Add is_a_geda_menu_button and initialize
+      instance_type in geda_menu_button_init.
 
     * src/widgets/geda_menu_item.c: Remove translation of signal names.
 

@@ -1138,11 +1138,6 @@ geda_label_class_init  (void *class, void *class_data)
 
   /**
    * GedaLabel::move-cursor:
-   * entry: the object which received the signal
-   * step: the granularity of the move, as a GtkMovementStep
-   * count: the number of step units to move
-   * extend_selection: %TRUE if the move should extend the selection
-   *
    * The move-cursor signal is a keybinding signal, which gets emitted
    * when the user initiates a cursor movement. If the cursor is not visible
    * in entry, this signal causes the viewport to be moved instead.
@@ -1160,6 +1155,10 @@ geda_label_class_init  (void *class, void *class_data)
    *   -Ctrl-arrow key combinations move by words/paragraphs
    *   -Home/End keys move to the ends of the buffer
    *
+   * entry: the object which received the signal
+   * step: the granularity of the move, as a GtkMovementStep
+   * count: the number of step units to move
+   * extend_selection: %TRUE if the move should extend the selection
    */
 /*
   signals[MOVE_CURSOR] =
@@ -1187,12 +1186,12 @@ geda_label_class_init  (void *class, void *class_data)
                    G_TYPE_BOOLEAN);
   /*!
    * GedaLabel::copy-clipboard:
-   * label: the object which received the signal
-   *
    * The copy-clipboard signal is a keybinding signal, which gets
    * emitted to copy the selection to the clipboard.
    *
    * The default binding for this signal is Ctrl-c.
+   *
+   * label: the object which received the signal
    */
   signals[COPY_CLIPBOARD] =
   g_signal_new ( "copy-clipboard",
@@ -1205,15 +1204,15 @@ geda_label_class_init  (void *class, void *class_data)
 
   /*!
    * GedaLabel::populate-popup:
-   * label: The label on which the signal is emitted
-   * menu: the menu that is being populated
-   *
    * The populate-popup signal gets emitted before showing the
    * context menu of the label. Note that only selectable labels
    * have context menus.
    *
    * If you need to add items to the context menu, connect
    * to this signal and append your menuitems to the menu.
+   *
+   * label: The label on which the signal is emitted
+   * menu: the menu that is being populated
    */
   signals[POPULATE_POPUP] =
   g_signal_new ("populate-popup",
@@ -1227,8 +1226,6 @@ geda_label_class_init  (void *class, void *class_data)
 
   /*!
    * GedaLabel::activate-current-link:
-   * label: The label on which the signal was emitted
-   *
    * A keybinding signal, which gets emitted when the user activates a
    * link in the label.
    *
@@ -1237,6 +1234,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    * The default bindings for this signal are all forms of the Enter key.
    *
+   * label: The label on which the signal was emitted
    */
   signals[ACTIVATE_CURRENT_LINK] =
   g_signal_new_class_handler ("activate-current-link",
@@ -1249,15 +1247,14 @@ geda_label_class_init  (void *class, void *class_data)
 
   /*!
    * GedaLabel::activate-link:
-   * label: The label on which the signal was emitted
-   * uri: the URI that is activated
-   *
    * The signal which gets emitted to activate a URI.
    * Applications may connect to it to override the default behaviour,
    * which is to call gtk_show_uri().
    *
-   * Returns: %TRUE if the link has been activated
+   * label: The label on which the signal was emitted
+   * uri: the URI that is activated
    *
+   * retval: %TRUE if the link has been activated
    */
 /*
   signals[ACTIVATE_LINK] =
@@ -2672,9 +2669,9 @@ void geda_label_set_text (GedaLabel *label, const char *str)
  * \par Function Description
  *  Sets the text within the #GedaLabel widget.
  *
- * \param [in] label  The GedaLabel object
+ * \param [in] widget  The GedaLabel widget
  * \param [in] str    The text to be set
-
+ *
  * \sa geda_label_set_text
  */
 void geda_label_widget_set_text (GtkWidget *widget, const char *str)
@@ -2725,7 +2722,7 @@ geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
  * \par Function Description
  *  Retrieves the text alignment property of the #GedaLabel widget.
  *
- * \param [in]  label  The GedaLabel object
+ * \param [in] widget  The GedaLabel widget
  * \param [out] xalign Pointer to float to store the horizontal alignment
  * \param [out] yalign Pointer to float to store the vertical alignment
  *
@@ -2744,7 +2741,7 @@ geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign
  * \par Function Description
  *  Set the text alignment property of the #GedaLabel widget.
  *
- * \param [in] label  The GedaLabel object
+ * \param [in] widget The GedaLabel widget
  * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
  * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
  *
@@ -3301,6 +3298,10 @@ const char *geda_label_get_text (GedaLabel *label)
   return label->text;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 const char *geda_label_widget_get_text (GtkWidget *widget)
 {
   return geda_label_get_text((GedaLabel*) widget);
@@ -3481,7 +3482,7 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
  * \par Function Description
  *  Returns the justification of the label.
  *
- * \param [in] label The GedaLabel object
+ * \param [in] widget The GedaLabel widget
  *
  * \returns GtkJustification
  *
@@ -3504,7 +3505,7 @@ GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
  * \note geda_label_set_justify has no effect on labels containing
  *       only a single line.
  *
- * \param [in] label  The GedaLabel object
+ * \param [in] widget The GedaLabel widget
  * \param [in] jtype  The GedaLabel object
  *
  * \sa geda_label_set_justify
@@ -3635,15 +3636,14 @@ void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 /*!
  * \brief Get the Width of Characters from a GedaLabel widget
  * \par Function Description
- *  Wrapper for geda_label_get_width_chars that accepts a pointer to a
- *  GtkWidget for the GeddaLabel object.
+ *  Wrapper for geda_label_get_width_chars that accepts a pointer
+ *  to a GtkWidget for the GedaLabel object.
  *
- *  \param [in] widget  The GedaLabel object
- *  \param [in] n_chars New desired width, in characters.
+ *  \param [in] widget The GedaLabel widget
  */
 int geda_label_widget_get_width_chars (GtkWidget *widget)
 {
-  return geda_label_get_width_chars ( (GedaLabel*) widget);
+  return geda_label_get_width_chars ((GedaLabel*)widget);
 }
 
 /*!
@@ -3651,12 +3651,12 @@ int geda_label_widget_get_width_chars (GtkWidget *widget)
  * \par Function Description
  *  Sets the desired width in characters of label to n_chars.
  *
- *  \param [in] widget  The GedaLabel object
+ *  \param [in] widget The GedaLabel widget
  *  \param [in] n_chars New desired width, in characters.
  */
 void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 {
-  geda_label_set_width_chars ( (GedaLabel*) widget, n_chars);
+  geda_label_set_width_chars ((GedaLabel*)widget, n_chars);
 }
 
 /********************* Max Width Chars Property *******************/
@@ -3706,7 +3706,7 @@ void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
  *  Wrapper to retrieves the desired maximum width of label, in characters
  *  casting the GedaLabel to Widget.
  *
- * \param [in] label  The GedaLabel object
+ * \param [in] widget The GedaLabel widget
  *
  * \returns the maximum width of the label in characters.
  *
@@ -3722,8 +3722,8 @@ int geda_label_widget_get_max_width_chars (GtkWidget *widget)
  * \par Function Description
  *  Wrapper for geda_label_set_max_width_chars.
  *
- * \param [in] label    The GedaLabel object
- * \param [in] n_chars  New desired maximum width, in characters.
+ * \param [in] widget  The GedaLabel widget
+ * \param [in] n_chars New desired maximum width, in characters.
  *
  * \sa geda_label_set_max_width_chars
  */
@@ -4914,15 +4914,18 @@ static void limit_layout_lines (PangoLayout *layout)
   }
 }
 
-/*
- * _gtk_text_util_create_drag_icon
- * @widget: GtkWidget to extract the pango context
- * @text: a #char to render the icon
- * @len: length of @text, or -1 for NUL-terminated text
+/*!
+ * \brief GedaLabel label widget create_drag_icon
+ * \par Function Description
+ *  Creates a drag and drop icon from \a text.
  *
- * Creates a drag and drop icon from @text.
+ *  \param [in]  widget GtkWidget to extract the pango context
+ *  \param [in]  text   a #char to render the icon
+ *  \param [in]  len    length of \a text, or -1 for NUL-terminated text
  *
- * Returns: a #GdkPixmap to use as DND icon
+ * \returns: a #GdkPixmap to use as DND icon
+ *
+ * \todo consider relocating this function
  */
 static GdkPixmap *
 geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
@@ -5318,6 +5321,10 @@ bool geda_label_get_selectable (GedaLabel *label)
   return info && info->selectable;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 bool geda_label_widget_get_selectable (GtkWidget *widget)
 {
   return geda_label_get_selectable ( (GedaLabel*) widget);
@@ -5367,6 +5374,11 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
     gtk_widget_queue_draw (GTK_WIDGET (label));
   }
 }
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
 {
   geda_label_set_selectable ((GedaLabel*)widget, setting);
@@ -5390,6 +5402,11 @@ double geda_label_get_angle  (GedaLabel *label)
   g_return_val_if_fail (GEDA_IS_LABEL(label), 0.0);
   return label->angle;
 }
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 double geda_label_widget_get_angle (GtkWidget *widget)
 {
   return geda_label_get_angle ((GedaLabel*)widget);
@@ -5433,6 +5450,10 @@ geda_label_set_angle (GedaLabel *label, double angle)
   }
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 void geda_label_widget_set_angle (GtkWidget *widget, double angle)
 {
   geda_label_set_angle ( (GedaLabel*) widget, angle);
@@ -5821,7 +5842,7 @@ void geda_label_set_use_underline (GedaLabel *label, bool setting)
  * \par Function Description
  *  See geda_label_get_use_underline.
  *
- * \param [in] label  The GtkWidget object
+ * \param [in] widget The GedaLabel widget
  *
  * \retval %TRUE whether an embedded underline in the label indicates
  *               the mnemonic accelerator keys.
@@ -5839,7 +5860,7 @@ bool geda_label_widget_get_use_underline (GtkWidget *widget)
  *  If true, an underline in the text indicates the next character should
  *  be used for the mnemonic accelerator key.
  *
- * \param [in] label   The GtkWidget object
+ * \param [in] widget  The GedaLabel widget
  * \param [in] setting %TRUE if underlines in the text indicate mnemonics.
  */
 void geda_label_widget_set_use_underline (GtkWidget *widget, bool setting)
