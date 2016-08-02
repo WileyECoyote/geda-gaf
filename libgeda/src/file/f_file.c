@@ -175,7 +175,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     return status;
   }
 
-  flags     = toplevel->open_flags;
+  flags     = geda_toplevel_get_file_open_flags(toplevel);
   saved_cwd = NULL;
 
   /* Save the cwd so we can restore it later. */
@@ -481,7 +481,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     /* Do a backup if it's not an undo file backup and it was never saved.
      * Only do a backup if backup files are enabled */
     if (page->saved_since_first_loaded == 0 &&
-        toplevel->make_backup_files == TRUE)
+        geda_toplevel_get_make_backups(toplevel))
     {
       if ((g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
