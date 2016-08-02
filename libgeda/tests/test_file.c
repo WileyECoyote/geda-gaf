@@ -64,6 +64,12 @@
  * \brief Group 1 src/file/f_file.c geda_file_
  */
 
+struct _TestData
+{
+  char *input;
+  char *expected;
+};
+
 int test_file (void)
 {
   int result = 0;
@@ -130,8 +136,8 @@ int test_sys (void)
   result = errno = 0;
 
   /* === Function 01: geda_copy_file f_sys_copy === */
-  /* === Function 02: geda_cmp_file_mod_time	f_sys_cmp_mod_time === */
-  /* === Function 03: geda_follow_symlinks		f_sys_follow_symlinks === */
+  /* === Function 02: geda_cmp_file_mod_time f_sys_cmp_mod_time === */
+  /* === Function 03: geda_follow_symlinks f_sys_follow_symlinks === */
 
   /* === Function 04: f_sys_normalize_name === */
 
@@ -209,9 +215,89 @@ int test_sys (void)
     g_error_free(F0504_err);
   }
 
-  /* === Function 05: geda_remove_file		f_sys_remove === */
+  /* === Function 05: geda_remove_file f_sys_remove === */
 
-  /* === Function 06: geda_remove_extension	f_sys_remove_extension === */
+  /* === Function 06: f_sys_remove_extension === */
+
+  static const struct _TestData F06_str[] =
+  {
+    { "",         ""  },
+    { "a",        "a" },
+    { "a.b",      "a" },
+    { "a.b\n",    "a" },
+    { "/a.b\r",   "/a" },
+    { "a.b.c\r",  "a.b" }
+  };
+
+  char *expected;
+
+  string = geda_strdup (F06_str[0].input); /* "" */
+
+  if (geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050601) geda_remove_extension\n");
+    result++;
+  }
+  g_free(string);
+
+  string = geda_strdup (F06_str[1].input); /* "a" */
+
+  if (geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050602) geda_remove_extension\n");
+    result++;
+  }
+  g_free(string);
+
+  string   = geda_strdup (F06_str[2].input); /* "a.b" */
+  expected = F06_str[2].expected;
+
+  if (!geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050603A) geda_remove_extension\n");
+    result++;
+  }
+  else if (strcmp(string, expected)) {      /* See structure F06_str */
+    fprintf(stderr, "FAILED: (F050603B) geda_remove_extension <%s>\n",string);
+    result++;
+  }
+  g_free(string);
+
+  string   = geda_strdup (F06_str[3].input); /* "a.b\n" */
+  expected = F06_str[3].expected;
+
+  if (!geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050604A) geda_remove_extension\n");
+    result++;
+  }
+  else if (strcmp(string, expected)) {      /* See structure F06_str */
+    fprintf(stderr, "FAILED: (F050604B) geda_remove_extension <%s>\n",string);
+    result++;
+  }
+  g_free(string);
+
+  string   = geda_strdup (F06_str[4].input); /* "/a.b\r" */
+  expected = F06_str[4].expected;
+
+  if (!geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050605A) geda_remove_extension\n");
+    result++;
+  }
+  else if (strcmp(string, expected)) {      /* See structure F06_str */
+    fprintf(stderr, "FAILED: (F050605B) geda_remove_extension <%s> expected <%s>\n",string, expected);
+    result++;
+  }
+  g_free(string);
+
+  string   = geda_strdup (F06_str[5].input); /* "a.b.c\r" */
+  expected = F06_str[5].expected;
+
+  if (!geda_remove_extension (string)) {
+    fprintf(stderr, "FAILED: (F050606A) geda_remove_extension\n");
+    result++;
+  }
+  else if (strcmp(string, expected)) {      /* See structure F06_str */
+    fprintf(stderr, "FAILED: (F050606B) geda_remove_extension <%s> expected <%s>\n",string, expected);
+    result++;
+  }
+  g_free(string);
 
   return result;
 }

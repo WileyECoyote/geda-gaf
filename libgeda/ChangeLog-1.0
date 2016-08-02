@@ -3,6 +3,8 @@
     * src/file/f_file.c: Revise f_open to use geda_toplevel_get_file_open_flags
       geda_toplevel_get_make_backups.
 
+    * tests/test_file.c: Add checks for f_sys_remove_extension.
+
 2016-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Revise comments for geda_toplevel_set_file_
