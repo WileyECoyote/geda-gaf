@@ -6,7 +6,7 @@
     * src/widgets/geda_menu.c: Add static const transfer_window_key as string
       "menu-transfer-window" and replace "gtk-menu-transfer-window". Add top
       level in geda_menu_instance_init and create window for popup and connect
-      separately to improve readability.
+      separately to improve readability. Revise/update Doxygen comments and tags.
 
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 

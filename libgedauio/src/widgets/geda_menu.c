@@ -43,15 +43,15 @@
  *
  * ## Connecting the popup signal handler.
  *
- * |[<!-- language="C" -->
+ * \code{.c}
  *   /<!---->* connect our handler which will popup the menu *<!---->/
  *   g_signal_connect_swapped (window, "button_press_event",
- *	G_CALLBACK (my_popup_handler), menu);
- * ]|
+ *   G_CALLBACK (my_popup_handler), menu);
+ * \endcode
  *
  * ## Signal handler which displays a popup menu.
  *
- * |[<!-- language="C" -->
+ * \code{.c}
  * static int
  * my_popup_handler (GtkWidget *widget, GdkEvent *event)
  * {
@@ -76,7 +76,7 @@
  *
  *   return FALSE;
  * }
- * ]|
+ * \endcode
  *
  * \class GedaMenu geda_menu.h "include/geda_menu.h"
  * \implements GedaMenuShell
@@ -1480,7 +1480,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
  * \brief Detach a GedaMenu from a Widget
  * \par Function Description
  * Detaches the menu from the widget to which it had been attached.
- * This function will call the callback function, @detacher, provided
+ * This function will call the callback function, \a detacher, provided
  * when the gtk_menu_attach_to_widget() function was called.
  *
  * \param[in] menu: a #GedaMenu
@@ -1497,7 +1497,7 @@ geda_menu_detach (GedaMenu *menu)
   data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (!data) {
-    g_warning ("geda_menu_detach(): menu is not attached");
+    g_warning ("%s: menu is not attached", __func__);
     return;
   }
 
@@ -1669,7 +1669,7 @@ popup_grab_on_window (GdkWindow *window,
  * \par Function Description
  * Displays a menu and makes it available for selection.  Applications can use
  * this function to display context-sensitive menus, and will typically supply
- * %NULL for the \a parent_menu_shell, @parent_menu_item, \a func and \a data
+ * %NULL for the \a parent_menu_shell, \a parent_menu_item, \a func and \a data
  * parameters. The default menu positioning function will position the menu
  * at the current mouse cursor position.
  *
@@ -2227,14 +2227,14 @@ geda_menu_get_accel_path (GedaMenu *menu)
  * each menu item of this menu, that contains a label describing its purpose,
  * automatically gets an accel path assigned. For example, a menu containing
  * menu items "New" and "Exit", will, after
- * <literal>geda_menu_set_accel_path (menu, "&lt;Gnumeric-Sheet&gt;/File");</literal>
+ * <b>geda_menu_set_accel_path (menu, "&lt;Gnumeric-Sheet&gt;/File");</b>
  * has been called, assign its items the accel paths:
- * <literal>"&lt;Gnumeric-Sheet&gt;/File/New"</literal> and <literal>"&lt;Gnumeric-Sheet&gt;/File/Exit"</literal>.
+ * <b>"&lt;Gnumeric-Sheet&gt;/File/New"</b> and <b>"&lt;Gnumeric-Sheet&gt;/File/Exit"</b>.
  * Assigning accel paths to menu items then enables the user to change
  * their accelerators at runtime. More details about accelerator paths
  * and their default setups can be found at gtk_accel_map_add_entry().
  *
- * Note that \a accel_path string will be stored in a #GQuark. Therefore, if you
+ * Note that \a accel_path string will be stored in a GQuark. Therefore, if you
  * pass a static string, you can save some memory by interning it first with
  * g_intern_static_string().
  *

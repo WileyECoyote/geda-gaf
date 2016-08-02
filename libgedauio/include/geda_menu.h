@@ -61,7 +61,7 @@ typedef struct _GedaMenuPriv    GedaMenuPriv;
  * \param[in]  menu     GedaMenu object
  * \param[out] x        address of the int representing the horizontal
  *                      position where the menu shall be drawn.
- * \param[out] y        address of the #int representing the vertical position
+ * \param[out] y        address of the int representing the vertical position
  *                      where the menu shall be drawn. This is an output parameter.
  * \param[out] push_in  This parameter controls how menus placed outside the monitor
  *                      are handled. If this is set to %TRUE and part of the menu is
