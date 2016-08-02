@@ -112,7 +112,7 @@ enum {
   PROP_SHOW_BUTT
 };
 
-static GObjectClass *geda_bulb_parent_class = NULL;
+static void *geda_bulb_parent_class = NULL;
 
 static unsigned int group_changed_signal = 0;
 

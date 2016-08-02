@@ -74,7 +74,7 @@ enum {
   PROP_ICON_ID,
 };
 
-static GObjectClass *geda_action_parent_class = NULL;
+static void *geda_action_parent_class = NULL;
 
 /*! \brief GObject finalize handler
  *

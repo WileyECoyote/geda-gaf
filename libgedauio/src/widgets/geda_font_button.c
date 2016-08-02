@@ -146,7 +146,7 @@ static void geda_font_button_label_set_font        (GedaFontButton  *gfs);
 
 static unsigned int font_button_signals[LAST_SIGNAL] = { 0 };
 
-static GObjectClass *geda_font_button_parent_class = NULL;
+static void *geda_font_button_parent_class = NULL;
 
 static void
 clear_font_data (GedaFontButton *font_button)

@@ -68,7 +68,7 @@ static bool geda_separator_expose       (GtkWidget      *widget,
 
 
 
-static GObjectClass *geda_separator_parent_class = NULL;
+static void *geda_separator_parent_class = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 

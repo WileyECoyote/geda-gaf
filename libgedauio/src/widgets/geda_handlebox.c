@@ -204,7 +204,7 @@ static void geda_handle_box_get_property  (GObject        *object,
 
 static unsigned int handle_box_signals[SIGNAL_LAST] = { 0 };
 
-static GObjectClass *geda_handle_box_parent_class = NULL;
+static void *geda_handle_box_parent_class = NULL;
 
 static int
 effective_handle_position (GedaHandleBox *handlebox)

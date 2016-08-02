@@ -83,7 +83,7 @@ static const unsigned int font_sizes[] = {
   32, 36, 40, 48, 56, 64, 72, 96
 };
 
-static GObjectClass *geda_font_dialog_parent_class = NULL;
+static void *geda_font_dialog_parent_class = NULL;
 
 static PangoFontDescription*
 geda_font_dialog_get_font_description (GedaFontDialog *dialog)

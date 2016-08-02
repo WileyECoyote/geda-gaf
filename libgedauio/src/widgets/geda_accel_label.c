@@ -109,7 +109,7 @@ enum {
   PROP_ACCEL_STRING,
 };
 
-static GObjectClass *geda_accel_label_parent_class = NULL;
+static void *geda_accel_label_parent_class = NULL;
 
 bool
 geda_accel_label_refetch (GedaAccelLabel *accel_label)

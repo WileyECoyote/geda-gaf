@@ -143,7 +143,7 @@ static bool    have_auto_complete;
 static bool    set_auto_complete;
 static bool    do_auto_complete;
 
-static GObjectClass *geda_entry_parent_class = NULL;
+static void *geda_entry_parent_class = NULL;
 
 struct _GedaEntryPriv
 {
