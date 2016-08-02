@@ -476,19 +476,22 @@ f_sys_remove_extension(char *filename) {
   int n   = 0;
   int len = 0;
 
-  while(filename[len] != '\0') { len++; } /* get length of filename */
+  while (filename[len] != '\0') {      /* get length of filename */
+    len++;
+  }
 
-  for(i = len; i > -1; i--) {             /* look for extension working backwards */
-     if(filename[i] == '.') {
-       n = i;                             /* char # of exension */
+  for (i = len; i > -1; i--) {         /* look for extension working backwards */
+     if (filename[i] == '.') {
+       n = i;                          /* char # of exension */
        break;
     }
   }
 
-  if (n > 0)
-    for(i = n; i < len; i++) {            /* starting with the '.'  */
+  if (n > 0) {
+    for (i = n; i < len; i++) {        /* starting with the '.'  */
       filename[i] = '\0';
     }
+  }
 
   return n;
 }
