@@ -1108,6 +1108,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
 {
   GedaMenu     *menu;
   GedaMenuPriv *priv;
+  GtkWindow    *toplevel;
 
   menu                 = (GedaMenu *)instance;
   menu->priv           = g_malloc0 (sizeof(GedaMenuPriv));
@@ -1121,10 +1122,10 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   menu->position_func_data   = NULL;
   menu->toggle_size          = 0;
 
-  menu->toplevel = g_object_connect (g_object_new (GTK_TYPE_WINDOW,
-                                                   "type", GTK_WINDOW_POPUP,
-                                                   "child", menu,
-                                                   NULL),
+  toplevel = g_object_new (GTK_TYPE_WINDOW, "type",
+                           GTK_WINDOW_POPUP,"child", menu, NULL);
+
+  menu->toplevel = g_object_connect (toplevel,
                                      "signal::event", geda_menu_window_event, menu,
                                      "signal::size-request", geda_menu_window_size_request, menu,
                                      "signal::destroy", gtk_widget_destroyed, &menu->toplevel,

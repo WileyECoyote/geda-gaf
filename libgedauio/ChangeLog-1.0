@@ -4,7 +4,9 @@
       where missing.
 
     * src/widgets/geda_menu.c: Add static const transfer_window_key as string
-      "menu-transfer-window" and replace "gtk-menu-transfer-window".
+      "menu-transfer-window" and replace "gtk-menu-transfer-window". Add top
+      level in geda_menu_instance_init and create window for popup and connect
+      separately to improve readability.
 
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
