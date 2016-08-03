@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.7
+VER=0.1.8
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -28,8 +28,6 @@ FAILCOUNT=0
 
 PROGRAM="gschem"
 TMPGEDADIR="gEDA"
-
-. ./TEST_FUNCS
 
 # Show command line usage
 show_help () {
@@ -319,6 +317,13 @@ if test ! -z ${DEBUG} ; then
   vecho "Debugging mode is active"
   vecho "VERBOSE mode is active"
 fi
+
+if test ! -f "${SRCDIR}/TEST_FUNCS" ; then
+  echo "TEST_FUNCS is missing, aborting tests."
+  exit 1;
+fi
+
+. ${SRCDIR}/TEST_FUNCS
 
 # ------------ Clean old tests files and directories ------------
 

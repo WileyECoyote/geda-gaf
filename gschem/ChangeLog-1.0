@@ -2,6 +2,9 @@
 
     * tests/Makefile.am: Include TEST_FUNCS in EXTRA_DIST.
 
+    * tests/runtest.sh: Revise script to check for TEST_FUNCS and abort
+      the test whith an error if not found, bump version to 1.8.
+
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Revert 57c99d77e723e11521f36acec1b37936f54383aa,
