@@ -1253,7 +1253,9 @@ o_grips_end_box(GschemToplevel *w_current, GedaObject *o_current)
 static void
 o_grips_end_path(GschemToplevel *w_current, GedaObject *o_current)
 {
-  geda_path_object_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
+  geda_path_object_modify (o_current, w_current->second_wx,
+                                      w_current->second_wy,
+                                      w_current->which_grip);
 }
 
 /*! \brief End process of modifying picture object with grip.
@@ -1464,7 +1466,8 @@ o_grips_end_pin(GschemToplevel *w_current, GedaObject *o_current)
 
   s_conn_remove_object (o_current);
   geda_pin_object_modify (o_current, w_current->second_wx,
-                w_current->second_wy, w_current->which_grip);
+                                     w_current->second_wy,
+                                     w_current->which_grip);
   s_conn_update_object (o_current);
 }
 

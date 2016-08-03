@@ -1176,7 +1176,6 @@ int x_menu_setup_popup (GschemToplevel *w_current)
           continue;
         }
         else {  /* add a separator */
-          //menu_item = geda_menu_item_new();
           menu_item = geda_menu_separator_new();
         }
       }
