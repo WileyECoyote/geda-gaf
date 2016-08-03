@@ -2,7 +2,7 @@
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
-EXTRA_DIST = gafrc runtest.sh IMAGE_DIFF LOG_DIFF
+EXTRA_DIST = gafrc runtest.sh IMAGE_DIFF LOG_DIFF TEST_FUNCS
 
 include Makefile_insert
 include doc/Makefile_insert

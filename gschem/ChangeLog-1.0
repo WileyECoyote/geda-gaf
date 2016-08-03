@@ -1,3 +1,7 @@
+2016-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Include TEST_FUNCS in EXTRA_DIST.
+
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Revert 57c99d77e723e11521f36acec1b37936f54383aa,
