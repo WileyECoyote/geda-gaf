@@ -104,64 +104,7 @@ static void geda_tearoff_menu_item_parent_set           (GtkWidget      *widget,
 
 static unsigned int  geda_tearoff_signals[ LAST_SIGNAL ] = { 0 };
 
-G_DEFINE_TYPE (GedaTearoffMenuItem, geda_tearoff_menu_item, GEDA_TYPE_MENU_ITEM)
-
-/*!
- * \brief Create a New GedaTearoffMenuItem
- * \par Function Description
- * Creates a new #GedaTearoffMenuItem.
- *
- * \returns a new #GedaTearoffMenuItem.
- */
-GtkWidget*
-geda_tearoff_menu_item_new (void)
-{
-  return g_object_new (GEDA_TYPE_TEAROFF_MENU_ITEM, NULL);
-}
-
-static void
-geda_tearoff_menu_item_class_init (GedaTearoffMenuItemClass *klass)
-{
-  GtkWidgetClass    *widget_class;
-  GedaMenuItemClass *menu_item_class;
-
-  widget_class    = (GtkWidgetClass*)klass;
-  menu_item_class = (GedaMenuItemClass*)klass;
-
-#if GTK_MAJOR_VERSION < 3
-  widget_class->expose_event = geda_tearoff_menu_item_expose;
-  widget_class->size_request = geda_tearoff_menu_item_size_request;
-
-
-#else
-  widget_class->draw                 = geda_tearoff_menu_item_draw;
-  widget_class->get_preferred_width  = geda_tearoff_menu_item_get_preferred_width;
-  widget_class->get_preferred_height = geda_tearoff_menu_item_get_preferred_height;
-
-  gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_TEAR_OFF_MENU_ITEM);
-
-#endif
-
-  widget_class->parent_set           = geda_tearoff_menu_item_parent_set;
-
-  menu_item_class->activate = geda_tearoff_menu_item_activate;
-
-  geda_tearoff_signals[ TORN_OFF ] = g_signal_new ("torn-off",
-                                       G_OBJECT_CLASS_TYPE(klass),
-                                       0     /*signal_flags */,
-                                       0     /*class_offset */,
-                                       NULL, /* accumulator */
-                                       NULL, /* accu_data */
-                                       g_cclosure_marshal_VOID__VOID,
-                                       G_TYPE_NONE,
-                                       0);   /* n_params */
-}
-
-static void
-geda_tearoff_menu_item_init (GedaTearoffMenuItem *tearoff_menu_item)
-{
-  tearoff_menu_item->priv = g_malloc0 (sizeof(GedaTearoffMenuItemData));
-}
+static void *geda_tearoff_menu_item_parent_class = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 
@@ -353,19 +296,18 @@ geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
 }
 
 static bool
-geda_tearoff_menu_item_draw (GtkWidget *widget,
-                            cairo_t   *cr)
+geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
-  GedaMenuItem     *menu_item;
+  GedaMenuItem    *menu_item;
   GtkStateFlags    state;
   GtkStyleContext *context;
-  GtkBorder padding;
+  GtkBorder        padding;
   int  x, y, width, height;
   int  right_max;
   unsigned int border_width;
   GtkTextDirection direction;
   GtkWidget *parent;
-  gdouble angle;
+  double     angle;
 
   menu_item    = GEDA_MENU_ITEM (widget);
   context      = gtk_widget_get_style_context (widget);
@@ -509,6 +451,125 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
                       G_CALLBACK (tearoff_state_changed),
                       tearoff_menu_item);
   }
+}
+
+/*!
+ * \brief Create a New GedaTearoffMenuItem
+ * \par Function Description
+ * Creates a new #GedaTearoffMenuItem.
+ *
+ * \returns a new #GedaTearoffMenuItem.
+ */
+GtkWidget*
+geda_tearoff_menu_item_new (void)
+{
+  return g_object_new (GEDA_TYPE_TEAROFF_MENU_ITEM, NULL);
+}
+
+/*! \brief GedaTearoffMenuItem Class Initializer
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] klass      A GedaTearoffMenuItemClass Object
+ * \param [in] klass_data GedaTearoffMenuItem structure
+ */
+static void
+geda_tearoff_menu_item_class_init   (void *klass, void *klass_data)
+{
+  GtkWidgetClass    *widget_class;
+  GedaMenuItemClass *menu_item_class;
+
+  widget_class    = (GtkWidgetClass*)klass;
+  menu_item_class = (GedaMenuItemClass*)klass;
+
+#if GTK_MAJOR_VERSION < 3
+
+  widget_class->expose_event = geda_tearoff_menu_item_expose;
+  widget_class->size_request = geda_tearoff_menu_item_size_request;
+
+#else
+
+  widget_class->draw                 = geda_tearoff_menu_item_draw;
+  widget_class->get_preferred_width  = geda_tearoff_menu_item_get_preferred_width;
+  widget_class->get_preferred_height = geda_tearoff_menu_item_get_preferred_height;
+
+  gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_TEAR_OFF_MENU_ITEM);
+
+#endif
+
+  widget_class->parent_set           = geda_tearoff_menu_item_parent_set;
+
+  menu_item_class->activate          = geda_tearoff_menu_item_activate;
+
+  geda_tearoff_menu_item_parent_class = g_type_class_peek_parent (klass);
+
+  geda_tearoff_signals[ TORN_OFF ] = g_signal_new ("torn-off",
+                                       G_OBJECT_CLASS_TYPE(klass),
+                                       0     /*signal_flags */,
+                                       0     /*class_offset */,
+                                       NULL, /* accumulator */
+                                       NULL, /* accu_data */
+                                       g_cclosure_marshal_VOID__VOID,
+                                       G_TYPE_NONE,
+                                       0);   /* n_params */
+}
+
+/*!
+ * \brief Type instance initializer for GedaTearoffMenuItem
+ * \par Function Description
+ *  Type instance initializer for GedaTearoffMenuItem, initializes a new
+ *  empty GedaTearoffMenuItem object.
+ *
+ * \param [in] instance The GedaTearoffMenuItem structure being initialized,
+ * \param [in] class    The GedaTearoffMenuItem class we are initializing.
+ */
+static void
+geda_tearoff_menu_item_instance_init (GTypeInstance *instance, void *class)
+{
+  GedaTearoffMenuItem *tearoff_menu_item = (GedaTearoffMenuItem*)instance;
+
+  tearoff_menu_item->priv = g_malloc0 (sizeof(GedaTearoffMenuItemData));
+}
+/*!
+ * \brief Retrieve GedaTearoffMenuItem's Type identifier.
+ * \par Function Description
+ *  Function to retrieve a #GedaTearoffMenuItem Type identifier. When
+ *  first called, the function registers a #GedaTearoffMenuItem in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaTearoffMenuItem and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ * \return GedaType identifier associated with GedaTearoffMenuItem.
+ */
+GedaType
+geda_tearoff_menu_item_get_type (void)
+{
+  static GedaType tearoff_menu_item_type = 0;
+
+  if (g_once_init_enter (&tearoff_menu_item_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaTearoffMenuItemClass),
+      NULL,                                 /* base_init           */
+      NULL,                                 /* base_finalize       */
+      geda_tearoff_menu_item_class_init,    /* (GClassInitFunc)    */
+      NULL,                                 /* class_finalize      */
+      NULL,                                 /* class_data          */
+      sizeof(GedaTearoffMenuItem),
+      0,                                    /* n_preallocs         */
+      geda_tearoff_menu_item_instance_init  /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaTearoffMenuItem");
+    type   = g_type_register_static (GEDA_TYPE_MENU_ITEM, string, &info, 0);
+
+    g_once_init_leave (&tearoff_menu_item_type, type);
+  }
+
+  return tearoff_menu_item_type;
 }
 
 /*!

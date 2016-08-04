@@ -3,6 +3,11 @@
     * src/functions/geda_key_hash.c:Remove explicit link to GdkKeymap function,
       rename iter variable in geda_key_hash_lookup_keyval, update comments.
 
+    * src/widgets/geda_tearoff_menu_item.c: Add geda_tearoff_menu_item_get_type
+      and remove G_DEFINE_TYPE_WITH_CODE, revise arguments for geda_tearoff_
+      menu_item_class_init and geda_tearoff_menu_item_instance_init and add
+      Doxygen comment blocks for both.
+
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Revise/update Doxygen comments, add todo block
