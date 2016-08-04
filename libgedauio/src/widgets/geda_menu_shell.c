@@ -21,11 +21,36 @@
  *  \brief Implmentation of GedaMenuShell Class
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
+#include <gtk/gtk.h>
+
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
+
+#include "../../include/geda_accel_label.h"
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_menu_enum.h"
+#include "../../include/geda_tearoff_menu_item.h"
+#include "../../include/geda_uio_functions.h"
+#include "../../include/geda_keysyms.h"
+#include "../../include/geda_label.h"
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_item.h"
+#include "../../include/geda_menu_shell.h"
+#include "../../include/geda_menu_bar.h"
+
+#include "../../include/gettext.h"
+
+#include <geda_debug.h>
+
 /** \defgroup geda-menu-shell GedaMenuShell Object
  * @{
  * \brief A base class for menu objects
  * A #GedaMenuShell is an abstract base class used to derive the
- * #GtkMenu and #GtkMenuBar subclasses.
+ * #GedaMenu and #GedaMenuBar subclasses.
  *
  * A GedaMenuShell is a container of #GedaMenuItem objects arranged
  * in a list which can be navigated, selected, and activated by the
@@ -55,31 +80,6 @@
  * \class GedaMenuShell geda_menu_shell.h "include/geda_menu_shell.h"
  * \implements GtkContainer
  */
-
-#ifdef HAVE_CONFIG_H
-#include "../../../config.h"
-#endif
-
-#include <gtk/gtk.h>
-
-#include <geda/geda.h>
-#include <geda/geda_standard.h>
-
-#include "../../include/geda_accel_label.h"
-#include "../../include/geda_gtk_compat.h"
-#include "../../include/geda_menu_enum.h"
-#include "../../include/geda_tearoff_menu_item.h"
-#include "../../include/geda_uio_functions.h"
-#include "../../include/geda_keysyms.h"
-#include "../../include/geda_label.h"
-#include "../../include/geda_menu.h"
-#include "../../include/geda_menu_item.h"
-#include "../../include/geda_menu_shell.h"
-#include "../../include/geda_menu_bar.h"
-
-#include "../../include/gettext.h"
-
-#include <geda_debug.h>
 
 #define MENU_POPDOWN_DELAY   1000
 #define MENU_POPUP_DELAY     225
@@ -189,12 +189,12 @@ static void geda_menu_shell_forall            (GtkContainer      *container,
 static void geda_menu_shell_real_insert       (GedaMenuShell     *menu_shell,
                                                GtkWidget         *child,
                                                int                position);
-static void geda_real_menu_shell_deactivate   (GedaMenuShell     *menu_shell);
-static int  geda_menu_shell_is_item           (GedaMenuShell     *menu_shell,
-                                               GtkWidget         *child);
-static GtkWidget *geda_menu_shell_get_item    (GedaMenuShell     *menu_shell,
-                                               GdkEvent          *event);
-static GType geda_menu_shell_child_type       (GtkContainer      *container);
+static void geda_real_menu_shell_deactivate      (GedaMenuShell     *menu_shell);
+static int  geda_menu_shell_is_item              (GedaMenuShell     *menu_shell,
+                                                  GtkWidget         *child);
+static GtkWidget *geda_menu_shell_get_item       (GedaMenuShell     *menu_shell,
+                                                  GdkEvent          *event);
+static GType geda_menu_shell_child_type          (GtkContainer      *container);
 static void geda_menu_shell_real_select_item     (GedaMenuShell     *menu_shell,
                                                   GtkWidget         *menu_item);
 static bool geda_menu_shell_select_submenu_first (GedaMenuShell     *menu_shell);
@@ -314,34 +314,34 @@ geda_menu_shell_class_init(void *class, void *class_data)
   container_class  = (GtkContainerClass*) class;
   menu_shell_class = (GedaMenuShellClass*) class;
 
-  object_class->set_property = geda_menu_shell_set_property;
-  object_class->get_property = geda_menu_shell_get_property;
-  object_class->dispose      = geda_menu_shell_dispose;
-  object_class->finalize     = geda_menu_shell_finalize;
+  object_class->set_property          = geda_menu_shell_set_property;
+  object_class->get_property          = geda_menu_shell_get_property;
+  object_class->dispose               = geda_menu_shell_dispose;
+  object_class->finalize              = geda_menu_shell_finalize;
 
-  widget_class->realize              = geda_menu_shell_realize;
-  widget_class->button_press_event   = geda_menu_shell_button_press;
-  widget_class->button_release_event = geda_menu_shell_button_release;
-  widget_class->grab_broken_event    = geda_menu_shell_grab_broken;
-  widget_class->key_press_event      = geda_menu_shell_key_press;
-  widget_class->enter_notify_event   = geda_menu_shell_enter_notify;
-  widget_class->leave_notify_event   = geda_menu_shell_leave_notify;
-  widget_class->screen_changed       = geda_menu_shell_screen_changed;
+  widget_class->realize               = geda_menu_shell_realize;
+  widget_class->button_press_event    = geda_menu_shell_button_press;
+  widget_class->button_release_event  = geda_menu_shell_button_release;
+  widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
+  widget_class->key_press_event       = geda_menu_shell_key_press;
+  widget_class->enter_notify_event    = geda_menu_shell_enter_notify;
+  widget_class->leave_notify_event    = geda_menu_shell_leave_notify;
+  widget_class->screen_changed        = geda_menu_shell_screen_changed;
 
-  container_class->add        = geda_menu_shell_add;
-  container_class->remove     = geda_menu_shell_remove;
-  container_class->forall     = geda_menu_shell_forall;
-  container_class->child_type = geda_menu_shell_child_type;
+  container_class->add                = geda_menu_shell_add;
+  container_class->remove             = geda_menu_shell_remove;
+  container_class->forall             = geda_menu_shell_forall;
+  container_class->child_type         = geda_menu_shell_child_type;
 
-  menu_shell_class->submenu_placement    = GTK_TOP_BOTTOM;
-  menu_shell_class->deactivate           = geda_real_menu_shell_deactivate;
-  menu_shell_class->selection_done       = NULL;
-  menu_shell_class->move_current         = geda_real_menu_shell_move_current;
-  menu_shell_class->activate_current     = geda_real_menu_shell_activate_current;
-  menu_shell_class->cancel               = geda_real_menu_shell_cancel;
-  menu_shell_class->select_item          = geda_menu_shell_real_select_item;
-  menu_shell_class->insert               = geda_menu_shell_real_insert;
-  menu_shell_class->move_selected        = geda_menu_shell_real_move_selected;
+  menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
+  menu_shell_class->deactivate        = geda_real_menu_shell_deactivate;
+  menu_shell_class->selection_done    = NULL;
+  menu_shell_class->move_current      = geda_real_menu_shell_move_current;
+  menu_shell_class->activate_current  = geda_real_menu_shell_activate_current;
+  menu_shell_class->cancel            = geda_real_menu_shell_cancel;
+  menu_shell_class->select_item       = geda_menu_shell_real_select_item;
+  menu_shell_class->insert            = geda_menu_shell_real_insert;
+  menu_shell_class->move_selected     = geda_menu_shell_real_move_selected;
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
@@ -402,10 +402,10 @@ geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::move-selected:
-   * \param [in] menu_shell the object on which the signal is emitted
-   * \param [in] distance   +1 to move to the next item, -1 to move to the previous
+   * param: menu_shell the object on which the signal is emitted
+   * param: distance   +1 to move to the next item, -1 to move to the previous
    *
-   * The ::move-selected signal is emitted to move the selection to
+   * The move-selected signal is emitted to move the selection to
    * another item.
    *
    * Returns: %TRUE to stop the signal emission, %FALSE to continue
@@ -421,48 +421,49 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   G_TYPE_INT);
 
   binding_set = gtk_binding_set_by_class (class);
+
   gtk_binding_entry_add_signal (binding_set,
-                GDK_Escape, 0,
-                "cancel", 0);
+                                GDK_Escape, 0,
+                                "cancel", 0);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_Return, 0,
-                "activate-current", 1,
-                G_TYPE_BOOLEAN,
-                TRUE);
+                                GDK_Return, 0,
+                                "activate-current", 1,
+                                G_TYPE_BOOLEAN,
+                                TRUE);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_ISO_Enter, 0,
-                "activate-current", 1,
-                G_TYPE_BOOLEAN,
-                TRUE);
+                                GDK_ISO_Enter, 0,
+                                "activate-current", 1,
+                                G_TYPE_BOOLEAN,
+                                TRUE);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_KP_Enter, 0,
-                "activate-current", 1,
-                G_TYPE_BOOLEAN,
-                TRUE);
+                                GDK_KP_Enter, 0,
+                                "activate-current", 1,
+                                G_TYPE_BOOLEAN,
+                                TRUE);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_space, 0,
-                "activate-current", 1,
-                G_TYPE_BOOLEAN,
-                FALSE);
+                                GDK_space, 0,
+                                "activate-current", 1,
+                                G_TYPE_BOOLEAN,
+                                FALSE);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_KP_Space, 0,
-                "activate-current", 1,
-                G_TYPE_BOOLEAN,
-                FALSE);
+                                GDK_KP_Space, 0,
+                                "activate-current", 1,
+                                G_TYPE_BOOLEAN,
+                                FALSE);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_F10, 0,
-                "cycle-focus", 1,
+                                GDK_F10, 0,
+                                "cycle-focus", 1,
                                 GTK_TYPE_DIRECTION_TYPE, GTK_DIR_TAB_FORWARD);
   gtk_binding_entry_add_signal (binding_set,
-                GDK_F10, GDK_SHIFT_MASK,
-                "cycle-focus", 1,
+                                GDK_F10, GDK_SHIFT_MASK,
+                                "cycle-focus", 1,
                                 GTK_TYPE_DIRECTION_TYPE, GTK_DIR_TAB_BACKWARD);
 
   /*!
-   * GedaMenuShell:take-focus:
+   * GedaMenuShell::take-focus:
    *
-   * A boolean that determines whether the menu and its submenus grab the
-   * keyboard focus. See geda_menu_shell_set_take_focus() and
+   * A boolean that determines whether the menu and its submenus grab
+   * the keyboard focus. See geda_menu_shell_set_take_focus() and
    * geda_menu_shell_get_take_focus().
    */
   g_object_class_install_property (object_class,
@@ -1625,7 +1626,11 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
       else if (parent_menu_shell) {
 
         if (touchscreen_mode) {
-          GedaMenuItem *menu_item = GEDA_MENU_ITEM(GEDA_MENU(menu_shell)->parent_menu_item);
+
+          GedaMenuItem *menu_item;
+
+          menu_item = GEDA_MENU_ITEM(GEDA_MENU(menu_shell)->parent_menu_item);
+
           /* close menu when returning from submenu. */
           geda_menu_item_popdown_submenu (menu_item);
           geda_menu_shell_update_mnemonics (parent_menu_shell);
@@ -2007,19 +2012,19 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
 /*!
  * \brief geda_menu_shell_set_take_focus
  * \par Function Description
- * If @take_focus is %TRUE (the default) the menu shell will take the keyboard
+ * If \a take_focus is %TRUE (the default) the menu shell will take the keyboard
  * focus so that it will receive all keyboard events which is needed to enable
  * keyboard navigation in menus.
  *
- * Setting @take_focus to %FALSE is useful only for special applications
+ * Setting \a take_focus to %FALSE is useful only for special applications
  * like virtual keyboard implementations which should not take keyboard
  * focus.
  *
- * The @take_focus state of a menu or menu bar is automatically propagated
+ * The \a take_focus state of a menu or menu bar is automatically propagated
  * to submenus whenever a submenu is popped up, so you don't have to worry
  * about recursively setting it for your entire menu hierarchy. Only when
  * programmatically picking a submenu and popping it up manually, the
- * @take_focus property of the submenu needs to be set explicitely.
+ * \a take_focus property of the submenu needs to be set explicitely.
  *
  * Note that setting it to %FALSE has side-effects:
  *
@@ -2027,7 +2032,7 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
  * the menu doesn't work. Consequently, keynav on the menu will only
  * work if the focus is on some toplevel owned by the onscreen keyboard.
  *
- * To avoid confusing the user, menus with @take_focus set to %FALSE
+ * To avoid confusing the user, menus with \a take_focus set to %FALSE
  * should not display mnemonics or accelerators, since it cannot be
  * guaranteed that they will work.
  *
