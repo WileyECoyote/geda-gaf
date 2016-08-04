@@ -2820,8 +2820,8 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  *
  * Sets the text of the label. The label is interpreted as
  * including embedded underlines and/or Pango markup depending
- * on the values of the #GedaLabel::use-underline" and
- * #GedaLabel::use-markup properties.
+ * on the values of the GedaLabel::use-underline" and
+ * GedaLabel::use-markup properties.
  *
  * \param [in] label  The GedaLabel object
  * \param [in] str    New text to set for the label
@@ -4920,10 +4920,10 @@ static void limit_layout_lines (PangoLayout *layout)
  *  Creates a drag and drop icon from \a text.
  *
  *  \param [in]  widget GtkWidget to extract the pango context
- *  \param [in]  text   a #char to render the icon
+ *  \param [in]  text   a char to render the icon
  *  \param [in]  len    length of \a text, or -1 for NUL-terminated text
  *
- * \returns: a #GdkPixmap to use as DND icon
+ * \returns: a GdkPixmap to use as DND icon
  *
  * \todo consider relocating this function
  */

@@ -33,8 +33,8 @@
  * #GedaMenuItem in a #GedaMenuBar or popped up by activating a
  * #GedaMenuItem in another #GedaMenu.
  *
- * A #GedaMenu can also be popped up by activating a #GtkComboBox.
- * Other composite widgets such as the #GtkNotebook can pop up a
+ * A #GedaMenu can also be popped up by activating a GedaComboBox.
+ * Other composite widgets such as the GtkNotebook can pop up a
  * #GedaMenu as well.
  *
  * Applications can display a #GedaMenu as a popup menu by calling the
@@ -1391,7 +1391,7 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
  * widgets moves between screens.
  *
  * \param[in] menu          Pointer #GedaMenu object
- * \param[in] attach_widget A #GtkWidget the menu will be attached to
+ * \param[in] attach_widget A GtkWidget the menu will be attached to
  * \param[in] detacher      User function called when the menu calls
  *                          is detached
  */
@@ -1454,7 +1454,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
 /*!
  * \brief Retrieve Widget attached to a GedaMenu
  * \par Function Description
- * Returns the #GtkWidget that the menu is attached to.
+ * Returns the GtkWidget that the menu is attached to.
  *
  * \param[in] menu: a #GedaMenu
  *
@@ -2352,7 +2352,7 @@ geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
  *
  * \param[in] menu: a #GedaMenu
  *
- * \Return value: %TRUE if the menu is currently torn off.
+ * \retval %TRUE if the menu is currently torn off.
  */
 bool
 geda_menu_get_tearoff_state (GedaMenu *menu)
@@ -5259,7 +5259,7 @@ geda_menu_hide_all (GtkWidget *widget)
 /*!
  * \brief Set the GedaMenu screen
  * \par Function Description
- *  Sets the #GdkScreen on which the menu will be displayed. The screen
+ *  Sets the GdkScreen on which the menu will be displayed. The screen
  *  number is stored using the key explicit_screen_key.
  *
  * \param[in] menu   GedaMenu.
