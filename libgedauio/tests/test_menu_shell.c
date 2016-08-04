@@ -112,6 +112,7 @@ check_accessors ()
   GtkWidget     *widget3;
   GedaMenuItem  *menu_item;
   GedaMenuShell *menu_shell;
+  GtkWidget     *item;
 
   widget0 = geda_menu_item_new_with_mnemonic("_Fruit");
 
@@ -123,13 +124,13 @@ check_accessors ()
   geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
   geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget0);
 
-  widget1    = geda_menu_item_new_with_mnemonic("_Cherry");
-  gtk_container_add (GTK_CONTAINER (menu_shell), widget1);
-  gtk_widget_show (widget1);
-
-  widget2    = geda_menu_item_new_with_mnemonic("_Apple");
-  geda_menu_shell_append (menu_shell, widget2);
+  widget2    = geda_menu_item_new_with_mnemonic("_Cherry");
+  gtk_container_add (GTK_CONTAINER (menu_shell), widget2);
   gtk_widget_show (widget2);
+
+  widget1    = geda_menu_item_new_with_mnemonic("_Apple");
+  geda_menu_shell_prepend (menu_shell, widget1);
+  gtk_widget_show (widget1);
 
   widget3    = geda_menu_item_new_with_mnemonic("_Pears");
   geda_menu_shell_append (menu_shell, widget3);
@@ -138,6 +139,39 @@ check_accessors ()
   gtk_widget_show (menu);
 
   int value;
+
+  /* -------------------- select_first -------------------- */
+
+  geda_menu_shell_select_first (menu_shell, TRUE);
+
+  item = geda_menu_shell_get_selected_item (menu_shell);
+
+  if (item != widget1) {
+    fprintf(stderr, "FAILED: %s line <%d> select_first\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* -------------------- select_item -------------------- */
+
+  geda_menu_shell_select_item (menu_shell, widget2);
+
+  item = geda_menu_shell_get_selected_item (menu_shell);
+
+  if (item != widget2) {
+    fprintf(stderr, "FAILED: %s line <%d> select_item\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* -------------------- select_last -------------------- */
+
+  geda_menu_shell_select_last (menu_shell, TRUE);
+
+  item = geda_menu_shell_get_selected_item (menu_shell);
+
+  if (item != widget3) {
+    fprintf(stderr, "FAILED: %s line <%d> select_last\n", TWIDGET, __LINE__);
+    result++;
+  }
 
   /* -------------------- take_focus -------------------- */
 

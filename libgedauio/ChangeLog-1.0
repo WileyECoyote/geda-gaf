@@ -8,6 +8,12 @@
       menu_item_class_init and geda_tearoff_menu_item_instance_init and add
       Doxygen comment blocks for both.
 
+    * tests/test_menu_shell.c: Add checks for function:
+
+            * geda_menu_shell_select_first
+            * geda_menu_shell_select_item
+            * geda_menu_shell_select_last
+
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Revise/update Doxygen comments, add todo block
