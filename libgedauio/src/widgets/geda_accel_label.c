@@ -51,13 +51,14 @@
 /**
  * \brief GedaAccelLabel - A Label Widget for Menus
  * \par
- * The #GedaAccelLabel widget is a subclass of #GtkLabel that also displays an
- * accelerator key on the right of the label text, e.g. 'Ctl+S'.
- * It is commonly used in menus to show the keyboard short-cuts for commands.
+ * The #GedaAccelLabel widget is a subclass of a GedaLabel that also displays
+ * an accelerator key on the right of the label text, e.g. 'Ctl+S'.
+ * A GedaAccelLabel is typically used in menus to show the keyboard short-cuts
+ * for commands.
  *
  * The accelerator key to display is not set explicitly.
- * Instead, the #GedaAccelLabel displays the accelerators which have been added to
- * a particular widget. This widget is set by calling
+ * Instead, the #GedaAccelLabel displays the accelerators which have been added
+ * to a particular widget. This widget is set by calling
  * geda_accel_label_set_accel_widget().
  *
  * For example, a #GedaMenuItem widget may have an accelerator added to emit the
@@ -72,10 +73,11 @@
  * geda_accel_label_set_accel_widget() to set it up for you.
  *
  * A #GedaAccelLabel will only display accelerators which have %GEDA_ACCEL_VISIBLE
- * set (see #GtkAccelFlags).
+ * set (see GtkAccelFlags).
  * A #GedaAccelLabel can display multiple accelerators and even signal names,
  * though it is almost always used to display just one accelerator key.
  * <example>
+ * \code{.c}
  * <title>Creating a simple menu item with an accelerator key.</title>
 
  *   GtkWidget *save_item;
@@ -96,6 +98,7 @@
  *      accelerators. We just need to make sure we use GEDA_ACCEL_VISIBLE here. *<!---->/
  *   gtk_widget_add_accelerator (save_item, "activate", accel_group,
  *                               GDK_s, GDK_CONTROL_MASK, GEDA_ACCEL_VISIBLE);
+ * \endcode
  * </example>
  *
  * \defgroup GedaAccelLabel Accelerator Label
@@ -684,7 +687,8 @@ check_accel_changed (GtkAccelGroup   *accel_group,
  * Sets the closure to be monitored by this accelerator label. The closure
  * must be connected to an accelerator group; see gtk_accel_group_connect().
  *
- * @accel_closure: the closure to monitor for accelerator changes.
+ * \param [in] accel_label   a GedaAccelLabel
+ * \param [in] accel_closure the closure to monitor for accelerator changes.
  */
 void
 geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,

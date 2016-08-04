@@ -60,7 +60,7 @@
 #include <geda_debug.h>
 
 /**
- * \brief GedaAction Action - An Action Widget for Menus
+ * \brief GedaAction - An Action Widget for Menus
  * \par
  * A #GedaAction is a variant of GtkAction but use a GedaAccelLabel insead
  * of a GtkAccelLabel and this allow menu items with multi-key assignments.
