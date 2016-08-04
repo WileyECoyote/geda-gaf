@@ -121,9 +121,9 @@ key_hash_keys_changed (GdkKeymap *keymap, GedaKeyHash *key_hash)
  * \par Function Description
  *  Create a new key hash object for doing binding resolution.
  *
- *  \param [in] keymap a #GdkKeymap
- *  \param [in] widget item_destroy_notify: function to be called when items
- *                     are removed from the hash or %NULL.
+ *  \param [in] keymap               a GdkKeymap
+ *  \param [in] item_destroy_notify  function to be called when items
+ *                                   are removed from the hash or %NULL.
  *
  * \return newly created object. Free with geda_key_hash_free().
  */
@@ -534,8 +534,9 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
  * available.  The results are sorted so that entries with less
  * modifiers come before entries with more modifiers.
  *
- * \param[in] key_hash a #GedaKeyHash
- * \param[in] event    a GtkEvent
+ * \param[in] key_hash  a #GedaKeyHash
+ * \param[in] keyval    Key code value
+ * \param[in] modifiers Like Shift, Alt, Control
  *
  * \returns A GSList of all matching entries.
  */
@@ -545,9 +546,9 @@ geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
                              GdkModifierType modifiers)
 {
   GdkKeymapKey *keys;
+  GSList       *results = NULL;
+  GSList       *iter;
   int n_keys;
-  GSList *results = NULL;
-  GSList *l;
 
   if (!keyval)  /* Key without symbol */
     return NULL;
@@ -576,8 +577,8 @@ geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
   g_free (keys);
 
   results = sort_lookup_results (results);
-  for (l = results; l; l = l->next) {
-    l->data = ((GedaKeyHashEntry *)l->data)->value;
+  for (iter = results; iter; iter = iter->next) {
+    iter->data = ((GedaKeyHashEntry *)iter->data)->value;
   }
 
   return results;

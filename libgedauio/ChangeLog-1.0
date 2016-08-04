@@ -1,3 +1,8 @@
+2016-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_key_hash.c:Remove explicit link to GdkKeymap function,
+      rename iter variable in geda_key_hash_lookup_keyval, update comments.
+
 2016-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Revise/update Doxygen comments, add todo block
