@@ -58,6 +58,8 @@
  *
  *  See tests/README for more details on the nomenclature for test identifiers.
  */
+#define TEST_FILE_PATH "../docs"
+#define TEST_FILE "logo_256x101.png"
 
 /** \defgroup test-file-geda-file Test GEDA f_file Module
  * @{
@@ -80,6 +82,7 @@ int test_file (void)
     /* === Function 04: geda_open_flags           f_open_flags === */
     /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
     /* === Function 06: geda_save_file            f_save === */
+
   return result;
 }
 
@@ -128,6 +131,48 @@ int test_print (void)
  * @{
  * \brief Group 5 src/file/f_sys.c geda_file_sys_
  */
+
+static int remove_file = 0;
+
+int test_f_sys_copy ()
+{
+  int result = 0;
+
+  char *src_dir = getenv ("srcdir");
+
+  if (src_dir) {
+
+    char *source;
+
+    source = g_build_filename(src_dir, TEST_FILE_PATH, TEST_FILE, NULL);
+
+    if (access(source, R_OK) == 0) {
+
+      /* Should be copied to the current, aka tests, directory*/
+      result = geda_copy_file(source, TEST_FILE);
+
+      if (access(TEST_FILE, R_OK) != 0) {
+        fprintf(stderr, "FAILED: (F050101) geda_copy_file <%s>\n", TEST_FILE);
+        result++;
+      }
+      else {
+        remove_file = 1;
+      }
+    }
+    else {
+      fprintf(stderr, "Could not access <%s>\n", source);
+      result++;
+    }
+    g_free (source);
+
+  }
+  else {
+    fprintf(stderr, "%s: src_dir is NULL, ignoring failure.\n", __func__);
+  }
+
+  return result;
+}
+
 int test_sys (void)
 {
   int   result;
@@ -135,9 +180,19 @@ int test_sys (void)
 
   result = errno = 0;
 
-  /* === Function 01: geda_copy_file f_sys_copy === */
+  /* === Function 01: f_sys_copy === */
+
+      /* See also test_picture_object.c f_sys_copy() */
+
+      result = test_f_sys_copy(); /* test performed in subfunction */
+
   /* === Function 02: geda_cmp_file_mod_time f_sys_cmp_mod_time === */
+
+      /* TODO: check geda_cmp_file_mod_time */
+
   /* === Function 03: geda_follow_symlinks f_sys_follow_symlinks === */
+
+      /* TODO: check geda_follow_symlinks */
 
   /* === Function 04: f_sys_normalize_name === */
 
@@ -215,7 +270,28 @@ int test_sys (void)
     g_error_free(F0504_err);
   }
 
-  /* === Function 05: geda_remove_file f_sys_remove === */
+  /* === Function 05: f_sys_remove === */
+
+  /* See also test_picture_object.c posttest() */
+
+  if (remove_file) {
+
+    if(access(TEST_FILE, R_OK) == 0) {
+
+      /* This deletes the file that was copied to the tests directory
+       * while testing f_sys_copy
+       */
+
+      if (geda_remove_file(TEST_FILE)) {
+        fprintf(stderr,"FAILED: (F050501)  <%s>: %s\n", TEST_FILE, strerror(errno));
+        exit (1);
+      }
+    }
+    else {
+      fprintf(stderr,"Error accessing file <%s>: %s\n", TEST_FILE, strerror(errno));
+      exit (1);
+    }
+  }
 
   /* === Function 06: f_sys_remove_extension === */
 
