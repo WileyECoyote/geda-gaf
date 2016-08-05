@@ -1,3 +1,8 @@
+2016-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gmk_sym.c: Reduce scope of variables, print input lines if "Debug"
+      in main, adjust indentation and line wrap.
+
 2016-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/smash_megafile.c: Reduce scope of variables in main function.

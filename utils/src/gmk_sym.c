@@ -168,59 +168,69 @@ int pin_counter=0;
 int main(int argc,char **argv)
 {
   FILE *stream;
-  char LineBuf[256];
-  int fldcnt, i, c, Debug=0;
   char *pFields[MAX_FIELDS];
-  int line_nub=0;
+  char  LineBuf[256];
+  int   fldcnt, i, c, Debug;
+  int   line_nub=0;
 
-  while ((c = getopt(argc, argv, "?hd:")) != EOF)
-        {
-        switch (c)
-          {
-	  case 'd': Debug = 1;
-	            break;
-	  case '?':
-          case 'h':
-                    fprintf(stderr,"usage: %s -dh?\n",argv[0]);
-		    exit(0);
-		    break;
-	  }
-        }
-  Debug = Debug;
+  Debug = 0;
 
-  for(i=0;i<MAX_FIELDS;i++)
-     pFields[i]=NULL;
+  while ((c = getopt(argc, argv, "?hd:")) != EOF) {
+
+    switch (c) {
+      case 'd':
+        Debug = 1;
+      break;
+      case '?':
+      case 'h':
+        fprintf(stderr,"usage: %s -dh?\n",argv[0]);
+        exit(0);
+        break;
+    }
+  }
+
+  for(i=0;i<MAX_FIELDS;i++) {
+    pFields[i]=NULL;
+  }
 
   stream=stdin;
-  if (argc > 1)
-      {
-      if ((stream = fopen(argv[1],"r")) == NULL)
-         {
-         fprintf(stderr, "Cannot open file: %s\n",argv[1]);
-         return -1;
-         }
-      }
+
+  if (argc > 1) {
+
+    if ((stream = fopen(argv[1],"r")) == NULL) {
+
+      fprintf(stderr, "Cannot open file: %s\n",argv[1]);
+      return -1;
+    }
+  }
   line_nub=-1;
 
   printf("v 20030525\n"); /* The v character is the version of the file */
 
-  while (fgets(LineBuf,sizeof(LineBuf)-1,stream) != NULL)
-        {
-        if (line_chk(LineBuf) < 0)
-	   continue;
-	if ((fldcnt = line2fields(LineBuf,10,pFields)) > 0)
-	   {
-	   line_nub++;
-	   if (line_nub == 0)
-              make_box(fldcnt,pFields);
-	   else
-              if (make_pin(fldcnt,pFields)< 0) {
-                    fields_free(pFields);
-                    break;                /* error processing the pin, get out */
-              }
-           fields_free(pFields);
-	   }
-	}
+  while (fgets(LineBuf, sizeof(LineBuf)-1,stream) != NULL) {
+
+    if (line_chk(LineBuf) < 0)
+      continue;
+
+    if (Debug) {
+      printf("Process line: %s", LineBuf);
+    }
+
+    if ((fldcnt = line2fields (LineBuf, 10, pFields)) > 0) {
+
+      line_nub++;
+      if (line_nub == 0) {
+        make_box (fldcnt, pFields);
+      }
+      else {
+        if (make_pin (fldcnt, pFields)< 0) {
+          fields_free (pFields);
+          break;                /* error processing the pin, get out */
+        }
+      }
+      fields_free(pFields);
+    }
+  }
   fclose(stream);
   return 0;
 }
@@ -228,19 +238,20 @@ int main(int argc,char **argv)
 /***************************************************/
 /***************************************************/
 int fields_free(char *pField[])
-{ int i;
-  for (i=0; (i<MAX_FIELDS) && (pField[i] != NULL) ;i++)
-      {
-      free(pField[i]);
-      pField[i] = NULL;
-      }
+{
+  int i;
+  for (i=0; (i<MAX_FIELDS) && (pField[i] != NULL) ;i++) {
+    free(pField[i]);
+    pField[i] = NULL;
+  }
   return 0;
 }
 
 /***************************************************/
 /***************************************************/
 int line2fields(char *pBuf,int max_fields,char *pField[])
-{ char *p,temp[100];
+{
+  char *p,temp[100];
   int fld_cnt=0;
 
  if ((p = strchr(pBuf,'\n')) != NULL)
@@ -268,181 +279,193 @@ void cross(int pos_x,int pos_y,int color)
 /***************************************************/
 /***************************************************/
 void pin_add(int pos_x,int pos_y,char *pin,int shape,int dir,char *name, char *type)
-{ int x,y;
+{
+  int x,y;
   int xdir=0,ydir=0,font_size=8;
 
-  switch (dir)
-    {
+  switch (dir) {
+
     case L_SIDE: xdir =  1; ydir =  0;
-	    break;
+    break;
     case R_SIDE: xdir = -1; ydir =  0;
-	    break;
+    break;
     case B_SIDE: xdir =  0; ydir =  1;
-	    break;
+    break;
     case T_SIDE: xdir =  0; ydir = -1;
-	    break;
+    break;
+  }
+
+  if (shape == LINE_SHAPE) {
+
+    /* Added "0 1" to match the new file format for pins - Chris Ellec */
+    printf("P %d %d %d %d %d 0 1\n",pos_x,pos_y,
+           pos_x-pin_len*xdir,pos_y-pin_len*ydir,
+           WHITE);
+    printf("{\n");
+  }
+  else if (shape == DOT_SHAPE) {
+
+    printf("V %d %d 50 %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n",
+           pos_x-50*xdir,pos_y-50*ydir,CYAN);
+    printf("P %d %d %d %d %d 0 1\n",pos_x-100*xdir,pos_y-100*ydir,
+           pos_x-pin_len*xdir,pos_y-pin_len*ydir,
+           WHITE);
+    printf("{\n");
+  }
+  else if (shape == CLOCK_SHAPE) {
+
+    printf("L %d %d %d %d %d 0 0 0 -1 -1\n",pos_x-100*ydir,pos_y-100*xdir,
+           pos_x+100*xdir,pos_y+100*ydir,GREEN);
+    printf("L %d %d %d %d %d 0 0 0 -1 -1\n",pos_x+100*ydir,pos_y+100*xdir,
+           pos_x+100*xdir,pos_y+100*ydir,GREEN);
+    printf("P %d %d %d %d %d 0 1\n",pos_x,pos_y,
+           pos_x-pin_len*xdir,pos_y-pin_len*ydir,
+           WHITE);
+    printf("{\n");
+  }
+  x = pos_x;
+  y = pos_y;
+
+  /* pin_xy(dir,pin,font_size,&x,&y); */
+  /* output pinseq */
+  switch (dir) {
+    case L_SIDE:
+      printf("T %d %d %d %d 0 1 0 6\n",x-50,y+50,YELLOW,font_size);
+      break;
+
+    case R_SIDE:
+      printf("T %d %d %d %d 0 1 0 0\n",x+50,y+50,YELLOW,font_size);
+      break;
+
+    case B_SIDE:
+      printf("T %d %d %d %d 0 1 90 6\n",x-50,y-50,YELLOW,font_size);
+      break;
+
+    case T_SIDE:
+      printf("T %d %d %d %d 0 1 90 0\n",x-50,y+50,YELLOW,font_size);
+      break;
+  }
+  printf("pinseq=%d\n",++net_pin);
+
+  /* output pinnumber */
+  switch (dir) {
+    case L_SIDE:
+      printf("T %d %d %d %d 1 1 0 6\n",x-50,y+50,YELLOW,font_size);
+      break;
+
+    case R_SIDE:
+      printf("T %d %d %d %d 1 1 0 0\n",x+50,y+50,YELLOW,font_size);
+      break;
+
+    case B_SIDE:
+      printf("T %d %d %d %d 1 1 90 6\n",x-50,y-50,YELLOW,font_size);
+      break;
+
+    case T_SIDE:
+      printf("T %d %d %d %d 1 1 90 0\n",x-50,y+50,YELLOW,font_size);
+      break;
+  }
+  printf("pinnumber=%s\n",pin);
+
+
+  if (type) {
+
+    switch (dir) {
+      case L_SIDE:
+        printf("T %d %d %d %d 0 0 0 7\n",pos_x-400,pos_y,YELLOW,font_size);
+        break;
+
+      case R_SIDE:
+        printf("T %d %d %d %d 0 0 0 1\n",pos_x+400,pos_y,YELLOW,font_size);
+        break;
+
+      case B_SIDE:
+        printf("T %d %d %d %d 0 0 90 7\n",pos_x,pos_y-400,YELLOW,font_size);
+        break;
+
+      case T_SIDE:
+        printf("T %d %d %d %d 0 0 90 1\n",pos_x,pos_y+400,YELLOW,font_size);
+        break;
     }
+    printf("pintype=%s\n",type);
+  }
 
-  if (shape == LINE_SHAPE)
-     {
-     /* Added "0 1" to match the new file format for pins - Chris Ellec */
-     printf("P %d %d %d %d %d 0 1\n",pos_x,pos_y,
-                                 pos_x-pin_len*xdir,pos_y-pin_len*ydir,
-			         WHITE);
-     printf("{\n");
-     }
-  else if (shape == DOT_SHAPE)
-     {
-     printf("V %d %d 50 %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n",
-	                         pos_x-50*xdir,pos_y-50*ydir,CYAN);
-     printf("P %d %d %d %d %d 0 1\n",pos_x-100*xdir,pos_y-100*ydir,
-                                 pos_x-pin_len*xdir,pos_y-pin_len*ydir,
-			         WHITE);
-     printf("{\n");
-     }
-  else if (shape == CLOCK_SHAPE)
-     {
-     printf("L %d %d %d %d %d 0 0 0 -1 -1\n",pos_x-100*ydir,pos_y-100*xdir,
-                                 pos_x+100*xdir,pos_y+100*ydir,GREEN);
-     printf("L %d %d %d %d %d 0 0 0 -1 -1\n",pos_x+100*ydir,pos_y+100*xdir,
-                                 pos_x+100*xdir,pos_y+100*ydir,GREEN);
-     printf("P %d %d %d %d %d 0 1\n",pos_x,pos_y,
-                                 pos_x-pin_len*xdir,pos_y-pin_len*ydir,
-				 WHITE);
-     printf("{\n");
-     }
-   x = pos_x;
-   y = pos_y;
+  if (strlen(name)) {
 
-   /* pin_xy(dir,pin,font_size,&x,&y); */
-   /* output pinseq */
-   switch (dir)
-     {
-     case L_SIDE:
-       printf("T %d %d %d %d 0 1 0 6\n",x-50,y+50,YELLOW,font_size);
-       break;
-     case R_SIDE:
-       printf("T %d %d %d %d 0 1 0 0\n",x+50,y+50,YELLOW,font_size);
-       break;
-     case B_SIDE:
-       printf("T %d %d %d %d 0 1 90 6\n",x-50,y-50,YELLOW,font_size);
-       break;
-     case T_SIDE:
-       printf("T %d %d %d %d 0 1 90 0\n",x-50,y+50,YELLOW,font_size);
-       break;
-     }
-   printf("pinseq=%d\n",++net_pin);
+    switch (dir) {
 
-   /* output pinnumber */
-   switch (dir)
-     {
-     case L_SIDE:
-       printf("T %d %d %d %d 1 1 0 6\n",x-50,y+50,YELLOW,font_size);
-       break;
-     case R_SIDE:
-       printf("T %d %d %d %d 1 1 0 0\n",x+50,y+50,YELLOW,font_size);
-       break;
-     case B_SIDE:
-       printf("T %d %d %d %d 1 1 90 6\n",x-50,y-50,YELLOW,font_size);
-       break;
-     case T_SIDE:
-       printf("T %d %d %d %d 1 1 90 0\n",x-50,y+50,YELLOW,font_size);
-       break;
-     }
-   printf("pinnumber=%s\n",pin);
-
-
-   if (type)
-     {
-       switch (dir)
-	 {
-	 case L_SIDE:
-	   printf("T %d %d %d %d 0 0 0 7\n",pos_x-400,pos_y,YELLOW,font_size);
-	   break;
-	 case R_SIDE:
-	   printf("T %d %d %d %d 0 0 0 1\n",pos_x+400,pos_y,YELLOW,font_size);
-	   break;
-	 case B_SIDE:
-	   printf("T %d %d %d %d 0 0 90 7\n",pos_x,pos_y-400,YELLOW,font_size);
-	   break;
-	 case T_SIDE:
-	   printf("T %d %d %d %d 0 0 90 1\n",pos_x,pos_y+400,YELLOW,font_size);
-	   break;
-	 }
-       printf("pintype=%s\n",type);
-     }
-
-  if (strlen(name))
-    {
-      switch (dir)
-	{
-	case L_SIDE:
-	  printf("T %d %d %d %d 1 1 0 1\n",pos_x+100,pos_y,GREEN,font_size);
-	  break;
-	case R_SIDE:
-	  printf("T %d %d %d %d 1 1 0 7\n",pos_x-100,pos_y,GREEN,font_size);
-	  break;
-	case B_SIDE:
-	  printf("T %d %d %d %d 1 1 90 1\n",pos_x,pos_y+100,GREEN,font_size);
-	  break;
-	case T_SIDE:
-	  printf("T %d %d %d %d 1 1 90 7\n",pos_x,pos_y-100,GREEN,font_size);
-	  break;
-	}
-      printf("pinlabel=%s\n",name);
+      case L_SIDE:
+        printf("T %d %d %d %d 1 1 0 1\n",pos_x+100,pos_y,GREEN,font_size);
+        break;
+      case R_SIDE:
+        printf("T %d %d %d %d 1 1 0 7\n",pos_x-100,pos_y,GREEN,font_size);
+        break;
+      case B_SIDE:
+        printf("T %d %d %d %d 1 1 90 1\n",pos_x,pos_y+100,GREEN,font_size);
+        break;
+      case T_SIDE:
+        printf("T %d %d %d %d 1 1 90 7\n",pos_x,pos_y-100,GREEN,font_size);
+        break;
     }
-
+    printf("pinlabel=%s\n",name);
+  }
 
   printf("}\n");
-
-
 
 }
 
 /***************************************************/
 /***************************************************/
 int make_box(int fldcnt,char *pFields[])
-{ int pos_x=300,pos_y=300;
-  char name[100],device[100],name_pos[100];
-  char uref[100],class[100];
-  int pin_width,pin_height,font_size=10;
-  int name_size=0;
-  int pincount;
+{
+  int font_size;
+  int pin_width, pin_height;
+  int pos_x, pos_y;
+
+  char name[100], device[100], name_pos[100];
+  char uref[100], class[100];
   char footprint[100];
 
-  strcpy(device,pFields[0]);
-  strcpy(name,pFields[1]);
-  strcpy(name_pos,pFields[2]);
+  font_size = 10;
+
+  pos_x = 300;
+  pos_y = 300;
+
+  strcpy (device,pFields[0]);
+  strcpy (name,pFields[1]);
+  strcpy (name_pos,pFields[2]);
+
   pin_width  = atoi(pFields[3]);
   pin_height = atoi(pFields[4]);
 
-  pin_0_x  = pin_spacing;
-  pin_0_y  = pin_spacing*(pin_height + 1);
-  BoxWidth = pin_width * pin_spacing;
+  pin_0_x   = pin_spacing;
+  pin_0_y   = pin_spacing * (pin_height + 1);
+  BoxWidth  = pin_width * pin_spacing;
   BoxHeight = pin_height * pin_spacing;
 
-  if(fldcnt >=8)
-  {
-  	strcpy(uref,pFields[5]);
-  	strcat(uref,"?");
-  	if(uref[0]=='U' || uref[0]=='u')strcpy(class,"IC");
-  	if(uref[0]=='J' || uref[0]=='j')strcpy(class,"IO");
-  	if(uref[0]=='C' || uref[0]=='c')strcpy(class,"IO");
-	/* U is for ICs, J or CONN for IO.  We assume no discretes
-         *  with this tool */
-	strcpy(footprint,pFields[6]);
-	pincount = atoi(pFields[7]);
-        printf("T %d %d %d %d 0 0 0 0\n",pos_x,pos_y+BoxHeight+1100,YELLOW,font_size);
-        printf("footprint=%s\n",footprint);
-        printf("T %d %d %d %d 0 0 0 0\n",pos_x,pos_y+BoxHeight+1300,YELLOW,font_size);
-        printf("pins=%d\n",pincount);
-  }
-  else
-  {
-	strcpy(class,"IC");
-	strcpy(uref,"U?");
-  }
+  if (fldcnt >= 8) {
 
+    int pincount;
+
+    strcpy (uref,pFields[5]);
+    strcat (uref,"?");
+    if (uref[0]=='U' || uref[0]=='u')strcpy(class,"IC");
+    if (uref[0]=='J' || uref[0]=='j')strcpy(class,"IO");
+    if (uref[0]=='C' || uref[0]=='c')strcpy(class,"IO");
+
+    /* U is for ICs, J or CONN for IO. We assume no discretes */
+
+    strcpy (footprint,pFields[6]);
+    pincount = atoi(pFields[7]);
+    printf("T %d %d %d %d 0 0 0 0\n",pos_x,pos_y+BoxHeight+1100,YELLOW,font_size);
+    printf("footprint=%s\n",footprint);
+    printf("T %d %d %d %d 0 0 0 0\n",pos_x,pos_y+BoxHeight+1300,YELLOW,font_size);
+    printf("pins=%d\n",pincount);
+  }
+  else {
+    strcpy(class,"IC");
+    strcpy(uref,"U?");
+  }
 
      /* new file format: x y width height color width
      end type length space filling fillwidth angle1 pitch1 angle2 pitch2 */
@@ -464,55 +487,55 @@ int make_box(int fldcnt,char *pFields[])
 
   cross(pin_0_x,pin_0_y,RED);
 #endif
-  if (strlen(name))
-     {
-     name_size = GetStringDisplayLength(name,font_size);
+
+  if (strlen(name)) {
+
+     int name_size = GetStringDisplayLength(name, font_size);
+
      /* Vaild positions: tl,tc,tr, bl,bc,br cc */
-     if (!strcasecmp(name_pos,"tl"))
-        {
+     if (!strcasecmp(name_pos,"tl")) {
+
         pos_x = pin_0_x;
         pos_y = pin_0_y+50;
-	}
-     else if (!strcasecmp(name_pos,"tc"))
-        {
+     }
+     else if (!strcasecmp(name_pos,"tc")) {
+
         pos_x = pin_0_x+BoxWidth/2-name_size/2;
         pos_y = pin_0_y+50;
-	}
-     else if (!strcasecmp(name_pos,"tr"))
-        {
+     }
+     else if (!strcasecmp(name_pos,"tr")) {
+
         pos_x = pin_0_x+BoxWidth-name_size/2;
         pos_y = pin_0_y+50;
-	}
-     else if (!strcasecmp(name_pos,"bl"))
-        {
+     }
+     else if (!strcasecmp(name_pos,"bl")) {
+
         pos_x = pin_0_x;
         pos_y = pin_0_y-BoxHeight-175;
-	}
-     else if (!strcasecmp(name_pos,"bc"))
-        {
+     }
+     else if (!strcasecmp(name_pos,"bc")) {
+
         pos_x = pin_0_x+BoxWidth/2-name_size/2;
         pos_y = pin_0_y-BoxHeight-175;
-	}
-     else if (!strcasecmp(name_pos,"br"))
-        {
+     }
+     else if (!strcasecmp(name_pos,"br")) {
+
         pos_x = pin_0_x+BoxWidth-(name_size)/2;
         pos_y = pin_0_y-BoxHeight-175;
-	}
-     /* puon: begin */
-     else if (!strcmp(name_pos,"cc"))
-       {
-	 pos_x = pin_0_x+BoxWidth/2-(name_size)/2;
-	 pos_y = pin_0_y-BoxHeight/2;
-       }
-     /* puon: end */
-     else
-        {
+     }
+     else if (!strcmp(name_pos,"cc")) { /* puon: begin */
+
+        pos_x = pin_0_x+BoxWidth/2-(name_size)/2;
+        pos_y = pin_0_y-BoxHeight/2;
+     }
+     else { /* puon: end */
+
         pos_x = pin_0_x;
         pos_y = pin_0_y+50;
-        }
+     }
      printf("T %d %d %d %d 1 0 0 0\n",pos_x,pos_y,GREEN,font_size);
      printf("%s\n",name);
-     }
+  }
   return 0;
 }
 
@@ -534,35 +557,40 @@ int make_pin(int fldcnt,char *pFields[]) {
   strcpy(pin_name,pFields[0]);
   strcpy(pin,pFields[1]); 	      /* get pin number */
 
-  for (i=0;i<pin_counter;i++)
+  for (i=0;i<pin_counter;i++) {
      if (!strcmp(pin,pin_used[i])) {
           fprintf (stderr,"\nFatal Error, pin %s is used more that once !\n\n",pin);
           return -1;
      }
+  }
+
   strncpy(pin_used[pin_counter++],pin,5);    /* save the current pin, the first 5 char */
 
   shape = LINE_SHAPE;
+
   if (!strcasecmp(pFields[2],"dot"))     /* get shape */
      shape = DOT_SHAPE;
   if (!strcasecmp(pFields[2],"clock"))   /* get shape */
      shape = CLOCK_SHAPE;
-  if (!strcasecmp(pFields[3],"L")) side = L_SIDE;
-  else
-	if (!strcasecmp(pFields[3],"R")) side = R_SIDE;
-	else
-	  if (!strcasecmp(pFields[3],"B")) side = B_SIDE;
-	  else
-		if (!strcasecmp(pFields[3],"T")) side = T_SIDE;
-		else {
-		   fprintf (stderr,"\nError, %s not a valid position, should be l,t,b or r.\n",pFields[3]);
-		   return -1;
-		}
+  if (!strcasecmp(pFields[3],"L"))
+    side = L_SIDE;
+  else if (!strcasecmp(pFields[3],"R"))
+    side = R_SIDE;
+  else if (!strcasecmp(pFields[3],"B"))
+    side = B_SIDE;
+  else if (!strcasecmp(pFields[3],"T"))
+    side = T_SIDE;
+  else {
+    fprintf (stderr,"\nError, %s not a valid position, should be l,t,b or r.\n",pFields[3]);
+    return -1;
+  }
 
   pin_pos = atoi(pFields[4]);
 
   type = NULL;
-  if (pFields[5])
-  {
+
+  if (pFields[5]) {
+
     if (!strcasecmp(pFields[5],"in"))
         type = PINTYPE_IN;
     else if ( !strcasecmp(pFields[5],"out"))
@@ -588,27 +616,26 @@ int make_pin(int fldcnt,char *pFields[]) {
   }
 
   pos_x = pin_spacing;
-  if (side == L_SIDE)
-     {
+
+  if (side == L_SIDE) {
      pos_y = pin_0_y - (pin_spacing*pin_pos);
      pos_x = pin_spacing;
-     }
-  if (side == R_SIDE)
-     {
+  }
+  if (side == R_SIDE) {
      pos_y = pin_0_y - (pin_spacing*pin_pos);
      pos_x = pin_spacing + BoxWidth;
-     }
-  if (side == B_SIDE)
-     {
+  }
+  if (side == B_SIDE) {
      pos_x = pin_0_x + (pin_spacing*pin_pos);
      pos_y = pin_spacing;
-     }
-  if (side == T_SIDE)
-     {
+  }
+  if (side == T_SIDE) {
      pos_x = pin_0_x + (pin_spacing*pin_pos);
      pos_y = pin_0_y;
-     }
+  }
+
   pin_add(pos_x,pos_y,pin,shape,side,pin_name,type);
+
   return 0;
 }
 
@@ -619,18 +646,27 @@ int make_pin(int fldcnt,char *pFields[]) {
 static char *strLabel(char *p, char *pTemp)
 {
   char *q;
+
   *pTemp = 0;
+
   if ((p == NULL) || (pTemp == NULL))
     return NULL;
+
   q = pTemp;
+
   while ((*p == ' ') || (*p == '\t'))
     p++;
+
   while (isprint((int) *p) && (*p != ','))    /* copy string to pTemp */
     *q++ = *p++;
+
   *q = 0;                       /* terminate the string     */
+
   strtrail(pTemp);              /* drop any trailing spaces */
+
   if (*p == ',')
     p++;
+
   return p;
 }
 
@@ -640,12 +676,16 @@ static char *strLabel(char *p, char *pTemp)
 void strtrail(char *wrk)
 {
   char *p;
+
   if (wrk == NULL)
     return;
- if ((p = strchr(wrk,'\n')) != NULL)
-     *p = 0;
- if ((p = strchr(wrk,'\r')) != NULL)
-     *p = 0;
+
+  if ((p = strchr(wrk,'\n')) != NULL)
+    *p = 0;
+
+  if ((p = strchr(wrk,'\r')) != NULL)
+    *p = 0;
+
   while (isspace((int) *(wrk + strlen(wrk) - 1)))     /* Clear any trailing spaces */
     *(wrk + strlen(wrk) - 1) = 0;
 }
@@ -656,18 +696,25 @@ void strtrail(char *wrk)
 int line_chk(char *pBuf)
 {
   char *p;
+
   if (pBuf == NULL)
     return -1;
+
   if ((p = strchr(pBuf,'\n')) != NULL)
-     *p = 0;
- if ((p = strchr(pBuf,'\r')) != NULL)
-     *p = 0;
+    *p = 0;
+
+  if ((p = strchr(pBuf,'\r')) != NULL)
+    *p = 0;
+
   while (isspace((int) *(pBuf + strlen(pBuf) - 1)))     /* Clear any trailing spaces */
     *(pBuf + strlen(pBuf) - 1) = 0;
+
   if (*pBuf == ';')
-     return -1;
+    return -1;
+
   if (strchr(pBuf,',') == NULL)
-      return -1;
+    return -1;
+
   return 0;
 }
 
