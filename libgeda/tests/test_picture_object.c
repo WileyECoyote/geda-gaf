@@ -128,7 +128,7 @@ void posttest()
    * a make check in a VPATH build, so remove the file if set */
   if (remove_file) {
     if(access(IMAGE_FILE, R_OK) == 0) {
-      if (remove(IMAGE_FILE)) {
+      if (f_sys_remove(IMAGE_FILE)) {
         fprintf(stderr,"Error removing file <%s>: %s\n", IMAGE_FILE, strerror(errno));
         exit (1);
       }

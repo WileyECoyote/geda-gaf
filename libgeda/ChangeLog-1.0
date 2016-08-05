@@ -2,6 +2,9 @@
 
     * src/object/o_style.c: Rename functions with geda_object prefix.
 
+    * tests/test_picture_object.c: Use f_sys_remove instead of remove to
+      delete the copied picture.
+
 2016-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Add checks for f_sys_copy and geda_remove_file.
