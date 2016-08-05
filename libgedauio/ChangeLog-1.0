@@ -1,3 +1,8 @@
+2016-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Simplify and actually set touchscreen_mode
+      fur Gtk3 in geda_menu_shell_enter_notify.
+
 2016-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_key_hash.c:Remove explicit link to GdkKeymap function,

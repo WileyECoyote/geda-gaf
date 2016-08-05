@@ -1070,9 +1070,8 @@ geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
             source_device = gdk_event_get_source_device ((GdkEvent*)event);
 
-            if (gdk_device_get_source (source_device) == GDK_SOURCE_TOUCHSCREEN) {
-                touchscreen_mode;
-            }
+            touchscreen_mode = gdk_device_get_source (source_device) == GDK_SOURCE_TOUCHSCREEN;
+
 #endif
             if (touchscreen_mode) {
               geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), TRUE);
