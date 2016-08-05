@@ -28,7 +28,7 @@
  * children for menus. Their function is to correctly handle highlighting,
  * alignment, events and submenus.
  *
- * As a GedaMenuItem derives from #GtkBin it can hold any valid child widget,
+ * As a GedaMenuItem derives from GtkBin it can hold any valid child widget,
  * although only a few are really useful.
  *
  * By default, a GedaMenuItem sets a #GedaAccelLabel as its child.
@@ -36,25 +36,26 @@
  * For more advanced label settings, you can fetch the child widget from the GtkBin.
  *
  * An example for setting markup and accelerator on a MenuItem:
- * |[<!-- language="C" -->
+ * \code{.c}
  * GtkWidget *child = gtk_bin_get_child (GTK_BIN(menu_item));
  * geda_label_set_markup (GEDA_LABEL(child), "<i>new label</i> with <b>markup</b>");
  * geda_accel_label_set_accel (GEDA_ACCEL_LABEL(child), GDK_KEY_1, 0);
- * ]|
+ * \endcode
  *
  * # GedaMenuItem as GtkBuildable
  *
- * The GedaMenuItem implementation of the #GtkBuildable interface supports
+ * The GedaMenuItem implementation of the GtkBuildable interface supports
  * adding a submenu by specifying “submenu” as the “type” attribute of
- * a <child> element.
+ * a "child" element.
  *
  * An example of UI definition fragment with submenus:
- *
+ * \code{.html}
  * <object class="GedaMenuItem">
  *   <child type="submenu">
  *     <object class="GedaMenu"/>
  *   </child>
  * </object>
+ * \endcode
  *
  * \class GedaMenuBar geda_menu_item.h "include/geda_menu_item.h"
  * \implements GedaMenuShell
@@ -424,6 +425,7 @@ geda_menu_item_get_property (GObject     *object,
 }
 
 #if GTK_MAJOR_VERSION < 3
+
 static void
 geda_menu_item_destroy (GtkObject *object)
 {
@@ -436,7 +438,9 @@ geda_menu_item_destroy (GtkObject *object)
 
   GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
 }
+
 #else
+
 static void
 geda_menu_item_destroy (GtkWidget *widget)
 {
@@ -449,6 +453,7 @@ geda_menu_item_destroy (GtkWidget *widget)
 
   GTK_WIDGET_CLASS (geda_menu_item_parent_class)->destroy (widget);
 }
+
 #endif
 
 /*!
@@ -524,9 +529,10 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate:
-   * @menuitem: the object which received the signal.
    *
    * Emitted when the item is activated.
+   *
+   * menuitem: the object which received the signal.
    */
   menu_item_signals[ACTIVATE] =
     g_signal_new ("activate",
@@ -540,11 +546,12 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate-item:
-   * @menuitem: the object which received the signal.
    *
    * Emitted when the item is activated, but also if the menu item has a
    * submenu. For normal applications, the relevant signal is
-   * #GedaMenuItem::activate.
+   * GedaMenuItem::activate.
+   *
+   * param menuitem the object which received the signal.
    */
   menu_item_signals[ACTIVATE_ITEM] =
     g_signal_new ("activate-item",
@@ -1344,7 +1351,7 @@ geda_menu_item_set_submenu_placement (GedaMenuItem     *menu_item,
 /*!
  * \brief geda_menu_item_select:
  * \par Function Description
- *  Emits the #GedaMenuItem::select signal on the given item.
+ *  Emits the GedaMenuItem::select signal on the given item.
  *
  * \param [in] menu_item the menu item
  */
@@ -1356,7 +1363,7 @@ geda_menu_item_select (GedaMenuItem *menu_item)
   g_signal_emit (menu_item, menu_item_signals[SELECT], 0);
 
   /* Enable themeing of the parent menu item depending on whether
-   * something is selected in its submenu */
+   * something is selected in its submenu - test this? */
   if (GEDA_IS_MENU (GTK_WIDGET (menu_item)->parent)) {
 
     GedaMenu *menu = GEDA_MENU (GTK_WIDGET (menu_item)->parent);
@@ -1370,7 +1377,7 @@ geda_menu_item_select (GedaMenuItem *menu_item)
 /*!
  * \brief geda_menu_item_deselect:
  * \par Function Description
- *  Emits the #GedaMenuItem::deselect signal on the given item.
+ *  Emits the GedaMenuItem::deselect signal on the given item.
  *
  * \param [in] menu_item: the menu item
  */
@@ -1394,7 +1401,7 @@ geda_menu_item_deselect (GedaMenuItem *menu_item)
 /*!
  * \brief geda_menu_item_activate:
  * \par Function Description
- *  Emits the #GedaMenuItem::activate signal on the given item
+ *  Emits the GedaMenuItem::activate signal on the given item
  *
  * \param [in] menu_item: the menu item
  */
@@ -1409,7 +1416,7 @@ geda_menu_item_activate (GedaMenuItem *menu_item)
 /*!
  * \brief geda_menu_item_toggle_size_request:
  * \par Function Description
- *  Emits the #GedaMenuItem::toggle-size-request signal on the given item.
+ *  Emits the GedaMenuItem::toggle-size-request signal on the given item.
  *
  * \param [in] menu_item   the menu item
  * \param [in] requisition the requisition to use as signal data.
@@ -1426,7 +1433,7 @@ geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
 /*!
  * \brief geda_menu_item_toggle_size_allocate
  * \par Function Description
- *  Emits the #GedaMenuItem::toggle-size-allocate signal on the given item.
+ *  Emits the GedaMenuItem::toggle-size-allocate signal on the given item.
  *
  * \param [in] menu_item        the menu item.
  * \param [in] allocation  the allocation to use as signal data.
@@ -3713,6 +3720,7 @@ geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
  *  Sets whether the \a menu_item submenu indicator should displayed or not.
  *
  * \param [in] menu_item a GedaMenuItem
+ * \param [in] show      Boolean value, if True the indicated will be shown
  */
 void
 geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item,

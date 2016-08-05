@@ -86,8 +86,8 @@ typedef void (*MenuPositionFunc) (GedaMenu *menu, int  *x,
  * A user function supplied when calling geda_menu_attach_to_widget() which
  * will be called when the menu is later detached from the widget.
  *
- * \param[in]attach_widget Widget that the menu is being detached from.
- * \param[in]menu          Pointer to #GedaMenu being detached.
+ * \param[in] attach_widget Widget that the menu is being detached from.
+ * \param[in] menu          Pointer to #GedaMenu being detached.
  */
 typedef void (*MenuDetachFunc) (GtkWidget *attach_widget, GedaMenu *menu);
 
