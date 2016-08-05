@@ -297,7 +297,7 @@ geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
 /*!
  * \brief Retrieve GedaRadioMenuItem's Type identifier.
  * \par Function Description
- *  Function to retrieve a #GedaRadioMenuItemType identifier. When
+ *  Function to retrieve a GedaRadioMenuItemType identifier. When
  *  first called, the function registers a #GedaRadioMenuItem in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaRadioMenuItem and returns the unsigned integer value.
@@ -356,7 +356,7 @@ is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
 /*!
  * \brief Create a New GedaRadioMenuItem Object
  * \par Function Description
- *  Creates a new GedaRadioMenuItem adding it to @group, which could
+ *  Creates a new GedaRadioMenuItem adding it to \a group, which could
  *  be NULL.
  *
  * \param[in] group optional group the radio menu item is to be a member of
@@ -378,7 +378,7 @@ geda_radio_menu_item_new (GSList *group)
 /*!
  * \brief Create a New GedaRadioMenuItem Object in the same group as widget
  * \par Function Description
- *  Creates a new #GedaRadioMenuItem adding it to the same group as @group.
+ *  Creates a new #GedaRadioMenuItem adding it to the same group as \a group.
  *
  * \param[in] group group the radio menu item is to be a member of
  *
@@ -399,7 +399,7 @@ geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
 /*!
  * \brief Create a New GedaRadioMenuItem Object with a given Label
  * \par Function Description
- * Creates a new #GedaRadioMenuItem whose child is a simple #GtkLabel.
+ * Creates a new #GedaRadioMenuItem whose child is a simple GedaLabel.
  *
  * \param[in] group group the radio menu item is to be a member of
  * \param[in] label the text for the label
@@ -428,7 +428,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
  * \par Function Description
  * Creates a new #GedaRadioMenuItem containing a label. The label
  * will be created using geda_label_new_with_mnemonic(), so underscores
- * in @label indicate the mnemonic for the menu item.
+ * in \a label indicate the mnemonic for the menu item.
  *
  * \param[in] group group the radio menu item is to be a member of
  * \param[in] label the text of the button, with an underscore in front
@@ -514,13 +514,13 @@ geda_radio_menu_item_new_with_label_from_widget (GedaRadioMenuItem *group,
 /*!
  * \brief Get the Group associated with a GedaRadioMenuItem
  * \par Function Description
- * Returns the group to which the radio menu item belongs, as a #GList
+ * Returns the group to which the radio menu item belongs, as a GList
  * of #GedaRadioMenuItem. The list belongs to the widget and should not
  * be freed.
  *
  * \param[in] radio_menu_item  The GedaRadioMenuItem
  *
- * \returns the group of @radio_menu_item
+ * \returns the group of \a radio_menu_item
  */
 GSList*
 geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
@@ -535,7 +535,8 @@ geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
  * \par Function Description
  * Sets the group to which the radio menu item belongs.
  *
- * \param[in] radio_menu_item  The GedaRadioMenuItem
+ * \param[in]     radio_menu_item The GedaRadioMenuItem
+ * \param[in,out] group           The group
  */
 void
 geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
@@ -547,22 +548,25 @@ geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
   g_return_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item));
   g_return_if_fail (!g_slist_find (group, radio_menu_item));
 
+  /* if item is currently in a group */
   if (radio_menu_item->group) {
 
-    GSList *slist;
+    GSList *old_group;
+    GSList *iter;
 
-    radio_menu_item->group = g_slist_remove (radio_menu_item->group, radio_menu_item);
+    /* remove and update the old group */
+    old_group = g_slist_remove (radio_menu_item->group, radio_menu_item);
 
-    if (radio_menu_item->group && !radio_menu_item->group->next)
-      old_group_singleton = g_object_ref (radio_menu_item->group->data);
+    if (old_group && !old_group->next)
+      old_group_singleton = g_object_ref (old_group->data);
 
-    for (slist = radio_menu_item->group; slist; slist = slist->next) {
+    for (iter = old_group; iter; iter = iter->next) {
 
       GedaRadioMenuItem *tmp_item;
 
-      tmp_item = slist->data;
+      tmp_item        = iter->data;
 
-      tmp_item->group = radio_menu_item->group;
+      tmp_item->group = old_group;
     }
   }
 
