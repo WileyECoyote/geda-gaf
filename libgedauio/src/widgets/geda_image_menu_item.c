@@ -534,14 +534,14 @@ is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
   return FALSE;
 }
 
-/*! \brief return internal show image property
- *
- *  \par Function Description
- *
+/*!
+ * \brief return internal show image property
+ * \par Function Description
  *  This is an internal function to return the show_image property.
  *  The function's address is supplied to external functions.
  *
- *  \param [in] image_menu_item A GedaImageMenuItem object data structure
+ * \param [in] instance The GedaImageMenuItem structure being initialized,
+ * \param [in] class    The GedaImageMenuItem class we are initializing.
  */
 static bool
 show_image (GedaImageMenuItem *image_menu_item)
@@ -556,10 +556,11 @@ geda_image_menu_item_map (GtkWidget *widget)
 
   GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->map (widget);
 
-  if (image_menu_item->image)
+  if (image_menu_item->image) {
     g_object_set (image_menu_item->image,
                   "visible", show_image (image_menu_item),
                   NULL);
+  }
 }
 
 static void
@@ -598,7 +599,8 @@ geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
   if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
   {
     GtkRequisition image_requisition;
-    unsigned int toggle_spacing;
+    unsigned int   toggle_spacing;
+
     gtk_widget_get_child_requisition (image_menu_item->image,
                                       &image_requisition);
 
@@ -817,19 +819,18 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
 static void
 geda_image_menu_item_forall (GtkContainer   *container,
-                            bool	    include_internals,
-                            GtkCallback     callback,
-                            void *        callback_data)
+                             bool            include_internals,
+                             GtkCallback     callback,
+                             void           *callback_data)
 {
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (container);
 
-  GTK_CONTAINER_CLASS (geda_image_menu_item_parent_class)->forall (container,
-                                                                  include_internals,
-                                                                  callback,
-                                                                  callback_data);
+  GTK_CONTAINER_CLASS (geda_image_menu_item_parent_class)->
+    forall (container, include_internals, callback, callback_data);
 
-  if (include_internals && image_menu_item->image)
+  if (include_internals && image_menu_item->image) {
     (* callback) (image_menu_item->image, callback_data);
+  }
 }
 
 
@@ -1082,7 +1083,7 @@ geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
  */
 void
 geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
-                               GtkWidget          *image)
+                                GtkWidget         *image)
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
