@@ -614,7 +614,7 @@ geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
 
   net_width = o_current->line_options->line_width;
   if(net_width <= MIN_LINE_WIDTH_THRESHOLD)
-    net_width = o_style_get_net_width(toplevel);   /* 1st try updating the style */
+    net_width = geda_object_style_get_net_width(toplevel);   /* 1st try updating the style */
   if (net_width < MIN_LINE_WIDTH_THRESHOLD) /* if STYLE_NONE */
     net_width = MIN_LINE_WIDTH_THRESHOLD;
 

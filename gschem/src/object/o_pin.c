@@ -38,7 +38,7 @@ void o_pin_draw_rubber (GschemToplevel *w_current)
   int size = 0;
 
   /* Pins are always first created as net pins, use net pin width */
-  size = o_style_get_pin_width(w_current->toplevel, PIN_NET_NODE);
+  size = geda_object_style_get_pin_width(w_current->toplevel, PIN_NET_NODE);
 
   cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
@@ -93,7 +93,7 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
                         PIN_NET_NODE, 0);
 
     new_obj->line_options->line_width =
-    o_style_get_pin_width(toplevel, PIN_NET_NODE);
+    geda_object_style_get_pin_width(toplevel, PIN_NET_NODE);
 
     s_page_append_object (toplevel->page_current, new_obj);
 
@@ -170,7 +170,7 @@ void o_pin_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
 
   /* Pins are always first created as net pins, use net pin width */
-  bloat = o_style_get_pin_width(w_current->toplevel, PIN_NET_NODE);
+  bloat = geda_object_style_get_pin_width(w_current->toplevel, PIN_NET_NODE);
   bloat = SCREENabs (w_current, bloat / 2);
 
   min_x = min (x1, x2) - bloat;

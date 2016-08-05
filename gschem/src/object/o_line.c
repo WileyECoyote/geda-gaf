@@ -39,7 +39,7 @@
  */
 void o_line_draw_rubber (GschemToplevel *w_current)
 {
-  int width = o_style_get_line_width(w_current->toplevel);
+  int width = geda_object_style_get_line_width(w_current->toplevel);
   cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
   int flags = eda_renderer_get_cairo_flags (CairoRenderer);
@@ -84,7 +84,7 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
     new_obj = geda_line_object_new (GRAPHIC_COLOR,
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
-    new_obj->line_options->line_width = o_style_get_line_width(toplevel);
+    new_obj->line_options->line_width = geda_object_style_get_line_width(toplevel);
 
     s_page_append_object (toplevel->page_current, new_obj);
 

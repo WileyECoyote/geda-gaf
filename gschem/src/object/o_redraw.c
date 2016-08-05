@@ -253,7 +253,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
    GedaObject *o_current = iter->data;
 
     if (!(o_current->dont_redraw || o_current->selected)) {
-        o_style_set_object(w_current->toplevel, o_current);
+        geda_object_style_set_line_width(w_current->toplevel, o_current);
         x_draw_object(w_current, o_current);
     }
   }
@@ -281,7 +281,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
       if (!o_current->dont_redraw) {
 
-        o_style_set_object(w_current->toplevel, o_current);
+        geda_object_style_set_line_width(w_current->toplevel, o_current);
 
         x_draw_object(w_current, o_current);
         eda_renderer_draw_cues (renderer, o_current);

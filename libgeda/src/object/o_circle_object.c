@@ -735,7 +735,7 @@ geda_circle_object_print(GedaToplevel *toplevel, FILE *fp,
   circle_width = o_current->line_options->line_width;
 
   if (circle_width < MIN_LINE_WIDTH_THRESHOLD) {
-     circle_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+     circle_width = geda_object_style_get_line_width(toplevel); /* 1st try updating style */
   }
 
   if (circle_width < MIN_LINE_WIDTH_THRESHOLD) {

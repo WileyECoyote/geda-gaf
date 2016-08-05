@@ -520,13 +520,18 @@ geda_bus_object_print(GedaToplevel *toplevel,  FILE *fp,
     f_print_set_color(toplevel, fp, o_current->color);
 
     bus_width = o_current->line_options->line_width;
-    if(bus_width <= MIN_LINE_WIDTH_THRESHOLD)
-      bus_width = o_style_get_bus_width(toplevel);  /* 1st try updating the style */
-      if (bus_width < MIN_LINE_WIDTH_THRESHOLD) /* if STYLE_NONE */
-        bus_width = MIN_LINE_WIDTH_THRESHOLD;
+    if(bus_width <= MIN_LINE_WIDTH_THRESHOLD) {
+      /* 1st try updating the style */
+      bus_width = geda_object_style_get_bus_width(toplevel);
+    }
 
-      x1 = o_current->line->x[0]-origin_x,
-      y1 = o_current->line->y[0]-origin_y;
+    if (bus_width < MIN_LINE_WIDTH_THRESHOLD) {
+      /* if STYLE_NONE */
+      bus_width = MIN_LINE_WIDTH_THRESHOLD;
+    }
+
+    x1 = o_current->line->x[0]-origin_x,
+    y1 = o_current->line->y[0]-origin_y;
     x2 = o_current->line->x[1]-origin_x,
     y2 = o_current->line->y[1]-origin_y;
 

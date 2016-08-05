@@ -45,8 +45,8 @@
  *  width based on the current bus style variable.
  *
  */
-int o_style_get_bus_width( GedaToplevel *toplevel ) {
-
+int geda_object_style_get_bus_width( GedaToplevel *toplevel )
+{
   int width;
 
   if(toplevel->bus_style == STYLE_NONE) {
@@ -75,7 +75,7 @@ int o_style_get_bus_width( GedaToplevel *toplevel ) {
  *  width based on the current line style variable.
  *
  */
-int o_style_get_line_width( GedaToplevel *toplevel ) {
+int geda_object_style_get_line_width( GedaToplevel *toplevel ) {
 
   int width;
 
@@ -104,7 +104,7 @@ int o_style_get_line_width( GedaToplevel *toplevel ) {
  *  width based on the current net style variable.
  *
  */
-int o_style_get_net_width( GedaToplevel *toplevel ) {
+int geda_object_style_get_net_width( GedaToplevel *toplevel ) {
 
   int width;
 
@@ -135,7 +135,7 @@ int o_style_get_net_width( GedaToplevel *toplevel ) {
  *
  *  of the pin type.
  */
-int o_style_get_pin_width( GedaToplevel *toplevel, int type) {
+int geda_object_style_get_pin_width( GedaToplevel *toplevel, int type) {
 
   int width;
 
@@ -169,7 +169,7 @@ int o_style_get_pin_width( GedaToplevel *toplevel, int type) {
  *  \param [in,out] o_current   GedaObject to set.
  *
  */
-void o_style_set_object(GedaToplevel *toplevel, GedaObject *o_current)
+void geda_object_style_set_line_width(GedaToplevel *toplevel, GedaObject *o_current)
 {
   if (o_current != NULL) {
     switch(o_current->type) {
@@ -181,7 +181,7 @@ void o_style_set_object(GedaToplevel *toplevel, GedaObject *o_current)
       case(OBJ_BUS):
       case(OBJ_PATH):
         if(toplevel->line_style != STYLE_NONE)
-          o_current->line_options->line_width = o_style_get_line_width( toplevel );
+          o_current->line_options->line_width = geda_object_style_get_line_width( toplevel );
         break;
       case(OBJ_PICTURE):
       case(OBJ_COMPLEX):
@@ -190,9 +190,9 @@ void o_style_set_object(GedaToplevel *toplevel, GedaObject *o_current)
       case(OBJ_PIN):
         if(toplevel->pin_style != STYLE_NONE) {
           if(o_current->pin->node_type == PIN_NET_NODE)
-            o_current->line_options->line_width = o_style_get_pin_width( toplevel, PIN_NET_NODE);
+            o_current->line_options->line_width = geda_object_style_get_pin_width( toplevel, PIN_NET_NODE);
           else
-            o_current->line_options->line_width = o_style_get_pin_width( toplevel, PIN_BUS_NODE);
+            o_current->line_options->line_width = geda_object_style_get_pin_width( toplevel, PIN_BUS_NODE);
         }
         break;
       case(OBJ_TEXT):

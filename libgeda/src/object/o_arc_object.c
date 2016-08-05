@@ -827,7 +827,7 @@ geda_arc_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *object,
 
   arc_width = object->line_options->line_width;
   if(arc_width < MIN_LINE_WIDTH_THRESHOLD)
-     arc_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+     arc_width = geda_object_style_get_line_width(toplevel); /* 1st try updating style */
   if(arc_width < MIN_LINE_WIDTH_THRESHOLD)
      arc_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 

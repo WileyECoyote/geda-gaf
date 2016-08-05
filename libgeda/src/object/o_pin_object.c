@@ -294,7 +294,7 @@ geda_pin_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
 
   pin_width = o_current->line_options->line_width;
   if(pin_width < MIN_LINE_WIDTH_THRESHOLD)
-     pin_width = o_style_get_pin_width(toplevel, PIN_NET_NODE); /* 1st try updating pin style */
+     pin_width = geda_object_style_get_pin_width(toplevel, PIN_NET_NODE); /* 1st try updating pin style */
   if(pin_width < MIN_LINE_WIDTH_THRESHOLD)
      pin_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 

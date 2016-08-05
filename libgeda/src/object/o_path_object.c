@@ -1184,7 +1184,7 @@ void geda_path_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curr
 
   line_width = o_current->line_options->line_width;
   if(line_width < MIN_LINE_WIDTH_THRESHOLD)
-     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+     line_width = geda_object_style_get_line_width(toplevel); /* 1st try updating style */
   if(line_width < MIN_LINE_WIDTH_THRESHOLD)
      line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
   length = o_current->line_options->line_length;

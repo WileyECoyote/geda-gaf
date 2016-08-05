@@ -99,7 +99,7 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
     new_obj = geda_circle_object_new (GRAPHIC_COLOR,
                             w_current->first_wx, w_current->first_wy,
                             w_current->distance);
-    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+    new_obj->line_options->line_width =  geda_object_style_get_line_width(toplevel);
     s_page_append_object (toplevel->page_current, new_obj);
 
     /* Call add-objects-hook */

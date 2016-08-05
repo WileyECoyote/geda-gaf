@@ -491,7 +491,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
                                     w_current->first_wx, w_current->first_wy,
                                     w_current->second_wx, w_current->second_wy);
 
-      new_net->line_options->line_width = o_style_get_net_width(toplevel);
+      new_net->line_options->line_width = geda_object_style_get_net_width(toplevel);
       s_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -527,7 +527,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
                           w_current->second_wx, w_current->second_wy,
                           w_current->third_wx, w_current->third_wy);
 
-      new_net->line_options->line_width =  o_style_get_net_width(toplevel);
+      new_net->line_options->line_width =  geda_object_style_get_net_width(toplevel);
       s_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -566,7 +566,7 @@ void o_net_draw_rubber(GschemToplevel *w_current )
   cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
   int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
-  int size          = o_style_get_net_width (w_current->toplevel);
+  int size          = geda_object_style_get_net_width (w_current->toplevel);
 
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
 
@@ -703,7 +703,7 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy,
                  &second_x, &second_y);
 
-  size  = o_style_get_net_width(toplevel);
+  size  = geda_object_style_get_net_width(toplevel);
   size  = max (size, 0);
   bloat = size / 2;
 
@@ -1075,7 +1075,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       if (w_current->bus_ripper_type == NET_BUS_RIPPER) {
         new_obj = geda_net_object_new(color,rippers[i].x[0], rippers[i].y[0],
                             rippers[i].x[1], rippers[i].y[1]);
-        new_obj->line_options->line_width =  o_style_get_net_width(toplevel);
+        new_obj->line_options->line_width =  geda_object_style_get_net_width(toplevel);
         s_page_append_object (toplevel->page_current, new_obj);
       }
       else {
