@@ -1277,13 +1277,15 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                  g_cclosure_marshal_VOID__VOID,
                                  G_TYPE_NONE, 0);
 
-  /*GtkButton::activate:
-   * @widget: the object which received the signal.
-   *
-   * The ::activate signal on GtkButton is an action signal and
+  /*!
+   * GtkButton::activate:
+   * \par
+   * The activate signal from GtkButton is an action signal and
    * emitting it causes the button to animate press then release.
    * Applications should never connect to this signal, but use the
    * GedaMenuButton::clicked signal.
+   *
+   * param widget: the object which received the signal.
    */
   signals[ACTIVATE] = g_signal_new ("activate",
                         G_OBJECT_CLASS_TYPE (object_class),
