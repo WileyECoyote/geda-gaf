@@ -3,10 +3,10 @@
 
 /*!
  * \typedef PackDirection
- * @PACK_DIRECTION_LTR: Widgets are packed left-to-right
- * @PACK_DIRECTION_RTL: Widgets are packed right-to-left
- * @PACK_DIRECTION_TTB: Widgets are packed top-to-bottom
- * @PACK_DIRECTION_BTT: Widgets are packed bottom-to-top
+ * PACK_DIRECTION_LTR: Widgets are packed left-to-right
+ * PACK_DIRECTION_RTL: Widgets are packed right-to-left
+ * PACK_DIRECTION_TTB: Widgets are packed top-to-bottom
+ * PACK_DIRECTION_BTT: Widgets are packed bottom-to-top
  *
  * Determines how widgets should be packed inside menubars
  * and menuitems contained in menubars.
