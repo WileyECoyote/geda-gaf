@@ -49,8 +49,8 @@ static EdaX11Render *RenderAdaptor;
 static void
 x_draw_set_object_color(GschemToplevel *w_current)
 {
-  GdkColor   *color;
-  GedaObject *o_current = RenderAdaptor->object;
+  GdkColor    *color;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (!o_current->selected) {
     color = geda_color_x11_color_from_index(o_current->color);
@@ -65,7 +65,7 @@ x_draw_set_object_color(GschemToplevel *w_current)
 static void
 x_draw_arc_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_ARC(o_current)) {
 
@@ -91,7 +91,7 @@ x_draw_arc_object (GschemToplevel *w_current)
 static void
 x_draw_circle_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_CIRCLE(o_current)) {
 
@@ -112,7 +112,7 @@ x_draw_circle_object (GschemToplevel *w_current)
 static void
 x_draw_box_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_BOX(o_current)) {
 
@@ -122,8 +122,8 @@ x_draw_box_object (GschemToplevel *w_current)
 
     o_box = o_current->box;
 
-    WORLDtoSCREEN (w_current, o_box->upper_x,  o_box->upper_y, &sx1,  &sy1);
-    WORLDtoSCREEN (w_current, o_box->lower_x,  o_box->lower_y, &sx2,  &sy2);
+    WORLDtoSCREEN (w_current, o_box->upper_x, o_box->upper_y, &sx1, &sy1);
+    WORLDtoSCREEN (w_current, o_box->lower_x, o_box->lower_y, &sx2, &sy2);
 
     width  = sx2 - sx1;
     height = sy2 - sy1;
@@ -135,7 +135,7 @@ x_draw_box_object (GschemToplevel *w_current)
 static void
 x_draw_line_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_LINE(o_current)) {
 
@@ -154,7 +154,7 @@ x_draw_line_object (GschemToplevel *w_current)
 static void
 x_draw_bus_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_LINE(o_current)) {
 
@@ -173,7 +173,7 @@ x_draw_bus_object (GschemToplevel *w_current)
 static void
 x_draw_net_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_LINE(o_current)) {
 
@@ -192,7 +192,7 @@ x_draw_net_object (GschemToplevel *w_current)
 static void
 x_draw_path_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_PATH(o_current)) {
 
@@ -237,7 +237,7 @@ x_draw_pin_object (GschemToplevel *w_current)
 static void
 x_draw_picture_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   if (GEDA_IS_PICTURE(o_current)) {
 
@@ -260,7 +260,7 @@ x_draw_picture_object (GschemToplevel *w_current)
 static void
 x_draw_text_object (GschemToplevel *w_current)
 {
-  GedaObject *o_current = RenderAdaptor->object;
+  ConstObject *o_current = RenderAdaptor->object;
 
   /* First check if this is visible */
   if ( geda_object_get_is_visible(o_current)) {
