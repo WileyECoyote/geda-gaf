@@ -20,6 +20,29 @@
  *  \brief GedaMenuItem Class Module
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
+#include <gtk/gtk.h>
+
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
+
+#include "../../include/geda_accel_label.h"
+#include "../../include/geda_action.h"
+#include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_menu_enum.h"
+#include "../../include/geda_tearoff_menu_item.h"
+#include "../../include/geda_uio_functions.h"
+#include "../../include/geda_menu.h"
+#include "../../include/geda_menu_item.h"
+#include "../../include/geda_menu_separator.h" /* for GEDA_IS_MENU_SEPERATOR */
+#include "../../include/geda_menu_shell.h"
+#include "../../include/geda_menu_bar.h"
+
+#include "../../include/gettext.h"
+
 /** \defgroup GedaMenuItem GedaMenuItem Object
  * @{
  * \brief A widget used for an item in menus
@@ -62,29 +85,6 @@
  *
  * \sa GtkBin, GedaMenuShell
  */
-
-#ifdef HAVE_CONFIG_H
-#include "../../../config.h"
-#endif
-
-#include <gtk/gtk.h>
-
-#include <geda/geda.h>
-#include <geda/geda_standard.h>
-
-#include "../../include/geda_accel_label.h"
-#include "../../include/geda_action.h"
-#include "../../include/geda_gtk_compat.h"
-#include "../../include/geda_menu_enum.h"
-#include "../../include/geda_tearoff_menu_item.h"
-#include "../../include/geda_uio_functions.h"
-#include "../../include/geda_menu.h"
-#include "../../include/geda_menu_item.h"
-#include "../../include/geda_menu_separator.h" /* for GEDA_IS_MENU_SEPERATOR */
-#include "../../include/geda_menu_shell.h"
-#include "../../include/geda_menu_bar.h"
-
-#include "../../include/gettext.h"
 
 #define MENU_POPUP_DELAY     225
 

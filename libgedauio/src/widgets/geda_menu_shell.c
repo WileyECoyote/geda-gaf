@@ -802,9 +802,8 @@ geda_menu_shell_button_release (GtkWidget      *widget,
 
           popup_time = g_object_get_data (G_OBJECT (submenu),
                                           MENU_POPUP_TIME_KEY);
+          if (popup_time) {
 
-          if (popup_time)
-          {
             GTimeVal current_time;
 
             g_get_current_time (&current_time);

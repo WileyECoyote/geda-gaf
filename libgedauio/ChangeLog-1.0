@@ -1,3 +1,8 @@
+2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Move the inclusion of headers before the
+      defgroup and docs stuff.
+
 2016-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Simplify and actually set touchscreen_mode
