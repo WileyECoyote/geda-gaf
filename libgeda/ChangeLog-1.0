@@ -1,3 +1,8 @@
+2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_object.h: Define ConstObject as const GedaObject,
+      seems handy.
+
 2016-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_style.c: Rename functions with geda_object prefix.

@@ -539,11 +539,11 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_set_object_visibility                (GedaObject *object, int visibility);
 
 /* o_style.c */
-          int    o_style_get_bus_width           (GedaToplevel *toplevel);
-          int    o_style_get_line_width          (GedaToplevel *toplevel);
-          int    o_style_get_net_width           (GedaToplevel *toplevel);
-          int    o_style_get_pin_width           (GedaToplevel *toplevel, int type);
-         void    o_style_set_object              (GedaToplevel *toplevel, GedaObject *o_current);
+          int    geda_object_style_get_bus_width           (GedaToplevel *toplevel);
+          int    geda_object_style_get_line_width          (GedaToplevel *toplevel);
+          int    geda_object_style_get_net_width           (GedaToplevel *toplevel);
+          int    geda_object_style_get_pin_width           (GedaToplevel *toplevel, int type);
+         void    geda_object_style_set_line_width          (GedaToplevel *toplevel, GedaObject *o_current);
 
 /* o_text_object.c */
    GedaObject   *o_text_copy                     (const GedaObject *object) WARN_UNUSED;

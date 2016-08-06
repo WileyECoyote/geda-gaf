@@ -41,6 +41,8 @@
 # define GedaObjectType unsigned int
 #endif
 
+#define ConstObject const GedaObject
+
 #define GEDA_TYPE_OBJECT            (geda_object_get_type())
 #define GEDA_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_OBJECT, GedaObject))
 #define GEDA_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_OBJECT, GedaObjectClass))
@@ -144,11 +146,11 @@ void          geda_object_weak_unref         (GedaObject *object, WeakNotifyFunc
 void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_pointer_loc);
 void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
 
-int           geda_object_bounds             (const GedaObject *object);
-GList        *geda_object_get_attached       (const GedaObject *object);
-int           geda_object_get_color          (const GedaObject *object);
-Page         *geda_object_get_page           (const GedaObject *object);
-int           geda_object_get_filltype       (const GedaObject *object);
+int           geda_object_bounds             (ConstObject *object);
+GList        *geda_object_get_attached       (ConstObject *object);
+int           geda_object_get_color          (ConstObject *object);
+Page         *geda_object_get_page           (ConstObject *object);
+int           geda_object_get_filltype       (ConstObject *object);
 
 void          geda_object_set_color          (GedaObject *object, int color);
 
