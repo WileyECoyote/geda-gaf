@@ -1144,9 +1144,9 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 
 }
 
-/*! \brief Function to retrieve GedaEntry's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaEntry's Type identifier
+ * \par Function Description
  *  Function to retrieve a #GedaEntry Type identifier. When
  *  first called, the function registers a #GedaEntry in the
  *  GedaType system to obtain an identifier that uniquely itentifies
@@ -1934,17 +1934,18 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  *  @{
  */
 
-/*! \brief Create a New GedaEntry with optional History and Completion
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaEntry with optional History and Completion
+ * \par Function Description
  * Creates a new entry with the specified text buffer.
  *
- * \param [in] buffer:  The buffer to use for the new #GedaEntry.
+ * \param [in] history  Point to location of GList pointer to store entry strings.
+ * \param [in] complete Point to location of GList pointer containing key words.
  *
  * \return a new #GedaEntry
  */
 GtkWidget*
-geda_entry_new (GList** history, GList** complete)
+geda_entry_new (GList **history, GList **complete)
 {
 
   if ((int)(long)history == -1)
