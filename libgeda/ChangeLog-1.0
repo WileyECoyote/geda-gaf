@@ -5,6 +5,8 @@
 
     * include/libgeda_priv.h: Include libgeda headers using explicit path.
 
+    * src/file/f_path.c: Use static const for environment variable strings.
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Define ConstObject as const GedaObject,

@@ -45,6 +45,10 @@
 #  endif
 #endif
 
+static const char const DOC_ENV_STR[]    = "GEDADOC";
+static const char const DATA_ENV_STR[]   = "GEDADATA";
+static const char const RCDATA_ENV_STR[] = "GEDADATARC";
+
 #ifdef OS_WIN32
 
 /* Get a module handle for the libgeda DLL.
@@ -120,7 +124,7 @@ const char *f_path_sys_data () {
   /* If GEDADATA is set in the environment, use that path */
   if (sys_data_path == NULL) {
     const char *path;
-    path = getenv ("GEDADATA");
+    path = getenv (DATA_ENV_STR);
     if (path != NULL) {
       sys_data_path = geda_utility_string_strdup(path);
     }
@@ -139,7 +143,7 @@ const char *f_path_sys_data () {
     sys_data_path = geda_utility_string_strdup(GEDADATADIR);
 # endif
 
-    setenv ("GEDADATA", sys_data_path, FALSE);
+    setenv (DATA_ENV_STR, sys_data_path, FALSE);
   }
 
   return sys_data_path;
@@ -165,7 +169,7 @@ const char *f_path_sys_doc () {
   /* If GEDADOC is set in the environment, use that path */
   if (sys_doc_path == NULL) {
     const char *path;
-    path = getenv ("GEDADOC");
+    path = getenv (DOC_ENV_STR);
     if (path != NULL) {
       sys_doc_path = geda_utility_string_strdup(path);
     }
@@ -173,7 +177,7 @@ const char *f_path_sys_doc () {
 
   if (sys_doc_path == NULL) {
     sys_doc_path = geda_utility_string_strdup(GEDADOCDIR);
-    setenv ("GEDADOC", sys_doc_path, FALSE);
+    setenv (DOC_ENV_STR, sys_doc_path, FALSE);
   }
   return sys_doc_path;
 }
@@ -201,7 +205,7 @@ const char *f_path_sys_config () {
   /* If GEDADATARC is set in the environment, use that path */
   if (sys_config_path == NULL) {
     const char *path;
-    path = getenv ("GEDADATARC");
+    path = getenv (RCDATA_ENV_STR);
     if (path != NULL) {
       sys_config_path = geda_utility_string_strdup(path);
     }
@@ -225,7 +229,7 @@ const char *f_path_sys_config () {
   }
 
   if (sys_config_path != NULL) {
-    setenv("GEDADATARC", sys_config_path, FALSE);
+    setenv(RCDATA_ENV_STR, sys_config_path, FALSE);
   }
 
   return sys_config_path;
