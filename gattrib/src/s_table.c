@@ -101,7 +101,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   int y;
   TABLE **new_table;
 
-  void init_new_record(col) {
+  void init_new_record(int col) {
     for (y = 0; y < rows; y++) {
       (table[col][y]).attrib_value = NULL;
       (table[col][y]).row_name = NULL;
@@ -662,10 +662,12 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 #define data_table sheet_head->component_table
 #define free_if(field) if(((data_table)[X][Y]).field) GEDA_FREE(((data_table)[X][Y]).field);
 #define col_count sheet_head->comp_attrib_count
-bool s_table_remove_attribute(TABLE **table, int X) {
+bool s_table_remove_attribute(TABLE **table, int X)
+{
   bool result = FALSE;
   int Y;
-  void free_column(X) {
+
+  void free_column(int X) {
     for (Y = 0; Y < sheet_head->comp_count; Y++) {
       free_if (row_name)
       free_if (col_name)
@@ -705,6 +707,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
 #undef data_table
 #undef free_if
 #undef col_count
+
 /*------------------------------------------------------------------*/
 /*! \brief Pull spreadsheet data to TABLEs.
  *  \par Function Description

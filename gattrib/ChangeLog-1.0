@@ -1,3 +1,8 @@
+2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Add missing type specifiers for subfunctions init_new_record
+      and free_column.
+
 2016-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * Program Enhancement: New feature - Configurable Tear-Off Menus
