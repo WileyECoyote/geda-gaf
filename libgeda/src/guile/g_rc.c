@@ -385,9 +385,9 @@ SCM g_rc_source_library_search(SCM path)
   while ((entry = g_dir_read_name (dir))) {
 
     /* Skip . and .. and special case font */
-    if ((g_ascii_strcasecmp (entry, ".")    != 0) &&
-        (g_ascii_strcasecmp (entry, "..")   != 0) &&
-        (g_ascii_strcasecmp (entry, "font") != 0))
+    if ((strcmp (entry, ".")  != 0) &&
+        (strcmp (entry, "..") != 0) &&
+        (geda_stricmp (entry, "font") != 0))
     {
       char *fullpath = g_build_filename (string, entry, NULL);
 

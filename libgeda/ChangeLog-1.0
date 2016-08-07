@@ -7,6 +7,10 @@
 
     * src/file/f_path.c: Use static const for environment variable strings.
 
+    * src/guile/g_rc.c: Replace g_ascii_strcasecmp with strcmp and geda_
+      stricmp, does not make sense to perform case insensitive compare of
+      period characters.
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Define ConstObject as const GedaObject,
