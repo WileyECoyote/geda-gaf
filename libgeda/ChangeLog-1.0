@@ -1,5 +1,8 @@
 2016-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/defines.h: Define M_PI if not defined, regardless if
+      __MINGW32__ is defined or not.
+
     * include/libgeda_priv.h: Include libgeda headers using explicit path.
 
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>

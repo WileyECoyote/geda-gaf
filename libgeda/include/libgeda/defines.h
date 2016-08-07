@@ -263,7 +263,7 @@
 /* Max level of symlinks */
 #define MAX_LINK_LEVEL 256
 
-#if defined(__MINGW32__) && !defined(M_PI)
+#if !defined(M_PI)
 #define M_PI  3.14159265358979323846
 #endif
 
