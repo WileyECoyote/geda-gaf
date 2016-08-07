@@ -14,41 +14,41 @@
 #include <geda_colors.h>
 
 /* Public libgeda headers */
-#include <defines.h>
+#include "libgeda/defines.h"
 
-#include <g_types.h>
-#include <o_types.h>
+#include "libgeda/g_types.h"
+#include "libgeda/o_types.h"
 
-#include <s_struct.h>
-#include <g_struct.h>
+#include "libgeda/s_struct.h"
+#include "libgeda/g_struct.h"
 
-#include <f_types.h>
+#include "libgeda/f_types.h"
 
-#include <geda_config.h>
-#include <geda_errors.h>
+#include "libgeda/geda_config.h"
+#include "libgeda/geda_errors.h"
 
-#include <prototype.h>
+#include "libgeda/prototype.h"
 
-#include <geda_attrib.h>
-#include "geda_object_list.h"
-#include "geda_utility.h"
+#include "libgeda/geda_attrib.h"
+#include "libgeda/geda_object_list.h"
+#include "libgeda/geda_utility.h"
 
-#include <geda_list.h>
-#include <geda_notify.h>
-#include <geda_object.h>
-#include <geda_page.h>
-#include <geda_line.h>
-#include <geda_arc.h>
-#include <geda_box.h>
-#include <geda_bus.h>
-#include <geda_circle.h>
-#include <geda_complex.h>
-#include <geda_net.h>
-#include <geda_path.h>
-#include <geda_picture.h>
-#include <geda_pin.h>
-#include <geda_text.h>
-#include <geda_toplevel.h>
+#include "libgeda/geda_list.h"
+#include "libgeda/geda_notify.h"
+#include "libgeda/geda_object.h"
+#include "libgeda/geda_page.h"
+#include "libgeda/geda_line.h"
+#include "libgeda/geda_arc.h"
+#include "libgeda/geda_box.h"
+#include "libgeda/geda_bus.h"
+#include "libgeda/geda_circle.h"
+#include "libgeda/geda_complex.h"
+#include "libgeda/geda_net.h"
+#include "libgeda/geda_path.h"
+#include "libgeda/geda_picture.h"
+#include "libgeda/geda_pin.h"
+#include "libgeda/geda_text.h"
+#include "libgeda/geda_toplevel.h"
 
 /* Private libgeda headers */
 #include "prototype_priv.h"
