@@ -46,6 +46,7 @@
 /* f_get.c */
 #define geda_get_autosave_name    f_get_autosave_filename
 #define geda_get_basename         f_get_basename
+#define geda_get_basename_dup     f_get_basename_dup
 #define geda_get_bitmap_spec      f_get_bitmap_filespec
 #define geda_get_data_spec        f_get_data_filespec
 #define geda_get_dir_list         f_get_dir_list_files

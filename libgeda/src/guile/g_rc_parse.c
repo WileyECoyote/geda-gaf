@@ -416,7 +416,7 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
 static void
 g_rc_parse__process_error (GError **err, const char *pname)
 {
-  char *pbase;
+  const char *pbase;
 
   /* Take no chances; if err was not set for some reason, bail out. */
   if (*err == NULL) {
@@ -439,9 +439,8 @@ g_rc_parse__process_error (GError **err, const char *pname)
     fprintf (stderr, _("ERROR: %s\n"), (*err)->message);
   }
 
-  /* g_path_get_basename() allocates memory, but we don't care
-   * because we're about to exit. */
-  pbase = g_path_get_basename (pname);
+  pbase = f_get_basename (pname);
+
   fprintf (stderr, _("ERROR: The %s log may contain more information.\n"),
            pbase);
 

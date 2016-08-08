@@ -5,6 +5,9 @@
 
     * include/libgeda_priv.h: Include libgeda headers using explicit path.
 
+    * libgeda/src/file/f_file.c: Replace g_path_get_basename with f_get_basename
+      in f_save.
+
     * src/file/f_get.c: Change pointer returned from f_get_basename to const
       char* so a to require cast when writable. Add function f_get_basename_dup.
 
@@ -13,6 +16,12 @@
     * src/guile/g_rc.c: Replace g_ascii_strcasecmp with strcmp and geda_
       stricmp, does not make sense to perform case insensitive compare of
       period characters.
+
+    * src/guile/g_rc_parse.c: Replace g_path_get_basename with f_get_basename
+      in g_rc_parse__process_error.
+
+    * src/object/o_save.c: Replace g_path_get_basename with f_get_basename in
+      geda_object_save_auto_backup.
 
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -71,18 +71,17 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
                        __func__, p_current->filename);
       }
       else {
-
-        GError *err;
-        char   *dirname;
-        char   *only_filename;
-        char   *backup_filename;
-        mode_t  saved_umask;
-        mode_t  mask;
-        struct  stat st;
+              GError *err;
+              char   *dirname;
+        const char   *only_filename;
+              char   *backup_filename;
+              mode_t  saved_umask;
+              mode_t  mask;
+              struct  stat st;
 
         /* Get the directory in which the real filename lives */
         dirname         = f_path_get_dirname (real_filename);
-        only_filename   = g_path_get_basename(real_filename);
+        only_filename   = f_get_basename(real_filename);
 
         backup_filename = geda_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
                                        dirname, DIR_SEPARATOR, only_filename);
@@ -116,7 +115,6 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
 
         }
         GEDA_FREE (dirname);
-        GEDA_FREE (only_filename);
         GEDA_FREE (real_filename);
 
         /* Make the backup file writable before saving a new one */

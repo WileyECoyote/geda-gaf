@@ -464,8 +464,8 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (result) {
 
-    char *only_filename;
-    char *dirname;
+    const char *only_filename;
+          char *dirname;
 
     /* Get the files original permissions */
     if (stat (real_filename, &st_ActiveFile) != 0) {
@@ -475,11 +475,11 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     }
 
     /* Get the directory in which the real filename lives */
-    dirname = f_path_get_dirname (real_filename);
-    only_filename = g_path_get_basename(real_filename);
+    dirname       = f_path_get_dirname (real_filename);
+    only_filename = f_get_basename(real_filename);
 
-    /* Do a backup if it's not an undo file backup and it was never saved.
-     * Only do a backup if backup files are enabled */
+    /* Do a backup if page is not an undo file backup and the page has
+     * never saved. Only do a backup if backup files are enabled */
     if (page->saved_since_first_loaded == 0 &&
         geda_toplevel_get_make_backups(toplevel))
     {
@@ -520,7 +520,6 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
      */
 
     GEDA_FREE (dirname);
-    GEDA_FREE (only_filename);
 
     if (geda_object_save (s_page_get_objects (page), real_filename, &tmp_err)) {
 
