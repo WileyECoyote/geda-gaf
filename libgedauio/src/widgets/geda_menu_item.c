@@ -1314,7 +1314,7 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
  *  Gets the submenu underneath this menu item, if any.
  *  See geda_menu_item_set_submenu().
  *
- * \param [in] menu_item: a #GedaMenuItem
+ * \param [in] menu_item Pointer to a #GedaMenuItem
  *
  * \returns submenu for this menu item, or %NULL if none
  */
@@ -1326,22 +1326,47 @@ geda_menu_item_get_submenu (GedaMenuItem *menu_item)
   return menu_item->priv->submenu;
 }
 
+/*!
+ * \brief Get the Menu Item submenu direction
+ * \par Function Description
+ *  Gets the submenu direction property.
+ *
+ * \param [in] menu_item Pointer to a #GedaMenuItem
+ *
+ * \returns submenu_direction
+ */
 unsigned int
 geda_menu_item_get_submenu_direction (GedaMenuItem *menu_item)
 {
   return menu_item->priv->submenu_direction;
 }
 
-
+/*!
+ * \brief Get the Menu Item submenu placement
+ * \par Function Description
+ *  Gets the submenu placement property.
+ *
+ * \param [in] menu_item Pointer to a #GedaMenuItem
+ *
+ * \returns submenu_placement
+ */
 SubmenuPlacement
 geda_menu_item_get_submenu_placement (GedaMenuItem *menu_item)
 {
   return menu_item->priv->submenu_placement;
 }
 
+/*!
+ * \brief Set the Menu Item submenu placement
+ * \par Function Description
+ *  Sets the submenu placement property.
+ *
+ * \param [in] menu_item Pointer to a #GedaMenuItem
+ * \param [in] placement The new SubmenuPlacement to use.
+ */
 void
-geda_menu_item_set_submenu_placement (GedaMenuItem     *menu_item,
-                                      SubmenuPlacement  placement)
+geda_menu_item_set_submenu_placement (GedaMenuItem    *menu_item,
+                                      SubmenuPlacement placement)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -1379,7 +1404,7 @@ geda_menu_item_select (GedaMenuItem *menu_item)
  * \par Function Description
  *  Emits the GedaMenuItem::deselect signal on the given item.
  *
- * \param [in] menu_item: the menu item
+ * \param [in] menu_item the menu item
  */
 void
 geda_menu_item_deselect (GedaMenuItem *menu_item)
@@ -1403,7 +1428,7 @@ geda_menu_item_deselect (GedaMenuItem *menu_item)
  * \par Function Description
  *  Emits the GedaMenuItem::activate signal on the given item
  *
- * \param [in] menu_item: the menu item
+ * \param [in] menu_item the menu item
  */
 void
 geda_menu_item_activate (GedaMenuItem *menu_item)
