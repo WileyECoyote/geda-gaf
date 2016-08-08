@@ -1,20 +1,19 @@
 ###############################################################
-README and release notes for olib2geda - 1 settembre 2002
+README and release notes for olib2geda - 1 September 2002
 OrCAD (TM) lib ASCII dump to gEDA .sym converter
 ###############################################################
 
 
 What it olib2geda?
-It's a simple automated converter from OrCAD v4 (in SDT version 1.10) parts
-library (in ASCII dump format, through "decomp" utility) to gEDA component 
-definition in .sym format file.
-It allow an initial dumb conversion file to file, with one lib converted in 
-multiple .sym file, one per component in library.
-The converted component file needs little editing to become usable, but in some
-case needs no editing at all.
+olib2geda is an automated converter from OrCAD v4 (in SDT version 1.10)
+parts library (in ASCII dump format, through "decomp" utility) to gEDA
+component definition in .sym format file.
+olib2geda performs an initial dumb conversion file to file, with one lib
+converted in multiple .sym file, one per component in library. The converted
+component file needs little editing to become usable, but in some case needs
+no editing at all.
 
-
-What olib do.
+What olib does.
 * Convert box shaped component in OrCAD (TM) lib in .sym file in gEDA format
 * Place pin, pin name, pin type, pin number
 * Place logic bubble when needed (DOT attribute in OrCAD (TM), for logic nega-
@@ -24,15 +23,15 @@ What olib do.
 * Place Part name as label and device name as attribute
 * Parse and draw non-box component, with LINE, ARC, CIRCLE and TEXT
 * Add power pin as invisible net=name:pin attribute when detected (in OrCAD (TM)
-    invisible pin has tipically T0 and B0 coords)
+    invisible pin typically have T0 and B0 coords)
 * Through command line switch, hides pin name in VECTOR drawed symbols, allowing
     better appearance
-* Write both new (20020825) and old (20020209) file format for .sym files 
+* Write both new (20020825) and old (20020209) file format for .sym files
     through a switch on the command line
 
 
 What olib do not.
-* Do not parse and store alternate component drawing (statement CONVERT in 
+* Do not parse and store alternate component drawing (statement CONVERT in
     OrCAD (TM))
 * Do not handle drawing part using VECTOR list from another part (statement
     VECTOR 'partname' in OrCAD (TM))
@@ -53,7 +52,7 @@ http://digilander.libero.it/tailchaser
 in section "Linux" you can see the main page of olib.
 
 
-Compile and install. 
+Compile and install.
 [[ Ales here, I have incorperated olib into the ./configure build mechanism,
    so these instructions only apply if you build from Mario's distribution ]]
 
@@ -77,13 +76,13 @@ Use of olib.
 To convert library, first convert it to ASCII dump with 'decomp' utility
 included in the OrCAD (TM) distribution. After that invoke the lib converter:
 olib path/to/file/file_ascii prefix where 'prefix' is used to generate file name
-of every symbol, like: 
-prefix-partname-1.sym 
+of every symbol, like:
+prefix-partname-1.sym
 During the process, you can see a lot of ugly text scrolling in the terminal,
 that show the progress of the conversion. If you want to read this text, you can
-redirect the stderr output to a file: 
+redirect the stderr output to a file:
 olib path/to/file/file_ascii prefix 2> logfile.txt
-where '2>' instruct the shell to redirect stderr output to logfile.txt. 
+where '2>' instruct the shell to redirect stderr output to logfile.txt.
 The converter write one file per part, in the current directory. At the end of
 the execution you can see a lot of file in the directory, extracted from OrCAD
 library.
