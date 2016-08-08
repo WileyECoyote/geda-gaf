@@ -1,4 +1,4 @@
-v 20041228 1
+v 20041228 2
 P 300 2100 0 2100 1 0 1
 {
 T 200 2150 5 8 1 1 0 6 1
@@ -131,7 +131,7 @@ pinlabel=Rx1 In
 T 2250 1500 5 8 0 1 0 8 1
 pintype=in
 }
-T 300 3050 5 10 0 0 0 0 1
+T 300 3250 5 10 0 0 0 0 1
 device=MAX232
 P 2300 1800 2600 1800 1 0 1
 {
@@ -158,9 +158,9 @@ pintype=pas
 B 300 0 2000 2800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2300 2900 8 10 1 1 0 6 1
 refdes=U?
-T 300 3250 5 10 0 0 0 0 1
+T 300 3050 5 10 0 0 0 0 1
 footprint=DIP16
-T 300 3450 5 10 0 0 0 0 1
+T 300 3450 5 10 0 1 0 0 1
 description=5V-powered dual RS-232 driver/receiver
 T 300 4050 5 10 0 0 0 0 1
 numslots=0
@@ -170,5 +170,5 @@ T 300 3850 5 10 0 0 0 0 1
 net=GND:15
 T 300 2850 9 10 1 0 0 0 1
 MAX232
-T 300 4250 5 10 0 0 0 0 1
+T 300 4250 5 10 0 1 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX220-MAX249.pdf
