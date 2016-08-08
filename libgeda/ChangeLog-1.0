@@ -1,3 +1,7 @@
+2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Add checks for f_get_basename_dup.
+
 2016-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Define M_PI if not defined, regardless if
