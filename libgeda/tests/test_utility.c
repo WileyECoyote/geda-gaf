@@ -24,7 +24,6 @@
  *  Date Contributed: March, TBD, 2016
  */
 
-//#include <glib.h>
 #include <libgeda.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -892,7 +891,7 @@ int test_strings (void)
         fprintf(stderr, "FAILED: (U060601A-%d) geda_remove_last_newline <%s>\n",index, string);
         result++;
       }
-      free (string);
+      free (input);
     }
     else {
       if (strcmp(string, expected)) {      /* See structure U06_str */
@@ -936,7 +935,7 @@ int test_strings (void)
         fprintf(stderr, "FAILED: (U060701A-%d) geda_remove_newline <%s>\n",index, string);
         result++;
       }
-      free (string);
+      free (input);
     }
     else {
       if (strcmp(string, expected)) {      /* See structure U07_str */

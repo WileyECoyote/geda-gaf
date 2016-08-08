@@ -2,6 +2,9 @@
 
     * tests/test_file.c: Add checks for f_get_basename_dup.
 
+    * tests/test_utility.c: Free orginal allocation; variable input returned
+      from geda_remove_last_newline and geda_remove_newline.
+
 2016-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Define M_PI if not defined, regardless if
