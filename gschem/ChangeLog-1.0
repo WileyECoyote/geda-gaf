@@ -1,3 +1,9 @@
+2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Change gschem_CPPFLAGS to GEDA_INCLUDES and AM_CXXFLAGS
+      instead of gschem_CFLAGS so that CFLAGS are not passed to compiler when
+      compiling c++ files:
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_draw.cpp: Use ConstObject instead of GedaObject for
