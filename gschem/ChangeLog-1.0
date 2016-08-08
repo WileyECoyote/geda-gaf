@@ -4,6 +4,9 @@
       instead of gschem_CFLAGS so that CFLAGS are not passed to compiler when
       compiling c++ files:
 
+    * src/x/x_settings_dialog.c: Replace geda_utility_string_strequal with
+      geda_strequal to shorthen line lengths.
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_draw.cpp: Use ConstObject instead of GedaObject for

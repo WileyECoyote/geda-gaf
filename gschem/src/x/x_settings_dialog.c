@@ -840,7 +840,7 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
          gtk_tree_model_get (store, &iter, 0, &str_new, -1);
          if (index < list_length) {
             str_old = g_list_nth_data (View2Data, index);
-            if ( !geda_utility_string_strequal( str_old, str_new )) { /* update if they don't match */
+            if ( !geda_strequal( str_old, str_new )) { /* update if they don't match */
               View2Data = g_list_remove (View2Data, str_old);
               View2Data = g_list_insert(View2Data, str_new, index);
             }
@@ -923,7 +923,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
      * the iter on the stack and are already getting the pointer to a tree iter */
     gtk_tree_model_get (model, iter, 0, &attribute, -1);
 
-    answer = geda_utility_string_strequal( str, attribute);
+    answer = geda_strequal( str, attribute);
 
     GEDA_FREE(attribute); /* gtk_tree_model_get made copies of strings */
     return answer; /* stop walking the store if found, else call us with next row */
@@ -1716,10 +1716,10 @@ void setup_ripper_symbol_combo(char* cur_name) {
 
   strcpy(rc_options.ripper_symbol_fname, cur_name);
 
-  if (geda_utility_string_strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
+  if (geda_strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
     rc_options.ripper_symbol_index = 0;
   else {
-    if (geda_utility_string_strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
+    if (geda_strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
       rc_options.ripper_symbol_index = 1;
     else {
       LOAD_STD_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
