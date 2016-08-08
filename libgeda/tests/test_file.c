@@ -61,16 +61,16 @@
 #define TEST_FILE_PATH "../docs"
 #define TEST_FILE "logo_256x101.png"
 
-/** \defgroup test-file-geda-file Test GEDA f_file Module
- * @{
- * \brief Group 1 src/file/f_file.c geda_file_
- */
-
 struct _TestData
 {
   char *input;
   char *expected;
 };
+
+/** \defgroup test-file-geda-file Test GEDA f_file Module
+ * @{
+ * \brief Group 1 src/file/f_file.c geda_file_
+ */
 
 int test_file (void)
 {
@@ -92,9 +92,68 @@ int test_file (void)
  * @{
  * \brief Group 2 src/file/f_get.c geda_file_get_
  */
+
 int test_get (void)
 {
-  int result = 0;
+  char *string;
+  int   index;
+  int   result = 0;
+
+  /* === Function 01: geda_get_autosave_name    f_get_autosave_filename === */
+  /* === Function 02: f_get_basename === */
+
+  static const struct _TestData F02_str[] =
+  {
+    { "",         ""    },
+    { "a",        "a"   },
+    { "a\n",      "a\n" },
+    { "a\r",      "a\r" },
+    { "a/b",      "b"   },
+    { "a/b.c",    "b.c" },
+    { "/a/b.c",   "b.c" },
+    { "/a/b/c",   "c"   },
+    { "/a/b/c.d", "c.d" },
+    { 0 },
+  };
+
+  string = (char*)geda_get_basename (NULL);
+  if (string) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (F020200) f_get_basename <%s>\n", string);
+    result++;
+  }
+
+  for (index = 0; F02_str[index].input; index++) {
+
+    char *expected = F02_str[index].expected;
+    char *input    = geda_strdup (F02_str[index].input);
+
+    string = (char*)geda_get_basename (input);
+
+    if (string) {
+      if (strcmp(string, expected)) {      /* See structure F02_str */
+        fprintf(stderr, "FAILED: (F020201A-%d) f_get_basename <%s>\n",index, string);
+        result++;
+      }
+      free (input);
+    }
+    else {
+      if (strcmp(string, expected)) {      /* See structure F02_str */
+        fprintf(stderr, "FAILED: (F020201B-%d) expected <%s> NULL\n",index, expected);
+        result++;
+      }
+    }
+    string = NULL;
+  }
+
+  /* === Function 03: geda_get_basename_dup     f_get_basename_dup === */
+
+  /* === Function 04: geda_get_bitmap_spec      f_get_bitmap_filespec === */
+  /* === Function 05: geda_get_data_spec        f_get_data_filespec === */
+  /* === Function 06: geda_get_dir_list         f_get_dir_list_files === */
+  /* === Function 07: geda_get_file_contents    f_get_file_contents === */
+  /* === Function 08: geda_get_extension        f_get_filename_ext === */
+  /* === Function 09: geda_get_format_header    f_get_format_header === */
+  /* === Function 10: geda_is_path_absolute     f_get_is_path_absolute === */
 
   return result;
 }

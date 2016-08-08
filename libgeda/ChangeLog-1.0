@@ -27,6 +27,8 @@
       source_name and compare_symbol_name. Replace geda_utility_string_strdup
       with short version; geda_strdup throughout the module.
 
+    * tests/test_file.c: Add checks for f_get_basename.
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Define ConstObject as const GedaObject,
