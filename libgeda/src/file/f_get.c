@@ -105,6 +105,24 @@ const char *f_get_basename(const char *path)
   return NULL;
 }
 
+/*! \brief Return copy base file name
+ *  \par Function description
+ *  Convenience function to combine f_get_basename and
+ *  geda_utility_string_strdup.
+ *
+ *  \param [in] path The path to search.
+ *  \return offset if found, otherwise NULL.
+ */
+char *f_get_basename_dup(const char *path)
+{
+  const char *base = f_get_basename(path);
+
+  if (base) {
+    return geda_utility_string_strdup(base);
+  }
+  return NULL;
+}
+
 /*! \brief Get full path of given bitmap file name
  *  \par Function description
  *  Prepends the path to the bitmaps directory to \a filename.
