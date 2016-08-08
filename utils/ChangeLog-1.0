@@ -1,3 +1,7 @@
+2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/olib.l: Include config.h.
+
 2016-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gmk_sym.c: Reduce scope of variables, print input lines if "Debug"
