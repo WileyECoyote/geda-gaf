@@ -4,6 +4,9 @@
       instead of gschem_CFLAGS so that CFLAGS are not passed to compiler when
       compiling c++ files:
 
+   ** src/x/x_compselect.c: Replace g_ascii_strcasecmp to compare to an empty
+      string, use geda_strequal instead.
+
     * src/x/x_settings_dialog.c: Replace geda_utility_string_strequal with
       geda_strequal to shorthen line lengths.
 
