@@ -763,7 +763,7 @@ static void i_sessions_load_data(void)
           record.session_file = g_build_filename(path, file, NULL);
           record.page_count   = i_sessions_get_count(record.session_file);
 
-          tmpname = f_get_basename(file);
+          tmpname = (char*)f_get_basename(file);
           f_sys_remove_extension(tmpname);
 
           record.session_name = geda_utility_string_strdup(tmpname);

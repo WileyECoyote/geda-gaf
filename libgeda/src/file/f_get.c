@@ -96,11 +96,11 @@ char *f_get_autosave_filename (const char *filename)
  *  \param [in] path The path to search.
  *  \return offset if found, otherwise NULL.
  */
-char *f_get_basename(const char *path)
+const char *f_get_basename(const char *path)
 {
   if (path) {
-    char *base = strrchr(path, DIR_SEPARATOR);
-    return base ? base+1 : (char*)path;
+    const char *base = strrchr(path, DIR_SEPARATOR);
+    return base ? base + 1 : path;
   }
   return NULL;
 }

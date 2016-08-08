@@ -130,7 +130,7 @@ SCM g_rc_component_library(SCM path, SCM name)
       if (namestr) {
 
         /* This should not freed */
-        char *name = f_get_basename(directory);
+        const char *fname = f_get_basename(directory);
 
         /* Check if scheme passed a zero length string,
          * aka a pointer to a NULL */

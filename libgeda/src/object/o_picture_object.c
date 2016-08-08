@@ -113,7 +113,7 @@ geda_picture_object_embed (GedaObject *object)
     }
     else {
 
-      char *basename = f_get_basename (filename);
+      const char *basename = f_get_basename (filename);
       geda_log (_("Picture [%s] has been embedded\n"), basename);
 
       object->picture->is_embedded = 1;
@@ -1933,7 +1933,7 @@ geda_picture_object_unembed (GedaObject *object)
       }
       else {
 
-        char *basename = f_get_basename(filename);
+        const char *basename = f_get_basename(filename);
         geda_log (_("Picture [%s] has been unembedded\n"), basename);
 
         object->picture->is_embedded = 0;

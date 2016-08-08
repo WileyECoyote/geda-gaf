@@ -5,6 +5,9 @@
 
     * include/libgeda_priv.h: Include libgeda headers using explicit path.
 
+    * src/file/f_get.c: Change pointer returned from f_get_basename to const
+      char* so a to require cast when writable.
+
     * src/file/f_path.c: Use static const for environment variable strings.
 
     * src/guile/g_rc.c: Replace g_ascii_strcasecmp with strcmp and geda_
