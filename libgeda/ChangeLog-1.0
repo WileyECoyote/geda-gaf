@@ -23,6 +23,10 @@
     * src/object/o_save.c: Replace g_path_get_basename with f_get_basename in
       geda_object_save_auto_backup.
 
+    * src/struct/s_clib.c: Replace strcasecmp with geda_stricmp in compare_
+      source_name and compare_symbol_name. Replace geda_utility_string_strdup
+      with short version; geda_strdup throughout the module.
+
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Define ConstObject as const GedaObject,

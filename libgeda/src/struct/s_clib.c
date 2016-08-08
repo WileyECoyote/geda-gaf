@@ -335,15 +335,16 @@ void s_clib_free (void)
 /*! \brief Compare two component sources by name.
  *  \par Function Description
  *  Compare two component sources by name, case-insensitively.
- *  Typically used when calling g_list_sort().  Private function used
- *  only in s_clib.c.  Argument order is as strcasecmp().
+ *  Typically used when calling g_list_sort(). Private function used
+ *  only in s_clib.c.  Argument order is as geda_stricmp().
  *
  *  \param a First source to compare
  *  \param b Second source to compare
  *
- *  \return As strcasecmp().
+ * \retval 0 if the names are equivalent, or
+ *         1 if the names are NOT equivalent.
  */
-static int compare_source_name (const void * a, const void * b)
+static int compare_source_name (const void *a, const void *b)
 {
   const CLibSource *src1 = a;
   const CLibSource *src2 = b;
@@ -354,21 +355,22 @@ static int compare_source_name (const void * a, const void * b)
   g_return_val_if_fail ((src1->name != NULL), 0);
   g_return_val_if_fail ((src2->name != NULL), 0);
 
-  return strcasecmp(src1->name, src2->name);
+  return geda_stricmp(src1->name, src2->name);
 }
 
 /*! \brief Compare two component symbols by name.
  *  \par Function Description
  *  Compare two component symbols by name, case-insensitively.
- *  Typically used when calling g_list_sort().  Private function used
- *  only in s_clib.c.  Argument order is as strcasecmp().
+ *  Typically used when calling g_list_sort(). Private function used
+ *  only in s_clib.c.  Argument order is as geda_stricmp().
  *
  *  \param a First symbol to compare
  *  \param b Second symbol to compare
  *
- *  \return As strcasecmp().
+ * \retval 0 if the names are equivalent, or
+ *         1 if the names are NOT equivalent.
  */
-static int compare_symbol_name (const void * a, const void * b)
+static int compare_symbol_name (const void *a, const void *b)
 {
   const CLibSymbol *sym1 = a;
   const CLibSymbol *sym2 = b;
@@ -379,7 +381,7 @@ static int compare_symbol_name (const void * a, const void * b)
   g_return_val_if_fail ((sym1->name != NULL), 0);
   g_return_val_if_fail ((sym2->name != NULL), 0);
 
-  return strcasecmp(sym1->name, sym2->name);
+  return geda_stricmp(sym1->name, sym2->name);
 }
 
 /*! \brief Iterator callback for finding oldest symbol cache entry
@@ -521,7 +523,7 @@ static char *get_unique_source_name (const char *name)
   int   i = 0;
 
   if (s_clib_get_source_by_name (name) == NULL) {
-    return geda_utility_string_strdup (name);
+    return geda_strdup (name);
   }
 
   do {
@@ -657,7 +659,7 @@ static void refresh_directory (CLibSource *source)
           /* Create and add new symbol record */
           symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
           symbol->source = source;
-          symbol->name   = geda_utility_string_strdup(entry->d_name);
+          symbol->name   = geda_strdup(entry->d_name);
 
           /* Prepend is faster, order does not matter. */
           source->symbols = g_list_prepend (source->symbols, symbol);
@@ -723,7 +725,7 @@ static void refresh_command (CLibSource *source)
     if (line == NULL) break;
     if (line[0] == '.') continue;  /* TODO is this sane? */
 
-    name = geda_utility_string_remove_nl(geda_utility_string_strdup(line));
+    name = geda_utility_string_remove_nl(geda_strdup(line));
 
     /* skip symbols already known about */
     if (source_has_symbol (source, name) != NULL) {
@@ -794,7 +796,7 @@ static void refresh_scm (CLibSource *source)
 
       /* Use free function on strings allocated by Guile. */
       tmp            = scm_to_utf8_string (symname);
-      symbol->name   = geda_utility_string_strdup(tmp);
+      symbol->name   = geda_strdup(tmp);
       free (tmp);
 
       /* Prepend is faster, order does not matter. */
@@ -919,40 +921,40 @@ const CLibSource *s_clib_add_directory (const char *directory,
   group    = NULL;
 
   /* get 1st level dir */
-  ptr_dir1 =  basename (pbuff);
+  ptr_dir1 = basename (pbuff);
 
   /* change the last slash to NULLL */
-  ptr   = ptr_dir1 - 1;
- *ptr   = '\0';
+  ptr = ptr_dir1 - 1;
+ *ptr = '\0';
 
   /* get 2nd level dir */
-  ptr_dir2 =  basename (pbuff);
+  ptr_dir2 = basename (pbuff);
 
   /* change the last slash to NULLL */
-  ptr      = ptr_dir2 - 1;
- *ptr     = '\0';
+  ptr = ptr_dir2 - 1;
+ *ptr = '\0';
 
   /* get 3rd level dir */
-  ptr_dir3 =  basename (pbuff);
+  ptr_dir3 = basename (pbuff);
 
   if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
-    group = geda_utility_string_strdup(ptr_dir2);
+    group = geda_strdup(ptr_dir2);
   }
   else {
     if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
-      group = geda_utility_string_strdup(ptr_dir1);
+      group = geda_strdup(ptr_dir1);
     }
     else {
       if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
          if (name != NULL )  {
-           group = geda_utility_string_strdup(basename(name));
+           group = geda_strdup(basename(name));
          }
          else {
-           group = geda_utility_string_strdup( ptr_dir2 );
+           group = geda_strdup( ptr_dir2 );
          }
       }
       else {
-        group = geda_utility_string_strdup( ptr_dir2 );
+        group = geda_strdup( ptr_dir2 );
       }
     }
   }
@@ -969,13 +971,13 @@ const CLibSource *s_clib_add_directory (const char *directory,
     }
     switch ( count ) {
       case 0:
-        tmpstr   = geda_utility_string_strdup (name);
+        tmpstr   = geda_strdup (name);
         break;
       case 1:
       default:
         str      = strstr(name, DIR_SEPARATOR_S);
         category = geda_utility_string_strndup (name, str - name);
-        tmpstr   = geda_utility_string_strdup (str + 1);
+        tmpstr   = geda_strdup (str + 1);
         break;
     }
   }
@@ -984,7 +986,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
 
   if( category == NULL) {
-    category = geda_utility_string_strdup("Standard");
+    category = geda_strdup("Standard");
   }
 
 /*
@@ -999,7 +1001,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   source            = GEDA_MEM_ALLOC0 (sizeof(CLibSource));
 
   source->type      = CLIB_DIR;
-  source->directory = geda_utility_string_strdup (directory);
+  source->directory = geda_strdup (directory);
   source->name      = tmpstr;
   source->category  = category;
   source->group     = group;
@@ -1058,8 +1060,8 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
   source->type     = CLIB_CMD;
   source->name     = unique_name;
 
-  source->list_cmd = geda_utility_string_strdup (list_cmd);
-  source->get_cmd  = geda_utility_string_strdup (get_cmd);
+  source->list_cmd = geda_strdup (list_cmd);
+  source->get_cmd  = geda_strdup (get_cmd);
 
   refresh_command (source);
 
@@ -1293,7 +1295,7 @@ static char *get_data_scm (const CLibSymbol *symbol)
   /* Need to make sure that the correct free() function is called
    * on strings allocated by Guile. */
   tmp = scm_to_utf8_string (symdata);
-  result = geda_utility_string_strdup(tmp);
+  result = geda_strdup(tmp);
   free (tmp);
 
   return result;
@@ -1328,7 +1330,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
   cached = g_hash_table_lookup (clib_symbol_cache, symptr);
   if (cached != NULL) {
     cached->accessed = time(NULL);
-    return geda_utility_string_strdup(cached->data);
+    return geda_strdup(cached->data);
   }
 
   /* If the symbol was not found in the cache, get it directly. */
@@ -1353,7 +1355,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
   /* Cache the symbol data */
   cached           = g_new (CacheEntry, 1);
   cached->ptr      = (CLibSymbol *) symptr;
-  cached->data     = geda_utility_string_strdup (data);
+  cached->data     = geda_strdup (data);
   cached->accessed = time (NULL);
 
   g_hash_table_insert (clib_symbol_cache, symptr, cached);
