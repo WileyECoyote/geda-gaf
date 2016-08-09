@@ -265,12 +265,6 @@ void        s_papersizes_free          (void);
 /* s_slib.c */
 void        s_slib_free                (void);
 
-/* s_textbuffer.c */
-TextBuffer *s_textbuffer_new           (const char *data, const int size);
-TextBuffer *s_textbuffer_free          (TextBuffer *tb);
-const char *s_textbuffer_next          (TextBuffer *tb, const gssize count);
-const char *s_textbuffer_next_line     (TextBuffer *tb);
-
 /* s_tile.c */
 void     s_tile_init                   (Page *p_current);
 void     s_tile_add_object             (GedaObject *object);

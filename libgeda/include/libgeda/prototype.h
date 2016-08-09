@@ -712,6 +712,12 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *s_slot_search_slot              (GedaObject *object, GedaObject **return_found);
          void    s_slot_update_object            (GedaObject *object);
 
+/* s_textbuffer.c */
+   TextBuffer   *s_textbuffer_new                (const char *data, const int size)WARN_UNUSED;
+   TextBuffer   *s_textbuffer_free               (TextBuffer *tb);
+   const char   *s_textbuffer_next               (TextBuffer *tb, const gssize count);
+   const char   *s_textbuffer_next_line          (TextBuffer *tb);
+
 /* s_tile.c */
          void    s_tile_update_object            (GedaObject *object);
          GList  *s_tile_get_objectlists          (Page   *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
