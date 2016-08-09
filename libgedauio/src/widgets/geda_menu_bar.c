@@ -20,20 +20,6 @@
  *  \brief GedaMenuBar Class Module
  */
 
-/** \defgroup geda-menu-bar A menu bar widget
- * @{
- * \brief Implmentation of GedaMenuBar Class
- * \par Description
- *  The #GedaMenuBar is a subclass of #GedaMenuShell which contains one or
- *  more #GedaMenuItems. The result is a standard menu bar which can hold
- *  many menu items.
- *
- * \sa #GedaMenuShell, #GedaMenu, #GedaMenuItem
- *
- * \class GedaMenuBar geda_menu_bar.h "include/geda_menu_bar.h"
- * \implements GedaMenuShell
- */
-
 #ifdef HAVE_CONFIG_H
 #include "../../../config.h"
 #endif
@@ -49,6 +35,20 @@
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/gettext.h"
+
+/** \defgroup geda-menu-bar A menu bar widget
+ * @{
+ * \brief Implmentation of GedaMenuBar Class
+ * \par Description
+ *  The #GedaMenuBar is a subclass of #GedaMenuShell which contains one or
+ *  more #GedaMenuItem. The result is a standard menu bar which can hold
+ *  many menu items.
+ *
+ * \sa #GedaMenuShell, #GedaMenu, #GedaMenuItem
+ *
+ * \class GedaMenuBar geda_menu_bar.h "include/geda_menu_bar.h"
+ * \implements GedaMenuShell
+ */
 
 #define MENU_BAR_POPUP_DELAY 0
 #define BORDER_SPACING  0
@@ -66,7 +66,6 @@ struct _GedaMenuBarPrivate
   PackDirection pack_direction;
   PackDirection child_pack_direction;
 };
-
 
 static void geda_menu_bar_set_property        (GObject         *object,
                                                unsigned int     prop_id,
