@@ -18,6 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+
 #include <gschem.h>
 #include <version.h>
 
@@ -188,19 +189,26 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
           strcpy(tmpfilename, filename);
 
           if (access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+
             filename = tmpfilename;
+
             if (verbose_mode) {
-              geda_log (_("Assumming schematic file suffix for [%s]\n"), basename (filename));
+              const char *fname = geda_get_basename (filename);
+              geda_log (_("Assumming schematic file suffix for [%s]\n"), fname);
             }
           }
           else {
+
             /* Check if file name is valid if ".sym" is added */
             strcpy(tmpfilename, filename);
 
             if ( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+
               filename = tmpfilename;
+
               if (verbose_mode) {
-                geda_log (_("Assumming symbol file suffix for [%s]\n"), basename (filename));
+                const char *fname = geda_get_basename (filename);
+                geda_log (_("Assumming symbol file suffix for [%s]\n"), fname);
               }
             }
           }

@@ -1,3 +1,8 @@
+2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Revise load_documents to use geda_get_basename instead
+      of basename().
+
 2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Change gschem_CPPFLAGS to GEDA_INCLUDES and AM_CXXFLAGS
