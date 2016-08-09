@@ -1495,7 +1495,7 @@ gtk_sheet_query_tooltip_handler(GtkWidget *widget,
     return (FALSE);
 }
 
-/* Type initialisation */
+/* Type initialization */
 
 static GtkContainerClass *sheet_parent_class = NULL;
 
@@ -2951,7 +2951,7 @@ static int _gtk_sheet_binding_filter(GtkSheet *sheet,
 }
 
 /*
- * gtk_sheet_class_init - GtkSheet class initialisation
+ * gtk_sheet_class_init - GtkSheet class initialization
  *
  * \param klass
  */
@@ -3166,7 +3166,7 @@ gtk_sheet_init(GtkSheet *sheet)
     gtk_widget_set_has_window(GTK_WIDGET(sheet), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(sheet), TRUE);
 
-    /* for glade to be able to construct the object, we need to complete initialisation here */
+    /* for glade to be able to construct the object, we need to complete initialization here */
     gtk_sheet_construct(sheet, 0, 0, "GtkSheet");
 
     g_signal_connect(G_OBJECT(sheet),
@@ -3415,7 +3415,7 @@ gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
 	gtk_sheet_show_active_cell(sheet);
 
 	/* if the application changes the entry during emission of the TRAVERSE signal
-	   an initialisation of the new entry can fire the "changed" signal and
+	   an initialization of the new entry can fire the "changed" signal and
 	   the text will be written into the old active cell (which is WRONG)
 
 	   gtk_sheet_entry_signal_connect_changed(sheet,

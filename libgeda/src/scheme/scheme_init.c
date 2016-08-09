@@ -20,7 +20,7 @@
 
 /*!
  * \file scheme_init.c
- * \brief Scheme API initialisation
+ * \brief Scheme API initialization
  */
 #include <config.h>
 
@@ -30,7 +30,7 @@
 /*! Non-zero if the Scheme API has been initialised. */
 static volatile GedaType init_called = 0;
 
-/*! \brief Scheme API initialisation worker function.
+/*! \brief Scheme API initialization worker function.
  *
  *  \par Function Description
  *

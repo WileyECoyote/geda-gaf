@@ -421,15 +421,15 @@ g_rc_parse__process_error (GError **err, const char *pname)
   /* Take no chances; if err was not set for some reason, bail out. */
   if (*err == NULL) {
 
-    const char *msgl =
+    const char *msg =
       _("ERROR: An unknown error occurred while parsing configuration files.");
-    u_log_message ("%s\n", msgl);
-    fprintf(stderr, "%s\n", msgl);
 
+    u_log_message ("%s\n", msg);
+    fprintf(stderr, "%s\n", msg);
   }
   else {
-    /* Config files are allowed to be missing or skipped; check for
-     * this. */
+
+    /* Config files are allowed to be missing or skipped; check for this. */
     if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
         g_error_matches (*err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
       return;
@@ -451,8 +451,8 @@ g_rc_parse__process_error (GError **err, const char *pname)
  * \par Function Description
  * Calls g_rc_parse_handler() with the default error handler. If any
  * error other than ENOENT occurs while loading or running a Scheme
- * initialisation file, prints an informative message and calls
- * exit(1).
+ * initialization file, prints an informative message and terminate
+ * the session.
  *
  * \bug libgeda shouldn't call exit() - this function calls
  *      g_rc_parse__process_error(), which does.
@@ -461,16 +461,16 @@ g_rc_parse__process_error (GError **err, const char *pname)
  * on application startup or when there is no chance of data loss from
  * an unexpected exit().
  *
- * \param [in] pname     The name of the application (usually argv[0]).
- * \param [in] rcname    Config file basename, or NULL.
- * \param [in] rcfile    Specific config file path, or NULL.
+ * \param [in] pname   The name of the application (usually argv[0]).
+ * \param [in] rcname  Config file basename, or NULL.
+ * \param [in] rcfile  Specific config file path, or NULL.
  */
 bool
 g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
 {
   g_rc_parse_handler (rcname, rcfile,
                      (ConfigParseErrorFunc) g_rc_parse__process_error,
-                     (void *) pname);
+                     (void*)pname);
   return TRUE;
 }
 

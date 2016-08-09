@@ -792,7 +792,7 @@ gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
 
 
 
-/* Type initialisation */
+/* Type initialization */
 
 GType
 gtk_sheet_column_get_type(void)
