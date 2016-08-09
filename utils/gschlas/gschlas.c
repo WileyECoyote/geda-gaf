@@ -60,15 +60,15 @@ void
 main_prog(void *closure, int argc, char *argv[])
 {
   int argv_index;
-  char *cwd;
-
-  GedaToplevel *pr_current;
 
   argv_index = parse_commandline(argc, argv);
 
   if (embed_mode + unembed_mode == 1) {
 
-    int index;
+    GedaToplevel *pr_current;
+
+    char *cwd;
+    int   index;
 
     cwd = g_get_current_dir();
 

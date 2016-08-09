@@ -1,3 +1,7 @@
+2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gschlas/gschlas.c: Reduce scope of variable cwd in main_prog.
+
 2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/olib.l: Include config.h.
