@@ -1,6 +1,7 @@
 
 #include <glib.h>
 #include <libgeda.h>
+
 #include "test-suite.h"
 
 #define TOBJECT "GedaComplex"
@@ -187,7 +188,7 @@ check_append_object (GedaComplex *complex)
 }
 
 int
-check_accessors ()
+check_accessors (void)
 {
   int result = 0;
   int value;

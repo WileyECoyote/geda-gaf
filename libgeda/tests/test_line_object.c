@@ -105,7 +105,7 @@
  */
 
 int
-check_construction ()
+check_construction (void)
 {
   int count;
   int result = 0;
@@ -219,7 +219,7 @@ check_construction ()
 }
 
 int
-check_accessors ()
+check_accessors (void)
 {
   int count;
   int result = 0;
@@ -439,7 +439,7 @@ check_accessors ()
 }
 
 int
-check_serialization ()
+check_serialization (void)
 {
   int  count;
   int  converted;

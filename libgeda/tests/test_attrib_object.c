@@ -98,7 +98,6 @@ test_attrib_object_notify (GedaToplevel *toplevel, GedaObject *object)
 
 int
 check_attrib_add(GedaToplevel *toplevel)
-
 {
   int result = 0;
 

@@ -101,7 +101,7 @@ static int remove_file = 0;
 
 /* Copies the test image file from the source directory to the
  * build during checks from VPATH builds, aka distchecks */
-int pretest()
+int pretest(void)
 {
   int result = 0;
 
@@ -122,7 +122,7 @@ int pretest()
 }
 
 /* Removes image file copied for VPATH build */
-void posttest()
+void posttest(void)
 {
   /* The remove_file was set only if the file was copied during
    * a make check in a VPATH build, so remove the file if set */
@@ -141,7 +141,7 @@ void posttest()
 }
 
 int
-check_construction ()
+check_construction (void)
 {
   int count;
   int result = 0;
