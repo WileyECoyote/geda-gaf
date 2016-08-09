@@ -264,6 +264,7 @@ void        s_papersizes_free          (void);
 
 /* s_slib.c */
 void        s_slib_free                (void);
+void        s_slib_init                (void);
 
 /* s_tile.c */
 void     s_tile_init                   (Page *p_current);

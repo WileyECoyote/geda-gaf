@@ -1,10 +1,10 @@
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Add declarations for functions in
-      s_textbuffer.
+      s_textbuffer, remove declaration for s_slib_init.
 
     * include/prototype_priv.h: Remove declarations for functions in
-      s_textbuffer.
+      s_textbuffer, add declaration for s_slib_init.
 
 2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
