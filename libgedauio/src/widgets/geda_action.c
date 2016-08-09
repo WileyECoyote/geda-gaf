@@ -503,6 +503,9 @@ void geda_action_disconnect_accelerator (GedaAction  *action)
  *  visibility of \a proxy is set to visible.
  *
  * \param [in] action A GedaAction object
+ * \param [in] proxy  widget
+ * \param [in] empty  flag to over-ride visible if "hide-if-empty"
+ *                    property is set on related actions.
  */
 void geda_action_sync_menu_visible (GedaAction *action,
                                     GtkWidget  *proxy,
@@ -512,17 +515,18 @@ void geda_action_sync_menu_visible (GedaAction *action,
   bool visible       = TRUE;
   bool hide_if_empty = TRUE;
 
-  g_return_if_fail (GTK_IS_WIDGET (proxy));
+  g_return_if_fail (GTK_IS_WIDGET(proxy));
 
   /* A Menu object for a popup does not have to have an action */
   if (action == NULL) {
 
     GtkAction *relative;
 
-    relative = gtk_activatable_get_related_action (GTK_ACTIVATABLE (proxy));
+    relative = gtk_activatable_get_related_action (GTK_ACTIVATABLE(proxy));
 
-    if (relative)
+    if (relative) {
       object = (GtkWidget*)relative;
+    }
     else {
       object = NULL;
     }
