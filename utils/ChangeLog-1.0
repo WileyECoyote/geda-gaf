@@ -1,6 +1,8 @@
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gschlas/gschlas.c: Reduce scope of variable cwd in main_prog.
+    * gschlas/gschlas.c: Reduce scope of variable cwd in main_prog.
+
+    * src/grenum.c: Reduce scope of variables in main.
 
 2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
 

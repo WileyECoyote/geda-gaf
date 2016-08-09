@@ -37,10 +37,9 @@
 
 int main(int argc, char *argv[])
 {
-  FILE *infile,*outfile;
   char buff[BUFFSIZE], infilename[FILENAMESIZE], outfilename[FILENAMESIZE];
   unsigned char flags;
-  int c, pages, ret;
+  int c, pages;
   unsigned int i;
 
 #ifdef HAVE_GETOPT_LONG
@@ -100,6 +99,9 @@ int main(int argc, char *argv[])
 
   for (pages=1;optind<argc;++optind,++pages) {
 
+    FILE *infile, *outfile;
+    int ret;
+
     if ((flags&PageJUMP)==PageJUMP) { /*pagejumps*/
 
       for (c=0;c<MAX_PREFIX_COUNT;++c) {
@@ -125,10 +127,11 @@ int main(int argc, char *argv[])
     printf("grenum: processing file %s\n",&infilename[0]);
 
     while((ret=get_refdes_from_file(infile, &refdes, buff))!=END_OF_FILE) { /*Read one line.*/
+
       /*Process starts here*/
-      #ifdef DEBUG
+#ifdef DEBUG
       printf("%s\n",&buff[0]);	/*Print out what is read*/
-      #endif
+#endif
       switch(ret)
       {
 
@@ -140,6 +143,7 @@ int main(int argc, char *argv[])
             return FILE_OP_ERROR;
           }
           continue;
+
         case REFDES_WITH_VALUE:	/*We shall compare the maximum value, shall search for gaps, and set the refes_db.value to the next  free value*/
           c=refdes_lookup(refdes_db, &refdes);
           switch(c) {
@@ -194,14 +198,14 @@ int main(int argc, char *argv[])
                   fclose(outfile);
                   return OUT_OF_MEMORY;
                 default:
-                  if ((flags&GAP_DETECTED)==GAP_DETECTED)
-                  {
+                  if ((flags&GAP_DETECTED)==GAP_DETECTED) {
                     for (i=refdes_db[c].value+1; seek_value(c, infile, i, refdes_db)!=VALUE_NOT_FOUND; ++i);
                          refdes.value=refdes_db[c].value=i;
                   }
-                  else
+                  else {
                     refdes.value=++refdes_db[c].value;	/*renumber*/
-                    break;
+                  }
+                   break;
               }
               sprintf(buff, "refdes=%s%d\n", &refdes.prefix[0], refdes.value);
               break;
