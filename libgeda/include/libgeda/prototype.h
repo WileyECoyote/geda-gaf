@@ -716,7 +716,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* s_textbuffer.c */
    TextBuffer   *s_textbuffer_new                (const char *data, const int size)WARN_UNUSED;
    TextBuffer   *s_textbuffer_free               (TextBuffer *tb);
-   const char   *s_textbuffer_next               (TextBuffer *tb, const gssize count);
+   const char   *s_textbuffer_next               (TextBuffer *tb, const int count);
    const char   *s_textbuffer_next_line          (TextBuffer *tb);
 
 /* s_tile.c */

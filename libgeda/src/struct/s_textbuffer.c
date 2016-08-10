@@ -110,16 +110,17 @@ TextBuffer *s_textbuffer_free (TextBuffer *tb)
  *  \returns     Character array, or NULL if no characters left.
  */
 const char *
-s_textbuffer_next (TextBuffer *tb, const gssize count)
+s_textbuffer_next (TextBuffer *tb, const int count)
 {
   bool eol = FALSE;
 
   g_return_val_if_fail (tb != NULL, NULL);
 
-  if (tb->offset >= tb->size) return NULL;
+  if (tb->offset >= tb->size)
+    return NULL;
 
   const char *src = tb->buffer + tb->offset;
-  char *dest = tb->line;
+        char *dest = tb->line;
   const char *buf_end = tb->buffer + tb->size;
 
   while (1) {
