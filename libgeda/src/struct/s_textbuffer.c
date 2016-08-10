@@ -30,6 +30,28 @@
 
 #include <libgeda_priv.h>
 
+/*! \brief Clean up a managed text buffer
+ *
+ *  \par Function description
+ *  Cleans up all of the resources associated with a given TextBuffer.
+ *
+ *  Should be called thus:
+ *
+ *  \code
+ *  tb = s_textbuffer_free (tb);
+ *  \endcode
+ */
+TextBuffer*
+s_textbuffer_free (TextBuffer *tb)
+{
+  if (tb == NULL) return NULL;
+
+  GEDA_FREE (tb->line);
+  tb->line = NULL;
+  GEDA_FREE (tb);
+  return NULL;
+}
+
 /*! \brief Create a new managed text buffer.
  *
  *  \par Function description
@@ -44,9 +66,10 @@
  *
  *  \returns Pointer to a new TextBuffer struct.
  */
-TextBuffer *s_textbuffer_new (const char *data, const int size)
+TextBuffer*
+s_textbuffer_new (const char *data, const int size)
 {
-  TextBuffer  *result;
+  TextBuffer  *tb;
   unsigned int realsize;
 
   g_return_val_if_fail ((data != NULL), NULL);
@@ -56,36 +79,16 @@ TextBuffer *s_textbuffer_new (const char *data, const int size)
   else
     realsize = size;
 
-  result = GEDA_MEM_ALLOC0 (sizeof(TextBuffer));
+  tb = GEDA_MEM_ALLOC0 (sizeof(TextBuffer));
 
-  result->buffer = data;
-  result->size = realsize;
+  tb->buffer = data;
+  tb->size = realsize;
 
-  result->linesize = TEXT_BUFFER_LINE_SIZE;
-  result->line = GEDA_MEM_ALLOC(result->linesize);
+  tb->linesize = TEXT_BUFFER_LINE_SIZE;
+  tb->line = GEDA_MEM_ALLOC(tb->linesize);
+  tb->offset = 0;
 
-  return result;
-}
-
-/*! \brief Clean up a managed text buffer
- *
- *  \par Function description
- *  Cleans up all of the resources associated with a given TextBuffer.
- *
- *  Should be called thus:
- *
- *  \code
- *  tb = s_textbuffer_free (tb);
- *  \endcode
- */
-TextBuffer *s_textbuffer_free (TextBuffer *tb)
-{
-  if (tb == NULL) return NULL;
-
-  GEDA_FREE (tb->line);
-  tb->line = NULL;
-  GEDA_FREE (tb);
-  return NULL;
+  return tb;
 }
 
 /*! \brief Fetch a number of characters from a text buffer
@@ -107,7 +110,7 @@ TextBuffer *s_textbuffer_free (TextBuffer *tb)
  *  \param tb    TextBuffer to read from.
  *  \param count Maximum number of characters to read.
  *
- *  \returns     Character array, or NULL if no characters left.
+ *  \returns Character array, or NULL if no characters left.
  */
 const char *
 s_textbuffer_next (TextBuffer *tb, const int count)

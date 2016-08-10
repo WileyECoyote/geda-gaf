@@ -4,7 +4,8 @@
       from read() in get_contents_regfile.
 
     * src/struct/s_textbuffer.c: Change s_textbuffer_next 2nd argument, count,
-      to type int, probably should not even allow negative counts.
+      to type int, probably should not even allow negative counts, reorganize
+      module.
 
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
