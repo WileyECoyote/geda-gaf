@@ -440,7 +440,7 @@ get_contents_regfile (const char   *filename,
 
     while (bytes_read < size) {
 
-      gssize rc;
+      ssize_t rc;
 
       rc = read (fd, buf + bytes_read, size - bytes_read);
 

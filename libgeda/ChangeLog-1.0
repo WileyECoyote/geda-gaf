@@ -1,3 +1,8 @@
+2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Use correct type size_t, not gsize, for return value
+      from read() in get_contents_regfile.
+
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Add declarations for functions in
