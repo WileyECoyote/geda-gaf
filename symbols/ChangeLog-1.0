@@ -1,5 +1,16 @@
 2016-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * allegro/: Revise/update symbols, add missing attributes, add or bump
+      symversion:
+
+            * allegro/A3967-2.sym
+            * allegro/A4447-1.sym
+            * allegro/A4447-2.sym
+            * allegro/A8498-1.sym
+            * allegro/A8498-2.sym
+
+2016-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/battery/BQ21040-1.sym: Add symbol Battery Charger, 0.8-A, Single-Input,
       Single Cell, Li-Ion and Li-Polymer.
 
