@@ -167,17 +167,22 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
   /* resets length of array */
   stroke_points->len = 0;
   SCM scm_str;
-  char *action;
-  char *expr;
   int result = 0;
 
   /* try evaluating stroke */
   if (stroke_trans ((char*)&sequence)) {
-    expr =  geda_sprintf("(eval-stroke \"%s\")", sequence);
+
+    char *action;
+    char *expr;
+
+    expr    = geda_sprintf("(eval-stroke \"%s\")", sequence);
     scm_str = g_scm_c_eval_string_protected (expr);
+    action  = scm_to_utf8_string (scm_str);
+
     GEDA_FREE(expr);
-    action = scm_to_utf8_string (scm_str);
+
     if (strlen(action) > 0) {
+
       /* "internal" actions are handled by i_command_process */
       if (i_command_is_valid(action)) {
         i_command_process(w_current, action, 0, NULL, ID_ORIGIN_STROKE);
@@ -187,7 +192,7 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
         /* for this to work the user must have defined a custom stroke
            and the associated function */
         SCM ret;
-        expr =  geda_sprintf("(%s)", action);
+        expr = geda_sprintf("(%s)", action);
         scm_dynwind_begin (0);
         scm_dynwind_unwind_handler (g_free, expr, SCM_F_WIND_EXPLICITLY);
         ret = g_scm_c_eval_string_protected (expr);

@@ -6,6 +6,9 @@
     * src/x/x_menus.c: Replace g_path_get_basename with f_get_basename in
       function x_menu_recent_files_add,
 
+    * src/x/x_stroke.c: Reduce scope of pointers for action and expr in
+      x_stroke_translate_and_execute.
+
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Revise load_documents to use geda_get_basename
