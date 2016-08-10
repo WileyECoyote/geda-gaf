@@ -1833,7 +1833,7 @@ static void x_menu_recent_file_remove (GedaMenuItem *menuitem, void *user_data)
  *  sake of completeness, the real objective here is to allow
  *  users to remove individual recent menu items.
  */
-static void x_menu_recent_show_popup (GedaMenuItem    *menu_widget,
+static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
                                       GdkEventButton *event,
                                       void           *user_data)
 {
@@ -2011,18 +2011,15 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
  */
 void x_menu_recent_files_add(const char *filename)
 {
-   char *basename;
-   char *save_fn;
-   GError *err = NULL;
-   GList *p = recent_files;
+       GError *err = NULL;
+        GList *p   = recent_files;
+   const char *basename;
+         char *save_fn;
 
-   basename = g_path_get_basename(filename);
+   basename = f_get_basename(filename);
    if(strstr(basename, "untitled_") == basename) {
-      GEDA_FREE(basename);
       return;
    }
-
-   GEDA_FREE(basename);
 
    /* Normalize the filename. */
    save_fn = f_sys_normalize_name (filename, &err);
