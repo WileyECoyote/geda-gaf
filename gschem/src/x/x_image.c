@@ -164,7 +164,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
         /* Compare the name with default and store the index */
         name = gdk_pixbuf_format_get_name(list->data);
 
-        if (strcasecmp(name, ImageTypeStrings[default_type]) == 0) {
+        if (geda_stricmp(name, ImageTypeStrings[default_type]) == 0) {
           default_index = i;
         }
 
@@ -231,7 +231,7 @@ static char *x_image_get_type_from_description(char *descr) {
 
           ptr_descr = gdk_pixbuf_format_get_description (formats->data);
 
-          if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
+          if (ptr_descr && (geda_stricmp(ptr_descr, descr) == 0)) {
             ret_val = gdk_pixbuf_format_get_name(formats->data);
             GEDA_FREE(ptr_descr);
             break;

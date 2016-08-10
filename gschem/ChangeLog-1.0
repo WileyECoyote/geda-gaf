@@ -1,3 +1,8 @@
+2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_image.c: Replace strcasecmp with geda_stricmp in functions
+      create_type_menu and x_image_get_type_from_description.
+
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Revise load_documents to use geda_get_basename
