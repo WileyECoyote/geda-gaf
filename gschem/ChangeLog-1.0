@@ -1,3 +1,8 @@
+2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c:: Replace strndup with geda_strndup in function
+      compselect_callback_refresh_views.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Replace strcasecmp with geda_stricmp in functions

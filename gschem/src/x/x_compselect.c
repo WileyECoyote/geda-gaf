@@ -1828,7 +1828,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       if (!found && parent_is_valid) {
 
         /* remove "-n.sym" from what we are looking for */
-        char *short_name = strndup(sym_name, strlen(sym_name) - 6);
+        char *short_name = geda_strndup(sym_name, strlen(sym_name) - 6);
 
         /* Look for Symbol - 2nd pass, set iter to 1st child of saved parent */
         valid = gtk_tree_model_iter_children(model, &iter, &parent);
