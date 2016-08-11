@@ -294,12 +294,12 @@ x_fileselect_save (GschemToplevel *w_current)
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
-    char *filename;
-    char *filebase;
-    char *tmpname;
+    const char *filebase;
+          char *filename;
+          char *tmpname;
 
     filename = geda_file_chooser_get_filename (dialog);
-    filebase = basename(filename);
+    filebase = geda_get_basename(filename);
     auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
     tmpname  = NULL;
 

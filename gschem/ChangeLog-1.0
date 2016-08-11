@@ -9,6 +9,9 @@
     * src/x/x_coord.c: Replace strcasecmp with geda_stricmp in function
       x_dialog_coord_drag_drop.
 
+    * src/x/x_fileselect.c: Replace basename with geda_get_basename in
+      function x_fileselect_save.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Replace strcasecmp with geda_stricmp in functions
