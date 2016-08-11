@@ -1,3 +1,8 @@
+2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * toshiba/pnp-power-1: Remove duplicate symbol files with incorrect
+      polarity, npn, in file names.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * allegro/: Revise/update symbols, add missing attributes, add or bump
