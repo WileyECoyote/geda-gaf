@@ -3,6 +3,9 @@
     * src/x/x_compselect.c:: Replace strndup with geda_strndup in function
       compselect_callback_refresh_views.
 
+    * src/x/x_confirm_close.c: Replace g_path_get_basename with f_get_
+      basename_dup in get_page_name.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Replace strcasecmp with geda_stricmp in functions

@@ -156,7 +156,7 @@ static int count_pages (GtkTreeModel *model)
  *  \param [in] piter A pointer on a GtkTreeIter of model or NULL.
  *  \returns The name for the page.
  */
-static char*get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
+static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 {
   GtkTreeIter iter;
   Page *page;
@@ -172,7 +172,7 @@ static char*get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 
   gtk_tree_model_get (model, &iter, COLUMN_Page, &page, -1);
 
-  return g_path_get_basename (page->filename);
+  return f_get_basename_dup (page->filename);
 }
 
 /*! \brief Sets the contents of the name cell in the treeview of dialog.
