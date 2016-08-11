@@ -718,6 +718,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
    TextBuffer   *s_textbuffer_free               (TextBuffer *tb);
    const char   *s_textbuffer_next               (TextBuffer *tb, const int count);
    const char   *s_textbuffer_next_line          (TextBuffer *tb);
+         void    s_textbuffer_seek               (TextBuffer *tb, int offset);
 
 /* s_tile.c */
          void    s_tile_update_object            (GedaObject *object);

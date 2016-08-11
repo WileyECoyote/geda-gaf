@@ -1,3 +1,9 @@
+2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_textbuffer.c: Add function s_textbuffer_seek, this feature
+      previously existed in libgeda but this version is slightly different;
+      a negative offset is calculated relative to the current buffer position.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Use correct type size_t, not gsize, for return value

@@ -187,4 +187,40 @@ const char *
 s_textbuffer_next_line (TextBuffer *tb)
 {
   return s_textbuffer_next (tb, -1);
+/*! \brief Change the current position within a text buffer
+ *
+ *  \par Function description
+ *  Changes where the next call to s_textbuffer_next() will start
+ *  reading. If offset is negative, the offset calculated relative
+ *  to current buffer position.
+ *
+ *  \param tb     A TextBuffer to seek within.
+ *  \param offset A new position within the buffer.
+ */
+void
+s_textbuffer_seek (TextBuffer *tb, int offset)
+{
+  if (tb) {
+
+    int index;
+
+    /* if requested offset is greater than the size of the
+     * buffer then set index to the end of the buffer */
+    if (offset > tb->size) {
+      index = tb->size;
+    }
+    else if (offset < 0) {
+
+      index = tb->offset - offset;
+
+      if (index < 0) {
+        index = 0;
+      }
+    }
+    else {
+      index = offset;
+    }
+
+    tb->offset = index;
+  }
 }
