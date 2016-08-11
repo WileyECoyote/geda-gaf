@@ -6,6 +6,9 @@
     * src/x/x_confirm_close.c: Replace g_path_get_basename with f_get_
       basename_dup in get_page_name.
 
+    * src/x/x_coord.c: Replace strcasecmp with geda_stricmp in function
+      x_dialog_coord_drag_drop.
+
 2016-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Replace strcasecmp with geda_stricmp in functions

@@ -268,8 +268,11 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
       target_entry = &dnd_target_list[index];
 
       for (iter = targets; iter != NULL; iter = g_list_next (iter)) {
+
         target_type = GDK_POINTER_TO_ATOM(iter->data);
-        if (!strcasecmp (target_entry->target, gdk_atom_name(target_type))) {
+
+        if (!geda_stricmp (target_entry->target, gdk_atom_name(target_type))) {
+
 #if DEBUG || DEBUG_DND_EVENTS
           g_print ("x_dialog_coord_drag_drop, requesting a %s\n", gdk_atom_name(target_type));
 #endif
