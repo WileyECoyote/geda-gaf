@@ -1,3 +1,9 @@
+2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gcheck-library.sh: Revise do_check_all_containers to search
+      for directories only if gsymcheck is found and to search inside
+      nested subdirectories.
+
 2016-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Reduce scope of variable cwd in main_prog.

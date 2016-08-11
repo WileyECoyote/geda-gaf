@@ -177,11 +177,16 @@ do_check_docs () {
 do_check_all_containers () {
   local result=0;
   exist=$(which $PROGRAM1)
-  SRC_DIRS=(`find * -maxdepth 0 -type d -printf "%f "`)
   if [[ ! $exist = "" ]] ; then
+    SRC_DIRS=(`find * -maxdepth 0 -type d -printf "%f "`)
     for subdir in "${SRC_DIRS[@]}" ; do
       if [ "$(ls -A $subdir/$FILTER 2>/dev/null)" ] ; then
         $PROGRAM1 $OPT $subdir/$FILTER
+        if [ $? -ne 0 ] ; then
+          result=1;
+        fi
+      elif [ "$(ls -A $subdir/*/$FILTER 2>/dev/null)" ] ; then
+        $PROGRAM1 $OPT $subdir/*/$FILTER
         if [ $? -ne 0 ] ; then
           result=1;
         fi
