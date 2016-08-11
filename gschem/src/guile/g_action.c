@@ -106,13 +106,23 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
 
   /* Get the eval-action procedure */
   s_eval_action_proc =
+
+#if HAVE_SCM_C_PUBLIC_VARIABLE
+
+    scm_variable_ref (scm_c_public_variable ("gschem action", "eval-action!"));
+
+#else
+
     scm_variable_ref (scm_c_module_lookup (scm_c_resolve_module ("gschem action"),
-                                           "eval-action!"));
+                                                                 "eval-action!"));
+#endif
+
   /* Build expression to evaluate */
   /* FIXME use SCM_SYMBOL for quote */
   s_expr = scm_list_2 (s_eval_action_proc,
                        scm_list_2 (scm_from_utf8_symbol ("quote"),
                                    scm_from_utf8_symbol (action_name)));
+
   /* Evaluate and get return value */
   s_result = g_scm_eval_action (s_expr);
   result = scm_is_true (s_result);
@@ -154,9 +164,18 @@ g_action_get_position (bool snap, int *x, int *y)
   }
 
   /* Get the action-position procedure */
+
   s_action_position_proc =
+
+#if HAVE_SCM_C_PUBLIC_VARIABLE
+
+    scm_variable_ref (scm_c_public_variable ("gschem action",
+                                             "action-position"));
+#else
+
     scm_variable_ref (scm_c_module_lookup (scm_c_resolve_module ("gschem action"),
                                            "action-position"));
+#endif
 
   /* Retrieve the action position */
   s_point = scm_call_0 (s_action_position_proc);

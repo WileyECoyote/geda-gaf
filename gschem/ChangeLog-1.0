@@ -1,5 +1,9 @@
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_action.c: Add preprocessor conditionals and use function
+      scm_c_public_variable if availabl, see commit to master 2016-08-06,
+      03d06844d167d268b35c4f15c9e3a8e5495bb9a5.
+
     * src/x/x_compselect.c:: Replace strndup with geda_strndup in function
       compselect_callback_refresh_views.
 
@@ -1797,7 +1801,7 @@
 2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Reduce scope of s_current in o_move_motion, and
-      nad other Object in o_move_check_endpoint.
+      other Object in o_move_check_endpoint.
 
 2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -4793,7 +4797,7 @@
 
     * src/object/o_edit.c: Add new utility function to snap all objects in the
       given list to the current grid snap. This should have been the very first
-      function I ever add to gschem, (followed by the double click terminations
+      function I ever added to gschem, (followed by the double click terminations
       added earlier today.)
 
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
