@@ -1,12 +1,12 @@
 # geda-guile.m4                                           -*-Autoconf-*-
-# serial 3
+# serial 4
 dnl Check for Guile
 dnl
 dnl gEDA - GPL Electronic Design Automation
 dnl
 dnl Copyright (C) 2009  Dan McMahill <dan@mcmahill.net>
-dnl Copyright (C) 2010-2013  Peter Brett <peter@peter-b.co.uk>
-dnl Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
+dnl Copyright (C) 2010-2016  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2012-2016 gEDA Contributors (see ChangeLog for details)
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -47,11 +47,17 @@ AC_DEFUN([AX_CHECK_GUILE],
                             [_found_pkg_config_guile=yes
                              GUILE_PKG_NAME=guile-1.8],
                             [_found_pkg_config_guile=no])
+  else
+    AC_DEFINE([HAVE_GUILE_VER2], 1,
+              [Define to 1 if guile-2.0 is present.])
   fi
 
   if test "${_found_pkg_config_guile}" = "no" ; then
     AC_MSG_ERROR([you need at least version ${GUILE_MIN_VER} of guile])
+
   fi
+
+  AM_CONDITIONAL([HAVE_SRFI_64], test "X${GUILE_PKG_NAME}" = Xguile-2.0)
 
   AC_SUBST([GUILE_PKG_NAME])
 
@@ -118,6 +124,8 @@ configure.])
 
   CFLAGS="${GUILE_CFLAGS} ${CFLAGS}"
   LIBS="${GUILE_LIBS}"
+
+  AC_CHECK_FUNCS([scm_c_public_variable])
 
   AC_CHECK_FUNCS([scm_from_utf8_string])
   AC_CHECK_FUNCS([scm_from_utf8_stringn])
