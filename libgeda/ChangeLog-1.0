@@ -1,5 +1,8 @@
 2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_errors.c: Reduce scope of type_string in geda_error_
+      object_argument and change type to array of const pointers.
+
     * src/file/f_get.c: Move brace so file is not closed twice.
 
     * src/object/o_text_object.c: Rename functions with geda_object prefix.

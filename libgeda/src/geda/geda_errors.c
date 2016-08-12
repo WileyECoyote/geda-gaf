@@ -35,21 +35,21 @@ geda_error_object_argument(const char      *file,
                            const void      *object,
                            IDE_OBJECT_TYPE  type)
 {
-  char *type_string[] = { "Object",
-                          "Arc",
-                          "Box",
-                          "Bus",
-                          "Circle",
-                          "Complex",
-                          "Line",
-                          "Net",
-                          "Path",
-                          "Picture",
-                          "Pin",
-                          "Text",
-                          NULL};
-
   if (type <= GEDA_OBJECT_TEXT) {
+
+    const char *type_string[] = { "Object",
+                                  "Arc",
+                                  "Box",
+                                  "Bus",
+                                  "Circle",
+                                  "Complex",
+                                  "Line",
+                                  "Net",
+                                  "Path",
+                                  "Picture",
+                                  "Pin",
+                                  "Text",
+                                   NULL};
 
     fprintf(stderr, "File %s, <%s>: ", file, func);
 
