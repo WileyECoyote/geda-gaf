@@ -136,7 +136,7 @@ SCM g_rc_component_library(SCM path, SCM name)
          * aka a pointer to a NULL */
         if (!strlen(namestr)) {
 
-          name = geda_utility_string_concat("Local/", name, NULL);
+          char *name = geda_strconcat("Local/", fname, NULL);
 
           s_clib_add_directory (directory, name);
 
@@ -145,9 +145,9 @@ SCM g_rc_component_library(SCM path, SCM name)
         else {
 
           /* Check if scheme passed child dir with a leading slash */
-          if (strcmp (namestr + 1, name) == 0 ) {
+          if (strcmp (namestr + 1, fname) == 0 ) {
 
-            name = geda_utility_string_concat("Local/", name, NULL);
+            char *name = geda_strconcat("Local/", fname, NULL);
 
             s_clib_add_directory (directory, name);
 

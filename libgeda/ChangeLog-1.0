@@ -5,6 +5,9 @@
 
     * src/file/f_get.c: Move brace so file is not closed twice.
 
+    * src/guile/g_rc.c: Replace geda_utility_string_concat with geda_strconcat
+      use seperate variable.
+
     * src/object/o_text_object.c: Rename functions with geda_object prefix.
 
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
