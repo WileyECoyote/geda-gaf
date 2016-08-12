@@ -547,27 +547,28 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_object_style_set_line_width          (GedaToplevel *toplevel, GedaObject *o_current);
 
 /* o_text_object.c */
-   GedaObject   *o_text_copy                     (const GedaObject *object) WARN_UNUSED;
-          int    o_text_get_alignment            (const GedaObject *object) WARN_UNUSED;
-          int    o_text_get_angle                (const GedaObject *object) WARN_UNUSED;
-         bool    o_text_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
-          int    o_text_get_size                 (const GedaObject *object) WARN_UNUSED;
-       double    o_text_get_size_in_points       (const GedaObject *object) WARN_UNUSED;
-   const char   *o_text_get_string               (const GedaObject *object);
-         int     o_text_get_x                    (const GedaObject *object) WARN_UNUSED;
-         int     o_text_get_y                    (const GedaObject *object) WARN_UNUSED;
-         void    o_text_mirror                   (GedaObject *object, int center_x, int center_y);
-   GedaObject   *o_text_new                      (int color, int x, int y, int alignment, int angle,
-                                                  int size, int visibility, int show_name_value, const char *string);
-         void    o_text_recreate                 (GedaObject *o_current);
-         void    o_text_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
-         void    o_text_set_alignment            (GedaObject *object, int alignment);
-         void    o_text_set_angle                (GedaObject *object, int angle);
-         void    o_text_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
-         void    o_text_set_size                 (GedaObject *object, int size);
-         void    o_text_set_string               (GedaObject *object, const char *new_string);
-         void    o_text_set_x                    (GedaObject *object, int x);
-         void    o_text_translate                (GedaObject *object, int dx, int dy);
+   GedaObject   *geda_text_object_copy                     (const GedaObject *object) WARN_UNUSED;
+          int    geda_text_object_get_alignment            (const GedaObject *object) WARN_UNUSED;
+          int    geda_text_object_get_angle                (const GedaObject *object) WARN_UNUSED;
+         bool    geda_text_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+          int    geda_text_object_get_size                 (const GedaObject *object) WARN_UNUSED;
+       double    geda_text_object_get_size_in_points       (const GedaObject *object) WARN_UNUSED;
+   const char   *geda_text_object_get_string               (const GedaObject *object);
+         int     geda_text_object_get_x                    (const GedaObject *object) WARN_UNUSED;
+         int     geda_text_object_get_y                    (const GedaObject *object) WARN_UNUSED;
+         void    geda_text_object_mirror                   (GedaObject *object, int center_x, int center_y);
+   GedaObject   *geda_text_object_new                      (int color, int x, int y, int alignment, int angle,
+                                                            int size, int visibility, int show_name_value, const char *string);
+         void    geda_text_object_recreate                 (GedaObject *o_current);
+         void    geda_text_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_text_object_set_alignment            (GedaObject *object, int alignment);
+         void    geda_text_object_set_angle                (GedaObject *object, int angle);
+         void    geda_text_object_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
+         void    geda_text_object_set_size                 (GedaObject *object, int size);
+         void    geda_text_object_set_string               (GedaObject *object, const char *new_string);
+         void    geda_text_object_set_x                    (GedaObject *object, int x);
+         void    geda_text_object_set_y                    (GedaObject *object, int y);
+         void    geda_text_object_translate                (GedaObject *object, int dx, int dy);
 
 /* s_attrib.c */
           int    s_attrib_add_entry              (char *new_attrib);

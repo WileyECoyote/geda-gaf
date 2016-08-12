@@ -126,7 +126,7 @@ s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...
  *  passing NULL will disable rendering at this level.
  *
  *  \sa s_page_set_bounds_func
- *  \sa o_text_set_rendered_bounds_func
+ *  \sa geda_text_object_set_rendered_bounds_func
  *
  *  \param [in] toplevel  The GedaToplevel for which the render
  *                        function should be associated.

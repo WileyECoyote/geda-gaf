@@ -229,7 +229,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
         new->color = TEXT_COLOR;
       }
     }
-    o_text_recreate(new);
+    geda_text_object_recreate(new);
     o_undo_savestate(w_current, UNDO_ALL);
 
   }

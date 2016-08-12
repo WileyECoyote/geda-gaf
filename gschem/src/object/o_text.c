@@ -136,14 +136,14 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  object = o_text_new (TEXT_COLOR,
+  object = geda_text_object_new (TEXT_COLOR,
                        0, 0, LOWER_LEFT, 0, /* zero is angle */
                        w_current->text_size,
                        /* has to be visible so we can place it */
                        /* visibility is set when we create the object */
                        VISIBLE, SHOW_NAME_VALUE, text);
 
-  o_text_set_rendered_bounds_func (object,
+  geda_text_object_set_rendered_bounds_func (object,
                                    o_text_get_rendered_bounds,
                                    w_current);
 
@@ -222,7 +222,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         /* Text string is only applicable if string has length */
         if ( string && strlen (string) != 0 ) {
           if (strcmp(object->text->string, string) != 0) {
-            o_text_set_string (object, string);
+            geda_text_object_set_string (object, string);
             changed_something = TRUE;
             invalidated = TRUE;
             /* handle slot= attribute, it's a special case */
@@ -277,7 +277,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         }
 
         if (changed_something) {
-          o_text_recreate(object);
+          geda_text_object_recreate(object);
         }
       }
     }
@@ -312,11 +312,11 @@ o_text_change(GschemToplevel *w_current, GedaObject *object,
     }
     else {
 
-      o_text_set_string (object, string);
+      geda_text_object_set_string (object, string);
 
       geda_set_object_visibility (object, visibility);
       object->show_name_value = show;
-      o_text_recreate(object);
+      geda_text_object_recreate(object);
 
       /* handle slot= attribute, it's a special case */
       if (object->attached_to != NULL &&

@@ -24,6 +24,10 @@
  * Date Contributed: April, 06, 2014
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <ctype.h>         /* isdigit */
 
 #include <libgeda_priv.h>
@@ -217,7 +221,7 @@ void geda_utility_refdes_reset(GedaObject *object)
           buffer[index] = '?';
           buffer[++index] = '\0';
           object->text->string = strdup(&buffer[0]);
-          o_text_update_disp_string(object);
+          geda_text_object_update_disp_string(object);
           break;
         }
         else {

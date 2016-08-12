@@ -282,7 +282,7 @@ preview_update (GschemPreview *preview)
       /* open up file in current page */
       if (!f_open(preview_toplevel, p_current, preview->filename, &err))
       {
-        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
+        text = geda_text_object_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
         s_page_append_object (p_current, text);
         g_error_free(err);
@@ -301,7 +301,7 @@ preview_update (GschemPreview *preview)
         s_page_append_list (p_current, object_list);
       }
       else {
-        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
+        text = geda_text_object_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
         s_page_append_object (p_current, text);
         g_error_free(err);

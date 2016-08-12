@@ -241,7 +241,7 @@ EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
 EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
                "Create a new text object.")
 {
-  GedaObject *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
+  GedaObject *obj = geda_text_object_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
                             10, VISIBLE, SHOW_NAME_VALUE, "");
 
   SCM result = edascm_from_object (obj);

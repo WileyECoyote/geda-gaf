@@ -240,7 +240,7 @@ EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
     scm_error (attribute_format_sym, scheme_attrib_parse,
                _("~A is not a valid attribute: invalid string '~A'."),
                scm_list_2 (text_s,
-                           scm_from_utf8_string (o_text_get_string (text))),
+                           scm_from_utf8_string (geda_text_object_get_string (text))),
                SCM_EOL);
   }
   scm_dynwind_end ();

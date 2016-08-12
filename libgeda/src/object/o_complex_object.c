@@ -372,11 +372,11 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
   /* Add some useful text */
   not_found_text = geda_sprintf (_("Component not found:\n %s"), complex->filename);
 
-  new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
-                            x + NOT_FOUND_TEXT_X,
-                            y + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0,
-                            10, VISIBLE, SHOW_NAME_VALUE,
-                            not_found_text);
+  new_prim_obj = geda_text_object_new(DETACHED_ATTRIBUTE_COLOR,
+                                      x + NOT_FOUND_TEXT_X,
+                                      y + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0,
+                                      10, VISIBLE, SHOW_NAME_VALUE,
+                                      not_found_text);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
   GEDA_FREE(not_found_text);
@@ -391,41 +391,41 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
 
   /* add hazard triangle */
   new_prim_obj = geda_line_object_new(DETACHED_ATTRIBUTE_COLOR,
-                            x + NOT_FOUND_TEXT_X + x_offset,
-                            y + NOT_FOUND_TEXT_Y + y_offset,
-                            x + NOT_FOUND_TEXT_X + x_offset + 600,
-                            y + NOT_FOUND_TEXT_Y + y_offset);
+                                      x + NOT_FOUND_TEXT_X + x_offset,
+                                      y + NOT_FOUND_TEXT_Y + y_offset,
+                                      x + NOT_FOUND_TEXT_X + x_offset + 600,
+                                      y + NOT_FOUND_TEXT_Y + y_offset);
 
   geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   new_prim_obj = geda_line_object_new(DETACHED_ATTRIBUTE_COLOR,
-                            x + NOT_FOUND_TEXT_X + x_offset,
-                            y + NOT_FOUND_TEXT_Y + y_offset,
-                            x + NOT_FOUND_TEXT_X + x_offset + 300,
-                            y + NOT_FOUND_TEXT_Y + y_offset + 500);
+                                      x + NOT_FOUND_TEXT_X + x_offset,
+                                      y + NOT_FOUND_TEXT_Y + y_offset,
+                                      x + NOT_FOUND_TEXT_X + x_offset + 300,
+                                      y + NOT_FOUND_TEXT_Y + y_offset + 500);
 
   geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   new_prim_obj = geda_line_object_new(DETACHED_ATTRIBUTE_COLOR,
-                            x + NOT_FOUND_TEXT_X + x_offset + 300,
-                            y + NOT_FOUND_TEXT_Y + y_offset + 500,
-                            x + NOT_FOUND_TEXT_X + x_offset + 600,
-                            y + NOT_FOUND_TEXT_Y + y_offset);
+                                      x + NOT_FOUND_TEXT_X + x_offset + 300,
+                                      y + NOT_FOUND_TEXT_Y + y_offset + 500,
+                                      x + NOT_FOUND_TEXT_X + x_offset + 600,
+                                      y + NOT_FOUND_TEXT_Y + y_offset);
 
   geda_set_object_line_options(new_prim_obj, &line_options);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
-  new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
-                            x + NOT_FOUND_TEXT_X + x_offset + 270,
-                            y + NOT_FOUND_TEXT_Y + y_offset + 90,
-                            LOWER_LEFT, 0, 18,
-                            VISIBLE, SHOW_NAME_VALUE,
-                            "!");
+  new_prim_obj = geda_text_object_new(DETACHED_ATTRIBUTE_COLOR,
+                                      x + NOT_FOUND_TEXT_X + x_offset + 270,
+                                      y + NOT_FOUND_TEXT_Y + y_offset + 90,
+                                      LOWER_LEFT, 0, 18,
+                                      VISIBLE, SHOW_NAME_VALUE,
+                                      "!");
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
@@ -815,10 +815,10 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel, int x, int y, int an
   complex =  GEDA_COMPLEX(new_obj);
 
   if (clib != NULL) {
-    complex->filename = geda_utility_string_strdup (s_clib_symbol_get_name (clib));
+    complex->filename = geda_strdup (s_clib_symbol_get_name (clib));
   }
   else {
-    complex->filename = geda_utility_string_strdup (basename);
+    complex->filename = geda_strdup (basename);
   }
 
   /* get the symbol data */

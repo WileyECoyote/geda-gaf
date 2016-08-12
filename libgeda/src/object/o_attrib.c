@@ -544,7 +544,7 @@ geda_attrib_object_new_attached(GedaObject *parent,
   else {
     text = geda_utility_string_strdup("unknown=empty");
   }
-  new_obj = o_text_new(color, world_x, world_y,
+  new_obj = geda_text_object_new(color, world_x, world_y,
                        align, angle,               /* zero is angle */
                        DEFAULT_ATTRIBUTE_SIZE,     /* default text size */
                        visibility, show_name_value, text);
@@ -639,11 +639,11 @@ geda_attrib_object_read (GedaToplevel *toplevel,
     switch (objtype) {
 
       case(OBJ_TEXT):
-        new_obj = o_text_read (line, tb, release_ver, fileformat_ver, err);
+        new_obj = geda_text_object_read (line, tb, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
 
-        o_text_set_rendered_bounds_func (new_obj,
+        geda_text_object_set_rendered_bounds_func (new_obj,
                                          toplevel->rendered_text_bounds_func,
                                          toplevel->rendered_text_bounds_data);
 
@@ -1031,7 +1031,7 @@ geda_attrib_object_search_object_string (const GedaObject *object,
 
       GedaObject *attrib = iter->data;
 
-      const char *string = o_text_get_string(attrib);
+      const char *string = geda_text_object_get_string(attrib);
 
       if (string) {
         if (exact) {

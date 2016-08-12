@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,14 +94,14 @@
  *  \return a new text object
  */
 GedaObject*
-o_text_copy(const GedaObject *o_current)
+geda_text_object_copy(const GedaObject *o_current)
 {
   if (GEDA_IS_TEXT(o_current)) {
 
     GedaObject *new_obj;
     GedaText   *text_obj;
 
-    new_obj = o_text_new (o_current->color,
+    new_obj = geda_text_object_new (o_current->color,
                           o_current->text->x, o_current->text->y,
                           o_current->text->alignment,
                           o_current->text->angle,
@@ -113,7 +113,7 @@ o_text_copy(const GedaObject *o_current)
     text_obj = GEDA_TEXT(o_current);
 
     if (text_obj->rendered_text_bounds_func != NULL) {
-      o_text_set_rendered_bounds_func (new_obj,
+      geda_text_object_set_rendered_bounds_func (new_obj,
                                        text_obj->rendered_text_bounds_func,
                                        text_obj->rendered_text_bounds_data);
     }
@@ -132,7 +132,7 @@ o_text_copy(const GedaObject *o_current)
  * \return The text alignmemt
  */
 int
-o_text_get_alignment (const GedaObject *object)
+geda_text_object_get_alignment (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), LOWER_LEFT);
 
@@ -148,7 +148,7 @@ o_text_get_alignment (const GedaObject *object)
  * \return The text angle
  */
 int
-o_text_get_angle (const GedaObject *object)
+geda_text_object_get_angle (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), 0.0);
 
@@ -174,7 +174,7 @@ o_text_get_angle (const GedaObject *object)
  *          GedaText object or if the bounds is not set on the Text.
  */
 bool
-o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+geda_text_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool result;
 
@@ -222,7 +222,7 @@ o_text_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool
-o_text_get_position (GedaObject *object, int *x, int *y)
+geda_text_object_get_position (GedaObject *object, int *x, int *y)
 {
   *x = object->text->x;
   *y = object->text->y;
@@ -239,7 +239,7 @@ o_text_get_position (GedaObject *object, int *x, int *y)
  * \return The text size
  */
 int
-o_text_get_size (const GedaObject *object)
+geda_text_object_get_size (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), DEFAULT_TEXT_SIZE);
 
@@ -258,7 +258,7 @@ o_text_get_size (const GedaObject *object)
  * \return The font size converted to postscript points.
  */
 double
-o_text_get_size_in_points (const GedaObject *object)
+geda_text_object_get_size_in_points (const GedaObject *object)
 {
   g_return_val_if_fail (object->type == OBJ_TEXT, 0.0);
 
@@ -276,7 +276,7 @@ o_text_get_size_in_points (const GedaObject *object)
  * \return The text object's string, or NULL on failure.
  */
 const char*
-o_text_get_string (const GedaObject *object)
+geda_text_object_get_string (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), NULL);
   return object->text->string;
@@ -290,7 +290,7 @@ o_text_get_string (const GedaObject *object)
  * \return x coordinate of the insertion point
  */
 int
-o_text_get_x (const GedaObject *object)
+geda_text_object_get_x (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), 0);
 
@@ -305,7 +305,7 @@ o_text_get_x (const GedaObject *object)
  * \return y coodinate of the insertion point
  */
 int
-o_text_get_y (const GedaObject *object)
+geda_text_object_get_y (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_TEXT(object), 0);
 
@@ -323,7 +323,7 @@ o_text_get_y (const GedaObject *object)
  * \param [in]     center_y  y-coord of the mirror position
  */
 void
-o_text_mirror(GedaObject *object, int center_x, int center_y)
+geda_text_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   int origx, origy;
   int x, y;
@@ -398,7 +398,7 @@ o_text_mirror(GedaObject *object, int center_x, int center_y)
   object->text->x = -x + (center_x);
   object->text->y =  y + (center_y);
 
-  o_text_recreate(object);
+  geda_text_object_recreate(object);
 }
 
 /*! \brief Creates a text Object and the graphical objects representing it
@@ -420,7 +420,7 @@ o_text_mirror(GedaObject *object, int center_x, int center_y)
  *  Caller is responsible for string; this function allocates its own copy.
  */
 GedaObject*
-o_text_new(int color, int x, int y, int alignment, int angle, int size,
+geda_text_object_new(int color, int x, int y, int alignment, int angle, int size,
            int visibility, int show_name_value, const char *string)
 {
   GedaObject *new_obj=NULL;
@@ -449,7 +449,7 @@ o_text_new(int color, int x, int y, int alignment, int angle, int size,
   new_obj->show_name_value = show_name_value;
 
   /* Call directly so no emmision */
-  o_text_update_disp_string (new_obj);
+  geda_text_object_update_disp_string (new_obj);
 
   return new_obj;
 }
@@ -467,7 +467,7 @@ o_text_new(int color, int x, int y, int alignment, int angle, int size,
  *  \param [in] unicode_table Table of unicode items
  */
 void
-o_text_print(GedaToplevel *toplevel, FILE *fp,
+geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
              GedaObject *o_current,
              int origin_x, int origin_y,
              int unicode_count,
@@ -586,7 +586,7 @@ o_text_print(GedaToplevel *toplevel, FILE *fp,
     break;
   }
 
-  font_size = o_text_get_size_in_points (o_current) / 72.0 * 1000.0;
+  font_size = geda_text_object_get_size_in_points (o_current) / 72.0 * 1000.0;
 
   fprintf(fp,"%s %f [",centering_control, font_size * PRINT_LINE_SPACING);
 
@@ -599,7 +599,7 @@ o_text_print(GedaToplevel *toplevel, FILE *fp,
     if((*p == '\n') || (*p == '\0')) {
       /* Yes, replace the newline with a NULL and output the string */
       *p = '\0';
-      o_text_print_text_string(fp,s,unicode_count,unicode_table);
+      geda_text_object_print_text_string(fp,s,unicode_count,unicode_table);
       /* Update output string start for next string */
       s = p+1; /* One past the current character. */
     }
@@ -630,7 +630,7 @@ o_text_print(GedaToplevel *toplevel, FILE *fp,
  *  \todo investigate whether the TAB character is handled correctly
  */
 void
-o_text_print_text_string(FILE *fp, char *string, int unicode_count,
+geda_text_object_print_text_string(FILE *fp, char *string, int unicode_count,
                          gunichar *unicode_table)
 {
   int j;
@@ -696,7 +696,7 @@ o_text_print_text_string(FILE *fp, char *string, int unicode_count,
  *  \return The object list, or NULL on error.
  */
 GedaObject *
-o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
+geda_text_object_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
              unsigned int fileformat_ver, GError **err)
 {
   GedaObject *new_obj;
@@ -840,7 +840,7 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
     }
   }
 
-  new_obj = o_text_new(color, x, y, alignment, angle, size,
+  new_obj = geda_text_object_new(color, x, y, alignment, angle, size,
                        visibility, show_name_value, string);
   GEDA_FREE(string);
 
@@ -855,12 +855,12 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
  *  \param o_current The text object to update
  */
 void
-o_text_recreate(GedaObject *o_current)
+geda_text_object_recreate(GedaObject *o_current)
 {
   Page *page;
 
   geda_object_notify_emit_pre_change (o_current);
-  o_text_update_disp_string (o_current);
+  geda_text_object_update_disp_string (o_current);
 
   if (!geda_object_bounds (o_current)) {
     o_current->w_bounds_valid_for = NULL;
@@ -887,7 +887,7 @@ o_text_recreate(GedaObject *o_current)
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
 void
-o_text_rotate(GedaObject *object, int center_x, int center_y, int angle)
+geda_text_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
 {
   if (GEDA_IS_TEXT(object)) {
 
@@ -904,9 +904,9 @@ o_text_rotate(GedaObject *object, int center_x, int center_y, int angle)
     x = newx + (center_x);
     y = newy + (center_y);
 
-    o_text_translate(object, x-object->text->x, y-object->text->y);
+    geda_text_object_translate(object, x-object->text->x, y-object->text->y);
 
-    o_text_recreate(object);
+    geda_text_object_recreate(object);
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
@@ -923,7 +923,7 @@ o_text_rotate(GedaObject *object, int center_x, int center_y, int angle)
  * \return the string representation of the text Object
  */
 char *
-o_text_save(GedaObject *object)
+geda_text_object_save(GedaObject *object)
 {
   char *buf;
   char *string;
@@ -962,7 +962,7 @@ o_text_save(GedaObject *object)
  * \param [in]     alignment The text alignmemt
  */
 void
-o_text_set_alignment (GedaObject *object, int alignment)
+geda_text_object_set_alignment (GedaObject *object, int alignment)
 {
   g_return_if_fail (object != NULL);
   g_return_if_fail (object->text != NULL);
@@ -982,7 +982,7 @@ o_text_set_alignment (GedaObject *object, int alignment)
  * \param [in]     angle  The text angle in degrees.
  */
 void
-o_text_set_angle (GedaObject *object, int angle)
+geda_text_object_set_angle (GedaObject *object, int angle)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->angle = angle;
@@ -1004,7 +1004,7 @@ o_text_set_angle (GedaObject *object, int angle)
  *  \param [in] user_data User data to be passed to the function.
  */
 void
-o_text_set_rendered_bounds_func (GedaObject         *object,
+geda_text_object_set_rendered_bounds_func (GedaObject         *object,
                                  RenderedBoundsFunc  func,
                                  void               *user_data)
 {
@@ -1023,7 +1023,7 @@ o_text_set_rendered_bounds_func (GedaObject         *object,
  *  \param [in]     size   The text size
  */
 void
-o_text_set_size (GedaObject *object, int size)
+geda_text_object_set_size (GedaObject *object, int size)
 {
   if (GEDA_IS_TEXT(object)) {
     if (size < MINIMUM_TEXT_SIZE) {
@@ -1046,7 +1046,7 @@ o_text_set_size (GedaObject *object, int size)
  *  \param [in]  new_string  The new value.
  */
 void
-o_text_set_string (GedaObject *object, const char *new_string)
+geda_text_object_set_string (GedaObject *object, const char *new_string)
 {
   g_return_if_fail (GEDA_IS_TEXT(object));
   g_return_if_fail (new_string != NULL);
@@ -1054,7 +1054,7 @@ o_text_set_string (GedaObject *object, const char *new_string)
   GEDA_FREE (object->text->string);
   object->text->string = geda_utility_string_strdup (new_string);
 
-  o_text_recreate (object);
+  geda_text_object_recreate (object);
 
 }
 
@@ -1064,7 +1064,7 @@ o_text_set_string (GedaObject *object, const char *new_string)
  *  \param [in]     x      New x coordinate of the text insertion point
  */
 void
-o_text_set_x (GedaObject *object, gint x)
+geda_text_object_set_x (GedaObject *object, int x)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->x = x;
@@ -1080,7 +1080,7 @@ o_text_set_x (GedaObject *object, gint x)
  *  \param [in]     y      New y coordinate of the text insertion point
  */
 void
-o_text_set_y (GedaObject *object, gint y)
+geda_text_object_set_y (GedaObject *object, int y)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->y = y;
@@ -1107,7 +1107,7 @@ o_text_set_y (GedaObject *object, gint y)
  *  returns G_MAXDOUBLE.
  */
 double
-o_text_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   int left, top, right, bottom;
   double dx, dy;
@@ -1141,7 +1141,7 @@ o_text_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 
  */
 void
-o_text_translate(GedaObject *object, int dx, int dy)
+geda_text_object_translate(GedaObject *object, int dx, int dy)
 {
   object->text->x = object->text->x + dx;
   object->text->y = object->text->y + dy;
@@ -1160,7 +1160,7 @@ o_text_translate(GedaObject *object, int dx, int dy)
  *  \param [in] object  The GedaObject to update
  */
 void
-o_text_update_disp_string (GedaObject *object)
+geda_text_object_update_disp_string (GedaObject *object)
 {
   char     *name  = NULL;
   char     *value = NULL;

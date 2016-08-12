@@ -2711,7 +2711,7 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
 
   int color = translate_color(py_color, TEXT_COLOR);
 
-  object = o_text_new(color, x, y, alg, ang, sze, VISIBLE, SHOW_NAME_VALUE, text);
+  object = geda_text_object_new(color, x, y, alg, ang, sze, VISIBLE, SHOW_NAME_VALUE, text);
 
   add_floating_object(object);
 
@@ -2767,7 +2767,7 @@ PyGeda_new_attrib(const char *name, const char *value, int x, int y,
 
   text = geda_sprintf("%s=%s", name, value);
 
-  object = o_text_new(color, x, y, alg, ang, size, vis, shw, text);
+  object = geda_text_object_new(color, x, y, alg, ang, size, vis, shw, text);
 
   add_floating_object(object);
 

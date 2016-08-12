@@ -267,7 +267,7 @@ PyGeda_update_text(GedaObject *object, PyGedaObject *py_object)
 
   if (py_text->dirty_text) {
     const char *str = PyString_AsString(py_text->string);
-    o_text_set_string(object, str);
+    geda_text_object_set_string(object, str);
     py_text->dirty_text = 0;
   }
   return 1;
@@ -352,7 +352,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     if (value != NULL) {
       if (strcmp(object->pin->number, value) != 0) {
         geda_attrib_object_set_value(attrib, "pinnumber", object->pin->number);
-        o_text_recreate(attrib);
+        geda_text_object_recreate(attrib);
       }
     }
   }
@@ -369,7 +369,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
 
       if (number != object->pin->sequence) {
         geda_attrib_object_set_integer_value(attrib, "pinseq", object->pin->sequence);
-        o_text_recreate(attrib);
+        geda_text_object_recreate(attrib);
       }
     }
   }
@@ -382,7 +382,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     if (value != NULL) {
       if (strcmp(object->pin->label, value) != 0) {
         geda_attrib_object_set_value(attrib, "pinlabel", object->pin->label);
-        o_text_recreate(attrib);
+        geda_text_object_recreate(attrib);
       }
     }
   }
@@ -395,7 +395,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     if (value != NULL) {
       if (strcmp(object->pin->electrical, value) != 0) {
         geda_attrib_object_set_value(attrib, "pintype", object->pin->electrical);
-        o_text_recreate(attrib);
+        geda_text_object_recreate(attrib);
       }
     }
   }
@@ -408,7 +408,7 @@ PyGeda_update_pin_butes(GedaObject *object, PyGedaObject *py_object )
     if (value != NULL) {
       if (strcmp(object->pin->mechanical, value) != 0) {
         geda_attrib_object_set_value(attrib, "mechtype", object->pin->mechanical);
-        o_text_recreate(attrib);
+        geda_text_object_recreate(attrib);
       }
     }
   }
@@ -461,7 +461,7 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
 
   while (butes != NULL) {
     GedaObject *o_attrib = (GedaObject*)butes->data;
-    o_text_recreate (o_attrib);
+    geda_text_object_recreate (o_attrib);
     NEXT (butes);
   }; /* wend*/
 

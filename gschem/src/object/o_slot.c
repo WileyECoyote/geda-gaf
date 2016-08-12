@@ -143,12 +143,12 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
   GEDA_FREE (slot_value);
 
   if (o_slot != NULL && !geda_attrib_is_inherited (o_slot)) {
-    o_text_set_string (o_slot, string);
+    geda_text_object_set_string (o_slot, string);
   }
   else {
 
     /* Add the slot attribute since it does not exist */
-    GedaObject *new_obj = o_text_new (ATTRIBUTE_COLOR,
+    GedaObject *new_obj = geda_text_object_new (ATTRIBUTE_COLOR,
                                   object->complex->x, object->complex->y,
                                   LOWER_LEFT, 0, /* zero is angle */
                                   10, INVISIBLE, SHOW_NAME_VALUE, string);

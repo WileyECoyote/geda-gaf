@@ -492,15 +492,17 @@ int test_refdes (void)
     char *expected = U04_str[index].expected;
     char *input    = U04_str[index].input;
 
-    GedaObject *object04 =  o_text_new(3,                       /* color */
-                                       10,                      /* X */
-                                       20,                      /* Y */
-                                       0,                       /* align */
-                                       0,                       /* zero is angle */
-                                       DEFAULT_ATTRIBUTE_SIZE,  /* default text size */
-                                       1,                       /* visibility */
-                                       1,                       /* show_name_value*/
-                                       input);
+    GedaObject *object04;
+
+    object04 = geda_text_object_new(3,                       /* color */
+                                    10,                      /* X */
+                                    20,                      /* Y */
+                                    0,                       /* align */
+                                    0,                       /* zero is angle */
+                                    DEFAULT_ATTRIBUTE_SIZE,  /* default text size */
+                                    1,                       /* visibility */
+                                    1,                       /* show_name_value*/
+                                    input);
 
     geda_reset_refdes(object04);
 

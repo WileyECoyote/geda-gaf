@@ -378,9 +378,10 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
           /* Output text */
           save_last_ps_color = last_ps_color;
           fprintf(fp, "gsave\n");
-          o_text_print(toplevel, fp,
-                       o_current,
-                       origin_x, origin_y, unicode_count, unicode_table);
+          geda_text_object_print(toplevel, fp,
+                                 o_current,
+                                 origin_x, origin_y,
+                                 unicode_count, unicode_table);
 
           fprintf(fp, "grestore\n");
           last_ps_color = save_last_ps_color;

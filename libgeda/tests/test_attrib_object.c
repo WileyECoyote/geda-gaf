@@ -107,7 +107,7 @@ check_attrib_add(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
 
@@ -153,7 +153,7 @@ check_append_attrib_changed_hook(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
 
@@ -198,7 +198,7 @@ check_attrib_attach (GedaToplevel *toplevel)
 
   GedaObject *object1 = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib  = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib  = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object1);
 
@@ -231,7 +231,7 @@ check_attrib_attach (GedaToplevel *toplevel)
     result++;
   }
 
-  attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
 
   /* Note TRUE = set attribute color */
   geda_attrib_attach(object1, attrib, TRUE);
@@ -302,8 +302,8 @@ check_attrib_attach_list (GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
 
   s_page_append_object(page, object);
 
@@ -349,9 +349,9 @@ check_attrib_detach (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
   s_page_append_object(page, object);
   s_page_append_object(page, attrib1);
@@ -416,9 +416,9 @@ check_attrib_detach_all (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
   s_page_append_object(page, object);
 
@@ -478,9 +478,9 @@ check_find_first_attrib_by_name (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
   GedaObject *found;
 
   s_page_append_object(page, object);
@@ -526,7 +526,7 @@ check_attrib_freeze_hooks (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
 
@@ -561,7 +561,7 @@ check_get_attrib_name_value(GedaToplevel *toplevel)
   char *name;
   char *value;
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   /* === Function 10: geda_attrib_object_get_name_value  === */
 
@@ -623,7 +623,7 @@ check_attrib_is_attached_to (GedaToplevel *toplevel)
 
   GedaObject *object2 = geda_box_object_new(3, 10, 20, 30, 40);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   /* === Function 10: geda_attrib_object_is_attached_to  === */
 
@@ -662,7 +662,7 @@ check_attrib_is_inherited (GedaToplevel *toplevel)
 
   GedaObject *object1 = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   /* === Function 11: geda_attrib_object_is_inherited  === */
 
@@ -793,9 +793,9 @@ check_attrib_print (GedaToplevel *toplevel)
 {
   int result = 0;
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
   GList *list;
 
@@ -871,9 +871,9 @@ check_attrib_read (GedaToplevel *toplevel)
         result++;
       }
 
-      /* \note: geda_attrib_object_read uses o_text_read so along as
+      /* \note: geda_attrib_object_read uses geda_text_object_read so along as
        *        as text objects are returned, any errors within the data
-       *        would be on o_text_read not geda_attrib_object_read.
+       *        would be on geda_text_object_read not geda_attrib_object_read.
        */
 
       GedaObject *attrib1 = a_iter->data;
@@ -928,9 +928,9 @@ check_attrib_remove (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_box_object_new(3, 10, 20, 30, 40);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
   s_page_append_object(page, object);
 
@@ -1016,12 +1016,12 @@ check_return_attribs (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FA=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FB=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "FC=c");
-  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
-  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "FA=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "FB=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "FC=c");
+  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
 
   s_page_append_object(page, object);
 
@@ -1096,9 +1096,9 @@ check_attrib_search_attached_by_name (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
 
   s_page_append_object(page, object);
 
@@ -1174,13 +1174,13 @@ check_search_floating_by_name (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
-  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
-  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
-  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
   s_page_append_object(page, object);
 
@@ -1272,13 +1272,13 @@ check_search_inherited_by_name (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
-  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
-  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
-  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
   s_page_append_object(page, object);
 
@@ -1370,13 +1370,13 @@ check_search_object_by_name (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
-  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
-  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
-  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
   s_page_append_object(page, object);
 
@@ -1481,13 +1481,13 @@ check_search_object_for_string  (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_complex_new();
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
-  GedaObject *attrib4 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib5 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
-  GedaObject *attrib6 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
-  GedaObject *attrib7 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
+  GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
   s_page_append_object(page, object);
 
@@ -1577,7 +1577,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
   s_page_append_object(page, attrib);
@@ -1646,7 +1646,7 @@ check_attrib_set_value(GedaToplevel *toplevel)
 
   GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
   s_page_append_object(page, object);
   s_page_append_object(page, attrib);
@@ -1791,9 +1791,9 @@ check_attrib_thaw_hooks (GedaToplevel *toplevel)
 
   GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
-  GedaObject *attrib2 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
-  GedaObject *attrib3 = o_text_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
+  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
+  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
+  GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
   s_page_append_object(page, object);
 

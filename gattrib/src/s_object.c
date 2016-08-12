@@ -357,7 +357,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   printf("     show_name_value = %d \n", show_name_value);
 #endif
 
-  new_obj = o_text_new (color, world_x, world_y,
+  new_obj = geda_text_object_new (color, world_x, world_y,
                         LOWER_LEFT, 0, /* zero is angle */
                         DEFAULT_TEXT_SIZE,
                         visibility, show_name_value,text_string);

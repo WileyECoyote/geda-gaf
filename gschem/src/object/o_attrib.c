@@ -222,7 +222,7 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
 
     geda_set_object_visibility (object, VISIBLE);
 
-    o_text_recreate(object);
+    geda_text_object_recreate(object);
   }
 }
 
@@ -244,7 +244,7 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
 
   o_invalidate_object (w_current, object);
   object->show_name_value = show_name_value;
-  o_text_recreate(object);
+  geda_text_object_recreate(object);
 }
 
 /*! \brief Create and Add and Attribute GedaText Object
@@ -378,7 +378,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
   /* printf("%d %d\n", world_x, world_y); */
 
   /* first create text item */
-  new_obj = o_text_new(color, world_x, world_y,
+  new_obj = geda_text_object_new(color, world_x, world_y,
                        align, angle,            /* zero is angle */
                        w_current->text_size,    /* current text size */
                        visibility,              /* we did not check */

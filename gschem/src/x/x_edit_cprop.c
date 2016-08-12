@@ -133,7 +133,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       if(geda_attrib_object_get_name_value (a_current, NULL, &o_value)) {
         if (strcmp(o_value, new_value) != 0) {
           geda_attrib_object_set_value (a_current, key, new_value);
-          o_text_recreate(a_current);
+          geda_text_object_recreate(a_current);
           result = TRUE;
         }
         GEDA_FREE(o_value);
@@ -158,7 +158,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
         if(geda_attrib_object_get_name_value (a_current, NULL, &o_value)) {
           if (strcmp(o_value, new_value) != 0) {
             geda_attrib_object_set_value (a_current, key, new_value);
-            o_text_recreate(a_current);
+            geda_text_object_recreate(a_current);
             result = TRUE;
           }
           GEDA_FREE(o_value);
@@ -439,7 +439,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           attrib = geda_attrib_first_attrib_by_name (o_new, "refdes");
           if (attrib) {
             geda_attrib_object_set_value (attrib, "refdes", refdes);
-            o_text_recreate(attrib);
+            geda_text_object_recreate(attrib);
           }
 
           /* Select newGedaObject */

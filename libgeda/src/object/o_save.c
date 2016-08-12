@@ -271,7 +271,7 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         case(OBJ_TEXT):
-          out = o_text_save(o_current);
+          out = geda_text_object_save(o_current);
           break;
 
         case(OBJ_BUS):

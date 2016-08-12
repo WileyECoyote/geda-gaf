@@ -618,7 +618,7 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
 
     /* create a new attribute and link it */
     o_attrib_add_attrib (w_current,
-                         o_text_get_string (o_attrib),
+                         geda_text_object_get_string (o_attrib),
                          geda_object_get_is_visible (o_attrib),
                          o_attrib->show_name_value,
                          o_attrib->attached_to);
@@ -653,7 +653,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
 
       /* If the attribute we're promoting is visible, don't clone its location */
       o_attrib_add_attrib (w_current,
-                           o_text_get_string (o_attrib),
+                           geda_text_object_get_string (o_attrib),
                            VISIBLE,
                            o_attrib->show_name_value,
                            o_attrib->attached_to);
@@ -729,7 +729,7 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
 
       /* create a new attribute and link it */
       o_attrib_add_attrib (w_current,
-                           o_text_get_string (attrib_to_copy),
+                           geda_text_object_get_string (attrib_to_copy),
                            visibility,
                            attrib_to_copy->show_name_value,
                            object);
@@ -1069,7 +1069,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
     /* Modify the attribute */
     o_invalidate_object (w_current, o_attrib);
     geda_set_object_visibility (o_attrib, new_visibility ? VISIBLE : INVISIBLE);
-    o_text_recreate (o_attrib);
+    geda_text_object_recreate (o_attrib);
 
     NEXT (a_iter);
   };
@@ -1140,7 +1140,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
 
     /* actually modifies the attribute */
     o_attrib->show_name_value = new_snv;
-    o_text_recreate (o_attrib);
+    geda_text_object_recreate (o_attrib);
 
     NEXT (a_iter);
   };
@@ -1213,7 +1213,7 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
 
     /* Modify the attribute */
     o_attrib->show_name_value = new_snv;
-    o_text_recreate (o_attrib);
+    geda_text_object_recreate (o_attrib);
 
     NEXT (a_iter);
   };

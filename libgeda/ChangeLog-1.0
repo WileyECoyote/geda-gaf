@@ -1,3 +1,7 @@
+2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_text_object.c: Rename functions with geda_object prefix.
+
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_textbuffer.c: Add function s_textbuffer_seek, this feature

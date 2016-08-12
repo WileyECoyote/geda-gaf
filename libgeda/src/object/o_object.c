@@ -183,11 +183,11 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(OBJ_TEXT):
-        new_obj = o_text_read (line, tb, release_ver, fileformat_ver, err);
+        new_obj = geda_text_object_read (line, tb, release_ver, fileformat_ver, err);
         if (new_obj == NULL)
           goto error;
         if (toplevel->rendered_text_bounds_func != NULL)
-          o_text_set_rendered_bounds_func (new_obj,
+          geda_text_object_set_rendered_bounds_func (new_obj,
                                            toplevel->rendered_text_bounds_func,
                                            toplevel->rendered_text_bounds_data);
         new_object_list = g_list_prepend (new_object_list, new_obj);
@@ -522,7 +522,7 @@ geda_object_copy (GedaObject *o_current)
       break;
 
     case(OBJ_TEXT):
-      new_obj = o_text_copy (o_current);
+      new_obj = geda_text_object_copy (o_current);
       break;
 
     case(OBJ_PATH):
@@ -581,7 +581,7 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
       case OBJ_CIRCLE:  topless = geda_circle_object_mirror;     break;
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: topless = geda_complex_object_mirror;    break;
-      case OBJ_TEXT:    topless = o_text_mirror;       break;
+      case OBJ_TEXT:    topless = geda_text_object_mirror;       break;
       case OBJ_PATH:    topless = geda_path_object_mirror;       break;
       case OBJ_PIN:     topless = geda_pin_object_mirror;        break;
       case OBJ_ARC:     topless = geda_arc_object_mirror;        break;
@@ -631,7 +631,7 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
     case OBJ_CIRCLE:  topless = geda_circle_object_rotate;     break;
     case OBJ_PLACEHOLDER:
     case OBJ_COMPLEX: topless = geda_complex_object_rotate;    break;
-    case OBJ_TEXT:    topless = o_text_rotate;       break;
+    case OBJ_TEXT:    topless = geda_text_object_rotate;       break;
     case OBJ_PATH:    topless = geda_path_object_rotate;       break;
     case OBJ_PIN:     topless = geda_pin_object_rotate;        break;
     case OBJ_ARC:     topless = geda_arc_object_rotate;        break;
@@ -680,7 +680,7 @@ geda_object_translate (GedaObject *object, int dx, int dy)
       case OBJ_CIRCLE:  topless = geda_circle_object_translate;  break;
       case OBJ_PLACEHOLDER:
       case OBJ_COMPLEX: topless = geda_complex_object_translate; break;
-      case OBJ_TEXT:    topless = o_text_translate;    break;
+      case OBJ_TEXT:    topless = geda_text_object_translate;    break;
       case OBJ_PATH:    topless = geda_path_object_translate;    break;
       case OBJ_PIN:     topless = geda_pin_object_translate;     break;
       case OBJ_ARC:     topless = geda_arc_object_translate;     break;

@@ -230,15 +230,15 @@ char       *geda_pin_object_save                 (GedaObject *object);
 void        geda_pin_object_update_read_property (GedaObject *o_pin, GedaObject *o_text);
 
 /* o_text_object.c */
-bool        o_text_get_position            (GedaObject *object, int *x, int *y);
-void        o_text_print_text_string       (FILE *fp, char *string, int unicode_count, gunichar *unicode_table);
-void        o_text_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y,
-                                            int unicode_count, gunichar *unicode_table);
-GedaObject *o_text_read                    (const char *first_line, TextBuffer *tb, unsigned int release_ver,
-                                            unsigned int fileformat_ver, GError **err);
-char       *o_text_save                    (GedaObject *object);
-double      o_text_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-void        o_text_update_disp_string      (GedaObject *object);
+bool        geda_text_object_get_position            (GedaObject *object, int *x, int *y);
+void        geda_text_object_print_text_string       (FILE *fp, char *string, int unicode_count, gunichar *unicode_table);
+void        geda_text_object_print                   (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y,
+                                                      int unicode_count, gunichar *unicode_table);
+GedaObject *geda_text_object_read                    (const char *first_line, TextBuffer *tb, unsigned int release_ver,
+                                                      unsigned int fileformat_ver, GError **err);
+char       *geda_text_object_save                    (GedaObject *object);
+double      geda_text_object_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
+void        geda_text_object_update_disp_string      (GedaObject *object);
 
 /* s_attrib.c */
 void        s_attrib_free                  (void);

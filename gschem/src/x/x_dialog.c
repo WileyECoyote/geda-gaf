@@ -2436,7 +2436,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
 
     if (object->type == OBJ_TEXT) {
 
-      const char *string = o_text_get_string (object);
+      const char *string = geda_text_object_get_string (object);
 
       set_text_buffer(string);
     }

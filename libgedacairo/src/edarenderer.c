@@ -1002,7 +1002,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
   PangoFontDescription *desc;
   PangoAttrList        *attrs;
 
-  points_size = o_text_get_size_in_points(object);
+  points_size = geda_text_object_get_size_in_points(object);
 
   pango_size = lrint (points_size * PANGO_SCALE);
 

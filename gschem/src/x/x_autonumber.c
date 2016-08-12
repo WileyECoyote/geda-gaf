@@ -482,8 +482,8 @@ static int autonumber_match(AUTONUMBER_TEXT *autotext, GedaObject *o_current, in
 
   /* autotext->current_searchtext looks like "refdes=R" */
   searchtext = autotext->current_searchtext;
-  len        = strlen(searchtext);
-  str        = o_text_get_string (o_current);
+  len        = strlen (searchtext);
+  str        = geda_text_object_get_string (o_current);
 
   /* Check if the search text length is greater than the string length */
   if (len > strlen(str))
@@ -790,7 +790,7 @@ static void autonumber_remove_number(AUTONUMBER_TEXT *autotext, GedaObject *o_cu
   strcat(str, "?");
 
   /* replace old text */
-  o_text_set_string (o_current, str);
+  geda_text_object_set_string (o_current, str);
   free (str);
 
   /* if slotting is active then remove the slot attribute */
@@ -844,7 +844,7 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
   /* replace old text, looks like "set=refdes=U1"*/
   strcpy(string, autotext->current_searchtext);
   strcat(string, geda_utility_string_int2str( number, s_val, 10));
-  o_text_set_string (o_current, string);
+  geda_text_object_set_string (o_current, string);
 }
 
 /*! \brief Handles all the options of the autonumber text dialog
@@ -934,7 +934,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
             || ((autotext->scope_number == SCOPE_SELECTED) && (o_current->selected)))
           {
 
-            const char *str = o_text_get_string (o_current);
+            const char *str = geda_text_object_get_string (o_current);
 
 
             if (g_str_has_prefix (str, searchtext)) {

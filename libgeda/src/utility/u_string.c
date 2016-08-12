@@ -345,9 +345,8 @@ geda_utility_string_parse_xy(const char *string, int *x, int *y)
  *
  * \sa geda_utility_string_remove_nl
  *
- * \note used by o_text_read
+ * \note used by geda_text_object_read
  */
-/* used by o_text_read */
 char*
 geda_utility_string_remove_last_nl(char *string)
 {
@@ -376,7 +375,7 @@ geda_utility_string_remove_last_nl(char *string)
  *
  * \sa geda_utility_string_remove_last_nl
  *
- * \note used by o_text_read
+ * \note used by geda_text_object_read
  */
 char*
 geda_utility_string_remove_nl(char *string)

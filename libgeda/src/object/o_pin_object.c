@@ -743,7 +743,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       bute = geda_attrib_first_attrib_by_name (object, "pinnumber");
       if(bute != NULL) {
         geda_attrib_object_set_value(bute, "pinnumber",  number);
-        o_text_recreate(bute);
+        geda_text_object_recreate(bute);
       }
       else {
         bute = geda_pin_object_create_number_attrib (NULL, object, number, -1, -1);
@@ -761,7 +761,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       bute = geda_attrib_first_attrib_by_name (object, "pinseq");
       if(bute !=NULL) {
         geda_attrib_object_set_value(bute, "pinseq", str_seq);
-        o_text_recreate(bute);
+        geda_text_object_recreate(bute);
       }
       else {
         bute = geda_pin_object_create_seq_attrib (NULL, object, sequence, -1, -1);
@@ -782,7 +782,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       bute = geda_attrib_first_attrib_by_name (object, "pinlabel");
       if(bute !=NULL && bute->type == OBJ_TEXT) {
         geda_attrib_object_set_value(bute, "pinlabel", (char*)label_str);
-        o_text_recreate(bute);
+        geda_text_object_recreate(bute);
       }
       else {
         bute = geda_pin_object_create_label_attrib (NULL, object, label_str, -1, -1);
@@ -800,7 +800,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       bute = geda_attrib_first_attrib_by_name (object, "pintype");
       if (bute !=NULL) {
         geda_attrib_object_set_value(bute, "pintype", (char*)electrical);
-        o_text_recreate(bute);
+        geda_text_object_recreate(bute);
       }
       else {
         bute = geda_pin_object_create_elect_attrib (NULL, object, electrical, -1, -1);
@@ -818,7 +818,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       bute = geda_attrib_first_attrib_by_name (object, "mechtype");
       if(bute !=NULL) {
         geda_attrib_object_set_value(bute, "mechtype", (char*)mechanical);
-        o_text_recreate(bute);
+        geda_text_object_recreate(bute);
       }
       else {
         bute = geda_pin_object_create_mech_attrib (NULL, object, mechanical, -1, -1);
@@ -929,11 +929,11 @@ geda_pin_object_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
 
   GedaObject *new_bute;
 
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+  new_bute = geda_text_object_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, INVISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
-    o_text_set_rendered_bounds_func (new_bute,
+    geda_text_object_set_rendered_bounds_func (new_bute,
                                     toplevel->rendered_text_bounds_func,
                                     toplevel->rendered_text_bounds_data);
   }
@@ -1052,11 +1052,11 @@ geda_pin_object_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
 
   GedaObject *new_bute;
 
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, angle,
+  new_bute = geda_text_object_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, angle,
                          size, VISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
-    o_text_set_rendered_bounds_func (new_bute,
+    geda_text_object_set_rendered_bounds_func (new_bute,
                                     toplevel->rendered_text_bounds_func,
                                     toplevel->rendered_text_bounds_data);
   }
@@ -1161,11 +1161,11 @@ geda_pin_object_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
   else
     text = geda_utility_string_concat("mechtype", "=", object->pin->mechanical, NULL);
 
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+  new_bute = geda_text_object_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, INVISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
-    o_text_set_rendered_bounds_func (new_bute,
+    geda_text_object_set_rendered_bounds_func (new_bute,
                                     toplevel->rendered_text_bounds_func,
                                     toplevel->rendered_text_bounds_data);
   }
@@ -1303,7 +1303,7 @@ GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel, GedaObj
 
   text = geda_sprintf("pinnumber=%s", str_num);
 
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+  new_bute = geda_text_object_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, VISIBLE, SHOW_VALUE, text);
 
   geda_attrib_object_add(object, new_bute);
@@ -1435,7 +1435,7 @@ GedaObject *geda_pin_object_create_seq_attrib(GedaToplevel *toplevel, GedaObject
 
   text = geda_sprintf("pinseq=%d", value);
 
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+  new_bute = geda_text_object_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          size, INVISIBLE, SHOW_NAME_VALUE, text);
 
   geda_attrib_object_add(object, new_bute);

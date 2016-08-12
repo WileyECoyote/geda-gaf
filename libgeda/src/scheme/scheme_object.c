@@ -1131,7 +1131,7 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
 
   char *tmp = scm_to_utf8_string (string_s);
 
-  o_text_set_string (obj, tmp);
+  geda_text_object_set_string (obj, tmp);
 
   free (tmp);
 
@@ -1210,7 +1210,7 @@ EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
                      scm_from_int (obj->text->y),
                      align_s,
                      scm_from_int (obj->text->angle),
-                     scm_from_utf8_string (o_text_get_string (obj)),
+                     scm_from_utf8_string (geda_text_object_get_string (obj)),
                      scm_from_int (obj->text->size),
                      visible_s,
                      show_s,

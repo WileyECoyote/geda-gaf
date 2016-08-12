@@ -166,7 +166,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
       break;
 
     case(OBJ_TEXT):
-      str = o_text_get_string (o_current);
+      str = geda_text_object_get_string (o_current);
       if (geda_attrib_object_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
         geda_object_get_num_text_lines (str) == 1)
@@ -832,7 +832,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
       if (visible || flags & SEARCH_HIDDEN) {
 
-        const char *str = o_text_get_string (o_current);
+        const char *str = geda_text_object_get_string (o_current);
 
         /* replaced strcmp with strstr to simplify the search */
         if (strstr (str,stext)) {
@@ -973,12 +973,12 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
 
     if (o_current->type == OBJ_TEXT) {
 
-      const char *str = o_text_get_string (o_current);
+      const char *str = geda_text_object_get_string (o_current);
 
       if (!strncmp (stext, str, strlen (stext))) {
         if (geda_object_get_is_visible (o_current)) {
           geda_set_object_visibility (o_current, INVISIBLE);
-          o_text_recreate(o_current);
+          geda_text_object_recreate(o_current);
         }
       }
     }
@@ -1007,12 +1007,12 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
 
     if (o_current->type == OBJ_TEXT) {
 
-      const char *str = o_text_get_string (o_current);
+      const char *str = geda_text_object_get_string (o_current);
 
       if (!strncmp (stext, str, strlen (stext))) {
         if (!geda_object_get_is_visible (o_current)) {
           geda_set_object_visibility (o_current, VISIBLE);
-          o_text_recreate(o_current);
+          geda_text_object_recreate(o_current);
         }
       }
     }
