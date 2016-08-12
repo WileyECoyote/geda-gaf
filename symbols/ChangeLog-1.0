@@ -1,3 +1,9 @@
+2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * altera/10K10LC84-1.sym: Add description attribute.
+
+    * altera/EPF10K-1.sym: Add description attribute, change device attribute.
+
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * toshiba/pnp-power-1: Remove duplicate symbol files with incorrect
