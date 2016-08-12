@@ -1,5 +1,7 @@
 2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Remove local defines for UINT_TO_POINTER.
+
     * src/x/x_edit_cprop.c: Change filename to const in x_dialog_ep_
       component_change.
 

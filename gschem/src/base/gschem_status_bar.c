@@ -31,12 +31,6 @@
 
 #include <math.h>
 
-#if defined(__LP64__) || defined(_LP64)
-# define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))
-#else
-# define UINT_TO_POINTER(u) ((void*)(unsigned int)(u))
-#endif
-
 /** \defgroup Gschem-Status-Bar Gschem Status Bar
  * @{
  * \brief #GschemStatusBar Class Implmentation
