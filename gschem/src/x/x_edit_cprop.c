@@ -603,7 +603,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   GedaObject *a_current;
   GList      *attribs;
   GList      *all_butes;
-  char       *filename;
+  const char *filename;
   char       *value;
 
   void (*set_entry)(const char *name, GtkWidget *entry);

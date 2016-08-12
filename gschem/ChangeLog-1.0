@@ -1,3 +1,8 @@
+2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Change filename to const in x_dialog_ep_
+      component_change.
+
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_action.c: Add preprocessor conditionals and use function
