@@ -496,8 +496,9 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 
     FILE *file;
 
-    if (length)
+    if (length) {
       *length = 0;      /* Assume zero bytes will be read */
+    }
 
    *contents = NULL;    /* Null caller's pointer */
     errno    = 0;       /* Ensure error is reset */
@@ -557,16 +558,17 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
                       filename, strerror (errno));
       }
 
-#else
-    else {
 #endif
-      retval = get_contents_stdio (filename, file, contents, length, err);
-    }
+    else {
+
+        retval = get_contents_stdio (filename, file, contents, length, err);
 
 #if !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__)
-  close (fd);
+        close (fd);
+      }
 #endif
 
+    }
   }
 
   return retval;
