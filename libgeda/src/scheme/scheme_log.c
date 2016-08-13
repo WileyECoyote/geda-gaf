@@ -24,8 +24,8 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
-#include "libgedaguile_priv.h"
+#include "../../include/libgeda_priv.h"
+#include "../../include/libgedaguile_priv.h"
 
 SCM_SYMBOL(error_sym,    "error");
 SCM_SYMBOL(critical_sym, "critical");
