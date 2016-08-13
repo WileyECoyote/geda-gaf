@@ -187,12 +187,14 @@ const char *
 s_textbuffer_next_line (TextBuffer *tb)
 {
   return s_textbuffer_next (tb, -1);
+}
+
 /*! \brief Change the current position within a text buffer
  *
  *  \par Function description
  *  Changes where the next call to s_textbuffer_next() will start
- *  reading. If offset is negative, the offset calculated relative
- *  to current buffer position.
+ *  reading. If offset is negative, the offset is calculated relative
+ *  to the current buffer position.
  *
  *  \param tb     A TextBuffer to seek within.
  *  \param offset A new position within the buffer.
