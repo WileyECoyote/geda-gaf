@@ -36,6 +36,7 @@ typedef enum {
   EDA_ERROR_UNKNOWN_ENCODING, /* Schematic data was not UTF-8-encoded. */
   EDA_ERROR_NUM_ERRORS,
   EDA_ERROR_NULL_POINTER,
+  EDA_ERROR_INVALID_PAGE
 } EdaError;
 
 #ifdef __cplusplus

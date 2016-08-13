@@ -1,5 +1,11 @@
 2016-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_errors.h: Add EDA_ERROR_INVALID_PAGE to EdaError
+      enumeration.
+
+    * src/file/f_file.c: Validate the page object and set error in function
+      f_open if the page object is invalid.
+
     * src/scheme/scheme_log.c: Use relative path to headers.
 
     * src/struct/s_slib.c: Convert extra comments into todos

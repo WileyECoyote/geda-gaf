@@ -175,6 +175,12 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     return status;
   }
 
+  if (!GEDA_IS_PAGE(page)) {
+    g_set_error (err, EDA_ERROR, EDA_ERROR_INVALID_PAGE,
+               _("Error: Invalid page object"));
+    return 0;
+  }
+
   flags     = geda_toplevel_get_file_open_flags(toplevel);
   saved_cwd = NULL;
 
