@@ -10,15 +10,15 @@ pinlabel=VCC
 T 2600 6200 5 8 0 1 0 5 1
 pintype=pwr
 }
-P 2400 0 2400 300 1 0 0
+P 2600 0 2600 300 1 0 0
 {
-T 2450 100 5 8 1 1 0 0 1
+T 2650 100 5 8 1 1 0 0 1
 pinnumber=3
-T 2450 100 5 8 0 1 0 2 1
+T 2650 100 5 8 0 1 0 2 1
 pinseq=3
-T 2400 350 9 8 1 1 0 3 1
+T 2600 350 9 8 1 1 0 3 1
 pinlabel=GND
-T 2400 500 5 8 0 1 0 3 1
+T 2600 500 5 8 0 1 0 3 1
 pintype=pwr
 }
 P 4800 5000 4500 5000 1 0 0
@@ -307,34 +307,15 @@ pinlabel=PD7 (PCINT23/AIN1)
 T 350 800 5 8 0 1 0 2 1
 pintype=io
 }
-B 300 300 4200 6100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 4500 6500 8 10 1 1 0 6 1
-refdes=U?
-T 300 6500 9 10 1 0 0 0 1
-ATMega48-TQFP32
-T 300 6800 5 10 0 0 0 0 1
-device=ATMega48-QFN32
-T 300 7000 5 10 0 0 0 0 1
-footprint=QFN32_5_EP
-T 300 7200 5 10 0 0 0 0 1
-author=andrewmATthehacktoryDOTcom
-T 300 7400 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2545.pdf
-T 300 7600 5 10 0 0 0 0 1
-description=ATMega48
-T 400 7800 5 10 0 0 0 0 1
-dist-license=GPL
-T 400 8000 5 10 0 0 0 0 1
-use-license=unlimited
-P 1800 0 1800 300 1 0 0
+P 2200 0 2200 300 1 0 0
 {
-T 1850 100 5 8 1 1 0 0 1
+T 2250 100 5 8 1 1 0 0 1
 pinnumber=5
-T 1850 100 5 8 0 1 0 2 1
+T 2250 100 5 8 0 1 0 2 1
 pinseq=5
-T 1800 350 9 8 1 1 0 3 1
+T 2200 350 9 8 1 1 0 3 1
 pinlabel=GND
-T 1800 500 5 8 0 1 0 3 1
+T 2200 500 5 8 0 1 0 3 1
 pintype=pwr
 }
 P 2200 6700 2200 6400 1 0 0
@@ -370,14 +351,22 @@ pinlabel=ADC7
 T 4450 3800 5 8 0 1 0 8 1
 pintype=io
 }
-P 3000 0 3000 300 1 0 0
-{
-T 3050 100 5 8 1 1 0 0 1
-pinnumber=33
-T 3050 100 5 8 0 1 0 2 1
-pinseq=33
-T 3000 350 9 8 1 1 0 3 1
-pinlabel=EP GND
-T 3000 500 5 8 0 1 0 3 1
-pintype=pwr
-}
+B 300 300 4200 6100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 4500 6500 8 10 1 1 0 6 1
+refdes=U?
+T 300 6500 9 10 1 1 0 0 1
+value=ATMega48
+T 300 6800 5 10 0 0 0 0 1
+device=ATMega48
+T 300 7000 5 10 0 0 0 0 1
+footprint=TQFP-32-7
+T 300 8000 5 10 0 0 0 0 1
+author=andrewmATthehacktoryDOTcom
+T 300 7400 5 10 0 0 0 0 1
+documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2545.pdf
+T 300 7200 5 10 0 0 0 0 1
+description=ATMega48,TQFP32
+T 300 7800 5 10 0 0 0 0 1
+dist-license=GPL
+T 300 7600 5 10 0 0 0 0 1
+use-license=unlimited

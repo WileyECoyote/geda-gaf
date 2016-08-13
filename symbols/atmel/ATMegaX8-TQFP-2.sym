@@ -355,14 +355,14 @@ B 300 0 2800 6300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 3100 6400 8 10 1 1 0 6 1
 refdes=U?
 T 200 6650 5 10 0 0 0 0 1
-device=atmega8
+device=ATMegaX8
 T 200 6850 5 10 0 0 0 0 1
-footprint=TQFP32_7
+footprint=TQFP-32-7
 T 200 7050 5 10 0 0 0 0 1
 author=Cory Cross
 T 200 7250 5 10 0 0 0 0 1
 documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 200 7450 5 10 0 0 0 0 1
-description=Atmel AVR series RISC microprocessor
+description=Atmel AVR series RISC microprocessor,TQFP32
 T 200 7650 5 10 0 0 0 0 1
 numslots=0

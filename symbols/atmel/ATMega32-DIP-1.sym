@@ -1,11 +1,4 @@
-v 20031231 1
-B 400 400 3600 9100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 9950 5 10 0 0 0 0 1
-device=ATmega32
-T 400 10150 5 10 0 0 0 0 1
-footprint=DIL 40 600
-T 400 9750 5 10 0 0 0 0 1
-numslots=0
+v 20130214 1
 P 100 8600 400 8600 1 0 0
 {
 T 450 8600 5 8 0 1 0 2 1
@@ -446,20 +439,25 @@ pinseq=32
 T 450 800 9 8 1 1 0 0 1
 pinlabel=AREF
 }
-T 4000 9600 8 10 1 1 0 6 1
-refdes=U?
-T 400 10350 5 10 0 0 0 0 1
-description=8-bit RISC micro controller (Atmel)
-T 400 9550 9 10 1 0 0 0 1
-ATmega32
+B 400 400 3600 9100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 450 9225 950 9225 3 0 0 0 -1 -1
 L 850 3725 1050 3725 3 0 0 0 -1 -1
 V 350 9100 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 3600 0 8 10 0 0 0 0 1
+T 4000 9600 8 10 1 1 0 6 1
+refdes=U?
+T 400 9950 5 10 0 0 0 0 1
+device=ATmega32
+T 400 10150 5 10 0 0 0 0 1
+footprint=DIL 40 600
+T 400 10350 5 10 0 0 0 0 1
+description=8-bit RISC micro controller
+T 400 9750 5 10 0 0 0 0 1
+numslots=0
+T 400 9550 9 10 1 1 0 0 1
+value=ATmega32
+T 400 11200 8 10 0 0 0 0 1
 author=Darren Fulton darren.fultonATgmail.com
-T 0 0 8 10 0 0 0 0 1
+T 400 11000 8 10 0 0 0 0 1
 dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 400 10800 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: micro

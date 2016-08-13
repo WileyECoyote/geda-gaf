@@ -4,6 +4,8 @@
 
     * altera/EPF10K-1.sym: Add description attribute, change device attribute.
 
+    * atmel/: Rename and revise various Atmel symbols.
+
     * toshiba/pnp-power-1/TTB001_pnp_60V_36W-1.sym: Fix pin off-grid, update
       footprint.
 
