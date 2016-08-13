@@ -136,8 +136,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #endif
 
-/*! \def gtk_widget_get_allocated_height Not avaliable until Gtk 3.4
- *   The "real" gdk_screen_get_monitor_workarea excludes panels */
+/*! \def gdk_screen_get_monitor_workarea Not avaliable until Gtk 3.4 */
 #define gdk_screen_get_monitor_workarea gdk_screen_get_monitor_geometry
 
 /*! \def gtk_widget_get_allocated_height Not in Gtk < 3 */
