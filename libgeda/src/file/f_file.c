@@ -375,31 +375,34 @@ f_remove_backup_file (const char *filename)
 {
   char *real_filename;
 
-  /* Get the real filename and file permissions */
-  real_filename = f_sys_follow_symlinks (filename, NULL);
+  if (filename) {
 
-  if (real_filename == NULL) {
-    u_log_message (_("%s: Can not get the real filename of %s."),
-                      __func__, filename);
-  }
-  else {
+    /* Get the real filename and file permissions */
+    real_filename = f_sys_follow_symlinks (filename, NULL);
 
-    char *backup_filename = f_get_autosave_filename (real_filename);
+    if (real_filename == NULL) {
+      u_log_message (_("%s: Can not get the real filename of %s."),
+      __func__, filename);
+    }
+    else {
 
-    /* Delete the backup file */
-    if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
-       (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
-    {
-      if (unlink(backup_filename) != 0) {
-        u_log_message(_("%s: Unable to delete backup file %s."),
-                      __func__, backup_filename);
+      char *backup_filename = f_get_autosave_filename (real_filename);
+
+      /* Delete the backup file */
+      if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
+        (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
+      {
+        if (unlink(backup_filename) != 0) {
+          u_log_message(_("%s: Unable to delete backup file %s."),
+          __func__, backup_filename);
+        }
       }
+
+      GEDA_FREE (backup_filename);
     }
 
-    GEDA_FREE (backup_filename);
+    GEDA_FREE(real_filename);
   }
-
-  GEDA_FREE(real_filename);
 }
 
 static int

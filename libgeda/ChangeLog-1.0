@@ -4,7 +4,8 @@
       enumeration.
 
     * src/file/f_file.c: Validate the page object and set error in function
-      f_open if the page object is invalid.
+      f_open if the page object is invalid. Revise f_remove_backup_file to
+      ignore NULL filenames.
 
     * src/scheme/scheme_log.c: Use relative path to headers.
 
