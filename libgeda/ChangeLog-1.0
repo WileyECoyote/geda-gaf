@@ -1,3 +1,7 @@
+2016-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_slib.c: Convert extra comments into todos
+
 2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_errors.c: Reduce scope of type_string in geda_error_

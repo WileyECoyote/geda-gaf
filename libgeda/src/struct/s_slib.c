@@ -38,8 +38,6 @@
 
 #include <geda_debug.h>
 
-/* need to test everything at boundary conditions (exceed cache size etc...) */
-
 /*! \brief */
 struct st_slib {
   char *dir_name;
@@ -52,7 +50,8 @@ static int slib_index=0;
 #define MAX_SLIBS	128
 
 /*! \brief
- * and eventually make this unlimited hack hack
+ * \todo eventually make this unlimited hack hack
+ * \todo test everything at boundary conditions (exceed cache size etc...)
  */
 static struct st_slib slib[MAX_SLIBS];
 
