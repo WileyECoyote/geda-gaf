@@ -29,6 +29,8 @@
 #include <stdlib.h>
 #include <errno.h>
 
+#include "test-suite.h"
+
 /*! \file test_file.c
  *  \brief Tests for geda file functions
  *  \par
@@ -457,16 +459,52 @@ main (int argc, char *argv[])
 {
   int result = 0;
 
+  SETUP_SIGSEGV_HANDLER;
+
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
 
-  result  = test_file();
-  result += test_get();
-  result += test_path();
-  result += test_print();
-  result += test_sys();
+  if (setjmp(point) == 0) {
+      result = test_file();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking file group 1 src/file/f_file.c\n\n");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_get();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking file group 2 src/file/f_get.c\n\n");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_path();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking file group 3 src/file/f_path.c\n\n");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_print();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking file group 4 src/file/f_print.c\n\n");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_sys();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking file group 5 src/file/f_sys.c\n\n");
+    result++;
+  }
 
   return result;
 }
