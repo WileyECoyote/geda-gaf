@@ -1,5 +1,4 @@
 
-#include <glib.h>
 #include <libgeda.h>
 
 #include "test-suite.h"

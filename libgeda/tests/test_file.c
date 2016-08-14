@@ -24,7 +24,6 @@
  *  Date Contributed: March, TBD, 2016
  */
 
-//#include <glib.h>
 #include <libgeda.h>
 #include <stdlib.h>
 #include <errno.h>
