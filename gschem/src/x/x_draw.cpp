@@ -35,6 +35,8 @@
  *
  */
 
+#define WITHOUT_GUILE 1
+
 #include <string>
 
 #include "../../include/gschem.h"
