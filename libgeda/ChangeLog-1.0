@@ -11,6 +11,9 @@
 
     * src/struct/s_slib.c: Convert extra comments into todos
 
+    * test_attrib_object.c: Remove geda_toplevel_add_page in setup_new_toplevel
+      this is already done in s_page_new.
+
     * tests/test_file.c: Include "test-suite.h" and setup setjmp and longjmp to
       trap seg faults during tests.
 

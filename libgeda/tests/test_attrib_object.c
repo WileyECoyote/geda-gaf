@@ -1869,8 +1869,6 @@ GedaToplevel *setup_new_toplevel(void)
   toplevel = geda_toplevel_new ();
   page     = s_page_new (toplevel, "test_attrib_object.log");
 
-  geda_toplevel_add_page(toplevel, page);
-
   geda_toplevel_set_current_page(toplevel, page);
 
   return toplevel;
