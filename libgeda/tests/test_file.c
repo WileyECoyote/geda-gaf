@@ -75,14 +75,68 @@ struct _TestData
 
 int test_file (void)
 {
+  GedaToplevel *toplevel;
+  Page         *page;
+  GError       *err;
+
+  toplevel = geda_toplevel_new ();
+
+  geda_toplevel_set_file_open_flags(toplevel, F_OPEN_RESTORE_CWD);
+  geda_toplevel_set_make_backups(toplevel, 0);
+
   int result = 0;
 
-    /* === Function 01: geda_close_file           f_close === */
-    /* === Function 02: geda_file_has_autosave    f_has_active_autosave === */
-    /* === Function 03: geda_open_file            f_open === */
-    /* === Function 04: geda_open_flags           f_open_flags === */
-    /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
-    /* === Function 06: geda_save_file            f_save === */
+  /* === Function 01: geda_close_file           f_close === */
+  /* === Function 02: geda_file_has_autosave    f_has_active_autosave === */
+
+  /* === Function 03: f_open === */
+
+  err = NULL;
+
+  if (geda_open_file(toplevel, NULL, NULL, &err)) {
+    fprintf(stderr, "FAILED: (F010300A) f_open NULL\n");
+    result++;
+  }
+  else if (!err) {
+    fprintf(stderr, "FAILED: (F010300B) f_open NULL\n");
+    result++;
+  }
+  else {
+    g_error_free (err);
+  }
+
+  err = NULL;
+  page = s_page_new (toplevel, NULL);
+
+  if (geda_open_file(toplevel, page, NULL, &err)) {
+    fprintf(stderr, "FAILED: (F010300C) f_open NULL\n");
+    result++;
+  }
+  else if (!err) {
+    fprintf(stderr, "FAILED: (F010300D) f_open NULL\n");
+    result++;
+  }
+  else {
+    g_error_free (err);
+  }
+/*
+  if (geda_open_file(toplevel, page, "nonexistence", &err)) {
+    fprintf(stderr, "FAILED: (F010300C) f_open NULL\n");
+    result++;
+  }
+  else if (!err) {
+    fprintf(stderr, "FAILED: (F010300D) f_open NULL\n");
+    result++;
+  }
+  else {
+    g_error_free (err);
+  }
+*/
+  s_page_delete (toplevel, page, FALSE);
+
+  /* === Function 04: geda_open_flags           f_open_flags === */
+  /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
+  /* === Function 06: geda_save_file            f_save === */
 
   return result;
 }

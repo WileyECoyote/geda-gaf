@@ -4,6 +4,8 @@
       routines from s_page_new and s_page_new_with_notify to s_page_new_common,
       pass toplevel to s_page_new_common.
 
+    * tests/test_file.c: Add some checks for f_open.
+
 2016-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_errors.h: Add EDA_ERROR_INVALID_PAGE to EdaError
