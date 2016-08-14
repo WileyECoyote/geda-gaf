@@ -111,9 +111,20 @@ pre_object_removed (Page *page, GedaObject *object)
 }
 
 static Page *
-s_page_new_common(Page *page)
+s_page_new_common(GedaToplevel *toplevel, Page *page)
 {
   page->hierarchy_up = -2;
+
+  page->width  = toplevel->width;
+  page->height = toplevel->height;
+
+  page->left   = 0;
+  page->right  = toplevel->width;
+  page->top    = 0;
+  page->bottom = toplevel->height;
+
+  geda_toplevel_add_page (toplevel, page); /* Adds reference to page */
+  geda_page_set_toplevel (page, toplevel); /* Adds reference to toplevel */
 
   /* Init tile array */
   s_tile_init (page);
@@ -163,18 +174,7 @@ s_page_new (GedaToplevel *toplevel, const char *filename)
     page->filename = geda_utility_string_strdup (toplevel->untitled_name);
   }
 
-  page->width  = toplevel->width;
-  page->height = toplevel->height;
-
-  page->left   = 0;
-  page->right  = toplevel->width;
-  page->top    = 0;
-  page->bottom = toplevel->height;
-
-  geda_toplevel_add_page (toplevel, page); /* Adds reference to page */
-  geda_page_set_toplevel (page, toplevel); /* Adds reference to toplevel */
-
-  return s_page_new_common(page);
+  return s_page_new_common(toplevel, page);
 }
 
 Page*
@@ -199,18 +199,7 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
     page->filename = geda_utility_string_strdup (toplevel->untitled_name);
   }
 
-  page->width  = toplevel->width;
-  page->height = toplevel->height;
-
-  page->left   = 0;
-  page->right  = toplevel->width;
-  page->top    = 0;
-  page->bottom = toplevel->height;
-
-  geda_toplevel_add_page (toplevel, page); /* Adds reference to page */
-  geda_page_set_toplevel(page, toplevel);  /* Adds reference to toplevel */
-
-  return s_page_new_common(page);
+  return s_page_new_common(toplevel, page);
 }
 
 /*!

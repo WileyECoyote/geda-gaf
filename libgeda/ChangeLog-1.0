@@ -1,3 +1,9 @@
+2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_page.c: Moved setting page geometry and common toplevel
+      routines from s_page_new and s_page_new_with_notify to s_page_new_common,
+      pass toplevel to s_page_new_common.
+
 2016-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_errors.h: Add EDA_ERROR_INVALID_PAGE to EdaError
