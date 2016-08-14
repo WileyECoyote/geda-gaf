@@ -384,7 +384,7 @@ geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
 /*!
  * \brief Retrieve GedaCheckMenuItem's Type identifier.
  * \par Function Description
- *  Function to retrieve a #GedaCheckMenuItemType identifier. When
+ *  Function to retrieve a #GedaCheckMenuItem type identifier. When
  *  first called, the function registers a #GedaCheckMenuItem in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaCheckMenuItem and returns the unsigned integer value.
@@ -437,7 +437,7 @@ geda_check_menu_item_get_type (void)
  *  Ensures \a check_menu_item is a valid G_Object and compares signature
  *  to geda check_menu_item type.
  *
- * \ret_val TRUE if \a check_menu_item is a valid GedaCheckMenuItem
+ * \retval TRUE if \a check_menu_item is a valid GedaCheckMenuItem
  */
 bool
 is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
@@ -617,7 +617,7 @@ geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
 /*!
  * \brief Get GedaCheckMenuItem draw-as-radio property
  * \par Function Description
- *  Returns whether @check_menu_item looks like a #GedaRadioMenuItem
+ *  Returns whether \a check_menu_item looks like a #GedaRadioMenuItem
  *
  * \param [in] check_menu_item: a #GedaCheckMenuItem
  *
@@ -636,7 +636,8 @@ geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
  * \par Function Description
  *  Set whether \a check_menu_item is drawn like a #GedaRadioMenuItem
  *
- * \param [in] check_menu_item: a #GedaCheckMenuItem
+ * \param [in] check_menu_item Pointer to a #GedaCheckMenuItem
+ * \param [in] draw_as_radio   If TRUE the indicator will be drawn as a radio.
  */
 void
 geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
@@ -661,9 +662,9 @@ geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
  * \par Function Description
  *  Retrieves the value set by geda_check_menu_item_set_inconsistent().
  *
- * \param [in] check_menu_item: a #GedaCheckMenuItem
+ * \param [in] check_menu_item Pointer to a #GedaCheckMenuItem
  *
- * \returns %TRUE if inconsistent
+ * \retval %TRUE if inconsistent
  */
 bool
 geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
