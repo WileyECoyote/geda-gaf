@@ -3,6 +3,8 @@
     * src/struct/s_clib.c: Replace g_path_get_basename with f_get_basename_dup
       in function s_clib_get_source_by_name.
 
+    * tests/Makefile.am: Add _GNU_SOURCE to CFLAGS for compiling test files.
+
     * tests/data/ATMega32-DIP_test.sym: Add symbol file for testing.
 
     * tests/test_file.c: Add more checks for f_open using above file. Add basic

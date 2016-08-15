@@ -47,7 +47,7 @@ AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
 	-I$(top_srcdir) -I$(top_srcdir)/include \
 	-I$(top_srcdir)/libgedacolor/include
 
-AM_CFLAGS = -DWOW \
+AM_CFLAGS = -DWOW -D _GNU_SOURCE \
 	$(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
 	$(GDK_PIXBUF_CFLAGS)
 
