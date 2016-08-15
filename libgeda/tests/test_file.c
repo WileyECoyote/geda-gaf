@@ -158,7 +158,26 @@ int test_file (void)
 
   s_page_delete (toplevel, page, FALSE);
 
-  /* === Function 04: geda_open_flags           f_open_flags === */
+  /* === Function 04: f_open_flags === */
+
+  unsigned int flags;
+
+  flags = geda_open_flags(toplevel);
+
+  if (flags ^ F_OPEN_RESTORE_CWD) {
+    fprintf(stderr, "FAILED: (F010401) f_open_flags <%d>\n", flags);
+    result++;
+  }
+
+  geda_toplevel_set_file_open_flags(toplevel, F_OPEN_NONE);
+
+  flags = geda_open_flags(toplevel);
+
+  if (flags) {
+    fprintf(stderr, "FAILED: (F010402) f_open_flags <%u>\n", flags);
+    result++;
+  }
+
   /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
   /* === Function 06: geda_save_file            f_save === */
 

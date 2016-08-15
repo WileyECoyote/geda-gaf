@@ -5,7 +5,8 @@
 
     * tests/data/ATMega32-DIP_test.sym: Add symbol file for testing.
 
-    * tests/test_file.c: Add more checks for f_open using above file.
+    * tests/test_file.c: Add more checks for f_open using above file. Add basic
+      checks for f_open_flags.
 
 2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
