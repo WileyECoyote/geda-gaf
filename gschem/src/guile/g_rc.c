@@ -1067,11 +1067,11 @@ SCM g_rc_attribute_name(SCM scm_path)
   path = scm_to_utf8_string (scm_path);
 
   /* not unique? */
-  if (!s_attrib_uniq(path)) {
+  if (!geda_struct_attrib_uniq(path)) {
     ret = SCM_BOOL_F;
   }
   else {
-    s_attrib_add_entry (path);
+    geda_struct_attrib_add_entry (path);
     ret = SCM_BOOL_T;
   }
 

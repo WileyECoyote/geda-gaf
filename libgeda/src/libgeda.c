@@ -146,7 +146,7 @@ void libgeda_init(int argc, char **argv)
   s_clib_init();
   s_slib_init();
   i_menu_init();
-  s_attrib_init();
+  geda_struct_attrib_init();
   s_conn_init();
 
   /* Initialize scheme even if client has not booted Guile */
@@ -158,7 +158,7 @@ void libgeda_release(void)
   f_path_free();
   s_clib_free();
   s_slib_free();
-  s_attrib_free();
+  geda_struct_attrib_free();
   s_papersizes_free();
   i_vars_libgeda_freenames();
 }

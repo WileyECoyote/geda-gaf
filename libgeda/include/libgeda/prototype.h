@@ -571,12 +571,12 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_text_object_translate                (GedaObject *object, int dx, int dy);
 
 /* s_attrib.c */
-          int    s_attrib_add_entry              (char *new_attrib);
-          int    s_attrib_count                  (void);
-         void    s_attrib_print                  (void);
-          int    s_attrib_uniq                   (char *name);
-         void    s_attrib_init                   (void);
-         char   *s_attrib_get                    (int counter);
+          int    geda_struct_attrib_add_entry              (char *new_attrib);
+          int    geda_struct_attrib_count                  (void);
+         void    geda_struct_attrib_print                  (void);
+          int    geda_struct_attrib_uniq                   (char *name);
+         void    geda_struct_attrib_init                   (void);
+         char   *geda_struct_attrib_get                    (int counter);
 
 /* s_print.c */
          void    print_struct_forw               (GList *list);

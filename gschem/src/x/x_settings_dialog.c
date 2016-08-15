@@ -732,12 +732,13 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
  *   This function passes each char* from an array of strings to
  *   the add_to_list function to store the item in the designated
  *   view.
+ *
  *      while (list[i]) { add_to_list(TreeView, list[i++]);}
  *
- *   The array of string can be NULL, in which case strings are
- *   retieved using s_attrib_get. The only "list" passed to this
- *   function is the default list that is used when the configuration
- *   data is missing.
+ *   The array of string can be NULL, in which case the strings are
+ *   retieved using geda_struct_attrib_get. The only "list" passed to
+ *   this function is the default list that is used when the config-
+ *   uration data is missing.
 */
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 {
@@ -748,7 +749,7 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
     if (list != NULL) /* if pointer is NULL, (not char) */
        return list[i];
     else
-       return s_attrib_get(i);
+       return geda_struct_attrib_get(i);
   }
 
   string =  array(i);
@@ -884,7 +885,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
   char *str_new;
   int next;
 
-  s_attrib_init();
+  geda_struct_attrib_init();
 
   store = gtk_tree_view_get_model (GTK_TREE_VIEW(PotentialAttributesView));
 
@@ -895,7 +896,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
 
     /* Walk through the list, reading each row. */
     gtk_tree_model_get (store, &iter, 0, &str_new, -1);
-    s_attrib_add_entry(str_new);
+    geda_struct_attrib_add_entry(str_new);
     next = gtk_tree_model_iter_next (store, &iter);
   }
   return 0;

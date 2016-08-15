@@ -1350,7 +1350,7 @@ KEYWORD ( attribute_name ) {
   int i;
   char *ptrBuffer;
 
-  count = s_attrib_count();
+  count = geda_struct_attrib_count();
 
   ptrBuffer = KEY_BUFFER(attribute_name);
 
@@ -1365,7 +1365,7 @@ KEYWORD ( attribute_name ) {
       break; /* should not do this as long as count in RC file = count in memory */
   }
   for (i = 0; i < count; i++) {
-    RC_STRING_GOUT(attribute_name, s_attrib_get(i))
+    RC_STRING_GOUT(attribute_name, geda_struct_attrib_get(i))
   }
 }
 

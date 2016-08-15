@@ -52,7 +52,7 @@ static struct st_attrib_names attrib[MAX_ATTRIBS];
  *  \par Function Description
  *
  */
-int s_attrib_add_entry(char *new_attrib)
+int geda_struct_attrib_add_entry(char *new_attrib)
 {
   if (new_attrib == NULL) {
     return(-1);
@@ -73,7 +73,7 @@ int s_attrib_add_entry(char *new_attrib)
  *       Return integer count of the number
  *       of stored attribute strings
  */
-int s_attrib_count( void )
+int geda_struct_attrib_count( void )
 {
   return(attrib_index);
 }
@@ -83,7 +83,7 @@ int s_attrib_count( void )
  *  \par Function Description
  *
  */
-void s_attrib_print()
+void geda_struct_attrib_print()
 {
   int i;
 
@@ -98,7 +98,7 @@ void s_attrib_print()
  *
  */
 /* true for uniqueness, zero for duplication */
-int s_attrib_uniq(char *name)
+int geda_struct_attrib_uniq(char *name)
 {
   int i;
 
@@ -116,7 +116,7 @@ int s_attrib_uniq(char *name)
  *  \par Function Description
  *
  */
-void s_attrib_free()
+void geda_struct_attrib_free()
 {
   int i;
 
@@ -130,9 +130,9 @@ void s_attrib_free()
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ *   document why public!
  */
-void s_attrib_init()
+void geda_struct_attrib_init()
 {
   int i;
   for (i = 0; i < MAX_ATTRIBS; i++) {
@@ -146,7 +146,7 @@ void s_attrib_init()
  *  \par Function Description
  *
  */
-char *s_attrib_get(int counter)
+char *geda_struct_attrib_get(int counter)
 {
   if (counter < attrib_index) {
     return(attrib[counter].attrib_name);

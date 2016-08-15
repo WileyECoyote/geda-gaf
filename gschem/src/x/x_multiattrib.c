@@ -1578,8 +1578,8 @@ multiattrib_callback_button_add(GtkButton *button, void *user_data)
  *
  *  \par Function Description
  *   This function appends each attribute name string retrieved from
- *   LibGeda->s_attrib_get() to the Add Frame's Attribute Name Combo
- *   during construction of the dialog.
+ *   LibGeda->geda_struct_attrib_get() to the Add Frame's Attribute Name
+ *   Combo during construction of the dialog.
  *
  */
 static
@@ -1594,11 +1594,11 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
 
   /* load the combo's tree with our list of attributes names */
   i = 0;
-  string =s_attrib_get(i);
+  string =geda_struct_attrib_get(i);
   while (string != NULL) {
     geda_combo_box_append_text(GEDA_COMBO_BOX(combo), string);
     i++;
-    string = s_attrib_get(i);
+    string = geda_struct_attrib_get(i);
   }
 
   /* Add completion to attribute combo box entry */

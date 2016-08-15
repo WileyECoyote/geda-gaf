@@ -532,11 +532,11 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
 
     /* load the combo's tree with our list of attributes names */
     i = 0;
-    string = (char*) s_attrib_get(i);
+    string = (char*) geda_struct_attrib_get(i);
     while (string != NULL) {
       geda_combo_box_append_text(GEDA_COMBO_BOX(attrib_name_combo_box), string);
       i++;
-      string = (char*) s_attrib_get(i);
+      string = (char*) geda_struct_attrib_get(i);
     }
 
     /* Add completion to attribute combo box entry */
