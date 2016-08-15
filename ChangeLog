@@ -1,3 +1,7 @@
+2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_enum.h: Add F_OPEN_NONE to IDE_OPEN_FLAGS.
+
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * svg/geda-xml.svg: Add XML icon.
