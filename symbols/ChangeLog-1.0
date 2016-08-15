@@ -1,3 +1,8 @@
+2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/KAQY210-1.sym: Add symbol KAQY210 Solid State Relay, N.O. with
+      350V MOSFET.
+
 2016-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * altera/10K10LC84-1.sym: Add description attribute.
