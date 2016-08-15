@@ -138,14 +138,15 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
 static void
 geda_font_dialog_update_preview (GedaFontDialog *dialog)
 {
-  int new_height;
   GtkRequisition old_requisition;
-  GtkWidget *preview_entry;
-  const char *text;
+  GtkWidget     *preview_entry;
 
   preview_entry = dialog->preview_entry;
 
   if ( gtk_widget_has_screen (preview_entry)) {
+
+    const char *text;
+    int new_height;
 
     geda_font_dialog_change_entry_map (dialog, preview_entry);
 
@@ -186,7 +187,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
   bool changed;
 
   g_return_if_fail ( GEDA_IS_FONT_DIALOG (dialog));
-  g_return_if_fail ( new_desc == NULL );
+  g_return_if_fail ( new_desc == NULL);
 
   changed = FALSE;
   if ( dialog->font_desc == NULL ) {
@@ -219,7 +220,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
     nf_name = pango_font_description_get_family (new_desc);
 
     if (strcmp( nf_name, cf_name) != 0) {
-      pango_font_description_set_family (curr_desc, nf_name );
+      pango_font_description_set_family (curr_desc, nf_name);
       /*do_update_family */
       changed = TRUE;
     }
@@ -231,7 +232,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
 
     if (( style = pango_font_description_get_style (new_desc) ) !=
                   pango_font_description_get_style (curr_desc)) {
-      pango_font_description_set_style (curr_desc, style );
+      pango_font_description_set_style (curr_desc, style);
       changed = TRUE;
     }
   }
@@ -245,7 +246,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
     n_stretch = pango_font_description_get_stretch(new_desc);
 
     if (n_stretch != c_stretch ) {
-      pango_font_description_set_stretch (curr_desc, n_stretch );
+      pango_font_description_set_stretch (curr_desc, n_stretch);
       changed = TRUE;
     }
   }
@@ -259,7 +260,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
     n_variant = pango_font_description_get_variant(new_desc);
 
     if (n_variant != c_variant ) {
-      pango_font_description_set_variant (curr_desc, n_variant );
+      pango_font_description_set_variant (curr_desc, n_variant);
       changed = TRUE;
     }
   }
@@ -451,16 +452,18 @@ geda_font_dialog_select_best_size (GedaFontDialog *dialog)
   GtkTreeIter       iter;
   GtkTreeModel     *model;
   GtkTreeSelection *selection;
-  bool found;
-  int i;
+  char             *size;
+  bool              found;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->size_list));
   g_signal_handler_block (selection, dialog->size_handler);
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->size_list));
-
   found = FALSE;
+
   if (gtk_tree_model_get_iter_first (model, &iter)) {
+
+    int i;
 
     for (i = 0; i < G_N_ELEMENTS (font_sizes); i++) {
 
@@ -482,16 +485,11 @@ geda_font_dialog_select_best_size (GedaFontDialog *dialog)
 
   g_signal_handler_unblock (selection, dialog->size_handler);
 
-  {
-    char *size;
+  size = geda_sprintf ("%d", dialog->font_size); //dialog->font_size);
 
-    size = geda_sprintf ("%d", dialog->font_size ); //dialog->font_size);
-
-    /* Changing the entry triggers an update to the preview entry*/
-    gtk_entry_set_text (GTK_ENTRY (dialog->size_entry), size);
-    g_free ( size );
-
-  }
+  /* Changing the entry triggers an update to the preview entry*/
+  gtk_entry_set_text (GTK_ENTRY (dialog->size_entry), size);
+  g_free (size);
 }
 
 static void
@@ -505,6 +503,7 @@ geda_font_dialog_show_available_sizes (GedaFontDialog *dialog)
   gtk_list_store_clear (store);
 
   for (i = 0; i < G_N_ELEMENTS (font_sizes); i++) {
+
     GtkTreeIter iter;
 
     gtk_list_store_append (store, &iter);
@@ -538,14 +537,15 @@ int valid_font_size (int new_size)
 static void callback_select_size (GtkTreeSelection *selection, void * data)
 {
   GedaFontDialog *dialog;
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  char *size;
+  GtkTreeModel   *model;
+  GtkTreeIter     iter;
   int new_size;
 
   dialog = GEDA_FONT_DIALOG (data);
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+
+    char *size;
 
     gtk_tree_model_get (model, &iter, SIZE_COLUMN, &new_size, -1);
 
@@ -555,10 +555,12 @@ static void callback_select_size (GtkTreeSelection *selection, void * data)
       pango_font_description_set_size (dialog->font_desc, dialog->font_size);
 
     }
-    size = geda_sprintf ("%d", new_size ); //dialog->font_size);
+
+    size = geda_sprintf ("%d", new_size); //dialog->font_size);
+
     /* Changing the entry triggers an update to the preview entry*/
     gtk_entry_set_text (GTK_ENTRY (dialog->size_entry), size);
-    g_free ( size );
+    g_free ( size);
 
   }
 }
@@ -589,12 +591,11 @@ geda_font_dialog_select_best_style (GedaFontDialog *dialog, bool use_first)
 static void
 geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
 {
-  int n_faces, i;
-  PangoFontFace       **faces;
-  PangoFontFace        *match_face;
-  PangoFontDescription *old_desc;
-  GtkListStore         *store;
-  GtkTreeIter           match_row;
+  PangoFontFace **faces;
+  PangoFontFace  *match_face;
+  GtkListStore   *store;
+  GtkTreeIter     match_row;
+  int             n_faces;
 
   match_face = NULL;
   faces      = NULL;
@@ -604,6 +605,9 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
   gtk_list_store_clear (store);
 
   if (dialog->family) {
+
+    PangoFontDescription *old_desc;
+    int i;
 
     if (dialog->face)
       old_desc = pango_font_face_describe (dialog->face);
@@ -715,7 +719,7 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
   bool             valid_family;
   bool             valid;
   const char      *new_family_name;
-  const char      *tree_name;
+
 
   new_face        = NULL;
   fallback_face   = NULL;
@@ -733,6 +737,7 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
        valid = gtk_tree_model_iter_next (model, &iter))
   {
     PangoFontFamily *family;
+    const char      *tree_name;
 
     gtk_tree_model_get (model, &iter, FAMILY_COLUMN, &family, -1);
 
@@ -815,7 +820,6 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
   GtkTreeIter   match_row;
   GtkListStore *model;
 
-  const char *name;
   int n_families, i;
 
   context = gtk_widget_get_pango_context ( GTK_WIDGET (dialog));
@@ -832,8 +836,10 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
   /* Load the list of fonts names into the view tree model */
   for (i = 0; i < n_families; i++) {
 
-    name = pango_font_family_get_name (families[i]);
+    const char *name;
     GtkTreeIter iter;
+
+    name = pango_font_family_get_name (families[i]);
 
     gtk_list_store_append (model, &iter);
     gtk_list_store_set    (model, &iter, FAMILY_COLUMN, families[i],
@@ -867,7 +873,6 @@ callback_select_family (GtkTreeSelection *selection, void * data)
   GedaFontDialog *dialog;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-  char           *font_name;
 
   dialog = GEDA_FONT_DIALOG (data);
   model  = NULL;
@@ -881,6 +886,7 @@ callback_select_family (GtkTreeSelection *selection, void * data)
     if ( family != dialog->family ) {
 
       const char *family_name;
+            char *font_name;
 
       if (dialog->family) {
         g_object_unref (dialog->family);
@@ -1368,9 +1374,9 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   geda_label_set_mnemonic_widget (GEDA_LABEL (size_label),    dialog->size_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL (preview_label), dialog->preview_entry);
 
-  atk_font_obj    = atk_widget_linked_label_new (font_label,    dialog->family_list );
-  atk_style_obj   = atk_widget_linked_label_new (style_label,   dialog->style_list );
-  atk_size_obj    = atk_widget_linked_label_new (size_label,    dialog->size_list );
+  atk_font_obj    = atk_widget_linked_label_new (font_label,    dialog->family_list);
+  atk_style_obj   = atk_widget_linked_label_new (style_label,   dialog->style_list);
+  atk_size_obj    = atk_widget_linked_label_new (size_label,    dialog->size_list);
   atk_preview_obj = atk_widget_linked_label_new (preview_label, dialog->preview_entry);
 
   if ( atk_font_obj ) {

@@ -1,3 +1,7 @@
+2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Reduce scope of variables in module.
+
 2016-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add Doxygen comments for:
