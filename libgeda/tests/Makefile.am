@@ -1,4 +1,6 @@
-EXTRA_DIST = README test-suite.h
+TEST_FILES = data/ATMega32-DIP_test.sym
+
+EXTRA_DIST = README test-suite.h $(TEST_FILES)
 
 check_file = \
 	test_file

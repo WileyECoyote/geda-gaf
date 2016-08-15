@@ -61,6 +61,7 @@
  */
 #define TEST_FILE_PATH "../docs"
 #define TEST_FILE "logo_256x101.png"
+#define SYM_FILE "data/ATMega32-DIP_test.sym"
 
 struct _TestData
 {
@@ -78,6 +79,10 @@ int test_file (void)
   GedaToplevel *toplevel;
   Page         *page;
   GError       *err;
+  char         *cwd_sav;
+  char         *cwd;
+
+  cwd_sav = getcwd(0,0);
 
   toplevel = geda_toplevel_new ();
 
@@ -119,24 +124,49 @@ int test_file (void)
   else {
     g_error_free (err);
   }
-/*
+
+  err = NULL;
   if (geda_open_file(toplevel, page, "nonexistence", &err)) {
-    fprintf(stderr, "FAILED: (F010300C) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010301A) f_open NULL\n");
     result++;
   }
   else if (!err) {
-    fprintf(stderr, "FAILED: (F010300D) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010301B) f_open NULL\n");
     result++;
   }
   else {
     g_error_free (err);
   }
-*/
+
+  err = NULL;
+  if (!geda_open_file(toplevel, page, SYM_FILE, &err)) {
+    fprintf(stderr, "FAILED: (F010302A) f_open %s\n", SYM_FILE);
+    result++;
+  }
+  else if (err) {
+    fprintf(stderr, "FAILED: (F010302B) f_open %s\n", SYM_FILE);
+    g_error_free (err);
+  }
+
+  cwd = getcwd(0,0);
+
+  if (cwd && strcmp(cwd, cwd_sav) != 0) {
+    fprintf(stderr, "FAILED: (F010302C) f_open <%s>!=<%s>\n", cwd, cwd_sav);
+    result++;
+  }
+  free(cwd);
+
   s_page_delete (toplevel, page, FALSE);
 
   /* === Function 04: geda_open_flags           f_open_flags === */
   /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
   /* === Function 06: geda_save_file            f_save === */
+
+  g_object_unref(toplevel);
+
+  /* ensure directory is restored, regardless of what happened above */
+  if (!chdir(cwd_sav));
+  free(cwd_sav);
 
   return result;
 }
@@ -274,6 +304,8 @@ int test_f_sys_copy ()
     source = g_build_filename(src_dir, TEST_FILE_PATH, TEST_FILE, NULL);
 
     if (access(source, R_OK) == 0) {
+
+
 
       /* Should be copied to the current, aka tests, directory*/
       result = geda_copy_file(source, TEST_FILE);

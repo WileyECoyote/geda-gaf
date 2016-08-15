@@ -1,3 +1,9 @@
+2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/data/ATMega32-DIP_test.sym: Add symbol file for testing.
+
+    * tests/test_file.c: Add more checks for f_open using above file.
+
 2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Moved setting page geometry and common toplevel
