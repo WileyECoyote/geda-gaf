@@ -878,9 +878,8 @@ const CLibSource *s_clib_get_source_by_name (const char *name)
  *  \par Function Description
  *  Adds a directory containing symbol files to the library. Only files
  *  ending with <b>#SYMBOL_FILE_DOT_SUFFIX</b> are considered to be symbol
- *  files.  A \a name may be specified for the source; if \a name is
- *  \b NULL, the basename of the directory as returned by
- *  g_path_get_basename() is used.
+ *  files. A \a name may be specified for the source; if \a name is \b NULL,
+ *  the basename of the directory as returned by f_get_basename_dup() is used.
  *
  *  \param directory The path of the directory to add.
  *  \param name      A descriptive name for the directory.
@@ -982,7 +981,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
     }
   }
   else {
-    tmpstr = g_path_get_basename (directory);
+    tmpstr = f_get_basename_dup(directory);
   }
 
   if( category == NULL) {
