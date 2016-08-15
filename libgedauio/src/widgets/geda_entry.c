@@ -1347,6 +1347,7 @@ geda_entry_unrealize (GtkWidget *widget)
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
   }
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
 }
 
 /*! \todo Finish function documentation!!!
