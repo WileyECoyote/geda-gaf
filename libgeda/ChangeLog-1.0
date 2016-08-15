@@ -5,6 +5,8 @@
 
     * src/struct/s_attrib.c: Rename functions with geda_struct prefix.
 
+    * src/struct/s_struct.c: Rename functions with geda_struct prefix.
+
     * tests/Makefile.am: Add _GNU_SOURCE to CFLAGS for compiling test files.
 
     * tests/data/ATMega32-DIP_test.sym: Add symbol file for testing.

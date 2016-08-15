@@ -579,8 +579,8 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          char   *geda_struct_attrib_get                    (int counter);
 
 /* s_print.c */
-         void    print_struct_forw               (GList *list);
-         void    print_struct                    (GedaObject *ptr);
+         void    geda_struct_print_forw               (GList *list);
+         void    geda_struct_print                    (GedaObject *ptr);
 
 /* s_clib.c */
          void     s_clib_flush_cache             (void);

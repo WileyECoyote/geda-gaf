@@ -280,7 +280,7 @@ void s_undo_print_all( UNDO *head )
     if (u_current->filename) printf("%s\n", u_current->filename);
 
     if (u_current->object_list) {
-      print_struct_forw (u_current->object_list);
+      geda_struct_print_forw (u_current->object_list);
     }
 
     printf("\t%d %d %d %d\n", u_current->left, u_current->top,
