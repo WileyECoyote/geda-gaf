@@ -46,12 +46,12 @@
  *  \param [in,out] unconnected GArray of POINT to contain the coordinates of unconnected
  *                              endpoints.
  *
- *  example 1: s_cue_get_locations (list, junctions, noconnects);
+ *  example 1: geda_struct_cue_get_locations (list, junctions, noconnects);
  *
- *  example 2: s_cue_get_locations (list, junctions, NULL);
+ *  example 2: geda_struct_cue_get_locations (list, junctions, NULL);
  *
  */
-void s_cue_get_locations(const GList *objects, GArray *junctions,
+void geda_struct_cue_get_locations(const GList *objects, GArray *junctions,
                                                GArray *unconnected)
 {
   const GList  *iter;
@@ -367,7 +367,7 @@ static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
  *  \param [in] fp         The file handle to output to
  *  \param [in] type       The type of output being produced
  */
-void s_cue_output_single(GedaToplevel *toplevel,
+void geda_struct_cue_output_single(GedaToplevel *toplevel,
                          GedaObject       *object,
                          FILE         *fp,
                          int           type)
@@ -394,10 +394,10 @@ void s_cue_output_single(GedaToplevel *toplevel,
 
 /*! \brief Write All Cues to Postscript file
  *  \par Function Description
- *   Wrapper for s_cue_output_single and s_cue_output_all.
+ *   Wrapper for geda_struct_cue_output_single and geda_struct_cue_output_all.
  */
 void
-s_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
+geda_struct_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
 {
   const GList *iter = obj_list;
 
@@ -409,12 +409,12 @@ s_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int t
       case (OBJ_NET):
       case (OBJ_BUS):
       case (OBJ_PIN):
-        s_cue_output_single(toplevel, o_current, fp, type);
+        geda_struct_cue_output_single(toplevel, o_current, fp, type);
         break;
 
       case (OBJ_COMPLEX):
       case (OBJ_PLACEHOLDER):
-        s_cue_output_all(toplevel, o_current->complex->prim_objs, fp, type);
+        geda_struct_cue_output_all(toplevel, o_current->complex->prim_objs, fp, type);
         break;
 
     }

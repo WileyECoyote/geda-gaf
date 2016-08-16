@@ -232,7 +232,7 @@
 #define PORTRAIT        1
 #define AUTOLAYOUT      2
 
-/* for type to s_cue_output_all */
+/* for type to geda_struct_cue_output_all */
 #define POSTSCRIPT      0
 #define PNG             1
 

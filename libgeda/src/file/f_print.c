@@ -411,7 +411,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
     iter = g_list_next (iter);
   }
 
-  s_cue_output_all (toplevel, obj_list, fp, POSTSCRIPT);
+  geda_struct_cue_output_all (toplevel, obj_list, fp, POSTSCRIPT);
 
   return;
 }

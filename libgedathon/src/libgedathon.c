@@ -3183,7 +3183,7 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
   junctions  = g_array_new(FALSE, FALSE, sizeof(POINT));
   noconnects = g_array_new(FALSE, FALSE, sizeof(POINT));
 
-  s_cue_get_locations (list, junctions, noconnects);
+  geda_struct_cue_get_locations (list, junctions, noconnects);
 
   if (flag) {
     results = junctions;

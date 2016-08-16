@@ -4,6 +4,8 @@
 
     * src/struct/s_conn.c: Rename functions with geda_struct prefix.
 
+    * src/struct/s_cue.c: Rename functions with geda_struct prefix.
+
 2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Replace g_path_get_basename with f_get_basename_dup

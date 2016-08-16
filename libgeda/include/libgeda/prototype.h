@@ -619,9 +619,9 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_conn_thaw_hooks               (GedaObject *object);
 
 /* s_cue.c */
-         void    s_cue_get_locations             (const GList *objects, GArray *junctions, GArray *unconnected);
-         void    s_cue_output_all                (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type);
-         void    s_cue_output_single             (GedaToplevel *toplevel, GedaObject *object, FILE *fp, int type);
+         void    geda_struct_cue_get_locations             (const GList *objects, GArray *junctions, GArray *unconnected);
+         void    geda_struct_cue_output_all                (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type);
+         void    geda_struct_cue_output_single             (GedaToplevel *toplevel, GedaObject *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
          Page   *s_hierarchy_down_schematic_single  (GedaToplevel *toplevel, const char *filename, Page *parent,
