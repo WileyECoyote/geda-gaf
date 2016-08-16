@@ -1290,7 +1290,6 @@ do_label(FILE *fp)
   char text2[MAX_TEXTLEN];
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
-  int i, length;
 
   /* labels have the following format:
    *   L #X #Y #SIZE #ROTATION #ORIGIN #GLOBAL #VISIBILITY #OVERBAR TEXT
@@ -1319,10 +1318,15 @@ do_label(FILE *fp)
   /* beginning of the name.  gEDA does not support overbars, so the '~' lets */
   /* the designer know he's dealing with an active low signal */
   if (overbar) {
+
+    int i, length;
+
     length = strlen(text2);
     text2[length + 1] = 0;
-    for (i = length; i > 0; i--)
+
+    for (i = length; i > 0; i--) {
       text2[i] = text2[i - 1];
+    }
     text2[0] = '~';
   }
 

@@ -1,3 +1,7 @@
+2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Reduce scope of int i, length in do_label.
+
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gcheck-library.sh: Revise do_check_all_containers to search
