@@ -341,6 +341,7 @@ void
 s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   Page *tmp;
+  char *saved_cwd;
 
   /* We need to temporarily make the page being deleted current because
    * various functions called below (some indirectly) assume they are
@@ -349,6 +350,13 @@ s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
    * These functions are known to include:
    *   s_object_release ()
    */
+
+  if (!previous) {
+    saved_cwd = getcwd(0,0);
+  }
+  else {
+    saved_cwd = NULL;
+  }
 
   /* save page_current and switch to page */
   if (page && page == toplevel->page_current) {
@@ -402,6 +410,12 @@ s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
       tmp = geda_toplevel_get_page_up(toplevel);
       geda_toplevel_set_current_page(toplevel, tmp);
     }
+    if (saved_cwd) {
+      if (!chdir(saved_cwd));
+    }
+  }
+  if (saved_cwd) {
+    free(saved_cwd);
   }
 }
 

@@ -6,6 +6,9 @@
 
     * src/struct/s_cue.c: Rename functions with geda_struct prefix.
 
+    * src/struct/s_page.c: Restore the current working directory in s_page_delete
+      if not changing to the previous page and the page was not the current page.
+
 2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Replace g_path_get_basename with f_get_basename_dup
