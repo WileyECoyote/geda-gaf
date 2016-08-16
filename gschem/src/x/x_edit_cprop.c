@@ -360,8 +360,8 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
         const CLibSymbol *clib;
 
-        clib = s_clib_get_symbol_by_name (filename);
-        s_clib_symbol_invalidate_data (clib);
+        clib = geda_struct_clib_get_symbol_by_name (filename);
+        geda_struct_clib_symbol_invalidate_data (clib);
 
         if (clib == NULL) {
           u_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),
@@ -652,9 +652,9 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
     SetEntryText(properties->symbol_entry, filename);
 
     /* Get the full name */
-    clib = s_clib_get_symbol_by_name (filename);
+    clib = geda_struct_clib_get_symbol_by_name (filename);
 
-    fullname = s_clib_symbol_get_filename(clib);
+    fullname = geda_struct_clib_symbol_get_filename(clib);
 
     /* set the tooltip as the full file name */
     SetWidgetTip(properties->symbol_entry, fullname);

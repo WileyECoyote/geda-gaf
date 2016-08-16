@@ -455,7 +455,7 @@ static GtkTreeView *get_active_tree_view (Compselect *compselect)
  *  This function determines what data is to be displayed in the
  *  "in use" symbol selection view.
  *
- *  The model is a list of symbols. s_clib_symbol_get_name() is called
+ *  The model is a list of symbols. geda_struct_clib_symbol_get_name() is called
  *  to get the text to display.
  */
 static void
@@ -468,7 +468,7 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   CLibSymbol *symbol;
 
   gtk_tree_model_get (tree_model, iter, IU_DATA_COLUMN, &symbol, -1);
-  g_object_set ((GObject*)cell, "text", s_clib_symbol_get_name (symbol), NULL);
+  g_object_set ((GObject*)cell, "text", geda_struct_clib_symbol_get_name (symbol), NULL);
 }
 
 /*! \brief Returns whether a treeview node contains symbol data.
@@ -498,7 +498,7 @@ is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
  *  selection selection view.
  *
  *  The top level of the model contains sources, and the next symbols.
- *  s_clib_source_get_name() or s_clib_symbol_get_name() as
+ *  geda_struct_clib_source_get_name() or geda_struct_clib_symbol_get_name() as
  *  appropriate is called to get the text to display.
  */
 static void
@@ -516,13 +516,13 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   if (is_symbol_record(tree_model, iter)) {
 
     gtk_tree_model_get (tree_model, iter, LVC_ROW_DATA, &symbol, -1);
-    text = s_clib_symbol_get_name (symbol);
+    text = geda_struct_clib_symbol_get_name (symbol);
 
   }
   else { /* Must be a source. */
 
     gtk_tree_model_get (tree_model, iter, LVC_ROW_DATA, &source, -1);
-    text = s_clib_source_get_name (source);
+    text = geda_struct_clib_source_get_name (source);
     ptr  = strstr(source->name, "/");       /* look for a slash */
     if (ptr!= NULL) {
       text = ptr + 1;
@@ -595,7 +595,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
 
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
 
-    compname       = s_clib_symbol_get_name (sym);
+    compname       = geda_struct_clib_symbol_get_name (sym);
     /* Do a case insensitive uppercase comparison */
     compname_upper = g_ascii_strup (compname, -1);
     text_upper     = g_ascii_strup (text, -1);
@@ -867,7 +867,7 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
       else {
         gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &sym, -1);
       }
-      buffer = s_clib_symbol_get_data (sym);
+      buffer = geda_struct_clib_symbol_get_data (sym);
     }
   }
 
@@ -1312,7 +1312,7 @@ GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
   GList *src_iter;
 
   /* Get list of all sources */
-  all_sources = s_clib_get_sources (w_current->sort_component_library != 0);
+  all_sources = geda_struct_clib_get_sources (w_current->sort_component_library != 0);
 
   /* Initialize a list to receive the sources for this group  */
   selected_sources = NULL;
@@ -1495,7 +1495,7 @@ load_symbols: /* It Works! */
     for (sym_iter = symlist; sym_iter != NULL;
          sym_iter = g_list_next (sym_iter)) {
 
-      const char *sym_name = s_clib_symbol_get_name(sym_iter->data);
+      const char *sym_name = geda_struct_clib_symbol_get_name(sym_iter->data);
 
       /* if a directory only has one symbol file and the file name is
        * "placeholder.sym" then we don't display the symbol, the file
@@ -1674,7 +1674,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
 
-      const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+      const char *ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
 
       sym_name = geda_utility_string_strdup(ptr_sym_name);
 
@@ -1708,7 +1708,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
   /* Check of flag set to rescan the libraries for symbols */
   if (compselect->rescan_lib) {
-    s_clib_refresh ();
+    geda_struct_clib_refresh ();
     compselect->rescan_lib = FALSE;
   }
 
@@ -1811,7 +1811,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
 
-          const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+          const char *ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
 
           if (strcmp(ptr_sym_name, sym_name) == 0) {
             path = gtk_tree_model_get_path (model, &iter);
@@ -1839,7 +1839,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
             gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
 
-            const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+            const char *ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
 
             if (strstr(ptr_sym_name, short_name) == 0) {
               path = gtk_tree_model_get_path (model, &iter);

@@ -3013,11 +3013,11 @@ COMMAND (do_down_symbol)
 
       u_log_message(_("Searching for symbol [%s]\n"), filename);
 
-      sym = s_clib_get_symbol_by_name (filename);
+      sym = geda_struct_clib_get_symbol_by_name (filename);
 
       if (sym == NULL)
         return;
-      if (s_clib_symbol_get_filename(sym) == NULL) {
+      if (geda_struct_clib_symbol_get_filename(sym) == NULL) {
         u_log_message(_("Symbol is not a real file."
                         " Symbol cannot be loaded.\n"));
         return;

@@ -34,24 +34,24 @@
  *  The component library system manages component sources and symbols,
  *  and abstracts the interface to the underlying storage.
  *
- *  To initialise the component library, s_clib_init() is called. To
- *  clean up when it is no longer needed, s_clib_free() should be
+ *  To initialise the component library, geda_struct_clib_init() is called. To
+ *  clean up when it is no longer needed, geda_struct_clib_free() should be
  *  called.
  *
  *  A directory which contains one or more symbol files in gEDA format
  *  may be used as a component source. Each symbol file should have a
  *  filename ending in ".sym" (case insensitive).  A component source
- *  based on a directory can be added using s_clib_add_directory().
+ *  based on a directory can be added using geda_struct_clib_add_directory().
  *  Symbol files with filenames starting with a period "." are ignored.
  *
  *  An executable program in the system search path may be used as a
  *  component source, and it must conform with the specification given
  *  on page \ref libcmds.  A component source based on a command may
- *  be added using s_clib_add_command().
+ *  be added using geda_struct_clib_add_command().
  *
  *  Scheme functions may be used as a component source; for more
  *  information, please see page \ref libscms.  A component source
- *  based on Scheme functions may be added using s_clib_add_scm().
+ *  based on Scheme functions may be added using geda_struct_clib_add_scm().
  *
  *  Each symbol is identified by its \b name, which is stored in the
  *  saved schematic file.  The name must be a valid for storage in a
@@ -64,12 +64,12 @@
  *    -# Do not use whitespace, or any of the characters "<tt>/:!*?</tt>".
  *    -# Try to use unique names.
  *
- *  The component database may be queried using s_clib_search().  A
+ *  The component database may be queried using geda_struct_clib_search().  A
  *  null-terminated buffer containing symbol data (suitable for
  *  loading using geda_object_read_buffer()) may be obtained using
- *  s_clib_symbol_get_data().  If an exact symbol name is known, the
+ *  geda_struct_clib_symbol_get_data().  If an exact symbol name is known, the
  *  symbol data may be requested directly using
- *  s_clib_symbol_get_data_by_name().
+ *  geda_struct_clib_symbol_get_data_by_name().
  *
  *
  *  \section libcmds Library Commands
@@ -82,7 +82,7 @@
  *  </code>
  *
  *  This is implemented by g_rc_component_library_command(), which is
- *  a wrapper for s_clib_add_command().
+ *  a wrapper for geda_struct_clib_add_command().
  *
  *  The list command will be executed with no further arguments, and
  *  should output a list of available symbol names on stdout. The get
@@ -103,7 +103,7 @@
  *  </code>
  *
  *  This is implemented by g_rc_component_library_funcs(), which is a
- *  wrapper for s_clib_add_scm().
+ *  wrapper for geda_struct_clib_add_scm().
  *
  *  \b listfunc and \b getfunc must both be Guile procedures. \b
  *  listfunc takes no arguments, and returns a list of symbol
@@ -154,7 +154,7 @@
 /*! Holds the list of all known component sources */
 static GList *clib_sources = NULL;
 
-/*! Caches results of s_clib_search().  The key of the hashtable is a
+/*! Caches results of geda_struct_clib_search().  The key of the hashtable is a
  *  string describing the search that was carried out, and the value
  *  is a list of symbol pointers. */
 static GHashTable *clib_search_cache = NULL;
@@ -189,27 +189,27 @@ static char *get_data_scm (const CLibSymbol *symbol);
 
 /*! \brief Flush the symbol name lookup cache.
  *  \par Function Description
- *  Clears the hashtable which caches the results of s_clib_search().
+ *  Clears the hashtable which caches the results of geda_struct_clib_search().
  *  You should not ever need to call this, as all functions which
  *  invalidate the cache are supposed to make sure it is flushed.
  */
-static void s_clib_flush_search_cache (void)
+static void geda_struct_clib_flush_search_cache (void)
 {
   g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
 }
 
 /*! \brief Flush the symbol data cache.
  *  \par Function Description
- *  Clears the hashtable which caches the results of s_clib_symbol_get_data().
+ *  Clears the hashtable which caches the results of geda_struct_clib_symbol_get_data().
  *  You should not ever need to call this, as all functions which
  *  invalidate the cache are supposed to make sure it is flushed.
  */
-static void s_clib_flush_symbol_cache (void)
+static void geda_struct_clib_flush_symbol_cache (void)
 {
   g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
 }
 
-void s_clib_flush_cache (void)
+void geda_struct_clib_flush_cache (void)
 {
   g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
   g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
@@ -222,14 +222,14 @@ void s_clib_flush_cache (void)
  *  \warning This function must be called before any other functions
  *  from s_clib.c.
  */
-void s_clib_init (void)
+void geda_struct_clib_init (void)
 {
   if (clib_sources != NULL) {
-    s_clib_free ();
+    geda_struct_clib_free ();
   }
 
   if (clib_search_cache != NULL) {
-    s_clib_flush_search_cache();
+    geda_struct_clib_flush_search_cache();
   }
   else {
     clib_search_cache = g_hash_table_new_full ((GHashFunc) g_str_hash,
@@ -239,7 +239,7 @@ void s_clib_init (void)
   }
 
   if (clib_symbol_cache != NULL) {
-    s_clib_flush_symbol_cache();
+    geda_struct_clib_flush_symbol_cache();
   }
   else {
     clib_symbol_cache =
@@ -318,7 +318,7 @@ static void free_source (CLibSource *source)
  *  Should be called at program exit to clean up any remaining data
  *  being used by the component library system.
  */
-void s_clib_free (void)
+void geda_struct_clib_free (void)
 {
   if (clib_sources != NULL) {
 
@@ -469,11 +469,11 @@ static char *run_source_command (const char *command)
  *
  *  \remarks The GList returned should be freed when no longer
  *  needed. The returned value is not guaranteed to remain valid over
- *  calls to s_clib_add_directory() or s_clib_add_command().
+ *  calls to geda_struct_clib_add_directory() or geda_struct_clib_add_command().
  *
  *  \return A \b GList of CLibSource.
  */
-GList *s_clib_get_sources (const bool sorted)
+GList *geda_struct_clib_get_sources (const bool sorted)
 {
   GList *list = g_list_copy(clib_sources);
 
@@ -522,7 +522,7 @@ static char *get_unique_source_name (const char *name)
   char *newname = NULL;
   int   i = 0;
 
-  if (s_clib_get_source_by_name (name) == NULL) {
+  if (geda_struct_clib_get_source_by_name (name) == NULL) {
     return geda_strdup (name);
   }
 
@@ -530,7 +530,7 @@ static char *get_unique_source_name (const char *name)
     GEDA_FREE (newname);
     i++;
     newname = geda_sprintf ("%s-%i", name, i);
-  } while (s_clib_get_source_by_name (newname) != NULL);
+  } while (geda_struct_clib_get_source_by_name (newname) != NULL);
 
   u_log_message (_("Library name [%s] already in use.  Using [%s].\n"),
                  name, newname);
@@ -549,7 +549,7 @@ static char *get_unique_source_name (const char *name)
  *
  *  \return [bool] TRUE is the source was found, otherwise FALSE.
  */
-bool s_clib_source_name_exist (const char *name)
+bool geda_struct_clib_source_name_exist (const char *name)
 {
   GList *sourcelist;
 
@@ -578,7 +578,7 @@ bool s_clib_source_name_exist (const char *name)
  *  \param path The path name to look for in the source list.
  *  \return [bool] TRUE is the path was found, otherwise FALSE.
  */
-bool s_clib_source_path_exist (const char *path)
+bool geda_struct_clib_source_path_exist (const char *path)
 {
   GList *sourcelist;
 
@@ -682,7 +682,7 @@ static void refresh_directory (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                 (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_cache();
+  geda_struct_clib_flush_cache();
 }
 
 /*! \brief Re-poll a library command for symbols.
@@ -748,7 +748,7 @@ static void refresh_command (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                  (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_cache();
+  geda_struct_clib_flush_cache();
 }
 
 /*! \brief Re-poll a scheme procedure for symbols.
@@ -810,7 +810,7 @@ static void refresh_scm (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                  (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_cache();
+  geda_struct_clib_flush_cache();
 }
 
 /*! \brief Rescan all available component libraries.
@@ -819,7 +819,7 @@ static void refresh_scm (CLibSource *source)
  *  repopulates it from scratch.  Useful e.g. for checking for new
  *  symbols.
  */
-void s_clib_refresh (void)
+void geda_struct_clib_refresh (void)
 {
   GList *sourcelist;
 
@@ -853,7 +853,7 @@ void s_clib_refresh (void)
  *
  *  \return The matching source, or \b NULL if no match was found.
  */
-const CLibSource *s_clib_get_source_by_name (const char *name)
+const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
 {
   GList *sourcelist;
 
@@ -889,7 +889,7 @@ const CLibSource *s_clib_get_source_by_name (const char *name)
  *  name format options:
  *
  */
-const CLibSource *s_clib_add_directory (const char *directory,
+const CLibSource *geda_struct_clib_add_directory (const char *directory,
                                         const char *name)
 {
   CLibSource *source;
@@ -1035,7 +1035,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
  *
  *  \return The CLibSource associated with the component source.
  */
-const CLibSource *s_clib_add_command (const char *list_cmd,
+const CLibSource *geda_struct_clib_add_command (const char *list_cmd,
                                       const char *get_cmd,
                                       const char *name)
 {
@@ -1084,7 +1084,7 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
  *
  *  \return         The new CLibSource.
  */
-const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
+const CLibSource *geda_struct_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
 {
   CLibSource *source;
   char *unique_name;
@@ -1125,7 +1125,7 @@ const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
  *
  *  \return Name of source.
 */
-const char *s_clib_source_get_name (const CLibSource *source)
+const char *geda_struct_clib_source_get_name (const CLibSource *source)
 {
   if (source == NULL) return NULL;
   return source->name;
@@ -1137,13 +1137,13 @@ const char *s_clib_source_get_name (const CLibSource *source)
  *  source.
  *
  *  \warning The returned \b GList will not be consistent over a call to
- *  s_clib_refresh().  It should be freed when no longer needed.
+ *  geda_struct_clib_refresh().  It should be freed when no longer needed.
  *
  *  \param source Source to be examined.
  *
  *  \return A \b GList of #CLibSymbol.
  */
-GList *s_clib_source_get_symbols (const CLibSource *source)
+GList *geda_struct_clib_source_get_symbols (const CLibSource *source)
 {
   if (source == NULL) return NULL;
   return g_list_copy(source->symbols);
@@ -1159,7 +1159,7 @@ GList *s_clib_source_get_symbols (const CLibSource *source)
  *
  *  \return Name of symbol.
 */
-const char *s_clib_symbol_get_name (const CLibSymbol *symbol)
+const char *geda_struct_clib_symbol_get_name (const CLibSymbol *symbol)
 {
   if (symbol == NULL) return NULL;
   return symbol->name;
@@ -1176,7 +1176,7 @@ const char *s_clib_symbol_get_name (const CLibSymbol *symbol)
  *
  *  \return Filename of symbol.
  */
-char *s_clib_symbol_get_filename (const CLibSymbol *symbol)
+char *geda_struct_clib_symbol_get_filename (const CLibSymbol *symbol)
 {
   if (symbol == NULL) return NULL;
 
@@ -1193,7 +1193,7 @@ char *s_clib_symbol_get_filename (const CLibSymbol *symbol)
  *
  *  \return Source which owns symbol.
 */
-const CLibSource *s_clib_symbol_get_source (const CLibSymbol *symbol)
+const CLibSource *geda_struct_clib_symbol_get_source (const CLibSymbol *symbol)
 {
   if (symbol == NULL) return NULL;
   return symbol->source;
@@ -1312,7 +1312,7 @@ static char *get_data_scm (const CLibSymbol *symbol)
  *
  *  \return Allocated buffer containing symbol data.
  */
-char *s_clib_symbol_get_data (const CLibSymbol *symbol)
+char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
 {
   CacheEntry *cached;
   char *data;
@@ -1389,14 +1389,14 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
  *  should not be manipulated or free()'d.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
- *  call to s_clib_free() or s_clib_refresh().
+ *  call to geda_struct_clib_free() or geda_struct_clib_refresh().
  *
  *  \param pattern The pattern to match against.
  *  \param mode    The search mode to use.
  *
  *  \return A \b GList of matching #CLibSymbol structures.
  */
-GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
+GList *geda_struct_clib_search (const char *pattern, const CLibSearchMode mode)
 {
   GList      *result;
   GList      *sourcelist;
@@ -1482,7 +1482,7 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
  * \param symbol Symbol to flush cached data for.
  */
 void
-s_clib_symbol_invalidate_data (const CLibSymbol *symbol)
+geda_struct_clib_symbol_invalidate_data (const CLibSymbol *symbol)
 {
   g_hash_table_remove (clib_symbol_cache, (void *) symbol);
 }
@@ -1497,12 +1497,12 @@ s_clib_symbol_invalidate_data (const CLibSymbol *symbol)
  *
  *  \return The first matching symbol, or NULL if none found.
  */
-const CLibSymbol *s_clib_get_symbol_by_name (const char *name)
+const CLibSymbol *geda_struct_clib_get_symbol_by_name (const char *name)
 {
   GList *symlist = NULL;
   const CLibSymbol *symbol;
 
-  symlist = s_clib_search (name, CLIB_EXACT);
+  symlist = geda_struct_clib_search (name, CLIB_EXACT);
 
   if (symlist == NULL) {
     u_log_message (_("Component [%s] was not found in the component library\n"),
@@ -1533,13 +1533,13 @@ const CLibSymbol *s_clib_get_symbol_by_name (const char *name)
  *
  *  \return Allocated buffer containing symbol data.
  */
-char *s_clib_symbol_get_data_by_name (const char *name)
+char *geda_struct_clib_symbol_get_data_by_name (const char *name)
 {
   const CLibSymbol *symbol;
 
-  symbol = s_clib_get_symbol_by_name (name);
+  symbol = geda_struct_clib_get_symbol_by_name (name);
   if (symbol == NULL) return NULL;
-  return s_clib_symbol_get_data (symbol);
+  return geda_struct_clib_symbol_get_data (symbol);
 }
 
 /*! \brief Get a list of symbols used.
@@ -1553,7 +1553,7 @@ char *s_clib_symbol_get_data_by_name (const char *name)
  *  should not be manipulated or free'd.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
- *  call to s_clib_free() or s_clib_refresh().
+ *  call to geda_struct_clib_free() or geda_struct_clib_refresh().
  *
  *  \bug Only includes components which are not embedded, but they
  *  should (probably) also appear in the list.
@@ -1562,7 +1562,7 @@ char *s_clib_symbol_get_data_by_name (const char *name)
  *
  *  \return GList of symbols.
  */
-GList *s_clib_get_symbols (const GedaToplevel *toplevel)
+GList *geda_struct_clib_get_symbols (const GedaToplevel *toplevel)
 {
   GList  *result  = NULL;
   GList  *iter    = NULL;
@@ -1588,8 +1588,8 @@ GList *s_clib_get_symbols (const GedaToplevel *toplevel)
 
       /* Since we are not looking at embedded symbols, the first component
        * with the given name will be the one we need. N.b. we do not use
-       * s_clib_get_symbol_by_name() because it's spammeh. */
-      symlist = s_clib_search (object->complex->filename, CLIB_EXACT);
+       * geda_struct_clib_get_symbol_by_name() because it's spammeh. */
+      symlist = geda_struct_clib_search (object->complex->filename, CLIB_EXACT);
 
       if (symlist == NULL) continue;
 

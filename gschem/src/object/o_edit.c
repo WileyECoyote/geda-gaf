@@ -65,7 +65,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
     sym_file = g_strdup(tblock);
   }
 
-  clib = s_clib_get_symbol_by_name (sym_file);
+  clib = geda_struct_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
 
@@ -1114,8 +1114,8 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   page     = geda_object_get_page (o_current);
 
   /* Force symbol data to be reloaded from source */
-  clib = s_clib_get_symbol_by_name (o_current->complex->filename);
-  s_clib_symbol_invalidate_data (clib);
+  clib = geda_struct_clib_get_symbol_by_name (o_current->complex->filename);
+  geda_struct_clib_symbol_invalidate_data (clib);
 
   if (clib == NULL) {
     u_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),

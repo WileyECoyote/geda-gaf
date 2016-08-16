@@ -1060,7 +1060,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
       GList *symlist;
 
-      symlist = s_clib_search (w_current->bus_ripper_symname, CLIB_EXACT);
+      symlist = geda_struct_clib_search (w_current->bus_ripper_symname, CLIB_EXACT);
 
       if (symlist != NULL) {
         rippersym = (CLibSymbol *) symlist->data;

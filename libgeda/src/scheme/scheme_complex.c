@@ -85,7 +85,7 @@ EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
 
   basename = scm_to_utf8_string (basename_s);
 
-  clib = s_clib_get_symbol_by_name (basename);
+  clib = geda_struct_clib_get_symbol_by_name (basename);
 
   SCM result = SCM_BOOL_F;
 

@@ -583,27 +583,27 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_struct_print                    (GedaObject *ptr);
 
 /* s_clib.c */
-         void     s_clib_flush_cache             (void);
-         void     s_clib_refresh                 (void);
-        GList    *s_clib_get_sources             (const bool sorted);
-         bool     s_clib_source_name_exist       (const char *name);
-         bool     s_clib_source_path_exist       (const char *path);
-const CLibSource *s_clib_get_source_by_name      (const char *name);
-const CLibSource *s_clib_add_directory           (const char *directory, const char *name);
-const CLibSource *s_clib_add_command             (const char *list_cmd,  const char *get_cmd, const char *name);
-const CLibSource *s_clib_add_scm                 (SCM         listfunc,  SCM         getfunc, const char *name);
+         void     geda_struct_clib_flush_cache             (void);
+         void     geda_struct_clib_refresh                 (void);
+        GList    *geda_struct_clib_get_sources             (const bool sorted);
+         bool     geda_struct_clib_source_name_exist       (const char *name);
+         bool     geda_struct_clib_source_path_exist       (const char *path);
+const CLibSource *geda_struct_clib_get_source_by_name      (const char *name);
+const CLibSource *geda_struct_clib_add_directory           (const char *directory, const char *name);
+const CLibSource *geda_struct_clib_add_command             (const char *list_cmd,  const char *get_cmd, const char *name);
+const CLibSource *geda_struct_clib_add_scm                 (SCM         listfunc,  SCM         getfunc, const char *name);
 
-   const char    *s_clib_source_get_name         (const CLibSource *source);
-        GList    *s_clib_source_get_symbols      (const CLibSource *source);
-   const char    *s_clib_symbol_get_name         (const CLibSymbol *symbol);
-         char    *s_clib_symbol_get_filename     (const CLibSymbol *symbol);
-const CLibSource *s_clib_symbol_get_source       (const CLibSymbol *symbol);
-         char    *s_clib_symbol_get_data         (const CLibSymbol *symbol);
-        GList    *s_clib_search                  (const char *pattern, const CLibSearchMode mode);
+   const char    *geda_struct_clib_source_get_name         (const CLibSource *source);
+        GList    *geda_struct_clib_source_get_symbols      (const CLibSource *source);
+   const char    *geda_struct_clib_symbol_get_name         (const CLibSymbol *symbol);
+         char    *geda_struct_clib_symbol_get_filename     (const CLibSymbol *symbol);
+const CLibSource *geda_struct_clib_symbol_get_source       (const CLibSymbol *symbol);
+         char    *geda_struct_clib_symbol_get_data         (const CLibSymbol *symbol);
+        GList    *geda_struct_clib_search                  (const char *pattern, const CLibSearchMode mode);
 
-         void     s_clib_symbol_invalidate_data  (const CLibSymbol *symbol);
-const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
-         char    *s_clib_symbol_get_data_by_name (const char *name);
+         void     geda_struct_clib_symbol_invalidate_data  (const CLibSymbol *symbol);
+const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
+         char    *geda_struct_clib_symbol_get_data_by_name (const char *name);
 
 /* s_conn.c */
          void    s_conn_remove_object            (GedaObject *to_remove);

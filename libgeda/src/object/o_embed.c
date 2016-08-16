@@ -96,7 +96,7 @@ geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
       const CLibSymbol *sym;
 
       /* search for the symbol in the library */
-      sym = s_clib_get_symbol_by_name (o_current->complex->filename);
+      sym = geda_struct_clib_get_symbol_by_name (o_current->complex->filename);
 
       if (sym == NULL) {
         /* symbol not found in the symbol library: signal an error */

@@ -88,7 +88,7 @@ static void o_complex_end (GschemToplevel *w_current)
 static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  const char   *sym_name = s_clib_symbol_get_name (sym);
+  const char   *sym_name = geda_struct_clib_symbol_get_name (sym);
   GError       *err      = NULL;
   bool          success  = FALSE;
 
@@ -106,7 +106,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
     GList *temp_list;
     char  *buffer;
 
-    buffer    = s_clib_symbol_get_data (sym);
+    buffer    = geda_struct_clib_symbol_get_data (sym);
     temp_list = geda_object_read_buffer(toplevel, NULL, buffer, -1, sym_name, &err);
 
     GEDA_FREE (buffer);

@@ -390,13 +390,13 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
   page = gschem_toplevel_get_current_page(w_current);
   path = f_path_get_dirname(filename);
 
-  if (page && s_clib_source_path_exist(path)) {
+  if (page && geda_struct_clib_source_path_exist(path)) {
 
     const CLibSymbol *symbol;
     const char       *symbolfile;
 
     symbolfile = f_get_basename (filename);
-    symbol     = s_clib_get_symbol_by_name(symbolfile);
+    symbol     = geda_struct_clib_get_symbol_by_name(symbolfile);
 
     result = FALSE;
     if (symbol) {

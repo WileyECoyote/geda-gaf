@@ -164,7 +164,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
   Page *page;
   char *filename;
 
-  filename = s_clib_symbol_get_filename (symbol);
+  filename = geda_struct_clib_symbol_get_filename (symbol);
   page     = s_page_search (toplevel, filename);
 
   if (page) {

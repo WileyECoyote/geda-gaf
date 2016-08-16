@@ -37,6 +37,8 @@
 #include <dirent.h>
 #include <errno.h>
 
+#include <gdk-pixbuf/gdk-pixbuf.h>
+
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 #include <libgedacolor.h>
@@ -843,7 +845,7 @@ static void setup_source_library (void)
         name     = namelist[n]->d_name;
         fullpath = g_build_filename (data_path, name, NULL);
 
-        s_clib_add_directory(fullpath,name);
+        geda_struct_clib_add_directory(fullpath,name);
 
         i = scandir(fullpath, &nestedlist, NULL, alphasort);
 
@@ -859,7 +861,7 @@ static void setup_source_library (void)
               nested     = nestedlist[i]->d_name;
               nestedpath = g_build_filename (fullpath, nested, NULL);
 
-              s_clib_add_directory (nestedpath, nested);
+              geda_struct_clib_add_directory (nestedpath, nested);
 
               free(nestedpath);
               free(nestedlist[i]);
@@ -991,7 +993,7 @@ PyGeda_append_symbol_path( const char *path )
     char *namestr = basename(directory);
 
     if (f_get_is_path_absolute (directory)) {
-      s_clib_add_directory (directory, namestr);
+      geda_struct_clib_add_directory (directory, namestr);
     }
     else {
       char *cwd = g_get_current_dir ();
@@ -1002,7 +1004,7 @@ PyGeda_append_symbol_path( const char *path )
       else
         temp = g_build_filename (cwd, directory, NULL);
 
-      s_clib_add_directory (temp, namestr);
+      geda_struct_clib_add_directory (temp, namestr);
 
       GEDA_FREE(temp);
       GEDA_FREE(cwd);
@@ -2407,7 +2409,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
   int emb  = embed  < 0 ? 0 : embed;
 
   sym_file = geda_utility_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
-  clib     = s_clib_get_symbol_by_name (sym_file);
+  clib     = geda_struct_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
     object = geda_complex_object_new (toplevel, x, y, ang, mirr, clib, sym_file, TRUE);

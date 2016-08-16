@@ -138,7 +138,7 @@ SCM g_rc_component_library(SCM path, SCM name)
 
           char *name = geda_strconcat("Local/", fname, NULL);
 
-          s_clib_add_directory (directory, name);
+          geda_struct_clib_add_directory (directory, name);
 
           GEDA_FREE(name);
         }
@@ -149,17 +149,17 @@ SCM g_rc_component_library(SCM path, SCM name)
 
             char *name = geda_strconcat("Local/", fname, NULL);
 
-            s_clib_add_directory (directory, name);
+            geda_struct_clib_add_directory (directory, name);
 
             GEDA_FREE(name);
           }
           else {
-            s_clib_add_directory (directory, namestr);
+            geda_struct_clib_add_directory (directory, namestr);
           }
         }
       }
       else {
-        s_clib_add_directory (directory, NULL);
+        geda_struct_clib_add_directory (directory, NULL);
       }
     }
     else {
@@ -172,7 +172,7 @@ SCM g_rc_component_library(SCM path, SCM name)
         case 2:
           /* Check if IS current directory */
           if (*directory == '.' && *directory + 1 == '/' ) {
-            s_clib_add_directory (cwd, namestr);
+            geda_struct_clib_add_directory (cwd, namestr);
             break;
           }
 
@@ -186,7 +186,7 @@ SCM g_rc_component_library(SCM path, SCM name)
             temp = f_sys_normalize_name(directory, NULL);
             /*temp = g_build_filename (cwd, directory, NULL);*/
           }
-          s_clib_add_directory (temp, namestr);
+          geda_struct_clib_add_directory (temp, namestr);
           GEDA_FREE(temp);
           break;
       }
@@ -241,7 +241,7 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
 
   namestr = scm_to_utf8_string (name);
 
-  src = s_clib_add_command (lcmdstr, gcmdstr, namestr);
+  src = geda_struct_clib_add_command (lcmdstr, gcmdstr, namestr);
 
   free (namestr); /* this should stay as free (allocated from guile) */
 
@@ -283,7 +283,7 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
 
   namestr = scm_to_utf8_string (name);
 
-  if (s_clib_add_scm (listfunc, getfunc, namestr) != NULL) {
+  if (geda_struct_clib_add_scm (listfunc, getfunc, namestr) != NULL) {
     result = SCM_BOOL_T;
   }
 
@@ -425,11 +425,11 @@ SCM g_rc_source_library_search(SCM path)
  *
  *  \returns SCM_BOOL_T always.
  *
- *  \sa s_clib_init
+ *  \sa geda_struct_clib_init
  */
 SCM g_rc_reset_component_library(void)
 {
-  s_clib_init();
+  geda_struct_clib_init();
 
   return SCM_BOOL_T;
 }
@@ -441,7 +441,7 @@ SCM g_rc_reset_component_library(void)
  *
  *  \returns SCM_BOOL_T always.
  *
- *  \sa s_clib_init
+ *  \sa geda_struct_init
  */
 SCM g_rc_reset_source_library(void)
 {

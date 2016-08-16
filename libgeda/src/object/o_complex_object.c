@@ -800,22 +800,25 @@ void geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
  *
  *  \return a new complex object
  */
-GedaObject *geda_complex_object_new(GedaToplevel *toplevel, int x, int y, int angle,
-                      int mirror, const CLibSymbol *clib, const char *basename,
-                      int selectable)
+GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
+                                    int x, int y,
+                                    int angle, int mirror,
+                                    const CLibSymbol *clib,
+                                    const char *basename,
+                                    int selectable)
 {
   GedaObject  *new_obj;
   GedaComplex *complex;
 
   GList *iter;
-  char *buffer;
+  char  *buffer;
 
   buffer  = NULL;
   new_obj = geda_complex_new();
   complex =  GEDA_COMPLEX(new_obj);
 
   if (clib != NULL) {
-    complex->filename = geda_strdup (s_clib_symbol_get_name (clib));
+    complex->filename = geda_strdup (geda_struct_clib_symbol_get_name (clib));
   }
   else {
     complex->filename = geda_strdup (basename);
@@ -823,15 +826,15 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel, int x, int y, int an
 
   /* get the symbol data */
   if (clib != NULL) {
-    buffer = s_clib_symbol_get_data (clib);
+    buffer = geda_struct_clib_symbol_get_data (clib);
   }
 
   new_obj->selectable = selectable;
 
-  complex->angle = angle;
+  complex->angle  = angle;
   complex->mirror = mirror;
-  complex->x = x;
-  complex->y = y;
+  complex->x      = x;
+  complex->y      = y;
 
   if (clib == NULL || buffer == NULL) {
     new_obj->type = OBJ_PLACEHOLDER;
@@ -1112,7 +1115,7 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
   }
   else {
 
-    const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
+    const CLibSymbol *clib = geda_struct_clib_get_symbol_by_name (basename);
 
     new_obj = geda_complex_object_new(toplevel, x1, y1, angle, mirror, clib, basename, selectable);
 

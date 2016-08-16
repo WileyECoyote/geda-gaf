@@ -244,9 +244,9 @@ void        geda_text_object_update_disp_string      (GedaObject *object);
 void        geda_struct_attrib_free                  (void);
 
 /* s_clib.c */
-void        s_clib_init                    (void);
-void        s_clib_free                    (void);
-GList      *s_clib_get_symbols             (const GedaToplevel *toplevel);
+void        geda_struct_clib_init                    (void);
+void        geda_struct_clib_free                    (void);
+GList      *geda_struct_clib_get_symbols             (const GedaToplevel *toplevel);
 
 /* s_conn.c */
 CONN       *s_conn_return_new              (GedaObject *other_object, int type, int x, int y, int whichone, int other_whichone);
