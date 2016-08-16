@@ -1,3 +1,8 @@
+2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Replace g_path_get_basename with geda_get_basename in
+      function x_dnd_receive_string_sym.
+
 2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_draw.cpp: define WITHOUT_GUILE so that CFLAGS, which include

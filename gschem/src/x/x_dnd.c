@@ -384,18 +384,18 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
                           const char *filename, int where)
 {
   bool  result;
-  Page  *page;
-  char  *path;
+  Page *page;
+  char *path;
 
   page = gschem_toplevel_get_current_page(w_current);
   path = f_path_get_dirname(filename);
 
   if (page && s_clib_source_path_exist(path)) {
 
-    const  CLibSymbol *symbol;
-    char  *symbolfile;
+    const CLibSymbol *symbol;
+    const char       *symbolfile;
 
-    symbolfile = g_path_get_basename (filename);
+    symbolfile = f_get_basename (filename);
     symbol     = s_clib_get_symbol_by_name(symbolfile);
 
     result = FALSE;
@@ -435,7 +435,6 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
       /* TODO: Should embed the symbol */
       u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
     }
-    GEDA_FREE(symbolfile);
   }
   else { /* symbol file is not our library source path so load new page */
     v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
