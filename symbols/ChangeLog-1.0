@@ -1,3 +1,8 @@
+2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/njfet-thru/2N5245_njfet_30V_15mA_TO92-1.sym. Add transistor
+      symbol.
+
 2016-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/KAQY210-1.sym: Add symbol KAQY210 Solid State Relay, N.O. with
