@@ -229,7 +229,7 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_remove_object (o_current);
+    geda_struct_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
@@ -243,7 +243,7 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_update_object (o_current);
+    geda_struct_conn_update_object (o_current);
     o_iter = o_iter->next;
   }
 }
@@ -263,7 +263,7 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_remove_object (o_current);
+    geda_struct_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
@@ -281,7 +281,7 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_update_object (o_current);
+    geda_struct_conn_update_object (o_current);
     o_iter = o_iter->next;
   }
 }
@@ -301,7 +301,7 @@ void geda_object_list_mirror (const GList *list, int x, int y)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_remove_object (o_current);
+    geda_struct_conn_remove_object (o_current);
     o_iter = o_iter->next;
   }
 
@@ -319,7 +319,7 @@ void geda_object_list_mirror (const GList *list, int x, int y)
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
-    s_conn_update_object (o_current);
+    geda_struct_conn_update_object (o_current);
     o_iter = o_iter->next;
   }
 }

@@ -526,7 +526,6 @@ x_window_create_main(GschemToplevel *w_current)
     g_signal_connect (v_adjustment, "value_changed",
                       G_CALLBACK (x_event_vschanged),
                       w_current);
-
   }
 
   x_window_create_drawing_area(w_current, draw_window);

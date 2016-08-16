@@ -309,7 +309,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
 
     /* We may need to update connections */
     s_tile_update_object (child);
-    s_conn_update_object (child);
+    geda_struct_conn_update_object (child);
 
     geda_object_notify_emit_change (parent);
 
@@ -387,7 +387,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
 
   /* We may need to update connections */
   s_tile_remove_object (child);
-  s_conn_remove_object (child);
+  geda_struct_conn_remove_object (child);
 
   geda_object_notify_emit_change (parent);
 

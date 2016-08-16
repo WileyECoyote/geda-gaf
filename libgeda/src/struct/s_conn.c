@@ -51,7 +51,7 @@
  *
  *  \return The new connection object
  */
-CONN *s_conn_return_new(GedaObject * other_object, int type, int x, int y,
+CONN *geda_struct_conn_return_new(GedaObject * other_object, int type, int x, int y,
                         int whichone, int other_whichone)
 {
   CONN *new_conn;
@@ -83,7 +83,7 @@ CONN *s_conn_return_new(GedaObject * other_object, int type, int x, int y,
  *
  *  \return TRUE if the CONN structure is unique, FALSE otherwise.
  */
-int s_conn_uniq(GList * conn_list, CONN * input_conn)
+int geda_struct_conn_uniq(GList * conn_list, CONN * input_conn)
 {
   GList *c_current = conn_list;
 
@@ -114,7 +114,7 @@ int s_conn_uniq(GList * conn_list, CONN * input_conn)
  *
  *  \return TRUE if a connection has been deleted, FALSE otherwise
  */
-int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
+int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
 {
   GList *c_current;
 
@@ -149,7 +149,7 @@ int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
         other_object->bus_ripper_direction = 0;
         }
 #endif
-        s_conn_emit_conns_changed (other_object);
+        geda_struct_conn_emit_conns_changed (other_object);
 
       return (TRUE);
     }
@@ -170,7 +170,7 @@ int s_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
  *
  *  \param obj_list  GList of Objects to unconnected from all other objects
  */
-static void s_conn_remove_glist (GList *obj_list)
+static void geda_struct_conn_remove_glist (GList *obj_list)
 {
   GList *iter;
 
@@ -178,7 +178,7 @@ static void s_conn_remove_glist (GList *obj_list)
 
     GedaObject *o_current = iter->data;
 
-    s_conn_remove_object (o_current);
+    geda_struct_conn_remove_object (o_current);
   }
 }
 
@@ -190,7 +190,7 @@ static void s_conn_remove_glist (GList *obj_list)
  *
  *  \param to_remove GedaObject to unconnected from all other objects
  */
-void s_conn_remove_object (GedaObject *to_remove)
+void geda_struct_conn_remove_object (GedaObject *to_remove)
 {
   GList *c_iter;
   int changed = FALSE;
@@ -203,14 +203,14 @@ void s_conn_remove_object (GedaObject *to_remove)
 
         CONN  *conn = c_iter->data;
 
-        s_conn_freeze_hooks (conn->other_object);
+        geda_struct_conn_freeze_hooks (conn->other_object);
 
         /* keep calling this till it returns false (all refs removed) */
         /* there is NO body to this while loop */
-        while (s_conn_remove_other (conn->other_object, to_remove));
+        while (geda_struct_conn_remove_other (conn->other_object, to_remove));
 
         c_iter->data = NULL;
-        s_conn_thaw_hooks (conn->other_object);
+        geda_struct_conn_thaw_hooks (conn->other_object);
         GEDA_FREE (conn);
       }
 
@@ -223,13 +223,13 @@ void s_conn_remove_object (GedaObject *to_remove)
 
     case OBJ_COMPLEX:
     case OBJ_PLACEHOLDER:
-      s_conn_remove_glist (to_remove->complex->prim_objs);
+      geda_struct_conn_remove_glist (to_remove->complex->prim_objs);
       changed = TRUE;
       break;
   }
 
   if (changed) {
-    s_conn_emit_conns_changed (to_remove);
+    geda_struct_conn_emit_conns_changed (to_remove);
   }
 }
 
@@ -243,7 +243,7 @@ void s_conn_remove_object (GedaObject *to_remove)
  *          point is not a midpoint or if the GedaObject is not a NET a PIN
  *          or a BUS or if the GedaObject is not orthogonally oriented.
  */
-GedaObject *s_conn_check_midpoint(GedaObject *o_current, int x, int y)
+GedaObject *geda_struct_conn_check_midpoint(GedaObject *o_current, int x, int y)
 {
   int min_x, min_y, max_x, max_y;
 
@@ -300,7 +300,7 @@ GedaObject *s_conn_check_midpoint(GedaObject *o_current, int x, int y)
  *
  *  \param obj_list  GList of Objects to add into the connection system
  */
-void s_conn_update_glist (GList *obj_list)
+void geda_struct_conn_update_glist (GList *obj_list)
 {
   GList *iter;
 
@@ -308,7 +308,7 @@ void s_conn_update_glist (GList *obj_list)
 
     GedaObject *o_current = iter->data;
 
-    s_conn_update_object (o_current);
+    geda_struct_conn_update_object (o_current);
   }
 }
 
@@ -333,13 +333,13 @@ static void add_connection (GedaObject *object, GedaObject *other_object,
 {
   /* Describe the connection */
   CONN *new_conn =
-    s_conn_return_new (other_object, type, x, y,  whichone, other_whichone);
+    geda_struct_conn_return_new (other_object, type, x, y,  whichone, other_whichone);
 
   /* Do uniqness check */
-  if (s_conn_uniq (object->conn_list, new_conn)) {
+  if (geda_struct_conn_uniq (object->conn_list, new_conn)) {
     object->conn_list = g_list_append (object->conn_list, new_conn);
-    s_conn_emit_conns_changed ( object);
-    s_conn_emit_conns_changed ( other_object);
+    geda_struct_conn_emit_conns_changed ( object);
+    geda_struct_conn_emit_conns_changed ( other_object);
   }
   else {
     GEDA_FREE (new_conn);
@@ -354,7 +354,7 @@ static void add_connection (GedaObject *object, GedaObject *other_object,
  *
  *  \param object GedaObject to add into the connection system
  */
-void s_conn_update_linear_object (GedaObject *object)
+void geda_struct_conn_update_linear_object (GedaObject *object)
 {
   /* There is no point in looking for objects not on a page
    * since the tile system does not add pageless objects */
@@ -370,7 +370,7 @@ void s_conn_update_linear_object (GedaObject *object)
 
     complex = geda_object_get_parent (object);
 
-    s_conn_freeze_hooks (object);
+    geda_struct_conn_freeze_hooks (object);
 
     /* loop over all tiles which object appears in */
     for (tl_current = object->tiles; tl_current != NULL; NEXT(tl_current))
@@ -411,7 +411,7 @@ void s_conn_update_linear_object (GedaObject *object)
           if (other_object->type != OBJ_PIN) continue;
         }
 
-        s_conn_freeze_hooks (other_object);
+        geda_struct_conn_freeze_hooks (other_object);
 
         /* TODO: One would think there is a less loopy way to check endpoints */
 
@@ -460,7 +460,7 @@ void s_conn_update_linear_object (GedaObject *object)
             continue;
 
           /* check for midpoint of other object, k endpoint of current obj*/
-          found = s_conn_check_midpoint (other_object, object->line->x[k],
+          found = geda_struct_conn_check_midpoint (other_object, object->line->x[k],
                                          object->line->y[k]);
 
           /* Pins are not allowed midpoint connections onto them. */
@@ -489,7 +489,7 @@ void s_conn_update_linear_object (GedaObject *object)
 
           /* do object's endpoints cross the middle of other_object? */
           /* check for midpoint of other object, k endpoint of current obj*/
-          found = s_conn_check_midpoint (object, other_object->line->x[k],
+          found = geda_struct_conn_check_midpoint (object, other_object->line->x[k],
                                          other_object->line->y[k]);
 
           /* Pins are not allowed midpoint connections onto them. */
@@ -509,15 +509,15 @@ void s_conn_update_linear_object (GedaObject *object)
             }
         }
 
-        s_conn_thaw_hooks (other_object);
+        geda_struct_conn_thaw_hooks (other_object);
       }
     }
 
 #if DEBUG_CONNS
-    s_conn_print(object->conn_list);
+    geda_struct_conn_print(object->conn_list);
 #endif
 
-    s_conn_thaw_hooks (object);
+    geda_struct_conn_thaw_hooks (object);
   }
 }
 
@@ -531,18 +531,18 @@ void s_conn_update_linear_object (GedaObject *object)
  *
  *  \param object GedaObject to update into the connection system
  */
-void s_conn_update_object (GedaObject *object)
+void geda_struct_conn_update_object (GedaObject *object)
 {
   switch (object->type) {
     case OBJ_PIN:
     case OBJ_NET:
     case OBJ_BUS:
-      s_conn_update_linear_object (object);
+      geda_struct_conn_update_linear_object (object);
       break;
 
     case OBJ_COMPLEX:
     case OBJ_PLACEHOLDER:
-      s_conn_update_glist (object->complex->prim_objs);
+      geda_struct_conn_update_glist (object->complex->prim_objs);
       break;
   }
 }
@@ -554,11 +554,11 @@ void s_conn_update_object (GedaObject *object)
  *
  *  \param conn_list GList of connection objects
  */
-void s_conn_print(GList *conn_list)
+void geda_struct_conn_print(GList *conn_list)
 {
   GList *cl_current = conn_list;
 
-  printf("\nStarting s_conn_print\n");
+  printf("\nStarting geda_struct_conn_print\n");
 
   while (cl_current != NULL) {
 
@@ -587,7 +587,7 @@ void s_conn_print(GList *conn_list)
  *                         <B>new_net</B> to.
  *  \return TRUE if a matching connection is found, FALSE otherwise.
  */
-int s_conn_net_search(GedaObject *new_net, int whichone, GList *conn_list)
+int geda_struct_conn_net_search(GedaObject *new_net, int whichone, GList *conn_list)
 {
   GList *cl_current = conn_list;
 
@@ -623,7 +623,7 @@ int s_conn_net_search(GedaObject *new_net, int whichone, GList *conn_list)
  *  Caller must g_list_free returned GList pointer.
  *  Do not free individual data items in list.
  */
-static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
+static GList *geda_struct_conn_return_glist_others (GList *input_list, GList *obj_list)
 {
   GList *return_list;
   GList *iter;
@@ -634,7 +634,7 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
 
     GedaObject *o_current = iter->data;
 
-    return_list = s_conn_return_others (return_list, o_current);
+    return_list = geda_struct_conn_return_others (return_list, o_current);
   }
 
   return return_list;
@@ -657,7 +657,7 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
  *  Caller must g_list_free returned GList pointer.
  *  Do not free individual data items in list.
  */
-GList *s_conn_return_others(GList *input_list, GedaObject *object)
+GList *geda_struct_conn_return_others(GList *input_list, GedaObject *object)
 {
   GList *c_iter;
   GList *return_list;
@@ -680,7 +680,7 @@ GList *s_conn_return_others(GList *input_list, GedaObject *object)
 
     case OBJ_COMPLEX:
     case OBJ_PLACEHOLDER:
-      return_list = s_conn_return_glist_others (return_list,
+      return_list = geda_struct_conn_return_glist_others (return_list,
                                                 object->complex->prim_objs);
       break;
   }
@@ -708,7 +708,7 @@ typedef struct {
  * TODO: Does not check for uniquness!
  */
 void
-s_conn_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data)
+geda_struct_conn_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data)
 {
   ConnsChangedHook *new_hook;
 
@@ -739,7 +739,7 @@ static void call_conns_changed_hook (void *data, void *user_data)
  * \param object      #GedaObject structure to emit notifications for.
  *
  */
-void s_conn_emit_conns_changed (GedaObject *object)
+void geda_struct_conn_emit_conns_changed (GedaObject *object)
 {
   if (object != NULL) {
 
@@ -764,11 +764,11 @@ void s_conn_emit_conns_changed (GedaObject *object)
  *#GedaObject. Notification of connection changes is
  *  suspended until the freeze is reduced to zero.
  *
- * \sa s_conn_thaw_hooks
+ * \sa geda_struct_conn_thaw_hooks
  *
  * \param object #GedaObject to freeze notifications for.
  */
-void s_conn_freeze_hooks (GedaObject *object)
+void geda_struct_conn_freeze_hooks (GedaObject *object)
 {
   if (object != NULL) {
     object->conn_notify_freeze_count += 1;
@@ -781,11 +781,11 @@ void s_conn_freeze_hooks (GedaObject *object)
  *  function refresh_connectivity_cache is whenever an object on
  *  the page is created or modified.
  *
- * \sa s_conn_freeze_hooks
+ * \sa geda_struct_conn_freeze_hooks
  *
  * \param object #GedaObject to thaw notifications for.
  */
-void s_conn_thaw_hooks (GedaObject *object)
+void geda_struct_conn_thaw_hooks (GedaObject *object)
 {
   if (object != NULL) {
     g_return_if_fail (object->conn_notify_freeze_count > 0);
@@ -794,7 +794,7 @@ void s_conn_thaw_hooks (GedaObject *object)
 
     if (object->conn_notify_freeze_count == 0 &&
       object->conn_notify_pending)
-    s_conn_emit_conns_changed (object);
+    geda_struct_conn_emit_conns_changed (object);
   }
 }
 
@@ -817,14 +817,14 @@ static void refresh_connectivity_cache (GedaToplevel *toplevel, GedaObject *obje
  *
  * \param page #Page Object to emit notifications for.
  */
-static void s_conn_init_page (Page *page)
+static void geda_struct_conn_init_page (Page *page)
 {
   GedaToplevel *toplevel;
 
   toplevel = geda_page_get_toplevel(page);
 
   /* Connect the hooks for tracking net connectivity here */
-  s_conn_append_conns_changed_hook (page,
+  geda_struct_conn_append_conns_changed_hook (page,
                   (ConnsChangedFunc)refresh_connectivity_cache,
                                     toplevel);
 
@@ -837,11 +837,11 @@ static void s_conn_init_page (Page *page)
  *
  * \par Function Description
  *  This function add a hook to New page object so that the
- *  function s_conn_init_page is called each time a new page
+ *  function geda_struct_conn_init_page is called each time a new page
  *  object is created.
  *
  */
-void s_conn_init (void)
+void geda_struct_conn_init (void)
 {
-    geda_page_append_new_hook ((NewPageFunc) s_conn_init_page, NULL);
+    geda_page_append_new_hook ((NewPageFunc) geda_struct_conn_init_page, NULL);
 }

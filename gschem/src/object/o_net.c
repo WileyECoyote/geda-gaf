@@ -498,17 +498,17 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
       /* conn stuff */
       /* LEAK CHECK 1 */
-      prev_conn_objects = s_conn_return_others (NULL, new_net);
+      prev_conn_objects = geda_struct_conn_return_others (NULL, new_net);
       o_net_add_busrippers (w_current, new_net, prev_conn_objects);
       g_list_free (prev_conn_objects);
 
 #if DEBUG
       printf("primary:\n");
-      s_conn_print(new_net->conn_list);
+      geda_struct_conn_print(new_net->conn_list);
 #endif
 
       /* Go off and search for valid connection on this newly created net */
-      found_primary_connection = s_conn_net_search(new_net, 1,
+      found_primary_connection = geda_struct_conn_net_search(new_net, 1,
                                                    new_net->conn_list);
       if (found_primary_connection) {
 
@@ -534,11 +534,11 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
       /* conn stuff */
       /* LEAK CHECK 2 */
-      prev_conn_objects = s_conn_return_others (NULL, new_net);
+      prev_conn_objects = geda_struct_conn_return_others (NULL, new_net);
       o_net_add_busrippers (w_current, new_net, prev_conn_objects);
       g_list_free (prev_conn_objects);
 #if DEBUG
-      s_conn_print(new_net->conn_list);
+      geda_struct_conn_print(new_net->conn_list);
 #endif
   }
 
@@ -1054,7 +1054,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
     const CLibSymbol *rippersym = NULL;
     int   i;
 
-    s_conn_remove_object (net_obj);
+    geda_struct_conn_remove_object (net_obj);
 
     if (w_current->bus_ripper_type == COMP_BUS_RIPPER) {
 
@@ -1098,7 +1098,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       }
     }
 
-    s_conn_update_linear_object (net_obj);
+    geda_struct_conn_update_linear_object (net_obj);
     return(TRUE);
   }
 

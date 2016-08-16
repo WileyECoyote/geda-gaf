@@ -3057,7 +3057,7 @@ get_connected(GedaObject* o_net)
 
     GedaObject *o_current = g_list_nth_data (network->glist, index);
 
-    nets =  s_conn_return_others(NULL, o_current);
+    nets =  geda_struct_conn_return_others(NULL, o_current);
 
     geda_list_add_glist_unique(network, nets);
 

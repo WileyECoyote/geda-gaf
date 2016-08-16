@@ -147,7 +147,7 @@ void libgeda_init(int argc, char **argv)
   s_slib_init();
   i_menu_init();
   geda_struct_attrib_init();
-  s_conn_init();
+  geda_struct_conn_init();
 
   /* Initialize scheme even if client has not booted Guile */
   scm_with_guile(libgeda_guile_init, &lame);

@@ -249,11 +249,11 @@ void        geda_struct_clib_free                    (void);
 GList      *geda_struct_clib_get_symbols             (const GedaToplevel *toplevel);
 
 /* s_conn.c */
-CONN       *s_conn_return_new              (GedaObject *other_object, int type, int x, int y, int whichone, int other_whichone);
-int         s_conn_uniq                    (GList  *conn_list, CONN *input_conn);
-int         s_conn_remove_other            (GedaObject *other_object, GedaObject *to_remove);
-GedaObject *s_conn_check_midpoint          (GedaObject *o_current, int x, int y);
-void        s_conn_init                    (void);
+CONN       *geda_struct_conn_return_new              (GedaObject *other_object, int type, int x, int y, int whichone, int other_whichone);
+int         geda_struct_conn_uniq                    (GList  *conn_list, CONN *input_conn);
+int         geda_struct_conn_remove_other            (GedaObject *other_object, GedaObject *to_remove);
+GedaObject *geda_struct_conn_check_midpoint          (GedaObject *o_current, int x, int y);
+void        geda_struct_conn_init                    (void);
 
 /* s_encoding.c */
 char       *s_encoding_base64_encode       (char* src, unsigned int srclen, unsigned int* dstlenp, bool strict);

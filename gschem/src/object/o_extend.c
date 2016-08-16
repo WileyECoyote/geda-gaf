@@ -1926,7 +1926,7 @@ bool o_extend_object (GedaObject *projectile, GedaObject *bounder)
 
     if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
       s_tile_update_object (projectile);
-      s_conn_update_object (projectile);
+      geda_struct_conn_update_object (projectile);
     }
     result = TRUE;
   }
@@ -2034,7 +2034,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
 
         if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
           s_tile_update_object (projectile);
-          s_conn_update_object (projectile);
+          geda_struct_conn_update_object (projectile);
         }
 
         o_invalidate_object(w_current, projectile);

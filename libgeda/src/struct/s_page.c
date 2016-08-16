@@ -68,7 +68,7 @@ static void object_added (Page *page, GedaObject *object)
   s_tile_add_object        (object);
 
   /* Update object connection tracking */
-  s_conn_update_object     (object);
+  geda_struct_conn_update_object     (object);
 
   page->CHANGED = 1;
 
@@ -99,7 +99,7 @@ pre_object_removed (Page *page, GedaObject *object)
     }
 
     /* Remove object from connection system */
-    s_conn_remove_object (object);
+    geda_struct_conn_remove_object (object);
 
     /* Remove object from tile system */
     s_tile_remove_object (object);

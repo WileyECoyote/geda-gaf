@@ -733,7 +733,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
     GedaPin *pin = object->pin;
 
     geda_attrib_object_freeze_hooks(object);
-    s_conn_remove_object (object);
+    geda_struct_conn_remove_object (object);
 
     GedaObject *bute;
     pin->node_type = n_type;
@@ -828,7 +828,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
         }
       }
     }
-    s_conn_update_linear_object (object);
+    geda_struct_conn_update_linear_object (object);
     geda_attrib_object_thaw_hooks (object);
   }
 }

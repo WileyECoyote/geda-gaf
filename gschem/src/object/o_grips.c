@@ -1427,12 +1427,12 @@ o_grips_end_net(GschemToplevel *w_current, GedaObject *o_current)
     return;
   }
 
-  s_conn_remove_object (o_current);
+  geda_struct_conn_remove_object (o_current);
   geda_net_object_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
-  s_conn_update_object (o_current);
+  geda_struct_conn_update_object (o_current);
 
   /* add bus rippers if necessary */
-  connected_objects = s_conn_return_others (NULL, o_current);
+  connected_objects = geda_struct_conn_return_others (NULL, o_current);
   o_net_add_busrippers (w_current, o_current, connected_objects);
   g_list_free (connected_objects);
 }
@@ -1464,11 +1464,11 @@ o_grips_end_pin(GschemToplevel *w_current, GedaObject *o_current)
     return;
   }
 
-  s_conn_remove_object (o_current);
+  geda_struct_conn_remove_object (o_current);
   geda_pin_object_modify (o_current, w_current->second_wx,
                                      w_current->second_wy,
                                      w_current->which_grip);
-  s_conn_update_object (o_current);
+  geda_struct_conn_update_object (o_current);
 }
 
 /*! \brief End process of modifying bus object with grip.
@@ -1498,11 +1498,11 @@ o_grips_end_bus(GschemToplevel *w_current, GedaObject *o_current)
     return;
   }
 
-  s_conn_remove_object (o_current);
+  geda_struct_conn_remove_object (o_current);
   geda_bus_object_modify (o_current, w_current->second_wx,
                                      w_current->second_wy,
                                      w_current->which_grip);
-  s_conn_update_object (o_current);
+  geda_struct_conn_update_object (o_current);
 }
 
 /*! \brief End process of modifying object with grip.

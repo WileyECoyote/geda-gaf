@@ -577,7 +577,7 @@ void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
         if (w_current->net_selection_state > 1) {
 
           /* collect nets */
-          netstack = g_list_concat(s_conn_return_others(NULL, o_current),
+          netstack = g_list_concat(geda_struct_conn_return_others(NULL, o_current),
                                    netstack);
         }
 

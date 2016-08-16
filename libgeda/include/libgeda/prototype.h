@@ -606,17 +606,17 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          char    *geda_struct_clib_symbol_get_data_by_name (const char *name);
 
 /* s_conn.c */
-         void    s_conn_remove_object            (GedaObject *to_remove);
-         void    s_conn_update_linear_object     (GedaObject *object);
-         void    s_conn_update_object            (GedaObject *object);
-         void    s_conn_print                    (GList  *conn_list);
-          int    s_conn_net_search               (GedaObject *new_net,    int     whichone, GList *conn_list);
-        GList   *s_conn_return_others            (GList  *input_list, GedaObject *object);
+         void    geda_struct_conn_remove_object            (GedaObject *to_remove);
+         void    geda_struct_conn_update_linear_object     (GedaObject *object);
+         void    geda_struct_conn_update_object            (GedaObject *object);
+         void    geda_struct_conn_print                    (GList  *conn_list);
+          int    geda_struct_conn_net_search               (GedaObject *new_net,    int     whichone, GList *conn_list);
+        GList   *geda_struct_conn_return_others            (GList  *input_list, GedaObject *object);
 
-         void    s_conn_append_conns_changed_hook(Page *page,   ConnsChangedFunc func, void *data);
-         void    s_conn_emit_conns_changed       (GedaObject *object);
-         void    s_conn_freeze_hooks             (GedaObject *object);
-         void    s_conn_thaw_hooks               (GedaObject *object);
+         void    geda_struct_conn_append_conns_changed_hook(Page *page,   ConnsChangedFunc func, void *data);
+         void    geda_struct_conn_emit_conns_changed       (GedaObject *object);
+         void    geda_struct_conn_freeze_hooks             (GedaObject *object);
+         void    geda_struct_conn_thaw_hooks               (GedaObject *object);
 
 /* s_cue.c */
          void    s_cue_get_locations             (const GList *objects, GArray *junctions, GArray *unconnected);

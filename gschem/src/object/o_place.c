@@ -147,9 +147,9 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
       s_page_append_object (p_current, o_current); /* Append to current page */
 
-      s_conn_update_object (o_current);            /* Update connectivity */
+      geda_struct_conn_update_object (o_current);            /* Update connectivity */
 
-      connected_list = s_conn_return_others (connected_list, o_current);
+      connected_list = geda_struct_conn_return_others (connected_list, o_current);
     }
 
     if (id != INVALID_HOOK) {

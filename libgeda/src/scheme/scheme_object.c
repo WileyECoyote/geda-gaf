@@ -661,27 +661,27 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   geda_object_notify_emit_pre_change (obj);
   switch (obj->type) {
   case OBJ_NET:
-    s_conn_remove_object (obj); /* We may need to update connectivity. */
+    geda_struct_conn_remove_object (obj); /* We may need to update connectivity. */
     geda_net_object_modify (obj, x1, y1, 0);
     geda_net_object_modify (obj, x2, y2, 1);
-    s_conn_update_object (obj);
+    geda_struct_conn_update_object (obj);
     break;
   case OBJ_PIN:
-    s_conn_remove_object (obj);
+    geda_struct_conn_remove_object (obj);
     /* Swap ends according to pin's whichend flag. */
     geda_pin_object_modify (obj, x1, y1, obj->pin->whichend ? 1 : 0);
     geda_pin_object_modify (obj, x2, y2, obj->pin->whichend ? 0 : 1);
-    s_conn_update_object (obj);
+    geda_struct_conn_update_object (obj);
     break;
   case OBJ_LINE:
     geda_line_object_modify (obj, x1, y1, LINE_END1);
     geda_line_object_modify (obj, x2, y2, LINE_END2);
     break;
   case OBJ_BUS:
-    s_conn_remove_object (obj);
+    geda_struct_conn_remove_object (obj);
     geda_bus_object_modify (obj, x1, y1, 0);
     geda_bus_object_modify (obj, x2, y2, 1);
-    s_conn_update_object (obj);
+    geda_struct_conn_update_object (obj);
     break;
   default:
     return line_s;
@@ -1245,7 +1245,7 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
                scm_list_1 (obj_s), SCM_EOL);
   }
 
-  GList *list = s_conn_return_others (NULL, obj);
+  GList *list = geda_struct_conn_return_others (NULL, obj);
   SCM result = edascm_from_object_glist (list);
   g_list_free (list);
 

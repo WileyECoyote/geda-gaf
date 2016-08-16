@@ -69,8 +69,8 @@ void s_object_add_child(GedaObject *parent, GedaObject *child) {
  *  connections.
  */
 /*
- * Note: WEH (11/04/13): Modified to add conditional for s_conn_remove_object
- * to else clause of if page member, because the connections would be removed
+ * Note: WEH (11/04/13): Modified to add conditional for geda_struct_conn_remove_
+ * object to else clause of if page member, because the connections would be removed
  * by pre_object_remove if the object was on a page, Also added check for NULL
  * conn_list since there is no point in making the call if no connections exist.
  *
@@ -85,7 +85,7 @@ s_object_release(GedaObject *o_current)
       s_page_remove_object (o_current->page, o_current);
     }
     else if ( o_current->conn_list != NULL ) {
-      s_conn_remove_object (o_current);
+      geda_struct_conn_remove_object (o_current);
     }
 
     if (o_current->attached_to != NULL) {
