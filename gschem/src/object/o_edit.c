@@ -903,7 +903,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
         if (current_filename != NULL) {
 
           Page *parent     = toplevel->page_current;
-          Page *child_page = s_hierarchy_down_schematic_single(toplevel,
+          Page *child_page = geda_struct_hierarchy_down_single(toplevel,
                                                                current_filename,
                                                                parent,
                                                                page_control,

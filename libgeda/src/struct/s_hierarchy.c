@@ -54,7 +54,7 @@ static int page_control_counter=0;
  *  be unique
  */
 Page *
-s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
+geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
                                   Page *parent, int page_control, int flag,
                                   GError **err)
 {
@@ -158,8 +158,9 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
  *
  */
 Page *
-s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
-                         Page *parent)
+geda_struct_hierarchy_down_symbol (GedaToplevel     *toplevel,
+                                   const CLibSymbol *symbol,
+                                   Page             *parent)
 {
   Page *page;
   char *filename;
@@ -208,7 +209,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
  *  \returns A pointer on the page found or NULL if not found.
  */
 Page *
-s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
+geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 {
   if (current_page->hierarchy_up < 0) {
     u_log_message(_("There are no schematics above the current one!\n"));
@@ -236,7 +237,7 @@ s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
  *  Caller must destroy returned GList with g_list_free().
  */
 GList *
-s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
+geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 {
 
   static GList *pages = NULL;
@@ -294,12 +295,12 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 
     /* we got a schematic source attribute, load the page and dive into it */
     child_page =
-    s_hierarchy_down_schematic_single (toplevel, filename, p_current, 0,
+    geda_struct_hierarchy_down_single (toplevel, filename, p_current, 0,
                                        HIERARCHY_NORMAL_LOAD, &err);
     if (child_page != NULL) {
       /* call the recursive function */
-      s_hierarchy_traverse_pages (toplevel, child_page,
-                                  flags | HIERARCHY_INNERLOOP);
+      geda_struct_hierarchy_traverse_pages (toplevel, child_page,
+                                            flags | HIERARCHY_INNERLOOP);
     }
     else {
       u_log_message (_("Failed to descend hierarchy into '%s': %s\n"),
@@ -332,7 +333,7 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
  *  Test function which only prints the name of a page and its number.
  */
 int
-s_hierarchy_print_page (Page *p_current, void * data)
+geda_struct_hierarchy_print_page (Page *p_current, void * data)
 {
   printf("pagefilename: %s pageid: %d\n",
          p_current->filename, p_current->pid);
@@ -356,7 +357,7 @@ s_hierarchy_print_page (Page *p_current, void * data)
  *  \returns A pointer on the page found or NULL if not found.
   */
 Page *
-s_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
+geda_struct_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
 {
   const GList *iter;
 
@@ -391,7 +392,7 @@ s_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
  *  \returns A pointer on the page found or NULL if not found.
  */
 Page *
-s_hierarchy_find_next_page (PageList *page_list, Page *current_page)
+geda_struct_hierarchy_find_next_page (PageList *page_list, Page *current_page)
 {
   const GList *iter;
 

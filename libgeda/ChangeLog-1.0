@@ -1,4 +1,8 @@
-2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
+2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_hierarchy.c: Rename functions with geda_struct prefix.
+
+2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Rename functions with geda_struct prefix.
 

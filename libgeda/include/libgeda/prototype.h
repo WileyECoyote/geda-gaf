@@ -624,14 +624,14 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_cue_output_single             (GedaToplevel *toplevel, GedaObject *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
-         Page   *s_hierarchy_down_schematic_single  (GedaToplevel *toplevel, const char *filename, Page *parent,
-                                                     int page_control, int flag, GError **err);
-         Page   *s_hierarchy_down_symbol         (GedaToplevel *toplevel, const CLibSymbol *symbol, Page *parent);
-         Page   *s_hierarchy_find_up_page        (PageList *page_list, Page *current_page);
-        GList   *s_hierarchy_traverse_pages      (GedaToplevel *toplevel, Page *p_current, int flags);
-          int    s_hierarchy_print_page          (Page *p_current, void *data);
-         Page   *s_hierarchy_find_prev_page      (PageList *page_list, Page *current_page);
-         Page   *s_hierarchy_find_next_page      (PageList *page_list, Page *current_page);
+         Page   *geda_struct_hierarchy_down_single         (GedaToplevel *toplevel, const char *filename, Page *parent,
+                                                            int page_control, int flag, GError **err);
+         Page   *geda_struct_hierarchy_down_symbol         (GedaToplevel *toplevel, const CLibSymbol *symbol, Page *parent);
+         Page   *geda_struct_hierarchy_find_up_page        (PageList *page_list, Page *current_page);
+        GList   *geda_struct_hierarchy_traverse_pages      (GedaToplevel *toplevel, Page *p_current, int flags);
+          int    geda_struct_hierarchy_print_page          (Page *p_current, void *data);
+         Page   *geda_struct_hierarchy_find_prev_page      (PageList *page_list, Page *current_page);
+         Page   *geda_struct_hierarchy_find_next_page      (PageList *page_list, Page *current_page);
 
 /*  s_object.c */
     GedaObject  *s_object_new                    (int type, char const *name);
