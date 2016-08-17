@@ -104,18 +104,19 @@ unsigned read_block(int fd, char *block, int block_min_size,int block_max_size)
   size = CONV16(sizebuf,0);
 
   if (size < block_min_size) {
-    fprintf(stderr,"Segment too small; size %d, min is %d\n",
+    fprintf(stderr,"Segment too small; size %u, min is %d\n",
             size, block_min_size);
     exit(1);
   }
 
   if (size > block_max_size) {
-    fprintf(stderr,"Segment too large; size %d, max is %d\n",
+    fprintf(stderr,"Segment too large; size %u, max is %d\n",
             size, block_max_size);
     exit(1);
   }
 
   if (read(fd,block,size) != size) {
+
 #ifdef HAVE_ERRNO_H
     fprintf(stderr, "Error: file truncated: %s\n", strerror (errno));
     exit(errno);
@@ -133,7 +134,7 @@ unsigned read_string(char *dest, int dest_size, char *src)
   unsigned size = ((unsigned char*)src)[0];
 
   if (size+1 > dest_size) {
-    fprintf(stderr,"Text too large; size %d, max is %d\n", size, dest_size-1);
+    fprintf(stderr,"Text too large; size %u, max is %d\n", size, dest_size-1);
     exit(1);
   }
   strncpy(dest, src + 1, size);

@@ -1,3 +1,7 @@
+2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/sarlacc_schem.c: Update format specifiers=unsigned, not signed.
+
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: Reduce scope of int i, length in do_label.
