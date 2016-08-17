@@ -891,11 +891,11 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   scope_text = g_list_first(autotext->scope_history)->data;
 
   /* Step 2: Get all pages of the hierarchy */
-  pages = geda_struct_hierarchy_traverse_pages (w_current->toplevel,
-                                                Current_Page,
-                                                HIERARCHY_NODUPS);
+  pages = geda_hierarchy_traverse_pages (w_current->toplevel,
+                                         Current_Page,
+                                         HIERARCHY_NODUPS);
 
-  /*  g_list_foreach(pages, (GFunc) geda_struct_hierarchy_print_page, NULL); */
+  /*  g_list_foreach(pages, (GFunc) geda_hierarchy_print_page, NULL); */
 
   /* Step 3: if searchtext has an asterisk at the end we have to find
    *    all matching searchtextes.

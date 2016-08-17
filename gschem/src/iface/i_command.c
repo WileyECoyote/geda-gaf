@@ -2414,7 +2414,7 @@ COMMAND (do_page_first)
       Page  *p_prev = p_first = iter->data;
 
       while (p_prev) {
-        p_prev = geda_struct_hierarchy_find_prev_page (toplevel->pages, p_prev);
+        p_prev = geda_hierarchy_find_prev_page (toplevel->pages, p_prev);
         if (p_prev) {
           p_first = p_prev;
         }
@@ -2503,7 +2503,7 @@ COMMAND (do_page_up)
 
     if (w_current->enforce_hierarchy) {
 
-      p_new = geda_struct_hierarchy_find_prev_page (toplevel->pages, page_current);
+      p_new = geda_hierarchy_find_prev_page (toplevel->pages, page_current);
 
     }
     else {
@@ -2537,7 +2537,7 @@ COMMAND (do_page_down)
 
     if (w_current->enforce_hierarchy) {
 
-      p_new = geda_struct_hierarchy_find_next_page(toplevel->pages, current_page);
+      p_new = geda_hierarchy_find_next_page(toplevel->pages, current_page);
     }
     else {
 
@@ -2575,7 +2575,7 @@ COMMAND (do_page_last)
     if (iter != NULL) {
       Page  *p_next = p_last = iter->data;
       while (p_next) {
-        p_next = geda_struct_hierarchy_find_next_page(toplevel->pages, p_next);
+        p_next = geda_hierarchy_find_next_page(toplevel->pages, p_next);
         if (p_next) {
           p_last = p_next;
         }
@@ -3025,14 +3025,14 @@ COMMAND (do_down_symbol)
 
       p_current = gschem_toplevel_get_current_page(w_current);
 
-      child = geda_struct_hierarchy_down_symbol(w_current->toplevel, sym, p_current);
+      child = geda_hierarchy_down_symbol(w_current->toplevel, sym, p_current);
 
       x_window_setup_page(w_current, child, w_current->world_left,
                                             w_current->world_right,
                                             w_current->world_top,
                                             w_current->world_bottom);
 
-      /* geda_struct_hierarchy_down_symbol() will not zoom the loaded page */
+      /* geda_hierarchy_down_symbol() will not zoom the loaded page */
       i_zoom_world_extents(w_current,
                            s_page_get_objects (child),
                            I_PAN_DONT_REDRAW);
@@ -3062,7 +3062,7 @@ COMMAND (do_hierarchy_up)
 
   child = gschem_toplevel_get_current_page (w_current);
 
-  up_page = geda_struct_hierarchy_find_up_page (w_current->toplevel->pages, child);
+  up_page = geda_hierarchy_find_up_page (w_current->toplevel->pages, child);
 
   if (up_page == NULL) {
     u_log_message(_("Cannot find any schematics above the current one!\n"));

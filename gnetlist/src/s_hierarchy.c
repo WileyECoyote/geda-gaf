@@ -35,7 +35,7 @@
  *   Called by s_traverse_sheet or s_traverse_hierarchy_sheet if
  *   hierarchy-traversal is enabled to check \a o_current for any
  *   source= attributes, there can be more then one, and if found
- *   s_hierarchy_down_schematic_single is called to get the page
+ *   geda_struct_hierarchy_down_single is called to get the page
  *   object for the sheet/page. s_traverse_hierarchy_sheet is then
  *   called to traverse page.
  */
@@ -96,7 +96,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
 
       GError *err = NULL;
 
-      child_page = s_hierarchy_down_schematic_single(pr_current,
+      child_page = geda_struct_hierarchy_down_single(pr_current,
                                                      current_filename,
                                                      pr_current->page_current,
                                                      page_control,

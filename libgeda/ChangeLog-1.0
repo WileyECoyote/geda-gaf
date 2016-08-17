@@ -1,5 +1,8 @@
 2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_hierarchy.h: Add new file; alias macros for
+      functions in s_hierarchy module.
+
     * src/struct/s_hierarchy.c: Rename functions with geda_struct prefix.
 
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
