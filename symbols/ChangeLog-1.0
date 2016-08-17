@@ -1,3 +1,8 @@
+2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/AM3351BZCE-1.sym: Add symbol AM335xB 32-Bit RISC ARM Processor,
+      Sitara, Cortex-A8.
+
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/njfet-thru/2N5245_njfet_30V_15mA_TO92-1.sym. Add transistor
