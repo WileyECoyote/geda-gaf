@@ -5,6 +5,8 @@
 
     * src/struct/s_hierarchy.c: Rename functions with geda_struct prefix.
 
+    * src/struct/s_page.c: Request inline s_page_new_common.
+
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Rename functions with geda_struct prefix.
