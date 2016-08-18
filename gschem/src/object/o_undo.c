@@ -345,7 +345,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
         }
 
         if (u_current->object_list) {
-          s_object_release_objects (u_current->object_list);
+          geda_struct_object_release_objects (u_current->object_list);
           u_current->object_list = NULL;
         }
 

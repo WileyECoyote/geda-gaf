@@ -387,7 +387,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
   /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */
   if (parent) {
-    s_object_add_child (parent, new_obj);
+    geda_struct_object_add_child (parent, new_obj);
   }
   else {
     s_page_append_object (page, new_obj);

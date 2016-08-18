@@ -1186,7 +1186,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
         }
 
         geda_attrib_object_remove (&o_new->attribs, attr_new);
-        s_object_release (attr_new);
+        geda_struct_object_release (attr_new);
         iter->data = NULL;
       }
 
@@ -1211,7 +1211,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
 
   /* Replace old Object with newGedaObject */
   s_page_replace_object (page, o_current, o_new);
-  s_object_release (o_current);
+  geda_struct_object_release (o_current);
 
   /* Select newGedaObject */
   geda_object_selection_add (page->selection_list, o_new);

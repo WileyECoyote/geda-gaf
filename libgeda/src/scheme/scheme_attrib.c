@@ -96,7 +96,7 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   geda_attrib_object_attach (obj, attrib, TRUE);
   geda_object_notify_emit_change (attrib);
 
-  s_object_set_page_changed (obj);
+  geda_struct_object_set_page_changed (obj);
 
   scm_remember_upto_here_1 (attrib_s);
   return obj_s;
@@ -145,7 +145,7 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   geda_set_object_color (attrib, DETACHED_ATTRIBUTE_COLOR);
   geda_object_notify_emit_change (attrib);
 
-  s_object_set_page_changed (obj);
+  geda_struct_object_set_page_changed (obj);
 
   scm_remember_upto_here_1 (attrib_s);
   return obj_s;

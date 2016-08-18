@@ -313,7 +313,7 @@ void s_undo_destroy_all(UNDO *head)
     GEDA_FREE(u_current->filename);
 
     if (u_current->object_list) {
-      s_object_release_objects (u_current->object_list);
+      geda_struct_object_release_objects (u_current->object_list);
       u_current->object_list = NULL;
     }
 
@@ -352,7 +352,7 @@ void s_undo_remove(UNDO *head, UNDO *u_tos)
       GEDA_FREE(u_current->filename);
 
       if (u_current->object_list) {
-        s_object_release_objects (u_current->object_list);
+        geda_struct_object_release_objects (u_current->object_list);
         u_current->object_list = NULL;
       }
 
@@ -385,7 +385,7 @@ void s_undo_remove_rest(UNDO *head)
     }
 
     if (u_current->object_list) {
-      s_object_release_objects (u_current->object_list);
+      geda_struct_object_release_objects (u_current->object_list);
       u_current->object_list = NULL;
     }
 

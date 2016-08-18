@@ -774,7 +774,7 @@ o_select_move_to_place_list(GschemToplevel *w_current)
   GList *selection_copy;
 
   /* remove the old place list if it exists */
-  s_object_release_objects(toplevel->page_current->place_list);
+  geda_struct_object_release_objects(toplevel->page_current->place_list);
   toplevel->page_current->place_list = NULL;
 
   /* get selection list and copy to the place list */

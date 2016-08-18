@@ -48,7 +48,7 @@ static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
 
   if (object_buffer[buf_num] != NULL) {
-    s_object_release_objects(object_buffer[buf_num]);
+    geda_struct_object_release_objects(object_buffer[buf_num]);
     object_buffer[buf_num] = NULL;
   }
 
@@ -228,7 +228,7 @@ void o_buffer_init(void)
  *  \par Function Description
  *
  *  This function iterates over each buffer and deletes any
- *  found by calling s_object_release_objects.
+ *  found by calling geda_struct_object_release_objects.
  */
 void o_buffer_free(GschemToplevel *w_current)
 {
@@ -236,7 +236,7 @@ void o_buffer_free(GschemToplevel *w_current)
 
   for (i = 0 ; i < MAX_BUFFERS; i++) {
     if (object_buffer[i]) {
-      s_object_release_objects(object_buffer[i]);
+      geda_struct_object_release_objects(object_buffer[i]);
       object_buffer[i] = NULL;
     }
   }

@@ -182,7 +182,7 @@ geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color
     geda_attrib_object_add (object, attrib);
 
     /* Only gets set if object is on a page */
-    s_object_set_page_changed (object);
+    geda_struct_object_set_page_changed (object);
 
     if (set_color) {
       geda_set_object_color (attrib, ATTRIBUTE_COLOR);
@@ -237,7 +237,7 @@ geda_attrib_object_detach(GedaObject *attribute)
 
       parent->attribs = g_list_remove (parent->attribs, attribute);
 
-      s_object_set_page_changed (attribute);
+      geda_struct_object_set_page_changed (attribute);
     }
   }
   else {
@@ -741,7 +741,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
                _("unexpected end-of-file in attribute list"));
 
 error:
-  s_object_release_objects(object_list);
+  geda_struct_object_release_objects(object_list);
   return NULL;
 }
 
@@ -1074,7 +1074,7 @@ geda_attrib_object_set_integer_value (GedaObject *attrib,
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
-    s_object_set_page_changed (attrib);
+    geda_struct_object_set_page_changed (attrib);
     geda_attrib_object_emit_changed (attrib);
   }
   else {
@@ -1101,7 +1101,7 @@ geda_attrib_object_set_value (GedaObject *attrib,
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
-    s_object_set_page_changed (attrib);
+    geda_struct_object_set_page_changed (attrib);
     geda_attrib_object_emit_changed (attrib);
   }
   else {

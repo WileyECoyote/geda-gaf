@@ -134,7 +134,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
     if (new_object->type == OBJ_PLACEHOLDER) {
 
       /* If new object is a placeholder, load failed sort end action */
-      s_object_release(new_object);
+      geda_struct_object_release(new_object);
       i_status_set_state (w_current, SELECT);
     }
     else {

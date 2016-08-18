@@ -1296,7 +1296,7 @@ COMMAND (do_paste_clip)
     GList *object_list = NULL;
     narg = 0;
     object_list = x_clipboard_get (w_current);
-    s_object_release_objects (object_buffer[narg]);
+    geda_struct_object_release_objects (object_buffer[narg]);
     object_buffer[0] = object_list;
   }
 

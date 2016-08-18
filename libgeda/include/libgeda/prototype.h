@@ -634,11 +634,11 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          Page   *geda_struct_hierarchy_find_next_page      (PageList *page_list, Page *current_page);
 
 /*  s_object.c */
-    GedaObject  *s_object_new                    (int type, char const *name);
-         void    s_object_add_child              (GedaObject *parent, GedaObject *child);
-         void    s_object_release                (GedaObject *object);
-         void    s_object_release_objects        (GList *list);
-         void    s_object_set_page_changed       (const GedaObject *object);
+    GedaObject  *geda_struct_object_new                    (int type, char const *name);
+         void    geda_struct_object_add_child              (GedaObject *parent, GedaObject *child);
+         void    geda_struct_object_release                (GedaObject *object);
+         void    geda_struct_object_release_objects        (GList *list);
+         void    geda_struct_object_set_page_changed       (const GedaObject *object);
 
 /* s_page.c */
          Page   *s_page_new                      (GedaToplevel *toplevel, const char *filename);

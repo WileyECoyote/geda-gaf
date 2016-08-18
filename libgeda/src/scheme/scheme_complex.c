@@ -186,7 +186,7 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed (obj);
+  geda_struct_object_set_page_changed (obj);
 
   return complex_s;
 }
@@ -313,7 +313,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
 
     geda_object_notify_emit_change (parent);
 
-    s_object_set_page_changed (parent);
+    geda_struct_object_set_page_changed (parent);
   }
 
   return complex_s;
@@ -391,7 +391,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
 
   geda_object_notify_emit_change (parent);
 
-  s_object_set_page_changed (parent);
+  geda_struct_object_set_page_changed (parent);
 
   /* GedaObject cleanup now managed by Guile. */
   edascm_c_set_gc (obj_s, 1);

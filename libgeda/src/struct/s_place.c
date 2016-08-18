@@ -47,7 +47,7 @@ void s_place_free_place_list(GedaToplevel *toplevel)
     GList *list = geda_page_get_place_list(page);
 
     if (list) {
-      s_object_release_objects(list);
+      geda_struct_object_release_objects(list);
       toplevel->page_current->place_list = NULL;
     }
   }

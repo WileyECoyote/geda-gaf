@@ -116,7 +116,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 
     /* Make sure the Drag&Drop Buffer is empty/freed */
     if (object_buffer[DND_BUFFER] != NULL) {
-      s_object_release_objects(object_buffer[DND_BUFFER]);
+      geda_struct_object_release_objects(object_buffer[DND_BUFFER]);
       object_buffer[DND_BUFFER] = NULL;
     }
 
@@ -422,7 +422,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 
             default:
               if (do_delete) {
-                s_object_release_objects(object_buffer[DND_BUFFER]);
+                geda_struct_object_release_objects(object_buffer[DND_BUFFER]);
               }
               if (!valid)
                 fprintf(stderr, "Coord Entry freed the Drag&Drop buffer, "

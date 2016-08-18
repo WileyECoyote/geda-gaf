@@ -228,7 +228,7 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
   geda_object_mirror (obj, x, 0);
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -557,7 +557,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
   geda_set_object_fill_options (obj, &fill_options);
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed (obj);
+  geda_struct_object_set_page_changed (obj);
 
   return obj_s;
 }
@@ -611,7 +611,7 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
   geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -690,7 +690,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return line_s;
 }
@@ -809,7 +809,7 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
 
   geda_set_object_color (obj, scm_to_int (color_s));
 
-  s_object_set_page_changed (obj);
+  geda_struct_object_set_page_changed (obj);
 
   return box_s;
 }
@@ -876,7 +876,7 @@ EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
   geda_circle_object_modify (obj, scm_to_int(r_s), 0, CIRCLE_RADIUS);
   geda_set_object_color (obj, scm_to_int (color_s));
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return circle_s;
 }
@@ -957,7 +957,7 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
 
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return arc_s;
 }
@@ -1372,7 +1372,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
   geda_set_object_line_options (obj, &line_options);
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -1569,7 +1569,7 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
 
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -1700,7 +1700,7 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
 
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -1806,7 +1806,7 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
 
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -1878,7 +1878,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
                     scm_list_1 (scm_from_utf8_string (error->message)));
   }
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   geda_object_notify_emit_change (obj);
 
@@ -1920,7 +1920,7 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
   geda_object_translate (obj, dx, dy);
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }
@@ -1968,7 +1968,7 @@ EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
   geda_object_rotate (obj, x, y, angle);
   geda_object_notify_emit_change (obj);
 
-  s_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed ( obj);
 
   return obj_s;
 }

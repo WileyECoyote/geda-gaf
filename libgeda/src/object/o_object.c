@@ -427,7 +427,7 @@ error:
 
 error2:
 
-  s_object_release_objects(new_object_list);
+  geda_struct_object_release_objects(new_object_list);
 
   return NULL;
 }
@@ -598,7 +598,7 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
 
     geda_object_notify_emit_change(object);
 
-    s_object_set_page_changed (object);
+    geda_struct_object_set_page_changed (object);
 
   }
   else {
@@ -650,7 +650,7 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 
     geda_object_notify_emit_change(object);
 
-    s_object_set_page_changed (object);
+    geda_struct_object_set_page_changed (object);
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);
@@ -699,7 +699,7 @@ geda_object_translate (GedaObject *object, int dx, int dy)
 
     geda_object_notify_emit_change(object);
 
-    s_object_set_page_changed (object);
+    geda_struct_object_set_page_changed (object);
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);

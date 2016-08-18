@@ -31,7 +31,7 @@
  *
  * \returns the newly created GedaObject.
  */
-GedaObject *s_object_new (int type, char const *name)
+GedaObject *geda_struct_object_new (int type, char const *name)
 {
   return geda_object_new(type, name);
 }
@@ -49,7 +49,7 @@ GedaObject *s_object_new (int type, char const *name)
  *
  * \return nothing.
  */
-void s_object_add_child(GedaObject *parent, GedaObject *child) {
+void geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);
@@ -76,7 +76,7 @@ void s_object_add_child(GedaObject *parent, GedaObject *child) {
  *
  */
 void
-s_object_release(GedaObject *o_current)
+geda_struct_object_release(GedaObject *o_current)
 {
   if (GEDA_IS_OBJECT(o_current)) {
 
@@ -95,7 +95,7 @@ s_object_release(GedaObject *o_current)
     geda_attrib_object_detach_all (o_current);
 
     if (o_current->complex && o_current->complex->prim_objs) {
-      s_object_release_objects (o_current->complex->prim_objs);
+      geda_struct_object_release_objects (o_current->complex->prim_objs);
       o_current->complex->prim_objs = NULL;
     }
 
@@ -111,7 +111,7 @@ s_object_release(GedaObject *o_current)
  *  Deletes everything including the GList
  */
 void
-s_object_release_objects(GList *list)
+geda_struct_object_release_objects(GList *list)
 {
   GList *ptr = g_list_last(list);
 
@@ -120,7 +120,7 @@ s_object_release_objects(GList *list)
 
     GedaObject *o_current = GEDA_OBJECT(ptr->data);
 
-    s_object_release(o_current);
+    geda_struct_object_release(o_current);
 
     ptr = g_list_previous (ptr);
   }
@@ -134,7 +134,7 @@ s_object_release_objects(GList *list)
  *  Updates the CHANGED flag of the page associated with \a object
  *  if the object is attached to a page.
  */
-void s_object_set_page_changed (const GedaObject *object)
+void geda_struct_object_set_page_changed (const GedaObject *object)
 {
   Page *page = geda_object_get_page (object);
   geda_page_set_changed (page, TRUE);        /* possibly set CHANGED flag */

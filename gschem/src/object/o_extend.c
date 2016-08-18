@@ -2129,7 +2129,7 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
     }
     else if (result == 3) { /* Something was hit */
 
-      s_object_set_page_changed (o_current);
+      geda_struct_object_set_page_changed (o_current);
       o_undo_savestate (w_current, UNDO_ALL);
 
       /* Was verb->noun so just stay in STARTEXTEND state */
@@ -2227,7 +2227,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
   }
 
   if (status & 1) {
-    s_object_set_page_changed (o_current);
+    geda_struct_object_set_page_changed (o_current);
     o_undo_savestate (w_current, UNDO_ALL);
   }
 

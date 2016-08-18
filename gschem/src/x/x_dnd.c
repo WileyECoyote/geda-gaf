@@ -563,7 +563,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
 
     /* Make sure the buffer is empty, if str maybe in deep dodo */
     if (object_buffer[DND_BUFFER] != NULL) {
-      s_object_release_objects(object_buffer[DND_BUFFER]);
+      geda_struct_object_release_objects(object_buffer[DND_BUFFER]);
       object_buffer[DND_BUFFER] = NULL;
     }
 

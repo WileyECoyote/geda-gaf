@@ -425,13 +425,13 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
            GedaObject *obj = (GedaObject*) iter->data;
             Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
             s_page_remove_object (p_current, obj);
-            s_object_release (obj);
+            geda_struct_object_release (obj);
           }
 
           /* Replace old Object with newGedaObject */
           s_page_replace_object (p_current, o_current, o_new);
 
-          s_object_release (o_current);
+          geda_struct_object_release (o_current);
 
           /* Set refdes on new complex to what is in the dialog entry */
           refdes  = GetEntryText (properties->refdes_entry );

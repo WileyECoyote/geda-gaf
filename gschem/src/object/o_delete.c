@@ -46,7 +46,7 @@ void o_delete (GschemToplevel *w_current, GedaObject *object)
   geda_object_selection_remove   (toplevel->page_current->selection_list, object);
   s_page_remove_object (toplevel->page_current, object);
   g_hook_run_object    (w_current, REMOVE_OBJECTS_HOOK, object);
-  s_object_release     (object);
+  geda_struct_object_release     (object);
 
 }
 
@@ -114,7 +114,7 @@ void o_delete_selected (GschemToplevel *w_current)
     g_hook_run_object_list (w_current, REMOVE_OBJECTS_HOOK, to_remove);
 
     for (iter = to_remove; iter != NULL; iter = iter->next) {
-      s_object_release (iter->data);
+      geda_struct_object_release (iter->data);
     }
 
     g_list_free (to_remove);

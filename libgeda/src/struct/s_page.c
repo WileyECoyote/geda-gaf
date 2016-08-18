@@ -348,7 +348,7 @@ s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
    * deleting objects from the current page.
    *
    * These functions are known to include:
-   *   s_object_release ()
+   *   geda_struct_object_release ()
    */
 
   if (!previous) {
@@ -376,7 +376,7 @@ s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   s_page_delete_objects (page);
 
   /* Free the objects in the place list. */
-  s_object_release_objects (page->place_list);
+  geda_struct_object_release_objects (page->place_list);
   page->place_list = NULL;
 
   s_tile_free_all (page);
@@ -986,7 +986,7 @@ s_page_delete_objects (Page *page)
     }
     page->_object_list = NULL;
 
-    s_object_release_objects (objects);
+    geda_struct_object_release_objects (objects);
   }
   else {
     BUG_PMSG("Invalid page pointer", page);

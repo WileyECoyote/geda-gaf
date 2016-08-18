@@ -162,7 +162,7 @@ smob_free (SCM smob)
     case GEDA_SMOB_OBJECT:
       /* See edascm_from_object() for an explanation of why GedaObject
        * smobs store a GedaToplevel in the second data word */
-      s_object_release ( (GedaObject *) obj);
+      geda_struct_object_release ( (GedaObject *) obj);
       break;
     case GEDA_SMOB_CONFIG:
       /* These are reference counted, so the structure will have

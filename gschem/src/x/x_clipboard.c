@@ -99,7 +99,7 @@ clip_clear (GtkClipboard *cb, void * user_data_or_owner)
   GschemToplevel *w_current = user_data_or_owner;
 
   /* Free the objects in the clipboard buffer */
-  s_object_release_objects (w_current->clipboard_buffer);
+  geda_struct_object_release_objects (w_current->clipboard_buffer);
   w_current->clipboard_buffer = NULL;
 }
 

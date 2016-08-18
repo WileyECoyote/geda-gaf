@@ -241,7 +241,7 @@ geda_set_object_visibility (GedaObject *object, int visibility)
     if (object->visibility != visibility) {
       object->visibility = visibility;
       geda_set_object_bounds_invalid (object);
-      s_object_set_page_changed (object);
+      geda_struct_object_set_page_changed (object);
     }
   }
   else {

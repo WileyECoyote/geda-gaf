@@ -1801,7 +1801,7 @@ geda_picture_object_set_from_buffer (GedaObject        *object,
   object->picture->file_content = buf;
   object->picture->file_length  = len;
 
-  s_object_set_page_changed(object);
+  geda_struct_object_set_page_changed(object);
 
   return TRUE;
 }

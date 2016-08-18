@@ -1142,7 +1142,7 @@ int o_break_end (GschemToplevel *w_current, int x, int y)
   object      = object_list->data;
 
   if (o_break_object(w_current, object)) {
-    s_object_set_page_changed(object);
+    geda_struct_object_set_page_changed(object);
     o_select_unselect_all (w_current);
     o_undo_savestate (w_current, UNDO_ALL);
     i_status_update_sensitivities(w_current);

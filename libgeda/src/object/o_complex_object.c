@@ -1035,7 +1035,7 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
     else {                                    /* Delete promotable attributes */
       GList *from_list = object->complex->prim_objs;
       object->complex->prim_objs = g_list_remove (from_list, a_object);
-      s_object_release (a_object);
+      geda_struct_object_release (a_object);
     }
   }
 
