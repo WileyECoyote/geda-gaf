@@ -443,8 +443,6 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
         ((modifiers & ~consumed_modifiers & mask & ~vmods) == (state & ~consumed_modifiers & mask & ~vmods) ||
         (modifiers & ~consumed_modifiers & mask & ~xmods) == (state & ~consumed_modifiers & mask & ~xmods)))
       {
-        int i;
-
         if (keyval == entry->keyval && /* Exact match */
           /* but also match for group if it is an accel mod, because
            * otherwise we can get multiple exact matches, some being
@@ -468,6 +466,8 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
         }
 
         if (!have_exact) {
+
+          int i;
 
           for (i = 0; i < entry->n_keys; i++) {
 
