@@ -3,6 +3,14 @@
     * src/widgets/geda_font_button.c: Reduce scope of button_desc in clear_
       font_filter_data, and font_dialog in dialog_destroy.
 
+    * src/widgets/geda_entry.c: Add Doxygen documentation for:
+
+            * geda_entry_key_press
+            * geda_entry_grab_focus
+            * geda_entry_realize
+            * geda_entry_unrealize
+            * geda_entry_activate
+
 2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Chain-up to widget->unrealize so that Gdk

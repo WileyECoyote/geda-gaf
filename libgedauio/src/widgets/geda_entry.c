@@ -1247,10 +1247,10 @@ geda_entry_real_activate (GedaEntry *entry)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief GedaEntry on key-press event
+ * \par Function Description
+ *  Keyboard hook routine for auto-completion and history.
  */
 static bool
 geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
@@ -1270,17 +1270,20 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
         handled = TRUE;
       }
       break;
+
     case GDK_KEY_Up:
       if ((state == 0) && (entry->have_history)) {
         geda_entry_history_up (entry);
         handled = TRUE;
       }
       break;
+
     case GDK_KEY_KP_Enter:
     case GDK_KEY_Return:
     case GDK_KEY_ISO_Enter:
       handled = TRUE;
       break;
+
     case GDK_KEY_Tab:
       if ( (state  == 0) && (entry->auto_complete) ) {
         handled = geda_entry_tab_complete (entry);
@@ -1292,24 +1295,24 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   return handled;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief GedaEntry Grab Focus
+ * \par Function Description
+ * Over-rides widget_class->grab_focus. GtkEntry's grab_focus selects
+ * the contents and therefore claims PRIMARY. So we bypass it; see
+ * bug #345356 and bug #347067.
  */
 static void
 geda_entry_grab_focus (GtkWidget *widget)
 {
- /* GtkEntry's grab_focus selects the contents and therefore
-  * claims PRIMARY. So we bypass it; see bug #345356 and bug #347067.
-  */
   GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief GedaEntry Realize
+ * \par Function Description
+ * Over-rides widget_class->realize, chains-up and then retrieves
+ * and saves pointer to the font_map.
  */
 static void
 geda_entry_realize (GtkWidget *widget)
@@ -1318,26 +1321,26 @@ geda_entry_realize (GtkWidget *widget)
 
   if (gtk_widget_has_screen(widget)) {
 
-    GedaEntry     *entry;
-    PangoContext  *context;
-    PangoLayout   *layout;
+    GedaEntry    *entry;
+    PangoContext *context;
+    PangoLayout  *layout;
 
     entry = GEDA_ENTRY (widget);
 
-    layout  = gtk_entry_get_layout ((GtkEntry*) widget);
+    layout  = gtk_entry_get_layout ((GtkEntry*)widget);
     context = pango_layout_get_context (layout);
 
     pango_context_set_font_map (context, entry->priv->font_map);
     entry->priv->font_map = g_object_ref (entry->priv->font_map);
     pango_layout_context_changed (layout);
-
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Unrealize a GedaEntry
+ * \par Function Description
+ * Over-rides widget_class->realize to unreference the font_map
+ * referenced when realized.
  */
 static void
 geda_entry_unrealize (GtkWidget *widget)
@@ -1350,10 +1353,11 @@ geda_entry_unrealize (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief On Activate a GedaEntry
+ * \par Function Description
+ * This is a callback for the "process-entry" signal. If there is text
+ * in the entry and a history_list the history_list is updated.
  */
 static void
 geda_entry_activate (GedaEntry *entry, void *data)
