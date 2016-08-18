@@ -209,9 +209,9 @@ geda_font_button_label_set_font (GedaFontButton *font_button)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
-  PangoFontDescription *button_desc;
-
   if (font_button->priv->use_font) {
+
+    PangoFontDescription *button_desc;
 
     button_desc = pango_font_description_copy (font_button->font_desc);
 
@@ -654,7 +654,6 @@ dialog_destroy (GtkWidget *widget, void * data)
 static void
 geda_font_button_clicked (GtkButton *button)
 {
-  GedaFontDialog     *font_dialog;
   GedaFontButton     *font_button;
   GedaFontButtonData *priv;
 
@@ -663,7 +662,8 @@ geda_font_button_clicked (GtkButton *button)
 
   if (!priv->font_dialog) {
 
-    GtkWidget *parent;
+    GedaFontDialog *font_dialog;
+    GtkWidget      *parent;
 
     parent = gtk_widget_get_toplevel (GTK_WIDGET (font_button));
 
