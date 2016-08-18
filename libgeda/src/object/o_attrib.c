@@ -552,7 +552,7 @@ geda_attrib_object_new_attached(GedaObject *parent,
   /* attach the attribute to the object (if parent is not NULL) */
   if (parent) {
     if (parent->page) {
-      s_page_append_object (parent->page, new_obj);
+      geda_struct_page_append_object (parent->page, new_obj);
     }
     geda_attrib_object_attach (parent, new_obj, FALSE);
   }

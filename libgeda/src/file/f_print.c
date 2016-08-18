@@ -524,12 +524,12 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 
   /* Find all the unicode characters */
   unicode_count = f_print_get_unicode_chars (toplevel,
-                                             s_page_get_objects (page),
+                                             geda_struct_page_get_objects (page),
                                              0, unicode_table);
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
-  geda_object_get_bounds_list (s_page_get_objects (page), &origin_x, &origin_y,
+  geda_object_get_bounds_list (geda_struct_page_get_objects (page), &origin_x, &origin_y,
                                                 &right,    &bottom);
 
   /* Calculate scale factor that will make the image fit on the page */
@@ -690,7 +690,7 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
     fprintf(fp,"%f %f scale\n", scale, scale);
 
     /* Print the objects */
-    f_print_objects (toplevel, fp, s_page_get_objects (page),
+    f_print_objects (toplevel, fp, geda_struct_page_get_objects (page),
                      origin_x, origin_y, scale, unicode_count, unicode_table);
 
     f_print_footer(fp);

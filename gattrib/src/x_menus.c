@@ -38,7 +38,7 @@ static void toolbar_display_both( void );
 void x_menu_file_save()
 {
   s_toplevel_gtksheet_to_toplevel(pr_current);   /* Dumps sheet data into GedaToplevel */
-  s_page_save_all(pr_current);                   /* saves all pages in design */
+  geda_struct_page_save_all(pr_current);                   /* saves all pages in design */
   sheet_head->CHANGED = FALSE;                   /* reset the status flag */
   x_window_update_title(pr_current, sheet_head); /* remove the asterisk from title */
 }
@@ -60,7 +60,7 @@ void x_menu_file_save_as()
       /* replace page filename with new one, do not free filename */
       GEDA_FREE (pr_current->page_current->filename);
       pr_current->page_current->filename = filename;
-      s_page_save_all(pr_current);
+      geda_struct_page_save_all(pr_current);
       /* reset the changed flag of current sheet*/
       sheet_head->CHANGED = FALSE;
       x_window_update_title(pr_current, sheet_head);

@@ -102,8 +102,8 @@ static void main_prog(void *closure, int argc, char *argv[])
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
-    page = s_page_new (pr_current, filename);
-    s_page_goto (page);
+    page = geda_struct_page_new (pr_current, filename);
+    geda_struct_page_goto (page);
 
     if (!f_open (pr_current, page, page->filename, &err)) {
 
@@ -130,7 +130,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   log_destiny=STDOUT_TTY;
 
 #if DEBUG
-  s_page_print_all(pr_current);
+  geda_struct_page_print_all(pr_current);
 #endif
 
   exit_status = s_check_all(pr_current);
@@ -139,7 +139,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     u_log_message("\n");
   }
 
-  s_page_delete_list(pr_current);
+  geda_struct_page_delete_list(pr_current);
 
   gsymcheck_quit();
 

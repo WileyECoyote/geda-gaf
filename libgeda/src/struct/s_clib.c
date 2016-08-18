@@ -1578,7 +1578,7 @@ GList *geda_struct_clib_get_symbols (const GedaToplevel *toplevel)
 
     Page *page = (Page*)p_iter->data;
 
-    for (o_iter = s_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
+    for (o_iter = geda_struct_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
 
       object = (GedaObject *)o_iter->data;
 

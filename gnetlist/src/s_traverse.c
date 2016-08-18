@@ -154,7 +154,7 @@ void s_traverse_process(GedaToplevel *pr_current)
     /* only traverse pages which are toplevel, ie not underneath */
     if (p_current->page_control == 0) {
       pr_current->page_current = p_current;
-      s_traverse_sheet (pr_current, s_page_get_objects (p_current));
+      s_traverse_sheet (pr_current, geda_struct_page_get_objects (p_current));
     }
   }
 
@@ -342,7 +342,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
     g_clear_error (&err);
   }
 
-  const GList *obj_list = s_page_get_objects (pr_current->page_current);
+  const GList *obj_list = geda_struct_page_get_objects (pr_current->page_current);
   char *hierarchy_tag = netlist->hierarchy_tag;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
@@ -512,7 +512,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
       /* result of s_traverse_net() is not used, implicitly cast function value (void) */
       s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
 
-      s_traverse_clear_all_visited (s_page_get_objects (pr_current->page_current));
+      s_traverse_clear_all_visited (geda_struct_page_get_objects (pr_current->page_current));
     }
 
     cpins->nets = nets_head;

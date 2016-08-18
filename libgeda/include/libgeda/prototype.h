@@ -641,41 +641,41 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_object_set_page_changed       (const GedaObject *object);
 
 /* s_page.c */
-         Page   *s_page_new                      (GedaToplevel *toplevel, const char *filename);
-         Page   *s_page_new_with_notify          (GedaToplevel *toplevel, const char *filename);
+         Page   *geda_struct_page_new                      (GedaToplevel *toplevel, const char *filename);
+         Page   *geda_struct_page_new_with_notify          (GedaToplevel *toplevel, const char *filename);
 
-         void    s_page_autosave_init            (GedaToplevel *toplevel);
-          int    s_page_autosave                 (GedaToplevel *toplevel);
+         void    geda_struct_page_autosave_init            (GedaToplevel *toplevel);
+          int    geda_struct_page_autosave                 (GedaToplevel *toplevel);
 
-         bool    s_page_check_changed            (PageList *list);
-         void    s_page_clear_changed            (PageList *list);
+         bool    geda_struct_page_check_changed            (PageList *list);
+         void    geda_struct_page_clear_changed            (PageList *list);
 
-         void    s_page_delete                   (GedaToplevel *toplevel, Page *page, int previous);
-         void    s_page_delete_list              (GedaToplevel *toplevel);
-         Page   *s_page_get_current              (GedaToplevel *toplevel);
-         bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);
-   const char   *s_page_get_file_extension       (Page *page);
-    SELECTION   *s_page_get_selection            (Page *page);
-         bool    s_page_goto                     (Page *page);
-         bool    s_page_is_symbol_file           (Page *page);
-         void    s_page_print_all                (GedaToplevel *toplevel);
-         void    s_page_resequence_by_ids        (GedaToplevel *toplevel);
-          int    s_page_save_all                 (GedaToplevel *toplevel);
-          int    s_page_save_all_changed         (GedaToplevel *toplevel);
-         Page   *s_page_search                   (GedaToplevel *toplevel, const char *filename);
-         Page   *s_page_search_by_page_id        (PageList *list, int pid);
-         void    s_page_set_bounds_func          (Page *page, RenderedBoundsFunc func, void *user_data);
+         void    geda_struct_page_delete                   (GedaToplevel *toplevel, Page *page, int previous);
+         void    geda_struct_page_delete_list              (GedaToplevel *toplevel);
+         Page   *geda_struct_page_get_current              (GedaToplevel *toplevel);
+         bool    geda_struct_page_set_current              (GedaToplevel *toplevel, Page *page);
+   const char   *geda_struct_page_get_file_extension       (Page *page);
+    SELECTION   *geda_struct_page_get_selection            (Page *page);
+         bool    geda_struct_page_goto                     (Page *page);
+         bool    geda_struct_page_is_symbol_file           (Page *page);
+         void    geda_struct_page_print_all                (GedaToplevel *toplevel);
+         void    geda_struct_page_resequence_by_ids        (GedaToplevel *toplevel);
+          int    geda_struct_page_save_all                 (GedaToplevel *toplevel);
+          int    geda_struct_page_save_all_changed         (GedaToplevel *toplevel);
+         Page   *geda_struct_page_search                   (GedaToplevel *toplevel, const char *filename);
+         Page   *geda_struct_page_search_by_page_id        (PageList *list, int pid);
+         void    geda_struct_page_set_bounds_func          (Page *page, RenderedBoundsFunc func, void *user_data);
 
-         void    s_page_append_object            (Page *page, GedaObject *object);
-         void    s_page_append_list              (Page *page, GList *obj_list);
+         void    geda_struct_page_append_object            (Page *page, GedaObject *object);
+         void    geda_struct_page_append_list              (Page *page, GList *obj_list);
 
-         void    s_page_remove_object            (Page *page, GedaObject *object);
-         void    s_page_replace_object           (Page *page, GedaObject *object1, GedaObject *object2);
-         void    s_page_delete_objects           (Page *page);
-   GedaObject   *s_page_get_object               (Page *page, int sid);
-        GList   *s_page_get_objects              (Page *page);
-        GList   *s_page_objects_in_region        (Page *page, int min_x, int min_y, int max_x, int max_y);
-        GList   *s_page_objects_in_regions       (Page *page, RECTANGLE *rects, int n_rects);
+         void    geda_struct_page_remove_object            (Page *page, GedaObject *object);
+         void    geda_struct_page_replace_object           (Page *page, GedaObject *object1, GedaObject *object2);
+         void    geda_struct_page_delete_objects           (Page *page);
+   GedaObject   *geda_struct_page_get_object               (Page *page, int sid);
+        GList   *geda_struct_page_get_objects              (Page *page);
+        GList   *geda_struct_page_objects_in_region        (Page *page, int min_x, int min_y, int max_x, int max_y);
+        GList   *geda_struct_page_objects_in_regions       (Page *page, RECTANGLE *rects, int n_rects);
 
 /* s_papersizes.c */
           int    s_papersizes_add_entry          (char *new_papersize, int width, int height);

@@ -34,8 +34,8 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
     Page *p_current = p_iter->data;
 
     /* Cast removes const qualifier from return value of
-     * s_page_get_objects() */
-    for (o_iter = (GList *) s_page_get_objects (p_current);
+     * geda_struct_page_get_objects() */
+    for (o_iter = (GList *) geda_struct_page_get_objects (p_current);
          o_iter != NULL;
          o_iter = g_list_next (o_iter)) {
 

@@ -117,7 +117,7 @@ GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
   GedaObject *object = NULL;
   int        w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
 
-  for (iter = s_page_get_objects (Current_Page); iter; NEXT(iter)) {
+  for (iter = geda_struct_page_get_objects (Current_Page); iter; NEXT(iter)) {
 
    GedaObject *o_current = iter->data;
 
@@ -161,7 +161,7 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
   int   w_slack;
 
   found   = FALSE;
-  list    = s_page_get_objects (Current_Page);
+  list    = geda_struct_page_get_objects (Current_Page);
   w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
 
   /* Decide whether to iterate over all object or start at the last

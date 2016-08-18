@@ -126,7 +126,7 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
 
   const char *symver = "symver";
 
-  objects = g_list_copy (s_page_get_objects(Current_Page));
+  objects = g_list_copy (geda_struct_page_get_objects(Current_Page));
 
   for (index = 0; index < how_many; index++) {
 

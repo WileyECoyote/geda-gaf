@@ -259,7 +259,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 
     tmp = argv[optind++];
 
-    page = s_page_new (toplevel, tmp);
+    page = geda_struct_page_new (toplevel, tmp);
 
     if (!f_open (toplevel, page, tmp, &err)) {
       fprintf (stderr,
@@ -414,7 +414,7 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
   }
 
   /* Now calculate extents of objects within page */
-  geda_object_get_bounds_list (s_page_get_objects (page), &x_min, &y_min, &x_max, &y_max);
+  geda_object_get_bounds_list (geda_struct_page_get_objects (page), &x_min, &y_min, &x_max, &y_max);
   w_width = x_max - x_min;
   w_height = y_max - y_min;
 
@@ -519,7 +519,7 @@ export_draw_page (Page *page)
     cairo_paint (cr);
 
     /* Draw objects & cues */
-    contents = s_page_get_objects (page);
+    contents = geda_struct_page_get_objects (page);
 
     for (iter = (GList*) contents; iter != NULL; iter = g_list_next (iter))
       eda_renderer_draw (renderer, (GedaObject*)iter->data);
@@ -678,7 +678,7 @@ export_draw_svg_page (cairo_t *cr)
 
   if (pages) {
 
-    contents = s_page_get_objects ((Page *) pages->data);
+    contents = geda_struct_page_get_objects ((Page *) pages->data);
 
     /* Draw background */
     eda_cairo_set_source_color (cr, OUTPUT_BACKGROUND_COLOR,

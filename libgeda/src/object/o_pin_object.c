@@ -748,7 +748,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       else {
         bute = geda_pin_object_create_number_attrib (NULL, object, number, -1, -1);
         if (bute && object->page) {
-          s_page_append_object(object->page, bute);
+          geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
         }
       }
@@ -766,7 +766,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       else {
         bute = geda_pin_object_create_seq_attrib (NULL, object, sequence, -1, -1);
         if (bute && object->page) {
-          s_page_append_object(object->page, bute);
+          geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
         }
       }
@@ -787,7 +787,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       else {
         bute = geda_pin_object_create_label_attrib (NULL, object, label_str, -1, -1);
         if (bute && object->page) {
-          s_page_append_object(object->page, bute);
+          geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
         }
       }
@@ -805,7 +805,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       else {
         bute = geda_pin_object_create_elect_attrib (NULL, object, electrical, -1, -1);
         if (bute && object->page) {
-          s_page_append_object(object->page, bute);
+          geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
         }
       }
@@ -823,7 +823,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
       else {
         bute = geda_pin_object_create_mech_attrib (NULL, object, mechanical, -1, -1);
         if (bute && object->page) {
-          s_page_append_object(object->page, bute);
+          geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
         }
       }
@@ -1462,21 +1462,21 @@ GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *ob
     if (label_str == NULL) {
       attrib = geda_pin_object_create_label_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
-        s_page_append_object(object->page, attrib);
+        geda_struct_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if (number == NULL) {
       attrib = geda_pin_object_create_number_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
-        s_page_append_object(object->page, attrib);
+        geda_struct_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if (sequence < 0) {
       attrib = geda_pin_object_create_seq_attrib(toplevel, object, -1, -1, -1);
       if (attrib && object->page) {
-        s_page_append_object(object->page, attrib);
+        geda_struct_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
@@ -1484,14 +1484,14 @@ GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *ob
     if ((int)etype < 0) {
       attrib = geda_pin_object_create_elect_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
-        s_page_append_object(object->page, attrib);
+        geda_struct_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }
     if ((int)mtype < 0) {
       attrib = geda_pin_object_create_mech_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
-        s_page_append_object(object->page, attrib);
+        geda_struct_page_append_object(object->page, attrib);
         attrib->page = object->page;
       }
     }

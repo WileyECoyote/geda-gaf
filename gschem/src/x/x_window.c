@@ -58,7 +58,7 @@ x_window_setup (GschemToplevel *w_current)
   i_vars_set(w_current);
 
   /* Initialize the autosave callback */
-  s_page_autosave_init(toplevel);
+  geda_struct_page_autosave_init(toplevel);
 
   /* setup world, init_right and _bottom were set in i_vars.c
    * before this function is called */
@@ -769,7 +769,7 @@ x_window_idle_thread_post_load_file (void *filename)
 static void
 x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
 {
-  const GList *list = s_page_get_objects(page);
+  const GList *list = geda_struct_page_get_objects(page);
   int left, right, top, bottom;
 
   if (!geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
@@ -883,14 +883,14 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   /* Create an empty page with optional filename */
   inline Page *new_page(const char *fname) {
 
-    page = s_page_new_with_notify (toplevel, fname);
+    page = geda_struct_page_new_with_notify (toplevel, fname);
 
     /* No objects yet, set values to entire world */
     x_window_setup_page(w_current, page, w_current->world_left,
                                          w_current->world_right,
                                          w_current->world_top,
                                          w_current->world_bottom);
-    s_page_goto (page);
+    geda_struct_page_goto (page);
     return page;
   }
 
@@ -914,7 +914,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   inline void resolve_2_recover(const char *name ) {
     /* There was an error, try go back to old page */
     if (old_current != NULL ) {
-      s_page_goto (old_current);
+      geda_struct_page_goto (old_current);
     }
     else { /* There was error and no previous page */
       page = empty_page(name);
@@ -931,7 +931,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
       /* An existing filename was passed, see if already loaded */
-      page = s_page_search (toplevel, filename);
+      page = geda_struct_page_search (toplevel, filename);
 
       if (page == NULL) {
 
@@ -939,7 +939,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
 
         /* Problem: f_open needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
-         * occurs then we have to delete this page but s_page_delete is
+         * occurs then we have to delete this page but geda_struct_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
         page = new_page(filename);
@@ -949,7 +949,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
           fprintf(stderr, "Error loading file:%s\n", err->message);
           u_log_message ("Failed to load file:%s\n", err->message);
           g_error_free (err);
-          s_page_delete (toplevel, page, FALSE); /* FALSE for now */
+          geda_struct_page_delete (toplevel, page, FALSE); /* FALSE for now */
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
@@ -958,7 +958,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
         }
       }
       else { /* File is already open, so make it the current page */
-        s_page_goto (page);
+        geda_struct_page_goto (page);
         /* Fall through and return existing page */
       }
     }
@@ -1098,7 +1098,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         int pid = page->hierarchy_up;
 
         /* select new current page first look up in page hierarchy */
-        new_current = s_page_search_by_page_id (toplevel->pages, pid);
+        new_current = geda_struct_page_search_by_page_id (toplevel->pages, pid);
 
         if (new_current == NULL) {
 
@@ -1140,7 +1140,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
       geda_page_feeze_notify(page); /* don't bother with thawing */
 
       /* remove page from toplevel list of page and free */
-      s_page_delete (toplevel, page, TRUE);
+      geda_struct_page_delete (toplevel, page, TRUE);
 
       /* Switch to a different page if we just removed the current */
       if (deleted_current) {
@@ -1253,7 +1253,7 @@ x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
   if (gschem_toplevel_set_current_page (w_current, page)) {
     o_redraw_cleanstates (w_current);
-    s_page_goto (page);
+    geda_struct_page_goto (page);
     i_window_on_page_changed(w_current);
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);

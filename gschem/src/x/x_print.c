@@ -867,7 +867,7 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
     int status, wx_min, wy_min, wx_max, wy_max;
 
     /* Automatically choose the orientation that fits best */
-    status = geda_object_get_bounds_list (s_page_get_objects (page),
+    status = geda_object_get_bounds_list (geda_struct_page_get_objects (page),
                                 &wx_min, &wy_min, &wx_max, &wy_max);
 
     if (!status || (wx_max - wx_min) > (wy_max - wy_min)) {
@@ -917,7 +917,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   /* First, calculate a transformation matrix for the cairo
    * context. We want to center the extents of the page in the
    * available page area. */
-  status = geda_object_get_bounds_list (s_page_get_objects (page),
+  status = geda_object_get_bounds_list (geda_struct_page_get_objects (page),
                                           &wx_min, &wy_min, &wx_max, &wy_max);
   /* If there are no printable objects, draw nothing. */
   if (!status) return;
@@ -989,13 +989,13 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   cairo_paint (cr);
 
   /* Draw all objects and cues */
-  for (iter = (GList *) s_page_get_objects (page);
+  for (iter = (GList *) geda_struct_page_get_objects (page);
        iter != NULL;
        iter = g_list_next (iter)) {
     eda_renderer_draw (renderer, (GedaObject*) iter->data);
   }
 
-  for (iter = (GList *) s_page_get_objects (page);
+  for (iter = (GList *) geda_struct_page_get_objects (page);
        iter != NULL;
        iter = g_list_next (iter)) {
     eda_renderer_draw_cues (renderer, (GedaObject*) iter->data);
@@ -1140,7 +1140,7 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
    * context. We want to center the extents of the page in the
    * available page area. */
   status = geda_object_get_bounds_list (
-           s_page_get_objects (w_current->toplevel->page_current),
+           geda_struct_page_get_objects (w_current->toplevel->page_current),
            &wx_min, &wy_min, &wx_max, &wy_max);
 
   if (status) {

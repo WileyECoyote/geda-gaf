@@ -337,7 +337,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
     }
   }
   else {    /* This must be a floating attrib, but what is that !?!?!?!?!  */
-    geda_object_get_bounds_list (s_page_get_objects (toplevel->page_current),
+    geda_object_get_bounds_list (geda_struct_page_get_objects (toplevel->page_current),
                                 &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
@@ -362,7 +362,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                         DEFAULT_TEXT_SIZE,
                         visibility, show_name_value,text_string);
 
-  s_page_append_object(toplevel->page_current, new_obj);
+  geda_struct_page_append_object(toplevel->page_current, new_obj);
 
   /* now toplevel->page_current->object_tail contains new text item */
 
@@ -393,8 +393,8 @@ void
 s_object_delete_text_object_in_object (GedaToplevel *toplevel,
                                        GedaObject   *text_object)
 {
-  s_page_remove_object (toplevel->page_current, text_object);
-  s_object_release (text_object);
+  geda_struct_page_remove_object (toplevel->page_current, text_object);
+  geda_struct_object_release (text_object);
 }
 
 /*------------------------------------------------------------------*/

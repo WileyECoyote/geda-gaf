@@ -67,7 +67,7 @@ EDA_SCM_DEFINE (page_append_x, "%page-append!", 2, 0, 0,
 
   if (curr_page == page) return obj_s;
 
-  s_page_append_object (page, obj);
+  geda_struct_page_append_object (page, obj);
 
   /* Transfer ownership to Page, cleanup no longer Guiles */
   edascm_c_set_gc (obj_s, 0);
@@ -100,7 +100,7 @@ EDA_SCM_DEFINE (page_close_x, "%close-page!", 1, 0, 0,
 
   Page *page = edascm_to_page (page_s);
 
-  s_page_delete (toplevel, page, TRUE);
+  geda_struct_page_delete (toplevel, page, TRUE);
 
   return SCM_UNDEFINED;
 }
@@ -157,7 +157,7 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
 
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
   char         *filename = scm_to_utf8_string (filename_s);
-  Page         *page     = s_page_new (toplevel, filename);
+  Page         *page     = geda_struct_page_new (toplevel, filename);
   free (filename);
 
   size_t  len;
@@ -179,7 +179,7 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
                _("Parse error: ~s"), scm_list_1 (error_message), SCM_EOL);
   }
 
-  s_page_append_list (page, objects);
+  geda_struct_page_append_list (page, objects);
 
   return edascm_from_page (page);
 }
@@ -205,7 +205,7 @@ EDA_SCM_DEFINE (page_get_contents, "%page-contents", 1, 0, 0,
 
   page = edascm_to_page (page_s);
 
-  return edascm_from_object_glist (s_page_get_objects (page));
+  return edascm_from_object_glist (geda_struct_page_get_objects (page));
 }
 
 /*! \brief Get the filename associated with a page.
@@ -304,7 +304,7 @@ EDA_SCM_DEFINE (page_new, "%new-page", 1, 0, 0,
 
   filename = scm_to_utf8_string (filename_s);
 
-  page = s_page_new (toplevel, filename);
+  page = geda_struct_page_new (toplevel, filename);
 
   g_free (filename);
 
@@ -360,7 +360,7 @@ EDA_SCM_DEFINE (page_remove_x, "%page-remove!", 2, 0, 0,
 
   if (curr_page == NULL) return obj_s;
 
-  s_page_remove_object (page, obj);
+  geda_struct_page_remove_object (page, obj);
 
   /* If the object is currently selected, unselect it. */
   geda_object_selection_remove (page->selection_list, obj);
@@ -451,7 +451,7 @@ EDA_SCM_DEFINE (page_to_string, "%page->string", 1, 0, 0,
 
   Page *page = edascm_to_page (page_s);
 
-  char *buf = geda_object_save_buffer (s_page_get_objects (page));
+  char *buf = geda_object_save_buffer (geda_struct_page_get_objects (page));
   scm_dynwind_begin (0);
   scm_dynwind_unwind_handler (g_free, buf, SCM_F_WIND_EXPLICITLY);
   SCM result = scm_from_utf8_string (buf);

@@ -48,7 +48,7 @@ void s_toplevel_close(PageDataSet *PageData) {
   s_sheet_data_reset(PageData);
 
   if (pr_current->page_current != NULL) {
-    s_page_delete (pr_current, pr_current->page_current, FALSE);
+    geda_struct_page_delete (pr_current, pr_current->page_current, FALSE);
   }
 
   f_close(pr_current);  /*  Does absolutely nothing */
@@ -109,7 +109,7 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 
     Page *p_current = p_iter->data;
 
-    for (o_iter  = s_page_get_objects (p_current);
+    for (o_iter  = geda_struct_page_get_objects (p_current);
          o_iter != NULL;
          o_iter  = o_iter->next)
     {
@@ -151,7 +151,7 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
     Page *p_current = (Page*)iter->data;
 
     /*toplevel->page_current = p_current;*/
-    if (p_current && s_page_set_current (toplevel, p_current)) {
+    if (p_current && geda_struct_page_set_current (toplevel, p_current)) {
 
       /* only traverse pages which are toplevel */
       if (p_current->page_control == 0) {
@@ -336,7 +336,7 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
    * from the list during iteration over the list.
    */
   /* NB: g_list_copy doesn't declare its input const, so we cast */
-  copy_list = g_list_copy ((GList *)s_page_get_objects (page));
+  copy_list = g_list_copy ((GList *)geda_struct_page_get_objects (page));
 
   /* Iterate backwards since attributes are attached after their
    * parent objects in the list. Attributes can get deleted during
@@ -404,7 +404,7 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
    * deleted from the list during its iteration.
    */
   /* NB: g_list_copy doesn't declare its input const, so we cast */
-  copy_list = g_list_copy ((GList *)s_page_get_objects (page));
+  copy_list = g_list_copy ((GList *)geda_struct_page_get_objects (page));
 
   for (o_iter = g_list_last (copy_list);
        o_iter != NULL;

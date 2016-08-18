@@ -293,7 +293,7 @@ void x_dialog_unsaved_data()
     case GEDA_RESPONSE_YES:
     {
       s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into GedaToplevel */
-      s_page_save_all(pr_current);  /* saves all pages in design */
+      geda_struct_page_save_all(pr_current);  /* saves all pages in design */
       sheet_head->CHANGED = FALSE;
       gattrib_quit(0);
       break;

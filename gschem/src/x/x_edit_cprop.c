@@ -123,7 +123,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       Page *p_current = gschem_toplevel_get_current_page(w_current);
 
       /* symbol mode, get all objects on the page */
-      attribs   = s_page_get_objects(p_current);
+      attribs   = geda_struct_page_get_objects(p_current);
       a_current = NULL;
 
     }
@@ -337,7 +337,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
   w_current = GSCHEM_DIALOG(dialog)->w_current;
   p_current = gschem_toplevel_get_current_page(w_current);
 
-  if (s_page_is_symbol_file(p_current)) {
+  if (geda_struct_page_is_symbol_file(p_current)) {
     changed = x_dialog_ep_revise_symbol_attribs (w_current, properties);
   }
   else {
@@ -412,7 +412,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           }
 
            /* Add new attributes to page */
-          s_page_append_list (p_current, new_butes);
+          geda_struct_page_append_list (p_current, new_butes);
 
           /* Update pinnumbers for current slot */
           s_slot_update_object (o_new);
@@ -424,12 +424,12 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
            GedaObject *obj = (GedaObject*) iter->data;
             Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
-            s_page_remove_object (p_current, obj);
+            geda_struct_page_remove_object (p_current, obj);
             geda_struct_object_release (obj);
           }
 
           /* Replace old Object with newGedaObject */
-          s_page_replace_object (p_current, o_current, o_new);
+          geda_struct_page_replace_object (p_current, o_current, o_new);
 
           geda_struct_object_release (o_current);
 
@@ -681,7 +681,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
       SetWidgetTip(properties->symbol_entry, page->filename);
 
       /* symbol mode, get all objects on the page */
-      attribs   = s_page_get_objects(page);
+      attribs   = geda_struct_page_get_objects(page);
       all_butes = geda_object_get_objects_by_type (attribs, OBJ_TEXT);
     }
     else {
@@ -863,7 +863,7 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
     GEDA_OBJECT_SET_DATA(dialog, object, "object");
     gtk_widget_grab_focus(properties->symbol_entry);
   }
-  else if (s_page_is_symbol_file(p_current)) {
+  else if (geda_struct_page_is_symbol_file(p_current)) {
     x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, NULL, properties);
     GEDA_OBJECT_SET_DATA(dialog, NULL, "object");

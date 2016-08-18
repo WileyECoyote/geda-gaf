@@ -170,8 +170,8 @@ void o_page_draw_after (GschemToplevel *w_current)
 
     Page   *page      = gschem_toplevel_get_current_page(w_current);
 
-    GList  *page_list = s_page_get_objects (page);
-    GList  *list      = geda_list_get_glist (s_page_get_selection (page));
+    GList  *page_list = geda_struct_page_get_objects (page);
+    GList  *list      = geda_list_get_glist (geda_struct_page_get_selection (page));
     GList  *set2      = g_list_copy(list);
     GList  *set1      = g_list_copy(w_current->primary_selection);
     GList  *iter;
@@ -257,7 +257,7 @@ void o_page_draw_before (GschemToplevel *w_current)
 
     Page   *page      = Current_Page;
 
-    GList  *page_list = s_page_get_objects (page);
+    GList  *page_list = geda_struct_page_get_objects (page);
     GList  *set1      = g_list_copy(w_current->primary_selection);
     GList  *set2      = g_list_copy(geda_list_get_glist (Current_Selection));
     GList  *iter;
@@ -333,7 +333,7 @@ void o_page_draw_before (GschemToplevel *w_current)
 void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
 {
   Page  *page      = Current_Page;
-  GList *page_list = s_page_get_objects (page);
+  GList *page_list = geda_struct_page_get_objects (page);
   GList *tblocks   = remove_title_blocks(&page_list);
   GList *list      = g_list_copy(object_list);
   GList *iter      = g_list_reverse(list);
@@ -377,7 +377,7 @@ void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
 void o_page_draw_last (GschemToplevel *w_current, GList *object_list)
 {
   Page  *page      = Current_Page;
-  GList *page_list = s_page_get_objects (page);
+  GList *page_list = geda_struct_page_get_objects (page);
   GList *iter      = object_list;
 
   while (iter) {

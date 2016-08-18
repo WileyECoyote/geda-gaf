@@ -103,7 +103,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
                                   0);
 
     new_obj->line_options->line_width = geda_object_style_get_bus_width(toplevel);
-    s_page_append_object (toplevel->page_current, new_obj);
+    geda_struct_page_append_object (toplevel->page_current, new_obj);
 
     /* connect the new bus to the other busses */
     prev_conn_objects = geda_struct_conn_return_others (NULL, new_obj);

@@ -283,7 +283,7 @@ geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
   g_return_if_fail (toplevel != NULL);
   g_return_if_fail (page != NULL);
 
-  iter = s_page_get_objects (page);
+  iter = geda_struct_page_get_objects (page);
 
   while (iter != NULL) {
 
@@ -294,7 +294,7 @@ geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
     }
 
     if (status == -1) {
-      iter = s_page_get_objects (page);
+      iter = geda_struct_page_get_objects (page);
       status = 0;
     }
     else {

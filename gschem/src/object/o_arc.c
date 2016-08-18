@@ -127,7 +127,7 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
                                  w_current->first_wx, w_current->first_wy,
                                  radius, start_angle, arc_sweep);
   new_obj->line_options->line_width =  geda_object_style_get_line_width(toplevel);
-  s_page_append_object (toplevel->page_current, new_obj);
+  geda_struct_page_append_object (toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */
   g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);

@@ -169,7 +169,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   SCREENtoWORLD (w_current, x - bloat, y + height + bloat, &world_rect.lower_x, &world_rect.lower_y);
   SCREENtoWORLD (w_current, x + width + bloat, y - bloat, &world_rect.upper_x, &world_rect.upper_y);
 
-  obj_list = s_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
+  obj_list = geda_struct_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
   render_flags = EDA_RENDERER_FLAG_HINTING;
 

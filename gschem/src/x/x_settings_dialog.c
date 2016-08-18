@@ -2869,7 +2869,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
      /* Check if Auto save was enabled, i.e. from 0 -> >0 */
     if (!old_auto_save && new_auto_save)
-      s_page_autosave_init(toplevel);
+      geda_struct_page_autosave_init(toplevel);
   }
 
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);

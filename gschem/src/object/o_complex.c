@@ -230,7 +230,7 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   int left, top, right, bottom;
   int x, y;
 
-  object_list = s_page_get_objects (toplevel->page_current);
+  object_list = geda_struct_page_get_objects (toplevel->page_current);
 
   /* first zoom extents */
   if (zoom_extents) {

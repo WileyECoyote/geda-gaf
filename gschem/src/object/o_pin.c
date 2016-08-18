@@ -95,7 +95,7 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
     new_obj->line_options->line_width =
     geda_object_style_get_pin_width(toplevel, PIN_NET_NODE);
 
-    s_page_append_object (toplevel->page_current, new_obj);
+    geda_struct_page_append_object (toplevel->page_current, new_obj);
 
     /* Call add-objects-hook */
     g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);

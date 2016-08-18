@@ -95,7 +95,7 @@ int s_check_all(GedaToplevel *toplevel)
       Page  *page;
 
       page     = (Page*)iter->data;
-      obj_list = s_page_get_objects (page);
+      obj_list = geda_struct_page_get_objects (page);
 
       if (obj_list) {
 

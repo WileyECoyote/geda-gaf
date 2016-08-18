@@ -278,7 +278,7 @@ void main_prog(void *closure, int argc, char *argv[])
       fprintf (stderr, _("Loading schematic [%s]\n"), filename);
     }
 
-    s_page_goto (s_page_new (pr_current, filename));
+    geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
     if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
       fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);
@@ -308,7 +308,7 @@ void main_prog(void *closure, int argc, char *argv[])
   }
 
 #if DEBUG
-  s_page_print_all(pr_current);
+  geda_struct_page_print_all(pr_current);
 #endif
 
   /* Load basic gnetlist functions */
@@ -348,7 +348,7 @@ void main_prog(void *closure, int argc, char *argv[])
     s_traverse_process (pr_current);
 
     /* Change back to the directory where we started AGAIN. This is done
-     * because the call to s_page_goto in s_hierarchy_traverse could have
+     * because the call to geda_struct_page_goto in s_hierarchy_traverse could have
      * changed the current working directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
@@ -466,7 +466,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   scm_dynwind_end();
 
-  s_page_delete_list(pr_current);
+  geda_struct_page_delete_list(pr_current);
 
   s_toplevel_release (pr_current);
 

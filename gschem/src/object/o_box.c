@@ -138,7 +138,7 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 
     new_obj->line_options->line_width =  geda_object_style_get_line_width(toplevel);
 
-    s_page_append_object (toplevel->page_current, new_obj);
+    geda_struct_page_append_object (toplevel->page_current, new_obj);
 
 #if DEBUG
     printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);

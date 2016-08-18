@@ -2359,10 +2359,10 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       set_text_buffer(string);
 
       if (remember_page != toplevel->page_current) {
-        s_page_goto(remember_page);
+        geda_struct_page_goto(remember_page);
       }
       done = o_edit_find_text (w_current,
-                               s_page_get_objects (remember_page),
+                               geda_struct_page_get_objects (remember_page),
                                string,
                                search_flags,
                                !start_find);
@@ -2555,7 +2555,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
     set_text_buffer(string);
 
     o_edit_hide_specific_text (w_current,
-                               s_page_get_objects (w_current->toplevel->page_current),
+                               geda_struct_page_get_objects (w_current->toplevel->page_current),
                                string);
     break;
   case GEDA_RESPONSE_REJECT:
@@ -2664,7 +2664,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
     set_text_buffer(string);
 
     o_edit_show_specific_text (w_current,
-                               s_page_get_objects (Current_Page),
+                               geda_struct_page_get_objects (Current_Page),
                                string);
     break;
   case GEDA_RESPONSE_REJECT:

@@ -109,7 +109,7 @@ check_attrib_add(GedaToplevel *toplevel)
 
   GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   /* === Function 01: geda_attrib_object_add === */
 
@@ -138,7 +138,7 @@ check_attrib_add(GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
   g_object_unref (object);
 
   return result;
@@ -155,7 +155,7 @@ check_append_attrib_changed_hook(GedaToplevel *toplevel)
 
   GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   /* === Function 02: geda_attrib_object_append_changed_hook === */
 
@@ -181,7 +181,7 @@ check_append_attrib_changed_hook(GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -200,7 +200,7 @@ check_attrib_attach (GedaToplevel *toplevel)
 
   GedaObject *attrib  = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object1);
+  geda_struct_page_append_object(page, object1);
 
   /* === Function 03: geda_attrib_object_attach === */
 
@@ -269,7 +269,7 @@ check_attrib_attach (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_append_object(page, object2);
+  geda_struct_page_append_object(page, object2);
 
   /* Try to attach last attrib to object2 when already attached to object1 */
   geda_attrib_attach(object2, attrib, FALSE);
@@ -284,8 +284,8 @@ check_attrib_attach (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object2);
-  s_page_remove_object (page, object1);
+  geda_struct_page_remove_object (page, object2);
+  geda_struct_page_remove_object (page, object1);
 
   g_object_unref (object2);
   g_object_unref (object1);
@@ -305,7 +305,7 @@ check_attrib_attach_list (GedaToplevel *toplevel)
   GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   /* === Function 04: geda_attrib_object_attach_list === */
 
@@ -333,7 +333,7 @@ check_attrib_attach_list (GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -353,8 +353,8 @@ check_attrib_detach (GedaToplevel *toplevel)
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
-  s_page_append_object(page, object);
-  s_page_append_object(page, attrib1);
+  geda_struct_page_append_object(page, object);
+  geda_struct_page_append_object(page, attrib1);
 
   GList *list;
 
@@ -400,7 +400,7 @@ check_attrib_detach (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -420,7 +420,7 @@ check_attrib_detach_all (GedaToplevel *toplevel)
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   GList *list;
 
@@ -448,7 +448,7 @@ check_attrib_detach_all (GedaToplevel *toplevel)
   }
   notify_attribute = 0;
 
-  s_page_append_object(page, attrib1);          /* Add one attrib to the page */
+  geda_struct_page_append_object(page, attrib1);          /* Add one attrib to the page */
 
   geda_attrib_attach_list(object, list, FALSE); /* reattach the attributes */
 
@@ -462,7 +462,7 @@ check_attrib_detach_all (GedaToplevel *toplevel)
   }
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
   g_list_free(list);
   g_object_unref (object);
 
@@ -483,7 +483,7 @@ check_find_first_attrib_by_name (GedaToplevel *toplevel)
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
   GedaObject *found;
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   GList *list;
 
@@ -510,7 +510,7 @@ check_find_first_attrib_by_name (GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -528,7 +528,7 @@ check_attrib_freeze_hooks (GedaToplevel *toplevel)
 
   GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   /* === Function 08: geda_attrib_object_freeze_hooks  === */
 
@@ -545,7 +545,7 @@ check_attrib_freeze_hooks (GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -702,7 +702,7 @@ check_new_attached_attrib(GedaToplevel *toplevel)
   GedaObject *object1 = geda_complex_new ();
   GedaObject *object2 = geda_complex_new ();
 
-  s_page_append_object(page, object2);
+  geda_struct_page_append_object(page, object2);
 
   /* === Function 12: geda_attrib_object_new_attached  === */
 
@@ -779,8 +779,8 @@ check_new_attached_attrib(GedaToplevel *toplevel)
   }
   g_object_unref (attrib);
 
-  s_page_remove_object (page, attrib); /* now floating */
-  s_page_remove_object (page, object2);
+  geda_struct_page_remove_object (page, attrib); /* now floating */
+  geda_struct_page_remove_object (page, object2);
 
   g_object_unref (object1);
   g_object_unref (object2);
@@ -932,7 +932,7 @@ check_attrib_remove (GedaToplevel *toplevel)
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   GList *list;
 
@@ -998,7 +998,7 @@ check_attrib_remove (GedaToplevel *toplevel)
     }
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (attrib1); /* Not attached so explicitly destroy */
   g_object_unref (attrib3);
@@ -1023,7 +1023,7 @@ check_return_attribs (GedaToplevel *toplevel)
   GedaObject *attrib5 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
   GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   geda_complex_append (object->complex, attrib1);
   geda_complex_append (object->complex, attrib2);
@@ -1080,7 +1080,7 @@ check_return_attribs (GedaToplevel *toplevel)
 
   g_list_free(list);
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1100,7 +1100,7 @@ check_attrib_search_attached_by_name (GedaToplevel *toplevel)
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=b");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=c");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   GList *list;
 
@@ -1158,7 +1158,7 @@ check_attrib_search_attached_by_name (GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1182,7 +1182,7 @@ check_search_floating_by_name (GedaToplevel *toplevel)
   GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
   GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   geda_complex_append (object->complex, attrib1);
   geda_complex_append (object->complex, attrib2);
@@ -1256,7 +1256,7 @@ check_search_floating_by_name (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1280,7 +1280,7 @@ check_search_inherited_by_name (GedaToplevel *toplevel)
   GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
   GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   geda_complex_append (object->complex, attrib1);
   geda_complex_append (object->complex, attrib2);
@@ -1354,7 +1354,7 @@ check_search_inherited_by_name (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1378,7 +1378,7 @@ check_search_object_by_name (GedaToplevel *toplevel)
   GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
   GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   geda_complex_append (object->complex, attrib1);
   geda_complex_append (object->complex, attrib2);
@@ -1465,7 +1465,7 @@ check_search_object_by_name (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1489,7 +1489,7 @@ check_search_object_for_string  (GedaToplevel *toplevel)
   GedaObject *attrib6 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
   GedaObject *attrib7 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   geda_complex_append (object->complex, attrib1);
   geda_complex_append (object->complex, attrib2);
@@ -1507,8 +1507,8 @@ check_search_object_for_string  (GedaToplevel *toplevel)
   g_list_free(list);
   list = NULL;
 
-  s_page_append_object(page, object);
-  s_page_append_object(page, attrib1);
+  geda_struct_page_append_object(page, object);
+  geda_struct_page_append_object(page, attrib1);
 
   notify_attribute = 0;
 
@@ -1559,7 +1559,7 @@ check_search_object_for_string  (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1579,8 +1579,8 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object);
-  s_page_append_object(page, attrib);
+  geda_struct_page_append_object(page, object);
+  geda_struct_page_append_object(page, attrib);
 
   /* Note FALSE = do not modify color */
   geda_attrib_attach(object, attrib, FALSE);
@@ -1629,8 +1629,8 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   notify_attribute = 0;
 
-  s_page_remove_object (page, attrib);
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, attrib);
+  geda_struct_page_remove_object (page, object);
   g_object_unref (object);
 
   return result;
@@ -1648,8 +1648,8 @@ check_attrib_set_value(GedaToplevel *toplevel)
 
   GedaObject *attrib = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=a");
 
-  s_page_append_object(page, object);
-  s_page_append_object(page, attrib);
+  geda_struct_page_append_object(page, object);
+  geda_struct_page_append_object(page, attrib);
 
   /* Note FALSE = do not modify color */
   geda_attrib_attach(object, attrib, FALSE);
@@ -1682,8 +1682,8 @@ check_attrib_set_value(GedaToplevel *toplevel)
   GEDA_FREE(name);
   GEDA_FREE(value);
 
-  s_page_remove_object (page, attrib);
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, attrib);
+  geda_struct_page_remove_object (page, object);
   g_object_unref (object);
 
   return result;
@@ -1795,7 +1795,7 @@ check_attrib_thaw_hooks (GedaToplevel *toplevel)
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=b");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=c");
 
-  s_page_append_object(page, object);
+  geda_struct_page_append_object(page, object);
 
   GList *list;
 
@@ -1852,7 +1852,7 @@ check_attrib_thaw_hooks (GedaToplevel *toplevel)
     result++;
   }
 
-  s_page_remove_object (page, object);
+  geda_struct_page_remove_object (page, object);
 
   g_object_unref (object);
 
@@ -1867,7 +1867,7 @@ GedaToplevel *setup_new_toplevel(void)
   Page         *page;
 
   toplevel = geda_toplevel_new ();
-  page     = s_page_new (toplevel, "test_attrib_object.log");
+  page     = geda_struct_page_new (toplevel, "test_attrib_object.log");
 
   geda_toplevel_set_current_page(toplevel, page);
 

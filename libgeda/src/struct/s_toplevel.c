@@ -34,7 +34,7 @@
  *
  * \return GList of selected components.
  *
- * \sa s_page_get_selection
+ * \sa geda_struct_page_get_selection
  */
 GList *s_toplevel_get_selection (GedaToplevel *toplevel)
 {
@@ -45,7 +45,7 @@ GList *s_toplevel_get_selection (GedaToplevel *toplevel)
   if (!page)
     return NULL;
 
-  selection = s_page_get_selection (page);
+  selection = geda_struct_page_get_selection (page);
 
   return geda_list_get_glist(selection);
 }
@@ -82,7 +82,7 @@ void
 s_toplevel_release (GedaToplevel *toplevel)
 {
   /* Delete all pages */
-  s_page_delete_list (toplevel);
+  geda_struct_page_delete_list (toplevel);
 
   /* Delete the page list */
   GEDA_UNREF (toplevel->pages);
@@ -125,7 +125,7 @@ s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...
  *  GedaToplevel. Note that any previous setting is erased and
  *  passing NULL will disable rendering at this level.
  *
- *  \sa s_page_set_bounds_func
+ *  \sa geda_struct_page_set_bounds_func
  *  \sa geda_text_object_set_rendered_bounds_func
  *
  *  \param [in] toplevel  The GedaToplevel for which the render

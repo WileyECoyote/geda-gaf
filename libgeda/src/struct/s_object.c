@@ -55,7 +55,7 @@ void geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
   Page *page = geda_object_get_page(parent);
 
   if (page && (GEDA_IS_PAGE(page))) {
-    s_page_append_object(page, child);
+    geda_struct_page_append_object(page, child);
   }
 
   geda_attrib_object_add(parent, child);
@@ -82,7 +82,7 @@ geda_struct_object_release(GedaObject *o_current)
 
     /* If currently attached to a page, remove it from the page */
     if (GEDA_IS_PAGE(o_current->page)) {
-      s_page_remove_object (o_current->page, o_current);
+      geda_struct_page_remove_object (o_current->page, o_current);
     }
     else if ( o_current->conn_list != NULL ) {
       geda_struct_conn_remove_object (o_current);

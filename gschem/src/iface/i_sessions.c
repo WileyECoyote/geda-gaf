@@ -49,6 +49,8 @@
  *         usage of this operation.
  */
 
+#define _GNU_SOURCE
+
 #include <gschem.h>
 #include <geda/geda_stat.h>
 #include <geda_debug.h>

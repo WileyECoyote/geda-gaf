@@ -366,7 +366,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
 
     color = DETACHED_ATTRIBUTE_COLOR;
 
-    geda_object_get_bounds_list (s_page_get_objects (page),
+    geda_object_get_bounds_list (geda_struct_page_get_objects (page),
                              &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
@@ -390,7 +390,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
     geda_struct_object_add_child (parent, new_obj);
   }
   else {
-    s_page_append_object (page, new_obj);
+    geda_struct_page_append_object (page, new_obj);
   }
 
   /* handle slot= attribute, it's a special case */

@@ -567,13 +567,13 @@ bool x_event_configure (GtkWidget         *widget,
       cx = ((double)(p_current->left + p_current->right))  / 2;
       cy = ((double)(p_current->top  + p_current->bottom)) / 2;
 
-      s_page_goto (p_current);
+      geda_struct_page_goto (p_current);
 
       i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
     }
 
     /* restore current page to saved value */
-    s_page_goto (old_page_current);
+    geda_struct_page_goto (old_page_current);
 
     /* redraw the current page and update UI */
     o_invalidate_all (w_current);

@@ -782,7 +782,7 @@ x_confirm_close_window (GschemToplevel *w_current)
         {
           p_current = (Page*)p_unsaved->data;
 
-          s_page_goto (p_current);
+          geda_struct_page_goto (p_current);
 
           x_window_save_page (w_current, p_current,
                               Current_Page->filename);
@@ -807,7 +807,7 @@ x_confirm_close_window (GschemToplevel *w_current)
   /* Switch back to the page we were on */
   g_return_val_if_fail (keep_page != NULL, return_value);
 
-  s_page_goto (keep_page);
+  geda_struct_page_goto (keep_page);
 
   return return_value;
 }

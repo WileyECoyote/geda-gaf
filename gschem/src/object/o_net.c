@@ -492,7 +492,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
                                     w_current->second_wx, w_current->second_wy);
 
       new_net->line_options->line_width = geda_object_style_get_net_width(toplevel);
-      s_page_append_object (toplevel->page_current, new_net);
+      geda_struct_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
 
@@ -528,7 +528,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
                           w_current->third_wx, w_current->third_wy);
 
       new_net->line_options->line_width =  geda_object_style_get_net_width(toplevel);
-      s_page_append_object (toplevel->page_current, new_net);
+      geda_struct_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
 
@@ -1076,7 +1076,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
         new_obj = geda_net_object_new(color,rippers[i].x[0], rippers[i].y[0],
                             rippers[i].x[1], rippers[i].y[1]);
         new_obj->line_options->line_width =  geda_object_style_get_net_width(toplevel);
-        s_page_append_object (toplevel->page_current, new_obj);
+        geda_struct_page_append_object (toplevel->page_current, new_obj);
       }
       else {
 
@@ -1087,9 +1087,9 @@ int o_net_add_busrippers(GschemToplevel *w_current,
                                                        rippers[i].y[0],
                                                        complex_angle, 0,
                                                        rippersym, name, 1);
-          s_page_append_list (toplevel->page_current,
+          geda_struct_page_append_list (toplevel->page_current,
                               geda_complex_object_promote_attribs (toplevel, new_obj));
-          s_page_append_object (toplevel->page_current, new_obj);
+          geda_struct_page_append_object (toplevel->page_current, new_obj);
         }
         else {
           u_log_message(_("Bus ripper symbol [%s] was not found in any component library\n"),

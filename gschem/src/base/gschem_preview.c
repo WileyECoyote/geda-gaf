@@ -137,7 +137,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
   x_window_setup_context (preview_window);
 
-  preview_page = s_page_new_with_notify (preview_toplevel, "unknown");
+  preview_page = geda_struct_page_new_with_notify (preview_toplevel, "unknown");
 
   x_window_setup_page (preview_window, preview_page,
                        preview_window->world_left,
@@ -149,10 +149,10 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
                       (ChangeNotifyFunc) preview_invalidate,
                        preview_window);
 
-  s_page_goto (preview_page);
+  geda_struct_page_goto (preview_page);
 
   i_zoom_world_extents(preview_window,
-                       s_page_get_objects (preview_page),
+                       geda_struct_page_get_objects (preview_page),
                        I_PAN_DONT_REDRAW);
 
   preview_invalidate (preview_window);
@@ -265,7 +265,7 @@ preview_update (GschemPreview *preview)
   }
 
   /* delete everything on the our page object */
-  s_page_delete_objects(p_current);
+  geda_struct_page_delete_objects(p_current);
 
   if (preview->active) {
 
@@ -284,7 +284,7 @@ preview_update (GschemPreview *preview)
       {
         text = geda_text_object_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
-        s_page_append_object (p_current, text);
+        geda_struct_page_append_object (p_current, text);
         g_error_free(err);
       }
     }
@@ -298,17 +298,17 @@ preview_update (GschemPreview *preview)
                                    -1, _("Preview Buffer"), &err);
 
       if (err == NULL) {
-        s_page_append_list (p_current, object_list);
+        geda_struct_page_append_list (p_current, object_list);
       }
       else {
         text = geda_text_object_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
-        s_page_append_object (p_current, text);
+        geda_struct_page_append_object (p_current, text);
         g_error_free(err);
       }
     }
 
-    object_list = (GList*)s_page_get_objects (p_current);
+    object_list = (GList*)geda_struct_page_get_objects (p_current);
 
     if (geda_object_get_bounds_list (object_list, &left, &top, &right, &bottom)) {
 
@@ -325,7 +325,7 @@ preview_update (GschemPreview *preview)
   }
 
   /* display current page (possibly empty) */
-  i_zoom_world_extents (preview_window, s_page_get_objects (p_current),
+  i_zoom_world_extents (preview_window, geda_struct_page_get_objects (p_current),
                         I_PAN_DONT_REDRAW);
 
   preview_invalidate(preview_window);
@@ -497,7 +497,7 @@ preview_finalize (GObject *self)
     GedaToplevel *toplevel = preview_window->toplevel;
 
     if (toplevel) {
-      s_page_delete (toplevel, toplevel->page_current, FALSE);
+      geda_struct_page_delete (toplevel, toplevel->page_current, FALSE);
       GEDA_UNREF (preview_window->toplevel);
       preview_window->toplevel = NULL;
     }

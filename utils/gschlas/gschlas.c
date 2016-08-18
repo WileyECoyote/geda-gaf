@@ -112,7 +112,7 @@ main_prog(void *closure, int argc, char *argv[])
         filename = g_build_filename (cwd, argv[index], NULL);
       }
 
-      s_page_goto (s_page_new (pr_current, filename));
+      geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
       if (!f_open (pr_current, pr_current->page_current,
                    pr_current->page_current->filename, &err))
@@ -138,7 +138,7 @@ main_prog(void *closure, int argc, char *argv[])
     GEDA_FREE(cwd);
 
 #if DEBUG
-    s_page_print_all(pr_current);
+    geda_struct_page_print_all(pr_current);
 #endif
 
     if (!quiet_mode) u_log_message("\n");
@@ -151,9 +151,9 @@ main_prog(void *closure, int argc, char *argv[])
     }
 
     /* save all the opened files */
-    s_page_save_all(pr_current);
+    geda_struct_page_save_all(pr_current);
 
-    s_page_delete_list (pr_current);
+    geda_struct_page_delete_list (pr_current);
 
     gschlas_quit();
   }

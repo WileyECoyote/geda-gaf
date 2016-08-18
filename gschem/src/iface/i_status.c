@@ -661,7 +661,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   else {
 
     any_object           = o_select_is_selection (w_current);
-    is_editing_symbol    = s_page_is_symbol_file(Current_Page);
+    is_editing_symbol    = geda_struct_page_is_symbol_file(Current_Page);
     mutil_pages          = g_list_length(geda_toplevel_get_pages(toplevel)) > 1 ? TRUE : FALSE;
 
     if (any_object) {

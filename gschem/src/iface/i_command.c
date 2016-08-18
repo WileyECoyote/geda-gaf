@@ -565,7 +565,7 @@ COMMAND (do_debug)
   /* Get ptr to the current page */
   p_current  = gschem_toplevel_get_current_page(w_current);
 
-  i_zoom_world_extents (w_current, s_page_get_objects(p_current), I_PAN_REDRAW);
+  i_zoom_world_extents (w_current, geda_struct_page_get_objects(p_current), I_PAN_REDRAW);
 /*
   geda_attrib_append_changed_hook (p_current,
                                          (AttribsChangedFunc) o_diagnostics_notify_attribute,
@@ -594,7 +594,7 @@ COMMAND (do_debug)
         total = total + cpu_time[cycle];
       }
       average = total / 10;
-      count   = g_list_length((GList*)s_page_get_objects(p_current));
+      count   = g_list_length((GList*)geda_struct_page_get_objects(p_current));
       per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
       results = geda_sprintf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
       printf ("file=%s, has %d objects: %s\n", p_current->filename, count, results);
@@ -603,7 +603,7 @@ COMMAND (do_debug)
       break;
 
     case RUN_UNDO_TESTS:
-      count   = g_list_length(s_page_get_objects(p_current));
+      count   = g_list_length(geda_struct_page_get_objects(p_current));
       if (count > NUMBER_UNDO_TEST - 1) {
         if (w_current->undo_levels < NUMBER_UNDO_TEST) {
           printf ("Warning undo levels setting=%d, number of tests=%d\n", NUMBER_UNDO_TEST, w_current->undo_levels);
@@ -619,7 +619,7 @@ COMMAND (do_debug)
           total = total + cpu_time[cycle];
         }
         average = total / 10;
-        count   = g_list_length(s_page_get_objects(p_current));
+        count   = g_list_length(geda_struct_page_get_objects(p_current));
         per_obj = ((average / count) * 1000) / NUMBER_UNDO_TEST;
         printf ("file=%s, has %d objects after testing\n", p_current->filename, count);
         results = geda_sprintf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
@@ -764,7 +764,7 @@ open_command_idle_callback (void *data)
   bool          status    = SOURCE_CONTINUE;
   char         *last_file = g_slist_last(packet->data)->data;
 
-  if (s_page_search(packet->w_current->toplevel, last_file)) {
+  if (geda_struct_page_search(packet->w_current->toplevel, last_file)) {
     status = SOURCE_REMOVE;
   }
   else if (packet->retry == 1) {
@@ -790,7 +790,7 @@ open_command_idle_notify (void *data)
   char    *last_file   = g_slist_last(files)->data;
   Page    *page;
 
-  page = s_page_search(packet->w_current->toplevel, last_file);
+  page = geda_struct_page_search(packet->w_current->toplevel, last_file);
   if (GEDA_IS_PAGE(page)) {
     x_window_set_current_page (packet->w_current, page);
     g_hook_run_page (packet->w_current, OPEN_PAGE_HOOK, page);
@@ -938,7 +938,7 @@ COMMAND (do_save_all) {
   NOT_NULL(w_current->toplevel);
   BEGIN_NO_ARGUMENT(do_save_all);
 
-  if (s_page_save_all(w_current->toplevel)) {
+  if (geda_struct_page_save_all(w_current->toplevel)) {
      i_status_set_state_msg(w_current, SELECT, _("Failed to Save All"));
   }
   else {
@@ -955,7 +955,7 @@ COMMAND (do_save_mods) {
   NOT_NULL(w_current->toplevel);
   BEGIN_NO_ARGUMENT(do_save_mods);
 
-  if (s_page_save_all_changed(w_current->toplevel)) {
+  if (geda_struct_page_save_all_changed(w_current->toplevel)) {
      i_status_set_state_msg(w_current, SELECT, _("Error encountered, Save Failed"));
   }
   else {
@@ -2023,7 +2023,7 @@ COMMAND (do_zoom_selected)
 
     const GList *selection;
 
-    selection = s_page_get_selection(Current_Page)->glist;
+    selection = geda_struct_page_get_selection(Current_Page)->glist;
 
     i_zoom_world_extents (w_current, selection, 0);
     i_zoom_world(w_current, ZOOM_OUT_DIRECTIVE, CMD_WHO(do_zoom_selected), 0);
@@ -2049,7 +2049,7 @@ COMMAND (do_zoom_extents)
   p_current = gschem_toplevel_get_current_page(w_current);
 
   /* scroll bar stuff */
-  i_zoom_world_extents (w_current, s_page_get_objects (p_current), 0);
+  i_zoom_world_extents (w_current, geda_struct_page_get_objects (p_current), 0);
 
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
@@ -2214,7 +2214,7 @@ COMMAND (do_show_nets)
     Page *p_current;
 
     p_current   = gschem_toplevel_get_current_page(w_current);
-    object_list =  s_page_get_objects (p_current);
+    object_list =  geda_struct_page_get_objects (p_current);
   }
 
   o_edit_show_netnames (w_current, object_list);
@@ -2624,7 +2624,7 @@ COMMAND (do_page_new)
 
   geda_page_set_changed (page, FALSE);
 
-  i_zoom_world_extents (w_current, s_page_get_objects (page), I_PAN_DONT_REDRAW);
+  i_zoom_world_extents (w_current, geda_struct_page_get_objects (page), I_PAN_DONT_REDRAW);
 
   q_log_message (_("New page created [%s]\n"), page->filename);
 
@@ -2637,7 +2637,7 @@ COMMAND (do_page_print)
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   BEGIN_COMMAND(do_page_print);
-  s_page_print_all(w_current->toplevel);
+  geda_struct_page_print_all(w_current->toplevel);
   EXIT_COMMAND(do_page_print);
 }
 
@@ -2671,7 +2671,7 @@ COMMAND (do_page_revert_all)
 
     last_file = g_slist_nth_data (files, CMD_INTEGER(do_page_revert_all));
 
-    page = s_page_search(packet->w_current->toplevel, last_file);
+    page = geda_struct_page_search(packet->w_current->toplevel, last_file);
 
     if (GEDA_IS_PAGE(page)) {
       x_window_set_current_page (packet->w_current, page);
@@ -2767,7 +2767,7 @@ COMMAND (do_page_revert_all)
       geda_page_feeze_notify(page); /* don't bother with thawing */
 
       /* remove the page from toplevel list of page and free */
-      s_page_delete (toplevel, page, FALSE);
+      geda_struct_page_delete (toplevel, page, FALSE);
       index++;
     }
 
@@ -2908,12 +2908,12 @@ COMMAND (do_down_schematic)
                                               w_current->world_right,
                                               w_current->world_top,
                                               w_current->world_bottom);
-        s_page_goto (child);
+        geda_struct_page_goto (child);
         i_zoom_world_extents(w_current,
-                             s_page_get_objects (child),
+                             geda_struct_page_get_objects (child),
                              I_PAN_DONT_REDRAW);
         o_undo_savestate(w_current, UNDO_ALL);
-        s_page_goto (parent);
+        geda_struct_page_goto (parent);
         geda_object_notify_change_add (child,
                             (ChangeNotifyFunc) o_invalidate_object,
                             (ChangeNotifyFunc) o_invalidate_object, w_current);
@@ -3034,7 +3034,7 @@ COMMAND (do_down_symbol)
 
       /* geda_hierarchy_down_symbol() will not zoom the loaded page */
       i_zoom_world_extents(w_current,
-                           s_page_get_objects (child),
+                           geda_struct_page_get_objects (child),
                            I_PAN_DONT_REDRAW);
 
       geda_object_notify_change_add (child,

@@ -92,7 +92,7 @@ static void destroy_all_floating_objects (void)
 
     if (GEDA_IS_OBJECT(object)) {
       if (object->page == NULL) {
-        s_object_release(object);
+        geda_struct_object_release(object);
       }
     }
     NEXT(iter);
@@ -1097,7 +1097,7 @@ PyGeda_get_active_page( void )
   Page *page;
   PyObject *page_info;
 
-  page = s_page_get_current(toplevel);
+  page = geda_struct_page_get_current(toplevel);
 
   if (page && (GEDA_IS_PAGE(page))) {
     page_info = Py_BuildValue("si", page->filename, page->pid);
@@ -1122,7 +1122,7 @@ PyGeda_set_active_page(int pid )
 {
   Page *page;
   page = geda_toplevel_get_page_by_id(toplevel, pid);
-  return s_page_set_current (toplevel, page);
+  return geda_struct_page_set_current (toplevel, page);
 }
 
 /*! \brief Get is Page Modified
@@ -1153,7 +1153,7 @@ int PyGeda_is_page_modified (int pid)
 /*! \brief Changes the current page in toplevel
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  Calls LibGeda function s_page_goto to change the current
+ *  Calls LibGeda function geda_struct_page_goto to change the current
  *  page referenced by \a toplevel and changes the current
  *  working directory to the directory associated with the
  *  page.
@@ -1167,7 +1167,7 @@ PyGeda_goto_page( int pid )
 {
   Page *page;
   page = geda_toplevel_get_page_by_id(toplevel, pid);
-  return s_page_goto (page);
+  return geda_struct_page_goto (page);
 }
 
 /*! \brief Open a Page
@@ -1246,8 +1246,8 @@ PyGeda_open_page( const char *filename )
   inline Page* empty_page( const char *name ) {
     char *fname;
     fname = geda_utility_string_strdup ( name ? name : generate_untitled() );
-    page = s_page_new (toplevel, fname);
-    s_page_goto (page);
+    page = geda_struct_page_new (toplevel, fname);
+    geda_struct_page_goto (page);
     GEDA_FREE (fname);
     return page;
   }
@@ -1269,7 +1269,7 @@ PyGeda_open_page( const char *filename )
     inline void resolve_2_recover( const char *name ) {
       /* There was an error, try go back to old page */
       if (old_current != NULL ) {
-        s_page_goto (old_current);
+        geda_struct_page_goto (old_current);
       }
       else { /* There was error and no previous page */
         page = empty_page(name);
@@ -1279,27 +1279,27 @@ PyGeda_open_page( const char *filename )
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
       /* An existing filename was passed, see if already loaded */
-      page = s_page_search (toplevel, filename);
+      page = geda_struct_page_search (toplevel, filename);
 
       if (page == NULL ) {
         GError *err = NULL;
         /* Problem: f_open needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
-         * occurs then we have to delete this page but s_page_delete is
+         * occurs then we have to delete this page but geda_struct_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
-        page = s_page_new (toplevel, geda_utility_string_strdup (filename));
+        page = geda_struct_page_new (toplevel, geda_utility_string_strdup (filename));
 
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
           g_error_free (err);
-          s_page_delete (toplevel, page, FALSE);
+          geda_struct_page_delete (toplevel, page, FALSE);
           resolve_2_recover(NULL);
         }
       }
       else { /* File is already open, so make it the current page */
-        s_page_goto (page);
+        geda_struct_page_goto (page);
         /* Fall through and return existing page */
       }
     }
@@ -1377,7 +1377,7 @@ PyGeda_open_page( const char *filename )
 /*! \brief Close a Page
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function calls the libgeda function s_page_delete to remove the
+ *  This function calls the libgeda function geda_struct_page_delete to remove the
  *  page referenced by the ID argument from memory.
  *
  *  \param [in] pid  Integer, the page id of the page to close
@@ -1401,7 +1401,7 @@ PyGeda_close_page(int pid)
 
     /* as this will delete current page, select new current page */
     /* first look up in page hierarchy */
-    new_current = s_page_search_by_page_id (toplevel->pages, up);
+    new_current = geda_struct_page_search_by_page_id (toplevel->pages, up);
 
     if (new_current == NULL) {
 
@@ -1423,7 +1423,7 @@ PyGeda_close_page(int pid)
   }
 
   /* remove page from toplevel list of page and free */
-  s_page_delete (toplevel, page, TRUE);
+  geda_struct_page_delete (toplevel, page, TRUE);
 
   /* Switch to a different page if we just removed the current */
   if (toplevel->page_current == NULL) {
@@ -1432,7 +1432,7 @@ PyGeda_close_page(int pid)
     if (new_current != NULL) {
 
       /* change to new_current */
-       if (s_page_set_current( toplevel, new_current ))
+       if (geda_struct_page_set_current( toplevel, new_current ))
          new_pid = toplevel->page_current->pid;
        else
          new_pid = -1;
@@ -1656,7 +1656,7 @@ PyGeda_get_bounds( int pid, int sid )
 
   if ( sid < 0) {
 
-    GList *list = s_page_get_objects(page);
+    GList *list = geda_struct_page_get_objects(page);
 
     if (geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
@@ -1667,7 +1667,7 @@ PyGeda_get_bounds( int pid, int sid )
   }
   else {
 
-    GedaObject *object = s_page_get_object(page, sid);
+    GedaObject *object = geda_struct_page_get_object(page, sid);
 
     if (!object) {
       object = get_floating_object(sid);
@@ -1769,10 +1769,10 @@ PyGeda_get_objects( int pid, int sid )
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if ( sid < 0) {
-    list = s_page_get_objects (page);
+    list = geda_struct_page_get_objects (page);
   }
   else {
-    object = s_page_get_object(page, sid);
+    object = geda_struct_page_get_object(page, sid);
     if (!object) {
       object = get_floating_object(sid);
     }
@@ -1838,7 +1838,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
 
       if (PyGeda_update_object(parent, geda_pyobject)) {
 
-        s_page_append_object(page, parent);
+        geda_struct_page_append_object(page, parent);
 
         if (geda_pyobject->auto_attributes == TRUE) {
           if (parent->type == OBJ_PIN) {
@@ -1852,7 +1852,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
             while (butes != NULL) {
               object = (GedaObject*)butes->data;
               if (!object->page) {
-                s_page_append_object(page, object);
+                geda_struct_page_append_object(page, object);
               }
               NEXT (butes);
             }; /* wend*/
@@ -1882,7 +1882,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
                * the parent object. Note that when the capsule was retrieved
                * they are removed from the the list of "floating" objects.
                */
-              s_object_add_child(parent, object);
+              geda_struct_object_add_child(parent, object);
 
               if (geda_pyobject->auto_attributes == TRUE) {
                 if (parent->type == OBJ_PIN) {
@@ -1907,7 +1907,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
       object = retrieve_floating_object(sid);
 
       if (PyGeda_update_object(object, geda_pyobject)) {
-        s_object_add_child(parent, object);
+        geda_struct_object_add_child(parent, object);
       }
     }
     else { /* Parent is still in Que (and child is also) */
@@ -1999,15 +1999,15 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
-    src_object = s_page_get_object(page, sid);
+    src_object = geda_struct_page_get_object(page, sid);
     if (src_object) {
       new_object = geda_object_copy(src_object);
-      s_page_append_object(page, new_object);
+      geda_struct_page_append_object(page, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           GedaObject *a_current = iter->data;
           GedaObject *a_new = geda_object_copy(a_current);
-          s_page_append_object (page, a_new);
+          geda_struct_page_append_object (page, a_new);
           dest_list = g_list_append(dest_list, a_new);
           geda_attrib_object_add(new_object, a_new);
         }
@@ -2073,10 +2073,10 @@ PyGeda_remove_object( PyObject *py_object )
 
     int sid  = geda_object->sid;
 
-    const GedaObject *object = s_page_get_object(page, sid);
+    const GedaObject *object = geda_struct_page_get_object(page, sid);
 
     if (object) {
-      s_page_remove_object(page, (GedaObject*)object);
+      geda_struct_page_remove_object(page, (GedaObject*)object);
       add_floating_object((GedaObject*)object);
     }
     status = 0;
@@ -2141,7 +2141,7 @@ PyGeda_delete_object( PyObject *py_object )
         const char *name;
         name = PyString_AsString(geda_object->name);
         if ( strcmp(object->name, name) == 0){
-          s_page_remove_object(page, object);
+          geda_struct_page_remove_object(page, object);
         }
       }
     }
@@ -2158,7 +2158,7 @@ PyGeda_delete_object( PyObject *py_object )
 #if DEBUG
     fprintf(stderr, "PyGeda_delete_object: name=%s\n", object->name);
 #endif
-    s_object_release(object);
+    geda_struct_object_release(object);
   }
   return status;
 }
@@ -2810,7 +2810,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
     Page *page;
 
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
-    parent = s_page_get_object(page, sid);
+    parent = geda_struct_page_get_object(page, sid);
   }
 
   if (GEDA_IS_OBJECT(parent)) {
@@ -2878,7 +2878,7 @@ PyGeda_get_attribs(PyObject *py_object)
     Page *page;
 
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
-    parent = s_page_get_object(page, sid);
+    parent = geda_struct_page_get_object(page, sid);
   }
 
   if (GEDA_IS_OBJECT(parent)) {
@@ -2956,7 +2956,7 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
     else {
       Page *page;
       page   = geda_toplevel_get_page_by_id(toplevel, pid);
-      object = s_page_get_object(page, sid);
+      object = geda_struct_page_get_object(page, sid);
     }
     if (GEDA_IS_OBJECT(object)) {
 
@@ -3021,7 +3021,7 @@ PyGeda_refresh_attribs(PyObject *py_object)
     int sid;
 
     sid    = geda_object->sid;
-    object = s_page_get_object(page, sid);
+    object = geda_struct_page_get_object(page, sid);
 
 #if DEBUG
     fprintf(stderr, "PyGeda_refresh_attribs: <%s>\n", object->name);
@@ -3097,7 +3097,7 @@ PyGeda_get_network( int pid, int sid, int filter )
 
   if ( sid >= 0) {
 
-    GedaObject *object = s_page_get_object(page, sid);
+    GedaObject *object = geda_struct_page_get_object(page, sid);
 
     if (!object) {
       object = get_floating_object(sid);
@@ -3241,7 +3241,7 @@ get_cue_locations(PyObject *py_objects, int flag)
       GedaObject *object;
 
       geda_object = (PyGedaObject*)PyList_GET_ITEM(py_objects, i);
-      object      = s_page_get_object(page, geda_object->sid);
+      object      = geda_struct_page_get_object(page, geda_object->sid);
 
       if (object) {
         list = g_list_append(list, object);

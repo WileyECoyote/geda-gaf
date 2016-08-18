@@ -311,7 +311,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (tmp_err == NULL) {
 
-    s_page_append_list (page, objects);
+    geda_struct_page_append_list (page, objects);
 
     if (load_backup_file == 0) {
       /* If it's not the backup file */
@@ -530,7 +530,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     GEDA_FREE (dirname);
 
-    if (geda_object_save (s_page_get_objects (page), real_filename, &tmp_err)) {
+    if (geda_object_save (geda_struct_page_get_objects (page), real_filename, &tmp_err)) {
 
       page->saved_since_first_loaded = 1;
 

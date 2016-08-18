@@ -112,14 +112,14 @@ bool x_fileselect_load_file (char *filename) {
     geda_log (_("Loading file [%s]\n"), filename);
   }
 
-  s_page_goto (s_page_new (pr_current, filename));
+  geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
   if (s_toplevel_read_page(pr_current, filename) == 0) {
      fprintf(stderr, _("Could not load schematic [%s]\n"), filename);
      return FALSE;
   }
 
-  Objects = s_page_get_objects (pr_current->page_current);
+  Objects = geda_struct_page_get_objects (pr_current->page_current);
 
   /* Now add all items found to the master lists */
   s_sheet_data_add_master_comp_list_items (Objects);

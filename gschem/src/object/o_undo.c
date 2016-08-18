@@ -163,7 +163,7 @@ void o_undo_finalize(void)
  *      system is enabled via the auto_save_interval variable, nor does
  *      geda_object_save_auto_backup, nor should they check. o_undo_save
  *      state blindly calls geda_object_save_auto_backup, which backs up
- *      all files flaged by timer s_page_autosave with do_autosave_backup
+ *      all files flaged by timer geda_struct_page_autosave with do_autosave_backup
  *      AND marked here with ops_since_last_backup if interval is non zero,
  *      but only after the call to geda_object_save_auto_backup.
  *      Sounds hokey huh? The scheme works because a change was just made
@@ -253,7 +253,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
                                   tmp_path, DIR_SEPARATOR,
                                   prog_pid, undo_file_index++);
 
-      if (!geda_object_save (s_page_get_objects (p_current), filename, &err))
+      if (!geda_object_save (geda_struct_page_get_objects (p_current), filename, &err))
       {
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
@@ -527,7 +527,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     s_place_free_place_list (toplevel);
 
-    s_page_delete_objects (Current_Page);
+    geda_struct_page_delete_objects (Current_Page);
 
   }
 
@@ -566,7 +566,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   }
   else if (w_current->undo_type == UNDO_MEMORY && u_current->object_list) {
 
-    s_page_append_list (Current_Page,
+    geda_struct_page_append_list (Current_Page,
                         geda_copy_list (u_current->object_list, NULL));
     restored = TRUE;
   }

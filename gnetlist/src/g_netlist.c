@@ -855,7 +855,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 
     /* only look for first occurrance of the attribute on each page */
     attrib_value =
-    geda_attrib_search_floating_by_name (s_page_get_objects (p_current),
+    geda_attrib_search_floating_by_name (geda_struct_page_get_objects (p_current),
                                          wanted_attrib, 0);
 
     /* Stop when we find the first one */

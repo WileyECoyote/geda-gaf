@@ -161,7 +161,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
         geda_set_object_line_options(new_obj, object->line_options);
 
         /* Add the new Arc to the page */
-        s_page_append_object (Current_Page, new_obj);
+        geda_struct_page_append_object (Current_Page, new_obj);
       }
 
       if (arc_sweep2) {
@@ -172,7 +172,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
         geda_set_object_line_options(new_obj, object->line_options);
 
         /* Add the new Arc to the page */
-        s_page_append_object (Current_Page, new_obj);
+        geda_struct_page_append_object (Current_Page, new_obj);
       }
 
       /* Delete the old Arc */
@@ -417,7 +417,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
       o_delete(w_current, object);
 
       /* Add the new path to the page */
-      s_page_append_object (Current_Page, new_path);
+      geda_struct_page_append_object (Current_Page, new_path);
 
       g_array_free (vertices, TRUE);
 
@@ -503,7 +503,7 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
       geda_set_object_line_options(new_obj, object->line_options);
 
       /* Add the new Arc to the page */
-      s_page_append_object (Current_Page, new_obj);
+      geda_struct_page_append_object (Current_Page, new_obj);
 
       /* Delete the Circle */
       o_delete(w_current, object);
@@ -787,7 +787,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       geda_set_object_line_options(new_path, object->line_options);
 
       /* Add the new path to the page */
-      s_page_append_object (Current_Page, new_path);
+      geda_struct_page_append_object (Current_Page, new_path);
 
       if (!closed) { /* Add path for vertices 0 thru (*end) point */
 
@@ -822,7 +822,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         geda_set_object_line_options(new_path, object->line_options);
 
         /* Add the new path to the page */
-        s_page_append_object (Current_Page, new_path);
+        geda_struct_page_append_object (Current_Page, new_path);
       }
 
       /* Delete the old path */
@@ -906,7 +906,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
       new_line->line->x[end1] = point2.x;
       new_line->line->y[end1] = point2.y;
 
-      s_page_append_object (Current_Page, new_line);
+      geda_struct_page_append_object (Current_Page, new_line);
       result = TRUE;
     }
   }
@@ -987,7 +987,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
       new_obj->line->x[end1] = point2.x;
       new_obj->line->y[end1] = point2.y;
 
-      s_page_append_object (Current_Page, new_obj);
+      geda_struct_page_append_object (Current_Page, new_obj);
 
       result = TRUE;
     }

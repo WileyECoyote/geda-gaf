@@ -153,7 +153,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
                                   LOWER_LEFT, 0, /* zero is angle */
                                   10, INVISIBLE, SHOW_NAME_VALUE, string);
 
-    s_page_append_object (toplevel->page_current, new_obj);
+    geda_struct_page_append_object (toplevel->page_current, new_obj);
 
     /* manually attach attribute */
     geda_attrib_object_attach (object, new_obj, FALSE);

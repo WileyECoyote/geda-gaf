@@ -718,7 +718,7 @@ void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
  *
  * \return The Page which owns \a object or NULL.
  *
- * \sa s_page_append_object() s_page_append() s_page_remove()
+ * \sa geda_struct_page_append_object() geda_struct_page_append() geda_struct_page_remove()
  */
 Page *geda_object_get_page (const GedaObject *object)
 {

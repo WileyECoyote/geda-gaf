@@ -145,7 +145,7 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
       o_current->page = NULL;                      /* Remove old references */
 
-      s_page_append_object (p_current, o_current); /* Append to current page */
+      geda_struct_page_append_object (p_current, o_current); /* Append to current page */
 
       geda_struct_conn_update_object (o_current);            /* Update connectivity */
 

@@ -489,7 +489,7 @@ void o_select_box_search(GschemToplevel *w_current)
   top    = min(w_current->first_wy, w_current->second_wy);
   bottom = max(w_current->first_wy, w_current->second_wy);
 
-  iter   = s_page_get_objects (toplevel->page_current);
+  iter   = geda_struct_page_get_objects (toplevel->page_current);
 
   while (iter != NULL) {
 
@@ -605,7 +605,7 @@ void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
       break; /* no new netnames in the stack --> finished */
 
     /* get all the nets of the stacked netnames */
-    all_objects = s_page_get_objects (toplevel->page_current);
+    all_objects = geda_struct_page_get_objects (toplevel->page_current);
 
     for (o_iter = all_objects; o_iter != NULL; o_iter = o_iter->next) {
 
@@ -728,7 +728,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
 
   o_select_unselect_all (w_current);
 
-  all_objects = s_page_get_objects (toplevel->page_current);
+  all_objects = geda_struct_page_get_objects (toplevel->page_current);
 
   for (iter = all_objects; iter != NULL; iter = iter->next) {
 

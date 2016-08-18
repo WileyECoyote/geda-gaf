@@ -648,7 +648,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 
     cairo_save(cairo);
 
-    list = s_page_get_objects(page);
+    list = geda_struct_page_get_objects(page);
 
     /* Now calculate extents of objects within page */
     geda_object_get_bounds_list (list, &wx_min, &wy_min, &wx_max, &wy_max);
@@ -719,7 +719,7 @@ static void main2(void *closure, int argc, char *argv[])
 
     for (i = argv_index; i < argc; i++) {
 
-        Page *page = s_page_new(current, argv[i]);
+        Page *page = geda_struct_page_new(current, argv[i]);
 
         int success = f_open(current, page, argv[i], NULL);
 
@@ -745,10 +745,10 @@ static void main2(void *closure, int argc, char *argv[])
             cairo_show_page(cairo);
         }
 
-        s_page_delete(current, page, FALSE);
+        geda_struct_page_delete(current, page, FALSE);
     }
 
-    s_page_delete_list(current);
+    geda_struct_page_delete_list(current);
 
     libgeda_release();
 

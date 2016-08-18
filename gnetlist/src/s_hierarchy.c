@@ -114,7 +114,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
 
         page_control = child_page->page_control;
 
-        s_page_goto (child_page);
+        geda_struct_page_goto (child_page);
 
         loaded_flag = TRUE;
 

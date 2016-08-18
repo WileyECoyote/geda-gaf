@@ -1991,7 +1991,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
     which_end = geda_line_object_get_closest_endpoint(projectile, x, y);
 
     direction = o_extend_get_direction(projectile, which_end);
-    iter      = s_page_get_objects(Current_Page);
+    iter      = geda_struct_page_get_objects(Current_Page);
     shortest  = G_MAXDOUBLE;
     target    = NULL;
 

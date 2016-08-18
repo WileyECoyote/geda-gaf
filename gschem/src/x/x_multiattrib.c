@@ -104,7 +104,7 @@ void x_multiattrib_open (GschemToplevel *w_current)
     SELECTION *selection;
 
     page      = gschem_toplevel_get_current_page (w_current);
-    selection = s_page_get_selection (page);
+    selection = geda_struct_page_get_selection (page);
 
     w_current->mawindow =
        GTK_WIDGET (g_object_new (TYPE_MULTIATTRIB,
@@ -662,7 +662,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
 
         /* make a copy of the attribute object */
         o_new = geda_object_copy (o_attrib);
-        s_page_append_object (toplevel->page_current, o_new);
+        geda_struct_page_append_object (toplevel->page_current, o_new);
 
         /* add the attribute its parent */
         geda_attrib_object_attach (o_attrib->parent_object, o_new, TRUE);
@@ -1146,7 +1146,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
   };
 
   page      = gschem_toplevel_get_current_page (w_current);
-  selection = s_page_get_selection (page);
+  selection = geda_struct_page_get_selection (page);
 
   /* Request update of display for this row, recomputing the whole model
    * as the consistency for the show value column may be affected above */
@@ -1396,7 +1396,7 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
 
     w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
     page      = gschem_toplevel_get_current_page (w_current);
-    selection = s_page_get_selection (page);
+    selection = geda_struct_page_get_selection (page);
 
     /* update the treeview contents */
     g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);

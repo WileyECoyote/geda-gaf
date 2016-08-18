@@ -411,7 +411,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
         object = geda_complex_object_new (w_current->toplevel, x, y, 0,
                                           FALSE, symbol, symbolfile, TRUE);
 
-        s_page_append_object(page, object);
+        geda_struct_page_append_object(page, object);
         o_place_end(w_current, 0, 0, PASTE_OBJECTS_HOOK);
         o_undo_savestate (w_current, UNDO_ALL);
       }
@@ -420,7 +420,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
       }
       else {
         /* If the current page is not a sym, then insert symbol*/
-        if (!s_page_is_symbol_file(page)) {
+        if (!geda_struct_page_is_symbol_file(page)) {
           gtk_window_present(GTK_WINDOW(w_current->main_window));
           o_redraw_cleanstates    (w_current);
           o_complex_start (w_current, symbol, COPYMODE);

@@ -111,7 +111,7 @@ int test_file (void)
   }
 
   err = NULL;
-  page = s_page_new (toplevel, NULL);
+  page = geda_struct_page_new (toplevel, NULL);
 
   if (geda_open_file(toplevel, page, NULL, &err)) {
     fprintf(stderr, "FAILED: (F010300C) f_open NULL\n");
@@ -156,7 +156,7 @@ int test_file (void)
   }
   free(cwd);
 
-  s_page_delete (toplevel, page, FALSE);
+  geda_struct_page_delete (toplevel, page, FALSE);
 
   /* === Function 04: f_open_flags === */
 

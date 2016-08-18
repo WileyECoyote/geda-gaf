@@ -99,7 +99,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
                                       picture_top - picture_height,
                                       0, FALSE, FALSE);
 
-    s_page_append_object (toplevel->page_current, new_obj);
+    geda_struct_page_append_object (toplevel->page_current, new_obj);
 
     /* Run %add-objects-hook */
     g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);

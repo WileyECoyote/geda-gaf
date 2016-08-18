@@ -74,7 +74,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
     object = geda_complex_object_new (w_current->toplevel, 0, 0, 0,
                                       FALSE, clib, sym_file, FALSE);
 
-    s_page_append_object (page, object);
+    geda_struct_page_append_object (page, object);
 
     result = TRUE;
   }
@@ -124,7 +124,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
   }
 
   page     = gschem_toplevel_get_current_page(w_current);
-  isSymbol = s_page_is_symbol_file (page);
+  isSymbol = geda_struct_page_is_symbol_file (page);
 
   /* for now deal with only the first item */
   switch(o_current->type) {
@@ -855,7 +855,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             page = gschem_toplevel_get_current_page(w_current);
 
             i_zoom_world_extents(w_current,
-                                 s_page_get_objects (page),
+                                 geda_struct_page_get_objects (page),
                                  I_PAN_DONT_REDRAW);
 
             text_screen_height = SCREENabs (w_current, y2 - y1);
@@ -916,13 +916,13 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                                                        w_current->world_top,
                                                        w_current->world_bottom);
 
-            s_page_goto (child_page);
+            geda_struct_page_goto (child_page);
 
             geda_object_notify_change_add (child_page,
                                 (ChangeNotifyFunc) o_invalidate_object,
                                 (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-            GList *children = s_page_get_objects (child_page);
+            GList *children = geda_struct_page_get_objects (child_page);
 
             i_zoom_world_extents(w_current, children, I_PAN_DONT_REDRAW);
 
@@ -935,7 +935,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
               return 0;
             }
             else {
-              s_page_goto (parent);
+              geda_struct_page_goto (parent);
               x_window_set_current_page (w_current, parent);
             }
           }
@@ -1204,13 +1204,13 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   g_list_free (old_attribs);
 
   /* Add new attributes to page */
-  s_page_append_list (page, new_attribs);
+  geda_struct_page_append_list (page, new_attribs);
 
   /* Update pinnumbers for current slot */
   s_slot_update_object (o_new);
 
   /* Replace old Object with newGedaObject */
-  s_page_replace_object (page, o_current, o_new);
+  geda_struct_page_replace_object (page, o_current, o_new);
   geda_struct_object_release (o_current);
 
   /* Select newGedaObject */

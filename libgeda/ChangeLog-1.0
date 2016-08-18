@@ -2,6 +2,8 @@
 
     * src/struct/s_object.c: Rename functions with geda_struct prefix.
 
+    * src/struct/s_page.c: Rename functions with geda_struct prefix.
+
 2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_hierarchy.h: Add new file; alias macros for

@@ -231,7 +231,7 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     s_place_free_place_list (toplevel);
 
-    s_page_delete_objects (page);
+    geda_struct_page_delete_objects (page);
 
     geda_toplevel_set_file_open_flags(toplevel, F_OPEN_RESTORE_CWD);
 
@@ -389,12 +389,12 @@ void i_window_show_attributes (GschemToplevel *w_current, int scope)
 
       SELECTION *selection;
 
-      selection   = s_page_get_selection (p_current);
+      selection   = geda_struct_page_get_selection (p_current);
       object_list = geda_list_get_glist (selection);
       show_status = FALSE;
     }
     else {
-      object_list = s_page_get_objects (p_current);
+      object_list = geda_struct_page_get_objects (p_current);
       show_status = TRUE;
     }
 

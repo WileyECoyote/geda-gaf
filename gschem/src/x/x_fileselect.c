@@ -256,7 +256,7 @@ x_fileselect_save (GschemToplevel *w_current)
   dialog = geda_file_chooser_new (w_current->main_window,
                                   FILE_CHOOSER_ACTION_SAVE);
 
-  if (s_page_is_symbol_file(toplevel->page_current)) {
+  if (geda_struct_page_is_symbol_file(toplevel->page_current)) {
     geda_file_chooser_set_filter (dialog, FILTER_SYMBOL);
   }
   else {

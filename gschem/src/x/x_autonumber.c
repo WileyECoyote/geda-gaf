@@ -573,7 +573,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
 
   page = gschem_toplevel_get_current_page(w_current);
 
-  for (iter = s_page_get_objects (page); iter != NULL; NEXT(iter)) {
+  for (iter = geda_struct_page_get_objects (page); iter != NULL; NEXT(iter)) {
 
     GedaObject *o_current = iter->data;
 
@@ -923,9 +923,9 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     searchtext = geda_strndup(scope_text, scope_len - 1);
     /* collect all the possible searchtexts in all pages of the hierarchy */
     for (page_item = pages; page_item != NULL; page_item = g_list_next(page_item)) {
-      s_page_goto(page_item->data);
+      geda_struct_page_goto(page_item->data);
       /* iterate over all objects an look for matching searchtext's */
-      for (iter = s_page_get_objects(Current_Page); iter != NULL; NEXT(iter))
+      for (iter = geda_struct_page_get_objects(Current_Page); iter != NULL; NEXT(iter))
       {
         o_current = iter->data;
         if (o_current->type == OBJ_TEXT) {
@@ -1011,7 +1011,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
         for (page_item = pages; page_item != NULL; NEXT(page_item))
         {
           autotext->root_page = (pages->data == page_item->data);
-          s_page_goto(page_item->data);
+          geda_struct_page_goto(page_item->data);
           autonumber_get_used(w_current, autotext);
         }
       }
@@ -1020,7 +1020,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     /* renumber the elements */
     for (page_item = pages; page_item != NULL; NEXT(page_item)) {
 
-      s_page_goto(page_item->data);
+      geda_struct_page_goto(page_item->data);
 
       autotext->root_page = (pages->data == page_item->data);
 
@@ -1033,7 +1033,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 
       /* RENUMBER CODE FOR ONE Page AND ONE SEARCHTEXT*/
       /* 1. get objects to renumber */
-      for (iter = s_page_get_objects(Current_Page); iter != NULL; NEXT(iter))
+      for (iter = geda_struct_page_get_objects(Current_Page); iter != NULL; NEXT(iter))
       {
         o_current = iter->data;
 
@@ -1098,7 +1098,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   /* cleanup and redraw all*/
   g_list_foreach(searchtext_list, (GFunc) g_free, NULL);
   g_list_free(searchtext_list);
-  s_page_goto(pages->data); /* go back to the root page */
+  geda_struct_page_goto(pages->data); /* go back to the root page */
   o_invalidate_all (w_current);
   g_list_free(pages);
   o_undo_savestate(w_current, UNDO_ALL);

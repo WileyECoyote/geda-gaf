@@ -398,7 +398,7 @@ gschem_page_view_get_page_geometry (GschemPageView *view)
     geda_page_weak_ref (page, (NotifyFunction) page_deleted, view);
 
     gschem_page_geometry_zoom_extents (geometry,
-                                       s_page_get_objects (page), I_PAN_IGNORE_BORDERS);
+                                       geda_struct_page_get_objects (page), I_PAN_IGNORE_BORDERS);
   }
   else {
     gschem_page_geometry_set_values (geometry,
@@ -922,7 +922,7 @@ gschem_page_view_set_page (GschemPageView *view, Page *page)
 
   if (page != NULL) {
     g_return_if_fail (page->toplevel != NULL);
-    s_page_goto (page);
+    geda_struct_page_goto (page);
   }
 
   g_object_notify (G_OBJECT (view), "page");
@@ -1289,7 +1289,7 @@ gschem_page_view_zoom_extents (GschemPageView *view, const GList *objects)
   g_return_if_fail (geometry != NULL);
 
   if (temp == NULL) {
-    temp = s_page_get_objects (gschem_page_view_get_page (view));
+    temp = geda_struct_page_get_objects (gschem_page_view_get_page (view));
   }
 
   gschem_page_geometry_zoom_extents (geometry, temp, I_PAN_IGNORE_BORDERS);

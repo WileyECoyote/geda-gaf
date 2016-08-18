@@ -909,7 +909,7 @@ void s_table_load_new_page(PageDataSet *PageData)
     /* only traverse pages which are toplevel */
     if (p_local->page_control == 0) {
       /* adds all components from page to comp_table */
-      s_table_add_items_to_comp_table (s_page_get_objects (p_local));
+      s_table_add_items_to_comp_table (geda_struct_page_get_objects (p_local));
 #if 0
       /* Note that this must be changed.  We need to input the entire project
        * before doing anything with the nets because we need to first
@@ -920,7 +920,7 @@ void s_table_load_new_page(PageDataSet *PageData)
 #endif
 
       /* adds all pins from page to pin_table */
-      s_table_add_tems_to_pin_table (s_page_get_objects (p_local));
+      s_table_add_tems_to_pin_table (geda_struct_page_get_objects (p_local));
     }
   } /* for loop over pages */
 }

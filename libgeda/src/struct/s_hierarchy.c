@@ -91,7 +91,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
     {
       char *filename = f_sys_normalize_name (string, NULL);
 
-      found = s_page_search (toplevel, filename);
+      found = geda_struct_page_search (toplevel, filename);
       GEDA_FREE (filename);
 
       if (found) {
@@ -101,7 +101,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
         /* check whether this page is in the parents list */
         for (forbear = parent;
              forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
-             forbear = s_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
+             forbear = geda_struct_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
              {
                ; /* void */
              }
@@ -111,7 +111,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
                             _("Hierarchy contains a circular dependency."));
                             return NULL;  /* error signal */
              }
-             s_page_goto (found);
+             geda_struct_page_goto (found);
              if (page_control != 0) {
                found->page_control = page_control;
              }
@@ -120,7 +120,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
              return found;
       }
 
-      found = s_page_new_with_notify (toplevel, string);
+      found = geda_struct_page_new_with_notify (toplevel, string);
 
       f_open (toplevel, found, found->filename, NULL);
     }
@@ -128,7 +128,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
 
     case HIERARCHY_FORCE_LOAD:
     {
-      found = s_page_new_with_notify (toplevel, string);
+      found = geda_struct_page_new_with_notify (toplevel, string);
       f_open (toplevel, found, found->filename, NULL);
     }
     break;
@@ -166,21 +166,21 @@ geda_struct_hierarchy_down_symbol (GedaToplevel     *toplevel,
   char *filename;
 
   filename = geda_struct_clib_symbol_get_filename (symbol);
-  page     = s_page_search (toplevel, filename);
+  page     = geda_struct_page_search (toplevel, filename);
 
   if (page) {
     /* change link to parent page since we can come here from
      * any parent and must come back to the same page */
     page->hierarchy_up = parent->pid;
-    s_page_goto (page);
+    geda_struct_page_goto (page);
     GEDA_FREE (filename);
   }
   else {
 
-    page = s_page_new_with_notify (toplevel, filename);
+    page = geda_struct_page_new_with_notify (toplevel, filename);
     GEDA_FREE(filename);
 
-    s_page_goto (page);
+    geda_struct_page_goto (page);
 
     f_open(toplevel, page, page->filename, NULL);
 
@@ -216,7 +216,7 @@ geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_page)
     return NULL;
   }
 
-  return s_page_search_by_page_id (page_list, current_page->hierarchy_up);
+  return geda_struct_page_search_by_page_id (page_list, current_page->hierarchy_up);
 }
 
 /*! \brief Find page hierarchy below a page.
@@ -264,7 +264,7 @@ geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, i
   }
 
   /* walk throught the page objects and search for underlaying schematics */
-  for (iter  = s_page_get_objects (p_current);
+  for (iter  = geda_struct_page_get_objects (p_current);
        iter != NULL ;
   iter  = g_list_next (iter)) {
 

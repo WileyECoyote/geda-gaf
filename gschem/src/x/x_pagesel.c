@@ -835,7 +835,7 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
         /* do not need path anymore */
         gtk_tree_path_free (path);
 
-        if (page && !s_page_is_symbol_file(page)) {
+        if (page && !geda_struct_page_is_symbol_file(page)) {
 
           /* Dropped a symbol on a schmatic */
           select_page (tree_view, NULL, page);
@@ -1412,7 +1412,7 @@ pagesel_update (Pagesel *pagesel)
     pid       = p_current->hierarchy_up;
 
     /* find every page that is not a hierarchy-down of another page */
-    if (pid < 0 || s_page_search_by_page_id (toplevel->pages, pid) == NULL)
+    if (pid < 0 || geda_struct_page_search_by_page_id (toplevel->pages, pid) == NULL)
     {
       add_page (model, NULL, toplevel->pages, p_current);
     }
