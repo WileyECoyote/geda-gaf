@@ -11,6 +11,10 @@
             * geda_entry_unrealize
             * geda_entry_activate
 
+    * src/widgets/geda_label.c: Reduce scope of attribute in geda_label_
+      ensure_layout, unsigned i in pango_start_element, and parser_data in
+      geda_label_buildable_custom_finished.
+
 2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Chain-up to widget->unrealize so that Gdk
@@ -2178,3 +2182,4 @@
         where none exist in GTK2. Libgedauio is linked against GTK2 and is intended
         to provide "gtk" like resources to geda-gaf any application without
         depreciating the entire free world.
+geda_label_ensure_layout

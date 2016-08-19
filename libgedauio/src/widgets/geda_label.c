@@ -856,7 +856,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
     if (priv->select_info && priv->select_info->links) {
 
-      PangoAttribute *attribute;
+
       GList          *list;
       GdkColor        link_color;
       GdkColor        visited_color;
@@ -866,8 +866,10 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
       for (list = priv->select_info->links; list; list = list->next) {
 
-        GedaLabelLink *link    = list->data;
+        PangoAttribute *attribute;
+        GedaLabelLink  *link;
 
+        link                   = list->data;
         attribute              = pango_attr_underline_new (TRUE);
         attribute->start_index = link->start;
         attribute->end_index   = link->end;
@@ -1927,7 +1929,6 @@ pango_start_element (GMarkupParseContext *context,
 {
   PangoParserData *data = (PangoParserData*)user_data;
   GValue val = G_VALUE_INIT;
-  unsigned int i;
   int line_number, char_number;
 
   if (strcmp (element_name, "attribute") == 0) {
@@ -1939,6 +1940,7 @@ pango_start_element (GMarkupParseContext *context,
     const char     *end       = NULL;
     unsigned int    start_val = 0;
     unsigned int    end_val   = G_MAXUINT;
+    unsigned int    i;
 
     for (i = 0; names[i]; i++) {
 
@@ -2060,14 +2062,12 @@ geda_label_buildable_custom_finished (GtkBuildable *buildable,
                                       const char  *tagname,
                                       void *      user_data)
 {
-  PangoParserData *parser_data;
-
   buildable_parent_iface->custom_finished (buildable, builder, child,
                                            tagname, user_data);
 
   if (strcmp (tagname, "attributes") == 0) {
 
-    parser_data = (PangoParserData*)user_data;
+    PangoParserData *parser_data = (PangoParserData*)user_data;
 
     if (parser_data->attrs) {
 
