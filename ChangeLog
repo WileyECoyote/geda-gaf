@@ -1,3 +1,7 @@
+2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gaf/configure.ac: Add -std=c99 to gcc flag
+
 2016-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_enum.h: Add F_OPEN_NONE to IDE_OPEN_FLAGS.

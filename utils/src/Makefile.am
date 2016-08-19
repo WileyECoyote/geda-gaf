@@ -10,15 +10,16 @@ INC_LIBCOLOR = -I$(top_srcdir)/libgedacolor/include
 GEDA_INCLUDES    = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
 bin_PROGRAMS     = gmk_sym smash_megafile convert_sym sarlacc_schem olib \
-		   grenum
+				   grenum
 
 AM_CFLAGS        = $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
-		   $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
+				   $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
 
 gmk_sym_SOURCES          = gmk_sym.c char_width.c
 grenum_SOURCES           = grenum.c grenum.h
 smash_megafile_SOURCES   = smash_megafile.c
 
+olib_CFLAGS              = -std=gnu99 $(GEDA_INCLUDES)
 olib_SOURCES             = olib.l geda_sym_format.h
 olib_LDFLAGS             = -lm
 
