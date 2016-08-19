@@ -277,7 +277,7 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
  *  filename has been given, it opens the file and displays
  *  the contents. Otherwise the display will be a blank page.
  *
- *  \param [in] chooser   The ImageChooser dialog widget
+ *  \param [in] widget    The ImageChooser dialog widget
  *  \param [in] user_data ImageChooser preview, aka GtkImage, widget
  */
 static void

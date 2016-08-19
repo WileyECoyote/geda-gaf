@@ -445,13 +445,14 @@ geda_image_menu_item_class_init (void *class, void *class_data)
 
 }
 
-/*! \brief Initialize GedaImageMenuItem data structure.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize GedaImageMenuItem data structure.
+ * \par Function Description
  *  Function tois call after the GedaImageMenuItemClass is created
  *  to initialize the data structure.
  *
- * \param [in] image_menu_item A GedaImageMenuItem object (structure)
+ * \param [in] instance The GedaImageMenuItem structure being initialized,
+ * \param [in] g_class  The GedaImageMenuItem class we are initializing.
  */
 static void
 geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
@@ -540,8 +541,7 @@ is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
  *  This is an internal function to return the show_image property.
  *  The function's address is supplied to external functions.
  *
- * \param [in] instance The GedaImageMenuItem structure being initialized,
- * \param [in] class    The GedaImageMenuItem class we are initializing.
+ * \param [in] image_menu_item Pointer to a GedaImageMenuItem.
  */
 static bool
 show_image (GedaImageMenuItem *image_menu_item)

@@ -657,15 +657,15 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
   }
 }
 
-/*! \brief GedaBulb Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaBulb Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaBulb class we are initializing
- *  \param [in]  class_data  GedaBulb structure associated with the class
+ * \param [in]  class       GedaBulb class we are initializing
+ * \param [in]  class_data  GedaBulb structure associated with the class
  */
 static void
 geda_bulb_class_init(void *class, void *class_data)
