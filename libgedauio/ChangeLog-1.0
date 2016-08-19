@@ -1,5 +1,12 @@
 2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/: Reduce scope of variables.
+
+            * src/widgets/geda_menu.c
+            * src/widgets/geda_tearoff_menu_item.c
+
+2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_font_button.c: Reduce scope of button_desc in clear_
       font_filter_data, and font_dialog in dialog_destroy.
 

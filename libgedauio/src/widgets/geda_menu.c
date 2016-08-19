@@ -2702,13 +2702,13 @@ static void
 geda_menu_realize (GtkWidget *widget)
 {
   GdkWindowAttr attributes;
-  int  attributes_mask;
-  int  border_width;
-  GedaMenu *menu;
-  GtkWidget *child;
-  GList *children;
-  unsigned int vertical_padding;
-  unsigned int horizontal_padding;
+  GedaMenu     *menu;
+  GList        *children;
+  unsigned int  attributes_mask;
+  unsigned      border_width;
+  unsigned int  vertical_padding;
+  unsigned int  horizontal_padding;
+
   GtkBorder arrow_border;
 
   g_return_if_fail (GEDA_IS_MENU (widget));
@@ -2718,21 +2718,21 @@ geda_menu_realize (GtkWidget *widget)
   gtk_widget_set_realized (widget, TRUE);
 
   attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.x = widget->allocation.x;
-  attributes.y = widget->allocation.y;
-  attributes.width = widget->allocation.width;
-  attributes.height = widget->allocation.height;
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.colormap = gtk_widget_get_colormap (widget);
-
-  attributes.event_mask = gtk_widget_get_events (widget);
+  attributes.x           = widget->allocation.x;
+  attributes.y           = widget->allocation.y;
+  attributes.width       = widget->allocation.width;
+  attributes.height      = widget->allocation.height;
+  attributes.wclass      = GDK_INPUT_OUTPUT;
+  attributes.visual      = gtk_widget_get_visual (widget);
+  attributes.colormap    = gtk_widget_get_colormap (widget);
+  attributes.event_mask  = gtk_widget_get_events (widget);
 
   attributes.event_mask |= (GDK_EXPOSURE_MASK | GDK_KEY_PRESS_MASK |
-                GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK );
+                            GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK);
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+
   gdk_window_set_user_data (widget->window, widget);
 
   border_width = GTK_CONTAINER (widget)->border_width;
@@ -2767,7 +2767,9 @@ geda_menu_realize (GtkWidget *widget)
 
   while (children) {
 
-      child = children->data;
+      GtkWidget *child;
+
+      child    = children->data;
       children = children->next;
 
       gtk_widget_set_parent_window (child, menu->bin_window);
@@ -4384,11 +4386,12 @@ static bool
 geda_menu_stop_navigating_submenu_cb (void * user_data)
 {
   GedaMenu *menu = user_data;
-  GdkWindow *child_window;
 
   geda_menu_stop_navigating_submenu (menu);
 
   if (gtk_widget_get_realized (GTK_WIDGET (menu))) {
+
+    GdkWindow *child_window;
 
     child_window = gdk_window_get_pointer (menu->bin_window, NULL, NULL, NULL);
 
@@ -5091,7 +5094,6 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
   GedaMenu *menu;
   int   child_offset, child_height;
   int   y;
-  int   arrow_height;
   bool  last_child = 0;
 
   menu = GEDA_MENU (menu_shell);
@@ -5141,6 +5143,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
     else {
 
       GtkBorder arrow_border;
+      int       arrow_height;
 
       arrow_height = 0;
 
