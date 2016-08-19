@@ -307,7 +307,6 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   unsigned int border_width;
   GtkTextDirection direction;
   GtkWidget *parent;
-  double     angle;
 
   menu_item    = GEDA_MENU_ITEM (widget);
   context      = gtk_widget_get_style_context (widget);
@@ -338,6 +337,8 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
     int  arrow_x;
 
     if (menu_item->toggle_size > ARROW_SIZE) {
+
+      double angle;
 
       if (direction == GTK_TEXT_DIR_LTR) {
 
