@@ -102,11 +102,11 @@ B 400 400 1900 1300 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2300 1800 8 10 1 1 0 6 1
 refdes=U?
 T 400 1800 9 10 1 1 0 0 1
-value=LT3494
+value=LT3494A
 T 400 2000 5 10 0 0 0 0 1
 footprint=DFN-2-3-8
 T 400 2200 5 10 0 0 0 0 1
-device=LT3494
+device=LT3494A
 T 400 2400 5 10 0 0 0 0 1
 description=boost converter,low noise,180/350mA
 T 400 2600 5 10 0 0 0 0 1
