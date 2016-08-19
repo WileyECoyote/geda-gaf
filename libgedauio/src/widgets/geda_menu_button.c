@@ -813,18 +813,18 @@ geda_menu_button_activate (GedaMenuButton *button)
 static bool
 geda_menu_button_button_press_event (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaMenuButton *button;
-
   if (event->type == GDK_BUTTON_PRESS) {
 
-      button = GEDA_MENU_BUTTON (widget);
+    GedaMenuButton *button;
 
-      if (button->focus_on_click && !gtk_widget_has_focus (widget))
-        gtk_widget_grab_focus (widget);
+    button = GEDA_MENU_BUTTON (widget);
 
-      if (event->button == 1)
-        geda_menu_button_released (button);
-    }
+    if (button->focus_on_click && !gtk_widget_has_focus (widget))
+      gtk_widget_grab_focus (widget);
+
+    if (event->button == 1)
+      geda_menu_button_released (button);
+  }
 
   return TRUE;
 }

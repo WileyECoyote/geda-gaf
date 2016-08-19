@@ -3,6 +3,7 @@
     * src/widgets/: Reduce scope of variables.
 
             * src/widgets/geda_menu.c
+            * src/widgets/geda_menu_button.c
             * src/widgets/geda_tearoff_menu_item.c
 
 2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
