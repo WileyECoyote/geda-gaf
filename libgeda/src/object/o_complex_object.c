@@ -1048,7 +1048,7 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
  *  \par Function Description
  *   This function reads a complex object from the buffer \a buf.
  *   If the complex object was read successfully, a new object is
- *   allocated and appended to the \a object_list.
+ *   allocated and appended to the object_list in \a toplevel.
  *
  *  \param [in] toplevel       The GedaToplevel object
  *  \param [in] buf            Text buffer (usually a line of a schematic file)
@@ -1061,9 +1061,9 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
  */
 GedaObject*
 geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
-                                        unsigned int release_ver,
-                                        unsigned int fileformat_ver,
-                                        GError       **err)
+                                                  unsigned int release_ver,
+                                                  unsigned int fileformat_ver,
+                                                  GError       **err)
 {
   GedaObject *new_obj;
   char type;
