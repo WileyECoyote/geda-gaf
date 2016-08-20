@@ -62,63 +62,74 @@ f_close(GedaToplevel *toplevel)
 bool
 f_has_active_autosave (const char *filename, GError **err)
 {
-  bool  result         = FALSE;
-  int   file_err       = 0;
-  int   save_errno     = 0;
-  char *auto_filename;
+  bool result;
 
-  struct stat file_stat, auto_stat;
+  if (!filename) {
 
-  auto_filename = f_get_autosave_filename (filename);
-
-  if (stat (filename, &file_stat) != 0) {
-    file_err = errno;
-  }
-
-  if (stat (auto_filename, &auto_stat) != 0) {
-    save_errno = errno;
-  }
-
-  if (save_errno == ENOENT) {
-    /* The autosave file does not exist. */
     result = FALSE;
   }
   else {
 
-    if (save_errno) {
-      g_set_error (err, G_FILE_ERROR, save_errno,
-                   _("Failed to stat [%s]: %s"),
-                   auto_filename, strerror (save_errno));
-                   result = TRUE;
+    int   file_err       = 0;
+    int   save_errno     = 0;
+    char *auto_filename;
+
+    struct stat file_stat, auto_stat;
+
+    auto_filename = f_get_autosave_filename (filename);
+
+    if (stat (filename, &file_stat) != 0) {
+      file_err = errno;
+    }
+
+    if (stat (auto_filename, &auto_stat) != 0) {
+      save_errno = errno;
+    }
+
+    if (save_errno == ENOENT) {
+      /* The autosave file does not exist. */
+      result = FALSE;
     }
     else {
 
-      if (file_err == ENOENT) {
-        /* The autosave file exists, but the actual file does not. */
+      if (save_errno) {
+        g_set_error (err, G_FILE_ERROR, save_errno,
+                     _("Failed to stat [%s]: %s"),
+                     auto_filename, strerror (save_errno));
         result = TRUE;
       }
       else {
 
-        if (file_err) {
-
-           g_set_error (err, G_FILE_ERROR, file_err,
-                       _("Failed to stat [%s]: %s"),
-                       auto_filename, strerror (file_err));
-                       result = TRUE;
+        if (file_err == ENOENT) {
+          /* The autosave file exists, but the actual file does not. */
+          result = TRUE;
         }
         else {
 
-          /* If we got this far, both files exist and we have
-           * managed to get their stat info. */
-          if (difftime (file_stat.st_mtime, auto_stat.st_mtime) < 0) {
+          if (file_err) {
+
+            g_set_error (err, G_FILE_ERROR, file_err,
+                         _("Failed to stat [%s]: %s"),
+                         auto_filename, strerror (file_err));
             result = TRUE;
+          }
+          else {
+
+            /* If we got this far, both files exist and we have
+             * managed to get their stat info. */
+            if (difftime (file_stat.st_mtime, auto_stat.st_mtime) < 0) {
+              result = TRUE;
+            }
+            else {
+              result = FALSE;
+            }
           }
         }
       }
     }
-  }
 
-  GEDA_FREE (auto_filename);
+    GEDA_FREE (auto_filename);
+  }
   return result;
 }
 

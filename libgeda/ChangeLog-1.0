@@ -1,3 +1,8 @@
+2016-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Revise f_has_active_autosave to validate filename
+      and return false if NULL.
+
 2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_object.c: Rename functions with geda_struct prefix.
