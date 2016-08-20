@@ -37,6 +37,18 @@ typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                            int angle1, int pitch1, int angle2, int pitch2,
                            int origin_x, int origin_y);
 
+static void
+geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+{
+  geda_error_object_argument(__FILE__, func, object, type);
+}
+
+static void
+geda_path_object_error(const char *func, const void *object)
+{
+  geda_object_error(func, object, GEDA_OBJECT_PATH);
+}
+
 /*! \brief Get Point on a GedaPath Nearest a Given Point
  *  \par Function Description
  *  This function is intended to locate a point on a GedaPath object given
@@ -54,7 +66,8 @@ typedef void (*FILL_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *
  *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
-bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool
+geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   POINT   target;
   bool    result;
@@ -276,6 +289,7 @@ bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *
     }
   }
   else {
+    geda_path_object_error(__func__, object);
     result = FALSE;
   }
 
@@ -305,14 +319,20 @@ bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
+bool
+geda_path_object_get_position (GedaObject *object, int *x, int *y)
 {
-  if (object->path->num_sections == 0)
-    return FALSE;
+  if (GEDA_IS_PATH(object)) {
 
-  *x = object->path->sections[0].x3;
-  *y = object->path->sections[0].y3;
-  return TRUE;
+    if (object->path->num_sections == 0)
+      return FALSE;
+
+    *x = object->path->sections[0].x3;
+    *y = object->path->sections[0].y3;
+    return TRUE;
+  }
+  geda_path_object_error(__func__, object);
+  return FALSE;
 }
 
 /*! \brief Create and add path GedaObject to list.
@@ -340,7 +360,7 @@ bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
  *  \param [in]     path_string  The string representation of the path
  *  \return A pointer to the new end of the object list.
  */
-GedaObject *
+GedaObject*
 geda_path_object_new (int color, const char *path_string)
 {
   GedaObject *new_obj;
@@ -364,7 +384,8 @@ geda_path_object_new (int color, const char *path_string)
  *
  *  \return A pointer to the new GedaPath object.
  */
-GedaObject *geda_path_object_new_from_polygon (GArray *points, int color)
+GedaObject*
+geda_path_object_new_from_polygon (GArray *points, int color)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -459,7 +480,8 @@ geda_path_object_new_take_path (int color, GedaPath *path_data)
  *
  *  \return A new pointer to the end of the object list.
  */
-GedaObject *geda_path_object_copy (const GedaObject *o_current)
+GedaObject*
+geda_path_object_copy (const GedaObject *o_current)
 {
   if (GEDA_IS_PATH(o_current)) {
 
@@ -483,6 +505,7 @@ GedaObject *geda_path_object_copy (const GedaObject *o_current)
     /* return the new tail of the object list */
     return new_obj;
   }
+  geda_path_object_error(__func__, o_current);
   return NULL;
 }
 
@@ -513,8 +536,12 @@ GedaObject *geda_path_object_copy (const GedaObject *o_current)
  *
  *  \return A pointer to the new path object, or NULL on error;
  */
-GedaObject *geda_path_object_read (const char *first_line, TextBuffer *tb,
-                     unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+GedaObject*
+geda_path_object_read (const char *first_line,
+                                   TextBuffer  *tb,
+                                   unsigned int release_ver,
+                                   unsigned int fileformat_ver,
+                                   GError     **err)
 {
   GedaObject *new_obj;
   char       *string;
@@ -620,7 +647,8 @@ GedaObject *geda_path_object_read (const char *first_line, TextBuffer *tb,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *geda_path_object_save (GedaObject *object)
+char*
+geda_path_object_save (GedaObject *object)
 {
   int line_width, line_space, line_length;
   char *buf;
@@ -673,43 +701,50 @@ char *geda_path_object_save (GedaObject *object)
  *  \param [in]     y         New y coordinate for the control point
  *  \param [in]     whichone  Which control point is being modified
  */
-void geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
+void
+geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
 {
-  int i;
-  int grip_no = 0;
+  if (GEDA_IS_PATH(object)) {
 
-  for (i = 0; i <  object->path->num_sections; i++) {
+    int i;
+    int grip_no = 0;
 
-    PATH_SECTION *section = &object->path->sections[i];
+    for (i = 0; i <  object->path->num_sections; i++) {
 
-    switch (section->code) {
-    case PATH_CURVETO:
-      /* Two control point grips */
-      if (whichone == grip_no++) {
-        section->x1 = x;
-        section->y1 = y;
+      PATH_SECTION *section = &object->path->sections[i];
+
+      switch (section->code) {
+        case PATH_CURVETO:
+          /* Two control point grips */
+          if (whichone == grip_no++) {
+            section->x1 = x;
+            section->y1 = y;
+          }
+          if (whichone == grip_no++) {
+            section->x2 = x;
+            section->y2 = y;
+          }
+          /* Fall through */
+          case PATH_MOVETO:
+          case PATH_MOVETO_OPEN:
+          case PATH_LINETO:
+            /* Destination point grip */
+            if (whichone == grip_no++) {
+              section->x3 = x;
+              section->y3 = y;
+            }
+            break;
+          case PATH_END:
+            break;
       }
-      if (whichone == grip_no++) {
-        section->x2 = x;
-        section->y2 = y;
-      }
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      /* Destination point grip */
-      if (whichone == grip_no++) {
-        section->x3 = x;
-        section->y3 = y;
-      }
-      break;
-    case PATH_END:
-      break;
     }
-  }
 
-  /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+    /* Update bounding box */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_path_object_error(__func__, object);
+  }
 }
 
 /*! \brief Mirror a Path.
@@ -721,32 +756,39 @@ void geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
  *  \param [in]     center_x  Origin x coordinate.
  *  \param [in]     center_y  Origin y coordinate.
  */
-void geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
+void
+geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
 {
-  int i;
+  if (GEDA_IS_PATH(object)) {
 
-  for (i = 0; i < object->path->num_sections; i++) {
+    int i;
 
-    PATH_SECTION *section = &object->path->sections[i];
+    for (i = 0; i < object->path->num_sections; i++) {
 
-    switch (section->code) {
-    case PATH_CURVETO:
-      /* Two control point grips */
-      section->x1 = 2 * center_x - section->x1;
-      section->x2 = 2 * center_x - section->x2;
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      /* Destination point grip */
-      section->x3 = 2 * center_x - section->x3;
-      break;
-    case PATH_END:
-      break;
+      PATH_SECTION *section = &object->path->sections[i];
+
+      switch (section->code) {
+        case PATH_CURVETO:
+          /* Two control point grips */
+          section->x1 = 2 * center_x - section->x1;
+          section->x2 = 2 * center_x - section->x2;
+          /* Fall through */
+          case PATH_MOVETO:
+          case PATH_MOVETO_OPEN:
+          case PATH_LINETO:
+            /* Destination point grip */
+            section->x3 = 2 * center_x - section->x3;
+            break;
+          case PATH_END:
+            break;
+      }
     }
-  }
 
-  object->w_bounds_valid_for = NULL;
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_path_object_error(__func__, object);
+  }
 }
 
 /*! \brief Rotate Line GedaObject.
@@ -760,37 +802,44 @@ void geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
  *  \param [in]     center_y  Rotation center y coordinate
  *  \param [in]     angle     Rotation angle in degrees (See note below).
  */
-void geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
+void
+geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
-  PATH_SECTION *section;
-  int i;
+  if (GEDA_IS_PATH(object)) {
 
-  for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
+    PATH_SECTION *section;
+    int i;
 
-    switch (section->code) {
-    case PATH_CURVETO:
-      /* Two control point grips */
-      section->x1 -= center_x; section->y1 -= center_y;
-      section->x2 -= center_x; section->y2 -= center_y;
-      m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
-      m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
-      section->x1 += center_x; section->y1 += center_y;
-      section->x2 += center_x; section->y2 += center_y;
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      /* Destination point grip */
-      section->x3 -= center_x; section->y3 -= center_y;
-      m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
-      section->x3 += center_x; section->y3 += center_y;
-      break;
-    case PATH_END:
-      break;
+    for (i = 0; i < object->path->num_sections; i++) {
+      section = &object->path->sections[i];
+
+      switch (section->code) {
+        case PATH_CURVETO:
+          /* Two control point grips */
+          section->x1 -= center_x; section->y1 -= center_y;
+          section->x2 -= center_x; section->y2 -= center_y;
+          m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
+          m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
+          section->x1 += center_x; section->y1 += center_y;
+          section->x2 += center_x; section->y2 += center_y;
+          /* Fall through */
+          case PATH_MOVETO:
+          case PATH_MOVETO_OPEN:
+          case PATH_LINETO:
+            /* Destination point grip */
+            section->x3 -= center_x; section->y3 -= center_y;
+            m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
+            section->x3 += center_x; section->y3 += center_y;
+            break;
+          case PATH_END:
+            break;
+      }
     }
+    object->w_bounds_valid_for = NULL;
   }
-  object->w_bounds_valid_for = NULL;
+  else {
+    geda_path_object_error(__func__, object);
+  }
 }
 
 /*! \brief Translate a path position by a delta.
@@ -802,34 +851,41 @@ void geda_path_object_rotate (GedaObject *object, int center_x, int center_y, in
  *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
  */
-void geda_path_object_translate (GedaObject *object, int dx, int dy)
+void
+geda_path_object_translate (GedaObject *object, int dx, int dy)
 {
-  PATH_SECTION *section;
-  int i;
+  if (GEDA_IS_PATH(object)) {
 
-  for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
+    PATH_SECTION *section;
+    int i;
 
-    switch (section->code) {
-    case PATH_CURVETO:
-      section->x1 += dx;
-      section->y1 += dy;
-      section->x2 += dx;
-      section->y2 += dy;
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      section->x3 += dx;
-      section->y3 += dy;
-      break;
-    case PATH_END:
-      break;
+    for (i = 0; i < object->path->num_sections; i++) {
+      section = &object->path->sections[i];
+
+      switch (section->code) {
+        case PATH_CURVETO:
+          section->x1 += dx;
+          section->y1 += dy;
+          section->x2 += dx;
+          section->y2 += dy;
+          /* Fall through */
+          case PATH_MOVETO:
+          case PATH_MOVETO_OPEN:
+          case PATH_LINETO:
+            section->x3 += dx;
+            section->y3 += dy;
+            break;
+          case PATH_END:
+            break;
+      }
     }
-  }
 
-  /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+    /* Update bounding box */
+    object->w_bounds_valid_for = NULL;
+  }
+  else {
+    geda_path_object_error(__func__, object);
+  }
 }
 
 /*! \brief Print a solid PATH to Postscript document.
@@ -849,9 +905,10 @@ void geda_path_object_translate (GedaObject *object, int dx, int dy)
  *  \param [in] origin_x    Page x coordinate to place PATH GedaObject
  *  \param [in] origin_y    Page y coordinate to place PATH GedaObject
  */
-static void geda_path_object_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
-                                int line_width, int length, int space,
-                                int origin_x, int origin_y)
+static void
+geda_path_object_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
+                              int line_width, int length, int space,
+                              int origin_x, int origin_y)
 {
   int i;
 
@@ -991,7 +1048,7 @@ geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path
                       int space, int origin_x, int origin_y)
 {
   geda_path_object_print_solid (toplevel, fp, path, line_width,
-                      length, space, origin_x, origin_y);
+                                length, space, origin_x, origin_y);
 }
 
 
@@ -1018,8 +1075,8 @@ geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path
  */
 static void
 geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
-                     int fill_width, int angle1, int pitch1, int angle2,
-                     int pitch2, int origin_x, int origin_y)
+                               int fill_width, int angle1, int pitch1, int angle2,
+                               int pitch2, int origin_x, int origin_y)
 {
   int i;
 
@@ -1083,8 +1140,8 @@ geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  */
 static void
 geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
-                    int fill_width, int angle1, int pitch1, int angle2,
-                    int pitch2, int origin_x, int origin_y)
+                              int fill_width, int angle1, int pitch1, int angle2,
+                              int pitch2, int origin_x, int origin_y)
 {
   int i;
   GArray *lines;
@@ -1109,7 +1166,6 @@ geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   g_array_free (lines, TRUE);
 }
 
-
 /*! \brief Print a mesh pattern Path to Postscript document.
  *  \par Function Description
  *  This function prints a meshed path. No outline is printed.
@@ -1133,14 +1189,14 @@ geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  */
 static void
 geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
-                   int fill_width, int angle1, int pitch1, int angle2,
-                   int pitch2, int origin_x, int origin_y)
+                             int fill_width, int angle1, int pitch1, int angle2,
+                             int pitch2, int origin_x, int origin_y)
 {
   geda_path_object_print_hatch (toplevel, fp, path, fill_width,
-                      angle1, pitch1, -1, -1, origin_x, origin_y);
+                                angle1, pitch1, -1, -1, origin_x, origin_y);
 
   geda_path_object_print_hatch (toplevel, fp, path, fill_width,
-                      angle2, pitch2, -1, -1, origin_x, origin_y);
+                                angle2, pitch2, -1, -1, origin_x, origin_y);
 }
 
 
@@ -1156,8 +1212,10 @@ geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *  \param [in] origin_x   Page x coordinate to place Path GedaObject
  *  \param [in] origin_y   Page y coordinate to place Path GedaObject
  */
-void geda_path_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                  int origin_x, int origin_y)
+void
+geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
+                       GedaObject   *o_current,
+                       int origin_x, int origin_y)
 {
   int line_width, length, space;
   DRAW_FUNC outl_func = NULL;
@@ -1311,13 +1369,20 @@ void geda_path_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curr
  *  \return The shortest distance from the object to the point. With an
  *          invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double
+geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
-  int solid;
+  if (GEDA_IS_PATH(object)) {
 
-  g_return_val_if_fail(GEDA_IS_PATH(object), 0.0);
+    int solid;
 
-  solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+    g_return_val_if_fail(GEDA_IS_PATH(object), 0.0);
 
-  return s_path_shortest_distance (object->path, x, y, solid);
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+
+    return s_path_shortest_distance (object->path, x, y, solid);
+
+  }
+  geda_path_object_error(__func__, object);
+  return (G_MAXDOUBLE);
 }
