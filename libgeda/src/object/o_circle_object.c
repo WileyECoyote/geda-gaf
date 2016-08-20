@@ -1777,6 +1777,7 @@ double
 geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   if (GEDA_IS_CIRCLE(object)) {
+
     int solid;
 
     solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;

@@ -38,7 +38,7 @@
  *  \param toplevel  The GedaToplevel object
  *  \param o_current The GedaObject to embed
  */
-bool geda_object_embed(GedaToplevel *toplevel, GedaObject *o_current)
+bool geda_object_embed(GedaObject *o_current)
 {
   Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;
@@ -82,7 +82,7 @@ bool geda_object_embed(GedaToplevel *toplevel, GedaObject *o_current)
  *          2 Could not find the component in library
  */
 int
-geda_object_unembed(GedaToplevel *toplevel, GedaObject *o_current)
+geda_object_unembed(GedaObject *o_current)
 {
   Page *page          = geda_object_get_page (o_current);
   int   page_modified = 0;

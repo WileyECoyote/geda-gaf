@@ -333,8 +333,8 @@ extern "C" {
           int    geda_object_color_get_default             (char type);
 
 /* o_embed.c */
-         bool    geda_object_embed                         (GedaToplevel *toplevel, GedaObject *object);
-          int    geda_object_unembed                       (GedaToplevel *toplevel, GedaObject *object);
+         bool    geda_object_embed                         (GedaObject *object);
+          int    geda_object_unembed                       (GedaObject *object);
 
 /* o_get.c */
           int    geda_object_get_attached_parent_id        (GedaObject *object);

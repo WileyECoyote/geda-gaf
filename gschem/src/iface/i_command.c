@@ -3994,7 +3994,7 @@ COMMAND (do_embed)
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
-          geda_object_embed (w_current->toplevel, o_current);
+          geda_object_embed (o_current);
         }
       }
       NEXT(s_current);
@@ -4016,9 +4016,10 @@ COMMAND (do_unembed)
 
   /* anything selected ? */
   if (o_select_is_selection(w_current)) {
+
     /* yes, unembed each selected component */
-    GList *s_current =
-      geda_list_get_glist(Current_Selection);
+    GList *s_current = geda_list_get_glist(Current_Selection);
+    GList *not_found = NULL;
 
     while (s_current != NULL) {
 
@@ -4027,7 +4028,14 @@ COMMAND (do_unembed)
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
-          geda_object_unembed (w_current->toplevel, o_current);
+
+          int result;
+
+           result = geda_object_unembed (o_current);
+
+          if (result == 2) {
+            not_found = g_list_append(not_found, o_current);
+          }
         }
       }
       NEXT(s_current);

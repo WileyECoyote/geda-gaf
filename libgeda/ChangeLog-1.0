@@ -3,6 +3,9 @@
     * src/file/f_file.c: Revise f_has_active_autosave to validate filename
       and return false if NULL.
 
+    * src/object/o_embed.c: Remove unused toplevel argument from both geda_
+      object_embed and geda_object_unembed.
+
     * src/object/o_path_object.c: Add static functions geda_object_error
       and geda_path_object_error, implement common object argument error
       message handlers, adjust function wrap.
