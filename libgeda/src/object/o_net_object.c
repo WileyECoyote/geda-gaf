@@ -463,8 +463,6 @@ geda_net_object_is_fully_connected (GedaObject *o_current)
       geda_net_object_refresh_conn_cache (o_current);
     }
 
-    //g_return_val_if_fail (o_current->net->valid_num_connected, FALSE);
-
     return o_current->net->net_num_connected > 1 ? TRUE : FALSE;
   }
   geda_net_object_error(__func__, o_current);
