@@ -31,6 +31,7 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
   for (p_iter = geda_list_get_glist (pr_current->pages);
        p_iter != NULL;
        p_iter = g_list_next (p_iter)) {
+
     Page *p_current = p_iter->data;
 
     /* Cast removes const qualifier from return value of
@@ -44,9 +45,10 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
       if (o_current->type == OBJ_COMPLEX ||
                 o_current->type == OBJ_PICTURE) {
         if (embed_mode == TRUE) {
-          geda_object_embed(pr_current, o_current);
-        } else {
-          geda_object_unembed(pr_current, o_current);
+          geda_object_embed(o_current);
+        }
+        else {
+          geda_object_unembed(o_current);
         }
       }
 
