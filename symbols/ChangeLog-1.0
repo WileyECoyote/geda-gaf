@@ -6,6 +6,16 @@
     * arm/LPC2129-1.sym: Add symbol: single chip 16/32-bit ARM microcontroller,
       256k flash.
 
+    * ti/battery/BQ20Z45: rename BQ20z45->BQ20Z45, update attributes:
+
+            * ti/battery/BQ20Z45-1.sym,
+            * ti/battery/BQ20Z45-2.sym.
+
+    * ti/battery/BQ20Z45R1: Add 2 symbol for the R1 version of BQ20Z45:
+
+            * ti/battery/BQ20Z45R1-1.sym,
+            * ti/battery/BQ20Z45R1-2.sym.
+
 2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * arm/LPC2119-1.sym: Add symbol: single chip 16/32-bit ARM microcontroller,

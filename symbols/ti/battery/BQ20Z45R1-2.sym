@@ -421,13 +421,13 @@ B 400 100 3000 6000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 3400 6200 8 10 1 1 0 6 1
 refdes=U?
 T 400 7200 5 10 0 0 0 0 1
-device=BQ20Z45
+device=BQ20Z45R1
 T 400 6400 5 10 0 0 0 0 1
 footprint=TSSOP38
 T 400 7800 5 10 0 0 0 0 1
 author=AutoTron
 T 400 6600 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/bq20z45
+documentation=http://www.ti.com/product/bq20z45-r1
 T 400 6800 5 10 0 1 0 0 1
 description=Battery Level Gauge and Protection Enabled With Impedance Track
 T 1700 7000 5 10 0 0 0 0 1
