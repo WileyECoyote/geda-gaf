@@ -3,6 +3,9 @@
     * ti/micro/AM3352BZCE-1.sym: Add symbol AM3352B 32-Bit RISC ARM Processor,
       Sitara, Cortex-A8.
 
+    * arm/LPC2129-1.sym: Add symbol: single chip 16/32-bit ARM microcontroller,
+      256k flash.
+
 2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * arm/LPC2119-1.sym: Add symbol: single chip 16/32-bit ARM microcontroller,
