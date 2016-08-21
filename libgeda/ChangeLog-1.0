@@ -12,6 +12,8 @@
 
     * src/struct/s_papersizes.c: Rename functions with geda_struct prefix.
 
+    * tests/test_file.c: Add some checks for f_has_active_autosave.
+
 2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_object.c: Rename functions with geda_struct prefix.

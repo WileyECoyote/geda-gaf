@@ -91,8 +91,31 @@ int test_file (void)
 
   int result = 0;
 
-  /* === Function 01: geda_close_file           f_close === */
-  /* === Function 02: geda_file_has_autosave    f_has_active_autosave === */
+  /* === Function 01: geda_close_file f_close === */
+
+  /* === Function 02: f_has_active_autosave === */
+
+  if (f_has_active_autosave(NULL, &err)) {
+    fprintf(stderr, "FAILED: (F010200A) file_has_autosave NULL\n");
+    result++;
+  }
+
+  if (f_has_active_autosave(SYM_FILE, &err)) {
+    fprintf(stderr, "FAILED: (F010201) file_has_autosave NULL\n");
+    result++;
+  }
+
+  char *auto_fname = f_get_autosave_filename (SYM_FILE);
+
+  f_sys_copy(SYM_FILE, auto_fname);
+
+  if (!f_has_active_autosave(SYM_FILE, &err)) {
+    fprintf(stderr, "FAILED: (F010202) file_has_autosave %s\n", auto_fname);
+    result++;
+  }
+
+  f_sys_remove(auto_fname);
+  GEDA_FREE(auto_fname);
 
   /* === Function 03: f_open === */
 
@@ -180,6 +203,8 @@ int test_file (void)
 
   /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
   /* === Function 06: geda_save_file            f_save === */
+
+  geda_toplevel_set_file_open_flags(toplevel, F_OPEN_NONE);
 
   g_object_unref(toplevel);
 
