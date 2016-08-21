@@ -114,9 +114,6 @@ int test_file (void)
     result++;
   }
 
-  f_sys_remove(auto_fname);
-  GEDA_FREE(auto_fname);
-
   /* === Function 03: f_open === */
 
   err = NULL;
@@ -201,7 +198,20 @@ int test_file (void)
     result++;
   }
 
-  /* === Function 05: geda_remove_backup_file   f_remove_backup_file === */
+  /* === Function 05: f_remove_backup_file === */
+
+  geda_remove_backup_file(SYM_FILE);
+
+  if (f_has_active_autosave(SYM_FILE, &err)) {
+    fprintf(stderr, "FAILED: (F010501) remove_backup_file %s\n", auto_fname);
+    result++;
+  }
+
+  f_sys_remove(auto_fname);
+  GEDA_FREE(auto_fname);
+
+  geda_remove_backup_file(NULL);
+
   /* === Function 06: geda_save_file            f_save === */
 
   geda_toplevel_set_file_open_flags(toplevel, F_OPEN_NONE);
