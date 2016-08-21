@@ -1108,7 +1108,7 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
 
   answer = FALSE;
   points = g_array_new (FALSE, FALSE, sizeof(POINT));
-  closed = s_path_to_polygon (boundary->path, points);
+  closed = geda_struct_path_to_polygon (boundary->path, points);
 
   if (points->len > 0) {
 

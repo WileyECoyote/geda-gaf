@@ -15,7 +15,7 @@ extern "C" {
 /* f_get.c */
          char   *f_get_autosave_filename         (const char *filename);
    const char   *f_get_basename                  (const char *path);
-         char    *f_get_basename_dup             (const char *path);
+         char   *f_get_basename_dup              (const char *path);
          char   *f_get_bitmap_filespec           (const char *filename);
          char   *f_get_data_filespec             (const char *filename);
        GSList   *f_get_dir_list_files            (      char *path, char *filter);
@@ -686,11 +686,11 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_papersizes_get_size           (char *string, int *width, int *height);
 
 /* s_path.c */
-     GedaPath   *s_path_copy_modify              (GedaPath *path, int dx, int dy, int new_x, int new_y, int whichone);
-     GedaPath   *s_path_parse                    (const char *path_str);
-         char   *s_path_string_from_path         (const GedaPath *path);
-          int    s_path_to_polygon               (GedaPath *path, GArray *points);
-       double    s_path_shortest_distance        (GedaPath *path, int x, int y, int solid);
+     GedaPath   *geda_struct_path_copy_modify              (GedaPath *path, int dx, int dy, int new_x, int new_y, int whichone);
+     GedaPath   *geda_struct_path_parse                    (const char *path_str);
+         char   *geda_struct_path_string_from_path         (const GedaPath *path);
+          int    geda_struct_path_to_polygon               (GedaPath *path, GArray *points);
+       double    geda_struct_path_shortest_distance        (GedaPath *path, int x, int y, int solid);
 
 /* s_place.c */
          void    s_place_free_place_list         (GedaToplevel *toplevel);

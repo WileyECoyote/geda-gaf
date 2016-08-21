@@ -391,7 +391,7 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
   object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
   object->path  = w_current->temp_path;
 
-  object->path = s_path_copy_modify (w_current->which_object->path, 0, 0,
+  object->path = geda_struct_path_copy_modify (w_current->which_object->path, 0, 0,
                                    w_current->second_wx,
                                    w_current->second_wy, w_current->which_grip);
 

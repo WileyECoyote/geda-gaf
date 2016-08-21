@@ -218,7 +218,7 @@ void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 
   points = g_array_new (FALSE, FALSE, sizeof(POINT));
 
-  s_path_to_polygon (path, points);
+  geda_struct_path_to_polygon (path, points);
   m_hatch_polygon (points, angle, pitch, lines);
 
   g_array_free (points, TRUE);

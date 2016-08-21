@@ -546,7 +546,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
   int      segment2;
 
   points = g_array_new (FALSE, FALSE, sizeof(POINT));
-  closed = s_path_to_polygon (object->path, points);
+  closed = geda_struct_path_to_polygon (object->path, points);
 
   if (closed) {
     point1 = g_array_index (points, POINT, points->len - 1);

@@ -576,7 +576,7 @@ get_path_object_data(GedaObject *object)
   int   sid          = object->sid;
   int   lock         = !object->selectable;
 
-  char *path_string  = s_path_string_from_path(object->path);
+  char *path_string  = geda_struct_path_string_from_path(object->path);
   int   num_sections = object->path->num_sections;
   int   max_sections = object->path->num_sections_max;
 

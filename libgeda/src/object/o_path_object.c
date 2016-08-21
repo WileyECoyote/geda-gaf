@@ -103,7 +103,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
     int       closed;
 
     points = g_array_new (FALSE, FALSE, sizeof(POINT));
-    closed = s_path_to_polygon (object->path, points);
+    closed = geda_struct_path_to_polygon (object->path, points);
     result = FALSE;
 
     if (closed) {
@@ -366,7 +366,7 @@ geda_path_object_new (int color, const char *path_string)
   GedaObject *new_obj;
   GedaPath   *path;
 
-  path = s_path_parse (path_string);
+  path = geda_struct_path_parse (path_string);
   new_obj = GEDA_OBJECT(path);
   new_obj->color = color;
   return new_obj;
@@ -377,7 +377,7 @@ geda_path_object_new (int color, const char *path_string)
  *  This function creates a new path object using the vertices
  *  given in the array \a points and sets the color property
  *  of the object to \a color. This function essentially does
- *  the oposite of the function s_path_to_polygon.
+ *  the oposite of the function geda_struct_path_to_polygon.
  *
  *  \param [in] points A GArray containing points
  *  \param [in] color  Color index the path should be set to
@@ -490,7 +490,7 @@ geda_path_object_copy (const GedaObject *o_current)
     char       *path_string;
 
     old_path    = GEDA_PATH(o_current);
-    path_string = s_path_string_from_path (old_path);
+    path_string = geda_struct_path_string_from_path (old_path);
     new_obj     = geda_path_object_new (o_current->color, path_string);
 
     GEDA_FREE (path_string);
@@ -674,7 +674,7 @@ geda_path_object_save (GedaObject *object)
   angle2       = object->fill_options->fill_angle2;
   pitch2       = object->fill_options->fill_pitch2;
 
-  path_string = s_path_string_from_path (object->path);
+  path_string = geda_struct_path_string_from_path (object->path);
 
   num_lines = geda_object_get_num_text_lines (path_string);
   buf = geda_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
@@ -1380,7 +1380,7 @@ geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_
 
     solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
 
-    return s_path_shortest_distance (object->path, x, y, solid);
+    return geda_struct_path_shortest_distance (object->path, x, y, solid);
 
   }
   geda_path_object_error(__func__, object);

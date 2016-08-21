@@ -163,14 +163,18 @@ void s_path_art_finish (GedaPath * path)
 
   num_sections = path->num_sections++;
 
-  if (num_sections == path->num_sections_max)
-    path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
+  if (num_sections == path->num_sections_max) {
+    path->sections = g_realloc (path->sections,
+                                (path->num_sections_max <<= 1) * sizeof(PATH_SECTION));
+  }
+
   path->sections[num_sections].code = PATH_END;
 }
 
 GedaPath *
-s_path_copy_modify (GedaPath *path, int dx, int dy,
-                                    int new_x, int new_y, int whichone)
+geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
+                                              int new_x, int new_y,
+                                              int whichone)
 {
   GedaPath *new_path;
   char     *path_string;
@@ -182,7 +186,7 @@ s_path_copy_modify (GedaPath *path, int dx, int dy,
   g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
 
   color                      = geda_object_get_color(GEDA_OBJECT(path));
-  path_string                = s_path_string_from_path (path);
+  path_string                = geda_struct_path_string_from_path (path);
   new_path                   = (GedaPath*)geda_path_object_new (color, path_string);
   new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof(PATH_SECTION));
   new_path->num_sections     = path->num_sections;
@@ -370,7 +374,7 @@ static void s_path_arc (RSVGParsePathCtx * ctx,
 
 /* supply defaults for missing parameters, assuming relative coordinates
    are to be interpreted as x,y */
-static void s_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
+static void geda_struct_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
 {
   int i;
 
@@ -392,7 +396,7 @@ static void s_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
   }
 }
 
-static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
+static void geda_struct_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
 {
   double x1, y1, x2, y2, x3, y3;
 
@@ -400,7 +404,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   case 'm':
     /* moveto */
     if (ctx->param == 2 || final) {
-      s_path_parse_default_xy (ctx, 2);
+      geda_struct_path_parse_default_xy (ctx, 2);
       s_path_moveto (ctx->path, ctx->params[0], ctx->params[1]);
       ctx->mpx = ctx->cpx = ctx->rpx = ctx->params[0];
       ctx->mpy = ctx->cpy = ctx->rpy = ctx->params[1];
@@ -411,7 +415,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   case 'l':
     /* lineto */
     if (ctx->param == 2 || final) {
-      s_path_parse_default_xy (ctx, 2);
+      geda_struct_path_parse_default_xy (ctx, 2);
       s_path_lineto (ctx->path, ctx->params[0], ctx->params[1]);
       ctx->cpx = ctx->rpx = ctx->params[0];
       ctx->cpy = ctx->rpy = ctx->params[1];
@@ -421,7 +425,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   case 'c':
     /* curveto */
     if (ctx->param == 6 || final) {
-      s_path_parse_default_xy (ctx, 6);
+      geda_struct_path_parse_default_xy (ctx, 6);
       x1 = ctx->params[0];
       y1 = ctx->params[1];
       x2 = ctx->params[2];
@@ -439,7 +443,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   case 's':
     /* smooth curveto */
     if (ctx->param == 4 || final) {
-      s_path_parse_default_xy (ctx, 4);
+      geda_struct_path_parse_default_xy (ctx, 4);
       x1 = 2 * ctx->cpx - ctx->rpx;
       y1 = 2 * ctx->cpy - ctx->rpy;
       x2 = ctx->params[0];
@@ -477,7 +481,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
        http://www.icce.rug.nl/erikjan/bluefuzz/beziers/beziers/beziers.html
      */
     if (ctx->param == 4 || final) {
-      s_path_parse_default_xy (ctx, 4);
+      geda_struct_path_parse_default_xy (ctx, 4);
       /* raise quadratic bezier to cubic */
       x1 = (ctx->cpx + 2 * ctx->params[0]) * (1.0 / 3.0);
       y1 = (ctx->cpy + 2 * ctx->params[1]) * (1.0 / 3.0);
@@ -515,7 +519,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
       ctx->param = 0;
     } else if (final) {
       if (ctx->param > 2) {
-        s_path_parse_default_xy (ctx, 4);
+        geda_struct_path_parse_default_xy (ctx, 4);
         /* raise quadratic bezier to cubic */
         x1 = (ctx->cpx + 2 * ctx->params[0]) * (1.0 / 3.0);
         y1 = (ctx->cpy + 2 * ctx->params[1]) * (1.0 / 3.0);
@@ -529,7 +533,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
         ctx->cpx = x3;
         ctx->cpy = y3;
       } else {
-        s_path_parse_default_xy (ctx, 2);
+        geda_struct_path_parse_default_xy (ctx, 2);
         s_path_lineto (ctx->path, ctx->params[0], ctx->params[1]);
         ctx->cpx = ctx->rpx = ctx->params[0];
         ctx->cpy = ctx->rpy = ctx->params[1];
@@ -550,7 +554,7 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   }
 }
 
-static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
+static void geda_struct_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 {
   bool in_num        = FALSE;
   bool in_frac       = FALSE;
@@ -669,7 +673,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
         }
       }
       ctx->params[ctx->param++] = val;
-      s_path_parse_do_cmd (ctx, FALSE);
+      geda_struct_path_parse_do_cmd (ctx, FALSE);
 
       in_num = FALSE;
     }
@@ -690,7 +694,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
     else if (c == 'z' || c == 'Z') {
 
       if (ctx->param)
-        s_path_parse_do_cmd (ctx, TRUE);
+        geda_struct_path_parse_do_cmd (ctx, TRUE);
 
       /* s_path_closepath (ctx->path); */
       /* s_path_lineto (ctx->path, ctx->mpx, ctx->mpy); */
@@ -702,7 +706,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
     else if (c >= 'A' && c <= 'Z' && c != 'E') {
 
       if (ctx->param)
-        s_path_parse_do_cmd (ctx, TRUE);
+        geda_struct_path_parse_do_cmd (ctx, TRUE);
 
       ctx->cmd = c + 'a' - 'A';
       ctx->rel = FALSE;
@@ -710,7 +714,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
     else if (c >= 'a' && c <= 'z' && c != 'e') {
 
       if (ctx->param)
-        s_path_parse_do_cmd (ctx, TRUE);
+        geda_struct_path_parse_do_cmd (ctx, TRUE);
 
       ctx->cmd = c;
       ctx->rel = TRUE;
@@ -720,7 +724,7 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 }
 
 
-GedaPath *s_path_parse (const char *path_str)
+GedaPath *geda_struct_path_parse (const char *path_str)
 {
   RSVGParsePathCtx ctx;
 
@@ -732,15 +736,15 @@ GedaPath *s_path_parse (const char *path_str)
   ctx.cmd   = 0;
   ctx.param = 0;
 
-  s_path_parse_data (&ctx, path_str);
+  geda_struct_path_parse_data (&ctx, path_str);
 
   if (ctx.param)
-    s_path_parse_do_cmd (&ctx, TRUE);
+    geda_struct_path_parse_do_cmd (&ctx, TRUE);
 
   return ctx.path;
 }
 
-char *s_path_string_from_path (const GedaPath *path)
+char *geda_struct_path_string_from_path (const GedaPath *path)
 {
   GString *path_string;
   int i;
@@ -791,7 +795,7 @@ char *s_path_string_from_path (const GedaPath *path)
  *
  *  \returns TRUE if the path is closed, FALSE if it is open.
  */
-int s_path_to_polygon (GedaPath *path, GArray *points)
+int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
 {
   int closed = FALSE;
   int i;
@@ -852,14 +856,14 @@ int s_path_to_polygon (GedaPath *path, GArray *points)
  *          points. With an invalid parameter, this function returns
  *          G_MAXDOUBLE.
  */
-double s_path_shortest_distance (GedaPath *path, int x, int y, int solid)
+double geda_struct_path_shortest_distance (GedaPath *path, int x, int y, int solid)
 {
   double shortest_distance = G_MAXDOUBLE;
   int closed;
   GArray *points;
 
   points = g_array_new (FALSE, FALSE, sizeof(POINT));
-  closed = s_path_to_polygon (path, points);
+  closed = geda_struct_path_to_polygon (path, points);
 
   if (!solid) {
 
