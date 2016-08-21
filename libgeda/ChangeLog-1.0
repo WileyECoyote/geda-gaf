@@ -10,6 +10,8 @@
       and geda_path_object_error, implement common object argument error
       message handlers, adjust function wrap.
 
+    * src/struct/s_papersizes.c: Rename functions with geda_struct prefix.
+
 2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_object.c: Rename functions with geda_struct prefix.

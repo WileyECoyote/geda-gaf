@@ -48,7 +48,7 @@ static struct st_papersizes_names papersizes[MAX_PageSIZES];
  *  \par Function Description
  *  width and height in portrait mode
  */
-int s_papersizes_add_entry(char *new_papersize, int width, int height)
+int geda_struct_papersizes_add_entry(char *new_papersize, int width, int height)
 {
   if (new_papersize == NULL) {
     return(-1);
@@ -72,7 +72,7 @@ int s_papersizes_add_entry(char *new_papersize, int width, int height)
  *  \par Function Description
  *
  */
-void s_papersizes_print()
+void geda_struct_papersizes_print()
 {
   int i;
 
@@ -86,7 +86,7 @@ void s_papersizes_print()
  *  \par Function Description
  *  true for uniqueness, zero for duplication
  */
-int s_papersizes_uniq(char *name)
+int geda_struct_papersizes_uniq(char *name)
 {
   int i;
 
@@ -120,7 +120,7 @@ void s_papersizes_free()
  *  \par Function Description
  *
  */
-void s_papersizes_init()
+void geda_struct_papersizes_init()
 {
   int i;
   for (i = 0; i < MAX_PageSIZES; i++) {
@@ -133,7 +133,7 @@ void s_papersizes_init()
  *  \par Function Description
  *
  */
-char *s_papersizes_get(int counter)
+char *geda_struct_papersizes_get(int counter)
 {
   if (counter < papersizes_index) {
     return(papersizes[counter].papersize_name);
@@ -147,7 +147,7 @@ char *s_papersizes_get(int counter)
  *  \par Function Description
  *
  */
-void s_papersizes_get_size(char *string, int *width, int *height)
+void geda_struct_papersizes_get_size(char *string, int *width, int *height)
 {
   int i;
 

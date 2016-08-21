@@ -1681,11 +1681,11 @@ SCM g_rc_paper_sizes(SCM scm_papername, SCM scm_width, SCM scm_height)
   height = (int) (scm_to_double (scm_height) * MILS_PER_INCH);
   papername = scm_to_utf8_string (scm_papername);
 
-  if (!s_papersizes_uniq(papername)) {
+  if (!geda_struct_papersizes_uniq(papername)) {
     ret = SCM_BOOL_F;
   }
   else {
-    s_papersizes_add_entry(papername, width, height);
+    geda_struct_papersizes_add_entry(papername, width, height);
     ret = SCM_BOOL_T;
   }
 

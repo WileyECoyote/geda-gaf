@@ -143,13 +143,13 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
 
   /* Populate combo box with available paper sizes */
   i = 0;
-  string = (char *) s_papersizes_get (i);
+  string = (char *) geda_struct_papersizes_get (i);
   while (string != NULL) {
 
     geda_combo_box_insert_text (GEDA_COMBO_BOX (combobox), i, string);
 
     i++;
-    string = (char *) s_papersizes_get (i);
+    string = (char *) geda_struct_papersizes_get (i);
   }
 
   d->papercbox = combobox;
@@ -685,9 +685,9 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   while (TRUE) {
 
-    char *string = (char*)s_papersizes_get (paperidx);
+    char *string = (char*)geda_struct_papersizes_get (paperidx);
 
-    s_papersizes_get_size (string, &x, &y);
+    geda_struct_papersizes_get_size (string, &x, &y);
 
     if ((x == toplevel->paper_width) && (y == toplevel->paper_height)) {
       break;
@@ -739,7 +739,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
                   "usefile", &usefile,
                   NULL);
 
-    s_papersizes_get_size (s_papersizes_get (paperidx),
+    geda_struct_papersizes_get_size (geda_struct_papersizes_get (paperidx),
                            &toplevel->paper_width,
                            &toplevel->paper_height);
 

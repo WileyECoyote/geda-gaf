@@ -678,12 +678,12 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
         GList   *geda_struct_page_objects_in_regions       (Page *page, RECTANGLE *rects, int n_rects);
 
 /* s_papersizes.c */
-          int    s_papersizes_add_entry          (char *new_papersize, int width, int height);
-         void    s_papersizes_print              (void);
-          int    s_papersizes_uniq               (char *name);
-         void    s_papersizes_init               (void);
-         char   *s_papersizes_get                (int counter);
-         void    s_papersizes_get_size           (char *string, int *width, int *height);
+          int    geda_struct_papersizes_add_entry          (char *new_papersize, int width, int height);
+         void    geda_struct_papersizes_print              (void);
+          int    geda_struct_papersizes_uniq               (char *name);
+         void    geda_struct_papersizes_init               (void);
+         char   *geda_struct_papersizes_get                (int counter);
+         void    geda_struct_papersizes_get_size           (char *string, int *width, int *height);
 
 /* s_path.c */
      GedaPath   *s_path_copy_modify              (GedaPath *path, int dx, int dy, int new_x, int new_y, int whichone);
