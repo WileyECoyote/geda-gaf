@@ -93,7 +93,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
   bool          success  = FALSE;
 
   /* remove the old place list if it exists */
-  s_place_free_place_list(toplevel);
+  geda_struct_place_free_place_list(toplevel);
 
   /* Insert the new object into the buffer at world coordinates (0,0).
    * It will be translated to the mouse coordinates during placement. */
@@ -116,12 +116,12 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
        * failed to load and the error message is displayed there. Therefore,
        * we ignore this error, but end the component insertion.
        */
-      g_error_free(err);
+
       i_status_set_state (w_current, SELECT);
     }
     else {
       /* Take the added objects */
-      s_place_set_place_list(toplevel, temp_list);
+      geda_struct_place_set_place_list(toplevel, temp_list);
       success = TRUE;
     }
   }

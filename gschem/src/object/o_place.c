@@ -50,7 +50,7 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
   bool result;
 
-  GList *list = s_place_get_place_list(w_current->toplevel);
+  GList *list = geda_struct_place_get_place_list(w_current->toplevel);
 
   if (list) {
 

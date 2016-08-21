@@ -525,7 +525,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       (w_current->undo_type == UNDO_MEMORY && u_current->object_list))
   {
 
-    s_place_free_place_list (toplevel);
+    geda_struct_place_free_place_list (toplevel);
 
     geda_struct_page_delete_objects (Current_Page);
 

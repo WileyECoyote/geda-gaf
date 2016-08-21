@@ -186,7 +186,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
             o_place_invalidate_rubber (w_current, FALSE);
           }
           w_current->rubber_visible = FALSE;
-          s_place_free_place_list(toplevel);
+          geda_struct_place_free_place_list(toplevel);
         }
       }
       else if (w_current->event_state != SELECT && w_current->inside_action)
@@ -258,7 +258,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
         /* If user clicked on symbol in the tree and did not place, there
          * could be a component in the place list, so check and release */
-        s_place_free_place_list(toplevel);
+        geda_struct_place_free_place_list(toplevel);
 
         /* Cannot wait for base class to do this*/
         w_current->cswindow = NULL;

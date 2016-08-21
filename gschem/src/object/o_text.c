@@ -148,7 +148,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
                                    w_current);
 
   /* remove the old place list if it exists */
-  s_place_free_place_list(toplevel);
+  geda_struct_place_free_place_list(toplevel);
 
   /* here we need to add OBJ_TEXT when it is done */
   Current_PlaceList = g_list_append (Current_PlaceList, object);

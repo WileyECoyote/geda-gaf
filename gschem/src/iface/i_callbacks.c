@@ -179,7 +179,7 @@ DEFINE_I_CALLBACK(cancel)
   }
 
   /* Check and release objects in the toplevel place list */
-  s_place_free_place_list(w_current->toplevel);
+  geda_struct_place_free_place_list(w_current->toplevel);
 
   /* Clear the key guile command-sequence */
   g_keys_reset (w_current);

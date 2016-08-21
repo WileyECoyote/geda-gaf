@@ -312,7 +312,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
       w_current->first_wy = bottom > top ? top : bottom;
     }
 
-    s_place_set_place_list(w_current->toplevel, list);
+    geda_struct_place_set_place_list(w_current->toplevel, list);
 
     i_status_action_start(w_current);
 
@@ -429,7 +429,7 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
 
     if (o_edit_set_offset(w_current, list, x, y)) {
 
-      s_place_set_place_list(w_current->toplevel, list);
+      geda_struct_place_set_place_list(w_current->toplevel, list);
 
       i_status_action_start(w_current);
 

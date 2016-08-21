@@ -229,7 +229,7 @@ void i_window_revert_page (GschemToplevel *w_current)
      * here because all of the object are soon to be wiped-out */
     geda_list_remove_all(toplevel->page_current->selection_list);
 
-    s_place_free_place_list (toplevel);
+    geda_struct_place_free_place_list (toplevel);
 
     geda_struct_page_delete_objects (page);
 
@@ -409,7 +409,7 @@ void i_window_show_attributes (GschemToplevel *w_current, int scope)
   }
   else if (o_select_is_selection (w_current)) {
 
-    GList *place_list = s_place_get_place_list(w_current->toplevel);
+    GList *place_list = geda_struct_place_get_place_list(w_current->toplevel);
 
     if (place_list) {
       o_edit_show_hidden (w_current, place_list, scope);

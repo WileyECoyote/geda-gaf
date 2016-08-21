@@ -38,7 +38,7 @@
  *  \param [in] toplevel pointer to GedaToplevel object
  *
  */
-void s_place_free_place_list(GedaToplevel *toplevel)
+void geda_struct_place_free_place_list(GedaToplevel *toplevel)
 {
   Page  *page = geda_toplevel_get_current_page (toplevel);
 
@@ -65,7 +65,7 @@ void s_place_free_place_list(GedaToplevel *toplevel)
  *
  *  \return list or NULL if there was an error or no list.
  */
-GList *s_place_get_place_list(GedaToplevel *toplevel)
+GList *geda_struct_place_get_place_list(GedaToplevel *toplevel)
 {
   GList *list;
 
@@ -87,7 +87,7 @@ GList *s_place_get_place_list(GedaToplevel *toplevel)
  *  \par Function Description
  *   This functions can be used to either set or clear the place list
  *   associated with the given GedaToplevel object. If new_place_list
- *   references data, s_place_free_place_list is called to release the
+ *   references data, geda_struct_place_free_place_list is called to release the
  *   current list before adding new objects. No error is generated if
  *   the new place list is NULL.
  *
@@ -95,13 +95,13 @@ GList *s_place_get_place_list(GedaToplevel *toplevel)
  *  \param [in] new_place_list Glist of objects to append or NULL to clear
  *                             the current place list.
  */
-void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
+void geda_struct_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
 {
   Page *page = geda_toplevel_get_current_page (toplevel);
 
   if (page) {
 
-    s_place_free_place_list(toplevel);
+    geda_struct_place_free_place_list(toplevel);
 
     if (new_place_list) {
 

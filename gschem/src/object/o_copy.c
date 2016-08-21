@@ -21,7 +21,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-/*!
+/*!S
  * \file o_copy.c
  * \brief Low-level module for copying objects
  */
@@ -41,7 +41,7 @@
  */
 void o_copy_cancel(GschemToplevel *w_current)
 {
-  s_place_free_place_list(w_current->toplevel);
+  geda_struct_place_free_place_list(w_current->toplevel);
 
   i_event_stop_action_handler (w_current);
 }
@@ -115,7 +115,7 @@ bool o_copy_real_start(GschemToplevel *w_current, int w_x, int w_y)
     page      = gschem_toplevel_get_current_page(w_current);
     s_current = geda_list_get_glist(page->selection_list);
 
-    s_place_set_place_list(toplevel, s_current);
+    geda_struct_place_set_place_list(toplevel, s_current);
 
     status = o_place_start(w_current, w_x, w_y);
 
