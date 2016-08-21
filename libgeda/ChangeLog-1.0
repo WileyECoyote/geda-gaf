@@ -1,7 +1,8 @@
 2016-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Revise f_has_active_autosave to validate filename
-      and return false if NULL.
+      and return false if NULL. Reduce scope of real_filename in function
+      f_remove_backup_file.
 
     * src/object/o_embed.c: Remove unused toplevel argument from both geda_
       object_embed and geda_object_unembed.

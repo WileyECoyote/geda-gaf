@@ -384,9 +384,9 @@ f_open_flags (GedaToplevel *toplevel)
 void
 f_remove_backup_file (const char *filename)
 {
-  char *real_filename;
-
   if (filename) {
+
+    char *real_filename;
 
     /* Get the real filename and file permissions */
     real_filename = f_sys_follow_symlinks (filename, NULL);
