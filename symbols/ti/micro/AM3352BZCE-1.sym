@@ -3,11 +3,11 @@ B 400 100 5200 45100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 5600 45300 8 10 1 1 0 6 1
 refdes=U?
 T 400 45500 5 10 0 0 0 0 1
-device=AM3351BZCE
+device=AM3352BZCE
 T 400 45700 5 10 0 0 0 0 1
 footprint=S-PBGA-N298
 T 400 46100 5 10 0 0 0 0 1
-description=AM3351B RISC Processor,32-Bit,Sitara,ARM,Cortex-A8
+description=AM3352B RISC Processor,32-Bit,Sitara,ARM,Cortex-A8
 T 400 45900 5 10 0 0 0 0 1
 documentation=http://www.ti.com/lit/gpn/am3358
 P 100 44800 400 44800 1 0 0
@@ -3293,7 +3293,7 @@ numslots=0
 T 2500 200 5 8 0 0 0 0 1
 symversion=0.2
 T 400 45300 9 10 1 1 0 0 1
-value=AM3351BZCE
+value=AM3352BZCE
 T 400 46900 5 10 0 0 0 0 1
 author=Max Feoktistov <max@lsol.ru>
 T 400 46500 5 10 0 0 0 0 1
