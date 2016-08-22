@@ -425,7 +425,7 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
     int left   = w_current->first_wx = dialog_data->wx;
     int bottom = w_current->first_wy = dialog_data->wy;
 
-    s_place_set_place_list(w_current->toplevel, object_list);
+    geda_struct_place_set_place_list(w_current->toplevel, object_list);
 
     i_status_action_start(w_current);
 
@@ -577,7 +577,7 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
     break;
   case GEDA_RESPONSE_ACCEPT:
     x_dialog_array_edit_ok(dialog, dialog_data);
-    s_place_free_place_list(w_current->toplevel);
+    geda_struct_place_free_place_list(w_current->toplevel);
     i_status_set_state (w_current, SELECT);
     break;
   case GEDA_RESPONSE_SELECT:
