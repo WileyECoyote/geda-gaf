@@ -131,13 +131,14 @@ geda_tearoff_menu_item_size_request (GtkWidget      *widget,
 static void
 geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 {
-  GedaMenuItem  *menu_item;
-  GtkShadowType shadow_type;
-  int  width, height;
-  int  x, y;
-  int  right_max;
-  GtkArrowType arrow_type;
+  GedaMenuItem    *menu_item;
+  GtkShadowType    shadow_type;
+  GtkArrowType     arrow_type;
   GtkTextDirection direction;
+
+  int width, height;
+  int x, y;
+  int right_max;
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -241,7 +242,9 @@ geda_tearoff_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 
   return FALSE;
 }
-#else
+
+#else /* Gtk-3 */
+
 static void
 geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
                                             int       *minimum,
@@ -267,9 +270,10 @@ geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
                                              int       *natural)
 {
   GtkStyleContext *context;
-  GtkBorder padding;
-  GtkStateFlags state;
-  GtkWidget *parent;
+  GtkWidget       *parent;
+  GtkBorder        padding;
+  GtkStateFlags    state;
+
   unsigned int border_width;
 
   context = gtk_widget_get_style_context (widget);
@@ -299,14 +303,14 @@ static bool
 geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem    *menu_item;
-  GtkStateFlags    state;
   GtkStyleContext *context;
+  GtkWidget       *parent;
   GtkBorder        padding;
-  int  x, y, width, height;
-  int  right_max;
-  unsigned int border_width;
+  GtkStateFlags    state;
   GtkTextDirection direction;
-  GtkWidget *parent;
+  unsigned int     border_width;
+  int              x, y, width, height;
+  int              right_max;
 
   menu_item    = GEDA_MENU_ITEM (widget);
   context      = gtk_widget_get_style_context (widget);
@@ -334,16 +338,15 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 
   if (GEDA_IS_MENU (parent) && GEDA_MENU (parent)->torn_off) {
 
-    int  arrow_x;
+    int    arrow_x;
+    double angle;
 
     if (menu_item->toggle_size > ARROW_SIZE) {
-
-      double angle;
 
       if (direction == GTK_TEXT_DIR_LTR) {
 
         arrow_x = x + (menu_item->toggle_size - ARROW_SIZE)/2;
-        angle = (3 * G_PI) / 2;
+        angle   = (3 * G_PI) / 2;
       }
       else {
 
@@ -357,12 +360,12 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
       if (direction == GTK_TEXT_DIR_LTR) {
 
         arrow_x = ARROW_SIZE / 2;
-        angle = (3 * G_PI) / 2;
+        angle   = (3 * G_PI) / 2;
       }
       else {
 
         arrow_x = x + width - 2 * ARROW_SIZE + ARROW_SIZE / 2;
-        angle = G_PI / 2;
+        angle   = G_PI / 2;
       }
       x += 2 * ARROW_SIZE;
     }
@@ -397,6 +400,7 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 
   return FALSE;
 }
+
 #endif
 
 static void

@@ -1,4 +1,9 @@
-2016-08-18 Wiley E. Hill <wileyhill@gmail.com>
+2016-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_tearoff_menu_item.c: Fix scope of angle in geda_tearoff_
+      menu_item_draw.
+
+2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/: Reduce scope of variables.
 
