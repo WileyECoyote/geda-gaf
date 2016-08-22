@@ -906,9 +906,8 @@ void
 geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 {
   GedaMenuShell *target;
-  bool     auto_mnemonics;
-  bool     found;
-  bool     mnemonics_visible;
+  bool auto_mnemonics;
+  bool found;
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
                 "gtk-auto-mnemonics", &auto_mnemonics, NULL);
@@ -917,11 +916,16 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
     return;
 
   target = menu_shell;
-  found = FALSE;
+  found  = FALSE;
+
   while (target) {
 
     GedaMenuShellPriv *priv = target->priv;
-    GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (target));
+    GtkWidget         *toplevel;
+
+    bool mnemonics_visible;
+
+    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (target));
 
     /* The idea with keyboard mode is that once you start using
      * the keyboard to navigate the menus, we show mnemonics
@@ -941,10 +945,9 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
      * dismissing menus.
      */
     mnemonics_visible = target->keyboard_mode &&
-    (((target->active_menu_item || priv->in_unselectable_item) && !found) ||
-    (target == menu_shell &&
-    !target->parent_menu_shell &&
-    gtk_widget_has_grab (GTK_WIDGET (target))));
+                        (((target->active_menu_item || priv->in_unselectable_item) && !found) ||
+                          (target == menu_shell &&
+                          !target->parent_menu_shell && gtk_widget_has_grab (GTK_WIDGET(target))));
 
     /* While menus are up, only show underlines inside the menubar,
      * not in the entire window.
@@ -1179,11 +1182,11 @@ geda_menu_shell_forall (GtkContainer *container,
                         void         *callback_data)
 {
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
-  GtkWidget     *child;
-  GList         *children;
+  GList         *children   = menu_shell->children;
 
-  children = menu_shell->children;
   while (children) {
+
+    GtkWidget     *child;
 
     child = children->data;
     children = children->next;
