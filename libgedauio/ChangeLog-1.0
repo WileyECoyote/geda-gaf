@@ -1,5 +1,8 @@
 2016-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_option_menu.h: Add parenthesis around obj in macro
+      GEDA_IS_OPTION_MENU.
+
     * include/geda_tearoff_menu_item.h: Replace G_TYPE_CHECK_INSTANCE_TYPE
       with is_a_geda_tearoff_menu_item.
 

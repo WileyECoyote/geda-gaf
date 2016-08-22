@@ -23,7 +23,7 @@
 #define GEDA_TYPE_OPTION_MENU            (geda_option_menu_get_type ())
 #define GEDA_OPTION_MENU(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_OPTION_MENU, GedaOptionMenu))
 #define GEDA_OPTION_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_OPTION_MENU, GedaOptionMenuClass))
-#define GEDA_IS_OPTION_MENU(obj)         (is_a_geda_option_menu((GedaOptionMenu*)obj))
+#define GEDA_IS_OPTION_MENU(obj)         (is_a_geda_option_menu((GedaOptionMenu*)(obj)))
 #define GEDA_IS_OPTION_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_OPTION_MENU))
 #define GEDA_OPTION_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_OPTION_MENU, GedaOptionMenuClass))
 
