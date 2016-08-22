@@ -345,6 +345,12 @@ geda_menu_shell_class_init(void *class, void *class_data)
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
+  /*!
+   * GedaMenuShell::deactivate:
+   * menushell: the object which received the signal
+   *
+   * This signal is emitted when a menu shell is deactivated.
+   */
   menu_shell_signals[DEACTIVATE] =
     g_signal_new ("deactivate",
                   G_OBJECT_CLASS_TYPE (object_class),
@@ -354,6 +360,13 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   geda_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
+  /*!
+   * GedaMenuShell::selection-done:
+   * menushell: the object which received the signal
+   *
+   * This signal is emitted when a selection has been completed
+   * within a menu shell.
+   */
   menu_shell_signals[SELECTION_DONE] =
     g_signal_new ("selection-done",
                   G_OBJECT_CLASS_TYPE (object_class),
@@ -363,6 +376,14 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   geda_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
+  /*!
+   * GedaMenuShell::move-current:
+   * menushell: the object which received the signal
+   * direction: the direction to move
+   *
+   * An keybinding signal which moves the current menu item
+   * in the direction specified by direction.
+   */
   menu_shell_signals[MOVE_CURRENT] =
     g_signal_new ("move-current",
                   G_OBJECT_CLASS_TYPE (object_class),
@@ -372,6 +393,14 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   NULL,
                   G_TYPE_NONE, 0);
 
+  /*!
+   * GedaMenuShell::activate-current:
+   *  menushell: the object which received the signal
+   * force_hide: if %TRUE, hide the menu after activating the menu item
+   *
+   * An action signal that activates the current menu item within
+   * the menu shell.
+   */
   menu_shell_signals[ACTIVATE_CURRENT] =
     g_signal_new ("activate-current",
                   G_OBJECT_CLASS_TYPE (object_class),
@@ -382,6 +411,13 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
 
+  /*!
+   * GedaMenuShell::cancel:
+   * menushell: the object which received the signal
+   *
+   * An action signal which cancels the selection within the menu shell.
+   * Causes the GedaMenuShell::selection-done signal to be emitted.
+   */
   menu_shell_signals[CANCEL] =
     g_signal_new ("cancel",
                   G_OBJECT_CLASS_TYPE (object_class),
@@ -391,6 +427,13 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   geda_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
+  /*!
+   * GedaMenuShell::cycle-focus:
+   * menushell: the object which received the signal
+   * direction: the direction to cycle in
+   *
+   * A keybinding signal which moves the focus in the given direction.
+   */
   menu_shell_signals[CYCLE_FOCUS] =
     g_signal_new_class_handler ("cycle-focus",
                                 G_OBJECT_CLASS_TYPE (object_class),

@@ -8,6 +8,7 @@
 
     * src/widgets/geda_menu_shell.c: Reduce scope of mnemonics_visible in
       geda_menu_shell_update_mnemonics and child in geda_menu_shell_forall.
+      Add documentation for signals.
 
     * src/widgets/geda_tearoff_menu_item.c: Fix scope of angle in geda_tearoff_
       menu_item_draw. Add function is_a_geda_tearoff_menu_item.
