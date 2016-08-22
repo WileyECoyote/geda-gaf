@@ -9,6 +9,8 @@
     * src/widgets/geda_tearoff_menu_item.c: Fix scope of angle in geda_tearoff_
       menu_item_draw. Add function is_a_geda_tearoff_menu_item.
 
+    * tests/test_tearoff_menu_item.c: Add checks for construction.
+
 2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/: Reduce scope of variables.

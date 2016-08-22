@@ -33,6 +33,7 @@ check_widgets = \
 	test_menu_shell \
 	test_option_menu \
 	test_radio_menu_item \
+	test_tearoff_menu_item \
 	test_toolbar
 
 check_PROGRAMS = \
