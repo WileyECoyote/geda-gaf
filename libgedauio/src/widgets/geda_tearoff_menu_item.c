@@ -533,6 +533,8 @@ geda_tearoff_menu_item_instance_init (GTypeInstance *instance, void *class)
 {
   GedaTearoffMenuItem *tearoff_menu_item = (GedaTearoffMenuItem*)instance;
 
+  tearoff_menu_item->instance_type = geda_tearoff_menu_item_get_type();
+
   tearoff_menu_item->priv = g_malloc0 (sizeof(GedaTearoffMenuItemData));
 }
 /*!
@@ -576,6 +578,24 @@ geda_tearoff_menu_item_get_type (void)
 
   return tearoff_menu_item_type;
 }
+
+/*!
+ * \brief Check if an object is a GedaTearoffMenuItem
+ * \par Function Description
+ *  Ensures \a menu_item is a valid G_Object and compares signature
+ *  to geda tearoff_menu_item type.
+ *
+ * \return TRUE if \a menu_item is a valid GedaTearoffMenuItem
+ */
+bool
+is_a_geda_tearoff_menu_item (GedaTearoffMenuItem *menu_item)
+{
+  if (G_IS_OBJECT(menu_item)) {
+    return (geda_tearoff_menu_item_get_type() == menu_item->instance_type);
+  }
+  return FALSE;
+}
+
 
 /*!
  * \brief Get the active state of a GedaTearoffMenuItem
