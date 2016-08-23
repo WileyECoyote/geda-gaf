@@ -163,6 +163,11 @@ geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
 
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_button_set_style (GedaMenuButton *button, GtkStyle *new_style)
 {
@@ -172,6 +177,11 @@ geda_menu_button_set_style (GedaMenuButton *button, GtkStyle *new_style)
   gtk_widget_set_style( GTK_WIDGET (button->priv->arrow_button), new_style);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_button_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
 {
@@ -180,12 +190,23 @@ geda_menu_button_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
   gtk_button_set_relief (GTK_BUTTON (button->priv->button), new_relief);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkReliefStyle
 geda_menu_button_get_relief (GedaMenuButton *button)
 {
   g_return_val_if_fail (GEDA_IS_MENU_BUTTON (button), GTK_RELIEF_NORMAL);
   return button->relief;
 }
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_arrow_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
 {
@@ -195,6 +216,11 @@ geda_menu_arrow_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkReliefStyle
 geda_menu_arrow_get_relief (GedaMenuButton *button)
 {
@@ -1562,6 +1588,11 @@ GtkWidget *geda_menu_button_get_menu (GedaMenuButton *button)
 
 /* BEGIN ------+-------+-------^    Tooltips   ^-------+-------+-------+-----*/
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_menu_button_set_tooltip_text (GedaMenuButton *button,
                                         const char *tip_text)
 {
@@ -1573,6 +1604,11 @@ void geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
                                          GtkTooltips    *tooltips,
                                          const char     *tip_text,
                                          const char     *tip_private)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   gtk_tooltips_set_tip (tooltips, button->priv->arrow_button, tip_text,
@@ -1581,6 +1617,11 @@ void geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
 
 void geda_menu_button_set_arrow_tooltip_text(GedaMenuButton *button,
                                              const char     *text)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   gtk_widget_set_tooltip_text (button->priv->arrow_button, text);
@@ -1596,6 +1637,12 @@ void geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
 /* END -------------------------    Tooltips   ----------------------------- */
 
 /*-----+-------+-------+-------^-------+-------^-------+-------+-------+-----*/
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaMenuButton *geda_menu_button_new_from_stock (const char *stock_id)
 {
   GedaMenuButton *button;
@@ -1609,6 +1656,11 @@ GedaMenuButton *geda_menu_button_new_from_stock (const char *stock_id)
   return button;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaMenuButton*
 geda_menu_button_new(GtkWidget *icon_widget, const char *label)
 {
@@ -1626,6 +1678,11 @@ geda_menu_button_new(GtkWidget *icon_widget, const char *label)
   return button;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaMenuButton *geda_menu_button_new_with_mnemonic(const char *label)
 {
   return g_object_new (GEDA_TYPE_MENU_BUTTON, "label", label,
