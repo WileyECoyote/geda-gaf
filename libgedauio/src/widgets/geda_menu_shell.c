@@ -1930,8 +1930,8 @@ geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
   if (!priv->key_hash && create && gtk_widget_has_screen (widget)) {
 
     GedaMnemonicHash *mnemonic_hash;
-    GdkScreen       *screen;
-    GdkKeymap       *keymap;
+    GdkScreen        *screen;
+    GdkKeymap        *keymap;
 
     mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
 
@@ -1971,7 +1971,7 @@ geda_menu_shell_reset_key_hash (GedaMenuShell *menu_shell)
 
 static bool
 geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
-                                  GdkEventKey   *event)
+                                   GdkEventKey   *event)
 {
   GedaMnemonicHash *mnemonic_hash;
   GedaKeyHash      *key_hash;
@@ -1994,8 +1994,8 @@ geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
   if (entries) {
 
       result = geda_mnemonic_hash_activate (mnemonic_hash,
-                                            (unsigned int)(long)entries->data);
-      //g_slist_free (entries);
+                                           (unsigned int)(long)entries->data);
+      g_slist_free (entries);
   }
   return result;
 }

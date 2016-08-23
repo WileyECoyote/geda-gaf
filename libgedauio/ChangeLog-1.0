@@ -1,3 +1,8 @@
+2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Free list of entries in geda_menu_
+      shell_activate_mnemonic.
+
 2016-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_option_menu.h: Add parenthesis around obj in macro
