@@ -136,6 +136,31 @@ static void *geda_menu_button_parent_class = NULL;
 
 static GtkBuildableIface *parent_buildable_iface;
 
+/* BEGIN ------+-------+-------^- GtkBuildable ^-------+-------+-------+-----*/
+
+static void
+geda_menu_button_buildable_add_child (GtkBuildable *buildable,
+                                      GtkBuilder   *builder,
+                                      GObject      *child,
+                                      const char   *type)
+{
+  if (type && strcmp (type, "menu") == 0) {
+    geda_menu_button_set_menu (GEDA_MENU_BUTTON (buildable), GTK_WIDGET (child));
+  }
+  else {
+    parent_buildable_iface->add_child (buildable, builder, child, type);
+  }
+}
+
+static void
+geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
+{
+  parent_buildable_iface = g_type_interface_peek_parent (iface);
+  iface->add_child       = geda_menu_button_buildable_add_child;
+}
+
+/* END -------------------------- GtkBuildable ----------------------------- */
+
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
 
 void
@@ -1464,27 +1489,6 @@ arrow_button_press_event_cb (GtkWidget      *widget,
   else  {
       return FALSE;
   }
-}
-
-static void
-geda_menu_button_buildable_add_child (GtkBuildable *buildable,
-                                      GtkBuilder   *builder,
-                                      GObject      *child,
-                                      const char   *type)
-{
-  if (type && strcmp (type, "menu") == 0) {
-    geda_menu_button_set_menu (GEDA_MENU_BUTTON (buildable), GTK_WIDGET (child));
-  }
-  else {
-    parent_buildable_iface->add_child (buildable, builder, child, type);
-  }
-}
-
-static void
-geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
-{
-  parent_buildable_iface = g_type_interface_peek_parent (iface);
-  iface->add_child       = geda_menu_button_buildable_add_child;
 }
 
 /*!

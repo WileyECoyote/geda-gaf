@@ -1,5 +1,8 @@
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_button.c: Move GtkBuildable stuff to beginning of
+      the module.
+
     * src/widgets/geda_menu_shell.c: Free list of entries in geda_menu_
       shell_activate_mnemonic.
 
