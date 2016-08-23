@@ -1,5 +1,8 @@
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/led_drivers/16CL05-1.sym: : Add symbol: 16 bit constant current
+      LED driver.
+
     * logic/SN/SN74LVC2G74-1.sym: Add symbol: Single positive-edge-triggered
       D-type flip-flop.
 
