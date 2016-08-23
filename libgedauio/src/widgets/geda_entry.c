@@ -1025,18 +1025,17 @@ geda_entry_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_VALIDATE, params);
 
   /*!
-   * GedaEntry::activate:
+   * GedaEntry::process-entry:
    * entry: The entry on which the signal is emitted
    *
-   * The  GedaEntry::activate signal is emitted when the user hits
-   * the Enter key.
+   * The GedaEntry::process-entry signal is emitted when the user hits the Enter
+   * key. This is the same as process-entry GtkEntry::activate.
    *
    * While this signal is used as a keybinding signal, it is also commonly
    * used by applications to intercept activation of entries.
    *
    * The default bindings for this signal are all forms of the Enter key.
    */
-
   signals[PROCESS_ENTRY] = g_signal_new ("process-entry",
                                     G_TYPE_FROM_CLASS (gobject_class),
                                     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
@@ -1411,10 +1410,12 @@ geda_entry_activate (GedaEntry *entry, void *data)
   entry->history_index = list_length;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Go back in history
+ * \par Function Description
+ *  Call when the arrow-up key is press. This function decrements the
+ *  history index and replaces the text in the entry with the text at
+ *  the resulting index in the history list.
  */
 static void
 geda_entry_history_up (GedaEntry *entry)
@@ -1430,10 +1431,14 @@ geda_entry_history_up (GedaEntry *entry)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Go Forward in history
+ * \par Function Description
+ *  Call when the arrow-down key is press. This function increments the
+ *  history index and replaces the text in the entry with the text at
+ *  the resulting index in the history list if such and index exist. If
+ *  the history is at end of the list then the entry text is set to an
+ *  empty line.
  */
 static void
 geda_entry_history_down (GedaEntry *entry)
