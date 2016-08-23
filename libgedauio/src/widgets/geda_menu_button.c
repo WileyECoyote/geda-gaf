@@ -269,7 +269,7 @@ const char *geda_menu_button_get_label (GedaMenuButton *button)
  *  the next character should be used for the mnemonic accelerator key.
  *
  * \param [in] button a GedaMenuButton
- * \param [in] @use_underline: %TRUE if underlines in the text indicate mnemonics
+ * \param [in] use_underline: %TRUE if underlines in the text indicate mnemonics
  */
 void
 geda_menu_button_set_use_underline (GedaMenuButton *button, bool use_underline)
@@ -629,7 +629,8 @@ geda_menu_button_get_property (GObject     *object,
  * \param [in] button a GedaMenuButton
  *
  */
-void geda_menu_button_pressed (GedaMenuButton *button)
+void
+geda_menu_button_pressed (GedaMenuButton *button)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
@@ -643,7 +644,8 @@ void geda_menu_button_pressed (GedaMenuButton *button)
  *
  * \param [in] button a GedaMenuButton
  */
-void geda_menu_button_released (GedaMenuButton *button)
+void
+geda_menu_button_released (GedaMenuButton *button)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
@@ -657,7 +659,8 @@ void geda_menu_button_released (GedaMenuButton *button)
  *
  * \param [in] button a GedaMenuButton
  */
-void geda_menu_button_clicked (GedaMenuButton *button)
+void
+geda_menu_button_clicked (GedaMenuButton *button)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
@@ -673,7 +676,8 @@ void geda_menu_button_clicked (GedaMenuButton *button)
  *
  * \param [in] button a GedaMenuButton
  */
-void geda_menu_button_enter (GedaMenuButton *button)
+void
+geda_menu_button_enter (GedaMenuButton *button)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
@@ -689,7 +693,8 @@ void geda_menu_button_enter (GedaMenuButton *button)
  *
  * \param [in] button a GedaMenuButton
  */
-void geda_menu_button_leave (GedaMenuButton *button)
+void
+geda_menu_button_leave (GedaMenuButton *button)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
@@ -975,6 +980,7 @@ geda_menu_main_button_pressed (GtkButton *main_button, GedaMenuButton *button)
 {
   geda_menu_button_pressed (button);
 }
+
 static void
 geda_menu_main_button_released (GtkButton *main_button, GedaMenuButton *button)
 {
@@ -983,7 +989,8 @@ geda_menu_main_button_released (GtkButton *main_button, GedaMenuButton *button)
 
 /* BEGIN ------+-------+-------^  Destructors  ^-------+-------+-------+-----*/
 
-static void geda_menu_button_dispose (GObject *object)
+static void
+geda_menu_button_dispose (GObject *object)
 {
   /*GedaMenuButton *button = GEDA_MENU_BUTTON (object);*/
   G_OBJECT_CLASS (geda_menu_button_parent_class)->dispose (object);
@@ -1464,6 +1471,10 @@ menu_detacher (GtkWidget *widget, GedaMenu *menu)
   priv->menu = NULL;
 }
 
+/* Helper call by:
+ *   arrow_button_toggled_cb
+ *   arrow_button_press_event_cb
+ */
 static void
 popup_menu_under_arrow (GedaMenuButton *button, GdkEventButton *event)
 {
@@ -1578,7 +1589,8 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
  *
  * \returns the GedaMenu associated with #GedaMenuButton
  */
-GtkWidget *geda_menu_button_get_menu (GedaMenuButton *button)
+GtkWidget*
+geda_menu_button_get_menu (GedaMenuButton *button)
 {
   g_return_val_if_fail (GEDA_IS_MENU_BUTTON (button), NULL);
 
@@ -1600,35 +1612,38 @@ void geda_menu_button_set_tooltip_text (GedaMenuButton *button,
   gtk_widget_set_tooltip_text((GtkWidget*) button,tip_text);
 }
 
-void geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
-                                         GtkTooltips    *tooltips,
-                                         const char     *tip_text,
-                                         const char     *tip_private)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
+void
+geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
+                                    GtkTooltips    *tooltips,
+                                    const char     *tip_text,
+                                    const char     *tip_private)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   gtk_tooltips_set_tip (tooltips, button->priv->arrow_button, tip_text,
                         tip_private);
 }
 
-void geda_menu_button_set_arrow_tooltip_text(GedaMenuButton *button,
-                                             const char     *text)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
+void
+geda_menu_button_set_arrow_tooltip_text(GedaMenuButton *button,
+                                        const char     *text)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   gtk_widget_set_tooltip_text (button->priv->arrow_button, text);
 }
 
-void geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
-                                                const char     *markup)
+void
+geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
+                                           const char     *markup)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
   gtk_widget_set_tooltip_markup (button->priv->arrow_button, markup);
