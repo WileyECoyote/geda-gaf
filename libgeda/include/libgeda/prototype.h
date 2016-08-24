@@ -568,6 +568,7 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_text_object_set_string               (GedaObject *object, const char *new_string);
          void    geda_text_object_set_x                    (GedaObject *object, int x);
          void    geda_text_object_set_y                    (GedaObject *object, int y);
+          int    geda_text_object_strcmp                   (const GedaObject *object1, const GedaObject *object2) WARN_UNUSED;
          void    geda_text_object_translate                (GedaObject *object, int dx, int dy);
 
 /* s_attrib.c */

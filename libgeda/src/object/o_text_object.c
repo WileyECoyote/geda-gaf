@@ -1130,15 +1130,35 @@ geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_
 #endif
 }
 
+/*!
+ * \brief Compare the test of two GedaText objects.
+ *  This function will compare the test of object \a a with the text of
+ *  object \a after validating that both objects are GedaText objects.
+ *  This function can be used as a GCompareFunc type.
+ *
+ *  \param [in] a Text Object 1.
+ *  \param [in] b Text Object 2.
+ *
+ *  \return result of strcmp if both objects are GedaText object, if either
+ *          of the object is not a GedaText returns G_MAXDOUBLE.
+ */
+int
+geda_text_object_strcmp(const GedaObject *object1, const GedaObject *object2)
+{
+  if (GEDA_IS_TEXT(object1) && GEDA_IS_TEXT(object2)) {
+    return strcmp (object1->text->string, object2->text->string);
+  }
+  return G_MAXDOUBLE;
+}
+
 /*! \brief Translate a text object
  *
  *  \par Function Description
  *  This function changes the position of a text object \a object.
  *
- *  \param [in] object    The text Object to be moved
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object
-
+ *  \param [in] object  The text Object to be moved
+ *  \param [in] dx      The x-distance to move the object
+ *  \param [in] dy      The y-distance to move the object
  */
 void
 geda_text_object_translate(GedaObject *object, int dx, int dy)
