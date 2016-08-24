@@ -2,6 +2,9 @@
 
     * src/object/o_text_object.c: Add function geda_text_object_strcmp.
 
+    * tests/test_utility.c: Check geda_strequal with an empty, but non
+      null argument.
+
 2016-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_path.c: Reluctantly rename functions with geda_struct

@@ -1137,15 +1137,21 @@ int test_strings (void)
     result++;
   }
 
+  value = geda_strequal("dew", "");
+  if (value) {                            /* due != "" */
+    fprintf(stderr, "FAILED: (U061301) geda_strequal <%d>\n", value);
+    result++;
+  }
+
   value = geda_strequal("dew", str2);
   if (value) {                            /* dew != doo */
-    fprintf(stderr, "FAILED: (U061301) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061302) geda_strequal <%d>\n", value);
     result++;
   }
 
   value = geda_strequal("Doo", "Doo");
   if (!value) {                           /* Doo == Doo */
-    fprintf(stderr, "FAILED: (U061302) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061303) geda_strequal <%d>\n", value);
     result++;
   }
 
