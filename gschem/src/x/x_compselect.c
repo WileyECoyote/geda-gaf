@@ -561,8 +561,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
   if (GTK_IS_ENTRY(compselect->entry_filter)) {
 
      text = gtk_entry_get_text (compselect->entry_filter);
-
-     if (geda_strequal (text, "") == 0) {
+     if (geda_strequal (text, "")) {
        return TRUE;
      }
   }
