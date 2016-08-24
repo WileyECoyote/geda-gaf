@@ -1,3 +1,8 @@
+2016-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Revise create_action_area to update return type
+      from geda_menu_button_new.
+
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Replace g_path_get_basename with geda_get_basename in

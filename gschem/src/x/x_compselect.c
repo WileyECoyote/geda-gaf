@@ -3247,8 +3247,8 @@ is_a_compselect (Compselect *dialog)
 static GtkWidget*
 create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 {
-  GtkWidget   *action_hbox  = NULL;
-  GtkWidget   *optionmenu   = NULL;
+  GtkWidget *action_hbox  = NULL;
+  GtkWidget *optionmenu   = NULL;
 
   GedaMenuButton *stylemenu = NULL;
 
@@ -3256,9 +3256,9 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
   action_hbox = gtk_hbox_new(FALSE, 0);
 
   /* ---- style Menu ---- */
-  stylemenu = geda_menu_button_new(NULL, _("Rescan"));
+  stylemenu = GEDA_MENU_BUTTON (geda_menu_button_new(NULL, _("Rescan")));
 
-  if (GEDA_IS_MENU_BUTTON (stylemenu)) {
+  if (stylemenu) {
 
     compselect->menu = compselect_create_styles_menu (ThisDialog);
 
