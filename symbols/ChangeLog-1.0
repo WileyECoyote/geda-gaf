@@ -1,5 +1,13 @@
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * amphenol/A-1JB-1.sym: Add description attribute, reise attribute
+      alignments.
+
+    * amphenol/ARFX1229-1.sym: Add description attribute, reise attribute
+      alignments.
+
+2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/led_drivers/16CL05-1.sym: : Add symbol: 16 bit constant current
       LED driver.
 
