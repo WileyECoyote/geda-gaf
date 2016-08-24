@@ -5,6 +5,8 @@
     * src/widgets/geda_menu_button.c: Revise *_new to return GtkWidget
       instead of a GedaMenuButton.
 
+    * tests/test_menu_button.c: Add checks for construction.
+
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_button.c: Add Doxygen comment block templates
@@ -13,8 +15,6 @@
 
     * src/widgets/geda_menu_shell.c: Free list of entries in geda_menu_
       shell_activate_mnemonic.
-
-    * tests/test_menu_button.c: Add checks for construction.
 
 2016-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
