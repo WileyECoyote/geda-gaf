@@ -1658,9 +1658,10 @@ geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
  *  \par Function Description
  *
  */
-GedaMenuButton *geda_menu_button_new_from_stock (const char *stock_id)
+GtkWidget*
+geda_menu_button_new_from_stock (const char *stock_id)
 {
-  GedaMenuButton *button;
+  GtkWidget *button;
 
   g_return_val_if_fail (stock_id != NULL, NULL);
 
@@ -1676,19 +1677,19 @@ GedaMenuButton *geda_menu_button_new_from_stock (const char *stock_id)
  *  \par Function Description
  *
  */
-GedaMenuButton*
+GtkWidget*
 geda_menu_button_new(GtkWidget *icon_widget, const char *label)
 {
-  GedaMenuButton *button;
+  GtkWidget *button;
 
   button = g_object_new (GEDA_TYPE_MENU_BUTTON, "border-width", 0,
                                                 "menu-relief", GTK_RELIEF_NONE,
                                                 NULL);
   if (label)
-    geda_menu_button_set_label(button, label);
+    geda_menu_button_set_label((GedaMenuButton*)button, label);
 
   if (icon_widget)
-     geda_menu_button_set_image(button, icon_widget);
+     geda_menu_button_set_image((GedaMenuButton*)button, icon_widget);
 
   return button;
 }
@@ -1698,7 +1699,8 @@ geda_menu_button_new(GtkWidget *icon_widget, const char *label)
  *  \par Function Description
  *
  */
-GedaMenuButton *geda_menu_button_new_with_mnemonic(const char *label)
+GtkWidget*
+geda_menu_button_new_with_mnemonic(const char *label)
 {
   return g_object_new (GEDA_TYPE_MENU_BUTTON, "label", label,
                        "menu-relief", GTK_RELIEF_NONE,

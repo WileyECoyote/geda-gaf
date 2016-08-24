@@ -94,10 +94,10 @@ extern "C" {
 GedaType        geda_menu_button_get_type             (void) GEDA_CONST;
 bool            is_a_geda_menu_button                 (GedaMenuButton *menu_button);
 
-GedaMenuButton *geda_menu_button_new                  (GtkWidget      *icon_widget,
+GtkWidget      *geda_menu_button_new                  (GtkWidget      *icon_widget,
                                                        const char     *label);
-GedaMenuButton *geda_menu_button_new_from_stock       (const char     *stock_id);
-GedaMenuButton *geda_menu_button_new_with_mnemonic       (const char  *label);
+GtkWidget      *geda_menu_button_new_from_stock       (const char     *stock_id);
+GtkWidget      *geda_menu_button_new_with_mnemonic    (const char     *label);
 
 void            geda_menu_button_set_style            (GedaMenuButton *button,
                                                        GtkStyle       *new_style);
