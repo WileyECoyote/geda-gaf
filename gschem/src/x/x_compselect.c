@@ -734,17 +734,10 @@ compselect_close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
   }
 }
 
-/*! \brief GCompareFunc to sort an text object list by the object strings */
-static int
-sort_object_text (GedaObject *a, GedaObject *b)
-{
-  return strcmp (a->text->string, b->text->string);
-}
-
 /*! \brief Update the model of the attributes treeview
  *  \par Function Description
- *   This function takes the toplevel attributes from the preview widget and
- *  puts them into the model of the <b>attrtreeview</b> widget.
+ *   This function acquires the toplevel attributes from the preview
+ *   widget and puts them into the model of the <b>attrtreeview</b> widget.
  *
  *  \param [in] compselect       The dialog compselect
  *  \param [in] preview_toplevel The toplevel of the preview widget
@@ -791,7 +784,7 @@ compselect_update_attributes_model (Compselect   *compselect,
   if (filter_list != NULL && strcmp (filter_list->data, "*") == 0) {
 
     /* display all attributes in alphabetical order */
-    o_attrlist = g_list_sort (o_attrlist, (GCompareFunc) sort_object_text);
+    o_attrlist = g_list_sort(o_attrlist, (GCompareFunc)geda_text_object_strcmp);
 
     for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
 

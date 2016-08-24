@@ -3,7 +3,8 @@
     * src/x/x_compselect.c: Revise create_action_area to update return type
       from geda_menu_button_new. Rename (many) functions with compselect
       prefix and adjust function wrap. Reverse logic for geda_strequal in
-      lib_model_filter_visible_func.
+      lib_model_filter_visible_func. Eliminate sort_object_text and use new
+      libgeda geda_text_object_strcmp function as a replacement.
 
 2016-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
