@@ -74,6 +74,147 @@ geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
   return apath ? g_quark_to_string (apath->path_quark) : NULL;
 }
 
+/*!
+ * \brief Modify Widget Background Color
+ * \par Function Description
+ *  Calls geda_widget_modify_color to modify the
+ *  background color attribute of the \a widget.
+ *
+ * \param[in,out] widget  Pointer to a Widget.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_widget_modify_fg geda_widget_modify_color
+ */
+void
+geda_widget_modify_bg (GtkWidget      *widget,
+                       GtkStateType    state,
+                       const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_BG, state, color);
+}
+
+/*!
+ * \brief GedaEntry Internal Modify Color Component
+ * \par Function Description
+ * This functions is called to modify different color attributes
+ * as specified by the component flag.
+ *
+ * The GtkRcFlags are:
+ *  <DL>
+ *    <DT>GTK_RC_FG</DT>
+ *    <DT>GTK_RC_BG</DT>
+ *    <DT>GTK_RC_TEXT</DT>
+ *    <DT>GTK_RC_BASE</DT>
+ *  </DL>
+ *
+ * The GtkStateTypes are:
+ *  <DL>
+ *    <DT>GTK_STATE_NORMAL</DT>
+ *    <DT>GTK_STATE_ACTIVE</DT>
+ *    <DT>GTK_STATE_PRELIGHT</DT>
+ *    <DT>GTK_STATE_SELECTED</DT>
+ *    <DT>GTK_STATE_INSENSITIVE</DT>
+ *  </DL>
+ *
+ * \param[in,out] widget     Pointer to widget being modifid.
+ * \param[in]     component  The component that is being modified.
+ * \param[in]     state      The state for which the attribute is to be set.
+ * \param[in]     color      Pointer to GdkColor RGB color structure.
+ */
+void
+geda_widget_modify_color_component (GtkWidget      *widget,
+                                    GtkRcFlags      component,
+                                    GtkStateType    state,
+                                    const GdkColor *color)
+{
+  GtkRcStyle *rc_style;
+
+  rc_style = gtk_widget_get_modifier_style (widget);
+
+  if (color) {
+
+    switch (component) {
+
+      case GTK_RC_FG:
+        rc_style->fg[state]   = *color;
+        break;
+
+      case GTK_RC_BG:
+        rc_style->bg[state]   = *color;
+        break;
+
+      case GTK_RC_TEXT:
+        rc_style->text[state] = *color;
+        break;
+
+      case GTK_RC_BASE:
+        rc_style->base[state] = *color;
+        break;
+
+      default:
+        BUG_IMSG ("unhandled case=%d", component);
+    }
+
+    rc_style->color_flags[state] |= component;
+  }
+  else
+    rc_style->color_flags[state] &= ~component;
+
+  gtk_widget_modify_style (widget, rc_style);
+}
+
+/*!
+ * \brief Modify Widget Color Attributes
+ * \par Function Description
+ *  Validates \a widget and \a state and pass the request to
+ *  geda_widget_modify_color_component.
+ *
+ * \param[in,out] widget     Pointer to a Widget.
+ * \param[in]     component  The component that is being modified.
+ * \param[in]     state      The state for which the attribute is to be set.
+ * \param[in]     color      Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_widget_modify_color_component
+ */
+void
+geda_widget_modify_color (GtkWidget      *widget,
+                          GtkRcFlags      component,
+                          GtkStateType    state,
+                          const GdkColor *color)
+{
+  g_return_if_fail (GTK_IS_WIDGET (widget));
+
+  if (state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE) {
+     state = GTK_STATE_NORMAL;
+  }
+
+  geda_widget_modify_color_component (widget, component, state, color);
+
+}
+
+/*!
+ * \brief Modify Widget Foreground Color
+ * \par Function Description
+ *  Calls geda_widget_modify_color to modify the
+ *  foreground attribute color of the \a widget.
+ *
+ * \param[in,out] widget Pointer to a widget.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_widget_modify_bg geda_widget_modify_color
+ */
+void
+geda_widget_modify_fg (GtkWidget *widget,
+                       GtkStateType state,
+                       const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_FG, state, color);
+}
+
 /*! \brief Set the Pointer position relative to widget
  *  Contrast this with the ease of setting the pointer position on
  *  other platforms, this example is for Win32:

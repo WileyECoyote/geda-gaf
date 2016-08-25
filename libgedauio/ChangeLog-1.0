@@ -1,5 +1,14 @@
 2016-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/functions/geda_widget.c: Duplicate nifty color attribute setters
+      in GedaEntry in to general widget functions so that these routines
+      can be utilized by other widget types. Add functions:
+
+            * geda_widget_modify_bg
+            * geda_widget_modify_color
+            * geda_widget_modify_color_component
+            * geda_widget_modify_fg
+
     * src/widgets/geda_combobox.c: Rename GList variables i and j -> iter.
 
 2016-08-24 Wiley E. Hill <wileyhill@gmail.com>
