@@ -29,6 +29,7 @@ check_widgets = \
 	test_label \
 	test_menu \
 	test_menu_bar \
+	test_menu_button \
 	test_menu_item \
 	test_menu_shell \
 	test_option_menu \
