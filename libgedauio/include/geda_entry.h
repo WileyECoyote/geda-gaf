@@ -202,7 +202,7 @@ void geda_entry_modify_bg                    (GedaEntry      *entry,
 void geda_entry_set_valid_input              (GedaEntry      *entry,
                                               GedaEntryAccept mode);
 
-void geda_entry_widget_modify_color          (GtkWidget      *widget,
+void geda_entry_modify_color                 (GedaEntry      *entry,
                                               GtkRcFlags      component,
                                               GtkStateType    state,
                                         const GdkColor       *color);
