@@ -1603,11 +1603,10 @@ geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
   }
 }
 
-/*! \brief GedaEntry Internal Popup Menu Callback
- *
- *  \par Function Description
- *
- * This functions is call when a menu-item in the popup
+/*!
+ * \brief GedaEntry Internal Popup Menu Callback
+ * \par Function Description
+ * This functions is called when a menu-item in the popup
  * is selected.
  */
 static void
@@ -1634,6 +1633,7 @@ popup_menu_callback (GedaMenuItem *item, void    *data)
         break;
   }
 }
+
 /** @} endgroup Entry-Popup-Menu */
 
 /* --------------------- Widget Style Functions ----------------- */
@@ -1642,12 +1642,33 @@ popup_menu_callback (GedaMenuItem *item, void    *data)
  *  @{
  */
 
-/*! \brief GedaEntry Internal Modify Color Component
+/*!
+ * \brief GedaEntry Internal Modify Color Component
+ * \par Function Description
+ * This functions is called to modify different color attributes
+ * as specified by the component flag.
  *
- *  \par Function Description
+ * The GtkRcFlags are:
+ *  <DL>
+ *    <DT>GTK_RC_FG</DT>
+ *    <DT>GTK_RC_BG</DT>
+ *    <DT>GTK_RC_TEXT</DT>
+ *    <DT>GTK_RC_BASE</DT>
+ *  </DL>
  *
- * This functions is call to modify different color aspects as
- * specified by the component flag.
+ * The GtkStateTypes are:
+ *  <DL>
+ *    <DT>GTK_STATE_NORMAL</DT>
+ *    <DT>GTK_STATE_ACTIVE</DT>
+ *    <DT>GTK_STATE_PRELIGHT</DT>
+ *    <DT>GTK_STATE_SELECTED</DT>
+ *    <DT>GTK_STATE_INSENSITIVE</DT>
+ *  </DL>
+ *
+ * \param[in,out] widget     Pointer to widget being modifid.
+ * \param[in]     component  The component that is being modified.
+ * \param[in]     state      The state for which the attribute is to be set.
+ * \param[in]     color      Pointer to GdkColor RGB color structure.
  */
 static void
 geda_entry_modify_color_component (GtkWidget      *widget,
@@ -1687,36 +1708,60 @@ geda_entry_modify_color_component (GtkWidget      *widget,
   gtk_widget_modify_style (widget, rc_style);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify GedaEntry Foreground Color
+ * \par Function Description
+ *  Calls geda_entry_widget_modify_color to modify the
+ *  foreground attribute color of the \a entry.
  *
+ * \param[in,out] entry  Pointer to a #GedaEntry.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_bg geda_entry_widget_modify_color
  */
 void
 geda_entry_modify_fg (GedaEntry *entry,
                       GtkStateType state,
                       const GdkColor *color)
 {
-  geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_FG, state, color);
+  geda_entry_widget_modify_color (GTK_WIDGET(entry),
+                                  GTK_RC_FG, state, color);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify GedaEntry Background Color
+ * \par Function Description
+ *  Calls geda_entry_widget_modify_color to modify the
+ *  background color attribute of the \a entry.
  *
+ * \param[in,out] entry  Pointer to a #GedaEntry.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_fg geda_entry_widget_modify_color
  */
 void
 geda_entry_modify_bg (GedaEntry      *entry,
                       GtkStateType    state,
                       const GdkColor *color)
 {
-  geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
+  geda_entry_widget_modify_color (GTK_WIDGET(entry),
+                                  GTK_RC_BG, state, color);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify GedaEntry Color Attributes
+ * \par Function Description
+ *  Validates \a widget and \a state and pass the request to
+ *  geda_entry_modify_color_component.
  *
+ * \param[in,out] entry      Pointer to a #GedaEntry.
+ * \param[in]     component  The component that is being modified.
+ * \param[in]     state      The state for which the attribute is to be set.
+ * \param[in]     color      Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_color_component
  */
 void
 geda_entry_widget_modify_color (GtkWidget      *widget,
@@ -1726,8 +1771,9 @@ geda_entry_widget_modify_color (GtkWidget      *widget,
 {
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
-  if(state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE)
+  if (state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE) {
      state = GTK_STATE_NORMAL;
+  }
 
   geda_entry_modify_color_component (widget, component, state, color);
 
