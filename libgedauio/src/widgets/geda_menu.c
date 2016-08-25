@@ -5302,12 +5302,12 @@ geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
  *
  * \note that this function is not related to geda_menu_detach().
  *
- * \param[in] menu: a #GedaMenu.
- * \param[in] child: a #GedaMenuItem.
- * \param[in] left_attach:   Column number to attach the left side of the item to.
- * \param[in] right_attach:  Column number to attach the right side of the item to.
- * \param[in] top_attach:    Row number to attach the top of the item to.
- * \param[in] bottom_attach: Row number to attach the bottom of the item to.
+ * \param[in] menu           Pointer to a #GedaMenu.
+ * \param[in] child          Pointer to a #GedaMenuItem.
+ * \param[in] left_attach    Column number to attach the left side of the item to.
+ * \param[in] right_attach   Column number to attach the right side of the item to.
+ * \param[in] top_attach     Row number to attach the top of the item to.
+ * \param[in] bottom_attach  Row number to attach the bottom of the item to.
  */
 void
 geda_menu_attach (GedaMenu    *menu,
