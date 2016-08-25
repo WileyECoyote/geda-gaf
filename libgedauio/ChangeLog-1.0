@@ -1,3 +1,7 @@
+2016-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Rename GList variables i and j -> iter.
+
 2016-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_button.h: Update declarations.

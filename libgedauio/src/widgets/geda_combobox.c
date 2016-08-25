@@ -3689,12 +3689,15 @@ geda_combo_box_relayout_item (GedaComboBox *combo_box,
                               GtkWidget    *last)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  int current_col = 0, current_row = 0;
-  int rows = 1, cols = 1;
   GtkWidget *menu = priv->popup_widget;
+  int current_col = 0;
+  int current_row = 0;
+  int rows = 1;
+  int cols = 1;
 
-  if (!GTK_IS_MENU_SHELL (menu))
+  if (!GTK_IS_MENU_SHELL (menu)) {
     return;
+  }
 
   if (priv->col_column == -1 && priv->row_column == -1 && last)
   {
@@ -3746,19 +3749,21 @@ geda_combo_box_relayout_item (GedaComboBox *combo_box,
 static void
 geda_combo_box_relayout (GedaComboBox *combo_box)
 {
-  GList *list, *j;
+  GList     *iter;
+  GList     *list;
   GtkWidget *menu;
 
   menu = combo_box->priv->popup_widget;
 
   /* do nothing unless we are in menu style and realized */
-  if (combo_box->priv->tree_view || !GTK_IS_MENU_SHELL (menu))
+  if (combo_box->priv->tree_view || !GTK_IS_MENU_SHELL (menu)) {
     return;
+  }
 
   list = gtk_container_get_children (GTK_CONTAINER (menu));
 
-  for (j = g_list_last (list); j; j = j->prev) {
-    gtk_container_remove (GTK_CONTAINER (menu), j->data);
+  for (iter = g_list_last (list); iter; iter = iter->prev) {
+    gtk_container_remove (GTK_CONTAINER (menu), iter->data);
   }
 
   geda_combo_box_menu_fill (combo_box);
@@ -4174,22 +4179,24 @@ geda_combo_box_model_row_expanded (GtkTreeModel  *model,
 static GtkWidget*
 find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
 {
-  GList *i, *list;
-  GtkWidget *item;
-  GtkWidget *submenu;
-  GtkTreeRowReference *mref;
+  GList       *iter;
+  GList       *list;
+  GtkWidget   *item;
+  GtkWidget   *submenu;
   GtkTreePath *mpath;
-  bool skip;
+  bool         skip;
 
   list = gtk_container_get_children (GTK_CONTAINER (menu));
   skip = skip_first;
   item = NULL;
 
-  for (i = list; i; i = i->next) {
+  for (iter = list; iter; iter = iter->next) {
 
-    if (GTK_IS_SEPARATOR_MENU_ITEM (i->data)) {
+    if (GTK_IS_SEPARATOR_MENU_ITEM (iter->data)) {
 
-      mref = GEDA_OBJECT_GET_DATA (i->data, "gtk-combo-box-item-path");
+      GtkTreeRowReference *mref;
+
+      mref = GEDA_OBJECT_GET_DATA (iter->data, "gtk-combo-box-item-path");
       if (!mref) {
         continue;
       }
@@ -4200,35 +4207,36 @@ find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
         mpath = gtk_tree_row_reference_get_path (mref);
       }
     }
-    else if (GTK_IS_CELL_VIEW (GTK_BIN (i->data)->child)) {
+    else if (GTK_IS_CELL_VIEW (GTK_BIN (iter->data)->child)) {
       if (skip) {
         skip = FALSE;
         continue;
       }
 
       mpath =
-      gtk_cell_view_get_displayed_row(GTK_CELL_VIEW(GTK_BIN(i->data)->child));
+      gtk_cell_view_get_displayed_row(GTK_CELL_VIEW(GTK_BIN(iter->data)->child));
     }
-    else
+    else {
       continue;
+    }
 
     /* this case is necessary, since the row reference of
      * the cell view may already be updated after a deletion
      */
     if (!mpath) {
-      item = i->data;
+      item = iter->data;
       break;
     }
 
     if (gtk_tree_path_compare (mpath, path) == 0) {
       gtk_tree_path_free (mpath);
-      item = i->data;
+      item = iter->data;
       break;
     }
 
     if (gtk_tree_path_is_ancestor (mpath, path)) {
 
-      submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (i->data));
+      submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (iter->data));
 
       if (submenu != NULL) {
         gtk_tree_path_free (mpath);
