@@ -483,7 +483,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-  if(have_auto_complete) {
+  if (have_auto_complete) {
 
     sensitive = sensitive != FALSE;
     entry->priv->case_sensitive = sensitive;
@@ -759,7 +759,7 @@ geda_entry_drag_begin (GtkWidget      *widget,
                        GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
@@ -773,7 +773,7 @@ geda_entry_drag_end (GtkWidget      *widget,
                      GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 
 }
@@ -789,7 +789,7 @@ geda_entry_drag_leave (GtkWidget      *widget,
                        unsigned int    time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
   gtk_widget_queue_draw (widget);
 }
@@ -807,7 +807,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
                       unsigned int    time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 
 
@@ -827,8 +827,9 @@ geda_entry_drag_motion (GtkWidget       *widget,
                         unsigned int     time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop) {
    g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
   return FALSE; /* not here */
 }
 
@@ -847,8 +848,9 @@ geda_entry_drag_data_received (GtkWidget        *widget,
                                unsigned int     time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop) {
    g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
 }
 
 static void
@@ -859,8 +861,9 @@ geda_entry_drag_data_get (GtkWidget        *widget,
                           unsigned int      time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop) {
    g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -873,8 +876,9 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
 
-  if(geda_entry->enable_drag_n_drop)
+  if (geda_entry->enable_drag_n_drop) {
    g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -1496,8 +1500,7 @@ geda_entry_strncmpi(char *str1, char *str2, int n)
     return -2;
   }
 
-  while ((toupper(*str1) == toupper(*str2)) && i < n)
-  {
+  while ((toupper(*str1) == toupper(*str2)) && i < n) {
     str1++;
     str2++;
     i++;
@@ -1562,6 +1565,7 @@ geda_entry_tab_complete (GedaEntry *entry)
   gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
 
   g_free (match);
+
   /* Don't free buffer! */;
   return exit (TRUE);
 }
@@ -1687,15 +1691,19 @@ geda_entry_modify_color_component (GtkWidget      *widget,
       case GTK_RC_FG:
         rc_style->fg[state]   = *color;
         break;
+
       case GTK_RC_BG:
         rc_style->bg[state]   = *color;
         break;
+
       case GTK_RC_TEXT:
         rc_style->text[state] = *color;
         break;
+
       case GTK_RC_BASE:
         rc_style->base[state] = *color;
         break;
+
       default:
         BUG_IMSG ("unhandled case=%d", component);
     }
