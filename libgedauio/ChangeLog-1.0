@@ -9,6 +9,11 @@
             * geda_widget_modify_color_component
             * geda_widget_modify_fg
 
+      Add new functions:
+
+            * geda_widget_modify_normal_bg
+            * geda_widget_modify_normal_fg
+
     * src/widgets/geda_combobox.c: Rename GList variables i and j -> iter.
 
     * src/widgets/geda_entry.c: Remove static function geda_entry_modify_

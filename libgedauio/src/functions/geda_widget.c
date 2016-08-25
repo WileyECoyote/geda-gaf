@@ -215,6 +215,20 @@ geda_widget_modify_fg (GtkWidget *widget,
                             GTK_RC_FG, state, color);
 }
 
+void
+geda_widget_modify_normal_bg (GtkWidget *widget, const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_BG, GTK_STATE_NORMAL, color);
+}
+
+void
+geda_widget_modify_normal_fg (GtkWidget *widget, const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_FG, GTK_STATE_NORMAL, color);
+}
+
 /*! \brief Set the Pointer position relative to widget
  *  Contrast this with the ease of setting the pointer position on
  *  other platforms, this example is for Win32:

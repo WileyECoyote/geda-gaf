@@ -41,6 +41,12 @@ void        geda_widget_modify_fg                    (GtkWidget      *widget,
                                                       GtkStateType    state,
                                                       const GdkColor *color);
 
+void        geda_widget_modify_normal_bg             (GtkWidget      *widget,
+                                                      const GdkColor *color);
+
+void        geda_widget_modify_normal_fg             (GtkWidget      *widget,
+                                                      const GdkColor *color);
+
 void        geda_widget_set_pointer_position         (GtkWidget *widget,
                                                       int        x,
                                                       int        y);
