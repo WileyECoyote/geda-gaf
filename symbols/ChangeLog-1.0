@@ -1,5 +1,12 @@
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TPS3808G33-1.sym: Add symbol TPS3808 Low-Quiescent-Current,
+      Programmable-Delay Supervisory Circuit.
+
+    * ti/TPS3808G33-2.sym: Alternate pin-out for TPS3808G33.
+
+2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * amphenol/A-1JB-1.sym: Add description attribute, reise attribute
       alignments.
 
