@@ -699,17 +699,17 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
 
 /* s_slib.c */
-          int    s_slib_add_entry                (const char *new_path);
+          int    geda_struct_slib_add_entry                (const char *new_path);
 
-         char   *s_slib_get_basename             (const char *rawname);
-         char   *s_slib_get_dir                  (int index);
+         char   *geda_struct_slib_get_basename             (const char *rawname);
+         char   *geda_struct_slib_get_dir                  (int index);
 
-          int    s_slib_search_for_dirname       (const char *dir_name);
-         char   *s_slib_search_for_file          (const char *filename)WARN_UNUSED;
-         char   *s_slib_search_dirs              (const char *basename)WARN_UNUSED;
-         void    s_slib_print                    (void);
-         void    s_slib_print_dirs               (void);
-          int    s_slib_unique_dir_exist         (const char *path);
+          int    geda_struct_slib_search_for_dirname       (const char *dir_name);
+         char   *geda_struct_slib_search_for_file          (const char *filename)WARN_UNUSED;
+         char   *geda_struct_slib_search_dirs              (const char *basename)WARN_UNUSED;
+         void    geda_struct_slib_print                    (void);
+         void    geda_struct_slib_print_dirs               (void);
+          int    geda_struct_slib_unique_dir_exist         (const char *path);
 
 /* s_slot.c */
          char   *s_slot_search_slot              (GedaObject *object, GedaObject **return_found);

@@ -76,7 +76,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
   if (errno) {
     errno = 0;
     GEDA_FREE (string);
-    string = s_slib_search_for_file(filename);
+    string = geda_struct_slib_search_for_file(filename);
   }
 
   if (string == NULL) {

@@ -299,7 +299,7 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
  *
  *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa s_slib_add_entry
+ *  \sa geda_struct_slib_add_entry
  */
 SCM g_rc_source_library(SCM path)
 {
@@ -323,13 +323,13 @@ SCM g_rc_source_library(SCM path)
   }
 
   if (f_get_is_path_absolute (string)) {
-    s_slib_add_entry (string);
+    geda_struct_slib_add_entry (string);
   }
   else {
     char *cwd = g_get_current_dir ();
     char *temp;
     temp = g_build_filename (cwd, string, NULL);
-    s_slib_add_entry (temp);
+    geda_struct_slib_add_entry (temp);
     GEDA_FREE(temp);
     GEDA_FREE(cwd);
   }
@@ -347,7 +347,7 @@ SCM g_rc_source_library(SCM path)
  *
  *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa s_slib_add_entry
+ *  \sa geda_struct_slib_add_entry
  */
 SCM g_rc_source_library_search(SCM path)
 {
@@ -391,17 +391,17 @@ SCM g_rc_source_library_search(SCM path)
     {
       char *fullpath = g_build_filename (string, entry, NULL);
 
-      if (s_slib_unique_dir_exist (fullpath)) {
+      if (geda_struct_slib_unique_dir_exist (fullpath)) {
 
         if (f_get_is_path_absolute (fullpath)) {
-          s_slib_add_entry (fullpath);
+          geda_struct_slib_add_entry (fullpath);
         }
         else {
 
           char *cwd  = g_get_current_dir ();
           char *temp = g_build_filename (cwd, fullpath, NULL);
 
-          s_slib_add_entry (temp);
+          geda_struct_slib_add_entry (temp);
 
           GEDA_FREE(temp);
           GEDA_FREE(cwd);

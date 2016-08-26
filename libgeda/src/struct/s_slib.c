@@ -61,7 +61,7 @@ static struct st_slib slib[MAX_SLIBS];
  *   for schematics if the directory is not already in the
  *   table.
  */
-int s_slib_add_entry(const char *new_path)
+int geda_struct_slib_add_entry(const char *new_path)
 {
   if (new_path == NULL) {
     return (-1);
@@ -71,7 +71,7 @@ int s_slib_add_entry(const char *new_path)
     return (-1);
   }
 
-  if (!s_slib_search_for_dirname(new_path)) {
+  if (!geda_struct_slib_search_for_dirname(new_path)) {
     slib[slib_index].dir_name = geda_utility_string_strdup (new_path);
     slib_index++;
   }
@@ -106,7 +106,7 @@ void s_slib_free()
  *
  *  \remarks Caller should GEDA_FREE returned pointer.
  */
-char *s_slib_get_basename(const char *rawname)
+char *geda_struct_slib_get_basename(const char *rawname)
 {
   char *return_filename;
   int i;
@@ -121,7 +121,7 @@ char *s_slib_get_basename(const char *rawname)
 
   len = strlen(rawname) + 1;
 
-  return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
+  return_filename = (char*)GEDA_MEM_ALLOC(sizeof(char)*len);
 
   i = done = seen_underscore = valid = 0;
 
@@ -190,7 +190,7 @@ char *s_slib_get_basename(const char *rawname)
  *
  *  \warning Caller must NOT free the returned pointer.
  */
-char *s_slib_get_dir(int index)
+char *geda_struct_slib_get_dir(int index)
 {
   if (slib[index].dir_name != NULL)
     return (slib[index].dir_name);
@@ -215,7 +215,7 @@ void s_slib_init()
  *  Write Component Library directory names and containing files in the
  *  component library search path to standard out.
  */
-void s_slib_print(void)
+void geda_struct_slib_print(void)
 {
   int i;
 
@@ -229,13 +229,13 @@ void s_slib_print(void)
  *  Write the names of directories and containing files in the
  *  component library search path to standard out.
  */
-void s_slib_print_dirs(void)
+void geda_struct_slib_print_dirs(void)
 {
   int i;
   char *directory;
 
   i = 0;
-  directory = s_slib_get_dir(i);
+  directory = geda_struct_slib_get_dir(i);
 
   while (directory != NULL) {
 
@@ -258,7 +258,7 @@ void s_slib_print_dirs(void)
     GEDA_FREE(directory);
 
     i++;
-    directory = s_slib_get_dir(i);
+    directory = geda_struct_slib_get_dir(i);
   }
 }
 
@@ -272,9 +272,9 @@ void s_slib_print_dirs(void)
  *
  *  \remarks Caller should GEDA_FREE returned pointer.
  */
-char *s_slib_search_for_file (const char *basename)
+char *geda_struct_slib_search_for_file (const char *basename)
 {
-  char *slib_path = s_slib_search_dirs(basename);
+  char *slib_path = geda_struct_slib_search_dirs(basename);
 
   if (slib_path) {
 
@@ -297,7 +297,7 @@ char *s_slib_search_for_file (const char *basename)
  *
  *  \return 1 if directory is found, zero otherwise.
  */
-int s_slib_search_for_dirname(const char *dir_name)
+int geda_struct_slib_search_for_dirname(const char *dir_name)
 {
   if (dir_name) {
 
@@ -320,7 +320,7 @@ int s_slib_search_for_dirname(const char *dir_name)
  *
  *  \remarks Caller should GEDA_FREE returned pointer.
  */
-char *s_slib_search_dirs(const char *basename)
+char *geda_struct_slib_search_dirs(const char *basename)
 {
   int i;
 
@@ -379,10 +379,10 @@ char *s_slib_search_dirs(const char *basename)
  *
  *  \returns TRUE if path exist and is not in search path.
  */
-int s_slib_unique_dir_exist(const char *path)
+int geda_struct_slib_unique_dir_exist(const char *path)
 {
   if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
-    return !(s_slib_search_for_dirname(path));
+    return !(geda_struct_slib_search_for_dirname(path));
   }
   return 0;
 }
