@@ -8,6 +8,10 @@
             * geda_widget_modify_insensitive_bg
             * geda_widget_modify_insensitive_fg
 
+    * tests/test_combobox_text.c: Add checks for:
+
+            * geda_combo_box_text_get_activate_default
+            * geda_combo_box_text_get_activate_default
 
 2016-08-25 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -138,12 +138,33 @@ check_accessors ()
 
     GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
     GtkWidget *entry;
+    int value;
 
     /* Uses geda_combo_get_entry_widget */
     entry = geda_combo_box_text_get_entry_widget(combo_text);
 
     if (!GEDA_IS_ENTRY(entry)) {
       fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
+
+    /* Check activates-default */
+
+    /* use geda_entry_get_activates_default */
+    value = geda_combo_box_text_get_activate_default(combo_text);
+
+    if (value) { /* default is FALSE */
+      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+      result++;
+    }
+
+    /* use geda_entry_set_activates_default */
+    geda_combo_box_text_set_activate_default(combo_text, TRUE);
+
+    value = geda_combo_box_text_get_activate_default(combo_text);
+
+    if (!value) {
+      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
       result++;
     }
   }
