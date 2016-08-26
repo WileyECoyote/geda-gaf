@@ -977,11 +977,12 @@ geda_menu_item_buildable_custom_finished (GtkBuildable *buildable,
   if (strcmp (tagname, "accelerator") == 0) {
 
     GedaMenuShell *menu_shell;
-    GtkWidget    *attach;
 
     menu_shell = GEDA_MENU_SHELL(gtk_widget_get_parent (GTK_WIDGET(buildable)));
 
     if (menu_shell) {
+
+      GtkWidget *attach;
 
       while (GEDA_IS_MENU(menu_shell) &&
             (attach = geda_menu_get_attach_widget (GEDA_MENU(menu_shell))) != NULL)
@@ -3361,13 +3362,14 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
     if (!path && prefix) {
 
       const char *postfix = NULL;
-      char *new_path;
 
       /* try to construct one from label text */
       gtk_container_foreach (GTK_CONTAINER(menu_item),
                              geda_menu_item_accel_name_foreach,
                              &postfix);
       if (postfix) {
+
+        char *new_path;
 
         new_path = g_strconcat (prefix, "/", postfix, NULL);
         path = priv->accel_path = (char*)g_intern_string (new_path);
@@ -3533,9 +3535,9 @@ geda_menu_item_is_selectable (GtkWidget *menu_item)
 static void
 geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 {
-  GtkWidget *accel_label;
-
   if (!gtk_bin_get_child (GTK_BIN(menu_item))) {
+
+    GtkWidget *accel_label;
 
     accel_label = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
     gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
