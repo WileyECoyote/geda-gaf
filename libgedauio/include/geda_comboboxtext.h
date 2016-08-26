@@ -132,6 +132,7 @@ void         geda_combo_box_text_widget_prepend        (GtkWidget          *widg
                                                         const char         *text);
 void         geda_combo_box_text_widget_remove         (GtkWidget          *widget,
                                                         int                 position);
+void         geda_combo_box_text_widget_remove_all     (GtkWidget          *widget);
 void         geda_combo_box_text_widget_set_active     (GtkWidget          *widget,
                                                         int                 position);
 int          geda_combo_box_text_widget_get_active     (GtkWidget          *widget);

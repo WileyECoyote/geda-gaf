@@ -916,6 +916,11 @@ void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
   geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position);
 }
 
+void geda_combo_box_text_widget_remove_all (GtkWidget *widget)
+{
+  geda_combo_box_text_remove_all (GEDA_COMBO_BOX_TEXT(widget));
+}
+
 void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
   geda_combo_box_set_active((GedaComboBox*)widget, position);
