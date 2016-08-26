@@ -1,3 +1,8 @@
+2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_text_object.c: Return G_MAXINT not G_MAXDOUBEL if
+      invalid objects in geda_text_object_strcmp.
+
 2016-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_object.c: Add function geda_text_object_strcmp.

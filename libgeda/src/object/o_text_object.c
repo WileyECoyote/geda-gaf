@@ -1140,7 +1140,7 @@ geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_
  *  \param [in] b Text Object 2.
  *
  *  \return result of strcmp if both objects are GedaText object, if either
- *          of the object is not a GedaText returns G_MAXDOUBLE.
+ *          of the object is not a GedaText returns G_MAXINT.
  */
 int
 geda_text_object_strcmp(const GedaObject *object1, const GedaObject *object2)
@@ -1148,7 +1148,7 @@ geda_text_object_strcmp(const GedaObject *object1, const GedaObject *object2)
   if (GEDA_IS_TEXT(object1) && GEDA_IS_TEXT(object2)) {
     return strcmp (object1->text->string, object2->text->string);
   }
-  return G_MAXDOUBLE;
+  return G_MAXINT;
 }
 
 /*! \brief Translate a text object
