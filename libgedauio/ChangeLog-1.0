@@ -3,6 +3,12 @@
     * src/widgets/geda_comboboxtext.c: Add geda_combo_box_text_widget_remove_all
       and geda_combo_box_text_get_activate_default for consistency of API.
 
+    * src/functions/geda_widget.c: Add new functions:
+
+            * geda_widget_modify_insensitive_bg
+            * geda_widget_modify_insensitive_fg
+
+
 2016-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_widget.c: Duplicate nifty color attribute setters

@@ -216,6 +216,20 @@ geda_widget_modify_fg (GtkWidget *widget,
 }
 
 void
+geda_widget_modify_insensitive_bg (GtkWidget *widget, const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_BG, GTK_STATE_INSENSITIVE, color);
+}
+
+void
+geda_widget_modify_insensitive_fg (GtkWidget *widget, const GdkColor *color)
+{
+  geda_widget_modify_color (GTK_WIDGET(widget),
+                            GTK_RC_FG, GTK_STATE_INSENSITIVE, color);
+}
+
+void
 geda_widget_modify_normal_bg (GtkWidget *widget, const GdkColor *color)
 {
   geda_widget_modify_color (GTK_WIDGET(widget),
