@@ -1,3 +1,8 @@
+2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/AM3352BZCE-1.sym: Add symbol AM3354B 32-Bit RISC ARM Processor,
+      Sitara, Cortex-A8.
+
 2016-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPS3808G33-1.sym: Add symbol TPS3808 Low-Quiescent-Current,
