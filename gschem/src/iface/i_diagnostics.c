@@ -237,7 +237,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 1,4,0,1, GTK_FILL,0,0,0);
 
   geda_entry_widget_set_text(widget, getenv("_"));
@@ -248,7 +248,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,0,1, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", prog_pid);
@@ -268,7 +268,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
     widget = geda_entry_new_visible ( DISABLE, DISABLE);
     gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-    geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+    geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
     gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
 
     string = geda_sprintf("%ld", usage.ru_maxrss);
@@ -282,7 +282,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,2,3, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", MAX_THREADS);
@@ -295,7 +295,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,2,3, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", MAX_THREADS_UNUSED);
@@ -313,7 +313,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 1,2,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", nt);
@@ -326,7 +326,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 3,4,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", up);
@@ -339,7 +339,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   widget = geda_entry_new_visible ( DISABLE, DISABLE);
   gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
   gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
-  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  geda_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
   gtk_table_attach(GTK_TABLE(table), widget, 5,6,3,4, GTK_FILL,0,0,0);
 
   string = geda_sprintf("%i", it);

@@ -1650,14 +1650,14 @@ popup_menu_callback (GedaMenuItem *item, void    *data)
 /*!
  * \brief Modify GedaEntry Foreground Color
  * \par Function Description
- *  Calls geda_entry_widget_modify_color to modify the
+ *  Calls geda_entry_modify_color to modify the
  *  foreground attribute color of the \a entry.
  *
  * \param[in,out] entry  Pointer to a #GedaEntry.
  * \param[in]     state  The state for which the attribute is to be set.
  * \param[in]     color  Pointer to GdkColor RGB color structure.
  *
- * \sa geda_entry_modify_bg geda_entry_widget_modify_color
+ * \sa geda_entry_modify_bg geda_entry_modify_color
  */
 void
 geda_entry_modify_fg (GedaEntry *entry,
@@ -1670,14 +1670,14 @@ geda_entry_modify_fg (GedaEntry *entry,
 /*!
  * \brief Modify GedaEntry Background Color
  * \par Function Description
- *  Calls geda_entry_widget_modify_color to modify the
+ *  Calls geda_entry_modify_color to modify the
  *  background color attribute of the \a entry.
  *
  * \param[in,out] entry  Pointer to a #GedaEntry.
  * \param[in]     state  The state for which the attribute is to be set.
  * \param[in]     color  Pointer to GdkColor RGB color structure.
  *
- * \sa geda_entry_modify_fg geda_entry_widget_modify_color
+ * \sa geda_entry_modify_fg geda_entry_modify_color
  */
 void
 geda_entry_modify_bg (GedaEntry      *entry,
