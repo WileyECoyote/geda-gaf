@@ -864,6 +864,18 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
   return added;
 }
 
+bool
+geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
+{
+  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+
+    if (GEDA_IS_ENTRY(combo_box->entry)) {
+      return geda_entry_get_activates_default (GEDA_ENTRY(combo_box->entry));
+    }
+  }
+  return FALSE;
+}
+
 void
 geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool setting)
 {

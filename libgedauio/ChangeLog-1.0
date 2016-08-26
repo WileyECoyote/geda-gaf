@@ -1,7 +1,7 @@
 2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Add geda_combo_box_text_widget_remove_all
-      for consistency of API.
+      and geda_combo_box_text_get_activate_default for consistency of API.
 
 2016-08-25 Wiley E. Hill <wileyhill@gmail.com>
 

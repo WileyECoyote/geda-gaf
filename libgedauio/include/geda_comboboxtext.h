@@ -115,6 +115,9 @@ char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *comb
 
 bool         geda_combo_box_text_set_active_text       (GedaComboBoxText   *combo_box,
                                                         const char         *text);
+
+bool         geda_combo_box_text_get_activate_default  (GedaComboBoxText   *combo_box);
+
 void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *combo_box,
                                                         bool setting);
 GedaEntry   *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
