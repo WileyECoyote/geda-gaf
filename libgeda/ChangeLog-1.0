@@ -1,3 +1,7 @@
+2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_slot.c: Rename functions with geda_struct prefix.
+
 2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_object.c: Return G_MAXINT not G_MAXDOUBEL if

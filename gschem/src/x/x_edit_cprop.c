@@ -415,7 +415,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           geda_struct_page_append_list (p_current, new_butes);
 
           /* Update pinnumbers for current slot */
-          s_slot_update_object (o_new);
+          geda_struct_slot_update_object (o_new);
 
           geda_attrib_object_thaw_hooks (o_new);
 

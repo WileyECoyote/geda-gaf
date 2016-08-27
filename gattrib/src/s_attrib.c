@@ -98,7 +98,7 @@ char *s_attrib_get_refdes(GedaObject *object)
       GedaObject *slot_text_object;
       char       *slot_value;
 
-      slot_value = s_slot_search_slot (object, &slot_text_object);
+      slot_value = geda_struct_slot_search_slot (object, &slot_text_object);
 
       if (slot_value != 0) {
 

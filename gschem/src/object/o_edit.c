@@ -1207,7 +1207,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   geda_struct_page_append_list (page, new_attribs);
 
   /* Update pinnumbers for current slot */
-  s_slot_update_object (o_new);
+  geda_struct_slot_update_object (o_new);
 
   /* Replace old Object with newGedaObject */
   geda_struct_page_replace_object (page, o_current, o_new);

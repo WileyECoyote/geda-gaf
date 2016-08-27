@@ -99,7 +99,7 @@ GedaObject *geda_complex_object_copy(GedaObject *o_current)
     /* Recalculate bounds */
     o_new->w_bounds_valid_for = NULL;
 
-    s_slot_update_object (o_new);
+    geda_struct_slot_update_object (o_new);
 
     return o_new;
   }

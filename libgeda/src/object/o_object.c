@@ -254,7 +254,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           if (new_obj != NULL &&
               (new_obj->type == OBJ_COMPLEX ||
                new_obj->type == OBJ_PLACEHOLDER)) {
-            s_slot_update_object (new_obj);
+            geda_struct_slot_update_object (new_obj);
           }
           new_obj = NULL;
         }

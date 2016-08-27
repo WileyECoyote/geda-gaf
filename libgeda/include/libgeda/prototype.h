@@ -712,8 +712,8 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
           int    geda_struct_slib_unique_dir_exist         (const char *path);
 
 /* s_slot.c */
-         char   *s_slot_search_slot              (GedaObject *object, GedaObject **return_found);
-         void    s_slot_update_object            (GedaObject *object);
+         char   *geda_struct_slot_search_slot              (GedaObject *object, GedaObject **return_found);
+         void    geda_struct_slot_update_object            (GedaObject *object);
 
 /* s_textbuffer.c */
    TextBuffer   *s_textbuffer_new                (const char *data, const int size)WARN_UNUSED;

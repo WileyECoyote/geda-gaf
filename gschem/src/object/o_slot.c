@@ -139,7 +139,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
   }
 
   /* first see if slot attribute already exists outside complex */
-  slot_value = s_slot_search_slot (object, &o_slot);
+  slot_value = geda_struct_slot_search_slot (object, &o_slot);
   GEDA_FREE (slot_value);
 
   if (o_slot != NULL && !geda_attrib_is_inherited (o_slot)) {
@@ -162,7 +162,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
     g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
   }
 
-  s_slot_update_object (object);
+  geda_struct_slot_update_object (object);
 
   o_undo_savestate_object(w_current, UNDO_ALL, object);
   GEDA_FREE (value);

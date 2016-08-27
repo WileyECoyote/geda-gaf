@@ -54,7 +54,7 @@
  *  \remarks
  *  Caller should GEDA_FREE returned character string
  */
-char *s_slot_search_slot (GedaObject *object, GedaObject **found)
+char *geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
 {
   GList      *attributes;
   GedaObject *attrib;
@@ -86,7 +86,7 @@ char *s_slot_search_slot (GedaObject *object, GedaObject **found)
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
+static char *geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber)
 {
   int   counter = 0;
   char *slotdef;
@@ -114,7 +114,7 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
  *  \par Function Description
  *  Update pinnumber attributes in a graphic object. The interesting
  *  case is where the object is an instantiation of a slotted part.
- *  This means that s_slot_update_object iterates through all pins
+ *  This means that geda_struct_slot_update_object iterates through all pins
  *  found on object and sets the pinnumber= attrib on each. This
  *  doesn't matter for non-slotted parts, but on slotted parts,
  *  this is what sets the pinnumber= attribute on slots 2, 3, 4....
@@ -127,7 +127,7 @@ static char *s_slot_search_slotdef (GedaObject *object, int slotnumber)
  *  "numslot=0", in which case the caller should remove "slotdef"
  *   attribute.
  */
-void s_slot_update_object (GedaObject *object)
+void geda_struct_slot_update_object (GedaObject *object)
 {
   GedaObject *o_pinnum_attrib;
   GList      *attributes;
@@ -168,7 +168,7 @@ void s_slot_update_object (GedaObject *object)
 
   /* OK, now that we have the slot number, use it to get the */
   /* corresponding slotdef=#:#,#,# string.  */
-  slotdef = s_slot_search_slotdef (object, slot);
+  slotdef = geda_struct_slot_search_slotdef (object, slot);
 
   if (slotdef == NULL) {
 
