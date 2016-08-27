@@ -21,6 +21,12 @@
             * ti/TPS3808G50-1.sym
             * ti/TPS3808G50-2.sym
 
+    * ti/SN65HVD233-x.sym: Add 2 SN65HVD233 symbols; CAN  3.3 Volt Bus
+      Transceivers:
+
+            * ti/SN65HVD233-1.sym
+            * ti/SN65HVD233-2.sym
+
 2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3352BZCE-1.sym: Add symbol AM3354B 32-Bit RISC ARM Processor,
