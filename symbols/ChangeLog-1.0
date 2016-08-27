@@ -1,3 +1,26 @@
+2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TPS3808Gxx-1.sym: Add 18 Supervisory Circuit, Programmable-Delay:
+
+            * ti/TPS3808G01-1.sym
+            * ti/TPS3808G01-2.sym
+            * ti/TPS3808G09-1.sym
+            * ti/TPS3808G09-2.sym
+            * ti/TPS3808G12-1.sym
+            * ti/TPS3808G12-2.sym
+            * ti/TPS3808G15-1.sym
+            * ti/TPS3808G15-2.sym
+            * ti/TPS3808G18-1.sym
+            * ti/TPS3808G18-2.sym
+            * ti/TPS3808G19-1.sym
+            * ti/TPS3808G19-2.sym
+            * ti/TPS3808G25-1.sym
+            * ti/TPS3808G25-2.sym
+            * ti/TPS3808G30-1.sym
+            * ti/TPS3808G30-2.sym
+            * ti/TPS3808G50-1.sym
+            * ti/TPS3808G50-2.sym
+
 2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3352BZCE-1.sym: Add symbol AM3354B 32-Bit RISC ARM Processor,

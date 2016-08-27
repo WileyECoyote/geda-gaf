@@ -1,0 +1,90 @@
+v 20150315 2
+T 400 1500 8 10 1 1 0 0 1
+refdes=U?
+T 400 2300 5 10 0 0 0 0 1
+device=TPS3808
+T 400 2500 5 10 0 1 0 0 1
+description=Supervisory Circuit,1.2 Volt,Low-Quiescent-Current,Programmable-Delay
+T 400 2100 5 10 0 0 0 0 1
+numslots=0
+B 400 100 1200 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1100 100 1100 1 0 1
+{
+T 250 1150 5 8 1 1 0 6 1
+pinnumber=1
+T 250 1150 5 8 0 1 0 6 1
+pinseq=1
+T 450 1100 9 10 1 1 0 1 1
+pinlabel=\_RESET\_
+T 450 925 5 8 0 1 0 0 1
+pintype=out
+}
+P 400 300 100 300 1 0 1
+{
+T 250 350 5 8 1 1 0 6 1
+pinnumber=2
+T 250 350 5 8 0 1 0 6 1
+pinseq=2
+T 450 300 9 10 1 1 0 1 1
+pinlabel=GND
+T 450 225 5 8 0 1 180 6 1
+pintype=pwr
+}
+P 400 700 100 700 1 0 1
+{
+T 250 750 5 8 1 1 0 6 1
+pinnumber=3
+T 250 750 5 8 0 1 0 6 1
+pinseq=3
+T 450 700 9 10 1 1 0 1 1
+pinlabel=\_MR\_
+T 450 525 5 8 0 1 0 0 1
+pintype=in
+}
+P 1600 300 1900 300 1 0 1
+{
+T 1750 350 5 8 1 1 0 0 1
+pinnumber=4
+T 1750 350 5 8 0 1 0 0 1
+pinseq=4
+T 1550 300 9 10 1 1 0 7 1
+pinlabel=CT
+T 1550 125 5 8 0 1 0 6 1
+pintype=pas
+}
+P 1600 700 1900 700 1 0 1
+{
+T 1750 750 5 8 1 1 0 0 1
+pinnumber=5
+T 1750 750 5 8 0 1 0 0 1
+pinseq=5
+T 1550 700 9 10 1 1 0 7 1
+pinlabel=SENSE
+T 1525 525 5 8 0 1 0 6 1
+pintype=pas
+}
+P 1600 1100 1900 1100 1 0 1
+{
+T 1750 1150 5 8 1 1 0 0 1
+pinnumber=6
+T 1750 1150 5 8 0 1 0 0 1
+pinseq=6
+T 1550 1100 9 10 1 1 0 7 1
+pinlabel=VDD
+T 1525 925 5 8 0 1 0 6 1
+pintype=pwr
+}
+T 400 1350 9 10 1 1 0 0 1
+value=TPS3808G12
+T 400 1700 5 10 0 1 0 0 1
+footprint=SOT26
+T 400 2700 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/tps3808g09.pdf
+T 400 1900 5 10 0 0 0 0 1
+symversion=0.1
+T 400 2900 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 3100 5 10 0 0 0 0 1
+dist-license=GPL2
+T 400 3300 5 10 0 0 0 0 1
+author=AutoTron
