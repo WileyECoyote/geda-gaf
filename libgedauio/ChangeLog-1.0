@@ -1,7 +1,8 @@
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox_text.c: Check that the new combo returned from
-      geda_combo_box_text_list_new has an entry widget.
+      geda_combo_box_text_list_new has an entry widget. Sink reference to
+      widget before destroying to appease glib.
 
 2016-08-26 Wiley E. Hill <wileyhill@gmail.com>
 

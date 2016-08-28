@@ -76,6 +76,7 @@ int check_construction (void)
     result++;
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   if (GEDA_IS_COMBO_BOX_TEXT(widget)) {
@@ -107,6 +108,7 @@ int check_construction (void)
     }
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   /* geda_combo_box_text_list_new */
@@ -130,6 +132,7 @@ int check_construction (void)
     }
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   return result;
@@ -181,6 +184,7 @@ check_accessors ()
     }
   }
 
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
   return result;
 }
