@@ -139,6 +139,82 @@ int check_construction (void)
 }
 
 int
+check_methods ()
+{
+  int   result = 0;
+  int   index;
+  char *city;
+
+  GtkWidget *widget = geda_combo_box_text_new();
+
+  GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
+
+  geda_combo_box_text_append (combo_text, "kampong");         /* 5 */
+
+  geda_combo_box_text_append_text (combo_text, "Poipait");
+
+  geda_combo_box_text_widget_append (widget, "Sereysophon");
+
+  geda_combo_box_text_insert(combo_text, 0, "Chbamon");       /* 4 */
+
+  geda_combo_box_text_insert_text (combo_text, 0, "Bavet");   /* 3 */
+
+  geda_combo_box_text_widget_insert (widget, -1, "Soung");
+
+  geda_combo_box_text_prepend (combo_text, "Battambang");      /* 2 */
+
+  geda_combo_box_text_prepend_text (combo_text, "Banteay");    /* 1 */
+
+  geda_combo_box_text_widget_prepend (widget, "Banlung");      /* 0 */
+
+  index = geda_combo_box_text_get_active(combo_text);
+
+  if (index + 1) {
+    fprintf(stderr, "FAILED: %s line <%d> index should not be set <%d>\n", TWIDGET, __LINE__, index);
+    result++;
+  }
+
+  geda_combo_box_text_set_active(combo_text, 1);
+
+  index = geda_combo_box_text_widget_get_active(widget);
+
+  if (index - 1) {
+    fprintf(stderr, "FAILED: %s line <%d> bad index <%d>\n", TWIDGET, __LINE__, index);
+    result++;
+  }
+
+  /* Uses geda_combo_box_text_get_active_text */
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Banteay", 7)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  geda_combo_box_text_widget_set_active(widget, 4);
+
+  /* Uses geda_combo_box_text_get_active_text */
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Chbamon", 7)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+  return result;
+}
+
+int
 check_accessors ()
 {
   int result = 0;
@@ -209,6 +285,17 @@ main (int argc, char *argv[])
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
       return 1;
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
+        return 1;
+      }
     }
 
     if (!result) {
