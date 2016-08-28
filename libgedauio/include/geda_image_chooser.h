@@ -93,6 +93,7 @@ struct _GedaImageChooser {
            int          max_preview_size;
            int          min_preview_size;
            int          preview_size;
+           int          previous_size;        /* New flag in chooser_adjust_size */
            bool         preview_enabled;
            bool         zoom_mode;
            int          zoom_save;

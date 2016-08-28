@@ -218,7 +218,6 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
   GtkImage         *preview = GTK_IMAGE (chooser->preview);
   GError           *err     = NULL;
   char             *filename;
-  static int        old_size = -1;
 
   filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER(chooser));
 
@@ -227,7 +226,7 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
     GdkPixbuf *pixbuf;
     int        size;
 
-    size   = chooser->preview_size = (int) gtk_adjustment_get_value(adjustment);
+    size   = chooser->preview_size = (int)gtk_adjustment_get_value(adjustment);
     pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
 
     if (err != NULL) {
@@ -240,11 +239,12 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
 
         gtk_image_set_from_pixbuf (preview, pixbuf);
 
-        if (old_size < 0) {
-          old_size = ((GtkWidget*)preview)->allocation.width;
+        /* chooser->previous_size is initialized to -1 */
+        if (chooser->previous_size < 0) {
+          chooser->previous_size = ((GtkWidget*)preview)->allocation.width;
         }
 
-        if (size < old_size) {
+        if (size < chooser->previous_size) {
           if (!chooser->mouse_down) {
             gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
           }
@@ -254,17 +254,22 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
            gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
            gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
         }
-        old_size = size;
+        chooser->previous_size = size;
       }
       else { /* is zoom mode */
+
         if (chooser->zoom_mode > 0) {
+
           /* the first time the adjustment is change in zoom mode we
            * fix the preview pane size to the current allocation */
-          int width = ((GtkWidget*)preview)->allocation.width;
+
+          int width  = ((GtkWidget*)preview)->allocation.width;
           int height = ((GtkWidget*)preview)->allocation.height;
+
           gtk_widget_set_size_request ((GtkWidget*)preview, width, height);
           chooser->zoom_mode = -1;
         }
+
         gtk_image_set_from_pixbuf (preview, pixbuf);
       }
     }
@@ -1082,6 +1087,7 @@ geda_image_chooser_instance_init (GTypeInstance *instance, void *class)
 
   chooser_entry       = NULL;
   self->filter_button = NULL;
+  self->previous_size = -1;
 }
 
 /*! \brief Function to retrieve GedaImageChooser's Type identifier.
