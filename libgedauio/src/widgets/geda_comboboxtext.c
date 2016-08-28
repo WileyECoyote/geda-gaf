@@ -470,7 +470,8 @@ is_a_geda_combo_box_text (GedaComboBoxText *combo_text_box)
  * \return new #GedaComboBoxText
  *
  */
-GtkWidget *geda_combo_box_text_new (void)
+GtkWidget*
+geda_combo_box_text_new (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, NULL);
 }
@@ -484,7 +485,8 @@ GtkWidget *geda_combo_box_text_new (void)
  * \return new #GedaComboBoxText
  *
  */
-GtkWidget *geda_combo_box_text_new_with_entry (void)
+GtkWidget*
+geda_combo_box_text_new_with_entry (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE, NULL);
 }
@@ -498,9 +500,9 @@ GtkWidget *geda_combo_box_text_new_with_entry (void)
  * see geda_combo_box_check_appearance. So we have to find the widget again!
  *
  * \return new #GedaComboBoxText
- *
  */
-GtkWidget *geda_combo_box_text_list_new(void)
+GtkWidget*
+geda_combo_box_text_list_new(void)
 {
   GtkWidget *widget;
 
@@ -730,13 +732,15 @@ geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
-void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
-                                      int               position)
+void
+geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
+                                 int               position)
 {
   geda_combo_box_text_remove (combo_box, position);
 }
 
-void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
+void
+geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
 {
   geda_combo_box_text_remove_all (combo_box);
 }
@@ -747,7 +751,8 @@ geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
   geda_combo_box_set_active((GedaComboBox*)combo_box, position);
 }
 
-int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
+int
+geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
 {
   return geda_combo_box_get_active ((GedaComboBox*)combo_box);
 }
@@ -918,37 +923,44 @@ geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), position, text);
 }
 
-void geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
+void
+geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), 0, text);
 }
 
-void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
+void
+geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 {
   geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position);
 }
 
-void geda_combo_box_text_widget_remove_all (GtkWidget *widget)
+void
+geda_combo_box_text_widget_remove_all (GtkWidget *widget)
 {
   geda_combo_box_text_remove_all (GEDA_COMBO_BOX_TEXT(widget));
 }
 
-void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
+void
+geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
   geda_combo_box_set_active((GedaComboBox*)widget, position);
 }
 
-int geda_combo_box_text_widget_get_active (GtkWidget *widget)
+int
+geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
   return geda_combo_box_get_active ((GedaComboBox*)widget);
 }
 
-char *geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
+char*
+geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
 {
   return geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
 }
 
-bool geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
+bool
+geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
 {
   return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
 }
