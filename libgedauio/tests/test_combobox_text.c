@@ -117,6 +117,18 @@ int check_construction (void)
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
+
+    GedaEntry *entry;
+
+    /* Use base class getter */
+    entry = geda_combo_widget_get_entry(widget);
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
+  }
 
   g_object_unref(widget);    /* Destroy the widget */
 
