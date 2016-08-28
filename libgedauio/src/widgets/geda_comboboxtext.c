@@ -840,7 +840,7 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
         int i;
 
-        for (i=0;i<combo_box->count;i++) {
+        for (i = 0; i < combo_box->count; i++) {
 
           gtk_tree_model_get (model, &iter, text_column, &str, -1);
 
@@ -860,6 +860,7 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
         }
         else {
           geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
+          geda_combo_box_text_set_active(combo_box, 0);
           added = 1;
         }
       }
