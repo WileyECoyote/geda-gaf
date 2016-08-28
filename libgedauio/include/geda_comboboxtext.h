@@ -84,6 +84,10 @@ void         geda_combo_box_text_remove                (GedaComboBoxText   *comb
                                                         int                 position);
 void         geda_combo_box_text_remove_all            (GedaComboBoxText   *combo_box);
 
+int          geda_combo_box_text_get_active            (GedaComboBoxText   *combo_box);
+
+void         geda_combo_box_text_set_active            (GedaComboBoxText   *combo_box,
+                                                        int                 position);
 void         geda_combo_box_text_list_append           (GedaComboBoxText   *combo_box,
                                                         const char         *text,
                                                         const char         *text2);
@@ -106,10 +110,6 @@ void         geda_combo_box_text_prepend_text          (GedaComboBoxText   *comb
 void         geda_combo_box_text_remove_text           (GedaComboBoxText   *combo_box,
                                                         int                 position);
 void         geda_combo_box_text_remove_all_text       (GedaComboBoxText   *combo_box);
-
-void         geda_combo_box_text_set_active            (GedaComboBoxText   *combo_box,
-                                                        int                 position);
-int          geda_combo_box_text_get_active            (GedaComboBoxText   *combo_box);
 
 char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *combo_box);
 

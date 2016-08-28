@@ -648,6 +648,18 @@ geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
   combo_box->count = 0;
 }
 
+int
+geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
+{
+  return geda_combo_box_get_active ((GedaComboBox*)combo_box);
+}
+
+void
+geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
+{
+  geda_combo_box_set_active((GedaComboBox*)combo_box, position);
+}
+
 void
 geda_combo_box_text_list_append (GedaComboBoxText   *combo_box,
                                  const char         *text,
@@ -743,18 +755,6 @@ void
 geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
 {
   geda_combo_box_text_remove_all (combo_box);
-}
-
-void
-geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
-{
-  geda_combo_box_set_active((GedaComboBox*)combo_box, position);
-}
-
-int
-geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
-{
-  return geda_combo_box_get_active ((GedaComboBox*)combo_box);
 }
 
 /*! \brief GedaComboBoxText Get Text

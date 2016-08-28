@@ -3,9 +3,16 @@
     * include/geda_image_chooser.h: add int member previous_size to
       GedaImageChooser structure.
 
+    * include/geda_comboboxtext.h: Move declarations for geda_combo_
+      box_text_get_active and geda_combo_box_text_set_active.
+
     * src/dialogs/geda_image_chooser.c: Revise chooser_adjust_size to
       use chooser->previous_size  as replacement for static old_size,
       eliminate static old_size.
+
+    * src/widgets/geda_comboboxtext.c: Resequence geda_combo_box_text_
+      get_active and geda_combo_box_text_set_active; moved before
+      geda_combo_box_text_list_append.
 
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
