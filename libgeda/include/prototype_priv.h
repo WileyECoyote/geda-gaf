@@ -256,8 +256,8 @@ GedaObject *geda_struct_conn_check_midpoint          (GedaObject *o_current, int
 void        geda_struct_conn_init                    (void);
 
 /* s_encoding.c */
-char       *s_encoding_base64_encode       (char* src, unsigned int srclen, unsigned int* dstlenp, bool strict);
-char       *s_encoding_base64_decode       (char* src, unsigned int srclen, unsigned int* dstlenp);
+char       *geda_struct_encoding_base64_encode       (char* src, unsigned int srclen, unsigned int* dstlenp, bool strict);
+char       *geda_struct_encoding_base64_decode       (char* src, unsigned int srclen, unsigned int* dstlenp);
 
 /* s_papersizes.c */
 void        s_papersizes_free          (void);

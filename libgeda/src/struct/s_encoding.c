@@ -79,8 +79,10 @@ static unsigned char s_encoding_Base64_rank[256] = {
  *  \return Caller owned buffer containing base64 representation.
  */
 char*
-s_encoding_base64_encode (char *src, unsigned int srclen,
-                          unsigned int *dstlenp, _Bool strict)
+geda_struct_encoding_base64_encode (char         *src,
+                                    unsigned int  srclen,
+                                    unsigned int *dstlenp,
+                                    _Bool         strict)
 {
   char         *dst;
   unsigned int  dstpos;
@@ -193,20 +195,24 @@ s_encoding_base64_encode (char *src, unsigned int srclen,
  *          The integer pointed to by <B>dstlenp</B> is set to the length
  *          of that buffer.
  */
-char *
-s_encoding_base64_decode (char *src, unsigned int srclen, unsigned int *dstlenp)
+char*
+geda_struct_encoding_base64_decode (char         *src,
+                                    unsigned int  srclen,
+                                    unsigned int *dstlenp)
 {
-
   char *dst;
   char  res;
+
   unsigned int  dstidx, state, ch = 0;
   unsigned char pos;
 
-  if (srclen == 0)
+  if (srclen == 0) {
     srclen = strlen(src);
-  state = 0;
+  }
+
+  state  = 0;
   dstidx = 0;
-  res = 0;
+  res    = 0;
 
   dst = g_new(char, srclen+1);
   *dstlenp = srclen+1;
@@ -230,23 +236,27 @@ s_encoding_base64_decode (char *src, unsigned int srclen, unsigned int *dstlenp)
         dst[dstidx] = (pos << 2);
         state = 1;
         break;
+
       case 1:
         dst[dstidx] |= (pos >> 4);
         res = ((pos & 0x0f) << 4);
         dstidx++;
         state = 2;
         break;
+
       case 2:
         dst[dstidx] = res | (pos >> 2);
         res = (pos & 0x03) << 6;
         dstidx++;
         state = 3;
         break;
+
       case 3:
         dst[dstidx] = res | pos;
         dstidx++;
         state = 0;
         break;
+
       default:
         break;
     }
@@ -301,7 +311,7 @@ s_encoding_base64_decode (char *src, unsigned int srclen, unsigned int *dstlenp)
            */
           if (res != 0) {
             g_free(dst);
-            *dstlenp = 0;
+           *dstlenp = 0;
             return NULL;
           }
         default:
@@ -316,12 +326,14 @@ s_encoding_base64_decode (char *src, unsigned int srclen, unsigned int *dstlenp)
      */
     if (state != 0) {
       g_free(dst);
-      *dstlenp = 0;
+     *dstlenp = 0;
       return NULL;
     }
   }
 
-  dst[dstidx]=0;
-  *dstlenp = dstidx;
+  dst[dstidx] = 0;
+
+ *dstlenp = dstidx;
+
   return dst;
 }

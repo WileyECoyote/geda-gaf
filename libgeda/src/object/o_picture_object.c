@@ -1430,12 +1430,12 @@ geda_picture_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curren
  *
  *  \return A pointer to the new picture object, or NULL on error.
  */
-GedaObject *
+GedaObject*
 geda_picture_object_read (const char  *first_line,
-                TextBuffer  *tb,
-                unsigned int release_ver,
-                unsigned int fileformat_ver,
-                GError     **err)
+                          TextBuffer  *tb,
+                          unsigned int release_ver,
+                          unsigned int fileformat_ver,
+                          GError     **err)
 {
   GedaObject *new_obj;
 
@@ -1576,8 +1576,9 @@ geda_picture_object_read (const char  *first_line,
 
     /* Decode the picture */
     if (encoded_picture != NULL) {
-      file_content = s_encoding_base64_decode(encoded_picture, size,
-                                             &file_length);
+      file_content = geda_struct_encoding_base64_decode(encoded_picture,
+                                                        size,
+                                                        &file_length);
       free(encoded_picture);
     }
 
@@ -1700,10 +1701,10 @@ geda_picture_object_save(GedaObject *object)
   /* Encode the picture if it's embedded */
   if (geda_picture_object_is_embedded(object)) {
     encoded_picture =
-    s_encoding_base64_encode( (char *)object->picture->file_content,
-                              object->picture->file_length,
-                              &encoded_picture_length,
-                              TRUE);
+    geda_struct_encoding_base64_encode((char*)object->picture->file_content,
+                                       object->picture->file_length,
+                                       &encoded_picture_length,
+                                       TRUE);
     if (encoded_picture == NULL) {
       geda_log_w (_("ERROR: geda_picture_object_save: unable to encode the picture.\n"));
     }
