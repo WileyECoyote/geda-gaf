@@ -33,14 +33,14 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgeda_priv.h>
 
-/*! \brief Create a copy of a picture
- *
- *  \par Function Description
+/*!
+ * \brief Create a copy of a picture
+ * \par Function Description
  *  This function creates a verbatim copy of the object pointed by
  *  <B>\a o_current</B> describing a picture.
  *
- *  \param [in]  o_current     Picture GedaObject to copy.
- *  \return The new GedaObject
+ * \param [in]  o_current     Picture GedaObject to copy.
+ * \return The new GedaObject
  */
 GedaObject*
 geda_picture_object_copy(GedaObject *o_current)
@@ -84,15 +84,15 @@ geda_picture_object_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Embed the image file associated with a picture
- *
+/*!
+ * \brief Embed the image file associated with a picture
  * \par Function Description
- * Verify that a picture has valid data associated with it, and if so,
- * mark it to be embedded.
+ *  Verify that a picture has valid data associated with it, and if so,
+ *  mark it to be embedded.
  *
- *  \param [in] object  The picture Object to embed
+ * \param [in] object  The picture Object to embed
  *
- *  \return True on success, or False on failure
+ * \return True on success, or False on failure
  */
 bool
 geda_picture_object_embed (GedaObject *object)
@@ -134,25 +134,25 @@ geda_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
   }
 }
 
-/*! \brief Real Export GdkPixbuf Buffer to a given file
- *
- *  \par Function Description
+/*!
+ * \brief Real Export GdkPixbuf Buffer to a given file
+ * \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
  *  Supported format \a type is system dependent and is determined at run
  *  time. The filename argument is not checked, the caller is responsible
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  pixbuf    GdkPixbuf to export
- *  \param [in]  filename  The name of the file to export
- *  \param [in]  type      The type of image to generate, see note 3
- *  \param [in]  varargs   Optional parameters as described below
+ * \param [in]  pixbuf    GdkPixbuf to export
+ * \param [in]  filename  The name of the file to export
+ * \param [in]  type      The type of image to generate, see note 3
+ * \param [in]  varargs   Optional parameters as described below
  *
- *  \return True on success, otherwise FALSE
+ * \return True on success, otherwise FALSE
  *
- *  \note 1.) The image produced is based on the object setting for
- *            width, height, angle AND mirror, basically what is
- *            shown on the screen.
+ * \note 1.) The image produced is based on the object setting for
+ *           width, height, angle AND mirror, basically what is
+ *           shown on the screen.
  *
  *        2.) The file extension is intentionally ignored.
  *
@@ -167,9 +167,9 @@ geda_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *  are last on the stack or two singles can be paired. The point is, stack
  *  searching stops when a NULL is encountered and a NULL must present at the
  *  end of the data.
- *  \par
+ * \par
  *  Below is a summary of some of the advertised options:
- *  \par
+ * \par
  *  <DL>
  *    <DT>"type       key          value          min     max</DT>
  *    <DT>"jpeg"   "quality",      "int"           0      100</DT>
@@ -180,7 +180,7 @@ geda_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *    <DT>"ico"    "x_hot",        "int"          unk     unk</DT>
  *    <DT>"ico"    "y_hot",        "int"          unk     unk</DT>
  *  </DL>
- *  \par
+ * \par
  *  jpeg, png, and tiff can also have embedded ICC color profiles,
  *  the value should be a pointer to the complete contents of the
  *  ICC base64 encoded file.
@@ -190,7 +190,7 @@ geda_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *    <DT>"tiff"   "icc-profile",  (char*data64)  N/A     N/A</DT>
  *  </DL>
  *
- * Examples: See geda_picture_object_export and geda_picture_object_export_pixbuf
+ *  Examples: See geda_picture_object_export and geda_picture_object_export_pixbuf
  *
  * \remarks
  *  During testing, the follow observation were made:
@@ -371,23 +371,23 @@ geda_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
   return result;
 }
 
-/*! \brief Export Picture GedaObject to a given File and Type
- *
- *  \par Function Description
+/*!
+ * \brief Export Picture GedaObject to a given File and Type
+ * \par Function Description
  *  This function creates an image file of the given type from the
  *  pixel buffer associated with \a o_current. Supported formats \a type
  *  is system dependent and is determined at run time. The filename
  *  argument is not checked, the caller is responsible for ensuring
  *  the user has write-access to the file and any path is valid.
  *
- *  \param [in]  o_current Picture GedaObject to export
- *  \param [in]  filename  The name of the file to export
- *  \param [in]  type      type of image to generate
+ * \param [in]  o_current Picture GedaObject to export
+ * \param [in]  filename  The name of the file to export
+ * \param [in]  type      type of image to generate
  *
- *  \return True on success, otherwise FALSE
+ * \return True on success, otherwise FALSE
  *
- *  \note The image produced is based on the object's width, height, angle
- *         AND mirror properties, basically what is shown on the screen.
+ * \note The image produced is based on the object's width, height, angle
+ *       AND mirror properties, basically what is shown on the screen.
  *
  * examples:
  *
@@ -421,24 +421,24 @@ geda_picture_object_export_object(GedaObject *o_current,
   return result;
 }
 
-/*! \brief Export Original Picture GedaObject Image to a given File and Type
- *
- *  \par Function Description
+/*!
+ * \brief Export Original Picture GedaObject Image to a given File and Type
+ * \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
  *  Supported format \a type is system dependent and is determined at run
  *  time. The filename argument is not checked, the caller is responsible
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  o_current Picture GedaObject to export
- *  \param [in]  filename  The name of the file to export
- *  \param [in]  type      type of image to generate
+ * \param [in]  o_current Picture GedaObject to export
+ * \param [in]  filename  The name of the file to export
+ * \param [in]  type      type of image to generate
  *
- *  \return True on success, otherwise FALSE
+ * \return True on success, otherwise FALSE
  *
- *  \note The image produced is based on the original image's width,
- *        height properties, basically what was originally read in
- *        with no intentional adjustments.
+ * \note The image produced is based on the original image's width,
+ *       height properties, basically what was originally read in
+ *       with no intentional adjustments.
  *
  * examples:
  *
@@ -446,7 +446,7 @@ geda_picture_object_export_object(GedaObject *o_current,
  *  2.) geda_picture_object_export (object, name, type, "compression", "7", NULL); //type = "png" || "tif" || "tiff"
  *  3.) geda_picture_object_export (object, name, type, "x_hot", "50", "y_hot", "60", NULL);
  *
- *  \sa geda_picture_object_export_object geda_picture_object_export_full
+ * \sa geda_picture_object_export_object geda_picture_object_export_full
  */
 bool
 geda_picture_object_export_orginal (GedaObject *o_current,
@@ -471,24 +471,24 @@ geda_picture_object_export_orginal (GedaObject *o_current,
   return result;
 }
 
-/*! \brief Export Picture GedaObject Image to a given File and Type
- *
- *  \par Function Description
+/*!
+ * \brief Export Picture GedaObject Image to a given File and Type
+ * \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
  *  Supported format \a type is system dependent and is determined at run
  *  time. The filename argument is not checked, the caller is responsible
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  pixbuf    The GdkPixbuf object to export
- *  \param [in]  filename  The name of the file to export
- *  \param [in]  type      type of image to generate
+ * \param [in]  pixbuf    The GdkPixbuf object to export
+ * \param [in]  filename  The name of the file to export
+ * \param [in]  type      type of image to generate
  *
- *  \return True on success, otherwise FALSE
+ * \return True on success, otherwise FALSE
  *
- *  \note The image produced is based on the original image's width,
- *        height properties, basically what was originally read in
- *        with no intentional adjustments.
+ * \note The image produced is based on the original image's width,
+ *       height properties, basically what was originally read in
+ *       with no intentional adjustments.
  *
  * examples:
  *
@@ -496,7 +496,7 @@ geda_picture_object_export_orginal (GedaObject *o_current,
  *  2.) geda_picture_object_export (pixbuf, name, type, "compression", "7", NULL); //type = "png" || "tif" || "tiff"
  *  3.) geda_picture_object_export (pixbuf, name, type, "x_hot", "50", "y_hot", "60", NULL);
  *
- *  \sa geda_picture_object_export_object geda_picture_object_export_full
+ * \sa geda_picture_object_export_object geda_picture_object_export_full
  */
 bool
 geda_picture_object_export_pixbuf (GdkPixbuf  *pixbuf,
@@ -521,11 +521,11 @@ geda_picture_object_export_pixbuf (GdkPixbuf  *pixbuf,
   return result;
 }
 
-/*! \brief Get the raw image data from a picture object
- *
+/*!
+ * \brief Get the raw image data from a picture object
  * \par Function Description
- * Returns the raw image file data underlying the picture \a object,
- * or NULL if the picture could not be loaded.
+ *  Returns the raw image file data underlying the picture \a object,
+ *  or NULL if the picture could not be loaded.
  *
  * \param object    The picture #GedaObject to inspect.
  * \param len       Location to store buffer length.
@@ -541,8 +541,8 @@ geda_picture_object_get_data (GedaObject *object, size_t *len)
   return object->picture->file_content;
 }
 
-/*! \brief Get Effective Width/Height Ratio of an Image
- *
+/*!
+ * \brief Get Effective Width/Height Ratio of an Image
  * \par Function Description
 
  * Returns the width/height ratio of picture \a object, taking the
@@ -572,8 +572,8 @@ geda_picture_object_get_effective_ratio (GedaObject *object)
   return anwser;
 }
 
-/*! \brief Get fallback pixbuf for displaying pictures
- *
+/*!
+ * \brief Get fallback pixbuf for displaying pictures
  * \par Function Description
  *  Returns a pixbuf containing the fallback image to be used if a
  *  picture object fails to load. The returned pixbuf should be freed
@@ -609,10 +609,10 @@ geda_picture_object_get_fallback_pixbuf (void)
   return failed ? NULL : g_object_ref (pixbuf);
 }
 
-/*! \brief Get the file name Associated with a Picture GedaObject
- *
+/*!
+ * \brief Get the file name Associated with a Picture GedaObject
  * \par Function Description
- * Returns the filename associated with the picture \a object.
+ *  Returns the filename associated with the picture \a object.
  *
  * \param object   The picture #GedaObject to inspect
  *
@@ -626,13 +626,13 @@ geda_picture_object_get_filename (GedaObject *object)
   return object->picture->filename;
 }
 
-/*! \brief Get Width of a Picture
- *
- *  \par Function Description
+/*!
+ * \brief Get Width of a Picture
+ * \par Function Description
  *  This function returns current height if picture \a object
  *  in world units. No checking is performed.
  *
- *  \param [in] object   The object to get the position.
+ * \param [in] object   The object to get the position.
  */
 int
 geda_picture_object_get_height (GedaObject *object)
@@ -679,18 +679,18 @@ geda_picture_object_mask_data(GdkPixbuf *image)
   return mask;
 }
 
-/*! \brief Get mask data from a Picture object
- *
- *  \par Function Description
+/*!
+ * \brief Get mask data from a Picture object
+ * \par Function Description
  *  This function returns the mask data of the given object.
  *
- *  \param [in] object Picture object to get mask data from
+ * \param [in] object Picture object to get mask data from
  *
- *  \return Array of mask data from image
+ * \return Array of mask data from image
  *
- *  \note Caller must GEDA_FREE returned uint8 array.
+ * \note Caller must GEDA_FREE returned uint8 array.
  *
- *  \sa geda_picture_object_mask_data geda_picture_object_get_rgb_data
+ * \sa geda_picture_object_mask_data geda_picture_object_get_rgb_data
  */
 uint8*
 geda_picture_object_get_mask_data(GedaObject *object)
@@ -705,22 +705,23 @@ geda_picture_object_get_mask_data(GedaObject *object)
   }
 }
 
-/*! \brief Get Point on a Picture Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a Picture Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on a Picture object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
  *  on the picture that is the closest point on the picture to the point
  *  given by \a x, \a y.
  *
- *  \param [in]  object  Pointer to a Picture object
- *  \param [in]  x       Integer x of point near or on the picture
- *  \param [in]  y       Integer y of point near or on the picture
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to a Picture object
+ * \param [in]  x       Integer x of point near or on the picture
+ * \param [in]  y       Integer y of point near or on the picture
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid or
- *           FALSE if \a object was not a Picture.
+ * \returns TRUE is the results are valid or
+ *          FALSE if \a object was not a Picture.
  */
 bool
 geda_picture_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
@@ -752,14 +753,13 @@ geda_picture_object_get_nearest_point(GedaObject *object, int x, int y, int *nx,
   return result;
 }
 
-/*! \brief Get a pixel buffer for a picture object
- *
+/*!
+ * \brief Get a pixel buffer for a picture object
  * \par Function Description
- * Returns a GdkPixbuf for the picture object \a object, or NULL if
- * the picture could not be loaded.
- *
- * The returned value should have its reference count decremented with
- * GEDA_UNREF() when no longer needed.
+ *  Returns a GdkPixbuf for the picture object \a object, or NULL if
+ *  the picture could not be loaded. The returned value should have
+ *  its reference count decremented with GEDA_UNREF() when no longer
+ *  needed.
  *
  * \param object  The picture #GedaObject to inspect.
  *
@@ -778,8 +778,9 @@ geda_picture_object_get_pixbuf (GedaObject *object)
   }
 }
 
-/*! \brief Get a fitted pixel buffer for a picture object
- *  \par Function Description
+/*!
+ * \brief Get a fitted pixel buffer for a picture object
+ * \par Function Description
  *  Returns a GdkPixbuf for the picture object \a object, or NULL if
  *  the picture could not be loaded. The returned pixel buffer object
  *  size is set based on the object properties and page scaling. The
@@ -793,7 +794,7 @@ geda_picture_object_get_pixbuf (GedaObject *object)
  * \param [in] interp  GdkInterpType flag passed to gdk_pixbuf_scale
  *
  *  <B>interp</B> can be one of the following values:
- *  \par
+ * \par
  *  <DL>
  *    <DT>GDK_INTERP_NEAREST</DT>
  *    <DT>GDK_INTERP_TILES</DT>
@@ -885,10 +886,9 @@ geda_picture_object_get_position (GedaObject *object, int *x, int *y)
   return TRUE;
 }
 
-/*! \brief Get Width/Height Ratio of an Image
- *
+/*!
+ * \brief Get Width/Height Ratio of an Image
  * \par Function Description
-
  * Returns the width/height ratio of picture \a object.
  *
  * \param object    Picture #GedaObject to inspect
@@ -971,16 +971,16 @@ geda_picture_object_rgb_data (GdkPixbuf *image)
   }
 }
 
-/*! \brief Get RGB data from a Picture object
- *
- *  \par Function Description
+/*!
+ * \brief Get RGB data from a Picture object
+ * \par Function Description
  *  This function returns the RGB data of the given object..
  *
- *  \param [in] object  Picture object to get RGB data from.
+ * \param [in] object  Picture object to get RGB data from.
  *
- *  \return Array of rgb data from image.
+ * \return Array of rgb data from image.
  *
- *  \note Caller must GEDA_FREE returned data.
+ * \note Caller must GEDA_FREE returned data.
  *
  *  \sa geda_picture_object_rgb_data geda_picture_object_get_mask_data
  */
@@ -997,13 +997,13 @@ geda_picture_object_get_rgb_data (GedaObject *object)
   }
 }
 
-/*! \brief Get Height of a Picture
- *
- *  \par Function Description
+/*!
+ * \brief Get Height of a Picture
+ * \par Function Description
  *  This function returns current height if picture \a object
  *  in world units. No checking is performed.
  *
- *  \param [in] object   The object to get the position.
+ * \param [in] object   The object to get the position.
  */
 int
  geda_picture_object_get_width(GedaObject *object)
@@ -1011,9 +1011,9 @@ int
   return object->picture->lower_x - object->picture->upper_x;
 }
 
-/*! \brief Test whether a picture object is embedded
- *
- *  \par Function Description
+/*!
+ * \brief Test whether a picture object is embedded
+ * \par Function Description
  *  Returns TRUE if the picture \a object will have its data embedded
  *  in a schematic or symbol file; returns FALSE if its data will be
  *  obtained from a separate file.
@@ -1028,17 +1028,16 @@ geda_picture_object_is_embedded (GedaObject *object)
   return (object->picture->is_embedded == 1);
 }
 
-/*! \brief Mirror a picture
- *
- *  \par Function Description
+/*!
+ * \brief Mirror a picture
+ * \par Function Description
  *  This function mirrors the picture from the point (<B>center_x</B>,
  *  <B>center_y</B>). The picture is first translated to the origin,
  *  then mirrored and finally translated back at its previous position.
  *
- *  \param [in,out] object    Picture GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate.
- *  \param [in]     center_y  Origin y coordinate.
-
+ * \param [in,out] object    Picture GedaObject to mirror.
+ * \param [in]     center_x  Origin x coordinate.
+ * \param [in]     center_y  Origin y coordinate.
  */
 void
 geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
@@ -1091,9 +1090,9 @@ geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
 
 }
 
-/*! \brief Modify the description of a picture Object
- *
- *  \par Function Description
+/*!
+ * \brief Modify the description of a picture Object
+ * \par Function Description
  *  This function modifies the coordinates of one of the four corner of
  *  the picture. The new coordinates of the corner identified by
  *  <B>whichone</B> are given by <B>x</B> and <B>y</B> in world unit.
@@ -1101,10 +1100,10 @@ geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
  *  The coordinates of the corner is modified in the world coordinate
  *  system. Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object    Picture GedaObject to modify.
- *  \param [in]     x         New x coordinate.
- *  \param [in]     y         New y coordinate.
- *  \param [in]     whichone  Which picture parameter to modify.
+ * \param [in,out] object    Picture GedaObject to modify.
+ * \param [in]     x         New x coordinate.
+ * \param [in]     y         New y coordinate.
+ * \param [in]     whichone  Which picture parameter to modify.
  *
  *  <B>whichone</B> can have the following values:
  *  <DL>
@@ -1179,13 +1178,13 @@ geda_picture_object_modify(GedaObject *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Modify a picture object's coordinates
- *
+/*!
+ * \brief Modify a picture object's coordinates
  * \par Function Description
- * Modifies the coordinates of all four corners of a picture \a
- * object.  The picture is adjusted to fit the rectangle enclosed by
- * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
- * as possible to still fit within that rectangle.
+ *  Modifies the coordinates of all four corners of a picture \a
+ *  object.  The picture is adjusted to fit the rectangle enclosed by
+ *  the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
+ *  as possible to still fit within that rectangle.
  *
  * \param [in,out] object   picture #GedaObject to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
@@ -1206,9 +1205,9 @@ geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2, int 
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Create a picture object.
- *
- *  \par Function Description
+/*!
+ * \brief Create a picture object.
+ * \par Function Description
  *  This function creates a new object representing a picture.
  *
  *  The picture is described by its upper left corner (\a x1, \a y1)
@@ -1221,18 +1220,18 @@ geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2, int 
  *  attempt to be loaded from \a filename.  Otherwise, the picture
  *  object will fallback to a warning image.
  *
- *  \param [in] file_content  Raw data of the image file, or NULL.
- *  \param [in] file_length   Length of raw data buffer
- *  \param [in] filename      File name backing this picture, or NULL.
- *  \param [in] x1            Upper x coordinate.
- *  \param [in] y1            Upper y coordinate.
- *  \param [in] x2            Lower x coordinate.
- *  \param [in] y2            Lower y coordinate.
- *  \param [in] angle         Picture rotation angle.
- *  \param [in] mirrored      Whether the image should be mirrored or not.
- *  \param [in] embedded      Whether the embedded flag should be set or not.
+ * \param [in] file_content  Raw data of the image file, or NULL.
+ * \param [in] file_length   Length of raw data buffer
+ * \param [in] filename      File name backing this picture, or NULL.
+ * \param [in] x1            Upper x coordinate.
+ * \param [in] y1            Upper y coordinate.
+ * \param [in] x2            Lower x coordinate.
+ * \param [in] y2            Lower y coordinate.
+ * \param [in] angle         Picture rotation angle.
+ * \param [in] mirrored      Whether the image should be mirrored or not.
+ * \param [in] embedded      Whether the embedded flag should be set or not.
  *
- *  \return A pointer to a new picture #GedaObject.
+ * \return A pointer to a new picture #GedaObject.
  */
 GedaObject*
 geda_picture_object_new (const char *file_content, unsigned int file_length,
@@ -1315,9 +1314,9 @@ geda_picture_object_new (const char *file_content, unsigned int file_length,
   return new_obj;
 }
 
-/*! \brief Print picture to Postscript document
- *
- *  \par Function Description
+/*!
+ * \brief Print picture to Postscript document
+ * \par Function Description
  *  This function prints a picture object. The picture is defined by the
  *  coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and its width
  *  and height given by the <B>width</B> and <B>height</B> parameters.
@@ -1331,11 +1330,11 @@ geda_picture_object_new (const char *file_content, unsigned int file_length,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Picture GedaObject to write to document.
- *  \param [in] origin_x   Page x coordinate to place picture Object.
- *  \param [in] origin_y   Page y coordinate to place picture Object.
+ * \param [in] toplevel   The GedaToplevel object.
+ * \param [in] fp         FILE pointer to Postscript document.
+ * \param [in] o_current  Picture GedaObject to write to document.
+ * \param [in] origin_x   Page x coordinate to place picture Object.
+ * \param [in] origin_y   Page y coordinate to place picture Object.
  */
 void
 geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
@@ -1430,20 +1429,20 @@ geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
   GEDA_FREE(mask_data);
 }
 
-/*! \brief Create picture Object from character string
- *
- *  \par Function Description
+/*!
+ * \brief Create picture Object from character string
+ * \par Function Description
  *  Parses \a first_line and subsequent lines from \a tb, and returns
  *  a newly-created picture #GedaObject.
  *
- *  \param [in]  first_line      Character string with picture description.
- *  \param [in]  tb              Text buffer to load embedded data from.
- *  \param [in]  release_ver     libgeda release version number.
- *  \param [in]  fileformat_ver  libgeda file format version number.
+ * \param [in]  first_line      Character string with picture description.
+ * \param [in]  tb              Text buffer to load embedded data from.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  libgeda file format version number.
  *
- *  \param [out] err           A GError obejct
+ * \param [out] err           A GError obejct
  *
- *  \return A pointer to the new picture object, or NULL on error.
+ * \return A pointer to the new picture object, or NULL on error.
  */
 GedaObject*
 geda_picture_object_read (const char  *first_line,
@@ -1619,16 +1618,16 @@ geda_picture_object_read (const char  *first_line,
   return new_obj;
 }
 
-/*! \brief Rotate picture Object.
- *  \par Function Description
+/*!
+ * \brief Rotate picture Object.
+ * \par Function Description
  *  This function rotates the picture described by <B>*object</B> around
  *  the given (<B>x</B>, <B>y</B>) point by <B>angle</B> degrees.
  *
- *  \param [in,out] object Picture GedaObject to rotate
- *  \param [in]     x      Rotation center x coordinate
- *  \param [in]     y      Rotation center y coordinate
- *  \param [in]     angle  Rotation angle in degrees (See note below).
-
+ * \param [in,out] object Picture GedaObject to rotate
+ * \param [in]     x      Rotation center x coordinate
+ * \param [in]     y      Rotation center y coordinate
+ * \param [in]     angle  Rotation angle in degrees (See note below).
  */
 void
 geda_picture_object_rotate(GedaObject *object, int x, int y, int angle)
@@ -1756,11 +1755,11 @@ geda_picture_object_save(GedaObject *object)
   return(out);
 }
 
-/*! \brief Set a picture object's contents from a buffer
- *
+/*!
+ * \brief Set a picture object's contents from a buffer
  * \par Function Description
- * Sets the contents of the picture \a object by reading image data
- * from a buffer. The buffer should be in on-disk format.
+ *  Sets the contents of the picture \a object by reading image
+ *  data from a buffer. The buffer should be in on-disk format.
  *
  * \note object->picture->ratio is set to the ratio of the buffer
  *       image and not the ratio of the as drawn image.
@@ -1828,9 +1827,9 @@ geda_picture_object_set_from_buffer (GedaObject    *object,
   return TRUE;
 }
 
-/*! \brief Set a picture object's contents from a file
- *
- *  \par Function Description
+/*!
+ * \brief Set a picture object's contents from a file
+ * \par Function Description
  *  Sets the contents of the picture \a object by reading image data
  *  from a file.
  *
@@ -1860,17 +1859,18 @@ geda_picture_object_set_from_file (GedaObject *object,
   return status;
 }
 
-/*! \brief Closest distance between point and a picture
- *
+/*!
+ * \brief Closest distance between point and a picture
  * \par Function Description
  *  Interrior points within the picture return a distance of zero.
  *
- *  \param [in] object       A picture Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
- *  \return The shortest distance from the object to the point. With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] object       A picture Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
+ *
+ * \return The shortest distance from the object to the point. With
+ *         an invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
 geda_picture_object_shortest_distance (GedaObject *object,
@@ -1900,16 +1900,15 @@ geda_picture_object_shortest_distance (GedaObject *object,
 
 }
 
-/*! \brief Translate a picture position by a delta
- *
- *  \par Function Description
+/*!
+ * \brief Translate a picture position by a delta
+ * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
  *
- *  \param [in,out] object     Picture GedaObject to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move.
-
+ * \param [in,out] object     Picture GedaObject to translate
+ * \param [in]     dx         x distance to move
+ * \param [in]     dy         y distance to move.
  */
 void
 geda_picture_object_translate(GedaObject *object, int dx, int dy)
@@ -1924,14 +1923,15 @@ geda_picture_object_translate(GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Unembed a picture, reloading the image from disk
+/*!
+ * \brief Unembed a picture, reloading the image from disk
  * \par Function Description
- * Verify that the file associated with \a object exists on disk and
- * is usable, and if so, reload the picture and mark it as unembedded.
+ *  Verify that the file associated with \a object exists on disk and
+ *  is usable, and if so, reload the picture and mark it as unembedded.
  *
- *  \param [in] object  The picture Object to unembed
+ * \param [in] object  The picture Object to unembed
  *
- *  \return True on success, or False on failure
+ * \return True on success, or False on failure
  */
 bool
 geda_picture_object_unembed (GedaObject *object)
@@ -1958,6 +1958,7 @@ geda_picture_object_unembed (GedaObject *object)
       else {
 
         const char *basename = f_get_basename(filename);
+
         geda_log (_("Picture [%s] has been unembedded\n"), basename);
 
         object->picture->is_embedded = 0;
