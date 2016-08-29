@@ -5,6 +5,8 @@
     * include/prototype_priv.h: Remove declarations in s_encoding.c.
 
     * src/struct/s_encoding.c: Rename functions with geda_struct prefix.
+      Replace g_new with malloc and replace g_free free, comment-out
+      g_assert and include stdlib.h instead of glib.h.
 
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -39,13 +39,16 @@
 #endif
 
 #include <ctype.h>
-#include <glib.h>
+#include <stdlib.h>
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
+#define s_encoding_Pad64 '='
+
 static char s_encoding_Base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-#define s_encoding_Pad64	'='
+
 static unsigned char s_encoding_Base64_rank[256] = {
   255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255, /* 0x00-0x0f */
   255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255, /* 0x10-0x1f */
@@ -90,17 +93,19 @@ geda_struct_encoding_base64_encode (char         *src,
   unsigned char output[4];
   unsigned int  ocnt;
 
-  if (srclen == 0)
+  if (srclen == 0) {
     return NULL;	/* FIX: Or return ""? */
+  }
 
   /* Calculate required length of dst.  4 bytes of dst are needed for
    *    every 3 bytes of src. */
    *dstlenp = (((srclen + 2) / 3) * 4)+5;
 
-  if (strict)
+  if (strict) {
     *dstlenp += (*dstlenp / 72);	/* Handle trailing \n */
+  }
 
-    dst = g_new(char, *dstlenp );
+  dst = malloc(*dstlenp);
 
   /* bulk encoding */
   dstpos = 0;
@@ -129,7 +134,7 @@ geda_struct_encoding_base64_encode (char         *src,
     (input[2] >> 6);
     output[3] = (input[2] & 0x3f);
 
-    g_assert ((dstpos + 4) < *dstlenp);
+    //g_assert ((dstpos + 4) < *dstlenp);
 
     /* Map output to the Base64 alphabet */
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[0]];
@@ -150,8 +155,9 @@ geda_struct_encoding_base64_encode (char         *src,
 
     input[0] = input[1] = input[2] = '\0';
 
-    for (i = 0; i < srclen; i++)
+    for (i = 0; i < srclen; i++) {
       input[i] = *src++;
+    }
 
     output[0] = (input[0] >> 2);
     output[1] = ((input[0] & 0x03) << 4) +
@@ -159,7 +165,7 @@ geda_struct_encoding_base64_encode (char         *src,
     output[2] = ((input[1] & 0x0f) << 2) +
     (input[2] >> 6);
 
-    g_assert ((dstpos + 4) < *dstlenp);
+    //g_assert ((dstpos + 4) < *dstlenp);
 
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[0]];
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[1]];
@@ -172,7 +178,7 @@ geda_struct_encoding_base64_encode (char         *src,
     dst[dstpos++] = s_encoding_Pad64;
   }
 
-  g_assert (dstpos <= *dstlenp);
+  //g_assert (dstpos <= *dstlenp);
 
   dst[dstpos] = '\0';
 
@@ -214,7 +220,7 @@ geda_struct_encoding_base64_decode (char         *src,
   dstidx = 0;
   res    = 0;
 
-  dst = g_new(char, srclen+1);
+   dst     = malloc(srclen + 1);
   *dstlenp = srclen+1;
 
   while (srclen > 0) {
@@ -284,7 +290,7 @@ geda_struct_encoding_base64_decode (char         *src,
 
         /* Make sure there is another trailing = sign. */
         if (ch != s_encoding_Pad64) {
-          g_free(dst);
+          free(dst);
           *dstlenp = 0;
           return NULL;
         }
@@ -298,7 +304,7 @@ geda_struct_encoding_base64_decode (char         *src,
             srclen--;
             ch = *src++;
             if (s_encoding_Base64_rank[ch] != 255) {
-              g_free(dst);
+              free(dst);
               *dstlenp = 0;
               return NULL;
             }
@@ -310,7 +316,7 @@ geda_struct_encoding_base64_decode (char         *src,
            * subliminal channel.
            */
           if (res != 0) {
-            g_free(dst);
+            free(dst);
            *dstlenp = 0;
             return NULL;
           }
@@ -325,7 +331,7 @@ geda_struct_encoding_base64_decode (char         *src,
      * have no partial bytes lying around.
      */
     if (state != 0) {
-      g_free(dst);
+      free(dst);
      *dstlenp = 0;
       return NULL;
     }
