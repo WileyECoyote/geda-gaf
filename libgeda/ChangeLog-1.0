@@ -9,7 +9,8 @@
 
     * src/object/o_picture_object.c: Add default case for ->picture->angle in
       geda_picture_object_mirror, just break. Rename geda_picture_object_rotate
-      arguments center_x and center_y to simply x and y.
+      arguments center_x and center_y to simply x and y. Rename static functions
+      with geda_ prefix.
 
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 

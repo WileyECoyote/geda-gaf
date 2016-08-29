@@ -127,7 +127,7 @@ geda_picture_object_embed (GedaObject *object)
 }
 
 static void
-o_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
+geda_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
 {
   if (gdk_pixbuf_format_is_writable (data)) {
     *list = g_slist_prepend (*list, data);
@@ -220,10 +220,10 @@ o_picture_object_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *      "ico", the generated file is actually a "cur" type.
  */
 static bool
-o_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
-                                     const char *filename,
-                                     const char *type,
-                                     va_list     varargs)
+geda_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
+                                        const char *filename,
+                                        const char *type,
+                                        va_list     varargs)
 {
   GSList     *formats;
   GSList     *iter;
@@ -307,7 +307,7 @@ o_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
 
       /* Reduce list to only writable formats */
       writable = NULL;
-      g_slist_foreach(formats, (GFunc)o_picture_object_add_if_writable, &writable);
+      g_slist_foreach(formats, (GFunc)geda_picture_object_add_if_writable, &writable);
 
       is_writable = 0;
 
@@ -410,7 +410,7 @@ geda_picture_object_export_object(GedaObject *o_current,
   if (pixbuf) {
     va_list varargs;
     va_start (varargs, type);
-    result = o_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
+    result = geda_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
     GEDA_UNREF(pixbuf);
     GEDA_UNREF(pixbuf);
@@ -461,7 +461,7 @@ geda_picture_object_export_orginal (GedaObject *o_current,
   if (pixbuf) {
     va_list varargs;
     va_start (varargs, type);
-    result = o_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
+    result = geda_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
     GEDA_UNREF(pixbuf);
   }
@@ -511,7 +511,7 @@ geda_picture_object_export_pixbuf (GdkPixbuf  *pixbuf,
 
     GEDA_REF(pixbuf); /* Make sure the buffer exist until were done */
     va_start (varargs, type);
-    result = o_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
+    result = geda_picture_object_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
     GEDA_UNREF(pixbuf);
   }
@@ -656,7 +656,7 @@ geda_picture_object_get_height (GedaObject *object)
  * \note Caller must GEDA_FREE returned uint8 array.
  */
 static uint8*
-o_picture_object_mask_data(GdkPixbuf *image)
+geda_picture_object_mask_data(GdkPixbuf *image)
 {
   uint8 *pixels;
   uint8 *mask;
@@ -690,7 +690,7 @@ o_picture_object_mask_data(GdkPixbuf *image)
  *
  *  \note Caller must GEDA_FREE returned uint8 array.
  *
- *  \sa o_picture_object_mask_data geda_picture_object_get_rgb_data
+ *  \sa geda_picture_object_mask_data geda_picture_object_get_rgb_data
  */
 uint8*
 geda_picture_object_get_mask_data(GedaObject *object)
@@ -698,7 +698,7 @@ geda_picture_object_get_mask_data(GedaObject *object)
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
   if (object->picture->pixbuf == NULL) {
-    return o_picture_object_mask_data(object->picture->pixbuf);
+    return geda_picture_object_mask_data(object->picture->pixbuf);
   }
   else {
     return NULL;
@@ -944,7 +944,7 @@ geda_picture_object_get_ratio (GedaObject *object)
  * \note Caller must GEDA_FREE returned uint8 array.
  */
 static unsigned char*
-o_picture_object_rgb_data (GdkPixbuf *image)
+geda_picture_object_rgb_data (GdkPixbuf *image)
 {
   int width         = gdk_pixbuf_get_width(image);
   int height        = gdk_pixbuf_get_height(image);
@@ -982,7 +982,7 @@ o_picture_object_rgb_data (GdkPixbuf *image)
  *
  *  \note Caller must GEDA_FREE returned data.
  *
- *  \sa o_picture_object_rgb_data geda_picture_object_get_mask_data
+ *  \sa geda_picture_object_rgb_data geda_picture_object_get_mask_data
  */
 unsigned char*
 geda_picture_object_get_rgb_data (GedaObject *object)
@@ -990,7 +990,7 @@ geda_picture_object_get_rgb_data (GedaObject *object)
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
   if (object->picture->pixbuf != NULL) {
-    return o_picture_object_rgb_data(object->picture->pixbuf);
+    return geda_picture_object_rgb_data(object->picture->pixbuf);
   }
   else {
     return NULL;
@@ -1383,8 +1383,8 @@ geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
   img_rowstride = gdk_pixbuf_get_rowstride(image);
   img_height    = gdk_pixbuf_get_height(image);
 
-  rgb_data      = o_picture_object_rgb_data(image);
-  mask_data     = o_picture_object_mask_data(image);
+  rgb_data      = geda_picture_object_rgb_data(image);
+  mask_data     = geda_picture_object_mask_data(image);
 
   fprintf(fp, "gsave\n");
 
