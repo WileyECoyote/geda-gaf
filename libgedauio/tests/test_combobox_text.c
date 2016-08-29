@@ -159,7 +159,7 @@ check_methods ()
 
   geda_combo_box_text_insert_text (combo_text, 0, "Bavet");   /* 3 */
 
-  geda_combo_box_text_widget_insert (widget, -1, "Soung");
+  geda_combo_box_text_widget_insert (widget, -1, "Soung");    /* 8 */
 
   geda_combo_box_text_prepend (combo_text, "Battambang");      /* 2 */
 
@@ -206,6 +206,32 @@ check_methods ()
   }
   else if (strncmp(city, "Chbamon", 7)) {
     fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  /* Add set text to a new city not in the list */
+  if (!geda_combo_box_text_widget_set_active_text(widget, "Takeo")) {
+    fprintf(stderr, "FAILED: %s line <%d> set_active_text\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* "Takeo" should be the active text in the entry */
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Takeo", 5)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  /* "Takeo" should have been appended to the list so active index = 9 */
+  index = geda_combo_box_text_widget_get_active(widget);
+
+  if (index) {
+    fprintf(stderr, "FAILED: %s line <%d> bad index <%d>\n", TWIDGET, __LINE__, index);
     result++;
   }
 

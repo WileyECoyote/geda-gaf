@@ -16,6 +16,8 @@
       _active_text to set the active text to the text that was just
       added.
 
+    * tests/test_combobox_text.c: Add check for geda_combo_box_text_widget
+      _set_active_text.
 
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
