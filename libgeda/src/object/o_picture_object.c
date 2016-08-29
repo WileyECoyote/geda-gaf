@@ -1032,9 +1032,8 @@ geda_picture_object_is_embedded (GedaObject *object)
  *
  *  \par Function Description
  *  This function mirrors the picture from the point (<B>center_x</B>,
- *  <B>center_y</B>) in world unit. The picture is first translated to
- *  the origin, then mirrored and finally translated back at its previous
- *  position.
+ *  <B>center_y</B>). The picture is first translated to the origin,
+ *  then mirrored and finally translated back at its previous position.
  *
  *  \param [in,out] object    Picture GedaObject to mirror.
  *  \param [in]     center_x  Origin x coordinate.
@@ -1623,17 +1622,16 @@ geda_picture_object_read (const char  *first_line,
 /*! \brief Rotate picture Object.
  *  \par Function Description
  *  This function rotates the picture described by <B>*object</B> around
- *  the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B>
- *  degrees. The center of rotation is in world units.
+ *  the given (<B>x</B>, <B>y</B>) point by <B>angle</B> degrees.
  *
- *  \param [in,out]  object     Picture GedaObject to rotate
- *  \param [in]      center_x  Rotation center x coordinate
- *  \param [in]      center_y  Rotation center y coordinate
- *  \param [in]      angle      Rotation angle in degrees (See note below).
+ *  \param [in,out] object Picture GedaObject to rotate
+ *  \param [in]     x      Rotation center x coordinate
+ *  \param [in]     y      Rotation center y coordinate
+ *  \param [in]     angle  Rotation angle in degrees (See note below).
 
  */
 void
-geda_picture_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
+geda_picture_object_rotate(GedaObject *object, int x, int y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -1641,29 +1639,30 @@ geda_picture_object_rotate(GedaObject *object, int center_x, int center_y, int a
   /* Only 90 degree multiple and positive angles are allowed. */
   /* angle must be positive */
   if(angle < 0) angle = -angle;
+
   /* angle must be a 90 multiple or no rotation performed */
   if((angle % 90) != 0) return;
 
   object->picture->angle = (object->picture->angle + angle) % 360;
 
-  /* The center of rotation (<B>center_x</B>, <B>center_y</B>) is
-   * translated to the origin. The rotation of the upper left and lower
-   * right corner are then performed. Finally, the rotated picture is
-   * translated back to its previous location.
+  /* The center of rotation (<B>x</B>, <B>y</B>) is translated to the
+   * origin. The rotation of the upper left and lower right corner are
+   * then performed. Finally, the rotated picture is translated back to
+   * its previous location.
    */
   /* translate object to origin */
-  object->picture->upper_x -= center_x;
-  object->picture->upper_y -= center_y;
-  object->picture->lower_x -= center_x;
-  object->picture->lower_y -= center_y;
+  object->picture->upper_x -= x;
+  object->picture->upper_y -= y;
+  object->picture->lower_x -= x;
+  object->picture->lower_y -= y;
 
   /* rotate the upper left corner of the picture */
   m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
-                  &newx1, &newy1);
+                    &newx1, &newy1);
 
   /* rotate the lower left corner of the picture */
   m_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
-                  &newx2, &newy2);
+                    &newx2, &newy2);
 
   /* reorder the corners after rotation */
   object->picture->upper_x = min(newx1,newx2);
@@ -1672,10 +1671,10 @@ geda_picture_object_rotate(GedaObject *object, int center_x, int center_y, int a
   object->picture->lower_y = min(newy1,newy2);
 
   /* translate object back to normal position */
-  object->picture->upper_x += center_x;
-  object->picture->upper_y += center_y;
-  object->picture->lower_x += center_x;
-  object->picture->lower_y += center_y;
+  object->picture->upper_x += x;
+  object->picture->upper_y += y;
+  object->picture->lower_x += x;
+  object->picture->lower_y += y;
 
   /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;
@@ -1698,11 +1697,15 @@ geda_picture_object_rotate(GedaObject *object, int center_x, int center_y, int a
 char*
 geda_picture_object_save(GedaObject *object)
 {
-  int           width, height, x1, y1;
-  char         *encoded_picture=NULL;
-  char         *out=NULL;
+  char         *encoded_picture;
+  char         *out;
+  const char   *filename;
   unsigned int  encoded_picture_length;
-  const char   *filename = NULL;
+  int           width, height, x1, y1;
+
+  encoded_picture = NULL;
+  filename        = NULL;
+  out             = NULL;
 
   /* calculate the width and height of the box */
   width  = abs(object->picture->lower_x - object->picture->upper_x);
