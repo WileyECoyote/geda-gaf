@@ -1,5 +1,9 @@
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/prototype.h: Add declarations from s_encoding.c.
+
+    * include/prototype_priv.h: Remove declarations in s_encoding.c.
+
     * src/struct/s_encoding.c: Rename functions with geda_struct prefix.
 
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>

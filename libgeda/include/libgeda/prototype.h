@@ -698,6 +698,11 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          GList  *geda_struct_place_get_place_list          (GedaToplevel *toplevel);
          void    geda_struct_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
 
+/* s_encoding.c */
+         char   *geda_struct_encoding_base64_encode        (char *src, unsigned int srclen, unsigned int *dstlenp, bool strict);
+         char   *geda_struct_encoding_base64_decode        (char *src, unsigned int srclen, unsigned int *dstlenp);
+
+
 /* s_slib.c */
           int    geda_struct_slib_add_entry                (const char *new_path);
 
