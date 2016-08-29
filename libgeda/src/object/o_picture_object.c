@@ -1942,7 +1942,7 @@ geda_picture_object_unembed (GedaObject *object)
 
   if (GEDA_IS_PICTURE(object)) {
 
-    if (!geda_picture_object_is_embedded (object)) {
+    if (geda_picture_object_is_embedded (object)) {
 
       geda_picture_object_set_from_file (object, filename, &err);
 
