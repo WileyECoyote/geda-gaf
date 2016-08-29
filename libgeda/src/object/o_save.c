@@ -198,16 +198,34 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
 
       char *buffer;
 
-      allocated = allocated + IO_BUFFER_SLICE_SIZE;
-      buffer    = (char*)realloc(acc, allocated);
+      /* Check if what is being added is large than the slice size */
+      if (len > IO_BUFFER_SLICE_SIZE) {
+
+        /* Request allocate len + 1/2 the slice */
+        allocated = allocated + new_size + IO_BUFFER_SLICE_SIZE / 2;
+      }
+      else {
+
+        /* Need less than slice so request a slice */
+        allocated = allocated + IO_BUFFER_SLICE_SIZE;
+      }
+
+      /* Request increase allocation */
+      buffer = (char*)realloc(acc, allocated);
 
       if (!buffer)
         return;
+
+      /* Update pointer is case block was relocated */
       acc = buffer;
     }
 
+    /* Append argument starting at acc_size */
     strncat(&acc[acc_size], str, len); /* use offset forward */
+
+    /* Update the index to the new tail */
     acc_size = new_size;
+
     return;
   }
 
