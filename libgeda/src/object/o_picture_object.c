@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -396,7 +396,9 @@ o_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
  *
  */
 bool
-geda_picture_object_export_object(GedaObject *o_current, const char *filename, const char *type, ...)
+geda_picture_object_export_object(GedaObject *o_current,
+                                  const char *filename,
+                                  const char *type, ...)
 {
   GdkPixbuf *pixbuf;
   bool       result;
@@ -447,7 +449,9 @@ geda_picture_object_export_object(GedaObject *o_current, const char *filename, c
  *  \sa geda_picture_object_export_object geda_picture_object_export_full
  */
 bool
-geda_picture_object_export_orginal (GedaObject *o_current, const char *filename, const char *type, ...)
+geda_picture_object_export_orginal (GedaObject *o_current,
+                                    const char *filename,
+                                    const char *type, ...)
 {
   GdkPixbuf *pixbuf;
   bool       result;
@@ -495,7 +499,9 @@ geda_picture_object_export_orginal (GedaObject *o_current, const char *filename,
  *  \sa geda_picture_object_export_object geda_picture_object_export_full
  */
 bool
-geda_picture_object_export_pixbuf (GdkPixbuf *pixbuf, const char *filename, const char *type, ...)
+geda_picture_object_export_pixbuf (GdkPixbuf  *pixbuf,
+                                   const char *filename,
+                                   const char *type, ...)
 {
   bool result;
 
@@ -713,7 +719,8 @@ geda_picture_object_get_mask_data(GedaObject *object)
  *  \param [out] nx      Integer pointer to resulting x value
  *  \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a Picture.
+ *  \returns TRUE is the results are valid or
+ *           FALSE if \a object was not a Picture.
  */
 bool
 geda_picture_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
@@ -827,8 +834,7 @@ geda_picture_object_get_pixbuf_fit (GedaObject *object, int interp)
     if ((angle == 90) || (angle == 270)) {
       pixbuf1 = gdk_pixbuf_scale_simple (o_pic->pixbuf, height, width, interp);
     }
-    else
-    {
+    else {
       pixbuf1 = gdk_pixbuf_scale_simple (o_pic->pixbuf, width, height, interp);
     }
 
@@ -937,7 +943,7 @@ geda_picture_object_get_ratio (GedaObject *object)
  *
  * \note Caller must GEDA_FREE returned uint8 array.
  */
-static unsigned char *
+static unsigned char*
 o_picture_object_rgb_data (GdkPixbuf *image)
 {
   int width         = gdk_pixbuf_get_width(image);
@@ -1093,13 +1099,13 @@ geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
  *  the picture. The new coordinates of the corner identified by
  *  <B>whichone</B> are given by <B>x</B> and <B>y</B> in world unit.
  *
- *  The coordinates of the corner is modified in the world coordinate system.
- *  Screen coordinates and boundings are then updated.
+ *  The coordinates of the corner is modified in the world coordinate
+ *  system. Screen coordinates and boundings are then updated.
  *
- *  \param [in,out] object     Picture GedaObject to modify.
- *  \param [in]     x          New x coordinate.
- *  \param [in]     y          New y coordinate.
- *  \param [in]     whichone   Which picture parameter to modify.
+ *  \param [in,out] object    Picture GedaObject to modify.
+ *  \param [in]     x         New x coordinate.
+ *  \param [in]     y         New y coordinate.
+ *  \param [in]     whichone  Which picture parameter to modify.
  *
  *  <B>whichone</B> can have the following values:
  *  <DL>
@@ -1216,23 +1222,23 @@ geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2, int 
  *  attempt to be loaded from \a filename.  Otherwise, the picture
  *  object will fallback to a warning image.
  *
- *  \param [in]     file_content  Raw data of the image file, or NULL.
- *  \param [in]     file_length   Length of raw data buffer
- *  \param [in]     filename      File name backing this picture, or NULL.
- *  \param [in]     x1            Upper x coordinate.
- *  \param [in]     y1            Upper y coordinate.
- *  \param [in]     x2            Lower x coordinate.
- *  \param [in]     y2            Lower y coordinate.
- *  \param [in]     angle         Picture rotation angle.
- *  \param [in]     mirrored      Whether the image should be mirrored or not.
- *  \param [in]     embedded      Whether the embedded flag should be set or not.
+ *  \param [in] file_content  Raw data of the image file, or NULL.
+ *  \param [in] file_length   Length of raw data buffer
+ *  \param [in] filename      File name backing this picture, or NULL.
+ *  \param [in] x1            Upper x coordinate.
+ *  \param [in] y1            Upper y coordinate.
+ *  \param [in] x2            Lower x coordinate.
+ *  \param [in] y2            Lower y coordinate.
+ *  \param [in] angle         Picture rotation angle.
+ *  \param [in] mirrored      Whether the image should be mirrored or not.
+ *  \param [in] embedded      Whether the embedded flag should be set or not.
  *
  *  \return A pointer to a new picture #GedaObject.
  */
 GedaObject*
 geda_picture_object_new (const char *file_content, unsigned int file_length,
-               const char *filename, int x1, int y1, int x2, int y2,
-               int angle, int mirrored, int embedded)
+                         const char *filename, int x1, int y1, int x2, int y2,
+                         int angle, int mirrored, int embedded)
 {
   GedaObject  *new_obj;
   GedaPicture *picture;
@@ -1333,8 +1339,9 @@ geda_picture_object_new (const char *file_content, unsigned int file_length,
  *  \param [in] origin_y   Page y coordinate to place picture Object.
  */
 void
-geda_picture_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
-                                        int origin_x, int origin_y)
+geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
+                          GedaObject   *o_current,
+                          int origin_x, int origin_y)
 {
   int x1, y1, x, y;
   int height, width;
@@ -1343,28 +1350,33 @@ geda_picture_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_curren
   uint8 *rgb_data;
   uint8 *mask_data;
 
-  /* calculate the width and height of the box */
+  /* Calculate the width and height of the box */
   width  = abs(o_current->picture->lower_x - o_current->picture->upper_x);
   height = abs(o_current->picture->upper_y - o_current->picture->lower_y);
 
-  /* calculate the origin of the box */
+  /* Calculate the origin of the box */
   x1 = o_current->picture->upper_x;
   y1 = o_current->picture->upper_y;
 
-  /* If the image failed to load, try to get hold of the fallback
-   * pixbuf. */
-  if (image == NULL) image = geda_picture_object_get_fallback_pixbuf ();
+  /* If the image failed to load, try to get hold of the fallback pixbuf. */
+  if (image == NULL) {
+    image = geda_picture_object_get_fallback_pixbuf ();
+  }
+
   /* If the image failed to load, draw a box in the default color with a
    * cross in it. */
   if (image == NULL) {
     int line_width = geda_object_style_get_line_width(toplevel);
     //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
     geda_box_object_print_solid (toplevel, fp, x1, y1, width, height,
-                       DEFAULT_COLOR_INDEX, line_width, SQUARE_CAP, -1, -1, -1, -1);
+                                 DEFAULT_COLOR_INDEX,
+                                 line_width, SQUARE_CAP, -1, -1, -1, -1);
     geda_line_object_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
-                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
+                                  DEFAULT_COLOR_INDEX,
+                                  line_width, ROUND_CAP, -1, -1, -1, -1);
     geda_line_object_print_solid (toplevel, fp, x1+width, y1, x1, y1-height,
-                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
+                                  DEFAULT_COLOR_INDEX,
+                                  line_width, ROUND_CAP, -1, -1, -1, -1);
     return;
   }
 
@@ -1455,11 +1467,13 @@ geda_picture_object_read (const char  *first_line,
 
   unsigned int file_length = 0;
 
-  num_conv = sscanf(first_line, "%c %d %d %d %d %d %d %d\n",
-                    &type, &x1, &y1, &width, &height, &angle, &mirrored, &embedded);
+  num_conv = sscanf(first_line, "%c %d %d %d %d %d %d %d\n", &type,
+                    &x1, &y1, &width, &height, &angle, &mirrored, &embedded);
 
   if (num_conv != 8) {
-    g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse picture definition"));
+    g_set_error(err,
+                EDA_ERROR,
+                EDA_ERROR_PARSE, _("Failed to parse picture definition"));
     return NULL;
   }
 
@@ -1757,11 +1771,11 @@ geda_picture_object_save(GedaObject *object)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-geda_picture_object_set_from_buffer (GedaObject        *object,
-                           const char    *filename,
-                           const char    *data,
-                           unsigned int   len,
-                           GError       **error)
+geda_picture_object_set_from_buffer (GedaObject    *object,
+                                     const char    *filename,
+                                     const char    *data,
+                                     unsigned int   len,
+                                     GError       **error)
 {
   GdkPixbuf    *pixbuf;
   GInputStream *stream;
@@ -1824,7 +1838,9 @@ geda_picture_object_set_from_buffer (GedaObject        *object,
  * \return TRUE on success, FALSE on failure.
  */
 bool
-geda_picture_object_set_from_file (GedaObject *object, const char *filename, GError **error)
+geda_picture_object_set_from_file (GedaObject *object,
+                                   const char *filename,
+                                   GError    **error)
 {
   char   *buf;
   size_t  len;
