@@ -1,5 +1,8 @@
 2016-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_embed.c: Utilize result of geda_picture_object_unembed in
+      backwards geda_object_unembed.
+
     * src/object/o_save.c: Revise subfunction string_append when reallocating
       memory chunks to check if additional size is greater than a slice and if
       so then request the additional size + 1/2 the slice, add comments.

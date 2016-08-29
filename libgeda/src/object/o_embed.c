@@ -124,9 +124,11 @@ geda_object_unembed(GedaObject *o_current)
     if (geda_picture_object_is_embedded (o_current)) {
 
       /* object is a picture and the picture is embedded */
-      geda_picture_object_unembed (o_current);
-      page_modified = 1;
+      result = !geda_picture_object_unembed (o_current);
 
+      if (!result) {
+        page_modified = 1;
+      }
     }
     else {
       result = 1;
