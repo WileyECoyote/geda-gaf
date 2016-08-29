@@ -1045,12 +1045,16 @@ geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
    * rotation angle as well as the mirror flag. */
   object->picture->mirrored = !object->picture->mirrored;
   switch (object->picture->angle) {
-  case 90:
-    object->picture->angle = 270;
-    break;
-  case 270:
-    object->picture->angle = 90;
-    break;
+    case 90:
+      object->picture->angle = 270;
+      break;
+
+    case 270:
+      object->picture->angle = 90;
+      break;
+
+    default:
+      break;
   }
 
   /* translate object to origin */
