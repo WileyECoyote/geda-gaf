@@ -648,7 +648,7 @@ geda_path_object_read (const char *first_line,
  *
  */
 char*
-geda_path_object_save (GedaObject *object)
+geda_path_object_to_buffer (GedaObject *object)
 {
   int line_width, line_space, line_length;
   char *buf;

@@ -1,3 +1,8 @@
+2016-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path_object.c: Rename geda_path_object_save->
+      geda_path_object_to_buffer.
+
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Add declarations from s_encoding.c.

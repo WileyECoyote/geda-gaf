@@ -210,7 +210,7 @@ bool        geda_path_object_get_position        (GedaObject *object, int *x, in
 void        geda_path_object_print               (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 GedaObject *geda_path_object_read                (const char *first_line, TextBuffer *tb,
                                                   unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_path_object_save                (GedaObject *object);
+char       *geda_path_object_to_buffer           (GedaObject *object);
 double      geda_path_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
 
 /* o_picture.c */
