@@ -1,3 +1,11 @@
+2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/SN65HVD234-x.sym: Add 2 SN65HVD234 symbols; CAN  3.3 Volt Bus
+      Transceivers with low-current sleep:
+
+            * ti/SN65HVD234-1.sym
+            * ti/SN65HVD234-2.sym
+
 2016-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPS3808Gxx-1.sym: Add 18 Supervisory Circuit, Programmable-Delay:
