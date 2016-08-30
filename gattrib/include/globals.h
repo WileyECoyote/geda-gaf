@@ -29,7 +29,7 @@
  * - I wanted to use gEDA's GedaToplevel structure as much as possible, at
  *    least to hold info about the design's netlist & components.
  *    The GedaToplevel strucuture is architected to hold info about gschem's
- *    window also.  HOwever, gschem's windows are architected differently
+ *    window also.  However, gschem's windows are architected differently
  *    than mine in gattrib.  This is because my windowing system does
  *    completely different things, and also uses the GtkSheet widget, which
  *    is architected completely differently from GedaToplevel.
