@@ -57,7 +57,7 @@ create_pixmap (const char *filename)
   return pixmap;
 }
 
-GtkWidget* get_geda_switch_image (gboolean WhichState)
+GtkWidget* get_geda_switch_image (bool WhichState)
 {
    GtkWidget* image;
 
@@ -70,7 +70,7 @@ GtkWidget* get_geda_switch_image (gboolean WhichState)
 }
 
 
-/*! \brief Function to create a GTK switch image control.
+/*! \brief Function to create a Geda switch image control.
  *  \par Function Description
  *  This function creates a Check Box widget using an image, the Check
  *  Box indicator is disabled so only the images is displayed. This creates
@@ -79,10 +79,9 @@ GtkWidget* get_geda_switch_image (gboolean WhichState)
  *
  *  Returns: Newly created widget
  */
-
 GtkWidget*
 create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, gboolean istate)
+                   GtkWidget *SwitchImage, bool istate)
 {
   widget = gtk_check_button_new ();
   gtk_widget_show (widget);
@@ -106,7 +105,6 @@ enum {
   PROP_SETTINGS_NAME = 1,
   PROP_GATTRIB_GedaToplevel
 };
-
 
 enum {
   GEOMETRY_SAVE,

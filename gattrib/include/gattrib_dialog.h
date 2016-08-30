@@ -85,17 +85,18 @@ struct _GattribDialog {
 };
 
 GedaType   gattrib_dialog_get_type  (void) GEDA_CONST;
-GtkWidget* gattrib_dialog_new_empty (const char            *title,
+GtkWidget *gattrib_dialog_new_empty (const char            *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const char *settings_name);
 
-GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
+GtkWidget *gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
                                             const char *settings_name, const char *first_button_text, ...);
 
 /* Prototypes for Dialogs */
-GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
-           GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
-GtkWidget* get_geda_switch_image ( gboolean WhichState);
+GtkWidget *create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
+                                GtkWidget *widget, GtkWidget *SwitchImage,
+                                bool istate);
+GtkWidget *get_geda_switch_image (bool WhichState);
 
 #endif /* __GATTRIB_DIALOG_H__ */

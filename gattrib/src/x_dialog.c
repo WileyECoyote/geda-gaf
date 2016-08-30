@@ -678,8 +678,8 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
  */
 static void search_replace_switch_responder(GtkWidget *widget, int response, ControlID *Control)
 {
-   int state = GET_SWITCH_STATE (widget);
-   GtkWidget *SwitchImage = get_geda_switch_image( state);
+   bool state = GET_SWITCH_STATE (widget);
+   GtkWidget *SwitchImage = get_geda_switch_image(state);
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
    /* We don't have a pointer to the Search structure but this does not
