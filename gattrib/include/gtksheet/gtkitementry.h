@@ -81,8 +81,8 @@ void gtk_item_entry_set_max_length_bytes(GtkItemEntry *item_entry,
 
 void gtk_item_entry_set_justification(GtkItemEntry *entry, GtkJustification just);
 
-void gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, int visible);
-int  gtk_item_entry_get_cursor_visible(GtkItemEntry *entry);
+void gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, _Bool visible);
+_Bool  gtk_item_entry_get_cursor_visible(GtkItemEntry *entry);
 
 #ifdef __cplusplus
 }

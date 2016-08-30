@@ -2740,7 +2740,7 @@ gtk_item_entry_pend_cursor_blink(GtkEntry *entry)
  * Sets the cursor visibility in the widget.
  */
 void
-gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, gboolean visible)
+gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, _Bool visible)
 {
     g_return_if_fail(GTK_IS_ITEM_ENTRY(entry));
 
@@ -2755,7 +2755,7 @@ gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, gboolean visible)
  *
  * Returns: TRUEfor visible or FALSE for invisible
  */
-gboolean
+_Bool
 gtk_item_entry_get_cursor_visible(GtkItemEntry *entry)
 {
     g_return_val_if_fail(GTK_IS_ITEM_ENTRY(entry), FALSE);

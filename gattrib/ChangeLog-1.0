@@ -1,6 +1,8 @@
 2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtkitementry.h: Replace gint16 with int16_t.
+      Use type _Bool for gtk_item_entry_set_cursor_visible and
+      gtk_item_entry_get_cursor_visible.
 
     * include/gtksheet/gtksheet.h: Replace gint8 with int8_t.
 
