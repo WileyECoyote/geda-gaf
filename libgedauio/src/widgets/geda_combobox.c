@@ -4856,7 +4856,7 @@ geda_combo_box_list_select_func (GtkTreeSelection *selection,
                                  void             *data)
 {
   GList *list, *columns;
-  gboolean sensitive = FALSE;
+  bool  sensitive = FALSE;
 
   columns = gtk_tree_view_get_columns (gtk_tree_selection_get_tree_view (selection));
 

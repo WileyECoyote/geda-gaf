@@ -1,3 +1,8 @@
+2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace gboolean with bool in
+      geda_combo_box_list_select_func.
+
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_image_chooser.h: add int member previous_size to
