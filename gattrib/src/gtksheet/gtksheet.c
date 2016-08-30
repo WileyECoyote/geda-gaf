@@ -5642,9 +5642,9 @@ gtk_sheet_flash(void *data)
       sheet->interval = 0;
     }
 
-    gdk_gc_set_dashes(sheet->xor_gc, sheet->interval, (gint8*)"\4\4", 2);
+    gdk_gc_set_dashes(sheet->xor_gc, sheet->interval, (int8_t*)"\4\4", 2);
     gtk_sheet_draw_flashing_range(sheet, sheet->clip_range);
-    gdk_gc_set_dashes(sheet->xor_gc, 0, (gint8*)"\4\4", 2);
+    gdk_gc_set_dashes(sheet->xor_gc, 0, (int8_t*)"\4\4", 2);
 
     GDK_THREADS_LEAVE();
 

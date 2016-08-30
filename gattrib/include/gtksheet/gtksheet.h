@@ -204,7 +204,7 @@ struct _GtkSheetButton
 struct _GtkSheetCellBorder
 {
     /*< private >*/
-    gint8 mask;
+    int8_t mask;
     unsigned int width;
     GdkLineStyle line_style;
     GdkCapStyle cap_style;

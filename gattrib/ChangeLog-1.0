@@ -1,5 +1,11 @@
 2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gtksheet/gtksheet.h: Replace gint8 with int8_t.
+
+    * src/gtksheet/gtksheet.c: Replace gint8 cast with int8_t.
+
+2016-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/s_table.c: Add missing type specifiers for subfunctions init_new_record
       and free_column.
 
