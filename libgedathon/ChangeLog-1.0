@@ -1,3 +1,7 @@
+2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/pygobject.h: Replace gboolean with bool.
+
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda2xml.py: Add script to convert sch and sym files to xml

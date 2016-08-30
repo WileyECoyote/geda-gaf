@@ -55,7 +55,7 @@ typedef struct {
     PyObject_HEAD
     void *boxed;
     GedaType gtype;
-    gboolean free_on_dealloc;
+    bool free_on_dealloc;
 } PyGBoxed;
 
 #define pyg_boxed_get(v,t) ((t *)((PyGBoxed *)(v))->boxed)
@@ -112,7 +112,7 @@ struct _PyGObject_Functions {
                                  PyObject *(* from_func)(const GValue *value),
                                  int (* to_func)(GValue *value, PyObject *obj));
   int (* value_from_pyobject)(GValue *value, PyObject *obj);
-  PyObject *(* value_as_pyobject)(const GValue *value, gboolean copy_boxed);
+  PyObject *(* value_as_pyobject)(const GValue *value, bool copy_boxed);
 
   void (* register_interface)(PyObject *dict, const char *class_name,
                               GedaType gtype, PyTypeObject *type);
@@ -121,7 +121,7 @@ struct _PyGObject_Functions {
   void (* register_boxed)(PyObject *dict, const char *class_name,
                           GedaType boxed_type, PyTypeObject *type);
   PyObject *(* boxed_new)(GedaType boxed_type, void *boxed,
-                          gboolean copy_boxed, gboolean own_ref);
+                          bool copy_boxed, bool own_ref);
 
   PyTypeObject *pointer_type;
   void (* register_pointer)(PyObject *dict, const char *class_name,
@@ -136,7 +136,7 @@ struct _PyGObject_Functions {
   const char *(* constant_strip_prefix)(const char *name,
                                         const char *strip_prefix);
 
-  gboolean (* error_check)(GError **error);
+  bool (* error_check)(GError **error);
 
   /* hooks to register handlers for getting GDK threads to cooperate
    * with python threading */
@@ -148,14 +148,14 @@ struct _PyGObject_Functions {
   PyObject *(* paramspec_new)(GParamSpec *spec);
   GParamSpec *(*paramspec_get)(PyObject *tuple);
   int (*pyobj_to_unichar_conv)(PyObject *pyobj, void* ptr);
-  gboolean (*parse_constructor_args)(GedaType     obj_type,
+  bool (*parse_constructor_args)(GedaType     obj_type,
                                      char       **arg_names,
                                      char       **prop_names,
                                      GParameter  *params,
                                      unsigned int       *nparams,
                                      PyObject   **py_args);
   PyObject *(* param_gvalue_as_pyobject) (const GValue* gvalue,
-                                          gboolean copy_boxed,
+                                          bool copy_boxed,
                                           const GParamSpec* pspec);
   int (* gvalue_from_param_pyobject) (GValue* value,
                                       PyObject* py_obj,
@@ -197,7 +197,7 @@ struct _PyGObject_Functions {
   void      (*type_register_custom)(const char *type_name,
                                     PyGTypeRegistrationFunction callback,
                                     void *data);
-  gboolean  (*gerror_exception_check) (GError **error);
+  bool      (*gerror_exception_check) (GError **error);
   PyObject* (*option_group_new) (GOptionGroup *group);
 };
 
