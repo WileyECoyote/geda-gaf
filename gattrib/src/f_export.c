@@ -32,8 +32,8 @@
 /* \brief Export components to CSV
  *
  * This function is invoked when the user selects file ->
- * export from the pull-down menu.  It writes out a CSV file
- * of the design for external processing.
+ * export from the pull-down menu. The function writes out a CSV
+ * file of the design for external processing.
  *
  * \param filename The name of the file to export to
  */
@@ -62,13 +62,14 @@ void f_export_components(char *filename)
 #ifdef DEBUG
   printf("In f_export_components, trying to open %s.\n", filename);
 #endif
+
   fp = fopen(filename, "wb");
+
   if (fp == NULL) {
     geda_log (_("%s: Could not open [%s]\n"), __func__, filename);
-    /* XXXXX Throw up error message  in window */
+    /* XXXXX Throw up error message in window */
     return;
   }
-
 
   /* -----  Now write out data  ----- */
   num_rows = sheet_head->comp_count;
@@ -77,6 +78,7 @@ void f_export_components(char *filename)
   /*  First export top row -- attribute names  */
   /*  Print out "refdes" since that's always the first column  */
   fprintf(fp, "refdes, ");
+
   /*  Print out optional attrib names  */
   for (j = 0; j < num_cols-1; j++) {
     text = geda_utility_string_strdup(s_string_list_get_data_at_index(
@@ -84,12 +86,12 @@ void f_export_components(char *filename)
     fprintf(fp, "%s, ", text);
     GEDA_FREE(text);
   }
+
   /*  Print out last attrib name with no comma and with \n.  */
   text = geda_utility_string_strdup(s_string_list_get_data_at_index(
                       sheet_head->master_comp_attrib_list_head, j));
   fprintf(fp, "%s\n", text);
   GEDA_FREE(text);
-
 
   /*  Now export the contents of the sheet  */
   for (i = 0; i < num_rows; i++) {
@@ -112,19 +114,27 @@ void f_export_components(char *filename)
 #ifdef DEBUG
   printf("In f_export_components, output attribute %s.\n", text);
 #endif
+
         /* if there's a comma anywhere in the field, wrap the field in " */
         gboolean havecomma = ( g_strstr_len(text, -1, ",") != NULL );
-        if(havecomma) fprintf(fp, "\"");
-        fprintf(fp, "%s", text);
-        if(havecomma) fprintf(fp, "\"");
-        fprintf(fp, ", ");
 
-	GEDA_FREE(text);
-      } else {                                                  /* no attrib string */
+        if(havecomma)
+          fprintf(fp, "\"");
+
+        fprintf(fp, "%s", text);
+
+        if(havecomma) fprintf(fp, "\"");
+          fprintf(fp, ", ");
+
+        GEDA_FREE(text);
+      }
+      else {                                                  /* no attrib string */
+
 #ifdef DEBUG
   printf("In f_export_components, output blank attrib space\n");
 #endif
-	fprintf(fp, ", ");
+
+        fprintf(fp, ", ");
       }
     }  /* end of for over cols  */
     /* Now export attrib value for last col (with no "," and with "\n" */
@@ -142,18 +152,23 @@ void f_export_components(char *filename)
       fprintf(fp, "\n");
 
       GEDA_FREE(text);
-    } else {                                                  /* no attrib string */
+    }
+    else {                                                  /* no attrib string */
+
 #ifdef DEBUG
   printf("In f_export_components, output blank at end of line.\n");
 #endif
+
       fprintf(fp, "\n");
     }
+
 #ifdef DEBUG
   printf("In f_export_components, Go to next row.\n");
 #endif
+
   }  /* close of for over rows */
 
   fclose(fp);
 
-return;
+  return;
 }
