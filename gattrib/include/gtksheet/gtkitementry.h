@@ -52,8 +52,8 @@ struct _GtkItemEntry
 
   int text_max_size;       /* upper limit for geometric size allocation or 0 */
 
-  gint16 item_text_size;   /* length of allocated entry->text memory buffer block */
-  gint16 item_n_bytes;     /* string length of entry->text, used part of memory buffer */
+  int16_t item_text_size;  /* length of allocated entry->text memory buffer block */
+  int16_t item_n_bytes;    /* string length of entry->text, used part of memory buffer */
 
   /* pseudo-properties */
 
