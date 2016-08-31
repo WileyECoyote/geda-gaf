@@ -106,10 +106,12 @@ void f_export_components(char *filename)
     /*  Now export the attrib values for first n-1 cols */
     for (i = 0; i < num_cols - 1; i++) {
 
-      if (sheet_head->component_table[i][j].attrib_value) { /* found a string */
+      char *str = sheet_head->component_table[i][j].attrib_value;
+
+      if (str) { /* found a string */
 
         /* make a copy of the text, escaping any special chars, like " */
-        text = (char*) g_strescape(sheet_head->component_table[i][j].attrib_value, "" );
+        text = (char*)g_strescape(str, "" );
 
 #ifdef DEBUG
         printf("In f_export_components, output attribute %s.\n", text);
