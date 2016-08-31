@@ -122,7 +122,7 @@ void f_export_components(char *filename)
 #endif
 
         /* if there's a comma anywhere in the field, wrap the field in " */
-        gboolean havecomma = ( g_strstr_len(text, -1, ",") != NULL );
+        _Bool havecomma = (g_strstr_len(text, -1, ",") != NULL );
 
         if(havecomma)
           fprintf(fp, "\"");
@@ -155,7 +155,7 @@ void f_export_components(char *filename)
 #endif
 
       /* if there's a comma anywhere in the field, wrap the field in " */
-      gboolean havecomma = ( g_strstr_len(text, -1, ",") != NULL );
+      _Bool havecomma = (g_strstr_len(text, -1, ",") != NULL );
       if(havecomma) fprintf(fp, "\"");
       fprintf(fp, "%s", text);
       if(havecomma) fprintf(fp, "\"");
