@@ -125,8 +125,8 @@ static void gtk_item_entry_real_delete_text(GtkEditable     *editable,
                                             int             end_pos);
 static void gtk_item_entry_move_cursor(GtkEntry        *entry,
                                        GtkMovementStep  step,
-                                       int             count,
-                                       gboolean         extend_selection);
+                                       int              count,
+                                       int              extend_selection);
 static void gtk_item_entry_insert_at_cursor(GtkEntry        *entry,
                                             const char     *str);
 static void gtk_item_entry_delete_from_cursor(GtkEntry        *entry,
@@ -1065,7 +1065,7 @@ static void
 gtk_item_entry_move_cursor(GtkEntry       *entry,
                            GtkMovementStep step,
                            int             count,
-                           gboolean        extend_selection)
+                           int             extend_selection)
 {
   int new_pos = entry->current_pos;
 
@@ -1394,7 +1394,7 @@ _item_entry_update_im_cursor_location(GtkEntry *entry)
   gtk_im_context_set_cursor_location(entry->im_context, &area);
 }
 
-static gboolean
+static int
 _item_entry_recompute_idle_func(gpointer data)
 {
     GtkEntry *entry;

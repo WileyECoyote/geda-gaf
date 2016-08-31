@@ -1,5 +1,7 @@
 2016-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtkitementry.c: Replace remaining gboolean with int.
+
     * src/s_table.c: Use geda_strdup for geda_utility_string_strdup and
       geda_strsplit for geda_utility_string_split, adjust indentations.
 
@@ -13,7 +15,7 @@
 
     * src/gtksheet/gtksheet.c: Replace gint8 cast with int8_t.
 
-    * include/gattrib_dialog.h: update declaration for create_geda_switch
+    * include/gattrib_dialog.h: Update declaration for create_geda_switch
       and get_geda_switch_image.
 
     * src/gattrib_dialog.c: Change get_geda_switch_image and create_geda_switch
