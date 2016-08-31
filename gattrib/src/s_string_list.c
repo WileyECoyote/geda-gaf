@@ -43,6 +43,7 @@
  * \returns pointer to the new STRING_LIST struct.
  */
 STRING_LIST *s_string_list_new() {
+
   STRING_LIST *local_string_list;
 
   local_string_list = GEDA_MEM_ALLOC(sizeof(STRING_LIST));

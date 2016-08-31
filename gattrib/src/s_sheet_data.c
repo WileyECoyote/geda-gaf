@@ -45,7 +45,7 @@ SHEET_DATA *s_sheet_data_new()
 {
   PageDataSet *new_data_set;
 
-  new_data_set = (PageDataSet *) malloc(sizeof(PageDataSet));
+  new_data_set = (PageDataSet*)malloc(sizeof(PageDataSet));
 
   /* We will allocate and fill out the comp table later. */
   new_data_set->component_table = NULL;

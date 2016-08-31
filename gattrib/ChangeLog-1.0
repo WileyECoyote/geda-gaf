@@ -1,3 +1,8 @@
+2016-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Use geda_strdup for geda_utility_string_strdup and
+      geda_strsplit for geda_utility_string_split, adjust indentations.
+
 2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtkitementry.h: Replace gint16 with int16_t.
