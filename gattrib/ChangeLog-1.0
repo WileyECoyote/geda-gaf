@@ -5,7 +5,7 @@
     * src/f_export.c: Reverse i and j, replace gboolean to _Bool. Eliminate
       unnecessary reallocation of strings using geda_utility_string_strdup,
       just print them to the file. Add intermediate pointer to the attribute
-      string in column loop.
+      string in column loop. Replace g_strstr_len with simpler strstr.
 
     * src/s_table.c: Use geda_strdup for geda_utility_string_strdup and
       geda_strsplit for geda_utility_string_split, adjust indentations.
