@@ -27,6 +27,18 @@
 #include <gattrib.h>
 #include <geda_debug.h>
 
+static inline void
+print_quote_if_comma(FILE *fp, char *text)
+{
+  /* if there's a comma anywhere in the field, wrap the field in " */
+  if (strstr(text, ",")) {
+    fprintf(fp, "\"%s\"", text);
+  }
+  else {
+    fprintf(fp, "%s", text);
+  }
+}
+
 /* ===================  Public Functions  ====================== */
 /* ------------------------------------------------------------- */
 /* \brief Export components to CSV
@@ -116,16 +128,7 @@ void f_export_components(char *filename)
 #ifdef DEBUG
         printf("In f_export_components, output attribute %s.\n", text);
 #endif
-
-        /* if there's a comma anywhere in the field, wrap the field in " */
-        _Bool havecomma = (strstr(text, ",") != NULL );
-
-        if(havecomma)
-          fprintf(fp, "\"");
-
-        fprintf(fp, "%s", text);
-
-        if(havecomma) fprintf(fp, "\"");
+        print_quote_if_comma(fp, text);
         fprintf(fp, ", ");
 
         GEDA_FREE(text);
@@ -150,11 +153,7 @@ void f_export_components(char *filename)
       printf("In f_export_components, output final attribute %s.\n", text);
 #endif
 
-      /* if there's a comma anywhere in the field, wrap the field in " */
-      _Bool havecomma = (strstr(text, ",") != NULL );
-      if(havecomma) fprintf(fp, "\"");
-      fprintf(fp, "%s", text);
-      if(havecomma) fprintf(fp, "\"");
+      print_quote_if_comma(fp, text);
       fprintf(fp, "\n");
 
       GEDA_FREE(text);

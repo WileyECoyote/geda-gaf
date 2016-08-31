@@ -444,7 +444,6 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
   }
 
   verbose_done();
-
 }
 
 #if 0
