@@ -43,7 +43,6 @@ void f_export_components(char *filename)
   int num_rows;
   int num_cols;
   int i, j;
-
   char *text;
   FILE *fp;
 
@@ -81,25 +80,21 @@ void f_export_components(char *filename)
   fprintf(fp, "refdes, ");
 
   /*  Print out optional attrib names  */
-  for (i = 0; i < num_cols-1; i++) {
-    text = geda_utility_string_strdup(s_string_list_get_data_at_index(
-      sheet_head->master_comp_attrib_list_head, i));
+  for (i = 0; i < num_cols - 1; i++) {
+    text = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
     fprintf(fp, "%s, ", text);
-    GEDA_FREE(text);
   }
 
   /*  Print out last attrib name with no comma and with \n.  */
-  text = geda_utility_string_strdup(s_string_list_get_data_at_index(
-                       sheet_head->master_comp_attrib_list_head, i));
+  text = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
 
   fprintf(fp, "%s\n", text);
-  GEDA_FREE(text);
 
   /*  Now export the contents of the sheet  */
   for (j = 0; j < num_rows; j++) {
 
     /*  First output the component refdes  */
-    text = geda_utility_string_strdup(s_string_list_get_data_at_index(sheet_head->master_comp_list_head, j));
+    text = s_string_list_get_data_at_index(sheet_head->master_comp_list_head, j);
 
 #ifdef DEBUG
     printf("In f_export_components, getting refes, j = %d.\n", j);
@@ -107,10 +102,9 @@ void f_export_components(char *filename)
 #endif
 
     fprintf(fp, "%s, ",text);
-    GEDA_FREE(text);
 
     /*  Now export the attrib values for first n-1 cols */
-    for (i = 0; i < num_cols-1; i++) {
+    for (i = 0; i < num_cols - 1; i++) {
 
       if (sheet_head->component_table[i][j].attrib_value) { /* found a string */
 
@@ -148,7 +142,7 @@ void f_export_components(char *filename)
     if ((sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
 
       /* make a copy of the text, escaping any special chars, like " */
-      text = (char*) g_strescape((sheet_head->component_table)[i][j].attrib_value, "" );
+      text = (char*)g_strescape((sheet_head->component_table)[i][j].attrib_value, "" );
 
 #ifdef DEBUG
       printf("In f_export_components, output final attribute %s.\n", text);
