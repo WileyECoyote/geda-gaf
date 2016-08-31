@@ -42,13 +42,14 @@ void f_export_components(char *filename)
   int cur_page;
   int num_rows;
   int num_cols;
-  int i,j;
+  int i, j;
 
   char *text;
   FILE *fp;
 
   /* -----  Check that we have a component ----- */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
+
   if (cur_page != 0) {
     /* We only export the component table */
     /* XXXXX  Maybe throw up error message in window instead? */
@@ -80,39 +81,44 @@ void f_export_components(char *filename)
   fprintf(fp, "refdes, ");
 
   /*  Print out optional attrib names  */
-  for (j = 0; j < num_cols-1; j++) {
+  for (i = 0; i < num_cols-1; i++) {
     text = geda_utility_string_strdup(s_string_list_get_data_at_index(
-                        sheet_head->master_comp_attrib_list_head, j));
+      sheet_head->master_comp_attrib_list_head, i));
     fprintf(fp, "%s, ", text);
     GEDA_FREE(text);
   }
 
   /*  Print out last attrib name with no comma and with \n.  */
   text = geda_utility_string_strdup(s_string_list_get_data_at_index(
-                      sheet_head->master_comp_attrib_list_head, j));
+                       sheet_head->master_comp_attrib_list_head, i));
+
   fprintf(fp, "%s\n", text);
   GEDA_FREE(text);
 
   /*  Now export the contents of the sheet  */
-  for (i = 0; i < num_rows; i++) {
+  for (j = 0; j < num_rows; j++) {
 
     /*  First output the component refdes  */
-    text = geda_utility_string_strdup( s_string_list_get_data_at_index(
-		       sheet_head->master_comp_list_head, i) );
+    text = geda_utility_string_strdup(s_string_list_get_data_at_index(sheet_head->master_comp_list_head, j));
+
 #ifdef DEBUG
-  printf("In f_export_components, getting refes, i = %d.\n", i);
-  printf("In f_export_components, output component refdes %s.\n", text);
+    printf("In f_export_components, getting refes, j = %d.\n", j);
+    printf("In f_export_components, output component refdes %s.\n", text);
 #endif
+
     fprintf(fp, "%s, ",text);
     GEDA_FREE(text);
 
     /*  Now export the attrib values for first n-1 cols */
-    for (j = 0; j < num_cols-1; j++) {
-      if ( (sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
+    for (i = 0; i < num_cols-1; i++) {
+
+      if (sheet_head->component_table[i][j].attrib_value) { /* found a string */
+
         /* make a copy of the text, escaping any special chars, like " */
-        text = (char *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
+        text = (char*) g_strescape(sheet_head->component_table[i][j].attrib_value, "" );
+
 #ifdef DEBUG
-  printf("In f_export_components, output attribute %s.\n", text);
+        printf("In f_export_components, output attribute %s.\n", text);
 #endif
 
         /* if there's a comma anywhere in the field, wrap the field in " */
@@ -124,26 +130,30 @@ void f_export_components(char *filename)
         fprintf(fp, "%s", text);
 
         if(havecomma) fprintf(fp, "\"");
-          fprintf(fp, ", ");
+        fprintf(fp, ", ");
 
         GEDA_FREE(text);
       }
       else {                                                  /* no attrib string */
 
 #ifdef DEBUG
-  printf("In f_export_components, output blank attrib space\n");
+        printf("In f_export_components, output blank attrib space\n");
 #endif
 
         fprintf(fp, ", ");
       }
-    }  /* end of for over cols  */
+    }  /* end of for loop over cols  */
+
     /* Now export attrib value for last col (with no "," and with "\n" */
-    if ( (sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
+    if ((sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
+
       /* make a copy of the text, escaping any special chars, like " */
-      text = (char *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
+      text = (char*) g_strescape((sheet_head->component_table)[i][j].attrib_value, "" );
+
 #ifdef DEBUG
-  printf("In f_export_components, output final attribute %s.\n", text);
+      printf("In f_export_components, output final attribute %s.\n", text);
 #endif
+
       /* if there's a comma anywhere in the field, wrap the field in " */
       gboolean havecomma = ( g_strstr_len(text, -1, ",") != NULL );
       if(havecomma) fprintf(fp, "\"");
@@ -156,17 +166,17 @@ void f_export_components(char *filename)
     else {                                                  /* no attrib string */
 
 #ifdef DEBUG
-  printf("In f_export_components, output blank at end of line.\n");
+      printf("In f_export_components, output blank at end of line.\n");
 #endif
 
       fprintf(fp, "\n");
     }
 
 #ifdef DEBUG
-  printf("In f_export_components, Go to next row.\n");
+    printf("In f_export_components, Go to next row.\n");
 #endif
 
-  }  /* close of for over rows */
+  }  /* close of for loop over rows */
 
   fclose(fp);
 

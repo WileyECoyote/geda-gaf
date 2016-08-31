@@ -2,6 +2,8 @@
 
     * src/gtksheet/gtkitementry.c: Replace remaining gboolean with int.
 
+    * src/f_export.c: Reverse i and j.
+
     * src/s_table.c: Use geda_strdup for geda_utility_string_strdup and
       geda_strsplit for geda_utility_string_split, adjust indentations.
 
