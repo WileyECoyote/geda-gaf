@@ -713,14 +713,14 @@ static void refresh_command (CLibSource *source)
   if (cmdout == NULL) return;
 
   /* Use a TextBuffer to help reading out the lines of the output */
-  tb = s_textbuffer_new (cmdout, -1);
+  tb = geda_struct_textbuffer_new (cmdout, -1);
 
   while (1) {
 
     const char *line;
           char *name;
 
-    line = s_textbuffer_next_line (tb);
+    line = geda_struct_textbuffer_next_line (tb);
 
     if (line == NULL) break;
     if (line[0] == '.') continue;  /* TODO is this sane? */
@@ -741,7 +741,7 @@ static void refresh_command (CLibSource *source)
     source->symbols = g_list_prepend (source->symbols, symbol);
   }
 
-  s_textbuffer_free (tb);
+  geda_struct_textbuffer_free (tb);
   GEDA_FREE (cmdout);
 
   /* Sort all symbols by name. */

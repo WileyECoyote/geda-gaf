@@ -1510,7 +1510,7 @@ geda_picture_object_read (const char  *first_line,
 
   }
 
-  tmpstr = geda_utility_string_strdup(s_textbuffer_next_line(tb));
+  tmpstr = geda_utility_string_strdup(geda_struct_textbuffer_next_line(tb));
   tmpstr = geda_utility_string_remove_last_nl(tmpstr);
 
   if (f_get_is_path_absolute(tmpstr)) {
@@ -1554,7 +1554,7 @@ geda_picture_object_read (const char  *first_line,
     /* Read the encoded picture */
     do {
 
-      const char *line = s_textbuffer_next_line(tb);
+      const char *line = geda_struct_textbuffer_next_line(tb);
 
       if (line == NULL) {
         break;

@@ -841,7 +841,7 @@ check_attrib_read (GedaToplevel *toplevel)
                         "pintype=pas\n"
                         "}\n";
 
-  TextBuffer *tb = s_textbuffer_new (buffer0, strlen(buffer0));
+  TextBuffer *tb = geda_struct_textbuffer_new (buffer0, strlen(buffer0));
 
   /* === Function 14: geda_attrib_object_read  === */
 
@@ -912,7 +912,7 @@ check_attrib_read (GedaToplevel *toplevel)
     }
   }
 
-  s_textbuffer_free (tb);
+  geda_struct_textbuffer_free (tb);
   g_object_unref (object1);
   g_list_free(list);
 

@@ -721,11 +721,11 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_slot_update_object            (GedaObject *object);
 
 /* s_textbuffer.c */
-   TextBuffer   *s_textbuffer_new                (const char *data, const int size)WARN_UNUSED;
-   TextBuffer   *s_textbuffer_free               (TextBuffer *tb);
-   const char   *s_textbuffer_next               (TextBuffer *tb, const int count);
-   const char   *s_textbuffer_next_line          (TextBuffer *tb);
-         void    s_textbuffer_seek               (TextBuffer *tb, int offset);
+   TextBuffer   *geda_struct_textbuffer_new                (const char *data, const int size)WARN_UNUSED;
+   TextBuffer   *geda_struct_textbuffer_free               (TextBuffer *tb);
+   const char   *geda_struct_textbuffer_next               (TextBuffer *tb, const int count);
+   const char   *geda_struct_textbuffer_next_line          (TextBuffer *tb);
+         void    geda_struct_textbuffer_seek               (TextBuffer *tb, int offset);
 
 /* s_tile.c */
          void    s_tile_update_object            (GedaObject *object);

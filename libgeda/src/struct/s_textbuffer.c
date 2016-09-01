@@ -38,11 +38,11 @@
  *  Should be called thus:
  *
  *  \code
- *  tb = s_textbuffer_free (tb);
+ *  tb = geda_struct_textbuffer_free (tb);
  *  \endcode
  */
 TextBuffer*
-s_textbuffer_free (TextBuffer *tb)
+geda_struct_textbuffer_free (TextBuffer *tb)
 {
   if (tb == NULL) return NULL;
 
@@ -67,7 +67,7 @@ s_textbuffer_free (TextBuffer *tb)
  *  \returns Pointer to a new TextBuffer struct.
  */
 TextBuffer*
-s_textbuffer_new (const char *data, const int size)
+geda_struct_textbuffer_new (const char *data, const int size)
 {
   TextBuffer  *tb;
   unsigned int realsize;
@@ -104,8 +104,8 @@ s_textbuffer_new (const char *data, const int size)
  *  are collapsed into a single '\\n'.
  *
  *  The returned character array should be considered highly volatile,
- *  and is only valid until the next call to s_textbuffer_next() or
- *  s_textbuffer_next_line().
+ *  and is only valid until the next call to geda_struct_textbuffer_next() or
+ *  geda_struct_textbuffer_next_line().
  *
  *  \param tb    TextBuffer to read from.
  *  \param count Maximum number of characters to read.
@@ -113,7 +113,7 @@ s_textbuffer_new (const char *data, const int size)
  *  \returns Character array, or NULL if no characters left.
  */
 const char *
-s_textbuffer_next (TextBuffer *tb, const int count)
+geda_struct_textbuffer_next (TextBuffer *tb, const int count)
 {
   bool eol = FALSE;
 
@@ -176,23 +176,23 @@ s_textbuffer_next (TextBuffer *tb, const int count)
  *  (and thus no more characters remain) returns null.
  *
  *  The returned character array should be considered highly volatile,
- *  and is only valid until the next call to s_textbuffer_next() or
- *  s_textbuffer_next_line().
+ *  and is only valid until the next call to geda_struct_textbuffer_next() or
+ *  geda_struct_textbuffer_next_line().
  *
  *  \param tb    TextBuffer to read from.
  *
  *  \returns     Character array, or NULL if no characters left.
  */
 const char *
-s_textbuffer_next_line (TextBuffer *tb)
+geda_struct_textbuffer_next_line (TextBuffer *tb)
 {
-  return s_textbuffer_next (tb, -1);
+  return geda_struct_textbuffer_next (tb, -1);
 }
 
 /*! \brief Change the current position within a text buffer
  *
  *  \par Function description
- *  Changes where the next call to s_textbuffer_next() will start
+ *  Changes where the next call to geda_struct_textbuffer_next() will start
  *  reading. If offset is negative, the offset is calculated relative
  *  to the current buffer position.
  *
@@ -200,7 +200,7 @@ s_textbuffer_next_line (TextBuffer *tb)
  *  \param offset A new position within the buffer.
  */
 void
-s_textbuffer_seek (TextBuffer *tb, int offset)
+geda_struct_textbuffer_seek (TextBuffer *tb, int offset)
 {
   if (tb) {
 

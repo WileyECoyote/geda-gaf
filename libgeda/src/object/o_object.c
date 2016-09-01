@@ -108,9 +108,9 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     return NULL;
   }
 
-  tb   = s_textbuffer_new (buffer, size);
+  tb   = geda_struct_textbuffer_new (buffer, size);
 
-  line = s_textbuffer_next_line(tb);
+  line = geda_struct_textbuffer_next_line(tb);
 
   while (line) {
 
@@ -396,7 +396,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         goto error2;
     }
 
-    line = s_textbuffer_next_line(tb);
+    line = geda_struct_textbuffer_next_line(tb);
   }
 
   /* Was the very last thing we read a complex and has it not been checked */
@@ -413,7 +413,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     }
   }
 
-  tb              = s_textbuffer_free(tb);
+  tb              = geda_struct_textbuffer_free(tb);
 
   new_object_list = g_list_reverse(new_object_list);
 

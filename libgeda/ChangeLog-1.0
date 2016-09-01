@@ -1,3 +1,11 @@
+2016-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_textbuffer.c: Rename functions with geda_struct prefix.
+
+2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_polygon.c: Revise Doxygen comment blocks.
+
 2016-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_embed.c: Utilize result of geda_picture_object_unembed in

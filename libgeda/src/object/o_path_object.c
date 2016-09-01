@@ -579,7 +579,7 @@ geda_path_object_read (const char *first_line,
 
     const char *line;
 
-    line = s_textbuffer_next_line (tb);
+    line = geda_struct_textbuffer_next_line (tb);
 
     if (line == NULL) {
       GEDA_FREE(string);

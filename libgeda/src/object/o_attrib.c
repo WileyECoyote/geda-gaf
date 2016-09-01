@@ -625,7 +625,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
 
   ATTACH      = FALSE;
   object_list = NULL;
-  line        = s_textbuffer_next_line (tb);
+  line        = geda_struct_textbuffer_next_line (tb);
 
   while (line) {
 
@@ -733,7 +733,7 @@ geda_attrib_object_read (GedaToplevel *toplevel,
       goto error;
     }
 
-    line = s_textbuffer_next_line (tb);
+    line = geda_struct_textbuffer_next_line (tb);
   }
 
   /* The attribute list wasn't terminated, so it's a parse error! */
