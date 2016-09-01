@@ -55,13 +55,15 @@ static int slib_index=0;
  */
 static struct st_slib slib[MAX_SLIBS];
 
-/*! \brief Add a Path to Search for Schematics
- *  \par Function Description
- *   Add \a new_path to the table of directories to search
- *   for schematics if the directory is not already in the
- *   table.
+/*!
+ * \brief Add a Path to Search for Schematics
+ * \par Function Description
+ *  Add \a new_path to the table of directories to search
+ *  for schematics if the directory is not already in the
+ *  table.
  */
-int geda_struct_slib_add_entry(const char *new_path)
+int
+geda_struct_slib_add_entry(const char *new_path)
 {
   if (new_path == NULL) {
     return (-1);
@@ -79,11 +81,13 @@ int geda_struct_slib_add_entry(const char *new_path)
   return (slib_index);
 }
 
-/*! \brief Release Source Library resources
- *  \par Function Description
+/*!
+ * \brief Release Source Library resources
+ * \par Function Description
  *  Free the strings in the Component Library path table.
  */
-void geda_struct_slib_free()
+void
+geda_struct_slib_free()
 {
   int i;
 
@@ -94,19 +98,21 @@ void geda_struct_slib_free()
   slib_index=0;
 }
 
-/*! \brief Get the base file name from a raw file name string.
- *  \par Function Description
+/*!
+ * \brief Get the base file name from a raw file name string.
+ * \par Function Description
  *  Creates an returns a file name based on the given \a rawname. The raw
  *  file name is copied up to the first period and any _# are removed (where
  *  # is any number of digits.
  *
- *  \param [in] rawname  Character string with the raw file name to parse.
+ * \param [in] rawname  Character string with the raw file name to parse.
  *
- *  \returns The base file name in a character string.
+ * \returns The base file name in a character string.
  *
- *  \remarks Caller should GEDA_FREE returned pointer.
+ * \remarks Caller should GEDA_FREE returned pointer.
  */
-char *geda_struct_slib_get_basename(const char *rawname)
+char*
+geda_struct_slib_get_basename(const char *rawname)
 {
   char *return_filename;
   int i;
@@ -181,16 +187,18 @@ char *geda_struct_slib_get_basename(const char *rawname)
   return (return_filename);
 }
 
-/*! \brief Get the Component Library directory at the Given index
- *  \par Function Description
- *   Returns the directory entry in the Component Library path
- *   table at the given index, which could be NULL.
+/*!
+ * \brief Get the Component Library directory at the Given index
+ * \par Function Description
+ *  Returns the directory entry in the Component Library path
+ *  table at the given index, which could be NULL.
  *
- *  \returns Component Library directory at \a index
+ * \returns Component Library directory at \a index
  *
- *  \warning Caller must NOT free the returned pointer.
+ * \warning Caller must NOT free the returned pointer.
  */
-char *geda_struct_slib_get_dir(int index)
+char*
+geda_struct_slib_get_dir(int index)
 {
   if (slib[index].dir_name != NULL)
     return (slib[index].dir_name);
@@ -198,11 +206,13 @@ char *geda_struct_slib_get_dir(int index)
     return (NULL);
 }
 
-/*! \brief Initialize the Source Library
- *  \par Function Description
+/*!
+ * \brief Initialize the Source Library
+ * \par Function Description
  *  Sets each entry in the Component Library path table to NULL.
  */
-void geda_struct_slib_init()
+void
+geda_struct_slib_init()
 {
   int i;
   for (i = 0; i < MAX_SLIBS; i++) {
@@ -210,12 +220,14 @@ void geda_struct_slib_init()
   }
 }
 
-/*! \brief Write contents of Component Libraries
- *  \par Function Description
+/*!
+ * \brief Write contents of Component Libraries
+ * \par Function Description
  *  Write Component Library directory names and containing files in the
  *  component library search path to standard out.
  */
-void geda_struct_slib_print(void)
+void
+geda_struct_slib_print(void)
 {
   int i;
 
@@ -224,12 +236,14 @@ void geda_struct_slib_print(void)
   }
 }
 
-/*! \brief Write contents of Component Libraries
- *  \par Function Description
+/*!
+ * \brief Write contents of Component Libraries
+ * \par Function Description
  *  Write the names of directories and containing files in the
  *  component library search path to standard out.
  */
-void geda_struct_slib_print_dirs(void)
+void
+geda_struct_slib_print_dirs(void)
 {
   int i;
   char *directory;
@@ -262,17 +276,18 @@ void geda_struct_slib_print_dirs(void)
   }
 }
 
-/*! \brief Search SLIB for a particular file name.
- *  \par Function Description
+/*!
+ * \brief Search SLIB for a particular file name.
+ * \par Function Description
  *  This function will search the SLIB for a particular file name.
- *
- *  \param [in] basename  Character string with file name to search for.
- *
  *  Filename is the raw symbol/whatever file name.
  *
- *  \remarks Caller should GEDA_FREE returned pointer.
+ * \param [in] basename  Character string with file name to search for.
+ *
+ * \remarks Caller should GEDA_FREE returned pointer.
  */
-char *geda_struct_slib_search_for_file (const char *basename)
+char*
+geda_struct_slib_search_for_file (const char *basename)
 {
   char *slib_path = geda_struct_slib_search_dirs(basename);
 
@@ -292,12 +307,14 @@ char *geda_struct_slib_search_for_file (const char *basename)
   }
 }
 
-/*! \brief Search Source Library for a Directory
- *  \par Function Description
+/*!
+ * \brief Search Source Library for a Directory
+ * \par Function Description
  *
- *  \return 1 if directory is found, zero otherwise.
+ * \return 1 if directory is found, zero otherwise.
  */
-int geda_struct_slib_search_for_dirname(const char *dir_name)
+int
+geda_struct_slib_search_for_dirname(const char *dir_name)
 {
   if (dir_name) {
 
@@ -312,15 +329,17 @@ int geda_struct_slib_search_for_dirname(const char *dir_name)
   return (0);
 }
 
-/*! \brief Search Source Library Directories for a File name
- *  \par Function Description
+/*!
+ * \brief Search Source Library Directories for a File name
+ * \par Function Description
  *  Looks for a file in each directory in the slib table whose name
  *  contains the string \a basename, if found then that directory is
  *  returned.
  *
- *  \remarks Caller should GEDA_FREE returned pointer.
+ * \remarks Caller should GEDA_FREE returned pointer.
  */
-char *geda_struct_slib_search_dirs(const char *basename)
+char*
+geda_struct_slib_search_dirs(const char *basename)
 {
   int i;
 
@@ -371,15 +390,17 @@ char *geda_struct_slib_search_dirs(const char *basename)
   return (NULL);
 }
 
-/*! \brief Check is Path exist and is not in the search path.
- *  \par Function Description
- *   TRUE if path exist and is not in the component library search
- *   path.
- *  \param [in] path The path to test.
+/*!
+ * \brief Check is Path exist and is not in the search path.
+ * \par Function Description
+ *  TRUE if path exist and is not in the component library search
+ *  path.
+ * \param [in] path The path to test.
  *
- *  \returns TRUE if path exist and is not in search path.
+ * \returns TRUE if path exist and is not in search path.
  */
-int geda_struct_slib_unique_dir_exist(const char *path)
+int
+geda_struct_slib_unique_dir_exist(const char *path)
 {
   if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
     return !(geda_struct_slib_search_for_dirname(path));
