@@ -65,7 +65,7 @@ static void object_added (Page *page, GedaObject *object)
   geda_object_notify_emit_pre_change (object);
 
   /* Add object to tile system. */
-  s_tile_add_object        (object);
+  geda_struct_tile_add_object        (object);
 
   /* Update object connection tracking */
   geda_struct_conn_update_object     (object);
@@ -102,7 +102,7 @@ pre_object_removed (Page *page, GedaObject *object)
     geda_struct_conn_remove_object (object);
 
     /* Remove object from tile system */
-    s_tile_remove_object (object);
+    geda_struct_tile_remove_object (object);
 
   }
   else {
@@ -127,7 +127,7 @@ geda_struct_page_new_common(GedaToplevel *toplevel, Page *page)
   geda_page_set_toplevel (page, toplevel); /* Adds reference to toplevel */
 
   /* Init tile array */
-  s_tile_init (page);
+  geda_struct_tile_init (page);
 
   /* new selection mechanism */
   page->selection_list = geda_object_selection_new();
@@ -379,7 +379,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   geda_struct_object_release_objects (page->place_list);
   page->place_list = NULL;
 
-  s_tile_free_all (page);
+  geda_struct_tile_free_all (page);
 
   /* free current page undo structs */
   s_undo_free_all (page);
@@ -390,7 +390,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   GEDA_FREE (page->filename);
 
 #if DEBUG
-  s_tile_print (toplevel, page);
+  geda_struct_tile_print (toplevel, page);
 #endif
 
   /*geda_page_weakref_notify (page);*/

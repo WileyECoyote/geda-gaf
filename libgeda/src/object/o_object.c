@@ -594,7 +594,7 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
     (*topless) (object, center_x, center_y);
 
     /* Update object to tile system. */
-    s_tile_update_object(object);
+    geda_struct_tile_update_object(object);
 
     geda_object_notify_emit_change(object);
 
@@ -646,7 +646,7 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
     (*topless) (object, center_x, center_y, angle);
 
     /* Update object to tile system. */
-    s_tile_update_object(object);
+    geda_struct_tile_update_object(object);
 
     geda_object_notify_emit_change(object);
 
@@ -695,7 +695,7 @@ geda_object_translate (GedaObject *object, int dx, int dy)
     (*topless) (object, dx, dy);
 
     /* Update object to tile system. */
-    s_tile_update_object(object);
+    geda_struct_tile_update_object(object);
 
     geda_object_notify_emit_change(object);
 

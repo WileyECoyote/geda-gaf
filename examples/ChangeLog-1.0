@@ -1,5 +1,11 @@
 2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * MSA-2643/models/Makefile.am: Update installation directory.
+
+    * MSA-2643/sym/Makefile.am: Update installation directory.
+
+2016-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * CascodeAmp/Makefile.am: Enable tests and regenerate outputs.
 
     * CascodeAmp/sym/npn-ebc.sym: footprint=unknown->footprint=TO-92.

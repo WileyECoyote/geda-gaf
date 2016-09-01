@@ -252,7 +252,7 @@ geda_net_object_consolidate_segments (GedaObject *object)
 
           geda_struct_object_release (other_object);
           object->w_bounds_valid_for = NULL;;
-          s_tile_update_object(object);
+          geda_struct_tile_update_object(object);
           geda_struct_conn_update_linear_object(object);
           return(-1);
         }
@@ -520,7 +520,7 @@ geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
 
     object->w_bounds_valid_for = NULL;
 
-    s_tile_update_object(object);
+    geda_struct_tile_update_object(object);
 
   }
   else {
@@ -991,7 +991,7 @@ geda_net_object_translate(GedaObject *object, int dx, int dy)
     /* Update bounding box */
     object->w_bounds_valid_for = NULL;
 
-    s_tile_update_object(object);
+    geda_struct_tile_update_object(object);
   }
   else {
     geda_net_object_error(__func__, object);

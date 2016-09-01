@@ -308,7 +308,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
     parent->w_bounds_valid_for = NULL;
 
     /* We may need to update connections */
-    s_tile_update_object (child);
+    geda_struct_tile_update_object (child);
     geda_struct_conn_update_object (child);
 
     geda_object_notify_emit_change (parent);
@@ -341,9 +341,9 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
               SCM_ARG1, scheme_complex_remove_x);
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG2, scheme_complex_remove_x);
 
-  GedaObject *parent = edascm_to_object (complex_s);
-  GedaObject *child = edascm_to_object (obj_s);
-  Page *child_page = geda_object_get_page (child);
+  GedaObject *parent     = edascm_to_object (complex_s);
+  GedaObject *child      = edascm_to_object (obj_s);
+  Page       *child_page = geda_object_get_page (child);
 
   /* Check that object is not attached to a different complex. */
   if ((child->parent_object != NULL) && (child->parent_object != parent)) {
@@ -386,7 +386,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
   child->parent_object = NULL;
 
   /* We may need to update connections */
-  s_tile_remove_object (child);
+  geda_struct_tile_remove_object (child);
   geda_struct_conn_remove_object (child);
 
   geda_object_notify_emit_change (parent);

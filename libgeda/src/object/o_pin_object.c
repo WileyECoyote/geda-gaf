@@ -257,7 +257,7 @@ void geda_pin_object_translate(GedaObject *object, int dx, int dy)
   /* Update bounding box */
   object->w_bounds_valid_for = NULL;
 
-  s_tile_update_object(object);
+  geda_struct_tile_update_object(object);
 }
 
 /*! \brief postscript print command for a pin object
@@ -359,7 +359,7 @@ void geda_pin_object_modify(GedaObject *object, int x, int y, int whichone)
 
   object->w_bounds_valid_for = NULL;
 
-  s_tile_update_object(object);
+  geda_struct_tile_update_object(object);
 }
 
 /*! \brief Normalize a Pin object

@@ -116,7 +116,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   y2 = w_y + w_magnetic_reach;
 
   /* get the objects of the tiles within reach */
-  objectlists = s_tile_get_objectlists(toplevel->page_current, x1, y1, x2, y2);
+  objectlists = geda_struct_tile_get_objectlists(toplevel->page_current, x1, y1, x2, y2);
 
   for (iter1 = objectlists; iter1 != NULL; NEXT(iter1)) {
 
@@ -322,7 +322,7 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
 
   int *current_rules;
 
-  objectlists = s_tile_get_objectlists(toplevel->page_current, wx, wy, wx, wy);
+  objectlists = geda_struct_tile_get_objectlists(toplevel->page_current, wx, wy, wx, wy);
 
   for (iter1 = objectlists; iter1 != NULL; iter1 = g_list_next(iter1)) {
 

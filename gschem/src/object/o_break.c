@@ -980,7 +980,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 
       /* Redraw the original object after modifications */
       object->dont_redraw = FALSE;
-      s_tile_update_object (object);
+      geda_struct_tile_update_object (object);
       geda_struct_conn_update_object (object);
       o_invalidate_object (w_current, object);
 

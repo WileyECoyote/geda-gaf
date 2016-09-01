@@ -728,8 +728,8 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_textbuffer_seek               (TextBuffer *tb, int offset);
 
 /* s_tile.c */
-         void    s_tile_update_object            (GedaObject *object);
-         GList  *s_tile_get_objectlists          (Page   *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
+         void    geda_struct_tile_update_object            (GedaObject *object);
+         GList  *geda_struct_tile_get_objectlists          (Page *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
         GList   *s_toplevel_get_selection                (GedaToplevel *toplevel);

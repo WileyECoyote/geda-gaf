@@ -52,7 +52,7 @@
  *
  *  \param p_current The page that gets the tiles.
  */
-void s_tile_init(Page * p_current)
+void geda_struct_tile_init(Page * p_current)
 {
 
   int i, j;
@@ -110,7 +110,7 @@ void s_tile_init(Page * p_current)
  *  \param object   The line Object to add
  */
 static void
-s_tile_add_linear_object (GedaObject *object)
+geda_struct_tile_add_linear_object (GedaObject *object)
 {
   TILE *tile_current;
   Page *p_current;
@@ -314,7 +314,7 @@ s_tile_add_linear_object (GedaObject *object)
  *
  *  \param object   The line Object to add
  */
-void s_tile_add_object (GedaObject *object)
+void geda_struct_tile_add_object (GedaObject *object)
 {
   GList *iter;
 
@@ -322,14 +322,14 @@ void s_tile_add_object (GedaObject *object)
     case OBJ_NET:
     case OBJ_PIN:
     case OBJ_BUS:
-      s_tile_add_linear_object(object);
+      geda_struct_tile_add_linear_object(object);
       break;
   case OBJ_COMPLEX:
   case OBJ_PLACEHOLDER:
     for (iter = object->complex->prim_objs;
          iter != NULL;
          iter = g_list_next(iter)) {
-      s_tile_add_object (iter->data);
+      geda_struct_tile_add_object (iter->data);
     }
   }
 }
@@ -346,7 +346,7 @@ void s_tile_add_object (GedaObject *object)
  *
  *  \param object The object to remove
  */
-void s_tile_remove_object(GedaObject *object)
+void geda_struct_tile_remove_object(GedaObject *object)
 {
   GList *tl_current;
 
@@ -358,7 +358,7 @@ void s_tile_remove_object(GedaObject *object)
     for (iter  = object->complex->prim_objs;
          iter != NULL;
          iter  = g_list_next (iter)) {
-      s_tile_remove_object (iter->data);
+      geda_struct_tile_remove_object (iter->data);
     }
   }
 
@@ -387,10 +387,10 @@ void s_tile_remove_object(GedaObject *object)
  *
  *  \param object The GedaObject to update
  */
-void s_tile_update_object(GedaObject * object)
+void geda_struct_tile_update_object(GedaObject * object)
 {
-  s_tile_remove_object (object);
-  s_tile_add_object (object);
+  geda_struct_tile_remove_object (object);
+  geda_struct_tile_add_object (object);
 }
 
 /*! \brief Get a List of Objects List of all Tiles Inside a Region
@@ -402,8 +402,8 @@ void s_tile_update_object(GedaObject * object)
  *
  *  \note The caller has to g_list_free() the returned list.
  */
-GList* s_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
-                                               int world_x2, int world_y2)
+GList* geda_struct_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
+                                        int world_x2, int world_y2)
 {
   TILE *tile_current;
   int x1, x2, y1, y2, x, y;
@@ -451,7 +451,7 @@ GList* s_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
  *  Debugging function to print all object names that are inside
  *  the tiles.
  */
-void s_tile_print(GedaToplevel * toplevel, Page *page)
+void geda_struct_tile_print(GedaToplevel * toplevel, Page *page)
 {
   TILE *tile;
   GList *tile_list;
@@ -491,7 +491,7 @@ void s_tile_print(GedaToplevel * toplevel, Page *page)
  *  have been removed from a page, all object lists of the tiles should be
  *  empty.
  */
-void s_tile_free_all(Page * p_current)
+void geda_struct_tile_free_all(Page * p_current)
 {
   int i, j;
   TILE *tile;

@@ -1925,7 +1925,7 @@ bool o_extend_object (GedaObject *projectile, GedaObject *bounder)
     projectile->line->y[which_end] = point.y;
 
     if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
-      s_tile_update_object (projectile);
+      geda_struct_tile_update_object (projectile);
       geda_struct_conn_update_object (projectile);
     }
     result = TRUE;
@@ -2033,7 +2033,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
         projectile->line->y[which_end] = point.y;
 
         if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
-          s_tile_update_object (projectile);
+          geda_struct_tile_update_object (projectile);
           geda_struct_conn_update_object (projectile);
         }
 

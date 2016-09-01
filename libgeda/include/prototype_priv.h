@@ -263,11 +263,11 @@ void        s_slib_free                (void);
 void        s_slib_init                (void);
 
 /* s_tile.c */
-void     s_tile_init                   (Page *p_current);
-void     s_tile_add_object             (GedaObject *object);
-void     s_tile_remove_object          (GedaObject *object);
-void     s_tile_print                  (GedaToplevel *toplevel, Page *page);
-void     s_tile_free_all               (Page *p_current);
+void        geda_struct_tile_init                   (Page *p_current);
+void        geda_struct_tile_add_object             (GedaObject *object);
+void        geda_struct_tile_remove_object          (GedaObject *object);
+void        geda_struct_tile_print                  (GedaToplevel *toplevel, Page *page);
+void        geda_struct_tile_free_all               (Page *p_current);
 
 /* s_weakref.c */
 void     s_weakref_notify              (void *dead_ptr, GList *weak_refs);
