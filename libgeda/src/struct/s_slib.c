@@ -83,7 +83,7 @@ int geda_struct_slib_add_entry(const char *new_path)
  *  \par Function Description
  *  Free the strings in the Component Library path table.
  */
-void s_slib_free()
+void geda_struct_slib_free()
 {
   int i;
 
@@ -202,7 +202,7 @@ char *geda_struct_slib_get_dir(int index)
  *  \par Function Description
  *  Sets each entry in the Component Library path table to NULL.
  */
-void s_slib_init()
+void geda_struct_slib_init()
 {
   int i;
   for (i = 0; i < MAX_SLIBS; i++) {

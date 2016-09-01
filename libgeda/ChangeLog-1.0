@@ -1,5 +1,8 @@
 2016-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype_priv.h: Update private function names with geda_struct
+      prefix.
+
     * src/struct/s_textbuffer.c: Rename functions with geda_struct prefix,
       adjust s_textbuffer comment blocks.
 

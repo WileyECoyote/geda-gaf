@@ -104,7 +104,7 @@ int geda_struct_papersizes_uniq(char *name)
  *  \par Function Description
  *
  */
-void s_papersizes_free()
+void geda_struct_papersizes_free()
 {
   int i;
 

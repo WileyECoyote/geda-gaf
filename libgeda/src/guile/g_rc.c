@@ -445,12 +445,14 @@ SCM g_rc_reset_component_library(void)
  */
 SCM g_rc_reset_source_library(void)
 {
-  s_slib_free(); /* Release resources */
-  s_slib_init(); /* Sets pointers that were just freed to NULL */
+  /* Release resources */
+  geda_struct_slib_free();
+
+  /* Sets pointers that were just freed to NULL */
+  geda_struct_slib_init();
 
   return SCM_BOOL_T;
 }
-
 
 /* Net Styles*/
 /*! \brief This function processes the bus-style RC entry.

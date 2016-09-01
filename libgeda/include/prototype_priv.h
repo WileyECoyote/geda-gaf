@@ -256,11 +256,11 @@ GedaObject *geda_struct_conn_check_midpoint          (GedaObject *o_current, int
 void        geda_struct_conn_init                    (void);
 
 /* s_papersizes.c */
-void        s_papersizes_free          (void);
+void        geda_struct_papersizes_free     (void);
 
 /* s_slib.c */
-void        s_slib_free                (void);
-void        s_slib_init                (void);
+void        geda_struct_slib_free           (void);
+void        geda_struct_slib_init           (void);
 
 /* s_tile.c */
 void        geda_struct_tile_init                   (Page *p_current);

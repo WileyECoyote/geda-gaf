@@ -144,7 +144,7 @@ void libgeda_init(int argc, char **argv)
   f_path_sys_config ();
 
   geda_struct_clib_init();
-  s_slib_init();
+  geda_struct_slib_init();
   i_menu_init();
   geda_struct_attrib_init();
   geda_struct_conn_init();
@@ -157,8 +157,8 @@ void libgeda_release(void)
 {
   f_path_free();
   geda_struct_clib_free();
-  s_slib_free();
+  geda_struct_slib_free();
   geda_struct_attrib_free();
-  s_papersizes_free();
+  geda_struct_papersizes_free();
   i_vars_libgeda_freenames();
 }
