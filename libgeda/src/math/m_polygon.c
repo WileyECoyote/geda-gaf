@@ -21,12 +21,12 @@
 #include <math.h>
 #include <libgeda_priv.h>
 
-/*! \brief Appends a bezier curve to the polygon
- *
- *  \param points [inout] The vertices of the polygon. This parameter must not
- *  be NULL.
- *  \param bezier [in] The bezier curve to append.
- *  \param segments [in] The number of segments to subdivide the bezier curve into.
+/*!
+ * \brief Appends a bezier curve to the polygon
+ * \par Function Description
+ * \param [in,out] points   The vertices of the polygon, must not be NULL.
+ * \param [in]     bezier   The bezier curve to append.
+ * \param [in]     segments Number of segments to subdivide the bezier curve.
  */
 void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
 {
@@ -77,12 +77,12 @@ void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
   m_polygon_append_point (points, bezier->x[3], bezier->y[3]);
 }
 
-/*! \brief Appends a point to the list of vertices in a polygon
- *
- *  \param points [inout] The vertices of the polygon. This parameter must not
- *  be NULL.
- *  \param x [in] The x coordinate of the point to append.
- *  \param y [in] The y coordinate of the point to append.
+/*!
+ * \brief Appends a point to the list of vertices in a polygon
+ * \par Function Description
+ * \param [in,out] points  The vertices of the polygon, must not be NULL.
+ * \param [in]     x       The x coordinate of the point to append.
+ * \param [in]     y       The y coordinate of the point to append.
  */
 void m_polygon_append_point (GArray *points, int x, int y)
 {
@@ -98,28 +98,33 @@ void m_polygon_append_point (GArray *points, int x, int y)
   }
 }
 
-/*! \brief Determines if a point lies inside a polygon
+/*!
+ * \brief Determines if a point lies inside a polygon
+ * \par Function Description
+ *  This function assumes the list of points represents a closed polygon.
+ *  If the first and last point do not match, the line segment between them
+ *  is implied.  This parameter must not be NULL.
+ *
+ *  \param [in] points  The vertices of the polygon.
+ *  \param [in] x       The x coordinate of the given point.
+ *  \param [in] y       The y coordinate of the given point.
+ *
+ *  \returns TRUE if the point lies inside the polygon, FALSE if the point lies
+ *           outside the polygon.
  *
  *  TODO Untested
- *
- *  \param points [in] The vertices of the polygon.  This function assumes the
- *  list of points represents a closed polygon.  If the first and last point do
- *  not match, the line segment between them is implied.  This parameter must
- *  not be NULL.
- *  \param x [in] The x coordinate of the given point.
- *  \param y [in] The y coordinate of the given point.
- *  \returns TRUE if the point lies inside the polygon, FALSE if the point lies
- *  outside the polygon.
  */
 bool m_polygon_interior_point (GArray *points, int x, int y)
 {
   int count = 0;
 
   if (points->len > 0) {
+
     int i;
     POINT p1 = g_array_index (points, POINT, points->len - 1);
 
     for (i=0; i < points->len; i++) {
+
       POINT p0 = p1;
       double xi;
 
@@ -140,18 +145,22 @@ bool m_polygon_interior_point (GArray *points, int x, int y)
   return (count % 2) == 1;  /* odd */
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- *  point on the perimeter of the polygon.
+/*!
+ * \brief Get shortest distance from a point to a polygon
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest point on
+ *  the perimeter of the polygon. If \a closed is TRUE, the function treats
+ *  the polygon as a closed shape, creating a line between the first and last
+ *  points, if needed. If the first and last points are equal, or inherintly
+ *  closed, this parameter does not matter.
  *
- *  \param [in] points The polygon, where polygon != NULL.
- *  \param [in] x      The x coordinate of the given point.
- *  \param [in] y      The y coordinate of the given point.
- *  \param [in] closed If TRUE, the function treats the polygon as a closed
- *  shape, creating a line between the first and last points, if needed.  If
- *  the first and last points are equal, or inherintly closed, this parameter
- *  does not matter.
- *  \return The shortest distance from the polygon to the point.  With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] points The polygon, where polygon != NULL.
+ * \param [in] x      The x coordinate of the given point.
+ * \param [in] y      The y coordinate of the given point.
+ * \param [in] closed Whether to treat the polygon as closed if not closed
+ *
+ * \return The shortest distance from the polygon to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double m_polygon_shortest_distance (GArray *points, int x, int y, int closed)
 {
