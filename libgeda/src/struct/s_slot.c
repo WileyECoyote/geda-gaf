@@ -40,21 +40,21 @@
 #define DELIMITERS ",; "
 
 
-/*! \brief Search for slot attribute.
- *  \par Function Description
- *  Search for slot attribute.
+/*!
+ * \brief Search for slot attribute.
+ * \par Function Description
+ *  Search for slot attribute. The returned value will only come from
+ *  an attached attribute.
  *
- *  The returned value will only come from an attached attribute.
+ * \param [in]  object Object list to search.
+ * \param [out] found  attached slot attribute if found, NULL otherwise.
  *
- *  \param [in]  object Object list to search.
- *  \param [out] found  attached slot attribute if found, NULL otherwise.
+ * \returns Character string with attribute value, NULL otherwise.
  *
- *  \returns Character string with attribute value, NULL otherwise.
- *
- *  \remarks
- *  Caller should GEDA_FREE returned character string
+ * \remarks Caller should GEDA_FREE returned character string
  */
-char *geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
+char*
+geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
 {
   GList      *attributes;
   GedaObject *attrib;
@@ -74,19 +74,20 @@ char *geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
 }
 
 
-/*! \brief Search for slotdef attribute.
- *  \par Function Description
+/*!
+ * \brief Search for slotdef attribute.
+ * \par Function Description
  *  Search for slotdef attribute.
  *
- *  \param [in] object      The Object list to search.
- *  \param [in] slotnumber  The slot number to search for.
+ * \param [in] object      The Object list to search.
+ * \param [in] slotnumber  The slot number to search for.
  *
- *  \returns Character string with attribute value, NULL otherwise.
+ * \returns Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must GEDA_FREE returned character string.
+ * \warning Caller must GEDA_FREE returned character string.
  */
-static char *geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber)
+static char*
+geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber)
 {
   int   counter = 0;
   char *slotdef;
@@ -109,9 +110,9 @@ static char *geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber
   return slotdef;
 }
 
-/*! \brief Update all slot attributes in an object.
- *
- *  \par Function Description
+/*!
+ * \brief Update all slot attributes in an object.
+ * \par Function Description
  *  Update pinnumber attributes in a graphic object. The interesting
  *  case is where the object is an instantiation of a slotted part.
  *  This means that geda_struct_slot_update_object iterates through all pins
@@ -119,15 +120,16 @@ static char *geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber
  *  doesn't matter for non-slotted parts, but on slotted parts,
  *  this is what sets the pinnumber= attribute on slots 2, 3, 4....
  *
- *  \param [in,out] object    The GedaObject to update.
+ * \param [in,out] object    The GedaObject to update.
  *
  *  TODO: If old symbol has slot def and the slot has been set, and
  *  replacement does not then "Did not find slotdef" error message
  *  below shows up in the log. if this occurs, then should check if
  *  "numslot=0", in which case the caller should remove "slotdef"
- *   attribute.
+ *  attribute.
  */
-void geda_struct_slot_update_object (GedaObject *object)
+void
+geda_struct_slot_update_object (GedaObject *object)
 {
   GedaObject *o_pinnum_attrib;
   GList      *attributes;

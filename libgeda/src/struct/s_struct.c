@@ -28,12 +28,14 @@
 
 #include <libgeda_priv.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \todo Finish function documentation!!!
+ * \brief
+ * \par Function Description
  *
  */
-void geda_struct_print_forw (GList *list)
+void
+geda_struct_print_forw (GList *list)
 {
   GList *iter = list;
 
@@ -58,12 +60,14 @@ void geda_struct_print_forw (GList *list)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \todo Finish function documentation!!!
+ * \brief
+ * \par Function Description
  *
-*/
-void geda_struct_print(GedaObject *ptr)
+ */
+void
+geda_struct_print(GedaObject *ptr)
 {
   GedaObject *o_current=NULL;
 
