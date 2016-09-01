@@ -1,6 +1,7 @@
 2016-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_textbuffer.c: Rename functions with geda_struct prefix.
+    * src/struct/s_textbuffer.c: Rename functions with geda_struct prefix,
+      adjust s_textbuffer comment blocks.
 
     * src/struct/s_tile.c: Rename functions with geda_struct prefix and adjust
       function wrap and comment blocks.

@@ -30,16 +30,15 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Clean up a managed text buffer
- *
- *  \par Function description
+/*!
+ * \brief Clean up a managed text buffer
+ * \par Function description
  *  Cleans up all of the resources associated with a given TextBuffer.
- *
  *  Should be called thus:
  *
- *  \code
+ * \code
  *  tb = geda_struct_textbuffer_free (tb);
- *  \endcode
+ * \endcode
  */
 TextBuffer*
 geda_struct_textbuffer_free (TextBuffer *tb)
@@ -52,19 +51,19 @@ geda_struct_textbuffer_free (TextBuffer *tb)
   return NULL;
 }
 
-/*! \brief Create a new managed text buffer.
- *
- *  \par Function description
+/*!
+ * \brief Create a new managed text buffer.
+ * \par Function description
  *  Allocates and initialises a new TextBuffer to manage the given
  *  data buffer.
  *
  *  If the size argument is negative, assumes that data is
  *  null-terminated.
  *
- *  \param data The address of the buffer to be managed.
- *  \param size The length of the buffer.
+ * \param data The address of the buffer to be managed.
+ * \param size The length of the buffer.
  *
- *  \returns Pointer to a new TextBuffer struct.
+ * \returns Pointer to a new TextBuffer struct.
  */
 TextBuffer*
 geda_struct_textbuffer_new (const char *data, const int size)
@@ -91,9 +90,9 @@ geda_struct_textbuffer_new (const char *data, const int size)
   return tb;
 }
 
-/*! \brief Fetch a number of characters from a text buffer
- *
- *  \par Function description
+/*!
+ * \brief Fetch a number of characters from a text buffer
+ * \par Function description
  *  Get some number of characters from a TextBuffer, starting at the
  *  current position.  If the end of the buffer has been reached (and
  *  thus no more characters remain) returns null.  If \a count is -1,
@@ -107,10 +106,10 @@ geda_struct_textbuffer_new (const char *data, const int size)
  *  and is only valid until the next call to geda_struct_textbuffer_next() or
  *  geda_struct_textbuffer_next_line().
  *
- *  \param tb    TextBuffer to read from.
- *  \param count Maximum number of characters to read.
+ * \param tb    TextBuffer to read from.
+ * \param count Maximum number of characters to read.
  *
- *  \returns Character array, or NULL if no characters left.
+ * \returns Character array, or NULL if no characters left.
  */
 const char *
 geda_struct_textbuffer_next (TextBuffer *tb, const int count)
@@ -168,20 +167,21 @@ geda_struct_textbuffer_next (TextBuffer *tb, const int count)
 
   return tb->line;
 }
-/*! \brief Fetch the next line from a text buffer
- *
- *  \par Function description
+
+/*!
+ * \brief Fetch the next line from a text buffer
+ * \par Function description
  *  Get the next line of characters from a TextBuffer, starting from
  *  the current position.  If the end of the buffer has been reached
  *  (and thus no more characters remain) returns null.
  *
  *  The returned character array should be considered highly volatile,
- *  and is only valid until the next call to geda_struct_textbuffer_next() or
- *  geda_struct_textbuffer_next_line().
+ *  and is only valid until the next call to geda_struct_textbuffer_next()
+ *  or geda_struct_textbuffer_next_line().
  *
- *  \param tb    TextBuffer to read from.
+ * \param tb    TextBuffer to read from.
  *
- *  \returns     Character array, or NULL if no characters left.
+ * \returns     Character array, or NULL if no characters left.
  */
 const char *
 geda_struct_textbuffer_next_line (TextBuffer *tb)
@@ -189,15 +189,15 @@ geda_struct_textbuffer_next_line (TextBuffer *tb)
   return geda_struct_textbuffer_next (tb, -1);
 }
 
-/*! \brief Change the current position within a text buffer
+/*!
+ * \brief Change the current position within a text buffer
+ * \par Function description
+ *  Changes where the next call to geda_struct_textbuffer_next will
+ *  start reading. If offset is negative, the offset is calculated
+ *  relative to the current buffer position.
  *
- *  \par Function description
- *  Changes where the next call to geda_struct_textbuffer_next() will start
- *  reading. If offset is negative, the offset is calculated relative
- *  to the current buffer position.
- *
- *  \param tb     A TextBuffer to seek within.
- *  \param offset A new position within the buffer.
+ * \param tb     A TextBuffer to seek within.
+ * \param offset A new position within the buffer.
  */
 void
 geda_struct_textbuffer_seek (TextBuffer *tb, int offset)
