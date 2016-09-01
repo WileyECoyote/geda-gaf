@@ -24,8 +24,8 @@
 #include <libgeda_priv.h>
 
 /*!
- *  \brief Copy GList to GList
- *  \par Function Description
+ * \brief Copy GList to GList
+ * \par Function Description
  *  you need to pass in a head_node for dest_list_head flag is either
  *  NORMAL_FLAG or SELECTION_FLAG this function copies the objects in
  *  the src GList, \a src_list, to the destination GList, \a dest_list
@@ -33,12 +33,12 @@
  *  are unselected before they are copied and then reselected this is
  *  necessary to preserve the color info.
  *
- *  \param [in] src_list   The GList to copy from
- *  \param [in] dest_list  The GList to copy to
+ * \param [in] src_list   The GList to copy from
+ * \param [in] dest_list  The GList to copy to
  *
- *  \return dest_list GList with objects appended
+ * \return dest_list GList with objects appended
  *
- *  \todo should be o_list_concat?
+ * \todo should be o_list_concat?
  */
 GList* geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 {
@@ -218,8 +218,9 @@ geda_object_list_find_attrib_by_name (const GList *list,
   return NULL;
 }
 
-/*! \brief Translates a glist of Objects
- *  \par Function Description
+/*!
+ * \brief Translates a glist of Objects
+ * \par Function Description
  *  Calls geda_object_translate for each glist data member
  */
 void geda_object_list_translate(const GList *list, int dx, int dy)
@@ -248,8 +249,9 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
   }
 }
 
-/*! \brief Rotate a glist of Objects
- *  \par Function Description
+/*!
+ * \brief Rotate a glist of Objects
+ * \par Function Description
  *  Calls geda_object_rotate for each glist data member
  */
 void geda_object_list_rotate (const GList *list, int x, int y, int angle)
@@ -286,9 +288,10 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
   }
 }
 
-/*! \brief Mirror a glist of Objects
- *  \par Function Description
- *   Calls geda_object_mirror for each glist data member
+/*!
+ * \brief Mirror a glist of Objects
+ * \par Function Description
+ *  Calls geda_object_mirror for each glist data member
  */
 void geda_object_list_mirror (const GList *list, int x, int y)
 {
@@ -324,12 +327,13 @@ void geda_object_list_mirror (const GList *list, int x, int y)
   }
 }
 
-/*! \brief Change the color of a list of objects
- *  \par Function Description
+/*!
+ * \brief Change the color of a list of objects
+ * \par Function Description
  *   This function changes the the new color of a list of objects
  *
- *  \param [in] list    The list of Objects to change color.
- *  \param [in] color   The new color.
+ * \param [in] list    The list of Objects to change color.
+ * \param [in] color   The new color.
  */
 void geda_object_list_set_color (const GList *list, int color)
 {
