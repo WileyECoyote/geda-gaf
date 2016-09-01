@@ -43,16 +43,16 @@
  *  \image latex s_tile_overview.pdf "Tile overview" width=14cm
  */
 
-/*! \brief Initialize Array of Tiles
- *
- *  \par Function Description
- *
+/*!
+ * \brief Initialize Array of Tiles
+ * \par Function Description
  *  This function splits the page size into tiles and initializes
  *  every tile.
  *
- *  \param p_current The page that gets the tiles.
+ * \param p_current The page that gets the tiles.
  */
-void geda_struct_tile_init(Page * p_current)
+void
+geda_struct_tile_init(Page * p_current)
 {
 
   int i, j;
@@ -99,10 +99,9 @@ void geda_struct_tile_init(Page * p_current)
 #endif
 }
 
-/*! \brief Add a Linear GedaObject to the Tile Array
- *
- *  \par Function Description
- *
+/*!
+ * \brief Add a Linear GedaObject to the Tile Array
+ * \par Function Description
  *  This function takes a single <b>Line GedaObject</b> and adds it to every
  *  tile that is touched by the line. The function also adds all tiles that
  *  are touched by the object to the objects tile list.
@@ -305,16 +304,17 @@ geda_struct_tile_add_linear_object (GedaObject *object)
   }
 }
 
-/*! \brief Add an GedaObject to the Tile System
- *
- *  \par Function Description
+/*!
+ * \brief Add an GedaObject to the Tile System
+ * \par Function Description
  *
  *  This is a dispatch function that passes the object to the
  *  correct handler function, depending on its type.
  *
- *  \param object   The line Object to add
+ * \param object   The line Object to add
  */
-void geda_struct_tile_add_object (GedaObject *object)
+void
+geda_struct_tile_add_object (GedaObject *object)
 {
   GList *iter;
 
@@ -334,9 +334,9 @@ void geda_struct_tile_add_object (GedaObject *object)
   }
 }
 
-/*! \brief remove an object from the tiles
- *
- *  \par Function Description
+/*!
+ * \brief remove an object from the tiles
+ * \par Function Description
  *
  *  This function remove an object from all tiles that are referenced
  *  by the object, including the object from each tile that contained
@@ -344,9 +344,10 @@ void geda_struct_tile_add_object (GedaObject *object)
  *  remove the nested objects. Compound objects are any object which
  *  reference another other object.
  *
- *  \param object The object to remove
+ * \param object The object to remove
  */
-void geda_struct_tile_remove_object(GedaObject *object)
+void
+geda_struct_tile_remove_object(GedaObject *object)
 {
   GList *tl_current;
 
@@ -376,34 +377,33 @@ void geda_struct_tile_remove_object(GedaObject *object)
   object->tiles = NULL;
 }
 
-/*! \brief Update the Tile Information of an GedaObject
- *
- *  \par Function Description
- *
- *  This function updates the tile information of an <b>GedaObject</b> by removing
- *  and the re-adding the <b>GedaObject</b> to the Tile <b>System</b>.
- *
+/*!
+ * \brief Update the Tile Information of an GedaObject
+ * \par Function Description
+ *  This function updates the tile information of an <b>GedaObject</b> by
+ *  removing and the re-adding the <b>GedaObject</b> to the Tile <b>System</b>.
  *  This function can be used if an object has been moved on the page.
  *
  *  \param object The GedaObject to update
  */
-void geda_struct_tile_update_object(GedaObject * object)
+void
+geda_struct_tile_update_object(GedaObject * object)
 {
   geda_struct_tile_remove_object (object);
   geda_struct_tile_add_object (object);
 }
 
-/*! \brief Get a List of Objects List of all Tiles Inside a Region
- *
- *  \par Function Description
- *
+/*!
+ * \brief Get a List of Objects List of all Tiles Inside a Region
+ * \par Function Description
  *  This functions collects all object lists of the tiles that are touched
  *  by the given rectangle (x1,y1), (x2,y2).
  *
- *  \note The caller has to g_list_free() the returned list.
+ * \note The caller has to g_list_free() the returned list.
  */
-GList* geda_struct_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
-                                        int world_x2, int world_y2)
+GList*
+geda_struct_tile_get_objectlists(Page *p_current, int world_x1, int world_y1,
+                                                  int world_x2, int world_y2)
 {
   TILE *tile_current;
   int x1, x2, y1, y2, x, y;
@@ -444,14 +444,14 @@ GList* geda_struct_tile_get_objectlists(Page *p_current, int world_x1, int world
   return objectlists;
 }
 
-/*! \brief Print all GedaObjects for each Tile
- *
- *  \par Function Description
- *
+/*!
+ * \brief Print all GedaObjects for each Tile
+ * \par Function Description
  *  Debugging function to print all object names that are inside
  *  the tiles.
  */
-void geda_struct_tile_print(GedaToplevel * toplevel, Page *page)
+void
+geda_struct_tile_print(GedaToplevel * toplevel, Page *page)
 {
   TILE *tile;
   GList *tile_list;
@@ -479,19 +479,19 @@ void geda_struct_tile_print(GedaToplevel * toplevel, Page *page)
 
 }
 
-/*! \brief free all object links from the tiles
- *
- *  \par Function Description
- *
+/*!
+ * \brief free all object links from the tiles
+ * \par Function Description
  *  This function removes all objects from the tiles of the given \a page.
  *
- *  \param [in] p_current The Page to clean up the tiles
+ * \param [in] p_current The Page to clean up the tiles
  *
- *  \note In theory, calling this function is not required. If all objects
- *  have been removed from a page, all object lists of the tiles should be
- *  empty.
+ * \note In theory, calling this function is not required. If all objects
+ *       have been removed from a page, all object lists of the tiles should
+ *       be empty.
  */
-void geda_struct_tile_free_all(Page * p_current)
+void
+geda_struct_tile_free_all(Page * p_current)
 {
   int i, j;
   TILE *tile;
