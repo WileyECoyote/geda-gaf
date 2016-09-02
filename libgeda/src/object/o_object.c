@@ -705,37 +705,3 @@ geda_object_translate (GedaObject *object, int dx, int dy)
     BUG_IMSG("Bad object type '%c'", object->type);
   }
 }
-
-/*! \brief Scale a set of lines.
- *  \par Function Description
- *  This function takes a list of lines and scales them
- *  by the values of x_scale and y_scale.
- *
- *  \param [in,out] list     The list with lines to scale.
- *  \param [in]     x_scale  The x scale value for the lines.
- *  \param [in]     y_scale  The y scale value for the lines.
- *
- */
-void
-geda_object_scale (GList *list, int x_scale, int y_scale)
-{
-  GList *iter;
-
-  /* is okay if you just hit scale and have nothing selected */
-  if (list) {
-
-    iter = list;
-
-    while (iter != NULL) {
-
-      GedaObject *o_current = (GedaObject*)iter->data;
-
-      switch(o_current->type) {
-        case(OBJ_LINE):
-          geda_line_object_scale(o_current, x_scale, y_scale);
-          break;
-      }
-      iter = iter->next;
-    }
-  }
-}
