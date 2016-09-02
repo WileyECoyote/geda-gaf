@@ -4,6 +4,8 @@
       module and rename geda_object_list_scale, declare object argument a
       const. Adjust function wrap.
 
+    * src/object/o_object.c: Add convienence function geda_object_update.
+
 2016-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype_priv.h: Update private function names with geda_struct

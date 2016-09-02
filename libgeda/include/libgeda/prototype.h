@@ -212,6 +212,7 @@ extern "C" {
          void    geda_object_mirror                   (GedaObject *object, int center_x, int center_y);
          void    geda_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_object_translate                (GedaObject *object, int dx, int dy);
+         void    geda_object_update                   (GedaObject *object);
 
 /* o_box_object.c */
    GedaObject   *geda_box_object_copy                 (const GedaObject *object) WARN_UNUSED;

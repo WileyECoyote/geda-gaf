@@ -705,3 +705,19 @@ geda_object_translate (GedaObject *object, int dx, int dy)
     BUG_IMSG("Bad object type '%c'", object->type);
   }
 }
+
+/*! \brief Update an object connections
+ *  \par Function Description
+ *  Convienence function that combines
+ *  <B>geda_struct_tile_update_object</B> and
+ *  <B>geda_struct_conn_update_object</B>.
+ *
+ *  \param [in] object The object to update.
+ */
+void
+geda_object_update (GedaObject *object)
+{
+  geda_struct_tile_update_object (object);
+  geda_struct_conn_update_object (object);
+
+}
