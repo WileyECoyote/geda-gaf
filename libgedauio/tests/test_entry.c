@@ -156,6 +156,7 @@ check_accessors ()
 
   /* Check activates-default */
 
+  /* uses geda_entry_get_activates_default */
   value = geda_entry_widget_get_activates_default(widget);
 
   if (value) { /* default is FALSE */
@@ -163,6 +164,7 @@ check_accessors ()
     result++;
   }
 
+  /* uses geda_entry_set_activates_default */
   geda_entry_widget_set_activates_default(widget, TRUE);
 
   value = geda_entry_widget_get_activates_default(widget);
