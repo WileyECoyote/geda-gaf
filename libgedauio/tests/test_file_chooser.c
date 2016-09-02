@@ -157,15 +157,15 @@ format_time (time_t t)
 }
 
 static char *
-format_size (gint64 size)
+format_size (int64_t size)
 {
-  if (size < (gint64)1024) {
+  if (size < (int64_t)1024) {
     return g_strdup_printf ("%d bytes", (gint)size);
   }
-  else if (size < (gint64)1024*1024) {
+  else if (size < (int64_t)1024*1024) {
     return g_strdup_printf ("%.1f K", size / (1024.));
   }
-  else if (size < (gint64)1024*1024*1024) {
+  else if (size < (int64_t)1024*1024*1024) {
     return g_strdup_printf ("%.1f M", size / (1024.*1024.));
   }
 
