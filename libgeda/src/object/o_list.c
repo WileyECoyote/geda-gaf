@@ -135,44 +135,6 @@ geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 }
 
 /*!
- * \brief Find all floating attributes in the given object list.
- * \par Function Description
- *  Find all floating attributes in the given object list.
- *
- * \param [in] list  GList of Objects to search for floating attributes.
- *
- * \return GList of floating attributes from the input list
- *
- * \note Caller should g_list_free returned list.
- *
- * \todo This function should not be called geda_attrib_object since it
- *       does not accept an object as a argument!
- */
-GList*
-geda_object_list_find_floating (const GList *list)
-{
-  GList *floating_attributes = NULL;
-  const  GList *iter;
-
-  for (iter = list; iter != NULL; iter = iter->next) {
-
-    GedaObject *o_current = iter->data;
-
-    /* Skip non text objects, attached attributes and text which doesn't
-     * constitute a valid attributes (e.g. general text placed on the page)
-     */
-    if (o_current->type == OBJ_TEXT &&
-        o_current->attached_to == NULL &&
-        geda_object_get_is_valid_attribute (o_current)) {
-
-      floating_attributes = g_list_prepend (floating_attributes, o_current);
-    }
-  }
-
-  return g_list_reverse (floating_attributes);
-}
-
-/*!
  * \brief Find an attribute in a list.
  * \par Function Description
  *  Case sensitive search for attribute by name. Counter is the n'th
@@ -220,15 +182,57 @@ geda_object_list_find_attrib_by_name (const GList *list,
 }
 
 /*!
- * \brief Translates a glist of Objects
+ * \brief Find all floating attributes in the given object list.
  * \par Function Description
- *  Calls geda_object_translate for each glist data member
+ *  Find all floating attributes in the given object list.
+ *
+ * \param [in] list  GList of Objects to search for floating attributes.
+ *
+ * \return GList of floating attributes from the input list
+ *
+ * \note Caller should g_list_free returned list.
+ *
+ * \todo This function should not be called geda_attrib_object since it
+ *       does not accept an object as a argument!
+ */
+GList*
+geda_object_list_find_floating (const GList *list)
+{
+  GList *floating_attributes = NULL;
+  const  GList *iter;
+
+  for (iter = list; iter != NULL; iter = iter->next) {
+
+    GedaObject *o_current = iter->data;
+
+    /* Skip non text objects, attached attributes and text which doesn't
+     * constitute a valid attributes (e.g. general text placed on the page)
+     */
+    if (o_current->type == OBJ_TEXT &&
+        o_current->attached_to == NULL &&
+        geda_object_get_is_valid_attribute (o_current)) {
+
+      floating_attributes = g_list_prepend (floating_attributes, o_current);
+    }
+  }
+
+  return g_list_reverse (floating_attributes);
+}
+
+/*!
+ * \brief Mirror a glist of Objects
+ * \par Function Description
+ *  Calls geda_object_mirror for each glist data member
  */
 void
-geda_object_list_translate(const GList *list, int dx, int dy)
+geda_object_list_mirror (const GList *list, int x, int y)
 {
   const GList *o_iter;
 
+  /* Find connected objects, removing each object in turn from the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
@@ -238,11 +242,15 @@ geda_object_list_translate(const GList *list, int dx, int dy)
 
   o_iter = list;
   while (o_iter != NULL) {
-    GedaObject *o_current = o_iter->data;
-    geda_object_translate(o_current, dx, dy);
+    GedaObject *o_current = (GedaObject *)o_iter->data;
+    geda_object_mirror (o_current, x, y);
     o_iter = o_iter->next;
   }
 
+  /* Find connected objects, adding each object in turn back to the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
   o_iter = list;
   while (o_iter != NULL) {
     GedaObject *o_current = o_iter->data;
@@ -276,46 +284,6 @@ geda_object_list_rotate (const GList *list, int x, int y, int angle)
   while (o_iter != NULL) {
     GedaObject *o_current = (GedaObject *)o_iter->data;
     geda_object_rotate (o_current, x, y, angle);
-    o_iter = o_iter->next;
-  }
-
-  /* Find connected objects, adding each object in turn back to the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  o_iter = list;
-  while (o_iter != NULL) {
-    GedaObject *o_current = o_iter->data;
-    geda_struct_conn_update_object (o_current);
-    o_iter = o_iter->next;
-  }
-}
-
-/*!
- * \brief Mirror a glist of Objects
- * \par Function Description
- *  Calls geda_object_mirror for each glist data member
- */
-void
-geda_object_list_mirror (const GList *list, int x, int y)
-{
-  const GList *o_iter;
-
-  /* Find connected objects, removing each object in turn from the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  o_iter = list;
-  while (o_iter != NULL) {
-    GedaObject *o_current = o_iter->data;
-    geda_struct_conn_remove_object (o_current);
-    o_iter = o_iter->next;
-  }
-
-  o_iter = list;
-  while (o_iter != NULL) {
-    GedaObject *o_current = (GedaObject *)o_iter->data;
-    geda_object_mirror (o_current, x, y);
     o_iter = o_iter->next;
   }
 
@@ -380,4 +348,36 @@ geda_object_list_set_color (const GList *list, int color)
 
   for (iter = list; iter != NULL; iter = g_list_next (iter))
     geda_set_object_color (iter->data, color);
+}
+
+/*!
+ * \brief Translates a glist of Objects
+ * \par Function Description
+ *  Calls geda_object_translate for each glist data member
+ */
+void
+geda_object_list_translate(const GList *list, int dx, int dy)
+{
+  const GList *o_iter;
+
+  o_iter = list;
+  while (o_iter != NULL) {
+    GedaObject *o_current = o_iter->data;
+    geda_struct_conn_remove_object (o_current);
+    o_iter = o_iter->next;
+  }
+
+  o_iter = list;
+  while (o_iter != NULL) {
+    GedaObject *o_current = o_iter->data;
+    geda_object_translate(o_current, dx, dy);
+    o_iter = o_iter->next;
+  }
+
+  o_iter = list;
+  while (o_iter != NULL) {
+    GedaObject *o_current = o_iter->data;
+    geda_struct_conn_update_object (o_current);
+    o_iter = o_iter->next;
+  }
 }

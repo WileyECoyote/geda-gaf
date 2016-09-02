@@ -2,7 +2,7 @@
 
     * src/object/o_list.c: Relocate function geda_object_scale from object
       module and rename geda_object_list_scale, declare object argument a
-      const. Adjust function wrap.
+      const. Reorganize module and adjust function wrap.
 
     * src/object/o_object.c: Add convienence function geda_object_update.
 
