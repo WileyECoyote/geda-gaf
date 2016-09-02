@@ -83,18 +83,20 @@ SCM_SYMBOL (lineto_sym ,         "lineto");
 SCM_SYMBOL (curveto_sym ,        "curveto");
 SCM_SYMBOL (closepath_sym ,      "closepath");
 
-/*! \brief Convert a Scheme object list to a GList.
+/*!
+ * \brief Convert a Scheme object list to a GList.
  * \par Function Description
- * Takes a Scheme list of GedaObject smobs, and returns a GList
- * containing the objects. If \a objs is not a list of GedaObject smobs,
- * throws a Scheme error.
+ *  Takes a Scheme list of GedaObject smobs, and returns a GList
+ *  containing the objects. If \a objs is not a list of GedaObject smobs,
+ *  throws a Scheme error.
  *
  * \warning If the GedaObject structures in the GList are to be stored by
- * C code and later free()'d directly, the smobs must be marked as
- * unsafe for garbage collection (by calling edascm_c_set_gc()).
+ *          C code and later free()'d directly, the smobs must be marked as
+ *          unsafe for garbage collection (by calling edascm_c_set_gc()).
  *
- * param [in] objs a Scheme list of GedaObject smobs.
- * param [in] subr the name of the Scheme subroutine (used for error messages).
+ *  param [in] objs a Scheme list of GedaObject smobs.
+ *  param [in] subr the name of the Scheme subroutine (used for error messages).
+ *
  * \return a GList of GedaObject.
  */
 GList *
@@ -120,16 +122,18 @@ edascm_to_object_glist (SCM objs, const char *subr)
   return g_list_reverse (result);
 }
 
-/*! \brief Convert a GList of objects into a Scheme list.
+/*!
+ * \brief Convert a GList of objects into a Scheme list.
  * \par Function Description
- * Takes a GList of GedaObject and returns a Scheme list of corresponding
- * object smobs.
+ *  Takes a GList of GedaObject and returns a Scheme list of corresponding
+ *  object smobs.
  *
  * \warning If the GedaObject structures are to be subsequently managed
- * only by Scheme, the smobs in the returned list must be marked as
- * safe for garbage collection (by calling edascm_c_set_gc()).
+ *          only by Scheme, the smobs in the returned list must be marked as
+ *          safe for garbage collection (by calling edascm_c_set_gc()).
  *
- * param [in] objs a GList of GedaObject instances.
+ *  param [in] objs a GList of GedaObject instances.
+ *
  * \return a Scheme list of smobs corresponding to each GedaObject.
  */
 SCM
@@ -150,14 +154,16 @@ edascm_from_object_glist (const GList *objs)
   return rlst;
 }
 
-/*! \brief Test if an object smob is of a particular type.
+/*!
+ * \brief Test if an object smob is of a particular type.
  * \par Function Description
- * Checks if \a smob contains an GedaObject of the given \a type. This is
- * intended to be used by C-based Scheme procedures for working with
- * particular object types.
+ *  Checks if \a smob contains an GedaObject of the given \a type. This is
+ *  intended to be used by C-based Scheme procedures for working with
+ *  particular object types.
  *
- * param [in] smob Scheme value to check type for.
- * param [in] type Type to check against (e.g. OBJ_LINE).
+ *  param [in] smob Scheme value to check type for.
+ *  param [in] type Type to check against (e.g. OBJ_LINE).
+ *
  * \return non-zero if \a smob is an GedaObject smob of \a type.
  */
 int
@@ -172,15 +178,17 @@ edascm_is_object_type (SCM smob, int type)
 
 /* ----------------------- Scheme GedaObject API ---------------------- */
 
-/*! \brief Copy an object.
+/*!
+ * \brief Copy an object.
  * \par Function Description
- * Returns a copy of the GedaObject contained in smob \a obj_s as a new
- * smob.
+ *  Returns a copy of the GedaObject contained in smob \a obj_s as a new
+ *  smob.
  *
  * \note Scheme API: Implements the %copy-object procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param [in] obj_s an GedaObject smob.
+ *  param [in] obj_s an GedaObject smob.
+ *
  * \return a new GedaObject smob containing a copy of the GedaObject in \a obj_s.
  */
 EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
@@ -199,15 +207,16 @@ EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
   return result;
 }
 
-/*! \brief Mirror an object.
+/*!
+ * \brief Mirror an object.
  * \par Function Description
- * Mirrors \a obj_s in the line x = \a x_s.
+ *  Mirrors \a obj_s in the line x = \a x_s.
  *
  * \note Scheme API: Implements the %mirror-object! procedure of the
- * (geda core object) module.
+ *      (geda core object) module.
  *
- * param obj_s    GedaObject smob for object to translate.
- * param x_s      x-coordinate of centre of rotation.
+ *  param obj_s    GedaObject smob for object to translate.
+ *  param x_s      x-coordinate of centre of rotation.
  *
  * \return \a obj_s.
  */
@@ -233,28 +242,30 @@ EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
   return obj_s;
 }
 
-/*! \brief Get the bounds of a list of objects
+/*!
+ * \brief Get the bounds of a list of objects
  * \par Function Description
- * Returns the bounds of the objects in the variable-length argument
- * list \a rst_s. The bounds are returned as a pair structure of the
- * form:
+ *  Returns the bounds of the objects in the variable-length argument
+ *  list \a rst_s. The bounds are returned as a pair structure of the
+ *  form:
  *
  * \code
  * ((left . top) . (right . bottom))
  * \endcode
  *
- * If \a rst_s is empty, or none of the objects has any bounds
- * (e.g. because they are all empty components and/or text strings),
- * returns SCM_BOOL_F.
+ *  If \a rst_s is empty, or none of the objects has any bounds
+ *  (e.g. because they are all empty components and/or text strings),
+ *  returns SCM_BOOL_F.
  *
  * \warning This function always returns the actual bounds of the
- * objects, not the visible bounds.
+ *          objects, not the visible bounds.
  *
  * \note Scheme API: Implements the %object-bounds procedure in the
- * (geda core object) module.  The procedure takes any number of
- * GedaObject smobs as arguments.
+ *      (geda core object) module.  The procedure takes any number of
+ *       GedaObject smobs as arguments.
  *
- * param [in] rst_s Variable-length list of GedaObject arguments.
+ *  param [in] rst_s Variable-length list of GedaObject arguments.
+ *
  * \return bounds of objects or SCM_BOOL_F.
  */
 EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
@@ -315,11 +326,12 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 }
 
 
-/*! \brief Get the stroke properties of an object.
+/*!
+ * \brief Get the stroke properties of an object.
  * \par Function Description
- * Returns the stroke settings of the object \a obj_s.  If \a obj_s is
- * not a line, box, circle, arc, or path, throws a Scheme error.  The
- * return value is a list of parameters:
+ *  Returns the stroke settings of the object \a obj_s.  If \a obj_s is
+ *  not a line, box, circle, arc, or path, throws a Scheme error.  The
+ *  return value is a list of parameters:
  *
  * -# stroke width
  * -# cap style (a symbol: none, square or round)
@@ -330,9 +342,10 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
  *    -# For other styles, dot/dash spacing and dash length.
  *
  * \note Scheme API: Implements the %object-stroke procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s object to get stroke settings for.
+ *  param obj_s object to get stroke settings for.
+ *
  * \return a list of stroke parameters.
  */
 EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
@@ -391,11 +404,12 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   }
 }
 
-/*! \brief Get the fill properties of an object.
+/*!
+ * \brief Get the fill properties of an object.
  * \par Function Description
- * Returns the fill settings of the object \a obj_s.  If \a obj_s is
- * not a box, circle, or path, throws a Scheme error.  The return
- * value is a list of parameters:
+ *  Returns the fill settings of the object \a obj_s.  If \a obj_s is
+ *  not a box, circle, or path, throws a Scheme error.  The return
+ *  value is a list of parameters:
  *
  * -# fill style (a symbol: hollow, solid, mesh or hatch)
  * -# up to five fill parameters, depending on fill style:
@@ -405,9 +419,10 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
  *      spacing for mesh fills.
  *
  * \note Scheme API: Implements the %object-fill procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s object to get fill settings for.
+ *  param obj_s object to get fill settings for.
+ *
  * \return a list of fill parameters.
  */
 EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
@@ -453,18 +468,19 @@ EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
   }
 }
 
-/*! \brief Set the fill properties of an object.
+/*!
+ * \brief Set the fill properties of an object.
  * \par Function Description
-
- * Updates the fill settings of the object \a obj_s.  If \a obj_s is
- * not a box, circle, or path, throws a Scheme error.  The optional
- * parameters \a width_s, \a angle1_s, \a space1_s, \a angle2_s and
- * space2_s
+ *  Updates the fill settings of the object \a obj_s.  If \a obj_s is
+ *  not a box, circle, or path, throws a Scheme error.  The optional
+ *  parameters \a width_s, \a angle1_s, \a space1_s, \a angle2_s and
+ *  space2_s
  *
  * \note Scheme API: Implements the %object-fill procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s object to set fill settings for.
+ *  param obj_s object to set fill settings for.
+ *
  * \return \a obj_s.
  */
 EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
@@ -562,16 +578,18 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
   return obj_s;
 }
 
-/*! \brief Get the color of an object.
+/*!
+ * \brief Get the color of an object.
  * \par Function Description
- * Returns the colormap index of the color used to draw the GedaObject
- * smob \a obj_s. Note that the color may not be meaningful for some
- * object types.
+ *  Returns the colormap index of the color used to draw the GedaObject
+ *  smob \a obj_s. Note that the color may not be meaningful for some
+ *  object types.
  *
  * \note Scheme API: Implements the %object-color procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param [in] obj_s GedaObject smob to inspect.
+ *  param [in] obj_s GedaObject smob to inspect.
+ *
  * \return The colormap index used by \a obj_s.
  */
 EDA_SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
@@ -584,17 +602,19 @@ EDA_SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
   return scm_from_int (obj->color);
 }
 
-/*! \brief Set the color of an object.
+/*!
+ * \brief Set the color of an object.
  * \par Function Description
- * Set the colormap index of the color used to draw the GedaObject smob
- * \a obj_s to \a color_s. Note that the color may not be meaningful
- * for some object types.
+ *  Set the colormap index of the color used to draw the GedaObject smob
+ *  \a obj_s to \a color_s. Note that the color may not be meaningful
+ *  for some object types.
  *
  * \note Scheme API: Implements the %set-object-color! procedure in
- * the (geda core object) module.
+ *       the (geda core object) module.
  *
- * param obj_s   GedaObject smob to modify.
- * param color_s new colormap index to use for \a obj_s.
+ *  param obj_s   GedaObject smob to modify.
+ *  param color_s new colormap index to use for \a obj_s.
+ *
  * \return the modified \a obj_s.
  */
 EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
@@ -616,22 +636,23 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
   return obj_s;
 }
 
-/*! \brief Set line parameters.
+/*!
+ * \brief Set line parameters.
  * \par Function Description
- * Modifies a line object by setting its parameters to new values.
+ *  Modifies a line object by setting its parameters to new values.
  *
  * \note Scheme API: Implements the %set-line! procedure in the (geda
- * core object) module.
+ *       core object) module.
  *
- * This function also works on net, bus and pin objects.  For pins,
- * the start is the connectable point on the pin.
+ *  This function also works on net, bus and pin objects.  For pins,
+ *  the start is the connectable point on the pin.
  *
- * param line_s the line object to modify.
- * param x1_s   the new x-coordinate of the start of the line.
- * param y1_s   the new y-coordinate of the start of the line.
- * param x2_s   the new x-coordinate of the end of the line.
- * param y2_s   the new y-coordinate of the end of the line.
- * param color  the colormap index of the color to be used for
+ *  param line_s the line object to modify.
+ *  param x1_s   the new x-coordinate of the start of the line.
+ *  param y1_s   the new y-coordinate of the start of the line.
+ *  param x2_s   the new x-coordinate of the end of the line.
+ *  param y2_s   the new y-coordinate of the end of the line.
+ *  param color  the colormap index of the color to be used for
  *               drawing the line.
  *
  * \return the modified line object.
@@ -666,6 +687,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
     geda_net_object_modify (obj, x2, y2, 1);
     geda_struct_conn_update_object (obj);
     break;
+
   case OBJ_PIN:
     geda_struct_conn_remove_object (obj);
     /* Swap ends according to pin's whichend flag. */
@@ -673,16 +695,19 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
     geda_pin_object_modify (obj, x2, y2, obj->pin->whichend ? 0 : 1);
     geda_struct_conn_update_object (obj);
     break;
+
   case OBJ_LINE:
     geda_line_object_modify (obj, x1, y1, LINE_END1);
     geda_line_object_modify (obj, x2, y2, LINE_END2);
     break;
+
   case OBJ_BUS:
     geda_struct_conn_remove_object (obj);
     geda_bus_object_modify (obj, x1, y1, 0);
     geda_bus_object_modify (obj, x2, y2, 1);
     geda_struct_conn_update_object (obj);
     break;
+
   default:
     return line_s;
   }
@@ -695,10 +720,11 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   return line_s;
 }
 
-/*! \brief Get line parameters.
+/*!
+ * \brief Get line parameters.
  * \par Function Description
- * Retrieves the parameters of a line object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a line object. The return value is a
+ *  list of parameters:
  *
  * -# X-coordinate of start of line
  * -# Y-coordinate of start of line
@@ -706,10 +732,11 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
  * -# Y-coordinate of end of line
  * -# Colormap index of color to be used for drawing the line
  *
- * This function also works on net, bus and pin objects.  For pins,
- * the start is the connectable point on the pin.
+ *  This function also works on net, bus and pin objects.  For pins,
+ *  the start is the connectable point on the pin.
  *
- * param line_s the line object to inspect.
+ *  param line_s the line object to inspect.
+ *
  * \return a list of line parameters.
  */
 EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
@@ -738,13 +765,14 @@ EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
   return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
 }
 
-/*! \brief Get the type of a pin object.
+/*!
+ * \brief Get the type of a pin object.
  * \par Function Description
- * Returns a symbol describing the pin type of the pin object \a
- * pin_s.
+ *  Returns a symbol describing the pin type of the pin object \a
+ *  pin_s.
  *
  * \note Scheme API: Implements the %pin-type procedure in the (geda
- * core object) module.
+ *       core object) module.
  *
  * \return the symbol 'pin or 'bus.
  */
@@ -773,12 +801,13 @@ EDA_SCM_DEFINE (object_pin_type, "%pin-type", 1, 0, 0,
   return result;
 }
 
-/*! \brief Set box parameters.
+/*!
+ * \brief Set box parameters.
  * \par Function Description
- * Modifies a box object by setting its parameters to new values.
+ *  Modifies a box object by setting its parameters to new values.
  *
  * \note Scheme API: Implements the %set-box! procedure in the (geda
- * core object) module.
+ *       core object) module.
  *
  * param box_s  the box object to modify.
  * param x1_s   the new x-coordinate of the top left of the box.
@@ -814,10 +843,11 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
   return box_s;
 }
 
-/*! \brief Get box parameters.
+/*!
+ * \brief Get box parameters.
  * \par Function Description
- * Retrieves the parameters of a box object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a box object. The return value is a
+ *  list of parameters:
  *
  * -# X-coordinate of top left of box
  * -# Y-coordinate of top left of box
@@ -825,7 +855,8 @@ EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
  * -# Y-coordinate of bottom right of box
  * -# Colormap index of color to be used for drawing the box
  *
- * param box_s the box object to inspect.
+ *  param box_s the box object to inspect.
+ *
  * \return a list of box parameters.
  */
 EDA_SCM_DEFINE (object_box_info, "%box-info", 1, 0, 0,
@@ -844,18 +875,19 @@ EDA_SCM_DEFINE (object_box_info, "%box-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/*! \brief Set circle parameters.
+/*!
+ * \brief Set circle parameters.
  * \par Function Description
- * Modifies a circle object by setting its parameters to new values.
+ *  Modifies a circle object by setting its parameters to new values.
  *
  * \note Scheme API: Implements the %set-circle! procedure in the
- * (geda core object) module.
+ *      (geda core object) module.
  *
- * param circle_s the circle object to modify.
- * param x_s    the new x-coordinate of the center of the circle.
- * param y_s    the new y-coordinate of the center of the circle.
- * param r_s    the new radius of the circle.
- * param color  the colormap index of the color to be used for
+ *  param circle_s the circle object to modify.
+ *  param x_s    the new x-coordinate of the center of the circle.
+ *  param y_s    the new y-coordinate of the center of the circle.
+ *  param r_s    the new radius of the circle.
+ *  param color  the colormap index of the color to be used for
  *               drawing the circle.
  *
  * \return the modified circle object.
@@ -881,18 +913,19 @@ EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
   return circle_s;
 }
 
-/*! \brief Get circle parameters.
+/*!
+ * \brief Get circle parameters.
  * \par Function Description
-
- * Retrieves the parameters of a circle object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a circle object. The return value is a
+ *  list of parameters:
  *
  * -# X-coordinate of center of circle
  * -# Y-coordinate of center of circle
  * -# Radius of circle
  * -# Colormap index of color to be used for drawing the circle
  *
- * param circle_s the circle object to inspect.
+ *  param circle_s the circle object to inspect.
+ *
  * \return a list of circle parameters.
  */
 EDA_SCM_DEFINE (object_circle_info, "%circle-info", 1, 0, 0,
@@ -910,20 +943,21 @@ EDA_SCM_DEFINE (object_circle_info, "%circle-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/*! \brief Set arc parameters.
+/*!
+ * \brief Set arc parameters.
  * \par Function Description
- * Modifies a arc object by setting its parameters to new values.
+ *  Modifies a arc object by setting its parameters to new values.
  *
  * \note Scheme API: Implements the %set-arc! procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param arc_s         the arc object to modify.
- * param x_s           the new x-coordinate of the center of the arc.
- * param y_s           the new y-coordinate of the center of the arc.
- * param r_s           the new radius of the arc.
- * param start_angle_s the start angle of the arc.
- * param arc_sweep_s   the start angle of the arc.
- * param color_s       the colormap index of the color to be used for
+ *  param arc_s         the arc object to modify.
+ *  param x_s           the new x-coordinate of the center of the arc.
+ *  param y_s           the new y-coordinate of the center of the arc.
+ *  param r_s           the new radius of the arc.
+ *  param start_angle_s the start angle of the arc.
+ *  param arc_sweep_s   the start angle of the arc.
+ *  param color_s       the colormap index of the color to be used for
  *                      drawing the arc.
  *
  * \return the modified arc object.
@@ -962,10 +996,11 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
   return arc_s;
 }
 
-/*! \brief Get arc parameters.
+/*!
+ * \brief Get arc parameters.
  * \par Function Description
- * Retrieves the parameters of a arc object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a arc object. The return value is a
+ *  list of parameters:
  *
  * -# X-coordinate of center of arc
  * -# Y-coordinate of center of arc
@@ -975,9 +1010,9 @@ EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
  * -# Colormap index of color to be used for drawing the arc
  *
  * \note Scheme API: Implements the %arc-info procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param arc_s the arc object to inspect.
+ *  param arc_s the arc object to inspect.
  *
  * \return a list of arc parameters.
  */
@@ -997,29 +1032,30 @@ EDA_SCM_DEFINE (object_arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc par
                      SCM_UNDEFINED);
 }
 
-/*! \brief Set text parameters.
+/*!
+ * \brief Set text parameters.
  * \par Function Description
- * Modifies a text object by setting its parameters to new values.
+ *  Modifies a text object by setting its parameters to new values.
  *
- * The alignment \a align_s should be a symbol of the form "x-y" where
- * x can be one of "lower", "middle", or "upper", and y can be one of
- * "left", "center" or "right". \a show_s determines which parts of an
- * attribute-formatted string should be shown, and should be one of
- * the symbols "name", "value" or "both".
+ *  The alignment \a align_s should be a symbol of the form "x-y" where
+ *  x can be one of "lower", "middle", or "upper", and y can be one of
+ *  "left", "center" or "right". \a show_s determines which parts of an
+ *  attribute-formatted string should be shown, and should be one of
+ *  the symbols "name", "value" or "both".
  *
  * \note Scheme API: Implements the %set-text! procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param text_s    the text object to modify.
- * param x_s       the new x-coordinate of the anchor of the text.
- * param y_s       the new y-coordinate of the anchor of the text.
- * param align_s   the new alignment of the text on the anchor.
- * param angle_s   the angle the text in degrees (0, 90, 180 or 270).
- * param string_s  the new string to display.
- * param size_s    the new text size.
- * param visible_s the new text visibility (SCM_BOOL_T or SCM_BOOL_F).
- * param show_s    the new attribute part visibility setting.
- * param color_s   the colormap index of the color to be used for
+ *  param text_s    the text object to modify.
+ *  param x_s       the new x-coordinate of the anchor of the text.
+ *  param y_s       the new y-coordinate of the anchor of the text.
+ *  param align_s   the new alignment of the text on the anchor.
+ *  param angle_s   the angle the text in degrees (0, 90, 180 or 270).
+ *  param string_s  the new string to display.
+ *  param size_s    the new text size.
+ *  param visible_s the new text visibility (SCM_BOOL_T or SCM_BOOL_F).
+ *  param show_s    the new attribute part visibility setting.
+ *  param color_s   the colormap index of the color to be used for
  *                  drawing the text.
  *
  * \remark WEH: May need to rethink this, 10 parameters may be a bit
@@ -1140,10 +1176,11 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
   return text_s;
 }
 
-/*! \brief Get text parameters.
+/*!
+ * \brief Get text parameters.
  * \par Function Description
- * Retrieves the parameters of a text object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a text object. The return value is a
+ *  list of parameters:
  *
  * -# X-coordinate of anchor of text
  * -# Y-coordinate of anchor of text
@@ -1156,9 +1193,9 @@ EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
  * -# Colormap index of color to be used for drawing the text
  *
  * \note Scheme API: Implements the %text-info procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param text_s the text object to inspect.
+ *  param text_s the text object to inspect.
  *
  * \return a list of text parameters.
  */
@@ -1218,17 +1255,19 @@ EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/*! \brief Get objects that are connected to an object.
+/*!
+ * \brief Get objects that are connected to an object.
  * \par Function Description
- * Returns a list of all objects directly connected to \a obj_s.  If
- * \a obj_s is not included in a page, throws a Scheme error.  If \a
- * obj_s is not a pin, net, bus, or complex object, returns the empty
- * list.
+ *  Returns a list of all objects directly connected to \a obj_s.  If
+ *  \a obj_s is not included in a page, throws a Scheme error.  If \a
+ *  obj_s is not a pin, net, bus, or complex object, returns the empty
+ *  list.
  *
  * \note Scheme API: Implements the %object-connections procedure of
- * the (geda core object) module.
+ *       the (geda core object) module.
  *
- * param obj_s GedaObject smob for object to get connections for.
+ *  param obj_s GedaObject smob for object to get connections for.
+ *
  * \return a list of GedaObject smobs.
  */
 EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
@@ -1252,15 +1291,16 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
   return result;
 }
 
-/*! \brief Get the complex object that contains an object.
+/*!
+ * \brief Get the complex object that contains an object.
  * \par Function Description
- * Returns the complex object that contains the object \a obj_s.  If
- * \a obj_s is not part of a component, returns SCM_BOOL_F.
+ *  Returns the complex object that contains the object \a obj_s.  If
+ *  \a obj_s is not part of a component, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %object-complex procedure of the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s GedaObject smob for object to get component of.
+ *  param obj_s GedaObject smob for object to get component of.
  *
  * \return the GedaObject smob of the containing component, or SCM_BOOL_F.
  */
@@ -1279,22 +1319,23 @@ EDA_SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
   return edascm_from_object (parent);
 }
 
-/*! \brief Set the stroke properties of an object.
+/*!
+ * \brief Set the stroke properties of an object.
  * \par Function Description
- * Updates the stroke settings of the object \a obj_s.  If \a obj_s is
- * not a line, box, circle, arc, or path, throws a Scheme error.  The
- * optional parameters \a space_s and \a length_s can be set to
- * SCM_UNDEFINED if not required by the dash style \a dash_s.
+ *  Updates the stroke settings of the object \a obj_s.  If \a obj_s is
+ *  not a line, box, circle, arc, or path, throws a Scheme error.  The
+ *  optional parameters \a space_s and \a length_s can be set to
+ *  SCM_UNDEFINED if not required by the dash style \a dash_s.
  *
  * \note Scheme API: Implements the %object-stroke procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s object to set stroke settings for.
- * param width_s new stroke width for \a obj_s.
- * param cap_s new stroke cap style for \a obj_s.
- * param dash_s new dash style for \a obj_s.
- * param space_s dot/dash spacing for dash styles other than solid.
- * param length_s dash length for dash styles other than solid or
+ *  param obj_s object to set stroke settings for.
+ *  param width_s new stroke width for \a obj_s.
+ *  param cap_s new stroke cap style for \a obj_s.
+ *  param dash_s new dash style for \a obj_s.
+ *  param space_s dot/dash spacing for dash styles other than solid.
+ *  param length_s dash length for dash styles other than solid or
  *                 dotted.
  * \return \a obj_s.
  */
@@ -1377,14 +1418,16 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
   return obj_s;
 }
 
-/*! \brief Get the type of an object.
+/*!
+ * \brief Get the type of an object.
  * \par Function Description
- * Returns a symbol describing the type of the GedaObject smob \a obj_s.
+ *  Returns a symbol describing the type of the GedaObject smob \a obj_s.
  *
  * \note Scheme API: Implements the %object-type procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param [in] obj_s an GedaObject smob.
+ *  param [in] obj_s an GedaObject smob.
+ *
  * \return a Scheme symbol representing the object type.
  */
 EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
@@ -1417,14 +1460,15 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
   return result;
 }
 
-/*! \brief Get the number of elements in a path.
+/*!
+ * \brief Get the number of elements in a path.
  * \par Function Description
- * Retrieves the number of path elements in the path object \a obj_s.
+ *  Retrieves the number of path elements in the path object \a obj_s.
  *
  * \note Scheme API: Implements the %path-length procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s GedaObject smob for path object to inspect.
+ *  param obj_s GedaObject smob for path object to inspect.
  *
  * \return The number of path elements in \a obj_s.
  */
@@ -1439,18 +1483,19 @@ EDA_SCM_DEFINE (object_path_length, "%path-length", 1, 0, 0,
   return scm_from_int (obj->path->num_sections);
 }
 
-/*! \brief Get one of the elements from a path.
+/*!
+ * \brief Get one of the elements from a path.
  * \par Function Description
- * Retrieves a path element at index \a index_s from the path object
- * \a obj_s.  If \a index_s is not a valid index, raises a Scheme
- * "out-of-range" error.
+ *  Retrieves a path element at index \a index_s from the path object
+ *  \a obj_s.  If \a index_s is not a valid index, raises a Scheme
+ *  "out-of-range" error.
  *
- * The return value is a list.  The first element in the list is a
- * symbol indicating the type of path element ("moveto", "lineto",
- * "curveto" or "closepath"), and the remainder of the list contains
- * zero or more control point coordinates, depending on the type of
- * path element.  Each element is evaluated relative to the current
- * path position.
+ *  The return value is a list.  The first element in the list is a
+ *  symbol indicating the type of path element ("moveto", "lineto",
+ *  "curveto" or "closepath"), and the remainder of the list contains
+ *  zero or more control point coordinates, depending on the type of
+ *  path element.  Each element is evaluated relative to the current
+ *  path position.
  *
  * - moveto: x and y coordinates of position to step to.
  * - lineto: x and y coordinates of straight line endpoint.
@@ -1458,13 +1503,13 @@ EDA_SCM_DEFINE (object_path_length, "%path-length", 1, 0, 0,
  *   of second control point; and coordinates of curve endpoint.
  * - closepath: No coordinate parameters.
  *
- * All coordinates are absolute.
+ *  All coordinates are absolute.
  *
  * \note Scheme API: Implements the %path-ref procedure in the (geda
- * core object) module.
+ *       core object) module.
  *
- * param obj_s   GedaObject smob of path object to get element from.
- * param index_s Index of element to retrieve from \a obj_s
+ *  param obj_s   GedaObject smob of path object to get element from.
+ *  param index_s Index of element to retrieve from \a obj_s
  *
  * \return A list containing the requested path element data.
  */
@@ -1516,17 +1561,18 @@ EDA_SCM_DEFINE (object_path_ref, "%path-ref", 2, 0, 0,
 
 }
 
-/*! \brief Remove an element from a path.
+/*!
+ * \brief Remove an element from a path.
  * \par Function Description
- * Removes the path element at index \a index_s from the path object
- * \a obj_s. If \a index_s is not a valid index, raises a Scheme
- * "out-of-range" error.
+ *  Removes the path element at index \a index_s from the path object
+ *  \a obj_s. If \a index_s is not a valid index, raises a Scheme
+ *  "out-of-range" error.
  *
  * \note Scheme API: Implements the %path-remove! procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s   GedaObject smob of path object to remove element from.
- * param index_s Index of element to remove from \a obj_s.
+ *  param obj_s   GedaObject smob of path object to remove element from.
+ *  param index_s Index of element to remove from \a obj_s.
  *
  * \return \a obj_s.
  */
@@ -1574,13 +1620,14 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
   return obj_s;
 }
 
-/*! \brief Insert an element into a path.
+/*!
+ * \brief Insert an element into a path.
  * \par Function Description
- * Inserts a path element into the path object \a obj_s at index \a
- * index_s.  The type of element to be inserted is specified by the
- * symbol \a type_s, and the remaining optional integer arguments
- * provide as many absolute coordinate pairs as are required by that
- * element type:
+ *  Inserts a path element into the path object \a obj_s at index \a
+ *  index_s.  The type of element to be inserted is specified by the
+ *  symbol \a type_s, and the remaining optional integer arguments
+ *  provide as many absolute coordinate pairs as are required by that
+ *  element type:
  *
  * - "closepath" elements require no coordinate arguments;
  * - "moveto" and "lineto" elements require one coordinate pair, for
@@ -1589,22 +1636,22 @@ EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
  *   point, coordinates of the second control point, and coordinates
  *   of the endpoint.
  *
- * If the index is negative, or is greater than or equal to the number
- * of elements currently in the path, the new element will be appended
- * to the path.
+ *  If the index is negative, or is greater than or equal to the number
+ *  of elements currently in the path, the new element will be appended
+ *  to the path.
  *
  * \note Scheme API: Implements the %path-insert! procedure of the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s   GedaObject smob for the path object to modify.
- * param index_s Index at which to insert new element.
- * param type_s  Symbol indicating what type of element to insert.
- * param x1_s    X-coordinate of first coordinate pair.
- * param y1_s    Y-coordinate of first coordinate pair.
- * param x2_s    X-coordinate of second coordinate pair.
- * param y2_s    Y-coordinate of second coordinate pair.
- * param x3_s    X-coordinate of third coordinate pair.
- * param y3_s    Y-coordinate of third coordinate pair.
+ *  param obj_s   GedaObject smob for the path object to modify.
+ *  param index_s Index at which to insert new element.
+ *  param type_s  Symbol indicating what type of element to insert.
+ *  param x1_s    X-coordinate of first coordinate pair.
+ *  param y1_s    Y-coordinate of first coordinate pair.
+ *  param x2_s    X-coordinate of second coordinate pair.
+ *  param y2_s    Y-coordinate of second coordinate pair.
+ *  param x3_s    X-coordinate of third coordinate pair.
+ *  param y3_s    Y-coordinate of third coordinate pair.
  *
  * \return \a obj_s.
  */
@@ -1705,10 +1752,11 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
   return obj_s;
 }
 
-/*! \brief Get picture object parameters.
+/*!
+ * \brief Get picture object parameters.
  * \par Function Description
- * Retrieves the parameters of a picture object.  The return value is
- * a list of parameters:
+ *  Retrieves the parameters of a picture object.  The return value is
+ *  a list of parameters:
  *
  * -# Filename of picture.
  * -# X-coordinate of top left of picture.
@@ -1719,9 +1767,9 @@ EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
  * -# Whether object is mirrored.
  *
  * \note Scheme API: Implements the %picture-info procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s the picture object to inspect.
+ *  param obj_s the picture object to inspect.
  *
  * \return a list of picture object parameters.
  */
@@ -1750,20 +1798,22 @@ EDA_SCM_DEFINE (object_picture_info, "%picture-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/*! \brief Set picture object parameters.
- *  \par Function Description
- * Sets the parameters of the picture object \a obj_s.
+/*!
+ * \brief Set picture object parameters.
+ * \par Function Description
+ *  Sets the parameters of the picture object \a obj_s.
  *
  * \note Scheme API: Implements the %set-picture! procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s       the picture object to modify
- * param x1_s  the new x-coordinate of the top left of the picture.
- * param y1_s  the new y-coordinate of the top left of the picture.
- * param x2_s  the new x-coordinate of the bottom right of the picture.
- * param y2_s  the new y-coordinate of the bottom right of the picture.
- * param angle_s     the new rotation angle.
- * param mirror_s    whether the picture object should be mirrored.
+ *  param obj_s       the picture object to modify
+ *  param x1_s  the new x-coordinate of the top left of the picture.
+ *  param y1_s  the new y-coordinate of the top left of the picture.
+ *  param x2_s  the new x-coordinate of the bottom right of the picture.
+ *  param y2_s  the new y-coordinate of the bottom right of the picture.
+ *  param angle_s     the new rotation angle.
+ *  param mirror_s    whether the picture object should be mirrored.
+ *
  * \return the modify \a obj_s.
  */
 EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
@@ -1811,20 +1861,21 @@ EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
   return obj_s;
 }
 
-/*! \brief Set a picture object's data from a vector.
+/*!
+ * \brief Set a picture object's data from a vector.
  * \par Function Description
- * Sets the image data for the picture object \a obj_s from the vector
- * \a data_s, and set its \a filename.  If the contents of \a data_s
- * could not be successfully loaded as an image, raises an error.  The
- * contents of \a data_s should be image data encoded in on-disk
- * format.
+ *  Sets the image data for the picture object \a obj_s from the vector
+ *  \a data_s, and set its \a filename.  If the contents of \a data_s
+ *  could not be successfully loaded as an image, raises an error.  The
+ *  contents of \a data_s should be image data encoded in on-disk
+ *  format.
  *
  * \note Scheme API: Implements the %set-picture-data/vector!
- * procedure in the (geda core object) module.
+ *       procedure in the (geda core object) module.
  *
- * param obj_s       The picture object to modify.
- * param data_s      Vector containing encoded image data.
- * param filename_s  New filename for \a obj_s.
+ *  param obj_s       The picture object to modify.
+ *  param data_s      Vector containing encoded image data.
+ *  param filename_s  New filename for \a obj_s.
  *
  * \return \a obj_s.
  */
@@ -1887,17 +1938,18 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
 }
 
 
-/*! \brief Translate an object.
+/*!
+ * \brief Translate an object.
  * \par Function Description
- * Translates \a obj_s by \a dx_s in the x-axis and \a dy_s in the
- * y-axis.
+ *  Translates \a obj_s by \a dx_s in the x-axis and \a dy_s in the
+ *  y-axis.
  *
  * \note Scheme API: Implements the %translate-object! procedure of the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s  GedaObject smob for object to translate.
- * param dx_s   Integer distance to translate along x-axis.
- * param dy_s   Integer distance to translate along y-axis.
+ *  param obj_s  GedaObject smob for object to translate.
+ *  param dx_s   Integer distance to translate along x-axis.
+ *  param dy_s   Integer distance to translate along y-axis.
  *
  * \return \a obj_s.
  */
@@ -1925,19 +1977,20 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
   return obj_s;
 }
 
-/*! \brief Rotate an object.
+/*!
+ * \brief Rotate an object.
  * \par Function Description
- * Rotates \a obj_s anti-clockwise by \a angle_s about the point
- * specified by \a x_s and \a y_s.  \a angle_s must be an integer
- * multiple of 90 degrees.
+ *  Rotates \a obj_s anti-clockwise by \a angle_s about the point
+ *  specified by \a x_s and \a y_s.  \a angle_s must be an integer
+ *  multiple of 90 degrees.
  *
  * \note Scheme API: Implements the %rotate-object! procedure of the
- * (geda core object) module.
+ *       (geda core object) module.
  *
- * param obj_s    GedaObject smob for object to translate.
- * param x_s      x-coordinate of centre of rotation.
- * param y_s      y-coordinate of centre of rotation.
- * param angle_s  Angle to rotate by.
+ *  param obj_s    GedaObject smob for object to translate.
+ *  param x_s      x-coordinate of centre of rotation.
+ *  param y_s      y-coordinate of centre of rotation.
+ *  param angle_s  Angle to rotate by.
  *
  * \return \a obj_s.
  */
@@ -2026,8 +2079,8 @@ init_module_geda_core_object (void *nothing)
 /*!
  * \brief Initialise the basic gEDA object manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with GedaObject
- * smobs. Should only be called by edascm_init().
+ *  Registers some Scheme procedures for working with GedaObject
+ *  smobs. Should only be called by edascm_init().
  */
 void
 edascm_init_object (void)
