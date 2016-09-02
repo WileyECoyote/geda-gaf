@@ -208,7 +208,6 @@ extern "C" {
         GList   *geda_object_read_buffer              (GedaToplevel *toplevel, GList *object_list, const char *buffer,
                                                        const int size, const char *name, GError **err);
         GList   *geda_object_read                     (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
-         void    geda_object_scale                    (GList *list, int x_scale, int y_scale);
    GedaObject   *geda_object_copy                     (GedaObject *o_current) WARN_UNUSED;
          void    geda_object_mirror                   (GedaObject *object, int center_x, int center_y);
          void    geda_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
@@ -404,6 +403,7 @@ extern "C" {
          void    geda_object_list_mirror                   (const GList *list, int x, int y);
          void    geda_object_list_rotate                   (const GList *list, int x, int y, int angle);
          void    geda_object_list_translate                (const GList *list, int dx, int dy);
+         void    geda_object_list_scale                    (const GList *list, int x_scale, int y_scale);
          void    geda_object_list_set_color                (const GList *list, int color);
 
 /* o_net_object.c */
