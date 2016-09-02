@@ -1,3 +1,8 @@
+2016-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/AM3356BZCE-1.sym: Add symbol AM3356B 32-Bit RISC ARM Processor,
+      Sitara, Cortex-A8.
+
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/SN65HVD234-x.sym: Add 2 SN65HVD234 symbols; CAN  3.3 Volt Bus
