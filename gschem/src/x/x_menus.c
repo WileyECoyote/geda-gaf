@@ -323,7 +323,7 @@ void x_menu_free_all(void)
  * \par Function Description
  * This function retrieves a pointer to the main menu bar.
  *
- * \retval GtkMenu pointer disguised as a GtkWidget
+ * \retval GedaMenu pointer disguised as a GtkWidget
  */
 GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
 {

@@ -1631,10 +1631,10 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
 
 /*! \brief Create Scope menus for the AutoNumber dialog
  *  \par Function Description
- *  This function creates a GtkMenu with different scope options.
+ *  This function creates a GedaMenu with different scope options.
  */
 static inline
-GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
+GtkWidget *autonumber_create_scope_menu (GschemToplevel *w_current)
 {
   GtkWidget *menu;
   GSList *group;
