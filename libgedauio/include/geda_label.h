@@ -92,7 +92,7 @@ struct _GedaLabelClass
   void (* copy_clipboard)  (GedaLabel *label);
 
   /* Hook to customize right-click popup for selectable labels */
-  void (* populate_popup)  (GedaLabel  *label, GtkMenu *menu);
+  void (* populate_popup)  (GedaLabel  *label, void *menu);
 
   bool (* activate_link)   (GedaLabel *label, const char *uri);
 
