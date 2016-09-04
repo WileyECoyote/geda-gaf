@@ -30,10 +30,11 @@
 
 SCM_SYMBOL (attribute_format_sym, "attribute-format");
 
-/*! \brief Attach an attribute to an object.
+/*!
+ * \brief Attach an attribute to an object.
  * \par Function Description
- * Attach \a attrib_s to \a obj_s.  The following conditions must be
- * satisfied:
+ *  Attach \a attrib_s to \a obj_s.  The following conditions must be
+ *  satisfied:
  *
  * - Neither \a obj_s nor \a attrib_s may be already attached as an
  *   attribute.
@@ -41,18 +42,19 @@ SCM_SYMBOL (attribute_format_sym, "attribute-format");
  *   and/or complex object. (They can't be "loose" objects).
  * - \a attrib_s must be a text object.
  *
- * These restrictions are intentionally harsher than those of the C
- * API, and are required in order to ensure that the Scheme API is
- * safe.
+ *  These restrictions are intentionally harsher than those of the C
+ *  API, and are required in order to ensure that the Scheme API is
+ *  safe.
  *
- * If \a attrib_s is already attached to \a obj_s, does nothing
- * successfully.
+ *  If \a attrib_s is already attached to \a obj_s, does nothing
+ *  successfully.
  *
  * \note Scheme API: Implements the %attach-attrib! procedure of
- * the (geda core attrib) module.
+ *       the (geda core attrib) module.
  *
- * param obj_s the object to which to attach an attribute.
- * param attrib_s the attribute to attach.
+ *  param obj_s the object to which to attach an attribute.
+ *  param attrib_s the attribute to attach.
+ *
  * \return \a obj_s.
  */
 EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
@@ -102,18 +104,20 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   return obj_s;
 }
 
-/*! \brief Detach an attribute from an object.
+/*!
+ * \brief Detach an attribute from an object.
  * \par Function Description
- * Detach \a attrib_s from \a obj_s.  If \a attrib_s is not attached
- * as an attribute, does nothing silently.  If \a attrib_s is attached
- * as an attribute of an object other than \a obj_s, throws a Scheme
- * error.
+ *  Detach \a attrib_s from \a obj_s.  If \a attrib_s is not attached
+ *  as an attribute, does nothing silently.  If \a attrib_s is attached
+ *  as an attribute of an object other than \a obj_s, throws a Scheme
+ *  error.
  *
  * \note Scheme API: Implements the %detach-attrib! procedure of
- * the (geda core attrib) module.
+ *       the (geda core attrib) module.
  *
- * param obj_s the object from which to detach an attribute.
- * param attrib_s the attribute to detach.
+ *  param obj_s the object from which to detach an attribute.
+ *  param attrib_s the attribute to detach.
+ *
  * \return \a attrib_s.
  */
 EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
@@ -151,15 +155,17 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   return obj_s;
 }
 
-/*! \brief Get a list of an object's attributes.
+/*!
+ * \brief Get a list of an object's attributes.
  * \par Function Description
- * Retrieves the attributes of the smob \a obj_s as a Scheme list of
- * #GedaObject smobs.
+ *  Retrieves the attributes of the smob \a obj_s as a Scheme list of
+ *  #GedaObject smobs.
  *
  * \note Scheme API: Implements the %object-attribs procedure of the
- * (geda core attrib) module.
+ *       (geda core attrib) module.
  *
- * param obj_s object to get attributes for.
+ *  param obj_s object to get attributes for.
+ *
  * \return a list of #GedaObject smobs.
  */
 EDA_SCM_DEFINE (attrib_from_object, "%object-attribs", 1, 0, 0,
@@ -174,15 +180,17 @@ EDA_SCM_DEFINE (attrib_from_object, "%object-attribs", 1, 0, 0,
   return edascm_from_object_glist (obj->attribs);
 }
 
-/*! \brief Get the object that an attribute is attached to.
+/*!
+ * \brief Get the object that an attribute is attached to.
  * \par Function Description
- * Returns the #GedaObject smob that \a attrib_s is attached to.  If \a
- * attrib_s is not attached as an attribute, returns SCM_BOOL_F.
+ *  Returns the #GedaObject smob that \a attrib_s is attached to. If \a
+ *  attrib_s is not attached as an attribute, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %attrib-attachment procedure of
- * the (geda core attrib) module.
+ *       the (geda core attrib) module.
  *
- * param attrib_s the object to get attribute attachment for.
+ *  param attrib_s the object to get attribute attachment for.
+ *
  * \return the object to which \a attrib_s is attached, or SCM_BOOL_F.
  */
 EDA_SCM_DEFINE (attrib_get_parent, "%attrib-attachment", 1, 0, 0,
@@ -203,17 +211,19 @@ EDA_SCM_DEFINE (attrib_get_parent, "%attrib-attachment", 1, 0, 0,
   }
 }
 
-/*! \brief Parse an attribute text object into name and value strings.
+/*!
+ * \brief Parse an attribute text object into name and value strings.
  * \par Function Description
- * Tries to parse the underlying string of the text object \a text_s
- * into name and value strings.  If successful, returns a pair of the
- * form <tt>(name . value)</tt>.  Otherwise, raises an
- * <tt>attribute-format</tt> error.
+ *  Tries to parse the underlying string of the text object \a text_s
+ *  into name and value strings.  If successful, returns a pair of the
+ *  form <tt>(name . value)</tt>.  Otherwise, raises an
+ *  <tt>attribute-format</tt> error.
  *
  * \note Scheme API: Implements the %attrib-parse procedure of the
- * (geda core attrib) module.
+ *       (geda core attrib) module.
  *
- * param text_s text object to attempt to split.
+ *  param text_s text object to attempt to split.
+ *
  * \return name/value pair, or SCM_BOOL_F.
  */
 EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
@@ -248,12 +258,13 @@ EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
   return result;
 }
 
-/*! \brief Get a complex object's promotable attribs.
+/*!
+ * \brief Get a complex object's promotable attribs.
  * \par Function Description
- * Returns the promotable attributes of \a complex_s, according to the
- * current gEDA configuration.
+ *  Returns the promotable attributes of \a complex_s, according to the
+ *  current gEDA configuration.
  *
- * param complex_s the complex object for which to get promotable
+ *  param complex_s the complex object for which to get promotable
  *                  attributes.
  * \return a list of promotable attributes.
  */
@@ -275,8 +286,8 @@ EDA_SCM_DEFINE (attrib_promotable, "%promotable-attribs", 1, 0, 0,
 /*!
  * \brief Create the (geda core attrib) Scheme module.
  * \par Function Description
- * Defines procedures in the (geda core attrib) module. The module can
- * be accessed using (use-modules (geda core attrib)).
+ *  Defines procedures in the (geda core attrib) module. The module
+ *  can be accessed using (use-modules (geda core attrib)).
  */
 static void
 init_module_geda_core_attrib (void *nothing)
