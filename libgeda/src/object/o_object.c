@@ -561,7 +561,7 @@ geda_object_copy (GedaObject *o_current)
 /*! \brief Mirrors an object
  *  \par Function Description
  *  This function mirrors an object about the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world units.
+ *  (<B>center_wx</B>,<B>center_wy</B>).
  *
  *  \param [in]     center_x  Origin x coordinate.
  *  \param [in]     center_y  Origin y coordinate.
@@ -606,14 +606,14 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! \brief Rotates an object in world coordinates
+/*! \brief Rotates an object
  *  \par Function Description
  *  This function rotates the object <B>object</B> about the coordinates
  *  <B>center_wx</B> and <B>center_wy</B>, by <B>angle</B>degrees.
  *
  *  \param [in] object    The object to rotate.
- *  \param [in] center_x  X coordinate of rotation center (world coords)
- *  \param [in] center_y  Y coordinate of rotation center (world coords)
+ *  \param [in] center_x  X coordinate of rotation center
+ *  \param [in] center_y  Y coordinate of rotation center
  *  \param [in] angle     Angle of rotation (degrees)
  */
 void
@@ -657,7 +657,7 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
   }
 }
 
-/*! \brief Translates an object in world coordinates
+/*! \brief Translates an object
  *  \par Function Description
  *  This function translates the object <B>object</B> by
  *  <B>dx</B> and <B>dy</B>.
