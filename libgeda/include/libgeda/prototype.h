@@ -399,13 +399,13 @@ extern "C" {
 
 /* o_list.c */
         GList   *geda_object_list_copy_all                 (const GList *src_list, GList *dest_list);
+   GedaObject   *geda_object_list_find_attrib_by_name      (const GList *list, const char *name, int count);
         GList   *geda_object_list_find_floating            (const GList *list);
-   GedaObject   *geda_object_list_find_attrib_by_name      (const GList *list,   const char *name, int count);
          void    geda_object_list_mirror                   (const GList *list, int x, int y);
          void    geda_object_list_rotate                   (const GList *list, int x, int y, int angle);
-         void    geda_object_list_translate                (const GList *list, int dx, int dy);
          void    geda_object_list_scale                    (const GList *list, int x_scale, int y_scale);
          void    geda_object_list_set_color                (const GList *list, int color);
+         void    geda_object_list_translate                (const GList *list, int dx, int dy);
 
 /* o_net_object.c */
          void    geda_net_object_consolidate               (GedaToplevel *toplevel, Page *page);
