@@ -151,9 +151,9 @@ check_methods ()
 
   geda_combo_box_text_append (combo_text, "kampong");         /* 5 */
 
-  geda_combo_box_text_append_text (combo_text, "Poipait");
+  geda_combo_box_text_append_text (combo_text, "Poipait");    /* 9 */
 
-  geda_combo_box_text_widget_append (widget, "Sereysophon");
+  geda_combo_box_text_widget_append (widget, "Sereysophon");  /* 10 */
 
   geda_combo_box_text_insert(combo_text, 0, "Chbamon");       /* 4 */
 
@@ -209,7 +209,7 @@ check_methods ()
     result++;
   }
 
-  /* Add set text to a new city not in the list */
+  /* Add and set text to a new city not in the list */
   if (!geda_combo_box_text_widget_set_active_text(widget, "Takeo")) {
     fprintf(stderr, "FAILED: %s line <%d> set_active_text\n", TWIDGET, __LINE__);
     result++;
@@ -227,7 +227,7 @@ check_methods ()
     result++;
   }
 
-  /* "Takeo" should have been prepended to the list so active index = 9 */
+  /* "Takeo" should have been prepended to the list so active index = 0 */
   index = geda_combo_box_text_widget_get_active(widget);
 
   if (index) {
@@ -235,13 +235,25 @@ check_methods ()
     result++;
   }
 
+  /* 0 Should already be active */
+  geda_combo_box_text_set_active(combo_text, 0);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Takeo", 5)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
   geda_combo_box_text_remove_text(combo_text, 0);
 
-  /* "Takeo" should removed from the entry */
+  /* "Takeo" should be removed from the entry */
   city = geda_combo_box_text_widget_get_active_text(widget);
 
   if (city) {
-    fprintf(stderr, "FAILED: %s should not be city %s at line <%d>\n", TWIDGET, city, __LINE__);
+    fprintf(stderr, "FAILED: %s city should not be %s at line <%d>\n", TWIDGET, city, __LINE__);
     result++;
   }
 
@@ -250,7 +262,11 @@ check_methods ()
   city = geda_combo_box_text_widget_get_active_text(widget);
 
   if (!city) {
-    fprintf(stderr, "FAILED: %s should no city at line <%d>\n", TWIDGET, __LINE__);
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Banlung", 8)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
     result++;
   }
 
