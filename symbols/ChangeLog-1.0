@@ -1,3 +1,11 @@
+2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/SN65HVD235-x.sym: Add 2 SN65HVD235 symbols; CAN 3.3 Volt Bus
+      Transceivers with Autobaud loopback:
+
+            * ti/SN65HVD235-1.sym
+            * ti/SN65HVD235-2.sym
+
 2016-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3356BZCE-1.sym: Add symbol AM3356B 32-Bit RISC ARM Processor,
@@ -5,7 +13,7 @@
 
 2016-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/SN65HVD234-x.sym: Add 2 SN65HVD234 symbols; CAN  3.3 Volt Bus
+    * ti/SN65HVD234-x.sym: Add 2 SN65HVD234 symbols; CAN 3.3 Volt Bus
       Transceivers with low-current sleep:
 
             * ti/SN65HVD234-1.sym
