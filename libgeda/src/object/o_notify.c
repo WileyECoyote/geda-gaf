@@ -33,11 +33,12 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Lookup a change notification handlers for a Geda Page Object
+/*!
+ * \brief Lookup a change notification handlers for a Geda Page Object
  * \par Function Description
- * Searches the list of notification handlers for a change_notify entry
- * containing data matching \a pre_change_func, \a change_func and the
- * given \a user_data and returns the record if found.
+ *  Searches the list of notification handlers for a change_notify entry
+ *  containing data matching \a pre_change_func, \a change_func and the
+ *  given \a user_data and returns the record if found.
  *
  * \param page            #Page structure to add handlers to.
  * \param pre_change_func Function to be called just before changes.
@@ -46,10 +47,10 @@
  *
  * \returns
  */
-static
-change_notify *o_notify_lookup (Page *page, ChangeNotifyFunc pre_change_func,
-                                            ChangeNotifyFunc change_func,
-                                            void *user_data)
+static change_notify*
+o_notify_lookup (Page *page, ChangeNotifyFunc  pre_change_func,
+                             ChangeNotifyFunc  change_func,
+                             void             *user_data)
 {
   GList         *iter;
   change_notify *entry;
@@ -75,13 +76,14 @@ change_notify *o_notify_lookup (Page *page, ChangeNotifyFunc pre_change_func,
   return entry;
 }
 
-/*! \brief Add change notification handlers to to a Geda Page Object
+/*!
+ * \brief Add change notification handlers to to a Geda Page Object
  * \par Function Description
- * Adds a set of change notification handlers to a #Page instance if
- * a matching record is not found. \a pre_change_func will be called
- * just before an object is modified, \a change_func will be called
- * just after an object is modified, with the affected object and the
- * given \a user_data.
+ *  Adds a set of change notification handlers to a #Page instance if
+ *  a matching record is not found. \a pre_change_func will be called
+ *  just before an object is modified, \a change_func will be called
+ *  just after an object is modified, with the affected object and the
+ *  given \a user_data.
  *
  * \param page            #Page structure to add handlers to.
  * \param pre_change_func Function to be called just before changes.
@@ -89,9 +91,10 @@ change_notify *o_notify_lookup (Page *page, ChangeNotifyFunc pre_change_func,
  * \param user_data       User data to be passed to callback functions.
  */
 void
-geda_object_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
-                               ChangeNotifyFunc change_func,
-                               void *user_data)
+geda_object_notify_change_add (Page             *page,
+                               ChangeNotifyFunc  pre_change_func,
+                               ChangeNotifyFunc  change_func,
+                               void             *user_data)
 {
   if (!o_notify_lookup(page, pre_change_func, change_func, user_data)) {
 
@@ -106,12 +109,13 @@ geda_object_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
   }
 }
 
-/*! \brief Remove change notification handlers from a Page
+/*!
+ * \brief Remove change notification handlers from a Page
  * \par Function Description
- * Removes a set of change notification handlers and their associated
- * \a user_data from \a toplevel.  If no registered set of handlers
- * matches the given \a pre_change_func, \a change_func and \a
- * user_data, does nothing.
+ *  Removes a set of change notification handlers and their associated
+ *  \a user_data from \a toplevel.  If no registered set of handlers
+ *  matches the given \a pre_change_func, \a change_func and \a
+ *  user_data, does nothing.
  *
  * \see geda_object_notify_change_add()
  *
@@ -121,10 +125,10 @@ geda_object_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
  * \param user_data User data passed to callback functions.
  */
 void
-geda_object_notify_change_remove (Page *page,
-                                  ChangeNotifyFunc pre_change_func,
-                                  ChangeNotifyFunc change_func,
-                                  void *user_data)
+geda_object_notify_change_remove (Page             *page,
+                                  ChangeNotifyFunc  pre_change_func,
+                                  ChangeNotifyFunc  change_func,
+                                  void             *user_data)
 {
   GList *iter;
 
@@ -146,15 +150,17 @@ geda_object_notify_change_remove (Page *page,
 
     NEXT(iter);
   }
+
   page->change_notify_funcs->glist =
-  g_list_remove_all (page->change_notify_funcs->glist, NULL);
+    g_list_remove_all (page->change_notify_funcs->glist, NULL);
 }
 
-/*! \brief Remove all change notification handlers from a Page
+/*!
+ * \brief Remove all change notification handlers from a Page
  * \par Function Description
- * Wrapper for geda_object_notify_change_remove, and
- * geda_object_notify_change_remove for each member of
- * the change notify list in \a Page
+ *  Wrapper for geda_object_notify_change_remove, and
+ *  geda_object_notify_change_remove for each member of
+ *  the change notify list in \a Page
  *
  * \see geda_object_notify_change_add
  *
@@ -168,12 +174,13 @@ geda_object_notify_change_remove_all (Page *page)
   }
 }
 
-/*! \brief Emit an object pre-change notification
+/*!
+ * \brief Emit an object pre-change notification
  * \par Function Description
- * Calls each pre-change callback function registered with a #Page
- * to notify listeners that \a object is about to be modified.  All
- * libgeda functions that modify #GedaObject structures should call this
- * just before making a change to an #GedaObject.
+ *  Calls each pre-change callback function registered with a #Page
+ *  to notify listeners that \a object is about to be modified.  All
+ *  libgeda functions that modify #GedaObject structures should call this
+ *  just before making a change to an #GedaObject.
  *
  * \param object   #GedaObject structure to emit notifications for.
  */
@@ -190,8 +197,8 @@ geda_object_notify_emit_pre_change (GedaObject *object)
 
       iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
 
-      while (iter != NULL)
-      {
+      while (iter != NULL) {
+
         change_notify *entry;
         entry = (change_notify *) iter->data;
 
@@ -204,8 +211,9 @@ geda_object_notify_emit_pre_change (GedaObject *object)
   }
 }
 
-/*! \brief Emit an object change notification
- *  \par Function Description
+/*!
+ * \brief Emit an object change notification
+ * \par Function Description
  *  Calls each change callback function registered with #Page to
  *  notify listeners that \a object has just been modified.  All
  *  libgeda functions that modify #GedaObject structures should call
