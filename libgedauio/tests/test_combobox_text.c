@@ -227,11 +227,30 @@ check_methods ()
     result++;
   }
 
-  /* "Takeo" should have been appended to the list so active index = 9 */
+  /* "Takeo" should have been prepended to the list so active index = 9 */
   index = geda_combo_box_text_widget_get_active(widget);
 
   if (index) {
     fprintf(stderr, "FAILED: %s line <%d> bad index <%d>\n", TWIDGET, __LINE__, index);
+    result++;
+  }
+
+  geda_combo_box_text_remove_text(combo_text, 0);
+
+  /* "Takeo" should removed from the entry */
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (city) {
+    fprintf(stderr, "FAILED: %s should not be city %s at line <%d>\n", TWIDGET, city, __LINE__);
+    result++;
+  }
+
+  geda_combo_box_text_set_active(combo_text, 0);
+
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s should no city at line <%d>\n", TWIDGET, __LINE__);
     result++;
   }
 
