@@ -84,7 +84,7 @@ static WidgetStringData DialogStrings[] = {
 
 /*! \brief Create a pin attribute menu for the Pin Properties Editor dialog
  *  \par Function Description
- *  This function creates a GtkMenu with the different pin attributes.
+ *  This function creates a GedaMenu with the different pin attributes.
  */
 static GtkWidget *create_menu_pin_electricals ( void )
 {
@@ -127,12 +127,13 @@ static GtkWidget *create_menu_pin_electricals ( void )
 }
 /*! \brief Create a pin type menu for the Pin Properties Editor dialog
  *  \par Function Description
- *  This function creates a GtkMenu with the different pin types.
+ *  This function creates a GedaMenu with the different pin types.
  */
 static GtkWidget *create_menu_pin_type ( void )
 {
   GtkWidget *menu;
-  GSList *group;
+  GSList    *group;
+
   struct pin_type {
     char *str;
     PIN_NODE type;
@@ -149,8 +150,10 @@ static GtkWidget *create_menu_pin_type ( void )
     GtkWidget *menuitem;
 
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
+
     geda_menu_append (GEDA_MENU (menu), menuitem);
+
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].type),
                          WIDGET(PinNodeType));

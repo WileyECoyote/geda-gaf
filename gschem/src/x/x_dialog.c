@@ -1168,14 +1168,15 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 
 /*! \brief Create a menu with fill types for the line type dialog
  *  \par Function Description
- *  This function creates a GtkMenu with the different fill types.
+ *  This function creates a GedaMenu with the different fill types.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 {
   GtkWidget *menu;
-  GSList *group;
+  GSList    *group;
+
   struct fill_type {
     char *str;
     OBJECT_FILLING type;
@@ -1731,7 +1732,7 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
 
 /*! \brief Create a line end type menu for the line type dialog
  *  \par Function Description
- *  This function creates a GtkMenu with the different line end types.
+ *  This function creates a GedaMenu with the different line end types.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
  */
@@ -1771,7 +1772,7 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
 
 /*! \brief Create a line type menu for the line type dialog
  *  \par Function Description
- *  This function creates a GtkMenu with the different linetypes.
+ *  This function creates a GedaMenu with the different linetypes.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
  */
