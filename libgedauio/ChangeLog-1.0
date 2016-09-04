@@ -1,5 +1,7 @@
 2016-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Replace GtkMenu with GedaMenu
+
     * tests/test_combobox_text.c: Add checks for:
 
             * geda_combo_box_text_remove_text
