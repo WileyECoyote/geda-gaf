@@ -1085,9 +1085,8 @@ geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
   object->picture->lower_x += center_x;
   object->picture->lower_y += center_y;
 
-  /* recalc boundings and screen coords */
+  /* invalidate bounding coordinates */
   object->w_bounds_valid_for = NULL;
-
 }
 
 /*!
@@ -1174,7 +1173,7 @@ geda_picture_object_modify(GedaObject *object, int x, int y, int whichone)
     object->picture->lower_y = tmp;
   }
 
-  /* recalculate the screen coords and the boundary */
+  /* invalidate the boundary */
   object->w_bounds_valid_for = NULL;
 }
 
@@ -1201,7 +1200,7 @@ geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2, int 
   object->picture->upper_x = (x1 > x2) ? x2 : x1;
   object->picture->upper_y = (y1 > y2) ? y1 : y2;
 
-  /* recalculate the world coords and bounds */
+  /* invalidate the bounds */
   object->w_bounds_valid_for = NULL;
 }
 
