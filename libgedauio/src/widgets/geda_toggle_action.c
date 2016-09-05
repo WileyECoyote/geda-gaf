@@ -186,7 +186,6 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
                     "use-underline", TRUE,
                     "xalign", 0.0,
                     "visible", TRUE,
-                    "parent", proxy,
                     "accel-string", toggler->multikey_accel,
                     NULL);
     }
