@@ -29,15 +29,15 @@
  *  The <b>GedaObject</b> be extended to become concrete objects like a line,
  *  a pin, text, a circle or a picture. These extentions are substructures
  *  in the object struct.
- *  The <b>Subobjects</b> are pictures (st_picture), paths (st_path), arcs (st_arc),
- *  a lines (st_line), boxes (st_box), circles (st_circle), texts (st_text) and
- *  a the complex type (st_complex).
+ *  The <b>Subobjects</b> are pictures (GedaPicture), paths (GedaPath),
+ *  arcs (GedaArc), a lines (GedaLine), boxes (st_box), circles (GedaCircle),
+ *  texts (GedaText) and a the complex type (GedaComplex).
  *
  *  Pins, nets and busses are types of line <b>GedaObjects</b>.
  *
- *  The <b>Complex GedaObjects</b> can be linked to many primary objects. If the <b>Complex
- *  GedaObject</b> is a symbol, then the complex symbol contains all the pins,
- *  the text and the graphics.
+ *  The <b>Complex GedaObjects</b> can be linked to many primary objects.
+ *  If the <b>Complex GedaObject</b> is a symbol, then the complex symbol
+ *  contains all the pins, the text and the graphics.
  *
  *  \image html o_object_relations.png
  *  \image latex o_object_relations.pdf "object relations" width=14cm
