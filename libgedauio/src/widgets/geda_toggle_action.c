@@ -43,6 +43,7 @@
 
 #include "../../include/geda_toggle_action.h"
 #include "../../include/geda_accel_label.h"
+#include "../../include/geda_menu_item.h"
 #include "../../include/gettext.h"
 #include <geda_debug.h>
 
@@ -85,7 +86,8 @@ static void geda_toggle_action_get_property (GObject      *object,
  *
  *  \param [in] object The GObject being finalized.
  */
-static void geda_toggle_action_finalize (GObject *object)
+static void
+geda_toggle_action_finalize (GObject *object)
 {
   GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
 
@@ -151,7 +153,8 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   char *label_string;
 
   /* Override the type of label widget used with the menu item */
-  if (GTK_IS_MENU_ITEM (proxy)) {
+  if (GEDA_IS_MENU_ITEM (proxy)) {
+
     GtkWidget *label;
 
     label = GTK_BIN (proxy)->child;
