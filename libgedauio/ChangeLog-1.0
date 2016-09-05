@@ -1,7 +1,12 @@
 2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_action.c: Revise geda_action_connect_proxy to set
+      the properties of existent GedaAccelLabels.
+
     * src/widgets/geda_toggle_action.c: Replace GTK_IS_MENU_ITEM with
-      GTK_IS_MENU_ITEM in geda_toggle_action_connect_proxy.
+      GTK_IS_MENU_ITEM in geda_toggle_action_connect_proxy. Revise
+      geda_toggle_action_connect_proxy to set the properties of existent
+      GedaAccelLabels.
 
 2016-09-04 Wiley E. Hill <wileyhill@gmail.com>
 

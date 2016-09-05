@@ -195,8 +195,17 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
                     NULL);
       g_free(label_string);
     }
-  }
+    else {
 
+      g_object_set (label,
+                    "use-underline", TRUE,
+                    "xalign", 0.0,
+                    "visible", TRUE,
+                    "parent", proxy,
+                    "accel-string", geda_action->multikey_accel,
+                    NULL);
+    }
+  }
   /* Let the parent class do its work now we've fiddled with the label */
   GTK_ACTION_CLASS (geda_action_parent_class)->connect_proxy (action, proxy);
 }
