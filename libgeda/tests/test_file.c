@@ -81,8 +81,19 @@ int test_file (void)
   GError       *err;
   char         *cwd_sav;
   char         *cwd;
+  char         *source;
 
   cwd_sav = getcwd(0,0);
+
+  /* This is only needed for distcheck VPATH builds */
+  char *src_dir = getenv ("srcdir");
+
+  if (src_dir) {
+    source = g_build_filename(src_dir, SYM_FILE, NULL);
+  }
+  else {
+    source = geda_strdup(SYM_FILE);
+  }
 
   toplevel = geda_toplevel_new ();
 
@@ -100,16 +111,16 @@ int test_file (void)
     result++;
   }
 
-  if (f_has_active_autosave(SYM_FILE, &err)) {
+  if (f_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010201) file_has_autosave NULL\n");
     result++;
   }
 
-  char *auto_fname = f_get_autosave_filename (SYM_FILE);
+  char *auto_fname = f_get_autosave_filename (source);
 
-  f_sys_copy(SYM_FILE, auto_fname);
+  f_sys_copy(source, auto_fname);
 
-  if (!f_has_active_autosave(SYM_FILE, &err)) {
+  if (!f_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010202) file_has_autosave %s\n", auto_fname);
     result++;
   }
@@ -159,12 +170,12 @@ int test_file (void)
   }
 
   err = NULL;
-  if (!geda_open_file(toplevel, page, SYM_FILE, &err)) {
-    fprintf(stderr, "FAILED: (F010302A) f_open %s\n", SYM_FILE);
+  if (!geda_open_file(toplevel, page, source, &err)) {
+    fprintf(stderr, "FAILED: (F010302A) f_open %s\n", source);
     result++;
   }
   else if (err) {
-    fprintf(stderr, "FAILED: (F010302B) f_open %s\n", SYM_FILE);
+    fprintf(stderr, "FAILED: (F010302B) f_open %s\n", source);
     g_error_free (err);
   }
 
@@ -200,9 +211,9 @@ int test_file (void)
 
   /* === Function 05: f_remove_backup_file === */
 
-  geda_remove_backup_file(SYM_FILE);
+  geda_remove_backup_file(source);
 
-  if (f_has_active_autosave(SYM_FILE, &err)) {
+  if (f_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010501) remove_backup_file %s\n", auto_fname);
     result++;
   }
@@ -221,6 +232,7 @@ int test_file (void)
   /* ensure directory is restored, regardless of what happened above */
   if (!chdir(cwd_sav));
   free(cwd_sav);
+  free(source);
 
   return result;
 }

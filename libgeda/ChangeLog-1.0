@@ -1,3 +1,8 @@
+2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Prefix path to source directory test_file for
+      distcheck VPATH builds.
+
 2016-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Relocate function geda_object_scale from object
