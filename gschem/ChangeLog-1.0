@@ -1,3 +1,8 @@
+2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Replace pesky GTK_IS_MENU with GEDA_IS_MENU
+      in compselect_view_popup_menu.
+
 2016-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Revise create_action_area to update return type

@@ -2194,7 +2194,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     is_symbol = FALSE;
   }
 
-  menu=geda_menu_new();
+  menu = geda_menu_new();
 
   menuitem = geda_menu_item_new_with_label(_(popup_items[ExpandFolder]));
   if (!is_symbol) {
@@ -2336,7 +2336,7 @@ compselect_view_popup_menu (GtkWidget      *treeview,
                             GdkEventButton *event,
                             Compselect     *compselect)
 {
-  if (GTK_IS_MENU(tree_view_popup_menu)) {
+  if (GEDA_IS_MENU(tree_view_popup_menu)) {
     gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
     tree_view_popup_menu = NULL;
   }
@@ -2348,7 +2348,7 @@ compselect_view_popup_menu (GtkWidget      *treeview,
    * gdk_event_get_time() accepts a NULL argument */
   geda_menu_popup(GEDA_MENU(tree_view_popup_menu), NULL, NULL, NULL, NULL,
                  (event != NULL) ? event->button : 0,
-                 gdk_event_get_time((GdkEvent*)event));
+                  gdk_event_get_time((GdkEvent*)event));
 }
 
 /*! \brief ViewTree Mouse Button Call Back
