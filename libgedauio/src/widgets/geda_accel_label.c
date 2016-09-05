@@ -52,26 +52,26 @@
  * \brief GedaAccelLabel - A Label Widget for Menus
  * \par
  * The #GedaAccelLabel widget is a subclass of a GedaLabel that also displays
- * an accelerator key on the right of the label text, e.g. 'Ctl+S'.
+ * an accelerator key to the right of the label text, e.g. 'Ctl+S'.
  * A GedaAccelLabel is typically used in menus to show the keyboard short-cuts
  * for commands.
- *
+ * \par
  * The accelerator key to display is not set explicitly.
  * Instead, the #GedaAccelLabel displays the accelerators which have been added
  * to a particular widget. This widget is set by calling
  * geda_accel_label_set_accel_widget().
- *
+ * \par
  * For example, a #GedaMenuItem widget may have an accelerator added to emit the
  * "activate" signal when the 'Ctl+S' key combination is pressed.
  * A #GedaAccelLabel is created and added to the #GedaMenuItem, and
  * geda_accel_label_set_accel_widget() is called with the #GedaMenuItem as the
  * second argument. The #GedaAccelLabel will now display 'Ctl+S' after its label.
- *
+ * \par
  * Note that creating a #GedaMenuItem with geda_menu_item_new_with_label() (or
  * one of the similar functions for #GedaCheckMenuItem and #GedaRadioMenuItem)
  * automatically adds a #GedaAccelLabel to the #GedaMenuItem and calls
  * geda_accel_label_set_accel_widget() to set it up for you.
- *
+ * \par
  * A #GedaAccelLabel will only display accelerators which have %GEDA_ACCEL_VISIBLE
  * set (see GtkAccelFlags).
  * A #GedaAccelLabel can display multiple accelerators and even signal names,
@@ -79,23 +79,24 @@
  * <example>
  * \code{.c}
  * <title>Creating a simple menu item with an accelerator key.</title>
-
+ *
  *   GtkWidget *save_item;
  *   GtkAccelGroup *accel_group;
  *
- *   /<!---->* Create a GtkAccelGroup and add it to the window. *<!---->/
- *   accel_group = gtk_accel_group_new (<!-- -->);
+ *   // Create a GtkAccelGroup and add it to the window.
+ *   accel_group = gtk_accel_group_new();
  *   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
  *
- *   /<!---->* Create the menu item using the convenience function. *<!---->/
+ *   // Create the menu item using the convenience function.
  *   save_item = geda_menu_item_new_with_label ("Save");
  *   gtk_widget_show (save_item);
  *   gtk_container_add (GTK_CONTAINER (menu), save_item);
  *
- *   /<!---->* Now add the accelerator to the GedaMenuItem. Note that since we called
- *      geda_menu_item_new_with_label(<!-- -->) to create the GedaMenuItem the
- *      GedaAccelLabel is automatically set up to display the GedaMenuItem
- *      accelerators. We just need to make sure we use GEDA_ACCEL_VISIBLE here. *<!---->/
+ *   // Now add the accelerator to the GedaMenuItem. Note that since
+ *   // geda_menu_item_new_with_label() was called to create the GedaMenuItem
+ *   // the GedaAccelLabel is automatically set up to display the GedaMenuItem
+ *   // accelerators. We just need to make sure we use GEDA_ACCEL_VISIBLE here.
+ *
  *   gtk_widget_add_accelerator (save_item, "activate", accel_group,
  *                               GDK_s, GDK_CONTROL_MASK, GEDA_ACCEL_VISIBLE);
  * \endcode
