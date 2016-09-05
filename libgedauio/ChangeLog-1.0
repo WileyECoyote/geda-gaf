@@ -2,7 +2,10 @@
 
     * src/widgets/geda_action.c: Revise geda_action_connect_proxy to set
       the properties of existent GedaAccelLabels and reduce scope of the
-      label string variable.
+      label string variable. Revise geda_action_create_menu_item to use
+      g_object_set instead of gtk_activatable_set_use_action_appearance
+      to set the "use-action-appearance" property since that all the
+      gtk_activatable_set_use_action_appearance function does.
 
     * src/widgets/geda_menu_bar.c: Replace GTK_IS_MENU_ITEM with
       GEDA_IS_MENU_ITEM in geda_toggle_action_connect_proxy.

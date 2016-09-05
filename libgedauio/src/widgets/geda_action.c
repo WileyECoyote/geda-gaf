@@ -363,7 +363,7 @@ geda_action_create_menu_item (GedaAction *action)
   }
 
   if (menu_item) {
-    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
+    g_object_set (menu_item, "use-action-appearance", TRUE, NULL);
     gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
   }
 
