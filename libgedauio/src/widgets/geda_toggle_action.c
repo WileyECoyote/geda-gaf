@@ -150,7 +150,6 @@ static void
 geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
   GedaToggleAction *toggler = GEDA_TOGGLE_ACTION (action);
-  char *label_string;
 
   /* Override the type of label widget used with the menu item */
   if (GEDA_IS_MENU_ITEM (proxy)) {
@@ -160,13 +159,17 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
     label = GTK_BIN (proxy)->child;
 
     /* make sure label is a GedaAccelLabel */
-    if (label && !GEDA_IS_ACCEL_LABEL (label)) {
+    if (label && !GEDA_IS_ACCEL_LABEL(label)) {
       gtk_container_remove (GTK_CONTAINER (proxy), label);
       label = NULL;
     }
 
     if (label == NULL) {
+
+      char *label_string;
+
       g_object_get (action, "label", &label_string, NULL);
+
       g_object_new (GEDA_TYPE_ACCEL_LABEL,
                     "use-underline", TRUE,
                     "xalign", 0.0,
@@ -190,7 +193,7 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   }
 
   /* Let the parent class do its work now we've fiddled with the label */
-  GTK_ACTION_CLASS ( geda_toggle_action_parent_class)->connect_proxy (action, proxy);
+  GTK_ACTION_CLASS(geda_toggle_action_parent_class)->connect_proxy (action, proxy);
 }
 
 /*! \brief GedaToggleAction Class Initializer
