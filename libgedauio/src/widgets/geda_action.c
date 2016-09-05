@@ -340,20 +340,22 @@ geda_action_create_menu_item (GedaAction *action)
 
     menu_item = geda_image_menu_item_new ();
 
-    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
   }
   else if (GEDA_IS_TOGGLE_ACTION(action)) {
 
     menu_item = geda_check_menu_item_new ();
 
-    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
   }
   else {
     fprintf(stderr, "%s: Error: invalid action\n",__func__);
     menu_item = NULL;
   }
+
+  if (menu_item) {
+    gtk_activatable_set_use_action_appearance (GTK_ACTIVATABLE (menu_item), TRUE);
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
+  }
+
   return menu_item;
 }
 

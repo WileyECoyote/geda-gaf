@@ -1,5 +1,12 @@
 2016-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_action.c: Revise geda_action_create_menu_item
+      common calls to gtk_activatable_set_related_action and
+      gtk_activatable_set_use_action_appearance for both standard and
+      toggle actions.
+
+2016-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/geda_entry.h: Specify second argument to populate_popup
       as type void instead of GtkMenu.
 
@@ -618,8 +625,8 @@
 
     * src/widgets/geda_action.c: Revise geda_action_create_menu_item to use
       geda_check_menu_item_new instead of gtk_action_create_menu_item. Use
-      GTK_IS_ACTION in geda_action_disconnect_accelerator, which allows
-      GedaToggleActions actions to be passed to gtk_action_disconnect_accelerator.
+      GTK_IS_ACTION in geda_action_disconnect_accelerator, which allows Geda
+      ToggleActions actions to be passed to gtk_action_disconnect_accelerator.
 
     * src/widgets/geda_menu.c: Convert menu-pop-delays to widget properties
       instead of gsettings. Eliminate extra conditional if shell is active in
