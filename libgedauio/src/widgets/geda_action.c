@@ -167,11 +167,11 @@ geda_action_get_property (GObject *object, unsigned int property_id,
 static void
 geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
-  GedaAction *gs_action = GEDA_ACTION (action);
-  char *label_string;
+  GedaAction *geda_action = GEDA_ACTION (action);
+  char       *label_string;
 
   /* Override the type of label widget used with the menu item */
-  if (GTK_IS_MENU_ITEM (proxy)) {
+  if (GEDA_IS_MENU_ITEM (proxy)) {
 
     GtkWidget *label;
 
@@ -191,7 +191,7 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
                     "visible", TRUE,
                     "parent", proxy,
                     "label", label_string,
-                    "accel-string", gs_action->multikey_accel,
+                    "accel-string", geda_action->multikey_accel,
                     NULL);
       g_free(label_string);
     }
