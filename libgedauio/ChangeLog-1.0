@@ -4,8 +4,11 @@
       the properties of existent GedaAccelLabels and reduce scope of the
       label string variable.
 
+    * src/widgets/geda_menu_bar.c: Replace GTK_IS_MENU_ITEM with
+      GEDA_IS_MENU_ITEM in geda_toggle_action_connect_proxy.
+
     * src/widgets/geda_toggle_action.c: Replace GTK_IS_MENU_ITEM with
-      GTK_IS_MENU_ITEM in geda_toggle_action_connect_proxy. Revise
+      GEDA_IS_MENU_ITEM in geda_toggle_action_connect_proxy. Revise
       geda_toggle_action_connect_proxy to set the properties of existent
       GedaAccelLabels and reduce scope of the label string variable.
 

@@ -246,7 +246,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         }
 
         /* Support for the right justified help menu */
-        if ((children == NULL) && (GTK_IS_MENU_ITEM(child)) &&
+        if ((children == NULL) && (GEDA_IS_MENU_ITEM(child)) &&
             (geda_menu_item_get_right_justified(GEDA_MENU_ITEM(child))))
         {
           ltr_x = allocation->width -
@@ -301,7 +301,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         }
 
         /* Support for the right justified help menu */
-        if ((children == NULL) && (GTK_IS_MENU_ITEM(child)) &&
+        if ((children == NULL) && (GEDA_IS_MENU_ITEM(child)) &&
             (geda_menu_item_get_right_justified(GEDA_MENU_ITEM(child))))
         {
           ltr_y = allocation->height -
@@ -548,7 +548,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
       size = gtk_distribute_natural_allocation (size,
                                                 requested_sizes->len,
-                                                (GtkRequestedSize *) requested_sizes->data);
+                                                (GtkRequestedSize*)requested_sizes->data);
 
       for (i = 0; i < requested_sizes->len; i++) {
 
@@ -558,7 +558,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         child_allocation.width = request->minimum_size;
         remaining_space.width -= request->minimum_size;
 
-        if (i + 1 == requested_sizes->len && GTK_IS_MENU_ITEM (request->data) &&
+        if (i + 1 == requested_sizes->len && GEDA_IS_MENU_ITEM(request->data) &&
           GEDA_MENU_ITEM (request->data)->priv->right_justify)
           ltr = !ltr;
 
@@ -596,7 +596,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         request.minimum_size += toggle_size;
         request.natural_size += toggle_size;
 
-        geda_menu_item_toggle_size_allocate (GEDA_MENU_ITEM (child), toggle_size);
+        geda_menu_item_toggle_size_allocate (GEDA_MENU_ITEM(child), toggle_size);
 
         g_array_append_val (requested_sizes, request);
 
@@ -605,7 +605,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
       size = gtk_distribute_natural_allocation (size,
                                                 requested_sizes->len,
-                                                (GtkRequestedSize *) requested_sizes->data);
+                                                (GtkRequestedSize*)requested_sizes->data);
 
       for (i = 0; i < requested_sizes->len; i++) {
 
@@ -615,8 +615,8 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         child_allocation.height = request->minimum_size;
         remaining_space.height -= request->minimum_size;
 
-        if (i + 1 == requested_sizes->len && GTK_IS_MENU_ITEM (request->data) &&
-            GEDA_MENU_ITEM (request->data)->priv->right_justify)
+        if (i + 1 == requested_sizes->len && GEDA_IS_MENU_ITEM(request->data) &&
+            GEDA_MENU_ITEM(request->data)->priv->right_justify)
         {
           ttb = !ttb;
         }
@@ -842,7 +842,6 @@ static void geda_menu_bar_finalize (GObject *object)
 static void
 geda_menu_bar_class_init (void *class, void *class_data)
 {
-  //(GedaMenuBarClass *class)
   GObjectClass       *object_class;
   GtkWidgetClass     *widget_class;
   GedaMenuShellClass *menu_shell_class;
