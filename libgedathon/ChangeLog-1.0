@@ -1,3 +1,7 @@
+2016-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Reformat comment blocks, add \code & \endcode tags.
+
 2016-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/pygobject.h: Replace gboolean with bool.

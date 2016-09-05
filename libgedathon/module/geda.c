@@ -82,8 +82,9 @@ static struct {
  #include "../include/geda_module.h"
 };
 
-/*! \brief Add Libgedathon suffix
- *  \par Function Description
+/*!
+ * \brief Add Libgedathon suffix
+ * \par Function Description
  *  This is function adds the extension characters of the filename to
  *  the preset string that was statically allocated with enough space
  *  for these additional bytes.
@@ -106,8 +107,9 @@ static const char *suffix_installed_library(const char *ext)
   return libgedapath;
 }
 
-/*! \brief Find Libgedathon on a MS Windows system
- *  \par Function Description
+/*!
+ * \brief Find Libgedathon on a MS Windows system
+ * \par Function Description
  *  This function returns the installed location of the library.
  *
  * \return [out] string file name of the library including the extension.
@@ -124,8 +126,9 @@ static const char *find_library(void) {
 }
 #endif
 
-/*! \brief Find Libgedathon on a Linux system
- *  \par Function Description
+/*!
+ * \brief Find Libgedathon on a Linux system
+ * \par Function Description
  *  This function returns the installed location of the library.
  *
  * \return [out] string file name of the library including the extension.
@@ -142,8 +145,9 @@ static const char *find_library(void) {
 }
 #endif
 
-/*! \brief Open Libgedathon
- *  \par Function Description
+/*!
+ * \brief Open Libgedathon
+ * \par Function Description
  *  This is function attempts to establish a dynamic link to Libgedathon.
  *  This is unconvientional for nix's but the primary method used on MS
  *  Windows systems. Upon success, static initializer and closer unions
@@ -227,8 +231,9 @@ static int open_library (void)
   return result;
 }
 
-/*! \brief Close the Library Module
- *  \par Function Description
+/*!
+ * \brief Close the Library Module
+ * \par Function Description
  *  This is function calls the shutdown method in this module and then
  *  the libgedathon closer function.
  */
@@ -244,8 +249,10 @@ static API_FunctionTable PyGeda_API[METHOD_COUNT];
 #ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */
 #define PyMODINIT_FUNC void
 #endif
-/*! \brief Geda Python Module Initializer
- *  \par Function Description
+
+/*!
+ * \brief Geda Python Module Initializer
+ * \par Function Description
  *  This is function serves to initialize the Python module and all
  *  sub-modules. The function registers methods and calls the initializer
  *  in Libgedathon passing a method table to be filled in by the library.
@@ -282,9 +289,9 @@ initgeda(void)
   PyModule_AddObject(ThisModule, "error", GedaError);
 }
 
-/*! \brief BlockMethod function in Geda Libgedathon API Library
- *  \par Function Description
- *
+/*!
+ * \brief BlockMethod function in Geda Libgedathon API Library
+ * \par Function Description
  *  This is an internal function called at the beginning of each method
  *  with the use of the ON_METHOD_ENTRY macro. The function blocks calling
  *  threads until any existing thread complete execution of the method and
@@ -389,11 +396,11 @@ typedef void      (*PyGeda_void_v1_type)         ( void );
  *  @{
  */
 
-/*! \brief Unknown function Geda Libgedathon API Library
- *  \par Function Description
- *
+/*!
+ * \brief Unknown function Geda Libgedathon API Library
+ * \par Function Description
  *  This function is a place holder in the Module's function table and
- *  would be only bed called if a NULL function pointer was used to access
+ *  would be only be called if a NULL function pointer was used to access
  *  a method within this module.
  *
  * \warning Do not call this method!.
@@ -404,9 +411,9 @@ METHOD(unknown)
   return Py_None;
 }
 
-/*! \brief Shutdown the Geda Libgedathon API Library
- *  \par Function Description
- *
+/*!
+ * \brief Shutdown the Geda Libgedathon API Library
+ * \par Function Description
  *  This function is automatically called by Python when the program is
  *  terminated, either normally or due to an error condition.
  *
@@ -420,19 +427,22 @@ METHOD(shutdown)
   return Py_None;
 }
 
-/*! \brief Append a Path to the Library Search Path
- *  \par Method Description
- *
- *    This function provides a method to add a directory to the library's
+/*!
+ * \brief Append a Path to the Library Search Path
+ * \par Method Description
+ *  This function provides a method to add a directory to the library's
  *  search path. This will remains valid for the current session of the library.
  *
  * \sa declare_local_sym
  *
- * param [in] path String, a valid directory path.
+ *  param [in] path String, a valid directory path.
  *
  * \return [out] True if successful, otherwise False.
  *
- * example: geda.append_symbol_path(p1sym/)  # create a "p1sym/" folder and local rc file
+ *  example:
+ * \code
+ *          geda.append_symbol_path(p1sym/)  # create a "p1sym/" folder and local rc file
+ * \endcode
  *
  * \note 1. The gafrc files are only acknowledged when a schematic file is opened
  *          in the same directory. The new gafrc fill will contain a single line:
@@ -462,10 +472,10 @@ METHOD(append_symbol_path)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Declare Local Symbols
- *  \par Method Description
- *
- *    This function provides a convenience method to create both a directory in
+/*!
+ * \brief Declare Local Symbols
+ * \par Method Description
+ *  This function provides a convenience method to create both a directory in
  *  the current working directory with the given name and to create a file with
  *  the name "gafrc" in the current directory. This will cause geda application
  *  to automatically add the sub-directory to the Symbol Library search path. If
@@ -482,7 +492,10 @@ METHOD(append_symbol_path)
  * \return [out] Returns FALSE if the path was appended, a non-zero returned value
  *               indicates and error occured.
  *
- * example: geda.declare_local_sym()  # create a "sym/" folder and local rc file
+ * example:
+ * \code
+ *          geda.declare_local_sym()  # create a "sym/" folder and local rc file
+ * \endcode
  *
  * \note 1. The gafrc files are only acknowledged when a schematic file is opened
  *          in the same directory. The new gafrc fill will contain a single line:
@@ -515,16 +528,15 @@ METHOD(declare_local_sym)
   Py_RETURN_FALSE;
 }
 
-/*! \brief Get a list of all Pages open by the Library
- *  \par Method Description
- *
- *    This function provides a method to get a list of Page objects of
+/*!
+ * \brief Get a list of all Pages open by the Library
+ * \par Method Description
+ *  This function provides a method to get a list of Page objects of
  *  all of the currently opened pages.
  *
  * \sa goto_page
  *
- * \return [out] Returns a PyList of Geda Page objects.
- *
+ * \returns [out] a PyList of Geda Page objects.
  */
 METHOD(get_pages)
 {
@@ -556,17 +568,16 @@ METHOD(get_pages)
   return py_output_list;      /* return the Python list of page Objects */
 }
 
-/*! \brief Get the Active Page
- *  \par Method Description
- *
- *    This function provides a method to get Page object representing the
+/*!
+ * \brief Get the Active Page
+ * \par Method Description
+ *  This function provides a method to get Page object representing the
  *  current active page.
  *
  * \sa goto_page
  *
  * \return [out] Returns a Geda Page object or Py_None if there no pages
  *               a currently opened.
- *
  */
 METHOD(get_active_page)
 {
@@ -585,9 +596,10 @@ METHOD(get_active_page)
   return page;
 }
 
-/*! \brief Set an Existing Page to be the Active Page
- *  \par Method Description
- *    This function provides a method to set a page object to be the
+/*!
+ * \brief Set an Existing Page to be the Active Page
+ * \par Method Description
+ *  This function provides a method to set a page object to be the
  *  Active Page Object. This method is similar to goto_page but does
  *  not restore the current working directory of the page.
  *
@@ -629,15 +641,15 @@ METHOD(set_active_page)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Save Page Objects
- *  \par Method Description
- *   This function provides a method to save a Page type objects to
- *   disk.
+/*!
+ * \brief Save Page Objects
+ * \par Method Description
+ *  This function provides a method to save a Page type objects to
+ *  disk.
  *
  *  [in] PyPage page A GedaPage Object
  *
- *  \return [out] status True if success, otherwise False.
- *
+ * \return [out] status True if success, otherwise False.
  */
 METHOD(is_page_modified)
 {
@@ -661,24 +673,25 @@ METHOD(is_page_modified)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Set an Existing Page to be the Current Page
- *  \par Method Description
- *    This function provides a method to set a page object to be the
+/*!
+ * \brief Set an Existing Page to be the Current Page
+ * \par Method Description
+ *  This function provides a method to set a page object to be the
  *  Current Page Object. This method is similar to set_active_page but
  *  unlike set_active_page, this method this restore the current working
  *  directory of the page.
  *
- *  \sa set_active_page
+ * \sa set_active_page
  *
  *  [in] page    A GedaPage object.
  *
- *  \return [out] True if successfull, otherwise False.
+ * \return [out] True if successfull, otherwise False.
  *
- *  \note 1. Although this Library feature is utilize in Geda application
- *           like gschem, the Python API library does not currently exploit
- *           this feature. All methods requiring a Page object must be passed
- *           a Page object, no assumption is made regarding which Page object
- *           is to be used for a particular operation.
+ * \note 1. Although this Library feature is utilize in Geda application
+ *          like gschem, the Python API library does not currently exploit
+ *          this feature. All methods requiring a Page object must be passed
+ *          a Page object, no assumption is made regarding which Page object
+ *          is to be used for a particular operation.
  */
 METHOD(goto_page)
 {
@@ -704,20 +717,23 @@ METHOD(goto_page)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Open an Existing Page
- *  \par Method Description
- *    This function provides a method to open a existing schematic or symbol
- *   file. If file name is not provide a default name will be used, usually
- *   "untitled".
+/*!
+ * \brief Open an Existing Page
+ * \par Method Description
+ *  This function provides a method to open a existing schematic or symbol
+ *  file. If file name is not provide a default name will be used, usually
+ *  "untitled".
  *
- *  \sa close_page
+ * \sa close_page
  *
  *  [in] name    String file name of the file to open
  *
- *  \return [out] page  A GedaPage object.
+ * \return [out] page  A GedaPage object.
  *
- *  example: schematic = geda.open_page("~/geda/filters/lowpass/butherworth.sch")
- *
+ *  example:
+ * \code
+ *          schematic = geda.open_page("~/geda/filters/lowpass/butherworth.sch")
+ * \endcode
  */
 METHOD(open_page)
 {
@@ -742,26 +758,29 @@ METHOD(open_page)
   return page;
 }
 
-/*! \brief Create a New Page Object
- *  \par Method Description
- *    This function provides a method to create a new empty Page object.
+/*!
+ * \brief Create a New Page Object
+ * \par Method Description
+ *  This function provides a method to create a new empty Page object.
  *
  *  [in] page PyGedaPage Object to be closed
  *
- * optional argument:
+ *  optional argument:
  *
  *  [in] save Integer flag, if True then the page is saved before closing
  *
- *  \return [out] status True if success, otherwise False.
+ * \return [out] status True if success, otherwise False.
  *
- *  \note 1. If the overwrite flag is not provide, any existing file might still
- *           be backed-up depending on the configuration variable "make_backup_files",
- *           which default to True. However, use of the overwrite flag will over-ride
- *           the configuration setting, so if the second argument evaluate to True
- *           then any existing files will be over-written without making a backup.
+ * \note 1. If the overwrite flag is not provide, any existing file might still
+ *          be backed-up depending on the configuration variable "make_backup_files",
+ *          which default to True. However, use of the overwrite flag will over-ride
+ *          the configuration setting, so if the second argument evaluate to True
+ *          then any existing files will be over-written without making a backup.
  *
- *  example: geda.close_page(schematic)
- *
+ *  example:
+ * \code
+ *          geda.close_page(schematic)
+ * \endcode
  */
 METHOD(close_page)
 {
@@ -793,9 +812,10 @@ METHOD(close_page)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Create a New Page Object
- *  \par Method Description
- *    This function provides a method to create a new empty Page object.
+/*!
+ * \brief Create a New Page Object
+ * \par Method Description
+ *  This function provides a method to create a new empty Page object.
  *
  *  [in] file     String name if the file for the Page
  *
@@ -803,16 +823,17 @@ METHOD(close_page)
  *
  *  [in] overwrite Integer flag if existing file should be over-written
  *
- *  \return [out] A GedaPage Object if success, otherwise Py_None.
+ * \return [out] A GedaPage Object if success, otherwise Py_None.
  *
- *  \note 1. If the overwrite flag is not provided, an existing file might still
- *           be backed-up depending on the configuration variable "make_backup_files",
- *           which default to True. However, use of the overwrite flag will over-ride
- *           the configuration setting, so if the second argument evaluate to True
- *           then any existing files will be over-written without making a backup.
- *
- *  example: schematic = geda.new_page("~/sch/oscillator.sch", True)
- *
+ * \note 1. If the overwrite flag is not provided, an existing file might still
+ *          be backed-up depending on the configuration variable "make_backup_files",
+ *          which default to True. However, use of the overwrite flag will over-ride
+ *          the configuration setting, so if the second argument evaluate to True
+ *          then any existing files will be over-written without making a backup.
+ *  example:
+ * \code
+ *          schematic = geda.new_page("~/sch/oscillator.sch", True)
+ * \endcode
  */
 METHOD(new_page)
 {
@@ -847,16 +868,16 @@ METHOD(new_page)
   return page;
 }
 
-/*! \brief Rename a Page Objects
- *  \par Method Description
- *   This function provides a method to rename a Page; in effect change
- *   the file name. This method corresponds to the libgedathon function
- *   PyGeda_rename_page.
+/*!
+ * \brief Rename a Page Objects
+ * \par Method Description
+ *  This function provides a method to rename a Page; in effect change
+ *  the file name. This method corresponds to the libgedathon function
+ *  PyGeda_rename_page.
  *
  *  [in] PyPage page A GedaPage Object
  *  [in] name   String the new name property
- *  \return [out] status True if success, otherwise False.
- *
+ * \return [out] status True if success, otherwise False.
  */
 METHOD(rename_page)
 {
@@ -883,15 +904,15 @@ METHOD(rename_page)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Save Page Objects
- *  \par Method Description
- *   This function provides a method to save a Page type objects to
- *   disk.
+/*!
+ * \brief Save Page Objects
+ * \par Method Description
+ *  This function provides a method to save a Page type objects to
+ *  disk.
  *
  *  [in] PyPage page A GedaPage Object
  *
- *  \return [out] status True if success, otherwise False.
- *
+ * \return [out] status True if success, otherwise False.
  */
 METHOD(save_page)
 {
@@ -916,16 +937,17 @@ METHOD(save_page)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Save a Page Objects with a new file name
- *  \par Method Description
- *   This function provides a method to rename and save a Page single
- *   call to the library. This method corresponds to the libgedathon
- *   function PyGeda_save_page_as.
+/*!
+ * \brief Save a Page Objects with a new file name
+ * \par Method Description
+ *  This function provides a method to rename and save a Page single
+ *  call to the library. This method corresponds to the libgedathon
+ *  function PyGeda_save_page_as.
  *
  *  [in] PyPage page A GedaPage Object
  *  [in] name   String the new name property
- *  \return [out] status True if success, otherwise False.
  *
+ * \return [out] status True if success, otherwise False.
  */
 METHOD(save_page_as)
 {
@@ -952,17 +974,17 @@ METHOD(save_page_as)
   Py_RETURN_TRUE;
 }
 
-/*! \brief Save All Page Objects
- *  \ingroup Python_API_Methods
- *  \par Method Description
- *    This function provides a method to save all Page type objects
+/*!
+ * \brief Save All Page Objects
+ * \ingroup Python_API_Methods
+ * \par Method Description
+ *  This function provides a method to save all Page type objects
  *  that are opened or optionally, all Page objects in a given list.
  *
  *  [in] PyList Optional list of Page objects
  *
- *  \return [out] integer equal to the number of errors, FALSE means there
- *                were no errors.
- *
+ * \return [out] integer equal to the number of errors, FALSE means there
+ *               were no errors.
  */
 METHOD(save_all_pages)
 {
@@ -987,16 +1009,16 @@ METHOD(save_all_pages)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Determine if object is a type of GedaCapsule Object
- *  \par Method Description
- *    This function provides a method to check an object is a GedaCapsule type.
+/*!
+ * \brief Determine if object is a type of GedaCapsule Object
+ * \par Method Description
+ *  This function provides a method to check an object is a GedaCapsule type.
  *  This method is used by other methods internally and is not normally used by
  *  Python programs.
  *
  *  [in] PyObject object PyObject to be checked
  *
- *  \return [out] True if the object is GedaCapsule, otherwise False.
- *
+ * \return [out] True if the object is GedaCapsule, otherwise False.
  */
 METHOD(GedaCapsule_Type)
 {
@@ -1048,16 +1070,16 @@ METHOD(get_bounds)
   return list;
 }
 
-/*! \brief Get an Object from GedaCapsuleObject
- *  \par Method Description
- *    This function provides a method to create PyPyGedaObjects from a GedaCapsule
+/*!
+ * \brief Get an Object from GedaCapsuleObject
+ * \par Method Description
+ *  This function provides a method to create PyPyGedaObjects from a GedaCapsule
  *  object but is not normally need directly. This method is used by other methods
  *  to get an Python version of the object contained within a Geda capsule.
  *
  *  [in] PyObject capsule  The container object
  *
- *  \return [out] A PyGedaObject.
- *
+ * \return [out] A PyGedaObject.
  */
 METHOD(get_object)
 {
@@ -1135,34 +1157,37 @@ METHOD(get_object)
   return py_object;
 }
 
-/*! \brief Get a List Objects from an Object
- *  \par Method Description
+/*!
+ * \brief Get a List Objects from an Object
+ * \par Method Description
  *    This function provides a method to get a list of existing objects from another
  *  object. The source object can be a Page or another object. Returned capsule items
  *  can be extracted and converted to PyGedaObject using the get_object method.
  *
  *    Encapsulation of objects is performed for efficiency and memory management.
- *  If real PyPyGedaObjects had to be created with a statement like the one used in
+ *  If real PyGedaObjects had to be created with a statement like the one used in
  *  example 1, the time required for Python to manage the memory for large schematics,
  *  would approach "hard-disk" access times. And when the list was later dereferenced,
  *  similar delays would occur while Python was performing garbage collection.
  *
  *  [in] PyObject source  The object from which to obtain the sub-objects
  *
- *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
- *                       did not contain any objects.
+ * \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
+ *                      did not contain any objects.
  *
- *  example: objects = geda.get_objects(schematic)
- *           print("objects on page with ID={0}, filename={1}".format(schematic.pid,schematic.filename()))
- *           print objects # prints information for all object on a page
- *
- *  \note 1. The GedaCapsules contained in the returned list indirectly references
- *           objects. Destroying the capsule does not destroy the objects referenced
- *           within. GedaCapsule are not derived from Python Capsules, but instead are
- *           derived from Python's base class, PyObject. There is no reason to explicitly
- *           destroy a GedaCapsule object. The dynamically allocated memory referenced
- *           within a GedaCapsule is managed by LibGeda and not by Python. All such
- *           memory is released though gobject destructor mechanisms.
+ *  example:
+ * \code
+ *          objects = geda.get_objects(schematic)
+ *          print("objects on page with ID={0}, filename={1}".format(schematic.pid,schematic.filename()))
+ *          print objects # prints information for all object on a page
+ * \endcode
+ * \note 1. The GedaCapsules contained in the returned list indirectly references
+ *          objects. Destroying the capsule does not destroy the objects referenced
+ *          within. GedaCapsule are not derived from Python Capsules, but instead are
+ *          derived from Python's base class, PyObject. There is no reason to explicitly
+ *          destroy a GedaCapsule object. The dynamically allocated memory referenced
+ *          within a GedaCapsule is managed by LibGeda and not by Python. All such
+ *          memory is released though gobject destructor mechanisms.
  *
  */
 METHOD(get_objects)
@@ -1199,27 +1224,31 @@ METHOD(get_objects)
   return list;
 }
 
-/*! \brief Add an Object to an Object
- *  \par Method Description
+/*!
+ * \brief Add an Object to an Object
+ * \par Method Description
  *  This function provides a method to add an existing object to another object.
  *  The target a object can be a Page or another object.
  *
  *  [in] PyObject parent The Geda object to receive the child
  *  [in] PyObject child The Geda object to be add to the parent
  *
- *  \return [out] status True if successful, otherwise False.
+ * \return [out] status True if successful, otherwise False.
  *
- *  example 1. geda.add_object(schematic, titleblock) # Add titleblock complex to a Page object
+ *  example 1.
+ * \code
+ *           geda.add_object(schematic, titleblock) # Add titleblock complex to a Page object
+ * \endcode
+ *  example 2.
+ * \code
+ *           geda.add_object(pin, pinlabel) # Add label (text) attribute to Pin object
+ * \endcode
+ * \note 1. At this time, only attributes, aka Text Objects, can be added to other
+ *          other objects. The parent object need not be a Complex, attributes can
+ *          be attached to other object type including Graphical objects.
  *
- *  example 2. geda.add_object(pin, pinlabel) # Add label (text) attribute to Pin object
- *
- *  \note 1. At this time, only attributes, aka Text Objects, can be added to other
- *           other objects. The parent object need not be a Complex, attributes can
- *           be attached to other object type including Graphical objects.
- *
- *  \note 2. For symbol files, objects that comprise the symbol, like pins, circles, lines,
- *           etc., are added to the page not a complex.
- *
+ * \note 2. For symbol files, objects that comprise the symbol, like pins, circles, lines,
+ *          etc., are added to the page not a complex.
  */
 METHOD(add_object)
 {
@@ -1257,20 +1286,23 @@ METHOD(add_object)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Add Objects to an Object
- *  \par Method Description
+/*!
+ * \brief Add Objects to an Object
+ * \par Method Description
  *  This function provides a method to add a list of existing object to another
  *  object. The target object can be a Page or another object.
  *
- *  \sa add_object
+ * \sa add_object
  *
  *  [in] PyObject parent The Geda object to receive the child
  *  [in] PyList   list   The list of Geda objects to be add to the parent
  *
- *  \return [out] status True if successful, otherwise False.
+ * \return [out] status True if successful, otherwise False.
  *
- *  example 1. geda.add_objects(schematic, ResistorList)
- *
+ *  example 1.
+ * \code
+ *          geda.add_objects(schematic, ResistorList)
+ * \endcode
  */
 METHOD(add_objects)
 {
@@ -1302,8 +1334,9 @@ METHOD(add_objects)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Copy an Object
- *  \par Method Description
+/*!
+ * \brief Copy an Object
+ * \par Method Description
  *  This function provides a method to Copy an existing object. The Object
  *  does not have to be on a Page. The object argument can be and actual
  *  PyGedaObject, such as PyGedaComplexObject_type, or the object can be a GedaCapsule
@@ -1316,19 +1349,25 @@ METHOD(add_objects)
  *  [in] x  Integer X offset relative to the source object's location
  *  [ib] y  Integer X offset relative to the source object's location
  *
- *  \note 1. The target offset arguments are mutually optional, either both must be
- *           provided or neither. If offsets arguments are not provide the copy will
- *           coincide with the original.
+ * \note 1. The target offset arguments are mutually optional, either both must be
+ *          provided or neither. If offsets arguments are not provide the copy will
+ *          coincide with the original.
  *
- *  \return [out] PyObject if successful otherwise False. The returned PyGedaObject
- *                is the real instance of the copied object, even if the argument
- *                was a capsule object.
+ * \return [out] PyObject if successful otherwise False. The returned PyGedaObject
+ *               is the real instance of the copied object, even if the argument
+ *               was a capsule object.
  *
- *  example 1. amp2 = amp1.copy(4800, -200)
+ *  example 1.
+ * \code
+ *          amp2 = amp1.copy(4800, -200)
+ * \endcode
  *
- *  example 2. x = RightSpeaker.x
- *             y = RightSpeaker.y + 1000
- *             LeftSpeaker = geda.copy_object(RightSpeaker, x, y)
+ *  example 2.
+ * \code
+ *          x = RightSpeaker.x
+ *          y = RightSpeaker.y + 1000
+ *          LeftSpeaker = geda.copy_object(RightSpeaker, x, y)
+ * \endcode
  */
 METHOD(copy_object)
 {
@@ -1399,19 +1438,22 @@ METHOD(copy_object)
   return py_object_B;
 }
 
-/*! \brief Remove an Object from a Page
- *  \par Method Description
+/*!
+ * \brief Remove an Object from a Page
+ * \par Method Description
  *  This function provides a method to remove an existing object from
  *  the page which the object is associated. Removing an object does
  *  not destroy the object.
  *
  *  [in] PyObject The Geda object to be removed
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object did not exist.
  *
- *  example 1. geda.remove_object(py_symbol)
- *
+ *  example:
+ * \code
+ *          geda.remove_object(py_symbol)
+ * \endcode
  */
 METHOD(remove_object)
 {
@@ -1432,8 +1474,9 @@ METHOD(remove_object)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Remove a PyList of Objects from a Page
- *  \par Method Description
+/*!
+ * \brief Remove a PyList of Objects from a Page
+ * \par Method Description
  *  This function provides a method to remove a list of existing objects from
  *  a page which the objects are associated. The objects in the list do not
  *  have to be the same page and removing an object from a page does not
@@ -1442,11 +1485,13 @@ METHOD(remove_object)
  *
  *  [in] PyList Of Geda objects to be removed
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object did not exist.
  *
- *  example 1. geda.remove_objects(ObjectList)
- *
+ *  example:
+ * \code
+ *          geda.remove_objects(ObjectList)
+ * \endcode
  */
 METHOD(remove_objects)
 {
@@ -1470,17 +1515,20 @@ METHOD(remove_objects)
 
 /* End Page level Methods */
 
-/*! \brief Delete an Object
- *  \par Method Description
+/*!
+ * \brief Delete an Object
+ * \par Method Description
  *  This function provides a method to delete an object
  *
  *  [in] PyObject The Geda object to be deleted
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object did not exist.
  *
- *  example 1. geda.delete_object(tmpObject)
- *
+ *  example:
+ * \code
+ *          geda.delete_object(tmpObject)
+ * \endcode
  */
 METHOD(delete_object)
 {
@@ -1504,17 +1552,21 @@ METHOD(delete_object)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Delete a List of Objects
- *  \par Method Description
+/*!
+ * \brief Delete a List of Objects
+ * \par Method Description
  *  This function provides a method to delete a list objects
  *
  *  [in] PyObject of type PyList container with PyPyGedaObjects
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object in the list
- *                did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object in the list
+ *               did not exist.
  *
- *  example 1. geda.delete_objects(Old_Objects)
+ *  example:
+ * \code
+ *          geda.delete_objects(Old_Objects)
+ * \endcode
  *
  * TODO: See get_junctions for a friendly method of accepting arguments
  */
@@ -1537,18 +1589,21 @@ METHOD(delete_objects)
   return Py_BuildValue("i", status);
 }
 
-/*! \brief Delete a List of Objects
- *  \par Method Description
+/*!
+ * \brief Delete a List of Objects
+ * \par Method Description
  *  This function provides a method to delete a list objects
  *
  *  [in] PyObject of type PyList container with PyPyGedaObjects
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object in the list
- *                did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object in the list
+ *               did not exist.
  *
- *  example 1. geda.delete_objects(Old_Objects)
- *
+ *  example:
+ * \code
+ *          geda.delete_objects(Old_Objects)
+ * \endcode
  */
 METHOD(sync_object)
 {
@@ -1574,8 +1629,9 @@ METHOD(sync_object)
  *  @{
  */
 
-/*! \brief Create a New Arc Object
- *  \par Method Description
+/*!
+ * \brief Create a New Arc Object
+ * \par Method Description
  *  This function provides a method to create new Arc. An Arc is a
  *  graphical figure. Arcs have line-type properties.
  *
@@ -1589,10 +1645,12 @@ METHOD(sync_object)
  *
  *  [in] color PyObject a color object (not implemented yet)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. arc = geda.new_arc(4000, 3300, 500, 0, 90)
- *
+ *  example :
+ * \code
+ *          arc = geda.new_arc(4000, 3300, 500, 0, 90)
+ * \endcode
  */
 METHOD(new_arc)
 {
@@ -1622,8 +1680,9 @@ METHOD(new_arc)
   return py_arc;
 }
 
-/*! \brief Create a New Box Object
- *  \par Method Description
+/*!
+ * \brief Create a New Box Object
+ * \par Method Description
  *  This function provides a method to create new Box. A Box is closes
  *  graphical figure. Boxes have line-type properties and can be filled
  *  with a fill pattern or not.
@@ -1637,10 +1696,12 @@ METHOD(new_arc)
  *
  *  [in] color PyObject a color object (not fully implemented yet)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. frame1 = geda.new_box(7200, 5500, 7800, 5500)
- *
+ *  example:
+ * \code
+ *          frame1 = geda.new_box(7200, 5500, 7800, 5500)
+ * \endcode
  */
 METHOD(new_box)
 {
@@ -1670,8 +1731,9 @@ METHOD(new_box)
   return py_box;
 }
 
-/*! \brief Create a New Bus Object
- *  \par Method Description
+/*!
+ * \brief Create a New Bus Object
+ * \par Method Description
  *  This function provides a method to create new Bus. A Bus is a line that
  *  basically represent an electrical path, like wires.A bus is simular to
  *  a Net object but represent mutible wires, not just one.
@@ -1686,10 +1748,12 @@ METHOD(new_box)
  *  [in] name string bus_name attribute
  *  [in] color PyObject a color object (not fully implemented yet)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. bus = geda.new_bus(7200, 5500, 7800, 5500)
- *
+ *  example:
+ * \code
+ *          bus = geda.new_bus(7200, 5500, 7800, 5500)
+ * \endcode
  */
 METHOD(new_bus)
 {
@@ -1718,8 +1782,9 @@ METHOD(new_bus)
   return py_bus;
 }
 
-/*! \brief Create a New Circle Object
- *  \par Method Description
+/*!
+ * \brief Create a New Circle Object
+ * \par Method Description
  *  This function provides a method to create new Circle. Circle objects
  *  are graphical drawing objects. Circle have line-type properties and
  *  can be filled with fill patterns or not.
@@ -1732,10 +1797,12 @@ METHOD(new_bus)
  *
  *  [in] color  PyObject a color object (not implemented yet)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. circle = geda.new_circle(7200, 5200, 1000)
- *
+ *  example:
+ * \code
+ *          circle = geda.new_circle(7200, 5200, 1000)
+ * \endcode
  */
 METHOD(new_circle)
 {
@@ -1765,8 +1832,9 @@ METHOD(new_circle)
   return py_circle;
 }
 
-/*! \brief Create a New Complex Object
- *  \par Method Description
+/*!
+ * \brief Create a New Complex Object
+ * \par Method Description
  *  This function provides a method to create new Complex object. A Complex
  *  is a symbol to known to the Library that normally represents a component.
  *
@@ -1780,16 +1848,21 @@ METHOD(new_circle)
  *  [in] mirror   integer property whether to mirror the symbol
  *  [in] embedded integer property whether to embed the symbol data
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  \note 1. Preceeding optional arguments must be provided, use a value of
- *           -1 for defaults when it is not desired to "set" the proceeding
- *           arguments.
+ * \note 1. Preceeding optional arguments must be provided, use a value of
+ *          -1 for defaults when it is not desired to "set" the proceeding
+ *          arguments.
  *
- *  example 1. titleblock = geda.new_complex("title-B", 1000, 1000)
- *             titleblock.locked = True
- *
- *  example 2. amp1 = geda.new_complex("lm2902-1", 1000, 4000, -1, 1)
+ *  example 1.
+ * \code
+ *          titleblock = geda.new_complex("title-B", 1000, 1000)
+ *          titleblock.locked = True
+ * \endcode
+ *  example 2.
+ * \code
+ *          amp1 = geda.new_complex("lm2902-1", 1000, 4000, -1, 1)
+ * \endcode
  */
 METHOD(new_complex)
 {
@@ -1829,8 +1902,9 @@ METHOD(new_complex)
   return py_complex;
 }
 
-/*! \brief Create a New Line Object
- *  \par Method Description
+/*!
+ * \brief Create a New Line Object
+ * \par Method Description
  *  This function provides a method to create new Line. Line object are
  *  graphical drawing objects and do not represent an electrical path,
  *  although lines are used inside of symbols to indicate signal paths
@@ -1846,10 +1920,12 @@ METHOD(new_complex)
  *
  *  [in] color PyObject a color object (not fully implemented yet)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. line = geda.new_line(7200, 5200, 7800, 5200)
- *
+ *  example:
+ * \code
+ *          line = geda.new_line(7200, 5200, 7800, 5200)
+ * \endcode
  */
 METHOD(new_line)
 {
@@ -1879,8 +1955,9 @@ METHOD(new_line)
   return py_line;
 }
 
-/*! \brief Create a New Net Object
- *  \par Method Description
+/*!
+ * \brief Create a New Net Object
+ * \par Method Description
  *  This function provides a method to create new Net. A Net is a line that
  *  basically represent an electrical path, like a wire. One or more Net
  *  object are need to describe the electrical connection between pins and
@@ -1896,10 +1973,13 @@ METHOD(new_line)
  *  [in] name  string net_name attribute
  *  [in] color A PyGedaColorObject or Integer color code
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. net = geda.new_net(7200, 5500, 7800, 5500)
- *             geda.add_object(schematic, net)
+ *  example 1.
+ * \code
+ *          net = geda.new_net(7200, 5500, 7800, 5500)
+ *          geda.add_object(schematic, net)
+ * \endcode
  */
 METHOD(new_net)
 {
@@ -1930,8 +2010,9 @@ METHOD(new_net)
   return py_net;
 }
 
-/*! \brief Create a New Path Object
- *  \par Method Description
+/*!
+ * \brief Create a New Path Object
+ * \par Method Description
  *  This function provides a method to create new Path. A Path object is
  *  graphical figure and does not represent an electrical path. Path have
  *  line-type properties and can have fill-patterns when the path is closed.
@@ -1942,10 +2023,12 @@ METHOD(new_net)
  *
  *  [in] color A PyGedaColorObject or Integer color code
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  example 1. path = geda.new_path("M 1000 2500 L 2000 3500")
- *
+ *  example 1.
+ * \code
+ *          path = geda.new_path("M 1000 2500 L 2000 3500")
+ * \endcode
  */
 METHOD(new_path)
 {
@@ -1980,8 +2063,9 @@ METHOD(new_path)
   return py_path;
 }
 
-/*! \brief Create a New Picture Object
- *  \par Method Description
+/*!
+ * \brief Create a New Picture Object
+ * \par Method Description
  *  This function provides a method to create new Picture.
  *
  *  [in] filepath string  The file name of the image
@@ -2002,9 +2086,11 @@ METHOD(new_path)
  *          -1 for defaults when it is not desired to "set" the proceeding
  *          arguments.
  *
- *  example 1. picture = geda.new_picture("/home/pictures/1377395281.jpg", 5200, 5000, 8200, 2000)
- *              picture.locked = True
- *
+ *  example 1.
+ * \code
+ *          picture = geda.new_picture("/home/pictures/1377395281.jpg", 5200, 5000, 8200, 2000)
+ *                                       picture.locked = True
+ * \endcode
  */
 METHOD(new_picture)
 {
@@ -2044,8 +2130,9 @@ METHOD(new_picture)
   return py_picture;
 }
 
-/*! \brief Create a New Pin Object
- *  \par Method Description
+/*!
+ * \brief Create a New Pin Object
+ * \par Method Description
  *  This function provides a method to create a new Pin Object.
  *
  *  [in] x1     Integer from X location
@@ -2062,32 +2149,36 @@ METHOD(new_picture)
  *  [in] mtype    Integer mechanical type attribute
  *  [in] ntype    Integer node type property ( 0=normal, 1=bus type)
  *
- *  \return [out] PyObject Or NULL if an error occurs.
+ * \return [out] PyObject Or NULL if an error occurs.
  *
- *  \note 1. Preceeding optional arguments must be provided, use a value of
- *           -1 for defaults when it is not desired to "set" the proceeding
- *           arguments.
+ * \note 1. Preceeding optional arguments must be provided, use a value of
+ *          -1 for defaults when it is not desired to "set" the proceeding
+ *          arguments.
  *
- *  \note 2. New Pin objects are created with the auto-attributes property set to
- *           True, in which case all "normal" pin attribute objects are automatically
- *           created and attached to the pin when the pin is commited to a page. If
- *           auto-attributes is turned off by using something like pin.auto-attributes
- *            = False, the pin attributes must be create separately and attached to the
- *           pin object. Another options is to leave attributes turned on and modify the
- *           attributes after the pin has been committed to a Page object, see example 2
- *           below.
+ * \note 2. New Pin objects are created with the auto-attributes property set to
+ *          True, in which case all "normal" pin attribute objects are automatically
+ *          created and attached to the pin when the pin is commited to a page. If
+ *          auto-attributes is turned off by using something like pin.auto-attributes
+ *           = False, the pin attributes must be create separately and attached to the
+ *          pin object. Another options is to leave attributes turned on and modify the
+ *          attributes after the pin has been committed to a Page object, see example 2
+ *          below.
  *
- *  example 1. pin = geda.new_pin(900, 200, 700, 200, 0, "2", "2", PIN_ELECT_PAS, 0, 0)
- *
- *  example 2. pin = geda.new_pin(0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
- *              geda.add_object(resistor, pin)
- *              butes = geda.get_attribs(pin)
- *              for attrib in butes:
- *                  if attrib.name() == "pinlabel":
- *                      attrib.visible = 0
- *                  if attrib.name() == "pinnumber":
- *                      attrib.visible = 0
- *
+ *  example 1.
+ * \code
+ *            pin = geda.new_pin(900, 200, 700, 200, 0, "2", "2", PIN_ELECT_PAS, 0, 0)
+ * \endcode
+ *  example 2.
+ * \code
+ *            pin = geda.new_pin(0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
+ *            geda.add_object(resistor, pin)
+ *            butes = geda.get_attribs(pin)
+ *            for attrib in butes:
+ *                if attrib.name() == "pinlabel":
+ *                    attrib.visible = 0
+ *                if attrib.name() == "pinnumber":
+ *                    attrib.visible = 0
+ * \endcode
  */
 METHOD(new_pin)
 {
@@ -2143,8 +2234,9 @@ METHOD(new_pin)
   return py_pin;
 }
 
-/*! \brief Create a New Text Object
- *  \par Method Description
+/*!
+ * \brief Create a New Text Object
+ * \par Method Description
  *  This function provides a method to create a new Text Object.
  *
  *  [in] text  String for the name property
@@ -2158,19 +2250,23 @@ METHOD(new_pin)
  *  [in] angle   integer orientation property
  *  [in] color   A PyGedaColorObject or Integer color code
  *
- *  \return [out] PyObject or NULL if an error occurs.
+ * \return [out] PyObject or NULL if an error occurs.
  *
- *  \note  Preceeding optional arguments must be provided, use a value of
- *         -1 for defaults when it is not desired to "set" the proceeding
- *         arguments.
+ * \note  Preceeding optional arguments must be provided, use a value of
+ *        -1 for defaults when it is not desired to "set" the proceeding
+ *        arguments.
  *
- *  example 1. text = geda.new_text("Gyro", 2800, 3000, -1, 0, 90)
- *              text.locked = True
- *              geda.add_object(schematic, text)
- *
- *  example 2. text = geda.new_text("LM353", 250, 350, 8)
- *              geda.add_object(opamp, text)
- *
+ *  example 1.
+ * \code
+ *            text = geda.new_text("Gyro", 2800, 3000, -1, 0, 90)
+ *            text.locked = True
+ *            geda.add_object(schematic, text)
+ * \endcode
+ *  example 2.
+ * \code
+ *            text = geda.new_text("LM353", 250, 350, 8)
+ *            geda.add_object(opamp, text)
+ * \endcode
  */
 METHOD(new_text)
 {
@@ -2205,8 +2301,8 @@ METHOD(new_text)
   return py_text;
 }
 
-/*! \brief Create a New Attribute Object
- *  \par Method Description
+/*!\brief Create a New Attribute Object
+ * \par Method Description
  *  This function provides a method to a new attribute Text Object. The new_text
  *  method could also be used to create a new Text but this method is more
  *  convenience for Text object that are to be used as Attributes as indicated
@@ -2231,10 +2327,14 @@ METHOD(new_text)
  *         -1 for defaults when it is not desired to "set" the proceeding
  *          arguments.
  *
- *  example 1. device = geda.new_attrib("device", "resistor", x, y)
- *
- *  example 2. pinlabel = geda.new_attrib("pinlabel", "2", x, y1, -1, -1, LOWER_RIGHT)
- *
+ *  example 1.
+ * \code
+ *            device = geda.new_attrib("device", "resistor", x, y)
+ * \endcode
+ *  example 2.
+ * \code
+ *            pinlabel = geda.new_attrib("pinlabel", "2", x, y1, -1, -1, LOWER_RIGHT)
+ * \endcode
  */
 METHOD(new_attrib)
 {
@@ -2276,8 +2376,9 @@ METHOD(new_attrib)
  *  @{
  */
 
-/*! \brief Get a Single Attribute Object by Name
- *  \par Method Description
+/*!
+ * \brief Get a Single Attribute Object by Name
+ * \par Method Description
  *  This function provides a method to get a single attribute associated with
  *  a given Gedaobject. If found, the returned attribute may be attached or
  *  floating.
@@ -2285,8 +2386,8 @@ METHOD(new_attrib)
  *  [in] py_parent PyGedaObject to be search for the attribute
  *  [in] name      string name of the attribute to be returned
  *
- *  \return [out] Pyattribute if found or Py_None if an attribute was not found
- *                with the given name.
+ * \return [out] Pyattribute if found or Py_None if an attribute was not found
+ *               with the given name.
  */
 METHOD(get_attrib)
 {
@@ -2317,8 +2418,9 @@ METHOD(get_attrib)
   return py_attrib;
 }
 
-/*! \brief Get Attribute Objects Value
- *  \par Method Description
+/*!
+ * \brief Get Attribute Objects Value
+ * \par Method Description
  *  This function provides a method to get all of the attributes attached to
  *  given Gedaobject.
  *
@@ -2388,8 +2490,9 @@ METHOD(get_attribs)
   return py_output_list;
 }
 
-/*! \brief Set Attribute Objects Value
- *  \par Method Description
+/*!
+ * \brief Set Attribute Objects Value
+ * \par Method Description
  *  This function provides a method to set the value of an attribute given it
  *  name. If the Attribute being set is a floating type, then the attribute is
  *  promoted, also referred to as being attached, to the parent.
@@ -2402,8 +2505,8 @@ METHOD(get_attribs)
  *  [in] py_value  PyString or PyInt value of the attribute
  *  [in] ret_obj   PyBoolean if True the attribute will be returned
  *
- *  \return PyAttribute object associated with the changes if the 4th argument
- *          evaluated as True, otherwise Py_None is returned.
+ * \return PyAttribute object associated with the changes if the 4th argument
+ *         evaluated as True, otherwise Py_None is returned.
  */
 METHOD(set_attrib)
 {
@@ -2463,20 +2566,21 @@ METHOD(set_attrib)
   return py_ret;
 }
 
-/*! \brief Refresh Attribute Objects Method
- *  \par Method Description
+/*!
+ * \brief Refresh Attribute Objects Method
+ * \par Method Description
  *  This function provides a method to update attributes that were modified
- * in Python scripts after a complex object associates with the attributes was
- * placed (on a page). If the attribute was modified before committing to a
- * page, or if a new attribute is created and added to a complex then it is
- * not required to use this method. If attributes whose parent object has been
- * placed on a page are modified without calling this function, only the Python
- * version of the object is modified, hence the changes will not be saved when
- * the file is saved.
+ *  in Python scripts after a complex object associates with the attributes was
+ *  placed (on a page). If the attribute was modified before committing to a
+ *  page, or if a new attribute is created and added to a complex then it is
+ *  not required to use this method. If attributes whose parent object has been
+ *  placed on a page are modified without calling this function, only the Python
+ *  version of the object is modified, hence the changes will not be saved when
+ *  the file is saved.
  *
  *  [in] PyObject Complex for which attributes are to be synchronized
  *
- *  \return status True on success, otherwise False.
+ * \return status True on success, otherwise False.
  */
 METHOD(refresh_attribs)
 {
@@ -2503,8 +2607,9 @@ METHOD(refresh_attribs)
  *  @{
  */
 
-/*! \brief Get all Objects Connect to a Given PyGedaObject
- *  \par Method Description
+/*!
+ * \brief Get all Objects Connect to a Given PyGedaObject
+ * \par Method Description
  *    This function provides a method to obtain a list of all of objects
  *  connected with a given PyGedaObject or GedaCapsule. The returned list
  *  contains GedaCapsules and is guaranteed to contain at least one object
@@ -2513,20 +2618,20 @@ METHOD(refresh_attribs)
  *
  *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
- *  \return [out] PyList of GedaCapsules.
+ * \return [out] PyList of GedaCapsules.
  *
  *  example 1:
- *
- *      sub_net = geda.get_network(capsule)
- *      for node in sub_net:
- *          print node.name
- *
+ * \code
+ *            sub_net = geda.get_network(capsule)
+ *            for node in sub_net:
+ *                print node.name
+ * \endcode
  *  example 2:
- *
- *      U10_SCI = geda.get_network(Pin, GEDA_FILTER_NET)
- *      for net in U10_SCI:
- *          set_attrib(net, "netname", "U10_SCI")
- *
+ * \code
+ *            U10_SCI = geda.get_network(Pin, GEDA_FILTER_NET)
+ *            for net in U10_SCI:
+ *                set_attrib(net, "netname", "U10_SCI")
+ * \endcode
  *  note: In example 2, the pin does not get a netname attribute
  *        attached to the pin because pins were excluded by the NET
  *        filter.
@@ -2564,15 +2669,16 @@ METHOD(get_network)
   return list;
 }
 
-/*! \brief Get all Junctions Associated with PyGedaObjects
- *  \par Method Description
+/*!
+ * \brief Get all Junctions Associated with PyGedaObjects
+ * \par Method Description
  *  This function provides a method to obtain X-Y coordinates data
  *  of connection junctions.
  *
  *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
- *  \return [out] PyList of Points; integer X-Y pairs or an empty
- *                list if no junctions were found.
+ * \return [out] PyList of Points; integer X-Y pairs or an empty
+ *               list if no junctions were found.
  *
  */
 METHOD(get_junctions)
@@ -2637,19 +2743,19 @@ METHOD(get_junctions)
   return py_output_list;
 }
 
-/*! \brief Get Points Associated with Unconnected PyGedaObjects
- *  \par Method Description
- *   This function provides a method to obtain X-Y coordinates data
- *   of unconnected object, normally pins and nets.
+/*!
+ * \brief Get Points Associated with Unconnected PyGedaObjects
+ * \par Method Description
+ *  This function provides a method to obtain X-Y coordinates data
+ *  of unconnected object, normally pins and nets.
  *
  *  [in] PyObject can be PyList of PyObjects that can be any combination
  *       of PyGedaObjects and or GedaCapsuleObjects, or a single PyGedaObject
  *       or single GedaCapsuleObject not in a PyList. All objects types are
  *       accepted but graphical objects will always return an empty list.
  *
- *  \return [out] PyList of Points; integer X-Y pairs or an empty list
- *                if no unconnected nodes were found.
- *
+ * \return [out] PyList of Points; integer X-Y pairs or an empty list
+ *               if no unconnected nodes were found.
  */
 METHOD(get_unconnected)
 {
