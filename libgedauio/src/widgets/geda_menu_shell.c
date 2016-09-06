@@ -390,8 +390,9 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, move_current),
                   NULL, NULL,
-                  NULL,
-                  G_TYPE_NONE, 0);
+                  geda_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_INT);
 
   /*!
    * GedaMenuShell::activate-current:
@@ -440,9 +441,9 @@ geda_menu_shell_class_init(void *class, void *class_data)
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                 G_CALLBACK (geda_real_menu_shell_cycle_focus),
                                 NULL, NULL,
-                                NULL,
-                                G_TYPE_NONE, 0);
-
+                                geda_marshal_VOID__INT,
+                                G_TYPE_NONE, 1,
+                                G_TYPE_INT);
   /*!
    * GedaMenuShell::move-selected:
    * param: menu_shell the object on which the signal is emitted
@@ -463,7 +464,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   G_TYPE_BOOLEAN, 1,
                   G_TYPE_INT);
 
-  binding_set = gtk_binding_set_by_class (class);
+  binding_set = gtk_binding_set_by_class (menu_shell_class);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Escape, 0,
@@ -1002,8 +1003,9 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
       geda_label_mnemonics_visible_apply_recursively (GTK_WIDGET (target),
                                                       mnemonics_visible);
     }
-    else
+    else {
       gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
+    }
 
     if (target->active_menu_item || priv->in_unselectable_item)
       found = TRUE;

@@ -1,3 +1,8 @@
+2016-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Add geda_marshal_VOID__INT for signals
+      "move-current" and "cycle-focus".
+
 2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Revise geda_action_connect_proxy to set
