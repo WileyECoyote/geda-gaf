@@ -9,6 +9,7 @@
 
     * src/widgets/geda_menu.c: Remove gettext from "move-current" GDK_Up
       signal and enable/re-enable installing "can-change-accels" setting.
+      Move gtk_settings_install_property before setting binding.
 
     * src/widgets/geda_menu_bar.c: Reorganize function order in module.
 

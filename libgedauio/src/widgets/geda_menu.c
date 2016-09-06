@@ -1000,6 +1000,14 @@ geda_menu_class_init   (void *class, void *class_data)
   gtk_container_class_install_child_property (container_class,
                                               CHILD_PROP_BOTTOM_ATTACH, params);
 
+  params = g_param_spec_boolean ("can-change-accels",
+                               _("Can change accelerators"),
+                               _("Whether menu accelerators can be changed by pressing a key over the menu item"),
+                                  TRUE,
+                                  G_PARAM_READWRITE);
+
+  gtk_settings_install_property (params);
+
   /* Bindings */
 
   binding_set = gtk_binding_set_by_class (class);
@@ -1084,13 +1092,6 @@ geda_menu_class_init   (void *class, void *class_data)
                                 "move-scroll", 1,
                                 GTK_TYPE_SCROLL_TYPE,
                                 GTK_SCROLL_PAGE_DOWN);
-
-  gtk_settings_install_property (g_param_spec_boolean ("can-change-accels",
-                               _("Can change accelerators"),
-                               _("Whether menu accelerators can be changed by pressing a key over the menu item"),
-                               FALSE,
-                               G_PARAM_READWRITE));
-
 }
 
 /*!
