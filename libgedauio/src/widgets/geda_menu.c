@@ -1006,7 +1006,7 @@ geda_menu_class_init   (void *class, void *class_data)
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Up, 0,
-                                _("move-current"), 1,
+                                "move-current", 1,
                                 G_TYPE_ENUM,
                                 MENU_DIR_PREV);
   gtk_binding_entry_add_signal (binding_set,

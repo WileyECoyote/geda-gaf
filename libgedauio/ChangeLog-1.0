@@ -7,6 +7,9 @@
       to document that the pattern argument is allowed to be NULL, which
       resets under-lining to the "use-underline" and mnemonic settings.
 
+    * src/widgets/geda_menu.c: Remove gettext from "move-current" GDK_Up
+      signal.
+
     * src/widgets/geda_menu_bar.c: Reorganize function order in module.
 
     * src/widgets/geda_menu_shell.c: Add geda_marshal_VOID__INT for signals
