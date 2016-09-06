@@ -2416,7 +2416,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   shortcuts_connected =
   (int)(long)GEDA_OBJECT_GET_DATA (settings, "gtk-label-shortcuts-connected");
 
-  if (! shortcuts_connected) {
+  if (!shortcuts_connected) {
 
       GEDA_SIGNAL_CONNECT (settings, "notify::gtk-enable-mnemonics",
                            G_CALLBACK (label_shortcut_setting_changed),
@@ -3397,11 +3397,12 @@ geda_label_set_pattern_internal (GedaLabel  *label,
  * \par Function Description
  * The pattern of underlines you want under the existing text within the
  * #GedaLabel widget.  For example if the current text of the label says
- * "FooBarBaz" passing a pattern of "___   ___" will underline
- * "Foo" and "Baz" but not "Bar".
+ * "FooBarBaz" passing a pattern of "___   ___" will underline "Foo" and
+ * "Baz" but not "Bar". If \a pattern is NULL then the current will be
+ *  removed.
  *
  * \param [in] label   The GedaLabel object
- * \param [in] pattern The pattern as described above
+ * \param [in] pattern Pattern as described above or NULL.
  */
 void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 {

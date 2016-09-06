@@ -3,6 +3,10 @@
     * src/widgets/geda_accel_label.c: Update comments; change GEDA_ACCEL_
       VISIBLE to GTK_ACCEL_VISIBLE, there is not GEDA_ACCEL_VISIBLE.
 
+    * src/widgets/geda_label.c: Revise comments for geda_label_set_pattern
+      to document that the pattern argument is allowed to be NULL, which
+      resets under-lining to the "use-underline" and mnemonic settings.
+
     * src/widgets/geda_menu_bar.c: Reorganize function order in module.
 
     * src/widgets/geda_menu_shell.c: Add geda_marshal_VOID__INT for signals
