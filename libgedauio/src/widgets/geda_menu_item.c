@@ -56,7 +56,8 @@
  *
  * By default, a GedaMenuItem sets a #GedaAccelLabel as its child.
  * GedaMenuItem has direct functions to set the label and its mnemonic.
- * For more advanced label settings, you can fetch the child widget from the GtkBin.
+ * For more advanced label settings, you can fetch the child widget from
+ * the GtkBin.
  *
  * An example for setting markup and accelerator on a MenuItem:
  * \code{.c}
@@ -928,7 +929,7 @@ geda_menu_item_accel_width_foreach (GtkWidget *widget,
 {
   unsigned int *width = data;
 
-  if (GEDA_IS_ACCEL_LABEL (widget)) {
+  if (GEDA_IS_ACCEL_LABEL(widget)) {
 
     unsigned int w;
 
@@ -1090,7 +1091,6 @@ geda_menu_item_update (GtkActivatable *activatable,
 
   if (strcmp (property_name, "visible") == 0) {
 
-
     geda_action_sync_menu_visible ((GedaAction*)action, GTK_WIDGET(menu_item),
                                    geda_menu_is_empty (geda_menu_item_get_submenu (menu_item)));
   }
@@ -1119,9 +1119,10 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
 
     label = gtk_bin_get_child (GTK_BIN(menu_item));
 
-    if (GEDA_IS_ACCEL_LABEL (label))
+    if (GEDA_IS_ACCEL_LABEL(label)) {
       geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL(label),
                                          GTK_WIDGET(menu_item));
+    }
   }
 
   if (!action)
@@ -3308,8 +3309,9 @@ geda_menu_item_can_activate_accel (GtkWidget   *widget,
   parent = gtk_widget_get_parent (widget);
 
   /* Chain to the parent GedaMenu for further checks */
-  return (gtk_widget_is_sensitive (widget) && gtk_widget_get_visible (widget) &&
-  parent && gtk_widget_can_activate_accel (parent, signal_id));
+  return (gtk_widget_is_sensitive (widget) &&
+          gtk_widget_get_visible (widget) &&
+          parent && gtk_widget_can_activate_accel (parent, signal_id));
 }
 
 static void
@@ -3485,7 +3487,7 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
  * \returns Accelerator path corresponding to this menu
  *          item’s functionality, or %NULL if not set
  */
-const char *
+const char*
 geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
@@ -3638,11 +3640,11 @@ geda_menu_item_set_use_underline (GedaMenuItem *menu_item,
 
   child = gtk_bin_get_child (GTK_BIN(menu_item));
 
-  if (GEDA_IS_LABEL (child)) {
+  if (GEDA_IS_LABEL(child)) {
 
     geda_label_set_use_underline (GEDA_LABEL(child), setting);
 
-    g_object_notify (G_OBJECT (menu_item), "use-underline");
+    g_object_notify (G_OBJECT(menu_item), "use-underline");
   }
 }
 
