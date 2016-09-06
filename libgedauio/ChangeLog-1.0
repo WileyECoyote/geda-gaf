@@ -8,7 +8,7 @@
       resets under-lining to the "use-underline" and mnemonic settings.
 
     * src/widgets/geda_menu.c: Remove gettext from "move-current" GDK_Up
-      signal.
+      signal and enable/re-enable installing "can-change-accels" setting.
 
     * src/widgets/geda_menu_bar.c: Reorganize function order in module.
 

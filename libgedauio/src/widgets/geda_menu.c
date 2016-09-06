@@ -1085,13 +1085,12 @@ geda_menu_class_init   (void *class, void *class_data)
                                 GTK_TYPE_SCROLL_TYPE,
                                 GTK_SCROLL_PAGE_DOWN);
 
-/*
   gtk_settings_install_property (g_param_spec_boolean ("can-change-accels",
                                _("Can change accelerators"),
                                _("Whether menu accelerators can be changed by pressing a key over the menu item"),
                                FALSE,
                                G_PARAM_READWRITE));
-*/
+
 }
 
 /*!
