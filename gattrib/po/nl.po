@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-06-04 10:19-0500\n"
+"POT-Creation-Date: 2016-09-05 15:35-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,7 +28,7 @@ msgstr "gEDA Attribuut Editor"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuleer componenten attributen met gattrib"
 
-#: gattrib/src/f_export.c:67
+#: gattrib/src/f_export.c:81
 #, fuzzy, c-format
 msgid "%s: Could not open [%s]\n"
 msgstr "o_save: Kan [%s] niet openen\n"
@@ -184,25 +184,25 @@ msgstr ""
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
 
-#: gattrib/src/s_string_list.c:130
+#: gattrib/src/s_string_list.c:131
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 "In s_string_list_add_item, is geprobeerd toe te voegen aan een NULL lijst.\n"
 
-#: gattrib/src/s_string_list.c:195
+#: gattrib/src/s_string_list.c:196
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 "In s_string_list_delete_item, is geprobeerd om een item te verwijderen van "
 "een lege lijst\n"
 
-#: gattrib/src/s_string_list.c:271
+#: gattrib/src/s_string_list.c:272
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
 
-#: gattrib/src/s_table.c:553
+#: gattrib/src/s_table.c:565
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
@@ -406,7 +406,7 @@ msgstr "Voeg nieuwe attribuut toe"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:597
+#: gattrib/src/x_menus.c:596
 #, c-format
 msgid ""
 "Error loading %s:\n"

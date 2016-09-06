@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-08-14 01:21-0500\n"
+"POT-Creation-Date: 2016-09-05 13:51-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -59,12 +59,12 @@ msgstr "Принципиальная схема gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Символ схемы gEDA"
 
-#: libgeda/src/file/f_file.c:90 libgeda/src/file/f_file.c:105
+#: libgeda/src/file/f_file.c:97 libgeda/src/file/f_file.c:112
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Ошибка чтения статуса «%s»: %s"
 
-#: libgeda/src/file/f_file.c:165
+#: libgeda/src/file/f_file.c:176
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -77,13 +77,13 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_file.c:166
+#: libgeda/src/file/f_file.c:177
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "Не удалось определить новее ли он, решите это сами.\n"
 
-#: libgeda/src/file/f_file.c:167
+#: libgeda/src/file/f_file.c:178
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -91,7 +91,7 @@ msgstr ""
 "Резервная копия новее схемы, поэтому, видимо, следует загрузить её вместо "
 "оригинального файла.\n"
 
-#: libgeda/src/file/f_file.c:168
+#: libgeda/src/file/f_file.c:179
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -100,7 +100,7 @@ msgstr ""
 "Обычно gschem автоматически создаёт резервные копии, и такая ситуация может "
 "быть результатом крушения или внезапного завершения программы.\n"
 
-#: libgeda/src/file/f_file.c:169
+#: libgeda/src/file/f_file.c:180
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -108,67 +108,67 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:180
+#: libgeda/src/file/f_file.c:191
 msgid "Error: Invalid page object"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:197
+#: libgeda/src/file/f_file.c:208
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/file/f_file.c:214
+#: libgeda/src/file/f_file.c:225
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:272 libgeda/src/file/f_sys.c:109
+#: libgeda/src/file/f_file.c:283 libgeda/src/file/f_sys.c:109
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:338
+#: libgeda/src/file/f_file.c:349
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:384
+#: libgeda/src/file/f_file.c:395
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:396
+#: libgeda/src/file/f_file.c:407
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_file.c:444
+#: libgeda/src/file/f_file.c:455
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_file.c:445
+#: libgeda/src/file/f_file.c:456
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Не удалось сохранить файл: %s"
 
-#: libgeda/src/file/f_file.c:446
+#: libgeda/src/file/f_file.c:457
 #, c-format
 msgid "File %s is read-only"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_file.c:448
+#: libgeda/src/file/f_file.c:459
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
 "копии «%s»\n"
 
-#: libgeda/src/file/f_file.c:449
+#: libgeda/src/file/f_file.c:460
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
@@ -728,103 +728,103 @@ msgstr "source-library: недопустимый путь «%s»\n"
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr "source-library-search: недопустимый путь «%s»\n"
 
-#: libgeda/src/guile/g_rc.c:485
+#: libgeda/src/guile/g_rc.c:487
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:486 libgeda/src/guile/g_rc.c:492
-#: libgeda/src/guile/g_rc.c:530 libgeda/src/guile/g_rc.c:536
-#: libgeda/src/guile/g_rc.c:574 libgeda/src/guile/g_rc.c:580
-#: libgeda/src/guile/g_rc.c:619 libgeda/src/guile/g_rc.c:625
-#: libgeda/src/guile/g_rc.c:653 libgeda/src/guile/g_rc.c:681
-#: libgeda/src/guile/g_rc.c:709 libgeda/src/guile/g_rc.c:737
-#: libgeda/src/guile/g_rc.c:765 libgeda/src/guile/g_rc.c:793
-#: libgeda/src/guile/g_rc.c:821 libgeda/src/guile/g_rc.c:849
+#: libgeda/src/guile/g_rc.c:488 libgeda/src/guile/g_rc.c:494
+#: libgeda/src/guile/g_rc.c:532 libgeda/src/guile/g_rc.c:538
+#: libgeda/src/guile/g_rc.c:576 libgeda/src/guile/g_rc.c:582
+#: libgeda/src/guile/g_rc.c:621 libgeda/src/guile/g_rc.c:627
+#: libgeda/src/guile/g_rc.c:655 libgeda/src/guile/g_rc.c:683
+#: libgeda/src/guile/g_rc.c:711 libgeda/src/guile/g_rc.c:739
+#: libgeda/src/guile/g_rc.c:767 libgeda/src/guile/g_rc.c:795
+#: libgeda/src/guile/g_rc.c:823 libgeda/src/guile/g_rc.c:851
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:491
+#: libgeda/src/guile/g_rc.c:493
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:529
+#: libgeda/src/guile/g_rc.c:531
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:535
+#: libgeda/src/guile/g_rc.c:537
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:573
+#: libgeda/src/guile/g_rc.c:575
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:579
+#: libgeda/src/guile/g_rc.c:581
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:618
+#: libgeda/src/guile/g_rc.c:620
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:624
+#: libgeda/src/guile/g_rc.c:626
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:652
+#: libgeda/src/guile/g_rc.c:654
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:680
+#: libgeda/src/guile/g_rc.c:682
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:708
+#: libgeda/src/guile/g_rc.c:710
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:736
+#: libgeda/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:764
+#: libgeda/src/guile/g_rc.c:766
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:792
+#: libgeda/src/guile/g_rc.c:794
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:820
+#: libgeda/src/guile/g_rc.c:822
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:848
+#: libgeda/src/guile/g_rc.c:850
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:910
+#: libgeda/src/guile/g_rc.c:912
 msgid "always-promote-attribute: list element is not a string"
 msgstr "always-promote-attribute: элемент списка не является строкой"
 
-#: libgeda/src/guile/g_rc.c:987 libgeda/src/guile/g_rc.c:1023
+#: libgeda/src/guile/g_rc.c:989 libgeda/src/guile/g_rc.c:1025
 #, c-format
 msgid "Path invalid[%s], %s\n"
 msgstr ""
@@ -975,8 +975,8 @@ msgstr "Установка радиуса в 0\n"
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1355
 #: libgeda/src/object/o_line_object.c:1524
-#: libgeda/src/object/o_net_object.c:717
-#: libgeda/src/object/o_path_object.c:543
+#: libgeda/src/object/o_net_object.c:715
+#: libgeda/src/object/o_path_object.c:570
 #: libgeda/src/object/o_pin_object.c:180
 #: libgeda/src/object/o_text_object.c:780
 #, c-format
@@ -988,8 +988,8 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_bus_object.c:593
 #: libgeda/src/object/o_circle_object.c:1356
 #: libgeda/src/object/o_line_object.c:1525
-#: libgeda/src/object/o_net_object.c:718
-#: libgeda/src/object/o_path_object.c:544
+#: libgeda/src/object/o_net_object.c:716
+#: libgeda/src/object/o_path_object.c:571
 #: libgeda/src/object/o_pin_object.c:181
 #: libgeda/src/object/o_text_object.c:781
 msgid "Setting color to default color\n"
@@ -1157,23 +1157,23 @@ msgstr ""
 "Не найден компонент:\n"
 " %s"
 
-#: libgeda/src/object/o_complex_object.c:1077
+#: libgeda/src/object/o_complex_object.c:1080
 msgid "Failed to parse complex object"
 msgstr "Ошибка в определении составного объекта"
 
-#: libgeda/src/object/o_complex_object.c:1090
+#: libgeda/src/object/o_complex_object.c:1093
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Недопустимое значение угла поворота в определении компонента «%c %d %d %d %d "
 "%d %s»\n"
 
-#: libgeda/src/object/o_complex_object.c:1091
-#: libgeda/src/object/o_picture_object.c:1491
+#: libgeda/src/object/o_complex_object.c:1094
+#: libgeda/src/object/o_picture_object.c:1506
 msgid "Setting angle to 0\n"
 msgstr "Установка угла поворота в 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1103
+#: libgeda/src/object/o_complex_object.c:1106
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
@@ -1181,7 +1181,7 @@ msgstr ""
 "Недопустимое значение поля «mirror» в определении компонента «%c %d %d %d %d "
 "%d %s»\n"
 
-#: libgeda/src/object/o_complex_object.c:1104
+#: libgeda/src/object/o_complex_object.c:1107
 msgid "Setting mirror to 0\n"
 msgstr "Установка «mirror» в 0\n"
 
@@ -1214,20 +1214,20 @@ msgstr "Ошибка в определении линии"
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Линия нулевой длины «%c %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_net_object.c:702
+#: libgeda/src/object/o_net_object.c:700
 msgid "Failed to parse net object"
 msgstr "Ошибка в определении соединения"
 
-#: libgeda/src/object/o_net_object.c:707
+#: libgeda/src/object/o_net_object.c:705
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Соединение нулевой длины «%c %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_path_object.c:537
+#: libgeda/src/object/o_path_object.c:564
 msgid "Failed to parse path object"
 msgstr "Ошибка в определении контура"
 
-#: libgeda/src/object/o_path_object.c:559
+#: libgeda/src/object/o_path_object.c:586
 #: libgeda/src/object/o_text_object.c:796
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
@@ -1258,100 +1258,100 @@ msgstr ""
 msgid "Failed to export [%s]: %s\n"
 msgstr "Не удалось открыть каталог «%s»: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:586
+#: libgeda/src/object/o_picture_object.c:592
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Не удалось загрузить копию изображения для отката «%s»: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1261
+#: libgeda/src/object/o_picture_object.c:1268
 msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1262
+#: libgeda/src/object/o_picture_object.c:1269
 #, fuzzy
 msgid "Setting aspect to 1.0\n"
 msgstr "Установка угла поворота в 0\n"
 
 # Ошибка, если данные изображения уже есть во внутреннем буфере
-#: libgeda/src/object/o_picture_object.c:1277
+#: libgeda/src/object/o_picture_object.c:1284
 #, c-format
 msgid "Failed to load buffer image [%s]: %s\n"
 msgstr "Не удалось загрузить изображение «%s» из буфера: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1294
+#: libgeda/src/object/o_picture_object.c:1301
 #, c-format
 msgid "Failed to load image from [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1458
+#: libgeda/src/object/o_picture_object.c:1473
 msgid "Failed to parse picture definition"
 msgstr "Ошибка в определении изображения"
 
-#: libgeda/src/object/o_picture_object.c:1463
+#: libgeda/src/object/o_picture_object.c:1478
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr "Изображение нулевой ширины или высоты «%c %d %d %d %d»\n"
 
-#: libgeda/src/object/o_picture_object.c:1468
+#: libgeda/src/object/o_picture_object.c:1483
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr "Недопустимое значение поля «mirrored» в определении изображения: %d.\n"
 
-#: libgeda/src/object/o_picture_object.c:1470
+#: libgeda/src/object/o_picture_object.c:1485
 msgid "Setting mirrored to 0\n"
 msgstr "Установка «mirrored» в 0\n"
 
-#: libgeda/src/object/o_picture_object.c:1475
+#: libgeda/src/object/o_picture_object.c:1490
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr "Недопустимое значение поля «embedded» в определении изображения: %d.\n"
 
-#: libgeda/src/object/o_picture_object.c:1477
+#: libgeda/src/object/o_picture_object.c:1492
 msgid "Setting embedded to 0\n"
 msgstr "Установка «embedded» в 0\n"
 
-#: libgeda/src/object/o_picture_object.c:1490
+#: libgeda/src/object/o_picture_object.c:1505
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr "Неподдерживаемое значение угла поворота изображения «%d»\n"
 
-#: libgeda/src/object/o_picture_object.c:1516
+#: libgeda/src/object/o_picture_object.c:1531
 #, fuzzy, c-format
 msgid "Error: %s %s\n"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/object/o_picture_object.c:1528
+#: libgeda/src/object/o_picture_object.c:1543
 msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1585
+#: libgeda/src/object/o_picture_object.c:1601
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из внедрённых данных «%s»: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1586
+#: libgeda/src/object/o_picture_object.c:1602
 msgid "Base64 decoding failed."
 msgstr "Ошибка расшифровки данных в формате base64."
 
-#: libgeda/src/object/o_picture_object.c:1587
+#: libgeda/src/object/o_picture_object.c:1603
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Возврат к загрузке из файла. Изображение исключено.\n"
 
-#: libgeda/src/object/o_picture_object.c:1708
+#: libgeda/src/object/o_picture_object.c:1728
 #, fuzzy
 msgid "ERROR: geda_picture_object_save: unable to encode the picture.\n"
 msgstr "ОШИБКА: o_picture_save: невозможно закодировать изображение.\n"
 
-#: libgeda/src/object/o_picture_object.c:1927
+#: libgeda/src/object/o_picture_object.c:1950
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1929
+#: libgeda/src/object/o_picture_object.c:1952
 msgid "Picture is still embedded.\n"
 msgstr "Изображение всё ещё внедрено.\n"
 
-#: libgeda/src/object/o_picture_object.c:1937
+#: libgeda/src/object/o_picture_object.c:1961
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Изображение «%s» исключено\n"
@@ -1405,17 +1405,17 @@ msgstr ""
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr "Не удалось сохранить файл: %s"
 
-#: libgeda/src/object/o_save.c:294
+#: libgeda/src/object/o_save.c:312
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: объект %p неизвестного типа «%c»\n"
 
-#: libgeda/src/object/o_save.c:350
+#: libgeda/src/object/o_save.c:368
 #, c-format
 msgid "%s: Memory allocation error."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:383
+#: libgeda/src/object/o_save.c:401
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""
@@ -1465,21 +1465,21 @@ msgstr "Функция перехвата Scheme"
 msgid "The Scheme-level hook to proxy"
 msgstr "Перехват функций Scheme для EdascmHookProxy"
 
-#: libgeda/src/scheme/scheme_attrib.c:78
+#: libgeda/src/scheme/scheme_attrib.c:80
 msgid "Objects ~A and ~A are not part of the same page and/or complex object"
 msgstr ""
 "Объекты ~A и ~A не являются частями одной схемы и (или) одного составного "
 "объекта"
 
-#: libgeda/src/scheme/scheme_attrib.c:85 libgeda/src/scheme/scheme_attrib.c:90
+#: libgeda/src/scheme/scheme_attrib.c:87 libgeda/src/scheme/scheme_attrib.c:92
 msgid "Object ~A is already attached as an attribute"
 msgstr "Объект ~A уже прикреплён как атрибут"
 
-#: libgeda/src/scheme/scheme_attrib.c:138
+#: libgeda/src/scheme/scheme_attrib.c:142
 msgid "Object ~A is attribute of wrong object"
 msgstr "Объект ~A является атрибутом другого объекта"
 
-#: libgeda/src/scheme/scheme_attrib.c:241
+#: libgeda/src/scheme/scheme_attrib.c:251
 msgid "~A is not a valid attribute: invalid string '~A'."
 msgstr "~A не является допустимым атрибутом: недопустимая строка «~A»."
 
@@ -1520,106 +1520,106 @@ msgstr "К объекту ~A прикреплены атрибуты"
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr "Недопустимый тип вывода ~A, должен быть «'net» или «'bus»"
 
-#: libgeda/src/scheme/scheme_object.c:365
+#: libgeda/src/scheme/scheme_object.c:378
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr "Недопустимый стиль концов линий объекта ~A: ~A"
 
 # 'stroke' в данном случае означает линию, а не жест
-#: libgeda/src/scheme/scheme_object.c:378
+#: libgeda/src/scheme/scheme_object.c:391
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr "Недопустимый тип линий для объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:441
+#: libgeda/src/scheme/scheme_object.c:456
 msgid "Object ~A has invalid fill style ~A"
 msgstr "Недопустимый тип заполнения объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:496
+#: libgeda/src/scheme/scheme_object.c:512
 msgid "Invalid fill style ~A."
 msgstr "Недопустимый тип заполнения ~A."
 
-#: libgeda/src/scheme/scheme_object.c:504
+#: libgeda/src/scheme/scheme_object.c:520
 msgid "Missing second space parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «pitch2»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:513
+#: libgeda/src/scheme/scheme_object.c:529
 msgid "Missing second angle parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «angle2»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:523
+#: libgeda/src/scheme/scheme_object.c:539
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «fillwidth»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:532
+#: libgeda/src/scheme/scheme_object.c:548
 msgid "Missing space parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «pitch1»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:541
+#: libgeda/src/scheme/scheme_object.c:557
 msgid "Missing angle parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «angle1»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:769
+#: libgeda/src/scheme/scheme_object.c:797
 msgid "Object ~A has invalid pin type."
 msgstr "Недопустимый тип вывода объекта ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1069
+#: libgeda/src/scheme/scheme_object.c:1105
 msgid "Invalid text alignment ~A."
 msgstr "Недопустимое значение поля «alignment» текстового объекта: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1085
+#: libgeda/src/scheme/scheme_object.c:1121
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимое значение угла поворота текстового объекта ~A. Угол должен быть "
 "равен  0, 90, 180 или 270 градусов"
 
-#: libgeda/src/scheme/scheme_object.c:1113
+#: libgeda/src/scheme/scheme_object.c:1149
 msgid "Invalid text name/value visibility ~A."
 msgstr "Недопустимое значение поля «show_name_value» текстового объекта: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1186
+#: libgeda/src/scheme/scheme_object.c:1223
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr "Недопустимое значение поля «alignment» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1195
+#: libgeda/src/scheme/scheme_object.c:1232
 msgid "Text object ~A has invalid visibility ~A"
 msgstr "Недопустимое значение поля «visibility» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1205
+#: libgeda/src/scheme/scheme_object.c:1242
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr "Недопустимое значение поля «show_name_value» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1244
+#: libgeda/src/scheme/scheme_object.c:1283
 msgid "Object ~A is not included in a page."
 msgstr "Объекта ~A нет на странице."
 
-#: libgeda/src/scheme/scheme_object.c:1329
+#: libgeda/src/scheme/scheme_object.c:1370
 msgid "Invalid stroke cap style ~A."
 msgstr "Недопустимое значение поля «capstyle» (стиль концов линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1340
+#: libgeda/src/scheme/scheme_object.c:1381
 msgid "Invalid stroke dash style ~A."
 msgstr "Недопустимое значение поля «dashstyle» (тип линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1350
+#: libgeda/src/scheme/scheme_object.c:1391
 msgid "Missing dash length parameter for dash style ~A."
 msgstr "Отсутствует поле «dashlength» (длина штриха): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1360
+#: libgeda/src/scheme/scheme_object.c:1401
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr "Отсутствует поле «dashspace» (тип линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1412
+#: libgeda/src/scheme/scheme_object.c:1455
 msgid "Object ~A has bad type '~A'"
 msgstr "Недопустимый тип объекта ~A: «~A»"
 
-#: libgeda/src/scheme/scheme_object.c:1513
+#: libgeda/src/scheme/scheme_object.c:1558
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr "Контур ~A имеет недопустимое значение типа элемента ~A с индексом ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1640
+#: libgeda/src/scheme/scheme_object.c:1687
 msgid "Invalid path element type ~A."
 msgstr "Недопустимое значение типа элемента контура: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1795
+#: libgeda/src/scheme/scheme_object.c:1845
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимое значение угла поворота изображения ~A. Угол должен быть равен  "
@@ -1733,11 +1733,11 @@ msgstr "Схема не найдена в библиотеке исходных 
 msgid "Hierarchy contains a circular dependency."
 msgstr "Циклическая зависимость в иерархической структуре."
 
-#: libgeda/src/struct/s_hierarchy.c:214
+#: libgeda/src/struct/s_hierarchy.c:215
 msgid "There are no schematics above the current one!\n"
 msgstr "Для текущей схемы нет схемы, вышестоящей по иерархии!\n"
 
-#: libgeda/src/struct/s_hierarchy.c:305
+#: libgeda/src/struct/s_hierarchy.c:306
 #, c-format
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
@@ -1746,30 +1746,30 @@ msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:677 libgeda/src/struct/s_page.c:721
+#: libgeda/src/struct/s_page.c:691 libgeda/src/struct/s_page.c:735
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Файл «%s» сохранён\n"
 
-#: libgeda/src/struct/s_page.c:683 libgeda/src/struct/s_page.c:728
+#: libgeda/src/struct/s_page.c:697 libgeda/src/struct/s_page.c:742
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "Не удалось сохранить «%s»\n"
 
-#: libgeda/src/struct/s_slot.c:178
+#: libgeda/src/struct/s_slot.c:180
 #, fuzzy, c-format
 msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
 msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...»\n"
 
-#: libgeda/src/struct/s_slot.c:185
+#: libgeda/src/struct/s_slot.c:187
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr "Неверный синтаксис атрибута «slotdef»: отсутствует «:».\n"
 
-#: libgeda/src/struct/s_slot.c:200
+#: libgeda/src/struct/s_slot.c:202
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...» в допустимом формате\n"
 
-#: libgeda/src/struct/s_slot.c:238
+#: libgeda/src/struct/s_slot.c:240
 msgid "component missing pinseq= attribute\n"
 msgstr "Отсутствует атрибут «pinseq» у вывода компонента\n"
 

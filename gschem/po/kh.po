@@ -1,22 +1,24 @@
-# Japanese translation for gschem.
-# Copyright (C) 2002-2008 Miyamoto Takanori
-# This file is distributed under the same license as the gschem package.
-# Miyamoto Takanori <pnms@jcom.home.ne.jp>, 2002.
+# Cambodia translation for geda
+# Copyright (c) 2015 Wiley Edward Hill
+# Copyright (c) 2015 gEDA Developers
+# This file is distributed under the same license as the geda package.
+# Wiley Edward Hill <wileyhill@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2016-09-05 13:51-0500\n"
-"PO-Revision-Date: 2012-01-31 12:07+0000\n"
-"Last-Translator: Peter TB Brett <Unknown>\n"
+"PO-Revision-Date: 2015-07-29 00:24-0600\n"
+"Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
-"Language: ja\n"
+"Language: kh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
-"X-Generator: Launchpad (build 16265)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Khmer\n"
+"X-Poedit-Country: CAMBODIA\n"
 
 #: gschem/src/base/gschem.c:163
 #, c-format
@@ -41,6 +43,8 @@ msgstr ""
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
+"ban chuobabrateah kamhosa muoy knong kar phtok ban snae rsom samyobrachoum "
+"%s\n"
 
 #: gschem/src/base/gschem.c:314
 msgid ""
@@ -52,56 +56,59 @@ msgstr ""
 
 #: gschem/src/base/gschem.c:351
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
-msgstr ""
+msgstr "Unable to locate initialization file \"gschem.scm\"\n"
 
 #: gschem/src/base/gschem.c:358
-#, fuzzy, c-format
+#, c-format
 msgid "Read scheme initialization file [%s]\n"
-msgstr "初期化scmファイルを読み込んでいます。[%s]\n"
+msgstr "saum an eksar chabphdaem chamrouh [%s]\n"
 
 #: gschem/src/base/gschem.c:361
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr "breachy knong kar an eksar chabphdaem [%s]\n"
 
 #: gschem/src/base/gschem.c:387
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
-msgstr ""
+msgstr "kamne gEDA/gschem %s%s.%s\n"
 
 #: gschem/src/base/gschem.c:392
+#, fuzzy
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "samy del ban chabphtaem chea brapn\n"
 
 #: gschem/src/base/gschem.c:427
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
+"kamhosa: ban breachy knong kar phtok ryy veayotamlei skrib pel chabphdaem.\n"
 
 #: gschem/src/base/gschem.c:517
+#, fuzzy
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "kammovithi chenh thommotea"
 
 #: gschem/src/base/gschem_dialog.c:568
-#, fuzzy
 msgid "Parent Window"
-msgstr "現在のウィンドウ"
+msgstr "bangauoch me"
 
 #: gschem/src/base/gschem_dialog.c:569
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "bangauoch del chea aupouk mteay haey champoh braab nih"
 
 #: gschem/src/base/gschem_dialog.c:589
 msgid "Title"
-msgstr ""
+msgstr "chamnangcheung"
 
 #: gschem/src/base/gschem_dialog.c:590
 msgid "Dialog window title"
-msgstr ""
+msgstr "chamnangcheung bangauoch braab"
 
 #: gschem/src/base/gschem_macro_widget.c:231
+#, fuzzy
 msgid "Label Text"
-msgstr ""
+msgstr "leak atthabat"
 
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Text to be displayed for the Macro label"
@@ -109,7 +116,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Macro:"
-msgstr ""
+msgstr "meakrau:"
 
 #: gschem/src/base/gschem_macro_widget.c:239
 #: gschem/src/base/gschem_macro_widget.c:240
@@ -118,7 +125,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "karvayotamlei"
 
 #: gschem/src/base/gschem_page_view.c:248
 #: gschem/src/base/gschem_page_view.c:249
@@ -127,9 +134,8 @@ msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:256
 #: gschem/src/base/gschem_page_view.c:257
-#, fuzzy
 msgid "Page"
-msgstr "ページ(_P)"
+msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:263
 #: gschem/src/base/gschem_page_view.c:264
@@ -142,7 +148,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -177,9 +183,46 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf homepage: <http://www.geda-project.org/>\n"
 msgstr ""
+"karobrae brasa: %s [CHOMREUS ...] [--] [EKSAR ...]\n"
+"\n"
+"koumnour bampruonh gEDA kesamruol antorokamm ning nimittasanhnhea.  "
+"brasenbae mean EKSARs\n"
+"muoy ryy chraen trauv ban banhcheak baek aoy puokke samreab kar kesamruol; "
+"bae min dauchneh te , bangkeut thmei tte\n"
+"koumnour bampruonh.\n"
+"\n"
+"Chomreus:\n"
+"  -a, --render-adaptor=DRV bangheanh a dab thr banhcheak del karobrae, Cario "
+"ryy X11.\n"
+"  -c, --config-file=EKSAR  eksar kamnt rochneasampnth banthem tiet daembi "
+"phtok.\n"
+"  -h, --help               saum chuoy; bangheanh sar nih.\n"
+"  -L DIR                   banthem DIR daembi svengork Scheme phlauv.\n"
+"  -m, --safe-mode          baek rbieb sovotthephap.\n"
+"  -n, --no-auto            min phtok eksar chongokraoy nih daoy "
+"svyobravotte.\n"
+"  -o, --output=EKSAR       chhmoh eksar lotthophl (samreab kar baohpoump).\n"
+"  -p                       dak bangauoch daoy svyobravotte.\n"
+"  -q, --quiet              rbieb sngatsngiem.\n"
+"  -r, --run EKSAR          Scheme skrib daembi rt nowpel chabphdaem.\n"
+"  -s, --start <chhmoh eksar> pel del chabphdaem daoy brae chhmoh "
+"samyobrachoum del ban phdal aoy.\n"
+"  -t, --title-block EKSAR  chabphtaem kour thmei muoy daoy brae "
+"chamnangcheung blok del ban banhcheak.\n"
+"  -u, --undo-dir DIR       banhcheak tht bandaohasann samreab eksar del "
+"minothveuvinh.\n"
+"  -v, --verbose            rbieb briyay.\n"
+"  -V, --version            bangheanh ptrmean kamne.\n"
+"  -x <EXPR>                Scheme kar banhchenhomte daembi rt nowpel "
+"chabphdaem.\n"
+"  --                       kar pyeabeal akouymng del now sesasal teangoasa "
+"dauchchea chhmoh eksar.\n"
+"\n"
+"rbaykar kamhosa now <https://bugs.launchpad.net/geda>\n"
+"gEDA/gaf kehtompr: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "gEDA %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2016 gEDA developers\n"
@@ -188,6 +231,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA %s (g%.7s)\n"
+"Roksaasetthi (C) 1998-2015 gEDA anak aphivodtho\n"
+"nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
+"lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
+"mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
+"kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
 #, c-format
@@ -200,16 +249,15 @@ msgstr ""
 
 #: gschem/src/base/gschem_preview.c:539 gschem/src/x/x_pagesel.c:1109
 msgid "Filename"
-msgstr "ファイル名"
+msgstr ""
 
 #: gschem/src/base/gschem_preview.c:540
 msgid "name of file to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:547
-#, fuzzy
 msgid "Buffer"
-msgstr "バッファ(_B)"
+msgstr ""
 
 #: gschem/src/base/gschem_preview.c:548
 msgid "object list to be previewed"
@@ -218,179 +266,180 @@ msgstr ""
 #: gschem/src/base/gschem_preview.c:555
 #, fuzzy
 msgid "Active"
-msgstr "アクション"
+msgstr "sakammopheap"
 
 #: gschem/src/base/gschem_preview.c:556
 msgid "Whether the preview widget is enabled or disabled"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:563
+#, fuzzy
 msgid "Large size"
-msgstr ""
+msgstr "star tomham"
 
 #: gschem/src/base/gschem_preview.c:564
 msgid "Whether the preview widget show be large or small"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:491
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "部品モード"
+msgstr "rbieb kauardaone"
 
 #: gschem/src/base/gschem_status_bar.c:492
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
+"kamnt rbieb trongtreay del ban brae daembi bangheanh kar saam rb saamruol "
+"leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:501
-#, fuzzy
 msgid "Grid Mode"
-msgstr "円弧モード"
+msgstr "rbieb kraleachatrang"
 
 #: gschem/src/base/gschem_status_bar.c:502
 msgid "Sets the Gride Mode to display on the status bar"
-msgstr ""
+msgstr "kamnt rbieb Gride daembi bangheanh now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:511
 msgid "Grid Size"
-msgstr ""
+msgstr "tomham kraleachatrang"
 
 #: gschem/src/base/gschem_status_bar.c:512
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "kamnt tomham kraleachatrangk daembi bangheanh now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:521
 msgid "height"
-msgstr ""
+msgstr "kamposa"
 
 #: gschem/src/base/gschem_status_bar.c:522
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "kamnt kamposa robsa rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:531
 msgid "Left Button Text"
-msgstr ""
+msgstr "atthabt boutong chhveng"
 
 #: gschem/src/base/gschem_status_bar.c:532
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "kamnt khsae aksaar samreab atthabt boutong chhveng"
 
 #: gschem/src/base/gschem_status_bar.c:538
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "中央 左"
+msgstr "atthabt boutong k nta l"
 
 #: gschem/src/base/gschem_status_bar.c:539
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "kamnt khsae aksaar samreab atthabt boutong k nta l"
 
 #: gschem/src/base/gschem_status_bar.c:545
 msgid "Right Button Text"
-msgstr ""
+msgstr "atthabt boutong stam"
 
 #: gschem/src/base/gschem_status_bar.c:546
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "kamnt khsae aksaar samreab atthabt boutong sdam"
 
 #: gschem/src/base/gschem_status_bar.c:552
-#, fuzzy
 msgid "Snap Mode"
-msgstr "パンモード"
+msgstr "rbieb khtasa"
 
 #: gschem/src/base/gschem_status_bar.c:553
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "kamnt rbieb khtasa daembi bangheanh now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:562 gschem/src/x/x_dialog.c:543
 msgid "Snap Size"
-msgstr ""
+msgstr "tomham khtasa"
 
 #: gschem/src/base/gschem_status_bar.c:563
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Sets the Size Mode to display on the status bar"
 
 #: gschem/src/base/gschem_status_bar.c:572
-#, fuzzy
 msgid "Status Text"
-msgstr "ステータス"
+msgstr "atthabt sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:573
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "kamnt khsae aksaar samreab atthabt now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:579
 #: gschem/src/base/gschem_status_bar.c:580
-#, fuzzy
 msgid "Status State"
-msgstr "ステータス"
+msgstr "rodth sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:593
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "ステータス"
+msgstr "sthanphap bar kamposa"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Sets or gets the height of the status bar"
-msgstr ""
+msgstr "kamnt ryy ttuol ban kamposa robsa rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:1077
 msgid "Coordinate display, right click for format options"
 msgstr ""
+"saam rb saamruol kar bangheanh, choch kandor khangosdam samreab chomreusa "
+"kar thveu trongtreay"
 
 #: gschem/src/base/gschem_status_bar.c:1078
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "karchattang boutong pruonh now khangochhveng"
 
 #: gschem/src/base/gschem_status_bar.c:1079
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
+"karchattang boutong pruonh now m chchhu m, choch kandor khangosdam samreab "
+"chomreus"
 
 #: gschem/src/base/gschem_status_bar.c:1080
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
+"karchattang boutong pruonh now khangosdam, choch kandor khangosdam samreab "
+"chomreus"
 
 #: gschem/src/base/gschem_status_bar.c:1081
 msgid "Indicates the current snap,grid units or states"
-msgstr ""
+msgstr "bangheanh pi kar khtasa krueng kraleachatrangk bachchobbann ryy rod"
 
 #: gschem/src/base/gschem_status_bar.c:1082
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "banhcheak pi sthanphap bachchobbann robsa peaky banhchea"
 
 #: gschem/src/base/gschem_status_bar.c:1083
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:1762
-#, fuzzy
 msgid "Grid"
-msgstr "円弧モード"
+msgstr "Kraleachatrang"
 
 #: gschem/src/base/gschem_status_bar.c:1768
 #: gschem/src/base/gschem_status_bar.c:1789
 msgid "OFF"
-msgstr ""
+msgstr "BET"
 
 #: gschem/src/base/gschem_status_bar.c:1781
-#, fuzzy
 msgid "Error"
-msgstr "反転"
+msgstr "kamhosa knong kar"
 
 #: gschem/src/base/gschem_status_bar.c:1793
 msgid "NONE"
-msgstr ""
+msgstr "KMEAN"
 
 #: gschem/src/guile/g_attrib.c:95
 msgid "Object ~A is not included in the current gschem page."
 msgstr ""
+"vottho ~A min trauv ban ruomobanhchoul nowknong tompr gschem bachchobban"
 
 #: gschem/src/guile/g_attrib.c:115
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "chhmoh atthabt min troemotrauv / tamlei pheap meulkheunh"
 
 #: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
 #, fuzzy, c-format
 msgid "Processing %s\n"
-msgstr "閉じています。[%s]\n"
+msgstr "eksar del ban bet [%s]\n"
 
 #: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
 #, c-format
@@ -400,203 +449,221 @@ msgstr ""
 #: gschem/src/guile/g_rc.c:122 gschem/src/guile/g_rc.c:127
 #, c-format
 msgid "Bad Value [%d], check %s entry in rc file\n"
-msgstr ""
+msgstr "tamlei minol [%d], pinityameul %s theato nowknong eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:123
-#, c-format
+#, fuzzy, c-format
 msgid "or Scheme, continuing with maximum value=[%d]\n"
-msgstr ""
+msgstr "kar bant cheamuoynung tamlei atebarmea=[%d]\n"
 
 #: gschem/src/guile/g_rc.c:128
-#, c-format
+#, fuzzy, c-format
 msgid "or Scheme, continuing with minimum value=[%d]\n"
-msgstr ""
+msgstr "kar bant cheamuoynung tamlei abbabarmea=[%d]\n"
 
 #: gschem/src/guile/g_rc.c:132
-#, c-format
+#, fuzzy, c-format
 msgid "or Scheme, continuing with default value=[%d]\n"
-msgstr ""
+msgstr "bant cheamuoy tamlei lomneadaem=[%d]\n"
 
 #: gschem/src/guile/g_rc.c:147
 #, c-format
 msgid "Invalid type assignment, check %s entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv, pinityameul theato %s nowknong eksar "
+"daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:189
 #, c-format
 msgid "You are running gEDA/gaf version [%s%s.%s],\n"
-msgstr ""
+msgstr "anak kampoung rt gEDA / gaf kamne [%s%s.%s],\n"
 
 #: gschem/src/guile/g_rc.c:194
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "but you have a version [%s] gschemrc file:\n"
 "[%s]\n"
 msgstr ""
+"bonte anakmean kamne [s%] eksar gschemrc muoy\n"
+"[%s]\n"
 
 #: gschem/src/guile/g_rc.c:198
 #, c-format
 msgid "Please be sure that you have the latest rc file.\n"
-msgstr ""
+msgstr "saum brakd tha anakmean chongokraoy bamphot del rc pi eksar\n"
 
 #: gschem/src/guile/g_rc.c:714
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
+"tamlei min troemotrauv , pongrik kar kaenlaeng min ach chea sauny , "
+"pinityameul theato nowknong eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:719
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv , pinityameul theato pongrik kar "
+"kaenlaeng nowknong eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:720 gschem/src/guile/g_rc.c:1265
 #: gschem/src/guile/g_rc.c:1417 gschem/src/guile/g_rc.c:2010
 #, c-format
 msgid "Continuing with default value=[%d]\n"
-msgstr ""
+msgstr "bant cheamuoy tamlei lomneadaem=[%d]\n"
 
 #: gschem/src/guile/g_rc.c:804
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv , pinityameul theato kab chheu nowknong "
+"eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:1259
-#, c-format
+#, fuzzy, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
+"tamlei min troemotrauv , mean tomham khtasa min ach chea sauny , pinityameul "
+"eksar daoy rc theato\n"
 
 #: gschem/src/guile/g_rc.c:1264
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv , pinityameul tomham theato khtasa knong "
+"eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:1411
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
+"tamlei min troemotrauv , rth y nd krong - Ripper tomham min ach chea sauny "
+"pinity eksar daoy rc theato\n"
 
 #: gschem/src/guile/g_rc.c:1416
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv , pinityameul theato rth y nd krong - "
+"Ripper tomham nowknong eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:2004
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"min ach rmour 0 chomhan scrollpan chomhan - min troemotrauv pinityameul "
+"theato nowknong eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:2009
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
+"karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
+"chomhan eksar daoy rc\n"
 
 #: gschem/src/guile/g_rc.c:2054
 #, c-format
 msgid "Invalid zoomfactor [%d] passed to %s\n"
-msgstr "無効な拡大率[%d]が%sに指定されました。\n"
+msgstr "zoomfactor min troemotrauv [%d] ban chhlang tow %s\n"
 
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
 #: gschem/src/guile/g_select.c:155
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "vottho ~A min mean daoy phtal nowknong tompr muoy."
 
 #: gschem/src/guile/g_util.c:67
-#, fuzzy, c-format
+#, c-format
 msgid "Could not launch URI %s\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr "min ach baek chea URI %s\n"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "smob bangauoch del gschem min troemotrauv del ban rk kheunh ~S"
 
 #: gschem/src/iface/i_command.c:364
 #, c-format
 msgid "Processing Action <%s>, at index %d\n"
-msgstr ""
+msgstr "sakammopheap damnaerkar <%s>, nowknong santossaa %d\n"
 
 #: gschem/src/iface/i_command.c:468
 #, c-format
 msgid "Cannot %s while inside and action!\n"
-msgstr ""
+msgstr "min ach ban %s nowknong khn pel del sakammopheap!\n"
 
 #: gschem/src/iface/i_command.c:706 gschem/src/iface/i_command.c:2629
 #, c-format
 msgid "New page created [%s]\n"
-msgstr ""
+msgstr "tompr thmei del ban bangkeut laeng [%s]\n"
 
 #: gschem/src/iface/i_command.c:745
 #, c-format
 msgid "New Window created [%s]\n"
-msgstr ""
+msgstr "ban bangkeut bangauoch kammovithi thmei [%s]\n"
 
 #: gschem/src/iface/i_command.c:942
 msgid "Failed to Save All"
-msgstr ""
+msgstr "ban breachy knong kar roksaatouk eksar teangoasa"
 
 #: gschem/src/iface/i_command.c:945 gschem/src/iface/i_command.c:962
 msgid "Saved All"
-msgstr "すべて保存"
+msgstr "eksar teangoasa trauv ban roksaatouk"
 
 #: gschem/src/iface/i_command.c:959
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "ban chuobabrateah kamhosa , roksaatouk ban breachy"
 
 #: gschem/src/iface/i_command.c:1029 gschem/src/x/x_image.c:480
-#, fuzzy
 msgid "Write Image"
-msgstr "画像として保存(_I)..."
+msgstr "sarser roubpheap"
 
 #: gschem/src/iface/i_command.c:1048
 msgid "Write PDF"
-msgstr ""
+msgstr "sarser chea PDF"
 
 #: gschem/src/iface/i_command.c:1120
 msgid "Close all canceled\n"
-msgstr ""
+msgstr "loubchaol kar bet teangoasa\n"
 
 #: gschem/src/iface/i_command.c:1129 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "閉じる"
+msgstr "bet eksar teangoasa\n"
 
 #: gschem/src/iface/i_command.c:1152
 msgid "gschem: starting shut-down\n"
-msgstr ""
+msgstr "gschem: kar chabphtaem lomdab bet choh\n"
 
 #: gschem/src/iface/i_command.c:1166
 msgid "Symbol is not embeded, export anyway?"
-msgstr ""
+msgstr "nimittasanhnhea min trauv embeded karnachenh der ryyte?"
 
 #: gschem/src/iface/i_command.c:1190
 msgid "Picture is not embeded, export anyway?"
-msgstr ""
+msgstr "roubpheap nih min trauv embeded karnachenh der ryyte?"
 
 #: gschem/src/iface/i_command.c:1322
 msgid "Empty buffer"
-msgstr "バッファが空です。"
+msgstr "sate b ntaoh asann ku tte"
 
 #: gschem/src/iface/i_command.c:1589
-#, fuzzy
 msgid "Offset Mode"
-msgstr "ネットモード"
+msgstr "rbieb ohvaset"
 
 #: gschem/src/iface/i_command.c:1590
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "banhcheak chamngeay bahbauv"
 
 #: gschem/src/iface/i_command.c:2124
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "拡大(_I)"
+msgstr "pongrik pongrik"
 
 #: gschem/src/iface/i_command.c:2124
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "banhcheak pongrik thmei"
 
 #: gschem/src/iface/i_command.c:2175
 msgid "No component selected\n"
-msgstr ""
+msgstr "sameasapheak del ban chreusa min mean\n"
 
 #: gschem/src/iface/i_command.c:2715
 msgid "Confirm revert ALL documents"
@@ -605,383 +672,374 @@ msgstr ""
 #: gschem/src/iface/i_command.c:2896
 #, c-format
 msgid "Searching for source [%s]\n"
-msgstr "ソース検索中[%s]\n"
+msgstr "karosvengork samreab braphp [%s]\n"
 
 #: gschem/src/iface/i_command.c:2930
-#, fuzzy
 msgid "Failed to descend into"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr "ban breachy knong kar choh chaul tow knong"
 
 #: gschem/src/iface/i_command.c:2939
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "階層"
+msgstr "kamhosa knong thananoukram"
 
 #: gschem/src/iface/i_command.c:3014
 #, c-format
 msgid "Searching for symbol [%s]\n"
-msgstr "シンボル検索中[%s]\n"
+msgstr "karosvengork nimittaroub [%s]\n"
 
 #: gschem/src/iface/i_command.c:3021
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
+"nimittasanhnhea minmen cheaek sar pitabrakd. nimittasanhnhea del min ach "
+"trauv ban phtok.\n"
 
 #: gschem/src/iface/i_command.c:3068
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
+"min ach rk kheunh koumnour bampruonh teangoasa khangleu bachchobbann!\n"
 
 #: gschem/src/iface/i_command.c:3574
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "kounalokkhan trauv ban phcheab ruoch tow haey\n"
 
 #: gschem/src/iface/i_command.c:3964
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr "警告:スナップ・オフで転送しないでください!\n"
+msgstr "bamream: mi k bre daoyman khtasa bet!\n"
 
 #: gschem/src/iface/i_command.c:3965
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr "警告:スナップをオンしてから転送してください。\n"
+msgstr "promean: baek khtasa now leu ning bant cheamuoy karobakabre.\n"
 
 #: gschem/src/iface/i_command.c:3971
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr "警告:グリッドサイズが100ではありません!\n"
+msgstr "promean: tomham kraleachatrangk khtasa min smaenung 100!\n"
 
 #: gschem/src/iface/i_command.c:3972
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
-"警告:原点へ転送するときはスナップのグリッドサイズを\n"
-"100に設定してください。\n"
+"promean: brasenbae anak kampoung bakabre chea nimittasanhnhea muoy tow daem, "
+"kraleachatrangk khtasa tomham trauv ban kamnt tow 100\n"
 
 #: gschem/src/iface/i_command.c:4166
 msgid "Grid OFF\n"
-msgstr "グリッド・オフ\n"
+msgstr "bet kraleachatrang\n"
 
 #: gschem/src/iface/i_command.c:4167
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "kraleachatrangk chamnoch thveu aoy sakam\n"
 
 #: gschem/src/iface/i_command.c:4168
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "kraleachatrangk saamnanh ban thveu aoy sakam\n"
 
 #: gschem/src/iface/i_command.c:4247
 msgid "Snap OFF (CAUTION!)\n"
-msgstr "スナップ・オフ(注意!)\n"
+msgstr "khtasa bet (braytn !)\n"
 
 #: gschem/src/iface/i_command.c:4252
 msgid "Snap ON\n"
-msgstr "スナップ・オン\n"
+msgstr "khtasa now leu\n"
 
 #: gschem/src/iface/i_command.c:4256
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "khtasa tralbtow kraleachatrangk (braytn!)\n"
 
 #: gschem/src/iface/i_command.c:4280
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
-msgstr "ラバーバンド・オフ \n"
+msgstr "rbieb bet kawsaou robsa krom t nrti\n"
 
 #: gschem/src/iface/i_command.c:4283
 #, fuzzy
 msgid "Rubber band mode is ON\n"
-msgstr "ラバーバンド・オン\n"
+msgstr "rbieb del krom tantrei kawsaou ku now thngai\n"
 
 #: gschem/src/iface/i_command.c:4294
+#, fuzzy
 msgid "Magnetic net mode is ON\n"
-msgstr ""
+msgstr "rbieb sotth meanhetich del mean now leu\n"
 
 #: gschem/src/iface/i_command.c:4297
+#, fuzzy
 msgid "Magnetic net mode is OFF\n"
-msgstr ""
+msgstr "rbieb bet sotth meanhetich ku\n"
 
 #: gschem/src/iface/i_command.c:4314 gschem/src/iface/i_command.c:4356
 msgid "Off"
-msgstr ""
+msgstr "Bet"
 
 #: gschem/src/iface/i_command.c:4317 gschem/src/iface/i_command.c:4359
-#, fuzzy
 msgid "On"
-msgstr "開く"
+msgstr "now thngaiti"
 
 #: gschem/src/iface/i_command.c:4319
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
-msgstr ""
+msgstr "rbieb phlasati ausa ach pelnih ku %s ban\n"
 
 #: gschem/src/iface/i_command.c:4331
 msgid "Action feedback mode set to OUTLINE\n"
-msgstr ""
+msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap\n"
 
 #: gschem/src/iface/i_command.c:4335
 msgid "Action feedback mode set to BOUNDINGBOX\n"
-msgstr ""
+msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang\n"
 
 #: gschem/src/iface/i_command.c:4361
-#, c-format
+#, fuzzy, c-format
 msgid "Auto-Pan is now %s\n"
-msgstr ""
+msgstr "rbieb phlasati ausa ach pelnih ku %s ban\n"
 
 #: gschem/src/iface/i_command.c:4413 gschem/src/iface/i_command.c:4442
 #: gschem/src/iface/i_command.c:4462 gschem/src/iface/i_command.c:4482
 #, c-format
 msgid "Check: path \"%s\"\n"
-msgstr ""
+msgstr "saum pinityameul: chhmoh phlauv \"%s\"\n"
 
 #: gschem/src/iface/i_command.c:4582
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(ban te an) ttung=%d, kamposa=%d\n"
 
 #: gschem/src/iface/i_sessions.c:184
 msgid "Canceled Close all\n"
-msgstr ""
+msgstr "loubchaol kar bet teangoasa\n"
 
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open session file \"%s\"\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr "min ach baek eksar samyobrachoum \"%s\"\n"
 
 #: gschem/src/iface/i_sessions.c:270
 #, c-format
 msgid "file: <%s> is not accessible\n"
-msgstr ""
+msgstr "eksar: <%s> kuchea kar min ach chaul damnaerkar ban\n"
 
 #: gschem/src/iface/i_sessions.c:333
 #, c-format
 msgid "Warning relative file names detected in session \"%s\"\n"
-msgstr ""
+msgstr "promean sachnheate chhmoh eksar ban rk kheunh nowknong samy \"%s\"\n"
 
 #: gschem/src/iface/i_sessions.c:343
 #, c-format
 msgid "Session %s, opening %d of %d documents\n"
-msgstr ""
+msgstr "samy %s ban baek eksar del ti %d nei %d\n"
 
 #: gschem/src/iface/i_sessions.c:353
 #, c-format
 msgid "Session \"%s\" did not contain any accessible documents\n"
-msgstr ""
+msgstr "samy \"%s\" del min mean eksar del ach chaul damnaerkar namuoy laey\n"
 
 #: gschem/src/iface/i_sessions.c:843
 #, c-format
 msgid "Removing session: %s"
-msgstr ""
+msgstr "kar daoh samyobrachoum: %s"
 
 #: gschem/src/iface/i_sessions.c:868
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Failed to remove session: %s"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr "%s: breachy knong kar yk samyobrachoum: %s"
 
 #: gschem/src/iface/i_sessions.c:871
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>min achy k samyobrachoum</b>"
 
 #: gschem/src/iface/i_sessions.c:919
 #, c-format
 msgid "session %s created with %d documents.\n"
-msgstr ""
+msgstr "samy %s del ban bangkeut cheamuoy eksar %d.\n"
 
 #: gschem/src/iface/i_sessions.c:928
 #, c-format
 msgid "An error occurred attemting to create session %s: %s."
-msgstr ""
+msgstr "kamhosa muoy ban kaetlaeng attemting bangkeut samy %s: %s."
 
 #: gschem/src/iface/i_sessions.c:934 gschem/src/iface/i_sessions.c:1106
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>kamhosa knong samyobrachoum</b>"
 
 #: gschem/src/iface/i_sessions.c:934
-#, fuzzy
 msgid "Creation failed"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "kar bangkeut ban breachy"
 
 #: gschem/src/iface/i_sessions.c:978
 #, c-format
 msgid "Opened session %s\n"
-msgstr ""
+msgstr "ban baek samyobrachoum %s\n"
 
 #: gschem/src/iface/i_sessions.c:1027
 #, c-format
 msgid "Renaming session %s to renamed %s\n"
-msgstr ""
+msgstr "btau r chhmoh samyobrachoum %s daembi %s\n"
 
 #: gschem/src/iface/i_sessions.c:1052
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Failed to rename session: %s"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr "%s: ban breachy btau r chhmoh samyobrachoum %s"
 
 #: gschem/src/iface/i_sessions.c:1055
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>min ach btau r chhmoh samyobrachoum</b>"
 
 #: gschem/src/iface/i_sessions.c:1087
 #, c-format
 msgid "Created session %s with %d documents.\n"
-msgstr ""
+msgstr "ban bangkeut kamnt samyobrachoum %s cheamuoynung %d eksar chea\n"
 
 #: gschem/src/iface/i_sessions.c:1095
-#, fuzzy, c-format
+#, c-format
 msgid "Saved %d documents to session %s\n"
-msgstr "現在のウィンドウ"
+msgstr "roksaatouk chea %d eksar chea cheamuoynung samyobrachoum %s\n"
 
 #: gschem/src/iface/i_sessions.c:1101
 #, c-format
 msgid "An error occurred attempting to save session %s: %s."
-msgstr ""
+msgstr "kamhosa muoy ban kaetlaeng pyeayeam daembi roksaatouk samy %s: %s."
 
 #: gschem/src/iface/i_sessions.c:1106
-#, fuzzy
 msgid "Save session failed"
-msgstr "ファイルを保存"
+msgstr "breachy knong kar roksaatouk samyobrachoum"
 
 #: gschem/src/iface/i_sessions.c:1197
 #, fuzzy
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr "テキスト"
+msgstr "kar bangheanh nowpel chabphdaem samy ilauvnih ku trauv ban bet\n"
 
 #: gschem/src/iface/i_sessions.c:1200
-#, fuzzy
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr "テキスト"
+msgstr "kar bangheanh nowpel chabphdaem samy ilauvnih ku trauv ban bet\n"
 
 #: gschem/src/iface/i_sessions.c:1270
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "samy del ban chabphtaem chea brapn\n"
 
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "選択モード"
+msgstr "daoh chreusa rbieb"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2116 gschem/scheme/gschem/builtins.scm:167
 msgid "Select Mode"
-msgstr "選択モード"
+msgstr "chreusa rbieb"
 
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "選択モード"
+msgstr "chreusa rbieb braab"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:224
 msgid "Zoom Box"
-msgstr "拡大"
+msgstr "bangkeun tidthpheap"
 
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "コピー1"
+msgstr "chamlong changaoul"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 msgid "Rotate Mode"
-msgstr "回転モード"
+msgstr "bangvil rbieb"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "chreusa bahpeal daembi tbskat"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr "反転モード"
+msgstr "rbieb kanhchok"
 
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
-msgstr "パンモード"
+msgstr "rbieb tidthpheap ban"
 
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "部品"
+msgstr "chreusa sameasapheak"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
-msgstr ""
+msgstr "meanhetich rbieb b nta nh"
 
 #: gschem/src/iface/i_status.c:160
 msgid "Net Mode"
-msgstr "ネットモード"
+msgstr "rbieb b nta nh"
 
 #: gschem/src/iface/i_status.c:162
 msgid "Pin Mode"
-msgstr "ピンモード"
+msgstr "rbieb pin"
 
 #: gschem/src/iface/i_status.c:164
 msgid "Line Mode"
-msgstr "線モード"
+msgstr "rbieb banteat"
 
 #: gschem/src/iface/i_status.c:166
 msgid "Box Mode"
-msgstr "ボックスモード"
+msgstr "rbieb braab"
 
 #: gschem/src/iface/i_status.c:168
 msgid "Circle Mode"
-msgstr "円モード"
+msgstr "rbieb rongvong"
 
 #: gschem/src/iface/i_status.c:170
 msgid "Text Mode"
-msgstr "ネットモード"
+msgstr "rbieb atthabat"
 
 #: gschem/src/iface/i_status.c:172
 msgid "Arc Mode"
-msgstr "円弧モード"
+msgstr "rbieb thnou"
 
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "パンモード"
+msgstr "rbieb phokaon"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
-msgstr ""
+msgstr "rbieb roubpheap"
 
 #: gschem/src/iface/i_status.c:178
 msgid "Bus Mode"
-msgstr "バスモード"
+msgstr "rbieb rothayontokrong"
 
 #: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
-msgstr "移動モード"
+msgstr "kar phlasa btaur rbieb"
 
 #: gschem/src/iface/i_status.c:183
 #, c-format
 msgid "Paste %d Mode"
-msgstr "ペースト%dモード"
+msgstr "rbieb bet phcheab, %d"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "chamnoch dambaung"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "chamnoch tipir"
 
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "ネットモード"
+msgstr "rbieb visaealpheap muoy"
 
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "まずオブジェクトを選択してください。"
+msgstr "chreusa banteat daembi pongrik"
 
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "まずオブジェクトを選択してください。"
+msgstr "chreusa vottho"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
-msgstr "隠しテキスト表示"
+msgstr "bangheanh pi kar del ban leak"
 
 #: gschem/src/iface/i_status.c:246
 msgid "Snap Off"
-msgstr "スナップ・オフ"
+msgstr "khtasa bet"
 
 #: gschem/src/iface/i_status.c:248
 msgid "Resnap Active"
-msgstr ""
+msgstr "Resnap Active"
 
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
@@ -992,14 +1050,15 @@ msgid "Initializing default configuration settings\n"
 msgstr ""
 
 #: gschem/src/iface/i_vars.c:811
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to save user configuration to '%s': %s."
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
+"breachy knong kar roksaatouk karkamnt rochneasampnth anak brae daembi '%s': "
+"%s."
 
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "閉じる"
+msgstr "tompr banhchob karpipheaksaea denhdaol\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1008,31 +1067,33 @@ msgstr ""
 
 #: gschem/src/iface/i_window.c:198
 msgid "Really revert page?"
-msgstr ""
+msgstr "pitchea tralb tompr"
 
 #: gschem/src/iface/i_window.c:254
 #, c-format
 msgid "An error occurred during a File Revert operation: %s."
 msgstr ""
+"kamhosa muoy ban kaetlaeng knongamlongpel brate b tde kar tralbtow daem "
+"eksar: %s."
 
 #: gschem/src/iface/i_window.c:257
 msgid "<b>File error.</b>"
-msgstr ""
+msgstr "<b>kamhosa eksar.</b>"
 
 #: gschem/src/iface/i_window.c:257
-#, fuzzy
 msgid "Revert failed"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "tralb bratebatte kar ban breachy"
 
 #: gschem/src/iface/i_window.c:264
 #, c-format
 msgid "Error encountered during file operation <%s>\n"
 msgstr ""
+"ban chuobabrateah kamhosa kamlong pel bratebatte kar robsa eksar <%s>\n"
 
 #: gschem/src/iface/i_window.c:265
 #, fuzzy
 msgid "Recovery: undo last action\n"
-msgstr "アンドゥ"
+msgstr "kar ngeublaeng vinh : min thveu sakammopheap chongokraoy\n"
 
 #: gschem/src/object/o_break.c:184 gschem/src/object/o_break.c:514
 #: gschem/src/object/o_break.c:836
@@ -1049,90 +1110,95 @@ msgstr ""
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
 #, c-format
 msgid "Translating schematic [%d %d]\n"
-msgstr "スケマチックを転送しています。[%d %d]\n"
+msgstr "koumnour bampruonh bakabre [%d %d]\n"
 
 #: gschem/src/object/o_delete.c:87
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "loub vottho del ban chaksao"
+msgstr[1] "loub %u vottho del ban chaksao"
 
 #: gschem/src/object/o_edit.c:517
 #, c-format
 msgid "%d attributes were hidden\n"
-msgstr ""
+msgstr "%d kounalokkhan del trauv ban leak\n"
 
 #: gschem/src/object/o_edit.c:521
 #, c-format
 msgid "%d hidden attributes were revealed\n"
-msgstr ""
+msgstr "%d  kounalokkhan del ban leak trauv ban bangheanh\n"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
-msgstr "隠しテキストが表示されました。\n"
+msgstr "atthabt del leak ku ilauv ban meulkheunh\n"
 
 #: gschem/src/object/o_edit.c:720
 msgid "Hidden text is now invisible\n"
-msgstr "隠しテキストが非表示になりました。\n"
+msgstr "atthabt del leak ilauvnih kuchea kar meul minkheunh\n"
 
 #: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:367
 #, c-format
 msgid "Could not find symbol [%s] in library. Update failed.\n"
 msgstr ""
+"min ach rk kheunh chea nimittaroub [%s] knong bannaly. thveu aoy teansamy "
+"ban breachy.\n"
 
 #: gschem/src/object/o_edit.c:1126
-#, fuzzy, c-format
+#, c-format
 msgid "Updating symbol [%s]\n"
-msgstr "シンボル検索中[%s]\n"
+msgstr "kar nimittasanhnhea kampoung thveu bachchobbannphap [%s]\n"
 
 #: gschem/src/object/o_move.c:524
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
+"min ach daohsray ban del chea chongobanhchob nei mchoul daembi phcheab\n"
 
 #: gschem/src/object/o_net.c:76
 msgid "Warning: Starting net off grid coordinate\n"
 msgstr ""
+"promean: kar chabphtaem kour chenhpi kraleachatrangk saam rb saam ruol\n"
 
 #: gschem/src/object/o_net.c:485
 msgid "Warning: Ending net off grid coordinate\n"
-msgstr ""
+msgstr "promean: kar banhchob koumnour kraleachatrangk saam rb saam ruol\n"
 
 #: gschem/src/object/o_net.c:1095
 #, c-format
 msgid "Bus ripper symbol [%s] was not found in any component library\n"
 msgstr ""
+"chea nimittaroub Ripper rothayontokrong [%s] min trauv ban ke rk kheunh "
+"nowknong bannaly sameasapheak namuoy\n"
 
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "更新"
+msgstr "thveu aoy teansamy"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
-msgstr ""
+msgstr "thveu aoy teansamy roubpheap roubpheap del ban chreusa teangoasa"
 
 #: gschem/src/object/o_picture.c:397
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Failed to replace picture: %s"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr "%s: ban breachy knong kar chomnuosa roubpheap: %s"
 
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr ""
+msgstr "<b>ban breachy knong kar chomnuosa roubpheap</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
-msgstr ""
+msgstr "star tomham"
 
 #: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
-msgstr ""
+msgstr "pel thik tomham roubpheap nung trauv ban neachenh"
 
 #: gschem/src/object/o_picture.c:615
 #, c-format
 msgid "Error: %s."
-msgstr ""
+msgstr "kamhosa knong kar: %s."
 
 #: gschem/src/object/o_picture.c:619
 #, c-format
@@ -1140,296 +1206,314 @@ msgid ""
 "Error: %s\n"
 "%s."
 msgstr ""
+"kamhosa knong kar: %s\n"
+"%s."
 
 #: gschem/src/object/o_picture.c:620
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "min skal kamhosa muoy ban kaetlaeng"
 
 #: gschem/src/object/o_picture.c:623
 msgid "<b>Failed to load picture</b>"
-msgstr ""
+msgstr "<b>breachy knong kar phtok eksar roubpheap</b>"
 
 #: gschem/src/object/o_picture.c:624
 msgid "Load failed"
-msgstr ""
+msgstr "breachy knong kar phtok"
 
 #: gschem/src/object/o_place.c:73
 msgid "Buffer is empty, nothing to place\n"
-msgstr ""
+msgstr "sate b ntaoh asann ku tte kmeanoavei daembi dak\n"
 
 #: gschem/src/object/o_slot.c:113
 msgid "Slot attribute malformed\n"
-msgstr "スロットアトリビュートが変です。\n"
+msgstr "malformed kounalokkhan ron\n"
 
 #: gschem/src/object/o_slot.c:120
 msgid "numslots attribute missing\n"
-msgstr "スロット番号がありません。\n"
+msgstr "numslots chattouk batkhluon\n"
 
 #: gschem/src/object/o_slot.c:121
 msgid "Slotting not allowed for this component\n"
-msgstr "この部品にスロットは許可されていません。\n"
+msgstr "Slotting min trauv ban anounhnhat samreab sameasapheak nih\n"
 
 #: gschem/src/object/o_slot.c:136
-#, fuzzy, c-format
+#, c-format
 msgid "New slot number [%d], is out of range\n"
-msgstr "スロット番号が範囲を越えています。\n"
+msgstr "chamnuon anak ronth daot thmei [%d] trauv ku chenhpi chuor\n"
 
 #: gschem/src/object/o_undo.c:70
 #, c-format
 msgid "Undo: using tmp directory specified on command-line: <%s>\n"
 msgstr ""
+"minothveuvinh nouv brapnth del kampoung brae tht eksar tmp ban banhcheak now "
+"leu banteat peaky banhchea: <%s>\n"
 
 #: gschem/src/object/o_undo.c:71
 #, c-format
 msgid "Directory: %s is not read/writable, check permissions.\n"
-msgstr ""
+msgstr "that: %s min trauv ban an / sarser ban setthi pinit.\n"
 
 #: gschem/src/object/o_undo.c:72
 msgid "<b>Auto switching Undo system to type Memory</b>\n"
 msgstr ""
+"<b>kar phlasa btaur brapnth del minothveuvinh daoy svyobravotte daembi veay "
+"sate</b>\n"
 
 #: gschem/src/object/o_undo.c:117
 msgid "Gschem Undo System"
-msgstr ""
+msgstr "brapnth minothveuvinh Gschem"
 
 #: gschem/src/object/o_undo.c:207
 #, c-format
 msgid "Undo: encountered an error: file=<%s> %s\n"
-msgstr ""
+msgstr "minothveuvinh nouv brapn kamhosa: eksar=<%s> %s\n"
 
 #: gschem/src/object/o_undo.c:208
 #, c-format
 msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
+"minothveuvinh nouv brapn; kamhosa brapn <%d>, bdaur tow rbieb kar changcham\n"
 
 #: gschem/src/object/o_undo.c:462
 #, c-format
 msgid "An error occurred during an UNDO disk operation: %s."
 msgstr ""
+"kamhosa muoy ban kaetlaeng now amlong pel bratebatte kar thasa "
+"minothveuvinh: %s."
 
 #: gschem/src/object/o_undo.c:465
-#, fuzzy
 msgid "Undo/Redo disabled\n"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "minothveuvinh / thveuvinh chn pikear\n"
 
 #: gschem/src/object/o_undo.c:552
 msgid "<b>Undo error.</b>"
-msgstr ""
+msgstr "<b>minothveuvinh nouv brapn.</b>"
 
 #: gschem/src/object/o_undo.c:552
-#, fuzzy
 msgid "Undo failed"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "minothveuvinh ban breachy"
 
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
+"vottho del ban sthet daoy kmean kounalokkhan ronth daot ach bangk banhhea "
+"pel autonumbering ron\n"
 
 #: gschem/src/x/x_autonumber.c:615
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
+"ronth daot ach bangk banhhea stuon: [chhmoh nimittasanhnhea=%s, chamnuon "
+"anak=%d, ronth daot=%d]\n"
 
 #: gschem/src/x/x_autonumber.c:913
 msgid "No search string given in autonumber text.\n"
 msgstr ""
+"khsae aksaar svengork min trauv ban phtal aoy nowknong atthabt lekh "
+"svyobravotte.\n"
 
 #: gschem/src/x/x_autonumber.c:1128
 msgid "Diagonal"
-msgstr ""
+msgstr "angkottroung"
 
 #: gschem/src/x/x_autonumber.c:1129
 msgid "Top to bottom"
-msgstr ""
+msgstr "kampoul tow bat"
 
 #: gschem/src/x/x_autonumber.c:1130
 msgid "Bottom to top"
-msgstr ""
+msgstr "pi bat tow kampoul"
 
 #: gschem/src/x/x_autonumber.c:1131
 msgid "Left to right"
-msgstr ""
+msgstr "pichhveng tow stam"
 
 #: gschem/src/x/x_autonumber.c:1132
 msgid "Right to left"
-msgstr ""
+msgstr "pi stam tow chhveng"
 
 #: gschem/src/x/x_autonumber.c:1133
 msgid "File order"
-msgstr ""
+msgstr "kolbamnng eksar"
 
 #: gschem/src/x/x_autonumber.c:1605
 msgid "<b>Filter:</b>"
-msgstr ""
+msgstr "<b>tamrong:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
-msgstr ""
+msgstr "vottho del ban chreus"
 
 #: gschem/src/x/x_autonumber.c:1647
 msgid "Current page"
-msgstr ""
+msgstr "tompr bachchobban"
 
 #: gschem/src/x/x_autonumber.c:1648
 msgid "Whole hierarchy"
-msgstr ""
+msgstr "thananoukram teangmoul"
 
 #: gschem/src/x/x_autonumber.c:1694
 msgid "Autonumber text"
-msgstr "オートナンバーテキスト"
+msgstr "atthabt lekh svyobravotte"
 
 #: gschem/src/x/x_autonumber.c:1717
 msgid "<b>Scope</b>"
-msgstr ""
+msgstr "<b>visaealpheap</b>"
 
 #: gschem/src/x/x_autonumber.c:1790
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>chomreus</b>"
 
 #: gschem/src/x/x_clipboard.c:318
 #, c-format
 msgid "%s: Invalid schematic on clipboard. %s\n"
-msgstr ""
+msgstr "%s: tinnony min troemotrauv now leu kdarotambietakhtasa. %s\n"
 
 #: gschem/src/x/x_clipboard.c:319
 #, c-format
 msgid "An error occurred while inserting clipboard data: %s."
 msgstr ""
+"kamhosa muoy ban kaetlaeng khn pel del kar banhchoul tinnony knong "
+"kdarotambietakhtasa: %s."
 
 #: gschem/src/x/x_clipboard.c:320
 msgid "<b>Invalid schematic on clipboard.</b>"
-msgstr ""
+msgstr "<b>tinnony min troemotrauv now leu kdarotambietakhtasa</b>"
 
 #: gschem/src/x/x_clipboard.c:320
 msgid "Clipboard Insertion Failed"
-msgstr ""
+msgstr "ben th kta r tambiet khtasa breachy"
 
 #: gschem/src/x/x_compselect.c:1249
 msgid "Default is to reference the component"
-msgstr ""
+msgstr "lomneadaem ku daembi yong sameasapheak"
 
 #: gschem/src/x/x_compselect.c:1253
 msgid "Embed component in schematic"
-msgstr ""
+msgstr "sameasapheak del ban bangkob knong koumnour bampruonh"
 
 #: gschem/src/x/x_compselect.c:1257
 msgid "Include component as individual objects"
-msgstr ""
+msgstr "ruom banhchoul teang sameasapheak chea vottho bokkol"
 
 #: gschem/src/x/x_compselect.c:2079 gschem/src/x/x_compselect.c:2452
 msgid "Components"
-msgstr "部品"
+msgstr "sameasapheak"
 
 #: gschem/src/x/x_compselect.c:2529 gschem/src/x/x_multiattrib.c:1987
 #: gschem/src/x/x_multiattrib.c:1993
 msgid "Name"
-msgstr "名前"
+msgstr "chhmoh"
 
 #: gschem/src/x/x_compselect.c:2541 gschem/src/x/x_multiattrib.c:1989
 #: gschem/src/x/x_multiattrib.c:1995
 msgid "Value"
-msgstr "値"
+msgstr "koun tamlei"
 
 #: gschem/src/x/x_compselect.c:2723 gschem/src/x/x_dialog.c:1747
 msgid "None"
-msgstr ""
+msgstr "kmean"
 
 #: gschem/src/x/x_compselect.c:2724
 msgid "Style 1"
-msgstr ""
+msgstr "rochneabtm 1"
 
 #: gschem/src/x/x_compselect.c:2725
 msgid "Style 2"
-msgstr ""
+msgstr "rochneabtm 2"
 
 #: gschem/src/x/x_compselect.c:2726
 msgid "Style 3"
-msgstr ""
+msgstr "rochneabtm 3"
 
 #: gschem/src/x/x_compselect.c:2727
 msgid "Style 4"
-msgstr ""
+msgstr "rochneabtm 4"
 
 #: gschem/src/x/x_compselect.c:2728
 msgid "Style 5"
-msgstr ""
+msgstr "rochneabtm 5"
 
 #: gschem/src/x/x_compselect.c:2729
 msgid "Style 6"
-msgstr ""
+msgstr "rochneabtm 6"
 
 #: gschem/src/x/x_compselect.c:2730
 msgid "Style 7"
-msgstr ""
+msgstr "rochneabtm 7"
 
 #: gschem/src/x/x_compselect.c:2731
 msgid "Style 8"
-msgstr ""
+msgstr "rochneabtm 8"
 
 #: gschem/src/x/x_compselect.c:2732
 msgid "All"
-msgstr "すべて"
+msgstr "teangoasa"
 
 #: gschem/src/x/x_compselect.c:2768
 msgid "Enable all styles"
-msgstr ""
+msgstr "anounhnhat rochneabtm teangoasa"
 
 #: gschem/src/x/x_compselect.c:2769
 msgid "Uncheck all styles"
-msgstr ""
+msgstr "daoh thik rochneabtm teangoasa"
 
 #: gschem/src/x/x_compselect.c:2793
 msgid "Reference"
-msgstr ""
+msgstr "sechaktei yong"
 
 #: gschem/src/x/x_compselect.c:2794
 msgid "Embed"
-msgstr "組み込み"
+msgstr "banhchoul"
 
 #: gschem/src/x/x_compselect.c:2795
 msgid "Include"
-msgstr ""
+msgstr "banhchoul"
 
 #: gschem/src/x/x_compselect.c:3174
 msgid "active view"
-msgstr ""
+msgstr "tidthpheap sakam"
 
 #: gschem/src/x/x_compselect.c:3175
 msgid "Active sheet of the notebook"
-msgstr ""
+msgstr "tompr bachchobbann nei kompyoutr yuordai nih"
 
 #: gschem/src/x/x_compselect.c:3186
 msgid "Focus Filter"
-msgstr ""
+msgstr "tamrong kar phtao t"
 
 #: gschem/src/x/x_compselect.c:3187
+#, fuzzy
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
+"nowpel del kar pit, kar phtao t arommo dambaung nung trauv ttuol "
+"theatotamrong nih bae min dauchneh te sameasapheak mektheang"
 
 #: gschem/src/x/x_compselect.c:3290
 msgid "Rescan"
-msgstr ""
+msgstr "sken laengvinh"
 
 #: gschem/src/x/x_compselect.c:3298
 msgid "Rescan component libraries"
-msgstr ""
+msgstr "bannaly sameasapheak sken laengvinh"
 
 #: gschem/src/x/x_compselect.c:3300
 msgid "Set style filter"
-msgstr ""
+msgstr "kamnt tamrong del mean steil beb"
 
 #: gschem/src/x/x_compselect.c:3501 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
-msgstr "プレビュー"
+msgstr "meul cheamoun"
 
 #: gschem/src/x/x_compselect.c:3537
 msgid "Attributes"
-msgstr "アトリビュート"
+msgstr "kounalokkhan"
 
 #: gschem/src/x/x_console.c:136
 msgid "destroying history\n"
@@ -1440,48 +1524,50 @@ msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:189 gschem/src/x/x_console.c:192
-#, c-format
+#, fuzzy, c-format
 msgid "Command interface: engaged using (%s)\n"
-msgstr ""
+msgstr "chamnochabratak peaky banhchea: ban chaulruom karobrae brasa (%s)"
 
 #: gschem/src/x/x_console.c:345
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
+"** chea UTF-8 min troemotrauv nowknong sar kamntheto. saum meul stderr ryy "
+"gschem.log.\n"
 
 #: gschem/src/x/x_console.c:577
 msgid "gEDA Console"
-msgstr ""
+msgstr "gEDA kongsaul"
 
 #: gschem/src/x/x_coord.c:150
+#, fuzzy
 msgid "Drag & Drop"
-msgstr ""
+msgstr "ausa ning tomleak kar ban breachy"
 
 #: gschem/src/x/x_coord.c:154
 #, c-format
 msgid "An error occurred while receiving dropped data: %s."
 msgstr ""
+"kamhosa muoy ban kaetlaeng khn pel del ttuol ban thleakchoh tinnony: %s."
 
 #: gschem/src/x/x_coord.c:155
 msgid "<b>Data error.</b>"
-msgstr ""
+msgstr "kamhosa tinnony."
 
 #: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:579
-#, fuzzy
 msgid "Drag & Drop failed"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "ausa ning tomleak kar ban breachy"
 
 #: gschem/src/x/x_coord.c:463
-#, fuzzy
 msgid "Coordinates"
-msgstr "部品モード"
+msgstr "kauardaone"
 
 #: gschem/src/x/x_coord.c:478
 msgid "Screen"
-msgstr "スクリーン"
+msgstr "bangheanh robsa maunitr"
 
 #: gschem/src/x/x_coord.c:488
 msgid "World"
-msgstr "ワールド"
+msgstr "piphoplok"
 
 #: gschem/src/x/x_dialog.c:442
 msgid ""
@@ -1489,12 +1575,16 @@ msgid ""
 "\n"
 "glibc "
 msgstr ""
+"gEDA : nn GPL e lech trau ni rochnea svyobravotte\n"
+"bannaly glibc "
 
 #: gschem/src/x/x_dialog.c:443
 msgid ""
 "\n"
 "Guile "
 msgstr ""
+"\n"
+"bannaly Guile "
 
 #: gschem/src/x/x_dialog.c:452
 msgid ""
@@ -1502,211 +1592,207 @@ msgid ""
 "Copyright © 1998-2015 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2015 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
+"\n"
+"roksaa setth krobyeang © 1998-2015 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"roksaa setth krobyeang © 1998-2015 gEDA anak chaulruom chamnek (meulkheunh "
+"kar phlasa btaur kamntheto samreab sechakdei lomait)"
 
 #: gschem/src/x/x_dialog.c:461 gschem/scheme/gschem/builtins.scm:562
 msgid "About gschem"
-msgstr ""
+msgstr "ampi gschem"
 
 #: gschem/src/x/x_dialog.c:570
 msgid "Enter new snap grid spacing:"
-msgstr ""
+msgstr "kar banhchoul kraleachatrangk khtasa thmei chanloh:"
 
 #: gschem/src/x/x_dialog.c:579
 msgid ""
 "Sets the default spacing\n"
 " which objects snaps to."
-msgstr ""
+msgstr "kamnt komleat lomneadaem del vottho khtasa tow"
 
 #: gschem/src/x/x_dialog.c:655
 msgid "Text Size"
-msgstr "テキストサイズ"
+msgstr "tomham aksaar"
 
 #: gschem/src/x/x_dialog.c:681
 msgid "Enter new text size:"
-msgstr ""
+msgstr "tomham atthabt thmei kar banhchoul:"
 
 #: gschem/src/x/x_dialog.c:691
 msgid "Sets the default text font size."
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:913
-#, fuzzy
 msgid "Arc Parameters"
-msgstr "円弧パラメータ"
+msgstr "Thnou Bareamet"
 
 #: gschem/src/x/x_dialog.c:944
 msgid "Arc Radius:"
-msgstr ""
+msgstr "thnou kam:"
 
 #: gschem/src/x/x_dialog.c:950
 msgid "Sets the radius of the Arc."
-msgstr ""
+msgstr "kamnt kam nei thnou nih."
 
 #: gschem/src/x/x_dialog.c:952
 msgid "Start Angle:"
-msgstr ""
+msgstr "kar chabphtaem moum:"
 
 #: gschem/src/x/x_dialog.c:958
 msgid "Sets the rotation of the arc."
-msgstr ""
+msgstr "Sets the rotation of the arc."
 
 #: gschem/src/x/x_dialog.c:960
 msgid "Degrees of Sweep:"
-msgstr ""
+msgstr "deukre nei khyal:"
 
 #: gschem/src/x/x_dialog.c:966
 msgid "Sets the central angle of the arc."
-msgstr ""
+msgstr "kamnt moum k ntal nei thnou nih."
 
 #: gschem/src/x/x_dialog.c:1004
 msgid "Background"
-msgstr ""
+msgstr "phtaikheangokraoy"
 
 #: gschem/src/x/x_dialog.c:1005
-#, fuzzy
 msgid "Pin"
-msgstr "ピン(_P)"
+msgstr "mchoul akkisani"
 
 #: gschem/src/x/x_dialog.c:1006
 msgid "Net endpoint"
-msgstr ""
+msgstr "chamnoch banhchob sot"
 
 #: gschem/src/x/x_dialog.c:1007
 msgid "Graphic"
-msgstr ""
+msgstr "krahvek"
 
 #: gschem/src/x/x_dialog.c:1008 gschem/src/x/x_edit_pin.c:140
 #: gschem/src/x/x_menus.c:91
 msgid "Net"
-msgstr "ネット"
+msgstr "sot"
 
 #: gschem/src/x/x_dialog.c:1009
-#, fuzzy
 msgid "Attribute"
-msgstr "アトリビュート"
+msgstr "kounalokkhan"
 
 #: gschem/src/x/x_dialog.c:1010
 msgid "Logic bubble"
-msgstr ""
+msgstr "ppouh takkavityea"
 
 #: gschem/src/x/x_dialog.c:1011
-#, fuzzy
 msgid "Grid point"
-msgstr "円弧モード"
+msgstr "chamnoch kraleachatrang"
 
 #: gschem/src/x/x_dialog.c:1012
-#, fuzzy
 msgid "Detached attribute"
-msgstr "アトリビュート編集"
+msgstr "kounalokkhan del ban phdach"
 
 #: gschem/src/x/x_dialog.c:1013 gschem/src/x/x_menus.c:95
 msgid "Text"
-msgstr "テキスト"
+msgstr "atthabat"
 
 #: gschem/src/x/x_dialog.c:1014 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
-msgstr "バス"
+msgstr "akkisani"
 
 #: gschem/src/x/x_dialog.c:1015 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "選択"
+msgstr "kar chreus"
 
 #: gschem/src/x/x_dialog.c:1016
 msgid "Bounding box"
-msgstr ""
+msgstr "chtokaonkeng bounding"
 
 #: gschem/src/x/x_dialog.c:1017
-#, fuzzy
 msgid "Zoom box"
-msgstr "拡大"
+msgstr "braab pongrik"
 
 #: gschem/src/x/x_dialog.c:1018
 msgid "Stroke"
-msgstr "ストローク"
+msgstr "kayvikear"
 
 #: gschem/src/x/x_dialog.c:1019 gschem/etc/system-gschemrc.scm:2140
 #: gschem/scheme/gschem/builtins.scm:185
 msgid "Lock"
-msgstr "ロック"
+msgstr "chaksao"
 
 #: gschem/src/x/x_dialog.c:1020
 msgid "Output background"
-msgstr ""
+msgstr "phtaikheangokraoy tinnophal"
 
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Net junction"
-msgstr "アクション"
+msgstr "brasapv sot"
 
 #: gschem/src/x/x_dialog.c:1022
 msgid "Mesh grid major"
-msgstr ""
+msgstr "kraleachatrangk saamnanh thom"
 
 #: gschem/src/x/x_dialog.c:1023
 msgid "Mesh grid minor"
-msgstr ""
+msgstr "anitechn kraleachatrangk saamnanh"
 
 #: gschem/src/x/x_dialog.c:1024
 msgid "User Style 0"
-msgstr ""
+msgstr "rochneabtm del anakabrae 0"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "User Style 1"
-msgstr ""
+msgstr "rochneabtm brae 1"
 
 #: gschem/src/x/x_dialog.c:1026
 msgid "User Style 2"
-msgstr ""
+msgstr "rochneabtm anakabrae 2"
 
 #: gschem/src/x/x_dialog.c:1027
 msgid "User Style 3"
-msgstr ""
+msgstr "rochneabtm del anakabrae 3"
 
 #: gschem/src/x/x_dialog.c:1028
 msgid "User Style 4"
-msgstr ""
+msgstr "rochneabtm del anakabrae 4"
 
 #: gschem/src/x/x_dialog.c:1029
 msgid "User Style 5"
-msgstr ""
+msgstr "rochneabtm robsa anakabrae brasa 5"
 
 #: gschem/src/x/x_dialog.c:1030
 msgid "User Style 6"
-msgstr ""
+msgstr "rochneabtm robsa anakabrae brasa 6"
 
 #: gschem/src/x/x_dialog.c:1031
 msgid "User Style 7"
-msgstr ""
+msgstr "rochneabtm del anakabrae 7"
 
 #: gschem/src/x/x_dialog.c:1032
 msgid "User Style 8"
-msgstr ""
+msgstr "rochneabtm 8 anak brae"
 
 #: gschem/src/x/x_dialog.c:1033
 msgid "User Style 9"
-msgstr ""
+msgstr "rochneabtm robsa anakabrae brasa 9"
 
 #: gschem/src/x/x_dialog.c:1037
 msgid "Unknown"
-msgstr ""
+msgstr "min skal"
 
 #: gschem/src/x/x_dialog.c:1183
 msgid "Hollow"
-msgstr "空洞"
+msgstr "brahaong"
 
 #: gschem/src/x/x_dialog.c:1184
 msgid "Filled"
-msgstr "塗りつぶし"
+msgstr "bampenh ruoch"
 
 #: gschem/src/x/x_dialog.c:1185
 msgid "Mesh"
-msgstr "メッシュ"
+msgstr "bratak"
 
 #: gschem/src/x/x_dialog.c:1186
 msgid "Hatch"
-msgstr "ハッチ"
+msgstr "ha"
 
 #: gschem/src/x/x_dialog.c:1187 gschem/src/x/x_dialog.c:1296
 #: gschem/src/x/x_dialog.c:1305 gschem/src/x/x_dialog.c:1314
@@ -1719,170 +1805,163 @@ msgstr "ハッチ"
 #: gschem/src/x/x_dialog.c:2036 gschem/src/x/x_dialog.c:2038
 #: gschem/src/x/x_dialog.c:2040
 msgid "*unchanged*"
-msgstr ""
+msgstr "*kar phlasa btau r*"
 
 #: gschem/src/x/x_dialog.c:1594 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Fill Type"
-msgstr "塗りつぶしを編集"
+msgstr "kesamruol braphet bampenh"
 
 #: gschem/src/x/x_dialog.c:1616
-#, fuzzy
 msgid "Fill Type:"
-msgstr "塗りつぶし種類..."
+msgstr "bampenh braphet:"
 
 #: gschem/src/x/x_dialog.c:1619
-#, fuzzy
 msgid "Line Width:"
-msgstr "線種と幅..."
+msgstr "ttung banteat:"
 
 #: gschem/src/x/x_dialog.c:1622
 msgid "Angle 1:"
-msgstr ""
+msgstr "moum ti 1:"
 
 #: gschem/src/x/x_dialog.c:1625
 msgid "Pitch 1:"
-msgstr ""
+msgstr "tilean ti 1:"
 
 #: gschem/src/x/x_dialog.c:1628
 msgid "Angle 2:"
-msgstr ""
+msgstr "moum ti 2:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Pitch 2:"
-msgstr ""
+msgstr "tilean 2:"
 
 #: gschem/src/x/x_dialog.c:1638
 msgid "Select fill pattern"
-msgstr ""
+msgstr "chreusa lomnoam bampenh"
 
 #: gschem/src/x/x_dialog.c:1643
 msgid "Set the width of the filler lines"
-msgstr ""
+msgstr "kamnt ttung nei banteat thveuaoy nih"
 
 #: gschem/src/x/x_dialog.c:1648
 msgid "Primary angle for filler lines"
-msgstr ""
+msgstr "moum chambong samreab banteat del ban thveuaoy"
 
 #: gschem/src/x/x_dialog.c:1653
 msgid "Spacing for the primary filler lines"
-msgstr ""
+msgstr "komleat samreab banteat thveuaoy chambong"
 
 #: gschem/src/x/x_dialog.c:1658
 msgid "Secondary angle for filler lines"
-msgstr ""
+msgstr "moum anouvityealy samreab banteat thveuaoy"
 
 #: gschem/src/x/x_dialog.c:1663
 msgid "Spacing for the secondary filler lines"
-msgstr ""
+msgstr "komleat samreab banteat thveuaoy anouvityealy"
 
 #: gschem/src/x/x_dialog.c:1748
 msgid "Square"
-msgstr ""
+msgstr "kare"
 
 #: gschem/src/x/x_dialog.c:1749
 msgid "Round"
-msgstr ""
+msgstr "choum ti"
 
 #: gschem/src/x/x_dialog.c:1787
 msgid "Solid"
-msgstr "実線"
+msgstr "rung"
 
 #: gschem/src/x/x_dialog.c:1788
 msgid "Dotted"
-msgstr "点線"
+msgstr "chamnouch"
 
 #: gschem/src/x/x_dialog.c:1789
 msgid "Dashed"
-msgstr "破線"
+msgstr "dach"
 
 #: gschem/src/x/x_dialog.c:1790
 msgid "Center"
-msgstr "中央"
+msgstr "mochchhomondal"
 
 #: gschem/src/x/x_dialog.c:1791
 msgid "Phantom"
-msgstr "ファントム"
+msgstr "khmaoch"
 
 #: gschem/src/x/x_dialog.c:2174 gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Line Width & Type"
-msgstr "線種と幅編集"
+msgstr "kesamruol ttung banteat & braphet"
 
 #: gschem/src/x/x_dialog.c:2197
-#, fuzzy
 msgid "Line Type:"
-msgstr "塗りつぶし種類..."
+msgstr "rochneabtm banteat:"
 
 #: gschem/src/x/x_dialog.c:2200
-#, fuzzy
 msgid "End Type:"
-msgstr "塗りつぶしを編集"
+msgstr "braphet banhchob:"
 
 #: gschem/src/x/x_dialog.c:2203
 msgid "Width:"
-msgstr ""
+msgstr "ttung:"
 
 #: gschem/src/x/x_dialog.c:2206
 msgid "Dash Length:"
-msgstr ""
+msgstr "phtai tablau braveng:"
 
 #: gschem/src/x/x_dialog.c:2209
 msgid "Dash Space:"
-msgstr ""
+msgstr "avkasa dash:"
 
 #: gschem/src/x/x_dialog.c:2226
 msgid "Set width of the line"
-msgstr ""
+msgstr "kamnt ttung nei banteat"
 
 #: gschem/src/x/x_dialog.c:2232
 msgid "Set \"dash\" length of the line"
-msgstr ""
+msgstr "kamnt \"sanhnhea\" braveng robsa banteat"
 
 #: gschem/src/x/x_dialog.c:2238
 msgid "Set spacing between dashes in the line"
-msgstr ""
+msgstr "kamnt komleat rveang sanhnhea dach nowknong banteat"
 
 #: gschem/src/x/x_dialog.c:2460
 msgid "Find Text"
-msgstr ""
+msgstr "rk atthabat"
 
 #: gschem/src/x/x_dialog.c:2479
 msgid "Text to find:"
-msgstr "検索テキスト"
+msgstr "atthabt del trauv rok:"
 
 #: gschem/src/x/x_dialog.c:2488
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "アトリビュート編集"
+msgstr "kounalokkhan del ban svengork del ban leak"
 
 #: gschem/src/x/x_dialog.c:2491
-#, fuzzy
 msgid "Descend into hierarchy"
-msgstr "下の階層も検索"
+msgstr "choh chaul tow knong thananoukram"
 
 #: gschem/src/x/x_dialog.c:2499
-#, fuzzy
 msgid "Close on ascent"
-msgstr "閉じる"
+msgstr "bet leu laeng"
 
 #: gschem/src/x/x_dialog.c:2587
 msgid "Hide Text"
-msgstr ""
+msgstr "leak atthabat"
 
 #: gschem/src/x/x_dialog.c:2606
 msgid "Hide text starting with:"
-msgstr "隠しテキスト"
+msgstr "leak atthabt del phtae m daoy:"
 
 #: gschem/src/x/x_dialog.c:2696
 msgid "Show Text"
-msgstr ""
+msgstr "bangheanh atthabat"
 
 #: gschem/src/x/x_dialog.c:2715
 msgid "Show text starting with:"
-msgstr "テキスト"
+msgstr "bangheanh atthabt del phtae m daoy"
 
 #: gschem/src/x/x_dialog.c:2840
 msgid "Text Entry..."
-msgstr "テキスト..."
+msgstr "theato atthabat"
 
 #: gschem/src/x/x_dialog.c:2865
 msgid ""
@@ -1890,9 +1969,9 @@ msgid ""
 "move cursor into window, click to place text.\n"
 "Middle button to rotate while placing."
 msgstr ""
-"テキストを入力し、クリックしてください。\n"
-"ウィンドウ内でクリックするとテキストを配置します。\n"
-"中ボタンで回転します。"
+"banhchoul atthabt , choch anouvot,\n"
+"phlasati tossaatronich tow knong bangauoch choch daembi dak atthabat.\n"
+"boutong k ntal daembi bangvil khn pel del kar dak"
 
 #: gschem/src/x/x_dialog.c:2985
 msgid "Automatically zoom to the new extents after translation"
@@ -1900,46 +1979,43 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:2987
 msgid "Translate"
-msgstr "転送"
+msgstr "bakabre"
 
 #: gschem/src/x/x_dialog.c:3008
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
-"転送しますか?\n"
-"(0で原点)"
+"ohvaset daembi bakabre?\n"
+"(0 samreab braphp daem )"
 
 #: gschem/src/x/x_dialog.c:3017
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/src/x/x_dialog.c:3187
 msgid "Hotkeys"
-msgstr ""
+msgstr "kreabchoch chang"
 
 #: gschem/src/x/x_dialog.c:3274
 msgid "Icon"
-msgstr ""
+msgstr "roubtamnang"
 
 #: gschem/src/x/x_dialog.c:3288
-#, fuzzy
 msgid "Action"
-msgstr "アクション"
+msgstr "sakammopheap"
 
 #: gschem/src/x/x_dialog.c:3298
 msgid "Keystroke(s)"
-msgstr ""
+msgstr "sangkot kreabchoch (s ban)"
 
 #: gschem/src/x/x_dialog.c:3308
-#, fuzzy
 msgid "Command"
-msgstr "部品(_C)"
+msgstr "peaky banhchea"
 
 #: gschem/src/x/x_dialog.c:3543
 msgid "Major symbol changes detected."
-msgstr ""
+msgstr "kar phlasa btaur chea nimittaroub saamkhan muoy del ban rk kheunh"
 
 #: gschem/src/x/x_dialog.c:3570
 msgid ""
@@ -1947,14 +2023,18 @@ msgid ""
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
+"kar phlasa btaur ban kaetlaeng tow nung nimittasanhnhea del ban bangheanh "
+"dauch khangokraom.\n"
+"\n"
+"trauv brakd tha daembi phtiengophtat knea nei nimittasanhnhea teangnih."
 
 #: gschem/src/x/x_dialog.c:3611
 msgid "Symbol"
-msgstr ""
+msgstr "nimittasanhnhea"
 
 #: gschem/src/x/x_dialog.c:3658
 msgid "Dismiss this dialog"
-msgstr ""
+msgstr "teatchaol braab nih"
 
 #: gschem/src/x/x_dialog.c:3703
 #, c-format
@@ -1966,287 +2046,293 @@ msgid ""
 "The name cannot end with a space.\n"
 "The value cannot start with a space."
 msgstr ""
+"<span weight=\"bold\" size=\"larger\">kounalokkhan banhchoul \"%s\" min "
+"troemotrauv\n"
+"saum ke daembi b n</span>\n"
+"\n"
+"chhmoh nih trauvte mean ning tamlei min tte.\n"
+"chhmoh min ach banhchob daoy dakakhlea.\n"
+"tamlei del min ach chabphtaem cheamuoy chanloh."
 
 #: gschem/src/x/x_dialog.c:3705
 msgid "Invalid Attribute"
-msgstr ""
+msgstr "kounalokkhan min troemotrauv"
 
 #: gschem/src/x/x_dnd.c:436
 #, c-format
 msgid "Could not locate symbol [%s] in library, try refreshing\n"
 msgstr ""
+"min ach kamnt titeang nimittaroub [%s] nowknong bannaly, saum pyeayeam phdal "
+"kamleang chetd laengvinh\n"
 
 #: gschem/src/x/x_dnd.c:440
 #, c-format
 msgid "symbol [%s] not in library opening as page\n"
-msgstr ""
+msgstr "chea nimittaroub [%s] min nowknong pithi baek bannaly chea tompr\n"
 
 #: gschem/src/x/x_dnd.c:578
 #, c-format
 msgid "An error occurred while dropping data: %s."
-msgstr ""
+msgstr "kamhosa muoy ban kaetlaeng khn pel kar tomleak kar tinnony: %s."
 
 #: gschem/src/x/x_dnd.c:579
 msgid "<b>Invalid Data.</b>"
-msgstr ""
+msgstr "<b>tinnony min troemotrauv.</b>"
 
 #: gschem/src/x/x_draw.cpp:492
 msgid "Initializing: Graphics Renderer Adaptor...."
-msgstr ""
+msgstr "chabphdaem : krahvek kammovithi bangheanh adabtr...."
 
 #: gschem/src/x/x_draw.cpp:508
 msgid "done\n"
-msgstr ""
+msgstr "thveu\n"
 
 #: gschem/src/x/x_draw.cpp:514
 msgid "Shutting down: Graphics Renderer Adaptor..."
-msgstr ""
+msgstr "banhchhob krahvek kammovithi bangheanh adabtr"
 
 #: gschem/src/x/x_draw.cpp:516
 msgid "Done, renderer is down\n"
-msgstr ""
+msgstr "ban banhchob phearkech, kar bangheanh trauv ban banhchhob\n"
 
 #: gschem/src/x/x_edit_attrib.c:209
 #, c-format
 msgid "Got invalid show option; defaulting to show both\n"
 msgstr ""
+"chomreusa bangheanh min troemotrauv ttuol bankar ! kar khakkhan tow "
+"bangheanh teangpir\n"
 
 #: gschem/src/x/x_edit_attrib.c:319
 msgid "Select to choose an attribute visibility options"
-msgstr ""
+msgstr "chreusa daembi chreusa kounalokkhan del ach meulkheunh chomreusa muoy"
 
 #: gschem/src/x/x_edit_attrib.c:320
 msgid "Show only the name of the attribute"
-msgstr ""
+msgstr "bangheanh te chhmoh robsa kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Show only the value of the attribute"
-msgstr ""
+msgstr "bangheanh te tamlei robsa kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:322
 msgid "Show both the name and the value of the attribute"
-msgstr ""
+msgstr "bangheanh ban teang chhmoh ning tamlei robsa kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:330
 msgid "Show Value Only"
-msgstr "値のみ表示"
+msgstr "bante bangheanh tamlei"
 
 #: gschem/src/x/x_edit_attrib.c:334
 msgid "Show Name Only"
-msgstr "名前のみ表示"
+msgstr "bangheanh te chhmoh bonnaoh"
 
 #: gschem/src/x/x_edit_attrib.c:338 gschem/src/x/x_multiattrib.c:1633
 #: gschem/scheme/gschem/builtins.scm:410
 msgid "Show Name & Value"
-msgstr "名前と値を表示"
+msgstr "bangheanh chhmoh ning tamlei"
 
 #: gschem/src/x/x_edit_attrib.c:402
 msgid "Enter or type an attribute name"
-msgstr ""
+msgstr "banhchoul ryy veay chhmoh attribute"
 
 #: gschem/src/x/x_edit_attrib.c:403
 msgid "<b>Add Attribute</b>"
-msgstr ""
+msgstr "<b>banthem kounalokkhan</b>"
 
 #: gschem/src/x/x_edit_attrib.c:404
 msgid "<b>Edit Attribute</b>"
-msgstr ""
+msgstr "<b>kesamruol kounalokkhan</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
-#, fuzzy
 msgid "Select the attribute name to add"
-msgstr "スロットアトリビュートが変です。\n"
+msgstr "chreusa chhmoh kounalokkhan banthem"
 
 #: gschem/src/x/x_edit_attrib.c:407
 msgid "Select the name of the attribute to edit"
-msgstr ""
+msgstr "chreusa chhmoh kounalokkhan daembi kesamruol"
 
 #: gschem/src/x/x_edit_attrib.c:409
 msgid "Input a value for the new attribute"
-msgstr ""
+msgstr "kar banhchoul tamlei samreab kounalokkhan thmei"
 
 #: gschem/src/x/x_edit_attrib.c:410
 msgid "Input or edit the value of the attribute"
-msgstr ""
+msgstr "banhchoul ryy kesamruol tamlei nei kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:412
 msgid "Enable or disable visibility of the attribute"
-msgstr ""
+msgstr "baek ryy bet pheap meulkheunh nei kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:429
 msgid "Single Attribute Editor"
-msgstr "シングルアトルビュートエディタ"
+msgstr "kammovithi niponth attribute temuoy"
 
 #: gschem/src/x/x_edit_attrib.c:457 gschem/src/x/x_multiattrib.c:2196
 msgid "Name:"
-msgstr "名前:"
+msgstr "Chhmoh:"
 
 #: gschem/src/x/x_edit_attrib.c:474 gschem/src/x/x_multiattrib.c:2215
 msgid "Value:"
-msgstr "値:"
+msgstr "Tamlei:"
 
 #: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:1991
 #: gschem/src/x/x_multiattrib.c:2271
 msgid "Visible"
-msgstr "表示"
+msgstr "del ach meulkheunh"
 
 #: gschem/src/x/x_edit_attrib.c:517 gschem/src/x/x_edit_text.c:590
 #: gschem/src/x/x_edit_text.c:602
-#, fuzzy
 msgid "Atrribute Name List"
-msgstr "アトリビュート"
+msgstr "banhchi chhmoh kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:521 gschem/src/x/x_edit_text.c:598
-#, fuzzy
 msgid "Attribute Value Entry"
-msgstr "アトリビュート"
+msgstr "tamlei kounalokkhan theato"
 
 #: gschem/src/x/x_edit_color.c:155
 msgid "Color Edit"
-msgstr "色編集"
+msgstr "Kesamruol color"
 
 #: gschem/src/x/x_edit_color.c:176
 msgid "Object color:"
-msgstr ""
+msgstr "n vottho:"
 
 #: gschem/src/x/x_edit_color.c:182
 #, fuzzy
 msgid "Select a color for the select objects."
-msgstr "現在のウィンドウ"
+msgstr "chreusa n samreab kar chreusa vottho muoy"
 
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
-msgstr ""
+msgstr "nimittasanhnhea btau r chhmoh min ach minothveuvinh\n"
 
 #: gschem/src/x/x_edit_cprop.c:1151
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "テキスト編集"
+msgstr "kesamruol lokkhan sambotte sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1166
 msgid "_Symbol:"
-msgstr ""
+msgstr "Simittasanhnhea:"
 
 #: gschem/src/x/x_edit_cprop.c:1177
 msgid "_Device:"
-msgstr ""
+msgstr "Ubakar:"
 
 #: gschem/src/x/x_edit_cprop.c:1188
 msgid "_Author:"
-msgstr ""
+msgstr "Anaknipon:"
 
 #: gschem/src/x/x_edit_cprop.c:1199
 msgid "_Version:"
-msgstr ""
+msgstr "Kamne:"
 
 #: gschem/src/x/x_edit_cprop.c:1217
 msgid "_Enable"
-msgstr ""
+msgstr "Anounhnhat"
 
 #: gschem/src/x/x_edit_cprop.c:1225
 msgid "_use-license:"
-msgstr ""
+msgstr "karobrae brasa achnhabn:"
 
 #: gschem/src/x/x_edit_cprop.c:1236
 msgid "dist-_license:"
-msgstr ""
+msgstr "kar chekchay achnhabn:"
 
 #: gschem/src/x/x_edit_cprop.c:1247
 msgid "Descr_iption:"
-msgstr ""
+msgstr "sangkheb:"
 
 #: gschem/src/x/x_edit_cprop.c:1258
-#, fuzzy
 msgid "Documen_tation:"
-msgstr "部品モード"
+msgstr "eksar:"
 
 #: gschem/src/x/x_edit_cprop.c:1269
-#, fuzzy
 msgid "_Comment:"
-msgstr "部品(_C)"
+msgstr "sechaktei athibbeay:"
 
 #: gschem/src/x/x_edit_cprop.c:1294
 msgid " _Electrical:"
-msgstr ""
+msgstr "akkisani:"
 
 #: gschem/src/x/x_edit_cprop.c:1322
 msgid "_Ref Des:"
-msgstr ""
+msgstr "yong lok anak rochnea:"
 
 #: gschem/src/x/x_edit_cprop.c:1335
 msgid "_No. Slot:"
-msgstr ""
+msgstr "karrab ronth daot:"
 
 #: gschem/src/x/x_edit_cprop.c:1346
 msgid "No. _Pins:"
-msgstr ""
+msgstr "karrab mchoul"
 
 #: gschem/src/x/x_edit_cprop.c:1356
-#, fuzzy
 msgid "_Value:"
-msgstr "値:"
+msgstr "tamlei:"
 
 #: gschem/src/x/x_edit_cprop.c:1370
 msgid "_Foot Print:"
-msgstr ""
+msgstr "lomnoam:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
 #, fuzzy
 msgid "Spice Type:"
-msgstr "塗りつぶし種類..."
+msgstr "braphet kleng:"
 
 #: gschem/src/x/x_edit_cprop.c:1392
-#, fuzzy
 msgid "Model Name:"
-msgstr "名前:"
+msgstr "chhmoh maudel:"
 
 #: gschem/src/x/x_edit_cprop.c:1426
 msgid "File name entry of component symbol"
-msgstr ""
+msgstr "theato chhmoh eksar nei nimittasanhnhea sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1433
+#, fuzzy
 msgid "Device identifier entry"
-msgstr ""
+msgstr "theato indentifier ubakar"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "Entry for name of the author"
-msgstr ""
+msgstr "theato samreab chhmoh anaknipon"
 
 #: gschem/src/x/x_edit_cprop.c:1445
 msgid "Entry for the version of this symbol"
-msgstr ""
+msgstr "theato samreab kamne nei nimittasanhnhea nih"
 
 #: gschem/src/x/x_edit_cprop.c:1451
 msgid "Enable or Disable version checking of this component"
-msgstr ""
+msgstr "baek ryy bet karpinity meul kamne nei sameasapheak nih"
 
 #: gschem/src/x/x_edit_cprop.c:1458
 msgid "User license entry"
-msgstr ""
+msgstr "theato achnhabnn robsa anak brae"
 
 #: gschem/src/x/x_edit_cprop.c:1465
 msgid "Entry for distribution license of the symbol"
-msgstr ""
+msgstr "theato som achnhabnn chekchay nei nimittasanhnhea"
 
 #: gschem/src/x/x_edit_cprop.c:1472
 msgid "Description of the component"
-msgstr ""
+msgstr "sangkheb nei sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1479
 msgid "Link to documentation for this device"
-msgstr ""
+msgstr "tamn tow eksar samreab ubakar nih"
 
 #: gschem/src/x/x_edit_cprop.c:1486
+#, fuzzy
 msgid "Entry for comments"
-msgstr ""
+msgstr "theato samreab tamlei sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1493
 msgid "Checkbox to enable electrical properties"
-msgstr ""
+msgstr "braab thik nih daembi anounhnhat lokkhan sambotte akkisani"
 
 #: gschem/src/x/x_edit_cprop.c:1500
+#, fuzzy
 msgid "Entry for reference designator"
-msgstr ""
+msgstr "theato samreab chhmoh anaknipon"
 
 #: gschem/src/x/x_edit_cprop.c:1507
 msgid "Spinner with entry for number of slots"
@@ -2254,103 +2340,98 @@ msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1514
 msgid "Spinner with entry for number of pins"
-msgstr ""
+msgstr "theato samreab karorochna chea eksaryong"
 
 #: gschem/src/x/x_edit_cprop.c:1521
 msgid "Entry for the component value"
-msgstr ""
+msgstr "theato samreab tamlei sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1528
 msgid "Entry for the component foot print"
-msgstr ""
+msgstr "theato samreab lomnoam sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1535
 msgid "Entry for spice-type over-ride"
-msgstr ""
+msgstr "theato samreab braphet bdeseth kar kleng"
 
 #: gschem/src/x/x_edit_cprop.c:1542
+#, fuzzy
 msgid "Entry for model file name"
-msgstr ""
+msgstr "theato samreab chhmoh eksar koumrou"
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "ピン"
+msgstr "kar banhchoul"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "切り取り(_T)"
+msgstr "tinnophal"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "banhchoul/banhchenh"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "ロック"
+msgstr "anak bramoul tinh baekchamh"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "移動"
+msgstr "banhchenh baekchamh"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "a kam"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "kar thveutest chamnoch"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "bei rod"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "nealeka"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "amnach"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*batkhluon*"
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"
-msgstr ""
+msgstr "lokkhan sambotte robsa tomneaktomnong"
 
 #: gschem/src/x/x_edit_pin.c:281
 msgid "Invalid Pin Node Type"
-msgstr ""
+msgstr "braphet pin thnang min troemotrauv"
 
 #: gschem/src/x/x_edit_pin.c:293
 msgid "Ignoring Pin electrical VOID"
-msgstr ""
+msgstr "min aepeu nung pin toukcheamokh akkisani"
 
 #: gschem/src/x/x_edit_pin.c:801
 #, fuzzy
 msgid "Pin Properties Editor"
-msgstr "シングルアトルビュートエディタ"
+msgstr "kammovithi niponth lokkhan sambotte pin"
 
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "ネット"
+msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "アトリビュート"
+msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2370,58 +2451,55 @@ msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:161
 msgid "Edit slot number"
-msgstr "スロット番号編集"
+msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:184
 msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:198
-#, fuzzy
 msgid "Edit slot number:"
-msgstr "スロット番号編集"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
-msgstr "上 左"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:237
 msgid "Upper Middle"
-msgstr "上 中央"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:240
-#, fuzzy
 msgid "Upper Right"
-msgstr "下 右"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:244
 msgid "Middle Left"
-msgstr "中央 左"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:247
 msgid "Middle Middle"
-msgstr "中央 中央"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:250
 msgid "Middle Right"
-msgstr "中央 右"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:254
 msgid "Lower Left"
-msgstr "下 左"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:257
 msgid "Lower Middle"
-msgstr "下 中央"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:260
 msgid "Lower Right"
-msgstr "下 右"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:452
-#, fuzzy
 msgid "Edit Text Properties"
-msgstr "テキスト編集"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:469
 msgid "<b>Text Content</b>"
@@ -2432,9 +2510,8 @@ msgid "<b>Text Properties</b>"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text Alignment Attribute"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
@@ -2502,24 +2579,24 @@ msgid "Encapsulated Postscript"
 msgstr ""
 
 #: gschem/src/x/x_image.c:356
-#, fuzzy, c-format
+#, c-format
 msgid "Error: Unable to write eps file %s.\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:497
 #, c-format
 msgid "Wrote black and white image to [%s] [%d x %d]\n"
-msgstr "白黒イメージを出力しました。[%s] [%d x %d]\n"
-
-#: gschem/src/x/x_image.c:465
-#, c-format
-msgid "Generated PDF file [%s]\n"
 msgstr ""
 
-#: gschem/src/x/x_image.c:476
+#: gschem/src/x/x_image.c:465
 #, fuzzy, c-format
+msgid "Generated PDF file [%s]\n"
+msgstr "eksar thmei [%s]\n"
+
+#: gschem/src/x/x_image.c:476
+#, c-format
 msgid "Unable to write %s file %s. %s\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_image.c:477
 #, c-format
@@ -2537,7 +2614,7 @@ msgstr ""
 #: gschem/src/x/x_image.c:493
 #, c-format
 msgid "Wrote color image to [%s] [%d x %d]\n"
-msgstr "カラーイメージを出力しました。[%s] [%d x %d]\n"
+msgstr ""
 
 #: gschem/src/x/x_image.c:507
 msgid "Unable to get pixbuf from gschem's window.\n"
@@ -2545,11 +2622,11 @@ msgstr ""
 
 #: gschem/src/x/x_image.c:660
 msgid "Write image..."
-msgstr ""
+msgstr "..."
 
 #: gschem/src/x/x_image.c:690
 msgid "Width x Height"
-msgstr ""
+msgstr "ttung * kamposa"
 
 #: gschem/src/x/x_image.c:702
 msgid "Image type"
@@ -2566,42 +2643,38 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:86
 msgid "Select"
-msgstr "選択"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2116
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "選択モード"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
-msgstr "追加"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:90
 #, fuzzy
 msgid "Add modes"
-msgstr "部品"
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2235
 #, fuzzy
 msgid "Add net"
-msgstr "テキスト追加..."
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:92
 #, fuzzy
 msgid "Attribute..."
-msgstr "アトリビュート(_A)"
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2237
-#, fuzzy
 msgid "Add attribute"
-msgstr "アトリビュート"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "部品(_C)"
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2234
 msgid "Insert a symbol from the component library"
@@ -2612,19 +2685,16 @@ msgid "Add bus"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "Add text"
-msgstr "テキスト追加..."
+msgstr "banthem atthabat..."
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "線"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
@@ -2636,9 +2706,8 @@ msgid "Increase the Zoom magnification"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "切り取り(_T)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2183
@@ -2647,16 +2716,15 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
-msgstr "ボックス"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2180
 msgid "Zoom to a Windowed region"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2181
@@ -2677,12 +2745,11 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
-msgstr "編集"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
@@ -2691,25 +2758,24 @@ msgstr ""
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2104
 #, fuzzy
 msgid "Edit Object Attributes"
-msgstr "アトリビュート編集"
+msgstr "kounalokkhan"
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2106
 msgid "Color..."
-msgstr "色..."
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2106
 msgid "Open the Color Editor Dialog"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Open the Component Editor Dialog"
-msgstr "シングルアトルビュートエディタ"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:113
 #, fuzzy
 msgid "Pin type..."
-msgstr "塗りつぶし種類..."
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2107
 msgid "Open the Pin Type Dialog"
@@ -2732,9 +2798,8 @@ msgid "Break an object into seperate objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2101
-#, fuzzy
 msgid "Extend"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2101
 msgid "Project a linear objects to other objects"
@@ -2743,7 +2808,7 @@ msgstr ""
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1673
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
-msgstr "削除"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2087
 msgid "Delete the current selection"
@@ -2752,16 +2817,15 @@ msgstr ""
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2090
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Copy"
-msgstr "コピー"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2090
 msgid "Copy selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "コピー"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2091
 msgid "Make multible copies of selection"
@@ -2769,16 +2833,15 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2093
 msgid "Move"
-msgstr "移動"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2093
-#, fuzzy
 msgid "Move selection"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2092
 msgid "Mirror"
-msgstr "反転"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2092
 msgid "Mirror an object about a point"
@@ -2786,7 +2849,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
-msgstr "回転"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2095
 msgid "Rotate the current selection about a point"
@@ -2795,49 +2858,44 @@ msgstr ""
 #: gschem/src/x/x_menus.c:126
 #, fuzzy
 msgid "Snap"
-msgstr "スナップ・オン\n"
+msgstr "khtasa now leu\n"
 
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap objects to the current grid"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Hierarchy"
-msgstr "階層"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:132
 #, fuzzy
 msgid "Edit operations"
-msgstr "アトリビュート編集"
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:326
 msgid "Down Schematic"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2223
-#, fuzzy
 msgid "Descend down in the schematic hierarchy"
-msgstr "下の階層も検索"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Symbol"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Descend down in the symbol hierarchy"
-msgstr "下の階層も検索"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:135
 msgid "Up"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2225
-#, fuzzy
 msgid "ascend up in the schematic hierarchy"
-msgstr "下の階層も検索"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:140
 msgid "Cut to Clipboard"
@@ -2848,32 +2906,28 @@ msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Copy to Clipboard"
-msgstr "コピー1"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2085
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Paste Clipboard"
-msgstr "ペースト1"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2086
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close"
-msgstr "閉じる(_C)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close the current path"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:149
 msgid "Done"
@@ -2882,12 +2936,11 @@ msgstr ""
 #: gschem/src/x/x_menus.c:149
 #, fuzzy
 msgid "Terminate the current path"
-msgstr "現在のスケマチックを印刷しました。[%s]\n"
+msgstr "baohpoump eksar bachchobban"
 
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "End"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
@@ -2903,9 +2956,8 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:157 gschem/src/x/x_settings_dialog.c:1249
 #: gschem/scheme/gschem/builtins.scm:44
-#, fuzzy
 msgid "Cancel"
-msgstr "パン/キャンセル"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:157
 msgid "Cancel path mode"
@@ -2924,9 +2976,8 @@ msgid "Quit gschem and exit"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:473 gschem/etc/system-gschemrc.scm:2176
-#, fuzzy
 msgid "redraw the current window"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:513 gschem/src/x/x_menus.c:516
 #, c-format
@@ -3072,14 +3123,14 @@ msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:1752
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open file %s\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:1847
 #, fuzzy
 msgid "Open"
-msgstr "開く..."
+msgstr "..."
 
 #: gschem/src/x/x_menus.c:1856
 msgid "Remove"
@@ -3108,20 +3159,19 @@ msgstr ""
 #: gschem/src/x/x_multiattrib.c:920
 #, fuzzy
 msgid "Multi-Attribute Editor"
-msgstr "シングルアトルビュートエディタ"
+msgstr "..."
 
 #: gschem/src/x/x_multiattrib.c:1616
-#, fuzzy
 msgid "Select an attribute to add"
-msgstr "スロットアトリビュートが変です。\n"
+msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:1635
 msgid "Show Value only"
-msgstr "値のみ表示"
+msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:1637
 msgid "Show Name only"
-msgstr "名前のみ表示"
+msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:1641
 msgid "Select an attribute visibility option"
@@ -3138,11 +3188,11 @@ msgstr ""
 #: gschem/src/x/x_multiattrib.c:1674
 #, fuzzy
 msgid "Copy to all"
-msgstr "コピー1"
+msgstr " 1"
 
 #: gschem/src/x/x_multiattrib.c:2037 gschem/src/x/x_multiattrib.c:2562
 msgid "Edit Attributes"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2179 gschem/scheme/gschem/builtins.scm:347
 msgid "Add Attribute"
@@ -3165,12 +3215,14 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2581
+#, fuzzy
 msgid "symbols"
-msgstr ""
+msgstr "nimittasanhnhea"
 
 #: gschem/src/x/x_multiattrib.c:2585
+#, fuzzy
 msgid "symbol"
-msgstr ""
+msgstr "nimittasanhnhea"
 
 #: gschem/src/x/x_multiattrib.c:2596
 msgid "pins"
@@ -3179,7 +3231,7 @@ msgstr ""
 #: gschem/src/x/x_multiattrib.c:2600
 #, fuzzy
 msgid "pin"
-msgstr "ピン"
+msgstr "kar banhchoul"
 
 #: gschem/src/x/x_multiattrib.c:2611
 msgid "nets"
@@ -3188,7 +3240,7 @@ msgstr ""
 #: gschem/src/x/x_multiattrib.c:2615
 #, fuzzy
 msgid "net"
-msgstr "ネット"
+msgstr "sot"
 
 #: gschem/src/x/x_multiattrib.c:2626
 msgid "buses"
@@ -3197,27 +3249,27 @@ msgstr ""
 #: gschem/src/x/x_multiattrib.c:2630
 #, fuzzy
 msgid "bus"
-msgstr "バス"
+msgstr "akkisani"
 
 #: gschem/src/x/x_multiattrib.c:2641
 #, fuzzy
 msgid "attributes"
-msgstr "アトリビュート"
+msgstr "kounalokkhan"
 
 #: gschem/src/x/x_multiattrib.c:2645
 #, fuzzy
 msgid "attribute"
-msgstr "アトリビュート"
+msgstr "kounalokkhan"
 
 #: gschem/src/x/x_pagesel.c:594
 #, fuzzy
 msgid "Move Up"
-msgstr "移動"
+msgstr "kar phlasa btaur rbieb"
 
 #: gschem/src/x/x_pagesel.c:595
 #, fuzzy
 msgid "Move Down"
-msgstr "パンモード"
+msgstr "kar phlasa btaur rbieb"
 
 #: gschem/src/x/x_pagesel.c:597
 msgid "New Blank"
@@ -3225,28 +3277,28 @@ msgstr ""
 
 #: gschem/src/x/x_pagesel.c:598 gschem/scheme/gschem/builtins.scm:305
 msgid "New Page"
-msgstr "新規ページ"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:599
 #, fuzzy
 msgid "Open Page..."
-msgstr "ファイルを開く..."
+msgstr "..."
 
 #: gschem/src/x/x_pagesel.c:601
 msgid "Save Page"
-msgstr "保存"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:602 gschem/scheme/gschem/builtins.scm:317
 msgid "Close Page"
-msgstr "閉じる"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:603 gschem/scheme/gschem/builtins.scm:320
 msgid "Discard Page"
-msgstr "破棄"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:1048 gschem/scheme/gschem/builtins.scm:284
 msgid "Page Manager"
-msgstr "ページマネージャ"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:1138
 msgid "Changed"
@@ -3270,20 +3322,20 @@ msgstr ""
 
 #: gschem/src/x/x_print.c:184
 msgid "Current Window"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
-msgstr "ランドスケープ"
+msgstr ""
 
 #: gschem/src/x/x_print.c:223
 msgid "Portrait"
-msgstr "ポートレイト"
+msgstr ""
 
 #: gschem/src/x/x_print.c:484
 #, fuzzy
 msgid "Print..."
-msgstr "印刷(_P)..."
+msgstr "..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3306,9 +3358,8 @@ msgid "Destination"
 msgstr ""
 
 #: gschem/src/x/x_print.c:548
-#, fuzzy
 msgid "File:"
-msgstr "ファイル(_F)"
+msgstr ""
 
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
@@ -3321,7 +3372,7 @@ msgstr ""
 #: gschem/src/x/x_print.c:785
 #, c-format
 msgid "Cannot print current schematic to [%s]\n"
-msgstr "現在のスケマチックを印刷できません。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_print.c:789 gschem/src/x/x_print.c:1221
 msgid "<b>An error occurred while printing</b>"
@@ -3334,17 +3385,17 @@ msgstr ""
 #: gschem/src/x/x_print.c:791 gschem/src/x/x_print.c:1222
 #, fuzzy
 msgid "Print Error"
-msgstr "印刷..."
+msgstr "..."
 
 #: gschem/src/x/x_print.c:796
 #, c-format
 msgid "Printed current schematic to [%s]\n"
-msgstr "現在のスケマチックを印刷しました。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_print.c:1106 gschem/src/x/x_print.c:1168
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to write PDF to '%s': %s\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_print.c:1218
 #, c-format
@@ -3384,9 +3435,8 @@ msgid "Specify new name for Session:"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "選択モード"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:232
 #, c-format
@@ -3394,9 +3444,8 @@ msgid "Exported session %s to %s\n"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:413
-#, fuzzy
 msgid "Loads the selected session"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:414
 msgid ""
@@ -3408,9 +3457,8 @@ msgid "Add and remove files to the sessions automatically"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:420
-#, fuzzy
 msgid "Show at startup"
-msgstr "テキスト"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:427
 msgid "Auto update"
@@ -3425,9 +3473,8 @@ msgid "File Count"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:589
-#, fuzzy
 msgid "Rename the selected session"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:590
 msgid "Delete the selected session"
@@ -3442,13 +3489,12 @@ msgid "Manage Sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:628
-#, fuzzy
 msgid "_Rename"
-msgstr "ファイル名"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:635 gschem/etc/system-gschemrc.scm:2087
 msgid "_Delete"
-msgstr "削除(_D)"
+msgstr ""
 
 #: gschem/src/x/x_sessions.c:642 gschem/etc/system-gschemrc.scm:2062
 msgid "_Export"
@@ -3463,9 +3509,8 @@ msgid "New Session"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:842 gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session As"
-msgstr "すべて保存"
+msgstr ""
 
 #: gschem/src/x/x_settings.c:359
 #, c-format
@@ -3473,9 +3518,9 @@ msgid "%s: error opening: %s\n"
 msgstr ""
 
 #: gschem/src/x/x_settings.c:413
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to open [%s]: %s\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_settings.c:528
 #, c-format
@@ -3516,7 +3561,7 @@ msgstr ""
 
 #: gschem/src/x/x_settings_dialog.c:2641 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
-msgstr "保存"
+msgstr ""
 
 #: gschem/src/x/x_settings_dialog.c:2645
 msgid "Close and Write settings to disk"
@@ -3530,24 +3575,23 @@ msgstr ""
 #: gschem/src/x/x_status_bar.c:288 gschem/src/x/x_status_bar.c:353
 #: gschem/src/x/x_status_bar.c:365
 msgid "none"
-msgstr "なし"
+msgstr ""
 
 #: gschem/src/x/x_status_bar.c:311
 msgid "Menu/Cancel"
-msgstr "メニュー/キャンセル"
+msgstr ""
 
 #: gschem/src/x/x_status_bar.c:314
-#, fuzzy
 msgid "Pan/Cancel"
-msgstr "メニュー/キャンセル"
+msgstr ""
 
 #: gschem/src/x/x_status_bar.c:357
 msgid "Repeat/none"
-msgstr "繰り返し/なし"
+msgstr ""
 
 #: gschem/src/x/x_status_bar.c:378
 msgid "Pick"
-msgstr "ピック"
+msgstr ""
 
 #: gschem/src/x/x_toolbars.c:532
 msgid "Creating new Toolbar configuration\n"
@@ -3558,24 +3602,21 @@ msgid "Saving Toolbar configuration..."
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:566
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save Toolbar configuration to %s\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+msgstr ""
 
 #: gschem/src/x/x_window.c:107
-#, fuzzy
 msgid "Could not allocate gc, w_current is NULL\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr ""
 
 #: gschem/src/x/x_window.c:116
-#, fuzzy
 msgid "Could not create a Cairo context, is window drawable?\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr ""
 
 #: gschem/src/x/x_window.c:123
-#, fuzzy
 msgid "Could not allocate gc, w_current->window is not a valid Window\n"
-msgstr "指定できない色[%s]です!\n"
+msgstr ""
 
 #: gschem/src/x/x_window.c:186
 msgid "Saving main window geometry and settings.\n"
@@ -3592,62 +3633,64 @@ msgstr ""
 #: gschem/src/x/x_window.c:678
 #, fuzzy
 msgid "Close Window canceled\n"
-msgstr "ウィンドウを閉じています。\n"
+msgstr "loubchaol kar bet teangoasa\n"
 
 #: gschem/src/x/x_window.c:764
-#, fuzzy, c-format
+#, c-format
 msgid "Loading \"%s\"\n"
-msgstr "スケマチックを読み込んでいます。[%s]\n"
+msgstr "kampoung phtok \"%s\"\n"
 
 #: gschem/src/x/x_window.c:908
 #, c-format
 msgid "New file [%s]\n"
-msgstr ""
+msgstr "eksar thmei [%s]\n"
 
 #: gschem/src/x/x_window.c:1136
 #, c-format
 msgid "Discarding page [%s]\n"
-msgstr "ページを破棄しています。[%s]\n"
+msgstr "tompr baohbng [%s]\n"
 
 #: gschem/src/x/x_window.c:1136
 #, c-format
 msgid "Closing [%s]\n"
-msgstr "閉じています。[%s]\n"
+msgstr "eksar del ban bet [%s]\n"
 
 #: gschem/src/x/x_window.c:1200
 #, c-format
 msgid "Could NOT save page [%s]:\n"
-msgstr ""
+msgstr "min ach roksaatouk tompr [%s]:\n"
 
 #: gschem/src/x/x_window.c:1202
 msgid "Error while trying to save"
-msgstr "保存中にエラー発生"
+msgstr "mean kamhosa khn pel pyeayeam sangkroh"
 
 #: gschem/src/x/x_window.c:1215
-#, fuzzy, c-format
+#, c-format
 msgid "Saved as [%s] Okay\n"
-msgstr "保存しました。[%s]\n"
+msgstr "roksaatouk chea [%s] min ei te\n"
 
 #: gschem/src/x/x_window.c:1218
-#, fuzzy, c-format
+#, c-format
 msgid "Saved [%s] Okay\n"
-msgstr "保存しました。[%s]\n"
+msgstr "del ban roksaatouk [% s] min ei te\n"
 
 #: gschem/src/x/x_window.c:1221
 msgid "Saved"
-msgstr "保存しました。"
+msgstr "del ban roksaatouk"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
-msgstr ""
+msgstr "gEDA koumnour bampruonh kammovithi nipon"
 
 #: gschem/data/geda-gschem.desktop.in:4
 msgid "Create and edit electrical schematics and symbols with gschem"
 msgstr ""
+"bangkeut ning kesamruol koumnour bampruonh akkisani ning nimittasanhnhea del "
+"mean"
 
 #: gschem/etc/system-gschemrc.scm:2047 gschem/etc/system-gschemrc.scm:2255
 msgid "_New"
-msgstr "新規(_N)"
+msgstr "Thmei"
 
 #: gschem/etc/system-gschemrc.scm:2047
 msgid "Create a new empty file"
@@ -3655,11 +3698,11 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2048 gschem/etc/system-gschemrc.scm:2256
 msgid "_Open..."
-msgstr "開く(_O)..."
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2049
 msgid "Open Recen_t"
-msgstr "最近使用したファイル(_T)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2049
 msgid "Open recently accessed schematic or symbol files"
@@ -3667,11 +3710,11 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2053 gschem/etc/system-gschemrc.scm:2259
 msgid "_Save"
-msgstr "保存(_S)"
+msgstr "Roksaatouk"
 
 #: gschem/etc/system-gschemrc.scm:2054 gschem/etc/system-gschemrc.scm:2260
 msgid "Save _As..."
-msgstr "別名で保存(_A)..."
+msgstr "roksaatouk Chea..."
 
 #: gschem/etc/system-gschemrc.scm:2054
 msgid "Save the current document to a new name or location"
@@ -3679,16 +3722,15 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2055 gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
-msgstr "すべて保存"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2055
 msgid "Save all open documents"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2056 gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "移動モード"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2056
 msgid "Save all modified documents"
@@ -3696,37 +3738,38 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2057 gschem/etc/system-gschemrc.scm:2216
 msgid "_Revert"
-msgstr "再読み込み(_R)"
+msgstr "tralb"
 
 #: gschem/etc/system-gschemrc.scm:2057
 msgid "Discard changes and reload the current document"
-msgstr ""
+msgstr "baohbng kar phlasa btaur ning kar phtok eksar bachchobban"
 
 #: gschem/etc/system-gschemrc.scm:2058
 #, fuzzy
 msgid "Re_vert All"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "tralb bratebatte kar ban breachy"
 
 #: gschem/etc/system-gschemrc.scm:2058
+#, fuzzy
 msgid "Discard changes and reload the all documents"
-msgstr ""
+msgstr "baohbng kar phlasa btaur ning kar phtok eksar bachchobban"
 
 #: gschem/etc/system-gschemrc.scm:2061
 msgid "_Print..."
-msgstr "印刷(_P)..."
+msgstr "baohpoum..."
 
 #: gschem/etc/system-gschemrc.scm:2061
-#, fuzzy
 msgid "Print the current document"
-msgstr "現在のスケマチックを印刷しました。[%s]\n"
+msgstr "baohpoump eksar bachchobban"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Export options"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2063
+#, fuzzy
 msgid "Write p_df"
-msgstr ""
+msgstr "sarser chea PDF"
 
 #: gschem/etc/system-gschemrc.scm:2063
 msgid "Create PDF document"
@@ -3734,7 +3777,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2064
 msgid "Write _image..."
-msgstr "画像として保存(_I)..."
+msgstr "roubpheap del ban sarser"
 
 #: gschem/etc/system-gschemrc.scm:2064
 msgid "This is a dummy tip"
@@ -3742,25 +3785,24 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2067
 msgid "Execute Script..."
-msgstr "スクリプト実行..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2067
 #, fuzzy
 msgid "Execute a script file"
-msgstr "スクリプト実行..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2070 gschem/etc/system-gschemrc.scm:2217
 msgid "_Close"
-msgstr "閉じる(_C)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2070
 msgid "Close the current document"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "_Close All"
-msgstr "閉じる(_C)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2071
 msgid "Close all open documents"
@@ -3768,40 +3810,35 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2072
 msgid "_Quit"
-msgstr "終了(_Q)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2080
 msgid "_Undo"
-msgstr "元に戻す(_U)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2080
-#, fuzzy
 msgid "Undo the last action"
-msgstr "アンドゥ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2081
 msgid "_Redo"
-msgstr "やり直す(_R)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2081
-#, fuzzy
 msgid "redo the last un-done action"
-msgstr "アンドゥ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2084
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "コピー1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "コピー1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2086
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "ペースト1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2091
 msgid "Multiple Copy"
@@ -3812,14 +3849,12 @@ msgid "Offset"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2094
-#, fuzzy
 msgid "Offset the selected objects"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2095
-#, fuzzy
 msgid "Rotate 90"
-msgstr "回転"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2096
 msgid "Snap to grid"
@@ -3836,11 +3871,11 @@ msgstr ""
 #: gschem/etc/system-gschemrc.scm:2104 gschem/scheme/gschem/builtins.scm:131
 #: gschem/scheme/gschem/builtins.scm:134
 msgid "Edit..."
-msgstr "編集..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2105
 msgid "Edit Text..."
-msgstr "テキスト編集..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2105
 msgid "Open the Text Editor Dialog"
@@ -3849,11 +3884,11 @@ msgstr ""
 #: gschem/etc/system-gschemrc.scm:2107
 #, fuzzy
 msgid "Edit Pin..."
-msgstr "塗りつぶしを編集"
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2108
 msgid "Line Width & Type..."
-msgstr "線種と幅..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2108
 msgid "Open the Line Editor Dialog"
@@ -3861,38 +3896,35 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2109
 msgid "Fill Type..."
-msgstr "塗りつぶし種類..."
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2109
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Edit Component..."
-msgstr "部品"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "Slot..."
-msgstr "スロット..."
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Slot Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Activate Deselect mode"
-msgstr "選択モード"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2118 gschem/scheme/gschem/builtins.scm:170
 msgid "Select All"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2118
-#, fuzzy
 msgid "Select all objects"
-msgstr "まずオブジェクトを選択してください。"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2119 gschem/scheme/gschem/builtins.scm:182
 msgid "Deselect All"
@@ -3912,7 +3944,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2123
 msgid "Copy into 1"
-msgstr "コピー1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2123
 msgid "Copy selection to first auxiliary buffer"
@@ -3920,7 +3952,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2124
 msgid "Copy into 2"
-msgstr "コピー2"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2124
 msgid "Copy selection to second auxiliary buffer"
@@ -3928,7 +3960,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "Copy into 3"
-msgstr "コピー3"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "Copy selection to third auxiliary buffer"
@@ -3936,7 +3968,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2126
 msgid "Copy into 4"
-msgstr "コピー4"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2126
 msgid "Copy selection to forth auxiliary buffer"
@@ -3944,7 +3976,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2127
 msgid "Copy into 5"
-msgstr "コピー5"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2127
 msgid "Copy selection to fifth auxiliary buffer"
@@ -3952,7 +3984,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cut into 1"
-msgstr "カット1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cut selection to first auxiliary buffer"
@@ -3960,7 +3992,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2129
 msgid "Cut into 2"
-msgstr "カット2"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2129
 msgid "Cut selection to second auxiliary buffer"
@@ -3968,7 +4000,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2130
 msgid "Cut into 3"
-msgstr "カット3"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2130
 msgid "Cut selection to third auxiliary buffer"
@@ -3976,7 +4008,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2131
 msgid "Cut into 4"
-msgstr "カット4"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2131
 msgid "Cut selection to forth auxiliary buffer"
@@ -3984,7 +4016,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2132
 msgid "Cut into 5"
-msgstr "カット5"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2132
 msgid "Cut selection to fifth auxiliary buffer"
@@ -3992,7 +4024,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2133
 msgid "Paste from 1"
-msgstr "ペースト1"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2133
 msgid "Insert contents of the first auxiliary buffer"
@@ -4000,7 +4032,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2134
 msgid "Paste from 2"
-msgstr "ペースト2"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2134
 msgid "Insert contents of the second auxiliary buffer"
@@ -4008,7 +4040,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2135
 msgid "Paste from 3"
-msgstr "ペースト3"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2135
 msgid "Insert contents of the third auxiliary buffer"
@@ -4016,7 +4048,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2136
 msgid "Paste from 4"
-msgstr "ペースト4"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2136
 msgid "Insert contents of the forth auxiliary buffer"
@@ -4024,7 +4056,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2137
 msgid "Paste from 5"
-msgstr "ペースト5"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2137
 msgid "Insert contents of the fifth auxiliary buffer"
@@ -4036,7 +4068,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2141 gschem/scheme/gschem/builtins.scm:188
 msgid "Unlock"
-msgstr "ロック解除"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2141
 msgid "Unlock selected objects"
@@ -4044,20 +4076,19 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2176
 msgid "_Redraw"
-msgstr "再描画"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2177
 msgid "_Pan"
-msgstr "パン"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2177
 msgid "Activate Panning"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2179
-#, fuzzy
 msgid "Zoom _All"
-msgstr "最縮小して表示(_F)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2179
 msgid "Zoom to the limits of the drawing area"
@@ -4065,29 +4096,27 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2180
 msgid "Zoom _Box"
-msgstr "ズームボックス"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2181
 msgid "Zoom _Extents"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2182
 msgid "Zoom _In"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2183
 msgid "Zoom _Out"
-msgstr "縮小(_O)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2184
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2185
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2188 gschem/etc/system-gschemrc.scm:2226
 msgid "D_ocumentation..."
@@ -4095,16 +4124,15 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2189
 msgid "Show/Hide Inv Text"
-msgstr "テキスト表示/非表示"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2189
 msgid "Toggle hidden text attributes"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2190
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "テキスト表示/非表示"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2190
 msgid "Toggle hidden net name attributes"
@@ -4112,7 +4140,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2193
 msgid "_Dark color scheme"
-msgstr "暗い配色(_D)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2193
 msgid "Set the color map to the Dark set"
@@ -4120,7 +4148,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2194
 msgid "_Light color scheme"
-msgstr "明るい配色(_L)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2194
 msgid "Set the color map to the Light set"
@@ -4143,13 +4171,13 @@ msgid "Change order objects are drawn"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2207
+#, fuzzy
 msgid "_Manager..."
-msgstr "管理(_M)"
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "Open the Page Manager"
-msgstr "ページマネージャ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "_First"
@@ -4161,7 +4189,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2209
 msgid "_Previous"
-msgstr "前のページ(_P)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2209
 msgid "Switch to the previous page"
@@ -4169,7 +4197,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2210
 msgid "_Next"
-msgstr "次のページ(_N)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2210
 msgid "Switch to the next page"
@@ -4177,16 +4205,15 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2211 gschem/etc/system-gschemrc.scm:2225
 msgid "_Up"
-msgstr ""
+msgstr "Leurng"
 
 #: gschem/etc/system-gschemrc.scm:2211
 msgid "Go up one page"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2212
-#, fuzzy
 msgid "_Down"
-msgstr "パンモード"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2212
 msgid "Go down one page"
@@ -4197,22 +4224,20 @@ msgid "_Last"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2213
-#, fuzzy
 msgid "Goto the last page"
-msgstr "アンドゥ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2214
 msgid "Ne_w"
-msgstr "新規(_W)"
+msgstr "Thmei"
 
 #: gschem/etc/system-gschemrc.scm:2214
 msgid "Create a new Page"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2215
-#, fuzzy
 msgid "Prin_t"
-msgstr "印刷..."
+msgstr "baohpoum..."
 
 #: gschem/etc/system-gschemrc.scm:2215
 msgid "Print the current page"
@@ -4228,7 +4253,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2220
 msgid "_Discard"
-msgstr "破棄(_D)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2220
 msgid "Close the current page without saving"
@@ -4236,40 +4261,39 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2223
 msgid "_Down Schematic"
-msgstr ""
+msgstr "Chors Schematic"
 
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Down _Symbol"
-msgstr ""
+msgstr "Chors Symbol"
 
 #: gschem/etc/system-gschemrc.scm:2226
-#, fuzzy
 msgid "Find component documentation"
-msgstr "部品モード"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2234
 msgid "_Component..."
-msgstr "部品(_C)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2235
 msgid "_Net"
-msgstr "ネット(_N)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2236
 msgid "B_us"
-msgstr "バス(_U)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2237
 msgid "_Attribute..."
-msgstr "アトリビュート(_A)"
+msgstr "kounalokkhan..."
 
 #: gschem/etc/system-gschemrc.scm:2238
 msgid "_Text..."
-msgstr "テキスト(_T)..."
+msgstr "atthabat..."
 
 #: gschem/etc/system-gschemrc.scm:2241
 msgid "A_rc"
-msgstr "円弧(_R)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2241
 msgid "Create arc"
@@ -4277,30 +4301,27 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2242
 msgid "_Box"
-msgstr "ボックス(_B)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add box"
-msgstr "テキスト追加..."
+msgstr "banthem chtokaon..."
 
 #: gschem/etc/system-gschemrc.scm:2243
 msgid "C_ircle"
-msgstr "円(_I)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2243
-#, fuzzy
 msgid "Add circle"
-msgstr "円"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2244
 msgid "_Line"
-msgstr "直線(_L)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Add line"
-msgstr "線"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2245
 msgid "Pat_h"
@@ -4311,8 +4332,9 @@ msgid "Add Path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2246
+#, fuzzy
 msgid "Pictu_re..."
-msgstr "画像(_R)"
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "Insert an image into the current document"
@@ -4320,12 +4342,11 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "_Pin"
-msgstr "ピン(_P)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Add pin"
-msgstr "線"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "Create a new session"
@@ -4344,23 +4365,20 @@ msgid "Restore an existing Session"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Save the current Session"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Save the current Session to another name"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2262
-#, fuzzy
 msgid "_Manage..."
-msgstr "管理(_M)"
+msgstr "kammovithi krobkrong..."
 
 #: gschem/etc/system-gschemrc.scm:2262
-#, fuzzy
 msgid "Open the Session Manager dialog"
-msgstr "ページマネージャ"
+msgstr "baek braab kammovithi krobkrong samy"
 
 #: gschem/etc/system-gschemrc.scm:2270
 msgid "_Attach"
@@ -4407,9 +4425,8 @@ msgid "_Toggle Visibility"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2276
-#, fuzzy
 msgid "Toggle attribute visibilty"
-msgstr "シングルアトルビュートエディタ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "_Reset Position"
@@ -4424,9 +4441,8 @@ msgid "_Find Specific Text..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2279
-#, fuzzy
 msgid "Find an attribute"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Hide Specific Text..."
@@ -4445,14 +4461,12 @@ msgid "Show a specific attribute"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "シングルアトルビュートエディタ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "Open the Attibutes Editor Dialog"
-msgstr "シングルアトルビュートエディタ"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2291
 msgid "A_utonumber Text..."
@@ -4463,9 +4477,8 @@ msgid "Open Auto Number dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "ウィンドウを閉じています。\n"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "Display the console"
@@ -4481,12 +4494,11 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2296 gschem/scheme/gschem/builtins.scm:442
 msgid "Invoke Macro"
-msgstr "マクロの実行"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Invoke a macro"
-msgstr "マクロの実行"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "G_uile Path..."
@@ -4498,25 +4510,23 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2301 gschem/scheme/gschem/builtins.scm:448
 msgid "Embed Component/Picture"
-msgstr "画像・コンポーネントの埋め込み"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2301
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "画像・コンポーネントの埋め込み"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2302 gschem/scheme/gschem/builtins.scm:451
 msgid "Unembed Component/Picture"
-msgstr "画像・コンポーネントの埋め込み解除"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2302
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "画像・コンポーネントの埋め込み解除"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2303 gschem/scheme/gschem/builtins.scm:454
 msgid "Update Component"
-msgstr "部品更新"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2303
 msgid "Reload definition of selected component"
@@ -4559,9 +4569,8 @@ msgid "Toggle the object snap mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
-#, fuzzy
 msgid "Toggle _Rubberband"
-msgstr "ラバーバンド・オン\n"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Toggle rubberband mode"
@@ -4592,9 +4601,8 @@ msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle _Auto-Pan"
-msgstr "ラバーバンド・オン\n"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle auto panning mode"
@@ -4602,7 +4610,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "_Text Size..."
-msgstr ""
+msgstr "tomham aksaar..."
 
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Open the Text Size settings"
@@ -4641,8 +4649,9 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2343
+#, fuzzy
 msgid "_About..."
-msgstr ""
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2351
 msgid "Draw objects before another object"
@@ -4662,28 +4671,27 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2363
 msgid "_File"
-msgstr "ファイル(_F)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2364
 msgid "_Edit"
-msgstr "編集(_E)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2365
-#, fuzzy
 msgid "_Select"
-msgstr "選択"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2367
 msgid "_View"
-msgstr "表示(_V)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2368
 msgid "_Page"
-msgstr "ページ(_P)"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2369
 msgid "_Add"
-msgstr "追加"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2370
 msgid "Sessio_ns"
@@ -4692,7 +4700,7 @@ msgstr ""
 #: gschem/etc/system-gschemrc.scm:2371
 #, fuzzy
 msgid "Attri_butes"
-msgstr "アトリビュート"
+msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2372
 msgid "_Tools"
@@ -4700,11 +4708,11 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "_Options"
-msgstr "オプション"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2383
 msgid "_Help"
-msgstr "ヘルプ"
+msgstr "Chhuoi Phorng"
 
 #: gschem/scheme/gschem/action.scm:45
 #, scheme-format
@@ -4716,24 +4724,20 @@ msgid "Repeat Last Action"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "新規ファイル"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:53
-#, fuzzy
 msgid "Open File"
-msgstr "ファイルを開く..."
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "すべて保存"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "印刷..."
+msgstr "baohpoum..."
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -4745,77 +4749,73 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
-msgstr "新規ウィンドウ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "ウィンドウを閉じています。\n"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:86
-#, fuzzy
 msgid "Quit"
-msgstr "終了(_Q)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:89
 #, fuzzy
 msgid "Export Symbol"
-msgstr "転送"
+msgstr "Chors Symbol"
 
 #: gschem/scheme/gschem/builtins.scm:92
 #, fuzzy
 msgid "Export Picture"
-msgstr "画像・コンポーネントの埋め込み"
+msgstr "banthem roubpheap..."
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
-msgstr "アンドゥ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
-msgstr "リドゥ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
-msgstr "コピーモード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
-msgstr "複数コピーモード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:119
 #, fuzzy
 msgid "Offest selection"
-msgstr "拡大(_I)"
+msgstr "kar chreus"
 
 #: gschem/scheme/gschem/builtins.scm:125 gschem/scheme/gschem/builtins.scm:128
 #, fuzzy
 msgid "Snap to Grid"
-msgstr "パンモード"
+msgstr "rbieb khtasa"
 
 #: gschem/scheme/gschem/builtins.scm:137
 #, fuzzy
 msgid "Edit Arc"
-msgstr "色"
+msgstr "banthem thnou"
 
 #: gschem/scheme/gschem/builtins.scm:140
 #, fuzzy
 msgid "Edit Object"
-msgstr "テキスト編集"
+msgstr "kounalokkhan"
 
 #: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Text"
-msgstr "テキスト編集"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:146
-#, fuzzy
 msgid "Edit Color"
-msgstr "色"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:149
-#, fuzzy
 msgid "Edit Pin Type"
-msgstr "塗りつぶしを編集"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:158 gschem/scheme/gschem/builtins.scm:161
 msgid "Choose Slot"
@@ -4824,115 +4824,102 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:173
 #, fuzzy
 msgid "Invert Selection"
-msgstr "拡大(_I)"
+msgstr "kar chreus"
 
 #: gschem/scheme/gschem/builtins.scm:176
 #, fuzzy
 msgid "Select Last"
-msgstr "選択"
+msgstr "chreusa vottho"
 
 #: gschem/scheme/gschem/builtins.scm:179
 #, fuzzy
 msgid "Deselect mode"
-msgstr "選択モード"
+msgstr "daoh chreusa rbieb"
 
 #: gschem/scheme/gschem/builtins.scm:194
-#, fuzzy
 msgid "Cut"
-msgstr "切り取り(_T)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:200
-#, fuzzy
 msgid "Paste"
-msgstr "貼り付け(_P)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:206
-#, fuzzy
 msgid "Redraw"
-msgstr "再描画"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Pan"
-msgstr "パン"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:212
-#, fuzzy
 msgid "Pan Left"
-msgstr "パンモード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:215
-#, fuzzy
 msgid "Pan Right"
-msgstr "上 右"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Up"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:221
-#, fuzzy
 msgid "Pan Down"
-msgstr "パンモード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:227
 #, fuzzy
 msgid "Zoom Selection"
-msgstr "拡大(_I)"
+msgstr "kar chreus"
 
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Extents"
-msgstr "回路全体の表示(_E)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:233
-#, fuzzy
 msgid "Zoom In"
-msgstr "拡大(_I)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:236
-#, fuzzy
 msgid "Zoom Out"
-msgstr "縮小(_O)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:239
 #, fuzzy
 msgid "Zoom All"
-msgstr "最縮小して表示(_F)"
+msgstr "bangkeun tidthpheap"
 
 #: gschem/scheme/gschem/builtins.scm:242
 #, fuzzy
 msgid "Zoom to Mag"
-msgstr "拡大(_I)"
+msgstr "bangkeun tidthpheap"
 
 #: gschem/scheme/gschem/builtins.scm:245
 #, fuzzy
 msgid "Documentation"
-msgstr "部品モード"
+msgstr "eksar:"
 
 #: gschem/scheme/gschem/builtins.scm:248
-#, fuzzy
 msgid "Show/Hide Invisible Text"
-msgstr "テキスト表示/非表示"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:251
-#, fuzzy
 msgid "Show/Hide Inherited Attributes"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:254
 #, fuzzy
 msgid "Show/Hide net names"
-msgstr "テキスト表示/非表示"
+msgstr "bangheanh pi kar del ban leak"
 
 #: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
 msgid "Dark Color Scheme"
-msgstr "暗い配色(_D)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:260
-#, fuzzy
 msgid "Light Color Scheme"
-msgstr "明るい配色(_L)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:263
 msgid "Monochrome Color Scheme"
@@ -4955,39 +4942,32 @@ msgid "Draw Last"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:287
-#, fuzzy
 msgid "First Page"
-msgstr "前のページ(_P)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "Previous Page"
-msgstr "前のページ(_P)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Next Page"
-msgstr "新規ページ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Page Up"
-msgstr "ページ(_P)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Down"
-msgstr "パンモード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Last Page"
-msgstr "新規ページ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:308
-#, fuzzy
 msgid "Print Page"
-msgstr "前のページ(_P)"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:311
 msgid "Revert Changes"
@@ -4996,98 +4976,86 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:314
 #, fuzzy
 msgid "Revert All"
-msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+msgstr "tralb bratebatte kar ban breachy"
 
 #: gschem/scheme/gschem/builtins.scm:332
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "階層"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:338
-#, fuzzy
 msgid "Add Component"
-msgstr "部品"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Net"
-msgstr "テキスト追加..."
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Bus"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:350
-#, fuzzy
 msgid "Add Text"
-msgstr "テキスト追加..."
+msgstr "banthem atthabat..."
 
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Line"
-msgstr "線"
+msgstr "banthem banteat"
 
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Pin"
-msgstr ""
+msgstr "banthem chamnoch teaktng akkisani"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Box"
-msgstr ""
+msgstr "banthem chtokaon"
 
 #: gschem/scheme/gschem/builtins.scm:362
-#, fuzzy
 msgid "Add Circle"
-msgstr "円"
+msgstr "banthem rongvong"
 
 #: gschem/scheme/gschem/builtins.scm:365
 msgid "Add Arc"
-msgstr ""
+msgstr "banthem thnou"
 
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Picture"
-msgstr "画像(_R)"
+msgstr "banthem roubpheap..."
 
 #: gschem/scheme/gschem/builtins.scm:377
-#, fuzzy
 msgid "Create New Session"
-msgstr "現在のウィンドウ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:380
 #, fuzzy
 msgid "Open a Session"
-msgstr "すべて保存"
+msgstr "ban baek samyobrachoum %s\n"
 
 #: gschem/scheme/gschem/builtins.scm:383
 #, fuzzy
 msgid "Save Session"
-msgstr "すべて保存"
+msgstr "breachy knong kar roksaatouk samyobrachoum"
 
 #: gschem/scheme/gschem/builtins.scm:395
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "アトリビュート編集"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:401
 #, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "シングルアトルビュートエディタ"
+msgstr "kammovithi niponth attribute temuoy"
 
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "スロットアトリビュートが変です。\n"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Name"
-msgstr "スロットアトリビュートが変です。\n"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Toggle Text Visibility"
@@ -5108,39 +5076,39 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:425
 #, fuzzy
 msgid "Open Attributes Editor"
-msgstr "シングルアトルビュートエディタ"
+msgstr "kammovithi niponth attribute temuoy"
 
 #: gschem/scheme/gschem/builtins.scm:430
-#, fuzzy
 msgid "Autonumber Text"
-msgstr "オートナンバーテキスト"
-
-#: gschem/scheme/gschem/builtins.scm:433
-#, fuzzy
-msgid "Show Console Window"
-msgstr "ウィンドウを閉じています。\n"
-
-#: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
-msgid "Show Coordinate Window"
-msgstr "現在のウィンドウ"
-
-#: gschem/scheme/gschem/builtins.scm:439
-msgid "Guile Path"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:445
+#: gschem/scheme/gschem/builtins.scm:433
+msgid "Show Console Window"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:436
+msgid "Show Coordinate Window"
+msgstr ""
+
+#: gschem/scheme/gschem/builtins.scm:439
 #, fuzzy
+msgid "Guile Path"
+msgstr ""
+"\n"
+"bannaly Guile "
+
+#: gschem/scheme/gschem/builtins.scm:445
 msgid "Translate Symbol"
-msgstr "転送"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:460
 msgid "Dots Grid Style"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:463
+#, fuzzy
 msgid "Mesh Grid Style"
-msgstr ""
+msgstr "kraleachatrangk saamnanh ban thveu aoy sakam\n"
 
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Turn Grid Off"
@@ -5149,7 +5117,7 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:469
 #, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "円弧モード"
+msgstr "rbieb kraleachatrang"
 
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Increase Grid Spacing"
@@ -5166,7 +5134,7 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:481
 #, fuzzy
 msgid "Turn Snap off"
-msgstr "スナップ・オフ"
+msgstr "khtasa bet"
 
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Turn Snap on"
@@ -5175,7 +5143,7 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:487
 #, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "パンモード"
+msgstr "rbieb khtasa"
 
 #: gschem/scheme/gschem/builtins.scm:490
 msgid "Toggle Net Rubber Band"
@@ -5198,9 +5166,8 @@ msgid "Enable/Disable Auto Panning"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:505
-#, fuzzy
 msgid "Set Default Text Size"
-msgstr "テキストサイズ"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Open Preference Dialog"
@@ -5215,14 +5182,12 @@ msgid "View the front page of the gEDA documentation in a browser."
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:519
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "隠しテキスト表示"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:523
-#, fuzzy
 msgid "Component Documentation"
-msgstr "部品モード"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:525
 msgid "View documentation for selected component"
@@ -5272,9 +5237,8 @@ msgid "Export embed symbol"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "画像・コンポーネントの埋め込み"
+msgstr ""
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5286,308 +5250,64 @@ msgstr ""
 msgid "~S is not a prefix key sequence."
 msgstr ""
 
-#, fuzzy
+#~ msgid "No '*' or '?' given at the end of the autonumber text.\n"
+#~ msgstr ""
+#~ "kmean '*' ryy ' ?' del ban phtal aoy now chongobanhchob nei atthabt lekh "
+#~ "svyobravotte nih.\n"
+
 #~ msgid "Zoom too small! Cannot zoom further.\n"
-#~ msgstr "これ以上ズームできません。\n"
+#~ msgstr "pongrik tauch pek, min ach pongrik themtiet\n"
 
 #, fuzzy
-#~ msgid "Goto Page..."
-#~ msgstr "開く..."
-
-#, fuzzy
-#~ msgid "Zoom Full"
-#~ msgstr "最縮小して表示(_F)"
-
-#, fuzzy
-#~ msgid "%i attribute"
-#~ msgid_plural "%i attributes"
-#~ msgstr[0] "アトリビュート"
-#~ msgstr[1] "アトリビュート"
+#~ msgid "Show Sessions at startup is now"
+#~ msgstr ""
+#~ "kar bangheanh nowpel chabphdaem samy ilauvnih trauv ban anounhnhat\n"
 
 #~ msgid "Tried to get an invalid color: %d\n"
-#~ msgstr "無効な色の指定です。 : %d\n"
+#~ msgstr "pyeayeam daembi ttuol ban libekram now min troemotrauv: %d\n"
 
 #~ msgid "Could not allocate the color %s!\n"
-#~ msgstr "指定できない色[%s]です!\n"
+#~ msgstr "min ach bamroungtouk nih %s!\n"
 
 #, fuzzy
 #~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "指定できない色[%s]です!\n"
+#~ msgstr "min ach bamroungtouk n ekrang %i!\n"
 
 #~ msgid "black"
-#~ msgstr "黒"
+#~ msgstr "khmaw"
 
 #~ msgid "white"
-#~ msgstr "白"
+#~ msgstr "s"
 
-#, fuzzy
+#~ msgid "display"
+#~ msgstr "ekrang"
+
+#~ msgid "outline"
+#~ msgstr "krong"
+
 #~ msgid "Allocating new color scheme: %s\n"
-#~ msgstr "明るい配色(_L)"
+#~ msgstr "bamroungtouk komrong thmei: %s\n"
 
-#, fuzzy
+#~ msgid "Something went wrong, check:%s\n"
+#~ msgstr "mean aveimuoy khosa karpinity,: %s\n"
+
 #~ msgid "%s: Could not locate file:%s\n"
-#~ msgstr "指定できない色[%s]です!\n"
+#~ msgstr "%s: min ach kamnt titeang eksar:%s\n"
 
-#, fuzzy
-#~ msgid "Could not allocate gc, is window?\n"
-#~ msgstr "指定できない色[%s]です!\n"
+#~ msgid "Comments entry"
+#~ msgstr "theato samreab mteyobl"
 
-#~ msgid "Coords"
-#~ msgstr "座標"
-
-#, fuzzy
-#~ msgid "Symbol _Translate..."
-#~ msgstr "シンボル転送..."
+#~ msgid "ERROR: NULL object in x_dialog_edit_color_apply!\n"
+#~ msgstr "kamhos: "
 
 #~ msgid "This is the MINGW32 port.\n"
-#~ msgstr "MIGW32版です。\n"
+#~ msgstr "nih kuchea chrak MINGW32\n"
 
-#, fuzzy
+#~ msgid "Could not allocate outline color %i!\n"
+#~ msgstr "min ach bamroungtouk krong %i!\n"
+
 #~ msgid "Tried to get an invalid color index: %d\n"
-#~ msgstr "無効な色の指定です。 : %d\n"
+#~ msgstr "pyeayeam daembi ttuol ban libekram now min troemotrauv: %d\n"
 
-#~ msgid "A_ttributes"
-#~ msgstr "アトリビュート"
-
-#, fuzzy
-#~ msgid "Failed to descend into '%s': <i>%s</i>"
-#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
-
-#~ msgid "Closing Window\n"
-#~ msgstr "ウィンドウを閉じています。\n"
-
-#, fuzzy
-#~ msgid "Failed to descend hierarchy into '%s': %s"
-#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
-
-#~ msgid "Cu_t"
-#~ msgstr "切り取り(_T)"
-
-#~ msgid "_Copy"
-#~ msgstr "コピー(_C)"
-
-#~ msgid "_Paste"
-#~ msgstr "貼り付け(_P)"
-
-#~ msgid "Rotate 90 Mode"
-#~ msgstr "90度回転モード"
-
-#, fuzzy
-#~ msgid "Edit pin type..."
-#~ msgstr "塗りつぶしを編集"
-
-#, fuzzy
-#~ msgid "Show Log Window"
-#~ msgstr "新規ウィンドウ"
-
-#, fuzzy
-#~ msgid "Could not create a Pango layout, is window drawable?\n"
-#~ msgstr "指定できない色[%s]です!\n"
-
-#, fuzzy
-#~ msgid "Add Attribute..."
-#~ msgstr "アトリビュート(_A)"
-
-#~ msgid "Invalid size [%d] passed to text-size\n"
-#~ msgstr "無効なサイズ[%d]がtext-sizeに指定されました。\n"
-
-#~ msgid "Invalid size [%d] passed to snap-size\n"
-#~ msgstr "無効なサイズ[%d]がsnap-sizeに指定されました。\n"
-
-#~ msgid "Invalid num levels [%d] passed to undo-levels\n"
-#~ msgstr "無効なアンドゥレベル[%d]がundo-levelsに指定されました。\n"
-
-#~ msgid "Invalid size [%d] passed to bus-ripper-size\n"
-#~ msgstr "無効なサイズ[%d]がbus-ripperに指定されました。\n"
-
-#~ msgid ""
-#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
-#~ "details.\n"
-#~ msgstr ""
-#~ "gEDA/gschemは完全に無保証で提供されます。詳しくはCOPYINGファイルをご覧くだ"
-#~ "さい。\n"
-
-#~ msgid ""
-#~ "This is free software, and you are welcome to redistribute it under "
-#~ "certain\n"
-#~ msgstr ""
-#~ "これはフリーソフトウェアであり、ある条件の下で再頒布することが奨励されてい"
-#~ "ます。\n"
-
-#~ msgid ""
-#~ "conditions; please see the COPYING file for more details.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "詳しくはCOPYINGファイルをご覧ください。\n"
-#~ "\n"
-
-#~ msgid "Repeat/"
-#~ msgstr "繰り返し/"
-
-#~ msgid "Slot"
-#~ msgstr "スロット"
-
-#~ msgid "Color"
-#~ msgstr "色"
-
-#~ msgid "Unembed"
-#~ msgstr "組み込み解除"
-
-#~ msgid "ShowHidden"
-#~ msgstr "隠しテキスト表示"
-
-#, fuzzy
-#~ msgid "Copy %i"
-#~ msgstr "コピー1"
-
-#, fuzzy
-#~ msgid "Cut %i"
-#~ msgstr "カット1"
-
-#~ msgid "Line"
-#~ msgstr "線"
-
-#~ msgid "Circle"
-#~ msgstr "円"
-
-#~ msgid "Arc"
-#~ msgstr "円弧"
-
-#, fuzzy
-#~ msgid "Failed to descend hierarchy."
-#~ msgstr "下の階層も検索"
-
-#~ msgid "Attach"
-#~ msgstr "アタッチ"
-
-#~ msgid "Detach"
-#~ msgstr "アタッチ解除"
-
-#~ msgid "ShowN"
-#~ msgstr "N表示"
-
-#~ msgid "ShowV"
-#~ msgstr "表示V"
-
-#~ msgid "ShowB"
-#~ msgstr "表示B"
-
-#~ msgid "VisToggle"
-#~ msgstr "表示切替え"
-
-#~ msgid "Sorry but this is a non-functioning menu option\n"
-#~ msgstr "機能しないメニューオプションです。\n"
-
-#~ msgid "Nets"
-#~ msgstr "ネット"
-
-#~ msgid "Select Component..."
-#~ msgstr "部品選択..."
-
-#~ msgid "Libraries"
-#~ msgstr "ライブラリ"
-
-#~ msgid "Vis?"
-#~ msgstr "表示"
-
-#~ msgid "N"
-#~ msgstr "名前"
-
-#~ msgid "V"
-#~ msgstr "値"
-
-#, fuzzy
-#~ msgid "Edit Attributes - %s"
-#~ msgstr "アトリビュート編集"
-
-#~ msgid "Executing guile script [%s]\n"
-#~ msgstr "guileスクリプトを実行しています。[%s]\n"
-
-#~ msgid "New"
-#~ msgstr "新規"
-
-#~ msgid "New file"
-#~ msgstr "新規ファイル"
-
-#~ msgid "Redo last undo"
-#~ msgstr "リドゥ"
-
-#~ msgid ""
-#~ "Add component...\n"
-#~ "Select library and component from list, move the mouse into main window, "
-#~ "click to place\n"
-#~ "Right mouse button to cancel"
-#~ msgstr ""
-#~ "部品追加...\n"
-#~ "ライブラリから部品を選択し、メインウィンドウで\n"
-#~ "クリックすると、配置します。\n"
-#~ "右ボタンでキャンセルします。"
-
-#~ msgid ""
-#~ "Add nets mode\n"
-#~ "Right mouse button to cancel"
-#~ msgstr ""
-#~ "ネット追加モード\n"
-#~ "右ボタンでキャンセル"
-
-#~ msgid ""
-#~ "Add buses mode\n"
-#~ "Right mouse button to cancel"
-#~ msgstr ""
-#~ "バス追加モード\n"
-#~ "右ボタンでキャンセル"
-
-#~ msgid "Add Text..."
-#~ msgstr "テキスト追加..."
-
-#, fuzzy
-#~ msgid "Embed Component/Pictore"
-#~ msgstr "画像・コンポーネントの埋め込み"
-
-#~ msgid "Copy 2"
-#~ msgstr "コピー2"
-
-#~ msgid "Copy 3"
-#~ msgstr "コピー3"
-
-#~ msgid "Copy 4"
-#~ msgstr "コピー4"
-
-#~ msgid "Copy 5"
-#~ msgstr "コピー5"
-
-#~ msgid "Cut 2"
-#~ msgstr "カット2"
-
-#~ msgid "Cut 3"
-#~ msgstr "カット3"
-
-#~ msgid "Cut 4"
-#~ msgstr "カット4"
-
-#~ msgid "Cut 5"
-#~ msgstr "カット5"
-
-#~ msgid "Paste 2"
-#~ msgstr "ペースト 2"
-
-#~ msgid "Paste 3"
-#~ msgstr "ペースト 3"
-
-#~ msgid "Paste 4"
-#~ msgstr "ペースト 4"
-
-#~ msgid "Paste 5"
-#~ msgstr "ペースト 5"
-
-#~ msgid "Unknown end for line (%d)\n"
-#~ msgstr "不明な線の先端(%d)\n"
-
-#~ msgid "Cannot find source [%s]\n"
-#~ msgstr "ソースが見付かりません。[%s]\n"
-
-#~ msgid "Unknown type for box (fill)!\n"
-#~ msgstr "不明なボックスの種類(塗りつぶし)!\n"
-
-#~ msgid "Unknown type for circle (fill)!\n"
-#~ msgstr "不明な円の種類(塗りつぶし)!\n"
+#~ msgid "Gschem Status Bar"
+#~ msgstr "Gschem rbar sthanphap"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-06-04 10:19-0500\n"
+"POT-Creation-Date: 2016-09-05 15:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Manipulate component attributes with gattrib"
 msgstr "Ændre komponent attributter med gattrib"
 
-#: gattrib/src/f_export.c:67
+#: gattrib/src/f_export.c:81
 #, c-format
 msgid "%s: Could not open [%s]\n"
 msgstr ""
@@ -167,22 +167,22 @@ msgstr ""
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:130
+#: gattrib/src/s_string_list.c:131
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:195
+#: gattrib/src/s_string_list.c:196
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:271
+#: gattrib/src/s_string_list.c:272
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:553
+#: gattrib/src/s_table.c:565
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
@@ -351,7 +351,7 @@ msgstr ""
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:597
+#: gattrib/src/x_menus.c:596
 #, c-format
 msgid ""
 "Error loading %s:\n"
