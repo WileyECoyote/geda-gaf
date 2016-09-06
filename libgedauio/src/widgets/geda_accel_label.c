@@ -72,7 +72,7 @@
  * automatically adds a #GedaAccelLabel to the #GedaMenuItem and calls
  * geda_accel_label_set_accel_widget() to set it up for you.
  * \par
- * A #GedaAccelLabel will only display accelerators which have %GEDA_ACCEL_VISIBLE
+ * A #GedaAccelLabel will only display accelerators which have %GTK_ACCEL_VISIBLE
  * set (see GtkAccelFlags).
  * A #GedaAccelLabel can display multiple accelerators and even signal names,
  * though it is almost always used to display just one accelerator key.
@@ -95,10 +95,10 @@
  *   // Now add the accelerator to the GedaMenuItem. Note that since
  *   // geda_menu_item_new_with_label() was called to create the GedaMenuItem
  *   // the GedaAccelLabel is automatically set up to display the GedaMenuItem
- *   // accelerators. We just need to make sure we use GEDA_ACCEL_VISIBLE here.
+ *   // accelerators. We just need to make sure we use GTK_ACCEL_VISIBLE here.
  *
  *   gtk_widget_add_accelerator (save_item, "activate", accel_group,
- *                               GDK_s, GDK_CONTROL_MASK, GEDA_ACCEL_VISIBLE);
+ *                               GDK_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
  * \endcode
  * </example>
  *

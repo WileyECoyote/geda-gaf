@@ -1,5 +1,8 @@
 2016-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_accel_label.c: Update comments; change GEDA_ACCEL_
+      VISIBLE to GTK_ACCEL_VISIBLE, there is not GEDA_ACCEL_VISIBLE.
+
     * src/widgets/geda_menu_bar.c: Reorganize function order in module.
 
     * src/widgets/geda_menu_shell.c: Add geda_marshal_VOID__INT for signals
