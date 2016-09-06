@@ -40,6 +40,11 @@
  * WEH | 03/11/14 | Include relative path in local includes, revise function
  *                | geda_action_create_menu_item to process GedaToggleAction
  *                | widget for convenience.
+ * WEH | 09/04/16 | Revise geda_action_connect_proxy to set properties of
+ *                | existent GedaAccelLabels and reduce scope of variable.
+ *                | Revise geda_action_create_menu_item to use g_object_set
+ *                | instead of gtk_activatable_set_use_action_appearance
+ *                | to set the "use-action-appearance" property.
  */
 
 #ifdef HAVE_CONFIG_H
