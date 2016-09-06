@@ -1,5 +1,7 @@
 2016-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_bar.c: Reorganize function order in module.
+
     * src/widgets/geda_menu_shell.c: Add geda_marshal_VOID__INT for signals
       "move-current" and "cycle-focus".
 

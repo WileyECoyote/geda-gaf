@@ -72,6 +72,8 @@ bool             is_a_geda_menu_bar                     (GedaMenuBar      *menu_
 
 GtkWidget       *geda_menu_bar_new                      (void);
 
+void             geda_menu_bar_cycle_focus              (GedaMenuBar       *menubar,
+                                                         GtkDirectionType   dir);
 
 PackDirection    geda_menu_bar_get_pack_direction       (GedaMenuBar       *menubar);
 
@@ -82,9 +84,6 @@ PackDirection    geda_menu_bar_get_child_pack_direction (GedaMenuBar       *menu
 
 void             geda_menu_bar_set_child_pack_direction (GedaMenuBar       *menubar,
                                                          PackDirection      child_pack_dir);
-
-void             geda_menu_bar_cycle_focus              (GedaMenuBar       *menubar,
-                                                         GtkDirectionType   dir);
 GList           *geda_menu_bar_get_viewable_menu_bars   (GtkWindow         *window);
 
 #define geda_menu_bar_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell*)(menu),(child))

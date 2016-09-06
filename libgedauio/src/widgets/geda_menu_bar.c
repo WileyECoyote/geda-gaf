@@ -1090,43 +1090,6 @@ get_menu_bars (GtkWindow *window)
 {
   return g_object_get_data (G_OBJECT (window), menu_bar_key);
 }
-
-/*!
- * \brief Retrieve Viewable Menu Bars
- * \par Function Description
- *  Returns a list of mapped menu bar widgets.
- *
- * \param[in] window Pointer #GedaMenuBar object
- *
- * \returns list of mapped GedaMenuBar objects
- */
-GList*
-geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
-{
-  GList *menu_bars;
-  GList *viewable_menu_bars = NULL;
-
-  for (menu_bars = get_menu_bars (window); menu_bars; menu_bars = menu_bars->next)
-  {
-    GtkWidget *widget = menu_bars->data;
-    bool viewable = TRUE;
-
-    while (widget) {
-
-      if (!gtk_widget_get_mapped (widget))
-        viewable = FALSE;
-
-      widget = gtk_widget_get_parent (widget);
-    }
-
-    if (viewable) {
-      viewable_menu_bars = g_list_prepend (viewable_menu_bars, menu_bars->data);
-    }
-  }
-
-  return g_list_reverse (viewable_menu_bars);
-}
-
 static void
 set_menu_bars (GtkWindow *window, GList *menubars)
 {
@@ -1448,4 +1411,39 @@ geda_menu_bar_set_child_pack_direction (GedaMenuBar   *menubar,
   }
 }
 
+/*!
+ * \brief Retrieve Viewable Menu Bars
+ * \par Function Description
+ *  Returns a list of mapped menu bar widgets.
+ *
+ * \param[in] window Pointer #GedaMenuBar object
+ *
+ * \returns list of mapped GedaMenuBar objects
+ */
+GList*
+geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
+{
+  GList *menu_bars;
+  GList *viewable_menu_bars = NULL;
+
+  for (menu_bars = get_menu_bars (window); menu_bars; menu_bars = menu_bars->next)
+  {
+    GtkWidget *widget = menu_bars->data;
+    bool viewable = TRUE;
+
+    while (widget) {
+
+      if (!gtk_widget_get_mapped (widget))
+        viewable = FALSE;
+
+      widget = gtk_widget_get_parent (widget);
+    }
+
+    if (viewable) {
+      viewable_menu_bars = g_list_prepend (viewable_menu_bars, menu_bars->data);
+    }
+  }
+
+  return g_list_reverse (viewable_menu_bars);
+}
 /** @} geda-menu-bar */
