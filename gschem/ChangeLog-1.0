@@ -1,5 +1,7 @@
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Removed setting new menu objects "visible".
+
     * tests/runtest.sh: Revised to tests for verbose before the functions
       file is sourced with vecho function, move debug and verbose squeal
       after loading vecho and friends. Bump version to 0.1.9.
