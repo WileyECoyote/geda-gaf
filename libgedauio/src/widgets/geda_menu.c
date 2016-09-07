@@ -1173,8 +1173,6 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   context = gtk_widget_get_style_context (GTK_WIDGET (menu));
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENU);
 
-  _gtk_widget_set_captured_event_handler (GTK_WIDGET (menu), gtk_menu_captured_event);
-
 #endif
 
 }
@@ -1382,7 +1380,7 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
  * \brief Attach a GedaMenu to a Widget
  * \par Function Description
  * Attaches the menu to the widget and provides a callback function
- * that will be invoked when the menu calls gtk_menu_detach() during
+ * that will be invoked when the menu calls geda_menu_detach() during
  * its destruction.
  *
  * If the menu is attached to the widget then it will be destroyed
@@ -1481,7 +1479,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
  * \par Function Description
  * Detaches the menu from the widget to which it had been attached.
  * This function will call the callback function, \a detacher, provided
- * when the gtk_menu_attach_to_widget() function was called.
+ * when the geda_menu_attach_to_widget() function was called.
  *
  * \param[in] menu: a #GedaMenu
  */
@@ -2249,7 +2247,6 @@ geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
   if (accel_path)
     g_return_if_fail (accel_path[0] == '<' && strchr (accel_path, '/')); /* simplistic check */
 
-  /* FIXME: accel_path should be defined as const char * */
   menu->accel_path = (char *)g_intern_string (accel_path);
 
   if (menu->accel_path) {
@@ -2693,7 +2690,7 @@ get_arrows_border (GedaMenu   *menu,
       border->bottom = (menu->upper_arrow_visible ||
                         menu->lower_arrow_visible) ? scroll_arrow_height : 0;
       break;
-    }
+  }
 
   border->left = border->right = 0;
 }
@@ -3497,7 +3494,7 @@ get_accel_path (GtkWidget *menu_item, bool *locked)
 
       label = GTK_BIN (menu_item)->child;
 
-      if (GTK_IS_ACCEL_LABEL (label)) {
+      if (GEDA_IS_ACCEL_LABEL (label)) {
 
         g_object_get (label,
                       "accel-closure", &accel_closure,
@@ -5481,8 +5478,7 @@ geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
 
         GtkWidget *parent = menu_shell->parent_menu_shell;
 
-        if (!parent
-          || g_list_length (GEDA_MENU_SHELL (parent)->children) <= 1)
+        if (!parent || g_list_length (GEDA_MENU_SHELL (parent)->children) <= 1)
           match = menu_shell->active_menu_item;
       }
     }
@@ -5509,7 +5505,6 @@ geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
     }
 
     if (match) {
-
       geda_menu_shell_select_item (menu_shell, match);
       return;
     }
