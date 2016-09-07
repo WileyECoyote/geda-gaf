@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.1.8
+VER=0.1.9
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -300,9 +300,9 @@ if [ "$#" -eq 1 ] ; then
   if [ -f ${INPUTS} ] ; then
     BASE_NAME=`basename $INPUTS`
     if $REGENERATE ; then
-      vecho "Regenerating single test:$BASE_NAME"
+      test ! -z ${VERBOSE} && echo "Regenerating single test:$BASE_NAME"
     else
-      vecho "Running single test:$BASE_NAME"
+      test ! -z ${VERBOSE} && echo "Running single test:$BASE_NAME"
     fi
   else
     echo "Did not understand $1"
@@ -313,17 +313,17 @@ elif [ "$#" -eq 2 ] ; then
   SRCDIR=$2
 fi
 
-if test ! -z ${DEBUG} ; then
-  vecho "Debugging mode is active"
-  vecho "VERBOSE mode is active"
-fi
-
 if test ! -f "${SRCDIR}/TEST_FUNCS" ; then
   echo "TEST_FUNCS is missing, aborting tests."
   exit 1;
 fi
 
 . ${SRCDIR}/TEST_FUNCS
+
+if test ! -z ${DEBUG} ; then
+  vecho "Debugging mode is active"
+  vecho "VERBOSE mode is active"
+fi
 
 # ------------ Clean old tests files and directories ------------
 

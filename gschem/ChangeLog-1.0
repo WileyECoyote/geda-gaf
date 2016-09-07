@@ -1,3 +1,9 @@
+2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/runtest.sh: Revised to tests for verbose before the functions
+      file is sourced with vecho function, move debug and verbose squeal
+      after loading vecho and friends. Bump version to 0.1.9.
+
 2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Replace pesky GTK_IS_MENU with GEDA_IS_MENU
