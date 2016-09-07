@@ -1,5 +1,8 @@
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Remove unnecessary blup from GedaMenu in
+      geda_menu_detach.
+
     * src/widgets/geda_menu_shell.c: Remove unnecessary check for priv->
       mnemonic_hash in geda_menu_shell_get_key_hash.
 

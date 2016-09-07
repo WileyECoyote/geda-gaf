@@ -586,13 +586,15 @@ geda_menu_set_property (GObject      *object,
 
       widget = geda_menu_get_attach_widget (menu);
 
-      if (widget)
+      if (widget) {
         geda_menu_detach (menu);
+      }
 
       widget = (GtkWidget*)g_value_get_object (value);
 
-      if (widget)
+      if (widget) {
         geda_menu_attach_to_widget (menu, widget, NULL);
+      }
     }
     break;
 
@@ -1495,7 +1497,6 @@ geda_menu_detach (GedaMenu *menu)
   data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (!data) {
-    g_warning ("%s: menu is not attached", __func__);
     return;
   }
 
@@ -2672,8 +2673,8 @@ get_arrows_border (GedaMenu   *menu,
                         "arrow_placement", &arrow_placement,
                         NULL);
 
-  switch (arrow_placement)
-    {
+  switch (arrow_placement) {
+
     case GTK_ARROWS_BOTH:
       border->top = menu->upper_arrow_visible ? scroll_arrow_height : 0;
       border->bottom = menu->lower_arrow_visible ? scroll_arrow_height : 0;
