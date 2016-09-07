@@ -208,8 +208,7 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
   if (!image) {
     image = gtk_image_new ();
     gtk_widget_show (image);
-    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (activatable),
-                                    image);
+    geda_image_menu_item_set_image (image_menu_item, image);
   }
 
   if (!activatable_update_stock_id (image_menu_item, action) &&

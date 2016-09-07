@@ -1,5 +1,9 @@
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Use image_menu_item instead
+      of activatable as arguemnt for geda_image_menu_item_set_image in
+      geda_image_menu_item_sync_action.
+
     * src/widgets/geda_menu.c: Remove unnecessary blup from GedaMenu in
       geda_menu_detach.
 
