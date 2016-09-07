@@ -346,57 +346,8 @@ geda_menu_shell_class_init(void *class, void *class_data)
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
   /*!
-   * GedaMenuShell::deactivate:
-   * menushell: the object which received the signal
-   *
-   * This signal is emitted when a menu shell is deactivated.
-   */
-  menu_shell_signals[DEACTIVATE] =
-    g_signal_new ("deactivate",
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuShellClass, deactivate),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
-  /*!
-   * GedaMenuShell::selection-done:
-   * menushell: the object which received the signal
-   *
-   * This signal is emitted when a selection has been completed
-   * within a menu shell.
-   */
-  menu_shell_signals[SELECTION_DONE] =
-    g_signal_new ("selection-done",
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuShellClass, selection_done),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
-  /*!
-   * GedaMenuShell::move-current:
-   * menushell: the object which received the signal
-   * direction: the direction to move
-   *
-   * An keybinding signal which moves the current menu item
-   * in the direction specified by direction.
-   */
-  menu_shell_signals[MOVE_CURRENT] =
-    g_signal_new ("move-current",
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (GedaMenuShellClass, move_current),
-                  NULL, NULL,
-                  geda_marshal_VOID__INT,
-                  G_TYPE_NONE, 1,
-                  G_TYPE_INT);
-
-  /*!
    * GedaMenuShell::activate-current:
-   *  menushell: the object which received the signal
+   * menushell: the object which received the signal
    * force_hide: if %TRUE, hide the menu after activating the menu item
    *
    * An action signal that activates the current menu item within
@@ -444,10 +395,44 @@ geda_menu_shell_class_init(void *class, void *class_data)
                                 geda_marshal_VOID__INT,
                                 G_TYPE_NONE, 1,
                                 G_TYPE_INT);
+
+  /*!
+   * GedaMenuShell::deactivate:
+   * menushell: the object which received the signal
+   *
+   * This signal is emitted when a menu shell is deactivated.
+   */
+  menu_shell_signals[DEACTIVATE] =
+    g_signal_new ("deactivate",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuShellClass, deactivate),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  /*!
+   * GedaMenuShell::move-current:
+   * menushell: the object which received the signal
+   * direction: the direction to move
+   *
+   * An keybinding signal which moves the current menu item
+   * in the direction specified by direction.
+   */
+  menu_shell_signals[MOVE_CURRENT] =
+    g_signal_new ("move-current",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (GedaMenuShellClass, move_current),
+                  NULL, NULL,
+                  geda_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_INT);
+
   /*!
    * GedaMenuShell::move-selected:
    * param: menu_shell the object on which the signal is emitted
-   * param: distance   +1 to move to the next item, -1 to move to the previous
+   * param: distance +1 to move to the next item, -1 to move to the previous
    *
    * The move-selected signal is emitted to move the selection to
    * another item.
@@ -463,6 +448,22 @@ geda_menu_shell_class_init(void *class, void *class_data)
                   geda_marshal_BOOL__INT,
                   G_TYPE_BOOLEAN, 1,
                   G_TYPE_INT);
+
+  /*!
+   * GedaMenuShell::selection-done:
+   * menushell: the object which received the signal
+   *
+   * This signal is emitted when a selection has been completed
+   * within a menu shell.
+   */
+  menu_shell_signals[SELECTION_DONE] =
+    g_signal_new ("selection-done",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuShellClass, selection_done),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 
   binding_set = gtk_binding_set_by_class (menu_shell_class);
 
@@ -513,8 +514,8 @@ geda_menu_shell_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class,
                                    PROP_TAKE_FOCUS,
                                    g_param_spec_boolean ("take-focus",
-                                                         _("Take Focus"),
-                                                         _("A boolean that determines whether the menu grabs the keyboard focus"),
+                                                       _("Take Focus"),
+                                                       _("A boolean that determines whether the menu grabs the keyboard focus"),
                                    TRUE,
                                    G_PARAM_READWRITE));
 }
@@ -1017,21 +1018,21 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 static int
 geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
 {
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
-  GedaMenuShellPriv *priv = menu_shell->priv;
-  bool     enable_mnemonics;
+  GedaMenuShell     *menu_shell = GEDA_MENU_SHELL (widget);
+  GedaMenuShellPriv *priv       = menu_shell->priv;
+  bool enable_mnemonics;
 
   menu_shell->keyboard_mode = TRUE;
 
-  if (!(menu_shell->active_menu_item || priv->in_unselectable_item) && menu_shell->parent_menu_shell)
-    return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent *)event);
+  if (!(menu_shell->active_menu_item || priv->in_unselectable_item) &&
+        menu_shell->parent_menu_shell)
+    return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
 
-  if (gtk_bindings_activate_event (GTK_OBJECT (widget), event))
+  if (gtk_bindings_activate_event (GTK_OBJECT(widget), event))
     return TRUE;
 
-  g_object_get (gtk_widget_get_settings (widget),
-                "gtk-enable-mnemonics", &enable_mnemonics,
-                NULL);
+  g_object_get (gtk_widget_get_settings (widget), "gtk-enable-mnemonics",
+                &enable_mnemonics, NULL);
 
   if (enable_mnemonics) {
     return geda_menu_shell_activate_mnemonic (menu_shell, event);
@@ -1296,8 +1297,7 @@ geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
 }
 
 static GtkWidget*
-geda_menu_shell_get_item (GedaMenuShell *menu_shell,
-             GdkEvent     *event)
+geda_menu_shell_get_item (GedaMenuShell *menu_shell, GdkEvent *event)
 {
   GtkWidget *menu_item;
 
@@ -1306,10 +1306,10 @@ geda_menu_shell_get_item (GedaMenuShell *menu_shell,
   while (menu_item && !GEDA_IS_MENU_ITEM (menu_item))
     menu_item = menu_item->parent;
 
-  if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item))
+  if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item)) {
     return menu_item;
-  else
-    return NULL;
+  }
+  return NULL;
 }
 
 /* Handlers for action signals */
@@ -1926,8 +1926,8 @@ menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *dat
 static GedaKeyHash *
 geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 {
-  GedaMenuShellPriv *priv = menu_shell->priv;
-  GtkWidget *widget = GTK_WIDGET (menu_shell);
+  GedaMenuShellPriv *priv   = menu_shell->priv;
+  GtkWidget         *widget = GTK_WIDGET (menu_shell);
 
   if (!priv->key_hash && create && gtk_widget_has_screen (widget)) {
 
@@ -2005,7 +2005,7 @@ geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
 void
 geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
                               unsigned int   keyval,
-                              GtkWidget    *target)
+                              GtkWidget     *target)
 {
   GedaMnemonicHash *mnemonic_hash;
 
@@ -2058,9 +2058,9 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
 /*!
  * \brief geda_menu_shell_set_take_focus
  * \par Function Description
- * If \a take_focus is %TRUE (the default) the menu shell will take the keyboard
- * focus so that it will receive all keyboard events which is needed to enable
- * keyboard navigation in menus.
+ * If \a take_focus is %TRUE (the default) the menu shell will take the
+ * keyboard focus so that it will receive all keyboard events which is
+ * needed to enable keyboard navigation in menus.
  *
  * Setting \a take_focus to %FALSE is useful only for special applications
  * like virtual keyboard implementations which should not take keyboard
