@@ -1492,6 +1492,15 @@ popup_menu_under_arrow (GedaMenuButton *button, GdkEventButton *event)
                    event ? event->time : gtk_get_current_event_time ());
 }
 
+/*!
+ * \brief On Arrow Button "toggled" Callback
+ * \par Function Description
+ *  This function is called when the arrow_button was toggled
+ *  by the user.
+ *
+ * \param[in] togglebutton Is the drop-down arrow button
+ * \param[in] button       GedaMenuButton.
+ */
 static void
 arrow_button_toggled_cb (GtkToggleButton *togglebutton,
                          GedaMenuButton  *button)
@@ -1502,15 +1511,25 @@ arrow_button_toggled_cb (GtkToggleButton *togglebutton,
     return;
 
   if (gtk_toggle_button_get_active (togglebutton) &&
-     !gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
+     !gtk_widget_get_visible (GTK_WIDGET(priv->menu)))
   {
       /* we get here only when the menu is activated by a key
        * press, so that we can select the first menu item */
       popup_menu_under_arrow (button, NULL);
-      geda_menu_shell_select_first (GEDA_MENU_SHELL (priv->menu), FALSE);
+      geda_menu_shell_select_first (GEDA_MENU_SHELL(priv->menu), FALSE);
   }
 }
 
+/*!
+ * \brief On Arrow Button "button-press-event" Callback
+ * \par Function Description
+ *  This function is called when the arrow_button was selected
+ *  using a pointer button press.
+ *
+ * \param[in] widget  The drop-down arrow togglebutton
+ * \param[in] event   GdkEventButton event structure.
+ * \param[in] button  GedaMenuButton.
+ */
 static bool
 arrow_button_press_event_cb (GtkWidget      *widget,
                              GdkEventButton *event,
@@ -1519,7 +1538,7 @@ arrow_button_press_event_cb (GtkWidget      *widget,
   if (event->button == 1) {
 
       popup_menu_under_arrow (button, event);
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(widget), TRUE);
 
       return TRUE;
   }
