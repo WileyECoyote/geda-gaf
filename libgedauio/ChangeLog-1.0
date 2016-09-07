@@ -1,3 +1,8 @@
+2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Remove unnecessary check for priv->
+      mnemonic_hash in geda_menu_shell_get_key_hash.
+
 2016-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Update comments; change GEDA_ACCEL_

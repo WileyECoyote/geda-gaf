@@ -1937,9 +1937,6 @@ geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 
     mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
 
-    if (!mnemonic_hash)
-      return NULL;
-
     screen = gtk_widget_get_screen (widget);
     keymap = gdk_keymap_get_for_display (gdk_screen_get_display (screen));
 
