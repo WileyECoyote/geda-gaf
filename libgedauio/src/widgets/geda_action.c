@@ -128,9 +128,11 @@ geda_action_set_property (GObject *object, unsigned int property_id,
       }
       action->multikey_accel = g_value_dup_string (value);
       break;
+
     case PROP_ICON_ID:
       geda_action_set_icon_name(action, g_value_get_string (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -160,9 +162,11 @@ geda_action_get_property (GObject *object, unsigned int property_id,
     case PROP_MULTIKEY_ACCEL:
       g_value_set_string (value, action->multikey_accel);
       break;
+
     case PROP_ICON_ID:
       g_value_set_string (value, action->icon_name);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -212,6 +216,7 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
                     NULL);
     }
   }
+
   /* Let the parent class do its work now we've fiddled with the label */
   GTK_ACTION_CLASS(geda_action_parent_class)->connect_proxy (action, proxy);
 }
@@ -384,7 +389,7 @@ geda_action_create_menu_item (GedaAction *action)
  *
  * \returns: GtkWidget geda_action_create_menu_item().
  */
-GtkWidget *
+GtkWidget*
 geda_action_widget_create_menu_item (GtkWidget *widget)
 {
   return geda_action_create_menu_item((GedaAction*)widget);
@@ -438,7 +443,8 @@ GedaAction *geda_action_new (const char *name,
  *
  * \param [in] action A GedaAction object
  */
-void geda_action_activate (GedaAction *action)
+void
+geda_action_activate (GedaAction *action)
 {
   gtk_action_activate (GTK_ACTION(action));
 }
@@ -452,7 +458,8 @@ void geda_action_activate (GedaAction *action)
  *
  * \returns const char* to the icon name;
  */
-const char *geda_action_get_icon_name (GedaAction *action)
+const char*
+geda_action_get_icon_name (GedaAction *action)
 {
   g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
   return action->icon_name;
@@ -468,8 +475,8 @@ const char *geda_action_get_icon_name (GedaAction *action)
  *
  * \returns const char* to the icon name;
  */
-void geda_action_set_icon_name (GedaAction *action,
-                                const char *icon_name)
+void
+geda_action_set_icon_name (GedaAction *action, const char *icon_name)
 {
   GtkStockItem stock_info;
   GtkAction   *parent_action;
@@ -484,10 +491,10 @@ void geda_action_set_icon_name (GedaAction *action,
   action->icon_name = g_strdup (icon_name);
 
   if (icon_name != NULL) {
-    if ( gtk_stock_lookup(icon_name, &stock_info)) {
+    if (gtk_stock_lookup(icon_name, &stock_info)) {
       gtk_action_set_stock_id (parent_action, icon_name);
     }
-    else if ( gtk_icon_factory_lookup_default(icon_name)) {
+    else if (gtk_icon_factory_lookup_default(icon_name)) {
       gtk_action_set_stock_id (parent_action, icon_name);
     }
     else {
@@ -505,10 +512,11 @@ void geda_action_set_icon_name (GedaAction *action,
  *
  * \param [in] action A GedaAction object
  */
-void geda_action_disconnect_accelerator (GedaAction  *action)
+void
+geda_action_disconnect_accelerator (GedaAction *action)
 {
-  g_return_if_fail (GTK_IS_ACTION (action));
-  gtk_action_disconnect_accelerator(GTK_ACTION (action));
+  g_return_if_fail (GTK_IS_ACTION(action));
+  gtk_action_disconnect_accelerator(GTK_ACTION(action));
 }
 
 /*!
@@ -520,13 +528,12 @@ void geda_action_disconnect_accelerator (GedaAction  *action)
  *  visibility of \a proxy is set to visible.
  *
  * \param [in] action A GedaAction object
- * \param [in] proxy  widget
+ * \param [in] proxy  menu_item widget
  * \param [in] empty  flag to over-ride visible if "hide-if-empty"
  *                    property is set on related actions.
  */
-void geda_action_sync_menu_visible (GedaAction *action,
-                                    GtkWidget  *proxy,
-                                    bool        empty)
+void
+geda_action_sync_menu_visible(GedaAction *action, GtkWidget *proxy, bool empty)
 {
   GtkWidget *object;
   bool visible       = TRUE;
