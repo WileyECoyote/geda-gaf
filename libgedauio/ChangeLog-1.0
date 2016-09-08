@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu.c: Revise geda_menu_key_press with old code
       from Gtk-2 menu routines to allow users to change the accel key
-      directly in the menu, needs more work.
+      directly in the menu, needs more work, removed validation of the
+      widget and event - is a static class member.
 
     * src/widgets/geda_image_menu_item.c: Revise geda_image_menu_item_update
       and geda_image_menu_item_sync_action to get "use-action-appearance"

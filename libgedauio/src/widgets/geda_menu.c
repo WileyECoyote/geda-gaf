@@ -3533,20 +3533,20 @@ geda_menu_key_press (GtkWidget   *widget, GdkEventKey *event)
 static bool
 geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
-  GedaMenuShell *menu_shell;
-  GedaMenu *menu;
-  bool delete = FALSE;
-  bool can_change_accels;
-  char *accel = NULL;
-  unsigned int accel_key, accel_mods;
-  GdkModifierType consumed_modifiers;
-  GdkDisplay *display;
+  GedaMenu        *menu;
+  GedaMenuShell   *menu_shell;
+  GdkDisplay      *display;
+  GdkModifierType  consumed_modifiers;
+  char            *accel;
+  unsigned int     accel_key, accel_mods;
+  bool             can_change_accels;
+  bool             delete;
 
-  g_return_val_if_fail (GEDA_IS_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
+  accel      = NULL;
+  delete     = FALSE;
 
   menu_shell = GEDA_MENU_SHELL (widget);
-  menu = GEDA_MENU (widget);
+  menu       = GEDA_MENU (widget);
 
   geda_menu_stop_navigating_submenu (menu);
 
