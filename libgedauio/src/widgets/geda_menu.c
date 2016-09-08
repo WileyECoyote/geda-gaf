@@ -2233,9 +2233,9 @@ geda_menu_get_accel_path (GedaMenu *menu)
  * their accelerators at runtime. More details about accelerator paths
  * and their default setups can be found at gtk_accel_map_add_entry().
  *
- * Note that \a accel_path string will be stored in a GQuark. Therefore, if you
- * pass a static string, you can save some memory by interning it first with
- * g_intern_static_string().
+ * Note that \a accel_path string will be stored in a GQuark. Therefore,
+ * if a static string is passed, some memory can be saved by interning
+ * the string first with g_intern_static_string().
  *
  * \param[in] menu:       a valid #GedaMenu
  * \param[in] accel_path: (allow-none): a valid accelerator path
