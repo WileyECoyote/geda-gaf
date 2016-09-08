@@ -179,6 +179,8 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
   GedaImageMenuItemData *priv;
   GtkWidget             *image;
 
+  bool use_appearance;
+
   image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
   priv            = image_menu_item->priv;
 
@@ -186,7 +188,7 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
   parent_activatable_iface->sync_action_properties (activatable, action);
 
   if (priv->action) {
-    g_object_unref(priv->action);  /* regardless if new action is NULL */
+    g_object_unref(priv->action);  /* Even if new action is NULL */
   }
 
   priv->action = action; /* Which could be NULL */
@@ -195,7 +197,9 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
     return;
   }
 
-  if (!gtk_activatable_get_use_action_appearance (activatable))
+  g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
+
+  if (!use_appearance)
     return;
 
   image = geda_image_menu_item_get_image (image_menu_item);
@@ -226,21 +230,25 @@ geda_image_menu_item_update (GtkActivatable *activatable,
                              GtkAction      *action,
                              const char     *property_name)
 {
-  GedaImageMenuItem *image_menu_item;
-
-  image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
+  bool use_appearance;
 
   parent_activatable_iface->update (activatable, action, property_name);
 
-  if (!gtk_activatable_get_use_action_appearance (activatable))
-    return;
+  g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
 
-  if (strcmp (property_name, "stock-id") == 0)
-    activatable_update_stock_id (image_menu_item, action);
-  else if (strcmp (property_name, "gicon") == 0)
-    activatable_update_gicon (image_menu_item, action);
-  else if (strcmp (property_name, "icon-name") == 0)
-    activatable_update_icon_name (image_menu_item, action);
+  if (use_appearance) {
+
+    GedaImageMenuItem *image_menu_item;
+
+    image_menu_item = GEDA_IMAGE_MENU_ITEM (activatable);
+
+    if (strcmp (property_name, "stock-id") == 0)
+      activatable_update_stock_id (image_menu_item, action);
+    else if (strcmp (property_name, "gicon") == 0)
+      activatable_update_gicon (image_menu_item, action);
+    else if (strcmp (property_name, "icon-name") == 0)
+      activatable_update_icon_name (image_menu_item, action);
+  }
 }
 
 static void

@@ -1,3 +1,9 @@
+2016-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Revise geda_image_menu_item_update
+      and geda_image_menu_item_sync_action to get "use-action-appearance"
+      with g_object_get instead of gtk_activatable_get_use_action_appearance.
+
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Use image_menu_item instead
