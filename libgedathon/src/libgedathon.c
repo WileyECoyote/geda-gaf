@@ -963,7 +963,7 @@ PyGeda_shutdown(void)
 
   destroy_all_floating_objects();
   libgeda_release();
-  s_toplevel_release(toplevel);
+  geda_toplevel_struct_release(toplevel);
   return;
 }
 

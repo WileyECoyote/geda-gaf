@@ -666,7 +666,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     if (any_object) {
 
-      GList *list        = s_toplevel_get_selection(toplevel);
+      GList *list        = geda_toplevel_struct_get_selection(toplevel);
 
       can_hatch          = hatchable_object_selected(list);
       can_edit_line      = linetype_object_selected(list);

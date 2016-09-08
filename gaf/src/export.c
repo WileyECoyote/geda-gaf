@@ -284,9 +284,9 @@ cmd_export_impl (void *data, int argc, char **argv)
 
   /* Make sure libgeda knows how to calculate the bounds of text
    * taking into account font etc. */
-  s_toplevel_set_rendered_bounds_func(toplevel,
-                                      export_text_rendered_bounds,
-                                      renderer);
+  geda_toplevel_struct_set_rbounds_func(toplevel,
+                                        export_text_rendered_bounds,
+                                        renderer);
 
   /* Get the print color map */
   color_map = geda_color_get_print_map();

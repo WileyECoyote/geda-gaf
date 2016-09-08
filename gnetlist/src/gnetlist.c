@@ -468,7 +468,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   geda_struct_page_delete_list(pr_current);
 
-  s_toplevel_release (pr_current);
+  geda_toplevel_struct_release(pr_current);
 
   gnetlist_quit();
 

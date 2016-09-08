@@ -223,7 +223,7 @@ void o_move_end(GschemToplevel *w_current)
       stretch->object->dont_redraw = FALSE;
     }
 
-    selection_iter = selection_list = s_toplevel_get_selection(toplevel);
+    selection_iter = selection_list = geda_toplevel_struct_get_selection(toplevel);
 
     while (selection_iter != NULL) {
 

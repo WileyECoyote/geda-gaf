@@ -36,7 +36,7 @@
  *
  * \sa geda_struct_page_get_selection
  */
-GList *s_toplevel_get_selection (GedaToplevel *toplevel)
+GList *geda_toplevel_struct_get_selection (GedaToplevel *toplevel)
 {
   Page      *page;
   SELECTION *selection;
@@ -67,7 +67,7 @@ GList *s_toplevel_get_selection (GedaToplevel *toplevel)
  *
  * \return GList of symbols.
  */
-GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
+GList *geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
 {
   g_return_val_if_fail ((toplevel != NULL), NULL);
 
@@ -79,7 +79,7 @@ GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
  *  Decrements the reference count of the toplevel object by one.
  */
 void
-s_toplevel_release (GedaToplevel *toplevel)
+geda_toplevel_struct_release (GedaToplevel *toplevel)
 {
   /* Delete all pages */
   geda_struct_page_delete_list (toplevel);
@@ -101,7 +101,7 @@ s_toplevel_release (GedaToplevel *toplevel)
  *  \param [in] ...       Optional data to be passed to the function.
  */
 void
-s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
+geda_toplevel_struct_set_bkloader_querier (GedaToplevel *toplevel, void *func, ...)
 {
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     va_list argp;
@@ -134,8 +134,8 @@ s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...
  *  \param [in] user_data User data to be passed to the function.
  */
 void
-s_toplevel_set_rendered_bounds_func(GedaToplevel *toplevel,
-                                    RenderedBoundsFunc func, void *user_data)
+geda_toplevel_struct_set_rbounds_func(GedaToplevel *toplevel,
+                                      RenderedBoundsFunc func, void *user_data)
 {
   g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
 

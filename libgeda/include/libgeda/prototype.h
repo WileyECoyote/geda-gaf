@@ -733,11 +733,11 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          GList  *geda_struct_tile_get_objectlists          (Page *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
-        GList   *s_toplevel_get_selection                (GedaToplevel *toplevel);
-        GList   *s_toplevel_get_symbols                  (const GedaToplevel *toplevel);
-         void    s_toplevel_release                      (GedaToplevel *toplevel);
-         void    s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...);
-         void    s_toplevel_set_rendered_bounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
+        GList   *geda_toplevel_struct_get_selection        (GedaToplevel *toplevel);
+        GList   *geda_toplevel_struct_get_symbols          (const GedaToplevel *toplevel);
+         void    geda_toplevel_struct_release              (GedaToplevel *toplevel);
+         void    geda_toplevel_struct_set_bkloader_querier (GedaToplevel *toplevel, void *func, ...);
+         void    geda_toplevel_struct_set_rbounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
 
 /* s_undo.c */
          UNDO   *s_undo_return_tail              (UNDO *head);

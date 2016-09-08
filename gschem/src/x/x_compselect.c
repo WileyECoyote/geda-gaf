@@ -1266,7 +1266,7 @@ compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
 /*!\brief Create the tree model for the "In Use" view.
  * \par Function Description
  * Creates a straightforward list of symbols which are currently in
- * use, using s_toplevel_get_symbols().
+ * use, using geda_toplevel_struct_get_symbols().
  */
 static GtkTreeModel*
 compselect_create_inuse_tree_model (Compselect *compselect)
@@ -1281,7 +1281,7 @@ compselect_create_inuse_tree_model (Compselect *compselect)
 
   store = (GtkListStore *) gtk_list_store_new (1, G_TYPE_POINTER);
 
-  symlist = s_toplevel_get_symbols (w_current->toplevel);
+  symlist = geda_toplevel_struct_get_symbols (w_current->toplevel);
 
   for (iter = symlist; iter != NULL; iter = g_list_next (iter)) {
 

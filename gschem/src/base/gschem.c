@@ -327,12 +327,12 @@ static void gschem( int argc, char *argv[])
   w_current->toplevel = geda_toplevel_new ();
   toplevel            = w_current->toplevel;
 
-  s_toplevel_set_backup_loader_query_func (toplevel, x_fileselect_load_backup,
-                                           w_current);
+  geda_toplevel_struct_set_bkloader_querier(toplevel, x_fileselect_load_backup,
+                                            w_current);
 
-  s_toplevel_set_rendered_bounds_func (toplevel,
-                                       o_text_get_rendered_bounds,
-                                       w_current);
+  geda_toplevel_struct_set_rbounds_func (toplevel,
+                                         o_text_get_rendered_bounds,
+                                         w_current);
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);

@@ -597,9 +597,9 @@ static void preview_instance_init(GTypeInstance *instance, void *class)
   preview_window             = gschem_toplevel_new ();
   preview_window->toplevel   = geda_toplevel_new ();
 
-  s_toplevel_set_rendered_bounds_func (preview_window->toplevel,
-                                       o_text_get_rendered_bounds,
-                                       preview_window);
+  geda_toplevel_struct_set_rbounds_func (preview_window->toplevel,
+                                         o_text_get_rendered_bounds,
+                                         preview_window);
   i_vars_set (preview_window);
 
   /* Don't need backups or rc files */

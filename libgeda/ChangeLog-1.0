@@ -1,3 +1,7 @@
+2016-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_toplevel.c: Rename functions with geda_struct prefix.
+
 2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Prefix path to source directory test_file for
