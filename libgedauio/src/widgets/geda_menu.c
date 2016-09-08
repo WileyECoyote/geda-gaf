@@ -3474,7 +3474,7 @@ geda_menu_button_release (GtkWidget *widget, GdkEventButton *event)
 
   return GTK_WIDGET_CLASS (geda_menu_parent_class)->button_release_event (widget, event);
 }
-/*
+
 static const char*
 get_accel_path (GtkWidget *menu_item, bool *locked)
 {
@@ -3483,7 +3483,7 @@ get_accel_path (GtkWidget *menu_item, bool *locked)
   GClosure      *accel_closure;
   GtkAccelGroup *accel_group;
 
-  path = _gtk_widget_get_accel_path (menu_item, locked);
+  path = NULL; //_gtk_widget_get_accel_path (menu_item, locked);
 
   if (!path) {
 
@@ -3512,10 +3512,10 @@ get_accel_path (GtkWidget *menu_item, bool *locked)
 
   return path;
 }
-*/
+
+#if 0
 static bool
-geda_menu_key_press (GtkWidget   *widget,
-                    GdkEventKey *event)
+geda_menu_key_press (GtkWidget   *widget, GdkEventKey *event)
 {
   GedaMenu *menu;
 
@@ -3527,6 +3527,149 @@ geda_menu_key_press (GtkWidget   *widget,
   geda_menu_stop_navigating_submenu (menu);
 
   return GTK_WIDGET_CLASS (geda_menu_parent_class)->key_press_event (widget, event);
+}
+#endif
+
+static bool
+geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
+{
+  GedaMenuShell *menu_shell;
+  GedaMenu *menu;
+  bool delete = FALSE;
+  bool can_change_accels;
+  char *accel = NULL;
+  unsigned int accel_key, accel_mods;
+  GdkModifierType consumed_modifiers;
+  GdkDisplay *display;
+
+  g_return_val_if_fail (GEDA_IS_MENU (widget), FALSE);
+  g_return_val_if_fail (event != NULL, FALSE);
+
+  menu_shell = GEDA_MENU_SHELL (widget);
+  menu = GEDA_MENU (widget);
+
+  geda_menu_stop_navigating_submenu (menu);
+
+  if (GTK_WIDGET_CLASS (geda_menu_parent_class)->key_press_event (widget, event))
+    return TRUE;
+
+  display = gtk_widget_get_display (widget);
+
+  g_object_get (gtk_widget_get_settings (widget),
+                "gtk-menu-bar-accel", &accel,
+                "can-change-accels", &can_change_accels,
+                NULL);
+
+  if (accel && *accel) {
+
+    unsigned int keyval = 0;
+    GdkModifierType mods = 0;
+
+    gtk_accelerator_parse (accel, &keyval, &mods);
+
+    if (keyval == 0) {
+      g_warning ("Failed to parse menu bar accelerator '%s'\n", accel);
+    }
+
+    /* FIXME this is wrong, needs to be in the global accel resolution
+     * thing, to properly consider i18n etc., but that probably requires
+     * AccelGroup changes etc.
+     */
+    if (event->keyval == keyval && (mods & event->state) == mods) {
+      geda_menu_shell_cancel (menu_shell);
+      g_free (accel);
+      return TRUE;
+    }
+  }
+
+  g_free (accel);
+
+  switch (event->keyval) {
+
+    case GDK_Delete:
+    case GDK_KP_Delete:
+    case GDK_BackSpace:
+      delete = TRUE;
+      break;
+    default:
+      break;
+  }
+
+  /* Figure out what modifiers went into determining the key symbol */
+  geda_keyboard_translate_accel_state (gdk_keymap_get_for_display (display),
+                                       event->hardware_keycode,
+                                       event->state,
+                                       gtk_accelerator_get_default_mod_mask (),
+                                       event->group,
+                                       &accel_key, NULL, NULL, &consumed_modifiers);
+
+  accel_key  = gdk_keyval_to_lower (accel_key);
+  accel_mods = event->state & gtk_accelerator_get_default_mod_mask () & ~consumed_modifiers;
+
+  /* If lowercasing affects the keysym, then we need to include SHIFT
+   * in the modifiers, We re-upper case when we match against the
+   * keyval, but display and save in caseless form.
+   */
+  if (accel_key != event->keyval)
+    accel_mods |= GDK_SHIFT_MASK;
+
+  if (menu_shell->active_menu_item)  {
+
+    GtkWidget *submenu;
+
+    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item));
+
+    /* Modify the accelerators */
+    if (can_change_accels && submenu == NULL &&                 /* no submenus */
+      GTK_BIN (menu_shell->active_menu_item)->child &&          /* no separators */
+      (delete || gtk_accelerator_valid (accel_key, accel_mods)))
+    {
+      GtkWidget  *menu_item = menu_shell->active_menu_item;
+      const char *path;
+      bool        locked;
+      bool        replace_accels = TRUE;
+
+      path = get_accel_path (menu_item, &locked);
+
+      if (!path || locked) {
+        /* can't change accelerators on menu_items without paths
+        * (basically, those items are accelerator-locked).
+        */
+        /* g_print("item has no path or is locked, menu prefix: %s\n", menu->accel_path); */
+        gtk_widget_error_bell (widget);
+      }
+      else {
+
+        bool changed;
+
+        /* For the keys that act to delete the current setting, we delete
+        * the current setting if there is one, otherwise, we set the
+        * key as the accelerator.
+        */
+        if (delete) {
+
+          GtkAccelKey key;
+
+          if (gtk_accel_map_lookup_entry (path, &key) &&
+            (key.accel_key || key.accel_mods))
+          {
+            accel_key = 0;
+            accel_mods = 0;
+          }
+        }
+        changed = gtk_accel_map_change_entry (path, accel_key, accel_mods, replace_accels);
+
+        if (!changed) {
+          /* we failed, probably because this key is in use and
+          * locked already
+          */
+          /* g_print("failed to change\n"); */
+          gtk_widget_error_bell (widget);
+        }
+      }
+    }
+  }
+  return TRUE;
 }
 
 static bool
@@ -5344,11 +5487,11 @@ geda_menu_attach (GedaMenu    *menu,
   else {
 
       gtk_container_child_set (GTK_CONTAINER (child->parent), child,
-                   "left-attach",   left_attach,
-                   "right-attach",  right_attach,
-                   "top-attach",    top_attach,
-                   "bottom-attach", bottom_attach,
-                   NULL);
+                               "left-attach",   left_attach,
+                               "right-attach",  right_attach,
+                               "top-attach",    top_attach,
+                               "bottom-attach", bottom_attach,
+                               NULL);
     }
 }
 
@@ -5365,12 +5508,12 @@ geda_menu_get_popup_delay (GedaMenuShell *menu_shell)
   return popup_delay;
 }
 
-static GtkWidget *
+static GtkWidget*
 find_child_containing (GedaMenuShell *menu_shell,
-                       int           left,
-                       int           right,
-                       int           top,
-                       int           bottom)
+                       int            left,
+                       int            right,
+                       int            top,
+                       int            bottom)
 {
   GList *list;
 
