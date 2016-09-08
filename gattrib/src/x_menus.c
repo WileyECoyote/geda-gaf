@@ -66,8 +66,9 @@ void x_menu_file_save_as()
       x_window_update_title(pr_current, sheet_head);
     } /* else user aborted, do nothing */
   }
-  else
+  else  {
     fprintf(stderr, "gattrib file_save_as: Memory allocation error\n");
+  }
 }
 
 /*!
@@ -324,8 +325,7 @@ static void on_recent_selection (GtkRecentChooser *chooser)
  */
 void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
 {
-    lambda (GtkWidget *menu_item)
-    {
+    lambda (GtkWidget *menu_item) {
       gtk_widget_set_sensitive(menu_item, sensitive);
       return FALSE;
     }
@@ -451,7 +451,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
   GtkRecentFilter  *recent_filter;
   GtkRecentChooser *recent_file_chooser;
 
-  recent_items =  gtk_ui_manager_get_widget (menu_manager,"/ui/menubar/file/OpenRecent");
+  recent_items = gtk_ui_manager_get_widget (menu_manager,"/ui/menubar/file/OpenRecent");
 
   if (recent_manager == NULL) {
      GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (recent_items));
@@ -484,8 +484,8 @@ void x_menu_fix_gtk_recent_submenu(void) {
  */
 GtkActionGroup *x_menu_create_recent_action_group(void) {
 
-  GtkRecentAction  *recent_action;
-  GtkActionGroup   *recent_action_group;
+  GtkRecentAction *recent_action;
+  GtkActionGroup  *recent_action_group;
 
   recent_manager      = gtk_recent_manager_new();
   recent_action_group = gtk_action_group_new("OpenRecentAction");
@@ -546,7 +546,6 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
   item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-name-value");
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
-
 }
 
 /*! \brief Create and attach the menu bar
@@ -571,11 +570,11 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
  */
 GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 {
-  char            *menu_file;
-  GError          *error = NULL;
-  GtkWidget       *menubar;
-  GtkActionGroup  *action_group;
-  GtkActionGroup  *recent_group;
+  char           *menu_file;
+  GError         *error = NULL;
+  GtkWidget      *menubar;
+  GtkActionGroup *action_group;
+  GtkActionGroup *recent_group;
 
   /* Create and fill the action group object */
   action_group = gtk_action_group_new("MenuActions");
@@ -608,7 +607,8 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 
   gtk_ui_manager_set_add_tearoffs (menu_manager, tearoff_menus);
 
-  if (menubar == NULL)
-    fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
+  if (menubar == NULL) {
+    fprintf(stderr, "ERROR: GTK failed to return Menu objects\n");
+  }
   return menubar; /* WEH: Does this really get saved? */
 }
