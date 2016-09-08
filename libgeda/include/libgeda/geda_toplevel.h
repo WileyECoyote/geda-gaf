@@ -240,6 +240,8 @@ void          geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, voi
 bool          geda_toplevel_set_current_page        (GedaToplevel *toplevel, Page *page);
 int           geda_toplevel_set_file_open_flags     (GedaToplevel *toplevel, int open_flags);
 bool          geda_toplevel_set_make_backups        (GedaToplevel *toplevel, int make_backups);
+void          geda_toplevel_set_rendered_bounds_func(GedaToplevel *toplevel,
+                                                     RenderedBoundsFunc func, void *user_data);
 
 #ifdef __cplusplus
 }

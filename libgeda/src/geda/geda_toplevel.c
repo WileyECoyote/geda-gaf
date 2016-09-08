@@ -922,4 +922,36 @@ geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
   return TRUE;
 }
 
+/*! \brief Set the font-renderer-specific bounds function.
+ *  \par Function Description
+ *  Set the function to be used to calculate text bounds for #Text
+ *  Objects for all pages associated with the given #GedaToplevel.
+ *  This allows a global page renderer function to be defined. If the
+ *  function is not defined the renderer, and neither a Page level or
+ *  Text Object level render is defined then the bounds of text can
+ *  not be determined and world_get_text_bounds will return FALSE.
+ *  A renderer must be define for at least one level. The order of
+ *  precedence is Object level, then the Page level and lastly the
+ *  GedaToplevel. Note that any previous setting is erased and
+ *  passing NULL will disable rendering at this level.
+ *
+ *  \sa geda_struct_page_set_bounds_func
+ *  \sa geda_text_object_set_rendered_bounds_func
+ *
+ *  \param [in] toplevel  The GedaToplevel for which the render
+ *                        function should be associated.
+ *  \param [in] func      Function to use.
+ *  \param [in] user_data User data to be passed to the function.
+ */
+void
+geda_toplevel_set_rendered_bounds_func(GedaToplevel       *toplevel,
+                                       RenderedBoundsFunc  func,
+                                       void               *user_data)
+{
+  g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
+
+  toplevel->rendered_text_bounds_func = func;
+  toplevel->rendered_text_bounds_data = user_data;
+}
+
 /** @} endgroup geda-toplevel */

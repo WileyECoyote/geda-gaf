@@ -1,6 +1,11 @@
 2016-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_toplevel.c: Rename functions with geda_struct prefix.
+    * src/geda/geda_toplevel.c: Add geda_toplevel_set_bkloader_query_func as
+      replacement for geda_toplevel_struct_set_bkloader_querier. Add function
+      geda_toplevel_set_rendered_bounds_func.
+
+    * src/struct/s_toplevel.c: Rename functions with geda_struct prefix, remove
+      geda_toplevel_struct_set_bkloader_querier.
 
 2016-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
