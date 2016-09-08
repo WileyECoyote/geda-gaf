@@ -736,7 +736,6 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
         GList   *geda_toplevel_struct_get_selection        (GedaToplevel *toplevel);
         GList   *geda_toplevel_struct_get_symbols          (const GedaToplevel *toplevel);
          void    geda_toplevel_struct_release              (GedaToplevel *toplevel);
-         void    geda_toplevel_struct_set_bkloader_querier (GedaToplevel *toplevel, void *func, ...);
          void    geda_toplevel_struct_set_rbounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
 
 /* s_undo.c */

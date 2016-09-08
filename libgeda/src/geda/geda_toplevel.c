@@ -833,6 +833,28 @@ geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
   return TRUE;
 }
 
+/*! \brief Set Backup Loader Query Function in GedaToplevel object
+ *  \par Function Description
+ *  Sets function to be call when a files is requested to be loaded
+ *  and a newer backup file is detected.
+ *
+ *  \param [in] toplevel  The GedaToplevel object being set
+ *  \param [in] func      Function to call if a backup is newer.
+ *  \param [in] ...       Optional data to be passed to the function.
+ */
+void
+geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
+{
+  va_list argp;
+
+  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
+  va_start (argp, func);
+  toplevel->load_newer_backup_func = func;
+  toplevel->load_newer_backup_data = va_arg(argp, void*);
+  va_end (argp);
+}
+
 /*!
  * \brief Set the current page
  * \par Function Description

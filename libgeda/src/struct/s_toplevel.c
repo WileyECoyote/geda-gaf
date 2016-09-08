@@ -91,27 +91,6 @@ geda_toplevel_struct_release (GedaToplevel *toplevel)
   geda_toplevel_unref (toplevel);
 }
 
-/*! \brief Set Backup Loader Query Function in GedaToplevel object
- *  \par Function Description
- *  Sets function to be call when a files is requested to be loaded
- *  and a newer backup file is detected.
- *
- *  \param [in] toplevel  The GedaToplevel object being set
- *  \param [in] func      Function to call if a backup is newer.
- *  \param [in] ...       Optional data to be passed to the function.
- */
-void
-geda_toplevel_struct_set_bkloader_querier (GedaToplevel *toplevel, void *func, ...)
-{
-  if (GEDA_IS_TOPLEVEL(toplevel)) {
-    va_list argp;
-    va_start (argp, func);
-    toplevel->load_newer_backup_func = func;
-    toplevel->load_newer_backup_data = va_arg(argp, void*);
-    va_end (argp);
-  }
-}
-
 /*! \brief Set the font-renderer-specific bounds function.
  *  \par Function Description
  *  Set the function to be used to calculate text bounds for #Text

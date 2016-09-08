@@ -236,10 +236,10 @@ bool          geda_toplevel_move_page_up            (GedaToplevel *toplevel, Pag
 void          geda_toplevel_remove_page             (GedaToplevel *toplevel, Page *page);
 
 bool          geda_toplevel_set_auto_save_interval  (GedaToplevel *toplevel, int interval);
+void          geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...);
 bool          geda_toplevel_set_current_page        (GedaToplevel *toplevel, Page *page);
 int           geda_toplevel_set_file_open_flags     (GedaToplevel *toplevel, int open_flags);
 bool          geda_toplevel_set_make_backups        (GedaToplevel *toplevel, int make_backups);
-
 
 #ifdef __cplusplus
 }

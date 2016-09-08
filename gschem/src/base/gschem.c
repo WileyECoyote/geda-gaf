@@ -327,8 +327,9 @@ static void gschem( int argc, char *argv[])
   w_current->toplevel = geda_toplevel_new ();
   toplevel            = w_current->toplevel;
 
-  geda_toplevel_struct_set_bkloader_querier(toplevel, x_fileselect_load_backup,
-                                            w_current);
+  geda_toplevel_set_bkloader_query_func(toplevel,
+                                        x_fileselect_load_backup,
+                                        w_current);
 
   geda_toplevel_struct_set_rbounds_func (toplevel,
                                          o_text_get_rendered_bounds,

@@ -731,13 +731,13 @@ COMMAND (do_file_new_window)
 
   x_window_setup (new_window);
 
-  geda_toplevel_struct_set_bkloader_querier (toplevel,
-                                             x_fileselect_load_backup,
-                                             new_window);
+  geda_toplevel_set_bkloader_query_func (toplevel,
+                                         x_fileselect_load_backup,
+                                         new_window);
 
   geda_toplevel_struct_set_rbounds_func (toplevel,
-                                       o_text_get_rendered_bounds,
-                                       new_window);
+                                         o_text_get_rendered_bounds,
+                                         new_window);
 
   page = x_window_open_page (new_window, NULL);
   x_window_set_current_page (new_window, page);
