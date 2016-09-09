@@ -2600,9 +2600,7 @@ GtkWidget *geda_menu_get_parent (GedaMenu *menu)
 }
 
 void
-geda_menu_reorder_child (GedaMenu  *menu,
-                         GtkWidget *child,
-                         int        position)
+geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 {
   GedaMenuShell *menu_shell;
 
@@ -2648,8 +2646,7 @@ geda_menu_get_toplevel (GedaMenu *menu)
 }
 
 static void
-geda_menu_style_set (GtkWidget *widget,
-            GtkStyle  *previous_style)
+geda_menu_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
   if (gtk_widget_get_realized (widget))
     {
@@ -2662,8 +2659,7 @@ geda_menu_style_set (GtkWidget *widget,
 }
 
 static void
-get_arrows_border (GedaMenu   *menu,
-                   GtkBorder *border)
+get_arrows_border (GedaMenu *menu, GtkBorder *border)
 {
   unsigned int scroll_arrow_height;
   GtkArrowPlacement arrow_placement;
