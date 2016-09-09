@@ -160,12 +160,12 @@ const char *IDS_CONSOLE_POPUP[] = {
   NULL
 };
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Freeze Notify before Inserting Text
+ * \par Function Description
+ *  Internal helper to stop emission of signals before inserting text.
  */
-static void
+static inline void
 begin_change (GedaEntry *entry)
 {
   GedaEntryPriv *priv = entry->priv;
@@ -175,12 +175,12 @@ begin_change (GedaEntry *entry)
   g_object_freeze_notify (G_OBJECT (entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Thaw Notify After Text Insertion Completed
+ * \par Function Description
+ *  Re-enable emission of signals after insetion of text completed.
  */
-static void
+static inline void
 end_change (GedaEntry *entry)
 {
   GedaEntryPriv *priv = entry->priv;

@@ -1,5 +1,8 @@
 2016-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Request begin_change and end_change be
+      inserted in-line, add Doxygen comments.
+
     * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_get_key_hash
       to eliminate early returns.
 
