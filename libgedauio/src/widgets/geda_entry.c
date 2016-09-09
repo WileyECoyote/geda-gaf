@@ -195,10 +195,14 @@ end_change (GedaEntry *entry)
 */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Text from a GedaEntry
+ * \par Function Description
+ *  This function gets the text characters in a GedaEntry.
  *
+ * \param[in] entry Pointer a #GedaEntry object
+ *
+ * \returns the contents of the text entry buffer
  */
 const char*
 geda_entry_get_text (GedaEntry *entry)
@@ -212,10 +216,15 @@ geda_entry_get_text (GedaEntry *entry)
   return gtk_entry_buffer_get_text (buffer);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Text in a GedaEntry
+ * \par Function Description
+ *  This function sets the text in a GedaEntry if \a new_text
+ *  is not equivalent to the string already in the buffer. No
+ *  signal is emitted.
  *
+ * \param[in] entry    Pointer #GedaEntry object
+ * \param[in] new_text Text to be loaded into the GedaEntry.
  */
 void
 geda_entry_set_text (GedaEntry *entry, const char *new_text)
@@ -249,14 +258,14 @@ geda_entry_set_text (GedaEntry *entry, const char *new_text)
   end_change(entry);
 }
 
-/*! \brief GedaEntry Get Activates Default
- *  \par Function Description
+/*!
+ * \brief GedaEntry Get Activates Default
+ * \par Function Description
+ *  Retrieves the value set by gtk_entry_set_activates_default().
  *
- * Retrieves the value set by gtk_entry_set_activates_default().
+ * \param [in] entry Pointer to a #GedaEntry object.
  *
- * \param [in] entry:    Pointer to a #GedaEntry object.
- *
- * Return value: %TRUE if the entry will activate the default widget
+ * \retval %TRUE if the entry will activate the default widget
  */
 bool
 geda_entry_get_activates_default (GedaEntry *entry)
@@ -266,20 +275,20 @@ geda_entry_get_activates_default (GedaEntry *entry)
   return entry->activates_default;
 }
 
-/*! \brief GedaEntry Set Activates Default
- *  \par Function Description
+/*!
+ * \brief GedaEntry Set Activates Default
+ * \par Function Description
+ *  If setting is %TRUE, pressing Enter in the entry will activate the
+ *  default widget for the window containing the entry. This usually means
+ *  that the dialog box containing the entry will be closed, since the
+ *  default widget is usually one of the dialog buttons.
  *
- * If setting is %TRUE, pressing Enter in the entry will activate the
- * default widget for the window containing the entry. This usually means
- * that the dialog box containing the entry will be closed, since the
- * default widget is usually one of the dialog buttons.
+ *  (For experts: if the setting is %TRUE, the entry calls
+ *  gtk_window_activate_default() on the window containing the entry,
+ *  in the default handler for the activate signal.)
  *
- * (For experts: if setting is %TRUE, the entry calls
- * gtk_window_activate_default() on the window containing the entry, in
- * the default handler for the activate signal.)
- *
- * \param [in] entry:    Pointer to a #GedaEntry object.
- * \param [in] setting:  The desired setting.
+ * \param [in] entry    Pointer to a #GedaEntry object.
+ * \param [in] setting  The desired setting.
  */
 void
 geda_entry_set_activates_default (GedaEntry *entry, bool setting)
@@ -294,13 +303,14 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
   }
 }
 
-/*! \brief Set Entry attribute List
- *  \par Function Description
+/*!
+ * \brief Set Entry attribute List
+ * \par Function Description
  * This function applies the PangoAttrList to entry text font
  * description.
  *
- * \param [in] entry: Pointer to a #GedaEntry object.
- * \param [in] attrs: Pointer to a PangoAttrList structure.
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] attrs Pointer to a PangoAttrList structure.
  */
 void
 geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
