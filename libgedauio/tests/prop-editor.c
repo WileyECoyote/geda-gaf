@@ -40,9 +40,9 @@
 
 typedef struct
 {
-  void    *instance;
-  GObject *alive_object;
-  unsigned int id;
+  void         *instance;
+  GObject      *alive_object;
+  unsigned int  id;
 } DisconnectData;
 
 static void
@@ -82,16 +82,18 @@ g_object_connect_property (GObject     *object,
                            void        *data,
                            GObject     *alive_object)
 {
-  GClosure *closure;
-  char *with_detail;
+  GClosure       *closure;
+  char           *with_detail;
   DisconnectData *dd;
 
-  if (is_child_property (spec))
+  if (is_child_property (spec)) {
     with_detail = g_strconcat ("child-notify::", spec->name, NULL);
-  else
+  }
+  else {
     with_detail = g_strconcat ("notify::", spec->name, NULL);
+  }
 
-  dd = g_new (DisconnectData, 1);
+  dd = g_malloc (sizeof(DisconnectData));
 
   closure = g_cclosure_new (func, data, NULL);
 
