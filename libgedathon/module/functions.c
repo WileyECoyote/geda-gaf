@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedathon - gEDA's Python API Extension library
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2016 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -169,8 +169,10 @@ static char *AutoDesignate(AutoDesignator GetNextRef, PyObject *py_refdes)
 #ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */
 #define PyMODINIT_FUNC void
 #endif
-/*! \brief Geda Python Module Initializer
- *  \par Function Description
+
+/*!
+ * \brief Geda Python Module Initializer
+ * \par Function Description
  *  This function is the local initializer for this Python module. The
  *  function registers methods and sets strings for the default symbols.
  */
@@ -211,20 +213,21 @@ initFunctions(PyObject *module)
   PyDict_Merge(main_dic, func_dic, 1);
 }
 
-/*! \brief Helper function to interface with Module for Complex Objects
- *  \par Function Description
+/*!
+ * \brief Helper function to interface with Module for Complex Objects
+ * \par Function Description
  *  This function invokes the "new_complex" methods using only the "set"
  *  arguments and returns the resulting PyGedaComplexObject to the caller.
  *
  *  Called by Functions: AddComponent, AddCapacitor,  AddElectrolytic,
  *  AddInductor, AddOpAmp, AddResistor, AddSource
  *
- *  \param py_symbol Pointer to PyString
- *  \param py_x      Pointer to PyInt
- *  \param py_y      Pointer to PyInt
- *  \param angle     Integer
- *  \param mirror    Integer
- *  \param embed     Integer
+ * \param py_symbol  Pointer to PyString
+ * \param py_x       Pointer to PyInt
+ * \param py_y       Pointer to PyInt
+ * \param angle      Integer
+ * \param mirror     Integer
+ * \param embed      Integer
  */
 /* Helper function call_pysymbol_xyi3 in Python_Geda_Module_Functions */
 /* Called by Functions: AddComponent, AddCapacitor,  AddElectrolytic,
@@ -261,12 +264,12 @@ PyObject *call_pysymbol_xyi3(PyObject *py_symbol, PyObject *py_x, PyObject *py_y
  *
  *  Called by Functions: AddBox, AddLine
  *
- *  \param [in] method    char* to name of the method to invoke
- *  \param [in] O1        Pointer to PyObject
- *  \param [in] O2        Pointer to PyObject
- *  \param [in] O3        Pointer to PyObject
- *  \param [in] O4        Pointer to PyObject
- *  \param [in] O5        Pointer to PyObject
+ *  \param [in] method  char pointer to name of the method to invoke
+ *  \param [in] O1      Pointer to PyObject
+ *  \param [in] O2      Pointer to PyObject
+ *  \param [in] O3      Pointer to PyObject
+ *  \param [in] O4      Pointer to PyObject
+ *  \param [in] O5      Pointer to PyObject
  *
  *  \return [out] PyObject result of method
  */
@@ -286,8 +289,9 @@ PyObject *call_module_4IO(char *method, PyObject *O1, PyObject *O2, PyObject *O3
   return py_object;
 }
 
-/*! \brief Helper function to interface with Module to Create an Object
- *  \par Function Description
+/*!
+ * \brief Helper function to interface with Module to Create an Object
+ * \par Function Description
  *  This function invokes the method specifed by the first argument, using
  *  the remaining arguments as prarmeters. The first 4 are required arguments,
  *  the remaining arguments are optional. Returns the resulting PyGedaObject
@@ -295,15 +299,15 @@ PyObject *call_module_4IO(char *method, PyObject *O1, PyObject *O2, PyObject *O3
  *
  *  Called by Functions: AddBox, AddLine
  *
- *  \param [in] method    char* to name of the method to invoke
- *  \param [in] O1        Pointer to PyObject
- *  \param [in] O2        Pointer to PyObject
- *  \param [in] O3        Pointer to PyObject
- *  \param [in] O4        Pointer to PyObject
- *  \param [in] S5        Pointer to PyObject
- *  \param [in] O6        Pointer to PyObject
+ * \param [in] method   char* to name of the method to invoke
+ * \param [in] O1       Pointer to PyObject
+ * \param [in] O2       Pointer to PyObject
+ * \param [in] O3       Pointer to PyObject
+ * \param [in] O4       Pointer to PyObject
+ * \param [in] S5       Pointer to PyObject
+ * \param [in] O6       Pointer to PyObject
  *
- *  \return [out] PyObject result of method
+ * \return [out] PyObject result of method
  */
 /* Called by Functions: AddBus, AddNet*/
 PyObject *call_module_4ISO(char *method, PyObject *O1, PyObject *O2, PyObject *O3, PyObject *O4, PyObject *S5, PyObject *O6)
@@ -350,10 +354,10 @@ FUNCTION(unknown)
 
 /*!
  * This module provides utility functions to facilitate and enhance accessing
- * the <b>Geda-Python</b> API's as a higher-level front-end to the geda module. This
- * module performs minimal type checking, often passing the Python objects with
- * out any conversions, and only those objects that were provided. Functions in
- * this module do not typically provide default parameters. The exception would
+ * the <b>Geda-Python</b> API's as a higher-level front-end to the geda module.
+ * This module performs minimal type checking, often passing the Python objects
+ * with out any conversions, and only those objects that were provided. Functions
+ * in this module do not typically provide default parameters. The exception would
  * seem to be reference designators. Designators are not provided by the Library
  * and are a convenience feature of this module. The auto-referencing can be over
  * -riden by passing the reference designation. As a convenience for clients, the
@@ -361,14 +365,14 @@ FUNCTION(unknown)
  * be assigned the next designation for that particular part type. Non-zero values
  * not only set the designation for the current component, the value is also used
  * to update the auto-referencing value.
- *\code
+ * \code
  * example:  AddCapacitor(schematic,  5400, 8600)         # Auto Assigned ref=C1 \n
  *           AddCapacitor(schematic,  6700, 8600 100)     # Assigned ref=C100 \n
  *           AddCapacitor(schematic,  7000, 6300, 0, 90)  # Auto Assigned ref=C101 \n
  *           AddCapacitor(schematic, 11500, 8600)         # Auto Assigned ref=C102 \n
  *           AddCapacitor(schematic, 12000, 8600 "C201")  # Assigned ref=C201 \n
  *           AddCapacitor(schematic, 13000, 8400)         # Auto Assigned ref=C202 \n
- *\endcode
+ * \endcode
  *  The reference designator for C101 must be provided because the component is
  *  being add with a 90 degree rotation, so a value of zero is used, to enable
  *  auto-referencing, which assigns the value of 101 because the previous Cap
@@ -379,32 +383,33 @@ FUNCTION(unknown)
  *  been implemented in Python, (and original they were). The basic idea is to do
  *  as much as possible in C and as little as possible in Python, due to Python's
  *  general poor performence in terms of speed.
- *
  */
 
 /** \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
  *  @{
  */
 
-/*! \brief Get or Set the name of default Capacitor symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Capacitor symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
  *  the <b>AddCapacitor</b> function. The default symbol name is "capacitor-1".
  *  Symbol names are not checked, but must be a valid symbol known to the
- *  <b>Library</b> when <b>AddCapacitor</b> is used or PyGeda_new_complex will
- *  generate an error. Note that the current string is returned whether
+ *  <b>Library</b> when <b>AddCapacitor</b> is used or PyGeda_new_complex
+ *  will generate an error. Note that the current string is returned whether
  *  or not the optional string argument is provided. Using the reserved
  *  keyword "default" will restore the default symbol to "capacitor-1".
  *  This function provides a method to over-ride the default symbol is
  *  not required.
  *
- *  \sa DefaultElectrolyticSymbol
+ * \sa DefaultElectrolyticSymbol
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
- *
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \code
  *  example: DefaultCapacitorSymbol("capacitor-2")
+ * \endcode
  */
 FUNCTION(DefaultCapacitorSymbol)
 {
@@ -435,25 +440,28 @@ FUNCTION(DefaultCapacitorSymbol)
   return CapacitorSymbol;
 }
 
-/*! \brief Get or Set the name of default Electrolytic Capacitor symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Electrolytic Capacitor symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
  *  the <b>AddElectrolytic</b> function. The default symbol name is "electrolytic-1".
  *  Symbol names are not checked, but must be a valid symbol known to the
- *  <b>Library</b> when <b>AddElectrolytic</b> is used or PyGeda_new_complex will
- *  generate an error. Note that the current string is returned whether
+ *  <b>Library</b> when <b>AddElectrolytic</b> is used or PyGeda_new_complex
+ *  will generate an error. Note that the current string is returned whether
  *  or not the optional string argument is provided. Using the reserved
  *  keyword "default" will restore the default symbol to "electrolytic-1".
  *  This function provides a method to over-ride the default symbol is
  *  not required.
  *
- *  \sa DefaultCapacitorSymbol
+ * \sa DefaultCapacitorSymbol
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
  *
+ * \code
  *  example: DefaultElectrolyticSymbol("tantalum-1") # set default to tantalum-1
+ * \endcode
  */
 FUNCTION(DefaultElectrolyticSymbol)
 {
@@ -485,25 +493,28 @@ FUNCTION(DefaultElectrolyticSymbol)
   return ElectrolyticSymbol;
 }
 
-/*! \brief Get or Set the name of default Inductor symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Inductor symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
  *  the <b>AddInductor</b> function. The default symbol name is "inductor-1".
  *  Symbol names are not checked, but must be a valid symbol known to the
- *  <b>Library</b> when <b>AddInductor</b> is used or <b>PyGeda_new_complex</b> will
- *  generate an error. Note that the current string is returned whether or
- *  not the optional string argument is provided. This function provides
- *  a method to over-ride the default symbol, it is not required to call
- *  the function. Using the reserved keyword "default" will restore the
- *  default symbol to "inductor-1".
+ *  <b>Library</b> when <b>AddInductor</b> is used or <b>PyGeda_new_complex</b>
+ *  will generate an error. Note that the current string is returned whether
+ *  or not the optional string argument is provided. This function provides
+ *  a method to over-ride the default symbol, it is not required to call the
+ *  function. Using the reserved keyword "default" will restore the default
+ *  symbol to "inductor-1".
  *
- *  \sa DefaultTransformerSymbol
+ * \sa DefaultTransformerSymbol
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
  *
+ * \code
  *  example: current_inductor = DefaultInductorSymbol("tantalum-1") # get inductor symbol name
+ * \endcode
  */
 FUNCTION(DefaultInductorSymbol)
 {
@@ -535,22 +546,24 @@ FUNCTION(DefaultInductorSymbol)
   return InductorSymbol;
 }
 
-/*! \brief Get or Set the name of default Operational Amplifier symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Operational Amplifier symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
- *  the <b>AddOpAmp</b> function. The default symbol name is "opamp-1". Symbol names
- *  are not checked, but must be a valid symbol known to the <b>Library</b> when
- *  <b>AddOpAmp</b> is used or <b>PyGeda_new_complex</b> will generate an error. Note that
- *  the current string is returned whether or not the optional string argument
- *  is provided. This function provides a method to over-ride the default symbol,
- *  it is not required to call this function. Using the reserved keyword "default"
- *  will restore the default symbol to "opamp-1".
+ *  the <b>AddOpAmp</b> function. The default symbol name is "opamp-1". Symbol
+ *  names are not checked, but must be a valid symbol known to the <b>Library</b>
+ *  when <b>AddOpAmp</b> is used or <b>PyGeda_new_complex</b> will generate an
+ *  error. Note that the current string is returned whether or not the optional
+ *  string argument is provided. This function provides a method to over-ride
+ *  the default symbol, it is not required to call this function. Using the
+ *  reserved keyword "default" will restore the default symbol to "opamp-1".
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
- *
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \code
  *  example: DefaultOpAmpSymbol("default")  # restore the default symbol "dual-opamp-1"
+ * \endcode
  */
 FUNCTION(DefaultOpAmpSymbol)
 {
@@ -581,25 +594,27 @@ FUNCTION(DefaultOpAmpSymbol)
   return OpAmpSymbol;
 }
 
-/*! \brief Get or Set the name of default Resistor symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Resistor symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
  *  the <b>AddResistor</b> function. The default symbol name is "resistor-1".
  *  Symbol names are not checked, but must be a valid symbol known to the
- *  <b>Library</b> when <b>AddResistor</b> is used or <b>PyGeda_new_complex</b> will
- *  generate an error. Note that the current string is returned whether or
- *  not the optional string argument is provided. This function provides
- *  a method to over-ride the default symbol, it is not required to call
- *  the function. Using the reserved keyword "default" will restore the
- *  default symbol to "resistor-1".
+ *  <b>Library</b> when <b>AddResistor</b> is used or <b>PyGeda_new_complex</b>
+ *  will generate an error. Note that the current string is returned whether
+ *  or not the optional string argument is provided. This function provides
+ *  a method to over-ride the default symbol, it is not required to call the
+ *  function. Using the reserved keyword "default" will restore the default
+ *  symbol to "resistor-1".
  *
- *  \sa DefaultCapacitorSymbol, DefaultElectrolyticSymbol
+ * \sa DefaultCapacitorSymbol, DefaultElectrolyticSymbol
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
- *
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \code
  *  example: DefaultResistorSymbol("metal-film-1")
+ * \endcode
  */
 FUNCTION(DefaultResistorSymbol)
 {
@@ -631,20 +646,21 @@ FUNCTION(DefaultResistorSymbol)
   return ResistorSymbol;
 }
 
-/*! \brief Get or Set the name of default Titleblock symbol
- *  \par Function Description
+/*!
+ * \brief Get or Set the name of default Titleblock symbol
+ * \par Function Description
  *  This function is used to set or get the name of the symbol inserted by
  *  the <b>AddTitleblock</b> function. The default symbol name is "title-B".
  *  Symbol names are not checked, but must be a valid symbol known to the
- *  <b>Library</b> when <b>AddTitleblock</b> is used or <b>PyGeda_new_complex</b> will
- *  generate an error. Note that the current string is returned whether or
+ *  <b>Library</b> when <b>AddTitleblock</b> is used or <b>PyGeda_new_complex</b>
+ *  will generate an error. Note that the current string is returned whether or
  *  not the optional string argument is provided.
  *  This function provides a method to over-ride the default symbol, it is
  *  not required to call this function.
  *
  *  [in] symbol Optional Python string to set the symbol name
  *
- *  \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ * \return Pointer to PyObject of PyString_Type, containing the symbol name.
  */
 FUNCTION(DefaultTitleblockSymbol)
 {
@@ -677,12 +693,13 @@ FUNCTION(DefaultTitleblockSymbol)
 
 /** @} END Group Python_API_Symbols_For_GedaFunctions */
 
-/*! \brief Create and Add an Arc Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Arc Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaArcObject</b> and attaches the Arc to the Page object, which must
- *  be provided. There are no default values for an Arc Object other
- *  then color.
+ *  <b>PyGedaArcObject</b> and attaches the Arc to the Page object,
+ *  which must be provided. There are no default values for an Arc
+ *  Object other then color.
  *
  *  [in] page        A Page object
  *  [in] x           Integer center X location
@@ -695,10 +712,11 @@ FUNCTION(DefaultTitleblockSymbol)
  *
  *  [in] color       integer color property
  *
- *  \return [out] PyGedaArcObject or Py_None if an error occured
+ * \return [out] PyGedaArcObject or Py_None if an error occured
  *
+ * \code
  *  example: AddArc(schematic, 2300, 2700, 500, 0, 90)
- *
+ * \endcode
  */
 FUNCTION ( AddArc)
 {
@@ -743,19 +761,20 @@ FUNCTION ( AddArc)
   return py_arc;
 }
 
-/*! \brief Create and Add an attribute Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an attribute Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaTextObject</b> and attaches the object to the given Page object. This
- *  function creates the same type of object as the AddText function but
+ *  <b>PyGedaTextObject</b> and attaches the object to the given Page object.
+ *  This function creates the same type of object as the AddText function but
  *  with different arguments. This functions allow the name value strings
- *  to be passed separately, and setting the show-name-value property.
- *  the can also be done with a <b>AddText</b> by changing the property after the
+ *  to be passed separately, and setting the show-name-value property. This
+ *  can also be done with a <b>AddText</b> by changing the property after the
  *  object is create. This function is equivent to calling new_attrib method
  *  followed by add_object, and provided as an alternative for convenience.
  *
- *  \note  An Attribute object is a Text object whose string is in the
- *         form: "name=value".
+ * \note  An Attribute object is a Text object whose string is in the
+ *        form: "name=value".
  *
  * [in] Object      Object  a Complexobject
  * [in] name        String  the name property
@@ -771,10 +790,12 @@ FUNCTION ( AddArc)
  * [in] angle       integer text orientation property
  * [in] color       Object  color object
  *
- *  \return [out] PyGedaTextObject or Py_None if an error occured
+ * \return [out] PyGedaTextObject or Py_None if an error occured
  *
+ * \code
  *  example 1: amp = AddComponent(circuit, "dual-opamp-py", "U1", 7700, 7300)
  *              AddAttribute(amp, "slot", "2",  7650, 7250)
+ * \endcode
  */
 FUNCTION ( AddAttribute )
 {
@@ -845,11 +866,12 @@ FUNCTION ( AddAttribute )
   return py_text;
 }
 
-/*! \brief Create and Add a Box Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Box Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaBoxObject</b> and attaches the object to the given Page object. This
- *  function is equivent to calling new_box method followed by add_object,
+ *  <b>PyGedaBoxObject</b> and attaches the object to the given Page object.
+ *  This function is equivent to calling new_box method followed by add_object,
  *  and provided as an alternative for convenience.
  *
  * [in] page        Object  a Page object
@@ -862,12 +884,13 @@ FUNCTION ( AddAttribute )
  *
  * [in] color       Object  color object
  *
- *  \return [out] PyGedaBoxObject or Py_None if an error occured
- *
+ * \return [out] PyGedaBoxObject or Py_None if an error occured
+ * \code
  *  example 1: AddBox(schematic, 7500, 2500, 14500, 9500)
- *
+ * \endcode
+ * \code
  *  example 2: AddBox(schematic, 800, 1500, 5200, 8625, Blue)
- *
+ * \endcode
  */
 FUNCTION ( AddBox )
 {
@@ -906,8 +929,9 @@ FUNCTION ( AddBox )
   return py_box;
 }
 
-/*! \brief Create and Add a Bus Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Bus Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new <b>PyGedaBusObject</b>
  *  and attaches the object to the given Page object. Bus objects are drawn
  *  as a line but represent a set of electrical paths, like cables. A bus is
@@ -929,12 +953,13 @@ FUNCTION ( AddBox )
  *  [in] busname String  A name for the Bus object
  *  [in] color   Object  color object
  *
- *  \return [out] PyGedaBusObject or Py_None if an error occured
- *
+ * \return [out] PyGedaBusObject or Py_None if an error occured
+ * \code
  *  example 1: AddBus(phone, 3700, 3100, 3700, 4200, "LowAddress)
- *
+ * \endcode
+ * \code
  *  example 2: AddBus(phone, 2000, 4400, 2700, 4400, Blue)
- *
+ * \endcode
  */
 FUNCTION(AddBus)
 {
@@ -974,11 +999,12 @@ FUNCTION(AddBus)
   return py_bus;
 }
 
-/*! \brief Create and Add a Component Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Component Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaComplexObject</b> and attaches the object to the given Page object.
- *  The function uses the set_attrib API Library method to attach
+ *  <b>PyGedaComplexObject</b> and attaches the object to the given Page
+ *  object. The function uses the set_attrib API Library method to attach
  *  the refdes attribute if refdes is a non empty string.
  *
  *  [in] page        Object  a Page object
@@ -993,11 +1019,13 @@ FUNCTION(AddBus)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embeded into the schmatic
  *
- *  \return [out] PyGedaComplexObject or Py_None if an error occured
- *
+ * \return [out] PyGedaComplexObject or Py_None if an error occured
+ * \code
  *  example 1: AddComponent(schematic, "lm2902-1", "U1", 1000, 4000)
- *
+ * \endcode
+ * \code
  *  example 2: IC15 = AddComponent(schematic, "XC2S150-5PQ208I", "IC15", 115000, 18000, -1, -1, 1)
+ * \endcode
  */
 FUNCTION(AddComponent)
 {
@@ -1039,8 +1067,9 @@ FUNCTION(AddComponent)
   return py_component;
 }
 
-/*! \brief Create and Add a Capacitor component Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Capacitor component Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
  *  <b>CapacitorSymbol</b> variable. The default symbol name is "capacitor-1".
@@ -1062,12 +1091,14 @@ FUNCTION(AddComponent)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
- *  \return [out] PyGedaComplexObject representing the capacitor or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
+ *               an error occured.
+ * \code
  *  example 1: AddCapacitor(page,  6700, 8600, "20nF")
- *
+ * \endcode
+ * \code
  *  example 2: AddCapacitor(filter, 14300, 9800, ".01uF", 0, 270)
+ * \endcode
  */
 FUNCTION(AddCapacitor)
 {
@@ -1118,12 +1149,13 @@ FUNCTION(AddCapacitor)
   return py_capacitor;
 }
 
-/*! \brief Create and Add a Circle Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Circle Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaCircleObject</b> and attaches the Circle to the Page object, which must
- *  be provided. There are no default values for an Circle Object other
- *  then color.
+ *  <b>PyGedaCircleObject</b> and attaches the Circle to the Page object,
+ *  which must be provided. There are no default values for an Circle
+ *  Object other then color.
  *
  *  [in] page        A Page object
  *  [in] x           Integer center X location
@@ -1134,11 +1166,13 @@ FUNCTION(AddCapacitor)
  *
  *  [in] color       integer color property
  *
- *  \return [out] PyGedaCircleObject or Py_None if an error occured
+ * \return [out] PyGedaCircleObject or Py_None if an error occured
  *
+ * \code
  *  example: circle1 = AddCircle(schematic, 1800, 3100, 500)
  *           circle2 = geda.copy_object(circle1, 1000, -900)
  *           circle3 = circle2.copy(1000, -900)
+ * \endcode
  */
 FUNCTION ( AddCircle )
 {
@@ -1179,8 +1213,9 @@ FUNCTION ( AddCircle )
   return py_circle;
 }
 
-/*! \brief Create and Add an Electrolytic Capacitor Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Electrolytic Capacitor Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
  *  <b>ElectrolyticSymbol</b> variable. The default symbol name is "electrolytic-1".
@@ -1202,12 +1237,14 @@ FUNCTION ( AddCircle )
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
- *  \return [out] PyGedaComplexObject representing the capacitor or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
+ *               an error occured.
+ * \code
  *  example 1: AddElectrolytic(page,  6700, 8600, "20uF")
- *
+ * \endcode
+ * \code
  *  example 2: AddElectrolytic(filter, 14300, 9800, "4.7uF 16V")
+ * \endcode
  */
 FUNCTION(AddElectrolytic)
 {
@@ -1259,8 +1296,9 @@ FUNCTION(AddElectrolytic)
   return py_electrolytic;
 }
 
-/*! \brief Create and Add an Inductor component Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Inductor component Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
  *  <b>InductorSymbol</b> variable. The default symbol name is "inductor-1".
@@ -1282,11 +1320,10 @@ FUNCTION(AddElectrolytic)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
- *  \return [out] PyGedaComplexObject representing the capacitor or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
+ *               an error occured.
+ * \code
  *  example 1: AddInductor(page,  5000, 6500, "20mH")
- *
  *  example 2: AddInductor(filter, 14000, 9800, "4.7uH")
  */
 FUNCTION(AddInductor)
@@ -1338,8 +1375,9 @@ FUNCTION(AddInductor)
   return py_inductor;
 }
 
-/*! \brief Create and Add a Line Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Line Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaLineObject</b> and attaches the Line to the Page object, which must
  *  be provided. There are no optional arguments for a Line Object
@@ -1356,8 +1394,9 @@ FUNCTION(AddInductor)
  *
  *  [in] color       integer color property
  *
- *  \return [out] PyGedaCircleObject or Py_None if an error occured
+ * \return [out] PyGedaCircleObject or Py_None if an error occured
  *
+ * \code
  *  example 1: AddLine(schematic, 2600, 3100, 3700, 3100)
  *
  *  example 2: line = AddLine(schematic, 2200, 5200, 2800, 5200)
@@ -1397,8 +1436,9 @@ FUNCTION(AddLine)
   return py_line;
 }
 
-/*! \brief Create and Add a Net Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Net Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new <b>PyGedaNetObject</b>
  *  and attaches the object to the given Page object. If the optional netname
  *  argument is given then a seperate text attribute object will be created
@@ -1417,12 +1457,12 @@ FUNCTION(AddLine)
  *  [in] netname String  A name for the Bus object
  *  [in] color   Object  color object
  *
- *  \return [out] PyGedaNetObject or Py_None if an error occured
+ * \return [out] PyGedaNetObject or Py_None if an error occured
  *
+ * \code
  *  example 1: AddNet(circuit, 12400,  8800, 13900,  8800)
  *
  *  example 2: AddNet(schematic,2000, 4400, 2700, 4400, "U1_1_U1_5")
- *
  */
 FUNCTION(AddNet)
 {
@@ -1461,19 +1501,19 @@ FUNCTION(AddNet)
   return py_net;
 }
 
-/*! \brief Create and Add an OpAmp component Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an OpAmp component Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
- *  <b>OpAmpSymbol</b> variable. The default symbol name is "opamp-1".
- *  The Object is attached to the given Page object. A text attribute
- *  is attached to the object for the refdes. The value of refdes is
- *  optional and will be auto assigned if not specified using the
- *  letter "U" as a prefix. When specifying refdes as a string, refdes
+ *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer
+ *  to by the <b>OpAmpSymbol</b> variable. The default symbol name is
+ *  "opamp-1". The Object is attached to the given Page object. A text
+ *  attribute is attached to the object for the refdes. The value of
+ *  refdes is optional and will be auto assigned if not specified using
+ *  the letter "U" as a prefix. When specifying refdes as a string, refdes
  *  does not need to include the character prefix. If the slot argument
  *  is an integer equal to -1, then the slot attribute will not be
  *  created.
- *
  *
  *  [in] page        A Page object
  *  [in] x           Integer X location
@@ -1487,9 +1527,9 @@ FUNCTION(AddNet)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
- *  \return [out] PyGedaComplexObject representing the OpAmp or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the OpAmp or Py_None if
+ *               an error occured.
+ * \code
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
  *  example 2: AddOpAmp(schematic, 6800, 8000, "U1", 0, 0, 0, 0)
@@ -1555,14 +1595,14 @@ FUNCTION(AddOpAmp)
   return py_opamp;
 }
 
-/*! \brief Create and Add an Path figure Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Path figure Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaPathObject</b> based on the given path string. The Object is
- *  attached to the given Page object. A Path object is graphical
- *  figure and does not represent an electrical path. Path have
- *  line-type properties and can have fill-patterns when the path
- *  is closed.
+ *  <b>PyGedaPathObject</b> based on the given path string. The Object
+ *  is attached to the given Page object. A Path object is graphical
+ *  figure and does not represent an electrical path. Path have line-
+ *  type properties and can have fill-patterns when the path is closed.
  *
  *  [in] page    A Page object
  *  [in] path    String  The SVG path string
@@ -1571,8 +1611,9 @@ FUNCTION(AddOpAmp)
  *
  *  [in] color   Object  color object
  *
- *  \return [out] PyGedaPathObject or Py_None if an error occured.
+ * \return [out] PyGedaPathObject or Py_None if an error occured.
  *
+ * \code
  *  example 1: path = AddPath(page, "M100,200 C100,100 250,100 250,200 S400,300 400,200")
  *
  *  example 2: AddPath(page, "M 100,200, C 100,100 250,100 250,200 C 250,300 400,300 400,200")
@@ -1611,11 +1652,12 @@ FUNCTION(AddPath)
   return py_path;
 }
 
-/*! \brief Create and Add a Picture image Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Picture image Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaPictureObject</b> and attaches the object to the given Page object. This
- *  function is equivent to calling new_picture method followed by add_object,
+ *  <b>PyGedaPictureObject</b> and attaches the object to the given Page object.
+ *  This function is equivent to calling new_picture method followed by add_object,
  *  and provided as an alternative for convenience.
  *
  *  [in] page        Object  a Page object
@@ -1631,10 +1673,9 @@ FUNCTION(AddPath)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, image data will be embedded into the schematic
  *
- *  \return [out] PyGedaPictureObject or Py_None if an error occured
- *
+ * \return [out] PyGedaPictureObject or Py_None if an error occured
+ * \code
  *  example: AddPicture(page, "./pic/1377339524810.jpg", 8000, 3000, 14000, 9000)
- *
  */
 FUNCTION(AddPicture)
 {
@@ -1691,11 +1732,13 @@ FUNCTION(AddPicture)
   return py_picture;
 }
 
-/*! \brief Create and Add a Pin Object Python API Function
- *  \par Function Description
- *    This function calls Geda API Library routines to create a new <b>PyGedaPinObject</b>
- *  and attaches the object to the given Page object.Normally, PyGedaPinObject are
- *  only added to symbol files, not schematic files..
+/*!
+ * \brief Create and Add a Pin Object Python API Function
+ * \par Function Description
+ *  This function calls Geda API Library routines to create a new
+ *  <b>PyGedaPinObject</b> and attaches the object to the given Page
+ *  object.Normally, PyGedaPinObject are only added to symbol files,
+ *  not schematic files..
  *
  *  [in] page    Object  a Page object
  *  [in] x1      Integer from X location
@@ -1712,12 +1755,11 @@ FUNCTION(AddPicture)
  *  [in] mech_type    integer mechanical type attribute
  *  [in] node_type    integer node type property ( 0=normal, 1=bus type)
  *
- *  \return [out] PyGedaPinObject or Py_None if an error occured
- *
+ * \return [out] PyGedaPinObject or Py_None if an error occured
+ * \code
  *  example 1: AddPin(resistor, 0, 100, 100, 100)
  *
  *  example 2: pin = AddPin(symbol, 0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
- *
  */
 FUNCTION(AddPin)
 {
@@ -1828,19 +1870,18 @@ FUNCTION(AddPin)
   return py_pin;
 }
 
-/*! \brief Create and Add an Resistor component Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Resistor component Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
- *  <b>ResistorSymbol</b> variable. The default symbol name is "resistor-1".
- *  The Object is attached to the given Page object. A text attribute
- *  is attached to the object for the refdes. The value of refdes is
- *  optional and will be auto assigned if not specified using the
- *  letter "R" as a prefix. When specifying refdes as a string, refdes
- *  does not need to include the character prefix. If the slot argument
- *  is an integer equal to -1, then the slot attribute will not be
- *  created.
- *
+ *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by
+ *  the <b>ResistorSymbol</b> variable. The default symbol name is "resistor-1".
+ *  The Object is attached to the given Page object. A text attribute is
+ *  attached to the object for the refdes. The value of refdes is optional
+ *  and will be auto assigned if not specified using the letter "R" as a
+ *  prefix. When specifying refdes as a string, refdes does not need to
+ *  include the character prefix. If the slot argument is an integer equal
+ *  to -1, then the slot attribute will not be created.
  *
  *  [in] page        A Page object
  *  [in] x           Integer X location
@@ -1854,9 +1895,9 @@ FUNCTION(AddPin)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
- *  \return [out] PyGedaComplexObject representing the Resistor or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the Resistor or Py_None if
+ *               an error occured.
+ * \code
  *  example 1: AddResistor(schematic, 4300,  7800, "560")
  *
  *  example 2: AddResistor(lpbf, 13800, 7100, "22k", "angle=270")
@@ -1910,8 +1951,9 @@ FUNCTION(AddResistor)
   return py_resistor;
 }
 
-/*! \brief Create and Add a Source Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Source Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaComplexObject</b> and attaches the object to the given Page object.
  *  AddSource is similar to AddComponent except that there is no
@@ -1928,8 +1970,9 @@ FUNCTION(AddResistor)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embeded into the schmatic
  *
- *  \return [out] PyGedaComplexObject or Py_None if an error occured
+ * \return [out] PyGedaComplexObject or Py_None if an error occured
  *
+ * \code
  *  example 1: AddSource(lpbf, "12V-plus-1", 12800, 10300)
  *
  *  example 2: AddSource(lpbf, "12V-minus-1", 8400,  5100, 180)
@@ -1974,16 +2017,17 @@ FUNCTION(AddSource)
   return py_source;
 }
 
-/*! \brief Create and Add a Text Object Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add a Text Object Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
- *  <b>PyGedaTextObject</b> and attaches the object to the given Page object. This
- *  function creates the same type of object as the AddAttribute function but
- *  with different arguments. This function is equivent to calling new_text
+ *  <b>PyGedaTextObject</b> and attaches the object to the given Page object.
+ *  This function creates the same type of object as the AddAttribute function
+ *  but with different arguments. This function is equivent to calling new_text
  *  method followed by add_object.
  *
- *  \note  An Attribute object is a Text object whose string is in the
- *         form: "name=value".
+ * \note  An Attribute object is a Text object whose string is in the
+ *        form: "name=value".
  *
  *  [in] Object      Object  a Complexobject
  *  [in] string      String  the name property
@@ -1997,8 +2041,9 @@ FUNCTION(AddSource)
  *  [in] angle       integer text orientation property
  *  [in] color       Object  color object
  *
- *  \return [out] PyGedaTextObject or Py_None if an error occured
+ * \return [out] PyGedaTextObject or Py_None if an error occured
  *
+ * \code
  *  example 1: amp = AddComponent(circuit, "dual-opamp-py", "U1", 7700, 7300)
  *              AddAttribute(amp, "slot", "2",  7650, 7250)
  */
@@ -2062,8 +2107,9 @@ FUNCTION ( AddText )
   return py_text;
 }
 
-/*! \brief Create and Add an Titleblock component Python API Function
- *  \par Function Description
+/*!
+ * \brief Create and Add an Titleblock component Python API Function
+ * \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer to by the
  *  <b>TitleblockSymbol</b> variable. The default symbol name is "title-B".
@@ -2078,9 +2124,9 @@ FUNCTION ( AddText )
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *  [in] lock        integer orientation property
  *
- *  \return [out] PyGedaComplexObject representing the Titleblock or Py_None if an error
- *                occured.
- *
+ * \return [out] PyGedaComplexObject representing the Titleblock or
+ *               Py_None if an error occured.
+ * \code
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
  *  example 2: AddOpAmp(schematic, 6800, 8000, "U1", 0, 0, 0, 0)
@@ -2130,4 +2176,5 @@ FUNCTION(AddTitleblock)
   }
   return py_titleblock;
 }
+
 /** @} END Group Python_Geda_Module_Functions */
