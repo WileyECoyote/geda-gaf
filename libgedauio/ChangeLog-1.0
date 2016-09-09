@@ -1,3 +1,8 @@
+2016-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_get_key_hash
+      to eliminate early returns.
+
 2016-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_key_press with old code

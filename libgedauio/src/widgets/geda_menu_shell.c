@@ -1923,6 +1923,7 @@ menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *dat
   geda_key_hash_add_entry (key_hash, keyval, 0, UINT_TO_POINTER(keyval));
 }
 
+/* Helper called by: geda_menu_shell_activate_mnemonic */
 static GedaKeyHash *
 geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 {
@@ -1978,23 +1979,26 @@ geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
   bool result = FALSE;
 
   mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
-  if (!mnemonic_hash)
-    return FALSE;
 
-  key_hash = geda_menu_shell_get_key_hash (menu_shell, TRUE);
-  if (!key_hash)
-    return FALSE;
+  if (mnemonic_hash) {
 
-  entries = geda_key_hash_lookup (key_hash,
-                                  event->hardware_keycode,
-                                  event->state,
-                                  gtk_accelerator_get_default_mod_mask (),
-                                  event->group);
-  if (entries) {
+    key_hash = geda_menu_shell_get_key_hash (menu_shell, TRUE);
 
-      result = geda_mnemonic_hash_activate (mnemonic_hash,
-                                           (unsigned int)(long)entries->data);
-      g_slist_free (entries);
+    if (key_hash) {
+
+      entries = geda_key_hash_lookup (key_hash,
+                                      event->hardware_keycode,
+                                      event->state,
+                                      gtk_accelerator_get_default_mod_mask (),
+                                      event->group);
+
+      if (entries) {
+
+        result = geda_mnemonic_hash_activate (mnemonic_hash,
+                                             (unsigned int)(long)entries->data);
+        g_slist_free (entries);
+      }
+    }
   }
   return result;
 }
