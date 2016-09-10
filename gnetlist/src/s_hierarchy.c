@@ -284,16 +284,14 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
 
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
-            return_value =
-            geda_utility_string_concat (hierarchy_tag,
-                             pr_current->hierarchy_uref_separator,
-                             basename, NULL);
+            return_value = geda_strconcat (hierarchy_tag,
+                                           pr_current->hierarchy_uref_separator,
+                                           basename, NULL);
             break;
           case (PREPEND):
-            return_value =
-            geda_utility_string_concat (basename,
-                             pr_current->hierarchy_uref_separator,
-                             hierarchy_tag, NULL);
+            return_value = geda_strconcat (basename,
+                                           pr_current->hierarchy_uref_separator,
+                                           hierarchy_tag, NULL);
 
             break;
         }
@@ -301,10 +299,10 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
       else {
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
-            return_value = geda_utility_string_concat (hierarchy_tag, basename, NULL);
+            return_value = geda_strconcat (hierarchy_tag, basename, NULL);
             break;
           case (PREPEND):
-            return_value = geda_utility_string_concat (basename, hierarchy_tag, NULL);
+            return_value = geda_strconcat (basename, hierarchy_tag, NULL);
             break;
 
         }
@@ -569,7 +567,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
             return_value =
-            geda_utility_string_concat (hierarchy_tag,
+            geda_strconcat (hierarchy_tag,
                              pr_current->hierarchy_netname_separator,
                              basename, NULL);
 
@@ -577,7 +575,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
 
           case (PREPEND):
             return_value =
-            geda_utility_string_concat (basename,
+            geda_strconcat (basename,
                              pr_current->hierarchy_netname_separator,
                              hierarchy_tag, NULL);
 
@@ -588,11 +586,11 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
 
-            return_value = geda_utility_string_concat (hierarchy_tag, basename, NULL);
+            return_value = geda_strconcat (hierarchy_tag, basename, NULL);
             break;
 
           case (PREPEND):
-            return_value = geda_utility_string_concat (basename, hierarchy_tag, NULL);
+            return_value = geda_strconcat (basename, hierarchy_tag, NULL);
             break;
         }
 
@@ -643,13 +641,13 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
-            geda_utility_string_concat (hierarchy_tag,
+            geda_strconcat (hierarchy_tag,
                          pr_current->hierarchy_netattrib_separator,
                          basename, NULL);
             break;
           case (PREPEND):
             return_value =
-            geda_utility_string_concat (basename,
+            geda_strconcat (basename,
                          pr_current->hierarchy_netattrib_separator,
                          hierarchy_tag, NULL);
 
@@ -661,11 +659,11 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
-            geda_utility_string_concat (hierarchy_tag, basename, NULL);
+            geda_strconcat (hierarchy_tag, basename, NULL);
             break;
           case (PREPEND):
             return_value =
-            geda_utility_string_concat (basename, hierarchy_tag, NULL);
+            geda_strconcat (basename, hierarchy_tag, NULL);
             break;
         }
       }

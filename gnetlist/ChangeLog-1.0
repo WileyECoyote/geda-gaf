@@ -1,3 +1,8 @@
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_hierarchy: Substitute geda_strconcat for geda_utility_
+      string_concat.
+
 2016-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-pcbfwd-bus.scm: Add back-end script that provides an
