@@ -309,10 +309,10 @@ x_fileselect_save (GschemToplevel *w_current)
         int index = geda_file_chooser_get_filter(dialog);
 
         if (index == FILTER_SCHEMATIC)
-          tmpname = geda_utility_string_concat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
+          tmpname = geda_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
         else
           if (index == FILTER_SYMBOL)
-           tmpname = geda_utility_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+           tmpname = geda_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
         if (tmpname) {
           GEDA_FREE (filename);
           filename = tmpname;
@@ -475,7 +475,7 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
 
   inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
 
-  string  = geda_utility_string_concat(message, inquire, NULL);
+  string  = geda_strconcat(message, inquire, NULL);
 
   window  = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
 

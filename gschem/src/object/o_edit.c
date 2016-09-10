@@ -59,7 +59,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
   ext = ext - 4;
 
   if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
-    sym_file = geda_utility_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+    sym_file = geda_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
   }
   else {
     sym_file = g_strdup(tblock);

@@ -490,7 +490,7 @@ confirm_close_dialog_constructor (GedaType type,
       count_pages (GTK_TREE_MODEL (dialog->store_unsaved_pages)));
   }
 
-  str = geda_utility_string_concat ("<big><b>", tmp, "</b></big>", NULL);
+  str = geda_strconcat ("<big><b>", tmp, "</b></big>", NULL);
   GEDA_FREE (tmp);
 
   label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,

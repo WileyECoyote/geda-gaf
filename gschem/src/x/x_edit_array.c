@@ -524,7 +524,7 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
         if (mess) {
           const char *question = _("Components may overlay, Continue?");
-          char *msg2 = geda_utility_string_concat (mess, question, NULL);
+          char *msg2 = geda_strconcat (mess, question, NULL);
           int response = x_dialog_confirmation(msg2, GEDA_MESSAGE_WARNING, FALSE);
           GEDA_FREE(msg2);
           if (response == GEDA_RESPONSE_YES) {

@@ -444,7 +444,7 @@ void about_dialog (GschemToplevel *w_current)
 
   guile_ver = scm_to_utf8_string(scm_version());
 
-  comments  = geda_utility_string_concat (gEDA_str, gnu_get_libc_version(),
+  comments  = geda_strconcat (gEDA_str, gnu_get_libc_version(),
                                guile_str, guile_ver, NULL);
 
   free(guile_ver);
@@ -3540,7 +3540,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
     /* Primary label */
-  tmp = geda_utility_string_concat ("<big><b>", _("Major symbol changes detected."),
+  tmp = geda_strconcat ("<big><b>", _("Major symbol changes detected."),
                          "</b></big>", NULL);
 
   label = g_object_new (GTK_TYPE_LABEL,

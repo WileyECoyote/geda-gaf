@@ -511,7 +511,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   int result;                /* Our exit code */
 
   /* Build path for user config file */
-  inputfile = geda_utility_string_concat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
+  inputfile = geda_strconcat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
@@ -519,7 +519,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     char *templatefile;      /* Name of the Template file */
 
     /* Copy the template user config file to user's folder */
-    templatefile = geda_utility_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
+    templatefile = geda_strconcat (f_path_sys_config (), DIR_SEPARATOR_S,
                                    "user-", rcname, NULL);
     result = f_sys_copy(templatefile, inputfile);
   }
@@ -529,7 +529,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     return -1;
   }
 
-  outputfile = geda_utility_string_concat (f_path_user_config (), DIR_SEPARATOR_S,
+  outputfile = geda_strconcat (f_path_user_config (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
   if ((input = fopen (inputfile, "r" )) == NULL) {

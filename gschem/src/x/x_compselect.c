@@ -598,7 +598,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
     /* Do a case insensitive uppercase comparison */
     compname_upper = g_ascii_strup (compname, -1);
     text_upper     = g_ascii_strup (text, -1);
-    pattern        = geda_utility_string_concat ("*", text_upper, "*", NULL);
+    pattern        = geda_strconcat ("*", text_upper, "*", NULL);
     ret            = g_pattern_match_simple (pattern, compname_upper);
 
     GEDA_FREE (compname_upper);

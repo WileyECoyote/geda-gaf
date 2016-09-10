@@ -188,7 +188,7 @@ x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
       string_1 = "Error:";
       string_2 = "unidentified complex object";
   }
-  return geda_utility_string_concat (string_1, string_2, NULL);;
+  return geda_strconcat (string_1, string_2, NULL);;
 }
 
 /******************* Shape Catagory Data Helpers *******************/

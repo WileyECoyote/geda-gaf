@@ -440,7 +440,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     char *command_echo;
 
     command      = get_str_token(command_line);
-    command_echo = geda_utility_string_concat(command_line, "\n", NULL);
+    command_echo = geda_strconcat(command_line, "\n", NULL);
 
     x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
     GEDA_FREE (command_echo);

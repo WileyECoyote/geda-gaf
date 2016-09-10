@@ -45,7 +45,7 @@ SCM buffer_ ## name ## number(SCM rest)             \
 {                                                   \
   GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
-  status_msg_str = geda_utility_string_concat ( #name, " ", #number, NULL); \
+  status_msg_str = geda_strconcat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_KEYBOARD); \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
@@ -55,7 +55,7 @@ SCM buffer_ ## name ## number ##_menu(SCM rest)     \
 {                                                   \
   GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
-  status_msg_str = geda_utility_string_concat ( #name, " ", #number, NULL); \
+  status_msg_str = geda_strconcat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_MENU); \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
@@ -509,7 +509,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 
     char *ptr = w_current->keyaccel_string;
 
-    w_current->keyaccel_string = geda_utility_string_concat (ptr, " ", keystr, NULL);
+    w_current->keyaccel_string = geda_strconcat (ptr, " ", keystr, NULL);
 
     GEDA_FREE (ptr);
     GEDA_FREE (keystr);
