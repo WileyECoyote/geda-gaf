@@ -245,10 +245,10 @@ int x_dialog_file_not_saved()
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = geda_utility_string_concat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
+  str = geda_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
 
   tmp = _("If you don't save, all your changes will be permanently lost.");
-  str = geda_utility_string_concat (str, "\n\n", tmp, NULL);
+  str = geda_strconcat (str, "\n\n", tmp, NULL);
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
                                    GTK_DIALOG_MODAL |
@@ -439,7 +439,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-  title = geda_utility_string_concat(_("Find "), prompt, NULL);
+  title = geda_strconcat(_("Find "), prompt, NULL);
 
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
                                                     GTK_WINDOW(main_window),
@@ -470,7 +470,7 @@ char *x_dialog_get_search_text(const char *prompt)
 
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
-    real_prompt = geda_utility_string_concat(_("Enter "), prompt, ":", NULL);
+    real_prompt = geda_strconcat(_("Enter "), prompt, ":", NULL);
     label       = geda_aligned_label_new(real_prompt, 0, 0);
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);

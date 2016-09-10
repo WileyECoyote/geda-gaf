@@ -458,7 +458,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
             temp_pinnumber = geda_attrib_search_object_by_name (o_lower_current, "pinnumber", 0);
 
             if (temp_pinnumber != NULL) {
-              row_label = geda_utility_string_concat (temp_uref, ":", temp_pinnumber, NULL);
+              row_label = geda_strconcat (temp_uref, ":", temp_pinnumber, NULL);
 #if DEBUG
               printf ("In s_sheet_data_add_master_pin_list_items, about to add to master pin list row_label = %s\n", row_label);
 #endif

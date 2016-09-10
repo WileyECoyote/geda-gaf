@@ -508,11 +508,11 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 
     if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
       new_attrib_value = geda_utility_string_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
-      name_value_pair = geda_utility_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+      name_value_pair = geda_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
     else {
-      name_value_pair = geda_utility_string_concat(new_attrib_name, "=", NULL);  /* empty attrib */
+      name_value_pair = geda_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
 
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */
@@ -843,7 +843,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
   pinnumber = geda_attrib_search_object_by_name (pin, "pinnumber", 0);
 
   if ( (refdes != NULL) && (pinnumber != NULL) ) {
-    row_label = geda_utility_string_concat(refdes, ":", pinnumber, NULL);
+    row_label = geda_strconcat(refdes, ":", pinnumber, NULL);
   }
   else {
     fprintf(stderr,
@@ -873,11 +873,11 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
 
     if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
       new_attrib_value = geda_utility_string_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
-      name_value_pair = geda_utility_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+      name_value_pair = geda_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
     else {
-      name_value_pair = geda_utility_string_concat(new_attrib_name, "=", NULL);  /* empty attrib */
+      name_value_pair = geda_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
 
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */

@@ -104,7 +104,7 @@ char *s_attrib_get_refdes(GedaObject *object)
 
         char *suffixed;
 
-        suffixed = geda_utility_string_concat(temp_uref, ".", slot_value, NULL);
+        suffixed = geda_strconcat(temp_uref, ".", slot_value, NULL);
         GEDA_FREE (temp_uref);
         temp_uref = suffixed;
       }

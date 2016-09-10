@@ -1,3 +1,13 @@
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Substitute geda_strconcat for geda_utility_string_concat in:
+
+          * src/s_attrib.c
+          * src/s_object.c
+          * src/s_sheet_data.c
+          * src/s_table.c
+          * src/x_dialog.c
+
 2016-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Replace remaining gboolean with int.
