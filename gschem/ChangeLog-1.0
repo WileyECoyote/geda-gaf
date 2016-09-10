@@ -1,5 +1,9 @@
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Substitute geda_strconcat for geda_utility_string_concat.
+
+2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Removed setting new menu objects "visible".
 
     * tests/runtest.sh: Revised to tests for verbose before the functions

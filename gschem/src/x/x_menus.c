@@ -203,7 +203,7 @@ static void x_menu_execute(GtkAction *action, void *user_data)
   }
   else {
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
-      menu_action = geda_utility_string_concat (action_name, "-menu", NULL);
+      menu_action = geda_strconcat (action_name, "-menu", NULL);
       g_action_eval_by_name (w_current, menu_action);
       GEDA_FREE(menu_action);
     }
@@ -554,9 +554,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
         menu_item_stock = scm_is_false (scm_item_stock) ? NULL : scm_to_utf8_string (scm_item_stock);
 
-        if(scm_is_false (scm_item_func)) { /* Then is a nested menu item */
+        if (scm_is_false (scm_item_func)) { /* Then is a nested menu item */
 
-          if (menu_item_stock) {           /* Nested menus can have icons */
+          if (menu_item_stock) {            /* Nested menus can have icons */
 
             /* Items that might fall into this category are; Open Recen_t, _Export,
              * and _Restore, these are actionless items.
@@ -621,9 +621,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             is_a_toggle = TRUE;
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
-            toggler_data->menu_item_name = geda_utility_string_strdup(menu_item_name);
-            toggler_data->menu_path      = geda_utility_string_concat (*raw_menu_name, "/", raw_menu_item_name, NULL);
-            menu_item_name = menu_item_name + 7;                 /* is just for label */
+            toggler_data->menu_item_name = geda_strdup(menu_item_name);
+            toggler_data->menu_path      = geda_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
+            menu_item_name = menu_item_name + 7;  /* is just for label */
+
             /* TODO: Tooltip don't work here, we will fix them later*/
             action = (GedaAction*)
             geda_toggle_action_new (action_name,       /* Action name */
@@ -721,7 +722,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       return NULL;
     }
 
-    menu_name = (char*) gettext(*raw_menu_name);
+    menu_name = (char*)gettext(*raw_menu_name);
 
     /* Glib-2.40 generates console noise from gtk-lib */
     menu = geda_menu_new();
@@ -1643,7 +1644,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   GtkWidget* menubar;
   menubar = x_menu_get_main_menu(w_current);
 
-  menu_path = geda_utility_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
+  menu_path = geda_strconcat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
   menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
   if (menu_item != NULL) {
     geda_check_menu_item_set_active((GedaCheckMenuItem*) menu_item, state);
