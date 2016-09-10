@@ -1,3 +1,7 @@
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Substitute geda_strconcat for geda_utility_string_concat.
+
 2016-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/sarlacc_schem.c: Update format specifiers=unsigned, not signed.

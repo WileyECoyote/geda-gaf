@@ -335,7 +335,7 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
           char *backend;
 
           if (!s2) {
-            out_file = geda_utility_string_concat (basename, ".", s1, NULL);
+            out_file = geda_strconcat (basename, ".", s1, NULL);
             backend  = geda_utility_string_strdup (s1);
           }
           else {
@@ -715,7 +715,7 @@ find_element (char *dir_path, char *element)
 
     char *path;
 
-    path  = geda_utility_string_concat (dir_path, "/", name, NULL);
+    path  = geda_strconcat (dir_path, "/", name, NULL);
     found = NULL;
 
     /* if we got a directory name, then recurse down into it */
@@ -736,7 +736,7 @@ find_element (char *dir_path, char *element)
 
         char *tmps;
 
-        tmps = geda_utility_string_concat (element, ".fp", NULL);
+        tmps = geda_strconcat (element, ".fp", NULL);
 
         if (!strcmp (name, tmps)) {
           found = geda_utility_string_strdup (path);
@@ -781,7 +781,7 @@ search_element_directories (PcbElement *el)
       if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix)
       {
         str = geda_utility_string_strndup (el->description, n1 - n2 - 1);
-        elname = geda_utility_string_concat (str, " ", el->pkg_name_fix, NULL);
+        elname = geda_strconcat (str, " ", el->pkg_name_fix, NULL);
         GEDA_FREE (str);
       }
     }
@@ -905,7 +905,7 @@ pkg_to_element (FILE *f, char *pkg_line)
 
   if (n_extra_args == n_dashes + 1) { /* Assume there was a comma in the value, eg "1K, 1%" */
     s = el->value;
-    el->value = geda_utility_string_concat (s, ",", fix_spaces (args[n]), NULL);
+    el->value = geda_strconcat (s, ",", fix_spaces (args[n]), NULL);
     GEDA_FREE (s);
     if ((s = strchr (el->value, (int) ')')) != NULL)
       *s = '\0';
@@ -916,7 +916,7 @@ pkg_to_element (FILE *f, char *pkg_line)
     el->pkg_name_fix = geda_utility_string_strdup (args[n]);
     for (n += 1; args[n] != NULL; ++n) {
       s = el->pkg_name_fix;
-      el->pkg_name_fix = geda_utility_string_concat (s, " ", args[n], NULL);
+      el->pkg_name_fix = geda_strconcat (s, " ", args[n], NULL);
       GEDA_FREE (s);
     }
     if ((s = strchr (el->pkg_name_fix, (int) ')')) != NULL)
@@ -972,7 +972,7 @@ add_elements (char *pcb_file)
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return 0;
 
-  tmp_file = geda_utility_string_concat (pcb_file, ".tmp", NULL);
+  tmp_file = geda_strconcat (pcb_file, ".tmp", NULL);
 
   if ((f_out = fopen (tmp_file, "wb")) == NULL) {
     fclose (f_in);
@@ -1118,7 +1118,7 @@ update_element_descriptions (char *pcb_file, char *bak)
 
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
-  tmp = geda_utility_string_concat (pcb_file, ".tmp", NULL);
+  tmp = geda_strconcat (pcb_file, ".tmp", NULL);
 
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
@@ -1195,7 +1195,7 @@ prune_elements (char *pcb_file, char *bak)
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
 
-  tmp = geda_utility_string_concat (pcb_file, ".tmp", NULL);
+  tmp = geda_strconcat (pcb_file, ".tmp", NULL);
 
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
@@ -1267,7 +1267,7 @@ add_m4_file (char *arg)
     m4_files = geda_utility_string_strdup (arg);
   else {
     char *s = m4_files;
-    m4_files = geda_utility_string_concat (m4_files, " ", arg, NULL);
+    m4_files = geda_strconcat (m4_files, " ", arg, NULL);
     GEDA_FREE (s);
   }
 }
@@ -1298,7 +1298,7 @@ static char *expand_dir (char *dir)
   }
   else if (*dir == '~') {
 
-    path =  geda_utility_string_concat(get_home_dir(), DIR_SEPARATOR_S, dir + 1, NULL);
+    path =  geda_strconcat(get_home_dir(), DIR_SEPARATOR_S, dir + 1, NULL);
   }
   else {
     path = geda_utility_string_strdup (dir);
@@ -1312,7 +1312,7 @@ add_default_m4_files (void)
 {
   char *path;
 
-  path = geda_utility_string_concat(get_home_dir(), DIR_SEPARATOR_S,
+  path = geda_strconcat(get_home_dir(), DIR_SEPARATOR_S,
                        ".pcb", DIR_SEPARATOR_S, DEFAULT_PCB_INC, NULL);
 
   if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
@@ -1511,14 +1511,14 @@ load_extra_project_files (void)
 
   home_dir = get_home_dir();
 
-  path =  geda_utility_string_concat(home_dir, DIR_SEPARATOR_S, "/etc/gsch2pcb", NULL);
+  path =  geda_strconcat(home_dir, DIR_SEPARATOR_S, "/etc/gsch2pcb", NULL);
 
   load_project (path);
   GEDA_FREE (path);
 
   config_dir = f_path_user_config();
 
-  path = geda_utility_string_concat(config_dir, DIR_SEPARATOR_S, "gsch2pcb", NULL);
+  path = geda_strconcat(config_dir, DIR_SEPARATOR_S, "gsch2pcb", NULL);
 
   load_project (path);
   GEDA_FREE (path);
@@ -1704,13 +1704,13 @@ int main (int argc, char **argv)
   if (pcbdata_path != NULL) {
 
     /* If PCBDATA is set, use the value */
-    m4_pcbdir = geda_utility_string_concat (pcbdata_path, "/m4", NULL);
+    m4_pcbdir = geda_strconcat (pcbdata_path, "/m4", NULL);
 
   }
   else {
 
     /* else try PCBDATADIR */
-    m4_pcbdir = geda_utility_string_concat (PCBDATADIR, "/m4", NULL);
+    m4_pcbdir = geda_strconcat (PCBDATADIR, "/m4", NULL);
   }
 
   default_m4_pcbdir = geda_utility_string_strdup (m4_pcbdir);
@@ -1747,10 +1747,10 @@ int main (int argc, char **argv)
   }
   GEDA_FREE (path);
 
-  pins_file_name = geda_utility_string_concat (sch_basename, ".cmd", NULL);
-  net_file_name  = geda_utility_string_concat (sch_basename, ".net", NULL);
-  pcb_file_name  = geda_utility_string_concat (sch_basename, ".pcb", NULL);
-  bak_file_name  = geda_utility_string_concat (sch_basename, ".pcb.bak", NULL);
+  pins_file_name = geda_strconcat (sch_basename, ".cmd", NULL);
+  net_file_name  = geda_strconcat (sch_basename, ".net", NULL);
+  pcb_file_name  = geda_strconcat (sch_basename, ".pcb", NULL);
+  bak_file_name  = geda_strconcat (sch_basename, ".pcb.bak", NULL);
 
   tmp = geda_utility_string_strdup (bak_file_name);
 
@@ -1762,7 +1762,7 @@ int main (int argc, char **argv)
 
   if (g_file_test (pcb_file_name, G_FILE_TEST_EXISTS)) {
     initial_pcb = FALSE;
-    pcb_new_file_name = geda_utility_string_concat (sch_basename, ".new.pcb", NULL);
+    pcb_new_file_name = geda_strconcat (sch_basename, ".new.pcb", NULL);
     get_pcb_element_list (pcb_file_name);
   }
   else {
