@@ -1,3 +1,7 @@
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Add function geda_label_get_mnemonic_char.
+
 2016-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Request begin_change and end_change be

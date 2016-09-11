@@ -2136,8 +2136,9 @@ GtkWidget* geda_mnemonic_label_new (const char *str)
 
   label = g_object_new (GEDA_TYPE_LABEL, "use-underline", TRUE, NULL);
 
-  if (str && *str)
+  if (str && *str) {
     geda_label_set_mnemonic_text (label, str);
+  }
 
   return GTK_WIDGET (label);
 }
@@ -4450,14 +4451,37 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 }
 
 /*!
+ * \brief Get the Mnemonic Character from the GedaLabel Text
+ * \par Function Description
+ *  Retrieves the character after the underscore in the label text.
+ *  If an underscore is not present, or if \a label is not a valid
+ *  GedaLabel object then this functions returns 0xFF.
+ *
+ * \param [in] label Pointer to a GedaLabel object
+ *
+ * \returns mnemonic character or 0xFF.
+ */
+char geda_label_get_mnemonic_char (GedaLabel *label)
+{
+  if (GEDA_IS_LABEL(label)) {
+
+    char *str = strstr(label->label, "_");
+
+    if (str) {
+      return (char)*(str + 1);
+    }
+  }
+  return 0xFF;
+}
+
+/*!
  * \brief geda_label_set_mnemonic_text
  * \par Function Description
- *
- * Sets the label's text from the string str. If characters in str is
- * preceded by an underscore, they are underlined indicating that they
- * represent a keyboard accelerator called a mnemonic. The mnemonic key
- * can be used to activate another widget, chosen  automatically, or
- * explicitly using geda_label_set_mnemonic_widget().
+ *  Sets the label's text from the string str. If characters in str is
+ *  preceded by an underscore, they are underlined indicating that they
+ *  represent a keyboard accelerator called a mnemonic. The mnemonic key
+ *  can be used to activate another widget, chosen  automatically, or
+ *  explicitly using geda_label_set_mnemonic_widget().
  *
  * \param [in] label The GedaLabel object
  * \param [in] str   Pointer to a string
