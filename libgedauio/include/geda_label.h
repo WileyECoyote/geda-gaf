@@ -165,6 +165,7 @@ void           geda_label_set_markup_with_mnemonic  (GedaLabel      *label,
                                                      const char     *str);
 char           geda_label_get_mnemonic_char         (GedaLabel      *label);
 unsigned int   geda_label_get_mnemonic_keyval       (GedaLabel      *label);
+char           geda_label_get_mnemonic_lower        (GedaLabel      *label);
 void           geda_label_set_mnemonic_text         (GedaLabel      *label,
                                                      const char     *str);
 GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);

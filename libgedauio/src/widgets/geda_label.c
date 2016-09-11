@@ -2518,6 +2518,25 @@ geda_label_get_mnemonic_char (GedaLabel *label)
 }
 
 /*!
+ * \brief Get the Lower case Mnemonic Character
+ * \par Function Description
+ *  Retrieves the lower case character represented by the key code
+ *  value, which could also be the actual mnemonic. For example, if
+ *  the label text is "_Gnu", this function returns "g", because the
+ *  mnemonic character "G" is (normally) key-code 104, which is the
+ *  "g" key plus the SHIFT key modifier.
+ *
+ * \param [in] label Pointer to a GedaLabel object
+ *
+ * \returns mnemonic character or 0xFF (GDK_KEY_VoidSymbol).
+ */
+char
+geda_label_get_mnemonic_lower (GedaLabel *label)
+{
+  return (char)geda_label_get_mnemonic_keyval(label);
+}
+
+/*!
  * \brief geda_label_get_mnemonic_keyval
  * \par Function Description
  *  If the label has been set so that it has an mnemonic key this function

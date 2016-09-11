@@ -1,6 +1,7 @@
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_label.c: Add function geda_label_get_mnemonic_char.
+    * src/widgets/geda_label.c: Add function geda_label_get_mnemonic_char
+      and geda_label_get_mnemonic_lower.
 
 2016-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
