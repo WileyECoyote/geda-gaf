@@ -3521,19 +3521,6 @@ geda_menu_item_forall (GtkContainer *container,
   }
 }
 
-bool
-geda_menu_item_is_selectable (GtkWidget *menu_item)
-{
-  if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
-    G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
-    GEDA_IS_MENU_SEPERATOR (menu_item) ||
-    !gtk_widget_is_sensitive (menu_item) ||
-    !gtk_widget_get_visible (menu_item))
-    return FALSE;
-
-  return TRUE;
-}
-
 static void
 geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 {
@@ -3549,6 +3536,19 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
                                        GTK_WIDGET(menu_item));
     gtk_widget_show (accel_label);
   }
+}
+
+bool
+geda_menu_item_is_widget_selectable (GtkWidget *widget)
+{
+  if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
+    G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
+    GEDA_IS_MENU_SEPERATOR (widget) ||
+    !gtk_widget_is_sensitive (widget) ||
+    !gtk_widget_get_visible (widget))
+    return FALSE;
+
+  return TRUE;
 }
 
 /*!

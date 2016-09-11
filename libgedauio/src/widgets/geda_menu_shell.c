@@ -688,8 +688,9 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
   menu_shell = GEDA_MENU_SHELL (widget);
 
-  if (menu_shell->parent_menu_shell)
+  if (menu_shell->parent_menu_shell) {
     return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+  }
 
   menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*)event);
 
@@ -697,7 +698,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
     parent = GEDA_MENU_SHELL (menu_item->parent);
 
-    if (geda_menu_item_is_selectable (menu_item) &&
+    if (geda_menu_item_is_widget_selectable (menu_item) &&
         menu_item != parent->active_menu_item)
     {
       /*  select the menu item *before* activating the shell, so submenus
@@ -720,7 +721,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
     menu_shell->button = event->button;
 
-    if (menu_item && geda_menu_item_is_selectable (menu_item) &&
+    if (menu_item && geda_menu_item_is_widget_selectable (menu_item) &&
         menu_item->parent == widget &&
         menu_item != menu_shell->active_menu_item)
     {
@@ -741,7 +742,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
     }
   }
 
-  if (menu_item && geda_menu_item_is_selectable (menu_item))  {
+  if (menu_item && geda_menu_item_is_widget_selectable (menu_item))  {
 
     GtkWidget *submenu;
 
@@ -816,7 +817,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
     {
       menu_shell->button = 0;
       if (menu_shell->parent_menu_shell)
-        return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
+        return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
     }
 
     menu_shell->button = 0;
@@ -825,7 +826,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
     if ((event->time - menu_shell->activate_time) > MENU_SHELL_TIMEOUT)
     {
       if (menu_item && (menu_shell->active_menu_item == menu_item) &&
-          geda_menu_item_is_selectable (menu_item))
+          geda_menu_item_is_widget_selectable (menu_item))
       {
 
         GtkWidget *submenu;
@@ -889,7 +890,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
         }
       }
       else if (menu_item &&
-              !geda_menu_item_is_selectable (menu_item) &&
+              !geda_menu_item_is_widget_selectable (menu_item) &&
                GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
       {
         deactivate = FALSE;
@@ -1061,7 +1062,7 @@ geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
       return TRUE;
 
     if (GEDA_IS_MENU_ITEM (menu_item) &&
-       !geda_menu_item_is_selectable (menu_item))
+       !geda_menu_item_is_widget_selectable (menu_item))
     {
       GedaMenuShellPriv *priv;
 
@@ -1157,7 +1158,7 @@ geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 
     menu_item = GEDA_MENU_ITEM (event_widget);
 
-    if (!geda_menu_item_is_selectable (event_widget)) {
+    if (!geda_menu_item_is_widget_selectable (event_widget)) {
 
       menu_shell->priv->in_unselectable_item = TRUE;
 
@@ -1175,7 +1176,6 @@ geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
       }
     }
     else if (menu_shell->parent_menu_shell) {
-
       gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
     }
   }
@@ -1344,7 +1344,7 @@ geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
       menu_shell->active_menu_item = NULL;
   }
 
-  if (!geda_menu_item_is_selectable (menu_item)) {
+  if (!geda_menu_item_is_widget_selectable (menu_item)) {
 
       GedaMenuShellPriv *priv = menu_shell->priv;
 
@@ -1473,7 +1473,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
       node = node->next;
 
       while (node != start_node &&
-            (!node || !geda_menu_item_is_selectable (node->data)))
+            (!node || !geda_menu_item_is_widget_selectable (node->data)))
       {
         if (node)
           node = node->next;
@@ -1490,7 +1490,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
 
       node = node->prev;
       while (node != start_node &&
-            (!node || !geda_menu_item_is_selectable (node->data)))
+            (!node || !geda_menu_item_is_widget_selectable (node->data)))
       {
         if (node) {
           node = node->prev;
@@ -1550,7 +1550,7 @@ geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
     GtkWidget *child = tmp_list->data;
 
     if ((!search_sensitive && gtk_widget_get_visible (child)) ||
-          geda_menu_item_is_selectable (child))
+          geda_menu_item_is_widget_selectable (child))
     {
       to_select = child;
       if (!GEDA_IS_TEAROFF_MENU_ITEM (child))
@@ -1579,7 +1579,7 @@ geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 
     if ((!search_sensitive &&
           gtk_widget_get_visible (child)) ||
-          geda_menu_item_is_selectable (child))
+          geda_menu_item_is_widget_selectable (child))
     {
       to_select = child;
       if (!GEDA_IS_TEAROFF_MENU_ITEM (child))
@@ -1704,7 +1704,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
        * bottom of the submenu.
        */
       else if (had_selection &&
-        geda_menu_item_is_selectable ((GtkWidget*)active_menu_item) &&
+        geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
         submenu)
       {
         GedaMenuShellClass *shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
@@ -1719,7 +1719,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
 
       case MENU_DIR_CHILD:
         if (had_selection &&
-            geda_menu_item_is_selectable ((GtkWidget*)active_menu_item) &&
+            geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
             submenu)
         {
           if (geda_menu_shell_select_submenu_first (menu_shell))
@@ -1775,7 +1775,7 @@ geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
   GedaMenuItem  *menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
 
   if (menu_item &&
-      geda_menu_item_is_selectable (menu_shell->active_menu_item))
+      geda_menu_item_is_widget_selectable (menu_shell->active_menu_item))
   {
     if (!geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item)))
     {

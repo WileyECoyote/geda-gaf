@@ -3770,7 +3770,7 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
   /* Make sure we pop down if we enter a non-selectable menu item, so we
    * don't show a submenu when the cursor is outside the stay-up triangle.
    */
-  if (!geda_menu_item_is_selectable (menu_item)) {
+  if (!geda_menu_item_is_widget_selectable (menu_item)) {
 
       /* We really want to deselect, but this gives the menushell code
        * a chance to do some bookkeeping about the menuitem.
@@ -5510,7 +5510,7 @@ find_child_containing (GedaMenuShell *menu_shell,
 
       int  l, r, t, b;
 
-      if (!geda_menu_item_is_selectable (list->data))
+      if (!geda_menu_item_is_widget_selectable (list->data))
         continue;
 
       get_effective_child_attach (list->data, &l, &r, &t, &b);
@@ -5688,7 +5688,7 @@ child_at (GedaMenu *menu, int y)
 
       gtk_widget_size_request (children->data, &child_requisition);
 
-      if (geda_menu_item_is_selectable (children->data) &&
+      if (geda_menu_item_is_widget_selectable (children->data) &&
         child_offset >= lower &&
         child_offset + child_requisition.height <= upper)
       {

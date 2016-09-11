@@ -1,3 +1,8 @@
+2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c:Rename geda_menu_item_is_selectable->
+      geda_menu_item_is_widget_selectable.
+
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add function geda_label_get_mnemonic_char
