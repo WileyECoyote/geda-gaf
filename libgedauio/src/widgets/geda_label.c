@@ -6350,7 +6350,7 @@ append_action_signal (GedaLabel   *label,
 {
   GtkWidget *menuitem = geda_image_menu_item_new_from_stock (stock_id, NULL);
 
-  g_object_set_data (G_OBJECT (menuitem), _("gtk-signal"), (char *)signal);
+  g_object_set_data (G_OBJECT (menuitem), "gtk-signal", (char*)signal);
 
   g_signal_connect (menuitem, "activate", G_CALLBACK (activate_cb), label);
 
