@@ -165,11 +165,11 @@ void           geda_label_set_markup_with_mnemonic  (GedaLabel      *label,
                                                      const char     *str);
 char           geda_label_get_mnemonic_char         (GedaLabel      *label);
 unsigned int   geda_label_get_mnemonic_keyval       (GedaLabel      *label);
-void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
-                                                     GtkWidget      *widget);
-GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
 void           geda_label_set_mnemonic_text         (GedaLabel      *label,
                                                      const char     *str);
+GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
+void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
+                                                     GtkWidget      *widget);
 
 GtkJustification geda_label_get_justify             (GedaLabel      *label);
 void             geda_label_set_justify             (GedaLabel      *label,

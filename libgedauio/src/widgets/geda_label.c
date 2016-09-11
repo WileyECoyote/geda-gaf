@@ -951,67 +951,51 @@ static void geda_label_ensure_layout (GedaLabel *label)
   }
 }
 
+/* object_class->destroy */
 static void
-geda_label_set_property (GObject *object,     unsigned int  prop_id,
-                         const GValue *value, GParamSpec   *pspec)
+geda_label_destroy (GtkObject *object)
+{
+  GedaLabel *label = GEDA_LABEL (object);
+  geda_label_set_mnemonic_widget (label, NULL);
+
+  GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
+}
+
+static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
 
-  switch (prop_id)
-  {
-    case PROP_LABEL:
-      geda_label_set_label (label, g_value_get_string (value));
-      break;
-    case PROP_ATTRIBUTES:
-      geda_label_set_attributes (label, g_value_get_boxed (value));
-      break;
-    case PROP_USE_MARKUP:
-      geda_label_set_use_markup (label, g_value_get_boolean (value));
-      break;
-    case PROP_USE_UNDERLINE:
-      geda_label_set_use_underline (label, g_value_get_boolean (value));
-      break;
-    case PROP_JUSTIFY:
-      geda_label_set_justify (label, g_value_get_enum (value));
-      break;
-    case PROP_PATTERN:
-      geda_label_set_pattern (label, g_value_get_string (value));
-      break;
-    case PROP_WRAP:
-      geda_label_set_line_wrap (label, g_value_get_boolean (value));
-      break;
-    case PROP_WRAP_MODE:
-      geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
-      break;
-    case PROP_SELECTABLE:
-      geda_label_set_selectable (label, g_value_get_boolean (value));
-      break;
-    case PROP_MNEMONIC_WIDGET:
-      geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
-      break;
-    case PROP_ELLIPSIZE:
-      geda_label_set_ellipsize (label, g_value_get_enum (value));
-      break;
-    case PROP_WIDTH_CHARS:
-      geda_label_set_width_chars (label, g_value_get_int (value));
-      break;
-    case PROP_SINGLE_LINE_MODE:
-      geda_label_set_single_line_mode (label, g_value_get_boolean (value));
-      break;
-    case PROP_ANGLE:
-      geda_label_set_angle (label, g_value_get_double (value));
-      break;
-    case PROP_MAX_WIDTH:
-      geda_label_set_max_width_chars (label, g_value_get_int (value));
-      break;
-    case PROP_TRACK_VISITED_LINKS:
-      geda_label_set_track_visited_links (label, g_value_get_boolean (value));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+  GEDA_FREE (label->label);
+  GEDA_FREE (label->text);
+
+  if (label->layout) {
+    g_object_unref (label->layout);
   }
+
+  if (label->attrs) {
+    pango_attr_list_unref (label->attrs);
+  }
+
+  if (label->markup_attrs) {
+    pango_attr_list_unref (label->markup_attrs);
+  }
+
+  geda_label_clear_links (label);
+
+  GEDA_FREE (label->priv->select_info);
+
+  GEDA_UNREF (label->priv->font_map);
+
+  if (label->priv->accessible){
+    atk_object_set_name (label->priv->accessible, "");
+    GEDA_UNREF (label->priv->accessible);
+  }
+
+  GEDA_FREE(label->priv);
+
+  G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 }
+
 
 static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
@@ -1080,6 +1064,68 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
     }
+}
+
+static void
+geda_label_set_property (GObject *object,     unsigned int  prop_id,
+                         const GValue *value, GParamSpec   *pspec)
+{
+  GedaLabel *label = GEDA_LABEL (object);
+
+  switch (prop_id)
+  {
+    case PROP_LABEL:
+      geda_label_set_label (label, g_value_get_string (value));
+      break;
+    case PROP_ATTRIBUTES:
+      geda_label_set_attributes (label, g_value_get_boxed (value));
+      break;
+    case PROP_USE_MARKUP:
+      geda_label_set_use_markup (label, g_value_get_boolean (value));
+      break;
+    case PROP_USE_UNDERLINE:
+      geda_label_set_use_underline (label, g_value_get_boolean (value));
+      break;
+    case PROP_JUSTIFY:
+      geda_label_set_justify (label, g_value_get_enum (value));
+      break;
+    case PROP_PATTERN:
+      geda_label_set_pattern (label, g_value_get_string (value));
+      break;
+    case PROP_WRAP:
+      geda_label_set_line_wrap (label, g_value_get_boolean (value));
+      break;
+    case PROP_WRAP_MODE:
+      geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
+      break;
+    case PROP_SELECTABLE:
+      geda_label_set_selectable (label, g_value_get_boolean (value));
+      break;
+    case PROP_MNEMONIC_WIDGET:
+      geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
+      break;
+    case PROP_ELLIPSIZE:
+      geda_label_set_ellipsize (label, g_value_get_enum (value));
+      break;
+    case PROP_WIDTH_CHARS:
+      geda_label_set_width_chars (label, g_value_get_int (value));
+      break;
+    case PROP_SINGLE_LINE_MODE:
+      geda_label_set_single_line_mode (label, g_value_get_boolean (value));
+      break;
+    case PROP_ANGLE:
+      geda_label_set_angle (label, g_value_get_double (value));
+      break;
+    case PROP_MAX_WIDTH:
+      geda_label_set_max_width_chars (label, g_value_get_int (value));
+      break;
+    case PROP_TRACK_VISITED_LINKS:
+      geda_label_set_track_visited_links (label, g_value_get_boolean (value));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
 }
 
 /*! \brief GedaLabel Class Initializer
@@ -2250,6 +2296,7 @@ geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   return FALSE;
 }
 
+/* Adds a */
 static void
 geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 {
@@ -2433,7 +2480,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   label_shortcut_setting_apply (GEDA_LABEL (widget));
 }
 
-
+/* Helper call by geda_label_set_mnemonic_widget */
 static void
 label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 {
@@ -2443,6 +2490,98 @@ label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
   priv->mnemonic_widget = NULL;
 
   g_object_notify (G_OBJECT (label), "mnemonic-widget");
+}
+
+/*!
+ * \brief Get the Mnemonic Character from the GedaLabel Text
+ * \par Function Description
+ *  Retrieves the character after the underscore in the label text.
+ *  If an underscore is not present, or if \a label is not a valid
+ *  GedaLabel object then this functions returns 0xFF.
+ *
+ * \param [in] label Pointer to a GedaLabel object
+ *
+ * \returns mnemonic character or 0xFF.
+ */
+char
+geda_label_get_mnemonic_char (GedaLabel *label)
+{
+  if (GEDA_IS_LABEL(label)) {
+
+    char *str = strstr(label->label, "_");
+
+    if (str) {
+      return (char)*(str + 1);
+    }
+  }
+  return 0xFF;
+}
+
+/*!
+ * \brief geda_label_get_mnemonic_keyval
+ * \par Function Description
+ *  If the label has been set so that it has an mnemonic key this function
+ *  returns the keyval used for the mnemonic accelerator. If there is no
+ *  mnemonic set up it returns .
+ *
+ * \param [in] label   The GedaLabel object
+ *
+ * \returns GDK keyval usable for accelerators
+ */
+unsigned int
+geda_label_get_mnemonic_keyval (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
+
+  return label->priv->mnemonic_keyval;
+}
+
+/*!
+ * \brief geda_label_set_mnemonic_text
+ * \par Function Description
+ *  Sets the label's text from the string str. If characters in str is
+ *  preceded by an underscore, they are underlined indicating that they
+ *  represent a keyboard accelerator called a mnemonic. The mnemonic key
+ *  can be used to activate another widget, chosen  automatically, or
+ *  explicitly using geda_label_set_mnemonic_widget().
+ *
+ * \param [in] label The GedaLabel object
+ * \param [in] str   Pointer to a string
+ */
+void
+geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+  g_return_if_fail (str != NULL);
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_use_markup_internal (label, FALSE);
+  geda_label_set_use_underline_internal (label, TRUE);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/*!
+ * \brief geda_label_get_mnemonic_widget
+ * \par Function Description
+ *  Retrieves the target of the mnemonic (keyboard shortcut) of this
+ *  label. See geda_label_set_mnemonic_widget().
+ *
+ * \param [in] label    The GedaLabel object
+ *
+ * \returns Target of the label's mnemonic, or %NULL if none has been set
+ *          and the default algorithm will be used.
+ */
+GtkWidget *
+geda_label_get_mnemonic_widget (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return label->priv->mnemonic_widget;
 }
 
 /*!
@@ -2499,44 +2638,6 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
   }
 
   g_object_notify (G_OBJECT (label), "mnemonic-widget");
-}
-
-/*!
- * \brief geda_label_get_mnemonic_widget
- * \par Function Description
- *  Retrieves the target of the mnemonic (keyboard shortcut) of this
- *  label. See geda_label_set_mnemonic_widget().
- *
- * \param [in] label    The GedaLabel object
- *
- * \returns Target of the label's mnemonic, or %NULL if none has been set
- *          and the default algorithm will be used.
- */
-GtkWidget *
-geda_label_get_mnemonic_widget (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  return label->priv->mnemonic_widget;
-}
-
-/*!
- * \brief geda_label_get_mnemonic_keyval
- * \par Function Description
- *  If the label has been set so that it has an mnemonic key this function
- *  returns the keyval used for the mnemonic accelerator. If there is no
- *  mnemonic set up it returns .
- *
- * \param [in] label   The GedaLabel object
- *
- * \returns GDK keyval usable for accelerators
- */
-unsigned int
-geda_label_get_mnemonic_keyval (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
-
-  return label->priv->mnemonic_keyval;
 }
 
 static void
@@ -2650,7 +2751,8 @@ static void geda_label_recalculate (GedaLabel *label)
  * \param [in] label  The GedaLabel object
  * \param [in] str    The text to be set
  */
-void geda_label_set_text (GedaLabel *label, const char *str)
+void
+geda_label_set_text (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -2675,7 +2777,8 @@ void geda_label_set_text (GedaLabel *label, const char *str)
  *
  * \sa geda_label_set_text
  */
-void geda_label_widget_set_text (GtkWidget *widget, const char *str)
+void
+geda_label_widget_set_text (GtkWidget *widget, const char *str)
 {
   geda_label_set_text((GedaLabel*)widget,str);
 }
@@ -2827,7 +2930,8 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  * \param [in] label  The GedaLabel object
  * \param [in] str    New text to set for the label
  */
-void geda_label_set_label (GedaLabel *label, const char *str)
+void
+geda_label_set_label (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -3834,50 +3938,6 @@ geda_label_get_line_wrap_mode (GedaLabel *label)
 }
 
 static void
-geda_label_destroy (GtkObject *object)
-{
-  GedaLabel *label = GEDA_LABEL (object);
-  geda_label_set_mnemonic_widget (label, NULL);
-
-  GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
-}
-
-static void geda_label_finalize (GObject *object)
-{
-  GedaLabel *label = GEDA_LABEL (object);
-
-  GEDA_FREE (label->label);
-  GEDA_FREE (label->text);
-
-  if (label->layout) {
-    g_object_unref (label->layout);
-  }
-
-  if (label->attrs) {
-    pango_attr_list_unref (label->attrs);
-  }
-
-  if (label->markup_attrs) {
-    pango_attr_list_unref (label->markup_attrs);
-  }
-
-  geda_label_clear_links (label);
-
-  GEDA_FREE (label->priv->select_info);
-
-  GEDA_UNREF (label->priv->font_map);
-
-  if (label->priv->accessible){
-    atk_object_set_name (label->priv->accessible, "");
-    GEDA_UNREF (label->priv->accessible);
-  }
-
-  GEDA_FREE(label->priv);
-
-  G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
-}
-
-static void
 geda_label_clear_layout (GedaLabel *label)
 {
   if (label->layout){
@@ -4448,59 +4508,6 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
   label->priv->mnemonic_keyval = accel_key;
 
   g_free (pattern);
-}
-
-/*!
- * \brief Get the Mnemonic Character from the GedaLabel Text
- * \par Function Description
- *  Retrieves the character after the underscore in the label text.
- *  If an underscore is not present, or if \a label is not a valid
- *  GedaLabel object then this functions returns 0xFF.
- *
- * \param [in] label Pointer to a GedaLabel object
- *
- * \returns mnemonic character or 0xFF.
- */
-char geda_label_get_mnemonic_char (GedaLabel *label)
-{
-  if (GEDA_IS_LABEL(label)) {
-
-    char *str = strstr(label->label, "_");
-
-    if (str) {
-      return (char)*(str + 1);
-    }
-  }
-  return 0xFF;
-}
-
-/*!
- * \brief geda_label_set_mnemonic_text
- * \par Function Description
- *  Sets the label's text from the string str. If characters in str is
- *  preceded by an underscore, they are underlined indicating that they
- *  represent a keyboard accelerator called a mnemonic. The mnemonic key
- *  can be used to activate another widget, chosen  automatically, or
- *  explicitly using geda_label_set_mnemonic_widget().
- *
- * \param [in] label The GedaLabel object
- * \param [in] str   Pointer to a string
- */
-void
-geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-  g_return_if_fail (str != NULL);
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
-  geda_label_set_use_markup_internal (label, FALSE);
-  geda_label_set_use_underline_internal (label, TRUE);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
 }
 
 static void geda_label_realize (GtkWidget *widget)
