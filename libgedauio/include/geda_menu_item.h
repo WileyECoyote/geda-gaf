@@ -114,6 +114,7 @@ extern "C" {
 GedaType    geda_menu_item_get_type              (void)          GEDA_CONST;
 bool        is_a_geda_menu_item                  (GedaMenuItem  *menu_item);
 
+bool        geda_menu_item_is_selectable         (GedaMenuItem  *menu_item);
 bool        geda_menu_item_is_widget_selectable  (GtkWidget     *widget);
 
 GtkWidget  *geda_menu_item_new                   (void);

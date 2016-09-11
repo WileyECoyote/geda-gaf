@@ -3539,6 +3539,19 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 }
 
 bool
+geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
+{
+  if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
+    G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
+    GEDA_IS_MENU_SEPERATOR (menu_item) ||
+    !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
+    !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
+    return FALSE;
+
+  return TRUE;
+}
+
+bool
 geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
   if ((!gtk_bin_get_child (GTK_BIN(widget)) &&

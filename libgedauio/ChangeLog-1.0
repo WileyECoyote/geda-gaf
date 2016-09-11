@@ -1,7 +1,8 @@
 2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_item.c:Rename geda_menu_item_is_selectable->
-      geda_menu_item_is_widget_selectable.
+    * src/widgets/geda_menu_item.c: Rename geda_menu_item_is_selectable->
+      geda_menu_item_is_widget_selectable and add new function geda_menu_
+      item_is_selectable that accepts a GedaMenuItem as an argument.
 
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
