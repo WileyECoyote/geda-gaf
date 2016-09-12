@@ -107,9 +107,11 @@ static int geda_menu_bar_draw                         (GtkWidget      *widget,
                                                        cairo_t        *cr);
 #endif
 
-static bool geda_menu_bar_button_press                (GtkWidget       *widget,
-                                                       GdkEventButton  *event);
-
+static bool geda_menu_bar_button_press                (GtkWidget      *widget,
+                                                       GdkEventButton *event);
+static bool geda_menu_bar_window_key_press_handler    (GtkWidget   *widget,
+                                                       GdkEventKey *event,
+                                                       void        *data);
 static void geda_menu_bar_hierarchy_changed           (GtkWidget      *widget,
                                                        GtkWidget      *old_toplevel);
 static int  geda_menu_bar_get_popup_delay             (GedaMenuShell  *menu_shell);
@@ -922,11 +924,13 @@ geda_menu_bar_class_init (void *class, void *class_data)
                                 "move-current", 1,
                                 GTK_TYPE_MENU_DIRECTION_TYPE,
                                 MENU_DIR_PARENT);
+
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_Down, 0,
                                 "move-current", 1,
                                 GTK_TYPE_MENU_DIRECTION_TYPE,
                                 MENU_DIR_CHILD);
+
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_KP_Down, 0,
                                 "move-current", 1,
@@ -1101,6 +1105,14 @@ add_to_window (GtkWindow  *window, GedaMenuBar *menubar)
 {
   GList *menubars = get_menu_bars (window);
 
+  if (!menubars) {
+
+    g_signal_connect (window,
+                      "key-press-event",
+                      G_CALLBACK (geda_menu_bar_window_key_press_handler),
+                      NULL);
+  }
+
   set_menu_bars (window, g_list_prepend (menubars, menubar));
 }
 
@@ -1110,6 +1122,14 @@ remove_from_window (GtkWindow  *window, GedaMenuBar *menubar)
   GList *menubars = get_menu_bars (window);
 
   menubars = g_list_remove (menubars, menubar);
+
+  if (!menubars) {
+
+    g_signal_handlers_disconnect_by_func (window,
+                                          geda_menu_bar_window_key_press_handler,
+                                          NULL);
+  }
+
   set_menu_bars (window, menubars);
 }
 
@@ -1161,6 +1181,58 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
   return FALSE;
 }
 
+static bool
+geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
+                                        GdkEventKey *event,
+                                        void        *data)
+{
+  char *accel = NULL;
+  bool  retval = FALSE;
+
+  g_object_get (gtk_widget_get_settings (widget), "gtk-menu-bar-accel", &accel,
+                NULL);
+
+  if (accel && *accel) {
+
+    unsigned int keyval = 0;
+    GdkModifierType mods = 0;
+
+    gtk_accelerator_parse (accel, &keyval, &mods);
+
+    if (keyval == 0)
+      g_warning ("Failed to parse menu bar accelerator '%s'\n", accel);
+
+    if (event->keyval == keyval &&
+      ((event->state & gtk_accelerator_get_default_mod_mask ()) ==
+       (mods & gtk_accelerator_get_default_mod_mask ())))
+    {
+      GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW (widget));
+      GList *menubars;
+
+      menubars = geda_container_focus_sort (GTK_CONTAINER (widget), tmp_menubars,
+                                            GTK_DIR_TAB_FORWARD, NULL);
+      g_list_free (tmp_menubars);
+
+      if (menubars) {
+
+        GedaMenuShell *menu_shell = GEDA_MENU_SHELL (menubars->data);
+
+        geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
+        geda_menu_shell_activate (menu_shell);
+        geda_menu_shell_select_first (menu_shell, FALSE);
+
+        g_list_free (menubars);
+
+        retval = TRUE;
+      }
+    }
+  }
+
+  g_free (accel);
+
+  return retval;
+}
+
 static void
 geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
 {
@@ -1208,6 +1280,7 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
       if (current && current->next) {
 
         GedaMenuShell *new_menushell = GEDA_MENU_SHELL (current->next->data);
+
         if (new_menushell->children) {
           to_activate = new_menushell->children->data;
         }
