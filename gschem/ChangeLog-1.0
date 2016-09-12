@@ -1,3 +1,7 @@
+2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise mnemonic characters under the File menu.
+
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Substitute geda_strconcat for geda_utility_string_concat.

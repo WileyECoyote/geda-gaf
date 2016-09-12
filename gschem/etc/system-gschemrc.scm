@@ -2052,8 +2052,8 @@
         ("SEPARATOR"               #f                   #f)
         (,(N_ "_Save")             file-save            "gtk-save"            ,(N_ "Save the current document"))
         (,(N_ "Save _As...")       file-save-as         "gtk-save-as"         ,(N_ "Save the current document to a new name or location"))
-        (,(N_ "Save All")          file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
-        (,(N_ "Save Modified")     file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
+        (,(N_ "Save A_ll")         file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
+        (,(N_ "Save _Modified")    file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
         (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload the all documents"))
 
@@ -2064,11 +2064,11 @@
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
 
         ("SEPARATOR"               #f                   #f            #f)
-        (,(N_ "Execute Script...") file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
+        (,(N_ "E_xecute Script...")file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Close")            file-close           "gtk-close"           ,(N_ "Close the current document"))
-        (,(N_ "_Close All")        file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
+        (,(N_ "Close All")        file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
         (,(N_ "_Quit")             file-quit            "gtk-quit"            ,(N_ "Quit gschem and exit"))
       )
 )
