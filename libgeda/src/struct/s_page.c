@@ -133,7 +133,7 @@ geda_struct_page_new_common(GedaToplevel *toplevel, Page *page)
   page->selection_list = geda_object_selection_new();
 
   /* init undo struct pointers */
-  s_undo_init(page);
+  geda_struct_undo_init(page);
 
   /* Backup variables */
   time (&page->last_load_or_save_time);
@@ -382,7 +382,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   geda_struct_tile_free_all (page);
 
   /* free current page undo structs */
-  s_undo_free_all (page);
+  geda_struct_undo_free_all (page);
 
   /* ouch, deal with parents going away and the children still around */
   page->hierarchy_up = -2;

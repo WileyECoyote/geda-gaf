@@ -562,7 +562,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       page->do_autosave_backup    = 0;
       page->CHANGED               = 0; /* WEH: added 11/17/13, really */
 
-      s_undo_update_modified(toplevel->page_current);
+      geda_struct_undo_update_modified(toplevel->page_current);
 
       GEDA_FREE (real_filename);
       result = 1;

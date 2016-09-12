@@ -739,22 +739,22 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_toplevel_struct_set_rbounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
 
 /* s_undo.c */
-         UNDO   *s_undo_return_tail              (UNDO *head);
-         UNDO   *s_undo_return_head              (UNDO *tail);
-         UNDO   *s_undo_new_head                 (void);
-         void    s_undo_destroy_head             (UNDO *u_head);
-         UNDO   *s_undo_add_disk                 (int type, char *filename, Page *page);
-         UNDO   *s_undo_add_memory               (int type, Page *page);
-         UNDO   *s_undo_add                      (UNDO *head,  int type,  char *filename, GList *object_list, int left, int top,
-                                                  int right, int bottom, int  page_control, int up);
-         void    s_undo_print_all                (UNDO *head);
-         void    s_undo_destroy_all              (UNDO *head);
-         void    s_undo_remove                   (UNDO *head, UNDO *u_tos);
-         void    s_undo_remove_rest              (UNDO *head);
-          int    s_undo_levels                   (UNDO *head);
-         void    s_undo_update_modified          (Page *p_current);
-         void    s_undo_init                     (Page *p_current);
-         void    s_undo_free_all                 (Page *p_current);
+         UNDO   *geda_struct_undo_return_tail              (UNDO *head);
+         UNDO   *geda_struct_undo_return_head              (UNDO *tail);
+         UNDO   *geda_struct_undo_new_head                 (void);
+         void    geda_struct_undo_destroy_head             (UNDO *u_head);
+         UNDO   *geda_struct_undo_add_disk                 (int type, char *filename, Page *page);
+         UNDO   *geda_struct_undo_add_memory               (int type, Page *page);
+         UNDO   *geda_struct_undo_add                      (UNDO *head,  int type,  char *filename, GList *object_list, int left, int top,
+                                                            int right, int bottom, int  page_control, int up);
+         void    geda_struct_undo_print_all                (UNDO *head);
+         void    geda_struct_undo_destroy_all              (UNDO *head);
+         void    geda_struct_undo_remove                   (UNDO *head, UNDO *u_tos);
+         void    geda_struct_undo_remove_rest              (UNDO *head);
+          int    geda_struct_undo_levels                   (UNDO *head);
+         void    geda_struct_undo_update_modified          (Page *p_current);
+         void    geda_struct_undo_init                     (Page *p_current);
+         void    geda_struct_undo_free_all                 (Page *p_current);
 
 /* ---------------- Utilities -------------- */
 

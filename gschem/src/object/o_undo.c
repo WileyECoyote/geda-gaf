@@ -269,21 +269,21 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     /* Clear Anything above current */
     if (p_current->undo_current) {
-      s_undo_remove_rest(p_current->undo_current->next);
+      geda_struct_undo_remove_rest(p_current->undo_current->next);
       p_current->undo_current->next = NULL;
     }
     else { /* undo current is NULL */
-      s_undo_remove_rest(p_current->undo_bottom);
+      geda_struct_undo_remove_rest(p_current->undo_bottom);
       p_current->undo_bottom = NULL;
     }
 
     p_current->undo_tos = p_current->undo_current;
 
     if (w_current->undo_type == UNDO_DISK) {
-      p_current->undo_tos = s_undo_add_disk (flag, filename, p_current);
+      p_current->undo_tos = geda_struct_undo_add_disk (flag, filename, p_current);
     }
     else if (w_current->undo_type == UNDO_MEMORY) {
-      p_current->undo_tos = s_undo_add_memory(flag, p_current);
+      p_current->undo_tos = geda_struct_undo_add_memory(flag, p_current);
     }
 
     p_current->undo_current = p_current->undo_tos;
@@ -294,7 +294,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
-    s_undo_print_all       (p_current->undo_bottom);
+    geda_struct_undo_print_all       (p_current->undo_bottom);
     printf("BOTTOM: %s\n",  p_current->undo_bottom->filename);
     printf("TOS: %s\n",     p_current->undo_tos->filename);
     printf("CURRENT: %s\n", p_current->undo_current->filename);
@@ -372,7 +372,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
-    s_undo_print_all(p_current->undo_bottom);
+    geda_struct_undo_print_all(p_current->undo_bottom);
     printf("BOTTOM: %s\n", p_current->undo_bottom->filename);
     printf("TOS: %s\n", p_current->undo_tos->filename);
     printf("CURRENT: %s\n", p_current->undo_current->filename);
@@ -636,7 +636,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
 #if DEBUG_UNDO
   printf("\n\n---Undo----\n");
-  s_undo_print_all(Current_Page->undo_bottom);
+  geda_struct_undo_print_all(Current_Page->undo_bottom);
   printf("TOS: %s\n", Current_Page->undo_tos->filename);
   printf("CURRENT: %s\n", Current_Page->undo_current->filename);
   printf("----\n");

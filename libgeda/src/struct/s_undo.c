@@ -28,7 +28,7 @@
  *
  *  \remarks should probably just make static
  */
-UNDO *s_undo_return_tail(UNDO *head)
+UNDO *geda_struct_undo_return_tail(UNDO *head)
 {
   UNDO *u_current;
   UNDO *ret_struct = NULL;
@@ -53,7 +53,7 @@ UNDO *s_undo_return_tail(UNDO *head)
  *  \remarks Another no so usefull function. This function
  *           is not used
  */
-UNDO *s_undo_return_head(UNDO *tail)
+UNDO *geda_struct_undo_return_head(UNDO *tail)
 {
   UNDO *u_current;
   UNDO *ret_struct = NULL;
@@ -75,7 +75,7 @@ UNDO *s_undo_return_head(UNDO *tail)
  *  \returns An Empty UNDO structure, the structure should be
  *           freed when no longer needed.
  */
-UNDO *s_undo_new_head(void)
+UNDO *geda_struct_undo_new_head(void)
 {
   UNDO *u_new;
 
@@ -100,7 +100,7 @@ UNDO *s_undo_new_head(void)
  *
  *  \param [in] u_head Pointer to UNDO struture to be freed
  */
-void s_undo_destroy_head(UNDO *u_head)
+void geda_struct_undo_destroy_head(UNDO *u_head)
 {
   GEDA_FREE(u_head);
 }
@@ -121,7 +121,7 @@ void s_undo_destroy_head(UNDO *u_head)
  *    <DT>UNDO_VIEWPORT_ONLY</DT>
  *  </DL>
  */
-UNDO *s_undo_add_disk (int type, char *filename, Page *page)
+UNDO *geda_struct_undo_add_disk (int type, char *filename, Page *page)
 {
   UNDO *head;
   UNDO *tail;
@@ -153,7 +153,7 @@ UNDO *s_undo_add_disk (int type, char *filename, Page *page)
     u_ret       = u_new;
   }
   else {
-    tail        = s_undo_return_tail(head);
+    tail        = geda_struct_undo_return_tail(head);
     u_new->prev = tail; /* setup previous link */
     u_new->next = NULL;
     tail->next  = u_new;
@@ -177,7 +177,7 @@ UNDO *s_undo_add_disk (int type, char *filename, Page *page)
  *    <DT>UNDO_VIEWPORT_ONLY</DT>
  *  </DL>
  */
-UNDO *s_undo_add_memory (int type, Page *page)
+UNDO *geda_struct_undo_add_memory (int type, Page *page)
 {
   UNDO *head;
   UNDO *tail;
@@ -209,7 +209,7 @@ UNDO *s_undo_add_memory (int type, Page *page)
     u_ret       = u_new;
   }
   else {
-    tail        = s_undo_return_tail(head);
+    tail        = geda_struct_undo_return_tail(head);
     u_new->prev = tail; /* setup previous link */
     u_new->next = NULL;
     tail->next  = u_new;
@@ -221,11 +221,11 @@ UNDO *s_undo_add_memory (int type, Page *page)
 /*! \brief Creates and Returns a New Undo record
  *  \par Function Description
  *   This function is obsolete and is not used, performance test indicate
- *   passing a pointer to the page as is done in s_undo_add_memory and
- *   s_undo_add_disk, is more efficient then passing 9 separate arguments
+ *   passing a pointer to the page as is done in geda_struct_undo_add_memory and
+ *   geda_struct_undo_add_disk, is more efficient then passing 9 separate arguments
  *   (which are all members of the Page structure.
  */
-UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
+UNDO *geda_struct_undo_add (UNDO *head, int type, char *filename, GList *object_list,
                   int left, int top, int right, int bottom, int page_control,
                   int up)
 {
@@ -254,7 +254,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
     u_new->next = NULL;
     return(u_new);
   } else {
-    tail = s_undo_return_tail(head);
+    tail = geda_struct_undo_return_tail(head);
     u_new->prev = tail; /* setup previous link */
     u_new->next = NULL;
     tail->next = u_new;
@@ -267,7 +267,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
  *   Does not print every field of the record but does manage to
  *   convolute the terminal.
  */
-void s_undo_print_all( UNDO *head )
+void geda_struct_undo_print_all( UNDO *head )
 {
   UNDO *u_current;
 
@@ -288,7 +288,7 @@ void s_undo_print_all( UNDO *head )
     u_current = u_current->next;
   }
   printf("TOS\n");
-  printf("Number of levels: %d\n", s_undo_levels(head));
+  printf("Number of levels: %d\n", geda_struct_undo_levels(head));
   printf("DONE printing undo ********************\n");
   printf("\n");
 
@@ -296,17 +296,17 @@ void s_undo_print_all( UNDO *head )
 
 /*! \brief Real Release all Memory Allocated for a Given Head
  *  \par Function Description
- *   s_undo_destroy_all starts at the bottom of the stack and
+ *   geda_struct_undo_destroy_all starts at the bottom of the stack and
  *   works upward, releasing all objects (MEMORY) and freeing
  *   all filename (DISK) until the top of the stack is reached
  *   as indicated by a NULL pointer to the previous record.
  */
-void s_undo_destroy_all(UNDO *head)
+void geda_struct_undo_destroy_all(UNDO *head)
 {
   UNDO *u_current;
   UNDO *u_prev;
 
-  u_current = s_undo_return_tail(head);
+  u_current = geda_struct_undo_return_tail(head);
 
   while (u_current != NULL) {
     u_prev = u_current->prev;
@@ -326,19 +326,21 @@ void s_undo_destroy_all(UNDO *head)
  *  \par Function Description
  *  Fortunately, this function is not used.
  */
-void s_undo_remove(UNDO *head, UNDO *u_tos)
+void geda_struct_undo_remove(UNDO *head, UNDO *u_tos)
 {
   UNDO *u_current;
 
   if (u_tos == NULL) {
-    fprintf(stderr, "Got NULL for u_tos in s_undo_remove\n");
+    fprintf(stderr, "Got NULL for u_tos in geda_struct_undo_remove\n");
     return;
   }
 
   u_current = head;
 
   while (u_current != NULL) {
+
     if (u_current == u_tos) {
+
       if (u_current->next)
         u_current->next->prev = u_current->prev;
       else
@@ -369,7 +371,7 @@ void s_undo_remove(UNDO *head, UNDO *u_tos)
  *   than \a head, essentially, the record \a head will become
  *   tail.
  */
-void s_undo_remove_rest(UNDO *head)
+void geda_struct_undo_remove_rest(UNDO *head)
 {
   UNDO *u_current;
   UNDO *u_next;
@@ -399,7 +401,7 @@ void s_undo_remove_rest(UNDO *head)
  *  \par Function Description
  *
  */
-int s_undo_levels(UNDO *head)
+int geda_struct_undo_levels(UNDO *head)
 {
   UNDO *u_current;
   int count = 0;
@@ -429,7 +431,7 @@ int s_undo_levels(UNDO *head)
  *  back on the page that was saved and the page->CHANGED flag will be
  *  set accordingly.
  */
-void s_undo_update_modified (Page *p_current)
+void geda_struct_undo_update_modified (Page *p_current)
 {
   UNDO *u_current;
   UNDO *u_iter;
@@ -450,7 +452,7 @@ void s_undo_update_modified (Page *p_current)
  *  Fortunately, the complier is intelligent enough to optimize
  *  out this function!
  */
-void s_undo_init(Page *p_current)
+void geda_struct_undo_init(Page *p_current)
 {
   p_current->undo_tos     = NULL;
   p_current->undo_bottom  = NULL;
@@ -461,12 +463,12 @@ void s_undo_init(Page *p_current)
  *  \par Function Description
  *  This function is called when a page is destroyed to free all
  *  memory allocated by this module that is referenced by the
- *  given Page object. The functions calls s_undo_destroy_all
+ *  given Page object. The functions calls geda_struct_undo_destroy_all
  *  to do the actual work.
  */
-void s_undo_free_all(Page *p_current)
+void geda_struct_undo_free_all(Page *p_current)
 {
-  s_undo_destroy_all(p_current->undo_bottom);
+  geda_struct_undo_destroy_all(p_current->undo_bottom);
   p_current->undo_bottom   = NULL;
   p_current->undo_tos      = NULL;
   p_current->undo_current  = NULL;
