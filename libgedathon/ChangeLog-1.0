@@ -1,3 +1,7 @@
+2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Substitute geda_strconcat for geda_utility_string_concat.
+
 2016-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/functions.c: Reformat comment blocks, add \code & \endcode tags.

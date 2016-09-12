@@ -825,7 +825,7 @@ static void setup_source_library (void)
   char           *data_path;
   int n;
 
-  data_path = geda_utility_string_concat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
+  data_path = geda_strconcat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
 
   n = scandir(data_path, &namelist, NULL, alphasort);
   if (n < 0)
@@ -1472,10 +1472,10 @@ PyGeda_new_page( const char *filename, int over_write)
       char *command;
 
       if (toplevel->make_backup_files && !over_write) {
-        command = geda_utility_string_concat("mv ", filename, " ", filename, ".bak", NULL);
+        command = geda_strconcat("mv ", filename, " ", filename, ".bak", NULL);
       }
       else {
-        command = geda_utility_string_concat("rm -f ", filename, NULL);
+        command = geda_strconcat("rm -f ", filename, NULL);
       }
       if (system(command) != 0)
         perror("system");
@@ -2408,7 +2408,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
   int mirr = mirror < 0 ? 0 : mirror;
   int emb  = embed  < 0 ? 0 : embed;
 
-  sym_file = geda_utility_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  sym_file = geda_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
   clib     = geda_struct_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
