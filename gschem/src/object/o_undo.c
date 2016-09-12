@@ -262,7 +262,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           u_log_message(sys_err_msg, err->code);
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
-          s_undo_free_all (p_current);
+          geda_struct_undo_free_all (p_current);
       }
 
     }
@@ -294,10 +294,10 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
-    geda_struct_undo_print_all       (p_current->undo_bottom);
-    printf("BOTTOM: %s\n",  p_current->undo_bottom->filename);
-    printf("TOS: %s\n",     p_current->undo_tos->filename);
-    printf("CURRENT: %s\n", p_current->undo_current->filename);
+    geda_struct_undo_print_all (p_current->undo_bottom);
+    printf("BOTTOM: %s\n",      p_current->undo_bottom->filename);
+    printf("TOS: %s\n",         p_current->undo_tos->filename);
+    printf("CURRENT: %s\n",     p_current->undo_current->filename);
     printf("----\n");
 #endif
 
@@ -311,7 +311,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       return;
     }
 
-    levels = s_undo_levels(p_current->undo_bottom);
+    levels = geda_struct_undo_levels(p_current->undo_bottom);
 
 #if DEBUG_UNDO
     printf("levels: %d\n", levels);
@@ -373,9 +373,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
     geda_struct_undo_print_all(p_current->undo_bottom);
-    printf("BOTTOM: %s\n", p_current->undo_bottom->filename);
-    printf("TOS: %s\n", p_current->undo_tos->filename);
-    printf("CURRENT: %s\n", p_current->undo_current->filename);
+    printf("BOTTOM: %s\n",     p_current->undo_bottom->filename);
+    printf("TOS: %s\n",        p_current->undo_tos->filename);
+    printf("CURRENT: %s\n",    p_current->undo_current->filename);
     printf("----\n");
 #endif
   }
@@ -637,8 +637,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 #if DEBUG_UNDO
   printf("\n\n---Undo----\n");
   geda_struct_undo_print_all(Current_Page->undo_bottom);
-  printf("TOS: %s\n", Current_Page->undo_tos->filename);
-  printf("CURRENT: %s\n", Current_Page->undo_current->filename);
+  printf("TOS: %s\n",        Current_Page->undo_tos->filename);
+  printf("CURRENT: %s\n",    Current_Page->undo_current->filename);
   printf("----\n");
 #endif
 }

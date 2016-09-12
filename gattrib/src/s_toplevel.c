@@ -945,7 +945,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     printf("%s: handling entry in master list %s .\n", __func__, new_name_value_pair);
 #endif
 
-    new_attrib_name = geda_utility_string_split(new_name_value_pair, '=', 0);
+    new_attrib_name  = geda_utility_string_split(new_name_value_pair, '=', 0);
     new_attrib_value = geda_utility_string_split(new_name_value_pair, '=', 1);
 
     if (strlen(new_attrib_value) == 0) {

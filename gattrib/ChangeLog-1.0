@@ -1,6 +1,7 @@
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/: Substitute geda_strdup for geda_utility_string_strdup in:
+    * src/: Substitute geda_strdup for geda_utility_string_strdup and
+      geda_strsplit for geda_utility_string_split in:
 
           * src/s_object.c
           * src/s_toplevel.c
