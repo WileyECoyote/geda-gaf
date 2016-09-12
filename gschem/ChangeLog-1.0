@@ -1,3 +1,9 @@
+2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-export-menu.scm: Add "-f" option to geda2xml to
+      force over-writing so gschem do not hang because geda2xml is prompting
+      to over-write existing files, rename fout -> fin.
+
 2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise mnemonic characters under the File menu.

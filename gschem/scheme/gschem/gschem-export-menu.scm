@@ -41,8 +41,8 @@
 ;; ------------------------- export:xml ------------------------------
 (define (export:xml)
   (if (export:check-saved)
-    (let  ((fout (get-selected-filename)))
-      (system (string-append export:geda2xml " " fout " "))
+    (let  ((fin (get-selected-filename)))
+      (system (string-append export:geda2xml " -f " fin " "))
     )
   )
 )
