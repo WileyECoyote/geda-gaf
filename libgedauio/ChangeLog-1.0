@@ -18,6 +18,9 @@
             * include/geda_separator.h
             * include/geda_toggle_action.h
 
+    * src/widgets/geda_label.c: Rename data key string name "gtk-signal"
+      to "eda-signal".
+
     * src/widgets/geda_menu_item.c: Rename geda_menu_item_is_selectable->
       geda_menu_item_is_widget_selectable and add new function geda_menu_
       item_is_selectable that accepts a GedaMenuItem as an argument.

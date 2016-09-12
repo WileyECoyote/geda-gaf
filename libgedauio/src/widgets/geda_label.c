@@ -6337,7 +6337,7 @@ static void geda_label_select_all (GedaLabel *label)
  */
 static void activate_cb (GtkWidget *menuitem, GedaLabel *label)
 {
-  const char *signal = GEDA_OBJECT_GET_DATA(menuitem, "gtk-signal");
+  const char *signal = GEDA_OBJECT_GET_DATA(menuitem, "eda-signal");
   g_signal_emit_by_name (label, signal);
 }
 
@@ -6350,7 +6350,7 @@ append_action_signal (GedaLabel   *label,
 {
   GtkWidget *menuitem = geda_image_menu_item_new_from_stock (stock_id, NULL);
 
-  g_object_set_data (G_OBJECT (menuitem), "gtk-signal", (char*)signal);
+  g_object_set_data (G_OBJECT (menuitem), "eda-signal", (char*)signal);
 
   g_signal_connect (menuitem, "activate", G_CALLBACK (activate_cb), label);
 
