@@ -40,7 +40,7 @@
 #define GEDA_TYPE_MENU_SHELL            (geda_menu_shell_get_type ())
 #define GEDA_MENU_SHELL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_SHELL, GedaMenuShell))
 #define GEDA_MENU_SHELL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_MENU_SHELL, GedaMenuShellClass))
-#define GEDA_IS_MENU_SHELL(obj)         (is_a_geda_menu_shell((GedaMenuShell*)obj))
+#define GEDA_IS_MENU_SHELL(obj)         (is_a_geda_menu_shell((GedaMenuShell*)(obj)))
 #define GEDA_IS_MENU_SHELL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_SHELL))
 #define GEDA_MENU_SHELL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_SHELL, GedaMenuShellClass))
 

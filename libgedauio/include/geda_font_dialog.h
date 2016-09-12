@@ -51,7 +51,7 @@
 #define GEDA_TYPE_FONT_DIALOG            (geda_font_dialog_get_type ())
 #define GEDA_FONT_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FONT_DIALOG, GedaFontDialog))
 #define GEDA_FONT_DIALOG_CLASS(class)    (G_TYPE_CHECK_CLASS_CAST ((class),  GEDA_TYPE_FONT_DIALOG, GedaFontDialogClass))
-#define GEDA_IS_FONT_DIALOG(obj)         (is_a_geda_font_dialog((GedaFontDialog*)obj))
+#define GEDA_IS_FONT_DIALOG(obj)         (is_a_geda_font_dialog((GedaFontDialog*)(obj)))
 #define GEDA_IS_FONT_DIALOG_CLASS(class) (G_TYPE_CHECK_CLASS_TYPE ((class),  GEDA_TYPE_FONT_DIALOG))
 #define GEDA_FONT_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_FONT_DIALOG, GedaFontDialogClass))
 

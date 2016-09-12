@@ -32,7 +32,7 @@
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
 #define GEDA_HANDLE_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_HANDLE_BOX, GedaHandleBoxClass))
-#define GEDA_IS_HANDLE_BOX(obj)         (is_a_geda_handle_box((GedaHandleBox*)obj))
+#define GEDA_IS_HANDLE_BOX(obj)         (is_a_geda_handle_box((GedaHandleBox*)(obj)))
 #define GEDA_IS_HANDLE_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_HANDLE_BOX))
 #define GEDA_HANDLE_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_HANDLE_BOX, GedaHandleBoxClass))
 

@@ -1,5 +1,23 @@
 2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/: Add parenthesis around obj in GEDA_IS_* macros in:
+
+            * include/geda_accel_label.h
+            * include/geda_action.h
+            * include/geda_bulb.h
+            * include/geda_combobox.h
+            * include/geda_comboboxtext.h
+            * include/geda_entry.h
+            * include/geda_font_button.h
+            * include/geda_font_dialog.h
+            * include/geda_handlebox.h
+            * include/geda_label.h
+            * include/geda_menu.h
+            * include/geda_menu_item.h
+            * include/geda_menu_shell.h
+            * include/geda_separator.h
+            * include/geda_toggle_action.h
+
     * src/widgets/geda_menu_item.c: Rename geda_menu_item_is_selectable->
       geda_menu_item_is_widget_selectable and add new function geda_menu_
       item_is_selectable that accepts a GedaMenuItem as an argument.

@@ -43,7 +43,7 @@
 #define GEDA_TYPE_MENU_ITEM            (geda_menu_item_get_type ())
 #define GEDA_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_ITEM, GedaMenuItem))
 #define GEDA_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_MENU_ITEM, GedaMenuItemClass))
-#define GEDA_IS_MENU_ITEM(obj)         (is_a_geda_menu_item((GedaMenuItem*)obj))
+#define GEDA_IS_MENU_ITEM(obj)         (is_a_geda_menu_item((GedaMenuItem*)(obj)))
 #define GEDA_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_ITEM))
 #define GEDA_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_ITEM, GedaMenuItemClass))
 

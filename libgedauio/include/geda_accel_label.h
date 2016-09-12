@@ -46,7 +46,7 @@
 #define GEDA_TYPE_ACCEL_LABEL            (geda_accel_label_get_type ())
 #define GEDA_ACCEL_LABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACCEL_LABEL, GedaAccelLabel))
 #define GEDA_ACCEL_LABEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
-#define GEDA_IS_ACCEL_LABEL(obj)         (is_a_geda_accel_label((GedaAccelLabel*)obj))
+#define GEDA_IS_ACCEL_LABEL(obj)         (is_a_geda_accel_label((GedaAccelLabel*)(obj)))
 #define GEDA_IS_ACCEL_LABEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ACCEL_LABEL))
 #define GEDA_ACCEL_LABEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
 

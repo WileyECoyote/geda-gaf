@@ -42,7 +42,7 @@
 #define GEDA_TYPE_BULB            (geda_bulb_get_type ())
 #define GEDA_BULB(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_BULB, GedaBulb))
 #define GEDA_BULB_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_BULB, GedaBulbClass))
-#define GEDA_IS_BULB(obj)         (is_a_geda_bulb((GedaBulb*)obj))
+#define GEDA_IS_BULB(obj)         (is_a_geda_bulb((GedaBulb*)(obj)))
 #define GEDA_IS_BULB_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_BULB))
 #define GEDA_BULB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_BULB, GedaBulbClass))
 

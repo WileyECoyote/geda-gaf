@@ -45,7 +45,7 @@ typedef GtkTreeViewRowSeparatorFunc SeparatorFunc;
 #define GEDA_TYPE_COMBO_BOX             (geda_combo_box_get_type ())
 #define GEDA_COMBO_BOX(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX, GedaComboBox))
 #define GEDA_COMBO_BOX_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
-#define GEDA_IS_COMBO_BOX(obj)          (is_a_geda_combo_box((GedaComboBox*)obj))
+#define GEDA_IS_COMBO_BOX(obj)          (is_a_geda_combo_box((GedaComboBox*)(obj)))
 #define GEDA_IS_COMBO_BOX_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), GEDA_TYPE_COMBO_BOX))
 #define GEDA_COMBO_BOX_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_CLASS ((inst), GEDA_TYPE_COMBO_BOX, GedaComboBoxClass))
 
