@@ -1442,6 +1442,22 @@ geda_menu_item_activate (GedaMenuItem *menu_item)
 }
 
 /*!
+ * \brief Activate a GedaMenu Item
+ * \par Function Description
+ *  Emits the GedaMenuItem::activate-item signal on the given
+ *  menu item.
+ *
+ * \param [in] menu_item the menu item
+ */
+void
+geda_menu_item_activate_item (GedaMenuItem *menu_item)
+{
+  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
+
+  g_signal_emit (menu_item, menu_item_signals[ACTIVATE_ITEM], 0);
+}
+
+/*!
  * \brief geda_menu_item_toggle_size_request:
  * \par Function Description
  *  Emits the GedaMenuItem::toggle-size-request signal on the given item.
@@ -2431,7 +2447,36 @@ geda_menu_item_size_allocate (GtkWidget     *widget,
   }
 }
 
-/* GedaMenuItemClass signal handlers */
+static void
+geda_real_menu_item_select (GedaMenuItem *menu_item)
+{
+  GedaMenuItemPrivate *priv          = menu_item->priv;
+  GdkDevice           *source_device = NULL;
+  GdkEvent            *current_event;
+
+  current_event = gtk_get_current_event ();
+
+  if (current_event) {
+    source_device = gdk_event_get_source_device (current_event);
+    gdk_event_free (current_event);
+  }
+
+  if ((!source_device ||
+        gdk_device_get_source (source_device) != GDK_SOURCE_TOUCHSCREEN) &&
+        priv->submenu &&
+      (!gtk_widget_get_mapped (priv->submenu) ||
+        GEDA_MENU(priv->submenu)->priv->tearoff_active))
+  {
+    geda_menu_item_popup_submenu (menu_item, TRUE);
+  }
+
+  gtk_widget_set_state_flags (GTK_WIDGET(menu_item), GTK_STATE_FLAG_PRELIGHT, FALSE);
+  gtk_widget_queue_draw (GTK_WIDGET(menu_item));
+}
+
+#endif /* GTK_MAJOR_VERSION < 3 */
+
+/* Common GedaMenuItemClass signal handlers */
 
 static void
 geda_menu_item_activate_action (GedaMenuItem *menu_item)
@@ -2475,35 +2520,6 @@ geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
     }
   }
 }
-
-static void
-geda_real_menu_item_select (GedaMenuItem *menu_item)
-{
-  GedaMenuItemPrivate *priv          = menu_item->priv;
-  GdkDevice           *source_device = NULL;
-  GdkEvent            *current_event;
-
-  current_event = gtk_get_current_event ();
-
-  if (current_event) {
-    source_device = gdk_event_get_source_device (current_event);
-    gdk_event_free (current_event);
-  }
-
-  if ((!source_device ||
-        gdk_device_get_source (source_device) != GDK_SOURCE_TOUCHSCREEN) &&
-        priv->submenu &&
-      (!gtk_widget_get_mapped (priv->submenu) ||
-        GEDA_MENU(priv->submenu)->priv->tearoff_active))
-  {
-    geda_menu_item_popup_submenu (menu_item, TRUE);
-  }
-
-  gtk_widget_set_state_flags (GTK_WIDGET(menu_item), GTK_STATE_FLAG_PRELIGHT, FALSE);
-  gtk_widget_queue_draw (GTK_WIDGET(menu_item));
-}
-
-#endif /* GTK_MAJOR_VERSION < 3 */
 
 static void
 geda_real_menu_item_deselect (GedaMenuItem *menu_item)
@@ -3477,7 +3493,6 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
     GTK_WIDGET_CLASS (geda_menu_item_parent_class)->parent_set (widget, previous_parent);
   }
 }
-
 
 /*!
  * \brief geda_menu_item_get_accel_path

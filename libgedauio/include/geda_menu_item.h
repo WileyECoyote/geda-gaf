@@ -136,6 +136,7 @@ void        geda_menu_item_deselect              (GedaMenuItem  *menu_item);
 
 void        geda_menu_item_activate              (GedaMenuItem  *menu_item);
 
+void        geda_menu_item_activate_item         (GedaMenuItem  *menu_item);
 
 void        geda_menu_item_toggle_size_request   (GedaMenuItem  *menu_item,
                                                   int           *requisition);
