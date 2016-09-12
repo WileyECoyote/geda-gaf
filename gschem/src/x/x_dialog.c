@@ -1293,7 +1293,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", width);
 
@@ -1302,7 +1302,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch1 == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", pitch1);
 
@@ -1311,7 +1311,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle1 == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", angle1);
 
@@ -1320,7 +1320,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch2 == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", pitch2);
 
@@ -1329,7 +1329,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle2 == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", angle2);
 
@@ -1902,7 +1902,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", width);
 
@@ -1911,7 +1911,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (length == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", length);
 
@@ -1921,7 +1921,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (space == LEAVE_ALONE)
-    text = geda_utility_string_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*unchanged*"));
   else
     text = geda_sprintf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
@@ -3227,7 +3227,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
         icon_id = i_command_get_action_icon(binding);
 
-        ptr = action = geda_utility_string_strdup(binding);
+        ptr = action = geda_strdup(binding);
 
         action[0] = action[0] ^ 0x20;
 
