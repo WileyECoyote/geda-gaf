@@ -1,3 +1,8 @@
+2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Rename static emit_activate_link ->
+      geda_label_emit_activate_link.
+
 2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Add parenthesis around obj in GEDA_IS_* macros in:

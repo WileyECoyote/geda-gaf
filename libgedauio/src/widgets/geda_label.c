@@ -314,7 +314,7 @@ static void geda_label_get_link_colors            (GtkWidget         *widget,
                                                    GdkColor          *link_color,
                                                    GdkColor          *visited_link_color);
 
-static void emit_activate_link                    (GedaLabel         *label,
+static void geda_label_emit_activate_link         (GedaLabel         *label,
                                                    GedaLabelLink     *link);
 
 static void *geda_label_parent_class = NULL;
@@ -4880,7 +4880,7 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
       info->selection_anchor == info->selection_end &&
       info->link_clicked)
   {
-      emit_activate_link (label, info->active_link);
+      geda_label_emit_activate_link (label, info->active_link);
       info->link_clicked = 0;
 
       return TRUE;
@@ -6432,7 +6432,7 @@ open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
   link = geda_label_get_current_link (label);
 
   if (link) {
-    emit_activate_link (label, link);
+    geda_label_emit_activate_link (label, link);
   }
 }
 
@@ -6602,7 +6602,7 @@ geda_label_activate_link (GedaLabel *label, const char *uri)
 }
 
 static void
-emit_activate_link (GedaLabel *label, GedaLabelLink *link)
+geda_label_emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 {
   GedaLabelData *priv = label->priv;
   bool handled;
@@ -6623,7 +6623,7 @@ static void geda_label_activate_current_link (GedaLabel *label)
 
   if (link) {
 
-      emit_activate_link (label, link);
+      geda_label_emit_activate_link (label, link);
   }
   else {
 
