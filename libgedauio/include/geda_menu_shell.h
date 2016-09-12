@@ -103,6 +103,7 @@ extern "C" {
 GedaType   geda_menu_shell_get_type          (void)          GEDA_CONST;
 bool       is_a_geda_menu_shell              (GedaMenuShell *menu_shell);
 
+void       geda_menu_shell_activate          (GedaMenuShell *menu_shell);
 void       geda_menu_shell_activate_item     (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item,
                                               bool           force_deactivate);
