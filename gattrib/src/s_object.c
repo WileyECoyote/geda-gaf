@@ -184,7 +184,7 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
       /* found an attribute? */
 
       /* may need to check more thoroughly here. . . . */
-      old_attrib_text = geda_utility_string_strdup(a_current->text->string);
+      old_attrib_text = geda_strdup(a_current->text->string);
       old_attrib_name = geda_utility_string_split(old_attrib_text, '=', 0);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
@@ -253,7 +253,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {  /* found an attribute */
 
       /* may need to check more thoroughly here. . . . */
-      old_attrib_text = geda_utility_string_strdup(a_current->text->string);
+      old_attrib_text = geda_strdup(a_current->text->string);
       old_attrib_name = geda_utility_string_split(old_attrib_text, '=', 0);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
