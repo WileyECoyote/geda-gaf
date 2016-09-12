@@ -163,9 +163,10 @@ static bool geda_menu_item_leave                     (GtkWidget        *widget,
                                                       GdkEventCrossing *event);
 static void geda_menu_item_parent_set                (GtkWidget        *widget,
                                                       GtkWidget        *previous_parent);
+static void geda_menu_item_activate_action           (GedaMenuItem     *item);
+
 static void geda_real_menu_item_select               (GedaMenuItem     *item);
 static void geda_real_menu_item_deselect             (GedaMenuItem     *item);
-static void geda_real_menu_item_activate             (GedaMenuItem     *item);
 static void geda_real_menu_item_activate_item        (GedaMenuItem     *item);
 static void geda_real_menu_item_toggle_size_request  (GedaMenuItem     *menu_item,
                                                       int              *requisition);
@@ -515,7 +516,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
 
   container_class->forall               = geda_menu_item_forall;
 
-  menu_item_class->activate             = geda_real_menu_item_activate;
+  menu_item_class->activate             = geda_menu_item_activate_action;
   menu_item_class->activate_item        = geda_real_menu_item_activate_item;
   menu_item_class->toggle_size_request  = geda_real_menu_item_toggle_size_request;
   menu_item_class->toggle_size_allocate = geda_real_menu_item_toggle_size_allocate;
@@ -1426,7 +1427,7 @@ geda_menu_item_deselect (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_activate:
+ * \brief Activate a GedaMenu Item
  * \par Function Description
  *  Emits the GedaMenuItem::activate signal on the given item
  *
@@ -2430,6 +2431,51 @@ geda_menu_item_size_allocate (GtkWidget     *widget,
   }
 }
 
+/* GedaMenuItemClass signal handlers */
+
+static void
+geda_menu_item_activate_action (GedaMenuItem *menu_item)
+{
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+#if GTK_MAJOR_VERSION == 3
+  if (priv->action_helper) {
+    gtk_action_helper_activate (GTK_ACTION_HELPER(priv->action_helper));
+  }
+#endif
+
+  if (priv->action) {
+    geda_action_activate (priv->action);
+  }
+}
+
+static void
+geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
+{
+  GedaMenuItemPrivate *priv = menu_item->priv;
+  GtkWidget *parent;
+  GtkWidget *widget;
+
+  widget = GTK_WIDGET(menu_item);
+  parent = gtk_widget_get_parent (widget);
+
+  if (parent && GEDA_IS_MENU_SHELL (parent)) {
+
+    GedaMenuShell *menu_shell = GEDA_MENU_SHELL(parent);
+
+    if (priv->submenu == NULL) {
+      geda_menu_shell_activate_item (menu_shell, widget, TRUE);
+    }
+    else {
+
+      geda_menu_shell_select_item (menu_shell, widget);
+      geda_menu_item_popup_submenu (menu_item, FALSE);
+
+      geda_menu_shell_select_first (GEDA_MENU_SHELL(priv->submenu), TRUE);
+    }
+  }
+}
+
 static void
 geda_real_menu_item_select (GedaMenuItem *menu_item)
 {
@@ -2510,49 +2556,6 @@ geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   }
 
   return TRUE;
-}
-
-static void
-geda_real_menu_item_activate (GedaMenuItem *menu_item)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-#if GTK_MAJOR_VERSION == 3
-  if (priv->action_helper) {
-    gtk_action_helper_activate (GTK_ACTION_HELPER(priv->action_helper));
-  }
-#endif
-
-  if (priv->action) {
-    geda_action_activate (priv->action);
-  }
-}
-
-static void
-geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-  GtkWidget *parent;
-  GtkWidget *widget;
-
-  widget = GTK_WIDGET(menu_item);
-  parent = gtk_widget_get_parent (widget);
-
-  if (parent && GEDA_IS_MENU_SHELL (parent)) {
-
-    GedaMenuShell *menu_shell = GEDA_MENU_SHELL(parent);
-
-    if (priv->submenu == NULL) {
-      geda_menu_shell_activate_item (menu_shell, widget, TRUE);
-    }
-    else {
-
-      geda_menu_shell_select_item (menu_shell, widget);
-      geda_menu_item_popup_submenu (menu_item, FALSE);
-
-      geda_menu_shell_select_first (GEDA_MENU_SHELL(priv->submenu), TRUE);
-    }
-  }
 }
 
 static void

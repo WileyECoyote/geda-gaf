@@ -3,6 +3,7 @@
     * src/widgets/geda_menu_item.c: Rename geda_menu_item_is_selectable->
       geda_menu_item_is_widget_selectable and add new function geda_menu_
       item_is_selectable that accepts a GedaMenuItem as an argument.
+      Rename geda_real_menu_item_activate->geda_menu_item_activate_action.
 
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
