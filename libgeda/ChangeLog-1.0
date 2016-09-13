@@ -1,3 +1,13 @@
+2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Substitute geda_strconcat for geda_utility_string_concat in:
+
+          * src/file/f_get.c
+          * src/file/f_path.c
+          * src/file/f_print.c
+          * src/geda/geda_config.c
+          * src/object/o_attrib.c
+
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_undo.c: Rename functions with geda_struct prefix.

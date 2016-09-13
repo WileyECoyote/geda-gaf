@@ -1100,7 +1100,7 @@ geda_attrib_object_set_value (GedaObject *attrib,
 {
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
-    attrib->text->string = geda_utility_string_concat(name_ptr, "=", value_ptr, NULL);
+    attrib->text->string = geda_strconcat(name_ptr, "=", value_ptr, NULL);
     geda_struct_object_set_page_changed (attrib);
     geda_attrib_object_emit_changed (attrib);
   }

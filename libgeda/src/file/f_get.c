@@ -153,7 +153,7 @@ char *f_get_bitmap_filespec (const char *filename)
       /* default_bitmap_directory was checked by g_rc, we double check here
        * because the directory could have been removed */
       if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
-        filespec = geda_utility_string_concat (directory, seperator, filename, NULL);
+        filespec = geda_strconcat (directory, seperator, filename, NULL);
       }
       else {
         fprintf (stderr, "Path invalid[%s], %s\n", directory, strerror(errno));
@@ -167,8 +167,8 @@ char *f_get_bitmap_filespec (const char *filename)
 
       base      = f_path_sys_data();
       subfolder = "bitmap";
-      filespec  = geda_utility_string_concat (base, seperator, subfolder,
-                                         seperator, filename, NULL);
+      filespec  = geda_strconcat (base, seperator, subfolder,
+                                        seperator, filename, NULL);
     }
 
     /* Check to see of file is accessible */
@@ -221,7 +221,7 @@ char *f_get_data_filespec (const char *filename)
     }
     else {
 
-      filespec = geda_utility_string_concat (cwd, seperator, filename, NULL);
+      filespec = geda_strconcat (cwd, seperator, filename, NULL);
       free (cwd);
 
       if ((access (filespec, R_OK)) != 0) {
@@ -234,7 +234,7 @@ char *f_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = f_path_user_config();
-      filespec  = geda_utility_string_concat (directory, seperator, filename, NULL);
+      filespec  = geda_strconcat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
@@ -246,7 +246,7 @@ char *f_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = f_path_sys_data();
-      filespec  = geda_utility_string_concat (directory, seperator, filename, NULL);
+      filespec  = geda_strconcat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */

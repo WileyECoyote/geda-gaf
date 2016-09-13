@@ -287,7 +287,8 @@ const char *f_path_user_config () {
 #endif
 
     user_config_path =
-    geda_utility_string_concat(homedir, DIR_SEPARATOR_S, configdir, DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
+    geda_strconcat(homedir, DIR_SEPARATOR_S, configdir,
+                            DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
     if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
       user_config_path = geda_utility_string_strdup(f_path_sys_data ());
