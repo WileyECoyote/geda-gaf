@@ -1645,8 +1645,8 @@ static void multiattrib_init_visible_types(GedaOptionMenu *optionmenu)
  *
  *  \par Function Description
  *  Pops up a context-sensitive menu.
- *  <B>event</B> can be NULL if the popup is triggered by a key binding
- *  instead of a mouse click.
+ *  <B>event</B> can be NULL if the popup is triggered by a key
+ *  binding instead of a mouse click.
  *
  *  \param [in] multiattrib  The Multiattrib object.
  *  \param [in] event        Mouse event.

@@ -573,8 +573,8 @@ DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
  *  \par Function Description
  *  Pops up a context-sensitive menu.
  *
- *  <B>event</B> can be NULL if the popup is triggered by a key binding
- *  instead of a mouse click.
+ *  <B>event</B> can be NULL if the popup is triggered by a key
+ *  binding instead of a mouse click.
  *
  *  \param [in] pagesel  The Pagesel object.
  *  \param [in] event    Mouse click event info.
