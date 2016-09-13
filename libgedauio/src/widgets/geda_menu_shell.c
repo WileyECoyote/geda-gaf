@@ -1446,7 +1446,9 @@ geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
     g_object_unref (slist->data);
   }
 
-  g_slist_free (shells);
+  if (shells) {
+    g_slist_free (shells);
+  }
 
   g_object_unref (menu_shell);
   g_object_unref (menu_item);

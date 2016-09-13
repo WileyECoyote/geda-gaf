@@ -7,6 +7,9 @@
       handler; seperate GtkSettings from call stack, only make one call to
       gtk_accelerator_get_default_mod_mask, use local variables for clarity.
 
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_activate_item to
+      conditionally free the list of shells.
+
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_shell.h: Add declaration for geda_menu_shell_activate.
