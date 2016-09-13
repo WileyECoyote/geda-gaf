@@ -86,6 +86,9 @@ void             geda_menu_bar_set_child_pack_direction (GedaMenuBar       *menu
                                                          PackDirection      child_pack_dir);
 GList           *geda_menu_bar_get_viewable_menu_bars   (GtkWindow         *window);
 
+void             geda_menu_bar_hide_mnemonics           (GedaMenuBar       *menubar);
+void             geda_menu_bar_show_mnemonics           (GedaMenuBar       *menubar);
+
 #define geda_menu_bar_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell*)(menu),(child))
 #define geda_menu_bar_prepend(menu,child)    geda_menu_shell_prepend ((GedaMenuShell*)(menu),(child))
 #define geda_menu_bar_insert(menu,child,pos) geda_menu_shell_insert ((GedaMenuShell*)(menu),(child),(pos))

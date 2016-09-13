@@ -1546,4 +1546,46 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 
   return g_list_reverse (viewable_menu_bars);
 }
+
+static void
+geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, const char *pattern)
+{
+  if (GEDA_IS_MENU_SHELL(menubar)) {
+
+    if (GEDA_MENU_SHELL(menubar)->children) {
+
+      GList *children = GEDA_MENU_SHELL(menubar)->children;
+      GList *iter;
+
+      for (iter = children; iter; iter = iter->next) {
+
+        GedaMenuItem *menu_item = iter->data;
+
+        if (GEDA_IS_MENU_ITEM(menu_item)) {
+
+          GtkWidget *child;
+
+          child = gtk_bin_get_child (GTK_BIN(menu_item));
+
+          if (GEDA_IS_LABEL(child)) {
+            geda_label_set_pattern (GEDA_LABEL(child), pattern);
+          }
+        }
+      }
+    }
+  }
+}
+
+void
+geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
+{
+   geda_menu_bar_set_label_pattern (menubar, "");
+}
+
+void
+geda_menu_bar_show_mnemonics (GedaMenuBar *menubar)
+{
+   geda_menu_bar_set_label_pattern (menubar, NULL);
+}
+
 /** @} geda-menu-bar */

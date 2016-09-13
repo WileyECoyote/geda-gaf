@@ -6,6 +6,8 @@
     * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_window_key_press_
       handler; seperate GtkSettings from call stack, only make one call to
       gtk_accelerator_get_default_mod_mask, use local variables for clarity.
+      Add functions _menu_bar_hide_mnemonics and _menu_bar_show_mnemonics
+      with helper geda_menu_bar_set_label_pattern.
 
     * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_activate_item to
       conditionally free the list of shells.
