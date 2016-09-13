@@ -207,7 +207,7 @@ check_accessors ()
 
   /* geda_label_get_use_markup */
   if (geda_label_widget_get_use_markup (widget)) {
-    fprintf(stderr, "FAILED: line <%d> get/set use_markup %s\n", __LINE__, TWIDGET);
+    fprintf(stderr, "FAILED: %s line <%d> get/set use_markup\n", TWIDGET, __LINE__);
     result++;
   }
 
@@ -215,7 +215,7 @@ check_accessors ()
   geda_label_widget_set_use_markup (widget, TRUE);
 
   if (!geda_label_widget_get_use_markup (widget)) {
-    fprintf(stderr, "FAILED: line <%d> get/set use_markup %s\n", __LINE__, TWIDGET);
+    fprintf(stderr, "FAILED: %s line <%d> get/set use_markup\n", TWIDGET, __LINE__);
     result++;
   }
 
@@ -224,7 +224,7 @@ check_accessors ()
   /* geda_label_widget_get_use_underline */
 
   if (geda_label_widget_get_use_underline (widget)) { /* Default value is FALSE */
-    fprintf(stderr, "FAILED: line <%d> get/set use_underline %s\n", __LINE__, TWIDGET);
+    fprintf(stderr, "FAILED: %s line <%d> get/set use_underline\n", TWIDGET, __LINE__);
     result++;
   }
 
@@ -233,7 +233,7 @@ check_accessors ()
   geda_label_widget_set_use_underline (widget, TRUE);
 
   if (!geda_label_widget_get_use_underline (widget)) {
-    fprintf(stderr, "FAILED: line <%d> get/set use_underline %s\n", __LINE__, TWIDGET);
+    fprintf(stderr, "FAILED: %s line <%d> get/set use_underline\n", TWIDGET, __LINE__);
     result++;
   }
 
@@ -248,7 +248,7 @@ check_accessors ()
   mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
 
   if (mnemonic_keyval != 101) {
-    fprintf(stderr, "FAILED: get_mnemonic_keyval <%d> %s\n", mnemonic_keyval, TWIDGET);
+    fprintf(stderr, "FAILED: %s get_mnemonic_keyval <%d>\n", TWIDGET, mnemonic_keyval);
     result++;
   }
 

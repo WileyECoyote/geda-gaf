@@ -1,7 +1,7 @@
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_label.c: Add checks for geda_label_get_mnemonic_char and
-      geda_label_get_mnemonic_lower.
+      geda_label_get_mnemonic_lower, revise error message formats.
 
     * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_window_key_press_
       handler; seperate GtkSettings from call stack, only make one call to
