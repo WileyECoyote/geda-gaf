@@ -1195,11 +1195,15 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
                                         GdkEventKey *event,
                                         void        *data)
 {
-  char *accel = NULL;
-  bool  retval = FALSE;
+  GtkSettings *settings;
+  char        *accel;
+  bool         retval;
 
-  g_object_get (gtk_widget_get_settings (widget), "gtk-menu-bar-accel", &accel,
-                NULL);
+  accel = NULL;
+  retval = FALSE
+  settings = gtk_widget_get_settings (widget);
+
+  g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
 
   if (accel && *accel) {
 
