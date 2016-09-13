@@ -259,7 +259,23 @@ check_accessors ()
   mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
 
   if (mnemonic_keyval != 103) {
-    fprintf(stderr, "FAILED: get_mnemonic_keyval <%d> %s\n", mnemonic_keyval, TWIDGET);
+    fprintf(stderr, "FAILED: %s get_mnemonic_keyval <%d>\n", TWIDGET, mnemonic_keyval);
+    result++;
+  }
+
+  char mnemonic;
+
+  mnemonic = geda_label_get_mnemonic_char(label);
+
+  if (mnemonic != 'G') {
+    fprintf(stderr, "FAILED:  %s get_mnemonic <%c>\n", TWIDGET, mnemonic);
+    result++;
+  }
+
+  mnemonic = geda_label_get_mnemonic_lower(label);
+
+  if (mnemonic != 'g') {
+    fprintf(stderr, "FAILED:  %s mnemonic_lower <%c>\n", TWIDGET, mnemonic);
     result++;
   }
 

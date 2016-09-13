@@ -1,3 +1,8 @@
+2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_label.c: Add checks for geda_label_get_mnemonic_char and
+      geda_label_get_mnemonic_lower.
+
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_shell.h: Add declaration for geda_menu_shell_activate.
