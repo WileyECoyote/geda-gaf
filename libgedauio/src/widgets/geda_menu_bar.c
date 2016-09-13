@@ -1200,15 +1200,22 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
   bool         retval;
 
   accel = NULL;
-  retval = FALSE
+  retval = FALSE;
   settings = gtk_widget_get_settings (widget);
 
   g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
 
   if (accel && *accel) {
 
-    unsigned int keyval = 0;
-    GdkModifierType mods = 0;
+    GdkModifierType mods;
+    unsigned int keyval;
+    unsigned int default_mask;
+    unsigned int event_mods;
+    unsigned int accel_mods;
+    bool         keys_match;
+
+    mods    = 0;
+    keyval  = 0;
 
     gtk_accelerator_parse (accel, &keyval, &mods);
 
@@ -1216,10 +1223,14 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
       g_warning ("Failed to parse menu bar accelerator '%s'\n", accel);
     }
 
-    if (event->keyval == keyval &&
-      ((event->state & gtk_accelerator_get_default_mod_mask ()) ==
-       (mods & gtk_accelerator_get_default_mod_mask ())))
-    {
+    default_mask = gtk_accelerator_get_default_mod_mask ();
+
+    keys_match   = event->keyval == keyval;
+    event_mods   = event->state & default_mask;
+    accel_mods   = mods & default_mask;
+
+    if (keys_match && (event_mods == accel_mods)) {
+
       GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
       GList *menubars;
 

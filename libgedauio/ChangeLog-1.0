@@ -3,7 +3,9 @@
     * tests/test_label.c: Add checks for geda_label_get_mnemonic_char and
       geda_label_get_mnemonic_lower.
 
-    * src/widgets/geda_menu_bar.c: Seperate GtkSettings from call stack.
+    * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_window_key_press_
+      handler; seperate GtkSettings from call stack, only make one call to
+      gtk_accelerator_get_default_mod_mask, use local variables for clarity.
 
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
