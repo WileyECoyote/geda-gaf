@@ -78,22 +78,24 @@ struct _GedaMenuShellClass
 
   unsigned int submenu_placement : 1;
 
-  void     (*deactivate)       (GedaMenuShell *menu_shell);
-  void     (*selection_done)   (GedaMenuShell *menu_shell);
-
-  void     (*move_current)     (GedaMenuShell *menu_shell,
-                                MenuDirection  direction);
   void     (*activate_current) (GedaMenuShell *menu_shell,
                                 bool           force_hide);
   void     (*cancel)           (GedaMenuShell *menu_shell);
-  void     (*select_item)      (GedaMenuShell *menu_shell,
-                                GtkWidget     *menu_item);
+  void     (*deactivate)       (GedaMenuShell *menu_shell);
+  int      (*get_popup_delay)  (GedaMenuShell *menu_shell);
   void     (*insert)           (GedaMenuShell *menu_shell,
                                 GtkWidget     *child,
                                 int            position);
-  int      (*get_popup_delay)  (GedaMenuShell *menu_shell);
+  void     (*move_current)     (GedaMenuShell *menu_shell,
+                                MenuDirection  direction);
   bool     (*move_selected)    (GedaMenuShell *menu_shell,
                                 int            distance);
+
+  void     (*select_item)      (GedaMenuShell *menu_shell,
+                                GtkWidget     *menu_item);
+  void     (*selection_done)   (GedaMenuShell *menu_shell);
+
+
 };
 
 #ifdef __cplusplus
