@@ -6,6 +6,10 @@
     * src/widgets/geda_font_button.c: Substitute geda_strdup macro for
       geda_utility_string_strdup.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_sync_action_properties
+      to separate gtk_action_get_accel_path call from conditional stack for
+      debugging, is cleaner anyways.
+
     * src/widgets/geda_toggle_action.c: Add function is_a_geda_toggle_action.
 
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>

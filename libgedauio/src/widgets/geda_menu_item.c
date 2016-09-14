@@ -1155,14 +1155,18 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     /* Make label point to the menu_item's label */
     label = gtk_bin_get_child (GTK_BIN(menu_item));
 
+    if (GEDA_IS_ACCEL_LABEL(label)) {
 
-    if (GEDA_IS_ACCEL_LABEL (label) && gtk_action_get_accel_path (action))
-    {
-      geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL(label), NULL);
-      geda_accel_label_set_accel_closure (GEDA_ACCEL_LABEL(label),
-                                         gtk_action_get_accel_closure (action));
+      const char *accel_path;
+
+      accel_path = gtk_action_get_accel_path (action);
+
+      if (accel_path) {
+        geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL(label), NULL);
+        geda_accel_label_set_accel_closure (GEDA_ACCEL_LABEL(label),
+                                            gtk_action_get_accel_closure (action));
+      }
     }
-
 
     activatable_update_label (menu_item, action);
   }
