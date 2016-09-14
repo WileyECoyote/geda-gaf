@@ -98,20 +98,21 @@ unsigned read_block(int fd, char *block, int block_min_size,int block_max_size)
 {
   char sizebuf[2];
   unsigned size;
+  unsigned result;
 
-  size = read(fd,sizebuf,2);
+  result = read(fd,sizebuf,2);
 
   size = CONV16(sizebuf,0);
 
   if (size < block_min_size) {
-    fprintf(stderr,"Segment too small; size %u, min is %d\n",
-            size, block_min_size);
+    fprintf(stderr,"Segment too small; read %u size %u, min is %d\n",
+            result, size, block_min_size);
     exit(1);
   }
 
   if (size > block_max_size) {
-    fprintf(stderr,"Segment too large; size %u, max is %d\n",
-            size, block_max_size);
+    fprintf(stderr,"Segment too large; read %u size %u, max is %d\n",
+            result, size, block_max_size);
     exit(1);
   }
 
