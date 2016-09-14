@@ -242,7 +242,8 @@ geda_toggle_action_class_init (void *class, void *data)
 static void
 geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
 {
-  //GedaToggleAction *action = (GedaToggleAction*)instance;
+  GedaToggleAction *action = (GedaToggleAction*)instance;
+  action->instance_type  = geda_toggle_action_get_type();
 }
 
 /*! \brief Function to retrieve GedaToggleAction's Type identifier.
@@ -283,6 +284,14 @@ GedaType geda_toggle_action_get_type (void)
   }
 
   return toggle_action_type;
+}
+
+bool is_a_geda_toggle_action (GedaToggleAction *action)
+{
+  if (G_IS_OBJECT(action)) {
+    return (geda_toggle_action_get_type() == action->instance_type);
+  }
+  return FALSE;
 }
 
 /*! \brief Create a New GedaToggleAction

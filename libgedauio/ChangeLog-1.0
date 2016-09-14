@@ -1,3 +1,10 @@
+2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_toggle_action.h: Replace G_TYPE_CHECK_INSTANCE_TYPE
+      with is_a_geda_toggle_action.
+
+    * src/widgets/geda_toggle_action.c: Add function is_a_geda_toggle_action.
+
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_label.c: Add checks for geda_label_get_mnemonic_char and
