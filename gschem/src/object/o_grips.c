@@ -31,16 +31,16 @@
 #include <gschem_macros.h>
 #include <geda_debug.h>
 
-/*! \brief Cancel process of modifying object with grip.
- *
- *  \par Function Description
+/*!
+ * \brief Cancel process of modifying object with grip.
+ * \par Function Description
  *  Helper function when canceling the process of modifying an object using
  *  a grip, which could occur if the user hits the ESC key before releasing
  *  the grip. This function resets the dont_redraw flag on the object which
  *  was being modified and invalidates the reference to the object and top-
  *  level which_grip variable.
  *
- *  \param [in,out] w_current  The GschemToplevel object.
+ * \param [in,out] w_current  The GschemToplevel object.
  */
 void
 o_grips_cancel(GschemToplevel *w_current)
@@ -58,12 +58,12 @@ o_grips_cancel(GschemToplevel *w_current)
   w_current->rubber_visible = FALSE;
 }
 
-/*! \brief Draw objects being grip maniuplated from GschemToplevel object.
- *
- *  \par Function Description
+/*!
+ * \brief Draw objects being grip maniuplated from GschemToplevel object.
+ * \par Function Description
  *  This function draws the objects being grip manipulated.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void
 o_grips_draw_rubber (GschemToplevel *w_current)
@@ -103,8 +103,9 @@ o_grips_draw_rubber (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Get half the width and height of grip in screen units.
- *  \par Function Description
+/*!
+ * \brief Get half the width and height of grip in screen units.
+ * \par Function Description
  *  This function returns a value half the size of the grip size
  *  in screen units, based on the objects width and the zoom factor.
  *  Between the threashold and 0, grippable object with non-zero
@@ -113,10 +114,10 @@ o_grips_draw_rubber (GschemToplevel *w_current)
  *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
  *  #MAX_GRIP_SIZE is returned.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     Object associated with operation.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] object     Object associated with operation.
  *
- *  \return Half grip size in screen units.
+ * \return Half grip size in screen units.
  */
 int
 o_grips_half_size(GschemToplevel *w_current, GedaObject *object)
@@ -175,18 +176,18 @@ o_grips_half_size(GschemToplevel *w_current, GedaObject *object)
   return min(ret_size, MAX_GRIP_SIZE/2);
 }
 
-/*! \brief Check if pointer is inside the grip region.
- *
- *  \par Function Description
+/*!
+ * \brief Check if pointer is inside the grip region.
+ * \par Function Description
  *  This function checks if the point (<b>x</b>,<b>y</b>) is
  *  inside the grip centered at (<b>grip_x</b>,<b>grip_y</b>).
  *
- *  \param [in]  x       Current x coordinate of pointer in world units.
- *  \param [in]  y       Current y coordinate of pointer in world units.
- *  \param [in]  grip_x  Current x coordinate of grip center in world units.
- *  \param [in]  grip_y  Current y coordinate of grip center in world units.
- *  \param [in]  size    Half the width of the grip square in world units.
- *  \return True / False whether the mouse pointer is inside the grip.
+ * \param [in]  x       Current x coordinate of pointer in world units.
+ * \param [in]  y       Current y coordinate of pointer in world units.
+ * \param [in]  grip_x  Current x coordinate of grip center in world units.
+ * \param [in]  grip_y  Current y coordinate of grip center in world units.
+ * \param [in]  size    Half the width of the grip square in world units.
+ * \return True / False whether the mouse pointer is inside the grip.
  */
 static bool
 o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
@@ -201,8 +202,9 @@ o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
   return geda_object_get_is_inside_region(xmin, ymin, xmax, ymax, x, y);
 }
 
-/*! \brief Modify previously selected object according to mouse position.
- *  \par Function Description
+/*!
+ * \brief Modify previously selected object according to mouse position.
+ * \par Function Description
  *  This function modify the previously selected
  *  object according to the mouse position in <b>w_x</b> and <b>w_y</b>.
  *  The grip under modification is updated and the temporary object displayed.
@@ -214,9 +216,9 @@ o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
  *  It erases the temporary object, updates its internal representation,
  *  and draws it again.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void
 o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
@@ -262,8 +264,9 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Check if point is inside grip.
- *  \par Function Description
+/*!
+ * \brief Check if point is inside grip.
+ * \par Function Description
  *  This function is used to determine if the (<b>x</b>,<b>y</b>) point is
  *  inside a grip of one of the selected object on the current sheet.
  *  The selected object are in a list starting at
@@ -278,12 +281,12 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
  *  The list of selected object is covered : each object is tested with the
  *  appropriate function.
  *
- *  \param [in]  w_current  The GschemToplevel object.
- *  \param [in]  x          Current x coordinate of pointer in world units.
- *  \param [in]  y          Current y coordinate of pointer in world units.
- *  \param [out] whichone   Which grip point is selected.
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [in]  x          Current x coordinate of pointer in world units.
+ * \param [in]  y          Current y coordinate of pointer in world units.
+ * \param [out] whichone   Which grip point is selected.
  *
- *  \return Pointer to Object the grip is on, NULL otherwise.
+ * \return Pointer to Object the grip is on, NULL otherwise.
  */
 GedaObject*
 o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
@@ -370,8 +373,9 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
   return(NULL);
 }
 
-/*! \brief Check if pointer is inside arc grip.
- *  \par Function Description
+/*!
+ * \brief Check if pointer is inside arc grip.
+ * \par Function Description
  *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
  *  inside one of the grips of an <b>\a o_current</b> pointed arc object. If so
  *  the <b>whichone</b> pointed integer is set to the number of this grip and
@@ -397,13 +401,14 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
  *  The <b>size</b> parameter is the width (and height) of the square
  *  representing a grip in world units.
  *
- *  \param [in]  w_current  The GschemToplevel object.
- *  \param [in]  o_current  Arc Object to check.
- *  \param [in]  x          Current x coordinate of pointer in world units.
- *  \param [in]  y          Current y coordinate of pointer in world units.
- *  \param [in]  size       Half the width of the grip square in world units.
- *  \param [out] whichone   Which grip point is selected.
- *  \return Pointer to Object the grip is on, NULL otherwise.
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [in]  o_current  Arc Object to check.
+ * \param [in]  x          Current x coordinate of pointer in world units.
+ * \param [in]  y          Current y coordinate of pointer in world units.
+ * \param [in]  size       Half the width of the grip square in world units.
+ * \param [out] whichone   Which grip point is selected.
+ *
+ * \return Pointer to Object the grip is on, NULL otherwise.
  */
 GedaObject*
 o_grips_search_arc_world(GschemToplevel *w_current, GedaObject *o_current,
@@ -445,8 +450,9 @@ o_grips_search_arc_world(GschemToplevel *w_current, GedaObject *o_current,
   return NULL;
 }
 
-/*! \brief Check if pointer is inside box grip.
- *  \par Function Description
+/*!
+ * \brief Check if pointer is inside box grip.
+ * \par Function Description
  *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
  *  inside one of the grips of the <b>\a o_current</b> pointed box object.
  *  If so, the <b>whichone</b> pointed integer is set to the identifier of
@@ -463,13 +469,14 @@ o_grips_search_arc_world(GschemToplevel *w_current, GedaObject *o_current,
  *  The <b>size</b> parameter is half the width (and half the height) of
  *  the square representing a grip in world units.
  *
- *  \param [in]  w_current  The GschemToplevel object.
- *  \param [in]  o_current  Box Object to check.
- *  \param [in]  x          Current x coordinate of pointer in world units.
- *  \param [in]  y          Current y coordinate of pointer in world units.
- *  \param [in]  size       Half the width of the grip square in world units.
- *  \param [out] whichone   Which grip point is selected.
- *  \return Pointer to Object the grip is on, NULL otherwise.
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [in]  o_current  Box Object to check.
+ * \param [in]  x          Current x coordinate of pointer in world units.
+ * \param [in]  y          Current y coordinate of pointer in world units.
+ * \param [in]  size       Half the width of the grip square in world units.
+ * \param [out] whichone   Which grip point is selected.
+ *
+ * \return Pointer to Object the grip is on, NULL otherwise.
  */
 GedaObject*
 o_grips_search_box_world(GschemToplevel *w_current, GedaObject *o_current,
