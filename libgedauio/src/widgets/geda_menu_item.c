@@ -32,6 +32,7 @@
 #include "../../include/geda_accel_label.h"
 #include "../../include/geda_action.h"
 #include "../../include/geda_gtk_compat.h"
+#include "../../include/geda_keysyms.h"
 #include "../../include/geda_menu_enum.h"
 #include "../../include/geda_tearoff_menu_item.h"
 #include "../../include/geda_uio_functions.h"
@@ -105,6 +106,7 @@ enum {
   PROP_SUBMENU,
   PROP_ACCEL_PATH,
   PROP_LABEL,
+  PROP_MNEMONIC,
   PROP_USE_UNDERLINE,
 
   /* activatable properties */
@@ -129,6 +131,8 @@ struct _GedaMenuItemPrivate
 
   GedaAction  *action;
   void        *action_helper;
+
+  char         mnemonic;
 
   unsigned int show_submenu_indicator : 1;
   unsigned int submenu_placement      : 1;
@@ -345,6 +349,10 @@ geda_menu_item_set_property (GObject      *object,
       geda_menu_item_set_label (menu_item, g_value_get_string (value));
       break;
 
+    case PROP_MNEMONIC:
+      geda_menu_item_set_mnemonic (menu_item, g_value_get_int(value));
+      break;
+
     case PROP_USE_UNDERLINE:
       geda_menu_item_set_use_underline (menu_item, g_value_get_boolean (value));
       break;
@@ -397,6 +405,10 @@ geda_menu_item_get_property (GObject     *object,
 
     case PROP_LABEL:
       g_value_set_string (value, geda_menu_item_get_label (menu_item));
+      break;
+
+    case PROP_MNEMONIC:
+      g_value_set_int (value, geda_menu_item_get_mnemonic (menu_item));
       break;
 
     case PROP_USE_UNDERLINE:
@@ -657,6 +669,13 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                         "",
                                                         G_PARAM_READWRITE));
 
+  g_object_class_install_property (gobject_class,
+                                   PROP_MNEMONIC,
+                                   g_param_spec_string ("mnemonic",
+                                                      _("mnemonic"),
+                                                      _("The char for the mnemonic"),
+                                                        "",
+                                                        G_PARAM_READWRITE));
   /*!
    * GedaMenuItem::use-underline
    *
@@ -764,6 +783,7 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   menu_item->instance_type = geda_menu_item_get_type();
 
   priv->use_action_appearance = TRUE;
+  priv->mnemonic              = (char)GDK_KEY_VoidSymbol;
 
   gtk_widget_set_has_window (GTK_WIDGET(menu_item), FALSE);
 
@@ -1080,7 +1100,6 @@ geda_menu_is_empty (GtkWidget *menu)
 
   return result;
 }
-
 
 static void
 geda_menu_item_update (GtkActivatable *activatable,
@@ -2610,6 +2629,8 @@ geda_real_menu_item_set_label (GedaMenuItem *menu_item,
 
     geda_label_set_label (child, label ? label : "");
 
+    menu_item->priv->mnemonic = geda_label_get_mnemonic_char(child);
+
     g_object_notify (G_OBJECT (menu_item), "label");
   }
 }
@@ -3244,6 +3265,18 @@ geda_menu_item_position_menu (GedaMenu  *menu,
 }
 
 #endif /* else !GTK_MAJOR_VERSION < 3*/
+
+char
+geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
+{
+  return menu_item->priv->mnemonic;
+}
+
+void
+geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
+{
+  menu_item->priv->mnemonic = mnemonic;
+}
 
 /*!
  * \brief geda_menu_item_set_right_justified

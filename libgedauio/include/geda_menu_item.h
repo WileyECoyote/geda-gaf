@@ -152,6 +152,11 @@ const char *geda_menu_item_get_accel_path        (GedaMenuItem  *menu_item);
 unsigned short
             geda_menu_item_get_accel_width       (GedaMenuItem  *menu_item);
 
+char        geda_menu_item_get_mnemonic          (GedaMenuItem  *menu_item);
+
+void        geda_menu_item_set_mnemonic          (GedaMenuItem  *menu_item,
+                                                  char           mnemonic);
+
 void        geda_menu_item_set_right_justified   (GedaMenuItem  *menu_item,
                                                   bool           right_justified);
 
