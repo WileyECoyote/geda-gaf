@@ -1,3 +1,8 @@
+2016-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c Replace g_file_test with access in f_save when only
+      check for the existence of a file.
+
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Substitute geda_strconcat for geda_utility_string_concat in:

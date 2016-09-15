@@ -471,7 +471,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     result = 0;
   }
   /* Check to see if filename is writable */
-  else if (g_file_test(filename, G_FILE_TEST_EXISTS))  {
+  else if (access(filename, R_OK) == 0)  {
 
     errno = 0;
     access(filename, W_OK);
@@ -503,7 +503,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     if (page->saved_since_first_loaded == 0 &&
         geda_toplevel_get_make_backups(toplevel))
     {
-      if ((g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
+      if ((access(real_filename, R_OK) == 0) &&
          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
            f_file_size (real_filename))
       {
@@ -513,7 +513,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
                                        only_filename);
 
         /* Make the backup file read-write before saving a new one */
-        if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
+        if ((access(backup_filename, R_OK) == 0) &&
            (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
         {
           if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
