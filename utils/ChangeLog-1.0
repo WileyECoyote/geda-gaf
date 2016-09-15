@@ -1,5 +1,10 @@
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * utils/src/gmk_sym.c: Revised strLabel() to not initialize the value
+      of pTemp until after validating that pTemp is not NULL;
+
+2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/sarlacc_schem.c: Find something useful to do with return value from
       read() so that static code analyzers do not complain.
 

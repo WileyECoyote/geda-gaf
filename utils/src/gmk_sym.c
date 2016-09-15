@@ -647,11 +647,10 @@ static char *strLabel(char *p, char *pTemp)
 {
   char *q;
 
-  *pTemp = 0;
-
   if ((p == NULL) || (pTemp == NULL))
     return NULL;
 
+ *pTemp = 0;
   q = pTemp;
 
   while ((*p == ' ') || (*p == '\t'))
