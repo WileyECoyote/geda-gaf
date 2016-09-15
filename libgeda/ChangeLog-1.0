@@ -6,7 +6,7 @@
     * src/struct/s_toplevel.c: Reformat DOxygen blocks.
 
     * libgeda/src/struct/s_undo.c: Reformat DOxygen block, update comments
-      for geda_struct_undo_levels.
+      for geda_struct_undo_levels, reorganize module.
 
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
