@@ -1,3 +1,7 @@
+2016-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD9629-1.sym: Add symbol 12 BIT A/D Converter, 1.8 Volt.
+
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3357BZCE-1.sym: Add symbol AM3357B 32-Bit RISC ARM Processor,
