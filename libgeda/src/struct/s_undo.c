@@ -407,10 +407,13 @@ void geda_struct_undo_remove_rest(UNDO *head)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the number of active Undo Levels
+ * \par Function Description
+ *  Indexes over the given Undo list and counts the
+ *  number of entries and returns the result.
  *
+ * \returns the number of undo records.
  */
 int geda_struct_undo_levels(UNDO *head)
 {
