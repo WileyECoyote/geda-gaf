@@ -2,6 +2,9 @@
 
     * analogdevices/AD9629-1.sym: Add symbol 12 BIT A/D Converter, 1.8 Volt.
 
+    * memory/TC5516AP-1.sym: Fix visibility of pinseq attributes, fix location
+      of attributes, relocate file.
+
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3357BZCE-1.sym: Add symbol AM3357B 32-Bit RISC ARM Processor,
