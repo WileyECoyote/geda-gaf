@@ -21,12 +21,13 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Returns the Last Undo Record given some Record
- *  \par Function Description
+/*!
+ * \brief Returns the Last Undo Record given some Record
+ * \par Function Description
  *  This function returns the last record of the chain of
  *  Undo records associated with \a head.
  *
- *  \remarks should probably just make static
+ * \remarks should probably just make static
  */
 UNDO *geda_struct_undo_return_tail(UNDO *head)
 {
@@ -43,15 +44,16 @@ UNDO *geda_struct_undo_return_tail(UNDO *head)
   return(ret_struct);
 }
 
-/*! \brief Returns the First Undo Record given some Record
- *  \par Function Description
+/*!
+ * \brief Returns the First Undo Record given some Record
+ * \par Function Description
  *  The function starts at the given record, \a tail and
  *  transverses upward until the top record is found.
  *
- *  \returns the real HEAD of the undo stack.
+ * \returns the real HEAD of the undo stack.
  *
- *  \remarks Another no so usefull function. This function
- *           is not used
+ * \remarks Another no so usefull function. This function
+ *          is not used
  */
 UNDO *geda_struct_undo_return_head(UNDO *tail)
 {
@@ -68,12 +70,13 @@ UNDO *geda_struct_undo_return_head(UNDO *tail)
   return(ret_struct);
 }
 
-/*! \brief Allocate and Iniclize a New Empty Undo Record
- *  \par Function Description
+/*!
+ * \brief Allocate and Iniclize a New Empty Undo Record
+ * \par Function Description
  *  This function is not used
  *
- *  \returns An Empty UNDO structure, the structure should be
- *           freed when no longer needed.
+ * \returns An Empty UNDO structure, the structure should be
+ *          freed when no longer needed.
  */
 UNDO *geda_struct_undo_new_head(void)
 {
@@ -94,28 +97,30 @@ UNDO *geda_struct_undo_new_head(void)
   return(u_new);
 }
 
-/*! \brief Frees Allocation of the Given Undo Record
- *  \par Function Description
+/*!
+ * \brief Frees Allocation of the Given Undo Record
+ * \par Function Description
  *  This function is not used
  *
- *  \param [in] u_head Pointer to UNDO struture to be freed
+ * \param [in] u_head Pointer to UNDO struture to be freed
  */
 void geda_struct_undo_destroy_head(UNDO *u_head)
 {
   GEDA_FREE(u_head);
 }
 
-/*! \brief Creates and Returns a New Disk Type Undo record
- *  \par Function Description
- *   Allocates an Undo structure and poplates values with data
- *   from the given \a page for a Disk Memory type record. The
- *   new record becomes tail and is returned.
+/*!
+ * \brief Creates and Returns a New Disk Type Undo record
+ * \par Function Description
+ *  Allocates an Undo structure and poplates values with data
+ *  from the given \a page for a Disk Memory type record. The
+ *  new record becomes tail and is returned.
  *
- *  \param [in] page     A GedaPage Object
- *  \param [in] filename Name of the undo file
- *  \param [in] type     integer <B>\a flag</B> can be one of the
+ * \param [in] page     A GedaPage Object
+ * \param [in] filename Name of the undo file
+ * \param [in] type     integer <B>\a flag</B> can be one of the
  *                       following values:
- *  \par
+ * \par
  *  <DL>
  *    <DT>UNDO_ALL</DT>
  *    <DT>UNDO_VIEWPORT_ONLY</DT>
@@ -162,16 +167,17 @@ UNDO *geda_struct_undo_add_disk (int type, char *filename, Page *page)
   return u_ret;
 }
 
-/*! \brief Creates and Returns a New Memory Type Undo record
- *  \par Function Description
- *   Allocates an Undo structure and poplates values with data
- *   from the given \a page for a Memory type Undo record. The
- *   new record becomes tail and is returned.
+/*!
+ * \brief Creates and Returns a New Memory Type Undo record
+ * \par Function Description
+ *  Allocates an Undo structure and poplates values with data
+ *  from the given \a page for a Memory type Undo record. The
+ *  new record becomes tail and is returned.
  *
- *  \param [in] page  A GedaPage Object
- *  \param [in] type  integer <B>\a flag</B> can be one of the
+ * \param [in] page  A GedaPage Object
+ * \param [in] type  integer <B>\a flag</B> can be one of the
  *                    following values:
- *  \par
+ * \par
  *  <DL>
  *    <DT>UNDO_ALL</DT>
  *    <DT>UNDO_VIEWPORT_ONLY</DT>
@@ -218,12 +224,13 @@ UNDO *geda_struct_undo_add_memory (int type, Page *page)
   return u_ret;
 }
 
-/*! \brief Creates and Returns a New Undo record
- *  \par Function Description
- *   This function is obsolete and is not used, performance test indicate
- *   passing a pointer to the page as is done in geda_struct_undo_add_memory and
- *   geda_struct_undo_add_disk, is more efficient then passing 9 separate arguments
- *   (which are all members of the Page structure.
+/*!
+ * \brief Creates and Returns a New Undo record
+ * \par Function Description
+ *  This function is obsolete and is not used, performance test indicate
+ *  passing a pointer to the page as is done in geda_struct_undo_add_memory and
+ *  geda_struct_undo_add_disk, is more efficient then passing 9 separate arguments
+ *  (which are all members of the Page structure.
  */
 UNDO *geda_struct_undo_add (UNDO *head, int type, char *filename, GList *object_list,
                   int left, int top, int right, int bottom, int page_control,
@@ -262,8 +269,9 @@ UNDO *geda_struct_undo_add (UNDO *head, int type, char *filename, GList *object_
   }
 }
 
-/*! \brief Print all Undo records for debugging purposes
- *  \par Function Description
+/*!
+ * \brief Print all Undo records for debugging purposes
+ * \par Function Description
  *   Does not print every field of the record but does manage to
  *   convolute the terminal.
  */
@@ -294,12 +302,13 @@ void geda_struct_undo_print_all( UNDO *head )
 
 }
 
-/*! \brief Real Release all Memory Allocated for a Given Head
- *  \par Function Description
- *   geda_struct_undo_destroy_all starts at the bottom of the stack and
- *   works upward, releasing all objects (MEMORY) and freeing
- *   all filename (DISK) until the top of the stack is reached
- *   as indicated by a NULL pointer to the previous record.
+/*!
+ * \brief Real Release all Memory Allocated for a Given Head
+ * \par Function Description
+ *  geda_struct_undo_destroy_all starts at the bottom of the stack and
+ *  works upward, releasing all objects (MEMORY) and freeing
+ *  all filename (DISK) until the top of the stack is reached
+ *  as indicated by a NULL pointer to the previous record.
  */
 void geda_struct_undo_destroy_all(UNDO *head)
 {
@@ -322,8 +331,9 @@ void geda_struct_undo_destroy_all(UNDO *head)
   }
 }
 
-/*! \brief Removes head from the Undo stack
- *  \par Function Description
+/*!
+ * \brief Removes head from the Undo stack
+ * \par Function Description
  *  Fortunately, this function is not used.
  */
 void geda_struct_undo_remove(UNDO *head, UNDO *u_tos)
@@ -365,11 +375,12 @@ void geda_struct_undo_remove(UNDO *head, UNDO *u_tos)
   }
 }
 
-/*! \brief Remove all Undo record After the given Record
- *  \par Function Description
- *   Free memory or releases object belonging to records older
- *   than \a head, essentially, the record \a head will become
- *   tail.
+/*!
+ * \brief Remove all Undo record After the given Record
+ * \par Function Description
+ *  Free memory or releases object belonging to records older
+ *  than \a head, essentially, the record \a head will become
+ *  tail.
  */
 void geda_struct_undo_remove_rest(UNDO *head)
 {
@@ -418,8 +429,9 @@ int geda_struct_undo_levels(UNDO *head)
   return(count);
 }
 
-/*! \brief Reset Page Changed Flags in the Undo System
- *  \par Function Description
+/*!
+ * \brief Reset Page Changed Flags in the Undo System
+ * \par Function Description
  *  Called by f_save to reset the page changed flags in the Undo system.
  *  This is accomplished by setting all Undo records as modified, and
  *  then setting the current record as not modified. This results in a
@@ -447,8 +459,9 @@ void geda_struct_undo_update_modified (Page *p_current)
   if (u_current) u_current->modified = 0;
 }
 
-/*! \brief Initialize Page Object's Undo
- *  \par Function Description
+/*!
+ * \brief Initialize Page Object's Undo
+ * \par Function Description
  *  Fortunately, the complier is intelligent enough to optimize
  *  out this function!
  */
@@ -459,8 +472,9 @@ void geda_struct_undo_init(Page *p_current)
   p_current->undo_current = NULL;
 }
 
-/*! \brief Release all Memory Allocated by the Undo System for Page
- *  \par Function Description
+/*!
+ * \brief Release all Memory Allocated by the Undo System for Page
+ * \par Function Description
  *  This function is called when a page is destroyed to free all
  *  memory allocated by this module that is referenced by the
  *  given Page object. The functions calls geda_struct_undo_destroy_all

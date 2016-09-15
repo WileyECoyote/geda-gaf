@@ -3,6 +3,10 @@
     * src/file/f_file.c Replace g_file_test with access in f_save when only
       check for the existence of a file.
 
+    * src/struct/s_toplevel.c: Reformat DOxygen blocks.
+
+    * libgeda/src/struct/s_undo.c: Reformat DOxygen blocks.
+
 2016-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Substitute geda_strconcat for geda_utility_string_concat in:

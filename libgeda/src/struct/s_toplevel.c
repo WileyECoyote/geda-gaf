@@ -74,8 +74,9 @@ GList *geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
   return geda_struct_clib_get_symbols (toplevel);
 }
 
-/*! \brief Releases resource associated with GedaToplevel object
- *  \par Function Description
+/*!
+ * \brief Releases resource associated with GedaToplevel object
+ * \par Function Description
  *  Decrements the reference count of the toplevel object by one.
  */
 void
@@ -91,8 +92,9 @@ geda_toplevel_struct_release (GedaToplevel *toplevel)
   geda_toplevel_unref (toplevel);
 }
 
-/*! \brief Set the font-renderer-specific bounds function.
- *  \par Function Description
+/*!
+ * \brief Set the font-renderer-specific bounds function.
+ * \par Function Description
  *  Set the function to be used to calculate text bounds for #Text
  *  Objects for all pages associated with the given #GedaToplevel.
  *  This allows a global page renderer function to be defined. If the
@@ -104,13 +106,13 @@ geda_toplevel_struct_release (GedaToplevel *toplevel)
  *  GedaToplevel. Note that any previous setting is erased and
  *  passing NULL will disable rendering at this level.
  *
- *  \sa geda_struct_page_set_bounds_func
- *  \sa geda_text_object_set_rendered_bounds_func
+ * \sa geda_struct_page_set_bounds_func
+ * \sa geda_text_object_set_rendered_bounds_func
  *
- *  \param [in] toplevel  The GedaToplevel for which the render
- *                        function should be associated.
- *  \param [in] func      Function to use.
- *  \param [in] user_data User data to be passed to the function.
+ * \param [in] toplevel  The GedaToplevel for which the render
+ *                       function should be associated.
+ * \param [in] func      Function to use.
+ * \param [in] user_data User data to be passed to the function.
  */
 void
 geda_toplevel_struct_set_rbounds_func(GedaToplevel *toplevel,
