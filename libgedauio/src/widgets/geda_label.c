@@ -3155,20 +3155,32 @@ static void link_free (GedaLabelLink *link)
 }
 
 static void
-geda_label_get_link_colors (GtkWidget  *widget,
+geda_label_get_link_colors (GtkWidget *widget,
                             GdkColor  *link_color,
                             GdkColor  *visited_link_color)
 {
+  GdkColor *link, *visited;
+
   gtk_widget_ensure_style (widget);
   gtk_widget_style_get (widget,
-                        "link-color", link_color,
-                        "visited-link-color", visited_link_color,
+                        "link-color", &link,
+                        "visited-link-color", &visited,
                         NULL);
-  if (!link_color)
-    link_color = gdk_color_copy (&default_link_color);
+  if (link) {
+    *link_color = *link;
+    gdk_color_free (link);
+  }
+  else {
+    *link_color = default_link_color;
+  }
 
-  if (!visited_link_color)
-    visited_link_color = gdk_color_copy (&default_visited_link_color);
+  if (visited) {
+    *visited_link_color = *visited;
+    gdk_color_free (visited);
+  }
+  else {
+    *visited_link_color = default_visited_link_color;
+  }
 }
 
 static bool
