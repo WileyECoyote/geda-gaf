@@ -146,10 +146,10 @@ void geda_struct_attrib_init()
  *  \par Function Description
  *
  */
-char *geda_struct_attrib_get(int counter)
+char *geda_struct_attrib_get(int index)
 {
-  if (counter < attrib_index) {
-    return(attrib[counter].attrib_name);
+  if (index < attrib_index) {
+    return(attrib[index].attrib_name);
   }
 
   return(NULL);
