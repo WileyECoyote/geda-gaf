@@ -64,10 +64,10 @@
 /* s_attrib.c */
 
 #define geda_attrib_struct_add_entry          geda_struct_attrib_add_entry
+#define geda_attrib_struct_clear              geda_struct_attrib_clear
 #define geda_attrib_struct_count              geda_struct_attrib_count
 #define geda_attrib_struct_print              geda_struct_attrib_print
 #define geda_attrib_struct_uniq               geda_struct_attrib_uniq
-#define geda_attrib_struct_init               geda_struct_attrib_init
 #define geda_attrib_struct_get                geda_struct_attrib_get
 
 #endif /* __GEDA_ATTRIB_MAC__ */
