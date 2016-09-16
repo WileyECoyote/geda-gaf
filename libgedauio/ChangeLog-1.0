@@ -1,3 +1,8 @@
+2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Eliminate unnecessary initialization of
+      dir1 to PANGO_DIRECTION_NEUTRAL.
+
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toggle_action.h: Replace G_TYPE_CHECK_INSTANCE_TYPE

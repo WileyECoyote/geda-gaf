@@ -4218,7 +4218,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
     PangoRectangle *cursor1 = NULL;
     PangoRectangle *cursor2 = NULL;
     GdkRectangle cursor_location;
-    PangoDirection dir1 = PANGO_DIRECTION_NEUTRAL;
+    PangoDirection dir1;
     PangoDirection dir2 = PANGO_DIRECTION_NEUTRAL;
 
     keymap_direction = gdk_keymap_get_direction (gdk_keymap_get_for_display (gtk_widget_get_display (widget)));
