@@ -34,6 +34,8 @@
 #ifndef __GEDA_ATTRIB_MAC__
 #define __GEDA_ATTRIB_MAC__
 
+/* o_attrib.c */
+
 #define geda_attrib_add                        geda_attrib_object_add
 #define geda_attrib_append_changed_hook        geda_attrib_object_append_changed_hook
 #define geda_attrib_attach                     geda_attrib_object_attach
@@ -58,5 +60,14 @@
 #define geda_attrib_set_value                  geda_attrib_object_set_value
 #define geda_attrib_string_get_name_value      geda_attrib_object_string_get_name_value
 #define geda_attrib_thaw_hooks                 geda_attrib_object_thaw_hooks
+
+/* s_attrib.c */
+
+#define geda_attrib_struct_add_entry          geda_struct_attrib_add_entry
+#define geda_attrib_struct_count              geda_struct_attrib_count
+#define geda_attrib_struct_print              geda_struct_attrib_print
+#define geda_attrib_struct_uniq               geda_struct_attrib_uniq
+#define geda_attrib_struct_init               geda_struct_attrib_init
+#define geda_attrib_struct_get                geda_struct_attrib_get
 
 #endif /* __GEDA_ATTRIB_MAC__ */
