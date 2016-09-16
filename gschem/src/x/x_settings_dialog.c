@@ -1066,7 +1066,7 @@ static void clear_attributes( void ){
 
 /*! \brief Preferences Dialog filter_list_set_default
  *  \par Function Description: This is a Group 2 support function that
- *       restore the filter list in the right Treeview using a pre-compiled
+ *       restores the filter list in the right Treeview using a pre-compiled
  *       string array.
  */
 static void filter_list_set_default( void )
