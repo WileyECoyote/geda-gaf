@@ -885,7 +885,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
   char *str_new;
   int next;
 
-  geda_struct_attrib_init();
+  geda_struct_attrib_clear();
 
   store = gtk_tree_view_get_model (GTK_TREE_VIEW(PotentialAttributesView));
 

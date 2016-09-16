@@ -1,3 +1,8 @@
+2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Replace geda_struct_attrib_init with
+      geda_struct_attrib_clear in SavePotentialAttributes.
+
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-export-menu.scm: Add "-f" option to geda2xml to
