@@ -3,7 +3,8 @@
     * include/libgeda/geda_attrib.h: Include functions in s_attrib module.
 
     * src/struct/s_attrib.c: Rename geda_struct_attrib_get argument counter
-      -> index. Update Doxygen comments.
+      -> index. Update Doxygen comments. Add function geda_struct_attrib_clear
+      as public and make geda_struct_attrib_init private.
 
 2016-09-15 Wiley E. Hill <wileyhill@gmail.com>
 

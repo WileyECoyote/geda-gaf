@@ -69,6 +69,17 @@ int geda_struct_attrib_add_entry(char *new_attrib)
 }
 
 /*!
+ * \brief Clears the Library List of Attributes Names
+ * \par Function Description
+ *  Allows application to clears the current attribute list
+ *  so that new list can be created.
+ */
+void geda_struct_attrib_clear()
+{
+  geda_struct_attrib_free();
+}
+
+/*!
  * \brief Return count of Attributes
  * \par Function Description
  *  Return integer count of the number of stored attribute
@@ -77,6 +88,22 @@ int geda_struct_attrib_add_entry(char *new_attrib)
 int geda_struct_attrib_count( void )
 {
   return(attrib_index);
+}
+
+/*!
+ * \brief Release Resourcs associated with List of Attributes
+ * \par Function Description
+ *  Releases the resources with the string in the attribute list.
+ */
+void geda_struct_attrib_free()
+{
+  int i;
+
+  for (i = 0; i < attrib_index; i++) {
+     GEDA_FREE(attrib[i].attrib_name);
+  }
+
+  attrib_index=0;
 }
 
 /*!
@@ -112,27 +139,9 @@ int geda_struct_attrib_uniq(char *name)
 }
 
 /*!
- * \brief Release Resourcs associated with List of Attributes
- * \par Function Description
- *  Releases the resources with the string in the attribute list.
- */
-void geda_struct_attrib_free()
-{
-  int i;
-
-  for (i = 0; i < attrib_index; i++) {
-     GEDA_FREE(attrib[i].attrib_name);
-  }
-
-  attrib_index=0;
-}
-
-/*!
  * \brief Initialize the Library List of Attributes Names
  * \par Function Description
- *  Allows application to clears the current attribute list
- *  so that new list can be created.
- * \todo make private
+ *  Initialize the attrib st_attrib_names structure wtih NULLs.
  */
 void geda_struct_attrib_init()
 {

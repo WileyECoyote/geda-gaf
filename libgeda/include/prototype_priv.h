@@ -241,6 +241,7 @@ double      geda_text_object_shortest_distance       (GedaObject *object, int x,
 void        geda_text_object_update_disp_string      (GedaObject *object);
 
 /* s_attrib.c */
+ void       geda_struct_attrib_init                  (void);
 void        geda_struct_attrib_free                  (void);
 
 /* s_clib.c */

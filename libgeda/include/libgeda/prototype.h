@@ -574,10 +574,10 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
 
 /* s_attrib.c */
           int    geda_struct_attrib_add_entry              (char *new_attrib);
+         void    geda_struct_attrib_clear                  (void);
           int    geda_struct_attrib_count                  (void);
          void    geda_struct_attrib_print                  (void);
           int    geda_struct_attrib_uniq                   (char *name);
-         void    geda_struct_attrib_init                   (void);
          char   *geda_struct_attrib_get                    (int index);
 
 /* s_print.c */
