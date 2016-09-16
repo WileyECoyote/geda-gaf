@@ -1,5 +1,7 @@
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Revise mnemonic characters under the Edit menu.
+
     * src/x/x_settings_dialog.c: Replace geda_struct_attrib_init with
       geda_struct_attrib_clear in SavePotentialAttributes.
 
