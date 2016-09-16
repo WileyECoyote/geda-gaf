@@ -47,14 +47,14 @@ static int attrib_index=0;
 /* hack hack */
 static struct st_attrib_names attrib[MAX_ATTRIBS];
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add a Name to the List of Library Attributes Names
+ * \par Function Description
+ *  Adds \a new_attrib to the attrib st_attrib_names structure.
  */
 int geda_struct_attrib_add_entry(char *new_attrib)
 {
-  if (new_attrib == NULL) {
+  if (new_attrib == NULL || *new_attrib == 0) {
     return(-1);
   }
 
@@ -68,20 +68,21 @@ int geda_struct_attrib_add_entry(char *new_attrib)
   return(attrib_index);
 }
 
-/*! \brief Return count of Attributes
- *  \par Function Description
- *       Return integer count of the number
- *       of stored attribute strings
+/*!
+ * \brief Return count of Attributes
+ * \par Function Description
+ *  Return integer count of the number of stored attribute
+ *  strings.
  */
 int geda_struct_attrib_count( void )
 {
   return(attrib_index);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Print the List of Library Attributes Names
+ * \par Function Description
+ *  Outputs the list attribute names to standard out.
  */
 void geda_struct_attrib_print()
 {
@@ -92,12 +93,11 @@ void geda_struct_attrib_print()
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if Name exist in the List of Attributes Names
+ * \par Function Description
+ * \retval true for unique, zero for duplication
  */
-/* true for uniqueness, zero for duplication */
 int geda_struct_attrib_uniq(char *name)
 {
   int i;
@@ -111,10 +111,10 @@ int geda_struct_attrib_uniq(char *name)
   return(1);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Release Resourcs associated with List of Attributes
+ * \par Function Description
+ *  Releases the resources with the string in the attribute list.
  */
 void geda_struct_attrib_free()
 {
@@ -127,10 +127,12 @@ void geda_struct_attrib_free()
   attrib_index=0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *   document why public!
+/*!
+ * \brief Initialize the Library List of Attributes Names
+ * \par Function Description
+ *  Allows application to clears the current attribute list
+ *  so that new list can be created.
+ * \todo make private
  */
 void geda_struct_attrib_init()
 {
@@ -141,10 +143,10 @@ void geda_struct_attrib_init()
   attrib_index=0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get and Entry from List of Attributes Names given an Index
+ * \par Function Description
+ * \returns the attribute name at the given index.
  */
 char *geda_struct_attrib_get(int index)
 {
