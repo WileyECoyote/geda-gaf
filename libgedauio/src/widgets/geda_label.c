@@ -4929,7 +4929,7 @@ connect_mnemonics_visible_notify (GedaLabel *label)
     gtk_window_get_mnemonics_visible (GTK_WINDOW (toplevel));
 
   connected = (int)(long)
-  GEDA_OBJECT_GET_DATA(toplevel, "gtk-label-mnemonics-visible-connected");
+  GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
 
   if (!connected) {
 
@@ -4938,7 +4938,7 @@ connect_mnemonics_visible_notify (GedaLabel *label)
                       G_CALLBACK (label_mnemonics_visible_changed),
                       label);
     g_object_set_data (G_OBJECT (toplevel),
-                       "gtk-label-mnemonics-visible-connected",
+                       "label-mnemonics-connected",
                        (void*)(long) (1));
   }
 }
