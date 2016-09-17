@@ -7,7 +7,8 @@
       reduce the key string from "gtk-label-mnemonics-visible-connected"
       to "label-mnemonics-connected" and "gtk-label-shortcuts-connected"
       to "label-short-connected" in geda_label_screen_changed. Add func
-      to warning message in separate_uline_pattern.
+      to warning message in separate_uline_pattern. Add GedaLabelData
+      priv in geda_label_size_request.
 
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 

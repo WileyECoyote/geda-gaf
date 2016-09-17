@@ -3998,11 +3998,11 @@ geda_label_clear_layout (GedaLabel *label)
 static void
 geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-
+  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabelData *priv  = label->priv;
   int width, height;
 
-  if (label->priv->wrap_mode) {
+  if (priv->wrap_mode) {
     geda_label_clear_layout (label);
   }
 
@@ -4011,7 +4011,7 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
   width  = label->misc.xpad * 2;
   height = label->misc.ypad * 2;
 
-  if (label->priv->have_transform) {
+  if (priv->have_transform) {
 
     PangoRectangle     rect;
     PangoContext      *context;
@@ -4024,7 +4024,7 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
     pango_matrix_transform_rectangle (matrix, &rect);
     pango_extents_to_pixels (&rect, NULL);
 
-    requisition->width = width + rect.width;
+    requisition->width  = width + rect.width;
     requisition->height = height + rect.height;
   }
   else {
@@ -4036,13 +4036,13 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
     pango_layout_get_extents (label->layout, NULL, &logical_rect);
 
-    if ((label->priv->wrap_mode || label->priv->ellipsize ||
+    if ((priv->wrap_mode        || priv->ellipsize ||
          label->width_chars > 0 || label->max_width_chars > 0) &&
          aux_info && aux_info->width > 0)
     {
       width += aux_info->width;
     }
-    else if (label->priv->ellipsize ||
+    else if (priv->ellipsize        ||
              label->width_chars > 0 ||
              label->max_width_chars > 0)
     {
@@ -4055,7 +4055,7 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
     free(aux_info);
     aux_info = NULL;
 
-    if (label->priv->single_line_mode) {
+    if (priv->single_line_mode) {
 
       PangoContext     *context;
       PangoFontMetrics *metrics;
@@ -4086,8 +4086,8 @@ static void
 geda_label_size_allocate (GtkWidget     *widget,
                           GtkAllocation *allocation)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
-  GedaLabelData *priv = label->priv;
+  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabelData *priv  = label->priv;
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->size_allocate (widget, allocation);
 
@@ -4145,8 +4145,7 @@ geda_label_update_cursor (GedaLabel *label)
 static void
 geda_label_state_changed (GtkWidget   *widget, GtkStateType prev_state)
 {
-  GedaLabel *label;
-  label = GEDA_LABEL (widget);
+  GedaLabel *label = GEDA_LABEL (widget);
 
   if (label->priv->select_info) {
 
@@ -4190,8 +4189,9 @@ static PangoDirection get_cursor_direction (GedaLabel *label)
        * definitely in this paragraph, which is good enough
        * to figure out the resolved direction.
        */
-      if (line->start_index + line->length >= select_info->selection_end)
+      if (line->start_index + line->length >= select_info->selection_end) {
         return line->resolved_dir;
+      }
     }
     result = PANGO_DIRECTION_LTR;
   }
