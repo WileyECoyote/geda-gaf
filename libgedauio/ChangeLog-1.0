@@ -5,7 +5,8 @@
       after resizing. Revise geda_label_ensure_layout to only set RTL
       for required cases. Revise connect_mnemonics_visible_notify to
       reduce the key string from "gtk-label-mnemonics-visible-connected"
-      to "label-mnemonics-connected".
+      to "label-mnemonics-connected" and "gtk-label-shortcuts-connected"
+      to "label-short-connected" in geda_label_screen_changed.
 
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 

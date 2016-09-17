@@ -2466,7 +2466,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   settings = gtk_widget_get_settings (widget);
 
   shortcuts_connected =
-  (int)(long)GEDA_OBJECT_GET_DATA (settings, "gtk-label-shortcuts-connected");
+  (int)(long)GEDA_OBJECT_GET_DATA (settings, "label-short-connected");
 
   if (!shortcuts_connected) {
 
@@ -2477,7 +2477,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
                            G_CALLBACK (label_shortcut_setting_changed),
                            NULL);
 
-      g_object_set_data (G_OBJECT (settings), "gtk-label-shortcuts-connected",
+      g_object_set_data (G_OBJECT (settings), "label-short-connected",
                         (void*)(long)TRUE);
   }
 
@@ -4911,7 +4911,6 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
    * button press to start selecting. */
   return TRUE;
 }
-
 
 static void
 connect_mnemonics_visible_notify (GedaLabel *label)
