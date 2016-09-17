@@ -2931,10 +2931,11 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 
   label->attrs = attrs;
 
-  g_object_notify (G_OBJECT (label), "attributes");
-
   geda_label_clear_layout (label);
+
   gtk_widget_queue_resize (GTK_WIDGET (label));
+
+  g_object_notify (G_OBJECT (label), "attributes");
 }
 
 /*!
@@ -3610,9 +3611,9 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
     /* No real need to be this drastic, but easier than duplicating the code */
     geda_label_clear_layout (label);
 
-    g_object_notify (G_OBJECT (label), "justify");
-
     gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "justify");
   }
 }
 
@@ -3749,9 +3750,9 @@ geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
 
     label->priv->wrap_mode = wrap_mode;
 
-    g_object_notify (G_OBJECT (label), "wrap-mode");
-
     gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "wrap-mode");
   }
 }
 
@@ -3792,9 +3793,9 @@ void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
     /* No real need to be this drastic, but easier than duplicating the code */
     geda_label_clear_layout (label);
 
-    g_object_notify (G_OBJECT (label), "ellipsize");
-
     gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "ellipsize");
   }
 }
 
@@ -3867,9 +3868,9 @@ void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 
     label->width_chars = n_chars;
 
-    g_object_notify (G_OBJECT (label), "width-chars");
-
     gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "width-chars");
   }
 }
 
@@ -3934,9 +3935,9 @@ void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
 
     label->max_width_chars = n_chars;
 
-    g_object_notify (G_OBJECT (label), "max-width-chars");
-
     gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "max-width-chars");
   }
 }
 
@@ -5511,6 +5512,7 @@ geda_label_set_angle (GedaLabel *label, double angle)
     label->angle = angle;
 
     geda_label_clear_layout (label);
+
     gtk_widget_queue_resize (GTK_WIDGET (label));
 
     g_object_notify (G_OBJECT (label), "angle");
@@ -5964,7 +5966,6 @@ geda_label_set_single_line_mode (GedaLabel *label,
     gtk_widget_queue_resize (GTK_WIDGET (label));
 
     g_object_notify (G_OBJECT (label), "single-line-mode");
-
   }
 }
 
