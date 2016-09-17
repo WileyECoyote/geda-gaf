@@ -172,12 +172,19 @@ GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
 void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
                                                      GtkWidget      *widget);
 
-GtkJustification geda_label_get_justify             (GedaLabel      *label);
-void             geda_label_set_justify             (GedaLabel      *label,
+GtkJustification   geda_label_get_justify           (GedaLabel      *label);
+void               geda_label_set_justify           (GedaLabel      *label,
                                                      GtkJustification jtype);
-GtkJustification geda_label_widget_get_justify      (GtkWidget      *widget);
-void             geda_label_widget_set_justify      (GtkWidget      *widget,
+GtkJustification   geda_label_widget_get_justify    (GtkWidget      *widget);
+void               geda_label_widget_set_justify    (GtkWidget      *widget,
                                                      GtkJustification jtype);
+
+bool           geda_label_get_line_wrap             (GedaLabel      *label);
+void           geda_label_set_line_wrap             (GedaLabel      *label,
+                                                     bool            wrap);
+PangoWrapMode  geda_label_get_line_wrap_mode        (GedaLabel      *label);
+void           geda_label_set_line_wrap_mode        (GedaLabel      *label,
+                                                     PangoWrapMode   wrap_mode);
 
 PangoEllipsizeMode geda_label_get_ellipsize         (GedaLabel      *label);
 void               geda_label_set_ellipsize         (GedaLabel      *label,
@@ -202,12 +209,7 @@ void          geda_label_widget_set_max_width_chars (GtkWidget      *widget,
 
 void           geda_label_set_pattern               (GedaLabel      *label,
                                                      const char     *pattern);
-bool           geda_label_get_line_wrap             (GedaLabel      *label);
-void           geda_label_set_line_wrap             (GedaLabel      *label,
-                                                     bool            wrap);
-PangoWrapMode  geda_label_get_line_wrap_mode        (GedaLabel      *label);
-void           geda_label_set_line_wrap_mode        (GedaLabel      *label,
-                                                     PangoWrapMode   wrap_mode);
+
 bool           geda_label_get_selectable            (GedaLabel      *label);
 void           geda_label_set_selectable            (GedaLabel      *label,
                                                      bool            setting);

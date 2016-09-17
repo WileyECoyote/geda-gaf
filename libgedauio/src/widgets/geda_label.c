@@ -3652,6 +3652,107 @@ void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
   geda_label_set_justify ((GedaLabel*) widget, jtype);
 }
 
+/************************ Line Wrap Property **********************/
+
+/*!
+ * \brief geda_label_get_line_wrap
+ * \par Function Description
+ *  Returns whether lines in the label are automatically wrapped.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval  %TRUE if the lines of the label are automatically wrapped.
+ *
+ * \sa geda_label_set_line_wrap
+ */
+bool geda_label_get_line_wrap (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->wrap;
+}
+
+/*!
+ * \brief geda_label_set_line_wrap
+ * \par Function Description
+ *  Toggles line wrapping within the #GedaLabel widget. %TRUE makes it break
+ *  lines if text exceeds the widget's size. %FALSE lets the text get cut off
+ *  by the edge of the widget if it exceeds the widget size.
+ *
+ *  Note that setting line wrapping to %TRUE does not make the label
+ *  wrap at its parent container's width, because GTK+ widgets
+ *  conceptually can't make their requisition depend on the parent
+ *  container's size. For a label that wraps at a specific position,
+ *  set the label's width using gtk_widget_set_size_request().
+ *
+ *  \param [in] label  The GedaLabel object
+ *  \param [in] wrap   The desired setting
+ */
+void
+geda_label_set_line_wrap (GedaLabel *label, bool wrap)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  wrap = wrap != FALSE;
+
+  if (label->priv->wrap != wrap) {
+
+    label->priv->wrap = wrap;
+
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET(label));
+
+    g_object_notify (G_OBJECT (label), "wrap");
+  }
+}
+
+/*!
+ * \brief geda_label_get_line_wrap_mode
+ * \par Function Description
+ *  Returns line wrap mode used by the label.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval %TRUE if the lines of the label are automatically wrapped.
+ *
+ * \sa geda_label_set_line_wrap_mode
+ */
+PangoWrapMode
+geda_label_get_line_wrap_mode (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->wrap_mode;
+}
+
+/*!
+ * \brief geda_label_set_line_wrap_mode
+ * \par Function Description
+ * If line wrapping is on the this controls how the line wrapping is
+ * performed. The default is %PANGO_WRAP_WORD which means wrap on word
+ * boundaries.
+ *
+ * \param [in] label     The GedaLabel object
+ * \param [in] wrap_mode The line wrap_mode setting
+ *
+ * \sa geda_label_set_line_wrap
+ */
+void
+geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (label->priv->wrap_mode != wrap_mode) {
+
+    label->priv->wrap_mode = wrap_mode;
+
+    g_object_notify (G_OBJECT (label), "wrap-mode");
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+  }
+}
+
 /************************ Ellipsize Property **********************/
 /*!
  * \brief Get the ellipsize property of a GedaLabel
@@ -3867,105 +3968,6 @@ int geda_label_widget_get_max_width_chars (GtkWidget *widget)
 void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
 {
   geda_label_set_max_width_chars ((GedaLabel*)widget, n_chars);
-}
-
-/************************ Line Wrap Property **********************/
-/*! \brief geda_label_set_line_wrap
- *
- *  \par Function Description
- *
- * Toggles line wrapping within the #GedaLabel widget. %TRUE makes it break
- * lines if text exceeds the widget's size. %FALSE lets the text get cut off
- * by the edge of the widget if it exceeds the widget size.
- *
- * Note that setting line wrapping to %TRUE does not make the label
- * wrap at its parent container's width, because GTK+ widgets
- * conceptually can't make their requisition depend on the parent
- * container's size. For a label that wraps at a specific position,
- * set the label's width using gtk_widget_set_size_request().
- *
- *  \param [in] label  The GedaLabel object
- *  \param [in] wrap   The desired setting
- */
-void
-geda_label_set_line_wrap (GedaLabel *label, bool  wrap)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  wrap = wrap != FALSE;
-
-  if (label->priv->wrap != wrap) {
-
-    label->priv->wrap = wrap;
-
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET(label));
-
-    g_object_notify (G_OBJECT (label), "wrap");
-  }
-}
-
-/*!
- * \brief geda_label_get_line_wrap
- * \par Function Description
- *  Returns whether lines in the label are automatically wrapped.
- *
- * \param [in] label  The GedaLabel object
- *
- * \retval  %TRUE if the lines of the label are automatically wrapped.
- *
- * \sa geda_label_set_line_wrap
- */
-bool geda_label_get_line_wrap (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->wrap;
-}
-
-/*!
- * \brief geda_label_set_line_wrap_mode
- * \par Function Description
- * If line wrapping is on (see geda_label_set_line_wrap()) this controls how
- * the line wrapping is done. The default is %PANGO_WRAP_WORD which means
- * wrap on word boundaries.
- *
- * \param [in] label     The GedaLabel object
- * \param [in] wrap_mode The line wrap_mode setting
- */
-void
-geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (label->priv->wrap_mode != wrap_mode) {
-
-    label->priv->wrap_mode = wrap_mode;
-
-    g_object_notify (G_OBJECT (label), "wrap-mode");
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-  }
-}
-
-/*!
- * \brief geda_label_get_line_wrap_mode
- * \par Function Description
- *  Returns line wrap mode used by the label.
- *
- * \param [in] label  The GedaLabel object
- *
- * \retval %TRUE if the lines of the label are automatically wrapped.
- *
- * \sa geda_label_set_line_wrap_mode
- */
-PangoWrapMode
-geda_label_get_line_wrap_mode (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->wrap_mode;
 }
 
 static void
