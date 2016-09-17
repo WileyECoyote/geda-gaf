@@ -1,8 +1,9 @@
-2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
+2016-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Reorganize abit; move line-wrap before
       ellipsize. Add Notify in geda_label_set_pattern. Broadcast notify
-      after resizing.
+      after resizing. Revise geda_label_ensure_layout to only set RTL
+      for required cases.
 
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 

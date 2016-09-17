@@ -806,18 +806,16 @@ static void geda_label_ensure_layout (GedaLabel *label)
 {
   GedaLabelData *priv;
   GtkWidget     *widget;
-  bool R2L;
 
   priv   = label->priv;
   widget = GTK_WIDGET (label);
-
-  R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   if (!label->layout) {
 
     PangoAlignment alignment; /* pango default this to PANGO_ALIGN_LEFT */
     PangoAttrList *attrs;
     PangoContext  *context;
+    bool           R2L;
 
     //context = g_object_new (PANGO_TYPE_CONTEXT, NULL);
     context = gtk_widget_get_pango_context (widget);
@@ -925,18 +923,25 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
     switch (priv->jtype) {
       case GTK_JUSTIFY_LEFT:
+        R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
         alignment = R2L ? PANGO_ALIGN_RIGHT : PANGO_ALIGN_LEFT;
         break;
+
       case GTK_JUSTIFY_RIGHT:
+        R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
         alignment = R2L ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT;
         break;
+
       case GTK_JUSTIFY_CENTER:
         alignment = PANGO_ALIGN_CENTER;
         break;
+
       case GTK_JUSTIFY_FILL:
+        R2L = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
         alignment = R2L ? PANGO_ALIGN_RIGHT : PANGO_ALIGN_LEFT;
         pango_layout_set_justify (label->layout, TRUE);
         break;
+
       default:
         alignment = PANGO_ALIGN_LEFT;
     }
@@ -947,7 +952,6 @@ static void geda_label_ensure_layout (GedaLabel *label)
     pango_layout_set_single_paragraph_mode (label->layout, priv->single_line_mode);
 
     geda_label_update_layout_width (label);
-
   }
 }
 
