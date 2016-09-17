@@ -4478,7 +4478,7 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
 
     c = g_utf8_get_char (src);
     if (c == (gunichar)-1) {
-      fprintf(stderr, "Invalid input string");
+      fprintf(stderr, "%s: Invalid input string", __func__);
       g_free (*new_str);
       g_free (*pattern);
 
