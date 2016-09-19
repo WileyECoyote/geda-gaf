@@ -1372,14 +1372,15 @@ do_label(FILE *fp)
             origin);
 }
 
+int scrap;
+
 /* four functions for doing net stuff */
 void
 do_net_start(FILE *fp)
 {
   reset_attributes();
 
-  int scrap     = fscanf(fp,"%*d\n");  /* just dispose of the net instance number */
-  scrap         = scrap;
+  scrap         = fscanf(fp,"%*d\n");  /* just dispose of the net instance number */
   reading_net   = 1;
   segment_count = 1;
 }
