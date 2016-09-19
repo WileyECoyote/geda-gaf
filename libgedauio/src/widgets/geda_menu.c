@@ -3511,12 +3511,9 @@ get_accel_path (GtkWidget *menu_item, bool *locked)
 
 #if 0
 static bool
-geda_menu_key_press (GtkWidget   *widget, GdkEventKey *event)
+geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenu *menu;
-
-  g_return_val_if_fail (GEDA_IS_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
 
   menu = GEDA_MENU (widget);
 

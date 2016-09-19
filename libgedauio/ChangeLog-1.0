@@ -1,3 +1,8 @@
+2016-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Remove validation checks in static override
+      geda_menu_key_press.
+
 2016-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_size_request;
