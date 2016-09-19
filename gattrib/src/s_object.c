@@ -171,7 +171,6 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
   GList *a_iter;
   char  *old_attrib_text;
   char  *old_attrib_name;
-  char  *new_attrib_text;
 
   a_iter = o_current->attribs;
 
@@ -189,15 +188,15 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
-        /* create attrib=value text string & stuff it back into toplevel */
-        new_attrib_text = geda_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
-        GEDA_FREE(a_current->text->string);   /* remove old attrib string */
-        a_current->text->string = geda_utility_string_strdup(new_attrib_text);   /* insert new attrib string */
+        /* Update the attrib string with the new name and value */
+        geda_attrib_object_set_value(a_current, new_attrib_name, new_attrib_value);
+
         if (visibility != LEAVE_VISIBILITY_ALONE)
           geda_set_object_visibility (a_current, visibility);
+
         if (show_name_value != LEAVE_NAME_VALUE_ALONE)
           a_current->show_name_value = show_name_value;
-        GEDA_FREE(new_attrib_text);
+
         GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
         return;     /* we are done -- leave. */
