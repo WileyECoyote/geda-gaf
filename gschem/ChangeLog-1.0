@@ -1,5 +1,7 @@
 2016-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_event.c: Revise comments blocks and function wrap.
+
     * src/object/o_select.c: Revise comments blocks and function wrap.
 
 2016-09-18 Wiley E. Hill <wileyhill@gmail.com>
