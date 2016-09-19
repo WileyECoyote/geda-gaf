@@ -819,7 +819,7 @@ int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
         bezier.y[2] = section->y2;
         point.x     = bezier.x[3] = section->x3;
         point.y     = bezier.y[3] = section->y3;
-        m_polygon_append_bezier (points, &bezier, NUM_BEZIER_SEGMENTS);
+        geda_math_polygon_append_bezier (points, &bezier, NUM_BEZIER_SEGMENTS);
         break;
 
       case PATH_MOVETO_OPEN:
@@ -830,7 +830,7 @@ int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
       case PATH_LINETO:
         point.x = section->x3;
         point.y = section->y3;
-        m_polygon_append_point (points, point.x, point.y);
+        geda_math_polygon_append_point (points, point.x, point.y);
         break;
 
       case PATH_END:
@@ -867,17 +867,17 @@ double geda_struct_path_shortest_distance (GedaPath *path, int x, int y, int sol
 
   if (!solid) {
 
-    shortest_distance = m_polygon_shortest_distance (points, x, y, closed);
+    shortest_distance = geda_math_polygon_shortest_distance (points, x, y, closed);
 
   }
-  else if (m_polygon_interior_point (points, x, y)) {
+  else if (geda_math_polygon_interior_point (points, x, y)) {
 
     shortest_distance = 0;
 
   }
   else {
 
-    shortest_distance = m_polygon_shortest_distance (points, x, y, TRUE);
+    shortest_distance = geda_math_polygon_shortest_distance (points, x, y, TRUE);
 
   }
 

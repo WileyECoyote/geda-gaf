@@ -1,5 +1,9 @@
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_polygon.c: Rename functions with geda_math prefix.
+
+2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/geda_attrib.h: Include functions in s_attrib module.
 
     * src/struct/s_attrib.c: Rename geda_struct_attrib_get argument counter

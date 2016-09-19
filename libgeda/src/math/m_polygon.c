@@ -28,9 +28,9 @@
  * \param [in]     bezier   The bezier curve to append.
  * \param [in]     segments Number of segments to subdivide the bezier curve.
  */
-void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
+void geda_math_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
 {
-  m_polygon_append_point (points, bezier->x[0], bezier->y[0]);
+  geda_math_polygon_append_point (points, bezier->x[0], bezier->y[0]);
 
   if (segments > 1) {
     int i;
@@ -70,11 +70,11 @@ void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
       ydd += yddd;
       ydd_div2 += yddd_div2;
 
-      m_polygon_append_point (points, round (x), round (y));
+      geda_math_polygon_append_point (points, round (x), round (y));
     }
   }
 
-  m_polygon_append_point (points, bezier->x[3], bezier->y[3]);
+  geda_math_polygon_append_point (points, bezier->x[3], bezier->y[3]);
 }
 
 /*!
@@ -84,7 +84,7 @@ void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
  * \param [in]     x       The x coordinate of the point to append.
  * \param [in]     y       The y coordinate of the point to append.
  */
-void m_polygon_append_point (GArray *points, int x, int y)
+void geda_math_polygon_append_point (GArray *points, int x, int y)
 {
   POINT point = { x, y };
 
@@ -114,7 +114,7 @@ void m_polygon_append_point (GArray *points, int x, int y)
  *
  *  TODO Untested
  */
-bool m_polygon_interior_point (GArray *points, int x, int y)
+bool geda_math_polygon_interior_point (GArray *points, int x, int y)
 {
   int count = 0;
 
@@ -162,7 +162,7 @@ bool m_polygon_interior_point (GArray *points, int x, int y)
  * \return The shortest distance from the polygon to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double m_polygon_shortest_distance (GArray *points, int x, int y, int closed)
+double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int closed)
 {
   double shortest = G_MAXDOUBLE;
 

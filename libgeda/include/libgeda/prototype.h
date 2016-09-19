@@ -129,10 +129,10 @@ extern "C" {
        double    m_line_shortest_distance        (GedaLine *line, int x, int y);
 
 /* m_polygon.c */
-         bool    m_polygon_interior_point        (GArray *points, int x, int y);
-       double    m_polygon_shortest_distance     (GArray *points, int x, int y, bool closed);
-         void    m_polygon_append_bezier         (GArray *points, BEZIER *bezier, int segments);
-         void    m_polygon_append_point          (GArray *points, int x, int y);
+         bool    geda_math_polygon_interior_point        (GArray *points, int x, int y);
+       double    geda_math_polygon_shortest_distance     (GArray *points, int x, int y, bool closed);
+         void    geda_math_polygon_append_bezier         (GArray *points, BEZIER *bezier, int segments);
+         void    geda_math_polygon_append_point          (GArray *points, int x, int y);
 
 /* o_arc_object.c */
    GedaObject   *geda_arc_object_copy                 (GedaObject *o_current) WARN_UNUSED;
