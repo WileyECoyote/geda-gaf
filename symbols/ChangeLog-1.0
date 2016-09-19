@@ -2,6 +2,8 @@
 
     * lineartech/LTC4100-1.sym: Add symbol; LTC4100 Battery Charge Controller.
 
+    * lineartech/LTC4100-2.sym: Add symbol with alternate pin layout for LTC4100.
+
 2016-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD9511-1.sym: Add symbol 1.2 GHz Clock Distribution with
