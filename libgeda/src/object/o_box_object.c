@@ -436,7 +436,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       segments[0].x[1] = left;
       segments[0].y[1] = top;
 
-      dl = m_line_shortest_distance (&segments[0], x, y);
+      dl = geda_math_line_shortest_distance (&segments[0], x, y);
 
       /* Right Side */
       segments[1].x[0] = right;
@@ -444,7 +444,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       segments[1].x[1] = right;
       segments[1].y[1] = top;
 
-      dr = m_line_shortest_distance (&segments[1], x, y);
+      dr = geda_math_line_shortest_distance (&segments[1], x, y);
 
       /* Top Side */
       segments[2].x[0] = left;
@@ -452,7 +452,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       segments[2].x[1] = right;
       segments[2].y[1] = top;
 
-      dt = m_line_shortest_distance (&segments[2], x, y);
+      dt = geda_math_line_shortest_distance (&segments[2], x, y);
 
       /* Bottom Side */
       segments[3].x[0] = left;
@@ -460,7 +460,7 @@ geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       segments[3].x[1] = right;
       segments[3].y[1] = bottom;
 
-      db = m_line_shortest_distance (&segments[3], x, y);
+      db = geda_math_line_shortest_distance (&segments[3], x, y);
 
       /* Check for diagonals, if the point is on a diagonal then the
        * point is equidistant to two sides, the return point is set

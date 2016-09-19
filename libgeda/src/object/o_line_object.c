@@ -236,7 +236,7 @@ geda_line_object_get_end_cap (const GedaObject *object)
  *  Returns the value of the \a object line length property if \a object
  *  is a valid GedaLine object. The line-length property controls the
  *  length of line segments for line types dashed, center and phantom,
- *  to get the "length" of a line see m_line_length.
+ *  to get the "length" of a line see geda_math_line_length.
  *
  * \note Line length is only applicable when line-type is not TYPE_SOLID
  *       or TYPE_DOTTED.
@@ -434,7 +434,7 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
       point.y = iy + 0.5;
 
 #endif
-      if (m_line_includes_point(line, &point)) {
+      if (geda_math_line_includes_point(line, &point)) {
        *nx = point.x;
        *ny = point.y;
       }
@@ -1855,7 +1855,7 @@ geda_line_object_set_y2 (GedaObject *object, int y) {
 double
 geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
-  return m_line_shortest_distance (object->line, x, y);
+  return geda_math_line_shortest_distance (object->line, x, y);
 }
 
 /*!

@@ -706,7 +706,7 @@ geda_circle_get_fill_width (const GedaCircle *circle) {
  *  \a circle is a valid GedaCircle object. The is not the length of the circle
  *  the line-length property controls the length of line segments for
  *  line types dashed, center and phantom, to get the "length" of
- *  a line see m_line_length.
+ *  a line see geda_math_line_length.
  *
  * \note Line length is only applicable when line-type is not TYPE_SOLID
  *       or TYPE_DOTTED.

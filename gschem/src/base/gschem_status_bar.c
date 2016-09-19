@@ -1539,7 +1539,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
       int    length;
 
       /* Get the magnitude*/
-      length = m_line_length(x0, y0, x1, y1);
+      length = geda_math_line_length(x0, y0, x1, y1);
 
       /* Get the angle */
       radians = atan2((y1 - y0), (x1 - x0));

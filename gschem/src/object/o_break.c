@@ -616,7 +616,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       }
 
       /* Else check if point is some other point on the line segment */
-      if (m_line_includes_point(line, &tmp)) {
+      if (geda_math_line_includes_point(line, &tmp)) {
         point->x = tmp.x;
         point->y = tmp.y;
        *segment = i;
@@ -870,7 +870,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
     point1.y = w_current->first_wy;
   }
 
-  if (m_line_includes_point(object->line, &point1) &&
+  if (geda_math_line_includes_point(object->line, &point1) &&
      !geda_line_object_is_endpoint(object, &point1))
   {
 
@@ -883,7 +883,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
       point2.y = w_current->second_wy;
     }
 
-    if (m_line_includes_point(object->line, &point2) &&
+    if (geda_math_line_includes_point(object->line, &point2) &&
        !geda_line_object_is_endpoint(object, &point2))
     {
       int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);
@@ -941,7 +941,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
     point1.y = w_current->first_wy;
   }
 
-  if (m_line_includes_point(object->line, &point1) &&
+  if (geda_math_line_includes_point(object->line, &point1) &&
      !geda_line_object_is_endpoint(object, &point1))
   {
     if (do_snap) {
@@ -953,7 +953,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
       point2.y = w_current->second_wy;
     }
 
-    if (m_line_includes_point(object->line, &point2) &&
+    if (geda_math_line_includes_point(object->line, &point2) &&
        !geda_line_object_is_endpoint(object, &point2))
     {
       int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);

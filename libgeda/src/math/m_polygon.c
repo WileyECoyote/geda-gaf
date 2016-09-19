@@ -190,7 +190,7 @@ double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int cl
       line.x[1] = point.x;
       line.y[1] = point.y;
 
-      distance = m_line_shortest_distance (&line, x, y);
+      distance = geda_math_line_shortest_distance (&line, x, y);
 
       shortest = min (shortest, distance);
     }

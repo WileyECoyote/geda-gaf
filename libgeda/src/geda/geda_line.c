@@ -465,7 +465,7 @@ geda_line_get_end_cap (const GedaLine *line)
  *  Returns the value of the \a line line-length property if \a line
  *  is a valid GedaLine object. The line-length property controls the
  *  length of line segments for line types dashed, center and phantom,
- *  to get the "length" of a line see m_line_length.
+ *  to get the "length" of a line see geda_math_line_length.
  *
  * \note Line length is only applicable when line-type is not TYPE_SOLID
  *       or TYPE_DOTTED.

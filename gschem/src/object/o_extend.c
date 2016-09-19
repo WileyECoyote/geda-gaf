@@ -542,19 +542,19 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
       dist2 = m_distance(x2, y2, pt2.x, pt2.y);
 
       if (dist1 < dist2) {
-        included = !m_line_includes_point(projectile->line, &pt1);
+        included = !geda_math_line_includes_point(projectile->line, &pt1);
         answer   = included ? 2 : 0;
       }
 
       if (dist2 <= dist1 || !answer) {
-        answer = !m_line_includes_point(projectile->line, &pt2);
+        answer = !geda_math_line_includes_point(projectile->line, &pt2);
         answer = answer ? 3 : 0;
       }
     }
     else {
 
       /* Is tangent, easy anwser */
-      answer = !m_line_includes_point(projectile->line, &pt1);
+      answer = !geda_math_line_includes_point(projectile->line, &pt1);
     }
   }
 
@@ -581,7 +581,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
     }
     else if (m_arc_includes_point(boundary->arc, &pt2)) {
       /* Since the 1st point was picked we did not check pt2 */
-      if (!m_line_includes_point(projectile->line, &pt2)) {
+      if (!geda_math_line_includes_point(projectile->line, &pt2)) {
         answer = TRUE;
         pt3.x = pt2.x;
         pt3.y = pt2.y;
@@ -864,7 +864,7 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
       }
 
       /* Check if projectile intersects chosen diagonal */
-      if (m_line_get_intersection(proj, &diagonal, &tmp)) {
+      if (geda_math_line_get_intersection(proj, &diagonal, &tmp)) {
 
         /* and the intersection must be within the bounds of the box */
         if (geda_object_get_is_inside_region(left, bottom, right, top, tmp.x, tmp.y)) {
@@ -1136,11 +1136,11 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
       line.x[1] = vertex.x;
       line.y[1] = vertex.y;
 
-      if (m_line_get_intersection(projectile->line, &line, &intersect)) {
+      if (geda_math_line_get_intersection(projectile->line, &line, &intersect)) {
 
-        if (!m_line_includes_point(projectile->line, &intersect)) {
+        if (!geda_math_line_includes_point(projectile->line, &intersect)) {
 
-          if (m_line_includes_point(&line, &intersect)) {
+          if (geda_math_line_includes_point(&line, &intersect)) {
 
             double distance;
 
@@ -1492,7 +1492,7 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
 
       if (dist1 < dist2) {
 
-        answer = !m_line_includes_point(projectile->line, &pt1);
+        answer = !geda_math_line_includes_point(projectile->line, &pt1);
 
         if (answer && point) {
           point->x = pt1.x;
@@ -1502,7 +1502,7 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
 
       if (dist2 <= dist1 || !answer) {
 
-        answer = !m_line_includes_point(projectile->line, &pt2);
+        answer = !geda_math_line_includes_point(projectile->line, &pt2);
 
         if (answer && point) {
           point->x = pt2.x;
@@ -1513,7 +1513,7 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
     else {
 
       /* Is tangent, easy anwser */
-      answer = !m_line_includes_point(projectile->line, &pt1);
+      answer = !geda_math_line_includes_point(projectile->line, &pt1);
 
       if (answer && point) {
         point->x = pt1.x;

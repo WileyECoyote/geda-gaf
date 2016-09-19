@@ -132,7 +132,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         line.x[1] = vertex.x;
         line.y[1] = vertex.y;
 
-        distance = m_line_shortest_distance (&line, x, y);
+        distance = geda_math_line_shortest_distance (&line, x, y);
 
         if (distance == 0.0) { /* Point is on a segment */
           target.x = x;
@@ -267,7 +267,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         check_endpoints(&point.y, segment.y[0], segment.y[1]);
 
         /* Check if the segment include the point */
-        if (m_line_includes_point(&segment, &point)) {
+        if (geda_math_line_includes_point(&segment, &point)) {
 
 #if DEBUG
   fprintf(stderr, "%s calculated includes: x=%d, y=%d\n", __func__, point.x, point.y);
