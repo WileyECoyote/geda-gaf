@@ -1,3 +1,7 @@
+2016-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-export-menu.scm: Make X mnemonics character for XML.
+
 2016-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise mnemonic characters under the Edit menu.
