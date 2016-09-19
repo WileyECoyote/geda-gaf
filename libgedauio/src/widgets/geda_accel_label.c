@@ -226,16 +226,16 @@ geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
 }
 
 static void
-geda_accel_label_size_request (GtkWidget      *widget,
-                               GtkRequisition *requisition)
+geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaAccelLabel *accel_label     = GEDA_ACCEL_LABEL (widget);
+  GedaAccelLabel *accel_label;
   PangoLayout    *layout;
   const char     *accel_string;
   int width;
 
   GTK_WIDGET_CLASS (geda_accel_label_parent_class)->size_request (widget, requisition);
 
+  accel_label  = GEDA_ACCEL_LABEL (widget);
   accel_string = geda_accel_label_get_string (accel_label);
   layout       = gtk_widget_create_pango_layout (widget, accel_string);
 
@@ -653,7 +653,7 @@ geda_accel_label_new (const char *string)
 
   accel_label = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
 
-  geda_label_set_text (GEDA_LABEL (accel_label), string);
+  geda_label_set_text (GEDA_LABEL(accel_label), string);
 
   return GTK_WIDGET (accel_label);
 }
@@ -796,6 +796,7 @@ geda_accel_label_set_accel_widget (GedaAccelLabel *accel_label,
       g_object_unref (accel_label->accel_widget);
     }
 
+    /* Which could be NULL*/
     accel_label->accel_widget = accel_widget;
 
     if (accel_label->accel_widget) {
