@@ -39,10 +39,11 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Run Hook Selection Changed
- *  \par Function Description
- *   Passes \a o_current to g_hook_run_object for deselection or selection
- *   depending on \a which_hook.
+/*!
+ * \brief Run Hook Selection Changed
+ * \par Function Description
+ *  Passes \a o_current to g_hook_run_object for deselection or selection
+ *  depending on \a which_hook.
  */
 static void
 o_select_run_hooks(GschemToplevel *w_current, GedaObject *o_current, EID_SCM_HOOKS which_hook)
@@ -59,18 +60,19 @@ o_select_run_hooks(GschemToplevel *w_current, GedaObject *o_current, EID_SCM_HOO
   }
 }
 
-/*! \brief Select or Unselect an Object
- *  \par Function Description
- *   Adds or removes an object from the current selection
+/*!
+ * \brief Select or Unselect an Object
+ * \par Function Description
+ *  Adds or removes an object from the current selection
  *
- *  \param [in] w_current  A pointer to a GschemToplevel object,
- *  \param [in] o_current  The Object of interest,
- *  \param [in] type       Is more of a mode flag,
- *  \param [in] count      Number of objects.
+ * \param [in] w_current  A pointer to a GschemToplevel object,
+ * \param [in] o_current  The Object of interest,
+ * \param [in] type       Is more of a mode flag,
+ * \param [in] count      Number of objects.
  *
- *  \note type can be either SINGLE meaning selection is a single mouse
- *        click or it can be MULTIPLE meaning selection is a selection
- *        box.
+ * \note type can be either SINGLE meaning selection is a single mouse
+ *       click or it can be MULTIPLE meaning selection is a selection
+ *       box.
  */
 void
 o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int count)
@@ -199,14 +201,15 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
   }
 }
 
-/*! \brief Add Objects in List to Selection
- *  \par Function Description
+/*!
+ * \brief Add Objects in List to Selection
+ * \par Function Description
  *  Adds items in the list to the current selection set.
  *
- *  \sa o_select_move_to_place_list
+ * \sa o_select_move_to_place_list
  *
- *  \note see comment for o_select_visible_unlocked regarding
- *        geda_object_selection_add
+ * \note see comment for o_select_visible_unlocked regarding
+ *       geda_object_selection_add
  */
 void
 o_select_add_list(GschemToplevel *w_current, GList *list)
@@ -224,14 +227,15 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
   }
 }
 
-/*! \brief Add Object to Selection without BS
- *  \par Function Description
+/*!
+ * \brief Add Object to Selection without BS
+ * \par Function Description
  *  Adds object to the current selection list.
  *
- *  \sa o_select_move_to_place_list
+ * \sa o_select_move_to_place_list
  *
- *  \note see comment for o_select_visible_unlocked regarding
- *        geda_object_selection_add
+ * \note see comment for o_select_visible_unlocked regarding
+ *       geda_object_selection_add
  */
 void
 o_select_add_object(GschemToplevel *w_current, GedaObject *object)
@@ -249,8 +253,9 @@ o_select_add_object(GschemToplevel *w_current, GedaObject *object)
   }
 }
 
-/*! \brief Start the process of selection
- *  \par Function Description
+/*!
+ * \brief Start the process of selection
+ * \par Function Description
  *  Chooses the way of how to start the selection process. If no
  *  grip was found at the given coordinates the function toggles
  *  the current state into the STARTSELECT mode in order to define
@@ -260,11 +265,12 @@ o_select_add_object(GschemToplevel *w_current, GedaObject *object)
  *  The function is intended to be called by pressing the left
  *  mouse button.
  *
- *  \param [in] w_current The GschemToplevel structure.
- *  \param [in] wx        The unsnapped X coordinate.
- *  \param [in] wy        The unsnapped Y coordinate.
+ * \param [in] w_current The GschemToplevel structure.
+ * \param [in] wx        The unsnapped X coordinate.
+ * \param [in] wy        The unsnapped Y coordinate.
  */
-void o_select_start (GschemToplevel *w_current, int wx, int wy)
+void
+o_select_start (GschemToplevel *w_current, int wx, int wy)
 {
   if (!o_grips_start(w_current, wx, wy)) {
     /* now go into normal SELECT */
@@ -274,8 +280,9 @@ void o_select_start (GschemToplevel *w_current, int wx, int wy)
   }
 }
 
-/*! \brief End the process of selection
- *  \par Function Description
+/*!
+ * \brief End the process of selection
+ * \par Function Description
  *  Finishes the process of selection if the \a o_select_start()
  *  or \a o_select_motion() functions haven't defined other
  *  functions to finish it. If no grip was found at the given
@@ -286,18 +293,20 @@ void o_select_start (GschemToplevel *w_current, int wx, int wy)
  *  The function is intended to be called by releasing the left
  *  mouse button.
  *
- *  \param [in] w_current The GschemToplevel structure.
- *  \param [in] wx        The world X coordinate.
- *  \param [in] wy        The world Y coordinate.
+ * \param [in] w_current The GschemToplevel structure.
+ * \param [in] wx        The world X coordinate.
+ * \param [in] wy        The world Y coordinate.
  */
-void o_select_end (GschemToplevel *w_current, int wx, int wy)
+void
+o_select_end (GschemToplevel *w_current, int wx, int wy)
 {
   o_find_object(w_current, wx, wy, TRUE);
   i_status_action_stop(w_current);
 }
 
-/*! \brief Determine whether objects have to be selected or moved
- *  \par Function Description
+/*!
+ * \brief Determine whether objects have to be selected or moved
+ * \par Function Description
  *  Checks if the shift or control keys are pressed, (that means
  *  the user definitely wants to drag out a selection box), or
  *  there are no selected objects under the cursor. In that case
@@ -308,11 +317,12 @@ void o_select_end (GschemToplevel *w_current, int wx, int wy)
  *  The function is intended to be called by motion of the mouse
  *  while the left mouse button is pressed.
  *
- *  \param [in] w_current The GschemToplevel structure.
- *  \param [in] wx        The world X coordinate.
- *  \param [in] wy        The world Y coordinate.
+ * \param [in] w_current The GschemToplevel structure.
+ * \param [in] wx        The world X coordinate.
+ * \param [in] wy        The world Y coordinate.
  */
-bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
+bool
+o_select_motion (GschemToplevel *w_current, int wx, int wy)
 {
   GedaObject *selected;
 
@@ -323,8 +333,7 @@ bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
 
   selected = o_find_selected_object(w_current, x1, y1);
 
-  if (!w_current->drag_can_move || !selected)
-  {
+  if (!w_current->drag_can_move || !selected) {
     if (o_select_box_start(w_current, wx, wy)) {
       w_current->event_state = SBOX;
     }
@@ -356,20 +365,21 @@ bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
   return result;
 }
 
-/*! \brief Start Windowed/Box Selection
- *  \par Function Description
+/*!
+ * \brief Start Windowed/Box Selection
+ * \par Function Description
  *  Similar to other "event" start routines, this function is used to
  *  capture the cursor position at the on-set of a boxed selection
  *  operation.
  *
+ * \param [in] w_current The GschemToplevel object,
+ * \param [in] w_x       Snapped X coordinate in World units,
+ * \param [in] w_y       Snapped Y coordinate in World units.
  *
- *  \param [in] w_current The GschemToplevel object,
- *  \param [in] w_x       Snapped X coordinate in World units,
- *  \param [in] w_y       Snapped Y coordinate in World units.
- *
- *  \todo Reeks box-selection-threashold
+ * \todo Reeks box-selection-threashold
  */
-int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
+int
+o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int status;
   int dx, dy;
@@ -393,16 +403,18 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
-/*! \brief End Window/Box Selection Callback
- *  \par Function Description
- *   Invalidates the drawn temporary selection box and invokes selection
- *   search routines.
+/*!
+ * \brief End Window/Box Selection Callback
+ * \par Function Description
+ *  Invalidates the drawn temporary selection box and invokes selection
+ *  search routines.
  *
- *  \param [in] w_current The GschemToplevel object,
- *  \param [in] wx        Unsnapped X coordinate in World units,
- *  \param [in] w_y       Unsnapped Y coordinate in World units.
+ * \param [in] w_current The GschemToplevel object,
+ * \param [in] wx        Unsnapped X coordinate in World units,
+ * \param [in] w_y       Unsnapped Y coordinate in World units.
  */
-void o_select_box_end(GschemToplevel *w_current, int wx, int w_y)
+void
+o_select_box_end(GschemToplevel *w_current, int wx, int w_y)
 {
   o_select_box_invalidate_rubber (w_current);
   w_current->rubber_visible = FALSE;
@@ -411,17 +423,19 @@ void o_select_box_end(GschemToplevel *w_current, int wx, int w_y)
   i_status_action_stop(w_current);
 }
 
-/*! \brief Window/Box Selection Pointer Motion Callback
- *  \par Function Description
- *   Invalidates the old temporary selection box, aka rubber, and causes
- *   new rubber to be drawn. This has the effect of drawing a temporary
- *   box while dragging the edge.
+/*!
+ * \brief Window/Box Selection Pointer Motion Callback
+ * \par Function Description
+ *  Invalidates the old temporary selection box, aka rubber, and causes
+ *  new rubber to be drawn. This has the effect of drawing a temporary
+ *  box while dragging the edge.
  *
- *  \param [in] w_current  The GschemToplevel object,
- *  \param [in] us_wx      Unsnapped X coordinate in World units,
- *  \param [in] us_wy      Unsnapped Y coordinate in World units.
+ * \param [in] w_current  The GschemToplevel object,
+ * \param [in] us_wx      Unsnapped X coordinate in World units,
+ * \param [in] us_wy      Unsnapped Y coordinate in World units.
  */
-void o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
+void
+o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
 {
   if (w_current->rubber_visible) {
     o_select_box_invalidate_rubber (w_current);
@@ -434,13 +448,15 @@ void o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for Box Selection
- *  \par Function Description
- *   Note the similarity to o_box_invalidate_rubber()
+/*!
+ * \brief Invalidate Temporary drawing artifacts for Box Selection
+ * \par Function Description
+ *  Note the similarity to o_box_invalidate_rubber()
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
-void o_select_box_invalidate_rubber (GschemToplevel *w_current)
+void
+o_select_box_invalidate_rubber (GschemToplevel *w_current)
 {
   int x1, y1, x2, y2;
 
@@ -453,27 +469,31 @@ void o_select_box_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
-/*! \brief Draw Temporary Box for Windowed Selection Operation
- *  \par Function Description
+/*!
+ * \brief Draw Temporary Box for Windowed Selection Operation
+ * \par Function Description
  *  Since the functionality is the same as drawing rubber for a box
  *  object, this function calls the box object functions to draw the
  *  temporary box used during the windowing selection operation.
  */
-void o_select_box_draw_rubber (GschemToplevel *w_current)
+void
+o_select_box_draw_rubber (GschemToplevel *w_current)
 {
   o_box_draw_rubber (w_current);
 }
 
-/*! \brief Search Windowed Region for Object Selection
- *  \par Function Description
+/*!
+ * \brief Search Windowed Region for Object Selection
+ * \par Function Description
  *  Calls o_select_object for objects bounded by the windowed/box
  *  region
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  *
- *  \todo primitive
+ * \todo primitive
  */
-void o_select_box_search(GschemToplevel *w_current)
+void
+o_select_box_search(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
 
@@ -523,16 +543,19 @@ void o_select_box_search(GschemToplevel *w_current)
   i_status_update_sensitivities(w_current);
 }
 
-/*! \brief Select all nets connected to the current net
- *  \par Depending on the state of the w_current->net_selection_mode variable
- *   and the net_selection_state of the current net this function will either
- *   select the single net, all directly connected nets or all nets connected
- *   with netname labels.
+/*!
+ * \brief Select all nets connected to the current net
+ * \par Function Description
+ *  Depending on the state of the w_current->net_selection_mode variable
+ *  and the net_selection_state of the current net this function will either
+ *  select the single net, all directly connected nets or all nets connected
+ *  with netname labels.
  *
- *  \param [in] w_current  Pointer to GschemToplevel struct.
- *  \param [in] o_net      Pointer to a single net object
+ * \param [in] w_current  Pointer to GschemToplevel struct.
+ * \param [in] o_net      Pointer to a single net object
  */
-void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
+void
+o_select_connected_nets(GschemToplevel *w_current, GedaObject *o_net)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -643,44 +666,50 @@ void o_select_connected_nets(GschemToplevel *w_current, GedaObject* o_net)
   g_list_free(netnamestack);
 }
 
-/*! \brief Get the Number of Currently Selected Objects
- *  \par Function Description
- *   Returns the selection set count. Does not check validity of objects,
- *   this should have been done when the objects were added, nor does this
- *   function varify that the object or objects still exist.
+/*!
+ * \brief Get the Number of Currently Selected Objects
+ * \par Function Description
+ *  Returns the selection set count. Does not check validity of objects,
+ *  this should have been done when the objects were added, nor does this
+ *  function varify that the object or objects still exist.
  *
- *  \returns count of the selection list..
+ * \returns count of the selection list..
  */
-int o_select_get_count(GschemToplevel *w_current)
+int
+o_select_get_count(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
   return !page ? 0 : g_list_length(page->selection_list->glist);
 }
 
-/*! \brief Check if any Currently Select Objects
- *  \par Function Description
+/*!
+ * \brief Check if any Currently Select Objects
+ * \par Function Description
  *
- *  \returns TRUE if the selection list is not empty,
- *           FALSE if the selection list is empty,
+ * \returns TRUE if the selection list is not empty,
+ *          FALSE if the selection list is empty,
  */
-bool o_select_is_selection(GschemToplevel *w_current)
+bool
+o_select_is_selection(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
   return !page ? 0 : (page->selection_list->glist != FALSE);
 }
 
-/*! \brief UnSelect All Objects
- *  \par Function Description
- *   Removes all members from the toplevel selection list and calls
- *   the run hook function, after the object(s) have been removed,
- *   pass a list of the object that were removed.
+/*!
+ * \brief UnSelect All Objects
+ * \par Function Description
+ *  Removes all members from the toplevel selection list and calls
+ *  the run hook function, after the object(s) have been removed,
+ *  pass a list of the object that were removed.
  *
- *  \remarks WEH: Could it help to have a freeze/thaw wrapper
- *           around the do loop if count was many?
+ * \remarks WEH: Could it help to have a freeze/thaw wrapper
+ *          around the do loop if count was many?
  */
-void o_select_unselect_all(GschemToplevel *w_current)
+void
+o_select_unselect_all(GschemToplevel *w_current)
 {
   if (o_select_is_selection(w_current)) {
 
@@ -709,11 +738,12 @@ void o_select_unselect_all(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Selects all visible objects on the current page
+/*!
+ * \brief Selects all visible objects on the current page
  * \par Function Description
- * Clears any existing selection, then selects everything visible and
- * unlocked on the current page, and any attached attributes whether
- * visible or invisible..
+ *  Clears any existing selection, then selects everything visible and
+ *  unlocked on the current page, and any attached attributes whether
+ *  visible or invisible..
  *
  * \param [in] w_current  Pointer to a GschemToplevel structure
  */
@@ -742,7 +772,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
     if (!obj->selectable) continue;
 
       /* Add object to selection. */
-      /*! \note We can't call o_select_object() because it behaves
+      /*! \internal We can't call o_select_object() because it behaves
        *  differently depending on the state of w_current->SHIFTKEY
        *  and w_current->CONTROLKEY, which may well be set if this
        *  function is called via a keystroke (e.g. Ctrl-A). */
@@ -760,9 +790,10 @@ o_select_visible_unlocked (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Move Selection to Place List
- *  \par Function Description
- *  Releases any object current in the place list and copies
+/*!
+ * \brief Move Selection to Place List
+ * \par Function Description
+ *  Releases objects currently in the place list and copies
  *  the current selection list to the place list
  */
 void
@@ -784,19 +815,20 @@ o_select_move_to_place_list(GschemToplevel *w_current)
   toplevel->page_current->place_list = selection_copy;
 }
 
-/*! \brief Create list of selected objects of the given type
- *  \par Function Description
+/*!
+ * \brief Create list of selected objects of the given type
+ * \par Function Description
  *  This is a general utility function that is like get selection except
  *  this function returns a list containing only objects of the specified
  *  type.
  *
- *  \param w_current pointer to GschemToplevel context
- *  \param otype     An Object type Object, not checked.
+ * \param w_current pointer to GschemToplevel context
+ * \param otype     An Object type Object, not checked.
  *
- *  \returns Glist* list of selected object or NULL is no object of the
- *                  specified type are selected.
+ * \returns Glist* list of selected object or NULL is no object of the
+ *                 specified type are selected.
  *
- *  \note Caller should g_list_free returned list
+ * \note Caller should g_list_free returned list
  */
 GList*
 o_select_get_list_selected(GschemToplevel *w_current, char otype)
@@ -821,16 +853,18 @@ o_select_get_list_selected(GschemToplevel *w_current, char otype)
   return list;
 }
 
-/*! \brief Return the First Selected Object
- *  \par Function Description
+/*!
+ * \brief Return the First Selected Object
+ * \par Function Description
  *  This is a wrapper for o_selection_get_first_object, which
  *  references the <B>current page</B> selection list utilizing
  *  gschem_toplevel_get_current_page, which validates w_current
  *  and w_current->toplevel.
  *
- *  \param w_current Pointer to a Gschem Toplevel object
+ * \param w_current Pointer to a Gschem Toplevel object
  */
-GedaObject *o_select_return_first_object(GschemToplevel *w_current)
+GedaObject*
+o_select_return_first_object(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
@@ -844,14 +878,15 @@ static unsigned press_hid;
 static unsigned release_hid;
 static void (* verb) (GschemToplevel *w_current);
 
-/*! \brief Secondary Selection button Press events callback
- *  \par Function Description
- *  \internal Callback for button Press events when selecting objects
- *   for the secondary selection set.
+/*!
+ * \brief Secondary Selection button Press events callback
+ * \par Function Description
+ * \internal Callback for button Press events when selecting
+ *  objects for the secondary selection set.
  */
-static
-int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
-                                           GschemToplevel *w_current)
+static int
+o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
+                                       GschemToplevel *w_current)
 {
   if (event->button == 1) {
 
@@ -871,14 +906,15 @@ int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
   return(0);
 }
 
-/*! \brief Secondary Selection button Release events callback
- *  \par Function Description
- *  \internal Callback for button release events when selecting objects
- *   for the secondary selection set.
+/*!
+ * \brief Secondary Selection button Release events callback
+ * \par Function Description
+ * \internal Callback for button release events when selecting
+ *  objects for the secondary selection set.
  */
-static
-int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
-                                             GschemToplevel *w_current)
+static int
+o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
+                                         GschemToplevel *w_current)
 {
   if (event->button == 1) {
 
@@ -906,16 +942,18 @@ int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
   return(0);
 }
 
-/*! \brief Cancel Secondary Selection Handler
- *  \par Function Description
- *   Disconnects signals from the Secondary Selection Handler and unblock
- *   the previous button event handlers.
+/*!
+ * \brief Cancel Secondary Selection Handler
+ * \par Function Description
+ *  Disconnects signals from the Secondary Selection Handler and unblock
+ *  the previous button event handlers.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  *
- *  \sa i_event_stop_action_handler
+ * \sa i_event_stop_action_handler
  */
-void o_select_cancel_events(GschemToplevel *w_current)
+void
+o_select_cancel_events(GschemToplevel *w_current)
 {
   if (press_hid) {
     g_signal_handler_disconnect (w_current->drawing_area, press_hid);
@@ -930,17 +968,19 @@ void o_select_cancel_events(GschemToplevel *w_current)
   i_event_unblock_buttons (w_current);
 }
 
-/*! \brief Enable Secondary Selection Event Handler
- *  \par Function Description
- *  \internal Function blocks the current button event handlers and
- *   enables the signals to be sent to the Secondary Selection Event
- *   Handler.
+/*!
+ * \brief Enable Secondary Selection Event Handler
+ * \par Function Description
+ * \internal Function blocks the current button event handlers and
+ *  enables the signals to be sent to the Secondary Selection Event
+ *  Handler.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  *
- *  \sa o_select_connect_selector
+ * \sa o_select_connect_selector
  */
-static void o_select_enable_events(GschemToplevel *w_current)
+static void
+o_select_enable_events(GschemToplevel *w_current)
 {
   i_event_block_buttons (w_current);
 
@@ -955,18 +995,20 @@ static void o_select_enable_events(GschemToplevel *w_current)
                                   w_current);
 }
 
-/*! \brief Connect Secondary Selection Event Handler
- *  \par Function Description
+/*!
+ * \brief Connect Secondary Selection Event Handler
+ * \par Function Description
  *  This function allow routines to let user pick a second set of objects.
  *  The current select should be stored to w_current->primary_selection
  *  prior to calling this function. The secondary selector event handler
  *  cancels the mode after the user finished the selection, restoring the
  *  normal event handler.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] func       Current x coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] func       Current x coordinate of pointer in world units.
  */
-void o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
+void
+o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
 {
   o_select_cancel_events(w_current);
   o_select_enable_events(w_current);
