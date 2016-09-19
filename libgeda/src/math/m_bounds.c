@@ -44,15 +44,16 @@ void m_bounds_init(BOUNDS *bounds)
  *  zero, this parameter must not be NULL.
  *  \param count [in] The number of points in the set.
  */
-void m_bounds_of_points(BOUNDS *bounds, POINT points[], gint count)
+void m_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
 {
-  gint index;
+  int index;
 
   m_bounds_init(bounds);
 
   for (index=0; index<count; index++) {
-    gint x = points[index].x;
-    gint y = points[index].y;
+
+    int x = points[index].x;
+    int y = points[index].y;
 
     if (x < bounds->min_x) {
       bounds->min_x = x;
@@ -71,4 +72,3 @@ void m_bounds_of_points(BOUNDS *bounds, POINT points[], gint count)
     }
   }
 }
-
