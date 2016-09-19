@@ -33,6 +33,13 @@
 #ifndef __GEDA_MATH_MAC__
 #define __GEDA_MATH_MAC__
 
+/* m_line.c */
+#define geda_line_get_intersection      geda_math_line_get_intersection
+#define geda_line_includes_point        geda_math_line_includes_point
+#define geda_line_intersection          geda_math_line_intersection
+#define geda_line_length                geda_math_line_length
+#define geda_line_shortest_distance     geda_math_line_shortest_distance
+
 /* m_polygon.c */
 #define geda_polygon_interior_point     geda_math_polygon_interior_point
 #define geda_polygon_shortest_distance  geda_math_polygon_shortest_distance
