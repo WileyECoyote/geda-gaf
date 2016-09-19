@@ -86,6 +86,8 @@ struct _GedaMenuShellClass
   void     (*insert)           (GedaMenuShell *menu_shell,
                                 GtkWidget     *child,
                                 int            position);
+  bool     (*menu_key_press)   (GedaMenuShell *menu_shell,
+                                GdkEventKey   *event);
   void     (*move_current)     (GedaMenuShell *menu_shell,
                                 MenuDirection  direction);
   bool     (*move_selected)    (GedaMenuShell *menu_shell,

@@ -168,8 +168,6 @@ static int  geda_menu_shell_button_press      (GtkWidget         *widget,
                                                GdkEventButton    *event);
 static int  geda_menu_shell_button_release    (GtkWidget         *widget,
                                                GdkEventButton    *event);
-static int  geda_menu_shell_key_press         (GtkWidget         *widget,
-                                               GdkEventKey       *event);
 static int  geda_menu_shell_enter_notify      (GtkWidget         *widget,
                                                GdkEventCrossing  *event);
 static int  geda_menu_shell_leave_notify      (GtkWidget         *widget,
@@ -202,6 +200,8 @@ static bool geda_menu_shell_select_submenu_first (GedaMenuShell     *menu_shell)
 static void geda_real_menu_shell_move_current      (GedaMenuShell      *menu_shell,
                                                     MenuDirection       direction);
 static void geda_real_menu_shell_activate_current  (GedaMenuShell      *menu_shell,
+static int  geda_menu_shell_menu_key_press         (GedaMenuShell     *menu_shell,
+                                                    GdkEventKey       *event);
                                                     bool               force_hide);
 static void geda_real_menu_shell_cancel            (GedaMenuShell      *menu_shell);
 static void geda_real_menu_shell_cycle_focus       (GedaMenuShell      *menu_shell,
@@ -323,7 +323,6 @@ geda_menu_shell_class_init(void *class, void *class_data)
   widget_class->button_press_event    = geda_menu_shell_button_press;
   widget_class->button_release_event  = geda_menu_shell_button_release;
   widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
-  widget_class->key_press_event       = geda_menu_shell_key_press;
   widget_class->enter_notify_event    = geda_menu_shell_enter_notify;
   widget_class->leave_notify_event    = geda_menu_shell_leave_notify;
   widget_class->screen_changed        = geda_menu_shell_screen_changed;
@@ -342,6 +341,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
   menu_shell_class->select_item       = geda_menu_shell_real_select_item;
   menu_shell_class->insert            = geda_menu_shell_real_insert;
   menu_shell_class->move_selected     = geda_menu_shell_real_move_selected;
+  menu_shell_class->menu_key_press    = geda_menu_shell_menu_key_press;
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
@@ -985,7 +985,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 
     /* While navigating menus, the first parent menu with an active
      * item is the one where mnemonics are effective, as can be seen
-     * in geda_menu_shell_key_press below.
+     * in geda_menu_shell_menu_key_press below.
      * We also show mnemonics in context menus. The grab condition is
      * necessary to ensure we remove underlines from menu bars when
      * dismissing menus.
@@ -1017,9 +1017,8 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 }
 
 static int
-geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
+geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
 {
-  GedaMenuShell     *menu_shell = GEDA_MENU_SHELL (widget);
   GedaMenuShellPriv *priv       = menu_shell->priv;
   bool enable_mnemonics;
 
