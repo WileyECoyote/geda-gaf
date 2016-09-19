@@ -26,3 +26,4 @@
 (begin-test 'user-directories
   (assert-true (every string? (user-config-dir)))
   (assert-true (every string? (user-data-dir))))
+
