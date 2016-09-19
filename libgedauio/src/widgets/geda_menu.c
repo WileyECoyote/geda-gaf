@@ -3513,13 +3513,15 @@ get_accel_path (GtkWidget *menu_item, bool *locked)
 static bool
 geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
-  GedaMenu *menu;
+  GedaMenu        *menu;
+  GedaMenuShell   *menu_shell;
 
-  menu = GEDA_MENU (widget);
+  menu       = GEDA_MENU (widget);
+  menu_shell = GEDA_MENU_SHELL (widget);
 
   geda_menu_stop_navigating_submenu (menu);
 
-  return GTK_WIDGET_CLASS (geda_menu_parent_class)->key_press_event (widget, event);
+  return GEDA_MENU_SHELL_CLASS(geda_menu_parent_class)->menu_key_press (menu_shell, event);
 }
 #endif
 
@@ -3543,8 +3545,9 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 
   geda_menu_stop_navigating_submenu (menu);
 
-  if (GTK_WIDGET_CLASS (geda_menu_parent_class)->key_press_event (widget, event))
+  if (GEDA_MENU_SHELL_CLASS(geda_menu_parent_class)->menu_key_press (menu_shell, event))
     return TRUE;
+
 
   display = gtk_widget_get_display (widget);
 

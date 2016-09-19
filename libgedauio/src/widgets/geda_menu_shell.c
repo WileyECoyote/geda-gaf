@@ -1019,26 +1019,42 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 static int
 geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
 {
-  GedaMenuShellPriv *priv       = menu_shell->priv;
   bool enable_mnemonics;
+  bool handled;
 
   menu_shell->keyboard_mode = TRUE;
 
-  if (!(menu_shell->active_menu_item || priv->in_unselectable_item) &&
-        menu_shell->parent_menu_shell)
-    return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+  /* First check if key is bound */
+  handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
 
-  if (gtk_bindings_activate_event (GTK_OBJECT(widget), event))
-    return TRUE;
+  if (!handled) {
 
-  g_object_get (gtk_widget_get_settings (widget), "gtk-enable-mnemonics",
-                &enable_mnemonics, NULL);
+    GedaMenuShell *parent_shell;
+    GtkWidget     *widget_shell;
 
-  if (enable_mnemonics) {
-    return geda_menu_shell_activate_mnemonic (menu_shell, event);
+    parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
+
+    /* If no item is selected then let parent check */
+    if (!menu_shell->active_menu_item && parent_shell) {
+
+      widget_shell = GTK_WIDGET(parent_shell);
+
+      handled = gtk_widget_event (widget_shell, (GdkEvent*)event);
+    }
+
+    if (!handled) {
+
+      widget_shell = GTK_WIDGET(menu_shell);
+
+      g_object_get (gtk_widget_get_settings (widget_shell),
+                    "gtk-enable-mnemonics", &enable_mnemonics, NULL);
+
+      if (enable_mnemonics) {
+        handled = geda_menu_shell_activate_mnemonic (menu_shell, event);
+      }
+    }
   }
-
-  return FALSE;
+  return handled;
 }
 
 static int
