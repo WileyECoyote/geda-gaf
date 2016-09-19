@@ -4804,6 +4804,7 @@ geda_label_button_press (GtkWidget *widget, GdkEventButton *event)
     info->select_words = FALSE;
 
     if (triggers_menu) {
+
       geda_label_do_popup (label, event);
 
       return TRUE;
@@ -4886,6 +4887,7 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
     return FALSE;
 
   if (info->in_drag) {
+
       info->in_drag = 0;
 
       get_layout_index (label, event->x, event->y, &index);
@@ -4903,8 +4905,6 @@ geda_label_button_release (GtkWidget *widget, GdkEventButton *event)
   {
       geda_label_emit_activate_link (label, info->active_link);
       info->link_clicked = 0;
-
-      return TRUE;
   }
 
   /* The goal here is to return TRUE if we ate the

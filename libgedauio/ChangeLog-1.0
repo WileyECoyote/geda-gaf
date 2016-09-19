@@ -2,6 +2,8 @@
 
     * include/geda_menu_shell.h: Add virtual member menu_key_press.
 
+    * src/widgets/geda_label.c: Remove extra return in geda_label_button_release.
+
     * src/widgets/geda_menu.c: Remove validation checks in static override
       geda_menu_key_press. Chain to geda_menu_shell_menu_key_press instead
       of menu_key_press, this is to eliminate the double calls from Gtk.
