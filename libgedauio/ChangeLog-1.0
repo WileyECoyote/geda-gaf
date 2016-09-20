@@ -6,8 +6,9 @@
     * tests/test_combobox.c: Check geda_combo_widget_box_get_count and
       geda_combo_box_get_count.
 
-    * tests/test_combobox_text.c:: Extend checks for combo_box_text_, add
-      debug_print and comments.
+    * tests/test_combobox_text.c: Extend checks for combo_box_text_, add
+      debug_print and comments. Refactor loading of combo under tests, add
+      function load_cities.
 
 2016-09-19 Wiley E. Hill <wileyhill@gmail.com>
 

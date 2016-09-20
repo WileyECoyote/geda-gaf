@@ -165,14 +165,8 @@ debug_print(GtkWidget *widget) {
 
 #endif
 
-int
-check_methods ()
-{
-  int   result = 0;
-  int   index;
-  char *city;
-
-  GtkWidget *widget = geda_combo_box_text_new();
+static void
+load_cities(GtkWidget *widget) {
 
   GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
 
@@ -196,6 +190,20 @@ check_methods ()
   geda_combo_box_text_prepend_text (combo_text, "Banteay");    /* 1 */
 
   geda_combo_box_text_widget_prepend (widget, "Banlung");      /* 0 */
+}
+
+int
+check_methods ()
+{
+  int   result = 0;
+  int   index;
+  char *city;
+
+  GtkWidget *widget = geda_combo_box_text_new();
+
+  GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
+
+  load_cities(widget);
 
   index = geda_combo_box_text_get_active(combo_text);
 
