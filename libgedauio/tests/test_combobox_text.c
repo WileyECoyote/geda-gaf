@@ -138,6 +138,33 @@ int check_construction (void)
   return result;
 }
 
+#ifdef DEBUG_COMBO_TEXT
+
+static void
+debug_print(GtkWidget *widget) {
+
+  GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
+
+  int old_index = geda_combo_box_text_widget_get_active(widget);
+
+  int i, count = geda_combo_widget_box_get_count(widget);
+
+  for (i =0; i< count; i++ ) {
+
+    char *city;
+
+    geda_combo_box_text_set_active(combo_text, i);
+
+    city = geda_combo_box_text_widget_get_active_text(widget);
+
+    fprintf(stderr, "FAILED: %s city[%d]=%s\n", TWIDGET, i, city);
+  }
+
+  geda_combo_box_text_widget_set_active(widget, old_index);
+}
+
+#endif
+
 int
 check_methods ()
 {
@@ -149,18 +176,21 @@ check_methods ()
 
   GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
 
+  /* append */
   geda_combo_box_text_append (combo_text, "kampong");         /* 5 */
 
-  geda_combo_box_text_append_text (combo_text, "Poipait");    /* 9 */
+  geda_combo_box_text_append_text (combo_text, "Poipait");    /* 6 */
 
-  geda_combo_box_text_widget_append (widget, "Sereysophon");  /* 10 */
+  geda_combo_box_text_widget_append (widget, "Sereysophon");  /* 7 */
 
+  /* insert */
   geda_combo_box_text_insert(combo_text, 0, "Chbamon");       /* 4 */
 
   geda_combo_box_text_insert_text (combo_text, 0, "Bavet");   /* 3 */
 
   geda_combo_box_text_widget_insert (widget, -1, "Soung");    /* 8 */
 
+  /* prepend */
   geda_combo_box_text_prepend (combo_text, "Battambang");      /* 2 */
 
   geda_combo_box_text_prepend_text (combo_text, "Banteay");    /* 1 */
@@ -215,6 +245,10 @@ check_methods ()
     result++;
   }
 
+#ifdef DEBUG_COMBO_TEXT
+  debug_print(widget);
+#endif
+
   /* "Takeo" should be the active text in the entry */
   city = geda_combo_box_text_widget_get_active_text(widget);
 
@@ -266,6 +300,20 @@ check_methods ()
     result++;
   }
   else if (strncmp(city, "Banlung", 8)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  /* "Soung" should be back at 8 after "Takeo" was removed */
+  geda_combo_box_text_set_active(combo_text, 8);
+
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Soung", 5)) {
     fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
     result++;
   }
