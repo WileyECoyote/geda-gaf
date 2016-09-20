@@ -161,9 +161,10 @@ static void geda_menu_shell_get_property      (GObject           *object,
                                                unsigned int       prop_id,
                                                GValue            *value,
                                                GParamSpec        *pspec);
-static void geda_menu_shell_realize           (GtkWidget         *widget);
 static void geda_menu_shell_dispose           (GObject           *object);
 static void geda_menu_shell_finalize          (GObject           *object);
+
+static void geda_menu_shell_realize           (GtkWidget         *widget);
 static int  geda_menu_shell_button_press      (GtkWidget         *widget,
                                                GdkEventButton    *event);
 static int  geda_menu_shell_button_release    (GtkWidget         *widget,
@@ -184,41 +185,42 @@ static void geda_menu_shell_forall            (GtkContainer      *container,
                                                bool               include_internals,
                                                GtkCallback        callback,
                                                void              *callback_data);
-static void geda_menu_shell_real_insert       (GedaMenuShell     *menu_shell,
-                                               GtkWidget         *child,
-                                               int                position);
-static void geda_real_menu_shell_deactivate      (GedaMenuShell     *menu_shell);
-static int  geda_menu_shell_is_item              (GedaMenuShell     *menu_shell,
-                                                  GtkWidget         *child);
-static GtkWidget *geda_menu_shell_get_item       (GedaMenuShell     *menu_shell,
-                                                  GdkEvent          *event);
-static GType geda_menu_shell_child_type          (GtkContainer      *container);
-static void geda_menu_shell_real_select_item     (GedaMenuShell     *menu_shell,
-                                                  GtkWidget         *menu_item);
-static bool geda_menu_shell_select_submenu_first (GedaMenuShell     *menu_shell);
 
-static void geda_real_menu_shell_move_current      (GedaMenuShell      *menu_shell,
-                                                    MenuDirection       direction);
-static void geda_real_menu_shell_activate_current  (GedaMenuShell      *menu_shell,
+static void geda_menu_shell_real_insert            (GedaMenuShell     *menu_shell,
+                                                    GtkWidget         *child,
+                                                    int                position);
+static void geda_real_menu_shell_deactivate        (GedaMenuShell     *menu_shell);
+static int  geda_menu_shell_is_item                (GedaMenuShell     *menu_shell,
+                                                    GtkWidget         *child);
+static GtkWidget *geda_menu_shell_get_item         (GedaMenuShell     *menu_shell,
+                                                    GdkEvent          *event);
+static GType geda_menu_shell_child_type            (GtkContainer      *container);
 static int  geda_menu_shell_menu_key_press         (GedaMenuShell     *menu_shell,
                                                     GdkEventKey       *event);
-                                                    bool               force_hide);
-static void geda_real_menu_shell_cancel            (GedaMenuShell      *menu_shell);
-static void geda_real_menu_shell_cycle_focus       (GedaMenuShell      *menu_shell,
-                                                    GtkDirectionType    dir);
+static void geda_menu_shell_real_select_item       (GedaMenuShell     *menu_shell,
+                                                    GtkWidget         *menu_item);
+static bool geda_menu_shell_select_submenu_first   (GedaMenuShell     *menu_shell);
 
-static void geda_menu_shell_reset_key_hash         (GedaMenuShell  *menu_shell);
-static bool geda_menu_shell_activate_mnemonic      (GedaMenuShell  *menu_shell,
-                                                    GdkEventKey    *event);
-static bool geda_menu_shell_real_move_selected     (GedaMenuShell  *menu_shell,
-                                                    int             distance);
+static void geda_real_menu_shell_move_current      (GedaMenuShell     *menu_shell,
+                                                    MenuDirection      direction);
+static void geda_real_menu_shell_activate_current  (GedaMenuShell     *menu_shell,
+                                                    bool               force_hide);
+static void geda_real_menu_shell_cancel            (GedaMenuShell     *menu_shell);
+static void geda_real_menu_shell_cycle_focus       (GedaMenuShell     *menu_shell,
+                                                    GtkDirectionType   dir);
+
+static void geda_menu_shell_reset_key_hash         (GedaMenuShell     *menu_shell);
+static bool geda_menu_shell_activate_mnemonic      (GedaMenuShell     *menu_shell,
+                                                    GdkEventKey       *event);
+static bool geda_menu_shell_real_move_selected     (GedaMenuShell     *menu_shell,
+                                                    int                distance);
 
 static unsigned int menu_shell_signals[LAST_SIGNAL] = { 0 };
 
 static void *geda_menu_shell_parent_class = NULL;
 
 static GType
-geda_menu_shell_child_type (GtkContainer     *container)
+geda_menu_shell_child_type (GtkContainer *container)
 {
   return GEDA_TYPE_MENU_ITEM;
 }
@@ -1443,6 +1445,7 @@ geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
       parent_menu_shell = (GedaMenuShell*)parent_menu_shell->parent_menu_shell;
     }
     while (parent_menu_shell);
+
     shells = g_slist_reverse (shells);
 
     geda_menu_shell_deactivate (menu_shell);
