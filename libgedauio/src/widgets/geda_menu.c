@@ -3567,10 +3567,6 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
       g_warning ("Failed to parse menu bar accelerator '%s'\n", accel);
     }
 
-    /* FIXME this is wrong, needs to be in the global accel resolution
-     * thing, to properly consider i18n etc., but that probably requires
-     * AccelGroup changes etc.
-     */
     if (event->keyval == keyval && (mods & event->state) == mods) {
       geda_menu_shell_cancel (menu_shell);
       g_free (accel);
@@ -3687,8 +3683,10 @@ check_threshold (GtkWidget *widget,
 static bool
 definitely_within_item (GtkWidget *widget, int x, int y)
 {
-  GdkWindow *window = geda_menu_item_get_event_window(GEDA_MENU_ITEM (widget));
+  GdkWindow *window;
   int w, h;
+
+  window = geda_menu_item_get_event_window(GEDA_MENU_ITEM (widget));
 
   //window = geda_get_widget_window(menu);
 
@@ -3835,8 +3833,8 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
 static bool
 get_double_arrows (GedaMenu *menu)
 {
-  GedaMenuPriv   *priv = menu->priv;
-  bool           double_arrows;
+  GedaMenuPriv     *priv = menu->priv;
+  bool              double_arrows;
   GtkArrowPlacement arrow_placement;
 
   gtk_widget_style_get (GTK_WIDGET (menu),
@@ -3844,8 +3842,9 @@ get_double_arrows (GedaMenu *menu)
                         "arrow-placement", &arrow_placement,
                         NULL);
 
-  if (arrow_placement != GTK_ARROWS_BOTH)
+  if (arrow_placement != GTK_ARROWS_BOTH) {
     return TRUE;
+  }
 
   return double_arrows || (priv->initially_pushed_in &&
                            menu->scroll_offset != 0);
@@ -3891,7 +3890,6 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
   gdk_drawable_get_size(widget->window, &width, &view_height);
 
 #endif
-
 
   if (menu->scroll_offset == 0 &&
       view_height >= widget->requisition.height)
@@ -4001,8 +3999,7 @@ geda_menu_start_scrolling (GedaMenu *menu)
 }
 
 static bool
-geda_menu_scroll (GtkWidget  *widget,
-         GdkEventScroll *event)
+geda_menu_scroll (GtkWidget *widget, GdkEventScroll *event)
 {
   GedaMenu *menu = GEDA_MENU (widget);
 

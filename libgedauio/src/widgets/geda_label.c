@@ -834,7 +834,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
       pango_matrix_rotate (&matrix, label->angle);
 
-      pango_context_set_matrix ( context, &matrix);
+      pango_context_set_matrix (context, &matrix);
 
       priv->have_transform = TRUE;
     }
@@ -854,10 +854,9 @@ static void geda_label_ensure_layout (GedaLabel *label)
 
     if (priv->select_info && priv->select_info->links) {
 
-
-      GList          *list;
-      GdkColor        link_color;
-      GdkColor        visited_color;
+      GList    *list;
+      GdkColor  link_color;
+      GdkColor  visited_color;
 
       geda_label_get_link_colors (widget, &link_color, &visited_color);
       attrs = pango_attr_list_new ();
@@ -2425,7 +2424,7 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
 
 void
 geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
-                                                 bool      mnemonics_visible)
+                                                bool       mnemonics_visible)
 {
   if (GEDA_IS_LABEL(widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
@@ -2484,7 +2483,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   label_shortcut_setting_apply (GEDA_LABEL (widget));
 }
 
-/* Helper call by geda_label_set_mnemonic_widget */
+/* Helper called by geda_label_set_mnemonic_widget */
 static void
 label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 {
@@ -4465,11 +4464,10 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
   *new_str   = g_new (char, strlen (str) + 1);
   *pattern   = g_new (char, g_utf8_strlen (str, -1) + 1);
 
-  underscore = FALSE;
-
   src          = str;
   dest         = *new_str;
   pattern_dest = *pattern;
+  underscore   = FALSE;
 
   while (*src) {
 
@@ -4494,8 +4492,10 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
       else {
 
         *pattern_dest++ = '_';
-        if (*accel_key == GDK_KEY_VoidSymbol)
+
+        if (*accel_key == GDK_KEY_VoidSymbol) {
           *accel_key = gdk_keyval_to_lower (gdk_unicode_to_keyval (c));
+        }
       }
 
       while (src < next_src) {
