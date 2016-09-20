@@ -85,7 +85,7 @@ struct _ComboCellInfo
   GSList          *attributes;
 
   GtkCellLayoutDataFunc func;
-  void * func_data;
+  void *func_data;
   GDestroyNotify destroy;
 
   unsigned int expand : 1;
@@ -5855,7 +5855,7 @@ bool geda_combo_box_get_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
  *  unsets the active item if \a iter is %NULL.
  *
  *  \param [in] combobox  A #GedaComboBox
- *  \param [in] iter      (allow-none): The <b>GtkTreeIter</b>, or %NULL
+ *  \param [in] iter       The <b>GtkTreeIter</b>, or %NULL
  */
 void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
 {
@@ -5917,8 +5917,7 @@ geda_combo_box_get_count (GedaComboBox *combo_box)
  *
  *  \param [in] combo_box A #GedaComboBox
  *
- * \return value: (transfer none): A GtkTreeModel which was passed
- *                during construction.
+ * \return A GtkTreeModel which was passed during construction.
  */
 GtkTreeModel *
 geda_combo_box_get_model (GedaComboBox *combo_box)
@@ -5939,7 +5938,7 @@ geda_combo_box_get_model (GedaComboBox *combo_box)
  *  cell renderers for the new model.
  *
  *  \param [in] combo_box A #GedaComboBox
- *  \param [in] model     (allow-none): A <b>GtkTreeIter</b>
+ *  \param [in] model     A <b>GtkTreeIter</b>
  */
 void
 geda_combo_box_set_model (GedaComboBox *combo_box,
@@ -6284,7 +6283,6 @@ geda_combo_box_get_active_text (GedaComboBox *combo_box)
   }
   return NULL;
 }
-\
 
 static void
 geda_combo_box_real_move_active (GedaComboBox  *combo_box,
@@ -6718,8 +6716,8 @@ geda_combo_box_get_row_separator_func (GedaComboBox *combo_box)
  *
  *  \param [in] combo_box a #GedaComboBox
  *  \param [in] func      a <b>GtkTreeViewRowSeparatorFunc</b>
- *  \param [in] data      (allow-none): user data to pass to \a func, or %NULL
- *  \param [in] destroy   (allow-none): destroy notifier for \a data, or %NULL
+ *  \param [in] data       user data to pass to \a func, or %NULL
+ *  \param [in] destroy    destroy notifier for \a data, or %NULL
  */
 void
 geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
@@ -7121,12 +7119,14 @@ geda_combo_widget_get_model (GtkWidget *combo_box) {
 }
 
 void
-geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model) {
+geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model)
+{
   return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
 }
 
 bool
-geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
+geda_combo_widget_get_has_entry (GtkWidget *combo_box)
+{
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->has_entry;
   BUG_MSG ("Operative is not a GedaComboBox");
@@ -7147,8 +7147,8 @@ geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
  *     geda_combo_widget_get_entry_widget
  */
 GedaEntry*
-geda_combo_widget_get_entry (GtkWidget *combo_box) {
-
+geda_combo_widget_get_entry (GtkWidget *combo_box)
+{
   GtkWidget *widget = geda_combo_widget_get_entry_widget(combo_box);
 
   if (widget) {
