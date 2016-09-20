@@ -5871,6 +5871,45 @@ void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
   gtk_tree_path_free (path);
 }
 
+/*!
+ * \brief Get count of items in GedaComboBox Model
+ * \par Function Description
+ *  Returns the number of items in the GtkTreeModel acting as data
+ *  source for \a combo_box. If the combo_box has not tree model
+ *  then zero is returned.
+ *
+ * \param [in] combo_box A #GedaComboBox
+ *
+ * \returns Count of GtkTreeModel items or 0.
+ */
+
+int
+geda_combo_box_get_count (GedaComboBox *combo_box)
+{
+  int count;
+
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
+
+    count = 0;
+
+    if (combo_box->priv->model) {
+
+      void counter(void *model, void *path, void *iter, void *data) {
+        count++;
+      }
+
+      gtk_tree_model_foreach (combo_box->priv->model,
+                             (GtkTreeModelForeachFunc)counter,
+                              NULL);
+    }
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
+    count = -1;
+  }
+  return count;
+}
+
 /*! \brief Get Active #GedaComboBox Model
  *
  *  \par Function Description
@@ -7065,6 +7104,13 @@ geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
 /** \defgroup GedaComboBox-widget-getters-setters GedaComboBox Widget getters and setters
  *  @{
  */
+
+/*! widget version of #geda_combo_box_get_count */
+int
+geda_combo_widget_box_get_count(GtkWidget *widget)
+{
+  return geda_combo_box_get_count((GedaComboBox*)widget);
+}
 
 GtkTreeModel*
 geda_combo_widget_get_model (GtkWidget *combo_box) {

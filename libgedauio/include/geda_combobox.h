@@ -128,6 +128,8 @@ void          geda_combo_box_set_active_iter        (GedaComboBox   *combo_box,
 
 /* getters and setters */
 
+int           geda_combo_box_get_count              (GedaComboBox   *combo_box);
+
 GtkTreeModel *geda_combo_box_get_model              (GedaComboBox    *combo_box);
 void          geda_combo_box_set_model              (GedaComboBox    *combo_box,
                                                      GtkTreeModel    *model);
@@ -205,7 +207,11 @@ bool          geda_combo_widget_get_active_iter        (GtkWidget   *combo_box,
                                                         GtkTreeIter *iter);
 void          geda_combo_widget_set_active_iter        (GtkWidget   *combo_box,
                                                         GtkTreeIter *iter);
+
 /* getters and setters */
+
+int           geda_combo_widget_box_get_count          (GtkWidget   *combo_box);
+
 GtkTreeModel *geda_combo_widget_get_model              (GtkWidget    *combo_box);
 void          geda_combo_widget_set_model              (GtkWidget    *combo_box,
                                                         GtkTreeModel *model);
