@@ -3,6 +3,9 @@
     * src/widgets/geda_combobox.c: Add functions geda_combo_box_get_count and
       geda_combo_widget_box_get_count.
 
+    * tests/test_combobox.c: Check geda_combo_widget_box_get_count and
+      geda_combo_box_get_count.
+
 2016-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_shell.h: Add virtual member menu_key_press.

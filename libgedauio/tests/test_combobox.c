@@ -390,7 +390,7 @@ check_accessors ()
 
     GedaComboBox *combo_box;
     GtkTreeModel *tree_model;
-    GtkTreeIter iter;
+    GtkTreeIter   iter;
 
     tree_model = geda_combo_widget_get_model (widget);
 
@@ -412,6 +412,13 @@ check_accessors ()
     geda_combo_box_remove_index (combo_box, 2);
 
     /* The model should contain "1", "2", "3" */
+
+    int count = geda_combo_widget_box_get_count (widget);
+
+    if (count != 3) {
+      fprintf(stderr, "FAILED: %s line <%d> count %d != 3\n", TWIDGET, __LINE__, count);
+      result++;
+    }
 
     if (!gtk_tree_model_get_iter_first (tree_model, &iter)) {
       fprintf(stderr, "FAILED: %s line <%d> _iter_first\n", TWIDGET, __LINE__);
