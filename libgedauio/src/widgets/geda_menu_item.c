@@ -1140,6 +1140,7 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     label = gtk_bin_get_child (GTK_BIN(menu_item));
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
+
       geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL(label),
                                          GTK_WIDGET(menu_item));
     }
@@ -1892,13 +1893,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
     requisition->height += child_requisition.height;
 
     if (priv->submenu && priv->show_submenu_indicator) {
-/*
-      unsigned int arrow_spacing;
 
-      gtk_widget_style_get (widget,
-                            "arrow-spacing", &arrow_spacing,
-                            NULL);
-*/
       int arrow_spacing, arrow_size;
 
       get_arrow_size (widget, bin->child, &arrow_size, &arrow_spacing);
