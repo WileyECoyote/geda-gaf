@@ -2367,8 +2367,7 @@ geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
 }
 
 static void
-geda_menu_item_size_allocate (GtkWidget     *widget,
-                              GtkAllocation *allocation)
+geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenuItem        *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2616,8 +2615,7 @@ geda_real_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
 }
 
 static void
-geda_real_menu_item_set_label (GedaMenuItem *menu_item,
-                               const char   *label)
+geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *label)
 {
   GedaLabel *child;
 
@@ -3371,8 +3369,7 @@ geda_menu_item_can_activate_accel (GtkWidget   *widget,
 }
 
 static void
-geda_menu_item_accel_name_foreach (GtkWidget *widget,
-                                   void      *data)
+geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
 {
   const char **path_p = data;
 
@@ -3473,8 +3470,7 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  *                        current path
  */
 void
-geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
-                               const char   *accel_path)
+geda_menu_item_set_accel_path (GedaMenuItem *menu_item, const char *accel_path)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
   GtkWidget *parent;
@@ -3661,8 +3657,7 @@ geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
  * \param [in] text      text to be used in the label
  */
 void
-geda_menu_item_set_label (GedaMenuItem *menu_item,
-                          const char   *text)
+geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -3697,8 +3692,7 @@ geda_menu_item_get_label (GedaMenuItem *menu_item)
  * \param [in] setting   %TRUE if underlines in the text indicate mnemonics
  */
 void
-geda_menu_item_set_use_underline (GedaMenuItem *menu_item,
-                                  bool          setting)
+geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 {
   GtkWidget *child;
 
@@ -3758,8 +3752,7 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
  * \param [in] reserve   a the new value
  */
 void
-geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item,
-                                      bool          reserve)
+geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve)
 {
   GedaMenuItemPrivate *priv;
 
@@ -3820,8 +3813,7 @@ geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
  * \param [in] show      Boolean value, if True the indicated will be shown
  */
 void
-geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item,
-                                           bool           show)
+geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
 {
   GedaMenuItemPrivate *priv;
 
