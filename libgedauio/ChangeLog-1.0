@@ -1,3 +1,8 @@
+2016-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_combobox_text.c: Check for widget version of box_text_remove
+      = geda_combo_box_text_widget_remove.
+
 2016-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add functions geda_combo_box_get_count and
@@ -7,7 +12,7 @@
       geda_combo_box_get_count.
 
     * tests/test_combobox_text.c: Extend checks for combo_box_text_, add
-      debug_print and comments. Refactor loading of combo under tests, add
+      debug_print and comments. Re-factor loading of combo under tests, add
       function load_cities.
 
 2016-09-19 Wiley E. Hill <wileyhill@gmail.com>

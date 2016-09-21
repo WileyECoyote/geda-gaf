@@ -326,6 +326,24 @@ check_methods ()
     result++;
   }
 
+  /* Remove "Banlung" */
+  geda_combo_box_text_widget_remove(widget, 0);
+
+  /* "Banteay" Should now be at the first index */
+  geda_combo_box_text_set_active(combo_text, 0);
+
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Banteay", 7)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
   return result;
