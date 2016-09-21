@@ -182,7 +182,7 @@ void m_rotate_point(int x, int y, int angle, int *newx, int *newy)
   double cos_theta, sin_theta;
   double rad;
 
-  rad = angle*M_PI/180;
+  rad = angle * M_PI / 180;
 
   cos_theta = cos(rad);
   sin_theta = sin(rad);
