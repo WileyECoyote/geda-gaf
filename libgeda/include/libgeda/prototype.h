@@ -115,11 +115,11 @@ extern "C" {
        double    m_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
-         void    m_hatch_box                     (GedaBox    *box,    int angle, int pitch, GArray *lines);
-         void    m_hatch_circle                  (GedaCircle *circle, int angle, int pitch, GArray *lines);
-         void    m_hatch_path                    (GedaPath   *path,   int angle, int pitch, GArray *lines);
-         void    m_hatch_polygon                 (GArray     *points, int angle, int pitch, GArray *lines);
-       GArray   *m_hatch_object                  (GedaObject *object);
+         void    geda_math_hatch_box                     (GedaBox    *box,    int angle, int pitch, GArray *lines);
+         void    geda_math_hatch_circle                  (GedaCircle *circle, int angle, int pitch, GArray *lines);
+         void    geda_math_hatch_path                    (GedaPath   *path,   int angle, int pitch, GArray *lines);
+         void    geda_math_hatch_polygon                 (GArray     *points, int angle, int pitch, GArray *lines);
+       GArray   *geda_math_hatch_object                  (GedaObject *object);
 
 /* m_line.c */
          bool    geda_math_line_get_intersection         (GedaLine *line1, GedaLine *line2, POINT *point);

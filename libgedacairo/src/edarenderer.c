@@ -630,7 +630,7 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
       int     fill_width;
       int     index;
 
-      fill_lines = m_hatch_object(object);
+      fill_lines = geda_math_hatch_object(object);
       fill_width = object->fill_options->fill_width;
 
       /* Draw fill pattern */

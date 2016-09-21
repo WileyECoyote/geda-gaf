@@ -1153,8 +1153,8 @@ geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   if (fill_width <= 1) fill_width = 2;
 
   lines = g_array_new (FALSE, FALSE, sizeof(LINE));
-  fprintf(stderr, "geda_path_object_print_hatch: Calling m_hatch_path with pitch=[%d]", pitch1);
-  m_hatch_path (path, angle1, pitch1, lines);
+  fprintf(stderr, "geda_path_object_print_hatch: Calling geda_math_hatch_path with pitch=[%d]", pitch1);
+  geda_math_hatch_path (path, angle1, pitch1, lines);
 
   for (i=0; i < lines->len; i++) {
     LINE *line = &g_array_index (lines, LINE, i);

@@ -1096,7 +1096,7 @@ geda_circle_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   circle.center_y = y;
   circle.radius   = radius;
 
-  m_hatch_circle(&circle, angle1, pitch1, lines);
+  geda_math_hatch_circle(&circle, angle1, pitch1, lines);
 
   for(index=0; index<lines->len; index++) {
     LINE *line = &g_array_index(lines, LINE, index);

@@ -1316,7 +1316,7 @@ geda_box_object_print_hatch(GedaToplevel *toplevel, FILE *fp,
   box.lower_x = x + width;
   box.lower_y = y - height;    /* Hmmm... */
 
-  m_hatch_box(&box, angle1, pitch1, lines);
+  geda_math_hatch_box(&box, angle1, pitch1, lines);
 
   for(index=0; index<lines->len; index++) {
 

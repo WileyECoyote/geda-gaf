@@ -113,7 +113,7 @@ static int compare_status(const void *a, const void *b)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
+void geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 {
   GArray *corners;
   POINT point;
@@ -139,7 +139,7 @@ void m_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
   point.y = box->lower_y;
   g_array_append_val(corners, point);
 
-  m_hatch_polygon(corners, angle, pitch, lines);
+  geda_math_hatch_polygon(corners, angle, pitch, lines);
 
   g_array_free(corners, TRUE);
 }
@@ -159,7 +159,8 @@ void m_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
  *                      This function appends new line segments to the GArray and
  *                      leaves existing GArray contents unchanged.
  */
-void m_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
+void
+geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
 {
   int       radius;
   int       sweep_y;
@@ -209,7 +210,7 @@ void m_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
  *                     This function appends new line segments to the GArray
  *                     and leaves existing GArray contents unchanged.
  */
-void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
+void geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 {
   GArray *points;
 
@@ -219,7 +220,7 @@ void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
   points = g_array_new (FALSE, FALSE, sizeof(POINT));
 
   geda_struct_path_to_polygon (path, points);
-  m_hatch_polygon (points, angle, pitch, lines);
+  geda_math_hatch_polygon (points, angle, pitch, lines);
 
   g_array_free (points, TRUE);
 }
@@ -239,7 +240,7 @@ void m_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
+void geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
 {
   BOUNDS bounds;
   GArray *events;
@@ -344,7 +345,7 @@ void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   g_array_free(status, TRUE);
 }
 
-GArray *m_hatch_object  (GedaObject *object)
+GArray *geda_math_hatch_object  (GedaObject *object)
 {
   GArray *fill_lines;
   int fill_type;
@@ -375,13 +376,13 @@ GArray *m_hatch_object  (GedaObject *object)
         if ( fill_pitch2 > 0) {
           switch (object->type) {
             case OBJ_BOX:
-              m_hatch_box(object->box, fill_angle2, fill_pitch2, fill_lines);
+              geda_math_hatch_box(object->box, fill_angle2, fill_pitch2, fill_lines);
               break;
             case OBJ_CIRCLE:
-              m_hatch_circle(object->circle, fill_angle2, fill_pitch2, fill_lines);
+              geda_math_hatch_circle(object->circle, fill_angle2, fill_pitch2, fill_lines);
               break;
             case OBJ_PATH:
-              m_hatch_path(object->path, fill_angle2, fill_pitch2, fill_lines);
+              geda_math_hatch_path(object->path, fill_angle2, fill_pitch2, fill_lines);
           }
         }
 
@@ -389,13 +390,13 @@ GArray *m_hatch_object  (GedaObject *object)
       case FILLING_HATCH:
         switch (object->type) {
           case OBJ_BOX:
-            m_hatch_box(object->box, fill_angle1, fill_pitch1, fill_lines);
+            geda_math_hatch_box(object->box, fill_angle1, fill_pitch1, fill_lines);
             break;
           case OBJ_CIRCLE:
-            m_hatch_circle(object->circle, fill_angle1, fill_pitch1, fill_lines);
+            geda_math_hatch_circle(object->circle, fill_angle1, fill_pitch1, fill_lines);
             break;
           case OBJ_PATH:
-            m_hatch_path(object->path, fill_angle1, fill_pitch1, fill_lines);
+            geda_math_hatch_path(object->path, fill_angle1, fill_pitch1, fill_lines);
           default:
             break;
         }

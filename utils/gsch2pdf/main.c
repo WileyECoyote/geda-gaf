@@ -83,12 +83,12 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
-        m_hatch_box(object->box, object->fill_options->fill_angle1,
+        geda_math_hatch_box(object->box, object->fill_options->fill_angle1,
                                  object->fill_options->fill_pitch1, lines);
 
         if (object->fill_options->fill_type == FILLING_MESH) {
 
-            m_hatch_box(object->box, object->fill_options->fill_angle2,
+            geda_math_hatch_box(object->box, object->fill_options->fill_angle2,
                                      object->fill_options->fill_pitch2, lines);
         }
 
@@ -161,13 +161,15 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
-        m_hatch_circle(object->circle, object->fill_options->fill_angle1,
-                       object->fill_options->fill_pitch1, lines);
+        geda_math_hatch_circle(object->circle,
+                               object->fill_options->fill_angle1,
+                               object->fill_options->fill_pitch1, lines);
 
         if (object->fill_options->fill_type == FILLING_MESH)
         {
-            m_hatch_circle(object->circle, object->fill_options->fill_angle2,
-                           object->fill_options->fill_pitch2, lines);
+            geda_math_hatch_circle(object->circle,
+                                   object->fill_options->fill_angle2,
+                                   object->fill_options->fill_pitch2, lines);
         }
 
         cairo_set_line_width( cairo, object->fill_options->fill_width > 5.0 ?
@@ -303,12 +305,12 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
     GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
-    m_hatch_path(object->path, object->fill_options->fill_angle1,
-                 object->fill_options->fill_pitch1, lines);
+    geda_math_hatch_path(object->path, object->fill_options->fill_angle1,
+                         object->fill_options->fill_pitch1, lines);
 
     if (object->fill_options->fill_type == FILLING_MESH) {
-      m_hatch_path(object->path, object->fill_options->fill_angle2,
-                   object->fill_options->fill_pitch2, lines);
+      geda_math_hatch_path(object->path, object->fill_options->fill_angle2,
+                           object->fill_options->fill_pitch2, lines);
     }
 
     fill_width = object->fill_options->fill_width > 5.0 ?
