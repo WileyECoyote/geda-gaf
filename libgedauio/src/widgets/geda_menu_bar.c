@@ -25,6 +25,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <ctype.h>
 
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
@@ -112,6 +113,8 @@ static bool geda_menu_bar_button_press                (GtkWidget      *widget,
 static bool geda_menu_bar_window_key_press_handler    (GtkWidget   *widget,
                                                        GdkEventKey *event,
                                                        void        *data);
+static bool geda_menu_bar_key_press                   (GtkWidget      *widget,
+                                                       GdkEventKey    *event);
 static void geda_menu_bar_hierarchy_changed           (GtkWidget      *widget,
                                                        GtkWidget      *old_toplevel);
 static int  geda_menu_bar_get_popup_delay             (GedaMenuShell  *menu_shell);
@@ -829,6 +832,7 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 
   return FALSE;
 }
+
 #endif
 
 static void geda_menu_bar_finalize (GObject *object)
@@ -887,6 +891,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
 
   widget_class->hierarchy_changed              = geda_menu_bar_hierarchy_changed;
   widget_class->button_press_event             = geda_menu_bar_button_press;
+  widget_class->key_press_event                = geda_menu_bar_key_press;
 
   //gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_MENU_BAR);
 
@@ -1188,6 +1193,52 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
   }
 
   return FALSE;
+}
+
+/* This function is executed when the subordinate menu shell
+ * propagates an event using gtk_widget_event after determining
+ * that the key press was not relevant to bindings nor children
+ * of that shell.
+ */
+static bool
+geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
+{
+  GedaMenuShell *menu_shell;
+
+  menu_shell = GEDA_MENU_SHELL (widget);
+
+  bool result = FALSE;
+
+  if (menu_shell->children) {
+
+    GList *iter;
+
+    for (iter = menu_shell->children; iter; iter = iter->next) {
+
+      if (GEDA_IS_MENU_ITEM(iter->data)) {
+
+        GedaMenuItem *menu_item = iter->data;
+
+        char mnemonic = geda_menu_item_get_mnemonic(menu_item);
+        char key_char = (char)event->keyval;
+
+        if (((mnemonic >> 5) & 1) ^ 1) {
+          mnemonic = tolower(mnemonic);
+        }
+
+        if (key_char == mnemonic){
+
+          if (geda_menu_item_is_selectable(menu_item)) {
+            geda_menu_item_activate_item(menu_item);
+          }
+          result = TRUE;
+          break;
+        }
+      }
+    }
+  }
+
+  return result;
 }
 
 static bool
