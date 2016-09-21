@@ -1280,26 +1280,32 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
     event_mods   = event->state & default_mask;
     accel_mods   = mods & default_mask;
 
-    if (keys_match && (event_mods == accel_mods)) {
+    if (event_mods == accel_mods) {
 
-      GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
+      GList *bars;
       GList *menubars;
 
-      menubars = geda_container_focus_sort (GTK_CONTAINER(widget), tmp_menubars,
+      bars = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
+
+      menubars = geda_container_focus_sort (GTK_CONTAINER(widget), bars,
                                             GTK_DIR_TAB_FORWARD, NULL);
-      g_list_free (tmp_menubars);
+      g_list_free (bars);
 
       if (menubars) {
 
-        GedaMenuShell *menu_shell = GEDA_MENU_SHELL (menubars->data);
+        GedaMenuShell *menu_shell;
 
-        geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
-        geda_menu_shell_activate (menu_shell);
-        geda_menu_shell_select_first (menu_shell, FALSE);
+        if (keys_match) {
+
+          menu_shell = GEDA_MENU_SHELL (menubars->data);
+
+          geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
+          geda_menu_shell_activate (menu_shell);
+          geda_menu_shell_select_first (menu_shell, FALSE);
+          retval = TRUE;
+        }
 
         g_list_free (menubars);
-
-        retval = TRUE;
       }
     }
   }

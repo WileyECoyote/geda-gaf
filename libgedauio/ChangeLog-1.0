@@ -3,7 +3,8 @@
     * tests/test_combobox_text.c: Check for widget version of box_text_remove
       = geda_combo_box_text_widget_remove.
 
-    * src/widgets/geda_menu_bar.c: Add key_press_event override.
+    * src/widgets/geda_menu_bar.c: Add key_press_event override, revise function
+      geda_menu_bar_window_key_press_handler.
 
 2016-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
