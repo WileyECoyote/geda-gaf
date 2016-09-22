@@ -1,5 +1,8 @@
 2016-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgeda.c: Revise Doxygen comments, add comment block for
+      libgeda_release.
+
     * src/math/m_circle.c: Rename functions with geda_math prefix.
 
 2016-09-21 Wiley E. Hill <wileyhill@gmail.com>

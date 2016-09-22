@@ -33,9 +33,10 @@
 #include <libgeda_priv.h>
 #include <libgedaguile.h>
 
-/*! \brief libgeda Parse command-line options.
+/*!
+ * \brief libgeda Parse command-line options.
  * \par Function Description
- * Parse command line options
+ *  Parse command line options
  *
  * \param argc Number of command-line arguments.
  * \param argv Array of command-line arguments.
@@ -74,8 +75,9 @@ static void parse_args (int argc, char **argv)
   geda_utility_log_set_verbose_mode(verbose_mode);
 }
 
-/*! \brief Perform Guile runtime initialization of libgeda library.
- *  \par Function Description
+/*!
+ * \brief Perform Guile runtime initialization of libgeda library.
+ * \par Function Description
  *  This function is called internally by libgeda_init using the
  *  scm_with_guile function to initialize <b>Guile</b> runtime
  *  routines. This function does not require any arguments, nor
@@ -84,7 +86,6 @@ static void parse_args (int argc, char **argv)
  *  function.
  *
  *  \sa libgeda_init
- *
  */
 static void *libgeda_guile_init(void *lame)
 {
@@ -95,15 +96,15 @@ static void *libgeda_guile_init(void *lame)
   return lame;
 }
 
-/*! \brief Perform runtime initialization of libgeda library.
- *  \par Function Description
+/*!
+ * \brief Perform runtime initialization of libgeda library.
+ * \par Function Description
  *  This function calls "satellite" initialization functions in
  *  various modules to initialize data structures for runtime.
  *  This function should normally be called before any other
- *  libgeda functions are called. The call scm_with_guile is
- *  used to ensure we are in guile mode, regardless of whether
- *  the client is in guile mode.
- *
+ *  functions in libgeda are called. scm_with_guile is utilized
+ *  to ensure library procedure are in guile mode, regardless
+ *  of whether the client is in guile mode.
  */
 void libgeda_init(int argc, char **argv)
 {
@@ -153,6 +154,15 @@ void libgeda_init(int argc, char **argv)
   scm_with_guile(libgeda_guile_init, &lame);
 }
 
+
+/*!
+ * \brief Release Resources used by the libgeda library.
+ * \par Function Description
+ *  This function should be called before exiting application
+ *  programs in order to release resources that may have been
+ *  allocated by the library. In general, the library should
+ *  not be accessed once this function has been called.
+ */
 void libgeda_release(void)
 {
   f_path_free();
