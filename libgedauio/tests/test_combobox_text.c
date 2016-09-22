@@ -343,6 +343,36 @@ check_methods ()
     result++;
   }
 
+  geda_combo_box_text_remove_all_text(combo_text);
+
+  int count = geda_combo_widget_box_get_count(widget);
+
+  if (count) {
+    fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);
+    result++;
+  }
+
+  /* Add and set text to a new cityinto the empty list */
+  if (!geda_combo_box_text_widget_set_active_text(widget, "Khemarak")) {
+    fprintf(stderr, "FAILED: %s line <%d> set_active_text\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  count = geda_combo_widget_box_get_count(widget);
+
+  if (count - 1) {
+    fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);
+    result++;
+  }
+
+  geda_combo_box_text_widget_remove_all(widget);
+
+  count = geda_combo_widget_box_get_count(widget);
+
+  if (count) {
+    fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);
+    result++;
+  }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
