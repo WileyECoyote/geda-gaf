@@ -1070,7 +1070,7 @@ geda_x11_draw_circle (int cx, int cy, int radius)
   XGCValues gcvals;
   int       circum;
 
-  circum = m_circle_circumference(radius);
+  circum = geda_math_circle_circumference(radius);
   bits   = SetLineAttributes(&gcvals, circum);
 
   if (bits) {

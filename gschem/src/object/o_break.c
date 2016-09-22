@@ -446,12 +446,12 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
   point1.x = w_current->first_wx;
   point1.y = w_current->first_wy;
 
-  if (m_circle_includes_point(object->circle, &point1)) {
+  if (geda_math_circle_includes_point(object->circle, &point1)) {
 
     point2.x = w_current->second_wx;
     point2.y = w_current->second_wy;
 
-    if (m_circle_includes_point(object->circle, &point2)) {
+    if (geda_math_circle_includes_point(object->circle, &point2)) {
 
       GedaObject *new_obj;
       double      radians;

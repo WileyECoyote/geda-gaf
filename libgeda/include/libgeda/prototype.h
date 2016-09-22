@@ -110,9 +110,9 @@ extern "C" {
        bool      m_arc_includes_point            (GedaArc *arc, POINT *point);
 
 /* m_circle.c */
-       double    m_circle_circumference          (int radius);
-       bool      m_circle_includes_point         (GedaCircle *circle, POINT *point);
-       double    m_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
+       double    geda_math_circle_circumference          (int radius);
+       bool      geda_math_circle_includes_point         (GedaCircle *circle, POINT *point);
+       double    geda_math_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
          void    geda_math_hatch_box                     (GedaBox    *box,    int angle, int pitch, GArray *lines);
