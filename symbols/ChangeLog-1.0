@@ -1,3 +1,13 @@
+2016-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD633JN-1.sym: Add description attribute.
+
+    * analogdevices/AD633J: Redo symbols:
+
+            * analogdevices/AD633JN-2.sym: DIP8
+            * analogdevices/AD633JR-2.sym: SOIC8 (rename -1 to -2 because this
+              is consistence with the JN DIP variety.)
+
 2016-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/AM3359BZCE-1.sym: Add symbol AM3357B 32-Bit RISC ARM Processor,
