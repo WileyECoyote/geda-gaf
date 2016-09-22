@@ -31,8 +31,8 @@
  *  The first and the last element are referenced by the head and tail
  *  pointers.
  *
- *  \image html geda_struct_page_overview.png
- *  \image latex geda_struct_page_overview.pdf "page overview" width=14cm
+ *  \image html s_page_overview.png
+ *  \image latex s_page_overview.pdf "page overview" width=14cm
  */
 
 #include <config.h>
