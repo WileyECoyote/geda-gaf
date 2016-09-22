@@ -1766,7 +1766,14 @@ GENERATE_MAN           = NO
 # The default directory is: man.
 # This tag requires that the tag GENERATE_MAN is set to YES.
 
-MAN_OUTPUT             = man
+#MAN_OUTPUT             = man
+
+# If the doxygen generted output is configured for out-of-source, generted man
+# pages will also be out-of-source; in the OUTPUT_DIRECTORY, as noted above.
+# To override this behavior and generate the MAN output relative to the build
+# directory use the next line instead of the previous MAN_OUTPUT:
+
+MAN_OUTPUT             = $(PWD)/man
 
 # The MAN_EXTENSION tag determines the extension that is added to the generated
 # man pages. In case the manual section does not start with a number, the number
@@ -1802,7 +1809,14 @@ GENERATE_XML           = NO
 # The default directory is: xml.
 # This tag requires that the tag GENERATE_XML is set to YES.
 
-XML_OUTPUT             = xml
+#XML_OUTPUT             = xml
+
+# If the doxygen generted output is configured for out-of-source, the XML will
+# also be out-of-source; in the OUTPUT_DIRECTORY, as noted above. To override
+# this behavior and generate the XML output relative to the build directory
+# uncomment the following:
+
+XML_OUTPUT             = $(PWD)/xml
 
 # The XML_SCHEMA tag can be used to specify a XML schema, which can be used by a
 # validating XML parser to check the syntax of the XML files.

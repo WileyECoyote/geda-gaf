@@ -1,3 +1,8 @@
+2016-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgeda*/docs/libgeda*.dox: Revise Coxygen configuration files for
+      libraries to facilitate generation of in-source XML documentation.
+
 2016-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/configure.ac: Add -std=c99 to gcc flag
