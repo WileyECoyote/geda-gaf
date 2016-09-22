@@ -1782,7 +1782,7 @@ geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int forc
 
     solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
 
-    return m_circle_shortest_distance (object->circle, x, y, solid);
+    return geda_math_circle_shortest_distance (object->circle, x, y, solid);
   }
   geda_circle_object_error(__func__, object);
   return (G_MAXDOUBLE);

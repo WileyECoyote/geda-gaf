@@ -35,7 +35,6 @@
  *  libgeda. Currently complex objects are just marked to
  *  be embedded later. Picture objects are embedded immediatly.
  *
- *  \param toplevel  The GedaToplevel object
  *  \param o_current The GedaObject to embed
  */
 bool geda_object_embed(GedaObject *o_current)
@@ -73,7 +72,6 @@ bool geda_object_embed(GedaObject *o_current)
  *  libgeda structure. Complex objects are just marked to
  *  be not embedded. Picture objects are unembeded immediatly.
  *
- * \param toplevel  The GedaToplevel object
  * \param o_current The GedaObject to unembed
  *
  * \retval  0 on success
