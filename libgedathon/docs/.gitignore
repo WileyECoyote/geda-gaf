@@ -2,6 +2,7 @@ Makefile.in
 Makefile
 latex
 html
+xml
 *.1
 geda-snap-grid.html
 gsym-attribute.html

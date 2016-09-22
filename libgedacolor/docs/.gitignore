@@ -2,6 +2,7 @@ Makefile.in
 Makefile
 latex
 html
+xml
 libgedacolor.html
 
 
