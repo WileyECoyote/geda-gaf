@@ -42,12 +42,13 @@
  *  \image latex break.png
  */
 
-/*! \brief Is an object Breakable
- *  \par Function Description
- *   Returns true of \a object is a type of object that is supported
- *   by the Break module.
+/*!
+ * \brief Is an object Breakable
+ * \par Function Description
+ *  Returns true of \a object is a type of object that is supported
+ *  by the Break module.
  *
- *  \returns TRUE if object is breakable, otherwise FALSE.
+ * \returns TRUE if object is breakable, otherwise FALSE.
  */
 static bool o_break_is_breakable (GedaObject *object)
 {
@@ -74,16 +75,17 @@ static bool o_break_is_breakable (GedaObject *object)
   return anwser;
 }
 
-/*! \brief Break an Arc
- *  \par Function Description
- *   If both points specified in \a w_current are on the Arc object,
- *   then creates two degenerate Arcs that are the remnants of what
- *   remains of the original arc. The starting and ending points are
- *   the break points in the counterclockwise direction.
+/*!
+ * \brief Break an Arc
+ * \par Function Description
+ *  If both points specified in \a w_current are on the Arc object,
+ *  then creates two degenerate Arcs that are the remnants of what
+ *  remains of the original arc. The starting and ending points are
+ *  the break points in the counterclockwise direction.
  *
- *  \returns TRUE if the task was completed, otherwise FALSE.
+ * \returns TRUE if the task was completed, otherwise FALSE.
  *
- *  \remark \a object Must be a Arc object and is not checked!
+ * \remark \a object Must be a Arc object and is not checked!
  */
 static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
 {
@@ -189,17 +191,18 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
   return result;
 }
 
-/*! \brief Break a Box
- *  \par Function Description
- *   If both points specified in \a w_current are on the box object,
- *   then creates a degenerate path whose vertices are the remnants
- *   of what remains of the box. The starting and ending points are
- *   the break points and in all cases, the replacement path is not
- *   closed.
+/*!
+ * \brief Break a Box
+ * \par Function Description
+ *  If both points specified in \a w_current are on the box object,
+ *  then creates a degenerate path whose vertices are the remnants
+ *  of what remains of the box. The starting and ending points are
+ *  the break points and in all cases, the replacement path is not
+ *  closed.
  *
- *  \returns TRUE if the task was completed, otherwise FALSE.
+ * \returns TRUE if the task was completed, otherwise FALSE.
  *
- *  \remark \a object Must be a GedaBox object and is not checked!
+ * \remark \a object Must be a GedaBox object and is not checked!
  */
 /*! \image html break_box.png
  *  \image latex break_box.png
@@ -427,15 +430,16 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
   return result;
 }
 
-/*! \brief Break a Circle
- *  \par Function Description
- *   If both points specified in \a w_current are on the Circle object,
- *   then creates an arc whose angles correspond to the starting and
- *   ending points of the new arc, in the counterclockwise direction.
+/*!
+ * \brief Break a Circle
+ * \par Function Description
+ *  If both points specified in \a w_current are on the Circle object,
+ *  then creates an arc whose angles correspond to the starting and
+ *  ending points of the new arc, in the counterclockwise direction.
  *
- *  \returns TRUE if the task was completed, otherwise FALSE.
+ * \returns TRUE if the task was completed, otherwise FALSE.
  *
- *  \remark \a object Must be a Circle object and is not checked!
+ * \remark \a object Must be a Circle object and is not checked!
  */
 static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
 {
@@ -519,18 +523,19 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
   return result;
 }
 
-/*! \brief Break a Path
- *  \par Function Description
- *   If both points specified in \a w_current are on the Path object,
- *   then creates a degenerate path whose vertices are the remnants
- *   of what remains of the path. The starting and ending points are
- *   the break points and in all cases, the replacement path is not
- *   closed. If the original path was not closed then two paths are
- *   generated as a result of the break.
+/*!
+ * \brief Break a Path
+ * \par Function Description
+ *  If both points specified in \a w_current are on the Path object,
+ *  then creates a degenerate path whose vertices are the remnants
+ *  of what remains of the path. The starting and ending points are
+ *  the break points and in all cases, the replacement path is not
+ *  closed. If the original path was not closed then two paths are
+ *  generated as a result of the break.
  *
- *  \returns TRUE if the task was completed, otherwise FALSE.
+ * \returns TRUE if the task was completed, otherwise FALSE.
  *
- *  \remark \a object Must be a Path object and is not checked!
+ * \remark \a object Must be a Path object and is not checked!
  */
 static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 {
@@ -842,14 +847,15 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
   return result;
 }
 
-/*! \brief Determine if Linear boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if Linear boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Linear. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a GedaLine object and is not checked!
+ * \remark boundary Must be a GedaLine object and is not checked!
  */
 static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
 {
@@ -913,14 +919,15 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
   return result;
 }
 
-/*! \brief Determine if a Circular boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if a Circular boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Circle. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Circle object and is not checked!
+ * \remark boundary Must be a Circle object and is not checked!
  */
 static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 {
@@ -1032,14 +1039,15 @@ void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
   }
 }
 
-/*! \brief Determine if an Object can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if an Object can bound a given Projectile
+ * \par Function Description
  *  Calls appropriate o_break_can_xx function based on the type
  *  of object the boundary represents. The selected intersection
  *  will be determined by the handler and returned in \a point if
  *  point is not NULL.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 static bool o_break_object(GschemToplevel *w_current, GedaObject *object)
 {
@@ -1070,8 +1078,9 @@ static bool o_break_object(GschemToplevel *w_current, GedaObject *object)
 
 /* ----------------------- Public Event Handlers ---------------------- */
 
-/*! \brief Start a Projection operation
- *  \par Function Description
+/*!
+ * \brief Start a Projection operation
+ * \par Function Description
  */
 int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -1122,8 +1131,8 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
-/*! \brief Projection event Selection
- *  \par Function Description
+/*!\brief Projection event Selection
+ * \par Function Description
  *  This function is called after a button press event and one
  *  object had been previously selected to response to either
  *  EXTEND or ENDEXTEND events.
@@ -1157,13 +1166,14 @@ int o_break_end (GschemToplevel *w_current, int x, int y)
 
 /* ------------------------- Action Processor ------------------------- */
 
-/*! \brief Break Hot
- *  \par Function Description
- *   Called to process one or more selected objects when Project mode was
- *   initiated using the keyboard or mouse. The direction each object is
- *   to be projected is based on cursor position relative to the objects,
- *   and need not be the same for each object. The closest boundary in the
- *   path of each projectile will be the target boundary.
+/*!
+ * \brief Break Hot
+ * \par Function Description
+ *  Called to process one or more selected objects when Project mode was
+ *  initiated using the keyboard or mouse. The direction each object is
+ *  to be projected is based on cursor position relative to the objects,
+ *  and need not be the same for each object. The closest boundary in the
+ *  path of each projectile will be the target boundary.
  */
 void o_break_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
 {
@@ -1180,8 +1190,9 @@ void o_break_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
   }
 }
 
-/*! \brief Projection Mode Activated, Interrogate Selection
- *  \par Function Description
+/*!
+ * \brief Projection Mode Activated, Interrogate Selection
+ * \par Function Description
  *  This function is called at the beginning of a project operation
  *  to determine how to proceed based on the number and type of objects
  *  selected.
