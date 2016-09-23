@@ -1,5 +1,7 @@
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_arc.c: Rename functions with geda_math prefix.
+
     * tests/test_file.c Add some checks for geda_is_path_absolute.
 
 2016-09-22 Wiley E. Hill <wileyhill@gmail.com>

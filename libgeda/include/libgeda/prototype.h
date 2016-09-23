@@ -106,8 +106,8 @@ extern "C" {
          void    m_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
 
 /* m_arc.c */
-       double    m_arc_length                    (int radius, int sweep);
-       bool      m_arc_includes_point            (GedaArc *arc, POINT *point);
+       double    geda_math_arc_length                    (int radius, int sweep);
+       bool      geda_math_arc_includes_point            (GedaArc *arc, POINT *point);
 
 /* m_circle.c */
        double    geda_math_circle_circumference          (int radius);

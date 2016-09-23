@@ -564,7 +564,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
    * other point is on the arc, and if so, not on the projectile.
    */
   if (answer == 1) {     /* tangent, check if arc contains point */
-    if (m_arc_includes_point(boundary->arc, &pt1)) {
+    if (geda_math_arc_includes_point(boundary->arc, &pt1)) {
       answer = TRUE;
       pt3.x = pt1.x;
       pt3.y = pt1.y;
@@ -574,12 +574,12 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
     }
   }
   else if (answer == 2) {  /* 2 points, first was picked above */
-    if (m_arc_includes_point(boundary->arc, &pt1)) {
+    if (geda_math_arc_includes_point(boundary->arc, &pt1)) {
       answer = TRUE;
       pt3.x = pt1.x;
       pt3.y = pt1.y;
     }
-    else if (m_arc_includes_point(boundary->arc, &pt2)) {
+    else if (geda_math_arc_includes_point(boundary->arc, &pt2)) {
       /* Since the 1st point was picked we did not check pt2 */
       if (!geda_math_line_includes_point(projectile->line, &pt2)) {
         answer = TRUE;
@@ -592,13 +592,13 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
     }
   }
   else if (answer == 3) {  /* 2 points, second was picked above */
-    if (m_arc_includes_point(boundary->arc, &pt2)) {
+    if (geda_math_arc_includes_point(boundary->arc, &pt2)) {
       answer = TRUE;
       pt3.x = pt2.x;
       pt3.y = pt2.y;
     }
     else if (included) { /* If 1st point include but not picked, check */
-      if (m_arc_includes_point(boundary->arc, &pt1)) {
+      if (geda_math_arc_includes_point(boundary->arc, &pt1)) {
         answer = TRUE;
         pt3.x = pt1.x;
         pt3.y = pt1.y;

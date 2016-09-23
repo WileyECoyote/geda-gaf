@@ -1008,7 +1008,7 @@ geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
   int           length;
   XGCValues     gcvals;
 
-  length = m_arc_length (radius, sweep);
+  length = geda_math_arc_length (radius, sweep);
   bits   = SetLineAttributes (&gcvals, length);
 
   if (bits) {
