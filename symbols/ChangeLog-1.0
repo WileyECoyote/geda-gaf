@@ -1,3 +1,8 @@
+2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/AT89C51_TQFP-1.sym: Change/update footprint -> TQFP-44-10 and
+      remove _TQFT from the device name.
+
 2016-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD633JN-1.sym: Add description attribute.

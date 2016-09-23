@@ -2,9 +2,9 @@ v 20070626 1
 T 3000 8900 8 10 1 1 0 6 1
 refdes=U?
 T 400 9050 5 10 0 0 0 0 1
-device=AT89C51_TQFT
+device=AT89C51
 T 400 9250 5 10 0 0 0 0 1
-footprint=TQFP44
+footprint=TQFP-44-10
 T 400 9450 5 10 0 0 0 0 1
 net=GND:16,17
 T 400 9650 5 10 0 0 0 0 1
