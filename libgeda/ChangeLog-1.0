@@ -1,5 +1,8 @@
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_math.h: Add macros for functions in geda_math_arc
+      and geda_math_circle.
+
     * src/math/m_arc.c: Rename functions with geda_math prefix.
 
     * tests/test_file.c Add some checks for geda_is_path_absolute.

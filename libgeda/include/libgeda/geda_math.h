@@ -33,6 +33,15 @@
 #ifndef __GEDA_MATH_MAC__
 #define __GEDA_MATH_MAC__
 
+/* m_arc.c */
+#define geda_arc_length                 geda_math_arc_length
+#define geda_arc_includes_point         geda_math_arc_includes_point
+
+/* m_circle.c */
+#define geda_circle_circumference       geda_math_circle_circumference
+#define geda_circle_includes_point      geda_math_circle_includes_point
+#define geda_circle_shortest_distance   geda_math_circle_shortest_distance
+
 /* m_line.c */
 #define geda_line_get_intersection      geda_math_line_get_intersection
 #define geda_line_includes_point        geda_math_line_includes_point
