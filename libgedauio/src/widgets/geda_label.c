@@ -71,6 +71,7 @@
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_image_menu_item.h"
+#include "../../include/geda_widget.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
@@ -321,9 +322,6 @@ static void *geda_label_parent_class = NULL;
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
-static GQuark quark_aux_info = 0;
-
-
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
                   unsigned int  modmask,     GtkMovementStep step,
@@ -381,33 +379,6 @@ static int get_label_char_width (GedaLabel *label)
   }
 
   return w;
-}
-
-/* called by: geda_label_size_request
- *            geda_label_ensure_layout
- */
-static inline GtkWidgetAuxInfo*
-geda_widget_get_aux_info (GtkWidget *widget, bool create)
-{
-  GtkWidgetAuxInfo *aux_info;
-
-  aux_info = g_object_get_qdata (G_OBJECT(widget), quark_aux_info);
-
-  if (!aux_info && create) {
-
-    aux_info = malloc (sizeof(GtkWidgetAuxInfo));
-
-    aux_info->width  = -1;
-    aux_info->height = -1;
-    aux_info->x      = 0;
-    aux_info->y      = 0;
-    aux_info->x_set  = FALSE;
-    aux_info->y_set  = FALSE;
-
-    g_object_set_qdata (G_OBJECT (widget), quark_aux_info, aux_info);
-  }
-
-  return aux_info;
 }
 
 /* widget_class->style_set */

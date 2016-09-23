@@ -22,6 +22,9 @@ void        geda_widget_buildable_finish_accelerator (GtkWidget *widget,
 
 const char *geda_widget_get_accel_path               (GtkWidget *widget,
                                                       bool      *locked);
+GtkWidgetAuxInfo
+           *geda_widget_get_aux_info                 (GtkWidget      *widget,
+                                                      bool            create);
 
 void        geda_widget_modify_bg                    (GtkWidget      *widget,
                                                       GtkStateType    state,

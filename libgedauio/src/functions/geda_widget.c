@@ -74,6 +74,36 @@ geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
   return apath ? g_quark_to_string (apath->path_quark) : NULL;
 }
 
+static GQuark quark_aux_info = 0;
+
+
+/* called by: geda_label_size_request
+ *            geda_label_ensure_layout
+ */
+GtkWidgetAuxInfo*
+geda_widget_get_aux_info (GtkWidget *widget, bool create)
+{
+  GtkWidgetAuxInfo *aux_info;
+
+  aux_info = g_object_get_qdata (G_OBJECT(widget), quark_aux_info);
+
+  if (!aux_info && create) {
+
+    aux_info = malloc (sizeof(GtkWidgetAuxInfo));
+
+    aux_info->width  = -1;
+    aux_info->height = -1;
+    aux_info->x      = 0;
+    aux_info->y      = 0;
+    aux_info->x_set  = FALSE;
+    aux_info->y_set  = FALSE;
+
+    g_object_set_qdata (G_OBJECT (widget), quark_aux_info, aux_info);
+  }
+
+  return aux_info;
+}
+
 /*!
  * \brief Modify Widget Background Color
  * \par Function Description

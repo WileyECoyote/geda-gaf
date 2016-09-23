@@ -1,5 +1,8 @@
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/functions/geda_widget.c: Relocate geda_widget_get_aux_info from
+      src/widgets/geda_label.c.
+
     * src/widgets/geda_combobox.c: Replace gtk_tearoff_menu_item_new with
       geda_tearoff_menu_item_new in geda_combo_box_menu_fill.
 
