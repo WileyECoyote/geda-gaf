@@ -1,3 +1,8 @@
+2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace gtk_tearoff_menu_item_new with
+      geda_tearoff_menu_item_new in geda_combo_box_menu_fill.
+
 2016-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox_text.c: Add checks for Check geda_combo_box_text_

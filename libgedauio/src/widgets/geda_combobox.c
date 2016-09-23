@@ -38,6 +38,7 @@
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_separator.h"
+#include "../../include/geda_tearoff_menu_item.h"
 #include "../../include/geda_uio_functions.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/gettext.h"
@@ -3496,7 +3497,7 @@ geda_combo_box_menu_fill (GedaComboBox *combo_box)
 
     if (priv->add_tearoffs) {
 
-      GtkWidget *tearoff = gtk_tearoff_menu_item_new ();
+      GtkWidget *tearoff = geda_tearoff_menu_item_new ();
 
       gtk_widget_show (tearoff);
 
@@ -6583,9 +6584,13 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
   add_tearoffs = add_tearoffs != FALSE;
 
   if (combo_box->priv->add_tearoffs != add_tearoffs) {
+
       combo_box->priv->add_tearoffs = add_tearoffs;
+
       geda_combo_box_check_appearance (combo_box);
+
       geda_combo_box_relayout (combo_box);
+
       g_object_notify (G_OBJECT (combo_box), "add-tearoffs");
   }
 }
