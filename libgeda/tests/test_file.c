@@ -317,7 +317,48 @@ int test_get (void)
   /* === Function 07: geda_get_file_contents    f_get_file_contents === */
   /* === Function 08: geda_get_extension        f_get_filename_ext === */
   /* === Function 09: geda_get_format_header    f_get_format_header === */
-  /* === Function 10: geda_is_path_absolute     f_get_is_path_absolute === */
+
+  /* === Function 10: f_get_is_path_absolute === */
+
+  if (geda_is_path_absolute(NULL)) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (F021000) NULL path_absolute\n");
+    result++;
+  }
+
+  if (geda_is_path_absolute("")) {                            /* Empty input */
+    fprintf(stderr, "FAILED: (F021001) Empty path_absolute\n");
+    result++;
+  }
+
+  if (geda_is_path_absolute("../")) {                        /* Relative input */
+    fprintf(stderr, "FAILED: (F021002) parent path_absolute\n");
+    result++;
+  }
+
+  if (geda_is_path_absolute("../src")) {                      /* Relative input */
+    fprintf(stderr, "FAILED: (F021003) src path_absolute\n");
+    result++;
+  }
+
+  if (geda_is_path_absolute("data/")) {                      /* subdirectory input */
+    fprintf(stderr, "FAILED: (F021003) src path_absolute\n");
+    result++;
+  }
+
+  if (geda_is_path_absolute("data/../src")) {                /* Relative input */
+    fprintf(stderr, "FAILED: (F021004) src path_absolute\n");
+    result++;
+  }
+
+  char *cwd;
+
+  cwd = getcwd(0,0);
+
+  if (!geda_is_path_absolute(cwd)) {                         /* absolute input */
+    fprintf(stderr, "FAILED: (F021005) src path_absolute\n");
+    result++;
+  }
+  free(cwd);
 
   return result;
 }
@@ -370,8 +411,6 @@ int test_f_sys_copy ()
     source = g_build_filename(src_dir, TEST_FILE_PATH, TEST_FILE, NULL);
 
     if (access(source, R_OK) == 0) {
-
-
 
       /* Should be copied to the current, aka tests, directory*/
       result = geda_copy_file(source, TEST_FILE);
