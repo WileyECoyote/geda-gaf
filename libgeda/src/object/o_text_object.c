@@ -1132,12 +1132,12 @@ geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_
 
 /*!
  * \brief Compare the test of two GedaText objects.
- *  This function will compare the test of object \a a with the text of
- *  object \a after validating that both objects are GedaText objects.
- *  This function can be used as a GCompareFunc type.
+ *  This function will compare the text of \a object1 with the text of
+ *  object \a object2 after validating that both objects are GedaText
+ *  objects. This function can be used as a GCompareFunc type.
  *
- *  \param [in] a Text Object 1.
- *  \param [in] b Text Object 2.
+ *  \param [in] object1 Text Object 1.
+ *  \param [in] object2 Text Object 2.
  *
  *  \return result of strcmp if both objects are GedaText object, if either
  *          of the object is not a GedaText returns G_MAXINT.
