@@ -1,3 +1,7 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/libgeda.h: include geda_math.h
+
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_math.h: Add macros for functions in geda_math_arc
