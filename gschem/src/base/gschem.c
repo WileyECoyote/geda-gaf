@@ -314,13 +314,11 @@ static void gschem( int argc, char *argv[])
       _("You must set the GEDADATA environment variable!\n\n"
         "gschem cannot locate some data files. Please ensure the GEDADATA\n"
         "environment variable points to the correct location.\n");
-    GtkWidget* error_diag =
-      gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
-                              GTK_BUTTONS_OK,
-                              "%s", message);
-    gtk_dialog_run (GTK_DIALOG (error_diag));
+
+    titled_error_dialog("gschem", message);
     g_error ("%s", message);
   }
+
 
   /* Allocate w_current */
   w_current           = gschem_toplevel_new ();

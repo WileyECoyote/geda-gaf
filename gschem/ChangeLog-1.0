@@ -1,5 +1,8 @@
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Replace gtk_message_dialog_new/gtk_dialog_run with
+      titled_error_dialog in gschem().
+
     * src/x/x_edit_slot.c: Insert slot_dialog.png for inclusion in Doxygen
       generated source documentation.
 
