@@ -1,3 +1,7 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda.dox: Add libgedacolor to list of TAGFILES.
+
 2016-07-22 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme-api/geda-scheme.texi: WEH: Modified per commit to Master branch
