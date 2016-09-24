@@ -481,7 +481,7 @@ void about_dialog (GschemToplevel *w_current)
 
 }
 
-/*!****************** End of help/about dialog box **********************/
+/******************* End of help/about dialog box **********************/
 
 /** @} endgroup Help-About-Dialog */
 
@@ -595,7 +595,7 @@ void snap_size_dialog (GschemToplevel *w_current)
   gtk_editable_select_region(GTK_EDITABLE(snap_size), 0, -1);
 }
 
-/*!******************* End of Snap size dialog box **********************/
+/******************** End of Snap size dialog box **********************/
 
 /** @} endgroup Snap-Size-Dialog */
 
@@ -704,7 +704,7 @@ void text_size_dialog (GschemToplevel *w_current)
   gtk_editable_select_region(GTK_EDITABLE(text_size), 0, -1);
 }
 
-/*!******************** End of Text size dialog box *********************/
+/********************* End of Text size dialog box *********************/
 
 /** @} endgroup Text-Size-Dialog */
 
@@ -3410,6 +3410,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 */
 
 /***************** Start of misc helper dialog boxes **************/
+
 /*! \brief Raise All Dialogs
  *  \par Function Description
  *  This is a generic function called by x_event_expose if
