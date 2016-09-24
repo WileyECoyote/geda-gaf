@@ -35,7 +35,8 @@
 /** \defgroup Edit-Slots-Dialog Slots Editing-Dialogs
  *  @{
  *  \ingroup (Editing-Dialogs)
- *
+ *  \image html slot_dialog.png
+ *  \image latex slot_dialog.png
  *  \par This Group contains routines for the Edit Slots Dialog.
  */
 

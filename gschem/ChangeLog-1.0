@@ -1,3 +1,8 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_slot.c: Insert slot_dialog.png for inclusion in Doxygen
+      generated source documentation.
+
 2016-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Revise comments blocks and function wrap.
