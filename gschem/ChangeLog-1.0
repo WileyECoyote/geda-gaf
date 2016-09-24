@@ -1,5 +1,11 @@
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/dialogs/Makefile.am: Add three images of dialogs:
+
+            * component_properties_dialog
+            * error_dialog.png
+            * load_backup.png
+
     * src/base/gschem.c: Replace gtk_message_dialog_new/gtk_dialog_run with
       titled_error_dialog in gschem().
 
