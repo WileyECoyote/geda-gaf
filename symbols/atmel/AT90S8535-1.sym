@@ -1,17 +1,17 @@
-v 20070626 1
+v 20070626 2
 T 2700 7500 8 10 1 1 0 6 1
 refdes=U?
 T 400 7650 5 10 0 0 0 0 1
 device=AT90S8535
 T 400 7850 5 10 0 0 0 0 1
 footprint=DIP40
-T 400 8050 5 10 0 0 0 0 1
-net=VCC:10
 T 400 8250 5 10 0 0 0 0 1
-net=GND:11
+net=VCC:10
 T 400 8450 5 10 0 0 0 0 1
-net=AVcc:30
+net=GND:11
 T 400 8650 5 10 0 0 0 0 1
+net=AVcc:30
+T 400 8850 5 10 0 0 0 0 1
 net=AGND:31
 P 1300 100 1300 400 1 0 0
 {
@@ -411,9 +411,9 @@ T 2650 7000 5 8 0 1 0 8 1
 pintype=tri
 }
 B 400 400 2300 7000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 8850 5 10 0 0 0 0 1
-comment=dont_use this symbol: nonstandard symwidth
 T 400 9050 5 10 0 0 0 0 1
 numslots=0
 T 400 7450 9 10 1 0 0 0 1
 AT90S8535
+T 400 8050 5 10 0 0 0 0 1
+description=8-bit RISC micro controller (Atmel)
