@@ -1422,14 +1422,18 @@ geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
                                bool           force_deactivate)
 {
   GSList *slist;
-  GSList *shells     = NULL;
-  bool    deactivate = force_deactivate;
+  GSList *shells;
+  bool    deactivate;
 
   g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
   g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
 
-  if (!deactivate)
+  shells     = NULL;
+  deactivate = force_deactivate;
+
+  if (!deactivate) {
     deactivate = GEDA_MENU_ITEM_GET_CLASS (menu_item)->hide_on_activate;
+  }
 
   g_object_ref (menu_shell);
   g_object_ref (menu_item);

@@ -1,3 +1,8 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_item_ensure_label to
+      initialize shell and deactivate after validating menu_item.
+
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_widget.c: Relocate geda_widget_get_aux_info from
