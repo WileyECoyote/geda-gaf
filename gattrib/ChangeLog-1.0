@@ -1,7 +1,7 @@
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gattrib.dox: Enable EXTERNAL_PAGES so that links to the libraries
-      appears on the Related Page tab.
+      appears on the Related Page tab. Add TAGFILES file libgedacolor.
 
 2016-09-18 Wiley E. Hill <wileyhill@gmail.com>
 

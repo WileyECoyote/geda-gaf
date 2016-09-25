@@ -7,7 +7,7 @@
             * load_backup.png
 
     * docs/gschem.dox: Enable EXTERNAL_PAGES so that links to the libraries
-      appears on the Related Page tab.
+      appears on the Related Page tab. Add TAGFILES file libgedacolor.
 
     * src/base/gschem.c: Replace gtk_message_dialog_new/gtk_dialog_run with
       titled_error_dialog in gschem().

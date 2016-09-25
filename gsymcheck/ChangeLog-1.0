@@ -1,7 +1,8 @@
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsymcheck.dox: Enable EXTERNAL_PAGES so that links to the libraries
-      appears on the Related Page tab.
+      appears on the Related Page tab. Add TAGFILES libgedacairo, libgedacolor,
+      libgedathon, and libgedauio.
 
 2016-06-19 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -2016,6 +2016,7 @@ SKIP_FUNCTION_MACROS   = YES
 TAGFILES = "$(DOXYGEN_OUTDIR)/../geda/geda.tag=../../geda/html" \
            "$(DOXYGEN_OUTDIR)/../libgeda/libgeda.tag=../../libgeda/html" \
            "$(DOXYGEN_OUTDIR)/../libgedacairo/libgedacairo.tag=../../libgedacairo/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedacolor/libgedacolor.tag=../../libgedacolor/html" \
            "$(DOXYGEN_OUTDIR)/../libgedathon/libgedathon.tag=../../libgedathon/html" \
            "$(DOXYGEN_OUTDIR)/../libgedauio/libgedauio.tag=../../libgedauio/html"
 
