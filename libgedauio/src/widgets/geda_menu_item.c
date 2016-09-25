@@ -485,6 +485,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
   GtkWidgetClass    *widget_class    = GTK_WIDGET_CLASS (class);
   GtkContainerClass *container_class = GTK_CONTAINER_CLASS (class);
   GedaMenuItemClass *menu_item_class = (GedaMenuItemClass*)class;
+  GParamSpec        *params;
 
   gobject_class->dispose           = geda_menu_item_dispose;
   gobject_class->finalize          = geda_menu_item_finalize;
@@ -748,6 +749,20 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                              G_MAXINT,
                                                              5,
                                                              G_PARAM_READABLE));
+
+  /*!
+   * property "vertical-padding": GedaMenuItem::vertical-padding
+   * \brief Controls the vertical spacing between menu items.
+   */
+  params = g_param_spec_int ("vertical-padding",
+                           _("Vertical Padding"),
+                           _("Vertical spacing between menu items"),
+                              0,
+                              100,
+                              1,
+                              G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 
   /*!
    * GedaMenuItem::width-chars
@@ -1847,6 +1862,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   PackDirection        child_pack_dir;
   unsigned int         accel_width;
   unsigned int         horizontal_padding;
+  unsigned int         vertical_padding;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
   g_return_if_fail (requisition != NULL);
@@ -1859,12 +1875,15 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   priv      = menu_item->priv;
 
   if (GEDA_IS_MENU_BAR(widget->parent)) {
-    pack_dir       = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR (widget->parent));
-    child_pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (widget->parent));
+    pack_dir         = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR(widget->parent));
+    child_pack_dir   = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR(widget->parent));
+    vertical_padding =  0;
   }
   else  {
-    pack_dir       = PACK_DIRECTION_LTR;
-    child_pack_dir = PACK_DIRECTION_LTR;
+    pack_dir         = PACK_DIRECTION_LTR;
+    child_pack_dir   = PACK_DIRECTION_LTR;
+
+    gtk_widget_style_get (widget, "vertical-padding", &vertical_padding, NULL);
   }
 
   requisition->width  = (GTK_CONTAINER(widget)->border_width +
@@ -1875,11 +1894,13 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
     (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))
   {
-    requisition->width += horizontal_padding << 1;
+    requisition->width  += horizontal_padding << 1;
+    requisition->height += vertical_padding;
   }
   else if ((pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) &&
     (child_pack_dir == PACK_DIRECTION_TTB || child_pack_dir == PACK_DIRECTION_BTT))
   {
+    requisition->width  += vertical_padding;
     requisition->height += horizontal_padding << 1;
   }
 
