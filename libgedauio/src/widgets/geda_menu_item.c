@@ -1867,8 +1867,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
   g_return_if_fail (requisition != NULL);
 
-  gtk_widget_style_get (widget, "horizontal-padding",
-                                &horizontal_padding, NULL);
+  gtk_widget_style_get (widget, "horizontal-padding", &horizontal_padding, NULL);
 
   bin       = GTK_BIN(widget);
   menu_item = GEDA_MENU_ITEM(widget);
@@ -1887,9 +1886,9 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   }
 
   requisition->width  = (GTK_CONTAINER(widget)->border_width +
-                         widget->style->xthickness) * 2;
+                         widget->style->xthickness) << 1;
   requisition->height = (GTK_CONTAINER(widget)->border_width +
-                         widget->style->ythickness) * 2;
+                         widget->style->ythickness) << 1;
 
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
     (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))

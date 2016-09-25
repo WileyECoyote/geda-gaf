@@ -6,7 +6,9 @@
         * geda_combo_box_text_list_insert->geda_combo_box_text_insert_pair
         * geda_combo_box_text_list_prepend->geda_combo_box_text_prepend_pair
 
-    * src/widgets/geda_menu_item.c: Add style property "vertical-padding".
+    * src/widgets/geda_menu_item.c: Add style property "vertical-padding",
+      implemented in geda_menu_item_size_request, use left shift instead on
+      multiply operator for border + thickness.
 
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
