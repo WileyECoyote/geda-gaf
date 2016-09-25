@@ -1,6 +1,11 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gattrib.dox: Enable EXTERNAL_PAGES so that links to the libraries
+      appears on the Related Page tab.
+
 2016-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * /src/s_object.c: Utilize libgeda::geda_attrib_object_set_value instead
+    * src/s_object.c: Utilize libgeda::geda_attrib_object_set_value instead
       of manually replacing the name and value string.
 
 2016-09-12 Wiley E. Hill <wileyhill@gmail.com>

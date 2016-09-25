@@ -6,6 +6,9 @@
             * error_dialog.png
             * load_backup.png
 
+    * docs/gschem.dox: Enable EXTERNAL_PAGES so that links to the libraries
+      appears on the Related Page tab.
+
     * src/base/gschem.c: Replace gtk_message_dialog_new/gtk_dialog_run with
       titled_error_dialog in gschem().
 

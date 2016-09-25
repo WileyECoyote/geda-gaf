@@ -1,3 +1,8 @@
+2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gnetlist.dox: Enable EXTERNAL_PAGES so that links to the libraries
+      appears on the Related Page tab.
+
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy: Substitute geda_strconcat for geda_utility_
