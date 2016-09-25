@@ -543,7 +543,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Page/Down _Symbol",      state);
     x_menus_sensitivity(w_current, "_Page/D_ocumentation...", state);
 
-    x_menus_sensitivity(w_current, "_Edit/Slot...",           state);
+    x_menus_sensitivity(w_current, "_Edit/_Slot...",          state);
 
     x_menus_popup_sensitivity(w_current, "Down Schematic",    state);
     x_menus_popup_sensitivity(w_current, "Down Symbol",       state);
@@ -721,11 +721,11 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
 
     if (pin_selected) {
-        x_menus_sensitivity(w_current, "_Edit/Edit Pin...", TRUE);
+        x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...", TRUE);
         x_menus_popup_sensitivity(w_current, "Pin type...", TRUE);
     }
     else {
-        x_menus_sensitivity(w_current, "_Edit/Edit Pin...",  FALSE);
+        x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...",  FALSE);
         x_menus_popup_sensitivity(w_current,  "Pin type...", FALSE);
     }
 
@@ -739,30 +739,30 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Copy", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Multiple Copy", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Move", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate 90", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Mirror", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/C_opy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/_Multiple Copy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Mo_ve", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Rotate _90", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/M_irror", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/_Edit...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/E_dit Text...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Co_lor...", TRUE);
 
     x_menus_sensitivity(w_current, "_Select/Lock", TRUE);
     x_menus_sensitivity(w_current, "_Select/Unlock", TRUE);
 
     if (can_edit_line) {
-      x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
+      x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", TRUE);
     }
     else {
-      x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
+      x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
     }
 
     if (can_hatch) {
-      x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
+      x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", TRUE);
     }
     else {
-      x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
+      x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
     }
 
     set_sensitivity_for_buffers(TRUE);
@@ -799,18 +799,18 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Copy", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Multiple Copy", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Move", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate 90", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Mirror", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Edit...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Edit Text...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/C_opy", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/_Multiple Copy", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Mo_ve", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Rotate _90", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/M_irror", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/_Edit...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/E_dit Text...", FALSE);
 
-    x_menus_sensitivity(w_current, "_Edit/Color...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Co_lor...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
 
     x_menus_sensitivity(w_current, "_Select/Lock", FALSE);
     x_menus_sensitivity(w_current, "_Select/Unlock", FALSE);
