@@ -428,7 +428,7 @@ net=GND:1,12,24
 T 300 6800 5 10 0 0 0 0 1
 net=VCC:44,11,23
 T 300 7400 5 10 0 0 0 0 1
-footprint=PLCC44
+footprint=PLCC-44
 T 300 7600 5 10 0 0 0 0 1
 description=8-bit RISC micro controller (Atmel)
 T 300 7200 5 10 0 0 0 0 1
