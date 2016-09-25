@@ -1,3 +1,11 @@
+2016-09-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Rename functions:
+
+        * geda_combo_box_text_list_append->geda_combo_box_text_append_pair
+        * geda_combo_box_text_list_insert->geda_combo_box_text_insert_pair
+        * geda_combo_box_text_list_prepend->geda_combo_box_text_prepend_pair
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Revise geda_menu_item_ensure_label to

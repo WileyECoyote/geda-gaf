@@ -661,26 +661,26 @@ geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
 }
 
 void
-geda_combo_box_text_list_append (GedaComboBoxText   *combo_box,
-                                 const char         *text,
-                                 const char         *text2)
+geda_combo_box_text_append_pair (GedaComboBoxText *combo_box,
+                                 const char       *text,
+                                 const char       *text2)
 {
   geda_combo_box_text_real_insert (combo_box, -1, text, text2);
 }
 
 void
-geda_combo_box_text_list_insert (GedaComboBoxText   *combo_box,
-                                 int                 position,
-                                 const char         *text,
-                                 const char         *text2)
+geda_combo_box_text_insert_pair (GedaComboBoxText *combo_box,
+                                 int               position,
+                                 const char       *text,
+                                 const char       *text2)
 {
   geda_combo_box_text_real_insert (combo_box, position, text, text2);
 }
 
 void
-geda_combo_box_text_list_prepend (GedaComboBoxText   *combo_box,
-                                  const char         *text,
-                                  const char         *text2)
+geda_combo_box_text_prepend_pair (GedaComboBoxText *combo_box,
+                                  const char       *text,
+                                  const char       *text2)
 {
   geda_combo_box_text_real_insert (combo_box, 0, text, text2);
 }
