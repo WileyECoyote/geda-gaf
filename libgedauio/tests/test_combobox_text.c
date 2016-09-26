@@ -449,7 +449,7 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
-      return 1;
+      result++;
     }
 
     if (!result) {
@@ -461,9 +461,6 @@ main (int argc, char *argv[])
         fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
-    }
-
-    if (!result) {
 
       if (setjmp(point) == 0) {
         result = check_accessors();

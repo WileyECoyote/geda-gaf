@@ -267,6 +267,7 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking %s\n\n", MUT);
+      result++;
     }
   }
   return result;

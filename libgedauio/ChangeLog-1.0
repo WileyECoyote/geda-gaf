@@ -1,3 +1,7 @@
+2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_*.c: Revise main to fail if faulted during check_construction.
+
 2016-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Rename functions:
