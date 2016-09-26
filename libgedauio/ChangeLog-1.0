@@ -1,5 +1,7 @@
 2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_entry.h: Add Doxygen comments for defines.
+
     * src/widgets/geda_entry.c: Add functions geda_entry_new_with_completion
       and geda_entry_new_with_history. Set entry->auto_complete during init
       and reference instead of global. Remove globals set_auto_complete and
@@ -7,7 +9,7 @@
       completion_enabled in popup_menu_callback. Replace Geda type Menu widgets
       with Gtk menu counterparts because GedaEntry is derived from GtkEntry
       class, which creates the parent menu. Add geda_entry_virtual_populator
-      and call virtual in geda_entry_populate_popup.
+      and call virtual in geda_entry_populate_popup. Update documentation.
 
     * tests/test_*.c: Revise main to fail if faulted during check_construction.
 

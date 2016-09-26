@@ -30,21 +30,29 @@
 #ifndef _GEDA_ENTRY_H
 #define _GEDA_ENTRY_H
 
-/*
- *
+/*!
+ * Use NO_HISTORY as the first argument to geda_entry_new or
+ * geda_entry_new_visible to disable GedeaEntry history feature.
  */
 #define NO_HISTORY (void*) -1
+
+/*!
+ * Use NO_COMPLETION as the second argument to geda_entry_new or
+ * geda_entry_new_visible to disable GedeaEntry completion feature.
+ */
 #define NO_COMPLETION (void*) -1
 
 #ifndef MAX_ENTRY_HISTORY /* Make sure this gets defined */
   #define MAX_ENTRY_HISTORY 22
 #endif
+
 #ifndef max_command_length
   #define max_command_length 256
 #endif
 
+#define DISABLE (GList **)-1
+
 #include <gtk/gtk.h>
-//#include <gtk/gtkentrybuffer.h>
 
 #include "geda_completion.h"
 
@@ -62,8 +70,6 @@ typedef struct
 #define GEDA_IS_ENTRY(obj)         (is_a_geda_entry((GedaEntry*)(obj)))
 #define GEDA_IS_ENTRY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ENTRY))
 #define GEDA_ENTRY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ENTRY, GedaEntryClass))
-
-#define DISABLE (GList **)-1
 
 typedef struct _GedaEntry      GedaEntry;
 typedef struct _GedaEntryClass GedaEntryClass;

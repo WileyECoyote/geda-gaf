@@ -56,19 +56,19 @@
  * fairly large set of key bindings by default. If the entered text is
  * longer than the allocation of the widget, the widget will scroll so
  * that the cursor position is visible. For larger allocations the widget
- * should be combined with a text buffer, as is done in the console_init()
- * function.
+ * should be combined with a text buffer as is done in the console_init()
+ * function in gschem.
  * \par
  * An ill effect of having a GList** for the history buffer parameter is
  * that if NULL is passed as the first parameter, the history buffer
- * argument, to the construction utility "new" functions, then the NULL
- * will be interpreted as an empty history list and the history feature
- * will be enabled. Since passing -1 will generate a compiler warning,
- * because the compiler is expecting a GList**, a convienence macro is
- * provided in the header: NO_HISTORY, in order to type cast the argument.
- * A second macro, NO_COMPLETION is also provided for the second argument,
- * which could also be NULL because a NULL completion is interpreted to
- * mean disabling the completion feature.
+ * argument, to the construction "new" functions, then the NULL will be
+ * interpreted as an empty history list and the history feature will be
+ * enabled. Since passing -1 will generate a compiler warning, because
+ * the compiler is expecting a GList**, a convienence macro is provided
+ * in the header: NO_HISTORY, in order to type cast the argument. A second
+ * macro, NO_COMPLETION is also provided for the second argument, which
+ * could also be NULL because a NULL completion is interpreted to mean
+ * disabling the completion feature.
  * \par
  * example:    entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
  * \par
@@ -1997,6 +1997,17 @@ geda_entry_new (GList **history, GList **complete)
   return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
 }
 
+/*!
+ * \brief Create a New Visible GedaEntry with optional History and Completion
+ * \par Function Description
+ *  Creates a new entry with optional history and completion list.
+ *  The new widget is set visible.
+ *
+ * \param [in] history  Point to location of GList pointer to store entry strings.
+ * \param [in] complete Point to location of GList pointer containing key words.
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new_visible (GList** history, GList** complete)
 {
