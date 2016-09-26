@@ -117,7 +117,7 @@ static void    geda_entry_history_down       (GedaEntry        *entry);
 static bool    geda_entry_tab_complete       (GedaEntry        *entry);
 
 static void    geda_entry_populate_popup     (GedaEntry        *entry,
-                                              GedaMenu         *menu,
+                                              GtkMenu          *menu,
                                               void             *data);
 static void    popup_menu_callback           (GedaMenuItem     *item,
                                               void             *data);
@@ -1579,36 +1579,40 @@ geda_entry_tab_complete (GedaEntry *entry)
  *  @{
  */
 
-/*! \brief GedaEntry Internal Populate Popup
+/*!
+ * \brief GedaEntry Internal Populate Popup
+ * \par Function Description
+ *  This functions add the text strings to the popup menu. The menu
+ *  is a Gtk based menu because GedaEntry is derived from GtkEntry
+ *  class, which creates the parent menu.
  *
- *  \par Function Description
- *
- * This functions add the text strings to the popup menu.
+ * \todo consider replacing submenu with a check menu item
  */
 static void
-geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
+geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 {
   if (entry->auto_complete) {
 
     GtkWidget *item;
     GtkWidget *submenu;
 
-    item = geda_menu_item_new_with_mnemonic (_("Auto Complete"));
+    item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
     gtk_widget_show (item);
 
-    submenu = geda_menu_new ();
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (item), submenu);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), item);
+    submenu = gtk_menu_new ();
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
 
-    item = geda_image_menu_item_new_with_label (_("On"));
+    gtk_container_add (GTK_CONTAINER (menu), item);
+
+    item = gtk_menu_item_new_with_label (_("On"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
     g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
+    gtk_container_add (GTK_CONTAINER (submenu), item);
 
-    item = geda_image_menu_item_new_with_label (_("Off"));
+    item = gtk_menu_item_new_with_label (_("Off"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
     g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
+    gtk_container_add (GTK_CONTAINER (submenu), item);
 
     gtk_widget_show_all (submenu);
   }

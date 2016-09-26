@@ -4,7 +4,9 @@
       and geda_entry_new_with_history. Set entry->auto_complete during init
       and reference instead of global. Remove globals set_auto_complete and
       do_auto_complete, store pointer to entry in menu items and set new member
-      completion_enabled in popup_menu_callback.
+      completion_enabled in popup_menu_callback. Replace Geda type Menu widgets
+      with Gtk menu counterparts because GedaEntry is derived from GtkEntry
+      class, which creates the parent menu.
 
     * tests/test_*.c: Revise main to fail if faulted during check_construction.
 
