@@ -112,7 +112,7 @@ int check_construction (void)
 
   widget = geda_entry_new_with_buffer (NULL);
 
-  if (GEDA_IS_ENTRY(widget)) {
+  if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }

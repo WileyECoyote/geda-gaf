@@ -1978,25 +1978,37 @@ GtkWidget*
 geda_entry_new_visible (GList** history, GList** complete)
 {
   GtkWidget *entry;
-  entry = geda_entry_new ( history, complete);
+  entry = geda_entry_new (history, complete);
   g_object_set (entry, "visible", TRUE, NULL);
   return entry;
 }
 
-/*! \brief Create a New GedaEntry with Auxiliary Text Buffer
- *  \par Function Description
+/*!
+ * \brief Create a New GedaEntry with Auxiliary Text Buffer
+ * \par Function Description
+ * Creates a new entry with the provided \a buffer. If \a buffer
+ * is not a GtkEntryBuffer a new empty text buffer is created.
  *
- * Creates a new entry with the specified text buffer.
- *
- * \param [in] buffer:  The buffer to use for the new #GedaEntry.
+ * \param [in] buffer The buffer to use for the new #GedaEntry
+ *                    or NULL to create a new empty buffer;
  *
  * \return a new #GedaEntry
  */
 GtkWidget*
 geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
 {
-  g_return_val_if_fail (GTK_IS_ENTRY_BUFFER (buffer), NULL);
-  return g_object_new  (GEDA_TYPE_ENTRY, "buffer", buffer, NULL);
+  GtkEntryBuffer *real_buffer;
+
+  have_history = FALSE;
+  have_auto_complete = FALSE;
+
+  if (GTK_IS_ENTRY_BUFFER (buffer)) {
+    real_buffer = buffer;
+  }
+  else {
+    real_buffer = gtk_entry_buffer_new (NULL, -1);
+  }
+  return g_object_new (GEDA_TYPE_ENTRY, "buffer", real_buffer, NULL);
 }
 
 /*! \brief Create a New GedaEntry specified max length property
