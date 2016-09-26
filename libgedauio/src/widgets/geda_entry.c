@@ -143,9 +143,6 @@ static GList **old_complete_list;
 
 static bool    have_auto_complete;
 
-static bool    set_auto_complete;
-static bool    do_auto_complete;
-
 static void *geda_entry_parent_class = NULL;
 
 struct _GedaEntryPriv
@@ -1137,10 +1134,14 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
     priv->command_completion = geda_completion_new (NULL);
 
     geda_completion_add_items (priv->command_completion, complete_list);
+
+    entry->completion_enabled = TRUE;
+  }
+  else {
+    entry->completion_enabled = FALSE;
   }
 
-  /* set initial flag state for popup menu*/
-  set_auto_complete         = FALSE;
+  /* set initial flag states */
   entry->enable_drag_n_drop = FALSE;
   entry->validation_mode    = ACCEPT_ALL_ASCII;
   entry->text_case          = BOTH_CASES;
@@ -1270,11 +1271,6 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
   bool handled = FALSE;
 
-  if ((set_auto_complete) && (entry->auto_complete)) {/* If somebody wants & we have */
-    entry->auto_complete = do_auto_complete;
-    set_auto_complete = FALSE; /* We did it so reset flag */
-  }
-
   switch (event->keyval) {
     case GDK_KEY_Down:
       if ((state == 0) && (entry->have_history)) {
@@ -1297,7 +1293,7 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
       break;
 
     case GDK_KEY_Tab:
-      if ( (state  == 0) && (entry->auto_complete) ) {
+      if ( (state  == 0) && (entry->completion_enabled) ) {
         handled = geda_entry_tab_complete (entry);
       }
       break;
@@ -1606,10 +1602,12 @@ geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
 
     item = geda_image_menu_item_new_with_label (_("On"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
+    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
     geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
 
     item = geda_image_menu_item_new_with_label (_("Off"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
+    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
     geda_menu_shell_append (GEDA_MENU_SHELL (submenu), item);
 
     gtk_widget_show_all (submenu);
@@ -1625,7 +1623,11 @@ geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
 static void
 popup_menu_callback (GedaMenuItem *item, void *data)
 {
+  GedaEntry *entry;
+
   int menu_option = (int)(long)data;
+
+  entry = g_object_get_data (G_OBJECT(item), "eda-entry");
 
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
@@ -1633,9 +1635,7 @@ popup_menu_callback (GedaMenuItem *item, void *data)
 #if DEBUG_GEDA_ENTRY
         fprintf(stderr, "setting auto complete on\n");
 #endif
-
-        set_auto_complete = TRUE;
-        do_auto_complete  = TRUE;
+        entry->completion_enabled  = TRUE;
         break;
 
       case AUTO_COMPLETE_OFF:
@@ -1643,8 +1643,7 @@ popup_menu_callback (GedaMenuItem *item, void *data)
 #if DEBUG_GEDA_ENTRY
         fprintf(stderr, "disabling auto complete\n");
 #endif
-        set_auto_complete = TRUE;
-        do_auto_complete  = FALSE;
+        entry->completion_enabled  = FALSE;
         break;
 
       default:
