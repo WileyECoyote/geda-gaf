@@ -2017,6 +2017,32 @@ geda_entry_new_visible (GList** history, GList** complete)
   return entry;
 }
 
+GtkWidget*
+geda_entry_new_with_completion (GList **complete)
+{
+  have_history = FALSE;
+
+  if (complete) {
+    old_complete_list = complete;
+    have_auto_complete = TRUE;
+  }
+  else {
+    have_auto_complete = FALSE;
+  }
+
+  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+}
+
+GtkWidget*
+geda_entry_new_with_history (GList **history)
+{
+  have_auto_complete = FALSE;
+  history_list_arg   = history;
+  have_history       = TRUE;
+
+  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+}
+
 /*!
  * \brief Create a New GedaEntry with Auxiliary Text Buffer
  * \par Function Description

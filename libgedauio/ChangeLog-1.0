@@ -10,6 +10,7 @@
       with Gtk menu counterparts because GedaEntry is derived from GtkEntry
       class, which creates the parent menu. Add geda_entry_virtual_populator
       and call virtual in geda_entry_populate_popup. Update documentation.
+      Add geda_entry_new_with_completion and geda_entry_new_with_history.
 
     * tests/test_*.c: Revise main to fail if faulted during check_construction.
 
