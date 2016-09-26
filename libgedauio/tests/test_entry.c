@@ -254,6 +254,53 @@ check_accessors ()
   return result;
 }
 
+static int activated = 0;
+static int populated= 0;
+
+void on_activate(GedaEntry *entry)
+{
+  activated++;
+}
+
+void on_populate_popup(GedaEntry *entry, void *menu)
+{
+  populated++;
+}
+
+int
+check_overides ()
+{
+  int result = 0;
+
+  GedaEntryClass *entry_class;
+
+  GtkWidget *widget = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+
+  entry_class = GEDA_ENTRY_GET_CLASS(widget);
+
+  entry_class->activate       = on_activate;
+  entry_class->populate_popup = on_populate_popup;
+
+  g_signal_emit_by_name(widget, "process-entry");
+
+  if (!activated) {
+    fprintf(stderr, "FAILED: %s line <%d> not activated\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  g_signal_emit_by_name(widget, "populate-popup");
+
+  if (!populated) {
+    fprintf(stderr, "FAILED: %s line <%d> not populated\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -283,6 +330,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result += check_overides();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking overides in %s\n\n", MUT);
         return 1;
       }
     }
