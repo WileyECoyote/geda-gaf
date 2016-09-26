@@ -116,6 +116,8 @@ static void    geda_entry_history_up         (GedaEntry        *entry);
 static void    geda_entry_history_down       (GedaEntry        *entry);
 static bool    geda_entry_tab_complete       (GedaEntry        *entry);
 
+static void    geda_entry_virtual_populator  (GedaEntry        *entry,
+                                              void             *menu);
 static void    geda_entry_populate_popup     (GedaEntry        *entry,
                                               GtkMenu          *menu,
                                               void             *data);
@@ -967,6 +969,8 @@ geda_entry_class_init(void *g_class, void *class_data)
   class->drag_data_get        = widget_class->drag_data_get;
   class->drag_data_delete     = widget_class->drag_data_delete;
 
+  class->populate_popup       = geda_entry_virtual_populator;
+
   widget_class->drag_begin         = geda_entry_drag_begin;
   widget_class->drag_end           = geda_entry_drag_end;
   widget_class->drag_drop          = geda_entry_drag_drop;
@@ -1579,6 +1583,11 @@ geda_entry_tab_complete (GedaEntry *entry)
  *  @{
  */
 
+static void
+geda_entry_virtual_populator(GedaEntry *entry, void *menu)
+{
+}
+
 /*!
  * \brief GedaEntry Internal Populate Popup
  * \par Function Description
@@ -1591,6 +1600,8 @@ geda_entry_tab_complete (GedaEntry *entry)
 static void
 geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 {
+  GedaEntryClass *entry_class;
+
   if (entry->auto_complete) {
 
     GtkWidget *item;
@@ -1615,6 +1626,12 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
     gtk_container_add (GTK_CONTAINER (submenu), item);
 
     gtk_widget_show_all (submenu);
+  }
+
+  entry_class = GEDA_ENTRY_GET_CLASS(entry);
+
+  if (entry_class)  {
+    entry_class->populate_popup(entry, menu);
   }
 }
 
