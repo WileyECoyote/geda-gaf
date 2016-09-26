@@ -50,10 +50,55 @@
  *  \brief Tests for geda_entry.c module
  */
 
+static GList *get_completion (void) {
+
+  GList *Era;
+  uint8_t i;
+
+
+  static char *Paleozoic[] = {
+                               "Permian",
+                               "Carboniferous"
+                               "Devonian",
+                               "Silurian",
+                               "Ordovician"
+                               "Cambrian",
+                               NULL};
+  Era = NULL;
+
+  for (i = 0; Paleozoic[i] != NULL; i++) {
+    Era = g_list_append(Era, Paleozoic[i]);
+  }
+
+  return Era;
+}
+
+static GList *get_history (void) {
+
+  GList *Eon;
+  uint8_t i;
+
+  static char *Phanerozoic[] = {
+                                 "Cenozoic",
+                                 "Mesozoic"
+                                 "Paleozoic",
+                                 NULL};
+  Eon = NULL;
+
+  for (i = 0; Phanerozoic[i] != NULL; i++) {
+    Eon = g_list_append(Eon, Phanerozoic[i]);
+  }
+
+  return Eon;
+}
+
 int check_construction (void)
 {
   int result = 0;
   int value;
+
+  static GList *complete;
+  static GList *history;
 
   /* geda_entry_new */
 
@@ -77,12 +122,39 @@ int check_construction (void)
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
-  if (GEDA_IS_ENTRY(widget)) {
-    fprintf(stderr, "FAILED %s destruction\n", TWIDGET);
+  widget = NULL;
+
+  /* geda_entry_new_with_completion */
+
+  complete = get_completion();
+
+  widget = geda_entry_new_with_completion (&complete);
+
+  if (!GEDA_IS_ENTRY(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
 
+  g_list_free(complete);
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
   widget = NULL;
+
+  /* geda_entry_new_with_history */
+
+  history = get_history();
+
+  widget = geda_entry_new_with_history (&history);
+
+  if (!GEDA_IS_ENTRY(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_list_free(history);
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
 
   /* geda_entry_new_visible */
 

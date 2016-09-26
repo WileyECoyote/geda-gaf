@@ -14,7 +14,9 @@
 
     * tests/test_*.c: Revise main to fail if faulted during check_construction.
 
-    * tests/test_entry.c: Add checks for "process-entry" and "populate-popup".
+    * tests/test_entry.c: Add checks for "process-entry" and "populate-popup",
+      geda_entry_new_with_completion, geda_entry_new_with_history, remove
+      check for destruction.
 
 2016-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
