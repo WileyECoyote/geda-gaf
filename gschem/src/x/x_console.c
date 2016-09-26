@@ -566,9 +566,9 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 
   GtkTextMark    *mark;
 
-  console->instance_type     = console_get_type();
+  console->instance_type = console_get_type();
 
-  bool            decorate   = (console_window_type == DECORATED);
+  bool decorate = (console_window_type == DECORATED);
 
   /* dialog initialization */
   g_object_set (G_OBJECT (console),
@@ -585,14 +585,14 @@ static void console_instance_init (GTypeInstance *instance, void *class)
                  NULL);
 
   /* create a scrolled window for the textview */
-  scrolled_win = GTK_WIDGET (g_object_new  (GTK_TYPE_SCROLLED_WINDOW,
-                                            /* GtkContainer */
-                                            "border-width",      1,
-                                            /* GtkScrolledWindow */
-                                            "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                            "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                            "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                                            NULL));
+  scrolled_win = GTK_WIDGET(g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                          /* GtkContainer */
+                                          "border-width",      1,
+                                          /* GtkScrolledWindow */
+                                          "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                          "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                          "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                                          NULL));
 
   /* create the text buffer */
   text_buffer = GTK_TEXT_BUFFER (g_object_new (GTK_TYPE_TEXT_BUFFER, NULL));
@@ -663,9 +663,9 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 */
   i_command_get_command_list(&command_list);
 
-  /* Instantiate one our Custom Entry Widgets */
+  /* Instantiate our Custom Entry Widgets */
   /* Glib-2.40 generates console noise from gtk-lib */
-  console_entry = geda_entry_new(&command_buffer, &command_list);
+  console_entry = geda_entry_new_visible(&command_buffer, &command_list);
 
   geda_entry_completion_set_case((GedaEntry*) console_entry, FALSE);
 

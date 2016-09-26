@@ -916,7 +916,7 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
 
     ref = designators[index].designator;
     descr = designators[index].description;
-    geda_combo_box_text_list_append(combo, ref, descr);
+    geda_combo_box_text_append_pair(combo, ref, descr);
     ++index;
   }
 }

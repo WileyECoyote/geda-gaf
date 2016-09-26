@@ -2,6 +2,12 @@
 
     * src/iface/i_status.c: Update mnemonics in menu strings.
 
+    * src/x/x_console.c: Replace geda_entry_new with geda_entry_new_visible
+      in console_instance_init.
+
+    * src/x/x_edit_cprop.c: Update function geda_combo_box_text_list_append
+      to geda_combo_box_text_append_pair.
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/Makefile.am: Add three images of dialogs:
