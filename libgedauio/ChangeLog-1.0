@@ -1,5 +1,9 @@
 2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Add functions geda_entry_new_with_completion
+      and geda_entry_new_with_history. Set entry->auto_complete during init
+      and reference instead of global.
+
     * tests/test_*.c: Revise main to fail if faulted during check_construction.
 
 2016-09-25 Wiley E. Hill <wileyhill@gmail.com>

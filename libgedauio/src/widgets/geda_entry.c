@@ -133,14 +133,16 @@ static int     geda_entry_strncmpi           (char             *str1,
                                               char             *str2,
                                               int               n);
 
+/* These flags and pointers are used for construction */
 static GList  *history_list;
 static GList **history_list_arg;
-        bool   have_history;
+static  bool   have_history;
 
 static GList  *complete_list;
 static GList **old_complete_list;
 
 static bool    have_auto_complete;
+
 static bool    set_auto_complete;
 static bool    do_auto_complete;
 
@@ -149,10 +151,10 @@ static void *geda_entry_parent_class = NULL;
 struct _GedaEntryPriv
 {
   GedaCompletion *command_completion;
-  bool            case_sensitive;
-  int             change_count;
   PangoAttrList  *attrs;
   PangoFontMap   *font_map;
+  bool            case_sensitive;
+  int             change_count;
 };
 
 const char *IDS_CONSOLE_POPUP[] = {
@@ -474,8 +476,8 @@ geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
 
   priv->command_completion = completion;
 
-  if (completion && !have_auto_complete) {
-    have_auto_complete = TRUE;
+  if (completion && !entry->auto_complete) {
+    entry->auto_complete = TRUE;
   }
 }
 
@@ -494,7 +496,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-  if (have_auto_complete) {
+  if (entry->auto_complete) {
 
     sensitive = sensitive != FALSE;
     entry->priv->case_sensitive = sensitive;
@@ -1077,7 +1079,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s created: history=%d, completion=%d\n",
-          __func__, have_history, have_auto_complete );
+          __func__, have_history, have_auto_complete);
 #endif
 }
 
@@ -1100,10 +1102,8 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 
   entry->instance_type  = geda_entry_get_type();
 
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
-                          G_CALLBACK (geda_entry_key_press), NULL);
-
   entry->have_history   = have_history;
+  entry->auto_complete  = have_auto_complete;
 
   if (have_history) {
 
@@ -1121,6 +1121,9 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
     }
   }
 
+  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+                          G_CALLBACK (geda_entry_key_press), NULL);
+
   g_signal_connect (G_OBJECT (entry), "populate-popup",
                     G_CALLBACK (geda_entry_populate_popup), NULL);
 
@@ -1128,17 +1131,12 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
                     G_CALLBACK (geda_entry_validate_input), NULL);
 
   /* Initialize & populate a GCompletion for commands */
-  if (old_complete_list) {
+  if (entry->auto_complete) {
 
-    complete_list            = *old_complete_list;
+    complete_list            = g_list_copy(*old_complete_list);
     priv->command_completion = geda_completion_new (NULL);
 
     geda_completion_add_items (priv->command_completion, complete_list);
-
-    entry->auto_complete = TRUE;
-  }
-  else {
-    entry->auto_complete = FALSE;
   }
 
   /* set initial flag state for popup menu*/
@@ -1147,9 +1145,9 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   entry->validation_mode    = ACCEPT_ALL_ASCII;
   entry->text_case          = BOTH_CASES;
   entry->activates_default  = FALSE;
-  priv->case_sensitive      = FALSE;
 
-  entry->priv->attrs        = NULL;
+  priv->case_sensitive      = FALSE;
+  priv->attrs               = NULL;
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s exit: history=%d, completion=%d\n",
@@ -1272,7 +1270,7 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
   bool handled = FALSE;
 
-  if (( set_auto_complete ) && ( have_auto_complete )) {/* If somebody wants & we have */
+  if ((set_auto_complete) && (entry->auto_complete)) {/* If somebody wants & we have */
     entry->auto_complete = do_auto_complete;
     set_auto_complete = FALSE; /* We did it so reset flag */
   }
@@ -1594,7 +1592,7 @@ geda_entry_tab_complete (GedaEntry *entry)
 static void
 geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
 {
-  if (have_auto_complete) {
+  if (entry->auto_complete) {
 
     GtkWidget *item;
     GtkWidget *submenu;
@@ -1625,25 +1623,30 @@ geda_entry_populate_popup (GedaEntry *entry, GedaMenu *menu, void *data)
  * is selected.
  */
 static void
-popup_menu_callback (GedaMenuItem *item, void    *data)
+popup_menu_callback (GedaMenuItem *item, void *data)
 {
-  int menu_option = (int)(long) (data);
+  int menu_option = (int)(long)data;
+
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
 
 #if DEBUG_GEDA_ENTRY
         fprintf(stderr, "setting auto complete on\n");
 #endif
+
         set_auto_complete = TRUE;
         do_auto_complete  = TRUE;
         break;
+
       case AUTO_COMPLETE_OFF:
+
 #if DEBUG_GEDA_ENTRY
         fprintf(stderr, "disabling auto complete\n");
 #endif
         set_auto_complete = TRUE;
         do_auto_complete  = FALSE;
         break;
+
       default:
         break;
   }
