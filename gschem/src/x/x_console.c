@@ -665,7 +665,7 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 
   /* Instantiate our Custom Entry Widgets */
   /* Glib-2.40 generates console noise from gtk-lib */
-  console_entry = geda_entry_new_visible(&command_buffer, &command_list);
+  console_entry = geda_entry_new_history_complete(&command_buffer, &command_list);
 
   geda_entry_completion_set_case((GedaEntry*) console_entry, FALSE);
 

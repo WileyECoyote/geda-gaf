@@ -1,3 +1,8 @@
+2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_console.c: Replace geda_entry_new_visible with function
+      geda_entry_new_history_complete in console_instance_init.
+
 2016-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update mnemonics in menu strings.
