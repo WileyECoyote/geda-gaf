@@ -151,20 +151,20 @@ struct _GedaEntryClass
 extern "C" {
 #endif
 
-GedaType   geda_entry_get_type               (void) GEDA_CONST;
+GedaType   geda_entry_get_type               (void)                     GEDA_CONST;
 bool       is_a_geda_entry                   (GedaEntry      *entry);
 
-GtkWidget *geda_entry_new                    (void);
+GtkWidget *geda_entry_new                    (void)                     WARN_UNUSED;
 GtkWidget *geda_entry_new_history_complete   (GList         **history,
-                                              GList         **complete);
-GtkWidget *geda_entry_new_visible            (void);
+                                              GList         **complete) WARN_UNUSED;
+GtkWidget *geda_entry_new_visible            (void)                     WARN_UNUSED;
 GtkWidget *geda_entry_new_visible_buffer     (GtkEntryBuffer *buffer);
-GtkWidget *geda_entry_new_visible_completion (GList         **complete);
-GtkWidget *geda_entry_new_visible_history    (GList         **history);
+GtkWidget *geda_entry_new_visible_completion (GList         **complete) WARN_UNUSED;
+GtkWidget *geda_entry_new_visible_history    (GList         **history)  WARN_UNUSED;
 
-GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
-GtkWidget *geda_entry_new_with_completion    (GList         **complete);
-GtkWidget *geda_entry_new_with_history       (GList         **history);
+GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer)   WARN_UNUSED;
+GtkWidget *geda_entry_new_with_completion    (GList         **complete) WARN_UNUSED;
+GtkWidget *geda_entry_new_with_history       (GList         **history)  WARN_UNUSED;
 
 GtkWidget *geda_entry_new_with_max_length    (int length);
 
