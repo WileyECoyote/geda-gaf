@@ -2094,6 +2094,32 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
   return g_object_new (GEDA_TYPE_ENTRY, "buffer", real_buffer, NULL);
 }
 
+GtkWidget*
+geda_entry_new_with_completion (GList **complete)
+{
+  have_history = FALSE;
+
+  if (complete) {
+    old_complete_list  = complete;
+    have_auto_complete = TRUE;
+  }
+  else {
+    have_auto_complete = FALSE;
+  }
+
+  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+}
+
+GtkWidget*
+geda_entry_new_with_history (GList **history)
+{
+  have_auto_complete = FALSE;
+  have_history       = TRUE;
+  history_list_arg   = history;
+
+  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+}
+
 /*! \brief Create a New GedaEntry specified max length property
  *  \par Function Description
  *

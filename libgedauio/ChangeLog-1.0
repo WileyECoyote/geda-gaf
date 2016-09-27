@@ -1,6 +1,6 @@
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src: Update arguments to geda_entry_new* in modules:
+    * src/: Update arguments to geda_entry_new* in modules:
 
         * src/dialogs/geda_input_dialog.c
         * src/widgets/geda_combobox.c
@@ -13,6 +13,8 @@
         * geda_entry_new_visible_buffer
         * geda_entry_new_visible_completion
         * geda_entry_new_visible_history
+        * geda_entry_new_with_completion
+        * geda_entry_new_with_history
 
 2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
