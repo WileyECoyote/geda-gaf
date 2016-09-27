@@ -18,6 +18,7 @@
         * geda_entry_new_visible_history
         * geda_entry_new_with_completion
         * geda_entry_new_with_history
+        * geda_entry_widget_set_completion (declared but missing)
 
     * tests/test_entry.c: Update tests; check geda_entry_new_visible since
       these use the invisible counterparts to create the widgets.

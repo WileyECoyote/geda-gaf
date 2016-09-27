@@ -1802,6 +1802,19 @@ geda_entry_widget_get_completion (GtkWidget *entry)
   return geda_entry_get_completion (GEDA_ENTRY(entry));
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_entry_widget_set_completion (GtkWidget      *entry,
+                                  GedaCompletion *completion)
+{
+  geda_entry_set_completion (GEDA_ENTRY(entry), completion);
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
