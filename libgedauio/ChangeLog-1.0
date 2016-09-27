@@ -1,6 +1,7 @@
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_entry.h: Add warn unused attribute to "new" functions.
+    * include/geda_entry.h: Add warn unused attribute to "new" functions,
+      add missing declaration for geda_entry_get_valid_input.
 
     * src/: Update arguments to geda_entry_new* in modules:
 

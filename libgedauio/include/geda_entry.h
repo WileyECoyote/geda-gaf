@@ -205,6 +205,8 @@ const char*
      geda_entry_get_text                     (GedaEntry      *entry);
 void geda_entry_set_text                     (GedaEntry      *entry,
                                         const char           *new_text);
+GedaEntryAccept
+     geda_entry_get_valid_input              (GedaEntry      *entry);
 
 void geda_entry_modify_fg                    (GedaEntry      *entry,
                                               GtkStateType    state,
