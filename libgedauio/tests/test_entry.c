@@ -124,37 +124,29 @@ int check_construction (void)
 
   widget = NULL;
 
+  complete = get_completion();
+  history  = get_history();
+
   /* geda_entry_new_with_completion */
 
-  complete = get_completion();
-
-  widget = geda_entry_new_with_completion (&complete);
+  widget = geda_entry_new_history_complete(&history, &complete);
 
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
 
-  g_list_free(complete);
+    if (!geda_entry_widget_get_completion(widget)) {
+      fprintf(stderr, "FAILED: line <%d> completion %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+  }
+
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
-
-  /* geda_entry_new_with_history */
-
-  history = get_history();
-
-  widget = geda_entry_new_with_history (&history);
-
-  if (!GEDA_IS_ENTRY(widget)) {
-    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
-    result++;
-  }
-
-  g_list_free(history);
-  g_object_ref_sink(widget); /* Sink reference to entry widget */
-  g_object_unref(widget);    /* Destroy the widget */
 
   /* geda_entry_new_visible */
 
@@ -164,13 +156,16 @@ int check_construction (void)
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
   }
+  else {
 
-  g_object_get (widget, "visible", &value, NULL);
+    /* Verify the visibility was set */
+    g_object_get (widget, "visible", &value, NULL);
 
-  if (!value) {
-    fprintf(stderr, "FAILED: line <%d> is visible %s\n", __LINE__, TWIDGET);
-    result++;
-    value = 0;
+    if (!value) {
+      fprintf(stderr, "FAILED: line <%d> is visible %s\n", __LINE__, TWIDGET);
+      result++;
+      value = 0;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
@@ -178,11 +173,12 @@ int check_construction (void)
 
   widget = NULL;
 
-  /* geda_entry_new_with_buffer */
+  /* geda_entry_new_visible_buffer */
 
   GtkEntryBuffer *buffer;
 
-  widget = geda_entry_new_with_buffer (NULL);
+  /* uses geda_entry_new_with_buffer */
+  widget = geda_entry_new_visible_buffer (NULL);
 
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -191,17 +187,64 @@ int check_construction (void)
 
   buffer = gtk_entry_buffer_new ("abc", 6);
 
-  widget = geda_entry_new_with_buffer (buffer);
+  widget = geda_entry_new_visible_buffer (buffer);
 
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;
+  }
+  else {
+
+    /* Verify the visibility was set */
+    g_object_get (widget, "visible", &value, NULL);
+
+    if (!value) {
+      fprintf(stderr, "FAILED: line <%d> is visible %s\n", __LINE__, TWIDGET);
+      result++;
+      value = 0;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
   widget = NULL;
+
+  /* geda_entry_new_visible_completion  */
+
+  /* uses geda_entry_new_with_completion */
+  widget = geda_entry_new_with_completion (&complete);
+
+  if (!GEDA_IS_ENTRY(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+    if (!geda_entry_widget_get_completion(widget)) {
+      fprintf(stderr, "FAILED: line <%d> completion %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+  }
+
+  g_list_free(complete);
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  widget = NULL;
+
+  /* geda_entry_new_visible_history */
+
+  /* use geda_entry_new_with_history */
+  widget = geda_entry_new_visible_history (&history);
+
+  if (!GEDA_IS_ENTRY(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_list_free(history);
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
 
   /* geda_entry_new_with_max_length */
 

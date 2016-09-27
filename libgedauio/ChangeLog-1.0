@@ -16,6 +16,9 @@
         * geda_entry_new_with_completion
         * geda_entry_new_with_history
 
+    * tests/test_entry.c: Update tests; check geda_entry_new_visible since
+      these use the invisible counterparts to create the widgets.
+
 2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Add Doxygen comments for defines.
