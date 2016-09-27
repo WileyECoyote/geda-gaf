@@ -42,12 +42,11 @@
 #include "../../include/geda_entry.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_image_menu_item.h"
+#include "../../include/geda_keysyms.h"
 #include "../../include/geda_widget.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
-
-#include <geda_keysyms.h>
 
 /**
  * \brief GedaEntry - A single line text entry field
@@ -189,11 +188,6 @@ end_change (GedaEntry *entry)
   g_object_thaw_notify (G_OBJECT (entry));
 
   priv->change_count--;
-/*
-  if (priv->change_count == 0) {
-    g_signal_emit_by_name (entry, "changed");
-  }
-*/
 }
 
 /*!
@@ -1151,8 +1145,9 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   entry->text_case          = BOTH_CASES;
   entry->activates_default  = FALSE;
 
+  /* priv data already initialized to zeros
   priv->case_sensitive      = FALSE;
-  priv->attrs               = NULL;
+  priv->attrs               = NULL; */
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s exit: history=%d, completion=%d\n",
