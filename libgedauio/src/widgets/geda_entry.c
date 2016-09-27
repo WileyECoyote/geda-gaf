@@ -1966,6 +1966,10 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  * \brief Create a New GedaEntry with optional History and Completion
  * \par Function Description
  * Creates a new entry with the specified text buffer.
+/*!
+ * \brief Create a New GedaEntry with History and Completion
+ * \par Function Description
+ *  Creates a new entry with history and completion list.
  *
  * \param [in] history  Point to location of GList pointer to store entry strings.
  * \param [in] complete Point to location of GList pointer containing key words.
@@ -1973,7 +1977,7 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  * \return a new #GedaEntry
  */
 GtkWidget*
-geda_entry_new (GList **history, GList **complete)
+geda_entry_new_history_complete (GList **history, GList **complete)
 {
 
   if ((int)(long)history == -1)
@@ -2018,29 +2022,40 @@ geda_entry_new_visible (GList** history, GList** complete)
 }
 
 GtkWidget*
-geda_entry_new_with_completion (GList **complete)
+geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 {
-  have_history = FALSE;
+  GtkWidget *entry;
+  entry = geda_entry_new_with_buffer (buffer);
+  g_object_set (entry, "visible", TRUE, NULL);
+  return entry;
+}
 
-  if (complete) {
-    old_complete_list = complete;
-    have_auto_complete = TRUE;
-  }
-  else {
-    have_auto_complete = FALSE;
-  }
-
-  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+/*!
+ * \brief Create a New GedaEntry with Completion
+ * \par Function Description
+ *  Creates a new entry with optional history and completion list.
+ *  The new widget is set visible.
+ *
+ * \param [in] complete Point to location of GList pointer containing key words.
+ *
+ * \return a new #GedaEntry
+ */
+GtkWidget*
+geda_entry_new_visible_completion (GList **complete)
+{
+  GtkWidget *entry;
+  entry = geda_entry_new_with_completion (complete);
+  g_object_set (entry, "visible", TRUE, NULL);
+  return entry;
 }
 
 GtkWidget*
-geda_entry_new_with_history (GList **history)
+geda_entry_new_visible_history (GList **history)
 {
-  have_auto_complete = FALSE;
-  history_list_arg   = history;
-  have_history       = TRUE;
-
-  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+  GtkWidget *entry;
+  entry = geda_entry_new_with_history (history);
+  g_object_set (entry, "visible", TRUE, NULL);
+  return entry;
 }
 
 /*!

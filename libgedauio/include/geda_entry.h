@@ -158,10 +158,16 @@ bool       is_a_geda_entry                   (GedaEntry      *entry);
 
 GtkWidget *geda_entry_new                    (GList **history, GList **complete);
 GtkWidget *geda_entry_new_visible            (GList **history, GList **complete);
-GtkWidget *geda_entry_new_with_completion    (GList **complete);
-GtkWidget *geda_entry_new_with_history       (GList **history);
+GtkWidget *geda_entry_new_history_complete   (GList         **history,
+                                              GList         **complete);
+GtkWidget *geda_entry_new_visible_buffer     (GtkEntryBuffer *buffer);
+GtkWidget *geda_entry_new_visible_completion (GList         **complete);
+GtkWidget *geda_entry_new_visible_history    (GList         **history);
 
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
+GtkWidget *geda_entry_new_with_completion    (GList         **complete);
+GtkWidget *geda_entry_new_with_history       (GList         **history);
+
 GtkWidget *geda_entry_new_with_max_length    (int length);
 
 void       geda_entry_select_all             (GedaEntry      *entry);
