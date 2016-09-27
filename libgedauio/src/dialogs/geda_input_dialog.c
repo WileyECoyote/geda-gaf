@@ -66,7 +66,7 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
       gtk_container_add(GTK_CONTAINER(content_area), label);
     }
 
-    entry = geda_entry_new_visible (DISABLE, DISABLE);
+    entry = geda_entry_new_visible ();
     geda_entry_set_valid_input(GEDA_ENTRY(entry), type);
     gtk_container_add(GTK_CONTAINER(content_area), entry);
 

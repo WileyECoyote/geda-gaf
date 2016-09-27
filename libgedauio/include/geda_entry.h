@@ -31,14 +31,12 @@
 #define _GEDA_ENTRY_H
 
 /*!
- * Use NO_HISTORY as the first argument to geda_entry_new or
- * geda_entry_new_visible to disable GedeaEntry history feature.
+ * Use NO_HISTORY as an argument to disable GedeaEntry history feature.
  */
 #define NO_HISTORY (void*) -1
 
 /*!
- * Use NO_COMPLETION as the second argument to geda_entry_new or
- * geda_entry_new_visible to disable GedeaEntry completion feature.
+ * Use NO_COMPLETION as an argument to disable GedeaEntry completion feature.
  */
 #define NO_COMPLETION (void*) -1
 
@@ -156,10 +154,10 @@ extern "C" {
 GedaType   geda_entry_get_type               (void) GEDA_CONST;
 bool       is_a_geda_entry                   (GedaEntry      *entry);
 
-GtkWidget *geda_entry_new                    (GList **history, GList **complete);
-GtkWidget *geda_entry_new_visible            (GList **history, GList **complete);
+GtkWidget *geda_entry_new                    (void);
 GtkWidget *geda_entry_new_history_complete   (GList         **history,
                                               GList         **complete);
+GtkWidget *geda_entry_new_visible            (void);
 GtkWidget *geda_entry_new_visible_buffer     (GtkEntryBuffer *buffer);
 GtkWidget *geda_entry_new_visible_completion (GList         **complete);
 GtkWidget *geda_entry_new_visible_history    (GList         **history);

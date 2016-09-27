@@ -1,3 +1,10 @@
+2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_visible
+      in function x_dialog_get_search_text.
+
+    * src/x_window.c: Update arguments to geda_entry_new_visible.
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gattrib.dox: Enable EXTERNAL_PAGES so that links to the libraries

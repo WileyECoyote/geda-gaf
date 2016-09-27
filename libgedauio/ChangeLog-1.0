@@ -1,6 +1,13 @@
-2016-09-26 Wiley E. Hill <wileyhill@gmail.com>
+2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_entry.c: Add functions;
+    * src: Update arguments to geda_entry_new* in modules:
+
+        * src/dialogs/geda_input_dialog.c
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_font_dialog.c
+
+    * src/widgets/geda_entry.c: Remove arguments from geda_entry_new and
+      geda_entry_new_visible, add functions;
 
         * geda_entry_new_history_complete
         * geda_entry_new_visible_buffer

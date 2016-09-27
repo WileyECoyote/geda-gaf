@@ -70,9 +70,9 @@
  * could also be NULL because a NULL completion is interpreted to mean
  * disabling the completion feature.
  * \par
- * example:    entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+ * example: entry = geda_entry_new_visible ();
  * \par
- * example:    entry = geda_entry_new(&history_list, &word_list);
+ * example: entry = geda_entry_new_history_complete(&history_list, &word_list);
  *
  * \sa #GedaCompletion
  *
@@ -1963,9 +1963,21 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  */
 
 /*!
- * \brief Create a New GedaEntry with optional History and Completion
+ * \brief Create a New GedaEntry
  * \par Function Description
- * Creates a new entry with the specified text buffer.
+ * Creates a new entry.
+ *
+ * \return a new #GedaEntry
+ */
+GtkWidget*
+geda_entry_new (void)
+{
+  have_auto_complete = FALSE;
+  have_history       = FALSE;
+
+  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+}
+
 /*!
  * \brief Create a New GedaEntry with History and Completion
  * \par Function Description
@@ -1979,7 +1991,6 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
 GtkWidget*
 geda_entry_new_history_complete (GList **history, GList **complete)
 {
-
   if ((int)(long)history == -1)
     have_history = FALSE;
   else {
@@ -2002,21 +2013,18 @@ geda_entry_new_history_complete (GList **history, GList **complete)
 }
 
 /*!
- * \brief Create a New Visible GedaEntry with optional History and Completion
+ * \brief Create a New Visible GedaEntry
  * \par Function Description
  *  Creates a new entry with optional history and completion list.
  *  The new widget is set visible.
  *
- * \param [in] history  Point to location of GList pointer to store entry strings.
- * \param [in] complete Point to location of GList pointer containing key words.
- *
  * \return a new #GedaEntry
  */
 GtkWidget*
-geda_entry_new_visible (GList** history, GList** complete)
+geda_entry_new_visible ()
 {
   GtkWidget *entry;
-  entry = geda_entry_new (history, complete);
+  entry = geda_entry_new ();
   g_object_set (entry, "visible", TRUE, NULL);
   return entry;
 }
@@ -2100,7 +2108,7 @@ GtkWidget*
 geda_entry_new_with_max_length (int max_length)
 {
   GtkWidget *entry;
-  entry = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+  entry = geda_entry_new ();
   g_object_set (entry, "max-length", max_length, NULL);
   return entry;
 }

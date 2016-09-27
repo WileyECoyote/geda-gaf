@@ -309,7 +309,7 @@ void x_window_init()
   gtk_box_pack_start(GTK_BOX(edit_box), location, FALSE, TRUE, 0);
 
    /* Global in include/globals.h - likely a very bad thing */
-  entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+  entry = geda_entry_new_visible ();
   gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0);
 
   /* TODO togglable legend ? */

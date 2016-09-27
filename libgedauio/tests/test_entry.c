@@ -102,7 +102,7 @@ int check_construction (void)
 
   /* geda_entry_new */
 
-  GtkWidget *widget = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+  GtkWidget *widget = geda_entry_new ();
 
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -158,7 +158,7 @@ int check_construction (void)
 
   /* geda_entry_new_visible */
 
-  widget = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+  widget = geda_entry_new_visible ();
 
   if (!GEDA_IS_ENTRY(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -346,7 +346,7 @@ check_overides ()
 
   GedaEntryClass *entry_class;
 
-  GtkWidget *widget = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+  GtkWidget *widget = geda_entry_new ();
 
   entry_class = GEDA_ENTRY_GET_CLASS(widget);
 

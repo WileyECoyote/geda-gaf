@@ -1473,7 +1473,7 @@ geda_combo_box_constructor (GType                  type,
 
     GtkWidget *entry;
 
-    entry = geda_entry_new_visible (NO_HISTORY, NO_COMPLETION);
+    entry = geda_entry_new_visible ();
 
     gtk_container_add (GTK_CONTAINER (combo_box), entry);
 

@@ -3,6 +3,10 @@
     * src/x/x_console.c: Replace geda_entry_new_visible with function
       geda_entry_new_history_complete in console_instance_init.
 
+    * src/iface/i_diagnostics.c: Update arguments to geda_entry_new_visible.
+
+    * src/x/x_coord.c: Update arguments to geda_entry_new_visible.
+
 2016-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update mnemonics in menu strings.
