@@ -942,7 +942,7 @@ geda_menu_class_init   (void *class, void *class_data)
                            _("Delay before submenus appear"),
                            _("Minimum time the pointer must stay over a menu item before the submenu appear"),
                               0,
-                              G_MAXINT,
+                              INT_MAX,
                               DEFAULT_POPUP_DELAY,
                               G_PARAM_READWRITE);
 
@@ -952,7 +952,7 @@ geda_menu_class_init   (void *class, void *class_data)
                            _("Delay before hiding a submenu"),
                            _("The time before hiding a submenu when the pointer is moving towards the submenu"),
                               0,
-                              G_MAXINT,
+                              INT_MAX,
                               DEFAULT_POPDOWN_DELAY,
                               G_PARAM_READWRITE);
 

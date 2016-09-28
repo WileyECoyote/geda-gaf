@@ -4,7 +4,8 @@
       in the  GedaEntry-Style group. Add GedaEntry-Puplic Doxygen group.
 
     * src/widgets/geda_label.c: Replace G_MAXINT with MAX_OFFSET_PADDING
-      define to 250 for maximum offset and padding properties.
+      define to 250 for maximum offset and padding properties and replace
+      G_MAXINT with INT_MAX for maximum delay times.
 
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
