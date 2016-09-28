@@ -190,6 +190,1136 @@ end_change (GedaEntry *entry)
   priv->change_count--;
 }
 
+/*! \todo Finish function documentation!!!
+ * \brief gobject_class->finalize
+ * \par Function Description
+ *
+ */
+static void
+geda_entry_finalize (GObject *object)
+{
+  GedaEntry *entry;
+
+  entry = GEDA_ENTRY (object);
+
+  if (entry->priv->command_completion) {
+    geda_completion_free (entry->priv->command_completion);
+  }
+
+  /* Save history to caller's glist*/
+  if (entry->have_history)
+    *history_list_arg  = history_list;
+
+  G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
+
+  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
+    pango_attr_list_unref (entry->priv->attrs);
+
+  if (entry->priv->font_map) {
+    pango_cairo_font_map_set_default (NULL);
+    entry->priv->font_map = NULL;
+  }
+
+  g_free (entry->priv);
+}
+
+/*! gobject_class->get_property
+ * \brief GObject property getter function for a GedaEntry Object
+ * \par Function Description
+ *  Getter function for GedaEntry's GObject properties,
+ *  "settings-name" and "toplevel".
+ *
+ *  \param [in]  object       The GObject whose properties we are getting
+ *  \param [in]  property_id  The numeric id. under which the property was
+ *                            registered with g_object_class_install_property()
+ *  \param [out] value        The GValue in which to return the value of the property
+ *  \param [in]  pspec        A GParamSpec describing the property being got
+ */
+static void
+geda_entry_get_property (GObject *object, unsigned int  property_id,
+                         GValue  *value,  GParamSpec   *pspec)
+{
+  GedaEntry *entry = GEDA_ENTRY(object);
+
+  switch (property_id) {
+
+    case PROP_ACTIVATES_DEFAULT:
+      g_value_set_boolean (value, entry->activates_default);
+      break;
+    case PROP_ATTRIBUTES:
+      g_value_set_boxed (value, entry->priv->attrs);
+      break;
+    case PROP_AUTO_COMPLETION:
+      g_value_set_boolean (value, have_auto_complete ? entry->auto_complete : FALSE);
+      break;
+    case PROP_CASE_SENSITIVE:
+      g_value_set_boolean(value, geda_entry_completion_get_case(entry));
+      break;
+    case PROP_INPUT_CASE:
+      g_value_set_int (value, geda_entry_get_input_case(entry));
+      break;
+    case PROP_MAX_HISTORY:
+      g_value_set_int (value, entry->max_history);
+      break;
+    case PROP_VALIDATE:
+      g_value_set_enum (value, geda_entry_get_valid_input(entry));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+/*! gobject_class->set_property
+ * \brief GObject property setter for a GedaEntry Object
+ * \par Function Description
+ *  Setter function for GedaEntry's GObject properties.
+ *
+ * \param [in] object       The GObject whose properties we are setting
+ * \param [in] property_id  The numeric id. under which the property was
+ *                            registered with g_object_class_install_property()
+ * \param [in] value        The GValue the property is being set from
+ * \param [in] pspec        A GParamSpec describing the property being set
+ */
+static void
+geda_entry_set_property (GObject *object, unsigned int  property_id,
+                  const  GValue  *value,  GParamSpec   *pspec)
+{
+  GedaEntry *entry = GEDA_ENTRY(object);
+
+  switch (property_id) {
+
+    case PROP_ACTIVATES_DEFAULT:
+      geda_entry_set_activates_default (entry, g_value_get_boolean (value));
+      break;
+    case PROP_ATTRIBUTES:
+      geda_entry_set_attributes (entry, g_value_get_boxed (value));
+      break;
+    case PROP_AUTO_COMPLETION:
+      entry->auto_complete = have_auto_complete ? g_value_get_boolean (value) : FALSE;
+      break;
+    case PROP_CASE_SENSITIVE:
+      geda_entry_completion_set_case(entry, g_value_get_boolean (value));
+      break;
+    case PROP_INPUT_CASE:
+      geda_entry_set_input_case(entry, g_value_get_int (value));
+      break;
+    case PROP_MAX_HISTORY:
+      entry->max_history = g_value_get_int (value);
+      break;
+    case PROP_VALIDATE:
+      geda_entry_set_valid_input(entry, g_value_get_int (value));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+/*! \brief Entry Stop Activate Default signal Responder
+ *  \par Function Description
+ *  This function exist to stop GTK-2 from activating the
+ *  the default widget when an "Enter" key is press. The
+ *  GtkEntry gtk_entry_set_activates_default function does
+ *  not work correclty, the default widget will eventually
+ *  see the signal regardless of the setting.
+ *
+ *  \param [in] entry The GedaEntry object
+ */
+static void
+geda_entry_real_activate (GedaEntry *entry)
+{
+  GtkWidget *widget;
+
+#if DEBUG_GEDA_ENTRY
+  fprintf(stderr, "<%s> in over-ride: got <activate> signal\n", __func__);
+#endif
+
+  widget = GTK_WIDGET (entry);
+
+  if (entry->activates_default) {
+
+    GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
+
+    if (GTK_IS_WINDOW (toplevel)) {
+
+      GtkWindow *window = GTK_WINDOW (toplevel);
+
+      if (window) {
+
+        GtkWidget *default_widget;
+        GtkWidget *focus_widget;
+
+        default_widget = gtk_window_get_default_widget (window);
+        focus_widget   = gtk_window_get_focus (window);
+
+        if (widget != default_widget &&
+          !(widget == focus_widget && (!default_widget || !gtk_widget_get_sensitive (default_widget))))
+          gtk_window_activate_default (window);
+      }
+    }
+  }
+}
+
+/*! widget_class->drag_begin
+ * \todo Finish function documentation!!!
+ * \brief
+ * \par Function Description
+ *
+ */
+static void
+geda_entry_drag_begin (GtkWidget      *widget,
+                       GdkDragContext *context)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static bool
+geda_entry_drag_drop (GtkWidget      *widget,
+                      GdkDragContext *context,
+                      int             x,
+                      int             y,
+                      unsigned int    time)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+
+
+  return FALSE; /* No continue */
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_drag_end (GtkWidget      *widget,
+                     GdkDragContext *context)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_drag_leave (GtkWidget      *widget,
+                       GdkDragContext *context,
+                       unsigned int    time)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  gtk_widget_queue_draw (widget);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static bool
+geda_entry_drag_motion (GtkWidget       *widget,
+                        GdkDragContext  *context,
+                        int              x,
+                        int              y,
+                        unsigned int     time)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop) {
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
+  return FALSE; /* not here */
+}
+
+static void
+geda_entry_drag_data_get (GtkWidget        *widget,
+                          GdkDragContext   *context,
+                          GtkSelectionData *selection_data,
+                          unsigned int      info,
+                          unsigned int      time)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop) {
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+
+  if (geda_entry->enable_drag_n_drop) {
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_drag_data_received (GtkWidget        *widget,
+                               GdkDragContext   *context,
+                               int              x,
+                               int              y,
+                               GtkSelectionData *selection_data,
+                               unsigned int     info,
+                               unsigned int     time)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  if (geda_entry->enable_drag_n_drop) {
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  }
+}
+
+/*!
+ * \brief GedaEntry Grab Focus
+ * \par Function Description
+ * Over-rides widget_class->grab_focus. GtkEntry's grab_focus selects
+ * the contents and therefore claims PRIMARY. So we bypass it; see
+ * bug #345356 and bug #347067.
+ */
+static void
+geda_entry_grab_focus (GtkWidget *widget)
+{
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
+}
+
+/*!
+ * \brief GedaEntry Realize
+ * \par Function Description
+ * Over-rides widget_class->realize, chains-up and then retrieves
+ * and saves pointer to the font_map.
+ */
+static void
+geda_entry_realize (GtkWidget *widget)
+{
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
+
+  if (gtk_widget_has_screen(widget)) {
+
+    GedaEntry    *entry;
+    PangoContext *context;
+    PangoLayout  *layout;
+
+    entry = GEDA_ENTRY (widget);
+
+    layout  = gtk_entry_get_layout ((GtkEntry*)widget);
+    context = pango_layout_get_context (layout);
+
+    pango_context_set_font_map (context, entry->priv->font_map);
+    entry->priv->font_map = g_object_ref (entry->priv->font_map);
+    pango_layout_context_changed (layout);
+  }
+}
+
+/*!
+ * \brief Unrealize a GedaEntry
+ * \par Function Description
+ * Over-rides widget_class->unrealize to unreference the font_map
+ * referenced when realized.
+ */
+static void
+geda_entry_unrealize (GtkWidget *widget)
+{
+  GedaEntry *entry = GEDA_ENTRY (widget);
+
+  if (entry->priv->font_map) {
+    g_object_unref (entry->priv->font_map);
+  }
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_real_insert_text (GedaEntry  *entry,
+                             const char *new_text,
+                             int         new_text_length,
+                             int        *position)
+{
+  GtkEntryBuffer *buffer;
+  unsigned int n_inserted;
+  int n_chars;
+
+  n_chars = g_utf8_strlen (new_text, new_text_length);
+
+  /* The actual insertion into the buffer. This will end up firing the
+   * following signal handlers:
+   *
+   *       buffer_inserted_text(),
+   *       buffer_notify_display_text(),
+   *       buffer_notify_text(),
+   *       buffer_notify_length()
+   */
+  begin_change (entry);
+
+  g_object_get (entry, "buffer", &buffer, NULL);
+
+  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
+
+  end_change (entry);
+
+  *position += n_inserted;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_validate_input (GtkEntry    *entry,
+                           const char  *text,
+                           int          length,
+                           int         *position,
+                           void        *data)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY (entry);
+
+  char *result = g_new (char, length);
+  bool  valid  = FALSE;
+  int   count  = 0;
+  int   i;
+
+  for (i = 0; i < length; i++) {
+
+    switch (geda_entry->validation_mode) {
+      case ACCEPT_ALL_ASCII:
+         valid = TRUE;
+         break;
+      case ACCEPT_ALPHANUMERIC:
+         if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
+           valid = TRUE;
+         break;
+      case ACCEPT_NUMERIC:
+         if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
+           valid = TRUE;
+         break;
+      case ACCEPT_COORDINATE:
+         if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
+           valid = TRUE;
+      case ACCEPT_NUMBER:
+         if (isdigit(text[i]))
+           valid = TRUE;
+         break;
+      case ACCEPT_INTEGER:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
+           valid = TRUE;
+         break;
+      case ACCEPT_REAL:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
+           valid = TRUE;
+         break;
+      default:
+         valid = TRUE;
+    }
+    if (!valid)
+      continue;
+
+    if (geda_entry->text_case == LOWER_CASE) {
+      result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
+    }
+    else {
+      if (geda_entry->text_case == UPPER_CASE)
+        result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
+      else
+        result[count++] = text[i];
+    }
+  }
+
+  if (count > 0) {
+
+    g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
+                                     G_CALLBACK (geda_entry_validate_input),
+                                     data);
+
+    geda_entry_real_insert_text (geda_entry, result, count, position);
+
+    g_signal_handlers_unblock_by_func (G_OBJECT (geda_entry),
+                                       G_CALLBACK (geda_entry_validate_input),
+                                       data);
+  }
+  g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
+
+  g_free (result);
+}
+
+/*! \brief GedaEntry Type Class Initializer
+ *
+ *  \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
+ *
+ *  \param [in]  g_class     GedaEntry class we are initializing
+ *  \param [in]  class_data  GedaEntry structure associated with the class
+ */
+static void
+geda_entry_class_init(void *g_class, void *class_data)
+{
+  GedaEntryClass *class;
+  GParamSpec     *params;
+  GObjectClass   *gobject_class;
+  GtkWidgetClass *widget_class;
+  GtkBindingSet  *binding_set;
+
+  class         = (GedaEntryClass*)g_class;
+  gobject_class = G_OBJECT_CLASS (class);
+  widget_class  = GTK_WIDGET_CLASS (class);
+
+  geda_entry_parent_class     = g_type_class_peek_parent (class);
+
+  gobject_class->finalize     = geda_entry_finalize;
+  gobject_class->get_property = geda_entry_get_property;
+  gobject_class->set_property = geda_entry_set_property;
+
+  class->activate             = geda_entry_real_activate;
+
+  /* We over-ride parent's drag&drop, which is over-riding widget class
+   * because we support drag&drop stuff other than just text and the
+   * stock entry intecepts all of drag&drop signals! */
+  class->drag_begin           = widget_class->drag_begin;
+  class->drag_drop            = widget_class->drag_drop;
+  class->drag_end             = widget_class->drag_end;
+  class->drag_leave           = widget_class->drag_leave;
+  class->drag_motion          = widget_class->drag_motion;
+  class->drag_data_get        = widget_class->drag_data_get;
+  class->drag_data_delete     = widget_class->drag_data_delete;
+  class->drag_data_received   = widget_class->drag_data_received;
+
+  class->populate_popup       = geda_entry_virtual_populator;
+
+  widget_class->drag_begin         = geda_entry_drag_begin;
+  widget_class->drag_drop          = geda_entry_drag_drop;
+  widget_class->drag_end           = geda_entry_drag_end;
+  widget_class->drag_leave         = geda_entry_drag_leave;
+  widget_class->drag_motion        = geda_entry_drag_motion;
+  widget_class->drag_data_get      = geda_entry_drag_data_get;
+  widget_class->drag_data_delete   = geda_entry_drag_data_delete;
+  widget_class->drag_data_received = geda_entry_drag_data_received;
+
+  params = g_param_spec_boolean ("activates-default",
+                               _("Activates default"),
+                               _("Whether to activate the default widget when Enter is pressed"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ACTIVATES_DEFAULT, params);
+
+  params = g_param_spec_boxed ("attributes",
+                             _("Attributes"),
+                             _("A list of style attributes to apply to the text"),
+                                PANGO_TYPE_ATTR_LIST,
+                                G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ATTRIBUTES, params);
+
+  params = g_param_spec_boolean ("auto-completion",
+                               _("Auto-Completion"),
+                               _("Enable Auto-completion, if installed"),
+                                  TRUE, /* default_value */
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_AUTO_COMPLETION, params);
+
+  params = g_param_spec_boolean ("case-sensitive",
+                               _("FALSE Auto-Completion in NOT case sensitive"),
+                               _("if Auto-completion is enabled, set case compare function"),
+                                FALSE, /* default_value */
+                                G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_CASE_SENSITIVE, params);
+
+  params = g_param_spec_int ("input-case",
+                           _("Set case of input"), /* nick name */
+                           _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
+                              LOWER_CASE, /* Min value */
+                              BOTH_CASES, /* Max value */
+                              BOTH_CASES, /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_INPUT_CASE, params);
+
+  params = g_param_spec_int ("max-history",
+                           _("Set maxium history"), /* nick name */
+                           _("maximum length of history"), /* hint / blurb */
+                              0,        /* Min value */
+                              G_MAXINT, /* Max value */
+                              MAX_ENTRY_HISTORY,      /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_MAX_HISTORY, params );
+
+  params = g_param_spec_int ("accept-type",
+                           _("Set valid input type"), /* nick name */
+                           _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
+                              ACCEPT_ALL_ASCII, /* Min value */
+                              ACCEPT_REAL,      /* Max value */
+                              ACCEPT_ALL_ASCII, /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_VALIDATE, params);
+
+  /*!
+   * GedaEntry::process-entry:
+   * entry: The entry on which the signal is emitted
+   *
+   * The GedaEntry::process-entry signal is emitted when the user hits the Enter
+   * key. This is the same as process-entry GtkEntry::activate.
+   *
+   * While this signal is used as a keybinding signal, it is also commonly
+   * used by applications to intercept activation of entries.
+   *
+   * The default bindings for this signal are all forms of the Enter key.
+   */
+  signals[PROCESS_ENTRY] = g_signal_new ("process-entry",
+                                    G_TYPE_FROM_CLASS (gobject_class),
+                                    G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
+                                    G_STRUCT_OFFSET (GedaEntryClass, activate),
+                                    NULL, NULL,
+                                    g_cclosure_marshal_VOID__VOID,
+                                    G_TYPE_NONE, 0);
+
+  widget_class->activate_signal = signals[PROCESS_ENTRY];
+
+  /*  Key bindings */
+  binding_set = gtk_binding_set_by_class (class);
+
+  /* Activate */
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0,    "process-entry", 0);
+
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "process-entry", 0);
+
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,  "process-entry", 0);
+
+  widget_class->grab_focus = geda_entry_grab_focus;
+  widget_class->realize    = geda_entry_realize;
+  widget_class->unrealize  = geda_entry_unrealize;
+
+#if DEBUG_GEDA_ENTRY
+  fprintf(stderr, "%s created: history=%d, completion=%d\n",
+          __func__, have_history, have_auto_complete);
+#endif
+}
+
+/*! \brief Type instance initializer for GedaEntry
+ *
+ *  \par Function Description
+ *  Type instance initializer for GedaEntry, initializes a new empty
+ *  GedaEntry object.
+ *
+ *  \param [in] instance The GedaEntry structure being initialized,
+ *  \param [in] g_class  The GedaEntry class we are initializing.
+ */
+static void
+geda_entry_instance_init(GTypeInstance *instance, void *g_class)
+{
+  GedaEntry     *entry  = (GedaEntry*)instance;
+  entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
+  GedaEntryPriv *priv   = entry->priv;
+  priv->font_map        = pango_cairo_font_map_get_default();
+
+  entry->instance_type  = geda_entry_get_type();
+
+  entry->have_history   = have_history;
+  entry->auto_complete  = have_auto_complete;
+
+  if (have_history) {
+
+    g_signal_connect     (G_OBJECT (entry), "process-entry",
+                          G_CALLBACK (geda_entry_activate), NULL);
+
+    if (history_list_arg) {
+
+      history_list         = *history_list_arg;
+      entry->history_index = g_list_length (history_list);
+      entry->max_history   = MAX_ENTRY_HISTORY;
+    }
+    else {
+      entry->history_index = 0;
+    }
+  }
+
+  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+                          G_CALLBACK (geda_entry_key_press), NULL);
+
+  g_signal_connect (G_OBJECT (entry), "populate-popup",
+                    G_CALLBACK (geda_entry_populate_popup), NULL);
+
+  g_signal_connect (G_OBJECT (entry), "insert_text",
+                    G_CALLBACK (geda_entry_validate_input), NULL);
+
+  /* Initialize & populate a GCompletion for commands */
+  if (entry->auto_complete) {
+
+    complete_list            = g_list_copy(*old_complete_list);
+    priv->command_completion = geda_completion_new (NULL);
+
+    geda_completion_add_items (priv->command_completion, complete_list);
+
+    entry->completion_enabled = TRUE;
+  }
+  else {
+    entry->completion_enabled = FALSE;
+  }
+
+  /* set initial flag states */
+  entry->enable_drag_n_drop = FALSE;
+  entry->validation_mode    = ACCEPT_ALL_ASCII;
+  entry->text_case          = BOTH_CASES;
+  entry->activates_default  = FALSE;
+
+  /* priv data already initialized to zeros
+  priv->case_sensitive      = FALSE;
+  priv->attrs               = NULL; */
+
+#if DEBUG_GEDA_ENTRY
+  fprintf(stderr, "%s exit: history=%d, completion=%d\n",
+          __func__, entry->have_history, have_auto_complete );
+#endif
+
+}
+
+/*!
+ * \brief Function to retrieve GedaEntry's Type identifier
+ * \par Function Description
+ *  Function to retrieve a #GedaEntry Type identifier. When
+ *  first called, the function registers a #GedaEntry in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaEntry and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaEntry.
+ */
+GedaType
+geda_entry_get_type (void)
+{
+  static GedaType geda_entry_type = 0;
+
+  if (g_once_init_enter (&geda_entry_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaEntryClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_entry_class_init,           /* (GClassInitFunc)   */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(GedaEntry),
+      0,                               /* n_preallocs         */
+      geda_entry_instance_init         /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaEntry");
+    type   = g_type_register_static (GTK_TYPE_ENTRY, string, &info, 0);
+
+    g_once_init_leave (&geda_entry_type, type);
+  }
+
+  return geda_entry_type;
+}
+
+/*!
+ * \brief Check if an object is a GedaEntry
+ * \par Function Description
+ *  Ensures \a entry is a valid G_Object and compares signature
+ *  to geda entry type.
+ * \return TRUE if \a entry is a valid GedaEntry
+ */
+bool
+is_a_geda_entry (GedaEntry *entry)
+{
+  if (G_IS_OBJECT(entry)) {
+    return (geda_entry_get_type() == entry->instance_type);
+  }
+  return FALSE;
+}
+
+/*!
+ * \brief GedaEntry on key-press event
+ * \par Function Description
+ *  Keyboard hook routine for auto-completion and history.
+ */
+static bool
+geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
+{
+  unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
+  bool handled = FALSE;
+
+  switch (event->keyval) {
+    case GDK_KEY_Down:
+      if ((state == 0) && (entry->have_history)) {
+        geda_entry_history_down (entry);
+        handled = TRUE;
+      }
+      break;
+
+    case GDK_KEY_Up:
+      if ((state == 0) && (entry->have_history)) {
+        geda_entry_history_up (entry);
+        handled = TRUE;
+      }
+      break;
+
+    case GDK_KEY_KP_Enter:
+    case GDK_KEY_Return:
+    case GDK_KEY_ISO_Enter:
+      handled = TRUE;
+      break;
+
+    case GDK_KEY_Tab:
+      if ( (state  == 0) && (entry->completion_enabled) ) {
+        handled = geda_entry_tab_complete (entry);
+      }
+      break;
+    default:
+      break;
+  }
+  return handled;
+}
+
+/*!
+ * \brief On Activate a GedaEntry
+ * \par Function Description
+ * This is a callback for the "process-entry" signal. If there is text
+ * in the entry and a history_list the history_list is updated.
+ */
+static void
+geda_entry_activate (GedaEntry *entry, void *data)
+{
+  int list_length;
+
+  const char *entry_text = geda_entry_get_text(entry);
+
+  /* if user hit enter with no value then ignore entry */
+  if ((entry_text) && (strlen (entry_text) == 0) ) {
+    return;
+  }
+
+  if (history_list) {                                         /* if not a new buffer */
+
+    GList *iter;
+
+    list_length = g_list_length (history_list);   /* hit enter so end is now current */
+    iter        = g_list_last(history_list);                   /* get the last entry */
+
+    if (g_ascii_strcasecmp (iter->data, entry_text) != 0) {   /* same as last entry? */
+
+      ++list_length;                                /* if not then increment counter */
+
+      if (list_length > entry->max_history) {                  /* at history limit?  */
+
+        GList *prev;
+
+        iter = g_list_first(history_list);                          /* get the start */
+        g_free(iter->data);                                 /* first the oldest data */
+        prev = iter;                       /* but save address that held the pointer */
+        for (iter = g_list_next(iter); iter != NULL; iter=g_list_next(iter)) {
+          prev->data = iter->data;                           /* rotate pointers down */
+          prev       = iter;
+        }
+        iter        = g_list_last(history_list);         /* get the last entry again */
+        iter->data  = geda_utility_string_strdup (entry_text);  /* save the new text */
+        list_length = g_list_length (history_list); /* is really ++list_length | max */
+      }
+      else { /* the buffer is not full so just add to the end */
+        char *text   = geda_utility_string_strdup (entry_text);
+        history_list = g_list_append(history_list, text);
+      }
+    }
+  }
+  else { /* we were created with a NULL list, this means glist is a new buffer list */
+    char *text   = geda_utility_string_strdup (entry_text);
+    history_list = g_list_append(history_list, text);
+    list_length  = 1;
+  }
+  entry->history_index = list_length;
+}
+
+/*!
+ * \brief Go back in history
+ * \par Function Description
+ *  Call when the arrow-up key is press. This function decrements the
+ *  history index and replaces the text in the entry with the text at
+ *  the resulting index in the history list.
+ */
+static void
+geda_entry_history_up (GedaEntry *entry)
+{
+  if (entry->history_index > 0) {
+
+    char *new_line;
+
+    --entry->history_index;
+      new_line = g_list_nth_data(history_list, entry->history_index);
+      geda_entry_set_text (entry, new_line);
+      gtk_editable_set_position (GTK_EDITABLE (GTK_ENTRY (entry)), -1);
+  }
+}
+
+/*!
+ * \brief Go Forward in history
+ * \par Function Description
+ *  Call when the arrow-down key is press. This function increments the
+ *  history index and replaces the text in the entry with the text at
+ *  the resulting index in the history list if such and index exist. If
+ *  the history is at end of the list then the entry text is set to an
+ *  empty line.
+ */
+static void
+geda_entry_history_down (GedaEntry *entry)
+{
+  GtkEntry *gtk_entry = GTK_ENTRY (entry);
+
+  if (entry->history_index < (entry->max_history - 1)) {
+
+    int list_length = g_list_length (history_list);
+
+    if (entry->history_index < list_length) {
+
+      if (g_list_nth_data(history_list, entry->history_index + 1)) {
+
+        char *new_line;
+
+        ++entry->history_index;
+        new_line = g_list_nth_data(history_list, entry->history_index);
+        geda_entry_set_text (entry, new_line);
+        gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
+      }
+      else { /* There is no more data so set blank line */
+        geda_entry_set_text (entry, "");
+      }
+    }
+    else {
+      geda_entry_set_text (entry, "");
+    }
+  }
+  else { /* user hit "down" at the end of the buffer make blank line */
+    geda_entry_set_text (entry, "");
+  }
+}
+
+/*! \brief GedaEntry Internal Compare n characters ignoring case.
+ *  \par Function Description
+ *  Another garden varity string compare using toupper
+ *  on both inputs. This is somthimes found in standard.
+ *  libraries but not always.
+ *
+ *  \param [in] str1  is the string to be search
+ *  \param [in] str2  is the string to search for
+ *  \param [in] n     is the number of char to compare
+ *
+ *  \retval 0 if the strings are equivalent, -1 if str2 if
+ *  first mis-match is because str2 is greater, or 1 if the
+ *  first mis-match is because str1 is greater.
+ */
+static int
+geda_entry_strncmpi(char *str1, char *str2, int n)
+{
+  unsigned int i = 0;
+  if (!str1 || !str2) {
+    errno = EINVAL;
+    return -2;
+  }
+
+  while ((toupper(*str1) == toupper(*str2)) && i < n) {
+    str1++;
+    str2++;
+    i++;
+  }
+
+  if ( i == n)
+    return 0;
+  else
+    if ((*str1 == *str2 ) && (!*str1))
+      return 0;
+    else
+      if ((*str1) && (!*str2))
+        return -1;
+      else
+        if ((*str2) && (!*str1))
+          return 1;
+        else
+          return ((*str1 > *str2 ) ? -1 : 1);
+}
+
+static bool
+geda_entry_tab_complete (GedaEntry *entry)
+{
+  char  *buffer;
+  char  *s_ptr;
+  char  *match;
+  GList *options;
+
+  bool exit ( bool answer ) { free ( buffer ); return answer; }
+
+  buffer = calloc(1, max_command_length);
+
+  if (!buffer)
+    return FALSE;
+
+  s_ptr = strcpy(buffer, geda_entry_get_text(entry));   /* get the text */
+
+  while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
+
+  if (s_ptr == buffer)  /* if string empty */
+
+  if ( *(--s_ptr) == ASCII_SPACE)       /* If previous char is space then */
+    return exit (TRUE);                 /* there is nothing to complete */
+
+  while ((s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
+
+  if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
+
+  options = geda_completion_complete (entry->priv->command_completion, s_ptr, &match);
+
+  if (g_list_length (options) == 0)                    /* if no matches */
+    return exit (TRUE);
+
+  if (g_list_length (options) == 1) {                       /* one match */
+    strcpy (s_ptr, options->data);
+
+  }
+  else
+    strcpy (s_ptr, match);
+
+  geda_entry_set_text (entry, buffer);
+  gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
+
+  g_free (match);
+
+  /* Don't free buffer! */;
+  return exit (TRUE);
+}
+
+/** \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
+ *  @{
+ */
+
+static void
+geda_entry_virtual_populator(GedaEntry *entry, void *menu)
+{
+}
+
+/*!
+ * \brief GedaEntry Internal Populate Popup
+ * \par Function Description
+ *  This functions add the text strings to the popup menu. The menu
+ *  is a Gtk based menu because GedaEntry is derived from GtkEntry
+ *  class, which creates the parent menu.
+ *
+ * \todo consider replacing submenu with a check menu item
+ */
+static void
+geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
+{
+  GedaEntryClass *entry_class;
+
+  if (entry->auto_complete) {
+
+    GtkWidget *item;
+    GtkWidget *submenu;
+
+    item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
+    gtk_widget_show (item);
+
+    submenu = gtk_menu_new ();
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
+
+    gtk_container_add (GTK_CONTAINER (menu), item);
+
+    item = gtk_menu_item_new_with_label (_("On"));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
+    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
+    gtk_container_add (GTK_CONTAINER (submenu), item);
+
+    item = gtk_menu_item_new_with_label (_("Off"));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
+    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
+    gtk_container_add (GTK_CONTAINER (submenu), item);
+
+    gtk_widget_show_all (submenu);
+  }
+
+  entry_class = GEDA_ENTRY_GET_CLASS(entry);
+
+  if (entry_class)  {
+    entry_class->populate_popup(entry, menu);
+  }
+}
+
+/*!
+ * \brief GedaEntry Internal Popup Menu Callback
+ * \par Function Description
+ * This functions is called when a menu-item in the popup
+ * is selected.
+ */
+static void
+popup_menu_callback (GedaMenuItem *item, void *data)
+{
+  GedaEntry *entry;
+
+  int menu_option = (int)(long)data;
+
+  entry = g_object_get_data (G_OBJECT(item), "eda-entry");
+
+  switch(menu_option) {
+      case AUTO_COMPLETE_ON:
+
+#if DEBUG_GEDA_ENTRY
+        fprintf(stderr, "setting auto complete on\n");
+#endif
+        entry->completion_enabled  = TRUE;
+        break;
+
+      case AUTO_COMPLETE_OFF:
+
+#if DEBUG_GEDA_ENTRY
+        fprintf(stderr, "disabling auto complete\n");
+#endif
+        entry->completion_enabled  = FALSE;
+        break;
+
+      default:
+        break;
+  }
+}
+
+/** @} endgroup Entry-Popup-Menu */
+
+/** \defgroup GedaEntry-Puplic GedaEntry Puplic
+ *  @{
+ */
+
 /*!
  * \brief Retrieve the Text from a GedaEntry
  * \par Function Description
@@ -549,1132 +1679,6 @@ geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
 
-/*! \brief GObject property setter for a GedaEntry Object
- *
- *  \par Function Description
- *  Setter function for GedaEntry's GObject properties,
- *  "settings-name" and "toplevel".
- *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
- */
-static void
-geda_entry_set_property (GObject *object, unsigned int  property_id,
-                  const  GValue  *value,  GParamSpec   *pspec)
-{
-  GedaEntry *entry = GEDA_ENTRY(object);
-
-  switch (property_id) {
-
-    case PROP_ACTIVATES_DEFAULT:
-      geda_entry_set_activates_default (entry, g_value_get_boolean (value));
-      break;
-    case PROP_ATTRIBUTES:
-      geda_entry_set_attributes (entry, g_value_get_boxed (value));
-      break;
-    case PROP_AUTO_COMPLETION:
-      entry->auto_complete = have_auto_complete ? g_value_get_boolean (value) : FALSE;
-      break;
-    case PROP_CASE_SENSITIVE:
-      geda_entry_completion_set_case(entry, g_value_get_boolean (value));
-      break;
-    case PROP_INPUT_CASE:
-      geda_entry_set_input_case(entry, g_value_get_int (value));
-      break;
-    case PROP_MAX_HISTORY:
-      entry->max_history = g_value_get_int (value);
-      break;
-    case PROP_VALIDATE:
-      geda_entry_set_valid_input(entry, g_value_get_int (value));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-    }
-}
-
-/*! \brief GObject property getter function for a GedaEntry Object
- *
- *  \par Function Description
- *  Getter function for GedaEntry's GObject properties,
- *  "settings-name" and "toplevel".
- *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
- */
-static void
-geda_entry_get_property (GObject *object, unsigned int  property_id,
-                         GValue  *value,  GParamSpec   *pspec)
-{
-  GedaEntry *entry = GEDA_ENTRY(object);
-
-  switch (property_id) {
-
-    case PROP_ACTIVATES_DEFAULT:
-      g_value_set_boolean (value, entry->activates_default);
-      break;
-    case PROP_ATTRIBUTES:
-      g_value_set_boxed (value, entry->priv->attrs);
-      break;
-    case PROP_AUTO_COMPLETION:
-      g_value_set_boolean (value, have_auto_complete ? entry->auto_complete : FALSE);
-      break;
-    case PROP_CASE_SENSITIVE:
-      g_value_set_boolean(value, geda_entry_completion_get_case(entry));
-      break;
-    case PROP_INPUT_CASE:
-      g_value_set_int (value, geda_entry_get_input_case(entry));
-      break;
-    case PROP_MAX_HISTORY:
-      g_value_set_int (value, entry->max_history);
-      break;
-    case PROP_VALIDATE:
-      g_value_set_enum (value, geda_entry_get_valid_input(entry));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-    }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_real_insert_text (GedaEntry  *entry,
-                             const char *new_text,
-                             int         new_text_length,
-                             int        *position)
-{
-  GtkEntryBuffer *buffer;
-  unsigned int n_inserted;
-  int n_chars;
-
-  n_chars = g_utf8_strlen (new_text, new_text_length);
-
-  /* The actual insertion into the buffer. This will end up firing the
-   * following signal handlers:
-   *
-   *       buffer_inserted_text(),
-   *       buffer_notify_display_text(),
-   *       buffer_notify_text(),
-   *       buffer_notify_length()
-   */
-  begin_change (entry);
-
-  g_object_get (entry, "buffer", &buffer, NULL);
-
-  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
-
-  end_change (entry);
-
-  *position += n_inserted;
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_validate_input (GtkEntry    *entry,
-                           const char  *text,
-                           int          length,
-                           int         *position,
-                           void        *data)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY (entry);
-
-  char *result = g_new (char, length);
-  bool  valid  = FALSE;
-  int   count  = 0;
-  int   i;
-
-  for (i = 0; i < length; i++) {
-
-    switch (geda_entry->validation_mode) {
-      case ACCEPT_ALL_ASCII:
-         valid = TRUE;
-         break;
-      case ACCEPT_ALPHANUMERIC:
-         if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
-           valid = TRUE;
-         break;
-      case ACCEPT_NUMERIC:
-         if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
-           valid = TRUE;
-         break;
-      case ACCEPT_COORDINATE:
-         if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
-           valid = TRUE;
-      case ACCEPT_NUMBER:
-         if (isdigit(text[i]))
-           valid = TRUE;
-         break;
-      case ACCEPT_INTEGER:
-         if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
-           valid = TRUE;
-         break;
-      case ACCEPT_REAL:
-         if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
-           valid = TRUE;
-         break;
-      default:
-         valid = TRUE;
-    }
-    if (!valid)
-      continue;
-
-    if (geda_entry->text_case == LOWER_CASE) {
-      result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
-    }
-    else {
-      if (geda_entry->text_case == UPPER_CASE)
-        result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
-      else
-        result[count++] = text[i];
-    }
-  }
-
-  if (count > 0) {
-
-    g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
-                                     G_CALLBACK (geda_entry_validate_input),
-                                     data);
-
-    geda_entry_real_insert_text (geda_entry, result, count, position);
-
-    g_signal_handlers_unblock_by_func (G_OBJECT (geda_entry),
-                                       G_CALLBACK (geda_entry_validate_input),
-                                       data);
-  }
-  g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
-
-  g_free (result);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_drag_begin (GtkWidget      *widget,
-                       GdkDragContext *context)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_drag_end (GtkWidget      *widget,
-                     GdkDragContext *context)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_drag_leave (GtkWidget      *widget,
-                       GdkDragContext *context,
-                       unsigned int    time)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-  gtk_widget_queue_draw (widget);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static bool
-geda_entry_drag_drop (GtkWidget      *widget,
-                      GdkDragContext *context,
-                      int             x,
-                      int             y,
-                      unsigned int    time)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-
-
-  return FALSE; /* No continue */
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static bool
-geda_entry_drag_motion (GtkWidget       *widget,
-                        GdkDragContext  *context,
-                        int              x,
-                        int              y,
-                        unsigned int     time)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-  }
-  return FALSE; /* not here */
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_drag_data_received (GtkWidget        *widget,
-                               GdkDragContext   *context,
-                               int              x,
-                               int              y,
-                               GtkSelectionData *selection_data,
-                               unsigned int     info,
-                               unsigned int     time)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-  }
-}
-
-static void
-geda_entry_drag_data_get (GtkWidget        *widget,
-                          GdkDragContext   *context,
-                          GtkSelectionData *selection_data,
-                          unsigned int      info,
-                          unsigned int      time)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-
-  if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_finalize (GObject *object)
-{
-  GedaEntry *entry;
-
-  entry = GEDA_ENTRY (object);
-
-  if (entry->priv->command_completion) {
-    geda_completion_free (entry->priv->command_completion);
-  }
-
-  /* Save history to caller's glist*/
-  if (entry->have_history)
-    *history_list_arg  = history_list;
-
-  G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
-
-  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
-    pango_attr_list_unref (entry->priv->attrs);
-
-  if (entry->priv->font_map) {
-    pango_cairo_font_map_set_default (NULL);
-    entry->priv->font_map = NULL;
-  }
-
-  g_free (entry->priv);
-}
-
-/*! \brief GedaEntry Type Class Initializer
- *
- *  \par Function Description
- *  Type class initializer called to initialize the class instance.
- *  Overrides parents virtual class methods as needed and registers
- *  GObject signals.
- *
- *  \param [in]  g_class     GedaEntry class we are initializing
- *  \param [in]  class_data  GedaEntry structure associated with the class
- */
-static void
-geda_entry_class_init(void *g_class, void *class_data)
-{
-  GedaEntryClass *class;
-  GParamSpec     *params;
-  GObjectClass   *gobject_class;
-  GtkWidgetClass *widget_class;
-  GtkBindingSet  *binding_set;
-
-  class         = (GedaEntryClass*)g_class;
-  gobject_class = G_OBJECT_CLASS (class);
-  widget_class  = GTK_WIDGET_CLASS (class);
-
-  geda_entry_parent_class     = g_type_class_peek_parent (class);
-
-  gobject_class->finalize     = geda_entry_finalize;
-  gobject_class->set_property = geda_entry_set_property;
-  gobject_class->get_property = geda_entry_get_property;
-
-  class->activate             = geda_entry_real_activate;
-
-  /* We over-ride parent's drag&drop, which is over-riding widget class
-   * because we support drag&drop stuff other than just text and the
-   * stock entry intecepts all of drag&drop signals! */
-  class->drag_begin           = widget_class->drag_begin;
-  class->drag_end             = widget_class->drag_end;
-  class->drag_drop            = widget_class->drag_drop;
-  class->drag_motion          = widget_class->drag_motion;
-  class->drag_leave           = widget_class->drag_leave;
-  class->drag_data_received   = widget_class->drag_data_received;
-  class->drag_data_get        = widget_class->drag_data_get;
-  class->drag_data_delete     = widget_class->drag_data_delete;
-
-  class->populate_popup       = geda_entry_virtual_populator;
-
-  widget_class->drag_begin         = geda_entry_drag_begin;
-  widget_class->drag_end           = geda_entry_drag_end;
-  widget_class->drag_drop          = geda_entry_drag_drop;
-  widget_class->drag_motion        = geda_entry_drag_motion;
-  widget_class->drag_leave         = geda_entry_drag_leave;
-  widget_class->drag_data_received = geda_entry_drag_data_received;
-  widget_class->drag_data_get      = geda_entry_drag_data_get;
-  widget_class->drag_data_delete   = geda_entry_drag_data_delete;
-
-  params = g_param_spec_boolean ("activates-default",
-                               _("Activates default"),
-                               _("Whether to activate the default widget when Enter is pressed"),
-                                  FALSE,
-                                  G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_ACTIVATES_DEFAULT, params);
-
-  params = g_param_spec_boxed ("attributes",
-                             _("Attributes"),
-                             _("A list of style attributes to apply to the text"),
-                                PANGO_TYPE_ATTR_LIST,
-                                G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_ATTRIBUTES, params);
-
-  params = g_param_spec_boolean ("auto-completion",
-                               _("Auto-Completion"),
-                               _("Enable Auto-completion, if installed"),
-                                  TRUE, /* default_value */
-                                  G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_AUTO_COMPLETION, params);
-
-  params = g_param_spec_boolean ("case-sensitive",
-                               _("FALSE Auto-Completion in NOT case sensitive"),
-                               _("if Auto-completion is enabled, set case compare function"),
-                                FALSE, /* default_value */
-                                G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_CASE_SENSITIVE, params);
-
-  params = g_param_spec_int ("input-case",
-                           _("Set case of input"), /* nick name */
-                           _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
-                              LOWER_CASE, /* Min value */
-                              BOTH_CASES, /* Max value */
-                              BOTH_CASES, /* default_value */
-                              G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_INPUT_CASE, params);
-
-  params = g_param_spec_int ("max-history",
-                           _("Set maxium history"), /* nick name */
-                           _("maximum length of history"), /* hint / blurb */
-                              0,        /* Min value */
-                              G_MAXINT, /* Max value */
-                              MAX_ENTRY_HISTORY,      /* default_value */
-                              G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_MAX_HISTORY, params );
-
-  params = g_param_spec_int ("accept-type",
-                           _("Set valid input type"), /* nick name */
-                           _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
-                              ACCEPT_ALL_ASCII, /* Min value */
-                              ACCEPT_REAL,      /* Max value */
-                              ACCEPT_ALL_ASCII, /* default_value */
-                              G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class, PROP_VALIDATE, params);
-
-  /*!
-   * GedaEntry::process-entry:
-   * entry: The entry on which the signal is emitted
-   *
-   * The GedaEntry::process-entry signal is emitted when the user hits the Enter
-   * key. This is the same as process-entry GtkEntry::activate.
-   *
-   * While this signal is used as a keybinding signal, it is also commonly
-   * used by applications to intercept activation of entries.
-   *
-   * The default bindings for this signal are all forms of the Enter key.
-   */
-  signals[PROCESS_ENTRY] = g_signal_new ("process-entry",
-                                    G_TYPE_FROM_CLASS (gobject_class),
-                                    G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
-                                    G_STRUCT_OFFSET (GedaEntryClass, activate),
-                                    NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
-                                    G_TYPE_NONE, 0);
-
-  widget_class->activate_signal = signals[PROCESS_ENTRY];
-
-  /*  Key bindings */
-  binding_set = gtk_binding_set_by_class (class);
-
-  /* Activate */
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0,    "process-entry", 0);
-
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "process-entry", 0);
-
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,  "process-entry", 0);
-
-  widget_class->grab_focus = geda_entry_grab_focus;
-  widget_class->realize    = geda_entry_realize;
-  widget_class->unrealize  = geda_entry_unrealize;
-
-#if DEBUG_GEDA_ENTRY
-  fprintf(stderr, "%s created: history=%d, completion=%d\n",
-          __func__, have_history, have_auto_complete);
-#endif
-}
-
-/*! \brief Type instance initializer for GedaEntry
- *
- *  \par Function Description
- *  Type instance initializer for GedaEntry, initializes a new empty
- *  GedaEntry object.
- *
- *  \param [in] instance The GedaEntry structure being initialized,
- *  \param [in] g_class  The GedaEntry class we are initializing.
- */
-static void
-geda_entry_instance_init(GTypeInstance *instance, void *g_class)
-{
-  GedaEntry     *entry  = (GedaEntry*)instance;
-  entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
-  GedaEntryPriv *priv   = entry->priv;
-  priv->font_map        = pango_cairo_font_map_get_default();
-
-  entry->instance_type  = geda_entry_get_type();
-
-  entry->have_history   = have_history;
-  entry->auto_complete  = have_auto_complete;
-
-  if (have_history) {
-
-    g_signal_connect     (G_OBJECT (entry), "process-entry",
-                          G_CALLBACK (geda_entry_activate), NULL);
-
-    if (history_list_arg) {
-
-      history_list         = *history_list_arg;
-      entry->history_index = g_list_length (history_list);
-      entry->max_history   = MAX_ENTRY_HISTORY;
-    }
-    else {
-      entry->history_index = 0;
-    }
-  }
-
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
-                          G_CALLBACK (geda_entry_key_press), NULL);
-
-  g_signal_connect (G_OBJECT (entry), "populate-popup",
-                    G_CALLBACK (geda_entry_populate_popup), NULL);
-
-  g_signal_connect (G_OBJECT (entry), "insert_text",
-                    G_CALLBACK (geda_entry_validate_input), NULL);
-
-  /* Initialize & populate a GCompletion for commands */
-  if (entry->auto_complete) {
-
-    complete_list            = g_list_copy(*old_complete_list);
-    priv->command_completion = geda_completion_new (NULL);
-
-    geda_completion_add_items (priv->command_completion, complete_list);
-
-    entry->completion_enabled = TRUE;
-  }
-  else {
-    entry->completion_enabled = FALSE;
-  }
-
-  /* set initial flag states */
-  entry->enable_drag_n_drop = FALSE;
-  entry->validation_mode    = ACCEPT_ALL_ASCII;
-  entry->text_case          = BOTH_CASES;
-  entry->activates_default  = FALSE;
-
-  /* priv data already initialized to zeros
-  priv->case_sensitive      = FALSE;
-  priv->attrs               = NULL; */
-
-#if DEBUG_GEDA_ENTRY
-  fprintf(stderr, "%s exit: history=%d, completion=%d\n",
-          __func__, entry->have_history, have_auto_complete );
-#endif
-
-}
-
-/*!
- * \brief Function to retrieve GedaEntry's Type identifier
- * \par Function Description
- *  Function to retrieve a #GedaEntry Type identifier. When
- *  first called, the function registers a #GedaEntry in the
- *  GedaType system to obtain an identifier that uniquely itentifies
- *  a GedaEntry and returns the unsigned integer value.
- *  The retained value is returned on all Subsequent calls.
- *
- *  \return GedaType identifier associated with GedaEntry.
- */
-GedaType
-geda_entry_get_type (void)
-{
-  static GedaType geda_entry_type = 0;
-
-  if (g_once_init_enter (&geda_entry_type)) {
-
-    static const GTypeInfo info = {
-      sizeof(GedaEntryClass),
-      NULL,                            /* base_init           */
-      NULL,                            /* base_finalize       */
-      geda_entry_class_init,           /* (GClassInitFunc)   */
-      NULL,                            /* class_finalize      */
-      NULL,                            /* class_data          */
-      sizeof(GedaEntry),
-      0,                               /* n_preallocs         */
-      geda_entry_instance_init         /* (GInstanceInitFunc) */
-    };
-
-    const char *string;
-    GedaType    type;
-
-    string = g_intern_static_string ("GedaEntry");
-    type   = g_type_register_static (GTK_TYPE_ENTRY, string, &info, 0);
-
-    g_once_init_leave (&geda_entry_type, type);
-  }
-
-  return geda_entry_type;
-}
-
-/*!
- * \brief Check if an object is a GedaEntry
- * \par Function Description
- *  Ensures \a entry is a valid G_Object and compares signature
- *  to geda entry type.
- * \return TRUE if \a entry is a valid GedaEntry
- */
-bool
-is_a_geda_entry (GedaEntry *entry)
-{
-  if (G_IS_OBJECT(entry)) {
-    return (geda_entry_get_type() == entry->instance_type);
-  }
-  return FALSE;
-}
-
-/*! \brief Entry Stop Activate Default signal Responder
- *  \par Function Description
- *  This function exist to stop GTK-2 from activating the
- *  the default widget when an "Enter" key is press. The
- *  GtkEntry gtk_entry_set_activates_default function does
- *  not work correclty, the default widget will eventually
- *  see the signal regardless of the setting.
- *
- *  \param [in] entry The GedaEntry object
- */
-static void
-geda_entry_real_activate (GedaEntry *entry)
-{
-  GtkWidget *widget;
-
-#if DEBUG_GEDA_ENTRY
-  fprintf(stderr, "<%s> in over-ride: got <activate> signal\n", __func__);
-#endif
-
-  widget = GTK_WIDGET (entry);
-
-  if (entry->activates_default) {
-
-    GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
-
-    if (GTK_IS_WINDOW (toplevel)) {
-
-      GtkWindow *window = GTK_WINDOW (toplevel);
-
-      if (window) {
-
-        GtkWidget *default_widget;
-        GtkWidget *focus_widget;
-
-        default_widget = gtk_window_get_default_widget (window);
-        focus_widget   = gtk_window_get_focus (window);
-
-        if (widget != default_widget &&
-          !(widget == focus_widget && (!default_widget || !gtk_widget_get_sensitive (default_widget))))
-          gtk_window_activate_default (window);
-      }
-    }
-  }
-}
-
-/*!
- * \brief GedaEntry on key-press event
- * \par Function Description
- *  Keyboard hook routine for auto-completion and history.
- */
-static bool
-geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
-{
-  unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
-  bool handled = FALSE;
-
-  switch (event->keyval) {
-    case GDK_KEY_Down:
-      if ((state == 0) && (entry->have_history)) {
-        geda_entry_history_down (entry);
-        handled = TRUE;
-      }
-      break;
-
-    case GDK_KEY_Up:
-      if ((state == 0) && (entry->have_history)) {
-        geda_entry_history_up (entry);
-        handled = TRUE;
-      }
-      break;
-
-    case GDK_KEY_KP_Enter:
-    case GDK_KEY_Return:
-    case GDK_KEY_ISO_Enter:
-      handled = TRUE;
-      break;
-
-    case GDK_KEY_Tab:
-      if ( (state  == 0) && (entry->completion_enabled) ) {
-        handled = geda_entry_tab_complete (entry);
-      }
-      break;
-    default:
-      break;
-  }
-  return handled;
-}
-
-/*!
- * \brief GedaEntry Grab Focus
- * \par Function Description
- * Over-rides widget_class->grab_focus. GtkEntry's grab_focus selects
- * the contents and therefore claims PRIMARY. So we bypass it; see
- * bug #345356 and bug #347067.
- */
-static void
-geda_entry_grab_focus (GtkWidget *widget)
-{
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
-}
-
-/*!
- * \brief GedaEntry Realize
- * \par Function Description
- * Over-rides widget_class->realize, chains-up and then retrieves
- * and saves pointer to the font_map.
- */
-static void
-geda_entry_realize (GtkWidget *widget)
-{
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
-
-  if (gtk_widget_has_screen(widget)) {
-
-    GedaEntry    *entry;
-    PangoContext *context;
-    PangoLayout  *layout;
-
-    entry = GEDA_ENTRY (widget);
-
-    layout  = gtk_entry_get_layout ((GtkEntry*)widget);
-    context = pango_layout_get_context (layout);
-
-    pango_context_set_font_map (context, entry->priv->font_map);
-    entry->priv->font_map = g_object_ref (entry->priv->font_map);
-    pango_layout_context_changed (layout);
-  }
-}
-
-/*!
- * \brief Unrealize a GedaEntry
- * \par Function Description
- * Over-rides widget_class->realize to unreference the font_map
- * referenced when realized.
- */
-static void
-geda_entry_unrealize (GtkWidget *widget)
-{
-  GedaEntry *entry = GEDA_ENTRY (widget);
-
-  if (entry->priv->font_map) {
-    g_object_unref (entry->priv->font_map);
-  }
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
-}
-
-/*!
- * \brief On Activate a GedaEntry
- * \par Function Description
- * This is a callback for the "process-entry" signal. If there is text
- * in the entry and a history_list the history_list is updated.
- */
-static void
-geda_entry_activate (GedaEntry *entry, void *data)
-{
-  int list_length;
-
-  const char *entry_text = geda_entry_get_text(entry);
-
-  /* if user hit enter with no value then ignore entry */
-  if ((entry_text) && (strlen (entry_text) == 0) ) {
-    return;
-  }
-
-  if (history_list) {                                         /* if not a new buffer */
-
-    GList *iter;
-
-    list_length = g_list_length (history_list);   /* hit enter so end is now current */
-    iter        = g_list_last(history_list);                   /* get the last entry */
-
-    if (g_ascii_strcasecmp (iter->data, entry_text) != 0) {   /* same as last entry? */
-
-      ++list_length;                                /* if not then increment counter */
-
-      if (list_length > entry->max_history) {                  /* at history limit?  */
-
-        GList *prev;
-
-        iter = g_list_first(history_list);                          /* get the start */
-        g_free(iter->data);                                 /* first the oldest data */
-        prev = iter;                       /* but save address that held the pointer */
-        for (iter = g_list_next(iter); iter != NULL; iter=g_list_next(iter)) {
-          prev->data = iter->data;                           /* rotate pointers down */
-          prev       = iter;
-        }
-        iter        = g_list_last(history_list);         /* get the last entry again */
-        iter->data  = geda_utility_string_strdup (entry_text);  /* save the new text */
-        list_length = g_list_length (history_list); /* is really ++list_length | max */
-      }
-      else { /* the buffer is not full so just add to the end */
-        char *text   = geda_utility_string_strdup (entry_text);
-        history_list = g_list_append(history_list, text);
-      }
-    }
-  }
-  else { /* we were created with a NULL list, this means glist is a new buffer list */
-    char *text   = geda_utility_string_strdup (entry_text);
-    history_list = g_list_append(history_list, text);
-    list_length  = 1;
-  }
-  entry->history_index = list_length;
-}
-
-/*!
- * \brief Go back in history
- * \par Function Description
- *  Call when the arrow-up key is press. This function decrements the
- *  history index and replaces the text in the entry with the text at
- *  the resulting index in the history list.
- */
-static void
-geda_entry_history_up (GedaEntry *entry)
-{
-  if (entry->history_index > 0) {
-
-    char *new_line;
-
-    --entry->history_index;
-      new_line = g_list_nth_data(history_list, entry->history_index);
-      geda_entry_set_text (entry, new_line);
-      gtk_editable_set_position (GTK_EDITABLE (GTK_ENTRY (entry)), -1);
-  }
-}
-
-/*!
- * \brief Go Forward in history
- * \par Function Description
- *  Call when the arrow-down key is press. This function increments the
- *  history index and replaces the text in the entry with the text at
- *  the resulting index in the history list if such and index exist. If
- *  the history is at end of the list then the entry text is set to an
- *  empty line.
- */
-static void
-geda_entry_history_down (GedaEntry *entry)
-{
-  GtkEntry *gtk_entry = GTK_ENTRY (entry);
-
-  if (entry->history_index < (entry->max_history - 1)) {
-
-    int list_length = g_list_length (history_list);
-
-    if (entry->history_index < list_length) {
-
-      if (g_list_nth_data(history_list, entry->history_index + 1)) {
-
-        char *new_line;
-
-        ++entry->history_index;
-        new_line = g_list_nth_data(history_list, entry->history_index);
-        geda_entry_set_text (entry, new_line);
-        gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
-      }
-      else { /* There is no more data so set blank line */
-        geda_entry_set_text (entry, "");
-      }
-    }
-    else {
-      geda_entry_set_text (entry, "");
-    }
-  }
-  else { /* user hit "down" at the end of the buffer make blank line */
-    geda_entry_set_text (entry, "");
-  }
-}
-
-/*! \brief GedaEntry Internal Compare n characters ignoring case.
- *  \par Function Description
- *  Another garden varity string compare using toupper
- *  on both inputs. This is somthimes found in standard.
- *  libraries but not always.
- *
- *  \param [in] str1  is the string to be search
- *  \param [in] str2  is the string to search for
- *  \param [in] n     is the number of char to compare
- *
- *  \retval 0 if the strings are equivalent, -1 if str2 if
- *  first mis-match is because str2 is greater, or 1 if the
- *  first mis-match is because str1 is greater.
- */
-static int
-geda_entry_strncmpi(char *str1, char *str2, int n)
-{
-  unsigned int i = 0;
-  if (!str1 || !str2) {
-    errno = EINVAL;
-    return -2;
-  }
-
-  while ((toupper(*str1) == toupper(*str2)) && i < n) {
-    str1++;
-    str2++;
-    i++;
-  }
-
-  if ( i == n)
-    return 0;
-  else
-    if ((*str1 == *str2 ) && (!*str1))
-      return 0;
-    else
-      if ((*str1) && (!*str2))
-        return -1;
-      else
-        if ((*str2) && (!*str1))
-          return 1;
-        else
-          return ((*str1 > *str2 ) ? -1 : 1);
-}
-
-static bool
-geda_entry_tab_complete (GedaEntry *entry)
-{
-  char  *buffer;
-  char  *s_ptr;
-  char  *match;
-  GList *options;
-
-  bool exit ( bool answer ) { free ( buffer ); return answer; }
-
-  buffer = calloc(1, max_command_length);
-
-  if (!buffer)
-    return FALSE;
-
-  s_ptr = strcpy(buffer, geda_entry_get_text(entry));   /* get the text */
-
-  while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
-
-  if (s_ptr == buffer)  /* if string empty */
-
-  if ( *(--s_ptr) == ASCII_SPACE)       /* If previous char is space then */
-    return exit (TRUE);                 /* there is nothing to complete */
-
-  while ((s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
-
-  if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
-
-  options = geda_completion_complete (entry->priv->command_completion, s_ptr, &match);
-
-  if (g_list_length (options) == 0)                    /* if no matches */
-    return exit (TRUE);
-
-  if (g_list_length (options) == 1) {                       /* one match */
-    strcpy (s_ptr, options->data);
-
-  }
-  else
-    strcpy (s_ptr, match);
-
-  geda_entry_set_text (entry, buffer);
-  gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
-
-  g_free (match);
-
-  /* Don't free buffer! */;
-  return exit (TRUE);
-}
-
-/** \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
- *  @{
- */
-
-static void
-geda_entry_virtual_populator(GedaEntry *entry, void *menu)
-{
-}
-
-/*!
- * \brief GedaEntry Internal Populate Popup
- * \par Function Description
- *  This functions add the text strings to the popup menu. The menu
- *  is a Gtk based menu because GedaEntry is derived from GtkEntry
- *  class, which creates the parent menu.
- *
- * \todo consider replacing submenu with a check menu item
- */
-static void
-geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
-{
-  GedaEntryClass *entry_class;
-
-  if (entry->auto_complete) {
-
-    GtkWidget *item;
-    GtkWidget *submenu;
-
-    item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
-    gtk_widget_show (item);
-
-    submenu = gtk_menu_new ();
-    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
-
-    gtk_container_add (GTK_CONTAINER (menu), item);
-
-    item = gtk_menu_item_new_with_label (_("On"));
-    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
-    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    gtk_container_add (GTK_CONTAINER (submenu), item);
-
-    item = gtk_menu_item_new_with_label (_("Off"));
-    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
-    g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    gtk_container_add (GTK_CONTAINER (submenu), item);
-
-    gtk_widget_show_all (submenu);
-  }
-
-  entry_class = GEDA_ENTRY_GET_CLASS(entry);
-
-  if (entry_class)  {
-    entry_class->populate_popup(entry, menu);
-  }
-}
-
-/*!
- * \brief GedaEntry Internal Popup Menu Callback
- * \par Function Description
- * This functions is called when a menu-item in the popup
- * is selected.
- */
-static void
-popup_menu_callback (GedaMenuItem *item, void *data)
-{
-  GedaEntry *entry;
-
-  int menu_option = (int)(long)data;
-
-  entry = g_object_get_data (G_OBJECT(item), "eda-entry");
-
-  switch(menu_option) {
-      case AUTO_COMPLETE_ON:
-
-#if DEBUG_GEDA_ENTRY
-        fprintf(stderr, "setting auto complete on\n");
-#endif
-        entry->completion_enabled  = TRUE;
-        break;
-
-      case AUTO_COMPLETE_OFF:
-
-#if DEBUG_GEDA_ENTRY
-        fprintf(stderr, "disabling auto complete\n");
-#endif
-        entry->completion_enabled  = FALSE;
-        break;
-
-      default:
-        break;
-  }
-}
-
-/** @} endgroup Entry-Popup-Menu */
-
 /* --------------------- Widget Style Functions ----------------- */
 
 /** \defgroup GedaEntry-Style GedaEntry Style Functions
@@ -1752,7 +1756,7 @@ geda_entry_modify_bg (GedaEntry      *entry,
   geda_entry_modify_color (entry, GTK_RC_BG, state, color);
 }
 
-/** @} endgroup Entry-Style */
+/** @} endgroup GedaEntry-Style */
 
 /** \defgroup GedaEntry-Widget-Methods GedaEntry Widget Methods
  *  @{
@@ -2154,4 +2158,5 @@ geda_entry_new_with_max_length (int max_length)
 }
 
 /** @} endgroup Entry-Creators */
+/** @} endgroup GedaEntry-Puplic */
 /** @} end group GedaEntry */
