@@ -138,6 +138,58 @@ int check_construction (void)
   return result;
 }
 
+int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_combo_box_text_new_with_entry();
+
+  if (!GEDA_IS_COMBO_BOX_TEXT(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
+    GtkWidget *entry;
+    int value;
+
+    /* Uses geda_combo_get_entry_widget */
+    entry = geda_combo_box_text_get_entry_widget(combo_text);
+
+    if (!GEDA_IS_ENTRY(entry)) {
+      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
+      result++;
+    }
+
+    /* Check activates-default */
+
+    /* use geda_entry_get_activates_default */
+    value = geda_combo_box_text_get_activate_default(combo_text);
+
+    if (value) { /* default is FALSE */
+      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+      result++;
+    }
+
+    /* use geda_entry_set_activates_default */
+    geda_combo_box_text_set_activate_default(combo_text, TRUE);
+
+    value = geda_combo_box_text_get_activate_default(combo_text);
+
+    if (!value) {
+      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+  return result;
+}
+
+
 #ifdef DEBUG_COMBO_TEXT
 
 static void
@@ -190,6 +242,82 @@ load_cities(GtkWidget *widget) {
   geda_combo_box_text_prepend_text (combo_text, "Banteay");    /* 1 */
 
   geda_combo_box_text_widget_prepend (widget, "Banlung");      /* 0 */
+}
+
+int check_river(GedaComboBox *combo_box, char *tonle)
+{
+  GtkTreeIter iter;
+  int result = 0;
+
+  if (geda_combo_box_get_active_iter(combo_box, &iter)) {
+
+    GtkTreeModel *model;
+    char *river;
+
+    model = geda_combo_box_get_model(combo_box);
+    river = NULL;
+
+    gtk_tree_model_get(model, &iter, 2, &river, -1);
+
+    if (!river) {
+      fprintf(stderr, "FAILED: %s no river at line <%d>\n", TWIDGET, __LINE__);
+      result++;
+    }
+    else if (strncmp(river, tonle, strlen(tonle))) {
+      fprintf(stderr, "FAILED: %s line <%d> river %s not %s\n", TWIDGET, __LINE__, river, tonle);
+      result++;
+    }
+  }
+  else {
+    fprintf(stderr, "FAILED: %s line <%d> get active iter\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  return result;
+}
+
+int
+check_combo_box_text_pairs(GedaComboBoxText *combo_text)
+{
+  char *city;
+  int result = 0;
+
+  /* append */
+
+  geda_combo_box_text_append_pair (combo_text, "Pursat", "Peam");   /* 1 */
+
+  /* insert */
+
+  geda_combo_box_text_insert_pair (combo_text, -1, "Koulen", "Sen"); /* 2 */
+
+  /* prepend */
+
+  geda_combo_box_text_prepend_pair (combo_text, "Kampong", "Mekong"); /* 0 */
+
+  geda_combo_box_text_set_active(combo_text, 0);
+
+  city = geda_combo_box_text_get_active_text(combo_text);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Kampong", 7)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
+
+  result += check_river (GEDA_COMBO_BOX(combo_text), "Mekong");
+
+  geda_combo_box_text_set_active(combo_text, 2);
+
+  result += check_river (GEDA_COMBO_BOX(combo_text), "Sen");
+
+  geda_combo_box_text_set_active(combo_text, 1);
+
+  result += check_river (GEDA_COMBO_BOX(combo_text), "Peam");
+
+  return result;
 }
 
 int
@@ -374,56 +502,7 @@ check_methods ()
     result++;
   }
 
-  g_object_ref_sink(widget); /* Sink reference to entry widget */
-  g_object_unref(widget);    /* Destroy the widget */
-  return result;
-}
-
-int
-check_accessors ()
-{
-  int result = 0;
-
-  GtkWidget *widget = geda_combo_box_text_new_with_entry();
-
-  if (!GEDA_IS_COMBO_BOX_TEXT(widget)) {
-    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
-    result++;
-  }
-  else {
-
-    GedaComboBoxText *combo_text = GEDA_COMBO_BOX_TEXT(widget);
-    GtkWidget *entry;
-    int value;
-
-    /* Uses geda_combo_get_entry_widget */
-    entry = geda_combo_box_text_get_entry_widget(combo_text);
-
-    if (!GEDA_IS_ENTRY(entry)) {
-      fprintf(stderr, "FAILED: line <%d> _get_entry\n", __LINE__);
-      result++;
-    }
-
-    /* Check activates-default */
-
-    /* use geda_entry_get_activates_default */
-    value = geda_combo_box_text_get_activate_default(combo_text);
-
-    if (value) { /* default is FALSE */
-      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
-      result++;
-    }
-
-    /* use geda_entry_set_activates_default */
-    geda_combo_box_text_set_activate_default(combo_text, TRUE);
-
-    value = geda_combo_box_text_get_activate_default(combo_text);
-
-    if (!value) {
-      fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
-      result++;
-    }
-  }
+  result += check_combo_box_text_pairs(combo_text);
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
@@ -455,18 +534,18 @@ main (int argc, char *argv[])
     if (!result) {
 
       if (setjmp(point) == 0) {
-        result = check_methods();
-      }
-      else {
-        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
-        return 1;
-      }
-
-      if (setjmp(point) == 0) {
         result = check_accessors();
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
     }

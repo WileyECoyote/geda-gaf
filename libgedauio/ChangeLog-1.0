@@ -8,6 +8,12 @@
       define to 250 for maximum offset and padding properties and replace
       G_MAXINT with INT_MAX for maximum delay times.
 
+    * tests/test_combobox_text.c: Add checks for functions:
+
+        * geda_combo_box_text_append_pair
+        * geda_combo_box_text_insert_pair
+        * geda_combo_box_text_prepend_pair
+
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Add warn unused attribute to "new" functions,

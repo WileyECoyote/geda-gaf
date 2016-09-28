@@ -92,7 +92,7 @@ void         geda_combo_box_text_set_active            (GedaComboBoxText   *comb
 void         geda_combo_box_text_append_pair           (GedaComboBoxText   *combo_box,
                                                         const char         *text,
                                                         const char         *text2);
-void         geda_combo_box_text_list_insert           (GedaComboBoxText   *combo_box,
+void         geda_combo_box_text_insert_pair           (GedaComboBoxText   *combo_box,
                                                         int                 position,
                                                         const char         *text,
                                                         const char         *text2);
