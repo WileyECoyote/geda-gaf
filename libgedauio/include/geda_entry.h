@@ -207,19 +207,17 @@ void geda_entry_set_text                     (GedaEntry      *entry,
                                         const char           *new_text);
 GedaEntryAccept
      geda_entry_get_valid_input              (GedaEntry      *entry);
-
-void geda_entry_modify_fg                    (GedaEntry      *entry,
-                                              GtkStateType    state,
-                                        const GdkColor       *color);
-void geda_entry_modify_bg                    (GedaEntry      *entry,
-                                              GtkStateType    state,
-                                        const GdkColor       *color);
-
 void geda_entry_set_valid_input              (GedaEntry      *entry,
                                               GedaEntryAccept mode);
 
 void geda_entry_modify_color                 (GedaEntry      *entry,
                                               GtkRcFlags      component,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
+void geda_entry_modify_bg                    (GedaEntry      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
+void geda_entry_modify_fg                    (GedaEntry      *entry,
                                               GtkStateType    state,
                                         const GdkColor       *color);
 

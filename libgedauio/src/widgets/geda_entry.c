@@ -501,6 +501,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
                                  (GedaStrCompareNFunc) geda_entry_strncmpi);
   }
 }
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -525,6 +526,11 @@ geda_entry_set_input_case  (GedaEntry *entry, int mode)
   GEDA_ENTRY(entry)->text_case = mode;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaEntryAccept
 geda_entry_get_valid_input (GedaEntry *entry)
 {
@@ -1676,6 +1682,37 @@ popup_menu_callback (GedaMenuItem *item, void *data)
  */
 
 /*!
+ * \brief Modify GedaEntry Color Attributes
+ * \par Function Description
+ *  Validates \a entry and \a state and pass the request to
+ *  geda_widget_modify_color_component.
+ *
+ * \param[in,out] entry      Pointer to a #GedaEntry.
+ * \param[in]     component  The component that is being modified.
+ * \param[in]     state      The state for which the attribute is to be set.
+ * \param[in]     color      Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_widget_modify_color_component
+ */
+void
+geda_entry_modify_color (GedaEntry      *entry,
+                         GtkRcFlags      component,
+                         GtkStateType    state,
+                         const GdkColor *color)
+{
+  g_return_if_fail (GTK_IS_WIDGET (entry));
+
+  if (state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE) {
+     state = GTK_STATE_NORMAL;
+  }
+
+  GtkWidget *widget = (GtkWidget*)entry;
+
+  geda_widget_modify_color_component (widget, component, state, color);
+
+}
+
+/*!
  * \brief Modify GedaEntry Foreground Color
  * \par Function Description
  *  Calls geda_entry_modify_color to modify the
@@ -1713,37 +1750,6 @@ geda_entry_modify_bg (GedaEntry      *entry,
                       const GdkColor *color)
 {
   geda_entry_modify_color (entry, GTK_RC_BG, state, color);
-}
-
-/*!
- * \brief Modify GedaEntry Color Attributes
- * \par Function Description
- *  Validates \a entry and \a state and pass the request to
- *  geda_widget_modify_color_component.
- *
- * \param[in,out] entry      Pointer to a #GedaEntry.
- * \param[in]     component  The component that is being modified.
- * \param[in]     state      The state for which the attribute is to be set.
- * \param[in]     color      Pointer to GdkColor RGB color structure.
- *
- * \sa geda_widget_modify_color_component
- */
-void
-geda_entry_modify_color (GedaEntry      *entry,
-                         GtkRcFlags      component,
-                         GtkStateType    state,
-                         const GdkColor *color)
-{
-  g_return_if_fail (GTK_IS_WIDGET (entry));
-
-  if (state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE) {
-     state = GTK_STATE_NORMAL;
-  }
-
-  GtkWidget *widget = (GtkWidget*)entry;
-
-  geda_widget_modify_color_component (widget, component, state, color);
-
 }
 
 /** @} endgroup Entry-Style */
@@ -1942,11 +1948,11 @@ geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
  *
  */
 void
-geda_entry_widget_modify_fg (GtkWidget *entry,
-                             GtkStateType state,
+geda_entry_widget_modify_bg (GtkWidget      *entry,
+                             GtkStateType    state,
                              const GdkColor *color)
 {
-  geda_widget_modify_color (entry, GTK_RC_FG, state, color);
+  geda_widget_modify_color (entry, GTK_RC_BG, state, color);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1955,11 +1961,11 @@ geda_entry_widget_modify_fg (GtkWidget *entry,
  *
  */
 void
-geda_entry_widget_modify_bg (GtkWidget      *entry,
-                             GtkStateType    state,
+geda_entry_widget_modify_fg (GtkWidget *entry,
+                             GtkStateType state,
                              const GdkColor *color)
 {
-  geda_widget_modify_color (entry, GTK_RC_BG, state, color);
+  geda_widget_modify_color (entry, GTK_RC_FG, state, color);
 }
 
 /** @} endgroup GedaEntry-Widget-Methods */
