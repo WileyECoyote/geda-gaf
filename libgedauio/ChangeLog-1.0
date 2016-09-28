@@ -3,6 +3,9 @@
     * src/widgets/geda_entry.c: Minor reorganization; resequence functions
       in the  GedaEntry-Style group. Add GedaEntry-Puplic Doxygen group.
 
+    * src/widgets/geda_label.c: Replace G_MAXINT with MAX_OFFSET_PADDING
+      define to 250 for maximum offset and padding properties.
+
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Add warn unused attribute to "new" functions,

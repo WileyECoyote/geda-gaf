@@ -109,6 +109,8 @@
 #define DEFAULT_POPUP_DELAY     225
 #define DEFAULT_POPDOWN_DELAY  1000
 
+#define MAX_OFFSET_PADDING      250
+
 /*! \def NAVIGATION_REGION_OVERSHOOT
  * How much the navigation region extends below the submenu */
 #define NAVIGATION_REGION_OVERSHOOT 50
@@ -892,7 +894,7 @@ geda_menu_class_init   (void *class, void *class_data)
                            _("Horizontal Offset"),
                            _("When the menu is a submenu, position it this number of pixels offset horizontally"),
                               G_MININT,
-                              G_MAXINT,
+                              MAX_OFFSET_PADDING,
                               -2,
                               G_PARAM_READABLE);
 
@@ -906,7 +908,7 @@ geda_menu_class_init   (void *class, void *class_data)
                            _("Horizontal Padding"),
                            _("Extra space at the left and right edges of the menu"),
                               0,
-                              G_MAXINT,
+                              MAX_OFFSET_PADDING,
                               0,
                               G_PARAM_READABLE);
 
@@ -916,7 +918,7 @@ geda_menu_class_init   (void *class, void *class_data)
                            _("Vertical Offset"),
                            _("When the menu is a submenu, position it this number of pixels offset vertically"),
                               G_MININT,
-                              G_MAXINT,
+                              MAX_OFFSET_PADDING,
                               0,
                               G_PARAM_READABLE);
 
@@ -924,13 +926,13 @@ geda_menu_class_init   (void *class, void *class_data)
 
   /*!
    * property "vertical-padding": GedaMenu::vertical-padding
-   * \brief Controls the vertical spacing between menu items.
+   * \brief Controls extra space at the top and bottom of the menu.
    */
   params = g_param_spec_int ("vertical-padding",
                            _("Vertical Padding"),
                            _("Extra space at the top and bottom of the menu"),
                               0,
-                              G_MAXINT,
+                              MAX_OFFSET_PADDING,
                               1,
                               G_PARAM_READABLE);
 
