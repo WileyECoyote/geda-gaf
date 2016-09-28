@@ -1628,10 +1628,10 @@ geda_entry_set_input_case  (GedaEntry *entry, int mode)
   GEDA_ENTRY(entry)->text_case = mode;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the current GedaEntry Input Validation Mode
+ * \par Function Description
+ *  The default is ACCEPT_ALL_ASCII.
  */
 GedaEntryAccept
 geda_entry_get_valid_input (GedaEntry *entry)
@@ -1640,10 +1640,21 @@ geda_entry_get_valid_input (GedaEntry *entry)
   return entry->validation_mode;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaEntry Input Validation
+ * \par Function Description
+ *  Restricts user input to characters of a particular type given
+ *  by the GedaEntryAccept \a mode argument. The mode can be one
+ *  of:
+ *  <DL>
+ *    <DT>ACCEPT_ALL_ASCII</DT>
+ *    <DT>ACCEPT_ALPHANUMERIC</DT>
+ *    <DT>ACCEPT_COORDINATE</DT>
+ *    <DT>ACCEPT_NUMERIC</DT>
+ *    <DT>ACCEPT_NUMBER</DT>
+ *    <DT>ACCEPT_INTEGER</DT>
+ *    <DT>ACCEPT_REAL</DT>
+ *  </DL>
  */
 void
 geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
@@ -1920,10 +1931,14 @@ geda_entry_widget_set_max_length (GtkWidget *entry, int max)
   geda_entry_set_max_length (GEDA_ENTRY(entry), max);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Text from a GedaEntry Widget
+ * \par Function Description
+ *  This function gets the text characters in a GedaEntry.
  *
+ * \param[in] entry Pointer a #GedaEntry expressed as a widget
+ *
+ * \returns the contents of the text entry buffer
  */
 const char*
 geda_entry_widget_get_text (GtkWidget *entry)
@@ -1931,10 +1946,15 @@ geda_entry_widget_get_text (GtkWidget *entry)
   return geda_entry_get_text (GEDA_ENTRY(entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Text in a GedaEntry Widget
+ * \par Function Description
+ *  This function sets the text in a GedaEntry if \a new_text
+ *  is not equivalent to the string already in the buffer. No
+ *  signal is emitted.
  *
+ * \param[in] entry    Pointer #GedaEntry expressed as a widget
+ * \param[in] new_text Text to be loaded into the GedaEntry.
  */
 void
 geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
@@ -1957,6 +1977,7 @@ geda_entry_widget_get_valid_input (GtkWidget *entry)
  *  \brief
  *  \par Function Description
  *
+ *  \sa geda_entry_set_valid_input
  */
 void
 geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
@@ -1964,10 +1985,17 @@ geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
   geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify GedaEntry Widget Background Color
+ * \par Function Description
+ *  Calls geda_entry_modify_color to modify the
+ *  background color attribute of the \a entry.
  *
+ * \param[in,out] entry  Pointer to a #GedaEntry expressed as a widget.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_fg geda_entry_modify_color
  */
 void
 geda_entry_widget_modify_bg (GtkWidget      *entry,
@@ -1977,10 +2005,17 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
   geda_widget_modify_color (entry, GTK_RC_BG, state, color);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify GedaEntry Widget Foreground Color
+ * \par Function Description
+ *  Calls geda_entry_modify_color to modify the
+ *  foreground attribute color of the \a entry.
  *
+ * \param[in,out] entry  Pointer to a #GedaEntry expressed as a widget.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_bg geda_entry_modify_color
  */
 void
 geda_entry_widget_modify_fg (GtkWidget *entry,
@@ -2023,6 +2058,8 @@ geda_entry_new (void)
  * \param [in] complete Point to location of GList pointer containing key words.
  *
  * \return a new #GedaEntry
+ *
+ * \sa geda_entry_new_with_completion geda_entry_new_with_history
  */
 GtkWidget*
 geda_entry_new_history_complete (GList **history, GList **complete)
@@ -2051,13 +2088,12 @@ geda_entry_new_history_complete (GList **history, GList **complete)
 /*!
  * \brief Create a New Visible GedaEntry
  * \par Function Description
- *  Creates a new entry with optional history and completion list.
- *  The new widget is set visible.
+ *  Creates a new entry, the new widget is set visible.
  *
  * \return a new #GedaEntry
  */
 GtkWidget*
-geda_entry_new_visible ()
+geda_entry_new_visible (void)
 {
   GtkWidget *entry;
   entry = geda_entry_new ();
@@ -2065,6 +2101,18 @@ geda_entry_new_visible ()
   return entry;
 }
 
+/*!
+ * \brief Create a New Visible GedaEntry with Auxiliary Text Buffer
+ * \par Function Description
+ * Creates a new entry with the provided \a buffer. If \a buffer
+ * is not a GtkEntryBuffer a new empty text buffer is created.
+ * The new widget is set visible.
+ *
+ * \param [in] buffer The buffer to use for the new #GedaEntry
+ *                    or NULL to create a new empty buffer;
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 {
@@ -2075,10 +2123,12 @@ geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 }
 
 /*!
- * \brief Create a New GedaEntry with Completion
+ * \brief Create a New Visible GedaEntry with Completion
  * \par Function Description
- *  Creates a new entry with optional history and completion list.
- *  The new widget is set visible.
+ *  Creates a new entry with history and completion list. The completion
+ *  list should contain complete keyword string. User can complete an entry
+ *  using the TAB key if a suitable match is found in the list. The new
+ *  widget is set visible.
  *
  * \param [in] complete Point to location of GList pointer containing key words.
  *
@@ -2093,6 +2143,18 @@ geda_entry_new_visible_completion (GList **complete)
   return entry;
 }
 
+/*!
+ * \brief Create a New Visible GedaEntry with History
+ * \par Function Description
+ *  Creates a new entry with history list. Strings currently in the
+ *  list will be available to users by using the up and down arrow
+ *  keys. User input that is not in the list will be appended to the
+ *  \a history list. The new widget is set visible.
+ *
+ * \param [in] history  Point to location of GList pointer to store entry strings.
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new_visible_history (GList **history)
 {
@@ -2130,6 +2192,17 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
   return g_object_new (GEDA_TYPE_ENTRY, "buffer", real_buffer, NULL);
 }
 
+/*!
+ * \brief Create a New GedaEntry with Completion
+ * \par Function Description
+ *  Creates a new entry with history and completion list. The completion
+ *  list should contain complete keyword string. User can complete an entry
+ *  using the TAB key if a suitable match is found in the list.
+ *
+ * \param [in] complete Point to location of GList pointer containing key words.
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new_with_completion (GList **complete)
 {
@@ -2146,6 +2219,18 @@ geda_entry_new_with_completion (GList **complete)
   return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
 }
 
+/*!
+ * \brief Create a New GedaEntry with History
+ * \par Function Description
+ *  Creates a new entry with history list. Strings currently in the
+ *  list will be available to the use using the up and down arrow
+ *  key. User input that is not in the list will be appended to the
+ *  \a history list.
+ *
+ * \param [in] history  Point to location of GList pointer to store entry strings.
+ *
+ * \return a new #GedaEntry
+ */
 GtkWidget*
 geda_entry_new_with_history (GList **history)
 {

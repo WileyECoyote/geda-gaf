@@ -2,7 +2,7 @@
 
     * src/widgets/geda_entry.c: Minor reorganization; resequence functions
       in the  GedaEntry-Style group. Add GedaEntry-Puplic Doxygen group.
-      Add function geda_entry_widget_get_valid_input.
+      Add function geda_entry_widget_get_valid_input. Update comments.
 
     * src/widgets/geda_label.c: Replace G_MAXINT with MAX_OFFSET_PADDING
       define to 250 for maximum offset and padding properties and replace
