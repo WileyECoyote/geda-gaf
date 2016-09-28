@@ -102,26 +102,6 @@ enum {
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-static void    geda_entry_real_activate      (GedaEntry        *entry);
-static bool    geda_entry_key_press          (GedaEntry        *widget,
-                                              GdkEventKey      *event,
-                                              void             *data);
-static void    geda_entry_grab_focus         (GtkWidget        *widget);
-static void    geda_entry_realize            (GtkWidget        *widget);
-static void    geda_entry_unrealize          (GtkWidget        *widget);
-static void    geda_entry_activate           (GedaEntry        *entry,
-                                              void             *data);
-static void    geda_entry_history_up         (GedaEntry        *entry);
-static void    geda_entry_history_down       (GedaEntry        *entry);
-static bool    geda_entry_tab_complete       (GedaEntry        *entry);
-
-static void    geda_entry_virtual_populator  (GedaEntry        *entry,
-                                              void             *menu);
-static void    geda_entry_populate_popup     (GedaEntry        *entry,
-                                              GtkMenu          *menu,
-                                              void             *data);
-static void    popup_menu_callback           (GedaMenuItem     *item,
-                                              void             *data);
 static void    geda_entry_get_property       (GObject          *object,
                                               unsigned int      property_id,
                                               GValue           *value,
@@ -130,9 +110,36 @@ static void    geda_entry_set_property       (GObject          *object,
                                               unsigned int      property_id,
                                               const GValue     *value,
                                               GParamSpec       *pspec);
+
+static void    geda_entry_real_activate      (GedaEntry        *entry);
+
+static void    geda_entry_grab_focus         (GtkWidget        *widget);
+static void    geda_entry_realize            (GtkWidget        *widget);
+static void    geda_entry_unrealize          (GtkWidget        *widget);
+
+static void    geda_entry_activate           (GedaEntry        *entry,
+                                              void             *data);
+static void    geda_entry_history_up         (GedaEntry        *entry);
+static void    geda_entry_history_down       (GedaEntry        *entry);
+static bool    geda_entry_key_press          (GedaEntry        *widget,
+                                              GdkEventKey      *event,
+                                              void             *data);
 static int     geda_entry_strncmpi           (char             *str1,
                                               char             *str2,
                                               int               n);
+static bool    geda_entry_tab_complete       (GedaEntry        *entry);
+static void    geda_entry_validate_input     (GtkEntry         *entry,
+                                              const char       *text,
+                                              int               length,
+                                              int              *position,
+                                              void             *data);
+static void    geda_entry_virtual_populator  (GedaEntry        *entry,
+                                              void             *menu);
+static void    popup_menu_callback           (GedaMenuItem     *item,
+                                              void             *data);
+static void    geda_entry_populate_popup     (GedaEntry        *entry,
+                                              GtkMenu          *menu,
+                                              void             *data);
 
 /* These flags and pointers are used for construction */
 static GList  *history_list;
@@ -552,133 +559,15 @@ geda_entry_unrealize (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_real_insert_text (GedaEntry  *entry,
-                             const char *new_text,
-                             int         new_text_length,
-                             int        *position)
-{
-  GtkEntryBuffer *buffer;
-  unsigned int n_inserted;
-  int n_chars;
-
-  n_chars = g_utf8_strlen (new_text, new_text_length);
-
-  /* The actual insertion into the buffer. This will end up firing the
-   * following signal handlers:
-   *
-   *       buffer_inserted_text(),
-   *       buffer_notify_display_text(),
-   *       buffer_notify_text(),
-   *       buffer_notify_length()
-   */
-  begin_change (entry);
-
-  g_object_get (entry, "buffer", &buffer, NULL);
-
-  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
-
-  end_change (entry);
-
-  *position += n_inserted;
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void
-geda_entry_validate_input (GtkEntry    *entry,
-                           const char  *text,
-                           int          length,
-                           int         *position,
-                           void        *data)
-{
-  GedaEntry *geda_entry = GEDA_ENTRY (entry);
-
-  char *result = g_new (char, length);
-  bool  valid  = FALSE;
-  int   count  = 0;
-  int   i;
-
-  for (i = 0; i < length; i++) {
-
-    switch (geda_entry->validation_mode) {
-      case ACCEPT_ALL_ASCII:
-         valid = TRUE;
-         break;
-      case ACCEPT_ALPHANUMERIC:
-         if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
-           valid = TRUE;
-         break;
-      case ACCEPT_NUMERIC:
-         if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
-           valid = TRUE;
-         break;
-      case ACCEPT_COORDINATE:
-         if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
-           valid = TRUE;
-      case ACCEPT_NUMBER:
-         if (isdigit(text[i]))
-           valid = TRUE;
-         break;
-      case ACCEPT_INTEGER:
-         if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
-           valid = TRUE;
-         break;
-      case ACCEPT_REAL:
-         if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
-           valid = TRUE;
-         break;
-      default:
-         valid = TRUE;
-    }
-    if (!valid)
-      continue;
-
-    if (geda_entry->text_case == LOWER_CASE) {
-      result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
-    }
-    else {
-      if (geda_entry->text_case == UPPER_CASE)
-        result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
-      else
-        result[count++] = text[i];
-    }
-  }
-
-  if (count > 0) {
-
-    g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
-                                     G_CALLBACK (geda_entry_validate_input),
-                                     data);
-
-    geda_entry_real_insert_text (geda_entry, result, count, position);
-
-    g_signal_handlers_unblock_by_func (G_OBJECT (geda_entry),
-                                       G_CALLBACK (geda_entry_validate_input),
-                                       data);
-  }
-  g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
-
-  g_free (result);
-}
-
-/*! \brief GedaEntry Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaEntry Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  g_class     GedaEntry class we are initializing
- *  \param [in]  class_data  GedaEntry structure associated with the class
+ * \param [in]  g_class     GedaEntry class we are initializing
+ * \param [in]  class_data  GedaEntry structure associated with the class
  */
 static void
 geda_entry_class_init(void *g_class, void *class_data)
@@ -965,49 +854,6 @@ is_a_geda_entry (GedaEntry *entry)
 }
 
 /*!
- * \brief GedaEntry on key-press event
- * \par Function Description
- *  Keyboard hook routine for auto-completion and history.
- */
-static bool
-geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
-{
-  unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
-  bool handled = FALSE;
-
-  switch (event->keyval) {
-    case GDK_KEY_Down:
-      if ((state == 0) && (entry->have_history)) {
-        geda_entry_history_down (entry);
-        handled = TRUE;
-      }
-      break;
-
-    case GDK_KEY_Up:
-      if ((state == 0) && (entry->have_history)) {
-        geda_entry_history_up (entry);
-        handled = TRUE;
-      }
-      break;
-
-    case GDK_KEY_KP_Enter:
-    case GDK_KEY_Return:
-    case GDK_KEY_ISO_Enter:
-      handled = TRUE;
-      break;
-
-    case GDK_KEY_Tab:
-      if ( (state  == 0) && (entry->completion_enabled) ) {
-        handled = geda_entry_tab_complete (entry);
-      }
-      break;
-    default:
-      break;
-  }
-  return handled;
-}
-
-/*!
  * \brief On Activate a GedaEntry
  * \par Function Description
  * This is a callback for the "process-entry" signal. If there is text
@@ -1128,6 +974,49 @@ geda_entry_history_down (GedaEntry *entry)
   }
 }
 
+/*!
+ * \brief GedaEntry on key-press event
+ * \par Function Description
+ *  Keyboard hook routine for auto-completion and history.
+ */
+static bool
+geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
+{
+  unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
+  bool handled = FALSE;
+
+  switch (event->keyval) {
+    case GDK_KEY_Down:
+      if ((state == 0) && (entry->have_history)) {
+        geda_entry_history_down (entry);
+        handled = TRUE;
+      }
+      break;
+
+    case GDK_KEY_Up:
+      if ((state == 0) && (entry->have_history)) {
+        geda_entry_history_up (entry);
+        handled = TRUE;
+      }
+      break;
+
+    case GDK_KEY_KP_Enter:
+    case GDK_KEY_Return:
+    case GDK_KEY_ISO_Enter:
+      handled = TRUE;
+      break;
+
+    case GDK_KEY_Tab:
+      if ( (state  == 0) && (entry->completion_enabled) ) {
+        handled = geda_entry_tab_complete (entry);
+      }
+      break;
+    default:
+      break;
+  }
+  return handled;
+}
+
 /*! \brief GedaEntry Internal Compare n characters ignoring case.
  *  \par Function Description
  *  Another garden varity string compare using toupper
@@ -1219,6 +1108,124 @@ geda_entry_tab_complete (GedaEntry *entry)
 
   /* Don't free buffer! */;
   return exit (TRUE);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_real_insert_text (GedaEntry  *entry,
+                             const char *new_text,
+                             int         new_text_length,
+                             int        *position)
+{
+  GtkEntryBuffer *buffer;
+  unsigned int n_inserted;
+  int n_chars;
+
+  n_chars = g_utf8_strlen (new_text, new_text_length);
+
+  /* The actual insertion into the buffer. This will end up firing the
+   * following signal handlers:
+   *
+   *       buffer_inserted_text(),
+   *       buffer_notify_display_text(),
+   *       buffer_notify_text(),
+   *       buffer_notify_length()
+   */
+  begin_change (entry);
+
+  g_object_get (entry, "buffer", &buffer, NULL);
+
+  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
+
+  end_change (entry);
+
+  *position += n_inserted;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void
+geda_entry_validate_input (GtkEntry    *entry,
+                           const char  *text,
+                           int          length,
+                           int         *position,
+                           void        *data)
+{
+  GedaEntry *geda_entry = GEDA_ENTRY (entry);
+
+  char *result = g_new (char, length);
+  bool  valid  = FALSE;
+  int   count  = 0;
+  int   i;
+
+  for (i = 0; i < length; i++) {
+
+    switch (geda_entry->validation_mode) {
+      case ACCEPT_ALL_ASCII:
+         valid = TRUE;
+         break;
+      case ACCEPT_ALPHANUMERIC:
+         if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
+           valid = TRUE;
+         break;
+      case ACCEPT_NUMERIC:
+         if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
+           valid = TRUE;
+         break;
+      case ACCEPT_COORDINATE:
+         if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
+           valid = TRUE;
+      case ACCEPT_NUMBER:
+         if (isdigit(text[i]))
+           valid = TRUE;
+         break;
+      case ACCEPT_INTEGER:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
+           valid = TRUE;
+         break;
+      case ACCEPT_REAL:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
+           valid = TRUE;
+         break;
+      default:
+         valid = TRUE;
+    }
+    if (!valid)
+      continue;
+
+    if (geda_entry->text_case == LOWER_CASE) {
+      result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
+    }
+    else {
+      if (geda_entry->text_case == UPPER_CASE)
+        result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
+      else
+        result[count++] = text[i];
+    }
+  }
+
+  if (count > 0) {
+
+    g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
+                                     G_CALLBACK (geda_entry_validate_input),
+                                     data);
+
+    geda_entry_real_insert_text (geda_entry, result, count, position);
+
+    g_signal_handlers_unblock_by_func (G_OBJECT (geda_entry),
+                                       G_CALLBACK (geda_entry_validate_input),
+                                       data);
+  }
+  g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
+
+  g_free (result);
 }
 
 /** \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
