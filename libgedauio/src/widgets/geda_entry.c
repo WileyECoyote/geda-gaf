@@ -1435,6 +1435,24 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
   }
 }
 
+/*! \brief Get Entry attribute List
+ *  \par Function Description
+ * Gets the attribute list that was set on the entry using
+ * geda_entry_set_attributes(), if any.
+ *
+ * \param [in] entry: Pointer to a #GedaEntry object.
+ *
+ * \retval PangoAttrList attribute list, or %NULL
+ *         if none was set.
+ */
+PangoAttrList*
+geda_entry_get_attributes (GedaEntry *entry)
+{
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
+
+  return entry->priv->attrs;
+}
+
 /*!
  * \brief Set Entry attribute List
  * \par Function Description
@@ -1470,59 +1488,6 @@ geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
   }
 
   gtk_widget_queue_resize (GTK_WIDGET (entry));
-}
-
-/*!
- * \brief Select All Text in a GedaEntry
- * \par Function Description
- *  Selects all characters in \a entry text.
- *
- * \param [in] entry Pointer to a #GedaEntry object.
- */
-void
-geda_entry_select_all (GedaEntry *entry)
-{
-  g_return_if_fail (GEDA_IS_ENTRY (entry));
-
-  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
-}
-
-/*!
- * \brief Select Specifiy Text in a GedaEntry
- * \par Function Description
- *  Selects a region of text. The characters that are selected are
- *  those characters at positions from \a start_pos up to, but not
- *  including \a end_pos. If \a end_pos is negative, all characters
- *  will be selected from \a start_pos to the end of the text.
- *
- * \param [in] entry Pointer to a #GedaEntry object.
- * \param [in] start Starting Position
- * \param [in] end   End Position or -1 to select remain text
- */
-void
-geda_entry_select_region (GedaEntry *entry, int start, int end)
-{
-  g_return_if_fail (GEDA_IS_ENTRY (entry));
-
-  gtk_editable_select_region (GTK_EDITABLE (entry), start, end);
-}
-
-/*! \brief Get Entry attribute List
- *  \par Function Description
- * Gets the attribute list that was set on the entry using
- * geda_entry_set_attributes(), if any.
- *
- * \param [in] entry: Pointer to a #GedaEntry object.
- *
- * \retval PangoAttrList attribute list, or %NULL
- *         if none was set.
- */
-PangoAttrList*
-geda_entry_get_attributes (GedaEntry *entry)
-{
-  g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
-
-  return entry->priv->attrs;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1686,6 +1651,41 @@ geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
 
+/*!
+ * \brief Select All Text in a GedaEntry
+ * \par Function Description
+ *  Selects all characters in \a entry text.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ */
+void
+geda_entry_select_all (GedaEntry *entry)
+{
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+}
+
+/*!
+ * \brief Select Specifiy Text in a GedaEntry
+ * \par Function Description
+ *  Selects a region of text. The characters that are selected are
+ *  those characters at positions from \a start_pos up to, but not
+ *  including \a end_pos. If \a end_pos is negative, all characters
+ *  will be selected from \a start_pos to the end of the text.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] start Starting Position
+ * \param [in] end   End Position or -1 to select remain text
+ */
+void
+geda_entry_select_region (GedaEntry *entry, int start, int end)
+{
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+  gtk_editable_select_region (GTK_EDITABLE (entry), start, end);
+}
+
 /* --------------------- Widget Style Functions ----------------- */
 
 /** \defgroup GedaEntry-Style GedaEntry Style Functions
@@ -1724,26 +1724,6 @@ geda_entry_modify_color (GedaEntry      *entry,
 }
 
 /*!
- * \brief Modify GedaEntry Foreground Color
- * \par Function Description
- *  Calls geda_entry_modify_color to modify the
- *  foreground attribute color of the \a entry.
- *
- * \param[in,out] entry  Pointer to a #GedaEntry.
- * \param[in]     state  The state for which the attribute is to be set.
- * \param[in]     color  Pointer to GdkColor RGB color structure.
- *
- * \sa geda_entry_modify_bg geda_entry_modify_color
- */
-void
-geda_entry_modify_fg (GedaEntry *entry,
-                      GtkStateType state,
-                      const GdkColor *color)
-{
-  geda_entry_modify_color (entry, GTK_RC_FG, state, color);
-}
-
-/*!
  * \brief Modify GedaEntry Background Color
  * \par Function Description
  *  Calls geda_entry_modify_color to modify the
@@ -1761,6 +1741,26 @@ geda_entry_modify_bg (GedaEntry      *entry,
                       const GdkColor *color)
 {
   geda_entry_modify_color (entry, GTK_RC_BG, state, color);
+}
+
+/*!
+ * \brief Modify GedaEntry Foreground Color
+ * \par Function Description
+ *  Calls geda_entry_modify_color to modify the
+ *  foreground attribute color of the \a entry.
+ *
+ * \param[in,out] entry  Pointer to a #GedaEntry.
+ * \param[in]     state  The state for which the attribute is to be set.
+ * \param[in]     color  Pointer to GdkColor RGB color structure.
+ *
+ * \sa geda_entry_modify_bg geda_entry_modify_color
+ */
+void
+geda_entry_modify_fg (GedaEntry *entry,
+                      GtkStateType state,
+                      const GdkColor *color)
+{
+  geda_entry_modify_color (entry, GTK_RC_FG, state, color);
 }
 
 /** @} endgroup GedaEntry-Style */

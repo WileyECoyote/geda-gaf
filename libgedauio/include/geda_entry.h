@@ -168,11 +168,6 @@ GtkWidget *geda_entry_new_with_history       (GList         **history)  WARN_UNU
 
 GtkWidget *geda_entry_new_with_max_length    (int length);
 
-void       geda_entry_select_all             (GedaEntry      *entry);
-void       geda_entry_select_region          (GedaEntry      *entry,
-                                              int             start,
-                                              int             end);
-
 bool geda_entry_get_activates_default        (GedaEntry      *entry);
 void geda_entry_set_activates_default        (GedaEntry      *entry,
                                               bool            setting);
@@ -205,10 +200,16 @@ const char*
      geda_entry_get_text                     (GedaEntry      *entry);
 void geda_entry_set_text                     (GedaEntry      *entry,
                                         const char           *new_text);
+
 GedaEntryAccept
      geda_entry_get_valid_input              (GedaEntry      *entry);
 void geda_entry_set_valid_input              (GedaEntry      *entry,
                                               GedaEntryAccept mode);
+
+void geda_entry_select_all                   (GedaEntry      *entry);
+void geda_entry_select_region                (GedaEntry      *entry,
+                                              int             start,
+                                              int             end);
 
 void geda_entry_modify_color                 (GedaEntry      *entry,
                                               GtkRcFlags      component,
@@ -229,7 +230,6 @@ PangoAttrList*
      geda_entry_widget_get_attributes        (GtkWidget      *entry);
 void geda_entry_widget_set_attributes        (GtkWidget      *entry,
                                               PangoAttrList  *attrs);
-
 GedaCompletion*
      geda_entry_widget_get_completion        (GtkWidget      *entry);
 void geda_entry_widget_set_completion        (GtkWidget      *entry,
@@ -255,16 +255,16 @@ const char*
      geda_entry_widget_get_text              (GtkWidget      *entry);
 void geda_entry_widget_set_text              (GtkWidget      *entry,
                                         const char           *new_text);
-
-void geda_entry_widget_modify_fg             (GtkWidget      *entry,
-                                              GtkStateType    state,
-                                        const GdkColor       *color);
+GedaEntryAccept
+     geda_entry_widget_get_valid_input       (GedaEntry      *entry);
+void geda_entry_widget_set_valid_input       (GtkWidget      *entry,
+                                              GedaEntryAccept mode);
 void geda_entry_widget_modify_bg             (GtkWidget      *entry,
                                               GtkStateType    state,
                                         const GdkColor       *color);
-
-void geda_entry_widget_set_valid_input       (GtkWidget      *entry,
-                                              GedaEntryAccept mode);
+void geda_entry_widget_modify_fg             (GtkWidget      *entry,
+                                              GtkStateType    state,
+                                        const GdkColor       *color);
 
 #ifdef __cplusplus
 }
