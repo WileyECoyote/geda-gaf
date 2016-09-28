@@ -1947,6 +1947,17 @@ geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
  *  \par Function Description
  *
  */
+GedaEntryAccept
+geda_entry_widget_get_valid_input (GtkWidget *entry)
+{
+  return geda_entry_get_valid_input (GEDA_ENTRY (entry));
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {

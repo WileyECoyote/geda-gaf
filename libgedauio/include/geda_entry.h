@@ -256,7 +256,7 @@ const char*
 void geda_entry_widget_set_text              (GtkWidget      *entry,
                                         const char           *new_text);
 GedaEntryAccept
-     geda_entry_widget_get_valid_input       (GedaEntry      *entry);
+     geda_entry_widget_get_valid_input       (GtkWidget      *entry);
 void geda_entry_widget_set_valid_input       (GtkWidget      *entry,
                                               GedaEntryAccept mode);
 void geda_entry_widget_modify_bg             (GtkWidget      *entry,
