@@ -1,5 +1,7 @@
 2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_math.h: Add m_box and m_bounds functions.
+
     * include/prototype_priv.h: Remove declaration of geda_math_bounds_init.
 
     * src/math/m_box.c: Rename functions with geda_math prefix.

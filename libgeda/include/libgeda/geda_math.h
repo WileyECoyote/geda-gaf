@@ -37,6 +37,13 @@
 #define geda_arc_length                 geda_math_arc_length
 #define geda_arc_includes_point         geda_math_arc_includes_point
 
+/* m_box.c */
+#define geda_box_shortest_distance      geda_math_box_shortest_distance
+
+/* m_bounds.c */
+#define geda_bounds_init                geda_math_bounds_init
+#define geda_bounds_of_points           geda_math_bounds_of_points
+
 /* m_circle.c */
 #define geda_circle_circumference       geda_math_circle_circumference
 #define geda_circle_includes_point      geda_math_circle_includes_point
