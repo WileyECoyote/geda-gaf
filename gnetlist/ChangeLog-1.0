@@ -1,3 +1,18 @@
+2016-09-29 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnetlist.scm: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit a3bc7cb7ed8a902b657e826a87273146e23bf7de:
+      gnetlist: Improved checking of attribute identity.
+
+      gnetlist warns the user if several components with the same refdes
+      have same named attributes with different values. So far, it also
+      yielded the warning in the case when some of such components missed
+      the attribute in question. There is no point to have, say, footprint=
+      attached on several slots of a slotted part, so this check is now
+      omitted for symbol instances having no requested attribute.
+
+      This change is not backward compatible with previous gnetlist behaviour.
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.dox: Enable EXTERNAL_PAGES so that links to the libraries
