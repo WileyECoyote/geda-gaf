@@ -74,9 +74,6 @@ void     geda_toplevel_append_new_hook       (NewToplevelFunc func, void *data);
 bool     geda_toplevel_set_bounds            (GedaToplevel *toplevel, GedaObject *o_current);
 void     geda_toplevel_unref                 (GedaToplevel *toplevel);
 
-/* m_bounds.c */
-void     geda_math_bounds_init            (BOUNDS *bounds);
-
 /* m_transform.c */
 void     m_transform_combine      (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );
 void     m_transform_init         (TRANSFORM *transform);
