@@ -5,7 +5,11 @@
 
     * atmel/ATMega328-2.sym: Redo symbol; reposition and resequence leads
       and attributes, update footprint. Add missing pins PB6 and PB7. Add
-      description and add symversion.
+      description, documentation and symversion attributes.
+
+    * atmel/ATMega328P-1.sym: Redo symbol; reposition and resequence leads
+      and attributes, add footprint, description, documentation and symversion
+      attributes.
 
 2016-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
