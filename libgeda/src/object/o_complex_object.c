@@ -1315,7 +1315,7 @@ geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int forc
   }
 
   if (found_line_bounds) {
-    distance = m_box_shortest_distance (&line_bounds, x, y, TRUE);
+    distance = geda_math_box_shortest_distance (&line_bounds, x, y, TRUE);
     shortest_distance = min (shortest_distance, distance);
   }
 

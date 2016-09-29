@@ -2078,7 +2078,7 @@ geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_s
 
     solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
 
-    return m_box_shortest_distance (object->box, x, y, solid);
+    return geda_math_box_shortest_distance (object->box, x, y, solid);
   }
   geda_box_object_error(__func__, object);
   return (G_MAXDOUBLE);

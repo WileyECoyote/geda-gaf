@@ -2,6 +2,8 @@
 
     * include/prototype_priv.h: Remove declaration of geda_math_bounds_init.
 
+    * src/math/m_box.c: Rename functions with geda_math prefix.
+
     * src/math/m_bounds.c: Rename functions with geda_math prefix.
 
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>

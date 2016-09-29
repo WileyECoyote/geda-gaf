@@ -43,7 +43,7 @@
  *          shape, this function returns a distance of zero for interior points.
  *          With an invalid parameter, this function returns G_MAXDOUBLE.
  */
-double m_box_shortest_distance (GedaBox *box, int x, int y, int solid)
+double geda_math_box_shortest_distance (GedaBox *box, int x, int y, int solid)
 {
   double shortest_distance;
   double x1, y1, x2, y2;
