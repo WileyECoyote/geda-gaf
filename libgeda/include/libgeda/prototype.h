@@ -102,8 +102,8 @@ extern "C" {
        double    m_box_shortest_distance         (GedaBox *box, int x, int y, int solid);
 
 /* m_bounds.c */
-         void    m_bounds_init                   (BOUNDS *bounds);
-         void    m_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
+         void    geda_math_bounds_init                   (BOUNDS *bounds);
+         void    geda_math_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
 
 /* m_arc.c */
        double    geda_math_arc_length                    (int radius, int sweep);

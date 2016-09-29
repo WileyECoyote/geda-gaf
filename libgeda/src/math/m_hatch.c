@@ -287,7 +287,7 @@ void geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines
   /* sort sweep events in ascending order by starting y coordinate */
   g_array_sort(events, compare_events);
 
-  m_bounds_of_points(&bounds, (POINT*)points2->data, points2->len);
+  geda_math_bounds_of_points(&bounds, (POINT*)points2->data, points2->len);
   sweep_y = calculate_initial_sweep(10 * pitch, bounds.min_y, bounds.max_y);
 
   while ( events->len > 0 || status->len > 0 ) {

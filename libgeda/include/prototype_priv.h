@@ -75,7 +75,7 @@ bool     geda_toplevel_set_bounds            (GedaToplevel *toplevel, GedaObject
 void     geda_toplevel_unref                 (GedaToplevel *toplevel);
 
 /* m_bounds.c */
-void     m_bounds_init            (BOUNDS *bounds);
+void     geda_math_bounds_init            (BOUNDS *bounds);
 
 /* m_transform.c */
 void     m_transform_combine      (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );

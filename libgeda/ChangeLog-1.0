@@ -1,3 +1,7 @@
+2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_bounds.c: Rename functions with geda_math prefix.
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/libgeda.h: include geda_math.h

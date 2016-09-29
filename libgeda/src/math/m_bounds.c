@@ -25,12 +25,12 @@
  *  \param bounds [in] The bounds to set to empty.  This parameter must not
  *  be NULL.
  */
-void m_bounds_init(BOUNDS *bounds)
+void geda_math_bounds_init(BOUNDS *bounds)
 {
-  bounds->min_x = G_MAXINT;
-  bounds->min_y = G_MAXINT;
-  bounds->max_x = G_MININT;
-  bounds->max_y = G_MININT;
+  bounds->min_x = INT_MAX;
+  bounds->min_y = INT_MAX;
+  bounds->max_x = INT_MIN;
+  bounds->max_y = INT_MIN;
 }
 
 /*! \brief Calculate the bounds of a set of points
@@ -44,11 +44,11 @@ void m_bounds_init(BOUNDS *bounds)
  *  zero, this parameter must not be NULL.
  *  \param count [in] The number of points in the set.
  */
-void m_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
+void geda_math_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
 {
   int index;
 
-  m_bounds_init(bounds);
+  geda_math_bounds_init(bounds);
 
   for (index=0; index<count; index++) {
 
