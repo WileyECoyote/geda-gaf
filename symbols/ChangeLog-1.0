@@ -1,3 +1,9 @@
+2016-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * micro/ACE1202-1.sym: Update pin 3 (NC) type = pas, resequence attributes.
+
+    * micro/ACE1202-2.sym: Update pin 3 (NC) type = pas, resequence attributes.
+
 2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega328-1.sym: Redo symbol; reposition and resequence leads
