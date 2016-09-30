@@ -219,8 +219,9 @@ geda_entry_finalize (GObject *object)
 
   G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
 
-  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
+  if (entry->priv->attrs) {
     pango_attr_list_unref (entry->priv->attrs);
+  }
 
   if (entry->priv->font_map) {
     pango_cairo_font_map_set_default (NULL);

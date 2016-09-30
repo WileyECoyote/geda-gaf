@@ -3,7 +3,8 @@
     * src/widgets/geda_combobox.c: Reformat comment block, add todo template
       comment blocks.
 
-    * src/widgets/geda_entry.c: Update function documentation.
+    * src/widgets/geda_entry.c: Update function documentation, remove check
+      for entry->priv->attrs g_object in geda_entry_finalize.
 
     * tests/test_entry.c:: Add checks for functions:
 
