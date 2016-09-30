@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_completion.h
+ * \file: geda_completion.c
  *
  * GLIB - Library of useful routines for C programming
  *
@@ -51,8 +51,8 @@
  * \brief GedaCompletion - Automatic Entry Completion
  * \par
  * #GedaCompletion provides support for automatic completion of a string
- * using any group of target strings and are typically used for file
- * name completion as is common in many UNIX shells.
+ * using any group of target strings and is typically used for file name
+ * completion as is common in many UNIX shells.
  * \par
  * A #GedaCompletion is created using geda_completion_new(). Target items
  * are added and removed with geda_completion_add_items(),
