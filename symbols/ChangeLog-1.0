@@ -10,6 +10,9 @@
     * atmel/ATMega32-DIP-1.sym: Revise symbol; reposition and resequence leads,
       update footprint.
 
+    * atmel/ATmega32-DIP-1.sym: Remove symbol file; was mostly a duplicate of
+      ATMega32-DIP-1.
+
 2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega328-1.sym: Redo symbol; reposition and resequence leads
