@@ -5459,13 +5459,12 @@ geda_combo_box_new_with_entry (void)
   return g_object_new (GEDA_TYPE_COMBO_BOX, "has-entry", TRUE, NULL);
 }
 
-/*! \brief Creates a new #GedaComboBox with GtkTreeModel
- *  \par Function Description
- *
- * Creates a new #GedaComboBox with the model initialized to model.
+/*!
+ * \brief Creates a new #GedaComboBox with GtkTreeModel
+ * \par Function Description
+ *  Creates a new #GedaComboBox with the model initialized to model.
  *
  * \return value: A new #GedaComboBox.
- *
  */
 GtkWidget *
 geda_combo_box_new_with_model (GtkTreeModel *model)
@@ -5479,12 +5478,13 @@ geda_combo_box_new_with_model (GtkTreeModel *model)
   return GTK_WIDGET (combo_box);
 }
 
-/*! \brief Creates a new #GedaComboBox with Entry and GtkTreeModel
- *  \par Function Description
- * Creates a new empty #GedaComboBox with an entry
- * and with the model initialized to model.
+/*!
+ * \brief Creates a new #GedaComboBox with Entry and GtkTreeModel
+ * \par Function Description
+ *  Creates a new empty #GedaComboBox with an entry
+ *  and with the model initialized to model.
  *
- * \return value: A new #GedaComboBox
+ * \returns A new #GedaComboBox
  */
 GtkWidget *
 geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
@@ -5495,16 +5495,16 @@ geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
                        NULL);
 }
 
-/*! \brief Get #GedaComboBox Wrap Width
- *
- *  \par Function Description
- * Returns the wrap width which is used to determine the number of columns
- * for the popup menu. If the wrap width is larger than 1, the combo box
- * is in table mode.
+/*!
+ * \brief Get #GedaComboBox Wrap Width
+ * \par Function Description
+ *  Returns the wrap width which is used to determine the number of columns
+ *  for the popup menu. If the wrap width is larger than 1, the combo box
+ *  is in table mode.
  *
  * \param [in] combo_box
  *
- * \returns: the wrap width.
+ * \returns the wrap width.
  *
   * \sa geda_combo_widget_get_wrap_width
  */
@@ -5558,9 +5558,9 @@ geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
  * \par Function Description
  *  Returns the column with row span information for \a combo_box.
  *
- *  \param [in] combo_box A #GedaComboBox
+ * \param [in] combo_box A #GedaComboBox
  *
- * \returns: the row span column.
+ * \returns the row span column.
  *
  * \sa geda_combo_widget_get_row_span_column
  */
@@ -5571,15 +5571,15 @@ int geda_combo_box_get_row_span_column (GedaComboBox *combo_box)
   return combo_box->priv->row_column;
 }
 
-/*! \brief Set #GedaComboBox Row Span
- *
- *  \par Function Description
+/*!
+ * \brief Set #GedaComboBox Row Span
+ * \par Function Description
  *  Sets the column with row span information for \a combo_box to
  *  be \a row_span. The row span column contains integers which
  *  indicate how many rows an item should span.
  *
- *  \param [in] combo_box A #GedaComboBox.
- *  \param [in] row_span  A column in the model passed during construction.
+ * \param [in] combo_box A #GedaComboBox.
+ * \param [in] row_span  A column in the model passed during construction.
  *
  * \sa geda_combo_widget_set_row_span_column
  */
@@ -5610,7 +5610,7 @@ void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
 /*!
  * \brief Get #GedaComboBox Column Span
  * \par Function Description
- * Returns the column with column span information for \a combo_box.
+ *  Returns the column with column span information for \a combo_box.
  *
  * \param [in] combo_box  A #GedaComboBox.
  *
@@ -5626,15 +5626,15 @@ geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
   return combo_box->priv->col_column;
 }
 
-/*! \brief Set #GedaComboBox Column Span
- *
- *  \par Function Description
+/*!
+ * \brief Set #GedaComboBox Column Span
+ * \par Function Description
  *  Sets the column with column span information for \a combo_box to be
  *  \a column_span. The column span column contains integers which indicate
  *  how many columns an item should span.
  *
- *  \param [in] combo_box   A #GedaComboBox
- *  \param [in] column_span A column in the model passed during construction
+ * \param [in] combo_box   A #GedaComboBox
+ * \param [in] column_span A column in the model passed during construction
  *
  * \sa geda_combo_widget_set_column_span_column
  */
@@ -5663,20 +5663,19 @@ geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
   }
 }
 
-/*! \brief Get Active #GedaComboBox item
- *
- *  \par Function Description
+/*!
+ * \brief Get Active #GedaComboBox item
+ * \par Function Description
  *  Returns the index of the currently active item, or -1 if there's no
  *  active item. If the model is a non-flat treemodel, and the active item
  *  is not an immediate child of the root of the tree, this function returns
  *  <b>gtk_tree_path_get_indices (path)[0]</b>, where
  *  <b>path</b> is the <b>GtkTreePath</b> of the active item.
  *
- *  \param [in] combo_box A #GedaComboBox
+ * \param [in] combo_box A #GedaComboBox
  *
- *  \return value: An integer which is the index of the currently active item,
- *                or -1 if there's no active item.
- *
+ * \return An integer value which is the index of the currently active item,
+ *         or -1 if there's no active item.
  */
 int
 geda_combo_box_get_active (GedaComboBox *combo_box)
@@ -5928,11 +5927,11 @@ geda_combo_box_get_model (GedaComboBox *combo_box)
   return combo_box->priv->model;
 }
 
-/*! \brief Set Active #GedaComboBox Model
- *
- *  \par Function Description
- *  Sets the model used by \a combo_box to be \a model. Will unset a previously set
- *  model (if applicable). If model is %NULL, then it will unset the model.
+/*!
+ * \brief Set Active #GedaComboBox Model
+ * \par Function Description
+ *  Sets the model used by \a combo_box to be \a model. Will unset a previously
+ *  set  model (if applicable). If model is %NULL, then it will unset the model.
  *
  *  Note that this function does not clear the cell renderers, you have to
  *  call gtk_cell_layout_clear() yourself if you need to set up different
@@ -5942,8 +5941,7 @@ geda_combo_box_get_model (GedaComboBox *combo_box)
  *  \param [in] model     A <b>GtkTreeIter</b>
  */
 void
-geda_combo_box_set_model (GedaComboBox *combo_box,
-                          GtkTreeModel *model)
+geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
   g_return_if_fail (model == NULL || GTK_IS_TREE_MODEL (model));
@@ -6083,14 +6081,15 @@ geda_combo_box_new_text_with_entry (void)
   return entry_box;
 }
 
-/*! \brief Append Text to a GedaComboBox
- *  \par Function Description
+/*!
+ * \brief Append Text to a GedaComboBox
+ * \par Function Description
  *   Appends \a string to the list of strings stored in \a combo_box. Note
  *   that this can only use this function with combo boxes constructed with
  *   geda_combo_box_new_text().
  *
- *  \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
- *  \param [in] text A string
+ * \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
+ * \param [in] text A string
  *
  * \sa: #GedaComboBoxText
  */
@@ -6112,18 +6111,18 @@ geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
   gtk_list_store_set (store, &iter, 0, text, -1);
 }
 
-/*! \brief Insert Text into a GedaComboBox
- *
- *  \par Function Description
+/*!
+ * \brief Insert Text into a GedaComboBox
+ * \par Function Description
  *  Inserts \a text at \a position in the list of strings stored in \a combo_box.
  *  Note that you can only use this function with combo boxes constructed
  *  with geda_combo_box_new_text().
  *
- *  \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
- *  \param [in] position  An index to insert \a text
- *  \param [in] text      A string
+ * \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
+ * \param [in] position  An index to insert \a text
+ * \param [in] text      A string
  *
- *  \sa GedaComboBoxText
+ * \sa GedaComboBoxText
  */
 void
 geda_combo_box_insert_text (GedaComboBox *combo_box,
@@ -6183,15 +6182,15 @@ geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
   }
 }
 
-/*! \brief Prepend Text to a GedaComboBox
- *
- *  \par Function Description
+/*!
+ * \brief Prepend Text to a GedaComboBox
+ * \par Function Description
  *  Prepends \a string to the list of strings stored in \a combo_box. Note that
  *  you can only use this function with combo boxes constructed with
  *  geda_combo_box_new_text().
  *
- *  \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
- *  \param [in] text     A string
+ * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
+ * \param [in] text     A string
  *
  * \sa: GedaComboBoxText
  */
@@ -6215,15 +6214,16 @@ geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
   }
 }
 
-/*! \brief Remove Text from a GedaComboBox
- *  \par Function Description
+/*!
+ * \brief Remove Text from a GedaComboBox
+ * \par Function Description
  *  Removes the string at \a position from \a combo_box. Note that you can only use
  *  this function with combo boxes constructed with geda_combo_box_new_text().
  *
- *  \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
- *  \param [in] position  Index of the item to remove
+ * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
+ * \param [in] position  Index of the item to remove
  *
- *  \note Use #GedaComboBoxText
+ * \note Use #GedaComboBoxText
  */
 void
 geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
@@ -6251,15 +6251,15 @@ geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
  *  @{
  */
 
-/*! \brief Get Active GedaComboBox Text
+/*!
+ * \brief Get Active GedaComboBox Text
+ * \par Function Description
+ *  Returns the currently active string in \a combo_box or %NULL if none
+ *  is selected. Note that you can only use this function with combo
+ *  boxes constructed with geda_combo_box_new_text() and with
+ *  #GedaEntry
  *
- *  \par Function Description
- * Returns the currently active string in \a combo_box or %NULL if none
- * is selected. Note that you can only use this function with combo
- * boxes constructed with geda_combo_box_new_text() and with
- * #GedaEntry
- *
- *  \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
+ * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
  *
  * \returns: a newly allocated string containing the currently active text.
  *           Must be freed with g_free().
@@ -6665,18 +6665,17 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
   }
 }
 
-/*! \brief Get GedaComboBox Popup Accessible object
+/*!
+ * \brief Get GedaComboBox Popup Accessible object
+ * \par Function Description
+ *  Gets the accessible object corresponding to the combo box's popup.
  *
- *  \par Function Description
- * Gets the accessible object corresponding to the combo box's popup.
+ *  This function is mostly intended for use by accessibility technologies;
+ *  applications should have little use for it.
  *
- * This function is mostly intended for use by accessibility technologies;
- * applications should have little use for it.
+ * \param [in] combo_box a #GedaComboBox
  *
- *  \param [in] combo_box a #GedaComboBox
- *
- * \returns: (transfer none): the accessible object corresponding
- *     to the combo box's popup.
+ * \returns accessible object corresponding to the combo box's popup.
  */
 AtkObject*
 geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
@@ -6694,12 +6693,12 @@ geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
   return atk_obj;
 }
 
-/*! \brief Get GedaComboBox Row Seperator function
- *
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox Row Seperator function
+ * \par Function Description
  *  Returns the current row separator function.
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  *
  * \return value: the current row separator function.
  *
@@ -6712,17 +6711,17 @@ geda_combo_box_get_row_separator_func (GedaComboBox *combo_box)
   return combo_box->priv->row_separator_func;
 }
 
-/*! \brief Set GedaComboBox Row Seperator function
- *
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Row Seperator function
+ * \par Function Description
  *  Sets the row separator function, which is used to determine whether
  *  a row should be drawn as a separator. If the row separator function
  *  is %NULL, no separators are drawn. This is the default value.
  *
- *  \param [in] combo_box a #GedaComboBox
- *  \param [in] func      a <b>GtkTreeViewRowSeparatorFunc</b>
- *  \param [in] data       user data to pass to \a func, or %NULL
- *  \param [in] destroy    destroy notifier for \a data, or %NULL
+ * \param [in] combo_box a #GedaComboBox
+ * \param [in] func      a <b>GtkTreeViewRowSeparatorFunc</b>
+ * \param [in] data       user data to pass to \a func, or %NULL
+ * \param [in] destroy    destroy notifier for \a data, or %NULL
  */
 void
 geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
@@ -6750,14 +6749,14 @@ geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
   gtk_widget_queue_draw (GTK_WIDGET (combo_box));
 }
 
-/*! \brief Set GedaComboBox Button Sensitivity
- *
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Button Sensitivity
+ * \par Function Description
  *  Sets whether the dropdown button of the combo box should be
  *  always sensitive (%GTK_SENSITIVITY_ON), never sensitive (%GTK_SENSITIVITY_OFF)
  *  or only if there is at least one item to display (%GTK_SENSITIVITY_AUTO).
  *
- *  \param [in] combo_box  a #GedaComboBox
+ * \param [in] combo_box  a #GedaComboBox
  * \param [in] sensitivity specify the sensitivity of the dropdown button
  *
  */
@@ -6776,13 +6775,13 @@ geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
   }
 }
 
-/*! \brief Get GedaComboBox Button Sensitivity
- *
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox Button Sensitivity
+ * \par Function Description
  *  Returns whether the combo box sets the dropdown button
  *  sensitive or not when there are no items in the model.
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  *
  * \return Value: %GTK_SENSITIVITY_ON if the dropdown button
  *    is sensitive when the model is empty, %GTK_SENSITIVITY_OFF
@@ -6799,12 +6798,12 @@ geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
   return combo_box->priv->button_sensitivity;
 }
 
-/*! \brief Get GedaComboBox has Entry
- *
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox has Entry
+ * \par Function Description
  *  Returns whether the combo box has an entry.
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  *
  * \return Value: whether there is an entry in \a combo_box.
  */
@@ -6865,14 +6864,14 @@ geda_combo_get_entry_widget (GedaComboBox *combo_box) {
   return NULL;
 }
 
-/*! \brief Get GedaComboBox Entry Text Column
- *
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox Entry Text Column
+ * \par Function Description
  *  Returns the column which \a combo_box is using to get the strings
  *  from to display in the internal entry.
  *
  *
- *  \param [in] combo_box A #GedaComboBox.
+ * \param [in] combo_box A #GedaComboBox.
  *
  * \return value: A column in the data source model of \a combo_box.
  */
@@ -6884,9 +6883,9 @@ geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
   return combo_box->priv->text_column;
 }
 
-/*! \brief Set GedaComboBox Entry Text Column
- *
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Entry Text Column
+ * \par Function Description
  *  Sets the model column which \a combo_box should use to get strings from
  *  to be \a text_column. The column \a text_column in the model of \a combo_box
  *  must be of type %G_TYPE_STRING.
@@ -6894,9 +6893,9 @@ geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
  *  This is only relevant if \a combo_box has been created with
  *  #GedaComboBox:has-entry as %TRUE.
  *
- *  \param [in] combo_box    A #GedaComboBox
- *  \param [in] text_column: A column in \a model to get the strings from for
- *                           the internal entry
+ * \param [in] combo_box    A #GedaComboBox
+ * \param [in] text_column  A column in \a model to get the strings from for
+ *                          the internal entry
  */
 void
 geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
@@ -6920,23 +6919,22 @@ geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
                                         priv->text_renderer,
                                         "text", text_column,
                                         NULL);
-
       }
     }
   }
 }
 
-/*! \brief Set GedaComboBox Focus on Click
- *
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Focus on Click
+ * \par Function Description
  *  Sets whether the combo box will grab focus when it is clicked with
  *  the mouse. Making mouse clicks not grab focus is useful in places
  *  like toolbars where you do not want the keyboard focus removed from
  *  the main area of the application.
  *
- *  \param [in] combo_box       Pointer to a #GedaComboBox
- *  \param [in] focus_on_click: whether the combo box grabs focus when clicked
- *                              with the mouse
+ * \param [in] combo_box       Pointer to a #GedaComboBox
+ * \param [in] focus_on_click  whether the combo box grabs focus when clicked
+ *                             with the mouse
  */
 void
 geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
@@ -6957,16 +6955,16 @@ geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
   }
 }
 
-/*! \brief Get GedaComboBox Focus on Click
- *
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox Focus on Click
+ * \par Function Description
  *  Returns whether the combo box grabs focus when it is clicked
  *  with the mouse. See geda_combo_box_set_focus_on_click().
  *
- * \param [in] combo: a #GedaComboBox
+ * \param [in] combo  Pointer to a #GedaComboBox
  *
- * \return value: %TRUE if the combo box grabs focus when it is
- *                clicked with the mouse.
+ * \retval %TRUE if the combo box grabs focus when it is clicked
+ *         with the mouse.
  */
 bool
 geda_combo_box_get_focus_on_click (GedaComboBox *combo)
@@ -6990,6 +6988,12 @@ geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
  *  @{
  */
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -6998,11 +7002,22 @@ geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
   return -1;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
   return geda_combo_box_set_wrap_width((GedaComboBox*)combo_box, width);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7011,12 +7026,24 @@ geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
   return -1;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_row_span_column (GtkWidget *cb, int row_span)
 {
   return geda_combo_box_set_row_span_column((GedaComboBox*)cb, row_span);
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7025,24 +7052,48 @@ geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
   return -1;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_column_span_column (GtkWidget *cb, int column_span)
 {
   return geda_combo_box_set_column_span_column((GedaComboBox*)cb, column_span);
 }
 
-bool geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+bool
+geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->add_tearoffs;
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
 }
 
-void geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
 {
   return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char*
 geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7051,11 +7102,23 @@ geda_combo_widget_get_title (GtkWidget *combo_box) {
   return NULL;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
   return geda_combo_box_set_title((GedaComboBox*)combo_box, title);
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7064,12 +7127,24 @@ geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
   return FALSE;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_focus_on_click (GtkWidget *cb, bool focus_on_click)
 {
   return geda_combo_box_set_focus_on_click((GedaComboBox*)cb, focus_on_click);
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7082,21 +7157,41 @@ geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
  *  @{
  */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_get_active (GtkWidget *combo_box) {
   return geda_combo_box_get_active((GedaComboBox*)combo_box);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
   return geda_combo_box_set_active((GedaComboBox*)combo_box, index);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
   return geda_combo_box_get_active_iter((GedaComboBox*)combo, iter);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
   return geda_combo_box_set_active_iter((GedaComboBox*)combo, iter);
@@ -7108,13 +7203,22 @@ geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
  *  @{
  */
 
-/*! widget version of #geda_combo_box_get_count */
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_box_get_count(GtkWidget *widget)
 {
   return geda_combo_box_get_count((GedaComboBox*)widget);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkTreeModel*
 geda_combo_widget_get_model (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7123,12 +7227,22 @@ geda_combo_widget_get_model (GtkWidget *combo_box) {
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model)
 {
   return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_widget_get_has_entry (GtkWidget *combo_box)
 {
@@ -7187,6 +7301,11 @@ geda_combo_widget_get_entry_widget (GtkWidget *combo_box) {
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
@@ -7195,6 +7314,12 @@ geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
   return 0;
 }
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  return geda_combo_box_set_entry_text_column((GedaComboBox*)cb, text_column);
@@ -7206,11 +7331,23 @@ geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  *  @{
  */
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_widget_popup (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     g_signal_emit (combo_box, combo_box_signals[POPUP], 0);
 }
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_combo_widget_popdown (GtkWidget *combo_box) {
   return geda_combo_box_popdown((GedaComboBox*)combo_box);
 }
