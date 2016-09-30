@@ -1391,7 +1391,7 @@ geda_entry_set_text (GedaEntry *entry, const char *new_text)
 }
 
 /*!
- * \brief GedaEntry Get Activates Default
+ * \brief Get GedaEntry Activates Default
  * \par Function Description
  *  Retrieves the value set by gtk_entry_set_activates_default().
  *
@@ -1408,7 +1408,7 @@ geda_entry_get_activates_default (GedaEntry *entry)
 }
 
 /*!
- * \brief GedaEntry Set Activates Default
+ * \brief Set GedaEntry Activates Default
  * \par Function Description
  *  If setting is %TRUE, pressing Enter in the entry will activate the
  *  default widget for the window containing the entry. This usually means
@@ -1435,7 +1435,7 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
   }
 }
 
-/*! \brief Get Entry attribute List
+/*! \brief Get GedaEntry Attribute List
  *  \par Function Description
  * Gets the attribute list that was set on the entry using
  * geda_entry_set_attributes(), if any.
@@ -1454,7 +1454,7 @@ geda_entry_get_attributes (GedaEntry *entry)
 }
 
 /*!
- * \brief Set Entry attribute List
+ * \brief Set GedaEntry Attribute List
  * \par Function Description
  * This function applies the PangoAttrList to entry text font
  * description.
@@ -1538,10 +1538,13 @@ geda_entry_set_max_length (GedaEntry *entry, int max)
    g_object_set (entry, "max-length", max, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Completion Object from a GedaEntry
+ * \par Function Description
+ *  Returns the commpletion object without check of the
+ *  object exist, i.e. a NULL pointer.
+ * \note The returned object is GedaCompletion structure and not
+ *       a g_object.
  */
 GedaCompletion*
 geda_entry_get_completion (GedaEntry *entry)
@@ -1551,10 +1554,13 @@ geda_entry_get_completion (GedaEntry *entry)
 }
 
 /*!
- * \todo Finish function documentation!!!
- * \brief
+ * \brief Set the Completion Object from a GedaEntry
  * \par Function Description
- * \sa gtk_entry_set_completion
+ *  Sets the commpletion object. If the GedaEntry was not previously
+ *  enabled, auto_complete is enabled if completion is non-NULL;
+ *
+ * \param [in] entry      Pointer to a #GedaEntry object.
+ * \param [in] completion Pointer to a GedaCompletion structure.
  */
 void
 geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
@@ -1576,7 +1582,14 @@ geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
   }
 }
 
-/*! \brief Get sensitivity of internal completion algorithms */
+/*!
+ * \brief Get sensitivity of internal completion algorithms
+ * \par Function Description
+ *  Gets the case sensitivity used by the GedaEntry object for
+ *  completion comparisons.
+ *
+ * \param [in] entry  Pointer to a #GedaEntry object.
+ */
 bool
 geda_entry_completion_get_case (GedaEntry *entry) {
 
@@ -1585,6 +1598,16 @@ geda_entry_completion_get_case (GedaEntry *entry) {
   return entry->priv->case_sensitive;
 }
 
+/*!
+ * \brief Set sensitivity of internal completion algorithms
+ * \par Function Description
+ *  Sets the case sensitivity for the GedaEntry object of
+ *  completion operations. This set which GedaStrCompareNFunc
+ *  algorithms are used by the GedaCompletion.
+ *
+ * \param [in] entry     Pointer to a #GedaEntry object.
+ * \param [in] sensitive Desired boolean case sensitivity setting.
+ */
 /*! \brief Set sensitivity of internal completion algorithms */
 void
 geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
@@ -1604,10 +1627,11 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get GedaEntry Input Case Property
+ * \par Function Description
+ * \returns the current text_case setting.
+ * \sa geda_entry_set_input_case
  */
 bool
 geda_entry_get_input_case (GedaEntry *entry)
@@ -1616,10 +1640,18 @@ geda_entry_get_input_case (GedaEntry *entry)
   return entry->text_case;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaEntry Input Case Property
+ * \par Function Description
+ *  Sets if user input of characters is changed to upper or lower case.
+ *  The mode can be one of:
+ *  <DL>
+ *    <DT>LOWER_CASE</DT>
+ *    <DT>UPPER_CASE</DT>
+ *    <DT>BOTH_CASES</DT>
+ *  </DL>
+ *  The default is BOTH_CASES, which means the case of text entered by
+ *  the used will not be changed.
  */
 void
 geda_entry_set_input_case  (GedaEntry *entry, int mode)
@@ -1780,43 +1812,59 @@ geda_entry_modify_fg (GedaEntry *entry,
  *  @{
  */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get GedaEntry Widget Activates Default
+ * \par Function Description
+ *  Convenience version of #geda_entry_get_activates_default that
+ *  accepts a pointer to a GtkWidget, entry
  */
 bool
 geda_entry_widget_get_activates_default (GtkWidget *entry)
 {
-  return geda_entry_get_activates_default (GEDA_ENTRY(entry));
+  return geda_entry_get_activates_default ((GedaEntry*)entry);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaEntry Widget Activates Default Property
+ * \par Function Description
+ *  Convenience version of #geda_entry_set_activates_default that
+ *  accepts a pointer to a GtkWidget, \a entry must be a GedaEntry.
  */
 void
 geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
 {
-  geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
+  geda_entry_set_activates_default ((GedaEntry*)entry, setting);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get GedaEntry Widget Attribute List
+ * \par Function Description
+ *  Convenience version of #geda_entry_get_attributes that accepts
+ *  a pointer to a GtkWidget, \a entry must be a GedaEntry.
  *
+ * \param [in] entry  Pointer to a #GedaEntry object.
+ *
+ * \returns PangoAttrList attribute list, or %NULL if none was set.
+ */
+PangoAttrList*
+geda_entry_widget_get_attributes (GtkWidget *entry)
+{
+  return geda_entry_get_attributes ((GedaEntry*)entry);
+}
+
+/*!
+ * \brief Set GedaEntry Widget Attribute List
+ * \par Function Description
+ *  Convenience version of #geda_entry_set_attributes that accepts
+ *  a pointer to a GtkWidget, \a entry must be a GedaEntry.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] attrs Pointer to a PangoAttrList structure.
  */
 void
 geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
 {
-  geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
-}
-
-PangoAttrList*
-geda_entry_widget_get_attributes (GtkWidget *entry)
-{
-  return geda_entry_get_attributes (GEDA_ENTRY(entry));
+  geda_entry_set_attributes ((GedaEntry*)entry, attrs);
 }
 
 /*! \todo Finish function documentation!!!

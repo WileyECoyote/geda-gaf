@@ -3,6 +3,8 @@
     * src/widgets/geda_combobox.c: Reformat comment block, add todo template
       comment blocks.
 
+    * src/widgets/geda_entry.c: Update function documentation.
+
 2016-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Minor reorganization; resequence functions
