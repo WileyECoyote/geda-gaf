@@ -261,7 +261,56 @@ int check_construction (void)
   return result;
 }
 
-int
+#define HEART "♥"
+const char text[] = "Everyone ♥ GEDA";
+
+static PangoAttrList *
+create_fancy_attr_list (GedaEntry *entry)
+{
+  PangoAttrList    *attrs;
+  PangoLayout      *layout;
+  PangoFontMetrics *metrics;
+  PangoRectangle    ink_rect, logical_rect;
+
+  int ascent;
+  const char *p;
+
+  layout = gtk_entry_get_layout ((GtkEntry*)entry);
+
+  /* Get font metrics and prepare fancy shape size */
+  metrics = pango_context_get_metrics (pango_layout_get_context (layout),
+                                       pango_layout_get_font_description (layout),
+                                       NULL);
+  ascent              = pango_font_metrics_get_ascent (metrics);
+  logical_rect.x      = 0;
+  logical_rect.width  = ascent;
+  logical_rect.y      = -ascent;
+  logical_rect.height = ascent;
+  ink_rect            = logical_rect;
+  pango_font_metrics_unref (metrics);
+
+  /* Set fancy shape attributes for all hearts */
+  attrs = pango_attr_list_new ();
+
+  for (p = text; (p = strstr (p, HEART)); p += strlen (HEART)) {
+
+      PangoAttribute *attr;
+
+      attr = pango_attr_shape_new_with_data (&ink_rect,
+                                             &logical_rect,
+                                             GUINT_TO_POINTER (g_utf8_get_char (p)),
+                                             NULL, NULL);
+
+      attr->start_index = p - text;
+      attr->end_index = attr->start_index + strlen (HEART);
+
+      pango_attr_list_insert (attrs, attr);
+    }
+
+  return attrs;
+}
+
+static int
 check_accessors ()
 {
   int result = 0;
@@ -286,6 +335,29 @@ check_accessors ()
 
   if (!value) {
     fprintf(stderr, "FAILED: %s line <%d> activates-default %d\n", TWIDGET, __LINE__, value);
+    result++;
+  }
+
+
+  /* Check attributes */
+
+  PangoAttrList *alist;
+
+  alist = geda_entry_widget_get_attributes(widget);
+
+  if (alist) { /* default is none */
+    fprintf(stderr, "FAILED: %s line <%d> attributes\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  alist = create_fancy_attr_list (GEDA_ENTRY (widget));
+
+  geda_entry_widget_set_attributes (widget, alist);
+
+  alist = geda_entry_widget_get_attributes(widget);
+
+  if (!alist) { /* default is none */
+    fprintf(stderr, "FAILED: %s line <%d> attributes\n", TWIDGET, __LINE__);
     result++;
   }
 

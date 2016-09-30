@@ -5,6 +5,11 @@
 
     * src/widgets/geda_entry.c: Update function documentation.
 
+    * tests/test_entry.c:: Add checks for functions:
+
+        * geda_entry_widget_get_attributes
+        * geda_entry_widget_set_attributes
+
 2016-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Minor reorganization; resequence functions
