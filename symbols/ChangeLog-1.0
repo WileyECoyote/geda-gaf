@@ -4,6 +4,9 @@
 
     * micro/ACE1202-2.sym: Update pin 3 (NC) type = pas, resequence attributes.
 
+    * atmel/ATMega32MLF-1.sym: Revise symbol; reposition and resequence leads
+      and attributes, update footprint, add description.
+
 2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega328-1.sym: Redo symbol; reposition and resequence leads
