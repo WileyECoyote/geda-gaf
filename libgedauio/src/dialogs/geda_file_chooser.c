@@ -38,9 +38,10 @@
 
 #include <geda_file_chooser.h>
 #include <geda_file_filter.h>
-#include <geda_debug.h>
-
+#include "../../include/geda_marshal.h"
 #include "../../include/gettext.h"
+
+#include <geda_debug.h>
 
 #define ChooseClass GedaFileChooserClass
 
@@ -468,7 +469,7 @@ geda_file_chooser_class_init (void *class, void *data)
                                                                        filter_changed),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__VOID,
+                                                      geda_marshal_VOID__VOID,
                                                       G_TYPE_NONE, 0);
 
   /*!

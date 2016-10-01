@@ -37,6 +37,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_marshal.h"
 #include "../../include/geda_menu_enum.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
@@ -514,7 +515,7 @@ geda_tearoff_menu_item_class_init   (void *klass, void *klass_data)
                                        0     /*class_offset */,
                                        NULL, /* accumulator */
                                        NULL, /* accu_data */
-                                       g_cclosure_marshal_VOID__VOID,
+                                       geda_marshal_VOID__VOID,
                                        G_TYPE_NONE,
                                        0);   /* n_params */
 }

@@ -35,6 +35,8 @@
 #include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_marshal.h"
+
 #include <ctype.h>
 
 #include <gtk/gtk.h>
@@ -693,7 +695,7 @@ geda_entry_class_init(void *g_class, void *class_data)
                                     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                                     G_STRUCT_OFFSET (GedaEntryClass, activate),
                                     NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
+                                    geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
   widget_class->activate_signal = signals[PROCESS_ENTRY];

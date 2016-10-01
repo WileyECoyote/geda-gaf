@@ -1836,7 +1836,7 @@ geda_combo_box_class_init(void *class, void *class_data)
                     G_SIGNAL_RUN_LAST,
                     G_STRUCT_OFFSET (GedaComboBoxClass, changed),
                     NULL, NULL,
-                    g_cclosure_marshal_VOID__VOID,
+                    geda_marshal_VOID__VOID,
                     G_TYPE_NONE, 0);
 
   /*! signal "move-active": GedaComboBox::move-active
@@ -1864,7 +1864,7 @@ geda_combo_box_class_init(void *class, void *class_data)
                                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                   G_CALLBACK (geda_combo_box_real_popup),
                                   NULL, NULL,
-                                  g_cclosure_marshal_VOID__VOID,
+                                  geda_marshal_VOID__VOID,
                                   G_TYPE_NONE, 0);
   /*!
    * signal "popdown": GedaComboBox::popdown:

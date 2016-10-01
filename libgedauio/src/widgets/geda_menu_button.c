@@ -57,6 +57,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_menu_button.h"
@@ -1276,7 +1277,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, pressed),
                                     NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
+                                    geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
   /* Button::released:
@@ -1290,7 +1291,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, released),
                                     NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
+                                    geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
   /* Button::clicked:
@@ -1304,7 +1305,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, clicked),
                                     NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
+                                    geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
   /* Button::enter:
@@ -1318,7 +1319,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                  G_SIGNAL_RUN_FIRST,
                                  G_STRUCT_OFFSET (GedaMenuButtonClass, enter),
                                  NULL, NULL,
-                                 g_cclosure_marshal_VOID__VOID,
+                                 geda_marshal_VOID__VOID,
                                  G_TYPE_NONE, 0);
 
   /* Button::leave:
@@ -1332,7 +1333,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                  G_SIGNAL_RUN_FIRST,
                                  G_STRUCT_OFFSET (GedaMenuButtonClass, leave),
                                  NULL, NULL,
-                                 g_cclosure_marshal_VOID__VOID,
+                                 geda_marshal_VOID__VOID,
                                  G_TYPE_NONE, 0);
 
   /*!
@@ -1350,7 +1351,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                         G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                         G_STRUCT_OFFSET (GedaMenuButtonClass, activate),
                         NULL, NULL,
-                        g_cclosure_marshal_VOID__VOID,
+                        geda_marshal_VOID__VOID,
                         G_TYPE_NONE, 0);
 
   widget_class->activate_signal = signals[ACTIVATE];
@@ -1372,7 +1373,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                          G_SIGNAL_RUN_FIRST,
                          G_STRUCT_OFFSET (GedaMenuButtonClass, show_menu),
                          NULL, NULL,
-                         g_cclosure_marshal_VOID__VOID,
+                         geda_marshal_VOID__VOID,
                          G_TYPE_NONE, 0);
 }
 

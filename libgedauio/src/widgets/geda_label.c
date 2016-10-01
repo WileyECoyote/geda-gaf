@@ -67,6 +67,7 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_label.h"
+#include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
@@ -1221,7 +1222,7 @@ geda_label_class_init  (void *class, void *class_data)
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, copy_clipboard),
                    NULL, NULL,
-                   gtk_marshal_VOID__VOID,
+                   geda_marshal_VOID__VOID,
                    G_TYPE_NONE, 0);
 
   /*!
@@ -1264,7 +1265,7 @@ geda_label_class_init  (void *class, void *class_data)
                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                               G_CALLBACK (geda_label_activate_current_link),
                               NULL, NULL,
-                              gtk_marshal_VOID__VOID,
+                              geda_marshal_VOID__VOID,
                               G_TYPE_NONE, 0);
 
   /*!
