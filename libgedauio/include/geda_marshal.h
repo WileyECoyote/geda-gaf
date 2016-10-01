@@ -209,6 +209,8 @@ extern void geda_marshal_VOID__INT_POINTER (GClosure     *closure,
                                             void         *invocation_hint,
                                             void         *marshal_data);
 
+#define geda_marshal_VOID__OBJECT g_cclosure_marshal_VOID__OBJECT
+
 /* VOID:POINTER,POINTER (geda-marshal.list:24) */
 extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                 GValue       *return_value,
@@ -224,7 +226,6 @@ extern void geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                                const GValue *param_values,
                                                void         *invocation_hint,
                                                void         *marshal_data);
-
 
 /* VOID:BOXED,POINTER (geda-marshal.list:26) */
 extern void geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
