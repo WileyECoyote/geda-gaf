@@ -1026,23 +1026,26 @@ geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
 
   menu_shell->keyboard_mode = TRUE;
 
-  /* First check if key is bound */
-  handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
+  GedaMenuShell *parent_shell;
+  GtkWidget     *widget_shell;
+
+  parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
+
+  /* If no item is selected then let parent check */
+  if (!menu_shell->active_menu_item && parent_shell) {
+
+    widget_shell = GTK_WIDGET(parent_shell);
+
+    handled = gtk_widget_event (widget_shell, (GdkEvent*)event);
+  }
+  else {
+    handled = FALSE;
+  }
 
   if (!handled) {
 
-    GedaMenuShell *parent_shell;
-    GtkWidget     *widget_shell;
-
-    parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
-
-    /* If no item is selected then let parent check */
-    if (!menu_shell->active_menu_item && parent_shell) {
-
-      widget_shell = GTK_WIDGET(parent_shell);
-
-      handled = gtk_widget_event (widget_shell, (GdkEvent*)event);
-    }
+    /* Check if key is bound */
+    handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
 
     if (!handled) {
 
