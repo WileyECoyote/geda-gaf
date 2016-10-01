@@ -1655,11 +1655,11 @@ geda_picture_object_rotate(GedaObject *object, int x, int y, int angle)
   object->picture->lower_y -= y;
 
   /* rotate the upper left corner of the picture */
-  m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
+  geda_math_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
                     &newx1, &newy1);
 
   /* rotate the lower left corner of the picture */
-  m_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
+  geda_math_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
                     &newx2, &newy2);
 
   /* reorder the corners after rotation */

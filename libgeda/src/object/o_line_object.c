@@ -96,8 +96,8 @@ geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
   int anwser;
 
   if (GEDA_IS_LINE(object)) {
-    double first  = m_distance (object->line->x[0], object->line->y[0], x, y);
-    double second = m_distance (object->line->x[1], object->line->y[1], x, y);
+    double first  = geda_math_distance (object->line->x[0], object->line->y[0], x, y);
+    double second = geda_math_distance (object->line->x[1], object->line->y[1], x, y);
     anwser = first < second ? 0 : 1;
   }
   else {
@@ -1583,13 +1583,13 @@ geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angl
     geda_line_object_translate(object, -center_x, -center_y);
 
     /* rotate line end 1 */
-    m_rotate_point_90(line->x[0], line->y[0], angle, &newx, &newy);
+    geda_math_rotate_point_90(line->x[0], line->y[0], angle, &newx, &newy);
 
     line->x[0] = newx;
     line->y[0] = newy;
 
     /* rotate line end 2 */
-    m_rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
+    geda_math_rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
 
     line->x[1] = newx;
     line->y[1] = newy;

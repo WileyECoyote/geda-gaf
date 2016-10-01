@@ -124,25 +124,25 @@ check_properties (void)
 
     for (count = 0; count < 10; count++) {
 
-      int x1  = m_random_number ( 0,       119800);
-      int y2  = m_random_number ( 0,        79800);
-      int x2  = m_random_number (x1 + 100, 120000);
-      int y1  = m_random_number (y2 + 100,  80000);
+      int x1  = geda_math_random_number ( 0,       119800);
+      int y2  = geda_math_random_number ( 0,        79800);
+      int x2  = geda_math_random_number (x1 + 100, 120000);
+      int y1  = geda_math_random_number (y2 + 100,  80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int w = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int l = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int l = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       g_object_set(box, "upper-x", x1,
                         "upper-y", y1,
@@ -311,25 +311,25 @@ check_accessors (void)
 
     for (count = 0; count < 10; count++) {
 
-      int x1  = m_random_number ( 0,       119800);
-      int y2  = m_random_number ( 0,        79800);
-      int x2  = m_random_number (x1 + 100, 120000);
-      int y1  = m_random_number (y2 + 100,  80000);
+      int x1  = geda_math_random_number ( 0,       119800);
+      int y2  = geda_math_random_number ( 0,        79800);
+      int x2  = geda_math_random_number (x1 + 100, 120000);
+      int y1  = geda_math_random_number (y2 + 100,  80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int w = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       geda_box_set_lower_x(box, x1);
 

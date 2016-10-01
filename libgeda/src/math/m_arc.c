@@ -63,7 +63,7 @@ bool geda_math_arc_includes_point (GedaArc *arc, POINT *point)
   int  delta;  /* Will be difference between point to center and radius */
 
   /* Rounding here provides a fuzz distance effect */
-  delta = m_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
+  delta = geda_math_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
 
 #if DEBUG
 
@@ -72,11 +72,11 @@ bool geda_math_arc_includes_point (GedaArc *arc, POINT *point)
 
 #ifdef HAVE_LRINT
 
-  dist   = lrint(m_distance(arc->x, arc->y, point->x, point->y));
+  dist   = lrint(geda_math_distance(arc->x, arc->y, point->x, point->y));
 
 #else
 
-  dist   = (int) (m_distance(arc->x, arc->y, point->x, point->y)) + 0.5;
+  dist   = (int) (geda_math_distance(arc->x, arc->y, point->x, point->y)) + 0.5;
 
 #endif
 
@@ -92,8 +92,8 @@ bool geda_math_arc_includes_point (GedaArc *arc, POINT *point)
     /* Second, check angle of ray is within the arc's included angle */
 
     int    arc_angle = arc->start_angle + arc->arc_sweep;
-    double min_angle = m_degrees_to_radians(arc->start_angle);
-    double max_angle = m_degrees_to_radians(arc_angle);
+    double min_angle = geda_math_degrees_to_radians (arc->start_angle);
+    double max_angle = geda_math_degrees_to_radians (arc_angle);
 
     /* Get angle of ray */
     double radians = atan2((point->y - arc->y), (point->x - arc->x));

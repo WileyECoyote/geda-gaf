@@ -112,7 +112,7 @@ int check_methods (void)
 
   /* bool geda_list_add_unique (GedaList *list, void  *item) */
 
-  str = lower[m_random_number (0, nl - 1)];
+  str = lower[geda_math_random_number (0, nl - 1)];
 
   geda_list_add_unique(geda_list1, str);
 

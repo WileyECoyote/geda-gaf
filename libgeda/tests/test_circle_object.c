@@ -119,10 +119,10 @@ check_construction (void)
 
   for (count = 0; count < 10; count++) {
 
-    int c  = m_random_number (0, MAX_COLORS - 1);
-    int x1 = m_random_number (0, 115000);
-    int y1 = m_random_number (0, 75000);
-    int r  = m_random_number (0, 5000);
+    int c  = geda_math_random_number (0, MAX_COLORS - 1);
+    int x1 = geda_math_random_number (0, 115000);
+    int y1 = geda_math_random_number (0, 75000);
+    int r  = geda_math_random_number (0, 5000);
 
     /* === Function 14: geda_circle_object_new  === */
 
@@ -310,25 +310,25 @@ check_accessors (void)
 
       fail = 0;
 
-      int c = m_random_number (0, MAX_COLORS - 1);
-      int r = m_random_number (5, 20000);
-      int x = m_random_number (0, 120000);
-      int y = m_random_number (0, 80000);
+      int c = geda_math_random_number (0, MAX_COLORS - 1);
+      int r = geda_math_random_number (5, 20000);
+      int x = geda_math_random_number (0, 120000);
+      int y = geda_math_random_number (0, 80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int w = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       geda_set_object_color (object0, c);
 
@@ -585,10 +585,10 @@ check_serialization (void)
 
   for (count = 0; count < 10; count++) {
 
-    int c = m_random_number (0, MAX_COLORS - 1);
-    int r = m_random_number (5, 20000);
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
+    int c = geda_math_random_number (0, MAX_COLORS - 1);
+    int r = geda_math_random_number (5, 20000);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
 
     GedaObject *object0 = geda_circle_object_new (c, x, y, r);
 
@@ -701,10 +701,10 @@ check_query(void)
 
   for (count = 0; count < 10; count++) {
 
-    int c = m_random_number (0, MAX_COLORS - 1);
-    int r = m_random_number (5, 20000);
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
+    int c = geda_math_random_number (0, MAX_COLORS - 1);
+    int r = geda_math_random_number (5, 20000);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
 
     GedaObject *object0 = geda_circle_object_new (c, x, y, r);
 
@@ -806,10 +806,10 @@ check_transformer(void)
 
   for (count = 0; count < 10; count++) {
 
-    int c = m_random_number (0, MAX_COLORS - 1);
-    int r = m_random_number (5, 20000);
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
+    int c = geda_math_random_number (0, MAX_COLORS - 1);
+    int r = geda_math_random_number (5, 20000);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
 
     GedaObject *object0 = geda_circle_object_new (c, x, y, r);
 

@@ -1181,7 +1181,7 @@ geda_complex_object_rotate(GedaObject *object, int center_x, int center_y, int a
     x = object->complex->x + (-center_x);
     y = object->complex->y + (-center_y);
 
-    m_rotate_point_90(x, y, angle, &newx, &newy);
+    geda_math_rotate_point_90(x, y, angle, &newx, &newy);
 
     x = newx + (center_x);
     y = newy + (center_y);

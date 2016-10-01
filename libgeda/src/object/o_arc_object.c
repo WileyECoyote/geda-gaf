@@ -409,8 +409,8 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
       r  = arc->radius;
 
       int    arc_angle   = arc->start_angle + arc->arc_sweep;
-      double start_angle = m_degrees_to_radians(arc->start_angle);
-      double end_angle   = m_degrees_to_radians(arc_angle);
+      double start_angle = geda_math_degrees_to_radians (arc->start_angle);
+      double end_angle   = geda_math_degrees_to_radians (arc_angle);
 
       /* Get angle of ray from point to center */
       double radians = atan2((y - cy), (x - cx));
@@ -1541,10 +1541,10 @@ geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int angle
     x = object->arc->x;
     y = object->arc->y;
     if(angle % 90 == 0) {
-      m_rotate_point_90(x, y, angle % 360, &newx, &newy);
+      geda_math_rotate_point_90(x, y, angle % 360, &newx, &newy);
     }
     else {
-      m_rotate_point(x, y, angle % 360, &newx, &newy);
+      geda_math_rotate_point(x, y, angle % 360, &newx, &newy);
     }
     object->arc->x = newx;
     object->arc->y = newy;

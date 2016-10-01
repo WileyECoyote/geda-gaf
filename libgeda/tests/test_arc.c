@@ -68,14 +68,14 @@ int test_geda_arc_within_sweep(GedaArc *arc)
 
   /* Below */
   /* x = 1200 */
-  y = m_random_number (0, 999);
+  y = geda_math_random_number (0, 999);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA0AS90B geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
   }
 
   /* Left */
-  x = m_random_number (0, 999);
+  x = geda_math_random_number (0, 999);
   y = 1000;
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA0AS90L geda_arc_within_sweep (%d,%d)\n", x, y);
@@ -83,7 +83,7 @@ int test_geda_arc_within_sweep(GedaArc *arc)
   }
 
   /* South West */
-  y = m_random_number (0, 999);
+  y = geda_math_random_number (0, 999);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA0AS90SW geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
@@ -109,7 +109,7 @@ int test_geda_arc_within_sweep(GedaArc *arc)
   }
 
  /* Right */
-  x = m_random_number (1001, 5000);
+  x = geda_math_random_number (1001, 5000);
   y = 1000;
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA90AS90R geda_arc_within_sweep (%d,%d)\n", x, y);
@@ -118,14 +118,14 @@ int test_geda_arc_within_sweep(GedaArc *arc)
 
   /* Below */
   x = 1000;
-  y = m_random_number (0, 999);
+  y = geda_math_random_number (0, 999);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA90AS90B geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
   }
 
   /* South East */
-  x = m_random_number (0, 999);
+  x = geda_math_random_number (0, 999);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA90AS90SE geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
@@ -143,7 +143,7 @@ int test_geda_arc_within_sweep(GedaArc *arc)
   }
 
   /* Right */
-  x = m_random_number (1001, 5000);
+  x = geda_math_random_number (1001, 5000);
   y = 1000;
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA180AS90R geda_arc_within_sweep (%d,%d)\n", x, y);
@@ -152,14 +152,14 @@ int test_geda_arc_within_sweep(GedaArc *arc)
 
   /* Above */
   x = 1000;
-  y = m_random_number (1001, 5000);
+  y = geda_math_random_number (1001, 5000);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA180AS90A geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
   }
 
   /* North West */
-  x =  m_random_number (1001, 5000);
+  x =  geda_math_random_number (1001, 5000);
   if (geda_arc_within_sweep(arc, x, y)) {
     fprintf(stderr, "FAILED: SA180AS90NW geda_arc_within_sweep (%d,%d)\n", x, y);
     result++;
@@ -168,9 +168,9 @@ int test_geda_arc_within_sweep(GedaArc *arc)
   geda_arc_set_start_angle (arc, 0);
   geda_arc_set_arc_sweep (arc, 180);
 
-  int e = m_random_number (1000, 10000);
+  int e = geda_math_random_number (1000, 10000);
   int w = -1 * e;
-  int n = m_random_number (1000, 10000);
+  int n = geda_math_random_number (1000, 10000);
   int s = -1 * n;
 
   /* North East ++ */
@@ -232,9 +232,9 @@ int test_geda_arc_within_sweep(GedaArc *arc)
 
   geda_arc_set_start_angle (arc, 180);
 
-  e = m_random_number (1000, 10000);
+  e = geda_math_random_number (1000, 10000);
   w = -1 * e;
-  n = m_random_number (1000, 10000);
+  n = geda_math_random_number (1000, 10000);
   s = -1 * n;
 
   /* South West -- */
@@ -384,14 +384,14 @@ int check_arc (void)
 
     for (count = 0; count < 100; count++) {
 
-      int a = m_random_number (0, 359);
-      int r = m_random_number (5, 20000);
-      int s = m_random_number (1, 359);
-      int x = m_random_number (0, 120000);
-      int y = m_random_number (0, 80000);
+      int a = geda_math_random_number (0, 359);
+      int r = geda_math_random_number (5, 20000);
+      int s = geda_math_random_number (1, 359);
+      int x = geda_math_random_number (0, 120000);
+      int y = geda_math_random_number (0, 80000);
 
-      int dx = m_random_number (0, 1000);
-      int dy = m_random_number (0, 1000);
+      int dx = geda_math_random_number (0, 1000);
+      int dy = geda_math_random_number (0, 1000);
 
       int cx, cy, value;
 
@@ -533,19 +533,19 @@ check_accessors ()
     for (count = 0; count < 10; count++) {
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int w = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       /* Check line type properties */
 
@@ -754,26 +754,26 @@ check_properties (void)
 
     for (count = 0; count < 10; count++) {
 
-      int a = m_random_number (0, 359);
-      int r = m_random_number (5, 20000);
-      int s = m_random_number (1, 359);
-      int x = m_random_number (0, 120000);
-      int y = m_random_number (0, 80000);
+      int a = geda_math_random_number (0, 359);
+      int r = geda_math_random_number (5, 20000);
+      int s = geda_math_random_number (1, 359);
+      int x = geda_math_random_number (0, 120000);
+      int y = geda_math_random_number (0, 80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int w = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int l = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int l = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       g_object_set(arc, "center-x",    x,
                         "center-y",    y,

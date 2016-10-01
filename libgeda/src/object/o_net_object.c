@@ -653,12 +653,12 @@ geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
     /* translate object to origin */
     geda_net_object_translate(object, -cx, -cy);
 
-    m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
+    geda_math_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
     object->line->x[0] = newx;
     object->line->y[0] = newy;
 
-    m_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
+    geda_math_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
 
     object->line->x[1] = newx;
     object->line->y[1] = newy;

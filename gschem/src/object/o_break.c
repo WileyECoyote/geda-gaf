@@ -96,12 +96,12 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
   point1.x = w_current->first_wx;
   point1.y = w_current->first_wy;
 
-  if (geda_math_arc_includes_point(object->arc, &point1)) {
+  if (geda_arc_includes_point(object->arc, &point1)) {
 
     point2.x = w_current->second_wx;
     point2.y = w_current->second_wy;
 
-    if (geda_math_arc_includes_point(object->arc, &point2)) {
+    if (geda_arc_includes_point(object->arc, &point2)) {
 
       GedaObject *new_obj;
       double  radians;
@@ -129,7 +129,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
       while (radians < 0) {
         radians += 2 * M_PI;
       }
-      angle_1 = m_radians_to_degrees(radians);
+      angle_1 = geda_math_radians_to_degrees(radians);
 
       /* Get angle to second point */
       radians = atan2((point2.y - cy), (point2.x - cx));
@@ -139,7 +139,7 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
         radians += 2 * M_PI;
       }
 
-      angle_2 = m_radians_to_degrees(radians);
+      angle_2 = geda_math_radians_to_degrees(radians);
 
       start_angle1 = object->arc->start_angle;
       end_angle    = object->arc->arc_sweep + start_angle1;
@@ -450,12 +450,12 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
   point1.x = w_current->first_wx;
   point1.y = w_current->first_wy;
 
-  if (geda_math_circle_includes_point(object->circle, &point1)) {
+  if (geda_circle_includes_point(object->circle, &point1)) {
 
     point2.x = w_current->second_wx;
     point2.y = w_current->second_wy;
 
-    if (geda_math_circle_includes_point(object->circle, &point2)) {
+    if (geda_circle_includes_point(object->circle, &point2)) {
 
       GedaObject *new_obj;
       double      radians;
@@ -480,7 +480,7 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
       while (radians < 0) {
         radians += 2 * M_PI;
       }
-      start_angle = m_radians_to_degrees(radians);
+      start_angle = geda_math_radians_to_degrees(radians);
 
       /* Get angle to second point */
       radians = atan2((point2.y - cy), (point2.x - cx));
@@ -490,7 +490,7 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
         radians += 2 * M_PI;
       }
 
-      end_angle = m_radians_to_degrees(radians);
+      end_angle = geda_math_radians_to_degrees(radians);
 
       if (end_angle > start_angle){
         first_angle = end_angle;
@@ -621,7 +621,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       }
 
       /* Else check if point is some other point on the line segment */
-      if (geda_math_line_includes_point(line, &tmp)) {
+      if (geda_line_includes_point(line, &tmp)) {
         point->x = tmp.x;
         point->y = tmp.y;
        *segment = i;
@@ -876,7 +876,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
     point1.y = w_current->first_wy;
   }
 
-  if (geda_math_line_includes_point(object->line, &point1) &&
+  if (geda_line_includes_point(object->line, &point1) &&
      !geda_line_object_is_endpoint(object, &point1))
   {
 
@@ -889,7 +889,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
       point2.y = w_current->second_wy;
     }
 
-    if (geda_math_line_includes_point(object->line, &point2) &&
+    if (geda_line_includes_point(object->line, &point2) &&
        !geda_line_object_is_endpoint(object, &point2))
     {
       int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);
@@ -948,7 +948,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
     point1.y = w_current->first_wy;
   }
 
-  if (geda_math_line_includes_point(object->line, &point1) &&
+  if (geda_line_includes_point(object->line, &point1) &&
      !geda_line_object_is_endpoint(object, &point1))
   {
     if (do_snap) {
@@ -960,7 +960,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
       point2.y = w_current->second_wy;
     }
 
-    if (geda_math_line_includes_point(object->line, &point2) &&
+    if (geda_line_includes_point(object->line, &point2) &&
        !geda_line_object_is_endpoint(object, &point2))
     {
       int end1 = geda_line_object_get_closest_endpoint(object, point1.x, point1.y);
@@ -1015,7 +1015,7 @@ void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 
   if (geda_object_get_nearest_point(object, point.x, point.y, &x, &y)) {
 
-    dist    = m_distance(x, y, point.x, point.y);
+    dist    = geda_math_distance(x, y, point.x, point.y);
     w_slack = WORLDabs (w_current, w_current->select_slack_pixels) / 2.5;
 
     if (dist && (w_slack > dist)) {
@@ -1029,7 +1029,7 @@ void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 
   if (geda_object_get_nearest_point(object, point.x, point.y, &x, &y)) {
 
-    dist    = m_distance(x, y, point.x, point.y);
+    dist    = geda_math_distance(x, y, point.x, point.y);
     w_slack = WORLDabs (w_current, w_current->select_slack_pixels) / 3;
 
     if (dist && (w_slack > dist)) {

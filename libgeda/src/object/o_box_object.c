@@ -1698,11 +1698,11 @@ geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int angle
     object->box->lower_y -= center_y;
 
     /* rotate the upper left corner of the box */
-    m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
+    geda_math_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
                       &newx1, &newy1);
 
     /* rotate the lower left corner of the box */
-    m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
+    geda_math_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
                       &newx2, &newy2);
 
     /* reorder the corners after rotation */

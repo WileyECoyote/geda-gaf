@@ -277,8 +277,8 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         }
         else {
 
-          double first  = m_distance (segment.x[0], segment.y[0], x, y);
-          double second = m_distance (segment.x[1], segment.y[1], x, y);
+          double first  = geda_math_distance (segment.x[0], segment.y[0], x, y);
+          double second = geda_math_distance (segment.x[1], segment.y[1], x, y);
           int    index  = first < second ? 0 : 1;
 
           target.x = segment.x[index];
@@ -818,8 +818,8 @@ geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int ang
           /* Two control point grips */
           section->x1 -= center_x; section->y1 -= center_y;
           section->x2 -= center_x; section->y2 -= center_y;
-          m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
-          m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
+          geda_math_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
+          geda_math_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
           section->x1 += center_x; section->y1 += center_y;
           section->x2 += center_x; section->y2 += center_y;
           /* Fall through */
@@ -828,7 +828,7 @@ geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int ang
           case PATH_LINETO:
             /* Destination point grip */
             section->x3 -= center_x; section->y3 -= center_y;
-            m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
+            geda_math_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
             section->x3 += center_x; section->y3 += center_y;
             break;
           case PATH_END:

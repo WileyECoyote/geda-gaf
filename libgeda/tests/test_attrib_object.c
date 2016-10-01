@@ -1593,7 +1593,7 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   for (count = 0; count < 10; count++) {
 
-    int i = m_random_number (0, 9000000);
+    int i = geda_math_random_number (0, 9000000);
 
     geda_attrib_set_integer_value(attrib, "B", i);
 

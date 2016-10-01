@@ -1427,7 +1427,7 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
     /* rotate the center of the circle around the origin */
     x = object->circle->center_x;
     y = object->circle->center_y;
-    m_rotate_point_90(x, y, angle, &newx, &newy);
+    geda_math_rotate_point_90(x, y, angle, &newx, &newy);
     object->circle->center_x = newx;
     object->circle->center_y = newy;
 

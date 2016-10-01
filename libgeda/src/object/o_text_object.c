@@ -899,7 +899,7 @@ geda_text_object_rotate(GedaObject *object, int center_x, int center_y, int angl
     x = object->text->x + (-center_x);
     y = object->text->y + (-center_y);
 
-    m_rotate_point_90(x, y, angle, &newx, &newy);
+    geda_math_rotate_point_90(x, y, angle, &newx, &newy);
 
     x = newx + (center_x);
     y = newy + (center_y);

@@ -112,11 +112,11 @@ check_construction (void)
 
   for (count = 0; count < 10; count++) {
 
-    int c  = m_random_number (0,  MAX_COLORS - 1);
-    int x0 = m_random_number (0,  115000);
-    int y0 = m_random_number (0,  75000);
-    int x1 = m_random_number (x0, 120000);
-    int y1 = m_random_number (y0, 80000);
+    int c  = geda_math_random_number (0,  MAX_COLORS - 1);
+    int x0 = geda_math_random_number (0,  115000);
+    int y0 = geda_math_random_number (0,  75000);
+    int x1 = geda_math_random_number (x0, 120000);
+    int y1 = geda_math_random_number (y0, 80000);
 
     /* === Function 21: geda_line_object_new  === */
 
@@ -265,18 +265,18 @@ check_accessors (void)
 
       fail = 0;
 
-      int c  = m_random_number (0,  MAX_COLORS - 1);
-      int x0 = m_random_number (0,  115000);
-      int y0 = m_random_number (0,  75000);
-      int x1 = m_random_number (x0, 120000);
-      int y1 = m_random_number (y0, 80000);
+      int c  = geda_math_random_number (0,  MAX_COLORS - 1);
+      int x0 = geda_math_random_number (0,  115000);
+      int y0 = geda_math_random_number (0,  75000);
+      int x1 = geda_math_random_number (x0, 120000);
+      int y1 = geda_math_random_number (y0, 80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int w = geda_math_random_number (0, 500);
 
       geda_set_object_color (object0, c);
 
@@ -457,11 +457,11 @@ check_serialization (void)
 
   for (count = 0; count < 10; count++) {
 
-    int c  = m_random_number ( 0, MAX_COLORS - 1);
-    int x1 = m_random_number ( 0,       119800);
-    int y2 = m_random_number ( 0,        79800);
-    int x2 = m_random_number (x1 + 100, 120000);
-    int y1 = m_random_number (y2 + 100,  80000);
+    int c  = geda_math_random_number ( 0, MAX_COLORS - 1);
+    int x1 = geda_math_random_number ( 0,       119800);
+    int y2 = geda_math_random_number ( 0,        79800);
+    int x2 = geda_math_random_number (x1 + 100, 120000);
+    int y1 = geda_math_random_number (y2 + 100,  80000);
 
     GedaObject *object0 = geda_line_object_new(c, x1, y1, x2, y2);
 

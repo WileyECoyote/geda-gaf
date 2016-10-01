@@ -682,7 +682,7 @@ SCM g_rc_world_size(SCM width, SCM height, SCM border)
   i_height = (int) (scm_to_double (height) * MILS_PER_INCH);
   i_border = (int) (scm_to_double (border) * MILS_PER_INCH);
 
-  m_papersize_to_world(i_width, i_height, i_border, &i_right, &i_bottom);
+  geda_math_papersize_to_world(i_width, i_height, i_border, &i_right, &i_bottom);
 
 #if DEBUG
   printf("%d %d\n", i_width, i_height);

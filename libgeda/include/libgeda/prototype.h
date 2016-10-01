@@ -89,14 +89,14 @@ extern "C" {
          void    libgeda_init                    (int argc, char **argv);
          void    libgeda_release                 (void);
 
-/* m_basic.c */
-       double    m_degrees_to_radians            (double degrees);
-       double    m_distance                      (int x1, int y1, int x2, int y2);
-         void    m_papersize_to_world            (int width, int height, int border, int *right, int *bottom);
-          int    m_random_number                 (int min_num, int max_num);
-       double    m_radians_to_degrees            (double radians);
-         void    m_rotate_point                  (int x, int y, int angle, int *newx, int *newy);
-         void    m_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
+/* m_math.c */
+       double    geda_math_degrees_to_radians            (double degrees);
+       double    geda_math_distance                      (int x1, int y1, int x2, int y2);
+         void    geda_math_papersize_to_world            (int width, int height, int border, int *right, int *bottom);
+          int    geda_math_random_number                 (int min_num, int max_num);
+       double    geda_math_radians_to_degrees            (double radians);
+         void    geda_math_rotate_point                  (int x, int y, int angle, int *newx, int *newy);
+         void    geda_math_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
 
 /* m_box.c */
        double    geda_math_box_shortest_distance         (GedaBox *box, int x, int y, int solid);

@@ -33,9 +33,9 @@
  *
  *  \returns radians conversion as a double
  *
- *  \sa m_radians_to_degrees
+ *  \sa geda_math_radians_to_degrees
  */
-double m_degrees_to_radians(double degrees)
+double geda_math_degrees_to_radians (double degrees)
 {
   return (double)degrees * M_PI / 180.0;
 }
@@ -53,7 +53,7 @@ double m_degrees_to_radians(double degrees)
  *
  *  \return the distance
  */
-double m_distance(int x1, int y1, int x2, int y2)
+double geda_math_distance(int x1, int y1, int x2, int y2)
 {
 
 #if HAVE_HYPOT
@@ -81,7 +81,7 @@ double m_distance(int x1, int y1, int x2, int y2)
  *
  *  \todo Support more modes than just landscape only mode.
  */
-void m_papersize_to_world(int width, int height, int border, int *right, int *bottom)
+void geda_math_papersize_to_world(int width, int height, int border, int *right, int *bottom)
 {
   float aspect;
 
@@ -120,9 +120,9 @@ void m_papersize_to_world(int width, int height, int border, int *right, int *bo
  *
  *  \returns degrees conversion as a double
  *
- *  \sa m_degrees_to_radians
+ *  \sa geda_math_degrees_to_radians
  */
-double m_radians_to_degrees(double radians)
+double geda_math_radians_to_degrees(double radians)
 {
   return (double)radians * 180.0 / M_PI;
 }
@@ -138,7 +138,7 @@ double m_radians_to_degrees(double radians)
  *
  * \returns random integer
  */
-int m_random_number (int min_num, int max_num)
+int geda_math_random_number (int min_num, int max_num)
 {
   int result  = 0;
   int low_num = 0;
@@ -177,7 +177,7 @@ int m_random_number (int min_num, int max_num)
  *  \param [out] newx   Output point x coordinate.
  *  \param [out] newy   Output point y coordinate.
  */
-void m_rotate_point(int x, int y, int angle, int *newx, int *newy)
+void geda_math_rotate_point(int x, int y, int angle, int *newx, int *newy)
 {
   double cos_theta, sin_theta;
   double rad;
@@ -203,7 +203,7 @@ void m_rotate_point(int x, int y, int angle, int *newx, int *newy)
  *  \param [out] newx   Output point x coordinate.
  *  \param [out] newy   Output point y coordinate.
  */
-void m_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
+void geda_math_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
 {
   double costheta=1;
   double sintheta=0;

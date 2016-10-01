@@ -119,12 +119,12 @@ check_construction (void)
 
   for (count = 0; count < 10; count++) {
 
-    int a = m_random_number (0, 359);
-    int c = m_random_number (0, MAX_COLORS - 1);
-    int r = m_random_number (5, 20000);
-    int s = m_random_number (1, 359);
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
+    int a = geda_math_random_number (0, 359);
+    int c = geda_math_random_number (0, MAX_COLORS - 1);
+    int r = geda_math_random_number (5, 20000);
+    int s = geda_math_random_number (1, 359);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
 
     GedaObject *object0 = geda_arc_object_new (c, x, y, r, a, s);
 
@@ -187,19 +187,19 @@ check_construction (void)
       if (!fail) {
 
         /* Line type options */
-        int e = m_random_number (END_NONE, END_ROUND);
-        int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-        int l = m_random_number (0, 500);
-        int p = m_random_number (0, 500);
-        int w = m_random_number (0, 500);
+        int e = geda_math_random_number (END_NONE, END_ROUND);
+        int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+        int l = geda_math_random_number (0, 500);
+        int p = geda_math_random_number (0, 500);
+        int w = geda_math_random_number (0, 500);
 
         /* Filling options */
-        int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-        int fw  = m_random_number (0, 100);
-        int fa1 = m_random_number (0, 180);
-        int fp1 = m_random_number (0, 500);
-        int fa2 = m_random_number (0, 180);
-        int fp2 = m_random_number (0, 500);
+        int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+        int fw  = geda_math_random_number (0, 100);
+        int fa1 = geda_math_random_number (0, 180);
+        int fp1 = geda_math_random_number (0, 500);
+        int fa2 = geda_math_random_number (0, 180);
+        int fp2 = geda_math_random_number (0, 500);
 
         /* Set line type properties */
 
@@ -479,27 +479,27 @@ check_accessors (void)
 
       fail = 0;
 
-      int a = m_random_number (0, 359);
-      int c = m_random_number (0, MAX_COLORS - 1);
-      int r = m_random_number (5, 20000);
-      int s = m_random_number (1, 359);
-      int x = m_random_number (0, 120000);
-      int y = m_random_number (0, 80000);
+      int a = geda_math_random_number (0, 359);
+      int c = geda_math_random_number (0, MAX_COLORS - 1);
+      int r = geda_math_random_number (5, 20000);
+      int s = geda_math_random_number (1, 359);
+      int x = geda_math_random_number (0, 120000);
+      int y = geda_math_random_number (0, 80000);
 
       /* Line type options */
-      int e = m_random_number (END_NONE, END_ROUND);
-      int t = m_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = m_random_number (0, 500);
-      int p = m_random_number (0, 500);
-      int w = m_random_number (0, 500);
+      int e = geda_math_random_number (END_NONE, END_ROUND);
+      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int l = geda_math_random_number (0, 500);
+      int p = geda_math_random_number (0, 500);
+      int w = geda_math_random_number (0, 500);
 
       /* Filling options */
-      int ft  = m_random_number (FILLING_HOLLOW, FILLING_HATCH);
-      int fw  = m_random_number (0, 100);
-      int fa1 = m_random_number (0, 180);
-      int fp1 = m_random_number (0, 500);
-      int fa2 = m_random_number (0, 180);
-      int fp2 = m_random_number (0, 500);
+      int ft  = geda_math_random_number (FILLING_HOLLOW, FILLING_HATCH);
+      int fw  = geda_math_random_number (0, 100);
+      int fa1 = geda_math_random_number (0, 180);
+      int fp1 = geda_math_random_number (0, 500);
+      int fa2 = geda_math_random_number (0, 180);
+      int fp2 = geda_math_random_number (0, 500);
 
       geda_arc_object_set_start_angle (object0, a);
       geda_set_object_color (object0, c);
@@ -755,12 +755,12 @@ check_serialization (void)
 
   for (count = 0; count < 10; count++) {
 
-    int a = m_random_number (0, 359);
-    int c = m_random_number (0, MAX_COLORS - 1);
-    int r = m_random_number (5, 20000);
-    int s = m_random_number (1, 359);
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
+    int a = geda_math_random_number (0, 359);
+    int c = geda_math_random_number (0, MAX_COLORS - 1);
+    int r = geda_math_random_number (5, 20000);
+    int s = geda_math_random_number (1, 359);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
 
     GedaObject *object0 = geda_arc_object_new (c, x, y, r, a, s);
 
@@ -1252,8 +1252,8 @@ query_nearest_shortest_distance (GedaObject *object)
   int nx;
   int ny;
 
-  int px = m_random_number (0, 120000);
-  int py = m_random_number (0, 80000);
+  int px = geda_math_random_number (0, 120000);
+  int py = geda_math_random_number (0, 80000);
 
   double shortest;
 
@@ -1328,9 +1328,9 @@ check_query (void)
   for (count = 0; count < 10; count++) {
 
 #if USE_RANDOM_NUMBERS
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
-    int r = m_random_number (5, 5000);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
+    int r = geda_math_random_number (5, 5000);
 #else
     int x = 1050; //1000;
     int y = 6000; //1000;
@@ -1441,9 +1441,9 @@ check_transformer (void)
   for (count = 0; count < 10; count++) {
 
 #if USE_RANDOM_NUMBERS
-    int x = m_random_number (0, 120000);
-    int y = m_random_number (0, 80000);
-    int r = m_random_number (5, 5000);
+    int x = geda_math_random_number (0, 120000);
+    int y = geda_math_random_number (0, 80000);
+    int r = geda_math_random_number (5, 5000);
 #else
     int x = 1050; //1000;
     int y = 6000; //1000;
