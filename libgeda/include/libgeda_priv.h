@@ -30,6 +30,7 @@
 #include "libgeda/prototype.h"
 
 #include "libgeda/geda_attrib.h"
+#include "libgeda/geda_math.h"
 #include "libgeda/geda_object_list.h"
 #include "libgeda/geda_utility.h"
 

@@ -1,6 +1,8 @@
 2016-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/math/m_math.c: : Rename functions with geda_math prefix.
+    * include/libgeda/geda_math.h: Add macros for m_math functions.
+
+    * src/math/m_math.c: Rename functions with geda_math prefix.
 
 2016-09-29 Wiley E. Hill <wileyhill@gmail.com>
 

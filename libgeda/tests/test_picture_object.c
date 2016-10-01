@@ -148,8 +148,8 @@ check_construction (void)
 
   for (count = 0; count < 10; count++) {
 
-    int left = geda_math_random_number ( 0,     115000);
-    int top  = geda_math_random_number ( 0,      75000);
+    int left = geda_random_number ( 0,     115000);
+    int top  = geda_random_number ( 0,      75000);
 
     int right  = left + IMAGE_WIDTH;
     int bottom = top  - IMAGE_HEIGHT;

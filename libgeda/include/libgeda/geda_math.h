@@ -33,6 +33,15 @@
 #ifndef __GEDA_MATH_MAC__
 #define __GEDA_MATH_MAC__
 
+/* m_math.c */
+#define geda_degrees_to_radians         geda_math_degrees_to_radians
+#define geda_distance                   geda_math_distance
+#define geda_papersize_to_world         geda_math_papersize_to_world
+#define geda_random_number              geda_math_random_number
+#define geda_radians_to_degrees         geda_math_radians_to_degrees
+#define geda_rotate_point               geda_math_rotate_point
+#define geda_rotate_point_90            geda_math_rotate_point_90
+
 /* m_arc.c */
 #define geda_arc_length                 geda_math_arc_length
 #define geda_arc_includes_point         geda_math_arc_includes_point

@@ -135,7 +135,7 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
     int     num;
 
     total  = g_list_length(objects);
-    num    = geda_math_random_number(0, total);
+    num    = geda_random_number(0, total);
     object = g_list_nth_data (objects, num);
 
     if (GEDA_IS_OBJECT(object)) {

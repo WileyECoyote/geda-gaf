@@ -125,17 +125,17 @@ check_properties (void)
 
     for (count = 0; count < 10; count++) {
 
-      int x1 = geda_math_random_number (0,  115000);
-      int y0 = geda_math_random_number (0,  75000);
-      int x2 = geda_math_random_number (x1, 120000);
-      int y1 = geda_math_random_number (y0, 80000);
+      int x1 = geda_random_number (0,  115000);
+      int y0 = geda_random_number (0,  75000);
+      int x2 = geda_random_number (x1, 120000);
+      int y1 = geda_random_number (y0, 80000);
 
       /* Line type options */
-      int e = geda_math_random_number (END_NONE, END_ROUND);
-      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int w = geda_math_random_number (0, 500);
-      int p = geda_math_random_number (0, 500);
-      int l = geda_math_random_number (0, 500);
+      int e = geda_random_number (END_NONE, END_ROUND);
+      int t = geda_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = geda_random_number (0, 500);
+      int p = geda_random_number (0, 500);
+      int l = geda_random_number (0, 500);
 
       g_object_set(line, "first-x",    x1,
                          "first-y",    y0,
@@ -311,17 +311,17 @@ check_accessors ()
 
     for (count = 0; count < 10; count++) {
 
-      int x1 = geda_math_random_number (0,   115000);
-      int y1 = geda_math_random_number (0,   75000);
-      int x2 = geda_math_random_number (x1 + 100, 120000);
-      int y2 = geda_math_random_number (y1 + 100, 80000);
+      int x1 = geda_random_number (0,   115000);
+      int y1 = geda_random_number (0,   75000);
+      int x2 = geda_random_number (x1 + 100, 120000);
+      int y2 = geda_random_number (y1 + 100, 80000);
 
       /* Line type options */
-      int e = geda_math_random_number (END_NONE, END_ROUND);
-      int t = geda_math_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int w = geda_math_random_number (0, 500);
-      int p = geda_math_random_number (0, 500);
-      int l = geda_math_random_number (0, 500);
+      int e = geda_random_number (END_NONE, END_ROUND);
+      int t = geda_random_number (TYPE_SOLID, TYPE_PHANTOM);
+      int w = geda_random_number (0, 500);
+      int p = geda_random_number (0, 500);
+      int l = geda_random_number (0, 500);
 
       /* === Function: geda_line_set_x1  === */
       geda_line_set_x1(line, x1);

@@ -204,9 +204,9 @@ check_accessors (void)
 
   result  = check_append_object(complex);
 
-  int a = geda_math_random_number (0, 359);
-  int x = geda_math_random_number (0, 115000);
-  int y = geda_math_random_number (0, 75000);
+  int a = geda_random_number (0, 359);
+  int x = geda_random_number (0, 115000);
+  int y = geda_random_number (0, 75000);
 
   geda_complex_set_angle(complex, a);
 

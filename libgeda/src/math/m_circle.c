@@ -56,7 +56,7 @@ bool geda_math_circle_includes_point (GedaCircle *circle, POINT *point)
   cy = circle->center_y;
 
   /* Rounding here provides a fuzz distance effect */
-  delta = geda_math_distance(cx, cy, point->x, point->y) - circle->radius;
+  delta = geda_distance(cx, cy, point->x, point->y) - circle->radius;
 
   return delta ? FALSE : TRUE;
 }

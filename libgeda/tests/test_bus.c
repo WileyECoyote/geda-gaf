@@ -135,11 +135,11 @@ check_properties (void)
 
     for (count = 0; count < 10; count++) {
 
-      int x1 = geda_math_random_number ( 0,       119800);
-      int y2 = geda_math_random_number ( 0,        79800);
-      int x2 = geda_math_random_number (x1 + 100, 120000);
-      int y1 = geda_math_random_number (y2 + 100,  80000);
-      int d  = geda_math_random_number (0, 1);
+      int x1 = geda_random_number ( 0,       119800);
+      int y2 = geda_random_number ( 0,        79800);
+      int x2 = geda_random_number (x1 + 100, 120000);
+      int y1 = geda_random_number (y2 + 100,  80000);
+      int d  = geda_random_number (0, 1);
 
       g_object_set(bus, "bus-ripper-direction", d,
                         "first-x",  x1,
@@ -222,12 +222,12 @@ check_accessors ()
 
   for (count = 0; count < 3; count++) {
 
-    int c  = geda_math_random_number ( 0, MAX_COLORS - 1);
-    int x1 = geda_math_random_number ( 0,       119800);
-    int y2 = geda_math_random_number ( 0,        79800);
-    int x2 = geda_math_random_number (x1 + 100, 120000);
-    int y1 = geda_math_random_number (y2 + 100,  80000);
-    int d  = geda_math_random_number (0, 1);
+    int c  = geda_random_number ( 0, MAX_COLORS - 1);
+    int x1 = geda_random_number ( 0,       119800);
+    int y2 = geda_random_number ( 0,        79800);
+    int x2 = geda_random_number (x1 + 100, 120000);
+    int y1 = geda_random_number (y2 + 100,  80000);
+    int d  = geda_random_number (0, 1);
 
     GedaObject *object0 = geda_bus_object_new(c, x1, y1, x2, y2, d);
     GedaBus    *bus     = object0->bus;

@@ -222,16 +222,16 @@ bool geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
 
 /*! \brief Returns integer distance between two points
  *
- *  \sa geda_math_distance
+ *  \sa geda_distance
  */
 int geda_math_line_length (int x1, int y1, int x2, int y2)
 {
   int length;
 
 #ifdef HAVE_lRINT
-      length = lrint(geda_math_distance (x1, y1, x2, y2));
+      length = lrint(geda_distance (x1, y1, x2, y2));
 #else
-      length = (int)geda_math_distance (x1, y1, x2, y2) + 0.5;
+      length = (int)geda_distance (x1, y1, x2, y2) + 0.5;
 #endif
 
   return length;
