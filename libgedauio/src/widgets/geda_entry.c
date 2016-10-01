@@ -791,10 +791,6 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   priv->case_sensitive      = FALSE;
   priv->attrs               = NULL; */
 
-#if DEBUG_GEDA_ENTRY
-  fprintf(stderr, "%s exit: history=%d, completion=%d\n",
-          __func__, entry->have_history, have_auto_complete );
-#endif
 
 }
 
