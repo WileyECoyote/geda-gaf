@@ -1654,15 +1654,11 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   GedaMenuShell     *parent_menu_shell;
   GedaMenuItem      *active_menu_item;
   bool had_selection;
-  bool touchscreen_mode;
 
   priv              = menu_shell->priv;
   parent_menu_shell = NULL;
   priv->in_unselectable_item = FALSE;
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
-                "gtk-touchscreen-mode", &touchscreen_mode,
-                NULL);
 
   if (menu_shell->parent_menu_shell) {
     parent_menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
@@ -1684,39 +1680,14 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   switch (direction) {
 
     case MENU_DIR_PARENT:
-      if (touchscreen_mode && had_selection && submenu &&
-        gtk_widget_get_visible (submenu))
-      {
-        /* if we are on a menu item that has an open submenu but the
-         * focus is not in that submenu (e.g. because it's empty or
-         * has only insensitive items), close that submenu instead
-         * of running into the code below which would close *this*
-         * menu.
-         */
-        geda_menu_item_popdown_submenu (active_menu_item);
-        geda_menu_shell_update_mnemonics (menu_shell);
-      }
-      else if (parent_menu_shell) {
-
-        if (touchscreen_mode) {
-
-          GedaMenuItem *menu_item;
-
-          menu_item = GEDA_MENU_ITEM(GEDA_MENU(menu_shell)->parent_menu_item);
-
-          /* close menu when returning from submenu. */
-          geda_menu_item_popdown_submenu (menu_item);
-          geda_menu_shell_update_mnemonics (parent_menu_shell);
-          break;
-        }
+      if (parent_menu_shell) {
 
         if (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
           GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement)
         {
           geda_menu_shell_deselect (menu_shell);
         }
-        else
-        {
+        else {
           if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR) {
             geda_menu_shell_move_selected (parent_menu_shell, -1);
           }
@@ -1727,41 +1698,45 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
         }
       }
       /* If there is no parent and the submenu is in the opposite direction
-       * to the menu, then make the PARENT direction wrap around to the
-       * bottom of the submenu.
+       * to the menu, then make the PARENT direction wrap around to
+       * the bottom of the submenu.
        */
-      else if (had_selection &&
-        geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
-        submenu)
+      else if (active_menu_item &&
+               geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
+               submenu)
       {
-        GedaMenuShellClass *shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+        GedaMenuShellClass *shell_class;
+        GedaMenuShellClass *sub_class;
+        GedaMenuShell      *sub_shell;
 
-        if (shell_class->submenu_placement !=
-          GEDA_MENU_SHELL_GET_CLASS (submenu)->submenu_placement)
-        {
-          geda_menu_shell_select_last (GEDA_MENU_SHELL(submenu), TRUE);
+        shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+        sub_shell   = GEDA_MENU_SHELL (submenu);
+        sub_class   = GEDA_MENU_SHELL_GET_CLASS (sub_shell);
+
+        if (shell_class->submenu_placement != sub_class->submenu_placement) {
+          geda_menu_shell_select_last (sub_shell, TRUE);
         }
       }
       break;
 
-      case MENU_DIR_CHILD:
-        if (had_selection &&
-            geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
-            submenu)
-        {
+    case MENU_DIR_CHILD:
+      if (active_menu_item &&
+          geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
+          submenu)
+      {
           if (geda_menu_shell_select_submenu_first (menu_shell))
             break;
-        }
+      }
 
-        /* Try to find a menu running the opposite direction */
-        while (parent_menu_shell &&
-          (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
-           GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
-        {
+      /* Try to find a menu running the opposite direction */
+      while (parent_menu_shell &&
+             (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
+              GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
+      {
           parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
-        }
+      }
 
-        if (parent_menu_shell) {
+      if (parent_menu_shell) {
 
           if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR)
             geda_menu_shell_move_selected (parent_menu_shell, 1);
@@ -1770,29 +1745,20 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
 
           geda_menu_shell_select_submenu_first (parent_menu_shell);
         }
-        break;
+      break;
 
-      case MENU_DIR_PREV:
-        geda_menu_shell_move_selected (menu_shell, -1);
-        if (!had_selection &&
-            !menu_shell->active_menu_item &&
-             menu_shell->children) {
-          geda_menu_shell_select_last (menu_shell, TRUE);
-        }
-        break;
+    case MENU_DIR_PREV:
+      geda_menu_shell_move_selected (menu_shell, -1);
+      if (!had_selection && !active_menu_item && menu_shell->children)
+        geda_menu_shell_select_last (menu_shell, TRUE);
+      break;
 
-      case MENU_DIR_NEXT:
-        geda_menu_shell_move_selected (menu_shell, 1);
-        if (!had_selection &&
-            !menu_shell->active_menu_item &&
-            menu_shell->children) {
-            geda_menu_shell_select_first (menu_shell, TRUE);
-        }
-        break;
-
-      default:
-        break;
-  }
+    case MENU_DIR_NEXT:
+      geda_menu_shell_move_selected (menu_shell, 1);
+      if (!had_selection && !active_menu_item && menu_shell->children)
+        geda_menu_shell_select_first (menu_shell, TRUE);
+      break;
+    }
 }
 
 static void
