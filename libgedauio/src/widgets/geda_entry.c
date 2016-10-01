@@ -135,8 +135,6 @@ static void    geda_entry_validate_input     (GtkEntry         *entry,
                                               int               length,
                                               int              *position,
                                               void             *data);
-static void    geda_entry_virtual_populator  (GedaEntry        *entry,
-                                              void             *menu);
 static void    popup_menu_callback           (GedaMenuItem     *item,
                                               void             *data);
 static void    geda_entry_populate_popup     (GedaEntry        *entry,
@@ -605,8 +603,6 @@ geda_entry_class_init(void *g_class, void *class_data)
   class->drag_data_delete     = widget_class->drag_data_delete;
   class->drag_data_received   = widget_class->drag_data_received;
 
-  class->populate_popup       = geda_entry_virtual_populator;
-
   widget_class->drag_begin         = geda_entry_drag_begin;
   widget_class->drag_drop          = geda_entry_drag_drop;
   widget_class->drag_end           = geda_entry_drag_end;
@@ -758,15 +754,6 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
     }
   }
 
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
-                          G_CALLBACK (geda_entry_key_press), NULL);
-
-  g_signal_connect (G_OBJECT (entry), "populate-popup",
-                    G_CALLBACK (geda_entry_populate_popup), NULL);
-
-  g_signal_connect (G_OBJECT (entry), "insert_text",
-                    G_CALLBACK (geda_entry_validate_input), NULL);
-
   /* Initialize & populate a GCompletion for commands */
   if (entry->auto_complete) {
 
@@ -791,7 +778,14 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   priv->case_sensitive      = FALSE;
   priv->attrs               = NULL; */
 
+  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+                          G_CALLBACK (geda_entry_key_press), NULL);
 
+  g_signal_connect_object (G_OBJECT (entry), "populate-popup",
+                           G_CALLBACK (geda_entry_populate_popup), NULL, 0);
+
+  g_signal_connect_object (G_OBJECT (entry), "insert_text",
+                           G_CALLBACK (geda_entry_validate_input), NULL, 0);
 }
 
 /*!
@@ -1231,9 +1225,41 @@ geda_entry_validate_input (GtkEntry    *entry,
  *  @{
  */
 
+/*!
+ * \brief GedaEntry Internal Popup Menu Callback
+ * \par Function Description
+ *  This functions is called when a menu-item in the popup
+ *  is selected.
+ */
 static void
-geda_entry_virtual_populator(GedaEntry *entry, void *menu)
+popup_menu_callback (GedaMenuItem *item, void *data)
 {
+  GedaEntry *entry;
+
+  int menu_option = (int)(long)data;
+
+  entry = g_object_get_data (G_OBJECT(item), "eda-entry");
+
+  switch (menu_option) {
+      case AUTO_COMPLETE_ON:
+
+#if DEBUG_GEDA_ENTRY
+        fprintf(stderr, "setting auto complete on\n");
+#endif
+        entry->completion_enabled  = TRUE;
+        break;
+
+      case AUTO_COMPLETE_OFF:
+
+#if DEBUG_GEDA_ENTRY
+        fprintf(stderr, "disabling auto complete\n");
+#endif
+        entry->completion_enabled  = FALSE;
+        break;
+
+      default:
+        break;
+  }
 }
 
 /*!
@@ -1248,8 +1274,6 @@ geda_entry_virtual_populator(GedaEntry *entry, void *menu)
 static void
 geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 {
-  GedaEntryClass *entry_class;
-
   if (entry->auto_complete) {
 
     GtkWidget *item;
@@ -1274,49 +1298,6 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
     gtk_container_add (GTK_CONTAINER (submenu), item);
 
     gtk_widget_show_all (submenu);
-  }
-
-  entry_class = GEDA_ENTRY_GET_CLASS(entry);
-
-  if (entry_class)  {
-    entry_class->populate_popup(entry, menu);
-  }
-}
-
-/*!
- * \brief GedaEntry Internal Popup Menu Callback
- * \par Function Description
- * This functions is called when a menu-item in the popup
- * is selected.
- */
-static void
-popup_menu_callback (GedaMenuItem *item, void *data)
-{
-  GedaEntry *entry;
-
-  int menu_option = (int)(long)data;
-
-  entry = g_object_get_data (G_OBJECT(item), "eda-entry");
-
-  switch(menu_option) {
-      case AUTO_COMPLETE_ON:
-
-#if DEBUG_GEDA_ENTRY
-        fprintf(stderr, "setting auto complete on\n");
-#endif
-        entry->completion_enabled  = TRUE;
-        break;
-
-      case AUTO_COMPLETE_OFF:
-
-#if DEBUG_GEDA_ENTRY
-        fprintf(stderr, "disabling auto complete\n");
-#endif
-        entry->completion_enabled  = FALSE;
-        break;
-
-      default:
-        break;
   }
 }
 
@@ -1462,7 +1443,7 @@ geda_entry_get_attributes (GedaEntry *entry)
  * \param [in] attrs Pointer to a PangoAttrList structure.
  */
 void
-geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
+geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
 {
   PangoAttrList *old_attrs;
   PangoLayout   *layout;

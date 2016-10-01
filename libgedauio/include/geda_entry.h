@@ -107,10 +107,6 @@ struct _GedaEntryClass
   /* Action signals */
   void (* activate)           (GedaEntry        *entry);
 
-  /* Hook to customize right-click popup */
-  void (* populate_popup)     (GedaEntry         *entry,
-                               void              *menu);
-
   /* Source side drag signals */
   void (* drag_begin)         (GtkWidget         *widget,
                                GdkDragContext    *context);

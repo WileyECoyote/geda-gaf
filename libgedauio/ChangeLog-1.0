@@ -1,8 +1,13 @@
 2016-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_entry.h: Eliminate virtual populate_popup.
+
     * include/geda_marshal.h: Add alias for g_cclosure_marshal_VOID__VOID.
 
-    * tests/test_entry.c: Implement geda_marshal_VOID__VOID:
+    * src/widgets/geda_entry.c: Remove geda_entry_virtual_populator and other
+      code related to class->populate_popup.
+
+    * src/.c: Implement geda_marshal_VOID__VOID:
 
         * src/dialogs/geda_file_chooser.c
         * src/dialogs/geda_image_chooser.c

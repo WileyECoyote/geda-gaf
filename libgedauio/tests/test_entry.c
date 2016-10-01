@@ -442,16 +442,10 @@ check_accessors ()
 }
 
 static int activated = 0;
-static int populated= 0;
 
 void on_activate(GedaEntry *entry)
 {
   activated++;
-}
-
-void on_populate_popup(GedaEntry *entry, void *menu)
-{
-  populated++;
 }
 
 int
@@ -466,19 +460,11 @@ check_overides ()
   entry_class = GEDA_ENTRY_GET_CLASS(widget);
 
   entry_class->activate       = on_activate;
-  entry_class->populate_popup = on_populate_popup;
 
   g_signal_emit_by_name(widget, "process-entry");
 
   if (!activated) {
     fprintf(stderr, "FAILED: %s line <%d> not activated\n", TWIDGET, __LINE__);
-    result++;
-  }
-
-  g_signal_emit_by_name(widget, "populate-popup");
-
-  if (!populated) {
-    fprintf(stderr, "FAILED: %s line <%d> not populated\n", TWIDGET, __LINE__);
     result++;
   }
 
