@@ -34,8 +34,8 @@
 #include <geda/geda_standard.h>
 
 #include "../../include/geda_gtk_compat.h"
-#include "../../include/geda_menu_bar.h"
 #include "../../include/geda_image_menu_item.h"
+#include "../../include/geda_menu_bar.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

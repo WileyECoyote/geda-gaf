@@ -34,13 +34,13 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_menu_enum.h"
-#include "../../include/geda_tearoff_menu_item.h"
-#include "../../include/geda_uio_functions.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_separator.h" /* for GEDA_IS_MENU_SEPERATOR */
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_menu_bar.h"
+#include "../../include/geda_tearoff_menu_item.h"
+#include "../../include/geda_uio_functions.h"
 #include "../../include/gettext.h"
 
 /** \defgroup GedaMenuItem GedaMenuItem Object

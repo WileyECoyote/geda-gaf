@@ -37,6 +37,7 @@
 
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_handlebox.h"
+#include "../../include/geda_marshal.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
