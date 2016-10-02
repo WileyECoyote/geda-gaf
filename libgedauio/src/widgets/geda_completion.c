@@ -38,9 +38,9 @@
 #include "../../../config.h"
 #endif
 
-#include <string.h>
-
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
 
 #include "../../include/geda_completion.h"
 #include "../../include/gettext.h"

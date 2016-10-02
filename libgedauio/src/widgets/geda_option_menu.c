@@ -26,13 +26,12 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_keysyms.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_option_menu.h"
-
-#include "../../include/geda_keysyms.h"
 #include "../../include/gettext.h"
 
 #define CHILD_LEFT_SPACING        4

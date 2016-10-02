@@ -31,20 +31,19 @@
 #include "../../../config.h"
 #endif
 
-#define WITHOUT_GUILE 1
-#include <libgeda/libgeda.h>
-#include <geda/geda_standard.h>
-
-#include "../../include/geda_marshal.h"
-
 #include <ctype.h>
 
 #include <gtk/gtk.h>
 
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
+
 #include "../../include/geda_entry.h"
-#include "../../include/geda_menu.h"
 #include "../../include/geda_image_menu_item.h"
 #include "../../include/geda_keysyms.h"
+#include "../../include/geda_marshal.h"
+#include "../../include/geda_menu.h"
 #include "../../include/geda_widget.h"
 #include "../../include/gettext.h"
 

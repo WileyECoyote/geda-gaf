@@ -41,7 +41,6 @@
 #include "../../include/geda_menu_separator.h" /* for GEDA_IS_MENU_SEPERATOR */
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_menu_bar.h"
-
 #include "../../include/gettext.h"
 
 /** \defgroup GedaMenuItem GedaMenuItem Object

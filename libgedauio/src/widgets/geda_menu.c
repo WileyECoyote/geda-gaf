@@ -88,20 +88,21 @@
 
 #include <gtk/gtk.h>
 
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
 #include "../../include/geda_accel_label.h"
+#include "../../include/geda_check_menu_item.h"
 #include "../../include/geda_gtk_compat.h"
-#include "../../include/geda_uio_functions.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_label.h"
 #include "../../include/geda_menu_enum.h"
-#include "../../include/geda_check_menu_item.h"
-#include "../../include/geda_tearoff_menu_item.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
+#include "../../include/geda_tearoff_menu_item.h"
+#include "../../include/geda_uio_functions.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

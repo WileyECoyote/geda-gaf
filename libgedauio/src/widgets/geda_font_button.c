@@ -33,7 +33,6 @@
  * Rewrite for gEDA by Wiley Edward Hill <wileyhill@gmail.com>
  */
 
-
 #ifdef HAVE_CONFIG_H
 #include "../../../config.h"
 #endif
@@ -44,9 +43,10 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include "../../include/geda_label.h"
 #include "../../include/geda_font_button.h"
 #include "../../include/geda_font_dialog.h"
+#include "../../include/geda_label.h"
+#include "../../include/geda_marshal.h"
 #include "../../include/geda_separator.h"
 #include "../../include/gettext.h"
 

@@ -40,13 +40,11 @@
 #include "../../../config.h"
 #endif
 
-#include <geda/geda.h>
-
-#include <stdlib.h>
-
 #include <gtk/gtk.h>
 
-#include <string.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
 
 #include "../../include/geda_combobox.h"
 #include "../../include/geda_comboboxtext.h"

@@ -51,15 +51,16 @@
 #include "../../../config.h"
 #endif
 
-#include <geda/geda.h>
-
 #include <gtk/gtk.h>
 
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+
 #include "../../include/geda_action.h"
-#include "../../include/geda_toggle_action.h"
 #include "../../include/geda_accel_label.h"
-#include "../../include/geda_image_menu_item.h"
 #include "../../include/geda_check_menu_item.h"
+#include "../../include/geda_image_menu_item.h"
+#include "../../include/geda_toggle_action.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

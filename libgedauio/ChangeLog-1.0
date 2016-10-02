@@ -1,3 +1,18 @@
+2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/.c: Rearrange inclusion of headers, include libgeda headers:
+
+        * src/widgets/geda_action.c
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_completion.c
+        * src/widgets/geda_menu.c
+        * src/widgets/geda_menu_bar.c
+
+2016-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Eliminate first conditional clause in
+      eda_real_menu_shell_move_current.
+
 2016-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Eliminate virtual populate_popup.

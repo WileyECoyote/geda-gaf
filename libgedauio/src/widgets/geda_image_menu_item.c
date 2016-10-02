@@ -29,10 +29,9 @@
 
 #include <gtk/gtk.h>
 
-#include <geda/geda_standard.h>
-
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
 
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_menu_bar.h"

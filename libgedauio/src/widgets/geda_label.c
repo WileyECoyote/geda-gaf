@@ -52,16 +52,13 @@
 #include "../../../config.h"
 #endif
 
-#define WITHOUT_GUILE 1
-#include <libgeda/libgeda.h>
-#include <geda/geda_standard.h>
-
-#include <glib.h>
-#include <glib-object.h>
-
 #include <math.h>
 
 #include <gtk/gtk.h>
+
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
 
 #include "../../include/geda_accel_label.h"
 #include "../../include/geda_gtk_compat.h"

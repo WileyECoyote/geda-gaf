@@ -27,15 +27,15 @@
 #include "../../../config.h"
 #endif
 
-#define WITHOUT_GUILE 1
-#include <libgeda/libgeda.h>
-
 #include <atk/atk.h>
 #include <gtk/gtk.h>
 
-#include "../../include/geda_label.h"
-#include "../../include/geda_font_dialog.h"
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+
 #include "../../include/geda_entry.h"
+#include "../../include/geda_font_dialog.h"
+#include "../../include/geda_label.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

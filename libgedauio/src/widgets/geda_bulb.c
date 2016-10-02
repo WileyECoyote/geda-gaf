@@ -31,13 +31,13 @@
 #include "../../../config.h"
 #endif
 
+#include <gtk/gtk.h>
+
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
-#include <gtk/gtk.h>
-
-#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_bulb.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/gettext.h"
 
