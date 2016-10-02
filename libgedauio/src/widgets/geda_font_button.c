@@ -855,7 +855,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
                                                 G_SIGNAL_RUN_FIRST,
                                                 G_STRUCT_OFFSET (GedaFontButtonClass, font_set),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 
   font_button_signals[SIZE_SET] = g_signal_new ("size-set",
@@ -863,7 +863,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
                                                 G_SIGNAL_RUN_FIRST,
                                                 G_STRUCT_OFFSET (GedaFontButtonClass, size_set),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 }
 

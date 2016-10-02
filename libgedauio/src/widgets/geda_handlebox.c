@@ -1497,7 +1497,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    G_SIGNAL_RUN_FIRST,
                    G_STRUCT_OFFSET (GedaHandleBoxClass, child_attached),
                    NULL, NULL,
-                   g_cclosure_marshal_VOID__POINTER,
+                   geda_marshal_VOID__POINTER,
                    G_TYPE_NONE, 1,
                    G_TYPE_POINTER);
 
@@ -1507,7 +1507,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    G_SIGNAL_RUN_FIRST,
                    G_STRUCT_OFFSET (GedaHandleBoxClass, child_detached),
                    NULL, NULL,
-                   g_cclosure_marshal_VOID__POINTER,
+                   geda_marshal_VOID__POINTER,
                    G_TYPE_NONE, 1,
                    G_TYPE_POINTER);
 }
