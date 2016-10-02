@@ -12,6 +12,10 @@
         * src/widgets/geda_menu.c
         * src/widgets/geda_menu_bar.c
 
+    * src/widgets/geda_menu_shell.c: Revise geda_real_menu_shell_move_current
+      to set submenu based on menu_shell->active_menu_item instead of
+      had_selection and initialize parent_menu_shell in else clause.
+
 2016-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Eliminate first conditional clause in

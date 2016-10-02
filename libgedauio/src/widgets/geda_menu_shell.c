@@ -1654,29 +1654,30 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   GedaMenuShellPriv *priv;
   GedaMenuShell     *parent_menu_shell;
   GedaMenuItem      *active_menu_item;
+  GtkWidget         *submenu;
   bool had_selection;
 
-  priv              = menu_shell->priv;
-  parent_menu_shell = NULL;
+  priv = menu_shell->priv;
+
   priv->in_unselectable_item = FALSE;
 
+  if (menu_shell->active_menu_item) {
+    active_menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
+    submenu = geda_menu_item_get_submenu(active_menu_item);
+  }
+  else {
+    active_menu_item = NULL;
+    submenu = NULL;
+  }
 
   if (menu_shell->parent_menu_shell) {
     parent_menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
   }
-
-  active_menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
+  else {
+    parent_menu_shell = NULL;
+  }
 
   had_selection = active_menu_item != NULL;
-
-  GtkWidget *submenu;
-
-  if (had_selection) {
-    submenu = geda_menu_item_get_submenu(active_menu_item);
-  }
-  else {
-    submenu = NULL;
-  }
 
   switch (direction) {
 
