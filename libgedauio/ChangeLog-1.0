@@ -1,5 +1,8 @@
 2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_marshal.h: Add alias for g_cclosure_marshal_VOID__ENUM
+      and g_cclosure_marshal_VOID__STRING.
+
     * src/widgets/.c: Rearrange inclusion of headers, replace g_strdup with
       geda_strdup, include libgeda headers:
 

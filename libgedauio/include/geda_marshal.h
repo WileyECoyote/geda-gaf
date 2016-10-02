@@ -190,8 +190,7 @@ extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,
 #define geda_marshal_VOID__BOOLEAN	g_cclosure_marshal_VOID__BOOLEAN
 #define geda_marshal_VOID__BOOL	geda_marshal_VOID__BOOLEAN
 
-/* VOID:POINTER (geda-marshal.list:21) */
-#define geda_marshal_VOID__POINTER	g_cclosure_marshal_VOID__POINTER
+#define geda_marshal_VOID__ENUM  g_cclosure_marshal_VOID__ENUM
 
 /* VOID:INT,INT (geda-marshal.list:22) */
 extern void geda_marshal_VOID__INT_INT (GClosure     *closure,
@@ -209,7 +208,12 @@ extern void geda_marshal_VOID__INT_POINTER (GClosure     *closure,
                                             void         *invocation_hint,
                                             void         *marshal_data);
 
+/* VOID:POINTER (geda-marshal.list:21) */
+#define geda_marshal_VOID__POINTER  g_cclosure_marshal_VOID__POINTER
+
 #define geda_marshal_VOID__OBJECT g_cclosure_marshal_VOID__OBJECT
+
+#define geda_marshal_VOID__STRING g_cclosure_marshal_VOID__STRING
 
 /* VOID:POINTER,POINTER (geda-marshal.list:24) */
 extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
