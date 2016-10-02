@@ -744,7 +744,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
     }
   }
 
-  if (menu_item && geda_menu_item_is_widget_selectable (menu_item))  {
+  if (menu_item && geda_menu_item_is_widget_selectable (menu_item)) {
 
     GtkWidget *submenu;
 
@@ -1305,9 +1305,9 @@ geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
   g_return_val_if_fail (child != NULL, FALSE);
 
   parent = child->parent;
-  while (GEDA_IS_MENU_SHELL (parent)) {
+  while (GEDA_IS_MENU_SHELL(parent)) {
 
-    if (parent == (GtkWidget*) menu_shell) {
+    if (parent == (GtkWidget*)menu_shell) {
       return TRUE;
     }
     parent = GEDA_MENU_SHELL (parent)->parent_menu_shell;
@@ -1489,7 +1489,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
     GList *node = g_list_find (menu_shell->children,
                                menu_shell->active_menu_item);
     GList *start_node = node;
-    bool     wrap_around;
+    bool   wrap_around;
 
     g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
                   "gtk-keynav-wrap-around", &wrap_around,
@@ -1502,12 +1502,13 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
       while (node != start_node &&
             (!node || !geda_menu_item_is_widget_selectable (node->data)))
       {
-        if (node)
+        if (node) {
           node = node->next;
-        else if (wrap_around)
+        }
+        else if (wrap_around) {
           node = menu_shell->children;
-        else
-        {
+        }
+        else {
           gtk_widget_error_bell (GTK_WIDGET (menu_shell));
           break;
         }
@@ -1542,9 +1543,9 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
 
 /* Distance should be +/- 1 */
 static void
-geda_menu_shell_move_selected (GedaMenuShell  *menu_shell, int distance)
+geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
 {
-  bool     handled = FALSE;
+  bool handled = FALSE;
 
   g_signal_emit (menu_shell, menu_shell_signals[MOVE_SELECTED], 0,
                  distance, &handled);
@@ -1596,7 +1597,7 @@ void
 geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 {
   GtkWidget *to_select = NULL;
-  GList *tmp_list;
+  GList     *tmp_list;
 
   tmp_list = g_list_last (menu_shell->children);
 
@@ -1724,27 +1725,27 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
           geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
           submenu)
       {
-          if (geda_menu_shell_select_submenu_first (menu_shell))
-            break;
+        if (geda_menu_shell_select_submenu_first (menu_shell))
+          break;
       }
 
       /* Try to find a menu running the opposite direction */
       while (parent_menu_shell &&
-             (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
-              GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
+            (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
+             GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
       {
-          parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
+        parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
       }
 
       if (parent_menu_shell) {
 
-          if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR)
-            geda_menu_shell_move_selected (parent_menu_shell, 1);
-          else
-            geda_menu_shell_move_selected (parent_menu_shell, -1);
+        if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR)
+          geda_menu_shell_move_selected (parent_menu_shell, 1);
+        else
+          geda_menu_shell_move_selected (parent_menu_shell, -1);
 
-          geda_menu_shell_select_submenu_first (parent_menu_shell);
-        }
+        geda_menu_shell_select_submenu_first (parent_menu_shell);
+      }
       break;
 
     case MENU_DIR_PREV:
@@ -1758,7 +1759,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
       if (!had_selection && !active_menu_item && menu_shell->children)
         geda_menu_shell_select_first (menu_shell, TRUE);
       break;
-    }
+  }
 }
 
 static void

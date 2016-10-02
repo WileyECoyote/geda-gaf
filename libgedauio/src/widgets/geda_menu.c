@@ -377,9 +377,8 @@ menu_ensure_layout (GedaMenu *menu)
     int  max_right_attach;
     int  max_bottom_attach;
 
-    /* Find extents of gridded portion
-     */
-    max_right_attach = 1;
+    /* Find extents of gridded portion */
+    max_right_attach  = 1;
     max_bottom_attach = 0;
 
     for (iter = menu_shell->children; iter; iter = iter->next) {
@@ -526,6 +525,7 @@ geda_menu_window_event (GtkWidget *window, GdkEvent *event, GtkWidget *menu)
         geda_menu_shell_deactivate (GEDA_MENU_SHELL(menu));
       }
       break;
+
     default:
       break;
   }
@@ -2903,7 +2903,7 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
       child = children->data;
       children = children->next;
 
-      if (! gtk_widget_get_visible (child)) {
+      if (!gtk_widget_get_visible (child)) {
         continue;
       }
 
@@ -2922,17 +2922,17 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
        accelerator_width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM (child));
        max_accel_width = MAX (max_accel_width, accelerator_width);
 
-       part = child_requisition.width / (r - l);
+       part               = child_requisition.width / (r - l);
        requisition->width = MAX (requisition->width, part);
 
-       part = MAX (child_requisition.height, toggle_size) / (b - t);
+       part             = MAX (child_requisition.height, toggle_size) / (b - t);
        priv->heights[t] = MAX (priv->heights[t], part);
     }
 
-  /* If the menu doesn't include any images or check items
-   * reserve the space so that all menus are consistent.
-   * We only do this for 'ordinary' menus, not for combobox
-   * menus or multi-column menus
+  /* If the menu doesn't include any images or check items then
+   * reserve the space so that all menus are consistent. We only
+   * do this for 'ordinary' menus, not for combobox  menus or
+   * multi-column menus.
    */
   if (max_toggle_size == 0 &&
       geda_menu_get_n_columns (menu) == 1 &&
@@ -2997,9 +2997,9 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   g_return_if_fail (GEDA_IS_MENU (widget));
   g_return_if_fail (allocation != NULL);
 
-  menu = GEDA_MENU (widget);
+  menu       = GEDA_MENU (widget);
   menu_shell = GEDA_MENU_SHELL (widget);
-  priv = menu->priv;
+  priv       = menu->priv;
 
   widget->allocation = *allocation;
   gtk_widget_get_child_requisition (GTK_WIDGET (menu), &child_requisition);
@@ -3097,8 +3097,9 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
       int  width, height;
 
       height = 0;
-      for (i = 0; i < geda_menu_get_n_rows (menu); i++)
+      for (i = 0; i < geda_menu_get_n_rows (menu); i++) {
         height += priv->heights[i];
+      }
 
       width = geda_menu_get_n_columns (menu) * base_width;
       gdk_window_resize (menu->bin_window, width, height);
@@ -3125,9 +3126,11 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
             menu->tearoff_adjustment->upper)
         {
           int  value;
+
           value = menu->tearoff_adjustment->upper - menu->tearoff_adjustment->page_size;
-          if (value < 0)
+          if (value < 0) {
             value = 0;
+          }
           geda_menu_scroll_to (menu, value);
         }
 
@@ -3185,38 +3188,38 @@ get_arrows_visible_area (GedaMenu     *menu,
   switch (arrow_placement) {
 
     case GTK_ARROWS_BOTH:
-      upper->x = border->x;
-      upper->y = border->y;
-      upper->width = border->width - borderx2;
+      upper->x      = border->x;
+      upper->y      = border->y;
+      upper->width  = border->width - borderx2;
       upper->height = scroll_arrow_height;
 
-      lower->x = border->x;
-      lower->y = border->height - border->y - scroll_arrow_height;
-      lower->width = border->width - borderx2;
+      lower->x      = border->x;
+      lower->y      = border->height - border->y - scroll_arrow_height;
+      lower->width  = border->width - borderx2;
       lower->height = scroll_arrow_height;
       break;
 
     case GTK_ARROWS_START:
-      upper->x = border->x;
-      upper->y = border->y;
-      upper->width = (border->width - borderx2) >> 1;
+      upper->x      = border->x;
+      upper->y      = border->y;
+      upper->width  = (border->width - borderx2) >> 1;
       upper->height = scroll_arrow_height;
 
-      lower->x = border->x + upper->width;
-      lower->y = border->y;
-      lower->width = (border->width - borderx2) >> 1;
+      lower->x      = border->x + upper->width;
+      lower->y      = border->y;
+      lower->width  = (border->width - borderx2) >> 1;
       lower->height = scroll_arrow_height;
       break;
 
     case GTK_ARROWS_END:
-      upper->x = border->x;
-      upper->y = border->height - border->y - scroll_arrow_height;
-      upper->width = (border->width - borderx2) >> 1;
+      upper->x      = border->x;
+      upper->y      = border->height - border->y - scroll_arrow_height;
+      upper->width  = (border->width - borderx2) >> 1;
       upper->height = scroll_arrow_height;
 
-      lower->x = border->x + upper->width;
-      lower->y = border->height - border->y - scroll_arrow_height;
-      lower->width = (border->width - borderx2) >> 1;
+      lower->x      = border->x + upper->width;
+      lower->y      = border->height - border->y - scroll_arrow_height;
+      lower->width  = (border->width - borderx2) >> 1;
       lower->height = scroll_arrow_height;
       break;
 
@@ -3224,7 +3227,7 @@ get_arrows_visible_area (GedaMenu     *menu,
        g_assert_not_reached();
        upper->x = upper->y = upper->width = upper->height = 0;
        lower->x = lower->y = lower->width = lower->height = 0;
-    }
+  }
 
   *arrow_space = scroll_arrow_height - (widget->style->ythickness << 1);
 }
@@ -3539,9 +3542,6 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
   bool             can_change_accels;
   bool             delete;
 
-  accel      = NULL;
-  delete     = FALSE;
-
   menu_shell = GEDA_MENU_SHELL (widget);
   menu       = GEDA_MENU (widget);
 
@@ -3550,7 +3550,8 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
   if (GEDA_MENU_SHELL_CLASS(geda_menu_parent_class)->menu_key_press (menu_shell, event))
     return TRUE;
 
-
+  accel      = NULL;
+  delete     = FALSE;
   display = gtk_widget_get_display (widget);
 
   g_object_get (gtk_widget_get_settings (widget),
@@ -3645,7 +3646,7 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
           GtkAccelKey key;
 
           if (gtk_accel_map_lookup_entry (path, &key) &&
-            (key.accel_key || key.accel_mods))
+             (key.accel_key || key.accel_mods))
           {
             accel_key = 0;
             accel_mods = 0;
@@ -3677,9 +3678,8 @@ check_threshold (GtkWidget *widget,
 /*! \todo something about this mess! */
 #define THRESHOLD 8
 
-  return
-    ABS (start_x - x) > THRESHOLD  ||
-    ABS (start_y - y) > THRESHOLD;
+  return ABS (start_x - x) > THRESHOLD  ||
+         ABS (start_y - y) > THRESHOLD;
 }
 
 static bool
@@ -3703,11 +3703,10 @@ definitely_within_item (GtkWidget *widget, int x, int y)
 
 #endif
 
-  return
-    check_threshold (widget, 0, 0, x, y) &&
-    check_threshold (widget, w - 1, 0, x, y) &&
-    check_threshold (widget, w - 1, h - 1, x, y) &&
-    check_threshold (widget, 0, h - 1, x, y);
+  return check_threshold (widget, 0, 0, x, y) &&
+         check_threshold (widget, w - 1, 0, x, y) &&
+         check_threshold (widget, w - 1, h - 1, x, y) &&
+         check_threshold (widget, 0, h - 1, x, y);
 }
 
 static bool
@@ -3735,8 +3734,9 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
       if (priv->ignore_button_release)
         priv->ignore_button_release = FALSE;
 
-      geda_menu_handle_scrolling (GEDA_MENU (widget), event->x_root, event->y_root,
-                                 TRUE, TRUE);
+      geda_menu_handle_scrolling (GEDA_MENU (widget), event->x_root,
+                                                      event->y_root,
+                                                      TRUE, TRUE);
   }
 
   /* We received the event for one of two reasons:
@@ -3750,8 +3750,7 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
    */
   menu_item = gtk_get_event_widget ((GdkEvent*) event);
 
-  if (!GEDA_IS_MENU_ITEM (menu_item) || !GEDA_IS_MENU (menu_item->parent))
-  {
+  if (!GEDA_IS_MENU_ITEM (menu_item) || !GEDA_IS_MENU (menu_item->parent)) {
     return FALSE;
   }
 
@@ -3764,8 +3763,9 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
 
   /* Check to see if we are within an active submenu's navigation region
    */
-  if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root))
+  if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root)) {
     return TRUE;
+  }
 
   /* Make sure we pop down if we enter a non-selectable menu item, so we
    * don't show a submenu when the cursor is outside the stay-up triangle.
@@ -3856,11 +3856,10 @@ static void
 geda_menu_scroll_by (GedaMenu *menu, int step)
 {
   GtkWidget *widget;
-  int  offset;
-  //int  view_width
-  int view_height;
-  bool  double_arrows;
-  GtkBorder arrow_border;
+  GtkBorder  arrow_border;
+  bool       double_arrows;
+  int        offset;
+  int        view_height;
 
   widget = GTK_WIDGET (menu);
   offset = menu->scroll_offset + step;
@@ -3869,10 +3868,9 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
 
   double_arrows = get_double_arrows (menu);
 
-  /* If we scroll upward and the non-visible top part
-   * is smaller than the scroll arrow it would be
-   * pretty stupid to show the arrow and taking more
-   * screen space than just scrolling to the top.
+  /* If we scroll upward and the non-visible top part is smaller than
+   * the scroll arrow it would be pretty stupid to show the arrow and
+   * taking more screen space than just scrolling to the top.
    */
   if (!double_arrows)
     if ((step < 0) && (offset < arrow_border.top))
@@ -3893,8 +3891,7 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
 
 #endif
 
-  if (menu->scroll_offset == 0 &&
-      view_height >= widget->requisition.height)
+  if (menu->scroll_offset == 0 && view_height >= widget->requisition.height)
     return;
 
   /* Don't scroll past the bottom if we weren't before: */
@@ -3908,8 +3905,9 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
     view_height -= arrow_border.bottom;
 
   if ((menu->scroll_offset + view_height <= widget->requisition.height) &&
-      (offset + view_height > widget->requisition.height))
+      (offset + view_height > widget->requisition.height)) {
     offset = widget->requisition.height - view_height;
+  }
 
   if (offset != menu->scroll_offset) {
     geda_menu_scroll_to (menu, offset);
@@ -3932,8 +3930,8 @@ geda_menu_do_timeout_scroll (GedaMenu *menu, bool touchscreen_mode)
        lower_visible != menu->lower_arrow_visible))
     {
       /* We are about to hide a scroll arrow while the mouse is pressed,
-       * this would cause the uncovered menu item to be activated on button
-       * release. Therefore we need to ignore button release here
+       * this would cause the uncovered menu item to be activated on
+       * button release. Therefore we need to ignore button release here
        */
       GEDA_MENU_SHELL (menu)->ignore_enter = TRUE;
       menu->priv->ignore_button_release    = TRUE;
@@ -3941,9 +3939,9 @@ geda_menu_do_timeout_scroll (GedaMenu *menu, bool touchscreen_mode)
 }
 
 static bool
-geda_menu_scroll_timeout (void * data)
+geda_menu_scroll_timeout (void *data)
 {
-  GedaMenu  *menu;
+  GedaMenu *menu;
   bool   touchscreen_mode;
 
   menu = GEDA_MENU (data);
@@ -3958,7 +3956,7 @@ geda_menu_scroll_timeout (void * data)
 }
 
 static bool
-geda_menu_scroll_timeout_initial (void * data)
+geda_menu_scroll_timeout_initial (void *data)
 {
   GedaMenu  *menu;
   unsigned int     timeout;
@@ -4005,17 +4003,18 @@ geda_menu_scroll (GtkWidget *widget, GdkEventScroll *event)
 {
   GedaMenu *menu = GEDA_MENU (widget);
 
-  switch (event->direction)
-    {
+  switch (event->direction) {
+
     case GDK_SCROLL_RIGHT:
     case GDK_SCROLL_DOWN:
       geda_menu_scroll_by (menu, MENU_SCROLL_STEP2);
       break;
+
     case GDK_SCROLL_LEFT:
     case GDK_SCROLL_UP:
       geda_menu_scroll_by (menu, - MENU_SCROLL_STEP2);
       break;
-    }
+  }
 
   return TRUE;
 }
@@ -4301,8 +4300,7 @@ geda_menu_handle_scrolling (GedaMenu *menu,
         scroll_fast = (y > rect.y + rect.height - MENU_SCROLL_FAST_ZONE);
 
         if (enter && in_arrow &&
-          (!menu->lower_arrow_prelight ||
-          menu->scroll_fast != scroll_fast))
+           (!menu->lower_arrow_prelight || menu->scroll_fast != scroll_fast))
         {
           menu->lower_arrow_prelight = TRUE;
           menu->scroll_fast = scroll_fast;
@@ -4374,9 +4372,10 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
     GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
 
-    if (!menu_shell->ignore_enter)
+    if (!menu_shell->ignore_enter) {
       geda_menu_handle_scrolling (GEDA_MENU (widget),
                                   event->x_root, event->y_root, TRUE, TRUE);
+    }
   }
 
   if (!touchscreen_mode && GEDA_IS_MENU_ITEM (menu_item)) {
@@ -4980,7 +4979,7 @@ geda_menu_stop_scrolling (GedaMenu *menu)
   geda_menu_remove_scroll_timeout (menu);
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-        "gtk-touchscreen-mode", &touchscreen_mode,
+               "gtk-touchscreen-mode", &touchscreen_mode,
         NULL);
 
   if (!touchscreen_mode) {
@@ -5037,9 +5036,9 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
 
   if (double_arrows && !menu->tearoff_active)  {
 
-    if (view_height < menu_height             ||
-      (offset > 0 && menu->scroll_offset > 0) ||
-      (offset < 0 && menu->scroll_offset < 0))
+    if (view_height < menu_height              ||
+       (offset > 0 && menu->scroll_offset > 0) ||
+       (offset < 0 && menu->scroll_offset < 0))
     {
       GedaMenuPriv *priv = menu->priv;
       GtkStateType  upper_arrow_previous_state = priv->upper_arrow_state;
@@ -5224,7 +5223,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 
   menu = GEDA_MENU (menu_shell);
 
-  /* We need to check if the selected item fully visible. If not
+  /* We need to check if the selected item is fully visible. If not
    * we need to scroll the menu so that it becomes fully visible.
    */
 
@@ -5274,18 +5273,23 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
       arrow_height = 0;
 
       get_arrows_border (menu, &arrow_border);
-      if (!menu->tearoff_active)
+
+      if (!menu->tearoff_active) {
         arrow_height = arrow_border.top + arrow_border.bottom;
+      }
 
       if (child_offset + child_height > y + height - arrow_height) {
 
         arrow_height = 0;
-        if ((!last_child && !menu->tearoff_active) || double_arrows)
+
+        if ((!last_child && !menu->tearoff_active) || double_arrows) {
           arrow_height += arrow_border.bottom;
+        }
 
         y = child_offset + child_height - height + arrow_height;
-        if (((y > 0) && !menu->tearoff_active) || double_arrows)
-        {
+
+        if (((y > 0) && !menu->tearoff_active) || double_arrows) {
+
           /* Need upper arrow */
           arrow_height += arrow_border.top;
           y = child_offset + child_height - height + arrow_height;
@@ -5311,7 +5315,8 @@ geda_menu_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_item)
   GEDA_MENU_SHELL_CLASS (geda_menu_parent_class)->select_item (menu_shell, menu_item);
 }
 
-/* Reparent the menu, taking care of the refcounting
+/*!
+ * \internal Reparent the menu, taking care of the refcounting
  *
  * If unrealize is true we force a unrealize while reparenting the parent.
  * This can help eliminate flicker in some cases.
@@ -5369,6 +5374,7 @@ geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
   }
 }
 
+/* widget_class->show_all */
 static void
 geda_menu_show_all (GtkWidget *widget)
 {
@@ -5376,7 +5382,7 @@ geda_menu_show_all (GtkWidget *widget)
   gtk_container_foreach (GTK_CONTAINER (widget), (GtkCallback) gtk_widget_show_all, NULL);
 }
 
-
+/* widget_class->hide_all */
 static void
 geda_menu_hide_all (GtkWidget *widget)
 {
@@ -5447,7 +5453,7 @@ geda_menu_attach (GedaMenu    *menu,
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (GEDA_IS_MENU_ITEM (child));
   g_return_if_fail (child->parent == NULL ||
-            child->parent == GTK_WIDGET (menu));
+                    child->parent == GTK_WIDGET (menu));
   g_return_if_fail (left_attach < right_attach);
   g_return_if_fail (top_attach < bottom_attach);
 
@@ -5457,9 +5463,9 @@ geda_menu_attach (GedaMenu    *menu,
 
       AttachInfo *ai = get_attach_info (child);
 
-      ai->left_attach = left_attach;
-      ai->right_attach = right_attach;
-      ai->top_attach = top_attach;
+      ai->left_attach   = left_attach;
+      ai->right_attach  = right_attach;
+      ai->top_attach    = top_attach;
       ai->bottom_attach = bottom_attach;
 
       menu_shell->children = g_list_append (menu_shell->children, child);
@@ -5467,7 +5473,7 @@ geda_menu_attach (GedaMenu    *menu,
       gtk_widget_set_parent (child, GTK_WIDGET (menu));
 
       menu_queue_resize (menu);
-    }
+  }
   else {
 
       gtk_container_child_set (GTK_CONTAINER (child->parent), child,
@@ -5476,7 +5482,7 @@ geda_menu_attach (GedaMenu    *menu,
                                "top-attach",    top_attach,
                                "bottom-attach", bottom_attach,
                                NULL);
-    }
+  }
 }
 
 static int
@@ -5514,8 +5520,7 @@ find_child_containing (GedaMenuShell *menu_shell,
 
       get_effective_child_attach (list->data, &l, &r, &t, &b);
 
-      if (l <= left && right <= r
-          && t <= top && bottom <= b)
+      if (l <= left && right <= r && t <= top && bottom <= b)
         return GTK_WIDGET (list->data);
     }
 
@@ -5648,7 +5653,7 @@ get_visible_size (GedaMenu *menu)
   GtkContainer *container = GTK_CONTAINER (menu);
 
   int  menu_height = (widget->allocation.height - 2 * (container->border_width
-                                                     + widget->style->ythickness));
+                                                + widget->style->ythickness));
 
   if (!menu->tearoff_active) {
 
@@ -5815,7 +5820,6 @@ geda_menu_real_move_scroll (GedaMenu *menu, GtkScrollType type)
   }
 }
 
-
 /*!
  * \brief Set the number of monitors
  * \par Function Description
@@ -5894,8 +5898,7 @@ geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
 
   toplevel = gtk_widget_get_toplevel (widget);
   group    = gtk_window_get_group (GTK_WINDOW (toplevel));
-
-  grab = gtk_window_group_get_current_grab (group);
+  grab     = gtk_window_group_get_current_grab (group);
 
   if (!was_grabbed) {
 

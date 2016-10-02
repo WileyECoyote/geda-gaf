@@ -1132,7 +1132,7 @@ add_to_window (GtkWindow  *window, GedaMenuBar *menubar)
 }
 
 static void
-remove_from_window (GtkWindow  *window, GedaMenuBar *menubar)
+remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
 {
   GList *menubars = get_menu_bars (window);
 
@@ -1351,12 +1351,13 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 
   if (gtk_widget_is_toplevel (toplevel)) {
 
-    GList *tmp_menubars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW(toplevel));
+    GList *all_bars;
     GList *menubars;
 
-    menubars = geda_container_focus_sort (GTK_CONTAINER(toplevel), tmp_menubars,
-                                          dir, GTK_WIDGET(menubar));
-    g_list_free (tmp_menubars);
+    all_bars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW (toplevel));
+    menubars = geda_container_focus_sort (GTK_CONTAINER (toplevel), all_bars,
+                                          dir, GTK_WIDGET (menubar));
+    g_list_free (all_bars);
 
     if (menubars) {
 
@@ -1377,9 +1378,9 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 
   geda_menu_shell_cancel (GEDA_MENU_SHELL (menubar));
 
-  if (to_activate) {
+  if (to_activate)
     g_signal_emit_by_name (to_activate, "activate_item");
-  }
+
 }
 
 static GtkShadowType
@@ -1398,6 +1399,7 @@ geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
   return MENU_BAR_POPUP_DELAY;
 }
 
+/* Does not get called since the menu is always activated */
 static void
 geda_menu_bar_move_current (GedaMenuShell *menu_shell,
                             MenuDirection  direction)
@@ -1413,46 +1415,52 @@ geda_menu_bar_move_current (GedaMenuShell *menu_shell,
   {
     if ((text_dir == GTK_TEXT_DIR_RTL) == (pack_dir == PACK_DIRECTION_LTR))
     {
-      switch (direction)
-      {
+      switch (direction) {
+
         case MENU_DIR_PREV:
           direction = MENU_DIR_NEXT;
           break;
+
         case MENU_DIR_NEXT:
           direction = MENU_DIR_PREV;
           break;
+
         default: ;
       }
     }
   }
   else
   {
-    switch (direction)
-    {
+    switch (direction) {
+
       case MENU_DIR_PARENT:
         if ((text_dir == GTK_TEXT_DIR_LTR) == (pack_dir == PACK_DIRECTION_TTB))
           direction = MENU_DIR_PREV;
         else
           direction = MENU_DIR_NEXT;
         break;
+
       case MENU_DIR_CHILD:
         if ((text_dir == GTK_TEXT_DIR_LTR) == (pack_dir == PACK_DIRECTION_TTB))
           direction = MENU_DIR_NEXT;
         else
           direction = MENU_DIR_PREV;
         break;
+
       case MENU_DIR_PREV:
         if (text_dir == GTK_TEXT_DIR_RTL)
           direction = MENU_DIR_CHILD;
         else
           direction = MENU_DIR_PARENT;
         break;
+
       case MENU_DIR_NEXT:
         if (text_dir == GTK_TEXT_DIR_RTL)
           direction = MENU_DIR_PARENT;
         else
           direction = MENU_DIR_CHILD;
         break;
+
       default: ;
     }
   }
