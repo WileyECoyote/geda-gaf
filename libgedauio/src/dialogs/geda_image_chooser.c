@@ -1315,7 +1315,7 @@ geda_image_chooser_get_entry_text(GtkWidget *despicable)
     if (GTK_IS_ENTRY(entry)) {
 
       if (gtk_entry_get_text_length (entry)) {
-        return geda_utility_string_strdup (gtk_entry_get_text(entry));
+        return geda_strdup (gtk_entry_get_text(entry));
       }
     }
   }

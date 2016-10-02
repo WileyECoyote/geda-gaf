@@ -489,7 +489,7 @@ geda_action_set_icon_name (GedaAction *action, const char *icon_name)
   g_free (action->icon_name);
   action->icon_name = NULL;
 
-  action->icon_name = g_strdup (icon_name);
+  action->icon_name = geda_strdup (icon_name);
 
   if (icon_name != NULL) {
     if (gtk_stock_lookup(icon_name, &stock_info)) {

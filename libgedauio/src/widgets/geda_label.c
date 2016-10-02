@@ -108,7 +108,6 @@ struct _GedaLabelData
   unsigned int  track_links        : 1;
 
   unsigned int  mnemonic_keyval;
-
 };
 
 typedef struct
@@ -2547,7 +2546,7 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
 
   g_object_freeze_notify (G_OBJECT (label));
 
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
   geda_label_set_use_markup_internal (label, FALSE);
   geda_label_set_use_underline_internal (label, TRUE);
 
@@ -2714,7 +2713,7 @@ static void geda_label_recalculate (GedaLabel *label)
         pango_attr_list_unref (label->markup_attrs);
       label->markup_attrs = NULL;
     }
-    geda_label_set_text_internal (label, g_strdup (label->label));
+    geda_label_set_text_internal (label, geda_strdup (label->label));
   }
 
   if (!priv->use_underline) {
@@ -2749,7 +2748,7 @@ geda_label_set_text (GedaLabel *label, const char *str)
 
   g_object_freeze_notify (G_OBJECT (label));
 
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
   geda_label_set_use_markup_internal (label, FALSE);
   geda_label_set_use_underline_internal (label, FALSE);
 
@@ -2929,7 +2928,7 @@ geda_label_set_label (GedaLabel *label, const char *str)
 
   g_object_freeze_notify (G_OBJECT (label));
 
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
   geda_label_recalculate (label);
 
@@ -3038,8 +3037,8 @@ start_element_handler (GMarkupParseContext *context,
     }
 
     link          = g_malloc0 (sizeof(GedaLabelLink));
-    link->uri     = g_strdup (uri);
-    link->title   = g_strdup (title);
+    link->uri     = geda_strdup (uri);
+    link->title   = geda_strdup (title);
     link->visited = visited;
     link->start   = pdata->text_len;
     pdata->links  = g_list_prepend (pdata->links, link);
@@ -3345,7 +3344,7 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
 
   g_object_freeze_notify (G_OBJECT (label));
 
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
   geda_label_set_use_markup_internal (label, TRUE);
 
@@ -3377,7 +3376,7 @@ geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
 
   g_object_freeze_notify (G_OBJECT (label));
 
-  geda_label_set_label_internal (label, g_strdup (str ? str : ""));
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
   geda_label_set_use_markup_internal (label, TRUE);
 

@@ -216,10 +216,10 @@ item_start_element (GMarkupParseContext *context,
         /* do nothing, comments are for translators */
       }
       else if (strcmp (names[i], "context") == 0) {
-        data->context = g_strdup (values[i]);
+        data->context = geda_strdup (values[i]);
       }
       else if (strcmp (names[i], "id") == 0) {
-        data->id = g_strdup (values[i]);
+        data->id = geda_strdup (values[i]);
       }
       else {
         fprintf(stderr, "Unknown custom combo box attribute: %s", names[i]);
@@ -252,7 +252,7 @@ char *geda_builder_parser_translate (const char *domain,
   else
     s = dgettext (domain, text);
 
-  return g_strdup (s);
+  return geda_strdup (s);
 }
 
 static void item_end_element (GMarkupParseContext *context,
@@ -781,7 +781,7 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
       GtkWidget *entry;
 
       entry = gtk_bin_get_child (GTK_BIN (combo_box));
-      text = g_strdup (geda_entry_get_text (GEDA_ENTRY (entry)));
+      text = geda_strdup (geda_entry_get_text (GEDA_ENTRY (entry)));
     }
     else if (geda_combo_box_get_active_iter (GEDA_COMBO_BOX (combo_box), &iter))
     {

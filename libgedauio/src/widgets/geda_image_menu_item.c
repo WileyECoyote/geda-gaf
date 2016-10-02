@@ -668,7 +668,7 @@ geda_image_menu_item_set_label (GedaMenuItem *menu_item,
   if (image_menu_item->label != label) {
 
     g_free (image_menu_item->label);
-    image_menu_item->label = geda_utility_string_strdup (label);
+    image_menu_item->label = geda_strdup (label);
 
     geda_image_menu_item_recalculate (GEDA_IMAGE_MENU_ITEM (menu_item));
 

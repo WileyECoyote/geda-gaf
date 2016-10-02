@@ -485,7 +485,7 @@ geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
     GtkWidget *child = gtk_bin_get_child (combo);
 
     if (child) {
-      text = g_strdup (geda_entry_get_text (GEDA_ENTRY (child)));
+      text = geda_strdup (geda_entry_get_text (GEDA_ENTRY (child)));
     }
   }
   else {
@@ -5178,7 +5178,7 @@ geda_combo_box_cell_layout_add_attribute (GtkCellLayout   *layout,
   if (info != NULL) {
 
     info->attributes = g_slist_prepend (info->attributes, (void*)(long) (column));
-    info->attributes = g_slist_prepend (info->attributes, g_strdup (attribute));
+    info->attributes = g_slist_prepend (info->attributes, geda_strdup (attribute));
 
     if (combo_box->priv->cell_view) {
       gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->cell_view),
@@ -6658,7 +6658,7 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
 
     g_free (priv->tearoff_title);
 
-    priv->tearoff_title = g_strdup (title);
+    priv->tearoff_title = geda_strdup (title);
 
     geda_combo_box_update_title (combo_box);
 

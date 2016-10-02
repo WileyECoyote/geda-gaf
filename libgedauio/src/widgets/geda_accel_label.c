@@ -132,7 +132,7 @@ geda_accel_label_refetch (GedaAccelLabel *accel_label)
       g_free (accel_label->accel_string);
     }
 
-    accel_label->accel_string = g_strdup ("");
+    accel_label->accel_string = geda_strdup ("");
   }
 
   gtk_widget_queue_resize (GTK_WIDGET (accel_label));
@@ -495,7 +495,7 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
   }
 
   if (accel_string) {
-    accel_label->accel_string = geda_utility_string_strdup (accel_string);
+    accel_label->accel_string = geda_strdup (accel_string);
     substitute_underscores (accel_label->accel_string);
   }
   else {

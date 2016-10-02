@@ -88,7 +88,7 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
         break;
 
     case 1:
-        text = g_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+        text = geda_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
         break;
 
     default:

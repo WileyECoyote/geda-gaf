@@ -1,6 +1,7 @@
 2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/.c: Rearrange inclusion of headers, include libgeda headers:
+    * src/widgets/.c: Rearrange inclusion of headers, replace g_strdup with
+      geda_strdup, include libgeda headers:
 
         * src/widgets/geda_action.c
         * src/widgets/geda_combobox.c

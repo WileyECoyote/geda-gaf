@@ -428,7 +428,7 @@ geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_p
   }
 
   if (comp->cache)
-    comp->prefix = g_strdup (prefix);
+    comp->prefix = geda_strdup (prefix);
 
   completion_check_cache (comp, new_prefix);
 
@@ -503,7 +503,7 @@ main (int argc, char *argv[])
 
   while (fgets (buf, 1024, file)) {
 
-    list->data = g_strdup (buf);
+    list->data = geda_strdup (buf);
     geda_completion_add_items (comp, list);
 
   }

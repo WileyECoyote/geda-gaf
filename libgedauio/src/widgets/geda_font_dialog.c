@@ -1583,12 +1583,12 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   dialog->default_font  = NULL;
   dialog->show_preview  = TRUE;
 
-  /* Initialize the font */
+  /* Initialize the font - should this be monitored */
   if ((settings = gtk_settings_get_default ()) != NULL ) {
     g_object_get (settings, "gtk-font-name", &dialog->default_font, NULL);
   }
   else {
-    dialog->default_font  = g_strdup (_(DEFAULT_FONT_NAME));
+    dialog->default_font  = geda_strdup (_(DEFAULT_FONT_NAME));
   }
 
   dialog->font_map  = pango_cairo_font_map_get_default ();

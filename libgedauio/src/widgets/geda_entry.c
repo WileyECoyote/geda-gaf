@@ -885,18 +885,18 @@ geda_entry_activate (GedaEntry *entry, void *data)
           prev->data = iter->data;                           /* rotate pointers down */
           prev       = iter;
         }
-        iter        = g_list_last(history_list);         /* get the last entry again */
-        iter->data  = geda_utility_string_strdup (entry_text);  /* save the new text */
+        iter        = g_list_last(history_list);    /* get the last entry again */
+        iter->data  = geda_strdup (entry_text);     /* save the new text */
         list_length = g_list_length (history_list); /* is really ++list_length | max */
       }
       else { /* the buffer is not full so just add to the end */
-        char *text   = geda_utility_string_strdup (entry_text);
+        char *text   = geda_strdup (entry_text);
         history_list = g_list_append(history_list, text);
       }
     }
   }
   else { /* we were created with a NULL list, this means glist is a new buffer list */
-    char *text   = geda_utility_string_strdup (entry_text);
+    char *text   = geda_strdup (entry_text);
     history_list = g_list_append(history_list, text);
     list_length  = 1;
   }

@@ -2582,7 +2582,7 @@ geda_menu_set_title (GedaMenu *menu, const char *title)
   priv = menu->priv;
 
   old_title = priv->title;
-  priv->title = g_strdup (title);
+  priv->title = geda_strdup (title);
   g_free (old_title);
 
   geda_menu_update_title (menu);
