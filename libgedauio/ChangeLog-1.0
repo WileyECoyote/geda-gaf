@@ -12,6 +12,13 @@
         * src/widgets/geda_menu.c
         * src/widgets/geda_menu_bar.c
 
+    * src/widgets/geda_menu_bar.c: Revise module to monitor GtkSettings and
+      update the "gtk-menu-bar-accel" setting if the value changes rather
+      the fetching the value each key press in geda_menu_bar_window_key_press
+      _handler. Add functions; change_accel, settings_notify_cb, connect_
+      settings_signal, remove_settings_signal and geda_menu_bar_dispose.
+      Connect in add_to_window and disconnect in disposer.
+
     * src/widgets/geda_menu_shell.c: Revise geda_real_menu_shell_move_current
       to set submenu based on menu_shell->active_menu_item instead of
       had_selection and initialize parent_menu_shell in else clause.

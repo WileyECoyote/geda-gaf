@@ -70,6 +70,10 @@ struct _GedaMenuBarPrivate
 {
   PackDirection pack_direction;
   PackDirection child_pack_direction;
+
+  unsigned int settings_signal_id;
+
+  char        *accel;
 };
 
 static void geda_menu_bar_set_property        (GObject         *object,
@@ -129,6 +133,86 @@ static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
 static const char menu_bar_key[] = "menu-bar-list";
 
 static void *geda_menu_bar_parent_class = NULL;
+
+static void
+change_accel (GedaMenuBar *menubar)
+{
+  GedaMenuBarPrivate *priv;
+  GtkSettings *settings;
+  char *accel;
+
+  accel = NULL;
+
+  priv = menubar->priv;
+
+  settings = gtk_widget_get_settings (GTK_WIDGET(menubar));
+
+  g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
+
+  if (accel && *accel) {
+
+    if (priv->accel) {
+      g_free(priv->accel);
+    }
+    priv->accel = geda_strdup(accel);
+  }
+  else {
+    priv->accel = NULL;
+  }
+}
+
+/* Callback used when a GtkSettings value changes */
+static void
+settings_notify_cb (GObject     *object,
+                    GParamSpec  *pspec,
+                    GedaMenuBar *menubar)
+{
+  const char *name;
+
+  name = g_param_spec_get_name (pspec);
+
+  /* Check if menu-bar-accel is what was changed */
+  if (!strcmp (name, "gtk-menu-bar-accel")) {
+    change_accel (menubar);
+  }
+}
+
+static void
+connect_settings_signal(GedaMenuBar *menubar)
+{
+  GedaMenuBarPrivate *priv = menubar->priv;
+
+  if (!priv->settings_signal_id) {
+
+    GtkSettings *settings;
+    GdkScreen   *screen;
+
+    screen   = gtk_widget_get_screen (GTK_WIDGET (menubar));
+    settings = gtk_settings_get_for_screen (screen);
+
+    priv->settings_signal_id = g_signal_connect (settings, "notify",
+                                                 G_CALLBACK(settings_notify_cb),
+                                                 menubar);
+  }
+}
+
+/* Removes the settings signal handler. It's safe to call multiple times */
+static void
+remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
+{
+  GedaMenuBarPrivate *priv = menubar->priv;
+
+  if (priv->settings_signal_id) {
+
+    GtkSettings *settings;
+
+    settings = gtk_settings_get_for_screen (screen);
+
+    g_signal_handler_disconnect (settings, priv->settings_signal_id);
+
+    priv->settings_signal_id = 0;
+  }
+}
 
 static void
 geda_menu_bar_set_property (GObject      *object,
@@ -449,12 +533,12 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
   g_return_val_if_fail (GEDA_IS_MENU_BAR(widget), FALSE);
   g_return_val_if_fail (event != NULL, FALSE);
 
-  if (gtk_widget_is_drawable (widget))
-    {
-      geda_menu_bar_paint (widget, &event->area);
+  if (gtk_widget_is_drawable (widget)) {
 
-      GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->expose_event (widget, event);
-    }
+    geda_menu_bar_paint (widget, &event->area);
+
+    GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->expose_event (widget, event);
+  }
 
   return FALSE;
 }
@@ -839,9 +923,24 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 
 #endif
 
+static void geda_menu_bar_dispose (GObject *object)
+{
+  GdkScreen *screen;
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (object));
+
+  remove_settings_signal (GEDA_MENU_BAR (object), screen);
+
+  G_OBJECT_CLASS (geda_menu_bar_parent_class)->dispose (object);
+}
+
 static void geda_menu_bar_finalize (GObject *object)
 {
   GedaMenuBar *menu_bar = GEDA_MENU_BAR (object);
+
+  if (menu_bar->priv->accel) {
+    g_free(menu_bar->priv->accel);
+  }
 
   g_free(menu_bar->priv);
 
@@ -873,6 +972,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
 
   object_class->get_property  = geda_menu_bar_get_property;
   object_class->set_property  = geda_menu_bar_set_property;
+  object_class->dispose       = geda_menu_bar_dispose;
   object_class->finalize      = geda_menu_bar_finalize;
 
   widget_class->size_allocate = geda_menu_bar_size_allocate;
@@ -1125,11 +1225,23 @@ add_to_window (GtkWindow  *window, GedaMenuBar *menubar)
 
   if (!menubars) {
 
+    GtkSettings *settings;
+    char        *accel;
+
     g_signal_connect (window,
                       "key-press-event",
                       G_CALLBACK (geda_menu_bar_window_key_press_handler),
                       NULL);
+
+    accel = NULL;
+    settings = gtk_widget_get_settings (GTK_WIDGET(menubar));
+
+    g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
+
+    menubar->priv->accel = geda_strdup(accel);
   }
+
+  connect_settings_signal(menubar);
 
   set_menu_bars (window, g_list_prepend (menubars, menubar));
 }
@@ -1147,6 +1259,8 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
                                           geda_menu_bar_window_key_press_handler,
                                           NULL);
   }
+
+  remove_settings_signal(menubar, gtk_widget_get_screen (GTK_WIDGET (menubar)));
 
   set_menu_bars (window, menubars);
 }
@@ -1250,27 +1364,31 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
                                         GdkEventKey *event,
                                         void        *data)
 {
-  GtkSettings *settings;
-  char        *accel;
-  bool         retval;
+  GList *bars;
+  GList *menubars;
+  bool   retval;
 
-  accel = NULL;
-  retval = FALSE;
-  settings = gtk_widget_get_settings (widget);
+  retval   = FALSE;
+  bars     = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
+  menubars = geda_container_focus_sort (GTK_CONTAINER(widget), bars,
+                                        GTK_DIR_TAB_FORWARD, NULL);
+  g_list_free (bars);
 
-  g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
+  if (menubars) {
 
-  if (accel && *accel) {
-
-    GdkModifierType mods;
-    unsigned int keyval;
+    GedaMenuBar *menu_bar;
+    unsigned int accel_mods;
     unsigned int default_mask;
     unsigned int event_mods;
-    unsigned int accel_mods;
-    bool         keys_match;
+    unsigned int keyval;
+    char        *accel;
 
-    mods    = 0;
-    keyval  = 0;
+    GdkModifierType mods;
+
+    keyval   = 0;
+    mods     = 0;
+    menu_bar = menubars->data;
+    accel    = menu_bar->priv->accel;
 
     gtk_accelerator_parse (accel, &keyval, &mods);
 
@@ -1280,41 +1398,22 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
 
     default_mask = gtk_accelerator_get_default_mod_mask ();
 
-    keys_match   = event->keyval == keyval;
     event_mods   = event->state & default_mask;
     accel_mods   = mods & default_mask;
 
-    if (event_mods == accel_mods) {
+    if ((event->keyval == keyval) && (event_mods == accel_mods)) {
 
-      GList *bars;
-      GList *menubars;
+      GedaMenuShell *menu_shell;
 
-      bars = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
+      menu_shell = GEDA_MENU_SHELL (menu_bar);
 
-      menubars = geda_container_focus_sort (GTK_CONTAINER(widget), bars,
-                                            GTK_DIR_TAB_FORWARD, NULL);
-      g_list_free (bars);
-
-      if (menubars) {
-
-        GedaMenuShell *menu_shell;
-
-        if (keys_match) {
-
-          menu_shell = GEDA_MENU_SHELL (menubars->data);
-
-          geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
-          geda_menu_shell_activate (menu_shell);
-          geda_menu_shell_select_first (menu_shell, FALSE);
-          retval = TRUE;
-        }
-
-        g_list_free (menubars);
-      }
+      geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
+      geda_menu_shell_activate (menu_shell);
+      geda_menu_shell_select_first (menu_shell, FALSE);
+      retval = TRUE;
     }
+    g_list_free (menubars);
   }
-
-  g_free (accel);
 
   return retval;
 }
