@@ -1010,61 +1010,61 @@ geda_menu_bar_class_init (void *class, void *class_data)
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Left, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_PARENT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_Left, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_PREV);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_KP_Left, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_PREV);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Right, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_NEXT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_Right, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_NEXT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_KP_Right, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_NEXT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_Up, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_PARENT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_KP_Up, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_PARENT);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_Down, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_CHILD);
 
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KEY_KP_Down, 0,
                                 "move-current", 1,
-                                GTK_TYPE_MENU_DIRECTION_TYPE,
+                                G_TYPE_INT,
                                 MENU_DIR_CHILD);
 
   /**
@@ -1415,13 +1415,12 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
 
     if ((event->keyval == keyval) && (event_mods == accel_mods)) {
 
-      GedaMenuShell *menu_shell;
-
-      menu_shell = GEDA_MENU_SHELL (menu_bar);
+      GedaMenuShell *menu_shell = GEDA_MENU_SHELL (menu_bar);
 
       geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
       geda_menu_shell_activate (menu_shell);
       geda_menu_shell_select_first (menu_shell, FALSE);
+
       retval = TRUE;
     }
     g_list_free (menubars);
