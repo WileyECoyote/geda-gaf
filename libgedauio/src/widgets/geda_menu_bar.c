@@ -1162,7 +1162,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
 GedaType
 geda_menu_bar_get_type (void)
 {
-  static GedaType geda_menu_bar_type = 0;
+  static volatile GedaType geda_menu_bar_type = 0;
 
   if (g_once_init_enter (&geda_menu_bar_type)) {
 

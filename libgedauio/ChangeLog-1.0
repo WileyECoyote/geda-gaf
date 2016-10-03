@@ -1,15 +1,21 @@
 2016-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu.c: Replace G_TYPE_ENUM with G_TYPE_INT in bindings.
+    * src/widgets/geda_menu.c: Replace G_TYPE_ENUM with G_TYPE_INT in bindings,
+      declare type identifier volatile in geda_menu_get_type.
 
     * src/widgets/geda_menu_bar.c: Bind GDK_Left and GDK_Right to "move-current"
-      and replace GTK_TYPE_MENU_DIRECTION_TYPE with G_TYPE_INT in bindings.
+      and replace GTK_TYPE_MENU_DIRECTION_TYPE with G_TYPE_INT in bindings,
+      declare type identifier volatile in geda_menu_bar_get_type.
+
+    * src/widgets/geda_menu_item.c: Declare type identifier volatile in geda_
+      menu_bar_get_type.
 
     * src/widgets/geda_menu_shell.c: Resequence geda_menu_shell_select_item
       after geda_menu_shell_real_select_item. Revise geda_menu_shell_select_first
       and geda_menu_shell_select_last; add selectable and visible, and eliminate
       to_select, rename tmp_list->iter and return the selected child, if any.
       Replace g_signal_new G_OBJECT_CLASS_TYPE type argument GEDA_TYPE_MENU_SHELL.
+      declare type identifier volatile in geda_menu_shell_get_type.
 
 2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
