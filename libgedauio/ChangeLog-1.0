@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu_shell.c Revise functions geda_menu_shell_select_first
       and geda_menu_shell_select_last; add selectable and visible, and eliminate
-      to_select, rename tmp_list->iter.
+      to_select, rename tmp_list->iter. Resequence geda_menu_shell_select_item
+      after geda_menu_shell_real_select_item.
 
 2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
 

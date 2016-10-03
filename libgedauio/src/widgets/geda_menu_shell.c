@@ -1334,23 +1334,6 @@ geda_menu_shell_get_item (GedaMenuShell *menu_shell, GdkEvent *event)
 
 /* Handlers for action signals */
 
-void
-geda_menu_shell_select_item (GedaMenuShell *menu_shell,
-                             GtkWidget     *menu_item)
-{
-  GedaMenuShellClass *class;
-
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
-
-  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-
-  if (class->select_item &&
-      !(menu_shell->active &&
-    menu_shell->active_menu_item == menu_item))
-    class->select_item (menu_shell, menu_item);
-}
-
 static void
 geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
                                   GtkWidget     *menu_item)
@@ -1395,6 +1378,28 @@ geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
 
   if (submenu) {
     gtk_widget_activate (menu_shell->active_menu_item);
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_menu_shell_select_item (GedaMenuShell *menu_shell,
+                             GtkWidget     *menu_item)
+{
+  GedaMenuShellClass *class;
+
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
+
+  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+
+  if (class->select_item && !(menu_shell->active &&
+      menu_shell->active_menu_item == menu_item)) {
+    class->select_item (menu_shell, menu_item);
   }
 }
 
