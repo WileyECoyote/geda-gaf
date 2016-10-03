@@ -1568,57 +1568,67 @@ geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
 void
 geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
 {
-  GtkWidget *to_select = NULL;
-  GList     *tmp_list;
+  GList *iter;
 
-  tmp_list = menu_shell->children;
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
 
-  while (tmp_list) {
+  iter = menu_shell->children;
 
-    GtkWidget *child = tmp_list->data;
+  while (iter) {
 
-    if ((!search_sensitive && gtk_widget_get_visible (child)) ||
-          geda_menu_item_is_widget_selectable (child))
-    {
-      to_select = child;
-      if (!GEDA_IS_TEAROFF_MENU_ITEM (child))
+    GtkWidget *child;
+    bool       selectable;
+    bool       visible;
+
+    child      = iter->data;
+    visible    = gtk_widget_get_visible (child);
+    selectable = geda_menu_item_is_widget_selectable (child);
+
+    if ((!search_sensitive && visible) || selectable) {
+
+      if (!GEDA_IS_TEAROFF_MENU_ITEM (child)) {
+        geda_menu_shell_select_item (menu_shell, child);
         break;
+      }
     }
 
-    tmp_list = tmp_list->next;
-  }
-
-  if (to_select) {
-    geda_menu_shell_select_item (menu_shell, to_select);
+    iter = iter->next;
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 {
-  GtkWidget *to_select = NULL;
-  GList     *tmp_list;
+  GList *iter;
 
-  tmp_list = g_list_last (menu_shell->children);
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
 
-  while (tmp_list) {
+  iter = g_list_last (menu_shell->children);
 
-    GtkWidget *child = tmp_list->data;
+  while (iter) {
 
-    if ((!search_sensitive &&
-          gtk_widget_get_visible (child)) ||
-          geda_menu_item_is_widget_selectable (child))
-    {
-      to_select = child;
-      if (!GEDA_IS_TEAROFF_MENU_ITEM (child))
+    GtkWidget *child;
+    bool       selectable;
+    bool       visible;
+
+    child      = iter->data;
+    visible    = gtk_widget_get_visible (child);
+    selectable = geda_menu_item_is_widget_selectable (child);
+
+    if ((!search_sensitive && visible) || selectable) {
+
+      if (!GEDA_IS_TEAROFF_MENU_ITEM (child)) {
+        geda_menu_shell_select_item (menu_shell, child);
         break;
+      }
     }
 
-    tmp_list = tmp_list->prev;
-  }
-
-  if (to_select) {
-    geda_menu_shell_select_item (menu_shell, to_select);
+    iter = iter->prev; /* Search backwards */
   }
 }
 
