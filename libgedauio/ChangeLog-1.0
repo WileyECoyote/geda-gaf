@@ -4,6 +4,7 @@
       after geda_menu_shell_real_select_item. Revise geda_menu_shell_select_first
       and geda_menu_shell_select_last; add selectable and visible, and eliminate
       to_select, rename tmp_list->iter and return the selected child, if any.
+      Replace g_signal_new G_OBJECT_CLASS_TYPE type argument GEDA_TYPE_MENU_SHELL.
 
 2016-10-02 Wiley E. Hill <wileyhill@gmail.com>
 

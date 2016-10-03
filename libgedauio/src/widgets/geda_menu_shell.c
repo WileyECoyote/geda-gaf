@@ -357,7 +357,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[ACTIVATE_CURRENT] =
     g_signal_new ("activate-current",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, activate_current),
                   NULL, NULL,
@@ -374,7 +374,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[CANCEL] =
     g_signal_new ("cancel",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, cancel),
                   NULL, NULL,
@@ -390,7 +390,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[CYCLE_FOCUS] =
     g_signal_new_class_handler ("cycle-focus",
-                                G_OBJECT_CLASS_TYPE (object_class),
+                                GEDA_TYPE_MENU_SHELL,
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                 G_CALLBACK (geda_real_menu_shell_cycle_focus),
                                 NULL, NULL,
@@ -406,7 +406,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[DEACTIVATE] =
     g_signal_new ("deactivate",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, deactivate),
                   NULL, NULL,
@@ -423,7 +423,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[MOVE_CURRENT] =
     g_signal_new ("move-current",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, move_current),
                   NULL, NULL,
@@ -443,7 +443,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[MOVE_SELECTED] =
     g_signal_new ("move-selected",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, move_selected),
                   geda_boolean_handled_accumulator, NULL,
@@ -460,7 +460,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
    */
   menu_shell_signals[SELECTION_DONE] =
     g_signal_new ("selection-done",
-                  G_OBJECT_CLASS_TYPE (object_class),
+                  GEDA_TYPE_MENU_SHELL,
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, selection_done),
                   NULL, NULL,
