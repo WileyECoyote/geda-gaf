@@ -713,7 +713,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                            _("Arrow Spacing"),
                                                            _("Space between label and arrow"),
                                                              0,
-                                                             G_MAXINT,
+                                                             INT_MAX,
                                                              10,
                                                              G_PARAM_READABLE));
 
@@ -727,7 +727,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                            _("Horizontal Padding"),
                                                            _("Padding to left and right of the menu item"),
                                                              0,
-                                                             G_MAXINT,
+                                                             INT_MAX,
                                                              3,
                                                              G_PARAM_READABLE));
 
@@ -745,7 +745,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                            _("Icon Spacing"),
                                                            _("Space between icon and label"),
                                                              0,
-                                                             G_MAXINT,
+                                                             INT_MAX,
                                                              5,
                                                              G_PARAM_READABLE));
 
@@ -772,7 +772,7 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                            g_param_spec_int ("width-chars",
                                                            _("Width in Characters"),
                                                            _("The minimum desired width of the menu item in characters"),
-                                                             0, G_MAXINT, 12,
+                                                             0, INT_MAX, 12,
                                                              G_PARAM_READABLE));
 }
 
