@@ -1570,12 +1570,12 @@ geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
  *                               should be %FALSE if the menu is being
  *                               popped up initially.
  */
-void
+GtkWidget*
 geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
 {
   GList *iter;
 
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
 
   iter = menu_shell->children;
 
@@ -1593,12 +1593,13 @@ geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
 
       if (!GEDA_IS_TEAROFF_MENU_ITEM (child)) {
         geda_menu_shell_select_item (menu_shell, child);
-        break;
+        return child;
       }
     }
 
     iter = iter->next;
   }
+  return NULL;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1606,12 +1607,12 @@ geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
  *  \par Function Description
  *
  */
-void
+GtkWidget*
 geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 {
   GList *iter;
 
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
 
   iter = g_list_last (menu_shell->children);
 
@@ -1629,12 +1630,13 @@ geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 
       if (!GEDA_IS_TEAROFF_MENU_ITEM (child)) {
         geda_menu_shell_select_item (menu_shell, child);
-        break;
+        return child;
       }
     }
 
     iter = iter->prev; /* Search backwards */
   }
+  return NULL;
 }
 
 static bool

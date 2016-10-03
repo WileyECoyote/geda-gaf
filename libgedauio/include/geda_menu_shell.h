@@ -153,11 +153,11 @@ void       geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
 void       geda_menu_shell_set_take_focus    (GedaMenuShell *menu_shell,
                                               bool           take_focus);
 
-void       geda_menu_shell_select_first      (GedaMenuShell *menu_shell,
+GtkWidget *geda_menu_shell_select_first      (GedaMenuShell *menu_shell,
                                               bool           search_sensitive);
 void       geda_menu_shell_select_item       (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item);
-void       geda_menu_shell_select_last       (GedaMenuShell *menu_shell,
+GtkWidget *geda_menu_shell_select_last       (GedaMenuShell *menu_shell,
                                               bool           search_sensitive);
 
 void       geda_menu_shell_remove_mnemonic   (GedaMenuShell *menu_shell,
