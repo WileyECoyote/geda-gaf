@@ -8,7 +8,8 @@
       declare type identifier volatile in geda_menu_bar_get_type.
 
     * src/widgets/geda_menu_item.c: Declare type identifier volatile in geda_
-      menu_bar_get_type.
+      menu_bar_get_type. Revise geda_real_menu_item_activate_item to call
+      geda_menu_shell_activate before calling geda_menu_shell_select_item.
 
     * src/widgets/geda_menu_shell.c: Resequence geda_menu_shell_select_item
       after geda_menu_shell_real_select_item. Revise geda_menu_shell_select_first

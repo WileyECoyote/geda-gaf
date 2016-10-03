@@ -2536,26 +2536,29 @@ geda_menu_item_activate_action (GedaMenuItem *menu_item)
 static void
 geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
 {
-  GedaMenuItemPrivate *priv = menu_item->priv;
+  GedaMenuItemPrivate *priv;
   GtkWidget *parent;
   GtkWidget *widget;
 
+  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
+
   widget = GTK_WIDGET(menu_item);
   parent = gtk_widget_get_parent (widget);
+  priv   = menu_item->priv;
 
-  if (parent && GEDA_IS_MENU_SHELL (parent)) {
+  if (parent && GEDA_IS_MENU_SHELL(parent)) {
 
-    GedaMenuShell *menu_shell = GEDA_MENU_SHELL(parent);
+    GedaMenuShell *parent_menu_shell = GEDA_MENU_SHELL (parent);
 
     if (priv->submenu == NULL) {
-      geda_menu_shell_activate_item (menu_shell, widget, TRUE);
+      geda_menu_shell_activate_item (parent_menu_shell, widget, TRUE);
     }
     else {
 
-      geda_menu_shell_select_item (menu_shell, widget);
+      geda_menu_shell_activate (parent_menu_shell);
+      geda_menu_shell_select_item (parent_menu_shell, widget);
       geda_menu_item_popup_submenu (menu_item, FALSE);
-
-      geda_menu_shell_select_first (GEDA_MENU_SHELL(priv->submenu), TRUE);
+      geda_menu_shell_select_first (GEDA_MENU_SHELL (priv->submenu), TRUE);
     }
   }
 }
