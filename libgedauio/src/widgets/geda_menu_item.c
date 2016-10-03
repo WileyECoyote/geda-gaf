@@ -959,8 +959,7 @@ geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
 }
 
 static void
-geda_menu_item_accel_width_foreach (GtkWidget *widget,
-                                    void      *data)
+geda_menu_item_accel_width_foreach (GtkWidget *widget, void *data)
 {
   unsigned int *width = data;
 
@@ -1872,15 +1871,19 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   menu_item = GEDA_MENU_ITEM(widget);
   priv      = menu_item->priv;
 
+  /* If an item on a bar use the parent style */
   if (GEDA_IS_MENU_BAR(widget->parent)) {
+
     pack_dir         = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR(widget->parent));
     child_pack_dir   = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR(widget->parent));
     vertical_padding =  0;
   }
   else  {
+
     pack_dir         = PACK_DIRECTION_LTR;
     child_pack_dir   = PACK_DIRECTION_LTR;
 
+    /* Only add vertical padding in menus, not items on menu bars */
     gtk_widget_style_get (widget, "vertical-padding", &vertical_padding, NULL);
   }
 
@@ -1898,6 +1901,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   else if ((pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) &&
     (child_pack_dir == PACK_DIRECTION_TTB || child_pack_dir == PACK_DIRECTION_BTT))
   {
+    /* Reverse role of padding */
     requisition->width  += vertical_padding;
     requisition->height += horizontal_padding << 1;
   }
@@ -1920,7 +1924,6 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
       requisition->width += child_requisition.height;
       requisition->width += arrow_spacing + arrow_size;
 
-      /* WEH: Max or SUM? */
       requisition->width = MAX (requisition->width, get_minimum_width (widget));
     }
   }
