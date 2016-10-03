@@ -1020,43 +1020,44 @@ geda_menu_class_init   (void *class, void *class_data)
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Up, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_PREV);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KP_Up, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_PREV);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Down, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_NEXT);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KP_Down, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_NEXT);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Left, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_PARENT);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KP_Left, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_PARENT);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Right, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_CHILD);
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_KP_Right, 0,
                                 "move-current", 1,
-                                G_TYPE_ENUM,
+                                G_TYPE_INT,
                                 MENU_DIR_CHILD);
+
   gtk_binding_entry_add_signal (binding_set,
                                 GDK_Home, 0,
                                 "move-scroll", 1,

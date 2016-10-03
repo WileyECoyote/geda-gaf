@@ -1,5 +1,7 @@
 2016-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Replace G_TYPE_ENUM with G_TYPE_INT in bindings.
+
     * src/widgets/geda_menu_bar.c: Bind GDK_Left and GDK_Right to "move-current"
       and replace GTK_TYPE_MENU_DIRECTION_TYPE with G_TYPE_INT in bindings.
 
