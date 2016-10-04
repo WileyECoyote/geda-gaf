@@ -1528,17 +1528,11 @@ geda_menu_bar_move_current (GedaMenuShell *menu_shell,
   {
     if ((text_dir == GTK_TEXT_DIR_RTL) == (pack_dir == PACK_DIRECTION_LTR))
     {
-      switch (direction) {
-
-        case MENU_DIR_PREV:
-          direction = MENU_DIR_NEXT;
-          break;
-
-        case MENU_DIR_NEXT:
-          direction = MENU_DIR_PREV;
-          break;
-
-        default: ;
+      if (direction == MENU_DIR_PREV) {
+        direction = MENU_DIR_NEXT;
+      }
+      else if (direction == MENU_DIR_NEXT) {
+        direction = MENU_DIR_PREV;
       }
     }
   }
