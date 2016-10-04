@@ -82,7 +82,7 @@ int   default_fill_angle2      = 135;
  *  \param [out] toplevel  The GedaToplevel object to be updated.
  *
  */
-void i_vars_libgeda_set(GedaToplevel *toplevel)
+void geda_iface_vars_set(GedaToplevel *toplevel)
 {
   GList *iter;
 
@@ -147,7 +147,7 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
  *  This function will free all of the default variables for libgeda.
  *
  */
-void i_vars_libgeda_freenames()
+void geda_iface_vars_freenames()
 {
   GList *iter;
 

@@ -188,7 +188,7 @@ cmd_shell_impl (void *data, int argc, char **argv)
     g_rc_parse ("gaf shell", NULL, NULL);
   }
 
-  i_vars_libgeda_set (toplevel); /* Ugh */
+  geda_iface_vars_set (toplevel); /* Ugh */
 
   /* Finally evaluate run list */
   run_lst = scm_cons (sym_begin, run_lst);

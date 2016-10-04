@@ -53,7 +53,7 @@ int  default_tearoff_menus   = 1;
  */
 void i_vars_set (GedaToplevel *toplevel)
 {
-  //i_vars_libgeda_set (toplevel);
+  //geda_iface_vars_set (toplevel);
 
   toplevel->paper_width = default_paper_width;
   toplevel->paper_height = default_paper_height;

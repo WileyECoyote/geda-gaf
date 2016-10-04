@@ -37,7 +37,5 @@
  */
 void i_vars_set(GedaToplevel * pr_current)
 {
-    i_vars_libgeda_set(pr_current);
-
+    geda_iface_vars_set(pr_current);
 }
-

@@ -577,7 +577,7 @@ void i_vars_set(GschemToplevel *w_current)
 
   GedaToplevel *toplevel               = w_current->toplevel;
 
-  i_vars_libgeda_set(toplevel);
+  geda_iface_vars_set(toplevel);
 
   i_vars_recall_user_settings (w_current);
 

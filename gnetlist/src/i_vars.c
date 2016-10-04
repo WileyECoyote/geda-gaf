@@ -59,7 +59,7 @@ char *default_unnamed_busname               = NULL;
 void i_vars_set(GedaToplevel * pr_current)
 {
   /* initialize the toplevels varibles */
-  i_vars_libgeda_set(pr_current);
+  geda_iface_vars_set(pr_current);
 
   /* set non-strings to default values*/
   pr_current->net_naming_priority        = default_net_naming_priority;

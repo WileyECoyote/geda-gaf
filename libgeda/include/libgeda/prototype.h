@@ -82,8 +82,8 @@ extern "C" {
          void    i_menu_init                     (void);
 
 /* i_vars.c */
-         void    i_vars_libgeda_set              (GedaToplevel *toplevel);
-         void    i_vars_libgeda_freenames        (void);
+         void    geda_iface_vars_set             (GedaToplevel *toplevel);
+         void    geda_iface_vars_freenames       (void);
 
 /* libgeda.c */
          void    libgeda_init                    (int argc, char **argv);

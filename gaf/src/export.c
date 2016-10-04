@@ -190,7 +190,7 @@ cmd_export_impl (void *data, int argc, char **argv)
   }
   scm_dynwind_end ();
 
-  i_vars_libgeda_set (toplevel);
+  geda_iface_vars_set (toplevel);
 
   /* Parse configuration files */
   export_config ();

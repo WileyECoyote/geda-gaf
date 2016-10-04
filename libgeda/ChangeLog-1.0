@@ -1,3 +1,7 @@
+2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_vars.c: Rename functions with geda_iface prefix.
+
 2016-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_math.h: Add macros for m_math functions.

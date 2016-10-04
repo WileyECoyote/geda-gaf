@@ -170,5 +170,5 @@ void libgeda_release(void)
   geda_struct_slib_free();
   geda_struct_attrib_free();
   geda_struct_papersizes_free();
-  i_vars_libgeda_freenames();
+  geda_iface_vars_freenames();
 }
