@@ -277,8 +277,8 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         }
         else {
 
-          double first  = geda_math_distance (segment.x[0], segment.y[0], x, y);
-          double second = geda_math_distance (segment.x[1], segment.y[1], x, y);
+          double first  = geda_distance (segment.x[0], segment.y[0], x, y);
+          double second = geda_distance (segment.x[1], segment.y[1], x, y);
           int    index  = first < second ? 0 : 1;
 
           target.x = segment.x[index];
