@@ -110,13 +110,13 @@ char msg_buffer[256];
 #define DEFAULT_FONT_WIDTH 12
 #define DEFAULT_PRECISION 2
 #define DEFAULT_SPACE 8
-#define NUM_SHEETS 3            /* Components, Nets, and Pins */
-#define COLUMN_WIDTH_LIMIT 180  /* Auto width adjustment upper limit*/
+#define NUM_SHEETS 3              /*!< Components, Nets, and Pins */
+#define COLUMN_WIDTH_LIMIT 180    /*!< Auto width adjustment upper limit*/
 
-GtkWidget        *main_window;         /* Main window */
+GtkWidget        *main_window;    /*!< Main window */
 GtkWidget        *menu_bar;
-GtkUIManager     *menu_manager;   /* Manager for menus */
-GtkRecentManager *recent_manager; /* Manager for recently used files */
+GtkUIManager     *menu_manager;   /*!< Manager for menus */
+GtkRecentManager *recent_manager; /*!< Manager for recently used files */
 
 GtkWidget  *Standard_handlebox;
 GtkWidget  *Standard_Toolbar;
@@ -127,17 +127,16 @@ GtkWidget  *Attribute_Toolbar;
 GtkWidget  *notebook;
 GtkWidget  *popup;
 GtkWidget  *edit_box;
-GtkSheet  **sheets;             /* These are the spreadsheet widgets themselves */
+GtkSheet  **sheets;              /*!< These are the spreadsheet widgets themselves */
 GtkWidget **scrolled_windows;
-GtkWidget  *entry;
+GtkWidget  *entry;               /*!< Active Cell Edit Entry */
 GtkWidget  *location;
 
 GSList *ComponentMenuItems;
 GSList *ComponentToolbarButtons;
 
-/* command line switch settings */
-extern int verbose_mode;
-extern int quiet_mode;
+extern int verbose_mode;         /*!< command line switch verbose settings */
+extern int quiet_mode;           /*!< command line switch quiet settings */
 
 /* rc variables */
 extern int sort_components;
