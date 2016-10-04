@@ -1,7 +1,9 @@
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Simplify geda_menu_bar_move_current;
-      eliminate first switch case for direction.
+      eliminate first switch case for direction. Revert binding GDK_Left and
+      GDK_Right to "move-current", these are duplicate key code and causes
+      Gtk to call geda_menu_bar_move_current twice.
 
 2016-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
