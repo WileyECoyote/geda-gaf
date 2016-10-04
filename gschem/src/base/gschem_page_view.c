@@ -294,7 +294,7 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
                 0,
                 NULL,
                 NULL,
-                g_cclosure_marshal_VOID__VOID,
+                geda_marshal_VOID__VOID,
                 G_TYPE_NONE,
                 0);
 }

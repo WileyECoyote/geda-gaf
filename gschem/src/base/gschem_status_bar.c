@@ -605,7 +605,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  middle_action),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 
   signals[SET_MIDDLE_MOUSEPAN] = g_signal_new ("set-middle-pan",
@@ -614,7 +614,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  middle_pan),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 
   signals[SET_MIDDLE_REPEAT]   = g_signal_new ("set-middle-repeat",
@@ -623,7 +623,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  middle_repeat),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 #ifdef HAVE_LIBSTROKE
 
@@ -633,7 +633,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  middle_stroke),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 #endif
 
@@ -643,7 +643,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  third_popup),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 
   signals[SET_THIRD_MOUSEPAN]  = g_signal_new ("set-third-pan",
@@ -652,7 +652,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  third_pan),
                                                 NULL, NULL,
-                                                g_cclosure_marshal_VOID__VOID,
+                                                geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);
 }
 
@@ -1178,7 +1178,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                  G_CALLBACK (update_grid_label),
                                  NULL, NULL,
-                                 gtk_marshal_VOID__VOID,
+                                 geda_marshal_VOID__VOID,
                                  G_TYPE_NONE, 0);
 
   g_signal_connect (coord_event, "button-release-event",
