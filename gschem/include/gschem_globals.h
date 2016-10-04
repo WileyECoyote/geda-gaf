@@ -247,7 +247,7 @@ typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 /* Plain Text dialogs */
 #define information_dialog(...) { \
         char *msg = (char*)geda_sprintf(__VA_ARGS__); \
-        message_dialog( msg, GEDA_MESSAGE_INFO) \
+        message_dialog(msg, GEDA_MESSAGE_INFO) \
         GEDA_FREE (msg); }
 #define warning_dialog(...) { \
         char *msg = (char*)geda_sprintf(__VA_ARGS__); \
