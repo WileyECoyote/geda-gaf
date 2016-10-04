@@ -1,5 +1,9 @@
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/gschem-gtkrc: Change GedaMenu::vertical-padding setting to 5, which
+      seems to prove a more uniform gap around popup menus. Add GedaMenuItem::
+      vertical-padding with a value of 2.
+
     * src/base/gschem_macro_widget.c: Update arguments for geda_entry_new_visible.
 
     * src/base/gschem_page_view.c: Replace g_cclosure_marshal_VOID__VOID with

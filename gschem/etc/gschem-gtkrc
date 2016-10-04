@@ -59,11 +59,12 @@ style "gschem"
    GedaMenu::menu-popdown-delay           = 1000
    GedaMenu::menu-popup-delay             = 200
    GedaMenu::vertical-offset              = 0
-   GedaMenu::vertical-padding             = 0
+   GedaMenu::vertical-padding             = 5      # Controls extra spacing at top and bottom
 
    GedaMenuItem::arrow-scaling            = 0.6
    GedaMenuItem::arrow-spacing            = 10
    GedaMenuItem::horizontal-padding       = 5      # Controls spacing on menu bar
+   GedaMenuItem::vertical-padding         = 2      # Controls spacing of menu items
    GedaMenuItem::selected-shadow-type     = GTK_SHADOW_NONE
    GedaMenuItem::toggle-spacing           = 5
    GedaMenuItem::width-chars              = 12
