@@ -679,7 +679,7 @@ geda_menu_get_property (GObject     *object,
  * \param [in] class_data GedaMenu structure associated with the class
  */
 static void
-geda_menu_class_init   (void *class, void *class_data)
+geda_menu_class_init  (void *class, void *class_data)
 {
   GObjectClass       *gobject_class    = G_OBJECT_CLASS (class);
   GtkObjectClass     *object_class     = GTK_OBJECT_CLASS (class);
@@ -1140,8 +1140,8 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   gtk_window_set_resizable (GTK_WINDOW (menu->toplevel), FALSE);
   gtk_window_set_mnemonic_modifier (GTK_WINDOW (menu->toplevel), 0);
 
-  /* Refloat the menu, so that reference counting for the menu isn't
-   * affected by it being a child of the toplevel
+  /* Refloat the menu, so that reference counting for the menu is
+   * not affected by it being a child of the toplevel
    */
   g_object_force_floating (G_OBJECT (menu));
   menu->needs_destruction_ref_count = TRUE;
