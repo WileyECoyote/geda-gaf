@@ -195,7 +195,7 @@ static int  geda_menu_shell_is_item                (GedaMenuShell     *menu_shel
 static GtkWidget *geda_menu_shell_get_item         (GedaMenuShell     *menu_shell,
                                                     GdkEvent          *event);
 static GType geda_menu_shell_child_type            (GtkContainer      *container);
-static int  geda_menu_shell_menu_key_press         (GedaMenuShell     *menu_shell,
+static int  geda_menu_shell_menu_key_press         (GtkWidget         *widget,
                                                     GdkEventKey       *event);
 static void geda_menu_shell_real_select_item       (GedaMenuShell     *menu_shell,
                                                     GtkWidget         *menu_item);
@@ -326,6 +326,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
   widget_class->button_release_event  = geda_menu_shell_button_release;
   widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
   widget_class->enter_notify_event    = geda_menu_shell_enter_notify;
+  widget_class->key_press_event       = geda_menu_shell_menu_key_press;
   widget_class->leave_notify_event    = geda_menu_shell_leave_notify;
   widget_class->screen_changed        = geda_menu_shell_screen_changed;
 
@@ -343,7 +344,6 @@ geda_menu_shell_class_init(void *class, void *class_data)
   menu_shell_class->select_item       = geda_menu_shell_real_select_item;
   menu_shell_class->insert            = geda_menu_shell_real_insert;
   menu_shell_class->move_selected     = geda_menu_shell_real_move_selected;
-  menu_shell_class->menu_key_press    = geda_menu_shell_menu_key_press;
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
@@ -1019,23 +1019,25 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 }
 
 static int
-geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
+geda_menu_shell_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
+  GedaMenuShell *menu_shell;
+  GedaMenuShell *parent_shell;
+
   bool handled;
 
-  menu_shell->keyboard_mode = TRUE;
-
-  GedaMenuShell *parent_shell;
-  GtkWidget     *widget_shell;
-
+  menu_shell   = GEDA_MENU_SHELL(widget);
   parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
+
+  menu_shell->keyboard_mode = TRUE;
 
   /* If no item is selected then let parent check */
   if (!menu_shell->active_menu_item && parent_shell) {
 
-    widget_shell = GTK_WIDGET(parent_shell);
+    GtkWidget *parent_widget_shell = GTK_WIDGET(parent_shell);
 
-    handled = gtk_widget_event (widget_shell, (GdkEvent*)event);
+    handled = gtk_widget_event (parent_widget_shell, (GdkEvent*)event);
+
   }
   else {
     handled = FALSE;
@@ -1049,9 +1051,8 @@ geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
     if (!handled) {
 
       bool enable_mnemonics;
-      widget_shell = GTK_WIDGET(menu_shell);
 
-      g_object_get (gtk_widget_get_settings (widget_shell),
+      g_object_get (gtk_widget_get_settings (widget),
                     "gtk-enable-mnemonics", &enable_mnemonics, NULL);
 
       if (enable_mnemonics) {
@@ -1059,6 +1060,7 @@ geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
       }
     }
   }
+
   return handled;
 }
 

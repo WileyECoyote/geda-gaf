@@ -3528,7 +3528,7 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 
   geda_menu_stop_navigating_submenu (menu);
 
-  return GEDA_MENU_SHELL_CLASS(geda_menu_parent_class)->menu_key_press (menu_shell, event);
+  return GTK_WIDGET_CLASS(geda_menu_parent_class)->key_press_event ((GtkWidget*)menu_shell, event);
 }
 #endif
 
@@ -3549,7 +3549,7 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 
   geda_menu_stop_navigating_submenu (menu);
 
-  if (GEDA_MENU_SHELL_CLASS(geda_menu_parent_class)->menu_key_press (menu_shell, event))
+  if (GTK_WIDGET_CLASS(geda_menu_parent_class)->key_press_event ((GtkWidget*)menu_shell, event))
     return TRUE;
 
   accel      = NULL;
