@@ -1784,20 +1784,18 @@ static void
 geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
                                        bool           force_hide)
 {
-  GedaMenuItem  *menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
+  GedaMenuItem *active_item = GEDA_MENU_ITEM(menu_shell->active_menu_item);
 
-  if (menu_item &&
+  if (active_item &&
       geda_menu_item_is_widget_selectable (menu_shell->active_menu_item))
   {
-    if (!geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item)))
-    {
+    if (!geda_menu_item_get_submenu(active_item)) {
       geda_menu_shell_activate_item (menu_shell,
                                      menu_shell->active_menu_item,
                                      force_hide);
     }
-    else
-    {
-      geda_menu_item_popup_submenu (menu_item, FALSE);
+    else {
+      geda_menu_item_popup_submenu (active_item, FALSE);
     }
   }
 }
