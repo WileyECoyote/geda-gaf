@@ -1325,38 +1325,43 @@ geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
 
   menu_shell = GEDA_MENU_SHELL (widget);
 
-  bool result = FALSE;
+  bool handled = FALSE;
 
   if (menu_shell->children) {
 
-    GList *iter;
+    handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
 
-    for (iter = menu_shell->children; iter; iter = iter->next) {
+    if (!handled) {
 
-      if (GEDA_IS_MENU_ITEM(iter->data)) {
+      GList *iter;
 
-        GedaMenuItem *menu_item = iter->data;
+      for (iter = menu_shell->children; iter; iter = iter->next) {
 
-        char mnemonic = geda_menu_item_get_mnemonic(menu_item);
-        char key_char = (char)event->keyval;
+        if (GEDA_IS_MENU_ITEM(iter->data)) {
 
-        if (((mnemonic >> 5) & 1) ^ 1) {
-          mnemonic = tolower(mnemonic);
-        }
+          GedaMenuItem *menu_item = iter->data;
 
-        if (key_char == mnemonic){
+          char mnemonic = geda_menu_item_get_mnemonic(menu_item);
+          char key_char = (char)event->keyval;
 
-          if (geda_menu_item_is_selectable(menu_item)) {
-            geda_menu_item_activate_item(menu_item);
+          if (((mnemonic >> 5) & 1) ^ 1) {
+            mnemonic = tolower(mnemonic);
           }
-          result = TRUE;
-          break;
+
+          if (key_char == mnemonic){
+
+            if (geda_menu_item_is_selectable(menu_item)) {
+              geda_menu_item_activate_item(menu_item);
+            }
+            handled = TRUE;
+            break;
+          }
         }
       }
     }
   }
 
-  return result;
+  return handled;
 }
 
 static bool

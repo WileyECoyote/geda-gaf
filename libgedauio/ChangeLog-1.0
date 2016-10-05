@@ -10,6 +10,10 @@
     * src/widgets/geda_menu.c: Use key_press_event instead of menu_key_press
       in geda_menu_key_press.
 
+    * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_key_press; rename
+      result->handled, call gtk_bindings_activate_event so that "move-current"
+      is executed before checking mnemonics of children items.
+
     * src/widgets/geda_menu_shell.c: Reduce scope of enable_mnemonics in
       geda_menu_shell_menu_key_press and rename menu_item->active_item.
       Revert argument to geda_menu_shell_menu_key_press back to GtkWidget
