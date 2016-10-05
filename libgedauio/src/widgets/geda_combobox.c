@@ -6978,9 +6978,15 @@ geda_combo_box_get_focus_on_click (GedaComboBox *combo)
 void
 geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
 {
+  GedaComboBoxData *priv;
+
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo));
 
   combo->tip_column = column;
+  priv = combo->priv;
+
+  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW(priv->tree_view),
+                                    combo->tip_column);
 }
 
 /* ------------------------ Widget Versions ------------------------ */
